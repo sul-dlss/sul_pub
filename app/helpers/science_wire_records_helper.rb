@@ -1,0 +1,2 @@
+module ScienceWireRecordsHelper
+end

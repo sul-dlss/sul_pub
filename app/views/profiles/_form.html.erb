@@ -1,0 +1,97 @@
+<%= form_for(@profile) do |f| %>
+  <% if @profile.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@profile.errors.count, "error") %> prohibited this profile from being saved:</h2>
+
+      <ul>
+      <% @profile.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :sunetid %><br />
+    <%= f.text_field :sunetid %>
+  </div>
+  <div class="field">
+    <%= f.label :university_id %><br />
+    <%= f.number_field :university_id %>
+  </div>
+  <div class="field">
+    <%= f.label :shc_doctor_no %><br />
+    <%= f.number_field :shc_doctor_no %>
+  </div>
+  <div class="field">
+    <%= f.label :ca_license_number %><br />
+    <%= f.text_field :ca_license_number %>
+  </div>
+  <div class="field">
+    <%= f.label :cap_first_name %><br />
+    <%= f.text_field :cap_first_name %>
+  </div>
+  <div class="field">
+    <%= f.label :cap_last_name %><br />
+    <%= f.text_field :cap_last_name %>
+  </div>
+  <div class="field">
+    <%= f.label :cap_middle_name %><br />
+    <%= f.text_field :cap_middle_name %>
+  </div>
+  <div class="field">
+    <%= f.label :display_name %><br />
+    <%= f.text_field :display_name %>
+  </div>
+  <div class="field">
+    <%= f.label :official_first_name %><br />
+    <%= f.text_field :official_first_name %>
+  </div>
+  <div class="field">
+    <%= f.label :official_last_name %><br />
+    <%= f.text_field :official_last_name %>
+  </div>
+  <div class="field">
+    <%= f.label :official_middle_name %><br />
+    <%= f.text_field :official_middle_name %>
+  </div>
+  <div class="field">
+    <%= f.label :preferred_first_name %><br />
+    <%= f.text_field :preferred_first_name %>
+  </div>
+  <div class="field">
+    <%= f.label :preferred_last_name %><br />
+    <%= f.text_field :preferred_last_name %>
+  </div>
+  <div class="field">
+    <%= f.label :preferred_middle_name %><br />
+    <%= f.text_field :preferred_middle_name %>
+  </div>
+  <div class="field">
+    <%= f.label :pubmed_last_name %><br />
+    <%= f.text_field :pubmed_last_name %>
+  </div>
+  <div class="field">
+    <%= f.label :pubmed_first_initial %><br />
+    <%= f.text_field :pubmed_first_initial %>
+  </div>
+  <div class="field">
+    <%= f.label :pubmed_middle_initial %><br />
+    <%= f.text_field :pubmed_middle_initial %>
+  </div>
+  <div class="field">
+    <%= f.label :pubmed_institution %><br />
+    <%= f.text_field :pubmed_institution %>
+  </div>
+  <div class="field">
+    <%= f.label :pubmed_other_institution %><br />
+    <%= f.text_field :pubmed_other_institution %>
+  </div>
+  <div class="field">
+    <%= f.label :cap_url %><br />
+    <%= f.text_field :cap_url %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

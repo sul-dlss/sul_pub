@@ -1,0 +1,9 @@
+<h1>Populate Results</h1>
+<h3>Records as XML</h3>
+<p><%= @xml %></p>
+<h3>PubMed Ids</h3>
+<ul>
+<% @pubMedIds.each do | pubMedId | %>
+  <li><%= pubMedId %></li>
+<% end %>
+</ul>

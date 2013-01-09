@@ -1,0 +1,60 @@
+<div class="center hero-unit">
+  <h2>SUL Publications API</h2>
+<hr/>
+
+ <p>The API provides access to Stanford author profile information and the consolidated Stanford publications database.  The API has three main categories:  authors, publications, and contributions (authorships.)
+ </p>
+
+<hr/>
+<h3 style="padding: 5px">
+  	Publications
+  </h3>
+
+<table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Verb</th>
+            <th>Path</th>
+            <th>Description</th>
+            <th>Returns<sup>1</sup><sup>2</sup></th>
+            <th>Sample</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>GET</td>
+            <td>/v1/pubs/{ourPubId}</td>
+            <td>Returns full pub record</td>
+            <td>format?</td>
+            <td>tbd</td>
+          </tr>
+          <tr>
+            <td>POST</td>
+            <td>/v1/pubs</td>
+            <td>Submit new publication(s)</td>
+            <td>new pubId or a list of new pubIds for batch</td>
+            <td>tbd</td>
+          </tr>
+          <tr>
+            <td>PUT</td>
+            <td>/v1/pubs/{ourPubId}</td>
+            <td>edit record</td>
+            <td>empty body</td>
+            <td>tbd</td>
+          </tr>
+          <tr>
+            <td>DELETE</td>
+            <td>/v1/pubs/{ourPubId}</td>
+            <td>delete record</td>
+            <td>empty body</td>
+            <td>tbd</td>
+          </tr>
+        </tbody>
+      </table>
+
+
+<div class="row"><div class="span8 offset1"><sup>1</sup>ACCEPT header can request json, xml, plain text, etc.  default: JSON</div></div>
+<div class="row"><div class="span8 offset1"><sup>2</sup>appropriate HTTP codes returned in each case for success, error, etc.</div></div>
+
+
+ <!-- <%= link_to "GET /sulbib/v1/publications/1", '#', class: "btn btn-large btn-primary" %>  -->

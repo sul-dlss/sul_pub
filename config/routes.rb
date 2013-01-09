@@ -1,6 +1,33 @@
 Sulbib::Application.routes.draw do
-  get "publications/new"
 
+  mount SulBib::API => "/publications"
+  
+  get "static_pages/home"
+  get "static_pages/api"
+
+  resources :profiles
+
+  get "people/index"
+  get "people/edit"
+  get "people/show"
+  get "people/new"
+
+  get "science_wire_records/index"
+  get "science_wire_records/show"
+  get "science_wire_records/populate"
+  post "science_wire_records/search"
+
+  get "pub_med_records/index"
+  get "pub_med_records/show"
+  get "pub_med_records/populate"
+  post "pub_med_records/search"
+  
+  # resources :publications
+  
+  root to: 'static_pages#home'
+  
+  
+ 
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

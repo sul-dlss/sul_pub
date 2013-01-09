@@ -1,0 +1,100 @@
+
+<div class="center hero-unit">
+  <h2>SUL Publication Database Preliminaries</h2>
+<hr/>
+<div>
+  <h3 style="padding: 5px">
+    Simple PubMed search through pubmed gem (live)
+  </h3>
+  <p>e.g., stanford johnson prescription</p>
+  
+    <%= form_tag pub_med_records_search_path do %>
+
+       <!-- <%= label_tag :query %>  -->
+
+
+       <div style="padding: 5px"> <%= text_field_tag :query, params[:query] %> </div>
+     
+
+       <div> <%= submit_tag "Search PubMed", class: "btn btn-large btn-primary" %>  </div>
+  
+    <% end %>
+
+<hr/>
+
+<h3 style="padding: 5px">
+    WoS ScienceWire API (live when auth in place)
+  </h3>
+
+<%= form_tag "#" do %>
+
+       <!-- <%= label_tag :query %>  -->
+
+
+       <div style="padding: 5px"> <%= text_field_tag :query, params[:query], value: 'Not yet live.' %> </div>
+     
+
+       <div> <%= submit_tag "Search ScienceWire", class: "btn btn-large btn-primary" %>  </div>
+  
+    <% end %>
+
+<hr/>
+
+  <h3 style="padding: 5px">
+  	RESTful API to SUL Publication Database
+  </h3>
+
+ 
+
+<table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Verb</th>
+            <th>Path</th>
+            <th>Description</th>
+            <th>Returns<sup>1</sup><sup>2</sup></th>
+            <th>Sample</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>GET</td>
+            <td>/v1/pubs/{ourPubId}</td>
+            <td>Returns full pub record</td>
+            <td>format?</td>
+            <td>tbd</td>
+          </tr>
+          <tr>
+            <td>POST</td>
+            <td>/v1/pubs</td>
+            <td>Submit new publication(s)</td>
+            <td>new pubId or a list of new pubIds for batch</td>
+            <td>tbd</td>
+          </tr>
+          <tr>
+            <td>PUT</td>
+            <td>/v1/pubs/{ourPubId}</td>
+            <td>edit record</td>
+            <td>empty body</td>
+            <td>tbd</td>
+          </tr>
+          <tr>
+            <td>DELETE</td>
+            <td>/v1/pubs/{ourPubId}</td>
+            <td>delete record</td>
+            <td>empty body</td>
+            <td>tbd</td>
+          </tr>
+        </tbody>
+      </table>
+
+
+<div class="row"><div class="span8 offset1"><sup>1</sup>ACCEPT header can request json, xml, plain text, etc.  default: JSON</div></div>
+<div class="row"><div class="span8 offset1"><sup>2</sup>appropriate HTTP codes returned in each case for success, error, etc.</div></div>
+
+
+ <!-- <%= link_to "GET /sulbib/v1/publications/1", '#', class: "btn btn-large btn-primary" %>  -->
+
+<div style="padding: 25px">
+<%= link_to image_tag("http://library.stanford.edu/sites/all/themes/sulair_framework/logo.png", alt: "SUL"), 'http://library.stanford.edu/' %>
+</div>

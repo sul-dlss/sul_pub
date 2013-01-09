@@ -1,0 +1,11 @@
+<% provide(:title, 'ScienceWire Query Results') %>
+<h3>Total Results for your query, '<%= params[:query] %>':</h3>
+<%= @results.count %>
+<h3> First 10 ScienceWire PubIds returned</h3>
+<ul>
+<% @results.pmids[0..10].each do | an_item | %>
+  <li><%= an_item %></li>
+<% end %>
+</ul>
+
+</ul>
