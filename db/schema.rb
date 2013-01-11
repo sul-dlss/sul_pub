@@ -11,9 +11,10 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121123162053) do
+ActiveRecord::Schema.define(:version => 20130111192219) do
 
   create_table "people", :force => true do |t|
+    t.integer  "profile_id"
     t.string   "sunetid"
     t.integer  "university_id"
     t.integer  "shc_doctor_no"
@@ -61,6 +62,17 @@ ActiveRecord::Schema.define(:version => 20121123162053) do
     t.string   "cap_url"
     t.datetime "created_at",               :null => false
     t.datetime "updated_at",               :null => false
+  end
+
+  create_table "publications", :force => true do |t|
+    t.integer  "same_as_publications_id"
+    t.boolean  "active"
+    t.string   "human_readable_title"
+    t.integer  "lock_version"
+    t.text     "xml"
+    t.text     "json"
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
   end
 
 end
