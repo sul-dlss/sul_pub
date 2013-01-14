@@ -35,8 +35,8 @@ production:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: sulbib_production
+  database: cap
   pool: 5
-  username: root
-  password:
-  socket: /tmp/mysql.sock
+  username: cap
+  password: aDaO7F/E5sOW5B5xlRYIZYha
+  socket: /var/lib/mysql/mysql.sock

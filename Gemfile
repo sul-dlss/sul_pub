@@ -8,6 +8,7 @@ gem 'mysql2'
 gem 'pubmed_search'
 gem 'bio'
 gem 'grape'
+gem 'therubyracer'
 
 
 group :development, :test do
