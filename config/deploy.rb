@@ -1,3 +1,7 @@
+require 'rvm/capistrano'  # Add RVM integration
+require 'bundler/capistrano'  # Add Bundler integration
+set :rvm_type, :system
+
 set :application, "sulbib"
 
 set :scm, :git
