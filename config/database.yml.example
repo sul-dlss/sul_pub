@@ -38,5 +38,5 @@ production:
   database: cap
   pool: 5
   username: cap
-  password: aDaO7F/E5sOW5B5xlRYIZYha
+  password: 
   socket: /var/lib/mysql/mysql.sock

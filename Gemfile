@@ -9,6 +9,7 @@ gem 'pubmed_search'
 gem 'bio'
 gem 'grape'
 gem 'therubyracer'
+gem 'rest-client'
 
 
 group :development, :test do

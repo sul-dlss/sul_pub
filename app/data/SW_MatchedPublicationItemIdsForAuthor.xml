@@ -1,0 +1,1364 @@
+<?xml version="1.0"?>
+<ArrayOfPublicationItem xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <PublicationItem>
+    <PublicationItemID>7437913</PublicationItemID>
+    <Title>Picocalorimetry of transcription by RNA polymerase</Title>
+    <Abstract>Thermal variations can exert dramatic effects on the rates of enzymes. The influence of temperature on RNA polymerase is of particular interest because its transcriptional activity governs general levels of gene expression, and may therefore exhibit pleiotropic effects in cells. Using a custom-modified optical trapping apparatus, we used a tightly focused infrared laser to heat single molecules of Escherichia coli RNA polymerase while monitoring transcriptional activity. We found a significant change in rates of transcript elongation with temperature, consistent with a large enthalpic barrier to the condensation reaction associated with RNA polymerization (similar to 13 kcal/ mol). In contrast, we found little change in either the frequency or the lifetime of off-pathway, paused states, indicating that the energetic barrier to transcriptional pausing is predominantly entropic.</Abstract>
+    <AuthorList>Abbondanzieri,E,A|Shaevitz,J,W|Block,S,M</AuthorList>
+    <AuthorCount>3</AuthorCount>
+    <KeywordList>TEMPERATURE|BACKTRACKING</KeywordList>
+    <DocumentTypeList>Letter</DocumentTypeList>
+    <DocumentCategory>Journal Document</DocumentCategory>
+    <NumberOfReferences>11</NumberOfReferences>
+    <TimesCited>21</TimesCited>
+    <TimesNotSelfCited>17</TimesNotSelfCited>
+    <PMID>16239336</PMID>
+    <WoSItemID>000233590800005</WoSItemID>
+    <PublicationSourceTitle>BIOPHYSICAL JOURNAL</PublicationSourceTitle>
+    <Volume>89</Volume>
+    <Issue>6</Issue>
+    <Pagination>L61-L63</Pagination>
+    <PublicationDate>2005-12-01T00:00:00</PublicationDate>
+    <PublicationYear>2005</PublicationYear>
+    <PublicationType>Journal</PublicationType>
+    <PublicationImpactFactor>4.507</PublicationImpactFactor>
+    <PublicationSubjectCategoryList>Biophysics</PublicationSubjectCategoryList>
+    <ISSN>0006-3495</ISSN>
+    <DOI>10.1529/biophysj.105.074195</DOI>
+    <ConferenceStartDate xsi:nil="true" />
+    <ConferenceEndDate xsi:nil="true" />
+    <Rank xsi:nil="true" />
+    <OrdinalRank>9</OrdinalRank>
+    <NormalizedRank xsi:nil="true" />
+    <NewPublicationItemID>7437913</NewPublicationItemID>
+    <IsObsolete>false</IsObsolete>
+    <CopyrightPublisher>CELL PRESS</CopyrightPublisher>
+    <CopyrightCity>CAMBRIDGE</CopyrightCity>
+  </PublicationItem>
+
+
+  <PublicationItem>
+    <PublicationItemID>30872922</PublicationItemID>
+    <Title>Folding and unfolding single RNA molecules under tension</Title>
+    <Abstract>Single-molecule force spectroscopy constitutes a powerful method for probing RNA folding: It allows the kinetic, energetic, and structural properties of intermediate and transition states to be determined quantitatively, yielding new insights into folding pathways and energy landscapes. Recent advances in experimental and theoretical methods, including fluctuation theorems, kinetic theories, novel force clamps, and ultrastable instruments, have opened new avenues for study. These tools have been used to probe folding in simple model systems, for example, RNA and DNA hairpins. Knowledge gained from such systems is helping to build our understanding of more complex RNA structures composed of multiple elements, as well as how nucleic acids interact with proteins involved in key cellular activities, such as transcription and translation.</Abstract>
+    <AuthorList>Woodside,Michael,T|Garcia-Garcia,Cuauhtemoc,|Block,Steven,M</AuthorList>
+    <AuthorCount>3</AuthorCount>
+    <KeywordList>MECHANICAL FORCE|NUCLEIC-ACID|FLUCTUATION THEOREM|LANDSCAPE|FREE-ENERGY DIFFERENCES|FORCE SPECTROSCOPY|KINETICS|NONEQUILIBRIUM MEASUREMENTS|OPTICAL TWEEZERS|HAIRPINS</KeywordList>
+    <DocumentTypeList>Review</DocumentTypeList>
+    <DocumentCategory>Journal Document</DocumentCategory>
+    <NumberOfReferences>60</NumberOfReferences>
+    <TimesCited>21</TimesCited>
+    <TimesNotSelfCited>18</TimesNotSelfCited>
+    <PMID>18786653</PMID>
+    <WoSItemID>000262541300006</WoSItemID>
+    <PublicationSourceTitle>CURRENT OPINION IN CHEMICAL BIOLOGY</PublicationSourceTitle>
+    <Volume>12</Volume>
+    <Issue>6</Issue>
+    <Pagination>640-646</Pagination>
+    <PublicationDate>2008-12-01T00:00:00</PublicationDate>
+    <PublicationYear>2008</PublicationYear>
+    <PublicationType>Journal</PublicationType>
+    <PublicationImpactFactor>7.854</PublicationImpactFactor>
+    <PublicationSubjectCategoryList>Biochemistry &amp; Molecular Biology|Biophysics</PublicationSubjectCategoryList>
+    <ISSN>1367-5931</ISSN>
+    <DOI>10.1016/j.cbpa.2008.08.011</DOI>
+    <ConferenceStartDate xsi:nil="true" />
+    <ConferenceEndDate xsi:nil="true" />
+    <Rank xsi:nil="true" />
+    <OrdinalRank>25</OrdinalRank>
+    <NormalizedRank xsi:nil="true" />
+    <NewPublicationItemID>30872922</NewPublicationItemID>
+    <IsObsolete>false</IsObsolete>
+    <CopyrightPublisher>CURRENT BIOLOGY LTD</CopyrightPublisher>
+    <CopyrightCity>LONDON</CopyrightCity>
+  </PublicationItem>
+  <PublicationItem>
+    <PublicationItemID>3728606</PublicationItemID>
+    <Title>An automated two-dimensional optical force clamp for single molecule studies</Title>
+    <Abstract>We constructed a next-generation optical trapping instrument to study the motility of single motor proteins, such as kinesin moving along a microtubule. The instrument can be operated as a two-dimensional force clamp, applying loads of fixed magnitude and direction to motor-coated microscopic beads moving in vitro. Flexibility and automation in experimental design are achieved by computer control of both the trap position, via acousto-optic deflectors, and the sample position, using a three-dimensional piezo stage. Each measurement is preceded by an initialization sequence, which includes adjustment of bead height relative to the coverslip using a variant of optical force microscopy (to +/-4 nm), a two-dimensional raster scan to calibrate position detector response, and adjustment of bead lateral position relative to the microtubule substrate (to +/-3 nm). During motor-driven movement, both the trap and stage are moved dynamically to apply constant force while keeping the trapped bead within the calibrated range of the detector. We present details of force clamp operation and preliminary data showing kinesin motor movement subject to diagonal and forward loads.</Abstract>
+    <AuthorList>Lang,M,J|Asbury,C,L|Shaevitz,J,W|Block,S,M</AuthorList>
+    <AuthorCount>4</AuthorCount>
+    <KeywordList>MOTILITY|DOMAIN|MICROSCOPY|TRAPS|TWEEZERS|MOTOR|TRACKING|INTERFEROMETRY|MOVEMENT|KINESIN MOLECULES</KeywordList>
+    <DocumentTypeList>Article</DocumentTypeList>
+    <DocumentCategory>Journal Document</DocumentCategory>
+    <NumberOfReferences>36</NumberOfReferences>
+    <TimesCited>136</TimesCited>
+    <TimesNotSelfCited>102</TimesNotSelfCited>
+    <PMID>12080136</PMID>
+    <WoSItemID>000176445800042</WoSItemID>
+    <PublicationSourceTitle>BIOPHYSICAL JOURNAL</PublicationSourceTitle>
+    <Volume>83</Volume>
+    <Issue>1</Issue>
+    <Pagination>491-501</Pagination>
+    <PublicationDate>2002-07-01T00:00:00</PublicationDate>
+    <PublicationYear>2002</PublicationYear>
+    <PublicationType>Journal</PublicationType>
+    <PublicationImpactFactor>4.643</PublicationImpactFactor>
+    <PublicationSubjectCategoryList>Biophysics</PublicationSubjectCategoryList>
+    <ISSN>0006-3495</ISSN>
+    <ConferenceStartDate xsi:nil="true" />
+    <ConferenceEndDate xsi:nil="true" />
+    <Rank xsi:nil="true" />
+    <OrdinalRank>2</OrdinalRank>
+    <NormalizedRank xsi:nil="true" />
+    <NewPublicationItemID>3728606</NewPublicationItemID>
+    <IsObsolete>false</IsObsolete>
+    <CopyrightPublisher>CELL PRESS</CopyrightPublisher>
+    <CopyrightCity>CAMBRIDGE</CopyrightCity>
+  </PublicationItem>
+
+
+  <PublicationItem>
+    <PublicationItemID>9077745</PublicationItemID>
+    <Title>Nurturing humanism through teaching palliative care</Title>
+    <Abstract>After many years of neglect by the medical establishment, the discipline of palliative medicine is finally moving into academic health centers (AHCs). While hospice programs have cared for dying patients in the community for years with little input from mainstream medicine, palliative care is gaining a foothold in: AHCs, challenging these centers to integrate the hospice approach with biomedicine. The discipline of palliative care promises to be a rich source of learning and growth for physicians-in-training. Teaching about palliative care affirms two essential but vulnerable dimensions of the practice of medicine-the importance of relationship-centered care and the value of doctoring as a source of meaning and growth for physicians. In addition to fostering fundamental humanistic learning, palliative medicine is an excellent vehicle for teaching basic but often neglected clinical competencies, including pain and Symptom control, communication, and working as part of a health care team. Because palliative care settings offer extraordinary learning opportunities, the authors recommend that clinical experiences in palliative care be integrated into the core curricula of all medical schools as well as appropriate residency programs.</Abstract>
+    <AuthorList>Block,S,|Billings,J,A</AuthorList>
+    <AuthorCount>2</AuthorCount>
+    <KeywordList>Bioethics and Professional Ethics|Death and Euthanasia</KeywordList>
+    <DocumentTypeList>Article</DocumentTypeList>
+    <DocumentCategory>Journal Document</DocumentCategory>
+    <NumberOfReferences>12</NumberOfReferences>
+    <TimesCited>22</TimesCited>
+    <TimesNotSelfCited>19</TimesNotSelfCited>
+    <PMID>9679465</PMID>
+    <WoSItemID>000074873600015</WoSItemID>
+    <PublicationSourceTitle>ACADEMIC MEDICINE</PublicationSourceTitle>
+    <Volume>73</Volume>
+    <Issue>7</Issue>
+    <Pagination>763-765</Pagination>
+    <PublicationDate>1998-07-01T00:00:00</PublicationDate>
+    <PublicationYear>1998</PublicationYear>
+    <PublicationType>Journal</PublicationType>
+    <PublicationImpactFactor>1.126</PublicationImpactFactor>
+    <PublicationSubjectCategoryList>Education, Scientific Disciplines|Health Care Sciences &amp; Services</PublicationSubjectCategoryList>
+    <ISSN>1040-2446</ISSN>
+    <ConferenceStartDate xsi:nil="true" />
+    <ConferenceEndDate xsi:nil="true" />
+    <Rank xsi:nil="true" />
+    <OrdinalRank>18</OrdinalRank>
+    <NormalizedRank xsi:nil="true" />
+    <NewPublicationItemID>9077745</NewPublicationItemID>
+    <IsObsolete>false</IsObsolete>
+    <CopyrightPublisher>LIPPINCOTT WILLIAMS &amp; WILKINS</CopyrightPublisher>
+    <CopyrightCity>PHILADELPHIA</CopyrightCity>
+  </PublicationItem>
+  <PublicationItem>
+    <PublicationItemID>53792949</PublicationItemID>
+    <Title>Optical tweezers study life under tension</Title>
+    <Abstract />
+    <AuthorList>Fazal,Furqan,M|Block,Steven,M</AuthorList>
+    <AuthorCount>2</AuthorCount>
+    <KeywordList>RESOLUTION|FLUORESCENCE|DNA|TRAPS|RNA-POLYMERASE|LANDSCAPE|MECHANISM|FORCE|SINGLE-MOLECULE|SENSITIVITY</KeywordList>
+    <DocumentTypeList>Article</DocumentTypeList>
+    <DocumentCategory>Journal Document</DocumentCategory>
+    <NumberOfReferences>34</NumberOfReferences>
+    <TimesCited>5</TimesCited>
+    <TimesNotSelfCited>5</TimesNotSelfCited>
+    <PMID xsi:nil="true" />
+    <WoSItemID>000291089000003</WoSItemID>
+    <PublicationSourceTitle>NATURE PHOTONICS</PublicationSourceTitle>
+    <Volume>5</Volume>
+    <Issue>6</Issue>
+    <Pagination>318-321</Pagination>
+    <PublicationDate>2011-06-01T00:00:00</PublicationDate>
+    <PublicationYear>2011</PublicationYear>
+    <PublicationType>Journal</PublicationType>
+    <PublicationImpactFactor>26.442</PublicationImpactFactor>
+    <PublicationSubjectCategoryList>Optics|Physics, Applied</PublicationSubjectCategoryList>
+    <ISSN>1749-4885</ISSN>
+    <ConferenceStartDate xsi:nil="true" />
+    <ConferenceEndDate xsi:nil="true" />
+    <Rank xsi:nil="true" />
+    <OrdinalRank>34</OrdinalRank>
+    <NormalizedRank xsi:nil="true" />
+    <NewPublicationItemID>53792949</NewPublicationItemID>
+    <IsObsolete>false</IsObsolete>
+    <CopyrightPublisher>NATURE PUBLISHING GROUP</CopyrightPublisher>
+    <CopyrightCity>LONDON</CopyrightCity>
+  </PublicationItem>
+  <PublicationItem>
+    <PublicationItemID>7283564</PublicationItemID>
+    <Title>Passive all-optical force clamp for high-resolution laser trapping</Title>
+    <Abstract>Optical traps are useful for studying the effects of forces on single molecules. Feedback-based force clamps are often used to maintain a constant load, but the response time of the feedback limits bandwidth and can introduce instability. We developed a novel force clamp that operates without feedback, taking advantage of the anharmonic region of the trapping potential where the differential stiffness vanishes. We demonstrate the utility of such a force clamp by measuring the unfolding of DNA hairpins and the effect of trap stiffness on opening distance and transition rates.</Abstract>
+    <AuthorList>Greenleaf,W,J|Woodside,M,T|Abbondanzieri,E,A|Block,S,M</AuthorList>
+    <AuthorCount>4</AuthorCount>
+    <KeywordList>MECHANICAL FORCE|DNA|TWEEZERS|ARREST|SINGLE-MOLECULE|COLI RNA-POLYMERASE</KeywordList>
+    <DocumentTypeList>Article</DocumentTypeList>
+    <DocumentCategory>Journal Document</DocumentCategory>
+    <NumberOfReferences>23</NumberOfReferences>
+    <TimesCited>71</TimesCited>
+    <TimesNotSelfCited>58</TimesNotSelfCited>
+    <PMID>16384102</PMID>
+    <WoSItemID>000233243500069</WoSItemID>
+    <PublicationSourceTitle>PHYSICAL REVIEW LETTERS</PublicationSourceTitle>
+    <Volume>95</Volume>
+    <Issue>20</Issue>
+    <Pagination />
+    <PublicationDate>2005-11-11T00:00:00</PublicationDate>
+    <PublicationYear>2005</PublicationYear>
+    <PublicationType>Journal</PublicationType>
+    <PublicationImpactFactor>7.489</PublicationImpactFactor>
+    <PublicationSubjectCategoryList>Physics, Multidisciplinary</PublicationSubjectCategoryList>
+    <ISSN>0031-9007</ISSN>
+    <DOI>10.1103/PhysRevLett.95.208102</DOI>
+    <ConferenceStartDate xsi:nil="true" />
+    <ConferenceEndDate xsi:nil="true" />
+    <Rank xsi:nil="true" />
+    <OrdinalRank>8</OrdinalRank>
+    <NormalizedRank xsi:nil="true" />
+    <NewPublicationItemID>7283564</NewPublicationItemID>
+    <IsObsolete>false</IsObsolete>
+    <CopyrightPublisher>AMER PHYSICAL SOC</CopyrightPublisher>
+    <CopyrightCity>COLLEGE PK</CopyrightCity>
+    <ArticleNumber>208102</ArticleNumber>
+  </PublicationItem>
+  <PublicationItem>
+    <PublicationItemID>30168807</PublicationItemID>
+    <Title>Single-molecule studies of RNA polymerase: Motoring along</Title>
+    <Abstract>Single-molecule techniques have advanced our understanding of transcription by RNA polymerase (RNAP). A new arsenal of approaches, including single-molecule fluorescence, atomic-force microscopy, magnetic tweezers, and optical traps (OTs) have been employed to probe the many facets of the transcription cycle. These approaches supply fresh insights into the means by which RNAP identifies a promoter, initiates transcription, translocates and pauses along the DNA template, proofreads errors, and ultimately terminates transcription. Results from single-molecule experiments complement the knowledge gained from biochemical and genetic assays by facilitating the observation of states that are otherwise obscured by ensemble averaging, such as those resulting from heterogeneity in molecular structure, elongation rate, or pause propensity Most studies to date have been performed with bacterial RNAP, but work is also being carried out with eukaryotic polymerase (Pol II) and single-subunit polymerases from bacteriophages. We discuss recent progress achieved by single-molecule studies, highlighting some of the unresolved questions and ongoing debates.</Abstract>
+    <AuthorList>Herbert,Kristina,M|Greenleaf,William,J|Block,Steven,M</AuthorList>
+    <AuthorCount>3</AuthorCount>
+    <KeywordList>LAC UV5 PROMOTER|SCANNING FORCE MICROSCOPY|NASCENT RNA|DIFFUSION-DRIVEN MECHANISMS|ALTERNATING-LASER EXCITATION|ESCHERICHIA-COLI|REPRESSOR-OPERATOR INTERACTION|FACILITATED TARGET LOCATION|ABORTIVE INITIATION|TRANSCRIPTION ELONGATION COMPLEXES|transcription|fluorescence|initiation|termination|elongation|optical traps</KeywordList>
+    <DocumentTypeList>Review</DocumentTypeList>
+    <DocumentCategory>Journal Document</DocumentCategory>
+    <NumberOfReferences>136</NumberOfReferences>
+    <TimesCited>54</TimesCited>
+    <TimesNotSelfCited>52</TimesNotSelfCited>
+    <PMID>18410247</PMID>
+    <WoSItemID>000257596800008</WoSItemID>
+    <PublicationSourceTitle>ANNUAL REVIEW OF BIOCHEMISTRY</PublicationSourceTitle>
+    <Volume>77</Volume>
+    <Pagination>149-176</Pagination>
+    <PublicationDate>2008-01-01T00:00:00</PublicationDate>
+    <PublicationYear>2008</PublicationYear>
+    <PublicationType>Journal</PublicationType>
+    <PublicationImpactFactor>30.016</PublicationImpactFactor>
+    <PublicationSubjectCategoryList>Biochemistry &amp; Molecular Biology</PublicationSubjectCategoryList>
+    <ISSN>0066-4154</ISSN>
+    <DOI>10.1146/annurev.biochem.77.073106.100741</DOI>
+    <ConferenceStartDate xsi:nil="true" />
+    <ConferenceEndDate xsi:nil="true" />
+    <Rank xsi:nil="true" />
+    <OrdinalRank>24</OrdinalRank>
+    <NormalizedRank xsi:nil="true" />
+    <NewPublicationItemID>30168807</NewPublicationItemID>
+    <IsObsolete>false</IsObsolete>
+    <CopyrightPublisher>ANNUAL REVIEWS</CopyrightPublisher>
+    <CopyrightCity>PALO ALTO</CopyrightCity>
+  </PublicationItem>
+  <PublicationItem>
+    <PublicationItemID>7471351</PublicationItemID>
+    <Title>Direct observation of base-pair stepping by RNA polymerase</Title>
+    <Abstract>During transcription, RNA polymerase ( RNAP) moves processively along a DNA template, creating a complementary RNA. Here we present the development of an ultra-stable optical trapping system with angstrom-level resolution, which we used to monitor transcriptional elongation by single molecules of Escherichia coli RNAP. Records showed discrete steps averaging 3.7 +/- 0.6 angstrom, a distance equivalent to the mean rise per base found in B-DNA. By combining our results with quantitative gel analysis, we conclude that RNAP advances along DNA by a single base pair per nucleotide addition to the nascent RNA. We also determined the force-velocity relationship for transcription at both saturating and sub-saturating nucleotide concentrations; fits to these data returned a characteristic distance parameter equivalent to one base pair. Global fits were inconsistent with a model for movement incorporating a power stroke tightly coupled to pyrophosphate release, but consistent with a brownian ratchet model incorporating a secondary NTP binding site.</Abstract>
+    <AuthorList>Abbondanzieri,E,A|Greenleaf,W,J|Shaevitz,J,W|Landick,R,|Block,S,M</AuthorList>
+    <AuthorCount>5</AuthorCount>
+    <KeywordList>DNA|STRUCTURAL BASIS|MECHANISM|KINETICS|HAND-OVER-HAND|TRANSCRIPTION ELONGATION|TRANSLOCATION|SINGLE-MOLECULE|BACKTRACKING|OPTICAL FORCE CLAMP</KeywordList>
+    <DocumentTypeList>Article</DocumentTypeList>
+    <DocumentCategory>Journal Document</DocumentCategory>
+    <NumberOfReferences>51</NumberOfReferences>
+    <TimesCited>263</TimesCited>
+    <TimesNotSelfCited>243</TimesNotSelfCited>
+    <PMID>16284617</PMID>
+    <WoSItemID>000233458200041</WoSItemID>
+    <PublicationSourceTitle>NATURE</PublicationSourceTitle>
+    <Volume>438</Volume>
+    <Issue>7067</Issue>
+    <Pagination>460-465</Pagination>
+    <PublicationDate>2005-11-24T00:00:00</PublicationDate>
+    <PublicationYear>2005</PublicationYear>
+    <PublicationType>Journal</PublicationType>
+    <PublicationImpactFactor>29.273</PublicationImpactFactor>
+    <PublicationSubjectCategoryList>Multidisciplinary Sciences</PublicationSubjectCategoryList>
+    <ISSN>0028-0836</ISSN>
+    <DOI>10.1038/nature04268</DOI>
+    <ConferenceStartDate xsi:nil="true" />
+    <ConferenceEndDate xsi:nil="true" />
+    <Rank xsi:nil="true" />
+    <OrdinalRank>10</OrdinalRank>
+    <NormalizedRank xsi:nil="true" />
+    <NewPublicationItemID>7471351</NewPublicationItemID>
+    <IsObsolete>false</IsObsolete>
+    <CopyrightPublisher>NATURE PUBLISHING GROUP</CopyrightPublisher>
+    <CopyrightCity>LONDON</CopyrightCity>
+  </PublicationItem>
+  <PublicationItem>
+    <PublicationItemID>32063109</PublicationItemID>
+    <Title>Direct observation of the binding state of the kinesin head to the microtubule</Title>
+    <Abstract>The dimeric motor protein kinesin-1 converts chemical energy from ATP hydrolysis into mechanical work used to transport cargo along microtubules(1,2). Cargo attached to the kinesin stalk moves processively in 8-nm increments(3) as its twin motor domains (heads) carry out an asymmetric, 'hand-over-hand' walk(4-7). The extent of individual head interactions with the microtubule during stepping, however, remains controversial(4,8-14). A major experimental limitation has been the lack of a means to monitor the attachment of an individual head to the microtubule during movement, necessitating indirect approaches. Here we report the development of a single-molecule assay that can directly report head binding in a walking kinesin molecule, and show that only a single head is bound to the microtubule between steps at low ATP concentrations. A bead was linked to one of the two kinesin heads by means of a short DNA tether and used to apply rapidly alternating hindering and assisting loads with an optical trap. The time-dependent difference between forwards and backwards displacements of the bead alternated between two discrete values during stepping, corresponding to those intervals when the linked head adopted a bound or an unbound state. The linked head could only rebind the microtubule once ATP had become bound to its partner head.</Abstract>
+    <AuthorList>Guydosh,Nicholas,R|Block,Steven,M</AuthorList>
+    <AuthorCount>2</AuthorCount>
+    <KeywordList>RESOLUTION|STRAIN|ATP|MECHANISM|HAND-OVER-HAND|SINGLE-MOLECULE|CYCLE|STEPS|OPTICAL FORCE CLAMP</KeywordList>
+    <DocumentTypeList>Article</DocumentTypeList>
+    <DocumentCategory>Journal Document</DocumentCategory>
+    <NumberOfReferences>31</NumberOfReferences>
+    <TimesCited>19</TimesCited>
+    <TimesNotSelfCited>15</TimesNotSelfCited>
+    <PMID>19693012</PMID>
+    <WoSItemID>000269478800043</WoSItemID>
+    <PublicationSourceTitle>NATURE</PublicationSourceTitle>
+    <Volume>461</Volume>
+    <Issue>7260</Issue>
+    <Pagination>125-U137</Pagination>
+    <PublicationDate>2009-09-03T00:00:00</PublicationDate>
+    <PublicationYear>2009</PublicationYear>
+    <PublicationType>Journal</PublicationType>
+    <PublicationImpactFactor>34.48</PublicationImpactFactor>
+    <PublicationSubjectCategoryList>Multidisciplinary Sciences</PublicationSubjectCategoryList>
+    <ISSN>0028-0836</ISSN>
+    <DOI>10.1038/nature08259</DOI>
+    <ConferenceStartDate xsi:nil="true" />
+    <ConferenceEndDate xsi:nil="true" />
+    <Rank xsi:nil="true" />
+    <OrdinalRank>26</OrdinalRank>
+    <NormalizedRank xsi:nil="true" />
+    <NewPublicationItemID>32063109</NewPublicationItemID>
+    <IsObsolete>false</IsObsolete>
+    <CopyrightPublisher>NATURE PUBLISHING GROUP</CopyrightPublisher>
+    <CopyrightCity>LONDON</CopyrightCity>
+  </PublicationItem>
+  <PublicationItem>
+    <PublicationItemID>4853808</PublicationItemID>
+    <Title>Cycloplegic autorefraction results in pre-school children using the Nikon Retinomax Plus and the Welch Allyn SureSight</Title>
+    <Abstract>Purpose. Early detection and treatment of amblyogenic conditions such as high refractive errors and anisometropia can help prevent the development of amblyopia. The traditional gold standard for the determination of refractive error in pre-school children is retinoscopy. Difficulties with retinoscopy in pre-school children have led to the development of autorefractors that can be free of operator bias and can be used by lay individuals. The Nikon Retinomax Plus handheld autorefractor has proven to be reliable for quick and accurate assessments of refractive errors in children. The Welch Allyn SureSight Vision Screener is a relatively new handheld autorefractor. The present study compares the results of measurements with the Retinomax Plus and the SureSight to the results of cycloplegic retinoscopy in pre-school children. Methods. Thirty-five children ranging in age from 3 to 5 years old were subjects. Any subjects with strabismus, amblyopia, nystagmus, or ocular disease were excluded. Refractive error was assessed 30 min after the application of a cycloplegic spray. Results. Both autorefractors showed moderate agreement with cycloplegic retinoscopy results for measurement of spherical equivalent and cylinder power. In addition, the SureSight and the Retinomax Plus sphere and cylinder results showed moderate agreement with each other. Although the mean differences of the spherical equivalents determined were minimal, the 95% confidence intervals were large, which limits the value of the data obtained from each instrument. Conclusions. Even though the Retinomax Plus and the SureSight appear to agree with each other and with the results of cycloplegic retinoscopy for determining sphere and cylinder power, interpretation of the data should be considered as screening only because the actual magnitude of sphere and cylinder may vary from the actual magnitude. These results suggest that either device may be useful only as screening tools for assessing refractive error in pre-school children.</Abstract>
+    <AuthorList>Steele,G,|Ireland,D,|Block,S,</AuthorList>
+    <AuthorCount>3</AuthorCount>
+    <KeywordList>REFRACTIVE ERROR|REPRODUCIBILITY|HAND-HELD AUTOREFRACTOR|REPEATABILITY|amblyopia|refractive error|pre-school|autorefractor</KeywordList>
+    <DocumentTypeList>Article</DocumentTypeList>
+    <DocumentCategory>Journal Document</DocumentCategory>
+    <NumberOfReferences>12</NumberOfReferences>
+    <TimesCited>16</TimesCited>
+    <TimesNotSelfCited>16</TimesNotSelfCited>
+    <PMID>12917576</PMID>
+    <WoSItemID>000184893700005</WoSItemID>
+    <PublicationSourceTitle>OPTOMETRY AND VISION SCIENCE</PublicationSourceTitle>
+    <Volume>80</Volume>
+    <Issue>8</Issue>
+    <Pagination>573-577</Pagination>
+    <PublicationDate>2003-08-01T00:00:00</PublicationDate>
+    <PublicationYear>2003</PublicationYear>
+    <PublicationType>Journal</PublicationType>
+    <PublicationImpactFactor>1.038</PublicationImpactFactor>
+    <PublicationSubjectCategoryList>Ophthalmology</PublicationSubjectCategoryList>
+    <ISSN>1040-5488</ISSN>
+    <ConferenceStartDate xsi:nil="true" />
+    <ConferenceEndDate xsi:nil="true" />
+    <Rank xsi:nil="true" />
+    <OrdinalRank>4</OrdinalRank>
+    <NormalizedRank xsi:nil="true" />
+    <NewPublicationItemID>4853808</NewPublicationItemID>
+    <IsObsolete>false</IsObsolete>
+    <CopyrightPublisher>LIPPINCOTT WILLIAMS &amp; WILKINS</CopyrightPublisher>
+    <CopyrightCity>PHILADELPHIA</CopyrightCity>
+  </PublicationItem>
+  <PublicationItem>
+    <PublicationItemID>28949629</PublicationItemID>
+    <Title>Direct observation of hierarchical folding in single riboswitch aptamers</Title>
+    <Abstract>Riboswitches regulate genes through structural changes in ligand- binding RNA aptamers. With the use of an optical- trapping assay based on in situ transcription by a molecule of RNA polymerase, single nascent RNAs containing pbuE adenine riboswitch aptamers were unfolded and refolded. Multiple folding states were characterized by means of both force- extension curves and folding trajectories under constant force by measuring the molecular contour length, kinetics, and energetics with and without adenine. Distinct folding steps correlated with the formation of key secondary or tertiary structures and with ligand binding. Adenine- induced stabilization of the weakest helix in the aptamer, the mechanical switch underlying regulatory action, was observed directly. These results provide an integrated view of hierarchical folding in an aptamer, demonstrating how complex folding can be resolved into constituent parts, and supply further insights into tertiary structure formation.</Abstract>
+    <AuthorList>Greenleaf,William,J|Frieda,Kirsten,L|Foster,Daniel,AN|Woodside,Michael,T|Block,Steven,M</AuthorList>
+    <AuthorCount>5</AuthorCount>
+    <KeywordList>INDUCED FIT|TRANSCRIPTION|DOMAIN|NUCLEIC-ACID|LIGAND-BINDING|EQUALITY|ADENINE-SENSING RIBOSWITCH|RNA|KINETICS|GENE-EXPRESSION</KeywordList>
+    <DocumentTypeList>Article</DocumentTypeList>
+    <DocumentCategory>Journal Document</DocumentCategory>
+    <NumberOfReferences>54</NumberOfReferences>
+    <TimesCited>110</TimesCited>
+    <TimesNotSelfCited>104</TimesNotSelfCited>
+    <PMID>18174398</PMID>
+    <WoSItemID>000252772000044</WoSItemID>
+    <PublicationSourceTitle>SCIENCE</PublicationSourceTitle>
+    <Volume>319</Volume>
+    <Issue>5863</Issue>
+    <Pagination>630-633</Pagination>
+    <PublicationDate>2008-02-01T00:00:00</PublicationDate>
+    <PublicationYear>2008</PublicationYear>
+    <PublicationType>Journal</PublicationType>
+    <PublicationImpactFactor>28.103</PublicationImpactFactor>
+    <PublicationSubjectCategoryList>Multidisciplinary Sciences</PublicationSubjectCategoryList>
+    <ISSN>0036-8075</ISSN>
+    <DOI>10.1126/science.1151298</DOI>
+    <ConferenceStartDate xsi:nil="true" />
+    <ConferenceEndDate xsi:nil="true" />
+    <Rank xsi:nil="true" />
+    <OrdinalRank>20</OrdinalRank>
+    <NormalizedRank xsi:nil="true" />
+    <NewPublicationItemID>28949629</NewPublicationItemID>
+    <IsObsolete>false</IsObsolete>
+    <CopyrightPublisher>AMER ASSOC ADVANCEMENT SCIENCE</CopyrightPublisher>
+    <CopyrightCity>WASHINGTON</CopyrightCity>
+  </PublicationItem>
+  <PublicationItem>
+    <PublicationItemID>55055756</PublicationItemID>
+    <Title>Applied Force Provides Insight into Transcriptional Pausing and Its Modulation by Transcription Factor NusA</Title>
+    <Abstract>Transcriptional pausing by RNA polymerase (RNAP) plays an essential role in gene regulation. Pausing is modified by various elongation factors, including prokaryotic NusA, but the mechanisms underlying pausing and NusA function remain unclear. Alternative models for pausing invoke blockade events that precede translocation (on-pathway), enzyme backtracking (off-pathway), or isomerization to a nonbacktracked, elemental pause state (off-pathway). We employed an optical trapping assay to probe the motions of individual RNAP molecules transcribing a DNA template carrying tandem repeats encoding the his pause, subjecting these enzymes to controlled forces. NusA significantly decreased the pause-free elongation rate of RNAP while increasing the probability of entry into short- and long-lifetime pauses, in a manner equivalent to exerting a similar to 19 pN force opposing transcription. The effects of force and NusA on pause probabilities and lifetimes support a reaction scheme where nonbacktracked, elemental pauses branch off the elongation pathway from the pretranslocated state of RNAP.</Abstract>
+    <AuthorList>Zhou,Jing,|Ha,Kook,Sun|La Porta,Arthur,|Landick,Robert,|Block,Steven,M</AuthorList>
+    <AuthorCount>5</AuthorCount>
+    <KeywordList>DNA|NASCENT RNA|COMPLEX|ESCHERICHIA-COLI|BACTERIAL RNA-POLYMERASE|SINGLE-MOLECULE|BACKTRACKING|OPERON LEADER REGION|TERMINATION FACTOR|ELONGATION-FACTOR NUSA</KeywordList>
+    <DocumentTypeList>Article</DocumentTypeList>
+    <DocumentCategory>Journal Document</DocumentCategory>
+    <NumberOfReferences>55</NumberOfReferences>
+    <TimesCited>0</TimesCited>
+    <TimesNotSelfCited>0</TimesNotSelfCited>
+    <PMID>22099310</PMID>
+    <WoSItemID>000297387800014</WoSItemID>
+    <PublicationSourceTitle>MOLECULAR CELL</PublicationSourceTitle>
+    <Volume>44</Volume>
+    <Issue>4</Issue>
+    <Pagination>635-646</Pagination>
+    <PublicationDate>2011-11-18T00:00:00</PublicationDate>
+    <PublicationYear>2011</PublicationYear>
+    <PublicationType>Journal</PublicationType>
+    <PublicationImpactFactor>14.194</PublicationImpactFactor>
+    <PublicationSubjectCategoryList>Biochemistry &amp; Molecular Biology|Cell Biology</PublicationSubjectCategoryList>
+    <ISSN>1097-2765</ISSN>
+    <DOI>10.1016/j.molcel.2011.09.018</DOI>
+    <ConferenceStartDate xsi:nil="true" />
+    <ConferenceEndDate xsi:nil="true" />
+    <Rank xsi:nil="true" />
+    <OrdinalRank>36</OrdinalRank>
+    <NormalizedRank xsi:nil="true" />
+    <NewPublicationItemID>55055756</NewPublicationItemID>
+    <IsObsolete>false</IsObsolete>
+    <CopyrightPublisher>CELL PRESS</CopyrightPublisher>
+    <CopyrightCity>CAMBRIDGE</CopyrightCity>
+  </PublicationItem>
+  <PublicationItem>
+    <PublicationItemID>3787858</PublicationItemID>
+    <Title>A not-so-cheap stunt</Title>
+    <Abstract />
+    <AuthorList>Block,S,M</AuthorList>
+    <AuthorCount>1</AuthorCount>
+    <KeywordList>POLIOVIRUS</KeywordList>
+    <DocumentTypeList>Letter</DocumentTypeList>
+    <DocumentCategory>Journal Document</DocumentCategory>
+    <NumberOfReferences>4</NumberOfReferences>
+    <TimesCited>8</TimesCited>
+    <TimesNotSelfCited>8</TimesNotSelfCited>
+    <PMID>12162317</PMID>
+    <WoSItemID>000177192800019</WoSItemID>
+    <PublicationSourceTitle>SCIENCE</PublicationSourceTitle>
+    <Volume>297</Volume>
+    <Issue>5582</Issue>
+    <Pagination>769-769</Pagination>
+    <PublicationDate>2002-08-02T00:00:00</PublicationDate>
+    <PublicationYear>2002</PublicationYear>
+    <PublicationType>Journal</PublicationType>
+    <PublicationImpactFactor>26.682</PublicationImpactFactor>
+    <PublicationSubjectCategoryList>Multidisciplinary Sciences</PublicationSubjectCategoryList>
+    <ISSN>0036-8075</ISSN>
+    <ConferenceStartDate xsi:nil="true" />
+    <ConferenceEndDate xsi:nil="true" />
+    <Rank xsi:nil="true" />
+    <OrdinalRank>3</OrdinalRank>
+    <NormalizedRank xsi:nil="true" />
+    <NewPublicationItemID>3787858</NewPublicationItemID>
+    <IsObsolete>false</IsObsolete>
+    <CopyrightPublisher>AMER ASSOC ADVANCEMENT SCIENCE</CopyrightPublisher>
+    <CopyrightCity>WASHINGTON</CopyrightCity>
+  </PublicationItem>
+  <PublicationItem>
+    <PublicationItemID>10515945</PublicationItemID>
+    <Title>Characterization of photodamage to Escherichia coli in optical traps</Title>
+    <Abstract>Optical tweezers (infrared laser-based optical traps) have emerged as a powerful tool in molecular and cell biology. However, their usefulness has been limited, particularly in vivo, by the potential for damage to specimens resulting from the trapping laser. Relatively little is known about the origin of this phenomenon, Here we employed a wavelength tunable optical trap in which the microscope objective transmission was fully characterized throughout the near infrared, in conjunction with a sensitive, rotating bacterial cell assay. Single cells of Escherichia coli were tethered to a glass coverslip by means of a single flagellum: such cells rotate at rates proportional to their transmembrane proton potential (Manson et at., 1980. J. Mol. Biol. 138:541-561). Monitoring the rotation rates of cells subjected to laser illumination permits a rapid and quantitative measure of their metabolic state. Employing this assay, we characterized photodamage throughout the near-infrared region favored for optical trapping (790-1064 nm), The action spectrum for photodamage exhibits minima at 830 and 970 nm, and maxima at 870 and 930 nm. Damage was reduced to background levels under anaerobic conditions, implicating oxygen in the photodamage pathway. The intensity dependence for photodamage was linear, supporting a single-photon process. These findings may help guide the selection of lasers and experimental protocols best suited for optical trapping work.</Abstract>
+    <AuthorList>Neuman,K,C|Chadd,E,H|Liou,G,F|Bergman,K,|Block,S,M</AuthorList>
+    <AuthorCount>5</AuthorCount>
+    <KeywordList>CONFINEMENT|MANIPULATION|BACTERIAL CHEMOTAXIS|TWEEZERS|WAVELENGTH DEPENDENCE|ABLATION|LIVING CELLS|DAMAGE|INDUCED PHOTOACOUSTIC INJURY|INFRARED-LASER BEAMS</KeywordList>
+    <DocumentTypeList>Article</DocumentTypeList>
+    <DocumentCategory>Journal Document</DocumentCategory>
+    <NumberOfReferences>38</NumberOfReferences>
+    <TimesCited>261</TimesCited>
+    <TimesNotSelfCited>254</TimesNotSelfCited>
+    <PMID>10545383</PMID>
+    <WoSItemID>000083554900047</WoSItemID>
+    <PublicationSourceTitle>BIOPHYSICAL JOURNAL</PublicationSourceTitle>
+    <Volume>77</Volume>
+    <Issue>5</Issue>
+    <Pagination>2856-2863</Pagination>
+    <PublicationDate>1999-11-01T00:00:00</PublicationDate>
+    <PublicationYear>1999</PublicationYear>
+    <PublicationType>Journal</PublicationType>
+    <PublicationImpactFactor>4.58</PublicationImpactFactor>
+    <PublicationSubjectCategoryList>Biophysics</PublicationSubjectCategoryList>
+    <ISSN>0006-3495</ISSN>
+    <ConferenceStartDate xsi:nil="true" />
+    <ConferenceEndDate xsi:nil="true" />
+    <Rank xsi:nil="true" />
+    <OrdinalRank>19</OrdinalRank>
+    <NormalizedRank xsi:nil="true" />
+    <NewPublicationItemID>10515945</NewPublicationItemID>
+    <IsObsolete>false</IsObsolete>
+    <CopyrightPublisher>CELL PRESS</CopyrightPublisher>
+    <CopyrightCity>CAMBRIDGE</CopyrightCity>
+  </PublicationItem>
+  <PublicationItem>
+    <PublicationItemID>54473326</PublicationItemID>
+    <Title>A universal pathway for kinesin stepping</Title>
+    <Abstract>Kinesin-1 is an ATP-driven, processive motor that transports cargo along microtubules in a tightly regulated stepping cycle. Efficient gating mechanisms ensure that the sequence of kinetic events proceeds in the proper order, generating a large number of successive reaction cycles. To study gating, we created two mutant constructs with extended neck-linkers and measured their properties using single-molecule optical trapping and ensemble fluorescence techniques. Owing to a reduction in the inter-head tension, the constructs access an otherwise rarely populated conformational state in which both motor heads remain bound to the microtubule. ATP-dependent, processive backstepping and futile hydrolysis were observed under moderate hindering loads. On the basis of measurements, we formulated a comprehensive model for kinesin motion that incorporates reaction pathways for both forward and backward stepping. In addition to inter-head tension, we found that neck-linker orientation is also responsible for ensuring gating in kinesin.</Abstract>
+    <AuthorList>Clancy,Bason,E|Behnke-Parks,William,M|Andreasson,Johan,OL|Rosenfeld,Steven,S|Block,Steven,M</AuthorList>
+    <AuthorCount>5</AuthorCount>
+    <KeywordList>ATP HYDROLYSIS|BINDING|HEAD|MICROTUBULE|8-NM STEP|MOTOR PROTEIN|HAND-OVER-HAND|MOLECULES|MACROMOLECULAR DYNAMICS|INTERNAL STRAIN</KeywordList>
+    <DocumentTypeList>Article</DocumentTypeList>
+    <DocumentCategory>Journal Document</DocumentCategory>
+    <NumberOfReferences>48</NumberOfReferences>
+    <TimesCited>5</TimesCited>
+    <TimesNotSelfCited>5</TimesNotSelfCited>
+    <PMID>21841789</PMID>
+    <WoSItemID>000294551200010</WoSItemID>
+    <PublicationSourceTitle>NATURE STRUCTURAL &amp; MOLECULAR BIOLOGY</PublicationSourceTitle>
+    <Volume>18</Volume>
+    <Issue>9</Issue>
+    <Pagination>1020-U79</Pagination>
+    <PublicationDate>2011-09-01T00:00:00</PublicationDate>
+    <PublicationYear>2011</PublicationYear>
+    <PublicationType>Journal</PublicationType>
+    <PublicationImpactFactor>13.685</PublicationImpactFactor>
+    <PublicationSubjectCategoryList>Biochemistry &amp; Molecular Biology|Biophysics|Cell Biology</PublicationSubjectCategoryList>
+    <ISSN>1545-9993</ISSN>
+    <DOI>10.1038/nsmb.2104</DOI>
+    <ConferenceStartDate xsi:nil="true" />
+    <ConferenceEndDate xsi:nil="true" />
+    <Rank xsi:nil="true" />
+    <OrdinalRank>35</OrdinalRank>
+    <NormalizedRank xsi:nil="true" />
+    <NewPublicationItemID>54473326</NewPublicationItemID>
+    <IsObsolete>false</IsObsolete>
+    <CopyrightPublisher>NATURE PUBLISHING GROUP</CopyrightPublisher>
+    <CopyrightCity>NEW YORK</CopyrightCity>
+  </PublicationItem>
+  <PublicationItem>
+    <PublicationItemID>7486182</PublicationItemID>
+    <Title>Statistical kinetics of macromolecular dynamics</Title>
+    <Abstract>Fluctuations in biochemical processes can provide insights into the underlying kinetics beyond what can be gleaned from studies of average rates alone. Historically, analysis of fluctuating transmembrane currents supplied information about ion channel conductance states and lifetimes before single-channel recording techniques emerged. More recently, fluctuation analysis has helped to define mechanochemical pathways and coupling ratios for the motor protein kinesin as well as to probe the contributions of static and dynamic disorder to the kinetics of single enzymes. As growing numbers of assays are developed for enzymatic or folding behaviors of single macromolecules, the range of applications for fluctuation analysis increases. To evaluate specific biochemical models against experimental data, one needs to predict analytically the distribution of times required for completion of each reaction pathway. Unfortunately, using traditional methods, such calculations can be challenging for pathways of even modest complexity. Here, we derive an exact expression for the distribution of completion times for an arbitrary pathway with a finite number of states, using a recursive method to solve algebraically for the appropriate moment-generating function. To facilitate comparisons with experiments on processive motor proteins, we develop a theoretical formalism for the randomness parameter, a dimensionless measure of the variance in motor output. We derive the randomness for motors that take steps of variable sizes or that move on heterogeneous substrates, and then discuss possible applications to enzymes such as RNA polymerase, which transcribes varying DNA sequences, and to myosin V and cytoplasmic dynein, which may advance by variable increments.</Abstract>
+    <AuthorList>Shaevitz,J,W|Block,S,M|Schnitzer,M,J</AuthorList>
+    <AuthorCount>3</AuthorCount>
+    <KeywordList>SINGLE KINESIN MOLECULES|CATALYSIS|MODEL|RNA-POLYMERASE|MOTOR|8-NM STEP|MYOSIN-V|FORCE CLAMP|FLUCTUATION ANALYSIS|BIOMOLECULAR TRANSPORT</KeywordList>
+    <DocumentTypeList>Article</DocumentTypeList>
+    <DocumentCategory>Journal Document</DocumentCategory>
+    <NumberOfReferences>40</NumberOfReferences>
+    <TimesCited>37</TimesCited>
+    <TimesNotSelfCited>35</TimesNotSelfCited>
+    <PMID>16040752</PMID>
+    <WoSItemID>000232147600011</WoSItemID>
+    <PublicationSourceTitle>BIOPHYSICAL JOURNAL</PublicationSourceTitle>
+    <Volume>89</Volume>
+    <Issue>4</Issue>
+    <Pagination>2277-2285</Pagination>
+    <PublicationDate>2005-10-01T00:00:00</PublicationDate>
+    <PublicationYear>2005</PublicationYear>
+    <PublicationType>Journal</PublicationType>
+    <PublicationImpactFactor>4.507</PublicationImpactFactor>
+    <PublicationSubjectCategoryList>Biophysics</PublicationSubjectCategoryList>
+    <ISSN>0006-3495</ISSN>
+    <DOI>10.1529/biophysj.105.064295</DOI>
+    <ConferenceStartDate xsi:nil="true" />
+    <ConferenceEndDate xsi:nil="true" />
+    <Rank xsi:nil="true" />
+    <OrdinalRank>11</OrdinalRank>
+    <NormalizedRank xsi:nil="true" />
+    <NewPublicationItemID>7486182</NewPublicationItemID>
+    <IsObsolete>false</IsObsolete>
+    <CopyrightPublisher>CELL PRESS</CopyrightPublisher>
+    <CopyrightCity>CAMBRIDGE</CopyrightCity>
+  </PublicationItem>
+  <PublicationItem>
+    <PublicationItemID>32231381</PublicationItemID>
+    <Title>Direct measurements of kinesin torsional properties reveal flexible domains and occasional stalk reversals during stepping</Title>
+    <Abstract>Kinesin is a homodimeric motor with two catalytic heads joined to a stalk via short neck linkers (NLs). We measured the torsional properties of single recombinant molecules by tracking the thermal angular motions of fluorescently labeled beads bound to the C terminus of the stalk. When kinesin heads were immobilized on microtubules (MTs) under varied nucleotide conditions, we observed bounded or unbounded angular diffusion, depending on whether one or both heads were attached to the MT. Free rotation implies that NLs act as swivels. From data on constrained diffusion, we conclude that the coiled-coil stalk domains are approximate to 30-fold stiffer than its flexible "hinge'' regions. Surprisingly, while tracking processive kinesin motion at low ATP concentrations, we observed occasional abrupt reversals in the directional orientations of the stalk. Our results impose constraints on kinesin walking models and suggest a role for rotational freedom in cargo transport.</Abstract>
+    <AuthorList>Gutierrez-Medina,Braulio,|Fehr,Adrian,N|Block,Steven,M</AuthorList>
+    <AuthorCount>3</AuthorCount>
+    <KeywordList>ATP|BINDING|HEAD|MICROTUBULE|PROTEIN|HYDROLYZES|NECK|8-NM STEP|HAND-OVER-HAND|MOVEMENT|rotation|molecular motor|microtubule|single molecule|yaw with one degree accuracy</KeywordList>
+    <DocumentTypeList>Article</DocumentTypeList>
+    <DocumentCategory>Journal Document</DocumentCategory>
+    <NumberOfReferences>68</NumberOfReferences>
+    <TimesCited>9</TimesCited>
+    <TimesNotSelfCited>8</TimesNotSelfCited>
+    <PMID>19805111</PMID>
+    <WoSItemID>000270537500028</WoSItemID>
+    <PublicationSourceTitle>PROCEEDINGS OF THE NATIONAL ACADEMY OF SCIENCES OF THE UNITED STATES OF AMERICA</PublicationSourceTitle>
+    <Volume>106</Volume>
+    <Issue>40</Issue>
+    <Pagination>17007-17012</Pagination>
+    <PublicationDate>2009-10-06T00:00:00</PublicationDate>
+    <PublicationYear>2009</PublicationYear>
+    <PublicationType>Journal</PublicationType>
+    <PublicationImpactFactor>9.432</PublicationImpactFactor>
+    <PublicationSubjectCategoryList>Multidisciplinary Sciences</PublicationSubjectCategoryList>
+    <ISSN>0027-8424</ISSN>
+    <DOI>10.1073/pnas.0907133106</DOI>
+    <ConferenceStartDate xsi:nil="true" />
+    <ConferenceEndDate xsi:nil="true" />
+    <Rank xsi:nil="true" />
+    <OrdinalRank>27</OrdinalRank>
+    <NormalizedRank xsi:nil="true" />
+    <NewPublicationItemID>32231381</NewPublicationItemID>
+    <IsObsolete>false</IsObsolete>
+    <CopyrightPublisher>NATL ACAD SCIENCES</CopyrightPublisher>
+    <CopyrightCity>WASHINGTON</CopyrightCity>
+  </PublicationItem>
+  <PublicationItem>
+    <PublicationItemID>6572780</PublicationItemID>
+    <Title>Simultaneous, coincident optical trapping and single-molecule fluorescence</Title>
+    <Abstract>We constructed a microscope-based instrument capable of simultaneous, spatially coincident optical trapping and single-molecule fluorescence. The capabilities of this apparatus were demonstrated by studying the force-induced strand separation of a dye-Labeled, 15-base-pair region of double-stranded DNA (dsDNA), with force applied either parallel ('unzipping' mode) or perpendicular ('shearing' mode) to the Long axis of the region. Mechanical transitions corresponding to DNA hybrid rupture occurred simultaneously with discontinuous changes in the fluorescence emission. The rupture force was strongly dependent on the direction of applied force, indicating the existence of distinct unbinding pathways for the two force-Loading modes. From the rupture force histograms, we determined the distance to the thermodynamic transition state and the thermal off rates in the absence of Load for both processes.</Abstract>
+    <AuthorList>Lang,M,J|Fordyce,P,M|Engh,A,M|Neuman,K,C|Block,S,M</AuthorList>
+    <AuthorCount>5</AuthorCount>
+    <KeywordList>DNA-MOLECULES|MICROSCOPY|TWEEZERS|TRANSITION|FORCE|SPECTROSCOPY|FLUOROPHORES|MECHANICS|INTERNAL-REFLECTION FLUORESCENCE|KINESIN MOTORS</KeywordList>
+    <DocumentTypeList>Article</DocumentTypeList>
+    <DocumentCategory>Journal Document</DocumentCategory>
+    <NumberOfReferences>38</NumberOfReferences>
+    <TimesCited>105</TimesCited>
+    <TimesNotSelfCited>87</TimesNotSelfCited>
+    <PMID>15782176</PMID>
+    <WoSItemID>000226753800017</WoSItemID>
+    <PublicationSourceTitle>NATURE METHODS</PublicationSourceTitle>
+    <Volume>1</Volume>
+    <Issue>2</Issue>
+    <Pagination>133-139</Pagination>
+    <PublicationDate>2004-11-01T00:00:00</PublicationDate>
+    <PublicationYear>2004</PublicationYear>
+    <PublicationType>Journal</PublicationType>
+    <PublicationImpactFactor xsi:nil="true" />
+    <PublicationSubjectCategoryList>Biochemical Research Methods</PublicationSubjectCategoryList>
+    <ISSN>1548-7091</ISSN>
+    <DOI>10.1038/NMETH714</DOI>
+    <ConferenceStartDate xsi:nil="true" />
+    <ConferenceEndDate xsi:nil="true" />
+    <Rank xsi:nil="true" />
+    <OrdinalRank>6</OrdinalRank>
+    <NormalizedRank xsi:nil="true" />
+    <NewPublicationItemID>6572780</NewPublicationItemID>
+    <IsObsolete>false</IsObsolete>
+    <CopyrightPublisher>NATURE PUBLISHING GROUP</CopyrightPublisher>
+    <CopyrightCity>LONDON</CopyrightCity>
+  </PublicationItem>
+  <PublicationItem>
+    <PublicationItemID>29441484</PublicationItemID>
+    <Title>Kinesin steps do not alternate in size</Title>
+    <Abstract>Kinesin is a two-headed motor protein that transports cargo inside cells by moving stepwise on microtubules. Its exact trajectory along the microtubule is unknown: alternative pathway models predict either uniform 8-nm steps or alternating 7- and 9-nm steps. By analyzing single-molecule stepping traces from "limping" kinesin molecules, we were able to distinguish alternate fast- and slow-phase steps and thereby to calculate the step sizes associated with the motions of each of the two heads. We also compiled step distances from nonlimping kinesin molecules and compared these distributions against models predicting uniform or alternating step sizes. In both cases, we find that kinesin takes uniform 8-nm steps, a result that strongly constrains the allowed models.</Abstract>
+    <AuthorList>Fehr,Adrian,N|Asbury,Charles,L|Block,Steven,M</AuthorList>
+    <AuthorCount>3</AuthorCount>
+    <KeywordList>RESOLUTION|MOLECULE|ATP|BINDING|HEAD|HAND-OVER-HAND|X-RAY-DIFFRACTION|MOVEMENT|MICROTUBULE STRUCTURE</KeywordList>
+    <DocumentTypeList>Article</DocumentTypeList>
+    <DocumentCategory>Journal Document</DocumentCategory>
+    <NumberOfReferences>21</NumberOfReferences>
+    <TimesCited>9</TimesCited>
+    <TimesNotSelfCited>8</TimesNotSelfCited>
+    <PMID>18083906</PMID>
+    <WoSItemID>000252243200002</WoSItemID>
+    <PublicationSourceTitle>BIOPHYSICAL JOURNAL</PublicationSourceTitle>
+    <Volume>94</Volume>
+    <Issue>3</Issue>
+    <Pagination>L20-L22</Pagination>
+    <PublicationDate>2008-02-01T00:00:00</PublicationDate>
+    <PublicationYear>2008</PublicationYear>
+    <PublicationType>Journal</PublicationType>
+    <PublicationImpactFactor>4.683</PublicationImpactFactor>
+    <PublicationSubjectCategoryList>Biophysics</PublicationSubjectCategoryList>
+    <ISSN>0006-3495</ISSN>
+    <DOI>10.1529/biophysj.107.126839</DOI>
+    <ConferenceStartDate xsi:nil="true" />
+    <ConferenceEndDate xsi:nil="true" />
+    <Rank xsi:nil="true" />
+    <OrdinalRank>22</OrdinalRank>
+    <NormalizedRank xsi:nil="true" />
+    <NewPublicationItemID>29441484</NewPublicationItemID>
+    <IsObsolete>false</IsObsolete>
+    <CopyrightPublisher>CELL PRESS</CopyrightPublisher>
+    <CopyrightCity>CAMBRIDGE</CopyrightCity>
+  </PublicationItem>
+  <PublicationItem>
+    <PublicationItemID>60137605</PublicationItemID>
+    <Title>Electrostatics of Nucleic Acid Folding under Conformational Constraint</Title>
+    <Abstract>RNA folding is enabled by interactions between the nucleic acid and its ion atmosphere, the mobile sheath of aqueous ions that surrounds and stabilizes it. Understanding the ion atmosphere requires the interplay of experiment and theory. However, even an apparently simple experiment to probe the ion atmosphere, measuring the dependence of DNA duplex stability upon ion concentration and identity, suffers from substantial complexity, because the unfolded ensemble contains many conformational states that are difficult to treat accurately with theory. To minimize this limitation, we measured the unfolding equilibrium of a DNA hairpin using a single-molecule optical trapping assay, in which the unfolded state is constrained to a limited set of elongated conformations. The unfolding free energy increased linearly with the logarithm of monovalent cation concentration for several cations, such that smaller cations tended to favor the folded state. Mg2+ stabilized the hairpin much more effectively at low concentrations than did any of the monovalent cations. Poisson-Boltzmann theory captured trends in hairpin stability measured for the monovalent cation titrations with reasonable accuracy, but failed to do so for the Mg2+ titrations. This finding is consistent with previous work, suggesting that Poisson-Boltzmann and other mean-field theories fail for higher valency cations where ion ion correlation effects may become significant. The high-resolution data herein, because of the straightforward nature of both the folded and the unfolded states, should serve as benchmarks for the development of more accurate electrostatic theories that will be needed for a more quantitative and predictive understanding of nucleic acid folding.</Abstract>
+    <AuthorList>Anthony,Peter,C|Sim,Adelene,YL|Chu,Vincent,B|Doniach,Sebastian,|Block,Steven,M|Herschlag,Daniel,</AuthorList>
+    <AuthorCount>6</AuthorCount>
+    <KeywordList>THERMODYNAMIC ANALYSIS|POISSON-BOLTZMANN THEORY|FREE-ENERGIES|SINGLE-STRANDED-DNA|MELTING TEMPERATURE|HELIX-COIL TRANSITIONS|SALT CONCENTRATION|PREFERENTIAL INTERACTION COEFFICIENTS|RNA TERTIARY STRUCTURES|MONOVALENT CATION SIZE</KeywordList>
+    <DocumentTypeList>Article</DocumentTypeList>
+    <DocumentCategory>Journal Document</DocumentCategory>
+    <NumberOfReferences>93</NumberOfReferences>
+    <TimesCited>0</TimesCited>
+    <TimesNotSelfCited>0</TimesNotSelfCited>
+    <PMID>22369617</PMID>
+    <WoSItemID>000301990600036</WoSItemID>
+    <PublicationSourceTitle>JOURNAL OF THE AMERICAN CHEMICAL SOCIETY</PublicationSourceTitle>
+    <Volume>134</Volume>
+    <Issue>10</Issue>
+    <Pagination>4607-4614</Pagination>
+    <PublicationDate>2012-03-14T00:00:00</PublicationDate>
+    <PublicationYear>2012</PublicationYear>
+    <PublicationType>Journal</PublicationType>
+    <PublicationImpactFactor>9.019</PublicationImpactFactor>
+    <PublicationSubjectCategoryList>Chemistry, Multidisciplinary</PublicationSubjectCategoryList>
+    <ISSN>0002-7863</ISSN>
+    <DOI>10.1021/ja208466h</DOI>
+    <ConferenceStartDate xsi:nil="true" />
+    <ConferenceEndDate xsi:nil="true" />
+    <Rank xsi:nil="true" />
+    <OrdinalRank>38</OrdinalRank>
+    <NormalizedRank xsi:nil="true" />
+    <NewPublicationItemID>60137605</NewPublicationItemID>
+    <IsObsolete>false</IsObsolete>
+    <CopyrightPublisher>AMER CHEMICAL SOC</CopyrightPublisher>
+    <CopyrightCity>WASHINGTON</CopyrightCity>
+  </PublicationItem>
+  <PublicationItem>
+    <PublicationItemID>6725085</PublicationItemID>
+    <Title>Measurement of the effective focal shift in an optical trap</Title>
+    <Abstract>The focus of an oil-immersion microscope objective is shifted because of the refractive-index mismatch between the cover glass and the aqueous sample. We present a procedure with which to determine the focal shift by use of an inverted microscope equipped with optical tweezers. As the position of the sample chamber is scanned vertically, we measure the axial displacement of an optically trapped bead; the relative motion of the bead with respect to the surface supplies the effective focal shift. Measurements of this quantity deviate from electromagnetic calculations of the focal shift, a discrepancy attributable to the depth-dependent decrease in axial trap stiffness that arises from spherical aberration. (c) 2005 Optical Society of America</Abstract>
+    <AuthorList>Neuman,K,C|Abbondanzieri,E,A|Block,S,M</AuthorList>
+    <AuthorCount>3</AuthorCount>
+    <KeywordList>TWEEZERS|INTERFACE|FLUORESCENCE MICROSCOPY|BEAM</KeywordList>
+    <DocumentTypeList>Article</DocumentTypeList>
+    <DocumentCategory>Journal Document</DocumentCategory>
+    <NumberOfReferences>11</NumberOfReferences>
+    <TimesCited>32</TimesCited>
+    <TimesNotSelfCited>28</TimesNotSelfCited>
+    <PMID>15981519</PMID>
+    <WoSItemID>000229259500022</WoSItemID>
+    <PublicationSourceTitle>OPTICS LETTERS</PublicationSourceTitle>
+    <Volume>30</Volume>
+    <Issue>11</Issue>
+    <Pagination>1318-1320</Pagination>
+    <PublicationDate>2005-06-01T00:00:00</PublicationDate>
+    <PublicationYear>2005</PublicationYear>
+    <PublicationType>Journal</PublicationType>
+    <PublicationImpactFactor>3.599</PublicationImpactFactor>
+    <PublicationSubjectCategoryList>Optics</PublicationSubjectCategoryList>
+    <ISSN>0146-9592</ISSN>
+    <ConferenceStartDate xsi:nil="true" />
+    <ConferenceEndDate xsi:nil="true" />
+    <Rank xsi:nil="true" />
+    <OrdinalRank>7</OrdinalRank>
+    <NormalizedRank xsi:nil="true" />
+    <NewPublicationItemID>6725085</NewPublicationItemID>
+    <IsObsolete>false</IsObsolete>
+    <CopyrightPublisher>OPTICAL SOC AMER</CopyrightPublisher>
+    <CopyrightCity>WASHINGTON</CopyrightCity>
+  </PublicationItem>
+  <PublicationItem>
+    <PublicationItemID>29790055</PublicationItemID>
+    <Title>Precision steering of an optical trap by electro-optic deflection</Title>
+    <Abstract>We designed, constructed, and tested a single-beam optical trapping instrument employing twin electro-optic deflectors (EODs) to steer the trap in the specimen plane. Compared with traditional instruments based on acousto-optic deflectors (AODs), EOD-based traps offer a significant improvement in light throughput and a reduction in deflection-angle (pointing) errors. These attributes impart improved force and position resolution, making EOD-based traps a promising alternative for high-precision nanomechanical measurements of biomaterials. (C) 2008 Optical Society of America.</Abstract>
+    <AuthorList>Valentine,Megan,T|Guydosh,Nicholas,R|Gutierrez-Medina,Braulio,|Fehr,Adrian,N|Andreasson,Johan,O|Block,Steven,M</AuthorList>
+    <AuthorCount>6</AuthorCount>
+    <KeywordList>TWEEZERS|FORCE CLAMP</KeywordList>
+    <DocumentTypeList>Article</DocumentTypeList>
+    <DocumentCategory>Journal Document</DocumentCategory>
+    <NumberOfReferences>10</NumberOfReferences>
+    <TimesCited>22</TimesCited>
+    <TimesNotSelfCited>20</TimesNotSelfCited>
+    <PMID>18347722</PMID>
+    <WoSItemID>000254907500023</WoSItemID>
+    <PublicationSourceTitle>OPTICS LETTERS</PublicationSourceTitle>
+    <Volume>33</Volume>
+    <Issue>6</Issue>
+    <Pagination>599-601</Pagination>
+    <PublicationDate>2008-03-15T00:00:00</PublicationDate>
+    <PublicationYear>2008</PublicationYear>
+    <PublicationType>Journal</PublicationType>
+    <PublicationImpactFactor>3.772</PublicationImpactFactor>
+    <PublicationSubjectCategoryList>Optics</PublicationSubjectCategoryList>
+    <ISSN>0146-9592</ISSN>
+    <ConferenceStartDate xsi:nil="true" />
+    <ConferenceEndDate xsi:nil="true" />
+    <Rank xsi:nil="true" />
+    <OrdinalRank>23</OrdinalRank>
+    <NormalizedRank xsi:nil="true" />
+    <NewPublicationItemID>29790055</NewPublicationItemID>
+    <IsObsolete>false</IsObsolete>
+    <CopyrightPublisher>OPTICAL SOC AMER</CopyrightPublisher>
+    <CopyrightCity>WASHINGTON</CopyrightCity>
+  </PublicationItem>
+  <PublicationItem>
+    <PublicationItemID>60274944</PublicationItemID>
+    <Title>Trigger loop dynamics mediate the balance between the transcriptional fidelity and speed of RNA polymerase II</Title>
+    <Abstract>During transcription, RNA polymerase II (RNAPII) must select the correct nucleotide, catalyze its addition to the growing RNA transcript, and move stepwise along the DNA until a gene is fully transcribed. In all kingdoms of life, transcription must be finely tuned to ensure an appropriate balance between fidelity and speed. Here, we used an optical-trapping assay with high spatiotemporal resolution to probe directly the motion of individual RNAPII molecules as they pass through each of the enzymatic steps of transcript elongation. We report direct evidence that the RNAPII trigger loop, an evolutionarily conserved protein subdomain, serves as a master regulator of transcription, affecting each of the three main phases of elongation, namely: substrate selection, translocation, and catalysis. Global fits to the force-velocity relationships of RNAPII and its trigger loop mutants support a Brownian ratchet model for elongation, where the incoming NTP is able to bind in either the pre- or posttranslocated state, and movement between these two states is governed by the trigger loop. Comparison of the kinetics of pausing by WT and mutant RNAPII under conditions that promote base misincorporation indicate that the trigger loop governs fidelity in substrate selection and mismatch recognition, and thereby controls aspects of both transcriptional accuracy and rate.</Abstract>
+    <AuthorList>Larson,Matthew,H|Zhou,Jing,|Kaplan,Craig,D|Palangat,Murali,|Kornberg,Roger,D|Landick,Robert,|Block,Steven,M</AuthorList>
+    <AuthorCount>7</AuthorCount>
+    <KeywordList>ELONGATION COMPLEX|DROSOPHILA|INHIBITION|STRUCTURAL BASIS|ANGSTROM RESOLUTION|MECHANISM|REPLICATION|TRANSLOCATION|SPECIFICITY|BACKTRACKING|optical trap|optical tweezers|Pol II</KeywordList>
+    <DocumentTypeList>Article</DocumentTypeList>
+    <DocumentCategory>Journal Document</DocumentCategory>
+    <NumberOfReferences>42</NumberOfReferences>
+    <TimesCited>0</TimesCited>
+    <TimesNotSelfCited>0</TimesNotSelfCited>
+    <PMID>22493230</PMID>
+    <WoSItemID>000303249100047</WoSItemID>
+    <PublicationSourceTitle>PROCEEDINGS OF THE NATIONAL ACADEMY OF SCIENCES OF THE UNITED STATES OF AMERICA</PublicationSourceTitle>
+    <Volume>109</Volume>
+    <Issue>17</Issue>
+    <Pagination>6555-6560</Pagination>
+    <PublicationDate>2012-04-24T00:00:00</PublicationDate>
+    <PublicationYear>2012</PublicationYear>
+    <PublicationType>Journal</PublicationType>
+    <PublicationImpactFactor>9.771</PublicationImpactFactor>
+    <PublicationSubjectCategoryList>Multidisciplinary Sciences</PublicationSubjectCategoryList>
+    <ISSN>0027-8424</ISSN>
+    <DOI>10.1073/pnas.1200939109</DOI>
+    <ConferenceStartDate xsi:nil="true" />
+    <ConferenceEndDate xsi:nil="true" />
+    <Rank xsi:nil="true" />
+    <OrdinalRank>39</OrdinalRank>
+    <NormalizedRank xsi:nil="true" />
+    <NewPublicationItemID>60274944</NewPublicationItemID>
+    <IsObsolete>false</IsObsolete>
+    <CopyrightPublisher>NATL ACAD SCIENCES</CopyrightPublisher>
+    <CopyrightCity>WASHINGTON</CopyrightCity>
+  </PublicationItem>
+  <PublicationItem>
+    <PublicationItemID>7879122</PublicationItemID>
+    <Title>Backsteps induced by nucleotide analogs suggest the front head of kinesin is gated by strain</Title>
+    <Abstract>The two-headed kinesin motor harnesses the energy of ATP hydrolysis to take 8-nm steps, walking processively along a microtubule, alternately stepping with each of its catalytic heads in a hand-over-hand fashion. Two persistent challenges for models of kinesin motility are to explain how the two heads are coordinated ("gated") and when the translocation step occurs relative to other events in the mechanochemical reaction cycle. To investigate these questions, we used a precision optical trap to measure the single-molecule kinetics of kinesin in the presence of substrate analogs beryllium fluoride or adenylyl-imiclodiphosphate. We found that normal stepping patterns were interspersed with long pauses induced by analog binding, and that these pauses were interrupted by short-lived backsteps. After a pause, processive stepping could only resume once the kinesin molecule took an obligatory, terminal backstep, exchanging the positions of its front and rear heads, presumably to allow release of the bound analog from the new front head. Preferential release from the front head implies that the kinetics of the two heads are differentially affected when both are bound to the microtubule, presumably by internal strain that is responsible for the gating. Furthermore, we found that ATP binding was required to reinitiate processive stepping after the terminal backstep. Together, our results support stepping models in which ATP binding triggers the mechanical step and the front head is gated by strain.</Abstract>
+    <AuthorList>Guydosh,Nicholas,R|Block,Steven,M</AuthorList>
+    <AuthorCount>2</AuthorCount>
+    <KeywordList>MOTILITY|ADP|MYOSIN MOTOR DOMAIN|ATP HYDROLYSIS|MICROTUBULES|MECHANISM|X-RAY STRUCTURES|HAND-OVER-HAND|MOLECULES|OPTICAL FORCE CLAMP|processivity|gating|motor coordination|optical tweezers|single-molecule biophysics</KeywordList>
+    <DocumentTypeList>Article</DocumentTypeList>
+    <DocumentCategory>Journal Document</DocumentCategory>
+    <NumberOfReferences>54</NumberOfReferences>
+    <TimesCited>60</TimesCited>
+    <TimesNotSelfCited>54</TimesNotSelfCited>
+    <PMID>16698928</PMID>
+    <WoSItemID>000237853900023</WoSItemID>
+    <PublicationSourceTitle>PROCEEDINGS OF THE NATIONAL ACADEMY OF SCIENCES OF THE UNITED STATES OF AMERICA</PublicationSourceTitle>
+    <Volume>103</Volume>
+    <Issue>21</Issue>
+    <Pagination>8054-8059</Pagination>
+    <PublicationDate>2006-05-23T00:00:00</PublicationDate>
+    <PublicationYear>2006</PublicationYear>
+    <PublicationType>Journal</PublicationType>
+    <PublicationImpactFactor>9.643</PublicationImpactFactor>
+    <PublicationSubjectCategoryList>Multidisciplinary Sciences</PublicationSubjectCategoryList>
+    <ISSN>0027-8424</ISSN>
+    <DOI>10.1073/pnas.0600931103</DOI>
+    <ConferenceStartDate xsi:nil="true" />
+    <ConferenceEndDate xsi:nil="true" />
+    <Rank xsi:nil="true" />
+    <OrdinalRank>12</OrdinalRank>
+    <NormalizedRank xsi:nil="true" />
+    <NewPublicationItemID>7879122</NewPublicationItemID>
+    <IsObsolete>false</IsObsolete>
+    <CopyrightPublisher>NATL ACAD SCIENCES</CopyrightPublisher>
+    <CopyrightCity>WASHINGTON</CopyrightCity>
+  </PublicationItem>
+  <PublicationItem>
+    <PublicationItemID>32321069</PublicationItemID>
+    <Title>On the Origin of Kinesin Limping</Title>
+    <Abstract>Kinesin is a dimeric motor with twin catalytic heads joined to a common stalk. Kinesin molecules move processively along microtubules in a hand-over-hand walk, with the two heads advancing alternately. Recombinant kinesin constructs with short stalks have been found to "limp", i.e., exhibit alternation in the dwell times of successive steps. Limping behavior implies that the molecular rearrangements underlying even- and odd-numbered steps must differ, but the mechanism by which such rearrangements lead to limping remains unsolved. Here, we used an optical force clamp to measure individual, recombinant dinners and test candidate explanations for limping. Introducing a covalent cross-link into the stalk region near the heads had no effect on limping, ruling out possible stalk misregistration during coiled-coil formation as a cause. Limping was equally unaffected by mutations that produced 50-fold changes in stalk stiffness, ruling out models where limping arises from an asymmetry in torsional strain. However, limping was enhanced by perturbations that increased the vertical component of load on the motor, including increases in bead size or net load, and decreases in the stalk length. These results suggest that kinesin heads take different vertical trajectories during alternate steps, and that the rates for these motions are differentially sensitive to load.</Abstract>
+    <AuthorList>Fehr,Adrian,N|Gutierrez-Medina,Braulio,|Asbury,Charles,L|Block,Steven,M</AuthorList>
+    <AuthorCount>4</AuthorCount>
+    <KeywordList>MOLECULE|MOTILITY|ATP|MICROTUBULE|HYDROLYZES|8-NM STEP|HAND-OVER-HAND|MOVEMENT|ALTERNATE|OPTICAL FORCE CLAMP</KeywordList>
+    <DocumentTypeList>Article</DocumentTypeList>
+    <DocumentCategory>Journal Document</DocumentCategory>
+    <NumberOfReferences>30</NumberOfReferences>
+    <TimesCited>8</TimesCited>
+    <TimesNotSelfCited>8</TimesNotSelfCited>
+    <PMID>19751671</PMID>
+    <WoSItemID>000270380800017</WoSItemID>
+    <PublicationSourceTitle>BIOPHYSICAL JOURNAL</PublicationSourceTitle>
+    <Volume>97</Volume>
+    <Issue>6</Issue>
+    <Pagination>1663-1670</Pagination>
+    <PublicationDate>2009-09-16T00:00:00</PublicationDate>
+    <PublicationYear>2009</PublicationYear>
+    <PublicationType>Journal</PublicationType>
+    <PublicationImpactFactor>4.39</PublicationImpactFactor>
+    <PublicationSubjectCategoryList>Biophysics</PublicationSubjectCategoryList>
+    <ISSN>0006-3495</ISSN>
+    <DOI>10.1016/j.bpj.2009.07.004</DOI>
+    <ConferenceStartDate xsi:nil="true" />
+    <ConferenceEndDate xsi:nil="true" />
+    <Rank xsi:nil="true" />
+    <OrdinalRank>28</OrdinalRank>
+    <NormalizedRank xsi:nil="true" />
+    <NewPublicationItemID>32321069</NewPublicationItemID>
+    <IsObsolete>false</IsObsolete>
+    <CopyrightPublisher>CELL PRESS</CopyrightPublisher>
+    <CopyrightCity>CAMBRIDGE</CopyrightCity>
+  </PublicationItem>
+  <PublicationItem>
+    <PublicationItemID>983225</PublicationItemID>
+    <Title>High-resolution, single-molecule measurements of biomolecular motion</Title>
+    <Abstract>Many biologically important macromolecules undergo motions that are essential to their function. Biophysical techniques can now resolve the motions of single molecules down to the nanometer scale or even below, providing new insights into the mechanisms that drive molecular movements. This review outlines the principal approaches that have been used for high-resolution measurements of single-molecule motion, including centroid tracking, fluorescence resonance energy transfer, magnetic tweezers, atomic force microscopy, and optical traps. For each technique, the principles of operation are outlined, the capabilities and typical applications are examined, and various practical issues for implementation are considered. Extensions to these methods are also discussed, with an eye toward future application to outstanding biological problems.</Abstract>
+    <AuthorList>Greenleaf,William,J|Woodside,Michael,T|Block,Steven,M</AuthorList>
+    <AuthorCount>3</AuthorCount>
+    <KeywordList>CYTOPLASMIC DYNEIN|FLUORESCENCE SPECTROSCOPY|DNA-MOLECULES|CONFORMATIONAL DYNAMICS|RNA-POLYMERASE MOLECULES|ATOMIC-FORCE MICROSCOPY|HAND-OVER-HAND|ENERGY-TRANSFER|OPTICAL TWEEZERS|RAPID ROTATION|AFM|magnetic tweezers|fluorescence|optical trap|force clamp</KeywordList>
+    <DocumentTypeList>Review</DocumentTypeList>
+    <DocumentCategory>Journal Document</DocumentCategory>
+    <NumberOfReferences>118</NumberOfReferences>
+    <TimesCited>142</TimesCited>
+    <TimesNotSelfCited>137</TimesNotSelfCited>
+    <PMID>17328679</PMID>
+    <WoSItemID>000247773000009</WoSItemID>
+    <PublicationSourceTitle>ANNUAL REVIEW OF BIOPHYSICS AND BIOMOLECULAR STRUCTURE</PublicationSourceTitle>
+    <Volume>36</Volume>
+    <Pagination>171-190</Pagination>
+    <PublicationDate>2007-01-01T00:00:00</PublicationDate>
+    <PublicationYear>2007</PublicationYear>
+    <PublicationType>Journal</PublicationType>
+    <PublicationImpactFactor>17.757</PublicationImpactFactor>
+    <PublicationSubjectCategoryList>Biophysics</PublicationSubjectCategoryList>
+    <ISSN>1056-8700</ISSN>
+    <DOI>10.1146/annurev.biophys.36.101106.101451</DOI>
+    <ConferenceStartDate xsi:nil="true" />
+    <ConferenceEndDate xsi:nil="true" />
+    <Rank xsi:nil="true" />
+    <OrdinalRank>1</OrdinalRank>
+    <NormalizedRank xsi:nil="true" />
+    <NewPublicationItemID>983225</NewPublicationItemID>
+    <IsObsolete>false</IsObsolete>
+    <CopyrightPublisher>ANNUAL REVIEWS</CopyrightPublisher>
+    <CopyrightCity>PALO ALTO</CopyrightCity>
+  </PublicationItem>
+  <PublicationItem>
+    <PublicationItemID>8498912</PublicationItemID>
+    <Title>Direct measurement of the full, sequence-dependent folding landscape of a nucleic acid</Title>
+    <Abstract>Nucleic acid hairpins provide a powerful model system for understanding macromolecular folding, with free-energy landscapes that can be readily manipulated by changing the hairpin sequence. The full shapes of energy landscapes for the reversible folding of DNA hairpins under controlled loads exerted by an optical force clamp were obtained by deconvolution from high-resolution, single-molecule trajectories. The locations and heights of the energy barriers for hairpin folding could be tuned by adjusting the number and location of G: C base pairs, and the presence and position of folding intermediates were controlled by introducing single-nucleotide mismatches.</Abstract>
+    <AuthorList>Woodside,Michael,T|Anthony,Peter,C|Behnke-Parks,William,M|Larizadeh,Kevan,|Herschlag,Daniel,|Block,Steven,M</AuthorList>
+    <AuthorCount>6</AuthorCount>
+    <KeywordList>STRUCTURE PREDICTION|RNA|FORCE|SMALL PROTEINS</KeywordList>
+    <DocumentTypeList>Article</DocumentTypeList>
+    <DocumentCategory>Journal Document</DocumentCategory>
+    <NumberOfReferences>21</NumberOfReferences>
+    <TimesCited>88</TimesCited>
+    <TimesNotSelfCited>75</TimesNotSelfCited>
+    <PMID>17095702</PMID>
+    <WoSItemID>000241896000056</WoSItemID>
+    <PublicationSourceTitle>SCIENCE</PublicationSourceTitle>
+    <Volume>314</Volume>
+    <Issue>5801</Issue>
+    <Pagination>1001-1004</Pagination>
+    <PublicationDate>2006-11-10T00:00:00</PublicationDate>
+    <PublicationYear>2006</PublicationYear>
+    <PublicationType>Journal</PublicationType>
+    <PublicationImpactFactor>30.028</PublicationImpactFactor>
+    <PublicationSubjectCategoryList>Multidisciplinary Sciences</PublicationSubjectCategoryList>
+    <ISSN>0036-8075</ISSN>
+    <DOI>10.1126/science.1133601</DOI>
+    <ConferenceStartDate xsi:nil="true" />
+    <ConferenceEndDate xsi:nil="true" />
+    <Rank xsi:nil="true" />
+    <OrdinalRank>17</OrdinalRank>
+    <NormalizedRank xsi:nil="true" />
+    <NewPublicationItemID>8498912</NewPublicationItemID>
+    <IsObsolete>false</IsObsolete>
+    <CopyrightPublisher>AMER ASSOC ADVANCEMENT SCIENCE</CopyrightPublisher>
+    <CopyrightCity>WASHINGTON</CopyrightCity>
+  </PublicationItem>
+  <PublicationItem>
+    <PublicationItemID>47326123</PublicationItemID>
+    <Title>Single-Molecule Studies of RNA Polymerase: One Singular Sensation, Every Little Step It Takes</Title>
+    <Abstract>Transcription is the first of many biochemical steps that turn the genetic information found in DNA into the proteins responsible for driving cellular processes. In this review, we highlight certain advantages of single-molecule techniques in the study of prokaryotic and eukaryotic transcription, and the specific ways in which these techniques complement conventional, ensemble-based biochemistry. We focus on recent literature, highlighting examples where single-molecule methods have provided fresh insights into mechanism. We also present recent technological advances and outline future directions in the field.</Abstract>
+    <AuthorList>Larson,Matthew,H|Landick,Robert,|Block,Steven,M</AuthorList>
+    <AuthorCount>3</AuthorCount>
+    <KeywordList>IN-VIVO|STRUCTURAL BASIS|NASCENT RNA|HIGH-RESOLUTION|CHAIN ELONGATION|II ELONGATION COMPLEX|INTRINSIC TRANSCRIPTION TERMINATION|TRIGGER LOOP|NANO-POSITIONING SYSTEM|NONTEMPLATE DNA</KeywordList>
+    <DocumentTypeList>Review</DocumentTypeList>
+    <DocumentCategory>Journal Document</DocumentCategory>
+    <NumberOfReferences>95</NumberOfReferences>
+    <TimesCited>5</TimesCited>
+    <TimesNotSelfCited>3</TimesNotSelfCited>
+    <PMID>21292158</PMID>
+    <WoSItemID>000287460500004</WoSItemID>
+    <PublicationSourceTitle>MOLECULAR CELL</PublicationSourceTitle>
+    <Volume>41</Volume>
+    <Issue>3</Issue>
+    <Pagination>249-262</Pagination>
+    <PublicationDate>2011-02-04T00:00:00</PublicationDate>
+    <PublicationYear>2011</PublicationYear>
+    <PublicationType>Journal</PublicationType>
+    <PublicationImpactFactor>14.194</PublicationImpactFactor>
+    <PublicationSubjectCategoryList>Biochemistry &amp; Molecular Biology|Cell Biology</PublicationSubjectCategoryList>
+    <ISSN>1097-2765</ISSN>
+    <DOI>10.1016/j.molcel.2011.01.008</DOI>
+    <ConferenceStartDate xsi:nil="true" />
+    <ConferenceEndDate xsi:nil="true" />
+    <Rank xsi:nil="true" />
+    <OrdinalRank>33</OrdinalRank>
+    <NormalizedRank xsi:nil="true" />
+    <NewPublicationItemID>47326123</NewPublicationItemID>
+    <IsObsolete>false</IsObsolete>
+    <CopyrightPublisher>CELL PRESS</CopyrightPublisher>
+    <CopyrightCity>CAMBRIDGE</CopyrightCity>
+  </PublicationItem>
+  <PublicationItem>
+    <PublicationItemID>7950087</PublicationItemID>
+    <Title>Individual dimers of the mitotic kinesin motor Eg5 step processively and support substantial loads in vitro</Title>
+    <Abstract>Eg5, a member of the kinesin superfamily of microtubule-based motors, is essential for bipolar spindle assembly and maintenance during mitosis, yet little is known about the mechanisms by which it accomplishes these tasks. Here, we used an automated optical trapping apparatus in conjunction with a novel motility assay that employed chemically modified surfaces to probe the mechanochemistry of Eg5. Individual dimers, formed by a recombinant human construct Eg5 513-5His, stepped processively along microtubules in 8-nm increments, with short run lengths averaging approximately eight steps. By varying the applied load ( with a force clamp) and the ATP concentration, we found that the velocity of Eg5 was slower and less sensitive to external load than that of conventional kinesin, possibly reflecting the distinct demands of spindle assembly as compared with vesicle transport. The Eg5-513-5His velocity data were described by a minimal, three-state model where a force-dependent transition follows nucleotide binding.</Abstract>
+    <AuthorList>Valentine,M,T|Fordyce,P,M|Krzysiak,T,C|Gilbert,S,P|Block,S,M</AuthorList>
+    <AuthorCount>5</AuthorCount>
+    <KeywordList>VELOCITY|ATP|SPINDLES|CROSS-LINKS|SINGLE MOLECULES|MOVEMENT|MICROTUBULE MOTOR|NCD|OPTICAL FORCE CLAMP|STATISTICAL KINETICS</KeywordList>
+    <DocumentTypeList>Article</DocumentTypeList>
+    <DocumentCategory>Journal Document</DocumentCategory>
+    <NumberOfReferences>34</NumberOfReferences>
+    <TimesCited>73</TimesCited>
+    <TimesNotSelfCited>63</TimesNotSelfCited>
+    <PMID>16604065</PMID>
+    <WoSItemID>000237299400010</WoSItemID>
+    <PublicationSourceTitle>NATURE CELL BIOLOGY</PublicationSourceTitle>
+    <Volume>8</Volume>
+    <Issue>5</Issue>
+    <Pagination>470-U89</Pagination>
+    <PublicationDate>2006-05-01T00:00:00</PublicationDate>
+    <PublicationYear>2006</PublicationYear>
+    <PublicationType>Journal</PublicationType>
+    <PublicationImpactFactor>18.485</PublicationImpactFactor>
+    <PublicationSubjectCategoryList>Cell Biology</PublicationSubjectCategoryList>
+    <ISSN>1465-7392</ISSN>
+    <DOI>10.1038/ncb1394</DOI>
+    <ConferenceStartDate xsi:nil="true" />
+    <ConferenceEndDate xsi:nil="true" />
+    <Rank xsi:nil="true" />
+    <OrdinalRank>13</OrdinalRank>
+    <NormalizedRank xsi:nil="true" />
+    <NewPublicationItemID>7950087</NewPublicationItemID>
+    <IsObsolete>false</IsObsolete>
+    <CopyrightPublisher>NATURE PUBLISHING GROUP</CopyrightPublisher>
+    <CopyrightCity>LONDON</CopyrightCity>
+  </PublicationItem>
+  <PublicationItem>
+    <PublicationItemID>32608483</PublicationItemID>
+    <Title>UK defence group's structure could limit its usefulness</Title>
+    <Abstract />
+    <AuthorList>Block,Steven,M</AuthorList>
+    <AuthorCount>1</AuthorCount>
+    <KeywordList />
+    <DocumentTypeList>Letter</DocumentTypeList>
+    <DocumentCategory>Journal Document</DocumentCategory>
+    <NumberOfReferences>1</NumberOfReferences>
+    <TimesCited>0</TimesCited>
+    <TimesNotSelfCited>0</TimesNotSelfCited>
+    <PMID>20016574</PMID>
+    <WoSItemID>000272795400019</WoSItemID>
+    <PublicationSourceTitle>NATURE</PublicationSourceTitle>
+    <Volume>462</Volume>
+    <Issue>7275</Issue>
+    <Pagination>847-847</Pagination>
+    <PublicationDate>2009-12-17T00:00:00</PublicationDate>
+    <PublicationYear>2009</PublicationYear>
+    <PublicationType>Journal</PublicationType>
+    <PublicationImpactFactor>34.48</PublicationImpactFactor>
+    <PublicationSubjectCategoryList>Multidisciplinary Sciences</PublicationSubjectCategoryList>
+    <ISSN>0028-0836</ISSN>
+    <DOI>10.1038/462847c</DOI>
+    <ConferenceStartDate xsi:nil="true" />
+    <ConferenceEndDate xsi:nil="true" />
+    <Rank xsi:nil="true" />
+    <OrdinalRank>29</OrdinalRank>
+    <NormalizedRank xsi:nil="true" />
+    <NewPublicationItemID>32608483</NewPublicationItemID>
+    <IsObsolete>false</IsObsolete>
+    <CopyrightPublisher>NATURE PUBLISHING GROUP</CopyrightPublisher>
+    <CopyrightCity>LONDON</CopyrightCity>
+  </PublicationItem>
+  <PublicationItem>
+    <PublicationItemID>6137266</PublicationItemID>
+    <Title>Optical trapping</Title>
+    <Abstract>Since their invention just over 20 years ago, optical traps have emerged as a powerful tool with broad-reaching applications in biology and physics. Capabilities have evolved from simple manipulation to the application of calibrated forces on-and the measurement of nanometer-level displacements of-optically trapped objects. We review progress in the development of optical trapping apparatus, including instrument design considerations, position detection schemes and calibration techniques, with an emphasis on recent advances. We conclude with a brief summary of innovative optical trapping configurations and applications. (C) 2004 American Institute of Physics.</Abstract>
+    <AuthorList>Neuman,K,C|Block,S,M</AuthorList>
+    <AuthorCount>2</AuthorCount>
+    <KeywordList>SINGLE KINESIN MOLECULES|RADIATION PRESSURE|DIELECTRIC PARTICLES|COMPUTER-GENERATED HOLOGRAMS|RNA-POLYMERASE|MICROSCOPIC PARTICLES|GAUSSIAN-BEAM|ANGULAR-MOMENTUM TRANSFER|MICRO-OBJECTS|INFRARED-LASER BEAMS</KeywordList>
+    <DocumentTypeList>Review</DocumentTypeList>
+    <DocumentCategory>Journal Document</DocumentCategory>
+    <NumberOfReferences>186</NumberOfReferences>
+    <TimesCited>638</TimesCited>
+    <TimesNotSelfCited>619</TimesNotSelfCited>
+    <PMID>16878180</PMID>
+    <WoSItemID>000224754800001</WoSItemID>
+    <PublicationSourceTitle>REVIEW OF SCIENTIFIC INSTRUMENTS</PublicationSourceTitle>
+    <Volume>75</Volume>
+    <Issue>9</Issue>
+    <Pagination>2787-2809</Pagination>
+    <PublicationDate>2004-09-01T00:00:00</PublicationDate>
+    <PublicationYear>2004</PublicationYear>
+    <PublicationType>Journal</PublicationType>
+    <PublicationImpactFactor>1.226</PublicationImpactFactor>
+    <PublicationSubjectCategoryList>Instruments &amp; Instrumentation|Physics, Applied</PublicationSubjectCategoryList>
+    <ISSN>0034-6748</ISSN>
+    <DOI>10.1063/1.1785844</DOI>
+    <ConferenceStartDate xsi:nil="true" />
+    <ConferenceEndDate xsi:nil="true" />
+    <Rank xsi:nil="true" />
+    <OrdinalRank>5</OrdinalRank>
+    <NormalizedRank xsi:nil="true" />
+    <NewPublicationItemID>6137266</NewPublicationItemID>
+    <IsObsolete>false</IsObsolete>
+    <CopyrightPublisher>AMER INST PHYSICS</CopyrightPublisher>
+    <CopyrightCity>MELVILLE</CopyrightCity>
+  </PublicationItem>
+  <PublicationItem>
+    <PublicationItemID>28988030</PublicationItemID>
+    <Title>Applied force reveals mechanistic and energetic details of transcription termination</Title>
+    <Abstract>Transcription termination by bacterial RNA polymerase (RNAP) occurs at sequences coding for a GC-rich RNA hairpin followed by a U-rich tract. We used single-molecule techniques to investigate the mechanism by which three representative terminators (his, t500, and tR2) destabilize the elongation complex (EC). For his and tR2 terminators, loads exerted to bias translocation did not affect termination efficiency (TE). However, the force-dependent kinetics of release and the force-dependent TE of a mutant imply a forward translocation mechanism for the t500 terminator. Tension on isolated U-tracts induced transcript release in a manner consistent with RNA: DNA hybrid shearing. We deduce that different mechanisms, involving hypertranslocation or shearing, operate at terminators with different U-tracts. Tension applied to RNA at terminators suggests that closure of the final 2-3 hairpin bases destabilizes the hybrid and that competing RNA structures modulate TE. We propose a quantitative, energetic model that predicts the behavior for these terminators and mutant variants.</Abstract>
+    <AuthorList>Larson,Matthew,H|Greenleaf,William,J|Landick,Robert,|Block,Steven,M</AuthorList>
+    <AuthorCount>4</AuthorCount>
+    <KeywordList>ELONGATION COMPLEX|STRUCTURAL BASIS|NASCENT RNA|NUCLEIC-ACID|RNA-POLYMERASE MOLECULES|ATTENUATION|SINGLE-MOLECULE|SEQUENCE|ESCHERICHIA-COLI RNA|REGULATORY STRATEGY</KeywordList>
+    <DocumentTypeList>Article</DocumentTypeList>
+    <DocumentCategory>Journal Document</DocumentCategory>
+    <NumberOfReferences>43</NumberOfReferences>
+    <TimesCited>36</TimesCited>
+    <TimesNotSelfCited>29</TimesNotSelfCited>
+    <PMID>18358810</PMID>
+    <WoSItemID>000254273600016</WoSItemID>
+    <PublicationSourceTitle>CELL</PublicationSourceTitle>
+    <Volume>132</Volume>
+    <Issue>6</Issue>
+    <Pagination>971-982</Pagination>
+    <PublicationDate>2008-03-21T00:00:00</PublicationDate>
+    <PublicationYear>2008</PublicationYear>
+    <PublicationType>Journal</PublicationType>
+    <PublicationImpactFactor>31.253</PublicationImpactFactor>
+    <PublicationSubjectCategoryList>Biochemistry &amp; Molecular Biology|Cell Biology</PublicationSubjectCategoryList>
+    <ISSN>0092-8674</ISSN>
+    <DOI>10.1016/j.cell.2008.01.027</DOI>
+    <ConferenceStartDate xsi:nil="true" />
+    <ConferenceEndDate xsi:nil="true" />
+    <Rank xsi:nil="true" />
+    <OrdinalRank>21</OrdinalRank>
+    <NormalizedRank xsi:nil="true" />
+    <NewPublicationItemID>28988030</NewPublicationItemID>
+    <IsObsolete>false</IsObsolete>
+    <CopyrightPublisher>CELL PRESS</CopyrightPublisher>
+    <CopyrightCity>CAMBRIDGE</CopyrightCity>
+  </PublicationItem>
+  <PublicationItem>
+    <PublicationItemID>59784475</PublicationItemID>
+    <Title>Folding energy landscape of the thiamine pyrophosphate riboswitch aptamer</Title>
+    <Abstract>Riboswitches are motifs in the untranslated regions (UTRs) of RNA transcripts that sense metabolite levels and modulate the expression of the corresponding genes for metabolite import, export, synthesis, or degradation. All riboswitches contain an aptamer: an RNA structure that, upon binding ligand, folds to expose or sequester regulatory elements in the adjacent sequence through alternative nucleotide pairing. The coupling between ligand binding and aptamer folding is central to the regulatory mechanisms of thiamine pyrophosphate (TPP) riboswitches and has not been fully characterized. Here, we show that TPP aptamer folding can be decomposed into ligand-independent and -dependent steps that correspond to the formation of secondary and tertiary structures, respectively. We reconstructed the full energy landscape for folding of the wild-type (WT) aptamer and measured perturbations of this landscape arising from mutations or ligand binding. We show that TPP binding proceeds in two steps, from a weakly to a strongly bound state. Our data imply a hierarchical folding sequence, and provide a framework for understanding molecular mechanism throughout the TPP riboswitch family.</Abstract>
+    <AuthorList>Anthony,Peter,C|Perez,Christian,F|Garcia-Garcia,Cuauhtemoc,|Block,Steven,M</AuthorList>
+    <AuthorCount>4</AuthorCount>
+    <KeywordList>STRUCTURAL BASIS|RECOGNITION|NUCLEIC-ACID|GENE-EXPRESSION|DOMAINS|LIGAND|MESSENGER-RNAS|THI-BOX RIBOSWITCH|METABOLITE-BINDING RIBOSWITCHES|TPP RIBOSWITCH|optical tweezers|single molecule|optical trapping|single-molecule biophysics</KeywordList>
+    <DocumentTypeList>Article</DocumentTypeList>
+    <DocumentCategory>Journal Document</DocumentCategory>
+    <NumberOfReferences>32</NumberOfReferences>
+    <TimesCited>2</TimesCited>
+    <TimesNotSelfCited>2</TimesNotSelfCited>
+    <PMID>22219369</PMID>
+    <WoSItemID>000299731400035</WoSItemID>
+    <PublicationSourceTitle>PROCEEDINGS OF THE NATIONAL ACADEMY OF SCIENCES OF THE UNITED STATES OF AMERICA</PublicationSourceTitle>
+    <Volume>109</Volume>
+    <Issue>5</Issue>
+    <Pagination>1485-1489</Pagination>
+    <PublicationDate>2012-01-31T00:00:00</PublicationDate>
+    <PublicationYear>2012</PublicationYear>
+    <PublicationType>Journal</PublicationType>
+    <PublicationImpactFactor>9.771</PublicationImpactFactor>
+    <PublicationSubjectCategoryList>Multidisciplinary Sciences</PublicationSubjectCategoryList>
+    <ISSN>0027-8424</ISSN>
+    <DOI>10.1073/pnas.1115045109</DOI>
+    <ConferenceStartDate xsi:nil="true" />
+    <ConferenceEndDate xsi:nil="true" />
+    <Rank xsi:nil="true" />
+    <OrdinalRank>37</OrdinalRank>
+    <NormalizedRank xsi:nil="true" />
+    <NewPublicationItemID>59784475</NewPublicationItemID>
+    <IsObsolete>false</IsObsolete>
+    <CopyrightPublisher>NATL ACAD SCIENCES</CopyrightPublisher>
+    <CopyrightCity>WASHINGTON</CopyrightCity>
+  </PublicationItem>
+  <PublicationItem>
+    <PublicationItemID>8083894</PublicationItemID>
+    <Title>Sequence-resolved detecton of pausing by single RNA polymerase molecules</Title>
+    <Abstract>Transcriptional pausing by RNA polymerase (RNAP) plays an important role in the regulation of gene expression. Defined, sequence-specific pause sites have been identified biochemically. Single-molecule studies have also shown that bacterial RNAP pauses frequently during transcriptional elongation, but the relationship of these "ubiquitous" pauses to the underlying DNA sequence has been uncertain. We employed an ultrastable optical-trapping assay to follow the motion of individual molecules of RNAP transcribing templates engineered with repeated sequences carrying imbedded, sequence-specific pause sites of known regulatory function. Both the known and ubiquitous pauses appeared at reproducible locations, identified with base-pair accuracy. Ubiquitous pauses were associated with DNA sequences that show similarities to regulatory pause sequences. Data obtained for the lifetimes and efficiencies of pauses support a model where the transition to pausing branches off of the normal elongation pathway and is mediated by a common elemental state, which corresponds to the ubiquitous pause.</Abstract>
+    <AuthorList>Herbert,Kristina,M|La Porta,Arthur,|Wong,Becky,J|Mooney,Rachel,A|Neuman,Keir,C|Landick,Robert,|Block,Steven,M</AuthorList>
+    <AuthorCount>7</AuthorCount>
+    <KeywordList>IN-VIVO|TERMINATION|SITE|ARREST|PROMOTER|TRANSCRIPTION ELONGATION|REGULATOR|COMPLEXES|DNA HYBRID|II ELONGATION</KeywordList>
+    <DocumentTypeList>Article</DocumentTypeList>
+    <DocumentCategory>Journal Document</DocumentCategory>
+    <NumberOfReferences>49</NumberOfReferences>
+    <TimesCited>84</TimesCited>
+    <TimesNotSelfCited>68</TimesNotSelfCited>
+    <PMID>16777599</PMID>
+    <WoSItemID>000238602700014</WoSItemID>
+    <PublicationSourceTitle>CELL</PublicationSourceTitle>
+    <Volume>125</Volume>
+    <Issue>6</Issue>
+    <Pagination>1083-1094</Pagination>
+    <PublicationDate>2006-06-16T00:00:00</PublicationDate>
+    <PublicationYear>2006</PublicationYear>
+    <PublicationType>Journal</PublicationType>
+    <PublicationImpactFactor>29.194</PublicationImpactFactor>
+    <PublicationSubjectCategoryList>Biochemistry &amp; Molecular Biology|Cell Biology</PublicationSubjectCategoryList>
+    <ISSN>0092-8674</ISSN>
+    <DOI>10.1016/j.cell.2006.04.032</DOI>
+    <ConferenceStartDate xsi:nil="true" />
+    <ConferenceEndDate xsi:nil="true" />
+    <Rank xsi:nil="true" />
+    <OrdinalRank>14</OrdinalRank>
+    <NormalizedRank xsi:nil="true" />
+    <NewPublicationItemID>8083894</NewPublicationItemID>
+    <IsObsolete>false</IsObsolete>
+    <CopyrightPublisher>CELL PRESS</CopyrightPublisher>
+    <CopyrightCity>CAMBRIDGE</CopyrightCity>
+  </PublicationItem>
+  <PublicationItem>
+    <PublicationItemID>33506671</PublicationItemID>
+    <Title>E. coli NusG Inhibits Backtracking and Accelerates Pause-Free Transcription by Promoting Forward Trans location of RNA Polymerase</Title>
+    <Abstract>NusG is an essential transcription factor in Escherichia coli that is capable of increasing the overall rate of transcription. Transcript elongation by RNA polymerase (RNAP) is frequently interrupted by pauses of varying durations, and NusG is known to decrease the occupancy of at least some paused states. However, it has not been established whether NusG enhances transcription chiefly by (1) increasing the rate of elongation between pauses, (2) reducing the lifetimes of pauses, or (3) reducing the rate of entry into paused states. Here, we studied transcription by single molecules of RNAP under various conditions of ribonucleoside triphosphate concentration, applied load, and temperature, using an optical trapping assay capable of distinguishing pauses as brief as 1 s. We found that NusG increases the rate of elongation, that is, the pause-free velocity along the template. Because pauses are off-pathway states that compete with elongation, we observed a concomitant decrease in the rate of entry into short-lifetime, paused states. The effects on short pauses and elongation were comparatively modest, however. More dramatic was the effect of NusG on suppressing entry into long-lifetime ("stabilized") pauses. Because a significant fraction of the time required for the transcription of a typical gene may be occupied by long pauses, NusG is capable of exerting a significant modulatory effect on the rates of RNA synthesis. The observed properties of NusG were consistent with a unified model where the function of this accessory factor is to promote transcriptionally downstream motion of the enzyme along the DNA template, which has the effect of forward-biasing RNAP from the pre-translocated state toward the post-translocated state. (C) 2010 Elsevier Ltd. All rights reserved.</Abstract>
+    <AuthorList>Herbert,Kristina,M|Zhou,Jing,|Mooney,Rachel,A|La Porta,Arthur,|Landick,Robert,|Block,Steven,M</AuthorList>
+    <AuthorCount>6</AuthorCount>
+    <KeywordList>IN-VIVO|DNA|NASCENT RNA|TERMINATION|PROTEIN|ALLOSTERIC CONTROL|SINGLE MOLECULES|ESCHERICHIA-COLI|ELONGATION-FACTOR NUSG|FACTOR RFAH|transcription|RNA polymerase|optical tweezers|NusG|single-molecule biophysics</KeywordList>
+    <DocumentTypeList>Article</DocumentTypeList>
+    <DocumentCategory>Journal Document</DocumentCategory>
+    <NumberOfReferences>50</NumberOfReferences>
+    <TimesCited>13</TimesCited>
+    <TimesNotSelfCited>11</TimesNotSelfCited>
+    <PMID>20381500</PMID>
+    <WoSItemID>000278779900003</WoSItemID>
+    <PublicationSourceTitle>JOURNAL OF MOLECULAR BIOLOGY</PublicationSourceTitle>
+    <Volume>399</Volume>
+    <Issue>1</Issue>
+    <Pagination>17-30</Pagination>
+    <PublicationDate>2010-05-28T00:00:00</PublicationDate>
+    <PublicationYear>2010</PublicationYear>
+    <PublicationType>Journal</PublicationType>
+    <PublicationImpactFactor>4.008</PublicationImpactFactor>
+    <PublicationSubjectCategoryList>Biochemistry &amp; Molecular Biology</PublicationSubjectCategoryList>
+    <ISSN>0022-2836</ISSN>
+    <DOI>10.1016/j.jmb.2010.03.051</DOI>
+    <ConferenceStartDate xsi:nil="true" />
+    <ConferenceEndDate xsi:nil="true" />
+    <Rank xsi:nil="true" />
+    <OrdinalRank>30</OrdinalRank>
+    <NormalizedRank xsi:nil="true" />
+    <NewPublicationItemID>33506671</NewPublicationItemID>
+    <IsObsolete>false</IsObsolete>
+    <CopyrightPublisher>ACADEMIC PRESS LTD- ELSEVIER SCIENCE LTD</CopyrightPublisher>
+    <CopyrightCity>LONDON</CopyrightCity>
+  </PublicationItem>
+  <PublicationItem>
+    <PublicationItemID>8299460</PublicationItemID>
+    <Title>Pulling on the nascent RNA during transcription does not alter kinetics of elongation or ubiquitous pausing</Title>
+    <Abstract>Transcriptional elongation and termination by RNA polymerase (RNAP) are controlled by interactions among the nascent RNA, DNA, and RNAP that comprise the ternary transcription elongation complex (TEC). To probe the effects of cotranscriptionally folded RNA hairpins on elongation as well as the stability of the TEC, we developed a single-molecule assay to monitor RNA elongation by Escherichia coli RNAP molecules while applying controlled loads to the nascent RNA that favor forward translocation. Remarkably, forces up to 30 pN, twice those required to disrupt RNA secondary structure, did not significantly affect enzyme processivity, transcription elongation rates, pause frequencies, or pause lifetimes. These results indicate that ubiquitous transcriptional pausing is not a consequence of the formation of hairpins in the nascent RNA. The ability of the TEC to sustain large loads on the transcript reflects a tight binding of RNA within the TEC and has important implications for models of transcriptional termination.</Abstract>
+    <AuthorList>Dalal,Ravindra,V|Larson,Matthew,H|Neuman,Keir,C|Gelles,Jeff,|Landick,Robert,|Block,Steven,M</AuthorList>
+    <AuthorCount>6</AuthorCount>
+    <KeywordList>SECONDARY STRUCTURE|MODEL|MECHANICAL FORCE|TERMINATION|SITE|COMPLEX|ESCHERICHIA-COLI|DYNAMIC FORCE SPECTROSCOPY|MOLECULES|POLYMERASE-II ELONGATION</KeywordList>
+    <DocumentTypeList>Article</DocumentTypeList>
+    <DocumentCategory>Journal Document</DocumentCategory>
+    <NumberOfReferences>44</NumberOfReferences>
+    <TimesCited>23</TimesCited>
+    <TimesNotSelfCited>13</TimesNotSelfCited>
+    <PMID>16857589</PMID>
+    <WoSItemID>000239647700011</WoSItemID>
+    <PublicationSourceTitle>MOLECULAR CELL</PublicationSourceTitle>
+    <Volume>23</Volume>
+    <Issue>2</Issue>
+    <Pagination>231-239</Pagination>
+    <PublicationDate>2006-07-21T00:00:00</PublicationDate>
+    <PublicationYear>2006</PublicationYear>
+    <PublicationType>Journal</PublicationType>
+    <PublicationImpactFactor>14.033</PublicationImpactFactor>
+    <PublicationSubjectCategoryList>Biochemistry &amp; Molecular Biology|Cell Biology</PublicationSubjectCategoryList>
+    <ISSN>1097-2765</ISSN>
+    <DOI>10.1016/j.molcel.2006.06.023</DOI>
+    <ConferenceStartDate xsi:nil="true" />
+    <ConferenceEndDate xsi:nil="true" />
+    <Rank xsi:nil="true" />
+    <OrdinalRank>16</OrdinalRank>
+    <NormalizedRank xsi:nil="true" />
+    <NewPublicationItemID>8299460</NewPublicationItemID>
+    <IsObsolete>false</IsObsolete>
+    <CopyrightPublisher>CELL PRESS</CopyrightPublisher>
+    <CopyrightCity>CAMBRIDGE</CopyrightCity>
+  </PublicationItem>
+  <PublicationItem>
+    <PublicationItemID>34192962</PublicationItemID>
+    <Title>Eg5 steps it up!</Title>
+    <Abstract>Understanding how molecular motors generate force and move microtubules in mitosis is essential to understanding the physical mechanism of cell division. Recent measurements have shown that one mitotic kinesin superfamily member, Eg5, is mechanically processive and capable of crosslinking and sliding microtubules in vitro. In this review, we highlight recent work that explores how Eg5 functions under load, with an emphasis on the nanomechanical properties of single enzymes.</Abstract>
+    <AuthorList>Valentine,Megan,T|Fordyce,Polly,M|Block,Steven,M</AuthorList>
+    <AuthorCount>3</AuthorCount>
+    <KeywordList />
+    <DocumentTypeList>Review</DocumentTypeList>
+    <DocumentCategory>Journal Document</DocumentCategory>
+    <NumberOfReferences>58</NumberOfReferences>
+    <TimesCited>22</TimesCited>
+    <TimesNotSelfCited>22</TimesNotSelfCited>
+    <PMID>17173688</PMID>
+    <WoSItemID>000207723600031</WoSItemID>
+    <PublicationSourceTitle>CELL DIVISION</PublicationSourceTitle>
+    <Volume>1</Volume>
+    <Pagination />
+    <PublicationDate>2006-01-01T00:00:00</PublicationDate>
+    <PublicationYear>2006</PublicationYear>
+    <PublicationType>Journal</PublicationType>
+    <PublicationImpactFactor>4.091</PublicationImpactFactor>
+    <PublicationSubjectCategoryList>Cell Biology</PublicationSubjectCategoryList>
+    <ISSN>1747-1028</ISSN>
+    <DOI>10.1186/1747-1028-1-31</DOI>
+    <ConferenceStartDate xsi:nil="true" />
+    <ConferenceEndDate xsi:nil="true" />
+    <Rank xsi:nil="true" />
+    <OrdinalRank>32</OrdinalRank>
+    <NormalizedRank xsi:nil="true" />
+    <NewPublicationItemID>34192962</NewPublicationItemID>
+    <IsObsolete>false</IsObsolete>
+    <CopyrightPublisher>BIOMED CENTRAL LTD</CopyrightPublisher>
+    <CopyrightCity>LONDON</CopyrightCity>
+    <ArticleNumber>31</ArticleNumber>
+  </PublicationItem>
+  <PublicationItem>
+    <PublicationItemID>8293468</PublicationItemID>
+    <Title>Single-molecule, motion-based DNA sequencing using RNA polymerase</Title>
+    <Abstract>We present a method for sequencing DNA that relies on the motion of single RNA polymerase molecules. When a given nucleotide species limits the rate of transcription, polymerase molecules pause at positions corresponding to the rare base. An ultrastable optical trapping apparatus capable of base pair resolution was used to monitor transcription under limiting amounts of each of the four nucleotide species. From the aligned patterns of pauses recorded from as few as four molecules, we determined the DNA sequence. This proof of principle demonstrates that the motion of a processive nucleic acid enzyme may be used to extract sequence information directly from DNA.</Abstract>
+    <AuthorList>Greenleaf,William,J|Block,Steven,M</AuthorList>
+    <AuthorCount>2</AuthorCount>
+    <KeywordList>DISCRIMINATION</KeywordList>
+    <DocumentTypeList>Article</DocumentTypeList>
+    <DocumentCategory>Journal Document</DocumentCategory>
+    <NumberOfReferences>6</NumberOfReferences>
+    <TimesCited>47</TimesCited>
+    <TimesNotSelfCited>44</TimesNotSelfCited>
+    <PMID>16902131</PMID>
+    <WoSItemID>000239671300049</WoSItemID>
+    <PublicationSourceTitle>SCIENCE</PublicationSourceTitle>
+    <Volume>313</Volume>
+    <Issue>5788</Issue>
+    <Pagination>801-801</Pagination>
+    <PublicationDate>2006-08-11T00:00:00</PublicationDate>
+    <PublicationYear>2006</PublicationYear>
+    <PublicationType>Journal</PublicationType>
+    <PublicationImpactFactor>30.028</PublicationImpactFactor>
+    <PublicationSubjectCategoryList>Multidisciplinary Sciences</PublicationSubjectCategoryList>
+    <ISSN>0036-8075</ISSN>
+    <DOI>10.1126/science.1130105</DOI>
+    <ConferenceStartDate xsi:nil="true" />
+    <ConferenceEndDate xsi:nil="true" />
+    <Rank xsi:nil="true" />
+    <OrdinalRank>15</OrdinalRank>
+    <NormalizedRank xsi:nil="true" />
+    <NewPublicationItemID>8293468</NewPublicationItemID>
+    <IsObsolete>false</IsObsolete>
+    <CopyrightPublisher>AMER ASSOC ADVANCEMENT SCIENCE</CopyrightPublisher>
+    <CopyrightCity>WASHINGTON</CopyrightCity>
+  </PublicationItem>
+  <PublicationItem>
+    <PublicationItemID>34128369</PublicationItemID>
+    <Title>Visualizing individual microtubules by bright field microscopy</Title>
+    <Abstract>Microtubules are slender (similar to 25 nm diameter), filamentous polymers involved in cellular structure and organization. Individual microtubules have been visualized via fluorescence imaging of dye-labeled tubulin subunits and by video-enhanced, differential interference-contrast microscopy of unlabeled polymers using sensitive CCD cameras. We demonstrate the imaging of unstained microtubules using a microscope with conventional bright field optics in conjunction with a webcam-type camera and a light-emitting diode illuminator. The light scattered by microtubules is image-processed to remove the background, reduce noise, and enhance contrast. The setup is based on a commercial microscope with a minimal set of inexpensive components, suitable for implementation in a student laboratory. We show how this approach can be used in a demonstration motility assay, tracking the gliding motions of microtubules driven by the motor protein kinesin. (C) 2010 American Association of Physics Teachers. [DOI: 10.1119/1.3453264]</Abstract>
+    <AuthorList>Gutierrez-Medina,Braulio,|Block,Steven,M</AuthorList>
+    <AuthorCount>2</AuthorCount>
+    <KeywordList>DYNAMICS|ACTIN-FILAMENTS|LIVING CELLS</KeywordList>
+    <DocumentTypeList>Article</DocumentTypeList>
+    <DocumentCategory>Journal Document</DocumentCategory>
+    <NumberOfReferences>21</NumberOfReferences>
+    <TimesCited>0</TimesCited>
+    <TimesNotSelfCited>0</TimesNotSelfCited>
+    <PMID xsi:nil="true" />
+    <WoSItemID>000283196100011</WoSItemID>
+    <PublicationSourceTitle>AMERICAN JOURNAL OF PHYSICS</PublicationSourceTitle>
+    <Volume>78</Volume>
+    <Issue>11</Issue>
+    <Pagination>1152-1159</Pagination>
+    <PublicationDate>2010-11-01T00:00:00</PublicationDate>
+    <PublicationYear>2010</PublicationYear>
+    <PublicationType>Journal</PublicationType>
+    <PublicationImpactFactor>0.791</PublicationImpactFactor>
+    <PublicationSubjectCategoryList>Education, Scientific Disciplines|Physics, Multidisciplinary</PublicationSubjectCategoryList>
+    <ISSN>0002-9505</ISSN>
+    <DOI>10.1119/1.3453264</DOI>
+    <ConferenceStartDate xsi:nil="true" />
+    <ConferenceEndDate xsi:nil="true" />
+    <Rank xsi:nil="true" />
+    <OrdinalRank>31</OrdinalRank>
+    <NormalizedRank xsi:nil="true" />
+    <NewPublicationItemID>34128369</NewPublicationItemID>
+    <IsObsolete>false</IsObsolete>
+    <CopyrightPublisher>AMER ASSOC PHYSICS TEACHERS AMER INST PHYSICS</CopyrightPublisher>
+    <CopyrightCity>MELVILLE</CopyrightCity>
+  </PublicationItem>
+</ArrayOfPublicationItem>
+

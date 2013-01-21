@@ -1,5 +1,7 @@
 require 'rvm/capistrano'  # Add RVM integration
 require 'bundler/capistrano'  # Add Bundler integration
+load 'deploy/assets'
+
 set :rvm_type, :system
 
 set :application, "sulbib"
@@ -15,9 +17,18 @@ role :app, "sulcap-prod.stanford.edu"                          # This may be the
 role :db,  "sulcap-prod.stanford.edu", :primary => true # This is where Rails migrations will run
 
 set :user, "***REMOVED***"
-set :deploy_to, "/home/***REMOVED***/BibApp"
+set :deploy_to, "/home/***REMOVED***/#{application}"
 set :use_sudo, false
 set :deploy_via, :remote_cache
+
+after 'deploy:update_code', 'deploy:symlink_db'
+
+namespace :deploy do
+  desc "Symlink database.yml"
+  task :symlink_db, :roles => :app do
+    run "ln -nfs #{deploy_to}/shared/config/database.yml #{release_path}/config/database.yml"
+  end
+end
 
 # if you want to clean up old releases on each deploy uncomment this:
 # after "deploy:restart", "deploy:cleanup"

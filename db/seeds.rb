@@ -7,16 +7,110 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 Publication.delete_all
 
-pub_list = [
-  [ "A publication", "<title>the title</title>", "{'title': 'A publication.'}"],
-  [ "Another Publication", "<title>Another Publication</title>", "{title: 'Another Publication'}"],
-  [ "My Publication", "<title>My Publication</title>", "{'title': 'My Publication'}"],
-  [ "Your Publication", "<title>Your Publication</title>", "{'title': 'Your Publication'}"],
-]
 
-pub_list.each do | human_readable_title, xml, json |
-  Publication.create( active: true, human_readable_title: human_readable_title, xml: xml, json: json )
+require 'nokogiri'
+
+http = Net::HTTP.new("sciencewirerest.discoverylogic.com", 443)
+http.use_ssl = true
+http.verify_mode = OpenSSL::SSL::VERIFY_PEER
+http.ssl_version = :SSLv3
+request = Net::HTTP::Get.new("/PublicationCatalog/PublicationItems?format=xml&publicationItemIDs=1073592,8419261")
+request["Content_Type"] = "text/xml"
+request["LicenseID"] = "***REMOVED***"
+request["Host"] = "sciencewirerest.discoverylogic.com"
+request["Connection"] = "Keep-Alive"
+
+response = http.request(request)
+
+#f = File.open(Rails.root.join('app', 'data', 'SW_MatchedPublicationItemIdsForAuthor.xml'))
+scienceWireDoc = Nokogiri::XML(response.body)
+#f.close
+
+publications = scienceWireDoc.xpath("//PublicationItem")
+scienceWireDoc.xpath('//PublicationItem').each do |publication|
+	title = publication.xpath("Title").text
+	sciencewireId = publication.xpath("PublicationItemID")
+
+	builder = Nokogiri::XML::Builder.new do |newPubDoc|
+		
+			newPubDoc.publication {
+				newPubDoc.title title
+				publication.xpath('AuthorList').text.split('|').each do | authorName | 
+					newPubDoc.author {
+						newPubDoc.name authorName
+					}
+				end
+				publication.abstract publication.xpath("Abstract").text
+				publication.xpath('KeywordList').text.split('|').each do | keyword |
+					newPubDoc.keyword keyword
+				end
+				publication.xpath('DocumentTypeList').text.split('|').each do | docType |
+					newPubDoc.document-type docType
+				end
+				publication.document-category publication.xpath("DocumentCategory").text
+			}
+		
+
+	end
+	theXML = builder.to_xml
+	theJSON = JSON.pretty_generate(Hash.from_xml(theXML))
+    Publication.create( active: true, human_readable_title: title, xml: theXML, json: theJSON )
 end
+
+
+
+=begin
+ <PublicationItem>
+   <PublicationItemID>7099103</PublicationItemID>
+   <Title>Peak height precision in Hadamard transform time-of-flight mass spectra</Title>
+   <Abstract>Hadamard transform (HT) time-of-flight mass spectrometry (TOFMS) is a multiplexing technique that offers high duty cycle for the mass analysis of continuous ion sources. The multiplexing advantage is maximized when spectral noise is independent of signal intensity. For conditions in which shot noise predominates, the variance in each peak is a function of the population of all measured species. We develop expressions for the performance of a HT-TOF mass spectrometer based on Poissonian statistics for the arrival times of ions at the detector. These expressions and complementary probabilistic simulations are used to estimate the magnitude of the baseline noise as a function of mass spectral features and acquisition conditions. Experiment validates the predictions that noise depends on the total number of ions in the acquired spectrum, and the achieved signal-to-noise ratio for a given species depends on its relative population. We find that for HT-TOFMS experiments encoded with an n-order binary off-on sequence that contains N = 2(n) - 1 elements, the peak height precision, which is the peak intensity divided by its standard deviation, is greater than that of an equivalent conventional TOF experiment by a factor of root N/2 times the square root of the fractional abundance of the peak of interest. Thus, HT-TOFMS is superior to conventional TOF for all species whose fractional abundance F-i exceeds 2/N, which for a typical N value of 2047 corresponds to Fi &gt; 0.001. HT-TOF mass spectra collected at 2500 per second demonstrates the method's capability of monitoring transient processes not possible by conventional means. (c) 2005 American Society for Mass Spectrometry.</Abstract>
+   <AuthorList>Kimmel,J,R|Yoon,O,K|Zuleta,I,A|Trapp,O,|Zare,R,N</AuthorList>
+   <AuthorCount>5</AuthorCount>
+   <KeywordList>MULTIPLEX|SIGNAL|SPECTROMETRY|ELECTROSPRAY</KeywordList>
+   <DocumentTypeList>Article</DocumentTypeList>
+   <DocumentCategory>Journal Document</DocumentCategory>
+   <NumberOfReferences>18</NumberOfReferences>
+   <TimesCited>11</TimesCited>
+   <TimesNotSelfCited>5</TimesNotSelfCited>
+   <PMID xsi:nil="true" />
+   <WoSItemID>000230045500016</WoSItemID>
+   <PublicationSourceTitle>JOURNAL OF THE AMERICAN SOCIETY FOR MASS SPECTROMETRY</PublicationSourceTitle>
+   <Volume>16</Volume>
+   <Issue>7</Issue>
+   <Pagination>1117-1130</Pagination>
+   <PublicationDate>2005-07-01T00:00:00</PublicationDate>
+   <PublicationYear>2005</PublicationYear>
+   <PublicationType>Journal</PublicationType>
+   <PublicationImpactFactor>3.625</PublicationImpactFactor>
+   <PublicationSubjectCategoryList>Chemistry, Analytical|Chemistry, Physical|Spectroscopy</PublicationSubjectCategoryList>
+   <ISSN>1044-0305</ISSN>
+   <DOI>10.1016/j.jasms.2005.02.022</DOI>
+   <ConferenceStartDate xsi:nil="true" />
+   <ConferenceEndDate xsi:nil="true" />
+   <Rank xsi:nil="true" />
+   <OrdinalRank>2</OrdinalRank>
+   <NormalizedRank xsi:nil="true" />
+   <NewPublicationItemID>7099103</NewPublicationItemID>
+   <IsObsolete>false</IsObsolete>
+   <CopyrightPublisher>ELSEVIER SCIENCE INC</CopyrightPublisher>
+   <CopyrightCity>NEW YORK</CopyrightCity>
+ </PublicationItem>
+=end
+
+# 4. and then query pubmed to get the MESH:
+
+
+# url = "http://www.ncbi.nlm.nih.gov/pubmed/?term=NS044283[GR]&dispmax=200&report=xml"
+# doc = Nokogiri::XML(open(url))
+# pre = doc.xpath('//pre')
+# xml = "<root>" + pre.text + "</root>"
+# contents = Nokogiri::XML(xml)
+# articles = contents.css('PubmedArticle')
+# puts contents.css('ArticleTitle').map{|x| x.content}.count   
+
+# 5. and add profileIds as 'contributions')
+
+
 
 
 sampleBibJSON = '{
