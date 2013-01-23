@@ -10,21 +10,27 @@ module SulBib
         
 
       get do
+        population = params[:population] 
+        changedSince = params[:changedSince]
+        population ||= "cap"
+        changedSince ||= "1800-01-01"
+
+        startDate = DateTime.parse(changedSince)
+        matching_records = Publication.where("updated_at > ?", changedSince)
 
         '{
     "metadata": {
-        "_created": "20121121190112",  
-        "description": "sample of bibjson output taken from bisoup.net for cap experimentation", 
-        "format": "bibtex",  
-        "license": "http://www.opendefinition.org/licenses/cc-zero", 
-        "query": "http://publication?pop=cap", 
-        "records": 20
+        "_created": "' +   Time.now.iso8601  + '",  
+        "description": "sciencewire sample, as BibJSON, for cap experimentation", 
+        "format": "BibJSON",  
+        "license": "some licence", 
+        "population": "' + population + '",
+        "changedSince": "' + changedSince + '",
+        "query": "http://publication?population=cap", 
+        "records": ' + matching_records.count.to_s + '
     }, 
-    "records": [' + Publication.all.each.map { |publication| publication.json }.join(",") + ']}'
-        #Hash.from_xml('<some><child>hhjones</child></some>').to_json
-        #eventually replace this with a call possibly to solr.
-        #The json/xml has to have the contribution info, and dedupe info.
-
+    "records": [' + matching_records.each.map { |publication| publication.json }.join(",") + ']}'
+        
       end
     
   end 

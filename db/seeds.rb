@@ -14,7 +14,7 @@ http = Net::HTTP.new("sciencewirerest.discoverylogic.com", 443)
 http.use_ssl = true
 http.verify_mode = OpenSSL::SSL::VERIFY_PEER
 http.ssl_version = :SSLv3
-request = Net::HTTP::Get.new("/PublicationCatalog/PublicationItems?format=xml&publicationItemIDs=1073592,8419261")
+request = Net::HTTP::Get.new("/PublicationCatalog/PublicationItems?format=xml&publicationItemIDs=1073592,8419261,8419260,8419265")
 request["Content_Type"] = "text/xml"
 request["LicenseID"] = "***REMOVED***"
 request["Host"] = "sciencewirerest.discoverylogic.com"
@@ -28,52 +28,163 @@ scienceWireDoc = Nokogiri::XML(response.body)
 
 publications = scienceWireDoc.xpath("//PublicationItem")
 scienceWireDoc.xpath('//PublicationItem').each do |publication|
-	title = publication.xpath("Title").text
-	sciencewireId = publication.xpath("PublicationItemID")
+	
+    title = publication.xpath("Title").text
+    the_abstract = publication.xpath("Abstract").text
+	
+  
+    authors = publication.xpath('AuthorList').text.split('|')
+    keywords = publication.xpath('KeywordList').text.split('|')
+    documentTypes = publication.xpath("DocumentTypeList").text.split('|')
+    documentCategory = publication.xpath("DocumentCategory").text
+    numberOfRefernces = publication.xpath("NumberOfReferences").text
+    timesCited = publication.xpath("TimesCited").text
+    timesNotSelfCited = publication.xpath("TimesNotSelfCited").text
+    article_identifiers = [
+        {:type =>'PMID', :id => publication.xpath("PMID").text, :url => 'http://www.ncbi.nlm.nih.gov/pubmed/' + publication.xpath("PMID").text }, 
+        {:type => 'WoSItemID', :id => publication.xpath("WoSItemID").text, :url => 'http://wosuri/' + publication.xpath("WoSItemID").text}, 
+        {:type => 'PublicationItemID', :id => publication.xpath("PublicationItemID").text, :url => 'http://sciencewireURI/' + publication.xpath("PublicationItemID").text}
+    ]
 
-	builder = Nokogiri::XML::Builder.new do |newPubDoc|
+    # the journal info
+    publicationTitle = publication.xpath('PublicationSourceTitle').text
+    publicationVolume = publication.xpath('Volume').text
+    publicationIssue = publication.xpath('Issue').text
+    publicationPagination = publication.xpath('Pagination').text
+    publicationDate = publication.xpath('PublicationDate').text
+    publicationYear = publication.xpath('PublicationYear').text
+    publicationImpactFactor = publication.xpath('PublicationImpactFactor').text
+    publicationSubjectCategories = publication.xpath('PublicationSubjectCategoryList').text.split('|')
+    publicationIdentifiers = [
+        {:type => 'issn', :id => publication.xpath('ISSN').text},
+        {:type => 'doi', :id => publication.xpath('DOI').text}
+    ]
+   
+    publicationConferenceStartDate = publication.xpath('ConferenceStartDate').text
+    publicationConferenceEndDate = publication.xpath('ConferenceEndDate').text
+
+    rank =  publication.xpath('Rank').text
+    ordinalRank = publication.xpath('OrdinalRank').text
+    normalizedRank = publication.xpath('NormalizedRank').text
+    newPublicationId = publication.xpath('NewPublicationItemID').text
+    isObsolete = publication.xpath('IsObsolete').text
+    copyrightPublisher =  publication.xpath('CopyrightPublisher').text
+    copyrightCity = publication.xpath('CopyrightCity').text
+
+    contributions = [
+        {:profileid => 'someId', :status => 'confirmed', :visibility => 'show'},
+        {:profileid => 'someOtherId', :status => 'suspected', :visibility => 'show'},
+        {:profileid => 'anotherId', :status => 'confirmed', :visibility => 'hide'}
+    ]
+
+    jsonString = Jbuilder.encode do |json| 
+        json.identifier(article_identifiers) do  |identifier|        
+                    json.(identifier, :id, :type, :url)      
+        end
+        json.title title
+        json.abstract the_abstract
+        json.keywords keywords 
+        json.author authors do | author |
+            json.name author
+        end
+        json.documenttypes documentTypes
+        json.category documentCategory
+        json.timescited timesCited
+        json.timesnotselfcited timesNotSelfCited
+        json.rank rank
+        json.ordinalrank ordinalRank
+        json.normalizedrank normalizedRank
+        json.newpublicationid newPublicationId
+        json.isobsolete isObsolete
+        json.publisher copyrightPublisher
+        json.address copyrightCity
+        json.journal do | json |
+            json.name publicationTitle
+            json.volume publicationVolume
+            json.issue publicationIssue
+            json.pages publicationPagination
+            json.date publicationDate
+            json.year publicationYear
+            json.publicationimpactfactor publicationImpactFactor
+            json.subjectcategories publicationSubjectCategories
+            json.identifer(publicationIdentifiers) do | identifier |
+                json.(identifier, :id, :type)
+            end
+            json.conferencestartdate publicationConferenceStartDate
+            json.conferenceenddate publicationConferenceEndDate
+        end
+        json.contributions(contributions) do | contribution |
+            json.(contribution, :profileid, :status, :visibility)
+        end
+
+
+    end
+
+=begin
+“Duplicates”:[
+    “pubId”:52234, “status”:”confirmed”, “visibility”:”show”},
+    “pubId”:75432, “status”:”unconfirmed”, “visibility”:”show”, “duplicateWeighting”:65},
+    “pubId”:99943, “status”:”rejected”, “visibility”:”hide”},
+]
+=end
+	xmlbuilder = Nokogiri::XML::Builder.new do |newPubDoc|
 		
 			newPubDoc.publication {
+                
 				newPubDoc.title title
-				publication.xpath('AuthorList').text.split('|').each do | authorName | 
+				authors.each do | authorName | 
 					newPubDoc.author {
 						newPubDoc.name authorName
 					}
 				end
-				publication.abstract publication.xpath("Abstract").text
-				publication.xpath('KeywordList').text.split('|').each do | keyword |
+				newPubDoc.abstract_ the_abstract
+				keywords.each do | keyword |
 					newPubDoc.keyword keyword
 				end
-				publication.xpath('DocumentTypeList').text.split('|').each do | docType |
-					newPubDoc.document-type docType
+				documentTypes.each do | docType |
+					newPubDoc.type docType
 				end
-				publication.document-category publication.xpath("DocumentCategory").text
+				newPubDoc.category documentCategory
+                newPubDoc.journal {
+                    newPubDoc.title publicationTitle
+                }
+
+               # also add the last_update_at_source, last_retrieved_from_source, 
 			}
 		
 
 	end
-	theXML = builder.to_xml
-	theJSON = JSON.pretty_generate(Hash.from_xml(theXML))
-    Publication.create( active: true, human_readable_title: title, xml: theXML, json: theJSON )
+	theXML = xmlbuilder.to_xml
+	#theJSON = JSON.pretty_generate(Hash.from_xml(theXML))
+    Publication.create( active: true, human_readable_title: title, xml: theXML, json: jsonString    )
 end
 
 
 
 =begin
  <PublicationItem>
+
+ in id object
    <PublicationItemID>7099103</PublicationItemID>
+   <PMID xsi:nil="true" />
+   <WoSItemID>000230045500016</WoSItemID>
+
+
    <Title>Peak height precision in Hadamard transform time-of-flight mass spectra</Title>
    <Abstract>Hadamard transform (HT) time-of-flight mass spectrometry (TOFMS) is a multiplexing technique that offers high duty cycle for the mass analysis of continuous ion sources. The multiplexing advantage is maximized when spectral noise is independent of signal intensity. For conditions in which shot noise predominates, the variance in each peak is a function of the population of all measured species. We develop expressions for the performance of a HT-TOF mass spectrometer based on Poissonian statistics for the arrival times of ions at the detector. These expressions and complementary probabilistic simulations are used to estimate the magnitude of the baseline noise as a function of mass spectral features and acquisition conditions. Experiment validates the predictions that noise depends on the total number of ions in the acquired spectrum, and the achieved signal-to-noise ratio for a given species depends on its relative population. We find that for HT-TOFMS experiments encoded with an n-order binary off-on sequence that contains N = 2(n) - 1 elements, the peak height precision, which is the peak intensity divided by its standard deviation, is greater than that of an equivalent conventional TOF experiment by a factor of root N/2 times the square root of the fractional abundance of the peak of interest. Thus, HT-TOFMS is superior to conventional TOF for all species whose fractional abundance F-i exceeds 2/N, which for a typical N value of 2047 corresponds to Fi &gt; 0.001. HT-TOF mass spectra collected at 2500 per second demonstrates the method's capability of monitoring transient processes not possible by conventional means. (c) 2005 American Society for Mass Spectrometry.</Abstract>
    <AuthorList>Kimmel,J,R|Yoon,O,K|Zuleta,I,A|Trapp,O,|Zare,R,N</AuthorList>
    <AuthorCount>5</AuthorCount>
    <KeywordList>MULTIPLEX|SIGNAL|SPECTROMETRY|ELECTROSPRAY</KeywordList>
+   
+
    <DocumentTypeList>Article</DocumentTypeList>
    <DocumentCategory>Journal Document</DocumentCategory>
    <NumberOfReferences>18</NumberOfReferences>
    <TimesCited>11</TimesCited>
    <TimesNotSelfCited>5</TimesNotSelfCited>
-   <PMID xsi:nil="true" />
-   <WoSItemID>000230045500016</WoSItemID>
+   
+  
+  in journal object:
    <PublicationSourceTitle>JOURNAL OF THE AMERICAN SOCIETY FOR MASS SPECTROMETRY</PublicationSourceTitle>
    <Volume>16</Volume>
    <Issue>7</Issue>
@@ -87,6 +198,7 @@ end
    <DOI>10.1016/j.jasms.2005.02.022</DOI>
    <ConferenceStartDate xsi:nil="true" />
    <ConferenceEndDate xsi:nil="true" />
+
    <Rank xsi:nil="true" />
    <OrdinalRank>2</OrdinalRank>
    <NormalizedRank xsi:nil="true" />
@@ -94,6 +206,7 @@ end
    <IsObsolete>false</IsObsolete>
    <CopyrightPublisher>ELSEVIER SCIENCE INC</CopyrightPublisher>
    <CopyrightCity>NEW YORK</CopyrightCity>
+
  </PublicationItem>
 =end
 

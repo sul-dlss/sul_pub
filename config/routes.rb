@@ -28,7 +28,7 @@ Sulbib::Application.routes.draw do
   
   # resources :publications
   
-  root to: 'static_pages#home'
+  root to: 'static_pages#api'
 
 
   

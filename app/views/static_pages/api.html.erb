@@ -1,60 +1,62 @@
 <div class="center hero-unit">
-  <h2>SUL Publications API</h2>
+  <h2>SUL Publications</h2>
 <hr/>
 
- <p>The API provides access to Stanford author profile information and the consolidated Stanford publications database.  The API has three main categories:  authors, publications, and contributions (authorships.)
+ <p>RESTful access to the consolidated Stanford publications database.  The  URIs accept and return data in BibJSON format. The version of BibJSON to return may be specified in the header; the latest version will be returned by default.
  </p>
 
+ <p>The data is transferred as BibJSON and as such uses the BibTex field names where appropriate, custom fields otherwise.  Some of the custom fields refer to the 'document' and some to the 'publication' to differentiate between the specific document cited and the publication in which it appeared.  A journal article, for example, is a 'document' that appeared in a journal 'publication.'</p>
 <hr/>
-<h3 style="padding: 5px">
-  	Publications
-  </h3>
 
 <table class="table table-striped">
         <thead>
           <tr>
             <th>Verb</th>
-            <th>Path</th>
+            <th>URI</th>
             <th>Description</th>
-            <th>Returns<sup>1</sup><sup>2</sup></th>
-            <th>Sample</th>
+            <th>Returns</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td>GET</td>
-            <td>/v1/pubs/{ourPubId}</td>
-            <td>Returns full pub record</td>
-            <td>format?</td>
-            <td>tbd</td>
+            <td>http://sulcap.stanford.edu/publications/{pubId}</td>
+            <td>URI for full pub record</td>
+            <td>Single BibJSON record</td>
+
           </tr>
           <tr>
             <td>POST</td>
-            <td>/v1/pubs</td>
-            <td>Submit new publication(s)</td>
-            <td>new pubId or a list of new pubIds for batch</td>
-            <td>tbd</td>
+            <td>http://sulcap.stanford.edu/publications</td>
+            <td>Submit new hand-entered publication.</td>
+            <td>BibJSON for new record</td>
+
           </tr>
           <tr>
             <td>PUT</td>
-            <td>/v1/pubs/{ourPubId}</td>
-            <td>edit record</td>
-            <td>empty body</td>
-            <td>tbd</td>
+            <td>http://sulcap.stanford.edu/publications/{pubId}</td>
+            <td>edit existing user-submitted record</td>
+            <td>updated record as BibJSON</td>
           </tr>
           <tr>
             <td>DELETE</td>
-            <td>/v1/pubs/{ourPubId}</td>
+            <td>http://sulcap.stanford.edu/publications/{pubId}</td>
             <td>delete record</td>
-            <td>empty body</td>
-            <td>tbd</td>
+            <td>BibJSON for deleted record</td>
+          </tr>
+          <tr>
+            <td>GET</td>
+            <td>http://sulcap.stanford.edu/publications?population={popId}&changedSince={YYYY-MM-DDTHH:MM:SSZ} <br/>
+              <%= link_to "Sample", sul_bib_api_path %>
+            </td>
+            <td>Returns matching records</td>
+            <td>BibJSON collection</td>
           </tr>
         </tbody>
       </table>
 
 
-<div class="row"><div class="span8 offset1"><sup>1</sup>ACCEPT header can request json, xml, plain text, etc.  default: JSON</div></div>
-<div class="row"><div class="span8 offset1"><sup>2</sup>appropriate HTTP codes returned in each case for success, error, etc.</div></div>
+
 
 
  <!-- <%= link_to "GET /sulbib/v1/publications/1", '#', class: "btn btn-large btn-primary" %>  -->
