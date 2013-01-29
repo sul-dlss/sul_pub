@@ -10,6 +10,8 @@ gem 'bio'
 gem 'grape'
 gem 'therubyracer'
 gem 'rest-client'
+gem 'citeproc-ruby'
+gem 'bibtex-ruby'
 
 
 group :development, :test do

@@ -6,9 +6,6 @@ module SulBib
 
   format :json
 
-
-        
-
       get do
         population = params[:population] 
         changedSince = params[:changedSince]
@@ -31,6 +28,10 @@ module SulBib
     }, 
     "records": [' + matching_records.each.map { |publication| publication.json }.join(",") + ']}'
         
+      end
+
+      get ':id' do
+        Publication.find(params[:id]).json
       end
     
   end 
