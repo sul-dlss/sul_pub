@@ -3,6 +3,7 @@ class CreatePublications < ActiveRecord::Migration
     create_table :publications do |t|
       t.integer :same_as_publications_id
       t.boolean :active
+      t.boolean :deleted
       t.string :human_readable_title
       t.integer :lock_version
       t.text :xml

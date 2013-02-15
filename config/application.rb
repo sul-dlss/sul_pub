@@ -25,6 +25,11 @@ module Sulbib
     # config.autoload_paths += %W(#{config.root}/extras)
     config.autoload_paths += %W(#{config.root}/lib)
     config.autoload_paths += Dir["#{config.root}/lib/**/"]
+
+    # Auto-load API and its subdirectories
+    config.paths.add "app/api", :glob => "**/*.rb"
+    config.autoload_paths += Dir["#{Rails.root}/app/api/*"]
+    
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named.
     # config.plugins = [ :exception_notification, :ssl_requirement, :all ]

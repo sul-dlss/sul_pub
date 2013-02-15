@@ -1,12 +1,28 @@
-module CapPubsIngest
+require 'nokogiri'
+
+module Pubmed
 	
 	#"PUBLICATION_ID","FACULTY_ID","LAST_MODIFIED_DATE","LAST_MODIFIED_USER_ID","STATUS","HIGHLIGHT_IND"
 	#20069,4132,26-SEP-04 02.58.58.000000000 PM,21,"new",0
 	
-	def ingestCapProfiles
-		# this is probably from their API, rather than from a csv?
-	end
+	def pull_records_from_pubmed(pmid_list)
 
+
+
+     pmidValuesForPost = pmid_list.collect { |pmid| "&id=#{pmid}"}.join
+     	puts pmidValuesForPost
+		http = Net::HTTP.new("eutils.ncbi.nlm.nih.gov")
+		
+		request = Net::HTTP::Post.new("/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml")
+		request.body = pmidValuesForPost
+		response = http.request(request)
+		xml_doc = Nokogiri::XML(response.body)
+		puts xml_doc.to_xml
+		
+end
+end
+
+=begin
 	def getPubMedForAllIds
 		filename = Rails.root.join('app', 'data', 'CAP_author_pubs_sample.csv')
 		CSV.foreach(filename, :headers => true) do |row|
@@ -29,13 +45,6 @@ module CapPubsIngest
 			
 	end
 
-	def addMESHToSWRecords
-
-	end
-
-	def ingestCapHandEnteredPubs
-		# this is from a csv
-	end
 
 	def ingestCapContributions
 		filename = Rails.root.join('app', 'data', 'CAP_author_pubs_sample.csv')
@@ -67,7 +76,7 @@ module CapPubsIngest
 		end
 	end
 end
-
+=end
 # 1. import profiles - create a Person record with values from profile record.
 # 2. import contributions (person/pubmed pairs)
 # 3. import hand-entered Publication_Source_Record

@@ -1,10 +1,17 @@
 /* sul specific bootstrap overrides for header color */
 
-$navbarBackground:                #c79810 ;
-$navbarBackgroundHighlight:       #eab92d ;
-$navbarText:                      #f9ed9d ;
-$navbarLinkColor:                 #f9ed9d ;
-$navbarSearchPlaceholderColor:    #EEC844 ;
+/* $navbarBackground:                #c79810 ;  
+  $navbarBackgroundHighlight:       #eab92d ; 
+  $navbarText:                      #f9ed9d ;
+  $navbarLinkColor:                 #f9ed9d ;
+  $navbarSearchPlaceholderColor:    #EEC844 ;
+  */
+
+$navbarBackground:                #8C1515 ;
+$navbarBackgroundHighlight:       #8C1515 ;
+$navbarText:                      #000000 ;
+$navbarLinkColor:                 #000000 ;
+$navbarSearchPlaceholderColor:    #000000 ;
 
 @import "bootstrap";
 

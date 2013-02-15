@@ -13,44 +13,58 @@
           <tr>
             <th>Verb</th>
             <th>URI</th>
-            <th>Description</th>
+            <th>Body</th>
             <th>Returns</th>
+            <th>Sample</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td>GET</td>
             <td>http://sulcap.stanford.edu/publications/{pubId}</td>
-            <td>URI for full pub record</td>
+            <td>No Body. URI itself identifies record to return.</td>
             <td>Single BibJSON record</td>
-
+            <td> <%= link_to "Output", sul_bib_api_samples_path + '/get_pub_out' %>  </td>
           </tr>
           <tr>
             <td>POST</td>
             <td>http://sulcap.stanford.edu/publications</td>
-            <td>Submit new hand-entered publication.</td>
-            <td>BibJSON that was submitted for the new record</td>
-
+            <td>BibJSON for record(s) to create. </td>
+            <td>BibJSON that was submitted for the new record(s), with newly minted URI.  </td>
+            <td><%= link_to "Input", sul_bib_api_samples_path + '/post_pub_in' %> <%= link_to "Output", sul_bib_api_samples_path + '/post_pub_out' %>  </td>
+         
           </tr>
           <tr>
             <td>PUT</td>
             <td>http://sulcap.stanford.edu/publications/{pubId}</td>
-            <td>edit existing user-submitted record</td>
-            <td>BibJSON that was sumitted to update the record</td>
+            <td>BibJSON to replace existing pub record. </td>
+            <td>BibJSON that was submitted to update the record.</td>
+            <td><%= link_to "Input", sul_bib_api_samples_path + '/put_pub_in' %> <%= link_to "Output", sul_bib_api_samples_path + '/put_pub_out' %>  </td>
+         
           </tr>
           <tr>
             <td>DELETE</td>
             <td>http://sulcap.stanford.edu/publications/{pubId}</td>
-            <td>delete record</td>
-            <td>BibJSON for deleted record</td>
+            <td>No body.  URI itself identifies record to delete.</td>
+            <td>BibJSON for deleted record.  </td>
+            <td><%= link_to "Output", sul_bib_api_samples_path + '/delete_pub_out' %>  </td>
+         
           </tr>
           <tr>
             <td>GET</td>
-            <td>http://sulcap.stanford.edu/publications?population={popId}&changedSince={YYYY-MM-DDTHH:MM:SSZ} <br/>
-              <%= link_to "Sample", sul_bib_api_path %>
-            </td>
-            <td>Returns matching records</td>
-            <td>BibJSON collection</td>
+            <td>http://sulcap.stanford.edu/publications?population={popId}&changedSince={YYYY-MM-DDTHH:MM:SSZ} <br/></td>
+            <td>No Body</td>
+            <td>BibJSON collection.</td>
+            <td><%= link_to "Output", sul_bib_api_samples_path + '/get_pubs_out' %>  </td>
+         
+          </tr>
+          <tr>
+            <td>GET</td>
+            <td>http://sulcap.stanford.edu/sourcelookup?lastname={}&firstname={}&middlename={}&year={}&title={}&source={}</td>
+            <td>No body.  Query encoded as URI params.</td>
+            <td>Potentially matching pubs found in source, as BibJSON.</td>
+            <td> <%= link_to "Output", sul_bib_api_samples_path + '/get_source_lookup_out' %>  </td>
+         
           </tr>
         </tbody>
       </table>

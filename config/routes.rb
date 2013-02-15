@@ -3,8 +3,7 @@ require 'api'
 Sulbib::Application.routes.draw do
 
   mount SulBib::API => "/publications"
-
-
+  mount SulBib::API_samples => "/samples"
 
   get "static_pages/home"
   get "static_pages/api"
@@ -29,9 +28,6 @@ Sulbib::Application.routes.draw do
   # resources :publications
   
   root to: 'static_pages#api'
-
-
-  
  
   # The priority is based upon order of creation:
   # first created -> highest priority.

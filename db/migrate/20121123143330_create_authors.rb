@@ -1,6 +1,7 @@
-class CreateProfiles < ActiveRecord::Migration
+class CreateAuthors < ActiveRecord::Migration
   def change
-    create_table :profiles do |t|
+    create_table :authors do |t|
+      t.integer :cap_profile_id
       t.string :sunetid
       t.integer :university_id
       t.integer :shc_doctor_no

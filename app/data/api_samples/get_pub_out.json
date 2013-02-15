@@ -1,0 +1,162 @@
+{
+    "identifier": [
+        {
+            "id": "17204646",
+            "type": "PMID",
+            "url": "http://www.ncbi.nlm.nih.gov/pubmed/17204646"
+        },
+        {
+            "id": "000243259100039",
+            "type": "WoSItemID",
+            "url": "http://wosuri/000243259100039"
+        },
+        {
+            "id": "532671",
+            "type": "PublicationItemID",
+            "url": "http://sciencewireURI/532671"
+        }
+    ],
+    "title": "Counting low-copy number proteins in a single cell",
+    "abstract": "We have designed a microfluidic device in which we can manipulate, lyse, label, separate, and quantify the protein contents of a single cell using single-molecule fluorescence counting. Generic labeling of proteins is achieved through fluorescent-antibody binding. The use of cylindrical optics enables high-efficiency (approximate to 60%) counting of molecules in micrometer-sized channels. We used this microfluidic device to quantify beta(2) adrenergic receptors expressed in insect cells (SF9). We also analyzed phycobiliprotein contents in individual cyanobacterial cells ( Synechococcus sp. PCC 7942) and observed marked differences in the levels of specific complexes in cell populations that were grown under nitrogen-depleted conditions.",
+    "keywords": [
+        "ARCHITECTURE",
+        "CONFINEMENT",
+        "MOLECULE DETECTION",
+        "NANOCHANNELS",
+        "FLUORESCENCE DETECTION",
+        "CAPILLARY-ELECTROPHORESIS",
+        "EXPRESSION",
+        "POLY(DIMETHYLSILOXANE)",
+        "ELECTROKINETIC TRANSPORT",
+        "PHYCOBILISOME"
+    ],
+    "author": [
+        {
+            "name": "Huang,Bo,"
+        },
+        {
+            "name": "Wu,Hongkai,"
+        },
+        {
+            "name": "Bhaya,Devaki,"
+        },
+        {
+            "name": "Grossman,Arthur,"
+        },
+        {
+            "name": "Granier,Sebastien,"
+        },
+        {
+            "name": "Kobilka,Brian,K"
+        },
+        {
+            "name": "Zare,Richard,N"
+        }
+    ],
+    "authorsAnded": {},
+    "documenttypes": [
+        "Article"
+    ],
+    "category": "Journal Document",
+    "timescited": "149",
+    "timesnotselfcited": "136",
+    "rank": "",
+    "ordinalrank": "4",
+    "normalizedrank": "",
+    "newpublicationid": "532671",
+    "isobsolete": "false",
+    "publisher": "AMER ASSOC ADVANCEMENT SCIENCE",
+    "address": "WASHINGTON",
+    "mesh": [
+        {
+            "descriptor": [
+                {
+                    "major": "N",
+                    "name": "ADP Ribose Transferases"
+                }
+            ],
+            "qualifier": [
+                {
+                    "major": "Y",
+                    "name": "genetics"
+                }
+            ]
+        },
+        {
+            "descriptor": [
+                {
+                    "major": "N",
+                    "name": "Acinetobacter"
+                }
+            ],
+            "qualifier": [
+                {
+                    "major": "Y",
+                    "name": "drug effects"
+                },
+                {
+                    "major": "Y",
+                    "name": "genetics"
+                }
+            ]
+        },
+        {
+            "descriptor": [
+                {
+                    "major": "N",
+                    "name": "Bacteremia"
+                }
+            ],
+            "qualifier": [
+                {
+                    "major": "Y",
+                    "name": "microbiology"
+                }
+            ]
+        }
+    ],
+    "journal": {
+        "name": "SCIENCE",
+        "volume": "315",
+        "issue": "5808",
+        "pages": "81-84",
+        "date": "2007-01-05T00:00:00",
+        "year": "2007",
+        "publicationimpactfactor": "26.372",
+        "subjectcategories": [
+            "Multidisciplinary Sciences"
+        ],
+        "identifer": [
+            {
+                "id": "0036-8075",
+                "type": "issn"
+            },
+            {
+                "id": "10.1126/science.1133992",
+                "type": "doi"
+            }
+        ],
+        "conferencestartdate": "",
+        "conferenceenddate": ""
+    },
+    "contributions": [
+        {
+            "profileid": "someId",
+            "status": "confirmed",
+            "visibility": "show"
+        },
+        {
+            "profileid": "someOtherId",
+            "status": "suspected",
+            "visibility": "show"
+        },
+        {
+            "profileid": "anotherId",
+            "status": "confirmed",
+            "visibility": "hide"
+        }
+    ],
+    "chicago": "Huang, Bo, Hongkai Wu, Devaki Bhaya, Arthur Grossman, Sebastien Granier, Brian K. Kobilka, and Richard N. Zare. 2007. “Counting Low-Copy Number Proteins In a Single Cell”. <i>SCIENCE</i> 315 (5808).",
+    "apa": "Huang, B., Wu, H., Bhaya, D., Grossman, A., Granier, S., Kobilka, B. K., &#38; Zare, R. N. (2007). Counting low-copy number proteins in a single cell. <i>SCIENCE</i>, <i>315</i>(5808).",
+    "mla": "Huang, Bo, Hongkai Wu, Devaki Bhaya, Arthur Grossman, Sebastien Granier, Brian K. Kobilka, and Richard N. Zare. “Counting Low-Copy Number Proteins In a Single Cell”. <i>SCIENCE</i> 315.5808 (2007): n. pag. Print."
+}
