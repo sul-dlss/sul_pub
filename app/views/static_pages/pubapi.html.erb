@@ -2,7 +2,7 @@
   <h2>Resource Description</h2>
 
 
-<b style="font-size:large">http://sulcap.stanford.edu/publications/{pubId}</b>
+<b style="font-size:large">http://sulcap.stanford.edu/publications/{sulPubId}</b>
 
 
 
@@ -215,17 +215,13 @@
       </table>
 
 <hr style="color:#000;background-color:#000;border-color:#000"/>
-<h2 style="font-size:medium">Sample BibJSON</h2>
+<h2 style="font-size:medium">Sample Data</h2>
 
-<p  style="font-size:small"><%= link_to "See Single BibJSON record (for PUT or POST)", sul_bib_api_samples_path + '/get_pub_in' %> </p>
+<p style="font-size:small"><%= link_to "See Single BibJSON record (from GET or PUT)", sul_bib_api_samples_path + '/get_pub_out' %> </p>
 
-<p style="font-size:small"><%= link_to "See Single BibJSON record (from GET)", sul_bib_api_samples_path + '/get_pub_out' %> </p>
+<p  style="font-size:small"><%= link_to "See Single BibJSON record (for PUT)", sul_bib_api_samples_path + '/put_pub_in_json' %> </p>
 
-<p style="font-size:small"><%= link_to "See Single  BibTex record (for PUT or POST)", sul_bib_api_samples_path + '/get_pub_out' %> </p>
-
-<p style="font-size:small"><%= link_to "See BibJSON collection (for POST or from GET)", sul_bib_api_samples_path + '/get_pub_out' %> </p>
-
-<p style="font-size:small"><%= link_to "See Multiple BibTex records (for POST)", sul_bib_api_samples_path + '/get_pub_out' %> </p>
+<p style="font-size:small"><%= link_to "See Single BibTex record (for PUT)", sul_bib_api_samples_path + '/put_pub_in_bibtex' %> </p>
 
 <hr style="color:#000;background-color:#000;border-color:#000"/>
 <h2 style="font-size:medium">Sample CURL calls</h2>
@@ -244,11 +240,7 @@
           <tr>
             <td>GET publication request.</td>
             <td>curl -v http://sulbib.dev/publications/1</td>      
-          </tr>   
-          <tr>
-            <td>GET list of publicatios from remote source (ScienceWire)</td>
-            <td>curl -v http://sulbib.dev/publications/1</td>      
-          </tr> 
+          </tr>  
           <tr>
             <td>DELETE request.</td>
             <td>curl -v -X DELETE http://sulbib.dev/publications/1</td>      
@@ -262,12 +254,8 @@
             <td>curl -v -H "Content-Type:text/bibliography" -X PUT -d "bibtex goes here" http://sulbib.dev/publications/1</td>      
           </tr>
           <tr>
-            <td>POST request using file contents as body.</td>
-            <td>curl -v -d @filename http://sulbib.dev/publications</td>      
-          </tr>
-          <tr>
-            <td>POST request</td>
-            <td>curl -v -d "bibjson goes here" http://sulbib.dev/publications</td>      
+            <td>PUT request using file contents (BibJSON or BibTEX) as body.</td>
+            <td>curl -v -X PUT -d @filename http://sulbib.dev/publications</td>      
           </tr>
         </tbody>
       </table>

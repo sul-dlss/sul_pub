@@ -3,11 +3,17 @@ require 'citeproc'
 require 'bibtex'
 require 'sul_pub'
 
+
+  # puts "-u#{db_config['username']} -p#{db_config['password']} #{db_config['database']}"
+end
+
+
 namespace :cap do
   desc "ingest exising cap data"
   task :ingest_cap => :environment do
   	include SulPub
   	include ActionView::Helpers::DateHelper
+    db_config = Rails.application.config.database_configuration[Rails.env]
 	pmids = []
 	contribs = Hash.new
   	Publication.delete_all
