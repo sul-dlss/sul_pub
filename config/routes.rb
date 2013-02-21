@@ -7,7 +7,10 @@ Sulbib::Application.routes.draw do
 
   get "static_pages/home"
   get "static_pages/api"
-
+  get 'static_pages/pubapi'
+  get 'static_pages/pubsapi'
+  get 'static_pages/queryapi'
+  get 'static_pages/pollapi'
   resources :profiles
 
   get "people/index"

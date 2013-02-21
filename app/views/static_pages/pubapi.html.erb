@@ -1,0 +1,281 @@
+<div class="center hero-unit">
+  <h2>Resource Description</h2>
+
+
+<b style="font-size:large">http://sulcap.stanford.edu/publications/{pubId}</b>
+
+
+
+<hr style="color:#000;background-color:#000;border-color:#000"/>
+
+<h2 style="font-size:medium">HTTP Methods</h2>
+
+<table class="table table-striped">       
+        <tbody>
+          <thead>
+          <tr>
+            <th>Method</th>
+            <th>Description</th>
+            <th>Request Entity</th>
+            <th>Response Entity</th>
+          </tr>
+        </thead>
+          <tr>
+            <td>HEAD</td>
+            <td>Same as GET, but returns no body.</td>     
+            <td>None.</td>
+            <td>None.</td>       
+          </tr>
+          <tr>
+            <td>OPTIONS</td>
+            <td>Lists available methods.</td>
+            <td>None.</td>
+            <td>No body - lists methods in 'Allow' header.</td>               
+          </tr>
+          <tr>
+            <td>GET</td>
+            <td>Returns BibJSON record for the publication.</td>
+            <td>None.</td>
+            <td>BibJSON record for publication.</td>
+          </tr>
+          <tr>
+            <td>PUT</td>
+            <td>Updates publication record.</td>
+            <td>Full BibJSON or BibTeX record to update publication.</td>
+            <td>BibJSON for successfully updated pubication.</td>
+          </tr>
+          <tr>
+            <td>DELETE</td>
+            <td>Deletes publication record.</td>
+            <td>None.</td>
+            <td>BibJSON for successfully deleted publication.</td>
+          </tr>
+          <tbody>
+</table>
+<hr style="color:#000;background-color:#000;border-color:#000"/>
+<h2 style="font-size:medium">HTTP Request Headers</h2>
+
+<table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Allowable Values</th>
+            <th>Description</th>
+            <th>Applies To</th>
+            <th>Required?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Accept</td>
+            <td>application/json</td>
+            <td>Only json for now.</td>
+            <td>GET, PUT, DELETE</td>
+            <td>No</td>
+          </tr>
+          <tr>
+            <td>Content-Type</td>
+            <td>text/bibliography application/json</td>
+            <td>The content type for submitted entity.</td>
+            <td>PUT</td>
+            <td>Yes</td>   
+          </tr>
+          <tr>
+            <td>Stan-Key</td>
+            <td>N/A</td>
+            <td>Authentication Key</td>
+            <td>GET, PUT, DELETE</td>
+            <td>Yes</td>       
+          </tr>
+          <tr>
+            <td>If-Match</td>
+            <td>last given ETag value</td>
+            <td>Updates only if etags match.</td>
+            <td>PUT</td>
+            <td>Yes</td>       
+          </tr>             
+        </tbody>
+      </table>
+
+<hr style="color:#000;background-color:#000;border-color:#000"/>
+<h2 style="font-size:medium">HTTP Response Headers</h2>
+
+<table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Allowable Values</th>
+            <th>Description</th>
+            <th>Applies To</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>ETag</td>
+            <td></td>
+            <td></td>
+            <td>GET, PUT, DELETE</td>
+          </tr>
+          <tr>
+            <td>Content-Type</td>
+            <td>application/json</td>
+            <td>Content type of returned entity</td>
+            <td>GET, DELETE, PUT</td>
+          </tr>
+          <tr>
+            <td>Allow</td>
+            <td>Method Names</td>
+            <td>Lists allowed methods at URI</td>
+            <td>OPTIONS</td>     
+          </tr>
+         
+        </tbody>
+      </table>
+
+<hr style="color:#000;background-color:#000;border-color:#000"/>
+<h2 style="font-size:medium">HTTP Status Codes</h2>
+
+<table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Code</th>
+            <th>Description</th>
+            <th>Applies To</th>
+            <th>Entity returned</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>200</td>
+            <td>OK - Request successfully processed.</td>
+            <td>GET PUT</td>
+            <td>BibJSON for record</td>
+          </tr>    
+          <tr>
+            <td>400</td>
+            <td>Bad Request</td>
+            <td>PUT</td>
+            <td>Message: Invalid BibJSON or BibTeX</td>
+          </tr>  
+          <tr>
+            <td>401</td>
+            <td>Unauthorized</td>
+            <td>GET, PUT, DELETE, HEAD, OPTIONS</td>
+            <td>None</td>
+          </tr>  
+          <tr>
+            <td>404</td>
+            <td>Not Found</td>
+            <td>GET, PUT, DELETE, HEAD, OPTIONS</td>
+            <td>None</td>
+          </tr> 
+          <tr>
+            <td>405</td>
+            <td>Method Not Allowed</td>
+            <td>POST, PATCH</td>
+            <td>No Entity, but allowed methods listed in Allow header</td>
+          </tr> 
+          <tr>
+            <td>406</td>
+            <td>Not Acceptable</td>
+            <td>GET</td>
+            <td>None</td>
+          </tr> 
+          <tr>
+            <td>410</td>
+            <td>Gone - old resource probably deleted.</td>
+            <td>GET, PUT, DELETE, HEAD, OPTIONS</td>
+            <td>None</td>
+          </tr> 
+          <tr>
+            <td>412</td>
+            <td>PreCondition Failed - ETag value in If-Match header is old</td>
+            <td>PUT</td>
+            <td>None</td>
+          </tr> 
+           <tr>
+            <td>415</td>
+            <td>Unsupported Media Type - PUT entity with wrong Content-Type</td>
+            <td>PUT</td>
+            <td>None</td>
+          </tr> 
+          <tr>
+            <td>428</td>
+            <td>Precondition Requied - ETag must be supplied in If-Match header</td>
+            <td>PUT</td>
+            <td>None</td>
+          </tr> 
+          <tr>
+            <td>204</td>
+            <td>No Content - Successful, but no entity returned.</td>
+            <td>OPTIONS</td>
+            <td>None</td>
+          </tr>     
+        </tbody>
+      </table>
+
+<hr style="color:#000;background-color:#000;border-color:#000"/>
+<h2 style="font-size:medium">Sample BibJSON</h2>
+
+<p  style="font-size:small"><%= link_to "See Single BibJSON record (for PUT or POST)", sul_bib_api_samples_path + '/get_pub_in' %> </p>
+
+<p style="font-size:small"><%= link_to "See Single BibJSON record (from GET)", sul_bib_api_samples_path + '/get_pub_out' %> </p>
+
+<p style="font-size:small"><%= link_to "See Single  BibTex record (for PUT or POST)", sul_bib_api_samples_path + '/get_pub_out' %> </p>
+
+<p style="font-size:small"><%= link_to "See BibJSON collection (for POST or from GET)", sul_bib_api_samples_path + '/get_pub_out' %> </p>
+
+<p style="font-size:small"><%= link_to "See Multiple BibTex records (for POST)", sul_bib_api_samples_path + '/get_pub_out' %> </p>
+
+<hr style="color:#000;background-color:#000;border-color:#000"/>
+<h2 style="font-size:medium">Sample CURL calls</h2>
+
+<table class="table table-striped">
+       
+        <tbody>
+          <tr>
+            <td>OPTIONS request.</td>
+            <td>curl -v -X OPTIONS http://sulbib.dev/publications/1</td>      
+          </tr>    
+          <tr>
+            <td>HEAD request.</td>
+            <td>curl -I http://sulbib.dev/publications/1</td>      
+          </tr>     
+          <tr>
+            <td>GET publication request.</td>
+            <td>curl -v http://sulbib.dev/publications/1</td>      
+          </tr>   
+          <tr>
+            <td>GET list of publicatios from remote source (ScienceWire)</td>
+            <td>curl -v http://sulbib.dev/publications/1</td>      
+          </tr> 
+          <tr>
+            <td>DELETE request.</td>
+            <td>curl -v -X DELETE http://sulbib.dev/publications/1</td>      
+          </tr>
+          <tr>
+            <td>PUT request with BibJSON</td>
+            <td>curl -v -H "Content-Type:application/json" -X PUT -d "bibjson goes here" http://sulbib.dev/publications/1</td>      
+          </tr>
+          <tr>
+            <td>PUT request with BibTeX</td>
+            <td>curl -v -H "Content-Type:text/bibliography" -X PUT -d "bibtex goes here" http://sulbib.dev/publications/1</td>      
+          </tr>
+          <tr>
+            <td>POST request using file contents as body.</td>
+            <td>curl -v -d @filename http://sulbib.dev/publications</td>      
+          </tr>
+          <tr>
+            <td>POST request</td>
+            <td>curl -v -d "bibjson goes here" http://sulbib.dev/publications</td>      
+          </tr>
+        </tbody>
+      </table>
+
+
+
+
+
+
+
+ <!-- <%= link_to "GET /sulbib/v1/publications/1", '#', class: "btn btn-large btn-primary" %>  -->

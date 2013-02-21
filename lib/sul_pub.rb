@@ -67,8 +67,8 @@ def add_contribution_pair(pub_hash, contributions)
 	    record_as_hash[:timesNotSelfCited] = publication.xpath("TimesNotSelfCited").text
 	    record_as_hash[:article_identifiers] = [
 	        {:type =>'PMID', :id => publication.xpath("PMID").text, :url => 'http://www.ncbi.nlm.nih.gov/pubmed/' + publication.xpath("PMID").text }, 
-	        {:type => 'WoSItemID', :id => publication.xpath("WoSItemID").text, :url => 'http://wosuri/' + publication.xpath("WoSItemID").text}, 
-	        {:type => 'PublicationItemID', :id => publication.xpath("PublicationItemID").text, :url => 'http://sciencewireURI/' + publication.xpath("PublicationItemID").text},
+	        {:type => 'WoSItemID', :id => publication.xpath("WoSItemID").text, :url => 'http://ws.isiknowledge.com/cps/openurl/service?url_ver=Z39.88-2004&rft_id=info:ut/' + publication.xpath("WoSItemID").text}, 
+	        {:type => 'PublicationItemID', :id => publication.xpath("PublicationItemID").text},
 
 	    ]
 	    # the journal info
@@ -102,9 +102,13 @@ def add_contribution_pair(pub_hash, contributions)
 	def generate_json_for_pub(pub_hash)
 
 	    jsonString = Jbuilder.encode do |json| 
-	        json.identifier(pub_hash[:article_identifiers]) do  |identifier|        
-	                    json.(identifier, :id, :type, :url)      
-	        end
+	        json.identifer(pub_hash[:article_identifiers]) do | identifier |
+	            	if identifier.has_key?(:url) 
+	            		json.(identifier, :id, :type, :url)
+	            	else
+	                	json.(identifier, :id, :type)
+	            	end
+	            end
 	        json.title pub_hash[:title]
 	        json.abstract pub_hash[:the_abstract]
 	        json.keywords pub_hash[:keywords]
@@ -127,8 +131,10 @@ def add_contribution_pair(pub_hash, contributions)
 	            json.descriptor(heading[:descriptor])  do |descriptor|
 	                json.(descriptor, :major, :name)
 	            end
-	            json.qualifier(heading[:qualifier]) do |qualifier|
-	                json.(qualifier, :major, :name)
+	            unless heading[:qualifier].empty?
+	            	json.qualifier(heading[:qualifier]) do |qualifier|
+	                	json.(qualifier, :major, :name)
+	            	end
 	            end
 	        end
 	        json.journal do | json |
@@ -141,7 +147,11 @@ def add_contribution_pair(pub_hash, contributions)
 	            json.publicationimpactfactor pub_hash[:publicationImpactFactor]
 	            json.subjectcategories pub_hash[:publicationSubjectCategories]
 	            json.identifer(pub_hash[:publicationIdentifiers]) do | identifier |
-	                json.(identifier, :id, :type, :url)
+	            	if identifier.has_key?(:url) 
+	            		json.(identifier, :id, :type, :url)
+	            	else
+	                	json.(identifier, :id, :type)
+	            	end
 	            end
 	            json.conferencestartdate pub_hash[:publicationConferenceStartDate]
 	            json.conferenceenddate pub_hash[:publicationConferenceEndDate]
