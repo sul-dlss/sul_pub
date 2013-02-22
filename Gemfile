@@ -12,7 +12,7 @@ gem 'therubyracer'
 gem 'rest-client'
 gem 'citeproc-ruby'
 gem 'bibtex-ruby'
-
+gem 'yaml_db'
 
 group :development, :test do
   gem 'rspec-rails'
