@@ -1,7 +1,6 @@
 require 'nokogiri'
 require 'citeproc'
 require 'bibtex'
-require 'debugger'
 
 module SulPub
 
