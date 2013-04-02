@@ -5,6 +5,7 @@ class CreatePublications < ActiveRecord::Migration
       t.boolean :active
       t.boolean :deleted
       t.string :human_readable_title
+      t.integer :year
       t.integer :lock_version
       t.text :xml
       t.text :json

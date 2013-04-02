@@ -13,6 +13,7 @@ gem 'rest-client'
 gem 'citeproc-ruby'
 gem 'bibtex-ruby'
 gem 'yaml_db'
+gem 'rsolr'
 
 group :development, :test do
   gem 'rspec-rails'
@@ -21,6 +22,7 @@ group :development, :test do
   gem 'spork', '0.9.2'
   gem 'capistrano'
   gem 'rvm-capistrano'
+  gem 'debugger'
 end
 
 group :test do

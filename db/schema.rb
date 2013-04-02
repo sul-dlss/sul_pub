@@ -11,7 +11,24 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130206002003) do
+ActiveRecord::Schema.define(:version => 20130222202128) do
+
+  create_table "author_identifiers", :force => true do |t|
+    t.integer  "author_id"
+    t.string   "identifier_type"
+    t.string   "identifier_value"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
+  create_table "author_names", :force => true do |t|
+    t.integer  "author_id"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "middle_name"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
   create_table "authors", :force => true do |t|
     t.integer  "cap_profile_id"
@@ -44,7 +61,6 @@ ActiveRecord::Schema.define(:version => 20130206002003) do
     t.integer  "cap_profile_id"
     t.integer  "publication_id"
     t.string   "confirmed_status"
-    t.string   "highlight_ind"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
   end
@@ -57,16 +73,38 @@ ActiveRecord::Schema.define(:version => 20130206002003) do
     t.datetime "updated_at",      :null => false
   end
 
+  create_table "publication_identifiers", :force => true do |t|
+    t.integer  "publication_id"
+    t.string   "identifier_type"
+    t.string   "identifier_value"
+    t.string   "identifier_uri"
+    t.string   "certainty"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
   create_table "publications", :force => true do |t|
     t.integer  "same_as_publications_id"
     t.boolean  "active"
     t.boolean  "deleted"
     t.string   "human_readable_title"
+    t.integer  "year"
     t.integer  "lock_version"
     t.text     "xml"
     t.text     "json"
     t.datetime "created_at",              :null => false
     t.datetime "updated_at",              :null => false
+  end
+
+  create_table "source_records", :force => true do |t|
+    t.text     "source_data"
+    t.integer  "original_source_id"
+    t.integer  "lock_version"
+    t.string   "human_readable_title"
+    t.string   "source_name"
+    t.string   "source_data_type"
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
   end
 
 end

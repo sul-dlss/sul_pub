@@ -5,6 +5,8 @@ Sulbib::Application.routes.draw do
   mount SulBib::API => "/publications"
   mount SulBib::API_samples => "/samples"
 
+  
+
   get "static_pages/home"
   get "static_pages/api"
   get 'static_pages/pubapi'
