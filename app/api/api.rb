@@ -171,6 +171,7 @@ get :sourcelookup do
             save_source_record(pub, pub_hash.to_hash.to_s, "man", pub_hash[:title], pub_hash[:year], original_source_id, is_local_only, is_active)
             sul_pub_id = pub.id.to_s
             pub_hash[:sulpubid] = sul_pub_id
+            pub_hash[:identifier] ||= []
             pub_hash[:identifier] << {:type => 'SULPubId', :id => sul_pub_id, :url => 'http://sulcap.stanford.edu/publications/' + sul_pub_id}
             pub.save   # to reset last updated value
             pub_hash[:last_updated] = pub.updated_at
