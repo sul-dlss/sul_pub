@@ -4,7 +4,7 @@ class Publication < ActiveRecord::Base
   has_many :authors, :through => :contributions
   has_many :publication_identifiers, :dependent => :destroy
   has_many :publications_source_records
-  has_many :source_records, :through => :publications_source_records
+  has_many :source_records
   has_many :population_membership, :foreign_key => "author_id"
   
 end

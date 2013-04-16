@@ -1,11 +1,34 @@
 module SulBib
 
-  
+#validator for year
 
-  class BibTexParser
-    def self.call(object, env)
-      { :value => object.to_s }
+class YearCheck < Grape::Validations::Validator
+  def validate_param!(attr_name, params)
+    unless (1000..2100).include?(params[attr_name])
+      throw :error, :status => 400, :message => "#{attr_name} must be four digits long and fall between 1000 and 2100"
     end
+  end
+end
+
+#bibtex and bibjson parsers to parse incoming POSTs and PUTs
+  module BibTexParser
+    def self.call(object, env) 
+        result = []
+        bibtex_records =  
+        bibtex_records.each do |record|   
+          result << {title: record.title, 
+                      year: record.year, 
+                      publisher: record.publisher, 
+                      authors: record.author}      
+        end
+        {:bib_list => result}
+    end
+  end
+
+ module BibJSONParser
+    def self.call(object, env) 
+      {:bib_list => JSON.parse(object)}
+    end     
   end
 
   class API_samples < Grape::API
@@ -13,7 +36,6 @@ module SulBib
     format :json
     rescue_from :all, :backtrace => true
     
-
     get(:get_pub_out) {IO.read(Rails.root.join('app', 'data', 'api_samples', 'get_pub_out.json')) }
     get(:get_pubs_out) { IO.read(Rails.root.join('app', 'data', 'api_samples', 'get_pubs_out.json')) }
     get(:get_source_lookup_out) {IO.read(Rails.root.join('app', 'data', 'api_samples', 'get_source_lookup_out.json')) }
@@ -36,10 +58,13 @@ module SulBib
 
   class API < Grape::API
 
-    version 'v1', :using => :header, :vendor => 'sul'
+    version 'v1', :using => :header, :vendor => 'sul', :cascade => false
     format :json
     rescue_from :all, :backtrace => true
     
+    #rescue_from :all do |e|
+    #    rack_response({ :message => "rescued from #{e.class.name}" })
+    #end
 
 helpers do
   def wrap_as_bibjson_collection(description, query, records)
@@ -53,17 +78,21 @@ helpers do
         "records": ' + records.count.to_s + '}, 
         "records": [' + records.join(",") + ']}'
   end
-
   include SulPub
+end
 
+
+params do
+  optional :year, type: Integer, :year_check => true, desc: "Four digit year."
+  requires :title
+  optional :source
 end
 
 get :sourcelookup do
       sw_json_records = []
       local_records = []
 
-      # set source to all sources if param value is blank
-       
+      # set source to all sources if param value is blank     
       source = params[:source] || 'SW+MAN'
       last_name = params[:lastname]
       first_name = params[:firstname]
@@ -71,7 +100,6 @@ get :sourcelookup do
       title = params[:title]
       year = params[:year]
 
-      
       sources = source.split('+')
 
       if source.include?("SW")
@@ -80,12 +108,15 @@ get :sourcelookup do
 
       if source.include?("MAN")
         query_hash = {}
-       # query_hash[:last_name] = last_name unless last_name.empty? 
+        #query_hash[:last_name] = last_name unless last_name.empty? 
         #query_hash[:first_name] = first_name unless first_name.empty?
         #query_hash[:middle_name] = middle_name unless middle_name.empty?
         query_hash[:human_readable_title] = title unless title.blank?
         query_hash[:year] = year unless year.blank?
-        Publication.where(query_hash).each { |pub| local_records << pub.json }
+        query_hash[:active] = true
+        query_hash[:is_local_only] = true  
+
+        SourceRecord.where(query_hash).each { |source_record| local_records << source_record.publication.json }
       end
 
       all_matching_records = sw_json_records.concat(local_records)
@@ -98,7 +129,7 @@ get :sourcelookup do
       matching_records = []
 
       population = params[:population] || "cap"
-      changedSince = params[:changedSince] || "1800-01-01"
+      changedSince = params[:changedSince] || "1000-01-01"
       capProfileId = params[:capProfileId]
 
       population.downcase!
@@ -111,14 +142,7 @@ get :sourcelookup do
           ) do
             | publication | matching_records << publication.json
         end
-      #  Contribution.find_each(
-       #   :include => :population_membership,
-        #  :conditions => "population_memberships.population_name = '" + population + "' AND contributions.updated_at > '" + DateTime.parse(changedSince).to_s + "'"
-        #) do
-        #  |contr| matching_records << contr.publication.json
-       # end
       else
-
         author = Author.where(cap_profile_id: capProfileId).first
         if author.nil?
           description = "No results - user identifier doesn't exist in SUL system."
@@ -127,22 +151,59 @@ get :sourcelookup do
           matching_records = author.contributions.collect { |contr| contr.publication.json }
         end
       end
-
       wrap_as_bibjson_collection(description, env["ORIGINAL_FULLPATH"].to_s, matching_records)
-
     end
 
-
-    #content_type :json, "application/json"
-    #content_type :bibtex, "text/bibliography"
-    #parser :bibtex, BibTexParser
-
-
-
+    content_type :json, "application/json"
+    content_type :bibtex, "text/bibliography"
+    parser :bibtex, BibTexParser
+    parser :json, BibJSONParser
     post do
-      params[:value]
+          record_list = params[:bib_list]
+          is_local_only = true
+          is_active = true
+          original_source_id = nil
+          record_list.each do |pub_hash|
+            pub_hash[:provenance] = 'cap'
+            year = pub_hash[:year]
+            title = pub_hash[:title]
+            pub = Publication.create(active: true, human_readable_title: title, year: year)
+            save_source_record(pub, pub_hash.to_hash.to_s, "man", pub_hash[:title], pub_hash[:year], original_source_id, is_local_only, is_active)
+            sul_pub_id = pub.id.to_s
+            pub_hash[:sulpubid] = sul_pub_id
+            pub_hash[:identifier] << {:type => 'SULPubId', :id => sul_pub_id, :url => 'http://sulcap.stanford.edu/publications/' + sul_pub_id}
+            pub.save   # to reset last updated value
+            pub_hash[:last_updated] = pub.updated_at
+            #"contributions":[{"sul_author_id":1263,"cap_profile_id":5956,"status":"denied"}]
+            pub_hash[:contributions].each do |contrib|
+                cap_profile_id = contrib[:cap_profile_id]
+                sul_author_id = Author.where(cap_profile_id: cap_profile_id).first.id
+                contrib_status = contrib[:status]
+                add_contribution_to_db(sul_pub_id, sul_author_id, cap_profile_id, contrib_status)
+            end
+            add_all_known_contributions_to_pub_hash(pub, pub_hash)
+
+            add_identifiers_to_db(pub_hash[:identifier], pub)
+            add_all_known_identifiers_to_pub_hash(pub_hash, pub)
+
+            add_formatted_citations(pub_hash)
+
+            pub.json = generate_json_for_pub(pub_hash)
+            pub.xml = generate_xml_for_pub(pub_hash)
+            pub.save
+            pub.json
+          end
+        
+    
+      #puts "submitted data: " + env['api.request.body'].to_s
+      #puts "parse data: " + BibTeX.parse(env['api.request.input'])[:pickaxe].to_s
+      #puts params[:value][:pickaxe].to_s
+
     end
 
+    content_type :json, "application/json"
+    content_type :bibtex, "text/bibliography"
+    parser :bibtex, BibTexParser
     put ':id' do
       params[:value]
     end
@@ -156,10 +217,6 @@ get :sourcelookup do
       pub.deleted = true
       pub.save
     end
-
-    
-
-
 
   end
 end

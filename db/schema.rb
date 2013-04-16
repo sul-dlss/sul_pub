@@ -99,10 +99,14 @@ ActiveRecord::Schema.define(:version => 20130222202128) do
   create_table "source_records", :force => true do |t|
     t.text     "source_data"
     t.integer  "original_source_id"
+    t.integer  "publication_id"
     t.integer  "lock_version"
     t.string   "human_readable_title"
+    t.integer  "year"
     t.string   "source_name"
     t.string   "source_data_type"
+    t.boolean  "is_active"
+    t.boolean  "is_local_only"
     t.datetime "created_at",           :null => false
     t.datetime "updated_at",           :null => false
   end

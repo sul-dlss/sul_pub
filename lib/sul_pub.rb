@@ -31,8 +31,8 @@ def create_new_pubs_and_contributions_for_pmids(pmids, contribs)
 
 #harverst sciencewire records using author information
 def harvest_author_pubs_from_sciencewire()
-    Author.find_each(:batch_size => 10) do |author|
-      
+    #Author.find_each(:batch_size => 100) do |author|
+      Author.limit(100).each do |author|
       last_name = author.pubmed_last_name
       first_name = author.pubmed_first_initial
       middle_name = author.pubmed_middle_initial
@@ -46,12 +46,14 @@ def harvest_author_pubs_from_sciencewire()
       end
       #seed_list = [5750109]
       # puts "seed_list = " + seed_list.to_s
+      contrib_status = 'new'
+      mesh_values_for_pmids = nil
       email_list = []
       email_list << email unless email.nil?
       sw_records_doc = get_sw_guesses(last_name, first_name, middle_name, email_list, seed_list)
       sw_records_doc.xpath('//PublicationItem').each do |sw_doc|
        # ActiveRecord::Base.transaction do
-          create_or_update_pub_from_sw_doc(sw_doc, 'new', nil, author)
+          create_or_update_pub_from_sw_doc(sw_doc, contrib_status, mesh_values_for_pmids, author)
       #  end # transaction end
       end 
     end 
@@ -66,9 +68,7 @@ def harvest_author_pubs_from_sciencewire()
     pmid = pub_hash[:pmid]
     sw_pub_id = pub_hash[:sw_id]
     title = pub_hash[:title]
-    year = pub_hash[:publicationYear]
-
-    save_source_record(sw_xml_doc.to_xml, "sw", title, sw_pub_id)
+    year = pub_hash[:journal][:year]
 
     existing_pub_identifier = PublicationIdentifier.where(
       :identifier_type => 'PublicationItemId',
@@ -80,9 +80,13 @@ def harvest_author_pubs_from_sciencewire()
       pub = existing_pub_identifier.publication
     end
 
+    is_local_only = false
+    is_active = true
+    save_source_record(pub, sw_xml_doc.to_xml, "sw", title, year, sw_pub_id, is_local_only, is_active)
+
     sul_pub_id = pub.id.to_s
     pub_hash[:sulpubid] = sul_pub_id
-    pub_hash[:article_identifiers] << {:type => 'SULPubId', :id => sul_pub_id, :url => 'http://sulcap.stanford.edu/publications/' + sul_pub_id}
+    pub_hash[:identifier] << {:type => 'SULPubId', :id => sul_pub_id, :url => 'http://sulcap.stanford.edu/publications/' + sul_pub_id}
     pub.save   # to reset last updated value
     pub_hash[:last_updated] = pub.updated_at
 
@@ -95,7 +99,7 @@ def harvest_author_pubs_from_sciencewire()
     add_contribution_to_db(sul_pub_id, author.id, author.cap_profile_id, contrib_status)
     add_all_known_contributions_to_pub_hash(pub, pub_hash)
 
-    add_identifiers_to_db(pub_hash[:article_identifiers], pub)
+    add_identifiers_to_db(pub_hash[:identifier], pub)
     add_all_known_identifiers_to_pub_hash(pub_hash, pub)
 
     #add_searchable_author_names_to_db(pub_hash, pub)
@@ -109,49 +113,6 @@ def harvest_author_pubs_from_sciencewire()
     pub.save
   end
 
-  def index_manual_contributions_in_solr
-
-Publication.find_each(:include => :source_record, :conditions => "source_record.source_name = 'user' ") do | publication |
-  
-   # :id=>1, :firstname=>'james', :lastname=>'chartrand', :middlename=>'colin', :title=>'where is it?', :bibjson=>'somebibjson', :source=>'whee', :year=>'1456'
-    pub_hash = JSON.parse(publication.json)
-        #puts pub_hash.to_s
-=begin        
-        
-        I NEED A TEST CASE HERE, WITH A PUBLICATION FACTORY THAT WILL GENERATE A PUBLICATION WITH JSON WITH A
-        FULLY POPULATED AUTHOR LIST, INCLUDING MIDDLENAME, ETC.  
-
-          - create the factory, then write the rspec test to GET the publication, and one to test the solr indexing
-=end
-        pub_hash[author].each do |author| 
-            last_name = ""
-            rest_of_name = ""
-            author.split(',').each_with_index do |name_part, index|
-                if index == 0
-                  last_name = name_part
-                elsif name_part.length == 1
-                  rest_of_name << ' ' << name_part << '.'
-                elsif name_part.length > 1
-                  rest_of_name << ' ' << name_part
-                end
-            end
-     
-        solr_doc = {
-          id: publication.id, 
-          title: publication.human_readable_title,
-          bibjson: publication.json,
-          year: publication.year
-
-        }
-        
-            
-        end
-         
-        solr = RSolr.connect :url => 'http://localhost:8080/solr'
-        solr.add solr_doc, :add_attributes => {:commitWithin => 10}
-      end
-        #solr.commit
-  end
   
 
   def get_cap_author(cap_profile_id)
@@ -178,10 +139,10 @@ Publication.find_each(:include => :source_record, :conditions => "source_record.
     pub_hash[:contributions] = contributions
   end
 
-  def save_source_record(data_to_save, record_type, pub_title, source_record_id)
-    source_record = SourceRecord.where(:original_source_id => source_record_id, :source_name => record_type).
+  def save_source_record(publication, data_to_save, record_type, pub_title, pub_year, source_record_id, is_local_only, is_active)
+    source_record = publication.source_records.where(:original_source_id => source_record_id, :source_name => record_type).
     first_or_create(
-      :human_readable_title => pub_title,
+      :human_readable_title => pub_title, :year => pub_year, :is_local_only => is_local_only, :is_active => is_active
     )
     source_record.source_data = data_to_save
     source_record.save
@@ -220,20 +181,21 @@ Publication.find_each(:include => :source_record, :conditions => "source_record.
       ident_hash[:url] = identifier.identifier_uri unless identifier.identifier_uri.nil?
         identifiers << ident_hash
     end
-    pub_hash[:article_identifiers] = identifiers
+    pub_hash[:identifiers] = identifiers
   end
 
 
 
   def convert_sw_publication_doc_to_hash(publication)
 
+
     record_as_hash = Hash.new
     record_as_hash[:pmid] = publication.xpath("PMID").text unless publication.xpath("PMID").nil?
     record_as_hash[:sw_id] = publication.xpath("PublicationItemID").text
     record_as_hash[:provenance] = "sciencewire"
     record_as_hash[:title] = publication.xpath("Title").text
-    record_as_hash[:the_abstract] = publication.xpath("Abstract").text
-    record_as_hash[:authors] = publication.xpath('AuthorList').text.split('|')
+    record_as_hash[:abstract] = publication.xpath("Abstract").text
+    record_as_hash[:author] = publication.xpath('AuthorList').text.split('|').collect{|author| {name: author}}
     record_as_hash[:keywords] = publication.xpath('KeywordList').text.split('|')
     record_as_hash[:documentTypes] = publication.xpath("DocumentTypeList").text.split('|')
     record_as_hash[:documentCategory] = publication.xpath("DocumentCategory").text
@@ -241,21 +203,27 @@ Publication.find_each(:include => :source_record, :conditions => "source_record.
     record_as_hash[:timesCited] = publication.xpath("TimesCited").text
     record_as_hash[:timesNotSelfCited] = publication.xpath("TimesNotSelfCited").text
 
+    journal_hash = {}
     # the journal info
-    record_as_hash[:publicationTitle] = publication.xpath('PublicationSourceTitle').text
-    record_as_hash[:publicationVolume] = publication.xpath('Volume').text
-    record_as_hash[:publicationIssue] = publication.xpath('Issue').text
-    record_as_hash[:publicationPagination] = publication.xpath('Pagination').text
-    record_as_hash[:publicationDate] = publication.xpath('PublicationDate').text
-    record_as_hash[:publicationYear] = publication.xpath('PublicationYear').text
-    record_as_hash[:publicationImpactFactor] = publication.xpath('PublicationImpactFactor').text
-    record_as_hash[:publicationSubjectCategories] = publication.xpath('PublicationSubjectCategoryList').text.split('|')
-    record_as_hash[:publicationIdentifiers] = [
-      {:type => 'issn', :id => publication.xpath('ISSN').text, :url => 'http://searchworks.stanford.edu/?search_field=advanced&number=' + publication.xpath('ISSN').text},
-      {:type => 'doi', :id => publication.xpath('DOI').text, :url => 'http://dx.doi.org/' + publication.xpath('DOI').text}
-    ]
-    record_as_hash[:publicationConferenceStartDate] = publication.xpath('ConferenceStartDate').text
-    record_as_hash[:publicationConferenceEndDate] = publication.xpath('ConferenceEndDate').text
+    journal_hash[:name] = publication.xpath('PublicationSourceTitle').text
+    journal_hash[:volume] = publication.xpath('Volume').text
+    journal_hash[:issue] = publication.xpath('Issue').text
+    journal_hash[:pages] = publication.xpath('Pagination').text
+    journal_hash[:date] = publication.xpath('PublicationDate').text
+    journal_hash[:year] = publication.xpath('PublicationYear').text
+    journal_hash[:publicationimpactfactor] = publication.xpath('PublicationImpactFactor').text
+    journal_hash[:publicationsubjectcategories] = publication.xpath('PublicationSubjectCategoryList').text.split('|')
+    
+    journal_identifiers = Array.new
+    journal_identifiers << {:type => 'issn', :id => publication.xpath('ISSN').text, :url => 'http://searchworks.stanford.edu/?search_field=advanced&number=' + publication.xpath('ISSN').text} unless publication.xpath('ISSN').nil?
+    journal_identifiers << {:type => 'doi', :id => publication.xpath('DOI').text, :url => 'http://dx.doi.org/' + publication.xpath('DOI').text} unless publication.xpath('DOI').nil?
+    journal_hash[:identifier] = journal_identifiers
+    
+    journal_hash[:conferencestartdate] = publication.xpath('ConferenceStartDate').text
+    journal_hash[:conferenceenddate] = publication.xpath('ConferenceEndDate').text
+
+    record_as_hash[:journal] = journal_hash
+
     record_as_hash[:rank] =  publication.xpath('Rank').text
     record_as_hash[:ordinalRank] = publication.xpath('OrdinalRank').text
     record_as_hash[:normalizedRank] = publication.xpath('NormalizedRank').text
@@ -264,74 +232,33 @@ Publication.find_each(:include => :source_record, :conditions => "source_record.
     record_as_hash[:copyrightPublisher] =  publication.xpath('CopyrightPublisher').text
     record_as_hash[:copyrightCity] = publication.xpath('CopyrightCity').text
 
-    identifier_hash = Array.new
-    identifier_hash << {:type =>'PMID', :id => publication.at_xpath("PMID").text, :url => 'http://www.ncbi.nlm.nih.gov/pubmed/' + publication.xpath("PMID").text } unless publication.at_xpath("PMID").nil?
-    identifier_hash << {:type => 'WoSItemID', :id => publication.at_xpath("WoSItemID").text, :url => 'http://ws.isiknowledge.com/cps/openurl/service?url_ver=Z39.88-2004&rft_id=info:ut/' + publication.xpath("WoSItemID").text} unless publication.at_xpath("WoSItemID").nil?
-    identifier_hash << {:type => 'PublicationItemID', :id => publication.at_xpath("PublicationItemID").text} unless publication.at_xpath("PublicationItemID").nil?
-    record_as_hash[:article_identifiers] = identifier_hash
+    article_identifiers = Array.new
+    article_identifiers << {:type =>'PMID', :id => publication.at_xpath("PMID").text, :url => 'http://www.ncbi.nlm.nih.gov/pubmed/' + publication.xpath("PMID").text } unless publication.at_xpath("PMID").nil?
+    article_identifiers << {:type => 'WoSItemID', :id => publication.at_xpath("WoSItemID").text, :url => 'http://ws.isiknowledge.com/cps/openurl/service?url_ver=Z39.88-2004&rft_id=info:ut/' + publication.xpath("WoSItemID").text} unless publication.at_xpath("WoSItemID").nil?
+    article_identifiers << {:type => 'PublicationItemID', :id => publication.at_xpath("PublicationItemID").text} unless publication.at_xpath("PublicationItemID").nil?
+    record_as_hash[:identifier] = article_identifiers
 
+    #puts "the record as hash"
+    #puts record_as_hash.to_s
     record_as_hash
   end
 
-
-=begin
-
-  "author": [
-       {
-           "name": "Carberry, Josiah",
-           "alternate": [
-               "Josiah Carberry"
-           ],
-           "firstname": "Josiah",
-           "lastname": "Carberry",
-           "middlename": "Stinkney",
-           "identifier": [
-               {
-                   "id": "0003",
-                   "type": "cap",
-                   "uri": "http://cap.stanford.edu/0003"
-               },
-               {
-                   "id": "stinkney",
-                   "type": "sunet"
-               },
-               {
-                   "id": "0000-0002-1825-0097",
-                   "type": "orcid",
-                   "url": "http: //orcid.org/0000-0002-1825-0097"
-               },
-               {
-                   "id": "7007156898",
-                   "type": "scopus",
-                   "url": "http: //www.scopus.com/authid/detail.url?authorId=7007156898"
-               },
-               {
-                   "id": "Josiah_Carberry",
-                   "type": "wikipedia",
-                   "url": "http: //en.wikipedia.org/wiki/Josiah_Carberry"
-               }
-           ]
-       }
-       ...other authors
-       ]
-=end
-
   def generate_json_for_pub(pub_hash)
       json_string = Jbuilder.encode do |json|
-      unless pub_hash[:article_identifiers].blank?
-        json.identifer(pub_hash[:article_identifiers]) do | identifier |
-          if identifier.has_key?(:url)
-            json.(identifier, :id, :type, :url)
+      unless pub_hash[:identifier].blank?
+        json.identifer(pub_hash[:identifier]) do | id |
+          if id.has_key?(:url)
+            json.(id, :id, :type, :url)
           else
-            json.(identifier, :id, :type)
+            json.(id, :id, :type)
           end
         end
       end
       json.title pub_hash[:title] unless pub_hash[:title].blank?
-      json.abstract pub_hash[:the_abstract] unless pub_hash[:the_abstract].blank?
+      json.abstract pub_hash[:abstract] unless pub_hash[:abstract].blank?
       json.keywords pub_hash[:keywords] unless pub_hash[:keywords].blank?
-      json.author pub_hash[:authors] do | author |
-        json.name author
+      json.author pub_hash[:author] do | author |
+        json.name author[:name]
       end
       # json.authorsAnded
       json.provenance pub_hash[:provenance] unless pub_hash[:provenance].blank?
@@ -359,16 +286,16 @@ Publication.find_each(:include => :source_record, :conditions => "source_record.
         end
       end
       json.journal do | json |
-        json.name pub_hash[:publicationTitle]  unless pub_hash[:publicationTitle].blank?
-        json.volume pub_hash[:publicationVolume]  unless pub_hash[:publicationVolume].blank?
-        json.issue pub_hash[:publicationIssue]  unless pub_hash[:publicationIssue].blank?
-        json.pages pub_hash[:publicationPagination]  unless pub_hash[:publicationPagination].blank?
-        json.date pub_hash[:publicationDate]  unless pub_hash[:publicationDate].blank?
-        json.year pub_hash[:publicationYear]  unless pub_hash[:publicationYear].blank?
-        json.publicationimpactfactor pub_hash[:publicationImpactFactor]  unless pub_hash[:publicationImpactFactor].blank?
-        json.subjectcategories pub_hash[:publicationSubjectCategories]  unless pub_hash[:publicationSubjectCategories].blank?
-        unless pub_hash[:publicationIdentifiers].blank?
-          json.identifer(pub_hash[:publicationIdentifiers]) do | identifier |
+        json.name pub_hash[:journal][:name]  unless pub_hash[:journal][:name].blank?
+        json.volume pub_hash[:journal][:volume]  unless pub_hash[:journal][:volume].blank?
+        json.issue pub_hash[:journal][:issue]  unless pub_hash[:journal][:issue].blank?
+        json.pages pub_hash[:journal][:pages]  unless pub_hash[:journal][:pages].blank?
+        json.date pub_hash[:journal][:date]  unless pub_hash[:journal][:date].blank?
+        json.year pub_hash[:journal][:year]  unless pub_hash[:journal][:year].blank?
+        json.publicationimpactfactor pub_hash[:journal][:publicationimpactfactor]  unless pub_hash[:journal][:publicationimpactfactor].blank?
+        json.subjectcategories pub_hash[:journal][:subjectcategories]  unless pub_hash[:journal][:subjectcategories].blank?
+        unless pub_hash[:journal][:identifier].blank?
+          json.identifer(pub_hash[:journal][:identifier]) do | identifier |
             if identifier.has_key?(:url)
               json.(identifier, :id, :type, :url)
             else
@@ -376,8 +303,8 @@ Publication.find_each(:include => :source_record, :conditions => "source_record.
             end
           end
         end
-        json.conferencestartdate pub_hash[:publicationConferenceStartDate]  unless pub_hash[:publicationConferenceStartDate].blank?
-        json.conferenceenddate pub_hash[:publicationConferenceEndDate]  unless pub_hash[:publicationConferenceEndDate].blank?
+        json.conferencestartdate pub_hash[:journal][:conferencestartdate]  unless pub_hash[:journal][:conferencestartdate].blank?
+        json.conferenceenddate pub_hash[:journal][:conferenceenddate]  unless pub_hash[:journal][:conferenceenddate].blank?
       end
       unless pub_hash[:contributions].blank?
         json.contributions(pub_hash[:contributions]) do | contribution |
@@ -401,26 +328,31 @@ Publication.find_each(:include => :source_record, :conditions => "source_record.
   end
 
   def generate_xml_for_pub(pub_hash)
+=begin
     xmlbuilder = Nokogiri::XML::Builder.new do |newPubDoc|
 
       newPubDoc.publication {
 
         newPubDoc.title pub_hash[:title]
-        pub_hash[:authors].each do | authorName |
+        pub_hash[:author].each do | author_name |
           newPubDoc.author {
-            newPubDoc.name pub_hash[:authorName]
+            newPubDoc.name author_name[:name]
           }
         end
-        newPubDoc.abstract_ pub_hash[:the_abstract]
-        pub_hash[:keywords].each do | keyword |
-          newPubDoc.keyword keyword
+        newPubDoc.abstract_ pub_hash[:the_abstract] unless pub_hash[:the_abstract].blank?
+        unless pub_hash[:keywords].blank? do
+          pub_hash[:keywords].each do | keyword |
+            newPubDoc.keyword keyword
+          end
         end
-        pub_hash[:documentTypes].each do | docType |
-          newPubDoc.type docType
+        unless pub_hash[:documentTypes].blank? do
+          pub_hash[:documentTypes].each do | docType |
+            newPubDoc.type docType
+          end
         end
-        newPubDoc.category pub_hash[:documentCategory]
+        newPubDoc.category pub_hash[:documentCategory] unless pub_hash[:documentCategory].blank?
         newPubDoc.journal {
-          newPubDoc.title pub_hash[:publicationTitle]
+          newPubDoc.title pub_hash[:publicationTitle] unless pub_hash[:publicationTitle].blank?
         }
 
         # also add the last_update_at_source, last_retrieved_from_source,
@@ -429,6 +361,8 @@ Publication.find_each(:include => :source_record, :conditions => "source_record.
 
     end
     xmlbuilder.to_xml
+=end
+    "the xml goes here"
 
   end
 
@@ -437,10 +371,10 @@ Publication.find_each(:include => :source_record, :conditions => "source_record.
     chicago_csl_file = Rails.root.join('app', 'data', 'chicago-author-date.csl')
 
     authors_for_citeproc = []
-    pub_hash[:authors].each do |author|
+    pub_hash[:author].each do |author|
       last_name = ""
       rest_of_name = ""
-      author.split(',').each_with_index do |name_part, index|
+      author[:name].split(',').each_with_index do |name_part, index|
         if index == 0
           last_name = name_part
         elsif name_part.length == 1
@@ -456,11 +390,11 @@ Publication.find_each(:include => :source_record, :conditions => "source_record.
                  "type"=>"article-journal",
                  "author"=>authors_for_citeproc,
                  "title"=>pub_hash[:title],
-                 "container-title"=>pub_hash[:publicationTitle],
-                 "volume"=>pub_hash[:publicationVolume],
-                 "issue"=>pub_hash[:publicationIssue],
-                 "abstract"=>pub_hash[:the_abstract],
-                 "issued"=>{"date-parts"=>[[pub_hash[:publicationYear]]]}
+                 "container-title"=>pub_hash[:journal][:name],
+                 "volume"=>pub_hash[:journal][:volume],
+                 "issue"=>pub_hash[:journal][:issue],
+                 "abstract"=>pub_hash[:abstract],
+                 "issued"=>{"date-parts"=>[[pub_hash[:journal][:year]]]}
                  }]
 
     # chicago_citation = CiteProc.process(cit, :style => 'https://github.com/citation-style-language/styles/raw/master/chicago-author-date.csl', :format => 'html')
@@ -514,7 +448,7 @@ unless year.blank?
             <Filter>
               <Column>PublicationYear</Column> 
               <Operator>Equals</Operator> 
-              <Value>' + year + '</Value>
+              <Value>' + year.to_s + '</Value>
             </Filter>
           </Criterion>' 
 end
@@ -707,5 +641,91 @@ def query_sciencewire(xml_query)
 
   end
 
+def index_manual_contributions_in_solr
+
+Publication.find_each(:include => :source_record, :conditions => "source_record.source_name = 'user' ") do | publication |
+  
+   # :id=>1, :firstname=>'james', :lastname=>'chartrand', :middlename=>'colin', :title=>'where is it?', :bibjson=>'somebibjson', :source=>'whee', :year=>'1456'
+    pub_hash = JSON.parse(publication.json)
+        #puts pub_hash.to_s
+=begin        
+        
+        I NEED A TEST CASE HERE, WITH A PUBLICATION FACTORY THAT WILL GENERATE A PUBLICATION WITH JSON WITH A
+        FULLY POPULATED AUTHOR LIST, INCLUDING MIDDLENAME, ETC.  
+
+          - create the factory, then write the rspec test to GET the publication, and one to test the solr indexing
+=end
+        pub_hash[author].each do |author| 
+            last_name = ""
+            rest_of_name = ""
+            author.split(',').each_with_index do |name_part, index|
+                if index == 0
+                  last_name = name_part
+                elsif name_part.length == 1
+                  rest_of_name << ' ' << name_part << '.'
+                elsif name_part.length > 1
+                  rest_of_name << ' ' << name_part
+                end
+            end
+     
+        solr_doc = {
+          id: publication.id, 
+          title: publication.human_readable_title,
+          bibjson: publication.json,
+          year: publication.year
+
+        }
+        
+            
+        end
+         
+        solr = RSolr.connect :url => 'http://localhost:8080/solr'
+        solr.add solr_doc, :add_attributes => {:commitWithin => 10}
+      end
+        #solr.commit
+  end
+  
 
 end  #module end
+
+=begin
+
+  "author": [
+       {
+           "name": "Carberry, Josiah",
+           "alternate": [
+               "Josiah Carberry"
+           ],
+           "firstname": "Josiah",
+           "lastname": "Carberry",
+           "middlename": "Stinkney",
+           "identifier": [
+               {
+                   "id": "0003",
+                   "type": "cap",
+                   "uri": "http://cap.stanford.edu/0003"
+               },
+               {
+                   "id": "stinkney",
+                   "type": "sunet"
+               },
+               {
+                   "id": "0000-0002-1825-0097",
+                   "type": "orcid",
+                   "url": "http: //orcid.org/0000-0002-1825-0097"
+               },
+               {
+                   "id": "7007156898",
+                   "type": "scopus",
+                   "url": "http: //www.scopus.com/authid/detail.url?authorId=7007156898"
+               },
+               {
+                   "id": "Josiah_Carberry",
+                   "type": "wikipedia",
+                   "url": "http: //en.wikipedia.org/wiki/Josiah_Carberry"
+               }
+           ]
+       }
+       ...other authors
+       ]
+=end

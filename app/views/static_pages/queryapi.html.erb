@@ -2,10 +2,46 @@
   <h2>Resource Description</h2>
 
 
-<b style="font-size:large">http://sulcap.stanford.edu/sourcelookup?lastname={}&firstname={}&middlename={}&year={}&title={}&source={}</b>
+<b style="font-size:large">http://sulcap.stanford.edu/publications/sourcelookup?year={}&title={}&source={}</b>
 
+<hr style="color:#000;background-color:#000;border-color:#000"/>
 
+<h2 style="font-size:medium">URL Parameters</h2>
 
+<table class="table table-striped">       
+        <tbody>
+          <thead>
+          <tr>
+            <th>Parameter Name</th>
+            <th>Description</th>
+            <th>Allowable Values</th>
+            <th>Required</th>
+            <th>Default Value</th>
+          </tr>
+        </thead>
+          <tr>
+            <td>title</td>
+            <td>Title of the publication.</td>     
+            <td>String</td>
+            <td>True</td>  
+            <td>N/A</td>     
+          </tr>
+          <tr>
+            <td>year</td>
+            <td>Year of publication.</td>
+            <td>Four digit number between 1000 and 2100</td>
+            <td>False</td>   
+            <td>N/A</td>            
+          </tr>
+          <tr>
+            <td>source</td>
+            <td>Sources to search.</td>
+            <td>SW MAN SW+MAN</td>
+            <td>False.</td>
+            <td>SW+MAN</td>
+          </tr>
+          <tbody>
+</table>
 <hr style="color:#000;background-color:#000;border-color:#000"/>
 
 <h2 style="font-size:medium">HTTP Methods</h2>
