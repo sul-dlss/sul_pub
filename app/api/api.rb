@@ -113,7 +113,7 @@ get :sourcelookup do
         #query_hash[:middle_name] = middle_name unless middle_name.empty?
         query_hash[:human_readable_title] = title unless title.blank?
         query_hash[:year] = year unless year.blank?
-        query_hash[:active] = true
+        query_hash[:is_active] = true
         query_hash[:is_local_only] = true  
 
         SourceRecord.where(query_hash).each { |source_record| local_records << source_record.publication.json }
