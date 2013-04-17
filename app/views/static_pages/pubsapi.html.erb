@@ -26,7 +26,7 @@
           <tr>
             <td>POST</td>
             <td>Creates publication record.</td>
-            <td>Full BibJSON or BibTeX record for publication(s).</td>
+            <td>BibJSON or BibTeX record(s) for publication(s). See sample below.</td>
             <td>BibJSON for successfully updated pubication(s).</td>
           </tr>
           <tbody>
@@ -175,15 +175,17 @@
       </table>
 
 <hr style="color:#000;background-color:#000;border-color:#000"/>
-<h2 style="font-size:medium">Sample BibJSON</h2>
 
-<p style="font-size:small"><%= link_to "See Single BibJSON record for POST", sul_bib_api_samples_path + '/post_pub_in_json' %> (Not yet available.)</p>
+<h2 style="font-size:medium">Samples</h2>
 
-<p style="font-size:small"><%= link_to "See Single BibTex record for POST", sul_bib_api_samples_path + '/post_pub_in_bibtex' %> (Not yet available.)</p>
+<p class="sultext">The POST call will accept one or or records in a single call.  The BibJSON must therefore be wrapped 
+  in a json array, as in the example below.  Multiple BibTeX records are simply appended together. The bibjson must also
+include the contribution section with either the CAP Profile ID for the author or the SUL Author ID for the author.</p>
 
-<p style="font-size:small"><%= link_to "See BibJSON collection for POST", sul_bib_api_samples_path + '/post_pubs_in_json' %> (Not yet available.)</p>
+<p style="font-size:small"><%= link_to "BibJSON file for POST", sul_bib_api_samples_path + '/post_pub_in_json' %></p>
 
-<p style="font-size:small"><%= link_to "See Multiple BibTex recordsfor POST)", sul_bib_api_samples_path + '/post_pubs_in_bibtex' %> (Not yet available.)</p>
+<p style="font-size:small"><%= link_to "BibTex file for POST", sul_bib_api_samples_path + '/post_pub_in_bibtex' %></p>
+
 
 
 <hr style="color:#000;background-color:#000;border-color:#000"/>
