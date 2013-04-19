@@ -49,10 +49,10 @@ end
     get(:delete_pub_out) {IO.read(Rails.root.join('app', 'data', 'api_samples', 'delete_pub_out.json'))}
   end
 
-  class API_people < Grape::API
+  class API_authors < Grape::API
     version 'v1', :using => :header, :vendor => 'sul', :format => :json
     format :json
-    get 'authors' do
+    get do
       Author.all(:include => :population_memberships, :conditions => "population_memberships.population_name = 'cap'")
     end
   end
@@ -90,8 +90,7 @@ params do
 end
 
 get :sourcelookup do
-      sw_json_records = []
-      local_records = []
+      all_matching_records = []
 
       # set source to all sources if param value is blank     
       source = params[:source] || 'SW+MAN'
@@ -104,7 +103,8 @@ get :sourcelookup do
       sources = source.split('+')
 
       if source.include?("SW")
-        sw_json_records = query_sciencewire_for_publication(first_name, last_name, middle_name, title, year)
+        sw_results = query_sciencewire_for_publication(first_name, last_name, middle_name, title, year)
+        all_matching_records.push(*sw_results)
       end
 
       if source.include?("MAN")
@@ -117,10 +117,9 @@ get :sourcelookup do
         query_hash[:is_active] = true
         query_hash[:is_local_only] = true  
 
-        SourceRecord.where(query_hash).each { |source_record| local_records << source_record.publication.json }
+        SourceRecord.where(query_hash).each { |source_record| all_matching_records << source_record.publication.json }
       end
 
-      all_matching_records = sw_json_records.concat(local_records)
       wrap_as_bibjson_collection("Search results from requested sources: " + source, env["ORIGINAL_FULLPATH"], all_matching_records)
     
     end
@@ -220,5 +219,22 @@ get :sourcelookup do
       pub.save
     end
 
+  end
+end
+
+#monkey patch Grape to allow directly returning unescaped json string.
+# might also look at instead returning this as a hash, which
+# grape would then serialize.
+ module Grape
+  module Formatter
+    module Json
+      class << self
+        def call(object, env)
+          return object if ! object || object.is_a?(String)
+          return object.to_json if object.respond_to?(:to_json)
+          raise Grape::Exceptions::InvalidFormatter.new(object.class, 'json')
+        end
+      end
+    end
   end
 end

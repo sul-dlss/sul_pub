@@ -4,6 +4,7 @@ Sulbib::Application.routes.draw do
 
   mount SulBib::API => "/publications"
   mount SulBib::API_samples => "/samples"
+  mount SulBib::API_authors => "/authors"
 
   
 
@@ -13,7 +14,7 @@ Sulbib::Application.routes.draw do
   get 'static_pages/pubsapi'
   get 'static_pages/queryapi'
   get 'static_pages/pollapi'
-  resources :profiles
+  #resources :profiles
 
   get "people/index"
   get "people/edit"

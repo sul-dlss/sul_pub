@@ -1,6 +1,7 @@
 [{
-    "title":"[Drug therapy of hypertension].",
+    "title":"Drug therapy of hypertension.",
     "author":[{"name":"Hayduk,K"}],
+    "type":"journal",
     "journal":{
         "name":"Zeitschrift fÃur Allgemeinmedizin",
         "volume":"51",

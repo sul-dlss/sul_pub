@@ -4,10 +4,12 @@ require 'bibtex'
 
 module SulPub
 
+  extend self 
+
   include ActionView::Helpers::DateHelper
 
 #ingest sciencewire records for cap pmid list and generate authors and contributions
-def create_new_pubs_and_contributions_for_pmids(pmids, contribs)
+def get_pubs_and_contributions_for_pmids_from_sciencewire(pmids, contribs)
     mesh_values_for_pmids = get_mesh_from_pubmed(pmids)
     sw_records_doc = pull_records_from_sciencewire_for_pmids(pmids)
     sw_records_doc.xpath('//PublicationItem').each do |sw_record_doc|
@@ -15,7 +17,8 @@ def create_new_pubs_and_contributions_for_pmids(pmids, contribs)
       #ActiveRecord::Base.transaction do
         begin
           contribution = contribs[pmid]
-          author = get_cap_author(contribution['faculty_id'])
+          cap_profile_id = (contribution['faculty_id'])
+          author = Author.where(cap_profile_id: cap_profile_id).first_or_create()
           create_or_update_pub_from_sw_doc(sw_record_doc, contribution['status'], mesh_values_for_pmids, author)
         rescue Exception => e  
           puts e.message  
@@ -23,7 +26,6 @@ def create_new_pubs_and_contributions_for_pmids(pmids, contribs)
           puts "the offending pmid: " + pmid.to_s
           puts "the contrib: " + contribution.to_s
           puts "the author: " + author.to_s
-
         end
      # end
     end
@@ -32,18 +34,21 @@ def create_new_pubs_and_contributions_for_pmids(pmids, contribs)
 #harverst sciencewire records using author information
 def harvest_author_pubs_from_sciencewire()
     #Author.find_each(:batch_size => 100) do |author|
-      Author.limit(100).each do |author|
+      random = rand(Author.count - 50)
+      puts "The random value for the offset: " + random.to_s
+      Author.limit(10).offset(random).each do |author|
       last_name = author.pubmed_last_name
       first_name = author.pubmed_first_initial
       middle_name = author.pubmed_middle_initial
       profile_id = author.cap_profile_id
       email = author.sunetid + "@stanford.edu"
 
-      seed_list = Array.new
-      authors_sw_pubs = author.publications(:include => :publication_identifers, :conditions => "publication_identifiers.identifier_type = 'PublicationItemID'")
-      authors_sw_pubs.each do | pub |
-        seed_list = pub.publication_identifiers.where("identifier_type = 'PublicationItemID'").collect { |ident|  ident.identifier_value  }
-      end
+      seed_list = author.approved_publications.collect { | pub | pub.publication_identifiers.where("identifier_type = 'PublicationItemID'").first }
+      puts "the seed list: " + seed_list.to_s
+     # authors_sw_pubs = author.publications(:include => :publication_identifers, :conditions => "publication_identifiers.identifier_type = 'PublicationItemID'")
+      #authors_sw_pubs.each do | pub |
+       # seed_list = pub.publication_identifiers.where("identifier_type = 'PublicationItemID'").collect { |ident|  ident.identifier_value  }
+      #end
       #seed_list = [5750109]
       # puts "seed_list = " + seed_list.to_s
       contrib_status = 'new'
@@ -59,8 +64,6 @@ def harvest_author_pubs_from_sciencewire()
     end 
   end
 
-
-
   def create_or_update_pub_from_sw_doc(sw_xml_doc, contrib_status, mesh_values_for_pmids, author)
 
     pub_hash = convert_sw_publication_doc_to_hash(sw_xml_doc)
@@ -70,56 +73,49 @@ def harvest_author_pubs_from_sciencewire()
     title = pub_hash[:title]
     year = pub_hash[:journal][:year]
 
+   
+
     existing_pub_identifier = PublicationIdentifier.where(
       :identifier_type => 'PublicationItemId',
       :identifier_value => sw_pub_id).first
 
+#TODO change this to check if an existing pub's hash is the same as the incoming.
+# something like:  pub.same_source?(otherpub)
+
     if existing_pub_identifier.nil?
       pub = Publication.create(active: true, human_readable_title: title, year: year)
-    else
-      pub = existing_pub_identifier.publication
+    #else
+     # pub = existing_pub_identifier.publication
+    #end
+
+      is_local_only = false
+      is_active = true
+      save_source_record(pub, sw_xml_doc.to_xml, "sw", title, year, sw_pub_id, is_local_only, is_active)
+
+      sul_pub_id = pub.id.to_s
+      pub_hash[:sulpubid] = sul_pub_id
+      pub_hash[:identifier] << {:type => 'SULPubId', :id => sul_pub_id, :url => 'http://sulcap.stanford.edu/publications/' + sul_pub_id}
+      pub.save   # to reset last updated value
+      pub_hash[:last_updated] = pub.updated_at
+
+      if mesh_values_for_pmids.nil? && ! pmid.nil?
+        pub_hash[:mesh_headings] = get_mesh_from_pubmed([pmid])[pmid]
+      else
+        pub_hash[:mesh_headings] = mesh_values_for_pmids[pmid]
+      end
+
+      add_contribution_to_db(sul_pub_id, author.id, author.cap_profile_id, contrib_status)
+      add_all_known_contributions_to_pub_hash(pub, pub_hash)
+      add_identifiers_to_db(pub_hash[:identifier], pub)
+      add_all_known_identifiers_to_pub_hash(pub_hash, pub)
+      add_formatted_citations(pub_hash)
+      pub.json = generate_json_for_pub(pub_hash)
+      pub.xml = generate_xml_for_pub(pub_hash)
+      pub.save
     end
-
-    is_local_only = false
-    is_active = true
-    save_source_record(pub, sw_xml_doc.to_xml, "sw", title, year, sw_pub_id, is_local_only, is_active)
-
-    sul_pub_id = pub.id.to_s
-    pub_hash[:sulpubid] = sul_pub_id
-    pub_hash[:identifier] << {:type => 'SULPubId', :id => sul_pub_id, :url => 'http://sulcap.stanford.edu/publications/' + sul_pub_id}
-    pub.save   # to reset last updated value
-    pub_hash[:last_updated] = pub.updated_at
-
-    if mesh_values_for_pmids.nil? && ! pmid.nil?
-      pub_hash[:mesh_headings] = get_mesh_from_pubmed([pmid])[pmid]
-    else
-      pub_hash[:mesh_headings] = mesh_values_for_pmids[pmid]
-    end
-
-    add_contribution_to_db(sul_pub_id, author.id, author.cap_profile_id, contrib_status)
-    add_all_known_contributions_to_pub_hash(pub, pub_hash)
-
-    add_identifiers_to_db(pub_hash[:identifier], pub)
-    add_all_known_identifiers_to_pub_hash(pub_hash, pub)
-
-    #add_searchable_author_names_to_db(pub_hash, pub)
-
-     add_formatted_citations(pub_hash)
-
-    pub.json = generate_json_for_pub(pub_hash)
-
-    pub.xml = generate_xml_for_pub(pub_hash)
-
-    pub.save
   end
 
-  
-
-  def get_cap_author(cap_profile_id)
-    author = Author.where(cap_profile_id: cap_profile_id).first_or_create()
-    # PopulationMembership.where(author_id: author.id, cap_profile_id: cap_profile_id, population_name: 'cap').first_or_create()
-    author
-  end
+ 
 
   def add_contribution_to_db(pub_id, author_id, cap_profile_id, contrib_status)
     Contribution.where(:author_id => author_id, :publication_id => pub_id).first_or_create(
@@ -184,10 +180,7 @@ def harvest_author_pubs_from_sciencewire()
     pub_hash[:identifiers] = identifiers
   end
 
-
-
   def convert_sw_publication_doc_to_hash(publication)
-
 
     record_as_hash = Hash.new
     record_as_hash[:pmid] = publication.xpath("PMID").text unless publication.xpath("PMID").nil?
@@ -466,7 +459,7 @@ end
     xml_results = query_sciencewire(xml_query)
 
     xml_results.xpath('//PublicationItem').each do |sw_xml_doc|
-      puts sw_xml_doc.to_xml
+     # puts sw_xml_doc.to_xml
           result << generate_json_for_pub(convert_sw_publication_doc_to_hash(sw_xml_doc))       
   end 
   result
@@ -572,10 +565,6 @@ def query_sciencewire(xml_query)
   end
 
 
-
-
-
-
   def get_sw_guesses(last_name, first_name, middle_name, email_list, seed_list)
 
 
@@ -604,13 +593,13 @@ def query_sciencewire(xml_query)
   </Authors>
   <DocumentCategory>Journal Document</DocumentCategory>' 
 
-    unless seed_list.empty?
+    unless seed_list.blank?
       bod << '<PublicationItemIds>'
       bod << seed_list.collect { |pubId| "<int>#{pubId}</int>"}.join
       bod << '</PublicationItemIds>'
     end
 
-    unless email_list.empty?
+    unless email_list.blank?
       bod << '<Emails>'
       bod <<   email_list.collect { |email| "<string>#{email}</string>"}.join
       bod << '</Emails>'

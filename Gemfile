@@ -14,6 +14,7 @@ gem 'citeproc-ruby'
 gem 'bibtex-ruby'
 gem 'yaml_db'
 gem 'rsolr'
+gem 'rufus-scheduler'
 
 group :development, :test do
   gem 'rspec-rails'
