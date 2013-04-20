@@ -36,7 +36,7 @@ def harvest_author_pubs_from_sciencewire()
     #Author.find_each(:batch_size => 100) do |author|
       random = rand(Author.count - 50)
       puts "The random value for the offset: " + random.to_s
-      Author.limit(10).offset(random).each do |author|
+      Author.limit(5).offset(random).each do |author|
       last_name = author.pubmed_last_name
       first_name = author.pubmed_first_initial
       middle_name = author.pubmed_middle_initial
@@ -453,7 +453,7 @@ end
           <Direction>Descending</Direction>
         </SortColumn>
       </Columns>
-     <MaximumRows>50</MaximumRows>
+     <MaximumRows>10</MaximumRows>
     </query>
     ]]>'
     xml_results = query_sciencewire(xml_query)

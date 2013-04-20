@@ -4,7 +4,7 @@ Sulbib::Application.routes.draw do
 
   mount SulBib::API => "/publications"
   mount SulBib::API_samples => "/samples"
-  mount SulBib::API_authors => "/authors"
+  #mount SulBib::API_authors => "/authors"
 
   
 
@@ -16,20 +16,20 @@ Sulbib::Application.routes.draw do
   get 'static_pages/pollapi'
   #resources :profiles
 
-  get "people/index"
-  get "people/edit"
-  get "people/show"
-  get "people/new"
+ # get "people/index"
+  #get "people/edit"
+  #get "people/show"
+  #get "people/new"
 
-  get "science_wire_records/index"
-  get "science_wire_records/show"
-  get "science_wire_records/populate"
-  post "science_wire_records/search"
+  #get "science_wire_records/index"
+  #get "science_wire_records/show"
+  #get "science_wire_records/populate"
+  #post "science_wire_records/search"
 
-  get "pub_med_records/index"
-  get "pub_med_records/show"
-  get "pub_med_records/populate"
-  post "pub_med_records/search"
+  #get "pub_med_records/index"
+  #get "pub_med_records/show"
+  #get "pub_med_records/populate"
+  #post "pub_med_records/search"
   
   # resources :publications
   
