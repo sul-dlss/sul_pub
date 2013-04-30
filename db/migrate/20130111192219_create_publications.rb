@@ -4,11 +4,11 @@ class CreatePublications < ActiveRecord::Migration
       t.integer :same_as_publications_id
       t.boolean :active
       t.boolean :deleted
-      t.string :human_readable_title
+      t.string :title
       t.integer :year
       t.integer :lock_version
       t.text :xml
-      t.text :json
+      t.text :pub_hash
       t.timestamps
     end
   end

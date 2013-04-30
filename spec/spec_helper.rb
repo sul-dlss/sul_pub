@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'spork'
+require 'factory_girl_rails'
 #uncomment the following line to use spork with the debugger
 #require 'spork/ext/ruby-debug'
 
@@ -18,6 +19,11 @@ require 'rspec/autorun'
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
 RSpec.configure do |config|
+
+  # added by JC for SULPUB project, to put specs in spec/api folder
+  config.include RSpec::Rails::RequestExampleGroup, :type => :request, :example_group => {
+    :file_path => /spec\/api/
+  }
   # ## Mock Framework
   #
   # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:

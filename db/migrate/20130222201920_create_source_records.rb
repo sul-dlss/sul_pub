@@ -5,7 +5,7 @@ class CreateSourceRecords < ActiveRecord::Migration
       t.integer :original_source_id
       t.integer :publication_id
       t.integer :lock_version
-      t.string :human_readable_title
+      t.string :title
       t.integer :year
       t.string :source_name
       t.string :source_data_type

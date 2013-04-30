@@ -1,4 +1,6 @@
 Sulbib::Application.configure do
+  config.force_ssl = true
+  
   # Settings specified here will take precedence over those in config/application.rb
 
   # Code is not reloaded between requests

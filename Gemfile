@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.8'
+gem 'rails', '3.2.13'
 gem 'bootstrap-sass', '2.0.4'
 
 gem 'mysql2'
@@ -15,15 +15,17 @@ gem 'bibtex-ruby'
 gem 'yaml_db'
 gem 'rsolr'
 gem 'rufus-scheduler'
+gem 'settingslogic'
 
 group :development, :test do
-  gem 'rspec-rails'
+  gem 'rspec-rails', '2.11.0'
   gem 'guard-rspec', '1.2.1'
-  gem 'guard-spork', '1.2.0'
+  gem 'guard-spork', '1.4.2'
   gem 'spork', '0.9.2'
   gem 'capistrano'
   gem 'rvm-capistrano'
   gem 'debugger'
+  gem 'factory_girl_rails'
 end
 
 group :test do

@@ -3,4 +3,6 @@ class Contribution < ActiveRecord::Base
   belongs_to :publication
   belongs_to :author
   has_one :population_membership, :foreign_key => "author_id"
+
+  
 end

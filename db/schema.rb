@@ -87,11 +87,11 @@ ActiveRecord::Schema.define(:version => 20130222202128) do
     t.integer  "same_as_publications_id"
     t.boolean  "active"
     t.boolean  "deleted"
-    t.string   "human_readable_title"
+    t.string   "title"
     t.integer  "year"
     t.integer  "lock_version"
     t.text     "xml"
-    t.text     "json"
+    t.text     "pub_hash"
     t.datetime "created_at",              :null => false
     t.datetime "updated_at",              :null => false
   end
@@ -101,14 +101,14 @@ ActiveRecord::Schema.define(:version => 20130222202128) do
     t.integer  "original_source_id"
     t.integer  "publication_id"
     t.integer  "lock_version"
-    t.string   "human_readable_title"
+    t.string   "title"
     t.integer  "year"
     t.string   "source_name"
     t.string   "source_data_type"
     t.boolean  "is_active"
     t.boolean  "is_local_only"
-    t.datetime "created_at",           :null => false
-    t.datetime "updated_at",           :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
   end
 
 end

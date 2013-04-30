@@ -1,0 +1,30 @@
+# config/application.yml
+defaults: &defaults
+
+  sw_doc_type_mappings:
+    conference: "Clinical Conference, Congresses, Consensus Development Conference, Consensus Development Conference NIH, Meeting Abstract, Meeting Summary, Meeting-Abstract, Overall"
+    book: "Dictionary, Directory, Government Publications"
+
+  sul_doc_types: 
+    inproceedings: inproceedings
+    book: book
+    article: article
+
+  cap_provenance: CAP
+
+  cap_population_name: CAP
+
+  manual_source: manual
+
+  sciencewire_source: sciencewire
+
+  sciencewire_harvest_max: 10
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults

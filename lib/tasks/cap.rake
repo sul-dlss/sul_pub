@@ -1,23 +1,20 @@
 
-require 'sul_pub'
+require 'cap_initial_ingest'
 
-# puts "-u#{db_config['username']} -p#{db_config['password']} #{db_config['database']}"
 
 namespace :cap do
+
+  desc "poll cap for authorship information"
+    task :poll => :environment do
+  end
+
   desc "ingest exising cap data"
   task :ingest => :environment do
-    include SulPub
+    include CapInitialIngest
     include ActionView::Helpers::DateHelper
     #db_config = Rails.application.config.database_configuration[Rails.env]
     pmids = []
     contribs = {}
-    # Publication.delete_all
-    # Contribution.delete_all
-    # AuthorIdentifier.delete_all
-    # PublicationIdentifier.delete_all
-    # SourceRecord.delete_all
-    # Author.delete_all
-    # PopulationMembership.delete_all
     client = Mysql2::Client.new(:host => "localhost", :username => "cap", :password => "cap", :database => "cap", :encoding => "utf8")
     results = client.query("select cap_old_publication.pubmed_id,
       cap_old_faculty_publication.faculty_id, 
