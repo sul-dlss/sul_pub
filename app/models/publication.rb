@@ -8,13 +8,13 @@ class Publication < ActiveRecord::Base
   
   serialize :pub_hash, Hash
   
-  def self.build_new_sciencewire_publication(pub_hash, sw_xml_doc, mesh_for_pub, author, contrib_status)
+  def self.build_new_sciencewire_publication(pub_hash, sw_xml_doc, pubmed_data, author, contrib_status)
 
       is_active = true
 
       pub = Publication.create(active: is_active, title: pub_hash[:title], pub_hash: pub_hash, year: pub_hash[:year])
 
-      pub.update_mesh(mesh_for_pub)
+      pub.add_pubmed_data(pubmed_data)
       pub.add_contribution_to_db(author.id, author.cap_profile_id, contrib_status)
       
       sciencewire_source_id = pub_hash[:sw_id]
@@ -73,12 +73,18 @@ def add_contribution(cap_profile_id, sul_author_id, contrib_status)
       sync_publication_hash_and_db
 end
 
-def update_mesh(mesh_for_pub)
+def add_pubmed_data(pubmed_data)
       pmid = self.pub_hash[:pmid]
-      if mesh_for_pub.nil? && ! pmid.nil?
-        self.pub_hash[:mesh_headings] = get_mesh_from_pubmed([pmid])[pmid]
-      else
-        self.pub_hash[:mesh_headings] = mesh_for_pub
+
+      unless pmid.blank?
+         puts "the pmid: " + pmid.to_s
+        if pubmed_data.nil? 
+          pubmed_data = get_mesh_and_abstract_from_pubmed([pmid])[pmid]
+        end     
+        puts "the pubmed data: "
+        puts pubmed_data.to_s
+        self.pub_hash[:mesh_headings] = pubmed_data[:mesh] unless pubmed_data[:mesh].blank?
+        self.pub_hash[:abstract] = pubmed_data[:abstract] unless pubmed_data[:abstract].blank?
       end
 end
 

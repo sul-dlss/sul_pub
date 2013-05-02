@@ -2,7 +2,7 @@
   <h2>Resource Description</h2>
 
 
-<b style="font-size:large">http://sulcap.stanford.edu/publications?population={popId}&changedSince={YYYY-MM-DDTHH:MM:SSZ}</b>
+<b style="font-size:large">http://sulcap.stanford.edu/publications?population={popId}&changedSince={YYYY-MM-DDTHH:MM:SSZ}&capProfileId={capId}</b>
 
 <hr style="color:#000;background-color:#000;border-color:#000"/>
 
@@ -20,7 +20,7 @@
           </tr>
         </thead>
           <tr>
-            <td>popId</td>
+            <td>population</td>
             <td>Predefined subset of authors from which to draw.</td>     
             <td>CAP</td>
             <td>No</td>  
@@ -32,6 +32,13 @@
             <td>ISO 8601 Date</td>
             <td>No</td>   
             <td>1000-01-01</td>            
+          </tr>
+          <tr>
+            <td>capProfileId</td>
+            <td>Pubs for the given profile Id</td>
+            <td>Integer</td>
+            <td>No</td>   
+            <td>N/A</td>            
           </tr>
           <tbody>
 </table>

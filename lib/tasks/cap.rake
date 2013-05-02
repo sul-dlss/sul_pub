@@ -35,7 +35,7 @@ namespace :cap do
       contribs[pmid] = row
 
       if pmids.count == 200
-        get_pubs_and_contributions_for_pmids_from_sciencewire(pmids, contribs)
+        get_pubs_and_contributions_for_pmids_from_sciencewire_and_pubmed(pmids, contribs)
         pmids.clear
         puts (total_running_count += 200).to_s + " in " + distance_of_time_in_words_to_now(start_time, include_seconds = true)
       end

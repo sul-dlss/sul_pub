@@ -26,7 +26,7 @@
           <tr>
             <td>POST</td>
             <td>Creates publication record.</td>
-            <td>BibJSON or BibTeX record(s) for publication(s). See sample below.</td>
+            <td>BibJSON record(s) for publication(s). See sample below.</td>
             <td>BibJSON for successfully updated pubication(s).</td>
           </tr>
           <tbody>
@@ -186,8 +186,6 @@ include the contribution section with either the CAP Profile ID for the author o
 
 <p style="font-size:small"><%= link_to "BibTex file for POST", sul_bib_api_samples_path + '/post_pub_in_bibtex' %></p>
 
-
-
 <hr style="color:#000;background-color:#000;border-color:#000"/>
 <h2 style="font-size:medium">Sample CURL calls</h2>
 
@@ -196,19 +194,15 @@ include the contribution section with either the CAP Profile ID for the author o
         <tbody>
           <tr>
             <td>OPTIONS request.</td>
-            <td>curl -v -X OPTIONS http://sulbib.dev/publications</td>      
+            <td>curl -v -x OPTIONS -3 --header 'yourAuthenticationKeyName: yourKeyValue' 'https://sulcap.stanford.edu/publications'</td>     
           </tr>    
           <tr>
             <td>POST request using file contents as body.</td>
-            <td>curl -v -d @filename http://sulbib.dev/publications</td>      
+            <td>curl -v -d @filename -3 --header 'yourAuthenticationKeyName: yourKeyValue' 'https://sulcap.stanford.edu/publications</td>      
           </tr>
           <tr>
             <td>POST request with BibJSON</td>
-            <td>curl -v -d "bibjson goes here" http://sulbib.dev/publications</td>      
-          </tr>
-          <tr>
-            <td>POST request with BibTeX</td>
-            <td>curl -v -d "bibtex goes here" http://sulbib.dev/publications</td>      
+            <td>curl -v -d --header -3 'yourAuthenticationKeyName: yourKeyValue' "bibjson goes here" http://sulcap.stanford.edu/publications</td>      
           </tr>
         </tbody>
       </table>

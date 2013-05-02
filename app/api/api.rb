@@ -93,7 +93,7 @@ params do
 end
 
 get :sourcelookup do
-    #error!('Unauthorized', 401) unless env['HTTP_CAPKEY'] == '***REMOVED***'
+    error!('Unauthorized', 401) unless env['HTTP_CAPKEY'] == '***REMOVED***'
       all_matching_records = []
 
       # set source to all sources if param value is blank     
@@ -129,7 +129,7 @@ get :sourcelookup do
     end
 
     get do
-      #error!('Unauthorized', 401) unless env['HTTP_CAPKEY'] == '***REMOVED***'
+      error!('Unauthorized', 401) unless env['HTTP_CAPKEY'] == '***REMOVED***'
       matching_records = []
 
       population = params[:population] || Settings.cap_population_name
@@ -164,7 +164,7 @@ get :sourcelookup do
     #parser :bibtex, BibTexParser
     parser :json, BibJSONParser
     post do        
-      #error!('Unauthorized', 401) unless env['HTTP_CAPKEY'] == '***REMOVED***'       
+      error!('Unauthorized', 401) unless env['HTTP_CAPKEY'] == '***REMOVED***'       
       Publication.build_new_manual_publication(Settings.cap_provenance, params[:pub_hash]).pub_hash
       #puts "submitted data: " + env['api.request.body'].to_s
       #puts "parse data: " + BibTeX.parse(env['api.request.input'])[:pickaxe].to_s
@@ -175,12 +175,12 @@ get :sourcelookup do
     content_type :json, "application/json"
     parser :json, BibJSONParser
     put ':id' do
-      #error!('Unauthorized', 401) unless env['HTTP_CAPKEY'] == '***REMOVED***'
+      error!('Unauthorized', 401) unless env['HTTP_CAPKEY'] == '***REMOVED***'
       pub = Publication.find(params[:id])
       if pub.nil?
-        #return error code - doesn't exist
+        error!({ "error" => "No such publication", "detail" => "You've requested a non-existant publication." }, 404)
       elsif pub.source_records.exists?(:is_local_only => false) 
-        #return error code - and 'not allowed to update this pub'
+        error!({ "error" => "This record may not be modified.  If you had originally entered details for the record, it has been superceded by a central record.", "detail" => "missing widget" }, 403)
       else
         pub.update_manual_pub_from_pub_hash(params[:pub_hash], Settings.cap_provenance)
         pub.pub_hash
@@ -189,7 +189,7 @@ get :sourcelookup do
 
 
     get ':id' do
-      #error!('Unauthorized', 401) unless env['HTTP_CAPKEY'] == '***REMOVED***'
+      error!('Unauthorized', 401) unless env['HTTP_CAPKEY'] == '***REMOVED***'
       Publication.find(params[:id]).pub_hash
     end
 

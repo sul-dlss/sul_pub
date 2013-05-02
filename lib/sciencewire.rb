@@ -31,19 +31,19 @@ def harvest_author_pubs_from_sciencewire()
       seed_list = author.approved_publications.collect { | pub | pub.publication_identifiers.where("identifier_type = 'PublicationItemID'").first }
      
       contrib_status = 'new'
-      mesh_values_for_pmids = nil
+      pubmed_data_for_pmid_batch = nil
       email_list = []
       email_list << email unless email.nil?
       sw_records_doc = get_sw_guesses(last_name, first_name, middle_name, email_list, seed_list)
       sw_records_doc.xpath('//PublicationItem').each do |sw_doc|
        # ActiveRecord::Base.transaction do
-          create_or_update_pub_from_sw_doc(sw_doc, contrib_status, mesh_values_for_pmids, author)
+        create_or_update_pub_from_sw_doc(sw_doc, contrib_status, pubmed_data_for_pmid_batch, author)
       #  end # transaction end
       end 
     end 
   end
 
-  def create_or_update_pub_from_sw_doc(incoming_sw_xml_doc, contrib_status, mesh_values_for_pmids, author)
+  def create_or_update_pub_from_sw_doc(incoming_sw_xml_doc, contrib_status, pubmed_data_for_pmid_batch, author)
 
     pub_hash = convert_sw_publication_doc_to_hash(incoming_sw_xml_doc) 
     pmid = pub_hash[:pmid]
@@ -53,9 +53,12 @@ def harvest_author_pubs_from_sciencewire()
       :original_source_id => pub_hash[:sw_id]).first
 
     if existing_sw_source_record.nil? 
-
-      mesh_for_this_pub = mesh_values_for_pmids[pmid] unless mesh_values_for_pmids.nil? 
-      Publication.build_new_sciencewire_publication(pub_hash, incoming_sw_xml_doc, mesh_for_this_pub, author, contrib_status)
+      unless pubmed_data_for_pmid_batch.nil? 
+        pubmed_data_for_this_pub = pubmed_data_for_pmid_batch[pmid] 
+      else
+        pubmed_data_for_this_pub = nil
+      end
+      Publication.build_new_sciencewire_publication(pub_hash, incoming_sw_xml_doc, pubmed_data_for_this_pub, author, contrib_status)
 
     elsif source_data_has_changed?(existing_sw_source_record, incoming_sw_xml_doc)
       
@@ -68,7 +71,7 @@ def harvest_author_pubs_from_sciencewire()
   end
 
 def source_data_has_changed?(existing_sw_source_record, incoming_sw_source_doc)
-  existing_sw_source_record.source_data.chomp != sw_xml_doc.to_xml
+  existing_sw_source_record.source_data.chomp != incoming_sw_source_doc.to_xml
 end
 
 =begin
@@ -94,7 +97,7 @@ end
     record_as_hash[:sw_id] = publication.xpath("PublicationItemID").text
     record_as_hash[:provenance] = "sciencewire"
     record_as_hash[:title] = publication.xpath("Title").text
-    record_as_hash[:abstract] = publication.xpath("Abstract").text
+    record_as_hash[:restrictedabstract] = publication.xpath("Abstract").text
     record_as_hash[:author] = publication.xpath('AuthorList').text.split('|').collect{|author| {name: author}}
     record_as_hash[:year] = publication.xpath('PublicationYear').text
     record_as_hash[:keywords] = publication.xpath('KeywordList').text.split('|')
