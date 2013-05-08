@@ -11,6 +11,7 @@ class CreateSourceRecords < ActiveRecord::Migration
       t.string :source_data_type
       t.boolean :is_active
       t.boolean :is_local_only
+      t.string :source_fingerprint
       t.timestamps
     end
   end

@@ -4,6 +4,7 @@ Sulbib::Application.routes.draw do
 
   mount SulBib::API => "/publications"
   mount SulBib::API_samples => "/samples"
+  mount SulBib::API_schemas => "/schemas"
   #mount SulBib::API_authors => "/authors"
 
   root to: 'static_pages#api'

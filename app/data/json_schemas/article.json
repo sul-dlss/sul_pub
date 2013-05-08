@@ -1,0 +1,308 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Article Publication",
+    "description": "A manually entered publication from CAP",
+    "type": "object",
+    "required": ["title", "provenance", "type", "author"],
+    "properties": {
+    	"type": {
+            "description": "The type of this publication.",
+            "enum": [ "article" ]
+        },
+        "title": {
+            "description": "The title for the book if this is a book, for the chapter otherwise.",
+            "type": "string"
+        },
+        "howpublished": {
+            "description": "How the article was published, if not standard.",
+            "enum": [ "supplement" ]
+        },
+        "year": {
+        	"description": "Year of publication for the article. note this may be different from the year of the journal.",
+            "type": "number",
+            "minimum": 1200,
+            "maximum": 3000,
+            "exclusiveMinimum": true,
+            "exclusiveMaximim": true
+        },
+        "date":{
+            "format": "date-time",
+            "description": "Full date of publication.",
+            "type": "string"          
+        },
+        "abstract": {
+            "description": "Publicly viewable abstract.",
+            "type": "string"
+        },
+        "abstract_restricted": {
+            "description": "Abstract with restrictions on display.",
+            "type": "string"
+        },
+        "provenance": {
+            "description": "The origin of the record.  For hand entered pubs from cap:  cap",
+            "enum": [ "cap" ]
+        },
+        "allauthors": {
+            "description": "Single string containing all authors, unparsed with no guarantees about formatting.",
+            "type": "string"
+        },
+        "etal": {
+            "description": "Indicates that only a subset of the authors were individually entered.  The rest may be found in allauthors",
+            "type": "boolean"
+        },
+        "chicago_citation": {
+            "description": "Citation formatted using Chicago style.",
+            "type": "string"
+        },
+        "apa_citation": {
+            "description": "Citation formatted using APA style.",
+            "type": "string"
+        },
+        "mla_citation": {
+            "description": "Citation formatted using MLA style.",
+            "type": "string"
+        },
+        "mesh_headings": {
+            "description": "The mesh headings for the publication from PubMed",
+            "type": "string"
+        },
+        "last_updated": {
+            "format": "date-time",
+            "description": "Date the publication was last changed in the SUL database.",
+            "type": "string"
+        },
+        "publisher": {
+            "description": "The publisher.",
+            "type": "string"
+        },
+        "city": {
+            "description": "City in which published.",
+            "type": "string"
+        },
+        "stateprovince": {
+            "description": "State or province in which published.",
+            "type": "string"
+        },
+        "country": {
+            "description": "Country in which published.",
+            "type": "string"
+        },
+        "pmid": {
+            "description": "pmid identifier, for internal use",
+            "type": "string"
+        },
+        "sw_id": {
+            "description": "sw identifier, internal use",
+            "type": "string"
+        },
+        "keywords_sw": {
+            "description": "sw identifier, internal use",
+            "type": "string"
+        },
+        "documenttypes_sw": {
+            "description": "sw identifier, internal use",
+            "type": "string"
+        },
+        "documentcategory_sw": {
+            "description": "sw identifier, internal use",
+            "type": "string"
+        },
+        "publicationimpactfactorlist_sw": {
+            "description": "sw identifier, internal use",
+            "type": "string"
+        },
+        "publicationcategoryrankinglist_sw": {
+            "description": "sw identifier, internal use",
+            "type": "string"
+        },
+        "numberofreferences_sw": {
+            "description": "sw identifier, internal use",
+            "type": "string"
+        },
+        "timescited_sw_retricted": {
+            "description": "sw identifier, internal use",
+            "type": "string"
+        },
+        "timenotselfcited_sw": {
+            "description": "sw identifier, internal use",
+            "type": "string"
+        },
+        "authorcitationcountlist_sw": {
+            "description": "sw identifier, internal use",
+            "type": "string"
+        },
+        "rank_sw": {
+            "description": "sw identifier, internal use",
+            "type": "string"
+        },
+        "ordinalrank_sw": {
+            "description": "sw identifier, internal use",
+            "type": "string"
+        },
+        "normalizedrank_sw": {
+            "description": "sw identifier, internal use",
+            "type": "string"
+        },
+        "newpublicationid_sw": {
+            "description": "sw identifier, internal use",
+            "type": "string"
+        },
+        "isobsolete_sw": {
+            "description": "sw identifier, internal use",
+            "type": "string"
+        }, 
+        "authorship": {
+            "type": "array",
+            "items": {
+        		"title": "Authorship Entry",
+        		"type": "object",
+        		"required": ["cap_profile_id", "featured", "status", "visibility"],
+        		"properties": {
+            		"cap_profile_id": {
+                		"description": "The unique identifier for the author in the CAP system.",
+                		"type": "number"
+                	},
+                	"featured": {
+                		"description": "Marks the publication for featured presentation.",
+                		"type": "boolean"
+                	}
+                	,
+                	"status": {
+                		"description": "Marks the publication for featured presentation.",
+                		"enum": [ "new", "approved", "rejected" ]
+                	},
+                	"visibility": {
+                		"description": "Marks the publication for featured presentation.",
+                		"enum": [ "visible", "hidden" ]
+                	}
+                }
+                
+            },
+            "minItems": 1,
+            "uniqueItems": true
+        },
+        "author": {
+            "type": "array",
+            "items": {
+        		"title": "Authorship Entry",
+        		"type": "object",
+        		"required": ["name"],
+        		"properties": {
+            		"name": {
+                		"description": "The full name for the author.",
+                		"type": "number"
+                	},
+                	"alternate": {
+                		"description": "Alternate form of name, e.g., Smith, Jack, Smith, Johnny",
+                		"type": "array",
+                		"items":{
+                			"type": "string"
+            			},
+            			"minItems": 1,
+            			"uniqueItems": true
+                	},
+                	"lastname": {
+                		"type": "string"
+                	},
+                	"firstname": {
+                		"description": "First name or initial.",
+                		"type": "string"
+                	},
+                	"middlename": {
+                		"description": "Middle name or initial.",
+                		"type": "string"
+                	}
+                }
+            },
+            "minItems": 1,
+            "uniqueItems": true
+        },
+        "identifier": {
+            "type": "array",
+            "items": {
+        		"title": "Identifiers for the article.",
+        		"type": "object",
+        		"required": ["id", "type"],
+        		"properties": {
+            		"id": {
+                		"description": "The identifier's value.",
+                		"type": "string"
+                	},
+                	"type": {
+                		"description": "The type for the identifier, e.g, isbn, issn, doi, sul_pud_id, cap_profile_id.",
+                		"type": "string"
+                	},
+                	"url": {
+                		"description": "A url that resolves to a representation of the object identified.",
+                		"type": "string"
+                	}
+                }
+            },
+            "uniqueItems": true
+        },
+        "journal": {
+        	"type":"object",
+        	"description":"An object that describes the journal in which the article was published.",
+        	"properties": {
+        		"name": {
+            		"description": "Name of the journal",
+            		"type": "string"
+            	},
+            	"volume": {
+            		"description": "Volume or the Number of the journal in which this article appears.",
+            		"type": "string"
+            	},
+            	"number": {
+            		"description": "Issue number of the journal in which this article appears.",
+            		"type": "string"
+            	},
+        		"specialissue": {
+            		"description": "Indicates that the issue of the journal in which this article appears was a special issue.",
+            		"type": "boolean"
+            		},
+                "year": {
+                	"description": "Year of publication for the journal. May be different from year for article itself.",
+                    "type": "number",
+                    "minimum": 1200,
+                    "maximum": 3000,
+                    "exclusiveMinimum": true,
+                    "exclusiveMaximim": true
+                },
+                "pages": {
+                	"description": "Pages in which article appears in journal.",
+                    "type": "number",
+                    "minimum": 0,
+                    "exclusiveMinimum": true
+                },
+                "supplement": {
+                    "description": "Name of the supplement.",
+                    "type": "string"
+                },
+                "identifier": {
+                    		"type": "array",
+        					"uniqueItems": true,
+                    		"items": {
+        						"title": "Identifiers for the journal.",
+        						"type": "object",
+        						"required": ["id", "type"],
+        						"properties": {
+        							"id": {
+        								"description": "The identifier's value.",
+        								"type": "string"
+        							},
+        							"type": {
+        								"description": "The type for the identifier, e.g, isbn, issn, doi, sul_pud_id, cap_profile_id.",
+        								"type": "string"
+        							}
+        							,
+        							"url": {
+        								"description": "A url that resolves to a representation of the object identified.",
+        								"type": "string"
+        							}
+        						}
+        					}
+				}
+        	} 
+        }
+    }
+}

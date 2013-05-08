@@ -107,6 +107,7 @@ ActiveRecord::Schema.define(:version => 20130222202128) do
     t.string   "source_data_type"
     t.boolean  "is_active"
     t.boolean  "is_local_only"
+    t.string   "source_fingerprint"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
   end

@@ -1,6 +1,13 @@
 
 require 'cap_initial_ingest'
+#require 'activerecord-import'
 
+
+#books = []
+#10.times do |i| 
+#  books << Book.new(:name => "book #{i}")
+#end
+#Book.import books
 
 namespace :cap do
 

@@ -31,6 +31,17 @@ end
     end     
   end
 
+  class API_schemas < Grape::API
+    version 'v1', :using => :header, :vendor => 'sul', :format => :json
+    format :json
+    rescue_from :all, :backtrace => true
+    
+    get(:book) {IO.read(Rails.root.join('app', 'data', 'json_schemas', 'article.json')) }
+    get(:article) { IO.read(Rails.root.join('app', 'data', 'json_schemas', 'book.json')) }
+    get(:inproceedings) {IO.read(Rails.root.join('app', 'data', 'json_schemas', 'inproceedings.json')) }
+   
+  end
+
   class API_samples < Grape::API
     version 'v1', :using => :header, :vendor => 'sul', :format => :json
     format :json
@@ -62,7 +73,7 @@ end
 
     version 'v1', :using => :header, :vendor => 'sul', :cascade => false
     format :json
-    rescue_from :all, :backtrace => true
+    #rescue_from :all, :backtrace => true
     
     #rescue_from :all do |e|
     #    rack_response({ :message => "rescued from #{e.class.name}" })
@@ -82,6 +93,7 @@ helpers do
         records: records
     }
   end
+
   include Sciencewire
 end
 
@@ -131,13 +143,10 @@ get :sourcelookup do
     get do
       error!('Unauthorized', 401) unless env['HTTP_CAPKEY'] == '***REMOVED***'
       matching_records = []
-
       population = params[:population] || Settings.cap_population_name
       changedSince = params[:changedSince] || "1000-01-01"
       capProfileId = params[:capProfileId]
-
       population.downcase!
-
       if capProfileId.blank?
         description = "Records for population '" + population + "' that have changed since " + changedSince
         Publication.find_each(
@@ -158,17 +167,27 @@ get :sourcelookup do
       wrap_as_bibjson_collection(description, env["ORIGINAL_FULLPATH"].to_s, matching_records)
     end
 
+#With a parser, parsed data is available "as-is" in env['api.request.body']. 
+#Without a parser, data is available "as-is" and in env['api.request.input'].
 
     content_type :json, "application/json"
-   # content_type :bibtex, "text/bibliography"
-    #parser :bibtex, BibTexParser
     parser :json, BibJSONParser
     post do        
-      error!('Unauthorized', 401) unless env['HTTP_CAPKEY'] == '***REMOVED***'       
-      Publication.build_new_manual_publication(Settings.cap_provenance, params[:pub_hash]).pub_hash
-      #puts "submitted data: " + env['api.request.body'].to_s
-      #puts "parse data: " + BibTeX.parse(env['api.request.input'])[:pickaxe].to_s
-      #puts params[:value][:pickaxe].to_s
+      error!('Unauthorized', 401) unless env['HTTP_CAPKEY'] == '***REMOVED***'    
+      #request_body = env['api.request.body'] 
+      request_body_unparsed = env['api.request.input']
+      #puts "the body: " + request_body.to_s
+      #puts "and unparsed: " + request_body_unparsed.to_s
+      fingerprint = Digest::SHA2.hexdigest(request_body_unparsed)
+      #puts "the fingerprint: " + fingerprint
+      existingRecord = SourceRecord.where(source_fingerprint: fingerprint, source_name: Settings.manual_source).first
+      unless existingRecord.nil?  
+        header "Location", env["REQUEST_URI"] + "/" + existingRecord.publication_id.to_s
+        error!('See Other - duplicate post', 303)     
+      end
+      pub = Publication.build_new_manual_publication(Settings.cap_provenance, params[:pub_hash], request_body_unparsed)
+      header "Location", env["REQUEST_URI"].to_s + "/" + pub.id.to_s
+      pub.pub_hash
     end
 
 
@@ -176,11 +195,19 @@ get :sourcelookup do
     parser :json, BibJSONParser
     put ':id' do
       error!('Unauthorized', 401) unless env['HTTP_CAPKEY'] == '***REMOVED***'
+      #the last known etag must be sent in the 'if-match' header, returning 412 “Precondition Failed” if etags don't match, 
+      #and a 428 "Precondition Required" if the if-match header isn't supplied
       pub = Publication.find(params[:id])
       if pub.nil?
         error!({ "error" => "No such publication", "detail" => "You've requested a non-existant publication." }, 404)
+      elsif pub.deleted 
+        error!("Gone - old resource probably deleted.", 410)
       elsif pub.source_records.exists?(:is_local_only => false) 
         error!({ "error" => "This record may not be modified.  If you had originally entered details for the record, it has been superceded by a central record.", "detail" => "missing widget" }, 403)
+      elsif request.env["HTTP_IF_MATCH"].blank?
+        error!("Precondition Required", 428) 
+      elsif request.env["HTTP_IF_MATCH"] != pub.updated_at
+        error!("Precondition Failed", 412) 
       else
         pub.update_manual_pub_from_pub_hash(params[:pub_hash], Settings.cap_provenance)
         pub.pub_hash
@@ -190,7 +217,13 @@ get :sourcelookup do
 
     get ':id' do
       error!('Unauthorized', 401) unless env['HTTP_CAPKEY'] == '***REMOVED***'
-      Publication.find(params[:id]).pub_hash
+      pub = Publication.find_by_id(params[:id])
+      if pub.nil? 
+        error!("Not Found", 404) 
+      elsif pub.deleted 
+        error!("Gone - old resource probably deleted.", 410)
+      end
+      pub.pub_hash
     end
 
 

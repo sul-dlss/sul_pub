@@ -24,7 +24,7 @@ class Publication < ActiveRecord::Base
       pub
   end
 
-def self.build_new_manual_publication(provenance, pub_hash)
+def self.build_new_manual_publication(provenance, pub_hash, original_source_string)
 
     is_active = true
     pub_hash[:provenance] = provenance
@@ -33,12 +33,12 @@ def self.build_new_manual_publication(provenance, pub_hash)
     
     # todo:  have to look at deleting old identifiers, old contribution info.
     original_source_id = nil
-    pub.save_source_record(pub_hash.to_s, Settings.manual_source, original_source_id, is_active)
+    pub.save_source_record(original_source_string, Settings.manual_source, original_source_id, is_active)
     pub.sync_publication_hash_and_db
     pub
   end
 
-def update_manual_pub_from_pub_hash(incoming_pub_hash, provenance)
+def update_manual_pub_from_pub_hash(incoming_pub_hash, provenance, original_source_string)
     
     is_active = true
     incoming_pub_hash[:provenance] = provenance
@@ -47,7 +47,7 @@ def update_manual_pub_from_pub_hash(incoming_pub_hash, provenance)
     self.pub_hash = incoming_pub_hash
     original_source_id = nil
 
-    save_source_record(incoming_pub_hash.to_s, Settings.manual_source, original_source_id, is_active)
+    save_source_record(original_source_string, Settings.manual_source, original_source_id, is_active)
     
     sync_publication_hash_and_db
     
@@ -59,11 +59,13 @@ def save_source_record(data_to_save, source_name, source_record_id, is_active)
     else
         is_local_only = false
     end
+ 
     source_record = source_records.where(:original_source_id => source_record_id, :source_name => source_name).
     first_or_create(
       :title => title, :year => year, :is_local_only => is_local_only, :is_active => is_active
     )
     source_record.source_data = data_to_save
+    source_record.source_fingerprint = Digest::SHA2.hexdigest(data_to_save)
     source_record.save
   end
 
@@ -127,16 +129,43 @@ def update_formatted_citations
     authors.each do |author|
       last_name = ""
       rest_of_name = ""
-      author[:name].split(',').each_with_index do |name_part, index|
-        if index == 0
-          last_name = name_part
-        elsif name_part.length == 1
-          rest_of_name << ' ' << name_part << '.'
-        elsif name_part.length > 1
-          rest_of_name << ' ' << name_part
+      
+      # use parsed name parts if available
+      unless author[:lastname].blank?
+        last_name = author[:lastname]
+        unless author[:firstname].blank?
+          if author[:firstname].length = 1 
+            rest_of_name << ' ' << author[:firstname] << '.'
+          else
+            rest_of_name << ' ' <<  author[:firstname]
+          end
+        end
+        unless author[:middlename].blank?
+          if author[:middlename].length = 1 
+            rest_of_name << ' ' << author[:middlename] << '.'
+          else
+            rest_of_name << ' ' <<  author[:middlename]
+          end
         end
       end
-      authors_for_citeproc << {"family" => last_name, "given" => rest_of_name}
+
+      # use name otherwise and if available
+      if last_name.blank? && ! author[:name].blank?
+        author[:name].split(',').each_with_index do |name_part, index|
+          if index == 0
+            last_name = name_part
+          elsif name_part.length == 1
+            # the name part is only one character so an initial
+            rest_of_name << ' ' << name_part << '.'
+          elsif name_part.length > 1
+            rest_of_name << ' ' << name_part
+          end
+        end
+      end
+
+      unless last_name.blank? 
+        authors_for_citeproc << {"family" => last_name, "given" => rest_of_name}
+      end
     end
 
     
@@ -238,8 +267,8 @@ def sync_contributions
 end
 
 def add_any_new_contribution_info_to_db
-  unless pub_hash[:contributions].nil?
-    pub_hash[:contributions].each do |contrib|
+  unless pub_hash[:authorship].nil?
+    pub_hash[:authorship].each do |contrib|
               cap_profile_id = contrib[:cap_profile_id]
               sul_author_id = contrib[:sul_author_id] || Author.where(cap_profile_id: cap_profile_id).first.id
               contrib_status = contrib[:status]
@@ -263,7 +292,7 @@ end
          :status => contrib_in_db.confirmed_status}
 
         end
-    pub_hash[:contributions] = contributions
+    pub_hash[:authorship] = contributions
   end
 
 
