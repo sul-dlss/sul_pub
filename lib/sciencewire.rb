@@ -17,11 +17,16 @@ include Pubmed
 @@sw_book_type_strings ||= Settings.sw_doc_type_mappings.book.split(',')
 
 #harverst sciencewire records using author information
+
 def harvest_author_pubs_from_sciencewire()
     #Author.find_each(:batch_size => 100) do |author|
-      random = rand(Author.count - 50)
-      puts "The random value for the offset: " + random.to_s
-      Author.limit(5).offset(random).each do |author|
+     random = rand(Author.count - 50)
+    #  puts "The random value for the offset: " + random.to_s
+      # , email: "cslevin@stanford.edu"
+    #  author = Author.new(:pubmed_last_name => "levin", pubmed_first_initial: "c", pubmed_middle_initial: "s", sunetid: "cslevin")
+     author = Author.new(:pubmed_last_name => "lee", pubmed_first_initial: "j", pubmed_middle_initial: "t", sunetid: "jtlee")
+    
+     # Author.limit(5).offset(random).each do |author|
       last_name = author.pubmed_last_name
       first_name = author.pubmed_first_initial
       middle_name = author.pubmed_middle_initial
@@ -30,22 +35,22 @@ def harvest_author_pubs_from_sciencewire()
 
       seed_list = author.approved_publications.collect { | pub | pub.publication_identifiers.where("identifier_type = 'PublicationItemID'").first }
      
-      contrib_status = 'new'
+      contrib_status = 'NEW'
       pubmed_data_for_pmid_batch = nil
       email_list = []
       email_list << email unless email.nil?
       sw_records_doc = get_sw_guesses(last_name, first_name, middle_name, email_list, seed_list)
       sw_records_doc.xpath('//PublicationItem').each do |sw_doc|
        # ActiveRecord::Base.transaction do
-        create_or_update_pub_from_sw_doc(sw_doc, contrib_status, pubmed_data_for_pmid_batch, author)
+      create_or_update_pub_from_sw_doc(sw_doc, contrib_status, pubmed_data_for_pmid_batch, author)    
       #  end # transaction end
       end 
-    end 
+    #end 
   end
 
   def create_or_update_pub_from_sw_doc(incoming_sw_xml_doc, contrib_status, pubmed_data_for_pmid_batch, author)
 
-puts "in create or update from sw_doc "
+#puts "in create or update from sw_doc "
     pub_hash = convert_sw_publication_doc_to_hash(incoming_sw_xml_doc) 
     pmid = pub_hash[:pmid]
 
@@ -67,8 +72,8 @@ puts "in create or update from sw_doc "
       existing_sw_source_record.source_data = incoming_sw_xml_doc.to_xml    
       existing_sw_source_record.publication.add_contribution(author.cap_profile_id, author.id, contrib_status)
       existing_sw_source_record.save
-
     end
+
 
   end
 
@@ -113,6 +118,7 @@ end
     record_as_hash[:documenttypes_sw] = publication.xpath("DocumentTypeList").text.split('|')
     sul_document_type = lookup_sw_doc_type(record_as_hash[:documenttypes_sw])
     record_as_hash[:type] = sul_document_type
+
     record_as_hash[:documentcategory_sw] = publication.xpath("DocumentCategory").text unless publication.xpath("DocumentCategory").blank?
     record_as_hash[:publicationimpactfactorlist_sw] = publication.xpath('PublicationImpactFactorList').text.split('|')  unless publication.xpath("PublicationImpactFactorList").blank?
     record_as_hash[:publicationcategoryrankinglist_sw] = publication.xpath('PublicationCategoryRankingList').text.split('|')  unless publication.xpath("PublicationCategoryRankingList").blank?

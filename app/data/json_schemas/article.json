@@ -154,29 +154,31 @@
         "authorship": {
             "type": "array",
             "items": {
-        		"title": "Authorship Entry",
-        		"type": "object",
-        		"required": ["cap_profile_id", "featured", "status", "visibility"],
-        		"properties": {
-            		"cap_profile_id": {
-                		"description": "The unique identifier for the author in the CAP system.",
-                		"type": "number"
-                	},
-                	"featured": {
-                		"description": "Marks the publication for featured presentation.",
-                		"type": "boolean"
-                	}
-                	,
-                	"status": {
-                		"description": "Marks the publication for featured presentation.",
-                		"enum": [ "new", "approved", "rejected" ]
-                	},
-                	"visibility": {
-                		"description": "Marks the publication for featured presentation.",
-                		"enum": [ "visible", "hidden" ]
-                	}
-                }
-                
+                "title": "Authorship Entry - at least one of the profileIds must be provided.",
+                "type": "object",
+                "required": ["cap_profile_id", "featured", "status", "visibility"],
+                "properties": {
+                    "cap_profile_id": {
+                        "description": "The unique identifier for the author in the CAP system.",
+                        "type": "number"
+                    },
+                    "sul_author_id": {
+                        "description": "The unique identifier for the author in the SUL system.",
+                        "type": "number"
+                    },
+                    "featured": {
+                        "description": "Marks the publication for featured presentation.",
+                        "type": "boolean"
+                    },
+                    "status": {
+                        "description": "Marks the status of the publication.  UNKNOWN indicates legacy data for which ",
+                        "enum": [ "NEW", "APPROVED", "DENIED", "UNKNOWN" ]
+                    },
+                    "visibility": {
+                        "description": "Indicates whether this author would like to freely display the publication, only show it at Stanford, or hide it.",
+                        "enum": [ "PRIVATE", "STANFORD", "PUBLIC" ]
+                    }
+                }               
             },
             "minItems": 1,
             "uniqueItems": true

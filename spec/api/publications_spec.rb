@@ -1,9 +1,17 @@
 require 'spec_helper'
 
+describe '#type_id' do
+  let(:resource) { FactoryGirl.create :device }
+  let(:type)     { Type.find resource.type_id }
+
+  it 'sets the type_id field' do
+    resource.type_id.should == type.id
+  end
+end
 
 before do
-  @publication1 = FactoryGirl.create!(:publication)
-  @publication2 = Publication.build_new_manual_publication(Settings.cap_provenance, FactoryGirl.attributes_for(:publication))
+  let(:publication1) { FactoryGirl.create(:publication) }
+  let(:publication2) { Publication.build_new_manual_publication(Settings.cap_provenance, FactoryGirl.attributes_for(:publication)) }
   @publication3 = FactoryGirl.create(:publication) do |pub|
       pub.contributions.create(attributes_for(:contribution))
       pub.publication_identifiers.create(attributes_for(:publication_identifer))

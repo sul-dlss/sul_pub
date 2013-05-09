@@ -38,14 +38,14 @@ module Pubmed
 	def pull_records_from_pubmed(pmid_list)
 
 			pmidValuesForPost = pmid_list.collect { |pmid| "&id=#{pmid}"}.join
-	     	puts pmidValuesForPost
+	     	# puts pmidValuesForPost
 			http = Net::HTTP.new("eutils.ncbi.nlm.nih.gov")
 			
 			request = Net::HTTP::Post.new("/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml")
 			request.body = pmidValuesForPost
 			response = http.request(request)
 			xml_doc = Nokogiri::XML(response.body)
-			puts xml_doc.to_xml
+		#	puts xml_doc.to_xml
 			
 	end
 end

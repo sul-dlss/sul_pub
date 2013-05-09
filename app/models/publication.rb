@@ -21,6 +21,9 @@ class Publication < ActiveRecord::Base
       pub.save_source_record(sw_xml_doc.to_xml, Settings.sciencewire_source, sciencewire_source_id, is_active)    
       
       pub.sync_publication_hash_and_db
+      puts "SUL doctype: " + pub_hash[:type]
+      puts "SW doctypes: " + pub_hash[:documenttypes_sw].to_s
+      puts "sulpudid: " + pub.id.to_s
       pub
   end
 
@@ -31,7 +34,7 @@ def self.build_new_manual_publication(provenance, pub_hash, original_source_stri
 
     pub = Publication.create(active: is_active, title: pub_hash[:title], year: pub_hash[:year], pub_hash: pub_hash)
     
-    # todo:  have to look at deleting old identifiers, old contribution info.
+    # todo:  have to look at deleting old identifiers, old contribution info.  i.e, how to correct errors.
     original_source_id = nil
     pub.save_source_record(original_source_string, Settings.manual_source, original_source_id, is_active)
     pub.sync_publication_hash_and_db
@@ -83,8 +86,8 @@ def add_pubmed_data(pubmed_data)
         if pubmed_data.nil? 
           pubmed_data = get_mesh_and_abstract_from_pubmed([pmid])[pmid]
         end     
-        puts "the pubmed data: "
-        puts pubmed_data.to_s
+     #   puts "the pubmed data: "
+      #  puts pubmed_data.to_s
         self.pub_hash[:mesh_headings] = pubmed_data[:mesh] unless pubmed_data[:mesh].blank?
         self.pub_hash[:abstract] = pubmed_data[:abstract] unless pubmed_data[:abstract].blank?
       end
@@ -134,7 +137,7 @@ def update_formatted_citations
       unless author[:lastname].blank?
         last_name = author[:lastname]
         unless author[:firstname].blank?
-          if author[:firstname].length = 1 
+          if author[:firstname].length == 1 
             rest_of_name << ' ' << author[:firstname] << '.'
           else
             rest_of_name << ' ' <<  author[:firstname]
@@ -172,15 +175,38 @@ def update_formatted_citations
     cit_data_hash = {"id" => "test89",
                  "type"=>pub_hash[:type],
                  "author"=>authors_for_citeproc,
-                 "title"=>pub_hash[:title],
-                 "issued"=>{"date-parts"=>[[pub_hash[:year]]]}
+                 "title"=>pub_hash[:title]
+                 
                  }
+
+    
+    
+    
     cit_data_hash["abstract"] = pub_hash[:abstract] unless pub_hash[:abstract].blank?
-    if pub_hash.has_key?(:journal)
-            cit_data_hash["container-title"] = pub_hash[:journal][:name] unless pub_hash[:journal][:name].blank?
-            cit_data_hash["volume"] = pub_hash[:journal][:volume] unless pub_hash[:journal][:volume].blank?
-            cit_data_hash["issue"] = pub_hash[:journal][:issue] unless pub_hash[:journal][:issue].blank?             
-    end     
+
+  # add series information if it exists
+  if pub_hash.has_key?(:series)
+    cit_data_hash["container-title"] = pub_hash[:series][:title] unless pub_hash[:series][:title].blank?
+    cit_data_hash["volume"] = pub_hash[:series][:volume] unless pub_hash[:series][:volume].blank?
+    cit_data_hash["issue"] = pub_hash[:series][:number] unless pub_hash[:series][:number].blank?  
+    cit_data_hash["issued"]  = {"date-parts"=>[[pub_hash[:series][:year]]]} unless pub_hash[:series][:year].blank?
+ end
+ # add journal information if it exists
+ if pub_hash.has_key?(:journal)
+    cit_data_hash["container-title"] = pub_hash[:journal][:name] unless pub_hash[:journal][:name].blank?
+    cit_data_hash["volume"] = pub_hash[:journal][:volume] unless pub_hash[:journal][:volume].blank?
+    cit_data_hash["issue"] = pub_hash[:journal][:issue] unless pub_hash[:journal][:issue].blank?  
+    cit_data_hash["issued"]  = {"date-parts"=>[[pub_hash[:journal][:year]]]} unless pub_hash[:journal][:year].blank?
+  end    
+  # use a year at the top level if it exists, i.e, override any year we'd gotten above from journal or series
+  cit_data_hash["issued"]  = {"date-parts"=>[[pub_hash[:year]]]} unless pub_hash[:year].blank?
+  # add book title if it exists, which indicates this pub is a chapter in the book
+  cit_data_hash["container-title"] = pub_hash[:booktitle] unless pub_hash[:booktitle].blank?  
+       
+        
+        puts "XXXXXXXXXXXX citation data hash"
+        puts cit_data_hash.to_s
+
     cit_data_array = [cit_data_hash]         
 
     # chicago_citation = CiteProc.process(cit, :style => 'https://github.com/citation-style-language/styles/raw/master/chicago-author-date.csl', :format => 'html')

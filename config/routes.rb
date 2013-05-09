@@ -4,7 +4,7 @@ Sulbib::Application.routes.draw do
 
   mount SulBib::API => "/publications"
   mount SulBib::API_samples => "/samples"
-  mount SulBib::API_schemas => "/schemas"
+  #mount SulBib::API_schemas => "/schemas"
   #mount SulBib::API_authors => "/authors"
 
   root to: 'static_pages#api'
@@ -16,6 +16,10 @@ Sulbib::Application.routes.draw do
   get 'static_pages/queryapi'
   get 'static_pages/pollapi'
   get 'static_pages/bibtex'
+
+  get 'schemas/book'
+  get 'schemas/article'
+  get 'schemas/inproceedings'
   #resources :profiles
 
  # get "people/index"
