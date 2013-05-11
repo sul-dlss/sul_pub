@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(:version => 20130222202128) do
     t.string   "sunetid"
     t.integer  "university_id"
     t.integer  "shc_doctor_no"
+    t.string   "email"
     t.string   "ca_license_number"
     t.string   "cap_first_name"
     t.string   "cap_last_name"
@@ -60,9 +61,11 @@ ActiveRecord::Schema.define(:version => 20130222202128) do
     t.integer  "author_id"
     t.integer  "cap_profile_id"
     t.integer  "publication_id"
-    t.string   "confirmed_status"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.string   "status"
+    t.boolean  "featured"
+    t.string   "visibility"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
   create_table "population_memberships", :force => true do |t|

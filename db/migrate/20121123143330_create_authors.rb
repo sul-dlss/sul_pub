@@ -5,6 +5,7 @@ class CreateAuthors < ActiveRecord::Migration
       t.string :sunetid
       t.integer :university_id
       t.integer :shc_doctor_no
+      t.string :email
       t.string :ca_license_number
       t.string :cap_first_name
       t.string :cap_last_name

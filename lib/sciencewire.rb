@@ -24,33 +24,35 @@ def harvest_author_pubs_from_sciencewire()
     #  puts "The random value for the offset: " + random.to_s
       # , email: "cslevin@stanford.edu"
     #  author = Author.new(:pubmed_last_name => "levin", pubmed_first_initial: "c", pubmed_middle_initial: "s", sunetid: "cslevin")
-     author = Author.new(:pubmed_last_name => "lee", pubmed_first_initial: "j", pubmed_middle_initial: "t", sunetid: "jtlee")
+     #author = Author.new(:pubmed_last_name => "lee", pubmed_first_initial: "j", pubmed_middle_initial: "t", sunetid: "jtlee")
     
-     # Author.limit(5).offset(random).each do |author|
-      last_name = author.pubmed_last_name
-      first_name = author.pubmed_first_initial
-      middle_name = author.pubmed_middle_initial
+      Author.limit(5).offset(random).each do |author|
+      last_name = author.official_last_name
+      first_name = author.official_first_name
+      middle_name = author.official_middle_name
       profile_id = author.cap_profile_id
       email = author.sunetid + "@stanford.edu"
 
       seed_list = author.approved_publications.collect { | pub | pub.publication_identifiers.where("identifier_type = 'PublicationItemID'").first }
      
-      contrib_status = 'NEW'
+      status = 'NEW'
+      visibility = "private"
+      featured = false
       pubmed_data_for_pmid_batch = nil
       email_list = []
       email_list << email unless email.nil?
       sw_records_doc = get_sw_guesses(last_name, first_name, middle_name, email_list, seed_list)
       sw_records_doc.xpath('//PublicationItem').each do |sw_doc|
        # ActiveRecord::Base.transaction do
-      create_or_update_pub_from_sw_doc(sw_doc, contrib_status, pubmed_data_for_pmid_batch, author)    
+      create_or_update_pub_from_sw_doc(sw_doc, status, visibility, featured, pubmed_data_for_pmid_batch, author)    
       #  end # transaction end
       end 
-    #end 
+    end 
   end
 
-  def create_or_update_pub_from_sw_doc(incoming_sw_xml_doc, contrib_status, pubmed_data_for_pmid_batch, author)
+  def create_or_update_pub_from_sw_doc(incoming_sw_xml_doc, status, visibility, featured, pubmed_data_for_pmid_batch, author)
 
-#puts "in create or update from sw_doc "
+    
     pub_hash = convert_sw_publication_doc_to_hash(incoming_sw_xml_doc) 
     pmid = pub_hash[:pmid]
 
@@ -65,12 +67,13 @@ def harvest_author_pubs_from_sciencewire()
       else
         pubmed_data_for_this_pub = nil
       end
-      Publication.build_new_sciencewire_publication(pub_hash, incoming_sw_xml_doc, pubmed_data_for_this_pub, author, contrib_status)
+      Publication.build_new_sciencewire_publication(pub_hash, incoming_sw_xml_doc, pubmed_data_for_this_pub, author, status, visibility, featured)
 
-    elsif source_data_has_changed?(existing_sw_source_record, incoming_sw_xml_doc)
-      
-      existing_sw_source_record.source_data = incoming_sw_xml_doc.to_xml    
-      existing_sw_source_record.publication.add_contribution(author.cap_profile_id, author.id, contrib_status)
+    else
+      if source_data_has_changed?(existing_sw_source_record, incoming_sw_xml_doc)        
+        existing_sw_source_record.source_data = incoming_sw_xml_doc.to_xml    
+      end
+      existing_sw_source_record.publication.add_contribution(author.cap_profile_id, author.id, status, visibility, featured)  
       existing_sw_source_record.save
     end
 
@@ -268,6 +271,7 @@ end
 end
 
 def pull_records_from_sciencewire_for_pmids(pmid_list)
+
   pmidValuesAsXML = pmid_list.collect { |pmid| "&lt;Value&gt;#{pmid}&lt;/Value&gt;"}.join
   xml_query = '&lt;query xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
             &lt;Criterion ConjunctionOperator="AND"&gt;
@@ -291,6 +295,7 @@ def pull_records_from_sciencewire_for_pmids(pmid_list)
             &lt;/Columns&gt;
             &lt;MaximumRows&gt;500&lt;/MaximumRows&gt;
           &lt;/query&gt;'
+         
       query_sciencewire(xml_query)
 end
 

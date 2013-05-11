@@ -4,7 +4,9 @@ class CreateContributions < ActiveRecord::Migration
       t.integer :author_id
       t.integer :cap_profile_id
       t.integer :publication_id
-      t.string :confirmed_status
+      t.string :status
+      t.boolean :featured
+      t.string :visibility
 
       t.timestamps
     end

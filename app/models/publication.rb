@@ -8,37 +8,43 @@ class Publication < ActiveRecord::Base
   
   serialize :pub_hash, Hash
   
-  def self.build_new_sciencewire_publication(pub_hash, sw_xml_doc, pubmed_data, author, contrib_status)
+  def self.build_new_sciencewire_publication(pub_hash, sw_xml_doc, pubmed_data, author, status, visibility, featured)
 
       is_active = true
 
       pub = Publication.create(active: is_active, title: pub_hash[:title], pub_hash: pub_hash, year: pub_hash[:year])
 
       pub.add_pubmed_data(pubmed_data)
-      pub.add_contribution_to_db(author.id, author.cap_profile_id, contrib_status)
+      pub.add_contribution_to_db(author.id, author.cap_profile_id, status, visibility, featured)
       
       sciencewire_source_id = pub_hash[:sw_id]
       pub.save_source_record(sw_xml_doc.to_xml, Settings.sciencewire_source, sciencewire_source_id, is_active)    
       
       pub.sync_publication_hash_and_db
-      puts "SUL doctype: " + pub_hash[:type]
-      puts "SW doctypes: " + pub_hash[:documenttypes_sw].to_s
-      puts "sulpudid: " + pub.id.to_s
+      #puts "SUL doctype: " + pub_hash[:type]
+      #puts "SW doctypes: " + pub_hash[:documenttypes_sw].to_s
+      #puts "sulpudid: " + pub.id.to_s
       pub
   end
 
 def self.build_new_manual_publication(provenance, pub_hash, original_source_string)
 
-    is_active = true
-    pub_hash[:provenance] = provenance
+    fingerprint = Digest::SHA2.hexdigest(original_source_string)
+    existingRecord = SourceRecord.where(source_fingerprint: fingerprint, source_name: Settings.manual_source).first
+    unless existingRecord.nil?  
+      existingRecord.publication.update_manual_pub_from_pub_hash(pub_hash, provenance, original_source_string)
+    else
+      is_active = true
+      pub_hash[:provenance] = provenance
 
-    pub = Publication.create(active: is_active, title: pub_hash[:title], year: pub_hash[:year], pub_hash: pub_hash)
-    
-    # todo:  have to look at deleting old identifiers, old contribution info.  i.e, how to correct errors.
-    original_source_id = nil
-    pub.save_source_record(original_source_string, Settings.manual_source, original_source_id, is_active)
-    pub.sync_publication_hash_and_db
-    pub
+      pub = Publication.create(active: is_active, title: pub_hash[:title], year: pub_hash[:year], pub_hash: pub_hash)
+      
+      # todo:  have to look at deleting old identifiers, old contribution info.  i.e, how to correct errors.
+      original_source_id = nil
+      pub.save_source_record(original_source_string, Settings.manual_source, original_source_id, is_active)
+      pub.sync_publication_hash_and_db
+      pub
+    end
   end
 
 def update_manual_pub_from_pub_hash(incoming_pub_hash, provenance, original_source_string)
@@ -73,8 +79,8 @@ def save_source_record(data_to_save, source_name, source_record_id, is_active)
   end
 
 
-def add_contribution(cap_profile_id, sul_author_id, contrib_status)
-      self.pub_hash[:contributions] = [ {:cap_profile_id => cap_profile_id, :sul_author_id => sul_author_id, :status => contrib_status}]
+def add_contribution(cap_profile_id, sul_author_id, status, visibility, featured)
+      self.pub_hash[:contributions] = [ {:cap_profile_id => cap_profile_id, :sul_author_id => sul_author_id, :status => status, visibility: visibility, featured: featured}]
       sync_publication_hash_and_db
 end
 
@@ -82,7 +88,7 @@ def add_pubmed_data(pubmed_data)
       pmid = self.pub_hash[:pmid]
 
       unless pmid.blank?
-         puts "the pmid: " + pmid.to_s
+        # puts "the pmid: " + pmid.to_s
         if pubmed_data.nil? 
           pubmed_data = get_mesh_and_abstract_from_pubmed([pmid])[pmid]
         end     
@@ -204,8 +210,8 @@ def update_formatted_citations
   cit_data_hash["container-title"] = pub_hash[:booktitle] unless pub_hash[:booktitle].blank?  
        
         
-        puts "XXXXXXXXXXXX citation data hash"
-        puts cit_data_hash.to_s
+      #  puts "XXXXXXXXXXXX citation data hash"
+       # puts cit_data_hash.to_s
 
     cit_data_array = [cit_data_hash]         
 
@@ -297,16 +303,20 @@ def add_any_new_contribution_info_to_db
     pub_hash[:authorship].each do |contrib|
               cap_profile_id = contrib[:cap_profile_id]
               sul_author_id = contrib[:sul_author_id] || Author.where(cap_profile_id: cap_profile_id).first.id
-              contrib_status = contrib[:status]
-              add_contribution_to_db(sul_author_id, cap_profile_id, contrib_status)
+              status = contrib[:status]
+              visibility = contrib[:visibility]
+              featured = contrib[:featured]
+              add_contribution_to_db(sul_author_id, cap_profile_id, status, visibility, featured)
     end
   end
 end
 
-  def add_contribution_to_db(author_id, cap_profile_id, contrib_status)
+  def add_contribution_to_db(author_id, cap_profile_id, status, visibility, featured)
     contributions.where(:author_id => author_id).first_or_create(
       cap_profile_id: cap_profile_id,
-    confirmed_status: contrib_status)
+    status: status,
+    visibility: visibility, 
+    featured: featured)
   end
 
   def add_all_known_contributions_to_pub_hash
@@ -315,7 +325,9 @@ end
       contributions <<
         {:cap_profile_id => contrib_in_db.cap_profile_id,
          :sul_author_id => contrib_in_db.author_id,
-         :status => contrib_in_db.confirmed_status}
+         :status => contrib_in_db.status,
+          visibility: contrib_in_db.visibility, 
+        featured: contrib_in_db.featured}
 
         end
     pub_hash[:authorship] = contributions
