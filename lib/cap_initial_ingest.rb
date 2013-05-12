@@ -33,9 +33,10 @@ def create_authors_pubs_and_contributions_for_batch_from_sciencewire_and_pubmed(
     pubmed_data_for_pmid_batch = get_mesh_and_abstract_from_pubmed(pmids)
     sw_records_doc = pull_records_from_sciencewire_for_pmids(pmids)
     #puts sw_records_doc.to_xml
+    count = 0
     sw_records_doc.xpath('//PublicationItem').each do |sw_record_doc|
       pmid = sw_record_doc.xpath("PMID").text
-      count = 0
+      
       #ActiveRecord::Base.transaction do
         begin
           # we delete them as we get them so we can check what's left over.

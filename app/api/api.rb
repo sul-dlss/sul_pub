@@ -150,8 +150,9 @@ get :sourcelookup do
       if capProfileId.blank?
         description = "Records for population '" + population + "' that have changed since " + changedSince
         Publication.find_each(
-          :include => :population_membership,
-          :conditions => "population_memberships.population_name = '" + population + "' AND publications.updated_at > '" + DateTime.parse(changedSince).to_s + "'"      
+          :conditions => "publications.updated_at > '" + DateTime.parse(changedSince).to_s + "'"      
+          #:include => :population_membership,
+          #:conditions => "population_memberships.population_name = '" + population + "' AND publications.updated_at > '" + DateTime.parse(changedSince).to_s + "'"      
           ) do
             | publication | matching_records << publication.pub_hash
         end
