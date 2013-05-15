@@ -15,10 +15,23 @@ module Pubmed
 	    #puts "PubMed call took: " + distance_of_time_in_words_to_now(start_time, include_seconds = true)
 	    #start_time = Time.now
 	    Nokogiri::XML(http.request(request).body).xpath('//PubmedArticle').each do |publication|
-	      pmid = publication.xpath('MedlineCitation/PMID').text
-	      abstract = publication.xpath('MedlineCitation/Article/Abstract/AbstractText').text
-	      mesh_headings_for_record = []
-	      publication.xpath('MedlineCitation/MeshHeadingList/MeshHeading').each do |mesh_heading|
+	      pmid = publication.xpath('//MedlineCitation/PMID').text
+	      abstract = extract_abstract_from_pubmed_record(publication)
+	      mesh_headings_for_record = extract_mesh_headings_from_pubmed_record(publication)
+	      mesh_values_and_abstracts_for_all_records[pmid] = {mesh: mesh_headings_for_record, abstract: abstract}
+	    end
+	   # http.finish
+	    #puts "extracting mesh from pubmed results took: " + distance_of_time_in_words_to_now(start_time, include_seconds = true)
+	    mesh_values_and_abstracts_for_all_records
+	end
+
+	def extract_abstract_from_pubmed_record(publication)
+		publication.xpath('//MedlineCitation/Article/Abstract/AbstractText').text
+	end
+
+	def extract_mesh_headings_from_pubmed_record(publication)
+		mesh_headings_for_record = []
+	      publication.xpath('//MedlineCitation/MeshHeadingList/MeshHeading').each do |mesh_heading|
 	        descriptors = []
 	        qualifiers = []
 	        mesh_heading.xpath('DescriptorName').each do |descriptor_name|
@@ -29,10 +42,43 @@ module Pubmed
 	        end
 	        mesh_headings_for_record << { :descriptor => descriptors, :qualifier => qualifiers }
 	      end
-	      mesh_values_and_abstracts_for_all_records[pmid] = {mesh: mesh_headings_for_record, abstract: abstract}
+	      mesh_headings_for_record
+	end
+
+	def get_and_store_records_from_pubmed(pmids)
+		pmidValuesForPost = pmids.collect { |pmid| "&id=#{pmid}"}.join
+		http = Net::HTTP.new("eutils.ncbi.nlm.nih.gov")	
+		request = Net::HTTP::Post.new("/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml")
+		request.body = pmidValuesForPost
+		http.start
+		the_incoming_xml = http.request(request).body
+		http.finish
+		count = 0
+		source_records = []
+		
+		Nokogiri::XML(the_incoming_xml).xpath('//PubmedArticle').each do |pub_doc|
+	  		pmid = pub_doc.xpath('MedlineCitation/PMID').text
+	  		
+	  		#source_fingerprint = Digest::SHA2.hexdigest(pub_doc)     
+	        begin        
+	          	count += 1
+	          	pmids.delete(pmid)
+	          	source_records << PubmedSourceRecord.new(
+                      :pmid => pmid,
+	                  :source_data => pub_doc.to_xml,
+	                  :is_active => true)
+	          #        :source_fingerprint => source_fingerprint)
+		    rescue Exception => e  
+	          puts e.message  
+	          puts e.backtrace.inspect  
+	          puts "the offending pmid: " + pmid.to_s
+	        end
+	        
 	    end
-	    #puts "extracting mesh from pubmed results took: " + distance_of_time_in_words_to_now(start_time, include_seconds = true)
-	    mesh_values_and_abstracts_for_all_records
+    	puts source_records.length.to_s + " records about to be created."
+    	PubmedSourceRecord.import source_records 
+    	puts count.to_s + " pmids were processed. "
+    	puts pmids.length.to_s + " pmids weren't processed: " 			
 	end
 
 	def pull_records_from_pubmed(pmid_list)
@@ -45,9 +91,66 @@ module Pubmed
 			request.body = pmidValuesForPost
 			response = http.request(request)
 			xml_doc = Nokogiri::XML(response.body)
-		#	puts xml_doc.to_xml
-			
+			#http.finish
+   			xml_doc
 	end
+
+	def convert_pubmed_publication_doc_to_hash(publication)
+ 		#puts publication.to_xml
+	    record_as_hash = Hash.new
+	    pmid = publication.xpath('//MedlineCitation/PMID').text 
+	    
+	    abstract = extract_abstract_from_pubmed_record(publication)
+	    mesh_headings = extract_mesh_headings_from_pubmed_record(publication)
+
+	    record_as_hash[:provenance] = Settings.pubmed_source
+	    record_as_hash[:pmid] = pmid
+
+	    record_as_hash[:title] = publication.xpath("//MedlineCitation/Article/ArticleTitle").text unless publication.xpath("//MedlineCitation/Article/ArticleTitle").blank?
+	    record_as_hash[:abstract] = abstract unless abstract.blank?
+	    
+	    author_array = []
+	    publication.xpath('//MedlineCitation/Article/AuthorList/Author').each do |author|
+	    	author_hash = {}
+	    	author_hash[:lastname] = author.xpath("LastName").text
+			initials = author.xpath("Initials").text.scan(/./)
+	    	author_hash[:middlename] = initials[1] unless initials.length < 2
+	    	author_hash[:firstname] = initials[0] unless initials.length < 1
+	    	author_array << author_hash
+	    end
+	    record_as_hash[:author] = author_array
+
+	    record_as_hash[:mesh_headings] = mesh_headings unless mesh_headings.blank?
+	    record_as_hash[:year] = publication.xpath('//MedlineCitation/Article/Journal/JournalIssue/PubDate/Year').text unless publication.xpath("//MedlineCitation/Article/Journal/JournalIssue/PubDate/Year").blank?
+	    
+	     record_as_hash[:type] = Settings.sul_doc_types.article
+
+	    #record_as_hash[:publisher] =  publication.xpath('//MedlineCitation/Article/').text unless publication.xpath("//MedlineCitation/Article/").blank?
+	    #record_as_hash[:city] = publication.xpath('//MedlineCitation/Article/').text unless publication.xpath("//MedlineCitation/Article/").blank?
+	    #record_as_hash[:stateprovince] = publication.xpath('//MedlineCitation/Article/').text unless publication.xpath("//MedlineCitation/Article/").blank?
+	    record_as_hash[:country] = publication.xpath('//MedlineCitation/MedlineJournalInfo/Country').text unless publication.xpath("//MedlineCitation/MedlineJournalInfo/Country").blank?
+
+		record_as_hash[:pages] = publication.xpath('//MedlineCitation/Article/Pagination/MedlinePgn').text unless publication.xpath("//MedlineCitation/Article/Pagination/MedlinePgn").blank?
+	      
+    	journal_hash = {}   
+		journal_hash[:name] = publication.xpath('//MedlineCitation/Article/Journal/Title').text unless publication.xpath('//MedlineCitation/Article/Journal/Title').blank?
+		journal_hash[:volume] = publication.xpath('//MedlineCitation/Article/Journal/JournalIssue/Volume').text unless publication.xpath('//MedlineCitation/Article/Journal/JournalIssue/Volume').blank?
+		journal_hash[:issue] = publication.xpath('//MedlineCitation/Article/Journal/JournalIssue/Issue').text unless publication.xpath('//MedlineCitation/Article/Journal/JournalIssue/Issue').blank?
+		 # journal_hash[:articlenumber] = publication.xpath('ArticleNumber') unless publication.xpath('ArticleNumber').blank?
+		#  journal_hash[:pages] = publication.xpath('Pagination').text unless publication.xpath('Pagination').blank?
+		journal_identifiers = Array.new
+		journal_identifiers << {:type => 'issn', :id => publication.xpath('//MedlineCitation/Article/Journal/ISSN').text, :url => 'http://searchworks.stanford.edu/?search_field=advanced&number=' + publication.xpath('//MedlineCitation/Article/Journal/ISSN').text} unless publication.xpath('//MedlineCitation/Article/Journal/ISSN').nil?
+		journal_hash[:identifier] = journal_identifiers
+		record_as_hash[:journal] = journal_hash
+    
+	    record_as_hash[:identifier] = [{:type =>'PMID', :id => pmid, :url => 'http://www.ncbi.nlm.nih.gov/pubmed/' + pmid } ]
+	    #puts "the record as hash"
+	    #puts record_as_hash.to_s
+	    record_as_hash
+  end
+
+
+
 end
 
 =begin

@@ -119,8 +119,8 @@ get :sourcelookup do
       sources = source.split('+')
 
       if source.include?(Settings.sciencewire_source)
-        sw_results = query_sciencewire_for_publication(first_name, last_name, middle_name, title, year)
-        all_matching_records.push(*sw_results)
+        all_matching_records = query_sciencewire_for_publication(first_name, last_name, middle_name, title, year)
+        
       end
 
       if source.include?(Settings.manual_source)
@@ -128,12 +128,12 @@ get :sourcelookup do
         #query_hash[:last_name] = last_name unless last_name.empty? 
         #query_hash[:first_name] = first_name unless first_name.empty?
         #query_hash[:middle_name] = middle_name unless middle_name.empty?
-        query_hash[:human_readable_title] = title unless title.blank?
+        query_hash[:title] = title unless title.blank?
         query_hash[:year] = year unless year.blank?
         query_hash[:is_active] = true
-        query_hash[:is_local_only] = true  
+        #query_hash[:is_local_only] = true  
 
-        SourceRecord.where(query_hash).each { |source_record| all_matching_records << source_record.publication.pub_hash }
+        UserSubmittedSourceRecord.where(query_hash).each { |source_record| all_matching_records << source_record.publication.pub_hash }
       end
 
       wrap_as_bibjson_collection("Search results from requested sources: " + source, env["ORIGINAL_FULLPATH"], all_matching_records)
@@ -181,7 +181,7 @@ get :sourcelookup do
       #puts "and unparsed: " + request_body_unparsed.to_s
       fingerprint = Digest::SHA2.hexdigest(request_body_unparsed)
       #puts "the fingerprint: " + fingerprint
-      existingRecord = SourceRecord.where(source_fingerprint: fingerprint, source_name: Settings.manual_source).first
+      existingRecord = UserSubmittedSourceRecord.where(source_fingerprint: fingerprint).first
       unless existingRecord.nil?  
         header "Location", env["REQUEST_URI"] + "/" + existingRecord.publication_id.to_s
         error!('See Other - duplicate post', 303)     
@@ -199,18 +199,20 @@ get :sourcelookup do
       #the last known etag must be sent in the 'if-match' header, returning 412 “Precondition Failed” if etags don't match, 
       #and a 428 "Precondition Required" if the if-match header isn't supplied
       pub = Publication.find(params[:id])
+      puts 'THE request.env["HTTP_IF_MATCH"]' + env["HTTP_IF_MATCH"].to_s 
+      puts 'and the updated at from the pub: ' + pub.updated_at.to_s
       if pub.nil?
         error!({ "error" => "No such publication", "detail" => "You've requested a non-existant publication." }, 404)
       elsif pub.deleted 
         error!("Gone - old resource probably deleted.", 410)
-      elsif pub.source_records.exists?(:is_local_only => false) 
+      elsif (!pub.sciencewire_id.blank?) || (!pub.pmid.blank?)
         error!({ "error" => "This record may not be modified.  If you had originally entered details for the record, it has been superceded by a central record.", "detail" => "missing widget" }, 403)
-      elsif request.env["HTTP_IF_MATCH"].blank?
+      elsif env["HTTP_IF_MATCH"].blank?
         error!("Precondition Required", 428) 
-      elsif request.env["HTTP_IF_MATCH"] != pub.updated_at
+      elsif DateTime.parse(env["HTTP_IF_MATCH"]) != pub.updated_at
         error!("Precondition Failed", 412) 
       else
-        pub.update_manual_pub_from_pub_hash(params[:pub_hash], Settings.cap_provenance)
+        pub.update_manual_pub_from_pub_hash(params[:pub_hash], Settings.cap_provenance, env['api.request.input'])
         pub.pub_hash
       end
     end

@@ -1,6 +1,7 @@
 require 'nokogiri'
 require 'citeproc'
 require 'sciencewire'
+require 'pubmed'
 
 module CapInitialIngest
 
@@ -8,6 +9,7 @@ include Sciencewire
 include Pubmed
 
 extend self
+
 
 def create_authors_pubs_and_contributions_for_hand_entered_pubs(cap_pub_data_for_this_pub)
 
@@ -26,7 +28,64 @@ def create_authors_pubs_and_contributions_for_hand_entered_pubs(cap_pub_data_for
 
       Publication.build_new_manual_publication(provenance, pub_hash, cap_pub_data_for_this_pub.to_s)
                      
+end
+
+def build_pub_from_cap_data(cap_pub_data_for_this_pub)
+
+  pmid = cap_pub_data_for_this_pub[:pubmed_id].to_s
+  cap_profile_id = cap_pub_data_for_this_pub[:profile_id]
+  visibility = cap_pub_data_for_this_pub[:visibility]
+  status = cap_pub_data_for_this_pub[:status]
+  featured = cap_pub_data_for_this_pub[:featured]
+          
+  author = Author.where(cap_profile_id: cap_profile_id).first_or_create(
+      official_first_name: cap_pub_data_for_this_pub[:official_first_name], 
+      official_last_name: cap_pub_data_for_this_pub[:official_last_name], 
+      official_middle_name: cap_pub_data_for_this_pub[:official_middle_name], 
+      sunetid: cap_pub_data_for_this_pub[:sunetid], 
+      university_id: cap_pub_data_for_this_pub[:university_id], 
+      email: cap_pub_data_for_this_pub[:email]
+  )
+  author.population_memberships.where(population_name: Settings.cap_population_name, cap_profile_id: cap_profile_id).first_or_create()
+    
+  pub = Publication.where(pmid: pmid).first
+  
+  if pub.nil?
+      sw_source_record = SciencewireSourceRecord.where(pmid: pmid).first
+      pubmed_source_record = PubmedSourceRecord.where(pmid: pmid).first
+      pubmed_xml_doc = Nokogiri::XML(pubmed_source_record.source_data) unless pubmed_source_record.nil?
+      unless sw_source_record.nil?
+          sw_xml_doc = Nokogiri::XML(sw_source_record.source_data)
+          pub_hash = convert_sw_publication_doc_to_hash(sw_xml_doc)
+          #puts pub_hash.to_s
+          sciencewire_id = pub_hash[:sw_id]
+          unless pubmed_xml_doc.nil?
+            abstract = extract_abstract_from_pubmed_record(pubmed_xml_doc)
+            mesh_headings = extract_mesh_headings_from_pubmed_record(pubmed_xml_doc)
+            pub_hash[:mesh_headings] = mesh_headings unless mesh_headings.blank?
+            pub_hash[:abstract] = abstract unless abstract.blank?
+          end
+      else      
+          pub_hash = convert_pubmed_publication_doc_to_hash(pubmed_xml_doc) unless pubmed_xml_doc.nil?
+      end
+      unless pub_hash.nil?
+        pub = Publication.create(active: true, title: pub_hash[:title], pub_hash: pub_hash, year: pub_hash[:year], pmid: pmid, sciencewire_id: sciencewire_id )    
+      end
   end
+  pub.contributions.where(:author_id => author.id).first_or_create(
+      cap_profile_id: cap_profile_id,
+      status: status,
+      visibility: visibility, 
+      featured: featured)    unless pub.nil?
+
+  pub.sync_publication_hash_and_db unless pub.nil?
+  if pub.nil?
+    puts "nil sw and pubmed record for pmid: " + pmid.to_s
+  end
+  pub
+          
+end
+
 
 #ingest sciencewire records for cap pmid list and generate authors and contributions
 def create_authors_pubs_and_contributions_for_batch_from_sciencewire_and_pubmed(pmids, cap_pub_data_for_this_batch)
@@ -68,6 +127,9 @@ def create_authors_pubs_and_contributions_for_batch_from_sciencewire_and_pubmed(
     puts cap_pub_data_for_this_batch.length.to_s + " pmids weren't processed: " 
     cap_pub_data_for_this_batch.each_key { |k| puts k.to_s}
   end
+
+
+
 
   def convert_manual_publication_row_to_hash(cap_pub_data_for_this_pub, author_id)
 #puts cap_pub_data_for_this_pub.to_s

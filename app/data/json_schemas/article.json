@@ -63,8 +63,41 @@
             "type": "string"
         },
         "mesh_headings": {
-            "description": "The mesh headings for the publication from PubMed",
-            "type": "string"
+            "type": "array",
+            "items": {
+                "title": "mesh entry",
+                "type": "object",
+                "properties": {
+                    "descriptors:":{
+                        "type": "array",
+                        "items" : {
+                            "type": "object",
+                            "properties": {
+                                "major": {
+                                    "enum": [ "Y", "N" ]
+                                },
+                                "name": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "qualifier:":{
+                        "type": "array",
+                        "items" : {
+                            "type": "object",
+                            "properties": {
+                                "major": {
+                                    "enum": [ "Y", "N" ]
+                                },
+                                "name": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         },
         "last_updated": {
             "format": "date-time",

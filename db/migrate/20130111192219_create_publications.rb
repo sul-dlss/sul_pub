@@ -9,6 +9,8 @@ class CreatePublications < ActiveRecord::Migration
       t.integer :lock_version
       t.text :xml
       t.text :pub_hash
+      t.integer :pmid
+      t.integer :sciencewire_id
       t.timestamps
     end
   end

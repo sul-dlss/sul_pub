@@ -17,6 +17,7 @@ gem 'rsolr'
 gem 'rufus-scheduler'
 gem 'settingslogic'
 gem 'smarter_csv'
+gem 'activerecord-import'
 
 group :development, :test do
   gem 'rspec-rails', '2.11.0'

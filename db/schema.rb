@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130222202128) do
+ActiveRecord::Schema.define(:version => 20130513135604) do
 
   create_table "author_identifiers", :force => true do |t|
     t.integer  "author_id"
@@ -95,8 +95,31 @@ ActiveRecord::Schema.define(:version => 20130222202128) do
     t.integer  "lock_version"
     t.text     "xml"
     t.text     "pub_hash"
+    t.integer  "pmid"
+    t.integer  "sciencewire_id"
     t.datetime "created_at",              :null => false
     t.datetime "updated_at",              :null => false
+  end
+
+  create_table "pubmed_source_records", :force => true do |t|
+    t.text     "source_data"
+    t.integer  "pmid"
+    t.integer  "lock_version"
+    t.string   "source_fingerprint"
+    t.boolean  "is_active"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
+  create_table "sciencewire_source_records", :force => true do |t|
+    t.text     "source_data"
+    t.integer  "pmid"
+    t.integer  "sciencewire_id"
+    t.integer  "lock_version"
+    t.string   "source_fingerprint"
+    t.boolean  "is_active"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
   end
 
   create_table "source_records", :force => true do |t|
@@ -111,6 +134,19 @@ ActiveRecord::Schema.define(:version => 20130222202128) do
     t.boolean  "is_active"
     t.boolean  "is_local_only"
     t.string   "source_fingerprint"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
+  create_table "user_submitted_source_records", :force => true do |t|
+    t.text     "source_data"
+    t.integer  "pmid"
+    t.integer  "lock_version"
+    t.string   "source_fingerprint"
+    t.string   "title"
+    t.integer  "year"
+    t.boolean  "is_active"
+    t.integer  "publication_id"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
   end

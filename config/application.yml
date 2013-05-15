@@ -18,7 +18,9 @@ defaults: &defaults
 
   sciencewire_source: sciencewire
 
-  sciencewire_harvest_max: 100
+  pubmed_source: pubmed
+
+  sciencewire_harvest_max: 2
 
 development:
   <<: *defaults

@@ -1,10 +1,12 @@
 class Publication < ActiveRecord::Base
-  attr_accessible :active, :deleted, :title, :year, :pub_hash, :lock_version, :same_as_publication_id, :xml, :updated_at
+  attr_accessible :active, :deleted, :title, :year, :pub_hash, :lock_version, :pmid, :sciencewire_id, :same_as_publication_id, :xml, :updated_at
   has_many :contributions, :dependent => :destroy
   has_many :authors, :through => :contributions
   has_many :publication_identifiers, :dependent => :destroy
-  has_many :source_records
+  has_many :user_submitted_source_records
   has_many :population_membership, :foreign_key => "author_id"
+  #validates_uniqueness_of :pmid
+  #validates_uniqueness_of :sciencewire_id
   
   serialize :pub_hash, Hash
   
@@ -17,9 +19,14 @@ class Publication < ActiveRecord::Base
       pub.add_pubmed_data(pubmed_data)
       pub.add_contribution_to_db(author.id, author.cap_profile_id, status, visibility, featured)
       
-      sciencewire_source_id = pub_hash[:sw_id]
-      pub.save_source_record(sw_xml_doc.to_xml, Settings.sciencewire_source, sciencewire_source_id, is_active)    
-      
+      ScienceWireSourceRecord.where(sciencewire_id: pub_hash[:sw_id]).
+        first_or_create( 
+          :pmid => pub_hash[:pmid],
+          :source_data => data_to_save,
+          :is_active => is_active,
+          :source_fingerprint => Digest::SHA2.hexdigest(data_to_save)
+        )
+
       pub.sync_publication_hash_and_db
       #puts "SUL doctype: " + pub_hash[:type]
       #puts "SW doctypes: " + pub_hash[:documenttypes_sw].to_s
@@ -30,7 +37,7 @@ class Publication < ActiveRecord::Base
 def self.build_new_manual_publication(provenance, pub_hash, original_source_string)
 
     fingerprint = Digest::SHA2.hexdigest(original_source_string)
-    existingRecord = SourceRecord.where(source_fingerprint: fingerprint, source_name: Settings.manual_source).first
+    existingRecord = UserSubmittedSourceRecord.where(source_fingerprint: fingerprint).first
     unless existingRecord.nil?  
       existingRecord.publication.update_manual_pub_from_pub_hash(pub_hash, provenance, original_source_string)
     else
@@ -40,8 +47,14 @@ def self.build_new_manual_publication(provenance, pub_hash, original_source_stri
       pub = Publication.create(active: is_active, title: pub_hash[:title], year: pub_hash[:year], pub_hash: pub_hash)
       
       # todo:  have to look at deleting old identifiers, old contribution info.  i.e, how to correct errors.
-      original_source_id = nil
-      pub.save_source_record(original_source_string, Settings.manual_source, original_source_id, is_active)
+      pub.user_submitted_source_records.create(
+        is_active: true,
+        :source_fingerprint => Digest::SHA2.hexdigest(original_source_string),
+        :source_data => original_source_string,
+        title: pub_hash[:title],
+        year: pub_hash[:year]
+        )
+      
       pub.sync_publication_hash_and_db
       pub
     end
@@ -49,34 +62,25 @@ def self.build_new_manual_publication(provenance, pub_hash, original_source_stri
 
 def update_manual_pub_from_pub_hash(incoming_pub_hash, provenance, original_source_string)
     
-    is_active = true
+    puts "in the update_manual_pub_from_pub_hash"
+    puts "pub id: " + self.id.to_s
+    puts "incoming pub hash " + incoming_pub_hash.to_s
+    
     incoming_pub_hash[:provenance] = provenance
     self.title = incoming_pub_hash[:title]
     self.year = incoming_pub_hash[:year]
     self.pub_hash = incoming_pub_hash
-    original_source_id = nil
 
-    save_source_record(original_source_string, Settings.manual_source, original_source_id, is_active)
+    self.user_submitted_source_records.first.update_attributes(
+        is_active: true,
+        :source_fingerprint => Digest::SHA2.hexdigest(original_source_string),
+        :source_data => original_source_string,
+        title: self.title,
+        year: self.year
+        )
     
-    sync_publication_hash_and_db
-    
+    self.sync_publication_hash_and_db   
 end
-
-def save_source_record(data_to_save, source_name, source_record_id, is_active)
-    if source_name == Settings.manual_source
-        is_local_only = ! source_records.exists?(:is_local_only => false)
-    else
-        is_local_only = false
-    end
- 
-    source_record = source_records.where(:original_source_id => source_record_id, :source_name => source_name).
-    first_or_create(
-      :title => title, :year => year, :is_local_only => is_local_only, :is_active => is_active
-    )
-    source_record.source_data = data_to_save
-    source_record.source_fingerprint = Digest::SHA2.hexdigest(data_to_save)
-    source_record.save
-  end
 
 
 def add_contribution(cap_profile_id, sul_author_id, status, visibility, featured)
@@ -135,6 +139,7 @@ def update_formatted_citations
       authors = authors[1..4]
       authors << {:name=>"et al."}
     end
+    
     authors.each do |author|
       last_name = ""
       rest_of_name = ""
@@ -149,8 +154,9 @@ def update_formatted_citations
             rest_of_name << ' ' <<  author[:firstname]
           end
         end
+
         unless author[:middlename].blank?
-          if author[:middlename].length = 1 
+          if author[:middlename].length == 1 
             rest_of_name << ' ' << author[:middlename] << '.'
           else
             rest_of_name << ' ' <<  author[:middlename]
@@ -178,16 +184,13 @@ def update_formatted_citations
     end
 
     
-    cit_data_hash = {"id" => "test89",
+    cit_data_hash = {"id" => "sulpub",
                  "type"=>pub_hash[:type],
                  "author"=>authors_for_citeproc,
                  "title"=>pub_hash[:title]
                  
                  }
 
-    
-    
-    
     cit_data_hash["abstract"] = pub_hash[:abstract] unless pub_hash[:abstract].blank?
 
   # add series information if it exists
@@ -260,10 +263,7 @@ def update_formatted_citations
     xmlbuilder.to_xml
 =end
     xml = "the xml goes here"
-
   end
-
-  
 
 def sync_identifers
     add_any_new_identifiers_to_db
@@ -312,7 +312,7 @@ def add_any_new_contribution_info_to_db
 end
 
   def add_contribution_to_db(author_id, cap_profile_id, status, visibility, featured)
-    contributions.where(:author_id => author_id).first_or_create(
+    self.contributions.where(:author_id => author_id).first_or_create(
       cap_profile_id: cap_profile_id,
     status: status,
     visibility: visibility, 
