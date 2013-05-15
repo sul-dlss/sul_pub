@@ -140,29 +140,43 @@ get :sourcelookup do
     
     end
 
+#:include => :population_membership,
+#:conditions => "population_memberships.population_name = '" + population + "' AND publications.updated_at > '" + DateTime.parse(changedSince).to_s + "'"      
+           
     get do
       error!('Unauthorized', 401) unless env['HTTP_CAPKEY'] == '***REMOVED***'
       matching_records = []
       population = params[:population] || Settings.cap_population_name
       changedSince = params[:changedSince] || "1000-01-01"
       capProfileId = params[:capProfileId]
+      page = params[:page]
+      per = params[:per] || 100
       population.downcase!
       if capProfileId.blank?
         description = "Records for population '" + population + "' that have changed since " + changedSince
-        Publication.find_each(
-          :conditions => "publications.updated_at > '" + DateTime.parse(changedSince).to_s + "'"      
-          #:include => :population_membership,
-          #:conditions => "population_memberships.population_name = '" + population + "' AND publications.updated_at > '" + DateTime.parse(changedSince).to_s + "'"      
-          ) do
-            | publication | matching_records << publication.pub_hash
+        if page.blank?
+          Publication.where("updated_at > ?", DateTime.parse(changedSince).to_s).find_each do | publication |
+             matching_records << publication.pub_hash 
+          end
+         #   :conditions => "publications.updated_at > '" + DateTime.parse(changedSince).to_s + "'"      
+            # ) 
+          
+        else
+          matching_records = Publication.where("updated_at > ?", DateTime.parse(changedSince).to_s).
+              order(:id).
+              page(page).
+              per(per).pluck(:pub_hash)
+           #   collect { |pub| pub.pub_hash }
         end
       else
+        page = page || 1
+        per = per || nil
         author = Author.where(cap_profile_id: capProfileId).first
         if author.nil?
-          description = "No results - user identifier doesn't exist in SUL system."
+          error!({ "error" => "No such author", "detail" => "You've specified a non-existant author." }, 404)
         else
           description = "All known publications for CAP profile id " + capProfileId
-          matching_records = author.contributions.collect { |contr| contr.publication.pub_hash }
+          matching_records = author.contributions.order(:id).page(page).per(per).collect { |contr| contr.publication.pub_hash }
         end
       end
       wrap_as_bibjson_collection(description, env["ORIGINAL_FULLPATH"].to_s, matching_records)
