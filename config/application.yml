@@ -10,7 +10,7 @@ defaults: &defaults
     book: book
     article: article
 
-  cap_provenance: CAP
+  cap_provenance: cap
 
   cap_population_name: CAP
 
@@ -20,7 +20,7 @@ defaults: &defaults
 
   pubmed_source: pubmed
 
-  sciencewire_harvest_max: 2
+  sciencewire_harvest_max: 10
 
 development:
   <<: *defaults

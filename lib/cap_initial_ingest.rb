@@ -18,75 +18,83 @@ def create_authors_pubs_and_contributions_for_hand_entered_pubs(cap_pub_data_for
         official_last_name: cap_pub_data_for_this_pub[:official_last_name], 
         official_middle_name: cap_pub_data_for_this_pub[:official_middle_name], 
         sunetid: cap_pub_data_for_this_pub[:sunetid], 
-        university_id: cap_pub_data_for_this_pub[:university_id]
-      #  email: cap_pub_data_for_this_pub[:email]
+        university_id: cap_pub_data_for_this_pub[:university_id],
+        email: cap_pub_data_for_this_pub[:email_address]
       )
       author.population_memberships.where(population_name: Settings.cap_population_name, cap_profile_id: cap_pub_data_for_this_pub[:profile_id]).first_or_create()
       
       pub_hash = convert_manual_publication_row_to_hash(cap_pub_data_for_this_pub, author.id.to_s)
       provenance = Settings.cap_provenance
 
-      Publication.build_new_manual_publication(provenance, pub_hash, cap_pub_data_for_this_pub.to_s)
-                     
+      Publication.build_new_manual_publication(provenance, pub_hash, cap_pub_data_for_this_pub.to_s)                     
 end
+
+
 
 def build_pub_from_cap_data(cap_pub_data_for_this_pub)
-
-  pmid = cap_pub_data_for_this_pub[:pubmed_id].to_s
-  cap_profile_id = cap_pub_data_for_this_pub[:profile_id]
-  visibility = cap_pub_data_for_this_pub[:visibility]
-  status = cap_pub_data_for_this_pub[:status]
-  featured = cap_pub_data_for_this_pub[:featured]
-          
-  author = Author.where(cap_profile_id: cap_profile_id).first_or_create(
-      official_first_name: cap_pub_data_for_this_pub[:official_first_name], 
-      official_last_name: cap_pub_data_for_this_pub[:official_last_name], 
-      official_middle_name: cap_pub_data_for_this_pub[:official_middle_name], 
-      sunetid: cap_pub_data_for_this_pub[:sunetid], 
-      university_id: cap_pub_data_for_this_pub[:university_id], 
-      email: cap_pub_data_for_this_pub[:email]
-  )
-  author.population_memberships.where(population_name: Settings.cap_population_name, cap_profile_id: cap_profile_id).first_or_create()
+  begin
+    pmid = cap_pub_data_for_this_pub[:pubmed_id].to_s
+    cap_profile_id = cap_pub_data_for_this_pub[:profile_id]
+    visibility = cap_pub_data_for_this_pub[:visibility]
+    status = cap_pub_data_for_this_pub[:authorship_status]
+    featured = cap_pub_data_for_this_pub[:featured]
+            
+    author = Author.where(cap_profile_id: cap_profile_id).first_or_create(
+        official_first_name: cap_pub_data_for_this_pub[:official_first_name], 
+        official_last_name: cap_pub_data_for_this_pub[:official_last_name], 
+        official_middle_name: cap_pub_data_for_this_pub[:official_middle_name], 
+        sunetid: cap_pub_data_for_this_pub[:sunetid], 
+        university_id: cap_pub_data_for_this_pub[:university_id], 
+        email: cap_pub_data_for_this_pub[:email_address]
+    )
+    author.population_memberships.where(population_name: Settings.cap_population_name, cap_profile_id: cap_profile_id).first_or_create()
+      
+    pub = Publication.where(pmid: pmid).first
     
-  pub = Publication.where(pmid: pmid).first
-  
-  if pub.nil?
-      sw_source_record = SciencewireSourceRecord.where(pmid: pmid).first
-      pubmed_source_record = PubmedSourceRecord.where(pmid: pmid).first
-      pubmed_xml_doc = Nokogiri::XML(pubmed_source_record.source_data) unless pubmed_source_record.nil?
-      unless sw_source_record.nil?
-          sw_xml_doc = Nokogiri::XML(sw_source_record.source_data)
-          pub_hash = convert_sw_publication_doc_to_hash(sw_xml_doc)
-          #puts pub_hash.to_s
-          sciencewire_id = pub_hash[:sw_id]
-          unless pubmed_xml_doc.nil?
-            abstract = extract_abstract_from_pubmed_record(pubmed_xml_doc)
-            mesh_headings = extract_mesh_headings_from_pubmed_record(pubmed_xml_doc)
-            pub_hash[:mesh_headings] = mesh_headings unless mesh_headings.blank?
-            pub_hash[:abstract] = abstract unless abstract.blank?
-          end
-      else      
-          pub_hash = convert_pubmed_publication_doc_to_hash(pubmed_xml_doc) unless pubmed_xml_doc.nil?
+    if pub.nil?
+        sw_source_record = SciencewireSourceRecord.where(pmid: pmid).first
+        pubmed_source_record = PubmedSourceRecord.where(pmid: pmid).first
+        pubmed_xml_doc = Nokogiri::XML(pubmed_source_record.source_data) unless pubmed_source_record.nil?
+        unless sw_source_record.nil?
+            sw_xml_doc = Nokogiri::XML(sw_source_record.source_data)
+            pub_hash = convert_sw_publication_doc_to_hash(sw_xml_doc)
+            #puts pub_hash.to_s
+            sciencewire_id = pub_hash[:sw_id]
+            unless pubmed_xml_doc.nil?
+              abstract = extract_abstract_from_pubmed_record(pubmed_xml_doc)
+              mesh_headings = extract_mesh_headings_from_pubmed_record(pubmed_xml_doc)
+              pub_hash[:mesh_headings] = mesh_headings unless mesh_headings.blank?
+              pub_hash[:abstract] = abstract unless abstract.blank?
+            end
+        else      
+            pub_hash = convert_pubmed_publication_doc_to_hash(pubmed_xml_doc) unless pubmed_xml_doc.nil?
+        end
+        unless pub_hash.nil?
+          pub = Publication.create(active: true, title: pub_hash[:title], pub_hash: pub_hash, year: pub_hash[:year], pmid: pmid, sciencewire_id: sciencewire_id )    
+        end
+    end
+    unless pub.nil? || pub.contributions.exists?(:author_id => author.id)
+      pub.contributions.where(:author_id => author.id).create(
+          cap_profile_id: cap_profile_id,
+          status: status,
+          visibility: visibility, 
+          featured: featured)    
+      pub.sync_publication_hash_and_db       
+    end
+    if pub.nil?
+        puts "nil sw and pubmed record for pmid: " + pmid.to_s
       end
-      unless pub_hash.nil?
-        pub = Publication.create(active: true, title: pub_hash[:title], pub_hash: pub_hash, year: pub_hash[:year], pmid: pmid, sciencewire_id: sciencewire_id )    
-      end
-  end
-  pub.contributions.where(:author_id => author.id).first_or_create(
-      cap_profile_id: cap_profile_id,
-      status: status,
-      visibility: visibility, 
-      featured: featured)    unless pub.nil?
-
-  pub.sync_publication_hash_and_db unless pub.nil?
-  if pub.nil?
-    puts "nil sw and pubmed record for pmid: " + pmid.to_s
-  end
-  pub
-          
+      pub
+  rescue Exception => e  
+          puts e.message  
+          puts e.backtrace.inspect  
+          puts "the offending pmid: " + pmid.to_s
+          puts "the contrib: " + cap_pub_data_for_this_pub.to_s
+          puts "the author: " + author.to_s
+  end  
 end
 
-
+# DON'T USE THIS ANYMORE - WE NOW INGEST ALL SW AND PUBMED RECORDS SEPARATELY.
 #ingest sciencewire records for cap pmid list and generate authors and contributions
 def create_authors_pubs_and_contributions_for_batch_from_sciencewire_and_pubmed(pmids, cap_pub_data_for_this_batch)
     pubmed_data_for_pmid_batch = get_mesh_and_abstract_from_pubmed(pmids)
@@ -179,40 +187,33 @@ def create_authors_pubs_and_contributions_for_batch_from_sciencewire_and_pubmed(
     
     record_as_hash[:provenance] = Settings.cap_provenance
     record_as_hash[:title] = cap_pub_data_for_this_pub[:article_title]
-    record_as_hash[:abstract] = cap_pub_data_for_this_pub[:abstract]
+    record_as_hash[:abstract_restricted] = cap_pub_data_for_this_pub[:abstract] unless cap_pub_data_for_this_pub[:abstract].blank?
     unless cap_pub_data_for_this_pub[:authors].blank?
-      record_as_hash[:author] = cap_pub_data_for_this_pub[:authors].split('|').collect{|author| {name: author}} 
+      record_as_hash[:author] = cap_pub_data_for_this_pub[:authors].split(',').collect{|author| {name: author}} 
     else 
       record_as_hash[:author] = []
     end
     primary_author = cap_pub_data_for_this_pub[:primary_author]
     unless primary_author.blank?
-      primary_author = primary_author[1..-2]
+      primary_author = primary_author
       record_as_hash[:author] << {name: primary_author} 
     end
     
-    record_as_hash[:year] = cap_pub_data_for_this_pub[:publication_date]
+    record_as_hash[:year] = cap_pub_data_for_this_pub[:publication_date] unless cap_pub_data_for_this_pub[:publication_date].blank?
     
     record_as_hash[:type] = Settings.sul_doc_types.article
-=begin   if !cap_pub_data_for_this_pub[:country].blank?
-      puts "country: " + cap_pub_data_for_this_pub[:country].to_s
-      puts "abstract: " + cap_pub_data_for_this_pub[:abstract].to_s
-      puts "title: " + cap_pub_data_for_this_pub[:title].to_s
-    end
-=end
+
     record_as_hash[:country] = cap_pub_data_for_this_pub[:country] unless cap_pub_data_for_this_pub[:country].blank?
     
-    
-    record_as_hash[:identifier] = [{:type =>'old_cap_pub_id', :id => cap_pub_data_for_this_pub[:deprecated_publication_id]}]
+    record_as_hash[:identifier] = [{:type =>'legacy_cap_pub_id', :id => cap_pub_data_for_this_pub[:deprecated_publication_id]}]
 
-    
     journal_hash = {}   
-    journal_hash[:name] = cap_pub_data_for_this_pub[:publication_title]
-    journal_hash[:volume] = cap_pub_data_for_this_pub[:volume]
-    journal_hash[:issue] = cap_pub_data_for_this_pub[:issue_no]
-    journal_hash[:pages] = cap_pub_data_for_this_pub[:page_ref]
-    journal_hash[:identifier] = [{:type => 'issn', :id => cap_pub_data_for_this_pub[:issn]}]
-    record_as_hash[:journal] = journal_hash
+    journal_hash[:name] = cap_pub_data_for_this_pub[:publication_title] unless cap_pub_data_for_this_pub[:publication_title].blank?
+    journal_hash[:volume] = cap_pub_data_for_this_pub[:volume] unless cap_pub_data_for_this_pub[:volume].blank?
+    journal_hash[:issue] = cap_pub_data_for_this_pub[:issue_no] unless cap_pub_data_for_this_pub[:issue_no].blank?
+    journal_hash[:pages] = cap_pub_data_for_this_pub[:page_ref] unless cap_pub_data_for_this_pub[:page_ref].blank?
+    journal_hash[:identifier] = [{:type => 'issn', :id => cap_pub_data_for_this_pub[:issn]}] unless cap_pub_data_for_this_pub[:issn].blank?
+    record_as_hash[:journal] = journal_hash unless journal_hash.empty?
    
     record_as_hash[:authorship] = [
         {            

@@ -148,7 +148,7 @@ end
 
   def convert_sw_publication_doc_to_hash(publication)
 
-    puts publication.to_xml
+    #puts publication.to_xml
     
     record_as_hash = Hash.new
     
@@ -234,7 +234,7 @@ end
     end
     record_as_hash[:identifier] = identifiers
     #puts "the record as hash"
-    puts record_as_hash.to_s
+    #puts record_as_hash.to_s
     record_as_hash
   end
 

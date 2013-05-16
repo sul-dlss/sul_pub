@@ -4,6 +4,7 @@ require 'smarter_csv'
 require 'csv'
 require 'sciencewire'
 require 'pubmed'
+require 'dotiw'
 #require 'activerecord-import'
 
 #books = []
@@ -43,7 +44,7 @@ task :pull_sw_for_cap, [:file_location] => :environment do |t, args|
         end
       end
       get_and_store_sw_source_records(pmids_for_this_batch)
-      puts (total_running_count).to_s + "records were processed in " + distance_of_time_in_words_to_now(start_time, include_seconds = true)
+      puts (total_running_count).to_s + "records were processed in " + distance_of_time_in_words_to_now(start_time)
       puts lines.to_s + " lines of file: " + args.file_location.to_s + " were processed."
          
   end
@@ -61,14 +62,14 @@ task :pull_pubmed_for_cap, [:file_location] => :environment do |t, args|
         
         pmids_for_this_batch << pmid
         
-        if pmids_for_this_batch.length%500 == 0
+        if pmids_for_this_batch.length%4000 == 0
 
           get_and_store_records_from_pubmed(pmids_for_this_batch)
           pmids_for_this_batch.clear
-          puts (total_running_count).to_s + " in " + distance_of_time_in_words_to_now(start_time, include_seconds = true)
+          puts (total_running_count).to_s + " in " + distance_of_time_in_words_to_now(start_time)
           #break 
         end
-        if total_running_count%5000 == 0  
+        if total_running_count%4000 == 0  
         #  puts "Processed " + total_running_count.to_s + "lines of csv file."
           GC.start
         end      
@@ -89,8 +90,6 @@ desc "create publication, author, contribution, publication_identifier, and popu
     CSV.foreach(args.file_location, :headers  => true, :header_converters => :symbol) do |row|
         total_running_count += 1
         build_pub_from_cap_data(row)
-       # break if total_running_count == 3
-    
         if total_running_count%5000 == 0  
              # puts "Processed " + total_running_count.to_s + "lines of csv file."
               GC.start
@@ -101,37 +100,66 @@ desc "create publication, author, contribution, publication_identifier, and popu
     end
   end
 
+desc "ingest exising cap hand entered pubs"
+  task :ingest_man_pubs, [:file_location] => :environment do |t, args|
+    include CapInitialIngest
+    include ActionView::Helpers::DateHelper
+   
+    start_time = Time.now
+    total_running_count = 0
+    CSV.foreach(args.file_location, :headers  => true, :header_converters => :symbol) do |row|
+      total_running_count += 1
+      if total_running_count%500 == 0 
+        puts total_running_count.to_s + " in " + distance_of_time_in_words_to_now(start_time)
+      end
+      create_authors_pubs_and_contributions_for_hand_entered_pubs(row)
+    end
+  end
 
+desc "ingest all authors"
+task :ingest_all_authors, [:file_location] => :environment do |t, args|
+    include CapInitialIngest
+    include ActionView::Helpers::DateHelper
+    start_time = Time.now
+    total_running_count = 0
+
+    CSV.foreach(args.file_location, :headers  => true, :header_converters => :symbol) do |row|
+        total_running_count += 1
+        cap_profile_id = row[:profile_id]
+        author = Author.where(cap_profile_id: cap_profile_id).first_or_create(
+        official_first_name: row[:official_first_name], 
+        official_last_name: row[:official_last_name], 
+        official_middle_name: row[:official_middle_name], 
+        sunetid: row[:sunetid], 
+        university_id: row[:university_id], 
+        email: row[:email_address]
+      )
+      author.population_memberships.where(population_name: Settings.cap_population_name, cap_profile_id: cap_profile_id).first_or_create()
+      if total_running_count%5000 == 0  
+               # puts "Processed " + total_running_count.to_s + "lines of csv file."
+                GC.start
+      end
+      if total_running_count%1000 == 0 
+            puts (total_running_count).to_s + " in " + distance_of_time_in_words_to_now(start_time)
+      end
+    end
+end
+
+# DON'T USE THIS ANYMORE - WE NOW GET ALL PUBMED AND SCIENCEWIRE SOURCE RECORDS SEPARATELY.
   desc "ingest existing cap data - this does it all in one go.  gets sw, pubmed, and constructs local records"
   task :ingest_pubmed_pubs => :environment do
     include CapInitialIngest
     include ActionView::Helpers::DateHelper
-    #db_config = Rails.application.config.database_configuration[Rails.env]
+    
     pmids_for_this_batch = []
-    cap_pub_data_for_this_batch = {}
-   # client = Mysql2::Client.new(:host => "localhost", :username => "cap", :password => "cap", :database => "cap", :encoding => "utf8")
-    #results = client.query("select cap_old_publication.pubmed_id,
-    #  cap_old_faculty_publication.faculty_id, 
-    #  cap_old_faculty_publication.status
-    #  from cap_old_faculty_publication join cap_old_publication 
-    #  on cap_old_faculty_publication.publication_id = cap_old_publication.publication_id  
-    #  where pubmed_id != 0 order by pubmed_id limit 200")
-
-    # to run in batches of 5000:  limit 0,5000  then:  limit 5000,5000 then limit 10000,5000 then 15000,5000 etc.
+    cap_pub_data_for_this_batch = {}  
     start_time = Time.now
     total_running_count = 0
     chunk_size = 500
 
     pmids_for_this_batch = []
     cap_pub_data_for_this_batch = {}
-            # , :key_mapping => key
-          #  cap_pubmed_publications_from_profiles_dev1_db_2013_05_10
-          #cap_pubmed_test_simple
-          #cap_pubmed_test.csv
-          #cap_pubmed_publications_from_profiles_dev1_db_2013_05_10-1
-   # total_chunks = SmarterCSV.process('/Users/jameschartrand/Downloads/cap_pubmed_publications_from_profiles_dev1_db_2013_05_10-1.csv', {:chunk_size => chunk_size, :quote_char => '"', :strip_chars_from_headers => '"'}) do |chunk|
-      
-      CSV.foreach("/Users/jameschartrand/Downloads/cap_pubmed_publications_from_profiles_dev1_db_2013_05_10-1.csv", :headers  => true, :header_converters => :symbol) do |row|
+    CSV.foreach("/Users/jameschartrand/Downloads/cap_pubmed_publications_from_profiles_dev1_db_2013_05_10-1.csv", :headers  => true, :header_converters => :symbol) do |row|
         total_running_count += 1
         pmid = row[:pubmed_id].to_s()
         pmids_for_this_batch << pmid
@@ -155,21 +183,7 @@ desc "create publication, author, contribution, publication_identifier, and popu
 
 
 
- desc "ingest exising cap hand entered pubs"
-  task :ingest_man_pubs => :environment do
-    include CapInitialIngest
-    include ActionView::Helpers::DateHelper
-   
-    start_time = Time.now
-    total_running_count = 0
-    CSV.foreach("/Users/jameschartrand/Downloads/cap_manual_publications_from_profiles_dev1_db_2013_05_10-1.csv", :headers  => true, :header_converters => :symbol) do |row|
-      total_running_count += 1
-      if total_running_count%500 == 0 
-        puts total_running_count.to_s + " in " + distance_of_time_in_words_to_now(start_time, include_seconds = true)
-      end
-      create_authors_pubs_and_contributions_for_hand_entered_pubs(row)
-    end
-  end
+ 
 
 
 end

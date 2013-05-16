@@ -53,7 +53,7 @@ def self.build_new_manual_publication(provenance, pub_hash, original_source_stri
         :source_data => original_source_string,
         title: pub_hash[:title],
         year: pub_hash[:year]
-        )
+      )
       
       pub.sync_publication_hash_and_db
       pub
@@ -61,10 +61,6 @@ def self.build_new_manual_publication(provenance, pub_hash, original_source_stri
   end
 
 def update_manual_pub_from_pub_hash(incoming_pub_hash, provenance, original_source_string)
-    
-    puts "in the update_manual_pub_from_pub_hash"
-    puts "pub id: " + self.id.to_s
-    puts "incoming pub hash " + incoming_pub_hash.to_s
     
     incoming_pub_hash[:provenance] = provenance
     self.title = incoming_pub_hash[:title]
@@ -92,12 +88,9 @@ def add_pubmed_data(pubmed_data)
       pmid = self.pub_hash[:pmid]
 
       unless pmid.blank?
-        # puts "the pmid: " + pmid.to_s
         if pubmed_data.nil? 
           pubmed_data = get_mesh_and_abstract_from_pubmed([pmid])[pmid]
         end     
-     #   puts "the pubmed data: "
-      #  puts pubmed_data.to_s
         self.pub_hash[:mesh_headings] = pubmed_data[:mesh] unless pubmed_data[:mesh].blank?
         self.pub_hash[:abstract] = pubmed_data[:abstract] unless pubmed_data[:abstract].blank?
       end
@@ -212,9 +205,6 @@ def update_formatted_citations
   # add book title if it exists, which indicates this pub is a chapter in the book
   cit_data_hash["container-title"] = pub_hash[:booktitle] unless pub_hash[:booktitle].blank?  
        
-        
-      #  puts "XXXXXXXXXXXX citation data hash"
-       # puts cit_data_hash.to_s
 
     cit_data_array = [cit_data_hash]         
 

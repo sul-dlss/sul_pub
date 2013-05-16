@@ -31,17 +31,6 @@ end
     end     
   end
 
-  class API_schemas < Grape::API
-    version 'v1', :using => :header, :vendor => 'sul', :format => :json
-    format :json
-    rescue_from :all, :backtrace => true
-    
-    get(:book) {IO.read(Rails.root.join('app', 'data', 'json_schemas', 'article.json')) }
-    get(:article) { IO.read(Rails.root.join('app', 'data', 'json_schemas', 'book.json')) }
-    get(:inproceedings) {IO.read(Rails.root.join('app', 'data', 'json_schemas', 'inproceedings.json')) }
-   
-  end
-
   class API_samples < Grape::API
     version 'v1', :using => :header, :vendor => 'sul', :format => :json
     format :json
@@ -69,6 +58,26 @@ end
     end
   end
 
+  class API_authorship < Grape::API
+    version 'v1', :using => :header, :vendor => 'sul', :format => :json
+    format :json
+
+    content_type :json, "application/json"
+    parser :json, BibJSONParser
+    post do
+      error!('Unauthorized', 401) unless env['HTTP_CAPKEY'] == '***REMOVED***'
+      authorship_hash = params[:pub_hash]
+      sul_author_id = authorship_hash[:sul_author_id]
+      cap_author_id = authorship_hash[:cap_profile_id] 
+      sul_pub_id = authorship_hash[:sul_author_id]
+      pmid = authorship_hash[:sul_author_id]
+      status = authorship_hash[:sul_author_id]
+      visibility = authorship_hash[:sul_author_id]
+      featured = authorship_hash[:sul_author_id]
+
+    end
+  end
+
   class API < Grape::API
 
     version 'v1', :using => :header, :vendor => 'sul', :cascade => false
@@ -80,20 +89,23 @@ end
     #end
 
 helpers do
-  def wrap_as_bibjson_collection(description, query, records)
-    {
-        metadata: {
+  def wrap_as_bibjson_collection(description, query, records, page, per_page)
+    metadata = {
           _created: Time.now.iso8601,  
           description: description, 
           format: "BibJSON",  
           license: "some licence", 
           query: query, 
-          records:  records.count.to_s 
-        }, 
+          records:  records.count.to_s
+        }
+    metadata[:page] = page || 1
+    metadata[:per_page] = per_page || "all"
+
+    {
+        metadata: metadata, 
         records: records
     }
   end
-
   include Sciencewire
 end
 
@@ -136,13 +148,14 @@ get :sourcelookup do
         UserSubmittedSourceRecord.where(query_hash).each { |source_record| all_matching_records << source_record.publication.pub_hash }
       end
 
-      wrap_as_bibjson_collection("Search results from requested sources: " + source, env["ORIGINAL_FULLPATH"], all_matching_records)
+      wrap_as_bibjson_collection("Search results from requested sources: " + source, env["ORIGINAL_FULLPATH"], all_matching_records, nil, nil)
     
     end
 
 #:include => :population_membership,
 #:conditions => "population_memberships.population_name = '" + population + "' AND publications.updated_at > '" + DateTime.parse(changedSince).to_s + "'"      
-           
+    
+    # GET ALL PUBS, PAGED IF REQUESTD, OR FOR AN AUTHOR IF REQUESTED.       
     get do
       error!('Unauthorized', 401) unless env['HTTP_CAPKEY'] == '***REMOVED***'
       matching_records = []
@@ -158,15 +171,11 @@ get :sourcelookup do
           Publication.where("updated_at > ?", DateTime.parse(changedSince).to_s).find_each do | publication |
              matching_records << publication.pub_hash 
           end
-         #   :conditions => "publications.updated_at > '" + DateTime.parse(changedSince).to_s + "'"      
-            # ) 
-          
         else
           matching_records = Publication.where("updated_at > ?", DateTime.parse(changedSince).to_s).
               order(:id).
               page(page).
               per(per).pluck(:pub_hash)
-           #   collect { |pub| pub.pub_hash }
         end
       else
         page = page || 1
@@ -179,22 +188,16 @@ get :sourcelookup do
           matching_records = author.contributions.order(:id).page(page).per(per).collect { |contr| contr.publication.pub_hash }
         end
       end
-      wrap_as_bibjson_collection(description, env["ORIGINAL_FULLPATH"].to_s, matching_records)
+      wrap_as_bibjson_collection(description, env["ORIGINAL_FULLPATH"].to_s, matching_records, page, per)
     end
 
-#With a parser, parsed data is available "as-is" in env['api.request.body']. 
-#Without a parser, data is available "as-is" and in env['api.request.input'].
-
+    # CALL TO ADD A NEW MANUAL PUBLICATION
     content_type :json, "application/json"
     parser :json, BibJSONParser
     post do        
-      error!('Unauthorized', 401) unless env['HTTP_CAPKEY'] == '***REMOVED***'    
-      #request_body = env['api.request.body'] 
+      error!('Unauthorized', 401) unless env['HTTP_CAPKEY'] == '***REMOVED***'  
       request_body_unparsed = env['api.request.input']
-      #puts "the body: " + request_body.to_s
-      #puts "and unparsed: " + request_body_unparsed.to_s
       fingerprint = Digest::SHA2.hexdigest(request_body_unparsed)
-      #puts "the fingerprint: " + fingerprint
       existingRecord = UserSubmittedSourceRecord.where(source_fingerprint: fingerprint).first
       unless existingRecord.nil?  
         header "Location", env["REQUEST_URI"] + "/" + existingRecord.publication_id.to_s
@@ -205,7 +208,7 @@ get :sourcelookup do
       pub.pub_hash
     end
 
-
+    # CALL TO UPDATE A NEW MANUAL PUBLICATION
     content_type :json, "application/json"
     parser :json, BibJSONParser
     put ':id' do
@@ -231,7 +234,7 @@ get :sourcelookup do
       end
     end
 
-
+    # GET A SINGLE RECORD
     get ':id' do
       error!('Unauthorized', 401) unless env['HTTP_CAPKEY'] == '***REMOVED***'
       pub = Publication.find_by_id(params[:id])
@@ -243,7 +246,7 @@ get :sourcelookup do
       pub.pub_hash
     end
 
-
+    # MARK A RECORD AS DELETED
     delete ':id' do
       error!('Unauthorized', 401) unless env['HTTP_CAPKEY'] == '***REMOVED***'
       pub = Publication.find(params[:id])
@@ -254,21 +257,3 @@ get :sourcelookup do
   end
 end
 
-#monkey patch Grape to allow directly returning unescaped json string.
-# TODO:  look at instead returning this as a hash, which
-# grape would then serialize.
-=begin
- module Grape
-  module Formatter
-    module Json
-      class << self
-        def call(object, env)
-          return object if ! object || object.is_a?(String)
-          return object.to_json if object.respond_to?(:to_json)
-          raise Grape::Exceptions::InvalidFormatter.new(object.class, 'json')
-        end
-      end
-    end
-  end
-end
-=end
