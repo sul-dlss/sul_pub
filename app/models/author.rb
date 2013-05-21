@@ -3,25 +3,19 @@ class Author < ActiveRecord::Base
   has_many :contributions, :dependent => :destroy
   has_many :publications, :through => :contributions do
   	def approved
-  		where("contributions.confirmed_status='approved'")
+  		where("contributions.status='approved'")
   	end
   end
-
 
   has_many  :approved_publications, :through => :contributions, 
           :class_name => "Publication", 
           :source => :publication,
-          :conditions => ['contributions.confirmed_status = ?','approved'] 
+          :conditions => ['contributions.status = ?','approved'] 
          
-
 
   has_many :population_memberships, :dependent => :destroy
   has_many :author_identifiers, :dependent => :destroy
 
-  has_many :meeting_participations
-  has_many :meetings, :through => :meeting_participations do
-   def visible
-     where("meeting_participations.visible = ?", true)
-   end
-  end
+ 
+
 end

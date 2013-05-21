@@ -20,7 +20,7 @@ defaults: &defaults
 
   pubmed_source: pubmed
 
-  sciencewire_harvest_max: 10
+  sciencewire_harvest_max: 2
 
 development:
   <<: *defaults

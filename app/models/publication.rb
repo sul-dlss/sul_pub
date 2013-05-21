@@ -1,3 +1,5 @@
+
+require 'citeproc'
 class Publication < ActiveRecord::Base
   attr_accessible :active, :deleted, :title, :year, :pub_hash, :lock_version, :pmid, :sciencewire_id, :same_as_publication_id, :xml, :updated_at
   has_many :contributions, :dependent => :destroy
@@ -9,42 +11,47 @@ class Publication < ActiveRecord::Base
   #validates_uniqueness_of :sciencewire_id
   
   serialize :pub_hash, Hash
+   
   
-  def self.build_new_sciencewire_publication(pub_hash, sw_xml_doc, pubmed_data, author, status, visibility, featured)
+def self.get_pub_by_pmid(pmid)
+    Publication.where(pmid: pmid).first || SciencewireSourceRecord.get_pub_by_pmid(pmid) || PubmedSourceRecord.get_pub_by_pmid(pmid)
+end
 
-      is_active = true
+def self.get_pub_by_sciencewire_id(sciencewire_id)
+    Publication.where(sw_id: sciencewire_id).first || SciencewireSourceRecord.get_pub_by_pmid(pmid)
+end
 
-      pub = Publication.create(active: is_active, title: pub_hash[:title], pub_hash: pub_hash, year: pub_hash[:year])
+def build_from_sciencewire_hash(new_sw_pub_hash)   
+      self.pub_hash = new_sw_pub_hash
+      add_any_pubmed_data_to_hash unless new_sw_pub_hash[:pmid].blank?
+      #sync_publication_hash_and_db
+      self
+  end
 
-      pub.add_pubmed_data(pubmed_data)
-      pub.add_contribution_to_db(author.id, author.cap_profile_id, status, visibility, featured)
-      
-      ScienceWireSourceRecord.where(sciencewire_id: pub_hash[:sw_id]).
-        first_or_create( 
-          :pmid => pub_hash[:pmid],
-          :source_data => data_to_save,
-          :is_active => is_active,
-          :source_fingerprint => Digest::SHA2.hexdigest(data_to_save)
-        )
-
-      pub.sync_publication_hash_and_db
-      #puts "SUL doctype: " + pub_hash[:type]
-      #puts "SW doctypes: " + pub_hash[:documenttypes_sw].to_s
-      #puts "sulpudid: " + pub.id.to_s
-      pub
+  def build_from_pubmed_hash(new_pubmed_pub_hash)
+      self.pub_hash = new_pubmed_pub_hash
+     # sync_publication_hash_and_db
+      self
   end
 
 def self.build_new_manual_publication(provenance, pub_hash, original_source_string)
 
     fingerprint = Digest::SHA2.hexdigest(original_source_string)
     existingRecord = UserSubmittedSourceRecord.where(source_fingerprint: fingerprint).first
-    unless existingRecord.nil?  
-      existingRecord.publication.update_manual_pub_from_pub_hash(pub_hash, provenance, original_source_string)
-    else
-      is_active = true
-      pub_hash[:provenance] = provenance
 
-      pub = Publication.create(active: is_active, title: pub_hash[:title], year: pub_hash[:year], pub_hash: pub_hash)
+    unless existingRecord.nil?  
+      pub =  existingRecord.publication
+      unless pub.nil?
+        pub.update_manual_pub_from_pub_hash(pub_hash, provenance, original_source_string)
+      else
+        pub_hash[:provenance] = provenance
+        pub = Publication.create(active: true, title: pub_hash[:title], year: pub_hash[:year], pub_hash: pub_hash)
+        pub.sync_publication_hash_and_db
+      end
+    else
+      
+      pub_hash[:provenance] = provenance
+      pub = Publication.create(active: true, title: pub_hash[:title], year: pub_hash[:year], pub_hash: pub_hash)
       
       # todo:  have to look at deleting old identifiers, old contribution info.  i.e, how to correct errors.
       pub.user_submitted_source_records.create(
@@ -54,10 +61,11 @@ def self.build_new_manual_publication(provenance, pub_hash, original_source_stri
         title: pub_hash[:title],
         year: pub_hash[:year]
       )
-      
+      pub.update_any_new_contribution_info_in_pub_hash_to_db
       pub.sync_publication_hash_and_db
-      pub
+      
     end
+    pub
   end
 
 def update_manual_pub_from_pub_hash(incoming_pub_hash, provenance, original_source_string)
@@ -73,55 +81,125 @@ def update_manual_pub_from_pub_hash(incoming_pub_hash, provenance, original_sour
         :source_data => original_source_string,
         title: self.title,
         year: self.year
-        )
-    
+    )
+    self.update_any_new_contribution_info_in_pub_hash_to_db
     self.sync_publication_hash_and_db   
 end
 
+#def add_contribution(cap_profile_id, sul_author_id, status, visibility, featured)
+#      self.pub_hash[:contributions] = [ {:cap_profile_id => cap_profile_id, :sul_author_id => sul_author_id, :status => status, visibility: visibility, featured: featured}]
+#      sync_publication_hash_and_db
+#end
 
-def add_contribution(cap_profile_id, sul_author_id, status, visibility, featured)
-      self.pub_hash[:contributions] = [ {:cap_profile_id => cap_profile_id, :sul_author_id => sul_author_id, :status => status, visibility: visibility, featured: featured}]
-      sync_publication_hash_and_db
-end
-
-def add_pubmed_data(pubmed_data)
-      pmid = self.pub_hash[:pmid]
-
-      unless pmid.blank?
-        if pubmed_data.nil? 
-          pubmed_data = get_mesh_and_abstract_from_pubmed([pmid])[pmid]
-        end     
-        self.pub_hash[:mesh_headings] = pubmed_data[:mesh] unless pubmed_data[:mesh].blank?
-        self.pub_hash[:abstract] = pubmed_data[:abstract] unless pubmed_data[:abstract].blank?
-      end
+def add_any_pubmed_data_to_hash
+  unless pmid.blank?
+    pubmed_hash = PubmedSourceRecord.get_pubmed_hash_for_pmid(pmid)
+    unless pubmed_hash.nil?
+        self.pub_hash[:mesh_headings] = pubmed_hash[:mesh] unless pubmed_hash[:mesh].blank?
+        self.pub_hash[:abstract] = pubmed_hash[:abstract] unless pubmed_hash[:abstract].blank?   
+    end
+  end
 end
 
 def set_last_updated_value_in_hash
   save   # to reset last updated value
-  self.pub_hash[:last_updated] = updated_at
+  self.pub_hash[:last_updated] = updated_at.to_s
     
 end
 
 def set_sul_pub_id_in_hash
-  sul_pub_id = id.to_s           
+  sul_pub_id = self.id.to_s    
   self.pub_hash[:sulpubid] = sul_pub_id
   self.pub_hash[:identifier] ||= []
   self.pub_hash[:identifier] << {:type => 'SULPubId', :id => sul_pub_id, :url => 'http://sulcap.stanford.edu/publications/' + sul_pub_id}            
 end
 
 def sync_publication_hash_and_db
-
-    set_sul_pub_id_in_hash
     set_last_updated_value_in_hash
+    set_sul_pub_id_in_hash
     
-    sync_contributions
-    sync_identifers
+    
+    #sync_contributions_between_db_and_hash
+    add_all_db_contributions_to_pub_hash
+    sync_identifers_between_db_and_hash
     
     update_formatted_citations
-    update_canonical_xml_for_pub
-    
+  
     save
   end
+
+def sync_identifers_between_db_and_hash
+    add_any_new_identifiers_in_pub_hash_to_db
+    add_all_identifiers_in_db_to_pub_hash
+end
+
+  def add_any_new_identifiers_in_pub_hash_to_db
+    if pub_hash[:identifier] 
+      pub_hash[:identifier].each do |identifier|
+        publication_identifiers.where(
+          :identifier_type => identifier[:type],
+          :identifier_value => identifier[:id]).
+          first_or_create(:certainty => 'confirmed', :identifier_uri => identifier[:url])
+      end
+    end
+  end
+
+def add_all_identifiers_in_db_to_pub_hash
+    identifiers = Array.new
+    publication_identifiers.each do |identifier|
+      ident_hash = Hash.new
+      ident_hash[:type] = identifier.identifier_type unless identifier.identifier_type.blank?
+      ident_hash[:id] = identifier.identifier_value unless identifier.identifier_value.blank?
+      ident_hash[:url] = identifier.identifier_uri unless identifier.identifier_uri.blank?
+        identifiers << ident_hash
+    end
+    pub_hash[:identifier] = identifiers
+  end
+
+#def sync_contributions_between_db_and_hash
+ #   add_any_new_contribution_info_in_pub_hash_to_db
+  #  add_all_db_contributions_to_pub_hash
+#end
+
+def update_any_new_contribution_info_in_pub_hash_to_db
+  unless pub_hash[:authorship].nil?
+    pub_hash[:authorship].each do |contrib|
+          sul_author_id = contrib[:sul_author_id] 
+          if sul_author_id.blank? 
+            cap_profile_id = contrib[:cap_profile_id]
+            unless cap_profile_id.blank?
+              author = Author.where(cap_profile_id: contrib[:cap_profile_id]).first
+              sul_author_id = author.id unless author.blank? 
+            end
+          end
+          unless sul_author_id.blank?
+            contrib = contributions.where(:author_id => sul_author_id).first_or_create   
+            contrib.update_attributes(
+              cap_profile_id: contrib[:cap_profile_id],
+              status: contrib[:status],
+              visibility: contrib[:visibility], 
+              featured: contrib[:featured])
+          end
+
+    end
+  end
+end
+
+  def add_all_db_contributions_to_pub_hash
+    contributions = Array.new
+    Contribution.where(:publication_id => id).each do |contrib_in_db|
+      contributions <<
+        {:cap_profile_id => contrib_in_db.cap_profile_id,
+         :sul_author_id => contrib_in_db.author_id,
+         :status => contrib_in_db.status,
+          visibility: contrib_in_db.visibility, 
+        featured: contrib_in_db.featured}
+
+        end
+    pub_hash[:authorship] = contributions
+  end
+
+  
 
 def update_formatted_citations
     #[{"id"=>"Gettys90", "type"=>"article-journal", "author"=>[{"family"=>"Gettys", "given"=>"Jim"}, {"family"=>"Karlton", "given"=>"Phil"}, {"family"=>"McGregor", "given"=>"Scott"}], "title"=>"The {X} Window System, Version 11", "container-title"=>"Software Practice and Experience", "volume"=>"20", "issue"=>"S2", "abstract"=>"A technical overview of the X11 functionality.  This is an update of the X10 TOG paper by Scheifler \\& Gettys.", "issued"=>{"date-parts"=>[[1990]]}}]
@@ -217,8 +295,37 @@ def update_formatted_citations
     
   end
 
-   def update_canonical_xml_for_pub
+def update_canonical_xml_for_pub
+    xml = "the xml goes here"
+  end
 =begin
+# THIS IS OLD AND SHOULD SOON BE DELETED
+  def self.build_new_sciencewire_publication_OLD(pub_hash, sw_xml_doc, pubmed_data, author, status, visibility, featured)
+
+      is_active = true
+
+      pub = Publication.create(active: is_active, title: pub_hash[:title], pub_hash: pub_hash, year: pub_hash[:year])
+
+      pub.add_pubmed_data(pubmed_data)
+      pub.add_contribution_to_db(author.id, author.cap_profile_id, status, visibility, featured)
+      
+      ScienceWireSourceRecord.where(sciencewire_id: pub_hash[:sw_id]).
+        first_or_create( 
+          :pmid => pub_hash[:pmid],
+          :source_data => data_to_save,
+          :is_active => is_active,
+          :source_fingerprint => Digest::SHA2.hexdigest(data_to_save)
+        )
+
+      pub.sync_publication_hash_and_db
+      #puts "SUL doctype: " + pub_hash[:type]
+      #puts "SW doctypes: " + pub_hash[:documenttypes_sw].to_s
+      #puts "sulpudid: " + pub.id.to_s
+      pub
+  end
+
+
+
     xmlbuilder = Nokogiri::XML::Builder.new do |newPubDoc|
 
       newPubDoc.publication {
@@ -252,79 +359,6 @@ def update_formatted_citations
     end
     xmlbuilder.to_xml
 =end
-    xml = "the xml goes here"
-  end
-
-def sync_identifers
-    add_any_new_identifiers_to_db
-    add_all_known_identifiers_to_pub_hash
-end
-
-  def add_any_new_identifiers_to_db
-    if pub_hash[:identifier] 
-      pub_hash[:identifier].each do |identifier|
-        publication_identifiers.where(
-          :identifier_type => identifier[:type],
-          :identifier_value => identifier[:id]).
-          first_or_create(:certainty => 'confirmed', :identifier_uri => identifier[:url])
-      end
-    end
-  end
-
-def add_all_known_identifiers_to_pub_hash
-    identifiers = Array.new
-    publication_identifiers.each do |identifier|
-      ident_hash = Hash.new
-      ident_hash[:type] = identifier.identifier_type unless identifier.identifier_type.nil?
-      ident_hash[:id] = identifier.identifier_value unless identifier.identifier_value.nil?
-      ident_hash[:url] = identifier.identifier_uri unless identifier.identifier_uri.nil?
-        identifiers << ident_hash
-    end
-    pub_hash[:identifier] = identifiers
-  end
-
-def sync_contributions
-    add_any_new_contribution_info_to_db
-    add_all_known_contributions_to_pub_hash
-end
-
-def add_any_new_contribution_info_to_db
-  unless pub_hash[:authorship].nil?
-    pub_hash[:authorship].each do |contrib|
-              cap_profile_id = contrib[:cap_profile_id]
-              sul_author_id = contrib[:sul_author_id] || Author.where(cap_profile_id: cap_profile_id).first.id
-              status = contrib[:status]
-              visibility = contrib[:visibility]
-              featured = contrib[:featured]
-              add_contribution_to_db(sul_author_id, cap_profile_id, status, visibility, featured)
-    end
-  end
-end
-
-  def add_contribution_to_db(author_id, cap_profile_id, status, visibility, featured)
-    self.contributions.where(:author_id => author_id).first_or_create(
-      cap_profile_id: cap_profile_id,
-    status: status,
-    visibility: visibility, 
-    featured: featured)
-  end
-
-  def add_all_known_contributions_to_pub_hash
-    contributions = Array.new
-    Contribution.where(:publication_id => id).each do |contrib_in_db|
-      contributions <<
-        {:cap_profile_id => contrib_in_db.cap_profile_id,
-         :sul_author_id => contrib_in_db.author_id,
-         :status => contrib_in_db.status,
-          visibility: contrib_in_db.visibility, 
-        featured: contrib_in_db.featured}
-
-        end
-    pub_hash[:authorship] = contributions
-  end
-
-
-
 end
 
 
