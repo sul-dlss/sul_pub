@@ -271,97 +271,6 @@ class SciencewireSourceRecord < ActiveRecord::Base
 	  end
 
 
-def self.convert_sw_publication_doc_to_hash_old(publication)
-
-	    #puts publication.to_xml
-	    
-	    record_as_hash = Hash.new
-	    
-	    record_as_hash[:provenance] = Settings.sciencewire_source
-	    record_as_hash[:pmid] = publication.xpath("//PMID").text unless publication.xpath("//PMID").blank?
-	    record_as_hash[:sw_id] = publication.xpath("//PublicationItemID").text
-	    record_as_hash[:title] = publication.xpath("//Title").text unless publication.xpath("//Title").blank?
-	    record_as_hash[:abstract_restricted] = publication.xpath("//Abstract").text unless publication.xpath("//Abstract").blank?
-	    record_as_hash[:author] = publication.xpath('//AuthorList').text.split('|').collect{|author| {name: author}}
-	    
-	    record_as_hash[:year] = publication.xpath('//PublicationYear').text unless publication.xpath("//PublicationYear").blank?
-	    record_as_hash[:date] = publication.xpath('//PublicationDate').text unless publication.xpath("//PublicationDate").blank?
-	    
-	    record_as_hash[:authorcount] = publication.xpath("//AuthorCount").text unless publication.xpath("//AuthorCount").blank?
-	    
-	    record_as_hash[:keywords_sw] = publication.xpath('//KeywordList').text.split('|') unless publication.xpath("//KeywordList").blank?
-	    record_as_hash[:documenttypes_sw] = publication.xpath("//DocumentTypeList").text.split('|')
-	    sul_document_type = lookup_sw_doc_type(record_as_hash[:documenttypes_sw])
-	    record_as_hash[:type] = sul_document_type
-
-	    record_as_hash[:documentcategory_sw] = publication.xpath("//DocumentCategory").text unless publication.xpath("//DocumentCategory").blank?
-	    record_as_hash[:publicationimpactfactorlist_sw] = publication.xpath('//PublicationImpactFactorList').text.split('|')  unless publication.xpath("//PublicationImpactFactorList").blank?
-	    record_as_hash[:publicationcategoryrankinglist_sw] = publication.xpath('//PublicationCategoryRankingList').text.split('|')  unless publication.xpath("//PublicationCategoryRankingList").blank?
-	    record_as_hash[:numberofreferences_sw] = publication.xpath("//NumberOfReferences").text unless publication.xpath("//NumberOfReferences").blank?
-	    record_as_hash[:timescited_sw_retricted] = publication.xpath("//TimesCited").text unless publication.xpath("//TimesCited").blank?
-	    record_as_hash[:timenotselfcited_sw] = publication.xpath("//TimesNotSelfCited").text unless publication.xpath("//TimesNotSelfCited").blank?
-	    record_as_hash[:authorcitationcountlist_sw] = publication.xpath("//AuthorCitationCountList").text unless publication.xpath("//AuthorCitationCountList").blank?
-	    record_as_hash[:rank_sw] =  publication.xpath('//Rank').text unless publication.xpath("//Rank").blank?
-	    record_as_hash[:ordinalrank_sw] = publication.xpath('//OrdinalRank').text unless publication.xpath("//OrdinalRank").blank?
-	    record_as_hash[:normalizedrank_sw] = publication.xpath('//NormalizedRank').text unless publication.xpath("//NormalizedRank").blank?
-	    record_as_hash[:newpublicationid_sw] = publication.xpath('//NewPublicationItemID').text unless publication.xpath("//NewPublicationItemID").blank?
-	    record_as_hash[:isobsolete_sw] = publication.xpath('//IsObsolete').text unless publication.xpath("//IsObsolete").blank?
-	    
-	    record_as_hash[:publisher] =  publication.xpath('//CopyrightPublisher').text unless publication.xpath("//CopyrightPublisher").blank?
-	    record_as_hash[:city] = publication.xpath('//CopyrightCity').text unless publication.xpath("//CopyrightCity").blank?
-	    record_as_hash[:stateprovince] = publication.xpath('//CopyrightStateProvince').text unless publication.xpath("//CopyrightStateProvince").blank?
-	    record_as_hash[:country] = publication.xpath('//CopyrightCountry').text unless publication.xpath("//CopyrightCountry").blank?
-
-
-	    identifiers = Array.new
-	    identifiers << {:type =>'PMID', :id => publication.at_xpath("//PMID").text, :url => 'http://www.ncbi.nlm.nih.gov/pubmed/' + publication.xpath("//PMID").text } unless publication.at_xpath("//PMID").nil?
-	    identifiers << {:type => 'WoSItemID', :id => publication.at_xpath("//WoSItemID").text, :url => 'http://ws.isiknowledge.com/cps/openurl/service?url_ver=Z39.88-2004&rft_id=info:ut/' + publication.xpath("//WoSItemID").text} unless publication.at_xpath("//WoSItemID").nil?
-	    identifiers << {:type => 'PublicationItemID', :id => publication.at_xpath("//PublicationItemID").text} unless publication.at_xpath("//PublicationItemID").nil?
-	    
-	    # an issn is for either a journal or a book series (international standard series number)
-	    issn = {:type => 'issn', :id => publication.xpath('//ISSN').text, :url => 'http://searchworks.stanford.edu/?search_field=advanced&number=' + publication.xpath('//ISSN').text} unless publication.xpath('//ISSN').blank?
-	    
-	    if sul_document_type == Settings.sul_doc_types.inproceedings
-	      conference_hash = {}
-	      conference_hash[:startdate] = publication.xpath('//ConferenceStartDate').text unless publication.xpath("//ConferenceStartDate").blank?
-	      conference_hash[:enddate] = publication.xpath('//ConferenceEndDate').text unless publication.xpath("//ConferenceEndDate").blank?
-	      conference_hash[:city] = publication.xpath('//ConferenceCity').text unless publication.xpath("//ConferenceCity").blank?
-	      conference_hash[:statecountry] = publication.xpath('//ConferenceStateCountry').text unless publication.xpath("//ConferenceStateCountry").blank?
-	      record_as_hash[:conference] = conference_hash unless conference_hash.empty?
-	      
-	    elsif sul_document_type == Settings.sul_doc_types.book
-	      record_as_hash[:booktitle] = publication.xpath('//PublicationSourceTitle').text unless publication.xpath("//PublicationSourceTitle").blank?
-	      record_as_hash[:pages] = publication.xpath('//Pagination').text unless publication.xpath("//Pagination").blank?
-	      identifiers << {:type => 'doi', :id => publication.xpath('//DOI').text, :url => 'http://dx.doi.org/' + publication.xpath('//DOI').text} unless publication.xpath('//DOI').nil?
-	      
-	    end
-
-	    if sul_document_type == Settings.sul_doc_types.article || (sul_document_type == Settings.sul_doc_types.inproceedings && ! publication.xpath('//Issue').blank?)
-	      journal_hash = {}   
-	      journal_hash[:name] = publication.xpath('//PublicationSourceTitle').text unless publication.xpath('//PublicationSourceTitle').blank?
-	      journal_hash[:volume] = publication.xpath('//Volume').text unless publication.xpath('//Volume').blank?
-	      journal_hash[:issue] = publication.xpath('//Issue').text unless publication.xpath('//Issue').blank?
-	      journal_hash[:articlenumber] = publication.xpath('//ArticleNumber') unless publication.xpath('//ArticleNumber').blank?
-	      journal_hash[:pages] = publication.xpath('//Pagination').text unless publication.xpath('//Pagination').blank?
-	      journal_identifiers = Array.new
-	      journal_identifiers << {:type => 'issn', :id => publication.xpath('//ISSN').text, :url => 'http://searchworks.stanford.edu/?search_field=advanced&number=' + publication.xpath('//ISSN').text} unless publication.xpath('//ISSN').nil?
-	      journal_identifiers << {:type => 'doi', :id => publication.xpath('//DOI').text, :url => 'http://dx.doi.org/' + publication.xpath('//DOI').text} unless publication.xpath('//DOI').nil?
-	      journal_hash[:identifier] = journal_identifiers
-	      record_as_hash[:journal] = journal_hash
-	    end
-	    
-	    unless issn.blank? || publication.xpath('//Issue').blank? || sul_document_type == Settings.sul_doc_types.article
-	        book_series_hash = {}
-	        book_series_hash[:identifier] = [issn] 
-	        book_series_hash << publication.xpath('//PublicationSourceTitle').text unless publication.xpath('//PublicationSourceTitle').blank?
-	        book_series_hash << publication.xpath('//Volume').text unless publication.xpath('//Volume').blank?
-	        record_as_hash[:series] = book_series_hash 
-	    end
-	    record_as_hash[:identifier] = identifiers
-	    #puts "the record as hash"
-	    #puts record_as_hash.to_s
-	    record_as_hash
-	  end
 	def self.lookup_sw_doc_type(doc_type_list)  
 	    if !(@@sw_conference_proceedings_type_strings & doc_type_list).empty?
 	      type =  Settings.sul_doc_types.inproceedings
@@ -373,7 +282,7 @@ def self.convert_sw_publication_doc_to_hash_old(publication)
 	    type
 	end
 
-	def self.query_sciencewire_for_publication(first_name, last_name, middle_name, title, year)
+	def self.query_sciencewire_for_publication(first_name, last_name, middle_name, title, year, max_rows)
 	  result = []
 	  xml_query = '<![CDATA[
 	     <query xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/
@@ -425,7 +334,7 @@ def self.convert_sw_publication_doc_to_hash_old(publication)
 	          <Direction>Descending</Direction>
 	        </SortColumn>
 	      </Columns>
-	     <MaximumRows>' + Settings.sciencewire_harvest_max.to_s + '</MaximumRows>
+	     <MaximumRows>' + max_rows.to_s + '</MaximumRows>
 	    </query>
 	    ]]>'
 	    xml_results = query_sciencewire(xml_query)
@@ -433,7 +342,10 @@ def self.convert_sw_publication_doc_to_hash_old(publication)
 	    xml_results.xpath('//PublicationItem').each do |sw_xml_doc|
 	     # puts sw_xml_doc.to_xml
 	    # result << generate_json_for_pub(convert_sw_publication_doc_to_hash(sw_xml_doc))    
-	    result << convert_sw_publication_doc_to_hash(sw_xml_doc)   
+	    	pub_hash = convert_sw_publication_doc_to_hash(sw_xml_doc)
+	    	Publication.update_formatted_citations(pub_hash)
+	    	result << pub_hash
+
 	  end 
 
 	  result

@@ -51,10 +51,11 @@ end
     content_type :json, "application/json"
     parser :json, BibJSONParser
     post do
+      puts params[:pub_hash].to_s
       error!('Unauthorized', 401) unless env['HTTP_CAPKEY'] == '***REMOVED***'
       authorship_hash = params[:pub_hash]
       sul_author_id = authorship_hash[:sul_author_id]
-      cap_author_id = authorship_hash[:cap_profile_id] 
+      cap_profile_id = authorship_hash[:cap_profile_id] 
       sul_pub_id = authorship_hash[:sul_pub_id]
       pmid = authorship_hash[:pmid]
       sciencewire_id = authorship_hash[:sw_id]
@@ -66,9 +67,13 @@ end
         rescue ActiveRecord::RecordNotFound
           error!("The SUL author you've specified doesn't exist.", 404) 
         end
-      elsif ! cap_author_id.blank?
-          author = Author.where(cap_author_id: cap_author_id)
-          if author.nil? then error!("The CAP author you've specified doesn't exist.", 404) end
+      elsif ! cap_profile_id.blank?
+          author = Author.where(cap_profile_id: cap_profile_id).first
+          if author.nil?  
+              # todo check for the cap author in darryl's new api call.
+            error!("The CAP author you've specified doesn't exist.", 404) 
+          end
+          sul_author_id = author.id
       else
           error!("You haven't supplied an author identifier.", 404) 
       end
@@ -88,11 +93,13 @@ end
       end
       #WE'VE NOW GOT THE PUB AND THE AUTHOR, GET THE CONTRIBUTION OR CREATE A NEW ONE, AND THEN UPDATE
       contrib = Contribution.where(author_id: sul_author_id, publication_id: sul_pub_id).first_or_create
-      contrib.update_attributes(
-        status: authorship_hash[:status], 
-        visibility: authorship_hash[:visibility], 
-        featured: authorship_hash[:featured],
-        cap_profile_id: cap_profile_id)
+      contrib_hash = {}
+      contrib_hash[:status] = authorship_hash[:status] unless authorship_hash[:status].blank?
+      contrib_hash[:visibility] = authorship_hash[:visibility] unless authorship_hash[:visibility].blank?
+      contrib_hash[:featured] = authorship_hash[:featured] unless authorship_hash[:featured].blank?
+      contrib_hash[:cap_profile_id] = cap_profile_id unless cap_profile_id.blank?
+      
+      contrib.update_attributes(contrib_hash)
 
     end # post end
   end #class end
@@ -119,13 +126,11 @@ helpers do
         }
     metadata[:page] = page || 1
     metadata[:per_page] = per_page || "all"
-
     {
         metadata: metadata, 
         records: records
     }
-  end
-  
+  end 
 end
 
 
@@ -146,25 +151,25 @@ get :sourcelookup do
       middle_name = params[:middlename]
       title = params[:title]
       year = params[:year]
+      max_rows = params[:maxrows] || 20
 
       sources = source.split('+')
 
       if source.include?(Settings.sciencewire_source)
-        all_matching_records = SciencewireSourceRecord.query_sciencewire_for_publication(first_name, last_name, middle_name, title, year)
-        
+        all_matching_records = SciencewireSourceRecord.query_sciencewire_for_publication(first_name, last_name, middle_name, title, year, max_rows)      
       end
 
       if source.include?(Settings.manual_source)
-        query_hash = {}
-        #query_hash[:last_name] = last_name unless last_name.empty? 
-        #query_hash[:first_name] = first_name unless first_name.empty?
-        #query_hash[:middle_name] = middle_name unless middle_name.empty?
-        query_hash[:title] = title unless title.blank?
-        query_hash[:year] = year unless year.blank?
-        query_hash[:is_active] = true
-        #query_hash[:is_local_only] = true  
+        
+        user_submitted_source_records = UserSubmittedSourceRecord.arel_table
 
-        UserSubmittedSourceRecord.where(query_hash).each { |source_record| all_matching_records << source_record.publication.pub_hash }
+        unless year.blank?
+        results = UserSubmittedSourceRecord.where(user_submitted_source_records[:title].matches("%#{title}%")).
+          where(user_submitted_source_records[:year].eq(year))
+        else
+          results = UserSubmittedSourceRecord.where(user_submitted_source_records[:title].matches("%#{title}%"))
+        end
+        results.each {|source_record| all_matching_records << source_record.publication.pub_hash }
       end
 
       wrap_as_bibjson_collection("Search results from requested sources: " + source, env["ORIGINAL_FULLPATH"], all_matching_records, nil, nil)
@@ -190,6 +195,7 @@ get :sourcelookup do
           Publication.where("updated_at > ?", DateTime.parse(changedSince).to_s).find_each do | publication |
              matching_records << publication.pub_hash 
           end
+          # Authors.where(:active).publications
         else
           matching_records = Publication.where("updated_at > ?", DateTime.parse(changedSince).to_s).
               order(:id).
@@ -214,10 +220,11 @@ get :sourcelookup do
     content_type :json, "application/json"
     parser :json, BibJSONParser
     post do     
-    
+      
       error!('Unauthorized', 401) unless env['HTTP_CAPKEY'] == '***REMOVED***'  
       request_body_unparsed = env['api.request.input']
       pub_hash = params[:pub_hash]
+     # Rails.logger.debug "Incoming bibjson post attributes hash: #{pub_hash}"
       fingerprint = Digest::SHA2.hexdigest(request_body_unparsed)
       existingRecord = UserSubmittedSourceRecord.where(source_fingerprint: fingerprint).first
       unless existingRecord.nil?  

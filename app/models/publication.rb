@@ -103,8 +103,7 @@ end
 
 def set_last_updated_value_in_hash
   save   # to reset last updated value
-  self.pub_hash[:last_updated] = updated_at.to_s
-    
+  self.pub_hash[:last_updated] = updated_at.to_s 
 end
 
 def set_sul_pub_id_in_hash
@@ -123,7 +122,7 @@ def sync_publication_hash_and_db
     add_all_db_contributions_to_pub_hash
     sync_identifers_between_db_and_hash
     
-    update_formatted_citations
+    update_formatted_citations(self.pub_hash)
   
     save
   end
@@ -201,7 +200,7 @@ end
 
   
 
-def update_formatted_citations
+def self.update_formatted_citations(pub_hash)
     #[{"id"=>"Gettys90", "type"=>"article-journal", "author"=>[{"family"=>"Gettys", "given"=>"Jim"}, {"family"=>"Karlton", "given"=>"Phil"}, {"family"=>"McGregor", "given"=>"Scott"}], "title"=>"The {X} Window System, Version 11", "container-title"=>"Software Practice and Experience", "volume"=>"20", "issue"=>"S2", "abstract"=>"A technical overview of the X11 functionality.  This is an update of the X10 TOG paper by Scheifler \\& Gettys.", "issued"=>{"date-parts"=>[[1990]]}}]
     chicago_csl_file = Rails.root.join('app', 'data', 'chicago-author-date.csl')
     authors_for_citeproc = []

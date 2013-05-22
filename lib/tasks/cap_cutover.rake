@@ -86,7 +86,7 @@ desc "ingest existing cap hand entered pubs"
 # this is to initially update email addresses if necessary
 # if not, then to ingest author file.
 desc "ingest/update authors with email addresses"
-task :ingest_all_authors, [:file_location] => :environment do |t, args|
+task :update_author_email, [:file_location] => :environment do |t, args|
     include ActionView::Helpers::DateHelper
     start_time = Time.now
     total_running_count = 0
@@ -94,15 +94,20 @@ task :ingest_all_authors, [:file_location] => :environment do |t, args|
     CSV.foreach(args.file_location, :headers  => true, :header_converters => :symbol) do |row|
         total_running_count += 1
         cap_profile_id = row[:profile_id]
-        author = Author.where(cap_profile_id: cap_profile_id).first_or_create(
-        official_first_name: row[:official_first_name], 
-        official_last_name: row[:official_last_name], 
-        official_middle_name: row[:official_middle_name], 
-        sunetid: row[:sunetid], 
-        university_id: row[:university_id], 
-        email: row[:email_address])
-        author.update_attributes(email: row[:email_address])
-        author.population_memberships.where(population_name: Settings.cap_population_name, cap_profile_id: cap_profile_id).first_or_create()
+        author = Author.where(cap_profile_id: cap_profile_id).first
+        if author.nil?
+          Author.create(
+            cap_profile_id: cap_profile_id,
+            official_first_name: row[:official_first_name], 
+            official_last_name: row[:official_last_name], 
+            official_middle_name: row[:official_middle_name], 
+            sunetid: row[:sunetid], 
+            university_id: row[:university_id], 
+            email: row[:email_address])
+        else
+          author.update_attributes(email: row[:email_address])
+        end
+        #author.population_memberships.where(population_name: Settings.cap_population_name, cap_profile_id: cap_profile_id).first_or_create()
         if total_running_count%5000 == 0  then GC.start end
         if total_running_count%5000 == 0 then puts (total_running_count).to_s + " in " + distance_of_time_in_words_to_now(start_time) end
     end
