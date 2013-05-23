@@ -33,6 +33,8 @@ task :pull_pubmed_for_cap, [:file_location] => :environment do |t, args|
   start_time = Time.now
   total_running_count = 0
   pmids_for_this_batch = Set.new
+  cap_import_pmid_logger = Logger.new(Rails.root.join('log', 'cap_import_pmid.log'))
+  cap_import_pmid_logger.info "Started pumed import " + DateTime.now.to_s
    lines = CSV.foreach(args.file_location, :headers  => true, :header_converters => :symbol) do |row|
         total_running_count += 1
         pmid = row[:pubmed_id].to_s()   
@@ -47,8 +49,11 @@ task :pull_pubmed_for_cap, [:file_location] => :environment do |t, args|
       end
       # finish off the batch
       PubmedSourceRecord.get_and_store_records_from_pubmed(pmids_for_this_batch)
-      puts (total_running_count).to_s + "records were processed in " + distance_of_time_in_words_to_now(start_time, include_seconds = true)
+      puts total_running_count.to_s + "records were processed in " + distance_of_time_in_words_to_now(start_time, include_seconds = true)
       puts lines.to_s + " lines of file: " + args.file_location.to_s + " were processed."
+      cap_import_pmid_logger.info "Finished pubmed import." + DateTime.now.to_s
+      cap_import_pmid_logger.info lines.to_s + " lines of file: " + args.file_location.to_s + " were processed."
+      cap_import_pmid_logger.info total_running_count.to_s + "records were processed in " + distance_of_time_in_words_to_now(start_time, include_seconds = true)
 end
 
 
@@ -57,7 +62,7 @@ desc "create publication, author, contribution, publication_identifier, and popu
     include ActionView::Helpers::DateHelper
     start_time = Time.now
     total_running_count = 0
-    @cap_import_logger = Logger.new('cap_import.log')
+    @cap_import_logger = Logger.new(Rails.root.join('log', 'cap_import_pubs.log'))
     CSV.foreach(args.file_location, :headers  => true, :header_converters => :symbol) do |row|
         total_running_count += 1
         build_pub_from_cap_data(row)

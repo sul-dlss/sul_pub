@@ -3,7 +3,7 @@ require 'nokogiri'
 class PubmedSourceRecord < ActiveRecord::Base
   attr_accessible :is_active, :lock_version, :pmid, :source_data, :source_fingerprint
   #validates_uniqueness_of :pmid
-  validates_presence_of :source_data
+  #validates_presence_of :source_data
 
   	def self.get_pub_by_pmid(pmid) 
   		pubmed_pub_hash = PubmedSourceRecord.get_pubmed_hash_for_pmid(pmid)
@@ -43,17 +43,17 @@ class PubmedSourceRecord < ActiveRecord::Base
 		http.finish
 		count = 0
 		source_records = []
-		
+		@cap_import_pmid_logger = Logger.new(Rails.root.join('log', 'cap_import_pmid.log'))
 		Nokogiri::XML(the_incoming_xml).xpath('//PubmedArticle').each do |pub_doc|
 	  		pmid = pub_doc.xpath('MedlineCitation/PMID').text    
 	        begin        
-	          	count += 1
-	          	pmids.delete(pmid)
+	          	count += 1      	
 	          	source_records << PubmedSourceRecord.new(
                       :pmid => pmid,
 	                  :source_data => pub_doc.to_xml,
 	                  :is_active => true,
 	                  :source_fingerprint => Digest::SHA2.hexdigest(pub_doc))
+	          	pmids.delete(pmid)
 		    rescue Exception => e  
 	          puts e.message  
 	          puts e.backtrace.inspect  
@@ -65,6 +65,7 @@ class PubmedSourceRecord < ActiveRecord::Base
     	PubmedSourceRecord.import source_records 
     	puts count.to_s + " pmids were processed. "
     	puts pmids.length.to_s + " pmids weren't processed: "
+    	@cap_import_pmid_logger.info "Invalid pmids: " + pmids.to_a.join(',')
 
 	end
 
