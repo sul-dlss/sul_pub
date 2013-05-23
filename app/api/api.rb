@@ -17,9 +17,9 @@ end
   end
 
   class API_samples < Grape::API
-    version 'v1', :using => :header, :vendor => 'sul', :format => :json
-    format :json
-    rescue_from :all, :backtrace => true
+   # version 'v1', :using => :header, :vendor => 'sul', :format => :json
+   # format :json
+    #rescue_from :all, :backtrace => true
     
     get(:get_pub_out) {IO.read(Rails.root.join('app', 'data', 'api_samples', 'get_pub_out.json')) }
     get(:get_pubs_out) { IO.read(Rails.root.join('app', 'data', 'api_samples', 'get_pubs_out.json')) }
@@ -51,7 +51,7 @@ end
     content_type :json, "application/json"
     parser :json, BibJSONParser
     post do
-      puts params[:pub_hash].to_s
+      #puts params[:pub_hash].to_s
       error!('Unauthorized', 401) unless env['HTTP_CAPKEY'] == '***REMOVED***'
       authorship_hash = params[:pub_hash]
       sul_author_id = authorship_hash[:sul_author_id]

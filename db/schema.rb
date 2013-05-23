@@ -13,48 +13,23 @@
 
 ActiveRecord::Schema.define(:version => 20130513135604) do
 
-  create_table "author_identifiers", :force => true do |t|
-    t.integer  "author_id"
-    t.string   "identifier_type"
-    t.string   "identifier_value"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
-  end
-
-  create_table "author_names", :force => true do |t|
-    t.integer  "author_id"
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "middle_name"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-  end
-
   create_table "authors", :force => true do |t|
     t.integer  "cap_profile_id"
+    t.boolean  "active_in_cap"
     t.string   "sunetid"
     t.integer  "university_id"
-    t.integer  "shc_doctor_no"
     t.string   "email"
-    t.string   "ca_license_number"
     t.string   "cap_first_name"
     t.string   "cap_last_name"
     t.string   "cap_middle_name"
-    t.string   "display_name"
     t.string   "official_first_name"
     t.string   "official_last_name"
     t.string   "official_middle_name"
     t.string   "preferred_first_name"
     t.string   "preferred_last_name"
     t.string   "preferred_middle_name"
-    t.string   "pubmed_last_name"
-    t.string   "pubmed_first_initial"
-    t.string   "pubmed_middle_initial"
-    t.string   "pubmed_institution"
-    t.string   "pubmed_other_institution"
-    t.string   "cap_url"
-    t.datetime "created_at",               :null => false
-    t.datetime "updated_at",               :null => false
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
   end
 
   create_table "contributions", :force => true do |t|
@@ -66,14 +41,6 @@ ActiveRecord::Schema.define(:version => 20130513135604) do
     t.string   "visibility"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
-  end
-
-  create_table "population_memberships", :force => true do |t|
-    t.integer  "author_id"
-    t.integer  "cap_profile_id"
-    t.string   "population_name"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
   end
 
   create_table "publication_identifiers", :force => true do |t|
@@ -147,6 +114,7 @@ ActiveRecord::Schema.define(:version => 20130513135604) do
     t.integer  "year"
     t.boolean  "is_active"
     t.integer  "publication_id"
+    t.integer  "author_id"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
   end

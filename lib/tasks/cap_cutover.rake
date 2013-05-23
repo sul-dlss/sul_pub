@@ -57,6 +57,7 @@ desc "create publication, author, contribution, publication_identifier, and popu
     include ActionView::Helpers::DateHelper
     start_time = Time.now
     total_running_count = 0
+    @cap_import_logger = Logger.new('cap_import.log')
     CSV.foreach(args.file_location, :headers  => true, :header_converters => :symbol) do |row|
         total_running_count += 1
         build_pub_from_cap_data(row)
@@ -83,10 +84,9 @@ desc "ingest existing cap hand entered pubs"
     end
   end
 
-# this is to initially update email addresses if necessary
-# if not, then to ingest author file.
-desc "ingest/update authors with email addresses"
-task :update_author_email, [:file_location] => :environment do |t, args|
+#  ingest author files from csv.
+desc "ingest authors "
+task :ingest_authors, [:file_location] => :environment do |t, args|
     include ActionView::Helpers::DateHelper
     start_time = Time.now
     total_running_count = 0
@@ -94,20 +94,26 @@ task :update_author_email, [:file_location] => :environment do |t, args|
     CSV.foreach(args.file_location, :headers  => true, :header_converters => :symbol) do |row|
         total_running_count += 1
         cap_profile_id = row[:profile_id]
-        author = Author.where(cap_profile_id: cap_profile_id).first
-        if author.nil?
+       # author = Author.where(cap_profile_id: cap_profile_id).first_or_create
+      #  if author.nil?
           Author.create(
             cap_profile_id: cap_profile_id,
-            official_first_name: row[:official_first_name], 
-            official_last_name: row[:official_last_name], 
-            official_middle_name: row[:official_middle_name], 
+            active_in_cap: row[:active_profile],
             sunetid: row[:sunetid], 
             university_id: row[:university_id], 
-            email: row[:email_address])
-        else
-          author.update_attributes(email: row[:email_address])
-        end
-        #author.population_memberships.where(population_name: Settings.cap_population_name, cap_profile_id: cap_profile_id).first_or_create()
+            email: row[:email_address],
+            official_first_name: row[:official_first_name], 
+            official_last_name: row[:official_last_name], 
+            official_middle_name: row[:official_middle_name],
+            cap_first_name: row[:cap_first_name], 
+            cap_last_name: row[:cap_last_name], 
+            cap_middle_name: row[:cap_middle_name],
+            preferred_first_name: row[:preferred_first_name], 
+            preferred_last_name: row[:preferred_last_name], 
+            preferred_middle_name: row[:preferred_middle_name]
+            )
+       
+#author.population_memberships.where(population_name: Settings.cap_population_name, cap_profile_id: cap_profile_id).first_or_create()
         if total_running_count%5000 == 0  then GC.start end
         if total_running_count%5000 == 0 then puts (total_running_count).to_s + " in " + distance_of_time_in_words_to_now(start_time) end
     end
@@ -122,7 +128,7 @@ def create_author_and_population_membership(cap_pub_data_for_this_pub)
         university_id: cap_pub_data_for_this_pub[:university_id],
         email: cap_pub_data_for_this_pub[:email_address]
       )
-  author.population_memberships.where(population_name: Settings.cap_population_name, cap_profile_id: cap_pub_data_for_this_pub[:profile_id]).first_or_create()
+  #author.population_memberships.where(population_name: Settings.cap_population_name, cap_profile_id: cap_pub_data_for_this_pub[:profile_id]).first_or_create()
   author
 end
 
@@ -130,7 +136,8 @@ def build_pub_from_cap_data(cap_pub_data_for_this_pub)
   begin
     pmid = cap_pub_data_for_this_pub[:pubmed_id].to_s        
 
-    author = create_author_and_population_membership(cap_pub_data_for_this_pub)  
+   # author = create_author_and_population_membership(cap_pub_data_for_this_pub)  
+   author = Author.where(cap_profile_id: cap_pub_data_for_this_pub[:profile_id]).first
     pub = Publication.where(pmid: pmid).first 
     if pub.nil? 
       sciencewire_source_record = SciencewireSourceRecord.where(pmid: pmid).first
@@ -170,7 +177,12 @@ def build_pub_from_cap_data(cap_pub_data_for_this_pub)
           featured: cap_pub_data_for_this_pub[:featured])    
       pub.sync_publication_hash_and_db       
     end
-    if pub.nil? then puts "nil sw and pubmed record for pmid: " + pmid.to_s end
+    if pub.nil? 
+      #puts "nil sw and pubmed record for pmid: " + pmid.to_s 
+      
+      @cap_import_logger.info "Invalid pmid: " + pmid.to_s 
+      #File.open(Rails.root.join('log', 'get_pub_out.json')) "file.txt", "a+"){|f| f << pmid.to_s }
+    end
   rescue Exception => e  
           puts e.message  
           puts e.backtrace.inspect  

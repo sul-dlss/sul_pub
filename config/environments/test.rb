@@ -1,5 +1,5 @@
 Sulbib::Application.configure do
-  config.force_ssl = true
+ # config.force_ssl = true
   # Settings specified here will take precedence over those in config/application.rb
 
   # The test environment is used exclusively to run your application's

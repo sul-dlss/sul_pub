@@ -1,12 +1,12 @@
-require 'rvm/capistrano'  # Add RVM integration
+#require 'rvm/capistrano'  # Add RVM integration
 require 'bundler/capistrano'  # Add Bundler integration
 require 'capistrano/ext/multistage' 
 
 set :stages, ["development", "staging", "production"]
 set :default_stage, "staging"
 
-set :rvm_type, :system
-set :rvm_path, "/usr/local/rvm"
+#set :rvm_type, :system
+#set :rvm_path, "/usr/local/rvm"
 
 set :application, "sulbib"
 

@@ -6,7 +6,7 @@ class Publication < ActiveRecord::Base
   has_many :authors, :through => :contributions
   has_many :publication_identifiers, :dependent => :destroy
   has_many :user_submitted_source_records
-  has_many :population_membership, :foreign_key => "author_id"
+  #has_many :population_membership, :foreign_key => "author_id"
   #validates_uniqueness_of :pmid
   #validates_uniqueness_of :sciencewire_id
   
