@@ -74,7 +74,7 @@ desc "create publication, author, contribution, publication_identifier, and popu
         total_running_count += 1
         build_pub_from_cap_data(row)
         if total_running_count%5000 == 0  then GC.start end
-          if total_running_count%40 == 0  then break end
+          
         if total_running_count%500 == 0 
           puts (total_running_count).to_s + " in " + distance_of_time_in_words_to_now(start_time, include_seconds = true)
         end
