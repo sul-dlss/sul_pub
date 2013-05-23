@@ -117,25 +117,20 @@ def sync_publication_hash_and_db
     set_last_updated_value_in_hash
     set_sul_pub_id_in_hash
     
+    add_all_db_contributions_to_my_pub_hash
+    add_any_new_identifiers_in_pub_hash_to_db
+    add_all_identifiers_in_db_to_pub_hash
     
-    #sync_contributions_between_db_and_hash
-    add_all_db_contributions_to_pub_hash
-    sync_identifers_between_db_and_hash
-    
-    update_formatted_citations(self.pub_hash)
+    self.class.update_formatted_citations(self.pub_hash)
   
     save
   end
 
-def sync_identifers_between_db_and_hash
-    add_any_new_identifiers_in_pub_hash_to_db
-    add_all_identifiers_in_db_to_pub_hash
-end
 
   def add_any_new_identifiers_in_pub_hash_to_db
     if pub_hash[:identifier] 
-      pub_hash[:identifier].each do |identifier|
-        publication_identifiers.where(
+      self.pub_hash[:identifier].each do |identifier|
+        self.publication_identifiers.where(
           :identifier_type => identifier[:type],
           :identifier_value => identifier[:id]).
           first_or_create(:certainty => 'confirmed', :identifier_uri => identifier[:url])
@@ -144,25 +139,19 @@ end
   end
 
 def add_all_identifiers_in_db_to_pub_hash
-    identifiers = Array.new
-    publication_identifiers.each do |identifier|
+    self.pub_hash[:identifier] = self.publication_identifiers.collect do |identifier|
       ident_hash = Hash.new
       ident_hash[:type] = identifier.identifier_type unless identifier.identifier_type.blank?
       ident_hash[:id] = identifier.identifier_value unless identifier.identifier_value.blank?
       ident_hash[:url] = identifier.identifier_uri unless identifier.identifier_uri.blank?
-        identifiers << ident_hash
+     ident_hash
     end
-    pub_hash[:identifier] = identifiers
   end
 
-#def sync_contributions_between_db_and_hash
- #   add_any_new_contribution_info_in_pub_hash_to_db
-  #  add_all_db_contributions_to_pub_hash
-#end
 
 def update_any_new_contribution_info_in_pub_hash_to_db
-  unless pub_hash[:authorship].nil?
-    pub_hash[:authorship].each do |contrib|
+  unless self.pub_hash[:authorship].nil?
+    self.pub_hash[:authorship].each do |contrib|
           sul_author_id = contrib[:sul_author_id] 
           if sul_author_id.blank? 
             cap_profile_id = contrib[:cap_profile_id]
@@ -172,7 +161,7 @@ def update_any_new_contribution_info_in_pub_hash_to_db
             end
           end
           unless sul_author_id.blank?
-            contrib = contributions.where(:author_id => sul_author_id).first_or_create   
+            contrib = self.contributions.where(:author_id => sul_author_id).first_or_create   
             contrib.update_attributes(
               cap_profile_id: contrib[:cap_profile_id],
               status: contrib[:status],
@@ -184,18 +173,16 @@ def update_any_new_contribution_info_in_pub_hash_to_db
   end
 end
 
-  def add_all_db_contributions_to_pub_hash
-    contributions = Array.new
-    Contribution.where(:publication_id => id).each do |contrib_in_db|
-      contributions <<
+  def add_all_db_contributions_to_my_pub_hash
+    
+    self.pub_hash[:authorship] = self.contributions.collect do |contrib_in_db|     
         {:cap_profile_id => contrib_in_db.cap_profile_id,
          :sul_author_id => contrib_in_db.author_id,
          :status => contrib_in_db.status,
           visibility: contrib_in_db.visibility, 
         featured: contrib_in_db.featured}
+      end
 
-        end
-    pub_hash[:authorship] = contributions
   end
 
   

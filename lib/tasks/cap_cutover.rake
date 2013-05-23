@@ -10,6 +10,8 @@ task :pull_sw_for_cap, [:file_location] => :environment do |t, args|
   start_time = Time.now
   total_running_count = 0
   pmids_for_this_batch = Set.new
+  cap_import_sw_logger = Logger.new(Rails.root.join('log', 'cap_import_sciencewire_source_records.log'))
+  cap_import_sw_logger.info "Started sciencewire import " + DateTime.now.to_s
    lines = CSV.foreach(args.file_location, :headers => true, :header_converters => :symbol) do |row|
         total_running_count += 1
         pmid = row[:pubmed_id].to_s()
@@ -24,6 +26,9 @@ task :pull_sw_for_cap, [:file_location] => :environment do |t, args|
       SciencewireSourceRecord.get_and_store_sw_source_records(pmids_for_this_batch)
       puts (total_running_count).to_s + "records were processed in " + distance_of_time_in_words_to_now(start_time)
       puts lines.to_s + " lines of file: " + args.file_location.to_s + " were processed."    
+      cap_import_pmid_logger.info "Finished sciencewire import." + DateTime.now.to_s
+      cap_import_pmid_logger.info lines.to_s + " lines of file: " + args.file_location.to_s + " were processed."
+      cap_import_pmid_logger.info total_running_count.to_s + "records were processed in " + distance_of_time_in_words_to_now(start_time, include_seconds = true)
 end
 
 
@@ -33,7 +38,7 @@ task :pull_pubmed_for_cap, [:file_location] => :environment do |t, args|
   start_time = Time.now
   total_running_count = 0
   pmids_for_this_batch = Set.new
-  cap_import_pmid_logger = Logger.new(Rails.root.join('log', 'cap_import_pmid.log'))
+  cap_import_pmid_logger = Logger.new(Rails.root.join('log', 'cap_import_pubmed_source_records.log'))
   cap_import_pmid_logger.info "Started pumed import " + DateTime.now.to_s
    lines = CSV.foreach(args.file_location, :headers  => true, :header_converters => :symbol) do |row|
         total_running_count += 1
@@ -62,15 +67,22 @@ desc "create publication, author, contribution, publication_identifier, and popu
     include ActionView::Helpers::DateHelper
     start_time = Time.now
     total_running_count = 0
-    @cap_import_logger = Logger.new(Rails.root.join('log', 'cap_import_pubs.log'))
-    CSV.foreach(args.file_location, :headers  => true, :header_converters => :symbol) do |row|
+    @cap_import_logger = Logger.new(Rails.root.join('log', 'cap_import_pmid_pubs.log'))
+    @cap_import_logger.info "Started cap build pub process " + DateTime.now.to_s
+ 
+    lines = CSV.foreach(args.file_location, :headers  => true, :header_converters => :symbol) do |row|
         total_running_count += 1
         build_pub_from_cap_data(row)
         if total_running_count%5000 == 0  then GC.start end
+          if total_running_count%40 == 0  then break end
         if total_running_count%500 == 0 
           puts (total_running_count).to_s + " in " + distance_of_time_in_words_to_now(start_time, include_seconds = true)
         end
     end
+    @cap_import_logger.info "Finished import." + DateTime.now.to_s
+    @cap_import_logger.info lines.to_s + " lines of file: " + args.file_location.to_s + " were processed."
+    @cap_import_logger.info total_running_count.to_s + "records were processed in " + distance_of_time_in_words_to_now(start_time, include_seconds = true)
+
 end
 
 
@@ -79,14 +91,20 @@ desc "ingest existing cap hand entered pubs"
     include ActionView::Helpers::DateHelper
     start_time = Time.now
     total_running_count = 0
-    CSV.foreach(args.file_location, :headers  => true, :header_converters => :symbol) do |row|
+    @cap_manual_import_logger = Logger.new(Rails.root.join('log', 'cap_import_man_pubs.log'))
+    @cap_manual_import_logger.info "Started cap manual pub import process " + DateTime.now.to_s
+    lines = CSV.foreach(args.file_location, :headers  => true, :header_converters => :symbol) do |row|
       total_running_count += 1
       if total_running_count%500 == 0 then puts total_running_count.to_s + " in " + distance_of_time_in_words_to_now(start_time) end
-      author = create_author_and_population_membership(row)
+      author = Author.where(cap_profile_id: row[:profile_id]).first
       pub_hash = convert_manual_publication_row_to_hash(row, author.id.to_s)
       original_source = row.to_s
       Publication.build_new_manual_publication(Settings.cap_provenance, pub_hash, original_source) 
     end
+    @cap_manual_import_logger.info "Finished import." + DateTime.now.to_s
+    @cap_manual_import_logger.info lines.to_s + " lines of file: " + args.file_location.to_s + " were processed."
+    @cap_manual_import_logger.info total_running_count.to_s + "records were processed in " + distance_of_time_in_words_to_now(start_time, include_seconds = true)
+
   end
 
 #  ingest author files from csv.
@@ -118,30 +136,15 @@ task :ingest_authors, [:file_location] => :environment do |t, args|
             preferred_middle_name: row[:preferred_middle_name]
             )
        
-#author.population_memberships.where(population_name: Settings.cap_population_name, cap_profile_id: cap_profile_id).first_or_create()
         if total_running_count%5000 == 0  then GC.start end
         if total_running_count%5000 == 0 then puts (total_running_count).to_s + " in " + distance_of_time_in_words_to_now(start_time) end
     end
-end
-
-def create_author_and_population_membership(cap_pub_data_for_this_pub)
-  author = Author.where(cap_profile_id: cap_pub_data_for_this_pub[:profile_id]).first_or_create(
-        official_first_name: cap_pub_data_for_this_pub[:official_first_name], 
-        official_last_name: cap_pub_data_for_this_pub[:official_last_name], 
-        official_middle_name: cap_pub_data_for_this_pub[:official_middle_name], 
-        sunetid: cap_pub_data_for_this_pub[:sunetid], 
-        university_id: cap_pub_data_for_this_pub[:university_id],
-        email: cap_pub_data_for_this_pub[:email_address]
-      )
-  #author.population_memberships.where(population_name: Settings.cap_population_name, cap_profile_id: cap_pub_data_for_this_pub[:profile_id]).first_or_create()
-  author
 end
 
 def build_pub_from_cap_data(cap_pub_data_for_this_pub)
   begin
     pmid = cap_pub_data_for_this_pub[:pubmed_id].to_s        
 
-   # author = create_author_and_population_membership(cap_pub_data_for_this_pub)  
    author = Author.where(cap_profile_id: cap_pub_data_for_this_pub[:profile_id]).first
     pub = Publication.where(pmid: pmid).first 
     if pub.nil? 
@@ -149,7 +152,7 @@ def build_pub_from_cap_data(cap_pub_data_for_this_pub)
       unless sciencewire_source_record.nil?
         sw_pub_hash = sciencewire_source_record.get_source_as_hash
         unless sw_pub_hash.nil?
-          pub = Publication.new(
+          pub = Publication.create(
             active: true,
             title: sw_pub_hash[:title],
             year: sw_pub_hash[:year],
@@ -164,7 +167,7 @@ def build_pub_from_cap_data(cap_pub_data_for_this_pub)
       unless pubmed_source_record.nil?
         pubmed_hash = pubmed_source_record.get_source_as_hash
         unless pubmed_hash.nil?
-            pub = Publication.new(
+            pub = Publication.create(
                 active: true,
                 title: pubmed_hash[:title],
                 year: pubmed_hash[:year],
@@ -173,27 +176,24 @@ def build_pub_from_cap_data(cap_pub_data_for_this_pub)
         end
       end
     end
-   # pub = Publication.get_pub_by_pmid(pmid)
-    unless pub.nil? || pub.contributions.exists?(:author_id => author.id)
-      pub.contributions.where(:author_id => author.id).create(
+   
+    unless pub.nil? 
+      pub.contributions.where(:author_id => author.id).first_or_create(
           cap_profile_id: cap_pub_data_for_this_pub[:profile_id],
           status: cap_pub_data_for_this_pub[:authorship_status],
           visibility: cap_pub_data_for_this_pub[:visibility], 
           featured: cap_pub_data_for_this_pub[:featured])    
       pub.sync_publication_hash_and_db       
-    end
-    if pub.nil? 
-      #puts "nil sw and pubmed record for pmid: " + pmid.to_s 
-      
+    else
+      #puts "nil sw and pubmed record for pmid: " + pmid.to_s     
       @cap_import_logger.info "Invalid pmid: " + pmid.to_s 
-      #File.open(Rails.root.join('log', 'get_pub_out.json')) "file.txt", "a+"){|f| f << pmid.to_s }
     end
   rescue Exception => e  
-          puts e.message  
-          puts e.backtrace.inspect  
-          puts "the offending pmid: " + pmid.to_s
-          puts "the contrib: " + cap_pub_data_for_this_pub.to_s
-          puts "the author: " + author.to_s
+          @cap_import_logger.info e.message  
+          @cap_import_logger.info e.backtrace.inspect  
+          @cap_import_logger.info "the offending pmid: " + pmid.to_s
+          @cap_import_logger.info "the contrib: " + cap_pub_data_for_this_pub.to_s
+          @cap_import_logger.info "the author: " + author.to_s
   end  
 end
 
