@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130513135604) do
+ActiveRecord::Schema.define(:version => 20130524014219) do
 
   create_table "authors", :force => true do |t|
     t.integer  "cap_profile_id"
@@ -32,6 +32,10 @@ ActiveRecord::Schema.define(:version => 20130513135604) do
     t.datetime "updated_at",            :null => false
   end
 
+  add_index "authors", ["active_in_cap"], :name => "index_authors_on_active_in_cap"
+  add_index "authors", ["cap_profile_id"], :name => "index_authors_on_cap_profile_id"
+  add_index "authors", ["sunetid"], :name => "index_authors_on_sunetid"
+
   create_table "contributions", :force => true do |t|
     t.integer  "author_id"
     t.integer  "cap_profile_id"
@@ -42,6 +46,11 @@ ActiveRecord::Schema.define(:version => 20130513135604) do
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
   end
+
+  add_index "contributions", ["author_id"], :name => "index_contributions_on_author_id"
+  add_index "contributions", ["cap_profile_id"], :name => "index_contributions_on_cap_profile_id"
+  add_index "contributions", ["publication_id", "author_id"], :name => "index_contributions_on_publication_id_and_author_id"
+  add_index "contributions", ["publication_id"], :name => "index_contributions_on_publication_id"
 
   create_table "publication_identifiers", :force => true do |t|
     t.integer  "publication_id"
@@ -68,6 +77,9 @@ ActiveRecord::Schema.define(:version => 20130513135604) do
     t.datetime "updated_at",              :null => false
   end
 
+  add_index "publications", ["pmid"], :name => "index_publications_on_pmid"
+  add_index "publications", ["sciencewire_id"], :name => "index_publications_on_sciencewire_id"
+
   create_table "pubmed_source_records", :force => true do |t|
     t.text     "source_data"
     t.integer  "pmid"
@@ -77,6 +89,8 @@ ActiveRecord::Schema.define(:version => 20130513135604) do
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
   end
+
+  add_index "pubmed_source_records", ["pmid"], :name => "index_pubmed_source_records_on_pmid"
 
   create_table "sciencewire_source_records", :force => true do |t|
     t.text     "source_data"
@@ -88,6 +102,9 @@ ActiveRecord::Schema.define(:version => 20130513135604) do
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
   end
+
+  add_index "sciencewire_source_records", ["pmid"], :name => "index_sciencewire_source_records_on_pmid"
+  add_index "sciencewire_source_records", ["sciencewire_id"], :name => "index_sciencewire_source_records_on_sciencewire_id"
 
   create_table "source_records", :force => true do |t|
     t.text     "source_data"
