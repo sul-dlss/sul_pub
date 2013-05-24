@@ -61,26 +61,60 @@ task :pull_pubmed_for_cap, [:file_location] => :environment do |t, args|
       cap_import_pmid_logger.info total_running_count.to_s + "records were processed in " + distance_of_time_in_words_to_now(start_time, include_seconds = true)
 end
 
-
-desc "create publication, author, contribution, publication_identifier, and population_membership records from full cap dump"
-  task :build_from_cap_data, [:file_location] => :environment do |t, args|
+desc "create publication and contribution records from full cap dump"
+  task :create_pubs_from_cap, [:file_location] => :environment do |t, args|
     include ActionView::Helpers::DateHelper
     start_time = Time.now
     total_running_count = 0
-    @cap_import_logger = Logger.new(Rails.root.join('log', 'cap_import_pmid_pubs.log'))
+    @cap_import_logger = Logger.new(Rails.root.join('log', 'cap_create_pmid_pubs.log'))
     @cap_import_logger.info "Started cap build pub process " + DateTime.now.to_s
  
     lines = CSV.foreach(args.file_location, :headers  => true, :header_converters => :symbol) do |row|
         total_running_count += 1
-        build_pub_from_cap_data(row)
+        
+    author = Author.where(cap_profile_id: row[:profile_id]).first
+    pub = Publication.where(pmid: row[:pubmed_id]).first_or_create
+    pub.contributions.where(:author_id => author.id).first_or_create(
+          cap_profile_id: row[:profile_id],
+          status: row[:authorship_status],
+          visibility: row[:visibility], 
+          featured: row[:featured]) 
+
+
         if total_running_count%5000 == 0  then GC.start end
           
-        if total_running_count%500 == 0 
+        if total_running_count%1000 == 0 
           puts (total_running_count).to_s + " in " + distance_of_time_in_words_to_now(start_time, include_seconds = true)
+          @cap_import_logger.info total_running_count.to_s + " in " + distance_of_time_in_words_to_now(start_time, include_seconds = true)
+ 
         end
     end
     @cap_import_logger.info "Finished import." + DateTime.now.to_s
     @cap_import_logger.info lines.to_s + " lines of file: " + args.file_location.to_s + " were processed."
+    @cap_import_logger.info total_running_count.to_s + "records were processed in " + distance_of_time_in_words_to_now(start_time, include_seconds = true)
+
+end
+
+
+desc "build pub hashes for all pubs"
+  task :build_pub => :environment do
+    include ActionView::Helpers::DateHelper
+    start_time = Time.now
+    total_running_count = 0
+    @cap_import_logger = Logger.new(Rails.root.join('log', 'cap_build_pubs.log'))
+    @cap_import_logger.info "Started cap build pub process " + DateTime.now.to_s
+
+   Publication.find_each do |pub|
+        total_running_count += 1
+        build_pub_from_sw_and_pubmed(pub)
+        if total_running_count%5000 == 0  then GC.start end
+          
+        if total_running_count%1000 == 0 
+          puts (total_running_count).to_s + " in " + distance_of_time_in_words_to_now(start_time, include_seconds = true)
+          @cap_import_logger.info total_running_count.to_s + " in " + distance_of_time_in_words_to_now(start_time, include_seconds = true)
+        end
+    end
+    @cap_import_logger.info "Finished build." + DateTime.now.to_s
     @cap_import_logger.info total_running_count.to_s + "records were processed in " + distance_of_time_in_words_to_now(start_time, include_seconds = true)
 
 end
@@ -141,59 +175,35 @@ task :ingest_authors, [:file_location] => :environment do |t, args|
     end
 end
 
-def build_pub_from_cap_data(cap_pub_data_for_this_pub)
-  begin
-    pmid = cap_pub_data_for_this_pub[:pubmed_id].to_s        
 
-   author = Author.where(cap_profile_id: cap_pub_data_for_this_pub[:profile_id]).first
-    pub = Publication.where(pmid: pmid).first 
-    if pub.nil? 
-      sciencewire_source_record = SciencewireSourceRecord.where(pmid: pmid).first
-      unless sciencewire_source_record.nil?
-        sw_pub_hash = sciencewire_source_record.get_source_as_hash
-        unless sw_pub_hash.nil?
-          pub = Publication.create(
-            active: true,
-            title: sw_pub_hash[:title],
-            year: sw_pub_hash[:year],
-            sciencewire_id: sw_pub_hash[:sw_id],
-            pmid: pmid) 
-          pub.build_from_sciencewire_hash(sw_pub_hash)
-        end
-      end
-    end
-    if pub.nil?
+def build_pub_from_sw_and_pubmed(pub)
+  begin
+    pmid = pub.pmid.to_s     
+
+    sciencewire_source_record = SciencewireSourceRecord.where(pmid: pmid).first
+    unless sciencewire_source_record.nil?
+      sw_pub_hash = sciencewire_source_record.get_source_as_hash
+      pub.update_attributes(
+          active: true,
+          title: sw_pub_hash[:title],
+          year: sw_pub_hash[:year],
+          sciencewire_id: sw_pub_hash[:sw_id])
+      pub.build_from_sciencewire_hash(sw_pub_hash)
+    else  
       pubmed_source_record = PubmedSourceRecord.where(pmid: pmid).first   
-      unless pubmed_source_record.nil?
-        pubmed_hash = pubmed_source_record.get_source_as_hash
-        unless pubmed_hash.nil?
-            pub = Publication.create(
+      pubmed_hash = pubmed_source_record.get_source_as_hash
+      pub.update_attributes(
                 active: true,
                 title: pubmed_hash[:title],
-                year: pubmed_hash[:year],
-                pmid: pmid)  
-              pub.build_from_pubmed_hash(pubmed_hash)  
-        end
-      end
+                year: pubmed_hash[:year])  
+      pub.build_from_pubmed_hash(pubmed_hash)  
     end
-   
-    unless pub.nil? 
-      pub.contributions.where(:author_id => author.id).first_or_create(
-          cap_profile_id: cap_pub_data_for_this_pub[:profile_id],
-          status: cap_pub_data_for_this_pub[:authorship_status],
-          visibility: cap_pub_data_for_this_pub[:visibility], 
-          featured: cap_pub_data_for_this_pub[:featured])    
-      pub.sync_publication_hash_and_db       
-    else
-      #puts "nil sw and pubmed record for pmid: " + pmid.to_s     
-      @cap_import_logger.info "Invalid pmid: " + pmid.to_s 
-    end
+    pub.cutover_sync_hash_and_db       
+    
   rescue Exception => e  
           @cap_import_logger.info e.message  
           @cap_import_logger.info e.backtrace.inspect  
           @cap_import_logger.info "the offending pmid: " + pmid.to_s
-          @cap_import_logger.info "the contrib: " + cap_pub_data_for_this_pub.to_s
-          @cap_import_logger.info "the author: " + author.to_s
   end  
 end
 

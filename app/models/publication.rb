@@ -24,13 +24,11 @@ end
 def build_from_sciencewire_hash(new_sw_pub_hash)   
       self.pub_hash = new_sw_pub_hash
       add_any_pubmed_data_to_hash unless new_sw_pub_hash[:pmid].blank?
-      #sync_publication_hash_and_db
       self
   end
 
   def build_from_pubmed_hash(new_pubmed_pub_hash)
       self.pub_hash = new_pubmed_pub_hash
-     # sync_publication_hash_and_db
       self
   end
 
@@ -92,8 +90,8 @@ end
 #end
 
 def add_any_pubmed_data_to_hash
-  unless pmid.blank?
-    pubmed_hash = PubmedSourceRecord.get_pubmed_hash_for_pmid(pmid)
+  unless self.pmid.blank?
+    pubmed_hash = PubmedSourceRecord.get_pubmed_hash_for_pmid(self.pmid)
     unless pubmed_hash.nil?
         self.pub_hash[:mesh_headings] = pubmed_hash[:mesh] unless pubmed_hash[:mesh].blank?
         self.pub_hash[:abstract] = pubmed_hash[:abstract] unless pubmed_hash[:abstract].blank?   
@@ -111,6 +109,22 @@ def set_sul_pub_id_in_hash
   self.pub_hash[:sulpubid] = sul_pub_id
   self.pub_hash[:identifier] ||= []
   self.pub_hash[:identifier] << {:type => 'SULPubId', :id => sul_pub_id, :url => 'http://sulcap.stanford.edu/publications/' + sul_pub_id}            
+end
+
+def cutover_sync_hash_and_db
+  set_sul_pub_id_in_hash
+  self.pub_hash[:last_updated] = self.updated_at.to_s 
+  add_all_db_contributions_to_my_pub_hash
+  #add identifiers that are in the hash to the pub identifiers db table
+  self.pub_hash[:identifier].each do |identifier|
+        self.publication_identifiers.create(
+          :identifier_type => identifier[:type],
+          :certainty => 'confirmed', 
+          :identifier_value => identifier[:id], 
+          :identifier_uri => identifier[:url])
+  end
+ self.class.update_formatted_citations(self.pub_hash)
+  save
 end
 
 def sync_publication_hash_and_db
@@ -131,9 +145,8 @@ def sync_publication_hash_and_db
     if pub_hash[:identifier] 
       self.pub_hash[:identifier].each do |identifier|
         self.publication_identifiers.where(
-          :identifier_type => identifier[:type],
-          :identifier_value => identifier[:id]).
-          first_or_create(:certainty => 'confirmed', :identifier_uri => identifier[:url])
+          :identifier_type => identifier[:type]).
+          first_or_create(:certainty => 'confirmed', :identifier_value => identifier[:id], :identifier_uri => identifier[:url])
       end
     end
   end
@@ -190,6 +203,8 @@ end
 def self.update_formatted_citations(pub_hash)
     #[{"id"=>"Gettys90", "type"=>"article-journal", "author"=>[{"family"=>"Gettys", "given"=>"Jim"}, {"family"=>"Karlton", "given"=>"Phil"}, {"family"=>"McGregor", "given"=>"Scott"}], "title"=>"The {X} Window System, Version 11", "container-title"=>"Software Practice and Experience", "volume"=>"20", "issue"=>"S2", "abstract"=>"A technical overview of the X11 functionality.  This is an update of the X10 TOG paper by Scheifler \\& Gettys.", "issued"=>{"date-parts"=>[[1990]]}}]
     chicago_csl_file = Rails.root.join('app', 'data', 'chicago-author-date.csl')
+    mla_csl_file = Rails.root.join('app', 'data', 'mla.csl')
+    apa_csl_file = Rails.root.join('app', 'data', 'apa.csl')
     authors_for_citeproc = []
     authors = pub_hash[:author]
     if authors.length > 5 
@@ -275,8 +290,8 @@ def self.update_formatted_citations(pub_hash)
     # chicago_citation = CiteProc.process(cit, :style => 'https://github.com/citation-style-language/styles/raw/master/chicago-author-date.csl', :format => 'html')
     # apa_citation = CiteProc.process(cit, :style => 'https://github.com/citation-style-language/styles/raw/master/apa.csl', :format => 'html')
     # mla_citation = CiteProc.process(cit, :style => 'https://github.com/citation-style-language/styles/raw/master/mla.csl', :format => 'html')
-    pub_hash[:apa_citation] = CiteProc.process(cit_data_array, :style => :apa, :format => 'html')
-    pub_hash[:mla_citation] = CiteProc.process(cit_data_array, :style => :mla, :format => 'html')
+    pub_hash[:apa_citation] = CiteProc.process(cit_data_array, :style => apa_csl_file, :format => 'html')
+    pub_hash[:mla_citation] = CiteProc.process(cit_data_array, :style => mla_csl_file, :format => 'html')
     pub_hash[:chicago_citation] = CiteProc.process(cit_data_array, :style => chicago_csl_file, :format => 'html')
     
   end

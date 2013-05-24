@@ -239,7 +239,7 @@ class SciencewireSourceRecord < ActiveRecord::Base
 	    elsif sul_document_type == Settings.sul_doc_types.book
 	      record_as_hash[:booktitle] = publication.xpath('PublicationSourceTitle').text unless publication.xpath("PublicationSourceTitle").blank?
 	      record_as_hash[:pages] = publication.xpath('Pagination').text unless publication.xpath("Pagination").blank?
-	      identifiers << {:type => 'doi', :id => publication.xpath('DOI').text, :url => 'http://dx.doi.org/' + publication.xpath('DOI').text} unless publication.xpath('DOI').nil?
+	      identifiers << {:type => 'doi', :id => publication.xpath('DOI').text, :url => 'http://dx.doi.org/' + publication.xpath('DOI').text} unless publication.xpath('DOI').blank?
 	      
 	    end
 
@@ -251,8 +251,8 @@ class SciencewireSourceRecord < ActiveRecord::Base
 	      journal_hash[:articlenumber] = publication.xpath('ArticleNumber') unless publication.xpath('ArticleNumber').blank?
 	      journal_hash[:pages] = publication.xpath('Pagination').text unless publication.xpath('Pagination').blank?
 	      journal_identifiers = Array.new
-	      journal_identifiers << {:type => 'issn', :id => publication.xpath('ISSN').text, :url => 'http://searchworks.stanford.edu/?search_field=advanced&number=' + publication.xpath('ISSN').text} unless publication.xpath('ISSN').nil?
-	      journal_identifiers << {:type => 'doi', :id => publication.xpath('DOI').text, :url => 'http://dx.doi.org/' + publication.xpath('DOI').text} unless publication.xpath('DOI').nil?
+	      journal_identifiers << {:type => 'issn', :id => publication.xpath('ISSN').text, :url => 'http://searchworks.stanford.edu/?search_field=advanced&number=' + publication.xpath('ISSN').text} unless publication.xpath('ISSN').blank?
+	      journal_identifiers << {:type => 'doi', :id => publication.xpath('DOI').text, :url => 'http://dx.doi.org/' + publication.xpath('DOI').text} unless publication.xpath('DOI').blank?
 	      journal_hash[:identifier] = journal_identifiers
 	      record_as_hash[:journal] = journal_hash
 	    end

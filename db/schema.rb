@@ -62,6 +62,11 @@ ActiveRecord::Schema.define(:version => 20130513135604) do
     t.datetime "updated_at",       :null => false
   end
 
+  add_index "publication_identifiers", ["identifier_type", "publication_id"], :name => "pub_identifier_index_by_pub_and_type"
+  add_index "publication_identifiers", ["identifier_type"], :name => "index_publication_identifiers_on_identifier_type"
+  add_index "publication_identifiers", ["publication_id", "identifier_type"], :name => "pub_identifier_index_by_type_and_pub"
+  add_index "publication_identifiers", ["publication_id"], :name => "index_publication_identifiers_on_publication_id"
+
   create_table "publications", :force => true do |t|
     t.integer  "same_as_publications_id"
     t.boolean  "active"
@@ -105,22 +110,6 @@ ActiveRecord::Schema.define(:version => 20130513135604) do
 
   add_index "sciencewire_source_records", ["pmid"], :name => "index_sciencewire_source_records_on_pmid"
   add_index "sciencewire_source_records", ["sciencewire_id"], :name => "index_sciencewire_source_records_on_sciencewire_id"
-
-  create_table "source_records", :force => true do |t|
-    t.text     "source_data"
-    t.integer  "original_source_id"
-    t.integer  "publication_id"
-    t.integer  "lock_version"
-    t.string   "title"
-    t.integer  "year"
-    t.string   "source_name"
-    t.string   "source_data_type"
-    t.boolean  "is_active"
-    t.boolean  "is_local_only"
-    t.string   "source_fingerprint"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
-  end
 
   create_table "user_submitted_source_records", :force => true do |t|
     t.text     "source_data"

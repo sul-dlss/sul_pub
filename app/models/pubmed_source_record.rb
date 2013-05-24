@@ -5,6 +5,10 @@ class PubmedSourceRecord < ActiveRecord::Base
   #validates_uniqueness_of :pmid
   #validates_presence_of :source_data
 
+	def get_source_as_hash 
+		convert_pubmed_publication_doc_to_hash(Nokogiri::XML(source_data).xpath('//PubmedArticle'))
+	end
+
   	def self.get_pub_by_pmid(pmid) 
   		pubmed_pub_hash = PubmedSourceRecord.get_pubmed_hash_for_pmid(pmid)
   		unless pubmed_pub_hash.nil?
@@ -29,6 +33,7 @@ class PubmedSourceRecord < ActiveRecord::Base
   	end
 
   	def self.get_pubmed_record_from_pubmed(pmid)
+  		puts "shouldn't be in here, the get_pubmed_record_from_pubmed"
   		get_and_store_records_from_pubmed([pmid])
   		PubmedSourceRecord.where[pmid: pmid].first
   	end
@@ -89,63 +94,9 @@ class PubmedSourceRecord < ActiveRecord::Base
 	      mesh_headings_for_record
 	end
 
-	def get_source_as_hash 
-		convert_pubmed_publication_doc_to_hash(Nokogiri::XML(source_data).xpath('//PubmedArticle'))
-	end
+	
 
-	def convert_pubmed_publication_doc_to_hash_old(publication)
-
-	    record_as_hash = Hash.new
-	    pmid = publication.xpath('//MedlineCitation/PMID').text 
-	    
-	    abstract = extract_abstract_from_pubmed_record(publication)
-	    mesh_headings = extract_mesh_headings_from_pubmed_record(publication)
-
-	    record_as_hash[:provenance] = Settings.pubmed_source
-	    record_as_hash[:pmid] = pmid
-
-	    record_as_hash[:title] = publication.xpath("//MedlineCitation/Article/ArticleTitle").text unless publication.xpath("//MedlineCitation/Article/ArticleTitle").blank?
-	    record_as_hash[:abstract] = abstract unless abstract.blank?
-	    
-	    author_array = []
-	    publication.xpath('//MedlineCitation/Article/AuthorList/Author').each do |author|
-	    	author_hash = {}
-	    	author_hash[:lastname] = author.xpath("LastName").text
-			initials = author.xpath("Initials").text.scan(/./)
-	    	author_hash[:middlename] = initials[1] unless initials.length < 2
-	    	author_hash[:firstname] = initials[0] unless initials.length < 1
-	    	author_array << author_hash
-	    end
-	    record_as_hash[:author] = author_array
-
-	    record_as_hash[:mesh_headings] = mesh_headings unless mesh_headings.blank?
-	    record_as_hash[:year] = publication.xpath('//MedlineCitation/Article/Journal/JournalIssue/PubDate/Year').text unless publication.xpath("//MedlineCitation/Article/Journal/JournalIssue/PubDate/Year").blank?
-	    
-	     record_as_hash[:type] = Settings.sul_doc_types.article
-
-	    #record_as_hash[:publisher] =  publication.xpath('//MedlineCitation/Article/').text unless publication.xpath("//MedlineCitation/Article/").blank?
-	    #record_as_hash[:city] = publication.xpath('//MedlineCitation/Article/').text unless publication.xpath("//MedlineCitation/Article/").blank?
-	    #record_as_hash[:stateprovince] = publication.xpath('//MedlineCitation/Article/').text unless publication.xpath("//MedlineCitation/Article/").blank?
-	    record_as_hash[:country] = publication.xpath('//MedlineCitation/MedlineJournalInfo/Country').text unless publication.xpath("//MedlineCitation/MedlineJournalInfo/Country").blank?
-
-		record_as_hash[:pages] = publication.xpath('//MedlineCitation/Article/Pagination/MedlinePgn').text unless publication.xpath("//MedlineCitation/Article/Pagination/MedlinePgn").blank?
-	      
-    	journal_hash = {}   
-		journal_hash[:name] = publication.xpath('//MedlineCitation/Article/Journal/Title').text unless publication.xpath('//MedlineCitation/Article/Journal/Title').blank?
-		journal_hash[:volume] = publication.xpath('//MedlineCitation/Article/Journal/JournalIssue/Volume').text unless publication.xpath('//MedlineCitation/Article/Journal/JournalIssue/Volume').blank?
-		journal_hash[:issue] = publication.xpath('//MedlineCitation/Article/Journal/JournalIssue/Issue').text unless publication.xpath('//MedlineCitation/Article/Journal/JournalIssue/Issue').blank?
-		 # journal_hash[:articlenumber] = publication.xpath('ArticleNumber') unless publication.xpath('ArticleNumber').blank?
-		#  journal_hash[:pages] = publication.xpath('Pagination').text unless publication.xpath('Pagination').blank?
-		journal_identifiers = Array.new
-		journal_identifiers << {:type => 'issn', :id => publication.xpath('//MedlineCitation/Article/Journal/ISSN').text, :url => 'http://searchworks.stanford.edu/?search_field=advanced&number=' + publication.xpath('//MedlineCitation/Article/Journal/ISSN').text} unless publication.xpath('//MedlineCitation/Article/Journal/ISSN').nil?
-		journal_hash[:identifier] = journal_identifiers
-		record_as_hash[:journal] = journal_hash
-    
-	    record_as_hash[:identifier] = [{:type =>'PMID', :id => pmid, :url => 'http://www.ncbi.nlm.nih.gov/pubmed/' + pmid } ]
-	    #puts "the record as hash"
-	    #puts record_as_hash.to_s
-	    record_as_hash
-  end
+	
 
 def convert_pubmed_publication_doc_to_hash(publication)
 

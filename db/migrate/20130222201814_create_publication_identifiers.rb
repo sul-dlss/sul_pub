@@ -9,5 +9,10 @@ class CreatePublicationIdentifiers < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :publication_identifiers, [:publication_id, :identifier_type], :name => 'pub_identifier_index_by_type_and_pub'
+    add_index :publication_identifiers, [:identifier_type, :publication_id], :name => 'pub_identifier_index_by_pub_and_type'
+    add_index :publication_identifiers, :publication_id
+    add_index :publication_identifiers, :identifier_type
   end
 end
