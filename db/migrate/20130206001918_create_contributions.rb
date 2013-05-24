@@ -10,5 +10,11 @@ class CreateContributions < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :contributions, :cap_profile_id
+    add_index :contributions, :publication_id
+    add_index :contributions, :author_id
+    add_index :contributions, [:publication_id, :author_id]
+    
   end
 end

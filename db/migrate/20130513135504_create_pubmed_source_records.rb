@@ -9,5 +9,6 @@ class CreatePubmedSourceRecords < ActiveRecord::Migration
 
       t.timestamps
     end
+    add_index :pubmed_source_records, :pmid
   end
 end

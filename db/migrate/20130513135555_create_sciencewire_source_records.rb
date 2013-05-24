@@ -10,5 +10,7 @@ class CreateSciencewireSourceRecords < ActiveRecord::Migration
 
       t.timestamps
     end
+    add_index :sciencewire_source_records, :sciencewire_id
+    add_index :sciencewire_source_records, :pmid
   end
 end

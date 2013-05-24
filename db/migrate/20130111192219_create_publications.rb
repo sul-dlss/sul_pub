@@ -13,5 +13,9 @@ class CreatePublications < ActiveRecord::Migration
       t.integer :sciencewire_id
       t.timestamps
     end
+
+    add_index :publications, :sciencewire_id
+    add_index :publications, :pmid
+    
   end
 end

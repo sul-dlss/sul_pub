@@ -18,5 +18,10 @@ class CreateAuthors < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :authors, :cap_profile_id
+    add_index :authors, :sunetid
+    add_index :authors, :active_in_cap
+    
   end
 end
