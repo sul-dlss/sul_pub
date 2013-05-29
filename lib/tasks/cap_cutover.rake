@@ -31,7 +31,6 @@ task :pull_sw_for_cap, [:file_location] => :environment do |t, args|
       cap_import_pmid_logger.info total_running_count.to_s + "records were processed in " + distance_of_time_in_words_to_now(start_time, include_seconds = true)
 end
 
-
 desc "get all pubmed source records for full cap dump"
 task :pull_pubmed_for_cap, [:file_location] => :environment do |t, args|
   include ActionView::Helpers::DateHelper
@@ -80,13 +79,11 @@ desc "create publication and contribution records from full cap dump"
           visibility: row[:visibility], 
           featured: row[:featured]) 
 
-
         if total_running_count%5000 == 0  then GC.start end
           
         if total_running_count%1000 == 0 
           puts (total_running_count).to_s + " in " + distance_of_time_in_words_to_now(start_time, include_seconds = true)
           @cap_import_logger.info total_running_count.to_s + " in " + distance_of_time_in_words_to_now(start_time, include_seconds = true)
- 
         end
     end
     @cap_import_logger.info "Finished import." + DateTime.now.to_s
@@ -119,6 +116,56 @@ desc "build pub hashes for all pubs"
 
 end
 
+
+desc "extract issn, and page range from hash to publication object"
+  task :update_pubs => :environment do
+    include ActionView::Helpers::DateHelper
+    start_time = Time.now
+    total_running_count = 0
+    @cap_import_logger = Logger.new(Rails.root.join('log', 'cap_update_pubs.log'))
+    @cap_import_logger.info "Started cap update pub process " + DateTime.now.to_s
+
+   Publication.find_each do |pub|
+        total_running_count += 1
+        pub_hash = pub.pub_hash
+        if pub_hash.respond_to?(:has_key?)
+          if pub_hash.has_key?(:journal)
+            issn = find_issn_id_identifiers(pub_hash[:journal][:identifier])  unless  pub_hash[:journal][:identifier].nil?
+          elsif pub_hash.has_key?(:series)
+            issn = find_issn_id_identifiers(pub_hash[:series][:identifier]) unless  pub_hash[:series][:identifier].nil?
+          else
+            issn = nil
+          end
+          pub.update_attributes(
+            pages: pub_hash[:pages],
+            issn: issn,
+            publication_type: pub_hash[:type]
+          )
+        else
+          @cap_import_logger.info pub.pmid
+        end
+        if total_running_count%5000 == 0  then GC.start end
+          
+        if total_running_count%1000 == 0 
+          puts (total_running_count).to_s + " in " + distance_of_time_in_words_to_now(start_time, include_seconds = true)
+          #@cap_import_logger.info total_running_count.to_s + " in " + distance_of_time_in_words_to_now(start_time, include_seconds = true)
+        end
+    end
+    @cap_import_logger.info "Finished update." + DateTime.now.to_s
+    @cap_import_logger.info total_running_count.to_s + "records were updated in " + distance_of_time_in_words_to_now(start_time, include_seconds = true)
+
+end
+
+def find_issn_id_identifiers(identifiers_array)
+  issn = nil
+    identifiers_array.each do |single_identifier_hash|
+        if single_identifier_hash[:type] == 'issn'
+          issn = single_identifier_hash[:id]
+          break
+        end
+    end
+    issn
+end
 
 desc "ingest existing cap hand entered pubs"
   task :ingest_man_pubs, [:file_location] => :environment do |t, args|
@@ -175,6 +222,20 @@ task :ingest_authors, [:file_location] => :environment do |t, args|
     end
 end
 
+#  update the active profile field author files from csv.
+desc "update authors"
+task :update_authors, [:file_location] => :environment do |t, args|
+    include ActionView::Helpers::DateHelper
+    start_time = Time.now
+    total_running_count = 0
+    CSV.foreach(args.file_location, :headers  => true, :header_converters => :symbol) do |row|
+        total_running_count += 1
+        cap_profile_id = row[:profile_id]
+        author = Author.where(cap_profile_id: cap_profile_id).first.update_attributes(active_in_cap: (row[:active_profile] == 'active'))    
+       # if total_running_count%5000 == 0  then GC.start end
+        if total_running_count%5000 == 0 then puts (total_running_count).to_s + " in " + distance_of_time_in_words_to_now(start_time) end
+    end
+end
 
 def build_pub_from_sw_and_pubmed(pub)
   begin
@@ -187,16 +248,18 @@ def build_pub_from_sw_and_pubmed(pub)
           active: true,
           title: sw_pub_hash[:title],
           year: sw_pub_hash[:year],
-          sciencewire_id: sw_pub_hash[:sw_id])
-      pub.build_from_sciencewire_hash(sw_pub_hash)
+          sciencewire_id: sw_pub_hash[:sw_id],
+          pub_hash: sw_pub_hash)
+      pub.add_any_pubmed_data_to_hash 
+      
     else  
       pubmed_source_record = PubmedSourceRecord.where(pmid: pmid).first   
       pubmed_hash = pubmed_source_record.get_source_as_hash
       pub.update_attributes(
                 active: true,
                 title: pubmed_hash[:title],
-                year: pubmed_hash[:year])  
-      pub.build_from_pubmed_hash(pubmed_hash)  
+                year: pubmed_hash[:year],
+                pub_hash: pubmed_hash)    
     end
     pub.cutover_sync_hash_and_db       
     
@@ -215,7 +278,7 @@ def self.convert_manual_publication_row_to_hash(cap_pub_data_for_this_pub, autho
     
     record_as_hash[:provenance] = Settings.cap_provenance
     record_as_hash[:title] = cap_pub_data_for_this_pub[:article_title]
-    record_as_hash[:abstract_restricted] = cap_pub_data_for_this_pub[:abstract] unless cap_pub_data_for_this_pub[:abstract].blank?
+   # record_as_hash[:abstract_restricted] = cap_pub_data_for_this_pub[:abstract] unless cap_pub_data_for_this_pub[:abstract].blank?
     unless cap_pub_data_for_this_pub[:authors].blank?
       record_as_hash[:author] = cap_pub_data_for_this_pub[:authors].split(',').collect{|author| {name: author}} 
     else 
@@ -240,7 +303,9 @@ def self.convert_manual_publication_row_to_hash(cap_pub_data_for_this_pub, autho
     journal_hash[:volume] = cap_pub_data_for_this_pub[:volume] unless cap_pub_data_for_this_pub[:volume].blank?
     journal_hash[:issue] = cap_pub_data_for_this_pub[:issue_no] unless cap_pub_data_for_this_pub[:issue_no].blank?
     journal_hash[:pages] = cap_pub_data_for_this_pub[:page_ref] unless cap_pub_data_for_this_pub[:page_ref].blank?
-    journal_hash[:identifier] = [{:type => 'issn', :id => cap_pub_data_for_this_pub[:issn]}] unless cap_pub_data_for_this_pub[:issn].blank?
+    issn = cap_pub_data_for_this_pub[:issn]
+    record_as_hash[:issn] = issn unless issn.blank?
+    journal_hash[:identifier] = [{:type => 'issn', :id => issn}] unless issn.blank?
     record_as_hash[:journal] = journal_hash unless journal_hash.empty?
    
     record_as_hash[:authorship] = [

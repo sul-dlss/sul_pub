@@ -2,6 +2,12 @@ class Contribution < ActiveRecord::Base
   attr_accessible :status, :visibility, :featured, :author_id, :publication_id, :cap_profile_id
   belongs_to :publication
   belongs_to :author
+ # has_one :publication_identifier, :foreign_key => "publication_id"
+  has_one :publication_identifier, 
+          :class_name => "PublicationIdentifier",
+          :foreign_key => "publication_id",
+          :primary_key => "publication_id",
+          :conditions => "publication_identifiers.identifier_type = 'PublicationItemId'"
   #has_one :population_membership, :foreign_key => "author_id"
 
   def self.valid_authorship_hash?(authorship_hash)

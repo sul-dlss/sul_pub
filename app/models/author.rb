@@ -6,11 +6,18 @@ class Author < ActiveRecord::Base
   		where("contributions.status='approved'")
   	end
   end
+  
+  has_many  :approved_sw_ids, :through => :contributions, 
+          :class_name => "PublicationIdentifier", 
+          :source => :publication_identifier,
+          :foreign_key => "publication_id",
+          :primary_key => "publication_id",
+          :conditions => "contributions.status = 'new'"
 
   has_many  :approved_publications, :through => :contributions, 
           :class_name => "Publication", 
           :source => :publication,
-          :conditions => ['contributions.status = ?','approved'] 
+          :conditions => ['contributions.status = ?','new'] 
          
 
   #has_many :population_memberships, :dependent => :destroy

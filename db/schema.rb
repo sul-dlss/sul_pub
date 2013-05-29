@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130513135604) do
+ActiveRecord::Schema.define(:version => 20130528191513) do
 
   create_table "authors", :force => true do |t|
     t.integer  "cap_profile_id"
@@ -32,9 +32,7 @@ ActiveRecord::Schema.define(:version => 20130513135604) do
     t.datetime "updated_at",            :null => false
   end
 
-  add_index "authors", ["active_in_cap"], :name => "index_authors_on_active_in_cap"
-  add_index "authors", ["cap_profile_id"], :name => "index_authors_on_cap_profile_id"
-  add_index "authors", ["sunetid"], :name => "index_authors_on_sunetid"
+  add_index "authors", ["cap_profile_id"], :name => "index_author_on_cap_profile_id"
 
   create_table "contributions", :force => true do |t|
     t.integer  "author_id"
@@ -80,6 +78,9 @@ ActiveRecord::Schema.define(:version => 20130513135604) do
     t.integer  "sciencewire_id"
     t.datetime "created_at",              :null => false
     t.datetime "updated_at",              :null => false
+    t.string   "pages"
+    t.string   "issn"
+    t.string   "publication_type"
   end
 
   add_index "publications", ["pmid"], :name => "index_publications_on_pmid"
@@ -95,7 +96,7 @@ ActiveRecord::Schema.define(:version => 20130513135604) do
     t.datetime "updated_at",         :null => false
   end
 
-  add_index "pubmed_source_records", ["pmid"], :name => "index_pubmed_source_records_on_pmid"
+  add_index "pubmed_source_records", ["pmid"], :name => "index_pubmed_sources_on_pmid"
 
   create_table "sciencewire_source_records", :force => true do |t|
     t.text     "source_data"
@@ -108,8 +109,24 @@ ActiveRecord::Schema.define(:version => 20130513135604) do
     t.datetime "updated_at",         :null => false
   end
 
-  add_index "sciencewire_source_records", ["pmid"], :name => "index_sciencewire_source_records_on_pmid"
-  add_index "sciencewire_source_records", ["sciencewire_id"], :name => "index_sciencewire_source_records_on_sciencewire_id"
+  add_index "sciencewire_source_records", ["pmid"], :name => "index_sw_source_on_pmid"
+  add_index "sciencewire_source_records", ["sciencewire_id"], :name => "index_sw_source_on_swid"
+
+  create_table "source_records", :force => true do |t|
+    t.text     "source_data"
+    t.integer  "original_source_id"
+    t.integer  "publication_id"
+    t.integer  "lock_version"
+    t.string   "title"
+    t.integer  "year"
+    t.string   "source_name"
+    t.string   "source_data_type"
+    t.boolean  "is_active"
+    t.boolean  "is_local_only"
+    t.string   "source_fingerprint"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
 
   create_table "user_submitted_source_records", :force => true do |t|
     t.text     "source_data"

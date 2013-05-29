@@ -1,7 +1,7 @@
 
 require 'citeproc'
 class Publication < ActiveRecord::Base
-  attr_accessible :active, :deleted, :title, :year, :pub_hash, :lock_version, :pmid, :sciencewire_id, :same_as_publication_id, :xml, :updated_at
+  attr_accessible :active, :deleted, :title, :year, :issn, :pages, :publication_type, :pub_hash, :lock_version, :pmid, :sciencewire_id, :same_as_publication_id, :xml, :updated_at
   has_many :contributions, :dependent => :destroy
   has_many :authors, :through => :contributions
   has_many :publication_identifiers, :dependent => :destroy
@@ -43,13 +43,27 @@ def self.build_new_manual_publication(provenance, pub_hash, original_source_stri
         pub.update_manual_pub_from_pub_hash(pub_hash, provenance, original_source_string)
       else
         pub_hash[:provenance] = provenance
-        pub = Publication.create(active: true, title: pub_hash[:title], year: pub_hash[:year], pub_hash: pub_hash)
+        pub = Publication.create(
+          active: true, 
+          title: pub_hash[:title], 
+          year: pub_hash[:year], 
+          pub_hash: pub_hash, 
+          issn: pub_hash[:issn], 
+          pages: pub_hash[:pages],
+          publication_type: pub_hash[:type])
         pub.sync_publication_hash_and_db
       end
     else
       
       pub_hash[:provenance] = provenance
-      pub = Publication.create(active: true, title: pub_hash[:title], year: pub_hash[:year], pub_hash: pub_hash)
+      pub = Publication.create(
+          active: true, 
+          title: pub_hash[:title], 
+          year: pub_hash[:year], 
+          pub_hash: pub_hash, 
+          issn: pub_hash[:issn], 
+          pages: pub_hash[:pages],
+          publication_type: pub_hash[:type])
       
       # todo:  have to look at deleting old identifiers, old contribution info.  i.e, how to correct errors.
       pub.user_submitted_source_records.create(

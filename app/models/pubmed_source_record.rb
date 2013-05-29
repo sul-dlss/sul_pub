@@ -16,6 +16,9 @@ class PubmedSourceRecord < ActiveRecord::Base
               active: true,
               title: pubmed_pub_hash[:title],
               year: pubmed_pub_hash[:year],
+              issn: pubmed_pub_hash[:issn],
+              pages: pubmed_pub_hash[:pages],
+              publication_type: pub_hash[:type],
               pmid: pmid)  
             pub.build_from_pubmed_hash(pubmed_pub_hash)  
         end
@@ -142,7 +145,9 @@ def convert_pubmed_publication_doc_to_hash(publication)
 		 # journal_hash[:articlenumber] = publication.xpath('ArticleNumber') unless publication.xpath('ArticleNumber').blank?
 		#  journal_hash[:pages] = publication.xpath('Pagination').text unless publication.xpath('Pagination').blank?
 		journal_identifiers = Array.new
-		journal_identifiers << {:type => 'issn', :id => publication.xpath('MedlineCitation/Article/Journal/ISSN').text, :url => 'http://searchworks.stanford.edu/?search_field=advanced&number=' + publication.xpath('MedlineCitation/Article/Journal/ISSN').text} unless publication.xpath('MedlineCitation/Article/Journal/ISSN').nil?
+		issn = publication.xpath('MedlineCitation/Article/Journal/ISSN').text
+		record_as_hash[:issn] = issn unless issn.blank?
+		journal_identifiers << {:type => 'issn', :id => , :url => 'http://searchworks.stanford.edu/?search_field=advanced&number=' + issn unless issn.blank?
 		journal_hash[:identifier] = journal_identifiers
 		record_as_hash[:journal] = journal_hash
     

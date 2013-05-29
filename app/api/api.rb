@@ -43,7 +43,7 @@ end
     end
   end
 
-  class API_authorship < Grape::API
+  class AuthorshipAPI < Grape::API
     version 'v1', :using => :header, :vendor => 'sul', :format => :json
     format :json
 
@@ -186,22 +186,31 @@ get :sourcelookup do
       population = params[:population] || Settings.cap_population_name
       changedSince = params[:changedSince] || "1000-01-01"
       capProfileId = params[:capProfileId]
+      capActive = params[:capActive] || false
       page = params[:page]
       per = params[:per] || 100
       population.downcase!
+      last_changed = DateTime.parse(changedSince).to_s
       if capProfileId.blank?
         description = "Records for population '" + population + "' that have changed since " + changedSince
         if page.blank?
-          Publication.where("updated_at > ?", DateTime.parse(changedSince).to_s).find_each do | publication |
-             matching_records << publication.pub_hash 
+         # Publication.where("updated_at > ?", DateTime.parse(changedSince).to_s).find_each do | publication |
+          #   matching_records << publication.pub_hash 
+          # end
+          Publication.joins(:contributions => :author).
+            where('authors.active_in_cap = ? and publications.updated_at > ?', capActive, last_changed).find_each do | publication |
+            matching_records << publication.pub_hash 
           end
-          # Authors.where(:active).publications
+          # Authors.where(:active).publications.where()
+          # select count(*) from publications p, contributions c, authors a where p.id = c.publication_id and c.author_id = a.id and a.active is true;
         else
-          matching_records = Publication.where("updated_at > ?", DateTime.parse(changedSince).to_s).
-              order(:id).
+        #  matching_records = Publication.where("updated_at > ?", DateTime.parse(changedSince).to_s).
+        matching_records = Publication.joins(:contributions => :author).
+              where('authors.active_in_cap = ? and publications.updated_at > ?', capActive, DateTime.parse(changedSince).to_s).
+              order('publications.id').
               page(page).
               per(per).pluck(:pub_hash)
-        end
+        end 
       else
         page = page || 1
         per = per || nil
@@ -232,8 +241,6 @@ get :sourcelookup do
           # and sets the location header to the specified url
           # So, this next lines return 303 with location equal to the pub's uri
           redirect env["REQUEST_URI"] + "/" + existingRecord.publication_id.to_s
-      #  header "Location", env["REQUEST_URI"] + "/" + existingRecord.publication_id.to_s
-       # error!('See Other - duplicate post', 303)     
       else 
         if pub_hash[:authorship].nil? || ! Contribution.valid_authorship_hash?(pub_hash[:authorship])
           error!("You haven't supplied a valid authorship record.", 406) 

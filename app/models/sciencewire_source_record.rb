@@ -22,6 +22,9 @@ class SciencewireSourceRecord < ActiveRecord::Base
             active: true,
             title: sw_pub_hash[:title],
             year: sw_pub_hash[:year],
+     		pages: sw_pub_hash[:pages],
+     		issn: sw_pub_hash[:issn],
+          	publication_type: pub_hash[:type],
             sciencewire_id: sw_pub_hash[:sw_id],
             pmid: pmid) 
           pub.build_from_sciencewire_hash(sw_pub_hash)
@@ -84,19 +87,24 @@ class SciencewireSourceRecord < ActiveRecord::Base
 	    #  author = Author.new(:pubmed_last_name => "levin", pubmed_first_initial: "c", pubmed_middle_initial: "s", sunetid: "cslevin")
 	     #author = Author.new(:pubmed_last_name => "lee", pubmed_first_initial: "j", pubmed_middle_initial: "t", sunetid: "jtlee")
 	    
-	    Author.limit(5).offset(random).each do |author|
+	    Author.limit(1).offset(19086).each do |author|
 	        last_name = author.official_last_name
 	        first_name = author.official_first_name
 	        middle_name = author.official_middle_name
 	        profile_id = author.cap_profile_id
 	        email = author.email
 
-	        seed_list = author.approved_publications.collect { | pub | pub.publication_identifiers.where("identifier_type = 'PublicationItemID'").first }
+	        seed_list = author.approved_sw_ids.collect { | sw_id | sw_id.identifier_value }
 	       
 	        email_list = []
 	        email_list << email unless email.nil?
+	        puts "email list: " + email_list.to_s
+	        puts "seed pubs: " + seed_list.to_s
 	        sw_records_doc = get_sw_guesses(last_name, first_name, middle_name, email_list, seed_list)
 	        sw_records_doc.xpath('//PublicationItem').each do |sw_doc|
+	        	puts "record: " + sw_doc.xpath("Title").text
+	        	puts "sw id: " + sw_doc.xpath("PublicationItemID").text
+	        	puts "author: " + sw_doc.xpath('AuthorList').text
 	         # ActiveRecord::Base.transaction do
 	          create_or_update_pub_and_contribution_with_harvested_sw_doc(sw_doc, author)    
 	        #  end # transaction end
@@ -112,19 +120,28 @@ class SciencewireSourceRecord < ActiveRecord::Base
 	    sciencewire_id = pub_hash[:sw_id]
 	    title = pub_hash[:title]
 	    year = pub_hash[:year]
+	    issn = pub_hash[:issn]
+	    pages = pub_hash[:pages]
+	    type = pub_hash[:type]
 	    status = 'NEW'
 	    visibility = "PRIVATE"
 	    featured = false
 	    
 	    save_or_update_sw_source_record(sciencewire_id, pmid, incoming_sw_xml_doc.to_xml)
 	    
-	    #check for existing pub by sw_id, pmid, or title/year
+	    #disambig rules:
+	    #1.check for existing pub by sw_id, pmid
+	    #2.Look for ISSN. If matches, need to also check for year and first page.
+		#3.Look for Title, year, starting page
 	    pub = Publication.where(sw_id: sciencewire_id)
 	    if pub.nil? 
 	    	Publication.where(pmid: pmid) unless pmid.blank?
 	    end
+	    if pub.nil? && !issn.blank? && !pages.blank?
+	    	Publication.where(issn: issn, pages: pages, year: year)
+	    end
 	    if pub.nil? 
-	    	Publication.where(title: title, year: year)
+	    	Publication.where(title: title, year: year, pages: pages)
 	    end
 	    # if still nothing then create a new pub
 	    if pub.nil?
@@ -132,6 +149,9 @@ class SciencewireSourceRecord < ActiveRecord::Base
 	          	active: true,
 	            title: title,
 	            year: year,
+	            issn: issn,
+	            pages: pages,
+          		publication_type: type,
 	            sciencewire_id: sciencewire_id,
 	            pmid: pmid)
 	    end
@@ -219,7 +239,6 @@ class SciencewireSourceRecord < ActiveRecord::Base
 	    record_as_hash[:stateprovince] = publication.xpath('CopyrightStateProvince').text unless publication.xpath("CopyrightStateProvince").blank?
 	    record_as_hash[:country] = publication.xpath('CopyrightCountry').text unless publication.xpath("CopyrightCountry").blank?
 
-
 	    identifiers = Array.new
 	    identifiers << {:type =>'PMID', :id => publication.at_xpath("PMID").text, :url => 'http://www.ncbi.nlm.nih.gov/pubmed/' + publication.xpath("PMID").text } unless publication.at_xpath("PMID").nil?
 	    identifiers << {:type => 'WoSItemID', :id => publication.at_xpath("WoSItemID").text, :url => 'http://ws.isiknowledge.com/cps/openurl/service?url_ver=Z39.88-2004&rft_id=info:ut/' + publication.xpath("WoSItemID").text} unless publication.at_xpath("WoSItemID").nil?
@@ -227,7 +246,7 @@ class SciencewireSourceRecord < ActiveRecord::Base
 	    
 	    # an issn is for either a journal or a book series (international standard series number)
 	    issn = {:type => 'issn', :id => publication.xpath('ISSN').text, :url => 'http://searchworks.stanford.edu/?search_field=advanced&number=' + publication.xpath('ISSN').text} unless publication.xpath('ISSN').blank?
-	    
+	    record_as_hash[:issn] = issn unless issn.blank?
 	    if sul_document_type == Settings.sul_doc_types.inproceedings
 	      conference_hash = {}
 	      conference_hash[:startdate] = publication.xpath('ConferenceStartDate').text unless publication.xpath("ConferenceStartDate").blank?
@@ -468,9 +487,9 @@ class SciencewireSourceRecord < ActiveRecord::Base
 	  <DocumentCategory>Journal Document</DocumentCategory>' 
 
 	    unless seed_list.blank?
-	      bod << '<PublicationItemIds>'
-	      bod << seed_list.collect { |pubId| "<int>#{pubId}</int>"}.join
-	      bod << '</PublicationItemIds>'
+	#      bod << '<PublicationItemIds>'
+	 #     bod << seed_list.collect { |pubId| "<int>#{pubId}</int>"}.join
+	  #    bod << '</PublicationItemIds>'
 	    end
 
 	    unless email_list.blank?
@@ -479,16 +498,19 @@ class SciencewireSourceRecord < ActiveRecord::Base
 	      bod << '</Emails>'
 	    end
 
-	    bod << '<LimitToHighQualityMatchesOnly>false</LimitToHighQualityMatchesOnly>'
+	    bod << '<LimitToHighQualityMatchesOnly>true</LimitToHighQualityMatchesOnly>'
 	    bod << '</PublicationAuthorMatchParameters>'
 
 	    request.body = bod
+	   puts bod
 	    response = http.request(request)
-	    xml_doc = Nokogiri::XML(response.body)
+	    response_body = response.body
+	   # puts response_body
+	    xml_doc = Nokogiri::XML(response_body)
 
 	    #puts xml_doc.to_xml
 	    items = xml_doc.xpath('/ArrayOfItemMatchResult/ItemMatchResult/PublicationItemID').collect { |itemId| itemId.text}.join(',')
-	    #puts "sciencewire guesses at pub ids for given author: " + items.to_s
+	    puts "sciencewire guesses at pub ids for given author: " + items.to_s
 	    fullPubsRequest = Net::HTTP::Get.new("/PublicationCatalog/PublicationItems?format=xml&publicationItemIDs=" + items)
 	    fullPubsRequest["Content-Type"] = "text/xml"
 	    fullPubsRequest["LicenseID"] = "***REMOVED***"
@@ -496,7 +518,7 @@ class SciencewireSourceRecord < ActiveRecord::Base
 	    fullPubsRequest["Connection"] = "Keep-Alive"
 
 	    fullPubResponse = http.request(fullPubsRequest).body
-	  #puts fullPubResponse.to_s
+	  	#puts fullPubResponse.to_s
 	    xml_doc = Nokogiri::XML(fullPubResponse)
 	    #http.finish
 	    xml_doc
