@@ -112,22 +112,6 @@ ActiveRecord::Schema.define(:version => 20130528191513) do
   add_index "sciencewire_source_records", ["pmid"], :name => "index_sw_source_on_pmid"
   add_index "sciencewire_source_records", ["sciencewire_id"], :name => "index_sw_source_on_swid"
 
-  create_table "source_records", :force => true do |t|
-    t.text     "source_data"
-    t.integer  "original_source_id"
-    t.integer  "publication_id"
-    t.integer  "lock_version"
-    t.string   "title"
-    t.integer  "year"
-    t.string   "source_name"
-    t.string   "source_data_type"
-    t.boolean  "is_active"
-    t.boolean  "is_local_only"
-    t.string   "source_fingerprint"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
-  end
-
   create_table "user_submitted_source_records", :force => true do |t|
     t.text     "source_data"
     t.integer  "pmid"
