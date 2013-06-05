@@ -20,6 +20,7 @@ gem 'smarter_csv'
 gem 'activerecord-import'
 gem 'kaminari'
 gem 'dotiw'
+#gem 'always_verify_ssl_certificates'
 
 group :development, :test do
   gem 'rspec-rails', '2.11.0'

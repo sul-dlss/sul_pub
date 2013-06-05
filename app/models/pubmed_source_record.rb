@@ -32,13 +32,12 @@ class PubmedSourceRecord < ActiveRecord::Base
   	end
 
   	def self.get_pubmed_source_record_for_pmid(pmid)
-  		PubmedSourceRecord.where(pmid: pmid).first || PubMedSourceRecord.get_pubmed_record_from_pubmed(pmid)
+  		PubmedSourceRecord.where(pmid: pmid).first || PubmedSourceRecord.get_pubmed_record_from_pubmed(pmid)
   	end
 
   	def self.get_pubmed_record_from_pubmed(pmid)
-  		puts "shouldn't be in here, the get_pubmed_record_from_pubmed"
   		get_and_store_records_from_pubmed([pmid])
-  		PubmedSourceRecord.where[pmid: pmid].first
+  		PubmedSourceRecord.where(pmid: pmid).first
   	end
 
 	def self.get_and_store_records_from_pubmed(pmids)
@@ -147,7 +146,7 @@ def convert_pubmed_publication_doc_to_hash(publication)
 		journal_identifiers = Array.new
 		issn = publication.xpath('MedlineCitation/Article/Journal/ISSN').text
 		record_as_hash[:issn] = issn unless issn.blank?
-		journal_identifiers << {:type => 'issn', :id => , :url => 'http://searchworks.stanford.edu/?search_field=advanced&number=' + issn unless issn.blank?
+		journal_identifiers << {:type => 'issn', :id => issn, :url => 'http://searchworks.stanford.edu/?search_field=advanced&number=' + issn} unless issn.blank?
 		journal_hash[:identifier] = journal_identifiers
 		record_as_hash[:journal] = journal_hash
     

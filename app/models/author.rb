@@ -12,12 +12,12 @@ class Author < ActiveRecord::Base
           :source => :publication_identifier,
           :foreign_key => "publication_id",
           :primary_key => "publication_id",
-          :conditions => "contributions.status = 'new'"
+          :conditions => "contributions.status = 'approved'"
 
   has_many  :approved_publications, :through => :contributions, 
           :class_name => "Publication", 
           :source => :publication,
-          :conditions => ['contributions.status = ?','new'] 
+          :conditions => ['contributions.status = ?','approved'] 
          
 
   #has_many :population_memberships, :dependent => :destroy

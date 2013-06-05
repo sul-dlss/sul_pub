@@ -4,12 +4,14 @@ require 'activerecord-import'
 require 'dotiw'
 
 class SciencewireSourceRecord < ActiveRecord::Base
+
   	attr_accessible :is_active, :lock_version, :pmid, :sciencewire_id, :source_data, :source_fingerprint
   	#validates_uniqueness_of :sciencewire_id
 
   	@@sw_conference_proceedings_type_strings ||= Settings.sw_doc_type_mappings.conference.split(',')
 	@@sw_book_type_strings ||= Settings.sw_doc_type_mappings.book.split(',')
 
+	include ActionView::Helpers::DateHelper
 	# one instance method, the rest are class methods
 	def get_source_as_hash 
 		SciencewireSourceRecord.convert_sw_publication_doc_to_hash(Nokogiri::XML(self.source_data).xpath('//PublicationItem'))
@@ -82,12 +84,18 @@ class SciencewireSourceRecord < ActiveRecord::Base
 
 	#harverst sciencewire records using author information
 	def self.harvest_pubs_from_sciencewire_for_all_authors()
+		
 	    #Author.find_each(:batch_size => 100) do |author|
-	     random = rand(Author.count - 50)
+	    # random = rand(Author.count - 50)
 	    #  author = Author.new(:pubmed_last_name => "levin", pubmed_first_initial: "c", pubmed_middle_initial: "s", sunetid: "cslevin")
 	     #author = Author.new(:pubmed_last_name => "lee", pubmed_first_initial: "j", pubmed_middle_initial: "t", sunetid: "jtlee")
-	    
-	    Author.limit(1).offset(19086).each do |author|
+	    start_time = Time.now
+	    harvested_count = 0
+	    author_count = 0
+	    @sw_harvest_logger = Logger.new(Rails.root.join('log', 'sw_harvest.log'))
+	    @sw_harvest_logger.info "Started sw harvest " + DateTime.now.to_s
+	    Author.where(active_in_cap: true).limit(100).offset(19086).find_each(:batch_size => 500) do |author|
+	    	author_count += 1
 	        last_name = author.official_last_name
 	        first_name = author.official_first_name
 	        middle_name = author.official_middle_name
@@ -95,21 +103,28 @@ class SciencewireSourceRecord < ActiveRecord::Base
 	        email = author.email
 
 	        seed_list = author.approved_sw_ids.collect { | sw_id | sw_id.identifier_value }
-	       
-	        email_list = []
-	        email_list << email unless email.nil?
-	        puts "email list: " + email_list.to_s
-	        puts "seed pubs: " + seed_list.to_s
+	        if author_count == 10 
+	        	string_to_print = "Harvested " + harvested_count.to_s + " records for " + author_count.to_s + " authors."
+	        	@sw_harvest_logger.info string_to_print
+	        	puts string_to_print
+	        end
+	        email_list = [email] unless email.blank?
+	       # puts "email list: " + email_list.to_s
+	       # puts "seed pubs: " + seed_list.to_s
 	        sw_records_doc = get_sw_guesses(last_name, first_name, middle_name, email_list, seed_list)
 	        sw_records_doc.xpath('//PublicationItem').each do |sw_doc|
-	        	puts "record: " + sw_doc.xpath("Title").text
-	        	puts "sw id: " + sw_doc.xpath("PublicationItemID").text
-	        	puts "author: " + sw_doc.xpath('AuthorList').text
+	        	harvested_count += 1
+	        	#puts "record: " + sw_doc.xpath("Title").text
+	        	#puts "sw id: " + sw_doc.xpath("PublicationItemID").text
+	        	#puts "author: " + sw_doc.xpath('AuthorList').text
 	         # ActiveRecord::Base.transaction do
-	          create_or_update_pub_and_contribution_with_harvested_sw_doc(sw_doc, author)    
+	          	create_or_update_pub_and_contribution_with_harvested_sw_doc(sw_doc, author)    
 	        #  end # transaction end
 	      	end 
 	    end 
+	    @sw_harvest_logger.info "Finished harvest at " + DateTime.now.to_s
+    	@sw_harvest_logger.info harvested_count.to_s + " records were harvested for " + author_count.to_s + " authors in " + distance_of_time_in_words_to_now(start_time)
+
 	end
 
 	
@@ -123,8 +138,8 @@ class SciencewireSourceRecord < ActiveRecord::Base
 	    issn = pub_hash[:issn]
 	    pages = pub_hash[:pages]
 	    type = pub_hash[:type]
-	    status = 'NEW'
-	    visibility = "PRIVATE"
+	    status = 'new'
+	    visibility = "private"
 	    featured = false
 	    
 	    save_or_update_sw_source_record(sciencewire_id, pmid, incoming_sw_xml_doc.to_xml)
@@ -133,15 +148,15 @@ class SciencewireSourceRecord < ActiveRecord::Base
 	    #1.check for existing pub by sw_id, pmid
 	    #2.Look for ISSN. If matches, need to also check for year and first page.
 		#3.Look for Title, year, starting page
-	    pub = Publication.where(sw_id: sciencewire_id)
+	    pub = Publication.where(sciencewire_id: sciencewire_id).first
 	    if pub.nil? 
-	    	Publication.where(pmid: pmid) unless pmid.blank?
+	    	Publication.where(pmid: pmid).first unless pmid.blank?
 	    end
 	    if pub.nil? && !issn.blank? && !pages.blank?
-	    	Publication.where(issn: issn, pages: pages, year: year)
+	    	Publication.where(issn: issn, pages: pages, year: year).first
 	    end
 	    if pub.nil? 
-	    	Publication.where(title: title, year: year, pages: pages)
+	    	Publication.where(title: title, year: year, pages: pages).first
 	    end
 	    # if still nothing then create a new pub
 	    if pub.nil?
@@ -169,24 +184,24 @@ class SciencewireSourceRecord < ActiveRecord::Base
 
 
 	def self.save_or_update_sw_source_record(sciencewire_id, pmid, incoming_sw_xml_as_string)
-	    new_source_fingerprint = get_source_fingerprint(incoming_sw_xml_as_string)
+	    #new_source_fingerprint = get_source_fingerprint(incoming_sw_xml_as_string)
 	    existing_sw_source_record = SciencewireSourceRecord.where(
 	      :sciencewire_id => sciencewire_id).first
 	    if existing_sw_source_record.nil?
 	        SciencewireSourceRecord.new(
 	                        :sciencewire_id => sciencewire_id,
-	                        :source_data => sw_record_doc.to_xml,
+	                        :source_data => incoming_sw_xml_as_string,
 	                        :is_active => true,
-	                        source_fingerprint: new_source_fingerprint,
+	                        source_fingerprint: get_source_fingerprint(incoming_sw_xml_as_string),
 	                        :pmid => pmid
 	        )
-	    elsif existing_sw_source_record.source_fingerprint != new_source_fingerprint      
-	        existing_sw_source_record.update_attributes(
-	          pmid: pmid,
-	          source_data: incoming_sw_xml_as_string,
-	          is_active: true,
-	          source_fingerprint: new_source_fingerprint  
-	         )           
+	    #elsif existing_sw_source_record.source_fingerprint != new_source_fingerprint      
+	     #   existing_sw_source_record.update_attributes(
+	     #     pmid: pmid,
+	     #     source_data: incoming_sw_xml_as_string,
+	     #     is_active: true,
+	     #     source_fingerprint: new_source_fingerprint  
+	     #    )           
 	    end
 	end
 
@@ -487,9 +502,9 @@ class SciencewireSourceRecord < ActiveRecord::Base
 	  <DocumentCategory>Journal Document</DocumentCategory>' 
 
 	    unless seed_list.blank?
-	#      bod << '<PublicationItemIds>'
-	 #     bod << seed_list.collect { |pubId| "<int>#{pubId}</int>"}.join
-	  #    bod << '</PublicationItemIds>'
+	      bod << '<PublicationItemIds>'
+	      bod << seed_list.collect { |pubId| "<int>#{pubId}</int>"}.join
+	      bod << '</PublicationItemIds>'
 	    end
 
 	    unless email_list.blank?
@@ -502,7 +517,7 @@ class SciencewireSourceRecord < ActiveRecord::Base
 	    bod << '</PublicationAuthorMatchParameters>'
 
 	    request.body = bod
-	   puts bod
+	 #  puts bod
 	    response = http.request(request)
 	    response_body = response.body
 	   # puts response_body

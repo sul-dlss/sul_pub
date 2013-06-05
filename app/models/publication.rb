@@ -6,6 +6,7 @@ class Publication < ActiveRecord::Base
   has_many :authors, :through => :contributions
   has_many :publication_identifiers, :dependent => :destroy
   has_many :user_submitted_source_records
+  has_one :batch_uploaded_source
   #has_many :population_membership, :foreign_key => "author_id"
   #validates_uniqueness_of :pmid
   #validates_uniqueness_of :sciencewire_id
@@ -25,12 +26,12 @@ def build_from_sciencewire_hash(new_sw_pub_hash)
       self.pub_hash = new_sw_pub_hash
       add_any_pubmed_data_to_hash unless new_sw_pub_hash[:pmid].blank?
       self
-  end
+end
 
-  def build_from_pubmed_hash(new_pubmed_pub_hash)
-      self.pub_hash = new_pubmed_pub_hash
-      self
-  end
+def build_from_pubmed_hash(new_pubmed_pub_hash)
+    self.pub_hash = new_pubmed_pub_hash
+    self
+end
 
 def self.build_new_manual_publication(provenance, pub_hash, original_source_string)
 
@@ -53,8 +54,7 @@ def self.build_new_manual_publication(provenance, pub_hash, original_source_stri
           publication_type: pub_hash[:type])
         pub.sync_publication_hash_and_db
       end
-    else
-      
+    else   
       pub_hash[:provenance] = provenance
       pub = Publication.create(
           active: true, 
@@ -63,8 +63,7 @@ def self.build_new_manual_publication(provenance, pub_hash, original_source_stri
           pub_hash: pub_hash, 
           issn: pub_hash[:issn], 
           pages: pub_hash[:pages],
-          publication_type: pub_hash[:type])
-      
+          publication_type: pub_hash[:type])    
       # todo:  have to look at deleting old identifiers, old contribution info.  i.e, how to correct errors.
       pub.user_submitted_source_records.create(
         is_active: true,
@@ -153,7 +152,6 @@ def sync_publication_hash_and_db
   
     save
   end
-
 
   def add_any_new_identifiers_in_pub_hash_to_db
     if pub_hash[:identifier] 

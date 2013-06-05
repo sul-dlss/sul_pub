@@ -1,18 +1,26 @@
 require 'spec_helper'
 
 describe SulBib::API do
-  describe "GET /api/v1/statuses" do
-    it "returns an empty array of statuses" do
-      get "/api/v1/statuses"
-      response.status.should == 200
+  describe "GET /publications" do
+    it "returns an empty bibjson collection" do
+      pending "sort out how to check the bibjson response"
+      get "/publications"
+      
       JSON.parse(response.body).should == []
     end
   end
-  describe "GET /api/v1/statuses/:id" do
-    it "returns a status by id" do
-      status = Status.create!
-      get "/api/v1/statuses/#{status.id}"
-      response.body.should == status.to_json
+  
+  describe "GET /publications/:id" do
+    it "returns a publication by id" do
+      publication = FactoryGirl.create(:publication)
+
+      get "/publications/#{publication.id}", 
+          { format: "json" },
+          {"HTTP_CAPKEY" => '***REMOVED***'}
+      response.status.should == 200
+      response.body.should == publication.pub_hash.to_json
     end
   end
+
+
 end

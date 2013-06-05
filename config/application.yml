@@ -20,8 +20,12 @@ defaults: &defaults
 
   pubmed_source: pubmed
 
+  batch_source: batch
+
   sciencewire_harvest_max: 2
 
+  
+  
 development:
   <<: *defaults
 

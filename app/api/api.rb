@@ -34,14 +34,14 @@ end
     get(:delete_pub_out) {IO.read(Rails.root.join('app', 'data', 'api_samples', 'delete_pub_out.json'))}
   end
 
-  class API_authors < Grape::API
-    version 'v1', :using => :header, :vendor => 'sul', :format => :json
-    format :json
-    get do
-      error!('Unauthorized', 401) unless env['HTTP_CAPKEY'] == '***REMOVED***'
-      Author.all(:include => :population_memberships, :conditions => "population_memberships.population_name = 'cap'")
-    end
-  end
+ # class API_authors < Grape::API
+  #  version 'v1', :using => :header, :vendor => 'sul', :format => :json
+  #  format :json
+  #  get do
+  #    error!('Unauthorized', 401) unless env['HTTP_CAPKEY'] == '***REMOVED***'
+   #   Author.all(:include => :population_memberships, :conditions => "population_memberships.population_name = 'cap'")
+   # end
+  #end
 
   class AuthorshipAPI < Grape::API
     version 'v1', :using => :header, :vendor => 'sul', :format => :json
@@ -100,6 +100,9 @@ end
       contrib_hash[:cap_profile_id] = cap_profile_id unless cap_profile_id.blank?
       
       contrib.update_attributes(contrib_hash)
+
+      sul_pub.add_all_db_contributions_to_my_pub_hash
+      sul_pub.save
 
     end # post end
   end #class end
@@ -186,28 +189,31 @@ get :sourcelookup do
       population = params[:population] || Settings.cap_population_name
       changedSince = params[:changedSince] || "1000-01-01"
       capProfileId = params[:capProfileId]
-      capActive = params[:capActive] || false
+      capActive = params[:capActive]
       page = params[:page]
       per = params[:per] || 100
       population.downcase!
       last_changed = DateTime.parse(changedSince).to_s
+      if ! capActive.blank?
+        capActive = capActive.downcase == 'true' ? '1' : '0'
+        query_string = 'authors.active_in_cap = ' + capActive + ' and publications.updated_at > ?'
+      else
+        query_string = 'publications.updated_at > ?'
+      end
+      
       if capProfileId.blank?
-        description = "Records for population '" + population + "' that have changed since " + changedSince
-        if page.blank?
-         # Publication.where("updated_at > ?", DateTime.parse(changedSince).to_s).find_each do | publication |
-          #   matching_records << publication.pub_hash 
-          # end
+        description = "Records for that have changed since " + changedSince
+        if page.blank?       
           Publication.joins(:contributions => :author).
-            where('authors.active_in_cap = ? and publications.updated_at > ?', capActive, last_changed).find_each do | publication |
-            matching_records << publication.pub_hash 
-          end
-          # Authors.where(:active).publications.where()
-          # select count(*) from publications p, contributions c, authors a where p.id = c.publication_id and c.author_id = a.id and a.active is true;
+            where(query_string, last_changed).
+            group('publications.id').find_each do | publication |
+              matching_records << publication.pub_hash 
+          end         
         else
-        #  matching_records = Publication.where("updated_at > ?", DateTime.parse(changedSince).to_s).
-        matching_records = Publication.joins(:contributions => :author).
-              where('authors.active_in_cap = ? and publications.updated_at > ?', capActive, DateTime.parse(changedSince).to_s).
+          matching_records = Publication.joins(:contributions => :author).
+              where(query_string, last_changed).
               order('publications.id').
+              group('publications.id').
               page(page).
               per(per).pluck(:pub_hash)
         end 
@@ -307,20 +313,7 @@ get :sourcelookup do
     end
 
   end
-  #bibtex and bibjson parsers to parse incoming POSTs and PUTs
-  module BibTexParser
-    def self.call(object, env) 
-        result = []
-        bibtex_records =  
-        bibtex_records.each do |record|   
-          result << {title: record.title, 
-                      year: record.year, 
-                      publisher: record.publisher, 
-                      authors: record.author}      
-        end
-        {:bib_list => result}
-    end
-  end
+ 
 
 end
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130528191513) do
+ActiveRecord::Schema.define(:version => 20130604011216) do
 
   create_table "authors", :force => true do |t|
     t.integer  "cap_profile_id"
@@ -33,6 +33,29 @@ ActiveRecord::Schema.define(:version => 20130528191513) do
   end
 
   add_index "authors", ["cap_profile_id"], :name => "index_author_on_cap_profile_id"
+
+  create_table "batch_uploaded_source_records", :force => true do |t|
+    t.string   "sunet_id"
+    t.integer  "author_id"
+    t.integer  "cap_profile_id"
+    t.boolean  "successful_import"
+    t.text     "bibtex_source_data"
+    t.string   "source_fingerprint"
+    t.boolean  "is_active"
+    t.string   "title"
+    t.integer  "year"
+    t.string   "batch_name"
+    t.text     "error_message"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.integer  "publication_id"
+  end
+
+  add_index "batch_uploaded_source_records", ["author_id"], :name => "index_batch_uploaded_source_records_on_author_id"
+  add_index "batch_uploaded_source_records", ["batch_name"], :name => "index_batch_uploaded_source_records_on_batch_name"
+  add_index "batch_uploaded_source_records", ["cap_profile_id"], :name => "index_batch_uploaded_source_records_on_cap_profile_id"
+  add_index "batch_uploaded_source_records", ["sunet_id"], :name => "index_batch_uploaded_source_records_on_sunet_id"
+  add_index "batch_uploaded_source_records", ["title"], :name => "index_batch_uploaded_source_records_on_title"
 
   create_table "contributions", :force => true do |t|
     t.integer  "author_id"

@@ -6,6 +6,8 @@ Sulbib::Application.configure do
   # since you don't have to restart the web server when you make code changes.
   config.cache_classes = false
 
+  #ENV['SSL_CERT_FILE'] = '/opt/local/share/curl/curl-ca-bundle.crt'
+
   # Log error messages when you accidentally call methods on nil.
   config.whiny_nils = true
 
