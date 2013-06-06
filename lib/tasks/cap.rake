@@ -28,7 +28,7 @@ namespace :cap do
 		start_time = Time.now
 		@cap_authorship_logger = Logger.new(Rails.root.join('log', 'cap_authorship_api.log'))
   		@cap_authorship_logger.info "Started authorship import " + DateTime.now.to_s
-  		page_count = 27
+  		page_count = 0
   		@last_page = false
   		@total_running_count = 0
   		@no_sunetid_count = 0
@@ -43,10 +43,12 @@ namespace :cap do
   		end
   		puts page_count.to_s + " pages of 1000 records were processed in " + distance_of_time_in_words_to_now(start_time)
   		puts @total_running_count.to_s + " total records were processed in " + distance_of_time_in_words_to_now(start_time)
-  		puts @no_sunetid_count.to_s + " records had no sunetids."
+  		puts @no_sunetid_count.to_s + " cap records had no sunetids."
+  		puts @no_sunet_in_sul_count.to_s + " cap records found no matching sunetid in sul records."
       	@cap_authorship_logger.info "Finished authorship import." + DateTime.now.to_s
       	@cap_authorship_logger.info @total_running_count.to_s + "records were processed in " + distance_of_time_in_words_to_now(start_time)
       	@cap_authorship_logger.info @no_sunetid_count.to_s + " records had no sunetids."
+      	@cap_authorship_logger.info @no_sunet_in_sul_count.to_s + " cap records found no matching sunetid in sul records."
   	end
 
   
@@ -109,25 +111,24 @@ namespace :cap do
 		  			email = record["profile"]["email"]
 		  			sunetid = record["profile"]["uid"]
 		  			cap_profile_id = record["profile"]["profileId"]
-		  			author = Author.where(sunetid: sunetid).first
-		  			if author
-		  				author.update_attributes(cap_profile_id: cap_profile_id, email: email, active_in_cap: active)
+		  			if sunetid.blank?
+		  				#puts " record seems to be missing sunet: " + record.to_s
+		  				@cap_authorship_logger.info "Cap record missing sunet: " + record.to_s
+		  				@no_sunetid_count += 1
 		  			else
-		  				if sunetid
+		  				author = Author.where(sunetid: sunetid).first 
+		  				if author
+		  					author.update_attributes(cap_profile_id: cap_profile_id, email: email, active_in_cap: active)
+		  				else
 		  					#puts "no such author for sunetid: " + sunetid 
 		  					@cap_authorship_logger.info "no such author for sunetid: " + sunetid
 		  					@no_sunet_in_sul_count += 1
-		  				else
-		  					#puts " record seems to be missing sunet: " + record.to_s
-		  					@cap_authorship_logger.info " record seems to be missing sunet: " + record.to_s
-		  					@no_sunetid_count += 1
 		  				end
-		  				
 		  			end
+		  			
 		  		end
 		  		@last_page = json_response["lastPage"]
-  			end
-  		
+  			end	
   	end
 
   	def get_new_token
