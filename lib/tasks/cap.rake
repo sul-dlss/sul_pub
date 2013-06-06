@@ -26,78 +26,108 @@ namespace :cap do
   	def get_authorship_data
   		include ActionView::Helpers::DateHelper
 		start_time = Time.now
-		cap_authorship_logger = Logger.new(Rails.root.join('log', 'cap_authorship_api.log'))
-  		cap_authorship_logger.info "Started authorship import " + DateTime.now.to_s
-  		page_count = 0
-  		last_page = false
+		@cap_authorship_logger = Logger.new(Rails.root.join('log', 'cap_authorship_api.log'))
+  		@cap_authorship_logger.info "Started authorship import " + DateTime.now.to_s
+  		page_count = 27
+  		@last_page = false
   		@total_running_count = 0
-  		until last_page
+  		@no_sunetid_count = 0
+  		@no_sunet_in_sul_count = 0
+  		until @last_page
   			page_count += 1
-  			last_page = process_next_batch_of_authorship_data(page_count, 1000)
-  			puts (@total_running_count).to_s + " in " + distance_of_time_in_words_to_now(start_time, include_seconds = true)  
-  			cap_authorship_logger.info @total_running_count.to_s + "records were processed in " + distance_of_time_in_words_to_now(start_time)
+  			process_next_batch_of_authorship_data(page_count, 1000)
+  			puts (@total_running_count).to_s + " in " + distance_of_time_in_words_to_now(start_time, include_seconds = true)
+  			@cap_authorship_logger.info @total_running_count.to_s + " records were processed in " + distance_of_time_in_words_to_now(start_time)
 
   			#if page_count === 3 then break end
   		end
-  		puts (page_count).to_s + "pages of 1000 were processed in " + distance_of_time_in_words_to_now(start_time)
-  		puts (@total_running_count).to_s + "total records were processed in " + distance_of_time_in_words_to_now(start_time)
-      	cap_authorship_logger.info "Finished authorship import." + DateTime.now.to_s
-      	cap_authorship_logger.info @total_running_count.to_s + "records were processed in " + distance_of_time_in_words_to_now(start_time)
-
+  		puts page_count.to_s + " pages of 1000 records were processed in " + distance_of_time_in_words_to_now(start_time)
+  		puts @total_running_count.to_s + " total records were processed in " + distance_of_time_in_words_to_now(start_time)
+  		puts @no_sunetid_count.to_s + " records had no sunetids."
+      	@cap_authorship_logger.info "Finished authorship import." + DateTime.now.to_s
+      	@cap_authorship_logger.info @total_running_count.to_s + "records were processed in " + distance_of_time_in_words_to_now(start_time)
+      	@cap_authorship_logger.info @no_sunetid_count.to_s + " records had no sunetids."
   	end
 
   
   	def process_next_batch_of_authorship_data(page_count, page_size)
-  		
-  		auth = YAML.load(File.open(Rails.root.join('config', 'auth.yaml')))
-		#AlwaysVerifySSLCertificates.ca_file = '/opt/local/share/curl/curl-ca-bundle.crt'
-		http = Net::HTTP.new(auth[:authorship_api_uri_qa])	
-		#http.use_ssl = true
-		#OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
-		#http.ca_file = '/opt/local/share/curl/curl-ca-bundle.crt'
-		#http.verify_mode = OpenSSL::SSL::VERIFY_PEER
-		#http.ssl_version = :SSLv3
-		request = Net::HTTP::Get.new(auth[:authorship_api_path_qa] + "?p=" + page_count.to_s + "&ps=" + page_size.to_s)
-		#puts "bearer " + auth[:token].to_s
-		token = auth[:access_token]
-		@last_page = false
-		3.times do
-			#puts "in the 3 times loop"
-			request["Authorization"] = "bearer " + token
-			http.start
-			response = http.request(request)
-			#puts "got the response"
-			if response.class == Net::HTTPUnauthorized 
-				http.finish
-				token = get_new_token
-			else
-				response_body = response.body
-				#puts "the response: " + response_body.to_s
-				the_response_as_hash = JSON.parse(response_body)
-				#the_response = JSON.pretty_generate(JSON.parse(response.body))
-				@last_page = process_batch(the_response_as_hash)
-				break
+  		begin
+	  		auth = YAML.load(File.open(Rails.root.join('config', 'auth.yaml')))
+			#AlwaysVerifySSLCertificates.ca_file = '/opt/local/share/curl/curl-ca-bundle.crt'
+			http = Net::HTTP.new(auth[:authorship_api_uri_qa], auth[:authorship_api_port])	
+			http.use_ssl = true
+			http.verify_mode = OpenSSL::SSL::VERIFY_PEER
+			#http.ca_file = '/opt/local/share/curl/curl-ca-bundle.crt'
+		#	http.verify_mode = OpenSSL::SSL::VERIFY_PEER
+			http.ssl_version = :SSLv3
+			request = Net::HTTP::Get.new(auth[:authorship_api_path_qa] + "?p=" + page_count.to_s + "&ps=" + page_size.to_s)
+			#puts "bearer " + auth[:token].to_s
+			token = auth[:access_token]
+			
+			3.times do
+				request["Authorization"] = "bearer " + token
+				http.start
+				response = http.request(request)
+
+				if response.class == Net::HTTPUnauthorized 
+					http.finish
+					token = get_new_token
+				elsif response.class == Net::HTTPInternalServerError
+					http.finish
+					puts "a server error: "
+					puts response.body.to_s
+					@last_page = true
+					break
+				else
+					response_body = response.body
+					the_response_as_hash = JSON.parse(response_body)
+					process_batch(the_response_as_hash)
+					http.finish
+					break
+				end
 			end
+			
+		rescue => e
+			puts e.message
+			puts e.backtrace
+			@cap_authorship_logger.info "Error: " + e.backtrace
 		end
-		http.finish
 		@last_page
   	end
 
   	def process_batch(json_response)
   		#puts "in the process_batch"
-  		#puts json_response.to_s
-  		json_response["values"].each do | record |
-  			@total_running_count += 1
-  			active = record["active"]
-  			email = record["profile"]["email"]
-  			sunetid = record["profile"]["uid"]
-  			cap_profile_id = record["profile"]["profileId"]
-  			author = Author.where(sunetid: sunetid).first
-  			if author
-  				author.update_attributes(cap_profile_id: cap_profile_id, email: email, active_in_cap: active)
+  			if json_response["values"].blank?
+  				puts "no values in json: " + json_response.to_s
+  				# we return as though last page since we can't check.
+  				@last_page = true
+  			else
+		  		#puts json_response.to_s
+		  		json_response["values"].each do | record |
+		  			@total_running_count += 1
+		  			active = record["active"]
+		  			email = record["profile"]["email"]
+		  			sunetid = record["profile"]["uid"]
+		  			cap_profile_id = record["profile"]["profileId"]
+		  			author = Author.where(sunetid: sunetid).first
+		  			if author
+		  				author.update_attributes(cap_profile_id: cap_profile_id, email: email, active_in_cap: active)
+		  			else
+		  				if sunetid
+		  					#puts "no such author for sunetid: " + sunetid 
+		  					@cap_authorship_logger.info "no such author for sunetid: " + sunetid
+		  					@no_sunet_in_sul_count += 1
+		  				else
+		  					#puts " record seems to be missing sunet: " + record.to_s
+		  					@cap_authorship_logger.info " record seems to be missing sunet: " + record.to_s
+		  					@no_sunetid_count += 1
+		  				end
+		  				
+		  			end
+		  		end
+		  		@last_page = json_response["lastPage"]
   			end
-  		end
-  		return json_response["lastPage"]
+  		
   	end
 
   	def get_new_token

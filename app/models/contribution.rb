@@ -11,7 +11,7 @@ class Contribution < ActiveRecord::Base
   #has_one :population_membership, :foreign_key => "author_id"
 
   def self.valid_authorship_hash?(authorship_hash)
-  	puts authorship_hash.to_s
+  	#puts authorship_hash.to_s
     authorship_hash.all? do |contrib|
           authors_valid?(contrib) && all_fields_present?(contrib)
     end

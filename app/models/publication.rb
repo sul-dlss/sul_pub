@@ -177,22 +177,26 @@ def add_all_identifiers_in_db_to_pub_hash
 def update_any_new_contribution_info_in_pub_hash_to_db
   unless self.pub_hash[:authorship].nil?
     self.pub_hash[:authorship].each do |contrib|
-          sul_author_id = contrib[:sul_author_id] 
-          if sul_author_id.blank? 
-            cap_profile_id = contrib[:cap_profile_id]
-            unless cap_profile_id.blank?
-              author = Author.where(cap_profile_id: contrib[:cap_profile_id]).first
-              sul_author_id = author.id unless author.blank? 
-            end
-          end
-          unless sul_author_id.blank?
-            contrib = self.contributions.where(:author_id => sul_author_id).first_or_create   
-            contrib.update_attributes(
-              cap_profile_id: contrib[:cap_profile_id],
-              status: contrib[:status],
-              visibility: contrib[:visibility], 
-              featured: contrib[:featured])
-          end
+      status = contrib[:status]
+      visibility = contrib[:visibility]
+      featured = contrib[:featured]
+      #puts "featured:  "  + featured.to_s
+      sul_author_id = contrib[:sul_author_id] 
+      if sul_author_id.blank? 
+        cap_profile_id = contrib[:cap_profile_id]
+        unless cap_profile_id.blank?
+          author = Author.where(cap_profile_id: contrib[:cap_profile_id]).first
+          sul_author_id = author.id unless author.blank? 
+        end
+      end
+      unless sul_author_id.blank?
+        contrib = self.contributions.where(:author_id => sul_author_id).first_or_create   
+        contrib.update_attributes(
+          cap_profile_id: author.cap_profile_id,
+          status: status,
+          visibility: visibility, 
+          featured: featured)
+      end
 
     end
   end
