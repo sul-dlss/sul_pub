@@ -68,10 +68,10 @@ class PubmedSourceRecord < ActiveRecord::Base
 	        end
 	        
 	    end
-    	puts source_records.length.to_s + " records about to be created."
+    	#Sputs source_records.length.to_s + " records about to be created."
     	PubmedSourceRecord.import source_records 
-    	puts count.to_s + " pmids were processed. "
-    	puts pmids.length.to_s + " pmids weren't processed: "
+    	#puts count.to_s + " pmids were processed. "
+    	#puts pmids.length.to_s + " pmids weren't processed: "
     	@cap_import_pmid_logger.info "Invalid pmids: " + pmids.to_a.join(',')
 
 	end

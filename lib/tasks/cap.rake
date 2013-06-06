@@ -8,19 +8,7 @@ namespace :cap do
 
 	desc "poll cap for authorship information"
     task :poll_authorship => :environment do
-    	
-		#get_new_token
 		get_authorship_data
-
-		#auth = YAML.load(File.open('auth.yaml'))
-		#auth={}
-		#auth[:get_token_uri] = "***REMOVED***"
-		#auth[:get_token_port] = 443
-		#auth[:get_token_path] = "/oauth/token"
-		#auth[:get_token_user] = "sul"
-		#auth[:get_token_pass] = "***REMOVED***"
-		#auth[:authorship_api_uri] = "irt-dev.stanford.edu"
-		#auth[:authorship_api_path] = "/cap-api/api/cap/v1/authors"
   	end
 
   	def get_authorship_data
@@ -31,8 +19,7 @@ namespace :cap do
   		page_count = 0
   		@last_page = false
   		@total_running_count = 0
-  		@no_sunetid_count = 0
-  		@no_sunet_in_sul_count = 0
+  		@no_author_count = 0
   		until @last_page
   			page_count += 1
   			process_next_batch_of_authorship_data(page_count, 1000)
@@ -43,12 +30,10 @@ namespace :cap do
   		end
   		puts page_count.to_s + " pages of 1000 records were processed in " + distance_of_time_in_words_to_now(start_time)
   		puts @total_running_count.to_s + " total records were processed in " + distance_of_time_in_words_to_now(start_time)
-  		puts @no_sunetid_count.to_s + " cap records had no sunetids."
-  		puts @no_sunet_in_sul_count.to_s + " cap records found no matching sunetid in sul records."
+  		puts @no_author_count.to_s + " authors not found."
       	@cap_authorship_logger.info "Finished authorship import." + DateTime.now.to_s
       	@cap_authorship_logger.info @total_running_count.to_s + "records were processed in " + distance_of_time_in_words_to_now(start_time)
-      	@cap_authorship_logger.info @no_sunetid_count.to_s + " records had no sunetids."
-      	@cap_authorship_logger.info @no_sunet_in_sul_count.to_s + " cap records found no matching sunetid in sul records."
+      	@cap_authorship_logger.info @no_author_count.to_s + " authors not found."
   	end
 
   
@@ -100,32 +85,36 @@ namespace :cap do
   	def process_batch(json_response)
   		#puts "in the process_batch"
   			if json_response["values"].blank?
-  				puts "no values in json: " + json_response.to_s
+  				puts "unexpected json: " + json_response.to_s
+  				@cap_authorship_logger.info "Authorship import ended unexpectedly. Returned json: "
+  				@cap_authorship_logger.info json_response.to_s		
   				# we return as though last page since we can't check.
   				@last_page = true
   			else
-		  		#puts json_response.to_s
 		  		json_response["values"].each do | record |
 		  			@total_running_count += 1
 		  			active = record["active"]
 		  			email = record["profile"]["email"]
 		  			sunetid = record["profile"]["uid"]
 		  			cap_profile_id = record["profile"]["profileId"]
-		  			if sunetid.blank?
-		  				#puts " record seems to be missing sunet: " + record.to_s
-		  				@cap_authorship_logger.info "Cap record missing sunet: " + record.to_s
-		  				@no_sunetid_count += 1
-		  			else
+		  			california_physician_license = record["profile"]["californiaPhysicianLicense"]
+		  			university_id = record["profile"]["universityId"]
+		  			if !sunetid.blank? 
 		  				author = Author.where(sunetid: sunetid).first 
-		  				if author
-		  					author.update_attributes(cap_profile_id: cap_profile_id, email: email, active_in_cap: active)
-		  				else
-		  					#puts "no such author for sunetid: " + sunetid 
-		  					@cap_authorship_logger.info "no such author for sunetid: " + sunetid
-		  					@no_sunet_in_sul_count += 1
-		  				end
 		  			end
-		  			
+		  			if author.nil? && !university_id.blank?
+		  				author = Author.where(university_id: university_id).first
+		  			end
+		  			if author.nil? && !california_physician_license.blank?
+		  				author = Author.where(california_physician_license: california_physician_license).first
+		  			end	
+	  				if author
+	  					author.update_attributes(cap_profile_id: cap_profile_id, email: email, active_in_cap: active)
+	  				else
+	  					puts "no author found"
+	  					@cap_authorship_logger.info "no author found"
+	  					@no_author_count += 1
+	  				end 			
 		  		end
 		  		@last_page = json_response["lastPage"]
   			end	

@@ -222,7 +222,7 @@ task :ingest_authors, [:file_location] => :environment do |t, args|
     end
 end
 
-#  update the active profile field author files from csv.
+#  update various author fields from csv.
 desc "update authors"
 task :update_authors, [:file_location] => :environment do |t, args|
     include ActionView::Helpers::DateHelper
@@ -231,10 +231,14 @@ task :update_authors, [:file_location] => :environment do |t, args|
     CSV.foreach(args.file_location, :headers  => true, :header_converters => :symbol) do |row|
         total_running_count += 1
         cap_profile_id = row[:profile_id]
-        author = Author.where(cap_profile_id: cap_profile_id).first.update_attributes(active_in_cap: (row[:active_profile] == 'active'))    
+        author = Author.where(cap_profile_id: cap_profile_id).first.update_attributes(
+         # active_in_cap: (row[:active_profile] == 'active'),
+          california_physician_license: (row[:ca_license_number])
+          )    
        # if total_running_count%5000 == 0  then GC.start end
         if total_running_count%5000 == 0 then puts (total_running_count).to_s + " in " + distance_of_time_in_words_to_now(start_time) end
     end
+    puts total_running_count.to_s + " in " + distance_of_time_in_words_to_now(start_time) 
 end
 
 def build_pub_from_sw_and_pubmed(pub)

@@ -153,6 +153,26 @@ def sync_publication_hash_and_db
     save
   end
 
+def rebuild_hash
+  if self.sciencewire_id
+    sw_source_record = SciencewireSourceRecord.where(sciencewire_id: self.sciencewire_id).first
+    build_from_sciencewire_hash(sw_source_record.get_source_as_hash)
+  elsif self.pubmed_id
+
+  elsif user_submitted_source_records.exists?
+
+  elsif batch_uploaded_source.exists?
+
+  else
+
+  end
+    set_last_updated_value_in_hash
+    add_all_db_contributions_to_my_pub_hash
+    add_all_identifiers_in_db_to_pub_hash
+    self.class.update_formatted_citations(self.pub_hash)
+    save
+end
+
   def add_any_new_identifiers_in_pub_hash_to_db
     if pub_hash[:identifier] 
       self.pub_hash[:identifier].each do |identifier|
@@ -315,67 +335,7 @@ def self.update_formatted_citations(pub_hash)
 def update_canonical_xml_for_pub
     xml = "the xml goes here"
   end
-=begin
-# THIS IS OLD AND SHOULD SOON BE DELETED
-  def self.build_new_sciencewire_publication_OLD(pub_hash, sw_xml_doc, pubmed_data, author, status, visibility, featured)
 
-      is_active = true
-
-      pub = Publication.create(active: is_active, title: pub_hash[:title], pub_hash: pub_hash, year: pub_hash[:year])
-
-      pub.add_pubmed_data(pubmed_data)
-      pub.add_contribution_to_db(author.id, author.cap_profile_id, status, visibility, featured)
-      
-      ScienceWireSourceRecord.where(sciencewire_id: pub_hash[:sw_id]).
-        first_or_create( 
-          :pmid => pub_hash[:pmid],
-          :source_data => data_to_save,
-          :is_active => is_active,
-          :source_fingerprint => Digest::SHA2.hexdigest(data_to_save)
-        )
-
-      pub.sync_publication_hash_and_db
-      #puts "SUL doctype: " + pub_hash[:type]
-      #puts "SW doctypes: " + pub_hash[:documenttypes_sw].to_s
-      #puts "sulpudid: " + pub.id.to_s
-      pub
-  end
-
-
-
-    xmlbuilder = Nokogiri::XML::Builder.new do |newPubDoc|
-
-      newPubDoc.publication {
-
-        newPubDoc.title pub_hash[:title]
-        pub_hash[:author].each do | author_name |
-          newPubDoc.author {
-            newPubDoc.name author_name[:name]
-          }
-        end
-        newPubDoc.abstract_ pub_hash[:the_abstract] unless pub_hash[:the_abstract].blank?
-        unless pub_hash[:keywords].blank? do
-          pub_hash[:keywords].each do | keyword |
-            newPubDoc.keyword keyword
-          end
-        end
-        unless pub_hash[:documentTypes].blank? do
-          pub_hash[:documentTypes].each do | docType |
-            newPubDoc.type docType
-          end
-        end
-        newPubDoc.category pub_hash[:documentCategory] unless pub_hash[:documentCategory].blank?
-        newPubDoc.journal {
-          newPubDoc.title pub_hash[:publicationTitle] unless pub_hash[:publicationTitle].blank?
-        }
-
-        # also add the last_update_at_source, last_retrieved_from_source,
-      }
-
-
-    end
-    xmlbuilder.to_xml
-=end
 end
 
 
