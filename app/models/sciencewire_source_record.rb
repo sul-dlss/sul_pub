@@ -173,7 +173,7 @@ class SciencewireSourceRecord < ActiveRecord::Base
 		        email = author.email
 
 		        seed_list = author.approved_sw_ids.collect { | sw_id | sw_id.identifier_value }
-		        if author_count == 10 
+		        if author_count%10 == 0
 		        	string_to_print = "Harvested #{harvested_count.to_s} records for #{author_count.to_s} authors."
 		        	@sw_harvest_logger.info string_to_print
 		        	puts string_to_print
@@ -247,7 +247,7 @@ class SciencewireSourceRecord < ActiveRecord::Base
 	            pmid: pmid)
 	    end
 	    # add the new contribution for this harvest.  
-	    # first_or_create so we don't override a previous status 
+	    # first_or_create so we don't override a previous status for this pairing
 	    Contribution.where(:author_id => author.id, publication_id: pub.id).first_or_create(
 	      	cap_profile_id: author.cap_profile_id,
 	    	status: status,

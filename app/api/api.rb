@@ -104,8 +104,7 @@ end
 
      # contrib.update_attributes(contrib_hash)
 
-      sul_pub.add_all_db_contributions_to_my_pub_hash
-      sul_pub.save
+      sul_pub.sync_publication_hash_and_db
       sul_pub.pub_hash
 
     end # post end
