@@ -34,11 +34,39 @@ class SciencewireSourceRecord < ActiveRecord::Base
       	end
 	end
 
+	def self.get_pub_by_sciencewire_id(sciencewire_id)
+		sw_pub_hash = get_sciencewire_hash_for_sw_id(sciencewire_id)
+        unless sw_pub_hash.nil?
+          pub = Publication.new(
+            active: true,
+            title: sw_pub_hash[:title],
+            year: sw_pub_hash[:year],
+     		pages: sw_pub_hash[:pages],
+     		issn: sw_pub_hash[:issn],
+          	publication_type: sw_pub_hash[:type],
+            sciencewire_id: sciencewire_id,
+            pmid: sw_pub_hash[:pmid]) 
+          pub.build_from_sciencewire_hash(sw_pub_hash)
+          pub
+      	end
+	end
+
+	def self.get_sciencewire_hash_for_sw_id(sciencewire_id)
+  		sciencewire_source_record = get_sciencewire_source_record_for_sw_id(sciencewire_id)
+  		unless sciencewire_source_record.nil?
+  			sciencewire_source_record.get_source_as_hash
+  		end
+  	end
+
 	def self.get_sciencewire_hash_for_pmid(pmid)
   		sciencewire_source_record = get_sciencewire_source_record_for_pmid(pmid)
   		unless sciencewire_source_record.nil?
   			sciencewire_source_record.get_source_as_hash
   		end
+  	end
+
+	def self.get_sciencewire_source_record_for_sw_id(sw_id)
+  		SciencewireSourceRecord.where(sciencewire_id: sw_id).first || SciencewireSourceRecord.get_sciencewire_source_record_from_sciencewire_by_sw_id(sw_id)
   	end
 
   	def self.get_sciencewire_source_record_for_pmid(pmid)
@@ -48,6 +76,43 @@ class SciencewireSourceRecord < ActiveRecord::Base
   	def self.get_sciencewire_source_record_from_sciencewire(pmid)
   		get_and_store_sw_source_records([pmid])
   		SciencewireSourceRecord.where[pmid: pmid].first
+  	end
+
+	def self.get_sciencewire_source_record_from_sciencewire_by_sw_id(sciencewire_id)
+  		get_and_store_sw_source_record_for_sw_id(sciencewire_id)
+  		SciencewireSourceRecord.where(sciencewire_id: sciencewire_id).first
+  	end
+
+  	def self.get_and_store_sw_source_record_for_sw_id(sciencewire_id)
+  		http = Net::HTTP.new("sciencewirerest.discoverylogic.com", 443)
+	    http.use_ssl = true
+	    http.verify_mode = OpenSSL::SSL::VERIFY_PEER
+	    http.ssl_version = :SSLv3
+
+  		fullPubsRequest = Net::HTTP::Get.new("/PublicationCatalog/PublicationItems?format=xml&publicationItemIDs=" + sciencewire_id.to_s)
+	    fullPubsRequest["Content-Type"] = "text/xml"
+	    fullPubsRequest["LicenseID"] = "***REMOVED***"
+	    fullPubsRequest["Host"] = "sciencewirerest.discoverylogic.com"
+	    fullPubsRequest["Connection"] = "Keep-Alive"
+	    http.start
+	    fullPubResponse = http.request(fullPubsRequest).body
+	  	#puts fullPubResponse.to_s
+	    xml_doc = Nokogiri::XML(fullPubResponse)
+	    http.finish
+	    
+	    xml_doc.xpath('//PublicationItem').each do |sw_record_doc|
+	      pmid = sw_record_doc.xpath("PMID").text
+	      sciencewire_id = sw_record_doc.xpath("PublicationItemID").text
+	             
+	        SciencewireSourceRecord.where(sciencewire_id: sciencewire_id).first_or_create(
+	                      :source_data => sw_record_doc.to_xml,
+	                      :is_active => true,
+	                      :pmid => pmid,
+	                      :source_fingerprint => Digest::SHA2.hexdigest(sw_record_doc))
+	            
+	   puts "the source data: "
+	   puts sw_record_doc.to_xml
+	    end
   	end
 
 	#get and store sciencewire source records for pmid list 
@@ -182,8 +247,8 @@ class SciencewireSourceRecord < ActiveRecord::Base
 	            pmid: pmid)
 	    end
 	    # add the new contribution for this harvest.  
-	    # we don't override a previous status 
-	    pub.contributions.where(:author_id => author.id).first_or_create(
+	    # first_or_create so we don't override a previous status 
+	    Contribution.where(:author_id => author.id, publication_id: pub.id).first_or_create(
 	      	cap_profile_id: author.cap_profile_id,
 	    	status: status,
 	    	visibility: visibility, 
@@ -263,6 +328,7 @@ class SciencewireSourceRecord < ActiveRecord::Base
 	    record_as_hash[:city] = publication.xpath('CopyrightCity').text unless publication.xpath("CopyrightCity").blank?
 	    record_as_hash[:stateprovince] = publication.xpath('CopyrightStateProvince').text unless publication.xpath("CopyrightStateProvince").blank?
 	    record_as_hash[:country] = publication.xpath('CopyrightCountry').text unless publication.xpath("CopyrightCountry").blank?
+	    record_as_hash[:pages] = publication.xpath('Pagination').text unless publication.xpath('Pagination').blank?
 
 	    identifiers = Array.new
 	    identifiers << {:type =>'PMID', :id => publication.at_xpath("PMID").text, :url => 'http://www.ncbi.nlm.nih.gov/pubmed/' + publication.xpath("PMID").text } unless publication.at_xpath("PMID").nil?
@@ -271,7 +337,7 @@ class SciencewireSourceRecord < ActiveRecord::Base
 	    
 	    # an issn is for either a journal or a book series (international standard series number)
 	    issn = {:type => 'issn', :id => publication.xpath('ISSN').text, :url => 'http://searchworks.stanford.edu/?search_field=advanced&number=' + publication.xpath('ISSN').text} unless publication.xpath('ISSN').blank?
-	    record_as_hash[:issn] = issn unless issn.blank?
+	    record_as_hash[:issn] = publication.xpath('ISSN').text unless publication.xpath('ISSN').blank?
 	    if sul_document_type == Settings.sul_doc_types.inproceedings
 	      conference_hash = {}
 	      conference_hash[:startdate] = publication.xpath('ConferenceStartDate').text unless publication.xpath("ConferenceStartDate").blank?

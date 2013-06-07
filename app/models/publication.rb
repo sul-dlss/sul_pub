@@ -18,8 +18,8 @@ def self.get_pub_by_pmid(pmid)
     Publication.where(pmid: pmid).first || SciencewireSourceRecord.get_pub_by_pmid(pmid) || PubmedSourceRecord.get_pub_by_pmid(pmid)
 end
 
-def self.get_pub_by_sciencewire_id(sciencewire_id)
-    Publication.where(sw_id: sciencewire_id).first || SciencewireSourceRecord.get_pub_by_pmid(pmid)
+def self.get_pub_by_sciencewire_id(sw_id)
+    pub = Publication.where(sciencewire_id: sw_id).first || SciencewireSourceRecord.get_pub_by_sciencewire_id(sw_id)
 end
 
 def build_from_sciencewire_hash(new_sw_pub_hash)   
@@ -157,15 +157,11 @@ def rebuild_hash
   if self.sciencewire_id
     sw_source_record = SciencewireSourceRecord.where(sciencewire_id: self.sciencewire_id).first
     build_from_sciencewire_hash(sw_source_record.get_source_as_hash)
-  elsif self.pubmed_id
-
-  elsif user_submitted_source_records.exists?
-
-  elsif batch_uploaded_source.exists?
-
-  else
-
+  elsif self.pmid
+    pubmed_source_record = PubmedSourceRecord.where(pmid: self.pmid)
+    build_from_pubmed_hash(pubmed_source_record.get_source_as_hash)
   end
+  #otherwise, probably manual or batch loaded, so just rebuild identifiers, contributions, and citations from db
     set_last_updated_value_in_hash
     add_all_db_contributions_to_my_pub_hash
     add_all_identifiers_in_db_to_pub_hash

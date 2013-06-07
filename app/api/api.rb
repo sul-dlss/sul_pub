@@ -59,7 +59,9 @@ end
       sul_pub_id = authorship_hash[:sul_pub_id]
       pmid = authorship_hash[:pmid]
       sciencewire_id = authorship_hash[:sw_id]
-
+      featured = authorship_hash[:featured] || false
+      visibility = authorship_hash[:visibility] || 'private'
+      status = authorship_hash[:status] || 'approved'
       # FIRST GET THE AUTHOR
       if ! sul_author_id.blank?
         begin
@@ -88,21 +90,23 @@ end
         sul_pub = Publication.get_pub_by_pmid(pmid: pmid)
         if sul_pub.nil? then error!("The pmid you've specified can't be found either locally or at PubMed.", 404) end
       elsif !sciencewire_id.blank?
-        sul_pub = Publication.get_pub_by_pmid(sciencewire_id: sw_id)
+        sul_pub = Publication.get_pub_by_sciencewire_id(sciencewire_id)
         if sul_pub.nil? then error!("The ScienceWire publication you've specified can't be found either locally or at ScienceWire.", 404) end
       end
       #WE'VE NOW GOT THE PUB AND THE AUTHOR, GET THE CONTRIBUTION OR CREATE A NEW ONE, AND THEN UPDATE
-      contrib = Contribution.where(author_id: sul_author_id, publication_id: sul_pub_id).first_or_create
       contrib_hash = {}
-      contrib_hash[:status] = authorship_hash[:status] unless authorship_hash[:status].blank?
-      contrib_hash[:visibility] = authorship_hash[:visibility] unless authorship_hash[:visibility].blank?
-      contrib_hash[:featured] = authorship_hash[:featured] unless authorship_hash[:featured].blank?
+      contrib_hash[:status] = status
+      contrib_hash[:visibility] = visibility
+      contrib_hash[:featured] = featured
       contrib_hash[:cap_profile_id] = cap_profile_id unless cap_profile_id.blank?
-      
-      contrib.update_attributes(contrib_hash)
+
+      contrib = Contribution.where(author_id: sul_author_id, publication_id: sul_pub.id).first_or_create(contrib_hash)
+
+     # contrib.update_attributes(contrib_hash)
 
       sul_pub.add_all_db_contributions_to_my_pub_hash
       sul_pub.save
+      sul_pub.pub_hash
 
     end # post end
   end #class end
