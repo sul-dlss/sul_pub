@@ -174,7 +174,7 @@ class SciencewireSourceRecord < ActiveRecord::Base
 
 		        seed_list = author.approved_sw_ids.collect { | sw_id | sw_id.identifier_value }
 		        if author_count%10 == 0
-		        	string_to_print = "Harvested #{harvested_count.to_s} records for #{author_count.to_s} authors."
+		        	string_to_print = "Harvested #{harvested_count.to_s} records for #{author_count.to_s} authors - " + DateTime.now.to_s
 		        	@sw_harvest_logger.info string_to_print
 		        	puts string_to_print
 		        end
