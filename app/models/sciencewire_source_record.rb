@@ -236,7 +236,7 @@ class SciencewireSourceRecord < ActiveRecord::Base
 	    end
 	    # if still nothing then create a new pub
 	    if pub.nil?
-	          pub = Publication.new(
+	          pub = Publication.create(
 	          	active: true,
 	            title: title,
 	            year: year,
