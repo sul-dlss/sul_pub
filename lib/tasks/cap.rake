@@ -99,6 +99,23 @@ namespace :cap do
 		  			cap_profile_id = record["profile"]["profileId"]
 		  			california_physician_license = record["profile"]["californiaPhysicianLicense"]
 		  			university_id = record["profile"]["universityId"]
+		  			if record["importSettings"] && record["importSettings"][0]
+		  				import_settings = record["importSettings"][0]
+		  				cap_first_name = import_settings["firstName"]
+		  				cap_last_name = import_settings["lastName"]
+		  			end
+		  			
+		  			author_attributes = {
+		  					cap_profile_id: cap_profile_id, 
+	  						email: email, 
+	  						active_in_cap: active, 
+	  						university_id: university_id,
+	  						california_physician_license: california_physician_license,
+	  						sunetid: sunetid
+	  					}
+	  					author_attributes[:cap_first_name] = cap_first_name unless cap_first_name.blank?
+	  					author_attributes[:cap_last_name] = cap_last_name unless cap_last_name.blank?
+
 		  			if !sunetid.blank? 
 		  				author = Author.where(sunetid: sunetid).first 
 		  			end
@@ -109,11 +126,12 @@ namespace :cap do
 		  				author = Author.where(california_physician_license: california_physician_license).first
 		  			end	
 	  				if author
-	  					author.update_attributes(cap_profile_id: cap_profile_id, email: email, active_in_cap: active)
+	  					author.update_attributes(author_attributes)
 	  				else
-	  					puts "no author found"
-	  					@cap_authorship_logger.info "no author found"
+	  					author = Author.create(author_attributes)
+	  					@cap_authorship_logger.info "author created: " + author.id.to_s
 	  					@no_author_count += 1
+
 	  				end 			
 		  		end
 		  		@last_page = json_response["lastPage"]

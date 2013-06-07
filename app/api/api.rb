@@ -102,8 +102,6 @@ end
 
       contrib = Contribution.where(author_id: sul_author_id, publication_id: sul_pub.id).first_or_create(contrib_hash)
 
-     # contrib.update_attributes(contrib_hash)
-
       sul_pub.sync_publication_hash_and_db
       sul_pub.pub_hash
 

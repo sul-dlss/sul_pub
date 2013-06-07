@@ -153,7 +153,7 @@ def sync_publication_hash_and_db
     save
   end
 
-def rebuild_hash
+def rebuild_pub_hash
   if self.sciencewire_id
     sw_source_record = SciencewireSourceRecord.where(sciencewire_id: self.sciencewire_id).first
     build_from_sciencewire_hash(sw_source_record.get_source_as_hash)
@@ -162,6 +162,12 @@ def rebuild_hash
     build_from_pubmed_hash(pubmed_source_record.get_source_as_hash)
   end
   #otherwise, probably manual or batch loaded, so just rebuild identifiers, contributions, and citations from db
+  # and update the issn, pages, and pub type
+    issn = self.pub_hash[:issn]
+    pages = self.pub_hash[:pages]
+    publication_type = self.pub_hash[:type]
+    self.update_attributes(issn: issn, pages: pages, publication_type: publication_type)
+  
     set_last_updated_value_in_hash
     add_all_db_contributions_to_my_pub_hash
     add_all_identifiers_in_db_to_pub_hash

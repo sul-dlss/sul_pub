@@ -181,6 +181,12 @@ class SciencewireSourceRecord < ActiveRecord::Base
 		        email_list = [email] unless email.blank?
 		       # puts "email list: " + email_list.to_s
 		       # puts "seed pubs: " + seed_list.to_s
+		       
+		       # split out the call to get sw guesses to first get the sciencwire ids, use these to first filter
+		       # out existing contribution:
+		       # Publication.joins(:contributions => :author).
+            	# where("authors.id=? and publications.sciencewire_id=?, author.id, sciencewire_id)
+
 		        sw_records_doc = get_sw_guesses(last_name, first_name, middle_name, email_list, seed_list)
 		        sw_records_doc.xpath('//PublicationItem').each do |sw_doc|
 		        	harvested_count += 1
