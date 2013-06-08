@@ -1,4 +1,4 @@
-sclass Author < ActiveRecord::Base
+class Author < ActiveRecord::Base
   attr_accessible :cap_profile_id, :sunetid, :university_id, :california_physician_license, :active_in_cap, :email, :cap_first_name, :cap_last_name, :cap_middle_name, :official_first_name, :official_last_name, :official_middle_name, :preferred_first_name, :preferred_last_name, :preferred_middle_name 
   has_many :contributions, :dependent => :destroy
   has_many :publications, :through => :contributions do
