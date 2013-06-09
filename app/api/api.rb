@@ -191,8 +191,8 @@ get :sourcelookup do
       changedSince = params[:changedSince] || "1000-01-01"
       capProfileId = params[:capProfileId]
       capActive = params[:capActive]
-      page = params[:page]
-      per = params[:per] || 100
+      page = params[:page] || 1
+      
       population.downcase!
       last_changed = DateTime.parse(changedSince).to_s
       if ! capActive.blank?
@@ -203,23 +203,25 @@ get :sourcelookup do
       end
       
       if capProfileId.blank?
-        description = "Records for that have changed since " + changedSince
-        if page.blank?       
-          Publication.joins(:contributions => :author).
-            where(query_string, last_changed).
-            group('publications.id').find_each do | publication |
-              matching_records << publication.pub_hash 
-          end         
-        else
-          matching_records = Publication.joins(:contributions => :author).
+        per = params[:per] || 100
+        description = "Records that have changed since " + changedSince
+        #if page.blank?       
+         # Publication.joins(:contributions => :author).
+         #   where(query_string, last_changed).
+         #   group('publications.id').find_each do | publication |
+         #     matching_records << publication.pub_hash 
+         # end         
+        #else
+         matching_records = Publication.joins(:contributions => :author).
               where(query_string, last_changed).
               order('publications.id').
-              group('publications.id').
+              group('publications.pub_hash').
               page(page).
               per(per).pluck(:pub_hash)
-        end 
+              
+        #end 
       else
-        page = page || 1
+      #  page = page || 1
         per = per || nil
         author = Author.where(cap_profile_id: capProfileId).first
         if author.nil?
