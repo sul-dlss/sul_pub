@@ -87,7 +87,7 @@ end
           error!("The SUL publication you've specified doesn't exist.", 404) 
         end
       elsif !pmid.blank?
-        sul_pub = Publication.get_pub_by_pmid(pmid: pmid)
+        sul_pub = Publication.get_pub_by_pmid(pmid)
         if sul_pub.nil? then error!("The pmid you've specified can't be found either locally or at PubMed.", 404) end
       elsif !sciencewire_id.blank?
         sul_pub = Publication.get_pub_by_sciencewire_id(sciencewire_id)

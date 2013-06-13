@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130606162256) do
+ActiveRecord::Schema.define(:version => 20130613221514) do
 
   create_table "authors", :force => true do |t|
     t.integer  "cap_profile_id"
@@ -31,6 +31,8 @@ ActiveRecord::Schema.define(:version => 20130606162256) do
     t.datetime "created_at",                   :null => false
     t.datetime "updated_at",                   :null => false
     t.string   "california_physician_license"
+    t.boolean  "cap_import_enabled"
+    t.string   "emails_for_harvest"
   end
 
   add_index "authors", ["california_physician_license"], :name => "index_authors_on_california_physician_license"

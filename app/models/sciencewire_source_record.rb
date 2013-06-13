@@ -26,7 +26,7 @@ class SciencewireSourceRecord < ActiveRecord::Base
             year: sw_pub_hash[:year],
      		pages: sw_pub_hash[:pages],
      		issn: sw_pub_hash[:issn],
-          	publication_type: pub_hash[:type],
+          	publication_type: sw_pub_hash[:type],
             sciencewire_id: sw_pub_hash[:sw_id],
             pmid: pmid) 
           pub.build_from_sciencewire_hash(sw_pub_hash)
@@ -75,7 +75,7 @@ class SciencewireSourceRecord < ActiveRecord::Base
 
   	def self.get_sciencewire_source_record_from_sciencewire(pmid)
   		get_and_store_sw_source_records([pmid])
-  		SciencewireSourceRecord.where[pmid: pmid].first
+  		SciencewireSourceRecord.where(pmid: pmid).first
   	end
 
 	def self.get_sciencewire_source_record_from_sciencewire_by_sw_id(sciencewire_id)
@@ -146,6 +146,29 @@ class SciencewireSourceRecord < ActiveRecord::Base
 	  #  puts pmids.length.to_s + " pmids weren't processed: " 
 	   # cap_pub_data_for_this_batch.each_key { |k| puts k.to_s}
 	 end
+
+	def self.save_sw_source_record(sciencewire_id, pmid, incoming_sw_xml_as_string)
+	    
+	    existing_sw_source_record = SciencewireSourceRecord.where(
+	      :sciencewire_id => sciencewire_id).first
+	    if existing_sw_source_record.nil?
+	    	new_source_fingerprint = get_source_fingerprint(incoming_sw_xml_as_string)
+	        SciencewireSourceRecord.create(
+	                        :sciencewire_id => sciencewire_id,
+	                        :source_data => incoming_sw_xml_as_string,
+	                        :is_active => true,
+	                        source_fingerprint: new_source_fingerprint,
+	                        :pmid => pmid
+	        )          
+	    end
+	    # return true or false to indicate if new record was created or one already existed.
+	    existing_sw_source_record.nil?
+	end
+
+	def self.get_source_fingerprint(sw_record_doc)
+	  Digest::SHA2.hexdigest(sw_record_doc)
+	end
+
 
 	#harverst sciencewire records using author information
 	def self.harvest_pubs_from_sciencewire_for_all_authors()
@@ -288,9 +311,10 @@ class SciencewireSourceRecord < ActiveRecord::Base
 	    end
 	end
 
-	def self.get_source_fingerprint(sw_record_doc)
+def self.get_source_fingerprint(sw_record_doc)
 	  Digest::SHA2.hexdigest(sw_record_doc)
 	end
+
 
 	def self.source_data_has_changed?(existing_sw_source_record, incoming_sw_source_doc)
 	  existing_sw_source_record.source_fingerprint != get_source_fingerprint(incoming_sw_source_doc)

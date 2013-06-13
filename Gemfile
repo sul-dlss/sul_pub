@@ -20,6 +20,7 @@ gem 'smarter_csv'
 gem 'activerecord-import'
 gem 'kaminari'
 gem 'dotiw'
+gem 'whenever', :require => false
 #gem 'always_verify_ssl_certificates'
 
 group :development, :test do

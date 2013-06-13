@@ -24,6 +24,11 @@ end
 
 def build_from_sciencewire_hash(new_sw_pub_hash)   
       self.pub_hash = new_sw_pub_hash
+      self.sciencewire_id = new_sw_pub_hash[:sw_id]
+      unless new_sw_pub_hash[:issn].blank? then self.issn = new_sw_pub_hash[:issn] end
+      unless new_sw_pub_hash[:title].blank? then self.issn = new_sw_pub_hash[:title] end
+      unless new_sw_pub_hash[:year].blank? then self.issn = new_sw_pub_hash[:year] end
+      unless new_sw_pub_hash[:pages].blank? then self.issn = new_sw_pub_hash[:pages] end
       add_any_pubmed_data_to_hash unless new_sw_pub_hash[:pmid].blank?
       self
 end
@@ -175,6 +180,11 @@ def rebuild_pub_hash
     save
 end
 
+def rebuild_authorship
+  add_all_db_contributions_to_my_pub_hash
+  save
+end
+
   def add_any_new_identifiers_in_pub_hash_to_db
     if pub_hash[:identifier] 
       self.pub_hash[:identifier].each do |identifier|
@@ -219,21 +229,29 @@ def update_any_new_contribution_info_in_pub_hash_to_db
           visibility: visibility, 
           featured: featured)
       end
-
     end
   end
 end
 
   def add_all_db_contributions_to_my_pub_hash
-    
-    self.pub_hash[:authorship] = self.contributions.collect do |contrib_in_db|     
-        {:cap_profile_id => contrib_in_db.cap_profile_id,
-         :sul_author_id => contrib_in_db.author_id,
-         :status => contrib_in_db.status,
-          visibility: contrib_in_db.visibility, 
-        featured: contrib_in_db.featured}
-      end
 
+    if self.pub_hash && self.pub_hash[:authorship]
+      self.pub_hash[:authorship] = self.contributions.collect do |contrib_in_db|     
+        {cap_profile_id: contrib_in_db.cap_profile_id,
+         sul_author_id: contrib_in_db.author_id,
+         status: contrib_in_db.status,
+         visibility: contrib_in_db.visibility, 
+         featured: contrib_in_db.featured}
+      end
+      save
+    elsif self.pub_hash && ! self.pub_hash[:authorship]
+      Logger.new(Rails.root.join('log', '2013_06_09_rebuild_hash_contribs.log')).info("No authorship entry in pub_hash for " + self.id.to_s)
+    else
+      Logger.new(Rails.root.join('log', '2013_06_09_rebuild_hash_contribs.log')).info("No pub hash for " + self.id.to_s)
+    end
+  rescue => e
+    puts "some problem with hash"
+    puts self.pub_hash.to_s
   end
 
   

@@ -4,32 +4,9 @@ require 'activerecord-import'
 
 namespace :cap_cutover do
 
-desc "get all sciencewire source records for full cap dump"
-task :pull_sw_for_cap, [:file_location] => :environment do |t, args|
-  include ActionView::Helpers::DateHelper
-  start_time = Time.now
-  total_running_count = 0
-  pmids_for_this_batch = Set.new
-  cap_import_sw_logger = Logger.new(Rails.root.join('log', 'cap_import_sciencewire_source_records.log'))
-  cap_import_sw_logger.info "Started sciencewire import " + DateTime.now.to_s
-   lines = CSV.foreach(args.file_location, :headers => true, :header_converters => :symbol) do |row|
-        total_running_count += 1
-        pmid = row[:pubmed_id].to_s()
-        pmids_for_this_batch << pmid #unless SciencewireSourceRecords.exists?(pmid: pmid)
-        if pmids_for_this_batch.length%1000 == 0 
-          SciencewireSourceRecord.get_and_store_sw_source_records(pmids_for_this_batch)
-          pmids_for_this_batch.clear
-          puts (total_running_count).to_s + " in " + distance_of_time_in_words_to_now(start_time, include_seconds = true)  
-        end 
-        if total_running_count%5000 == 0  then GC.start end
-      end
-      SciencewireSourceRecord.get_and_store_sw_source_records(pmids_for_this_batch)
-      puts (total_running_count).to_s + "records were processed in " + distance_of_time_in_words_to_now(start_time)
-      puts lines.to_s + " lines of file: " + args.file_location.to_s + " were processed."    
-      cap_import_pmid_logger.info "Finished sciencewire import." + DateTime.now.to_s
-      cap_import_pmid_logger.info lines.to_s + " lines of file: " + args.file_location.to_s + " were processed."
-      cap_import_pmid_logger.info total_running_count.to_s + "records were processed in " + distance_of_time_in_words_to_now(start_time, include_seconds = true)
-end
+# to reubuild:
+# run pull_sw_for_cap, pull_pubmed_for_cap, ingest_authors, create_pubs_from_cap, build_pubs, ingest_man_pubs
+# then run cap_authorship_
 
 desc "get all pubmed source records for full cap dump"
 task :pull_pubmed_for_cap, [:file_location] => :environment do |t, args|
@@ -59,6 +36,72 @@ task :pull_pubmed_for_cap, [:file_location] => :environment do |t, args|
       cap_import_pmid_logger.info lines.to_s + " lines of file: " + args.file_location.to_s + " were processed."
       cap_import_pmid_logger.info total_running_count.to_s + "records were processed in " + distance_of_time_in_words_to_now(start_time, include_seconds = true)
 end
+
+desc "get all sciencewire source records for full cap dump"
+task :pull_sw_for_cap, [:file_location] => :environment do |t, args|
+  include ActionView::Helpers::DateHelper
+  start_time = Time.now
+  total_running_count = 0
+  pmids_for_this_batch = Set.new
+  cap_import_sw_logger = Logger.new(Rails.root.join('log', 'cap_import_sciencewire_source_records.log'))
+  cap_import_sw_logger.info "Started sciencewire import " + DateTime.now.to_s
+   lines = CSV.foreach(args.file_location, :headers => true, :header_converters => :symbol) do |row|
+        total_running_count += 1
+        pmid = row[:pubmed_id].to_s()
+        pmids_for_this_batch << pmid #unless SciencewireSourceRecords.exists?(pmid: pmid)
+        if pmids_for_this_batch.length%1000 == 0 
+          SciencewireSourceRecord.get_and_store_sw_source_records(pmids_for_this_batch)
+          pmids_for_this_batch.clear
+          puts (total_running_count).to_s + " in " + distance_of_time_in_words_to_now(start_time, include_seconds = true)  
+        end 
+        if total_running_count%5000 == 0  then GC.start end
+      end
+      SciencewireSourceRecord.get_and_store_sw_source_records(pmids_for_this_batch)
+      puts (total_running_count).to_s + "records were processed in " + distance_of_time_in_words_to_now(start_time)
+      puts lines.to_s + " lines of file: " + args.file_location.to_s + " were processed."    
+      cap_import_sw_logger.info "Finished sciencewire import." + DateTime.now.to_s
+      cap_import_sw_logger.info lines.to_s + " lines of file: " + args.file_location.to_s + " were processed."
+      cap_import_sw_logger.info total_running_count.to_s + "records were processed in " + distance_of_time_in_words_to_now(start_time, include_seconds = true)
+end
+
+
+
+#  ingest author files from csv.
+desc "ingest authors "
+task :ingest_authors, [:file_location] => :environment do |t, args|
+    include ActionView::Helpers::DateHelper
+    start_time = Time.now
+    total_running_count = 0
+
+    CSV.foreach(args.file_location, :headers  => true, :header_converters => :symbol) do |row|
+        total_running_count += 1
+        cap_profile_id = row[:profile_id]
+       # author = Author.where(cap_profile_id: cap_profile_id).first_or_create
+      #  if author.nil?
+          Author.create(
+            cap_profile_id: cap_profile_id,
+            active_in_cap: row[:active_profile],
+            sunetid: row[:sunetid],
+            university_id: row[:university_id], 
+            email: row[:email_address],
+            emails_for_harvest: row[:email_address],
+            official_first_name: row[:official_first_name], 
+            official_last_name: row[:official_last_name], 
+            official_middle_name: row[:official_middle_name],
+            cap_first_name: row[:cap_first_name], 
+            cap_last_name: row[:cap_last_name], 
+            cap_middle_name: row[:cap_middle_name],
+            preferred_first_name: row[:preferred_first_name], 
+            preferred_last_name: row[:preferred_last_name], 
+            preferred_middle_name: row[:preferred_middle_name],
+            california_physician_license: (row[:ca_license_number])
+            )
+       
+        if total_running_count%5000 == 0  then GC.start end
+        if total_running_count%5000 == 0 then puts (total_running_count).to_s + " in " + distance_of_time_in_words_to_now(start_time) end
+    end
+end
+
 
 desc "create publication and contribution records from full cap dump"
   task :create_pubs_from_cap, [:file_location] => :environment do |t, args|
@@ -94,7 +137,7 @@ end
 
 
 desc "build pub hashes for all pubs"
-  task :build_pub => :environment do
+  task :build_pubs => :environment do
     include ActionView::Helpers::DateHelper
     start_time = Time.now
     total_running_count = 0
@@ -116,8 +159,28 @@ desc "build pub hashes for all pubs"
 
 end
 
+desc "ingest existing cap hand entered pubs"
+  task :ingest_man_pubs, [:file_location] => :environment do |t, args|
+    include ActionView::Helpers::DateHelper
+    start_time = Time.now
+    total_running_count = 0
+    @cap_manual_import_logger = Logger.new(Rails.root.join('log', 'cap_import_man_pubs.log'))
+    @cap_manual_import_logger.info "Started cap manual pub import process " + DateTime.now.to_s
+    lines = CSV.foreach(args.file_location, :headers  => true, :header_converters => :symbol) do |row|
+      total_running_count += 1
+      if total_running_count%500 == 0 then puts total_running_count.to_s + " in " + distance_of_time_in_words_to_now(start_time) end
+      author = Author.where(cap_profile_id: row[:profile_id]).first
+      pub_hash = convert_manual_publication_row_to_hash(row, author.id.to_s)
+      original_source = row.to_s
+      Publication.build_new_manual_publication(Settings.cap_provenance, pub_hash, original_source) 
+    end
+    @cap_manual_import_logger.info "Finished import." + DateTime.now.to_s
+    @cap_manual_import_logger.info lines.to_s + " lines of file: " + args.file_location.to_s + " were processed."
+    @cap_manual_import_logger.info total_running_count.to_s + "records were processed in " + distance_of_time_in_words_to_now(start_time, include_seconds = true)
 
-desc "extract issn, and page range from hash to publication object"
+  end
+
+desc "utility to extract data extract data from hash to publication object, modify as needed before running"
   task :update_pubs => :environment do
     include ActionView::Helpers::DateHelper
     start_time = Time.now
@@ -167,60 +230,8 @@ def find_issn_id_identifiers(identifiers_array)
     issn
 end
 
-desc "ingest existing cap hand entered pubs"
-  task :ingest_man_pubs, [:file_location] => :environment do |t, args|
-    include ActionView::Helpers::DateHelper
-    start_time = Time.now
-    total_running_count = 0
-    @cap_manual_import_logger = Logger.new(Rails.root.join('log', 'cap_import_man_pubs.log'))
-    @cap_manual_import_logger.info "Started cap manual pub import process " + DateTime.now.to_s
-    lines = CSV.foreach(args.file_location, :headers  => true, :header_converters => :symbol) do |row|
-      total_running_count += 1
-      if total_running_count%500 == 0 then puts total_running_count.to_s + " in " + distance_of_time_in_words_to_now(start_time) end
-      author = Author.where(cap_profile_id: row[:profile_id]).first
-      pub_hash = convert_manual_publication_row_to_hash(row, author.id.to_s)
-      original_source = row.to_s
-      Publication.build_new_manual_publication(Settings.cap_provenance, pub_hash, original_source) 
-    end
-    @cap_manual_import_logger.info "Finished import." + DateTime.now.to_s
-    @cap_manual_import_logger.info lines.to_s + " lines of file: " + args.file_location.to_s + " were processed."
-    @cap_manual_import_logger.info total_running_count.to_s + "records were processed in " + distance_of_time_in_words_to_now(start_time, include_seconds = true)
 
-  end
 
-#  ingest author files from csv.
-desc "ingest authors "
-task :ingest_authors, [:file_location] => :environment do |t, args|
-    include ActionView::Helpers::DateHelper
-    start_time = Time.now
-    total_running_count = 0
-
-    CSV.foreach(args.file_location, :headers  => true, :header_converters => :symbol) do |row|
-        total_running_count += 1
-        cap_profile_id = row[:profile_id]
-       # author = Author.where(cap_profile_id: cap_profile_id).first_or_create
-      #  if author.nil?
-          Author.create(
-            cap_profile_id: cap_profile_id,
-            active_in_cap: row[:active_profile],
-            sunetid: row[:sunetid], 
-            university_id: row[:university_id], 
-            email: row[:email_address],
-            official_first_name: row[:official_first_name], 
-            official_last_name: row[:official_last_name], 
-            official_middle_name: row[:official_middle_name],
-            cap_first_name: row[:cap_first_name], 
-            cap_last_name: row[:cap_last_name], 
-            cap_middle_name: row[:cap_middle_name],
-            preferred_first_name: row[:preferred_first_name], 
-            preferred_last_name: row[:preferred_last_name], 
-            preferred_middle_name: row[:preferred_middle_name]
-            )
-       
-        if total_running_count%5000 == 0  then GC.start end
-        if total_running_count%5000 == 0 then puts (total_running_count).to_s + " in " + distance_of_time_in_words_to_now(start_time) end
-    end
-end
 
 #  update various author fields from csv.
 desc "update authors"
@@ -253,7 +264,10 @@ def build_pub_from_sw_and_pubmed(pub)
           title: sw_pub_hash[:title],
           year: sw_pub_hash[:year],
           sciencewire_id: sw_pub_hash[:sw_id],
-          pub_hash: sw_pub_hash)
+          pub_hash: sw_pub_hash,
+          pages: pub_hash[:pages],
+          issn: pub_hash[:issn],
+          publication_type: pub_hash[:type])
       pub.add_any_pubmed_data_to_hash 
       
     else  
