@@ -20,7 +20,7 @@ class SciencewireSourceRecord < ActiveRecord::Base
 	def self.get_pub_by_pmid(pmid)
 		sw_pub_hash = get_sciencewire_hash_for_pmid(pmid)
         unless sw_pub_hash.nil?
-          pub = Publication.new(
+          pub = Publication.create(
             active: true,
             title: sw_pub_hash[:title],
             year: sw_pub_hash[:year],
@@ -30,14 +30,16 @@ class SciencewireSourceRecord < ActiveRecord::Base
             sciencewire_id: sw_pub_hash[:sw_id],
             pmid: pmid) 
           pub.build_from_sciencewire_hash(sw_pub_hash)
-          pub
+          pub.sync_publication_hash_and_db  
+          
       	end
+      	pub
 	end
 
 	def self.get_pub_by_sciencewire_id(sciencewire_id)
 		sw_pub_hash = get_sciencewire_hash_for_sw_id(sciencewire_id)
         unless sw_pub_hash.nil?
-          pub = Publication.new(
+          pub = Publication.create(
             active: true,
             title: sw_pub_hash[:title],
             year: sw_pub_hash[:year],
@@ -46,9 +48,10 @@ class SciencewireSourceRecord < ActiveRecord::Base
           	publication_type: sw_pub_hash[:type],
             sciencewire_id: sciencewire_id,
             pmid: sw_pub_hash[:pmid]) 
-          pub.build_from_sciencewire_hash(sw_pub_hash)
-          pub
+          pub.build_from_sciencewire_hash(sw_pub_hash)   
+          pub.sync_publication_hash_and_db  
       	end
+      	pub
 	end
 
 	def self.get_sciencewire_hash_for_sw_id(sciencewire_id)
@@ -84,40 +87,20 @@ class SciencewireSourceRecord < ActiveRecord::Base
   	end
 
   	def self.get_and_store_sw_source_record_for_sw_id(sciencewire_id)
-  		http = Net::HTTP.new("sciencewirerest.discoverylogic.com", 443)
-	    http.use_ssl = true
-	    http.verify_mode = OpenSSL::SSL::VERIFY_PEER
-	    http.ssl_version = :SSLv3
-
-  		fullPubsRequest = Net::HTTP::Get.new("/PublicationCatalog/PublicationItems?format=xml&publicationItemIDs=" + sciencewire_id.to_s)
-	    fullPubsRequest["Content-Type"] = "text/xml"
-	    fullPubsRequest["LicenseID"] = "***REMOVED***"
-	    fullPubsRequest["Host"] = "sciencewirerest.discoverylogic.com"
-	    fullPubsRequest["Connection"] = "Keep-Alive"
-	    http.start
-	    fullPubResponse = http.request(fullPubsRequest).body
-	  	#puts fullPubResponse.to_s
-	    xml_doc = Nokogiri::XML(fullPubResponse)
-	    http.finish
-	    
-	    xml_doc.xpath('//PublicationItem').each do |sw_record_doc|
-	      pmid = sw_record_doc.xpath("PMID").text
-	      sciencewire_id = sw_record_doc.xpath("PublicationItemID").text
+  		sw_record_doc = ScienceWireClient.new.get_sw_xml_source_for_sw_id(sciencewire_id)
+	    pmid = sw_record_doc.xpath("PMID").text
+	    #sciencewire_id = sw_record_doc.xpath("PublicationItemID").text
 	             
-	        SciencewireSourceRecord.where(sciencewire_id: sciencewire_id).first_or_create(
+	    SciencewireSourceRecord.where(sciencewire_id: sciencewire_id).first_or_create(
 	                      :source_data => sw_record_doc.to_xml,
 	                      :is_active => true,
 	                      :pmid => pmid,
 	                      :source_fingerprint => Digest::SHA2.hexdigest(sw_record_doc))
-	            
-	   puts "the source data: "
-	   puts sw_record_doc.to_xml
-	    end
   	end
 
 	#get and store sciencewire source records for pmid list 
 	def self.get_and_store_sw_source_records(pmids)
-	    sw_records_doc = pull_records_from_sciencewire_for_pmids(pmids)
+	    sw_records_doc = ScienceWireClient.new.pull_records_from_sciencewire_for_pmids(pmids)
 	    count = 0
 	    source_records = []
 	    sw_records_doc.xpath('//PublicationItem').each do |sw_record_doc|
@@ -162,159 +145,21 @@ class SciencewireSourceRecord < ActiveRecord::Base
 	        )          
 	    end
 	    # return true or false to indicate if new record was created or one already existed.
-	    existing_sw_source_record.nil?
-	end
-
-	def self.get_source_fingerprint(sw_record_doc)
-	  Digest::SHA2.hexdigest(sw_record_doc)
-	end
-
-
-	#harverst sciencewire records using author information
-	def self.harvest_pubs_from_sciencewire_for_all_authors()
-		include ActionView::Helpers::DateHelper
-	    #Author.find_each(:batch_size => 100) do |author|
-	    # random = rand(Author.count - 50)
-	    #  author = Author.new(:pubmed_last_name => "levin", pubmed_first_initial: "c", pubmed_middle_initial: "s", sunetid: "cslevin")
-	     #author = Author.new(:pubmed_last_name => "lee", pubmed_first_initial: "j", pubmed_middle_initial: "t", sunetid: "jtlee")
-	    start_time = Time.now
-	    harvested_count = 0
-	    author_count = 0
-	    @sw_harvest_logger = Logger.new(Rails.root.join('log', 'sw_test_harvest.log'))
-	    @sw_harvest_logger.info "Started Don's engineering subset harvest " + DateTime.now.to_s
-	    IO.foreach(Rails.root.join('app', 'data', '2013_06_06_univIds_from_don_for_harvest_qa.txt')) do |line|
-	    	#Author.where(active_in_cap: true).limit(100).offset(19086).find_each(:batch_size => 500) do |author|
-	    	
-	    	author = Author.where(university_id: line).first
-	    	if author 
-	    		@harvested_for_author_count = 0
-		    	author_count += 1
-		        last_name = author.official_last_name
-		        first_name = author.official_first_name
-		        middle_name = author.official_middle_name
-		        profile_id = author.cap_profile_id
-		        email = author.email
-
-		        seed_list = author.approved_sw_ids.collect { | sw_id | sw_id.identifier_value }
-		        if author_count%10 == 0
-		        	string_to_print = "Harvested #{harvested_count.to_s} records for #{author_count.to_s} authors - " + DateTime.now.to_s
-		        	@sw_harvest_logger.info string_to_print
-		        	puts string_to_print
-		        end
-		        email_list = [email] unless email.blank?
-		       # puts "email list: " + email_list.to_s
-		       # puts "seed pubs: " + seed_list.to_s
-		       
-		       # split out the call to get sw guesses to first get the sciencwire ids, use these to first filter
-		       # out existing contribution:
-		       # Publication.joins(:contributions => :author).
-            	# where("authors.id=? and publications.sciencewire_id=?, author.id, sciencewire_id)
-
-		        sw_records_doc = get_sw_guesses(last_name, first_name, middle_name, email_list, seed_list)
-		        sw_records_doc.xpath('//PublicationItem').each do |sw_doc|
-		        	harvested_count += 1
-		        	@harvested_for_author_count += 1
-		        	#puts "record: " + sw_doc.xpath("Title").text
-		        	#puts "sw id: " + sw_doc.xpath("PublicationItemID").text
-		        	#puts "author: " + sw_doc.xpath('AuthorList').text
-		         # ActiveRecord::Base.transaction do
-		          	create_or_update_pub_and_contribution_with_harvested_sw_doc(sw_doc, author)    
-		        #  end # transaction end
-		      	end 
-		      	@sw_harvest_logger.info "#{author.official_last_name} - #{line} has #@harvested_for_author_count new harvested records."
-	      	else
-	      		@sw_harvest_logger.info "no author found for university_id: " + line
-	      	end
-	    end 
-	    @sw_harvest_logger.info "Finished harvest at " + DateTime.now.to_s
-    	@sw_harvest_logger.info harvested_count.to_s + " records were harvested for " + author_count.to_s + " authors." 
-
-	end
-
-	
-
-	def self.create_or_update_pub_and_contribution_with_harvested_sw_doc(incoming_sw_xml_doc, author)
-	    pub_hash = convert_sw_publication_doc_to_hash(incoming_sw_xml_doc) 
-	    pmid = pub_hash[:pmid]
-	    sciencewire_id = pub_hash[:sw_id]
-	    title = pub_hash[:title]
-	    year = pub_hash[:year]
-	    issn = pub_hash[:issn]
-	    pages = pub_hash[:pages]
-	    type = pub_hash[:type]
-	    status = 'new'
-	    visibility = "private"
-	    featured = false
-	    
-	    
-	    save_or_update_sw_source_record(sciencewire_id, pmid, incoming_sw_xml_doc.to_xml)
-	    
-	    #disambig rules:
-	    #1.check for existing pub by sw_id, pmid
-	    #2.Look for ISSN. If matches, need to also check for year and first page.
-		#3.Look for Title, year, starting page
-	    pub = Publication.where(sciencewire_id: sciencewire_id).first
-	    if pub.nil? 
-	    	Publication.where(pmid: pmid).first unless pmid.blank?
-	    end
-	    if pub.nil? && !issn.blank? && !pages.blank?
-	    	Publication.where(issn: issn, pages: pages, year: year).first
-	    end
-	    if pub.nil? 
-	    	Publication.where(title: title, year: year, pages: pages).first
-	    end
-	    # if still nothing then create a new pub
-	    if pub.nil?
-	          pub = Publication.create(
-	          	active: true,
-	            title: title,
-	            year: year,
-	            issn: issn,
-	            pages: pages,
-          		publication_type: type,
-	            sciencewire_id: sciencewire_id,
-	            pmid: pmid)
-	    end
-	    # add the new contribution for this harvest.  
-	    # first_or_create so we don't override a previous status for this pairing
-	    Contribution.where(:author_id => author.id, publication_id: pub.id).first_or_create(
-	      	cap_profile_id: author.cap_profile_id,
-	    	status: status,
-	    	visibility: visibility, 
-	    	featured: featured)
-	    # finally build or rebuild the pub_hash from the sciencewire and pubmed data
-	    pub.build_from_sciencewire_hash(pub_hash)
-	    pub.sync_publication_hash_and_db
-	end
-
-
-	def self.save_or_update_sw_source_record(sciencewire_id, pmid, incoming_sw_xml_as_string)
-	    
-	    existing_sw_source_record = SciencewireSourceRecord.where(
-	      :sciencewire_id => sciencewire_id).first
-	    if existing_sw_source_record.nil?
-	    	new_source_fingerprint = get_source_fingerprint(incoming_sw_xml_as_string)
-	        SciencewireSourceRecord.create(
-	                        :sciencewire_id => sciencewire_id,
-	                        :source_data => incoming_sw_xml_as_string,
-	                        :is_active => true,
-	                        source_fingerprint: new_source_fingerprint,
-	                        :pmid => pmid
-	        )
+	    was_record_created = existing_sw_source_record.nil?
+	    was_record_created
 	    #elsif existing_sw_source_record.source_fingerprint != new_source_fingerprint      
 	     #   existing_sw_source_record.update_attributes(
 	     #     pmid: pmid,
 	     #     source_data: incoming_sw_xml_as_string,
 	     #     is_active: true,
 	     #     source_fingerprint: new_source_fingerprint  
-	     #    )           
-	    end
+	     #    ) 
+
 	end
 
-def self.get_source_fingerprint(sw_record_doc)
+	def self.get_source_fingerprint(sw_record_doc)
 	  Digest::SHA2.hexdigest(sw_record_doc)
 	end
-
 
 	def self.source_data_has_changed?(existing_sw_source_record, incoming_sw_source_doc)
 	  existing_sw_source_record.source_fingerprint != get_source_fingerprint(incoming_sw_source_doc)
@@ -420,217 +265,9 @@ def self.get_source_fingerprint(sw_record_doc)
 	    type
 	end
 
-	def self.query_sciencewire_for_publication(first_name, last_name, middle_name, title, year, max_rows)
-	  result = []
-	  xml_query = '<![CDATA[
-	     <query xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/
-	    XMLSchema">
-	      <Criterion ConjunctionOperator="AND">
-	        <Criteria>'
-
-	unless last_name.blank?
-	  xml_query << '<Criterion>
-	            <Filter>
-	              <Column>AuthorLastName</Column>
-	              <Operator>BeginsWith</Operator>
-	              <Value>' + last_name + '</Value>
-	            </Filter>
-	          </Criterion>' 
-	end
-	unless first_name.blank?
-	  xml_query << '<Criterion>
-	            <Filter>
-	              <Column>AuthorFirstName</Column>
-	              <Operator>BeginsWith</Operator>
-	              <Value>' + first_name + '</Value>
-	            </Filter>
-	          </Criterion>' 
-	end
-	unless title.blank?
-	  xml_query << '<Criterion>
-	            <Filter>
-	              <Column>Title</Column>
-	              <Operator>Contains</Operator>
-	              <Value>' + title + '</Value>
-	            </Filter>
-	          </Criterion>' 
-	end
-	unless year.blank?
-	  xml_query << '<Criterion>
-	            <Filter>
-	              <Column>PublicationYear</Column> 
-	              <Operator>Equals</Operator> 
-	              <Value>' + year.to_s + '</Value>
-	            </Filter>
-	          </Criterion>' 
-	end
-	   xml_query << '</Criteria>
-	      </Criterion>
-	      <Columns>
-	        <SortColumn>
-	          <Column>Rank</Column>
-	          <Direction>Descending</Direction>
-	        </SortColumn>
-	      </Columns>
-	     <MaximumRows>' + max_rows.to_s + '</MaximumRows>
-	    </query>
-	    ]]>'
-	    xml_results = query_sciencewire(xml_query)
-
-	    xml_results.xpath('//PublicationItem').each do |sw_xml_doc|
-	    # result << generate_json_for_pub(convert_sw_publication_doc_to_hash(sw_xml_doc))    
-	    	pub_hash = convert_sw_publication_doc_to_hash(sw_xml_doc)
-	    	Publication.update_formatted_citations(pub_hash)
-	    	result << pub_hash
-
-	  end 
-
-	  result
-
-	end
-
-	def self.pull_records_from_sciencewire_for_pmids(pmid_list)
-
-	  pmidValuesAsXML = pmid_list.collect { |pmid| "&lt;Value&gt;#{pmid}&lt;/Value&gt;"}.join
-	  xml_query = '&lt;query xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-	            &lt;Criterion ConjunctionOperator="AND"&gt;
-	              &lt;Criteria&gt;
-	                &lt;Criterion&gt;
-	                  &lt;Filter&gt;
-	                    &lt;Column&gt;PMID&lt;/Column&gt;
-	                    &lt;Operator&gt;In&lt;/Operator&gt;
-	                    &lt;Values&gt;' +
-	      pmidValuesAsXML +
-	    '&lt;/Values&gt;
-	                  &lt;/Filter&gt;
-	                &lt;/Criterion&gt;
-	              &lt;/Criteria&gt;
-	            &lt;/Criterion&gt;
-	            &lt;Columns&gt;
-	              &lt;SortColumn&gt;
-	                &lt;Column&gt;Rank&lt;/Column&gt;
-	                &lt;Direction&gt;Descending&lt;/Direction&gt;
-	              &lt;/SortColumn&gt;
-	            &lt;/Columns&gt;
-	            &lt;MaximumRows&gt;1000&lt;/MaximumRows&gt;
-	          &lt;/query&gt;'
-	         
-	      query_sciencewire(xml_query)
-	end
-
-	def self.query_sciencewire(xml_query)
-
-	  wrapped_xml_query = '<?xml version="1.0"?>
-	          <ScienceWireQueryXMLParameter xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-	            <xmlQuery>' + xml_query + '</xmlQuery>
-	          </ScienceWireQueryXMLParameter>'
-
-	    http = Net::HTTP.new("sciencewirerest.discoverylogic.com", 443)
-	    http.use_ssl = true
-	    http.verify_mode = OpenSSL::SSL::VERIFY_PEER
-	    http.ssl_version = :SSLv3
-	    request = Net::HTTP::Post.new("/PublicationCatalog/PublicationQuery?format=xml")
-	    request["LicenseID"] = "***REMOVED***"
-	    request["Host"] = "sciencewirerest.discoverylogic.com"
-	    request["Connection"] = "Keep-Alive"
-	    request["Expect"] = "100-continue"
-	    request["Content-Type"] = "text/xml"
-	    
-
-	    request.body = wrapped_xml_query
-
-	    http.start
-
-	    response = http.request(request)
-	    response_body = response.body
-	    xml_doc = Nokogiri::XML(response_body)
-	    queryId = xml_doc.xpath('//queryID').text
-
-	    fullPubsRequest = Net::HTTP::Get.new("/PublicationCatalog/PublicationQuery/" + queryId + "?format=xml&v=version/3&page=0&pageSize=2147483647")
-	    fullPubsRequest["Content_Type"] = "text/xml"
-	    fullPubsRequest["LicenseID"] = "***REMOVED***"
-	    fullPubsRequest["Host"] = "sciencewirerest.discoverylogic.com"
-	    fullPubsRequest["Connection"] = "Keep-Alive"
-
-	    fullPubResponse = http.request(fullPubsRequest)
-	    xml_doc = Nokogiri::XML(fullPubResponse.body)
-	    http.finish
-	    xml_doc
-	   
-	  end
-
+	
 	  
 
-
-	  def self.get_sw_guesses(last_name, first_name, middle_name, email_list, seed_list)
-
-
-	    http = Net::HTTP.new("sciencewirerest.discoverylogic.com", 443)
-	    http.use_ssl = true
-	    http.verify_mode = OpenSSL::SSL::VERIFY_PEER
-	    http.ssl_version = :SSLv3
-	    request = Net::HTTP::Post.new("/PublicationCatalog/MatchedPublicationItemIdsForAuthor?format=xml")
-	    request["LicenseID"] = "***REMOVED***"
-	    request["Host"] = "sciencewirerest.discoverylogic.com"
-	    request["Connection"] = "Keep-Alive"
-	    request["Expect"] = "100-continue"
-	    request["Content-Type"] = "text/xml"
-
-	    bod = '<?xml version="1.0"?>
-	<PublicationAuthorMatchParameters xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-	  <Authors>
-	    <Author>
-	      <LastName>' + last_name + '</LastName>
-	      <FirstName>' + first_name + '</FirstName>
-	      <MiddleName>' + middle_name + '</MiddleName>
-	      <City>Stanford</City>
-	      <State>CA</State>
-	      <Country>USA</Country>
-	    </Author>
-	  </Authors>
-	  <DocumentCategory>Journal Document</DocumentCategory>' 
-
-	    unless seed_list.blank?
-	      bod << '<PublicationItemIds>'
-	      bod << seed_list.collect { |pubId| "<int>#{pubId}</int>"}.join
-	      bod << '</PublicationItemIds>'
-	    end
-
-	    unless email_list.blank?
-	      bod << '<Emails>'
-	      bod <<   email_list.collect { |email| "<string>#{email}</string>"}.join
-	      bod << '</Emails>'
-	    end
-
-	    bod << '<LimitToHighQualityMatchesOnly>true</LimitToHighQualityMatchesOnly>'
-	    bod << '</PublicationAuthorMatchParameters>'
-
-	    request.body = bod
-	 #  puts bod
-	    response = http.request(request)
-	    response_body = response.body
-	   # puts response_body
-	    xml_doc = Nokogiri::XML(response_body)
-
-	    #puts xml_doc.to_xml
-	    items = xml_doc.xpath('/ArrayOfItemMatchResult/ItemMatchResult/PublicationItemID').collect { |itemId| itemId.text}.join(',')
-	 #   puts "sciencewire guesses at pub ids for given author: " + items.to_s
-	    fullPubsRequest = Net::HTTP::Get.new("/PublicationCatalog/PublicationItems?format=xml&publicationItemIDs=" + items)
-	    fullPubsRequest["Content-Type"] = "text/xml"
-	    fullPubsRequest["LicenseID"] = "***REMOVED***"
-	    fullPubsRequest["Host"] = "sciencewirerest.discoverylogic.com"
-	    fullPubsRequest["Connection"] = "Keep-Alive"
-
-	    fullPubResponse = http.request(fullPubsRequest).body
-	  	#puts fullPubResponse.to_s
-	    xml_doc = Nokogiri::XML(fullPubResponse)
-	    #http.finish
-	    xml_doc
-
-	    # puts xml_result
-	    # puts "Time to run sw query in " + distance_of_time_in_words_to_now(start_time, include_seconds = true)
-
-	  end
 
 
 	

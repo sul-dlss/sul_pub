@@ -1,13 +1,13 @@
 #set :output, "/home/***REMOVED***/sulbib/current/log/cron_log.log"
 set :output, "/Users/jameschartrand/Documents/rubyprojects/sulbib/log/cron_log.log"
 #
+
 # nightly sciencewire harvest
-every :day, :at => '3:00am' do
+every :day, :at => '4:00am' do
    rake "sw:nightly_harvest", :environment => 'development' 
  end
 
-# fortnightly sciencewire harvest
-# on the 1st and 15th
+# fortnightly sciencewire harvest on the 1st and 15th
 every '00 01 1,15 * *' do
    rake "sw:fortnightly_harvest", :environment => 'development' 
  end

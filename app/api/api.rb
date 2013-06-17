@@ -100,8 +100,9 @@ end
       contrib_hash[:featured] = featured
       contrib_hash[:cap_profile_id] = cap_profile_id unless cap_profile_id.blank?
 
-      contrib = Contribution.where(author_id: sul_author_id, publication_id: sul_pub.id).first_or_create(contrib_hash)
-
+      contrib = Contribution.where(author_id: author.id, publication_id: sul_pub.id).first_or_create
+      contrib.update_attributes(contrib_hash)
+  
       sul_pub.sync_publication_hash_and_db
       sul_pub.pub_hash
 
@@ -160,7 +161,7 @@ get :sourcelookup do
       sources = source.split('+')
 
       if source.include?(Settings.sciencewire_source)
-        all_matching_records = SciencewireSourceRecord.query_sciencewire_for_publication(first_name, last_name, middle_name, title, year, max_rows)      
+        all_matching_records = ScienceWireClient.new.query_sciencewire_for_publication(first_name, last_name, middle_name, title, year, max_rows)      
       end
 
       if source.include?(Settings.manual_source)

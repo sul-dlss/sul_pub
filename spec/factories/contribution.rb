@@ -3,7 +3,7 @@ FactoryGirl.define do
     status "approved"
     visibility  "public"
     featured true
-    author
+    author 
     publication
   end
 end

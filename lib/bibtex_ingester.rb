@@ -65,18 +65,19 @@ class BibtexIngester
 	     			visibility: "public",
 	     			featured: false)
 	     	
-			pub.set_last_updated_value_in_hash
-		    pub.set_sul_pub_id_in_hash
-		    pub.publication_identifiers.create(
-		    	certainty: 'certain', 
-		    	identifier_type: 'SULPubId' 
-		    	identifier_value: pub.id.to_s, 
-		    	identifier_uri: 'http://sulcap.stanford.edu/publications/' + pub.id.to_s
-		    	)
+			#pub.set_last_updated_value_in_hash
+		    #pub.set_sul_pub_id_in_hash
+		    #pub.publication_identifiers.create(
+		    #	certainty: 'certain', 
+		   # 	identifier_type: 'SULPubId' 
+		   # 	identifier_value: pub.id.to_s, 
+		    #	identifier_uri: 'http://sulcap.stanford.edu/publications/' + pub.id.to_s
+		    #	)
 
-		  	pub.save
+		  	#pub.save
+		  	pub.sync_publication_hash_and_db
 
-		rescue Exception=>e
+		rescue => e
 
 			error_message = 'some message'
 		  	pub.batch_uploaded_source_record.create(
@@ -163,6 +164,8 @@ def determine_sul_pub_type(bibtex_type)
 	end
 end
 
+# could use this directly on the bibtex record, but might be best to do this using the same routine as 
+# all the other pubs.
 
   def add_citations_to_hash(pub_hash, bibtex_record)
   	pub_hash[:apa_citation] = CiteProc.process(cit_data_array, :style => apa_csl_file, :format => 'html')

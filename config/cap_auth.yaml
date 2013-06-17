@@ -1,0 +1,12 @@
+---
+:get_token_uri: ***REMOVED***
+:get_token_port: 443
+:get_token_path: /oauth/token
+***REMOVED***
+:get_token_pass: ***REMOVED***
+:authorship_api_uri: irt-dev.stanford.edu
+:authorship_api_path: /cap-api/api/cap/v1/authors
+:authorship_api_port: 443
+:access_token: eyJhbGciOiJSUzI1NiJ9.eyJleHAiOjEzNzE0ODM2MzMsInNjb3BlIjpbInByb2ZpbGVzLnJlYWRfYWxsIl0sImF1ZCI6WyJwcm9maWxlcyJdLCJpc3MiOiJodHRwczovL2F1dGh6LXRlc3Quc3RhbmZvcmQuZWR1IiwianRpIjoiYjBlNjVlOTItNmMxNy00YWUwLThlNGUtYjg4ODEwZWU0YzRlIiwiY2xpZW50X2lkIjoic3VsIn0.fKcif0lD5mKWwbfapPtx5hdMi21E6B0igrHtz-tlinn7KHv4vGZC-bGYYqAcVNkqcTuJ8N41_e7nf5lOqMPIbRDfpbrGpAezyd81odwYLGRMy_bOvMKIxnkthRo6DoBKbt7rT5YE6cT6N51YEunOZ_DK4fpi_5R6apaR5t_oyZggG5g-j-7NAIXITUFL8VSLPfRm2OZ905eSrqUBnHrf8v1oCDgXv8gFtjO1vngnKn0nqvDBTZ5bTVpSg74RFL4x5PAoV0EJFxA7fw8tYWyRig0EvUsJWKBepOzjTmR7I_U41zOyMgTMVmDM-2IhSuhRyDYgbkJkDrnMRs64z0DGUg
+:authorship_api_uri_qa: irt-dev.stanford.edu
+:authorship_api_path_qa: /cap-api-qa/api/cap/v1/authors

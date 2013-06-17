@@ -2,9 +2,6 @@
 require 'bundler/capistrano'  # Add Bundler integration
 require 'capistrano/ext/multistage' 
 
-
-
-
 #role :app, "sul-lyberservices-dev.stanford.edu"
 
 set :stages, ["development", "staging", "production", "qa"]
@@ -15,10 +12,10 @@ set :default_stage, "staging"
 
 set :application, "sulbib"
 
-set :whenever_command, "bundle exec whenever"
-set :whenever_environment, defer { deploy_env }
-set :whenever_roles, [:app, :db]
-require "whenever/capistrano"
+#set :whenever_command, "bundle exec whenever"
+#set :whenever_environment, defer { deploy_env }
+#set :whenever_roles, [:app, :db]
+#require "whenever/capistrano"
 
 set :scm, :git
 ssh_options[:forward_agent] = true

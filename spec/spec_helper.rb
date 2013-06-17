@@ -15,7 +15,9 @@ RSpec.configure do |config|
     file_path: /spec\/api/
   }
 
- 
+ config.include RSpec::Rails::RequestExampleGroup, type: :request, example_group: {
+    file_path: /spec\/lib/
+  }
 
   config.include FactoryGirl::Syntax::Methods
 

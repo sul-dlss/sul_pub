@@ -2,13 +2,80 @@ require 'dotiw'
 class ScienceWireHarvester
 include ActionView::Helpers::DateHelper
 #harverst sciencewire records for all authors using author information
-	def harvest_pubs_from_sciencewire_for_all_authors
-		
-	    #Author.find_each(:batch_size => 100) do |author|
-	    # random = rand(Author.count - 50)
-	    #  author = Author.new(:pubmed_last_name => "levin", pubmed_first_initial: "c", pubmed_middle_initial: "s", sunetid: "cslevin")
-	     #author = Author.new(:pubmed_last_name => "lee", pubmed_first_initial: "j", pubmed_middle_initial: "t", sunetid: "jtlee")
-	    start_time = Time.now
+
+	def harvest_pubs_for_author_ids(author_ids)		
+		begin
+
+			@sw_harvest_logger = Logger.new(Rails.root.join('log', 'sw_nightly_harvest.log'))
+			@sw_harvest_logger.info "Started nightly authorship harvest #{DateTime.now}" 
+			initialize_instance_vars
+			initialize_counts_for_reporting
+          	author_ids.each do | author_id |
+          		begin
+					author = Author.find(author_id)
+					harvest_for_author(author)
+				rescue ActiveRecord::RecordNotFound => e
+         			NotificationManager.handle_harvest_problem(e, "Couldn't find author for author for id  #{author_id} ")
+         		end
+			end   
+			write_counts_to_log 
+        rescue => e 
+        	NotificationManager.handle_harvest_problem(e, "Error for with nightly harvest.")
+        end
+	end
+
+	def harvest_pubs_for_all_authors
+	    
+	    @sw_harvest_logger = Logger.new(Rails.root.join('log', 'sw_harvest.log'))
+	    @sw_harvest_logger.info "Started full authorship harvest #{DateTime.now}" 
+	    
+	    #IO.foreach(Rails.root.join('app', 'data', '2013_06_06_univIds_from_don_for_harvest_qa.txt')) do |line|
+	    initialize_instance_vars
+	    initialize_counts_for_reporting
+	  	Author.where(active_in_cap: true, cap_import_enabled: true).limit(10).offset(5000).each do |author|
+	    	#author = Author.where(university_id: line).first
+	    	#if author 
+	    	harvest_for_author(author)
+		    #else
+	      	#	@sw_harvest_logger.info "no author found for university_id: " + line
+	      	# end
+	    end 
+	    # finish up any left in a batch of less than 3k or 4k
+	    process_queued_sciencewire_suggestions
+	    process_queued_pubmed_records
+	    write_counts_to_log
+	end
+
+	def harvest_pubs_for_Dons_sample
+		@sw_harvest_logger = Logger.new(Rails.root.join('log', 'sw_test_harvest.log'))
+	    @sw_harvest_logger.info "Started Don's sample authorship harvest #{DateTime.now}" 
+	      
+	    initialize_instance_vars
+	    initialize_counts_for_reporting
+	    IO.foreach(Rails.root.join('app', 'data', '2013_06_06_univIds_from_don_for_harvest_qa.txt')) do |line|
+	  	 	author = Author.where(university_id: line).first
+	    	if author 
+	    	 harvest_for_author(author)
+		    else
+	      		@sw_harvest_logger.info "no author found for university_id: " + line
+	        end
+	    end 
+	    # finish up any left in a batch of less than 3k or 4k
+	    process_queued_sciencewire_suggestions
+	    process_queued_pubmed_records
+	    write_counts_to_log
+	end
+
+	def initialize_instance_vars
+		@sciencewire_client = ScienceWireClient.new
+	    @pubmed_client = PubmedClient.new
+	    # our two queues for sciencewire and pubmed calls
+	    @records_queued_for_sciencewire_retrieval = {}
+	    @records_queued_for_pubmed_retrieval = {}
+	end
+
+	def initialize_counts_for_reporting
+		@start_time = Time.now
 	    # some counts for reporting
 	    @total_suggested_count = 0
 	    @new_pubs_created_count = 0
@@ -26,75 +93,10 @@ include ActionView::Helpers::DateHelper
 	    @matches_on_existing_pmid_count = 0
 	    @matches_on_issn_count = 0;
 	    @matches_on_title_count = 0;
+	end
 
-	    # our two queues for sciencewire and pubmed calls
-	    @records_queued_for_sciencewire_retrieval = {}
-	    @records_queued_for_pubmed_retrieval = {}
-
-		@pmid_logger = Logger.new(Rails.root.join('log', 'pmid.log'))
-	    @sw_harvest_logger = Logger.new(Rails.root.join('log', 'sw_test_harvest.log'))
-	    @sw_harvest_logger.info "Started authorship harvest " + DateTime.now.to_s
-	    @sciencewire_client = ScienceWireClient.new
-	    @pubmed_client = PubmedClient.new
-	    #IO.foreach(Rails.root.join('app', 'data', '2013_06_06_univIds_from_don_for_harvest_qa.txt')) do |line|
-	    #Author.where(active_in_cap: true).limit(100).offset(19086).find_each(:batch_size => 500) do |author|
-	  #  Author.where(active_in_cap: true, import_enabled: true).limit(5).offset(3000).each do |author|
-	  Author.where(active_in_cap: true, import_enabled: true).limit(10).offset(4000).each do |author|
-	    	#author = Author.where(university_id: line).first
-	    	#if author 
-	    	begin
-	    		@harvested_for_author_count = 0
-		    	@author_count += 1
-		        last_name = author.official_last_name
-		        first_name = author.official_first_name
-		        middle_name = author.official_middle_name
-		        profile_id = author.cap_profile_id
-		        email = author.email
-
-		       # seed_list = author.approved_sw_ids.collect { | sw_id | sw_id.identifier_value }
-		       seed_list = get_seed_list_for_author(author)
-
-		        puts "author: #{author.id} has seed list: #{seed_list}"
-		        if @author_count%50 == 0
-		        	string_to_print = "Harvested #{@total_suggested_count.to_s} suggestions so far for #{@author_count.to_s} authors - " + DateTime.now.to_s
-		        	@sw_harvest_logger.info string_to_print
-		        	puts string_to_print
-		        end
-		        unless email.blank? then email_list = [email] end
-		        suggested_sciencewire_ids = @sciencewire_client.get_sciencewire_id_suggestions(last_name, first_name, middle_name, email_list, seed_list)
-		        suggested_sciencewire_ids.each do |suggested_sciencewire_id|
-		        	@total_suggested_count += 1
-		        	was_record_created = create_contrib_for_pub_if_exists(suggested_sciencewire_id, author)
-		        	if ! was_record_created		
-		        		# queue up sciencewire id, along with any associated authors, for batched retrieval and processing
-		        		@records_queued_for_sciencewire_retrieval[suggested_sciencewire_id] ||= []
-		        		@records_queued_for_sciencewire_retrieval[suggested_sciencewire_id] << author.id 
-
-		        		#puts @records_queued_for_sciencewire_retrieval.to_s
-		        	end
-		        end   
-		    rescue => e
-		      @sw_harvest_logger.info "Error for #{author.official_last_name} - #{author.cap_profile_id} "
-		      @sw_harvest_logger.info e.message
-		      puts e.backtrace.inspect
-		    end
-		    #@sw_harvest_logger.info "#{author.official_last_name} - #{author.cap_profile_id} has #@harvested_for_author_count new harvested records."
-	      
-	     	if @records_queued_for_sciencewire_retrieval.length > 100
-	        	process_queued_sciencewire_suggestions
-	        end
-
-	        if @records_queued_for_pubmed_retrieval.length > 4000
-	        	process_queued_pubmed_records
-	        end
-		      		#else
-	      	#	@sw_harvest_logger.info "no author found for university_id: " + line
-	      
-	    end 
-	    # finish up any left in a batch of less than 3k or 4k
-	    process_queued_sciencewire_suggestions
-	    process_queued_pubmed_records
-	    @sw_harvest_logger.info "Finished harvest at " + DateTime.now.to_s
+	def write_counts_to_log
+		@sw_harvest_logger.info "Finished harvest at #{DateTime.now}"
 
     	@sw_harvest_logger.info "#{@total_suggested_count} total records were suggested for #{@author_count} authors." 
     	
@@ -110,11 +112,60 @@ include ActionView::Helpers::DateHelper
     	@sw_harvest_logger.info "#{@matches_on_existing_pmid_count.to_s} existing publications were deduped by pmid." 
     	@sw_harvest_logger.info "#{@matches_on_issn_count.to_s} existing publications were deduped by issn." 
     	@sw_harvest_logger.info "#{@matches_on_title_count.to_s} existing publications were deduped by title." 
+    end
+
+	def harvest_for_author(author)
+		begin
+    		@harvested_for_author_count = 0
+	    	@author_count += 1
+	        last_name = author.official_last_name
+	        first_name = author.official_first_name
+	        middle_name = author.official_middle_name
+	        profile_id = author.cap_profile_id
+	        email = author.email
+
+	       # seed_list = author.approved_sw_ids.collect { | sw_id | sw_id.identifier_value }
+	       seed_list = get_seed_list_for_author(author)
+
+	      #  puts "author: #{author.id} has seed list: #{seed_list}"
+	        if @author_count%50 == 0
+	        	string_to_print = "Harvested #{@total_suggested_count.to_s} suggestions so far for #{@author_count.to_s} authors - #{DateTime.now}" 
+	        	@sw_harvest_logger.info string_to_print
+	        	puts string_to_print
+	        end
+	        unless email.blank? then email_list = [email] end
+	        suggested_sciencewire_ids = @sciencewire_client.get_sciencewire_id_suggestions(last_name, first_name, middle_name, email_list, seed_list)
+	        suggested_sciencewire_ids.each do |suggested_sciencewire_id|
+	        	@total_suggested_count += 1
+	        	was_record_created = create_contrib_for_pub_if_exists(suggested_sciencewire_id, author)
+	        	if ! was_record_created		
+	        		# queue up sciencewire id, along with any associated authors, for batched retrieval and processing
+	        		@records_queued_for_sciencewire_retrieval[suggested_sciencewire_id] ||= []
+	        		@records_queued_for_sciencewire_retrieval[suggested_sciencewire_id] << author.id 
+
+	        		#puts @records_queued_for_sciencewire_retrieval.to_s
+	        	end
+	        	if @records_queued_for_sciencewire_retrieval.length > 100
+        			process_queued_sciencewire_suggestions
+        		end
+
+        		if @records_queued_for_pubmed_retrieval.length > 4000
+        			process_queued_pubmed_records
+	    		end
+	        end   
+	    rescue => e
+	      NotificationManager.handle_harvest_problem(e, "Error for #{author.official_last_name} - #{author.cap_profile_id} ")
+	    end
+	    #@sw_harvest_logger.info "#{author.official_last_name} - #{author.cap_profile_id} has #@harvested_for_author_count new harvested records."
+      
+     	
+
 	end
 
 	def get_seed_list_for_author(author)
 		Publication.joins(:contributions => :author).
-              where("author_id = ? ", author.id).
+              where("authors.id = ? ", author.id).
+              where("contributions.status = 'approved'").
               where(Publication.arel_table[:sciencewire_id].not_eq(nil)).
               pluck(:sciencewire_id)            
 	end
@@ -187,7 +238,7 @@ include ActionView::Helpers::DateHelper
 	end
 
 	def create_or_update_pub_and_contribution_with_harvested_sw_doc(incoming_sw_xml_doc, author_ids)
-		#puts "author ids: " + author_ids.to_s
+		#puts "author ids: #{author_ids}" 
 	    pub_hash = SciencewireSourceRecord.convert_sw_publication_doc_to_hash(incoming_sw_xml_doc) 
 	    pmid = pub_hash[:pmid]
 	    sciencewire_id = pub_hash[:sw_id]
@@ -210,7 +261,6 @@ include ActionView::Helpers::DateHelper
 	    	if !pmid.blank? 
 	    		pub = Publication.where(pmid: pmid).first unless pmid.blank?
 	    		if pub
-	    			@pmid_logger.info pmid.to_s
 	    			@matches_on_existing_pmid_count  +=1
 	    		else
 	    			# we don't have an existing sul pub for this pmid so queue this up for batch processing,
@@ -282,11 +332,8 @@ include ActionView::Helpers::DateHelper
 		        pub.pub_hash = pub_hash
 		        pub.sync_publication_hash_and_db
 	    	end
-
 		rescue => e 
-          puts e.message  
-          puts e.backtrace.inspect  
-         # puts "the offending pmid: " + pmid.to_s
+          NotificationManager.handle_harvest_problem(e, "The batch call to pubmed, process_queued_pubmed_records, failed.")
       	end
       	@records_queued_for_pubmed_retrieval.clear
 

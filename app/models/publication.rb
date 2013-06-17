@@ -48,28 +48,12 @@ def self.build_new_manual_publication(provenance, pub_hash, original_source_stri
       unless pub.nil?
         pub.update_manual_pub_from_pub_hash(pub_hash, provenance, original_source_string)
       else
-        pub_hash[:provenance] = provenance
-        pub = Publication.create(
-          active: true, 
-          title: pub_hash[:title], 
-          year: pub_hash[:year], 
-          pub_hash: pub_hash, 
-          issn: pub_hash[:issn], 
-          pages: pub_hash[:pages],
-          publication_type: pub_hash[:type])
+        pub = create_man_pub(pub_hash, provenance)
         pub.sync_publication_hash_and_db
       end
     else   
-      pub_hash[:provenance] = provenance
-      pub = Publication.create(
-          active: true, 
-          title: pub_hash[:title], 
-          year: pub_hash[:year], 
-          pub_hash: pub_hash, 
-          issn: pub_hash[:issn], 
-          pages: pub_hash[:pages],
-          publication_type: pub_hash[:type])    
-      # todo:  have to look at deleting old identifiers, old contribution info.  i.e, how to correct errors.
+      pub = create_man_pub(pub_hash, provenance)
+      # todo:  have to look at deleting old identifiers, old contribution info, from db  i.e, how to correct errors.
       pub.user_submitted_source_records.create(
         is_active: true,
         :source_fingerprint => Digest::SHA2.hexdigest(original_source_string),
@@ -83,6 +67,18 @@ def self.build_new_manual_publication(provenance, pub_hash, original_source_stri
     end
     pub
   end
+
+def self.create_man_pub(pub_hash, provenance)
+  pub_hash[:provenance] = provenance
+  Publication.create(
+          active: true, 
+          title: pub_hash[:title], 
+          year: pub_hash[:year], 
+          pub_hash: pub_hash, 
+          issn: pub_hash[:issn], 
+          pages: pub_hash[:pages],
+          publication_type: pub_hash[:type])
+end
 
 def update_manual_pub_from_pub_hash(incoming_pub_hash, provenance, original_source_string)
     
@@ -209,10 +205,11 @@ def add_all_identifiers_in_db_to_pub_hash
 def update_any_new_contribution_info_in_pub_hash_to_db
   unless self.pub_hash[:authorship].nil?
     self.pub_hash[:authorship].each do |contrib|
-      status = contrib[:status]
-      visibility = contrib[:visibility]
-      featured = contrib[:featured]
-      #puts "featured:  "  + featured.to_s
+      hash_for_update = {
+        status: contrib[:status], 
+        visibility: contrib[:visibility],
+        featured: contrib[:featured]
+      }
       sul_author_id = contrib[:sul_author_id] 
       if sul_author_id.blank? 
         cap_profile_id = contrib[:cap_profile_id]
@@ -220,14 +217,14 @@ def update_any_new_contribution_info_in_pub_hash_to_db
           author = Author.where(cap_profile_id: contrib[:cap_profile_id]).first
           sul_author_id = author.id unless author.blank? 
         end
+      else 
+        author = Author.find(sul_author_id)
       end
+      cap_profile_id = author.cap_profile_id
+      unless cap_profile_id.blank? then hash_for_update[:cap_profile_id] = author.cap_profile_id end
       unless sul_author_id.blank?
         contrib = self.contributions.where(:author_id => sul_author_id).first_or_create   
-        contrib.update_attributes(
-          cap_profile_id: author.cap_profile_id,
-          status: status,
-          visibility: visibility, 
-          featured: featured)
+        contrib.update_attributes(hash_for_update)
       end
     end
   end
@@ -235,7 +232,7 @@ end
 
   def add_all_db_contributions_to_my_pub_hash
 
-    if self.pub_hash && self.pub_hash[:authorship]
+  if self.pub_hash && self.pub_hash[:authorship]
       self.pub_hash[:authorship] = self.contributions.collect do |contrib_in_db|     
         {cap_profile_id: contrib_in_db.cap_profile_id,
          sul_author_id: contrib_in_db.author_id,
@@ -245,13 +242,17 @@ end
       end
       save
     elsif self.pub_hash && ! self.pub_hash[:authorship]
-      Logger.new(Rails.root.join('log', '2013_06_09_rebuild_hash_contribs.log')).info("No authorship entry in pub_hash for " + self.id.to_s)
+      Logger.new(Rails.root.join('log', 'publications_errors.log')).info("No authorship entry in pub_hash for " + self.id.to_s)
     else
-      Logger.new(Rails.root.join('log', '2013_06_09_rebuild_hash_contribs.log')).info("No pub hash for " + self.id.to_s)
+      Logger.new(Rails.root.join('log', 'publications_errors.log')).info("No pub hash for " + self.id.to_s)
     end
   rescue => e
-    puts "some problem with hash"
-    puts self.pub_hash.to_s
+    puts "some problem with hash: #{self.pub_hash}"
+    pub_logger = Logger.new(Rails.root.join('log', 'publications_errors.log'))
+    pub_logger.error "some problem with adding contributions to the hash for pub #{self.id}"
+    pub_logger.error "the hash: #{self.pub_hash}"
+    pub_logger.error e.message
+    pub_logger.error e.backtrace
   end
 
   
