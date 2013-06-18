@@ -98,9 +98,9 @@ end
       contrib_hash[:status] = status
       contrib_hash[:visibility] = visibility
       contrib_hash[:featured] = featured
-      contrib_hash[:cap_profile_id] = cap_profile_id unless cap_profile_id.blank?
+      unless cap_profile_id.blank? then contrib_hash[:cap_profile_id] = cap_profile_id end
 
-      contrib = Contribution.where(author_id: author.id, publication_id: sul_pub.id).first_or_create
+      contrib = Contribution.where(author_id: sul_author_id, publication_id: sul_pub.id).first_or_create
       contrib.update_attributes(contrib_hash)
   
       sul_pub.sync_publication_hash_and_db

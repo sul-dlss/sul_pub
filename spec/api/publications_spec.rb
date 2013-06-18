@@ -4,6 +4,7 @@ require 'spec_helper'
 describe SulBib::API do
   
   let(:publication) { FactoryGirl.create :publication }
+  let(:bunch_of_publications) {create_list(:publication, 25)}
   let(:author) {FactoryGirl.create :author }
   let(:author_with_sw_pubs) {create :author_with_sw_pubs}
   let(:headers) {{ 'HTTP_CAPKEY' => '***REMOVED***', 'CONTENT_TYPE' => 'application/json' }}
@@ -62,15 +63,7 @@ describe SulBib::API do
 
  
 
-describe "GET /publications" do
-    
-    it "returns an empty bibjson collection" do
-      get "/publications/", 
-          { format: "json" },
-          {"HTTP_CAPKEY" => '***REMOVED***'}
-      JSON.parse(response.body)["records"].should == []
-    end
-  end
+
   
   describe "GET /publications/:id" do
     it " returns 200 for valid call " do
@@ -97,6 +90,7 @@ describe "GET /publications" do
        response.body.should == Publication.last.pub_hash.to_json
     end
 
+
     it "returns only those pubs changed since specified date"
     it "returns only those pubs with contributions for the given author"
     it "returns only pubs with a cap active profile"
@@ -105,13 +99,37 @@ describe "GET /publications" do
       it "returns not found code"
     end
 
+  end # end of the describe
+
+  describe "GET /publications" do
+  
+    context "when no publications"
+      it "returns an empty bibjson collection" do
+        get "/publications/", 
+            { format: "json" },
+            {"HTTP_CAPKEY" => '***REMOVED***'}
+        JSON.parse(response.body)["records"].should == []
+      end
+    end # end of context
+
+    context "when 150 records" do
+      it "returns the default page 1 of a collection of 100 bibjson records" do
+        bunch_of_publications
+        get "/publications", 
+          { format: "json" },
+          {"HTTP_CAPKEY" => '***REMOVED***'}
+        response.status.should == 200
+        result = JSON.parse(response.body)
+        result["metadata"]["records"].should == "100"
+        result["metadata"]["page"].should == "1"
+        result["records"][22]["identifier"][0]["type"].should be
+      end
+      end
+    end # end of context
+  
+  end # end of the describe
 
 
   end
-
-
-
-  
-
 
 end

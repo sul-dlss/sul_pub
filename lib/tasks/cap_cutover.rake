@@ -49,7 +49,7 @@ task :pull_sw_for_cap, [:file_location] => :environment do |t, args|
         total_running_count += 1
         pmid = row[:pubmed_id].to_s()
         pmids_for_this_batch << pmid #unless SciencewireSourceRecords.exists?(pmid: pmid)
-        if pmids_for_this_batch.length%1000 == 0 
+        if pmids_for_this_batch.length%300 == 0 
           SciencewireSourceRecord.get_and_store_sw_source_records(pmids_for_this_batch)
           pmids_for_this_batch.clear
           puts (total_running_count).to_s + " in " + distance_of_time_in_words_to_now(start_time, include_seconds = true)  
@@ -136,28 +136,7 @@ desc "create publication and contribution records from full cap dump"
 end
 
 
-desc "build pub hashes for all pubs"
-  task :build_pubs => :environment do
-    include ActionView::Helpers::DateHelper
-    start_time = Time.now
-    total_running_count = 0
-    @cap_import_logger = Logger.new(Rails.root.join('log', 'cap_build_pubs.log'))
-    @cap_import_logger.info "Started cap build pub process " + DateTime.now.to_s
 
-   Publication.find_each do |pub|
-        total_running_count += 1
-        build_pub_from_sw_and_pubmed(pub)
-        if total_running_count%5000 == 0  then GC.start end
-          
-        if total_running_count%1000 == 0 
-          puts (total_running_count).to_s + " in " + distance_of_time_in_words_to_now(start_time, include_seconds = true)
-          @cap_import_logger.info total_running_count.to_s + " in " + distance_of_time_in_words_to_now(start_time, include_seconds = true)
-        end
-    end
-    @cap_import_logger.info "Finished build." + DateTime.now.to_s
-    @cap_import_logger.info total_running_count.to_s + "records were processed in " + distance_of_time_in_words_to_now(start_time, include_seconds = true)
-
-end
 
 desc "ingest existing cap hand entered pubs"
   task :ingest_man_pubs, [:file_location] => :environment do |t, args|
@@ -179,6 +158,29 @@ desc "ingest existing cap hand entered pubs"
     @cap_manual_import_logger.info total_running_count.to_s + "records were processed in " + distance_of_time_in_words_to_now(start_time, include_seconds = true)
 
   end
+
+desc "utility to rebuild pub hashes for all pubs"
+  task :build_pubs => :environment do
+    include ActionView::Helpers::DateHelper
+    start_time = Time.now
+    total_running_count = 0
+    @cap_import_logger = Logger.new(Rails.root.join('log', 'cap_build_pubs.log'))
+    @cap_import_logger.info "Started cap build pub process " + DateTime.now.to_s
+
+   Publication.find_each do |pub|
+        total_running_count += 1
+        build_pub_from_sw_and_pubmed(pub)
+        if total_running_count%5000 == 0  then GC.start end
+          
+        if total_running_count%1000 == 0 
+          puts (total_running_count).to_s + " in " + distance_of_time_in_words_to_now(start_time, include_seconds = true)
+          @cap_import_logger.info total_running_count.to_s + " in " + distance_of_time_in_words_to_now(start_time, include_seconds = true)
+        end
+    end
+    @cap_import_logger.info "Finished build." + DateTime.now.to_s
+    @cap_import_logger.info total_running_count.to_s + "records were processed in " + distance_of_time_in_words_to_now(start_time, include_seconds = true)
+
+end
 
 desc "utility to extract data extract data from hash to publication object, modify as needed before running"
   task :update_pubs => :environment do
@@ -231,10 +233,8 @@ def find_issn_id_identifiers(identifiers_array)
 end
 
 
-
-
-#  update various author fields from csv.
-desc "update authors"
+#  update various author fields from csv.  
+desc "update authors, utility to be used as needed for patches to records from csv file"
 task :update_authors, [:file_location] => :environment do |t, args|
     include ActionView::Helpers::DateHelper
     start_time = Time.now
@@ -265,9 +265,9 @@ def build_pub_from_sw_and_pubmed(pub)
           year: sw_pub_hash[:year],
           sciencewire_id: sw_pub_hash[:sw_id],
           pub_hash: sw_pub_hash,
-          pages: pub_hash[:pages],
-          issn: pub_hash[:issn],
-          publication_type: pub_hash[:type])
+          pages: sw_pub_hash[:pages],
+          issn: sw_pub_hash[:issn],
+          publication_type: sw_pub_hash[:type])
       pub.add_any_pubmed_data_to_hash 
       
     else  

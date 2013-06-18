@@ -6,7 +6,7 @@ class Publication < ActiveRecord::Base
   has_many :authors, :through => :contributions
   has_many :publication_identifiers, :dependent => :destroy
   has_many :user_submitted_source_records
-  has_one :batch_uploaded_source
+  has_one :batch_uploaded_source_record
   #has_many :population_membership, :foreign_key => "author_id"
   #validates_uniqueness_of :pmid
   #validates_uniqueness_of :sciencewire_id
@@ -232,7 +232,7 @@ end
 
   def add_all_db_contributions_to_my_pub_hash
 
-  if self.pub_hash && self.pub_hash[:authorship]
+  if self.pub_hash 
       self.pub_hash[:authorship] = self.contributions.collect do |contrib_in_db|     
         {cap_profile_id: contrib_in_db.cap_profile_id,
          sul_author_id: contrib_in_db.author_id,
@@ -241,11 +241,12 @@ end
          featured: contrib_in_db.featured}
       end
       save
-    elsif self.pub_hash && ! self.pub_hash[:authorship]
-      Logger.new(Rails.root.join('log', 'publications_errors.log')).info("No authorship entry in pub_hash for " + self.id.to_s)
-    else
-      Logger.new(Rails.root.join('log', 'publications_errors.log')).info("No pub hash for " + self.id.to_s)
     end
+   # elsif self.pub_hash && ! self.pub_hash[:authorship]
+    #  Logger.new(Rails.root.join('log', 'publications_errors.log')).info("No authorship entry in pub_hash for " + self.id.to_s)
+    #else
+    #  Logger.new(Rails.root.join('log', 'publications_errors.log')).info("No pub hash for " + self.id.to_s)
+    #end
   rescue => e
     puts "some problem with hash: #{self.pub_hash}"
     pub_logger = Logger.new(Rails.root.join('log', 'publications_errors.log'))

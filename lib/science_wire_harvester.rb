@@ -5,7 +5,6 @@ include ActionView::Helpers::DateHelper
 
 	def harvest_pubs_for_author_ids(author_ids)		
 		begin
-
 			@sw_harvest_logger = Logger.new(Rails.root.join('log', 'sw_nightly_harvest.log'))
 			@sw_harvest_logger.info "Started nightly authorship harvest #{DateTime.now}" 
 			initialize_instance_vars
@@ -33,12 +32,9 @@ include ActionView::Helpers::DateHelper
 	    initialize_instance_vars
 	    initialize_counts_for_reporting
 	  	Author.where(active_in_cap: true, cap_import_enabled: true).limit(10).offset(5000).each do |author|
-	    	#author = Author.where(university_id: line).first
-	    	#if author 
+	    	
 	    	harvest_for_author(author)
-		    #else
-	      	#	@sw_harvest_logger.info "no author found for university_id: " + line
-	      	# end
+		    
 	    end 
 	    # finish up any left in a batch of less than 3k or 4k
 	    process_queued_sciencewire_suggestions

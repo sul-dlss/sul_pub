@@ -82,7 +82,7 @@ describe SulBib::API do
       it "creates the correct number of contributions in pub_hash"
       it "works with cap_profile_id"
       it "adds pub with proper identifiers section"
-      
+
       it "adds pub for pubmed_id not already in system" do
         post "/authorship", valid_json_for_pubmed_id, headers
         response.status.should == 201
@@ -90,6 +90,7 @@ describe SulBib::API do
         response.body.should == new_pub.pub_hash.to_json
         result = JSON.parse(response.body)
         result["pmid"].should == "23684686"
+        result["authorship"].should be
         Contribution.where(publication_id: new_pub.id, author_id: author.id).first.status.should == 'denied'
       end
 
@@ -100,6 +101,7 @@ describe SulBib::API do
         response.body.should == new_pub.pub_hash.to_json
         result = JSON.parse(response.body)
         result["sw_id"].should == "10379039"
+        result["authorship"].should be
         Contribution.where(publication_id: new_pub.id, author_id: author.id).first.status.should == 'denied'
         #Contribution.where(publication_id: new_pub.id, author_id: author.id).first.status.should == 'denied'
       end
