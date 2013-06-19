@@ -10,12 +10,15 @@ FactoryGirl.define do
 
   	factory :publication_with_contributions, parent: :publication do
   		ignore do
-        	contributions_count 5
+        	contributions_count 15
       	end
       	after(:create) do |publication, evaluator|
         	FactoryGirl.create_list(:contribution, evaluator.contributions_count, publication: publication)
       	end
 	end
 
+   # factory :publication_with_contribution, parent: :publication do
+   #   contribution 
+  #end
 
 end

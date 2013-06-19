@@ -12,4 +12,8 @@ FactoryGirl.define do
   factory :author_with_sw_pubs, parent: :author do
       	id 33
 	end
+
+  factory :inactive_author, parent: :author do
+    active_in_cap false
+  end
 end

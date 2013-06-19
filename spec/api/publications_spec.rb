@@ -4,7 +4,8 @@ require 'spec_helper'
 describe SulBib::API do
   
   let(:publication) { FactoryGirl.create :publication }
-  let(:bunch_of_publications) {create_list(:publication, 25)}
+  let!(:publication_with_contributions) { create :publication_with_contributions, contributions_count:2  }    
+  let(:contribs_list) {create_list(:contribution, 150, visibility: "public", status: "approved")}
   let(:author) {FactoryGirl.create :author }
   let(:author_with_sw_pubs) {create :author_with_sw_pubs}
   let(:headers) {{ 'HTTP_CAPKEY' => '***REMOVED***', 'CONTENT_TYPE' => 'application/json' }}
@@ -83,11 +84,15 @@ describe SulBib::API do
     it "returns a pub with valid bibjson for sw harvested records" do
       author_with_sw_pubs
       ScienceWireHarvester.new.harvest_pubs_for_author_ids([33])
-       get "/publications/1", 
+      new_pub = Publication.last
+       get "/publications/#{new_pub.id}", 
           { format: "json" },
           {"HTTP_CAPKEY" => '***REMOVED***'}
        response.status.should == 200
-       response.body.should == Publication.last.pub_hash.to_json
+       response.body.should == new_pub.pub_hash.to_json
+       result = JSON.parse(response.body)
+       #puts result
+       #result["provenance"].should == "sciencewire"
     end
 
 
@@ -103,33 +108,38 @@ describe SulBib::API do
 
   describe "GET /publications" do
   
-    context "when no publications"
-      it "returns an empty bibjson collection" do
+    context "with no params specified" do
+      it "returns first page" do
         get "/publications/", 
             { format: "json" },
             {"HTTP_CAPKEY" => '***REMOVED***'}
+        result = JSON.parse(response.body)
+        result["metadata"]["page"].should == 1
         JSON.parse(response.body)["records"].should == []
       end
+
     end # end of context
 
-    context "when 150 records" do
-      it "returns the default page 1 of a collection of 100 bibjson records" do
-        bunch_of_publications
-        get "/publications", 
+    context "when there are 150 records" do
+      it "returns a one page collection of 100 bibjson records when no paging is specified" do
+        contribs_list
+      
+        get "/publications?page=1&per=7", 
           { format: "json" },
           {"HTTP_CAPKEY" => '***REMOVED***'}
         response.status.should == 200
         result = JSON.parse(response.body)
-        result["metadata"]["records"].should == "100"
+        
+        result["metadata"]["records"].should == "7"
         result["metadata"]["page"].should == "1"
-        result["records"][22]["identifier"][0]["type"].should be
+        result["records"][2]["author"].should be
       end
-      end
+      
     end # end of context
   
   end # end of the describe
 
 
-  end
+  
 
 end

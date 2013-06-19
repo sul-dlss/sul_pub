@@ -249,7 +249,7 @@ end
     #end
   rescue => e
     puts "some problem with hash: #{self.pub_hash}"
-    pub_logger = Logger.new(Rails.root.join('log', 'publications_errors.log'))
+    pub_logger = Logger.new(Rails.root.join('log', 'contributions_publications_errors.log'))
     pub_logger.error "some problem with adding contributions to the hash for pub #{self.id}"
     pub_logger.error "the hash: #{self.pub_hash}"
     pub_logger.error e.message

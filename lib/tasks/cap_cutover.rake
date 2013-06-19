@@ -159,7 +159,7 @@ desc "ingest existing cap hand entered pubs"
 
   end
 
-desc "utility to rebuild pub hashes for all pubs"
+desc "utility to rebuild pub hashes from sciencewire and pubmed sources for all pubs"
   task :build_pubs => :environment do
     include ActionView::Helpers::DateHelper
     start_time = Time.now
@@ -179,6 +179,34 @@ desc "utility to rebuild pub hashes for all pubs"
     end
     @cap_import_logger.info "Finished build." + DateTime.now.to_s
     @cap_import_logger.info total_running_count.to_s + "records were processed in " + distance_of_time_in_words_to_now(start_time, include_seconds = true)
+
+end
+
+desc "overwrite cap profile ids from CAP authorship feed - this is meant to be a very temporary, dangerous, and invasive procedure for creating qa machines for the School of Medicine testers."
+    task :overwrite_profile_ids => :environment do
+      CapProfileIdRewriter.new.rewrite_cap_profile_ids_from_feed
+    end
+
+desc "utility to rewrite the authorship in the pub hash from the db tables"
+  task :rewrite_authorship => :environment do
+    include ActionView::Helpers::DateHelper
+    start_time = Time.now
+    total_running_count = 0
+    @rebuild_authorship_logger = Logger.new(Rails.root.join('log', 'rebuild_authorship_in_hash.log'))
+    @rebuild_authorship_logger.info "Started resync process " + DateTime.now.to_s
+
+   Publication.find_each do |pub|
+        total_running_count += 1
+        pub.rebuild_authorship
+        if total_running_count%5000 == 0  then GC.start end
+          
+        if total_running_count%1000 == 0 
+          puts (total_running_count).to_s + " in " + distance_of_time_in_words_to_now(start_time, include_seconds = true)
+          @rebuild_authorship_logger.info total_running_count.to_s + " in " + distance_of_time_in_words_to_now(start_time, include_seconds = true)
+        end
+    end
+    @rebuild_authorship_logger.info "Finished build." + DateTime.now.to_s
+    @rebuild_authorship_logger.info total_running_count.to_s + "records were processed in " + distance_of_time_in_words_to_now(start_time, include_seconds = true)
 
 end
 
@@ -287,6 +315,7 @@ def build_pub_from_sw_and_pubmed(pub)
           @cap_import_logger.info "the offending pmid: " + pmid.to_s
   end  
 end
+
 
 
 def self.convert_manual_publication_row_to_hash(cap_pub_data_for_this_pub, author_id)

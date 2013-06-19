@@ -196,31 +196,28 @@ get :sourcelookup do
       
       population.downcase!
       last_changed = DateTime.parse(changedSince).to_s
-      if ! capActive.blank?
-        capActive = capActive.downcase == 'true' ? '1' : '0'
-        query_string = 'authors.active_in_cap = ' + capActive + ' and publications.updated_at > ?'
-      else
-        query_string = 'publications.updated_at > ?'
-      end
+      
       
       if capProfileId.blank?
         per = params[:per] || 100
         description = "Records that have changed since " + changedSince
-        #if page.blank?       
-         # Publication.joins(:contributions => :author).
-         #   where(query_string, last_changed).
-         #   group('publications.id').find_each do | publication |
-         #     matching_records << publication.pub_hash 
-         # end         
-        #else
-         matching_records = Publication.joins(:contributions => :author).
-              where(query_string, last_changed).
+        if ! capActive.blank?
+          capActive = capActive.downcase == 'true' ? '1' : '0'
+         # query_string = "authors.active_in_cap = #{capActive} and publications.updated_at > ?"
+          matching_records = Publication.joins(:contributions => :author).
+              where("authors.active_in_cap = #{capActive} and publications.updated_at > ?", last_changed).
               order('publications.id').
               group('publications.pub_hash').
               page(page).
               per(per).pluck(:pub_hash)
-              
-        #end 
+        else
+          # if no filtering by is_cap_active is needed then we can just go with the much faster:
+             matching_records = Publication.where('publications.updated_at > ?', last_changed).
+              order('publications.id').
+              page(page).
+              per(per).pluck(:pub_hash)
+        end
+       
       else
       #  page = page || 1
         per = per || nil
