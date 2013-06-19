@@ -115,7 +115,7 @@ describe SulBib::API do
             {"HTTP_CAPKEY" => '***REMOVED***'}
         result = JSON.parse(response.body)
         result["metadata"]["page"].should == 1
-        JSON.parse(response.body)["records"].should == []
+        JSON.parse(response.body)["records"].should be
       end
 
     end # end of context

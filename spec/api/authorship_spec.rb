@@ -101,8 +101,10 @@ describe SulBib::API do
         response.body.should == new_pub.pub_hash.to_json
         result = JSON.parse(response.body)
         result["sw_id"].should == "10379039"
-        result["authorship"].should be
         Contribution.where(publication_id: new_pub.id, author_id: author.id).first.status.should == 'denied'
+        result["authorship"].should be
+        result["authorship"][0]["sul_author_id"].should == author.id
+        
         #Contribution.where(publication_id: new_pub.id, author_id: author.id).first.status.should == 'denied'
       end
 

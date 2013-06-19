@@ -22,8 +22,6 @@ class BibtexIngester
         	 		file_full_path = "#{batch_dir_full_path}/#{bibtex_file_name}"
         	 		next if File.directory? file_full_path
         	 		@count_for_file = 0
-        			#batch_dir_name = "testbatchdirbname"
-        			#bibtex_file_name = "test"
         	 		@bibtex_file_logger = Logger.new(Rails.root.join('log', "#{file_full_path}_import.log"))
         	 		@bibtex_file_logger.info "Started bibtext import for file #{DateTime.now}"  
         	 		BibTeX.open(file_full_path).each do | record |

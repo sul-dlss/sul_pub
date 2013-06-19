@@ -233,15 +233,16 @@ end
   def add_all_db_contributions_to_my_pub_hash
 
   if self.pub_hash 
-      self.pub_hash[:authorship] = self.contributions.collect do |contrib_in_db|     
+      self.pub_hash[:authorship] = Contribution.where(publication_id: self.id).collect do |contrib_in_db|     
         {cap_profile_id: contrib_in_db.cap_profile_id,
          sul_author_id: contrib_in_db.author_id,
          status: contrib_in_db.status,
          visibility: contrib_in_db.visibility, 
          featured: contrib_in_db.featured}
       end
+     # puts self.pub_hash.to_s
       save
-    end
+  end
    # elsif self.pub_hash && ! self.pub_hash[:authorship]
     #  Logger.new(Rails.root.join('log', 'publications_errors.log')).info("No authorship entry in pub_hash for " + self.id.to_s)
     #else
