@@ -88,7 +88,7 @@ class CapProfileIdRewriter
 
 	  			active = record["active"]
 	  			import_enabled = record["importEnabled"]
-	  			import_settings_exist = record["importSettings"] && record["importSettings"].any?
+	  			import_settings_exist = record["importSettings"] 
 
 	  			emails_for_harvest = []
 
@@ -102,7 +102,7 @@ class CapProfileIdRewriter
 				unless sunetid.blank? then new_author_attributes[:sunetid] = sunetid  end
 				unless california_physician_license.blank? then new_author_attributes[:california_physician_license] = california_physician_license  end
 
-	  			if active && import_enabled && import_settings_exist
+	  			if import_settings_exist
 	  				record["importSettings"].each do |import_settings|
 		  				if ! import_settings["email"].blank?				
 		  					 emails_for_harvest << import_settings["email"]
