@@ -122,9 +122,9 @@ include ActionView::Helpers::DateHelper
 		begin
     		@harvested_for_author_count = 0
 	    	@author_count += 1
-	        last_name = author.official_last_name
-	        first_name = author.official_first_name
-	        middle_name = author.official_middle_name
+	        last_name = author.cap_last_name
+	        first_name = author.cap_first_name
+	        middle_name = author.cap_middle_name
 	        profile_id = author.cap_profile_id
 	        emails_for_harvest = author.emails_for_harvest
 

@@ -108,6 +108,7 @@ class CapProfileIdRewriter
 		  					 emails_for_harvest << import_settings["email"]
 		  				end
 		  				unless import_settings["firstName"].blank? then new_author_attributes[:cap_first_name] = import_settings["firstName"]  end
+		  				unless import_settings["middleName"].blank? then new_author_attributes[:cap_middle_name] = import_settings["middleName"]  end
 						unless import_settings["lastName"].blank? then new_author_attributes[:cap_last_name] = import_settings["lastName"]  end
 	  				end
 	  			else
