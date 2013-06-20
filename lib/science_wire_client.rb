@@ -5,10 +5,11 @@ class ScienceWireClient
 
 		auth = YAML.load(File.open(Rails.root.join('config', 'sciencewire_auth.yaml')))
 	    http = Net::HTTP.new(auth[:get_uri], auth[:get_port])
-	    timeout_period ||= 500
+	    
 	    http.use_ssl = true
 	    http.verify_mode = OpenSSL::SSL::VERIFY_PEER
 	    http.ssl_version = :SSLv3
+	    timeout_period ||= 500
 	    http.read_timeout = timeout_period
 	    request = Net::HTTP::Post.new(auth[:get_recommendation_path])
 	    request["LicenseID"] = auth[:get_license_id]
@@ -39,7 +40,8 @@ class ScienceWireClient
 
 	    unless email_list.blank?
 	      bod << '<Emails>'
-	      bod <<   email_list.collect { |email| "<string>#{email}</string>"}.join
+	      bod <<   "<string>#{email_list}</string>"
+	      #.collect { |email| "<string>#{email}</string>"}.join
 	      bod << '</Emails>'
 	    end
 
@@ -55,8 +57,61 @@ class ScienceWireClient
 
 	    #puts xml_doc.to_xml
 	    xml_doc.xpath('/ArrayOfItemMatchResult/ItemMatchResult/PublicationItemID').collect { |itemId| itemId.text}
-
+	    
 end
+
+def query_sciencewire_by_author_name(first_name, middle_name, last_name, max_rows)
+	  
+	  xml_query = '<![CDATA[
+	     <query xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/
+	    XMLSchema">
+	      <Criterion ConjunctionOperator="AND">
+	        <Criteria>'
+
+	unless last_name.blank?
+	  xml_query << '<Criterion>
+	            <Filter>
+	              <Column>AuthorLastName</Column>
+	              <Operator>Equals</Operator>
+	              <Value>' + last_name + '</Value>
+	            </Filter>
+	          </Criterion>' 
+	end
+	unless first_name.blank?
+	  xml_query << '<Criterion>
+	            <Filter>
+	              <Column>AuthorFirstName</Column>
+	              <Operator>BeginsWith</Operator>
+	              <Value>' + first_name + '</Value>
+	            </Filter>
+	          </Criterion>' 
+	end
+
+	unless first_name.blank?
+	  xml_query << '<Criterion>
+	            <Filter>
+	              <Column>AuthorMiddleName</Column>
+	              <Operator>BeginsWith</Operator>
+	              <Value>' + first_name + '</Value>
+	            </Filter>
+	          </Criterion>' 
+	end
+	
+	   xml_query << '</Criteria>
+	      </Criterion>
+	      <Columns>
+	        <SortColumn>
+	          <Column>Rank</Column>
+	          <Direction>Descending</Direction>
+	        </SortColumn>
+	      </Columns>
+	     <MaximumRows>' + max_rows.to_s + '</MaximumRows>
+	    </query>
+	    ]]>'
+
+	    query_sciencewire(xml_query).xpath('//PublicationItem/PublicationItemID').collect { |itemId| itemId.text}
+		
+	end
 
 def get_full_sciencewire_pubs_for_sciencewire_ids(sciencewire_ids)
 	    #puts "sciencewire guesses : " + sciencewire_ids
@@ -66,6 +121,8 @@ def get_full_sciencewire_pubs_for_sciencewire_ids(sciencewire_ids)
 	# puts "number of ids: " + id_test.split(',').length.to_s
 	auth = YAML.load(File.open(Rails.root.join('config', 'sciencewire_auth.yaml')))
 	http = Net::HTTP.new(auth[:get_uri], auth[:get_port])
+	timeout_period ||= 500
+	http.read_timeout = timeout_period
     http.use_ssl = true
     http.verify_mode = OpenSSL::SSL::VERIFY_PEER
     http.ssl_version = :SSLv3
@@ -173,11 +230,8 @@ def get_full_sciencewire_pubs_for_sciencewire_ids(sciencewire_ids)
 	    	pub_hash = SciencewireSourceRecord.convert_sw_publication_doc_to_hash(sw_xml_doc)
 	    	Publication.update_formatted_citations(pub_hash)
 	    	result << pub_hash
-
 	  end 
-
 	  result
-
 	end
 
 
@@ -191,6 +245,8 @@ def get_full_sciencewire_pubs_for_sciencewire_ids(sciencewire_ids)
 	          </ScienceWireQueryXMLParameter>'
 	    auth = YAML.load(File.open(Rails.root.join('config', 'sciencewire_auth.yaml')))
 	    http = Net::HTTP.new(auth[:get_uri], auth[:get_port])
+	    timeout_period ||= 500
+	    http.read_timeout = timeout_period
 	    http.use_ssl = true
 	    http.verify_mode = OpenSSL::SSL::VERIFY_PEER
 	    http.ssl_version = :SSLv3
@@ -229,7 +285,8 @@ def get_sw_xml_source_for_sw_id(sciencewire_id)
 	    http.use_ssl = true
 	    http.verify_mode = OpenSSL::SSL::VERIFY_PEER
 	    http.ssl_version = :SSLv3
-
+	    timeout_period ||= 500
+	    http.read_timeout = timeout_period
   		fullPubsRequest = Net::HTTP::Get.new(auth[:get_pubs_for_ids_path] + sciencewire_id.to_s)
 	    fullPubsRequest["Content-Type"] = "text/xml"
 	    fullPubsRequest["LicenseID"] = auth[:get_license_id]
@@ -241,8 +298,7 @@ def get_sw_xml_source_for_sw_id(sciencewire_id)
 	    xml_doc = Nokogiri::XML(fullPubResponse)
 	    http.finish
 	    
-	    xml_doc.xpath('//PublicationItem').first
-	    
+	    xml_doc.xpath('//PublicationItem').first    
   	end
 
 

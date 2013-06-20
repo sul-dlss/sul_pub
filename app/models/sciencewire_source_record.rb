@@ -117,7 +117,7 @@ class SciencewireSourceRecord < ActiveRecord::Base
 	                      :pmid => pmid,
 	                      :source_fingerprint => Digest::SHA2.hexdigest(sw_record_doc))
 	            
-	      rescue Exception => e  
+	      rescue => e  
 	        puts e.message  
 	        #puts e.backtrace.inspect  
 	        puts "The offending pmid: " + pmid.to_s

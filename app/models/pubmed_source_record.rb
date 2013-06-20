@@ -71,7 +71,7 @@ class PubmedSourceRecord < ActiveRecord::Base
 	                  :is_active => true,
 	                  :source_fingerprint => Digest::SHA2.hexdigest(pub_doc))
 	          	pmids.delete(pmid)
-		    rescue Exception => e  
+		    rescue => e  
 	          puts e.message  
 	          puts e.backtrace.inspect  
 	          puts "the offending pmid: " + pmid.to_s

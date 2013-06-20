@@ -2,13 +2,19 @@ require 'dotiw'
 class ScienceWireHarvester
 include ActionView::Helpers::DateHelper
 #harverst sciencewire records for all authors using author information
+	#expose the sciencewire client for rspec testing
+	attr_reader :sciencewire_client
+
+	def initialize
+        initialize_instance_vars
+	    initialize_counts_for_reporting
+    end
 
 	def harvest_pubs_for_author_ids(author_ids)		
 		begin
 			@sw_harvest_logger = Logger.new(Rails.root.join('log', 'sw_nightly_harvest.log'))
 			@sw_harvest_logger.info "Started nightly authorship harvest #{DateTime.now}" 
-			initialize_instance_vars
-			initialize_counts_for_reporting
+			
           	author_ids.each do | author_id |
           		begin
 					author = Author.find(author_id)
@@ -28,15 +34,14 @@ include ActionView::Helpers::DateHelper
 	    @sw_harvest_logger = Logger.new(Rails.root.join('log', 'sw_harvest.log'))
 	    @sw_harvest_logger.info "Started full authorship harvest #{DateTime.now}" 
 	    
-	    #IO.foreach(Rails.root.join('app', 'data', '2013_06_06_univIds_from_don_for_harvest_qa.txt')) do |line|
-	    initialize_instance_vars
-	    initialize_counts_for_reporting
-	  	Author.where(active_in_cap: true, cap_import_enabled: true).limit(10).offset(5000).each do |author|
+	    #Author.where(active_in_cap: true, cap_import_enabled: true).limit(2).offset(10000).each do |author|
+	    
+	  	Author.where(active_in_cap: true, cap_import_enabled: true).find_each do |author|
 	    	
 	    	harvest_for_author(author)
 		    
 	    end 
-	    # finish up any left in a batch of less than 3k or 4k
+	    # finish up any records left in the queues
 	    process_queued_sciencewire_suggestions
 	    process_queued_pubmed_records
 	    write_counts_to_log
@@ -46,8 +51,7 @@ include ActionView::Helpers::DateHelper
 		@sw_harvest_logger = Logger.new(Rails.root.join('log', 'sw_test_harvest.log'))
 	    @sw_harvest_logger.info "Started Don's sample authorship harvest #{DateTime.now}" 
 	      
-	    initialize_instance_vars
-	    initialize_counts_for_reporting
+	    
 	    IO.foreach(Rails.root.join('app', 'data', '2013_06_06_univIds_from_don_for_harvest_qa.txt')) do |line|
 	  	 	author = Author.where(university_id: line).first
 	    	if author 
@@ -80,6 +84,8 @@ include ActionView::Helpers::DateHelper
 	    @contributions_created_count = 0
 	    @existing_contributions_count = 0
 
+	    @authors_with_no_seed_data_count = 0
+
 	    @total_new_pubmed_source_count = 0
 	    @total_new_sciencewire_source_count = 0
 	    
@@ -96,18 +102,20 @@ include ActionView::Helpers::DateHelper
 
     	@sw_harvest_logger.info "#{@total_suggested_count} total records were suggested for #{@author_count} authors." 
     	
-    	@sw_harvest_logger.info "#{@existing_contributions_count.to_s} existing contributions were found." 
-    	@sw_harvest_logger.info "#{@contributions_created_count.to_s} new contributions were created." 
+    	@sw_harvest_logger.info "#{@existing_contributions_count} existing contributions were found." 
+    	@sw_harvest_logger.info "#{@contributions_created_count} new contributions were created." 
 
-    	@sw_harvest_logger.info "#{@total_new_pubmed_source_count.to_s} new pubmed source records were created." 
-    	@sw_harvest_logger.info "#{@total_new_sciencewire_source_count.to_s} new sciencewire source records were created." 
+    	@sw_harvest_logger.info "#{@total_new_pubmed_source_count} new pubmed source records were created." 
+    	@sw_harvest_logger.info "#{@total_new_sciencewire_source_count} new sciencewire source records were created." 
 
-    	@sw_harvest_logger.info "#{@new_pubs_created_count.to_s} new publications were created." 
+    	@sw_harvest_logger.info "#{@new_pubs_created_count} new publications were created." 
 
-    	@sw_harvest_logger.info "#{@matches_on_existing_swid_count.to_s} existing publications were found by sciencewire id." 
-    	@sw_harvest_logger.info "#{@matches_on_existing_pmid_count.to_s} existing publications were deduped by pmid." 
-    	@sw_harvest_logger.info "#{@matches_on_issn_count.to_s} existing publications were deduped by issn." 
-    	@sw_harvest_logger.info "#{@matches_on_title_count.to_s} existing publications were deduped by title." 
+    	@sw_harvest_logger.info "#{@authors_with_no_seed_data_count} authors had no seed data and used the name search instead." 
+
+    	@sw_harvest_logger.info "#{@matches_on_existing_swid_count} existing publications were found by sciencewire id." 
+    	@sw_harvest_logger.info "#{@matches_on_existing_pmid_count} existing publications were deduped by pmid." 
+    	@sw_harvest_logger.info "#{@matches_on_issn_count} existing publications were deduped by issn." 
+    	@sw_harvest_logger.info "#{@matches_on_title_count} existing publications were deduped by title." 
     end
 
 	def harvest_for_author(author)
@@ -118,19 +126,25 @@ include ActionView::Helpers::DateHelper
 	        first_name = author.official_first_name
 	        middle_name = author.official_middle_name
 	        profile_id = author.cap_profile_id
-	        email = author.email
+	        emails_for_harvest = author.emails_for_harvest
 
 	       # seed_list = author.approved_sw_ids.collect { | sw_id | sw_id.identifier_value }
 	       seed_list = get_seed_list_for_author(author)
 
 	      #  puts "author: #{author.id} has seed list: #{seed_list}"
 	        if @author_count%50 == 0
-	        	string_to_print = "Harvested #{@total_suggested_count.to_s} suggestions so far for #{@author_count.to_s} authors - #{DateTime.now}" 
+	        	string_to_print = "Harvested up to author id: #{author.id} with #{@total_suggested_count.to_s} total suggestions so far for #{@author_count.to_s} authors - #{DateTime.now}" 
 	        	@sw_harvest_logger.info string_to_print
 	        	puts string_to_print
 	        end
-	        unless email.blank? then email_list = [email] end
-	        suggested_sciencewire_ids = @sciencewire_client.get_sciencewire_id_suggestions(last_name, first_name, middle_name, email_list, seed_list)
+	       
+	        if emails_for_harvest.blank? && seed_list.empty? 
+	        	suggested_sciencewire_ids = @sciencewire_client.query_sciencewire_by_author_name(first_name, middle_name, last_name, 10)
+	        	@authors_with_no_seed_data_count += 1
+	        else
+	        	suggested_sciencewire_ids = @sciencewire_client.get_sciencewire_id_suggestions(last_name, first_name, middle_name, emails_for_harvest, seed_list)
+	        end
+
 	        suggested_sciencewire_ids.each do |suggested_sciencewire_id|
 	        	@total_suggested_count += 1
 	        	was_record_created = create_contrib_for_pub_if_exists(suggested_sciencewire_id, author)
@@ -150,12 +164,9 @@ include ActionView::Helpers::DateHelper
 	    		end
 	        end   
 	    rescue => e
-	      NotificationManager.handle_harvest_problem(e, "Error for #{author.official_last_name} - #{author.cap_profile_id} ")
+	      NotificationManager.handle_harvest_problem(e, "Error for #{author.official_last_name} - sul author id: #{author.id} ")
 	    end
 	    #@sw_harvest_logger.info "#{author.official_last_name} - #{author.cap_profile_id} has #@harvested_for_author_count new harvested records."
-      
-     	
-
 	end
 
 	def get_seed_list_for_author(author)
@@ -163,7 +174,8 @@ include ActionView::Helpers::DateHelper
               where("authors.id = ? ", author.id).
               where("contributions.status = 'approved'").
               where(Publication.arel_table[:sciencewire_id].not_eq(nil)).
-              pluck(:sciencewire_id)            
+              pluck(:sciencewire_id)    
+            
 	end
 
 	def create_contribs_for_author_ids_and_pub(author_ids, pub)

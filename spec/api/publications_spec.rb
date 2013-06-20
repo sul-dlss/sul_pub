@@ -9,7 +9,7 @@ describe SulBib::API do
   let(:author) {FactoryGirl.create :author }
   let(:author_with_sw_pubs) {create :author_with_sw_pubs}
   let(:headers) {{ 'HTTP_CAPKEY' => '***REMOVED***', 'CONTENT_TYPE' => 'application/json' }}
-  let(:valid_json_for_post) {{title: "some title", year: 1938, author: [{name: "jackson joe"}], authorship: [{sul_author_id: author.id, status: "denied", visibility: "public", featured: true}, ]}.to_json}
+  let(:valid_json_for_post) {{title: "some title", year: 1938, issn: '32242424', pages: '34-56', author: [{name: "jackson joe"}], authorship: [{sul_author_id: author.id, status: "denied", visibility: "public", featured: true}, ]}.to_json}
 
   
   describe "POST /publications" do
@@ -51,10 +51,40 @@ describe SulBib::API do
       end
 
 
-      it "creates an appropriate pub_hash, i.e, test pub_hash for all required fields"
+      it "creates an appropriate publication record from the posted bibjson" do
+        post "/publications", valid_json_for_post, headers
+        response.status.should == 201
+        pub = Publication.last
+        
+        parsed_outgoing_json = JSON.parse(valid_json_for_post)
+        
+        expect(pub.title).to eq(parsed_outgoing_json["title"])
+        expect(pub.year).to eq(parsed_outgoing_json["year"])
+        expect(pub.pages).to eq(parsed_outgoing_json["pages"])
+        expect(pub.issn).to eq(parsed_outgoing_json["issn"])
+        expect(pub.pub_hash[:author]).to eq(parsed_outgoing_json["author"])
+      end
+
       it " creates a new pub that returns valid bibjson i.e., check bibjson for all requried fields"
-      it " creates a pub with matching authorship info in hash and contributions table"
-      it " returns 303  for duplicate pub"
+
+      it " creates a pub with matching authorship info in hash and contributions table" do
+        post "/publications", valid_json_for_post, headers
+        response.status.should == 201
+        pub = Publication.last
+        parsed_outgoing_json = JSON.parse(valid_json_for_post)
+        contrib = Contribution.where(publication_id: pub.id, author_id: author.id).first
+        expect(contrib.visibility).to eq(parsed_outgoing_json["authorship"][0]["visibility"])
+        expect(contrib.status).to eq(parsed_outgoing_json["authorship"][0]["status"])
+        expect(contrib.featured).to eq(parsed_outgoing_json["authorship"][0]["featured"])
+        expect(contrib.cap_profile_id).to eq(parsed_outgoing_json["authorship"][0]["cap_profile_id"])
+      end
+
+      it " returns 302 for duplicate pub" do 
+        post "/publications", valid_json_for_post, headers
+        response.status.should == 201
+        post "/publications", valid_json_for_post, headers
+        response.status.should == 302
+      end
       it " returns xxx for bad submitted bibjson"
       it " doesn't change other contribution records"
 

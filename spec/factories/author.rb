@@ -6,7 +6,7 @@ FactoryGirl.define do
     official_first_name "John"
     official_last_name "Jones"
     official_middle_name "Jim"
-  #  emails_for_harvest "alice.edler@stanford.edu"
+    emails_for_harvest "alice.edler@stanford.edu"
   end
 
   factory :author_with_sw_pubs, parent: :author do

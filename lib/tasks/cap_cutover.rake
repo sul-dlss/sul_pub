@@ -309,7 +309,7 @@ def build_pub_from_sw_and_pubmed(pub)
     end
     pub.cutover_sync_hash_and_db       
     
-  rescue Exception => e  
+  rescue => e  
           @cap_import_logger.info e.message  
           @cap_import_logger.info e.backtrace.inspect  
           @cap_import_logger.info "the offending pmid: " + pmid.to_s
