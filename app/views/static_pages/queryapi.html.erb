@@ -40,6 +40,7 @@
             <td>False.</td>
             <td>SW+MAN</td>
           </tr>
+          
           <tbody>
 </table>
 <hr style="color:#000;background-color:#000;border-color:#000"/>
@@ -162,12 +163,6 @@
             <td>None</td>
           </tr>  
           <tr>
-            <td>404</td>
-            <td>Not Found</td>
-            <td>GET, HEAD, OPTIONS</td>
-            <td>None</td>
-          </tr> 
-          <tr>
             <td>405</td>
             <td>Method Not Allowed</td>
             <td>POST, PATCH, PUT, DELETE</td>
@@ -178,49 +173,26 @@
             <td>Not Acceptable - Can't satisfy request accept header</td>
             <td>GET</td>
             <td>None</td>
-          </tr> 
-          <tr>
-            <td>204</td>
-            <td>No Content - Successful, but no entity returned.</td>
-            <td>OPTIONS</td>
-            <td>None</td>
           </tr>     
         </tbody>
       </table>
 
+
+
 <hr style="color:#000;background-color:#000;border-color:#000"/>
 <h2 style="font-size:medium">Sample Data</h2>
 
+<p style="font-size:small">pending... </p>
 
-<p style="font-size:small"><%= link_to "See BibJSON collection from GET", sul_bib_api_samples_path + '/get_pubs_out' %> </p>
 
 
 <hr style="color:#000;background-color:#000;border-color:#000"/>
 <h2 style="font-size:medium">Sample CURL calls</h2>
 
-<table class="table table-striped">
-       
-        <tbody>
-          <tr>
-            <td>OPTIONS request.</td>
-            <td>curl -v -X OPTIONS http://sulcap.stanford.edu/sourcelookup?lastname=jones&firstname=adam&middlename=t&year=2012&title=radioactivy&source=sciencewire</td>      
-          </tr>    
-          <tr>
-            <td>HEAD request.</td>
-            <td>curl -I http://sulcap.stanford.edu/sourcelookup?lastname=jones&firstname=adam&middlename=t&year=2012&title=radioactivy&source=sciencewire</td>      
-          </tr>     
-          <tr>
-            <td>GET publication request.</td>
-            <td>curl -v http://sulcap.stanford.edu/sourcelookup?lastname=jones&firstname=adam&middlename=t&year=2012&title=radioactivy&source=sciencewire</td>      
-          </tr>   
-          
-        </tbody>
-      </table>
+<p style="font-size:small">pending... </p>
 
 
 
 
 
 
-
- <!-- <%= link_to "GET /sulbib/v1/publications/1", '#', class: "btn btn-large btn-primary" %>  -->

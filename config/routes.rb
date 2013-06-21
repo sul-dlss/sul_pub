@@ -12,6 +12,7 @@ Sulbib::Application.routes.draw do
   get "static_pages/api"
   get 'static_pages/pubapi'
   get 'static_pages/pubsapi'
+  get 'static_pages/authorshipapi'
   get 'static_pages/queryapi'
   get 'static_pages/pollapi'
   get 'static_pages/bibtex'

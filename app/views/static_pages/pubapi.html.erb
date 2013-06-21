@@ -81,14 +81,14 @@
           <tr>
             <td>Stan-Key</td>
             <td>N/A</td>
-            <td>Authentication Key</td>
+            <td>Authentication Key - name and value vary.</td>
             <td>GET, PUT, DELETE</td>
             <td>Yes</td>       
           </tr>
           <tr>
             <td>If-Match</td>
-            <td>last given ETag value</td>
-            <td>Updates only if etags match.</td>
+            <td>last given changed date in bibjson</td>
+            <td>Updates only if dates match.</td>
             <td>PUT</td>
             <td>Yes</td>       
           </tr>             
@@ -108,12 +108,6 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>ETag</td>
-            <td></td>
-            <td></td>
-            <td>GET, PUT, DELETE</td>
-          </tr>
           <tr>
             <td>Content-Type</td>
             <td>application/json</td>
@@ -193,7 +187,7 @@
           </tr> 
           <tr>
             <td>412</td>
-            <td>PreCondition Failed - ETag value in If-Match header is old</td>
+            <td>PreCondition Failed - date in If-Match header doesn't match</td>
             <td>PUT</td>
             <td>None</td>
           </tr> 
@@ -205,7 +199,7 @@
           </tr> 
           <tr>
             <td>428</td>
-            <td>Precondition Requied - ETag must be supplied in If-Match header</td>
+            <td>Precondition Requied - last changed date must be supplied in If-Match header</td>
             <td>PUT</td>
             <td>None</td>
           </tr> 
@@ -221,48 +215,14 @@
 <hr style="color:#000;background-color:#000;border-color:#000"/>
 <h2 style="font-size:medium">Sample Data</h2>
 
-<p style="font-size:small"><%= link_to "See Single BibJSON record (from GET or PUT)", sul_bib_api_samples_path + '/get_pub_out' %> </p>
+<p style="font-size:small">pending... </p>
 
-<p  style="font-size:small"><%= link_to "See Single BibJSON record (for PUT)", sul_bib_api_samples_path + '/put_pub_in_json' %> (Not yet available.)</p>
 
-<p style="font-size:small"><%= link_to "See Single BibTex record (for PUT)", sul_bib_api_samples_path + '/put_pub_in_bibtex' %> (Not yet available.)</p>
 
 <hr style="color:#000;background-color:#000;border-color:#000"/>
 <h2 style="font-size:medium">Sample CURL calls</h2>
 
-<table class="table table-striped">
-       
-        <tbody>
-          <tr>
-            <td>OPTIONS request.</td>
-            <td>curl -v -X OPTIONS http://sulbib.dev/publications/1</td>      
-          </tr>    
-          <tr>
-            <td>HEAD request.</td>
-            <td>curl -I http://sulbib.dev/publications/1</td>      
-          </tr>     
-          <tr>
-            <td>GET publication request.</td>
-            <td>curl -v http://sulbib.dev/publications/1</td>      
-          </tr>  
-          <tr>
-            <td>DELETE request.</td>
-            <td>curl -v -X DELETE http://sulbib.dev/publications/1</td>      
-          </tr>
-          <tr>
-            <td>PUT request with BibJSON</td>
-            <td>curl -v -H "Content-Type:application/json" -X PUT -d "bibjson goes here" http://sulbib.dev/publications/1</td>      
-          </tr>
-          <tr>
-            <td>PUT request with BibTeX</td>
-            <td>curl -v -H "Content-Type:text/bibliography" -X PUT -d "bibtex goes here" http://sulbib.dev/publications/1</td>      
-          </tr>
-          <tr>
-            <td>PUT request using file contents (BibJSON or BibTEX) as body.</td>
-            <td>curl -v -X PUT -d @filename http://sulbib.dev/publications</td>      
-          </tr>
-        </tbody>
-      </table>
+<p style="font-size:small">pending... </p>
 
 
 

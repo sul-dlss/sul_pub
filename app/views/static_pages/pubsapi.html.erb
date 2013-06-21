@@ -26,7 +26,7 @@
           <tr>
             <td>POST</td>
             <td>Creates publication record.</td>
-            <td>BibJSON record(s) for publication(s). See sample below.</td>
+            <td>BibJSON record(s) for publication.</td>
             <td>BibJSON for successfully updated pubication(s).</td>
           </tr>
           <tbody>
@@ -54,7 +54,7 @@
           </tr>
           <tr>
             <td>Content-Type</td>
-            <td>text/bibliography application/json</td>
+            <td>application/json</td>
             <td>The content type for submitted entity.</td>
             <td>POST</td>
             <td>Yes</td>   
@@ -62,7 +62,7 @@
           <tr>
             <td>Stan-Key</td>
             <td>N/A</td>
-            <td>Authentication Key</td>
+            <td>Authentication Key, actual name and value vary.</td>
             <td>POST, OPTIONS</td>
             <td>Yes</td>       
           </tr>          
@@ -82,12 +82,6 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>ETag</td>
-            <td></td>
-            <td></td>
-            <td>POST</td>
-          </tr>
           <tr>
             <td>Content-Type</td>
             <td>application/json</td>
@@ -144,7 +138,7 @@
           <tr>
             <td>405</td>
             <td>Method Not Allowed</td>
-            <td>GET, HEAD, PUT, PATCH</td>
+            <td>GET, HEAD, PUT, PATCH, DELETE</td>
             <td>No Entity, but allowed methods listed in Allow header</td>
           </tr> 
           <tr>
@@ -153,22 +147,10 @@
             <td>GET</td>
             <td>None</td>
           </tr> 
-          <tr>
-            <td>412</td>
-            <td>PreCondition Failed - ETag value in If-Match header is old</td>
-            <td>PUT</td>
-            <td>None</td>
-          </tr> 
            <tr>
             <td>415</td>
             <td>Unsupported Media Type - POST entity with wrong Content-Type</td>
-            <td>PUT</td>
-            <td>None</td>
-          </tr> 
-          <tr>
-            <td>428</td>
-            <td>Precondition Requied - ETag must be supplied in If-Match header</td>
-            <td>PUT</td>
+            <td>POST</td>
             <td>None</td>
           </tr> 
           <tr>
@@ -180,43 +162,15 @@
         </tbody>
       </table>
 
+
 <hr style="color:#000;background-color:#000;border-color:#000"/>
+<h2 style="font-size:medium">Sample Data</h2>
 
-<h2 style="font-size:medium">Samples</h2>
+<p style="font-size:small">pending... </p>
 
-<p class="sultext">The POST call will accept one or or records in a single call.  The BibJSON must therefore be wrapped 
-  in a json array, as in the example below.  Multiple BibTeX records are simply appended together. The bibjson must also
-include the contribution section with either the CAP Profile ID for the author or the SUL Author ID for the author.</p>
 
-<p style="font-size:small"><%= link_to "BibJSON file for POST", sul_bib_api_samples_path + '/post_pub_in_json' %></p>
-
-<p style="font-size:small"><%= link_to "BibTex file for POST", sul_bib_api_samples_path + '/post_pub_in_bibtex' %></p>
 
 <hr style="color:#000;background-color:#000;border-color:#000"/>
 <h2 style="font-size:medium">Sample CURL calls</h2>
 
-<table class="table table-striped">
-       
-        <tbody>
-          <tr>
-            <td>OPTIONS request.</td>
-            <td>curl -v -x OPTIONS -3 --header 'yourAuthenticationKeyName: yourKeyValue' 'https://sulcap.stanford.edu/publications'</td>     
-          </tr>    
-          <tr>
-            <td>POST request using file contents as body.</td>
-            <td>curl -v -d @filename -3 --header 'yourAuthenticationKeyName: yourKeyValue' 'https://sulcap.stanford.edu/publications</td>      
-          </tr>
-          <tr>
-            <td>POST request with BibJSON</td>
-            <td>curl -v -d --header -3 'yourAuthenticationKeyName: yourKeyValue' "bibjson goes here" http://sulcap.stanford.edu/publications</td>      
-          </tr>
-        </tbody>
-      </table>
-
-
-
-
-
-
-
- <!-- <%= link_to "GET /sulbib/v1/publications/1", '#', class: "btn btn-large btn-primary" %>  -->
+<p style="font-size:small">pending... </p>

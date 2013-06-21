@@ -55,8 +55,8 @@
 <hr style="color:#000;background-color:#000;border-color:#000"/>
 
 
-<h5 style="padding-bottom:10px;text-align:left">http://sulcap.stanford.edu/publications?population={popId}&changedSince={YYYY-MM-DDTHH:MM:SSZ}&capProfileId={capId}</h5>
-<p class="sultext">Returns all publications created or modified since the given date, for the given population.</p>
+<h5 style="padding-bottom:10px;text-align:left">http://sulcap.stanford.edu/publications?changedSince={YYYY-MM-DDTHH:MM:SSZ}&capProfileId={capId}&page={resultpage}&per={results_per_page}</h5>
+<p class="sultext">Returns all publications created or modified since the given date.  If the profile id is specified then only publications for that id are returned.</p>
 <table class="table table-striped">       
         <tbody>
           <tr>
@@ -74,6 +74,24 @@
           <tbody>
 </table>
 <p class="sultext"><%= link_to "See Full Spec", static_pages_pollapi_path %></p>
+<hr style="color:#000;background-color:#000;border-color:#000"/>
+
+
+<h5 style="padding-bottom:10px;text-align:left">http://sulcap.stanford.edu/authorship</h5>
+<p class="sultext">Create or modify an authorship record.</p>
+<table class="table table-striped">       
+        <tbody>
+          <tr>
+            <td>OPTIONS</td>
+            <td>Lists available methods.</td>            
+          </tr>
+          <tr>
+            <td>POST</td>
+            <td>Creates or modifies an authorship record using the information included in the posted body.</td>
+          </tr>
+          <tbody>
+</table>
+<p class="sultext"><%= link_to "See Full Spec", static_pages_authorshipapi_path %></p>
 <hr style="color:#000;background-color:#000;border-color:#000"/>
 
 

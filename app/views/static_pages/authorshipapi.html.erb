@@ -2,60 +2,7 @@
   <h2>Resource Description</h2>
 
 
-<b style="font-size:large">http://sulcap.stanford.edu/publications?population={popId}&changedSince={YYYY-MM-DDTHH:MM:SSZ}&capProfileId={capId}</b>
-
-<hr style="color:#000;background-color:#000;border-color:#000"/>
-
-<h2 style="font-size:medium">URL Parameters</h2>
-
-<table class="table table-striped">       
-        <tbody>
-          <thead>
-          <tr>
-            <th>Parameter Name</th>
-            <th>Description</th>
-            <th>Allowable Values</th>
-            <th>Required?</th>
-            <th>Default Value</th>
-          </tr>
-        </thead>
-          <tr>
-            <td>population</td>
-            <td>Predefined subset of authors from which to draw.</td>     
-            <td>CAP</td>
-            <td>No</td>  
-            <td>N/A</td>     
-          </tr>
-          <tr>
-            <td>changedSince</td>
-            <td>All pubs changed since.</td>
-            <td>ISO 8601 Date</td>
-            <td>No</td>   
-            <td>1000-01-01</td>            
-          </tr>
-          <tr>
-            <td>capProfileId</td>
-            <td>Pubs for the given profile Id</td>
-            <td>Integer</td>
-            <td>No</td>   
-            <td>N/A</td>            
-          </tr>
-          <tr>
-            <td>page</td>
-            <td>Result page to return.</td>
-            <td>Integer</td>
-            <td>No</td>   
-            <td>N/A</td>            
-          </tr>
-          <tr>
-            <td>per</td>
-            <td>Number of results per page</td>
-            <td>Integer</td>
-            <td>No</td>   
-            <td>N/A</td>            
-          </tr>
-          <tbody>
-</table>
+<b style="font-size:large">http://sulcap.stanford.edu/authorship</b>
 
 <hr style="color:#000;background-color:#000;border-color:#000"/>
 
@@ -83,12 +30,12 @@
             <td>None.</td>
             <td>No body - lists methods in 'Allow' header.</td>               
           </tr>
+          
           <tr>
-            <td>GET</td>
-            <td>Returns BibJSON record for the publication.</td>
-            <td>None.</td>
-            <td>BibJSON record for publication.</td>
-          </tr>
+            <td>POST</td>
+            <td>Creates or updates an authorship record.</td>
+            <td>json for authorship. See sample below.</td>
+            <td>BibJSON for successfully updated publication.</td>
           <tbody>
 </table>
 <hr style="color:#000;background-color:#000;border-color:#000"/>
@@ -109,16 +56,24 @@
             <td>Accept</td>
             <td>application/json</td>
             <td>Only json for now.</td>
-            <td>GET</td>
+            <td>POST</td>
             <td>No</td>
+          </tr>
+          <tr>
+            <td>Content-Type</td>
+            <td>application/json</td>
+            <td>The content type for submitted entity.</td>
+            <td>POST</td>
+            <td>Yes</td>   
           </tr>
           <tr>
             <td>Stan-Key</td>
             <td>N/A</td>
-            <td>Authentication Key</td>
-            <td>GET, OPTIONS</td>
+            <td>Authentication Key - actual name and value vary.</td>
+            <td>POST</td>
             <td>Yes</td>       
-          </tr>          
+          </tr>
+             
         </tbody>
       </table>
 
@@ -139,7 +94,7 @@
             <td>Content-Type</td>
             <td>application/json</td>
             <td>Content type of returned entity</td>
-            <td>GET</td>
+            <td>POST</td>
           </tr>
           <tr>
             <td>Allow</td>
@@ -165,41 +120,47 @@
         </thead>
         <tbody>
           <tr>
-            <td>200</td>
+            <td>201</td>
             <td>OK - Request successfully processed.</td>
-            <td>GET</td>
-            <td>BibJSON collection</td>
+            <td>POST</td>
+            <td>BibJSON for affected publication record</td>
           </tr>    
+          <tr>
+            <td>400</td>
+            <td>Bad Request</td>
+            <td>POST</td>
+            <td>Message: Invalid authorship record submitted, with details.</td>
+          </tr>  
           <tr>
             <td>401</td>
             <td>Unauthorized</td>
-            <td>GET, HEAD, OPTIONS</td>
-            <td>None</td>
-          </tr>  
-          <tr>
-            <td>404</td>
-            <td>Not Found - if optional cap profile id not found.</td>
-            <td>GET, HEAD, OPTIONS</td>
+            <td>POST</td>
             <td>None</td>
           </tr> 
           <tr>
+            <td>404</td>
+            <td>Does Not Exist- indicates one of the identifiers in the json was incorrect.</td>
+            <td>POST</td>
+            <td>Details about incorrect identifier.</td>
+          </tr>            
+          <tr>
             <td>405</td>
             <td>Method Not Allowed</td>
-            <td>POST, PATCH, PUT, DELETE</td>
+            <td>GET, PUT, PATCH, DELETE</td>
             <td>No Entity, but allowed methods listed in Allow header</td>
           </tr> 
           <tr>
             <td>406</td>
-            <td>Not Acceptable - Can't satisfy request accept header</td>
-            <td>GET</td>
+            <td>Not Acceptable</td>
+            <td>POST</td>
             <td>None</td>
           </tr> 
-          <tr>
-            <td>204</td>
-            <td>No Content - Successful, but no entity returned.</td>
-            <td>OPTIONS</td>
+           <tr>
+            <td>415</td>
+            <td>Unsupported Media Type - POST entity with wrong Content-Type</td>
+            <td>POST</td>
             <td>None</td>
-          </tr>     
+          </tr> 
         </tbody>
       </table>
 
@@ -215,10 +176,3 @@
 
 <p style="font-size:small">pending... </p>
 
-
-
-
-
-
-
- <!-- <%= link_to "GET /sulbib/v1/publications/1", '#', class: "btn btn-large btn-primary" %>  -->
