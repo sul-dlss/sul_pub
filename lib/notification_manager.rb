@@ -19,4 +19,16 @@ class NotificationManager
       	#todo send email here
 	end
 
+	def self.handle_pubmed_pull_error(e, message)
+      	@pubmed_logger = Logger.new(Rails.root.join('log', 'pubmed_api.log'))
+      	@pubmed_logger.error message
+      	@pubmed_logger.error e.message
+      	@pubmed_logger.error e.backtrace
+      	puts e.message
+      	puts e.backtrace
+      	#todo send email here
+	end
+
+
+
 end

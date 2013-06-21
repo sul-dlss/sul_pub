@@ -3,8 +3,8 @@ FactoryGirl.define do
     sunetid 747373
     active_in_cap true
     email "alice.edler@stanford.edu"
-    official_first_name "John"
-    official_last_name "Jones"
+    official_first_name "Alice"
+    official_last_name "Edler"
     official_middle_name "Jim"
     emails_for_harvest "alice.edler@stanford.edu"
   end

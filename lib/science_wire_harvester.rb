@@ -29,17 +29,17 @@ include ActionView::Helpers::DateHelper
         end
 	end
 
-	def harvest_pubs_for_all_authors
+	def harvest_pubs_for_all_authors(starting_author_id)
 	    
+	    puts "starting author id: #{starting_author_id}"
 	    @sw_harvest_logger = Logger.new(Rails.root.join('log', 'sw_harvest.log'))
 	    @sw_harvest_logger.info "Started full authorship harvest #{DateTime.now}" 
 	    
 	    #Author.where(active_in_cap: true, cap_import_enabled: true).limit(2).offset(10000).each do |author|
 	    
-	  	Author.where(active_in_cap: true, cap_import_enabled: true).find_each do |author|
-	    	
-	    	harvest_for_author(author)
-		    
+	  	Author.where(active_in_cap: true, cap_import_enabled: true).find_each(:start => starting_author_id) do |author|    	
+	  		#puts "any authors? "
+	    	harvest_for_author(author)		    
 	    end 
 	    # finish up any records left in the queues
 	    process_queued_sciencewire_suggestions
@@ -139,7 +139,7 @@ include ActionView::Helpers::DateHelper
 	        end
 	       
 	        if emails_for_harvest.blank? && seed_list.empty? 
-	        	suggested_sciencewire_ids = @sciencewire_client.query_sciencewire_by_author_name(first_name, middle_name, last_name, 10)
+	        	suggested_sciencewire_ids = @sciencewire_client.query_sciencewire_by_author_name(first_name, middle_name, last_name, 20)
 	        	@authors_with_no_seed_data_count += 1
 	        else
 	        	suggested_sciencewire_ids = @sciencewire_client.get_sciencewire_id_suggestions(last_name, first_name, middle_name, emails_for_harvest, seed_list)
@@ -162,6 +162,7 @@ include ActionView::Helpers::DateHelper
         		if @records_queued_for_pubmed_retrieval.length > 4000
         			process_queued_pubmed_records
 	    		end
+	    		if @total_suggested_count%5000 == 0  then GC.start end
 	        end   
 	    rescue => e
 	      NotificationManager.handle_harvest_problem(e, "Error for #{author.official_last_name} - sul author id: #{author.id} ")

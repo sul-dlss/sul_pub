@@ -25,16 +25,11 @@ class CapHttpClient
 				timeout_period =+ 500
 				retry
 			else
-				@cap_authorship_logger = Logger.new(Rails.root.join('log', 'cap_authorship_api.log'))
-				@cap_authorship_logger.info "Timeout error on token call - #{DateTime.now}" 
-				@cap_authorship_logger.info "Error: #{te.backtrace}"
+				NotificationManager.handle_authorship_pull_error(te, "Timeout error on call to retrieve token for cap authorship feed - #{DateTime.now}" )	
 				raise
 			end
 		rescue => e
-			@cap_authorship_logger = Logger.new(Rails.root.join('log', 'cap_authorship_api.log'))
-			puts e.message
-			puts e.backtrace
-			@cap_authorship_logger.info "Error: #{e.backtrace}"
+			NotificationManager.handle_authorship_pull_error(e, "Problem with http call to cap authorship api")
 			raise
 		end
 
@@ -71,13 +66,8 @@ class CapHttpClient
 					token = get_new_token
 				elsif response.class == Net::HTTPInternalServerError
 					http.finish
-					puts "a server error: "
 					response_body = response.body
-					puts response_body.to_s
-					@cap_authorship_logger = Logger.new(Rails.root.join('log', 'cap_authorship_api.log'))
-					@cap_authorship_logger.info "Server error on authorship call - #{DateTime.now}" 
-					@cap_authorship_logger.info "Message returned from server: #{response_body}"
-					raise
+					raise "Server error on authorship call - #{DateTime.now} - message from server: #{response_body}"
 				else
 					response_body = response.body
 					json_response = JSON.parse(response_body)
@@ -92,18 +82,11 @@ class CapHttpClient
 				timeout_period =+ 500
 				retry
 			else
-				@cap_authorship_logger = Logger.new(Rails.root.join('log', 'cap_authorship_api.log'))
-				@cap_authorship_logger.info "Timeout error on authorship call - #{DateTime.now}" 
-				@cap_authorship_logger.info "Error: #{te.message}"
-				@cap_authorship_logger.info "#{te.backtrace}"
+				NotificationManager.handle_authorship_pull_error(te, "Timeout error on authorship call - #{DateTime.now}" )			
 				raise
 			end
 		rescue => e
-			@cap_authorship_logger = Logger.new(Rails.root.join('log', 'cap_authorship_api.log'))
-			puts e.message
-			puts e.backtrace
-			@cap_authorship_logger.info "Error: #{e.message}"
-			@cap_authorship_logger.info "#{e.backtrace}"
+			NotificationManager.handle_authorship_pull_error(e, "Problem with http call to cap authorship api")
 			raise
 		end
 		json_response

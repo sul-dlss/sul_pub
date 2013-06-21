@@ -9,7 +9,8 @@ describe SulBib::API do
   let(:author) {FactoryGirl.create :author }
   let(:author_with_sw_pubs) {create :author_with_sw_pubs}
   let(:headers) {{ 'HTTP_CAPKEY' => '***REMOVED***', 'CONTENT_TYPE' => 'application/json' }}
-  let(:valid_json_for_post) {{title: "some title", year: 1938, issn: '32242424', pages: '34-56', author: [{name: "jackson joe"}], authorship: [{sul_author_id: author.id, status: "denied", visibility: "public", featured: true}, ]}.to_json}
+  let(:valid_json_for_post) {{title: "some title", year: 1938, issn: '32242424', pages: '34-56', author: [{name: "jackson joe"}], authorship: [{sul_author_id: author.id, status: "denied", visibility: "public", featured: true} ]}.to_json}
+  let(:invalid_json_for_post) {{title: "some title", year: 1938, issn: '32242424', pages: '34-56', author: [{name: "jackson joe"}]}.to_json}
 
   
   describe "POST /publications" do
@@ -62,10 +63,23 @@ describe SulBib::API do
         expect(pub.year).to eq(parsed_outgoing_json["year"])
         expect(pub.pages).to eq(parsed_outgoing_json["pages"])
         expect(pub.issn).to eq(parsed_outgoing_json["issn"])
-        expect(pub.pub_hash[:author]).to eq(parsed_outgoing_json["author"])
+
       end
 
-      it " creates a new pub that returns valid bibjson i.e., check bibjson for all requried fields"
+      it "creates a matching pub_hash in the publication record from the posted bibjson" do
+        post "/publications", valid_json_for_post, headers
+        response.status.should == 201
+        pub_hash = Publication.last.pub_hash
+        
+        parsed_outgoing_json = JSON.parse(valid_json_for_post)
+        
+        expect(pub_hash[:author]).to eq(parsed_outgoing_json["author"])
+        expect(pub_hash[:authorship][0][:visibility]).to eq(parsed_outgoing_json["authorship"][0]["visibility"])
+        expect(pub_hash[:authorship][0][:status]).to eq(parsed_outgoing_json["authorship"][0]["status"])
+        expect(pub_hash[:authorship][0][:featured]).to eq(parsed_outgoing_json["authorship"][0]["featured"])
+        expect(pub_hash[:authorship][0][:cap_profile_id]).to eq(parsed_outgoing_json["authorship"][0]["cap_profile_id"])
+
+      end
 
       it " creates a pub with matching authorship info in hash and contributions table" do
         post "/publications", valid_json_for_post, headers
@@ -79,17 +93,22 @@ describe SulBib::API do
         expect(contrib.cap_profile_id).to eq(parsed_outgoing_json["authorship"][0]["cap_profile_id"])
       end
 
-      it " returns 302 for duplicate pub" do 
-        post "/publications", valid_json_for_post, headers
-        response.status.should == 201
-        post "/publications", valid_json_for_post, headers
-        response.status.should == 302
-      end
-      it " returns xxx for bad submitted bibjson"
-      it " doesn't change other contribution records"
-
     end # end of the context
 
+    context "when valid post" do
+
+        it " returns 302 for duplicate pub" do 
+          post "/publications", valid_json_for_post, headers
+          response.status.should == 201
+          post "/publications", valid_json_for_post, headers
+          response.status.should == 302
+        end
+
+        it " returns 406 - Not Acceptable for  bibjson without an authorship entry" do
+          post "/publications", invalid_json_for_post, headers
+          response.status.should == 406
+        end
+    end
   end  # end of the describe
 
  
@@ -129,9 +148,14 @@ describe SulBib::API do
     it "returns only those pubs changed since specified date"
     it "returns only those pubs with contributions for the given author"
     it "returns only pubs with a cap active profile"
-    it "returns valid bibjson"
+    
     context "when pub id doesn't exist" do 
-      it "returns not found code"
+      it "returns not found code" do
+        get "/publications/88888888888", 
+          { format: "json" },
+          {"HTTP_CAPKEY" => '***REMOVED***'}
+        response.status.should == 404 
+      end
     end
 
   end # end of the describe
