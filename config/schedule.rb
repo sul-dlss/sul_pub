@@ -3,9 +3,12 @@ set :output, "/Users/jameschartrand/Documents/rubyprojects/sulbib/log/cron_log.l
 #
 
 # nightly sciencewire harvest
-every :day, :at => '4:00am' do
-   rake "sw:nightly_harvest", :environment => 'development' 
- end
+# this instead gets done as part of the cap authorship call, since the 
+# nightly harvest is exactly for those new or changed authorhsip files that
+# come in through the cap authorship feed.
+#every :day, :at => '4:00am' do
+ #  rake "sw:nightly_harvest", :environment => 'development' 
+ #end
 
 # fortnightly sciencewire harvest on the 1st and 15th
 every '00 01 1,15 * *' do

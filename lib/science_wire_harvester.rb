@@ -37,8 +37,8 @@ include ActionView::Helpers::DateHelper
 	    
 	    #Author.where(active_in_cap: true, cap_import_enabled: true).limit(2).offset(10000).each do |author|
 	    
-	  	Author.where(active_in_cap: true, cap_import_enabled: true).find_each(:start => starting_author_id) do |author|    	
-	  		#puts "any authors? "
+	  	#Author.where(active_in_cap: true, cap_import_enabled: true).find_each(:start => starting_author_id) do |author|    	
+	  	Author.find_each(:start => starting_author_id) do |author|
 	    	harvest_for_author(author)		    
 	    end 
 	    # finish up any records left in the queues
