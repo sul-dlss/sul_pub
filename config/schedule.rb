@@ -10,11 +10,20 @@ set :output, "/Users/jameschartrand/Documents/rubyprojects/sulbib/log/cron_log.l
  #  rake "sw:nightly_harvest", :environment => 'development' 
  #end
 
-# fortnightly sciencewire harvest on the 1st and 15th
-every '00 01 1,15 * *' do
+# fortnightly sciencewire harvest for next 3 releases
+
+# - Fri 28th Jun,2013 Refreshed Data Available
+every '00 01 28 6 *' do
    rake "sw:fortnightly_harvest", :environment => 'development' 
  end
-
+ # - Fri 19th Jul,2013 Refreshed Data Available
+every '00 01 19 7 *' do
+   rake "sw:fortnightly_harvest", :environment => 'development' 
+ end
+ # - Fri 2nd Aug,2013 Refreshed Data Available
+ every '00 01 02 8 *' do
+   rake "sw:fortnightly_harvest", :environment => 'development' 
+ end
 # nightly cap authorship pull
 every :day, :at => '1:00am' do
    rake "cap:authorship", :environment => 'development' 
@@ -26,4 +35,5 @@ every :day, :at => '1:00am' do
 #day of the month (1-31),
 #month of the year (1-12),
 #day of the week (0-6 with 0=Sunday).
+
 
