@@ -1,0 +1,51 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml
+    body:
+      encoding: US-ASCII
+      string: ! '&id=233333333333333&id=45555666666666'
+    headers:
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 26 Jun 2013 20:02:32 GMT
+      Server:
+      - Apache
+      Access-Control-Allow-Origin:
+      - ! '*'
+      Cache-Control:
+      - private
+      Ncbi-Sid:
+      - 9DFD70E81CB48D81_0305SID
+      Content-Type:
+      - text/xml; charset=UTF-8
+      Set-Cookie:
+      - ncbi_sid=9DFD70E81CB48D81_0305SID; domain=.nih.gov; path=/; expires=Thu, 26
+        Jun 2014 20:02:32 GMT
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: US-ASCII
+      string: ! '<?xml version="1.0"?>
+
+        <!DOCTYPE PubmedArticleSet PUBLIC "-//NLM//DTD PubMedArticle, 1st January
+        2013//EN" "http://www.ncbi.nlm.nih.gov/corehtml/query/DTD/pubmed_130101.dtd">
+
+        <PubmedArticleSet>
+
+
+        </PubmedArticleSet>
+
+'
+    http_version: 
+  recorded_at: Wed, 26 Jun 2013 20:02:33 GMT
+recorded_with: VCR 2.5.0

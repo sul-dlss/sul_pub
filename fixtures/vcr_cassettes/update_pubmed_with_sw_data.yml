@@ -1,0 +1,72 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationItems?format=xml&publicationItemIDs=42711845
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+      Content-Type:
+      - text/xml
+      Licenseid:
+      - ***REMOVED***
+      Host:
+      - sciencewirerest.discoverylogic.com
+      Connection:
+      - Keep-Alive
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - private
+      Content-Type:
+      - application/xml; charset=utf-8
+      Server:
+      - Microsoft-IIS/7.5
+      X-Aspnetmvc-Version:
+      - '2.0'
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+      Date:
+      - Wed, 26 Jun 2013 19:30:24 GMT
+      Content-Length:
+      - '2075'
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\"?>\r\n<ArrayOfPublicationItem xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <PublicationItem>\r\n
+        \   <PublicationItemID>42711845</PublicationItemID>\r\n    <Title>Frostbite:
+        an orthopedic perspective.</Title>\r\n    <Abstract>Frostbite injury to the
+        extremities has the potential for disastrous effects. This review provides
+        information valuable to the orthopedic surgeon to aid in the evaluation and
+        treatment of frostbite. The pathophysiology and predisposing factors that
+        provide a basic understanding of the nature of frostbite are discussed. Accepted
+        and experimental imaging studies and treatment options are also reviewed.
+        An effort is made to give the orthopedic perspective on each issue, providing
+        a valuable resource for all orthopedic surgeons involved in the care of the
+        patient with frostbite.</Abstract>\r\n    <AuthorList>McAdams,T,R|Swenson,D,R|MILLER,R,A</AuthorList>\r\n
+        \   <AuthorCount>3</AuthorCount>\r\n    <KeywordList />\r\n    <DocumentTypeList>Journal
+        Article|Review</DocumentTypeList>\r\n    <DocumentCategory>Journal Document</DocumentCategory>\r\n
+        \   <NumberOfReferences>44</NumberOfReferences>\r\n    <TimesCited xsi:nil=\"true\"
+        />\r\n    <TimesNotSelfCited xsi:nil=\"true\" />\r\n    <PMID>10048354</PMID>\r\n
+        \   <PublicationSourceTitle>American journal of orthopedics (Belle Mead, N.J.)</PublicationSourceTitle>\r\n
+        \   <Volume>28</Volume>\r\n    <Issue>1</Issue>\r\n    <Pagination>21-26</Pagination>\r\n
+        \   <PublicationDate>1999-01-01T00:00:00</PublicationDate>\r\n    <PublicationYear>1999</PublicationYear>\r\n
+        \   <PublicationImpactFactor xsi:nil=\"true\" />\r\n    <PublicationSubjectCategoryList
+        />\r\n    <ISSN>1078-4519</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\"
+        />\r\n    <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank xsi:nil=\"true\"
+        />\r\n    <OrdinalRank>1</OrdinalRank>\r\n    <NormalizedRank xsi:nil=\"true\"
+        />\r\n    <NewPublicationItemID>42711845</NewPublicationItemID>\r\n    <IsObsolete>false</IsObsolete>\r\n
+        \   <CopyrightPublisher />\r\n    <CopyrightCity />\r\n  </PublicationItem>\r\n</ArrayOfPublicationItem>"
+    http_version: 
+  recorded_at: Wed, 26 Jun 2013 19:30:30 GMT
+recorded_with: VCR 2.5.0

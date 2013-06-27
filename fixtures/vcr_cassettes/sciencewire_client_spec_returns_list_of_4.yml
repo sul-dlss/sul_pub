@@ -1,0 +1,279 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery?format=xml
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\"?>\n\t          <ScienceWireQueryXMLParameter
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\n\t
+        \           <xmlQuery><![CDATA[\n\t     <query xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xmlns:xsd=\"http://www.w3.org/2001/\n\t    XMLSchema\">\n\t      <Criterion
+        ConjunctionOperator=\"AND\">\n\t        <Criteria><Criterion>\n\t            <Filter>\n\t
+        \             <Column>AuthorLastName</Column>\n\t              <Operator>BeginsWith</Operator>\n\t
+        \             <Value>smith</Value>\n\t            </Filter>\n\t          </Criterion><Criterion>\n\t
+        \           <Filter>\n\t              <Column>AuthorFirstName</Column>\n\t
+        \             <Operator>BeginsWith</Operator>\n\t              <Value>james</Value>\n\t
+        \           </Filter>\n\t          </Criterion></Criteria>\n\t      </Criterion>\n\t
+        \     <Columns>\n\t        <SortColumn>\n\t          <Column>Rank</Column>\n\t
+        \         <Direction>Descending</Direction>\n\t        </SortColumn>\n\t      </Columns>\n\t
+        \    <MaximumRows>4</MaximumRows>\n\t    </query>\n\t    ]]></xmlQuery>\n\t
+        \         </ScienceWireQueryXMLParameter>"
+    headers:
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+      Licenseid:
+      - ***REMOVED***
+      Host:
+      - sciencewirerest.discoverylogic.com
+      Connection:
+      - Keep-Alive
+      Expect:
+      - 100-continue
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - private
+      Content-Type:
+      - application/xml; charset=utf-8
+      Server:
+      - Microsoft-IIS/7.5
+      X-Aspnetmvc-Version:
+      - '2.0'
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+      Date:
+      - Wed, 26 Jun 2013 20:08:15 GMT
+      Content-Length:
+      - '277'
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\"?>\r\n<ScienceWireQueryIDResponse xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>42062</queryID>\r\n
+        \ <queryResultRows>4</queryResultRows>\r\n  <totalRows>4</totalRows>\r\n</ScienceWireQueryIDResponse>"
+    http_version: 
+  recorded_at: Wed, 26 Jun 2013 20:08:16 GMT
+- request:
+    method: get
+    uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/42062?format=xml&page=0&pageSize=2147483647&v=version/3
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+      Content-Type:
+      - text/xml
+      Licenseid:
+      - ***REMOVED***
+      Host:
+      - sciencewirerest.discoverylogic.com
+      Connection:
+      - Keep-Alive
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - private
+      Content-Type:
+      - application/xml; charset=utf-8
+      Server:
+      - Microsoft-IIS/7.5
+      X-Aspnetmvc-Version:
+      - '2.0'
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+      Date:
+      - Wed, 26 Jun 2013 20:08:15 GMT
+      Content-Length:
+      - '14582'
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\"?>\r\n<ArrayOfPublicationItem xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <PublicationItem>\r\n
+        \   <PublicationItemID>63064656</PublicationItemID>\r\n    <Title>Detection
+        of nucleic Acid targets using ramified rolling circle DNA amplification: a
+        single nucleotide polymorphism assay model.</Title>\r\n    <Abstract>BACKGROUND
+        Isothermal amplification methods provide alternatives to PCR that may be preferable
+        for some nucleic acid target detection tasks. Among current isothermal target
+        detection methods, ramified rolling circle amplification (RAM) of single-stranded
+        DNA circles that are formed by ligation of linear DNA probes (C-probes or
+        padlock probes) offers a unique target detection system by linked primers
+        and a simple amplification system that is unconstrained by the target's sequence
+        context. Earlier implementations of RAM-based target detection were reported
+        to be limited by background noise, due in part to unligated C-probe in the
+        amplification reaction. We show here that a target-detection system using
+        a biotinylated target-capture probe together with automated bead-handling
+        reduces or eliminates background amplification noise. We demonstrate the system's
+        performance by detection of a single-nucleotide polymorphism in human genomic
+        DNA.\r\nMETHODOLOGY Target detection by RAM entails hybridization and ligation
+        of a C-probe, followed by amplification and RAM signal detection. We evaluated
+        RAM target detection in genomic DNA using recognition of a human Factor V
+        gene single nucleotide polymorphism (G1691A) as a model. Locus-specific C-probes
+        were annealed and ligated to genomic DNAs that represent the 3 possible genotypes
+        at this locus, then ligated C-probes were amplified by real time RAM. The
+        majority of the steps in the assay were performed with a magnetic bead-based
+        chemistry on an automated platform. We show that the specificity of C-probe
+        ligation permits accurate genotyping of this polymorphism. The assay as described
+        here eliminates some of the background noise previously described for C-probe
+        ligation, RAM amplification assays.\r\nCONCLUSION The methods and results
+        presented here show that a combination of C-probe detection, automated sample
+        processing, and isothermal RAM amplification provide a practical approach
+        for detecting DNA targets in complex mixtures.</Abstract>\r\n    <AuthorList>Smith,James,H|Beals,Thomas,P</AuthorList>\r\n
+        \   <AuthorCount>2</AuthorCount>\r\n    <KeywordList />\r\n    <DocumentTypeList>Journal
+        Article</DocumentTypeList>\r\n    <DocumentCategory>Journal Document</DocumentCategory>\r\n
+        \   <NumberOfReferences xsi:nil=\"true\" />\r\n    <TimesCited xsi:nil=\"true\"
+        />\r\n    <TimesNotSelfCited xsi:nil=\"true\" />\r\n    <PMID>23724122</PMID>\r\n
+        \   <PublicationSourceTitle>PloS one</PublicationSourceTitle>\r\n    <Volume>8</Volume>\r\n
+        \   <Issue>5</Issue>\r\n    <PublicationDate>2013-01-01T00:00:00</PublicationDate>\r\n
+        \   <PublicationYear>2013</PublicationYear>\r\n    <PublicationSubjectCategoryList
+        />\r\n    <ISSN>1932-6203</ISSN>\r\n    <DOI>10.1371/journal.pone.0065053</DOI>\r\n
+        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>0</OrdinalRank>\r\n
+        \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
+        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher />\r\n
+        \   <CopyrightCity />\r\n    <ArticleNumber>e65053</ArticleNumber>\r\n    <PublicationImpactFactorList>4.092,2011,ClosestToPublicationYear|4.092,2011,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>12/84;BIOLOGY;2011;SC;ClosestToPublicationYear|12/84;BIOLOGY;2011;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <CopyrightStateProvince />\r\n    <CopyrightCountry>UNITED STATES</CopyrightCountry>\r\n
+        \ </PublicationItem>\r\n  <PublicationItem>\r\n    <PublicationItemID>62990678</PublicationItemID>\r\n
+        \   <Title>Primulina huaijiensis (Gesneriaceae), a new species from Guangdong,
+        China</Title>\r\n    <Abstract>Ning, Z. L., Li, G. F., Wang, J., Smith, J.
+        F., Rasolonjatovo, H. &amp; Kang, M. 2013: Primulina huaijiensis (Gesneriaceae),
+        a new species from Guangdong, China. - Ann. Bot. Fennici 50: 119-122.  Primulina
+        huaijiensis Z.L. Ning &amp; J. Wang sp. nova (Gesneriaceae) from Guangdong,
+        China is described and illustrated. It is similar to P. renifolia, but differs
+        from P. renifolia in several morphological characters, both vegetative and
+        reproductive as well as in having a different flowering period (October-December).</Abstract>\r\n
+        \   <AuthorList>Ning,Zu-Lin,|Li,Guo-Feng,|Wang,Jing,|Smith,James,F|Rasolonjatovo,Hiobiarilant,|Kang,Ming,</AuthorList>\r\n
+        \   <AuthorCount>6</AuthorCount>\r\n    <KeywordList>GUANGXI|CHIRITA</KeywordList>\r\n
+        \   <DocumentTypeList>Article</DocumentTypeList>\r\n    <DocumentCategory>Journal
+        Document</DocumentCategory>\r\n    <NumberOfReferences>11</NumberOfReferences>\r\n
+        \   <TimesCited>0</TimesCited>\r\n    <TimesNotSelfCited>0</TimesNotSelfCited>\r\n
+        \   <PMID xsi:nil=\"true\" />\r\n    <WoSItemID>000317443900024</WoSItemID>\r\n
+        \   <PublicationSourceTitle>ANNALES BOTANICI FENNICI</PublicationSourceTitle>\r\n
+        \   <Volume>50</Volume>\r\n    <Issue>1-2</Issue>\r\n    <Pagination>119-122</Pagination>\r\n
+        \   <PublicationDate>2013-04-12T00:00:00</PublicationDate>\r\n    <PublicationYear>2013</PublicationYear>\r\n
+        \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Plant
+        Sciences</PublicationSubjectCategoryList>\r\n    <ISSN>0003-3847</ISSN>\r\n
+        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>1</OrdinalRank>\r\n
+        \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
+        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>FINNISH
+        ZOOLOGICAL BOTANICAL PUBLISHING BOARD</CopyrightPublisher>\r\n    <CopyrightCity>UNIV
+        HELSINKI</CopyrightCity>\r\n    <PublicationImpactFactorList>1.014,2011,ClosestToPublicationYear|1.014,2011,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>113/189;PLANT SCIENCES;2011;SC;ClosestToPublicationYear|113/189;PLANT
+        SCIENCES;2011;SC;MostRecentYear</PublicationCategoryRankingList>\r\n    <AuthorCitationCountList>1,0,0|2,0,0|3,0,0|4,0,0|5,0,0|6,0,0</AuthorCitationCountList>\r\n
+        \   <CopyrightStateProvince />\r\n    <CopyrightCountry>FINLAND</CopyrightCountry>\r\n
+        \ </PublicationItem>\r\n  <PublicationItem>\r\n    <PublicationItemID>62985535</PublicationItemID>\r\n
+        \   <Title>Factors Influencing Triacetone Triperoxide (TATP) and Diacetone
+        Diperoxide (DADP) Formation: Part I</Title>\r\n    <Abstract>Conditions, which
+        result in the formation of triacetone triperoxide (TATP) or diacetone diperoxide
+        (DADP) from acetone and hydrogen peroxide (HP, were studied for the purposes
+        of inhibiting the reaction. Reaction of HP with acetone precipitates either
+        DADP or TATP, but the overall yield and amount of each was found to depend
+        on (1) reaction temperature, (2) the molar ratio of acid to HP/acetone, (3)
+        initial concentrations of reactants, and (4) length of reaction. Controlling
+        molar ratios and concentrations of starting materials was complicated because
+        both sulfuric acid and hydrogen peroxide were aqueous solutions. Temperature
+        exercised great control over the reaction outcome. Holding all molar concentrations
+        constant and raising the temperature from 5 to 25 degrees C showed an increase
+        of DADP over TATP formation and a decrease in overall yield. At 25 degrees
+        C a good yield of TATP was obtained if the HP to acetone ratio was kept between
+        0.5:1 and 2:1. At constant temperature and HP-to-acetone held at one-to-one
+        ratio, acid-to-HP molar ratios between 0.10:1 and 1.2:1 produced good yield
+        of TATP. Plotting the molality of HP vs. that of sulfuric acid revealed regions,
+        in which relatively pure DADP or pure TATP could be obtained. In addition
+        to varying reaction conditions, adulterants placed into acetone were tested
+        to inhibit the formation of TATP. Because there is much speculation of the
+        relative stability, sensitivity, including solvent wetting of crystals, and
+        performance of DADP and TATP, standard tests (i.e. DSC, drop weight impact,
+        and SSED) were performed.</Abstract>\r\n    <AuthorList>Oxley,Jimmie,C|Smith,James,L|Bowden,Patrick,R|Rettinger,Ryan,C</AuthorList>\r\n
+        \   <AuthorCount>4</AuthorCount>\r\n    <KeywordList>DECOMPOSITION|HYDROGEN-PEROXIDE|ACETONE
+        PEROXIDE|triacetone triperoxide (TATP)|denature|Diacetone diperoxide (DADP)|Drop-weight
+        impact sensitivity|Small-scale explosivity device (SSED)</KeywordList>\r\n
+        \   <DocumentTypeList>Article</DocumentTypeList>\r\n    <DocumentCategory>Journal
+        Document</DocumentCategory>\r\n    <NumberOfReferences>28</NumberOfReferences>\r\n
+        \   <TimesCited>0</TimesCited>\r\n    <TimesNotSelfCited>0</TimesNotSelfCited>\r\n
+        \   <PMID xsi:nil=\"true\" />\r\n    <WoSItemID>000317674100012</WoSItemID>\r\n
+        \   <PublicationSourceTitle>PROPELLANTS EXPLOSIVES PYROTECHNICS</PublicationSourceTitle>\r\n
+        \   <Volume>38</Volume>\r\n    <Issue>2</Issue>\r\n    <Pagination>244-254</Pagination>\r\n
+        \   <PublicationDate>2013-04-01T00:00:00</PublicationDate>\r\n    <PublicationYear>2013</PublicationYear>\r\n
+        \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Chemistry,
+        Applied|Engineering, Chemical</PublicationSubjectCategoryList>\r\n    <ISSN>0721-3115</ISSN>\r\n
+        \   <DOI>10.1002/prep.201200116</DOI>\r\n    <ConferenceStartDate xsi:nil=\"true\"
+        />\r\n    <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank xsi:nil=\"true\"
+        />\r\n    <OrdinalRank>2</OrdinalRank>\r\n    <NormalizedRank xsi:nil=\"true\"
+        />\r\n    <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
+        \   <CopyrightPublisher>WILEY-V C H VERLAG GMBH</CopyrightPublisher>\r\n    <CopyrightCity>WEINHEIM</CopyrightCity>\r\n
+        \   <PublicationImpactFactorList>1.101,2011,ClosestToPublicationYear|1.101,2011,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>38/70;CHEMISTRY, APPLIED;2011;SC;ClosestToPublicationYear|62/132;ENGINEERING,
+        CHEMICAL;2011;SC;ClosestToPublicationYear|38/70;CHEMISTRY, APPLIED;2011;SC;MostRecentYear|62/132;ENGINEERING,
+        CHEMICAL;2011;SC;MostRecentYear</PublicationCategoryRankingList>\r\n    <AuthorCitationCountList>1,0,0|2,0,0|3,0,0|4,0,0</AuthorCitationCountList>\r\n
+        \   <CopyrightStateProvince />\r\n    <CopyrightCountry>GERMANY</CopyrightCountry>\r\n
+        \ </PublicationItem>\r\n  <PublicationItem>\r\n    <PublicationItemID>62984886</PublicationItemID>\r\n
+        \   <Title>Hydro-NEXRAD-2: real-time access to customized radar-rainfall for
+        hydrologic applications</Title>\r\n    <Abstract>Hydro-NEXRAD-2 (HNX2) is
+        a prototype system that allows hydrologic users real-time access to NEXRAD
+        radar data in support of a wide range of research. The system processes basic
+        radar data (Level II) and delivers radar-rainfall products based on the user's
+        custom selection of features such as spatial domain, rainfall product space
+        and time resolution, and rainfall estimation algorithms. HNX2 collects real-time,
+        unprocessed data from multiple NEXRAD radars as they become available, processes
+        them through a user-configurable pipeline of data-processing modules, and
+        publishes the processed data-products at regular intervals. Modules in the
+        data-processing pipeline encapsulate algorithms such as non-meteorological
+        echo detection, radar range correction, radar-reflectivity-rain rate (Z-R)
+        conversion, echo advection correction, mosaicking of products from multiple
+        radars, and grid projections and transformations. This paper describes the
+        challenges involved in HNX2's development and implementation, which include
+        real-time error-handling, time-synchronization of data from multiple asynchronous
+        sources, generation of multiple-radar metadata products, and distribution
+        of products to a user base with diverse needs and constraints. HNX2 publishes
+        products through automation and allows multiple users access to published
+        products. Currently, HNX2 is serving near real-time rain-rate maps for Iowa
+        in the USA using data from seven radars covering the state. Hydrologic models
+        operated by The University of Iowa's Iowa Flood Center use these products.</Abstract>\r\n
+        \   <AuthorList>Krajewski,Witold,F|Kruger,Anton,|Singh,Satpreet,|Seo,Bong-Chul,|Smith,James,A</AuthorList>\r\n
+        \   <AuthorCount>5</AuthorCount>\r\n    <KeywordList>UNCERTAINTY|ERROR|MODELS|REFLECTIVITY|WSR-88D|NEXRAD|super-resolution|Nexrad|Hydro-NEXRAD|real-time
+        rainfall estimation</KeywordList>\r\n    <DocumentTypeList>Article</DocumentTypeList>\r\n
+        \   <DocumentCategory>Journal Document</DocumentCategory>\r\n    <NumberOfReferences>33</NumberOfReferences>\r\n
+        \   <TimesCited>0</TimesCited>\r\n    <TimesNotSelfCited>0</TimesNotSelfCited>\r\n
+        \   <PMID xsi:nil=\"true\" />\r\n    <WoSItemID>000317481900026</WoSItemID>\r\n
+        \   <PublicationSourceTitle>JOURNAL OF HYDROINFORMATICS</PublicationSourceTitle>\r\n
+        \   <Volume>15</Volume>\r\n    <Issue>2</Issue>\r\n    <Pagination>580-590</Pagination>\r\n
+        \   <PublicationDate>2013-01-01T00:00:00</PublicationDate>\r\n    <PublicationYear>2013</PublicationYear>\r\n
+        \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Computer
+        Science, Interdisciplinary Applications|Engineering, Civil|Environmental Sciences|Water
+        Resources</PublicationSubjectCategoryList>\r\n    <ISSN>1464-7141</ISSN>\r\n
+        \   <DOI>10.2166/hydro.2012.227</DOI>\r\n    <ConferenceStartDate xsi:nil=\"true\"
+        />\r\n    <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank xsi:nil=\"true\"
+        />\r\n    <OrdinalRank>3</OrdinalRank>\r\n    <NormalizedRank xsi:nil=\"true\"
+        />\r\n    <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
+        \   <CopyrightPublisher>IWA PUBLISHING</CopyrightPublisher>\r\n    <CopyrightCity>LONDON</CopyrightCity>\r\n
+        \   <PublicationImpactFactorList>1.048,2011,ClosestToPublicationYear|1.048,2011,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>63/99;COMPUTER SCIENCE, INTERDISCIPLINARY
+        APPLICATIONS;2011;SC;ClosestToPublicationYear|34/118;ENGINEERING, CIVIL;2011;SC;ClosestToPublicationYear|141/203;ENVIRONMENTAL
+        SCIENCES;2011;SC;ClosestToPublicationYear|43/78;WATER RESOURCES;2011;SC;ClosestToPublicationYear|63/99;COMPUTER
+        SCIENCE, INTERDISCIPLINARY APPLICATIONS;2011;SC;MostRecentYear|34/118;ENGINEERING,
+        CIVIL;2011;SC;MostRecentYear|141/203;ENVIRONMENTAL SCIENCES;2011;SC;MostRecentYear|43/78;WATER
+        RESOURCES;2011;SC;MostRecentYear</PublicationCategoryRankingList>\r\n    <AuthorCitationCountList>1,0,0|2,0,0|3,0,0|4,0,0|5,0,0</AuthorCitationCountList>\r\n
+        \   <CopyrightStateProvince />\r\n    <CopyrightCountry>UNITED KINGDOM</CopyrightCountry>\r\n
+        \ </PublicationItem>\r\n</ArrayOfPublicationItem>"
+    http_version: 
+  recorded_at: Wed, 26 Jun 2013 20:08:16 GMT
+recorded_with: VCR 2.5.0

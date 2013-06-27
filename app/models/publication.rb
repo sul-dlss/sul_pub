@@ -24,12 +24,14 @@ end
 
 def build_from_sciencewire_hash(new_sw_pub_hash)   
       self.pub_hash = new_sw_pub_hash
+     
       self.sciencewire_id = new_sw_pub_hash[:sw_id]
       unless new_sw_pub_hash[:issn].blank? then self.issn = new_sw_pub_hash[:issn] end
-      unless new_sw_pub_hash[:title].blank? then self.issn = new_sw_pub_hash[:title] end
-      unless new_sw_pub_hash[:year].blank? then self.issn = new_sw_pub_hash[:year] end
-      unless new_sw_pub_hash[:pages].blank? then self.issn = new_sw_pub_hash[:pages] end
+      unless new_sw_pub_hash[:title].blank? then self.title = new_sw_pub_hash[:title] end
+      unless new_sw_pub_hash[:year].blank? then self.year = new_sw_pub_hash[:year] end
+      unless new_sw_pub_hash[:pages].blank? then self.pages = new_sw_pub_hash[:pages] end
       add_any_pubmed_data_to_hash unless new_sw_pub_hash[:pmid].blank?
+  
       self
 end
 
@@ -125,6 +127,8 @@ def set_sul_pub_id_in_hash
   self.pub_hash[:identifier] << {:type => 'SULPubId', :id => sul_pub_id, :url => 'http://sulcap.stanford.edu/publications/' + sul_pub_id}            
 end
 
+# this is a very temporary method to be used only for the initial import
+# of data from CAP.  
 def cutover_sync_hash_and_db
   set_sul_pub_id_in_hash
   self.pub_hash[:last_updated] = self.updated_at.to_s 
@@ -150,8 +154,8 @@ def sync_publication_hash_and_db
     add_all_identifiers_in_db_to_pub_hash
     
     self.class.update_formatted_citations(self.pub_hash)
-  
     save
+
   end
 
 def rebuild_pub_hash

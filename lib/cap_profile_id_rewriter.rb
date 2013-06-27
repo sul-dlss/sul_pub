@@ -2,8 +2,6 @@ require 'dotiw'
 class CapProfileIdRewriter
 	include ActionView::Helpers::DateHelper
 
-	
-
 	def rewrite_cap_profile_ids_from_feed
   		
   		begin

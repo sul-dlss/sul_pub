@@ -243,7 +243,7 @@ def query_sciencewire_by_author_name(first_name, middle_name, last_name, max_row
 	    
 	    request.body = wrapped_xml_query
 
-	    http.start
+	   # http.start
 
 	    response = http.request(request)
 	    response_body = response.body
@@ -258,7 +258,7 @@ def query_sciencewire_by_author_name(first_name, middle_name, last_name, max_row
 
 	    fullPubResponse = http.request(fullPubsRequest)
 	    xml_doc = Nokogiri::XML(fullPubResponse.body)
-	    http.finish
+	 #   http.finish
 	    xml_doc
 
 	rescue Timeout::Error => te	
@@ -292,10 +292,10 @@ def query_sciencewire_by_author_name(first_name, middle_name, last_name, max_row
 	    fullPubsRequest["LicenseID"] = auth[:get_license_id]
 	    fullPubsRequest["Host"] = auth[:get_host]
 	    fullPubsRequest["Connection"] = "Keep-Alive"
-	    http.start
+	  #  http.start
 	    fullPubResponse = http.request(fullPubsRequest).body
 	    xml_doc = Nokogiri::XML(fullPubResponse)
-	    http.finish
+	  #  http.finish
 	    xml_doc
 	rescue Timeout::Error => te	
 		timeout_retries -= 1

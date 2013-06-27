@@ -33,6 +33,7 @@ group :development, :test do
   gem 'debugger'
   gem 'factory_girl_rails'
 
+
 end
 
 group :test do
@@ -40,6 +41,9 @@ group :test do
     gem 'rb-fsevent', '0.9.1', :require => false
     gem 'growl', '1.0.3'
     gem 'faker'
+    gem 'simplecov', :require => false
+    gem 'vcr'
+    gem 'webmock', '1.11'
 end
 
 # Gems used only for assets and not required

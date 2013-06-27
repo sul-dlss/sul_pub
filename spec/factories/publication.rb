@@ -15,10 +15,13 @@ FactoryGirl.define do
       	after(:create) do |publication, evaluator|
         	FactoryGirl.create_list(:contribution, evaluator.contributions_count, publication: publication)
       	end
-	end
+	  end
 
-   # factory :publication_with_contribution, parent: :publication do
-   #   contribution 
-  #end
+    factory :pub_with_sw_id_and_pmid, parent: :publication do
+      pmid 10048354
+      sciencewire_id 42711845
+    end
+
+  
 
 end

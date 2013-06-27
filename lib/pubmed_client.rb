@@ -8,9 +8,9 @@ class PubmedClient
 		http.read_timeout = timeout_period
 		request = Net::HTTP::Post.new("/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml")
 		request.body = pmidValuesForPost
-		http.start
+		#http.start
 		the_incoming_xml = http.request(request).body
-		http.finish
+		#http.finish
 		the_incoming_xml
 
 		rescue Timeout::Error => te	

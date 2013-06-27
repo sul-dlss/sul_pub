@@ -36,4 +36,3 @@ every :day, :at => '1:00am' do
 #month of the year (1-12),
 #day of the week (0-6 with 0=Sunday).
 
-

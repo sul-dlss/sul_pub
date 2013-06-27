@@ -1,9 +1,11 @@
 require 'dotiw'
 class ScienceWireHarvester
-include ActionView::Helpers::DateHelper
-#harverst sciencewire records for all authors using author information
+	include ActionView::Helpers::DateHelper
+	#harvest sciencewire records for all authors using author information
 	#expose the sciencewire client for rspec testing
 	attr_reader :sciencewire_client
+	attr_reader :records_queued_for_pubmed_retrieval
+	attr_reader :records_queued_for_sciencewire_retrieval
 
 	def initialize
         initialize_instance_vars
@@ -23,6 +25,8 @@ include ActionView::Helpers::DateHelper
          			NotificationManager.handle_harvest_problem(e, "Couldn't find author for author for id  #{author_id} ")
          		end
 			end   
+			process_queued_sciencewire_suggestions
+	    	process_queued_pubmed_records
 			write_counts_to_log 
         rescue => e 
         	NotificationManager.handle_harvest_problem(e, "Error for with nightly harvest.")
@@ -31,7 +35,6 @@ include ActionView::Helpers::DateHelper
 
 	def harvest_pubs_for_all_authors(starting_author_id)
 	    
-	    puts "starting author id: #{starting_author_id}"
 	    @sw_harvest_logger = Logger.new(Rails.root.join('log', 'sw_harvest.log'))
 	    @sw_harvest_logger.info "Started full authorship harvest #{DateTime.now}" 
 	    
@@ -50,8 +53,7 @@ include ActionView::Helpers::DateHelper
 	def harvest_pubs_for_Dons_sample
 		@sw_harvest_logger = Logger.new(Rails.root.join('log', 'sw_test_harvest.log'))
 	    @sw_harvest_logger.info "Started Don's sample authorship harvest #{DateTime.now}" 
-	      
-	    
+	        
 	    IO.foreach(Rails.root.join('app', 'data', '2013_06_06_univIds_from_don_for_harvest_qa.txt')) do |line|
 	  	 	author = Author.where(university_id: line).first
 	    	if author 
@@ -135,7 +137,6 @@ include ActionView::Helpers::DateHelper
 	        if @author_count%50 == 0
 	        	string_to_print = "Harvested up to author id: #{author.id} with #{@total_suggested_count.to_s} total suggestions so far for #{@author_count.to_s} authors - #{DateTime.now}" 
 	        	@sw_harvest_logger.info string_to_print
-	        	puts string_to_print
 	        end
 	       
 	        if emails_for_harvest.blank? && seed_list.empty? 
@@ -152,8 +153,6 @@ include ActionView::Helpers::DateHelper
 	        		# queue up sciencewire id, along with any associated authors, for batched retrieval and processing
 	        		@records_queued_for_sciencewire_retrieval[suggested_sciencewire_id] ||= []
 	        		@records_queued_for_sciencewire_retrieval[suggested_sciencewire_id] << author.id 
-
-	        		#puts @records_queued_for_sciencewire_retrieval.to_s
 	        	end
 	        	if @records_queued_for_sciencewire_retrieval.length > 100
         			process_queued_sciencewire_suggestions
@@ -162,7 +161,7 @@ include ActionView::Helpers::DateHelper
         		if @records_queued_for_pubmed_retrieval.length > 4000
         			process_queued_pubmed_records
 	    		end
-	    		if @total_suggested_count%5000 == 0  then GC.start end
+	    		if @total_suggested_count%1000 == 0  then GC.start end
 	        end   
 	    rescue => e
 	      NotificationManager.handle_harvest_problem(e, "Error for #{author.official_last_name} - sul author id: #{author.id} ")
@@ -180,6 +179,7 @@ include ActionView::Helpers::DateHelper
 	end
 
 	def create_contribs_for_author_ids_and_pub(author_ids, pub)
+		
 		author_ids.each do | author_id |
 			add_contribution_for_harvest_suggestion(Author.find(author_id), pub)
 		end
@@ -197,8 +197,10 @@ include ActionView::Helpers::DateHelper
 	end
 
 	def create_contrib_for_pub_if_exists(sciencewire_id, author)
+	
 		existing_pub = Publication.where(sciencewire_id: sciencewire_id).first
     	if existing_pub
+    		
     		add_contribution_for_harvest_suggestion(author, existing_pub)
     		@matches_on_existing_swid_count += 1
     		true
@@ -228,6 +230,7 @@ include ActionView::Helpers::DateHelper
 	end
 
 	def process_queued_sciencewire_suggestions
+		
 		list_of_sw_ids = @records_queued_for_sciencewire_retrieval.keys.join(',')
 		sw_records_doc = @sciencewire_client.get_full_sciencewire_pubs_for_sciencewire_ids(list_of_sw_ids)
 		sw_records_doc.xpath('//PublicationItem').each do |sw_doc|
@@ -247,10 +250,12 @@ include ActionView::Helpers::DateHelper
 	end
 
 	def create_or_update_pub_and_contribution_with_harvested_sw_doc(incoming_sw_xml_doc, author_ids)
-		#puts "author ids: #{author_ids}" 
+		puts "author ids in create or update: #{author_ids}" 
 	    pub_hash = SciencewireSourceRecord.convert_sw_publication_doc_to_hash(incoming_sw_xml_doc) 
+	  #  puts "pub_hash: #{pub_hash}"
 	    pmid = pub_hash[:pmid]
 	    sciencewire_id = pub_hash[:sw_id]
+	   
 	    title = pub_hash[:title]
 	    year = pub_hash[:year]
 	    issn = pub_hash[:issn]
@@ -260,14 +265,19 @@ include ActionView::Helpers::DateHelper
 	    visibility = "private"
 	    featured = false
 	    active = true
-	    #disambig rules:  1.check for existing pub by sw_id, pmid 2.Look for ISSN. If matches, need to also check for year and first page. 3.Look for Title, year, starting page
+
+	    #disambig rules:  
+	    #1.check for existing pub by sw_id, pmid 
+	    #2.Look for ISSN. If matches, need to also check for year and first page. 
+	    #3.Look for Title, year, starting page
 
 		# although we've already checked earlier, check again for an existing pub
-		# with this scienciewire id in case one got created in the mean time
+		# with this scienciewire id in case one got created for some other reason
 		was_record_created = create_contrib_for_pub_if_exists_by_author_ids(sciencewire_id, author_ids)
 		if ! was_record_created	
 	    	# nope, now check for an existing pub by pmid or issn/pages or title/year/pages
 	    	if !pmid.blank? 
+	    		"should find pmid here: #{pmid}"
 	    		pub = Publication.where(pmid: pmid).first unless pmid.blank?
 	    		if pub
 	    			@matches_on_existing_pmid_count  +=1
@@ -320,15 +330,16 @@ include ActionView::Helpers::DateHelper
 	def process_queued_pubmed_records
 
 		begin
-			puts "in process queued pubmed records"
+		#	puts "in process queued pubmed records"
 			pubmed_source_record = PubmedSourceRecord.new
 			pub_med_records = @pubmed_client.fetch_records_for_pmid_list(@records_queued_for_pubmed_retrieval.keys)
 			Nokogiri::XML(pub_med_records).xpath('//PubmedArticle').each do |pub_doc|
-				puts "processing one of the pubmed xml articles."
+			#	puts "processing one of the pubmed xml articles."
 		  		pmid = pub_doc.xpath('MedlineCitation/PMID').text    
 		        pubmed_source_record = PubmedSourceRecord.create_pubmed_source_record(pmid, pub_doc)
 		        if pubmed_source_record then @total_new_pubmed_source_count += 1 end
 	          	pub_hash = @records_queued_for_pubmed_retrieval[pmid][:sw_hash]
+	          #	puts "the swid: #{@records_queued_for_pubmed_retrieval[pmid][:sw_hash]}"
 				author_ids = @records_queued_for_pubmed_retrieval[pmid][:authors]
 			    pub = create_new_harvested_pub(true, pub_hash[:title], pub_hash[:year], pub_hash[:issn], pub_hash[:pages], pub_hash[:type], pub_hash[:sw_id], pmid)
 		        abstract = pubmed_source_record.extract_abstract_from_pubmed_record(pub_doc)

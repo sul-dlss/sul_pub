@@ -55,9 +55,9 @@ class PubmedSourceRecord < ActiveRecord::Base
 		http = Net::HTTP.new("eutils.ncbi.nlm.nih.gov")	
 		request = Net::HTTP::Post.new("/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml")
 		request.body = pmidValuesForPost
-		http.start
+		#http.start
 		the_incoming_xml = http.request(request).body
-		http.finish
+		#http.finish
 		count = 0
 		source_records = []
 		@cap_import_pmid_logger = Logger.new(Rails.root.join('log', 'cap_import_pmid.log'))

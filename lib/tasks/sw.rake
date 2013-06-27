@@ -5,9 +5,4 @@ namespace :sw do
     ScienceWireHarvester.new.harvest_pubs_for_all_authors(starting_author_id)
     #CapAuthorshipMailer.welcome_email("harvest complete").deliver
   end
-  task :nightly_harvest => :environment do
-  	puts "harvest triggered....."
-  	#ScienceWireHarvester.new.do_nightly_harvest
-  	#CapAuthorshipMailer.welcome_email("harvest complete").deliver
-  end
 end
