@@ -250,7 +250,7 @@ class ScienceWireHarvester
 	end
 
 	def create_or_update_pub_and_contribution_with_harvested_sw_doc(incoming_sw_xml_doc, author_ids)
-		puts "author ids in create or update: #{author_ids}" 
+		
 	    pub_hash = SciencewireSourceRecord.convert_sw_publication_doc_to_hash(incoming_sw_xml_doc) 
 	  #  puts "pub_hash: #{pub_hash}"
 	    pmid = pub_hash[:pmid]

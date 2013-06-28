@@ -114,7 +114,6 @@ end
     version 'v1', :using => :header, :vendor => 'sul', :cascade => false
     format :json
     #rescue_from :all, :backtrace => true
-    
     #rescue_from :all do |e|
     #    rack_response({ :message => "rescued from #{e.class.name}" })
     #end
@@ -256,7 +255,6 @@ get :sourcelookup do
         header "Location", env["REQUEST_URI"].to_s + "/" + pub.id.to_s
         pub.pub_hash
       end
-    
     end
 
     # CALL TO UPDATE A NEW MANUAL PUBLICATION

@@ -1,4 +1,3 @@
-require 'sul_solr'
 
 namespace :sul do
 

@@ -25,7 +25,8 @@ class BibtexIngester
         	 		@bibtex_file_logger = Logger.new(Rails.root.join('log', "#{file_full_path}_import.log"))
         	 		@bibtex_file_logger.info "Started bibtext import for file #{DateTime.now}"  
         	 		BibTeX.open(file_full_path).each do | record |
-        	 		#	puts record.to_s
+        	 			puts record.to_s
+        	 			if record["wawa"] then puts "wawa? : #{record.wawa}" end
         	 			ingest_record(batch_dir_name, bibtex_file_name, record)
         	 			@count_for_file += 1
         	 			@total_records_processed += 1
