@@ -289,6 +289,7 @@ DEPENDENCIES
   jquery-rails
   kaminari
   mysql2
+  pry
   pubmed_search
   rails (= 3.2.13)
   rb-fsevent (= 0.9.1)
