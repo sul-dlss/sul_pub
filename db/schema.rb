@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130613221514) do
+ActiveRecord::Schema.define(:version => 20130703222701) do
 
   create_table "authors", :force => true do |t|
     t.integer  "cap_profile_id"
@@ -35,8 +35,10 @@ ActiveRecord::Schema.define(:version => 20130613221514) do
     t.string   "emails_for_harvest"
   end
 
+  add_index "authors", ["active_in_cap"], :name => "index_authors_on_active_in_cap"
   add_index "authors", ["california_physician_license"], :name => "index_authors_on_california_physician_license"
-  add_index "authors", ["cap_profile_id"], :name => "index_author_on_cap_profile_id"
+  add_index "authors", ["cap_profile_id"], :name => "index_authors_on_cap_profile_id"
+  add_index "authors", ["sunetid"], :name => "index_authors_on_sunetid"
   add_index "authors", ["university_id"], :name => "index_authors_on_university_id"
 
   create_table "batch_uploaded_source_records", :force => true do |t|
@@ -101,11 +103,11 @@ ActiveRecord::Schema.define(:version => 20130613221514) do
     t.integer  "year"
     t.integer  "lock_version"
     t.text     "xml"
-    t.text     "pub_hash"
+    t.text     "pub_hash",                :limit => 16777215
     t.integer  "pmid"
     t.integer  "sciencewire_id"
-    t.datetime "created_at",              :null => false
-    t.datetime "updated_at",              :null => false
+    t.datetime "created_at",                                  :null => false
+    t.datetime "updated_at",                                  :null => false
     t.string   "pages"
     t.string   "issn"
     t.string   "publication_type"
@@ -124,7 +126,7 @@ ActiveRecord::Schema.define(:version => 20130613221514) do
     t.datetime "updated_at",         :null => false
   end
 
-  add_index "pubmed_source_records", ["pmid"], :name => "index_pubmed_sources_on_pmid"
+  add_index "pubmed_source_records", ["pmid"], :name => "index_pubmed_source_records_on_pmid"
 
   create_table "sciencewire_source_records", :force => true do |t|
     t.text     "source_data"
@@ -137,8 +139,8 @@ ActiveRecord::Schema.define(:version => 20130613221514) do
     t.datetime "updated_at",         :null => false
   end
 
-  add_index "sciencewire_source_records", ["pmid"], :name => "index_sw_source_on_pmid"
-  add_index "sciencewire_source_records", ["sciencewire_id"], :name => "index_sw_source_on_swid"
+  add_index "sciencewire_source_records", ["pmid"], :name => "index_sciencewire_source_records_on_pmid"
+  add_index "sciencewire_source_records", ["sciencewire_id"], :name => "index_sciencewire_source_records_on_sciencewire_id"
 
   create_table "user_submitted_source_records", :force => true do |t|
     t.text     "source_data"
