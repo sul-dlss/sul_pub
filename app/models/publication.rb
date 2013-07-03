@@ -10,10 +10,10 @@ class Publication < ActiveRecord::Base
   #has_many :population_membership, :foreign_key => "author_id"
   #validates_uniqueness_of :pmid
   #validates_uniqueness_of :sciencewire_id
-  
+
   serialize :pub_hash, Hash
-   
-  
+
+
 def self.get_pub_by_pmid(pmid)
     Publication.where(pmid: pmid).first || SciencewireSourceRecord.get_pub_by_pmid(pmid) || PubmedSourceRecord.get_pub_by_pmid(pmid)
 end
@@ -22,16 +22,16 @@ def self.get_pub_by_sciencewire_id(sw_id)
     pub = Publication.where(sciencewire_id: sw_id).first || SciencewireSourceRecord.get_pub_by_sciencewire_id(sw_id)
 end
 
-def build_from_sciencewire_hash(new_sw_pub_hash)   
+def build_from_sciencewire_hash(new_sw_pub_hash)
       self.pub_hash = new_sw_pub_hash
-     
+
       self.sciencewire_id = new_sw_pub_hash[:sw_id]
       unless new_sw_pub_hash[:issn].blank? then self.issn = new_sw_pub_hash[:issn] end
       unless new_sw_pub_hash[:title].blank? then self.title = new_sw_pub_hash[:title] end
       unless new_sw_pub_hash[:year].blank? then self.year = new_sw_pub_hash[:year] end
       unless new_sw_pub_hash[:pages].blank? then self.pages = new_sw_pub_hash[:pages] end
       add_any_pubmed_data_to_hash unless new_sw_pub_hash[:pmid].blank?
-  
+
       self
 end
 
@@ -45,7 +45,7 @@ def self.build_new_manual_publication(provenance, pub_hash, original_source_stri
     fingerprint = Digest::SHA2.hexdigest(original_source_string)
     existingRecord = UserSubmittedSourceRecord.where(source_fingerprint: fingerprint).first
 
-    unless existingRecord.nil?  
+    unless existingRecord.nil?
       pub =  existingRecord.publication
       unless pub.nil?
         pub.update_manual_pub_from_pub_hash(pub_hash, provenance, original_source_string)
@@ -53,7 +53,7 @@ def self.build_new_manual_publication(provenance, pub_hash, original_source_stri
         pub = create_man_pub(pub_hash, provenance)
         pub.sync_publication_hash_and_db
       end
-    else   
+    else
       pub = create_man_pub(pub_hash, provenance)
       # todo:  have to look at deleting old identifiers, old contribution info, from db  i.e, how to correct errors.
       pub.user_submitted_source_records.create(
@@ -65,7 +65,7 @@ def self.build_new_manual_publication(provenance, pub_hash, original_source_stri
       )
       pub.update_any_new_contribution_info_in_pub_hash_to_db
       pub.sync_publication_hash_and_db
-      
+
     end
     pub
   end
@@ -73,17 +73,17 @@ def self.build_new_manual_publication(provenance, pub_hash, original_source_stri
 def self.create_man_pub(pub_hash, provenance)
   pub_hash[:provenance] = provenance
   Publication.create(
-          active: true, 
-          title: pub_hash[:title], 
-          year: pub_hash[:year], 
-          pub_hash: pub_hash, 
-          issn: pub_hash[:issn], 
+          active: true,
+          title: pub_hash[:title],
+          year: pub_hash[:year],
+          pub_hash: pub_hash,
+          issn: pub_hash[:issn],
           pages: pub_hash[:pages],
           publication_type: pub_hash[:type])
 end
 
 def update_manual_pub_from_pub_hash(incoming_pub_hash, provenance, original_source_string)
-    
+
     incoming_pub_hash[:provenance] = provenance
     self.title = incoming_pub_hash[:title]
     self.year = incoming_pub_hash[:year]
@@ -97,7 +97,7 @@ def update_manual_pub_from_pub_hash(incoming_pub_hash, provenance, original_sour
         year: self.year
     )
     self.update_any_new_contribution_info_in_pub_hash_to_db
-    self.sync_publication_hash_and_db   
+    self.sync_publication_hash_and_db
 end
 
 #def add_contribution(cap_profile_id, sul_author_id, status, visibility, featured)
@@ -109,36 +109,36 @@ def add_any_pubmed_data_to_hash
   unless self.pmid.blank?
     pubmed_hash = PubmedSourceRecord.get_pubmed_hash_for_pmid(self.pmid)
     unless pubmed_hash.nil?
-        self.pub_hash[:mesh_headings] = pubmed_hash[:mesh] unless pubmed_hash[:mesh].blank?
-        self.pub_hash[:abstract] = pubmed_hash[:abstract] unless pubmed_hash[:abstract].blank?   
+        self.pub_hash[:mesh_headings] = pubmed_hash[:mesh_headings] unless pubmed_hash[:mesh_headings].blank?
+        self.pub_hash[:abstract] = pubmed_hash[:abstract] unless pubmed_hash[:abstract].blank?
     end
   end
 end
 
 def set_last_updated_value_in_hash
   save   # to reset last updated value
-  self.pub_hash[:last_updated] = updated_at.to_s 
+  self.pub_hash[:last_updated] = updated_at.to_s
 end
 
 def set_sul_pub_id_in_hash
-  sul_pub_id = self.id.to_s    
+  sul_pub_id = self.id.to_s
   self.pub_hash[:sulpubid] = sul_pub_id
   self.pub_hash[:identifier] ||= []
-  self.pub_hash[:identifier] << {:type => 'SULPubId', :id => sul_pub_id, :url => 'http://sulcap.stanford.edu/publications/' + sul_pub_id}            
+  self.pub_hash[:identifier] << {:type => 'SULPubId', :id => sul_pub_id, :url => 'http://sulcap.stanford.edu/publications/' + sul_pub_id}
 end
 
 # this is a very temporary method to be used only for the initial import
-# of data from CAP.  
+# of data from CAP.
 def cutover_sync_hash_and_db
   set_sul_pub_id_in_hash
-  self.pub_hash[:last_updated] = self.updated_at.to_s 
+  self.pub_hash[:last_updated] = self.updated_at.to_s
   add_all_db_contributions_to_my_pub_hash
   #add identifiers that are in the hash to the pub identifiers db table
   self.pub_hash[:identifier].each do |identifier|
         self.publication_identifiers.create(
           :identifier_type => identifier[:type],
-          :certainty => 'confirmed', 
-          :identifier_value => identifier[:id], 
+          :certainty => 'confirmed',
+          :identifier_value => identifier[:id],
           :identifier_uri => identifier[:url])
   end
  self.class.update_formatted_citations(self.pub_hash)
@@ -148,11 +148,11 @@ end
 def sync_publication_hash_and_db
     set_last_updated_value_in_hash
     set_sul_pub_id_in_hash
-    
+
     add_all_db_contributions_to_my_pub_hash
     add_any_new_identifiers_in_pub_hash_to_db
     add_all_identifiers_in_db_to_pub_hash
-    
+
     self.class.update_formatted_citations(self.pub_hash)
     save
 
@@ -163,7 +163,7 @@ def rebuild_pub_hash
     sw_source_record = SciencewireSourceRecord.where(sciencewire_id: self.sciencewire_id).first
     build_from_sciencewire_hash(sw_source_record.get_source_as_hash)
   elsif self.pmid
-    pubmed_source_record = PubmedSourceRecord.where(pmid: self.pmid)
+    pubmed_source_record = PubmedSourceRecord.where(pmid: self.pmid).first
     build_from_pubmed_hash(pubmed_source_record.get_source_as_hash)
   end
   #otherwise, probably manual or batch loaded, so just rebuild identifiers, contributions, and citations from db
@@ -172,7 +172,7 @@ def rebuild_pub_hash
     pages = self.pub_hash[:pages]
     publication_type = self.pub_hash[:type]
     self.update_attributes(issn: issn, pages: pages, publication_type: publication_type)
-  
+
     set_last_updated_value_in_hash
     add_all_db_contributions_to_my_pub_hash
     add_all_identifiers_in_db_to_pub_hash
@@ -186,7 +186,7 @@ def rebuild_authorship
 end
 
   def add_any_new_identifiers_in_pub_hash_to_db
-    if pub_hash[:identifier] 
+    if pub_hash[:identifier]
       self.pub_hash[:identifier].each do |identifier|
         self.publication_identifiers.where(
           :identifier_type => identifier[:type]).
@@ -210,24 +210,24 @@ def update_any_new_contribution_info_in_pub_hash_to_db
   unless self.pub_hash[:authorship].nil?
     self.pub_hash[:authorship].each do |contrib|
       hash_for_update = {
-        status: contrib[:status], 
+        status: contrib[:status],
         visibility: contrib[:visibility],
         featured: contrib[:featured]
       }
-      sul_author_id = contrib[:sul_author_id] 
-      if sul_author_id.blank? 
+      sul_author_id = contrib[:sul_author_id]
+      if sul_author_id.blank?
         cap_profile_id = contrib[:cap_profile_id]
         unless cap_profile_id.blank?
           author = Author.where(cap_profile_id: contrib[:cap_profile_id]).first
-          sul_author_id = author.id unless author.blank? 
+          sul_author_id = author.id unless author.blank?
         end
-      else 
+      else
         author = Author.find(sul_author_id)
       end
       cap_profile_id = author.cap_profile_id
       unless cap_profile_id.blank? then hash_for_update[:cap_profile_id] = author.cap_profile_id end
       unless sul_author_id.blank?
-        contrib = self.contributions.where(:author_id => sul_author_id).first_or_create   
+        contrib = self.contributions.where(:author_id => sul_author_id).first_or_create
         contrib.update_attributes(hash_for_update)
       end
     end
@@ -236,12 +236,12 @@ end
 
   def add_all_db_contributions_to_my_pub_hash
 
-  if self.pub_hash 
-      self.pub_hash[:authorship] = Contribution.where(publication_id: self.id).collect do |contrib_in_db|     
+  if self.pub_hash
+      self.pub_hash[:authorship] = Contribution.where(publication_id: self.id).collect do |contrib_in_db|
         {cap_profile_id: contrib_in_db.cap_profile_id,
          sul_author_id: contrib_in_db.author_id,
          status: contrib_in_db.status,
-         visibility: contrib_in_db.visibility, 
+         visibility: contrib_in_db.visibility,
          featured: contrib_in_db.featured}
       end
      # puts self.pub_hash.to_s
@@ -261,7 +261,7 @@ end
     pub_logger.error e.backtrace
   end
 
-  
+
 
 def self.update_formatted_citations(pub_hash)
     #[{"id"=>"Gettys90", "type"=>"article-journal", "author"=>[{"family"=>"Gettys", "given"=>"Jim"}, {"family"=>"Karlton", "given"=>"Phil"}, {"family"=>"McGregor", "given"=>"Scott"}], "title"=>"The {X} Window System, Version 11", "container-title"=>"Software Practice and Experience", "volume"=>"20", "issue"=>"S2", "abstract"=>"A technical overview of the X11 functionality.  This is an update of the X10 TOG paper by Scheifler \\& Gettys.", "issued"=>{"date-parts"=>[[1990]]}}]
@@ -270,20 +270,20 @@ def self.update_formatted_citations(pub_hash)
     apa_csl_file = Rails.root.join('app', 'data', 'apa.csl')
     authors_for_citeproc = []
     authors = pub_hash[:author]
-    if authors.length > 5 
+    if authors.length > 5
       authors = authors[1..4]
       authors << {:name=>"et al."}
     end
-    
+
     authors.each do |author|
       last_name = ""
       rest_of_name = ""
-      
+
       # use parsed name parts if available
       unless author[:lastname].blank?
         last_name = author[:lastname]
         unless author[:firstname].blank?
-          if author[:firstname].length == 1 
+          if author[:firstname].length == 1
             rest_of_name << ' ' << author[:firstname] << '.'
           else
             rest_of_name << ' ' <<  author[:firstname]
@@ -291,7 +291,7 @@ def self.update_formatted_citations(pub_hash)
         end
 
         unless author[:middlename].blank?
-          if author[:middlename].length == 1 
+          if author[:middlename].length == 1
             rest_of_name << ' ' << author[:middlename] << '.'
           else
             rest_of_name << ' ' <<  author[:middlename]
@@ -313,17 +313,17 @@ def self.update_formatted_citations(pub_hash)
         end
       end
 
-      unless last_name.blank? 
+      unless last_name.blank?
         authors_for_citeproc << {"family" => last_name, "given" => rest_of_name}
       end
     end
 
-    
+
     cit_data_hash = {"id" => "sulpub",
                  "type"=>pub_hash[:type],
                  "author"=>authors_for_citeproc,
                  "title"=>pub_hash[:title]
-                 
+
                  }
 
     cit_data_hash["abstract"] = pub_hash[:abstract] unless pub_hash[:abstract].blank?
@@ -332,23 +332,23 @@ def self.update_formatted_citations(pub_hash)
   if pub_hash.has_key?(:series)
     cit_data_hash["container-title"] = pub_hash[:series][:title] unless pub_hash[:series][:title].blank?
     cit_data_hash["volume"] = pub_hash[:series][:volume] unless pub_hash[:series][:volume].blank?
-    cit_data_hash["issue"] = pub_hash[:series][:number] unless pub_hash[:series][:number].blank?  
+    cit_data_hash["issue"] = pub_hash[:series][:number] unless pub_hash[:series][:number].blank?
     cit_data_hash["issued"]  = {"date-parts"=>[[pub_hash[:series][:year]]]} unless pub_hash[:series][:year].blank?
  end
  # add journal information if it exists
  if pub_hash.has_key?(:journal)
     cit_data_hash["container-title"] = pub_hash[:journal][:name] unless pub_hash[:journal][:name].blank?
     cit_data_hash["volume"] = pub_hash[:journal][:volume] unless pub_hash[:journal][:volume].blank?
-    cit_data_hash["issue"] = pub_hash[:journal][:issue] unless pub_hash[:journal][:issue].blank?  
+    cit_data_hash["issue"] = pub_hash[:journal][:issue] unless pub_hash[:journal][:issue].blank?
     cit_data_hash["issued"]  = {"date-parts"=>[[pub_hash[:journal][:year]]]} unless pub_hash[:journal][:year].blank?
-  end    
+  end
   # use a year at the top level if it exists, i.e, override any year we'd gotten above from journal or series
   cit_data_hash["issued"]  = {"date-parts"=>[[pub_hash[:year]]]} unless pub_hash[:year].blank?
   # add book title if it exists, which indicates this pub is a chapter in the book
-  cit_data_hash["container-title"] = pub_hash[:booktitle] unless pub_hash[:booktitle].blank?  
-       
+  cit_data_hash["container-title"] = pub_hash[:booktitle] unless pub_hash[:booktitle].blank?
 
-    cit_data_array = [cit_data_hash]         
+
+    cit_data_array = [cit_data_hash]
 
     # chicago_citation = CiteProc.process(cit, :style => 'https://github.com/citation-style-language/styles/raw/master/chicago-author-date.csl', :format => 'html')
     # apa_citation = CiteProc.process(cit, :style => 'https://github.com/citation-style-language/styles/raw/master/apa.csl', :format => 'html')
@@ -356,7 +356,7 @@ def self.update_formatted_citations(pub_hash)
     pub_hash[:apa_citation] = CiteProc.process(cit_data_array, :style => apa_csl_file, :format => 'html')
     pub_hash[:mla_citation] = CiteProc.process(cit_data_array, :style => mla_csl_file, :format => 'html')
     pub_hash[:chicago_citation] = CiteProc.process(cit_data_array, :style => chicago_csl_file, :format => 'html')
-    
+
   end
 
 def update_canonical_xml_for_pub
