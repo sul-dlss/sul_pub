@@ -4,7 +4,7 @@ describe ScienceWireClient do
 	let(:science_wire_client) {ScienceWireClient.new}
 	describe "#query_sciencewire_by_author_name" do
 		context " with common last name, first name, and max rows 4" do
-	
+
 			it "returns a list of 4 sciencewire ids" do
 				VCR.use_cassette("sciencewire_client_spec_returns_list_of_4") do
 					expect(science_wire_client.query_sciencewire_by_author_name("james", "", "smith", 4)).to have(4).items
@@ -13,7 +13,7 @@ describe ScienceWireClient do
 
 		end
 		context " with uncommon last name, first name, and max rows 4" do
-	
+
 			it "returns an empty array" do
 				VCR.use_cassette("sciencewire_client_spec_returns_empty_array") do
 					expect(science_wire_client.query_sciencewire_by_author_name("yukon", "", "ottawa", 4)).to have(0).items
@@ -34,8 +34,17 @@ describe ScienceWireClient do
 			end
 		end
 
+		it "gets suggestions from journals and conference proceedings" do
+		  VCR.use_cassette("sciencewire_client_spec_searches_journals_and_proceedings") do
+				expect(
+					science_wire_client.
+						get_sciencewire_id_suggestions("benson", "sally", "", "smbenson@stanford.edu", [])).
+					to have_at_least(8).items
+			end
+		end
+
 	end
-	
+
 	describe "#pull_records_from_sciencewire_for_pmids" do
 
 	end

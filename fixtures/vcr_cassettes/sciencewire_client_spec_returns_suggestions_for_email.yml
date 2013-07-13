@@ -61,4 +61,57 @@ http_interactions:
         \   <MatchScore>1.1266026496887207</MatchScore>\r\n  </ItemMatchResult>\r\n</ArrayOfItemMatchResult>"
     http_version: 
   recorded_at: Wed, 26 Jun 2013 20:08:15 GMT
+- request:
+    method: post
+    uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/MatchedPublicationItemIdsForAuthor?format=xml
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version='1.0'?>\n      <PublicationAuthorMatchParameters xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+        xmlns:xsd='http://www.w3.org/2001/XMLSchema'>\n        <Authors>\n          <Author>\n
+        \           <LastName>edler</LastName>\n            <FirstName>alice</FirstName>\n
+        \           <MiddleName></MiddleName>\n            <City />\n            <State
+        />\n            <Country />\n         </Author>\n      </Authors>\n      <DocumentCategory>Conference
+        Proceeding Document</DocumentCategory><Emails><string>alice.edler@stanford.edu</string></Emails><LimitToHighQualityMatchesOnly>true</LimitToHighQualityMatchesOnly></PublicationAuthorMatchParameters>"
+    headers:
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+      Licenseid:
+      - ***REMOVED***
+      Host:
+      - sciencewirerest.discoverylogic.com
+      Connection:
+      - Keep-Alive
+      Expect:
+      - 100-continue
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - private
+      Content-Type:
+      - application/xml; charset=utf-8
+      Server:
+      - Microsoft-IIS/7.5
+      X-Aspnetmvc-Version:
+      - '2.0'
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+      Date:
+      - Sat, 13 Jul 2013 00:11:02 GMT
+      Content-Length:
+      - '148'
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\"?>\r\n<ArrayOfItemMatchResult xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" />"
+    http_version: 
+  recorded_at: Sat, 13 Jul 2013 00:11:02 GMT
 recorded_with: VCR 2.5.0

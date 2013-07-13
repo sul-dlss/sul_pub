@@ -1,10 +1,47 @@
 class ScienceWireClient
 
-	def get_sciencewire_id_suggestions(last_name, first_name, middle_name, email_list, seed_list)
+  def get_sciencewire_id_suggestions(last_name, first_name, middle_name, email_list, seed_list)
 
-		auth = YAML.load(File.open(Rails.root.join('config', 'sciencewire_auth.yaml')))
+    ids = []
+    ["Journal Document", "Conference Proceeding Document"].each do |category|
+      bod = "<?xml version='1.0'?>
+      <PublicationAuthorMatchParameters xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema'>
+        <Authors>
+          <Author>
+            <LastName>#{last_name}</LastName>
+            <FirstName>#{first_name}</FirstName>
+            <MiddleName>#{middle_name}</MiddleName>
+            <City />
+            <State />
+            <Country />
+         </Author>
+      </Authors>
+      <DocumentCategory>#{category}</DocumentCategory>"
+
+      unless seed_list.blank?
+        bod << '<PublicationItemIds>'
+        bod << seed_list.collect { |pubId| "<int>#{pubId}</int>"}.join
+        bod << '</PublicationItemIds>'
+      end
+
+      unless email_list.blank?
+        bod << '<Emails>'
+        bod <<   "<string>#{email_list}</string>"
+        bod << '</Emails>'
+      end
+
+      bod << '<LimitToHighQualityMatchesOnly>true</LimitToHighQualityMatchesOnly>'
+      bod << '</PublicationAuthorMatchParameters>'
+
+      ids.concat make_sciencewire_suggestion_call(bod)
+    end
+    ids
+	end
+
+	def make_sciencewire_suggestion_call(body)
+	  auth = YAML.load(File.open(Rails.root.join('config', 'sciencewire_auth.yaml')))
 	    http = Net::HTTP.new(auth[:get_uri], auth[:get_port])
-	    
+
 	    http.use_ssl = true
 	    http.verify_mode = OpenSSL::SSL::VERIFY_PEER
 	    http.ssl_version = :SSLv3
@@ -18,60 +55,33 @@ class ScienceWireClient
 	    request["Expect"] = "100-continue"
 	    request["Content-Type"] = "text/xml"
 
-	    bod = "<?xml version='1.0'?>
-			<PublicationAuthorMatchParameters xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema'>
-			  <Authors>
-			    <Author>
-			      <LastName>#{last_name}</LastName>
-			      <FirstName>#{first_name}</FirstName>
-			      <MiddleName>#{middle_name}</MiddleName>
-			      <City>Stanford</City>
-			      <State>CA</State>
-			      <Country>USA</Country>
-			    </Author>
-			  </Authors>
-			  <DocumentCategory>Journal Document</DocumentCategory>"
-
-	    unless seed_list.blank?
-	      bod << '<PublicationItemIds>'
-	      bod << seed_list.collect { |pubId| "<int>#{pubId}</int>"}.join
-	      bod << '</PublicationItemIds>'
-	    end
-
-	    unless email_list.blank?
-	      bod << '<Emails>'
-	      bod <<   "<string>#{email_list}</string>"
-	      #.collect { |email| "<string>#{email}</string>"}.join
-	      bod << '</Emails>'
-	    end
-
-	    bod << '<LimitToHighQualityMatchesOnly>true</LimitToHighQualityMatchesOnly>'
-	    bod << '</PublicationAuthorMatchParameters>'
-
-	    request.body = bod
+	    request.body = body
 	    response = http.request(request)
 	    response_body = response.body
 	    xml_doc = Nokogiri::XML(response_body)
 
 	    xml_doc.xpath('/ArrayOfItemMatchResult/ItemMatchResult/PublicationItemID').collect { |itemId| itemId.text}
 
-    rescue Timeout::Error => te	
+  rescue Timeout::Error => te
 		timeout_retries -= 1
 		if timeout_retries > 0
 			# increase timeout
 			timeout_period =+ 100
 			retry
 		else
-			NotificationManager.handle_harvest_problem(te, "Timeout error on call to sciencewire api - #{DateTime.now}" )	
+			NotificationManager.handle_harvest_problem(te, "Timeout error on call to sciencewire api - #{DateTime.now}" )
 			raise
 		end
 	rescue => e
 		NotificationManager.handle_harvest_problem(e, "Problem with http call to sciencewire api")
-		raise	    
+		raise
 	end
 
+
+
+
 def query_sciencewire_by_author_name(first_name, middle_name, last_name, max_rows)
-	  
+
 	  xml_query = '<![CDATA[
 	     <query xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/
 	    XMLSchema">
@@ -94,7 +104,7 @@ def query_sciencewire_by_author_name(first_name, middle_name, last_name, max_row
 	              <Operator>BeginsWith</Operator>
 	              <Value>#{first_name}</Value>
 	            </Filter>
-	          </Criterion>" 
+	          </Criterion>"
 	end
 
 	unless middle_name.blank?
@@ -106,7 +116,7 @@ def query_sciencewire_by_author_name(first_name, middle_name, last_name, max_row
 	            </Filter>
 	          </Criterion>"
 	end
-	
+
 	   xml_query << "</Criteria>
 	      </Criterion>
 	      <Columns>
@@ -120,7 +130,7 @@ def query_sciencewire_by_author_name(first_name, middle_name, last_name, max_row
 	    ]]>"
 
 	    query_sciencewire(xml_query, 0, 3).xpath('//PublicationItem/PublicationItemID').collect { |itemId| itemId.text}
-		
+
 	end
 
 
@@ -150,7 +160,7 @@ def query_sciencewire_by_author_name(first_name, middle_name, last_name, max_row
 	            &lt;/Columns&gt;
 	            &lt;MaximumRows&gt;1000&lt;/MaximumRows&gt;
 	          &lt;/query&gt;'
-	         
+
 	      query_sciencewire(xml_query, 3, 100)
 	end
 
@@ -169,7 +179,7 @@ def query_sciencewire_by_author_name(first_name, middle_name, last_name, max_row
 	              <Operator>BeginsWith</Operator>
 	              <Value>#{last_name}</Value>
 	            </Filter>
-	          </Criterion>" 
+	          </Criterion>"
 	end
 	unless first_name.blank?
 	  xml_query << "<Criterion>
@@ -178,7 +188,7 @@ def query_sciencewire_by_author_name(first_name, middle_name, last_name, max_row
 	              <Operator>BeginsWith</Operator>
 	              <Value>#{first_name}</Value>
 	            </Filter>
-	          </Criterion>" 
+	          </Criterion>"
 	end
 	unless title.blank?
 	  xml_query << "<Criterion>
@@ -187,13 +197,13 @@ def query_sciencewire_by_author_name(first_name, middle_name, last_name, max_row
 	              <Operator>Contains</Operator>
 	              <Value>#{title}</Value>
 	            </Filter>
-	          </Criterion>" 
+	          </Criterion>"
 	end
 	unless year.blank?
 	  xml_query << "<Criterion>
 	            <Filter>
-	              <Column>PublicationYear</Column> 
-	              <Operator>Equals</Operator> 
+	              <Column>PublicationYear</Column>
+	              <Operator>Equals</Operator>
 	              <Value>#{year}</Value>
 	            </Filter>
 	          </Criterion>"
@@ -212,11 +222,11 @@ def query_sciencewire_by_author_name(first_name, middle_name, last_name, max_row
 	    xml_results = query_sciencewire(xml_query, 3, 100)
 
 	    xml_results.xpath('//PublicationItem').each do |sw_xml_doc|
-	    # result << generate_json_for_pub(convert_sw_publication_doc_to_hash(sw_xml_doc))    
+	    # result << generate_json_for_pub(convert_sw_publication_doc_to_hash(sw_xml_doc))
 	    	pub_hash = SciencewireSourceRecord.convert_sw_publication_doc_to_hash(sw_xml_doc)
 	    	Publication.update_formatted_citations(pub_hash)
 	    	result << pub_hash
-	  end 
+	  end
 	  result
 	end
 
@@ -229,7 +239,7 @@ def query_sciencewire_by_author_name(first_name, middle_name, last_name, max_row
 	          </ScienceWireQueryXMLParameter>'
 	    auth = YAML.load(File.open(Rails.root.join('config', 'sciencewire_auth.yaml')))
 	    http = Net::HTTP.new(auth[:get_uri], auth[:get_port])
-	    
+
 	    http.read_timeout = timeout_period
 	    http.use_ssl = true
 	    http.verify_mode = OpenSSL::SSL::VERIFY_PEER
@@ -240,7 +250,7 @@ def query_sciencewire_by_author_name(first_name, middle_name, last_name, max_row
 	    request["Connection"] = "Keep-Alive"
 	    request["Expect"] = "100-continue"
 	    request["Content-Type"] = "text/xml"
-	    
+
 	    request.body = wrapped_xml_query
 
 	   # http.start
@@ -261,22 +271,22 @@ def query_sciencewire_by_author_name(first_name, middle_name, last_name, max_row
 	 #   http.finish
 	    xml_doc
 
-	rescue Timeout::Error => te	
+	rescue Timeout::Error => te
 		timeout_retries -= 1
 		if timeout_retries > 0
 			# increase timeout
 			timeout_period =+ 100
 			retry
 		else
-			NotificationManager.handle_harvest_problem(te, "Timeout error on call to sciencewire api - #{DateTime.now}" )	
+			NotificationManager.handle_harvest_problem(te, "Timeout error on call to sciencewire api - #{DateTime.now}" )
 			raise
 		end
 	rescue => e
 		NotificationManager.handle_harvest_problem(e, "Problem with http call to sciencewire api")
-		raise	    
+		raise
 	end
-	   
-	  
+
+
 
 	def get_full_sciencewire_pubs_for_sciencewire_ids(sciencewire_ids)
 		auth = YAML.load(File.open(Rails.root.join('config', 'sciencewire_auth.yaml')))
@@ -297,25 +307,25 @@ def query_sciencewire_by_author_name(first_name, middle_name, last_name, max_row
 	    xml_doc = Nokogiri::XML(fullPubResponse)
 	  #  http.finish
 	    xml_doc
-	rescue Timeout::Error => te	
+	rescue Timeout::Error => te
 		timeout_retries -= 1
 		if timeout_retries > 0
 			# increase timeout
 			timeout_period =+ 100
 			retry
 		else
-			NotificationManager.handle_harvest_problem(te, "Timeout error on call to sciencewire api - #{DateTime.now}" )	
+			NotificationManager.handle_harvest_problem(te, "Timeout error on call to sciencewire api - #{DateTime.now}" )
 			raise
 		end
 	rescue => e
 		NotificationManager.handle_harvest_problem(e, "Problem with http call to sciencewire api")
-		raise	    
+		raise
 	end
 
 
-def get_sw_xml_source_for_sw_id(sciencewire_id)  		
+def get_sw_xml_source_for_sw_id(sciencewire_id)
   		xml_doc = get_full_sciencewire_pubs_for_sciencewire_ids(sciencewire_id.to_s)
-	    xml_doc.xpath('//PublicationItem').first    
+	    xml_doc.xpath('//PublicationItem').first
   	end
 
 
