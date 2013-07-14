@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130703222701) do
+ActiveRecord::Schema.define(:version => 20130714183006) do
 
   create_table "authors", :force => true do |t|
     t.integer  "cap_profile_id"
@@ -113,8 +113,12 @@ ActiveRecord::Schema.define(:version => 20130703222701) do
     t.string   "publication_type"
   end
 
+  add_index "publications", ["issn"], :name => "index_publications_on_issn"
+  add_index "publications", ["pages"], :name => "index_publications_on_pages"
   add_index "publications", ["pmid"], :name => "index_publications_on_pmid"
   add_index "publications", ["sciencewire_id"], :name => "index_publications_on_sciencewire_id"
+  add_index "publications", ["title"], :name => "index_publications_on_title"
+  add_index "publications", ["year"], :name => "index_publications_on_year"
 
   create_table "pubmed_source_records", :force => true do |t|
     t.text     "source_data"
