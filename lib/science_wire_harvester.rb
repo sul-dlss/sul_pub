@@ -7,7 +7,7 @@ class ScienceWireHarvester
 	attr_reader :records_queued_for_pubmed_retrieval
 	attr_reader :records_queued_for_sciencewire_retrieval
 
-	attr_accessor :debug
+	attr_accessor :debug, :name_only_query
 
 	def initialize
         initialize_instance_vars
@@ -76,6 +76,7 @@ class ScienceWireHarvester
 	    # our two queues for sciencewire and pubmed calls
 	    @records_queued_for_sciencewire_retrieval = {}
 	    @records_queued_for_pubmed_retrieval = {}
+	  @name_only_query = false
 	end
 
 	def initialize_counts_for_reporting
@@ -141,13 +142,13 @@ class ScienceWireHarvester
 
 	      #  puts "author: #{author.id} has seed list: #{seed_list}"
 	        if @author_count%50 == 0
-	        	string_to_print = "q up to author id: #{author.id} with #{@total_suggested_count.to_s} total suggestions so far for #{@author_count.to_s} authors - #{DateTime.now}"
+	        	string_to_print = "up to author id: #{author.id} with #{@total_suggested_count.to_s} total suggestions so far for #{@author_count.to_s} authors - #{DateTime.now}"
 	        	@sw_harvest_logger.info string_to_print
 	        end
 
-	        if emails_for_harvest.blank? && seed_list.empty?
+	        if(@name_only_query || (emails_for_harvest.blank? && seed_list.empty?))
 	        	suggested_sciencewire_ids = @sciencewire_client.query_sciencewire_by_author_name(first_name, middle_name, last_name, 20)
-	        	@authors_with_no_seed_data_count += 1
+	        	@authors_with_no_seed_data_count += 1 unless(@name_only_query)
 	        else
 	        	suggested_sciencewire_ids = @sciencewire_client.get_sciencewire_id_suggestions(last_name, first_name, middle_name, emails_for_harvest, seed_list)
 	        end
