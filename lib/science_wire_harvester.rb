@@ -7,7 +7,7 @@ class ScienceWireHarvester
 	attr_reader :records_queued_for_pubmed_retrieval
 	attr_reader :records_queued_for_sciencewire_retrieval
 
-	attr_accessor :debug, :name_only_query
+	attr_accessor :debug, :name_only_query, :use_middle_name
 
 	def initialize
         initialize_instance_vars
@@ -77,6 +77,7 @@ class ScienceWireHarvester
 	    @records_queued_for_sciencewire_retrieval = {}
 	    @records_queued_for_pubmed_retrieval = {}
 	  @name_only_query = false
+	  @use_middle_name = true
 	end
 
 	def initialize_counts_for_reporting
@@ -133,7 +134,11 @@ class ScienceWireHarvester
 	    	@author_count += 1
 	        last_name = author.cap_last_name
 	        first_name = author.cap_first_name
-	        middle_name = author.cap_middle_name
+	        if(@use_middle_name)
+	          middle_name = author.cap_middle_name
+          else
+            middle_name = ''
+          end
 	        profile_id = author.cap_profile_id
 	        emails_for_harvest = author.emails_for_harvest
 
