@@ -24,7 +24,7 @@ namespace :sw do
       harvester.debug = true
     end
     harvester.name_only_query = true
-    harvester.use_middle_names = false
+    harvester.use_middle_name = false
     ids = IO.readlines(args[:path_to_ids]).map {|l| l.strip}
     harvester.harvest_pubs_for_author_ids ids
   end
