@@ -11,16 +11,16 @@ class YearCheck < Grape::Validations::Validator
 end
 
  module BibJSONParser
-    def self.call(object, env) 
+    def self.call(object, env)
       {:pub_hash => JSON.parse(object)}
-    end     
+    end
   end
 
   class API_samples < Grape::API
    # version 'v1', :using => :header, :vendor => 'sul', :format => :json
    # format :json
     #rescue_from :all, :backtrace => true
-    
+
     get(:get_pub_out) {IO.read(Rails.root.join('app', 'data', 'api_samples', 'get_pub_out.json')) }
     get(:get_pubs_out) { IO.read(Rails.root.join('app', 'data', 'api_samples', 'get_pubs_out.json')) }
     get(:get_source_lookup_out) {IO.read(Rails.root.join('app', 'data', 'api_samples', 'get_source_lookup_out.json')) }
@@ -55,7 +55,7 @@ end
       error!('Unauthorized', 401) unless env['HTTP_CAPKEY'] == '***REMOVED***'
       authorship_hash = params[:pub_hash]
       sul_author_id = authorship_hash[:sul_author_id]
-      cap_profile_id = authorship_hash[:cap_profile_id] 
+      cap_profile_id = authorship_hash[:cap_profile_id]
       sul_pub_id = authorship_hash[:sul_pub_id]
       pmid = authorship_hash[:pmid]
       sciencewire_id = authorship_hash[:sw_id]
@@ -67,24 +67,24 @@ end
         begin
           author = Author.find(sul_author_id)
         rescue ActiveRecord::RecordNotFound
-          error!("The SUL author you've specified doesn't exist.", 404) 
+          error!("The SUL author you've specified doesn't exist.", 404)
         end
       elsif ! cap_profile_id.blank?
           author = Author.where(cap_profile_id: cap_profile_id).first
-          if author.nil?  
+          if author.nil?
               # todo check for the cap author in darryl's new api call.
-            error!("The CAP author you've specified doesn't exist.", 404) 
+            error!("The CAP author you've specified doesn't exist.", 404)
           end
           sul_author_id = author.id
       else
-          error!("You haven't supplied an author identifier.", 404) 
+          error!("You haven't supplied an author identifier.", 404)
       end
       # NOW CHECK FOR AN EXISTING SUL PUBLICATION
       if !sul_pub_id.blank?
         begin
           sul_pub = Publication.find(sul_pub_id)
         rescue
-          error!("The SUL publication you've specified doesn't exist.", 404) 
+          error!("The SUL publication you've specified doesn't exist.", 404)
         end
       elsif !pmid.blank?
         sul_pub = Publication.get_pub_by_pmid(pmid)
@@ -121,20 +121,20 @@ end
 helpers do
   def wrap_as_bibjson_collection(description, query, records, page, per_page)
     metadata = {
-          _created: Time.now.iso8601,  
-          description: description, 
-          format: "BibJSON",  
-          license: "some licence", 
-          query: query, 
+          _created: Time.now.iso8601,
+          description: description,
+          format: "BibJSON",
+          license: "some licence",
+          query: query,
           records:  records.count.to_s
         }
     metadata[:page] = page || 1
     metadata[:per_page] = per_page || "all"
     {
-        metadata: metadata, 
+        metadata: metadata,
         records: records
     }
-  end 
+  end
 end
 
 
@@ -148,7 +148,7 @@ get :sourcelookup do
     error!('Unauthorized', 401) unless env['HTTP_CAPKEY'] == '***REMOVED***'
       all_matching_records = []
 
-      # set source to all sources if param value is blank     
+      # set source to all sources if param value is blank
       source = params[:source] || Settings.manual_source + '+' + Settings.sciencewire_source
       last_name = params[:lastname]
       first_name = params[:firstname]
@@ -160,11 +160,11 @@ get :sourcelookup do
       sources = source.split('+')
 
       if source.include?(Settings.sciencewire_source)
-        all_matching_records = ScienceWireClient.new.query_sciencewire_for_publication(first_name, last_name, middle_name, title, year, max_rows)      
+        all_matching_records = ScienceWireClient.new.query_sciencewire_for_publication(first_name, last_name, middle_name, title, year, max_rows)
       end
 
       if source.include?(Settings.manual_source)
-        
+
         user_submitted_source_records = UserSubmittedSourceRecord.arel_table
 
         unless year.blank?
@@ -177,13 +177,13 @@ get :sourcelookup do
       end
 
       wrap_as_bibjson_collection("Search results from requested sources: " + source, env["ORIGINAL_FULLPATH"], all_matching_records, nil, nil)
-    
+
     end
 
 #:include => :population_membership,
-#:conditions => "population_memberships.population_name = '" + population + "' AND publications.updated_at > '" + DateTime.parse(changedSince).to_s + "'"      
-    
-    # GET ALL PUBS, PAGED IF REQUESTD, OR FOR AN AUTHOR IF REQUESTED.       
+#:conditions => "population_memberships.population_name = '" + population + "' AND publications.updated_at > '" + DateTime.parse(changedSince).to_s + "'"
+
+    # GET ALL PUBS, PAGED IF REQUESTD, OR FOR AN AUTHOR IF REQUESTED.
     get do
       error!('Unauthorized', 401) unless env['HTTP_CAPKEY'] == '***REMOVED***'
       matching_records = []
@@ -192,23 +192,20 @@ get :sourcelookup do
       capProfileId = params[:capProfileId]
       capActive = params[:capActive]
       page = params[:page] || 1
-      
+
       population.downcase!
       last_changed = DateTime.parse(changedSince).to_s
-      
-      
+
+
       if capProfileId.blank?
         per = params[:per] || 100
         description = "Records that have changed since " + changedSince
         if ! capActive.blank?
           capActive = capActive.downcase == 'true' ? '1' : '0'
          # query_string = "authors.active_in_cap = #{capActive} and publications.updated_at > ?"
-          matching_records = Publication.joins(:contributions => :author).
-              where("authors.active_in_cap = #{capActive} and publications.updated_at > ?", last_changed).
-              order('publications.id').
-              group('publications.pub_hash').
-              page(page).
-              per(per).pluck(:pub_hash)
+          matching_records = Publication.where(:id =>
+             Contribution.joins(:author).where("authors.active_in_cap = #{capActive} and contributions.updated_at > ?", last_changed).pluck(:publication_id)
+           ).order(:id).page(page).per(per).pluck(:pub_hash)
         else
           # if no filtering by is_cap_active is needed then we can just go with the much faster:
              matching_records = Publication.where('publications.updated_at > ?', last_changed).
@@ -216,7 +213,7 @@ get :sourcelookup do
               page(page).
               per(per).pluck(:pub_hash)
         end
-       
+
       else
       #  page = page || 1
         per = per || nil
@@ -234,22 +231,22 @@ get :sourcelookup do
     # CALL TO ADD A NEW MANUAL PUBLICATION
     content_type :json, "application/json"
     parser :json, BibJSONParser
-    post do     
-      
-      error!('Unauthorized', 401) unless env['HTTP_CAPKEY'] == '***REMOVED***'  
+    post do
+
+      error!('Unauthorized', 401) unless env['HTTP_CAPKEY'] == '***REMOVED***'
       request_body_unparsed = env['api.request.input']
       pub_hash = params[:pub_hash]
      # Rails.logger.debug "Incoming bibjson post attributes hash: #{pub_hash}"
       fingerprint = Digest::SHA2.hexdigest(request_body_unparsed)
       existingRecord = UserSubmittedSourceRecord.where(source_fingerprint: fingerprint).first
-      unless existingRecord.nil?  
-          # the GRAPE redirect method issues a 303 (when original request is not a get, and a 302 for a get) 
+      unless existingRecord.nil?
+          # the GRAPE redirect method issues a 303 (when original request is not a get, and a 302 for a get)
           # and sets the location header to the specified url
           # So, this next lines return 303 with location equal to the pub's uri
           redirect env["REQUEST_URI"] + "/" + existingRecord.publication_id.to_s
-      else 
+      else
         if pub_hash[:authorship].nil? || ! Contribution.valid_authorship_hash?(pub_hash[:authorship])
-          error!("You haven't supplied a valid authorship record.", 406) 
+          error!("You haven't supplied a valid authorship record.", 406)
         end
         pub = Publication.build_new_manual_publication(Settings.cap_provenance, pub_hash, request_body_unparsed)
         header "Location", env["REQUEST_URI"].to_s + "/" + pub.id.to_s
@@ -263,25 +260,25 @@ get :sourcelookup do
     put ':id' do
 
       error!('Unauthorized', 401) unless env['HTTP_CAPKEY'] == '***REMOVED***'
-      #the last known etag must be sent in the 'if-match' header, returning 412 “Precondition Failed” if etags don't match, 
+      #the last known etag must be sent in the 'if-match' header, returning 412 “Precondition Failed” if etags don't match,
       #and a 428 "Precondition Required" if the if-match header isn't supplied
-      
+
       begin
           pub = Publication.find(params[:id])
         rescue ActiveRecord::RecordNotFound
           error!({ "error" => "No such publication", "detail" => "You've requested a non-existant publication." }, 404)
         end
 
-      if pub.deleted 
+      if pub.deleted
         error!("Gone - old resource probably deleted.", 410)
       elsif (!pub.sciencewire_id.blank?) || (!pub.pmid.blank?)
         error!({ "error" => "This record may not be modified.  If you had originally entered details for the record, it has been superceded by a central record.", "detail" => "missing widget" }, 403)
       elsif env["HTTP_IF_MATCH"].blank?
-        error!("Precondition Required", 428) 
+        error!("Precondition Required", 428)
       elsif env["HTTP_IF_MATCH"] != pub.pub_hash[:last_updated]
-        error!("Precondition Failed", 412) 
+        error!("Precondition Failed", 412)
       elsif params[:pub_hash][:authorship].nil? || ! Contribution.valid_authorship_hash?(params[:pub_hash][:authorship])
-        error!("You haven't supplied a valid authorship record.", 406) 
+        error!("You haven't supplied a valid authorship record.", 406)
       else
         original_source = env['api.request.input']
         pub.update_manual_pub_from_pub_hash(params[:pub_hash], Settings.cap_provenance, original_source)
@@ -297,7 +294,7 @@ get :sourcelookup do
         rescue ActiveRecord::RecordNotFound
           error!({ "error" => "No such publication", "detail" => "You've requested a non-existant publication." }, 404)
         end
-      if pub.deleted 
+      if pub.deleted
         error!("Gone - old resource probably deleted.", 410)
       end
       pub.pub_hash
@@ -312,7 +309,7 @@ get :sourcelookup do
     end
 
   end
- 
+
 
 end
 
