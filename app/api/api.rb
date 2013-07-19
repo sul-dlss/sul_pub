@@ -216,7 +216,7 @@ get :sourcelookup do
 
       else
       #  page = page || 1
-        per = per || nil
+        per = params[:per] || nil
         author = Author.where(cap_profile_id: capProfileId).first
         if author.nil?
           error!({ "error" => "No such author", "detail" => "You've specified a non-existant author." }, 404)
