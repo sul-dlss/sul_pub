@@ -5,12 +5,11 @@ http_interactions:
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/MatchedPublicationItemIdsForAuthor?format=xml
     body:
       encoding: US-ASCII
-      string: ! "<?xml version='1.0'?>\n\t\t\t<PublicationAuthorMatchParameters xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
-        xmlns:xsd='http://www.w3.org/2001/XMLSchema'>\n\t\t\t  <Authors>\n\t\t\t    <Author>\n\t\t\t
-        \     <LastName>edler</LastName>\n\t\t\t      <FirstName>alice</FirstName>\n\t\t\t
-        \     <MiddleName></MiddleName>\n\t\t\t      <City>Stanford</City>\n\t\t\t
-        \     <State>CA</State>\n\t\t\t      <Country>USA</Country>\n\t\t\t    </Author>\n\t\t\t
-        \ </Authors>\n\t\t\t  <DocumentCategory>Journal Document</DocumentCategory><Emails><string>alice.edler@stanford.edu</string></Emails><LimitToHighQualityMatchesOnly>true</LimitToHighQualityMatchesOnly></PublicationAuthorMatchParameters>"
+      string: ! "<?xml version='1.0'?>\n      <PublicationAuthorMatchParameters xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+        xmlns:xsd='http://www.w3.org/2001/XMLSchema'>\n        <Authors>\n          <Author>\n
+        \           <LastName>edler</LastName>\n            <FirstName>alice</FirstName>\n
+        \           <MiddleName></MiddleName>\n         </Author>\n      </Authors>\n
+        \     <DocumentCategory>Journal Document</DocumentCategory><Emails><string>alice.edler@stanford.edu</string></Emails><LimitToHighQualityMatchesOnly>true</LimitToHighQualityMatchesOnly></PublicationAuthorMatchParameters>"
     headers:
       Accept:
       - ! '*/*'
@@ -44,23 +43,23 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Wed, 26 Jun 2013 20:08:15 GMT
+      - Tue, 23 Jul 2013 23:13:40 GMT
       Content-Length:
-      - '861'
+      - '877'
     body:
       encoding: US-ASCII
       string: ! "<?xml version=\"1.0\"?>\r\n<ArrayOfItemMatchResult xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <ItemMatchResult>\r\n
         \   <MatchRank>1</MatchRank>\r\n    <PublicationItemID>29352378</PublicationItemID>\r\n
-        \   <MatchScore>1.2708333730697632</MatchScore>\r\n  </ItemMatchResult>\r\n
+        \   <MatchScore>0.70833337306976318</MatchScore>\r\n  </ItemMatchResult>\r\n
         \ <ItemMatchResult>\r\n    <MatchRank>2</MatchRank>\r\n    <PublicationItemID>30502634</PublicationItemID>\r\n
-        \   <MatchScore>1.2708333730697632</MatchScore>\r\n  </ItemMatchResult>\r\n
-        \ <ItemMatchResult>\r\n    <MatchRank>3</MatchRank>\r\n    <PublicationItemID>30072480</PublicationItemID>\r\n
-        \   <MatchScore>1.1875</MatchScore>\r\n  </ItemMatchResult>\r\n  <ItemMatchResult>\r\n
-        \   <MatchRank>4</MatchRank>\r\n    <PublicationItemID>46946372</PublicationItemID>\r\n
-        \   <MatchScore>1.1266026496887207</MatchScore>\r\n  </ItemMatchResult>\r\n</ArrayOfItemMatchResult>"
+        \   <MatchScore>0.70833337306976318</MatchScore>\r\n  </ItemMatchResult>\r\n
+        \ <ItemMatchResult>\r\n    <MatchRank>3</MatchRank>\r\n    <PublicationItemID>46558063</PublicationItemID>\r\n
+        \   <MatchScore>0.70833337306976318</MatchScore>\r\n  </ItemMatchResult>\r\n
+        \ <ItemMatchResult>\r\n    <MatchRank>4</MatchRank>\r\n    <PublicationItemID>46946372</PublicationItemID>\r\n
+        \   <MatchScore>0.70833337306976318</MatchScore>\r\n  </ItemMatchResult>\r\n</ArrayOfItemMatchResult>"
     http_version: 
-  recorded_at: Wed, 26 Jun 2013 20:08:15 GMT
+  recorded_at: Tue, 23 Jul 2013 23:13:40 GMT
 - request:
     method: post
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/MatchedPublicationItemIdsForAuthor?format=xml
@@ -69,9 +68,8 @@ http_interactions:
       string: ! "<?xml version='1.0'?>\n      <PublicationAuthorMatchParameters xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
         xmlns:xsd='http://www.w3.org/2001/XMLSchema'>\n        <Authors>\n          <Author>\n
         \           <LastName>edler</LastName>\n            <FirstName>alice</FirstName>\n
-        \           <MiddleName></MiddleName>\n            <City />\n            <State
-        />\n            <Country />\n         </Author>\n      </Authors>\n      <DocumentCategory>Conference
-        Proceeding Document</DocumentCategory><Emails><string>alice.edler@stanford.edu</string></Emails><LimitToHighQualityMatchesOnly>true</LimitToHighQualityMatchesOnly></PublicationAuthorMatchParameters>"
+        \           <MiddleName></MiddleName>\n         </Author>\n      </Authors>\n
+        \     <DocumentCategory>Conference Proceeding Document</DocumentCategory><Emails><string>alice.edler@stanford.edu</string></Emails><LimitToHighQualityMatchesOnly>true</LimitToHighQualityMatchesOnly></PublicationAuthorMatchParameters>"
     headers:
       Accept:
       - ! '*/*'
@@ -105,7 +103,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Sat, 13 Jul 2013 00:11:02 GMT
+      - Tue, 23 Jul 2013 23:13:40 GMT
       Content-Length:
       - '148'
     body:
@@ -113,5 +111,5 @@ http_interactions:
       string: ! "<?xml version=\"1.0\"?>\r\n<ArrayOfItemMatchResult xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" />"
     http_version: 
-  recorded_at: Sat, 13 Jul 2013 00:11:02 GMT
+  recorded_at: Tue, 23 Jul 2013 23:13:41 GMT
 recorded_with: VCR 2.5.0

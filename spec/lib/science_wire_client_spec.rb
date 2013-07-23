@@ -30,7 +30,7 @@ describe ScienceWireClient do
 				expect(
 					science_wire_client.
 						get_sciencewire_id_suggestions("edler", "alice", "", "alice.edler@stanford.edu", [])).
-					to have_at_least(3).items
+					to have_at_least(4).items
 			end
 		end
 
@@ -42,6 +42,19 @@ describe ScienceWireClient do
 					to have_at_least(8).items
 			end
 		end
+
+	end
+
+	describe "#get_full_sciencewire_pubs_for_wos_ids" do
+
+	  it "returns an array of sw pub_hashes when passed an array of WebOfScience ids" do
+	    VCR.use_cassette("sciencewire_client_spec_gets_sw_pubs_with_wos_ids") do
+				expect(
+					science_wire_client.
+						get_full_sciencewire_pubs_for_wos_ids(['000318550800072', '000317872800004', '000317717300006'])).
+					to have_at_least(3).items
+			end
+	  end
 
 	end
 
