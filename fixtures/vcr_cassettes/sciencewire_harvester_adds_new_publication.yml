@@ -37,7 +37,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Wed, 26 Jun 2013 20:14:04 GMT
+      - Tue, 23 Jul 2013 23:25:28 GMT
       Content-Length:
       - '6476'
     body:
@@ -123,7 +123,7 @@ http_interactions:
         \   <CopyrightPublisher>LIPPINCOTT WILLIAMS &amp; WILKINS</CopyrightPublisher>\r\n
         \   <CopyrightCity>PHILADELPHIA</CopyrightCity>\r\n  </PublicationItem>\r\n</ArrayOfPublicationItem>"
     http_version: 
-  recorded_at: Wed, 26 Jun 2013 20:14:04 GMT
+  recorded_at: Tue, 23 Jul 2013 23:25:28 GMT
 - request:
     method: post
     uri: http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml
@@ -141,7 +141,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Wed, 26 Jun 2013 20:14:05 GMT
+      - Tue, 23 Jul 2013 23:25:28 GMT
       Server:
       - Apache
       Access-Control-Allow-Origin:
@@ -149,18 +149,18 @@ http_interactions:
       Cache-Control:
       - private
       Ncbi-Sid:
-      - 08DE78C31CB4B8D1_0501SID
+      - 9DFC037E1EF10E81_0862SID
       Content-Type:
       - text/xml; charset=UTF-8
       Set-Cookie:
-      - ncbi_sid=08DE78C31CB4B8D1_0501SID; domain=.nih.gov; path=/; expires=Thu, 26
-        Jun 2014 20:14:05 GMT
+      - ncbi_sid=9DFC037E1EF10E81_0862SID; domain=.nih.gov; path=/; expires=Wed, 23
+        Jul 2014 23:25:28 GMT
       Transfer-Encoding:
       - chunked
     body:
       encoding: US-ASCII
       string: ! "<?xml version=\"1.0\"?>\n<!DOCTYPE PubmedArticleSet PUBLIC \"-//NLM//DTD
-        PubMedArticle, 1st January 2013//EN\" \"http://www.ncbi.nlm.nih.gov/corehtml/query/DTD/pubmed_130101.dtd\">\n<PubmedArticleSet>\n<PubmedArticle>\n
+        PubMedArticle, 1st May 2013//EN\" \"http://www.ncbi.nlm.nih.gov/corehtml/query/DTD/pubmed_130501.dtd\">\n<PubmedArticleSet>\n<PubmedArticle>\n
         \   <MedlineCitation Owner=\"NLM\" Status=\"MEDLINE\">\n        <PMID Version=\"1\">10048354</PMID>\n
         \       <DateCreated>\n            <Year>1999</Year>\n            <Month>04</Month>\n
         \           <Day>22</Day>\n        </DateCreated>\n        <DateCompleted>\n
@@ -332,5 +332,5 @@ http_interactions:
         \       <ArticleIdList>\n            <ArticleId IdType=\"pubmed\">1914489</ArticleId>\n
         \       </ArticleIdList>\n    </PubmedData>\n</PubmedArticle>\n\n</PubmedArticleSet>\n"
     http_version: 
-  recorded_at: Wed, 26 Jun 2013 20:14:05 GMT
+  recorded_at: Tue, 23 Jul 2013 23:25:29 GMT
 recorded_with: VCR 2.5.0

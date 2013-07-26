@@ -17,7 +17,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Wed, 26 Jun 2013 20:02:32 GMT
+      - Fri, 26 Jul 2013 22:51:05 GMT
       Server:
       - Apache
       Access-Control-Allow-Origin:
@@ -25,18 +25,18 @@ http_interactions:
       Cache-Control:
       - private
       Ncbi-Sid:
-      - 9DFD68CC1CB48D81_0307SID
+      - 08DE24ED1F2FD591_0002SID
       Content-Type:
       - text/xml; charset=UTF-8
       Set-Cookie:
-      - ncbi_sid=9DFD68CC1CB48D81_0307SID; domain=.nih.gov; path=/; expires=Thu, 26
-        Jun 2014 20:02:32 GMT
+      - ncbi_sid=08DE24ED1F2FD591_0002SID; domain=.nih.gov; path=/; expires=Sat, 26
+        Jul 2014 22:51:05 GMT
       Transfer-Encoding:
       - chunked
     body:
       encoding: US-ASCII
       string: ! "<?xml version=\"1.0\"?>\n<!DOCTYPE PubmedArticleSet PUBLIC \"-//NLM//DTD
-        PubMedArticle, 1st January 2013//EN\" \"http://www.ncbi.nlm.nih.gov/corehtml/query/DTD/pubmed_130101.dtd\">\n<PubmedArticleSet>\n<PubmedArticle>\n
+        PubMedArticle, 1st May 2013//EN\" \"http://www.ncbi.nlm.nih.gov/corehtml/query/DTD/pubmed_130501.dtd\">\n<PubmedArticleSet>\n<PubmedArticle>\n
         \   <MedlineCitation Owner=\"NLM\" Status=\"MEDLINE\">\n        <PMID Version=\"1\">211</PMID>\n
         \       <DateCreated>\n            <Year>1976</Year>\n            <Month>02</Month>\n
         \           <Day>09</Day>\n        </DateCreated>\n        <DateCompleted>\n
@@ -400,5 +400,5 @@ http_interactions:
         \       <ArticleIdList>\n            <ArticleId IdType=\"pubmed\">960</ArticleId>\n
         \       </ArticleIdList>\n    </PubmedData>\n</PubmedArticle>\n\n</PubmedArticleSet>\n"
     http_version: 
-  recorded_at: Wed, 26 Jun 2013 20:02:32 GMT
+  recorded_at: Fri, 26 Jul 2013 22:51:05 GMT
 recorded_with: VCR 2.5.0
