@@ -3,9 +3,9 @@ class NotificationManager
 		sw_harvest_logger = Logger.new(Rails.root.join('log', 'sw_harvest.log'))
 		sw_harvest_logger.info message
 	    sw_harvest_logger.error e.message
-	    sw_harvest_logger.error e.backtrace
-	    puts e.message
-	    puts e.backtrace.inspect
+	    sw_harvest_logger.error e.backtrace.join("\n")
+	    puts e.inspect
+	    puts e.backtrace.join("\n")
 	    #todo send email here
 	end
 
@@ -13,9 +13,9 @@ class NotificationManager
       	@cap_authorship_logger = Logger.new(Rails.root.join('log', 'cap_authorship_api.log'))
       	@cap_authorship_logger.error message
       	@cap_authorship_logger.error e.message
-      	@cap_authorship_logger.error e.backtrace
-      	puts e.message
-      	puts e.backtrace
+      	@cap_authorship_logger.error e.backtrace.join("\n")
+      	puts e.inspect
+      	puts e.backtrace.join("\n")
       	#todo send email here
 	end
 
@@ -23,9 +23,9 @@ class NotificationManager
       	@pubmed_logger = Logger.new(Rails.root.join('log', 'pubmed_api.log'))
       	@pubmed_logger.error message
       	@pubmed_logger.error e.message
-      	@pubmed_logger.error e.backtrace
-      	puts e.message
-      	puts e.backtrace
+      	@pubmed_logger.error e.backtrace.join("\n")
+      	puts e.inspect
+      	puts e.backtrace.join("\n")
       	#todo send email here
 	end
 
