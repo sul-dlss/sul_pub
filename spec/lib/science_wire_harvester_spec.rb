@@ -12,26 +12,26 @@ describe ScienceWireHarvester do
 	describe "#harvest_for_author" do
 
 		context "for author with first name last name only" do
-	
+
 			it "uses the client query by name method" do
 				science_wire_client.should_receive(:query_sciencewire_by_author_name).and_call_original
 				science_wire_harvester.harvest_for_author(author_without_seed_data)
 			end
 
-			it "doesn't use the client query by email or seed method" do		
+			it "doesn't use the client query by email or seed method" do
 				science_wire_client.should_not_receive(:get_sciencewire_id_suggestions)
 				science_wire_harvester.harvest_for_author(author_without_seed_data)
 			end
 		end
 
 		context "for author with emails" do
-	
-			it "doesn't uses the client query by name method" do	
+
+			it "doesn't uses the client query by name method" do
 				science_wire_client.should_not_receive(:query_sciencewire_by_author_name)
 				science_wire_harvester.harvest_for_author(author_with_seed_email)
 			end
 
-			it "uses the client query by email or seed method" do	
+			it "uses the client query by email or seed method" do
 				science_wire_client.should_receive(:get_sciencewire_id_suggestions).and_call_original
 				science_wire_harvester.harvest_for_author(author_with_seed_email)
 			end
@@ -65,7 +65,7 @@ describe ScienceWireHarvester do
 				it "adds to sciencewire retrieval queue" do
 					science_wire_client.should_receive(:query_sciencewire_by_author_name).and_return(['42711845'])
 					science_wire_harvester.should_receive(:create_contrib_for_pub_if_exists).once.with('42711845', author_without_seed_data).and_return(false)
-					
+
 					expect {
 						science_wire_harvester.harvest_for_author(author_without_seed_data)
 						}.to_not change{science_wire_harvester.records_queued_for_pubmed_retrieval}
@@ -84,7 +84,7 @@ describe ScienceWireHarvester do
 			expect(seed_list).to respond_to(:each)
 		end
 	end
-	
+
 	describe "#harvest_pubs_for_author_ids" do
 		context "for valid author" do
 			it "calls harvest_for_author" do
@@ -123,19 +123,19 @@ describe ScienceWireHarvester do
 					expect {
 						science_wire_harvester.harvest_pubs_for_author_ids([author.id, author_with_seed_email.id, author_without_seed_data.id])
 						}.to change(Contribution, :count).by(6)
-					
+
 				end
 			end
 		end
 		context "when existing pubmed pub" do
-			it "updates an existing pubmed publication with sciencewire data" do 
+			it "updates an existing pubmed publication with sciencewire data" do
 				VCR.use_cassette('sciencewire_harvester_update_pubmed_with_sw_data') do
 					sw_id = pub_with_sw_id_and_pmid.sciencewire_id.to_s
-					
+
 					science_wire_client.should_receive(:query_sciencewire_by_author_name).once.and_return([sw_id])
 					pub_with_sw_id_and_pmid.update_attribute(:sciencewire_id, 2)
 					#expect(pub_with_sw_id_and_pmid.sciencewire_id).to change
-					
+
 					expect {
 						science_wire_harvester.harvest_pubs_for_author_ids([author_without_seed_data.id])
 						}.to_not change(Publication, :count)
@@ -146,7 +146,7 @@ describe ScienceWireHarvester do
 			it "doesn't create a duplicate publication"
 		end
 		context "when existing contribution" do
-			
+
 			it "doesn't create a duplicate contribution" do
 				pub_with_sw_id_and_pmid
 			end
@@ -190,7 +190,25 @@ describe ScienceWireHarvester do
 	end
 
 	describe "#harvest_for_all_authors" do
-		
+
+	end
+
+	describe "#harvest_sw_pubs_by_wos_id_for_author" do
+
+	  it "creates/updates ScienceWire Publications with an array of WebOfScience IDs for a given author" do
+	    auth = create(:author, :sunetid => 'pande')
+	    VCR.use_cassette("sciencewire_harvester_wos_to_sw_for_author") do
+	      expect(PubmedSourceRecord.count).to eq(0)
+	      science_wire_harvester.harvest_sw_pubs_by_wos_id_for_author('pande', ['000318550800072', '000317872800004', '000317717300006'])
+        expect(auth.publications).to have(3).items
+        pub_hash = auth.publications.first.pub_hash
+        expect(pub_hash[:authorship].first[:sul_author_id]).to eq(auth.id)
+        expect(pub_hash[:identifier]).to have(4).items
+        expect(PubmedSourceRecord.count).to eq(3)
+      end
+	  end
+
+
 	end
 
 end

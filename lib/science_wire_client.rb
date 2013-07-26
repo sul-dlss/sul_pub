@@ -267,7 +267,7 @@ def query_sciencewire_by_author_name(first_name, middle_name, last_name, max_row
         </query>
     ]]>"
 
-    query_sciencewire(xml_query, 0, 3).xpath('//PublicationItem/PublicationItemID').collect { |itemId| itemId.text}
+    query_sciencewire(xml_query, 0, 60)
 
   end
 

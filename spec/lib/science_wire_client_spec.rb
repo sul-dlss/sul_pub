@@ -47,12 +47,11 @@ describe ScienceWireClient do
 
 	describe "#get_full_sciencewire_pubs_for_wos_ids" do
 
-	  it "returns an array of sw pub_hashes when passed an array of WebOfScience ids" do
+	  it "returns a Nokogiri::XML::Document containing all SW pubs when passed an array of WebOfScience ids" do
 	    VCR.use_cassette("sciencewire_client_spec_gets_sw_pubs_with_wos_ids") do
-				expect(
-					science_wire_client.
-						get_full_sciencewire_pubs_for_wos_ids(['000318550800072', '000317872800004', '000317717300006'])).
-					to have_at_least(3).items
+	      doc = science_wire_client.get_full_sciencewire_pubs_for_wos_ids(['000318550800072', '000317872800004', '000317717300006'])
+				expect(doc).to be_a(Nokogiri::XML::Document)
+				expect(doc.xpath('//PublicationItem')).to have(3).items
 			end
 	  end
 

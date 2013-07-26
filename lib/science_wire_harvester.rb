@@ -321,8 +321,8 @@ class ScienceWireHarvester
 			end
 			if pub
 				create_contribs_for_author_ids_and_pub(author_ids, pub)
-			    pub.build_from_sciencewire_hash(pub_hash)
-			    pub.sync_publication_hash_and_db
+			  pub.build_from_sciencewire_hash(pub_hash)
+			  pub.sync_publication_hash_and_db
 			end
 		end
 	end
@@ -373,6 +373,30 @@ class ScienceWireHarvester
       	end
       	@records_queued_for_pubmed_retrieval.clear
 
+    end
+
+    # @param [String] sunetid identifier for the author
+    # @param [Array<String>] wos_ids WebOfScienceID Document IDs to pull
+    def harvest_sw_pubs_by_wos_id_for_author(sunetid, wos_ids)
+
+      author = Author.where(:sunetid => sunetid).first
+      raise("Author with sunetid #{sunetid} does not exist") if(author.nil?)
+
+      all_sw_docs = @sciencewire_client.get_full_sciencewire_pubs_for_wos_ids(wos_ids)
+
+      # TODO refactor our similar processing from suggestions/name search
+      all_sw_docs.xpath('//PublicationItem').each do |sw_doc|
+        sciencewire_id = sw_doc.at_xpath('PublicationItemID').text
+        record_created = create_contrib_for_pub_if_exists(sciencewire_id, author)
+        unless(record_created)
+	        pmid = sw_doc.xpath("PMID").text
+	        source_record_was_created = SciencewireSourceRecord.save_sw_source_record(sciencewire_id, pmid, sw_doc.to_xml)
+	        if source_record_was_created then @total_new_sciencewire_source_count += 1 end
+	        create_or_update_pub_and_contribution_with_harvested_sw_doc(sw_doc, [author.id])
+        end
+      end
+
+      process_queued_pubmed_records
     end
 
 

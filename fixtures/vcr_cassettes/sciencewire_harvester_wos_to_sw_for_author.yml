@@ -1,0 +1,494 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery?format=xml
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\"?>\n      <ScienceWireQueryXMLParameter xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\n      <xmlQuery><![CDATA[\n
+        \     <query xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\n
+        \       <Criterion ConjunctionOperator=\"AND\">\n          <Criteria>\n            <Criterion>\n
+        \             <Filter>\n                <Column>WoSItemID</Column>\n                <Operator>In</Operator>\n
+        \               <Values>\n<Value>000318550800072</Value>\n<Value>000317872800004</Value>\n<Value>000317717300006</Value>\n</Values>\n
+        \               </Filter>\n              </Criterion>\n            </Criteria>\n
+        \         </Criterion><Columns>\n            <SortColumn>\n              <Column>PublicationItemID</Column>\n
+        \             <Direction>Ascending</Direction>\n            </SortColumn>\n
+        \         </Columns>\n        </query>\n    ]]></xmlQuery>\n      </ScienceWireQueryXMLParameter>"
+    headers:
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+      Licenseid:
+      - ***REMOVED***
+      Host:
+      - sciencewirerest.discoverylogic.com
+      Connection:
+      - Keep-Alive
+      Expect:
+      - 100-continue
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - private
+      Content-Type:
+      - application/xml; charset=utf-8
+      Server:
+      - Microsoft-IIS/7.5
+      X-Aspnetmvc-Version:
+      - '2.0'
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+      Date:
+      - Wed, 24 Jul 2013 22:53:55 GMT
+      Content-Length:
+      - '277'
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\"?>\r\n<ScienceWireQueryIDResponse xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>81941</queryID>\r\n
+        \ <queryResultRows>3</queryResultRows>\r\n  <totalRows>3</totalRows>\r\n</ScienceWireQueryIDResponse>"
+    http_version: 
+  recorded_at: Wed, 24 Jul 2013 22:53:57 GMT
+- request:
+    method: get
+    uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/81941?format=xml&page=0&pageSize=2147483647&v=version/3
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+      Content-Type:
+      - text/xml
+      Licenseid:
+      - ***REMOVED***
+      Host:
+      - sciencewirerest.discoverylogic.com
+      Connection:
+      - Keep-Alive
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - private
+      Content-Type:
+      - application/xml; charset=utf-8
+      Server:
+      - Microsoft-IIS/7.5
+      X-Aspnetmvc-Version:
+      - '2.0'
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+      Date:
+      - Wed, 24 Jul 2013 22:53:55 GMT
+      Content-Length:
+      - '9626'
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\"?>\r\n<ArrayOfPublicationItem xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <PublicationItem>\r\n
+        \   <PublicationItemID>62851007</PublicationItemID>\r\n    <Title>Persistent
+        Topology and Metastable State in Conformational Dynamics</Title>\r\n    <Abstract>The
+        large amount of molecular dynamics simulation data produced by modern computational
+        models brings big opportunities and challenges to researchers. Clustering
+        algorithms play an important role in understanding biomolecular kinetics from
+        the simulation data, especially under the Markov state model framework. However,
+        the ruggedness of the free energy landscape in a biomolecular system makes
+        common clustering algorithms very sensitive to perturbations of the data.
+        Here, we introduce a data-exploratory tool which provides an overview of the
+        clustering structure under different parameters. The proposed Multi-Persistent
+        Clustering analysis combines insights from recent studies on the dynamics
+        of systems with dominant metastable states with the concept of multi-dimensional
+        persistence in computational topology. We propose to explore the clustering
+        structure of the data based on its persistence on scale and density. The analysis
+        provides a systematic way to discover clusters that are robust to perturbations
+        of the data. The dominant states of the system can be chosen with confidence.
+        For the clusters on the borderline, the user can choose to do more simulation
+        or make a decision based on their structural characteristics. Furthermore,
+        our multi-resolution analysis gives users information about the relative potential
+        of the clusters and their hierarchical relationship. The effectiveness of
+        the proposed method is illustrated in three biomolecules: alanine dipeptide,
+        Villin headpiece, and the FiP35 WW domain.</Abstract>\r\n    <AuthorList>Chang,Huang-Wei,|Bacallado,Sergio,|Pande,Vijay,S|Carlsson,Gunnar,E</AuthorList>\r\n
+        \   <AuthorCount>4</AuthorCount>\r\n    <KeywordList>DENSITY|KINETICS|MODELS|MOLECULAR-DYNAMICS|PROTEINS</KeywordList>\r\n
+        \   <DocumentTypeList>Article</DocumentTypeList>\r\n    <DocumentCategory>Journal
+        Document</DocumentCategory>\r\n    <NumberOfReferences>31</NumberOfReferences>\r\n
+        \   <TimesCited>0</TimesCited>\r\n    <TimesNotSelfCited>0</TimesNotSelfCited>\r\n
+        \   <PMID>23565139</PMID>\r\n    <WoSItemID>000317717300006</WoSItemID>\r\n
+        \   <PublicationSourceTitle>PLOS ONE</PublicationSourceTitle>\r\n    <Volume>8</Volume>\r\n
+        \   <Issue>4</Issue>\r\n    <Pagination />\r\n    <PublicationDate>2013-04-02T00:00:00</PublicationDate>\r\n
+        \   <PublicationYear>2013</PublicationYear>\r\n    <PublicationType>Journal</PublicationType>\r\n
+        \   <PublicationSubjectCategoryList>Multidisciplinary Sciences</PublicationSubjectCategoryList>\r\n
+        \   <ISSN>1932-6203</ISSN>\r\n    <DOI>10.1371/journal.pone.0058699</DOI>\r\n
+        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>0</OrdinalRank>\r\n
+        \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
+        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>PUBLIC
+        LIBRARY SCIENCE</CopyrightPublisher>\r\n    <CopyrightCity>SAN FRANCISCO</CopyrightCity>\r\n
+        \   <ArticleNumber>e58699</ArticleNumber>\r\n    <PublicationImpactFactorList>4.092,2011,ClosestToPublicationYear|4.092,2011,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>12/84;BIOLOGY;2011;SC;ClosestToPublicationYear|12/84;BIOLOGY;2011;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <AuthorCitationCountList>1,0,0|2,0,0|3,0,0|4,0,0</AuthorCitationCountList>\r\n
+        \   <CopyrightStateProvince>CA</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
+        STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
+        \   <PublicationItemID>62856137</PublicationItemID>\r\n    <Title>Emergence
+        of Glass-like Behavior in Markov State Models of Protein Folding Dynamics</Title>\r\n
+        \   <Abstract>The extent to which glass-like kinetics govern dynamics in protein
+        folding has been heavily debated. Here, we address the subject with an application
+        of space-time perturbation theory to the dynamics of protein folding Markov
+        state models. Borrowing techniques from the s-ensemble method, we argue that
+        distinct active and inactive phases exist for protein folding dynamics, and
+        that kinetics for specific systems can fall into either dynamical regime.
+        We do not, however, observe a true glass transition in any system studied.
+        We go on to discuss how these inactive and active phases might relate to general
+        protein folding properties.</Abstract>\r\n    <AuthorList>Weber,Jeffrey,K|Jack,Robert,L|Pande,Vijay,S</AuthorList>\r\n
+        \   <AuthorCount>3</AuthorCount>\r\n    <KeywordList>TRAJECTORIES|TRANSITION|KINETICS</KeywordList>\r\n
+        \   <DocumentTypeList>Article</DocumentTypeList>\r\n    <DocumentCategory>Journal
+        Document</DocumentCategory>\r\n    <NumberOfReferences>20</NumberOfReferences>\r\n
+        \   <TimesCited>0</TimesCited>\r\n    <TimesNotSelfCited>0</TimesNotSelfCited>\r\n
+        \   <PMID>23540906</PMID>\r\n    <WoSItemID>000317872800004</WoSItemID>\r\n
+        \   <PublicationSourceTitle>JOURNAL OF THE AMERICAN CHEMICAL SOCIETY</PublicationSourceTitle>\r\n
+        \   <Volume>135</Volume>\r\n    <Issue>15</Issue>\r\n    <Pagination>5501-5504</Pagination>\r\n
+        \   <PublicationDate>2013-04-17T00:00:00</PublicationDate>\r\n    <PublicationYear>2013</PublicationYear>\r\n
+        \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Chemistry,
+        Multidisciplinary</PublicationSubjectCategoryList>\r\n    <ISSN>0002-7863</ISSN>\r\n
+        \   <DOI>10.1021/ja4002663</DOI>\r\n    <ConferenceStartDate xsi:nil=\"true\"
+        />\r\n    <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank xsi:nil=\"true\"
+        />\r\n    <OrdinalRank>1</OrdinalRank>\r\n    <NormalizedRank xsi:nil=\"true\"
+        />\r\n    <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
+        \   <CopyrightPublisher>AMER CHEMICAL SOC</CopyrightPublisher>\r\n    <CopyrightCity>WASHINGTON</CopyrightCity>\r\n
+        \   <PublicationImpactFactorList>9.907,2011,ClosestToPublicationYear|9.907,2011,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>11/149;CHEMISTRY, MULTIDISCIPLINARY;2011;SC;ClosestToPublicationYear|11/149;CHEMISTRY,
+        MULTIDISCIPLINARY;2011;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <AuthorCitationCountList>1,0,0|2,0,0|3,0,0</AuthorCitationCountList>\r\n
+        \   <CopyrightStateProvince>DC</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
+        STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
+        \   <PublicationItemID>62922945</PublicationItemID>\r\n    <Title>Functional
+        understanding of solvent structure in GroEL cavity through dipole field analysis</Title>\r\n
+        \   <Abstract>Solvent plays a ubiquitous role in all biophysical phenomena.
+        Yet, just how the molecular nature of water impacts processes in biology remains
+        an important question. While one can simulate the behavior of water near biomolecules
+        such as proteins, it is challenging to gauge the potential structural role
+        solvent plays in mediating both kinetic and equilibrium processes. Here, we
+        propose an analysis scheme for understanding the nature of solvent structure
+        at a local level. We first calculate coarse-grained dipole vector fields for
+        an explicitly solvated system simulated through molecular dynamics. We then
+        analyze correlations between these vector fields to characterize water structure
+        under biologically relevant conditions. In applying our method to the interior
+        of the wild type chaperonin complex GroEL+ES, along with nine additional mutant
+        GroEL complexes, we find that dipole field correlations are strongly related
+        to chaperonin function. (C) 2013 AIP Publishing LLC.</Abstract>\r\n    <AuthorList>Weber,Jeffrey,K|Pande,Vijay,S</AuthorList>\r\n
+        \   <AuthorCount>2</AuthorCount>\r\n    <KeywordList>SOLUTE|PROTEIN|WATER|CHAPERONINS</KeywordList>\r\n
+        \   <DocumentTypeList>Article</DocumentTypeList>\r\n    <DocumentCategory>Journal
+        Document</DocumentCategory>\r\n    <NumberOfReferences>20</NumberOfReferences>\r\n
+        \   <TimesCited>0</TimesCited>\r\n    <TimesNotSelfCited>0</TimesNotSelfCited>\r\n
+        \   <PMID>23635172</PMID>\r\n    <WoSItemID>000318550800072</WoSItemID>\r\n
+        \   <PublicationSourceTitle>JOURNAL OF CHEMICAL PHYSICS</PublicationSourceTitle>\r\n
+        \   <Volume>138</Volume>\r\n    <Issue>16</Issue>\r\n    <Pagination />\r\n
+        \   <PublicationDate>2013-04-28T00:00:00</PublicationDate>\r\n    <PublicationYear>2013</PublicationYear>\r\n
+        \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Physics,
+        Atomic, Molecular &amp; Chemical</PublicationSubjectCategoryList>\r\n    <ISSN>0021-9606</ISSN>\r\n
+        \   <DOI>10.1063/1.4801942</DOI>\r\n    <ConferenceStartDate xsi:nil=\"true\"
+        />\r\n    <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank xsi:nil=\"true\"
+        />\r\n    <OrdinalRank>2</OrdinalRank>\r\n    <NormalizedRank xsi:nil=\"true\"
+        />\r\n    <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
+        \   <CopyrightPublisher>AMER INST PHYSICS</CopyrightPublisher>\r\n    <CopyrightCity>MELVILLE</CopyrightCity>\r\n
+        \   <ArticleNumber>165101</ArticleNumber>\r\n    <PublicationImpactFactorList>3.333,2011,ClosestToPublicationYear|3.333,2011,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>7/32;PHYSICS, ATOMIC, MOLECULAR &amp;
+        CHEMICAL;2011;SC;ClosestToPublicationYear|7/32;PHYSICS, ATOMIC, MOLECULAR
+        &amp; CHEMICAL;2011;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <AuthorCitationCountList>1,0,0|2,0,0</AuthorCitationCountList>\r\n    <CopyrightStateProvince>NY</CopyrightStateProvince>\r\n
+        \   <CopyrightCountry>UNITED STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n</ArrayOfPublicationItem>"
+    http_version: 
+  recorded_at: Wed, 24 Jul 2013 22:53:57 GMT
+- request:
+    method: post
+    uri: http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml
+    body:
+      encoding: US-ASCII
+      string: ! '&id=23565139&id=23540906&id=23635172'
+    headers:
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 24 Jul 2013 23:43:38 GMT
+      Server:
+      - Apache
+      Access-Control-Allow-Origin:
+      - ! '*'
+      Cache-Control:
+      - private
+      Ncbi-Sid:
+      - 08DE41071F066AA1_0020SID
+      Content-Type:
+      - text/xml; charset=UTF-8
+      Set-Cookie:
+      - ncbi_sid=08DE41071F066AA1_0020SID; domain=.nih.gov; path=/; expires=Thu, 24
+        Jul 2014 23:43:38 GMT
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\"?>\n<!DOCTYPE PubmedArticleSet PUBLIC \"-//NLM//DTD
+        PubMedArticle, 1st May 2013//EN\" \"http://www.ncbi.nlm.nih.gov/corehtml/query/DTD/pubmed_130501.dtd\">\n<PubmedArticleSet>\n<PubmedArticle>\n
+        \   <MedlineCitation Owner=\"NLM\" Status=\"In-Process\">\n        <PMID Version=\"1\">23565139</PMID>\n
+        \       <DateCreated>\n            <Year>2013</Year>\n            <Month>04</Month>\n
+        \           <Day>08</Day>\n        </DateCreated>\n        <Article PubModel=\"Print-Electronic\">\n
+        \           <Journal>\n                <ISSN IssnType=\"Electronic\">1932-6203</ISSN>\n
+        \               <JournalIssue CitedMedium=\"Internet\">\n                    <Volume>8</Volume>\n
+        \                   <Issue>4</Issue>\n                    <PubDate>\n                        <Year>2013</Year>\n
+        \                   </PubDate>\n                </JournalIssue>\n                <Title>PloS
+        one</Title>\n                <ISOAbbreviation>PLoS ONE</ISOAbbreviation>\n
+        \           </Journal>\n            <ArticleTitle>Persistent topology and
+        metastable state in conformational dynamics.</ArticleTitle>\n            <Pagination>\n
+        \               <MedlinePgn>e58699</MedlinePgn>\n            </Pagination>\n
+        \           <ELocationID EIdType=\"doi\" ValidYN=\"Y\">10.1371/journal.pone.0058699</ELocationID>\n
+        \           <Abstract>\n                <AbstractText>The large amount of
+        molecular dynamics simulation data produced by modern computational models
+        brings big opportunities and challenges to researchers. Clustering algorithms
+        play an important role in understanding biomolecular kinetics from the simulation
+        data, especially under the Markov state model framework. However, the ruggedness
+        of the free energy landscape in a biomolecular system makes common clustering
+        algorithms very sensitive to perturbations of the data. Here, we introduce
+        a data-exploratory tool which provides an overview of the clustering structure
+        under different parameters. The proposed Multi-Persistent Clustering analysis
+        combines insights from recent studies on the dynamics of systems with dominant
+        metastable states with the concept of multi-dimensional persistence in computational
+        topology. We propose to explore the clustering structure of the data based
+        on its persistence on scale and density. The analysis provides a systematic
+        way to discover clusters that are robust to perturbations of the data. The
+        dominant states of the system can be chosen with confidence. For the clusters
+        on the borderline, the user can choose to do more simulation or make a decision
+        based on their structural characteristics. Furthermore, our multi-resolution
+        analysis gives users information about the relative potential of the clusters
+        and their hierarchical relationship. The effectiveness of the proposed method
+        is illustrated in three biomolecules: alanine dipeptide, Villin headpiece,
+        and the FiP35 WW domain.</AbstractText>\n            </Abstract>\n            <Affiliation>Institute
+        for Computational and Mathematical Engineering, Stanford University, Stanford,
+        California, United States of America. huangwei@stanford.edu</Affiliation>\n
+        \           <AuthorList CompleteYN=\"Y\">\n                <Author ValidYN=\"Y\">\n
+        \                   <LastName>Chang</LastName>\n                    <ForeName>Huang-Wei</ForeName>\n
+        \                   <Initials>HW</Initials>\n                </Author>\n                <Author
+        ValidYN=\"Y\">\n                    <LastName>Bacallado</LastName>\n                    <ForeName>Sergio</ForeName>\n
+        \                   <Initials>S</Initials>\n                </Author>\n                <Author
+        ValidYN=\"Y\">\n                    <LastName>Pande</LastName>\n                    <ForeName>Vijay
+        S</ForeName>\n                    <Initials>VS</Initials>\n                </Author>\n
+        \               <Author ValidYN=\"Y\">\n                    <LastName>Carlsson</LastName>\n
+        \                   <ForeName>Gunnar E</ForeName>\n                    <Initials>GE</Initials>\n
+        \               </Author>\n            </AuthorList>\n            <Language>eng</Language>\n
+        \           <GrantList CompleteYN=\"Y\">\n                <Grant>\n                    <GrantID>R01-GM062868</GrantID>\n
+        \                   <Acronym>GM</Acronym>\n                    <Agency>NIGMS
+        NIH HHS</Agency>\n                    <Country>United States</Country>\n                </Grant>\n
+        \           </GrantList>\n            <PublicationTypeList>\n                <PublicationType>Journal
+        Article</PublicationType>\n                <PublicationType>Research Support,
+        N.I.H., Extramural</PublicationType>\n                <PublicationType>Research
+        Support, U.S. Gov't, Non-P.H.S.</PublicationType>\n            </PublicationTypeList>\n
+        \           <ArticleDate DateType=\"Electronic\">\n                <Year>2013</Year>\n
+        \               <Month>04</Month>\n                <Day>02</Day>\n            </ArticleDate>\n
+        \       </Article>\n        <MedlineJournalInfo>\n            <Country>United
+        States</Country>\n            <MedlineTA>PLoS One</MedlineTA>\n            <NlmUniqueID>101285081</NlmUniqueID>\n
+        \           <ISSNLinking>1932-6203</ISSNLinking>\n        </MedlineJournalInfo>\n
+        \       <CitationSubset>IM</CitationSubset>\n        <CommentsCorrectionsList>\n
+        \           <CommentsCorrections RefType=\"Cites\">\n                <RefSource>Philos
+        Trans A Math Phys Eng Sci. 2005 Feb 15;363(1827):357-75; discussion 375-7</RefSource>\n
+        \               <PMID Version=\"1\">15664888</PMID>\n            </CommentsCorrections>\n
+        \           <CommentsCorrections RefType=\"Cites\">\n                <RefSource>J
+        Chem Phys. 2005 Nov 22;123(20):204909</RefSource>\n                <PMID Version=\"1\">16351319</PMID>\n
+        \           </CommentsCorrections>\n            <CommentsCorrections RefType=\"Cites\">\n
+        \               <RefSource>J Chem Phys. 2007 Apr 21;126(15):155101</RefSource>\n
+        \               <PMID Version=\"1\">17461665</PMID>\n            </CommentsCorrections>\n
+        \           <CommentsCorrections RefType=\"Cites\">\n                <RefSource>BMC
+        Bioinformatics. 2007;8 Suppl 2:S7</RefSource>\n                <PMID Version=\"1\">17493256</PMID>\n
+        \           </CommentsCorrections>\n            <CommentsCorrections RefType=\"Cites\">\n
+        \               <RefSource>Proteins. 2008 Mar;70(4):1185-95</RefSource>\n
+        \               <PMID Version=\"1\">17847092</PMID>\n            </CommentsCorrections>\n
+        \           <CommentsCorrections RefType=\"Cites\">\n                <RefSource>Curr
+        Opin Struct Biol. 2008 Apr;18(2):154-62</RefSource>\n                <PMID
+        Version=\"1\">18378442</PMID>\n            </CommentsCorrections>\n            <CommentsCorrections
+        RefType=\"Cites\">\n                <RefSource>Methods. 2009 Oct;49(2):197-201</RefSource>\n
+        \               <PMID Version=\"1\">19410002</PMID>\n            </CommentsCorrections>\n
+        \           <CommentsCorrections RefType=\"Cites\">\n                <RefSource>J
+        Chem Phys. 2009 Sep 28;131(12):124101</RefSource>\n                <PMID Version=\"1\">19791846</PMID>\n
+        \           </CommentsCorrections>\n            <CommentsCorrections RefType=\"Cites\">\n
+        \               <RefSource>J Chem Phys. 2011 May 7;134(17):174105</RefSource>\n
+        \               <PMID Version=\"1\">21548671</PMID>\n            </CommentsCorrections>\n
+        \           <CommentsCorrections RefType=\"Cites\">\n                <RefSource>Science.
+        2011 Oct 28;334(6055):517-20</RefSource>\n                <PMID Version=\"1\">22034434</PMID>\n
+        \           </CommentsCorrections>\n            <CommentsCorrections RefType=\"Cites\">\n
+        \               <RefSource>Proc Natl Acad Sci U S A. 2012 Oct 30;109(44):17807-13</RefSource>\n
+        \               <PMID Version=\"1\">22778442</PMID>\n            </CommentsCorrections>\n
+        \           <CommentsCorrections RefType=\"Cites\">\n                <RefSource>Curr
+        Opin Struct Biol. 2013 Feb;23(1):58-65</RefSource>\n                <PMID
+        Version=\"1\">23237705</PMID>\n            </CommentsCorrections>\n        </CommentsCorrectionsList>\n
+        \       <OtherID Source=\"NLM\">PMC3614941</OtherID>\n    </MedlineCitation>\n
+        \   <PubmedData>\n        <History>\n            <PubMedPubDate PubStatus=\"received\">\n
+        \               <Year>2012</Year>\n                <Month>9</Month>\n                <Day>22</Day>\n
+        \           </PubMedPubDate>\n            <PubMedPubDate PubStatus=\"accepted\">\n
+        \               <Year>2013</Year>\n                <Month>2</Month>\n                <Day>5</Day>\n
+        \           </PubMedPubDate>\n            <PubMedPubDate PubStatus=\"epublish\">\n
+        \               <Year>2013</Year>\n                <Month>4</Month>\n                <Day>2</Day>\n
+        \           </PubMedPubDate>\n            <PubMedPubDate PubStatus=\"entrez\">\n
+        \               <Year>2013</Year>\n                <Month>4</Month>\n                <Day>9</Day>\n
+        \               <Hour>6</Hour>\n                <Minute>0</Minute>\n            </PubMedPubDate>\n
+        \           <PubMedPubDate PubStatus=\"pubmed\">\n                <Year>2013</Year>\n
+        \               <Month>4</Month>\n                <Day>9</Day>\n                <Hour>6</Hour>\n
+        \               <Minute>0</Minute>\n            </PubMedPubDate>\n            <PubMedPubDate
+        PubStatus=\"medline\">\n                <Year>2013</Year>\n                <Month>4</Month>\n
+        \               <Day>9</Day>\n                <Hour>6</Hour>\n                <Minute>0</Minute>\n
+        \           </PubMedPubDate>\n        </History>\n        <PublicationStatus>ppublish</PublicationStatus>\n
+        \       <ArticleIdList>\n            <ArticleId IdType=\"doi\">10.1371/journal.pone.0058699</ArticleId>\n
+        \           <ArticleId IdType=\"pii\">PONE-D-12-29130</ArticleId>\n            <ArticleId
+        IdType=\"pubmed\">23565139</ArticleId>\n            <ArticleId IdType=\"pmc\">PMC3614941</ArticleId>\n
+        \       </ArticleIdList>\n    </PubmedData>\n</PubmedArticle>\n\n\n<PubmedArticle>\n
+        \   <MedlineCitation Owner=\"NLM\" Status=\"In-Process\">\n        <PMID Version=\"1\">23540906</PMID>\n
+        \       <DateCreated>\n            <Year>2013</Year>\n            <Month>04</Month>\n
+        \           <Day>17</Day>\n        </DateCreated>\n        <Article PubModel=\"Print-Electronic\">\n
+        \           <Journal>\n                <ISSN IssnType=\"Electronic\">1520-5126</ISSN>\n
+        \               <JournalIssue CitedMedium=\"Internet\">\n                    <Volume>135</Volume>\n
+        \                   <Issue>15</Issue>\n                    <PubDate>\n                        <Year>2013</Year>\n
+        \                       <Month>Apr</Month>\n                        <Day>17</Day>\n
+        \                   </PubDate>\n                </JournalIssue>\n                <Title>Journal
+        of the American Chemical Society</Title>\n                <ISOAbbreviation>J.
+        Am. Chem. Soc.</ISOAbbreviation>\n            </Journal>\n            <ArticleTitle>Emergence
+        of glass-like behavior in Markov state models of protein folding dynamics.</ArticleTitle>\n
+        \           <Pagination>\n                <MedlinePgn>5501-4</MedlinePgn>\n
+        \           </Pagination>\n            <ELocationID EIdType=\"doi\" ValidYN=\"Y\">10.1021/ja4002663</ELocationID>\n
+        \           <Abstract>\n                <AbstractText>The extent to which
+        glass-like kinetics govern dynamics in protein folding has been heavily debated.
+        Here, we address the subject with an application of space-time perturbation
+        theory to the dynamics of protein folding Markov state models. Borrowing techniques
+        from the s-ensemble method, we argue that distinct active and inactive phases
+        exist for protein folding dynamics, and that kinetics for specific systems
+        can fall into either dynamical regime. We do not, however, observe a true
+        glass transition in any system studied. We go on to discuss how these inactive
+        and active phases might relate to general protein folding properties.</AbstractText>\n
+        \           </Abstract>\n            <Affiliation>Department of Chemistry,
+        Stanford University, Stanford, California 94305, USA.</Affiliation>\n            <AuthorList
+        CompleteYN=\"Y\">\n                <Author ValidYN=\"Y\">\n                    <LastName>Weber</LastName>\n
+        \                   <ForeName>Jeffrey K</ForeName>\n                    <Initials>JK</Initials>\n
+        \               </Author>\n                <Author ValidYN=\"Y\">\n                    <LastName>Jack</LastName>\n
+        \                   <ForeName>Robert L</ForeName>\n                    <Initials>RL</Initials>\n
+        \               </Author>\n                <Author ValidYN=\"Y\">\n                    <LastName>Pande</LastName>\n
+        \                   <ForeName>Vijay S</ForeName>\n                    <Initials>VS</Initials>\n
+        \               </Author>\n            </AuthorList>\n            <Language>eng</Language>\n
+        \           <GrantList CompleteYN=\"Y\">\n                <Grant>\n                    <GrantID>R01
+        GM062868</GrantID>\n                    <Acronym>GM</Acronym>\n                    <Agency>NIGMS
+        NIH HHS</Agency>\n                    <Country>United States</Country>\n                </Grant>\n
+        \               <Grant>\n                    <GrantID>R01-GM062868</GrantID>\n
+        \                   <Acronym>GM</Acronym>\n                    <Agency>NIGMS
+        NIH HHS</Agency>\n                    <Country>United States</Country>\n                </Grant>\n
+        \           </GrantList>\n            <PublicationTypeList>\n                <PublicationType>Journal
+        Article</PublicationType>\n                <PublicationType>Research Support,
+        N.I.H., Extramural</PublicationType>\n                <PublicationType>Research
+        Support, Non-U.S. Gov't</PublicationType>\n                <PublicationType>Research
+        Support, U.S. Gov't, Non-P.H.S.</PublicationType>\n            </PublicationTypeList>\n
+        \           <ArticleDate DateType=\"Electronic\">\n                <Year>2013</Year>\n
+        \               <Month>04</Month>\n                <Day>03</Day>\n            </ArticleDate>\n
+        \       </Article>\n        <MedlineJournalInfo>\n            <Country>United
+        States</Country>\n            <MedlineTA>J Am Chem Soc</MedlineTA>\n            <NlmUniqueID>7503056</NlmUniqueID>\n
+        \           <ISSNLinking>0002-7863</ISSNLinking>\n        </MedlineJournalInfo>\n
+        \       <CitationSubset>IM</CitationSubset>\n        <OtherID Source=\"NLM\">NIHMS464030
+        [Available on 04/17/14]</OtherID>\n        <OtherID Source=\"NLM\">PMC3677858
+        [Available on 04/17/14]</OtherID>\n    </MedlineCitation>\n    <PubmedData>\n
+        \       <History>\n            <PubMedPubDate PubStatus=\"aheadofprint\">\n
+        \               <Year>2013</Year>\n                <Month>4</Month>\n                <Day>3</Day>\n
+        \           </PubMedPubDate>\n            <PubMedPubDate PubStatus=\"entrez\">\n
+        \               <Year>2013</Year>\n                <Month>4</Month>\n                <Day>2</Day>\n
+        \               <Hour>6</Hour>\n                <Minute>0</Minute>\n            </PubMedPubDate>\n
+        \           <PubMedPubDate PubStatus=\"pubmed\">\n                <Year>2013</Year>\n
+        \               <Month>4</Month>\n                <Day>2</Day>\n                <Hour>6</Hour>\n
+        \               <Minute>0</Minute>\n            </PubMedPubDate>\n            <PubMedPubDate
+        PubStatus=\"medline\">\n                <Year>2013</Year>\n                <Month>4</Month>\n
+        \               <Day>2</Day>\n                <Hour>6</Hour>\n                <Minute>0</Minute>\n
+        \           </PubMedPubDate>\n            <PubMedPubDate PubStatus=\"pmc-release\">\n
+        \               <Year>2014</Year>\n                <Month>4</Month>\n                <Day>17</Day>\n
+        \               <Hour>0</Hour>\n                <Minute>0</Minute>\n            </PubMedPubDate>\n
+        \       </History>\n        <PublicationStatus>ppublish</PublicationStatus>\n
+        \       <ArticleIdList>\n            <ArticleId IdType=\"doi\">10.1021/ja4002663</ArticleId>\n
+        \           <ArticleId IdType=\"pubmed\">23540906</ArticleId>\n            <ArticleId
+        IdType=\"pmc\">PMC3677858</ArticleId>\n            <ArticleId IdType=\"mid\">NIHMS464030</ArticleId>\n
+        \       </ArticleIdList>\n    </PubmedData>\n</PubmedArticle>\n\n\n<PubmedArticle>\n
+        \   <MedlineCitation Owner=\"NLM\" Status=\"In-Process\">\n        <PMID Version=\"1\">23635172</PMID>\n
+        \       <DateCreated>\n            <Year>2013</Year>\n            <Month>05</Month>\n
+        \           <Day>02</Day>\n        </DateCreated>\n        <Article PubModel=\"Print\">\n
+        \           <Journal>\n                <ISSN IssnType=\"Electronic\">1089-7690</ISSN>\n
+        \               <JournalIssue CitedMedium=\"Internet\">\n                    <Volume>138</Volume>\n
+        \                   <Issue>16</Issue>\n                    <PubDate>\n                        <Year>2013</Year>\n
+        \                       <Month>Apr</Month>\n                        <Day>28</Day>\n
+        \                   </PubDate>\n                </JournalIssue>\n                <Title>The
+        Journal of chemical physics</Title>\n                <ISOAbbreviation>J Chem
+        Phys</ISOAbbreviation>\n            </Journal>\n            <ArticleTitle>Functional
+        understanding of solvent structure in GroEL cavity through dipole field analysis.</ArticleTitle>\n
+        \           <Pagination>\n                <MedlinePgn>165101</MedlinePgn>\n
+        \           </Pagination>\n            <ELocationID EIdType=\"doi\" ValidYN=\"Y\">10.1063/1.4801942</ELocationID>\n
+        \           <Abstract>\n                <AbstractText>Solvent plays a ubiquitous
+        role in all biophysical phenomena. Yet, just how the molecular nature of water
+        impacts processes in biology remains an important question. While one can
+        simulate the behavior of water near biomolecules such as proteins, it is challenging
+        to gauge the potential structural role solvent plays in mediating both kinetic
+        and equilibrium processes. Here, we propose an analysis scheme for understanding
+        the nature of solvent structure at a local level. We first calculate coarse-grained
+        dipole vector fields for an explicitly solvated system simulated through molecular
+        dynamics. We then analyze correlations between these vector fields to characterize
+        water structure under biologically relevant conditions. In applying our method
+        to the interior of the wild type chaperonin complex GroEL+ES, along with nine
+        additional mutant GroEL complexes, we find that dipole field correlations
+        are strongly related to chaperonin function.</AbstractText>\n            </Abstract>\n
+        \           <Affiliation>Department of Chemistry, Stanford University, Stanford,
+        California 94305-5080, USA.</Affiliation>\n            <AuthorList CompleteYN=\"Y\">\n
+        \               <Author ValidYN=\"Y\">\n                    <LastName>Weber</LastName>\n
+        \                   <ForeName>Jeffrey K</ForeName>\n                    <Initials>JK</Initials>\n
+        \               </Author>\n                <Author ValidYN=\"Y\">\n                    <LastName>Pande</LastName>\n
+        \                   <ForeName>Vijay S</ForeName>\n                    <Initials>VS</Initials>\n
+        \               </Author>\n            </AuthorList>\n            <Language>eng</Language>\n
+        \           <GrantList CompleteYN=\"Y\">\n                <Grant>\n                    <GrantID>R01-GM062868</GrantID>\n
+        \                   <Acronym>GM</Acronym>\n                    <Agency>NIGMS
+        NIH HHS</Agency>\n                    <Country>United States</Country>\n                </Grant>\n
+        \           </GrantList>\n            <PublicationTypeList>\n                <PublicationType>Journal
+        Article</PublicationType>\n                <PublicationType>Research Support,
+        N.I.H., Extramural</PublicationType>\n                <PublicationType>Research
+        Support, Non-U.S. Gov't</PublicationType>\n                <PublicationType>Research
+        Support, U.S. Gov't, Non-P.H.S.</PublicationType>\n            </PublicationTypeList>\n
+        \       </Article>\n        <MedlineJournalInfo>\n            <Country>United
+        States</Country>\n            <MedlineTA>J Chem Phys</MedlineTA>\n            <NlmUniqueID>0375360</NlmUniqueID>\n
+        \           <ISSNLinking>0021-9606</ISSNLinking>\n        </MedlineJournalInfo>\n
+        \       <CitationSubset>IM</CitationSubset>\n        <OtherID Source=\"NLM\">PMC3651261
+        [Available on 04/28/14]</OtherID>\n    </MedlineCitation>\n    <PubmedData>\n
+        \       <History>\n            <PubMedPubDate PubStatus=\"entrez\">\n                <Year>2013</Year>\n
+        \               <Month>5</Month>\n                <Day>3</Day>\n                <Hour>6</Hour>\n
+        \               <Minute>0</Minute>\n            </PubMedPubDate>\n            <PubMedPubDate
+        PubStatus=\"pubmed\">\n                <Year>2013</Year>\n                <Month>5</Month>\n
+        \               <Day>3</Day>\n                <Hour>6</Hour>\n                <Minute>0</Minute>\n
+        \           </PubMedPubDate>\n            <PubMedPubDate PubStatus=\"medline\">\n
+        \               <Year>2013</Year>\n                <Month>5</Month>\n                <Day>3</Day>\n
+        \               <Hour>6</Hour>\n                <Minute>0</Minute>\n            </PubMedPubDate>\n
+        \           <PubMedPubDate PubStatus=\"pmc-release\">\n                <Year>2014</Year>\n
+        \               <Month>4</Month>\n                <Day>28</Day>\n                <Hour>0</Hour>\n
+        \               <Minute>0</Minute>\n            </PubMedPubDate>\n        </History>\n
+        \       <PublicationStatus>ppublish</PublicationStatus>\n        <ArticleIdList>\n
+        \           <ArticleId IdType=\"doi\">10.1063/1.4801942</ArticleId>\n            <ArticleId
+        IdType=\"pubmed\">23635172</ArticleId>\n            <ArticleId IdType=\"pmc\">PMC3651261</ArticleId>\n
+        \       </ArticleIdList>\n    </PubmedData>\n</PubmedArticle>\n\n</PubmedArticleSet>\n"
+    http_version: 
+  recorded_at: Wed, 24 Jul 2013 23:43:39 GMT
+recorded_with: VCR 2.5.0
