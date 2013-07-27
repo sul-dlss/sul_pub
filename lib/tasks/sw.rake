@@ -28,4 +28,13 @@ namespace :sw do
     ids = IO.readlines(args[:path_to_ids]).map {|l| l.strip}
     harvester.harvest_pubs_for_author_ids ids
   end
+
+  desc "Harvest using a directory full of Web Of Science bibtex query results"
+  task :wos_harvest, [:path_to_bibtex] => :environment do |t, args|
+    harvester = ScienceWireHarvester.new
+    Signal.trap("USR1") do
+      harvester.debug = true
+    end
+    harvester.harvest_from_directory_of_wos_id_files args[:path_to_bibtex]
+  end
 end

@@ -208,6 +208,19 @@ describe ScienceWireHarvester do
       end
 	  end
 
+	  it "does not create empty values in the pub_hash for :pmid or an empty PMID identifier" do
+	    auth = create(:author, :sunetid => 'gorin')
+	    VCR.use_cassette("sciencewire_harvester_wos_no_pubmed") do
+	      expect(PubmedSourceRecord.count).to eq(0)
+	      science_wire_harvester.harvest_sw_pubs_by_wos_id_for_author('gorin', ['000224492700003'])
+        expect(auth.publications).to have(1).items
+        pub_hash = auth.publications.first.pub_hash
+        expect(pub_hash[:authorship].first[:sul_author_id]).to eq(auth.id)
+        expect(pub_hash[:identifier].select {|id| id[:type] == 'PMID'}).to be_empty
+        expect(PubmedSourceRecord.count).to eq(0)
+      end
+	  end
+
 
 	end
 

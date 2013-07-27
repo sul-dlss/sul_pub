@@ -375,6 +375,39 @@ class ScienceWireHarvester
 
     end
 
+    def harvest_from_directory_of_wos_id_files(path_to_directory)
+      @sw_harvest_logger = Logger.new(Rails.root.join('log', 'wos_harvest.log'))
+      @sw_harvest_logger.datetime_format = "%Y-%m-%d %H:%M:%S"
+      @sw_harvest_logger.formatter = proc { |severity, datetime, progname, msg|
+        "#{severity} #{datetime}: #{msg}\n"
+      }
+	    @sw_harvest_logger.info "Started Web Of Science harvest #{DateTime.now}"
+      @wos_ids_processed = 0
+      @file_count = 0
+      Dir.glob(path_to_directory + '/*').each do |f|
+        begin
+          sunetid = f.split('/').last
+          @sw_harvest_logger.info "Processing #{sunetid}"
+          wos_ids = []
+          IO.readlines(f).each do |l|
+            if(l =~ /^Unique-ID.*ISI:(.*)}},/)
+              @wos_ids_processed += 1
+              wos_ids << $1
+            end
+          end
+
+          harvest_sw_pubs_by_wos_id_for_author(sunetid, wos_ids)
+          @file_count += 1
+        rescue => e
+          @sw_harvester_logger.error "Problem with #{f}"
+          @sw_harvester_logger.error e.inspect << "\n" << e.backtrace.join("\n")
+        end
+      end
+      @sw_harvest_logger.info "#{@file_count} files processed"
+      @sw_harvest_logger.info "#{@wos_ids_processed} Web Of Science IDs parsed"
+      write_counts_to_log
+    end
+
     # @param [String] sunetid identifier for the author
     # @param [Array<String>] wos_ids WebOfScienceID Document IDs to pull
     def harvest_sw_pubs_by_wos_id_for_author(sunetid, wos_ids)
@@ -386,13 +419,24 @@ class ScienceWireHarvester
 
       # TODO refactor our similar processing from suggestions/name search
       all_sw_docs.xpath('//PublicationItem').each do |sw_doc|
-        sciencewire_id = sw_doc.at_xpath('PublicationItemID').text
-        record_created = create_contrib_for_pub_if_exists(sciencewire_id, author)
-        unless(record_created)
-	        pmid = sw_doc.xpath("PMID").text
-	        source_record_was_created = SciencewireSourceRecord.save_sw_source_record(sciencewire_id, pmid, sw_doc.to_xml)
-	        if source_record_was_created then @total_new_sciencewire_source_count += 1 end
-	        create_or_update_pub_and_contribution_with_harvested_sw_doc(sw_doc, [author.id])
+        begin
+          sciencewire_id = sw_doc.at_xpath('PublicationItemID').text
+          record_created = create_contrib_for_pub_if_exists(sciencewire_id, author)
+          unless(record_created)
+  	        pmid = sw_doc.xpath("PMID").text
+  	        source_record_was_created = SciencewireSourceRecord.save_sw_source_record(sciencewire_id, pmid, sw_doc.to_xml)
+  	        if source_record_was_created then @total_new_sciencewire_source_count += 1 end
+  	        create_or_update_pub_and_contribution_with_harvested_sw_doc(sw_doc, [author.id])
+          end
+          if(@debug)
+            @sw_harvest_logger.info "#{@file_count} files processed"
+            @sw_harvest_logger.info "#{@wos_ids_processed} Web Of Science Ids processed"
+	          log_counts
+	          @debug = false
+	        end
+        rescue => e
+          @sw_harvest_logger.error "Unable to process #{sciencewire_id}"
+          @sw_harvest_logger.error e.inspect << "\n" << e.backtrace.join("\n")
         end
       end
 
