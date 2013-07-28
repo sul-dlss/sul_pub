@@ -6,6 +6,7 @@ class ScienceWireHarvester
 	attr_reader :sciencewire_client
 	attr_reader :records_queued_for_pubmed_retrieval
 	attr_reader :records_queued_for_sciencewire_retrieval
+	attr_reader :file_count
 
 	attr_accessor :debug, :name_only_query, :use_middle_name
 
@@ -384,28 +385,44 @@ class ScienceWireHarvester
 	    @sw_harvest_logger.info "Started Web Of Science harvest #{DateTime.now}"
       @wos_ids_processed = 0
       @file_count = 0
-      Dir.glob(path_to_directory + '/*').each do |f|
+      Dir.glob(path_to_directory.to_s + '/*').each do |f|
         begin
           sunetid = f.split('/').last
           @sw_harvest_logger.info "Processing #{sunetid}"
-          wos_ids = []
-          IO.readlines(f).each do |l|
-            if(l =~ /^Unique-ID.*ISI:(.*)}},/)
-              @wos_ids_processed += 1
-              wos_ids << $1
-            end
+          wos_ids = process_bibtex_file(f)
+          if(wos_ids.empty?)
+            @sw_harvest_logger.warn "No ids to process for #{sunetid}. Skipping"
+            next
           end
-
           harvest_sw_pubs_by_wos_id_for_author(sunetid, wos_ids)
           @file_count += 1
         rescue => e
-          @sw_harvester_logger.error "Problem with #{f}"
-          @sw_harvester_logger.error e.inspect << "\n" << e.backtrace.join("\n")
+          @sw_harvest_logger.error "Problem with #{f}"
+          @sw_harvest_logger.error e.inspect << "\n" << e.backtrace.join("\n")
         end
       end
       @sw_harvest_logger.info "#{@file_count} files processed"
       @sw_harvest_logger.info "#{@wos_ids_processed} Web Of Science IDs parsed"
       write_counts_to_log
+    end
+
+    def process_bibtex_file(path_to_file)
+      mode = nil
+      ids = []
+      IO.readlines(path_to_file).each do |l|
+        if(l =~ /^@article/)
+          mode = :article
+          next
+        end
+        if(l =~ /^Unique-ID.*ISI:(.*)}},/)
+          if(mode == :article)
+            @wos_ids_processed += 1
+            ids << $1
+          end
+          mode = nil
+        end
+      end
+      ids
     end
 
     # @param [String] sunetid identifier for the author

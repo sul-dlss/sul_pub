@@ -1,0 +1,101 @@
+@article{ ISI:000312170100030,
+Author = {Gorlin, Yelena and Chung, Chia-Jung and Nordlund, Dennis and Clemens,
+   Bruce M. and Jaramillo, Thomas F.},
+Title = {{Mn3O4 Supported on Glassy Carbon: An Active Non-Precious Metal Catalyst
+   for the Oxygen Reduction Reaction}},
+Journal = {{ACS CATALYSIS}},
+Year = {{2012}},
+Volume = {{2}},
+Number = {{12}},
+Pages = {{2687-2694}},
+Month = {{DEC}},
+Abstract = {{In this work, we explore the interplay between manganese oxide (MnOx)
+   nanomaterials and a glassy carbon (GC) support in catalyzing the oxygen
+   reduction reaction (ORR) in an alkaline environment. Initially, we
+   characterize the ORR activity of bare GC electrodes as a function of
+   heat treatments in air, and find that ORR activity increases with
+   increasing temperature up to 500 degrees C. Modification of GC with
+   size-selected 1 nm MnOx nanoparticles prior to the 500 degrees C heat
+   treatment yields a highly porous GC (pGC) structure, devoid of MnOx.
+   This pGC sample exhibits the highest ORR performance of the bare carbon
+   electrodes reaching an onset potential of 0.75 V vs the reversible
+   hydrogen electrode (RHE) and a complete 2-electron reduction of oxygen
+   to peroxide. Having established ORR activity of bare GC electrodes, we
+   deposit size-selected 14 nm MnO nanoparticles onto the GC and pGC
+   electrodes and then incite phase changes in MnO through heat treatments
+   in air. Electrochemical characterization of the resulting electrodes
+   reveals that MnO nanoparticles offer no improvement in the ORR onset
+   potential over bare GC or pGC and only slightly increase the number of
+   electrons transferred. By contrast, thermal oxidation of MnO
+   nanoparticles to Mn3O4 at 500 degrees C, confirmed by Mn L-edge X-ray
+   absorption spectroscopy, results in an improved ORR onset potential of
+   0.80 V and a 4-electron reduction of oxygen. Thus at low overpotentials,
+   where GC and pGC were inactive for the ORR, MnOx sites must contribute
+   to all steps of the reaction. The catalyst's estimated specific activity
+   of 3700 mu A.cm(cat)(-2), at 0.75 V compares favorably with specific
+   activities of Pt/C as well as the best nonprecious metal catalysts. This
+   establishes Mn3O4 as another MnOx phase with high activity for the ORR.}},
+DOI = {{10.1021/cs3004352}},
+ISSN = {{2155-5435}},
+ResearcherID-Numbers = {{Nordlund, Dennis/A-8902-2008}},
+ORCID-Numbers = {{Nordlund, Dennis/0000-0001-9524-6908}},
+Unique-ID = {{ISI:000312170100030}},
+}
+
+@inproceedings{ ISI:000309917800142,
+Author = {Li, Joel B. and Chawla, Vardaan and Clemens, Bruce M.},
+Book-Group-Author = {{IEEE}},
+Title = {{Understanding the Role of Grain Boundaries in Sulfide Thin Film Solar
+   Cells with Scanning Probe Microscopy}},
+Booktitle = {{2012 38TH IEEE PHOTOVOLTAIC SPECIALISTS CONFERENCE (PVSC)}},
+Year = {{2012}},
+Note = {{38th IEEE Photovoltaic Specialists Conference (PVSC), Austin, TX, JUN
+   03-08, 2012}},
+Organization = {{IEEE; IEEE Electron Devides Soc (EDS); IEEE Photon Soc; IEEE Power \&
+   Energy Soc (PES); HelioVolt Corp; SunShot, US Dept Energy}},
+Abstract = {{Grain boundaries (GBs) in Cu(In, Ga)Se-2 (CIGS) and CdTe thin film solar
+   cells are known to be beneficial for achieving high conversion
+   efficiencies. In this work, we will show that Cu2ZnSnS4 (CZTS) and
+   Cu2ZnSn(S, Se)(4) (CZTSSe) solar cells have the same GB electronic
+   properties as CIGS and CdTe. Scanning Kelvin Probe Microscopy (SKPM)
+   measurements reveal a higher positive surface potential at the GBs as
+   compared to the grain while Conductive Atomic Force Microscopy (C-AFM)
+   measurements show higher current flow in the vicinity of the GBs. These
+   two measurement results are similar to those obtained for CIGS and CdTe
+   and together they demonstrate the enhanced minority carrier collection
+   taking place at the GBs of CZTS and CZTSSe. This implies that CZTS and
+   CZTSSe solar cells have the potential to achieve the high efficiencies
+   that CIGS and CdTe solar cells enjoy.}},
+ISBN = {{978-1-4673-0066-7}},
+Unique-ID = {{ISI:000309917800142}},
+}
+
+@article{ ISI:000303251500027,
+Author = {Groves, James R. and Li, Joel B. and Clemens, Bruce M. and LaSalvia,
+   Vincenzo and Hasoon, Falah and Branz, Howard M. and Teplin, Charles W.},
+Title = {{Biaxially-textured photovoltaic film crystal silicon on ion beam
+   assisted deposition CaF2 seed layers on glass}},
+Journal = {{ENERGY \& ENVIRONMENTAL SCIENCE}},
+Year = {{2012}},
+Volume = {{5}},
+Number = {{5}},
+Pages = {{6905-6908}},
+Month = {{MAY}},
+Abstract = {{We grow biaxially textured heteroepitaxial crystal silicon (c-Si) films
+   on display glass as a low-cost photovoltaic material. We first fabricate
+   textured CaF2 seed layers using ion-beam assisted deposition, then coat
+   the CaF2 with a thin, evaporated epitaxial Ge buffer and finally deposit
+   heteroepitaxial silicon on the Ge. The silicon is grown by hot-wire
+   chemical vapor deposition, a high-rate, scalable epitaxy technology.
+   Electron and X-ray diffraction confirm the biaxial texture of the CaF2
+   and epitaxial growth of the subsequent layers. Transmission electron
+   microscopy reveals columnar silicon grains about 500 nm across. We
+   fabricate a proof-of-concept epitaxial film c-Si solar cell with an open
+   circuit voltage of 375 mV that is limited by minority carrier lifetime.}},
+DOI = {{10.1039/c2ee21097e}},
+ISSN = {{1754-5692}},
+Unique-ID = {{ISI:000303251500027}},
+}
+
+
+
