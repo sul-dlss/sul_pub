@@ -43,8 +43,7 @@ class ScienceWireHarvester
 
 	    #Author.where(active_in_cap: true, cap_import_enabled: true).limit(2).offset(10000).each do |author|
 
-	  	#Author.where(active_in_cap: true, cap_import_enabled: true).find_each(:start => starting_author_id) do |author|
-	  	Author.find_each(:start => starting_author_id) do |author|
+	  	Author.where(active_in_cap: true, cap_import_enabled: true).find_each(:start => starting_author_id) do |author|
 	    	harvest_for_author(author)
 	    end
 	    # finish up any records left in the queues
@@ -152,9 +151,9 @@ class ScienceWireHarvester
 	        	@sw_harvest_logger.info string_to_print
 	        end
 
-	        if(@name_only_query || (emails_for_harvest.blank? && seed_list.empty?))
-	        	suggested_sciencewire_ids = @sciencewire_client.query_sciencewire_by_author_name(first_name, middle_name, last_name, 20)
-	        	@authors_with_no_seed_data_count += 1 unless(@name_only_query)
+	        if(seed_list.size < 10)
+	        	suggested_sciencewire_ids = @sciencewire_client.query_sciencewire_by_author_name(first_name, middle_name, last_name)
+	        	@authors_with_no_seed_data_count += 1
 	        else
 	        	suggested_sciencewire_ids = @sciencewire_client.get_sciencewire_id_suggestions(last_name, first_name, middle_name, emails_for_harvest, seed_list)
 	        end
@@ -206,6 +205,7 @@ class ScienceWireHarvester
 		existing_pub = Publication.where(sciencewire_id: sciencewire_id).first
     	if existing_pub
     		create_contribs_for_author_ids_and_pub(author_ids, existing_pub)
+    		existing_pub.rebuild_authorship
 	    	matches_on_existing_swid_count += 1
 	    	true
 	    else
@@ -219,6 +219,7 @@ class ScienceWireHarvester
     	if existing_pub
 
     		add_contribution_for_harvest_suggestion(author, existing_pub)
+    		existing_pub.rebuild_authorship
     		@matches_on_existing_swid_count += 1
     		true
 	    else

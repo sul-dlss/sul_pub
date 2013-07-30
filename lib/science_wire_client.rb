@@ -9,7 +9,7 @@ class ScienceWireClient
   def get_sciencewire_id_suggestions(last_name, first_name, middle_name, email_list, seed_list)
 
     ids = []
-    ["Journal Document", "Conference Proceeding Document"].each do |category|
+    ["Journal Document"].each do |category|
       bod = "<?xml version='1.0'?>
       <PublicationAuthorMatchParameters xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema'>
         <Authors>
@@ -25,12 +25,6 @@ class ScienceWireClient
         bod << '<PublicationItemIds>'
         bod << seed_list.collect { |pubId| "<int>#{pubId}</int>"}.join
         bod << '</PublicationItemIds>'
-      end
-
-      unless email_list.blank?
-        bod << '<Emails>'
-        bod <<   "<string>#{email_list}</string>"
-        bod << '</Emails>'
       end
 
       bod << '<LimitToHighQualityMatchesOnly>true</LimitToHighQualityMatchesOnly>'
@@ -82,42 +76,46 @@ class ScienceWireClient
 
 
 
-def query_sciencewire_by_author_name(first_name, middle_name, last_name, max_rows)
+def query_sciencewire_by_author_name(first_name, middle_name, last_name, max_rows=200)
+    query = %("#{last_name},#{first_name}" or "#{last_name.upcase},#{first_name[0].upcase}")
+    if(middle_name && middle_name =~ /^([a-zA-Z])/)
+      query << " or " << %("#{last_name.upcase},#{first_name[0].upcase}) << $1.upcase << '"'
+    end
+
 
 	  xml_query = '<![CDATA[
 	     <query xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/
 	    XMLSchema">
-	      <Criterion ConjunctionOperator="AND">
+	      <Criterion>
 	        <Criteria>'
 
-	unless last_name.blank?
 	  xml_query << "<Criterion>
-	            <Filter>
-	              <Column>AuthorLastName</Column>
-	              <Operator>BeginsWith</Operator>
-	              <Value>#{last_name}</Value>
-	            </Filter>
+	            <TextSearch>
+                  <QueryPredicate>(#{query}) and Stanford</QueryPredicate>
+                  <SearchType>ExactMatch</SearchType>
+                  <Columns>AggregateText</Columns>
+                  <MaximumRows>#{max_rows}</MaximumRows>
+                  </TextSearch>
 	          </Criterion>"
-	end
-	unless first_name.blank?
-	  xml_query << "<Criterion>
-	            <Filter>
-	              <Column>AuthorFirstName</Column>
-	              <Operator>BeginsWith</Operator>
-	              <Value>#{first_name}</Value>
-	            </Filter>
-	          </Criterion>"
-	end
 
-	unless middle_name.blank?
-	  xml_query << "<Criterion>
-	            <Filter>
-	              <Column>AuthorMiddleName</Column>
-	              <Operator>BeginsWith</Operator>
-	              <Value>#{middle_name}</Value>
-	            </Filter>
-	          </Criterion>"
-	end
+    unless last_name.blank?
+  	  xml_query << "<Criterion>
+  	            <Filter>
+  	              <Column>AuthorLastName</Column>
+  	              <Operator>BeginsWith</Operator>
+  	              <Value>#{last_name.upcase}</Value>
+  	            </Filter>
+  	          </Criterion>"
+  	end
+  	unless first_name.blank?
+  	  xml_query << "<Criterion>
+  	            <Filter>
+  	              <Column>AuthorFirstName</Column>
+  	              <Operator>BeginsWith</Operator>
+  	              <Value>#{first_name[0].upcase}</Value>
+  	            </Filter>
+  	          </Criterion>"
+  	end
 
 	   xml_query << "</Criteria>
 	      </Criterion>
@@ -131,8 +129,7 @@ def query_sciencewire_by_author_name(first_name, middle_name, last_name, max_row
 	    </query>
 	    ]]>"
 
-	    query_sciencewire(xml_query, 0, 3).xpath('//PublicationItem/PublicationItemID').collect { |itemId| itemId.text}
-
+	    query_sciencewire(xml_query).xpath('//PublicationItem/PublicationItemID').collect { |itemId| itemId.text}
 	end
 
 

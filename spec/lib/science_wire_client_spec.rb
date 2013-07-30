@@ -34,12 +34,12 @@ describe ScienceWireClient do
 			end
 		end
 
-		it "gets suggestions from journals and conference proceedings" do
+		it "gets suggestions from journals" do
 		  VCR.use_cassette("sciencewire_client_spec_searches_journals_and_proceedings") do
 				expect(
 					science_wire_client.
 						get_sciencewire_id_suggestions("benson", "sally", "", "smbenson@stanford.edu", [])).
-					to have_at_least(8).items
+					to have_at_least(7).items
 			end
 		end
 
