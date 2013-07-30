@@ -52,7 +52,7 @@ end
     parser :json, BibJSONParser
     post do
       #puts params[:pub_hash].to_s
-      error!('Unauthorized', 401) unless env['HTTP_CAPKEY'] == '***REMOVED***'
+      error!('Unauthorized', 401) unless env['HTTP_CAPKEY'] == SulBib::API_KEY
       authorship_hash = params[:pub_hash]
       sul_author_id = authorship_hash[:sul_author_id]
       cap_profile_id = authorship_hash[:cap_profile_id]
@@ -145,7 +145,7 @@ params do
 end
 
 get :sourcelookup do
-    error!('Unauthorized', 401) unless env['HTTP_CAPKEY'] == '***REMOVED***'
+    error!('Unauthorized', 401) unless env['HTTP_CAPKEY'] == SulBib::API_KEY
       all_matching_records = []
 
       # set source to all sources if param value is blank
@@ -185,7 +185,7 @@ get :sourcelookup do
 
     # GET ALL PUBS, PAGED IF REQUESTD, OR FOR AN AUTHOR IF REQUESTED.
     get do
-      error!('Unauthorized', 401) unless env['HTTP_CAPKEY'] == '***REMOVED***'
+      error!('Unauthorized', 401) unless env['HTTP_CAPKEY'] == SulBib::API_KEY
       matching_records = []
       population = params[:population] || Settings.cap_population_name
       changedSince = params[:changedSince] || "1000-01-01"
@@ -233,7 +233,7 @@ get :sourcelookup do
     parser :json, BibJSONParser
     post do
 
-      error!('Unauthorized', 401) unless env['HTTP_CAPKEY'] == '***REMOVED***'
+      error!('Unauthorized', 401) unless env['HTTP_CAPKEY'] == SulBib::API_KEY
       request_body_unparsed = env['api.request.input']
       pub_hash = params[:pub_hash]
      # Rails.logger.debug "Incoming bibjson post attributes hash: #{pub_hash}"
@@ -259,7 +259,7 @@ get :sourcelookup do
     parser :json, BibJSONParser
     put ':id' do
 
-      error!('Unauthorized', 401) unless env['HTTP_CAPKEY'] == '***REMOVED***'
+      error!('Unauthorized', 401) unless env['HTTP_CAPKEY'] == SulBib::API_KEY
       #the last known etag must be sent in the 'if-match' header, returning 412 “Precondition Failed” if etags don't match,
       #and a 428 "Precondition Required" if the if-match header isn't supplied
 
@@ -288,7 +288,7 @@ get :sourcelookup do
 
     # GET A SINGLE RECORD
     get ':id' do
-      error!('Unauthorized', 401) unless env['HTTP_CAPKEY'] == '***REMOVED***'
+      error!('Unauthorized', 401) unless env['HTTP_CAPKEY'] == SulBib::API_KEY
       begin
           pub = Publication.find(params[:id])
         rescue ActiveRecord::RecordNotFound
@@ -302,7 +302,7 @@ get :sourcelookup do
 
     # MARK A RECORD AS DELETED
     delete ':id' do
-      error!('Unauthorized', 401) unless env['HTTP_CAPKEY'] == '***REMOVED***'
+      error!('Unauthorized', 401) unless env['HTTP_CAPKEY'] == SulBib::API_KEY
       pub = Publication.find(params[:id])
       pub.deleted = true
       pub.save
