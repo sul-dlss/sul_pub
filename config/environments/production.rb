@@ -68,8 +68,14 @@ Sulbib::Application.configure do
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
 end
 
+require 'socket'
+
 module SulBib
-  API_KEY = '***REMOVED***'
+  if(Socket.gethostname =~ /^sulcap-prod/)
+    API_KEY = '***REMOVED***'
+  else
+    API_KEY = '***REMOVED***'
+  end
 end
 
 
