@@ -6,7 +6,7 @@ class CapAuthorsPoller
   		
   		begin
   			@cap_http_client = CapHttpClient.new 
-  			poll_since = (Time.now - 172.hours).iso8601(3)
+  			poll_since = '' #(Time.now - 172.hours).iso8601(3)
   			page_size = 1000
   			page_count = 0
 
