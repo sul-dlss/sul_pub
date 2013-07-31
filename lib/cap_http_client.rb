@@ -44,7 +44,7 @@ class CapHttpClient
 
   	end
 
-  	def get_batch_from_cap_api(page_count, page_size, since)
+  	def get_batch_from_cap_api(page_count, page_size, since='')
   		#since = "2013-06-14T10:33:20.333-04:00"
   		json_response = {}
   		begin
