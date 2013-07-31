@@ -13,15 +13,17 @@ task :pull_pubmed_for_cap, [:file_location] => :environment do |t, args|
   include ActionView::Helpers::DateHelper
   start_time = Time.now
   total_running_count = 0
+  new_downloads = 0
   pmids_for_this_batch = Set.new
   cap_import_pmid_logger = Logger.new(Rails.root.join('log', 'cap_import_pubmed_source_records.log'))
   cap_import_pmid_logger.info "Started pumed import " + DateTime.now.to_s
    lines = CSV.foreach(args.file_location, :headers  => true, :header_converters => :symbol) do |row|
         total_running_count += 1
         pmid = row[:pubmed_id].to_s()
-        pmids_for_this_batch << pmid unless SciencewireSourceRecords.exists?(pmid: pmid)
+        pmids_for_this_batch << pmid unless PubmedSourceRecord.exists?(pmid: pmid)
         if pmids_for_this_batch.length%4000 == 0
           PubmedSourceRecord.get_and_store_records_from_pubmed(pmids_for_this_batch)
+          new_downloads += pmids_for_this_batch.size
           pmids_for_this_batch.clear
           puts (total_running_count).to_s + " in " + distance_of_time_in_words_to_now(start_time)
           #break
@@ -30,11 +32,14 @@ task :pull_pubmed_for_cap, [:file_location] => :environment do |t, args|
       end
       # finish off the batch
       PubmedSourceRecord.get_and_store_records_from_pubmed(pmids_for_this_batch)
+      new_downloads += pmids_for_this_batch.size
       puts total_running_count.to_s + "records were processed in " + distance_of_time_in_words_to_now(start_time, include_seconds = true)
       puts lines.to_s + " lines of file: " + args.file_location.to_s + " were processed."
+      puts new_downloads.to_s + "new records downloaded"
       cap_import_pmid_logger.info "Finished pubmed import." + DateTime.now.to_s
       cap_import_pmid_logger.info lines.to_s + " lines of file: " + args.file_location.to_s + " were processed."
       cap_import_pmid_logger.info total_running_count.to_s + "records were processed in " + distance_of_time_in_words_to_now(start_time, include_seconds = true)
+      cap_import_pmid_logger.info new_downloads.to_s + " new records downloaded"
 end
 
 desc "get all sciencewire source records for full cap dump"
@@ -42,15 +47,17 @@ task :pull_sw_for_cap, [:file_location] => :environment do |t, args|
   include ActionView::Helpers::DateHelper
   start_time = Time.now
   total_running_count = 0
+  new_downloads = 0
   pmids_for_this_batch = Set.new
   cap_import_sw_logger = Logger.new(Rails.root.join('log', 'cap_import_sciencewire_source_records.log'))
   cap_import_sw_logger.info "Started sciencewire import " + DateTime.now.to_s
    lines = CSV.foreach(args.file_location, :headers => true, :header_converters => :symbol) do |row|
         total_running_count += 1
         pmid = row[:pubmed_id].to_s
-        pmids_for_this_batch << pmid unless SciencewireSourceRecords.exists?(pmid: pmid)
+        pmids_for_this_batch << pmid unless SciencewireSourceRecord.exists?(pmid: pmid)
         if pmids_for_this_batch.length%300 == 0
           SciencewireSourceRecord.get_and_store_sw_source_records(pmids_for_this_batch)
+          new_downloads += pmids_for_this_batch.size
           pmids_for_this_batch.clear
           puts (total_running_count).to_s + " in " + distance_of_time_in_words_to_now(start_time, include_seconds = true)
         end
@@ -59,9 +66,11 @@ task :pull_sw_for_cap, [:file_location] => :environment do |t, args|
       SciencewireSourceRecord.get_and_store_sw_source_records(pmids_for_this_batch)
       puts (total_running_count).to_s + "records were processed in " + distance_of_time_in_words_to_now(start_time)
       puts lines.to_s + " lines of file: " + args.file_location.to_s + " were processed."
+      puts new_downloads.to_s + "new records downloaded"
       cap_import_sw_logger.info "Finished sciencewire import." + DateTime.now.to_s
       cap_import_sw_logger.info lines.to_s + " lines of file: " + args.file_location.to_s + " were processed."
       cap_import_sw_logger.info total_running_count.to_s + "records were processed in " + distance_of_time_in_words_to_now(start_time, include_seconds = true)
+      cap_import_sw_logger.info new_downloads.to_s + " new records downloaded"
 end
 
 
@@ -157,7 +166,7 @@ task :create_pubs_from_delta, [:file_location] => :environment do |t, args|
           author = Author.where(:sunetid => sunetid).first
         end
         if(author.nil?)
-          @cap_import_logger.warn ("Author not found: #{row.inspect}")
+          @cap_import_logger.warn ("Author not found- univid: #{university_id} sunetid: #{sunetid}")
           next
         end
 
@@ -237,7 +246,7 @@ desc "ingest existing cap hand entered pubs"
             man_record = UserSubmittedSourceRecord.where(:publication_id => pub.id).first
             if(man_record.nil?)
               # Publication exists but UserSubmittedSourceRecord does not
-              @cap_import_logger.info "Publication '#{row[:article_title]}' exists but SourceRecord does not for #{row[:sunetid]}"
+              @cap_manual_import_logger.info "Publication '#{row[:article_title]}' exists but SourceRecord does not for #{row[:sunetid]}"
               pub.user_submitted_source_records.create(
                 is_active: true,
                 :source_fingerprint => Digest::SHA2.hexdigest(original_source),
@@ -249,17 +258,17 @@ desc "ingest existing cap hand entered pubs"
               pub.sync_publication_hash_and_db
             else
               # Pub and UserSubmittedSourceRecord exist
-              @cap_import_logger.info "Updating Publication '#{row[:article_title]}' for #{row[:sunetid]}"
-              pub.update_manual_pub_from_pub_hash(pub_hash, provenance, original_source_string)
+              @cap_manual_import_logger.info "Updating Publication '#{row[:article_title]}' for #{row[:sunetid]}"
+              pub.update_manual_pub_from_pub_hash(pub_hash, Settings.cap_provenance, original_source)
             end
           else
             # Brand new UserSubmittedSourceRecord
-            @cap_import_logger.info "Creating brand new Publication '#{row[:article_title]}'  and SourceRecord for #{row[:sunetid]}"
+            @cap_manual_import_logger.info "Creating brand new Publication '#{row[:article_title]}'  and SourceRecord for #{row[:sunetid]}"
             Publication.build_new_manual_publication(Settings.cap_provenance, pub_hash, original_source)
           end
         rescue => e
-          @cap_import_logger.error "Problem with #{row.inspect}"
-          @cap_import_logger.error e.inspect << "\n" << e.backtrace.join("\n")
+          @cap_manual_import_logger.error "Problem with #{row.inspect}"
+          @cap_manual_import_logger.error e.inspect << "\n" << e.backtrace.join("\n")
         end
       end
       @cap_manual_import_logger.info "Finished import." + DateTime.now.to_s
@@ -292,7 +301,7 @@ desc "utility to rebuild pub hashes from sciencewire and pubmed sources for all 
 end
 
 desc "utility to rebuild pub hashes from sciencewire and pubmed sources for all pubs"
-  task :build_delta_pubs => :environment do
+  task :build_delta_pubs, [:file_location] => :environment do |t,args|
     include ActionView::Helpers::DateHelper
     start_time = Time.now
     total_running_count = 0
