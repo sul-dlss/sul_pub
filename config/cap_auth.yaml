@@ -1,5 +1,5 @@
 ---
-development:
+:development:
   :get_token_uri: ***REMOVED***
   :get_token_port: 443
   :get_token_path: /oauth/token
@@ -9,7 +9,7 @@ development:
   :authorship_api_path: /cap-api-qa/api/cap/v1/authors
   :authorship_api_port: 443
   :access_token: eyJhbGciOiJSUzI1NiJ9.eyJleHAiOjEzNzUzMzg5MTAsInNjb3BlIjpbInByb2ZpbGVzLnJlYWRfYWxsIl0sImF1ZCI6WyJwcm9maWxlcyJdLCJpc3MiOiJodHRwczovL2F1dGh6LXRlc3Quc3RhbmZvcmQuZWR1IiwianRpIjoiNGYzZDBlYmEtZDM2My00NTE2LTllMTAtMjYxZWE3OThlZGQ3IiwiY2xpZW50X2lkIjoic3VsIn0.yEIUWQPV9eebPpKD_hMTqAs0HHfZjdhiBw8f8M_IAYqJ4astO9fXt01c5YuZjt1KNadFsVwk7Ch4LcLiJrsbww5XgVZ-ztvs6wzf-5DNwpaBQSzrDC6TeeHa_YhzLoWsvC4hwRUHsvEkUF5mYr0XPbWINGRVomPiygIjDk7R5MCSldzI2FJ2d8y3QdXrmwvsvEkyIyazFm5uhtwHzuCrCq_BHOJbXliUqqxvkb801-fs9Byx3PrgK3iKAOPLfw6Iio2lbFQ0KYo3WEB_rdNXuRTi37jAM2plQkFyZSfhT6gwJjWc7dgkZ8TlHFj0S7220Kw_IhFQuXyFwCj4JWh3dQ
-production:
+:production:
   :get_token_uri: authz.stanford.edu
   :get_token_port: 443
   :get_token_path: /oauth/token
