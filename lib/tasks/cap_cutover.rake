@@ -505,8 +505,12 @@ def build_pub_from_missing_sw_and_pubmed(pub)
 
     changed = false
     unless(sciencewire_id.blank? || SciencewireSourceRecord.where(sciencewire_id: sciencewire_id).exists?)
-      @cap_import_logger.info("Pub: #{pub.id} missing SciencewireSourceRecord")
       sciencewire_source_record = SciencewireSourceRecord.get_and_store_sw_source_record_for_sw_id(sciencewire_id)
+      if(sciencewire_source_record.nil?)
+        @cap_import_logger.error "No Sciencewire Record #{sciencewire_id} for pub #{pub.id}"
+        return
+      end
+      @cap_import_logger.info("Pub: #{pub.id} fixing missing SciencewireSourceRecord")
       sw_pub_hash = sciencewire_source_record.get_source_as_hash
       pub.update_attributes(
           active: true,
@@ -522,8 +526,12 @@ def build_pub_from_missing_sw_and_pubmed(pub)
     end
 
     unless(pmid.blank? || PubmedSourceRecord.where(pmid: pmid).exists?)
-      @cap_import_logger.info("Pub: #{pub.id} missing PubmedSourceRecord")
       pubmed_source_record = PubmedSourceRecord.get_pubmed_record_from_pubmed(pmid)
+      if(pubmed_source_record.nil?)
+        @cap_import_logger.error "No Pubmed record #{pmid} for pub: #{pub.id}"
+        return
+      end
+      @cap_import_logger.info("Pub: #{pub.id} fixing missing PubmedSourceRecord")
       pubmed_hash = pubmed_source_record.get_source_as_hash
       pub.update_attributes(
                 active: true,
@@ -535,7 +543,7 @@ def build_pub_from_missing_sw_and_pubmed(pub)
     pub.cutover_sync_hash_and_db if(changed)
 
   rescue => e
-    @cap_import_logger.info "Problem with pub: " + pub.id
+    @cap_import_logger.info "Problem with pub: " + pub.id.to_s
     @cap_import_logger.info e.message << "\n" << e.backtrace.join("\n")
   end
 end
