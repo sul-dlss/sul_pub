@@ -159,7 +159,7 @@ task :create_pubs_from_delta, [:file_location] => :environment do |t, args|
         university_id = row[:university_id]
         sunetid = row[:sunetid]
         author = nil
-        if(!university_id.nil? && !university_id.blank? && !university_id.to_s == '0')
+        unless(university_id.nil? || university_id.blank? || university_id.to_s == '0')
           author = Author.where(:university_id => university_id).first
         end
         if(author.nil? && !sunetid.nil? && !sunetid.blank?)
@@ -288,6 +288,33 @@ desc "utility to rebuild pub hashes from sciencewire and pubmed sources for all 
    Publication.find_each do |pub|
         total_running_count += 1
         build_pub_from_sw_and_pubmed(pub)
+        if total_running_count%5000 == 0  then GC.start end
+
+        if total_running_count%1000 == 0
+          puts (total_running_count).to_s + " in " + distance_of_time_in_words_to_now(start_time, include_seconds = true)
+          @cap_import_logger.info total_running_count.to_s + " in " + distance_of_time_in_words_to_now(start_time, include_seconds = true)
+        end
+    end
+    @cap_import_logger.info "Finished build." + DateTime.now.to_s
+    @cap_import_logger.info total_running_count.to_s + "records were processed in " + distance_of_time_in_words_to_now(start_time, include_seconds = true)
+
+end
+
+desc "utility to rebuild pub hashes from sciencewire and pubmed sources for pubs where source record is missing"
+  task :build_missing_pubs => :environment do
+    include ActionView::Helpers::DateHelper
+    start_time = Time.now
+    total_running_count = 0
+    @cap_import_logger = Logger.new(Rails.root.join('log', 'cap_build_pubs.log'))
+    @cap_import_logger.datetime_format = "%Y-%m-%d %H:%M:%S"
+    @cap_import_logger.formatter = proc { |severity, datetime, progname, msg|
+        "#{severity} #{datetime}: #{msg}\n"
+    }
+    @cap_import_logger.info "Started cap build pub process " + DateTime.now.to_s
+
+   Publication.find_each do |pub|
+        total_running_count += 1
+        build_pub_from_missing_sw_and_pubmed(pub)
         if total_running_count%5000 == 0  then GC.start end
 
         if total_running_count%1000 == 0
@@ -464,6 +491,52 @@ def build_pub_from_sw_and_pubmed(pub)
           @cap_import_logger.info e.message
           @cap_import_logger.info e.backtrace.inspect
           @cap_import_logger.info "the offending pmid: " + pmid.to_s
+  end
+end
+
+def build_pub_from_missing_sw_and_pubmed(pub)
+  begin
+    pmid = pub.pmid.to_s
+    sciencewire_id = pub.sciencewire_id.to_s
+    if(pmid.blank? and sciencewire_id.blank?)
+      @cap_import_logger.warn "No pmid or swid for pub #{pub.id}"
+      return
+    end
+
+    changed = false
+    unless(sciencewire_id.blank? || SciencewireSourceRecord.where(sciencewire_id: sciencewire_id).exists?)
+      @cap_import_logger.info("Pub: #{pub.id} missing SciencewireSourceRecord")
+      sciencewire_source_record = SciencewireSourceRecord.get_and_store_sw_source_record_for_sw_id(sciencewire_id)
+      sw_pub_hash = sciencewire_source_record.get_source_as_hash
+      pub.update_attributes(
+          active: true,
+          title: sw_pub_hash[:title],
+          year: sw_pub_hash[:year],
+          sciencewire_id: sw_pub_hash[:sw_id],
+          pub_hash: sw_pub_hash,
+          pages: sw_pub_hash[:pages],
+          issn: sw_pub_hash[:issn],
+          publication_type: sw_pub_hash[:type])
+      pub.add_any_pubmed_data_to_hash
+      changed  = true
+    end
+
+    unless(pmid.blank? || PubmedSourceRecord.where(pmid: pmid).exists?)
+      @cap_import_logger.info("Pub: #{pub.id} missing PubmedSourceRecord")
+      pubmed_source_record = PubmedSourceRecord.get_pubmed_record_from_pubmed(pmid)
+      pubmed_hash = pubmed_source_record.get_source_as_hash
+      pub.update_attributes(
+                active: true,
+                title: pubmed_hash[:title],
+                year: pubmed_hash[:year],
+                pub_hash: pubmed_hash)
+      changed = true
+    end
+    pub.cutover_sync_hash_and_db if(changed)
+
+  rescue => e
+    @cap_import_logger.info "Problem with pub: " + pub.id
+    @cap_import_logger.info e.message << "\n" << e.backtrace.join("\n")
   end
 end
 
