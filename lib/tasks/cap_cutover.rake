@@ -312,6 +312,7 @@ desc "utility to rebuild pub hashes from sciencewire and pubmed sources for pubs
     }
     @cap_import_logger.info "Started cap build pub process " + DateTime.now.to_s
 
+   @no_pubmed_rec = []
    Publication.find_each do |pub|
         total_running_count += 1
         build_pub_from_missing_sw_and_pubmed(pub)
@@ -322,6 +323,8 @@ desc "utility to rebuild pub hashes from sciencewire and pubmed sources for pubs
           @cap_import_logger.info total_running_count.to_s + " in " + distance_of_time_in_words_to_now(start_time, include_seconds = true)
         end
     end
+    @cap_import_logger.info "No pubmed record for #{@no_pubmed_rec.size} items:"
+    @no_pubmed_rec.each {|id| @cap_import_logger.info id.to_s }
     @cap_import_logger.info "Finished build." + DateTime.now.to_s
     @cap_import_logger.info total_running_count.to_s + "records were processed in " + distance_of_time_in_words_to_now(start_time, include_seconds = true)
 
@@ -494,6 +497,20 @@ def build_pub_from_sw_and_pubmed(pub)
   end
 end
 
+  desc "utility to rebuild pub hashes from sciencewire and pubmed sources for one publication"
+  task :build_missing_pubs_one_item, [:pub_id] => :environment do |t,args|
+    @cap_import_logger = Logger.new(Rails.root.join('log', 'cap_build_pubs.log'))
+    @cap_import_logger.datetime_format = "%Y-%m-%d %H:%M:%S"
+    @cap_import_logger.formatter = proc { |severity, datetime, progname, msg|
+        "#{severity} #{datetime}: #{msg}\n"
+    }
+    @cap_import_logger.info "Started cap build pub process " + DateTime.now.to_s
+
+   @no_pubmed_rec = []
+   pub = Publication.find args[:pub_id]
+   build_pub_from_missing_sw_and_pubmed(pub)
+  end
+
 def build_pub_from_missing_sw_and_pubmed(pub)
   begin
     pmid = pub.pmid.to_s
@@ -528,7 +545,11 @@ def build_pub_from_missing_sw_and_pubmed(pub)
     unless(pmid.blank? || PubmedSourceRecord.where(pmid: pmid).exists?)
       pubmed_source_record = PubmedSourceRecord.get_pubmed_record_from_pubmed(pmid)
       if(pubmed_source_record.nil?)
-        @cap_import_logger.error "No Pubmed record #{pmid} for pub: #{pub.id}"
+        if(sciencewire_id.blank?)
+          @cap_import_logger.error "Empty record !!!!!: #{pub.id}"
+        else
+          @no_pubmed_rec << pub.id
+        end
         return
       end
       @cap_import_logger.info("Pub: #{pub.id} fixing missing PubmedSourceRecord")
