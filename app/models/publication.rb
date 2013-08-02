@@ -32,7 +32,7 @@ def build_from_sciencewire_hash(new_sw_pub_hash)
       unless new_sw_pub_hash[:pages].blank? then self.pages = new_sw_pub_hash[:pages] end
 
       unless self.pmid.blank?
-        new_sw_pub_hash[:pmid] = self.pmid # Preserve the pmid just in case incoming sciencewire doc doesn't have PMID
+        new_sw_pub_hash[:pmid] = self.pmid.to_s # Preserve the pmid just in case incoming sciencewire doc doesn't have PMID
         add_any_pubmed_data_to_hash
       end
 
