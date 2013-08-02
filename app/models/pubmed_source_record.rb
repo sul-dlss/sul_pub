@@ -88,7 +88,8 @@ class PubmedSourceRecord < ActiveRecord::Base
 
 	def extract_abstract_from_pubmed_record(pubmed_record)
 		txt = pubmed_record.xpath('MedlineCitation/Article/Abstract/AbstractText').text
-		txt[0..3].gsub(/\P{ASCII}/, '') + txt[4..(txt.length - 1)] unless(txt.nil?)
+		cleaned = txt[0..3].gsub(/\P{ASCII}/, '')
+		txt = cleaned + txt[4..(txt.length - 1)] unless(cleaned.nil?)
 		txt
 	end
 
