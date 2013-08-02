@@ -5,11 +5,11 @@ class PubmedSourceRecord < ActiveRecord::Base
   #validates_uniqueness_of :pmid
   #validates_presence_of :source_data
 
-	def get_source_as_hash 
+	def get_source_as_hash
 		convert_pubmed_publication_doc_to_hash(Nokogiri::XML(source_data).xpath('//PubmedArticle'))
 	end
 
-  	def self.get_pub_by_pmid(pmid) 
+  	def self.get_pub_by_pmid(pmid)
   		pubmed_pub_hash = PubmedSourceRecord.get_pubmed_hash_for_pmid(pmid)
   		unless pubmed_pub_hash.nil?
             pub = Publication.create(
@@ -19,9 +19,9 @@ class PubmedSourceRecord < ActiveRecord::Base
               issn: pubmed_pub_hash[:issn],
               pages: pubmed_pub_hash[:pages],
               publication_type: pubmed_pub_hash[:type],
-              pmid: pmid)  
-            pub.build_from_pubmed_hash(pubmed_pub_hash)  
-            pub.sync_publication_hash_and_db 
+              pmid: pmid)
+            pub.build_from_pubmed_hash(pubmed_pub_hash)
+            pub.sync_publication_hash_and_db
         end
         pub
   	end
@@ -52,7 +52,7 @@ class PubmedSourceRecord < ActiveRecord::Base
 
 	def self.get_and_store_records_from_pubmed(pmids)
 		pmidValuesForPost = pmids.collect { |pmid| "&id=#{pmid}"}.join
-		http = Net::HTTP.new("eutils.ncbi.nlm.nih.gov")	
+		http = Net::HTTP.new("eutils.ncbi.nlm.nih.gov")
 		request = Net::HTTP::Post.new("/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml")
 		request.body = pmidValuesForPost
 		#http.start
@@ -62,24 +62,24 @@ class PubmedSourceRecord < ActiveRecord::Base
 		source_records = []
 		@cap_import_pmid_logger = Logger.new(Rails.root.join('log', 'cap_import_pmid.log'))
 		Nokogiri::XML(the_incoming_xml).xpath('//PubmedArticle').each do |pub_doc|
-	  		pmid = pub_doc.xpath('MedlineCitation/PMID').text    
-	        begin        
-	          	count += 1      	
+	  		pmid = pub_doc.xpath('MedlineCitation/PMID').text
+	        begin
+	          	count += 1
 	          	source_records << PubmedSourceRecord.new(
                       :pmid => pmid,
 	                  :source_data => pub_doc.to_xml,
 	                  :is_active => true,
 	                  :source_fingerprint => Digest::SHA2.hexdigest(pub_doc))
 	          	pmids.delete(pmid)
-		    rescue => e  
-	          puts e.message  
-	          puts e.backtrace.inspect  
+		    rescue => e
+	          puts e.message
+	          puts e.backtrace.inspect
 	          puts "the offending pmid: " + pmid.to_s
 	        end
-	        
+
 	    end
     	#Sputs source_records.length.to_s + " records about to be created."
-    	PubmedSourceRecord.import source_records 
+    	PubmedSourceRecord.import source_records
     	#puts count.to_s + " pmids were processed. "
     	#puts pmids.length.to_s + " pmids weren't processed: "
     	@cap_import_pmid_logger.info "Invalid pmids: " + pmids.to_a.join(',')
@@ -87,7 +87,8 @@ class PubmedSourceRecord < ActiveRecord::Base
 	end
 
 	def extract_abstract_from_pubmed_record(pubmed_record)
-		pubmed_record.xpath('MedlineCitation/Article/Abstract/AbstractText').text
+		txt = pubmed_record.xpath('MedlineCitation/Article/Abstract/AbstractText').text
+		txt[0..3].gsub(/\P{ASCII}/, '') + txt[4..(txt.length - 1)]
 	end
 
 	def extract_mesh_headings_from_pubmed_record(pubmed_record)
@@ -104,13 +105,13 @@ class PubmedSourceRecord < ActiveRecord::Base
 	        mesh_headings_for_record << { :descriptor => descriptors, :qualifier => qualifiers }
 	      end
 	      mesh_headings_for_record
-	end	
+	end
 
 def convert_pubmed_publication_doc_to_hash(publication)
 
 	    record_as_hash = Hash.new
-	    pmid = publication.xpath('MedlineCitation/PMID').text 
-	    
+	    pmid = publication.xpath('MedlineCitation/PMID').text
+
 	    abstract = extract_abstract_from_pubmed_record(publication)
 	    mesh_headings = extract_mesh_headings_from_pubmed_record(publication)
 
@@ -119,7 +120,7 @@ def convert_pubmed_publication_doc_to_hash(publication)
 
 	    record_as_hash[:title] = publication.xpath("MedlineCitation/Article/ArticleTitle").text unless publication.xpath("MedlineCitation/Article/ArticleTitle").blank?
 	    record_as_hash[:abstract] = abstract unless abstract.blank?
-	    
+
 	    author_array = []
 	    publication.xpath('MedlineCitation/Article/AuthorList/Author').each do |author|
 	    	author_hash = {}
@@ -133,7 +134,7 @@ def convert_pubmed_publication_doc_to_hash(publication)
 
 	    record_as_hash[:mesh_headings] = mesh_headings unless mesh_headings.blank?
 	    record_as_hash[:year] = publication.xpath('MedlineCitation/Article/Journal/JournalIssue/PubDate/Year').text unless publication.xpath("MedlineCitation/Article/Journal/JournalIssue/PubDate/Year").blank?
-	    
+
 	     record_as_hash[:type] = Settings.sul_doc_types.article
 
 	    #record_as_hash[:publisher] =  publication.xpath('MedlineCitation/Article/').text unless publication.xpath("MedlineCitation/Article/").blank?
@@ -142,8 +143,8 @@ def convert_pubmed_publication_doc_to_hash(publication)
 	    record_as_hash[:country] = publication.xpath('MedlineCitation/MedlineJournalInfo/Country').text unless publication.xpath("MedlineCitation/MedlineJournalInfo/Country").blank?
 
 		record_as_hash[:pages] = publication.xpath('MedlineCitation/Article/Pagination/MedlinePgn').text unless publication.xpath("MedlineCitation/Article/Pagination/MedlinePgn").blank?
-	      
-    	journal_hash = {}   
+
+    	journal_hash = {}
 		journal_hash[:name] = publication.xpath('MedlineCitation/Article/Journal/Title').text unless publication.xpath('MedlineCitation/Article/Journal/Title').blank?
 		journal_hash[:volume] = publication.xpath('MedlineCitation/Article/Journal/JournalIssue/Volume').text unless publication.xpath('MedlineCitation/Article/Journal/JournalIssue/Volume').blank?
 		journal_hash[:issue] = publication.xpath('MedlineCitation/Article/Journal/JournalIssue/Issue').text unless publication.xpath('MedlineCitation/Article/Journal/JournalIssue/Issue').blank?
@@ -155,7 +156,7 @@ def convert_pubmed_publication_doc_to_hash(publication)
 		journal_identifiers << {:type => 'issn', :id => issn, :url => 'http://searchworks.stanford.edu/?search_field=advanced&number=' + issn} unless issn.blank?
 		journal_hash[:identifier] = journal_identifiers
 		record_as_hash[:journal] = journal_hash
-    
+
 	    record_as_hash[:identifier] = [{:type =>'PMID', :id => pmid, :url => 'http://www.ncbi.nlm.nih.gov/pubmed/' + pmid } ]
 	    #puts "the record as hash"
 	    #puts record_as_hash.to_s
