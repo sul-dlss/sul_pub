@@ -9,7 +9,7 @@ http_interactions:
         xmlns:xsd='http://www.w3.org/2001/XMLSchema'>\n        <Authors>\n          <Author>\n
         \           <LastName>edler</LastName>\n            <FirstName>alice</FirstName>\n
         \           <MiddleName></MiddleName>\n         </Author>\n      </Authors>\n
-        \     <DocumentCategory>Journal Document</DocumentCategory><Emails><string>alice.edler@stanford.edu</string></Emails><LimitToHighQualityMatchesOnly>true</LimitToHighQualityMatchesOnly></PublicationAuthorMatchParameters>"
+        \     <DocumentCategory>Journal Document</DocumentCategory><LimitToHighQualityMatchesOnly>true</LimitToHighQualityMatchesOnly></PublicationAuthorMatchParameters>"
     headers:
       Accept:
       - ! '*/*'
@@ -27,13 +27,13 @@ http_interactions:
       - text/xml
   response:
     status:
-      code: 200
-      message: OK
+      code: 500
+      message: Internal Server Error
     headers:
       Cache-Control:
       - private
       Content-Type:
-      - application/xml; charset=utf-8
+      - text/html
       Server:
       - Microsoft-IIS/7.5
       X-Aspnetmvc-Version:
@@ -43,23 +43,26 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Tue, 23 Jul 2013 23:13:40 GMT
+      - Tue, 30 Jul 2013 23:36:14 GMT
       Content-Length:
-      - '877'
+      - '1208'
     body:
       encoding: US-ASCII
-      string: ! "<?xml version=\"1.0\"?>\r\n<ArrayOfItemMatchResult xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
-        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <ItemMatchResult>\r\n
-        \   <MatchRank>1</MatchRank>\r\n    <PublicationItemID>29352378</PublicationItemID>\r\n
-        \   <MatchScore>0.70833337306976318</MatchScore>\r\n  </ItemMatchResult>\r\n
-        \ <ItemMatchResult>\r\n    <MatchRank>2</MatchRank>\r\n    <PublicationItemID>30502634</PublicationItemID>\r\n
-        \   <MatchScore>0.70833337306976318</MatchScore>\r\n  </ItemMatchResult>\r\n
-        \ <ItemMatchResult>\r\n    <MatchRank>3</MatchRank>\r\n    <PublicationItemID>46558063</PublicationItemID>\r\n
-        \   <MatchScore>0.70833337306976318</MatchScore>\r\n  </ItemMatchResult>\r\n
-        \ <ItemMatchResult>\r\n    <MatchRank>4</MatchRank>\r\n    <PublicationItemID>46946372</PublicationItemID>\r\n
-        \   <MatchScore>0.70833337306976318</MatchScore>\r\n  </ItemMatchResult>\r\n</ArrayOfItemMatchResult>"
+      string: ! "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\r\n<html
+        xmlns=\"http://www.w3.org/1999/xhtml\">\r\n<head>\r\n<meta http-equiv=\"Content-Type\"
+        content=\"text/html; charset=iso-8859-1\"/>\r\n<title>500 - Internal server
+        error.</title>\r\n<style type=\"text/css\">\r\n<!--\r\nbody{margin:0;font-size:.7em;font-family:Verdana,
+        Arial, Helvetica, sans-serif;background:#EEEEEE;}\r\nfieldset{padding:0 15px
+        10px 15px;} \r\nh1{font-size:2.4em;margin:0;color:#FFF;}\r\nh2{font-size:1.7em;margin:0;color:#CC0000;}
+        \r\nh3{font-size:1.2em;margin:10px 0 0 0;color:#000000;} \r\n#header{width:96%;margin:0
+        0 0 0;padding:6px 2% 6px 2%;font-family:\"trebuchet MS\", Verdana, sans-serif;color:#FFF;\r\nbackground-color:#555555;}\r\n#content{margin:0
+        0 0 2%;position:relative;}\r\n.content-container{background:#FFF;width:96%;margin-top:8px;padding:10px;position:relative;}\r\n-->\r\n</style>\r\n</head>\r\n<body>\r\n<div
+        id=\"header\"><h1>Server Error</h1></div>\r\n<div id=\"content\">\r\n <div
+        class=\"content-container\"><fieldset>\r\n  <h2>500 - Internal server error.</h2>\r\n
+        \ <h3>There is a problem with the resource you are looking for, and it cannot
+        be displayed.</h3>\r\n </fieldset></div>\r\n</div>\r\n</body>\r\n</html>\r\n"
     http_version: 
-  recorded_at: Tue, 23 Jul 2013 23:13:40 GMT
+  recorded_at: Tue, 30 Jul 2013 23:36:15 GMT
 - request:
     method: post
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/MatchedPublicationItemIdsForAuthor?format=xml
@@ -69,7 +72,7 @@ http_interactions:
         xmlns:xsd='http://www.w3.org/2001/XMLSchema'>\n        <Authors>\n          <Author>\n
         \           <LastName>edler</LastName>\n            <FirstName>alice</FirstName>\n
         \           <MiddleName></MiddleName>\n         </Author>\n      </Authors>\n
-        \     <DocumentCategory>Conference Proceeding Document</DocumentCategory><Emails><string>alice.edler@stanford.edu</string></Emails><LimitToHighQualityMatchesOnly>true</LimitToHighQualityMatchesOnly></PublicationAuthorMatchParameters>"
+        \     <DocumentCategory>Journal Document</DocumentCategory><LimitToHighQualityMatchesOnly>true</LimitToHighQualityMatchesOnly></PublicationAuthorMatchParameters>"
     headers:
       Accept:
       - ! '*/*'
@@ -87,13 +90,13 @@ http_interactions:
       - text/xml
   response:
     status:
-      code: 200
-      message: OK
+      code: 500
+      message: Internal Server Error
     headers:
       Cache-Control:
       - private
       Content-Type:
-      - application/xml; charset=utf-8
+      - text/html
       Server:
       - Microsoft-IIS/7.5
       X-Aspnetmvc-Version:
@@ -103,13 +106,24 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Tue, 23 Jul 2013 23:13:40 GMT
+      - Wed, 31 Jul 2013 08:07:48 GMT
       Content-Length:
-      - '148'
+      - '1208'
     body:
       encoding: US-ASCII
-      string: ! "<?xml version=\"1.0\"?>\r\n<ArrayOfItemMatchResult xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
-        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" />"
+      string: ! "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\r\n<html
+        xmlns=\"http://www.w3.org/1999/xhtml\">\r\n<head>\r\n<meta http-equiv=\"Content-Type\"
+        content=\"text/html; charset=iso-8859-1\"/>\r\n<title>500 - Internal server
+        error.</title>\r\n<style type=\"text/css\">\r\n<!--\r\nbody{margin:0;font-size:.7em;font-family:Verdana,
+        Arial, Helvetica, sans-serif;background:#EEEEEE;}\r\nfieldset{padding:0 15px
+        10px 15px;} \r\nh1{font-size:2.4em;margin:0;color:#FFF;}\r\nh2{font-size:1.7em;margin:0;color:#CC0000;}
+        \r\nh3{font-size:1.2em;margin:10px 0 0 0;color:#000000;} \r\n#header{width:96%;margin:0
+        0 0 0;padding:6px 2% 6px 2%;font-family:\"trebuchet MS\", Verdana, sans-serif;color:#FFF;\r\nbackground-color:#555555;}\r\n#content{margin:0
+        0 0 2%;position:relative;}\r\n.content-container{background:#FFF;width:96%;margin-top:8px;padding:10px;position:relative;}\r\n-->\r\n</style>\r\n</head>\r\n<body>\r\n<div
+        id=\"header\"><h1>Server Error</h1></div>\r\n<div id=\"content\">\r\n <div
+        class=\"content-container\"><fieldset>\r\n  <h2>500 - Internal server error.</h2>\r\n
+        \ <h3>There is a problem with the resource you are looking for, and it cannot
+        be displayed.</h3>\r\n </fieldset></div>\r\n</div>\r\n</body>\r\n</html>\r\n"
     http_version: 
-  recorded_at: Tue, 23 Jul 2013 23:13:41 GMT
+  recorded_at: Wed, 31 Jul 2013 08:07:50 GMT
 recorded_with: VCR 2.5.0
