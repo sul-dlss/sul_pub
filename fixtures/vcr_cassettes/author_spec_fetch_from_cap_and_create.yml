@@ -1,0 +1,108 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://irt-dev.stanford.edu/cap-api-qa/api/cap/v1/authors/3871
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+      Authorization:
+      - bearer ***REMOVED***
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sun, 04 Aug 2013 01:45:47 GMT
+      Server:
+      - Apache
+      X-Irt-Transaction-Id:
+      - Uf2yS6wZaGYAAG9va8sAAAAR
+      Transfer-Encoding:
+      - chunked
+      Content-Type:
+      - application/json
+    body:
+      encoding: US-ASCII
+      string: ! '{"active":false,"authorship":[{"featured":false,"status":"new","sulPublicationId":198465,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":198439,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":7776,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":11961,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":31774,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":30842,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":23008,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":19088,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":33912,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":33614,"visibility":"public"}],"importEnabled":false,"importSettings":[{"firstName":"Hower","institution":"Stanford
+        University","lastName":"Kwon"}],"lastModified":"2013-07-30T14:18:33.661-07:00","profile":{"californiaPhysicianLicense":"G80767","displayName":"Hower
+        Kwon","email":"hower.kwon@stanford.edu","meta":{"etag":"1261542283","links":[{"href":"http://irt-ppapp-02:12011/cap-api-qa/api/profiles/v1/3871","rel":"https://cap.stanford.edu/rel/self"},{"href":"http://irt-dev.stanford.edu/cap-su-qa/null","rel":"https://cap.stanford.edu/rel/public"},{"href":"https://irt-dev.stanford.edu/profiles-qa/auth/frdActionServlet?choiceId=facProfile&profileId=3871","rel":"https://cap.stanford.edu/rel/intranet"},{"href":"http://irt-dev.stanford.edu/profiles-qa/frdActionServlet?choiceId=printerprofile&profileversion=full&profileId=3871","rel":"https://cap.stanford.edu/rel/pdf"}]},"names":{"legal":{"firstName":"Hower","lastName":"Kwon"},"preferred":{"firstName":"Hower","lastName":"Kwon"}},"profileId":3871,"uid":"howerk","universityId":"04777025"},"profileId":3871,"visibility":"public"}'
+    http_version: 
+  recorded_at: Sun, 04 Aug 2013 01:45:48 GMT
+- request:
+    method: get
+    uri: https://irt-dev.stanford.edu/cap-api-qa/api/cap/v1/authors/3871
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+      Authorization:
+      - bearer ***REMOVED***
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sun, 04 Aug 2013 01:47:01 GMT
+      Server:
+      - Apache
+      X-Irt-Transaction-Id:
+      - Uf2ylawZaGYAAFuGGD0AAAAD
+      Transfer-Encoding:
+      - chunked
+      Content-Type:
+      - application/json
+    body:
+      encoding: US-ASCII
+      string: ! '{"active":false,"authorship":[{"featured":false,"status":"new","sulPublicationId":198465,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":198439,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":7776,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":11961,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":31774,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":30842,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":23008,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":19088,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":33912,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":33614,"visibility":"public"}],"importEnabled":false,"importSettings":[{"firstName":"Hower","institution":"Stanford
+        University","lastName":"Kwon"}],"lastModified":"2013-07-30T14:18:33.661-07:00","profile":{"californiaPhysicianLicense":"G80767","displayName":"Hower
+        Kwon","email":"hower.kwon@stanford.edu","meta":{"etag":"1261542283","links":[{"href":"http://irt-ppapp-02:12011/cap-api-qa/api/profiles/v1/3871","rel":"https://cap.stanford.edu/rel/self"},{"href":"http://irt-dev.stanford.edu/cap-su-qa/null","rel":"https://cap.stanford.edu/rel/public"},{"href":"https://irt-dev.stanford.edu/profiles-qa/auth/frdActionServlet?choiceId=facProfile&profileId=3871","rel":"https://cap.stanford.edu/rel/intranet"},{"href":"http://irt-dev.stanford.edu/profiles-qa/frdActionServlet?choiceId=printerprofile&profileversion=full&profileId=3871","rel":"https://cap.stanford.edu/rel/pdf"}]},"names":{"legal":{"firstName":"Hower","lastName":"Kwon"},"preferred":{"firstName":"Hower","lastName":"Kwon"}},"profileId":3871,"uid":"howerk","universityId":"04777025"},"profileId":3871,"visibility":"public"}'
+    http_version: 
+  recorded_at: Sun, 04 Aug 2013 01:47:01 GMT
+- request:
+    method: get
+    uri: https://irt-dev.stanford.edu/cap-api-qa/api/cap/v1/authors/3871
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+      Authorization:
+      - bearer ***REMOVED***
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sun, 04 Aug 2013 01:49:02 GMT
+      Server:
+      - Apache
+      X-Irt-Transaction-Id:
+      - Uf2zDqwZaGYAAG5212kAAAAS
+      Transfer-Encoding:
+      - chunked
+      Content-Type:
+      - application/json
+    body:
+      encoding: US-ASCII
+      string: ! '{"active":false,"authorship":[{"featured":false,"status":"new","sulPublicationId":198465,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":198439,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":7776,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":11961,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":31774,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":30842,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":23008,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":19088,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":33912,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":33614,"visibility":"public"}],"importEnabled":false,"importSettings":[{"firstName":"Hower","institution":"Stanford
+        University","lastName":"Kwon"}],"lastModified":"2013-07-30T14:18:33.661-07:00","profile":{"californiaPhysicianLicense":"G80767","displayName":"Hower
+        Kwon","email":"hower.kwon@stanford.edu","meta":{"etag":"1261542283","links":[{"href":"http://irt-ppapp-02:12011/cap-api-qa/api/profiles/v1/3871","rel":"https://cap.stanford.edu/rel/self"},{"href":"http://irt-dev.stanford.edu/cap-su-qa/null","rel":"https://cap.stanford.edu/rel/public"},{"href":"https://irt-dev.stanford.edu/profiles-qa/auth/frdActionServlet?choiceId=facProfile&profileId=3871","rel":"https://cap.stanford.edu/rel/intranet"},{"href":"http://irt-dev.stanford.edu/profiles-qa/frdActionServlet?choiceId=printerprofile&profileversion=full&profileId=3871","rel":"https://cap.stanford.edu/rel/pdf"}]},"names":{"legal":{"firstName":"Hower","lastName":"Kwon"},"preferred":{"firstName":"Hower","lastName":"Kwon"}},"profileId":3871,"uid":"howerk","universityId":"04777025"},"profileId":3871,"visibility":"public"}'
+    http_version: 
+  recorded_at: Sun, 04 Aug 2013 01:49:02 GMT
+recorded_with: VCR 2.5.0

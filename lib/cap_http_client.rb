@@ -83,7 +83,7 @@ private
 				else
 					response_body = response.body
 					json_response = JSON.parse(response_body)
-					http.finish
+					http.finish if http.started?
 				end
 			end
     rescue Timeout::Error => te

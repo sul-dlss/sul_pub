@@ -59,4 +59,9 @@ class Author < ActiveRecord::Base
     end
   end
 
+  def Author.fetch_from_cap_and_create(profile_id)
+    profile_hash = CapHttpClient.new.get_auth_profile(profile_id)
+    Author.create_from_cap_authorship_profile_hash(profile_hash)
+  end
+
 end

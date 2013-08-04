@@ -135,6 +135,18 @@ helpers do
         records: records
     }
   end
+
+  def validate_or_create_author(auth_hash)
+    return true if(Contribution.valid_authorship_hash?(auth_hash))
+
+    cap_profile_id = auth_hash.first[:cap_profile_id]
+    return false if(cap_profile_id.blank?)
+
+    # The author does not exist in our system, but we have a cap_profile_id.
+    # Try to create a new Author using the cap_profile_id
+    Author.fetch_from_cap_and_create(cap_profile_id)
+    true
+  end
 end
 
 
@@ -245,7 +257,7 @@ get :sourcelookup do
           # So, this next lines return 303 with location equal to the pub's uri
           redirect env["REQUEST_URI"] + "/" + existingRecord.publication_id.to_s
       else
-        if pub_hash[:authorship].nil? || ! Contribution.valid_authorship_hash?(pub_hash[:authorship])
+        if pub_hash[:authorship].nil? || ! validate_or_create_author(params[:pub_hash][:authorship])
           error!("You haven't supplied a valid authorship record.", 406)
         end
         pub = Publication.build_new_manual_publication(Settings.cap_provenance, pub_hash, request_body_unparsed)
