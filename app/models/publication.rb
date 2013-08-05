@@ -363,6 +363,10 @@ def self.update_formatted_citations(pub_hash)
 
   end
 
+  def deleted?
+    deleted
+  end
+
 def update_canonical_xml_for_pub
     xml = "the xml goes here"
   end
