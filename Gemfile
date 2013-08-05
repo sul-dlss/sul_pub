@@ -20,24 +20,26 @@ gem 'smarter_csv'
 gem 'activerecord-import'
 gem 'kaminari'
 gem 'dotiw'
+gem 'high_voltage'
 gem 'whenever', :require => false
 #gem 'always_verify_ssl_certificates'
 
 group :development, :test do
+  gem 'sqlite3'
   gem 'rspec-rails'
   gem 'guard-rspec'
   gem 'guard-spork'
   gem 'spork'
   gem 'capistrano'
   gem 'rvm-capistrano'
-  gem 'debugger'
+  gem 'debugger', :platforms => :mri_19
   gem 'factory_girl_rails'
 
 
 end
 
 group :debug do
-  gem 'pry-debugger'
+  gem 'pry-debugger', :platforms => :mri_19
 end
 
 group :test do
