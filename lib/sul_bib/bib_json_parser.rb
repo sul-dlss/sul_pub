@@ -1,5 +1,5 @@
 module SulBib
-  module BibJSONParser
+  class BibJSONParser  
     def self.call(object, env)
       {:pub_hash => JSON.parse(object)}
     end

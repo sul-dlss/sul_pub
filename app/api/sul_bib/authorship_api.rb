@@ -7,63 +7,63 @@ module SulBib
 
     desc "Allows creating a new authorship/contribution record, or updating an existing record"
     content_type :json, "application/json"
-    parser :json, BibJSONParser
+    parser :json, AuthorshipJSONParser
+    params do
+      requires :author, type: Hash, desc: "The JSON body must contain either a sul_author_id or cap_profile_id"
+      requires :publication, type: Hash, desc: "The JSON body must contain wither a sul_pub_id, pmid, or sw_id"
+      optional :featured, type: Boolean, default: false, desc: "The JSON body should indicate if the contribution is featured"
+      optional :visiblity, type: String, default: 'private', desc: "The JSON body should indicate if the contribution is visible"
+      optional :status, type: String, default: 'approved', desc: "The JSON body should indicate if the contribution is approved"
+    end
     post do
-      authorship_hash = params[:pub_hash]
-      sul_author_id = authorship_hash[:sul_author_id]
-      cap_profile_id = authorship_hash[:cap_profile_id]
-      sul_pub_id = authorship_hash[:sul_pub_id]
-      pmid = authorship_hash[:pmid]
-      sciencewire_id = authorship_hash[:sw_id]
-      featured = authorship_hash[:featured] || false
-      visibility = authorship_hash[:visibility] || 'private'
-      status = authorship_hash[:status] || 'approved'
       # FIRST GET THE AUTHOR
-      if ! sul_author_id.blank?
+      author = if params[:author][:id]
         begin
-          author = Author.find(sul_author_id)
+          Author.find(params[:author][:id])
         rescue ActiveRecord::RecordNotFound
-          error!("The SUL author you've specified doesn't exist.", 404)
+          error!("The SUL author you've specified doesn't exist.", 500)
         end
-      elsif ! cap_profile_id.blank?
-          author = Author.where(cap_profile_id: cap_profile_id).first
-          if author.nil?
+      elsif params[:author][:cap_profile_id]
+          a = Author.where(cap_profile_id: params[:author][:cap_profile_id]).first
+          if a.nil?
               # todo check for the cap author in darryl's new api call.
-            error!("The CAP author you've specified doesn't exist.", 404)
+            error!("The CAP author you've specified doesn't exist.", 400)
           end
-          sul_author_id = author.id
+          a
       else
-          error!("You haven't supplied an author identifier.", 404)
+          error!("You haven't supplied an author identifier.", 400)
       end
 
       # NOW CHECK FOR AN EXISTING SUL PUBLICATION
-      if !sul_pub_id.blank?
+      sul_pub = if params[:publication][:id]
         begin
-          sul_pub = Publication.find(sul_pub_id)
+          Publication.find(params[:publication][:id])
         rescue
-          error!("The SUL publication you've specified doesn't exist.", 404)
+          error!("The SUL publication you've specified doesn't exist.", 400)
         end
-      elsif !pmid.blank?
-        sul_pub = Publication.get_pub_by_pmid(pmid)
-        if sul_pub.nil? then error!("The pmid you've specified can't be found either locally or at PubMed.", 404) end
-      elsif !sciencewire_id.blank?
-        sul_pub = Publication.get_pub_by_sciencewire_id(sciencewire_id)
-        if sul_pub.nil? then error!("The ScienceWire publication you've specified can't be found either locally or at ScienceWire.", 404) end
+      elsif params[:publication][:pmid]
+        p = Publication.get_pub_by_pmid(params[:publication][:pmid])
+        if p.nil? then error!("The pmid you've specified can't be found either locally or at PubMed.", 400) end
+        p
+      elsif params[:publication][:sciencewire_id]
+        p = Publication.get_pub_by_sciencewire_id(params[:publication][:sciencewire_id])
+        if p.nil? then error!("The ScienceWire publication you've specified can't be found either locally or at ScienceWire.", 400) end
+        p
+      else
+        error!("You haven't supplied a publication identifier", 400)
       end
 
       #WE'VE NOW GOT THE PUB AND THE AUTHOR, GET THE CONTRIBUTION OR CREATE A NEW ONE, AND THEN UPDATE
       contrib_hash = {}
-      contrib_hash[:status] = status
-      contrib_hash[:visibility] = visibility
-      contrib_hash[:featured] = featured
-      contrib_hash[:cap_profile_id] = cap_profile_id unless cap_profile_id.blank?
+      contrib_hash[:status] = params[:status]
+      contrib_hash[:visibility] = params[:visibility]
+      contrib_hash[:featured] = params[:featured]
 
-      contrib = Contribution.where(author_id: sul_author_id, publication_id: sul_pub.id).first_or_create
+      contrib = Contribution.find_or_create_by_author_and_publication(author, sul_pub)
       contrib.update_attributes(contrib_hash)
 
       sul_pub.sync_publication_hash_and_db
       sul_pub.pub_hash
-
     end # post end
   end #class end
 

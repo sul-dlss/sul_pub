@@ -20,6 +20,8 @@ describe SulBib::API do
       it 'increases number of contribution records by one' do
         expect {
             post "/authorship", valid_json_for_post, headers
+            puts response.body
+            expect(response.status).to eq(201)
           }.to change(Contribution, :count).by(1)
       end
       it 'increases number of contribution records, where records already exist, by one' do
@@ -27,7 +29,7 @@ describe SulBib::API do
             post "/authorship", valid_json_for_pub_with_contributions, headers
           }.to change(Contribution, :count).from(2).to(3)
       end
-      it "responds with 200" do 
+      it "responds with 201 Accepted" do
         post "/authorship", valid_json_for_pub_with_contributions, headers
         response.status.should == 201
       end

@@ -32,4 +32,8 @@ class Contribution < ActiveRecord::Base
  	 ! (contrib[:visibility].blank? || contrib[:featured].nil? || contrib[:status].blank?)
  end
 
+ def self.find_or_create_by_author_and_publication author, publication
+  find_or_create_by_author_id_and_publication_id(author.id, publication.id)
+ end
+
 end
