@@ -216,7 +216,7 @@ get :sourcelookup do
           active = capActive.downcase == 'true'
          # query_string = "authors.active_in_cap = #{capActive} and publications.updated_at > ?"
           matching_records = Publication.where(:id => (Publication.select('publications.id').where('publications.updated_at > ?', last_changed).
-            joins(:authors).where('authors.active_in_cap' => active).uniq)).
+            joins(:authors).where('authors.active_in_cap' => active).uniq.order('publications.id'))).
             page(page).per(per).pluck(:pub_hash)
         else
           # if no filtering by is_cap_active is needed then we can just go with the much faster:
