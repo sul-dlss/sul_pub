@@ -13,6 +13,14 @@ class Publication < ActiveRecord::Base
 
   serialize :pub_hash, Hash
 
+  def self.updated_after date
+    where('publications.updated_at > ?', date)
+  end
+
+  def self.with_active_author
+    Publication.where(:id => joins(:authors).where('authors.active_in_cap' => true).select('publications.id').uniq.pluck(:id))
+  end
+
 
 def self.get_pub_by_pmid(pmid)
     Publication.where(pmid: pmid).first || SciencewireSourceRecord.get_pub_by_pmid(pmid) || PubmedSourceRecord.get_pub_by_pmid(pmid)

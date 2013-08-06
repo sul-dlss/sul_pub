@@ -95,13 +95,10 @@ module SulBib
       if capProfileId.blank?
         description = "Records that have changed since #{last_changed}"
 
-        query = Publication.where('publications.updated_at > ?', last_changed)
+        query = Publication.updated_after(last_changed)
 
-
-        unless capActive.blank?
-          active = capActive.downcase == 'true'
-          query = query.joins(:authors)
-            .where('authors.active_in_cap' => active)
+        if !capActive.blank? && capActive.downcase == 'true'
+          query = query.with_active_author
         end
 
         matching_records = query.order('publications.id').page(page).per(per).pluck(:pub_hash)
