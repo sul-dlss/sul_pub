@@ -1,6 +1,5 @@
 module SulBib
   class AuthorshipAPI < Grape::API
-    include Authz
     
     version 'v1', :using => :header, :vendor => 'sul', :format => :json
     format :json

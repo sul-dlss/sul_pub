@@ -1,8 +1,6 @@
 module SulBib
   class PublicationsAPI < Grape::API
 
-  include Authz
-
     version 'v1', :using => :header, :vendor => 'sul', :cascade => false
     format :json
 
