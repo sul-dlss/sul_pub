@@ -275,7 +275,7 @@ def self.update_formatted_citations(pub_hash)
     authors_for_citeproc = []
     authors = pub_hash[:author]
     if authors.length > 5
-      authors = authors[1..4]
+      authors = authors[0..4]
       authors << {:name=>"et al."}
     end
 
