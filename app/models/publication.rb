@@ -1,5 +1,3 @@
-
-require 'citeproc'
 class Publication < ActiveRecord::Base
 
   before_save do

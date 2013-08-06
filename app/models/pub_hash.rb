@@ -1,3 +1,5 @@
+require 'citeproc'
+
 class PubHash
   def initialize hash
     @hash = hash
