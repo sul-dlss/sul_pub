@@ -410,7 +410,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Sat, 03 Aug 2013 20:35:18 GMT
+      - Tue, 06 Aug 2013 05:58:11 GMT
       Content-Length:
       - '1208'
     body:
@@ -429,7 +429,7 @@ http_interactions:
         \ <h3>There is a problem with the resource you are looking for, and it cannot
         be displayed.</h3>\r\n </fieldset></div>\r\n</div>\r\n</body>\r\n</html>\r\n"
     http_version: 
-  recorded_at: Sat, 03 Aug 2013 20:35:19 GMT
+  recorded_at: Tue, 06 Aug 2013 05:58:12 GMT
 - request:
     method: post
     uri: http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml
@@ -447,7 +447,7 @@ http_interactions:
       message: Bad Request
     headers:
       Date:
-      - Sat, 03 Aug 2013 20:35:19 GMT
+      - Tue, 06 Aug 2013 05:58:12 GMT
       Server:
       - Apache
       Access-Control-Allow-Origin:
@@ -455,12 +455,12 @@ http_interactions:
       Cache-Control:
       - private
       Ncbi-Sid:
-      - 08DD6D431FD69891_0050SID
+      - 08DE43E620090741_0014SID
       Content-Type:
       - text/xml; charset=UTF-8
       Set-Cookie:
-      - ncbi_sid=08DD6D431FD69891_0050SID; domain=.nih.gov; path=/; expires=Sun, 03
-        Aug 2014 20:35:21 GMT
+      - ncbi_sid=08DE43E620090741_0014SID; domain=.nih.gov; path=/; expires=Wed, 06
+        Aug 2014 05:58:12 GMT
       Connection:
       - close
       Transfer-Encoding:
@@ -470,5 +470,5 @@ http_interactions:
       string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n\n<eFetchResult>\n\t<ERROR>WebEnv
         parameter is required</ERROR>\n</eFetchResult>\n"
     http_version: 
-  recorded_at: Sat, 03 Aug 2013 20:35:22 GMT
+  recorded_at: Tue, 06 Aug 2013 05:58:12 GMT
 recorded_with: VCR 2.5.0
