@@ -1,9 +1,6 @@
 require 'spec_helper'
 
-
-describe Publication do
-	let(:publication) { FactoryGirl.create :publication }
-	let!(:publication_with_contributions) { create :publication_with_contributions, contributions_count:2  }
+describe PubHash do
 	let(:pub_hash) {
 	  {:provenance=>"sciencewire",
      :pmid=>"15572175",
@@ -82,15 +79,15 @@ describe Publication do
   #   end
   # end
 
-	describe ".update_formatted_citations" do
-
+	describe "#to_mla_citation" do
 
 	  context "with more than 5 authors" do
 	    it "builds citations with just the first 5" do
-	      Publication.update_formatted_citations(pub_hash)
-	      pub_hash[:mla_citation].should =~ /^Sohl, G./
-	      pub_hash[:mla_citation].should =~ /et al./
-	      pub_hash[:mla_citation].should_not =~ /Last/
+	      h = PubHash.new(pub_hash)
+	      cite = h.to_mla_citation
+        cite.should =~ /^Sohl, G./
+	      cite.should =~ /et al./
+	      cite.should_not =~ /Last/
 	    end
 	  end
 

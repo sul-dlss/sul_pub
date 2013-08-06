@@ -1,6 +1,11 @@
 
 require 'citeproc'
 class Publication < ActiveRecord::Base
+
+  before_save do
+    sync_publication_hash_and_db if pubhash_needs_update
+  end
+
   attr_accessible :active, :deleted, :title, :year, :issn, :pages, :publication_type, :pub_hash, :lock_version, :pmid, :sciencewire_id, :same_as_publication_id, :xml, :updated_at
   has_many :contributions, :dependent => :destroy, :after_add => :pubhash_needs_update!, :after_remove => :pubhash_needs_update!
   has_many :authors, :through => :contributions, :after_add => :pubhash_needs_update!, :after_remove => :pubhash_needs_update!
@@ -21,35 +26,12 @@ class Publication < ActiveRecord::Base
     Publication.where(:id => joins(:authors).where('authors.active_in_cap' => true).select('publications.id').uniq.pluck(:id))
   end
 
-
-  def self.get_pub_by_pmid(pmid)
+  def self.find_or_create_by_pmid(pmid)
     Publication.where(pmid: pmid).first || SciencewireSourceRecord.get_pub_by_pmid(pmid) || PubmedSourceRecord.get_pub_by_pmid(pmid)
   end
 
-  def self.get_pub_by_sciencewire_id(sw_id)
+  def self.find_or_create_by_sciencewire_id(sw_id)
     pub = Publication.where(sciencewire_id: sw_id).first || SciencewireSourceRecord.get_pub_by_sciencewire_id(sw_id)
-  end
-
-  def build_from_sciencewire_hash(new_sw_pub_hash)
-    self.pub_hash = new_sw_pub_hash
-
-    self.sciencewire_id = new_sw_pub_hash[:sw_id]
-    self.issn = new_sw_pub_hash[:issn] if new_sw_pub_hash[:issn].blank?
-    self.title = new_sw_pub_hash[:title] if new_sw_pub_hash[:title].blank?
-    self.year = new_sw_pub_hash[:year] if new_sw_pub_hash[:year].blank?
-    self.pages = new_sw_pub_hash[:pages] if new_sw_pub_hash[:pages].blank?
-
-    unless self.pmid.blank?
-      new_sw_pub_hash[:pmid] = self.pmid.to_s # Preserve the pmid just in case incoming sciencewire doc doesn't have PMID
-      add_any_pubmed_data_to_hash
-    end
-
-    self
-  end
-
-  def build_from_pubmed_hash(new_pubmed_pub_hash)
-    self.pub_hash = new_pubmed_pub_hash
-    self
   end
 
   def self.build_new_manual_publication(provenance, pub_hash, original_source_string)
@@ -93,6 +75,28 @@ class Publication < ActiveRecord::Base
           issn: pub_hash[:issn],
           pages: pub_hash[:pages],
           publication_type: pub_hash[:type])
+  end
+
+  def build_from_sciencewire_hash(new_sw_pub_hash)
+    self.pub_hash = new_sw_pub_hash
+
+    self.sciencewire_id = new_sw_pub_hash[:sw_id]
+    self.issn = new_sw_pub_hash[:issn] if new_sw_pub_hash[:issn].blank?
+    self.title = new_sw_pub_hash[:title] if new_sw_pub_hash[:title].blank?
+    self.year = new_sw_pub_hash[:year] if new_sw_pub_hash[:year].blank?
+    self.pages = new_sw_pub_hash[:pages] if new_sw_pub_hash[:pages].blank?
+
+    unless self.pmid.blank?
+      new_sw_pub_hash[:pmid] = self.pmid.to_s # Preserve the pmid just in case incoming sciencewire doc doesn't have PMID
+      add_any_pubmed_data_to_hash
+    end
+
+    self
+  end
+
+  def build_from_pubmed_hash(new_pubmed_pub_hash)
+    self.pub_hash = new_pubmed_pub_hash
+    self
   end
 
   def update_manual_pub_from_pub_hash(incoming_pub_hash, provenance, original_source_string)
@@ -149,7 +153,7 @@ class Publication < ActiveRecord::Base
             :identifier_value => identifier[:id],
             :identifier_uri => identifier[:url])
     end
-    self.class.update_formatted_citations(self.pub_hash)
+    update_formatted_citations
     save
   end
 
@@ -161,7 +165,7 @@ class Publication < ActiveRecord::Base
     add_any_new_identifiers_in_pub_hash_to_db
     add_all_identifiers_in_db_to_pub_hash
 
-    self.class.update_formatted_citations(self.pub_hash)
+    update_formatted_citations
     @pubhash_needs_update = false
     true
   end
@@ -184,7 +188,7 @@ class Publication < ActiveRecord::Base
       set_last_updated_value_in_hash
       add_all_db_contributions_to_my_pub_hash
       add_all_identifiers_in_db_to_pub_hash
-      self.class.update_formatted_citations(self.pub_hash)
+      update_formatted_citations
   end
 
   def rebuild_authorship
@@ -265,100 +269,13 @@ class Publication < ActiveRecord::Base
     pub_logger.error e.backtrace
   end
 
-  def self.update_formatted_citations(pub_hash)
+  def update_formatted_citations
     #[{"id"=>"Gettys90", "type"=>"article-journal", "author"=>[{"family"=>"Gettys", "given"=>"Jim"}, {"family"=>"Karlton", "given"=>"Phil"}, {"family"=>"McGregor", "given"=>"Scott"}], "title"=>"The {X} Window System, Version 11", "container-title"=>"Software Practice and Experience", "volume"=>"20", "issue"=>"S2", "abstract"=>"A technical overview of the X11 functionality.  This is an update of the X10 TOG paper by Scheifler \\& Gettys.", "issued"=>{"date-parts"=>[[1990]]}}]
-    chicago_csl_file = Rails.root.join('app', 'data', 'chicago-author-date.csl')
-    mla_csl_file = Rails.root.join('app', 'data', 'mla.csl')
-    apa_csl_file = Rails.root.join('app', 'data', 'apa.csl')
-    authors_for_citeproc = []
-    authors = pub_hash[:author]
+    h = PubHash.new(pub_hash)
 
-    if authors.length > 5
-      authors = authors[0..4]
-      authors << {:name=>"et al."}
-    end
-
-    authors.each do |author|
-      last_name = ""
-      rest_of_name = ""
-
-      # use parsed name parts if available
-      unless author[:lastname].blank?
-        last_name = author[:lastname]
-        unless author[:firstname].blank?
-          if author[:firstname].length == 1
-            rest_of_name << ' ' << author[:firstname] << '.'
-          else
-            rest_of_name << ' ' <<  author[:firstname]
-          end
-        end
-
-        unless author[:middlename].blank?
-          if author[:middlename].length == 1
-            rest_of_name << ' ' << author[:middlename] << '.'
-          else
-            rest_of_name << ' ' <<  author[:middlename]
-          end
-        end
-      end
-
-      # use name otherwise and if available
-      if last_name.blank? && ! author[:name].blank?
-        author[:name].split(',').each_with_index do |name_part, index|
-          if index == 0
-            last_name = name_part
-          elsif name_part.length == 1
-            # the name part is only one character so an initial
-            rest_of_name << ' ' << name_part << '.'
-          elsif name_part.length > 1
-            rest_of_name << ' ' << name_part
-          end
-        end
-      end
-
-      unless last_name.blank?
-        authors_for_citeproc << {"family" => last_name, "given" => rest_of_name}
-      end
-    end
-
-
-    cit_data_hash = {"id" => "sulpub",
-                 "type"=>pub_hash[:type],
-                 "author"=>authors_for_citeproc,
-                 "title"=>pub_hash[:title]
-
-                 }
-
-    cit_data_hash["abstract"] = pub_hash[:abstract] unless pub_hash[:abstract].blank?
-
-    # add series information if it exists
-    if pub_hash.has_key?(:series)
-      cit_data_hash["container-title"] = pub_hash[:series][:title] unless pub_hash[:series][:title].blank?
-      cit_data_hash["volume"] = pub_hash[:series][:volume] unless pub_hash[:series][:volume].blank?
-      cit_data_hash["issue"] = pub_hash[:series][:number] unless pub_hash[:series][:number].blank?
-      cit_data_hash["issued"]  = {"date-parts"=>[[pub_hash[:series][:year]]]} unless pub_hash[:series][:year].blank?
-   end
-   # add journal information if it exists
-   if pub_hash.has_key?(:journal)
-      cit_data_hash["container-title"] = pub_hash[:journal][:name] unless pub_hash[:journal][:name].blank?
-      cit_data_hash["volume"] = pub_hash[:journal][:volume] unless pub_hash[:journal][:volume].blank?
-      cit_data_hash["issue"] = pub_hash[:journal][:issue] unless pub_hash[:journal][:issue].blank?
-      cit_data_hash["issued"]  = {"date-parts"=>[[pub_hash[:journal][:year]]]} unless pub_hash[:journal][:year].blank?
-    end
-    # use a year at the top level if it exists, i.e, override any year we'd gotten above from journal or series
-    cit_data_hash["issued"]  = {"date-parts"=>[[pub_hash[:year]]]} unless pub_hash[:year].blank?
-    # add book title if it exists, which indicates this pub is a chapter in the book
-    cit_data_hash["container-title"] = pub_hash[:booktitle] unless pub_hash[:booktitle].blank?
-
-
-    cit_data_array = [cit_data_hash]
-
-    # chicago_citation = CiteProc.process(cit, :style => 'https://github.com/citation-style-language/styles/raw/master/chicago-author-date.csl', :format => 'html')
-    # apa_citation = CiteProc.process(cit, :style => 'https://github.com/citation-style-language/styles/raw/master/apa.csl', :format => 'html')
-    # mla_citation = CiteProc.process(cit, :style => 'https://github.com/citation-style-language/styles/raw/master/mla.csl', :format => 'html')
-    pub_hash[:apa_citation] = CiteProc.process(cit_data_array, :style => apa_csl_file, :format => 'html')
-    pub_hash[:mla_citation] = CiteProc.process(cit_data_array, :style => mla_csl_file, :format => 'html')
-    pub_hash[:chicago_citation] = CiteProc.process(cit_data_array, :style => chicago_csl_file, :format => 'html')
+    pub_hash[:apa_citation] = h.to_apa_citation
+    pub_hash[:mla_citation] = h.to_mla_citation
+    pub_hash[:chicago_citation] = h.to_chicago_citation
   end
 
   def delete!
@@ -368,10 +285,6 @@ class Publication < ActiveRecord::Base
 
   def deleted?
     deleted
-  end
-
-  def update_canonical_xml_for_pub
-    xml = "the xml goes here"
   end
 
   def add_or_update_author author, contribution_hash = {}
@@ -392,10 +305,6 @@ class Publication < ActiveRecord::Base
 
   def pubhash_needs_update
     @pubhash_needs_update || false
-  end
-
-  before_save do
-    sync_publication_hash_and_db if pubhash_needs_update
   end
 
 end

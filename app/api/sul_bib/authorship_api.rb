@@ -42,11 +42,11 @@ module SulBib
           error!("The SUL publication you've specified doesn't exist.", 400)
         end
       elsif params[:publication][:pmid]
-        p = Publication.get_pub_by_pmid(params[:publication][:pmid])
+        p = Publication.find_or_create_by_pmid(params[:publication][:pmid])
         if p.nil? then error!("The pmid you've specified can't be found either locally or at PubMed.", 400) end
         p
       elsif params[:publication][:sciencewire_id]
-        p = Publication.get_pub_by_sciencewire_id(params[:publication][:sciencewire_id])
+        p = Publication.find_or_create_by_sciencewire_id(params[:publication][:sciencewire_id])
         if p.nil? then error!("The ScienceWire publication you've specified can't be found either locally or at ScienceWire.", 400) end
         p
       else
