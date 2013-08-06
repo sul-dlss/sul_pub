@@ -27,25 +27,16 @@ set :deploy_to, "/home/***REMOVED***/#{application}"
 set :use_sudo, false
 set :deploy_via, :remote_cache
 
-
-after 'deploy:update_code', 'deploy:symlink_db', 'deploy:symlink_sw_auth', 'deploy:symlink_cap_auth'
+set :shared_children, %w(
+  tmp
+  log
+  config/database.yml
+  config/sciencewire_auth.yaml
+  config/cap_auth.yaml
+)
 
 load 'deploy/assets'
 
-namespace :deploy do
-  desc "Symlink database.yml"
-  task :symlink_db, :roles => :app do
-    run "ln -nfs #{deploy_to}/shared/config/database.yml #{release_path}/config/database.yml"
-  end
-  desc "Symlink sciencewire_auth.yaml"
-  task :symlink_sw_auth, :roles => :app do
-    run "ln -nfs #{deploy_to}/shared/config/sciencewire_auth.yaml #{release_path}/config/sciencewire_auth.yaml"
-  end
-  desc "Symlink cap_auth.yaml"
-  task :symlink_cap_auth, :roles => :app do
-    run "ln -nfs #{deploy_to}/shared/config/cap_auth.yaml #{release_path}/config/cap_auth.yaml"
-  end
-end
 
 # if you want to clean up old releases on each deploy uncomment this:
 # after "deploy:restart", "deploy:cleanup"
