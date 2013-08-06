@@ -196,7 +196,7 @@ describe SulBib::API do
         result = JSON.parse(response.body)
 
         result["metadata"]["records"].should == "7"
-        result["metadata"]["page"].should == "1"
+        result["metadata"]["page"].should == 1
         result["records"][2]["author"].should be
       end
 

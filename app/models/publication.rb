@@ -360,6 +360,11 @@ def self.update_formatted_citations(pub_hash)
 
   end
 
+  def delete!
+    deleted = true
+    save
+  end
+
   def deleted?
     deleted
   end

@@ -38,95 +38,92 @@ module SulBib
       end
     end
 
-
+    desc "Look up existing records by title, and optionally by author, year and source"
     params do
       optional :year, type: Integer, :year_check => true, desc: "Four digit year."
       requires :title
-      optional :source
+      optional :firstname
+      optional :lastname
+      optional :middlename
+      optional :source, type: String, default: (Settings.manual_source + '+' + Settings.sciencewire_source)
+      optional :max_rows, type: Integer, default: 20
     end
-
-
     get :sourcelookup do
       all_matching_records = []
 
-      # set source to all sources if param value is blank
-      source = params[:source] || Settings.manual_source + '+' + Settings.sciencewire_source
-      last_name = params[:lastname]
-      first_name = params[:firstname]
-      middle_name = params[:middlename]
-      title = params[:title]
-      year = params[:year]
-      max_rows = params[:maxrows] || 20
+      sources = params[:source].split('+')
 
-      sources = source.split('+')
-
-      if source.include?(Settings.sciencewire_source)
-        all_matching_records += ScienceWireClient.new.query_sciencewire_for_publication(first_name, last_name, middle_name, title, year, max_rows)
+      if sources.include?(Settings.sciencewire_source)
+        all_matching_records += ScienceWireClient.new.query_sciencewire_for_publication(params[:firstname], params[:lastname], params[:middlename], params[:title], params[:year], params[:max_rows])
       end
 
-      if source.include?(Settings.manual_source)
+      if sources.include?(Settings.manual_source)
         user_submitted_source_records = UserSubmittedSourceRecord.arel_table
 
-        results = UserSubmittedSourceRecord.where(user_submitted_source_records[:title].matches("%#{title}%"))
+        results = UserSubmittedSourceRecord.where(user_submitted_source_records[:title].matches("%#{params[:title]}%"))
        
-        unless year.blank?
-          results = results.where(user_submitted_source_records[:year].eq(year))          
+        if params[:year]
+          results = results.where(user_submitted_source_records[:year].eq(params[:year]))          
         end
 
         all_matching_records += results.map {|source_record| source_record.publication.pub_hash }
       end
 
-      wrap_as_bibjson_collection("Search results from requested sources: " + source, env["ORIGINAL_FULLPATH"], all_matching_records, nil, nil)
+      wrap_as_bibjson_collection("Search results from requested sources: #{sources.join(",")}", env["ORIGINAL_FULLPATH"], all_matching_records, nil, nil)
 
     end
 
-    # GET ALL PUBS, PAGED IF REQUESTD, OR FOR AN AUTHOR IF REQUESTED.
+    desc "GET ALL PUBS, PAGED IF REQUESTED, OR FOR AN AUTHOR IF REQUESTED."
+    params do
+      #optional :population, default: Settings.cap_population_name
+      optional :changedSince, default: "1000-01-01"
+      optional :capProfileId
+      optional :capActive
+      optional :page, type: Integer, default: 1
+      optional :per, type: Integer, default: 100
+    end
     get do
       matching_records = []
-      population = params[:population] || Settings.cap_population_name
-      changedSince = params[:changedSince] || "1000-01-01"
+
       capProfileId = params[:capProfileId]
       capActive = params[:capActive]
-      page = params[:page] || 1
-
-      population.downcase!
-      last_changed = DateTime.parse(changedSince).to_s
+      page = params[:page]
+      per = params[:per]
+      last_changed = DateTime.parse(params[:changedSince]).to_s
 
 
       if capProfileId.blank?
-        per = params[:per] || 100
-        description = "Records that have changed since " + changedSince
+        description = "Records that have changed since #{last_changed}"
 
-        data = unless capActive.blank?
+        query = Publication.where('publications.updated_at > ?', last_changed)
+
+
+        unless capActive.blank?
           active = capActive.downcase == 'true'
-          Publication.where('publications.updated_at > ?', last_changed)
-            .joins(:authors)
+          query = query.joins(:authors)
             .where('authors.active_in_cap' => active)
-            .order('publications.id')
-        else
-          # if no filtering by is_cap_active is needed then we can just go with the much faster:
-          Publication.where('publications.updated_at > ?', last_changed)
-            .order('publications.id')
         end
 
-        matching_records = data.page(page).per(per).pluck(:pub_hash)
+        matching_records = query.order('publications.id').page(page).per(per).pluck(:pub_hash)
 
       else
-        per = params[:per] || nil
         author = Author.where(cap_profile_id: capProfileId).first
         if author.nil?
           error!({ "error" => "No such author", "detail" => "You've specified a non-existant author." }, 404)
         else
           description = "All known publications for CAP profile id " + capProfileId
-          matching_records = author.contributions.order(:id).page(page).per(per).collect { |contr| contr.publication.pub_hash }
+          matching_records = author.publications.order('publications.id').page(page).per(per).pluck('publications.pub_hash')
         end
       end
       wrap_as_bibjson_collection(description, env["ORIGINAL_FULLPATH"].to_s, matching_records, page, per)
     end
 
-    # CALL TO ADD A NEW MANUAL PUBLICATION
+    desc "CALL TO ADD A NEW MANUAL PUBLICATION"
     content_type :json, "application/json"
     parser :json, BibJSONParser
+    params do
+      requires :pub_hash
+    end
     post do
       request_body_unparsed = env['api.request.input']
       pub_hash = params[:pub_hash]
@@ -148,9 +145,13 @@ module SulBib
       end
     end
 
-    # CALL TO UPDATE A NEW MANUAL PUBLICATION
+    desc "CALL TO UPDATE A NEW MANUAL PUBLICATION"
     content_type :json, "application/json"
     parser :json, BibJSONParser
+    params do
+      requires :id
+      requires :pub_hash
+    end
     put ':id' do
       #the last known etag must be sent in the 'if-match' header, returning 412 “Precondition Failed” if etags don't match,
       #and a 428 "Precondition Required" if the if-match header isn't supplied
@@ -180,7 +181,10 @@ module SulBib
 
     end
 
-    # GET A SINGLE RECORD
+    desc "GET A SINGLE RECORD"
+    params do
+      requires :id
+    end
     get ':id' do
       begin
         pub = Publication.find(params[:id])
@@ -188,18 +192,20 @@ module SulBib
         error!({ "error" => "No such publication", "detail" => "You've requested a non-existant publication." }, 404)
       end
       
-      if pub.deleted
+      if pub.deleted?
         error!("Gone - old resource probably deleted.", 410)
       end
       
       pub.pub_hash
     end
 
-    # MARK A RECORD AS DELETED
+    desc "MARK A RECORD AS DELETED"
+    params do
+      requires :id
+    end
     delete ':id' do
       pub = Publication.find(params[:id])
-      pub.deleted = true
-      pub.save
+      pub.delete!
     end
 
   end
