@@ -21,6 +21,7 @@ gem 'activerecord-import'
 gem 'kaminari'
 gem 'dotiw'
 gem 'high_voltage'
+gem 'is_it_working-cbeer', :require => 'is_it_working'
 gem 'whenever', :require => false
 #gem 'always_verify_ssl_certificates'
 
