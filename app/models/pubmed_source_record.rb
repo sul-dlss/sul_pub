@@ -22,6 +22,7 @@ class PubmedSourceRecord < ActiveRecord::Base
               pmid: pmid)
             pub.build_from_pubmed_hash(pubmed_pub_hash)
             pub.sync_publication_hash_and_db
+            pub.save
         end
         pub
   	end

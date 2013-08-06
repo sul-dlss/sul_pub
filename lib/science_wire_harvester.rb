@@ -325,6 +325,7 @@ class ScienceWireHarvester
 				create_contribs_for_author_ids_and_pub(author_ids, pub)
 			  pub.build_from_sciencewire_hash(pub_hash)
 			  pub.sync_publication_hash_and_db
+        pub.save
 			end
 		end
 	end
@@ -369,6 +370,7 @@ class ScienceWireHarvester
 		        create_contribs_for_author_ids_and_pub(author_ids, pub)
 		        pub.pub_hash = pub_hash
 		        pub.sync_publication_hash_and_db
+            pub.save
 	    	end
 		rescue => e
           NotificationManager.handle_harvest_problem(e, "The batch call to pubmed, process_queued_pubmed_records, failed.")

@@ -31,6 +31,7 @@ class SciencewireSourceRecord < ActiveRecord::Base
             pmid: pmid)
           pub.build_from_sciencewire_hash(sw_pub_hash)
           pub.sync_publication_hash_and_db
+          pub.save
 
       	end
       	pub
@@ -50,6 +51,7 @@ class SciencewireSourceRecord < ActiveRecord::Base
             pmid: sw_pub_hash[:pmid])
           pub.build_from_sciencewire_hash(sw_pub_hash)
           pub.sync_publication_hash_and_db
+          pub.save
       	end
       	pub
 	end

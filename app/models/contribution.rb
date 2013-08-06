@@ -1,5 +1,10 @@
 class Contribution < ActiveRecord::Base
   attr_accessible :status, :visibility, :featured, :author_id, :publication_id, :cap_profile_id
+
+  def cap_profile_id
+    (author.cap_profile_id if author) || self[:cap_profile_id]
+  end
+
   belongs_to :publication
   belongs_to :author
  # has_one :publication_identifier, :foreign_key => "publication_id"
@@ -30,6 +35,10 @@ class Contribution < ActiveRecord::Base
 
  def self.all_fields_present?(contrib)
  	 ! (contrib[:visibility].blank? || contrib[:featured].nil? || contrib[:status].blank?)
+ end
+
+ def self.find_or_create_by_author_and_publication author, publication
+  find_or_create_by_author_id_and_publication_id(author.id, publication.id)
  end
 
 end

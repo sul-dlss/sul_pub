@@ -225,7 +225,11 @@ def query_sciencewire_by_author_name(first_name, middle_name, last_name, max_row
 	    xml_results.xpath('//PublicationItem').each do |sw_xml_doc|
 	    # result << generate_json_for_pub(convert_sw_publication_doc_to_hash(sw_xml_doc))
 	    	pub_hash = SciencewireSourceRecord.convert_sw_publication_doc_to_hash(sw_xml_doc)
-	    	Publication.update_formatted_citations(pub_hash)
+	    	h = PubHash.new(pub_hash)
+
+        pub_hash[:apa_citation] = h.to_apa_citation
+        pub_hash[:mla_citation] = h.to_mla_citation
+        pub_hash[:chicago_citation] = h.to_chicago_citation
 	    	result << pub_hash
 	  end
 	  result
