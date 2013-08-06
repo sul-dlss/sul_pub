@@ -20,7 +20,6 @@ describe SulBib::API do
       it 'increases number of contribution records by one' do
         expect {
             post "/authorship", valid_json_for_post, headers
-            puts response.body
             expect(response.status).to eq(201)
           }.to change(Contribution, :count).by(1)
       end
@@ -48,6 +47,7 @@ describe SulBib::API do
       end
       it 'creates a contribution record with matching visibility' do       
         post "/authorship", valid_json_for_pub_with_contributions, headers
+        expect(response.status).to eq(201)
         Contribution.where(publication_id: publication_with_contributions.id, author_id: author.id).first.visibility.should == 'private'
       end
       it 'should not create more than one contribution ' do

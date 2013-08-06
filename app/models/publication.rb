@@ -2,8 +2,8 @@
 require 'citeproc'
 class Publication < ActiveRecord::Base
   attr_accessible :active, :deleted, :title, :year, :issn, :pages, :publication_type, :pub_hash, :lock_version, :pmid, :sciencewire_id, :same_as_publication_id, :xml, :updated_at
-  has_many :contributions, :dependent => :destroy
-  has_many :authors, :through => :contributions
+  has_many :contributions, :dependent => :destroy, :after_add => :pubhash_needs_update!, :after_remove => :pubhash_needs_update!
+  has_many :authors, :through => :contributions, :after_add => :pubhash_needs_update!, :after_remove => :pubhash_needs_update!
   has_many :publication_identifiers, :dependent => :destroy
   has_many :user_submitted_source_records
   has_one :batch_uploaded_source_record
@@ -71,6 +71,7 @@ def self.build_new_manual_publication(provenance, pub_hash, original_source_stri
       pub.sync_publication_hash_and_db
 
     end
+      pub.save
     pub
   end
 
@@ -102,6 +103,7 @@ def update_manual_pub_from_pub_hash(incoming_pub_hash, provenance, original_sour
     )
     self.update_any_new_contribution_info_in_pub_hash_to_db
     self.sync_publication_hash_and_db
+    self.save
 end
 
 #def add_contribution(cap_profile_id, sul_author_id, status, visibility, featured)
@@ -120,8 +122,7 @@ def add_any_pubmed_data_to_hash
 end
 
 def set_last_updated_value_in_hash
-  save   # to reset last updated value
-  self.pub_hash[:last_updated] = updated_at.to_s
+  self.pub_hash[:last_updated] = (updated_at || Time.now).to_s
 end
 
 def set_sul_pub_id_in_hash
@@ -158,8 +159,8 @@ def sync_publication_hash_and_db
     add_all_identifiers_in_db_to_pub_hash
 
     self.class.update_formatted_citations(self.pub_hash)
-    save
-
+    @pubhash_needs_update = false
+    true
   end
 
 def rebuild_pub_hash
@@ -181,12 +182,10 @@ def rebuild_pub_hash
     add_all_db_contributions_to_my_pub_hash
     add_all_identifiers_in_db_to_pub_hash
     self.class.update_formatted_citations(self.pub_hash)
-    save
 end
 
 def rebuild_authorship
   add_all_db_contributions_to_my_pub_hash
-  save
 end
 
   def add_any_new_identifiers_in_pub_hash_to_db
@@ -248,8 +247,6 @@ end
          visibility: contrib_in_db.visibility,
          featured: contrib_in_db.featured}
       end
-     # puts self.pub_hash.to_s
-      save
   end
    # elsif self.pub_hash && ! self.pub_hash[:authorship]
     #  Logger.new(Rails.root.join('log', 'publications_errors.log')).info("No authorship entry in pub_hash for " + self.id.to_s)
@@ -367,8 +364,32 @@ def self.update_formatted_citations(pub_hash)
     deleted
   end
 
-def update_canonical_xml_for_pub
+  def update_canonical_xml_for_pub
     xml = "the xml goes here"
+  end
+
+  def add_or_update_author author, contribution_hash = {}
+    if contributions.exists? :author_id => author.id
+      c = contributions.where(:author_id => author.id).first
+      c.update_attributes contribution_hash
+      pubhash_needs_update!
+    else
+      c = contributions.create(contribution_hash.merge(:author_id => author.id))
+    end
+
+    c
+  end
+
+  def pubhash_needs_update! *args
+    @pubhash_needs_update = true
+  end
+
+  def pubhash_needs_update
+    @pubhash_needs_update || false
+  end
+
+  before_save do
+    sync_publication_hash_and_db if pubhash_needs_update
   end
 
 end

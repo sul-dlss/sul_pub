@@ -59,10 +59,12 @@ module SulBib
       contrib_hash[:visibility] = params[:visibility]
       contrib_hash[:featured] = params[:featured]
 
-      contrib = Contribution.find_or_create_by_author_and_publication(author, sul_pub)
-      contrib.update_attributes(contrib_hash)
-
-      sul_pub.sync_publication_hash_and_db
+      sul_pub.add_or_update_author(author, contrib_hash)
+      begin
+        sul_pub.save!
+      rescue ActiveRecord::RecordNotSaved => e
+        error!(e.inspect, 500)
+      end
       sul_pub.pub_hash
     end # post end
   end #class end

@@ -256,6 +256,7 @@ desc "ingest existing cap hand entered pubs"
               )
               pub.update_any_new_contribution_info_in_pub_hash_to_db
               pub.sync_publication_hash_and_db
+              pub.save
             else
               # Pub and UserSubmittedSourceRecord exist
               @cap_manual_import_logger.info "Updating Publication '#{row[:article_title]}' for #{row[:sunetid]}"
