@@ -277,6 +277,36 @@ desc "ingest existing cap hand entered pubs"
 
     end
 
+    desc "Fix authors and pub_hash for manual pubs"
+    task :fix_man_pubs_authors => :environment do
+      include ActionView::Helpers::DateHelper
+      start_time = Time.now
+      total_running_count = 0
+      @cap_manual_import_logger = Logger.new(Rails.root.join('log', 'fix_man_pubs_authors.log'))
+      @cap_manual_import_logger.info "Started cap manual pub import process " + DateTime.now.to_s
+      header = %("DEPRECATED_PUBLICATION_ID","PUBMED_ID","MANUALLY_ENTERED","PROFILE_ID","CAP_FIRST_NAME","CAP_MIDDLE_NAME","CAP_LAST_NAME","PREFERRED_FIRST_NAME","PREFERRED_MIDDLE_NAME","PREFERRED_LAST_NAME","OFFICIAL_FIRST_NAME","OFFICIAL_MIDDLE_NAME","OFFICIAL_LAST_NAME","SUNETID","UNIVERSITY_ID","EMAIL_ADDRESS","AUTHORSHIP_STATUS","VISIBILITY","FEATURED","PUBLICATION_TITLE","ARTICLE_TITLE","VOLUME","ISSN","ISSUE_NO","PUBLICATION_DATE","PAGE_REF","ABSTRACT","LANG","COUNTRY","AUTHORS","PRIMARY_AUTHOR","AFFILIATION","LAST_MODIFIED_DATE","CAP_IMPORT_TIME","FIRST_PUBLISHED_DATE")
+
+      UserSubmittedSourceRecord.find_each do |usr_src|
+        begin
+          csv = header + "\n" + usr_src.source_data
+          row = CSV.parse(csv, :headers => true, :header_converters => :symbol)
+          pub = usr_src.publication
+          author = pub.authors.first
+          pub_hash = convert_manual_publication_row_to_hash(row, author.id.to_s)
+          pub.pub_hash = pub_hash
+          pub.sync_publication_hash_and_db
+        rescue => e
+          @cap_manual_import_logger.error "Problem with UserSubmittedSourceRecord #{usr_src.id}"
+          @cap_manual_import_logger.error "Source Data #{row.inspect}" unless(row.nil?)
+          @cap_manual_import_logger.error e.inspect << "\n" << e.backtrace.join("\n")
+        end
+      end
+      @cap_manual_import_logger.info "Finished import." + DateTime.now.to_s
+      @cap_manual_import_logger.info lines.to_s + " lines of file: " + args.file_location.to_s + " were processed."
+      @cap_manual_import_logger.info total_running_count.to_s + "records were processed in " + distance_of_time_in_words_to_now(start_time, include_seconds = true)
+
+    end
+
 desc "utility to rebuild pub hashes from sciencewire and pubmed sources for all pubs"
   task :build_pubs => :environment do
     include ActionView::Helpers::DateHelper
@@ -400,30 +430,26 @@ desc "utility to extract data extract data from hash to publication object, modi
     @cap_import_logger.info "Started cap update pub process " + DateTime.now.to_s
 
    Publication.find_each do |pub|
-        total_running_count += 1
-        pub_hash = pub.pub_hash
-        if pub_hash.respond_to?(:has_key?)
-          if pub_hash.has_key?(:journal)
-            issn = find_issn_id_identifiers(pub_hash[:journal][:identifier])  unless  pub_hash[:journal][:identifier].nil?
-          elsif pub_hash.has_key?(:series)
-            issn = find_issn_id_identifiers(pub_hash[:series][:identifier]) unless  pub_hash[:series][:identifier].nil?
-          else
-            issn = nil
-          end
-          pub.update_attributes(
-            pages: pub_hash[:pages],
-            issn: issn,
-            publication_type: pub_hash[:type]
-          )
-        else
-          @cap_import_logger.info pub.pmid
-        end
-        if total_running_count%5000 == 0  then GC.start end
+     begin
+      total_running_count += 1
+      pub_hash = pub.pub_hash
 
-        if total_running_count%1000 == 0
-          puts (total_running_count).to_s + " in " + distance_of_time_in_words_to_now(start_time, include_seconds = true)
-          #@cap_import_logger.info total_running_count.to_s + " in " + distance_of_time_in_words_to_now(start_time, include_seconds = true)
-        end
+      if( ! pub_hash[:author].nil? && pub_hash[:author].length > 5)
+        Publication.update_formatted_citations(pub_hash)
+        pub.pub_hash = pub_hash
+        pub.save
+        @cap_import_logger.info "Fixed authors for #{pub.id}"
+      end
+      if total_running_count%5000 == 0  then GC.start end
+
+      if total_running_count%1000 == 0
+        puts (total_running_count).to_s + " in " + distance_of_time_in_words_to_now(start_time, include_seconds = true)
+        #@cap_import_logger.info total_running_count.to_s + " in " + distance_of_time_in_words_to_now(start_time, include_seconds = true)
+      end
+     rescue => e
+       @cap_import_logger.error "Problem with pub #{pub.id}"
+       @cap_import_logger.error e.inspect << "\n" << e.backtrace.join("\n")
+     end
     end
     @cap_import_logger.info "Finished update." + DateTime.now.to_s
     @cap_import_logger.info total_running_count.to_s + "records were updated in " + distance_of_time_in_words_to_now(start_time, include_seconds = true)
@@ -579,16 +605,18 @@ def self.convert_manual_publication_row_to_hash(cap_pub_data_for_this_pub, autho
     record_as_hash[:provenance] = Settings.cap_provenance
     record_as_hash[:title] = cap_pub_data_for_this_pub[:article_title]
    # record_as_hash[:abstract_restricted] = cap_pub_data_for_this_pub[:abstract] unless cap_pub_data_for_this_pub[:abstract].blank?
-    unless cap_pub_data_for_this_pub[:authors].blank?
-      record_as_hash[:author] = cap_pub_data_for_this_pub[:authors].split(',').collect{|author| {name: author}}
-    else
-      record_as_hash[:author] = []
-    end
-    primary_author = cap_pub_data_for_this_pub[:primary_author]
-    unless primary_author.blank?
-      primary_author = primary_author
-      record_as_hash[:author] << {name: primary_author}
-    end
+   primary_author = cap_pub_data_for_this_pub[:primary_author]
+   unless primary_author.blank?
+     record_as_hash[:author] = [ {name: primary_author} ]
+   else
+     record_as_hash[:author] = []
+   end
+
+   unless cap_pub_data_for_this_pub[:authors].blank?
+     record_as_hash[:author] << cap_pub_data_for_this_pub[:authors].split(',').collect{|author| {name: author}}
+   end
+
+
 
     record_as_hash[:year] = cap_pub_data_for_this_pub[:publication_date] unless cap_pub_data_for_this_pub[:publication_date].blank?
 
