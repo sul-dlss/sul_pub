@@ -281,13 +281,14 @@ desc "ingest existing cap hand entered pubs"
     task :fix_man_pubs_authors => :environment do
       include ActionView::Helpers::DateHelper
       start_time = Time.now
-      total_running_count = 0
+      count = 0
       @cap_manual_import_logger = Logger.new(Rails.root.join('log', 'fix_man_pubs_authors.log'))
       @cap_manual_import_logger.info "Started cap manual pub import process " + DateTime.now.to_s
       header = %("DEPRECATED_PUBLICATION_ID","PUBMED_ID","MANUALLY_ENTERED","PROFILE_ID","CAP_FIRST_NAME","CAP_MIDDLE_NAME","CAP_LAST_NAME","PREFERRED_FIRST_NAME","PREFERRED_MIDDLE_NAME","PREFERRED_LAST_NAME","OFFICIAL_FIRST_NAME","OFFICIAL_MIDDLE_NAME","OFFICIAL_LAST_NAME","SUNETID","UNIVERSITY_ID","EMAIL_ADDRESS","AUTHORSHIP_STATUS","VISIBILITY","FEATURED","PUBLICATION_TITLE","ARTICLE_TITLE","VOLUME","ISSN","ISSUE_NO","PUBLICATION_DATE","PAGE_REF","ABSTRACT","LANG","COUNTRY","AUTHORS","PRIMARY_AUTHOR","AFFILIATION","LAST_MODIFIED_DATE","CAP_IMPORT_TIME","FIRST_PUBLISHED_DATE")
 
       UserSubmittedSourceRecord.find_each do |usr_src|
         begin
+          count += 1
           csv = header + "\n" + usr_src.source_data
           row = CSV.parse(csv, :headers => true, :header_converters => :symbol)
           pub = usr_src.publication
@@ -295,6 +296,7 @@ desc "ingest existing cap hand entered pubs"
           pub_hash = convert_manual_publication_row_to_hash(row, author.id.to_s)
           pub.pub_hash = pub_hash
           pub.sync_publication_hash_and_db
+          @cap_manual_import_logger.info "Processed #{count}" if(count % 500 == 0)
         rescue => e
           @cap_manual_import_logger.error "Problem with UserSubmittedSourceRecord #{usr_src.id}"
           @cap_manual_import_logger.error "Source Data #{row.inspect}" unless(row.nil?)
