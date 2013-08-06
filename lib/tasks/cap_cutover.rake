@@ -290,7 +290,7 @@ desc "ingest existing cap hand entered pubs"
         begin
           count += 1
           csv = header + "\n" + usr_src.source_data
-          row = CSV.parse(csv, :headers => true, :header_converters => :symbol)
+          row = CSV.parse(csv, :headers => true, :header_converters => :symbol).first
           pub = usr_src.publication
           author = pub.authors.first
           pub_hash = convert_manual_publication_row_to_hash(row, author.id.to_s)
@@ -615,7 +615,7 @@ def self.convert_manual_publication_row_to_hash(cap_pub_data_for_this_pub, autho
    end
 
    unless cap_pub_data_for_this_pub[:authors].blank?
-     record_as_hash[:author] << cap_pub_data_for_this_pub[:authors].split(',').collect{|author| {name: author}}
+     record_as_hash[:author].concat( cap_pub_data_for_this_pub[:authors].split(',').collect{|author| {name: author}} )
    end
 
 
