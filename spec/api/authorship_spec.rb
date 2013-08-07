@@ -39,7 +39,8 @@ describe SulBib::API do
       end
       it 'creates a new authorship record without overwriting existing authorship records' do
         post "/authorship", valid_json_for_pub_with_contributions, headers
-        publication_with_contributions.contributions.should have(3).items
+        expect(response.status).to eq(201)
+        publication_with_contributions.contributions(true).should have(3).items
       end
       it 'creates a contribution record with matching status' do       
         post "/authorship", valid_json_for_pub_with_contributions, headers

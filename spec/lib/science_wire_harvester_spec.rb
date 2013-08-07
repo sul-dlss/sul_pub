@@ -205,7 +205,7 @@ describe ScienceWireHarvester do
         expect(auth.publications).to have(3).items
         pub_hash = auth.publications.first.pub_hash
         expect(pub_hash[:authorship].first[:sul_author_id]).to eq(auth.id)
-        expect(pub_hash[:identifier]).to have(4).items
+        expect(pub_hash[:identifier]).to have(5).items
         expect(PubmedSourceRecord.count).to eq(3)
       end
 	  end

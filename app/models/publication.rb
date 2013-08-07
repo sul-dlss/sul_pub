@@ -1,7 +1,7 @@
 class Publication < ActiveRecord::Base
 
   before_save do
-    sync_publication_hash_and_db if pubhash_needs_update
+    sync_publication_hash_and_db if pubhash_needs_update or pub_hash_changed?
   end
 
   # colums we actually use and query on
@@ -91,7 +91,7 @@ class Publication < ActiveRecord::Base
         pub.sync_publication_hash_and_db
       end
     else
-      pub = initialize_from_man_pub(pub_hash, provenance)
+      pub = initialize_from_man_pub(pub_hash.dup, provenance)
       pub.save
       # todo:  have to look at deleting old identifiers, old contribution info, from db  i.e, how to correct errors.
       pub.user_submitted_source_records.create(
@@ -101,7 +101,7 @@ class Publication < ActiveRecord::Base
         title: pub_hash[:title],
         year: pub_hash[:year]
       )
-      pub.update_any_new_contribution_info_in_pub_hash_to_db
+      pub.update_any_new_contribution_info_in_pub_hash_to_db(pub_hash)
       pub.sync_publication_hash_and_db
     end
     
@@ -138,7 +138,7 @@ class Publication < ActiveRecord::Base
   def update_manual_pub_from_pub_hash(incoming_pub_hash, provenance, original_source_string)
 
     incoming_pub_hash[:provenance] = provenance
-    self.pub_hash = incoming_pub_hash
+    self.pub_hash = incoming_pub_hash.dup
 
     self.user_submitted_source_records.first.update_attributes(
         is_active: true,
@@ -148,7 +148,7 @@ class Publication < ActiveRecord::Base
         year: self.year
     )
 
-    self.update_any_new_contribution_info_in_pub_hash_to_db
+    self.update_any_new_contribution_info_in_pub_hash_to_db(incoming_pub_hash)
     self.sync_publication_hash_and_db
     self.save
   end
@@ -193,11 +193,11 @@ class Publication < ActiveRecord::Base
 
   def sync_publication_hash_and_db
     set_last_updated_value_in_hash
-    set_sul_pub_id_in_hash
 
     add_all_db_contributions_to_my_pub_hash
     add_any_new_identifiers_in_pub_hash_to_db
     add_all_identifiers_in_db_to_pub_hash
+    set_sul_pub_id_in_hash
 
     update_formatted_citations
     @pubhash_needs_update = false
@@ -212,17 +212,12 @@ class Publication < ActiveRecord::Base
       pubmed_source_record = PubmedSourceRecord.where(pmid: self.pmid).first
       build_from_pubmed_hash(pubmed_source_record.get_source_as_hash)
     end
-    #otherwise, probably manual or batch loaded, so just rebuild identifiers, contributions, and citations from db
-    # and update the issn, pages, and pub type
-      issn = self.pub_hash[:issn]
-      pages = self.pub_hash[:pages]
-      publication_type = self.pub_hash[:type]
-      self.update_attributes(issn: issn, pages: pages, publication_type: publication_type)
-
+      
       set_last_updated_value_in_hash
       add_all_db_contributions_to_my_pub_hash
       add_all_identifiers_in_db_to_pub_hash
       update_formatted_citations
+      pub_hash_will_change!
   end
 
   def rebuild_authorship
@@ -240,7 +235,8 @@ class Publication < ActiveRecord::Base
   end
 
   def add_all_identifiers_in_db_to_pub_hash
-    self.pub_hash[:identifier] = self.publication_identifiers.collect do |identifier|
+    self.pub_hash[:identifier] ||= []
+    self.pub_hash[:identifier] = self.publication_identifiers(true).collect do |identifier|
       ident_hash = Hash.new
       ident_hash[:type] = identifier.identifier_type unless identifier.identifier_type.blank?
       ident_hash[:id] = identifier.identifier_value unless identifier.identifier_value.blank?
@@ -250,8 +246,8 @@ class Publication < ActiveRecord::Base
   end
 
 
-  def update_any_new_contribution_info_in_pub_hash_to_db
-    Array(self.pub_hash[:authorship]).each do |contrib|
+  def update_any_new_contribution_info_in_pub_hash_to_db pub_hash
+    Array(pub_hash[:authorship]).each do |contrib|
       hash_for_update = {
         status: contrib[:status],
         visibility: contrib[:visibility],
@@ -272,16 +268,14 @@ class Publication < ActiveRecord::Base
 
       cap_profile_id = author.cap_profile_id
       hash_for_update[:cap_profile_id] = cap_profile_id unless cap_profile_id.blank?
-      
       contrib = self.contributions.where(:author_id => author.id).first_or_create
       contrib.update_attributes(hash_for_update)
     end
   end
 
   def add_all_db_contributions_to_my_pub_hash
-
     if self.pub_hash
-      self.pub_hash[:authorship] = contributions.map { |x| x.to_pub_hash }
+      self.pub_hash[:authorship] = contributions(true).map { |x| x.to_pub_hash }
     end
    # elsif self.pub_hash && ! self.pub_hash[:authorship]
     #  Logger.new(Rails.root.join('log', 'publications_errors.log')).info("No authorship entry in pub_hash for " + self.id.to_s)
