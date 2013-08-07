@@ -104,14 +104,14 @@ module SulBib
         logger.debug(" -- CAP Profile ID not provided, returning all records modified after #{last_changed}")
         description = "Records that have changed since #{last_changed}"
 
-        query = Publication.updated_after(last_changed)
+        query = Publication.updated_after(last_changed).page(page).per(per)
 
         if !capActive.blank? && capActive.downcase == 'true'
           logger.debug(" -- Limit to only active authors")
           query = query.with_active_author
         end
 
-        matching_records = query.order('publications.id').page(page).per(per).pluck(:pub_hash)
+        matching_records = query.pluck(:pub_hash)
         logger.debug("Found #{matching_records.length} records")
       else
         logger.debug("Limited to only CAP Profile ID #{capProfileId}")
