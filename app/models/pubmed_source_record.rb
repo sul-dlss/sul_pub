@@ -12,7 +12,7 @@ class PubmedSourceRecord < ActiveRecord::Base
   	def self.get_pub_by_pmid(pmid)
   		pubmed_pub_hash = PubmedSourceRecord.get_pubmed_hash_for_pmid(pmid)
   		unless pubmed_pub_hash.nil?
-            pub = Publication.create(
+            pub = Publication.new(
               active: true,
               pmid: pmid)
             pub.build_from_pubmed_hash(pubmed_pub_hash)

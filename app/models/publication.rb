@@ -87,11 +87,12 @@ class Publication < ActiveRecord::Base
       unless pub.nil?
         pub.update_manual_pub_from_pub_hash(pub_hash, provenance, original_source_string)
       else
-        pub = create_man_pub(pub_hash, provenance)
+        pub = initialize_from_man_pub(pub_hash, provenance)
         pub.sync_publication_hash_and_db
       end
     else
-      pub = create_man_pub(pub_hash, provenance)
+      pub = initialize_from_man_pub(pub_hash, provenance)
+      pub.save
       # todo:  have to look at deleting old identifiers, old contribution info, from db  i.e, how to correct errors.
       pub.user_submitted_source_records.create(
         is_active: true,
@@ -108,9 +109,9 @@ class Publication < ActiveRecord::Base
     pub
   end
 
-  def self.create_man_pub(pub_hash, provenance)
+  def self.initialize_from_man_pub(pub_hash, provenance)
     pub_hash[:provenance] = provenance
-    Publication.create(
+    Publication.new(
           active: true,
           pub_hash: pub_hash
          )
@@ -280,13 +281,7 @@ class Publication < ActiveRecord::Base
   def add_all_db_contributions_to_my_pub_hash
 
     if self.pub_hash
-        self.pub_hash[:authorship] = Contribution.where(publication_id: self.id).collect do |contrib_in_db|
-          {cap_profile_id: contrib_in_db.cap_profile_id,
-           sul_author_id: contrib_in_db.author_id,
-           status: contrib_in_db.status,
-           visibility: contrib_in_db.visibility,
-           featured: contrib_in_db.featured}
-        end
+      self.pub_hash[:authorship] = contributions.map { |x| x.to_pub_hash }
     end
    # elsif self.pub_hash && ! self.pub_hash[:authorship]
     #  Logger.new(Rails.root.join('log', 'publications_errors.log')).info("No authorship entry in pub_hash for " + self.id.to_s)

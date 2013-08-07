@@ -41,4 +41,12 @@ class Contribution < ActiveRecord::Base
   find_or_create_by_author_id_and_publication_id(author.id, publication.id)
  end
 
+ def to_pub_hash
+  {cap_profile_id: cap_profile_id,
+           sul_author_id: author_id,
+           status: status,
+           visibility: visibility,
+           featured: featured}
+ end
+
 end

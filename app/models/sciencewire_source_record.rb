@@ -20,7 +20,7 @@ class SciencewireSourceRecord < ActiveRecord::Base
 	def self.get_pub_by_pmid(pmid)
 		sw_pub_hash = get_sciencewire_hash_for_pmid(pmid)
         unless sw_pub_hash.nil?
-          pub = Publication.create(
+          pub = Publication.new(
             active: true,
             sciencewire_id: sw_pub_hash[:sw_id],
             pmid: pmid)
@@ -35,7 +35,7 @@ class SciencewireSourceRecord < ActiveRecord::Base
 	def self.get_pub_by_sciencewire_id(sciencewire_id)
 		sw_pub_hash = get_sciencewire_hash_for_sw_id(sciencewire_id)
         unless sw_pub_hash.nil?
-          pub = Publication.create(
+          pub = Publication.new(
             active: true,
             sciencewire_id: sciencewire_id,
             pmid: sw_pub_hash[:pmid])
