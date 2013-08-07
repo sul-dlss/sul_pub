@@ -243,14 +243,16 @@ desc "ingest existing cap hand entered pubs"
           end
           if(result.count == 1)
             pub = result.first
-            man_record = pub.user_submitted_source_records.first
+            man_record = UserSubmittedSourceRecord.where(:publication_id => pub.id).first
             if(man_record.nil?)
               # Publication exists but UserSubmittedSourceRecord does not
               @cap_manual_import_logger.info "Publication '#{row[:article_title]}' exists but SourceRecord does not for #{row[:sunetid]}"
               pub.user_submitted_source_records.create(
                 is_active: true,
                 :source_fingerprint => Digest::SHA2.hexdigest(original_source),
-                :source_data => original_source
+                :source_data => original_source,
+                title: pub_hash[:title],
+                year: pub_hash[:year]
               )
               pub.update_any_new_contribution_info_in_pub_hash_to_db
               pub.sync_publication_hash_and_db

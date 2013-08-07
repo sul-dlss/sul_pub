@@ -97,7 +97,9 @@ class Publication < ActiveRecord::Base
       pub.user_submitted_source_records.create(
         is_active: true,
         :source_fingerprint => Digest::SHA2.hexdigest(original_source_string),
-        :source_data => original_source_string
+        :source_data => original_source_string,
+        title: pub_hash[:title],
+        year: pub_hash[:year]
       )
       pub.update_any_new_contribution_info_in_pub_hash_to_db
       pub.sync_publication_hash_and_db
@@ -141,7 +143,9 @@ class Publication < ActiveRecord::Base
     self.user_submitted_source_records.first.update_attributes(
         is_active: true,
         :source_fingerprint => Digest::SHA2.hexdigest(original_source_string),
-        :source_data => original_source_string
+        :source_data => original_source_string,
+        title: self.title,
+        year: self.year
     )
 
     self.update_any_new_contribution_info_in_pub_hash_to_db
