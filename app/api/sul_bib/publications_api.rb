@@ -59,12 +59,11 @@ module SulBib
       end
 
       if sources.include?(Settings.manual_source)
-        user_submitted_source_records = UserSubmittedSourceRecord.arel_table
 
-        results = UserSubmittedSourceRecord.where(user_submitted_source_records[:title].matches("%#{params[:title]}%"))
-       
+        results = UserSubmittedSourceRecord.matches_title(params[:title])
+
         if params[:year]
-          results = results.where(user_submitted_source_records[:year].eq(params[:year]))          
+          results = results.with_year(params[:year])
         end
         logger.debug(" -- manual source (#{results.length})")
 
