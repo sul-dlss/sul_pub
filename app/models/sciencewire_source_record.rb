@@ -22,11 +22,6 @@ class SciencewireSourceRecord < ActiveRecord::Base
         unless sw_pub_hash.nil?
           pub = Publication.create(
             active: true,
-            title: sw_pub_hash[:title],
-            year: sw_pub_hash[:year],
-     		pages: sw_pub_hash[:pages],
-     		issn: sw_pub_hash[:issn],
-          	publication_type: sw_pub_hash[:type],
             sciencewire_id: sw_pub_hash[:sw_id],
             pmid: pmid)
           pub.build_from_sciencewire_hash(sw_pub_hash)
@@ -42,11 +37,6 @@ class SciencewireSourceRecord < ActiveRecord::Base
         unless sw_pub_hash.nil?
           pub = Publication.create(
             active: true,
-            title: sw_pub_hash[:title],
-            year: sw_pub_hash[:year],
-     		pages: sw_pub_hash[:pages],
-     		issn: sw_pub_hash[:issn],
-          	publication_type: sw_pub_hash[:type],
             sciencewire_id: sciencewire_id,
             pmid: sw_pub_hash[:pmid])
           pub.build_from_sciencewire_hash(sw_pub_hash)

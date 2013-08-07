@@ -56,16 +56,11 @@ class BibtexIngester
 	       		successful_import: true,
         		bibtex_source_data: record.to_s
         	}
-        	unless record["title"].blank? then source_attrib_hash[:title] =  record.title.to_s end 
-        	unless record["year"].blank? then source_attrib_hash[:year] =  record.year.to_s end 
-	       	pub_attrib_hash = {
+         	pub_attrib_hash = {
 	       		active: true,
-       			publication_type: record.type.to_s,
        			pub_hash: pub_hash
        		}
-        	unless record["title"].blank? then pub_attrib_hash[:title] =  record.title.to_s end 
-        	unless record["year"].blank? then pub_attrib_hash[:year] =  record.year.to_s end 
-	       	if existing_source_record 
+         	if existing_source_record 
 	       		existing_source_record.update_attributes(source_attrib_hash)	
 	       		pub = existing_source_record.publication
 	       		pub.update_attributes(pub_attrib_hash)

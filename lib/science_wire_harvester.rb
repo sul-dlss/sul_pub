@@ -335,11 +335,6 @@ class ScienceWireHarvester
 		@new_pubs_created_count += 1
 		Publication.create(
           	active: true,
-            title: title,
-            year: year,
-            issn: issn,
-            pages: pages,
-      		publication_type: type,
             sciencewire_id: sciencewire_id,
             pmid: pmid)
 

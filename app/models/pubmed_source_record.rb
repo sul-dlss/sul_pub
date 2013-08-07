@@ -14,11 +14,6 @@ class PubmedSourceRecord < ActiveRecord::Base
   		unless pubmed_pub_hash.nil?
             pub = Publication.create(
               active: true,
-              title: pubmed_pub_hash[:title],
-              year: pubmed_pub_hash[:year],
-              issn: pubmed_pub_hash[:issn],
-              pages: pubmed_pub_hash[:pages],
-              publication_type: pubmed_pub_hash[:type],
               pmid: pmid)
             pub.build_from_pubmed_hash(pubmed_pub_hash)
             pub.sync_publication_hash_and_db

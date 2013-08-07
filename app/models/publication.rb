@@ -4,7 +4,52 @@ class Publication < ActiveRecord::Base
     sync_publication_hash_and_db if pubhash_needs_update
   end
 
-  attr_accessible :active, :deleted, :title, :year, :issn, :pages, :publication_type, :pub_hash, :lock_version, :pmid, :sciencewire_id, :same_as_publication_id, :xml, :updated_at
+  # colums we actually use and query on
+  attr_accessible :deleted,
+                  :pub_hash,
+                  :pmid,
+                  :sciencewire_id,
+                  :updated_at
+
+  # beats me what these are for.
+  attr_accessible :active, :lock_version                  
+
+  # we actually do query these columns in 
+  # create_or_update_pub_and_contribution_with_harvested_sw_doc
+  attr_reader :title,
+              :year, 
+              :issn, 
+              :pages, 
+              :publication_type                
+  
+  before_save do
+    self.title = pub_hash[:title] unless pub_hash[:title].blank?
+    self.issn = pub_hash[:issn] unless pub_hash[:issn].blank?
+    self.pages = pub_hash[:pages] unless pub_hash[:pages].blank?
+    self.publication_type = pub_hash[:type] unless pub_hash[:type].blank?
+    self.year = pub_hash[:year] unless pub_hash[:year].blank?
+  end
+
+  def title
+    self.pub_hash[:title]
+  end
+
+  def issn
+    self.pub_hash[:issn]
+  end
+
+  def pages
+    self.pub_hash[:pages]
+  end
+
+  def publication_type
+    self.pub_hash[:type]
+  end
+
+  def year
+    self.pub_hash[:year]
+  end
+
   has_many :contributions, :dependent => :destroy, :after_add => :pubhash_needs_update!, :after_remove => :pubhash_needs_update!
   has_many :authors, :through => :contributions, :after_add => :pubhash_needs_update!, :after_remove => :pubhash_needs_update!
   has_many :publication_identifiers, :dependent => :destroy
@@ -67,23 +112,15 @@ class Publication < ActiveRecord::Base
     pub_hash[:provenance] = provenance
     Publication.create(
           active: true,
-          title: pub_hash[:title],
-          year: pub_hash[:year],
-          pub_hash: pub_hash,
-          issn: pub_hash[:issn],
-          pages: pub_hash[:pages],
-          publication_type: pub_hash[:type])
+          pub_hash: pub_hash
+         )
   end
 
   def build_from_sciencewire_hash(new_sw_pub_hash)
     self.pub_hash = new_sw_pub_hash
 
     self.sciencewire_id = new_sw_pub_hash[:sw_id]
-    self.issn = new_sw_pub_hash[:issn] if new_sw_pub_hash[:issn].blank?
-    self.title = new_sw_pub_hash[:title] if new_sw_pub_hash[:title].blank?
-    self.year = new_sw_pub_hash[:year] if new_sw_pub_hash[:year].blank?
-    self.pages = new_sw_pub_hash[:pages] if new_sw_pub_hash[:pages].blank?
-
+ 
     unless self.pmid.blank?
       new_sw_pub_hash[:pmid] = self.pmid.to_s # Preserve the pmid just in case incoming sciencewire doc doesn't have PMID
       add_any_pubmed_data_to_hash
@@ -100,8 +137,6 @@ class Publication < ActiveRecord::Base
   def update_manual_pub_from_pub_hash(incoming_pub_hash, provenance, original_source_string)
 
     incoming_pub_hash[:provenance] = provenance
-    self.title = incoming_pub_hash[:title]
-    self.year = incoming_pub_hash[:year]
     self.pub_hash = incoming_pub_hash
 
     self.user_submitted_source_records.first.update_attributes(
