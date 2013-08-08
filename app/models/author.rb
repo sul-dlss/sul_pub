@@ -24,7 +24,7 @@ class Author < ActiveRecord::Base
   #has_many :author_identifiers, :dependent => :destroy
 
   def update_from_cap_authorship_profile_hash(auth_hash)
-    seed_hash = build_attribute_hash_from_cap_profile(auth_hash)
+    seed_hash = Author.build_attribute_hash_from_cap_profile(auth_hash)
     self.update_attributes seed_hash
   end
 
