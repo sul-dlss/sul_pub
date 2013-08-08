@@ -167,4 +167,55 @@ describe Publication do
 
     end
   end
+
+  describe ".build_new_manual_publication" do
+    it "should add a publication" do
+      pub = Publication.build_new_manual_publication("some where", pub_hash, "some string")
+      pub.save!
+      expect(pub.authors).to have(1).author
+    end
+
+    it "should refuse to add a publication with the same source record" do
+
+      pub = Publication.build_new_manual_publication("some where", pub_hash, "some string")
+
+      pub.save!
+
+      expect {
+        Publication.build_new_manual_publication("some where", pub_hash, "some string")
+      }.to raise_exception(ActiveRecord::RecordNotUnique)
+    end
+
+    it "should create a publication if a publication for that source record doesn't exist" do
+      UserSubmittedSourceRecord.create :source_data => "some string"
+
+      expect {
+      pub = Publication.build_new_manual_publication("some where", pub_hash, "some string")
+      pub.save!
+      }.not_to raise_exception
+    end
+  end
+
+  describe "update_manual_pub_from_pub_Hash" do
+    it "should update the user submitted source record with the new content" do
+
+      pub = Publication.build_new_manual_publication("some where", {:a => :b}, "some string")
+      pub.update_manual_pub_from_pub_hash({:b => :c}, "some where", "some other string")
+      pub.save!
+      expect(pub.user_submitted_source_records.first[:source_data]).to eq("some other string")
+      expect(pub.pub_hash).to include(:b => :c)
+    end
+
+    it "should raise an exception if you try to update the record to match an existing source record" do
+
+      pub = Publication.build_new_manual_publication("some where", {:a => :b}, "some string")
+      pub.save
+
+      pub = Publication.build_new_manual_publication("some where", {:b => :c}, "some other string")
+      pub.update_manual_pub_from_pub_hash({:b => :c}, "some where", "some string")
+      expect {
+        pub.save!
+      }.to raise_exception(ActiveRecord::RecordNotUnique)
+    end
+  end
 end

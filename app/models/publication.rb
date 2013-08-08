@@ -94,35 +94,42 @@ class Publication < ActiveRecord::Base
     existingRecord = UserSubmittedSourceRecord.find_or_initialize_by_source_data(original_source_string)
 
     if existingRecord and existingRecord.publication
-        existingRecord.publication.update_manual_pub_from_pub_hash(pub_hash, provenance, original_source_string)
-        existingRecord.publication.save
-        return existingRecord.publication
+      raise ActiveRecord::RecordNotUnique.new("Publication for user submitted source record already exists", nil)
     end
 
-    pub = initialize_from_man_pub(pub_hash, provenance)
-    # todo:  have to look at deleting old identifiers, old contribution info, from db  i.e, how to correct errors.
-    existingRecord.assign_attributes(
-      is_active: true,
-      :source_data => original_source_string,
-      title: pub_hash[:title],
-      year: pub_hash[:year]
-    ) unless existingRecord.persisted?
-
-    pub.user_submitted_source_records = [existingRecord]
-
-    pub
-  end
-
-  def self.initialize_from_man_pub(pub_hash, provenance)
-    pub_hash[:provenance] = provenance
     pub = Publication.new(
-          active: true,
-          pub_hash: pub_hash
-         )
+            active: true,
+            pub_hash: pub_hash
+        )
 
-    pub.update_any_new_contribution_info_in_pub_hash_to_db
+    pub.update_manual_pub_from_pub_hash(pub_hash, provenance, original_source_string)
+
     pub
   end
+
+  def update_manual_pub_from_pub_hash(incoming_pub_hash, provenance, original_source_string)
+
+    incoming_pub_hash[:provenance] = provenance
+    self.pub_hash = incoming_pub_hash.dup
+
+    r = self.user_submitted_source_records.first_or_initialize
+    r.assign_attributes(
+        is_active: true,
+        :source_data => original_source_string,
+        title: self.title,
+        year: self.year
+    )
+
+    if r.new_record?
+      self.user_submitted_source_records = [r]
+    else
+      r.save
+    end
+
+    self.update_any_new_contribution_info_in_pub_hash_to_db
+    self
+  end
+
 
   def build_from_sciencewire_hash(new_sw_pub_hash)
     self.pub_hash = new_sw_pub_hash
@@ -140,22 +147,6 @@ class Publication < ActiveRecord::Base
   def build_from_pubmed_hash(new_pubmed_pub_hash)
     self.pub_hash = new_pubmed_pub_hash
     self
-  end
-
-  def update_manual_pub_from_pub_hash(incoming_pub_hash, provenance, original_source_string)
-
-    incoming_pub_hash[:provenance] = provenance
-    self.pub_hash = incoming_pub_hash.dup
-
-    self.user_submitted_source_records.first.update_attributes(
-        is_active: true,
-        :source_fingerprint => Digest::SHA2.hexdigest(original_source_string),
-        :source_data => original_source_string,
-        title: self.title,
-        year: self.year
-    )
-
-    self.update_any_new_contribution_info_in_pub_hash_to_db
   end
 
   # this is a very temporary method to be used only for the initial import

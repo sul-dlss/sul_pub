@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130717180214) do
+ActiveRecord::Schema.define(:version => 20130808203714) do
 
   create_table "authors", :force => true do |t|
     t.integer  "cap_profile_id"
@@ -160,5 +160,7 @@ ActiveRecord::Schema.define(:version => 20130717180214) do
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
   end
+
+  add_index "user_submitted_source_records", ["source_fingerprint"], :name => "index_user_submitted_source_records_on_source_fingerprint", :unique => true
 
 end
