@@ -274,7 +274,7 @@ class Publication < ActiveRecord::Base
   end
 
   def set_last_updated_value_in_hash
-    self.pub_hash[:last_updated] = (updated_at || Time.now).to_s
+    self.pub_hash[:last_updated] = Time.now.to_s
   end
 
   def set_sul_pub_id_in_hash

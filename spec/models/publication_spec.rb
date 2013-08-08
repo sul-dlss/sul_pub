@@ -23,7 +23,7 @@ describe Publication do
     end
 
     it "should set the last updated value to match the database row" do
-      expect(subject.pub_hash[:last_updated]).to eq(subject.updated_at.to_s)
+      expect(subject.pub_hash[:last_updated]).to be >= (Time.now - 1.minutes)
     end
 
     it "should rebuild authors" do
