@@ -11,7 +11,6 @@ describe Publication do
     publication.pub_hash = pub_hash.dup
     publication.update_any_new_contribution_info_in_pub_hash_to_db(pub_hash)
     publication.save
-    puts publication.reload.pub_hash.inspect
 
     expect(publication.pub_hash[:identifier].length).to be > 0
     expect(publication.pub_hash[:authorship].length).to be > 0
