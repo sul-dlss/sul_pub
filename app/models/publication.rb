@@ -4,7 +4,7 @@ class Publication < ActiveRecord::Base
     sync_publication_hash_and_db if pubhash_needs_update? or pub_hash_changed?
   end
 
-  # colums we actually use and query on
+  # columns we actually use and query on
   attr_accessible :deleted,
                   :pub_hash,
                   :pmid,
@@ -34,22 +34,40 @@ class Publication < ActiveRecord::Base
     def for_author a
       where(:author_id => a.id)
     end
+
+    def build_or_update author, contribution_hash = {}
+      c = where(:author_id => author.id).first_or_initialize
+
+      c.assign_attributes contribution_hash.merge(:author_id => author.id)
+      if c.persisted?
+        c.save
+        proxy_association.owner.contributions_changed_callback
+      else
+        self << c
+      end
+
+      c
+    end
   end
+
   has_many :authors, :autosave => true, :through => :contributions, :after_add => :contributions_changed_callback, :after_remove => :contributions_changed_callback
-  has_many :publication_identifiers, :autosave => true, :dependent => :destroy, :after_add => :add_all_identifiers_in_db_to_pub_hash, :after_remove => :add_all_identifiers_in_db_to_pub_hash do
+  has_many :publication_identifiers, :autosave => true, :dependent => :destroy, :after_add => :identifiers_changed_callback, :after_remove => :identifiers_changed_callback do
     def with_type t
       where(:identifier_type => t)
     end
   end
   has_many :user_submitted_source_records
   has_one :batch_uploaded_source_record
-  #has_many :population_membership, :foreign_key => "author_id"
-  #validates_uniqueness_of :pmid
-  #validates_uniqueness_of :sciencewire_id
+
 
   def contributions_changed_callback *args
     pubhash_needs_update!
-    #add_all_db_contributions_to_my_pub_hash
+    add_all_db_contributions_to_my_pub_hash
+    true
+  end
+
+  def identifiers_changed_callback *args
+    add_all_identifiers_in_db_to_pub_hash
     true
   end
 
@@ -64,11 +82,11 @@ class Publication < ActiveRecord::Base
   end
 
   def self.find_or_create_by_pmid(pmid)
-    Publication.where(pmid: pmid).first || SciencewireSourceRecord.get_pub_by_pmid(pmid) || PubmedSourceRecord.get_pub_by_pmid(pmid)
+    Publication.find_by_pmid(pmid) || SciencewireSourceRecord.get_pub_by_pmid(pmid) || PubmedSourceRecord.get_pub_by_pmid(pmid)
   end
 
   def self.find_or_create_by_sciencewire_id(sw_id)
-    pub = Publication.where(sciencewire_id: sw_id).first || SciencewireSourceRecord.get_pub_by_sciencewire_id(sw_id)
+    Publication.find_by_sciencewire_id(sw_id) || SciencewireSourceRecord.get_pub_by_sciencewire_id(sw_id)
   end
 
   def self.build_new_manual_publication(provenance, pub_hash, original_source_string)
@@ -92,7 +110,6 @@ class Publication < ActiveRecord::Base
 
     pub.user_submitted_source_records = [existingRecord]
 
-    pub.save
     pub
   end
 
@@ -139,8 +156,6 @@ class Publication < ActiveRecord::Base
     )
 
     self.update_any_new_contribution_info_in_pub_hash_to_db
-    self.sync_publication_hash_and_db
-    self.save
   end
 
   # this is a very temporary method to be used only for the initial import
@@ -158,7 +173,7 @@ class Publication < ActiveRecord::Base
             :identifier_uri => identifier[:url])
     end
     update_formatted_citations
-    save
+    self
   end
 
   def sync_publication_hash_and_db
@@ -175,23 +190,25 @@ class Publication < ActiveRecord::Base
 
     update_formatted_citations
     @pubhash_needs_update = false
-    true
+    self
   end
 
   def rebuild_pub_hash
     if self.sciencewire_id
-      sw_source_record = SciencewireSourceRecord.where(sciencewire_id: self.sciencewire_id).first
+      sw_source_record = SciencewireSourceRecord.find_by_sciencewire_id(self.sciencewire_id)
       build_from_sciencewire_hash(sw_source_record.get_source_as_hash)
     elsif self.pmid
-      pubmed_source_record = PubmedSourceRecord.where(pmid: self.pmid).first
+      pubmed_source_record = PubmedSourceRecord.find_by_pmid(self.pmid)
       build_from_pubmed_hash(pubmed_source_record.get_source_as_hash)
     end
       
-      set_last_updated_value_in_hash
-      add_all_db_contributions_to_my_pub_hash
-      add_all_identifiers_in_db_to_pub_hash
-      update_formatted_citations
-      pub_hash_will_change!
+    set_last_updated_value_in_hash
+    add_all_db_contributions_to_my_pub_hash
+    add_all_identifiers_in_db_to_pub_hash
+    update_formatted_citations
+    pub_hash_will_change!
+
+    self
   end
 
   def add_any_new_identifiers_in_pub_hash_to_db
@@ -226,7 +243,7 @@ class Publication < ActiveRecord::Base
       author = if sul_author_id
         Author.find(sul_author_id)
       elsif contrib[:cap_profile_id]
-        Author.where(cap_profile_id: contrib[:cap_profile_id]).first
+        Author.find_by_cap_profile_id(contrib[:cap_profile_id])
       else
       end
       
@@ -255,18 +272,6 @@ class Publication < ActiveRecord::Base
 
   def deleted?
     deleted
-  end
-
-  def add_or_update_author author, contribution_hash = {}
-    if contributions.exists? :author_id => author.id
-      c = contributions.where(:author_id => author.id).first
-      c.update_attributes contribution_hash
-      pubhash_needs_update!
-    else
-      c = contributions.create(contribution_hash.merge(:author_id => author.id))
-    end
-
-    c
   end
 
   def pubhash_needs_update! *args
@@ -306,9 +311,9 @@ class Publication < ActiveRecord::Base
     self.pub_hash[:identifier] << {:type => 'SULPubId', :id => sul_pub_id, :url => 'http://sulcap.stanford.edu/publications/' + sul_pub_id}
   end
 
-  def add_all_identifiers_in_db_to_pub_hash *args
+  def add_all_identifiers_in_db_to_pub_hash
     self.pub_hash[:identifier] ||= []
-    self.pub_hash[:identifier] = self.publication_identifiers(true).collect do |identifier|
+    self.pub_hash[:identifier] = self.publication_identifiers.collect do |identifier|
       ident_hash = Hash.new
       ident_hash[:type] = identifier.identifier_type unless identifier.identifier_type.blank?
       ident_hash[:id] = identifier.identifier_value unless identifier.identifier_value.blank?

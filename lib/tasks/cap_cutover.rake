@@ -210,7 +210,8 @@ desc "ingest existing cap hand entered pubs"
       author = Author.where(cap_profile_id: row[:profile_id]).first
       pub_hash = convert_manual_publication_row_to_hash(row, author.id.to_s)
       original_source = row.to_s
-      Publication.build_new_manual_publication(Settings.cap_provenance, pub_hash, original_source)
+      pub = Publication.build_new_manual_publication(Settings.cap_provenance, pub_hash, original_source)
+      pub.save
     end
     @cap_manual_import_logger.info "Finished import." + DateTime.now.to_s
     @cap_manual_import_logger.info lines.to_s + " lines of file: " + args.file_location.to_s + " were processed."
@@ -265,7 +266,8 @@ desc "ingest existing cap hand entered pubs"
           else
             # Brand new UserSubmittedSourceRecord
             @cap_manual_import_logger.info "Creating brand new Publication '#{row[:article_title]}'  and SourceRecord for #{row[:sunetid]}"
-            Publication.build_new_manual_publication(Settings.cap_provenance, pub_hash, original_source)
+            pub = Publication.build_new_manual_publication(Settings.cap_provenance, pub_hash, original_source)
+            pub.save
           end
         rescue => e
           @cap_manual_import_logger.error "Problem with #{row.inspect}"
@@ -519,6 +521,7 @@ def build_pub_from_sw_and_pubmed(pub)
                 pub_hash: pubmed_hash)
     end
     pub.cutover_sync_hash_and_db
+    pub.save
 
   rescue => e
           @cap_import_logger.info e.message
@@ -591,7 +594,10 @@ def build_pub_from_missing_sw_and_pubmed(pub)
                 pub_hash: pubmed_hash)
       changed = true
     end
-    pub.cutover_sync_hash_and_db if(changed)
+    if(changed)
+      pub.cutover_sync_hash_and_db
+      pub.save
+    end
 
   rescue => e
     @cap_import_logger.info "Problem with pub: " + pub.id.to_s

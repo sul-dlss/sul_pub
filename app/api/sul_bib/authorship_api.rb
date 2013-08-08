@@ -58,7 +58,7 @@ module SulBib
       contrib_hash[:visibility] = params[:visibility]
       contrib_hash[:featured] = params[:featured]
 
-      sul_pub.add_or_update_author(author, contrib_hash)
+      sul_pub.contributions.build_or_update(author, contrib_hash)
       begin
         sul_pub.save!
       rescue ActiveRecord::RecordNotSaved => e

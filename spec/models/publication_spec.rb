@@ -62,7 +62,7 @@ describe Publication do
     end
 
     it "should update attributions of existing contributions to the database" do
-      publication.add_or_update_author author, :status => "y"
+      publication.contributions.build_or_update author, :status => "y"
       publication.pub_hash = { :authorship => [ { :status => "z", :sul_author_id => author.id }]}
       publication.update_any_new_contribution_info_in_pub_hash_to_db
       publication.save
@@ -150,18 +150,18 @@ describe Publication do
     end
   end
 
-  describe "add_or_update_author" do
+  describe "contributions.build_or_update" do
     it "should add a contribution" do
-      c = publication.add_or_update_author author, :status => "x"
+      c = publication.contributions.build_or_update author, :status => "x"
       expect(c.author).to eq(author)
       expect(c.status).to eq("x")
 
     end
 
     it "should update a contribution record if the association exists" do
-      publication.add_or_update_author author
+      publication.contributions.build_or_update author
 
-      c = publication.add_or_update_author author, :status => "y"
+      c = publication.contributions.build_or_update author, :status => "y"
       expect(c.author).to eq(author)
       expect(c.status).to eq("y")
 

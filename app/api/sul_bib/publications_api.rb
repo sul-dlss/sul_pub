@@ -152,6 +152,7 @@ module SulBib
           error!("You haven't supplied a valid authorship record.", 406)
         end
         pub = Publication.build_new_manual_publication(Settings.cap_provenance, pub_hash, request_body_unparsed)
+        pub.save
         logger.debug("Created new publication #{pub.inspect}")
         header "Location", env["REQUEST_URI"].to_s + "/" + pub.id.to_s
         pub.pub_hash
