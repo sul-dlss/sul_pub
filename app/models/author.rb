@@ -23,8 +23,9 @@ class Author < ActiveRecord::Base
   #has_many :population_memberships, :dependent => :destroy
   #has_many :author_identifiers, :dependent => :destroy
 
-  def Author.create_or_update_from_cap_authorship_profile_hash(auth_hash)
-
+  def update_from_cap_authorship_profile_hash(auth_hash)
+    seed_hash = build_attribute_hash_from_cap_profile(auth_hash)
+    self.update_attributes seed_hash
   end
 
   def Author.create_from_cap_authorship_profile_hash(auth_hash)

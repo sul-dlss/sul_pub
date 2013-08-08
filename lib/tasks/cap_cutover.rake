@@ -296,7 +296,8 @@ desc "ingest existing cap hand entered pubs"
           author = pub.authors.first
           pub_hash = convert_manual_publication_row_to_hash(row, author.id.to_s)
           pub.pub_hash = pub_hash
-          pub.sync_publication_hash_and_db
+          pub.pubhash_needs_update!
+          pub.save
           @cap_manual_import_logger.info "Processed #{count}" if(count % 500 == 0)
         rescue => e
           @cap_manual_import_logger.error "Problem with UserSubmittedSourceRecord #{usr_src.id}"
