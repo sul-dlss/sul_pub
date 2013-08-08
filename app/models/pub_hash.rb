@@ -27,7 +27,7 @@ class PubHash
   def to_citation_data
     @citation_data ||= begin
       authors_for_citeproc = []
-      authors = pub_hash[:author]
+      authors = pub_hash[:author]  || []
 
       if authors.length > 5
         authors = authors[0..4]

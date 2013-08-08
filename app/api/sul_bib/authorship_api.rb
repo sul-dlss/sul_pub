@@ -11,7 +11,7 @@ module SulBib
       requires :author, type: Hash, desc: "The JSON body must contain either a sul_author_id or cap_profile_id"
       requires :publication, type: Hash, desc: "The JSON body must contain wither a sul_pub_id, pmid, or sw_id"
       optional :featured, type: Boolean, default: false, desc: "The JSON body should indicate if the contribution is featured"
-      optional :visiblity, type: String, default: 'private', desc: "The JSON body should indicate if the contribution is visible"
+      optional :visibility, type: String, default: 'private', desc: "The JSON body should indicate if the contribution is visible"
       optional :status, type: String, default: 'approved', desc: "The JSON body should indicate if the contribution is approved"
     end
     post do
