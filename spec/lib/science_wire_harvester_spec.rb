@@ -80,13 +80,6 @@ describe ScienceWireHarvester do
 		end
 	end
 
-	describe "#get_seed_list_for_author" do
-		it "returns an array for an author" do
-			seed_list = science_wire_harvester.get_seed_list_for_author(author_with_seed_email)
-			expect(seed_list).to respond_to(:each)
-		end
-	end
-
 	describe "#harvest_pubs_for_author_ids" do
 		context "for valid author" do
 			it "calls harvest_for_author" do
@@ -102,6 +95,7 @@ describe ScienceWireHarvester do
 		end
 		context "for invalid author" do
 			it "calls the Notification Manager" do
+        pending("Authors will always be valid.. for now.")
 				VCR.use_cassette("sciencewire_harvester_calls_notification_manager") do
 					NotificationManager.should_receive(:handle_harvest_problem)
 					science_wire_harvester.harvest_pubs_for_author_ids([67676767676])
