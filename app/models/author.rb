@@ -23,8 +23,16 @@ class Author < ActiveRecord::Base
   #has_many :population_memberships, :dependent => :destroy
   #has_many :author_identifiers, :dependent => :destroy
 
-  def Author.create_from_cap_authorship_profile_hash(auth_hash)
+  def Author.create_or_update_from_cap_authorship_profile_hash(auth_hash)
 
+  end
+
+  def Author.create_from_cap_authorship_profile_hash(auth_hash)
+    seed_hash = build_attribute_hash_from_cap_profile(auth_hash)
+    Author.create seed_hash
+  end
+
+  def Author.build_attribute_hash_from_cap_profile(auth_hash)
     # key/value not present in hash if value is not there
     # sunetid/ university id/ ca licence ---- at least one will be there
     seed_hash = {
@@ -47,8 +55,7 @@ class Author < ActiveRecord::Base
     Author.add_to_hash_if_present(seed_hash, :preferred_middle_name, auth_hash['profile']['names']['preferred']['middleName'])
     Author.add_to_hash_if_present(seed_hash, :preferred_last_name, auth_hash['profile']['names']['preferred']['lastName'])
     Author.add_to_hash_if_present(seed_hash, :california_physician_license, auth_hash['profile']['californiaPhysicianLicense'])
-
-    Author.create seed_hash
+    seed_hash
   end
 
   def Author.add_to_hash_if_present(seed_hash, key, value)
