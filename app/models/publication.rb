@@ -30,9 +30,17 @@ class Publication < ActiveRecord::Base
     self.year = pub_hash[:year] unless pub_hash[:year].blank?
   end
 
-  has_many :contributions, :dependent => :destroy, :after_add => :contributions_changed_callback, :after_remove => :contributions_changed_callback
-  has_many :authors, :through => :contributions, :after_add => :contributions_changed_callback, :after_remove => :contributions_changed_callback
-  has_many :publication_identifiers, :dependent => :destroy, :after_add => :add_all_identifiers_in_db_to_pub_hash, :after_remove => :add_all_identifiers_in_db_to_pub_hash
+  has_many :contributions, :autosave => true, :dependent => :destroy, :after_add => :contributions_changed_callback, :after_remove => :contributions_changed_callback do
+    def for_author a
+      where(:author_id => a.id)
+    end
+  end
+  has_many :authors, :autosave => true, :through => :contributions, :after_add => :contributions_changed_callback, :after_remove => :contributions_changed_callback
+  has_many :publication_identifiers, :autosave => true, :dependent => :destroy, :after_add => :add_all_identifiers_in_db_to_pub_hash, :after_remove => :add_all_identifiers_in_db_to_pub_hash do
+    def with_type t
+      where(:identifier_type => t)
+    end
+  end
   has_many :user_submitted_source_records
   has_one :batch_uploaded_source_record
   #has_many :population_membership, :foreign_key => "author_id"
@@ -41,7 +49,8 @@ class Publication < ActiveRecord::Base
 
   def contributions_changed_callback *args
     pubhash_needs_update!
-    add_all_db_contributions_to_my_pub_hash
+    #add_all_db_contributions_to_my_pub_hash
+    true
   end
 
   serialize :pub_hash, Hash
@@ -64,42 +73,38 @@ class Publication < ActiveRecord::Base
 
   def self.build_new_manual_publication(provenance, pub_hash, original_source_string)
 
-    fingerprint = Digest::SHA2.hexdigest(original_source_string)
-    existingRecord = UserSubmittedSourceRecord.where(source_fingerprint: fingerprint).first
+    existingRecord = UserSubmittedSourceRecord.find_or_initialize_by_source_data(original_source_string)
 
-    if existingRecord
-      pub = existingRecord.publication
-      unless pub.nil?
-        pub.update_manual_pub_from_pub_hash(pub_hash, provenance, original_source_string)
-      else
-        pub = initialize_from_man_pub(pub_hash, provenance)
-        pub.sync_publication_hash_and_db
-      end
-    else
-      pub = initialize_from_man_pub(pub_hash.dup, provenance)
-      pub.save
-      # todo:  have to look at deleting old identifiers, old contribution info, from db  i.e, how to correct errors.
-      pub.user_submitted_source_records.create(
-        is_active: true,
-        :source_fingerprint => Digest::SHA2.hexdigest(original_source_string),
-        :source_data => original_source_string,
-        title: pub_hash[:title],
-        year: pub_hash[:year]
-      )
-      pub.update_any_new_contribution_info_in_pub_hash_to_db(pub_hash)
-      pub.sync_publication_hash_and_db
+    if existingRecord and existingRecord.publication
+        existingRecord.publication.update_manual_pub_from_pub_hash(pub_hash, provenance, original_source_string)
+        existingRecord.publication.save
+        return existingRecord.publication
     end
-    
+
+    pub = initialize_from_man_pub(pub_hash, provenance)
+    # todo:  have to look at deleting old identifiers, old contribution info, from db  i.e, how to correct errors.
+    existingRecord.assign_attributes(
+      is_active: true,
+      :source_data => original_source_string,
+      title: pub_hash[:title],
+      year: pub_hash[:year]
+    ) unless existingRecord.persisted?
+
+    pub.user_submitted_source_records = [existingRecord]
+
     pub.save
     pub
   end
 
   def self.initialize_from_man_pub(pub_hash, provenance)
     pub_hash[:provenance] = provenance
-    Publication.new(
+    pub = Publication.new(
           active: true,
           pub_hash: pub_hash
          )
+
+    pub.update_any_new_contribution_info_in_pub_hash_to_db
+    pub
   end
 
   def build_from_sciencewire_hash(new_sw_pub_hash)
@@ -133,7 +138,7 @@ class Publication < ActiveRecord::Base
         year: self.year
     )
 
-    self.update_any_new_contribution_info_in_pub_hash_to_db(incoming_pub_hash)
+    self.update_any_new_contribution_info_in_pub_hash_to_db
     self.sync_publication_hash_and_db
     self.save
   end
@@ -191,15 +196,24 @@ class Publication < ActiveRecord::Base
 
   def add_any_new_identifiers_in_pub_hash_to_db
     Array(self.pub_hash[:identifier]).each do |identifier|
-      self.publication_identifiers
-          .where(:identifier_type => identifier[:type])
-          .first_or_create(:certainty => 'confirmed',
+      i = self.publication_identifiers
+          .with_type(identifier[:type])
+          .first_or_initialize
+
+      i.assign_attributes  :certainty => 'confirmed',
+                           :identifier_type => identifier[:type],
                            :identifier_value => identifier[:id],
-                           :identifier_uri => identifier[:url])
+                           :identifier_uri => identifier[:url]
+
+      if i.persisted?
+        i.save
+      else
+        self.publication_identifiers << i
+      end
     end
   end
 
-  def update_any_new_contribution_info_in_pub_hash_to_db pub_hash
+  def update_any_new_contribution_info_in_pub_hash_to_db
     Array(pub_hash[:authorship]).each do |contrib|
       hash_for_update = {
         status: contrib[:status],
@@ -219,11 +233,19 @@ class Publication < ActiveRecord::Base
       # todo??
       next if author.nil? 
 
+      hash_for_update[:author_id] = author.id
       cap_profile_id = author.cap_profile_id
       hash_for_update[:cap_profile_id] = cap_profile_id unless cap_profile_id.blank?
-      contrib = self.contributions.where(:author_id => author.id).first_or_create
-      contrib.update_attributes(hash_for_update)
+      contrib = self.contributions.for_author(author).first_or_initialize
+      contrib.assign_attributes(hash_for_update)
+
+      if contrib.persisted?
+        contrib.save
+      else
+        self.contributions << contrib
+      end
     end
+    true
   end
 
   def delete!
@@ -284,7 +306,7 @@ class Publication < ActiveRecord::Base
     self.pub_hash[:identifier] << {:type => 'SULPubId', :id => sul_pub_id, :url => 'http://sulcap.stanford.edu/publications/' + sul_pub_id}
   end
 
-  def add_all_identifiers_in_db_to_pub_hash
+  def add_all_identifiers_in_db_to_pub_hash *args
     self.pub_hash[:identifier] ||= []
     self.pub_hash[:identifier] = self.publication_identifiers(true).collect do |identifier|
       ident_hash = Hash.new
@@ -297,7 +319,7 @@ class Publication < ActiveRecord::Base
 
   def add_all_db_contributions_to_my_pub_hash
     if self.pub_hash
-      self.pub_hash[:authorship] = contributions(true).map { |x| x.to_pub_hash }
+      self.pub_hash[:authorship] = contributions.map { |x| x.to_pub_hash }
     end
       # elsif self.pub_hash && ! self.pub_hash[:authorship]
       #  Logger.new(Rails.root.join('log', 'publications_errors.log')).info("No authorship entry in pub_hash for " + self.id.to_s)

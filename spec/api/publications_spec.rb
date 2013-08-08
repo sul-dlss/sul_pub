@@ -70,7 +70,7 @@ describe SulBib::API do
       it "creates a matching pub_hash in the publication record from the posted bibjson" do
         post "/publications", valid_json_for_post, headers
         response.status.should == 201
-        pub_hash = Publication.last.pub_hash
+        pub_hash = Publication.last.reload.pub_hash
 
         parsed_outgoing_json = JSON.parse(valid_json_for_post)
 

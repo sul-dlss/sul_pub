@@ -17,7 +17,7 @@ describe Publication do
   describe "pubhash syncing" do
     subject do
       publication.pub_hash = pub_hash.dup
-      publication.update_any_new_contribution_info_in_pub_hash_to_db(pub_hash)
+      publication.update_any_new_contribution_info_in_pub_hash_to_db
       publication.save
       publication.reload
     end
@@ -53,7 +53,7 @@ describe Publication do
   describe "update_any_new_contribution_info_in_pub_hash_to_db" do
     it "should sync existing authors in the pub hash to contributions in the db" do
       publication.pub_hash = { :authorship => [ { :status => "x", :sul_author_id => author.id }]}
-      publication.update_any_new_contribution_info_in_pub_hash_to_db publication.pub_hash
+      publication.update_any_new_contribution_info_in_pub_hash_to_db
       publication.save
       expect(publication.contributions).to have(1).contribution
       c = publication.contributions.last
@@ -64,10 +64,10 @@ describe Publication do
     it "should update attributions of existing contributions to the database" do
       publication.add_or_update_author author, :status => "y"
       publication.pub_hash = { :authorship => [ { :status => "z", :sul_author_id => author.id }]}
-      publication.update_any_new_contribution_info_in_pub_hash_to_db publication.pub_hash
+      publication.update_any_new_contribution_info_in_pub_hash_to_db
       publication.save
       expect(publication.contributions).to have(1).contribution
-      c = publication.contributions.last
+      c = publication.contributions(true).last
       expect(c.author).to eq(author)
       expect(c.status).to eq("z")
     end
@@ -77,7 +77,7 @@ describe Publication do
       author.save
 
       publication.pub_hash = { :authorship => [ { :status => "z", :cap_profile_id => author.cap_profile_id }]}
-      publication.update_any_new_contribution_info_in_pub_hash_to_db publication.pub_hash
+      publication.update_any_new_contribution_info_in_pub_hash_to_db
 
       publication.save
       expect(publication.contributions).to have(1).contribution
@@ -88,7 +88,7 @@ describe Publication do
 
     it "should ignore unknown authors" do
       publication.pub_hash = { :authorship => [ { :status => "ignored", :cap_profile_id => "doesnt_exist" }]}
-      publication.update_any_new_contribution_info_in_pub_hash_to_db publication.pub_hash
+      publication.update_any_new_contribution_info_in_pub_hash_to_db
       publication.save
       expect(publication.contributions).to be_empty
     end
@@ -133,7 +133,7 @@ describe Publication do
     end
   end
 
-  describe "update_formatted_cirations" do
+  describe "update_formatted_citations" do
     it "should update the apa, mla, and chicago citations" do
       publication.stub(:pub_hash => {})
       apa = double()
