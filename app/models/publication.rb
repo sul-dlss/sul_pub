@@ -4,6 +4,11 @@ class Publication < ActiveRecord::Base
     sync_publication_hash_and_db if pubhash_needs_update? or pub_hash_changed?
   end
 
+  after_create do
+    set_sul_pub_id_in_hash
+    save
+  end
+
   # columns we actually use and query on
   attr_accessible :deleted,
                   :pub_hash,
@@ -177,7 +182,7 @@ class Publication < ActiveRecord::Base
     add_any_new_identifiers_in_pub_hash_to_db
     add_all_identifiers_in_db_to_pub_hash
 
-    set_sul_pub_id_in_hash
+    set_sul_pub_id_in_hash if persisted?
 
     update_formatted_citations
     @pubhash_needs_update = false

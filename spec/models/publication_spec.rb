@@ -12,7 +12,25 @@ describe Publication do
                    authorship: [{sul_author_id: author.id, status: "denied", visibility: "public", featured: true} ],
                    identifier: [{:type => "x", :id => "y", :url => "z"}]
                 }}
-  
+
+  describe "test pub hash syncing for new object" do
+    subject do
+      p = Publication.new
+      p.pub_hash = pub_hash
+      p.save
+      p
+    end
+
+    it "should rebuild identifiers" do
+      expect(subject.pub_hash[:identifier].length).to be > 0
+      expect(subject.pub_hash[:sulpubid]).to eq(subject.id.to_s)
+      expect(subject.pub_hash[:identifier]).to include(:type => "SULPubId", :id => subject.id.to_s, :url => "http://sulcap.stanford.edu/publications/#{subject.id}")
+      expect(subject.pub_hash[:identifier]).to_not include(:type => "SULPubId", :url => "http://sulcap.stanford.edu/publications/")
+      expect(subject.pub_hash[:identifier]).to include(:type => "x", :id => "y", :url => "z")
+    end
+
+
+  end
 
   describe "pubhash syncing" do
     subject do
