@@ -48,12 +48,7 @@ class Author < ActiveRecord::Base
 
   def update_from_cap_authorship_profile_hash(auth_hash)
     seed_hash = Author.build_attribute_hash_from_cap_profile(auth_hash)
-    self.update_attributes seed_hash
-  end
-
-  def Author.create_from_cap_authorship_profile_hash(auth_hash)
-    seed_hash = build_attribute_hash_from_cap_profile(auth_hash)
-    Author.create seed_hash
+    self.assign_attributes seed_hash
   end
 
   def Author.build_attribute_hash_from_cap_profile(auth_hash)
