@@ -1,10 +1,33 @@
 class Author < ActiveRecord::Base
   attr_accessible :cap_profile_id, :sunetid, :university_id, :california_physician_license, :active_in_cap, :cap_import_enabled, :emails_for_harvest, :email, :cap_first_name, :cap_last_name, :cap_middle_name, :official_first_name, :official_last_name, :official_middle_name, :preferred_first_name, :preferred_last_name, :preferred_middle_name
-  has_many :contributions, :dependent => :destroy
+  has_many :contributions, :dependent => :destroy, :after_add => :contributions_changed_callback, :after_remove => :contributions_changed_callback do
+    def build_or_update publication, contribution_hash = {}
+      c = where(:publication_id => publication.id).first_or_initialize
+
+      c.assign_attributes contribution_hash.merge(:publication_id => publication.id)
+      if c.persisted?
+        c.save
+        publication.contributions_changed_callback
+      else
+        self << c
+      end
+
+      c
+    end
+  end
+
+  # todo update the publication cached pubhash
+  def contributions_changed_callback *args
+  end
+
   has_many :publications, :through => :contributions do
   	def approved
   		where("contributions.status='approved'")
-  	end
+    end
+
+    def with_sciencewire_id
+      where(Publication.arel_table[:sciencewire_id].not_eq(nil))
+    end
   end
 
   has_many  :approved_sw_ids, :through => :contributions,
@@ -69,7 +92,10 @@ class Author < ActiveRecord::Base
 
   def Author.fetch_from_cap_and_create(profile_id)
     profile_hash = CapHttpClient.new.get_auth_profile(profile_id)
-    Author.create_from_cap_authorship_profile_hash(profile_hash)
+    a = Author.new
+    a.update_from_cap_authorship_profile_hash(profile_hash)
+    a.save!
+    a
   end
 
 end

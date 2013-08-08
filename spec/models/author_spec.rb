@@ -89,10 +89,11 @@ describe Author do
       "visibility"=>"public"}
   }
 
-  describe ".create_from_cap_authorship_profile_hash" do
+  describe ".update_from_cap_authorship_profile_hash" do
 
     it "creates an author from the profile JSON returned from the CAP authorship API" do
-      auth = Author.create_from_cap_authorship_profile_hash(auth_hash)
+      auth = Author.new
+      auth.update_from_cap_authorship_profile_hash(auth_hash)
       auth.cap_profile_id.should == auth_hash['profileId']
       auth.cap_last_name.should == auth_hash['profile']['names']['preferred']['lastName']
       auth.sunetid.should == auth_hash['profile']['uid']
@@ -100,7 +101,8 @@ describe Author do
     end
 
     it "creates an author froma hash with missing fields" do
-      auth = Author.create_from_cap_authorship_profile_hash(missing_fields)
+      auth = Author.new
+      auth.update_from_cap_authorship_profile_hash(missing_fields)
       auth.email.should be_blank
       auth.preferred_middle_name.should be_blank
       auth.email.should be_blank
