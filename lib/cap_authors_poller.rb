@@ -1,5 +1,5 @@
 require 'dotiw'
-reqiure 'time'
+require 'time'
 class CapAuthorsPoller
 	include ActionView::Helpers::DateHelper
 
@@ -86,7 +86,7 @@ class CapAuthorsPoller
 		  			  @cap_authorship_logger.info "Processed #{@total_running_count} authors"
 	  			  end
 			    rescue => e
-					  NotificationManager.handle_authorship_pull_error(e, "Authorship import failed for incoming record containing: #{json_response.to_s} - #{DateTime.now}")
+					  NotificationManager.handle_authorship_pull_error(e, "Authorship import failed for incoming record containing: #{record.inspect if(record)} - #{DateTime.now}")
 				  end
 	  		end
 		  end

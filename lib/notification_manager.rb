@@ -14,8 +14,6 @@ class NotificationManager
       	@cap_authorship_logger.error message
       	@cap_authorship_logger.error e.message
       	@cap_authorship_logger.error e.backtrace.join("\n")
-      	puts e.inspect
-      	puts e.backtrace.join("\n")
       	#todo send email here
 	end
 
