@@ -210,6 +210,8 @@ class Publication < ActiveRecord::Base
 
   def add_any_new_identifiers_in_pub_hash_to_db
     Array(self.pub_hash[:identifier]).each do |identifier|
+      next if identifier[:type] == "SULPubId"
+
       i = self.publication_identifiers
           .with_type(identifier[:type])
           .first_or_initialize
