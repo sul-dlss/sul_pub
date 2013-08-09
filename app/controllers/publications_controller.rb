@@ -43,9 +43,11 @@ class PublicationsController < ApplicationController
       end
 
 
-      self.status = 200
-      self.content_type =  "application/json; charset=utf-8"
-      self.response_body = Yajl::Encoder.enum_for(:encode, wrap_as_bibjson_collection(description, env["ORIGINAL_FULLPATH"].to_s, matching_records.lazy, page, per))
+      respond_to do |format|
+        format.json {
+          self.response_body = Yajl::Encoder.enum_for(:encode, wrap_as_bibjson_collection(description, env["ORIGINAL_FULLPATH"].to_s, matching_records.lazy, page, per))
+        }
+      end
     end
   end
 
@@ -81,9 +83,11 @@ class PublicationsController < ApplicationController
     description = "Search results from requested sources: #{sources.join(",")}"
 
 
-    self.status = 200
-    self.content_type =  "application/json; charset=utf-8"
-    self.response_body =  Yajl::Encoder.enum_for(:encode, wrap_as_bibjson_collection(description, env["ORIGINAL_FULLPATH"].to_s, all_matching_records.lazy))
+    respond_to do |format|
+      format.json {
+        self.response_body =  Yajl::Encoder.enum_for(:encode, wrap_as_bibjson_collection(description, env["ORIGINAL_FULLPATH"].to_s, all_matching_records.lazy))
+      }
+    end
 
   end
 

@@ -193,6 +193,8 @@ describe SulBib::API do
           { format: "json" },
           {"HTTP_CAPKEY" => '***REMOVED***'}
         response.status.should == 200
+        expect(response.headers['Content-Type']).to be =~ /application\/json/
+
         result = JSON.parse(response.body)
 
         result["metadata"]["records"].should == "7"
