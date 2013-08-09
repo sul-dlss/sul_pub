@@ -1,8 +1,6 @@
 class PublicationsController < ApplicationController
 
   def index
-    params.permit!
-
     logger.info("Getting all publications" +
                     ((" for profile #{params[:capProfileId]}" if params[:capProfileId]) || "") +
                     ((" where capActive = #{params[:capActive]}" if params[:capActive]) || "") +
@@ -17,29 +15,31 @@ class PublicationsController < ApplicationController
     per = params.fetch(:per, 1000).to_i
     last_changed = DateTime.parse(params.fetch(:changedSince, "1000-01-01")).to_s
 
+    benchmark "Querying for publications" do
 
-    if capProfileId.blank?
-      logger.debug(" -- CAP Profile ID not provided, returning all records modified after #{last_changed}")
-      description = "Records that have changed since #{last_changed}"
+      if capProfileId.blank?
+        logger.debug(" -- CAP Profile ID not provided, returning all records modified after #{last_changed}")
+        description = "Records that have changed since #{last_changed}"
 
-      query = Publication.updated_after(last_changed).page(page).per(per)
+        query = Publication.updated_after(last_changed).page(page).per(per)
 
-      if !capActive.blank? && capActive.downcase == 'true'
-        logger.debug(" -- Limit to only active authors")
-        query = query.with_active_author
-      end
+        if !capActive.blank? && capActive.downcase == 'true'
+          logger.debug(" -- Limit to only active authors")
+          query = query.with_active_author
+        end
 
-      matching_records = query.select(:pub_hash)
-      logger.debug("Found #{matching_records.length} records")
-    else
-      logger.debug("Limited to only CAP Profile ID #{capProfileId}")
-      author = Author.where(cap_profile_id: capProfileId).first
-      if author.nil?
-        error!({ "error" => "No such author", "detail" => "You've specified a non-existant author." }, 404)
+        matching_records = query.select(:pub_hash)
+        logger.debug("Found #{matching_records.length} records")
       else
-        description = "All known publications for CAP profile id " + capProfileId
-        logger.debug("Limited to all publications for author #{author.inspect}")
-        matching_records = author.publications.order('publications.id').page(page).per(per).select('publications.pub_hash')
+        logger.debug("Limited to only CAP Profile ID #{capProfileId}")
+        author = Author.where(cap_profile_id: capProfileId).first
+        if author.nil?
+          error!({ "error" => "No such author", "detail" => "You've specified a non-existant author." }, 404)
+        else
+          description = "All known publications for CAP profile id " + capProfileId
+          logger.debug("Limited to all publications for author #{author.inspect}")
+          matching_records = author.publications.order('publications.id').page(page).per(per).select('publications.pub_hash')
+        end
       end
     end
 
