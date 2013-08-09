@@ -66,6 +66,13 @@ describe Publication do
       expect(i.identifier_type).to eq("x")
       expect(publication.publication_identifiers(true)).to include(i)
     end
+
+    it "should not persist SULPubIds" do
+      publication.pub_hash = { :identifier => [ { :type => "SULPubId", :id => "y", :url => "z" } ] }
+      expect {
+        publication.add_any_new_identifiers_in_pub_hash_to_db
+      }.to_not change(publication, :publication_identifiers).by(1)
+    end
   end
 
   describe "update_any_new_contribution_info_in_pub_hash_to_db" do

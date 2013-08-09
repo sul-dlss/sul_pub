@@ -26,7 +26,7 @@ describe SulBib::API do
       it 'increases number of contribution records, where records already exist, by one' do
         expect {
             post "/authorship", valid_json_for_pub_with_contributions, headers
-          }.to change(Contribution, :count).from(2).to(3)
+          }.to change { publication_with_contributions.contributions(true).length }.by(1)
       end
       it "responds with 201 Accepted" do
         post "/authorship", valid_json_for_pub_with_contributions, headers
