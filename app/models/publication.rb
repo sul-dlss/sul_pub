@@ -83,7 +83,8 @@ class Publication < ActiveRecord::Base
   end
 
   def self.with_active_author
-    Publication.where(:id => joins(:authors).where('authors.active_in_cap' => true).select('publications.id').uniq.pluck(:id))
+    ids = joins(:authors).where('authors.active_in_cap' => true).select('publications.id').uniq.pluck(:id)
+    Publication.unscoped.where(:id => ids)
   end
 
   def self.find_or_create_by_pmid(pmid)

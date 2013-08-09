@@ -5,14 +5,13 @@ describe SulBib::API do
 
   let(:publication) { FactoryGirl.create :publication }
   let!(:publication_with_contributions) { create :publication_with_contributions, contributions_count:2  }
-  let(:contribs_list) {create_list(:contribution, 150, visibility: "public", status: "approved")}
+  let(:publication_list) { create_list(:contribution, 150, visibility: "public", status: "approved") }
   let(:author) {FactoryGirl.create :author }
   let(:author_with_sw_pubs) {create :author_with_sw_pubs}
   let(:headers) {{ 'HTTP_CAPKEY' => '***REMOVED***', 'CONTENT_TYPE' => 'application/json' }}
   let(:valid_json_for_post) {{title: "some title", year: 1938, issn: '32242424', pages: '34-56', author: [{name: "jackson joe"}], authorship: [{sul_author_id: author.id, status: "denied", visibility: "public", featured: true} ]}.to_json}
   let(:invalid_json_for_post) {{title: "some title", year: 1938, issn: '32242424', pages: '34-56', author: [{name: "jackson joe"}]}.to_json}
   let(:json_with_new_author) {{title: "some title", year: 1938, issn: '32242424', pages: '34-56', author: [{name: "henry lowe"}], authorship: [{cap_profile_id: '3810', status: "denied", visibility: "public", featured: true} ]}.to_json}
-
 
   describe "POST /publications" do
 
@@ -186,9 +185,10 @@ describe SulBib::API do
     end # end of context
 
     context "when there are 150 records" do
-      it "returns a one page collection of 100 bibjson records when no paging is specified" do
-        contribs_list
 
+
+      it "returns a one page collection of 100 bibjson records when no paging is specified" do
+        publication_list
         get "/publications?page=1&per=7",
           { format: "json" },
           {"HTTP_CAPKEY" => '***REMOVED***'}
@@ -200,6 +200,29 @@ describe SulBib::API do
         result["records"][2]["author"].should be
       end
 
+      it "should filter by active authors" do
+        publication_list
+        get "/publications?page=1&per=1&capActive=true",
+            { format: "json" },
+            {"HTTP_CAPKEY" => '***REMOVED***'}
+        response.status.should == 200
+        result = JSON.parse(response.body)
+        result["metadata"]["records"].should == "1"
+        result["metadata"]["page"].should == 1
+      end
+
+
+      it "should paginate by active authors" do
+        publication_list
+        get "/publications?page=2&per=1&capActive=true",
+            { format: "json" },
+            {"HTTP_CAPKEY" => '***REMOVED***'}
+        response.status.should == 200
+        result = JSON.parse(response.body)
+        result["metadata"]["records"].should == "1"
+        result["metadata"]["page"].should == 2
+
+      end
     end # end of context
 
   end # end of the describe
