@@ -271,6 +271,7 @@ GEM
       chronic (>= 0.6.3)
     xpath (0.1.4)
       nokogiri (~> 1.3)
+    yajl-ruby (1.1.0)
     yaml_db (0.2.3)
 
 PLATFORMS
@@ -319,4 +320,5 @@ DEPENDENCIES
   vcr
   webmock (= 1.11)
   whenever
+  yajl-ruby
   yaml_db

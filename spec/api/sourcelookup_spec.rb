@@ -14,6 +14,11 @@ describe SulBib::API do
 
   describe "GET /publications/sourcelookup " do
 
+    it "raises an error without a title" do
+      get "/publications/sourcelookup"
+      expect(response.status).to eq(400)
+    end
+
       it " returns bibjson with metadata section " do 
         get "/publications/sourcelookup?title=pathological&maxrows=2", 
           { format: "json" },
