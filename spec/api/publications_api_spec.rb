@@ -187,6 +187,13 @@ describe SulBib::API do
     context "when there are 150 records" do
 
 
+      it "should be an error if a capkey isn't provided" do
+        publication_list
+        get "/publications?page=1&per=7",
+            { format: "json" }
+        response.status.should == 403
+      end
+
       it "returns a one page collection of 100 bibjson records when no paging is specified" do
         publication_list
         get "/publications?page=1&per=7",

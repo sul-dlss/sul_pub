@@ -1,5 +1,11 @@
 class PublicationsController < ApplicationController
 
+  before_filter :check_authorization
+
+  def check_authorization
+    head :forbidden unless env['HTTP_CAPKEY'] == SulBib::API_KEY
+  end
+
   def index
     logger.info("Getting all publications" +
                     ((" for profile #{params[:capProfileId]}" if params[:capProfileId]) || "") +
