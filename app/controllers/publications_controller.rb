@@ -41,9 +41,9 @@ class PublicationsController < ApplicationController
           matching_records = author.publications.order('publications.id').page(page).per(per).select('publications.pub_hash')
         end
       end
-    end
 
-    self.response_body = Yajl::Encoder.enum_for(:encode, wrap_as_bibjson_collection(description, env["ORIGINAL_FULLPATH"].to_s, matching_records.lazy, page, per))
+      self.response_body = Yajl::Encoder.enum_for(:encode, wrap_as_bibjson_collection(description, env["ORIGINAL_FULLPATH"].to_s, matching_records.lazy, page, per))
+    end
   end
 
 
