@@ -46,6 +46,7 @@ module SulBib
         end
         pub = Publication.build_new_manual_publication(Settings.cap_provenance, pub_hash, request_body_unparsed)
         pub.save
+        pub.reload
         logger.debug("Created new publication #{pub.inspect}")
         header "Location", env["REQUEST_URI"].to_s + "/" + pub.id.to_s
         pub.pub_hash
@@ -88,6 +89,7 @@ module SulBib
 
       pub.update_manual_pub_from_pub_hash(params[:pub_hash], Settings.cap_provenance, original_source)
       pub.save
+      pub.reload
       logger.debug("resulting pub hash: #{pub.pub_hash}")
       pub.pub_hash
     end
