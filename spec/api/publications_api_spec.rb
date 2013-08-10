@@ -93,7 +93,34 @@ describe SulBib::API do
         expect(contrib.cap_profile_id).to eq(parsed_outgoing_json["authorship"][0]["cap_profile_id"])
       end
 
+      it "does not duplicate SULPubIds" do
+
+        json_with_sul_pub_id = { :identifier => [ { :type => "SULPubId", :id => "n", :url => "m" } ], authorship: [{sul_author_id: author.id, status: "denied", visibility: "public", featured: true}] }.to_json
+
+        post "/publications", json_with_sul_pub_id, headers
+        response.status.should == 201
+        parsed_outgoing_json = JSON.parse(response.body)
+
+        expect(parsed_outgoing_json['identifier'].select { |x| x['type'] == "SULPubId"}).to have(1).item
+        expect(parsed_outgoing_json['identifier'][0]['id']).to_not eq("n")
+
+      end
+
     end # end of the context
+
+    context "updating record" do
+      it "should not duplicate SULPubIDs" do
+
+        json_with_sul_pub_id = { :identifier => [ { :type => "SULPubId", :id => "n", :url => "m" } ], authorship: [{sul_author_id: author.id, status: "denied", visibility: "public", featured: true}] }.to_json
+
+        put "/publications/#{publication.id}", json_with_sul_pub_id, headers
+        response.status.should == 200
+        parsed_outgoing_json = JSON.parse(response.body)
+
+        expect(parsed_outgoing_json['identifier'].select { |x| x['type'] == "SULPubId"}).to have(1).item
+        expect(parsed_outgoing_json['identifier'][0]['id']).to_not eq("n")
+      end
+    end
 
     context "when valid post" do
 
