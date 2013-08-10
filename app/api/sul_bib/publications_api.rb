@@ -87,6 +87,7 @@ module SulBib
       logger.debug("#{original_source}")
 
       pub.update_manual_pub_from_pub_hash(params[:pub_hash], Settings.cap_provenance, original_source)
+      pub.save
       logger.debug("resulting pub hash: #{pub.pub_hash}")
       pub.pub_hash
     end
