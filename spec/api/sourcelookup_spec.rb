@@ -15,7 +15,8 @@ describe SulBib::API do
   describe "GET /publications/sourcelookup " do
 
     it "raises an error without a title" do
-      get "/publications/sourcelookup"
+      get "/publications/sourcelookup", {},
+        {"HTTP_CAPKEY" => '***REMOVED***'}
       expect(response.status).to eq(400)
     end
 
