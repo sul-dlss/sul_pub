@@ -7,6 +7,7 @@ FactoryGirl.define do
     official_last_name "Edler"
     official_middle_name "Jim"
     emails_for_harvest "alice.edler@stanford.edu"
+    cap_profile_id 2343433
   end
 
   factory :author_with_sw_pubs, parent: :author do
@@ -17,6 +18,6 @@ FactoryGirl.define do
     active_in_cap false
   end
 
- 
+
 
 end

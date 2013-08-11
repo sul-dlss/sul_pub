@@ -100,7 +100,7 @@ describe Author do
       #...
     end
 
-    it "creates an author froma hash with missing fields" do
+    it "creates an author from a hash with missing fields" do
       auth = Author.new
       auth.update_from_cap_authorship_profile_hash(missing_fields)
       auth.email.should be_blank
