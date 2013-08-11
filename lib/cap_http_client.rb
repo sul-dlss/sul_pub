@@ -25,7 +25,7 @@ class CapHttpClient
 			token = JSON.parse(http.request(request).body)["access_token"]
 			@auth[:access_token] = token.to_s
 			#puts "the token: " + token.to_s
-			http.finish
+			http.finish if(http.started?)
 			File.open(Rails.root.join('config', 'cap_auth.yaml'), 'w') {|f| YAML.dump(@main_auth, f)}
 			#puts token.to_s
 			token.to_s
@@ -74,7 +74,7 @@ private
 				response = http.request(request)
 
 				if response.class == Net::HTTPUnauthorized
-					http.finish
+					http.finish if(http.started?)
 					token = get_new_token
 				elsif response.class == Net::HTTPInternalServerError
 					http.finish
