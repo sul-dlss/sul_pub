@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Publication do
   let(:publication) { FactoryGirl.create :publication }
   let(:author) {FactoryGirl.create :author }
-  
+
   let(:pub_hash) {{title: "some title",
                    year: 1938,
                    issn: '32242424',
@@ -41,7 +41,7 @@ describe Publication do
     end
 
     it "should set the last updated value to match the database row" do
-      expect(subject.pub_hash[:last_updated]).to be >= (Time.now - 1.minutes)
+      expect(Time.parse(subject.pub_hash[:last_updated])).to be >= (Time.now - 1.minutes)
     end
 
     it "should rebuild authors" do
@@ -58,10 +58,10 @@ describe Publication do
     end
   end
 
-  describe "add_any_new_identifiers_in_pub_hash_to_db" do
+  describe "sync_identifiers_in_pub_hash_to_db" do
     it "should sync identifiers in the pub hash to the database" do
       publication.pub_hash = { :identifier => [ { :type => "x", :id => "y", :url => "z" } ] }
-      publication.add_any_new_identifiers_in_pub_hash_to_db
+      publication.sync_identifiers_in_pub_hash_to_db
       i = PublicationIdentifier.last
       expect(i.identifier_type).to eq("x")
       expect(publication.publication_identifiers(true)).to include(i)
@@ -70,8 +70,29 @@ describe Publication do
     it "should not persist SULPubIds" do
       publication.pub_hash = { :identifier => [ { :type => "SULPubId", :id => "y", :url => "z" } ] }
       expect {
-        publication.add_any_new_identifiers_in_pub_hash_to_db
+        publication.sync_identifiers_in_pub_hash_to_db
       }.to_not change(publication, :publication_identifiers).by(1)
+    end
+
+    it "updates existing ids with new values" do
+      publication.pub_hash = { :identifier => [ { :type => "x", :id => "y", :url => "z" } ] }
+      publication.sync_identifiers_in_pub_hash_to_db
+      publication.pub_hash = { :identifier => [ { :type => "x", :id => "y2", :url => "z2" } ] }
+      publication.sync_identifiers_in_pub_hash_to_db
+      ids = PublicationIdentifier.where(:publication_id => publication.id).all
+      expect(ids.size).to eq(1)
+      expect(ids.first.identifier_type).to eq('x')
+      expect(ids.first.identifier_value).to eq('y2')
+      expect(ids.first.identifier_uri).to eq('z2')
+    end
+
+    it "deletes ids from the database that are not longer in the pub_hash" do
+      publication.pub_hash = { :identifier => [ { :type => "x", :id => "y", :url => "z" } ] }
+      publication.sync_identifiers_in_pub_hash_to_db
+      publication.pub_hash = { :identifier => [ { :type => "a", :id => "b", :url => "c" } ] }
+      publication.sync_identifiers_in_pub_hash_to_db
+      expect(PublicationIdentifier.where(:publication_id => publication.id, :identifier_type => 'x').count).to eq(0)
+      expect(PublicationIdentifier.where(:publication_id => publication.id, :identifier_type => 'a').count).to eq(1)
     end
   end
 

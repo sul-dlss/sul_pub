@@ -17,16 +17,16 @@ class Publication < ActiveRecord::Base
                   :updated_at
 
   # beats me what these are for.
-  attr_accessible :active, :lock_version                  
+  attr_accessible :active, :lock_version
 
-  # we actually do query these columns in 
+  # we actually do query these columns in
   # create_or_update_pub_and_contribution_with_harvested_sw_doc
   # :title,
   # :year,
   # :issn,
   # :pages,
   # :publication_type
-  
+
   before_save do
     self.title = pub_hash[:title] unless pub_hash[:title].blank?
     self.issn = pub_hash[:issn] unless pub_hash[:issn].blank?
@@ -141,7 +141,7 @@ class Publication < ActiveRecord::Base
     self.pub_hash = new_sw_pub_hash
 
     self.sciencewire_id = new_sw_pub_hash[:sw_id]
- 
+
     unless self.pmid.blank?
       new_sw_pub_hash[:pmid] = self.pmid.to_s # Preserve the pmid just in case incoming sciencewire doc doesn't have PMID
       add_any_pubmed_data_to_hash
@@ -178,9 +178,7 @@ class Publication < ActiveRecord::Base
 
     add_all_db_contributions_to_my_pub_hash
 
-    # todo: so, what we're saying is identifiers can never be
-    # removed if they've been persisted to the pubhash?
-    add_any_new_identifiers_in_pub_hash_to_db
+    sync_identifiers_in_pub_hash_to_db
     add_all_identifiers_in_db_to_pub_hash
 
     set_sul_pub_id_in_hash if persisted?
@@ -198,7 +196,7 @@ class Publication < ActiveRecord::Base
       pubmed_source_record = PubmedSourceRecord.find_by_pmid(self.pmid)
       build_from_pubmed_hash(pubmed_source_record.get_source_as_hash)
     end
-      
+
     set_last_updated_value_in_hash
     add_all_db_contributions_to_my_pub_hash
     add_all_identifiers_in_db_to_pub_hash
@@ -208,10 +206,16 @@ class Publication < ActiveRecord::Base
     self
   end
 
-  def add_any_new_identifiers_in_pub_hash_to_db
+  def sync_identifiers_in_pub_hash_to_db
+    incoming_types = Array(self.pub_hash[:identifier]).map {|id| id[:type]}
+    self.publication_identifiers.each do |id|
+      unless(incoming_types.include? id.identifier_type)
+        id.delete
+      end
+    end
+
     Array(self.pub_hash[:identifier]).each do |identifier|
       next if identifier[:type] == "SULPubId"
-
       i = self.publication_identifiers
           .with_type(identifier[:type])
           .first_or_initialize
@@ -227,6 +231,7 @@ class Publication < ActiveRecord::Base
         self.publication_identifiers << i
       end
     end
+
   end
 
   def update_any_new_contribution_info_in_pub_hash_to_db
@@ -236,18 +241,18 @@ class Publication < ActiveRecord::Base
         visibility: contrib[:visibility],
         featured: contrib[:featured]
       }
-    
+
       sul_author_id = contrib[:sul_author_id]
-      
+
       author = if sul_author_id
         Author.find(sul_author_id)
       elsif contrib[:cap_profile_id]
         Author.find_by_cap_profile_id(contrib[:cap_profile_id])
       else
       end
-      
+
       # todo??
-      next if author.nil? 
+      next if author.nil?
 
       hash_for_update[:author_id] = author.id
       cap_profile_id = author.cap_profile_id
