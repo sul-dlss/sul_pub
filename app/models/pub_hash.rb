@@ -34,7 +34,7 @@ class PubHash
         authors = authors[0..4]
         authors << {:name=>"et al."}
       elsif pub_hash[:etal]
-        authors = pub_hash[:author].dup
+        authors = pub_hash[:author].collect {|a| a}
         authors << {:name=>"et al."}
       end
 
