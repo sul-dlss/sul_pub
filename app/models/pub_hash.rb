@@ -23,7 +23,7 @@ class PubHash
     apa_csl_file = Rails.root.join('app', 'data', 'apa.csl')
     CiteProc.process(to_citation_data, :style => apa_csl_file, :format => 'html')
   end
-    
+
   def to_citation_data
     @citation_data ||= begin
       authors_for_citeproc = []
@@ -31,6 +31,8 @@ class PubHash
 
       if authors.length > 5
         authors = authors[0..4]
+        authors << {:name=>"et al."}
+      elsif pub_hash[:etal]
         authors << {:name=>"et al."}
       end
 
