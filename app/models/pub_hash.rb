@@ -27,12 +27,14 @@ class PubHash
   def to_citation_data
     @citation_data ||= begin
       authors_for_citeproc = []
-      authors = pub_hash[:author]  || []
+
+      authors = pub_hash[:author] || []
 
       if authors.length > 5
         authors = authors[0..4]
         authors << {:name=>"et al."}
       elsif pub_hash[:etal]
+        authors = pub_hash[:author].dup
         authors << {:name=>"et al."}
       end
 

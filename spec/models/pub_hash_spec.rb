@@ -88,6 +88,7 @@ describe PubHash do
         cite.should =~ /^Sohl, G./
 	      cite.should =~ /et al./
 	      cite.should_not =~ /Last/
+	      expect(h.pub_hash[:author]).to_not include({:name=>"et al."})
 	    end
 	  end
 
@@ -147,6 +148,7 @@ describe PubHash do
   	    cite = h.to_mla_citation
         cite.should =~ /^Sohl, G./
         cite.should =~ /et al./
+        expect(h.pub_hash[:author]).to_not include({:name=>"et al."})
       end
     end
 
