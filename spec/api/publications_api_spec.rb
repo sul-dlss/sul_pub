@@ -119,12 +119,15 @@ describe SulBib::API do
       it "creates a pub with with isbn" do
         post "/publications", json_with_isbn, headers
         response.status.should == 201
-        pub = Publication.last
+        pub = Publication.last.reload
         parsed_outgoing_json = JSON.parse(response.body)
         expect(parsed_outgoing_json['identifier']).to include({"id"=>"1177188188181", "type"=>"isbn"})
         expect(parsed_outgoing_json['identifier']).to include({"type"=>"doi","url"=>"18819910019"})
         expect(parsed_outgoing_json['identifier']).to include({"type"=>"SULPubId","url"=>"http://sulcap.stanford.edu/publications/#{pub.id}","id"=>"#{pub.id}"})
         expect(parsed_outgoing_json['identifier'].size).to eq(3)
+        expect(pub.publication_identifiers).to have(2).items
+        expect(pub.publication_identifiers.map { |x| x.identifier_type }).to include("doi", "isbn")
+        expect(response.body).to eq(pub.pub_hash.to_json)
       end
 
     end # end of the context
