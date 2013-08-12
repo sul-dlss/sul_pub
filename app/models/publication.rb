@@ -65,12 +65,11 @@ class Publication < ActiveRecord::Base
 
   def contributions_changed_callback *args
     pubhash_needs_update!
-    add_all_db_contributions_to_my_pub_hash
     true
   end
 
   def identifiers_changed_callback *args
-    add_all_identifiers_in_db_to_pub_hash
+    pubhash_needs_update!
     true
   end
 
@@ -215,9 +214,7 @@ class Publication < ActiveRecord::Base
     Array(self.pub_hash[:identifier]).each do |identifier|
       next if identifier[:type] == "SULPubId"
 
-      i = self.publication_identifiers
-          .with_type(identifier[:type])
-          .first_or_initialize
+      i = self.publication_identifiers.select { |x| x.identifier_type == identifier[:type] }.first || PublicationIdentifier.new
 
       i.assign_attributes  :certainty => 'confirmed',
                            :identifier_type => identifier[:type],
