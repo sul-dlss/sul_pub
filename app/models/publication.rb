@@ -1,8 +1,6 @@
 class Publication < ActiveRecord::Base
 
-  before_save do
-    sync_publication_hash_and_db if pubhash_needs_update? or pub_hash_changed?
-  end
+  before_save :sync_publication_hash_and_db, if: Proc.new { |pub| pub.pubhash_needs_update? }
 
   after_create do
     set_sul_pub_id_in_hash
@@ -117,7 +115,6 @@ class Publication < ActiveRecord::Base
 
     incoming_pub_hash[:provenance] = provenance
     self.pub_hash = incoming_pub_hash.dup
-
     r = self.user_submitted_source_records.first_or_initialize
     r.assign_attributes(
         is_active: true,
@@ -133,6 +130,7 @@ class Publication < ActiveRecord::Base
     end
 
     self.update_any_new_contribution_info_in_pub_hash_to_db
+    pubhash_needs_update! if persisted?
     self
   end
 
@@ -180,7 +178,6 @@ class Publication < ActiveRecord::Base
 
     sync_identifiers_in_pub_hash_to_db
     add_all_identifiers_in_db_to_pub_hash
-
     set_sul_pub_id_in_hash if persisted?
 
     update_formatted_citations
@@ -202,6 +199,7 @@ class Publication < ActiveRecord::Base
     add_all_identifiers_in_db_to_pub_hash
     update_formatted_citations
     pub_hash_will_change!
+    #todo add pub_hash_needs_update?
 
     self
   end
@@ -216,6 +214,7 @@ class Publication < ActiveRecord::Base
 
     Array(self.pub_hash[:identifier]).each do |identifier|
       next if identifier[:type] == "SULPubId"
+
       i = self.publication_identifiers
           .with_type(identifier[:type])
           .first_or_initialize
@@ -317,6 +316,7 @@ class Publication < ActiveRecord::Base
 
   def add_all_identifiers_in_db_to_pub_hash
     self.pub_hash[:identifier] ||= []
+    self.publication_identifiers.reload if(persisted?)
     self.pub_hash[:identifier] = self.publication_identifiers.collect do |identifier|
       ident_hash = Hash.new
       ident_hash[:type] = identifier.identifier_type unless identifier.identifier_type.blank?

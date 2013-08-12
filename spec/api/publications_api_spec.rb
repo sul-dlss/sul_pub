@@ -12,7 +12,18 @@ describe SulBib::API do
   let(:valid_json_for_post) {{title: "some title", year: 1938, issn: '32242424', pages: '34-56', author: [{name: "jackson joe"}], authorship: [{sul_author_id: author.id, status: "denied", visibility: "public", featured: true} ]}.to_json}
   let(:invalid_json_for_post) {{title: "some title", year: 1938, issn: '32242424', pages: '34-56', author: [{name: "jackson joe"}]}.to_json}
   let(:json_with_new_author) {{title: "some title", year: 1938, issn: '32242424', pages: '34-56', author: [{name: "henry lowe"}], authorship: [{cap_profile_id: '3810', status: "denied", visibility: "public", featured: true} ]}.to_json}
-
+  let(:json_with_isbn) { <<-JSON
+    {"abstract":"","abstract_restricted":"","allAuthors":"author A, author B","author":[{"firstname":"John ","lastname":"Doe","middlename":"","name":"Doe  John ","role":"author"},{"firstname":"Raj","lastname":"Kathopalli","middlename":"","name":"Kathopalli  Raj","role":"author"}],"authorship":[{"cap_profile_id":#{author.cap_profile_id},"featured":true,"status":"APPROVED","visibility":"PUBLIC"}],"booktitle":"TEST Book I","edition":"2","etal":true,"identifier":[{"id":"1177188188181","type":"isbn"},{"type":"doi","url":"18819910019"}],"last_updated":"2013-08-10T21:03Z","provenance":"CAP","publisher":"Publisher","series":{"number":"919","title":"Series 1","volume":"1"},"type":"book","year":"2010"}
+   JSON
+  }
+  let(:json_with_isbn_changed_doi) { <<-JSON
+    {"abstract":"","abstract_restricted":"","allAuthors":"author A, author B","author":[{"firstname":"John ","lastname":"Doe","middlename":"","name":"Doe  John ","role":"author"},{"firstname":"Raj","lastname":"Kathopalli","middlename":"","name":"Kathopalli  Raj","role":"author"}],"authorship":[{"cap_profile_id":#{author.cap_profile_id},"featured":true,"status":"APPROVED","visibility":"PUBLIC"}],"booktitle":"TEST Book I","edition":"2","etal":true,"identifier":[{"id":"1177188188181","type":"isbn"},{"type":"doi","url":"18819910019-updated"}],"last_updated":"2013-08-10T21:03Z","provenance":"CAP","publisher":"Publisher","series":{"number":"919","title":"Series 1","volume":"1"},"type":"book","year":"2010"}
+   JSON
+  }
+  let(:json_with_isbn_deleted_doi) { <<-JSON
+    {"abstract":"","abstract_restricted":"","allAuthors":"author A, author B","author":[{"firstname":"John ","lastname":"Doe","middlename":"","name":"Doe  John ","role":"author"},{"firstname":"Raj","lastname":"Kathopalli","middlename":"","name":"Kathopalli  Raj","role":"author"}],"authorship":[{"cap_profile_id":#{author.cap_profile_id},"featured":true,"status":"APPROVED","visibility":"PUBLIC"}],"booktitle":"TEST Book I","edition":"2","etal":true,"identifier":[{"id":"1177188188181","type":"isbn"}],"last_updated":"2013-08-10T21:03Z","provenance":"CAP","publisher":"Publisher","series":{"number":"919","title":"Series 1","volume":"1"},"type":"book","year":"2010"}
+   JSON
+    }
   describe "POST /publications" do
 
     context "when valid post" do
@@ -71,7 +82,7 @@ describe SulBib::API do
         response.status.should == 201
         pub_hash = Publication.last.reload.pub_hash
 
-        parsed_outgoing_json = JSON.parse(valid_json_for_post)
+        parsed_outgoing_json = JSON.parse(response.body)
 
         expect(pub_hash[:author]).to eq(parsed_outgoing_json["author"])
         expect(pub_hash[:authorship][0][:visibility]).to eq(parsed_outgoing_json["authorship"][0]["visibility"])
@@ -85,7 +96,7 @@ describe SulBib::API do
         post "/publications", valid_json_for_post, headers
         response.status.should == 201
         pub = Publication.last
-        parsed_outgoing_json = JSON.parse(valid_json_for_post)
+        parsed_outgoing_json = JSON.parse(response.body)
         contrib = Contribution.where(publication_id: pub.id, author_id: author.id).first
         expect(contrib.visibility).to eq(parsed_outgoing_json["authorship"][0]["visibility"])
         expect(contrib.status).to eq(parsed_outgoing_json["authorship"][0]["status"])
@@ -103,7 +114,17 @@ describe SulBib::API do
 
         expect(parsed_outgoing_json['identifier'].select { |x| x['type'] == "SULPubId"}).to have(1).item
         expect(parsed_outgoing_json['identifier'][0]['id']).to_not eq("n")
+      end
 
+      it "creates a pub with with isbn" do
+        post "/publications", json_with_isbn, headers
+        response.status.should == 201
+        pub = Publication.last
+        parsed_outgoing_json = JSON.parse(response.body)
+        expect(parsed_outgoing_json['identifier']).to include({"id"=>"1177188188181", "type"=>"isbn"})
+        expect(parsed_outgoing_json['identifier']).to include({"type"=>"doi","url"=>"18819910019"})
+        expect(parsed_outgoing_json['identifier']).to include({"type"=>"SULPubId","url"=>"http://sulcap.stanford.edu/publications/#{pub.id}","id"=>"#{pub.id}"})
+        expect(parsed_outgoing_json['identifier'].size).to eq(3)
       end
 
     end # end of the context
@@ -148,7 +169,30 @@ describe SulBib::API do
     end
   end  # end of the describe
 
+  describe "PUT /publications/:id" do
 
+    it "updates an existing pub " do
+      post "/publications", json_with_isbn, headers
+      id = Publication.last.id
+      put "/publications/#{id}", json_with_isbn_changed_doi, headers
+      parsed_outgoing_json = JSON.parse(response.body)
+      expect(parsed_outgoing_json['identifier']).to include({"id"=>"1177188188181", "type"=>"isbn"})
+      expect(parsed_outgoing_json['identifier']).to include({"type"=>"doi","url"=>"18819910019-updated"})
+      expect(parsed_outgoing_json['identifier']).to include({"type"=>"SULPubId","url"=>"http://sulcap.stanford.edu/publications/#{id}","id"=>"#{id}"})
+      expect(parsed_outgoing_json['identifier'].size).to eq(3)
+    end
+
+    it "deletes an identifier from the db if it is not in the incoming json" do
+      post "/publications", json_with_isbn, headers
+      id = Publication.last.id
+      put "/publications/#{id}", json_with_isbn_deleted_doi, headers
+      parsed_outgoing_json = JSON.parse(response.body)
+      expect(parsed_outgoing_json['identifier']).to include({"id"=>"1177188188181", "type"=>"isbn"})
+      expect(parsed_outgoing_json['identifier']).to include({"type"=>"SULPubId","url"=>"http://sulcap.stanford.edu/publications/#{id}","id"=>"#{id}"})
+      expect(parsed_outgoing_json['identifier'].size).to eq(2)
+    end
+
+  end
 
 
 
