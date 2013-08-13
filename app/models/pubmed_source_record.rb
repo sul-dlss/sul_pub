@@ -83,9 +83,7 @@ class PubmedSourceRecord < ActiveRecord::Base
 	end
 
 	def extract_abstract_from_pubmed_record(pubmed_record)
-		txt = pubmed_record.xpath('MedlineCitation/Article/Abstract/AbstractText').text
-		txt = txt[0..3].gsub(/\P{ASCII}/, '') + txt[4..(txt.length - 1)] unless(txt.blank?)
-		txt
+		pubmed_record.xpath('MedlineCitation/Article/Abstract/AbstractText').text
 	end
 
 	def extract_mesh_headings_from_pubmed_record(pubmed_record)
