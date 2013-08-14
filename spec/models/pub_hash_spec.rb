@@ -1,8 +1,107 @@
 require 'spec_helper'
 
-describe PubHash do
-	let(:pub_hash) {
-	  {:provenance=>"sciencewire",
+describe PubHash do 
+
+  let(:conference_pub_in_journal) {{title: "My test title", 
+                  type: 'article-journal', 
+                  articlenumber: 33,
+                  pages: "3-6",
+                  author: [{name: "Smith, Jack", role: "editor"}, 
+                    {name: "Sprat, Jill", role: "editor"}, 
+                    {name: "Jones, P. L."}, 
+                    {firstname: "Alan", middlename: "T", lastname: "Jackson"}],
+                  year: '1987',
+                  supplement: '33',
+                  publisher: 'Some Publisher',
+                  journal: {name: "Some Journal Name", volume: 33, issue: 32, year: 1999},
+                  conference: {name: "The Big Conference", year: 2345, number: 33, location: "Knoxville, TN", city: "Knoxville", statecountry: "TN"}
+              }}
+
+let(:conference_pub_in_book_hash) {{title: "My test title", 
+                  type: 'paper-conference', 
+                  articlenumber: 33,
+                  pages: '33-56',
+                  author: [{name: "Smith, Jack", role: "editor"}, 
+                    {name: "Sprat, Jill", role: "editor"}, 
+                    {name: "Jones, P. L."}, 
+                    {firstname: "Alan", middlename: "T", lastname: "Jackson"}],
+                  year: '1987',
+                  publisher: 'Smith Books',
+                  booktitle: 'The Giant Book of Giant Ideas',
+                  conference: {name: "The Big Conference", year: 2345, number: 33, location: "Knoxville, TN", city: "Knoxville", statecountry: "TN"}
+              }}
+
+    let(:conference_pub_in_series_hash) {{title: "My test title", 
+                  type: 'paper-conference', 
+                  articlenumber: 33,
+                  pages: '33-56',
+                  author: [{name: "Smith, Jack", role: "editor"}, 
+                    {name: "Sprat, Jill", role: "editor"}, 
+                    {name: "Jones, P. L."}, 
+                    {firstname: "Alan", middlename: "T", lastname: "Jackson"}],
+                  year: '1987',
+                  publisher: 'Smith Books',
+                  booktitle: 'The Giant Book of Giant Ideas',
+                  conference: {name: "The Big Conference", year: 2345, number: 33, location: "Knoxville, TN", city: "Knoxville", statecountry: "TN"},
+                  series: {title: "The book series for kings and queens", volume: 1, number: 4 , year: 1933}
+             }}
+
+    let(:conference_pub_in_nothing_hash) {{title: "My test title", 
+                  type: 'speech', 
+                  author: [
+                    {name: "Jones, P. L."}, 
+                    {firstname: "Alan", middlename: "T", lastname: "Jackson"}],
+                  conference: {name: "The Big Conference", year: "1999", number: 33, location: "Knoxville, TN", city: "Knoxville", statecountry: "TN"}
+      }}
+
+
+    let(:book_pub_hash) {{title: "My test title", 
+                  type: 'book', 
+                  author: [
+                    {name: "Jones, P. L."}, 
+                    {firstname: "Alan", middlename: "T", lastname: "Jackson"}],
+                  year: '1987',
+                  publisher: 'Smith Books',
+                  booktitle: 'The Giant Book of Giant Ideas'
+        }}
+
+  let(:book_pub_with_editors_hash) {{title: "My test title", 
+                  type: 'book', 
+                  author: [{name: "Smith, Jack", role: "editor"}, 
+                    {name: "Sprat, Jill", role: "editor"}],
+                  year: '1987',
+                  publisher: 'Smith Books',
+                  booktitle: 'The Giant Book of Giant Ideas'
+        }}
+
+    let(:series_pub_hash) {{title: "My test title", 
+                  type: 'book', 
+                  author: [{name: "Smith, Jack", role: "editor"}, 
+                    {name: "Sprat, Jill", role: "editor"}, 
+                    {name: "Jones, P. L."}, 
+                    {firstname: "Alan", middlename: "T", lastname: "Jackson"}],
+                  year: '1987',
+                  publisher: 'Smith Books',
+                  booktitle: 'The Giant Book of Giant Ideas',
+                  series: {title: "The book series for Big Ideas", volume: 1, number: 4 , year: 1933}
+               }}
+
+    let(:article_pub_hash) {{title: "My test title", 
+                  type: 'article', 
+                  pages: "3-6",
+                  author: [{name: "Smith, Jack", role: "editor"}, 
+                    {name: "Sprat, Jill", role: "editor"}, 
+                    {name: "Jones, P. L."}, 
+                    {firstname: "Alan", middlename: "T", lastname: "Jackson"}],
+                  year: '1987',
+                  publisher: 'Some Publisher',
+                  journal: {name: "Some Journal Name", volume: 33, issue: 32, year: 1999}
+                 }}
+
+
+
+
+	let(:pub_hash) {{:provenance=>"sciencewire",
      :pmid=>"15572175",
      :sw_id=>"6787731",
      :title=>
@@ -15,6 +114,7 @@ describe PubHash do
        {:name=>"Maxeiner,S,"},
        {:name=>"Degen,J,"},
        {:name=>"Willecke,K,"},
+       {:name=>"SecondLast,T,"},
        {:name=>"Last,O"}],
      :year=>"2004",
      :date=>"2004-12-01T00:00:00",
@@ -64,8 +164,7 @@ describe PubHash do
         :status=>"unknown",
         :visibility=>"private",
         :featured=>false}]
-    }
-	}
+    }}
 
   # describe "#sync_publication_hash" do
   #   context " with multiple contributions " do
@@ -79,22 +178,46 @@ describe PubHash do
   #   end
   # end
 
-	describe "#to_mla_citation" do
+describe "#to_chicago_citation" do
+
+    context "with more than 5 authors" do
+      it "builds citations with just the first 5" do
+        h = PubHash.new(pub_hash)
+        cite = h.to_chicago_citation
+        cite.should =~ /^Sohl, G./
+        cite.should =~ /et al./
+        cite.should_not =~ /Last/
+     #   cite.should_not =~ /and/
+        expect(h.pub_hash[:author]).to_not include({:name=>"et al."})
+      end
+
+      it "includes capitalized title" do
+        h = PubHash.new(pub_hash)
+        cite = h.to_mla_citation
+        expect(cite).to include('New Insights Into the Expression and Function of Neural Connexins With Transgenic Mouse Mutants')
+       
+      end
+
+    end
+
+end
+
+describe "#to_mla_citation" do
 
 	  context "with more than 5 authors" do
 	    it "builds citations with just the first 5" do
 	      h = PubHash.new(pub_hash)
 	      cite = h.to_mla_citation
         cite.should =~ /^Sohl, G./
-	      cite.should =~ /et al./
-	      cite.should_not =~ /Last/
+	    #  cite.should =~ /et al./
+	    #  cite.should_not =~ /Last/
+       # cite.should_not =~ /and/
 	      expect(h.pub_hash[:author]).to_not include({:name=>"et al."})
 	    end
 	  end
 
-	  context "with etal flag" do
-	    let(:et_hash) {
-    	  {:provenance=>"sciencewire",
+	  context "with etal flag" do 
+	    let(:et_hash) {{:provenance=>"sciencewire",
          :pmid=>"15572175",
          :sw_id=>"6787731",
          :title=>
@@ -140,18 +263,48 @@ describe PubHash do
             :status=>"unknown",
             :visibility=>"private",
             :featured=>false}]
-        }
-      }
+        }}
 
-      it "adds et al whenever the flag is true" do
-        h = PubHash.new(et_hash)
-  	    cite = h.to_mla_citation
-        cite.should =~ /^Sohl, G./
-        cite.should =~ /et al./
-        expect(h.pub_hash[:author]).to_not include({:name=>"et al."})
-      end
+    #  it "adds et al whenever the flag is true" do
+     #   h = PubHash.new(et_hash)
+  	  #  cite = h.to_mla_citation
+      #  cite.should =~ /^Sohl, G./
+      #  cite.should =~ /et al./
+      #  expect(h.pub_hash[:author]).to_not include({:name=>"et al."})
+      #end
     end
 
 	end
+
+it "includes authors from single name field"
+      it "includes authors from parsed name parts"
+
+  context "for conference" do
+      
+      context "published in book" do
+        it "includes book information"
+      end
+      context "published in journal" do
+        it "includes journal information" 
+      end
+      context "published in book series" do
+        it "includes book and series information" 
+      end
+
+    end
+
+    context "for book" do
+       it "includes book information"
+       it "includes editor as editor"
+       it "lists authors as authors"
+       
+    end
+
+    context "for article" do
+       it "includes article information"
+        it "exludes editors"
+    end
+
+
 end
 

@@ -27,15 +27,19 @@ class PubHash
   def to_citation_data
     @citation_data ||= begin
       authors_for_citeproc = []
+      editors_for_citeproc = []
 
       authors = pub_hash[:author] || []
 
       if authors.length > 5
+        # we pass the first five and the very last because some
+        #formats add the very last name when using et-al. the CSL should drop the sixth name 
         authors = authors[0..4]
-        authors << {:name=>"et al."}
-      elsif pub_hash[:etal]
-        authors = pub_hash[:author].collect {|a| a}
-        authors << {:name=>"et al."}
+        authors << pub_hash[:author].last
+     #   authors << {:name=>"et al."}
+     # elsif pub_hash[:etal]
+     #   authors = pub_hash[:author].collect {|a| a}
+     #   authors << {:name=>"et al."}
       end
 
       authors.each do |author|
@@ -76,9 +80,13 @@ class PubHash
           end
         end
 
-        unless last_name.blank?
+       unless last_name.blank?
+        if author[:role] && author[:role].casecmp("editor")
+          editors_for_citeproc << {"family" => last_name, "given" => rest_of_name} 
+        else 
           authors_for_citeproc << {"family" => last_name, "given" => rest_of_name}
-        end
+        end 
+      end
       end
 
 
@@ -89,26 +97,68 @@ class PubHash
 
                    }
 
-      cit_data_hash["abstract"] = pub_hash[:abstract] unless pub_hash[:abstract].blank?
+    #cit_data_hash["abstract"] = pub_hash[:abstract] unless pub_hash[:abstract].blank?
 
-      # add series information if it exists
-      if pub_hash.has_key?(:series)
-        cit_data_hash["container-title"] = pub_hash[:series][:title] unless pub_hash[:series][:title].blank?
-        cit_data_hash["volume"] = pub_hash[:series][:volume] unless pub_hash[:series][:volume].blank?
-        cit_data_hash["issue"] = pub_hash[:series][:number] unless pub_hash[:series][:number].blank?
-        cit_data_hash["issued"]  = {"date-parts"=>[[pub_hash[:series][:year]]]} unless pub_hash[:series][:year].blank?
-     end
-     # add journal information if it exists
-     if pub_hash.has_key?(:journal)
-        cit_data_hash["container-title"] = pub_hash[:journal][:name] unless pub_hash[:journal][:name].blank?
-        cit_data_hash["volume"] = pub_hash[:journal][:volume] unless pub_hash[:journal][:volume].blank?
-        cit_data_hash["issue"] = pub_hash[:journal][:issue] unless pub_hash[:journal][:issue].blank?
-        cit_data_hash["issued"]  = {"date-parts"=>[[pub_hash[:journal][:year]]]} unless pub_hash[:journal][:year].blank?
+    unless authors_for_citeproc.empty? then cit_data_hash["author"] = authors_for_citeproc end
+
+    unless pub_hash[:articlenumber].blank? then cit_data_hash["chapter-number"] = pub_hash[:articlenumber] end
+    unless pub_hash[:pages].blank? then cit_data_hash["page"] = pub_hash[:pages] end
+    unless pub_hash[:publisher].blank? then cit_data_hash["publisher"] = pub_hash[:publisher] end
+
+  # add series information if it exists
+  if pub_hash.has_key?(:series)
+    unless pub_hash[:series][:title].blank? then 
+      cit_data_hash[:type] = 'book'
+      cit_data_hash["collection-title"] = pub_hash[:series][:title] 
+    end
+    unless pub_hash[:series][:volume].blank? then cit_data_hash["volume"] = pub_hash[:series][:volume] end
+    unless pub_hash[:series][:number].blank? then cit_data_hash["number"] = pub_hash[:series][:number] end
+    unless pub_hash[:series][:year].blank? then cit_data_hash["issued"]  = {"date-parts"=>[[pub_hash[:series][:year]]]} end
+    unless editors_for_citeproc.empty? then cit_data_hash["editor"] = editors_for_citeproc end
+ end
+ # add journal information if it exists
+ if pub_hash.has_key?(:journal)
+    unless pub_hash[:journal][:name].blank? then 
+      cit_data_hash[:type] = 'article'
+      cit_data_hash["container-title"] = pub_hash[:journal][:name] 
+    end
+    unless pub_hash[:journal][:volume].blank? then cit_data_hash["volume"] = pub_hash[:journal][:volume] end
+    unless pub_hash[:journal][:issue].blank? then cit_data_hash["issue"] = pub_hash[:journal][:issue] end
+    unless pub_hash[:journal][:year].blank? then cit_data_hash["issued"]  = {"date-parts"=>[[pub_hash[:journal][:year]]]} end
+    unless pub_hash[:supplement].blank? then cit_data_hash[:number] = pub_hash[:supplement] end
+  end
+   
+   # add any conference information, if it exists in a conference object
+  # this overrides the sciencewire fields above if both exist, which they shouldn't
+  if pub_hash.has_key?(:conference)
+      unless pub_hash[:conference][:name].blank? then cit_data_hash["event"] = pub_hash[:conference][:name] end
+      unless pub_hash[:conference][:startdate].blank? then cit_data_hash["event-date"] = pub_hash[:conference][:startdate] end
+        #override the startdate if there is a year:
+      unless pub_hash[:conference][:year].blank? then cit_data_hash["event-date"] = {"date-parts"=>[[pub_hash[:conference][:year]]]} end
+      unless pub_hash[:conference][:number].blank? then cit_data_hash["number"] = pub_hash[:conference][:number] end
+      if ! pub_hash[:conference][:city].blank? || ! pub_hash[:conference][:statecountry].blank?
+        cit_data_hash["event-place"] = pub_hash[:conference][:city]
+        if ! pub_hash[:conference][:city].blank? && ! pub_hash[:conference][:statecountry].blank? then cit_data_hash["event-place"] << ',' end
+        unless pub_hash[:conference][:statecountry].blank? then cit_data_hash["event-place"] << pub_hash[:conference][:statecountry] end
+      elsif ! pub_hash[:conference][:location].blank? 
+        cit_data_hash["event-place"] = pub_hash[:conference][:location]
       end
+     # unless pub_hash[:conference][:DOI].blank? then cit_data_hash["DOI"] = pub_hash[:conference][:DOI] end
+  end
+
       # use a year at the top level if it exists, i.e, override any year we'd gotten above from journal or series
-      cit_data_hash["issued"]  = {"date-parts"=>[[pub_hash[:year]]]} unless pub_hash[:year].blank?
-      # add book title if it exists, which indicates this pub is a chapter in the book
-      cit_data_hash["container-title"] = pub_hash[:booktitle] unless pub_hash[:booktitle].blank?
+  unless pub_hash[:year].blank? then cit_data_hash["issued"]  = {"date-parts"=>[[pub_hash[:year]]]} end
+  # add book title if it exists, which indicates this pub is a chapter in the book
+  unless pub_hash[:booktitle].blank? then 
+    cit_data_hash[:type] = 'book'
+    cit_data_hash["container-title"] = pub_hash[:booktitle] 
+  end
+
+  if pub_hash[:type].casecmp('book') && ! editors_for_citeproc.empty?
+    cit_data_hash["editor"] = editors_for_citeproc 
+  end
+
+
 
 
       cit_data_array = [cit_data_hash]
