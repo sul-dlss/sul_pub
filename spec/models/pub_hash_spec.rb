@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe PubHash do 
 
-  let(:conference_pub_in_journal) {{title: "My test title", 
+  let(:conference_pub_in_journal_hash) {{title: "My test title", 
                   type: 'article-journal', 
                   articlenumber: 33,
                   pages: "3-6",
@@ -68,7 +68,9 @@ let(:conference_pub_in_book_hash) {{title: "My test title",
   let(:book_pub_with_editors_hash) {{title: "My test title", 
                   type: 'book', 
                   author: [{name: "Smith, Jack", role: "editor"}, 
-                    {name: "Sprat, Jill", role: "editor"}],
+                    {name: "Sprat, Jill", role: "editor"},
+                    {name: "Jones, P. L."}, 
+                    {firstname: "Alan", middlename: "T", lastname: "Jackson"}],
                   year: '1987',
                   publisher: 'Smith Books',
                   booktitle: 'The Giant Book of Giant Ideas'
@@ -189,16 +191,102 @@ describe "#to_chicago_citation" do
         cite.should_not =~ /Last/
      #   cite.should_not =~ /and/
         expect(h.pub_hash[:author]).to_not include({:name=>"et al."})
+        puts cite
       end
-
+    end
       it "includes capitalized title" do
         h = PubHash.new(pub_hash)
-        cite = h.to_mla_citation
-        expect(cite).to include('New Insights Into the Expression and Function of Neural Connexins With Transgenic Mouse Mutants')
-       
+        cite = h.to_chicago_citation
+        expect(cite).to include("New Insights Into the Expression and Function of Neural Connexins With Transgenic Mouse Mutants")
+      end
+    it "includes authors from single name field"
+    it "includes authors from parsed name parts"
+
+  context "for conference" do
+      
+      context "published in book" do    
+        it "includes book information" do
+          conference_in_book = PubHash.new(conference_pub_in_book_hash)
+          cite = conference_in_book.to_chicago_citation
+          expect(cite).to include(conference_pub_in_book_hash[:booktitle])
+          expect(cite).to include(conference_pub_in_book_hash[:publisher])
+          expect(cite).to include(conference_pub_in_book_hash[:year])
+        end
+      end
+
+      context "published in journal" do
+        it "includes journal information" do
+          conference_in_journal = PubHash.new(conference_pub_in_journal_hash)
+          cite = conference_in_journal.to_chicago_citation
+          expect(cite).to include(conference_pub_in_journal_hash[:title].titlecase)
+          expect(cite).to include(conference_pub_in_journal_hash[:pages])
+          expect(cite).to include(conference_pub_in_journal_hash[:year])
+          expect(cite).to include(conference_pub_in_journal_hash[:journal][:name])
+        end
+      end
+
+      context "published in book series" do
+        it "includes book and series information" do
+          conference_in_book_series = PubHash.new(conference_pub_in_series_hash)
+          cite = conference_in_book_series.to_chicago_citation
+          expect(cite).to include('The Giant Book of Giant Ideas')
+          expect(cite).to include('The Book Series For Kings and Queens')
+          expect(cite).to include(conference_pub_in_series_hash[:publisher])
+          expect(cite).to include(conference_pub_in_series_hash[:year])
+          expect(cite).to include(conference_pub_in_series_hash[:pages])
+        end
       end
 
     end
+
+    context "for book" do
+       it "includes book information" do
+          book = PubHash.new(book_pub_hash)
+          cite = book.to_chicago_citation
+          expect(cite).to include(book_pub_hash[:booktitle])
+          expect(cite).to include(book_pub_hash[:publisher])
+          expect(cite).to include(book_pub_hash[:year])
+        end
+      
+       it "includes editors" do
+          book = PubHash.new(book_pub_with_editors_hash)
+          cite = book.to_chicago_citation
+          expect(cite).to include("Jack Smith")
+          expect(cite).to include("Jill Sprat")
+        end
+        it "includes authors" do
+          book = PubHash.new(book_pub_hash)
+          cite = book.to_chicago_citation
+          expect(cite).to include("Jones, P. L.")
+          expect(cite).to include("Alan T. Jackson")
+        end
+       
+    end
+
+    context "for article" do
+       it "includes article information" do
+          article_in_journal = PubHash.new(article_pub_hash)
+          cite = article_in_journal.to_chicago_citation
+          expect(cite).to include(article_pub_hash[:title].titlecase)
+          #expect(cite).to include(article_pub_hash[:pages])
+          expect(cite).to include(article_pub_hash[:year])
+          expect(cite).to include(article_pub_hash[:journal][:name])
+        end
+        it "excludes editors" do
+          article_in_journal = PubHash.new(article_pub_hash)
+          cite = article_in_journal.to_chicago_citation
+          expect(cite).to_not include("Jack Smith")
+          expect(cite).to_not include("Jill Sprat")
+        end
+        it "includes authors" do
+          article_in_journal = PubHash.new(article_pub_hash)
+          cite = article_in_journal.to_chicago_citation
+          expect(cite).to include("Jones, P. L.")
+          expect(cite).to include("Alan T. Jackson")
+        end
+    end
+
+
 
 end
 
@@ -265,46 +353,16 @@ describe "#to_mla_citation" do
             :featured=>false}]
         }}
 
-    #  it "adds et al whenever the flag is true" do
-     #   h = PubHash.new(et_hash)
-  	  #  cite = h.to_mla_citation
-      #  cite.should =~ /^Sohl, G./
-      #  cite.should =~ /et al./
-      #  expect(h.pub_hash[:author]).to_not include({:name=>"et al."})
-      #end
+      it "adds et al whenever the flag is true" do
+        pending "have to further modify CSL or code somehow"
+        h = PubHash.new(et_hash)
+  	    cite = h.to_chicago_citation
+        cite.should =~ /^Sohl, G./
+        cite.should =~ /et al./
+        expect(h.pub_hash[:author]).to_not include({:name=>"et al."})
+      end
     end
 
 	end
-
-it "includes authors from single name field"
-      it "includes authors from parsed name parts"
-
-  context "for conference" do
-      
-      context "published in book" do
-        it "includes book information"
-      end
-      context "published in journal" do
-        it "includes journal information" 
-      end
-      context "published in book series" do
-        it "includes book and series information" 
-      end
-
-    end
-
-    context "for book" do
-       it "includes book information"
-       it "includes editor as editor"
-       it "lists authors as authors"
-       
-    end
-
-    context "for article" do
-       it "includes article information"
-        it "exludes editors"
-    end
-
-
 end
 

@@ -10,7 +10,12 @@ class PubHash
   end
 
   def to_chicago_citation
-    chicago_csl_file = Rails.root.join('app', 'data', 'chicago-author-date.csl')
+    authors = pub_hash[:author] || [] 
+    if pub_hash[:etal] || authors.length > 5
+      chicago_csl_file = Rails.root.join('app', 'data', 'chicago-author-date_et_al.csl')
+    else
+      chicago_csl_file = Rails.root.join('app', 'data', 'chicago-author-date.csl')
+    end
     CiteProc.process(to_citation_data, :style => chicago_csl_file, :format => 'html')
   end
 
@@ -32,8 +37,11 @@ class PubHash
       authors = pub_hash[:author] || []
 
       if authors.length > 5
-        # we pass the first five and the very last because some
-        #formats add the very last name when using et-al. the CSL should drop the sixth name 
+        # we pass the first five  authorsand the very last author because some
+        # formats add the very last name when using et-al. the CSL should drop the sixth name if unused.
+        # We could in fact pass all the author names to the CSL processor and let it
+        # just take the first five, but that seemed to crash the processor for publications
+        # with a lot of authors (e.g, 2000 authors)
         authors = authors[0..4]
         authors << pub_hash[:author].last
      #   authors << {:name=>"et al."}
@@ -81,7 +89,7 @@ class PubHash
         end
 
        unless last_name.blank?
-        if author[:role] && author[:role].casecmp("editor")
+        if author[:role] && author[:role].casecmp("editor") == 0
           editors_for_citeproc << {"family" => last_name, "given" => rest_of_name} 
         else 
           authors_for_citeproc << {"family" => last_name, "given" => rest_of_name}
@@ -114,7 +122,7 @@ class PubHash
     unless pub_hash[:series][:volume].blank? then cit_data_hash["volume"] = pub_hash[:series][:volume] end
     unless pub_hash[:series][:number].blank? then cit_data_hash["number"] = pub_hash[:series][:number] end
     unless pub_hash[:series][:year].blank? then cit_data_hash["issued"]  = {"date-parts"=>[[pub_hash[:series][:year]]]} end
-    unless editors_for_citeproc.empty? then cit_data_hash["editor"] = editors_for_citeproc end
+    
  end
  # add journal information if it exists
  if pub_hash.has_key?(:journal)
@@ -154,7 +162,7 @@ class PubHash
     cit_data_hash["container-title"] = pub_hash[:booktitle] 
   end
 
-  if pub_hash[:type].casecmp('book') && ! editors_for_citeproc.empty?
+  if cit_data_hash[:type].casecmp("book") == 0 && ! editors_for_citeproc.empty?
     cit_data_hash["editor"] = editors_for_citeproc 
   end
 
