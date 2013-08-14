@@ -192,13 +192,7 @@ class Publication < ActiveRecord::Base
       pubmed_source_record = PubmedSourceRecord.find_by_pmid(self.pmid)
       build_from_pubmed_hash(pubmed_source_record.get_source_as_hash)
     end
-
-    set_last_updated_value_in_hash
-    add_all_db_contributions_to_my_pub_hash
-    add_all_identifiers_in_db_to_pub_hash
-    update_formatted_citations
-    pub_hash_will_change!
-    #todo add pub_hash_needs_update?
+    sync_publication_hash_and_db
 
     self
   end
