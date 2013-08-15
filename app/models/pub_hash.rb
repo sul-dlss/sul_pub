@@ -116,7 +116,7 @@ class PubHash
   # add series information if it exists
   if pub_hash.has_key?(:series)
     unless pub_hash[:series][:title].blank? then 
-      cit_data_hash[:type] = 'book'
+      cit_data_hash["type"] = 'book'
       cit_data_hash["collection-title"] = pub_hash[:series][:title] 
     end
     unless pub_hash[:series][:volume].blank? then cit_data_hash["volume"] = pub_hash[:series][:volume] end
@@ -127,13 +127,13 @@ class PubHash
  # add journal information if it exists
  if pub_hash.has_key?(:journal)
     unless pub_hash[:journal][:name].blank? then 
-      cit_data_hash[:type] = 'article'
+      cit_data_hash["type"] = 'article-journal'
       cit_data_hash["container-title"] = pub_hash[:journal][:name] 
     end
     unless pub_hash[:journal][:volume].blank? then cit_data_hash["volume"] = pub_hash[:journal][:volume] end
     unless pub_hash[:journal][:issue].blank? then cit_data_hash["issue"] = pub_hash[:journal][:issue] end
     unless pub_hash[:journal][:year].blank? then cit_data_hash["issued"]  = {"date-parts"=>[[pub_hash[:journal][:year]]]} end
-    unless pub_hash[:supplement].blank? then cit_data_hash[:number] = pub_hash[:supplement] end
+    unless pub_hash[:supplement].blank? then cit_data_hash["number"] = pub_hash[:supplement] end
   end
    
    # add any conference information, if it exists in a conference object
@@ -158,18 +158,16 @@ class PubHash
   unless pub_hash[:year].blank? then cit_data_hash["issued"]  = {"date-parts"=>[[pub_hash[:year]]]} end
   # add book title if it exists, which indicates this pub is a chapter in the book
   unless pub_hash[:booktitle].blank? then 
-    cit_data_hash[:type] = 'book'
+    cit_data_hash["type"] = 'book'
     cit_data_hash["container-title"] = pub_hash[:booktitle] 
   end
 
-  if cit_data_hash[:type].casecmp("book") == 0 && ! editors_for_citeproc.empty?
+  if cit_data_hash["type"].casecmp("book") == 0 && ! editors_for_citeproc.empty?
     cit_data_hash["editor"] = editors_for_citeproc 
   end
-
-
-
-
+      #puts cit_data_hash.to_s
       cit_data_array = [cit_data_hash]
+
     end
   end
 end

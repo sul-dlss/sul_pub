@@ -183,15 +183,20 @@ let(:conference_pub_in_book_hash) {{title: "My test title",
 describe "#to_chicago_citation" do
 
     context "with more than 5 authors" do
-      it "builds citations with just the first 5" do
+      it "builds citations with just the first 5 and suppends et al" do
         h = PubHash.new(pub_hash)
         cite = h.to_chicago_citation
         cite.should =~ /^Sohl, G./
-        cite.should =~ /et al./
-        cite.should_not =~ /Last/
-     #   cite.should_not =~ /and/
+        expect(cite).to include("B. Odermatt")
+        expect(cite).to include("S. Maxeiner")
+        expect(cite).to include("J. Degen")
+        expect(cite).to include("K. Willecke")
+        expect(cite).to include("et al.")
+        expect(cite).to_not include(", and")
+        expect(cite).to_not include("SecondLast")
+        expect(cite).to_not include("Last")
         expect(h.pub_hash[:author]).to_not include({:name=>"et al."})
-        puts cite
+      
       end
     end
       it "includes capitalized title" do
@@ -199,8 +204,18 @@ describe "#to_chicago_citation" do
         cite = h.to_chicago_citation
         expect(cite).to include("New Insights Into the Expression and Function of Neural Connexins With Transgenic Mouse Mutants")
       end
-    it "includes authors from single name field"
-    it "includes authors from parsed name parts"
+
+    it "includes authors from single name field" do
+      h = PubHash.new(article_pub_hash)
+        cite = h.to_chicago_citation
+        expect(cite).to include("Jones, P. L.")
+    end
+
+    it "includes authors from compound name field" do
+      h = PubHash.new(article_pub_hash)
+        cite = h.to_chicago_citation
+        expect(cite).to include("Alan T. Jackson")
+    end
 
   context "for conference" do
       
@@ -233,7 +248,6 @@ describe "#to_chicago_citation" do
           expect(cite).to include('The Book Series For Kings and Queens')
           expect(cite).to include(conference_pub_in_series_hash[:publisher])
           expect(cite).to include(conference_pub_in_series_hash[:year])
-          expect(cite).to include(conference_pub_in_series_hash[:pages])
         end
       end
 
@@ -268,10 +282,16 @@ describe "#to_chicago_citation" do
           article_in_journal = PubHash.new(article_pub_hash)
           cite = article_in_journal.to_chicago_citation
           expect(cite).to include(article_pub_hash[:title].titlecase)
-          #expect(cite).to include(article_pub_hash[:pages])
           expect(cite).to include(article_pub_hash[:year])
           expect(cite).to include(article_pub_hash[:journal][:name])
+         
         end
+        it "includes journal volume issue and pages" do
+          article_in_journal = PubHash.new(article_pub_hash)
+          cite = article_in_journal.to_chicago_citation
+          expect(cite).to include("#{article_pub_hash[:journal][:volume]} (#{article_pub_hash[:journal][:issue].to_s}): #{article_pub_hash[:pages]}")
+        end
+
         it "excludes editors" do
           article_in_journal = PubHash.new(article_pub_hash)
           cite = article_in_journal.to_chicago_citation
