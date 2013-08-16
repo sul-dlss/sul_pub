@@ -96,7 +96,7 @@ class CapProfileIdRewriter
           @authors_updated_count += 1
         else
           # SKIP new authors?
-          author = Author.create(new_author_attributes)
+          author = Author.create(attrs)
           @new_author_count += 1
         end
       end
