@@ -91,7 +91,7 @@ class CapProfileIdRewriter
           author = Author.where(california_physician_license: attrs[:california_physician_license]).first
         end
         if author
-          author.update_attributes(new_author_attributes)
+          author.update_attributes(attrs)
           author.contributions.each { |contrib | contrib.update_attribute(:cap_profile_id, author.cap_profile_id)}
           @authors_updated_count += 1
         else
