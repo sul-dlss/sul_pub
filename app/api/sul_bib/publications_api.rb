@@ -29,7 +29,7 @@ module SulBib
     post do
       request_body_unparsed = env['api.request.input']
       logger.info("adding new manual publication from BibJSON")
-      logger.debug("#{request_body_unparsed}")
+      logger.info("#{request_body_unparsed}")
       pub_hash = params[:pub_hash]
      # Rails.logger.debug "Incoming bibjson post attributes hash: #{pub_hash}"
       fingerprint = Digest::SHA2.hexdigest(request_body_unparsed)

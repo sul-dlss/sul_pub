@@ -1,6 +1,6 @@
 module SulBib
   class AuthorshipAPI < Grape::API
-    
+
     version 'v1', :using => :header, :vendor => 'sul', :format => :json
     format :json
 
@@ -16,6 +16,9 @@ module SulBib
     end
     post do
       # FIRST GET THE AUTHOR
+      request_body_unparsed = env['api.request.input']
+      logger.info("Incoming Authors JSON: ")
+      logger.info("#{request_body_unparsed}")
       author = if params[:author][:id]
         begin
           Author.find(params[:author][:id])
