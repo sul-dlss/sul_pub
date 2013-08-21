@@ -3,15 +3,13 @@ require 'time'
 class CapAuthorsPoller
   include ActionView::Helpers::DateHelper
 
-  def get_authorship_data(poll_time = (Time.now - 1.day))
-
+  def get_authorship_data(days_ago = 1)
+    poll_time = Time.now - (days_ago.to_i).days
     begin
       @cap_http_client = CapHttpClient.new
-      if(poll_time.nil?)
-        poll_since = iso8601(3)
-      else
-        poll_since = poll_time.iso8601(3)
-      end
+
+      poll_since = poll_time.iso8601(3)
+
       page_size = 1000
       page_count = 0
 
