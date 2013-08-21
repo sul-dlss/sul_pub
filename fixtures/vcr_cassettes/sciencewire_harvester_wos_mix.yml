@@ -48,7 +48,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Tue, 13 Aug 2013 18:43:31 GMT
+      - Tue, 20 Aug 2013 18:27:33 GMT
       Content-Length:
       - '277'
     body:
@@ -57,7 +57,7 @@ http_interactions:
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>82298</queryID>\r\n
         \ <queryResultRows>2</queryResultRows>\r\n  <totalRows>2</totalRows>\r\n</ScienceWireQueryIDResponse>"
     http_version: 
-  recorded_at: Tue, 13 Aug 2013 18:43:32 GMT
+  recorded_at: Tue, 20 Aug 2013 18:27:34 GMT
 - request:
     method: get
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/82298?format=xml&page=0&pageSize=2147483647&v=version/3
@@ -95,7 +95,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Tue, 13 Aug 2013 18:43:32 GMT
+      - Tue, 20 Aug 2013 18:27:34 GMT
       Content-Length:
       - '7466'
     body:
@@ -118,7 +118,7 @@ http_interactions:
         \   <AuthorCount>7</AuthorCount>\r\n    <KeywordList>NI|ROUTE|SOLAR-CELLS|DISLOCATION
         DENSITY|ALUMINUM-INDUCED CRYSTALLIZATION</KeywordList>\r\n    <DocumentTypeList>Article</DocumentTypeList>\r\n
         \   <DocumentCategory>Journal Document</DocumentCategory>\r\n    <NumberOfReferences>23</NumberOfReferences>\r\n
-        \   <TimesCited>1</TimesCited>\r\n    <TimesNotSelfCited>1</TimesNotSelfCited>\r\n
+        \   <TimesCited>2</TimesCited>\r\n    <TimesNotSelfCited>2</TimesNotSelfCited>\r\n
         \   <PMID xsi:nil=\"true\" />\r\n    <WoSItemID>000303251500027</WoSItemID>\r\n
         \   <PublicationSourceTitle>ENERGY &amp; ENVIRONMENTAL SCIENCE</PublicationSourceTitle>\r\n
         \   <Volume>5</Volume>\r\n    <Issue>5</Issue>\r\n    <Pagination>6905-6908</Pagination>\r\n
@@ -135,7 +135,7 @@ http_interactions:
         &amp; FUELS;2011;SC;ClosestToPublicationYear|3/132;ENGINEERING, CHEMICAL;2011;SC;ClosestToPublicationYear|1/203;ENVIRONMENTAL
         SCIENCES;2011;SC;ClosestToPublicationYear|12/149;CHEMISTRY, MULTIDISCIPLINARY;2011;SC;MostRecentYear|3/79;ENERGY
         &amp; FUELS;2011;SC;MostRecentYear|3/132;ENGINEERING, CHEMICAL;2011;SC;MostRecentYear|1/203;ENVIRONMENTAL
-        SCIENCES;2011;SC;MostRecentYear</PublicationCategoryRankingList>\r\n    <AuthorCitationCountList>1,0,1|2,0,1|3,0,1|4,0,1|5,0,1|6,0,1|7,0,1</AuthorCitationCountList>\r\n
+        SCIENCES;2011;SC;MostRecentYear</PublicationCategoryRankingList>\r\n    <AuthorCitationCountList>1,0,2|2,0,2|3,0,2|4,0,2|5,0,2|6,0,2|7,0,2</AuthorCitationCountList>\r\n
         \   <CopyrightStateProvince>CAMBS</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
         KINGDOM</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
         \   <PublicationItemID>62352332</PublicationItemID>\r\n    <Title>Mn3O4 Supported
@@ -185,7 +185,7 @@ http_interactions:
         \   <CopyrightStateProvince>DC</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
         STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n</ArrayOfPublicationItem>"
     http_version: 
-  recorded_at: Tue, 13 Aug 2013 18:43:32 GMT
+  recorded_at: Tue, 20 Aug 2013 18:27:34 GMT
 - request:
     method: post
     uri: http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml
@@ -203,7 +203,7 @@ http_interactions:
       message: Bad Request
     headers:
       Date:
-      - Tue, 13 Aug 2013 18:43:33 GMT
+      - Tue, 20 Aug 2013 18:27:35 GMT
       Server:
       - Apache
       Access-Control-Allow-Origin:
@@ -211,12 +211,12 @@ http_interactions:
       Cache-Control:
       - private
       Ncbi-Sid:
-      - 08DE5BD220A7E551_0052SID
+      - 08DE28AF213B5171_0157SID
       Content-Type:
       - text/xml; charset=UTF-8
       Set-Cookie:
-      - ncbi_sid=08DE5BD220A7E551_0052SID; domain=.nih.gov; path=/; expires=Wed, 13
-        Aug 2014 18:43:33 GMT
+      - ncbi_sid=08DE28AF213B5171_0157SID; domain=.nih.gov; path=/; expires=Wed, 20
+        Aug 2014 18:27:35 GMT
       Connection:
       - close
       Transfer-Encoding:
@@ -226,5 +226,5 @@ http_interactions:
       string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n\n<eFetchResult>\n\t<ERROR>WebEnv
         parameter is required</ERROR>\n</eFetchResult>\n"
     http_version: 
-  recorded_at: Tue, 13 Aug 2013 18:43:33 GMT
+  recorded_at: Tue, 20 Aug 2013 18:27:35 GMT
 recorded_with: VCR 2.5.0

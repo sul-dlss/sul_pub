@@ -17,7 +17,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Sun, 11 Aug 2013 21:16:19 GMT
+      - Mon, 19 Aug 2013 22:08:24 GMT
       Server:
       - Apache
       Access-Control-Allow-Origin:
@@ -25,12 +25,12 @@ http_interactions:
       Cache-Control:
       - private
       Ncbi-Sid:
-      - 08DE7976207FF231_0155SID
+      - 9DFD5A4621297581_0340SID
       Content-Type:
       - text/xml; charset=UTF-8
       Set-Cookie:
-      - ncbi_sid=08DE7976207FF231_0155SID; domain=.nih.gov; path=/; expires=Mon, 11
-        Aug 2014 21:16:19 GMT
+      - ncbi_sid=9DFD5A4621297581_0340SID; domain=.nih.gov; path=/; expires=Tue, 19
+        Aug 2014 22:08:24 GMT
       Transfer-Encoding:
       - chunked
     body:
@@ -400,5 +400,5 @@ http_interactions:
         \       <ArticleIdList>\n            <ArticleId IdType=\"pubmed\">960</ArticleId>\n
         \       </ArticleIdList>\n    </PubmedData>\n</PubmedArticle>\n\n</PubmedArticleSet>\n"
     http_version: 
-  recorded_at: Sun, 11 Aug 2013 21:16:19 GMT
+  recorded_at: Mon, 19 Aug 2013 22:08:25 GMT
 recorded_with: VCR 2.5.0

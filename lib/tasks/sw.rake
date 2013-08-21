@@ -24,7 +24,6 @@ namespace :sw do
 
   desc "Harvest high priority faculty using the name-only query"
   task :faculty_harvest, [:path_to_ids] => :environment do |t, args|
-    harvester.name_only_query = true
     harvester.use_middle_name = false
     ids = IO.readlines(args[:path_to_ids]).map {|l| l.strip}
     harvester.harvest_pubs_for_author_ids ids

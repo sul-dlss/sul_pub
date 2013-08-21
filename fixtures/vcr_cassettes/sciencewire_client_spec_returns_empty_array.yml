@@ -1,109 +1,6 @@
 ---
 http_interactions:
 - request:
-    method: get
-    uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/44272?format=xml&page=0&pageSize=2147483647&v=version/3
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - ! '*/*'
-      User-Agent:
-      - Ruby
-      Content-Type:
-      - text/xml
-      Licenseid:
-      - ***REMOVED***
-      Host:
-      - sciencewirerest.discoverylogic.com
-      Connection:
-      - Keep-Alive
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Cache-Control:
-      - private
-      Content-Type:
-      - application/xml; charset=utf-8
-      Server:
-      - Microsoft-IIS/7.5
-      X-Aspnetmvc-Version:
-      - '2.0'
-      X-Aspnet-Version:
-      - 4.0.30319
-      X-Powered-By:
-      - ASP.NET
-      Date:
-      - Tue, 23 Jul 2013 20:16:20 GMT
-      Content-Length:
-      - '148'
-    body:
-      encoding: US-ASCII
-      string: ! "<?xml version=\"1.0\"?>\r\n<ArrayOfPublicationItem xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
-        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" />"
-    http_version: 
-  recorded_at: Tue, 23 Jul 2013 20:16:21 GMT
-- request:
-    method: get
-    uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/?format=xml&page=0&pageSize=2147483647&v=version/3
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - ! '*/*'
-      User-Agent:
-      - Ruby
-      Content-Type:
-      - text/xml
-      Licenseid:
-      - some-license-id
-      Host:
-      - sciencewirerest.discoverylogic.com
-      Connection:
-      - Keep-Alive
-  response:
-    status:
-      code: 500
-      message: Internal Server Error
-    headers:
-      Cache-Control:
-      - private
-      Content-Type:
-      - text/html
-      Server:
-      - Microsoft-IIS/7.5
-      X-Aspnetmvc-Version:
-      - '2.0'
-      X-Aspnet-Version:
-      - 4.0.30319
-      X-Powered-By:
-      - ASP.NET
-      Date:
-      - Sun, 11 Aug 2013 21:18:09 GMT
-      Content-Length:
-      - '1208'
-    body:
-      encoding: US-ASCII
-      string: ! "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\r\n<html
-        xmlns=\"http://www.w3.org/1999/xhtml\">\r\n<head>\r\n<meta http-equiv=\"Content-Type\"
-        content=\"text/html; charset=iso-8859-1\"/>\r\n<title>500 - Internal server
-        error.</title>\r\n<style type=\"text/css\">\r\n<!--\r\nbody{margin:0;font-size:.7em;font-family:Verdana,
-        Arial, Helvetica, sans-serif;background:#EEEEEE;}\r\nfieldset{padding:0 15px
-        10px 15px;} \r\nh1{font-size:2.4em;margin:0;color:#FFF;}\r\nh2{font-size:1.7em;margin:0;color:#CC0000;}
-        \r\nh3{font-size:1.2em;margin:10px 0 0 0;color:#000000;} \r\n#header{width:96%;margin:0
-        0 0 0;padding:6px 2% 6px 2%;font-family:\"trebuchet MS\", Verdana, sans-serif;color:#FFF;\r\nbackground-color:#555555;}\r\n#content{margin:0
-        0 0 2%;position:relative;}\r\n.content-container{background:#FFF;width:96%;margin-top:8px;padding:10px;position:relative;}\r\n-->\r\n</style>\r\n</head>\r\n<body>\r\n<div
-        id=\"header\"><h1>Server Error</h1></div>\r\n<div id=\"content\">\r\n <div
-        class=\"content-container\"><fieldset>\r\n  <h2>500 - Internal server error.</h2>\r\n
-        \ <h3>There is a problem with the resource you are looking for, and it cannot
-        be displayed.</h3>\r\n </fieldset></div>\r\n</div>\r\n</body>\r\n</html>\r\n"
-    http_version: 
-  recorded_at: Sun, 11 Aug 2013 21:18:10 GMT
-- request:
     method: post
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery?format=xml
     body:
@@ -158,7 +55,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Tue, 13 Aug 2013 18:43:43 GMT
+      - Tue, 20 Aug 2013 18:27:47 GMT
       Content-Length:
       - '277'
     body:
@@ -167,7 +64,7 @@ http_interactions:
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>94679</queryID>\r\n
         \ <queryResultRows>0</queryResultRows>\r\n  <totalRows>0</totalRows>\r\n</ScienceWireQueryIDResponse>"
     http_version: 
-  recorded_at: Tue, 13 Aug 2013 18:43:44 GMT
+  recorded_at: Tue, 20 Aug 2013 18:27:48 GMT
 - request:
     method: get
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/94679?format=xml&page=0&pageSize=2147483647&v=version/3
@@ -205,7 +102,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Tue, 13 Aug 2013 18:43:43 GMT
+      - Tue, 20 Aug 2013 18:27:47 GMT
       Content-Length:
       - '148'
     body:
@@ -213,5 +110,5 @@ http_interactions:
       string: ! "<?xml version=\"1.0\"?>\r\n<ArrayOfPublicationItem xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" />"
     http_version: 
-  recorded_at: Tue, 13 Aug 2013 18:43:44 GMT
+  recorded_at: Tue, 20 Aug 2013 18:27:48 GMT
 recorded_with: VCR 2.5.0

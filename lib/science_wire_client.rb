@@ -9,7 +9,7 @@ class ScienceWireClient
   def get_sciencewire_id_suggestions(last_name, first_name, middle_name,  seed_list)
 
     ids = []
-    ["Journal Document"].each do |category|
+    ["Journal Document", "Conference Proceeding Document"].each do |category|
       bod = "<?xml version='1.0'?>
       <PublicationAuthorMatchParameters xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema'>
         <Authors>
@@ -116,6 +116,17 @@ class ScienceWireClient
   	            </Filter>
   	          </Criterion>"
     end
+
+    xml_query << "<Criterion>
+      	            <Filter>
+      	              <Column>DocumentCategory</Column>
+      	              <Operator>In</Operator>
+                      <Values>
+      	                <Value>Journal Document</Value>
+                        <Value>Conference Proceeding Document</Value>
+                      </Values>
+      	            </Filter>
+      	          </Criterion>"
 
     xml_query << "</Criteria>
 	      </Criterion>

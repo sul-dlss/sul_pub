@@ -1,411 +1,6 @@
 ---
 http_interactions:
 - request:
-    method: get
-    uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/42062?format=xml&page=0&pageSize=2147483647&v=version/3
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - ! '*/*'
-      User-Agent:
-      - Ruby
-      Content-Type:
-      - text/xml
-      Licenseid:
-      - ***REMOVED***
-      Host:
-      - sciencewirerest.discoverylogic.com
-      Connection:
-      - Keep-Alive
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Cache-Control:
-      - private
-      Content-Type:
-      - application/xml; charset=utf-8
-      Server:
-      - Microsoft-IIS/7.5
-      X-Aspnetmvc-Version:
-      - '2.0'
-      X-Aspnet-Version:
-      - 4.0.30319
-      X-Powered-By:
-      - ASP.NET
-      Date:
-      - Tue, 23 Jul 2013 20:16:19 GMT
-      Content-Length:
-      - '11521'
-    body:
-      encoding: ASCII-8BIT
-      string: !binary |-
-        PD94bWwgdmVyc2lvbj0iMS4wIj8+DQo8QXJyYXlPZlB1YmxpY2F0aW9uSXRl
-        bSB4bWxuczp4c2Q9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1h
-        IiB4bWxuczp4c2k9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1h
-        LWluc3RhbmNlIj4NCiAgPFB1YmxpY2F0aW9uSXRlbT4NCiAgICA8UHVibGlj
-        YXRpb25JdGVtSUQ+NjMzMzY4NTI8L1B1YmxpY2F0aW9uSXRlbUlEPg0KICAg
-        IDxUaXRsZT5Qcm90b24gcmFkaW9ncmFwaHkgcGVlcnMgaW50byBtZXRhbCBz
-        b2xpZGlmaWNhdGlvbi48L1RpdGxlPg0KICAgIDxBYnN0cmFjdD5IaXN0b3Jp
-        Y2FsbHksIG1ldGFscyBhcmUgY3V0IHVwIGFuZCBwb2xpc2hlZCB0byBzZWUg
-        dGhlIHN0cnVjdHVyZSBhbmQgdG8gaW5mZXIgaG93IHByb2Nlc3NpbmcgaW5m
-        bHVlbmNlcyB0aGUgZXZvbHV0aW9uLiBXZSBjYW4gbm93IHBlZXIgaW50byBh
-        IG1ldGFsIGR1cmluZyBwcm9jZXNzaW5nIHdpdGhvdXQgZGVzdHJveWluZyBp
-        dCB1c2luZyBwcm90b24gcmFkaW9ncmFwaHkuIFVuZGVyc3RhbmRpbmcgdGhl
-        IGxpbmsgYmV0d2VlbiBwcm9jZXNzaW5nIGFuZCBzdHJ1Y3R1cmUgaXMgaW1w
-        b3J0YW50IGJlY2F1c2Ugc3RydWN0dXJlIHByb2ZvdW5kbHkgYWZmZWN0cyB0
-        aGUgcHJvcGVydGllcyBvZiBlbmdpbmVlcmluZyBtYXRlcmlhbHMuIFN5bmNo
-        cm90cm9uIHgtcmF5IHJhZGlvZ3JhcGh5IGhhcyBlbmFibGVkIHJlYWwtdGlt
-        ZSBnbGltcHNlcyBpbnRvIG1ldGFsIHNvbGlkaWZpY2F0aW9uLiBIb3dldmVy
-        LCB4LXJheSBlbmVyZ2llcyBmYXZvciB0aGUgZXhhbWluYXRpb24gb2Ygc21h
-        bGwgdm9sdW1lcyBhbmQgbG93IGRlbnNpdHkgbWV0YWxzLiBIZXJlIHdlIHVz
-        ZSBoaWdoIGVuZXJneSBwcm90b24gcmFkaW9ncmFwaHkgZm9yIHRoZSBmaXJz
-        dCB0aW1lIHRvIGltYWdlIGEgbGFyZ2UgbWV0YWwgdm9sdW1lICgmZ3Q7MTAs
-        MDAwIG1tKDMpKSBkdXJpbmcgbWVsdGluZyBhbmQgc29saWRpZmljYXRpb24u
-        IFdlIGFsc28gc2hvdyBjb21wbGVtZW50YXJ5IHgtcmF5IHJlc3VsdHMgZnJv
-        bSBhIHNtYWxsIHZvbHVtZSAoJmx0OzEgbW0oMykpLCBicmlkZ2luZyBmb3Vy
-        IG9yZGVycyBvZiBtYWduaXR1ZGUuIFJlYWwtdGltZSBpbWFnaW5nIHdpbGwg
-        ZW5hYmxlIGVmZmljaWVudCBwcm9jZXNzIGRldmVsb3BtZW50IGFuZCB0aGUg
-        Y29udHJvbCBvZiBzdHJ1Y3R1cmUgZXZvbHV0aW9uIHRvIG1ha2UgbWF0ZXJp
-        YWxzIHdpdGggaW50ZW5kZWQgcHJvcGVydGllczsgaXQgd2lsbCBhbHNvIHBl
-        cm1pdCB0aGUgZGV2ZWxvcG1lbnQgb2YgZXhwZXJpbWVudGFsbHkgaW5mb3Jt
-        ZWQsIHByZWRpY3RpdmUgc3RydWN0dXJlIGFuZCBwcm9jZXNzIG1vZGVscy48
-        L0Fic3RyYWN0Pg0KICAgIDxBdXRob3JMaXN0PkNsYXJrZSxBbXksfEltaG9m
-        ZixTZXRoLHxHaWJicyxQYXVsLHxDb29sZXksSmFzb24sfE1vcnJpcyxDaHJp
-        c3RvcGhlcix8TWVycmlsbCxGcmFuayx8SG9sbGFuZGVyLEJyaWFuLHxNYXJp
-        YW0sRmVzc2VoYSx8T3R0LFRob21hcyx8QmFya2VyLE1hcnRoYSx8VHVja2Vy
-        LFRpbSx8TGVlLFdhaC1LZWF0LHxGZXp6YWEsS2FtZWwsfERlcml5LEFsZXgs
-        fFBhdHRlcnNvbixCcmlhbix8Q2xhcmtlLEtlc3Rlcix8TW9udGFsdm8sSm9l
-        bCx8RmllbGQsUm9iZXJ0LHxUaG9tYSxEYW4sfFNtaXRoLEphbWVzLHxUZXRl
-        cixEYXZpZCw8L0F1dGhvckxpc3Q+DQogICAgPEF1dGhvckNvdW50PjIxPC9B
-        dXRob3JDb3VudD4NCiAgICA8S2V5d29yZExpc3QgLz4NCiAgICA8RG9jdW1l
-        bnRUeXBlTGlzdD5Kb3VybmFsIEFydGljbGU8L0RvY3VtZW50VHlwZUxpc3Q+
-        DQogICAgPERvY3VtZW50Q2F0ZWdvcnk+Sm91cm5hbCBEb2N1bWVudDwvRG9j
-        dW1lbnRDYXRlZ29yeT4NCiAgICA8TnVtYmVyT2ZSZWZlcmVuY2VzIHhzaTpu
-        aWw9InRydWUiIC8+DQogICAgPFRpbWVzQ2l0ZWQgeHNpOm5pbD0idHJ1ZSIg
-        Lz4NCiAgICA8VGltZXNOb3RTZWxmQ2l0ZWQgeHNpOm5pbD0idHJ1ZSIgLz4N
-        CiAgICA8UE1JRD4yMzc3OTA2MzwvUE1JRD4NCiAgICA8UHVibGljYXRpb25T
-        b3VyY2VUaXRsZT5TY2llbnRpZmljIHJlcG9ydHM8L1B1YmxpY2F0aW9uU291
-        cmNlVGl0bGU+DQogICAgPFZvbHVtZT4zPC9Wb2x1bWU+DQogICAgPFBhZ2lu
-        YXRpb24+MjAyMC0/PC9QYWdpbmF0aW9uPg0KICAgIDxQdWJsaWNhdGlvbkRh
-        dGU+MjAxMy0wNi0xOVQwMDowMDowMDwvUHVibGljYXRpb25EYXRlPg0KICAg
-        IDxQdWJsaWNhdGlvblllYXI+MjAxMzwvUHVibGljYXRpb25ZZWFyPg0KICAg
-        IDxQdWJsaWNhdGlvblN1YmplY3RDYXRlZ29yeUxpc3QgLz4NCiAgICA8SVNT
-        Tj4yMDQ1LTIzMjI8L0lTU04+DQogICAgPERPST4xMC4xMDM4L3NyZXAwMjAy
-        MDwvRE9JPg0KICAgIDxDb25mZXJlbmNlU3RhcnREYXRlIHhzaTpuaWw9InRy
-        dWUiIC8+DQogICAgPENvbmZlcmVuY2VFbmREYXRlIHhzaTpuaWw9InRydWUi
-        IC8+DQogICAgPFJhbmsgeHNpOm5pbD0idHJ1ZSIgLz4NCiAgICA8T3JkaW5h
-        bFJhbms+MDwvT3JkaW5hbFJhbms+DQogICAgPE5vcm1hbGl6ZWRSYW5rIHhz
-        aTpuaWw9InRydWUiIC8+DQogICAgPE5ld1B1YmxpY2F0aW9uSXRlbUlEIHhz
-        aTpuaWw9InRydWUiIC8+DQogICAgPElzT2Jzb2xldGU+ZmFsc2U8L0lzT2Jz
-        b2xldGU+DQogICAgPENvcHlyaWdodFB1Ymxpc2hlciAvPg0KICAgIDxDb3B5
-        cmlnaHRDaXR5IC8+DQogICAgPENvcHlyaWdodFN0YXRlUHJvdmluY2UgLz4N
-        CiAgICA8Q29weXJpZ2h0Q291bnRyeT5VTklURUQgS0lOR0RPTTwvQ29weXJp
-        Z2h0Q291bnRyeT4NCiAgPC9QdWJsaWNhdGlvbkl0ZW0+DQogIDxQdWJsaWNh
-        dGlvbkl0ZW0+DQogICAgPFB1YmxpY2F0aW9uSXRlbUlEPjYzMjg2Mzg2PC9Q
-        dWJsaWNhdGlvbkl0ZW1JRD4NCiAgICA8VGl0bGU+UEhPU1BIQVRFIEJJTkRF
-        UlMgQU5EIEZJVkUtWUVBUiBNT1JUQUxJVFkgSU4gUFJFVkFMRU5UIEhBRU1P
-        RElBTFlTSVMgUEFUSUVOVFM8L1RpdGxlPg0KICAgIDxBYnN0cmFjdCAvPg0K
-        ICAgIDxBdXRob3JMaXN0PlNtaXRoLEphbWVzLHxHZWRkZXMsQ29saW4sfFBh
-        ZG1hbmFiaGFuLE5lYWwsPC9BdXRob3JMaXN0Pg0KICAgIDxBdXRob3JDb3Vu
-        dD4zPC9BdXRob3JDb3VudD4NCiAgICA8S2V5d29yZExpc3QgLz4NCiAgICA8
-        RG9jdW1lbnRUeXBlTGlzdD5NZWV0aW5nIEFic3RyYWN0PC9Eb2N1bWVudFR5
-        cGVMaXN0Pg0KICAgIDxEb2N1bWVudENhdGVnb3J5PkNvbmZlcmVuY2UgUHJv
-        Y2VlZGluZyBEb2N1bWVudDwvRG9jdW1lbnRDYXRlZ29yeT4NCiAgICA8TnVt
-        YmVyT2ZSZWZlcmVuY2VzIHhzaTpuaWw9InRydWUiIC8+DQogICAgPFRpbWVz
-        Q2l0ZWQ+MDwvVGltZXNDaXRlZD4NCiAgICA8VGltZXNOb3RTZWxmQ2l0ZWQ+
-        MDwvVGltZXNOb3RTZWxmQ2l0ZWQ+DQogICAgPFBNSUQgeHNpOm5pbD0idHJ1
-        ZSIgLz4NCiAgICA8V29TSXRlbUlEPjAwMDMxOTQ5ODIwMDE0MzwvV29TSXRl
-        bUlEPg0KICAgIDxQdWJsaWNhdGlvblNvdXJjZVRpdGxlPk5FUEhST0xPR1kg
-        RElBTFlTSVMgVFJBTlNQTEFOVEFUSU9OPC9QdWJsaWNhdGlvblNvdXJjZVRp
-        dGxlPg0KICAgIDxWb2x1bWU+Mjg8L1ZvbHVtZT4NCiAgICA8UGFnaW5hdGlv
-        bj41OC01OTwvUGFnaW5hdGlvbj4NCiAgICA8UHVibGljYXRpb25EYXRlPjIw
-        MTMtMDUtMDFUMDA6MDA6MDA8L1B1YmxpY2F0aW9uRGF0ZT4NCiAgICA8UHVi
-        bGljYXRpb25ZZWFyPjIwMTM8L1B1YmxpY2F0aW9uWWVhcj4NCiAgICA8UHVi
-        bGljYXRpb25UeXBlPkpvdXJuYWw8L1B1YmxpY2F0aW9uVHlwZT4NCiAgICA8
-        UHVibGljYXRpb25TdWJqZWN0Q2F0ZWdvcnlMaXN0PlRyYW5zcGxhbnRhdGlv
-        bnxVcm9sb2d5ICZhbXA7IE5lcGhyb2xvZ3k8L1B1YmxpY2F0aW9uU3ViamVj
-        dENhdGVnb3J5TGlzdD4NCiAgICA8SVNTTj4wOTMxLTA1MDk8L0lTU04+DQog
-        ICAgPENvbmZlcmVuY2VUaXRsZT41MHRoIEV1cm9wZWFuLVJlbmFsLUFzc29j
-        aWF0aW9uIC0gRXVyb3BlYW4tRGlhbHlzaXMtYW5kLVRyYW5zcGxhbnQtQXNz
-        b2NpYXRpb24gQ29uZ3Jlc3M8L0NvbmZlcmVuY2VUaXRsZT4NCiAgICA8Q29u
-        ZmVyZW5jZVN0YXJ0RGF0ZT4yMDEzLTA1LTE4VDAwOjAwOjAwPC9Db25mZXJl
-        bmNlU3RhcnREYXRlPg0KICAgIDxDb25mZXJlbmNlRW5kRGF0ZT4yMDEzLTA1
-        LTIxVDAwOjAwOjAwPC9Db25mZXJlbmNlRW5kRGF0ZT4NCiAgICA8Q29uZmVy
-        ZW5jZUNpdHk+SVNUQU5CVUw8L0NvbmZlcmVuY2VDaXR5Pg0KICAgIDxDb25m
-        ZXJlbmNlU3RhdGVDb3VudHJ5PlRVUktFWTwvQ29uZmVyZW5jZVN0YXRlQ291
-        bnRyeT4NCiAgICA8UmFuayB4c2k6bmlsPSJ0cnVlIiAvPg0KICAgIDxPcmRp
-        bmFsUmFuaz4xPC9PcmRpbmFsUmFuaz4NCiAgICA8Tm9ybWFsaXplZFJhbmsg
-        eHNpOm5pbD0idHJ1ZSIgLz4NCiAgICA8TmV3UHVibGljYXRpb25JdGVtSUQg
-        eHNpOm5pbD0idHJ1ZSIgLz4NCiAgICA8SXNPYnNvbGV0ZT5mYWxzZTwvSXNP
-        YnNvbGV0ZT4NCiAgICA8Q29weXJpZ2h0UHVibGlzaGVyPk9YRk9SRCBVTklW
-        IFBSRVNTPC9Db3B5cmlnaHRQdWJsaXNoZXI+DQogICAgPENvcHlyaWdodENp
-        dHk+T1hGT1JEPC9Db3B5cmlnaHRDaXR5Pg0KICAgIDxQdWJsaWNhdGlvbklt
-        cGFjdEZhY3Rvckxpc3Q+My4zOTYsMjAxMSxDbG9zZXN0VG9QdWJsaWNhdGlv
-        blllYXJ8My4zOTYsMjAxMSxNb3N0UmVjZW50WWVhcjwvUHVibGljYXRpb25J
-        bXBhY3RGYWN0b3JMaXN0Pg0KICAgIDxQdWJsaWNhdGlvbkNhdGVnb3J5UmFu
-        a2luZ0xpc3Q+Ny8yNDtUUkFOU1BMQU5UQVRJT047MjAxMTtTQztDbG9zZXN0
-        VG9QdWJsaWNhdGlvblllYXJ8MTUvNzI7VVJPTE9HWSAmYW1wOyBORVBIUk9M
-        T0dZOzIwMTE7U0M7Q2xvc2VzdFRvUHVibGljYXRpb25ZZWFyfDcvMjQ7VFJB
-        TlNQTEFOVEFUSU9OOzIwMTE7U0M7TW9zdFJlY2VudFllYXJ8MTUvNzI7VVJP
-        TE9HWSAmYW1wOyBORVBIUk9MT0dZOzIwMTE7U0M7TW9zdFJlY2VudFllYXI8
-        L1B1YmxpY2F0aW9uQ2F0ZWdvcnlSYW5raW5nTGlzdD4NCiAgICA8QXV0aG9y
-        Q2l0YXRpb25Db3VudExpc3Q+MSwwLDB8MiwwLDB8MywwLDA8L0F1dGhvckNp
-        dGF0aW9uQ291bnRMaXN0Pg0KICAgIDxDb3B5cmlnaHRTdGF0ZVByb3ZpbmNl
-        IC8+DQogICAgPENvcHlyaWdodENvdW50cnk+VU5JVEVEIEtJTkdET008L0Nv
-        cHlyaWdodENvdW50cnk+DQogIDwvUHVibGljYXRpb25JdGVtPg0KICA8UHVi
-        bGljYXRpb25JdGVtPg0KICAgIDxQdWJsaWNhdGlvbkl0ZW1JRD42MzI2NjMz
-        MDwvUHVibGljYXRpb25JdGVtSUQ+DQogICAgPFRpdGxlPlN5bnRoZXRpYyBz
-        dXJmYWNlcyBmb3IgdGhlIGF1dG9tYXRlZCBtYW51ZmFjdHVyZSBvZiBoUFND
-        czwvVGl0bGU+DQogICAgPEFic3RyYWN0IC8+DQogICAgPEF1dGhvckxpc3Q+
-        U21pdGgsSmFtZXMsfERlbm5pbmcsQ2hyaXMsPC9BdXRob3JMaXN0Pg0KICAg
-        IDxBdXRob3JDb3VudD4yPC9BdXRob3JDb3VudD4NCiAgICA8S2V5d29yZExp
-        c3QgLz4NCiAgICA8RG9jdW1lbnRUeXBlTGlzdD5NZWV0aW5nIEFic3RyYWN0
-        PC9Eb2N1bWVudFR5cGVMaXN0Pg0KICAgIDxEb2N1bWVudENhdGVnb3J5PkNv
-        bmZlcmVuY2UgUHJvY2VlZGluZyBEb2N1bWVudDwvRG9jdW1lbnRDYXRlZ29y
-        eT4NCiAgICA8TnVtYmVyT2ZSZWZlcmVuY2VzIHhzaTpuaWw9InRydWUiIC8+
-        DQogICAgPFRpbWVzQ2l0ZWQ+MDwvVGltZXNDaXRlZD4NCiAgICA8VGltZXNO
-        b3RTZWxmQ2l0ZWQ+MDwvVGltZXNOb3RTZWxmQ2l0ZWQ+DQogICAgPFBNSUQg
-        eHNpOm5pbD0idHJ1ZSIgLz4NCiAgICA8V29TSXRlbUlEPjAwMDMxOTExNDcw
-        MDA0NDwvV29TSXRlbUlEPg0KICAgIDxQdWJsaWNhdGlvblNvdXJjZVRpdGxl
-        PkhVTUFOIEdFTkUgVEhFUkFQWTwvUHVibGljYXRpb25Tb3VyY2VUaXRsZT4N
-        CiAgICA8Vm9sdW1lPjI0PC9Wb2x1bWU+DQogICAgPElzc3VlPjU8L0lzc3Vl
-        Pg0KICAgIDxQYWdpbmF0aW9uPkExNC1BMTQ8L1BhZ2luYXRpb24+DQogICAg
-        PFB1YmxpY2F0aW9uRGF0ZT4yMDEzLTA1LTAxVDAwOjAwOjAwPC9QdWJsaWNh
-        dGlvbkRhdGU+DQogICAgPFB1YmxpY2F0aW9uWWVhcj4yMDEzPC9QdWJsaWNh
-        dGlvblllYXI+DQogICAgPFB1YmxpY2F0aW9uVHlwZT5Kb3VybmFsPC9QdWJs
-        aWNhdGlvblR5cGU+DQogICAgPFB1YmxpY2F0aW9uU3ViamVjdENhdGVnb3J5
-        TGlzdD5CaW90ZWNobm9sb2d5ICZhbXA7IEFwcGxpZWQgTWljcm9iaW9sb2d5
-        fEdlbmV0aWNzICZhbXA7IEhlcmVkaXR5fE1lZGljaW5lLCBSZXNlYXJjaCAm
-        YW1wOyBFeHBlcmltZW50YWw8L1B1YmxpY2F0aW9uU3ViamVjdENhdGVnb3J5
-        TGlzdD4NCiAgICA8SVNTTj4xMDQzLTAzNDI8L0lTU04+DQogICAgPENvbmZl
-        cmVuY2VUaXRsZT5Db25mZXJlbmNlIG9mIHRoZSBCcml0aXNoLVNvY2lldHkt
-        Zm9yLUdlbmUtYW5kLUNlbGwtVGhlcmFweSAoQlNHQ1QpPC9Db25mZXJlbmNl
-        VGl0bGU+DQogICAgPENvbmZlcmVuY2VTdGFydERhdGU+MjAxMy0wNC0xN1Qw
-        MDowMDowMDwvQ29uZmVyZW5jZVN0YXJ0RGF0ZT4NCiAgICA8Q29uZmVyZW5j
-        ZUVuZERhdGU+MjAxMy0wNC0xOVQwMDowMDowMDwvQ29uZmVyZW5jZUVuZERh
-        dGU+DQogICAgPENvbmZlcmVuY2VDaXR5PkVHSEFNPC9Db25mZXJlbmNlQ2l0
-        eT4NCiAgICA8Q29uZmVyZW5jZVN0YXRlQ291bnRyeT5FTkdMQU5EPC9Db25m
-        ZXJlbmNlU3RhdGVDb3VudHJ5Pg0KICAgIDxSYW5rIHhzaTpuaWw9InRydWUi
-        IC8+DQogICAgPE9yZGluYWxSYW5rPjI8L09yZGluYWxSYW5rPg0KICAgIDxO
-        b3JtYWxpemVkUmFuayB4c2k6bmlsPSJ0cnVlIiAvPg0KICAgIDxOZXdQdWJs
-        aWNhdGlvbkl0ZW1JRCB4c2k6bmlsPSJ0cnVlIiAvPg0KICAgIDxJc09ic29s
-        ZXRlPmZhbHNlPC9Jc09ic29sZXRlPg0KICAgIDxDb3B5cmlnaHRQdWJsaXNo
-        ZXI+TUFSWSBBTk4gTElFQkVSVCBJTkM8L0NvcHlyaWdodFB1Ymxpc2hlcj4N
-        CiAgICA8Q29weXJpZ2h0Q2l0eT5ORVcgUk9DSEVMTEU8L0NvcHlyaWdodENp
-        dHk+DQogICAgPFB1YmxpY2F0aW9uSW1wYWN0RmFjdG9yTGlzdD40LjIxOCwy
-        MDExLENsb3Nlc3RUb1B1YmxpY2F0aW9uWWVhcnw0LjIxOCwyMDExLE1vc3RS
-        ZWNlbnRZZWFyPC9QdWJsaWNhdGlvbkltcGFjdEZhY3Rvckxpc3Q+DQogICAg
-        PFB1YmxpY2F0aW9uQ2F0ZWdvcnlSYW5raW5nTGlzdD4yNC8xNTc7QklPVEVD
-        SE5PTE9HWSAmYW1wOyBBUFBMSUVEIE1JQ1JPQklPTE9HWTsyMDExO1NDO0Ns
-        b3Nlc3RUb1B1YmxpY2F0aW9uWWVhcnwzMS8xNTU7R0VORVRJQ1MgJmFtcDsg
-        SEVSRURJVFk7MjAxMTtTQztDbG9zZXN0VG9QdWJsaWNhdGlvblllYXJ8MTkv
-        MTA5O01FRElDSU5FLCBSRVNFQVJDSCAmYW1wOyBFWFBFUklNRU5UQUw7MjAx
-        MTtTQztDbG9zZXN0VG9QdWJsaWNhdGlvblllYXJ8MjQvMTU3O0JJT1RFQ0hO
-        T0xPR1kgJmFtcDsgQVBQTElFRCBNSUNST0JJT0xPR1k7MjAxMTtTQztNb3N0
-        UmVjZW50WWVhcnwzMS8xNTU7R0VORVRJQ1MgJmFtcDsgSEVSRURJVFk7MjAx
-        MTtTQztNb3N0UmVjZW50WWVhcnwxOS8xMDk7TUVESUNJTkUsIFJFU0VBUkNI
-        ICZhbXA7IEVYUEVSSU1FTlRBTDsyMDExO1NDO01vc3RSZWNlbnRZZWFyPC9Q
-        dWJsaWNhdGlvbkNhdGVnb3J5UmFua2luZ0xpc3Q+DQogICAgPEF1dGhvckNp
-        dGF0aW9uQ291bnRMaXN0PjEsMCwwfDIsMCwwPC9BdXRob3JDaXRhdGlvbkNv
-        dW50TGlzdD4NCiAgICA8Q29weXJpZ2h0U3RhdGVQcm92aW5jZT5OWTwvQ29w
-        eXJpZ2h0U3RhdGVQcm92aW5jZT4NCiAgICA8Q29weXJpZ2h0Q291bnRyeT5V
-        TklURUQgU1RBVEVTPC9Db3B5cmlnaHRDb3VudHJ5Pg0KICA8L1B1YmxpY2F0
-        aW9uSXRlbT4NCiAgPFB1YmxpY2F0aW9uSXRlbT4NCiAgICA8UHVibGljYXRp
-        b25JdGVtSUQ+NjMyNDkyMzY8L1B1YmxpY2F0aW9uSXRlbUlEPg0KICAgIDxU
-        aXRsZT5FZmZlY3RzIG9mIHNldHRpbmcgYm9uZSBjZW1lbnQgb24gdGlzc3Vl
-        LWVuZ2luZWVyZWQgYm9uZSBncmFmdDogYSBwb3RlbnRpYWwgYmFycmllciB0
-        byBjbGluaWNhbCB0cmFuc2xhdGlvbj88L1RpdGxlPg0KICAgIDxBYnN0cmFj
-        dD5CQUNLR1JPVU5EIFN0cmF0ZWdpZXMgdG8gaW1wcm92ZSBtZWNoYW5pY2Fs
-        IHN0cmVuZ3RoLCBuZW92YXNjdWxhcml6YXRpb24sIGFuZCB0aGUgcmVnZW5l
-        cmF0aXZlIGNhcGFjaXR5IG9mIGFsbG9ncmFmdCBpbmNsdWRlIGJvdGggdGhl
-        IGFkZGl0aW9uIG9mIHNrZWxldGFsIHN0ZW0gY2VsbHMgYW5kIHRoZSBpbnZl
-        c3RpZ2F0aW9uIG9mIG5vdmVsIGJpb21hdGVyaWFscyB0byByZWR1Y2UgYW5k
-        IHVsdGltYXRlbHkgb2J2aWF0ZSB0aGUgbmVlZCBmb3IgYWxsb2dyYWZ0IGFs
-        dG9nZXRoZXIuIFVzZSBvZiBib25lIGNlbWVudCBpcyBhIGNvbW1vbiBtZXRo
-        b2Qgb2Ygc3RhYmlsaXppbmcgaW1wbGFudHMgaW4gY29uanVuY3Rpb24gd2l0
-        aCBpbXBhY3RlZCBhbGxvZ3JhZnQuIEN1cmluZyBjZW1lbnQsIGhvd2V2ZXIs
-        IGNhbiByZWFjaCB0ZW1wZXJhdHVyZXMgaW4gZXhjZXNzIG9mIDcwwrBDLCB3
-        aGljaCBpcyBwb3RlbnRpYWxseSBoYXJtZnVsIHRvIHNrZWxldGFsIHN0ZW0g
-        Y2VsbHMuIFRoZSBhaW0gb2YgdGhpcyBzdHVkeSB3YXMgdG8gaW52ZXN0aWdh
-        dGUgdGhlIGVmZmVjdHMgb2Ygc2V0dGluZyBib25lIGNlbWVudCBvbiB0aGUg
-        c3Vydml2YWwgb2YgaHVtYW4gYWR1bHQgc2tlbGV0YWwgc3RlbSBjZWxscyB3
-        aXRoaW4gdGlzc3VlLWVuZ2luZWVyZWQgYWxsb2dyYWZ0IGFuZCBhIG5vdmVs
-        IGFsbG9ncmFmdCBzdWJzdGl0dXRlLg0KTUVUSE9EUyBNaWxsZWQgYWxsb2dy
-        YWZ0IGFuZCBhIHBvbHltZXIgZ3JhZnQgc3Vic3RpdHV0ZSB3ZXJlIHNlZWRl
-        ZCB3aXRoIHNrZWxldGFsIHN0ZW0gY2VsbHMsIGltcGFjdGVkIGludG8gYSBn
-        cmFkdWF0ZWQgY2hhbWJlciwgYW5kIGV4cG9zZWQgdG8gY3VyaW5nIGJvbmUg
-        Y2VtZW50LiBTZWN0aW9ucyB3ZXJlIHJlbW92ZWQgYXQgNS1tbSBpbmNyZW1l
-        bnRzIGZyb20gdGhlIGFsbG9ncmFmdC1jZW1lbnQgaW50ZXJmYWNlLiBBIHF1
-        YW50aXRhdGl2ZSBXU1QtMSBhc3NheSB3YXMgcGVyZm9ybWVkIG9uIGVhY2gg
-        c2VjdGlvbiBhcyBhIG1lYXN1cmUgb2YgcmVtYWluaW5nIGNlbGwgdmlhYmls
-        aXR5LiBBIHNlY29uZCBzdGFnZSBvZiB0aGUgZXhwZXJpbWVudCBpbnZvbHZl
-        ZCBhc3Nlc3NtZW50IG9mIG1ldGhvZHMgdG8gcG90ZW50aWFsbHkgZW5oYW5j
-        ZSBjZWxsIHN1cnZpdmFsLCBpbmNsdWRpbmcgcHJldHJlYXRpbmcgdGhlIGFs
-        bG9ncmFmdCBvciBwb2x5bWVyIGJ5IGVpdGhlciBjb29saW5nIHRvIDXCsEMg
-        b3IgY29hdGluZyB3aXRoIDElIExhcG9uaXRlLCBvciBib3RoLg0KUkVTVUxU
-        UyBUaGVyZSB3YXMgYSBzaWduaWZpY2FudCBkcm9wIGluIGNlbGx1bGFyIGFj
-        dGl2aXR5IGluIHRoZSBzZWN0aW9ucyB0YWtlbiBmcm9tIHdpdGhpbiAwLjUg
-        Y20gb2YgdGhlIGNlbWVudCBpbnRlcmZhY2UgaW4gYm90aCB0aGUgYWxsb2dy
-        YWZ0IGFuZCB0aGUgcG9seW1lciAocCAmbHQ7IDAuMDUpLCBhbHRob3VnaCB0
-        aGVyZSB3YXMgc3RpbGwgbWVhc3VyYWJsZSBjZWxsdWxhciBhY3Rpdml0eS4g
-        UHJldHJlYXRtZW50IG1ldGhvZHMgZGlkIG5vdCBzaWduaWZpY2FudGx5IGlt
-        cHJvdmUgY2VsbCBzdXJ2aXZhbCBpbiBhbnkgZ3JvdXAuDQpDT05DTFVTSU9O
-        UyBXaGlsZSB0aGUgYWRkaXRpb24gb2YgYm9uZSBjZW1lbnQgcmVkdWNlZCBj
-        ZWxsdWxhciB2aWFiaWxpdHkgb2YgdGlzc3VlLWVuZ2luZWVyZWQgY29uc3Ry
-        dWN0cywgdGhpcyByZWR1Y3Rpb24gb2NjdXJyZWQgb25seSBpbiBjbG9zZSBw
-        cm94aW1pdHkgdG8gdGhlIGNlbWVudCBhbmQgbWVhc3VyYWJsZSBudW1iZXJz
-        IG9mIHNrZWxldGFsIHN0ZW0gY2VsbHMgd2VyZSBvYnNlcnZlZCwgY29uZmly
-        bWluZyB0aGUgcG90ZW50aWFsIGZvciBjZWxsIHBvcHVsYXRpb24gcmVjb3Zl
-        cnkuPC9BYnN0cmFjdD4NCiAgICA8QXV0aG9yTGlzdD5UYXl0b24sRWR3YXJk
-        LFJ8U21pdGgsSmFtZXMsT3xFdmFucyxOaWNob2xhcyx8RGlja2luc29uLEFs
-        ZXgsfEFhcnZvbGQsQWxleGFuZGVyLHxLYWxyYSxTcGFuZGFuLHxQdXJjZWxs
-        LE1hdHRoZXcsfEhvd2RsZSxTdGV2ZW4sfER1bmxvcCxEb3VnbGFzLEd8T3Jl
-        ZmZvLFJpY2hhcmQsT0M8L0F1dGhvckxpc3Q+DQogICAgPEF1dGhvckNvdW50
-        PjEwPC9BdXRob3JDb3VudD4NCiAgICA8S2V5d29yZExpc3QgLz4NCiAgICA8
-        RG9jdW1lbnRUeXBlTGlzdD5Kb3VybmFsIEFydGljbGU8L0RvY3VtZW50VHlw
-        ZUxpc3Q+DQogICAgPERvY3VtZW50Q2F0ZWdvcnk+Sm91cm5hbCBEb2N1bWVu
-        dDwvRG9jdW1lbnRDYXRlZ29yeT4NCiAgICA8TnVtYmVyT2ZSZWZlcmVuY2Vz
-        IHhzaTpuaWw9InRydWUiIC8+DQogICAgPFRpbWVzQ2l0ZWQgeHNpOm5pbD0i
-        dHJ1ZSIgLz4NCiAgICA8VGltZXNOb3RTZWxmQ2l0ZWQgeHNpOm5pbD0idHJ1
-        ZSIgLz4NCiAgICA8UE1JRD4yMzU5NTA3MzwvUE1JRD4NCiAgICA8UHVibGlj
-        YXRpb25Tb3VyY2VUaXRsZT5qb3VybmFsIG9mIGJvbmUgYW5kIGpvaW50IHN1
-        cmdlcnkuIEFtZXJpY2FuIHZvbHVtZTwvUHVibGljYXRpb25Tb3VyY2VUaXRs
-        ZT4NCiAgICA8Vm9sdW1lPjk1PC9Wb2x1bWU+DQogICAgPElzc3VlPjg8L0lz
-        c3VlPg0KICAgIDxQYWdpbmF0aW9uPjczNi03NDM8L1BhZ2luYXRpb24+DQog
-        ICAgPFB1YmxpY2F0aW9uRGF0ZT4yMDEzLTA0LTE3VDAwOjAwOjAwPC9QdWJs
-        aWNhdGlvbkRhdGU+DQogICAgPFB1YmxpY2F0aW9uWWVhcj4yMDEzPC9QdWJs
-        aWNhdGlvblllYXI+DQogICAgPFB1YmxpY2F0aW9uU3ViamVjdENhdGVnb3J5
-        TGlzdCAvPg0KICAgIDxJU1NOPjAwMjEtOTM1NTwvSVNTTj4NCiAgICA8RE9J
-        PjEwLjIxMDYvSkJKUy5MLjAwMTY0PC9ET0k+DQogICAgPENvbmZlcmVuY2VT
-        dGFydERhdGUgeHNpOm5pbD0idHJ1ZSIgLz4NCiAgICA8Q29uZmVyZW5jZUVu
-        ZERhdGUgeHNpOm5pbD0idHJ1ZSIgLz4NCiAgICA8UmFuayB4c2k6bmlsPSJ0
-        cnVlIiAvPg0KICAgIDxPcmRpbmFsUmFuaz4zPC9PcmRpbmFsUmFuaz4NCiAg
-        ICA8Tm9ybWFsaXplZFJhbmsgeHNpOm5pbD0idHJ1ZSIgLz4NCiAgICA8TmV3
-        UHVibGljYXRpb25JdGVtSUQgeHNpOm5pbD0idHJ1ZSIgLz4NCiAgICA8SXNP
-        YnNvbGV0ZT5mYWxzZTwvSXNPYnNvbGV0ZT4NCiAgICA8Q29weXJpZ2h0UHVi
-        bGlzaGVyIC8+DQogICAgPENvcHlyaWdodENpdHkgLz4NCiAgICA8UHVibGlj
-        YXRpb25JbXBhY3RGYWN0b3JMaXN0PjMuMjcyLDIwMTEsQ2xvc2VzdFRvUHVi
-        bGljYXRpb25ZZWFyfDMuMjcyLDIwMTEsTW9zdFJlY2VudFllYXI8L1B1Ymxp
-        Y2F0aW9uSW1wYWN0RmFjdG9yTGlzdD4NCiAgICA8UHVibGljYXRpb25DYXRl
-        Z29yeVJhbmtpbmdMaXN0PjQvNjM7T1JUSE9QRURJQ1M7MjAxMTtTQztDbG9z
-        ZXN0VG9QdWJsaWNhdGlvblllYXJ8MTgvMTk4O1NVUkdFUlk7MjAxMTtTQztD
-        bG9zZXN0VG9QdWJsaWNhdGlvblllYXJ8NC82MztPUlRIT1BFRElDUzsyMDEx
-        O1NDO01vc3RSZWNlbnRZZWFyfDE4LzE5ODtTVVJHRVJZOzIwMTE7U0M7TW9z
-        dFJlY2VudFllYXI8L1B1YmxpY2F0aW9uQ2F0ZWdvcnlSYW5raW5nTGlzdD4N
-        CiAgICA8Q29weXJpZ2h0U3RhdGVQcm92aW5jZSAvPg0KICAgIDxDb3B5cmln
-        aHRDb3VudHJ5PlVOSVRFRCBTVEFURVM8L0NvcHlyaWdodENvdW50cnk+DQog
-        IDwvUHVibGljYXRpb25JdGVtPg0KPC9BcnJheU9mUHVibGljYXRpb25JdGVt
-        Pg==
-    http_version: 
-  recorded_at: Tue, 23 Jul 2013 20:16:20 GMT
-- request:
-    method: get
-    uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/94678?format=xml&page=0&pageSize=2147483647&v=version/3
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - ! '*/*'
-      User-Agent:
-      - Ruby
-      Content-Type:
-      - text/xml
-      Licenseid:
-      - ***REMOVED***
-      Host:
-      - sciencewirerest.discoverylogic.com
-      Connection:
-      - Keep-Alive
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Cache-Control:
-      - private
-      Content-Type:
-      - application/xml; charset=utf-8
-      Server:
-      - Microsoft-IIS/7.5
-      X-Aspnetmvc-Version:
-      - '2.0'
-      X-Aspnet-Version:
-      - 4.0.30319
-      X-Powered-By:
-      - ASP.NET
-      Date:
-      - Sat, 03 Aug 2013 20:21:24 GMT
-      Content-Length:
-      - '148'
-    body:
-      encoding: US-ASCII
-      string: ! "<?xml version=\"1.0\"?>\r\n<ArrayOfPublicationItem xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
-        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" />"
-    http_version: 
-  recorded_at: Sat, 03 Aug 2013 20:21:24 GMT
-- request:
-    method: get
-    uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/?format=xml&page=0&pageSize=2147483647&v=version/3
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - ! '*/*'
-      User-Agent:
-      - Ruby
-      Content-Type:
-      - text/xml
-      Licenseid:
-      - some-license-id
-      Host:
-      - sciencewirerest.discoverylogic.com
-      Connection:
-      - Keep-Alive
-  response:
-    status:
-      code: 500
-      message: Internal Server Error
-    headers:
-      Cache-Control:
-      - private
-      Content-Type:
-      - text/html
-      Server:
-      - Microsoft-IIS/7.5
-      X-Aspnetmvc-Version:
-      - '2.0'
-      X-Aspnet-Version:
-      - 4.0.30319
-      X-Powered-By:
-      - ASP.NET
-      Date:
-      - Sun, 11 Aug 2013 21:18:09 GMT
-      Content-Length:
-      - '1208'
-    body:
-      encoding: US-ASCII
-      string: ! "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\r\n<html
-        xmlns=\"http://www.w3.org/1999/xhtml\">\r\n<head>\r\n<meta http-equiv=\"Content-Type\"
-        content=\"text/html; charset=iso-8859-1\"/>\r\n<title>500 - Internal server
-        error.</title>\r\n<style type=\"text/css\">\r\n<!--\r\nbody{margin:0;font-size:.7em;font-family:Verdana,
-        Arial, Helvetica, sans-serif;background:#EEEEEE;}\r\nfieldset{padding:0 15px
-        10px 15px;} \r\nh1{font-size:2.4em;margin:0;color:#FFF;}\r\nh2{font-size:1.7em;margin:0;color:#CC0000;}
-        \r\nh3{font-size:1.2em;margin:10px 0 0 0;color:#000000;} \r\n#header{width:96%;margin:0
-        0 0 0;padding:6px 2% 6px 2%;font-family:\"trebuchet MS\", Verdana, sans-serif;color:#FFF;\r\nbackground-color:#555555;}\r\n#content{margin:0
-        0 0 2%;position:relative;}\r\n.content-container{background:#FFF;width:96%;margin-top:8px;padding:10px;position:relative;}\r\n-->\r\n</style>\r\n</head>\r\n<body>\r\n<div
-        id=\"header\"><h1>Server Error</h1></div>\r\n<div id=\"content\">\r\n <div
-        class=\"content-container\"><fieldset>\r\n  <h2>500 - Internal server error.</h2>\r\n
-        \ <h3>There is a problem with the resource you are looking for, and it cannot
-        be displayed.</h3>\r\n </fieldset></div>\r\n</div>\r\n</body>\r\n</html>\r\n"
-    http_version: 
-  recorded_at: Sun, 11 Aug 2013 21:18:09 GMT
-- request:
     method: post
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery?format=xml
     body:
@@ -460,7 +55,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Tue, 13 Aug 2013 18:43:43 GMT
+      - Tue, 20 Aug 2013 18:27:46 GMT
       Content-Length:
       - '279'
     body:
@@ -469,7 +64,7 @@ http_interactions:
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>94939</queryID>\r\n
         \ <queryResultRows>13</queryResultRows>\r\n  <totalRows>13</totalRows>\r\n</ScienceWireQueryIDResponse>"
     http_version: 
-  recorded_at: Tue, 13 Aug 2013 18:43:43 GMT
+  recorded_at: Tue, 20 Aug 2013 18:27:47 GMT
 - request:
     method: get
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/94939?format=xml&page=0&pageSize=2147483647&v=version/3
@@ -507,7 +102,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Tue, 13 Aug 2013 18:43:43 GMT
+      - Tue, 20 Aug 2013 18:27:47 GMT
       Content-Length:
       - '34329'
     body:
@@ -713,7 +308,7 @@ http_interactions:
         \   <AuthorCount>1</AuthorCount>\r\n    <KeywordList>ALGORITHM</KeywordList>\r\n
         \   <DocumentTypeList>Article</DocumentTypeList>\r\n    <DocumentCategory>Journal
         Document</DocumentCategory>\r\n    <NumberOfReferences>25</NumberOfReferences>\r\n
-        \   <TimesCited>159</TimesCited>\r\n    <TimesNotSelfCited>152</TimesNotSelfCited>\r\n
+        \   <TimesCited>160</TimesCited>\r\n    <TimesNotSelfCited>153</TimesNotSelfCited>\r\n
         \   <PMID xsi:nil=\"true\" />\r\n    <WoSItemID>A1992KH76800010</WoSItemID>\r\n
         \   <PublicationSourceTitle>COMPUTER MUSIC JOURNAL</PublicationSourceTitle>\r\n
         \   <Volume>16</Volume>\r\n    <Issue>4</Issue>\r\n    <Pagination>74-98</Pagination>\r\n
@@ -727,7 +322,7 @@ http_interactions:
         \   <CopyrightCity>CAMBRIDGE</CopyrightCity>\r\n    <PublicationImpactFactorList>0.548,1994,ClosestToPublicationYear|0.706,2011,MostRecentYear</PublicationImpactFactorList>\r\n
         \   <PublicationCategoryRankingList>16/41;COMPUTER SCIENCE, INTERDISCIPLINARY
         APPLICATIONS;1994;SC;ClosestToPublicationYear|78/99;COMPUTER SCIENCE, INTERDISCIPLINARY
-        APPLICATIONS;2011;SC;MostRecentYear</PublicationCategoryRankingList>\r\n    <AuthorCitationCountList>1,7,152</AuthorCitationCountList>\r\n
+        APPLICATIONS;2011;SC;MostRecentYear</PublicationCategoryRankingList>\r\n    <AuthorCitationCountList>1,7,153</AuthorCitationCountList>\r\n
         \   <CopyrightStateProvince>MA</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
         STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
         \   <PublicationItemID>18544482</PublicationItemID>\r\n    <Title>FUNDAMENTALS
@@ -755,7 +350,7 @@ http_interactions:
         \   <AuthorList>Jaffe,D,A|Smith,J,O</AuthorList>\r\n    <AuthorCount>2</AuthorCount>\r\n
         \   <KeywordList />\r\n    <DocumentTypeList>Article</DocumentTypeList>\r\n
         \   <DocumentCategory>Journal Document</DocumentCategory>\r\n    <NumberOfReferences>12</NumberOfReferences>\r\n
-        \   <TimesCited>71</TimesCited>\r\n    <TimesNotSelfCited>61</TimesNotSelfCited>\r\n
+        \   <TimesCited>72</TimesCited>\r\n    <TimesNotSelfCited>62</TimesNotSelfCited>\r\n
         \   <PMID xsi:nil=\"true\" />\r\n    <WoSItemID>A1983QT84000004</WoSItemID>\r\n
         \   <PublicationSourceTitle>COMPUTER MUSIC JOURNAL</PublicationSourceTitle>\r\n
         \   <Volume>7</Volume>\r\n    <Issue>2</Issue>\r\n    <Pagination>56-69</Pagination>\r\n
@@ -768,7 +363,7 @@ http_interactions:
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>MIT PRESS</CopyrightPublisher>\r\n
         \   <CopyrightCity>CAMBRIDGE</CopyrightCity>\r\n    <PublicationImpactFactorList>0.706,2011,MostRecentYear</PublicationImpactFactorList>\r\n
         \   <PublicationCategoryRankingList>78/99;COMPUTER SCIENCE, INTERDISCIPLINARY
-        APPLICATIONS;2011;SC;MostRecentYear</PublicationCategoryRankingList>\r\n    <AuthorCitationCountList>1,2,69|2,8,63</AuthorCitationCountList>\r\n
+        APPLICATIONS;2011;SC;MostRecentYear</PublicationCategoryRankingList>\r\n    <AuthorCitationCountList>1,2,70|2,8,64</AuthorCitationCountList>\r\n
         \   <CopyrightStateProvince>MA</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
         STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
         \   <PublicationItemID>15615925</PublicationItemID>\r\n    <Title>VOLATILIZATION
@@ -814,5 +409,5 @@ http_interactions:
         \   <AuthorCitationCountList>1,0,0|2,0,0</AuthorCitationCountList>\r\n    <CopyrightStateProvince>TX</CopyrightStateProvince>\r\n
         \   <CopyrightCountry>UNITED STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n</ArrayOfPublicationItem>"
     http_version: 
-  recorded_at: Tue, 13 Aug 2013 18:43:44 GMT
+  recorded_at: Tue, 20 Aug 2013 18:27:48 GMT
 recorded_with: VCR 2.5.0

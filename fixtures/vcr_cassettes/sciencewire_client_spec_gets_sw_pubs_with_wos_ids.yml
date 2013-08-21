@@ -48,7 +48,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Thu, 08 Aug 2013 00:38:03 GMT
+      - Tue, 20 Aug 2013 18:27:48 GMT
       Content-Length:
       - '277'
     body:
@@ -57,7 +57,7 @@ http_interactions:
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>81941</queryID>\r\n
         \ <queryResultRows>3</queryResultRows>\r\n  <totalRows>3</totalRows>\r\n</ScienceWireQueryIDResponse>"
     http_version: 
-  recorded_at: Thu, 08 Aug 2013 00:38:04 GMT
+  recorded_at: Tue, 20 Aug 2013 18:27:49 GMT
 - request:
     method: get
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/81941?format=xml&page=0&pageSize=2147483647&v=version/3
@@ -95,7 +95,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Thu, 08 Aug 2013 00:38:04 GMT
+      - Tue, 20 Aug 2013 18:27:48 GMT
       Content-Length:
       - '9626'
     body:
@@ -158,7 +158,7 @@ http_interactions:
         \   <AuthorCount>3</AuthorCount>\r\n    <KeywordList>TRAJECTORIES|TRANSITION|KINETICS</KeywordList>\r\n
         \   <DocumentTypeList>Article</DocumentTypeList>\r\n    <DocumentCategory>Journal
         Document</DocumentCategory>\r\n    <NumberOfReferences>20</NumberOfReferences>\r\n
-        \   <TimesCited>0</TimesCited>\r\n    <TimesNotSelfCited>0</TimesNotSelfCited>\r\n
+        \   <TimesCited>1</TimesCited>\r\n    <TimesNotSelfCited>0</TimesNotSelfCited>\r\n
         \   <PMID>23540906</PMID>\r\n    <WoSItemID>000317872800004</WoSItemID>\r\n
         \   <PublicationSourceTitle>JOURNAL OF THE AMERICAN CHEMICAL SOCIETY</PublicationSourceTitle>\r\n
         \   <Volume>135</Volume>\r\n    <Issue>15</Issue>\r\n    <Pagination>5501-5504</Pagination>\r\n
@@ -173,7 +173,7 @@ http_interactions:
         \   <PublicationImpactFactorList>9.907,2011,ClosestToPublicationYear|9.907,2011,MostRecentYear</PublicationImpactFactorList>\r\n
         \   <PublicationCategoryRankingList>11/149;CHEMISTRY, MULTIDISCIPLINARY;2011;SC;ClosestToPublicationYear|11/149;CHEMISTRY,
         MULTIDISCIPLINARY;2011;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
-        \   <AuthorCitationCountList>1,0,0|2,0,0|3,0,0</AuthorCitationCountList>\r\n
+        \   <AuthorCitationCountList>1,0,1|2,1,0|3,0,1</AuthorCitationCountList>\r\n
         \   <CopyrightStateProvince>DC</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
         STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
         \   <PublicationItemID>62922945</PublicationItemID>\r\n    <Title>Functional
@@ -213,5 +213,5 @@ http_interactions:
         \   <AuthorCitationCountList>1,0,0|2,0,0</AuthorCitationCountList>\r\n    <CopyrightStateProvince>NY</CopyrightStateProvince>\r\n
         \   <CopyrightCountry>UNITED STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n</ArrayOfPublicationItem>"
     http_version: 
-  recorded_at: Thu, 08 Aug 2013 00:38:05 GMT
+  recorded_at: Tue, 20 Aug 2013 18:27:49 GMT
 recorded_with: VCR 2.5.0

@@ -1,63 +1,6 @@
 ---
 http_interactions:
 - request:
-    method: get
-    uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/?format=xml&page=0&pageSize=2147483647&v=version/3
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - ! '*/*'
-      User-Agent:
-      - Ruby
-      Content-Type:
-      - text/xml
-      Licenseid:
-      - some-license-id
-      Host:
-      - sciencewirerest.discoverylogic.com
-      Connection:
-      - Keep-Alive
-  response:
-    status:
-      code: 500
-      message: Internal Server Error
-    headers:
-      Cache-Control:
-      - private
-      Content-Type:
-      - text/html
-      Server:
-      - Microsoft-IIS/7.5
-      X-Aspnetmvc-Version:
-      - '2.0'
-      X-Aspnet-Version:
-      - 4.0.30319
-      X-Powered-By:
-      - ASP.NET
-      Date:
-      - Sun, 11 Aug 2013 21:19:17 GMT
-      Content-Length:
-      - '1208'
-    body:
-      encoding: US-ASCII
-      string: ! "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\r\n<html
-        xmlns=\"http://www.w3.org/1999/xhtml\">\r\n<head>\r\n<meta http-equiv=\"Content-Type\"
-        content=\"text/html; charset=iso-8859-1\"/>\r\n<title>500 - Internal server
-        error.</title>\r\n<style type=\"text/css\">\r\n<!--\r\nbody{margin:0;font-size:.7em;font-family:Verdana,
-        Arial, Helvetica, sans-serif;background:#EEEEEE;}\r\nfieldset{padding:0 15px
-        10px 15px;} \r\nh1{font-size:2.4em;margin:0;color:#FFF;}\r\nh2{font-size:1.7em;margin:0;color:#CC0000;}
-        \r\nh3{font-size:1.2em;margin:10px 0 0 0;color:#000000;} \r\n#header{width:96%;margin:0
-        0 0 0;padding:6px 2% 6px 2%;font-family:\"trebuchet MS\", Verdana, sans-serif;color:#FFF;\r\nbackground-color:#555555;}\r\n#content{margin:0
-        0 0 2%;position:relative;}\r\n.content-container{background:#FFF;width:96%;margin-top:8px;padding:10px;position:relative;}\r\n-->\r\n</style>\r\n</head>\r\n<body>\r\n<div
-        id=\"header\"><h1>Server Error</h1></div>\r\n<div id=\"content\">\r\n <div
-        class=\"content-container\"><fieldset>\r\n  <h2>500 - Internal server error.</h2>\r\n
-        \ <h3>There is a problem with the resource you are looking for, and it cannot
-        be displayed.</h3>\r\n </fieldset></div>\r\n</div>\r\n</body>\r\n</html>\r\n"
-    http_version: 
-  recorded_at: Sun, 11 Aug 2013 21:19:17 GMT
-- request:
     method: post
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery?format=xml
     body:
@@ -105,7 +48,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Sun, 11 Aug 2013 21:38:57 GMT
+      - Tue, 20 Aug 2013 18:27:29 GMT
       Content-Length:
       - '277'
     body:
@@ -114,7 +57,7 @@ http_interactions:
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>81941</queryID>\r\n
         \ <queryResultRows>3</queryResultRows>\r\n  <totalRows>3</totalRows>\r\n</ScienceWireQueryIDResponse>"
     http_version: 
-  recorded_at: Sun, 11 Aug 2013 21:38:58 GMT
+  recorded_at: Tue, 20 Aug 2013 18:27:30 GMT
 - request:
     method: get
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/81941?format=xml&page=0&pageSize=2147483647&v=version/3
@@ -152,7 +95,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Sun, 11 Aug 2013 21:38:57 GMT
+      - Tue, 20 Aug 2013 18:27:30 GMT
       Content-Length:
       - '9626'
     body:
@@ -215,7 +158,7 @@ http_interactions:
         \   <AuthorCount>3</AuthorCount>\r\n    <KeywordList>TRAJECTORIES|TRANSITION|KINETICS</KeywordList>\r\n
         \   <DocumentTypeList>Article</DocumentTypeList>\r\n    <DocumentCategory>Journal
         Document</DocumentCategory>\r\n    <NumberOfReferences>20</NumberOfReferences>\r\n
-        \   <TimesCited>0</TimesCited>\r\n    <TimesNotSelfCited>0</TimesNotSelfCited>\r\n
+        \   <TimesCited>1</TimesCited>\r\n    <TimesNotSelfCited>0</TimesNotSelfCited>\r\n
         \   <PMID>23540906</PMID>\r\n    <WoSItemID>000317872800004</WoSItemID>\r\n
         \   <PublicationSourceTitle>JOURNAL OF THE AMERICAN CHEMICAL SOCIETY</PublicationSourceTitle>\r\n
         \   <Volume>135</Volume>\r\n    <Issue>15</Issue>\r\n    <Pagination>5501-5504</Pagination>\r\n
@@ -230,7 +173,7 @@ http_interactions:
         \   <PublicationImpactFactorList>9.907,2011,ClosestToPublicationYear|9.907,2011,MostRecentYear</PublicationImpactFactorList>\r\n
         \   <PublicationCategoryRankingList>11/149;CHEMISTRY, MULTIDISCIPLINARY;2011;SC;ClosestToPublicationYear|11/149;CHEMISTRY,
         MULTIDISCIPLINARY;2011;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
-        \   <AuthorCitationCountList>1,0,0|2,0,0|3,0,0</AuthorCitationCountList>\r\n
+        \   <AuthorCitationCountList>1,0,1|2,1,0|3,0,1</AuthorCitationCountList>\r\n
         \   <CopyrightStateProvince>DC</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
         STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
         \   <PublicationItemID>62922945</PublicationItemID>\r\n    <Title>Functional
@@ -270,7 +213,7 @@ http_interactions:
         \   <AuthorCitationCountList>1,0,0|2,0,0</AuthorCitationCountList>\r\n    <CopyrightStateProvince>NY</CopyrightStateProvince>\r\n
         \   <CopyrightCountry>UNITED STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n</ArrayOfPublicationItem>"
     http_version: 
-  recorded_at: Sun, 11 Aug 2013 21:38:58 GMT
+  recorded_at: Tue, 20 Aug 2013 18:27:31 GMT
 - request:
     method: post
     uri: http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml
@@ -288,7 +231,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Sun, 11 Aug 2013 21:38:59 GMT
+      - Tue, 20 Aug 2013 18:27:31 GMT
       Server:
       - Apache
       Access-Control-Allow-Origin:
@@ -296,12 +239,12 @@ http_interactions:
       Cache-Control:
       - private
       Ncbi-Sid:
-      - 9DFC24D220804731_0059SID
+      - 08DE0862213B5131_0150SID
       Content-Type:
       - text/xml; charset=UTF-8
       Set-Cookie:
-      - ncbi_sid=9DFC24D220804731_0059SID; domain=.nih.gov; path=/; expires=Mon, 11
-        Aug 2014 21:38:59 GMT
+      - ncbi_sid=08DE0862213B5131_0150SID; domain=.nih.gov; path=/; expires=Wed, 20
+        Aug 2014 18:27:31 GMT
       Transfer-Encoding:
       - chunked
     body:
@@ -547,5 +490,5 @@ http_interactions:
         IdType=\"pubmed\">23635172</ArticleId>\n            <ArticleId IdType=\"pmc\">PMC3651261</ArticleId>\n
         \       </ArticleIdList>\n    </PubmedData>\n</PubmedArticle>\n\n</PubmedArticleSet>\n"
     http_version: 
-  recorded_at: Sun, 11 Aug 2013 21:38:59 GMT
+  recorded_at: Tue, 20 Aug 2013 18:27:31 GMT
 recorded_with: VCR 2.5.0

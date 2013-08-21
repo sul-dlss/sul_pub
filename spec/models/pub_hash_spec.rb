@@ -317,7 +317,6 @@ let(:conference_pub_in_book_hash) {{title: "My test title",
         h = PubHash.new(pub_hash)
         cite = h.to_mla_citation
         cite.should =~ /^Sohl, G./
-        binding.pry
         expect(h.pub_hash[:author]).to_not include({:name=>"et al."})
       end
     end
