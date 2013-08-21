@@ -257,6 +257,9 @@ GEM
     treetop (1.4.12)
       polyglot
       polyglot (>= 0.3.1)
+    turnout (0.2.4)
+      nokogiri (~> 1.3)
+      rack
     tzinfo (0.3.37)
     uglifier (2.1.0)
       execjs (>= 0.3.0)
@@ -321,6 +324,7 @@ DEPENDENCIES
   sqlite3
   strong_parameters
   therubyracer
+  turnout
   uglifier (>= 1.0.3)
   vcr
   webmock (= 1.11)

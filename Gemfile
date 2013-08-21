@@ -25,6 +25,7 @@ gem 'is_it_working-cbeer', :require => 'is_it_working'
 gem 'whenever', :require => false
 gem "yajl-ruby", :require => 'yajl'
 gem "strong_parameters"
+gem "turnout"
 #gem 'always_verify_ssl_certificates'
 
 group :development, :test do
