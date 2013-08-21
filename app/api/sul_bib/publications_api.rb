@@ -80,8 +80,8 @@ module SulBib
       end
 
       original_source = env['api.request.input']
-      logger.info("Update manual publication #{pub.inspect} with BibJSON")
-      logger.debug("#{original_source}")
+      logger.info("Update manual publication #{pub.inspect} with BibJSON:")
+      logger.info("#{original_source}")
 
       pub.update_manual_pub_from_pub_hash(params[:pub_hash], Settings.cap_provenance, original_source)
       pub.save
