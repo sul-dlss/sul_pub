@@ -1,0 +1,658 @@
+@article{n08,
+author = {Amos Nur},
+journal = {Seismological Research Letters},
+number = {2},
+pages = {288},
+title = {The catastrophic end of the Bronze Age: Earthquakes or Sea people},
+volume = {79},
+year = {2008},
+unidentified = {Annual Meeting Abstracts for Seismological Society of America},
+}
+
+@book{bdn071,
+author = {Huyen Bui and Jack Dvorkin and Amos Nur},
+publisher = {AAPG},
+title = {Subsidence History and Its Impacts to Hydrocarbon Potential of The Song Hong Basin, Vietnam},
+year = {2007},
+comment = {Paper presented for 'Petroleum Geochemistry Case Studies - Opportunities for Reducing Risk I' at the AAPG Annual Convention},
+}
+
+@article{bdn072,
+author = {Huyen Bui and Jack Dvorkin and Amos Nur},
+journal = {SEG Expanded Abstracts},
+number = {2055},
+title = {Subsurface fluid flow and its implications for seabed pockmarks and mud volcanoes: An approach of distinct element method(DEM)},
+volume = {26},
+year = {2007},
+}
+
+@article{zpmn071,
+author = {Michael A. Zimmer and Manika Prasad and Gary Mavko and Amos Nur},
+journal = {Geophysics},
+number = {1},
+pages = {E15-E25},
+title = {Seismic velocities of unconsolidated sands: Part 2 - Influence of sorting and compaction induced porosity variation},
+volume = {72},
+year = {2007},
+}
+
+@article{zpmn072,
+author = {Michael A. Zimmer and Manika Prasad and Gary Mavko and Amos Nur},
+journal = {Geophysics},
+number = {1},
+pages = {E1-E13},
+title = {Pressure Seismic velocities of unconsolidated sands: Part 1 trends from 0.1 to 20 MPa},
+volume = {72},
+year = {2007},
+}
+
+@article{bhun06,
+author = {Huyen T. Bui and L. T. Ho and K. Ushijima and Amos Nur},
+journal = {Eos Transactions American Geophysical Union, Fall Meeting Suppl},
+number = {52},
+title = {Evaluation of Porosity and Permeability for an Oil Prospect, Offshore Vietnam by using Artificial Neural Networks},
+volume = {87},
+year = {2006},
+comment = {Abstract},
+}
+
+@article{gkn06,
+author = {Kelly A. Grijalva and Robert L. Kovach and Amos Nur},
+journal = {Eos Trans},
+number = {52},
+title = {Evidence for Tectonic Activity During the Mature Harappan Civilization, 2600-1800 BCE},
+volume = {87},
+year = {2006},
+comment = {American Geophysical Union, Fall Meeting Suppl., Abstract},
+}
+
+@article{kn06,
+author = {Robert L. Kovach and Amos Nur},
+journal = {EOS, Transactions American Geophysical Union},
+number = {32},
+pages = {317},
+title = {Earthquakes and Archeology: Neocatastrophism or Science?},
+volume = {87},
+year = {2006},
+}
+
+@article{kdknb06,
+author = {Ayako Kameda and Jack Dvorkin and Youngseuk Keehm and Amos Nur and William Bosl},
+journal = {Geophysics},
+number = {1},
+pages = {N11-N19},
+title = {Permeability-porosity transforms from small sandstone fragments},
+volume = {71},
+year = {2006},
+}
+
+@article{vmnp06,
+author = {Sandra Vega and Gary Mavko and Amos Nur and Manika Prasad},
+journal = {The Leading Edge},
+number = {3},
+pages = {252-256},
+title = {Detection of stress-induced velocity anisotropy in unconsolidated sands},
+volume = {25},
+year = {2006},
+}
+
+@article{kn04,
+author = {Youngseuk Keehm and Amos Nur},
+journal = {American Geophysical Union},
+number = {47},
+title = {Transport property modeling in partially-saturated rocks using pore-scale simulations, EOS Trans},
+volume = {85},
+year = {2004},
+comment = {Fall Meeting 2004, Abstract #H33F-0529},
+}
+
+@article{kmn04,
+author = {Youngseuk Keehm and Tapan Mukerji and Amos Nur},
+journal = {Geophysical Research Letters},
+number = {4},
+pages = {L04606},
+title = {Permeability prediction from thin sections: 3D reconstruction and Lattice-Boltzmann flow simulation},
+volume = {31},
+year = {2004},
+}
+
+@article{dn03,
+author = {Jack Dvorkin and Amos Nur},
+journal = {AAPG Annual Meeting},
+title = {2003 Rock Physics for Gas Hydrate Reservoir Characterization},
+year = {2003},
+comment = {AAPG Annual Meeting 2003: Energy - Our Monumental Task Technical Program, Salt Lake City, Utah, May 9- 14, 2003.},
+}
+
+@article{03,
+author = {Amos Nur},
+month = {Feb},
+title = {Us Patent No: 6516080 - Numerical method of estimating physical properties of three-dimensional porous media},
+year = {2003},
+journal = {Patent},
+}
+
+@article{bna03,
+author = {Ran Bachrach and Amos Nur and Amotz Agnon},
+journal = {Journal of Geophysical Research},
+number = {B3, 2145},
+pages = {ESE 4-1},
+title = {Correction to Liquefaction and dynamic poroelasticity in soft sediments by Ran Bachrach, Amos Nur, and Amotz Agnon},
+volume = {108},
+year = {2003},
+}
+
+@article{dwtpnm03,
+author = {Jack Dvorkin and Joel Walls and Azra Tutuncu and Manika Prasad and Amos Nur and Ali Mese},
+journal = {SEG Technical Program Expanded Abstracts},
+pages = {1660-1663},
+title = {Rock property determination using digital rock physics},
+year = {2003},
+}
+
+@inproceedings{kmn03,
+author = {Youngseuk Keehm and Tapan Mukerji and Amos Nur},
+booktitle = {International Symposium on the Fusion Technology of Geosystem Engineering},
+publisher = {Rock Engineering and Geophys Rock Engineering and Geophys},
+title = {Computational rock physics: Latice-Boltzmann fluid flow simulationin porous media dna dits applications},
+year = {2003},
+}
+
+@article{dnut03,
+author = {Jack Dvorkin and Amos Nur and Richard Uden and Turhan Tanner},
+journal = {The Leading Edge},
+number = {9},
+pages = {842-847},
+title = {Rock physics of a gas hydrate reservoir},
+volume = {22},
+year = {2003},
+}
+
+@article{vpn03,
+author = {Tiziana Vanorio and Manika Prasad and Amos Nur},
+journal = {GJI},
+month = {October},
+number = {1},
+pages = {319},
+title = {Elastic properties of dry clay mineral aggregates, suspensions and sandstones},
+volume = {155},
+year = {2003},
+unidentified = {155, Issue 1, pp 319},
+}
+
+@book{prna03,
+address = {Publisher Kluver, NY},
+author = {Manika Prasad and Michael Reinstaedtler and Amos Nur and Walter Arnold},
+publisher = {Kluver, NY.},
+title = {Quantitative acoustic mocroscopy: Application to petrophysical studies of reservoir rocks},
+year = {2003},
+comment = {Acoustical Imaging Symposium Publication},
+}
+
+@article{dknmt03,
+author = {Jack Dvorkin and Ayako Kameda and Amos Nur and Ali Mese and Azra Nur Tutuncu},
+journal = {elastic moduli and strength in sands and shales using Digital Rock Physics},
+title = {Real time monitoring of permeability},
+year = {2003},
+comment = {Presented at the SPE European Formation Damage Conference # 82246 held i},
+}
+
+@article{nr03,
+author = {Amos Nur and Hagai Ron},
+journal = {International Geology Review},
+number = {8},
+pages = {671-690},
+title = {Material and Stress rotations: The key to reconciling crustal faulting complexity with rock mechanics},
+volume = {45},
+year = {2003},
+}
+
+@article{gdn02,
+author = {M. Gutierrez and Jack Dvorkin and Amos Nur},
+journal = {The Leading Edge},
+number = {1},
+pages = {98-103},
+title = {Stratigraphy-guided rock physics},
+volume = {21},
+year = {2002},
+}
+
+@article{kmn02,
+author = {Youngseuk Keehm and Tapan Mukerji and Amos Nur},
+journal = {EOS Trans American Geophysical Union, Vol. , Fall Meeting Supplement Abstract,},
+number = {45},
+pages = {H71B-0795},
+title = {Parallel two-phase flow simulation and representative elementary volume},
+volume = {83},
+year = {2002},
+}
+
+@article{kmn021,
+author = {Youngseuk Keehm and Tapan Mukerji and Amos Nur},
+journal = {72nd International Symposium of Society of Exploration Geophysicists},
+month = {Oct.},
+pages = {1829-1832},
+title = {Efficient parallel implementation of two-phase Lattice-Boltzmann flow simulation.},
+year = {2002},
+comment = {Expanded Abstract},
+}
+
+@article{b92,
+author = {Bosl, W. J. and Nur, A.},
+journal = {Journal of Geophysical Research, Vol. 107, No. B},
+number = {B12},
+pages = {2366},
+title = {Aftershocks and pore fluid diffusion following theLanders earthquake},
+volume = {107},
+year = {2002},
+}
+
+@article{vppn02,
+author = {Vanorio, T. and Prasad, M. and Patella, D. and Nur, A.},
+journal = {Geophys J. Int., 149},
+pages = {22-36},
+title = {Ultrasonic velocity measurements in volcanic rocks: Correlation with microtexture},
+volume = {149},
+year = {2002},
+}
+
+@article{bn02,
+author = {Bou-Rabee, Firyal and Nur, Amos},
+journal = {Kuwait J. Sci. Eng.},
+number = {2},
+title = {The 1993 M4.7 Kuwait earthquakes: Induced by the burning of the oil fields},
+volume = {29},
+year = {2002},
+}
+
+@article{absn02,
+author = {Avni, R. and Bowman, D. and Shapira, A. and Nur, A.},
+journal = {Journal of Seismology},
+pages = {469-476},
+title = {Erroneous interpretation of historical documents related to the epicenter of the 1927 Jericho earthquake in the Holy Land},
+volume = {6},
+year = {2002},
+}
+
+@article{ub02,
+author = {Amos Nur and William Bosl},
+title = {Us Patent No: 6,516,080 B1. Numerical method of estimating physical properties of three-dimensional porous media},
+year = {2002},
+journal = {Patent},
+}
+
+@article{u02,
+author = {Dvorkin et al.},
+title = {Us Patent No: 6,374,186 B1. Method for over pressure detection from compressional and shear-wave data.},
+year = {2002},
+journal = {Patent},
+}
+
+@article{dgn02,
+author = {Dvorkin, J. and Gutierrez, M. and Nur, A.},
+journal = {The Leading Edge (SEG)},
+number = {1},
+pages = {40-43},
+title = {On the universality of diagnetic trends},
+volume = {21},
+year = {2002},
+}
+
+@article{kmn011,
+author = {Youngseuk Keehm and Tapan Mukerji and Amos Nur},
+journal = {Fall Meeting Supplement Abstract, American Geophysical Union},
+number = {44},
+pages = {T32E-0917},
+title = {Effect of initial distribution of two fluids on relative permeability using Lattice-Boltzmann method, EOS Trans},
+volume = {82},
+year = {2001},
+}
+
+@article{xdn01,
+author = {Haibin Xu and Jack Dvorkin and Amos Nur},
+journal = {Geophysical Research Letters},
+number = {7},
+pages = {1307-1310},
+title = {Linking oil production to surface subsidence from satellite radar interferometry},
+volume = {28},
+year = {2001},
+}
+
+@article{xn01,
+author = {Habin Xu and Amos Nur},
+journal = {The Leading Edge},
+number = {10},
+pages = {1176-1179},
+title = {Integrating reservoir engineering and sattelite remote sensing for (true) continuous time-lapse reservoir monitoring},
+volume = {20},
+year = {2001},
+}
+
+@article{kdknb01,
+author = {Aya Kameda and Jack Dvorkin and Youngseuk Keehm and Amos Nur and Bill Bosl},
+journal = {Geophysics,},
+pages = {2004-0112},
+title = {Permeability and porosity of sandstone from 2D microimages},
+year = {2001},
+}
+
+@article{kmn01,
+author = {Youngseuk Keehm and Tapan Mukerji and Amos Nur},
+journal = {SEG International Exposition and 71st International Symposium of Society of Exploration Geophysicists, Expanded Abstract},
+pages = {1724-1727},
+title = {Two-phase flow in complex porous media using Lattice-Boltzmann method},
+year = {2001},
+}
+
+@article{kmn0111,
+author = {Youngseuk Keehm and Tapan Mukerji and Amos Nur},
+journal = {The Leading Edge},
+number = {2},
+pages = {180-183},
+title = {Computational rock physics at the pore scale: Transport properties and diagenesis in realistic pore geometries},
+volume = {20},
+year = {2001},
+}
+
+@article{nc01,
+author = {Nur, Amos and Cline, Eric H.},
+journal = {Odyssey Magazine},
+month = {September/October},
+pages = {31-36},
+title = {What riggered the collapse? Earthquake storms.},
+year = {2001},
+}
+
+@article{gn01,
+author = {Zohar Gvirtzman and Amos Nur},
+journal = {Earth and Planetary Science Letters},
+number = {2001},
+pages = {117-130},
+title = {Residual topography, lithospheric structure and sunken slabs in the Central Mediterranean},
+volume = {187},
+year = {2001},
+}
+
+@article{gn011,
+author = {Gutierrez, Mario A. and Nur, Amos},
+journal = {The Leading Edge, July},
+pages = {752-760},
+title = {3-D seismic interperation of tectonic wrenching and faulting in La Cira-Infantas},
+volume = {2001},
+year = {2001},
+}
+
+@incollection{dn01,
+author = {Jack Dvorkin and Amos Nur},
+booktitle = {AAPG Special Volume: Pressure Regimes in Sedimentary Basins and their Prediction},
+pages = {33-41},
+publisher = {Alan Huffman},
+title = {Critical porosity models},
+year = {2001},
+}
+
+@article{gdn01,
+author = {Mario Gutierrez and Jack Dvorkin and Amos Nur},
+number = {2},
+pages = {192-197},
+title = {Theoretical rock physics for bypassed oil detection behind casing: La Cira-Infantas Oil Field},
+volume = {20},
+year = {2001},
+journal = {The Leading Edge},
+}
+
+@article{wdmn00,
+author = {Joel Walls and Jack Dvorkin and Gary Mavko and Amos Nur},
+journal = {Proceedings - Offshore Technology Conference},
+number = {2},
+pages = {199-203},
+title = {Use of compressional and shear wave velocity for overpressure detection, Proceedings - Offshore Technology Conference},
+volume = {32},
+year = {2000},
+}
+
+@article{kmn00,
+author = {Youngseuk Keehm and Tapan Mukerji and Amos Nur},
+journal = {Expanded Abstract},
+pages = {1854-1857},
+title = {Flow-limited Diagenesis and Transport Properties of Porous Media using Lattice-Boltzmann Method, 70th International Symposium of Society of Exploration Geophysicists},
+year = {2000},
+}
+
+@article{kmpdmn00,
+author = {Youngseuk Keehm and Tapan Mukerji and Manika Prasad and Jack Dvorkin and Gary Mavko and Amos Nur},
+journal = {AGU},
+number = {43},
+title = {Permeability Estimation by Numerical Flow Simulation on 3-D Porous Media Extended from Thin Sections, EOS Trans},
+volume = {81},
+year = {2000},
+comment = {Fall Meeting Supplement Abstrac},
+}
+
+@article{mn00,
+author = {Miller, Stephen A. and Nur, Amos},
+journal = {Elsevier, Earth and Planetary Science Letters},
+pages = {133-146},
+title = {Permeability as a toggle switch in fluid-controlled crustal processes},
+volume = {183},
+year = {2000},
+}
+
+@article{nc00,
+author = {Nur, Amos and Cline, Eric H.},
+journal = {Journal of Archaeology Science},
+pages = {43-63},
+title = {Poseidon's horses: Plate tectonics and earthquakes storms in the Late Bronze Age Aegean and Eastern Mediterranean},
+volume = {27},
+year = {2000},
+}
+
+@article{bn00,
+author = {Bosl, William J. and Nur, Amos},
+journal = {Geophysical Monograph 120, AGU.},
+title = {Crustal fluids and earthquakes -GeoComplexity and the Physics of earthquakes.},
+year = {2000},
+comment = {Monograph},
+}
+
+@article{zn00,
+author = {Zohar, G. and A. Nur},
+journal = {Geology, no},
+pages = {563-566},
+title = {Plate detachment, asthenosphere upwelling, and topography across subduction zones},
+volume = {6},
+year = {2000},
+}
+
+@article{edn00,
+author = {Ecker, C. and J. Dvorkin and A. Nur},
+journal = {Geophysics, v},
+number = {2},
+pages = {565-573},
+title = {Estimating the amount of gas hydrate and free gas from marine seismic data},
+volume = {65},
+year = {2000},
+}
+
+@article{bdn00,
+author = {Bachrach, R. and J. Dvorkin and A. Nur},
+journal = {Geophysics, v},
+number = {2},
+pages = {559-564},
+title = {Seismic velocities and Poisson's ration of shallow unconsolidated sands},
+volume = {65},
+year = {2000},
+}
+
+@inproceedings{dhwkn00,
+author = {Dvorkin, J. and M. Helgerud and F. W. Waite and S. H. Kirby and A. Nur},
+editor = {M.D. Max},
+series = {Natural Gas Hydrate In Oceanic and Permafrost Environments},
+title = {Introduction to physical properties and elasticity models.},
+volume = {5},
+year = {2000},
+booktitle = {Coastal Systems and Continental Margins v. 5},
+}
+
+@book{pnmd00,
+author = {Prasad, M. and Nur, A. and Mavko, G. and Dvorkin, J.},
+publisher = {Levy, Bass and Stern},
+title = {Acoustic properties of petroliferous liquids: Chapter 8 in Handbook of Elastic Properties of Solids, Liquids and Gases, Volume IV: Elastic Properties of Fluids: Liquids and Gases, eds},
+volume = {IV},
+year = {2000},
+}
+
+@book{pnmd001,
+author = {Prasad, M. and Nur, A. and Mavko, G. and Dvorkin, J.},
+publisher = {Lev},
+title = {Acoustic properties in rocks saturated with petroliferous liquids: Chapter 9 in Handbook Elastic Properties of Solids, Liquids and Gases, Volume IV: Elastic Properties of Fluids: Liquids and Gases, eds},
+volume = {IV},
+year = {2000},
+}
+
+@article{dmpn99,
+author = {Dvorkin, J. and D. Moos and J. Packwood and A. Nur},
+journal = {Geophysics},
+pages = {1-5},
+title = {Identifying patchy saturation from well logs},
+volume = {64},
+year = {1999},
+}
+
+@article{gn99,
+author = {Gvirtzman, Z. and A. Nur},
+journal = {Nature},
+pages = {782-785},
+title = {The formation of Mount Etna as the consequence of slab rollback},
+volume = {401},
+year = {1999},
+}
+
+@article{dbn99,
+author = {Dvorkin, J. and J. Berryman and A. Nur},
+journal = {Mechanics of Materials},
+number = {7},
+pages = {461-469},
+title = {Elastic moduli of cemented sphere packs},
+volume = {31},
+year = {1999},
+}
+
+@article{gdn99,
+author = {Gal, D. and J. Dvorkin and A. Nur},
+journal = {Geophys Res. Lett.},
+pages = {939-942},
+title = {Elastic-wave velocities in sandstones with non-load-bearing clay},
+volume = {26},
+year = {1999},
+}
+
+@article{dmn99,
+author = {Dvorkin, J. and G. Mavko and A. Nur},
+journal = {Geophys Res. Lett.},
+pages = {3417-3420},
+title = {Overpressure detection from compressional and shear-wave data},
+volume = {26},
+year = {1999},
+}
+
+@article{edn99,
+author = {Ecker, C. and J. Dvorkin and A. Nur},
+journal = {Geophysics},
+number = {5},
+pages = {1659-1669},
+title = {Sediments with gas hydrates: Internal structure from seismic AVO},
+volume = {63},
+year = {1999},
+}
+
+@article{san99,
+author = {Shapira, A. and R. Avni and A. Nur},
+journal = {Israel J. of Earth Sci.},
+pages = {93-96},
+title = {Note: A new estimate for the epicenter of the Jericho earthquake of 11 July, 1927},
+volume = {42},
+year = {1999},
+}
+
+@article{bn99,
+author = {Bachrach, R. and A. Nur},
+journal = {Geophysics},
+number = {4},
+pages = {1225-1233},
+title = {High-resolution shallow-seismic experiments in sand, Part 1: Water table, fluid flow, and saturation},
+volume = {63},
+year = {1999},
+}
+
+@article{bn991,
+author = {Bachrach, R. and A. Nur},
+journal = {Geophysics},
+number = {4},
+pages = {1234-1240},
+title = {High-resolution shallow-seismic experiments in sand, Part II: Velocities in shallow unconsolidated sand},
+volume = {63},
+year = {1999},
+}
+
+@article{hdnsc99,
+author = {Helgerud, M. and J. Dvorkin and A. Nur and A. Sakai and T. Collett},
+journal = {GRL},
+pages = {2021-2024},
+title = {Elastic-wave velocity in marine sediments with gas hydrates: Effective medium modeling},
+volume = {26},
+year = {1999},
+}
+
+@article{nc99,
+author = {Nur, A. and E. H. Cline},
+journal = {J. Arch. Sci.},
+number = {1},
+pages = {43-63},
+title = {Poseidon's horses: Plate tectonics and earthquake storms in the Late Bronze Age Aegean and Eastern Mediterranean},
+volume = {27},
+year = {1999},
+}
+
+@article{azhnn99,
+author = {Ben Avraham and Z., T. M. Niemi and C. Heim and J. Negendank and A. Nur},
+journal = {JGR},
+number = {B8},
+pages = {617-17, 625},
+title = {Holocene stratigraphy of the Dead Sea: correlation of high-resolution seismic reflection profiles to sediment cores},
+volume = {104},
+year = {1999},
+}
+
+@inproceedings{bnr99,
+author = {Bachrach, R. and A. Nur and J. Rickett},
+booktitle = {Proceedings of the Symposium on the Application of Geophysics to Environmental and Engineering Problems},
+publisher = {EEGS (Environmental and Engineering)},
+title = {Seismic detection of viscous contaminant using shallow seismic reflection},
+year = {1999},
+}
+
+@inproceedings{bnr990,
+author = {Bachrach, R. and A. Nur and J. Rickett},
+booktitle = {Proceedings of the Symposium on the Application of Geophysics to Environmental and Engineering Problems},
+publisher = {EEGS (Environmental and Engineering)},
+title = {Seismic detection of viscous contaminant using shallow seismic reflection},
+year = {1999},
+}
+
+@inproceedings{bnr991,
+author = {Bachrach, R. and A. Nur and J. Rickett},
+booktitle = {Proceedings of the Symposium on the Application of Geophysics to Environmental and Engineering Problems},
+publisher = {EEGS (Environmental and Engineering)},
+title = {Seismic detection of viscous contaminant using shallow seismic reflection},
+year = {1999},
+}
+
+@inproceedings{bnr992,
+author = {Bachrach, R. and A. Nur and J. Rickett},
+booktitle = {Proceedings of the Symposium on the Application of Geophysics to Environmental and Engineering Problems},
+publisher = {EEGS (Environmental and Engineering)},
+title = {Seismic detection of viscous contaminant using shallow seismic reflection},
+year = {1999},
+}
+

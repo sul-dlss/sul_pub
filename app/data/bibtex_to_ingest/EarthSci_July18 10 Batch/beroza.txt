@@ -1,0 +1,1111 @@
+@article{ uniqueID001,
+author = {Brown, J. R. and S. G. Prejean and G. C. Beroza and J. S. Gomberg and P. J. Haeussler},
+journal = {Journal of Geophysical Research},
+title = {Deep low-frequency earthquakes in tectonic tremor along the Alaska Aleutian subduction zone},
+year = {2013},
+comment = {in press},
+}
+
+@article{ uniqueID002,
+author = {Denolle, M. and E. M. Dunham and G. A. Prieto and G. C. Beroza},
+journal = {Journal of Geophysical Research},
+pages = {1-17},
+title = {Ground motion prediction of realistic earthquake sources using the ambient seismic field},
+volume = {118},
+year = {2013},
+doi = {10.1029/2012JB009603},
+}
+
+@article{ uniqueID003,
+author = {Beroza, G. C.},
+journal = {Science},
+pages = {274-275},
+title = {Did you feel it? review of The Earthquake Observers: Disaster Science from Lisbon to Richter, by D. Coen},
+volume = {340},
+year = {2013},
+doi = {10.1126/science.1235758},
+}
+
+@article{ uniqueID004,
+author = {Baltay, A. S. and T. C. Hanks and G. C. Beroza},
+journal = {Bulletin of the Seismology Society of America},
+pages = {211-222},
+title = {Stable stress drop measurements and their variability: implications for ground motion prediction},
+volume = {103},
+year = {2013},
+doi = {10.1785/0120120161},
+}
+
+@article{ uniqueID005,
+author = {Prieto, G. A. and G. C. Beroza and S. A. Barrett and G. López and M. Florez},
+journal = {Tectonophysics},
+pages = {42-56},
+title = {Earthquake nests as natural laboratories for the study of intermediate-depth earthquakes},
+volume = {570},
+year = {2012},
+doi = {10.1017/j.tecto.2012.07.019},
+}
+
+@article{ uniqueID006,
+author = {Hanks, T. C. and G. C. Beroza and S. Toda},
+journal = {Seismological Research Letters},
+pages = {759-764},
+title = {Have recent earthquakes exposed flaws in or misunderstandings of probabilistic seismic hazard analysis?},
+volume = {83},
+year = {2012},
+doi = {10.1785/0220120043},
+}
+
+@article{ uniqueID007,
+author = {Denolle, M. and E. Dunham and G. C. Beroza},
+journal = {Bulletin of the Seismology Society of America},
+pages = {1214-1223},
+title = {Solving the surface-wave eigenfunction problem with spectral collocation},
+volume = {102},
+year = {2012},
+doi = {10.1785/0120110183},
+}
+
+@article{ uniqueID008,
+author = {McGuire, J. J. and G. C. Beroza},
+journal = {Science},
+pages = {1118-1119},
+title = {A rogue earthquake off Sumatra},
+volume = {336},
+year = {2012},
+doi = {10.1126/science.1223983},
+}
+
+@article{ uniqueID009,
+author = {Toda, S. and R. S. Stein and G. C. Beroza and D. Marsan},
+journal = {Nature Geosciences},
+pages = {410-413},
+title = {Aftershocks halted by static stress shadows},
+volume = {5},
+year = {2012},
+doi = {10.1038/ngeo1465},
+}
+
+@article{ uniqueID010,
+author = {Ma, S. and G. C. Beroza},
+journal = {Geophysical Research Letters},
+title = {Ambient-field Green's functions from asynchronous seismic observations},
+volume = {39},
+year = {2012},
+doi = {10.1029/2011GL050755},
+comment = {L06301},
+}
+
+@article{ uniqueID011,
+author = {Beroza, G. C.},
+journal = {Proceedings of the National Academy of Sciences},
+pages = {651-652},
+title = {How many great earthquakes should we expect?},
+volume = {109},
+year = {2012},
+}
+
+@article{ uniqueID012,
+author = {Prieto, G. A. and M. Denolle and J. F. Lawrence and G. C. Beroza},
+journal = {Comptes Rendus Geoscience},
+pages = {600-614},
+title = {On amplitude information carried by the ambient seismic field, Imaging and Monitoring with Seismic Noise},
+volume = {343},
+year = {2011},
+}
+
+@article{ uniqueID013,
+author = {Ide, S. and A. Baltay and G. C. Beroza},
+journal = {Science},
+pages = {1426-142},
+title = {Shallow Dynamic Overshoot and Energetic Deep Rupture in the 2011 Mw 9.0 Tohoku-Oki Earthquake},
+volume = {332},
+year = {2011},
+}
+
+@article{ uniqueID014,
+author = {Baltay, A. and S. Ide and G. A. Prieto and G. C. Beroza},
+journal = {Geophysical Research Letters},
+title = {Variability in earthquake stress drop and apparent stress},
+volume = {38},
+year = {2011},
+doi = {10.1029/2011GL046698},
+comment = {L06303},
+}
+
+@article{ uniqueID015,
+author = {Beroza, G. C. and S. Ide},
+journal = {Annual Review of Earth and Planetary Sciences},
+pages = {271-296},
+title = {Non-Volcanic Tremor and Slow Earthquakes},
+volume = {39},
+year = {2011},
+doi = {10.1146/annurev-earth-040809-152531},
+}
+
+@article{ uniqueID016,
+author = {Baltay, A. and G. Prieto and G. C. Beroza},
+journal = {Journal of Geophysical Research},
+title = {Radiated seismic energy from coda measurements indicates no scaling in apparent stress with seismic moment},
+volume = {115},
+year = {2010},
+doi = {10.1029/2009JB006736},
+comment = {B08314},
+}
+
+@article{ uniqueID017,
+author = {Maceira, M. and C. A. Rowe and G. Beroza and D. Anderson},
+journal = {Geophysical Research Letters},
+title = {Identification of low-frequency earthquakes in non-volcanic tremor using the subspace detector method},
+volume = {37},
+year = {2010},
+doi = {10.1029/2009GL041876},
+comment = {L06303},
+}
+
+@article{ uniqueID018,
+author = {Beroza, G. C.},
+journal = {Seismological Research Letters},
+number = {1},
+pages = {5-6},
+title = {15 Years Later: The Growing Legacy of the 1995 Kobe Earthquake},
+volume = {81},
+year = {2010},
+doi = {10.1785/gssrl.81.1.5},
+}
+
+@article{ uniqueID019,
+author = {Prieto, G. A. and J. F. Lawrence and G. C. Beroza},
+journal = {Journal of Geophysical Research},
+title = {Anelastic Earth structure from the coherency of the Ambient seismic field},
+volume = {114},
+year = {2009},
+doi = {10.1029/2008JB006067},
+comment = {B07202},
+}
+
+@article{ uniqueID020,
+author = {Uchide, T. and S. Ide and G. C. Beroza},
+journal = {Geophysical Research Letters},
+number = {L04307},
+title = {Dynamic High-Speed Rupture from the Onset of the 2004 Parkfield, California, Earthquake},
+volume = {36},
+year = {2009},
+doi = {10.1029/2008GL036824},
+}
+
+@article{ uniqueID021,
+author = {Beroza, G. C. and S. Ide},
+journal = {Science},
+pages = {1025-1026},
+title = {Deep tremor and slow quakes},
+volume = {234},
+year = {2009},
+doi = {10.1126/science.1171231},
+}
+
+@article{ uniqueID022,
+author = {Brown, J. R. and G. C. Beroza and S. Ide and K. Ohta and D. R. Shelly and S. Y. Schwartz and W. Rabbel and M. Thorwart and H. Kao},
+journal = {Geophysical Research Letters},
+number = {L19306},
+title = {Deep Low Frequency Earthquakes in Tremor Localize to the Plate Interface in Multiple Subduction Zones},
+volume = {36},
+year = {2009},
+doi = {10.1029/2009GL040027},
+}
+
+@article{ uniqueID023,
+author = {Song, S. G. and G. C. Beroza and P. Segall},
+journal = {Bulletin of the Seismology Society of America},
+pages = {823-831},
+title = {A unified source model for the 1906 San Francisco earthquake},
+volume = {98},
+year = {2008},
+}
+
+@article{ uniqueID024,
+author = {Ma, S. and G. C. Beroza},
+journal = {Bulletin of the Seismology Society of America},
+pages = {1642-1658},
+title = {Rupture dynamics on a bi-material interface for dipping faults},
+volume = {98},
+year = {2008},
+doi = {10.1785/0120070201},
+}
+
+@article{ uniqueID025,
+author = {Beroza, G. C.},
+journal = {McGraw Hill Yearbook of Science and Technology},
+pages = {299-301},
+title = {Slow Earthquakes},
+year = {2008},
+comment = {McGraw Hill, New York},
+}
+
+@article{ uniqueID026,
+author = {Aagaard, B. T. and G. C. Beroza},
+journal = {Bulletin of the Seismology Society of America},
+pages = {817-822},
+title = {The 1906 San Francisco earthquake a century later: introduction to the special section},
+volume = {98},
+year = {2008},
+}
+
+@article{ uniqueID027,
+author = {Ide, S. and K. Imanishi and Y. Yoshida and G. C. Beroza and D. R. Shelly},
+journal = {Geophysical Research Letters},
+number = {L10305},
+title = {Bridging the gap between seismically and geodetically detected slow earthquakes},
+volume = {35},
+year = {2008},
+doi = {10.1029/2008GL034014},
+}
+
+@article{ uniqueID028,
+author = {Prieto, G. A. and G. C. Beroza},
+journal = {Geophysical Research Letters},
+number = {L14304},
+title = {Earthquake Ground Motion Prediction Using the Ambient Seismic Field},
+volume = {35},
+year = {2008},
+doi = {10.1029/2008GL034428},
+}
+
+@article{ uniqueID029,
+author = {Ma, S. and G. A. Prieto and G. C. Beroza},
+journal = {Bulletin of the Seismology Society of America},
+pages = {2694-2713},
+title = {Testing Community Velocity Models for Southern California Using the Ambient Seismic Field},
+volume = {98},
+year = {2008},
+doi = {10.1785/0120080947},
+}
+
+@article{ uniqueID030,
+author = {Brown, J. R. and G. C. Beroza and D. R. Shelly},
+journal = {Geophysical Research Letters},
+number = {L16305},
+title = {An autocorrelation method to detect low frequency earthquakes within tremor},
+volume = {35},
+year = {2008},
+doi = {10.1029/2008GL034560},
+}
+
+@book{ uniqueID031,
+author = {Mooney, W. D. and G. C. Beroza and R. Kind},
+edition = {Hovius},
+editor = {Mark R. Handy, Greg Hirth, and Niels Hovius},
+note = {pages 9-46},
+publisher = {Dahlem Foundation Conference, Berlin, Germany},
+title = {Fault Zones from Top to Bottom: A Geophysical Perspective in Tectonic Faults: Agents of Change on a Dynamic Earth},
+year = {2007},
+comment = {ISBN-10:0-262-08362-0},
+}
+
+@article{ uniqueID032,
+author = {Rubinstein, J. L. and N. Uchida and G. C. Beroza},
+journal = {Journal of Geophysical Research},
+title = {Seismic Velocity Reductions Caused by the 2003 Tokachi-Oki Earthquake},
+volume = {112},
+year = {2007},
+doi = {10.1029/2006JB004440},
+}
+
+@article{ uniqueID033,
+author = {Rubinstein, J. L. and G. C. Beroza},
+journal = {Journal of Geophysical Research},
+number = {B05303},
+title = {Full waveform earthquake location: Application to seismic streaks on the Calaveras Fault, California, J},
+volume = {112},
+year = {2007},
+doi = {10.1029/2006JB004463},
+}
+
+@article{ uniqueID034,
+author = {Shelly, D. R. and G. C. Beroza and S. Ide},
+journal = {Nature},
+title = {Non-volcanic tremor and low frequency earthquake swarms},
+volume = {446},
+year = {2007},
+doi = {10.1038/nature05666},
+}
+
+@article{ uniqueID035,
+author = {Ide, S. and D. R. Shelly and G. C. Beroza},
+journal = {Geophysical Research Letters},
+number = {L03308},
+title = {The mechanism of deep low frequency earthquakes: further evidence that deep non-volcanic tremor is generated by shear slip on the plate interface},
+volume = {34},
+year = {2007},
+doi = {10.1029/2006GL028890},
+}
+
+@article{ uniqueID036,
+author = {Ide, S. and G. C. Beroza and D. R. Shelly and T. Uchide},
+journal = {Nature},
+pages = {76-79},
+title = {A scaling law for slow earthquakes},
+volume = {447},
+year = {2007},
+doi = {10.1038/nature05780},
+}
+
+@article{ uniqueID037,
+author = {Beroza, G. C.},
+journal = {Nature},
+pages = {599},
+title = {A man of magnitude: review of Richter's Scale: Measure of an Earthquake, Measure of a Man, by S. Hough},
+volume = {445},
+year = {2007},
+doi = {10.1038/445599a},
+}
+
+@article{ uniqueID038,
+author = {Shelly, D. R. and G. C. Beroza and S. Ide},
+journal = {Geochemistry, Geophysics, Geosystems},
+number = {Q10014},
+title = {Complex evolution of transient slip derived from precise tremor locations in western Shikoku, Japan},
+volume = {8},
+year = {2007},
+doi = {10.1029/2007GC001640},
+}
+
+@article{ uniqueID039,
+author = {Resor, P. G. and D. D. Pollard and T. J. Wright and G. C. Beroza},
+journal = {Journal of Geophysical Research},
+number = {B11402},
+title = {Correction to Integrating high-precision aftershock locations and geodetic observations to model coseismic deformation associated with the 1995 Kozani-Grevena earthquake, Greece},
+volume = {112},
+year = {2007},
+doi = {10.1029/2007JB005389},
+}
+
+@article{ uniqueID040,
+author = {Beroza, G. C. and Kanamori, H.},
+journal = {Volume 4: Earthquake Seismology},
+pages = {1-58},
+title = {Earthquake Seismology: Comprehensive Overview, Treatise on Geophysics},
+volume = {9},
+year = {2007},
+comment = {ed. G. Schubert, El Sevier},
+}
+
+@article{ uniqueID041,
+author = {Venkataraman, A. and G. C. Beroza and S. Ide and K. Imanishi and H. Ito and Y. Iio},
+journal = {Journal of Geophysical Research},
+number = {B03303},
+title = {Measurements of spectral similarity for microearthquakes in western Nagano, Japan},
+volume = {111},
+year = {2006},
+doi = {10.1029/2005JB003834},
+}
+
+@article{ uniqueID042,
+author = {Shelly, D. R. and G. C. Beroza and H. Zhang and C. H. Thurber and S. Ide},
+journal = {Journal of Geophysical Research},
+title = {High Resolution Subduction Zone Seismicity and Velocity Structure Beneath Ibaraki Prefecture, Japan},
+volume = {111},
+year = {2006},
+doi = {10.129/2005JB004081},
+}
+
+@article{ uniqueID,
+author = {Shelly, D. R. and G. C. Beroza and S. Ide and S. Nakamula},
+journal = {Nature},
+pages = {188-191},
+title = {Low-frequency earthquakes in Shikoku, Japan, and their relationship to episodic tremor and slip},
+volume = {442},
+year = {2006},
+}
+
+@article{ uniqueID043,
+author = {Mai, P. M. and P. Somerville and A. Pitarka and L. Dalguer and S. G. Song and G. Beroza and H. Miyake and K. Irikuraq},
+journal = {American Geophysical Union},
+pages = {283-294},
+title = {On scaling of fracture energy and stress drop in dynamic rupture models: consequences for near-source ground motions, Earthquakes: Radiated Energy and the Physics of Faulting, Geophysical Monograph Series},
+volume = {170},
+year = {2006},
+doi = {0.1029/170GM01},
+}
+
+@article{ uniqueID044,
+author = {Venkataraman, A. and J. Boatwright and G. C. Beroza},
+journal = {American Geophysical Union},
+pages = {15-24},
+title = {A Brief Review of Techniques used to Estimate Radiated Seismic Energy, Earthquakes: Radiated Energy and the Physics of Faulting, Geophysical Monograph Series},
+volume = {170},
+year = {2006},
+doi = {0.1029/170GM01},
+}
+
+@article{ uniqueID045,
+author = {Ide, S. and G. C. Beroza and J. J. McGuire},
+journal = {American Geophysical Union},
+title = {Imaging earthquake source complexity, AGU Monograph, Data Seismic Earth: Analysis of Broadband Seismograms, Geophysical Monograph Series},
+volume = {157},
+year = {2005},
+comment = {ed., A. Levander and G. Nolet},
+}
+
+@article{ uniqueID046,
+author = {Resor, P. G.. Pollard and D. D. and Wright, T. J. and Beroza, G C},
+journal = {Journal of Geophysical Research},
+title = {Integrating high-precision aftershock locations and geodetic observations to model coseismic deformation associated with the 1995 Kozani-Grevena Earthquake, Greece},
+volume = {110},
+year = {2005},
+doi = {10.1029/2004JB003263},
+}
+
+@article{ uniqueID047,
+author = {Rubinstein, J. L. and G. C. Beroza},
+journal = {Geophysical Research Letters},
+title = {Depth Constraints on Nonlinear Strong Ground Motion from the Parkfield Earthquake},
+volume = {32},
+year = {2005},
+doi = {10.1029/2005GL023189},
+}
+
+@article{ uniqueID048,
+author = {Zhang, H. and C. Thurber and D. Shelly and S. Ide and G. C. Beroza and A. Hasegawa},
+journal = {Geology},
+pages = {361-364},
+title = {Subducting slab structure beneath northern Honshu, Japan, revealed by double-difference tomography},
+volume = {32},
+year = {2004},
+}
+
+@article{ uniqueID049,
+author = {Beroza, G. C. and E. E. Zanzkeria},
+journal = {McGraw Hill Yearbook of Science and Technology, McGraw Hill, New York},
+pages = {268-271},
+title = {Precise Earthquake Location},
+year = {2004},
+}
+
+@article{ uniqueID050,
+author = {Schaff, D. P. and G. H. R. Bokelmann and W. L. Ellsworth and E. Zanzerkia and F. Waldhauser and G. C. Beroza},
+journal = {Bulletin of the Seismology Society of America},
+pages = {705-721},
+title = {Optimizing correlation techniques for improved earthquake location},
+volume = {94},
+year = {2004},
+}
+
+@article{ uniqueID051,
+author = {Rubinstein, J. L. and G. C. Beroza},
+journal = {Bulletin of the Seismology Society of America},
+pages = {1595-1608},
+title = {Evidence for widespread nonlinear strong ground motion in the Mw 6.9 Loma Prieta earthquake},
+volume = {94},
+year = {2004},
+}
+
+@article{ uniqueID052,
+author = {Schaff, D. P.  and G. C. Beroza},
+journal = {Journal of Geophysical Research},
+number = {B10302},
+title = {Coseismic and postseismic velocity changes measured by repeating earthquakes},
+volume = {109},
+year = {2004},
+doi = {10.1029/2004JB003011},
+}
+
+@article{ uniqueID053,
+author = {Guatteri, M. and P. M. Mai and G. C. Beroza},
+journal = {Bulletin of the Seismology Society of America},
+pages = {2051-2063},
+title = {A Pseudo-Dynamic Approximation to Dynamic rupture Models for Strong Ground Motion Prediction},
+volume = {94},
+year = {2004},
+}
+
+@article{ uniqueID054,
+author = {Song, S.-G. and G. C. Beroza},
+journal = {Geophysical Research Letters},
+number = {L18613},
+title = {A simple dynamic rupture model for the 1995 Kobe, Japan earthquake},
+volume = {31},
+year = {2004},
+doi = {10.129/2004GL020557},
+}
+
+@article{ uniqueID055,
+author = {Rubinstein J. L. and G. C. Beroza},
+journal = {Geophysical Research Letters},
+number = {L23614},
+title = {Nonlinear strong ground motion in the M L 5.4 Chittenden earthquake: Evidence that preexisting damage increases susceptibility to further damage},
+volume = {31},
+year = {2004},
+doi = {10.1029/2004GL021357},
+}
+
+@inproceedings{ uniqueID056,
+address = {US-Japan Cooperative Research on Urban Earthquake Disaster Reduction},
+author = {Miyake, H. and G. C. Beroza and T. Iwata},
+booktitle = {Prediction of Strong Ground Motions in Urban Regions},
+pages = {11-24},
+publisher = {US-Japan Cooperative Research on Urban Earthquake Disaster Reduction},
+title = {Frequency dependent source processes for the 1989 Loma Prieta earthquake using a complex spectral inversion},
+year = {2004},
+comment = {11209201},
+}
+
+@article{ uniqueID057,
+author = {Mai, P. M. and G. C. Beroza},
+journal = {Physics of the Earth and Planetary Interiors},
+pages = {183-199},
+title = {A hybrid method for calculating near-source, broadband seismograms from an extended source},
+volume = {137},
+year = {2003},
+}
+
+@article{ uniqueID058,
+author = {Guatteri, M. and P. M. Mai and G. C. Beroza and J. Boatwright},
+journal = {Bulletin of the Seismology Society of America},
+pages = {301-313},
+title = {Strong-ground motion prediction from stochastic-dynamic source models},
+volume = {93},
+year = {2003},
+}
+
+@article{ uniqueID059,
+author = {Ide, S. and G. C. Beroza and S. G. Prejean and W. L. Ellsworth},
+journal = {Journal of Geophysical Research},
+title = {Apparent break in earthquake scaling due to path and site effects in deep borehole recordings},
+volume = {108},
+year = {2003},
+doi = {10.1029/2001JB001617},
+}
+
+@article{ uniqueID060,
+author = {Perez-Campos, X. and J. J. McGuire and G. C. Beroza},
+journal = {Journal of Geophysical Research},
+title = {Resolution of the Slow Earthquake/High Apparent Stress Paradox for Oceanic Transform Fault Earthquakes},
+volume = {108},
+year = {2003},
+doi = {10.1029/2002JB002312},
+}
+
+@article{ uniqueID061,
+author = {Zanzerkia, E. E. and G. C. Beroza and J. E. Vidale},
+journal = {Geophysical Research Letters},
+title = {Waveform analysis of the 1999 Hector Mine, California, foreshock sequence},
+year = {2003},
+doi = {10.1029/2002GL016612},
+}
+
+@article{ uniqueID062,
+author = {Perez-Campos, X. and S. K. Singh and G. C. Beroza},
+journal = {Bulletin of the Seismology Society of America},
+pages = {2123-2130},
+title = {Reconciling the discrepancy between teleseismic and regional estimates of seismic energy},
+volume = {93},
+year = {2003},
+}
+
+@incollection{ uniqueID063,
+author = {Kovach, R. L. and G. C. Beroza},
+booktitle = {International Handbook of Earthquake & Engineering Seismology, part B},
+editor = {W.H.K. Lee et al},
+pages = {1459 and accompanying CD-ROM},
+publisher = {Academic Press},
+title = {History of Geophysics at Stanford},
+year = {2003},
+}
+
+@article{ uniqueID064,
+author = {Karakelian, D. and G. C. Beroza and S. L. Klemperer and A. C. Fraser-Smith},
+journal = {Bulletin of the Seismology Society of America},
+pages = {1513-1524},
+title = {Analysis of ultra-low frequency electromagnetic field measurements associated with the 1999 M 7.1 Hector Mine earthquake sequence, California},
+volume = {92},
+year = {2002},
+}
+
+@article{ uniqueID065,
+author = {Mai, P. M. and G. C. Beroza},
+journal = {Journal of Geophysical Research},
+pages = {2308},
+title = {A spatial random-field model to characterize complexity in earthquake slip},
+volume = {107(B11)},
+year = {2002},
+doi = {10.1029/2001JB000588},
+}
+
+@article{ uniqueID066,
+author = {Schaff, D. P. and G. H. R. Bokelmann and G. C. Beroza and F. Waldhauser and W. L. Ellsworth},
+journal = {Journal of Geophysical Research},
+pages = {2186},
+title = {High resolution image of Calaveras Fault seismicity},
+volume = {107 (B9)},
+year = {2002},
+doi = {10.1029/2001JB000633},
+}
+
+@article{ uniqueID067,
+author = {Beroza, G. C.},
+journal = {Nature},
+number = {464},
+title = {Keeping your feet in a moving field: review of Earthquake Science: What we Know (and Dont Know) about Earthquakes, by S. Hough},
+volume = {420},
+year = {2002},
+doi = {10.1038/420464a},
+}
+
+@article{ uniqueID068,
+author = {Crider, J. G. and D. D. Pollard and D. P. Schaff and G. C. Beroza},
+journal = {Geophysical Research Letters},
+pages = {2739-2742},
+title = {Considering the third dimension in stress-triggering of aftershocks: 1993 Klamath (Fall)s (OR) earthquake sequence},
+volume = {28},
+year = {2001},
+}
+
+@article{ uniqueID069,
+author = {Perez-Campos, X. and G. C. Beroza},
+journal = {Journal of Geophysical Research},
+number = {11},
+pages = {127-136},
+title = {Mechanism-dependent scaling of the radiated seismic energy},
+volume = {106},
+year = {2001},
+}
+
+@article{ uniqueID070,
+author = {Guatteri, M. and P. Spudich and G. C. Beroza},
+journal = {Journal of Geophysical Research},
+number = {26},
+pages = {511-522},
+title = {Inferring rate and state friction parameters from a rupture model of the 1995 Hyogo-ken Nanbu (Kobe) Japan earthquake},
+volume = {106},
+year = {2001},
+}
+
+@article{ uniqueID071,
+author = {Ron, H. and G. C. Beroza and A. Nur},
+journal = {Eos, Transactions American Geophysical Union},
+pages = {125-129},
+title = {Simple model explains complex faulting},
+volume = {82},
+year = {2001},
+}
+
+@article{ uniqueID072,
+author = {Ide, S. and G. C. Beroza},
+journal = {Geophysical Research Letters},
+pages = {3349-3352},
+title = {Does apparent stress vary with earthquake size?},
+volume = {28},
+year = {2001},
+}
+
+@inproceedings{ uniqueID073,
+author = {Mai, P. M. and G. C. Beroza},
+booktitle = {Proceedings of US-Japan Cooperative Resarch on Urban Earthquake Disaster Mitigation},
+pages = {13-24},
+title = {Improving strong ground motion prediction: scaling of the earthquake source, complexity of earthquake slip, and dynamic-stochastic modeling of earthquake rupture},
+year = {2001},
+}
+
+@inproceedings{ uniqueID074,
+author = {Waldhauser, F. and G. C. Beroza and D. P. Schaff and W. L. Ellsworth and G. H. R. Bokelmann},
+booktitle = {Proceedings of the 3rd Conference on Tectonic Problems of the San Andreas Fault System},
+publisher = {Stanford University},
+title = {Fault structure and mechanics from high-resolution earthquake locations on the Hayward and Calaveras faults},
+year = {2000},
+}
+
+@inproceedings{ uniqueID075,
+author = {Beroza, G. C. and D. P. Schaff and G. H. R. Bokelmann},
+booktitle = {Proceedings of the 3rd Conference on Tectonic Problems of the San Andreas Fault System},
+publisher = {Stanford University},
+title = {Constraints on fault mechanics from Calaveras fault seismicity},
+year = {2000},
+}
+
+@article{ uniqueID076,
+author = {Karakelian, D. and S. L. Klemperer and A. C. Fraser-Smith and G. C. Beroza},
+journal = {Seismological Research Letters},
+pages = {423-436},
+title = {A transportable system for monitoring ultra-low frequency electromagnetic signals associated with earthquakes},
+volume = {71},
+year = {2000},
+}
+
+@inproceedings{ uniqueID077,
+author = {Bokelmann, G. H. R. and G. C. Beroza},
+booktitle = {Proceedings of the 3rd Conference on Tectonic Problems of the San Andreas Fault System},
+publisher = {Stanford University},
+title = {Constraints on crustal rheology from earthquake focal mechanisms},
+year = {2000},
+}
+
+@inproceedings{ uniqueID078,
+author = {Ron, H. and G. C. Beroza and A. Nur},
+booktitle = {Proceedings of the 3rd Conference on Tectonic Problems of the San Andreas Fault System},
+publisher = {Stanford University},
+title = {A mechanical explanation for multiple-fault rupture in the Mojave},
+year = {2000},
+}
+
+@article{ uniqueID079,
+author = {Bokelmann, G. H. R. and G. C. Beroza},
+journal = {Journal of Geophysical Research},
+number = {21},
+pages = {683-696},
+title = {Depth-dependent earthquake focal mechanism orientation: evidence for a weak zone in the lower crust},
+volume = {105},
+year = {2000},
+}
+
+@article{ uniqueID080,
+author = {Mai, P. M. and G. C. Beroza},
+journal = {Bulletin of the Seismology Society of America},
+pages = {604-615},
+title = {Source scaling properties from finite-fault rupture models},
+volume = {90},
+year = {2000},
+}
+
+@article{ uniqueID081,
+author = {Felzer, K. R. and G. C. Beroza},
+journal = {Geophysical Research Letters},
+pages = {2121-2124},
+title = {Deep structure of a fault discontinuity},
+volume = {26},
+year = {1999},
+}
+
+@article{ uniqueID082,
+author = {Ellsworth, W. L. and G. C. Beroza},
+journal = {Geophysical Research Letters},
+pages = {401-404},
+title = {Observation of the seismic nucleation phase in the Ridgecrest, California earthquake sequence},
+volume = {25},
+year = {1998},
+}
+
+@article{  uniqueID083,
+author = {Schaff, D. P. and G. C. Beroza and B. E. Shaw},
+journal = {Geophysical Research Letters},
+pages = {4549-4552},
+title = {Postseismic response of repeating aftershocks},
+volume = {25},
+year = {1998},
+}
+
+@inproceedings{ uniqueID084,
+author = {Beroza, G. C.},
+booktitle = {Proceedings of Structural Engineers World Congress},
+pages = {162-2},
+publisher = {Elsevier},
+title = {The role of earthquake mechanics research in seismic hazard analysis},
+year = {1998},
+comment = {803},
+}
+
+@article{ uniqueID085,
+author = {Dodge, D. A. and G. C. Beroza},
+journal = {Journal of Geophysical Research},
+number = {24},
+pages = {437-458},
+title = {Source array analysis of coda waves near the 1989 Loma Prieta, California mainshock: implications for the mechanism of coseismic velocity changes},
+volume = {102},
+year = {1997},
+}
+
+@article{ uniqueID086,
+author = {Beroza, G. C.},
+journal = {Geotimes},
+number = {2},
+pages = {53-54},
+title = {Earthquake Seismology},
+volume = {42},
+year = {1997},
+}
+
+@article{ uniqueID087,
+author = {Dodge, D. A. and G. C. Beroza and W. L. Ellsworth},
+journal = {Journal of Geophysical Research},
+number = {22},
+pages = {371-392},
+title = {Detailed observations of California foreshock sequences: implications for the earthquake initiation process},
+volume = {101},
+year = {1996},
+}
+
+@article{ uniqueID088,
+author = {Beroza, G. C. and T. Mikumo},
+journal = {Journal of Geophysical Research},
+number = {22},
+pages = {449-460},
+title = {Short slip duration in dynamic rupture in the presence of heterogeneous fault properties},
+volume = {101},
+year = {1996},
+}
+
+@article{ uniqueID089,
+author = {Beroza, G. C. and W. L. Ellsworth},
+journal = {Tectonophysics},
+pages = {209-227},
+title = {Properties of the seismic nucleation phase},
+volume = {261},
+year = {1996},
+}
+
+@incollection{ uniqueID090,
+author = {Beroza, G. C.},
+booktitle = {The Loma Prieta, California Earthquake of October 17, 1989–Main-Shock Characteristics},
+pages = {9-32},
+publisher = {U.S. Geological Survey},
+title = {Rupture history of the earthquake estimated from high-frequency strong-motion data, U.S. Geological Survey Professional Paper 1550-A},
+year = {1996},
+}
+
+@article{ uniqueID091,
+author = {Beroza, G. C. and A. T. Cole and W. L. Ellsworth},
+journal = {Journal of Geophysical Research},
+pages = {3977-3987},
+title = {Stability of coda-wave attenuation during the Loma Prieta earthquake sequence},
+volume = {100},
+year = {1995},
+}
+
+@article{ uniqueID092,
+author = {Ellsworth, W. L. and G. C. Beroza},
+journal = {Science},
+pages = {851-855},
+title = {Seismic evidence for an earthquake nucleation phase},
+volume = {268},
+year = {1995},
+}
+
+@article{ uniqueID093,
+author = {Dodge, D. A. and G. C. Beroza and W. L. Ellsworth},
+journal = {Journal of Geophysical Research},
+pages = {9865-9880},
+title = {Evolution of the 1992 Landers, California, foreshock sequence and its implications for earthquake nucleation},
+volume = {100},
+year = {1995},
+}
+
+@article{ uniqueID094,
+author = {Beroza, G. C.},
+journal = {U.S. National Report to International Union of Geodesy and Geophysics},
+pages = {299-308},
+title = {Seismic Source modeling, Reviews of Geophysics, Supplement},
+year = {1995},
+url = {http://earth.agu.org:80/revgeophys/beroza01/beroza01.html},
+}
+
+@article{ uniqueID095,
+author = {Beroza, G. C.},
+journal = {Geotimes},
+number = {2},
+pages = {49-50},
+title = {Earthquake Seismology},
+volume = {40},
+year = {1995},
+}
+
+@article{ uniqueID096,
+author = {Zoback, M. D. and G. C. Beroza},
+journal = {Geology},
+pages = {279-280},
+title = {Reply to comments by James Savage on "Evidence for near-frictionless faulting in the October 17, 1989 (M=6.9) Loma Prieta, California earthquake and its aftershocks"},
+volume = {22},
+year = {1994},
+}
+
+@article{ uniqueID097,
+author = {Cohee, B. P. and G. C. Beroza},
+journal = {Bulletin of the Seismology Society of America},
+pages = {692-712},
+title = {Slip distribution of the 1992 Landers earthquake and its implications for earthquake source mechanics},
+volume = {84},
+year = {1994},
+}
+
+@article{ uniqueID098,
+author = {Cohee, B. P. and G. C. Beroza},
+journal = {Annali di Geofisica},
+number = {6},
+pages = {77-101},
+title = {A comparison of two methods for finite-fault inversion using strong-motion data},
+volume = {37},
+year = {1994},
+}
+
+@inproceedings{ uniqueID099,
+address = {Kyoto, Japan},
+author = {Ellsworth, W. L. and G. C. Beroza},
+booktitle = {Proceedings of the 9th Joint Meeting of the UJNR Panel on Earthquake Prediction Technology},
+pages = {225-240},
+title = {Seismic evidence for an earthquake nucleation phase},
+year = {1994},
+}
+
+@article{ uniqueID100,
+author = {Beroza, G. C.},
+journal = {Geotimes},
+number = {2},
+pages = {36},
+title = {Earthquake Seismology},
+volume = {39},
+year = {1994},
+}
+
+@article{ uniqueID101,
+author = {Beroza, G. C. and M. D. Zoback},
+journal = {Science},
+pages = {210-213},
+title = {Mechanism diversity of the Loma Prieta aftershocks and the mechanics of mainshock-aftershock interaction},
+volume = {259},
+year = {1993},
+}
+
+@article{ uniqueID102,
+author = {Zoback, M. D. and G. C. Beroza},
+journal = {Geology},
+pages = {181-185},
+title = {Evidence for near-frictionless faulting in the October 17, 1989 (M=6.9) Loma Prieta, California earthquake and its aftershocks},
+volume = {21},
+year = {1993},
+}
+
+@article{ uniqueID103,
+author = {Kovach, B. and G. C. Beroza},
+journal = {Bulletin of the Seismology Society of America},
+pages = {597-602},
+title = {Potential seismic hazard from reverse faulting on the San Francisco Peninsula},
+volume = {83},
+year = {1993},
+}
+
+@article{ uniqueID104,
+author = {Fenoglio, M. and A. C. Fraser-Smith and G. C. Beroza and M. J. S. Johnston},
+journal = {Bulletin of the Seismology Society of America},
+pages = {347-357},
+title = {Comparison of ultra-low frequency electromagnetic signals with aftershock activity during the 1989 Loma Prieta earthquake sequence},
+volume = {83},
+year = {1993},
+}
+
+@article{ uniqueID105,
+author = {Hill, D. P. and P. A. Reasenberg and A. Michael and W. Arabasz and G. C. Beroza and J. N. Brune and D., Brumbaugh and S. Davis and D. DePolo and W. L. Ellsworth and J. Gomberg and S. Harmsen and L. House and S. M. Jackson and M. Johnston and L. Jones and R. Keller and S. Malone and S. Nava and J. C. Pechmann and A. Sanford and R. W. Simpson and R. S. and Smith, M. Stark and M. Stickney and S. Walter and J. Zollweg},
+journal = {Science},
+pages = {1617-1623},
+title = {Seismicity in the western United States remotely triggered by the M 7.4 Landers, California, earthquake of June 28, 1992},
+volume = {260},
+year = {1993},
+}
+
+@article{ uniqueID106,
+author = {Nur, A. and H. Ron and G. C. Beroza},
+journal = {Science},
+pages = {201-203},
+title = {The nature of the Landers-Mojave seismic line},
+volume = {261},
+year = {1993},
+}
+
+@article{ uniqueID107,
+author = {Oppenheimer, D. and G. C. Beroza and G. Carver and L. Dengler and J. Eaton and L. Gee and F. Gonzalez and A. Jayko and W. H. Li and M. Lisowski and M. Magee and G. Marshall and M. Murray and R. McPherson and B. Romanowicz and K. Satake and R. Simpson and P. Somerville and R. Stein and D. Valentine},
+journal = {Science},
+pages = {433-438},
+title = {The Cape Mendocino earthquake sequence of April, 1992: subduction at the triple junction},
+volume = {261},
+year = {1993},
+}
+
+@article{ uniqueID108,
+author = {Nur, A. and H. Ron and G. C. Beroza},
+journal = {GSA Today},
+number = {10},
+pages = {253-258},
+title = {Landers-Mojave earthquake line: a new fault system?},
+volume = {3},
+year = {1993},
+}
+
+@article{ uniqueID109,
+author = {Hill, D. P. and P. A. Reasenberg and A. J. Michael and W. J. Arabasz and G. C. Beroza and J. N. Brune and D. S. Brumbaugh and R. Castro and S. D. Davis and D. M. DePolo and W. L. Ellsworth and J. S. Gomberg and S. C. Harmsen and L. House and S. M. Jackson and R. Keller and S. D. Malone and L. Munguia and S. Nava and J. C. Pechmann and A. R. Sanford and R. W. Simpson and R. S. Smith and M. A. Stark and M. C. Stickney and A. Vidal and S. R. Walter and V. Wong and J. E. Zollweg},
+journal = {U.S. Geological Survey, Open File Report 93-0542},
+pages = {238-276},
+title = {Seismicity in the Western United States remotely triggered by the M 7.4 Landers, California, earthquake of June 28, 1992},
+year = {1992},
+}
+
+@article{ uniqueID110,
+author = {Beroza, G. C.},
+journal = {Bulletin of the Seismology Society of America},
+pages = {1603-1621},
+title = {Near-source modeling of the Loma Prieta earthquake: evidence for heterogeneous slip and implications for earthquake hazard},
+volume = {81},
+year = {1991},
+}
+
+@article{ uniqueID111,
+author = {Beroza, G. C. and T. H. Jordan},
+journal = {Journal of Geophysical Research},
+pages = {2485-2510},
+title = {Searching for slow and silent earthquakes using free oscillations},
+volume = {95},
+year = {1990},
+}
+
+@phdthesis{ uniqueID112,
+author = {Beroza, G. C.},
+school = {Massachusetts Institute of Technology, Cambridge},
+title = {Near-source imaging of seismic rupture, Ph.D. Thesis},
+year = {1989},
+comment = {198 pp},
+}
+
+@article{ uniqueID113,
+author = {Beroza, G. C. and P. Spudich},
+journal = {Journal of Geophysical Research},
+pages = {6275-6296},
+title = {Linearized inversion for fault rupture behavior: application to the 1984, Morgan Hill, California, earthquake},
+volume = {93},
+year = {1988},
+}
+
+@incollection{ uniqueID114,
+address = {Dordrecht},
+author = {Beroza, G. C. and V. F. Cormier},
+booktitle = {Strong Ground Motion Seismology},
+editor = {M. O. Erdik and M. N. Toksöz},
+pages = {209-224},
+publisher = {D. Reidel},
+title = {High frequency earthquake strong ground motion in laterally varying media: the effect of a fault zone},
+year = {1987},
+}
+
+@article{ uniqueID115,
+author = {Cormier, V. F. and G. C. Beroza},
+journal = {Bulletin of the Seismology Society of America},
+pages = {1-13},
+title = {Calculation of strong ground motion due to an extended earthquake source in a laterally varying medium},
+volume = {77},
+year = {1987},
+}
+
+@article{ uniqueID116,
+author = {Beroza, G. C. and J. A. Rial and K. C. McNally},
+journal = {Geophysical Research Letters},
+pages = {689-692},
+title = {Source mechanisms of the June 7, 1982 Ometepec, Mexico earthquake},
+volume = {11},
+year = {1984},
+}
+
+@article{ uniqueID117,
+author = {Beroza, G. C. and J. A. Rial and K. C. McNally},
+journal = {Geophysical Research Letters},
+pages = {689-692},
+title = {Source mechanisms of the June 7, 1982 Ometepec, Mexico earthquake},
+volume = {11},
+year = {1984},
+}
+

@@ -1,0 +1,635 @@
+@article{lbh12,
+author = {Lowe, D. R. and Byerly, G. R. and Heubeck, H.},
+journal = {South Africa: Geological Society of America Map Series},
+title = {Geologic map of the west-central Barberton greenstone belt},
+year = {2012},
+}
+
+@article{klb12,
+author = {Krull-Davatzes, A. and Lowe, D. R. and Byerly, G. R.},
+journal = {Precambrian Research},
+pages = {128-148},
+title = {Mineralogy and diagenesis of 3.24 Ga meteorite impact spherules},
+volume = {196-197},
+year = {2012},
+}
+
+@article{bjgl11,
+author = {Bernhardt, A. and Jobe, Z. R. and Grove, M. and Lowe, D. R.},
+journal = {Basin Research},
+pages = {1-26},
+title = {Palaeography and dischronous infill of an ancient deep-marine foreland basin Upper Cretaceous Cerro Toro Formation, Magallanes Basin},
+volume = {23},
+year = {2011},
+}
+
+@article{jlm11,
+author = {Jobe, Z. R. and Lowe, D. R. and Morris, W. R.},
+journal = {Sedimentology,},
+pages = {867-898},
+title = {Climbing-ripple successions in turbidite systems: depositional environments, sedimentation rates and accumulation times: },
+volume = {59},
+year = {2011},
+}
+
+@article{slb11,
+author = {Stiegler-Thompson, M. E. and Lowe, D. R. and Byerly, G. R.},
+journal = {Geological Society of America Bulletin},
+pages = {1112-1126},
+title = {Fragmentation and dispersal of komatiitic pyroclasts in the 3.5-3.2 Ga Onverwacht Group, Barberton Greenstone belt, South Africa},
+volume = {123,},
+year = {2011},
+}
+
+@article{bjl211,
+author = {Bernhardt, A. and Jobe, Z. R. and Lowe, D. R.},
+journal = {Marine and Petroleum Geology},
+pages = {785-806},
+title = {Stratigraphic evolution of a submarine channel-lobe complex system in a narrow fairway within the Magallanes foreland basin, Cerro Toro Formation, southern Chile},
+volume = {28,},
+year = {2011},
+}
+
+@article{jlu11,
+author = {Jobe, Z. R. and Lowe, D. R. and Uchytil, S. J.},
+journal = {Marine and Petroleum Geology},
+pages = {843-860},
+title = {Two fundamentally different types of submarine canyons along the continental margin of Equatorial Guinea},
+volume = {28},
+year = {2011},
+}
+
+@article{kbl10,
+author = {Krull-Davatzes, A. and Byerly, G. R. and Lowe, D. R.},
+journal = {Earth and Planetary Science Letters,},
+pages = {319-328},
+title = {Evidence for a low O2 Archean atmosphere from nickel-rich chrome spinels in 3.24 Ga impact spherules Barberton greenstone belt, South Africa},
+volume = {296},
+year = {2010},
+}
+
+@article{lb10,
+author = {Lowe, D. R. and Byerly, G. R.},
+journal = {41st Lunar and Planetary Science Conference.},
+pages = {2563},
+title = {Did LHB end not with a bang but a whimper? The geologic evidence},
+year = {2010},
+}
+
+@article{jbl310,
+author = {Jobe, Z. R. and Bernhardt, A. and Lowe, D. R.},
+journal = {Journal of Sedimentary Research},
+pages = {1085-1108},
+title = {Facies and architectural asymmetry in a conglomerate-rich submarine channel fill Cerro Toro Formation, Sierra del Toro, Magallanes Basin, Chile},
+volume = {80},
+year = {2010},
+}
+
+@incollection{gl08,
+author = {Graham, S. A. and Lowe, D. R.},
+booktitle = {Deep-Water Outcrops of the World Atlas - American Association of Petroleum Geologists Special Publication},
+title = {Preface},
+editor = {Nilsen, T., Shew, R., Steffens, G, and Studlick, J.,},
+year = {2008},
+comment = {Preface  p. 2},
+}
+
+@article{cl908,
+author = {Crane, W. H. and Lowe, D. R.},
+journal = {Sedimentology,},
+pages = {979-1009},
+title = {Architecture and evolution of the Paine channel complex Cerro Toro Formation (Upper Cretaceous), Silla Syncline, Magallanes Basin, Chile},
+volume = {55},
+year = {2008},
+}
+
+@incollection{dl908,
+author = {Duerichen, E. T. and Lowe, D. R.},
+booktitle = {Deep-Water Outcrops of the World Atlas: American Association of Petroleum Geologists Special Publication 56},
+editor = {Nilsen, T., Shew, R., Steffens, G, and Studlick, J.,},
+title = {Sedimentology and architecture of coarse-grained submarine channel fills, Lobitos Village, Peru},
+year = {2008},
+}
+
+@article{slb908,
+author = {Stiegler, M. T. and Lowe, D. R. and Byerly, G. R.},
+journal = {Geology},
+pages = {779-782},
+title = {Abundant pyroclastic komatiitic volcanism in the 3.5-3.2 Ga Barberton greenstone belt, South Africa},
+volume = {36},
+year = {2008},
+}
+
+@article{bjl808,
+author = {Bernhardt, A. and Jobe, Z. R. and Lowe, D. R.},
+journal = {28th Annual GCSSEPM Foundation Bob F. Perkins Research Conference,},
+pages = {268-310},
+title = {The evolution of an elongate foreland basin: the deep- to shallow-marine filling of the Cretaceous Magallanes Basin, Chile,},
+year = {2008},
+}
+
+@article{br07,
+author = {Bao, H. and Rumble, D., III, and Lowe, D},
+title = {The five stable isotope compositions of Fig Tree barites: Implications on sulfur cycle in ca. 3.2 Ga oceans},
+journal = {Geochimica et Cosmochimica Acta},
+pages = {4868-4879},
+volume = {71},
+year = {2007},
+}
+
+@article{br807,
+author = {Bao, H. and Rumble, D., III, and Lowe, D},
+journal = {Geochimica et Cosmochimica Acta},
+pages = {4868-4879},
+title = {The five stable isotope compositions of Fig Tree barites: Implications on sulfur cycle in ca. 3.2 Ga oceans},
+volume = {71},
+year = {2007},
+}
+
+@incollection{lb707,
+address = {Amsterdam},
+author = {Lowe, D. R. and Byerly, G. R.},
+booktitle = {Earth's Oldest Rocks, Elsevier,},
+editor = {Van Kranendonk, M H. Smithies and V. Bennett},
+pages = {481-526},
+title = {An overview of the geology of the Barberton greenstone belt and vicinity: Implications for early crustal development},
+year = {2007},
+}
+
+@article{lt07,
+author = {Lowe, D. R. and Tice, M. M.},
+journal = {Precambrian Research,},
+pages = {177-197},
+title = {Tectonic controls on atmospheric, climatic, and biological evolution 3.5-2.4 Ga},
+volume = {158},
+year = {2007},
+}
+
+@article{lb607,
+author = {Lowe, D. R. and Byerly, G. R.},
+journal = {Geological Society of America Bulletin,},
+pages = {65-87},
+title = {Ironstone bodies of the Barberton greenstone belt, South Africa: Products of a Cenozoic hydrological system, not Archean hydrothermal vents},
+volume = {119},
+year = {2007},
+}
+
+@article{hl607,
+author = {Hessler, A. M. and Lowe, D. R.},
+journal = {Precambrian Research,},
+pages = {185-210},
+title = {Weathering and sediment generation in the Archean: An integrated study of the evolution of siliciclastic sedimentary rocks of the 3.2 Ga Moodies Group, Barberton Greenstone Belt, South Africa},
+volume = {151},
+year = {2007},
+}
+
+@article{tl506,
+author = {Tice, M. M. and Lowe, D. R.},
+journal = {Earth Science Reviews},
+pages = {259-300},
+title = {The origin of carbonaceous matter in pre-3.0 Ga greenstone terrains: A review and new evidence from the 3.42 Ga Buck Reef Chert},
+volume = {76},
+year = {2006},
+}
+
+@article{klb506,
+author = {Krull-Davatzes, A. E. and Lowe, D. R. and Byerly, G. R.},
+journal = {South African Journal of Geology},
+pages = {233-244},
+title = {Compositional grading in an 3.24 Ma impact-produced spherule bed, Barberton greenstone belt, South Africa: A key to impact plume evolution},
+volume = {109},
+year = {2006},
+}
+
+@article{hltbc06,
+author = {Hren, M. T. and Lowe, D. R. and Tice, M. M. and Byerly, G. R. and Chamberlain, C. P.},
+journal = {Geochimica et Cosmochimica Acta,},
+pages = {1457-1470},
+title = {Stable isotope and rare earth element evidence for recent ironstone pods within the Archean Barberton greenstone belt, South Africa},
+volume = {70},
+year = {2006},
+}
+
+@article{tl406,
+author = {Tice, M. M. and Lowe, D. R.},
+journal = {Geology},
+pages = {37-40},
+title = {Hydrogen-based carbon fixation in the earliest known photosynthetic organisms},
+volume = {34},
+year = {2006},
+}
+
+@article{tl306,
+author = {Tice, M. M. and Lowe, D. R.},
+journal = {Geology},
+pages = {37-40},
+title = {Hydrogen-based carbon fixation in the earliest known photosynthetic organisms},
+volume = {34},
+year = {2006},
+}
+
+@article{tl206,
+author = {Tice, M. M. and Lowe, D. R.},
+journal = {Earth Science Reviews},
+pages = {259-300},
+title = {The origin of carbonaceous matter in pre-3.0 Ga greenstone terrains: A review and new evidence from the 3.42 Ga Buck Reef Chert},
+volume = {76},
+year = {2006},
+}
+
+@article{rbl05,
+author = {Roy, A., Byerly, G.E., Lowe, D.R., Walsh, M.W., and Bianchetti, C.,},
+journal = {Physica Scripta},
+pages = {918-920},
+title = {Iron and manganese minerals from South African ironstone deposits},
+volume = {T115},
+year = {2005},
+}
+
+@incollection{sbl04,
+address = {Amsterdam},
+author = {Simonson, B. M. and Byerly, G. R. and Lowe, D. R.},
+booktitle = {Tempos and Events in Precambrian Time},
+editor = {Eriksson, P.A., and Nelson, D.},
+pages = {27-45},
+title = {Early Precambrian stratigraphic record of large extraterrestrial impacts},
+year = {2004},
+}
+
+@incollection{lg04,
+author = {Lowe, D. R. and Ghosh, B.},
+booktitle = {Deep-Water Sedimentation: Technological Challenges for the Next Millennium: ABGP (Brazilian Association of Petroleum Geologists)},
+editor = {D'Avila, R., and Viana, A.,},
+title = {A stratigraphic and architectural-element methodology for the subdivision and interpretation of deep-water clastic sequences: an example from the Cretaceous Venado Sandstone, Sacramento Valley, California},
+year = {2004},
+comment = {Special Paper No. 1.},
+}
+
+@article{lt04,
+author = {Lowe, D. R. and Tice, M. M.},
+journal = {Geology},
+pages = {493-496},
+title = {Geologic evidence for Archean atmospheric and climatic evolution: Fluctuating levels of CO2, CH4, and O2 with an overriding tectonic control},
+volume = {32},
+year = {2004},
+}
+
+@article{l064,
+author = {Lowe, D. R.},
+journal = {Pacific Section AAPG and AAPG, Pacific Section AAPG Publication GB},
+number = {79},
+title = {Deep-water sandstones: Submarine canyon to basin plain western California},
+volume = {79},
+year = {2004},
+}
+
+@article{lb034,
+author = {Lowe, D. R. and Byerly, G. R.},
+journal = {Geology, Online Forum,},
+pages = {e69},
+title = {Ironstone pods in the Archean Barberton greenstone belt, South Africa: Earth's oldest seafloor hydrothermal vents reinterpreted as Quaternary subaerial (Spring)},
+year = {2004},
+}
+
+@article{kl054,
+author = {Kim, Bok Chul and Lowe, D. R.},
+journal = {Geosciences Journal},
+pages = {153-170},
+title = {Depositional processes of the gravelly debris flow deposits, South Dolomite alluvial fan, Owens Valley, California},
+volume = {8},
+year = {2004},
+}
+
+@article{tl064,
+author = {Tice, M. M. and Lowe, D. R.},
+journal = {Nature,},
+pages = {549-552},
+title = {Photosynthetic microbial mats in the 3 in the 3,416-Myr-old ocean},
+volume = {431},
+year = {2004},
+}
+
+@article{sl074,
+author = {Sylvester, Z. and Lowe, D. R.},
+journal = {Sedimentology},
+pages = {945-972},
+title = {Textural trends in turbidites and slurry beds from the Oligocene flysch of the East Carpathians, Romania},
+volume = {51},
+year = {2004},
+}
+
+@article{tbl094,
+author = {Tice, M. M. and Bostick, B. C. and Lowe, D. R.},
+journal = {Geology},
+pages = {37-40},
+title = {Thermal history of the 3.5-3.2 Ga Onverwacht and Fig Tree Groups, Barberton greenstone belt, South Africa, inferred by Raman microspectroscopy of carbonaceous material},
+volume = {32},
+year = {2004},
+}
+
+@article{hljb0s4,
+author = {Hessler, A. M. and Lowe, D. R. and Jones, R. L. and Bird, D. K.},
+journal = {Nature},
+pages = {736-738},
+title = {A lower limit for atmospheric carbon dioxide levels 3.2 billion years ago},
+volume = {428},
+year = {2004},
+}
+
+@article{lgp03,
+author = {Lowe, D. R. and Guy, M. and Palfrey, A.},
+journal = {Sedimentology,},
+pages = {45-80},
+title = {Facies of slurry-flow deposits, Britannia Formation (Lower Cretaceous), North Sea: implications for flow evolution and deposit geometry},
+volume = {50},
+year = {2003},
+}
+
+@article{kl03,
+author = {Knauth, L. P. and Lowe, D. R.},
+journal = {Geological Society of America Bulletin,},
+pages = {566-580},
+title = {High Archean climatic termperature inferred from oxygen isotope geochemistry of cherts in the 3.5 Ga Swaziland Supergroup, South Africa},
+volume = {115,},
+year = {2003},
+}
+
+@article{ksllb0f3,
+author = {Kyte, F. T. and Shukolyukov, A. and Lugmair, G. W. and Lowe, D. R. and Byerly, G. R.},
+journal = {Geology},
+pages = {283-286},
+title = {Early Archean spherule beds: Chromium isotopes confirm origin through multiple impacts of projectiles of carbonaceous chondrite type},
+volume = {31},
+year = {2003},
+}
+
+@article{lbksak03,
+author = {Lowe, D. R. and Byerly, G. R. and Kyte, F. T. and Shukolyukov, A. and Asaro, F. and Krull, A.},
+journal = {Astrobiology,},
+pages = {7-48},
+title = {Spherule Beds 3.473.24 Billion Years Old in the Barberton Greenstone Belt South Africa: A Record of Large Meteorite Impacts and Their Influence on Early Crustal and Biological Evolution},
+volume = {3},
+year = {2003},
+}
+
+@article{lb023,
+author = {Lowe, D. R. and Byerly, G. R.},
+journal = {Geology,},
+pages = {909-912},
+title = {Ironstone pods in the Archean Barberton greenstone belt South Africa: Earth's oldest seafloor hydrothermal vents reinterpreted as Quaternary subaerial (Spring)},
+volume = {31},
+year = {2003},
+}
+
+@article{lb043,
+author = {Lowe, D. R. and Braunstein, D.},
+journal = {Canadian Journal of Earth Sciences},
+pages = {1611-1642},
+title = {Microstructure of high-temperature (>73oC) siliceous sinter deposited around hot (Spring) |s and geysers Yellowstone National Park: The role of biological and abiological processes in sedimentation},
+volume = {40},
+year = {2003},
+}
+
+@article{lb053,
+author = {Lowe, D. R. and Byerly, G. R.},
+journal = {Guidebook prepared for Field Conference, Archean Surface Processes},
+month = {July},
+number = {2003},
+title = {Field guide to the geology of the 3.5-3.2 Ga Barberton Greenstone Belt, South Africa},
+volume = {2},
+year = {2003},
+comment = {184 p},
+}
+
+@article{hl02,
+author = {Hickson, T. A. and Lowe, D. R.},
+journal = {Sedimentology,},
+pages = {335-362.},
+title = {Facies architecture of a submarine fan channel-levee complex: Juniper Ridge Conglomerate, Coalinga, California},
+volume = {49},
+year = {2002},
+}
+
+
+
+@article{hl0t22,
+author = {Byerly, G.R., Lowe, D.R., Wooden, J.L., and Xie, X.},
+journal = {Science},
+pages = {1325-1327},
+title = {An Archean impact layer from the Pilbara and Kaapvaal Cratons},
+volume = {297},
+year = {2002},
+}
+
+
+@incollection{lab01,
+address = {New York},
+author = {Lowe, D. R. and Anderson, K. S. and Braunstein, D.},
+booktitle = {Thermophiles: Biodiversity, Ecology, and Evolution},
+editor = {Reysenbach et al.},
+pages = {143-166},
+publisher = {Kluwer Academic/Plenum Publishers,},
+title = {The zonation and structuring of siliceous sinter around hot (Spring), Yellowstone National Park, and the role of thermophilic bacteria in its deposition},
+year = {2001},
+}
+
+@article{bl01,
+author = {Braunstein, D. and Lowe, D. R.},
+journal = {Journal of Sedimentary Research},
+pages = {747-763},
+title = {Relationship between (Spring)|and geyser activity and the deposition and morphology of high temperature (>73?C) siliceous sinter, Yellowstone National Park, Wyoming, U.S.A},
+volume = {71},
+year = {2001},
+}
+
+@article{imdtilo01,
+author = {Inagaki, F. and Motomura, Y. and Doi, K. and Taguchi, S. and Izawa, E. and Lowe, D. R. and Ogata, S.},
+journal = {Microbes and Environments},
+pages = {125-130},
+title = {Silicified microbial community at Steep Cone Hot (Spring), Yellowstone National Park},
+volume = {16},
+year = {2001},
+}
+
+@incollection{skllby00,
+address = {Berlin},
+author = {Shukolyukov, A. and Kyte, F. T. and Lugmair, G. W. and Lowe, D. R. and Byerly, G. R.},
+booktitle = {I},
+editor = {Gilmour, I., and Koeberl, C.,},
+pages = {99-116},
+publisher = {|er-Verlab},
+title = {The oldest impact deposits on Earth - First confirmation of an extraterrestrial component},
+year = {2000},
+}
+
+
+
+@article{Bl042,
+author = {Lowe, D.R.},
+journal = {Field guide for AAPG Hedberg Field Research Conference},
+title = {Deep-water sandstones, submarine canyon to basin plain, western California},
+year = {2000},
+}
+
+
+@article{lg00,
+author = {Lowe, D. R. and Guy, M.},
+journal = {Sedimentology,},
+pages = {p. 31-70},
+title = {Slurry-flow deposits in the Britannia Formation (Lower Cretaceous), North Sea: A new perspective on the turbidity current and debris flow problem},
+volume = {v. 47,},
+year = {2000},
+}
+
+@incollection{wl99,
+author = {Walsh, M. M. and Lowe, D. R.},
+booktitle = {Geologic evolution of the Barberton Greenstone Belt, South Africa: Geological Society of America},
+editor = {Lowe, D. R. and Byerly, G. R.},
+pages = {115-132},
+title = {Modes of accumulation of carbonaceous matter in the Early Archean: A petrographic and geochemical study of the carbonaceous cherts of the Swaziland Supergroup},
+year = {1999},
+comment = {Special Paper 329},
+}
+
+@incollection{rblh99,
+address = {p},
+author = {Ransom, B. and Byerly, G. R. and Lowe, D. R.},
+booktitle = {Geologic evolution of the Barberton Greenstone Belt, South Africa: Geological Society of America},
+editor = {Lowe, D. R. and Byerly, G. R.},
+pages = {151-166},
+title = {Subaqueous to subaerial Archean ultramafic phreatomagmatic volcanism, Kromberg Formation, Barberton Greenstone Belt, South Africa},
+year = {1999},
+comment = {Special Paper 329},
+}
+
+@incollection{lf99,
+address = {p},
+author = {Lowe, D. R. and Fisher-Worrell, G.},
+booktitle = {Geologic evolution of the Barberton Greenstone Belt, South Africa: Geological Society of America},
+editor = {Lowe, D. R. and Byerly, G. R.},
+pages = {167-188},
+title = {Sedimentology, mineralogy, and implications of silicified evaporites in the Kromberg Formation, Barberton Greenstone Belt, South Africa},
+year = {1999},
+comment = {Special Paper 329},
+}
+
+@incollection{lj99,
+address = {p},
+author = {Lowe, D. R.},
+booktitle = {Geologic evolution of the Barberton Greenstone Belt, South Africa: Geological Society of America},
+editor = {Lowe, D. R. and Byerly, G. R.},
+pages = {213-232},
+title = {Shallow-water sedimentation of accretionary lapilli-bearing strata of the Msauli Chert: Evidence of explosive hydromagmatic komatiitic volcanism},
+year = {1999},
+comment = {Special Paper 329},
+}
+
+@incollection{lbhj99,
+address = {p},
+author = {Lowe, D. R. and Byerly, G. R. and Heubeck, C.},
+booktitle = {Geological Society of America},
+editor = {Lowe, D. R. and Byerly, G. R.},
+pages = {37-82},
+title = {Structural divisions and development of the west-central part of the Barberton Greenstone Belt, South Africa},
+year = {1999},
+comment = {Special Paper 329},
+}
+
+@incollection{hlu99,
+address = {p},
+author = {Heubeck, C. and Lowe, D. R.},
+booktitle = {Geological Society of America},
+editor = {Lowe, D. R. and Byerly, G. R.},
+pages = {259-286},
+title = {Sedimentary petrography and provenance of the Archean Moodies Group, Barberton Greenstone Belt, Geologic evolution of the Barberton Greenstone Belt, South Africa},
+year = {1999},
+comment = {Special Paper 329},
+}
+
+@incollection{li99,
+address = {p},
+author = {Lowe, D. R.},
+booktitle = {Geologic evolution of the Barberton Greenstone Belt, South Africa: Geological Society of America},
+editor = {Lowe, D. R. and Byerly, G. R.},
+pages = {83-114},
+title = {Petrology and sedimentology of cherts and related silicified sedimentary rocks in the Swaziland Supergroup},
+year = {1999},
+comment = {Special Paper 329},
+}
+
+@incollection{ln99,
+address = {p},
+author = {Lowe, D. R. and Nocita, B. W.},
+booktitle = {Geologic evolution of the Barberton Greenstone Belt, South Africa: Geological Society of America},
+editor = {Lowe, D. R. and Byerly, G. R.},
+pages = {233-258},
+title = {Foreland basin sedimentation in the Mapepe Formation, southern-facies Fig Tree Group},
+year = {1999},
+comment = {Special Paper 329},
+}
+
+@incollection{lbi99,
+address = {p},
+author = {Lowe, D. R. and Byerly, G. R.},
+booktitle = {Geologic evolution of the Barberton Greenstone Belt, South Africa: Geological Society of America},
+editor = {Lowe, D. R. and Byerly, G. R.},
+pages = {1-36},
+title = {Stratigraphy of the west-central part of the Barberton Greenstone Belt, South Africa},
+year = {1999},
+comment = {Special Paper 329},
+}
+
+@incollection{l99,
+address = {p},
+author = {Lowe, D. R.},
+booktitle = {Geologic evolution of the Barberton Greenstone Belt, South Africa: Geological Society of America},
+editor = {Lowe, D. R. and Byerly, G. R.},
+pages = {287-312},
+title = {Geologic evolution of the Barberton Greenstone Belt and vicinity},
+year = {1999},
+comment = {Special Paper 329},
+}
+
+@article{lb99,
+author = {Lowe, D. R. and Byerly, G. R.},
+journal = {Geological Society of America},
+number = {325},
+title = {Geologic Evolution of the Barberton Greenstone Belt, South Africa},
+volume = {329},
+year = {1999},
+
+comment = {Special Paper 329},
+}
+
+@article{lbv99,
+journal = {Geological Society of America},
+number = {312},
+title = {Geologic Evolution of the Barberton Greenstone Belt, South Africa},
+year = {1999},
+comment = {Special Paper 329},
+}
+
+@unpublished{STLO99,
+author = {Stiegler, M.T., Lowe, D.R., and Byerly, G.R.,},
+title = {The petrogenesis of volcaniclastic komatiites in the Barberton greenstone belt, South Africa: A textural and geochemical study},
+note = {Journal of Petrology, in Press},
+}
+
+@unpublished{STLO098,
+author = {Steigler, M.T., Lowe, D.R., and Byerly, G.R.,},
+title = {Fragmentation and dispersal of komatiitic pyroclasts in the 3.5-3.2 Ga Onverwacht Group, Barberton Greenstone Belt, South Africa},
+note = {in Press - Geological Society of America Bulletin},
+}
+
+@unpublished{Bejolo234,
+author = {Bernhardt, A., Jobe, Z., and Lowe, D.R.},
+title = {Stratigraphic evolution of a deep-water slope channel-lobe complex in a narrow trough within the Magallanes foreland basin, southern Chile},
+note = {in Press -  Marine and Petroleum Geology},
+}
+
+@unpublished{Bejolov234,
+author = {Bernhardt, A., Jobe, Z., and Lowe, D.R.},
+title = {Stratigraphic evolution of a deep-water slope channel-lobe complex in a narrow trough within the Magallanes foreland basin, southern Chile},
+note = {in Press -  Marine and Petroleum Geology},
+}
+

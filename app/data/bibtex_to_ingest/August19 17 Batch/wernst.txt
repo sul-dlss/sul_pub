@@ -1,0 +1,612 @@
+@article{er03,
+author = {Ernst, W. G. and Rumble, D. III},
+journal = {Contributions to Mineralogy and Petrology},
+pages = {637-651},
+title = {Oxygen isotopic study of Late Mesozoic cooling of the Mount Barcroft area, central White Mountains, eastern California},
+volume = {144},
+year = {2003},
+}
+
+@article{ehllm03,
+author = {Ernst, W. G. and Heiken, G. and Landon, S. M. and Leahy, P. P. and Moores, E.},
+journal = {GSA Today},
+month = {October},
+number = {3},
+pages = {27-28},
+title = {Report on Pardee Symposium K4, 2002 GSA Annual Meeting, Denver, Colorado, October 28, 2002},
+volume = {13},
+year = {2003},
+}
+
+@article{ecv03,
+author = {Ernst, W. G. and Coleman, D. S. and Van de Ven, C. M.},
+journal = {Geological Society of America Bulletin},
+pages = {499-512},
+title = {Petrochemistry of granitic rocks in the Mount Barcroft area--implications for arc evolution, central White Mountains, easternmost California},
+volume = {115},
+year = {2003},
+}
+
+@article{leo03,
+author = {Liou, J. G. and Ernst, W. G. and Ogasawara, Y.},
+journal = {Journal of Metamorphic Geology},
+pages = {513-514},
+title = {Petrochemical and tectonic processes of UHP/HP terranes II: Preface},
+volume = {21},
+year = {2003},
+}
+
+@article{mrigpm03,
+author = {Masago, H. and Rumble, D. and Iii, Ernst and W. G. and Parkinson, C. D. and Maruyama, S.},
+journal = {Journal of Metamorphic Geology},
+pages = {579-587},
+title = {Low d18O eclogites from the Kokchetav massif, northern Kazakhstan},
+volume = {21},
+year = {2003},
+}
+
+@article{hei03,
+author = {Hourigan, J. and Ernst, W. G. and Inan, E. E.},
+journal = {International Geology Review},
+pages = {863-885},
+title = {Thermal relaxation of a magmatic arc complex, Mount Barcroft area, eastern California: 40Ar/39Ar geochronologic study of hornblende and biotite from igneous and metamorphic rocks},
+volume = {45},
+year = {2003},
+}
+
+@article{bjeclb03,
+author = {Bostick, B. C. and Jones, R. E. and Ernst, W. G. and Chen, C. and Leech, M. L. and Beane, R. J.},
+journal = {American Mineralogist},
+pages = {1709-1717},
+title = {Low-temperature microdiamond aggregates in the Maksyutov metamorphic complex, south Ural Mountains, Russia},
+volume = {88},
+year = {2003},
+}
+
+@incollection{e0302,
+author = {Ernst, W. G.},
+booktitle = {Geological Society of America Special Paper No. 373},
+editor = {Dilek, Y. and Newcomb, S.},
+pages = {365-384},
+publisher = {Soc. Amer. Special Paper No. 373. 504p},
+title = {High-pressure and ultrahigh-pressure metamorphic belts--subduction, recrystallization, exhumation, and significance for ophiolite study},
+year = {2003},
+}
+
+@article{evml03,
+author = {Ernst, W. G. and Van de Ven and C. M. and Lyon, R. J. P.},
+journal = {Geological Society of America Bulletin},
+pages = {1583-1597},
+title = {Relationships among vegetation, geology, and climatic zones in the central White-Inyo Range, eastern California},
+volume = {115},
+year = {2003},
+}
+
+@article{hczel03,
+author = {Hacker, B. R. and Calvert, A. T. and Zhang, R. Y. and Ernst, W. G. and Liou, J. G.},
+journal = {Lithosphere},
+pages = {61-75},
+title = {Ultra-rapid exhumation of ultrahigh pressure diamond-bearing metasedimentary and meta-igneous rocks of the Kokchetav Massif},
+volume = {70},
+year = {2003},
+}
+
+@incollection{ef04,
+author = {Ernst, W. G. and Ferreiro Mählmann, R.},
+booktitle = {Geochemical Investigations in Earth and Space Science: Geochem. Soc. Special Pub. No. 9},
+editor = {Hill, R.J. and Leventhal, J. and Aizenshtat, Z. and Baedecker, M. J. and Claypool, G. and Eganhouse, R. and Goldhaber, M. and Peters, K.},
+pages = {341-357},
+title = {Vitrinite alteration rate as a function of temperature, time, starting material, aqueous fluid pressure, and oxygen fugacity--Laboratory corroboration of prior work},
+year = {2004},
+}
+
+@article{e04,
+author = {Ernst, W. G.},
+journal = {Proceedings of the National Academy of Sciences},
+pages = {14998-15001},
+title = {Regional crustal thickness and precipitation in young mountain chains},
+volume = {101},
+year = {2004},
+}
+
+@article{eg05,
+author = {W. G. Ernst and W. G.},
+journal = {American Mineralogist},
+pages = {1-12},
+title = {Contact metamorphism of the White Mountain Peak metavolcanic complex, eastern California},
+volume = {90},
+year = {2005},
+}
+
+@article{e05,
+author = {Ernst, W. G.},
+journal = {Terra Nova},
+pages = {165-188},
+title = {Alpine and Pacific styles of Phanerozoic mountain building: subduction-zone petrogenesis of continental crust},
+volume = {17,m},
+year = {2005},
+}
+
+@article{ddrggcwkeb05,
+author = {Dickinson, W. R. and Ducea, M. and Rosenberg, L. I. and Greene, H. G. and Graham, S. A. and Clark, J. C. and Weber, G. E. and Kidder, S. and Ernst, W. G. and Brabb, E. E.},
+journal = {Geological Society of America Special Paper 391},
+pages = {43},
+title = {Net dextral slip, Neogene San Gregorio-Hosgri fault zone, coastal California: Geologic evidence and implications},
+volume = {391},
+year = {2005},
+}
+
+@article{mes05,
+author = {Metzger, E. P. and Ernst, W. G. and Sorg, D.},
+journal = {International Geology Review},
+pages = {573-590},
+title = {Aluminous xenoliths in Miocene andesite, central California Coast Ranges: magma-crust interaction in a subduction-transform transitional setting},
+volume = {47},
+year = {2005},
+}
+
+@article{tlgi06,
+author = {Tsujimori, T. and Liou, J. G. Ernst and W. G. and Itaya, T.},
+journal = {Gondwana Research},
+pages = {1676-175},
+title = {Triassic paragonite- and garnet-bearing epidote-amphibolite from the Hida Mountains, Japan},
+volume = {9},
+year = {2006},
+}
+
+@article{e0601,
+author = {Ernst, W. G.},
+journal = {American Mineralogist},
+pages = {976},
+title = {Presentation of the Mineralogic Society of America Dana Medal for 2005 to William D. Carlson},
+volume = {91},
+year = {2006},
+}
+
+@article{e0604,
+author = {Ernst, W. G.},
+journal = {International Geology Review},
+pages = {191-208},
+title = {Earth materials and human health},
+volume = {48},
+year = {2006},
+}
+
+@incollection{SSA,
+author = {Scherer, H. H. and Snow, C. A. and Ernst, W. G.},
+booktitle = {Geologic Studies in the Klamath Mountains Province, California and Oregon: A volume in Honor of William P. Irwin},
+editor = {Snoke, A. W. and Barnes, C. G.},
+publisher = {Geol. Soc. Amer. Special Paper No. 410, 505p},
+title = {Geologic-petrologic comparison of early Mesozoic mafic arc terranes: Western Triassic and Paleozoic belt, Klamath Mountains, and Jura-Triassic arc belt, Sierran Foothills},
+year = {2006},
+}
+
+@incollection{e0603,
+address = {188p},
+author = {Ernst, W. G.},
+booktitle = {Earth and Mind: How Geologists Think and Learn about the Earth},
+editor = {Manduca, C. A. and Mogk, D. W.},
+pages = {13-28},
+publisher = {Geol. Soc. Amer. Special Paper No. 413},
+title = {Geologic mapping--where the rubber meets the road},
+year = {2006},
+}
+
+@article{e0602,
+author = {Ernst, W. G.},
+journal = {Lithosphere},
+pages = {321-335},
+title = {Preservation/exhumation of ultrahigh-pressure subduction complexes},
+volume = {92},
+year = {2006},
+}
+
+@article{etzl07,
+author = {Ernst, W. G. and Tsujimori, T. and Zhang, R. Y. and Liou, J. G.},
+journal = {Annual Review of Earth and Planetary Sciences},
+pages = {73-110},
+title = {Permo-Triassic collision, subduction-zone metamorphism, and tectonic exhumation along the East Asian continental margin},
+volume = {35},
+year = {2007},
+}
+
+@article{e0701,
+author = {Ernst, W. G.},
+journal = {Gondwana Research},
+pages = {38-49},
+title = {Speculations on evolution of the terrestrial lithosphere-asthenosphere system--Plumes and plates},
+volume = {11},
+year = {2007},
+}
+
+@article{zle0702,
+author = {Zhang, R. Y. and Liou, J. G. and Ernst, W. G.},
+journal = {International Geology Review},
+pages = {504-519},
+title = {Ultrahigh-pressure metamorphic belts in China: major progress in the past several years},
+volume = {49},
+year = {2007},
+}
+
+@article{lze07,
+author = {Liou, J. G. and Zhang, R. Y. and Ernst, W. G.},
+journal = {Proceedings of the National Academy of Sciences},
+pages = {9116-9121},
+title = {Very high-pressure orogenic garnet peridotites},
+volume = {104},
+year = {2007},
+}
+
+@article{vmwe07,
+author = {Van de Ven and C. M. and Weiss, S. B. and Ernst, W. G.},
+journal = {American Geophysical Union Earth Interactions},
+number = {9},
+title = {Plant species distributions under present conditions and forecasted for warmer climates in an arid mountain range},
+volume = {11},
+year = {2007},
+doi = {10.1175/EI205.1},
+}
+
+@incollection{e0702,
+author = {Ernst, W. G.},
+booktitle = {4-D Framework of Continental Crust},
+editor = {Hatcher, R. D. Jr. and Carlson, M. P. and McBride, J. H. and Martínez Catalán, J. R.},
+pages = {159-179},
+publisher = {Geological Society of America Memoir 200},
+title = {Petrotectonics, climate, crustal thickness, and evolution of geologically young orogenic belts},
+year = {2007},
+}
+
+@incollection{ehl07,
+author = {Ernst, W. G. and Hacker, B. R. and Liou, J. G.},
+booktitle = {Whence the Mountains? Inquiries into the Evolution of Orogenic Systems: A Volume in Honor of Raymond A. Price},
+editor = {Sears, J. W., Harms and T. A. and Evenchick, C. A.},
+pages = {27-49},
+publisher = {Geological Society of America Special Paper No. 433},
+title = {Petrotectonics of ultrahigh-pressure crustal and upper mantle rocks--Implications for Phanerozoic collisional orogens},
+year = {2007},
+}
+
+@article{e0703,
+author = {Ernst, W. G.},
+journal = {American Mineralogist},
+pages = {979},
+title = {Acceptance of the Mineralogical Society of America Roebling Medal for 2006},
+volume = {92},
+year = {2007},
+}
+
+@article{ess0802,
+author = {Ernst, W. G. and Snow, C. A. and Scherer, H. H.},
+journal = {Geological Society of America Bulletin},
+pages = {179-194},
+title = {Contrasting early and late Mesozoic petrotectonic evolution of northern California},
+volume = {120},
+year = {2008},
+}
+
+@article{seh08,
+author = {Scherer, H. H. and Ernst, W. G. and Hanson, R. B.},
+journal = {Tectonics},
+number = {TC2002},
+pages = {9},
+title = {Geologic implications of new zircon U-Pb ages from the White Mountain Peak Metavolcanic Complex, eastern California},
+volume = {27},
+year = {2008},
+doi = {10.1029/2007TC002141},
+}
+
+@article{hsye08,
+author = {Hwang, B. H. and Son, M. and Yang, K. H. and Ernst, W. G.},
+journal = {International Geology Review},
+pages = {343-363},
+title = {Tectonic evolution of the Gyeongsang Basin, southeastern Korea from 140 Ma to the present, based on a strike-slip and block rotation tectonic model},
+volume = {50},
+year = {2008},
+}
+
+@incollection{se0801,
+author = {Scherer, H. H. and Ernst, W. G.},
+booktitle = {Ophiolites, Arcs, and Batholiths: A Tribute to Cliff Hopson},
+editor = {Wright, J. E., and Shervais, J. W.},
+pages = {289-310},
+publisher = {Geological Society of America Special Paper No. 438},
+title = {North Fork terrane, Klamath Mountains, California: Geologic, geochemical and geochronologic evidence for an early Mesozoic forearc},
+year = {2008},
+}
+
+@incollection{se0802,
+author = {Snow, C. A. and Ernst, W. G.},
+booktitle = {Ophiolites, Arcs, and Batholiths: A Tribute to Cliff Hopson},
+editor = {Wright, J. E., and Shervais, J. W.},
+pages = {311-330},
+publisher = {Geological Society of America Special Paper No. 438},
+title = {Detrital zircon constraints on sediment distribution and provenance of the Mariposa Formation, central Sierra Nevada Foothills, California},
+year = {2008},
+}
+
+@article{ess0801,
+author = {Ernst, W. G. and Snow, C. A. and Scherer, H. H.},
+journal = {Terra Nova},
+pages = {394-413},
+title = {Mesozoic transpression, transtension, subduction, and metallogenesis in northern and central California},
+volume = {20},
+year = {2008},
+}
+
+@article{el08,
+author = {Ernst, W. G. and Liou, J. G.},
+journal = {American Mineralogist},
+pages = {1771-1786},
+title = {High- and ultrahigh-pressure metamorphism--past results and future prospects},
+volume = {93},
+year = {2008},
+}
+
+@article{hemy08,
+author = {Hwang, B. H. and Ernst, W. G. and McWilliams, M. O. and Yang, K. H.},
+journal = {Tectonics},
+number = {TC6015},
+title = {Geometric model of conjugate faulting in the Gyeongsang Basin, southeast Korea},
+volume = {27},
+year = {2008},
+doi = {10.1029/2008TC002343},
+}
+
+@incollection{etzl08,
+author = {Ernst, W. G. and Tsujimori, T. and Zhang, R. Y. and Liou, J. G.},
+booktitle = {Ores and Orogenesis: Circum-Pacific Tectonics, Geologic Evolution, and Ore Deposits v 22},
+editor = {Spencer, J. E., and Titley, S. R.},
+pages = {151-180},
+publisher = {Arizona Geol. Soc. Digest},
+title = {Orogeny and metallogenesis along the margin of eastern Asia: Permo-Triassic subduction-zone metamorphism, crustal accretion, and exhumation},
+year = {2008},
+}
+
+@article{e0901,
+author = {Ernst, W. G.},
+journal = {Gondwana Research},
+pages = {243-253},
+title = {Archean plate tectonics, rise of Proterozoic supercontinentality and onset of regional, episodic stagnant-lid behavior},
+volume = {15},
+year = {2009},
+}
+
+@article{lesj09,
+author = {Liou, J. G. and Ernst, W. G. and Song, S. G. and Jahn, B. M.},
+journal = {Journal of Asian Earth Science},
+pages = {191-198},
+title = {Tectonics and HP-UHP metamorphism of northern Tibet: Preface},
+volume = {35},
+year = {2009},
+}
+
+@article{leztj09,
+author = {Liou, J. G. and Ernst, W. G. and Zhang, R. Y. and Tsujimori, T. and Jahn, B. M.},
+journal = {Journal of Asian Earth Science},
+pages = {199-231},
+title = {Ultrahigh-pressure minerals and metamorphic terranes--The view from China},
+volume = {35},
+year = {2009},
+}
+
+@article{zle09,
+author = {Zhang, R. Y. and Liou, J. G. and Ernst, W. G.},
+journal = {Gondwana Research},
+pages = {1-26},
+title = {The Dabie-Sulu collision zone: A comprehensive review},
+volume = {16},
+year = {2009},
+}
+
+@article{e0902,
+author = {Ernst, W. G.},
+journal = {International Geology Review},
+pages = {583-588},
+title = {Rise and fall of the Nevadaplano},
+volume = {51},
+year = {2009},
+}
+
+@incollection{e0903,
+address = {New York},
+author = {Ernst, W. G.},
+booktitle = {Mining, Society and a Sustainable World},
+editor = {Richards, Jeremy P.},
+publisher = {Springer-Verlag},
+title = {Sustainable energy and mineral resource extraction and consumption--can a viable biosphere be preserved?},
+year = {2009},
+}
+
+@article{ess09,
+author = {Ernst, W. G. and Saleeby, J. B. and Snow, C. A.},
+journal = {Journal of Geophysical Research},
+number = {B11204},
+title = {Guadalupe pluton-Mariposa Formation age relationships in the southern Sierran Foothills: Onset of Mesozoic subduction in northern California?},
+volume = {114},
+year = {2009},
+doi = {10.1029/2009JB006607},
+}
+
+@article{emv09,
+author = {Ernst, W. G. and Martens, U. and Valencia, V.},
+journal = {Tectonics},
+number = {TC6011},
+title = {U-Pb ages of detrital zircons in Pacheco Pass metagraywackes: Sierran-Klamath source of mid- and Late Cretaceous Franciscan deposition and underplating},
+volume = {28},
+year = {2009},
+doi = {10.1029/2008TC002352},
+}
+
+@article{zielxtlj09,
+author = {Zhang, R. Y. and Iizuka, Y. and Ernst, W. G. and Liou, J. G. and Xu, Z. Q. and Tsujimori, T. and Lo, C-H and Jahn, B-M},
+journal = {Journal of Metamorphic Geology},
+pages = {16},
+title = {Metamorphic P-T conditions and thermal structure of Chinese Continental Scientific Drilling main hole eclogites: Fe-Mg partitioning thermometer v. Zr-in-rutile thermometer},
+volume = {27},
+year = {2009},
+doi = {10.1111/j.1525-1314.2009.00831.x},
+}
+
+@article{swew10,
+author = {Snow, C. A. and Wakabayashi, J. and Ernst, W. G. and Wooden, J. L.},
+journal = {Geological Society of America Bulletin},
+pages = {282-291},
+title = {SHRIMP-based depositional ages of Franciscan metagraywackes, west-central California},
+volume = {122},
+year = {2010},
+}
+
+@article{e1001,
+author = {Ernst, W. G.},
+journal = {Lithosphere},
+pages = {67-75},
+title = {Young convergent plate-margin orogens, climate, and crustal thickness--A Late Cretaceous-Paleogene Nevadaplano in the American Southwest?},
+volume = {2},
+year = {2010},
+}
+
+@article{kkglwm10,
+author = {Vijaya Kumar and K., Ernst and W. G. and Leelanandam, C. and Wooden, J. L. and M. J. Grove, M. J.},
+journal = {Tectonophysics},
+pages = {22-32},
+title = {First Paleoproterozoic ophiolite from Gondwana: Geochronologic-geochemical documentation of ancient oceanic from Kandra, SE India},
+volume = {487},
+year = {2010},
+}
+
+@article{e1002,
+author = {Ernst, W. G.},
+journal = {Gondwana Research},
+pages = {8-16},
+title = {Subduction-zone metamorphism, calc-alkaline magmatism, and convergent-margin crustal evolution},
+volume = {18},
+year = {Go},
+}
+
+@article{e1003,
+author = {Ernst, W. G.},
+journal = {Island Arc},
+pages = {213-229},
+title = {Late Mesozoic subduction-induced gold deposits along the eastern Asian and northern Californian margins: efficacy of oceanic versus continental lithospheric underflow},
+volume = {19},
+year = {2010},
+}
+
+@article{e1004,
+author = {Ernst, W. G.},
+journal = {International Geology Review},
+pages = {1021-1039},
+title = {Subduction-zone metamorphism--pioneering contributions from the Alps},
+volume = {52},
+year = {2010},
+}
+
+@article{sew10,
+author = {Scherer, H. H. and Ernst, W. G. and Wooden, J. L.},
+journal = {Journal of Geology},
+pages = {641-653},
+title = {Regional detrital zircon provenance of exotic metasandstone blocks, Eastern Hayfork terrane, Western Paleozoic and Triassic belt, Klamath Mountains, California},
+volume = {118},
+year = {2010},
+}
+
+@article{emmcm11,
+author = {Ernst, W. G. and Martens, U. C. and McLaughlin, R. J. and Clark, J. C. and Moore, D. E.},
+journal = {Geological Society of America Bulletin},
+pages = {1497-1512},
+title = {Zircon U-Pb age of the Pescadero felsite: a Late Cretaceous igneous event in the forearc, west-central California Coast Ranges},
+volume = {123},
+year = {2011},
+}
+
+@article{brbef11,
+author = {Le Bayon and R., M. and Brey, G. P. and Ernst, W. G. and Ferreiro Mählmann, R.},
+journal = {Organic Geochemistry},
+pages = {340-355},
+title = {Experimental kinetic study of organic matter maturation: Time and pressure effects on vitrinite reflectance at 400°C},
+volume = {42},
+year = {2011},
+}
+
+@article{kk11,
+author = {Vijaya Kumar, K. and Leelanandam C., and Ernst, W.},
+journal = {International Geology Review},
+pages = {1297-1311},
+title = {Formation and fragmentation of the Paleoproterozoic supercontinent Columbia: Evidence from the Eastern Ghats Granulite Belt, SE India},
+volume = {53},
+year = {2011},
+}
+
+@article{e11,
+author = {Ernst, W. G.},
+journal = {Geological Society of America Bulletin},
+pages = {1667-1678},
+title = {Accretion of the Franciscan Complex attending Jura-Cretaceous geotectonic development of northern and central California},
+volume = {123},
+year = {2011},
+}
+
+@article{kkglwm11,
+author = {Vijaya Kumar and K., Ernst and W. G. and Leelanandam, C. and Wooden, J. L. and M. J. Grove, M. J.},
+journal = {Contributions to Mineralogy and Petrology},
+pages = {867-888},
+title = {Origin of 2.5 Ga potassic granite from the Nellore Schist Belt, SE India: Textural, cathodoluminescence and SHRIMP U-Pb data},
+volume = {162},
+year = {2011},
+}
+
+@article{e01,
+author = {Ernst, W. G. and McLaughlin, R. J.},
+journal = {Tectonics},
+number = {TC1001},
+title = {Mineral parageneses, regional architecture, and tectonic evolution of Franciscan metagraywackes, Cape Mendocino-Garberville-Covelo 30' x 60' quadrangles, northwest California},
+volume = {31},
+year = {2012},
+doi = {10.1029/2011TC002987},
+}
+
+@article{he,
+author = {Hwang, B. H. and Ernst, W. G.},
+journal = {International Geology Review},
+title = {Two different magma series imply a Paleocene tectonic transition from contraction to extension in the SE Korean Peninsula},
+volume = {54},
+year = {2012},
+}
+
+@article{cceyk,
+author = {Cho, M. and Cheong, W. and Ernst, W. G. and Yi, K. and Kim, J.},
+journal = {Geology},
+title = {U-Pb ages of detrital zircons from Korean fold-thrust belts: Implications for the Paleozoic crustal architecture of East Asia},
+year = {2011},
+}
+
+@article{ylmhckyje,
+author = {Yui, T. F. and Lan, C. Y. and Maki, K. and Hirata, T. and Chu, H. T. and Kon, Y. and Yokoyama, T. D. and Jahn, B. M. and Ernst, W. G.},
+journal = {Tectonophysics},
+title = {Detrital zircons from the Tananao Metamorphic Complex of Taiwan: implications for sediment provenance and Mesozoic tectonics},
+volume = {541-543},
+year = {2012},
+}
+
+@article{fmebc,
+author = {Ferré, E. C. and Michelsen, K. C. and Ernst, W. G. and Boyd, J. D. and E. J. Canon-Tapia},
+journal = {American Mineralogist},
+title = {Vertical zonation of the Barcroft granodiorite, White Mountains, California: implications for magmatic processes},
+year = {2012},
+}
+
+@article{e02,
+author = {Ernst, W. G.},
+journal = {Journal of Asian Earth Science},
+title = {Overview of naturally occurring Earth materials and human health concerns},
+year = {2012},
+}
+
+@article{e0301,
+author = {Ernst, W. G.},
+journal = {Journal of Asian Earth Science},
+title = {Overview of naturally occurring Earth materials and human health concerns},
+year = {2012},
+}
+

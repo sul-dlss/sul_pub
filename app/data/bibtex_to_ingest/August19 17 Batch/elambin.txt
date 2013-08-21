@@ -1,0 +1,654 @@
+@unpublished{sjf,
+author = {D'Haen S. and Nielsen J. and Lambin E. F.},
+note = {in revision},
+title = {Rainfall as a determinant of household nonfarm activities in contemporary rural Burkina Faso, Climate and Development},
+year = {2013},
+}
+
+@article{fhlrppdkij13,
+author = {Lambin E. F. and Gibbs H. and Ferreira L. and Grau R. and Mayaux P. and Meyfroidt P. and Morton D. and Rudel T. K. and Gasparri I. and Munger J.},
+journal = {Global Environmental Change},
+title = {Estimating the world's potentially available cropland using a bottom-up approach},
+year = {2013},
+url = {http://dx.doi.org/10.1016/j.gloenvcha.2013.05.005},
+}
+
+@article{jvmrtfwcfsawfrra13,
+author = {Liu J., Hull V., Batistella M., DeFries R., Dietz T., Fu F., Hertel T.W., Izaurralde R.C., Lambin E.F., Li S., Martinelli L.A., McConnell W., Moran E.F., Naylor R., Polenske K.R., Reenberg A., de Miranda Rocha G., Simmons C.S., Verburg P.H., Vitousek P.M.},
+journal = {Ecology and Society},
+number = {2},
+title = {Framing sustainability in a telecoupled world,},
+volume = {18},
+year = {2013},
+url = {http://www.ecologyandsociety.org/vol18/iss2/art26/},
+}
+
+@incollection{xf13,
+author = {Rueda X. and Lambin E. F.},
+booktitle = {The Evolving Sphere of Food Security},
+editor = {Naylor R.},
+publisher = {Oxford University Press},
+title = {Global agriculture and land use changes in the 21st century: Achieving a balance between food security, urban diets and nature conservation},
+year = {2013},
+comment = {in Press},
+}
+
+@article{pftk13,
+author = {Meyfroidt P. and Lambin E. F. and Hertel T. and Erb K-H.},
+journal = {Current Opinion in Environmental Sustainability},
+title = {Globalization of land use: Displacement and distant drivers},
+volume = {5},
+year = {2013},
+url = {http://dx.doi.org/10.1016/j.cosust.2013.04.003},
+}
+
+@incollection{fp13,
+address = {Cambridge, MA},
+author = {Lambin E. F. and Meyfroidt P.},
+booktitle = {Rethinking Global Land Use in an Urban Era - Strüngmann Forum Reports, vol. 14.},
+editor = {Seto K., Reenberg, A.,},
+publisher = {MIT Press},
+title = {2013 Global land use competition},
+year = {2013},
+}
+
+@article{xf213,
+author = {Rueda X. and Lambin E. F.},
+journal = {in press},
+title = {Responding to globalization: the case of coffee certification in Colombia, Ecology and Society},
+year = {2013},
+}
+
+@article{xf313,
+author = {Rueda X. and Lambin E. F.},
+journal = {Ecology and Society},
+title = {Responding to globalization: the case of coffee certification in Colombia,},
+year = {2013},
+comment = {in press},
+}
+
+@article{yf413,
+author = {Le Polain de Waroux Y. and Lambin E. F.},
+journal = {Annals of Association of American Geographers},
+number = {3},
+pages = {589-607},
+title = {Niche commodities and rural poverty alleviation: Contextualizing the contribution of argan oil to rural livelihoods in Morocco},
+volume = {103},
+year = {2013},
+}
+
+@article{rfr1a3,
+author = {Garrett R. and Lambin E. F. and Naylor R.},
+journal = {Land Use Policy},
+pages = {265-275},
+title = {The new economic geography of land use change: supply chain configurations and land use in the Brazilian Amazon},
+volume = {34},
+year = {2013},
+}
+
+@article{xf513,
+author = {Rueda X. and Lambin E. F.},
+journal = {World Development},
+pages = {286-301},
+title = {Linking globalization to local land uses: How eco-consumers and gourmands are changing the Colombian coffee landscapes},
+volume = {41},
+year = {2013},
+}
+
+@article{rfr13,
+author = {Garrett R. and Lambin E. F. and Naylor R.},
+journal = {Land Use Policy},
+pages = {385-396},
+title = {Land institutions and supply chain conditions as determinants of soybean production in Brazil},
+volume = {31},
+year = {2013},
+}
+
+@article{vfmhs12,
+author = {Srinivasan V. and Lambin E. F. and Gorelick S. M. and Thompson B. H. and Rozelle S.},
+journal = {Water Resources Research},
+number = {10},
+title = {The nature and causes of the global water crisis: Syndromes from a meta-analysis of coupled human-water studies},
+volume = {48},
+year = {2012},
+doi = {10.1029/2011WR011087},
+}
+
+@article{f12,
+author = {Lambin E. F.},
+journal = {Global Food Security},
+number = {2},
+pages = {83-87},
+title = {Global land availability: Malthus versus Ricardo},
+volume = {1},
+year = {2012},
+}
+
+@article{ef212,
+author = {Dion E. and Lambin E. F.},
+journal = {Applied Geography},
+pages = {32-42},
+title = {Scenarios of transmission risk of foot-and-mouth disease in southern Africa},
+volume = {35},
+year = {2012},
+}
+
+@article{mtevf312,
+author = {Hall J. M and Van Holt T. and Daniels A. E. and Balthazar V. and Lambin E. F.},
+journal = {Landscape Ecology},
+number = {8},
+pages = {1135-1147},
+title = {Trade-offs between carbon storage and biodiversity in reforesting landscapes},
+volume = {27},
+year = {2012},
+}
+
+@article{vvf412,
+author = {Balthazar V. and Vanacker V. and Lambin E. F.},
+journal = {International Journal of Applied Earth Observation and Geoinformation},
+pages = {436-450},
+title = {Evaluation and parameterization of ATCOR3 topographic correction method for forest cover mapping in mountain areas},
+volume = {18},
+year = {2012},
+}
+
+@article{dcsplapcppfdepj12,
+author = {DeFries R. D. and Ellis E. C. and Chapin III F. S. and Matson P. and Turner II B. L. and Agrawal A. and Crutzen P. and Field C. and Gleick P. and Kareiva P. and Lambin E. F. and Liverman D. and Ostrom E. and Sanchez P. and Syvitski J.},
+journal = {Bioscience},
+number = {6},
+pages = {603-606},
+title = {Planetary opportunities: A social contract for global change science to contribute to a sustainable future},
+volume = {62},
+year = {2012},
+}
+
+@incollection{podf512,
+author = {Rowhani P. and Degomme O. and Guha-Sapir D. and Lambin E. F.},
+booktitle = {Climate Change, Human 2012 Security and Violent Conflict: Challenges for Societal Stability},
+editor = {Scheffran J., Brzoska M., Brauch H.G., Link P.M., Schilling J., Springer,},
+pages = {559-572},
+title = {Malnutrition and conflict in Eastern Africa: Impacts of resource variability on human security},
+year = {2012},
+}
+
+@book{e12,
+address = {Chicago},
+author = {Lambin Eric},
+publisher = {University of Chicago Press},
+title = {An Ecology of Happiness (translated)},
+year = {2012},
+}
+
+@article{yf612,
+author = {Le Polain Y. and Lambin E. F.},
+journal = {Applied Geography},
+pages = {777-786},
+title = {Monitoring degradation in arid and semi-arid forests and woodlands: the case of the argan woodlands (Morocco)},
+volume = {32},
+year = {2012},
+}
+
+@incollection{f11,
+address = {Paris},
+author = {Lambin E. F.},
+booktitle = {Psychologie positive: Le Bonheur dans tous ses états},
+pages = {102-115},
+publisher = {Editions Jouvence},
+title = {Protéger l'environnement pour protéger son bonheur},
+year = {2011},
+}
+
+@article{eefv11,
+author = {Haas E. and Bartholomé E. and Lambin E. F. and Vanacker V.},
+journal = {Remote Sensing of Environment},
+pages = {3436-3445},
+title = {Remotely sensed surface water extent as an indicator of short-term changes in ecohydrological processes in sub-Saharan Western Africa},
+volume = {115},
+year = {2011},
+}
+
+@article{ptaafc11,
+author = {Hostert P. and Kuemmerle T. and Prishchepov A. and Sieber A. and Lambin E. F. and Radeloff V. C.},
+journal = {Environmental Research Letters},
+number = {045201},
+title = {Rapid land use change after socioeconomic disturbances: The collapse of the Soviet Union versus Chernobyl},
+volume = {6},
+year = {2011},
+}
+
+@article{fpcthdjmfjv,
+author = {Westley F., Olsson P., Folke C., Homer-Dixon T., Vredenburg H., Loorbach D., Thompson J., Nilsson M., Lambin E.F., Senzimir J., Galaz V., van der Leeuw S.,},
+journal = {Ambio},
+pages = {762-780},
+title = {Tipping towards sustainability: Emerging pathways of transformation},
+volume = {40},
+year = {2011},
+}
+
+@article{g11,
+author = {Conchedda G., Lambin E.F.and Mayaux P.},
+journal = {Annals of the Association of American Geographers},
+number = {6},
+pages = {1259-1284},
+title = {Between land and sea: livelihoods and environmental changes in mangrove ecosystems of Senegal,},
+volume = {101},
+year = {2011},
+}
+
+@article{elf311,
+author = {Dion E. and Van Schalkwyk L. and Lambin E. F.},
+journal = {Ecological Modelling},
+pages = {2059-2072},
+title = {The landscape epidemiology of foot-and-mouth disease in South Africa: A spatially-explicit multi-agent simulation},
+volume = {222},
+year = {2011},
+}
+
+@article{pmf411,
+author = {Rowhani P. and Linderman M. and Lambin E. F.},
+journal = {International Journal of Remote Sensing},
+number = {19},
+pages = {5393-5411},
+title = {Global interannual variability in terrestrial ecosystems using MODIS-derived vegetation indices, social, and biophysical factors},
+volume = {32},
+year = {2011},
+}
+
+@article{pf511,
+author = {Meyfroidt P. and Lambin E. F.},
+journal = {Annual Review in Environment and Resources},
+pages = {343-371},
+title = {Global forest transition: Prospects for an end to deforestation},
+volume = {36},
+year = {2011},
+}
+
+@article{fp611,
+author = {Lambin E. F. and Meyfroidt P.},
+journal = {Proceedings of the National Academy of Sciences (Inaugural article)},
+number = {9},
+pages = {3465-3472},
+title = {Global land use change, economic globalization, and the looming land scarcity},
+volume = {108},
+year = {2011},
+}
+
+@article{podf711,
+author = {Rowhani P. and Degomme O. and Guha-Sapir D. and Lambin E. F.},
+journal = {malnutrition, and armed conflicts in the Horn of Africa, Climatic change},
+number = {1-2},
+pages = {207-222},
+title = {Climate variability},
+volume = {105},
+year = {2011},
+}
+
+@article{calfsmkdbiaoi11,
+author = {Mertz O. Mbow C. and Reenberg A. and Genesio L. and Lambin E. F. and D'haen S. and Zorom M. and Rasmussen K. and Diallo D. and Barbier B. and Bouzou Moussa I. and Diouf A. and Nielsen J. O. and Sandholt I.},
+journal = {Atmospheric Science Letters},
+pages = {104-108},
+title = {Adaptation strategies and climate vulnerability in the Sudano-Sahelian region of West Africa},
+volume = {12},
+year = {2011},
+}
+
+@inproceedings{pkf10,
+author = {Meyfroidt P. and Rudel T. K. and Lambin E. F.},
+booktitle = {Proceedings of the National Academy of Sciences, 107 (49):107 (49)},
+pages = {20917-20922},
+title = {Forest transitions, trade, and the global displacement of land use},
+year = {2010},
+}
+
+@article{faocv10,
+author = {Lambin E. F. and Tran A. and Vanwambeke S. O. and Linard C. and Soti V.},
+journal = {International Journal of Health Geographics},
+number = {54},
+title = {Pathogenic landscapes: Interactions between land, people, disease vectors, and their animal hosts},
+volume = {9},
+year = {2010},
+}
+
+@article{odafe10,
+author = {Vanwambeke S. O. and Sumilo D. and Bormane A. and Lambin E. F. and Randolph S. E.},
+journal = {Vector-Borne and Zoonotic Diseases},
+number = {5},
+pages = {497-506},
+title = {Landscape predictors of tick-borne encephalitis in Latvia: land cover, land use and land ownership},
+volume = {10},
+year = {2010},
+}
+
+@article{fp10,
+author = {Lambin E. F. and Meyfroidt P.},
+journal = {Land Use Policy},
+pages = {108-118},
+title = {Land use transitions: Ecological feedback versus exogenous socio-economic dynamics},
+volume = {27},
+year = {2010},
+}
+
+@incollection{f210,
+author = {Lambin E. F.},
+booktitle = {Plaidoyer pour la culture scientifique},
+pages = {92-108},
+publisher = {Universcience éditions et les Editions Le Pommier},
+title = {De l'Holocène à l'Anthropocène},
+year = {2010},
+}
+
+@article{rsn09,
+author = {Rockström, J., W. Steffen, K. Noone, Å. Persson, F. Chapin, E. Lambin, T.M. Lenton, M. Scheffer, C. Folke, H. Schellnhuber, C. A. De Wit, T. Hughes, S. Van der Leeuw, H. Rodhe, S. Sörlin, P. K. Snyder, R. Costanza, U. Svedin, M. Falkenmark, LR. W. Corell,},
+journal = {Ecology and Society},
+number = {32},
+title = {Planetary Boundaries: Exploring the Safe Operating Space for Humanity},
+volume = {14},
+year = {2009},
+}
+
+@inproceedings{kcmlrdjsaftsr209,
+author = {Rudel T. K. and Schneider L. C. and Uriarte M. and Tuner II B. L. and DeFries R. and Lawrence D. and Geoghegan J. and Hecht S. and Ickowitz A. and Lambin E. F. and Birkenholtz T. and Baptista S. and Grau R.},
+booktitle = {Proceedings of the National Academy of Sciences 106},
+pages = {20675-20680106},
+title = {Agricultural intensification and changes in cultivated areas, 1970-2005.},
+year = {2009},
+}
+
+@article{lsthl09,
+author = {Lorent, H. and R. Sonnenschein and G. M. Tsiourlis and P. Hostert and E. F. Lambin},
+journal = {Ecology and Society},
+number = {2},
+pages = {41},
+title = {Livestock Subsidies and Rangeland Degradation in Central Crete},
+volume = {14},
+year = {2009},
+}
+
+@inproceedings{pf09,
+author = {Meyfroidt P. and Lambin E. F.},
+booktitle = {Proceedings of the National Academy of Sciences},
+pages = {16139-16144},
+publisher = {106:106},
+title = {Forest transition in Vietnam and displacement of wood extraction abroad},
+year = {2009},
+}
+
+@inproceedings{pf109,
+author = {Meyfroidt P. and Lambin E. F.},
+booktitle = {Proceedings of the National Academy of Sciences 106},
+pages = {16139-16144},
+title = {Forest transition in Vietnam and displacement of wood extraction abroad},
+year = {2009},
+}
+
+@article{jwkaifmmcjbct09,
+author = {Rockström J., Steffen W., Noone K., Persson A., Chapin F. S.III, Lambin E.F., Lenton T.M., Scheffer M., Folke C., Schellnhuber J., Nykvist B., de Wit C., Hughes T., van der Leeuw S., Sörlin S., Costanza R., Svedin U., Falkenmark M., Corell R., Hansen J.,},
+journal = {Nature,},
+pages = {472-475},
+title = {A safe operating space for humanity},
+volume = {461},
+year = {2009},
+}
+
+@article{cndf309,
+author = {Linard C. and Ponçon N. and Fontenille D. and Lambin E. F.},
+journal = {Ecohealth},
+pages = {135-147},
+title = {Scenarios of the risk of malaria re-emergence in southern France},
+volume = {6},
+year = {2009},
+}
+
+@article{cndf509,
+author = {Linard C. and Ponçon N. and Fontenille D. and Lambin E. F.},
+journal = {Ecological Modelling},
+pages = {160-174},
+title = {A multi-agent simulation to assess the risk of malalaria re-emergence in southern France},
+volume = {220},
+year = {2009},
+}
+
+@article{rf409,
+author = {Lorena R. and Lambin E. F.},
+journal = {Applied Geography},
+pages = {171-181},
+title = {The spatial dynamics of deforestation and agent use in the Amazon},
+volume = {29},
+year = {2009},
+}
+
+@incollection{pf609,
+author = {Meyfroidt P. and Lambin E. F.},
+booktitle = {Reforesting landscapes: Linking patterns and processes},
+editor = {Nagendra H. and Southworth J.},
+publisher = {Springer},
+title = {Forest transition in Vietnam and Bhutan: causes and environmental impacts},
+year = {2009},
+}
+
+@inproceedings{cjjyfhhtjh09,
+author = {Bustamante M. C. and Melillo J. and Connor D. J. and Hardy Y. and Lambin E. F. and Lotze-Campen H. and Ravindranath N. H. and Searchinger T. and Tschirley J. and Watson H.},
+booktitle = {Biofuels: Environmental Consequences and Interactions with Changing Land Use, Proceedings of the Scientific Committee on Problems of the Environment (SCOPE) International Biofuels Project Rapid Assessment.},
+publisher = {R.W. Howarth and S. Bringezu},
+title = {What are the Final Land Limits?},
+year = {2009},
+}
+
+@article{hcmjvgaf08,
+author = {Lorent H. and Evangelou C. and Stellmes M. and Hill J. and Papanastasis V. and Tsiourlis G. and Roeder A. and Lambin E. F.},
+journal = {Global and Planetary Change},
+pages = {198-209},
+title = {Land degradation and economic conditions of agricultural households in a marginal region of northern Greece},
+volume = {64},
+year = {2008},
+}
+
+@article{pammcdf108,
+author = {Rowhani P. and Lepczyk C. A. and Linderman M. and Pidgeon A. M. and Radeloff V. C. and Culbert P. D. and Lambin E. F.},
+journal = {Ecosystems},
+pages = {854-867},
+title = {Variability in energy influences avian distribution patterns across the USA},
+volume = {11},
+year = {2008},
+}
+
+@article{pf208,
+author = {Meyfroidt P. and Lambin E. F.},
+journal = {Global Change Biology},
+pages = {1-18},
+title = {Forest transition in Vietnam and its environmental impacts},
+volume = {14},
+year = {2008},
+}
+
+@article{pf308,
+author = {Meyfroidt P. and Lambin E. F.},
+journal = {Land Use Policy},
+pages = {182-197},
+title = {Causes of the reforestation in Vietnam},
+volume = {25},
+year = {2008},
+}
+
+@article{fmvef508,
+author = {Lupo F. and Linderman M. and Vanacker V. and Bartholomé E. and Lambin E. F.},
+journal = {International Journal of Remote Sensing},
+pages = {2469-2483},
+title = {Categorization of land-cover change processes based on phenological indicators extracted from time series of vegetation index data},
+volume = {28},
+year = {2008},
+}
+
+@book{e07,
+address = {Chicago,},
+author = {Lambin Eric},
+publisher = {University of Chicago Press},
+title = {The Middle Path: Avoiding Environmental Catastrophe (translated)},
+year = {2007},
+}
+
+@article{cvhf07,
+author = {Linard C. and Tersago V. and Leirs H. and Lambin E. F.},
+journal = {International Journal of Health Geographics},
+number = {55},
+title = {Environmental conditions and Puumala hantavirus transmission risk in Belgium},
+volume = {6},
+year = {2007},
+}
+
+@inproceedings{ifa07,
+author = {Turner B. L. II and Lambin E. F. and Reenberg A.},
+booktitle = {Proceedings of the National Academy of Sciences},
+pages = {20666-20671},
+publisher = {104:104},
+title = {The emergence of land change science for global environmental change and sustainability},
+year = {2007},
+}
+
+@inproceedings{ifa207,
+author = {Turner B. L. II and Lambin E. F. and Reenberg A.},
+booktitle = {Proceedings of the National Academy of Sciences, 104},
+pages = {20666-20671},
+title = {The emergence of land change science for global environmental change and sustainability},
+year = {2007},
+}
+
+@article{cppgvvof407,
+author = {Linard C. and Lamarque P. and Heyman P. and Ducoffre G. and Luyasu V. and Tersago V. and Vanwambeke S. O. and Lambin E. F.},
+journal = {International Journal of Health Geographics},
+title = {Determinants of the geographic distribution of Puumala hantavirus and Lyme borreliosis infections in Belgium},
+volume = {6},
+year = {2007},
+comment = {article 15},
+}
+
+@article{mfmvvpb07,
+author = {Scouvart M. and Lambin E. F. and Caldas M. and Dale V. and Nédélec V. and Pacheco P. and Rihoux B.},
+journal = {Journal of Land Use Science},
+pages = {257-282},
+title = {Causes of deforestation in the Brazilian Amazon : a Qualitative Comparative Analysis},
+volume = {2},
+year = {2007},
+}
+
+@article{rsltibddfhhjllmwa0e7,
+author = {J. F. Reynolds and D. Mark Stafford Smith and E. F. Lambin and B. L. Turner and Ii, M. Mortimore and S. P. J. Batterbury and T. E. Downing and H. Dowlatabadi and R. J. Fernandez and J. E. Herrick and E. Huber-Sannwald and H. Jiang and R. Leemans and T. Lynam and F. Maestre and B. Walker and M. Ayarza},
+journal = {Science},
+pages = {847-851},
+title = {Global Desertification: Building a Science for Dryland Development},
+volume = {316},
+year = {2007},
+}
+
+@article{ofpselpsbck07,
+author = {Vanwambeke S. O. and Lambin E. F. and Eichhorn M. P. and Flasse S. and Harbach R. E. and Oskam L. and Somboon P. and van Beers S. and van Benthem B. H. B. and Walton C. and Butlin R. K.},
+journal = {Ecohealth},
+pages = {37-51},
+title = {Impact of land-use change on dengue and malaria in northern Thailand},
+volume = {4},
+year = {2007},
+}
+
+@article{smf0e7,
+author = {Serneels S. and Linderman M. and Lambin E. F.},
+journal = {Ecosystems},
+pages = {402-418},
+title = {A multilevel analysis of the impact of land use on interannual land-cover change in East Africa},
+volume = {10},
+year = {2007},
+}
+
+@article{ifla07,
+author = {Guyer J. I. and Lambin E. F. and Cliggett L. and Walker P. et al.},
+journal = {Human Ecology},
+pages = {3-17},
+title = {Temporal Heterogeneity in the Study of African Land Use},
+volume = {35},
+year = {2007},
+}
+
+@article{spf047,
+author = {Vanwambeke S. and Somboom P. and Lambin E. F.},
+journal = {Journal of Land Use Science},
+pages = {1-29},
+title = {Rural transformation and social differentiation in northern Thailand},
+volume = {2},
+year = {2007},
+}
+
+@article{opemfck0e7,
+author = {Vanwambeke S. O. and Somboon P. and Harbach R. E. and Isenstadt M. and Lambin E. F. and Walton C. and Butlin R. K.},
+journal = {Journal of Medical Entomology,},
+number = {1},
+pages = {133-144},
+title = {Landscape and land-cover factors influence the presence of Aedes and Anopheles larvae,},
+volume = {44,},
+year = {2007},
+}
+
+@book{fe06,
+address = {Berlin,},
+author = {Lambin E. F. and Gesit H.},
+editor = {Lambin E.F., Gesit H.},
+publisher = {Springer},
+title = {Land-Use and Land-Cover Change: Local processes and global impacts},
+year = {2006},
+comment = {Editor, Lead author of 2 chapters, Contributing author of 4 other chapters},
+}
+
+@article{fm06,
+author = {Lambin E. F. and Linderman M.},
+journal = {IEEE Transactions on Geoscience and Remote Sensing},
+pages = {1926-1928},
+title = {Time series of remote sensing data for land change science},
+volume = {44},
+year = {2006},
+}
+
+@article{pf06,
+author = {Raquez P. and Lambin E. F.},
+journal = {Journal of Land Use Science},
+pages = {109-125},
+title = {Conditions for sustainable land use: case study evidence},
+volume = {1},
+year = {2006},
+}
+
+@article{offhijtccsmhh06,
+author = {Young O. and Lambin E. F. and Alcock F. and Haberl H. and Karlsson S. I. and McConnell W. J. and Myint T. and Pahl-Wostl C. and Polsky C. and Ramakrishnan P. S. and Scouvart M. and Schroeder H. and Verburg P. H.},
+journal = {Ecology and Society},
+number = {31},
+title = {Complex Causality in Human-Environment Interactions: Toward a Portfolio Approach to Understanding Institutions and Land Change},
+volume = {11},
+year = {2006},
+comment = {online},
+}
+
+@article{sbncklfp06,
+author = {Vanwambeke S. and van Benthem B. H. B. and Khantikul N. and Burghoorn-Maas C. and Panart K. and Oskam L. and Lambin E. F. and Somboon P.},
+journal = {International Journal of Health Geographics},
+number = {5},
+title = {Multi-level analyses of spatial and temporal determinants for dengue infection},
+volume = {5},
+year = {2006},
+comment = {online},
+}
+
+@article{mf0n6,
+author = {Scouvart M. and Lambin E. F.},
+journal = {L'Espace Géographique},
+pages = {241-254},
+title = {Approche systémique des causes de la déforestation en Amazonie brésilienne: syndromes, synergies et rétroactions},
+volume = {3},
+year = {2006},
+}
+
+@article{sdfc06,
+author = {Lavorel S. and Flanningan M. D. and Lambin E .F. and Scholes M. C.},
+journal = {Mitigation and Adaptation Strategies for Global Change},
+pages = {33-53},
+title = {Vulnerability of land systems to fire: interactions between humans, climate, the atmosphere and ecosystems},
+volume = {12},
+year = {2006},
+}
+

@@ -1,0 +1,1661 @@
+@article{sfck13,
+author = {Sandler, J. and G. Fowler and K. Cheng and A. R. Kovscek},
+journal = {Energy Conversion and Management,},
+month = {Mar},
+title = {Solar-Generated Steam for Oil Recovery: Reservoir Simulation, Economic Analysis, and Life Cycle Assessment,},
+year = {2013},
+}
+
+@article{vdk13,
+author = {Vega, B. and A. Dutta and A. R. Kovscek},
+journal = {Transport in Porous Media,},
+month = {Mar},
+title = {CT Imaging of Low Permeability, Dual-Porosity Systems Using High X-Ray Contrast Gas},
+year = {2013},
+comment = {submitted},
+}
+
+@article{blcck13,
+author = {Bazargan, M. and A. Lapene and B. Chen and L. M. Castanier and A. R. Kovscek},
+journal = {Review of Scientific Instruments,},
+month = {Feb},
+title = {An Induction Reactor for Studying Crude-Oil Oxidation Relevant to In-Situ Combustion},
+year = {2013},
+comment = {submitted},
+}
+
+@article{cbck13,
+author = {Clemens,T., K. Tsikouris and M. Buchgraber and L. M. Castanier and A. R Kovscek},
+journal = {SPE Reservoir Engineering},
+title = {Pore-Scale Evaluation of Polymers Displacing Viscous Oil - Computational Fluid Dynamics Simulation of Micromodel Experiments,},
+year = {2013},
+comment = {in Press},
+}
+
+@article{kk13,
+author = {Kim, TW and A. R. Kovscek},
+journal = {Energy & Fuels},
+title = {Wettability Alteration of a Heavy Oil/Brine/Carbonate System with Temperature,},
+year = {2013},
+comment = {in Press},
+}
+
+@article{kcg13,
+author = {Kovscek, A. R. and L. M. Castanier and M. G. Gerritsen},
+journal = {SPE Reservoir Evaluation and Engineering},
+title = {Improved Predictability of In-Situ Combustion Enhanced Oil Recovery,},
+year = {2013},
+comment = {in Press},
+}
+
+@article{ak13,
+author = {Aryana, S. and A. R. Kovscek},
+journal = {Transport in Porous Media},
+number = {3},
+pages = {373-394},
+title = {Nonequilibrium Effects and Multiphase Flow in Porous Media},
+volume = {97},
+year = {2013},
+doi = {10.1007/s11242-013-0129-y},
+}
+
+@article{ztk13,
+author = {Zhao, R and G.-Q. Tang and A. R. Kovscek},
+journal = {Journal of Petroleum Science & Engineering},
+pages = {41-50},
+title = {Modification of Heavy-Oil Rheology via Alkaline Solutions},
+volume = {103},
+year = {2013},
+doi = {10.1016/j.petrol.2013.02.009},
+}
+
+@inproceedings{dvk13,
+author = {Delgado, D. E. and E. S. Vittoratos and A. R. Kovscek},
+booktitle = {Proceedings of the SPE Western Regional Meeting, Monterey, CA},
+month = {April},
+title = {Optimal Voidage Replacement Ratio for Viscous and Heavy Oil Reservoirs},
+year = {2013},
+}
+
+@inproceedings{ak131,
+author = {Agarwal, A. and A. R. Kovscek},
+booktitle = {Proceedings of the SPE Western Regional Meeting, Monterey, CA},
+month = {April},
+title = {Solar-Generated Steam for Heavy-Oil Recovery: A Coupled Geomechanical and Reservoir Modeling Analysis},
+year = {2013},
+}
+
+@inproceedings{zck13,
+author = {Zhao, R and L. M. Castanier and A. R. Kovscek},
+booktitle = {Proceedings of the SPE Western Regional Meeting, Monterey, CA},
+month = {April},
+title = {An Experimental Investigation of the In-Situ Combustion Behavior of Karamay Crude Oil},
+year = {2013},
+}
+
+@inproceedings{shk13,
+author = {Sandberg, C. and A. Hale and A. R. Kovscek},
+booktitle = {Proceedings of the SPE Western Regional Meeting, Monterey, CA},
+month = {April},
+title = {History and Application of Resistance Electrical Heaters in Downhole Oil Field Applications},
+year = {2013},
+}
+
+@article{bck122,
+author = {Buchgraber, M. and L. M. Castanier and A. R. Kovscek},
+journal = {Transport in Porous Media},
+number = {647-668},
+pages = {67-0},
+title = {A Study of Microscale Gas Trapping Using Etched Silicon Micromodels},
+volume = {95},
+year = {2012},
+doi = {10.1007/s11242-012-00},
+}
+
+@article{sik12,
+author = {Sharma, J. and S. B. Inwood and A. R. Kovscek},
+journal = {SPE Journal},
+number = {4},
+pages = {1142-1159},
+title = {Experiments and Analysis of Multiscale Viscous Fingering During Forced Imbibition},
+volume = {17},
+year = {2012},
+}
+
+@article{k12,
+author = {Kovscek, A. R.},
+journal = {Journal of Petroleum Science & Engineering},
+pages = {98-99 130-143},
+title = {Emerging Challenges and Potential Futures for Thermally Enhanced Oil Recovery},
+year = {2012},
+doi = {10.1016/j.petrol.2012.08.004},
+}
+
+@article{ak120,
+author = {Aryana, S. A. and A. R. Kovscek},
+journal = {Physical Review E},
+number = {6},
+title = {Experiments and Analysis of Drainage Displacement Processes Relevant to Carbon-Dioxide Injection},
+volume = {86},
+year = {2012},
+doi = {10.1103/PhysRevE.86.066310},
+}
+
+@article{SS1,
+author = {Ancharoen,M., M. Ferno, and A. R. Kovscek},
+journal = {Journal of Petroleum Science & Engineering},
+number = {100},
+pages = {50-58},
+title = {Modeling of Foam Displacement in Fractures,},
+year = {2012},
+doi = {10.1016/j.petrol.2012.11.018},
+}
+
+@article{bark12,
+author = {Buchgraber, M. and M. Al-Dossary and C. M. Ross and A. R. Kovscek},
+journal = {Journal of Petroleum Science & Engineering},
+number = {86-87},
+pages = {27-38},
+title = {Creation of a Dual-Porosity Micromodel for Pore-Level Visualization of Multiphase Flow, Journal of Petroleum Science & Engineering},
+volume = {3980},
+year = {2012},
+doi = {10.1016/j.petrol.2012.03.012},
+}
+
+@inproceedings{bck120,
+author = {Buchgraber, M and L. M. Castanier and A. R. Kovscek},
+booktitle = {SPE 159430, Proceedings of the SPE Annual Technical Conference and Exhibition, San Antonio, TX},
+month = {October},
+title = {Microvisual Investigation of Foam Flow in Ideal Fractures: Role of Fracture Aperture and Surface Roughness},
+year = {2012},
+}
+
+@inproceedings{ak121,
+author = {Alshehri, A. J. and A. R. Kovscek},
+booktitle = {SPE 159423 Proceedings of the SPE Annual Technical Conference and Exhibition, San Antonio, Texas},
+month = {October},
+title = {An X-Ray CT Study of Multidimensional Imbibition in Dual Porosity Carbonates},
+year = {2012},
+}
+
+@inproceedings{sfck12,
+author = {Sandler, J. and G. Fowler and K. Cheng and A. R. Kovscek},
+booktitle = {SPE 153806 Proceedings of the 2012 SPE Western Regional Meeting, Bakersfield, CA},
+month = {March},
+title = {Solar-Generated Steam for Oil Recovery: Reservoir Simulation, Economic Analysis, and Life Cycle Assessment,},
+year = {2012},
+}
+
+@inproceedings{ogk12,
+author = {Ogunbanwo, O. and M. Gerritsen and A. R. Kovscek},
+booktitle = {SPE 153887 Proceedings of the 2012 SPE Western Regional Meeting, Bakersfield, CA},
+month = {March},
+title = {Uncertainty Analysis on In-Situ Combustion Simulations Using Experimental Design},
+year = {2012},
+}
+
+@inproceedings{ogk120,
+author = {Ogunbanwo, O. and M. Gerritsen and A. R. Kovscek},
+booktitle = {SPE 153887 Proceedings of the 2012 SPE Western Regional Meeting, Bakersfield, CA},
+month = {March},
+title = {Uncertainty Analysis on In-Situ Combustion Simulations Using Experimental Design},
+year = {2012},
+}
+
+@inproceedings{cbck121,
+author = {Clemens,T., K. Tsikouris and M. Buchgraber and L. M. Castanier and A. R Kovscek},
+booktitle = {SPE 154169, Proceedings of the Eighteenth SPE Improved Oil Recovery Symposium held in Tulsa, Oklahoma, USA},
+month = {April},
+title = {Pore-Scale Evaluation of Polymers Displacing Viscous Oil - Computational Fluid Dynamics Simulation of Micromodel Experiments,},
+year = {2012},
+}
+
+@inproceedings{kcg11,
+author = {Kovscek, A. R.  and Castanier, L. M. and Gerritsen, M. G.},
+booktitle = {Proceedings of the 2011 International Energy Agency EOR Symposium,Vienna, Austria},
+month = {October},
+title = {Predictability of In-Situ Combustion Enhanced Oil Recovery},
+year = {2011},
+}
+
+@inproceedings{ghcck11,
+author = {Glatz, G. and Hascakir, B. and L. M. Castanier and T. Clemens and A. R. Kovscek},
+booktitle = {SPE-146089, Proceedings of the 2011 SPE Annual Technical Conference and Exhibition, Denver, CO},
+month = {October},
+title = {Kinetic Cell and Combustion Tube Results for a Central European Crude Oil},
+year = {2011},
+}
+
+@inproceedings{hrck11,
+author = {B. Hascakir and C. M. Ross and L. M. Castanier and A. R. Kovscek},
+booktitle = {SPE-146867, Proceedings of the 2011 SPE Annual Technical Conference and Exhibition, Denver, CO},
+month = {October},
+title = {Fuel Formation During In-Situ Combustion},
+year = {2011},
+}
+
+@inproceedings{sik11,
+author = {J. Sharma and S. B. Inwood and A. R. Kovscek},
+booktitle = {SPE-143946, Proceedings of the 2011 SPE Annual Technical Conference and Exhibition, Denver, CO},
+month = {October},
+title = {Experiments and Analysis of Multiscale Viscous Fingering during Forced Imbibition},
+year = {2011},
+}
+
+@article{ldqcgk11,
+author = {Lapene, A. and G. Debenest and M Quintard and L Castanier and Mg Gerritsen and A. R. Kovscek},
+journal = {Energy and Fuels},
+number = {11},
+pages = {4886-4895},
+title = {Kinetics of Oxidation of Heavy Oil Part 1: A Compositional and Full Equation of State Model},
+volume = {25},
+year = {2011},
+doi = {10.1021/ef200365y},
+}
+
+@article{bcck11,
+author = {Buchgraber, M. and T. Clemens and L. M. Castanier and A. R. Kovscek},
+journal = {SPE Reservoir Evaluation and Engineering},
+number = {3},
+pages = {269-280},
+title = {The Displacement of Viscous Oil by Associative Polymer Solutions},
+volume = {14},
+year = {2011},
+}
+
+@article{cck11,
+author = {Cinar, M., L. M. Castanier and A. R. Kovscek},
+journal = {Energy and Fuels},
+number = {10},
+pages = {4438-4451},
+title = {Combustion Kinetics of Heavy Oils in Porous Media},
+volume = {25},
+year = {2011},
+doi = {10.1021/ef200680t},
+}
+
+@article{hgck11,
+author = {Hascakir, B., G. Glatz, L. M. Castanier and A. R. Kovscek},
+journal = {SPE Journal},
+number = {3},
+pages = {524-536},
+title = {In-Situ Combustion Dynamics Visualized With X-Ray Computed Tomography},
+volume = {16},
+year = {2011},
+}
+
+@article{chck11,
+author = {Cinar, M. and B. Hascakir and L. M. Castanier and A. R. Kovscek},
+journal = {SPE Journal},
+number = {3},
+pages = {537-547},
+title = {Predictability of Crude Oil In-Situ Combustion by the Isoconversional Kinetic Approach},
+volume = {16},
+year = {2011},
+}
+
+@article{aa11,
+author = {R. Kovscek,G.-Q. and A},
+journal = {Transport in Porous Media},
+pages = {647-664},
+title = {High-Resolution Imaging of Unstable, Forced Imbibition in Berea Sandstone},
+volume = {86},
+year = {2011},
+doi = {10.1007/s11242-010-9643-3.},
+}
+
+@article{mck11,
+author = {Marques, C. and L. M. Castanier and A. R. Kovscek},
+journal = {International Journal of Oil, Gas, and Coal Technology},
+number = {1},
+pages = {4-30},
+title = {Super Insulated Wells to Protect Permafrost During Thermal Oil Recovery},
+volume = {4},
+year = {2011},
+}
+
+@article{pk11,
+author = {Peng, J and A. R. Kovscek},
+journal = {SPE Reservoir Engineering and Evaluation},
+number = {1},
+pages = {45-59},
+title = {Temperature-Induced Fracture Reconsolidation of Diatomaceous Rock During Forced Water Imbibition},
+volume = {14},
+year = {2011},
+}
+
+@inproceedings{bccglzcgk11,
+author = {M. Bazargan and B. Chen and M. Cinar and G. Glatz and A. Lapene and Z. Zhu and L. Castanier and M. Gerritsen and A. R. Kovscek},
+booktitle = {SPE-144599, Proceedings of the 2011 Western North America Regional Meeting, Anchorage, AK, USA},
+month = {May},
+title = {A Combined Experimental and SimulationWorkflow to Improve Predictability of In Situ Combustion},
+year = {2011},
+}
+
+@inproceedings{zblgck11,
+author = {Z. Zhu and M. Bazargan and A. Lapene and M. Gerritsen and L. Castanier and A. Kovscek},
+booktitle = {SPE-144554, Proceedings of the 2011 Western North America Regional Meeting, Anchorage, AK, USA},
+month = {May},
+title = {Upscaling for Field-scale In-situ Combustion Simulation},
+year = {2011},
+}
+
+@inproceedings{vtk11,
+author = {Vega, B and G.-Q. Tang and A. R. Kovscek},
+booktitle = {SPE-144525, Proceedings of the 2011 Western North America Regional Meeting, Anchorage, AK, USA},
+month = {May},
+title = {Thermally Induced Fracture Reconsolidation of Diatomite Under No Flow Conditions},
+year = {2011},
+}
+
+@inproceedings{vk10a,
+author = {Vega, B. W. J. O'Brien and A. R. Kovscek},
+booktitle = {SPE-135627, Proceedings of the 2010 SPE Annual Technical Conference and Exhibition, Florence, Italy,},
+month = {September},
+title = {Experimental Investigation of Oil Recovery From Siliceous Shale by Miscible CO2 Injection},
+year = {2010},
+}
+
+@inproceedings{vk101,
+author = {Vega, B and A. R. Kovscek},
+booktitle = {SPE-132608, Proceedings of the 2010 Western North America Regional Meeting, Anaheim, CA, USA},
+title = {Reservoir Simulation of Cyclic Steam Injection Including the Effects of Temperature Induced Wettability Alteration},
+year = {2010},
+}
+
+@inproceedings{ack10,
+author = {Awoleke, O. G and L. M. Castanier and A. R. Kovscek},
+booktitle = {CSUG/SPE 137608, Proceedings of the Canadian Unconventional Resources & International Petroleum Conference held in Calgary, Alberta, Canada},
+month = {October},
+title = {An Experimental Investigation Of In-Situ Combustion In Heterogeneous Media},
+year = {2010},
+}
+
+@inproceedings{hk10,
+author = {Hascakir, B and A. R. Kovscek},
+booktitle = {SPE-132608, Proceedings of the 2010 Western North America Regional Meeting, Anaheim, CA, USA},
+month = {May},
+title = {Reservoir Simulation of Cyclic Steam Injection Including the Effects of Temperature Induced Wettability Alteration},
+year = {2010},
+}
+
+@article{cgk10,
+author = {Chen, Q. and M. G. Gerritsen and A. R. Kovscek},
+journal = {SPE 129847, SPE Improved Oil Recovery Symposium, Tulsa, OK USA},
+month = {April},
+title = {Improving Steam-Assisted Gravity Drainage Using Mobility Control Foams: Foam Assisted-SAGD (FA-SAGD)},
+year = {2010},
+}
+
+@article{ptk10,
+author = {Pancharoen, M. and M. R. Thiele and A. R. Kovscek},
+journal = {SPE 129910, SPE Improved Oil Recovery Symposium, Tulsa, OK USA},
+month = {April},
+title = {Inaccessible Pore Volume of Associative Polymer Floods},
+year = {2010},
+}
+
+@article{tk101,
+author = {Takahshi, S. and A. R. Kovscek},
+journal = {Siliceous Shale Rocks Using Surface Forces, Journal of Petroleum Science & Engineering},
+pages = {33-43},
+title = {Evaluation of Low-Permeability},
+volume = {75},
+year = {2010},
+doi = {10.1016/j.petrol.2010.10.008},
+}
+
+@book{tk102,
+address = {Journal of Petroleum Science & Engineering},
+author = {Takahshi, S. and A. R. Kovscek},
+publisher = {Siliceous Shale Rocks},
+title = {Spontaneous Countercurrent Imbibition and Forced Displacement Characteristics of Low-Permeability},
+year = {2010},
+doi = {10.1016/j.petrol.2010.01.003},
+}
+
+@article{cgk101,
+author = {Chen, Q. and M. G. Gerritsen and A. R. Kovscek},
+journal = {SPE Journal},
+number = {1},
+pages = {171-183},
+title = {Modeling Foam Displacement with the Local Equilibrium Approximation: Theory and Experiment Verification},
+volume = {15},
+year = {2010},
+}
+
+@incollection{vk10,
+address = {Cambridge, UK},
+author = {Vega, B. and A. R. Kovscek},
+booktitle = {Developments and Innovation in Carbon Capture and Storage (CCS) Technology},
+editor = {M. M. Maroto-Valer},
+publisher = {Woodhead Publishing LTD},
+title = {Storage of Greenhouse Gases in Oil and Gas Reservoirs},
+year = {2010},
+}
+
+@inproceedings{bcck090,
+author = {Buchgraber, M. and T. Clemens and L. M. Castanier and A. R. Kovscek},
+booktitle = {SPE 122400, Proceedings of the 2009 SPE Annual Technical Conference and Exhibition, New Orleans, Louisiana, USA},
+month = {October},
+title = {The Displacement of Viscous Oil by Associative Polymer Solutions},
+year = {2009},
+}
+
+@inproceedings{ak09,
+author = {Alshehri,A. J., E. Sagatov and A. R. Kovscek},
+booktitle = {SPE 124946, Proceedings of the 2009 SPE Annual Technical Conference and Exhibition, New Orleans},
+title = {Pore-Level Mechanics of Forced and Spontaneous Imbibition of Aqueous Surfactant Solutions in Fractured Porous Media},
+year = {2009},
+}
+
+@article{csk09,
+author = {Chaturvedi, T and J. M. Schembre and A. R. Kovscek},
+journal = {International Journal of Coal Geology},
+number = {1-2},
+pages = {34-42},
+title = {Spontaneous Imbibition and Wettability Characteristics of Powder River Basin Coal},
+volume = {77},
+year = {2009},
+doi = {10.1016/j.coal.2008.08.002},
+}
+
+@article{ptk09,
+author = {Peng, J. and G.-Q. Tang and A. R. Kovscek},
+journal = {Journal of Petroleum Science & Engineering},
+number = {2009},
+pages = {47-59},
+title = {Oil Chemistry and Its Impact on Heavy Oil Solution Gas Drive},
+volume = {66},
+year = {2009},
+doi = {10.1016/j.petrol.2009.01.005},
+}
+
+@article{k09,
+author = {Kovscek, A. R.},
+journal = {Journal of Petroleum Technology},
+number = {3},
+pages = {76},
+title = {Overview - Heavy Oil},
+volume = {61},
+year = {2009},
+}
+
+@article{cck091,
+author = {Cinar, M and L. M. Castanier and A. R. Kovscek},
+journal = {Energy & Fuels},
+number = {2009},
+pages = {4003-4015},
+title = {Isoconversional Kinetic Analysis of the Combustion of Heavy Hydrocarbons},
+volume = {23},
+year = {2009},
+doi = {10.1021/ef900222w},
+}
+
+@article{tk09,
+author = {Takahashi, S. and A. R. Kovscek},
+journal = {SPE 121354, Proceedings of the SPE Western Regional Meeting, San Jose, CA},
+month = {March},
+title = {Spontaneous Countercurrent Imbibition and Forced Displacement Characteristics of Low-Permeability, Siliceous Shale Rocks,},
+year = {2009},
+}
+
+@article{mck09,
+author = {C. Marques and L. M. Castanier and A. R. Kovscek},
+journal = {SPE 121059, Proceedings of the SPE Western Regional Meeting, San Jose, CA},
+month = {March},
+title = {Thaw Front Dynamics and Super Insulated Wells for Thermal Recovery in Cold Environments,},
+year = {2009},
+}
+
+@article{cck092,
+author = {M. Cinar and L. M. Castanier and A. R. Kovscek},
+journal = {SPE 120995, Proceedings of the SPE Western Regional Meeting, San Jose, CA},
+month = {March},
+title = {Isoconversional Kinetic Analysis of the Combustion of Heavy Hydrocarbons,},
+year = {2009},
+}
+
+@article{rka09,
+author = {Rangel-German, E. R. and A. R. Kovscek and S. Akin},
+journal = {Transport in Porous Media},
+title = {Time-Dependent Shape Factors for Uniform and Non-Uniform Pressure Boundary Conditions},
+year = {2009},
+doi = {10.1007/s11242-009-9461-7},
+}
+
+@incollection{k088,
+author = {A. R. Kovscek},
+booktitle = {Petroleum Engineering-Upstream, in Encyclopedia of Life Support Systems (EOLSS)},
+editor = {Ezio Mesini, Paolo Macini},
+title = {ENHANCED OIL RECOVERY USING AQUEOUS PHASE CHEMICALS,MISCIBLE GAS INJECTION AND THERMAL MEANS},
+year = {2008},
+}
+
+@article{vtk081,
+author = {Vega, B. and G.-Q. Tang and A. R. Kovscek},
+journal = {SPE 115679, Proceedings of the SPE Annual Technical Conference and Exhibition, Denver, CO},
+month = {September},
+title = {Experimental Investigation of Oil Recovery From Siliceous Shale by CO2 Injection,},
+year = {2008},
+}
+
+@article{cgk082,
+author = {Chen, Q. and M. G. Gerritsen and A. R. Kovscek},
+journal = {SPE 116735, Proceedings of the SPE Annual Technical Conference and Exhibition, Denver, CO},
+month = {September},
+title = {Modeling Foam Displacement with the Local Equilibrium Approximation: Theory and Experiment Verification,},
+year = {2008},
+}
+
+@article{k083,
+author = {Kovscek, A. R.},
+journal = {Journal of Petroleum Technology},
+number = {3},
+pages = {84},
+title = {Overview - Heavy Oil},
+volume = {60},
+year = {2008},
+}
+
+@inproceedings{itrk084,
+author = {Ikeda, M. and G.-Q. Tang and C. M. Ross and A. R. Kovscek},
+booktitle = {SPE 114183, Proceedings of the SPE Western Regional Meeting, Bakersfield, CA.},
+month = {March},
+title = {Alteration of Reservoir Diatomites by Hot Water Injection},
+year = {2008},
+}
+
+@inproceedings{08a,
+author = {Peng. J., G.-Q. Tang and A. R. Kovscek,},
+booktitle = {PE 114196, Proceedings of the SPE Western Regional Meeting, Bakersfield, CA.},
+month = {March},
+title = {2008 Correlation of Cold Production Behavior with Acid/Base Number and Asphaltene Content of Heavy Oil},
+year = {2008},
+}
+
+@inproceedings{cck085,
+author = {Cinar, M and L. M. Castanier and A. R. Kovscek},
+booktitle = {SPE 113948, Proceedings of the SPE Western Regional Meeting Bakersfield, CA.},
+month = {March},
+title = {Improved Analysis of the Kinetics of Crude-Oil In-Situ Combustion},
+year = {2008},
+}
+
+@incollection{k086,
+address = {New York},
+author = {Kovscek, A. R.},
+booktitle = {Encyclopedia of Petroleum Science & Engineering},
+editor = {Speight J. G},
+publisher = {Marcel Dekker},
+title = {Immiscible Carbon Dioxide Displacement},
+year = {2008},
+comment = {to appear},
+}
+
+@incollection{kr08,
+address = {New York,},
+author = {Kovscek, A. R. and C. J. Radke},
+booktitle = {Encyclopedia of Petroleum Science & Engineering},
+editor = {Antos, G.J.},
+title = {Foam Transport in Porous Media},
+year = {2008},
+}
+
+@incollection{k089,
+address = {New York,},
+author = {Kovscek, A. R.},
+booktitle = {Encyclopedia of Petroleum Science & Engineering},
+editor = {Antos, G.J.},
+publisher = {Marcel Dekker},
+title = {Polymer Augmented Waterflooding},
+year = {2008},
+comment = {to appear},
+}
+
+@incollection{k08a,
+author = {Kovscek, A. R.},
+booktitle = {Encyclopedia of Petroleum Science & Engineering},
+editor = {Antos, G.J.},
+publisher = {Marcel Dekker},
+title = {Petroleum Recovery},
+year = {2008},
+doi = {10.1007/s11242-005-6093-4},
+}
+
+@article{cck08b,
+author = {Cristofari, J. and L. M. Castanier and A. R. Kovscek},
+journal = {SPE Journal},
+number = {2},
+pages = {153-163},
+title = {Laboratory Investigation of the Effect of Solvent Injection on In-Situ Combustion},
+volume = {13},
+year = {2008},
+}
+
+@article{cgk08c,
+author = {Chen, Q. and M. G. Gerritsen and A. R. Kovscek},
+journal = {SPE Reservoir Engineering and Evaluation},
+number = {5},
+pages = {921-932},
+title = {Effects of Reservoir Heterogeneities on the Steam-Assisted Gravity Drainage Process},
+volume = {11},
+year = {2008},
+}
+
+@article{08,
+author = {Lin. W., G.-Q. Tang, and A. R. Kovscek,},
+journal = {SPE Reservoir Engineering and Evaluation},
+number = {5},
+pages = {921-932},
+title = {Sorption-Induced Permeability Change of Coal During Gas-Injection Processes},
+volume = {11},
+year = {2008},
+}
+
+@article{ark08d,
+author = {Akin, S. and C. M. Ross and A. R. Kovscek},
+journal = {Journal of Petroleum Science and Engineering},
+pages = {133-149},
+title = {Combination of Well Log and Pore-Scale Data to Predict Petrophysical Properties of Diatomite},
+volume = {60},
+year = {2008},
+doi = {10.1016/j.petrol2007.05.013.},
+}
+
+@article{jtk08e,
+author = {Jessen, K. and Tang, G.-Q. and A. R. Kovscek},
+journal = {Transport in Porous Media},
+number = {2},
+pages = {141-159},
+title = {Laboratory and Simulation Investigation of Enhanced Coalbed Methane Recovery by Gas Injection},
+volume = {73},
+year = {2008},
+}
+
+@article{k07,
+author = {Kovscek, A. R.},
+journal = {Journal of Petroleum Technology},
+number = {4},
+pages = {82},
+title = {Overview - Heavy Oil},
+volume = {59},
+year = {2007},
+}
+
+@article{cgk07,
+author = {Chen, Q. and M. G. Gerritsen and A. R. Kovscek},
+journal = {SPE 109873, Proceedings of the SPE Annual Technical Conference and Exhibition, Anaheim, CA},
+month = {November},
+title = {Effects of Reservoir Heterogeneities on the Steam-Assisted Gravity Drainage Process,},
+year = {2007},
+}
+
+@inproceedings{07,
+author = {Sorption-Induced Permeability Change of Coal During Gas-Injection Processes,},
+booktitle = {Tang, and A},
+title = {SPE-109855, Proceedings of the SPE Annual Technical Conference and Exhibition, Anaheim, CA.},
+year = {2007},
+}
+
+@article{jtk07,
+author = {Jessen, K. and G.-Q. Tang and A. R. Kovscek},
+journal = {SPE-110258, Proceedings of the SPE Annual Technical Conference and Exhibition, Anaheim, CA},
+title = {Multicomponent Sorption Modeling in ECBM Displacement Calculations},
+year = {2007},
+}
+
+@inproceedings{itrk07,
+author = {Ikeda, M. and G.-Q. Tang and C. M. Ross and A. R. Kovscek},
+booktitle = {SPE-110515, Proceedings of the SPE Annual Technical Conference and Exhibition, Anaheim, CA},
+title = {Oil Recovery and Fracture Reconsolidation of Diatomaceous Reservoir Rock by Water Imbibition at High Temperature},
+year = {2007},
+}
+
+@article{jrk07,
+author = {Jia, L. and C. M. Ross and A. R. Kovscek},
+journal = {SPE Reservoir Engineering and Evaluation},
+number = {6},
+pages = {597-608},
+title = {A Pore Network Modeling Approach to Predict Petrophysical Proprerties of Diatomaceous Reservoir Rock},
+volume = {10},
+year = {2007},
+doi = {10.2118/93806-PA},
+}
+
+@article{rttk07,
+author = {Riaz, A. and G.-Q. Tang and H. A. Tchelepi and A. R. Kovscek},
+journal = {Physical Review E},
+number = {3},
+title = {Forced imbibition in natural porous media: Comparison between experiments and continuum models},
+volume = {75},
+year = {2007},
+doi = {10.1103/PhysRevE.75.036305},
+comment = {pt 2, 036305},
+}
+
+@article{rttk070,
+author = {Riaz, A. and G.-Q. Tang and H. A. Tchelepi and A. R. Kovscek},
+journal = {Physical Review E},
+number = {3},
+title = {Forced imbibition in natural porous media: Comparison between experiments and continuum models},
+volume = {75},
+year = {2007},
+doi = {10.1103/PhysRevE.75.036305},
+}
+
+@article{ktk07,
+author = {Kovscek, A. R. and G.-Q. Tang and A. R. Kovscek},
+journal = {Colloids and Surfaces A: Physicochemical and Engineering Aspects},
+pages = {251-260},
+title = {Verification of Roof Snap Off as a Foam Generation Mechanism in Porous Media at Steady State,},
+volume = {302},
+year = {2007},
+doi = {10.1016/j.colsurfa.2007.0},
+}
+
+@article{k06y,
+author = {Kovscek, A. R.},
+journal = {Journal of Petroleum Technology},
+number = {4},
+pages = {97},
+title = {Overview - Heavy Oil},
+volume = {58},
+year = {2006},
+}
+
+@article{ttk060,
+author = {Tang, G.-Q. and C. Temizel and A. R. Kovscek},
+journal = {SPE 102365, Proceedings of the SPE Annual Technical Conference and Exhibition, San Antonio, TX},
+month = {September},
+title = {The Role of Oil Chemistry on Cold Production of Heavy Oils,},
+year = {2006},
+}
+
+@inproceedings{gck061,
+author = {Gao, Y. and L. M. Castanier and A. R. Kovscek},
+booktitle = {SPE 102500, Proceedings of the SPE Annual Technical Conference and Exhibition, San Antonio},
+title = {Interpretation of Heat Distribution, Remaining Oil Saturation, and Steamflood Potential of Block Wa38, Liaohe Field,},
+year = {2006},
+}
+
+@article{k062,
+author = {Kovscek, A. R.},
+journal = {The World Book Encyclopedia},
+number = {350},
+title = {Petroleum Coke},
+volume = {15},
+year = {2006},
+}
+
+@article{cck063,
+author = {Cristofari, J. and L. M. Castanier and A. R. Kovscek},
+journal = {SPE 99752, Proceedings of the SPE Symposium on Improved Oil Recovery, Tulsa, OK},
+month = {April},
+title = {Laboratory Investigation of the Effect of Solvent Injection on In-Situ Combustion},
+year = {2006},
+}
+
+@article{tlcsgkk064,
+author = {Tang, G.-Q. and Y. Leung and L. M. Castanier and A. Sahni and F. Gadelle and M. Kumar and A. R. Kovscek},
+journal = {Society of Petroleum Engineers Journal},
+number = {1},
+pages = {58-70},
+title = {An Investigation of the Effect of Oil Composition on Heavy Oil Solution Gas Drive},
+volume = {11},
+year = {2006},
+doi = {10.2118/84},
+}
+
+@article{rrck065,
+author = {Ross, C. M. and E. R. Rangel-German and L. M. Castanier and A. R. Kovscek},
+journal = {Society of Petroleum Engineers Journal},
+month = {June},
+number = {2},
+pages = {206-215},
+title = {A Laboratory Investigation of Temperature Induced Sand Consolidation,},
+volume = {11},
+year = {2006},
+doi = {10.2118/92398-PA},
+}
+
+@article{tlcsgkk066,
+author = {Tang, G.-Q. and Y. Leung and L. M. Castanier and A. Sahni and F. Gadelle and M. Kumar and A. R. Kovscek},
+journal = {Society of Petroleum Engineers Journal},
+number = {1},
+pages = {58-70},
+title = {An Investigation of the Effect of Oil Composition on Heavy Oil Solution Gas Drive},
+volume = {11},
+year = {2006},
+doi = {10.2118/8},
+}
+
+@article{rk067,
+author = {Rangel-German, E. R. and A. R. Kovscek},
+journal = {Journal of Petroleum Science and Engineering},
+number = {2006},
+pages = {149-163},
+title = {Time-Dependent Shape Factors for Partially and Completely Immersed Fractures},
+volume = {54},
+year = {2006},
+doi = {10.1016/jpetrol.2006.08.004},
+}
+
+@article{rk06z,
+author = {Rangel-German, E. R. and A. R. Kovscek},
+journal = {Water Resources Research},
+number = {W03401},
+title = {A Micromodel Investigation of Two-Phase Matrix-Fracture Transfer Mechanisms},
+volume = {42},
+year = {2006},
+doi = {10.1029/2004WR003918},
+}
+
+@article{tk068,
+author = {Tang, G.-Q. and A. R. Kovscek},
+journal = {Transport in Porous Media},
+number = {65},
+pages = {287-307},
+title = {Trapped Gas Fraction During Steady-State Foam Flow,},
+year = {2006},
+}
+
+@article{sk069,
+author = {Schembre, J. M. and A. R. Kovscek},
+journal = {Transport in Porous Media},
+number = {1},
+pages = {31-51},
+title = {Estimation of Dynamic Relative Permeability and Capillary Pressure from Countercurrent Imbibition Experiments, Transport in Porous Media},
+volume = {65},
+year = {2006},
+doi = {10.1007/s11242-005-6092-5},
+}
+
+@article{stk06a,
+author = {Schembre, J. M. and G.-Q. Tang and A. R. Kovscek},
+journal = {Journal of Petroleum Science and Engineering},
+month = {June},
+pages = {131-148},
+title = {Wettability Alteration and Oil Recovery by Water Imbibition at Elevated Temperatures,},
+volume = {52},
+year = {2006},
+doi = {10.1016/j.petrol.2006.03.017},
+}
+
+@article{lk06b,
+author = {Leguen, S. S. and A. R. Kovscek},
+journal = {Transport in Porous Media},
+number = {1},
+pages = {127-146},
+title = {Nonequilibrium Effects During Spontaneous Imbibition},
+volume = {63},
+year = {2006},
+doi = {10.1007/s11242-005-3327-4},
+}
+
+@article{06c,
+author = {Tang, and A. R. Kovscek},
+journal = {Society of Petroleum Engineers Reservoir Engineering and Evaluation},
+month = {June},
+number = {3},
+pages = {239-250},
+title = {Interrelationship of Temperature and Wettability on the Relative Permeability of Heavy-Oil in Diatomaceous Rocks,},
+volume = {9},
+year = {2006},
+}
+
+@article{cak06d,
+author = {Canbolat, S. and S. Akin and A. R. Kovscek},
+journal = {Petroleum Science and Technology},
+pages = {69-42},
+title = {Asphaltene Deposition During Steam Assisted Gravity Drainage: Effect of Non-Condensable Gases},
+volume = {24},
+year = {2006},
+doi = {10.1081/LFT-200041109},
+}
+
+@article{k05,
+author = {Kovscek, A. R.},
+journal = {Journal of Petroleum Technology},
+number = {6},
+pages = {62},
+title = {Overview-Heavy Oil},
+volume = {57},
+year = {2005},
+}
+
+@article{tjk05,
+author = {Tang, G.-Q. and K. Jessen and A. R. Kovscek},
+journal = {SPE 95947, Proceedings of the SPE Annual Technical Conference and Exhibition, Dallas, TX},
+title = {Laboratory and Simulation Investigation of Enhanced Coalbed Methane Recovery by Gas Injection,},
+year = {2005},
+}
+
+@inproceedings{tr05,
+author = {Schembre. J.M., G.-Q. Tang, and A. R. Kovscek},
+booktitle = {SPE 93831, Proceedings of the SPE Western Regional Meeting, Irvine, CA},
+month = {March},
+title = {ffect of Temperature on Relative Permeability for Heavy-Oil Diatomite Reservoirs},
+year = {2005},
+}
+
+@inproceedings{jrk05,
+author = {Jia, L. and C. M. Ross and A. R. Kovscek},
+booktitle = {SPE 93806, Proceedings of the SPE Western Regional Meeting, Irvine, CA},
+month = {March},
+title = {A Pore Network Modeling Approach to Predict Petrophysical Propoerties of Diatomaceous Reservoir Rock},
+year = {2005},
+}
+
+@inproceedings{hcck05,
+author = {He, B. and Q. Chen and L. M. Castanier and A. R. Kovscek},
+booktitle = {SPE 93901, Proceedings of the SPE Western Regional Meeting, Irvine, CA,},
+month = {March},
+title = {Improved In-Situ Combustion Performance with Metallic Salt Additives},
+year = {2005},
+}
+
+@inproceedings{rrck05,
+author = {Ross, C. M. and E. R. Rangel-German and L. M. Castanier and A. R. Kovscek},
+booktitle = {SPE 92398, Proceedings of the SPE Western Regional Meeting, Irvine, CA},
+month = {March},
+title = {A Laboratory Investigation of Temperature Induced Sand Consolidation},
+year = {2005},
+}
+
+@inproceedings{rk05,
+author = {Rangel-German, E. R. and A. R. Kovscek},
+booktitle = {SPE 95105, Proceedings of the SPE Latin America and Caribbean Petroleum Engineering Conference, Rio de Janeiro, Brazil},
+month = {June},
+title = {Matrix Fracture Shape Factors and Multiphase Flow Properties of Fractured Porous Media},
+year = {2005},
+}
+
+@article{sk05,
+author = {Schembre, J. M. and A. R. Kovscek},
+journal = {ASME Transactions},
+number = {3},
+pages = {171-180},
+title = {A Mechanism of Formation Damage at Elevated Temperature, Journal of Energy Resources Technology},
+volume = {127},
+year = {2005},
+doi = {10.115/1.1924398},
+}
+
+@article{hk05,
+author = {Hoffman, B. T. and A. R. Kovscek},
+journal = {Journal of Petroleum Science and Engineering},
+number = {4},
+pages = {253-266},
+title = {Displacement Front Stability of Steam Injection into High Porosity Diatomite Rock},
+volume = {46},
+year = {2005},
+doi = {10.1016/j.petrol.2005.01.004},
+}
+
+@incollection{cgk05,
+address = {Vol. 14, Springer, Dordrecht The},
+author = {Caers, J. and H. Gross and A. R. Kovscek},
+booktitle = {Geostatistics Banff 2004,},
+editor = {L. Oy and C. V. Deutsch},
+title = {A Direct Sequential Simulation Approach to Streamline-Based History Matching},
+year = {2005},
+}
+
+@article{kc05,
+author = {Kovscek, A. R. and M. D. Cakici},
+journal = {Energy Conversion and Management},
+number = {11-12},
+pages = {1941-1956},
+title = {Geologic Storage of Carbon Dioxide and Enhanced Oil Recovery II: Cooptimization of Storage and Recovery},
+volume = {46},
+year = {2005},
+}
+
+@article{kw05,
+author = {Kovscek, A. R. and Y. Wang},
+journal = {Energy Conversion and Management},
+number = {2},
+pages = {293-311},
+title = {Geologic Storage of Carbon Dioxide and Enhanced Oil Recovery I: Uncertainty Quantification Employing a Streamline-Based Proxy for Reservoir Simulation},
+volume = {46},
+year = {2005},
+}
+
+@article{ghk05,
+author = {George, D. S. and O. Hayat and A. R. Kovscek},
+journal = {Journal of Petroleum Science and Engineering},
+number = {1-2},
+pages = {101-119},
+title = {A Microvisual Study of Solution Gas Drive Mechanisms in Viscous Oils},
+volume = {46},
+year = {2005},
+doi = {10.1016, j.petrol.2004.08.003},
+}
+
+@article{jkj05,
+author = {Jessen, K. and A. R. Kovscek and F. M. Orr Jr.},
+journal = {Energy Conversion and Management},
+number = {11-12},
+pages = {1920-1940},
+title = {Increasing CO2 Storage in Oil Recovery},
+volume = {46},
+year = {2005},
+}
+
+@inproceedings{r041,
+author = {Schembre. J.M. and A. R. Kovscek,},
+booktitle = {SPE 86937, Proceedings of the SPE International Thermal Operations and Heavy Oil Symposium and Western Regional},
+title = {Thermally Induced Fines Migration: Its Relationship to Wettability and Formation Damage,},
+year = {2004},
+}
+
+@inproceedings{hk040,
+author = {Hoffman, B. T. and A. R. Kovscek},
+booktitle = {SPE 86985, Proceedings of the SPE International Thermal Operations and Heavy Oil Symposium and Western Regional Meeting, Bakersfield, CA},
+month = {March},
+title = {Steamdrive Stability in High Porosity Rock},
+year = {2004},
+}
+
+@inproceedings{tsgkk0402,
+author = {Tang, G.-Q. and A. Sahni and F. Gadelle and M. Kumar and A. R. Kovscek},
+booktitle = {SPE 87226, Proceedings of the SPE International Thermal Operations and Heavy Oil Symposium and Western Regional Meeting},
+title = {Heavy-Oil Solution Gas Drive in Consolidated and Unconsolidated Rock},
+year = {2004},
+}
+
+@inproceedings{gtack04,
+author = {Gross, H. and M. R. Thiele and M. J. Alexa and J. K. Caers and A. R. Kovscek},
+booktitle = {SPE 90069, Proceedings of the SPE Annual Technical ConferenceProceedings of the SPE Annual Technical Conference},
+title = {Streamline-Based History Matching Using Geostatistical Constraints: Application to a Giant Mature Carbonate Reservoir},
+year = {2004},
+}
+
+@inproceedings{a04,
+author = {Tang. G.-Q. and A. R. Kovscek},
+booktitle = {SPE 90142, Proceedings of the SPE Annual Technical Conference and Exhibition, Houston, TX},
+month = {September},
+title = {Measurement and Theory of Gas Trapping in Porous Media During Steady-State Foam Flow},
+year = {2004},
+}
+
+@inproceedings{rk04,
+author = {Rangel-German, E. R. and A. R. Kovscek},
+booktitle = {SPE 92133, Proceedings of the SPE International Petroleum Conference in Mexico, Puebla, Mexico, Nov},
+month = {November},
+title = {Microvisual Analysis of Matrix-Fracture Interaction},
+year = {2004},
+}
+
+@inproceedings{crk04,
+author = {Chaobal, A. and E. R. Rangel-German and A. R. Kovscek},
+booktitle = {SPE 92131, Proceedings of the SPE International Petroleum ConferenceProceedings of the SPE International Petroleum Conference},
+title = {Experimental Determination of Time-Dependent Matrix-Fracture Shape Factors for Different Geometries and Fracture Filling Regimes},
+year = {2004},
+}
+
+@article{pgkcsx04,
+author = {Pruess, K. and J. GarcÌa and A. R. Kovscek and C. Oldenburg,.J. Rutqvist and C. Steefel and T. Xu},
+journal = {Energy},
+pages = {1431-1444},
+title = {Code Intercomparison Builds Confidence in Numerical Simulation Models for Geologic Disposal of CO2},
+volume = {29},
+year = {2004},
+}
+
+@article{rssk04,
+author = {Rangel-German, E. R. and J. Schembre and C. Sandberg and A. R. Kovscek},
+journal = {Journal of Petroleum Science and Engineering},
+number = {3-4},
+pages = {213-231},
+title = {Electrical-Heating-Assisted Recovery for Heavy Oil},
+volume = {45},
+year = {2004},
+}
+
+@article{ack04,
+author = {Akin, S. and S. Canbolat and A. R. Kovscek},
+journal = {Journal of Petroleum Science and Engineering},
+number = {1-2},
+pages = {83-96},
+title = {A Study of Steam Assisted Gravity Drainage Performance in the Presence of Noncondensable Gases},
+volume = {45},
+year = {2004},
+}
+
+@article{tk04,
+author = {Tang, G.-Q. and A. R. Kovscek},
+journal = {Society of Petroleum Engineers Journal},
+number = {2},
+pages = {163-179},
+title = {An Experimental Investigation of the Effect of Temperature on Recovery of Heavy Oil From Diatomite},
+volume = {9},
+year = {2004},
+}
+
+@article{sgktk04,
+author = {Sahni, A. and F. Gadelle and M. Kumar and L. Tomutsa and A. R. Kovscek},
+journal = {Society of Petroleum Engineers Reservoir Engineering & Evaluation},
+number = {3},
+pages = {217-229},
+title = {Experiments and Analysis of Heavy-Oil Solution Gas Drive,},
+volume = {7},
+year = {2004},
+}
+
+@inproceedings{tsgkk041,
+author = {Tang, G.-Q. and A. Sahni and F. Gadelle and M. Kumar and A. R. Kovscek},
+booktitle = {SPE 87226, Proceedings of the SPE International Thermal Operations and Heavy Oil Symposium and Western Regional Meeting},
+title = {Heavy-Oil Solution Gas Drive in Consolidated and Unconsolidated Rock},
+year = {2004},
+}
+
+@article{gkcnyh04,
+author = {Gerritsen, M. and A. R. Kovscek and L. Castanier and J. Nilsson and R. Younis and B. He},
+journal = {SPE 86962},
+title = {Experimental Investigation and High Resolution Simulator of In-Situ Combustion: 1 Simulator Design and Improved Combustion With Metallic Additives},
+year = {2004},
+}
+
+@inproceedings{r040,
+author = {Schembre. J.M. and A. R. Kovscek,},
+booktitle = {SPE 86937, Proceedings of the SPE International Thermal Operations and Heavy Oil Symposium and Western Regional},
+title = {Thermally Induced Fines Migration: Its Relationship to Wettability and Formation Damage},
+year = {2004},
+}
+
+@article{hk041,
+author = {Hoffman, B. T. and A. R. Kovscek},
+journal = {Petroleum Science and Technology},
+number = {5-6},
+pages = {537-564},
+title = {Efficiency and Oil Recovery Mechanisms of Steam Injection into Low Permeability, Hydraulically Fractured Reservoirs},
+volume = {22},
+year = {2004},
+}
+
+@article{sk03,
+author = {Schembre, J. M. and A. R. Kovscek},
+journal = {Journal of Petroleum Science and Engineering},
+number = {1-2},
+pages = {159-174},
+title = {A Technique for Measuring Two-Phase Relative Permeability in Porous Media via X-ray CT Measurements},
+volume = {39},
+year = {2003},
+}
+
+@article{rka03,
+author = {Rangel-German, E. R. and A. R. Kovscek and S. Akin},
+journal = {Proceeding of the Geothermal Resources Council Annual Meeting, Morelia, Michaocan Mexico, Oct},
+pages = {12-15},
+title = {Time Dependent Shape Factors for Uniform and Non-Uniform Pressure Boundary Conditions},
+year = {2003},
+}
+
+@inproceedings{erar03,
+author = {Rangel-German. E. R. and A. R. Kovscek},
+booktitle = {SPE 84411, Proceedings of the SPE Annual Technical Conference and Exhibition, Denver, CO},
+month = {October},
+title = {Time-Dependent Matrix-Fracture Shape Factors for Partially and Completely Immersed Fractures},
+year = {2003},
+}
+
+@inproceedings{tlcsgkk03,
+author = {Tang, G.-Q. and Y. Leung and L. M. Castanier and A. Sahni and F. Gadelle and M. Kumar and A. R. Kovscek},
+booktitle = {SPE 84197, Proceedings of the SPE Annual Technical Conference and ExhibitionProceedings of the SPE Annual Technical Conference and Exhibition},
+title = {An Investigation of the Effect of Oil Composition on Heavy Oil Solution Gas Drive},
+year = {2003},
+}
+
+@inproceedings{hk03,
+author = {Hoffman, B. T. and A. R. Kovscek},
+booktitle = {SPE 83491, Proceedings of the SPE Western Region/AAPG Pacific Section Joint Meeting, Long Beach, CA},
+title = {Light-Oil Steamdrive in Fractured Low Permeability Reservoirs},
+year = {2003},
+}
+
+@article{zjkj03,
+author = {Zhu, J. and K. Jessen and A. R. Kovscek and F. M. Orr Jr.},
+journal = {Society of Petroleum Engineers Journal},
+number = {4},
+title = {Analytical Solutions for Coal-Bed Methane Displacement by Gas Injection},
+volume = {8},
+year = {2003},
+}
+
+@article{bk03,
+author = {Bertin, H. J. and A. R. Kovscek},
+journal = {Transport in Porous Media},
+pages = {17-35},
+title = {Foam Mobility in Heterogeneous Porous Media I: Scaling Concepts},
+volume = {52},
+year = {2003},
+}
+
+@article{bk030,
+author = {Bertin, H. J. and A. R. Kovscek},
+journal = {Transport in Porous Media},
+pages = {37-49},
+title = {Foam Mobility in Heterogeneous Porous Media II: Experimental Observations},
+volume = {52},
+year = {2003},
+}
+
+@article{wk03,
+author = {Wang, Y. and A. R. Kovscek},
+journal = {Petroleum Geoscience},
+number = {2},
+pages = {163-174},
+title = {Integrating Production History into Reservoir Models Using Streamline-Based Time-of-Flight Ranking},
+volume = {9},
+year = {2003},
+}
+
+@article{ak03,
+author = {Akin, S. and A. R. Kovscek},
+journal = {Special Publications,  Geological Society},
+pages = {215},
+title = {Computed Tomography in Petroleum Engineering Research, Applications of X-ray Computed Tomography in the Geosciences, Mees, F., Swennen, R., Van Geet, M. and Jacobs, P. (eds)},
+year = {2003},
+}
+
+@article{kr03,
+author = {Kovscek, A. R. and C. J. Radke},
+journal = {Colloids and Surfaces A: Physicochemical and Engineering Aspects},
+number = {2-3},
+pages = {99-108},
+title = {Pressure-Driven Capillary Snap off of Gas Bubbles at Low Wetting-Liquid Content},
+volume = {212},
+year = {2003},
+}
+
+@article{ak031,
+author = {Arora, P. and A. R. Kovscek},
+journal = {Transport in Porous Media},
+pages = {237-265},
+title = {A Mechanistic Modeling and Experimental Study of Solution Gas Drive},
+volume = {51},
+year = {2003},
+}
+
+@inproceedings{tk020,
+author = {Tang, G-Q. and A. R. Kovscek},
+booktitle = {SPE 159423 Proceedings of the SPE Annual Technical Conference and Exhibition, San Antonio, Texas},
+month = {September},
+title = {Wettability Alteration of Diatomite Induced by Hot-Fluid Injection SPE 77461},
+year = {2002},
+}
+
+@inproceedings{wk021,
+author = {Wang, Y. and A. R. Kovscek},
+booktitle = {SPE 77377, Proceedings of the SPE Annual Technical Conference and Exhibition, San Anrtonio, TX},
+month = {September},
+title = {A Streamline Approach for Ranking Reservoir Models that Incorporates Production History},
+year = {2002},
+}
+
+@inproceedings{zjkj02,
+author = {Zhu, J. and K. Jessen and A. R. Kovscek and F. M. Orr Jr.},
+booktitle = {SPE 75255 Proceedings of the SPE/DOE Thirteenth Symposium on Improved Oil Recovery, Tulsa, OK},
+month = {April},
+title = {Analytical Solutions for Coal-Bed Methane Displacement by Gas Injection},
+year = {2002},
+}
+
+@inproceedings{rk022,
+author = {Ross, C. M. and A. R. Kovscek},
+booktitle = {SPE 75190, Proceedings of the SPE/DOE Thirteenth Symposium on Improved Oil Recovery,Tulsa, OK},
+month = {April},
+title = {Pore Microstructure and Fluid Distribution in a Diatomaceous Reservoir},
+year = {2002},
+}
+
+@inproceedings{kb02,
+author = {Kovscek, A. R. and H. J. Bertin},
+booktitle = {SPE 75181, Proceedings of the SPE/DOE Thirteenth Symposium on Improved Oil Recovery, Tulsa, OK},
+month = {April},
+title = {Estimation of Foam Mobility in Heterogeneous Porous Media},
+year = {2002},
+}
+
+@inproceedings{tk021,
+author = {Tang, G. Q. and A. R. Kovscek},
+booktitle = {SPE 75132, Proceedings of the SPE/DOE Thirteenth Symposium on Improved Oil Recovery, Tulsa, OK},
+month = {April},
+title = {Experimental Study of Heavy Oil Production from Diatomite Core at Elevated Temperatures},
+year = {2002},
+}
+
+@article{ack022,
+author = {Akin, S. and S. Canbolat and A. R. Kovscek},
+journal = {SPE 75130 Proceedings of the SPE/DOE Thirteenth Symposium on Improved Oil Recovery, Tulsa, OK},
+month = {April},
+title = {A Study of Steam Assisted Gravity Drainage Performance in the Presence of Noncondensable Gases,},
+year = {2002},
+}
+
+@article{ak023,
+author = {Akin, S. and A. R. Kovscek},
+journal = {Journal of Petroleum Science and Engineering},
+number = {1-2},
+pages = {33-48},
+title = {Heavy Oil Solution Gas Drive: A Laboratory Study},
+volume = {35},
+year = {2002},
+}
+
+@incollection{k024,
+address = {New York,},
+author = {Kovscek, A. R.},
+booktitle = {Encyclopedia of Petroleum Science and Engineering,},
+editor = {Speight J.G.},
+publisher = {Marcel Dekker},
+title = {Immiscible Carbon Dioxide Displacement,},
+year = {2002},
+}
+
+@incollection{k025,
+address = {New York,},
+author = {Kovscek, A. R.},
+booktitle = {Encyclopedia of Petroleum Science and Engineering,},
+editor = {Speight J.G.},
+publisher = {Marcel Dekker},
+title = {Petroleum Recovery,},
+year = {2002},
+comment = {to appear},
+}
+
+@incollection{k026,
+address = {New York,},
+author = {Kovscek, A. R.},
+booktitle = {Encyclopedia of Petroleum Science and Engineering,},
+editor = {Speight J.G.},
+publisher = {Marcel Dekker},
+title = {Polymer Augmented Waterflooding,},
+year = {2002},
+comment = {to appear},
+}
+
+@article{ckwk027,
+author = {Caers, J. and S. Krishnan and Y. Wang and A. R. Kovscek},
+journal = {Society of Petroleum Engineers Journal},
+number = {3},
+pages = {250-266},
+title = {A Geostatistical Approach to Streamline-Based History Matching},
+volume = {7},
+year = {2002},
+}
+
+@article{rk028,
+author = {Rangel-German, E. R. and A. R. Kovscek},
+journal = {Journal of Petroleum Science and Engineering},
+number = {1-2},
+pages = {45-60},
+title = {Experimental and Analytical Study of Multidimensional Imbibition in Fractured Porous Media},
+volume = {36},
+year = {2002},
+}
+
+@article{ak029,
+author = {Arora, P. and A. R. Kovscek},
+journal = {Journal of Petroleum Technology},
+number = {6},
+pages = {48-49},
+title = {Mechanistic Modeling of Solution-Gas Drive in Viscous Oils},
+volume = {53},
+year = {2002},
+}
+
+@article{k02a,
+author = {Kovscek, A. R.},
+journal = {Petroleum Science and Technology},
+number = {7-8},
+pages = {841-866},
+title = {Screening Criteria for CO2 Storage in Reservoirs},
+volume = {20},
+year = {2002},
+}
+
+@article{zjkk02b,
+author = {Zhou, D. and L. Jia and J. Kamath and A. R. Kovscek},
+journal = {Journal of Petroleum Science and Engineering},
+number = {1-3},
+pages = {61-74},
+title = {Scaling of Counter-Current Imbibition Processes in Low-Permeability Porous Media},
+volume = {33},
+year = {2002},
+}
+
+@article{ak0c,
+author = {Zhou, D. and L. Jia and J. Kamath and A. R. Kovscek},
+journal = {Journal of Petroleum Technology},
+number = {10},
+pages = {44},
+title = {Countercurrent Imbibition Processes in Diatomite},
+volume = {53},
+year = {2001},
+}
+
+@inproceedings{sk01,
+author = {Schembre, J. M. and A. R. Kovscek},
+booktitle = {SPE 71484 Proceedings of the SPE Annual Technical Conference and Exhibition, Mew Orleans},
+title = {Direct Measurement of Dynamic Relative Permeability from CT-Monitored Spontaneous Imbibition Experiments},
+year = {2001},
+}
+
+@inproceedings{rk01,
+author = {Rangel-German, E. R. and A. R. Kovscek},
+booktitle = {SPE 71618 Proceedings of the SPE Annual Technical Conference and Exhibition, New Orleans},
+month = {September},
+title = {Water Infiltration in Fractured Systems: Experiments and Analytical Model},
+year = {2001},
+}
+
+@inproceedings{jsko,
+address = {Washington, DC},
+author = {Jessen, K. and L. C. Sam-Olibale and A. R. Kovscek and F. M. Orr},
+booktitle = {National Energy Technology Laborator},
+month = {May},
+title = {2001 Increasing CO2 Storage in Oil Recovery First National Conference on Carbon Sequestration},
+year = {2001},
+}
+
+@inproceedings{zjkk011,
+author = {Zhou, D. and L. Jia and J. Kamath and A. R. Kovscek},
+booktitle = {SPE 68837, Proceedings of the SPE Western Regional Meeting, Bakersfield, CA},
+month = {March},
+title = {An Investigation of Counter-Current Imbibition Processes in Diatomite},
+year = {2001},
+}
+
+@inproceedings{ak01,
+author = {Arora, P. and A. R. Kovscek},
+booktitle = {SPE 69717, Proceedings of the SPE International Thermal Operations and Heavy Oil Symposium, Porlamar, Venezuela},
+month = {March},
+title = {Mechanistic Modeling of Solution Gas Drive in Viscous Oils},
+year = {2001},
+}
+
+@article{dck01,
+author = {Diabira, I. and L. M. Castanier and A. R. Kovscek},
+journal = {Petroleum Science and Technology},
+number = {9-10},
+pages = {1167-1185},
+title = {Porosity and Permeability Evolution Accompanying Hot Fluid Injection into Diatomite},
+volume = {19},
+year = {2001},
+}
+
+@article{er00,
+author = {Elliot, K. T. and A. R, Kovscek,},
+journal = {Petroleum Science and Technology},
+number = {7-8},
+pages = {733-760},
+title = {A Numerical Analysis of the Single-Well Steam Assisted Gravity Drainage Process},
+volume = {19},
+year = {2001}, 
+}
+
+@article{ak010,
+author = {Apaydin, O. and A. R. Kovscek},
+journal = {Transport in Porous Media},
+number = {3},
+pages = {511-536},
+title = {Surfactant Concentration and End Effects on Foam Flow in Homogeneous Porous Media},
+volume = {43},
+year = {2001},
+}
+
+@article{wk00,
+author = {Wang, Y. and A. R. Kovscek},
+journal = {Society of Petroleum Engineers Journal},
+number = {4},
+pages = {353-362},
+title = {A Streamline Approach for History Matching Production Data},
+volume = {5},
+year = {2000},
+}
+
+@article{asbk00,
+author = {Akin, S. and J. M. Schembre and S. K. Bhat and A. R. Kovscek},
+journal = {Journal of Petroleum Science and Engineering},
+pages = {149-165},
+title = {Spontaneous Imbibition Characteristics of Diatomite},
+volume = {25},
+year = {2000},
+}
+
+@article{wk001,
+author = {Wang, Y. and A. R. Kovscek},
+journal = {SPE 59370, presented at the SPE/DOE Improved Oil Recovery Symposium, Tulsa, OK},
+month = {April},
+title = {A Streamline Approach for History Matching Production Data},
+year = {2000},
+}
+
+@inproceedings{rk00,
+author = {Rangel-German, E. R. and A. R. Kovscek},
+booktitle = {Proceedings, Twenty-Fifth Workshop on Geothermal Reservoir Engineering, Stanford University, Stanford, CA},
+month = {January},
+title = {Matrix-Fracture Interactions in Single Matrix Blocks,},
+year = {2000},
+}
+
+@article{ar00,
+author = {Apaydin, O. G. and A. R.},
+journal = {SPE 59286, presented at the SPE/DOE Improved Oil Recovery Symposium, Tulsa, OK},
+month = {April},
+title = {Kovscek 2000 Transient Foam Flow in Homogeneous Porous Media: Surfactant Concentration and End Effects,},
+year = {2000},
+}
+
+@article{kdm,
+author = {Kovscek, A. R. and I. Diabira and L. M., Castanier},
+journal = {SPE 62558, presented at the SPE Western Regional Meeting, Long Beach, CA},
+month = {June},
+title = {An Experimental Investigation of Permeability and Porosity Alteration in Diatomite During Hot Fluid Injection},
+year = {2000},
+}
+
+@article{bk99,
+author = {Bhat, S. K. and Kovscek, A. R.},
+journal = {In Situ},
+number = {1},
+pages = {21-54},
+title = {Statistical network theory of silica deposition and dissolution in diatomite},
+volume = {23},
+year = {1999},
+}
+
+@article{wkb99,
+author = {Wang, Y. and Kovscek, A. R. and Brigham, W. E.},
+journal = {In Situ},
+number = {1},
+pages = {1-20},
+title = {Effect of mobility ratio on pattern behavior of a homogeneous porous medium},
+volume = {23},
+year = {1999},
+}
+
+@article{ak99,
+author = {Akin, S. and A. R. Kovscek},
+journal = {SPE 54590, presented at the SPE Western Regional Meeting, Anchorage, AK,},
+month = {May},
+title = {Imbibition Studies in Low-Permeability Porous Media,},
+year = {1999},
+}
+
+@article{bac01,
+author = {Bertin, H. J. and Apaydin, O. G. and Castanier, L. M. and Kovscek,},
+journal = {SPE 56009, Society of Petroleum Engineers Journal},
+number = {2},
+pages = {75-82},
+title = {Foam flow in heterogeneous porous media: Effect of crossflow},
+volume = {4},
+year = {1999},
+}
+
+@article{ek99,
+author = {Elliot, K. E. and A. R. Kovscek},
+journal = {SPE 54618, presented at the SPE Western Regional Meeting, Anchorage, AK},
+month = {May},
+title = {Simulation of Early-Time Response of Single- Well Steam Assisted Gravity Drainage},
+year = {1999},
+}
+
+@article{ek991,
+author = {Elliot, K. E. and A. R. Kovscek},
+journal = {paper S-10, presented at the 20th Annual International Energy Agency Workshop and Symposium, Enghien-les-Bains, France},
+month = {September},
+title = {A Numerical Analysis of the Single-Well Steam Assisted Gravity Drainage},
+year = {1999},
+}
+
+@article{bk98,
+author = {Bhat, S. K. and Kovscek, A. R.},
+journal = {Journal of Petroleum Technology},
+number = {9},
+pages = {98-100},
+title = {Permeability modification of diatomite during hot-fluid injection},
+volume = {50},
+year = {1998},
+}
+
+@article{bk980,
+author = {Bhat, S. K. and Kovscek, A. R.},
+journal = {SPE 46211, presented at the SPE Western Regional Meeting, Bakersfield, CA},
+title = {Permeability modification of diatomite during hot fluid injection},
+year = {1998},
+}
+
+@article{sack98,
+author = {Schembre, J. M. and Akin, S. and Castanier, L. M. and Kovscek, A. R.},
+journal = {SPE 46211, presented at the SPE Western Regional Meeting, Bakersfield, CA},
+title = {Spontaneous water imbibition into diatomite},
+year = {1998},
+}
+
+@article{k98,
+author = {Kovscek, A. R},
+journal = {UNITAR},
+title = {Reservoir simulation of foam displacement processes},
+year = {1998},
+comment = {presented at the 7th UNITAR International Conference on Heavy Crude and Tar Sands, Beijing, China186, presented at the 7th UNITAR International Conference on Heavy Crude and Tar Sands, Beijing, China},
+}
+
+@article{back98,
+author = {Bertin, H. J. and Apaydin, O. G. and Castanier, L. M. and Kovscek, A. R.},
+journal = {SPE 39678, presented at the SPE/DOE Improved Oil Recovery Symposium, Tulsa},
+title = {Foam flow in heterogeneous porous media: Effect of crossflow},
+year = {1998},
+}
+
+@article{wkb98,
+author = {Wang, Y. and Kovscek, A. R. and Brigham, W. E.},
+journal = {Paper A2},
+title = {Effect of mobility ratio on areal sweep efficiency and pattern flood behavior},
+year = {1998},
+comment = {presented at the 19th Annual International Energy Agency Workshop and Symposium, Carmel},
+}
+

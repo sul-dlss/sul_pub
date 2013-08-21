@@ -1,0 +1,325 @@
+@inproceedings{bdbb13,
+author = {Barnhart, C. J. and M. Dale and A. R. Brandt and S. M. Benson},
+booktitle = {Proceedings of the National Academy of Sciences},
+title = {The energetic implications of curtailing or storing wind and solar generated electricity},
+year = {2013},
+comment = {in review},
+}
+
+@article{eb13,
+author = {El-Houjeiri, H. M. and A. R. Brandt},
+journal = {Environmental Science & Technology},
+title = {Estimating greenhouse gas (GHG) emissions from oil production operations using detailed field characteristics},
+year = {2013},
+doi = {10.1021/es304570m},
+}
+
+@article{ebb13,
+author = {Englander, J. and A. R. Brandt and S. Bharadwaj},
+journal = {Proceedings of the National Academy of Sciences},
+title = {Historical trends in life-cycle greenhouse gas emissions of Alberta oil sands extraction from 1970 to 2010: Causes and implications for future emissions},
+year = {2013},
+comment = {in review},
+}
+
+@article{beb13,
+author = {Brandt, A. R. and J. Englander and S. Bharadwaj},
+journal = {Energy: The International Journal},
+title = {The energy efficiency of oil sands extraction: Energy return ratios from 1970 to 2010},
+year = {2013},
+doi = {10.1016/j.energy.2013.03.080},
+}
+
+@article{bdb13,
+author = {Brandt, A. R. and M. Dale and C. Barnhart},
+journal = {Energy},
+title = {Systems-scale energy efficiency with multiple energy pathways and non-energy processes: a bottom-up matrix-based approach},
+year = {2013},
+comment = {in review},
+}
+
+@article{bmgg13,
+author = {Brandt, A. R. and A. Millard-Ball and M. Ganser and S. Gorelick},
+journal = {Environmental Science & Technology},
+title = {Peak oil demand: The role of fuel efficiency and alternative fuels in a global oil production decline},
+year = {2013},
+doi = {10.1021/es401419t},
+}
+
+@article{mb13,
+author = {Middleton, R. S. and A. R. Brandt},
+journal = {Environmental Science & Technology},
+number = {2013},
+pages = {1735-1744},
+title = {Using infrastructure optimization to reduce greenhouse gas emissions from oil sands extraction and processing},
+volume = {47},
+year = {2013},
+doi = {10.1021/es3035895},
+}
+
+@article{kbbw13,
+author = {Kirchofer, A. and A. Becker and A. R. Brandt and J. Wilcox},
+journal = {Environmental Science & Technology},
+title = {CO2 Mitigation Potential of Mineral Carbonation with Industrial Alkalinity Sources in the United States},
+year = {2013},
+doi = {10.1021/es4003982},
+}
+
+@article{eb12,
+author = {El-Houjeiri, H. M. and A. R. Brandt},
+journal = {American Center for Life Cycle Assessment (ACLCA) LCA XII Conference Tacoma, WA, September 27th 2012},
+title = {Exploring the variation of GHG emissions from conventional oil production using an engineering-based LCA model},
+year = {2012},
+}
+
+@inproceedings{kbd1201,
+address = {Kyoto, Japan},
+author = {Kang, C. A. and A. R. Brandt and L. J. Durlofsky},
+booktitle = {GHGT-11, the 11th International Conference on Greenhouse Gas Control Technologies},
+month = {November 18-22},
+title = {Optimal heat integration in a coal-natural gas energy park with CO2 capture},
+year = {2012},
+}
+
+@article{kkpw12,
+author = {Kirchofer, A. A. R. Brandt and S. Krevor and V. Priggiobe and J. Wilcox},
+journal = {Energy & Environmental Science},
+number = {2012},
+pages = {8631-8641},
+title = {Impact of alkalinity sources on the life-cycle energy efficiency of mineral carbonation technologies},
+volume = {5},
+year = {2012},
+}
+
+@inproceedings{kbd1202,
+address = {Orlando, FL},
+author = {Kang, C. A. and A. R. Brandt and L. J. Durlofsky},
+booktitle = {Carbon Management Technologies Conference, February 8, 2012},
+month = {February},
+publisher = {February 8th},
+title = {Impact of CO2 Emissions Policy and System Configuration on Optimal Operation of an Integrated Fossil-Renewable Energy Park},
+year = {2012},
+}
+
+@article{cbd11,
+author = {Kang C. and A. R. Brandt and L. Durlofsky},
+journal = {Energy},
+number = {2011},
+pages = {6806-6820},
+title = {Optimal operation of an integrated energy system including fossil fuel power generation, CO2 capture and wind},
+volume = {36},
+year = {2011},
+}
+
+@article{b1101,
+author = {Brandt, A. R.},
+journal = {Environmental Science & Technology},
+title = {2011 Variability and uncertainty in life cycle assessment models for greenhouse gas emissions from Canadian oil sands production},
+year = {2011},
+doi = {10.1021/es202312p},
+}
+
+@article{bd11,
+author = {Brandt, A. R. and M. Dale},
+journal = {Energies},
+number = {4},
+pages = {1211-1245},
+title = {A general mathematical framework for systems-scale efficiency of energy extraction and conversion: Energy return on investment (EROI) and other energy return ratios},
+volume = {2011},
+year = {2011},
+doi = {10.3390/en408121},
+}
+
+@article{nb1102,
+author = {Nemet, G. and A. R. Brandt},
+journal = {The Energy Journal},
+number = {1},
+pages = {1-3},
+title = {Willingness to pay for a climate backstop: Liquid fuel producers and direct CO2 air capture},
+volume = {33},
+year = {2011},
+doi = {10.5547/ISSN0195-6574-EJ-},
+unidentified = {): 53-81. Vol33-No},
+}
+
+@article{mb11,
+author = {Mulchandani, H. and A. R. Brandt},
+journal = {Energy & Fuels},
+number = {16331641},
+title = {Oil shale as an energy resource in a CO2 constrained world: The concept of electricity production with in-situ carbon capture (EPICC)},
+volume = {25(4)},
+year = {2011},
+doi = {10.1021/ef101714x},
+}
+
+@article{b1103,
+author = {Brandt, A. R.},
+journal = {Sustainabilities},
+number = {10},
+pages = {1833-1844},
+title = {Oil depletion and the energy efficiency of oil production: The case of California},
+volume = {3},
+year = {2011},
+doi = {10.3390/su3101833},
+}
+
+@article{yjbts10,
+author = {Yeh, S. and S. M. Jordaan and A. R. Brandt and M. Turetsky and S. Spatari},
+journal = {Environmental Science & Technology},
+pages = {8766-8772},
+title = {Land use greenhouse gas emissions from conventional and unconventional oil production},
+volume = {44},
+year = {2010},
+doi = {10.1021/es1013278},
+}
+
+@incollection{bb10,
+address = {ACS Symposium Series 1032. American Chemical Society},
+author = {Brandt, A. R. J. Boak and A. K. Burnham},
+booktitle = {Oil shale: A solution to the liquid fuels dilemma},
+editor = {O. Ogunsola},
+publisher = {Washington, D.C},
+title = {Carbon dioxide emissions from oil shale derived liquid fuels},
+year = {2010},
+doi = {10.1021/bk-2010-1032.ch011},
+}
+
+@article{rpf10,
+author = {Brandt A. R. and R. J. Plevin and A. E. Farrell},
+journal = {Energy: The International Journal},
+title = {Dynamics of the oil transition: Modeling capacity, depletion, and emissions},
+year = {2010},
+doi = {doi:10.1016/j.energy.2010.03.014},
+}
+
+@article{mpcjbvk10,
+author = {Lemoine D. M. and R. J. Plevin and A. S. Cohn and A. D. Jones and A. R. Brandt and S. E. Vergara and D. M. Kammen},
+journal = {Environmental Science & Technology},
+title = {The climate impacts of bioenergy systems depend on market and regulatory policy contexts},
+year = {2010},
+doi = {10.1021/es100418p},
+}
+
+@article{r10,
+author = {Brandt A. R.},
+journal = {Energy: The International Journal},
+title = {Review of mathematical models of future oil supply: Historical overview and synthesizing critique},
+year = {2010},
+doi = {10.1016/j.energy.2010.04.045},
+}
+
+@article{bu10,
+author = {Brandt, A. R. and S. Unnasch},
+journal = {Energy & Fuels},
+title = {Energy intensity and greenhouse gas emissions from thermal enhanced oil recovery},
+year = {2010},
+doi = {10.1021/ef100410f},
+}
+
+@article{b09,
+author = {Brandt, A. R.},
+journal = {Energy & Fuels},
+title = {Converting oil shale to liquid fuels with the Alberta Taciuk Processor: Energy inputs and greenhouse gas emissions},
+year = {2009},
+doi = {10.1021/ef900678d},
+}
+
+@article{ssbbm09,
+author = {Sorrell, S. and J. Speirs and R. Bentley and A. R. Brandt and R. Miller},
+journal = {Energy Policy},
+number = {9},
+pages = {5290-5295},
+title = {Global oil depletion: A review of the evidence},
+volume = {38},
+year = {2009},
+doi = {10.1016/j.enpol.2010.04.046},
+}
+
+@article{sbbm09,
+author = {Sorrell, S. J. Speirs and R. Bentley and A. Brandt and R. Miller},
+journal = {UK Energy Research Centre},
+title = {An assessment of the evidence for a near-term peak in global oil production},
+year = {2009},
+}
+
+@incollection{fba08,
+address = {Mlevine, and P. SchwartzAmerican Institute of Physics},
+author = {Farrell, A. E. and A. R. Brandt and S. Arons},
+booktitle = {Physics of Sustainable Energy: Using Energy Efficiently and Producing it Renewably},
+editor = {D Hafemeister, B. Levi, Mlevine, and P. Schwartz},
+pages = {235-250},
+publisher = {American Institute of Physics},
+title = {The race for 21st century automobile fuels},
+year = {2008},
+}
+
+@article{b08,
+author = {Brandt, A. R.},
+journal = {Environmental Science & Technology},
+number = {19},
+pages = {7489-7495},
+title = {Converting oil shale to liquid fuels: Energy inputs and greenhouse gas emissions of the Shell in situ conversion process},
+volume = {42},
+year = {2008},
+}
+
+@techreport{bf08,
+author = {Brandt, A. R. and A. E. Farrell},
+institution = {University of California Energy Institute, Energy Policy and Economics},
+number = {021},
+title = {Dynamics of the oil transition: Modeling capacity, costs, and emissions},
+type = {Working Paper},
+year = {2008},
+}
+
+@article{bf07,
+author = {Brandt, A. R. and A. E. Farrell},
+journal = {Climatic Change},
+number = {3-4},
+pages = {241-263},
+title = {Scraping the bottom of the barrel: CO2 emissions consequences of a transition to low-quality and synthetic petroleum resources},
+volume = {84},
+year = {2007},
+}
+
+@article{b07,
+author = {Brandt, A. R.},
+journal = {Energy Policy},
+month = {May},
+pages = {3074-3088},
+title = {Testing Hubbert},
+volume = {35},
+year = {2007},
+}
+
+@article{fa0701,
+author = {Farrell, A. E. and D. Sperling et al.},
+journal = {California Energy Commission},
+title = {A low carbon fuel standard for California, part 1: Technical analysis},
+year = {2007},
+}
+
+@article{fa0702,
+author = {Farrell, A. E. and D. Sperling et al.},
+journal = {California Energy Commission},
+title = {A low carbon fuel standard for California, part 2: Policy analysis},
+year = {2007},
+}
+
+@article{fb06,
+author = {Farrell, A. E. and A. R. Brandt},
+journal = {Environmental Research Letters},
+number = {014004},
+title = {Risks of the oil transition},
+volume = {1(1)},
+year = {2006},
+}
+
+@article{fkbt05,
+author = {Farrell, A. E. and A. Kerr and A. R. Brandt and M. Torn},
+journal = {California Energy Commission Report},
+title = {Research roadmap for greenhouse gas inventory methods},
+volume = {CEC-500-2005-097},
+year = {2005},
+}
+

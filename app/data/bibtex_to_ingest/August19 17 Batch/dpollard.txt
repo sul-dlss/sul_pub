@@ -1,0 +1,720 @@
+@article{lpb13,
+author = {Liu, C. and Pollard, D. D. and Bin, S.},
+journal = {Journal of Geophysical Research},
+pages = {71-82},
+title = {Analytical solutions and numerical tests of elastic and failure behaviors of close-packed lattice for brittle rocks and crystals},
+volume = {118},
+year = {2013},
+doi = {10.1029/2012JB009615},
+}
+
+@article{mmp13,
+author = {Meng, C. and Maerten, F. and Pollard, D. D.},
+journal = {International Journal of Fracture},
+pages = {45-57},
+title = {Modeling mixed-mode fracture propagation in isotropic elastic three dimensional solid},
+volume = {179},
+year = {2013},
+doi = {10.1007/x10704-012-9771-6},
+}
+
+@article{rmp12,
+author = {Ritz, E. and Mutlu, O. and Pollard, D. D.},
+journal = {Computers and Geosciences},
+pages = {304-312},
+title = {Integrating complementarity into the 2D displacement discontinuity boundary element method to model faults and fractures with frictional contact properties},
+volume = {45},
+year = {2012},
+}
+
+@article{rp132,
+author = {Resor, P. G. and Pollard, D. D.},
+journal = {Journal of Structural Geology,},
+pages = {98-109},
+title = {Reverse drag revisited: Why footwall deformation may be the key to inferring listric fault geometry},
+volume = {41},
+year = {2012},
+doi = {10.1016/j.jsg.2011.10.012},
+}
+
+@article{lfgmp142,
+author = {Lovely, P. and Flodin, E. and Guzofski, C. and Maerten, F. and Pollard, D. D.},
+journal = {Journal of Structural Geology, Chamberlain Special Issue},
+title = {Pitfalls among the promises of mechanics-based restoration: Addressing implications of unphysical boundary conditions},
+year = {2012},
+doi = {10.1016/j.jsg.2012.02.020},
+}
+
+@article{nhrgp152,
+author = {Ngo, D. and Huang, Y. and Rosakis, A. and Griffith, W. A. and Pollard, D. D.},
+journal = {Journal of Geophysical Research},
+pages = {B01307},
+title = {Off-fault tensile cracks: a link between geological fault observations, lab experiments and dynamic rupture models},
+volume = {117},
+year = {2012},
+doi = {10.1029/2011JB008577},
+}
+
+@article{rp162,
+author = {Ritz, E. and Pollard, D. D.},
+journal = {Journal of Geophysical Research},
+pages = {B03405},
+title = {Stick, slip, and opening of wavy frictional faults: a numerical approach in two dimensions},
+volume = {117},
+year = {2012},
+doi = {10.1029/2011JB008624},
+}
+
+@article{mp172,
+author = {Madden, E. H. and Pollard, D. D.},
+journal = {Southern California Bulletin of the Seismological Society of America},
+number = {1},
+pages = {321-342},
+title = {Integration of surface slip and aftershocks to constrain the 3D structure of faults involved in the M7.3 Landers Earthquake},
+volume = {102},
+year = {2012},
+doi = {10.1785/0120110073},
+}
+
+@article{mhp11,
+author = {Meng, C. and Heltsley, W. and Pollard, D. D.},
+journal = {Computers & Geosciences},
+title = {Evaluation of the Eshelby solution for the ellipsoidal inclusion and heterogeneity},
+year = {2011},
+doi = {10.1016/j.cageo.2011.07.008},
+}
+
+@article{rp121,
+author = {Ritz, E. and Pollard, D. D.},
+journal = {Internation Journal of Fracture},
+month = {167},
+pages = {3-14},
+title = {Closure of circular arc cracks under general loading: effects on stress intensity factors},
+year = {2011},
+doi = {10.1007/x10704-010-9511-8},
+}
+
+@article{kmp151,
+author = {Kaven, J. O. and Maerten, F. and Pollard, D. D.},
+journal = {Journal of Structural Geology},
+pages = {78-91},
+title = {Mechanical analysis of fault slip data: Implications for paleostress analysis},
+volume = {33},
+year = {2011},
+doi = {10.1016.j.jsg.2010.12.004},
+}
+
+@article{hmp10,
+author = {Hilley, G. E. and Mynatt, I. and Pollard, D. D.},
+journal = {Journal of Structural Geology},
+pages = {45-58},
+title = {Structural geometry of Raplee Ridge monocline and thrust fault imaged using inverse boundary element modeling and ALSM Data},
+volume = {32},
+year = {2010},
+}
+
+@article{l120,
+author = {Lovely, P.},
+journal = {Gold geometry at Sheep Mountain anticline, WY, constructed using ALSM data, outcrop scale geologic mapping, and numerical interpolation, Journal of Geophysical Research, v},
+pages = {B12414},
+title = {Zahasky,C., and Pollard, D},
+volume = {115,},
+year = {2010},
+doi = {10.1029/2010JB007650,2010},
+}
+
+@article{gtgg09,
+author = {Griffith, W. A. and Di Toro and G., Pennacchioni and G., Pollard},
+journal = {Journal of Geophysical Research},
+pages = {B02402},
+title = {Static stress drop associated with brittle slip events on exhumed faults},
+volume = {114},
+year = {2009},
+doi = {10.1029/2008JB005879},
+}
+
+@article{lpm09,
+author = {Lovely, P. and Pollard, D. D. and Mutlu, O.},
+journal = {Bulletin of the Seismological Society of America, v},
+pages = {1-15},
+title = {Regions of reduced static stress drop near fault tips for large strike slip earthquakes},
+volume = {99},
+year = {2009},
+doi = {10.1785/0120080358},
+}
+
+@article{gsp029,
+author = {Griffith, W. A. and Sanz, P. F. and Pollard, D. D.},
+journal = {Pure and Applied Geophysics,},
+pages = {1-33},
+title = {Influence of outcrop scale fractures on the effective stiffness of fault damage zone rocks},
+volume = {166},
+year = {2009},
+doi = {10.1007/s00024-009-0519-9},
+}
+
+@article{ipo09,
+author = {Ide, T. S. and Pollard, D. D. and Orr Jr, F. M.},
+journal = {International Journal of Rock Mechanics & Mining Sciences},
+title = {Fissure formation and subsurface subsidence in a coalbed fire},
+year = {2009},
+doi = {10.1016/j.ijrmms.2009.05.007},
+}
+
+@article{grpk09,
+author = {Griffith, W. A. and Rosakis, A. and Pollard, D. D. and Ko, C. W.},
+journal = {Geology,},
+pages = {795-798},
+title = {Dynamic rupture experiments elucidate tensile crack development during propagating earthquake ruptures},
+volume = {37},
+year = {2009},
+doi = {10.1130/G30064A.1},
+}
+
+@article{msp039,
+author = {Mynatt, I. and Seyum, S. and Pollard, D. D.},
+journal = {Journal of Structural Geology},
+pages = {1100-1113},
+title = {Fracture initiation, development and reactivation in folded sedimentary rocks at Raplee Ridge, UT},
+volume = {31},
+year = {2009},
+}
+
+@article{tp08,
+author = {Tamagawa, T. and Pollard, DD.},
+journal = {American Association of Petroleum Geologists Bulletin},
+pages = {1-22},
+title = {Fracture permeability created by perturbed stress fields around active faults in a fractured basement reservoir},
+volume = {92},
+year = {2008},
+}
+
+@article{mp038,
+author = {Mutlu, O. and Pollard, D. D.},
+journal = {Journal of Geophysical Research},
+pages = {B06403},
+title = {On the patterns of wing cracks along an outcrop scale flaw: a numerical modeling approach using complementarity},
+volume = {113},
+year = {2008},
+doi = {10.1029/2007JB005284},
+}
+
+@article{gtg08,
+author = {Griffith, W.A., Di Toro, G., Pennacchioni, G., and Pollard, D.D,},
+journal = {Journal of Structural Geology},
+pages = {1086-1094},
+title = {Thin pseudotachylytes in faults of the Mt. Abbot Quadrangle, Sierra Nevada: Physical constraints for small seismic slip events.},
+volume = {30},
+year = {2008},
+}
+
+@article{spab08,
+author = {Sanz, P. F. and Pollard, D. D. and Allwardt, P. F. and Borja, R. I.},
+journal = {Journal of Structural Geology,},
+pages = {1177-1191},
+title = {Mechanical models of fracture reactivation and slip on bedding surfaces during folding of the asymmetric anticline at Sheep Mountain, Wyoming},
+volume = {30},
+year = {2008},
+}
+
+@article{kmp068,
+author = {Kaven, J. O. and Mazzeo, R. and Pollard, D. D.},
+journal = {Mathematical Geology, doi},
+title = {Constraining surface interpolations using elastic plate bending solutions with applications to geologic folding},
+year = {2008},
+doi = {10.1007/s11004-008-9201-5},
+}
+
+@article{kmp078,
+author = {Kaven, J. O. and Mazzeo, R. and Pollard, D. D.},
+journal = {Mathematical Geology},
+title = {Constraining surface interpolations using elastic plate bending solutions with applications to geologic folding},
+year = {2008},
+doi = {10.1007/s11004-008-9201-5},
+}
+
+@article{fpcm07,
+author = {Fiore, P. E. and Pollard, D. D. and Currin, W. R. and And Miner, D.M.},
+journal = {American Association of Petroleum Geologists Bulletin},
+pages = {321-341},
+title = {Mechanical and stratigraphic constraints on the evolution of faulting at Elk Hills, CA},
+volume = {91},
+year = {2007},
+}
+
+@article{mbp07,
+author = {Mynatt, I. and Bergbauer, S. and Pollard, D. D.},
+journal = {Journal of Structural Geology},
+pages = {1256-1266},
+title = {Using differential geometry to describe 3-D folds},
+volume = {29},
+year = {2007},
+}
+
+@article{sbp07,
+author = {Sanz, P. F. and Borja, R. and Pollard, D. D.},
+journal = {Acta Geotechnica,},
+pages = {17-31},
+title = {Mechanical aspects of thrust faulting driven by far-field comopression and their implications for fold geometry,},
+volume = {2},
+year = {2007},
+doi = {10.1007/s11440-007-0025-0},
+}
+
+@article{mhp087,
+author = {Mynatt, I. and Hilley, G. E. and Pollard, D. D.},
+journal = {UT, Geophysical Research Letters},
+title = {Inferring fault characteristics using fold geometry constrained by Airborne Laser Swath Mapping at Raplee Ridge},
+volume = {34},
+year = {2007},
+doi = {10.1029/2007GL030584},
+}
+
+@article{jgo07,
+author = {de Joussineau and G., Mutlu and O., Aydin A., and Pollard, D.,},
+journal = {Journal of Structural Geology},
+title = {Characterization of strike-slip fault-splay relationships in sandstone. Journal of Structural Geology},
+year = {2007},
+doi = {10.1016/j.jsg.2007.08.006},
+}
+
+@article{abp097,
+author = {Allwardt, P. F. and Bellahsen, N. and Pollard, D. D.},
+journal = {Wyoming: Geosphere},
+pages = {408-421},
+title = {Curvature and fracturing based on global positioning system data collected at Sheep Mountain Anticline},
+volume = {3},
+year = {2007},
+doi = {10.1130/GES00088.1},
+}
+
+@article{bf06,
+author = {Bellahsen, N. and Fiore, P. and Pollard. D.D.},
+journal = {Geophysical Research Letters, v},
+number = {L02301},
+pages = {1-4},
+title = {From spatial variation of fracture patterns to fold kinematics: a geomechanical approach},
+volume = {33},
+year = {2006},
+doi = {10.1029/2005GL024189},
+}
+
+@article{bfp036,
+author = {Bellahsen, N. and Fiore, P. and Pollard, D. D},
+journal = {Journal of Structural Geology},
+pages = {850-867},
+title = {The role of fractures in the structural interpretation of Sheep Mountain anticline, Wyoming},
+volume = {28},
+year = {2006},
+}
+
+@article{bf026,
+author = {Bellahsen, N. and Fiore, P. and Pollard. D.D.},
+journal = {Geophysical Research Letters},
+number = {L02301},
+pages = {1-4},
+title = {From spatial variation of fracture patterns to fold kinematics: a geomechanical approach},
+volume = {33},
+year = {2006},
+doi = {10.1029/2005GL024189},
+}
+
+@article{bfp06,
+author = {Bellahsen, N. and Fiore, P. and Pollard, D. D},
+journal = {Journal of Structural Geology},
+pages = {850-867},
+title = {The role of fractures in the structural interpretation of Sheep Mountain anticline, Wyoming},
+volume = {28},
+year = {2006},
+}
+
+@article{skpd06,
+author = {Sternlof, K. R. and Karimi-Fard, M. and Pollard, D. D. and Durlofsky, L. J.},
+journal = {Water Resources Research},
+number = {W07425},
+title = {Flow and transport effects of compaction bands in sandstone at scales relevant to aquifer and reservoir management},
+volume = {42},
+year = {2006},
+doi = {10.1029/2005WR004664},
+}
+
+@incollection{mup012,
+address = {Golden, CO},
+author = {Mutlu,O., and Pollard, D.D.},
+booktitle = {50 years of Rock Mechanics-Landmarks and Future Challenges, The 41st U.S. Symposium on Rock Mechanics},
+editor = {Yale, D., Holtz, S., Breeds, C., and Ozbay, U.,},
+title = {A complementarity approach for modeling fractures,},
+year = {2006},
+comment = {Paper No: ARMA/USRMS 06-1058},
+}
+
+@article{mrpm05,
+author = {Maerten, F. and Resor, P. and Pollard, D. D. and Maerten, L.},
+journal = {Bulletin Seismological Society of America},
+pages = {1654-1665},
+title = {Inverting for slip on three-dimensional fault surfaces using angular dislocations},
+volume = {95},
+year = {2005},
+doi = {10.1785/0120030181},
+}
+
+@article{rpwb05,
+author = {Resor, P. G. and Pollard, D. D and Wright, T. J. and Beroza, G. C.},
+journal = {Journal of Geophysical Research},
+number = {B09402},
+pages = {1-14},
+title = {Integrating high-precision aftershock locations and geodetic observations to model coseismic deformation associated with the 1995 Kozani-Grevena Earthquake, Greece},
+volume = {110},
+year = {2005},
+doi = {10.1029/2004JB003263},
+}
+
+@book{pf05,
+address = {New York},
+author = {Pollard, D. D and Fletcher, R. C.},
+publisher = {Cambridge University Press},
+title = {Fundamentals of Structural Geology},
+year = {2005},
+comment = {500p},
+}
+
+@article{srp035,
+author = {Sternlof, K. R. and Rudnicki, J. W. and Pollard, D. D.},
+journal = {Journal of Geophysical Research},
+number = {B11403},
+pages = {1-16},
+title = {Anticrack inclusion model for compaction bands in sandstone},
+volume = {110},
+year = {2005},
+doi = {10.1029/2005JB003764},
+}
+
+@incollection{pbm04,
+author = {Pollard, D. D. and Bergbauer, S. and Mynatt, I.},
+booktitle = {The initiation, propagation, and arrest of joints and other fractures, Geological Society of London Special Publication},
+editor = {Cosgrove, J.W. and Engelder},
+pages = {153-182},
+publisher = {231},
+title = {Using differential geometry to characterize and analyze the morphology of joints},
+year = {2004},
+}
+
+@article{bp04,
+author = {Bergbauer, S. and Pollard, D. D.},
+journal = {Geological Society of America Bulletin},
+pages = {294-307},
+title = {A new conceptual fold-fracture model including prefolding joints based on field data from the Emigrant Gap anticline, Wyoming},
+volume = {116},
+year = {2004},
+}
+
+@article{etpa04,
+author = {Eichhubl, P. and Taylor, W. L. and Pollard, D. D and Aydin, A.},
+journal = {Geological Society of America Bulletin},
+pages = {1120-1136},
+title = {Paleo-fluid flow and deformation in the Aztec Sandstone at the Valley of Fire Nevada: Evidence for the coupling of hydrogeologic, diagenetic, and tectonic processes},
+volume = {116},
+year = {2004},
+}
+
+@article{scpd04,
+author = {Sterlof, K. and Chapin, J. and Pollard, D. D. and Durlofsky, L. J.},
+journal = {American Association of Petroleum Geologists Bulletin},
+pages = {1315-1329},
+title = {Effective permeability in sandstone containing deformation band arrays},
+volume = {88},
+year = {2004},
+}
+
+@article{b03,
+author = {Bergbauer, S. and Pollard, D.D.},
+journal = {Journal of Structural Geology},
+pages = {277-289},
+title = {How to calculate normal curvature of sampled geological surfaces},
+volume = {25},
+year = {2003},
+}
+
+@article{mgp02,
+author = {Maerten, L. and Gillespie, P. and Pollard, D. D.},
+journal = {J. Structural Geology,},
+pages = {145-153},
+title = {Effect of local stress perturbation on secondary fault development},
+volume = {24},
+year = {2002},
+}
+
+@article{w00,
+author = {Wu, H. and Pollard,D.},
+journal = {American Association of Petroleum Geologists Bulletin},
+pages = {593-604},
+title = {Imaging 3D fracture networks around boreholes},
+volume = {86},
+year = {2002},
+}
+
+@article{kp01,
+author = {Kattenhorn, S. A. and Pollard, D. D},
+journal = {Am. Assoc. Petrol. Geologists Bull.},
+pages = {1183-1210},
+title = {Integrating 3D Seismic Data, Field Analogs and Mechanical Models in the Analysis of Segmented Normal Faults in the Wytch Farm Oilfield, Southern England},
+volume = {85},
+year = {2001},
+}
+
+@article{csp93,
+author = {Crider, J., Schaff, D.P., Pollard, D.D., and, Beroza, G.},
+journal = {Geophysical Research Letters},
+pages = {2739-2742},
+title = {2001 Considering the third dimension in stress-triggering of aftershocks:Klamath (Fall) |s (OR) earthquake sequence},
+volume = {28},
+year = {1993},
+}
+
+@article{bp01,
+author = {Bai, T. and Pollard, D. D.},
+journal = {Geophysical Research Letters},
+pages = {65-68},
+title = {Getting more for less: The unusual efficiency of fluid flow in fractures:},
+volume = {28},
+year = {2001},
+}
+
+@article{mpm01,
+author = {Maerten, L. and Pollard, D. D. and Maerten, F.},
+journal = {Journal of Structural Geology},
+pages = {585-592},
+title = {Digital mapping of three-dimensional structures of the Chimney Rock fault system, central Utah},
+volume = {23},
+year = {2001},
+}
+
+@incollection{cmpa00,
+author = {Cooke, M. and Mollema, P. and Pollard, D. D. and Aydin, A.},
+booktitle = {Forced Folds and Fractures, Geological Society, London, Special Publications, v169},
+editor = {Cosgrove, J. W. and Ameen, M. S.},
+pages = {23-49},
+title = {Interlayer slip and joint localization in East Kaibab Monocline, Utah: field evidence and results from numerical modeling},
+year = {2000},
+}
+
+@incollection{wp00,
+address = {Berlin},
+author = {Willemse, E. J. M. and Pollard, D. D.},
+booktitle = {Aspects of Tectonic Faulting},
+editor = {Lehner, F. K. and Urai, J. L.},
+pages = {193-226},
+title = {Normal fault growth: evolution of tipline shapes and slip distribution},
+year = {2000},
+}
+
+@article{mpk00,
+author = {Maerten, L. and Pollard, D. D. and Karpuz, R.},
+journal = {American Association of Petroleum Geologists Bulletin},
+pages = {1311-1324},
+title = {How to constrain 3-D fault continuity and linkage using reflection seismic data: a geomechanical approach},
+volume = {84},
+year = {2000},
+}
+
+@article{kap020,
+author = {Kattenhorn, S. A. and Aydin, A. and Pollard, D. D.},
+journal = {J. Structural Geology},
+pages = {1-23},
+title = {Joints at high angles to normal fault strike: an explanation using 3D numerical models of fault-perturbed stress fields},
+volume = {22},
+year = {2000},
+}
+
+@article{bp040,
+author = {Bai, T. and Pollard, D. D},
+journal = {J. Structural Geology},
+pages = {1409-1425},
+title = {Closely spaced fractures in layered rocks: initiation mechanism and propagation kinematics},
+volume = {22},
+year = {2000},
+}
+
+@article{tp060,
+author = {Taylor, W. L. and Pollard, D. D.},
+journal = {Valley of Fire, Nevada: Water Resources Research},
+pages = {2595-2606},
+title = {Estimation of in-situ permeability of deformation bands in porous sandstone},
+volume = {36},
+year = {2000},
+}
+
+@article{bp080,
+author = {Bai, T. and Pollard, D. D},
+journal = {J. Structural Geology},
+pages = {43-57},
+title = {Fracture spacing in layered rocks: a new explanation based on the stress transition},
+volume = {22},
+year = {2000},
+}
+
+@article{bpg00,
+author = {Bai, T. and Pollard, D. D and Gross, M. R.},
+journal = {Geophysical Research},
+pages = {707-721},
+title = {Mechanical prediction of fracture aperture in layered rocks: J},
+volume = {105},
+year = {2000},
+}
+
+@article{b090,
+author = {Bai, T. Pollard, D.D, and Gao, H.,},
+journal = {International J. Fracture,},
+pages = {373-395},
+title = {Spacing of edge fractures in layered materials},
+volume = {103},
+year = {2000},
+}
+
+@article{bpg070,
+author = {Bai, T. and Pollard, D. D and Gao, H.},
+journal = {Nature},
+pages = {753-756},
+title = {Explanation for fracture spacing in layered materials},
+volume = {403},
+year = {2000},
+}
+
+@article{p050,
+author = {Pollard, D. D.},
+journal = {J. Structural Geology,},
+pages = {1359-1367},
+title = {Strain and stress: Discussion},
+volume = {22},
+year = {2000},
+}
+
+@article{kp99,
+author = {Kattenhorn, S. A. and Pollard, D. D.},
+journal = {Geophysical Research},
+pages = {28,879-28,898},
+title = {Is lithostatic loading important for the slip behavior and evolution of normal faults in the Earth's crust: J},
+volume = {104},
+year = {1999},
+}
+
+@article{fp919,
+author = {Fletcher, R. C. and Pollard, D. D.},
+journal = {J. Structural Geology,},
+pages = {1071-1088},
+title = {Can we understand structural and tectonic processes and their products without appeal to a complete mechanics?},
+volume = {21},
+year = {1999},
+}
+
+@article{bp929,
+author = {Bai, T. and Pollard, D. D.},
+journal = {Fracture: Letters in Fracture and Micromechanics},
+pages = {L23-L28},
+title = {Spacing of fractures in a multilayer at fracture saturation: International J},
+volume = {100},
+year = {1999},
+}
+
+@article{tpa939,
+author = {Taylor, W. L. and Pollard, D. D and Aydin, A.},
+journal = {J. Geophysical Research},
+pages = {28,983-29,006},
+title = {Fluid flow in discrete joint sets: Field observations and numerical simulations},
+volume = {204},
+year = {1999},
+}
+
+@article{mwpr949,
+author = {Maerten, L. and Willemse, E. J. M. and Pollard, D. D. and Rawnsley, K.},
+journal = {J. Structural Geology,},
+pages = {259-271},
+title = {Slip distributions on intersecting normal faults},
+volume = {21},
+year = {1999},
+}
+
+@incollection{mapr98,
+address = {p},
+author = {Matthai, S. K. and Aydin, A. and Pollard, D. D. and Roberts, S. G.},
+booktitle = {Faulting, Fault Sealing and Fluid Flow in Hydrocarbon Reservoirs, Geological Society, London, Special Pub},
+editor = {Jones, G. and Fisher, Q. J. and Knipe, R. J.},
+pages = {157-191},
+publisher = {147},
+title = {Numerical simulation of departures from radial drawdown in a faulted sandstone reservoir with joints and deformation bands},
+year = {1998},
+}
+
+@article{dapz98,
+author = {Dholakia, S. K. and Aydin, A. and Pollard, D. D. and Zoback, M. D.},
+journal = {Am. Assoc. Petrol. Geologists Bull.},
+pages = {1551-1574},
+title = {Development of fault-controlled hydrocarbon migration pathways in the Monterey formation, California, Am},
+volume = {82},
+year = {1998},
+}
+
+@article{arp98,
+author = {Arrowsmith, J. R. and Rhodes, D. D. and Pollard, D. D.},
+journal = {Geophysical Research,},
+pages = {10,141-10,160},
+title = {Morphologic dating of scarps formed by repeated slip events along the San Andreas Fault, Carrizo Plain, California: J},
+volume = {103},
+year = {1998},
+}
+
+@article{wp98,
+author = {Willemse, E. J. M. and Pollard, D. D.},
+journal = {Geophysical Research},
+pages = {2427-2438},
+title = {On the orientation and patterns of wing cracks and solution surfaces at the tips of a sliding flaw or fault: J},
+volume = {103},
+year = {1998},
+}
+
+@article{mapr928,
+author = {Matthai, S. K. and Aydin, A. and Pollard, D. D. and Roberts, S. G.},
+journal = {SPE Journal},
+month = {March},
+pages = {62-76},
+title = {Simulation of Transient Well-Test Signatures for Geologically Realistic Faults in Sandstone Reservoirs},
+year = {1998},
+}
+
+@article{cp938,
+author = {Christiansen, P. P. and Pollard, D. D.},
+journal = {Structural Geology},
+pages = {1801-1803},
+title = {Nucleation, growth and structural development of mylonititc shear zones in granitic rock: reply: J},
+volume = {20},
+year = {1998},
+}
+
+@article{cp948,
+author = {Crider, J. G. and Pollard, D. D.},
+journal = {Geophysical Research,},
+pages = {24,373-24,391},
+title = {Fault linkage: Three-dimensional mechanical interaction between echelon normal faults: J},
+volume = {103},
+year = {1998},
+}
+
+@article{kp958,
+author = {Koenig, E. and Pollard, D. D.},
+journal = {Journal of Geophysical Research},
+pages = {183-15},
+title = {Mapping and modeling of radial fracture patterns on Venus},
+volume = {103},
+year = {1998},
+doi = {15,183-15,202},
+}
+
+@article{kp968,
+author = {Keer, A. D. and Pollard, D. D.},
+journal = {J. Structural Geology},
+pages = {1783-1793},
+title = {Toward more realistic formulations for the analysis of laccoliths:},
+volume = {20},
+year = {1998},
+}
+

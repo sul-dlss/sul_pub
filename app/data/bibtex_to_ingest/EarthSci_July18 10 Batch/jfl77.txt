@@ -1,0 +1,262 @@
+@article{cklr13,
+author = {Caldwell, W. B. and Klemperer, S. L. and Lawrence, J. F. and Rai, S. S. and Ashish.},
+journal = {Earth Planetary Science Letters},
+title = {Characterizing the Main Himalayan Thrust in the Garhwal Himalaya, India with receiver function CCP stacking},
+year = {2013},
+doi = {10.1016/j.epsl.2013.02.009},
+}
+
+@article{slp12,
+author = {Seats, K. and J. F. Lawrence and G. Prieto},
+journal = {Geophysical Journal International},
+number = {12},
+title = {Improved Ambient Noise Correlation Functions using Welch's Method},
+volume = {188},
+year = {2012},
+doi = {10.1111/j.1365-246X.2011.05263.x},
+}
+
+@article{clkfcc11,
+author = {Cochran, E. S. and Jesse F. Lawrence and Anna Kaiser and Bill Fry and Angela I. Chung and Carl Christensen},
+journal = {Annals of Geophysics},
+number = {6},
+title = {Comparison between low-cost MEMS and traditional accelerometers: A case study from the M7.1 Darfield earthquake aftershock deployment},
+volume = {54},
+year = {2011},
+doi = {10.4401/ag-5268},
+}
+
+@article{lcckcabfhkkt12,
+author = {J. F. Lawrence and E. S. Cochran and A. I. Chung and A. Kaiser and C. M. Christensen and R. Allen and J. W. Baker and B. Fry and T. Heaton and D. Kilb and M. D. Kohler and M. Taufer},
+title = {MEMS accelerometers and distributed sensing for rapid earthquake characterization},
+year = {2012},
+journal = {na},
+comment = {in review},
+}
+
+@article{pdlb11,
+author = {Prieto, G. A. and M. Denolle and J. F. Lawrence and G. C. Beroza},
+journal = {Comptes rendus geoscienceThematic Issue: Imaging and Monitoring with Seismic Noise},
+pages = {600-614},
+title = {On amplitude information carried by the ambient seismic field},
+volume = {343},
+year = {2011},
+}
+
+@article{cnmsbcl11,
+author = {Chung, A. I. and Neighbors, C. and Miller, M. and Sepulveda, A. and Belmonte, A. and Cochran, E. S. and Lawrence, J. F.},
+journal = {Seismological Research Letters},
+number = {4},
+pages = {526},
+title = {Catching quakes in Chile with a Rapid Aftershock Mobilization Program},
+volume = {82},
+year = {2011},
+}
+
+@article{lp11,
+author = {Lawrence, J. F. and G. Prieto},
+journal = {Journal of Geophysical Research},
+number = {B06302},
+title = {Attenuation Tomography of the Western United States from Ambient Seismic Noise},
+volume = {116},
+year = {2011},
+doi = {10.1029/2010JB007836},
+}
+
+@article{jcl10,
+author = {Jakka, R. S. and E. S. Cochran and J. F. Lawrence},
+journal = {Geophysical Journal International},
+title = {2010 Earthquake source characterization by the isochrone back projection method using near-source ground motions},
+year = {2010},
+doi = {10.1111/j.1365-246X.2010.04670.x},
+}
+
+@article{plck10,
+author = {Prieto, G. A. and J. F. Lawrence and A. I Chung and M. D. Kohler},
+journal = {Bulletin of the Seismology Society of America},
+number = {5A},
+pages = {2322-2328},
+title = {Impulse Response of Civil Structures from Ambient Noise Analysis},
+volume = {100},
+year = {2010},
+doi = {10.1785/0120090285},
+}
+
+@article{kkjln09,
+author = {Keranen, K. M. and S. L. Klemperer and J. Julia and J. F. Lawrence and A. A. Nyblade},
+journal = {Geochemistry, Geophysics, Geosystems},
+number = {Q0AB01},
+title = {Low lower crustal velocity across Ethiopia: Is the Main Ethiopian Rift a narrow rift in a hot craton?},
+volume = {10},
+year = {2009},
+doi = {10.1029/2008GC002293},
+}
+
+@article{ckrl09,
+author = {Caldwell, W. B. and S. L. Klemperera and S. S. Raib and J. F. Lawrence},
+journal = {Tectonophysics},
+number = {1-2},
+pages = {58-65},
+title = {Partial melt in the upper-middle crust of the northwest Himalaya revealed by Rayleigh wave dispersion},
+volume = {477},
+year = {2009},
+}
+
+@article{clcj09,
+author = {Cochran, E. S. and J. F. Lawrence and C. Christensen and R. Jakka},
+journal = {Seismological Research Letters},
+pages = {26-30},
+title = {The Quake-Catcher Network: Citizen science expanding seismic horizons},
+volume = {80},
+year = {2009},
+}
+
+@article{plb09,
+author = {Prieto, G. A. and J. F. Lawrence and G. C. Beroza.},
+journal = {Journal of Geophysical Research},
+number = {B07303},
+title = {Anelastic Earth Structure from the Coherency of the Ambient Seismic Field},
+volume = {114},
+year = {2009},
+doi = {10.1029/2008JB006067},
+}
+
+@article{ejca09,
+author = {Cochran E. and Lawrence J. and Christensen C. and Chung A.},
+journal = {IEEE Transactions on Instrumentation and Measurement},
+number = {6},
+pages = {8-15},
+title = {A novel strong-motion seismic network for community participation in earthquake monitoring},
+volume = {12},
+year = {2009},
+doi = {10.1109/MIM.2009.5338255},
+}
+
+@article{ls08,
+author = {Lawrence, J. F. and P. M. Shearer},
+journal = {Geophysical Journal International},
+pages = {143-158},
+title = {Imaging mantle transition zone thickness with SdS-SS finite-frequency sensitivity kernels},
+volume = {174},
+year = {2008},
+doi = {10,1111/j.1365-246X.2007.03673.x},
+}
+
+@article{wjd08,
+author = {van Wijka and J. W., J. F. Lawrence and N. W. Driscoll},
+journal = {Tectonophysics},
+number = {1-4},
+pages = {117-126},
+title = {Formation of the Transantarctic Mountains related to extension of the West Antarctic Rift system},
+volume = {458},
+year = {2008},
+}
+
+@article{cjlwlhwwxhlhlsc07,
+author = {Courtier, A. M. and M. G. Jackson and J. F. Lawrence and Z. Wang and C.-T. A. Lee and R. Halama and J. M. Warren and R. Workman and W. Xu and M. M. Hirschmann and A. M. Larson and S. R. Hart and C. Lithgow-Bertelloni and L. Strixrude and W.-P. Chen},
+journal = {Earth and Planetary Science Letters},
+pages = {308-316},
+title = {Correlation of seismic and petrologic thermometers suggests deep thermal anomalies beneath hotspots},
+volume = {264},
+year = {2007},
+}
+
+@inproceedings{lwd07,
+author = {Lawrence, J. F. and J. W. van Wijk and N. W. Driscoll},
+booktitle = {10th International Symposium on Antarctic Earth Sciences Proceedings},
+pages = {1-4},
+title = {Tectonic implications for uplift of the Transantarctic Mountains},
+year = {2007},
+}
+
+@article{ls0601,
+author = {Lawrence, J. F. and P. M. Shearer},
+journal = {Journal of Geophysical Research},
+title = {A global study of transition zone thickness using receiver functions},
+volume = {111},
+year = {2006},
+doi = {10.1029/2005JB003973},
+}
+
+@article{lw0601,
+author = {Lawrence, J. F. and M. E. Wysession},
+journal = {Earth and Planetary Science Letters},
+pages = {962-971},
+title = {QLM9: A new radial quality factor model for the lower mantle},
+volume = {241},
+year = {2006},
+}
+
+@article{lsm06,
+author = {Lawrence, J. F. and P. M. Shearer and G. Masters},
+journal = {Geophysical Research Letters},
+title = {Mapping attenuation beneath North America using waveform cross-correlation and cluster analysis},
+volume = {33},
+year = {2006},
+doi = {10.1029/2006GL025813},
+}
+
+@article{ld0601,
+author = {Lawrence, J. F. and D. A. Wiens, A. A. Nyblade, S. Anandakrishnan, P. J. Shore, D. Voigt},
+journal = {Journal of Geophysical Research},
+title = {Rayleigh wave phase velocity analysis of the Ross Sea, Transantarctic Mountains, and East Antarctica, from a temporary seismograph array},
+volume = {111},
+year = {2006},
+doi = {1029/2005JB003812},
+}
+
+@article{ld0602,
+author = {Lawrence, J. F. and D. A. Wiens, A. A. Nyblade, S. Anandakrishnan, P. J. Shore, D. Voigt},
+journal = {Geophysical Research Letters},
+number = {L03303},
+title = {Upper mantle thermal variations beneath the Transantarctic Mountains inferred from teleseismic S-wave attenuation},
+volume = {33},
+year = {2006},
+doi = {10.1029/2005GL024516},
+}
+
+@article{ls0602,
+author = {Lawrence, J. F. and P. M. Shearer},
+journal = {Geochemistry, Geophysics, Geosystems},
+title = {Constraining density, P velocity, and S velocity for the mantle transition zone with reflected and transmitted waveforms},
+volume = {7},
+year = {2006},
+doi = {10.1029/2006GC001339},
+}
+
+@article{ld0603,
+author = {Lawrence, J. F. and D. A. Wiens, A. A. Nyblade, S. Anandakrishnan, P. J. Shore, D. Voigt},
+journal = {Geochemistry, Geophysics, Geosystems},
+title = {Comprehensive seismic and geophysical study of the Transantarctic Mountains, East Antarctica, and the West Antarctic Rift System},
+volume = {7},
+year = {2006},
+doi = {10.1029/2006GC001282},
+}
+
+@incollection{lw0602,
+author = {Lawrence, J. F. and M. E. Wysession},
+booktitle = {Earth's Deep-Water Cycle},
+pages = {251-261},
+title = {Seismic evidence for subduction-transported water in the lower mantle},
+year = {2006},
+comment = {AGU Monograph},
+}
+
+@article{lw04,
+author = {Lawrence, J. F. and D. A. Wiens},
+journal = {Bulletin of the Seismology Society of America},
+pages = {977-987},
+title = {Combined receiver-function and surface wave phase-velocity inversion using a niching genetic algorithm: application to Patagonia},
+volume = {94},
+year = {2004},
+}
+
+@article{fwf03,
+author = {Fisher, J. L. and M. E. Wysession and K. M. Fischer},
+journal = {Geophysical Research Letters},
+title = {Small-scale lateral variations in D" attenuation and velocity structure},
+volume = {30},
+year = {2003},
+doi = {10.1029/2002GL016179},
+}
+

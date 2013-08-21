@@ -1,0 +1,452 @@
+@unpublished{smf,
+author = {Smith, J. M. and A. C. Mosier and C. A. Francis},
+title = {Spatiotemporal relationships between the abundance, distribution and potential activities of ammonia-oxidizing and denitrifying microorganisms in intertidal sediments},
+note = {submitted},
+comment = {submitted},
+}
+
+@unpublished{wwpebdahfc,
+author = {Wells, G. F. and C. H. Wu and Y. M. Piceno and B. Eggleston and E. L. Brodie and T. Z. DeSantis and G. L. Andersen and T. C. Hazen and C. A. Francis and C. S. Criddle},
+title = {Microbial Biogeography across a Full-Scale Wastewater Treatment Plant Transect: Evidence for Immigration Between Coupled Processes},
+note = {submitted},
+comment = {submitted},
+}
+
+@article{y13,
+author = {Ying, S.C., Y. Masue-Slowey, B.D. Kocar, S.D. Griffis, S.M. Webb, M.A. Marcus, C.A. Francis, and. S. Fendorf.},
+journal = {Geochimica et Cosmochimica},
+number = {29-41},
+title = {Distributed microbially- and chemically-mediated redox processes controlling arsenic dynamics within Mn-/Fe-oxide constructed aggregates},
+volume = {104},
+year = {2013},
+}
+
+@article{yfc13,
+author = {Yeung, C.-H. and C. A. Francis and C. S. Criddle},
+journal = {Applied Microbiology and Biotechnology},
+pages = {847-857},
+title = {Adaptation of nitrifying microbial biomass to nickel in batch incubations},
+volume = {97},
+year = {2013},
+}
+
+@article{bmwf12,
+author = {Biller, S. J. and A. C. Mosier and G. F. Wells and C. A. Francis},
+journal = {Frontiers in Aquatic Microbiology},
+title = {Global biodiversity of aquatic ammonia-oxidizing archaea is partitioned by habitat},
+year = {2012},
+doi = {10.3389/fmicb.2012.00252},
+}
+
+@article{lsf121,
+author = {Lund, M. and J. M. Smith and C. A. Francis},
+journal = {The ISME Journal},
+pages = {1966-1977},
+title = {Diversity, abundance, and expression of nitrite reductase (nirK)-like genes in marine thaumarchaea},
+volume = {6},
+year = {2012},
+}
+
+@article{mlf122,
+author = {Mosier, A. C. and M. Lund and C. A. Francis},
+journal = {Microbial Ecology},
+pages = {955-63},
+title = {Ecophysiology of an ammonia-oxidizing archaeon adapted to low-salinity habitats},
+volume = {64},
+year = {2012},
+}
+
+@article{maff123,
+author = {Mosier, A. C. and E. A. Allen and S. Ferriera and C. A. Francis},
+journal = {J. Bacteriology},
+pages = {2121-2122},
+title = {Genome sequence of a low-salinity ammonia oxidizing archaeon from the San Francisco Bay estuary, "Candidatus Nitrosoarchaeum limnia" BG20},
+volume = {194},
+year = {2012},
+}
+
+@article{maff124,
+author = {Mosier, A. C. and E. A. Allen and S. Ferriera and C. A. Francis},
+journal = {J. Bacteriology},
+pages = {2119-2120},
+title = {Genome sequence of "Candidatus Nitrosopumilus salaria" BD31, an ammonia oxidizing archaeon enriched from the San Francisco Bay estuary},
+volume = {194},
+year = {2012},
+}
+
+@article{rpptmfsz12,
+author = {Robidart, J. C. and C. M. Preston and R. W. Paerl and K. A. Turk and A. C. Mosier and C. A. Francis and C. A. Scholin and J. P. Zehr},
+journal = {ISME Journal},
+pages = {513-523},
+title = {Seasonal Synechococcus and Thaumarchaeal population dynamics examined with high resolution with remote in situ instrumentation},
+volume = {6},
+year = {2012},
+}
+
+@article{wpefc11,
+author = {Wells, G. F. and H-D. Park and B. Eggleston and C. A. Francis and C. S. Criddle},
+journal = {Water Research},
+pages = {5476-5488},
+title = {Fine-Scale Bacterial Community Dynamics and a Taxa-Time Relationship in a Full-Scale Activated Sludge Wastewater Treatment Plant},
+volume = {45},
+year = {2011},
+}
+
+@article{phmpfsd11,
+author = {Pitcher, A. and E. C. Hopmans and A. C. Mosier and S J. Park and S. K. Rhee C. A. Francis and S. Schouten S and J. S. Sinninghe Damsté},
+journal = {Applied and Environmental Microbiology},
+pages = {3468-3477},
+title = {Core and intact polar glycerol dibiphytanyl glycerol tetraether lipids of ammonia-oxidizing Archaea enriched from marine and estuarine sediments},
+volume = {77},
+year = {2011},
+}
+
+@article{bmpfr,
+author = {Blainey, P. C., A. C. Mosier, A. Potanina , C. A. Francis and S. R. Quake},
+journal = {PLoS ONE 6: e16626},
+title = {Genome of a low-salinity ammonia-oxidizing archaeon by sinlge-cell and metagenomic analysis},
+year = {2011},
+}
+
+@article{mf11,
+author = {Mosier, A. C. and C. A. Francis},
+journal = {Methods in Enzymology},
+pages = {205-221},
+title = {Determining the distribution of marine and coastal ammonia-oxidizing archaea and bacteria using a quantitative approach},
+volume = {486},
+year = {2011},
+}
+
+@article{wcmpf011,
+author = {Wankel, S. D. and A. C. and Mosier, C. M. Hansel and A. Paytan and C. A. Francis},
+journal = {Applied and Environmental Microbiology},
+pages = {269-280},
+title = {Spatial variability in nitrification rates and ammonia-oxidizing microbial communities in the agriculturally impacted Elkhorn Slough estuary},
+volume = {77},
+year = {2011},
+}
+
+@inproceedings{olcwcfs211,
+author = {Ofiteru, I. D. and M. Lunn and T. P. Curtis and G. F. Wells and C. S. Criddle and C. A. Francis and W. T. Sloan},
+booktitle = {Proceedings of the National Academy of Sciences 107},
+pages = {15345-15350},
+title = {niche and neutral effects in a microbial wastewater treatment community},
+year = {2011},
+}
+
+@article{rsff310,
+author = {Reed, D. W and J. M. Smith and C. A. Francis and Y. Fujita},
+journal = {Applied and Environmental Microbiology},
+pages = {2517-2523},
+title = {Responses of Ammonia-oxidizing Bacterial and Archaeal Populations to Organic Nitrogen Amendments in Low-Nutrient Groundwater},
+volume = {76},
+year = {2010},
+}
+
+@article{scf410,
+author = {Santoro, A. E. and K. L. Casciotti and C. A. Francis},
+journal = {Environmental Microbiology},
+pages = {1989-2006},
+title = {Activity, abundance and diversity of nitrifying archaea and bacteria in the central California Current},
+volume = {12},
+year = {2010},
+}
+
+@article{mf510,
+author = {Mosier, A. C. and C. A. Francis},
+journal = {Environmental Microbiology Reports},
+pages = {667-676},
+title = {Denitrifier abundance and activity across the San Francisco Bay estuary},
+volume = {2},
+year = {2010},
+}
+
+@article{wphefc09,
+author = {Wells, G. F. and H-D. Park and H-D., C. H. Yeung and Brad Eggleston and C. A. Francis and C. S. Criddle},
+journal = {Environmental Microbiology},
+pages = {2310-2318},
+title = {Ammonia-oxidizing communities in a highly aerated full-scale activated sludge bioreactor: betaproteobacterial dynamics and low relative abundance of Crenarchaea},
+volume = {11},
+year = {2009},
+}
+
+@article{hfjf08,
+author = {Hansel, C. M. and S. Fendorf and P. M. Jardine and C. A. Francis},
+journal = {Applied and Environmental Microbiology},
+pages = {1620-1633},
+title = {Changes in bacterial and archaeal community structure and functional diversity along a geochemically variable soil profile},
+volume = {74},
+year = {2008},
+}
+
+@article{bpf088,
+author = {Beman, J. M. and B. N. Popp and C. A. Francis},
+journal = {The ISME Journal},
+pages = {429-441},
+title = {Molecular and biogeochemical evidence for ammonia oxidation by marine Crenarchaeota in the Gulf of California},
+volume = {2},
+year = {2008},
+}
+
+@article{sfsb808,
+author = {Santoro, A. E. and C. A. Francis and N. R. de Sieyes and A. B. Boehm},
+journal = {Environmental Microbiology},
+pages = {1068-1079},
+title = {Shifts in the relative abundance of ammonia-oxidizing bacteria and archaea across physicochemical gradients in a subterranean estuary},
+volume = {10},
+year = {2008},
+}
+
+@article{mf908,
+author = {Mosier, A. C. and C. A. Francis},
+journal = {Environmental Microbiology},
+pages = {3002-3016},
+title = {Relative abundance of ammonia-oxidizing archaea and bacteria in the San Francisco Bay estuary},
+volume = {10},
+year = {2008},
+}
+
+@article{bfjw608,
+author = {Bulow, S. E. and C. A. Francis and G. A. Jackson and B. B. Ward},
+journal = {Environmental Microbiology},
+pages = {3057-3069},
+title = {Sediment denitrifier community composition and nirS gene expression investigated with functional gene microarrays},
+volume = {10},
+year = {2008},
+}
+
+@article{ofrfss07,
+author = {Oakley, B. B. and C. A. Francis and K. J. Roberts and C. Fuchsman and S. Srinivasan and J. T. Staley},
+journal = {Environmental Microbiology},
+pages = {118-130},
+title = {Analysis of nitrite reductase (nirK and nirS) genes and cultivation reveal depauperate community of denitrifying bacteria unique to the Black Sea suboxic zone},
+volume = {9},
+year = {2007},
+}
+
+@article{fbk07,
+author = {Francis, C. A. and J. M. Beman and M. M. M. Kuypers},
+journal = {The ISME Journal},
+pages = {19-27},
+title = {New processes and players in the nitrogen cycle: the microbial ecology of anaerobic and archaeal ammonia oxidation},
+volume = {1},
+year = {2007},
+}
+
+@article{brwrf07,
+author = {Beman, J. M. and K. J. Roberts and L. E. Wegley and F. L. Rohwer and C. A. Francis},
+journal = {Applied and Environmental Microbiology},
+pages = {5642-5647},
+title = {Distribution and diversity of archaeal ammonia monooxygenase (amoA) genes associated with corals},
+volume = {73},
+year = {2007},
+}
+
+@article{sbrfp07,
+author = {Spear, J. R. and H. A. Barton and C. E. Robertson and C. A. Francis and N. R. Pace},
+journal = {Applied and Environmental Microbiology},
+pages = {6172-6180},
+title = {Microbial community biofbrics in a geothermal mine adit},
+volume = {73},
+year = {2007},
+}
+
+@article{glwf06,
+author = {Glatz, R. E. and P. W. Lepp and B. B. Ward and C. A. Francis},
+journal = {Geobiology},
+pages = {53-67},
+title = {Planktonic microbial community composition across steep physical/chemical gradients in permanently ice-covered Lake Bonney, Antarctica},
+volume = {4},
+year = {2006},
+}
+
+@article{sbf056,
+author = {Santoro, A. E. and A. B. Boehm and C. A. Francis},
+journal = {Applied and Environmental Microbiology},
+pages = {2102-2109},
+title = {Denitrifier community composition along a nitrate and salinity gradient in a coastal aquifer},
+volume = {72},
+year = {2006},
+}
+
+@article{pwbcf046,
+author = {Park, H-D. and G. F. Wells and H. Bae and C. S. Criddle and C. A. Francis},
+journal = {Applied and Environmental Microbiology},
+pages = {5643-5647},
+title = {Occurrence of ammonia-oxidizing archaea in wastewater treatment plant bioreactors},
+volume = {72},
+year = {2006},
+}
+
+@article{bf036,
+author = {Beman, J. M. and C. A. Francis},
+journal = {Applied and Environmental Microbiology 72},
+pages = {7767-7777},
+title = {Diversity of ammonia-oxidizing archaea and bacteria in the sediments of a hypernutrified subtropical estuary: Bahia del Tobari, Mexico},
+volume = {72},
+year = {2006},
+}
+
+@article{wkfp06,
+author = {Wankel, S. D. and C. Kendall and C. A. Francis and A. Paytan},
+journal = {Limnology and Oceanography},
+pages = {1654-1664},
+title = {Nitrogen sources and cycling in the San Francisco Bay estuary: A nitrate dual isotopic composition approach},
+volume = {51},
+year = {2006},
+}
+
+@article{hf026,
+author = {Hansel, C. M. and C. A. Francis},
+journal = {Applied and Environmental Microbiology},
+pages = {3543-3549},
+title = {Coupled photochemical and enzymatic Mn(II) oxidation pathways of a planktonic Roseobacter-like bacterium},
+volume = {72},
+year = {2006},
+}
+
+@inproceedings{frbso05,
+author = {Francis, C. A. and K. J. Roberts and J. M. Beman and A. E. Santoro and B. B. Oakley},
+booktitle = {Proceedings of the National Academy of Sciences 102:},
+pages = {14683-14688},
+title = {Ubiquity and diversity of ammonia-oxidizing archaea in water columns and sediments of the ocean},
+year = {2005},
+}
+
+@inproceedings{frbso105,
+author = {Francis, C. A. and K. J. Roberts and J. M. Beman and A. E. Santoro and B. B. Oakley},
+booktitle = {Proceedings of the National Academy of Sciences 102:},
+pages = {14683-14688},
+title = {Ubiquity and diversity of ammonia-oxidizing archaea in water columns and sediments of the ocean},
+year = {2005},
+}
+
+@article{jfnw04,
+author = {Jayakumar, D. A. and C. A. Francis and S. W. A. Naqvi and B. B. Ward},
+journal = {Aquatic Microbial Ecology},
+pages = {69-78},
+title = {Diversity of nitrite reductase genes in the denitrifying water column of the coastal Arabian Sea},
+volume = {34},
+year = {2004},
+}
+
+@article{tgfw03,
+author = {Taroncher-Oldenburg, G. and E. M. Griner and C. A. Francis and B. B. Ward},
+journal = {Applied and Environmental Microbiology},
+pages = {1159-1171},
+title = {Oligonucleotide microarray for the study of functional gene diversity of the nitrogen cycle in the environment},
+volume = {69},
+year = {2003},
+}
+
+@article{fow03,
+author = {Francis, C. A. and G. D. OMullan and B. B. Ward},
+journal = {Geobiology},
+pages = {129-140},
+title = {Diversity of ammonia monooxygnenase (amoA) genes across environmental gradients in Chesapeake Bay sediments},
+volume = {1},
+year = {2003},
+}
+
+@article{ft02,
+author = {Francis, C. A. and B. M. Tebo},
+journal = {Applied and Environmental Microbiology},
+pages = {874-880},
+title = {Enzymatic manganese(II) oxidation by metabolically dormant spores of diverse Bacillus species},
+volume = {68},
+year = {2002},
+}
+
+@article{oft012,
+author = {Obraztsova, A. Y. and C. A. Francis and B. M. Tebo},
+journal = {Geomicrobiology Journal},
+pages = {121-132},
+title = {Sulfur disproportionation by the facultative anaerobe Pantoea agglomerans as a mechanism for chromium(VI) reduction},
+volume = {19},
+year = {2002},
+}
+
+@article{fct022,
+author = {Francis, C. A. and K. L. Casciotti and B. M. Tebo},
+journal = {Archives of Microbiology},
+pages = {450-456},
+title = {Localization of Mn(II)-oxidizing activity and the putative multicopper oxidase, MnxG, to the exosporium of the marine Bacillus sp. strain SG-1},
+volume = {178},
+year = {2002},
+}
+
+@article{ft031,
+author = {Francis, C. A. and B. M. Tebo},
+journal = {Applied and Environmental Microbiology},
+pages = {4272-4278},
+title = {cumA multicopper oxidase genes from diverse Mn(II)-oxidizing and non-Mn(II)-oxidizing Pseudomonas strains},
+volume = {67},
+year = {2001},
+}
+
+@article{fct041,
+author = {Francis, C. A. and E.-M. Co and B. M. Tebo},
+journal = {Applied and Environmental Microbiology},
+pages = {4024-4029},
+title = {Enzymatic manganese(II) oxidation by a marine a-proteobacterium},
+volume = {67},
+year = {2001},
+}
+
+@article{fot00,
+author = {Francis, C. A. and A. Y. Obraztsova and B. M. Tebo},
+journal = {Applied and Environmental Microbiology},
+pages = {543-548},
+title = {Dissimilatory metal reduction by the facultative anaerobe Pantoea agglomerans SP1},
+volume = {66},
+year = {2000},
+}
+
+@incollection{ft600,
+address = {Norfolk, England},
+author = {Francis, C. A. and B. M. Tebo},
+booktitle = {Molecular Marine Microbiology},
+editor = {D.H. Bartlett},
+publisher = {Horizon Scientific Press},
+title = {Marine Bacillus spores as catalysts for the oxidative precipitation and sorption of metals},
+year = {2000},
+}
+
+@article{ft99,
+author = {Francis, C. A. and B. M. Tebo},
+journal = {Journal of Molecular Microbiology and Biotechnology},
+pages = {71-78},
+title = {Marine Bacillus spores as catalysts for oxidative precipitation and sorption of metals},
+volume = {1},
+year = {1999},
+}
+
+@incollection{twfhec98,
+address = {New York. p},
+author = {Tebo, B. M. and L. van Waasbergen and C. A. Francis and L. M. He and D. B. Edwards and K. Casciotti},
+booktitle = {New Developments in Marine Biotechnology},
+editor = {Y. Le Gal and H. O. Halvorson},
+pages = {177-180},
+publisher = {Plenum Press},
+title = {Manganese oxidation by spores of the marine Bacillus sp. strain SG-1: Application for the bioremediation of metal pollution},
+year = {1998},
+}
+
+@article{ffgw98,
+author = {Francis, C. A. and A. K. Francis and D. Golet and B. B Ward},
+journal = {Aquatic Microbial Ecology},
+pages = {225-231},
+title = {Quantification of catechol 2,3-dioxygenase gene homology and benzoate utilization in intertidal sediments},
+volume = {15},
+year = {1998},
+}
+
+@article{ffgw198,
+author = {Francis, C. A. and A. K. Francis and D. Golet and B. B Ward},
+journal = {Aquatic Microbial Ecology},
+pages = {225-231},
+title = {Quantification of catechol 2,3-dioxygenase gene homology and benzoate utilization in intertidal sediments},
+volume = {15},
+year = {1998},
+}
+

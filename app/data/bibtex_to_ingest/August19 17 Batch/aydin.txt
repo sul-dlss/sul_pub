@@ -1,0 +1,761 @@
+@article{a13,
+author = {Aydin, A.},
+journal = {American Association of Petroleum Geologists Bulletin},
+title = {Failure modes of shale and their implications for natural and man-made fracture assemblages},
+year = {2013},
+}
+
+@article{da12,
+author = {Deng, S. and Aydin, A.},
+journal = {Tectonophysics},
+pages = {574-575, 204-218},
+title = {Distribution of compaction bands in aeolian sandstone: The role of cross beds},
+year = {2012},
+}
+
+@article{ka12,
+author = {Kokkalas, S. and Aydin, A.},
+journal = {Geological Magazine},
+title = {Is there a link between faulting and magmatism in south-central Aegean Sea?},
+year = {2012},
+doi = {1017/S0016756812000453},
+}
+
+@article{xkda12,
+author = {Zhou X. and Karimi-Fard, M. and Durlofsky, L. J. and Aydin, A.},
+journal = {Geological Society, London,},
+title = {Fluid flow through porous sandstone with overprinting and intersecting geological structures of various types},
+year = {2012},
+doi = {10.1144/SP374.11},
+url = {http://dx.doi.org/10.1144/SP374.11},
+comment = {Special Paper on Advances in the Study of Fractured Reservoirs},
+}
+
+@article{nx11,
+author = {Nenna, F., Zhou and X., Aydin, A.},
+journal = {Mathematical Geosciences},
+title = {Spatial statistical properties of pressure solution seams in clastic rocks in southwest Ireland},
+doi = {1007/s11004-012-9407-4},
+year = {2012},
+}
+
+@article{za12,
+author = {Zhou, X. and Aydin, A.},
+journal = {Tectonophysics},
+title = {Mechanics of the formation of orthogonal sets of solution seams, and solution seams and veins and parallel solution seams and veins},
+year = {2012},
+doi = {10.1016/j.tecto.2012.02.013},
+}
+
+@article{tafaap,
+author = {Tondi, E.,Cilano and A., Agosta and F., Aydin and A., Rustichelli and A., Renda and P., Guinta, G.},
+journal = {Journal of Structural Geology},
+title = {Growth processes, dimensional parameters and scaling relationships of two conjugate sets of compactive shear bands in porous carbonate grainstones, Favignana Island, Italy},
+year = {2012},
+doi = {10.1016/j.bbr.2011.03.031},
+url = {http://dx.doi.org/10.1016/j.bbr.2011.03.031},
+}
+
+@article{na110,
+author = {Nenna, F. and Aydin, A.},
+journal = {Journal of Structural Geology},
+pages = {633-643},
+title = {The formation and growth of pressure solution seams in clastic rocks: A field, analytical and numerical study},
+volume = {33},
+year = {2011},
+doi = {10.1016/j.jsg.2011.01.014},
+}
+
+@article{wadbb11,
+author = {Wilson, C. E. and Aydin, A. and Durlofsky, L. J. and Boucher, A. and Brownlow, D.},
+journal = {American Association of Petroleum Geologists Bulletin},
+pages = {1181-1206},
+title = {Use of outcrop observations, geostatistical analysis, and flow simulation to investigate structural controls on secondary hydrocarbon migration in the Anacacho Limestone, Uvalde, TX},
+volume = {95},
+year = {2011},
+doi = {10.1306/11191010069},
+}
+
+@article{w11,
+author = {Wilson, C E., Aydin. A., Karimi-Fard, M., Durlofsky, L. J., Sagy, A., Brodsky, E.E., Kreylos, O., and Kellog, L.H.,},
+journal = {American Association of Petroleum Geologists Bulletin 95},
+pages = {1883-1905},
+title = {From outcrop to flow simulation: constructing discrete fracture models from a LiDAR Survey.},
+year = {2011},
+doi = {10.1306/03241108148},
+}
+
+@article{na111,
+author = {Nenna, F. and Aydin, A.},
+journal = {Journal of Structural Geology},
+pages = {1595-1610},
+title = {The role of pressure solution seam and joint assemblages in the formation of strike-slip and thrust faults in a compressive tectonic setting; the Variscan of southwestern Ireland},
+volume = {33},
+year = {2011},
+doi = {10.1016/ j.jsg.2011.09.003.},
+}
+
+@article{za10,
+author = {Zhou, X. and Aydin, A.},
+journal = {Journal of Geophysical Research},
+number = {B12207},
+title = {Mechanics of pressure solution seam growth and evolution},
+volume = {115},
+year = {2010},
+doi = {10.1029/2010JB007614},
+}
+
+@article{aata100,
+author = {Agosta, F. and Alessandroni, M. and Tondi, E. and Aydin, A.},
+journal = {Journal of Structural Geology},
+pages = {674-690},
+title = {Oblique normal faulting along the northern edge of the Majella Anticline, central Italy: Inferences on hydrocarbon migration and accumulation},
+volume = {31},
+year = {2010},
+doi = {10.1016/j.jsg.2009.03.012},
+}
+
+@article{aata101,
+author = {Aydin, A. and Antonellini, M. and Tondi, E. and Agosta, F.},
+journal = {Journal of Structural Geology},
+title = {Deformation along the leading edge of the Majella thrust sheet in central Italy},
+year = {2010},
+doi = {10.1016/j.jsg. 2008.10.005.},
+}
+
+@article{aa10,
+author = {Aydin, A. and Ahmadov, R.},
+journal = {Tectonophysics},
+title = {Bed-parallel compaction bands in aeolian sandstone: Their identification and characterization},
+year = {2010},
+doi = {10.1016/j.tecto.2009.08.033},
+}
+
+@article{ab10,
+author = {Aydin, A. and Berryman, J. G.},
+journal = {Journal of Structural Geology},
+pages = {1629-1642},
+title = {Analysis of the growth of strike-slip faults using effective medium theory},
+volume = {32},
+year = {2010},
+doi = {10.1016/j.jsg.2009.11.007},
+}
+
+@article{ba10,
+author = {Berryman, J. G. and Aydin, A.},
+journal = {International Journal for Numerical and Analytical Methods in Geomechanics/NAMG},
+pages = {1687-1724},
+title = {Quasi-static analysis of elastic behavior for some systems having higher fracture density},
+volume = {34},
+year = {2010},
+doi = {10.1002/nag.874},
+}
+
+@article{zam09,
+author = {Zhong, J. and Aydin, A. and McGuinnes, D. I.},
+journal = {Journal of Structural Geology},
+pages = {251-259},
+title = {Ontology of Fractures},
+volume = {31},
+year = {2009},
+doi = {10.1016/j.jsg.2009.01.008},
+}
+
+@article{jg,
+author = {de Joussineau and G., Aydin, A.},
+journal = {Pure and Applied Geophysics, v},
+number = {10},
+pages = {1575-1594,},
+title = {Segmentation of strike-slip faults revisited},
+volume = {166},
+year = {2009},
+doi = {DOI 10.1007/s00024-009-0},
+}
+
+@article{ga080,
+author = {Gonzales, J. and Aydin, A.},
+journal = {Geomorphology},
+pages = {502-515},
+title = {The origin of oriented lakes in the Andean foreland, Parque Nacional Torres del Paine (Chilean Patagonia)},
+volume = {97},
+year = {2008},
+doi = {10.1016/j.geomorph.2007.09.001},
+}
+
+@article{ataa08,
+author = {Antonellini, M. and Tondi, E. and Agosta, F. and Aydin, A., Cello, G.,},
+journal = {Marine and Petroleum Geology},
+title = {Failure modes in basin carbonates and their impact for fault development; Majella Mountain, central Apennines, Italy},
+year = {2008},
+doi = {10.1016/j.marpetgeo.2007.10.008},
+}
+
+@article{amca08,
+author = {Agosta, F. and Mulch, A. and Camberline, P. and Aydin, A.},
+journal = {Geophysical Journal International},
+pages = {758-770},
+title = {Geochemical traces of CO2- rich fluid flow along normal faults in central Italy},
+volume = {174},
+year = {2008},
+doi = {10.1111/j.1365-246X.2008.03792.x},
+}
+
+@article{ga081,
+author = {Gonzales, J. and Aydin, A.},
+journal = {Journal of Structural Geology,},
+number = {1095-1108},
+title = {Structural characterization of deep-water deposits in a foreland basin, Silla Syncline (Chilean Patagonia), with applications to depositional processes},
+volume = {30},
+year = {2008},
+doi = {10.1016/j.jsg.2008.05.002},
+}
+
+@article{apa07,
+author = {Agosta, F. and Parasad, M. and Aydin, A.},
+journal = {Geofluids},
+number = {19},
+pages = {32},
+title = {Physical properties of carbonate fault rocks, Fucino basin, central Italy: implications for fault seal in platform carbonates},
+volume = {7},
+year = {2007},
+}
+
+@article{aakd07,
+author = {Ahmadov, R. and Aydin, A. and Karimi-Fard, M. and Durlofsky, L. J.},
+journal = {Hydrogeology Journal},
+title = {Permeability upscaling of fault zones in the Aztec Sandstone, Valley of Fire State Park, Nevada with a focus on slip surfaces and slip bands},
+year = {2007},
+doi = {10.1007/s10040-007-0180-2.},
+}
+
+@article{j07,
+author = {de Joussineau G., and Aydin, A.,},
+journal = {Journal of Geophysical Research},
+number = {B12401},
+title = {The evolution of the damage zone with fault growth in sandstone and its multiscale characteristics},
+volume = {112},
+year = {2007},
+doi = {10.10292006JB004711},
+}
+
+@article{jgo,
+author = {de Joussineau and G., Mutlu and O., Aydin A., and Pollard, D.,},
+journal = {Journal of Structural Geology,},
+pages = {1831-1842},
+title = {Characterization of fault-splay relationships: field survey and mechanical modeling},
+volume = {29},
+year = {2007},
+}
+
+@article{abe06,
+author = {Aydin, A. and Borja, R. I. and Eichhubl, P.},
+journal = {Journal of Structural Geology},
+pages = {83-98},
+title = {Geological and Mathematical framework for failure modes in granular rock},
+volume = {28},
+year = {2006},
+}
+
+@article{ggma06,
+author = {Graham, B. and Girbacea, R. and Mesonjesi, A. and Aydin, A.},
+journal = {American Association of Petroleum Geologists Bulletin,},
+pages = {1227-1249},
+title = {Evolution of fluid pathways through fracture controlled faults in carbonates of the Albanides fold-thrust belt},
+volume = {90},
+year = {2006},
+}
+
+@article{a06,
+author = {Aydin, A.},
+journal = {Journal of Structural Geology},
+pages = {2222-2236},
+title = {Failure modes of the lineaments on Jupiter's moon, Europa: Implications for the evolution of its icy crust},
+volume = {28},
+year = {2006},
+doi = {10.1016/j.jsg.2006.08.003},
+}
+
+@incollection{maw06,
+address = {G., eds., Analogue and Numerical Modelling of Crustal-Scale Processes. Geological Society London Special Publication, v. 253, p. 397ñ414},
+author = {Muller, J. R. and Aydin, A. and Wright, T. J.},
+booktitle = {Analogue and Numerical Modelling of Crustal-Scale Processes},
+editor = {Buiter,S.J.H. and Schreurs, G.,},
+note = {v. 253, 414.},
+pages = {397},
+publisher = {Geological Society London},
+title = {Using an elastic dislocation model to investigate static Coulomb stress change scenarios for earthquake ruptures in the eastern Marmara Sea region, Turkey:},
+year = {2006},
+comment = {Geological Society London Special Publication},
+}
+
+@article{taamc06,
+author = {Tondi, E. and Antonellini, M. and Aydin, A. and Marchegiani, L. and Cello, G.},
+journal = {Journal of Structural Geology},
+pages = {376-391},
+title = {The role of deformation bands, stylolites, and sheared stylolites in fault development in carbonate grainstones of the Majella Mountain, Italy},
+volume = {28},
+year = {2006},
+}
+
+@article{aa06,
+author = {Agosta, F. and Aydin, A.},
+journal = {Journal of Structural Geology,},
+pages = {2445-2467},
+title = {Architecture and Deformation Mechanism of a Basin-Bounding Normal Fault in Mesozoic Platform Carbonates, Central Italy},
+volume = {28},
+year = {2006},
+}
+
+@incollection{da05,
+author = {Davatzes, N. C. and Aydin, A.},
+booktitle = {Faults, fluid flow, and petroleum traps: AAPG Memoir 85},
+editor = {R. Sorkhabi and Y. Tsuji,},
+pages = {153-180},
+title = {Distribution and nature of fault architecture in a layered sandstone and shale sequence: An example from the Moab fault, Utah},
+year = {2005},
+}
+
+@incollection{fgaw05,
+author = {Flodin, E. A. and Gerdes, M. and Aydin, A. and Wiggins, W. D.},
+booktitle = {Faults, fluid flow, and petroleum traps: AAPG Memoir},
+editor = {R. Sorkhabi and Y. Tsuji},
+pages = {197-217},
+title = {Petrophysical properties of cataclastic fault rock in sandstone},
+year = {2005},
+}
+
+@article{dea05,
+author = {Davatzes, N. C. and Eichhubl, P. and Aydin, A.},
+journal = {Geological Society of America Bulletin},
+number = {1/2},
+pages = {135-148},
+title = {The structural evolution of fault zones in sandstone: The Moab fault, SE Utah},
+volume = {117},
+year = {2005},
+}
+
+@article{famaa05,
+author = {Flores, J. M. and Aydin, A. and Mavko, G. and Antonellini, M. and Ayaviri, A.},
+journal = {American Association of Petroleum Geologists Bulletin},
+number = {4},
+pages = {471-493},
+title = {Faults and fracture systems in a fold and thrust belt: An example from Bolivia},
+volume = {89},
+year = {2005},
+doi = {10.1306/11120404032},
+}
+
+@article{ma05,
+author = {Muller, J. and Aydin, A.},
+journal = {Journal of Geophysical Research},
+number = {B03407},
+title = {Using geomechanical modeling to constrain the fault geometry within the Marmara Sea, Turkey},
+volume = {110},
+year = {2005},
+doi = {1029/2004 JB003226},
+}
+
+@article{ma041,
+author = {Muller, J. R. and Aydin, A.},
+journal = {Tectonophysics},
+pages = {283-302},
+title = {Rupture progression along discontinuous oblique fault sets: Implications for the Karadere rupture segment of the 1999 Izmit Earthquake, and a future rupture in the Marmara Sea: Taymaz, T.,Westaway, R., and Reilinger, R.,eds., Special Issue on Active Faulting and Continental Deformation in the Eastern Mediterranean Region},
+volume = {391},
+year = {2004},
+}
+
+@article{YW001,
+author = {Y., Weinberger, R., and Aydin, A.,},
+journal = {Journal of Structural Geology},
+number = {3},
+pages = {491-501},
+title = {Geometry and kinematical evolution of Riedel shear structures, Capitol Reef National Park, Utah},
+volume = {26},
+year = {2004},
+}
+
+@article{ba040,
+author = {Borja, R. I. and Aydin, A.},
+journal = {J. Computational Mechanics},
+pages = {2667-2698},
+title = {Computational modeling of deformation bands in granular media, I: Geological and mathematical framework},
+volume = {193},
+year = {2004},
+}
+
+@article{fja04,
+author = {Flodin, E. A.,Durlofsky and L. J. and Aydin, A.},
+journal = {Petroleum Geoscience},
+number = {2},
+pages = {173-181},
+title = {Upscaled models of flow and transport in faulted sandstone: Boundary condition effects and explicit fracture modeling},
+volume = {10},
+year = {2004},
+}
+
+@article{ba041,
+author = {Brankman, M. C. and Aydin, A.},
+journal = {Journal of Structural Geology},
+number = {5},
+pages = {807-824},
+title = {Uplift and contractional deformation along a segmented strike-slip fault system:the Gargano Promontory, southern Italy},
+volume = {26},
+year = {2004},
+}
+
+@article{fa040,
+author = {Flodin, E. A. and Aydin, A.},
+journal = {Geological Society of America Bulletin},
+number = {1/2},
+pages = {42-59},
+title = {Evolution of a strike-slip fault network, Valley Of Fire, southern Nevada},
+volume = {116},
+year = {2004},
+doi = {10.1130/B25282.1},
+}
+
+@article{fa041,
+author = {Flodin, E. A. and Aydin, A.},
+journal = {Journal of Structural Geology},
+number = {5},
+pages = {983-988},
+title = {Faults with asymmetric damage zones in sandstone, Valley Of Fire State Park, southern Nevada},
+volume = {26},
+year = {2004},
+}
+
+@article{etpa04,
+author = {Eichhubl, P. and Taylor, L. and Pollard, D. and Aydin, A.},
+journal = {Geological Society of America Bulletin},
+pages = {1120-1136},
+title = {Paleo-fluid flow and deformation in the Aztec Sandstone at the Valley Of Fire Nevada-Evidence for the coupling of hydrogeological, diagenetic, and tectonic processes},
+volume = {116},
+year = {2004},
+}
+
+@article{ma040,
+author = {Myers, R. and Aydin, A.},
+journal = {Journal of Structural Geology},
+number = {5},
+pages = {947-966},
+title = {The evolution of faults formed by shearing across joint zones in sandstone},
+volume = {26},
+year = {2004},
+}
+
+@article{fpa041,
+author = {Flodin, E. A., Prasad, M. and Aydin, A.},
+number = {9},
+pages = {1589-1610},
+title = {Petrophysical constraints on deformation styles in Aztec Sandstone},
+journal = {Pure and Applied Geophysics},
+volume = {160},
+year = {2004},
+}
+
+@article{ea03,
+author = {Eichhubl, P. and Aydin, A.},
+journal = {Structural Geol},
+pages = {121-134},
+title = {Ductile opening-mode fracture by pore growth and coalescence during combustion alteration of siliceous mudstone, J},
+volume = {25},
+year = {2003},
+}
+
+@article{mam03,
+author = {Muller, J. R. and Aydin, A. and Maerten, F.},
+journal = {Geophysical Journal International},
+pages = {47-482},
+title = {Investigating the transition between the 1967 Mudurnu Valley and 1999 Izmit earthquakes along the North Anatolian fault with static stress changes},
+volume = {154},
+year = {2003},
+}
+
+@article{kam03,
+author = {Koledoye, B. and Aydin, A. and May, E.},
+journal = {AAPG Bulletin},
+number = {3},
+pages = {445-463},
+title = {A new process-based analysis of shale smear along normal faults in the Niger Delta},
+volume = {85},
+year = {2003},
+}
+
+@article{gaa03,
+author = {Graham, B. and Antonellini, M. and Aydin, A.},
+journal = {Geology},
+number = {11},
+pages = {11-14},
+title = {Formation and growth of normal faults in carbonates within a compressional environment},
+volume = {31},
+year = {2003},
+}
+
+@article{dae03,
+author = {Davatzes, N. and Aydin, A. and Eichhubl, P.},
+journal = {Tectonophysics},
+pages = {1-18},
+title = {Overprinting faulting mechanisms during the development of multiple fault sets in sandstone, Chimney Rock, Utah},
+volume = {363},
+year = {2003},
+}
+
+@article{da030,
+author = {Davatzes, N. C and Aydin, A.},
+journal = {Journal of Geophysical Research},
+number = {B10},
+pages = {2478},
+title = {The formation of conjugate normal fault systems in folded sandstone by sequential jointing and shearing, Waterpocket Monocline, Utah},
+volume = {108},
+year = {2003},
+doi = {10.1029/2002JB002289},
+}
+
+@article{da031,
+author = {Davatze, N. C. and Aydin, A.},
+journal = {Journal of Structural Geology},
+pages = {1795-1813},
+title = {Overprinting faulting mechanisms in high porosity sandstones of SE Utah},
+volume = {25},
+year = {2003},
+}
+
+@article{bmga02,
+author = {Bai, T. and Maerten, L. and Gross, M. R. and Aydin, A.},
+journal = {J. Structural Geol},
+pages = {77-88},
+title = {Orthogonal cross joints: do they imply a regional stress rotation?},
+volume = {24},
+year = {2002},
+}
+
+@article{a,
+author = {Aydin, A.and Eyal Y.,},
+journal = {AAPG Bulletin},
+number = {8},
+pages = {1367-1381},
+title = {Anatomy of a normal fault with shale smear: Implication for fault seal},
+volume = {86},
+year = {2002},
+}
+
+@article{ak02,
+author = {Aydin, A. and Kalafat, D.},
+journal = {Bull. Seis. Soc. Am},
+number = {1},
+pages = {95-106},
+title = {Surface rupture of the 17 August Izmit and 12 November Duzce earthquakes in NW Anatolia, Turkey, Their tectonic and kinematic significance and the associated damage},
+volume = {92},
+year = {2002},
+}
+
+@article{jfadw02,
+author = {Jourde, H. and Flodin, E. A. and Aydin, A. and Durlofsky, L. J. and Wen, X. H.},
+journal = {AAPG Bull},
+number = {7},
+pages = {1187-1200},
+title = {Computing permeability of fault zones in eolian sandstone from outcrop measurements},
+volume = {86},
+year = {2002},
+}
+
+@article{ka02,
+author = {Koukouvelas,, I. K. and Aydin, A.},
+journal = {Tectonics},
+number = {5},
+pages = {1046},
+title = {Fault structure and related basins of the North Aegean Sea and its surroundings},
+volume = {21},
+year = {2002},
+doi = {10.1029/2001TC901037},
+}
+
+@article{lea02,
+author = {Lore, J. S. and Eichhubl, P. and Aydin, A.},
+journal = {J. Petroleum Sciences and Engineering},
+pages = {169-182},
+title = {Alteration and fracturing of siliceous mudstone during in situ combustion, Orcutt field, California},
+volume = {36},
+year = {2002},
+}
+
+@article{bx11,
+author = {Du Bernard and X., Eichhubl, P., and Aydin, A.},
+journal = {Geophysical Res. Lett.},
+number = {24},
+pages = {2176},
+title = {Dilation bands: A new form of localized failure in granular media},
+volume = {29},
+doi = {1029/2002GLO15966},
+year = {2002},
+}
+
+@article{ra01,
+author = {Roznovsky, T. and Aydin, A.},
+journal = {J. Structural Geol.},
+pages = {1567-1579},
+title = {Concentration of shearing deformation related to changes in strike of monoclinal fold axis: The Waterpocket monocline, Utah},
+volume = {23},
+year = {2001},
+}
+
+@article{ea01,
+author = {Eichhubl, P. and Aydin, A.},
+journal = {Geophys. Research Lett.},
+pages = {1299-1302},
+title = {Opening-mode fracture in siliceous mudstone at high homologous temperature-effect of surface forces},
+volume = {28},
+year = {2001},
+}
+
+@article{lag01,
+author = {Lore, J. and Aydin, A. and Goodson, K.},
+journal = {J. Geophys. Research,},
+pages = {6447-6459},
+title = {A deterministic methodology for prediction of fracture distribution in basaltic multiflows},
+volume = {1006},
+year = {2001},
+}
+
+@article{fady01,
+author = {Flodin, E. A. and Aydin, A. and Durlofsky, L. J. and Yeten, B.},
+journal = {SPE paper#71617},
+title = {Represention of fault zone permeability in reservoir flow models},
+year = {2001},
+}
+
+@incollection{cmpa00,
+address = {p},
+author = {Cooke, M. and Mollema, P. and Pollard, D. D. and Aydin, A.},
+booktitle = {Forced Folds and Fractures, Geological Society, London, Special Publication},
+pages = {23-49},
+publisher = {169},
+title = {Interlayer slip and joint localization in the East Kaibab Monocline, Utah: Field evidence and results from numerical modeling: In Cosgrove, J},
+year = {2000},
+}
+
+@article{kap00,
+author = {Kattenhorn, S. and Aydin, A. and Pollard, D. D},
+journal = {J. Structural Geology},
+pages = {1-23},
+title = {Joints at high angles to normal fault strike: An explanation using 3-D numerical models of fault-perturbed stress field},
+volume = {22},
+year = {2000},
+}
+
+@article{kam00,
+author = {Koledoye, B. and Aydin, A. and May, E.},
+journal = {The Leading Edge},
+pages = {692-701},
+title = {3-D visualization of fault segmentation and shale smearing in the Niger Delta},
+volume = {19},
+year = {2000},
+}
+
+@article{lga00,
+author = {Lore, J. and Gao, H. and Aydin, A.},
+journal = {J. Geophys. Research,},
+number = {B10},
+pages = {23695-23709},
+title = {Viscoelastic thermal stress in cooling basalt flows},
+volume = {105},
+year = {2000},
+}
+
+@article{a00,
+author = {Aydin, A.},
+journal = {Marine and Petroleum Geology},
+pages = {797-814},
+title = {Fractures, faults, and hydrocarbon migration and flow},
+volume = {17},
+year = {2000},
+}
+
+@article{aao99,
+author = {Antonellini, M. and Aydin, A. and Orr, F. M.},
+journal = {Geophysical Union, Geophysical Monograph},
+pages = {7-26},
+title = {Outcrop-Aided Characterization of a Faulted Hydrocarbon reservoir: Arroyo Grande Oil Field, California, USA: In Faults and Subsurface Fluid Flow in the Shallow Crust Am},
+volume = {113},
+year = {1999},
+}
+
+@article{tpa990,
+author = {Taylor, W. L. and Pollard, D. D. and Aydin, A.},
+journal = {J. Geophys. Research,},
+number = {B12},
+pages = {983-29},
+title = {Fluid flow in discrete joint sets: Field observations and numerical simulations, J},
+volume = {104},
+year = {1999},
+unidentified = {Res., 104, No. B12, p. 28,,006},
+}
+
+@article{tpa991,
+author = {Taylor, W. L. and Pollard, D. D. and Aydin, A.},
+journal = {J. Geophys. Research,},
+number = {B12},
+pages = {28,983-29,006},
+title = {Fluid flow in discrete joint sets: Field observations and numerical simulations, J},
+volume = {104},
+year = {1999},
+}
+
+@incollection{mapr980,
+address = {147,},
+author = {Matthai, S. K. and Aydin, A. and Pollard, D. D. and Roberts, S.},
+booktitle = {Faulting, Fault Sealing and Fluid Flow in Hydrocarbon Reservoirs},
+pages = {157-191},
+publisher = {The Geological Society of London},
+title = {Numerical Simulation of Departures from Radial Drawdown in a Faulted Sandstone Reservoir with Joints and Deformation Bands},
+year = {1998},
+comment = {The Geological Society of London Special Publication},
+}
+
+@article{cac98,
+author = {Cakir, M. and Aydin, A. and Campagna, D. J.},
+journal = {Tectonics},
+number = {3},
+pages = {344-359},
+title = {Deformation pattern around conjoining strike-slip faults systems in the Basin and Range, southeast Nevada: The role of strike-slip faulting in basin formation and inversion},
+volume = {17},
+year = {1998},
+}
+
+@article{dapz98,
+author = {Dholakia, S. K. and Aydin, A. and Pollard, D. D. and Zoback, M. D.},
+journal = {American Association of Petroleum Geologists Bulletin},
+number = {8},
+pages = {1551-1574},
+title = {Fault-controlled hydrocarbon pathways in the Monterey Formation, California},
+volume = {82},
+year = {1998},
+}
+
+@article{mapr981,
+author = {Matthai, S. K. and Aydin, A. and Pollard, D. D. and Roberts, S.},
+journal = {SPE 38442 Society of Petroleum Engineering Journal},
+title = {Simulation of Transient Well-Test Signatures for Geologically Realistic Faults in Sandstone Reservoirs},
+year = {1998},
+}
+
+@article{ka981,
+author = {Koenig, E. and Aydin, A.},
+journal = {Geology},
+number = {6},
+pages = {551-554},
+title = {Evidence for large scale strike-slip faulting in Venus},
+volume = {26},
+year = {1998},
+}
+
+@article{ka982,
+author = {Koenig, E. and Aydin, A.},
+journal = {Geology},
+number = {6},
+pages = {551-554},
+title = {Evidence for large scale strike-slip faulting in Venus},
+volume = {26},
+year = {1998},
+}
+
