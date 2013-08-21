@@ -10,7 +10,7 @@ class PubHash
   end
 
   def to_chicago_citation
-    authors = pub_hash[:author] || [] 
+    authors = pub_hash[:author] || []
     if pub_hash[:etal] || authors.length > 5
       chicago_csl_file = Rails.root.join('app', 'data', 'chicago-author-date_et_al.csl')
     else
@@ -90,10 +90,10 @@ class PubHash
 
        unless last_name.blank?
         if author[:role] && author[:role].casecmp("editor") == 0
-          editors_for_citeproc << {"family" => last_name, "given" => rest_of_name} 
-        else 
+          editors_for_citeproc << {"family" => last_name, "given" => rest_of_name}
+        else
           authors_for_citeproc << {"family" => last_name, "given" => rest_of_name}
-        end 
+        end
       end
       end
 
@@ -115,27 +115,27 @@ class PubHash
 
   # add series information if it exists
   if pub_hash.has_key?(:series)
-    unless pub_hash[:series][:title].blank? then 
+    unless pub_hash[:series][:title].blank? then
       cit_data_hash["type"] = 'book'
-      cit_data_hash["collection-title"] = pub_hash[:series][:title] 
+      cit_data_hash["collection-title"] = pub_hash[:series][:title]
     end
     unless pub_hash[:series][:volume].blank? then cit_data_hash["volume"] = pub_hash[:series][:volume] end
     unless pub_hash[:series][:number].blank? then cit_data_hash["number"] = pub_hash[:series][:number] end
     unless pub_hash[:series][:year].blank? then cit_data_hash["issued"]  = {"date-parts"=>[[pub_hash[:series][:year]]]} end
-    
+
  end
  # add journal information if it exists
  if pub_hash.has_key?(:journal)
-    unless pub_hash[:journal][:name].blank? then 
+    unless pub_hash[:journal][:name].blank? then
       cit_data_hash["type"] = 'article-journal'
-      cit_data_hash["container-title"] = pub_hash[:journal][:name] 
+      cit_data_hash["container-title"] = pub_hash[:journal][:name]
     end
     unless pub_hash[:journal][:volume].blank? then cit_data_hash["volume"] = pub_hash[:journal][:volume] end
     unless pub_hash[:journal][:issue].blank? then cit_data_hash["issue"] = pub_hash[:journal][:issue] end
     unless pub_hash[:journal][:year].blank? then cit_data_hash["issued"]  = {"date-parts"=>[[pub_hash[:journal][:year]]]} end
     unless pub_hash[:supplement].blank? then cit_data_hash["number"] = pub_hash[:supplement] end
   end
-   
+
    # add any conference information, if it exists in a conference object
   # this overrides the sciencewire fields above if both exist, which they shouldn't
   if pub_hash.has_key?(:conference)
@@ -148,7 +148,7 @@ class PubHash
         cit_data_hash["event-place"] = pub_hash[:conference][:city]
         if ! pub_hash[:conference][:city].blank? && ! pub_hash[:conference][:statecountry].blank? then cit_data_hash["event-place"] << ',' end
         unless pub_hash[:conference][:statecountry].blank? then cit_data_hash["event-place"] << pub_hash[:conference][:statecountry] end
-      elsif ! pub_hash[:conference][:location].blank? 
+      elsif ! pub_hash[:conference][:location].blank?
         cit_data_hash["event-place"] = pub_hash[:conference][:location]
       end
      # unless pub_hash[:conference][:DOI].blank? then cit_data_hash["DOI"] = pub_hash[:conference][:DOI] end
@@ -157,13 +157,13 @@ class PubHash
       # use a year at the top level if it exists, i.e, override any year we'd gotten above from journal or series
   unless pub_hash[:year].blank? then cit_data_hash["issued"]  = {"date-parts"=>[[pub_hash[:year]]]} end
   # add book title if it exists, which indicates this pub is a chapter in the book
-  unless pub_hash[:booktitle].blank? then 
+  unless pub_hash[:booktitle].blank? then
     cit_data_hash["type"] = 'book'
-    cit_data_hash["container-title"] = pub_hash[:booktitle] 
+    cit_data_hash["container-title"] = pub_hash[:booktitle]
   end
 
-  if cit_data_hash["type"].casecmp("book") == 0 && ! editors_for_citeproc.empty?
-    cit_data_hash["editor"] = editors_for_citeproc 
+  if cit_data_hash["type"] && cit_data_hash["type"].casecmp("book") == 0 && ! editors_for_citeproc.empty?
+    cit_data_hash["editor"] = editors_for_citeproc
   end
       #puts cit_data_hash.to_s
       cit_data_array = [cit_data_hash]

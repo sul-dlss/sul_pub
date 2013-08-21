@@ -9,9 +9,9 @@ describe SulBib::API do
   let(:author) {FactoryGirl.create :author }
   let(:author_with_sw_pubs) {create :author_with_sw_pubs}
   let(:headers) {{ 'HTTP_CAPKEY' => '***REMOVED***', 'CONTENT_TYPE' => 'application/json' }}
-  let(:valid_json_for_post) {{title: "some title", year: 1938, issn: '32242424', pages: '34-56', author: [{name: "jackson joe"}], authorship: [{sul_author_id: author.id, status: "denied", visibility: "public", featured: true} ]}.to_json}
+  let(:valid_json_for_post) {{type: "book", title: "some title", year: 1938, issn: '32242424', pages: '34-56', author: [{name: "jackson joe"}], authorship: [{sul_author_id: author.id, status: "denied", visibility: "public", featured: true} ]}.to_json}
   let(:invalid_json_for_post) {{title: "some title", year: 1938, issn: '32242424', pages: '34-56', author: [{name: "jackson joe"}]}.to_json}
-  let(:json_with_new_author) {{title: "some title", year: 1938, issn: '32242424', pages: '34-56', author: [{name: "henry lowe"}], authorship: [{cap_profile_id: '3810', status: "denied", visibility: "public", featured: true} ]}.to_json}
+  let(:json_with_new_author) {{type: "book", title: "some title", year: 1938, issn: '32242424', pages: '34-56', author: [{name: "henry lowe"}], authorship: [{cap_profile_id: '3810', status: "denied", visibility: "public", featured: true} ]}.to_json}
   let(:json_with_isbn) { <<-JSON
     {"abstract":"","abstract_restricted":"","allAuthors":"author A, author B","author":[{"firstname":"John ","lastname":"Doe","middlename":"","name":"Doe  John ","role":"author"},{"firstname":"Raj","lastname":"Kathopalli","middlename":"","name":"Kathopalli  Raj","role":"author"}],"authorship":[{"cap_profile_id":#{author.cap_profile_id},"featured":true,"status":"APPROVED","visibility":"PUBLIC"}],"booktitle":"TEST Book I","edition":"2","etal":true,"identifier":[{"id":"1177188188181","type":"isbn"},{"type":"doi","url":"18819910019"}],"last_updated":"2013-08-10T21:03Z","provenance":"CAP","publisher":"Publisher","series":{"number":"919","title":"Series 1","volume":"1"},"type":"book","year":"2010"}
    JSON
@@ -106,7 +106,7 @@ describe SulBib::API do
 
       it "does not duplicate SULPubIds" do
 
-        json_with_sul_pub_id = { :identifier => [ { :type => "SULPubId", :id => "n", :url => "m" } ], authorship: [{sul_author_id: author.id, status: "denied", visibility: "public", featured: true}] }.to_json
+        json_with_sul_pub_id = { :type => 'book', :identifier => [ { :type => "SULPubId", :id => "n", :url => "m" } ], authorship: [{sul_author_id: author.id, status: "denied", visibility: "public", featured: true}] }.to_json
 
         post "/publications", json_with_sul_pub_id, headers
         response.status.should == 201
@@ -135,7 +135,7 @@ describe SulBib::API do
     context "updating record" do
       it "should not duplicate SULPubIDs" do
 
-        json_with_sul_pub_id = { :identifier => [ { :type => "SULPubId", :id => "n", :url => "m" } ], authorship: [{sul_author_id: author.id, status: "denied", visibility: "public", featured: true}] }.to_json
+        json_with_sul_pub_id = { :type => 'book', :identifier => [ { :type => "SULPubId", :id => "n", :url => "m" } ], authorship: [{sul_author_id: author.id, status: "denied", visibility: "public", featured: true}] }.to_json
 
         put "/publications/#{publication.id}", json_with_sul_pub_id, headers
         response.status.should == 200
