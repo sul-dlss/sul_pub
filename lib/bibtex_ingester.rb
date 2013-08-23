@@ -161,8 +161,10 @@ def process_record(record, author)
       pub = Publication.create(active: true, pub_hash: convert_bibtex_record_to_pub_hash(record, author))
       @total_new_pubs += 1
     #  puts pub.to_yaml
-      PublicationIdentifier.create( 
+      PublicationIdentifier.where( 
                           :publication_id => pub.id,
+                          :identifier_type => 'SULPubId').
+                first_or_create(
                           :certainty => 'confirmed',
                           :identifier_type => 'SULPubId',
                           :identifier_value => pub.id,
@@ -175,6 +177,7 @@ def process_record(record, author)
                   author_id: author.id, 
                   publication_id: pub.id).
                 first_or_create(
+                  cap_profile_id: author.cap_profile_id,
                   status: "approved",
                   visibility: "private",
                   featured: false)

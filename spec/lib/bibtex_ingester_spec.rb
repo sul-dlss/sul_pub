@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe BibtexIngester do
-	let!(:author_with_bibtex) { create :author, sunetid: "james" }	
+	let!(:author_with_bibtex) { create :author, sunetid: "james", cap_profile_id: 333333 }	
 	let!(:bibtex_ingester) {BibtexIngester.new}
 		
 	#	puts author_with_bibtex.to_s
