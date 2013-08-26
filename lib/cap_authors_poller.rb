@@ -1,14 +1,24 @@
 require 'dotiw'
 require 'time'
 class CapAuthorsPoller
+  attr_reader :debug
+
+  def initialize
+    @debug = false
+    @sw_harvester = ScienceWireHarvester.new
+    @cap_http_client = CapHttpClient.new
+  end
+
+  def debug=(val)
+    @debug = val
+    @sw_harvester.debug = val
+  end
+
   include ActionView::Helpers::DateHelper
 
   def get_authorship_data(days_ago = 1)
-    poll_time = Time.now - (days_ago.to_i).days
     begin
-      @cap_http_client = CapHttpClient.new
-
-      poll_since = poll_time.iso8601(3)
+      poll_since = convert_days_ago_to_timestamp(days_ago)
 
       page_size = 1000
       page_count = 0
@@ -34,6 +44,10 @@ class CapAuthorsPoller
         puts update_message
         @cap_authorship_logger.info update_message
         @last_page = json_response["lastPage"]
+        if(@debug)
+          write_stats_from_logging_variables_to_log
+          @debug = false
+        end
       end
 
       do_science_wire_harvest
@@ -42,15 +56,21 @@ class CapAuthorsPoller
 
       puts "#{page_count} pages with #{page_size} records per page were processed in #{distance_of_time_in_words_to_now(@start_time)}"
       puts "#{@new_author_count} authors were created."
+      @cap_authorship_logger.info "Finished authorship import"
 
     rescue => e
       NotificationManager.handle_authorship_pull_error(e, "Authorship import failed - #{DateTime.now}" )
     end
   end
 
+  def cap_authors_count(days_ago = 1)
+    poll_since = convert_days_ago_to_timestamp(days_ago)
+    @cap_http_client.get_batch_from_cap_api(1, 10, poll_since)['totalCount']
+  end
+
   def do_science_wire_harvest
     puts "authors to harvest: " + @new_or_changed_authors_to_harvest_queue.to_s
-    ScienceWireHarvester.new.harvest_pubs_for_author_ids(@new_or_changed_authors_to_harvest_queue)
+    @sw_harvester.harvest_pubs_for_author_ids(@new_or_changed_authors_to_harvest_queue)
   end
 
   def process_next_batch_of_authorship_data(json_response)
@@ -73,13 +93,9 @@ class CapAuthorsPoller
   end
 
   def process_record(record)
-    active = record["active"]
-    import_enabled = record["importEnabled"]
-    import_settings_exist = record["importSettings"] && record["importSettings"].any?
-    @no_import_settings_count += 1 unless (active || import_enabled || import_settings_exist)
+    #import_settings_exist = record["importSettings"] && record["importSettings"].any?
 
     author = Author.find_or_initialize_by_cap_profile_id(record['profileId'])
-
     author.update_from_cap_authorship_profile_hash(record)
 
     if author.persisted?
@@ -98,7 +114,12 @@ class CapAuthorsPoller
 
     author.save
 
-    @new_or_changed_authors_to_harvest_queue << author.id
+    if(author.harvestable?)
+      @new_or_changed_authors_to_harvest_queue << author.id
+    else
+      @no_import_settings_count += 1
+      @cap_authorship_logger.info "No import settings. Skipping cap_profile_id #{author.cap_profile_id}"
+    end
   end
 
   def set_up_logging_variables
@@ -116,7 +137,6 @@ class CapAuthorsPoller
   end
 
   def write_stats_from_logging_variables_to_log
-    @cap_authorship_logger.info "Finished authorship import - #{DateTime.now}"
     @cap_authorship_logger.info "#{@total_running_count} records were processed in " + distance_of_time_in_words_to_now(@start_time)
     @cap_authorship_logger.info "#{@new_author_count} authors were created."
     @cap_authorship_logger.info "#{@no_import_settings_count} records with no import settings."
@@ -127,6 +147,12 @@ class CapAuthorsPoller
     @cap_authorship_logger.info "#{@authors_updated_count} authors were updated."
     @cap_authorship_logger.info "#{@import_enabled_count} authors had import enabled."
     @cap_authorship_logger.info "#{@import_disabled_count} authors had import disabled."
+  end
+
+private
+  def convert_days_ago_to_timestamp(days_ago)
+    poll_time = Time.now - (days_ago.to_i).days
+    poll_time.iso8601(3)
   end
 
 end
