@@ -93,4 +93,8 @@ class Author < ActiveRecord::Base
     a
   end
 
+  def harvestable?
+    self.active_in_cap && self.cap_import_enabled
+  end
+
 end

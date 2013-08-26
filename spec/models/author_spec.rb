@@ -121,4 +121,22 @@ describe Author do
     end
   end
 
+  describe "#harvestable?" do
+
+    it "returns true when the author is active and is import_enabled" do
+      h = auth_hash
+      h['active'] = true
+      h['importEnabled'] = true
+      auth = Author.new
+      auth.update_from_cap_authorship_profile_hash h
+      expect(auth).to be_harvestable
+    end
+
+    it "returns false when the author is not active or not import_enabled" do
+      auth = Author.new
+      auth.update_from_cap_authorship_profile_hash auth_hash
+      expect(auth).not_to be_harvestable
+    end
+  end
+
 end
