@@ -1,0 +1,1203 @@
+@article{hvz13,
+author = {Heller, R. and J. Vermylen and M. D. Zoback},
+journal = {AAPG Bulletin},
+title = {Experimental Investigation of Matrix Permeability of Gas Shales},
+year = {2013},
+comment = {submitted},
+}
+
+@article{sz13,
+author = {Sone, H. and M. D. Zoback},
+journal = {Geophysics},
+title = {Mechanical Properties of Shale Gas Reservoir Rocks-Part 2: Ductile Creep Brittle Strength, and Their Relation to the Elastic Modulus},
+year = {2013},
+comment = {submitted},
+}
+
+@article{cmz13,
+author = {Chang, C. and E. Mallman and M. D. Zoback},
+journal = {AAPG Bulletin},
+title = {Time-Dependent Subsidence Associated with Drainage-Induced Compaction in Gulf of Mexico Shales Bounding a Severely Depleted Gas Reservoir},
+year = {2013},
+comment = {submitted},
+}
+
+@article{zg13,
+author = {Zoback, M. D. and S. M. Gorelick},
+journal = {Proceedings of the National Academy of Sciences},
+number = {52},
+title = {Response to Juanes et al.: Evidence that earthquake triggering could render long-term carbon storage unsuccessful in many regions, Proc},
+volume = {109},
+year = {2013},
+url = {www.pnas.org/cgi/doi/10.1073/pnas.1217264109},
+comment = {E3624},
+}
+
+@article{hz1201,
+author = {Hurd, O. and M. D. Zoback},
+journal = {Seismological Research Letters},
+month = {July/August},
+number = {4},
+title = {Regional stress orientations and slip compatibility of earthquake focal planes in the New Madrid seismic zone, Seismological Res},
+volume = {83},
+year = {2012},
+doi = {10.1785/0220 110122},
+}
+
+@article{psz12,
+author = {Popov, A. A. and S. V. Sobolev and M. D. Zoback},
+journal = {Geochemistry, Geophysics, Geosystems},
+number = {8},
+title = {Modeling evolution of the San Andreas Fault system in northern and central California},
+volume = {13},
+year = {2012},
+doi = {10.1029/2012GC004086},
+}
+
+@article{zg12,
+author = {Zoback, M. D. and S. M. Gorelick},
+journal = {Proceedings of the National Academy of Sciences},
+number = {26},
+pages = {10164-10168},
+title = {Earthquake triggering and large-scale geologic storage of carbon dioxide, Proc},
+volume = {109},
+year = {2012},
+url = {www.pnas.org/cgi/doi/10.1073/pnas.1202473109},
+}
+
+@inproceedings{zkdm12,
+address = {Pittsburgh, PA, USA},
+author = {Zoback, M. D. and A. Kohli and I. Das and M. McClure},
+booktitle = {SPE Americas Unconventional Resources Conference},
+month = {June},
+note = {SPE 155476},
+publisher = {Society of Petroleum Engineers},
+title = {The importance of slow slip on faults during hydraulic fracturing of a shale gas reservoirs},
+year = {2012},
+}
+
+@article{z12,
+author = {Zoback, M. D.},
+journal = {Earth},
+month = {April},
+pages = {38-43},
+title = {Managing the seismic risk of wastewater disposal, EARTH},
+year = {2012},
+}
+
+@article{hz1202,
+author = {Hurd, O. and M. D. Zoback},
+journal = {Tectonics},
+month = {December},
+pages = {182-192},
+title = {Intraplate Earthquakes, Regional Stress and Fault Mechanics in the Central and Eastern U.S. and Southeastern Canada, Tectonophysics},
+volume = {581},
+year = {2012},
+doi = {10.1016/j.tecto.2012.04.002},
+url = {http://dx.doi.org/10.1016/j.tecto.2012.04.002},
+}
+
+@article{dz11,
+author = {Das, I. and M. D. Zoback},
+journal = {The Leading Edge},
+month = {July/August},
+pages = {778-786},
+title = {Long-period, long-duration seismic events during hydraulic fracture stimulation of a shale gas reservoir},
+year = {2011},
+}
+
+@article{gszk11,
+author = {Goodarzi, S. and A. Settari and M. Zoback and D. W. Keith},
+journal = {Environmental Geosciences},
+month = {Septmber},
+number = {3},
+pages = {189-207},
+title = {A coupled geomechanical reservoir simulation analysis of carbon dioxide storage in a saline aquifer in the Ohio River Valley},
+volume = {18},
+year = {2011},
+}
+
+@inproceedings{yz11,
+address = {San Francisco, CA, USA},
+author = {Yang, Y. and M. D. Zoback},
+booktitle = {45th US Rock Mechanics/Geomechanics Symposium, ARMA 11-433},
+month = {June},
+publisher = {ARMA, American Rock Mechanics Association},
+title = {The Effects of Gas Adsorption on Swelling, Visco-plastic Creep and Permeability of Sub-bituminous Coal},
+year = {2011},
+}
+
+@inproceedings{sz11,
+address = {San Francisco, CA, USA},
+author = {Sone, H. and M. D. Zoback},
+booktitle = {45th US Rock Mechanics/ Geomechanics Symposium},
+month = {June},
+publisher = {ARMA, American Rock Mechanics Association},
+title = {Visco-plastic properties of shale gas reservoir rocks, ARMA 11-417},
+year = {2011},
+}
+
+@inproceedings{vz11,
+address = {The Woodlands, Texas, USA},
+author = {Vermylen, J. and M. D. Zoback},
+booktitle = {SPE Hydraulic Fracturing Technology Conference and Exhibition},
+month = {January},
+publisher = {Society of Petroleum Engineers},
+title = {Hydraulic fracturing, microseismic magnitudes and stress evolution in the Barnett Shale, Texas, USA, , SPE 140507},
+year = {2011},
+}
+
+@article{zhe11,
+author = {Zoback, M. D. and S. Hickman and W. Ellsworth},
+journal = {Scientific Drilling},
+pages = {14-28},
+title = {Scientific Drilling into the San Andreas Fault - An Overview of SAFOD's First Five Years},
+volume = {11},
+year = {2011},
+}
+
+@article{pzh11,
+author = {Paul, P. and M. D. Zoback and P. Hennings},
+journal = {SPE Reservoir Evaluation and Engineering},
+month = {February},
+pages = {138-152},
+title = {A method to implement permeability anisotropy associated with fault damage zones in reservoir simulation},
+year = {2011},
+}
+
+@article{zhe1001,
+author = {Zoback, M. D. and S. Hickman and W. Ellsworth},
+journal = {Scientific Drilling},
+pages = {14-28},
+title = {Scientific Drilling into the San Andreas Fault - An Overview of SAFOD's First Five Years,},
+volume = {11},
+year = {2010},
+}
+
+@inproceedings{gszk10,
+address = {New Orleans, LA, USA},
+author = {Goodarzi, S. and A. Settari and M. Zoback and D. W. Keith},
+booktitle = {SPE International Conference on CO2 Capture, Storage, and Utilization, 10-12 November 2010, New Orleans, Louisiana, USA},
+month = {November},
+publisher = {Society of Petroleum Engineers},
+title = {Thermal aspects of geomechanics and induced fracturing in CO2 injection with application to CO2 sequestration in the Ohio River Valley, SPE 139706},
+year = {2010},
+}
+
+@article{dzh10,
+author = {Day-Lewis, A. and M. D. Zoback and S. H. Hickman},
+journal = {Geophysics Research Letters},
+title = {Scale-invariant stress orientation and seismicity rates near the San Andreas Fault,},
+year = {2010},
+doi = {10.1029/2010GL045025},
+}
+
+@article{z1001,
+author = {Zoback, Mark},
+journal = {Earth Magazine},
+month = {February},
+pages = {86-87},
+title = {Natural gas can lead the way},
+year = {2010},
+url = {http://www.earthmagazine.com/earth/article/2fb-7da-2-1},
+}
+
+@article{bzcgg10,
+author = {Bohnhoff, M. and M. D. Zoback and L. Chiaramonte and J. L Gerst and N. Gupta},
+journal = {International Journal of Greenhouse Gas Controls},
+pages = {687-697},
+title = {Seismic Detection of CO2 Leakage along Monitoring Wellbores},
+volume = {4},
+year = {2010},
+}
+
+@article{zhe1002,
+author = {Zoback, M. D. and S. Hickman and W. Ellsworth},
+journal = {EOS},
+month = {June},
+number = {22},
+pages = {197-198},
+title = {Scientific Drilling into the San Andreas Fault},
+volume = {91},
+year = {2010},
+}
+
+@article{zkc10,
+author = {Zoback, M. D. and S. Kitasei and B. Copithorne},
+journal = {Worldwatch Institute},
+title = {Addressing the environmental risks from shale gas development},
+year = {2010},
+url = {http://www.worldwatch.org/files/pdf/Hydraulic},
+comment = {19 pp},
+}
+
+@article{z10,
+author = {Zoback, M. D.},
+journal = {Nature},
+pages = {568-569},
+title = {Climate and intraplate shocks},
+volume = {466},
+year = {2010},
+}
+
+@inproceedings{sz1002,
+address = {Salt Lake City, Utah},
+author = {Sone, H. and M. D. Zoback},
+booktitle = {44th US Rock Mechanics Symposium and 5th US-Canada Rock Mechanics Symposium, Salt Lake City, Utah},
+month = {June},
+pages = {27-30},
+publisher = {ARMA, American Rock Mechanics Association},
+title = {Strength, creep and frictional properties of gas shale reservoir rocks, ARMA 10-463},
+year = {2010},
+}
+
+@inproceedings{sz10,
+address = {Salt Lake City, Utah},
+author = {Sone, H. and M. D. Zoback},
+booktitle = {44th US Rock Mechanics Symposium and 5th US-Canada Rock Mechanics Symposium, Salt Lake City, Utah},
+month = {June},
+publisher = {ARMA, American Rock Mechanics Association},
+title = {Strength, creep and frictional properties of gas shale reservoir rocks, ARMA 10-463},
+year = {2010},
+}
+
+@inproceedings{hz10,
+address = {Salt Lake City, Utah},
+author = {Hagin, P. N. and M. D. Zoback},
+booktitle = {44th US Rock Mechanics Symposium and 5th US-Canada Rock Mechanics Symposium, Salt Lake City, Utah},
+month = {June},
+publisher = {ARMA, American Rock Mechanics Association},
+title = {Laboratory studies of the compressibility and permeability of low-rank coal samples from the Powder River Basin, Wyoming, USA, ARMA 10-170},
+year = {2010},
+}
+
+@inproceedings{hz1001,
+address = {Salt Lake City, Utah},
+author = {Hagin, P. N. and M. D. Zoback},
+booktitle = {44th US Rock Mechanics Symposium and 5th US-Canada Rock Mechanics Symposium, Salt Lake City, Utah},
+month = {June},
+publisher = {ARMA, American Rock Mechanics Association},
+title = {Inverting for creep strain parameters of uncemented reservoir sands using arbitrary stress-strain data, ARMA 10-171},
+year = {2010},
+}
+
+@article{bz10,
+author = {Bohnhoff, M. and M. D. Zoback},
+journal = {Journal of Geophysical Research},
+number = {B11305},
+title = {Oscillation of fluid-filled cracks triggered by degassing of CO2 due to leakage along wellbores},
+volume = {115},
+year = {2010},
+doi = {10.1029/2010JB000848},
+}
+
+@article{rhz09,
+author = {Ross, H. E. and P. Hagin and M. D. Zoback},
+journal = {International Journal of Greenhouse Gas Controls},
+pages = {773-786},
+title = {CO2 storage and enhanced coalbed methane recovery in unmineable coalbeds of the Powder River Basin Wyoming: Reservoir characterization and fluid flow simulaltions},
+volume = {3},
+year = {2009},
+doi = {10.1016/j_ijggc.2009.06.002},
+}
+
+@article{lzhrm09,
+author = {Lucier, A. and M. D. Zoback and V. Heesakkers and Z. Reches and S. Murphy},
+journal = {International Journal of Rock Mechanics and Mining Sciences},
+number = {2009},
+pages = {555-567},
+title = {Constraining the far-field stress state near a deep South African Gold Mine},
+volume = {46},
+year = {2009},
+}
+
+@article{pzh09,
+author = {Paul, P. and M. D. Zoback and P. Hennings},
+journal = {SPE Reservoir Evaluation & Engineering},
+month = {August},
+number = {4},
+pages = {562-575},
+title = {Fluid Flow in a Fractured Reservoir Using Geomechanically Constrained Fracture Model for Reservoir Simulation},
+volume = {12},
+year = {2009},
+}
+
+@article{cz10,
+author = {Chang, C. and M. D. Zoback},
+journal = {Journal of Petroleum Science and Engineering},
+pages = {50-55},
+title = {Viscous creep in room-dried unconsolidated Gulf of Mexico shale (II): Development of a viscoplasticity model},
+volume = {72},
+year = {2010},
+doi = {0.2118/110542-PA},
+url = {http://dx.doi.org/10.2118/110542-PA},
+}
+
+@article{cz09,
+author = {Chang, C. and M. D. Zoback},
+journal = {Journal of Petroleum Science and Engineering},
+pages = {239-246},
+title = {Viscous creep in room-dried unconsolidated Gulf of Mexico shale (I): Experimental results},
+volume = {69},
+year = {2009},
+}
+
+@article{lz08,
+author = {Lucier, A. and M. D. Zoback},
+journal = {International Journal of Greenhouse Gas Controls},
+title = {Assessing economic feasibility or regional deep saline aquifer CO2 injection and sequestration: A geomechanics-based workflow applied to the Rose Run Sandstone in Eastern Ohio, USA},
+year = {2008},
+doi = {10.1016/j.ijggc.2007.12.002},
+}
+
+@article{rz08,
+author = {Ross, H. E. and M. D. Zoback},
+journal = {Rocky Mountain Geology},
+pages = {155-169},
+title = {Sub-hydrostatic pore pressure in coalbed and sand aquifers of the Powder River Basin, WY and MT, and implications for disposal of coalbed-methane produced water through injection},
+volume = {43},
+year = {2008},
+}
+
+@inproceedings{lzhr08,
+address = {San Francisco, CA, USA},
+author = {Lucier, A. and M. D. Zoback and V. Heesakkers and Z. Reches},
+booktitle = {42nd US Rock Mechanics Symposium},
+publisher = {ARMA, American Rock Mechanics Association},
+title = {Constraining the far-field stress state near a deep South African Gold Mine, ARMA 08-141},
+year = {2008},
+}
+
+@article{pz08,
+author = {Paul, P. and M. D. Zoback},
+journal = {SPE Drilling and Completion},
+month = {December},
+pages = {394-408},
+title = {Wellbore stability study for the SAFOD borehole through the San Andreas Fault, SPE 102781},
+year = {2008},
+}
+
+@article{cz0701,
+author = {Colmenares, Lourdes B. and M. D. Zoback},
+journal = {American Association of Petroleum Geologists Bulletin},
+pages = {51-67},
+title = {Hydraulic fracturing and wellbore completion of coalbed methane (CBM) wells in the Powder River Basin, Wyoming: Implications for water and gas production},
+volume = {91},
+year = {2007},
+}
+
+@article{cz0702,
+author = {Chan, A. W. and M. D. Zoback},
+journal = {Journal of Coastal Research},
+title = {The Role of Hydrocarbon Production on Land Subsidence and Fault Reactivation in the Louisiana Coastal Zone},
+year = {2007},
+doi = {10.2112/05-0553,771-786},
+}
+
+@article{hsz07,
+author = {Hagin, P. and Sleep, N. H. and M. D. Zoback},
+journal = {Journal of Geophysical Research},
+title = {Application of rate-and-state friction laws to creep compaction of unconsolidated sand under hydrostatic loading conditions},
+volume = {112},
+year = {2007},
+doi = {10.1029/2006JB004286},
+}
+
+@article{hz07,
+author = {Hagin, P. and M. D. Zoback},
+journal = {Geophysics},
+number = {5},
+pages = {165-173},
+title = {A dual power law model for prediction and monitoring of long-term compaction in unconsolidated reservoir sands},
+volume = {72},
+year = {2007},
+}
+
+@book{z07,
+author = {Zoback, M. D.},
+note = {449 pp},
+publisher = {Cambridge Press},
+title = {Reservoir Geomechanics: Earth Stress and Rock Mechanics Applied to Exploration, Production and Wellbore Stability},
+year = {2007},
+}
+
+@article{sz07,
+author = {Sleep, N. H. and M. D. Zoback},
+journal = {Astrobiology},
+number = {6},
+title = {Did Earthquakes Keep the Early Crust Habitable?},
+volume = {7},
+year = {2007},
+doi = {10.1089/ast.2006.0091},
+}
+
+@article{wmzbihh07,
+author = {Wu, H-Y and K-f Ma and M. D. Zoback and N. Boness and H. Ito and J-h Hung and S. Hickman},
+journal = {Geophysics Research Letters},
+number = {L01303},
+title = {Stress orientations of Taiwan Chelungpu-Fault Drilling Project (TCDP) hole-A as observed from geophysical logs},
+volume = {34},
+year = {2007},
+}
+
+@article{fszm07,
+author = {Fernandez-Ibanez, F. and J. I. Soto and M. D. Zoback and J. Morales},
+journal = {Journal of Geophysical Research},
+number = {B08404},
+title = {Present-day stress field in the Gibraltar Arc (Western Mediterranean)},
+volume = {112},
+year = {2007},
+doi = {10.1029/2006JB004683},
+}
+
+@book{hkz07,
+address = {Heidelberg, Germany},
+editor = {Harms, U. and C. Koeberl and M. D. Zoback},
+note = {366 pp},
+publisher = {Springer-Verlag},
+title = {Continental Scientific Drilling},
+year = {2007},
+}
+
+@incollection{zhe07,
+address = {Amsterdam, Nederlands},
+author = {Zoback, M. D. and S. Hickman and W. Ellsworth},
+booktitle = {Earthquake Seismology - Treatise on Geophysics Vol. 4},
+editor = {H. Kanamori and G. Schubert},
+pages = {649-674},
+publisher = {Elsevier Ltd, Amsterdam},
+title = {The role of fault zone drilling},
+year = {2007},
+}
+
+@incollection{zz07,
+address = {Amsterdam, Nederlands},
+author = {Zoback, M. L. and Zoback, M. D.},
+booktitle = {Earthquake Seismology - Treatise on Geophysics Vol. 6},
+editor = {A. Watts and G. Schubert},
+pages = {253-274},
+publisher = {Elsevier Ltd.},
+title = {Lithosphere Stress and Deformation},
+year = {2007},
+}
+
+@article{czfs07,
+author = {Chiaramonte, L. and M. D. Zoback and J. Friedmann and V. Stamp},
+journal = {Environmental Geology},
+title = {Seal integrity and feasibility of CO2 sequestration in the Teapot Dome EOR pilot: geomechanical site characterization},
+year = {2007},
+doi = {DOI 10.1007/s00254-007-0948-7},
+}
+
+@article{mz0701,
+author = {Mallman, E. P. and M. D. Zoback},
+journal = {Journal of Coastal Research},
+title = {Subsidence in the Louisiana coastal zone due to hydrocarbon production},
+volume = {50},
+year = {2007},
+comment = {Special Issue},
+}
+
+@article{mz0702,
+author = {Mallman, E. P. and M. D. Zoback},
+journal = {Journal of Geophysical Research},
+number = {B03304},
+title = {Assessing elastic Coulomb stress transfer models using seismicity rates in southern California and southwestern Japan},
+volume = {112},
+year = {2007},
+doi = {10.1029/2005JB004076},
+}
+
+@article{czk06,
+author = {Chang, Chandong and M. D. Zoback and A. Khaksar},
+journal = {Journal of Petroleum Science and Engineering},
+pages = {223-237},
+title = {Rock strength and physical property measurements in sedimentary rocks},
+volume = {51},
+year = {2006},
+}
+
+@article{rrz06,
+author = {Ross, H. and R., Blakely and M. D. Zoback},
+journal = {Geophysics},
+number = {5},
+title = {Testing the utilization of aeromagnetic data for the determination of Curie depth},
+volume = {71},
+year = {2006},
+unidentified = {51-59},
+}
+
+@article{tz06,
+author = {Townend, J. and M. D. Zoback},
+journal = {Journal of Geophysical Research},
+number = {B03411},
+title = {Stress, strain and mountain-building in central Japan},
+volume = {111},
+year = {2006},
+}
+
+@article{bz0601,
+author = {Boness, Naomi L. and M. D. Zoback},
+journal = {Geophysics},
+number = {5},
+pages = {131-136},
+title = {A multi-scale study of the mechanisms controlling shear velocity anisotropy in the San Andreas Fault Observatory at Depth},
+volume = {71},
+year = {2006},
+}
+
+@article{bz0602,
+author = {Boness, Naomi L. and M. D. Zoback},
+journal = {Geology},
+pages = {825-828},
+title = {Mapping Stress and Structurally-Controlled Crustal Shear Velocity Anisotropy in California},
+volume = {34},
+year = {2006},
+}
+
+@article{lmr06,
+author = {Lucier, A and M. D. Zoback, N. Gupta and T. S. Ramakrishnan},
+journal = {Environmental Geology},
+number = {2},
+pages = {85-103},
+title = {Geomechanical aspects of CO2 sequestration in a deep saline reservoir in the Ohio River Valley region},
+volume = {13},
+year = {2006},
+}
+
+@inproceedings{pz06,
+address = {San Antonio, TX, USA},
+author = {Paul, P. and M. D. Zoback},
+booktitle = {SPE Annual Technical Conference and Exhibition held in San Antonio, Texas, U.S.A.},
+month = {September},
+publisher = {Society of Petroleum Engineers},
+title = {Wellbore Stability Study for the SAFOD Borehole through the San Andreas Fault: SPE 102781},
+year = {2006},
+}
+
+@incollection{cz05,
+author = {Colmenares, L. and M. D. Zoback},
+booktitle = {Special Publication of Wyoming Geological Survey, Report of Investigations 55},
+editor = {M. D. Zoback},
+note = {Chapter 6},
+pages = {127-157},
+title = {Geomechanics and the Effectiveness of Wellbore Completion Methods of Coalbed Methane (CBM) Wells in the Powder River Basin: Implications for Water and Gas Production},
+year = {2005},
+}
+
+@article{gz05,
+author = {Grollimund, B. and M. D. Zoback},
+journal = {AAPG Bull},
+pages = {275-279},
+title = {Impact of glacially-induced stress changes on fault seal integrity: Offshore Norway: Reply},
+volume = {89},
+year = {2005},
+}
+
+@techreport{z,
+author = {Zoback, M. D.},
+institution = {Wyoming State Geological Survey},
+note = {157 pages},
+title = {Western Resources Project Final Report-Produced Groundwater Associated with Coalbed Natural Gas Production in the Powder River Basin},
+year = {2005},
+}
+
+@article{tz04,
+author = {Townend, J. and M. D. Zoback},
+journal = {Geophysical Research Letters},
+number = {L15S11},
+title = {Regional tectonic stress near the San Andreas fault in central and southern California},
+volume = {31},
+year = {2004},
+}
+
+@article{czh04,
+author = {Chery, J. and M. D. Zoback and S. Hickman},
+journal = {Geophysical Research Letters},
+number = {15},
+pages = {L15S13},
+title = {A mechanical model of the San Andreas fault and SAFOD pilot hole stress measurements},
+volume = {31},
+year = {2004},
+}
+
+@article{bz0401,
+author = {Boness, N. and M. D. Zoback},
+journal = {Geophysical Research Letters},
+number = {15},
+pages = {L15S17},
+title = {Stress-induced seismic velocity anisotropy and physical properties in the SAFOD pilot hole in Parkfield, CA},
+volume = {31},
+year = {2004},
+}
+
+@article{hz0401,
+author = {Hagin, P. N. and M. D. Zoback},
+journal = {Geophysics},
+month = {May-June},
+number = {3},
+pages = {731-741},
+title = {Viscous deformation of unconsolidated reservoir sands (Part I): Time-dependent deformation, frequency dispersion and attenuation},
+volume = {69},
+year = {2004},
+}
+
+@article{hz0402,
+author = {Hagin, P. N. and M. D. Zoback},
+journal = {Geophysics},
+month = {May-June},
+number = {3},
+pages = {742-751},
+title = {Viscous deformation of unconsolidated reservoir sands (Part II): Linear viscoelastic models},
+volume = {69},
+year = {2004},
+}
+
+@article{z04,
+author = {Zoback, M. D.},
+journal = {The Washington Post},
+month = {January},
+pages = {B5},
+title = {Why must earthquakes be this devasting?},
+volume = {January 4th},
+year = {2004},
+comment = {in Outlook section},
+}
+
+@article{hz0403,
+author = {Hickman, S. and M. D. Zoback},
+journal = {Geophysical Research Letters},
+number = {12 & 15},
+title = {Stress orientations and magnitudes in the SAFOD pilot hole},
+volume = {31},
+year = {2004},
+}
+
+@inproceedings{hz0405,
+address = {Houston, TX, USA},
+author = {Hagin, P. N. and M. D. Zoback},
+booktitle = {Gulf Rocks 2004, the 6th North America Rock Mechanics Symposium (NARMS), June 5 - 9, 2004 , Houston, Texas},
+publisher = {American Rock Mechanics Association},
+title = {Viscoplastic deformation in unconsolidated reservoir sands (Part 1): Laboratory observations and time-dependent end cap models, 4-567},
+year = {2004},
+}
+
+@inproceedings{chz04,
+address = {Houston, TX, USA},
+author = {Chan, A. W. and P. N. Hagin and M. D. Zoback},
+booktitle = {Gulf Rocks 2004, the 6th North America Rock Mechanics Symposium (NARMS), June 5 - 9, 2004 , Houston, Texas},
+month = {June},
+publisher = {American Rock Mechanics Association},
+title = {Viscoplastic Deformation , Stress and Strain Paths in Unconsolidated Reservoir Sands (Part 2): Field Applications Using Dynamic DARS Analysis},
+year = {2004},
+}
+
+@inproceedings{bz0402,
+address = {Houston, Texas, USA},
+author = {Boness, N. and M. D. Zoback},
+booktitle = {Gulf Rocks 2004, the 6th North America Rock Mechanics Symposium (NARMS), June 5 - 9, 2004 , Houston, Texas},
+month = {June},
+publisher = {American Rock Mechanics Association},
+title = {Stress-induced seismic velocity anisotropy and physical properties in the SAFOD Pilot hole in Parkfield, CA, SPE/ARMS 04-540},
+year = {2004},
+}
+
+@article{hze04,
+author = {Hickman, S. and M. D. Zoback and W. Ellsworth},
+journal = {Geophysical Research Letters},
+number = {15},
+pages = {L12S01},
+title = {Introduction to special section: Preparing for the San Andreas Fault Observatory at Depth},
+volume = {31},
+year = {2004},
+}
+
+@inproceedings{hflz04,
+address = {Houston, TX, USA},
+author = {Hippler, S. and T. Finkbeiner and A. Lucier and M. D. Zoback},
+booktitle = {Gulf Rocks 2004, the 6th North America Rock Mechanics Symposium (NARMS), June 5 - 9, 2004 , Houston, Texas},
+month = {June},
+publisher = {American Rock Mechanics Association},
+title = {Controls on oil and gas distribution in over-pessured reservoirs, SPE/ARMS 04-568},
+year = {2004},
+}
+
+@incollection{czb03,
+address = {209},
+author = {Chanchani, S. K. and M. D. Zoback and C. Barton},
+booktitle = {Fracture and In-situ stress characterization of hydrocarbon reservoirs},
+editor = {M. Ameen},
+pages = {17-26},
+publisher = {Geological Society of London},
+title = {A case study of hydrocarbon transport along active faults and production-related stress changes in the Monterey formation, California},
+year = {2003},
+}
+
+@incollection{mpfz03,
+author = {Moos, D. and P. Peska and T. Finkbeiner and M. D. Zoback},
+booktitle = {Journal of Petroleum Science and Engineering, Vol. 38, Special Issue on Wellbore Stability},
+editor = {Bernt S. Aadnoy, and Seehong Ong},
+pages = {97-109},
+publisher = {Journal of Petroleum Science and Engineering},
+title = {Comprehensive wellbore stability analysis using quantitative risk assessment},
+year = {2003},
+}
+
+@incollection{bz03,
+author = {Barton, C. A. and M. D. Zoback},
+booktitle = {Geological Applications of Well Logs, AAPG Methods in Exploration, No. 13},
+editor = {M. Lovell and N. Parkinson},
+pages = {229-239},
+publisher = {American Association of Petroleum Geologists},
+title = {Wellbore Imaging Technologies Applied to Reservoir Geomechanics and Environmental Engineering},
+year = {2003},
+}
+
+@article{gz03,
+author = {Grollimund, B. and M. D. Zoback},
+journal = {AAPG Bulletin},
+number = {3},
+pages = {493-506},
+title = {Impact of glacially-induced stress changes on fault seal integrity offshore Norway},
+volume = {87},
+year = {2003},
+comment = {Davies, R., Handschy, J. eds},
+}
+
+@article{pezw03,
+author = {Prejean, S. and W. Ellsworth and M. D. Zoback and F. Waldhauser},
+journal = {Journal of Geophysical Research},
+number = {B12},
+pages = {ESE9-19},
+title = {Fault structure and kinematics of the Long Valley caldera region, CA, revealed by high-accuracy earthquake hypocenters and focal mechanism inversions},
+volume = {107},
+year = {2003},
+}
+
+@article{cz03,
+author = {Colmenares, L. and M. D. Zoback},
+journal = {Geology},
+pages = {721-724},
+title = {Stress field and seismotectonics of northern South America},
+volume = {31},
+year = {2003},
+}
+
+@article{cz02,
+author = {Colmenares, L. B. and M. D. Zoback},
+journal = {International Journal of Rock Mechanics and Mining Sciences},
+pages = {695-729},
+title = {A statistical evaluation of rock failure criteria constrained by polyaxial test data for five different rocks},
+volume = {39},
+year = {2002},
+}
+
+@article{cz0301,
+author = {Zoback, M.D., C.A. Barton, M. Brudy, D.A. Castillo, T. Finkbeiner, B.R. Grollimund, D. B. Moos, P. Peska, C.D. Ward, D.J. Wiprut},
+journal = {Internationall Journal of Rock Mechechanics and Mining Sciences},
+pages = {1049-1076},
+title = {Determination of stress orientation and magnitude in deep wells},
+volume = {40},
+year = {2003},
+}
+
+@incollection{zz0201,
+address = {Waltham, Massachusetts},
+author = {Zoback, M. D. and M. L. Zoback},
+booktitle = {Encyclopedia of Physical Science and Technology},
+note = {Chapter 16},
+pages = {143-154},
+publisher = {Academic Press},
+title = {Stress in the Earth's Lithosphere},
+year = {2002},
+}
+
+@article{fsfz02,
+author = {Flemings, P. and B. B. Stump and T. Finkbeiner and M. D. Zoback},
+journal = {American Journal of Science},
+pages = {827-855},
+title = {Overpressure and flow-focusing in the South Eugene Island field (offshore Louisiana): Theory, examples and implications},
+volume = {302},
+year = {2002},
+}
+
+@article{bz02,
+author = {Barton, C. A. and M. D. Zoback},
+journal = {SPE Reservoir Evaluation and Engineering},
+month = {June},
+number = {3},
+pages = {249-254},
+title = {Discrimination of Natural Fractures From Drilling-Induced Wellbore Failures in Wellbore Image Data--Implications for Reservoir Permeability, SPE 78599},
+volume = {5},
+year = {2002},
+}
+
+@incollection{wz02,
+address = {Elsevier, Amsterdam},
+author = {Wiprut, D. and M. D. Zoback},
+booktitle = {Special Publication No. 11},
+editor = {A. G. Koestler and R. Hunsdale},
+note = {263 pp},
+publisher = {Norwegian Petroleum Society (NPF)},
+title = {Fault reactivation, leakage potential, and hydrocarbon column heights in the northern North Sea Hydrocarbon Seal Quantification},
+year = {2002},
+}
+
+@article{ztg02,
+author = {Zoback, M. D. and J. Townend and B. Grollimund},
+journal = {International Geological Review},
+pages = {383-401},
+title = {Steady-state failure equilibrium and deformation of intraplate lithosphere},
+volume = {44},
+year = {2002},
+}
+
+@incollection{zz02,
+author = {Zoback, M. D. and M. L. Zoback},
+booktitle = {Handbook of Earthquake and Engineering Seismology},
+editor = {W. H. K. Lee},
+pages = {559-568},
+title = {State of Stress in Earth's Lithosphere},
+year = {2002},
+}
+
+@inproceedings{c02,
+address = {Irving, TX},
+author = {Chan, A. W. and Zoback},
+booktitle = {SPE/ISRM 78174, SPE/ISRM Rock Mechanics Conference, Irving, TX, 20-23 Oct. 2002},
+month = {October},
+publisher = {Society of Petroleum Engineers},
+title = {Deformation analysis in reservoir space (DARS): A simple formalism for prediction of reservoir deformation with depletion},
+year = {2002},
+}
+
+@article{fzfs01,
+author = {Finkbeiner, T. and M. D. Zoback and P. Flemings and B. Stump},
+journal = {AAPG Bulletin},
+number = {6},
+pages = {1007-1031},
+title = {Stress, pore pressure, and dynamically constrained hydrocarbon columns in the South Eugene Island 330 field, northern Gulf of Mexico},
+volume = {85},
+year = {2001},
+}
+
+@article{gzwa01,
+author = {Grollimund, B. and M. D. Zoback and D. J. Wiprut and L. Arnesen},
+journal = {Petrol Geoscience},
+pages = {173-180},
+title = {Regional synthesis of stress orientation, pore pressure and least principal stress data in the Norwegian sector of the North Sea},
+volume = {7},
+year = {2001},
+}
+
+@article{01,
+author = {Ito, T., M.D. Zoback and P. Peska},
+journal = {Petroleum Engineers Drilling and Completions},
+pages = {221-229},
+title = {Utilization of mud weights in excess of the least principal stress to stabilized wellbores: Theory and practical examples},
+volume = {16},
+year = {2001},
+}
+
+@article{tz0101,
+author = {Townend, J. and M. D. Zoback},
+journal = {Geological Society of London},
+pages = {13-21},
+title = {Implications of earthquake focal plane mechanisms for the frictional strength of the San Andreas fault},
+volume = {186},
+year = {2001},
+comment = {Special publication},
+}
+
+@article{zg01,
+author = {Zoback, M. D. and B. Grollimund},
+journal = {Earth and Planetary Sciences},
+pages = {23-33},
+title = {Impact of deglaciation on present-day intraplate seismicity in eastern North America and western Europe},
+volume = {333},
+year = {2001},
+}
+
+@article{czh01,
+author = {Chery, J. and M. D. Zoback and R. Hassani},
+journal = {Journal of Geophysical Research},
+pages = {22051-22061},
+title = {An integrated mechanical model of the San Andreas fault in central and northern California},
+volume = {106},
+year = {2001},
+}
+
+@article{zt01,
+author = {Zoback, M. D. and J. Townend},
+journal = {Tectonophysics},
+pages = {19-30},
+title = {Implications of hydrostatic pore pressures and high crustal strength for the deformation of intraplate lithosphere},
+volume = {336},
+year = {2001},
+}
+
+@inproceedings{zcz01,
+author = {M. D. Zoback and A. W. Chan and J. C. Zinke},
+booktitle = {The 38th U.S. Symposium on Rock Mechanics (USRMS), July 7 - 10, 2001 , Washington D.C.},
+pages = {157-163},
+title = {Production-induced normal faulting},
+year = {2001},
+}
+
+@article{zz01,
+author = {Zoback, M. D. and J. Zinke},
+journal = {Pure and Applied Geophysics},
+pages = {403-420},
+title = {Production-induced normal faulting in the Valhall and Ekofisk oil fields},
+volume = {159},
+year = {2001},
+}
+
+@article{gz01,
+author = {Grollimund, B. and M. D. Zoback},
+journal = {Geology},
+number = {2},
+pages = {175-178},
+title = {Did deglaciation trigger intraplate seismicity in the New Madrid seismic zone},
+volume = {29},
+year = {2001},
+}
+
+@inproceedings{cz01,
+address = {Balkema, Lisse, Netherlands, Wash. D.C.},
+author = {Colmenares, L. B. and M. D. Zoback},
+booktitle = {Proceedings of the 38th US Symposium on Rock Mechanics},
+pages = {1251-1258},
+title = {Statistical evaluation of six rock failure criteria constrained by polyaxial test data,},
+year = {2001},
+}
+
+@inproceedings{tz01,
+author = {Townend, J. and M. D. Zoback},
+booktitle = {Proceedings of the 3rd Conference on Tectonic Problems of the San Andreas fault system},
+editor = {Goetz Bokelmann and Robert Kovach},
+pages = {268-276},
+publisher = {Stanford university},
+title = {Focal mechanism stress inversions in southern California and the strength of the San Andreas fault},
+year = {2001},
+}
+
+@inproceedings{hzbbss00,
+author = {Hickman, S. H. and M. D. Zoback and C. A. Barton and R. Benoit and J. Svitek and R. Summers},
+booktitle = {Proceedings of the Twenty-fifth workshop on Geothermal Reservoir Engineering},
+note = {SGP-TR-165},
+publisher = {Stanford University},
+title = {Stress and permeability heterogeneity within the Dixie Valley geothermal reservoir: recent results from well 82-5},
+year = {2000},
+}
+
+@article{zz00,
+author = {Zinke, J. C. and M. D. Zoback},
+journal = {Bulletin of Seismic Society of America},
+pages = {1305-1312},
+title = {Structure-related and stress-induced shear wave velocity anisotropy: Observations from microearthquakes near the Calaveras fault in central California},
+volume = {90},
+year = {2000},
+}
+
+@article{wz0001,
+author = {Wiprut, D. and M. D. Zoback},
+journal = {International Journal of Rock Mechanics & Mining Science},
+pages = {317-336},
+title = {Constraining the full stress tensor in the Visund field, Norwegian North Sea: Application to wellbore stability and sand production},
+volume = {37},
+year = {2000},
+}
+
+@article{gz00,
+author = {Grollimund, B. and M. D. Zoback},
+journal = {Tectonophysics},
+pages = {61-81},
+title = {Post glacial lithospheric flexure and induced stresses and pore pressure changes in the northern North Sea},
+volume = {327},
+year = {2000},
+}
+
+@article{wz00,
+author = {Wiprut, D. and M. D. Zoback},
+journal = {Geology},
+number = {7},
+pages = {595-598},
+title = {Fault reactivation and fluid flow along a previously dormant normal fault in the Norwegian North Sea},
+volume = {28},
+year = {2000},
+}
+
+@article{iz00,
+author = {Ito, T. and M. D. Zoback},
+journal = {Geophysical Research Letters},
+pages = {1045-1048},
+title = {Fracture permeability and in situ stress to 7 km depth in the KTB scientific drillhole},
+volume = {27},
+year = {2000},
+}
+
+@article{tz00,
+author = {Townend, J. and M. D. Zoback},
+journal = {Geology},
+number = {5},
+pages = {399-402},
+title = {How faulting keeps the crust strong},
+volume = {28},
+year = {2000},
+}
+
+@article{z00,
+author = {Zoback, M. D.},
+journal = {Nature},
+pages = {31-32},
+title = {Strength of the San Andreas},
+volume = {405},
+year = {2000},
+}
+
+@inproceedings{izp99,
+author = {Ito, T. and M. D. Zoback and P. Peska},
+booktitle = {37th U.S. Rock Mechanics Symposium, Vail Colorado, June 6-9},
+editor = {B. Amadei, R.L. Kranz, G.A. Scott, P.H. Smeallie},
+pages = {253-259},
+publisher = {U.S. Rock Mechanics Symposium},
+title = {Utilization of mud weights in excess of the least principal stress in extreme drilling environments},
+year = {1999},
+}
+
+@inproceedings{wlzm99,
+address = {Caracas, Venezuela},
+author = {Willson, S. and N. C. Last and M. D. Zoback and D. Moos},
+booktitle = {1999 SPE Latin American and Caribbean Petroleum Engineering Conference},
+month = {April},
+publisher = {Society of Petroleum Engineers},
+title = {Drilling in South America: A wellbore stability approach for complex geologic conditions, SPE 53940},
+year = {1999},
+}
+
+@inproceedings{bz9901,
+address = {Tokyo, Japan},
+author = {Barton, C. A. and M. D. Zoback},
+booktitle = {Proceedings of the 4th SEG Japan International Symposium},
+month = {December},
+publisher = {Society of Economic Geologists},
+title = {Earth stress, rock fracture and wellbore failure - Wellbore imaging technologies applied to reservoir geomechanics and environmental engineering},
+year = {1999},
+}
+
+@article{lz99,
+author = {Lund, B. and M. D. Zoback},
+journal = {International Journal of Rock Mechanics},
+pages = {169-190},
+title = {State of stress to 7 km depth in the Siljan drill holes from observations of drilling-induced tensile wall fractures},
+volume = {36},
+year = {1999},
+}
+
+@article{bz99,
+author = {Brudy, M. and M. D. Zoback},
+journal = {International Journal of Rock Mechanics},
+pages = {191-215},
+title = {Drilling-induced tensile wall-fractures: Implications for determination of in-situ stress orientation and magnitude},
+volume = {36},
+year = {1999},
+}
+
+@inproceedings{mpz98,
+author = {Moos, D. and P. Peska and M. D. Zoback},
+booktitle = {SPE International Conference on Horizontal Well Technology},
+pages = {315-322},
+publisher = {Society of Petroleum Engineers},
+title = {Predicting the stability of horizontal wells and multi-laterals: the role of in situ stress and rock properties, SPE 50386},
+year = {1998},
+}
+
+@inproceedings{gza98,
+address = {Richardson, TX},
+author = {Grollimund, B. and M. D. Zoback and L. Arneson},
+booktitle = {SPE/ISRM Rock Mechanics in Petroleum Engineering},
+pages = {189-198},
+publisher = {Society of Petroleum Engineers},
+title = {Flexurally-induced stresses in the northern North Sea: preliminary comparison of observation and theory, SPE 47243},
+year = {1998},
+}
+
+@inproceedings{bhmzb98,
+address = {Richardson, TX},
+author = {Barton, C. and S. Hickman and R. Morin and M. D. Zoback and D. Benoit},
+booktitle = {SPE/ISRM Rock Mechanics in Petroleum Engineering},
+pages = {315-322},
+publisher = {Society of Petroleum Engineers},
+title = {Reservoir scale fracture permeability in the Dixie Valley, Nevada geothermal field, SPE 47371},
+year = {1998},
+}
+
+@inproceedings{wz98,
+address = {Richardson, TX},
+author = {Wiprut, D. and M. D. Zoback},
+booktitle = {SPE/ISRM Rock Mechanics in Petroleum Engineering},
+pages = {199-208},
+publisher = {Society of Petroleum Engineers},
+title = {High horizontal stress in the Visund field, Norwegian North Sea: Consequences for borehole stability and sand production},
+year = {1998},
+}
+
+@inproceedings{hzb98,
+address = {Richardson, TX},
+author = {Hickman, S. and M. D. Zoback and R. Benoit},
+booktitle = {SPE/ISRM Rock Mechanics in Petroleum Engineering},
+pages = {79-88},
+publisher = {Society of Petroleum Engineers},
+title = {Tectonic controls on fault-zone permeability in a geothermal reservoir at Dixie Valley, Nevada},
+year = {1998},
+}
+
+@incollection{pz98,
+address = {Brookfield, Vermont},
+author = {Peska, P. and M. D. Zoback},
+booktitle = {Mechanics of Jointed and Faulted Rock},
+editor = {H.P. Rossmanith, A.A. Balkema},
+pages = {331-337},
+title = {Drilling-induced tensile fractures: formation and constraints on the full stress tensor},
+year = {1998},
+}
+
+@inproceedings{fz98,
+address = {Richardson, TX},
+author = {Finkbeiner, T. and M. D. Zoback},
+booktitle = {SPE/ISRM Rock Mechanics in Petroleum Engineering},
+pages = {69-78},
+publisher = {Society of Petroleum Engineers},
+title = {In-situ stress and pore pressure in the South Eugene Island field, Gulf of Mexico},
+year = {1998},
+}
+
+@inproceedings{cz98,
+address = {Richardson, TX},
+author = {Chang, C. and M. D. Zoback},
+booktitle = {SPE/ISRM Rock Mechanics in Petroleum Engineering},
+pages = {465-474},
+publisher = {Society of Petroleum Engineers},
+title = {Viscous rheology and the state of stress in unconsolidated sands},
+year = {1998},
+}
+
+@article{dapz98,
+author = {Dholakia, S. K. and A. Aydin and D. Pollard and M. D. Zoback},
+journal = {AAPG Bulletin},
+pages = {1551-1574},
+title = {Development of fault-controlled hydrocarbon migration pathways in the Monterey formation, California},
+volume = {82},
+year = {1998},
+}
+
+@inproceedings{mzb97,
+address = {Richardson, TX},
+author = {Moos, D. and M. D. Zoback and L. Bailey},
+booktitle = {SPE Mid-Continent Operations Symposium held in Oklahoma City},
+publisher = {Society of Petroleum Engineers},
+title = {Feasibility study of the stability of openhole multilaterals, Cook inlet, Alaska, SPE 52186},
+year = {1997},
+}
+

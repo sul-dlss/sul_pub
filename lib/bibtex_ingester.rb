@@ -161,14 +161,14 @@ def process_record(record, author)
       pub = Publication.create(active: true, pub_hash: convert_bibtex_record_to_pub_hash(record, author))
       @total_new_pubs += 1
     #  puts pub.to_yaml
-      PublicationIdentifier.where( 
-                          :publication_id => pub.id,
-                          :identifier_type => 'SULPubId').
-                first_or_create(
-                          :certainty => 'confirmed',
-                          :identifier_type => 'SULPubId',
-                          :identifier_value => pub.id,
-                          :identifier_uri => "http://sulcap.stanford.edu/publications/#{pub.id}")
+    #  PublicationIdentifier.where( 
+    #                      :publication_id => pub.id,
+    #                      :identifier_type => 'SULPubId').
+    #            first_or_create(
+    #                      :certainty => 'confirmed',
+    #                      :identifier_type => 'SULPubId',
+    #                      :identifier_value => pub.id,
+    #                      :identifier_uri => "http://sulcap.stanford.edu/publications/#{pub.id}")
     end
     BatchUploadedSourceRecord.create(publication_id: pub.id).update_attributes(source_attrib_hash) 
     @batch_source_records_created_count += 1

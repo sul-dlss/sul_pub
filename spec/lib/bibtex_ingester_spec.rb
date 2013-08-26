@@ -41,7 +41,7 @@ describe BibtexIngester do
 	  it "creates new publication identifiers" do
 	  	
 	  	expect {bibtex_ingester.ingest_from_source_directory(Rails.root.join('fixtures', 'bibtex_for_batch').to_s)
-						}.to change(PublicationIdentifier, :count).by(6)
+						}.to change(PublicationIdentifier, :count).by(2)
 	  end
 	  it "creates new contributions" do
 	  	
@@ -85,12 +85,31 @@ describe BibtexIngester do
 	  	expect(PublicationIdentifier.exists?(identifier_type: 'doi', identifier_value: 8484848484)).to be_true
 	  end
 
-	  it "adds publication_identifier for sulpubid" do
+	  it "doesn't add publication_identifier for sulpubid" do
 	  	bibtex_ingester.ingest_from_source_directory(Rails.root.join('fixtures', 'bibtex_for_batch').to_s)
 	  	pub = Publication.where(title: 'Systematic Review: The Safety and Efficacy of Growth Hormone in the Healthy Elderly').first
 
-	  	expect(PublicationIdentifier.exists?(identifier_type: 'SULPubId', identifier_value: pub.id)).to be_true
+	  	expect(PublicationIdentifier.exists?(identifier_type: 'SULPubId', identifier_value: pub.id)).to be_false
 	  end
+
+	it "puts SULPubId into identifer part of pubhash" do
+	  	bibtex_ingester.ingest_from_source_directory(Rails.root.join('fixtures', 'bibtex_for_batch').to_s)
+	  	pub = Publication.where(title: 'Systematic Review: The Safety and Efficacy of Growth Hormone in the Healthy Elderly').first
+	  	expect(pub.pub_hash[:identifier].select {|k| k[:type] == 'SULPubId'}.first[:id]).to match(pub.id.to_s)	  	
+	  end
+
+it "puts DOI into identifer part of pubhash" do
+	  	bibtex_ingester.ingest_from_source_directory(Rails.root.join('fixtures', 'bibtex_for_batch').to_s)
+	  	pub = Publication.where(title: 'Quality of Life Assessment Designed for Computer Inexperienced Older Adults: Multimedia Utility Elicitation for Activities of Daily Living').first
+	  	expect(pub.pub_hash[:identifier].select {|k| k[:type] == 'doi'}.first[:id]).to match('8484848484')	  	
+	  end
+
+it "puts isbn into identifer part of pubhash" do
+	  	bibtex_ingester.ingest_from_source_directory(Rails.root.join('fixtures', 'bibtex_for_batch').to_s)
+	  	pub = Publication.where(title: 'Quality of Life Assessment Designed for Computer Inexperienced Older Adults: Multimedia Utility Elicitation for Activities of Daily Living').first
+	  	expect(pub.pub_hash[:identifier].select {|k| k[:type] == 'isbn'}.first[:id]).to match('3233333')	  	
+	  end
+
 
 	  context "when depuping by issn, year, pages" do
 	  	let!(:existing_matching_pub_issn) {create :publication, pmid: 3323434, pub_hash: {title: 'Quelque Titre', type: 'article', pmid: 3323434, year: 2002, pages: '295-299', issn: '234234', author: [{name: "Jackson, Joe"}], authorship:[{sul_author_id: 2222, status: "denied", visibility: "public", featured: true}]}}
@@ -104,7 +123,7 @@ describe BibtexIngester do
 		end
 		it "doesn't add duplicate publication identifiers" do
 	  		expect {bibtex_ingester.ingest_from_source_directory(Rails.root.join('fixtures', 'bibtex_for_batch').to_s)
-						}.to change(PublicationIdentifier, :count).by(3)
+						}.to change(PublicationIdentifier, :count).by(0)
 	  	end
 	  	it "doesn't duplicate existing publications" do
 	  		expect {bibtex_ingester.ingest_from_source_directory(Rails.root.join('fixtures', 'bibtex_for_batch').to_s)
@@ -123,7 +142,7 @@ describe BibtexIngester do
 		end
 		it "doesn't add duplicate publication identifiers" do
 	  		expect {bibtex_ingester.ingest_from_source_directory(Rails.root.join('fixtures', 'bibtex_for_batch').to_s)
-						}.to change(PublicationIdentifier, :count).by(3)
+						}.to change(PublicationIdentifier, :count).by(0)
 	  	end
 	  	it "doesn't duplicate existing publications" do  	
 	  		expect {bibtex_ingester.ingest_from_source_directory(Rails.root.join('fixtures', 'bibtex_for_batch').to_s)

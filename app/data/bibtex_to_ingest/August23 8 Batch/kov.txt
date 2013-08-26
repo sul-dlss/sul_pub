@@ -1,0 +1,142 @@
+@incollection{kgn10,
+author = {Kovach, R. L. and Grijalva, K. and Nur, A.},
+booktitle = {Ancient Earthquakes: Geological Society of America Special Paper 471},
+editor = {Sintubin, M. and Stewart, I.S. and Niemi, T.M. and Altunel, E.},
+pages = {119-127},
+publisher = {Geological Society of America},
+title = {Earthquakes and Civilizations of the Indus Valley: A Challenge for Archaeoseismology},
+year = {2010},
+doi = {10.1130/2010.2471},
+comment = {(11)},
+}
+
+@article{gkn06,
+author = {Grijalva, K. A. and R. L. Kovach and A. M. Nur},
+journal = {EOS, Transactions American Geophysical Union},
+number = {52},
+pages = {T51D-1553},
+title = {Evidence for Tectonic Activity during the Mature Harappan Civilization, 2600-1800 BCE},
+volume = {87},
+year = {2006},
+}
+
+@article{kn06,
+author = {Kovach, R. L. and A. Nur},
+journal = {EOS, Transactions American Geophysical Union},
+number = {32},
+pages = {317-318},
+title = {Earthquakes and Archaeology: Neo-catastrophism or Science?},
+volume = {87},
+year = {2006},
+}
+
+@book{k04,
+address = {England},
+author = {Kovach, R. L.},
+publisher = {Cambridge University Press},
+title = {Early Earthquakes of the Americas},
+year = {2004},
+comment = {280 pp},
+}
+
+@incollection{kb03,
+author = {Kovach, R. L. and G. C. Beroza},
+booktitle = {International Handbook of Earthquake & Engineering Seismology, Part B},
+editor = {W.H.K. Lee et al},
+publisher = {Academic Press},
+title = {History of Geophysics at Stanford},
+year = {2003},
+comment = {p. 1459 and accompanying CD-ROM},
+}
+
+@incollection{km03,
+address = {London},
+author = {Kovach, R. L. and B. McGuire},
+booktitle = {Philip's},
+pages = {256},
+publisher = {Octopus Publishing Group Ltd},
+title = {Guide to Global Hazards},
+year = {2003},
+}
+
+@article{bk03,
+author = {Bokelmann, G. and R. L. Kovach},
+journal = {Geophysical Research Letters},
+number = {8},
+pages = {1445},
+title = {Long Term Creep Changes and Their Causes},
+volume = {30},
+year = {2003},
+doi = {10.1029/2003GL017012},
+}
+
+@inproceedings{kg,
+author = {Kovach, R. L. and Garcia Jr., B. N. C.},
+booktitle = {Proceedings of the 35th Chacmool Conference, Apocalypse Then and Now},
+publisher = {University of Calgary},
+title = {Did Earthquakes Play a Role in the Demise of Maya Centers?},
+year = {2002},
+}
+
+@article{kc01,
+author = {Kovach, R. L. and C. F. Chyba},
+journal = {ICARUS},
+pages = {279-287},
+title = {Seismic Detectability of a Subsurface Ocean on Europa},
+volume = {150},
+year = {2001},
+}
+
+@inproceedings{be00,
+author = {Bokelmann, G. and R. L. Kovach (eds)},
+booktitle = {Proceedings of the 3rd Conference on Tectonic Problems of the San Andreas Fault System},
+pages = {402},
+publisher = {Stanford University Publications in Geological Sciences},
+title = {XXI},
+year = {2000},
+}
+
+@article{k9901,
+author = {Kovach, R. L.},
+journal = {Fatbrain},
+title = {Seismotectonics of the Death Valley region},
+volume = {14},
+year = {1999},
+url = {http://www.FATBRAIN.com/ematter/home.html},
+}
+
+@article{k9902,
+author = {Kovach, R. L.},
+journal = {Geotimes},
+number = {8},
+pages = {32-33},
+title = {Review of Furious Earth: The Science and Nature of Earthquakes, Volcanoes and Tsunamis by Ellen J Prager, McGraw Hill},
+volume = {45},
+year = {1999},
+}
+
+@inproceedings{cmcjk,
+author = {Chyba, C. F. and W. B. McKinnon and A. Coustenis and R. E. Johnson and R. L. Kovach},
+booktitle = {Proceedings, Lunar and Planetary Science},
+title = {Europa and Titan: Preliminary Recommendations of the Campaign Science Working Group on Prebiotic Chemistry in the Outer Solar System},
+year = {1999},
+}
+
+@book{k98,
+address = {Utah},
+author = {Kovach, R. L.},
+note = {175 pp},
+publisher = {Agreka Books},
+title = {Conflict with the Earth--Disasters and Human Affairs},
+year = {1998},
+}
+
+@incollection{pk96,
+author = {Page, B. and R. L. Kovach},
+booktitle = {USGS Open File Report 96-267, Towards Assessing the Seismic Risk Associated with Blind Faults},
+pages = {39-40},
+publisher = {USGS},
+title = {Estimates of Deformation Rates and Earthquake Recurrence Intervals, Stanford Area},
+year = {1996},
+}
+

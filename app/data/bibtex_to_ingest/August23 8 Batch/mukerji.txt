@@ -1,0 +1,1620 @@
+@article{mm13,
+author = {Mavko, G. and Mukerji, T.},
+journal = {Geophysics},
+pages = {L27-L35},
+title = {Estimating Brown-Korringa constants for fluid substitution in multimineralic rocks},
+volume = {78},
+year = {2013},
+}
+
+@article{acdghkkklmmmsssrwz01,
+author = {Andra, H. and Combaret, N. and Dvorkin, J. and Glatt, E. and Han, J. and Kabel, M. and Keehm, Y. and Krzkilla, F. and Lee, M. and Madonna, C. and Marsh, M. and Mukerji, T. and Saenger, E. H. and Sain, R. and Saxena, N. and Ricker, S. and Wiegmann, A. and Zhan, X.},
+journal = {Computers & Geosciences},
+pages = {33-43},
+title = {Digital rock physics benchmarks - Part II: Computing effective properties},
+volume = {50},
+year = {2013},
+}
+
+@article{acdghkkklmmmsssrwz02,
+author = {Andra, H. and Combaret, N. and Dvorkin, J. and Glatt, E. and Han, J. and Kabel, M. and Keehm, Y. and Krzkilla, F. and Lee, M. and Madonna, C. and Marsh, M. and Mukerji, T. and Saenger, E. H. and Sain, R. and Saxena, N. and Ricker, S. and Wiegmann, A. and Zhan, X.},
+journal = {Computers & Geosciences},
+pages = {25-32},
+title = {Digital rock physics benchmarks - Part I: Imaging and segmentation},
+volume = {50},
+year = {2013},
+}
+
+@article{tmk12,
+author = {Trainor-Guitton, W. and Mukerji, T. and Knight, R.},
+journal = {Stochastic Environmental Research and Risk Assessment},
+number = {1007},
+pages = {619-4},
+title = {A methodology for quantifying the value of spatial information for dynamic Earth problems},
+volume = {10},
+year = {2012},
+doi = {s00477-012-0},
+}
+
+@article{gmdm12,
+author = {Grana, D. and Mukerji, T. and Dvorkin, J. and Mavko, G.},
+journal = {Geophysics},
+pages = {M53-M72},
+title = {Stochastic inversion of facies from seismic data based on sequential simulations and probability perturbation method},
+volume = {77},
+year = {2012},
+}
+
+@inproceedings{sm12,
+author = {Suman, A. and Mukerji, T.},
+booktitle = {SPE Western Regional Meeting, Bakersfield},
+publisher = {Society of Petroleum Engineers},
+title = {Sensitivity analysis for joint inversion of production and time-lapse seismic data of Norne field},
+year = {2012},
+}
+
+@article{jmh12,
+author = {Jia, B. and Mukerji, T. and Hosford-Scheirer, A.},
+journal = {Geostatistics},
+title = {Linking geostatistics with basin and petroleum system modeling: Assessment of spatial uncertainties},
+year = {2012},
+comment = {Oslo},
+}
+
+@article{jmm12,
+author = {Jeong, C. and Mukerji, T. and Mariethoz, G.},
+journal = {Geostatistics},
+title = {Adaptive Spatial Resampling Applied to Seismic Inverse Modeling},
+year = {2012},
+comment = {Oslo},
+}
+
+@article{mtesm12,
+author = {Martinelli, G. and Tviberg, S. and Eidsvik, J. and Sinding-Larsen, R. and Mukerji, T.},
+journal = {Geostatistics},
+title = {Building {B}ayesian networks from basin modeling scenarios for decision making under geologic uncertainty},
+year = {2012},
+comment = {Oslo},
+}
+
+@inproceedings{gmdd12,
+address = {Dordrecht},
+author = {Grana, D. and Mukerji, T. and Dovera, L. and Della Rossa, E.},
+booktitle = {Geostatistics Oslo 2012},
+editor = {P. Abrahamsen et al.},
+publisher = {Springer Science},
+title = {Sequential Simulations of Mixed Discrete-Continuous Properties: Sequential {G}aussian Mixture Simulation},
+year = {2012},
+}
+
+@article{gpm12,
+author = {Grana, D. and Pirrone, M. and Mukerji, T.},
+journal = {Geophysics},
+pages = {WA45-WA63},
+title = {Quantitative log interpretation and uncertainty propagation of petrophysical properties and facies classification from rock-physics modeling and formation evaluation analysis},
+volume = {77},
+year = {2012},
+}
+
+@article{fmgs12,
+author = {Fernandez-Martinez, J. L. and Mukerji, T. and Gonzalo, E. G. and Suman, A.},
+journal = {Geophysics},
+pages = {M1-M16},
+title = {Reservoir characterization and inversion uncertainty via a family of Particle Swarm Optimizers},
+volume = {77},
+year = {2012},
+}
+
+@inproceedings{am12,
+author = {Suman A. and Mukerji, T.},
+booktitle = {SPE 153039 Western Regional Meeting},
+publisher = {Society of Petroleum Engineers},
+title = {Sensitivity analysis for joint inversion of production and time-lapse seismic data of Norne field},
+year = {2012},
+comment = {Bakersfield},
+}
+
+@article{hmdf11,
+author = {Hossain, Z. and Mukerji, T. and Dvorkin, J. and Fabricius, I.},
+journal = {Geophysics},
+number = {6},
+pages = {E199-E209},
+title = {Rock Physics model of glauconitic greensand from the North Sea},
+volume = {76},
+year = {2011},
+}
+
+@article{tcm11,
+author = {Trainor-Guitton, W. and Caers, J. and Mukerji, T.},
+journal = {Geosciences},
+pages = {929-949},
+title = {A methodology for establishing a data reliability measure for value of spatial information problems, Math},
+volume = {43},
+year = {2011},
+}
+
+@incollection{cd11,
+author = {Echeverria Ciaurri D., and Mukerji T., and Durlofsky, L. J.},
+booktitle = {Computational Optimization and Applications in Engineering and Industry},
+editor = {X.-S. Yang, and S. Koziel},
+publisher = {Springer-Verlag},
+title = {Derivative-free optimization for oil field operations},
+year = {2011},
+}
+
+@article{tflm11,
+author = {Tompkins, M. and Fernandez-Martinez, J.,Alumbaugh and D. L. and Mukerji, T.},
+journal = {Geophysics},
+pages = {F263-F281},
+title = {Scalable uncertainty estimation for nonlinear inverse problems using parameter reduction, constraint mapping, and geometric sampling: Marine controlled-source electromagnetic examples},
+volume = {76},
+year = {2011},
+}
+
+@article{fmgf11,
+author = {Fernandez-Martinez, J. L. and Mukerji, T. and Garcia-Gonzalo, E. G. and Fernandez-Muniz, F.},
+journal = {Mathematical and Computer Modelling},
+title = {Uncertainty assessment for inverse problems in high dimensional spaces using particle swarm optimization and model reduction techniques},
+year = {2011},
+doi = {10.1016/j.mcm.2011.07.009},
+}
+
+@article{hmf1101,
+author = {Hossain, Z. and Mukerji, T. and Fabricius, I. L},
+journal = {Geophysical Prospecting},
+number = {4},
+pages = {592-613},
+title = {Vp-Vs relationship and amplitude variation with offset modeling of glauconite greensand},
+volume = {60},
+year = {2011},
+}
+
+@article{sf,
+author = {Suman, A. and Fernandez-Martinez, J. L.,and Mukerji, T.},
+journal = {SEG Expanded Abstracts},
+pages = {4102-4108},
+title = {Joint inversion of time-lapse seismic and production data for Norne field},
+volume = {30},
+year = {2011},
+}
+
+@article{smm11,
+author = {Sain, R. and Mukerji, T. and Mavko, G.},
+journal = {SEG Expanded Abstracts},
+pages = {2200-2205},
+title = {Role of micro-heterogeneities on fabric, stress, and elastic anisotropy in granular media},
+volume = {30},
+year = {2011},
+}
+
+@article{hmf1102,
+author = {Hossain, Z. and Mukerji, T. and Fabricius, I. L.},
+journal = {SEG Expanded Abstracts},
+pages = {2177-2182},
+title = {Influence of pore fluid and frequency on elastic properties of greensand as interpreted using NMR data},
+volume = {30},
+year = {2011},
+}
+
+@article{gmd11,
+author = {Grana, D. and Mukerji, T. and Dvorkin, J.},
+journal = {SEG Expanded Abstracts},
+pages = {1769-1773},
+title = {Single loop inversion of facies from seismic data using sequential simulations and probability perturbation method},
+volume = {30},
+year = {2011},
+}
+
+@article{jmm11,
+author = {Jeong, C. and Mukerji, T. and Mariethoz, G.},
+journal = {SEG Expanded Abstracts},
+pages = {1764-1768},
+title = {Iterative spatial resampling applied to seismic inverse modeling for lithofacies prediction},
+volume = {30},
+year = {2011},
+}
+
+@article{bem10,
+author = {Bhattacharya, D. and Eidsvik, J. and Mukerji, T.},
+journal = {Mathematical Geosciences},
+pages = {141-163},
+title = {The value of information in spatial decision making},
+volume = {42},
+year = {2010},
+}
+
+@article{amm02,
+author = {Avseth, P. and Mukerji, T. and Mavko, G. and Dvorkin},
+journal = {Geophysics},
+pages = {75A31-75A47},
+title = {Rock-physics diagnostics of depositional texture, diagenetic alterations, and reservoir heterogeneity in high-porosity siliciclastic sediments and rocks -- A review of selected models and suggested work flows},
+volume = {75},
+year = {2010},
+}
+
+@article{mmg10,
+author = {Bosch M. and Mukerji, T. and Gonzalez, E.},
+journal = {Geophysics},
+pages = {75A165-75A176},
+title = {Seismic inversion for reservoir properties combining statistical rock physics and geostatistics: A review},
+volume = {75},
+year = {2010},
+}
+
+@article{fgez10,
+author = {Fernandez-Martinez, J. L. and Garcia Gonzalo, E. and Fernandez-Muniz, Z. and Mariethoz, G. and Mukerji, T.},
+journal = {Inte},
+pages = {27-48},
+title = {Posterior sampling using particle swarm optimizers and model reduction techniques},
+year = {2010},
+unidentified = {Journal of Applied Evolutionary Computing, 1},
+}
+
+@article{dcdt,
+author = {Dadashpour, M. and Echeverria Ciaurri and D., Mukerji and T., Kleppe},
+journal = {Journal of Geophysics and Engineering},
+pages = {351-368},
+title = {J., and Landro, M., 2010 A derivative-free approach for the estimation of porosity and permeability using time-lapse seismic and production data},
+volume = {7},
+year = {2010},
+}
+
+@incollection{ftma10,
+author = {Fernandez-Martınez, J. L. and Tompkins, M. and Mukerji, T. and Alumbaugh, D.},
+booktitle = {Combining Soft Computing and Statistical Methods in Data Analysis. Advances in Intelligent and Soft Computing, Vol. 77},
+pages = {247-254},
+publisher = {Springer-Verlag},
+title = {Geometric Sampling: an Approach to Uncertainty in High Dimensional Spaces},
+year = {2010},
+}
+
+@incollection{fmg10,
+author = {Fernandez-Martinez, J. L. and Mukerji, T. and Garcia-Gonzalo, E.},
+booktitle = {Swarm Intelligence, Lecture Notes in Computer Science vol. 6234},
+editor = {Dorigo, M. et al.},
+pages = {496-503},
+title = {Particle swarm optimization in high dimensional spaces},
+year = {2010},
+}
+
+@incollection{ftfm10,
+author = {Fernandez-Martinez, J. L. and Tompkins, M. and Fernandez-Muniz, Z. and Mukerji, T.},
+booktitle = {Combining Soft Computing and Statistical Methods in Data Analysis. Advances in Intelligent and Soft Computing vol. 77},
+editor = {Borgelt, C. and Gonzalez-Rodrıguez, G. and Trutschnig, W. and Lubiano, M. A. and Gil, M. A. and Grzegorzewski, P. and Hryniewicz, O.},
+pages = {255-262},
+publisher = {Springer-Verlag},
+title = {Inverse problems and model reduction techniques},
+year = {2010},
+}
+
+@article{fmgs10,
+author = {Fernandez-Martinez, J. L. and Mukerji, T. and Garcia-Gonzalo, E. and Suman, A.},
+journal = {SEG Expanded Abstracts},
+pages = {2334-2339},
+title = {Reservoir characterization and inversion uncertainty via a family of Particle Swarm Optimizers},
+volume = {29},
+year = {2010},
+}
+
+@article{hmdf10,
+author = {Hossain, Z. and Mukerji, T. and Dvorkin, J. and Fabricius, I. L.},
+journal = {SEG Expanded Abstracts},
+pages = {2416-2420},
+title = {Rock physics model of glauconitic greensand from the North Sea},
+volume = {29},
+year = {2010},
+}
+
+@article{smm10,
+author = {Sain, R. and Mavko, G. and Mukerji, T.},
+journal = {SEG Expanded Abstracts},
+pages = {2426-2430},
+title = {Role of contact heterogeneities on macroscopic elastic properties of granular media},
+volume = {29},
+year = {2010},
+}
+
+@article{dmm10,
+author = {Dutta, T. and Mukerji, T. and Mavko, G.},
+journal = {SEG Expanded Abstracts},
+pages = {2506-2511},
+title = {Predicting sorting and sand/shale ratio from seismic attributes by integrating sequence- stratigraphy and rock physics},
+volume = {29},
+year = {2010},
+}
+
+@article{tfma10,
+author = {Tompkins, M. J. and Fernandez-Martinez, J. L. and Mukerji, T. and Alumbaugh, D. L.},
+journal = {SEG Expanded Abstracts},
+pages = {3882-3887},
+title = {Scalable Nonlinear Inverse Uncertainty Estimation Using Model Reduction, Constraint Mapping, and Sparse Geometric Sampling},
+volume = {29},
+year = {2010},
+}
+
+@article{mgj09,
+author = {Mukerji, T. and Gomez, C. and Jia, B.},
+journal = {Geohorizons},
+month = {December},
+title = {Estimating low frequency spatial trends for reservoir characterization using multiscale data and models},
+year = {2009},
+}
+
+@incollection{em09,
+author = {Echeverría, D. and Mukerji, T.},
+booktitle = {18th World IMACS Congress and MODSIM09 International Congress on Modelling and Simulation},
+editor = {Anderssen, R. S. and R. D. Braddock and L. T. H. Newham},
+title = {A robust scheme for spatio-temporal inverse modeling of oil reservoirs},
+year = {2009},
+}
+
+@article{dmml09,
+author = {Dutta, T. and Mavko, G. and Mukerji, T. and Lane, T.},
+journal = {The Leading Edge},
+number = {590},
+title = {Compaction trends for shale and clean sandstone in shallow sediments, Gulf of Mexico},
+volume = {28},
+year = {2009},
+}
+
+@article{sbbmd09,
+author = {Stright, L. and Bernhardt, A. and Boucher, A. and Mukerji, T. and Derksen, R.},
+journal = {The Leading Edge},
+number = {1460},
+title = {Revisiting the use of seismic attributes as soft data for subseismic facies prediction: Proportions versus probabilities},
+volume = {28},
+year = {2009},
+}
+
+@book{mmd09,
+author = {Mavko, G. and Mukerji, T. and Dvorkin, J.},
+edition = {2nd},
+publisher = {Cambridge University Press},
+title = {The Rock Physics Handbook},
+year = {2009},
+}
+
+@article{mmg09,
+author = {Mukerji, T. and Mavko, G. and Gomez, C.},
+journal = {The Leading Edge},
+number = {94},
+title = {Cross-property rock physics relations for estimating low-frequency seismic impedance trends from electromagnetic resistivity data},
+volume = {28},
+year = {2009},
+}
+
+@inproceedings{pmra09,
+author = {Prasad, M. and Mukerji, T. and Reinstaedtler, M. and Arnold, W.},
+booktitle = {SPE Annual Technical Conference},
+publisher = {SPE 124840 New Orleans},
+title = {Acoustic signatures, impedance microstructure, textural scales, and anisotropy of kerogen-rich shale},
+year = {2009},
+}
+
+@article{dmm0901,
+author = {Dejtrakulwong, P. and Mukerji, T. and Mavko, G.},
+journal = {SEG Expanded Abstracts},
+pages = {1965-1969},
+title = {Investigating Thomas-Stieber model for property estimation of thin-bedded shaly-sand reservoirs},
+volume = {28},
+year = {2009},
+}
+
+@article{sm09,
+author = {Suman, A. and Mukerji, T.},
+journal = {SEG Expanded Abstracts},
+pages = {3909-3913},
+title = {Uncertainties in rock pore compressibility and effects on time lapse seismic modeling -- An application to Nome field},
+volume = {28},
+year = {2009},
+}
+
+@article{smm09,
+author = {Sain, R. and Mavko, G. and Mukerji, T.},
+journal = {SEG Expanded Abstracts},
+pages = {2105-2109},
+title = {Effect of diagenesis on elastic and transport properties using computational rock physics in realistic pore microstructure},
+volume = {28},
+year = {2009},
+}
+
+@article{mrb09,
+author = {Mukerji, T. and Routh, P. and Ball, V.},
+journal = {SEG Expanded Abstracts},
+pages = {2085-2089},
+title = {Statistical modeling of seismic reflectivities comparing Lévy stable and Gaussian mixture distributions},
+volume = {28},
+year = {2009},
+}
+
+@article{ems09,
+author = {Echeverria, D. and Mukerji, T. and Santos, E. T. F.},
+journal = {SEG Expanded Abstracts},
+pages = {2432-2436},
+title = {Robust scheme for inversion of seismic and production data for reservoir facies modeling},
+volume = {28},
+year = {2009},
+}
+
+@article{dmm0902,
+author = {Dutta, T. and Mavko, G. and Mukerji, T.},
+journal = {SEG Expanded Abstracts},
+pages = {1980-1984},
+title = {Improved granular medium model for unconsolidated sands using coordination number, porosity and pressure relations},
+volume = {28},
+year = {2009},
+}
+
+@article{gmm09,
+author = {Gomez, C. T. and Mukerji, T. and Mavko, G.},
+journal = {SEG Expanded Abstracts},
+pages = {2412-2416},
+title = {Seismic inversion using low-frequency seismic impedance trend computed from CSEM data},
+volume = {28},
+year = {2009},
+}
+
+@article{esm08,
+author = {Echeverria, D. and Santos, E. T. F. and Mukerji, T.},
+journal = {8th International Geostatistical Congress, Santiago, Chile},
+title = {Optimal updating of reservoir facies models by integrating seismic and production data},
+year = {2008},
+}
+
+@article{lm08,
+author = {Leiva, A. and Mukerji, T.},
+journal = {8th International Geostatistical Congress, Santiago, Chile},
+title = {Non Uniqueness and Uncertainties in the Training Image to Seismic Image Transform},
+year = {2008},
+}
+
+@article{dmm0801,
+author = {Dejtrakulwong, P. and Mukerji, T. and Mavko, G.},
+journal = {8th International Geostatistical Congress, Santiago, Chile},
+title = {Spectral Seismic signatures and uncertainties in petrophysical property estimation of thin sand-shale reservoirs},
+year = {2008},
+}
+
+@article{vmm0801,
+author = {Vanorio, T. and Mukerji, T. and Mavko, G.},
+journal = {The Leading Edge},
+number = {780},
+title = {Emerging methodologies to characterize the rock physics properties of organic-rich shales},
+volume = {27},
+year = {2008},
+}
+
+@article{ebm08,
+author = {Eidsvik, J. and Bhattacharjya, D. and Mukerji, T.},
+journal = {Geophysics},
+pages = {R59},
+title = {Value of information of seismic amplitude and CSEM resistivity},
+volume = {73},
+year = {2008},
+}
+
+@article{mm08,
+author = {Mukerji, T. and Mavko, G.},
+journal = {The Leading Edge},
+number = {382},
+title = {The flaw of averages and the pitfalls of ignoring variablity in attribute interpretations},
+volume = {27},
+year = {2008},
+}
+
+@article{gmm08,
+author = {Gonzalez, E. F. and Mukerji, T. and Mavko, G.},
+journal = {Geophysics},
+number = {1},
+pages = {R11-R21},
+title = {Seismic inversion combining rock physics and multiple-point geostatistics},
+volume = {73},
+year = {2008},
+}
+
+@article{ljm08,
+author = {Liu, Y. and Journel, A. and Mukerji, T.},
+journal = {SEG Expanded Abstracts},
+number = {3539},
+title = {Geostatistical travel-time tomography conditioned to well data},
+volume = {27},
+year = {2008},
+}
+
+@article{smm08,
+author = {Sain, R. and Mukerji, T. and Mavko, G.},
+journal = {SEG Expanded Abstracts},
+number = {1825},
+title = {Granular dynamics simulation for estimating elastic properties of loose unconsolidated frictional packs},
+volume = {27},
+year = {2008},
+}
+
+@article{rmm08,
+author = {Richa, R. and Mukerji, T. and Mavko, G.},
+journal = {SEG Expanded Abstracts},
+number = {1820},
+title = {Analyzing thresholds for 3D reconstruction of rock from CT-scan images},
+volume = {27},
+year = {2008},
+}
+
+@article{mmg08,
+author = {Mukerji, T. and Mavko, G. and Gomez, C.},
+journal = {SEG Expanded Abstracts},
+number = {1769},
+title = {Estimating low frequency seismic impedance from CSEM resistivity using cross-property rock physics relations},
+volume = {27},
+year = {2008},
+}
+
+@article{dmm0802,
+author = {Dutta, T. and Mukerji, T. and Mavko, G.},
+journal = {SEG Expanded Abstracts},
+number = {1675},
+title = {How does carbonate cementation in sandstones affect seismic response?},
+volume = {27},
+year = {2008},
+}
+
+@article{vmm0802,
+author = {Vanorio, T. and Mukerji, T. and Mavko, G.},
+journal = {SEG Expanded Abstracts},
+number = {1635},
+title = {Elastic anisotropy, maturity, and maceral microstructure in organic-rich shales},
+volume = {27},
+year = {2008},
+}
+
+@article{jmm0702,
+author = {Japsen, P. and Mukerji, T. and Mavko, G.},
+journal = {Geophysical Prospecting},
+pages = {135-154},
+title = {Constraints on velocity-depth trends from rock physics models},
+volume = {55},
+year = {2007},
+}
+
+@article{mp07,
+author = {Mukerji, T. and Prasad, M.},
+journal = {Acoustical Imaging},
+pages = {21-29},
+title = {Image Processing of Acoustic Microscopy Data to Estimate Textural Scales and Anistropy in Shales},
+volume = {28, part 1},
+year = {2007},
+}
+
+@article{dmm0701,
+author = {Dutta, T. and Mukerji, T. and Mavko, G.},
+journal = {The Leading Edge},
+pages = {870-874},
+title = {Rock physics modeling constrained by sequence stratigraphy},
+volume = {26},
+year = {2007},
+}
+
+@article{gfmmp0701,
+author = {Gommesen, L. and Fabricius, I. L. and Mukerji, T. and Mavko, G. and Pedersen, J. M.},
+journal = {Prosp},
+pages = {307-322},
+title = {Elastic behaviour of North Sea chalk: A well-log study, Geophys},
+volume = {55},
+year = {2007},
+}
+
+@article{smdm07,
+author = {Spikes, K. and Mukerji, T. and Dvorkin, J. and Mavko, G.},
+journal = {Geophysics},
+number = {5},
+pages = {R87-R97},
+title = {Probabilistic seismic inversion based on rock physics models},
+volume = {72},
+year = {2007},
+unidentified = {R87-R97},
+}
+
+@article{dmm0702,
+author = {Dutta, T. and Mukerji, T. and Mavko, G.},
+journal = {The Leading Edge},
+pages = {870-874},
+title = {Rock physics modeling constrained by sequence stratigraphy},
+volume = {26},
+year = {2007},
+}
+
+@article{gfmmp0702,
+author = {Gommesen, L. and Fabricius, I. L. and Mukerji, T. and Mavko, G. and Pedersen, J. M.},
+journal = {Geophysical Prospecting},
+pages = {307-322},
+title = {Elastic behaviour of North Sea chalk: A well-log study},
+volume = {55},
+year = {2007},
+}
+
+@article{jmm0701,
+author = {Japsen, P. and Mukerji, T. and Mavko, G.},
+journal = {Geophysical Prospecting},
+pages = {135-154},
+title = {Constraints on velocity-depth trends from rock physics models},
+volume = {55},
+year = {2007},
+}
+
+@incollection{amm01,
+author = {Avseth, P. and Mukerji, T. and Mavko, G. and Gonzalez},
+booktitle = {Subsurface Hydrology: Data Integration for Properties and Processes},
+editor = {D. W. Hyndman, F. D. Day-Lewis and K. Singha},
+note = {Monograph},
+publisher = {American Geophysical Union},
+title = {Integrating statistical rock physics and sedimentology for quantitative seismic interpretation},
+year = {2007},
+}
+
+@article{smmk07,
+author = {Sain, R. and Mukerji, T. and Mavko, G. and Keehm, Y.},
+journal = {Society of Exploration Geophysicists Abstracts},
+pages = {1669-1673},
+title = {Evolution of elastic properties and fabric tensor in a deposition model using granular dynamics simulation},
+volume = {26},
+year = {2007},
+}
+
+@article{dmm0703,
+author = {Dutta, T. and Mukerji, T. and Mavko, G.},
+journal = {Society of Exploration Geophysicists Abstracts},
+pages = {1674-1678},
+title = {Quantifying spatial trend of sediment parameters in channelized turbidite, West Africa},
+volume = {26},
+year = {2007},
+}
+
+@article{smd07,
+author = {Spikes, K. and Mukerji, T. and Dvorkin, J.},
+journal = {Society of Exploration Geophysicists Abstracts},
+pages = {1659-1663},
+title = {Stochastic rock-physics inversion for thickness, lithology, porosity, and saturation},
+volume = {26},
+year = {2007},
+}
+
+@article{ebm07,
+author = {Eidsvik, J. and Bhattacharjya, D. and Mukerji, T.},
+journal = {Society of Exploration Geophysicists Abstracts},
+pages = {1367-1371},
+title = {Estimating the value of information in spatial decision making for reservoir development},
+volume = {26},
+year = {2007},
+}
+
+@article{bm06,
+author = {Bhattacharjya, D. and Mukerji, T.},
+journal = {The Leading Edge},
+pages = {1236-1239},
+title = {Using influence diagrams to analyze decisions in 4D seismic reservoir monitoring},
+volume = {25},
+year = {2006},
+}
+
+@article{ksm06,
+author = {Keehm, Y. and Sternlof, K. and Mukerji, T.},
+journal = {Geosciences Journal},
+pages = {499-505},
+title = {Computational estimation of compaction band permeability in sandstone},
+volume = {10},
+year = {2006},
+}
+
+@article{wjm06,
+author = {Wu, J. and Journel, A. G. and Mukerji, T.},
+journal = {Journal of Canadian Petroleum Technology},
+month = {Nov},
+pages = {15-20},
+title = {Establishing spatial pattern correlations between water saturation time-lapse and seismic amplitude time-lapse},
+volume = {45},
+year = {2006},
+}
+
+@article{b06,
+author = {Bhattacharjya, D. and Mukerji, T. and Weyant, J},
+journal = {Society of Exploration Geophysicists Abstracts},
+pages = {3230-3234},
+title = {Optimal frequency of time-lapse seismic monitoring in geologic CO2 sequestration},
+volume = {25},
+year = {2006},
+}
+
+@article{dmma06,
+author = {Dutta, T. and Mukerji, T. and Mavko, G. and Avseth, P.},
+journal = {Society of Exploration Geophysicists Abstracts},
+pages = {1811-1815},
+title = {Reservoir quality prediction by integrating sequence stratigraphy and rock physics, Soc. of Expl},
+volume = {25},
+year = {2006},
+}
+
+@article{gmm06,
+author = {Gonzalez, E. and Mavko, G. and Mukerji, T.},
+journal = {Society of Exploration Geophysicists Abstracts},
+pages = {2047-2051},
+title = {Rock physics and multiple-point geostatistics for seismic inversion},
+volume = {25},
+year = {2006},
+}
+
+@article{ks,
+author = {Keehm., Y. and Sternlof, K. and Mukerji, T.},
+year = {2006},
+journal = {Society of Exploration Geophysicists Abstracts},
+pages = {1851-1855},
+title = {Flow properties of compaction bands in sandstone: Permeability estimation using computational rock physics method},
+volume = {25},
+}
+
+@article{ljm06,
+author = {Liu, Y. and Journel, A. G. and Mukerji, T.},
+journal = {Society of Exploration Geophysicists Abstracts},
+pages = {3320-3324},
+title = {Geostatistical cosimulation and downscaling conditioned to block data: Application to integrating VSP, travel-time tomography, and well data},
+volume = {25},
+year = {2006},
+}
+
+@article{mssau06,
+author = {Mukerji, T. and Singleton, S. and Schneider, M. and Ascanio, M. and Uden, R.},
+journal = {Society of Exploration Geophysicists Abstracts},
+pages = {1781-1785},
+title = {Monte Carlo AVO analysis for lithofacies classification},
+volume = {25},
+year = {2006},
+}
+
+@article{rmmk06,
+author = {Richa, R. and Mukerji, T. and Mavko, G. and Keehm, Y.},
+journal = {Society of Exploration Geophysicists Abstracts},
+pages = {1968-1972},
+title = {Image analysis and pattern recognition for porosity estimation from thin sections},
+volume = {25},
+year = {2006},
+}
+
+@article{wmm06,
+author = {Wolf, K. and Mukerji, T. and Mavko, G.},
+journal = {Society of Exploration Geophysicists Abstracts},
+pages = {1993-1997},
+title = {Attenuation and velocity dispersion modeling of bitumen saturated sand},
+volume = {25},
+year = {2006},
+}
+
+@article{bmm06,
+author = {Bandyopadhyay, K. and Mukerji, T. and Mavko, G.},
+journal = {AGU fall meeting, San Francisco},
+title = {Third Order Elastic Coefficients of Rocks},
+year = {2006},
+}
+
+@article{klm06,
+author = {Keehm., Y. and Lee, M. and Mukerji, T.},
+journal = {AGU fall meeting, San Francisco},
+title = {Reconstruction of 3D Pore Geometry From X-ray Microtomogram and Its Impact on Physical Property Simulations},
+year = {2006},
+}
+
+@book{amm05,
+author = {Avseth, P. and Mukerji, T. and Mavko, G.},
+publisher = {Cambridge University Press},
+title = {Quantitative Seismic Interpretation},
+year = {2005},
+}
+
+@article{sm05,
+author = {Sen, S. and Mukerji, T.},
+journal = {Journal of Non-Crystalline Solids},
+pages = {3361-3364},
+title = {Potential energy landscape of Li+ ions in lithium silicate glasses: Implications on ionic transport},
+volume = {351},
+year = {2005},
+}
+
+@article{srm05,
+author = {Sen, S. and Russell, C. A. and Mukerji, T.},
+journal = {Physical Review B},
+pages = {174205},
+title = {Point-charge calculation of quadrupolar parameters for bridging oxygen sites in vitreous silica: Structural implications},
+volume = {72},
+year = {2005},
+}
+
+@incollection{wmj0501,
+address = {Dordrecht, Netherland},
+author = {Wu, J. and Mukerji, T. and Journel, A.},
+booktitle = {Geostatistics Banff 2004},
+editor = {Leuangthong and Deutsch},
+pages = {671-680},
+publisher = {Springer Publication},
+title = {Prediction of Spatial Patterns of Saturation Time-Lapse from Time-Lapse Seismic},
+year = {2005},
+}
+
+@incollection{b,
+address = {Society of Exploration Geophysicists},
+author = {Bachrach, R., and Mukerji, T.},
+booktitle = {Near-Surface Geophysics},
+editor = {D. K. Butler},
+publisher = {Socie},
+title = {Analysis of 3D High-Resolution Seismic Reflection and Crosswell Radar Tomography for Aquifer Characterization: A Case Study},
+year = {2005},
+}
+
+@article{bmm05,
+author = {Bandyopadhyay, K. and Mukerji, T. and Mavko, G.},
+journal = {AGU fall meeting, San Francisco},
+title = {Seismic Signatures of Fractures in Bombay High Basement},
+year = {2005},
+}
+
+@article{mm05,
+author = {Mukerji, T. and Mavko, G.},
+journal = {75th Annual International Meeting: Society of Exploration Geophysicists},
+pages = {747-750},
+title = {The flaw of averages and the pitfalls of ignoring variability in rock physics interpretation, 75th Ann},
+year = {2005},
+}
+
+@article{bm05,
+author = {Bhattacharjya, D. and Mukerji, T.},
+journal = {75th Annual International Meeting: Society of Exploration Geophysicists},
+pages = {2496-2499},
+title = {Using influence diagrams to analyze decisions in 4-D seismic reservoir monitoring},
+year = {2005},
+}
+
+@article{gmm05,
+author = {Gonzalez, E. F. and Mukerji, T. and Mavko, G.},
+journal = {75th Annual International Meeting: Society of Exploration Geophysicists},
+pages = {242-245},
+title = {Automatic detection of data inconsistencies for AVA analysis: Bootstrap and LMS regression, 75th Ann},
+year = {2005},
+}
+
+@article{kmn05,
+author = {Keehm, Y. and Mukerji, T. and Nur, A.},
+journal = {67th Meeting: European Association of Geoscientists and Engineers},
+title = {Transport Properties of Partially-Saturated Rocks -- Digital Rock Approach},
+volume = {HO38},
+year = {2005},
+}
+
+@article{wmj0502,
+author = {Wu, J. and Mukerji, T. and Journel, A. G.},
+journal = {SPE Annual Technical Conference, Dallas 95125},
+title = {Improving water saturation prediction with 4D seismic},
+year = {2005},
+}
+
+@book{rmkm05,
+author = {Richa, R. and Mukerji, T. and Keehm, Y. and Mavko, G.},
+title = {Image Analysis And Pattern Recognition For Porosity Estimation From Thin Sections},
+volume = {AGU fall meeting San Francisco},
+year = {2005},
+publisher = {unknown},
+}
+
+@article{bm0401,
+author = {Bachrach, R. and Mukerji, T.},
+journal = {Geophysics},
+pages = {1513-1520},
+title = {The effect of texture and porosity on seismic reflection amplitude in granular sediments: Theory and examples from a high-resolution shallow seismic experiment},
+volume = {69},
+year = {2004},
+}
+
+@article{bm0402,
+author = {Bachrach, R. and Mukerji, T.},
+journal = {Geophysics},
+pages = {1443-1455},
+title = {Portable dense geophone array for shallow and very shallow 3D seismic reflection surveying--''Part 1: Data acquisition, quality control, and processing},
+volume = {69},
+year = {2004},
+}
+
+@article{bm0403,
+author = {Bachrach, R. and Mukerji, T.},
+journal = {Geophysics},
+pages = {1456-1469},
+title = {Portable dense geophone array for shallow and very shallow 3D seismic reflection surveying--''Part II: 3D imaging tests},
+volume = {69},
+year = {2004},
+}
+
+@article{egm04,
+author = {Eidsvik, J. and Gonzalez, E. and Mukerji, T.},
+journal = {Geostatistics Banff},
+pages = {737-742},
+title = {Hidden Markov chains for identifying geological features from seismic data, Quantitative Geology and Geostatistics},
+volume = {14},
+year = {2004},
+}
+
+@article{eaomm04,
+author = {Eidsvik, J. and Avseth, P. and Omre, H. and Mukerji, T. and Mavko, G.},
+journal = {Geophysics},
+pages = {978-993},
+title = {Stochastic reservoir characterization using prestack seismic data},
+volume = {69},
+year = {2004},
+}
+
+@article{ems04,
+author = {Eidsvik, J. and Mukerji, T. and Switzer, P.},
+journal = {Mathematical Geology},
+pages = {379-397},
+title = {Estimation of Geological Attributes from a Well Log: An Application of Hidden Markov Chains},
+volume = {36},
+year = {2004},
+}
+
+@article{kmn04,
+author = {Keehm, Y. and Mukerji, T. and Nur, A.},
+journal = {Geophysical Research Letters},
+pages = {28-31},
+title = {Permeability prediction from thin sections: 3D reconstruction and Lattice-Boltzmann flow simulations},
+volume = {31},
+year = {2004},
+}
+
+@article{km04,
+author = {Keehm, Y. and Mukerji, T.},
+journal = {74th Annual International Meeting: Society of Exploration Geophysicists},
+pages = {1654-1657},
+title = {Permeability and relative permeability from digital rocks: Issues on grid resolution and representative elementary volume, 74th Ann},
+year = {2004},
+}
+
+@article{gmm04,
+author = {Gonzalez, E. F. and Mavko, G. and Mukerji, T.},
+journal = {74th Annual International Meeting: Society of Exploration Geophysicists},
+pages = {1782-1785},
+title = {A practical procedure for P-to-S ``elastic'' impedance (PSEI) inversion: Well log and synthetic seismic examples for identifying partial gas saturations},
+year = {2004},
+}
+
+@article{wmj04,
+author = {Wu, J. and Mukerji, T. and Journel, A. G.},
+journal = {74th Annual International Meeting: Society of Exploration Geophysicists},
+pages = {2235-2238},
+title = {Establishing spatial pattern correlation for interpreting time-lapse seismic amplitudes},
+year = {2004},
+}
+
+@article{ahmu04,
+author = {Akintunde, O. M and J. Harris and T. Mukerji and J. Urban.},
+journal = {American Association of Petroleum Geologists (AAPG) Annual Meeting Bulletin},
+number = {13},
+title = {A feasibility study for CO2monitoring in Coal Bed Methane, Expanded Abstracts},
+volume = {88},
+year = {2004},
+}
+
+@article{bmh03,
+author = {Bergbauer, S. and Mukerji, T. and Hennings, P.},
+journal = {AAPG Bulletin},
+pages = {1255-1272},
+title = {Improving curvature analyses of deformed horizons using scale-dependent filtering techniques},
+volume = {87},
+year = {2003},
+}
+
+@article{smm03,
+author = {Sengupta, M. and Mavko, G. and Mukerji, T.},
+journal = {Geophysics},
+pages = {803-814},
+title = {Quantifying subresolution saturation scales from time-lapse seismic data: A reservoir monitoring case study},
+volume = {68},
+year = {2003},
+}
+
+@article{igmstg03,
+author = {Iooss, B. and Geraets, D. and Mukerji, T. and Samuelides, Y. and Touati, M. and Galli, A.},
+journal = {Geophysics},
+pages = {1714-1730},
+title = {Inferring the statistical distribution of velocity heterogeneities by statistical traveltime tomography},
+volume = {68},
+year = {2003},
+}
+
+@article{gmmm0301,
+author = {Gonzalez, E. and Mukerji, T. and Mavko, G. and Michelena, R.},
+journal = {The Leading Edge},
+pages = {1012-1015},
+title = {Near and far offset P-to-S elastic impedance for discriminating fizz water from commercial gas},
+volume = {22},
+year = {2003},
+}
+
+@article{kmpn03,
+author = {Keehm, Y. and Mukerji, T. and Prasad, M. and Nur, A.},
+journal = {73rd Annual International Meeting: Society of Exploration Geophysicists},
+pages = {1668-1671},
+title = {Permeability prediction from thin sections using the Lattice-Boltzmann flow simulation},
+year = {2003},
+}
+
+@article{gmmm0302,
+author = {Gonzalez, E. and Mukerji, T. and Mavko, G. and Michelena, R.},
+journal = {73rd Annual International Meeting: Society of Exploration Geophysicists},
+pages = {1446-1449},
+title = {Far offset P-to-S "elastic impedance" for lithology and partial gas saturation (fizz water) identification: Applications with well logs},
+year = {2003},
+}
+
+@article{pm03,
+author = {Prasad, M. and Mukerji, T.},
+journal = {73rd Annual International Meeting: Society of Exploration Geophysicists},
+pages = {1648-1651},
+title = {Analysis of microstructural textures and wave propagation characteristics in shales},
+year = {2003},
+}
+
+@article{vmmp03,
+author = {Vega, S. and Mukerji, T. and Mavko, G. and Prasad, M.},
+journal = {73rd Annual International Meeting: Society of Exploration Geophysicists},
+pages = {1219-1222},
+title = {Stratification in loose sediments and its seismic signature},
+year = {2003},
+}
+
+@article{am02,
+author = {Avseth, P. and Mukerji, T.},
+journal = {Petrophysics},
+pages = {70-81},
+title = {Seismic lithofacies classification from well logs using statistical rock physics},
+volume = {43},
+year = {2002},
+}
+
+@article{dmpd02,
+author = {Dutta, N. and Mukerji, T. and Prasad, M. and Dvorkin, J.},
+journal = {Recorder},
+number = {7},
+pages = {58-73},
+title = {Seismic detection and estimation of overpressures Part II: Field applications},
+volume = {27},
+year = {2002},
+}
+
+@article{eomma02,
+author = {Eidsvik, J. and Omre, H. and Mukerji, T. and Mavko, G. and Avseth, P.},
+journal = {The Leading Edge},
+pages = {290-294},
+title = {Seismic reservoir prediction using Bayesian integration of rock physics and Markov random fields; a North Sea example},
+volume = {21},
+year = {2002},
+}
+
+@article{kmsnnd02,
+author = {Kark, S. and Mukerji, T. and Safriel, U. N. and Noy-Meir, I. and Nissani, R. and Darvasi, A.},
+journal = {J. Animal Ecology},
+pages = {1015-1029},
+title = {Peak Phenotypic Diversity in an Ecotone Unveiled using a Novel Estimator in a Dependent Sample (EDS)},
+volume = {71},
+year = {2002},
+}
+
+@article{gmmf02,
+author = {Gommesen, L. and Mavko, G. and Mukerji, T. and Fabricus, I.},
+journal = {SEG International Meeting Exp. Abstracts},
+title = {Fluid substitution studies for North Sea chalk logging data},
+year = {2002},
+}
+
+@article{bm02,
+author = {Bachrach, R. and Mukerji, T.},
+journal = {SEG International Meeting Exp. Abstracts},
+title = {Some formal aspects and examples of 3D near surface imaging with dense receiver array as an approximate acoustical lens},
+year = {2002},
+}
+
+@article{knm02,
+author = {Keehm, Y. and Nur, A. and Mukerji, T.},
+journal = {SEG International Meeting Exp. Abstracts},
+title = {Efficient parallel implementation of two-phase Lattice-Boltzmann flow simulation},
+year = {2002},
+}
+
+@article{mgchm02,
+author = {Mukerji, T. and Gonzalez, E. and Cobos, C. and Hung, E. and Mavko, G.},
+journal = {SEG International Meeting Exp. Abstracts},
+title = {Understanding amplitude anomalies and pitfalls in offshore Venezuela: Quantifying the effects of geologic heterogeneities using statistical rock physics},
+year = {2002},
+}
+
+@article{ems02,
+author = {Eidsvik, J. and Mukerji, T. and Switzer, P.},
+journal = {SEG International Meeting Exp. Abstracts},
+title = {Modeling lithofacies alternations from well logs using Hierarchical {M}arkov Chains},
+year = {2002},
+}
+
+@article{sfmm02,
+author = {Sava, D. and Florez, J. and Mukerji, T. and Mavko, G.},
+journal = {SEG International Meeting Exp. Abstracts},
+title = {Seismic Fracture Characterization Using Statistical Rock Physics: James Lime Reservoir, Neuville Field},
+year = {2002},
+}
+
+@article{sfmm02_01,
+author = {Mukerji, T. and Dutta, N. and Prasad, M. and Dvorkin, J.},
+year = {2002}, 
+title = {Seismic detection and estimation of overpressures Part I: The Rock Physics Basis}, 
+journal = {Recorder},
+volume = {27},
+number = {7},
+pages = {34-57},
+}
+
+@article{sm01,
+author = {Sen, S. and Mukerji, T.},
+journal = {Journal of Non-Crystalline Solids},
+pages = {268-278},
+title = {A molecular dynamics simulation study of ionic diffusion and NMR spin-lattice relaxation in Li2Si04 glass},
+volume = {293-295},
+year = {2001},
+}
+
+@article{ammt01,
+author = {Avseth, P. and Mukerji, T. and Mavko, G. and Tyssekvam, J.},
+journal = {The Leading Edge},
+pages = {429-434},
+title = {Rock physics and AVO analysis for lithofacies and pore fluid prediction in a North Sea oil field},
+volume = {20},
+year = {2001},
+}
+
+@article{cam01,
+author = {Caers, J. and Avseth, P. and Mukerji, T.},
+journal = {The Leading Edge},
+pages = {308-312},
+title = {Geostatistical integration of rock physics, seismic amplitudes, and geologic models in North Sea turbidite systems},
+volume = {20},
+year = {2001},
+}
+
+@article{mamtg01,
+author = {Mukerji, T. and Avseth, P. and Mavko, G. and Takahashi, I. and Gonzalez, E.},
+journal = {The Leading Edge},
+pages = {313-319},
+title = {Statistical rock physics; combining rock physics, information theory, and geostatistics to reduce uncertainty in seismic reservoir characterization},
+volume = {20},
+year = {2001},
+}
+
+@article{kmn01,
+author = {Keehm, Y. and Mukerji, T. and Nur, A.},
+pages = {180-183},
+title = {Computational rock physics at the pore scale; transport properties and and diagenesis in realistic pore geometries},
+volume = {20},
+year = {2001},
+journal = {The Leading Edge},
+}
+
+@article{bm0101,
+author = {Bachrach, R. and Mukerji, T.},
+journal = {Geophysical Research Letters},
+pages = {45-48},
+title = {Fast 3D ultra shallow seismic reflection imaging using portable geophone mount},
+volume = {28},
+year = {2001},
+}
+
+@article{mjamg01,
+author = {Mukerji, T. and Jorstad, A. and Avseth, P. and Mavko, G. and Granli, J. R.},
+journal = {Geophysics},
+pages = {988-1001},
+title = {Mapping lithofacies and pore fluid probabilities in a North Sea reservoir: Seismic inversions and statistical rock physics},
+volume = {66},
+year = {2001},
+}
+
+@article{amjmv01,
+author = {Avseth, P. and Mukerji, T. and Jorstad, A. and Mavko, G. and Veggeland, T.},
+journal = {Geophysics},
+pages = {1157-1176},
+title = {Seismic reservoir mapping from 3-D AVO in a North Sea turbidite system},
+volume = {66},
+year = {2001},
+}
+
+@article{smfm01,
+author = {Sava, D. and Mukerji, T. and Florez, J. and Mavko, G.},
+journal = {SEG International Meeting Exp. Abstracts},
+title = {Rock Physics analysis and fracture modeling of the San Andres reservoir},
+year = {2001},
+}
+
+@article{amdm01,
+author = {Avseth, P. and Mavko, G. and Dvorkin, J. and Mukerji, T.},
+journal = {SEG International Meeting Exp. Abstracts},
+title = {Rock physics and seismic properties of sands and shales as a function of burial depth},
+year = {2001},
+}
+
+@article{gmm01,
+author = {Gonzalez, E. and Mukerji, T. and Mavko, G.},
+journal = {SEG International Meeting Exp. Abstracts},
+title = {AVO signatures of Eastern Venezuela gas sands: feasibility and uncertainty estimation},
+year = {2001},
+}
+
+@article{bm0102,
+author = {Bachrach, R. and Mukerji, T.},
+journal = {SEG International Meeting Exp. Abstracts},
+title = {Cost effective near surface 3-D seismic imaging in heterogeneous subsurface using portable geophone array and a laptop},
+year = {2001},
+}
+
+@article{bm0103,
+author = {Bachrach, R. and Mukerji, T.},
+journal = {SEG International Meeting Exp. Abstracts},
+title = {3-D seismic imaging of near surface buried pipe via pre-stack dynamic focusing and a portable geophone array},
+year = {2001},
+}
+
+@article{knm01,
+author = {Keehm, Y. and Nur, A. and Mukerji, T.},
+journal = {SEG International Meeting Exp. Abstracts},
+title = {Two-phase flow in complex porous media using Lattice-Boltzmann method},
+year = {2001},
+}
+
+@article{gmm00,
+author = {Gonzalez, E. and Mukerji, T. and Mavko, G.},
+journal = {SEG International Meeting Exp. Abstracts},
+title = {Facies clasification using P-to-P and P-to-S AVO attributes},
+year = {2000},
+}
+
+@article{mtgm00,
+author = {Mukerji, T. and Takahasji, I. and Gonzalez, E. and Mavko, G.},
+journal = {SEG International Meeting Exp. Abstracts},
+title = {Rock physics diagnostics and modeling of P-P and P-S seismic attributes in the Alba Field},
+year = {2000},
+}
+
+@article{smm00,
+author = {Sengupta, M. and Mavko, G. and Mukerji, T.},
+journal = {SEG International Meeting Exp. Abstracts},
+title = {Integrating time-lapse seismic and flow simulation to map saturation changes: A reservoir monitoring case study},
+year = {2000},
+}
+
+@article{tmm00,
+author = {Takahashi, I. and Mukerji, T. and Mavko, G.},
+journal = {SEG International Meeting Exp. Abstracts},
+title = {Vp/Vs relations of sandstones and carbonates: Their implication about the pore structures},
+year = {2000},
+}
+
+@article{smdg00,
+author = {Sava, D. and Mukerji, T. and Diaz, M. and Mavko G.},
+journal = {SEG International Meeting Exp. Abstracts},
+title = {Seismic detection of pore fluids: Pitfalls of ignoring anisotropy},
+year = {2000},
+}
+
+@article{kmn00,
+author = {Keehm, Y. and Mukerji, T. and Nur, A.},
+journal = {SEG International Meeting Exp. Abstracts},
+title = {Flow-limited diagenesis and transport properties of porous media using the Lattice-Boltzmann method},
+year = {2000},
+}
+
+@article{jmm99,
+author = {Jorstad, A. and Mukerji, T. and Mavko, G.},
+journal = {Geophysical Prospecting},
+pages = {785-797},
+title = {Model-based shear-wave velocity estimation versus empirical regressions},
+volume = {47},
+year = {1999},
+}
+
+@article{ymjm99,
+author = {Yao, T. and Mukerji, T. and Journel, A. and Mavko, G.},
+journal = {Mathematical Geology},
+pages = {23-46},
+title = {Scale matching with factorial kriging for improved porosity estimation from seismic data},
+volume = {31},
+year = {1999},
+}
+
+@article{sm99,
+author = {Sen, S. and Mukerji, T.},
+journal = {Journal of Non-Crystalline Solids},
+pages = {229-239},
+title = {A generalized classical nucleation theory for rough interfaces: application in the analysis of homogeneous nucleation in silicate liquids},
+volume = {246},
+year = {1999},
+}
+
+@article{amt,
+author = {Avseth, P.; Mavko and G.; Mukerji and T.; Tyssekvam},
+journal = {SEG International Meeting Exp. Abstracts},
+title = {Integrating seismic lithofacies prediction and depositional geometry analysis for reservoir delineation in a North Sea turbidite field, SEG Intl},
+year = {1999},
+}
+
+@article{tm0101,
+author = {Takahashi, I. and Mavko, G. and Mukerji, T.},
+journal = {SEG International Meeting Exp. Abstracts},
+title = {A strategy to select optimal seismic attributes for reservoir property estimation: Application of information theory},
+year = {1999},
+}
+
+@article{gm,
+author = {Gonzalez, E. and Mavko, G. and Mukerji, T.},
+journal = {SEG International Meeting Exp. Abstracts},
+title = {Discriminating seismic signatures of steam injection from lithology variations: Feasibility study in a Venezuela heavy oil reservoir},
+year = {1999},
+}
+
+@article{tm0102,
+author = {Takahashi, I. and Mavko, G. and Mukerji, T.},
+journal = {SEG International Meeting Exp. Abstracts},
+title = {Effect of thin-layering on seismic reflectivity: Estimation of sand/shale ratio using stochastic simulation and Bayes' inversion},
+year = {1999},
+}
+
+@book{mmd98,
+author = {Mavko, G. and Mukerji, T. and Dvorkin, J.},
+edition = {1st},
+publisher = {Cambridge University Press},
+title = {The Rock Physics Handbook},
+year = {1998},
+}
+
+@article{bmmrldgt98,
+author = {Biondi, B. and Mavko, G. and Mukerji, T. and Rickett, J. and Lumley, D. and Deutsch, C. and Gundeso, R. and Thiele, M.},
+journal = {The leading Edge},
+pages = {1404-1414},
+title = {Reservoir monitoring; a multidisciplinary feasibility study},
+volume = {17},
+year = {1998},
+}
+
+@article{mjmg9802,
+author = {Mukerji, T. and Jorstad, A. and Mavko, G. and Granli, J. R.},
+journal = {Geophysical Research Letters},
+pages = {4557-4560},
+title = {Near and far offset impedances: Seismic attributes for identifying lithofacies and pore fluids},
+volume = {25},
+year = {1998},
+}
+
+@article{sm98,
+author = {Samuelides, Y. and Mukerji, T.},
+journal = {Geophysical Journal International},
+pages = {778-786},
+title = {Velocity shift in heterogeneous media with anisotropic spatial correlation},
+volume = {134},
+year = {1998},
+}
+
+@article{mm9801,
+author = {Mavko, G. and Mukerji, T.},
+journal = {Geophysics},
+pages = {918-924},
+title = {Bounds on low frequency seismic velocities in partially saturated rocks},
+volume = {63},
+year = {1998},
+}
+
+@article{mm9802,
+author = {Mavko, G. and Mukerji, T.},
+journal = {Geophysics},
+pages = {925-927},
+title = {Comparison of the Krief and critical porosity models for prediction of porosity and Vp/Vs},
+volume = {63},
+year = {1998},
+}
+
+@article{m,
+author = {Mavko, G. and Mukerji, T.},
+journal = {Geophysics},
+pages = {1997-2008},
+title = {A rock physics strategy for quantifying uncertainty in common hydrocarbon indicators},
+volume = {63},
+year = {1998},
+}
+
+@article{mjmg9801,
+author = {Mukerji, T. and Jorstad, A. and Mavko, G. and Granli, J. R.},
+journal = {SEG International Meeting Exp. Abstracts},
+title = {Applying statistical rock physics and seismic inversions to map lithofacies and pore fluid probabilities in a North Sea reservoir},
+year = {1998},
+}
+
+@article{mmr97,
+author = {Mukerji, T. and Mavko, G. and Rio, P.},
+journal = {Mathematical Geology},
+pages = {933-950},
+title = {Scales of reservoir heterogeneities and impact of seismic resolution on geostatistical integration},
+volume = {29},
+year = {1997},
+}
+
+@article{sm9701,
+author = {Sen, S. and Mukerji, T.},
+journal = {Geophysical Research Letters},
+pages = {1015-1018},
+title = {Viscosity and diffusion in silicate liquids: Percolation and effective medium models},
+volume = {24},
+year = {1997},
+}
+
+@article{mm97,
+author = {Mukerji, T. and Mavko, G.},
+journal = {SEG 67th International Meeting Exp. Abstracts},
+title = {Shaly sand rock physics models for predicting porosity from ahead-of-the-bit seismic},
+year = {1997},
+}
+
+@article{sm9702,
+author = {Sammuelides, Y. and Mukerji, T.},
+journal = {SEG 67th International Meeting., Dallas},
+title = {Velocity shift in heterogeneous media with anisotropic spatial correlation, SEG 67th Intl},
+year = {1997},
+}
+
+@article{mpmm97,
+author = {Mukerji, T. and Prasad, M. and Mavko, G. and Manghnani, M.},
+journal = {SEG 67th International Meeting., Dallas},
+title = {Velocity dispersion: Evaluating fluid and fast path effects from ultrasonic data and scanning acoustic microscope images},
+year = {1997},
+}
+
+@article{rmmm96,
+author = {Rio, P. and Mukerji, T. and Mavko, G. and Marion, D.},
+journal = {Geophysics},
+pages = {584-593},
+title = {Velocity dispersion and upscaling in a laboratory simulated VSP},
+volume = {61},
+year = {1996},
+}
+
+@article{bdglmmrt96,
+author = {Biondo, B. and Deutsch, C. and Gundeso, R. and Lumley, D. and Mavko, G. and Mukerji, T. and Rickett, J. and Thiele, M.},
+journal = {SEG 66th Annual Meeting., Denver},
+title = {Reservoir Monitoring: A multi-disciplinary feasibility study},
+year = {1996},
+}
+
+@article{ymmn95,
+author = {Yin, H. and Mavko, G. and Mukerji, T. and Nur, A.},
+journal = {Geophysical Research Letters},
+pages = {3163-3166},
+title = {Scale effects on dynamic wave propagation in heterogeneous media},
+volume = {22},
+year = {1995},
+}
+
+@article{mcm95,
+author = {Mavko, G. and Chan, C. and Mukerji, T.},
+journal = {Geophysics},
+pages = {1750-1755},
+title = {Fluid substitution: estimating changes in Vp without knowing Vs},
+volume = {60},
+year = {1995},
+}
+
+@article{mm9501,
+author = {Mavko, G. and Mukerji, T.},
+journal = {Geophysics},
+pages = {1743-1749},
+title = {Seismic pore space compressibility and Gassmann's relation},
+volume = {60},
+year = {1995},
+}
+
+@article{mmg95,
+author = {Mavko, G. and Mukerji, T. and Godfrey, N.},
+journal = {Geophysics},
+pages = {1081-1087},
+title = {Predicting stress-induced velocity anisotropy in rocks},
+volume = {60},
+year = {1995},
+}
+
+@article{mmml95,
+author = {Mukerji, T. and Mavko, G. and Mujica, D. and Lucet, N.},
+journal = {Geophysics},
+pages = {1222-1233},
+title = {Scale-dependent seismic velocity in heterogeneous media},
+volume = {60},
+year = {1995},
+}
+
+@article{mbmb95,
+author = {Mukerji, T. and Berryman, J. and Mavko, G. and Berge, P.},
+journal = {Geophysical Research Letters},
+pages = {555-558},
+title = {Differential effective medium modeling of rock elastic moduli with critical porosity constraints},
+volume = {22},
+year = {1995},
+}
+
+@inproceedings{mlm95,
+author = {Mavko, G. and Lucet, N. and Mukerji, T.},
+booktitle = {International Conference of Acoustics and Signal Processing, Detroit},
+note = {Speech},
+title = {Seismic methods for imaging physical properties of the earth, Conference Proc., Intl},
+year = {1995},
+}
+
+@article{mrm95,
+author = {Mukerji, T. and Rio, P. and Mavko, G.},
+journal = {SEG 65th Annual Meeting., Houston},
+title = {Impact of seismic resolution on geostatistical integration techniques},
+year = {1995},
+}
+
+@article{mm9502,
+author = {Mavko, G. and Mukerji, T.},
+journal = {SEG 65th Annual Meeting., Houston},
+title = {A rock physics strategy for quantifying uncertainty in common hydrocarbon indicators},
+year = {1995},
+}
+
+@inproceedings{mnmc95,
+author = {Mavko, G. and Nur, A. and Mukerji, T. and Chen, W.},
+booktitle = {Symposium on the detection and analyses of naturally fractured gas reservoirs},
+publisher = {US Dept. of Energy and Lawrence Berkeley Laboratory Denver, Colorado},
+title = {Integrated seismic study of naturally fractured tight gas reservoirs},
+year = {1995},
+}
+
+@article{mm9503,
+author = {Mukerji, T. and Mavko, G.},
+journal = {AAPG-Pacific section annual convention---Energy, Economics, Environment, and Earth Science, San Francisco},
+title = {Scale effects on rock properties and seismic velocities in heterogeneous formations},
+year = {1995},
+}
+
+@article{mmm9401,
+author = {Marion, D. and Mukerji, T. and Mavko, G.},
+journal = {Geophysics},
+pages = {1613-1619},
+title = {Scale effects on velocity dispersion: from ray to effective medium theory in stratified media},
+volume = {59},
+year = {1994},
+}
+
+@article{mm9402,
+author = {Mukerji, T. and Mavko, G.},
+journal = {Geophysics},
+pages = {233-244},
+title = {Pore fluid effects on seismic velocities in anisotropic rocks},
+volume = {59},
+year = {1994},
+}
+
+@article{ymmn94,
+author = {Yin, H. and Mavko, G. and Mukerji, T. and Nur, A.},
+journal = {SEG 64th Annual Meeting., Los Angeles},
+title = {Scale-dependent dynamic wave propagation in heterogeneous media: I, Experiments},
+year = {1994},
+}
+
+@article{mm9403,
+author = {Mukerji, T. and Mavko, G.},
+journal = {SEG 64th Annual Meeting., Los Angeles},
+title = {Scale-dependent dynamic wave propagation in heterogeneous media: II Theory},
+year = {1994},
+}
+
+@article{mm92,
+author = {Mukerji, T. and Mavko, G.},
+journal = {SEG 62th Annual Meeting., New Orleans},
+title = {Pore fluid effects on seismic anisotropy},
+year = {1992},
+}
+

@@ -1,0 +1,571 @@
+@article{cdmm06,
+author = {Colgan, J. P. and T. A. Dumitru and M. McWilliams and E. L. Miller},
+journal = {Geological Society of America Bulletin},
+month = {January/February},
+number = {1-2},
+pages = {126-139},
+title = {Cenozoic structural and volcanic evolution of the northern Pine Forest range, Nevada},
+volume = {118},
+year = {2006},
+doi = {10.1130/B25681.1},
+}
+
+@incollection{rnfmm06,
+author = {Ron, H. and N. R. Nowaczyk and U. Frank and S. Marco and M. McWilliams},
+booktitle = {New Frontiers in Dead Sea Environmental Research},
+editor = {A. Agnon and M. Stein},
+note = {Memoir},
+publisher = {Geological Society of America},
+title = {Rock magnetism of Lake Lisan and Holocene Dead Sea sediments: Implication for the fidelity of geomagnetic record carried by CRM and DRM magnetization, Rock magnetism of Lake Lisan and Holocene Dead Sea sediments: Implication for the fidelity of geomagnetic record carried by CRM and DRM magnetization},
+year = {2006},
+}
+
+@article{hllmrdmm05,
+author = {Hacker, B. and P. Luffi and V. Lutkov and V. Minaev and L. Ratschbacher and M. Ducea and M. McWilliams and J. Metcalf},
+journal = {Tectonics},
+title = {High-pressure processing of a subducted continent beneath the Pamirs},
+year = {2005},
+comment = {submitted},
+}
+
+@article{hllmrdmmpp05,
+author = {Hacker, B. and P. Luffi and V. Lutkov and V. Minaev and L. Ratschbacher and M. Ducea and M. McWilliams and J. Metcalf and Planks, T. and Patino-Douce, A.},
+journal = {Journal of Petrology},
+number = {8},
+pages = {1161-1687},
+title = {Near-Ultrahigh Pressure Processing of Continental Crust: Miocene Crustal Xenoliths from the Pamir},
+volume = {46},
+year = {2005},
+}
+
+@article{bhmw05,
+author = {Briggs, R. and B. F. Houghton and M. McWilliams and C. J. Wilson},
+journal = {New Zealand Journal of Geology and Geophysics},
+pages = {459-469},
+title = {Ar-Ar ages in the Tauranga-Kaimai area, New Zealand: dating the transition from Coromandel to Taupo volcanic zones},
+volume = {48},
+year = {2005},
+}
+
+@article{kamwwf0601,
+author = {Kolodner, K. and D. Avigad and M. McWilliams and J. L. Wooden and T. Weissbrod and S. Feinstein},
+journal = {Tectonics},
+title = {Provenance of Cambrian and Ordovician sandstones in southern Israel and Jordan: U-Pb SHRIMP dating of detrital zircons},
+year = {2006},
+comment = {submitted},
+}
+
+@article{kamwwf0602,
+author = {Kolodner, K. and D. Avigad and M. McWilliams and J. L. Wooden and T. Weissbrod and S. Feinstein},
+journal = {Geological Magazine},
+number = {3},
+pages = {367-391},
+title = {Provenance of north Gondwana Cambrian-Ordovician sandstone: U-Pb SHRIMP dating of detrital zircons from Israel and Jordan},
+volume = {143},
+year = {2006},
+doi = {10.1017/S0016756805001640},
+url = {http://dx.doi.org/10.1017/S0016756805001640},
+}
+
+@article{vmdgm05,
+author = {Vermeesch, P. and D. D. Miller and T. Dumitru and S. A. Graham and M. McWilliams},
+journal = {Geological Society of America Bulletin},
+number = {1-2},
+pages = {210-218},
+title = {Multi-method detrital thermochronology of the Great Valley Group near New Idria,California},
+volume = {118},
+year = {2005},
+}
+
+@article{tabmss0501,
+author = {Thiede, R. C. and J. R. Arrowsmith and B. Bookhagen and M. McWilliams and E. R. Sobel and M. R. Strecker},
+journal = {Geology},
+number = {8},
+pages = {689-692},
+title = {From tectonically to erosionally controlled development of the Himalayan fold-and-thrust belt},
+volume = {33},
+year = {2005},
+doi = {10.1130/G21483AR.1},
+}
+
+@incollection{mmmmrf05,
+author = {Maksaev, V. and F. Munizaga and McWilliams, M. and R. Mathur and J. Ruiz and M. Fanning},
+booktitle = {Special Publication 11: Andean Metallogeny: New Discoveries, Concepts and Updates},
+editor = {R.H. Sillitoe, J. Perello and C.E. Vidal},
+note = {Chapter 2},
+pages = {11-54},
+publisher = {Society of Economic Geologists},
+title = {New chronology for El Teniente, Chilean Andes, from U-Pb, 40Ar/39Ar, Re-Os and fission-track dating: Implications for the evolution of a supergiant porphyry Cu-Mo deposit},
+year = {2005},
+comment = {Original may have been submitted to Geology with title "Superimposed mineralization produced supergiant porphyry Cu-Mo deposits"},
+}
+
+@article{tabmss0502,
+author = {Thiede, R. C. and J. R. Arrowsmith and B. Bookhagen and M. McWilliams and E. R. Sobel and M. R. Strecker},
+journal = {Geological Society of America Bulletin},
+number = {5-6},
+pages = {635-650},
+title = {Dome formation and extension in the Tethyan Himalaya, Leo Pargil, northwest India},
+volume = {118},
+year = {2005},
+doi = {10.1130/B25872.1},
+comment = {original title submitted may have been "Late Miocene to Recent E-W extension in the Tethyan Himalaya"},
+}
+
+@incollection{lwbm05,
+address = {London, England},
+author = {Lee, J. W. McClelland and Y. Wang and A. Blythe and M. McWilliams},
+booktitle = {Geological Society of London Special Publication 268: Channel Flow, Ductile Extrusion and Exhumation of Lower-Mid Crust in Continental Collision Zones},
+editor = {M.P. Searle and R.D. Law},
+note = {Special Publication 268},
+pages = {445-469},
+publisher = {Geological Society of London},
+title = {Oligocene-Miocene middle crustal flow in southern Tibet: Geochronologic studies in Majba Dome},
+year = {2005},
+comment = {may have been submitted under title "Miocene middle crustal flow in southern Tibet: Geochronologic studies in Majba Dome"},
+}
+
+@article{bkcmmw05,
+author = {Booth, A. L. and Y. Kolodny and C. P. Chamberlain and K. D. McKeegan and M. McWilliams and J. L. Wooden},
+journal = {Geochimica et Cosmochimica Acta},
+pages = {4895–4905},
+title = {Oxygen isotopic composition and U-Pb discordance in zircon},
+volume = {69},
+year = {2005},
+}
+
+@article{srsmmlcsnfw,
+author = {Schwab, M and L. Ratschbacher and W. Siebel and M. McWilliams and V. Minaev and V. Lutkov and F. Chen and K. Stanek and B. Nelson and W. Frisch and J. L. Wooden},
+journal = {Tectonics},
+title = {Assembly of the Pamirs: Age and origin of magmatic belts from the southern Tien Shan to the southern Pamirs and their relation to Tibet},
+volume = {23},
+comment = {2003TC001583},
+year = {2004},
+}
+
+@incollection{mmfmrm04,
+author = {Maksaev, V. and F. Munizaga and M. C. Fanning and R. Mathur and J. Ruiz and M. McWilliams},
+booktitle = {Society of Economic Geologists Special Publication 11: Andean Metallogeny: New Discoveries, Concepts and Updates},
+editor = {R.H. Sillitoe, J. Perello and C.E. Vidal},
+note = {Chapter 2},
+pages = {15-54},
+publisher = {Society of Economic Geologists},
+title = {SHRIMP zircon U-Pb dating of mineralized intrusions at El Teniente: Implications for the origin and evolution of this giant Cu-Mo porphyry deposit of the Chilean Andes},
+year = {2004},
+}
+
+@article{rdmhm04,
+author = {Ratschbacher, L. and C. Dingeldey and C. Miller and B. R. Hacker and Michael O. McWilliams},
+journal = {Tectonophysics},
+pages = {155-170},
+title = {Formation, subduction, and exhumation of Penninic oceanic crust in the Eastern Alps: time constraints from 40Ar/39 Ar geochronology},
+volume = {394},
+year = {2004},
+}
+
+@inproceedings{mmmmrfz03,
+author = {Maksaev, V. and F. Munizaga and M. McWilliams and R. Mathur and J. Ruiz and M. Fanning and M. Zentilli},
+booktitle = {Proceedings of the IV South American Symposium on Isotope Geology},
+pages = {736-739},
+title = {New timeframe for El Teniente Cu-Mo giant porphyry deposit: U-Pb 40Ar/39Ar, Re-Os and fission-track dating},
+year = {2003},
+}
+
+@article{sdmf03,
+author = {Stockli, D. F. and T. A. Dumitru and M. McWilliams and K. A. Farley},
+journal = {Geological Society of America Bulletin},
+pages = {788-816},
+title = {Cenozoic tectonic evolution of the White Mountains, California and Nevada},
+volume = {115},
+year = {2003},
+}
+
+@article{ssrlkm03,
+author = {Segev, A. and E. Sass and H. Ron and B. Lang and Y. Kolodny and M. McWilliams},
+journal = {Israel Journal of Earth Sciences},
+pages = {297-309},
+title = {Stratigraphic geochronologic and paleomagnetic constraints on late Cretaceous volcanism in northern Israel},
+volume = {51},
+year = {2003},
+}
+
+@article{rhcwgmidh03,
+author = {Ratschbacher, L. and B. R. Hacker and A. Calvert and L. E. Webb and J. C. Grimmer and M. McWilliams and T. R. Ireland and S. Dong and J. Hu},
+journal = {Tectonophysics},
+pages = {153},
+title = {Tectonics of the Qinling (central China): Tectonostratigraphy geochronology and deformation history},
+volume = {366},
+year = {2003},
+}
+
+@article{grfimh03,
+author = {Grimmer, J. C. and L. Ratschbacher and L. Franz and I. Gaitzsch,M. Tichomirowa and M. McWilliams and B. R. Hacker},
+journal = {Chemical Geology},
+pages = {87—110},
+title = {When did the ultrahigh-pressure rocks reach the surface? A 207Pb/206Pb zircon, 40Ar/39Ar white mica Si-in-phengite single grain study of Dabie Shan synorosynorogenic foreland sediments},
+volume = {197},
+year = {2003},
+}
+
+@article{dhlmrlgmvm03,
+author = {Ducea, M. N. and B. Hacker and V. Lutkov and V. Minaev and L. Ratschbacher and P. Luffi and G. Gehrels and M. McWilliams and J. Vervoort and J. Metcalf},
+journal = {Geology},
+pages = {849-853},
+title = {Building the Pamirs: The view from the underside},
+volume = {31},
+year = {2003},
+}
+
+@article{dmwm03,
+author = {DeGraaff-Surpless, K. and J. B. Mahoney and J. L. Wooden and M. McWilliams},
+journal = {Geological Society of America Bulletin},
+pages = {899-915},
+title = {Lithofacies control in detrital zircon provenance studies: Insights from the Cretaceous Methow basin},
+volume = {115},
+year = {2003},
+}
+
+@article{ampw03,
+author = {Avigad, D. K. Kolodner and M. McWilliams and H. Persing and T. Weissbrod},
+journal = {Geology},
+pages = {227-230},
+title = {Origin of northern Gondwana Cambrian sandstone revealed by detrital zircon SHRIMP dating},
+volume = {31},
+year = {2003},
+}
+
+@article{dgwm02,
+author = {DeGraaff-Surpless, K and S. A. Graham and J. L. Wooden and M. McWilliams},
+journal = {Geological Society of America Bulletin},
+number = {1564-1580},
+title = {Detrital zircon provenance analysis of the Great Valley Group, California},
+volume = {114},
+year = {2002},
+}
+
+@article{m01,
+author = {McWilliams, M.},
+journal = {International Geology Review},
+pages = {1911-1995},
+title = {Global correlation of the 223 ka Pringle Falls event},
+volume = {43},
+year = {2001},
+}
+
+@article{bhgrbwmc01,
+author = {Blisniuk, P. M. and B. R. Hacker and J. Glodny and L. Ratschbacher and S. Bi and Z. Wu and M. McWilliams and A. Calvert},
+journal = {Nature},
+pages = {628-632},
+title = {Normal faulting in central Tibet since at least 13.5 Myr},
+volume = {412},
+year = {2001},
+}
+
+@article{gomcormm01,
+author = {Gustafson, L. B. and Orquera, W. and McWilliams, M. and Castro, M. and Olivares, O. and Rojas, G. and Maluenda, J. and Mendez, M.},
+journal = {Economic Geology},
+pages = {325—350},
+title = {Multiple Centers of Mineralization in the Indio Muerto District, El Salvador, Chile},
+volume = {96},
+year = {2001},
+}
+
+@article{htnms00,
+author = {Hermanns, R. L. and M. H. Trauth and S. Niedermann and M. McWilliams and M. R. Strecker},
+journal = {Journal of Geology},
+number = {35-52},
+title = {Tephrochronologic constraints on temporal distribution of large landslides in northwest Argentina},
+volume = {108},
+year = {2000},
+}
+
+@article{m00,
+author = {McWilliams, M.},
+journal = {Terra Nostra},
+pages = {74-78},
+title = {Global correlation of the 223 ka Pringle Falls event},
+volume = {10},
+year = {2000},
+}
+
+@article{hgrgmsww00,
+author = {Hacker, B. R. and Gnos, E. and Ratschbacher, L. and Grove, M. and McWilliams, M. and Sobolev, S. V. and Wan, J. and Wu, Z. H.},
+journal = {Science, v},
+pages = {2463-2466},
+title = {Hot and dry deep crustal xenoliths from Tibet},
+volume = {287},
+year = {2000},
+}
+
+@article{hrwmcdwc00,
+author = {Hacker, B. R. and Ratschbacher, L. and Webb, L. E. and McWilliams, M. and Calvert, A. and Dong, S. and Wenk, H. R. and Chateigner, D.},
+journal = {Journal of Geophysical Research},
+pages = {13339—13364},
+title = {Exhumation of ultrahigh-pressure rocks in the Dabie-Hong'an area: Late Triassic-Early Jurassic tectonic unroofing},
+volume = {105},
+year = {2000},
+}
+
+@article{rhcwimdwc00,
+author = {Ratschbacher, L. and Hacker, B. R. and Calvert, A. and Webb, L. E. and Ireland, T. R. and McWilliams, M. and Dong, S. and Wenk, H.-R.. and Chateigner, D.},
+journal = {Journal of Geophysical Research},
+pages = {13303—13338},
+title = {Exhumation of the ultrahigh-pressure continental crust in east-central China: Cretaceous and Cenozoic unroofing and the Tan-Lu Fault},
+volume = {105},
+year = {2000},
+}
+
+@article{os99,
+author = {O'Connor, J. and Stoffers, J., and van den Bogaard, P., and McWilliams, M.},
+journal = {Earth and Planetary Science Letters},
+pages = {575-589},
+title = {First seamount age evidence for significantly slower African plate motion since 19 to 30 Ma},
+volume = {171},
+year = {1999},
+}
+
+@article{lmm99,
+author = {Little, T. A. and Mortimer, N. and McWilliams, M.},
+journal = {New Zealand Journal of Geology & Geophysics},
+pages = {305-325},
+title = {An episodic Cretaceous cooling model for the Otago-Marlborough Schist, New Zealand, based on 40Ar/39Ar white mica ages},
+volume = {42},
+year = {1999},
+}
+
+@article{whrms99,
+author = {Webb, L. E. and Hacker, B. R. and Ratschbacher, L. and McWilliams, M. and Shuwen, D.},
+journal = {Tectonics},
+pages = {621-638},
+title = {40Ar/39Ar thermochronologic constraints on deformation and cooling history of high and ultrahigh-pressure rocks in the Qinling-Dabie orogen},
+volume = {18},
+year = {1999},
+}
+
+@incollection{mrms99,
+author = {Marco, S. and Ron, H. and McWilliams, M. and Stein, M.},
+booktitle = {Palaeomagnetism and Diagenesis in Sediments, Geological Society of London Special Publication 151},
+editor = {Tarling, D. H. and Turner, P.},
+pages = {47-52},
+publisher = {of Londo},
+title = {The lockin-in of remanence in upper Pleistocene sediments of Lake Lisan (palaeo Dead Sea)},
+year = {1999},
+}
+
+@article{gmm9801,
+author = {Gansecki, C. A. and G. A. Mahood and M. McWilliams},
+journal = {Earth & Planetary Science Letters},
+title = {40Ar/39Ar geochronology of rhyolites erupted following collapse of the Yellowstone caldera, Yellowstone Plateau Volcanic Field: Implications for crustal contamination},
+volume = {142},
+year = {1998},
+}
+
+@incollection{m1,
+address = {New York},
+author = {McWilliams, M.},
+booktitle = {1998 Yearbook of Science and Technology},
+pages = {166-168},
+publisher = {McGraw-Hill},
+title = {Geomagnetism},
+year = {1998},
+}
+
+@article{mem98,
+author = {Marsh, T. M. and Einaudi, M. and McWilliams, M.},
+journal = {Economic Geology},
+pages = {784-806},
+title = {40Ar/39Ar geochronology of Cu-Au and Au-Ag mineralization in the Potrerillos District, Chile},
+volume = {92},
+year = {1998},
+}
+
+@techreport{rmg98,
+author = {Richard, S. M. and McWilliams, M. and Gans, P.},
+institution = {Arizona Geological Survey},
+number = {98-25},
+title = {40Ar/39Ar ages from the Harquahala and Little Harquahala Mountains, west-central Arizona},
+type = {Open File Report},
+year = {1998},
+}
+
+@article{gmm9802,
+author = {Gansecki, C. A. and Mahood, G. A. and McWilliams, M.},
+journal = {Geology},
+pages = {343-346},
+title = {New ages for the climactic eruptions at Yellowstone: single-crystal 40Ar/39Ar dating identifies contamination},
+volume = {26},
+year = {1998},
+}
+
+@article{lmkym98,
+author = {Layer, P. W. and Martinez-Lopez, M. and Krner, A. and York, D. and McWilliams, M.},
+journal = {Geophysical Journal International},
+pages = {129-145},
+title = {Thermochronometry and paleomagnetism of the Archean Nelshoogte pluton, South Africa},
+volume = {135},
+year = {1998},
+}
+
+@article{mrms98,
+author = {Marco, S. and Ron, H. and McWilliams, M. and Stein, M.},
+journal = {Earth and Planetary Science Letters},
+pages = {145-160},
+title = {High resolution record of geomagnetic secular variation from late Pleistocene Lake Lisan sediments (paleo Dead Sea)},
+volume = {161},
+year = {1998},
+}
+
+@article{ttthkm96,
+author = {Tanaka, H. and T. Tachibana and G. M. Turner and B. F. Houghton and M. Kono and M. McWilliams},
+journal = {Geophysical Journal International},
+pages = {919-934},
+title = {Paleomagnetism and chronology of the central Taupo Volcanic Zone, New Zealand},
+volume = {124},
+year = {1996},
+}
+
+@article{lkm96,
+author = {Layer, P. W. and A. Krner and M. McWilliams},
+journal = {Science},
+pages = {943-946},
+title = {An Archean geomagnetic reversal in the Kaap Valley Pluton, South Africa},
+volume = {273},
+year = {1996},
+}
+
+@article{whmlwb95,
+author = {Wilson, C. J. N. and B. F. Houghton and M. McWilliams and M. A. Lanphere and S. D. Weaver and R. M. Briggs},
+journal = {Journal of Volcanology and Geothermal Research},
+pages = {128},
+title = {Volcanic and structural evolution of Taupo Volcanic Zone, New Zealand: a review},
+volume = {68},
+year = {1995},
+}
+
+@incollection{m2,
+address = {New York},
+author = {McWilliams, M.},
+booktitle = {Encyclopedia of Science and Technology, Fifth Edition},
+publisher = {McGraw-Hill},
+title = {Magnetometers},
+year = {1995},
+}
+
+@article{whkm95,
+author = {Wilson, C. J. N. and B. F. Houghton and P. J. J. Kamp and M. McWilliams},
+journal = {Nature},
+pages = {605-607},
+title = {An exceptionally widespread ignimbrite in New Zealand: implications for pyroclastic flow emplacement},
+volume = {378},
+year = {1995},
+}
+
+@article{lmh95,
+author = {Little, T. A. and M. McWilliams and R. J. Holcombe},
+journal = {Geological Society of America Bulletin},
+number = {52},
+title = {40Ar/39Ar thermochronology of epidote blueschists from the north D'Aguilar block, Queensland, Australia: Timing and kinematics of subduction complex unroofing},
+volume = {107},
+year = {1995},
+}
+
+@article{hwmlwbp95,
+author = {Houghton, B. F. and C. J. N. Wilson and M. McWilliams and M. A. Lanphere and S. D. Weaver and R. M. Briggs and M. S. Pringle},
+journal = {Geology},
+number = {13-16},
+title = {Volcanic and structural evolution of the central Taupo Volcanic Zone, New Zealand},
+volume = {23},
+year = {1995},
+}
+
+@article{hm95,
+author = {Hannula, K. A. and M. McWilliams},
+journal = {Journal of Metamorphic Geology},
+pages = {125-139},
+title = {Reconsideration of the age of blueschist-facies metamorphism on the Seward Peninsula, Alaska based on phengite 40Ar/39Ar results},
+volume = {13},
+year = {1995},
+}
+
+@article{gsksm95,
+author = {Gur, D. and G. Steinitz and Y. Kolodny and A. Starinsky and M. McWilliams},
+journal = {Chemical Geology},
+pages = {171-184},
+title = {40Ar/39Ar dating of combustion metamorphism in the Mottled Zone of Israel},
+volume = {122},
+year = {1995},
+}
+
+@article{hdbme95,
+author = {Hacker, B. R. and M. M. Donato and C. G. Barnes and M. McWilliams and W. G. Ernst},
+journal = {Tectonics},
+pages = {677-703},
+title = {Timescales of orogeny: Jurassic construction of the Klamath Mountains},
+volume = {14},
+year = {1995},
+}
+
+@article{rskflm94,
+author = {Richard, S. M. and C. H. Smith and D. L. Kimbrough and P. G. Fitzgerald and B. P. Luyendyk and M. McWilliams},
+journal = {Tectonics},
+pages = {837-857},
+title = {Cooling history of the northern Ford Ranges, Marie Byrd Land, west Antarctica},
+volume = {13},
+year = {1994},
+}
+
+@article{m94,
+author = {McWilliams, M.},
+journal = {Science},
+number = {126},
+title = {Paleomagnetism of the Atlantic, Tethys and Iapetus Oceans (Book Review)},
+volume = {265},
+year = {1994},
+}
+
+@article{nbbom94,
+author = {Nevle, R. J. and M. E. Brandriss and D. K. Bird and J. R. O'Neil and M. McWilliams},
+journal = {Geology},
+pages = {775-778},
+title = {Tertiary plutons monitor climate in East Greenland},
+volume = {22},
+year = {1994},
+}
+
+@article{hsmlnh94,
+author = {Herrero-Bervera, E. and A. Sarna-Wojicki and M. McWilliams and J. Liddicoat and R. Negrini and C. E. Helsley},
+journal = {Journal of Geophysical Research},
+number = {24},
+pages = {9124,104},
+title = {Age and correlation of a paleomagnetic episode in the western U.S.: The Jamaica, Blake or a new polarity episode?},
+volume = {99},
+year = {1994},
+}
+
+@article{eml94,
+author = {Eide, E. A. and M. McWilliams and J. Liou},
+journal = {Geology},
+pages = {601-604},
+title = {40Ar/39Ar geochronology and exhumation of high pressure to ultra high pressure metamorphic rocks in east-central China},
+volume = {22},
+year = {1994},
+}
+
+@article{hem93,
+author = {Hacker, B. R. and W. G. Ernst and M. McWilliams},
+journal = {Tectonics},
+pages = {387-409},
+title = {Genesis and evolution of a PermianJurassic magmatic arc/accretionary wedge, and re-evaluation of the terrane concept in the Central Klamath Mountains},
+volume = {12},
+year = {1993},
+}
+
+@article{bhm93,
+author = {Baksi, A. K. and K. A. Hoffman and M. McWilliams},
+journal = {Earth & Planetary Science Letters},
+pages = {135-144},
+title = {Testing the accuracy of the geomagnetic polarity timescale at 2-5 Ma using 40Ar/39Ar ages from whole-rock basalts},
+volume = {118},
+year = {1993},
+}
+
