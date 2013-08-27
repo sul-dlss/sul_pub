@@ -148,7 +148,7 @@ class ScienceWireHarvester
       middle_name = ''
     end
 
-    seed_list = author.publications.with_sciencewire_id.pluck(:sciencewire_id).uniq
+    seed_list = author.publications.approved.with_sciencewire_id.pluck(:sciencewire_id).uniq
 
     if seed_list.size < 10
       suggested_sciencewire_ids = @sciencewire_client.query_sciencewire_by_author_name(first_name, middle_name, last_name)

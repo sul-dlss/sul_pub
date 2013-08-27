@@ -1,16 +1,14 @@
 require 'dotiw'
 require 'time'
 class CapAuthorsPoller
-  attr_reader :debug
 
   def initialize
-    @debug = false
     @sw_harvester = ScienceWireHarvester.new
     @cap_http_client = CapHttpClient.new
   end
 
   def debug=(val)
-    @debug = val
+    write_stats_from_logging_variables_to_log
     @sw_harvester.debug = val
   end
 
@@ -44,15 +42,10 @@ class CapAuthorsPoller
         puts update_message
         @cap_authorship_logger.info update_message
         @last_page = json_response["lastPage"]
-        if(@debug)
-          write_stats_from_logging_variables_to_log
-          @debug = false
-        end
       end
 
-      do_science_wire_harvest
-
       write_stats_from_logging_variables_to_log
+      do_science_wire_harvest
 
       puts "#{page_count} pages with #{page_size} records per page were processed in #{distance_of_time_in_words_to_now(@start_time)}"
       puts "#{@new_author_count} authors were created."
