@@ -26,6 +26,7 @@ gem 'whenever', :require => false
 gem "yajl-ruby", :require => 'yajl'
 gem "strong_parameters"
 gem "turnout"
+gem "parallel"
 #gem 'always_verify_ssl_certificates'
 
 group :development, :test do

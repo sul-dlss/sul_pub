@@ -1,4 +1,6 @@
 require 'dotiw'
+require 'parallel'
+
 class ScienceWireHarvester
   include ActionView::Helpers::DateHelper
   #harvest sciencewire records for all authors using author information
@@ -29,7 +31,10 @@ class ScienceWireHarvester
 
         harvest_for_author(author)
       rescue => e
-        NotificationManager.handle_harvest_problem(e, "Error for #{author.official_last_name} - sul author id: #{author.id} ")
+        msg = "Error for #{author.official_last_name} - sul author id: #{author.id} "
+        @sw_harvest_logger.error "#{msg}-  #{e.inspect}"
+        @sw_harvest_logger.error e.backtrace.join "\n"
+        #NotificationManager.handle_harvest_problem(e, msg)
       end
     end
 
@@ -59,6 +64,34 @@ class ScienceWireHarvester
     query = query.where(Author.arel_table[Author.primary_key].lteq(ending_author_id)) if ending_author_id > 0
 
     harvest_pubs_for_query query
+
+  end
+
+  def harvest_pubs_for_all_authors_parallel
+    @sw_harvest_logger = Logger.new(Rails.root.join('log', 'sw_harvest_p.log'))
+    @sw_harvest_logger.formatter = proc { |severity, datetime, progname, msg|
+      "#{severity} #{datetime}[#{Process.pid}]: #{msg}\n"
+    }
+    @sw_harvest_logger.info "Started full authorship harvest (parallel) #{Time.now}"
+    last_id = Author.last.id
+
+    batch_count = 4
+    batch_size = (last_id/batch_count).to_i
+    batch_1 = [] << 1 << batch_size
+    batch_2 = [] << (batch_size + 1) << (2*batch_size)
+    batch_3 = [] << (2*batch_size + 1) << (3*batch_size)
+    batch_4 = [] << (3*batch_size + 1) << last_id
+    sacks = [] << batch_1 << batch_2 << batch_3 << batch_4
+    Parallel.each(sacks, :in_processes => 4) do |sack|
+      ActiveRecord::Base.connection.reconnect!
+      start_key = sack[0]
+      stop_key = sack[1]
+      query = Author.where(active_in_cap: true, cap_import_enabled: true).
+                where(Author.arel_table[Author.primary_key].gteq(start_key)).
+                where(Author.arel_table[Author.primary_key].lteq(stop_key))
+      harvest_pubs_for_query query
+    end
+
 
   end
 

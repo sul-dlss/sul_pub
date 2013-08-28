@@ -22,6 +22,11 @@ namespace :sw do
     #CapAuthorshipMailer.welcome_email("harvest complete").deliver
   end
 
+  desc "harvest (with multiple processes) from sciencewire by email or known sciencewire pub ids"
+  task :parallel_harvest => :environment do
+    harvester.harvest_pubs_for_all_authors_parallel
+  end
+
   desc "Harvest high priority faculty using the name-only query"
   task :faculty_harvest, [:path_to_ids] => :environment do |t, args|
     harvester.use_middle_name = false
