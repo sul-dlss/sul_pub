@@ -231,7 +231,7 @@ class ScienceWireHarvester
     if existing_pub
       create_contribs_for_author_ids_and_pub(author_ids, existing_pub)
       existing_pub.rebuild_authorship
-      matches_on_existing_swid_count += 1
+      @matches_on_existing_swid_count += 1
       true
     else
       false
