@@ -1,71 +1,6 @@
 ---
 http_interactions:
 - request:
-    method: post
-    uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery?format=xml
-    body:
-      encoding: US-ASCII
-      string: ! "<?xml version=\"1.0\"?>\n      <ScienceWireQueryXMLParameter xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
-        xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\n      <xmlQuery><![CDATA[\n\t
-        \    <query xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/\n\t
-        \   XMLSchema\">\n\t      <Criterion>\n\t        <Criteria><Criterion>\n\t
-        \           <TextSearch>\n                  <QueryPredicate>(\"smith,james\"
-        or \"SMITH,J\") and Stanford</QueryPredicate>\n                  <SearchType>ExactMatch</SearchType>\n
-        \                 <Columns>AggregateText</Columns>\n                  <MaximumRows>200</MaximumRows>\n
-        \                 </TextSearch>\n\t          </Criterion><Criterion>\n  \t
-        \           <Filter>\n  \t              <Column>AuthorLastName</Column>\n
-        \ \t              <Operator>BeginsWith</Operator>\n  \t              <Value>SMITH</Value>\n
-        \ \t            </Filter>\n  \t          </Criterion><Criterion>\n  \t            <Filter>\n
-        \ \t              <Column>AuthorFirstName</Column>\n  \t              <Operator>BeginsWith</Operator>\n
-        \ \t              <Value>J</Value>\n  \t            </Filter>\n  \t          </Criterion></Criteria>\n\t
-        \     </Criterion>\n\t      <Columns>\n\t        <SortColumn>\n\t          <Column>Rank</Column>\n\t
-        \         <Direction>Descending</Direction>\n\t        </SortColumn>\n\t      </Columns>\n\t
-        \    <MaximumRows>200</MaximumRows>\n\t    </query>\n\t    ]]></xmlQuery>\n
-        \     </ScienceWireQueryXMLParameter>"
-    headers:
-      Accept:
-      - ! '*/*'
-      User-Agent:
-      - Ruby
-      Licenseid:
-      - ***REMOVED***
-      Host:
-      - sciencewirerest.discoverylogic.com
-      Connection:
-      - Keep-Alive
-      Expect:
-      - 100-continue
-      Content-Type:
-      - text/xml
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Cache-Control:
-      - private
-      Content-Type:
-      - application/xml; charset=utf-8
-      Server:
-      - Microsoft-IIS/7.5
-      X-Aspnetmvc-Version:
-      - '2.0'
-      X-Aspnet-Version:
-      - 4.0.30319
-      X-Powered-By:
-      - ASP.NET
-      Date:
-      - Tue, 20 Aug 2013 18:27:46 GMT
-      Content-Length:
-      - '279'
-    body:
-      encoding: US-ASCII
-      string: ! "<?xml version=\"1.0\"?>\r\n<ScienceWireQueryIDResponse xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
-        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>94939</queryID>\r\n
-        \ <queryResultRows>13</queryResultRows>\r\n  <totalRows>13</totalRows>\r\n</ScienceWireQueryIDResponse>"
-    http_version: 
-  recorded_at: Tue, 20 Aug 2013 18:27:47 GMT
-- request:
     method: get
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/94939?format=xml&page=0&pageSize=2147483647&v=version/3
     body:
@@ -410,4 +345,827 @@ http_interactions:
         \   <CopyrightCountry>UNITED STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n</ArrayOfPublicationItem>"
     http_version: 
   recorded_at: Tue, 20 Aug 2013 18:27:48 GMT
+- request:
+    method: get
+    uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/129740?format=xml&page=0&pageSize=2147483647&v=version/3
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+      Content-Type:
+      - text/xml
+      Licenseid:
+      - ***REMOVED***
+      Host:
+      - sciencewirerest.discoverylogic.com
+      Connection:
+      - Keep-Alive
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - private
+      Content-Type:
+      - application/xml; charset=utf-8
+      Server:
+      - Microsoft-IIS/7.5
+      X-Aspnetmvc-Version:
+      - '2.0'
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+      Date:
+      - Wed, 04 Sep 2013 23:27:30 GMT
+      Content-Length:
+      - '29392'
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\"?>\r\n<ArrayOfPublicationItem xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <PublicationItem>\r\n
+        \   <PublicationItemID>49570291</PublicationItemID>\r\n    <Title>ENVIRONMENTAL
+        SCANNING</Title>\r\n    <Abstract />\r\n    <AuthorList>SMITH,J,B</AuthorList>\r\n
+        \   <AuthorCount>1</AuthorCount>\r\n    <KeywordList />\r\n    <DocumentTypeList>Letter</DocumentTypeList>\r\n
+        \   <DocumentCategory>Journal Document</DocumentCategory>\r\n    <NumberOfReferences>1</NumberOfReferences>\r\n
+        \   <TimesCited>0</TimesCited>\r\n    <TimesNotSelfCited>0</TimesNotSelfCited>\r\n
+        \   <PMID xsi:nil=\"true\" />\r\n    <WoSItemID>A1984TR77200001</WoSItemID>\r\n
+        \   <PublicationSourceTitle>FUTURIST</PublicationSourceTitle>\r\n    <Volume>18</Volume>\r\n
+        \   <Issue>6</Issue>\r\n    <Pagination>2-2</Pagination>\r\n    <PublicationDate>1984-01-01T00:00:00</PublicationDate>\r\n
+        \   <PublicationYear>1984</PublicationYear>\r\n    <PublicationType>Journal</PublicationType>\r\n
+        \   <PublicationSubjectCategoryList>Social Issues</PublicationSubjectCategoryList>\r\n
+        \   <ISSN>0016-3317</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>112</Rank>\r\n    <OrdinalRank>0</OrdinalRank>\r\n
+        \   <NormalizedRank>100</NormalizedRank>\r\n    <NewPublicationItemID xsi:nil=\"true\"
+        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>WORLD
+        FUTURE SOCIETY</CopyrightPublisher>\r\n    <CopyrightCity>BETHESDA</CopyrightCity>\r\n
+        \   <PublicationImpactFactorList>0.044,2011,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>37/37;SOCIAL ISSUES;2011;SS;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <AuthorCitationCountList>1,0,0</AuthorCitationCountList>\r\n    <CopyrightStateProvince>MD</CopyrightStateProvince>\r\n
+        \   <CopyrightCountry>UNITED STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n
+        \ <PublicationItem>\r\n    <PublicationItemID>59862982</PublicationItemID>\r\n
+        \   <Title>IS VITAMIN D ASSOCIATED WITH ED? A REVIEW OF A COMPUTERIZED MEDICAL
+        RECORD SYSTEM AT A TERTIARY CARE MEDICAL CENTER</Title>\r\n    <Abstract />\r\n
+        \   <AuthorList>Shindel,Alan,|Smith,James,|Eisenberg,Michael,|Breyer,Benjamin,</AuthorList>\r\n
+        \   <AuthorCount>4</AuthorCount>\r\n    <KeywordList />\r\n    <DocumentTypeList>Meeting
+        Abstract</DocumentTypeList>\r\n    <DocumentCategory>Conference Proceeding
+        Document</DocumentCategory>\r\n    <NumberOfReferences>0</NumberOfReferences>\r\n
+        \   <TimesCited>0</TimesCited>\r\n    <TimesNotSelfCited>0</TimesNotSelfCited>\r\n
+        \   <PMID xsi:nil=\"true\" />\r\n    <WoSItemID>000299826700016</WoSItemID>\r\n
+        \   <PublicationSourceTitle>JOURNAL OF SEXUAL MEDICINE</PublicationSourceTitle>\r\n
+        \   <Volume>9</Volume>\r\n    <Pagination>7-7</Pagination>\r\n    <PublicationDate>2012-02-01T00:00:00</PublicationDate>\r\n
+        \   <PublicationYear>2012</PublicationYear>\r\n    <PublicationType>Journal</PublicationType>\r\n
+        \   <PublicationSubjectCategoryList>Urology &amp; Nephrology</PublicationSubjectCategoryList>\r\n
+        \   <ISSN>1743-6095</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>85</Rank>\r\n    <OrdinalRank>1</OrdinalRank>\r\n
+        \   <NormalizedRank>75.892857142857139</NormalizedRank>\r\n    <NewPublicationItemID
+        xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>WILEY-BLACKWELL</CopyrightPublisher>\r\n
+        \   <CopyrightCity>MALDEN</CopyrightCity>\r\n    <PublicationImpactFactorList>3.552,2011,ClosestToPublicationYear|3.552,2011,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>13/72;UROLOGY &amp; NEPHROLOGY;2011;SC;ClosestToPublicationYear|13/72;UROLOGY
+        &amp; NEPHROLOGY;2011;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <AuthorCitationCountList>1,0,0|2,0,0|3,0,0|4,0,0</AuthorCitationCountList>\r\n
+        \   <CopyrightStateProvince>MA</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
+        STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
+        \   <PublicationItemID>29704997</PublicationItemID>\r\n    <Title>Fetal health
+        assessment using prenatal diagnostic techniques</Title>\r\n    <Abstract>Purpose
+        of review  The assessment of fetal health has occupied our professional attention
+        for many years. As the development of technologies for prenatal diagnostic
+        techniques has progressed, applications of such technologies have aided in
+        the overall assessment of fetal wellbeing.  Recent findings  Fetal heart-rate
+        monitoring remains the main form of fetal assessment for high-risk pregnancies.
+        The additional assessments afforded by the analysis of ST and T-wave changes
+        of the fetal electrocardiogram hold promise for improving the predictive value
+        of fetal heart-rate assessments. Ultrasound has been invaluable for assessment
+        of fetal anatomy, and the use of Doppler ultrasound has given insight into
+        fetal cardiovascular responses to such conditions as intrauterine growth restriction
+        and fetal anemia caused by red blood cell alloimmunization.  Summary  As prenatal
+        diagnostic techniques evolve, their application to the assessment of fetal
+        well-being offers insight into pathophysiologic mechanisms of fetal disease,
+        innovative tools to assess fetal health, and fertile ground for future investigation.</Abstract>\r\n
+        \   <AuthorList>Smith,James,F</AuthorList>\r\n    <AuthorCount>1</AuthorCount>\r\n
+        \   <KeywordList>METABOLIC-ACIDOSIS|CARDIOTOCOGRAPHY|ELECTROCARDIOGRAM|WAVE-FORM
+        ANALYSIS|ECG|LABOR|DOPPLER|MULTICENTER|ST ANALYSIS|FETAL MONITORING|intrauterine
+        growth restriction|electrocardiogram|fetal anemia|Doppler</KeywordList>\r\n
+        \   <DocumentTypeList>Article</DocumentTypeList>\r\n    <DocumentCategory>Journal
+        Document</DocumentCategory>\r\n    <NumberOfReferences>28</NumberOfReferences>\r\n
+        \   <TimesCited>3</TimesCited>\r\n    <TimesNotSelfCited>3</TimesNotSelfCited>\r\n
+        \   <PMID>18388815</PMID>\r\n    <WoSItemID>000254572900013</WoSItemID>\r\n
+        \   <PublicationSourceTitle>CURRENT OPINION IN OBSTETRICS &amp; GYNECOLOGY</PublicationSourceTitle>\r\n
+        \   <Volume>20</Volume>\r\n    <Issue>2</Issue>\r\n    <Pagination>152-156</Pagination>\r\n
+        \   <PublicationDate>2008-04-01T00:00:00</PublicationDate>\r\n    <PublicationYear>2008</PublicationYear>\r\n
+        \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Obstetrics
+        &amp; Gynecology</PublicationSubjectCategoryList>\r\n    <ISSN>1040-872X</ISSN>\r\n
+        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
+        />\r\n    <Rank>83</Rank>\r\n    <OrdinalRank>2</OrdinalRank>\r\n    <NormalizedRank>74.107142857142861</NormalizedRank>\r\n
+        \   <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
+        \   <CopyrightPublisher>LIPPINCOTT WILLIAMS &amp; WILKINS</CopyrightPublisher>\r\n
+        \   <CopyrightCity>PHILADELPHIA</CopyrightCity>\r\n    <PublicationImpactFactorList>2.276,2008,ExactPublicationYear|2.378,2011,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>19/61;OBSTETRICS &amp; GYNECOLOGY;2008;SC;ExactPublicationYear|19/79;OBSTETRICS
+        &amp; GYNECOLOGY;2011;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <AuthorCitationCountList>1,0,3</AuthorCitationCountList>\r\n    <CopyrightStateProvince>PA</CopyrightStateProvince>\r\n
+        \   <CopyrightCountry>UNITED STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n
+        \ <PublicationItem>\r\n    <PublicationItemID>22407572</PublicationItemID>\r\n
+        \   <Title>SMITH,J.O. COMMENTS ON SULLIVAN KARPLUS-STRONG ARTICLE</Title>\r\n
+        \   <Abstract />\r\n    <AuthorList>Smith,J,O</AuthorList>\r\n    <AuthorCount>1</AuthorCount>\r\n
+        \   <KeywordList>ALGORITHM|TIMBRES</KeywordList>\r\n    <DocumentTypeList>Letter</DocumentTypeList>\r\n
+        \   <DocumentCategory>Journal Document</DocumentCategory>\r\n    <NumberOfReferences>6</NumberOfReferences>\r\n
+        \   <TimesCited>2</TimesCited>\r\n    <TimesNotSelfCited>2</TimesNotSelfCited>\r\n
+        \   <PMID xsi:nil=\"true\" />\r\n    <WoSItemID>A1991FP42600005</WoSItemID>\r\n
+        \   <PublicationSourceTitle>COMPUTER MUSIC JOURNAL</PublicationSourceTitle>\r\n
+        \   <Volume>15</Volume>\r\n    <Issue>2</Issue>\r\n    <Pagination>10-11</Pagination>\r\n
+        \   <PublicationDate>1991-06-21T00:00:00</PublicationDate>\r\n    <PublicationYear>1991</PublicationYear>\r\n
+        \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Computer
+        Science, Interdisciplinary Applications|Music</PublicationSubjectCategoryList>\r\n
+        \   <ISSN>0148-9267</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>74</Rank>\r\n    <OrdinalRank>3</OrdinalRank>\r\n
+        \   <NormalizedRank>66.071428571428569</NormalizedRank>\r\n    <NewPublicationItemID
+        xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>MIT
+        PRESS</CopyrightPublisher>\r\n    <CopyrightCity>CAMBRIDGE</CopyrightCity>\r\n
+        \   <PublicationImpactFactorList>0.548,1994,ClosestToPublicationYear|0.706,2011,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>16/41;COMPUTER SCIENCE, INTERDISCIPLINARY
+        APPLICATIONS;1994;SC;ClosestToPublicationYear|78/99;COMPUTER SCIENCE, INTERDISCIPLINARY
+        APPLICATIONS;2011;SC;MostRecentYear</PublicationCategoryRankingList>\r\n    <AuthorCitationCountList>1,0,2</AuthorCitationCountList>\r\n
+        \   <CopyrightStateProvince>MA</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
+        STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
+        \   <PublicationItemID>47661107</PublicationItemID>\r\n    <Title>Incongruent
+        HIV and tuberculosis co-dynamics in Kenya: Interacting epidemics monitor each
+        other</Title>\r\n    <Abstract>Objective: Kenya is heralded as an example
+        of declining HIV in Africa, while its tuberculosis ( TB) numbers continue
+        rising. We conducted a comparative investigation of TB-HIV co-dynamics in
+        Africa to determine the likelihood of reported trends.  Methods and results:
+        Our mathematical modeling analysis exposes the notable incongruence of reported
+        trends in Kenya because TB-HIV co-dynamics, tightly knit worldwide and most
+        dramatically in sub-Saharan Africa, suggest that declining HIV trends should
+        trigger reductions in TB trends. Moreover, a continental-scale analysis of
+        TB-HIV trends places Kenya as an outlier in eastern and southern Africa, and
+        shows TB outpacing HIV in western central Africa. We further investigate which
+        TB processes across HIV stages have greater potential to reduce TB incidence
+        via a sensitivity analysis.  Conclusions: There are two parsimonious explanations:
+        an unaccounted improvement in TB case detection has occurred, or HIV is not
+        declining as reported. The TB-HIV mismatch could be compounded by surveillance
+        biases due to spatial heterogeneity in disease dynamics. Results highlight
+        the need to reevaluate trends of both diseases in Kenya, and identify the
+        most critical epidemiological factors at play. Substantial demographic changes
+        have occurred in Kenya, including rapid urbanization accompanied by poor living
+        conditions, which could disproportionately increase TB incidence. Other possible
+        contributors include immune reconstitution due to the recent delivery of antiretrovirals,
+        and an increased presence of the virulent Beijing/W TB genotype. Results support
+        the importance of integrating information from closely interacting epidemics,
+        because this approach provides critical insights unobtainable when components
+        of generalized epidemics are considered individually. (C) 2008 Elsevier Inc.
+        All rights reserved.</Abstract>\r\n    <AuthorList>Sanchez,Maria,S|Lloyd-Smith,James,O|Williams,Brian,G|Porco,Travis,C|Ryan,Sadie,J|Borgdorff,Martien,W|Mansoer,John,|Dye,Christopher,|Getz,Wayne,M</AuthorList>\r\n
+        \   <AuthorCount>9</AuthorCount>\r\n    <KeywordList />\r\n    <DocumentTypeList>Article</DocumentTypeList>\r\n
+        \   <DocumentCategory>Journal Document</DocumentCategory>\r\n    <NumberOfReferences>56</NumberOfReferences>\r\n
+        \   <TimesCited>3</TimesCited>\r\n    <TimesNotSelfCited>1</TimesNotSelfCited>\r\n
+        \   <PMID>21352748</PMID>\r\n    <WoSItemID>000208232800003</WoSItemID>\r\n
+        \   <PublicationSourceTitle>EPIDEMICS</PublicationSourceTitle>\r\n    <Volume>1</Volume>\r\n
+        \   <Issue>1</Issue>\r\n    <Pagination>14-20</Pagination>\r\n    <PublicationDate>2009-03-01T00:00:00</PublicationDate>\r\n
+        \   <PublicationYear>2009</PublicationYear>\r\n    <PublicationType>Journal</PublicationType>\r\n
+        \   <PublicationSubjectCategoryList>Infectious Diseases</PublicationSubjectCategoryList>\r\n
+        \   <ISSN>1755-4365</ISSN>\r\n    <DOI>10.1016/j.epidem.2008.08.001</DOI>\r\n
+        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
+        />\r\n    <Rank>69</Rank>\r\n    <OrdinalRank>4</OrdinalRank>\r\n    <NormalizedRank>61.607142857142861</NormalizedRank>\r\n
+        \   <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
+        \   <CopyrightPublisher>ELSEVIER SCIENCE BV</CopyrightPublisher>\r\n    <CopyrightCity>AMSTERDAM</CopyrightCity>\r\n
+        \   <PublicationImpactFactorList>2.151,2011,ClosestToPublicationYear|2.151,2011,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>45/70;INFECTIOUS DISEASES;2011;SC;ClosestToPublicationYear|45/70;INFECTIOUS
+        DISEASES;2011;SC;MostRecentYear</PublicationCategoryRankingList>\r\n    <AuthorCitationCountList>1,2,1|2,2,1|3,1,2|4,0,3|5,0,3|6,0,3|7,0,3|8,0,3|9,2,1</AuthorCitationCountList>\r\n
+        \   <CopyrightStateProvince />\r\n    <CopyrightCountry>NETHERLANDS</CopyrightCountry>\r\n
+        \ </PublicationItem>\r\n  <PublicationItem>\r\n    <PublicationItemID>47742181</PublicationItemID>\r\n
+        \   <Title>DUAL ROLE OF PRACTITIONER AND MEMBER OF ACADEMIC COMMUNITY - COMMENT</Title>\r\n
+        \   <Abstract />\r\n    <AuthorList>Smith,J,P</AuthorList>\r\n    <AuthorCount>1</AuthorCount>\r\n
+        \   <KeywordList />\r\n    <DocumentTypeList>Article</DocumentTypeList>\r\n
+        \   <DocumentCategory>Journal Document</DocumentCategory>\r\n    <NumberOfReferences>0</NumberOfReferences>\r\n
+        \   <TimesCited>0</TimesCited>\r\n    <TimesNotSelfCited>0</TimesNotSelfCited>\r\n
+        \   <PMID xsi:nil=\"true\" />\r\n    <WoSItemID>A1970Y132300017</WoSItemID>\r\n
+        \   <PublicationSourceTitle>PROFESSIONAL PSYCHOLOGY</PublicationSourceTitle>\r\n
+        \   <Volume>1</Volume>\r\n    <Issue>3</Issue>\r\n    <Pagination>281-281</Pagination>\r\n
+        \   <PublicationDate>1970-01-01T00:00:00</PublicationDate>\r\n    <PublicationYear>1970</PublicationYear>\r\n
+        \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList
+        />\r\n    <ISSN>0033-0175</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\"
+        />\r\n    <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n
+        \   <OrdinalRank>5</OrdinalRank>\r\n    <NormalizedRank>50</NormalizedRank>\r\n
+        \   <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
+        \   <CopyrightPublisher>AMER PSYCHOLOGICAL ASSOC</CopyrightPublisher>\r\n
+        \   <CopyrightCity>WASHINGTON</CopyrightCity>\r\n    <PublicationImpactFactorList>1.071,1995,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>17/88;PSYCHOLOGY;1995;SS;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <AuthorCitationCountList>1,0,0</AuthorCitationCountList>\r\n    <CopyrightStateProvince>DC</CopyrightStateProvince>\r\n
+        \   <CopyrightCountry>UNITED STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n
+        \ <PublicationItem>\r\n    <PublicationItemID>45321005</PublicationItemID>\r\n
+        \   <Title>Antibodies and conditioned reflexes.</Title>\r\n    <Abstract />\r\n
+        \   <AuthorList>Smith,J,W</AuthorList>\r\n    <AuthorCount>1</AuthorCount>\r\n
+        \   <KeywordList>ANTIGENS AND ANTIBODIES|REFLEX|CONDITIONED</KeywordList>\r\n
+        \   <DocumentTypeList>Journal Article</DocumentTypeList>\r\n    <DocumentCategory>Journal
+        Document</DocumentCategory>\r\n    <NumberOfReferences xsi:nil=\"true\" />\r\n
+        \   <TimesCited xsi:nil=\"true\" />\r\n    <TimesNotSelfCited xsi:nil=\"true\"
+        />\r\n    <PMID>14913363</PMID>\r\n    <PublicationSourceTitle>Stanford medical
+        bulletin</PublicationSourceTitle>\r\n    <Volume>9</Volume>\r\n    <Issue>3</Issue>\r\n
+        \   <Pagination>171-174</Pagination>\r\n    <PublicationDate>1951-08-01T00:00:00</PublicationDate>\r\n
+        \   <PublicationYear>1951</PublicationYear>\r\n    <PublicationSubjectCategoryList
+        />\r\n    <ISSN>0376-2602</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\"
+        />\r\n    <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n
+        \   <OrdinalRank>6</OrdinalRank>\r\n    <NormalizedRank>50</NormalizedRank>\r\n
+        \   <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
+        \   <CopyrightPublisher />\r\n    <CopyrightCity />\r\n    <CopyrightStateProvince
+        />\r\n    <CopyrightCountry />\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
+        \   <PublicationItemID>28004743</PublicationItemID>\r\n    <Title>Critically
+        constituting organization</Title>\r\n    <Abstract />\r\n    <AuthorList>Owen-Smith,J,</AuthorList>\r\n
+        \   <AuthorCount>1</AuthorCount>\r\n    <KeywordList />\r\n    <DocumentTypeList>Book
+        Review</DocumentTypeList>\r\n    <DocumentCategory>Journal Document</DocumentCategory>\r\n
+        \   <NumberOfReferences>1</NumberOfReferences>\r\n    <TimesCited>0</TimesCited>\r\n
+        \   <TimesNotSelfCited>0</TimesNotSelfCited>\r\n    <PMID xsi:nil=\"true\"
+        />\r\n    <WoSItemID>000175490000018</WoSItemID>\r\n    <PublicationSourceTitle>CONTEMPORARY
+        SOCIOLOGY-A JOURNAL OF REVIEWS</PublicationSourceTitle>\r\n    <Volume>31</Volume>\r\n
+        \   <Issue>3</Issue>\r\n    <Pagination>282-283</Pagination>\r\n    <PublicationDate>2002-05-01T00:00:00</PublicationDate>\r\n
+        \   <PublicationYear>2002</PublicationYear>\r\n    <PublicationType>Journal</PublicationType>\r\n
+        \   <PublicationSubjectCategoryList>Sociology</PublicationSubjectCategoryList>\r\n
+        \   <ISSN>0094-3061</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>7</OrdinalRank>\r\n
+        \   <NormalizedRank>50</NormalizedRank>\r\n    <NewPublicationItemID xsi:nil=\"true\"
+        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>AMER SOCIOLOGICAL
+        ASSOC</CopyrightPublisher>\r\n    <CopyrightCity>WASHINGTON</CopyrightCity>\r\n
+        \   <PublicationImpactFactorList>0.833,2002,ExactPublicationYear|0.172,2011,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>21/93;SOCIOLOGY;2002;SS;ExactPublicationYear|119/137;SOCIOLOGY;2011;SS;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <AuthorCitationCountList>1,0,0</AuthorCitationCountList>\r\n    <CopyrightStateProvince>DC</CopyrightStateProvince>\r\n
+        \   <CopyrightCountry>UNITED STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n
+        \ <PublicationItem>\r\n    <PublicationItemID>27799516</PublicationItemID>\r\n
+        \   <Title>A CONSTANT-GAIN DIGITAL RESONATOR TUNED BY A SINGLE COEFFICIENT</Title>\r\n
+        \   <Abstract />\r\n    <AuthorList>Smith,J,O|ANGELL,J,B</AuthorList>\r\n
+        \   <AuthorCount>2</AuthorCount>\r\n    <KeywordList />\r\n    <DocumentTypeList>Article</DocumentTypeList>\r\n
+        \   <DocumentCategory>Journal Document</DocumentCategory>\r\n    <NumberOfReferences>2</NumberOfReferences>\r\n
+        \   <TimesCited>1</TimesCited>\r\n    <TimesNotSelfCited>1</TimesNotSelfCited>\r\n
+        \   <PMID xsi:nil=\"true\" />\r\n    <WoSItemID>A1982PU40500007</WoSItemID>\r\n
+        \   <PublicationSourceTitle>COMPUTER MUSIC JOURNAL</PublicationSourceTitle>\r\n
+        \   <Volume>6</Volume>\r\n    <Issue>4</Issue>\r\n    <Pagination>36-40</Pagination>\r\n
+        \   <PublicationDate>1982-01-01T00:00:00</PublicationDate>\r\n    <PublicationYear>1982</PublicationYear>\r\n
+        \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Computer
+        Science, Interdisciplinary Applications|Music</PublicationSubjectCategoryList>\r\n
+        \   <ISSN>0148-9267</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>8</OrdinalRank>\r\n
+        \   <NormalizedRank>50</NormalizedRank>\r\n    <NewPublicationItemID xsi:nil=\"true\"
+        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>M I T
+        PRESS</CopyrightPublisher>\r\n    <CopyrightCity>CAMBRIDGE</CopyrightCity>\r\n
+        \   <PublicationImpactFactorList>0.706,2011,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>78/99;COMPUTER SCIENCE, INTERDISCIPLINARY
+        APPLICATIONS;2011;SC;MostRecentYear</PublicationCategoryRankingList>\r\n    <AuthorCitationCountList>1,0,1|2,0,1</AuthorCitationCountList>\r\n
+        \   <CopyrightStateProvince>MA</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
+        STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
+        \   <PublicationItemID>23656582</PublicationItemID>\r\n    <Title>PHYSICAL
+        MODELING USING DIGITAL WAVE-GUIDES</Title>\r\n    <Abstract />\r\n    <AuthorList>Smith,J,O</AuthorList>\r\n
+        \   <AuthorCount>1</AuthorCount>\r\n    <KeywordList>ALGORITHM</KeywordList>\r\n
+        \   <DocumentTypeList>Article</DocumentTypeList>\r\n    <DocumentCategory>Journal
+        Document</DocumentCategory>\r\n    <NumberOfReferences>25</NumberOfReferences>\r\n
+        \   <TimesCited>160</TimesCited>\r\n    <TimesNotSelfCited>153</TimesNotSelfCited>\r\n
+        \   <PMID xsi:nil=\"true\" />\r\n    <WoSItemID>A1992KH76800010</WoSItemID>\r\n
+        \   <PublicationSourceTitle>COMPUTER MUSIC JOURNAL</PublicationSourceTitle>\r\n
+        \   <Volume>16</Volume>\r\n    <Issue>4</Issue>\r\n    <Pagination>74-98</Pagination>\r\n
+        \   <PublicationDate>1992-01-01T00:00:00</PublicationDate>\r\n    <PublicationYear>1992</PublicationYear>\r\n
+        \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Computer
+        Science, Interdisciplinary Applications|Music</PublicationSubjectCategoryList>\r\n
+        \   <ISSN>0148-9267</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>9</OrdinalRank>\r\n
+        \   <NormalizedRank>50</NormalizedRank>\r\n    <NewPublicationItemID xsi:nil=\"true\"
+        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>MIT PRESS</CopyrightPublisher>\r\n
+        \   <CopyrightCity>CAMBRIDGE</CopyrightCity>\r\n    <PublicationImpactFactorList>0.548,1994,ClosestToPublicationYear|0.706,2011,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>16/41;COMPUTER SCIENCE, INTERDISCIPLINARY
+        APPLICATIONS;1994;SC;ClosestToPublicationYear|78/99;COMPUTER SCIENCE, INTERDISCIPLINARY
+        APPLICATIONS;2011;SC;MostRecentYear</PublicationCategoryRankingList>\r\n    <AuthorCitationCountList>1,7,153</AuthorCitationCountList>\r\n
+        \   <CopyrightStateProvince>MA</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
+        STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
+        \   <PublicationItemID>18544482</PublicationItemID>\r\n    <Title>FUNDAMENTALS
+        OF DIGITAL-FILTER THEORY</Title>\r\n    <Abstract />\r\n    <AuthorList>Smith,J,O</AuthorList>\r\n
+        \   <AuthorCount>1</AuthorCount>\r\n    <KeywordList />\r\n    <DocumentTypeList>Article</DocumentTypeList>\r\n
+        \   <DocumentCategory>Journal Document</DocumentCategory>\r\n    <NumberOfReferences>17</NumberOfReferences>\r\n
+        \   <TimesCited>2</TimesCited>\r\n    <TimesNotSelfCited>2</TimesNotSelfCited>\r\n
+        \   <PMID xsi:nil=\"true\" />\r\n    <WoSItemID>A1985ASN4300003</WoSItemID>\r\n
+        \   <PublicationSourceTitle>COMPUTER MUSIC JOURNAL</PublicationSourceTitle>\r\n
+        \   <Volume>9</Volume>\r\n    <Issue>3</Issue>\r\n    <Pagination>13-23</Pagination>\r\n
+        \   <PublicationDate>1985-01-01T00:00:00</PublicationDate>\r\n    <PublicationYear>1985</PublicationYear>\r\n
+        \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Computer
+        Science, Interdisciplinary Applications|Music</PublicationSubjectCategoryList>\r\n
+        \   <ISSN>0148-9267</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>10</OrdinalRank>\r\n
+        \   <NormalizedRank>50</NormalizedRank>\r\n    <NewPublicationItemID xsi:nil=\"true\"
+        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>MIT PRESS</CopyrightPublisher>\r\n
+        \   <CopyrightCity>CAMBRIDGE</CopyrightCity>\r\n    <PublicationImpactFactorList>0.706,2011,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>78/99;COMPUTER SCIENCE, INTERDISCIPLINARY
+        APPLICATIONS;2011;SC;MostRecentYear</PublicationCategoryRankingList>\r\n    <AuthorCitationCountList>1,0,2</AuthorCitationCountList>\r\n
+        \   <CopyrightStateProvince>MA</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
+        STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
+        \   <PublicationItemID>17032855</PublicationItemID>\r\n    <Title>EXTENSIONS
+        OF THE KARPLUS-STRONG PLUCKED-STRING ALGORITHM</Title>\r\n    <Abstract />\r\n
+        \   <AuthorList>Jaffe,D,A|Smith,J,O</AuthorList>\r\n    <AuthorCount>2</AuthorCount>\r\n
+        \   <KeywordList />\r\n    <DocumentTypeList>Article</DocumentTypeList>\r\n
+        \   <DocumentCategory>Journal Document</DocumentCategory>\r\n    <NumberOfReferences>12</NumberOfReferences>\r\n
+        \   <TimesCited>72</TimesCited>\r\n    <TimesNotSelfCited>62</TimesNotSelfCited>\r\n
+        \   <PMID xsi:nil=\"true\" />\r\n    <WoSItemID>A1983QT84000004</WoSItemID>\r\n
+        \   <PublicationSourceTitle>COMPUTER MUSIC JOURNAL</PublicationSourceTitle>\r\n
+        \   <Volume>7</Volume>\r\n    <Issue>2</Issue>\r\n    <Pagination>56-69</Pagination>\r\n
+        \   <PublicationDate>1983-01-01T00:00:00</PublicationDate>\r\n    <PublicationYear>1983</PublicationYear>\r\n
+        \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Computer
+        Science, Interdisciplinary Applications|Music</PublicationSubjectCategoryList>\r\n
+        \   <ISSN>0148-9267</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>11</OrdinalRank>\r\n
+        \   <NormalizedRank>50</NormalizedRank>\r\n    <NewPublicationItemID xsi:nil=\"true\"
+        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>MIT PRESS</CopyrightPublisher>\r\n
+        \   <CopyrightCity>CAMBRIDGE</CopyrightCity>\r\n    <PublicationImpactFactorList>0.706,2011,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>78/99;COMPUTER SCIENCE, INTERDISCIPLINARY
+        APPLICATIONS;2011;SC;MostRecentYear</PublicationCategoryRankingList>\r\n    <AuthorCitationCountList>1,2,70|2,8,64</AuthorCitationCountList>\r\n
+        \   <CopyrightStateProvince>MA</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
+        STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
+        \   <PublicationItemID>15615925</PublicationItemID>\r\n    <Title>VOLATILIZATION
+        RATES OF INTERMEDIATE AND LOW VOLATILITY CHEMICALS FROM WATER</Title>\r\n
+        \   <Abstract />\r\n    <AuthorList>Smith,J,H|Bomberger,D,C|Haynes,D,L</AuthorList>\r\n
+        \   <AuthorCount>3</AuthorCount>\r\n    <KeywordList />\r\n    <DocumentTypeList>Article</DocumentTypeList>\r\n
+        \   <DocumentCategory>Journal Document</DocumentCategory>\r\n    <NumberOfReferences>16</NumberOfReferences>\r\n
+        \   <TimesCited>44</TimesCited>\r\n    <TimesNotSelfCited>42</TimesNotSelfCited>\r\n
+        \   <PMID xsi:nil=\"true\" />\r\n    <WoSItemID>A1981LK75600006</WoSItemID>\r\n
+        \   <PublicationSourceTitle>CHEMOSPHERE</PublicationSourceTitle>\r\n    <Volume>10</Volume>\r\n
+        \   <Issue>3</Issue>\r\n    <Pagination>281-289</Pagination>\r\n    <PublicationDate>1981-01-01T00:00:00</PublicationDate>\r\n
+        \   <PublicationYear>1981</PublicationYear>\r\n    <PublicationType>Journal</PublicationType>\r\n
+        \   <PublicationSubjectCategoryList>Environmental Sciences</PublicationSubjectCategoryList>\r\n
+        \   <ISSN>0045-6535</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>12</OrdinalRank>\r\n
+        \   <NormalizedRank>50</NormalizedRank>\r\n    <NewPublicationItemID xsi:nil=\"true\"
+        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>PERGAMON-ELSEVIER
+        SCIENCE LTD</CopyrightPublisher>\r\n    <CopyrightCity>OXFORD</CopyrightCity>\r\n
+        \   <PublicationImpactFactorList>3.206,2011,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>32/203;ENVIRONMENTAL SCIENCES;2011;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <AuthorCitationCountList>1,2,42|2,0,44|3,0,44</AuthorCitationCountList>\r\n
+        \   <CopyrightStateProvince />\r\n    <CopyrightCountry>UNITED KINGDOM</CopyrightCountry>\r\n
+        \ </PublicationItem>\r\n  <PublicationItem>\r\n    <PublicationItemID>13738927</PublicationItemID>\r\n
+        \   <Title>USE CAUSTIC TO REMOVE FIXED AMMONIA</Title>\r\n    <Abstract />\r\n
+        \   <AuthorList>Bomberger,D,C|Smith,J,H</AuthorList>\r\n    <AuthorCount>2</AuthorCount>\r\n
+        \   <KeywordList />\r\n    <DocumentTypeList>Article</DocumentTypeList>\r\n
+        \   <DocumentCategory>Journal Document</DocumentCategory>\r\n    <NumberOfReferences>12</NumberOfReferences>\r\n
+        \   <TimesCited>0</TimesCited>\r\n    <TimesNotSelfCited>0</TimesNotSelfCited>\r\n
+        \   <PMID xsi:nil=\"true\" />\r\n    <WoSItemID>A1977DP87200019</WoSItemID>\r\n
+        \   <PublicationSourceTitle>HYDROCARBON PROCESSING</PublicationSourceTitle>\r\n
+        \   <Volume>56</Volume>\r\n    <Issue>7</Issue>\r\n    <Pagination>157-162</Pagination>\r\n
+        \   <PublicationDate>1977-01-01T00:00:00</PublicationDate>\r\n    <PublicationYear>1977</PublicationYear>\r\n
+        \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Energy
+        &amp; Fuels|Engineering, Chemical|Engineering, Petroleum</PublicationSubjectCategoryList>\r\n
+        \   <ISSN>0018-8190</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>13</OrdinalRank>\r\n
+        \   <NormalizedRank>50</NormalizedRank>\r\n    <NewPublicationItemID xsi:nil=\"true\"
+        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>GULF PUBL
+        CO</CopyrightPublisher>\r\n    <CopyrightCity>HOUSTON</CopyrightCity>\r\n
+        \   <PublicationImpactFactorList>0.082,2011,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>77/79;ENERGY &amp; FUELS;2011;SC;MostRecentYear|130/132;ENGINEERING,
+        CHEMICAL;2011;SC;MostRecentYear|24/24;ENGINEERING, PETROLEUM;2011;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <AuthorCitationCountList>1,0,0|2,0,0</AuthorCitationCountList>\r\n    <CopyrightStateProvince>TX</CopyrightStateProvince>\r\n
+        \   <CopyrightCountry>UNITED STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n</ArrayOfPublicationItem>"
+    http_version: 
+  recorded_at: Wed, 04 Sep 2013 23:27:37 GMT
+- request:
+    method: post
+    uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery?format=xml
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\"?>\n      <ScienceWireQueryXMLParameter xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\n      <xmlQuery><![CDATA[\n\t
+        \    <query xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/\n\t
+        \   XMLSchema\">\n\t      <Criterion>\n\t        <Criteria><Criterion>\n\t
+        \           <TextSearch>\n                  <QueryPredicate>(\"smith,james\"
+        or \"SMITH,J\") and Stanford</QueryPredicate>\n                  <SearchType>ExactMatch</SearchType>\n
+        \                 <Columns>AggregateText</Columns>\n                  <MaximumRows>200</MaximumRows>\n
+        \                 </TextSearch>\n\t          </Criterion><Criterion>\n  \t
+        \           <Filter>\n  \t              <Column>AuthorLastName</Column>\n
+        \ \t              <Operator>BeginsWith</Operator>\n  \t              <Value>SMITH</Value>\n
+        \ \t            </Filter>\n  \t          </Criterion><Criterion>\n  \t            <Filter>\n
+        \ \t              <Column>AuthorFirstName</Column>\n  \t              <Operator>BeginsWith</Operator>\n
+        \ \t              <Value>J</Value>\n  \t            </Filter>\n  \t          </Criterion><Criterion>\n
+        \     \t            <Filter>\n      \t              <Column>DocumentCategory</Column>\n
+        \     \t              <Operator>In</Operator>\n                      <Values>\n
+        \     \t                <Value>Journal Document</Value>\n                        <Value>Conference
+        Proceeding Document</Value>\n                      </Values>\n      \t            </Filter>\n
+        \     \t          </Criterion></Criteria>\n\t      </Criterion>\n\t      <Columns>\n\t
+        \       <SortColumn>\n\t          <Column>Rank</Column>\n\t          <Direction>Descending</Direction>\n\t
+        \       </SortColumn>\n\t      </Columns>\n\t     <MaximumRows>200</MaximumRows>\n\t
+        \   </query>\n\t    ]]></xmlQuery>\n      </ScienceWireQueryXMLParameter>"
+    headers:
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+      Licenseid:
+      - ***REMOVED***
+      Host:
+      - sciencewirerest.discoverylogic.com
+      Connection:
+      - Keep-Alive
+      Expect:
+      - 100-continue
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - private
+      Content-Type:
+      - application/xml; charset=utf-8
+      Server:
+      - Microsoft-IIS/7.5
+      X-Aspnetmvc-Version:
+      - '2.0'
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+      Date:
+      - Wed, 04 Sep 2013 23:29:21 GMT
+      Content-Length:
+      - '280'
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\"?>\r\n<ScienceWireQueryIDResponse xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>129740</queryID>\r\n
+        \ <queryResultRows>14</queryResultRows>\r\n  <totalRows>14</totalRows>\r\n</ScienceWireQueryIDResponse>"
+    http_version: 
+  recorded_at: Wed, 04 Sep 2013 23:29:28 GMT
+- request:
+    method: get
+    uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/129740?format=xml&page=0&pageSize=2147483647&v=version/3
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+      Content-Type:
+      - text/xml
+      Licenseid:
+      - ***REMOVED***
+      Host:
+      - sciencewirerest.discoverylogic.com
+      Connection:
+      - Keep-Alive
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - private
+      Content-Type:
+      - application/xml; charset=utf-8
+      Server:
+      - Microsoft-IIS/7.5
+      X-Aspnetmvc-Version:
+      - '2.0'
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+      Date:
+      - Wed, 04 Sep 2013 23:29:21 GMT
+      Content-Length:
+      - '29392'
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\"?>\r\n<ArrayOfPublicationItem xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <PublicationItem>\r\n
+        \   <PublicationItemID>49570291</PublicationItemID>\r\n    <Title>ENVIRONMENTAL
+        SCANNING</Title>\r\n    <Abstract />\r\n    <AuthorList>SMITH,J,B</AuthorList>\r\n
+        \   <AuthorCount>1</AuthorCount>\r\n    <KeywordList />\r\n    <DocumentTypeList>Letter</DocumentTypeList>\r\n
+        \   <DocumentCategory>Journal Document</DocumentCategory>\r\n    <NumberOfReferences>1</NumberOfReferences>\r\n
+        \   <TimesCited>0</TimesCited>\r\n    <TimesNotSelfCited>0</TimesNotSelfCited>\r\n
+        \   <PMID xsi:nil=\"true\" />\r\n    <WoSItemID>A1984TR77200001</WoSItemID>\r\n
+        \   <PublicationSourceTitle>FUTURIST</PublicationSourceTitle>\r\n    <Volume>18</Volume>\r\n
+        \   <Issue>6</Issue>\r\n    <Pagination>2-2</Pagination>\r\n    <PublicationDate>1984-01-01T00:00:00</PublicationDate>\r\n
+        \   <PublicationYear>1984</PublicationYear>\r\n    <PublicationType>Journal</PublicationType>\r\n
+        \   <PublicationSubjectCategoryList>Social Issues</PublicationSubjectCategoryList>\r\n
+        \   <ISSN>0016-3317</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>112</Rank>\r\n    <OrdinalRank>0</OrdinalRank>\r\n
+        \   <NormalizedRank>100</NormalizedRank>\r\n    <NewPublicationItemID xsi:nil=\"true\"
+        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>WORLD
+        FUTURE SOCIETY</CopyrightPublisher>\r\n    <CopyrightCity>BETHESDA</CopyrightCity>\r\n
+        \   <PublicationImpactFactorList>0.044,2011,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>37/37;SOCIAL ISSUES;2011;SS;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <AuthorCitationCountList>1,0,0</AuthorCitationCountList>\r\n    <CopyrightStateProvince>MD</CopyrightStateProvince>\r\n
+        \   <CopyrightCountry>UNITED STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n
+        \ <PublicationItem>\r\n    <PublicationItemID>59862982</PublicationItemID>\r\n
+        \   <Title>IS VITAMIN D ASSOCIATED WITH ED? A REVIEW OF A COMPUTERIZED MEDICAL
+        RECORD SYSTEM AT A TERTIARY CARE MEDICAL CENTER</Title>\r\n    <Abstract />\r\n
+        \   <AuthorList>Shindel,Alan,|Smith,James,|Eisenberg,Michael,|Breyer,Benjamin,</AuthorList>\r\n
+        \   <AuthorCount>4</AuthorCount>\r\n    <KeywordList />\r\n    <DocumentTypeList>Meeting
+        Abstract</DocumentTypeList>\r\n    <DocumentCategory>Conference Proceeding
+        Document</DocumentCategory>\r\n    <NumberOfReferences>0</NumberOfReferences>\r\n
+        \   <TimesCited>0</TimesCited>\r\n    <TimesNotSelfCited>0</TimesNotSelfCited>\r\n
+        \   <PMID xsi:nil=\"true\" />\r\n    <WoSItemID>000299826700016</WoSItemID>\r\n
+        \   <PublicationSourceTitle>JOURNAL OF SEXUAL MEDICINE</PublicationSourceTitle>\r\n
+        \   <Volume>9</Volume>\r\n    <Pagination>7-7</Pagination>\r\n    <PublicationDate>2012-02-01T00:00:00</PublicationDate>\r\n
+        \   <PublicationYear>2012</PublicationYear>\r\n    <PublicationType>Journal</PublicationType>\r\n
+        \   <PublicationSubjectCategoryList>Urology &amp; Nephrology</PublicationSubjectCategoryList>\r\n
+        \   <ISSN>1743-6095</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>85</Rank>\r\n    <OrdinalRank>1</OrdinalRank>\r\n
+        \   <NormalizedRank>75.892857142857139</NormalizedRank>\r\n    <NewPublicationItemID
+        xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>WILEY-BLACKWELL</CopyrightPublisher>\r\n
+        \   <CopyrightCity>MALDEN</CopyrightCity>\r\n    <PublicationImpactFactorList>3.552,2011,ClosestToPublicationYear|3.552,2011,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>13/72;UROLOGY &amp; NEPHROLOGY;2011;SC;ClosestToPublicationYear|13/72;UROLOGY
+        &amp; NEPHROLOGY;2011;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <AuthorCitationCountList>1,0,0|2,0,0|3,0,0|4,0,0</AuthorCitationCountList>\r\n
+        \   <CopyrightStateProvince>MA</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
+        STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
+        \   <PublicationItemID>29704997</PublicationItemID>\r\n    <Title>Fetal health
+        assessment using prenatal diagnostic techniques</Title>\r\n    <Abstract>Purpose
+        of review  The assessment of fetal health has occupied our professional attention
+        for many years. As the development of technologies for prenatal diagnostic
+        techniques has progressed, applications of such technologies have aided in
+        the overall assessment of fetal wellbeing.  Recent findings  Fetal heart-rate
+        monitoring remains the main form of fetal assessment for high-risk pregnancies.
+        The additional assessments afforded by the analysis of ST and T-wave changes
+        of the fetal electrocardiogram hold promise for improving the predictive value
+        of fetal heart-rate assessments. Ultrasound has been invaluable for assessment
+        of fetal anatomy, and the use of Doppler ultrasound has given insight into
+        fetal cardiovascular responses to such conditions as intrauterine growth restriction
+        and fetal anemia caused by red blood cell alloimmunization.  Summary  As prenatal
+        diagnostic techniques evolve, their application to the assessment of fetal
+        well-being offers insight into pathophysiologic mechanisms of fetal disease,
+        innovative tools to assess fetal health, and fertile ground for future investigation.</Abstract>\r\n
+        \   <AuthorList>Smith,James,F</AuthorList>\r\n    <AuthorCount>1</AuthorCount>\r\n
+        \   <KeywordList>METABOLIC-ACIDOSIS|CARDIOTOCOGRAPHY|ELECTROCARDIOGRAM|WAVE-FORM
+        ANALYSIS|ECG|LABOR|DOPPLER|MULTICENTER|ST ANALYSIS|FETAL MONITORING|intrauterine
+        growth restriction|electrocardiogram|fetal anemia|Doppler</KeywordList>\r\n
+        \   <DocumentTypeList>Article</DocumentTypeList>\r\n    <DocumentCategory>Journal
+        Document</DocumentCategory>\r\n    <NumberOfReferences>28</NumberOfReferences>\r\n
+        \   <TimesCited>3</TimesCited>\r\n    <TimesNotSelfCited>3</TimesNotSelfCited>\r\n
+        \   <PMID>18388815</PMID>\r\n    <WoSItemID>000254572900013</WoSItemID>\r\n
+        \   <PublicationSourceTitle>CURRENT OPINION IN OBSTETRICS &amp; GYNECOLOGY</PublicationSourceTitle>\r\n
+        \   <Volume>20</Volume>\r\n    <Issue>2</Issue>\r\n    <Pagination>152-156</Pagination>\r\n
+        \   <PublicationDate>2008-04-01T00:00:00</PublicationDate>\r\n    <PublicationYear>2008</PublicationYear>\r\n
+        \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Obstetrics
+        &amp; Gynecology</PublicationSubjectCategoryList>\r\n    <ISSN>1040-872X</ISSN>\r\n
+        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
+        />\r\n    <Rank>83</Rank>\r\n    <OrdinalRank>2</OrdinalRank>\r\n    <NormalizedRank>74.107142857142861</NormalizedRank>\r\n
+        \   <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
+        \   <CopyrightPublisher>LIPPINCOTT WILLIAMS &amp; WILKINS</CopyrightPublisher>\r\n
+        \   <CopyrightCity>PHILADELPHIA</CopyrightCity>\r\n    <PublicationImpactFactorList>2.276,2008,ExactPublicationYear|2.378,2011,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>19/61;OBSTETRICS &amp; GYNECOLOGY;2008;SC;ExactPublicationYear|19/79;OBSTETRICS
+        &amp; GYNECOLOGY;2011;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <AuthorCitationCountList>1,0,3</AuthorCitationCountList>\r\n    <CopyrightStateProvince>PA</CopyrightStateProvince>\r\n
+        \   <CopyrightCountry>UNITED STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n
+        \ <PublicationItem>\r\n    <PublicationItemID>22407572</PublicationItemID>\r\n
+        \   <Title>SMITH,J.O. COMMENTS ON SULLIVAN KARPLUS-STRONG ARTICLE</Title>\r\n
+        \   <Abstract />\r\n    <AuthorList>Smith,J,O</AuthorList>\r\n    <AuthorCount>1</AuthorCount>\r\n
+        \   <KeywordList>ALGORITHM|TIMBRES</KeywordList>\r\n    <DocumentTypeList>Letter</DocumentTypeList>\r\n
+        \   <DocumentCategory>Journal Document</DocumentCategory>\r\n    <NumberOfReferences>6</NumberOfReferences>\r\n
+        \   <TimesCited>2</TimesCited>\r\n    <TimesNotSelfCited>2</TimesNotSelfCited>\r\n
+        \   <PMID xsi:nil=\"true\" />\r\n    <WoSItemID>A1991FP42600005</WoSItemID>\r\n
+        \   <PublicationSourceTitle>COMPUTER MUSIC JOURNAL</PublicationSourceTitle>\r\n
+        \   <Volume>15</Volume>\r\n    <Issue>2</Issue>\r\n    <Pagination>10-11</Pagination>\r\n
+        \   <PublicationDate>1991-06-21T00:00:00</PublicationDate>\r\n    <PublicationYear>1991</PublicationYear>\r\n
+        \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Computer
+        Science, Interdisciplinary Applications|Music</PublicationSubjectCategoryList>\r\n
+        \   <ISSN>0148-9267</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>74</Rank>\r\n    <OrdinalRank>3</OrdinalRank>\r\n
+        \   <NormalizedRank>66.071428571428569</NormalizedRank>\r\n    <NewPublicationItemID
+        xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>MIT
+        PRESS</CopyrightPublisher>\r\n    <CopyrightCity>CAMBRIDGE</CopyrightCity>\r\n
+        \   <PublicationImpactFactorList>0.548,1994,ClosestToPublicationYear|0.706,2011,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>16/41;COMPUTER SCIENCE, INTERDISCIPLINARY
+        APPLICATIONS;1994;SC;ClosestToPublicationYear|78/99;COMPUTER SCIENCE, INTERDISCIPLINARY
+        APPLICATIONS;2011;SC;MostRecentYear</PublicationCategoryRankingList>\r\n    <AuthorCitationCountList>1,0,2</AuthorCitationCountList>\r\n
+        \   <CopyrightStateProvince>MA</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
+        STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
+        \   <PublicationItemID>47661107</PublicationItemID>\r\n    <Title>Incongruent
+        HIV and tuberculosis co-dynamics in Kenya: Interacting epidemics monitor each
+        other</Title>\r\n    <Abstract>Objective: Kenya is heralded as an example
+        of declining HIV in Africa, while its tuberculosis ( TB) numbers continue
+        rising. We conducted a comparative investigation of TB-HIV co-dynamics in
+        Africa to determine the likelihood of reported trends.  Methods and results:
+        Our mathematical modeling analysis exposes the notable incongruence of reported
+        trends in Kenya because TB-HIV co-dynamics, tightly knit worldwide and most
+        dramatically in sub-Saharan Africa, suggest that declining HIV trends should
+        trigger reductions in TB trends. Moreover, a continental-scale analysis of
+        TB-HIV trends places Kenya as an outlier in eastern and southern Africa, and
+        shows TB outpacing HIV in western central Africa. We further investigate which
+        TB processes across HIV stages have greater potential to reduce TB incidence
+        via a sensitivity analysis.  Conclusions: There are two parsimonious explanations:
+        an unaccounted improvement in TB case detection has occurred, or HIV is not
+        declining as reported. The TB-HIV mismatch could be compounded by surveillance
+        biases due to spatial heterogeneity in disease dynamics. Results highlight
+        the need to reevaluate trends of both diseases in Kenya, and identify the
+        most critical epidemiological factors at play. Substantial demographic changes
+        have occurred in Kenya, including rapid urbanization accompanied by poor living
+        conditions, which could disproportionately increase TB incidence. Other possible
+        contributors include immune reconstitution due to the recent delivery of antiretrovirals,
+        and an increased presence of the virulent Beijing/W TB genotype. Results support
+        the importance of integrating information from closely interacting epidemics,
+        because this approach provides critical insights unobtainable when components
+        of generalized epidemics are considered individually. (C) 2008 Elsevier Inc.
+        All rights reserved.</Abstract>\r\n    <AuthorList>Sanchez,Maria,S|Lloyd-Smith,James,O|Williams,Brian,G|Porco,Travis,C|Ryan,Sadie,J|Borgdorff,Martien,W|Mansoer,John,|Dye,Christopher,|Getz,Wayne,M</AuthorList>\r\n
+        \   <AuthorCount>9</AuthorCount>\r\n    <KeywordList />\r\n    <DocumentTypeList>Article</DocumentTypeList>\r\n
+        \   <DocumentCategory>Journal Document</DocumentCategory>\r\n    <NumberOfReferences>56</NumberOfReferences>\r\n
+        \   <TimesCited>3</TimesCited>\r\n    <TimesNotSelfCited>1</TimesNotSelfCited>\r\n
+        \   <PMID>21352748</PMID>\r\n    <WoSItemID>000208232800003</WoSItemID>\r\n
+        \   <PublicationSourceTitle>EPIDEMICS</PublicationSourceTitle>\r\n    <Volume>1</Volume>\r\n
+        \   <Issue>1</Issue>\r\n    <Pagination>14-20</Pagination>\r\n    <PublicationDate>2009-03-01T00:00:00</PublicationDate>\r\n
+        \   <PublicationYear>2009</PublicationYear>\r\n    <PublicationType>Journal</PublicationType>\r\n
+        \   <PublicationSubjectCategoryList>Infectious Diseases</PublicationSubjectCategoryList>\r\n
+        \   <ISSN>1755-4365</ISSN>\r\n    <DOI>10.1016/j.epidem.2008.08.001</DOI>\r\n
+        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
+        />\r\n    <Rank>69</Rank>\r\n    <OrdinalRank>4</OrdinalRank>\r\n    <NormalizedRank>61.607142857142861</NormalizedRank>\r\n
+        \   <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
+        \   <CopyrightPublisher>ELSEVIER SCIENCE BV</CopyrightPublisher>\r\n    <CopyrightCity>AMSTERDAM</CopyrightCity>\r\n
+        \   <PublicationImpactFactorList>2.151,2011,ClosestToPublicationYear|2.151,2011,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>45/70;INFECTIOUS DISEASES;2011;SC;ClosestToPublicationYear|45/70;INFECTIOUS
+        DISEASES;2011;SC;MostRecentYear</PublicationCategoryRankingList>\r\n    <AuthorCitationCountList>1,2,1|2,2,1|3,1,2|4,0,3|5,0,3|6,0,3|7,0,3|8,0,3|9,2,1</AuthorCitationCountList>\r\n
+        \   <CopyrightStateProvince />\r\n    <CopyrightCountry>NETHERLANDS</CopyrightCountry>\r\n
+        \ </PublicationItem>\r\n  <PublicationItem>\r\n    <PublicationItemID>47742181</PublicationItemID>\r\n
+        \   <Title>DUAL ROLE OF PRACTITIONER AND MEMBER OF ACADEMIC COMMUNITY - COMMENT</Title>\r\n
+        \   <Abstract />\r\n    <AuthorList>Smith,J,P</AuthorList>\r\n    <AuthorCount>1</AuthorCount>\r\n
+        \   <KeywordList />\r\n    <DocumentTypeList>Article</DocumentTypeList>\r\n
+        \   <DocumentCategory>Journal Document</DocumentCategory>\r\n    <NumberOfReferences>0</NumberOfReferences>\r\n
+        \   <TimesCited>0</TimesCited>\r\n    <TimesNotSelfCited>0</TimesNotSelfCited>\r\n
+        \   <PMID xsi:nil=\"true\" />\r\n    <WoSItemID>A1970Y132300017</WoSItemID>\r\n
+        \   <PublicationSourceTitle>PROFESSIONAL PSYCHOLOGY</PublicationSourceTitle>\r\n
+        \   <Volume>1</Volume>\r\n    <Issue>3</Issue>\r\n    <Pagination>281-281</Pagination>\r\n
+        \   <PublicationDate>1970-01-01T00:00:00</PublicationDate>\r\n    <PublicationYear>1970</PublicationYear>\r\n
+        \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList
+        />\r\n    <ISSN>0033-0175</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\"
+        />\r\n    <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n
+        \   <OrdinalRank>5</OrdinalRank>\r\n    <NormalizedRank>50</NormalizedRank>\r\n
+        \   <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
+        \   <CopyrightPublisher>AMER PSYCHOLOGICAL ASSOC</CopyrightPublisher>\r\n
+        \   <CopyrightCity>WASHINGTON</CopyrightCity>\r\n    <PublicationImpactFactorList>1.071,1995,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>17/88;PSYCHOLOGY;1995;SS;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <AuthorCitationCountList>1,0,0</AuthorCitationCountList>\r\n    <CopyrightStateProvince>DC</CopyrightStateProvince>\r\n
+        \   <CopyrightCountry>UNITED STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n
+        \ <PublicationItem>\r\n    <PublicationItemID>45321005</PublicationItemID>\r\n
+        \   <Title>Antibodies and conditioned reflexes.</Title>\r\n    <Abstract />\r\n
+        \   <AuthorList>Smith,J,W</AuthorList>\r\n    <AuthorCount>1</AuthorCount>\r\n
+        \   <KeywordList>ANTIGENS AND ANTIBODIES|REFLEX|CONDITIONED</KeywordList>\r\n
+        \   <DocumentTypeList>Journal Article</DocumentTypeList>\r\n    <DocumentCategory>Journal
+        Document</DocumentCategory>\r\n    <NumberOfReferences xsi:nil=\"true\" />\r\n
+        \   <TimesCited xsi:nil=\"true\" />\r\n    <TimesNotSelfCited xsi:nil=\"true\"
+        />\r\n    <PMID>14913363</PMID>\r\n    <PublicationSourceTitle>Stanford medical
+        bulletin</PublicationSourceTitle>\r\n    <Volume>9</Volume>\r\n    <Issue>3</Issue>\r\n
+        \   <Pagination>171-174</Pagination>\r\n    <PublicationDate>1951-08-01T00:00:00</PublicationDate>\r\n
+        \   <PublicationYear>1951</PublicationYear>\r\n    <PublicationSubjectCategoryList
+        />\r\n    <ISSN>0376-2602</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\"
+        />\r\n    <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n
+        \   <OrdinalRank>6</OrdinalRank>\r\n    <NormalizedRank>50</NormalizedRank>\r\n
+        \   <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
+        \   <CopyrightPublisher />\r\n    <CopyrightCity />\r\n    <CopyrightStateProvince
+        />\r\n    <CopyrightCountry />\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
+        \   <PublicationItemID>28004743</PublicationItemID>\r\n    <Title>Critically
+        constituting organization</Title>\r\n    <Abstract />\r\n    <AuthorList>Owen-Smith,J,</AuthorList>\r\n
+        \   <AuthorCount>1</AuthorCount>\r\n    <KeywordList />\r\n    <DocumentTypeList>Book
+        Review</DocumentTypeList>\r\n    <DocumentCategory>Journal Document</DocumentCategory>\r\n
+        \   <NumberOfReferences>1</NumberOfReferences>\r\n    <TimesCited>0</TimesCited>\r\n
+        \   <TimesNotSelfCited>0</TimesNotSelfCited>\r\n    <PMID xsi:nil=\"true\"
+        />\r\n    <WoSItemID>000175490000018</WoSItemID>\r\n    <PublicationSourceTitle>CONTEMPORARY
+        SOCIOLOGY-A JOURNAL OF REVIEWS</PublicationSourceTitle>\r\n    <Volume>31</Volume>\r\n
+        \   <Issue>3</Issue>\r\n    <Pagination>282-283</Pagination>\r\n    <PublicationDate>2002-05-01T00:00:00</PublicationDate>\r\n
+        \   <PublicationYear>2002</PublicationYear>\r\n    <PublicationType>Journal</PublicationType>\r\n
+        \   <PublicationSubjectCategoryList>Sociology</PublicationSubjectCategoryList>\r\n
+        \   <ISSN>0094-3061</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>7</OrdinalRank>\r\n
+        \   <NormalizedRank>50</NormalizedRank>\r\n    <NewPublicationItemID xsi:nil=\"true\"
+        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>AMER SOCIOLOGICAL
+        ASSOC</CopyrightPublisher>\r\n    <CopyrightCity>WASHINGTON</CopyrightCity>\r\n
+        \   <PublicationImpactFactorList>0.833,2002,ExactPublicationYear|0.172,2011,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>21/93;SOCIOLOGY;2002;SS;ExactPublicationYear|119/137;SOCIOLOGY;2011;SS;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <AuthorCitationCountList>1,0,0</AuthorCitationCountList>\r\n    <CopyrightStateProvince>DC</CopyrightStateProvince>\r\n
+        \   <CopyrightCountry>UNITED STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n
+        \ <PublicationItem>\r\n    <PublicationItemID>27799516</PublicationItemID>\r\n
+        \   <Title>A CONSTANT-GAIN DIGITAL RESONATOR TUNED BY A SINGLE COEFFICIENT</Title>\r\n
+        \   <Abstract />\r\n    <AuthorList>Smith,J,O|ANGELL,J,B</AuthorList>\r\n
+        \   <AuthorCount>2</AuthorCount>\r\n    <KeywordList />\r\n    <DocumentTypeList>Article</DocumentTypeList>\r\n
+        \   <DocumentCategory>Journal Document</DocumentCategory>\r\n    <NumberOfReferences>2</NumberOfReferences>\r\n
+        \   <TimesCited>1</TimesCited>\r\n    <TimesNotSelfCited>1</TimesNotSelfCited>\r\n
+        \   <PMID xsi:nil=\"true\" />\r\n    <WoSItemID>A1982PU40500007</WoSItemID>\r\n
+        \   <PublicationSourceTitle>COMPUTER MUSIC JOURNAL</PublicationSourceTitle>\r\n
+        \   <Volume>6</Volume>\r\n    <Issue>4</Issue>\r\n    <Pagination>36-40</Pagination>\r\n
+        \   <PublicationDate>1982-01-01T00:00:00</PublicationDate>\r\n    <PublicationYear>1982</PublicationYear>\r\n
+        \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Computer
+        Science, Interdisciplinary Applications|Music</PublicationSubjectCategoryList>\r\n
+        \   <ISSN>0148-9267</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>8</OrdinalRank>\r\n
+        \   <NormalizedRank>50</NormalizedRank>\r\n    <NewPublicationItemID xsi:nil=\"true\"
+        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>M I T
+        PRESS</CopyrightPublisher>\r\n    <CopyrightCity>CAMBRIDGE</CopyrightCity>\r\n
+        \   <PublicationImpactFactorList>0.706,2011,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>78/99;COMPUTER SCIENCE, INTERDISCIPLINARY
+        APPLICATIONS;2011;SC;MostRecentYear</PublicationCategoryRankingList>\r\n    <AuthorCitationCountList>1,0,1|2,0,1</AuthorCitationCountList>\r\n
+        \   <CopyrightStateProvince>MA</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
+        STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
+        \   <PublicationItemID>23656582</PublicationItemID>\r\n    <Title>PHYSICAL
+        MODELING USING DIGITAL WAVE-GUIDES</Title>\r\n    <Abstract />\r\n    <AuthorList>Smith,J,O</AuthorList>\r\n
+        \   <AuthorCount>1</AuthorCount>\r\n    <KeywordList>ALGORITHM</KeywordList>\r\n
+        \   <DocumentTypeList>Article</DocumentTypeList>\r\n    <DocumentCategory>Journal
+        Document</DocumentCategory>\r\n    <NumberOfReferences>25</NumberOfReferences>\r\n
+        \   <TimesCited>160</TimesCited>\r\n    <TimesNotSelfCited>153</TimesNotSelfCited>\r\n
+        \   <PMID xsi:nil=\"true\" />\r\n    <WoSItemID>A1992KH76800010</WoSItemID>\r\n
+        \   <PublicationSourceTitle>COMPUTER MUSIC JOURNAL</PublicationSourceTitle>\r\n
+        \   <Volume>16</Volume>\r\n    <Issue>4</Issue>\r\n    <Pagination>74-98</Pagination>\r\n
+        \   <PublicationDate>1992-01-01T00:00:00</PublicationDate>\r\n    <PublicationYear>1992</PublicationYear>\r\n
+        \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Computer
+        Science, Interdisciplinary Applications|Music</PublicationSubjectCategoryList>\r\n
+        \   <ISSN>0148-9267</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>9</OrdinalRank>\r\n
+        \   <NormalizedRank>50</NormalizedRank>\r\n    <NewPublicationItemID xsi:nil=\"true\"
+        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>MIT PRESS</CopyrightPublisher>\r\n
+        \   <CopyrightCity>CAMBRIDGE</CopyrightCity>\r\n    <PublicationImpactFactorList>0.548,1994,ClosestToPublicationYear|0.706,2011,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>16/41;COMPUTER SCIENCE, INTERDISCIPLINARY
+        APPLICATIONS;1994;SC;ClosestToPublicationYear|78/99;COMPUTER SCIENCE, INTERDISCIPLINARY
+        APPLICATIONS;2011;SC;MostRecentYear</PublicationCategoryRankingList>\r\n    <AuthorCitationCountList>1,7,153</AuthorCitationCountList>\r\n
+        \   <CopyrightStateProvince>MA</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
+        STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
+        \   <PublicationItemID>18544482</PublicationItemID>\r\n    <Title>FUNDAMENTALS
+        OF DIGITAL-FILTER THEORY</Title>\r\n    <Abstract />\r\n    <AuthorList>Smith,J,O</AuthorList>\r\n
+        \   <AuthorCount>1</AuthorCount>\r\n    <KeywordList />\r\n    <DocumentTypeList>Article</DocumentTypeList>\r\n
+        \   <DocumentCategory>Journal Document</DocumentCategory>\r\n    <NumberOfReferences>17</NumberOfReferences>\r\n
+        \   <TimesCited>2</TimesCited>\r\n    <TimesNotSelfCited>2</TimesNotSelfCited>\r\n
+        \   <PMID xsi:nil=\"true\" />\r\n    <WoSItemID>A1985ASN4300003</WoSItemID>\r\n
+        \   <PublicationSourceTitle>COMPUTER MUSIC JOURNAL</PublicationSourceTitle>\r\n
+        \   <Volume>9</Volume>\r\n    <Issue>3</Issue>\r\n    <Pagination>13-23</Pagination>\r\n
+        \   <PublicationDate>1985-01-01T00:00:00</PublicationDate>\r\n    <PublicationYear>1985</PublicationYear>\r\n
+        \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Computer
+        Science, Interdisciplinary Applications|Music</PublicationSubjectCategoryList>\r\n
+        \   <ISSN>0148-9267</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>10</OrdinalRank>\r\n
+        \   <NormalizedRank>50</NormalizedRank>\r\n    <NewPublicationItemID xsi:nil=\"true\"
+        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>MIT PRESS</CopyrightPublisher>\r\n
+        \   <CopyrightCity>CAMBRIDGE</CopyrightCity>\r\n    <PublicationImpactFactorList>0.706,2011,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>78/99;COMPUTER SCIENCE, INTERDISCIPLINARY
+        APPLICATIONS;2011;SC;MostRecentYear</PublicationCategoryRankingList>\r\n    <AuthorCitationCountList>1,0,2</AuthorCitationCountList>\r\n
+        \   <CopyrightStateProvince>MA</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
+        STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
+        \   <PublicationItemID>17032855</PublicationItemID>\r\n    <Title>EXTENSIONS
+        OF THE KARPLUS-STRONG PLUCKED-STRING ALGORITHM</Title>\r\n    <Abstract />\r\n
+        \   <AuthorList>Jaffe,D,A|Smith,J,O</AuthorList>\r\n    <AuthorCount>2</AuthorCount>\r\n
+        \   <KeywordList />\r\n    <DocumentTypeList>Article</DocumentTypeList>\r\n
+        \   <DocumentCategory>Journal Document</DocumentCategory>\r\n    <NumberOfReferences>12</NumberOfReferences>\r\n
+        \   <TimesCited>72</TimesCited>\r\n    <TimesNotSelfCited>62</TimesNotSelfCited>\r\n
+        \   <PMID xsi:nil=\"true\" />\r\n    <WoSItemID>A1983QT84000004</WoSItemID>\r\n
+        \   <PublicationSourceTitle>COMPUTER MUSIC JOURNAL</PublicationSourceTitle>\r\n
+        \   <Volume>7</Volume>\r\n    <Issue>2</Issue>\r\n    <Pagination>56-69</Pagination>\r\n
+        \   <PublicationDate>1983-01-01T00:00:00</PublicationDate>\r\n    <PublicationYear>1983</PublicationYear>\r\n
+        \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Computer
+        Science, Interdisciplinary Applications|Music</PublicationSubjectCategoryList>\r\n
+        \   <ISSN>0148-9267</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>11</OrdinalRank>\r\n
+        \   <NormalizedRank>50</NormalizedRank>\r\n    <NewPublicationItemID xsi:nil=\"true\"
+        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>MIT PRESS</CopyrightPublisher>\r\n
+        \   <CopyrightCity>CAMBRIDGE</CopyrightCity>\r\n    <PublicationImpactFactorList>0.706,2011,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>78/99;COMPUTER SCIENCE, INTERDISCIPLINARY
+        APPLICATIONS;2011;SC;MostRecentYear</PublicationCategoryRankingList>\r\n    <AuthorCitationCountList>1,2,70|2,8,64</AuthorCitationCountList>\r\n
+        \   <CopyrightStateProvince>MA</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
+        STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
+        \   <PublicationItemID>15615925</PublicationItemID>\r\n    <Title>VOLATILIZATION
+        RATES OF INTERMEDIATE AND LOW VOLATILITY CHEMICALS FROM WATER</Title>\r\n
+        \   <Abstract />\r\n    <AuthorList>Smith,J,H|Bomberger,D,C|Haynes,D,L</AuthorList>\r\n
+        \   <AuthorCount>3</AuthorCount>\r\n    <KeywordList />\r\n    <DocumentTypeList>Article</DocumentTypeList>\r\n
+        \   <DocumentCategory>Journal Document</DocumentCategory>\r\n    <NumberOfReferences>16</NumberOfReferences>\r\n
+        \   <TimesCited>44</TimesCited>\r\n    <TimesNotSelfCited>42</TimesNotSelfCited>\r\n
+        \   <PMID xsi:nil=\"true\" />\r\n    <WoSItemID>A1981LK75600006</WoSItemID>\r\n
+        \   <PublicationSourceTitle>CHEMOSPHERE</PublicationSourceTitle>\r\n    <Volume>10</Volume>\r\n
+        \   <Issue>3</Issue>\r\n    <Pagination>281-289</Pagination>\r\n    <PublicationDate>1981-01-01T00:00:00</PublicationDate>\r\n
+        \   <PublicationYear>1981</PublicationYear>\r\n    <PublicationType>Journal</PublicationType>\r\n
+        \   <PublicationSubjectCategoryList>Environmental Sciences</PublicationSubjectCategoryList>\r\n
+        \   <ISSN>0045-6535</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>12</OrdinalRank>\r\n
+        \   <NormalizedRank>50</NormalizedRank>\r\n    <NewPublicationItemID xsi:nil=\"true\"
+        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>PERGAMON-ELSEVIER
+        SCIENCE LTD</CopyrightPublisher>\r\n    <CopyrightCity>OXFORD</CopyrightCity>\r\n
+        \   <PublicationImpactFactorList>3.206,2011,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>32/203;ENVIRONMENTAL SCIENCES;2011;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <AuthorCitationCountList>1,2,42|2,0,44|3,0,44</AuthorCitationCountList>\r\n
+        \   <CopyrightStateProvince />\r\n    <CopyrightCountry>UNITED KINGDOM</CopyrightCountry>\r\n
+        \ </PublicationItem>\r\n  <PublicationItem>\r\n    <PublicationItemID>13738927</PublicationItemID>\r\n
+        \   <Title>USE CAUSTIC TO REMOVE FIXED AMMONIA</Title>\r\n    <Abstract />\r\n
+        \   <AuthorList>Bomberger,D,C|Smith,J,H</AuthorList>\r\n    <AuthorCount>2</AuthorCount>\r\n
+        \   <KeywordList />\r\n    <DocumentTypeList>Article</DocumentTypeList>\r\n
+        \   <DocumentCategory>Journal Document</DocumentCategory>\r\n    <NumberOfReferences>12</NumberOfReferences>\r\n
+        \   <TimesCited>0</TimesCited>\r\n    <TimesNotSelfCited>0</TimesNotSelfCited>\r\n
+        \   <PMID xsi:nil=\"true\" />\r\n    <WoSItemID>A1977DP87200019</WoSItemID>\r\n
+        \   <PublicationSourceTitle>HYDROCARBON PROCESSING</PublicationSourceTitle>\r\n
+        \   <Volume>56</Volume>\r\n    <Issue>7</Issue>\r\n    <Pagination>157-162</Pagination>\r\n
+        \   <PublicationDate>1977-01-01T00:00:00</PublicationDate>\r\n    <PublicationYear>1977</PublicationYear>\r\n
+        \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Energy
+        &amp; Fuels|Engineering, Chemical|Engineering, Petroleum</PublicationSubjectCategoryList>\r\n
+        \   <ISSN>0018-8190</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>13</OrdinalRank>\r\n
+        \   <NormalizedRank>50</NormalizedRank>\r\n    <NewPublicationItemID xsi:nil=\"true\"
+        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>GULF PUBL
+        CO</CopyrightPublisher>\r\n    <CopyrightCity>HOUSTON</CopyrightCity>\r\n
+        \   <PublicationImpactFactorList>0.082,2011,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>77/79;ENERGY &amp; FUELS;2011;SC;MostRecentYear|130/132;ENGINEERING,
+        CHEMICAL;2011;SC;MostRecentYear|24/24;ENGINEERING, PETROLEUM;2011;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <AuthorCitationCountList>1,0,0|2,0,0</AuthorCitationCountList>\r\n    <CopyrightStateProvince>TX</CopyrightStateProvince>\r\n
+        \   <CopyrightCountry>UNITED STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n</ArrayOfPublicationItem>"
+    http_version: 
+  recorded_at: Wed, 04 Sep 2013 23:29:28 GMT
 recorded_with: VCR 2.5.0

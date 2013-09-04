@@ -272,11 +272,12 @@ class ScienceWireHarvester
     #puts "new contrib id: #{contrib.id} for author: #{author.id} and pub: #{publication.id}"
   end
 
+  # TODO have AggregateText results use this directly instead of pulling out IDs
   def process_queued_sciencewire_suggestions
 
     list_of_sw_ids = @records_queued_for_sciencewire_retrieval.keys.join(',')
     sw_records_doc = @sciencewire_client.get_full_sciencewire_pubs_for_sciencewire_ids(list_of_sw_ids)
-    sw_records_doc.xpath('//PublicationItem').each do |sw_doc|
+    sw_records_doc.xpath("//PublicationItem[regex_reject(DocumentTypeList, '#{Settings.sw_doc_types_to_skip}')]", XpathUtils.new).each do |sw_doc|
 
       sciencewire_id = sw_doc.xpath("PublicationItemID").text
       pmid = sw_doc.xpath("PMID").text

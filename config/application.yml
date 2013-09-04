@@ -36,6 +36,29 @@ defaults: &defaults
 
   sciencewire_harvest_max: 2
 
+  sw_doc_types_to_skip_a:
+    - Film Review
+    - Hardware Review
+    - Legal Cases
+    - Letter
+    - Meeting Abstract
+    - Meeting Summary
+    - Meeting-Abstract
+    - Music Performance Review
+    - Music Score
+    - Music Score Review
+    - News
+    - Note
+    - Patient Education Handout
+    - Poetry
+    - Record Review
+    - Software Review
+    - Technical Report
+    - Theater Review
+    - TV Review Radio Review Video
+    - Book Review
+    - Comment
+
 
 
 development:

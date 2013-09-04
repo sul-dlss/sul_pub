@@ -7,7 +7,7 @@ describe ScienceWireClient do
 
 			it "returns a list of 13 sciencewire ids" do
 				VCR.use_cassette("sciencewire_client_spec_returns_list_of_4") do
-					expect(science_wire_client.query_sciencewire_by_author_name("james", "", "smith")).to have(13).items
+					expect(science_wire_client.query_sciencewire_by_author_name("james", "", "smith")).to have(10).items
 				end
 			end
 

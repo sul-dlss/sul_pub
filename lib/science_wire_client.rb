@@ -140,7 +140,9 @@ class ScienceWireClient
 	    </query>
 	    ]]>"
 
-    query_sciencewire(xml_query).xpath('//PublicationItem/PublicationItemID').collect { |itemId| itemId.text}
+    # Only select Publication types that are not on the skip list
+    # TODO use returned documents instead of selecting IDs
+    query_sciencewire(xml_query).xpath("//PublicationItem[regex_reject(DocumentTypeList, '#{Settings.sw_doc_types_to_skip}')]/PublicationItemID", XpathUtils.new).collect { |itemId| itemId.text}
   end
 
 
@@ -297,7 +299,6 @@ class ScienceWireClient
       <ScienceWireQueryXMLParameter xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
       <xmlQuery>' + xml_query + '</xmlQuery>
       </ScienceWireQueryXMLParameter>'
-      binding.pry
       http = setup_http
       request = Net::HTTP::Post.new(@auth[:publication_query_path])
       request["LicenseID"] = @auth[:get_license_id]
