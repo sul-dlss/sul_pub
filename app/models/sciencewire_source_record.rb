@@ -248,9 +248,9 @@ class SciencewireSourceRecord < ActiveRecord::Base
 
   def self.lookup_sw_doc_type(doc_type_list)
     doc_types = Array(doc_type_list)
-    if doc_types.any? {|t| t =~ /(#{@@sw_conference_proceedings_types})/i}
+    if doc_types.any? {|t| t =~ /^(#{@@sw_conference_proceedings_types})$/i}
       type =  Settings.sul_doc_types.inproceedings
-    elsif doc_types.any? {|t| t =~ /(#{@@sw_book_types})/i}
+    elsif doc_types.any? {|t| t =~ /^(#{@@sw_book_types})$/i}
       type =  Settings.sul_doc_types.book
     else
       type =  Settings.sul_doc_types.article
