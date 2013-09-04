@@ -297,6 +297,7 @@ class ScienceWireClient
       <ScienceWireQueryXMLParameter xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
       <xmlQuery>' + xml_query + '</xmlQuery>
       </ScienceWireQueryXMLParameter>'
+      binding.pry
       http = setup_http
       request = Net::HTTP::Post.new(@auth[:publication_query_path])
       request["LicenseID"] = @auth[:get_license_id]

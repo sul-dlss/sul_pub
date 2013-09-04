@@ -8,8 +8,8 @@ class SciencewireSourceRecord < ActiveRecord::Base
   	attr_accessible :is_active, :lock_version, :pmid, :sciencewire_id, :source_data, :source_fingerprint
   	#validates_uniqueness_of :sciencewire_id
 
-  	@@sw_conference_proceedings_type_strings ||= Settings.sw_doc_type_mappings.conference.split(',')
-	@@sw_book_type_strings ||= Settings.sw_doc_type_mappings.book.split(',')
+  	@@sw_conference_proceedings_types ||= Settings.sw_doc_type_mappings.conference.join('|')
+	@@sw_book_types ||= Settings.sw_doc_type_mappings.book.join('|')
 
 	include ActionView::Helpers::DateHelper
 	# one instance method, the rest are class methods
@@ -248,9 +248,10 @@ class SciencewireSourceRecord < ActiveRecord::Base
 
 
 	def self.lookup_sw_doc_type(doc_type_list)
-	    if !(@@sw_conference_proceedings_type_strings & doc_type_list).empty?
+	    doc_types = Array(doc_type_list)
+	    if doc_types.any? {|t| t =~ /(#{@@sw_conference_proceedings_types})/i}
 	      type =  Settings.sul_doc_types.inproceedings
-	    elsif !(@@sw_book_type_strings & doc_type_list).empty?
+	    elsif doc_types.any? {|t| t =~ /(#{@@sw_book_types})/i}
 	      type =  Settings.sul_doc_types.book
 	    else
 	      type =  Settings.sul_doc_types.article

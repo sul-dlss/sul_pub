@@ -2,10 +2,22 @@
 defaults: &defaults
 
   sw_doc_type_mappings:
-    conference: "Clinical Conference, Congresses, Consensus Development Conference, Consensus Development Conference NIH, Meeting Abstract, Meeting Summary, Meeting-Abstract, Overall"
-    book: "Dictionary, Directory, Government Publications"
+    conference:
+      - Clinical Conference
+      - Congresses
+      - Consensus Development Conference
+      - Consensus Development Conference NIH
+      - Meeting Abstract
+      - Meeting Summary
+      - Meeting-Abstract
+      - Overall
+      - Proceedings Paper
+    book:
+      - Dictionary
+      - Directory
+      - Government Publications
 
-  sul_doc_types: 
+  sul_doc_types:
     inproceedings: inproceedings
     book: book
     article: article
@@ -24,8 +36,8 @@ defaults: &defaults
 
   sciencewire_harvest_max: 2
 
-  
-  
+
+
 development:
   <<: *defaults
 
