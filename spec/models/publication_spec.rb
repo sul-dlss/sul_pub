@@ -94,6 +94,15 @@ describe Publication do
       expect(PublicationIdentifier.where(:publication_id => publication.id, :identifier_type => 'x').count).to eq(0)
       expect(PublicationIdentifier.where(:publication_id => publication.id, :identifier_type => 'a').count).to eq(1)
     end
+
+    it "does not delete legacy_cap_pub_id when missing from the incoming pub_hash" do
+      publication.pub_hash = { :identifier => [ { :type => "legacy_cap_pub_id", :id => "258214" } ] }
+      publication.sync_identifiers_in_pub_hash_to_db
+      publication.pub_hash = { :identifier => [ { :type => "another", :id => "id", :url => "with a url" } ] }
+      publication.sync_identifiers_in_pub_hash_to_db
+      expect(PublicationIdentifier.where(:publication_id => publication.id, :identifier_type => 'legacy_cap_pub_id').count).to eq(1)
+      expect(PublicationIdentifier.where(:publication_id => publication.id, :identifier_type => 'another').count).to eq(1)
+    end
   end
 
   describe "update_any_new_contribution_info_in_pub_hash_to_db" do

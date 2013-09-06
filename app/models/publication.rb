@@ -200,13 +200,14 @@ class Publication < ActiveRecord::Base
   def sync_identifiers_in_pub_hash_to_db
     incoming_types = Array(self.pub_hash[:identifier]).map {|id| id[:type]}
     self.publication_identifiers.each do |id|
+      next if id.identifier_type =~ /^legacy_cap_pub_id$/i   # Do not delete legacy_cap_pub_id
       unless(incoming_types.include? id.identifier_type)
         id.delete
       end
     end
 
     Array(self.pub_hash[:identifier]).each do |identifier|
-      next if identifier[:type] == "SULPubId"
+      next if identifier[:type] =~ /^SULPubId$/i
 
       i = self.publication_identifiers.select { |x| x.identifier_type == identifier[:type] }.first || PublicationIdentifier.new
 
