@@ -235,13 +235,13 @@ class SciencewireSourceRecord < ActiveRecord::Base
       record_as_hash[:journal] = journal_hash
     end
 
-    unless issn.blank? || publication.xpath('Issue').blank? || sul_document_type == Settings.sul_doc_types.article
-      book_series_hash = {}
-      book_series_hash[:identifier] = [issn]
-      book_series_hash << publication.xpath('PublicationSourceTitle').text unless publication.xpath('PublicationSourceTitle').blank?
-      book_series_hash << publication.xpath('Volume').text unless publication.xpath('Volume').blank?
-      record_as_hash[:series] = book_series_hash
-    end
+    # unless issn.blank? || publication.xpath('Issue').blank? || sul_document_type == Settings.sul_doc_types.article
+    #   book_series_hash = {}
+    #   book_series_hash[:identifier] = [issn]
+    #   book_series_hash[:title] = publication.xpath('PublicationSourceTitle').text unless publication.xpath('PublicationSourceTitle').blank?
+    #   book_series_hash[:volume] = publication.xpath('Volume').text unless publication.xpath('Volume').blank?
+    #   record_as_hash[:series] = book_series_hash
+    # end
     record_as_hash[:identifier] = identifiers
     record_as_hash
   end

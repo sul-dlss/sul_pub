@@ -310,6 +310,24 @@ describe SulBib::API do
 
   end # end of the describe
 
+  describe "GET /publications/sourcelookup" do
+
+    describe "?title=" do
+
+      it "does a sciencewire title search" do
+        VCR.use_cassette("publications_api_sourcelookup_title") do
+          get "/publications/sourcelookup?title=lung%20cancer%20treatment",
+          { format: "json" },
+          {"HTTP_CAPKEY" => '***REMOVED***'}
+
+          response.status.should == 200
+          result = JSON.parse(response.body)
+          result["metadata"]["records"].should == "20"
+        end
+      end
+    end
+  end
+
 
 
 
