@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130808203714) do
+ActiveRecord::Schema.define(:version => 20130911203542) do
 
   create_table "authors", :force => true do |t|
     t.integer  "cap_profile_id"
@@ -146,6 +146,16 @@ ActiveRecord::Schema.define(:version => 20130808203714) do
 
   add_index "sciencewire_source_records", ["pmid"], :name => "index_sciencewire_source_records_on_pmid"
   add_index "sciencewire_source_records", ["sciencewire_id"], :name => "index_sciencewire_source_records_on_sciencewire_id"
+
+  create_table "trash_records", :force => true do |t|
+    t.string   "trashable_type", :null => false
+    t.integer  "trashable_id",   :null => false
+    t.binary   "data"
+    t.datetime "created_at"
+  end
+
+  add_index "trash_records", ["created_at", "trashable_type"], :name => "created_at_type"
+  add_index "trash_records", ["trashable_type", "trashable_id"], :name => "trashable"
 
   create_table "user_submitted_source_records", :force => true do |t|
     t.text     "source_data"

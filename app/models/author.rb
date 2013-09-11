@@ -1,4 +1,6 @@
 class Author < ActiveRecord::Base
+  acts_as_trashable
+
   attr_accessible :cap_profile_id, :sunetid, :university_id, :california_physician_license, :active_in_cap, :cap_import_enabled, :emails_for_harvest, :email, :cap_first_name, :cap_last_name, :cap_middle_name, :official_first_name, :official_last_name, :official_middle_name, :preferred_first_name, :preferred_last_name, :preferred_middle_name
   has_many :contributions, :dependent => :destroy, :after_add => :contributions_changed_callback, :after_remove => :contributions_changed_callback do
     def build_or_update publication, contribution_hash = {}

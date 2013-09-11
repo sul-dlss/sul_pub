@@ -27,6 +27,7 @@ gem "yajl-ruby", :require => 'yajl'
 gem "strong_parameters"
 gem "turnout"
 gem "parallel"
+gem "acts_as_trashable"
 #gem 'always_verify_ssl_certificates'
 
 group :development, :test do

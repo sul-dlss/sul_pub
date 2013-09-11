@@ -1,4 +1,5 @@
 class Publication < ActiveRecord::Base
+  acts_as_trashable
 
   before_save :sync_publication_hash_and_db, if: Proc.new { |pub| pub.pubhash_needs_update? }
 
