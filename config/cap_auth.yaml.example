@@ -1,20 +1,12 @@
 ---
-:development:
-  :get_token_uri: something
-  :get_token_port: 443
-  :get_token_path: /oauth/token
-  :get_token_user: something
-  :get_token_pass: something
-  :authorship_api_uri: something
-  :authorship_api_path: /cap-api-qa/api/cap/v1/authors
-  :authorship_api_port: 443
-  :access_token: something
-:production:
-  :get_token_uri: something
-  :get_token_port: 443
-  :get_token_path: /oauth/token
-  :get_token_user: something
-  :get_token_pass: something
-  :authorship_api_uri: something
-  :authorship_api_path: /cap-api/api/cap/v1/authors
-  :authorship_api_port: 443
+:get_token_uri: something
+:get_token_port: 443
+:get_token_path: /oauth/token
+:get_token_user: something
+:get_token_pass: something
+:authorship_api_uri: something
+:authorship_api_path: /cap-api-qa/api/cap/v1/authors
+:authorship_api_port: 443
+:profile_api_path: /cap
+:access_token: something
+

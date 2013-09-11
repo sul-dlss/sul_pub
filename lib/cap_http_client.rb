@@ -2,12 +2,7 @@ require 'socket'
 class CapHttpClient
 
   def initialize
-    @main_auth = YAML.load(File.open(Rails.root.join('config', 'cap_auth.yaml')))
-    if(Socket.gethostname =~ /^sulcap-prod/)
-      @auth = @main_auth[:production]
-    else
-      @auth = @main_auth[:development]
-    end
+    @auth = YAML.load(File.open(Rails.root.join('config', 'cap_auth.yaml')))
     @base_timeout_retries = 3
     @base_timeout_period = 500
   end
@@ -26,7 +21,7 @@ class CapHttpClient
 			@auth[:access_token] = token.to_s
 			#puts "the token: " + token.to_s
 			http.finish if(http.started?)
-			File.open(Rails.root.join('config', 'cap_auth.yaml'), 'w') {|f| YAML.dump(@main_auth, f)}
+			File.open(Rails.root.join('config', 'cap_auth.yaml'), 'w') {|f| YAML.dump(@auth, f)}
 			#puts token.to_s
 			token.to_s
 		rescue Timeout::Error => te
@@ -54,6 +49,10 @@ class CapHttpClient
 
   def get_auth_profile(cap_profile_id)
     make_cap_request("#{@auth[:authorship_api_path]}/#{cap_profile_id}")
+  end
+
+  def get_cap_profile_by_sunetid(sunetid)
+    make_cap_request("#{@auth[:profile_api_path]}?uids=#{sunetid}")
   end
 
 private
