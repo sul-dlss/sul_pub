@@ -170,9 +170,9 @@ class CapAuthorsPoller
     @cap_authorship_logger.info "#{@authors_updated_count} authors were updated."
     @cap_authorship_logger.info "#{@import_enabled_count} authors had import enabled."
     @cap_authorship_logger.info "#{@import_disabled_count} authors had import disabled."
-    @cap_authorship_logger.info "#{contrib_does_not_exist} contributions did not exist for update"
-    @cap_authorship_logger.info "#{too_many_contribs} contributions had more than one instance for an author"
-    @cap_authorship_logger.info "#{new_auth_with_contribs} new authors had contributions which were ignored"
+    @cap_authorship_logger.info "#{@contrib_does_not_exist} contributions did not exist for update"
+    @cap_authorship_logger.info "#{@too_many_contribs} contributions had more than one instance for an author"
+    @cap_authorship_logger.info "#{@new_auth_with_contribs} new authors had contributions which were ignored"
   end
 
 private
