@@ -92,13 +92,18 @@ class CapAuthorsPoller
     author.update_from_cap_authorship_profile_hash(record)
 
     if author.persisted?
+      @cap_authorship_logger.info "Updating author_id #{author.id}"
       @authors_updated_count += 1
     else
+      @cap_authorship_logger.info "Creating author for cap_profile_id #{record['profileId']}"
       @new_author_count += 1
     end
 
     if record["authorship"] && author.persisted?
-      update_existing_contributions author, incoming_authorships
+      update_existing_contributions author, record["authorship"]
+    elsif record["authorship"] && record["authorship"].size > 0 && author.new_record?
+      @cap_authorship_logger.warn "New author has authorship which will be skipped. cap_profile_id: #{record['profileId']}"
+      @new_auth_with_contribs += 1
     end
 
     author.save
@@ -116,10 +121,12 @@ class CapAuthorsPoller
 
       contribs = author.contributions.where(:publication_id => authorship['sulPublicationId'])
       if contribs.count == 0
-        @cap_authorship_logger.error "Contribution does not exist- auth_id: #{author.id} publication_id: #{authorship['sulPublicationId']}"
+        @cap_authorship_logger.warn "Contribution does not exist- auth_id: #{author.id} publication_id: #{authorship['sulPublicationId']}"
+        @contrib_does_not_exist += 1
         next
       elsif contribs.count > 1
-        @cap_authorship_logger.error "More than one contribution for auth_id: #{author.id} publication_id: #{authorship['sulPublicationId']}"
+        @cap_authorship_logger.warn "More than one contribution for auth_id: #{author.id} publication_id: #{authorship['sulPublicationId']}"
+        @too_many_contribs += 1
         next
       end
 
@@ -147,6 +154,9 @@ class CapAuthorsPoller
     @no_active_count = 0
     @import_enabled_count = 0
     @import_disabled_count = 0
+    @contrib_does_not_exist = 0
+    @too_many_contribs = 0
+    @new_auth_with_contribs = 0
   end
 
   def write_stats_from_logging_variables_to_log
@@ -160,6 +170,9 @@ class CapAuthorsPoller
     @cap_authorship_logger.info "#{@authors_updated_count} authors were updated."
     @cap_authorship_logger.info "#{@import_enabled_count} authors had import enabled."
     @cap_authorship_logger.info "#{@import_disabled_count} authors had import disabled."
+    @cap_authorship_logger.info "#{contrib_does_not_exist} contributions did not exist for update"
+    @cap_authorship_logger.info "#{too_many_contribs} contributions had more than one instance for an author"
+    @cap_authorship_logger.info "#{new_auth_with_contribs} new authors had contributions which were ignored"
   end
 
 private
