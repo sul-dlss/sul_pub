@@ -97,12 +97,8 @@ class CapAuthorsPoller
       @new_author_count += 1
     end
 
-    if record["authorship"]
-      record["authorship"].each do |authorship|
-        p = Publication.find(record["sulPublicationId"])
-
-        author.contributions.build_or_update(p, featured: record["featured"], status: record["status"], visibility: record["visibility"])
-      end
+    if record["authorship"] && author.persisted?
+      update_existing_contributions author, incoming_authorships
     end
 
     author.save
@@ -113,6 +109,30 @@ class CapAuthorsPoller
       @no_import_settings_count += 1
       @cap_authorship_logger.info "No import settings. Skipping cap_profile_id #{author.cap_profile_id}"
     end
+  end
+
+  def update_existing_contributions author, incoming_authorships
+    incoming_authorships.each do |authorship|
+
+      contribs = author.contributions.where(:publication_id => authorship['sulPublicationId'])
+      if contribs.count == 0
+        @cap_authorship_logger.error "Contribution does not exist- auth_id: #{author.id} publication_id: #{authorship['sulPublicationId']}"
+        next
+      elsif contribs.count > 1
+        @cap_authorship_logger.error "More than one contribution for auth_id: #{author.id} publication_id: #{authorship['sulPublicationId']}"
+        next
+      end
+
+      contrib = contribs.first
+      hash_for_update = {
+        status: authorship['status'],
+        visibility: authorship['visibility'],
+        featured: authorship['featured']
+      }
+      contrib.assign_attributes hash_for_update
+      contrib.save
+    end
+
   end
 
   def set_up_logging_variables
