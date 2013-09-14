@@ -39,7 +39,6 @@ class CapAuthorsPoller
         json_response = @cap_http_client.get_batch_from_cap_api(page_count, page_size, poll_since)
         process_next_batch_of_authorship_data(json_response)
         update_message = "#{@total_running_count} records were processed in #{distance_of_time_in_words_to_now(@start_time)}"
-        puts update_message
         @cap_authorship_logger.info update_message
         @last_page = json_response["lastPage"]
       end
@@ -47,8 +46,8 @@ class CapAuthorsPoller
       write_stats_from_logging_variables_to_log
       do_science_wire_harvest
 
-      puts "#{page_count} pages with #{page_size} records per page were processed in #{distance_of_time_in_words_to_now(@start_time)}"
-      puts "#{@new_author_count} authors were created."
+      @cap_authorship_logger.info "#{page_count} pages with #{page_size} records per page were processed in #{distance_of_time_in_words_to_now(@start_time)}"
+      @cap_authorship_logger.info "#{@new_author_count} authors were created."
       @cap_authorship_logger.info "Finished authorship import"
 
     rescue => e
@@ -62,7 +61,7 @@ class CapAuthorsPoller
   end
 
   def do_science_wire_harvest
-    puts "authors to harvest: " + @new_or_changed_authors_to_harvest_queue.to_s
+    @cap_authorship_logger.info "authors to harvest: " + @new_or_changed_authors_to_harvest_queue.to_s
     @sw_harvester.harvest_pubs_for_author_ids(@new_or_changed_authors_to_harvest_queue)
   end
 
@@ -106,13 +105,14 @@ class CapAuthorsPoller
       @new_auth_with_contribs += 1
     end
 
+    auth_changed = author.changed?
     author.save
 
-    if(author.harvestable?)
+    if(auth_changed && author.harvestable?)
       @new_or_changed_authors_to_harvest_queue << author.id
     else
-      @no_import_settings_count += 1
-      @cap_authorship_logger.info "No import settings. Skipping cap_profile_id #{author.cap_profile_id}"
+      @no_sw_harvest_count += 1
+      @cap_authorship_logger.info "No import settings or author did not change. Skipping cap_profile_id #{author.cap_profile_id}"
     end
   end
 
@@ -155,13 +155,14 @@ class CapAuthorsPoller
     @total_running_count = 0
     @new_author_count = 0
     @authors_updated_count = 0
-    @no_import_settings_count = 0
+    @no_sw_harvest_count = 0
     @no_email_in_import_settings = 0
     @active_true_count = 0
     @active_false_count = 0
     @no_active_count = 0
     @import_enabled_count = 0
     @import_disabled_count = 0
+    @contribs_changed = 0
     @contrib_does_not_exist = 0
     @too_many_contribs = 0
     @new_auth_with_contribs = 0
@@ -170,7 +171,7 @@ class CapAuthorsPoller
   def write_stats_from_logging_variables_to_log
     @cap_authorship_logger.info "#{@total_running_count} records were processed in " + distance_of_time_in_words_to_now(@start_time)
     @cap_authorship_logger.info "#{@new_author_count} authors were created."
-    @cap_authorship_logger.info "#{@no_import_settings_count} records with no import settings."
+    @cap_authorship_logger.info "#{@no_sw_harvest_count} authors were not harvested because of no import settings or they did not change"
     @cap_authorship_logger.info "#{@no_email_in_import_settings} records with no email in import settings."
     @cap_authorship_logger.info "#{@active_true_count} records with 'active' true."
     @cap_authorship_logger.info "#{@active_false_count} records with 'active' false."
@@ -181,6 +182,7 @@ class CapAuthorsPoller
     @cap_authorship_logger.info "#{@contrib_does_not_exist} contributions did not exist for update"
     @cap_authorship_logger.info "#{@too_many_contribs} contributions had more than one instance for an author"
     @cap_authorship_logger.info "#{@new_auth_with_contribs} new authors had contributions which were ignored"
+    @cap_authorship_logger.info "#{@contribs_changed} contributions were updated"
   end
 
 private
