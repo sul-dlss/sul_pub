@@ -137,7 +137,15 @@ class CapAuthorsPoller
         featured: authorship['featured']
       }
       contrib.assign_attributes hash_for_update
-      contrib.save
+      if contrib.changed?
+        contrib.save
+        pub = contrib.publication
+        pub.set_last_updated_value_in_hash
+        pub.add_all_db_contributions_to_my_pub_hash
+        pub.save
+        @cap_authorship_logger.info "Contribution changed for auth_id: #{author.id} publication_id: #{authorship['sulPublicationId']}"
+        @contribs_changed += 1
+      end
     end
 
   end
