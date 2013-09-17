@@ -1,10 +1,11 @@
 require 'csv'
 
 class MergeDuplicateAuths
+  CONTRIB_CHECK = true
 
   def initialize
     @logger = Logger.new(Rails.root.join('log', "merge_duplicate_auths.log"))
-    @auths_fixed = 0
+    @clones_removed = 0
     @contribs_fixed = 0
   end
 
@@ -17,19 +18,22 @@ class MergeDuplicateAuths
     master = auths.shift
 
     auths.each do |clone|
-      clone.contributions.each do |contrib|
-        unless(master.contributions.where(:publication_id => contrib.publication_id).exists?)
-          new_contrib = contrib.dup
-          new_contrib.author_id = master.id
-          new_contrib.save
+      if(CONTRIB_CHECK)
+        clone.contributions.each do |contrib|
+          unless(master.contributions.where(:publication_id => contrib.publication_id).exists?)
+            new_contrib = contrib.dup
+            new_contrib.author_id = master.id
+            new_contrib.save
 
-          @logger.info "Moved pub #{contrib.publication_id} to auth: #{master.id}"
-          @contribs_fixed += 1
-          moved_contribs = true
+            @logger.info "Moved pub #{contrib.publication_id} to auth: #{master.id}"
+            @contribs_fixed += 1
+            moved_contribs = true
+          end
         end
       end
 
       clone.destroy
+      @clones_removed += 1
     end
 
     master.reload if moved_contribs
@@ -58,8 +62,8 @@ class MergeDuplicateAuths
       end
     end
 
-    @logger.info "Authors fixed: #{@auths_fixed}"
     @logger.info "Contributions fixed: #{@contribs_fixed}"
+    @logger.info "Clones removed: #{@clones_removed}"
 
   rescue => e
     @logger.error "#{e.inspect}"
