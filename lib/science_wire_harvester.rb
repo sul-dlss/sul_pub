@@ -230,7 +230,9 @@ class ScienceWireHarvester
     existing_pub = Publication.where(sciencewire_id: sciencewire_id).first
     if existing_pub
       create_contribs_for_author_ids_and_pub(author_ids, existing_pub)
+      # TODO see if we can add a before_save hook to contribution to update the parent pub_hash
       existing_pub.rebuild_authorship
+      existing_pub.save
       @matches_on_existing_swid_count += 1
       true
     else
@@ -434,12 +436,12 @@ class ScienceWireHarvester
     mode = nil
     ids = []
     IO.readlines(path_to_file).each do |l|
-      if(l =~ /^@article/)
-        mode = :article
+      if(l =~ /^@inproceedings/)
+        mode = :inproceedings
         next
       end
       if(l =~ /^Unique-ID.*ISI:(.*)}},/)
-        if(mode == :article)
+        if(mode == :inproceedings)
           @wos_ids_processed += 1
           ids << $1
         end

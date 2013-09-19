@@ -285,6 +285,7 @@ class Publication < ActiveRecord::Base
 
   def rebuild_authorship
     add_all_db_contributions_to_my_pub_hash
+    set_last_updated_value_in_hash
   end
 
   def add_any_pubmed_data_to_hash
