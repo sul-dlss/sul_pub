@@ -12,18 +12,18 @@ http_interactions:
       User-Agent:
       - Ruby
       Authorization:
-      - bearer eyJhbGciOiJSUzI1NiJ9.eyJleHAiOjEzNzg0MjI0MzIsInNjb3BlIjpbInByb2ZpbGVzLnJlYWRfYWxsIl0sImF1ZCI6WyJwcm9maWxlcyJdLCJpc3MiOiJodHRwczovL2F1dGh6LXRlc3Quc3RhbmZvcmQuZWR1IiwianRpIjoiMTEzOWZmYzAtOGIzZC00MDBkLWIzNDUtYmU4OTk1NjI1MTUxIiwiY2xpZW50X2lkIjoic3VsIn0.dw-vKTfwUxL163LtHCGzWO5ayVztHTkGYhM1r7TQNeX1J51uA7G75bIyYjh9HV7NsezGttjCaiOl3k3K4cPe78wUc8Oq2PYPL6Z8L7TUbv2K3VO6MYbl9STpetsDZ309v-jBcohmm_f81HUBWHhGkmhcrm8RjGgINq_YIStTf0CuJ3-p90AgwP_GsSrkOZvhxGe3NstuzPr7-eSLxAOM7Ewy56SobdzNXoVekVSdfwnM1K1L8zajZWMv-PNBjjyd7NGq5yvghNkCsfzjzLVQJ2isXx2Q65q82LwSzql9dMS95bB8SaMUyO5jpD1hLLo1RIDWizyznouFZB4RUzEyTQ
+      - bearer eyJhbGciOiJSUzI1NiJ9.eyJleHAiOjEzNzk3MDkyOTksInNjb3BlIjpbInByb2ZpbGVzLnJlYWRfYWxsIl0sImF1ZCI6WyJwcm9maWxlcyJdLCJpc3MiOiJodHRwczovL2F1dGh6LXRlc3Quc3RhbmZvcmQuZWR1IiwianRpIjoiYmMyYTFmYzMtYzg5Mi00M2NhLTgzMDItMjg1ODUxNmFkMDUwIiwiY2xpZW50X2lkIjoic3VsIn0.hpy9bbaxXSa4na1sW3ycBjFZ7qLAD2MFfXge7r2bfFpFm_jJBbps73Y10NHevw5uqUveu1X-cwp_MdkzwQ7Hx4aWBt1giuG-2tvQ9b2ufCpioqZ2RSGwgBJz2oj3RqJI1lwhoeWACHhOkPDJV7w-MlZC-uwHTc1ArW0whjlhpyosumMw6c_KUkLPMvCaqwgOk52jOmFkJrcuoCSjVs-zaN63lsnjwwP4ZPdStYj2W0v0NvtM3MD-ayZvGcI_IZCeud3iXeeMl5eQqd56ar8FuqYW8vzVUZ9Tq2kR6TTPjW1Ez5g-uD9qb7DSOw9hDRd4SKPrBCW3Cmi8fyjy-w_MpA
   response:
     status:
       code: 200
       message: OK
     headers:
       Date:
-      - Wed, 04 Sep 2013 23:10:30 GMT
+      - Thu, 19 Sep 2013 20:35:18 GMT
       Server:
       - Apache
       X-Irt-Transaction-Id:
-      - Uie95qwZaGYAAGjKKLIAAAAC
+      - UjtgBqwZaGYAABTuGmAAAAAF
       Transfer-Encoding:
       - chunked
       Content-Type:
@@ -31,10 +31,10 @@ http_interactions:
     body:
       encoding: US-ASCII
       string: ! '{"active":false,"authorModifiedOn":"2013-08-18T10:01:03.000-07:00","authorship":[{"featured":false,"status":"new","sulPublicationId":31774,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":7776,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":30842,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":33912,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":23008,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":11961,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":33614,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":19088,"visibility":"public"}],"importEnabled":false,"importSettings":[{"firstName":"Hower","institution":"Stanford
-        University","lastName":"Kwon"}],"lastModified":"2013-09-04T06:03:52.913-07:00","profile":{"californiaPhysicianLicense":"G80767","displayName":"Hower
-        Kwon","email":"hower.kwon@stanford.edu","meta":{"etag":"323602007","links":[{"href":"http://irt-ppapp-02:12011/cap-api-qa/api/profiles/v1/3871","rel":"https://cap.stanford.edu/rel/self"},{"href":"https://irt-dev.stanford.edu/cap-su-qa/3871","rel":"https://cap.stanford.edu/rel/public"},{"href":"https://cap-irt-dev.stanford.edu/profiles-qa/auth/frdActionServlet?choiceId=facProfile&profileId=3871","rel":"https://cap.stanford.edu/rel/intranet"},{"href":"https://cap-irt-dev.stanford.edu/profiles-qa/frdActionServlet?choiceId=printerprofile&profileversion=full&profileId=3871","rel":"https://cap.stanford.edu/rel/pdf"}]},"names":{"legal":{"firstName":"Hower","lastName":"Kwon"},"preferred":{"firstName":"Hower","lastName":"Kwon"}},"profileId":3871,"uid":"howerk","universityId":"04777025"},"profileId":3871,"visibility":"public"}'
+        University","lastName":"Kwon"}],"lastModified":"2013-09-19T06:03:49.898-07:00","profile":{"californiaPhysicianLicense":"G80767","displayName":"Hower
+        Kwon","email":"hower.kwon@stanford.edu","meta":{"etag":"1905186764","links":[{"href":"http://irt-ppapp-02:12011/cap-api-qa/api/profiles/v1/3871","rel":"https://cap.stanford.edu/rel/self"},{"href":"https://irt-dev.stanford.edu/cap-su-qa/3871","rel":"https://cap.stanford.edu/rel/public"},{"href":"https://cap-irt-dev.stanford.edu/profiles-qa/auth/frdActionServlet?choiceId=facProfile&profileId=3871","rel":"https://cap.stanford.edu/rel/intranet"},{"href":"https://cap-irt-dev.stanford.edu/profiles-qa/frdActionServlet?choiceId=printerprofile&profileversion=full&profileId=3871","rel":"https://cap.stanford.edu/rel/pdf"}]},"names":{"legal":{"firstName":"Hower","lastName":"Kwon"},"preferred":{"firstName":"Hower","lastName":"Kwon"}},"profileId":3871,"uid":"howerk","universityId":"04777025"},"profileId":3871,"visibility":"public"}'
     http_version: 
-  recorded_at: Wed, 04 Sep 2013 23:10:36 GMT
+  recorded_at: Thu, 19 Sep 2013 20:35:19 GMT
 - request:
     method: get
     uri: https://irt-dev.stanford.edu/cap-api-qa/api/cap/v1/authors/3871
@@ -47,7 +47,7 @@ http_interactions:
       User-Agent:
       - Ruby
       Authorization:
-      - bearer eyJhbGciOiJSUzI1NiJ9.eyJleHAiOjEzNzg0MjI0MzIsInNjb3BlIjpbInByb2ZpbGVzLnJlYWRfYWxsIl0sImF1ZCI6WyJwcm9maWxlcyJdLCJpc3MiOiJodHRwczovL2F1dGh6LXRlc3Quc3RhbmZvcmQuZWR1IiwianRpIjoiMTEzOWZmYzAtOGIzZC00MDBkLWIzNDUtYmU4OTk1NjI1MTUxIiwiY2xpZW50X2lkIjoic3VsIn0.dw-vKTfwUxL163LtHCGzWO5ayVztHTkGYhM1r7TQNeX1J51uA7G75bIyYjh9HV7NsezGttjCaiOl3k3K4cPe78wUc8Oq2PYPL6Z8L7TUbv2K3VO6MYbl9STpetsDZ309v-jBcohmm_f81HUBWHhGkmhcrm8RjGgINq_YIStTf0CuJ3-p90AgwP_GsSrkOZvhxGe3NstuzPr7-eSLxAOM7Ewy56SobdzNXoVekVSdfwnM1K1L8zajZWMv-PNBjjyd7NGq5yvghNkCsfzjzLVQJ2isXx2Q65q82LwSzql9dMS95bB8SaMUyO5jpD1hLLo1RIDWizyznouFZB4RUzEyTQ
+      - bearer eyJhbGciOiJSUzI1NiJ9.eyJleHAiOjEzNzk3MDkyOTksInNjb3BlIjpbInByb2ZpbGVzLnJlYWRfYWxsIl0sImF1ZCI6WyJwcm9maWxlcyJdLCJpc3MiOiJodHRwczovL2F1dGh6LXRlc3Quc3RhbmZvcmQuZWR1IiwianRpIjoiYmMyYTFmYzMtYzg5Mi00M2NhLTgzMDItMjg1ODUxNmFkMDUwIiwiY2xpZW50X2lkIjoic3VsIn0.hpy9bbaxXSa4na1sW3ycBjFZ7qLAD2MFfXge7r2bfFpFm_jJBbps73Y10NHevw5uqUveu1X-cwp_MdkzwQ7Hx4aWBt1giuG-2tvQ9b2ufCpioqZ2RSGwgBJz2oj3RqJI1lwhoeWACHhOkPDJV7w-MlZC-uwHTc1ArW0whjlhpyosumMw6c_KUkLPMvCaqwgOk52jOmFkJrcuoCSjVs-zaN63lsnjwwP4ZPdStYj2W0v0NvtM3MD-ayZvGcI_IZCeud3iXeeMl5eQqd56ar8FuqYW8vzVUZ9Tq2kR6TTPjW1Ez5g-uD9qb7DSOw9hDRd4SKPrBCW3Cmi8fyjy-w_MpA
       Host:
       - irt-dev.stanford.edu
   response:
@@ -56,11 +56,11 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Wed, 04 Sep 2013 23:10:30 GMT
+      - Thu, 19 Sep 2013 20:35:19 GMT
       Server:
       - Apache
       X-Irt-Transaction-Id:
-      - Uie95qwZaGYAACnIvDkAAAAE
+      - UjtgB6wZaGYAABOHBxIAAAAb
       Transfer-Encoding:
       - chunked
       Content-Type:
@@ -68,10 +68,10 @@ http_interactions:
     body:
       encoding: US-ASCII
       string: ! '{"active":false,"authorModifiedOn":"2013-08-18T10:01:03.000-07:00","authorship":[{"featured":false,"status":"new","sulPublicationId":31774,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":7776,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":30842,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":33912,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":23008,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":11961,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":33614,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":19088,"visibility":"public"}],"importEnabled":false,"importSettings":[{"firstName":"Hower","institution":"Stanford
-        University","lastName":"Kwon"}],"lastModified":"2013-09-04T06:03:52.913-07:00","profile":{"californiaPhysicianLicense":"G80767","displayName":"Hower
-        Kwon","email":"hower.kwon@stanford.edu","meta":{"etag":"323602007","links":[{"href":"http://irt-ppapp-02:12011/cap-api-qa/api/profiles/v1/3871","rel":"https://cap.stanford.edu/rel/self"},{"href":"https://irt-dev.stanford.edu/cap-su-qa/3871","rel":"https://cap.stanford.edu/rel/public"},{"href":"https://cap-irt-dev.stanford.edu/profiles-qa/auth/frdActionServlet?choiceId=facProfile&profileId=3871","rel":"https://cap.stanford.edu/rel/intranet"},{"href":"https://cap-irt-dev.stanford.edu/profiles-qa/frdActionServlet?choiceId=printerprofile&profileversion=full&profileId=3871","rel":"https://cap.stanford.edu/rel/pdf"}]},"names":{"legal":{"firstName":"Hower","lastName":"Kwon"},"preferred":{"firstName":"Hower","lastName":"Kwon"}},"profileId":3871,"uid":"howerk","universityId":"04777025"},"profileId":3871,"visibility":"public"}'
+        University","lastName":"Kwon"}],"lastModified":"2013-09-19T06:03:49.898-07:00","profile":{"californiaPhysicianLicense":"G80767","displayName":"Hower
+        Kwon","email":"hower.kwon@stanford.edu","meta":{"etag":"1905186764","links":[{"href":"http://irt-ppapp-02:12011/cap-api-qa/api/profiles/v1/3871","rel":"https://cap.stanford.edu/rel/self"},{"href":"https://irt-dev.stanford.edu/cap-su-qa/3871","rel":"https://cap.stanford.edu/rel/public"},{"href":"https://cap-irt-dev.stanford.edu/profiles-qa/auth/frdActionServlet?choiceId=facProfile&profileId=3871","rel":"https://cap.stanford.edu/rel/intranet"},{"href":"https://cap-irt-dev.stanford.edu/profiles-qa/frdActionServlet?choiceId=printerprofile&profileversion=full&profileId=3871","rel":"https://cap.stanford.edu/rel/pdf"}]},"names":{"legal":{"firstName":"Hower","lastName":"Kwon"},"preferred":{"firstName":"Hower","lastName":"Kwon"}},"profileId":3871,"uid":"howerk","universityId":"04777025"},"profileId":3871,"visibility":"public"}'
     http_version: 
-  recorded_at: Wed, 04 Sep 2013 23:10:37 GMT
+  recorded_at: Thu, 19 Sep 2013 20:35:19 GMT
 - request:
     method: get
     uri: https://irt-dev.stanford.edu/cap-api-qa/api/cap/v1/authors/3871
@@ -84,7 +84,7 @@ http_interactions:
       User-Agent:
       - Ruby
       Authorization:
-      - bearer eyJhbGciOiJSUzI1NiJ9.eyJleHAiOjEzNzg0MjI0MzIsInNjb3BlIjpbInByb2ZpbGVzLnJlYWRfYWxsIl0sImF1ZCI6WyJwcm9maWxlcyJdLCJpc3MiOiJodHRwczovL2F1dGh6LXRlc3Quc3RhbmZvcmQuZWR1IiwianRpIjoiMTEzOWZmYzAtOGIzZC00MDBkLWIzNDUtYmU4OTk1NjI1MTUxIiwiY2xpZW50X2lkIjoic3VsIn0.dw-vKTfwUxL163LtHCGzWO5ayVztHTkGYhM1r7TQNeX1J51uA7G75bIyYjh9HV7NsezGttjCaiOl3k3K4cPe78wUc8Oq2PYPL6Z8L7TUbv2K3VO6MYbl9STpetsDZ309v-jBcohmm_f81HUBWHhGkmhcrm8RjGgINq_YIStTf0CuJ3-p90AgwP_GsSrkOZvhxGe3NstuzPr7-eSLxAOM7Ewy56SobdzNXoVekVSdfwnM1K1L8zajZWMv-PNBjjyd7NGq5yvghNkCsfzjzLVQJ2isXx2Q65q82LwSzql9dMS95bB8SaMUyO5jpD1hLLo1RIDWizyznouFZB4RUzEyTQ
+      - bearer eyJhbGciOiJSUzI1NiJ9.eyJleHAiOjEzNzk3MDkyOTksInNjb3BlIjpbInByb2ZpbGVzLnJlYWRfYWxsIl0sImF1ZCI6WyJwcm9maWxlcyJdLCJpc3MiOiJodHRwczovL2F1dGh6LXRlc3Quc3RhbmZvcmQuZWR1IiwianRpIjoiYmMyYTFmYzMtYzg5Mi00M2NhLTgzMDItMjg1ODUxNmFkMDUwIiwiY2xpZW50X2lkIjoic3VsIn0.hpy9bbaxXSa4na1sW3ycBjFZ7qLAD2MFfXge7r2bfFpFm_jJBbps73Y10NHevw5uqUveu1X-cwp_MdkzwQ7Hx4aWBt1giuG-2tvQ9b2ufCpioqZ2RSGwgBJz2oj3RqJI1lwhoeWACHhOkPDJV7w-MlZC-uwHTc1ArW0whjlhpyosumMw6c_KUkLPMvCaqwgOk52jOmFkJrcuoCSjVs-zaN63lsnjwwP4ZPdStYj2W0v0NvtM3MD-ayZvGcI_IZCeud3iXeeMl5eQqd56ar8FuqYW8vzVUZ9Tq2kR6TTPjW1Ez5g-uD9qb7DSOw9hDRd4SKPrBCW3Cmi8fyjy-w_MpA
       Host:
       - irt-dev.stanford.edu
   response:
@@ -93,11 +93,11 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Wed, 04 Sep 2013 23:10:30 GMT
+      - Thu, 19 Sep 2013 20:35:19 GMT
       Server:
       - Apache
       X-Irt-Transaction-Id:
-      - Uie95qwZaGYAACbDVEgAAAAH
+      - UjtgB6wZaGYAABp@k2AAAAAO
       Transfer-Encoding:
       - chunked
       Content-Type:
@@ -105,8 +105,8 @@ http_interactions:
     body:
       encoding: US-ASCII
       string: ! '{"active":false,"authorModifiedOn":"2013-08-18T10:01:03.000-07:00","authorship":[{"featured":false,"status":"new","sulPublicationId":31774,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":7776,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":30842,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":33912,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":23008,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":11961,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":33614,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":19088,"visibility":"public"}],"importEnabled":false,"importSettings":[{"firstName":"Hower","institution":"Stanford
-        University","lastName":"Kwon"}],"lastModified":"2013-09-04T06:03:52.913-07:00","profile":{"californiaPhysicianLicense":"G80767","displayName":"Hower
-        Kwon","email":"hower.kwon@stanford.edu","meta":{"etag":"323602007","links":[{"href":"http://irt-ppapp-02:12011/cap-api-qa/api/profiles/v1/3871","rel":"https://cap.stanford.edu/rel/self"},{"href":"https://irt-dev.stanford.edu/cap-su-qa/3871","rel":"https://cap.stanford.edu/rel/public"},{"href":"https://cap-irt-dev.stanford.edu/profiles-qa/auth/frdActionServlet?choiceId=facProfile&profileId=3871","rel":"https://cap.stanford.edu/rel/intranet"},{"href":"https://cap-irt-dev.stanford.edu/profiles-qa/frdActionServlet?choiceId=printerprofile&profileversion=full&profileId=3871","rel":"https://cap.stanford.edu/rel/pdf"}]},"names":{"legal":{"firstName":"Hower","lastName":"Kwon"},"preferred":{"firstName":"Hower","lastName":"Kwon"}},"profileId":3871,"uid":"howerk","universityId":"04777025"},"profileId":3871,"visibility":"public"}'
+        University","lastName":"Kwon"}],"lastModified":"2013-09-19T06:03:49.898-07:00","profile":{"californiaPhysicianLicense":"G80767","displayName":"Hower
+        Kwon","email":"hower.kwon@stanford.edu","meta":{"etag":"1905186764","links":[{"href":"http://irt-ppapp-02:12011/cap-api-qa/api/profiles/v1/3871","rel":"https://cap.stanford.edu/rel/self"},{"href":"https://irt-dev.stanford.edu/cap-su-qa/3871","rel":"https://cap.stanford.edu/rel/public"},{"href":"https://cap-irt-dev.stanford.edu/profiles-qa/auth/frdActionServlet?choiceId=facProfile&profileId=3871","rel":"https://cap.stanford.edu/rel/intranet"},{"href":"https://cap-irt-dev.stanford.edu/profiles-qa/frdActionServlet?choiceId=printerprofile&profileversion=full&profileId=3871","rel":"https://cap.stanford.edu/rel/pdf"}]},"names":{"legal":{"firstName":"Hower","lastName":"Kwon"},"preferred":{"firstName":"Hower","lastName":"Kwon"}},"profileId":3871,"uid":"howerk","universityId":"04777025"},"profileId":3871,"visibility":"public"}'
     http_version: 
-  recorded_at: Wed, 04 Sep 2013 23:10:37 GMT
+  recorded_at: Thu, 19 Sep 2013 20:35:19 GMT
 recorded_with: VCR 2.5.0

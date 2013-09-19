@@ -48,7 +48,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Sun, 08 Sep 2013 20:09:51 GMT
+      - Thu, 19 Sep 2013 20:35:05 GMT
       Content-Length:
       - '279'
     body:
@@ -57,7 +57,7 @@ http_interactions:
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>50106</queryID>\r\n
         \ <queryResultRows>20</queryResultRows>\r\n  <totalRows>20</totalRows>\r\n</ScienceWireQueryIDResponse>"
     http_version: 
-  recorded_at: Sun, 08 Sep 2013 20:09:51 GMT
+  recorded_at: Thu, 19 Sep 2013 20:35:05 GMT
 - request:
     method: get
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/50106?format=xml&page=0&pageSize=2147483647&v=version/3
@@ -95,16 +95,49 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Sun, 08 Sep 2013 20:09:51 GMT
+      - Thu, 19 Sep 2013 20:35:05 GMT
       Content-Length:
-      - '57724'
+      - '57417'
     body:
       encoding: US-ASCII
       string: ! "<?xml version=\"1.0\"?>\r\n<ArrayOfPublicationItem xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <PublicationItem>\r\n
-        \   <PublicationItemID>63687762</PublicationItemID>\r\n    <Title>Assessment
-        of the Impact of FDG-PET on Lung Cancer Treatment.</Title>\r\n    <Abstract
-        />\r\n    <AuthorList>Ashish,A,|Menzes,B,|Sheppard,S,|Walker,P,P</AuthorList>\r\n
+        \   <PublicationItemID>63830303</PublicationItemID>\r\n    <Title>Genetics
+        and biomarkers in personalisation of lung cancer treatment.</Title>\r\n    <Abstract>Non-small-cell
+        lung cancer is often diagnosed at the metastatic stage, with median survival
+        of just 1 year. The identification of driver mutations in the epidermal growth
+        factor receptor (EGFR) as the primary oncogenic event in a subset of lung
+        adenocarcinomas led to a model of targeted treatment and genetic profiling
+        of the disease. EGFR tyrosine kinase inhibitors confer remission in 60% of
+        patients, but responses are short-lived. The pre-existing EGFR Thr790Met mutation
+        could be a subclonal driver responsible for these transient responses. Overexpression
+        of AXL and reduced MED12 function are hallmarks of resistance to tyrosine
+        kinase inhibitors in EGFR-mutant non-small-cell lung cancer. Crosstalk between
+        signalling pathways is another mechanism of resistance; therefore, identification
+        of the molecular components involved could lead to the development of combination
+        therapies cotargeting these molecules instead of EGFR tyrosine kinase inhibitor
+        monotherapy. Additionally, novel biomarkers could be identified through deep
+        sequencing analysis of serial rebiopsies before and during treatment. </Abstract>\r\n
+        \   <AuthorList>Rosell,Rafael,|Bivona,Trever,G|Karachaliou,Niki,</AuthorList>\r\n
+        \   <AuthorCount>3</AuthorCount>\r\n    <KeywordList />\r\n    <DocumentTypeList>Journal
+        Article</DocumentTypeList>\r\n    <DocumentCategory>Journal Document</DocumentCategory>\r\n
+        \   <NumberOfReferences xsi:nil=\"true\" />\r\n    <TimesCited xsi:nil=\"true\"
+        />\r\n    <TimesNotSelfCited xsi:nil=\"true\" />\r\n    <PMID>23972815</PMID>\r\n
+        \   <PublicationSourceTitle>Lancet</PublicationSourceTitle>\r\n    <Volume>382</Volume>\r\n
+        \   <Issue>9893</Issue>\r\n    <Pagination>720-731</Pagination>\r\n    <PublicationDate>2013-08-24T00:00:00</PublicationDate>\r\n
+        \   <PublicationYear>2013</PublicationYear>\r\n    <PublicationSubjectCategoryList
+        />\r\n    <ISSN>0140-6736</ISSN>\r\n    <DOI>10.1016/S0140-6736(13)61715-8</DOI>\r\n
+        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>0</OrdinalRank>\r\n
+        \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
+        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>ELSEVIER
+        LTD</CopyrightPublisher>\r\n    <CopyrightCity />\r\n    <PublicationImpactFactorList>38.278,2011,ClosestToPublicationYear|38.278,2011,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>2/153;MEDICINE, GENERAL &amp; INTERNAL;2011;SC;ClosestToPublicationYear|2/153;MEDICINE,
+        GENERAL &amp; INTERNAL;2011;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <CopyrightStateProvince />\r\n    <CopyrightCountry>UNITED KINGDOM</CopyrightCountry>\r\n
+        \ </PublicationItem>\r\n  <PublicationItem>\r\n    <PublicationItemID>63687762</PublicationItemID>\r\n
+        \   <Title>Assessment of the Impact of FDG-PET on Lung Cancer Treatment.</Title>\r\n
+        \   <Abstract />\r\n    <AuthorList>Ashish,A,|Menzes,B,|Sheppard,S,|Walker,P,P</AuthorList>\r\n
         \   <AuthorCount>4</AuthorCount>\r\n    <KeywordList />\r\n    <DocumentTypeList>Meeting
         Abstract</DocumentTypeList>\r\n    <DocumentCategory>Conference Proceeding
         Document</DocumentCategory>\r\n    <NumberOfReferences xsi:nil=\"true\" />\r\n
@@ -116,7 +149,7 @@ http_interactions:
         \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Critical
         Care Medicine|Respiratory System</PublicationSubjectCategoryList>\r\n    <ISSN>1073-449X</ISSN>\r\n
         \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
-        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>0</OrdinalRank>\r\n
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>1</OrdinalRank>\r\n
         \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>AMER THORACIC
         SOC</CopyrightPublisher>\r\n    <CopyrightCity>NEW YORK</CopyrightCity>\r\n
@@ -127,23 +160,27 @@ http_interactions:
         \   <CopyrightStateProvince>NY</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
         STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
         \   <PublicationItemID>63624517</PublicationItemID>\r\n    <Title>The evolution
-        of lung cancer treatment.</Title>\r\n    <Abstract />\r\n    <AuthorList />\r\n
-        \   <AuthorCount>0</AuthorCount>\r\n    <KeywordList />\r\n    <DocumentTypeList>Editorial</DocumentTypeList>\r\n
-        \   <DocumentCategory>Other</DocumentCategory>\r\n    <NumberOfReferences
-        xsi:nil=\"true\" />\r\n    <TimesCited xsi:nil=\"true\" />\r\n    <TimesNotSelfCited
-        xsi:nil=\"true\" />\r\n    <PMID>23890032</PMID>\r\n    <PublicationSourceTitle>Lancet</PublicationSourceTitle>\r\n
-        \   <Volume>382</Volume>\r\n    <Issue>9889</Issue>\r\n    <Pagination>286-?</Pagination>\r\n
+        of lung cancer treatment</Title>\r\n    <Abstract />\r\n    <AuthorList>Anonymous,,</AuthorList>\r\n
+        \   <AuthorCount>1</AuthorCount>\r\n    <KeywordList />\r\n    <DocumentTypeList>Editorial
+        Material</DocumentTypeList>\r\n    <DocumentCategory>Other</DocumentCategory>\r\n
+        \   <NumberOfReferences xsi:nil=\"true\" />\r\n    <TimesCited>0</TimesCited>\r\n
+        \   <TimesNotSelfCited>0</TimesNotSelfCited>\r\n    <PMID>23890032</PMID>\r\n
+        \   <WoSItemID>000322544900003</WoSItemID>\r\n    <PublicationSourceTitle>LANCET</PublicationSourceTitle>\r\n
+        \   <Volume>382</Volume>\r\n    <Issue>9889</Issue>\r\n    <Pagination>286-286</Pagination>\r\n
         \   <PublicationDate>2013-07-27T00:00:00</PublicationDate>\r\n    <PublicationYear>2013</PublicationYear>\r\n
-        \   <PublicationSubjectCategoryList />\r\n    <ISSN>0140-6736</ISSN>\r\n    <DOI>10.1016/S0140-6736(13)61619-0</DOI>\r\n
+        \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Medicine,
+        General &amp; Internal</PublicationSubjectCategoryList>\r\n    <ISSN>0140-6736</ISSN>\r\n
         \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
-        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>1</OrdinalRank>\r\n
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>2</OrdinalRank>\r\n
         \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>ELSEVIER
-        LTD</CopyrightPublisher>\r\n    <CopyrightCity />\r\n    <PublicationImpactFactorList>38.278,2011,ClosestToPublicationYear|38.278,2011,MostRecentYear</PublicationImpactFactorList>\r\n
+        SCIENCE INC</CopyrightPublisher>\r\n    <CopyrightCity>NEW YORK</CopyrightCity>\r\n
+        \   <PublicationImpactFactorList>38.278,2011,ClosestToPublicationYear|38.278,2011,MostRecentYear</PublicationImpactFactorList>\r\n
         \   <PublicationCategoryRankingList>2/153;MEDICINE, GENERAL &amp; INTERNAL;2011;SC;ClosestToPublicationYear|2/153;MEDICINE,
         GENERAL &amp; INTERNAL;2011;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
-        \   <CopyrightStateProvince />\r\n    <CopyrightCountry>UNITED KINGDOM</CopyrightCountry>\r\n
-        \ </PublicationItem>\r\n  <PublicationItem>\r\n    <PublicationItemID>63390937</PublicationItemID>\r\n
+        \   <AuthorCitationCountList>1,0,0</AuthorCitationCountList>\r\n    <CopyrightStateProvince>NY</CopyrightStateProvince>\r\n
+        \   <CopyrightCountry>UNITED STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n
+        \ <PublicationItem>\r\n    <PublicationItemID>63390937</PublicationItemID>\r\n
         \   <Title>Adapting to the Brave New World of Lung Cancer Treatment</Title>\r\n
         \   <Abstract />\r\n    <AuthorList>Pinder-Schenck,Mary,C|Antonia,Scott,J</AuthorList>\r\n
         \   <AuthorCount>2</AuthorCount>\r\n    <KeywordList>ERLOTINIB|TRIAL|KRAS|GEFITINIB</KeywordList>\r\n
@@ -157,7 +194,7 @@ http_interactions:
         \   <PublicationSubjectCategoryList>Oncology</PublicationSubjectCategoryList>\r\n
         \   <ISSN>0890-9091</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
         \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank xsi:nil=\"true\" />\r\n
-        \   <OrdinalRank>2</OrdinalRank>\r\n    <NormalizedRank xsi:nil=\"true\" />\r\n
+        \   <OrdinalRank>3</OrdinalRank>\r\n    <NormalizedRank xsi:nil=\"true\" />\r\n
         \   <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
         \   <CopyrightPublisher>UBM MEDICA</CopyrightPublisher>\r\n    <CopyrightCity>NORWALK</CopyrightCity>\r\n
         \   <PublicationImpactFactorList>1.026,2011,ClosestToPublicationYear|1.026,2011,MostRecentYear</PublicationImpactFactorList>\r\n
@@ -193,7 +230,7 @@ http_interactions:
         \   <PublicationDate>2013-01-01T00:00:00</PublicationDate>\r\n    <PublicationYear>2013</PublicationYear>\r\n
         \   <PublicationSubjectCategoryList />\r\n    <ISSN>1179-1322</ISSN>\r\n    <DOI>10.2147/CMAR.S32973</DOI>\r\n
         \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
-        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>3</OrdinalRank>\r\n
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>4</OrdinalRank>\r\n
         \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher />\r\n
         \   <CopyrightCity />\r\n    <CopyrightStateProvince />\r\n    <CopyrightCountry>NEW
@@ -219,7 +256,7 @@ http_interactions:
         \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Oncology</PublicationSubjectCategoryList>\r\n
         \   <ISSN>1792-1074</ISSN>\r\n    <DOI>10.3892/ol.2013.1212</DOI>\r\n    <ConferenceStartDate
         xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank
-        xsi:nil=\"true\" />\r\n    <OrdinalRank>4</OrdinalRank>\r\n    <NormalizedRank
+        xsi:nil=\"true\" />\r\n    <OrdinalRank>5</OrdinalRank>\r\n    <NormalizedRank
         xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
         \   <CopyrightPublisher>SPANDIDOS PUBL LTD</CopyrightPublisher>\r\n    <CopyrightCity>ATHENS</CopyrightCity>\r\n
         \   <PublicationImpactFactorList>0.108,2011,ClosestToPublicationYear|0.108,2011,MostRecentYear</PublicationImpactFactorList>\r\n
@@ -263,7 +300,7 @@ http_interactions:
         \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Oncology</PublicationSubjectCategoryList>\r\n
         \   <ISSN>1525-7304</ISSN>\r\n    <DOI>10.1016/j.cllc.2013.02.001</DOI>\r\n
         \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
-        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>5</OrdinalRank>\r\n
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>6</OrdinalRank>\r\n
         \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>CIG MEDIA
         GROUP, LP</CopyrightPublisher>\r\n    <CopyrightCity>DALLAS</CopyrightCity>\r\n
@@ -314,7 +351,7 @@ http_interactions:
         \   <PublicationSubjectCategoryList>Oncology</PublicationSubjectCategoryList>\r\n
         \   <ISSN>1528-9117</ISSN>\r\n    <DOI>10.1097/PPO.0b013e31829a68eb</DOI>\r\n
         \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
-        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>6</OrdinalRank>\r\n
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>7</OrdinalRank>\r\n
         \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>LIPPINCOTT
         WILLIAMS &amp; WILKINS</CopyrightPublisher>\r\n    <CopyrightCity>PHILADELPHIA</CopyrightCity>\r\n
@@ -343,7 +380,7 @@ http_interactions:
         \   <PublicationYear>2013</PublicationYear>\r\n    <PublicationSubjectCategoryList
         />\r\n    <ISSN>1009-3419</ISSN>\r\n    <DOI>10.3779/j.issn.1009-3419.2013.05.09</DOI>\r\n
         \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
-        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>7</OrdinalRank>\r\n
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>8</OrdinalRank>\r\n
         \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher />\r\n
         \   <CopyrightCity />\r\n    <CopyrightStateProvince />\r\n    <CopyrightCountry>CHINA</CopyrightCountry>\r\n
@@ -361,7 +398,7 @@ http_interactions:
         \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Oncology|Respiratory
         System</PublicationSubjectCategoryList>\r\n    <ISSN>1556-0864</ISSN>\r\n
         \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
-        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>8</OrdinalRank>\r\n
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>9</OrdinalRank>\r\n
         \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>LIPPINCOTT
         WILLIAMS &amp; WILKINS</CopyrightPublisher>\r\n    <CopyrightCity>PHILADELPHIA</CopyrightCity>\r\n
@@ -400,7 +437,7 @@ http_interactions:
         \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Oncology</PublicationSubjectCategoryList>\r\n
         \   <ISSN>1473-7140</ISSN>\r\n    <DOI>10.1586/ERA.13.18</DOI>\r\n    <ConferenceStartDate
         xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank
-        xsi:nil=\"true\" />\r\n    <OrdinalRank>9</OrdinalRank>\r\n    <NormalizedRank
+        xsi:nil=\"true\" />\r\n    <OrdinalRank>10</OrdinalRank>\r\n    <NormalizedRank
         xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
         \   <CopyrightPublisher>EXPERT REVIEWS</CopyrightPublisher>\r\n    <CopyrightCity>LONDON</CopyrightCity>\r\n
         \   <PublicationImpactFactorList>2.652,2011,ClosestToPublicationYear|2.652,2011,MostRecentYear</PublicationImpactFactorList>\r\n
@@ -431,7 +468,7 @@ http_interactions:
         \   <PublicationDate>2013-03-01T00:00:00</PublicationDate>\r\n    <PublicationYear>2013</PublicationYear>\r\n
         \   <PublicationSubjectCategoryList />\r\n    <ISSN>1078-1552</ISSN>\r\n    <DOI>10.1177/1078155212438453</DOI>\r\n
         \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
-        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>10</OrdinalRank>\r\n
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>11</OrdinalRank>\r\n
         \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher />\r\n
         \   <CopyrightCity />\r\n    <CopyrightStateProvince />\r\n    <CopyrightCountry>UNITED
@@ -476,7 +513,7 @@ http_interactions:
         \   <PublicationSubjectCategoryList>Medicine, General &amp; Internal</PublicationSubjectCategoryList>\r\n
         \   <ISSN>1549-1676</ISSN>\r\n    <DOI>10.1371/journal.pmed.1001376</DOI>\r\n
         \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
-        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>11</OrdinalRank>\r\n
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>12</OrdinalRank>\r\n
         \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>PUBLIC
         LIBRARY SCIENCE</CopyrightPublisher>\r\n    <CopyrightCity>SAN FRANCISCO</CopyrightCity>\r\n
@@ -498,7 +535,7 @@ http_interactions:
         \   <PublicationYear>2013</PublicationYear>\r\n    <PublicationSubjectCategoryList
         />\r\n    <ISSN>2041-5990</ISSN>\r\n    <DOI>10.4155/tde.12.137</DOI>\r\n
         \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
-        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>12</OrdinalRank>\r\n
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>13</OrdinalRank>\r\n
         \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher />\r\n
         \   <CopyrightCity />\r\n    <CopyrightStateProvince />\r\n    <CopyrightCountry>UNITED
@@ -529,7 +566,7 @@ http_interactions:
         \   <PublicationDate>2013-02-01T00:00:00</PublicationDate>\r\n    <PublicationYear>2013</PublicationYear>\r\n
         \   <PublicationSubjectCategoryList />\r\n    <ISSN>1092-1095</ISSN>\r\n    <DOI>10.1188/13.CJON.74-79</DOI>\r\n
         \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
-        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>13</OrdinalRank>\r\n
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>14</OrdinalRank>\r\n
         \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher />\r\n
         \   <CopyrightCity />\r\n    <PublicationImpactFactorList>0.729,2011,ClosestToPublicationYear|0.729,2011,MostRecentYear</PublicationImpactFactorList>\r\n
@@ -561,7 +598,7 @@ http_interactions:
         Applications|Mechanics|Physics, Fluids &amp; Plasmas|Physics, Mathematical</PublicationSubjectCategoryList>\r\n
         \   <ISSN>1007-5704</ISSN>\r\n    <DOI>10.1016/j.cnsns.2012.10.011</DOI>\r\n
         \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
-        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>14</OrdinalRank>\r\n
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>15</OrdinalRank>\r\n
         \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>ELSEVIER
         SCIENCE BV</CopyrightPublisher>\r\n    <CopyrightCity>AMSTERDAM</CopyrightCity>\r\n
@@ -587,7 +624,7 @@ http_interactions:
         \   <PublicationSubjectCategoryList>Economics|Health Care Sciences &amp; Services|Health
         Policy &amp; Services</PublicationSubjectCategoryList>\r\n    <ISSN>1098-3015</ISSN>\r\n
         \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
-        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>15</OrdinalRank>\r\n
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>16</OrdinalRank>\r\n
         \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>ELSEVIER
         SCIENCE INC</CopyrightPublisher>\r\n    <CopyrightCity>NEW YORK</CopyrightCity>\r\n
@@ -639,7 +676,7 @@ http_interactions:
         \   <PublicationSubjectCategoryList>Oncology</PublicationSubjectCategoryList>\r\n
         \   <ISSN>1471-2407</ISSN>\r\n    <DOI>10.1186/1471-2407-12-580</DOI>\r\n
         \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
-        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>16</OrdinalRank>\r\n
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>17</OrdinalRank>\r\n
         \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>BIOMED
         CENTRAL LTD</CopyrightPublisher>\r\n    <CopyrightCity>LONDON</CopyrightCity>\r\n
@@ -665,7 +702,7 @@ http_interactions:
         (ASTRO)</ConferenceTitle>\r\n    <ConferenceStartDate>2012-10-28T00:00:00</ConferenceStartDate>\r\n
         \   <ConferenceEndDate>2012-10-31T00:00:00</ConferenceEndDate>\r\n    <ConferenceCity>BOSTON</ConferenceCity>\r\n
         \   <ConferenceStateCountry>MA</ConferenceStateCountry>\r\n    <Rank xsi:nil=\"true\"
-        />\r\n    <OrdinalRank>17</OrdinalRank>\r\n    <NormalizedRank xsi:nil=\"true\"
+        />\r\n    <OrdinalRank>18</OrdinalRank>\r\n    <NormalizedRank xsi:nil=\"true\"
         />\r\n    <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
         \   <CopyrightPublisher>ELSEVIER SCIENCE INC</CopyrightPublisher>\r\n    <CopyrightCity>NEW
         YORK</CopyrightCity>\r\n    <PublicationImpactFactorList>4.105,2011,ClosestToPublicationYear|4.105,2011,MostRecentYear</PublicationImpactFactorList>\r\n
@@ -699,7 +736,7 @@ http_interactions:
         RESPONSE|CELL-PROLIFERATION|OVARIAN-CANCER|ACTIVATION|EXPRESSION|GROWTH|KEAP1
         MUTATIONS</KeywordList>\r\n    <DocumentTypeList>Article</DocumentTypeList>\r\n
         \   <DocumentCategory>Journal Document</DocumentCategory>\r\n    <NumberOfReferences>49</NumberOfReferences>\r\n
-        \   <TimesCited>2</TimesCited>\r\n    <TimesNotSelfCited>2</TimesNotSelfCited>\r\n
+        \   <TimesCited>3</TimesCited>\r\n    <TimesNotSelfCited>3</TimesNotSelfCited>\r\n
         \   <PMID>23041549</PMID>\r\n    <WoSItemID>000311893100017</WoSItemID>\r\n
         \   <PublicationSourceTitle>CANCER RESEARCH</PublicationSourceTitle>\r\n    <Volume>72</Volume>\r\n
         \   <Issue>23</Issue>\r\n    <Pagination>6227-6235</Pagination>\r\n    <PublicationDate>2012-12-01T00:00:00</PublicationDate>\r\n
@@ -707,54 +744,15 @@ http_interactions:
         \   <PublicationSubjectCategoryList>Oncology</PublicationSubjectCategoryList>\r\n
         \   <ISSN>0008-5472</ISSN>\r\n    <DOI>10.1158/0008-5472.CAN-12-1166</DOI>\r\n
         \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
-        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>18</OrdinalRank>\r\n
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>19</OrdinalRank>\r\n
         \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>AMER ASSOC
         CANCER RESEARCH</CopyrightPublisher>\r\n    <CopyrightCity>PHILADELPHIA</CopyrightCity>\r\n
         \   <PublicationImpactFactorList>7.856,2011,ClosestToPublicationYear|7.856,2011,MostRecentYear</PublicationImpactFactorList>\r\n
         \   <PublicationCategoryRankingList>12/190;ONCOLOGY;2011;SC;ClosestToPublicationYear|12/190;ONCOLOGY;2011;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
-        \   <AuthorCitationCountList>1,0,2|2,0,2|3,0,2|4,0,2|5,0,2|6,0,2|7,0,2|8,0,2|9,0,2|10,0,2|11,0,2|12,0,2|13,0,2</AuthorCitationCountList>\r\n
+        \   <AuthorCitationCountList>1,0,3|2,0,3|3,0,3|4,0,3|5,0,3|6,0,3|7,0,3|8,0,3|9,0,3|10,0,3|11,0,3|12,0,3|13,0,3</AuthorCitationCountList>\r\n
         \   <CopyrightStateProvince>PA</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
-        STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
-        \   <PublicationItemID>61758131</PublicationItemID>\r\n    <Title>Completion
-        pneumonectomy for lung cancer treatment: early and long term outcomes</Title>\r\n
-        \   <Abstract>Background: To analyze the experience of completion pneumonectomy
-        for lung cancer at a single institution in China.  Methods: From January 1988
-        to December 2007, 92 patients underwent completion pneumonectomy for the treatment
-        of lung cancer. The indications were second primary lung cancer (n = 51),
-        Local metastasis (n = 37) and Lung metastasis (n = 4). The median interval
-        between the primary operation and CP was 24.4 months (1.5-145 m).  Results:
-        There was no intraoperative deaths. The CP procedure lasted 4.3 h (1.5-8 h).
-        Blood loss in the CP performance was 1854.5 ml (200-9100 ml) 9 (9.78%) patients
-        died in the postoperative period: pulmonary embolism (n = 2), disseminated
-        intravascular coagulation (DIC) after the multisystem failure (n = 1), respiratory
-        failure after contralateral pneumonia (n = 5), bronchopleural fistula (BPF)
-        with acute respiratory distress syndrome (ARDS) (n = 1) 31(33.7%) patients
-        had at least one major nonfatal complication. The 1, 3 and 5 year survival
-        rates were 81%, 26% and 14% respectively.  Conclusions: Completion pneumonectomy
-        for lung cancer is a safe surgical procedure for the skilled surgeon though
-        it has a relatively higher complications and the long-term survival is acceptable.</Abstract>\r\n
-        \   <AuthorList>Zhang,Peng,|Jiang,Chao,|He,Wenxin,|Song,Nan,|Zhou,Xiao,|Jiang,Gening,</AuthorList>\r\n
-        \   <AuthorCount>6</AuthorCount>\r\n    <KeywordList>COMPLICATIONS|MORBIDITY|MORTALITY|2ND|EXPERIENCE|lung
-        cancer|follow-up|completion pneumonectomy</KeywordList>\r\n    <DocumentTypeList>Article</DocumentTypeList>\r\n
-        \   <DocumentCategory>Journal Document</DocumentCategory>\r\n    <NumberOfReferences>20</NumberOfReferences>\r\n
-        \   <TimesCited>1</TimesCited>\r\n    <TimesNotSelfCited>1</TimesNotSelfCited>\r\n
-        \   <PMID>23046489</PMID>\r\n    <WoSItemID>000311290800001</WoSItemID>\r\n
-        \   <PublicationSourceTitle>JOURNAL OF CARDIOTHORACIC SURGERY</PublicationSourceTitle>\r\n
-        \   <Volume>7</Volume>\r\n    <Pagination />\r\n    <PublicationDate>2012-10-09T00:00:00</PublicationDate>\r\n
-        \   <PublicationYear>2012</PublicationYear>\r\n    <PublicationType>Journal</PublicationType>\r\n
-        \   <PublicationSubjectCategoryList>Cardiac &amp; Cardiovascular Systems</PublicationSubjectCategoryList>\r\n
-        \   <ISSN>1749-8090</ISSN>\r\n    <DOI>10.1186/1749-8090-7-107</DOI>\r\n    <ConferenceStartDate
-        xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank
-        xsi:nil=\"true\" />\r\n    <OrdinalRank>19</OrdinalRank>\r\n    <NormalizedRank
-        xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
-        \   <CopyrightPublisher>BIOMED CENTRAL LTD</CopyrightPublisher>\r\n    <CopyrightCity>LONDON</CopyrightCity>\r\n
-        \   <ArticleNumber>107</ArticleNumber>\r\n    <PublicationImpactFactorList>1.187,2011,ClosestToPublicationYear|1.187,2011,MostRecentYear</PublicationImpactFactorList>\r\n
-        \   <PublicationCategoryRankingList>87/117;CARDIAC &amp; CARDIOVASCULAR SYSTEMS;2011;SC;ClosestToPublicationYear|87/117;CARDIAC
-        &amp; CARDIOVASCULAR SYSTEMS;2011;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
-        \   <AuthorCitationCountList>1,0,1|2,0,1|3,0,1|4,0,1|5,0,1|6,0,1</AuthorCitationCountList>\r\n
-        \   <CopyrightStateProvince />\r\n    <CopyrightCountry>UNITED KINGDOM</CopyrightCountry>\r\n
-        \ </PublicationItem>\r\n</ArrayOfPublicationItem>"
+        STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n</ArrayOfPublicationItem>"
     http_version: 
-  recorded_at: Sun, 08 Sep 2013 20:09:52 GMT
+  recorded_at: Thu, 19 Sep 2013 20:35:05 GMT
 recorded_with: VCR 2.5.0

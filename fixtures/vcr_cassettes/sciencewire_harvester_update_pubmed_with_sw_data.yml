@@ -37,7 +37,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Wed, 04 Sep 2013 23:21:54 GMT
+      - Thu, 19 Sep 2013 20:34:25 GMT
       Content-Length:
       - '2075'
     body:
@@ -68,7 +68,7 @@ http_interactions:
         />\r\n    <NewPublicationItemID>42711845</NewPublicationItemID>\r\n    <IsObsolete>false</IsObsolete>\r\n
         \   <CopyrightPublisher />\r\n    <CopyrightCity />\r\n  </PublicationItem>\r\n</ArrayOfPublicationItem>"
     http_version: 
-  recorded_at: Wed, 04 Sep 2013 23:22:01 GMT
+  recorded_at: Thu, 19 Sep 2013 20:34:26 GMT
 - request:
     method: post
     uri: http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml
@@ -86,7 +86,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Wed, 04 Sep 2013 23:21:55 GMT
+      - Thu, 19 Sep 2013 20:34:26 GMT
       Server:
       - Apache
       Access-Control-Allow-Origin:
@@ -94,12 +94,12 @@ http_interactions:
       Cache-Control:
       - private
       Ncbi-Sid:
-      - 08DE7A45227C0931_0148SID
+      - 08DD7AE723B5FD21_0160SID
       Content-Type:
       - text/xml; charset=UTF-8
       Set-Cookie:
-      - ncbi_sid=08DE7A45227C0931_0148SID; domain=.nih.gov; path=/; expires=Thu, 04
-        Sep 2014 23:21:55 GMT
+      - ncbi_sid=08DD7AE723B5FD21_0160SID; domain=.nih.gov; path=/; expires=Fri, 19
+        Sep 2014 20:34:26 GMT
       Transfer-Encoding:
       - chunked
     body:
@@ -176,7 +176,7 @@ http_interactions:
         \       <ArticleIdList>\n            <ArticleId IdType=\"pubmed\">10048354</ArticleId>\n
         \       </ArticleIdList>\n    </PubmedData>\n</PubmedArticle>\n\n</PubmedArticleSet>\n"
     http_version: 
-  recorded_at: Wed, 04 Sep 2013 23:22:01 GMT
+  recorded_at: Thu, 19 Sep 2013 20:34:26 GMT
 - request:
     method: post
     uri: http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml
@@ -194,7 +194,7 @@ http_interactions:
       message: Bad Request
     headers:
       Date:
-      - Wed, 04 Sep 2013 23:21:55 GMT
+      - Thu, 19 Sep 2013 20:34:27 GMT
       Server:
       - Apache
       Access-Control-Allow-Origin:
@@ -202,12 +202,12 @@ http_interactions:
       Cache-Control:
       - private
       Ncbi-Sid:
-      - 08DE31BE227C0931_0361SID
+      - 08DE4DF323B5FD31_0146SID
       Content-Type:
       - text/xml; charset=UTF-8
       Set-Cookie:
-      - ncbi_sid=08DE31BE227C0931_0361SID; domain=.nih.gov; path=/; expires=Thu, 04
-        Sep 2014 23:21:55 GMT
+      - ncbi_sid=08DE4DF323B5FD31_0146SID; domain=.nih.gov; path=/; expires=Fri, 19
+        Sep 2014 20:34:27 GMT
       Connection:
       - close
       Transfer-Encoding:
@@ -217,5 +217,5 @@ http_interactions:
       string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n\n<eFetchResult>\n\t<ERROR>WebEnv
         parameter is required</ERROR>\n</eFetchResult>\n"
     http_version: 
-  recorded_at: Wed, 04 Sep 2013 23:22:02 GMT
+  recorded_at: Thu, 19 Sep 2013 20:34:27 GMT
 recorded_with: VCR 2.5.0

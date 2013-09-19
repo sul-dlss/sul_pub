@@ -382,9 +382,9 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Fri, 06 Sep 2013 23:44:03 GMT
+      - Thu, 19 Sep 2013 20:34:39 GMT
       Content-Length:
-      - '29392'
+      - '33873'
     body:
       encoding: US-ASCII
       string: ! "<?xml version=\"1.0\"?>\r\n<ArrayOfPublicationItem xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
@@ -536,9 +536,57 @@ http_interactions:
         \   <PublicationCategoryRankingList>45/70;INFECTIOUS DISEASES;2011;SC;ClosestToPublicationYear|45/70;INFECTIOUS
         DISEASES;2011;SC;MostRecentYear</PublicationCategoryRankingList>\r\n    <AuthorCitationCountList>1,2,1|2,2,1|3,1,2|4,0,3|5,0,3|6,0,3|7,0,3|8,0,3|9,2,1</AuthorCitationCountList>\r\n
         \   <CopyrightStateProvince />\r\n    <CopyrightCountry>NETHERLANDS</CopyrightCountry>\r\n
-        \ </PublicationItem>\r\n  <PublicationItem>\r\n    <PublicationItemID>47742181</PublicationItemID>\r\n
-        \   <Title>DUAL ROLE OF PRACTITIONER AND MEMBER OF ACADEMIC COMMUNITY - COMMENT</Title>\r\n
-        \   <Abstract />\r\n    <AuthorList>Smith,J,P</AuthorList>\r\n    <AuthorCount>1</AuthorCount>\r\n
+        \ </PublicationItem>\r\n  <PublicationItem>\r\n    <PublicationItemID>63755405</PublicationItemID>\r\n
+        \   <Title>Pathogen-Host Associations and Predicted Range Shifts of Human
+        Monkeypox in Response to Climate Change in Central Africa</Title>\r\n    <Abstract>Climate
+        change is predicted to result in changes in the geographic ranges and local
+        prevalence of infectious diseases, either through direct effects on the pathogen,
+        or indirectly through range shifts in vector and reservoir species. To better
+        understand the occurrence of monkeypox virus (MPXV), an emerging Orthopoxvirus
+        in humans, under contemporary and future climate conditions, we used ecological
+        niche modeling techniques in conjunction with climate and remote-sensing variables.
+        We first created spatially explicit probability distributions of its candidate
+        reservoir species in Africa's Congo Basin. Reservoir species distributions
+        were subsequently used to model current and projected future distributions
+        of human monkeypox (MPX). Results indicate that forest clearing and climate
+        are significant driving factors of the transmission of MPX from wildlife to
+        humans under current climate conditions. Models under contemporary climate
+        conditions performed well, as indicated by high values for the area under
+        the receiver operator curve (AUC), and tests on spatially randomly and non-randomly
+        omitted test data. Future projections were made on IPCC 4th Assessment climate
+        change scenarios for 2050 and 2080, ranging from more conservative to more
+        aggressive, and representing the potential variation within which range shifts
+        can be expected to occur. Future projections showed range shifts into regions
+        where MPX has not been recorded previously. Increased suitability for MPX
+        was predicted in eastern Democratic Republic of Congo. Models developed here
+        are useful for identifying areas where environmental conditions may become
+        more suitable for human MPX; targeting candidate reservoir species for future
+        screening efforts; and prioritizing regions for future MPX surveillance efforts.</Abstract>\r\n
+        \   <AuthorList>Thomassen,Henri,A|Fuller,Trevon,|Asefi-Najafabady,Salvi,|Shiplacoff,Julia,AG|Mulembakani,Prime,M|Blumberg,Seth,|Johnston,Sara,C|Kisalu,Neville,K|Kinkela,Timothee,L|Fair,Joseph,N|Wolfe,Nathan,D|Shongo,Robert,L|LeBreton,Matthew,|Meyer,Hermann,|Wright,Linda,L|Muyembe,Jean-Jacques,|Buermann,Wolfgang,|Okitolonda,Emile,|Hensley,Lisa,E|Lloyd-Smith,James,O|Smith,Thomas,B|Rimoin,Anne,W</AuthorList>\r\n
+        \   <AuthorCount>22</AuthorCount>\r\n    <KeywordList>PUBLIC-HEALTH|VIRUS|SAMPLE-SIZE|MODIS
+        DATA|RISK-FACTORS|INFECTIOUS-DISEASES|UNITED-STATES|DISTRIBUTIONS|SPECIES
+        DISTRIBUTION MODELS|ECOLOGICAL NICHE</KeywordList>\r\n    <DocumentTypeList>Article</DocumentTypeList>\r\n
+        \   <DocumentCategory>Journal Document</DocumentCategory>\r\n    <NumberOfReferences>90</NumberOfReferences>\r\n
+        \   <TimesCited>0</TimesCited>\r\n    <TimesNotSelfCited>0</TimesNotSelfCited>\r\n
+        \   <PMID>23935820</PMID>\r\n    <WoSItemID>000322633700002</WoSItemID>\r\n
+        \   <PublicationSourceTitle>PLOS ONE</PublicationSourceTitle>\r\n    <Volume>8</Volume>\r\n
+        \   <Issue>7</Issue>\r\n    <Pagination />\r\n    <PublicationDate>2013-07-31T00:00:00</PublicationDate>\r\n
+        \   <PublicationYear>2013</PublicationYear>\r\n    <PublicationType>Journal</PublicationType>\r\n
+        \   <PublicationSubjectCategoryList>Multidisciplinary Sciences</PublicationSubjectCategoryList>\r\n
+        \   <ISSN>1932-6203</ISSN>\r\n    <DOI>10.1371/journal.pone.0066071</DOI>\r\n
+        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
+        />\r\n    <Rank>59</Rank>\r\n    <OrdinalRank>5</OrdinalRank>\r\n    <NormalizedRank>52.678571428571431</NormalizedRank>\r\n
+        \   <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
+        \   <CopyrightPublisher>PUBLIC LIBRARY SCIENCE</CopyrightPublisher>\r\n    <CopyrightCity>SAN
+        FRANCISCO</CopyrightCity>\r\n    <ArticleNumber>e66071</ArticleNumber>\r\n
+        \   <PublicationImpactFactorList>4.092,2011,ClosestToPublicationYear|4.092,2011,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>12/84;BIOLOGY;2011;SC;ClosestToPublicationYear|12/84;BIOLOGY;2011;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <AuthorCitationCountList>1,0,0|2,0,0|3,0,0|4,0,0|5,0,0|6,0,0|7,0,0|8,0,0|9,0,0|10,0,0|11,0,0|12,0,0|13,0,0|14,0,0|15,0,0|16,0,0|17,0,0|18,0,0|19,0,0|20,0,0|21,0,0|22,0,0</AuthorCitationCountList>\r\n
+        \   <CopyrightStateProvince>CA</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
+        STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
+        \   <PublicationItemID>47742181</PublicationItemID>\r\n    <Title>DUAL ROLE
+        OF PRACTITIONER AND MEMBER OF ACADEMIC COMMUNITY - COMMENT</Title>\r\n    <Abstract
+        />\r\n    <AuthorList>Smith,J,P</AuthorList>\r\n    <AuthorCount>1</AuthorCount>\r\n
         \   <KeywordList />\r\n    <DocumentTypeList>Article</DocumentTypeList>\r\n
         \   <DocumentCategory>Journal Document</DocumentCategory>\r\n    <NumberOfReferences>0</NumberOfReferences>\r\n
         \   <TimesCited>0</TimesCited>\r\n    <TimesNotSelfCited>0</TimesNotSelfCited>\r\n
@@ -549,7 +597,7 @@ http_interactions:
         \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList
         />\r\n    <ISSN>0033-0175</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\"
         />\r\n    <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n
-        \   <OrdinalRank>5</OrdinalRank>\r\n    <NormalizedRank>50</NormalizedRank>\r\n
+        \   <OrdinalRank>6</OrdinalRank>\r\n    <NormalizedRank>50</NormalizedRank>\r\n
         \   <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
         \   <CopyrightPublisher>AMER PSYCHOLOGICAL ASSOC</CopyrightPublisher>\r\n
         \   <CopyrightCity>WASHINGTON</CopyrightCity>\r\n    <PublicationImpactFactorList>1.071,1995,MostRecentYear</PublicationImpactFactorList>\r\n
@@ -569,7 +617,7 @@ http_interactions:
         \   <PublicationYear>1951</PublicationYear>\r\n    <PublicationSubjectCategoryList
         />\r\n    <ISSN>0376-2602</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\"
         />\r\n    <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n
-        \   <OrdinalRank>6</OrdinalRank>\r\n    <NormalizedRank>50</NormalizedRank>\r\n
+        \   <OrdinalRank>7</OrdinalRank>\r\n    <NormalizedRank>50</NormalizedRank>\r\n
         \   <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
         \   <CopyrightPublisher />\r\n    <CopyrightCity />\r\n    <CopyrightStateProvince
         />\r\n    <CopyrightCountry />\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
@@ -585,7 +633,7 @@ http_interactions:
         \   <PublicationYear>2002</PublicationYear>\r\n    <PublicationType>Journal</PublicationType>\r\n
         \   <PublicationSubjectCategoryList>Sociology</PublicationSubjectCategoryList>\r\n
         \   <ISSN>0094-3061</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
-        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>7</OrdinalRank>\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>8</OrdinalRank>\r\n
         \   <NormalizedRank>50</NormalizedRank>\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>AMER SOCIOLOGICAL
         ASSOC</CopyrightPublisher>\r\n    <CopyrightCity>WASHINGTON</CopyrightCity>\r\n
@@ -606,7 +654,7 @@ http_interactions:
         \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Computer
         Science, Interdisciplinary Applications|Music</PublicationSubjectCategoryList>\r\n
         \   <ISSN>0148-9267</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
-        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>8</OrdinalRank>\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>9</OrdinalRank>\r\n
         \   <NormalizedRank>50</NormalizedRank>\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>M I T
         PRESS</CopyrightPublisher>\r\n    <CopyrightCity>CAMBRIDGE</CopyrightCity>\r\n
@@ -628,7 +676,7 @@ http_interactions:
         \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Computer
         Science, Interdisciplinary Applications|Music</PublicationSubjectCategoryList>\r\n
         \   <ISSN>0148-9267</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
-        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>9</OrdinalRank>\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>10</OrdinalRank>\r\n
         \   <NormalizedRank>50</NormalizedRank>\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>MIT PRESS</CopyrightPublisher>\r\n
         \   <CopyrightCity>CAMBRIDGE</CopyrightCity>\r\n    <PublicationImpactFactorList>0.548,1994,ClosestToPublicationYear|0.706,2011,MostRecentYear</PublicationImpactFactorList>\r\n
@@ -649,7 +697,7 @@ http_interactions:
         \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Computer
         Science, Interdisciplinary Applications|Music</PublicationSubjectCategoryList>\r\n
         \   <ISSN>0148-9267</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
-        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>10</OrdinalRank>\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>11</OrdinalRank>\r\n
         \   <NormalizedRank>50</NormalizedRank>\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>MIT PRESS</CopyrightPublisher>\r\n
         \   <CopyrightCity>CAMBRIDGE</CopyrightCity>\r\n    <PublicationImpactFactorList>0.706,2011,MostRecentYear</PublicationImpactFactorList>\r\n
@@ -670,7 +718,7 @@ http_interactions:
         \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Computer
         Science, Interdisciplinary Applications|Music</PublicationSubjectCategoryList>\r\n
         \   <ISSN>0148-9267</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
-        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>11</OrdinalRank>\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>12</OrdinalRank>\r\n
         \   <NormalizedRank>50</NormalizedRank>\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>MIT PRESS</CopyrightPublisher>\r\n
         \   <CopyrightCity>CAMBRIDGE</CopyrightCity>\r\n    <PublicationImpactFactorList>0.706,2011,MostRecentYear</PublicationImpactFactorList>\r\n
@@ -690,7 +738,7 @@ http_interactions:
         \   <PublicationYear>1981</PublicationYear>\r\n    <PublicationType>Journal</PublicationType>\r\n
         \   <PublicationSubjectCategoryList>Environmental Sciences</PublicationSubjectCategoryList>\r\n
         \   <ISSN>0045-6535</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
-        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>12</OrdinalRank>\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>13</OrdinalRank>\r\n
         \   <NormalizedRank>50</NormalizedRank>\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>PERGAMON-ELSEVIER
         SCIENCE LTD</CopyrightPublisher>\r\n    <CopyrightCity>OXFORD</CopyrightCity>\r\n
@@ -711,7 +759,7 @@ http_interactions:
         \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Energy
         &amp; Fuels|Engineering, Chemical|Engineering, Petroleum</PublicationSubjectCategoryList>\r\n
         \   <ISSN>0018-8190</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
-        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>13</OrdinalRank>\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>14</OrdinalRank>\r\n
         \   <NormalizedRank>50</NormalizedRank>\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>GULF PUBL
         CO</CopyrightPublisher>\r\n    <CopyrightCity>HOUSTON</CopyrightCity>\r\n
@@ -721,7 +769,7 @@ http_interactions:
         \   <AuthorCitationCountList>1,0,0|2,0,0</AuthorCitationCountList>\r\n    <CopyrightStateProvince>TX</CopyrightStateProvince>\r\n
         \   <CopyrightCountry>UNITED STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n</ArrayOfPublicationItem>"
     http_version: 
-  recorded_at: Fri, 06 Sep 2013 23:44:06 GMT
+  recorded_at: Thu, 19 Sep 2013 20:34:39 GMT
 - request:
     method: post
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery?format=xml
@@ -781,16 +829,16 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Sun, 08 Sep 2013 20:19:51 GMT
+      - Thu, 19 Sep 2013 21:24:18 GMT
       Content-Length:
       - '280'
     body:
       encoding: US-ASCII
       string: ! "<?xml version=\"1.0\"?>\r\n<ScienceWireQueryIDResponse xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>129740</queryID>\r\n
-        \ <queryResultRows>14</queryResultRows>\r\n  <totalRows>14</totalRows>\r\n</ScienceWireQueryIDResponse>"
+        \ <queryResultRows>15</queryResultRows>\r\n  <totalRows>15</totalRows>\r\n</ScienceWireQueryIDResponse>"
     http_version: 
-  recorded_at: Sun, 08 Sep 2013 20:19:52 GMT
+  recorded_at: Thu, 19 Sep 2013 21:24:19 GMT
 - request:
     method: get
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/129740?format=xml&page=0&pageSize=2147483647&v=version/3
@@ -828,9 +876,9 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Sun, 08 Sep 2013 20:19:51 GMT
+      - Thu, 19 Sep 2013 21:24:21 GMT
       Content-Length:
-      - '29392'
+      - '33873'
     body:
       encoding: US-ASCII
       string: ! "<?xml version=\"1.0\"?>\r\n<ArrayOfPublicationItem xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
@@ -982,9 +1030,57 @@ http_interactions:
         \   <PublicationCategoryRankingList>45/70;INFECTIOUS DISEASES;2011;SC;ClosestToPublicationYear|45/70;INFECTIOUS
         DISEASES;2011;SC;MostRecentYear</PublicationCategoryRankingList>\r\n    <AuthorCitationCountList>1,2,1|2,2,1|3,1,2|4,0,3|5,0,3|6,0,3|7,0,3|8,0,3|9,2,1</AuthorCitationCountList>\r\n
         \   <CopyrightStateProvince />\r\n    <CopyrightCountry>NETHERLANDS</CopyrightCountry>\r\n
-        \ </PublicationItem>\r\n  <PublicationItem>\r\n    <PublicationItemID>47742181</PublicationItemID>\r\n
-        \   <Title>DUAL ROLE OF PRACTITIONER AND MEMBER OF ACADEMIC COMMUNITY - COMMENT</Title>\r\n
-        \   <Abstract />\r\n    <AuthorList>Smith,J,P</AuthorList>\r\n    <AuthorCount>1</AuthorCount>\r\n
+        \ </PublicationItem>\r\n  <PublicationItem>\r\n    <PublicationItemID>63755405</PublicationItemID>\r\n
+        \   <Title>Pathogen-Host Associations and Predicted Range Shifts of Human
+        Monkeypox in Response to Climate Change in Central Africa</Title>\r\n    <Abstract>Climate
+        change is predicted to result in changes in the geographic ranges and local
+        prevalence of infectious diseases, either through direct effects on the pathogen,
+        or indirectly through range shifts in vector and reservoir species. To better
+        understand the occurrence of monkeypox virus (MPXV), an emerging Orthopoxvirus
+        in humans, under contemporary and future climate conditions, we used ecological
+        niche modeling techniques in conjunction with climate and remote-sensing variables.
+        We first created spatially explicit probability distributions of its candidate
+        reservoir species in Africa's Congo Basin. Reservoir species distributions
+        were subsequently used to model current and projected future distributions
+        of human monkeypox (MPX). Results indicate that forest clearing and climate
+        are significant driving factors of the transmission of MPX from wildlife to
+        humans under current climate conditions. Models under contemporary climate
+        conditions performed well, as indicated by high values for the area under
+        the receiver operator curve (AUC), and tests on spatially randomly and non-randomly
+        omitted test data. Future projections were made on IPCC 4th Assessment climate
+        change scenarios for 2050 and 2080, ranging from more conservative to more
+        aggressive, and representing the potential variation within which range shifts
+        can be expected to occur. Future projections showed range shifts into regions
+        where MPX has not been recorded previously. Increased suitability for MPX
+        was predicted in eastern Democratic Republic of Congo. Models developed here
+        are useful for identifying areas where environmental conditions may become
+        more suitable for human MPX; targeting candidate reservoir species for future
+        screening efforts; and prioritizing regions for future MPX surveillance efforts.</Abstract>\r\n
+        \   <AuthorList>Thomassen,Henri,A|Fuller,Trevon,|Asefi-Najafabady,Salvi,|Shiplacoff,Julia,AG|Mulembakani,Prime,M|Blumberg,Seth,|Johnston,Sara,C|Kisalu,Neville,K|Kinkela,Timothee,L|Fair,Joseph,N|Wolfe,Nathan,D|Shongo,Robert,L|LeBreton,Matthew,|Meyer,Hermann,|Wright,Linda,L|Muyembe,Jean-Jacques,|Buermann,Wolfgang,|Okitolonda,Emile,|Hensley,Lisa,E|Lloyd-Smith,James,O|Smith,Thomas,B|Rimoin,Anne,W</AuthorList>\r\n
+        \   <AuthorCount>22</AuthorCount>\r\n    <KeywordList>PUBLIC-HEALTH|VIRUS|SAMPLE-SIZE|MODIS
+        DATA|RISK-FACTORS|INFECTIOUS-DISEASES|UNITED-STATES|DISTRIBUTIONS|SPECIES
+        DISTRIBUTION MODELS|ECOLOGICAL NICHE</KeywordList>\r\n    <DocumentTypeList>Article</DocumentTypeList>\r\n
+        \   <DocumentCategory>Journal Document</DocumentCategory>\r\n    <NumberOfReferences>90</NumberOfReferences>\r\n
+        \   <TimesCited>0</TimesCited>\r\n    <TimesNotSelfCited>0</TimesNotSelfCited>\r\n
+        \   <PMID>23935820</PMID>\r\n    <WoSItemID>000322633700002</WoSItemID>\r\n
+        \   <PublicationSourceTitle>PLOS ONE</PublicationSourceTitle>\r\n    <Volume>8</Volume>\r\n
+        \   <Issue>7</Issue>\r\n    <Pagination />\r\n    <PublicationDate>2013-07-31T00:00:00</PublicationDate>\r\n
+        \   <PublicationYear>2013</PublicationYear>\r\n    <PublicationType>Journal</PublicationType>\r\n
+        \   <PublicationSubjectCategoryList>Multidisciplinary Sciences</PublicationSubjectCategoryList>\r\n
+        \   <ISSN>1932-6203</ISSN>\r\n    <DOI>10.1371/journal.pone.0066071</DOI>\r\n
+        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
+        />\r\n    <Rank>59</Rank>\r\n    <OrdinalRank>5</OrdinalRank>\r\n    <NormalizedRank>52.678571428571431</NormalizedRank>\r\n
+        \   <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
+        \   <CopyrightPublisher>PUBLIC LIBRARY SCIENCE</CopyrightPublisher>\r\n    <CopyrightCity>SAN
+        FRANCISCO</CopyrightCity>\r\n    <ArticleNumber>e66071</ArticleNumber>\r\n
+        \   <PublicationImpactFactorList>4.092,2011,ClosestToPublicationYear|4.092,2011,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>12/84;BIOLOGY;2011;SC;ClosestToPublicationYear|12/84;BIOLOGY;2011;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <AuthorCitationCountList>1,0,0|2,0,0|3,0,0|4,0,0|5,0,0|6,0,0|7,0,0|8,0,0|9,0,0|10,0,0|11,0,0|12,0,0|13,0,0|14,0,0|15,0,0|16,0,0|17,0,0|18,0,0|19,0,0|20,0,0|21,0,0|22,0,0</AuthorCitationCountList>\r\n
+        \   <CopyrightStateProvince>CA</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
+        STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
+        \   <PublicationItemID>47742181</PublicationItemID>\r\n    <Title>DUAL ROLE
+        OF PRACTITIONER AND MEMBER OF ACADEMIC COMMUNITY - COMMENT</Title>\r\n    <Abstract
+        />\r\n    <AuthorList>Smith,J,P</AuthorList>\r\n    <AuthorCount>1</AuthorCount>\r\n
         \   <KeywordList />\r\n    <DocumentTypeList>Article</DocumentTypeList>\r\n
         \   <DocumentCategory>Journal Document</DocumentCategory>\r\n    <NumberOfReferences>0</NumberOfReferences>\r\n
         \   <TimesCited>0</TimesCited>\r\n    <TimesNotSelfCited>0</TimesNotSelfCited>\r\n
@@ -995,7 +1091,7 @@ http_interactions:
         \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList
         />\r\n    <ISSN>0033-0175</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\"
         />\r\n    <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n
-        \   <OrdinalRank>5</OrdinalRank>\r\n    <NormalizedRank>50</NormalizedRank>\r\n
+        \   <OrdinalRank>6</OrdinalRank>\r\n    <NormalizedRank>50</NormalizedRank>\r\n
         \   <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
         \   <CopyrightPublisher>AMER PSYCHOLOGICAL ASSOC</CopyrightPublisher>\r\n
         \   <CopyrightCity>WASHINGTON</CopyrightCity>\r\n    <PublicationImpactFactorList>1.071,1995,MostRecentYear</PublicationImpactFactorList>\r\n
@@ -1015,7 +1111,7 @@ http_interactions:
         \   <PublicationYear>1951</PublicationYear>\r\n    <PublicationSubjectCategoryList
         />\r\n    <ISSN>0376-2602</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\"
         />\r\n    <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n
-        \   <OrdinalRank>6</OrdinalRank>\r\n    <NormalizedRank>50</NormalizedRank>\r\n
+        \   <OrdinalRank>7</OrdinalRank>\r\n    <NormalizedRank>50</NormalizedRank>\r\n
         \   <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
         \   <CopyrightPublisher />\r\n    <CopyrightCity />\r\n    <CopyrightStateProvince
         />\r\n    <CopyrightCountry />\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
@@ -1031,7 +1127,7 @@ http_interactions:
         \   <PublicationYear>2002</PublicationYear>\r\n    <PublicationType>Journal</PublicationType>\r\n
         \   <PublicationSubjectCategoryList>Sociology</PublicationSubjectCategoryList>\r\n
         \   <ISSN>0094-3061</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
-        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>7</OrdinalRank>\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>8</OrdinalRank>\r\n
         \   <NormalizedRank>50</NormalizedRank>\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>AMER SOCIOLOGICAL
         ASSOC</CopyrightPublisher>\r\n    <CopyrightCity>WASHINGTON</CopyrightCity>\r\n
@@ -1052,7 +1148,7 @@ http_interactions:
         \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Computer
         Science, Interdisciplinary Applications|Music</PublicationSubjectCategoryList>\r\n
         \   <ISSN>0148-9267</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
-        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>8</OrdinalRank>\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>9</OrdinalRank>\r\n
         \   <NormalizedRank>50</NormalizedRank>\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>M I T
         PRESS</CopyrightPublisher>\r\n    <CopyrightCity>CAMBRIDGE</CopyrightCity>\r\n
@@ -1074,7 +1170,7 @@ http_interactions:
         \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Computer
         Science, Interdisciplinary Applications|Music</PublicationSubjectCategoryList>\r\n
         \   <ISSN>0148-9267</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
-        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>9</OrdinalRank>\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>10</OrdinalRank>\r\n
         \   <NormalizedRank>50</NormalizedRank>\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>MIT PRESS</CopyrightPublisher>\r\n
         \   <CopyrightCity>CAMBRIDGE</CopyrightCity>\r\n    <PublicationImpactFactorList>0.548,1994,ClosestToPublicationYear|0.706,2011,MostRecentYear</PublicationImpactFactorList>\r\n
@@ -1095,7 +1191,7 @@ http_interactions:
         \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Computer
         Science, Interdisciplinary Applications|Music</PublicationSubjectCategoryList>\r\n
         \   <ISSN>0148-9267</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
-        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>10</OrdinalRank>\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>11</OrdinalRank>\r\n
         \   <NormalizedRank>50</NormalizedRank>\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>MIT PRESS</CopyrightPublisher>\r\n
         \   <CopyrightCity>CAMBRIDGE</CopyrightCity>\r\n    <PublicationImpactFactorList>0.706,2011,MostRecentYear</PublicationImpactFactorList>\r\n
@@ -1116,7 +1212,7 @@ http_interactions:
         \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Computer
         Science, Interdisciplinary Applications|Music</PublicationSubjectCategoryList>\r\n
         \   <ISSN>0148-9267</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
-        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>11</OrdinalRank>\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>12</OrdinalRank>\r\n
         \   <NormalizedRank>50</NormalizedRank>\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>MIT PRESS</CopyrightPublisher>\r\n
         \   <CopyrightCity>CAMBRIDGE</CopyrightCity>\r\n    <PublicationImpactFactorList>0.706,2011,MostRecentYear</PublicationImpactFactorList>\r\n
@@ -1136,7 +1232,7 @@ http_interactions:
         \   <PublicationYear>1981</PublicationYear>\r\n    <PublicationType>Journal</PublicationType>\r\n
         \   <PublicationSubjectCategoryList>Environmental Sciences</PublicationSubjectCategoryList>\r\n
         \   <ISSN>0045-6535</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
-        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>12</OrdinalRank>\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>13</OrdinalRank>\r\n
         \   <NormalizedRank>50</NormalizedRank>\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>PERGAMON-ELSEVIER
         SCIENCE LTD</CopyrightPublisher>\r\n    <CopyrightCity>OXFORD</CopyrightCity>\r\n
@@ -1157,7 +1253,7 @@ http_interactions:
         \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Energy
         &amp; Fuels|Engineering, Chemical|Engineering, Petroleum</PublicationSubjectCategoryList>\r\n
         \   <ISSN>0018-8190</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
-        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>13</OrdinalRank>\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>14</OrdinalRank>\r\n
         \   <NormalizedRank>50</NormalizedRank>\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>GULF PUBL
         CO</CopyrightPublisher>\r\n    <CopyrightCity>HOUSTON</CopyrightCity>\r\n
@@ -1167,5 +1263,5 @@ http_interactions:
         \   <AuthorCitationCountList>1,0,0|2,0,0</AuthorCitationCountList>\r\n    <CopyrightStateProvince>TX</CopyrightStateProvince>\r\n
         \   <CopyrightCountry>UNITED STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n</ArrayOfPublicationItem>"
     http_version: 
-  recorded_at: Sun, 08 Sep 2013 20:19:52 GMT
+  recorded_at: Thu, 19 Sep 2013 21:24:23 GMT
 recorded_with: VCR 2.5.0
