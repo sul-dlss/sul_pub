@@ -92,19 +92,19 @@ describe BibtexIngester do
 	  	expect(PublicationIdentifier.exists?(identifier_type: 'SULPubId', identifier_value: pub.id)).to be_false
 	  end
 
-	it "puts SULPubId into identifer part of pubhash" do
+	  it "puts SULPubId into identifer part of pubhash" do
 	  	bibtex_ingester.ingest_from_source_directory(Rails.root.join('fixtures', 'bibtex_for_batch').to_s)
 	  	pub = Publication.where(title: 'Systematic Review: The Safety and Efficacy of Growth Hormone in the Healthy Elderly').first
 	  	expect(pub.pub_hash[:identifier].select {|k| k[:type] == 'SULPubId'}.first[:id]).to match(pub.id.to_s)
 	  end
 
-it "puts DOI into identifer part of pubhash" do
+    it "puts DOI into identifer part of pubhash" do
 	  	bibtex_ingester.ingest_from_source_directory(Rails.root.join('fixtures', 'bibtex_for_batch').to_s)
 	  	pub = Publication.where(title: 'Quality of Life Assessment Designed for Computer Inexperienced Older Adults: Multimedia Utility Elicitation for Activities of Daily Living').first
 	  	expect(pub.pub_hash[:identifier].select {|k| k[:type] == 'doi'}.first[:id]).to match('8484848484')
 	  end
 
-it "puts isbn into identifer part of pubhash" do
+    it "puts isbn into identifer part of pubhash" do
 	  	bibtex_ingester.ingest_from_source_directory(Rails.root.join('fixtures', 'bibtex_for_batch').to_s)
 	  	pub = Publication.where(title: 'Quality of Life Assessment Designed for Computer Inexperienced Older Adults: Multimedia Utility Elicitation for Activities of Daily Living').first
 	  	expect(pub.pub_hash[:identifier].select {|k| k[:type] == 'isbn'}.first[:id]).to match('3233333')
@@ -130,75 +130,78 @@ it "puts isbn into identifer part of pubhash" do
 		it "doesn't add duplicate publication identifiers" do
 	  		expect {bibtex_ingester.ingest_from_source_directory(Rails.root.join('fixtures', 'bibtex_for_batch').to_s)
 						}.to change(PublicationIdentifier, :count).by(0)
-	  	end
-	  	it "doesn't duplicate existing publications" do
+	  end
+
+	  it "doesn't duplicate existing publications" do
 	  		expect {bibtex_ingester.ingest_from_source_directory(Rails.root.join('fixtures', 'bibtex_for_batch').to_s)
 						}.to change(Publication, :count).by(3)
 		end
-	  end
-
-	  context "when depuping by title, year, pages" do
-	  	let!(:pub_with_same_title) {create :publication, pmid: 332423434, pub_hash: {title: 'Quality of Life Assessment Designed for Computer Inexperienced Older Adults: Multimedia Utility Elicitation for Activities of Daily Living', pmid: 3323434, type: 'article', year: 2002, pages: '295-299', author: [{name: "Jackson, Joe"}], authorship:[{sul_author_id: 2222, status: "denied", visibility: "public", featured: true}]}}
-	  	let!(:contribution) {create :contribution, author: author_with_bibtex, publication: pub_with_same_title}
-		it "doesn't add duplicate contributions" do
-
-			#puts pub_with_title.to_yaml
-	  		expect {bibtex_ingester.ingest_from_source_directory(Rails.root.join('fixtures', 'bibtex_for_batch').to_s)
-						}.to change(Contribution, :count).by(3)
-		end
-		it "doesn't add duplicate publication identifiers" do
-	  		expect {bibtex_ingester.ingest_from_source_directory(Rails.root.join('fixtures', 'bibtex_for_batch').to_s)
-						}.to change(PublicationIdentifier, :count).by(0)
-	  	end
-	  	it "doesn't duplicate existing publications" do
-	  		expect {bibtex_ingester.ingest_from_source_directory(Rails.root.join('fixtures', 'bibtex_for_batch').to_s)
-						}.to change(Publication, :count).by(3)
-		end
-	  end
-
-		context "when reimporting with change" do
-
-		 # it "updates old record with new title" do
-		 # 	bibtex_ingester.ingest_from_source_directory(Rails.root.join('fixtures', 'bibtex_for_batch').to_s)
-		 # 	oldPub = Publication.where(title: "Systematic Review: The Safety and Efficacy of Growth Hormone in the Healthy Elderly ").first
-		 # 	expect {
-	  	 #		bibtex_ingester.ingest_from_source_directory(Rails.root.join('fixtures', 'bibtex_for_batch_2').to_s)
-		 #	}.to change { oldPub.pub_hash[:title] }.from("Systematic Review: The Safety and Efficacy of Growth Hormone in the Healthy Elderly ").
-		#		to("The new title")
-		 # end
-
-		  it "doesn't duplicate identifiers" do
-		  	bibtex_ingester.ingest_from_source_directory(Rails.root.join('fixtures', 'bibtex_for_batch').to_s)
-		  	expect {bibtex_ingester.ingest_from_source_directory(Rails.root.join('fixtures', 'bibtex_for_batch').to_s)
-						}.to_not change(PublicationIdentifier, :count)
-		  end
-
-		  it "doesn't duplicate publications" do
-		  	bibtex_ingester.ingest_from_source_directory(Rails.root.join('fixtures', 'bibtex_for_batch').to_s)
-		  	expect {bibtex_ingester.ingest_from_source_directory(Rails.root.join('fixtures', 'bibtex_for_batch').to_s)
-						}.to_not change(Publication, :count)
-		  end
-
-		it "doesn't duplicate contributions" do
-		  	bibtex_ingester.ingest_from_source_directory(Rails.root.join('fixtures', 'bibtex_for_batch').to_s)
-		  	expect {bibtex_ingester.ingest_from_source_directory(Rails.root.join('fixtures', 'bibtex_for_batch').to_s)
-						}.to_not change(Contribution, :count)
-		  end
-
-		  it "updates changed issn" do
-		  	bibtex_ingester.ingest_from_source_directory(Rails.root.join('fixtures', 'bibtex_for_batch').to_s)
-		  	oldPub = Publication.where(issn: "234234").first
-		  #	puts "issn:  #{oldPub.pub_hash[:issn]}"
-		  	expect(oldPub.pub_hash[:issn]).to match('234234')
-		  	bibtex_ingester.ingest_from_source_directory(Rails.root.join('fixtures', 'bibtex_for_batch_2').to_s)
-		  	oldPub.reload
-		  	expect(oldPub.pub_hash[:issn]).to match("234235")
-		  	#oldPub = Publication.first
-		  #	puts "old pub: #{oldPub.to_yaml}"
-
-		  end
-
-		end
-
 	end
+
+  	context "when depuping by title, year, pages" do
+  	  let!(:pub_with_same_title) {create :publication, pmid: 332423434, pub_hash: {title: 'Quality of Life Assessment Designed for Computer Inexperienced Older Adults: Multimedia Utility Elicitation for Activities of Daily Living', pmid: 3323434, type: 'article', year: 2002, pages: '295-299', author: [{name: "Jackson, Joe"}], authorship:[{sul_author_id: 2222, status: "denied", visibility: "public", featured: true}]}}
+  	  let!(:contribution) {create :contribution, author: author_with_bibtex, publication: pub_with_same_title}
+
+  		it "doesn't add duplicate contributions" do
+  			#puts pub_with_title.to_yaml
+  	  		expect {bibtex_ingester.ingest_from_source_directory(Rails.root.join('fixtures', 'bibtex_for_batch').to_s)
+  						}.to change(Contribution, :count).by(3)
+  		end
+
+  		it "doesn't add duplicate publication identifiers" do
+  	  		expect {bibtex_ingester.ingest_from_source_directory(Rails.root.join('fixtures', 'bibtex_for_batch').to_s)
+  						}.to change(PublicationIdentifier, :count).by(0)
+  	  end
+
+  	  it "doesn't duplicate existing publications" do
+  	  		expect {bibtex_ingester.ingest_from_source_directory(Rails.root.join('fixtures', 'bibtex_for_batch').to_s)
+  						}.to change(Publication, :count).by(3)
+  		end
+  	end
+
+  	context "when reimporting with change" do
+
+  		 # it "updates old record with new title" do
+  		 # 	bibtex_ingester.ingest_from_source_directory(Rails.root.join('fixtures', 'bibtex_for_batch').to_s)
+  		 # 	oldPub = Publication.where(title: "Systematic Review: The Safety and Efficacy of Growth Hormone in the Healthy Elderly ").first
+  		 # 	expect {
+  	  	 #		bibtex_ingester.ingest_from_source_directory(Rails.root.join('fixtures', 'bibtex_for_batch_2').to_s)
+  		 #	}.to change { oldPub.pub_hash[:title] }.from("Systematic Review: The Safety and Efficacy of Growth Hormone in the Healthy Elderly ").
+  		#		to("The new title")
+  		 # end
+
+  	   it "doesn't duplicate identifiers" do
+  		  	bibtex_ingester.ingest_from_source_directory(Rails.root.join('fixtures', 'bibtex_for_batch').to_s)
+  		  	expect {bibtex_ingester.ingest_from_source_directory(Rails.root.join('fixtures', 'bibtex_for_batch').to_s)
+  						}.to_not change(PublicationIdentifier, :count)
+  		 end
+
+  		it "doesn't duplicate publications" do
+  		  bibtex_ingester.ingest_from_source_directory(Rails.root.join('fixtures', 'bibtex_for_batch').to_s)
+  		  expect {bibtex_ingester.ingest_from_source_directory(Rails.root.join('fixtures', 'bibtex_for_batch').to_s)
+  						}.to_not change(Publication, :count)
+  		end
+
+  		it "doesn't duplicate contributions" do
+  		  	bibtex_ingester.ingest_from_source_directory(Rails.root.join('fixtures', 'bibtex_for_batch').to_s)
+  		  	expect {bibtex_ingester.ingest_from_source_directory(Rails.root.join('fixtures', 'bibtex_for_batch').to_s)
+  						}.to_not change(Contribution, :count)
+  		end
+
+  		it "updates changed issn" do
+  	  	bibtex_ingester.ingest_from_source_directory(Rails.root.join('fixtures', 'bibtex_for_batch').to_s)
+  	  	oldPub = Publication.where(issn: "234234").first
+  	  #	puts "issn:  #{oldPub.pub_hash[:issn]}"
+  	  	expect(oldPub.pub_hash[:issn]).to match('234234')
+  	  	bibtex_ingester.ingest_from_source_directory(Rails.root.join('fixtures', 'bibtex_for_batch_2').to_s)
+  	  	oldPub.reload
+  	  	expect(oldPub.pub_hash[:issn]).to match("234235")
+  	  	#oldPub = Publication.first
+  	  #	puts "old pub: #{oldPub.to_yaml}"
+
+  		end
+
+  	end
+
+  end
 end
