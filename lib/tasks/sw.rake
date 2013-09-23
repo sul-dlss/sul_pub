@@ -38,4 +38,9 @@ namespace :sw do
   task :wos_harvest, [:path_to_bibtex] => :environment do |t, args|
     harvester.harvest_from_directory_of_wos_id_files args[:path_to_bibtex]
   end
+
+  desc "Harvest for a given sunetid and a json-file with an array of WoS ids"
+  task :wos_sunetid_json, [:sunetid,:path_to_json] => :environment do |t, args|
+    harvester.harvest_for_sunetid_with_wos_json args[:sunetid], args[:path_to_json]
+  end
 end

@@ -486,6 +486,28 @@ class ScienceWireHarvester
     process_queued_pubmed_records
   end
 
+  # Used for targeted harvesting for an author by sunetid and a json-file with an array of WOS id
+  # Instantiates the logger too
+  def harvest_for_sunetid_with_wos_json(sunetid, path_to_json, batch_size = 20)
+    @sw_harvest_logger = Logger.new(Rails.root.join('log', 'wos_harvest.log'))
+    @sw_harvest_logger.datetime_format = "%Y-%m-%d %H:%M:%S"
+    @sw_harvest_logger.formatter = proc { |severity, datetime, progname, msg|
+      "#{severity} #{datetime}: #{msg}\n"
+    }
+    @sw_harvest_logger.info "Started Web Of Science harvest for #{sunetid} with wos-json #{path_to_json}"
+
+    wos_ids = JSON.parse IO.read path_to_json
+    batches = wos_ids.size / batch_size
+    (0...batches).each do |batch_num|
+      starting_index = batch_num * batch_size
+      @sw_harvest_logger.info "Starting next batch at #{starting_index}"
+      wos_batch = wos_ids[starting_index, batch_size]
+      harvest_sw_pubs_by_wos_id_for_author sunetid, wos_batch
+    end
+    log_counts
+    process_queued_pubmed_records
+  end
+
 
 
 end
