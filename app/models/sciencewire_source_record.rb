@@ -176,7 +176,7 @@ class SciencewireSourceRecord < ActiveRecord::Base
 
     record_as_hash[:keywords_sw] = publication.xpath('KeywordList').text.split('|') unless publication.xpath("KeywordList").blank?
     record_as_hash[:documenttypes_sw] = publication.xpath("DocumentTypeList").text.split('|')
-    sul_document_type = lookup_sw_doc_type(record_as_hash[:documenttypes_sw])
+    sul_document_type = lookup_cap_doc_type_by_sw_doc_category(record_as_hash[:documentcategory_sw])
     record_as_hash[:type] = sul_document_type
 
     record_as_hash[:documentcategory_sw] = publication.xpath("DocumentCategory").text unless publication.xpath("DocumentCategory").blank?
@@ -256,6 +256,14 @@ class SciencewireSourceRecord < ActiveRecord::Base
       type =  Settings.sul_doc_types.article
     end
     type
+  end
+
+  def self.lookup_cap_doc_type_by_sw_doc_category(sw_doc_category)
+    if sw_doc_category =~ /^Conference Proceedings Document/i
+      return Settings.sul_doc_types.inproceedings
+    else
+      return Settings.sul_doc_types.article
+    end
   end
 
 end
