@@ -48,7 +48,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Thu, 19 Sep 2013 20:34:12 GMT
+      - Fri, 27 Sep 2013 22:47:41 GMT
       Content-Length:
       - '277'
     body:
@@ -57,7 +57,7 @@ http_interactions:
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>81941</queryID>\r\n
         \ <queryResultRows>3</queryResultRows>\r\n  <totalRows>3</totalRows>\r\n</ScienceWireQueryIDResponse>"
     http_version: 
-  recorded_at: Thu, 19 Sep 2013 20:34:12 GMT
+  recorded_at: Fri, 27 Sep 2013 22:47:42 GMT
 - request:
     method: get
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/81941?format=xml&page=0&pageSize=2147483647&v=version/3
@@ -95,7 +95,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Thu, 19 Sep 2013 20:34:16 GMT
+      - Fri, 27 Sep 2013 22:47:41 GMT
       Content-Length:
       - '9626'
     body:
@@ -213,7 +213,7 @@ http_interactions:
         \   <AuthorCitationCountList>1,0,0|2,0,0</AuthorCitationCountList>\r\n    <CopyrightStateProvince>NY</CopyrightStateProvince>\r\n
         \   <CopyrightCountry>UNITED STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n</ArrayOfPublicationItem>"
     http_version: 
-  recorded_at: Thu, 19 Sep 2013 20:34:16 GMT
+  recorded_at: Fri, 27 Sep 2013 22:47:42 GMT
 - request:
     method: post
     uri: http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml
@@ -231,7 +231,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 19 Sep 2013 20:34:16 GMT
+      - Fri, 27 Sep 2013 22:47:42 GMT
       Server:
       - Apache
       Access-Control-Allow-Origin:
@@ -239,12 +239,12 @@ http_interactions:
       Cache-Control:
       - private
       Ncbi-Sid:
-      - 08DD0A2923B5FC81_0055SID
+      - 9DFD0FE62460B0E1_0197SID
       Content-Type:
       - text/xml; charset=UTF-8
       Set-Cookie:
-      - ncbi_sid=08DD0A2923B5FC81_0055SID; domain=.nih.gov; path=/; expires=Fri, 19
-        Sep 2014 20:34:16 GMT
+      - ncbi_sid=9DFD0FE62460B0E1_0197SID; domain=.nih.gov; path=/; expires=Sat, 27
+        Sep 2014 22:47:42 GMT
       Transfer-Encoding:
       - chunked
     body:
@@ -490,5 +490,5 @@ http_interactions:
         IdType=\"pubmed\">23635172</ArticleId>\n            <ArticleId IdType=\"pmc\">PMC3651261</ArticleId>\n
         \       </ArticleIdList>\n    </PubmedData>\n</PubmedArticle>\n\n</PubmedArticleSet>\n"
     http_version: 
-  recorded_at: Thu, 19 Sep 2013 20:34:16 GMT
+  recorded_at: Fri, 27 Sep 2013 22:47:43 GMT
 recorded_with: VCR 2.5.0

@@ -221,11 +221,11 @@ describe ScienceWireHarvester do
 
 	describe "#harvest_from_directory_of_wos_id_files" do
 
-	  it "skips bibtex items of type @inproceedings" do
+	  it "processes only bibtex items of type @inproceedings" do
 	    auth = create(:author, :sunetid => 'mix')
       VCR.use_cassette("sciencewire_harvester_wos_mix") do
         science_wire_harvester.harvest_from_directory_of_wos_id_files(Rails.root.join('fixtures', 'wos_bibtex', 'mix_dir').to_s)
-        expect(auth.publications).to have(2).items
+        expect(auth.publications).to have(1).items
       end
 	  end
 

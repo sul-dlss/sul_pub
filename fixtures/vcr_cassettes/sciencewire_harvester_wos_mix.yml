@@ -1,64 +1,6 @@
 ---
 http_interactions:
 - request:
-    method: post
-    uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery?format=xml
-    body:
-      encoding: US-ASCII
-      string: ! "<?xml version=\"1.0\"?>\n      <ScienceWireQueryXMLParameter xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
-        xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\n      <xmlQuery><![CDATA[\n
-        \     <query xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\n
-        \       <Criterion ConjunctionOperator=\"AND\">\n          <Criteria>\n            <Criterion>\n
-        \             <Filter>\n                <Column>WoSItemID</Column>\n                <Operator>In</Operator>\n
-        \               <Values>\n<Value>000312170100030</Value>\n<Value>000303251500027</Value>\n</Values>\n
-        \               </Filter>\n              </Criterion>\n            </Criteria>\n
-        \         </Criterion><Columns>\n            <SortColumn>\n              <Column>PublicationItemID</Column>\n
-        \             <Direction>Ascending</Direction>\n            </SortColumn>\n
-        \         </Columns>\n        </query>\n    ]]></xmlQuery>\n      </ScienceWireQueryXMLParameter>"
-    headers:
-      Accept:
-      - ! '*/*'
-      User-Agent:
-      - Ruby
-      Licenseid:
-      - ***REMOVED***
-      Host:
-      - sciencewirerest.discoverylogic.com
-      Connection:
-      - Keep-Alive
-      Expect:
-      - 100-continue
-      Content-Type:
-      - text/xml
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Cache-Control:
-      - private
-      Content-Type:
-      - application/xml; charset=utf-8
-      Server:
-      - Microsoft-IIS/7.5
-      X-Aspnetmvc-Version:
-      - '2.0'
-      X-Aspnet-Version:
-      - 4.0.30319
-      X-Powered-By:
-      - ASP.NET
-      Date:
-      - Thu, 19 Sep 2013 20:34:32 GMT
-      Content-Length:
-      - '277'
-    body:
-      encoding: US-ASCII
-      string: ! "<?xml version=\"1.0\"?>\r\n<ScienceWireQueryIDResponse xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
-        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>82298</queryID>\r\n
-        \ <queryResultRows>2</queryResultRows>\r\n  <totalRows>2</totalRows>\r\n</ScienceWireQueryIDResponse>"
-    http_version: 
-  recorded_at: Thu, 19 Sep 2013 20:34:32 GMT
-- request:
     method: get
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/82298?format=xml&page=0&pageSize=2147483647&v=version/3
     body:
@@ -188,6 +130,145 @@ http_interactions:
   recorded_at: Thu, 19 Sep 2013 20:34:33 GMT
 - request:
     method: post
+    uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery?format=xml
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\"?>\n      <ScienceWireQueryXMLParameter xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\n      <xmlQuery><![CDATA[\n
+        \     <query xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\n
+        \       <Criterion ConjunctionOperator=\"AND\">\n          <Criteria>\n            <Criterion>\n
+        \             <Filter>\n                <Column>WoSItemID</Column>\n                <Operator>In</Operator>\n
+        \               <Values>\n<Value>000309917800142</Value>\n</Values>\n                </Filter>\n
+        \             </Criterion>\n            </Criteria>\n          </Criterion><Columns>\n
+        \           <SortColumn>\n              <Column>PublicationItemID</Column>\n
+        \             <Direction>Ascending</Direction>\n            </SortColumn>\n
+        \         </Columns>\n        </query>\n    ]]></xmlQuery>\n      </ScienceWireQueryXMLParameter>"
+    headers:
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+      Licenseid:
+      - ***REMOVED***
+      Host:
+      - sciencewirerest.discoverylogic.com
+      Connection:
+      - Keep-Alive
+      Expect:
+      - 100-continue
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - private
+      Content-Type:
+      - application/xml; charset=utf-8
+      Server:
+      - Microsoft-IIS/7.5
+      X-Aspnetmvc-Version:
+      - '2.0'
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+      Date:
+      - Fri, 27 Sep 2013 23:05:47 GMT
+      Content-Length:
+      - '278'
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\"?>\r\n<ScienceWireQueryIDResponse xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>136741</queryID>\r\n
+        \ <queryResultRows>1</queryResultRows>\r\n  <totalRows>1</totalRows>\r\n</ScienceWireQueryIDResponse>"
+    http_version: 
+  recorded_at: Fri, 27 Sep 2013 23:05:49 GMT
+- request:
+    method: get
+    uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/136741?format=xml&page=0&pageSize=2147483647&v=version/3
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+      Content-Type:
+      - text/xml
+      Licenseid:
+      - ***REMOVED***
+      Host:
+      - sciencewirerest.discoverylogic.com
+      Connection:
+      - Keep-Alive
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - private
+      Content-Type:
+      - application/xml; charset=utf-8
+      Server:
+      - Microsoft-IIS/7.5
+      X-Aspnetmvc-Version:
+      - '2.0'
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+      Date:
+      - Fri, 27 Sep 2013 23:05:47 GMT
+      Content-Length:
+      - '3087'
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\"?>\r\n<ArrayOfPublicationItem xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <PublicationItem>\r\n
+        \   <PublicationItemID>61861700</PublicationItemID>\r\n    <Title>Understanding
+        the Role of Grain Boundaries in Sulfide Thin Film Solar Cells with Scanning
+        Probe Microscopy</Title>\r\n    <Abstract>Grain boundaries (GBs) in Cu(In,
+        Ga)Se-2 (CIGS) and CdTe thin film solar cells are known to be beneficial for
+        achieving high conversion efficiencies. In this work, we will show that Cu2ZnSnS4
+        (CZTS) and Cu2ZnSn(S, Se)(4) (CZTSSe) solar cells have the same GB electronic
+        properties as CIGS and CdTe. Scanning Kelvin Probe Microscopy (SKPM) measurements
+        reveal a higher positive surface potential at the GBs as compared to the grain
+        while Conductive Atomic Force Microscopy (C-AFM) measurements show higher
+        current flow in the vicinity of the GBs. These two measurement results are
+        similar to those obtained for CIGS and CdTe and together they demonstrate
+        the enhanced minority carrier collection taking place at the GBs of CZTS and
+        CZTSSe. This implies that CZTS and CZTSSe solar cells have the potential to
+        achieve the high efficiencies that CIGS and CdTe solar cells enjoy.</Abstract>\r\n
+        \   <AuthorList>Li,Joel,B|Chawla,Vardaan,|Clemens,Bruce,M</AuthorList>\r\n
+        \   <AuthorCount>3</AuthorCount>\r\n    <KeywordList>solar cells|SKPM|photovoltaic
+        cells|grain boundaries|C-AFM|CZTS|CZTSSe</KeywordList>\r\n    <DocumentTypeList>Article</DocumentTypeList>\r\n
+        \   <DocumentCategory>Conference Proceeding Document</DocumentCategory>\r\n
+        \   <NumberOfReferences>10</NumberOfReferences>\r\n    <TimesCited>0</TimesCited>\r\n
+        \   <TimesNotSelfCited>0</TimesNotSelfCited>\r\n    <PMID xsi:nil=\"true\"
+        />\r\n    <WoSItemID>000309917800142</WoSItemID>\r\n    <PublicationSourceTitle>2012
+        38TH IEEE PHOTOVOLTAIC SPECIALISTS CONFERENCE (PVSC)</PublicationSourceTitle>\r\n
+        \   <Pagination />\r\n    <PublicationDate>2012-01-01T00:00:00</PublicationDate>\r\n
+        \   <PublicationYear>2012</PublicationYear>\r\n    <PublicationType>Book</PublicationType>\r\n
+        \   <PublicationSubjectCategoryList>Energy &amp; Fuels|Engineering, Electrical
+        &amp; Electronic|Physics, Applied</PublicationSubjectCategoryList>\r\n    <ISBN>978-1-4673-0066-7</ISBN>\r\n
+        \   <ConferenceTitle>38th IEEE Photovoltaic Specialists Conference (PVSC)</ConferenceTitle>\r\n
+        \   <ConferenceStartDate>2012-06-03T00:00:00</ConferenceStartDate>\r\n    <ConferenceEndDate>2012-06-08T00:00:00</ConferenceEndDate>\r\n
+        \   <ConferenceCity>AUSTIN</ConferenceCity>\r\n    <ConferenceStateCountry>TX</ConferenceStateCountry>\r\n
+        \   <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>0</OrdinalRank>\r\n    <NormalizedRank
+        xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
+        \   <CopyrightPublisher>IEEE</CopyrightPublisher>\r\n    <CopyrightCity>NEW
+        YORK</CopyrightCity>\r\n    <AuthorCitationCountList>1,0,0|2,0,0|3,0,0</AuthorCitationCountList>\r\n
+        \   <CopyrightStateProvince>NY</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
+        STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n</ArrayOfPublicationItem>"
+    http_version: 
+  recorded_at: Fri, 27 Sep 2013 23:05:49 GMT
+- request:
+    method: post
     uri: http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml
     body:
       encoding: US-ASCII
@@ -203,7 +284,7 @@ http_interactions:
       message: Bad Request
     headers:
       Date:
-      - Thu, 19 Sep 2013 20:34:33 GMT
+      - Fri, 27 Sep 2013 23:05:48 GMT
       Server:
       - Apache
       Access-Control-Allow-Origin:
@@ -211,12 +292,12 @@ http_interactions:
       Cache-Control:
       - private
       Ncbi-Sid:
-      - 08DE515123B5FD91_0145SID
+      - 08DD3B3F2460F4C1_0288SID
       Content-Type:
       - text/xml; charset=UTF-8
       Set-Cookie:
-      - ncbi_sid=08DE515123B5FD91_0145SID; domain=.nih.gov; path=/; expires=Fri, 19
-        Sep 2014 20:34:33 GMT
+      - ncbi_sid=08DD3B3F2460F4C1_0288SID; domain=.nih.gov; path=/; expires=Sat, 27
+        Sep 2014 23:05:48 GMT
       Connection:
       - close
       Transfer-Encoding:
@@ -226,5 +307,5 @@ http_interactions:
       string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n\n<eFetchResult>\n\t<ERROR>WebEnv
         parameter is required</ERROR>\n</eFetchResult>\n"
     http_version: 
-  recorded_at: Thu, 19 Sep 2013 20:34:34 GMT
+  recorded_at: Fri, 27 Sep 2013 23:05:50 GMT
 recorded_with: VCR 2.5.0

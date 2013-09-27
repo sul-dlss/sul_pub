@@ -48,7 +48,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Thu, 19 Sep 2013 20:35:05 GMT
+      - Fri, 27 Sep 2013 22:48:08 GMT
       Content-Length:
       - '279'
     body:
@@ -57,7 +57,7 @@ http_interactions:
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>50106</queryID>\r\n
         \ <queryResultRows>20</queryResultRows>\r\n  <totalRows>20</totalRows>\r\n</ScienceWireQueryIDResponse>"
     http_version: 
-  recorded_at: Thu, 19 Sep 2013 20:35:05 GMT
+  recorded_at: Fri, 27 Sep 2013 22:48:09 GMT
 - request:
     method: get
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/50106?format=xml&page=0&pageSize=2147483647&v=version/3
@@ -95,49 +95,76 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Thu, 19 Sep 2013 20:35:05 GMT
+      - Fri, 27 Sep 2013 22:48:08 GMT
       Content-Length:
-      - '57417'
+      - '56007'
     body:
       encoding: US-ASCII
       string: ! "<?xml version=\"1.0\"?>\r\n<ArrayOfPublicationItem xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <PublicationItem>\r\n
-        \   <PublicationItemID>63830303</PublicationItemID>\r\n    <Title>Genetics
-        and biomarkers in personalisation of lung cancer treatment.</Title>\r\n    <Abstract>Non-small-cell
-        lung cancer is often diagnosed at the metastatic stage, with median survival
-        of just 1 year. The identification of driver mutations in the epidermal growth
-        factor receptor (EGFR) as the primary oncogenic event in a subset of lung
-        adenocarcinomas led to a model of targeted treatment and genetic profiling
-        of the disease. EGFR tyrosine kinase inhibitors confer remission in 60% of
-        patients, but responses are short-lived. The pre-existing EGFR Thr790Met mutation
-        could be a subclonal driver responsible for these transient responses. Overexpression
-        of AXL and reduced MED12 function are hallmarks of resistance to tyrosine
-        kinase inhibitors in EGFR-mutant non-small-cell lung cancer. Crosstalk between
-        signalling pathways is another mechanism of resistance; therefore, identification
-        of the molecular components involved could lead to the development of combination
-        therapies cotargeting these molecules instead of EGFR tyrosine kinase inhibitor
-        monotherapy. Additionally, novel biomarkers could be identified through deep
-        sequencing analysis of serial rebiopsies before and during treatment. </Abstract>\r\n
-        \   <AuthorList>Rosell,Rafael,|Bivona,Trever,G|Karachaliou,Niki,</AuthorList>\r\n
-        \   <AuthorCount>3</AuthorCount>\r\n    <KeywordList />\r\n    <DocumentTypeList>Journal
-        Article</DocumentTypeList>\r\n    <DocumentCategory>Journal Document</DocumentCategory>\r\n
-        \   <NumberOfReferences xsi:nil=\"true\" />\r\n    <TimesCited xsi:nil=\"true\"
-        />\r\n    <TimesNotSelfCited xsi:nil=\"true\" />\r\n    <PMID>23972815</PMID>\r\n
-        \   <PublicationSourceTitle>Lancet</PublicationSourceTitle>\r\n    <Volume>382</Volume>\r\n
-        \   <Issue>9893</Issue>\r\n    <Pagination>720-731</Pagination>\r\n    <PublicationDate>2013-08-24T00:00:00</PublicationDate>\r\n
-        \   <PublicationYear>2013</PublicationYear>\r\n    <PublicationSubjectCategoryList
-        />\r\n    <ISSN>0140-6736</ISSN>\r\n    <DOI>10.1016/S0140-6736(13)61715-8</DOI>\r\n
+        \   <PublicationItemID>63913776</PublicationItemID>\r\n    <Title>RET gene
+        rearrangement: a potential new target in lung cancer treatment</Title>\r\n
+        \   <Abstract />\r\n    <AuthorList>Spray,Nicole,</AuthorList>\r\n    <AuthorCount>1</AuthorCount>\r\n
+        \   <KeywordList />\r\n    <DocumentTypeList>News Item</DocumentTypeList>\r\n
+        \   <DocumentCategory>Other</DocumentCategory>\r\n    <NumberOfReferences>1</NumberOfReferences>\r\n
+        \   <TimesCited>0</TimesCited>\r\n    <TimesNotSelfCited>0</TimesNotSelfCited>\r\n
+        \   <PMID xsi:nil=\"true\" />\r\n    <WoSItemID>000323232900007</WoSItemID>\r\n
+        \   <PublicationSourceTitle>PERSONALIZED MEDICINE</PublicationSourceTitle>\r\n
+        \   <Volume>10</Volume>\r\n    <Issue>6</Issue>\r\n    <Pagination>528-529</Pagination>\r\n
+        \   <PublicationDate>2013-08-01T00:00:00</PublicationDate>\r\n    <PublicationYear>2013</PublicationYear>\r\n
+        \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Pharmacology
+        &amp; Pharmacy</PublicationSubjectCategoryList>\r\n    <ISSN>1741-0541</ISSN>\r\n
         \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
         />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>0</OrdinalRank>\r\n
         \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
-        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>ELSEVIER
-        LTD</CopyrightPublisher>\r\n    <CopyrightCity />\r\n    <PublicationImpactFactorList>38.278,2011,ClosestToPublicationYear|38.278,2011,MostRecentYear</PublicationImpactFactorList>\r\n
+        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>FUTURE
+        MEDICINE LTD</CopyrightPublisher>\r\n    <CopyrightCity>LONDON</CopyrightCity>\r\n
+        \   <PublicationImpactFactorList>1.528,2011,ClosestToPublicationYear|1.528,2011,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>180/259;PHARMACOLOGY &amp; PHARMACY;2011;SC;ClosestToPublicationYear|180/259;PHARMACOLOGY
+        &amp; PHARMACY;2011;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <AuthorCitationCountList>1,0,0</AuthorCitationCountList>\r\n    <CopyrightStateProvince
+        />\r\n    <CopyrightCountry>UNITED KINGDOM</CopyrightCountry>\r\n  </PublicationItem>\r\n
+        \ <PublicationItem>\r\n    <PublicationItemID>63830303</PublicationItemID>\r\n
+        \   <Title>Genetics and biomarkers in personalisation of lung cancer treatment</Title>\r\n
+        \   <Abstract>Non-small-cell lung cancer is often diagnosed at the metastatic
+        stage, with median survival of just 1 year. The identification of driver mutations
+        in the epidermal growth factor receptor (EGFR) as the primary oncogenic event
+        in a subset of lung adenocarcinomas led to a model of targeted treatment and
+        genetic profiling of the disease. EGFR tyrosine kinase inhibitors confer remission
+        in 60% of patients, but responses are short-lived. The pre-existing EGFR Thr790Met
+        mutation could be a subclonal driver responsible for these transient responses.
+        Overexpression of AXL and reduced MED12 function are hallmarks of resistance
+        to tyrosine kinase inhibitors in EGFR-mutant non-small-cell lung cancer. Crosstalk
+        between signalling pathways is another mechanism of resistance; therefore,
+        identification of the molecular components involved could lead to the development
+        of combination therapies cotargeting these molecules instead of EGFR tyrosine
+        kinase inhibitor monotherapy. Additionally, novel biomarkers could be identified
+        through deep sequencing analysis of serial rebiopsies before and during treatment.</Abstract>\r\n
+        \   <AuthorList>Rosell,Rafael,|Bivona,Trever,G|Karachaliou,Niki,</AuthorList>\r\n
+        \   <AuthorCount>3</AuthorCount>\r\n    <KeywordList>THERAPEUTIC RESPONSE|ACQUIRED-RESISTANCE|TARGETED
+        THERAPY|GROWTH-FACTOR RECEPTOR|BREAST-CANCER|INDUCED APOPTOSIS|CELL CARCINOMAS|KINASE
+        INHIBITORS|PI3K INHIBITORS|EGFR INHIBITOR RESISTANCE</KeywordList>\r\n    <DocumentTypeList>Article</DocumentTypeList>\r\n
+        \   <DocumentCategory>Journal Document</DocumentCategory>\r\n    <NumberOfReferences>96</NumberOfReferences>\r\n
+        \   <TimesCited>0</TimesCited>\r\n    <TimesNotSelfCited>0</TimesNotSelfCited>\r\n
+        \   <PMID>23972815</PMID>\r\n    <WoSItemID>000323542400030</WoSItemID>\r\n
+        \   <PublicationSourceTitle>LANCET</PublicationSourceTitle>\r\n    <Volume>382</Volume>\r\n
+        \   <Issue>9893</Issue>\r\n    <Pagination>720-731</Pagination>\r\n    <PublicationDate>2013-08-24T00:00:00</PublicationDate>\r\n
+        \   <PublicationYear>2013</PublicationYear>\r\n    <PublicationType>Journal</PublicationType>\r\n
+        \   <PublicationSubjectCategoryList>Medicine, General &amp; Internal</PublicationSubjectCategoryList>\r\n
+        \   <ISSN>0140-6736</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank xsi:nil=\"true\" />\r\n
+        \   <OrdinalRank>1</OrdinalRank>\r\n    <NormalizedRank xsi:nil=\"true\" />\r\n
+        \   <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
+        \   <CopyrightPublisher>ELSEVIER SCIENCE INC</CopyrightPublisher>\r\n    <CopyrightCity>NEW
+        YORK</CopyrightCity>\r\n    <PublicationImpactFactorList>38.278,2011,ClosestToPublicationYear|38.278,2011,MostRecentYear</PublicationImpactFactorList>\r\n
         \   <PublicationCategoryRankingList>2/153;MEDICINE, GENERAL &amp; INTERNAL;2011;SC;ClosestToPublicationYear|2/153;MEDICINE,
         GENERAL &amp; INTERNAL;2011;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
-        \   <CopyrightStateProvince />\r\n    <CopyrightCountry>UNITED KINGDOM</CopyrightCountry>\r\n
-        \ </PublicationItem>\r\n  <PublicationItem>\r\n    <PublicationItemID>63687762</PublicationItemID>\r\n
-        \   <Title>Assessment of the Impact of FDG-PET on Lung Cancer Treatment.</Title>\r\n
-        \   <Abstract />\r\n    <AuthorList>Ashish,A,|Menzes,B,|Sheppard,S,|Walker,P,P</AuthorList>\r\n
+        \   <AuthorCitationCountList>1,0,0|2,0,0|3,0,0</AuthorCitationCountList>\r\n
+        \   <CopyrightStateProvince>NY</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
+        STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
+        \   <PublicationItemID>63687762</PublicationItemID>\r\n    <Title>Assessment
+        of the Impact of FDG-PET on Lung Cancer Treatment.</Title>\r\n    <Abstract
+        />\r\n    <AuthorList>Ashish,A,|Menzes,B,|Sheppard,S,|Walker,P,P</AuthorList>\r\n
         \   <AuthorCount>4</AuthorCount>\r\n    <KeywordList />\r\n    <DocumentTypeList>Meeting
         Abstract</DocumentTypeList>\r\n    <DocumentCategory>Conference Proceeding
         Document</DocumentCategory>\r\n    <NumberOfReferences xsi:nil=\"true\" />\r\n
@@ -149,7 +176,7 @@ http_interactions:
         \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Critical
         Care Medicine|Respiratory System</PublicationSubjectCategoryList>\r\n    <ISSN>1073-449X</ISSN>\r\n
         \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
-        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>1</OrdinalRank>\r\n
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>2</OrdinalRank>\r\n
         \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>AMER THORACIC
         SOC</CopyrightPublisher>\r\n    <CopyrightCity>NEW YORK</CopyrightCity>\r\n
@@ -171,7 +198,7 @@ http_interactions:
         \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Medicine,
         General &amp; Internal</PublicationSubjectCategoryList>\r\n    <ISSN>0140-6736</ISSN>\r\n
         \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
-        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>2</OrdinalRank>\r\n
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>3</OrdinalRank>\r\n
         \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>ELSEVIER
         SCIENCE INC</CopyrightPublisher>\r\n    <CopyrightCity>NEW YORK</CopyrightCity>\r\n
@@ -194,7 +221,7 @@ http_interactions:
         \   <PublicationSubjectCategoryList>Oncology</PublicationSubjectCategoryList>\r\n
         \   <ISSN>0890-9091</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
         \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank xsi:nil=\"true\" />\r\n
-        \   <OrdinalRank>3</OrdinalRank>\r\n    <NormalizedRank xsi:nil=\"true\" />\r\n
+        \   <OrdinalRank>4</OrdinalRank>\r\n    <NormalizedRank xsi:nil=\"true\" />\r\n
         \   <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
         \   <CopyrightPublisher>UBM MEDICA</CopyrightPublisher>\r\n    <CopyrightCity>NORWALK</CopyrightCity>\r\n
         \   <PublicationImpactFactorList>1.026,2011,ClosestToPublicationYear|1.026,2011,MostRecentYear</PublicationImpactFactorList>\r\n
@@ -230,7 +257,7 @@ http_interactions:
         \   <PublicationDate>2013-01-01T00:00:00</PublicationDate>\r\n    <PublicationYear>2013</PublicationYear>\r\n
         \   <PublicationSubjectCategoryList />\r\n    <ISSN>1179-1322</ISSN>\r\n    <DOI>10.2147/CMAR.S32973</DOI>\r\n
         \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
-        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>4</OrdinalRank>\r\n
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>5</OrdinalRank>\r\n
         \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher />\r\n
         \   <CopyrightCity />\r\n    <CopyrightStateProvince />\r\n    <CopyrightCountry>NEW
@@ -256,7 +283,7 @@ http_interactions:
         \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Oncology</PublicationSubjectCategoryList>\r\n
         \   <ISSN>1792-1074</ISSN>\r\n    <DOI>10.3892/ol.2013.1212</DOI>\r\n    <ConferenceStartDate
         xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank
-        xsi:nil=\"true\" />\r\n    <OrdinalRank>5</OrdinalRank>\r\n    <NormalizedRank
+        xsi:nil=\"true\" />\r\n    <OrdinalRank>6</OrdinalRank>\r\n    <NormalizedRank
         xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
         \   <CopyrightPublisher>SPANDIDOS PUBL LTD</CopyrightPublisher>\r\n    <CopyrightCity>ATHENS</CopyrightCity>\r\n
         \   <PublicationImpactFactorList>0.108,2011,ClosestToPublicationYear|0.108,2011,MostRecentYear</PublicationImpactFactorList>\r\n
@@ -300,7 +327,7 @@ http_interactions:
         \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Oncology</PublicationSubjectCategoryList>\r\n
         \   <ISSN>1525-7304</ISSN>\r\n    <DOI>10.1016/j.cllc.2013.02.001</DOI>\r\n
         \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
-        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>6</OrdinalRank>\r\n
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>7</OrdinalRank>\r\n
         \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>CIG MEDIA
         GROUP, LP</CopyrightPublisher>\r\n    <CopyrightCity>DALLAS</CopyrightCity>\r\n
@@ -351,7 +378,7 @@ http_interactions:
         \   <PublicationSubjectCategoryList>Oncology</PublicationSubjectCategoryList>\r\n
         \   <ISSN>1528-9117</ISSN>\r\n    <DOI>10.1097/PPO.0b013e31829a68eb</DOI>\r\n
         \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
-        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>7</OrdinalRank>\r\n
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>8</OrdinalRank>\r\n
         \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>LIPPINCOTT
         WILLIAMS &amp; WILKINS</CopyrightPublisher>\r\n    <CopyrightCity>PHILADELPHIA</CopyrightCity>\r\n
@@ -380,7 +407,7 @@ http_interactions:
         \   <PublicationYear>2013</PublicationYear>\r\n    <PublicationSubjectCategoryList
         />\r\n    <ISSN>1009-3419</ISSN>\r\n    <DOI>10.3779/j.issn.1009-3419.2013.05.09</DOI>\r\n
         \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
-        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>8</OrdinalRank>\r\n
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>9</OrdinalRank>\r\n
         \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher />\r\n
         \   <CopyrightCity />\r\n    <CopyrightStateProvince />\r\n    <CopyrightCountry>CHINA</CopyrightCountry>\r\n
@@ -398,7 +425,7 @@ http_interactions:
         \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Oncology|Respiratory
         System</PublicationSubjectCategoryList>\r\n    <ISSN>1556-0864</ISSN>\r\n
         \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
-        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>9</OrdinalRank>\r\n
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>10</OrdinalRank>\r\n
         \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>LIPPINCOTT
         WILLIAMS &amp; WILKINS</CopyrightPublisher>\r\n    <CopyrightCity>PHILADELPHIA</CopyrightCity>\r\n
@@ -437,7 +464,7 @@ http_interactions:
         \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Oncology</PublicationSubjectCategoryList>\r\n
         \   <ISSN>1473-7140</ISSN>\r\n    <DOI>10.1586/ERA.13.18</DOI>\r\n    <ConferenceStartDate
         xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank
-        xsi:nil=\"true\" />\r\n    <OrdinalRank>10</OrdinalRank>\r\n    <NormalizedRank
+        xsi:nil=\"true\" />\r\n    <OrdinalRank>11</OrdinalRank>\r\n    <NormalizedRank
         xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
         \   <CopyrightPublisher>EXPERT REVIEWS</CopyrightPublisher>\r\n    <CopyrightCity>LONDON</CopyrightCity>\r\n
         \   <PublicationImpactFactorList>2.652,2011,ClosestToPublicationYear|2.652,2011,MostRecentYear</PublicationImpactFactorList>\r\n
@@ -468,7 +495,7 @@ http_interactions:
         \   <PublicationDate>2013-03-01T00:00:00</PublicationDate>\r\n    <PublicationYear>2013</PublicationYear>\r\n
         \   <PublicationSubjectCategoryList />\r\n    <ISSN>1078-1552</ISSN>\r\n    <DOI>10.1177/1078155212438453</DOI>\r\n
         \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
-        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>11</OrdinalRank>\r\n
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>12</OrdinalRank>\r\n
         \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher />\r\n
         \   <CopyrightCity />\r\n    <CopyrightStateProvince />\r\n    <CopyrightCountry>UNITED
@@ -513,7 +540,7 @@ http_interactions:
         \   <PublicationSubjectCategoryList>Medicine, General &amp; Internal</PublicationSubjectCategoryList>\r\n
         \   <ISSN>1549-1676</ISSN>\r\n    <DOI>10.1371/journal.pmed.1001376</DOI>\r\n
         \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
-        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>12</OrdinalRank>\r\n
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>13</OrdinalRank>\r\n
         \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>PUBLIC
         LIBRARY SCIENCE</CopyrightPublisher>\r\n    <CopyrightCity>SAN FRANCISCO</CopyrightCity>\r\n
@@ -535,7 +562,7 @@ http_interactions:
         \   <PublicationYear>2013</PublicationYear>\r\n    <PublicationSubjectCategoryList
         />\r\n    <ISSN>2041-5990</ISSN>\r\n    <DOI>10.4155/tde.12.137</DOI>\r\n
         \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
-        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>13</OrdinalRank>\r\n
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>14</OrdinalRank>\r\n
         \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher />\r\n
         \   <CopyrightCity />\r\n    <CopyrightStateProvince />\r\n    <CopyrightCountry>UNITED
@@ -566,7 +593,7 @@ http_interactions:
         \   <PublicationDate>2013-02-01T00:00:00</PublicationDate>\r\n    <PublicationYear>2013</PublicationYear>\r\n
         \   <PublicationSubjectCategoryList />\r\n    <ISSN>1092-1095</ISSN>\r\n    <DOI>10.1188/13.CJON.74-79</DOI>\r\n
         \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
-        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>14</OrdinalRank>\r\n
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>15</OrdinalRank>\r\n
         \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher />\r\n
         \   <CopyrightCity />\r\n    <PublicationImpactFactorList>0.729,2011,ClosestToPublicationYear|0.729,2011,MostRecentYear</PublicationImpactFactorList>\r\n
@@ -598,7 +625,7 @@ http_interactions:
         Applications|Mechanics|Physics, Fluids &amp; Plasmas|Physics, Mathematical</PublicationSubjectCategoryList>\r\n
         \   <ISSN>1007-5704</ISSN>\r\n    <DOI>10.1016/j.cnsns.2012.10.011</DOI>\r\n
         \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
-        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>15</OrdinalRank>\r\n
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>16</OrdinalRank>\r\n
         \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>ELSEVIER
         SCIENCE BV</CopyrightPublisher>\r\n    <CopyrightCity>AMSTERDAM</CopyrightCity>\r\n
@@ -624,7 +651,7 @@ http_interactions:
         \   <PublicationSubjectCategoryList>Economics|Health Care Sciences &amp; Services|Health
         Policy &amp; Services</PublicationSubjectCategoryList>\r\n    <ISSN>1098-3015</ISSN>\r\n
         \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
-        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>16</OrdinalRank>\r\n
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>17</OrdinalRank>\r\n
         \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>ELSEVIER
         SCIENCE INC</CopyrightPublisher>\r\n    <CopyrightCity>NEW YORK</CopyrightCity>\r\n
@@ -676,7 +703,7 @@ http_interactions:
         \   <PublicationSubjectCategoryList>Oncology</PublicationSubjectCategoryList>\r\n
         \   <ISSN>1471-2407</ISSN>\r\n    <DOI>10.1186/1471-2407-12-580</DOI>\r\n
         \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
-        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>17</OrdinalRank>\r\n
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>18</OrdinalRank>\r\n
         \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>BIOMED
         CENTRAL LTD</CopyrightPublisher>\r\n    <CopyrightCity>LONDON</CopyrightCity>\r\n
@@ -702,7 +729,7 @@ http_interactions:
         (ASTRO)</ConferenceTitle>\r\n    <ConferenceStartDate>2012-10-28T00:00:00</ConferenceStartDate>\r\n
         \   <ConferenceEndDate>2012-10-31T00:00:00</ConferenceEndDate>\r\n    <ConferenceCity>BOSTON</ConferenceCity>\r\n
         \   <ConferenceStateCountry>MA</ConferenceStateCountry>\r\n    <Rank xsi:nil=\"true\"
-        />\r\n    <OrdinalRank>18</OrdinalRank>\r\n    <NormalizedRank xsi:nil=\"true\"
+        />\r\n    <OrdinalRank>19</OrdinalRank>\r\n    <NormalizedRank xsi:nil=\"true\"
         />\r\n    <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
         \   <CopyrightPublisher>ELSEVIER SCIENCE INC</CopyrightPublisher>\r\n    <CopyrightCity>NEW
         YORK</CopyrightCity>\r\n    <PublicationImpactFactorList>4.105,2011,ClosestToPublicationYear|4.105,2011,MostRecentYear</PublicationImpactFactorList>\r\n
@@ -711,48 +738,7 @@ http_interactions:
         NUCLEAR MEDICINE &amp; MEDICAL IMAGING;2011;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
         \   <AuthorCitationCountList>1,0,0|2,0,0|3,0,0|4,0,0|5,0,0</AuthorCitationCountList>\r\n
         \   <CopyrightStateProvince>NY</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
-        STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
-        \   <PublicationItemID>61969788</PublicationItemID>\r\n    <Title>Oxidative
-        Stress-Regulated Lentiviral TK/GCV Gene Therapy for Lung Cancer Treatment</Title>\r\n
-        \   <Abstract>Nuclear factor erythroid-2 related factor 2 (Nrf2) is a transcription
-        factor that regulates protection against a wide variety of toxic insults to
-        cells, including cytotoxic cancer chemotherapeutic drugs. Many lung cancer
-        cells harbor a mutation in either Nrf2 or its inhibitor Keap1 resulting in
-        permanent activation of Nrf2 and chemoresistance. In this study, we sought
-        to examine whether this attribute could be exploited in cancer suicide gene
-        therapy by using a lentiviral (LV) vector expressing herpes simplex virus
-        thymidine kinase (HSV-TK/GCV) under the regulation of antioxidant response
-        element (ARE), a cis-acting enhancer sequence that binds Nrf2. In human lung
-        adenocarcinoma cells in which Nrf2 is constitutively overexpressed, ARE activity
-        was found to be high under basal conditions. In this setting, ARE-HSV-TK was
-        more effective than a vector in which HSV-TK expression was driven by a constitutively
-        active promoter. In a mouse xenograft model of lung cancer, suicide gene therapy
-        with LV-ARE-TK/GCV was effective compared with LV-PGK-TK/GCV in reducing tumor
-        size. We conclude that ARE-regulated HSV-TK/GCV therapy offers a promising
-        approach for suicide cancer gene therapy in cells with high constitutive ARE
-        activity, permitting a greater degree of therapeutic targeting to those cells.
-        Cancer Res; 72(23); 6227-35. (C) 2012 AACR.</Abstract>\r\n    <AuthorList>Leinonen,Hanna,M|Ruotsalainen,Anna-Kaisa,|Maatta,Ann-Marie,|Laitinen,Heidi,M|Kuosmanen,Suvi,M|Kansanen,Emilia,|Pikkarainen,Jere,T|Lappalainen,Jari,P|Samaranayake,Haritha,|Lesch,Hanna,P|Kaikkonen,Minna,U|Yla-Herttuala,Seppo,|Levonen,Anna-Liisa,</AuthorList>\r\n
-        \   <AuthorCount>13</AuthorCount>\r\n    <KeywordList>NRF2|RESISTANCE|PATHWAY|ANTIOXIDANT
-        RESPONSE|CELL-PROLIFERATION|OVARIAN-CANCER|ACTIVATION|EXPRESSION|GROWTH|KEAP1
-        MUTATIONS</KeywordList>\r\n    <DocumentTypeList>Article</DocumentTypeList>\r\n
-        \   <DocumentCategory>Journal Document</DocumentCategory>\r\n    <NumberOfReferences>49</NumberOfReferences>\r\n
-        \   <TimesCited>3</TimesCited>\r\n    <TimesNotSelfCited>3</TimesNotSelfCited>\r\n
-        \   <PMID>23041549</PMID>\r\n    <WoSItemID>000311893100017</WoSItemID>\r\n
-        \   <PublicationSourceTitle>CANCER RESEARCH</PublicationSourceTitle>\r\n    <Volume>72</Volume>\r\n
-        \   <Issue>23</Issue>\r\n    <Pagination>6227-6235</Pagination>\r\n    <PublicationDate>2012-12-01T00:00:00</PublicationDate>\r\n
-        \   <PublicationYear>2012</PublicationYear>\r\n    <PublicationType>Journal</PublicationType>\r\n
-        \   <PublicationSubjectCategoryList>Oncology</PublicationSubjectCategoryList>\r\n
-        \   <ISSN>0008-5472</ISSN>\r\n    <DOI>10.1158/0008-5472.CAN-12-1166</DOI>\r\n
-        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
-        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>19</OrdinalRank>\r\n
-        \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
-        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>AMER ASSOC
-        CANCER RESEARCH</CopyrightPublisher>\r\n    <CopyrightCity>PHILADELPHIA</CopyrightCity>\r\n
-        \   <PublicationImpactFactorList>7.856,2011,ClosestToPublicationYear|7.856,2011,MostRecentYear</PublicationImpactFactorList>\r\n
-        \   <PublicationCategoryRankingList>12/190;ONCOLOGY;2011;SC;ClosestToPublicationYear|12/190;ONCOLOGY;2011;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
-        \   <AuthorCitationCountList>1,0,3|2,0,3|3,0,3|4,0,3|5,0,3|6,0,3|7,0,3|8,0,3|9,0,3|10,0,3|11,0,3|12,0,3|13,0,3</AuthorCitationCountList>\r\n
-        \   <CopyrightStateProvince>PA</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
         STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n</ArrayOfPublicationItem>"
     http_version: 
-  recorded_at: Thu, 19 Sep 2013 20:35:05 GMT
+  recorded_at: Fri, 27 Sep 2013 22:48:10 GMT
 recorded_with: VCR 2.5.0
