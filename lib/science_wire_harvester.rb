@@ -68,11 +68,6 @@ class ScienceWireHarvester
   end
 
   def harvest_pubs_for_all_authors_parallel
-    @sw_harvest_logger = Logger.new(Rails.root.join('log', 'sw_harvest_p.log'))
-    @sw_harvest_logger.formatter = proc { |severity, datetime, progname, msg|
-      "#{severity} #{datetime}[#{Process.pid}]: #{msg}\n"
-    }
-    @sw_harvest_logger.info "Started full authorship harvest (parallel) #{Time.now}"
     last_id = Author.last.id
 
     batch_count = 4
@@ -83,7 +78,15 @@ class ScienceWireHarvester
     batch_4 = [] << (3*batch_size + 1) << last_id
     sacks = [] << batch_1 << batch_2 << batch_3 << batch_4
     Parallel.each(sacks, :in_processes => 4) do |sack|
+      @sw_harvest_logger = Logger.new(Rails.root.join('log', "sw_harvest_p_#{Process.pid}.log"))
+      @sw_harvest_logger.formatter = proc { |severity, datetime, progname, msg|
+        "#{severity} #{datetime}[#{Process.pid}]: #{msg}\n"
+      }
+      @sw_harvest_logger.info "Started search"
+
       ActiveRecord::Base.connection.reconnect!
+      ActiveRecord::Base.logger.level = 1
+
       start_key = sack[0]
       stop_key = sack[1]
       query = Author.where(active_in_cap: true, cap_import_enabled: true).
@@ -183,7 +186,7 @@ class ScienceWireHarvester
 
     seed_list = author.publications.approved.with_sciencewire_id.pluck(:sciencewire_id).uniq
 
-    if seed_list.size < 10
+    if seed_list.size < 50
       suggested_sciencewire_ids = @sciencewire_client.query_sciencewire_by_author_name(first_name, middle_name, last_name)
       @authors_with_no_seed_data_count += 1
     else
