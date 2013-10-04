@@ -250,6 +250,7 @@ class ScienceWireHarvester
 
       add_contribution_for_harvest_suggestion(author, existing_pub)
       existing_pub.rebuild_authorship
+      existing_pub.save
       @matches_on_existing_swid_count += 1
       true
     else
