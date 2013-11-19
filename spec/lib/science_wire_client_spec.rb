@@ -59,6 +59,16 @@ describe ScienceWireClient do
 
 	end
 
+	describe "#get_pub_by_doi" do
+	  it "returns an array with one pubhash" do
+	    VCR.use_cassette('sciencewire_client_spec_get_pub_by_doi') do
+	      result = science_wire_client.get_pub_by_doi '10.1111/j.1444-0938.2010.00524.x'
+	      expect(result).to be_an(Array)
+	      expect(result.first[:sw_id]).to eq('37929883')
+	    end
+	  end
+	end
+
 	describe "#pull_records_from_sciencewire_for_pmids" do
 
 	end

@@ -48,7 +48,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Fri, 27 Sep 2013 22:48:08 GMT
+      - Tue, 19 Nov 2013 00:20:17 GMT
       Content-Length:
       - '279'
     body:
@@ -57,7 +57,7 @@ http_interactions:
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>50106</queryID>\r\n
         \ <queryResultRows>20</queryResultRows>\r\n  <totalRows>20</totalRows>\r\n</ScienceWireQueryIDResponse>"
     http_version: 
-  recorded_at: Fri, 27 Sep 2013 22:48:09 GMT
+  recorded_at: Tue, 19 Nov 2013 00:20:18 GMT
 - request:
     method: get
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/50106?format=xml&page=0&pageSize=2147483647&v=version/3
@@ -95,13 +95,60 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Fri, 27 Sep 2013 22:48:08 GMT
+      - Tue, 19 Nov 2013 00:20:17 GMT
       Content-Length:
-      - '56007'
+      - '53993'
     body:
       encoding: US-ASCII
       string: ! "<?xml version=\"1.0\"?>\r\n<ArrayOfPublicationItem xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <PublicationItem>\r\n
+        \   <PublicationItemID>64256955</PublicationItemID>\r\n    <Title>Endobronchial
+        Drainage Of A Pulmonary Abscess After Small Cell Lung Cancer Treatment</Title>\r\n
+        \   <Abstract />\r\n    <AuthorList>Toth,J,W|Reed,M,F</AuthorList>\r\n    <AuthorCount>2</AuthorCount>\r\n
+        \   <KeywordList />\r\n    <DocumentTypeList>Meeting Abstract</DocumentTypeList>\r\n
+        \   <DocumentCategory>Conference Proceeding Document</DocumentCategory>\r\n
+        \   <NumberOfReferences xsi:nil=\"true\" />\r\n    <TimesCited>0</TimesCited>\r\n
+        \   <TimesNotSelfCited>0</TimesNotSelfCited>\r\n    <PMID xsi:nil=\"true\"
+        />\r\n    <WoSItemID>000208770304340</WoSItemID>\r\n    <PublicationSourceTitle>AMERICAN
+        JOURNAL OF RESPIRATORY AND CRITICAL CARE MEDICINE</PublicationSourceTitle>\r\n
+        \   <Volume>183</Volume>\r\n    <Pagination />\r\n    <PublicationDate>2011-01-01T00:00:00</PublicationDate>\r\n
+        \   <PublicationYear>2011</PublicationYear>\r\n    <PublicationType>Journal</PublicationType>\r\n
+        \   <PublicationSubjectCategoryList>Critical Care Medicine|Respiratory System</PublicationSubjectCategoryList>\r\n
+        \   <ISSN>1073-449X</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank xsi:nil=\"true\" />\r\n
+        \   <OrdinalRank>0</OrdinalRank>\r\n    <NormalizedRank xsi:nil=\"true\" />\r\n
+        \   <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
+        \   <CopyrightPublisher>AMER THORACIC SOC</CopyrightPublisher>\r\n    <CopyrightCity>NEW
+        YORK</CopyrightCity>\r\n    <PublicationImpactFactorList>11.08,2011,ExactPublicationYear|11.041,2012,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>1/26;CRITICAL CARE MEDICINE;2011;SC;ExactPublicationYear|1/48;RESPIRATORY
+        SYSTEM;2011;SC;ExactPublicationYear|1/27;CRITICAL CARE MEDICINE;2012;SC;MostRecentYear|1/50;RESPIRATORY
+        SYSTEM;2012;SC;MostRecentYear</PublicationCategoryRankingList>\r\n    <AuthorCitationCountList>1,0,0|2,0,0</AuthorCitationCountList>\r\n
+        \   <CopyrightStateProvince>NY</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
+        STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
+        \   <PublicationItemID>64211106</PublicationItemID>\r\n    <Title>Influence
+        Of Asthma Control In Asthmatics With Lung Cancer In Response To Lung Cancer
+        Treatment</Title>\r\n    <Abstract />\r\n    <AuthorList>Hsieh,C,H|Kuo,H,|Wang,C,H|Li,K,Y</AuthorList>\r\n
+        \   <AuthorCount>4</AuthorCount>\r\n    <KeywordList />\r\n    <DocumentTypeList>Meeting
+        Abstract</DocumentTypeList>\r\n    <DocumentCategory>Conference Proceeding
+        Document</DocumentCategory>\r\n    <NumberOfReferences xsi:nil=\"true\" />\r\n
+        \   <TimesCited>0</TimesCited>\r\n    <TimesNotSelfCited>0</TimesNotSelfCited>\r\n
+        \   <PMID xsi:nil=\"true\" />\r\n    <WoSItemID>000208771001658</WoSItemID>\r\n
+        \   <PublicationSourceTitle>AMERICAN JOURNAL OF RESPIRATORY AND CRITICAL CARE
+        MEDICINE</PublicationSourceTitle>\r\n    <Volume>181</Volume>\r\n    <Pagination
+        />\r\n    <PublicationDate>2010-01-01T00:00:00</PublicationDate>\r\n    <PublicationYear>2010</PublicationYear>\r\n
+        \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Critical
+        Care Medicine|Respiratory System</PublicationSubjectCategoryList>\r\n    <ISSN>1073-449X</ISSN>\r\n
+        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>1</OrdinalRank>\r\n
+        \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
+        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>AMER THORACIC
+        SOC</CopyrightPublisher>\r\n    <CopyrightCity>NEW YORK</CopyrightCity>\r\n
+        \   <PublicationImpactFactorList>10.191,2010,ExactPublicationYear|11.041,2012,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>1/23;CRITICAL CARE MEDICINE;2010;SC;ExactPublicationYear|1/45;RESPIRATORY
+        SYSTEM;2010;SC;ExactPublicationYear|1/27;CRITICAL CARE MEDICINE;2012;SC;MostRecentYear|1/50;RESPIRATORY
+        SYSTEM;2012;SC;MostRecentYear</PublicationCategoryRankingList>\r\n    <AuthorCitationCountList>1,0,0|2,0,0|3,0,0|4,0,0</AuthorCitationCountList>\r\n
+        \   <CopyrightStateProvince>NY</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
+        STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
         \   <PublicationItemID>63913776</PublicationItemID>\r\n    <Title>RET gene
         rearrangement: a potential new target in lung cancer treatment</Title>\r\n
         \   <Abstract />\r\n    <AuthorList>Spray,Nicole,</AuthorList>\r\n    <AuthorCount>1</AuthorCount>\r\n
@@ -115,7 +162,7 @@ http_interactions:
         \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Pharmacology
         &amp; Pharmacy</PublicationSubjectCategoryList>\r\n    <ISSN>1741-0541</ISSN>\r\n
         \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
-        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>0</OrdinalRank>\r\n
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>2</OrdinalRank>\r\n
         \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>FUTURE
         MEDICINE LTD</CopyrightPublisher>\r\n    <CopyrightCity>LONDON</CopyrightCity>\r\n
@@ -153,7 +200,7 @@ http_interactions:
         \   <PublicationSubjectCategoryList>Medicine, General &amp; Internal</PublicationSubjectCategoryList>\r\n
         \   <ISSN>0140-6736</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
         \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank xsi:nil=\"true\" />\r\n
-        \   <OrdinalRank>1</OrdinalRank>\r\n    <NormalizedRank xsi:nil=\"true\" />\r\n
+        \   <OrdinalRank>3</OrdinalRank>\r\n    <NormalizedRank xsi:nil=\"true\" />\r\n
         \   <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
         \   <CopyrightPublisher>ELSEVIER SCIENCE INC</CopyrightPublisher>\r\n    <CopyrightCity>NEW
         YORK</CopyrightCity>\r\n    <PublicationImpactFactorList>38.278,2011,ClosestToPublicationYear|38.278,2011,MostRecentYear</PublicationImpactFactorList>\r\n
@@ -176,7 +223,7 @@ http_interactions:
         \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Critical
         Care Medicine|Respiratory System</PublicationSubjectCategoryList>\r\n    <ISSN>1073-449X</ISSN>\r\n
         \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
-        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>2</OrdinalRank>\r\n
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>4</OrdinalRank>\r\n
         \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>AMER THORACIC
         SOC</CopyrightPublisher>\r\n    <CopyrightCity>NEW YORK</CopyrightCity>\r\n
@@ -198,7 +245,7 @@ http_interactions:
         \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Medicine,
         General &amp; Internal</PublicationSubjectCategoryList>\r\n    <ISSN>0140-6736</ISSN>\r\n
         \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
-        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>3</OrdinalRank>\r\n
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>5</OrdinalRank>\r\n
         \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>ELSEVIER
         SCIENCE INC</CopyrightPublisher>\r\n    <CopyrightCity>NEW YORK</CopyrightCity>\r\n
@@ -221,7 +268,7 @@ http_interactions:
         \   <PublicationSubjectCategoryList>Oncology</PublicationSubjectCategoryList>\r\n
         \   <ISSN>0890-9091</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
         \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank xsi:nil=\"true\" />\r\n
-        \   <OrdinalRank>4</OrdinalRank>\r\n    <NormalizedRank xsi:nil=\"true\" />\r\n
+        \   <OrdinalRank>6</OrdinalRank>\r\n    <NormalizedRank xsi:nil=\"true\" />\r\n
         \   <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
         \   <CopyrightPublisher>UBM MEDICA</CopyrightPublisher>\r\n    <CopyrightCity>NORWALK</CopyrightCity>\r\n
         \   <PublicationImpactFactorList>1.026,2011,ClosestToPublicationYear|1.026,2011,MostRecentYear</PublicationImpactFactorList>\r\n
@@ -257,7 +304,7 @@ http_interactions:
         \   <PublicationDate>2013-01-01T00:00:00</PublicationDate>\r\n    <PublicationYear>2013</PublicationYear>\r\n
         \   <PublicationSubjectCategoryList />\r\n    <ISSN>1179-1322</ISSN>\r\n    <DOI>10.2147/CMAR.S32973</DOI>\r\n
         \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
-        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>5</OrdinalRank>\r\n
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>7</OrdinalRank>\r\n
         \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher />\r\n
         \   <CopyrightCity />\r\n    <CopyrightStateProvince />\r\n    <CopyrightCountry>NEW
@@ -283,7 +330,7 @@ http_interactions:
         \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Oncology</PublicationSubjectCategoryList>\r\n
         \   <ISSN>1792-1074</ISSN>\r\n    <DOI>10.3892/ol.2013.1212</DOI>\r\n    <ConferenceStartDate
         xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank
-        xsi:nil=\"true\" />\r\n    <OrdinalRank>6</OrdinalRank>\r\n    <NormalizedRank
+        xsi:nil=\"true\" />\r\n    <OrdinalRank>8</OrdinalRank>\r\n    <NormalizedRank
         xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
         \   <CopyrightPublisher>SPANDIDOS PUBL LTD</CopyrightPublisher>\r\n    <CopyrightCity>ATHENS</CopyrightCity>\r\n
         \   <PublicationImpactFactorList>0.108,2011,ClosestToPublicationYear|0.108,2011,MostRecentYear</PublicationImpactFactorList>\r\n
@@ -327,7 +374,7 @@ http_interactions:
         \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Oncology</PublicationSubjectCategoryList>\r\n
         \   <ISSN>1525-7304</ISSN>\r\n    <DOI>10.1016/j.cllc.2013.02.001</DOI>\r\n
         \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
-        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>7</OrdinalRank>\r\n
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>9</OrdinalRank>\r\n
         \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>CIG MEDIA
         GROUP, LP</CopyrightPublisher>\r\n    <CopyrightCity>DALLAS</CopyrightCity>\r\n
@@ -378,7 +425,7 @@ http_interactions:
         \   <PublicationSubjectCategoryList>Oncology</PublicationSubjectCategoryList>\r\n
         \   <ISSN>1528-9117</ISSN>\r\n    <DOI>10.1097/PPO.0b013e31829a68eb</DOI>\r\n
         \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
-        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>8</OrdinalRank>\r\n
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>10</OrdinalRank>\r\n
         \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>LIPPINCOTT
         WILLIAMS &amp; WILKINS</CopyrightPublisher>\r\n    <CopyrightCity>PHILADELPHIA</CopyrightCity>\r\n
@@ -407,7 +454,7 @@ http_interactions:
         \   <PublicationYear>2013</PublicationYear>\r\n    <PublicationSubjectCategoryList
         />\r\n    <ISSN>1009-3419</ISSN>\r\n    <DOI>10.3779/j.issn.1009-3419.2013.05.09</DOI>\r\n
         \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
-        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>9</OrdinalRank>\r\n
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>11</OrdinalRank>\r\n
         \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher />\r\n
         \   <CopyrightCity />\r\n    <CopyrightStateProvince />\r\n    <CopyrightCountry>CHINA</CopyrightCountry>\r\n
@@ -425,7 +472,7 @@ http_interactions:
         \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Oncology|Respiratory
         System</PublicationSubjectCategoryList>\r\n    <ISSN>1556-0864</ISSN>\r\n
         \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
-        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>10</OrdinalRank>\r\n
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>12</OrdinalRank>\r\n
         \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>LIPPINCOTT
         WILLIAMS &amp; WILKINS</CopyrightPublisher>\r\n    <CopyrightCity>PHILADELPHIA</CopyrightCity>\r\n
@@ -464,7 +511,7 @@ http_interactions:
         \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Oncology</PublicationSubjectCategoryList>\r\n
         \   <ISSN>1473-7140</ISSN>\r\n    <DOI>10.1586/ERA.13.18</DOI>\r\n    <ConferenceStartDate
         xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank
-        xsi:nil=\"true\" />\r\n    <OrdinalRank>11</OrdinalRank>\r\n    <NormalizedRank
+        xsi:nil=\"true\" />\r\n    <OrdinalRank>13</OrdinalRank>\r\n    <NormalizedRank
         xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
         \   <CopyrightPublisher>EXPERT REVIEWS</CopyrightPublisher>\r\n    <CopyrightCity>LONDON</CopyrightCity>\r\n
         \   <PublicationImpactFactorList>2.652,2011,ClosestToPublicationYear|2.652,2011,MostRecentYear</PublicationImpactFactorList>\r\n
@@ -495,7 +542,7 @@ http_interactions:
         \   <PublicationDate>2013-03-01T00:00:00</PublicationDate>\r\n    <PublicationYear>2013</PublicationYear>\r\n
         \   <PublicationSubjectCategoryList />\r\n    <ISSN>1078-1552</ISSN>\r\n    <DOI>10.1177/1078155212438453</DOI>\r\n
         \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
-        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>12</OrdinalRank>\r\n
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>14</OrdinalRank>\r\n
         \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher />\r\n
         \   <CopyrightCity />\r\n    <CopyrightStateProvince />\r\n    <CopyrightCountry>UNITED
@@ -540,7 +587,7 @@ http_interactions:
         \   <PublicationSubjectCategoryList>Medicine, General &amp; Internal</PublicationSubjectCategoryList>\r\n
         \   <ISSN>1549-1676</ISSN>\r\n    <DOI>10.1371/journal.pmed.1001376</DOI>\r\n
         \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
-        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>13</OrdinalRank>\r\n
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>15</OrdinalRank>\r\n
         \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>PUBLIC
         LIBRARY SCIENCE</CopyrightPublisher>\r\n    <CopyrightCity>SAN FRANCISCO</CopyrightCity>\r\n
@@ -562,44 +609,47 @@ http_interactions:
         \   <PublicationYear>2013</PublicationYear>\r\n    <PublicationSubjectCategoryList
         />\r\n    <ISSN>2041-5990</ISSN>\r\n    <DOI>10.4155/tde.12.137</DOI>\r\n
         \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
-        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>14</OrdinalRank>\r\n
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>16</OrdinalRank>\r\n
         \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher />\r\n
         \   <CopyrightCity />\r\n    <CopyrightStateProvince />\r\n    <CopyrightCountry>UNITED
         KINGDOM</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
         \   <PublicationItemID>62402512</PublicationItemID>\r\n    <Title>Thromboprophylaxis
-        in ambulatory lung cancer treatment.</Title>\r\n    <Abstract>Venous thromboembolism
+        in Ambulatory Lung Cancer Treatment</Title>\r\n    <Abstract>Venous thromboembolism
         (VTE), including deep vein thrombosis and pulmonary embolism, are common problems
         experienced by patients with lung cancer that can impact treatment plans,
-        prognoses, and survival. Patients with lung cancer are at greatest risk for
+        prognoses; and survival. Patients with lung cancer are at greatest risk for
         development of VTE in the ambulatory care treatment setting. Literature does
         exist on VTE management for medical and surgical oncology inpatients, as well
         as clinical guidelines for inpatient prophylaxis; however, published evidence
         is lacking on outpatient risk and thromboprophylaxis in medical oncology outpatients,
-        particularly patients with lung cancer. Because patients with lung cancer
-        treated in the ambulatory setting have established risks for VTE, they may
+        particularly patients With lung cancer. Because patients with lung cancer
+        treated in the ambulatory Setting have established risks for VTE, they may
         benefit from thromboprophylaxis. Clinical guidelines for outpatient thromboprophylaxis
         direct the clinical practice for thromboprophylaxis in lung cancer treatment.
         The purpose of the current article is to explore the VTE risks associated
-        with ambulatory lung cancer treatment and to review the recommended guidelines
+        with ambulatory lung cancer treatment and to reVTEw the recommended guidelines
         for thromboprophylaxis to guide clinical decision making for patients with
         lung cancer.</Abstract>\r\n    <AuthorList>Cavaliere,Loretta,</AuthorList>\r\n
-        \   <AuthorCount>1</AuthorCount>\r\n    <KeywordList />\r\n    <DocumentTypeList>Journal
-        Article</DocumentTypeList>\r\n    <DocumentCategory>Journal Document</DocumentCategory>\r\n
-        \   <NumberOfReferences xsi:nil=\"true\" />\r\n    <TimesCited xsi:nil=\"true\"
-        />\r\n    <TimesNotSelfCited xsi:nil=\"true\" />\r\n    <PMID>23372099</PMID>\r\n
-        \   <PublicationSourceTitle>Clinical journal of oncology nursing</PublicationSourceTitle>\r\n
+        \   <AuthorCount>1</AuthorCount>\r\n    <KeywordList>CLINICAL-PRACTICE GUIDELINES|CARCINOMA|PREVENTION|CHEMOTHERAPY|RISK|THROMBOSIS|PROPHYLAXIS|SOCIETY|VENOUS
+        THROMBOEMBOLIC DISEASE</KeywordList>\r\n    <DocumentTypeList>Article</DocumentTypeList>\r\n
+        \   <DocumentCategory>Journal Document</DocumentCategory>\r\n    <NumberOfReferences>32</NumberOfReferences>\r\n
+        \   <TimesCited>0</TimesCited>\r\n    <TimesNotSelfCited>0</TimesNotSelfCited>\r\n
+        \   <PMID>23372099</PMID>\r\n    <WoSItemID>000324563600010</WoSItemID>\r\n
+        \   <PublicationSourceTitle>CLINICAL JOURNAL OF ONCOLOGY NURSING</PublicationSourceTitle>\r\n
         \   <Volume>17</Volume>\r\n    <Issue>1</Issue>\r\n    <Pagination>74-79</Pagination>\r\n
         \   <PublicationDate>2013-02-01T00:00:00</PublicationDate>\r\n    <PublicationYear>2013</PublicationYear>\r\n
-        \   <PublicationSubjectCategoryList />\r\n    <ISSN>1092-1095</ISSN>\r\n    <DOI>10.1188/13.CJON.74-79</DOI>\r\n
-        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
-        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>15</OrdinalRank>\r\n
-        \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
-        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher />\r\n
-        \   <CopyrightCity />\r\n    <PublicationImpactFactorList>0.729,2011,ClosestToPublicationYear|0.729,2011,MostRecentYear</PublicationImpactFactorList>\r\n
-        \   <PublicationCategoryRankingList>171/190;ONCOLOGY;2011;SC;ClosestToPublicationYear|68/97;NURSING;2011;SC;ClosestToPublicationYear|65/95;NURSING;2011;SS;ClosestToPublicationYear|171/190;ONCOLOGY;2011;SC;MostRecentYear|68/97;NURSING;2011;SC;MostRecentYear|65/95;NURSING;2011;SS;MostRecentYear</PublicationCategoryRankingList>\r\n
-        \   <CopyrightStateProvince />\r\n    <CopyrightCountry>UNITED STATES</CopyrightCountry>\r\n
-        \ </PublicationItem>\r\n  <PublicationItem>\r\n    <PublicationItemID>62269674</PublicationItemID>\r\n
+        \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Oncology|Nursing</PublicationSubjectCategoryList>\r\n
+        \   <ISSN>1092-1095</ISSN>\r\n    <DOI>10.1188/13.CJON.74-79</DOI>\r\n    <ConferenceStartDate
+        xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank
+        xsi:nil=\"true\" />\r\n    <OrdinalRank>17</OrdinalRank>\r\n    <NormalizedRank
+        xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
+        \   <CopyrightPublisher>ONCOLOGY NURSING SOC</CopyrightPublisher>\r\n    <CopyrightCity>PITTSBURGH</CopyrightCity>\r\n
+        \   <PublicationImpactFactorList>0.91,2012,ClosestToPublicationYear|0.91,2012,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>178/197;ONCOLOGY;2012;SC;ClosestToPublicationYear|49/106;NURSING;2012;SC;ClosestToPublicationYear|46/104;NURSING;2012;SS;ClosestToPublicationYear|178/197;ONCOLOGY;2012;SC;MostRecentYear|49/106;NURSING;2012;SC;MostRecentYear|46/104;NURSING;2012;SS;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <AuthorCitationCountList>1,0,0</AuthorCitationCountList>\r\n    <CopyrightStateProvince>PA</CopyrightStateProvince>\r\n
+        \   <CopyrightCountry>UNITED STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n
+        \ <PublicationItem>\r\n    <PublicationItemID>62269674</PublicationItemID>\r\n
         \   <Title>Numerical simulations for tumor and cellular immune system interactions
         in lung cancer treatment</Title>\r\n    <Abstract>We investigate a new mathematical
         model that describes lung cancer regression in patients treated by chemotherapy
@@ -625,7 +675,7 @@ http_interactions:
         Applications|Mechanics|Physics, Fluids &amp; Plasmas|Physics, Mathematical</PublicationSubjectCategoryList>\r\n
         \   <ISSN>1007-5704</ISSN>\r\n    <DOI>10.1016/j.cnsns.2012.10.011</DOI>\r\n
         \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
-        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>16</OrdinalRank>\r\n
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>18</OrdinalRank>\r\n
         \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>ELSEVIER
         SCIENCE BV</CopyrightPublisher>\r\n    <CopyrightCity>AMSTERDAM</CopyrightCity>\r\n
@@ -651,7 +701,7 @@ http_interactions:
         \   <PublicationSubjectCategoryList>Economics|Health Care Sciences &amp; Services|Health
         Policy &amp; Services</PublicationSubjectCategoryList>\r\n    <ISSN>1098-3015</ISSN>\r\n
         \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
-        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>17</OrdinalRank>\r\n
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>19</OrdinalRank>\r\n
         \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>ELSEVIER
         SCIENCE INC</CopyrightPublisher>\r\n    <CopyrightCity>NEW YORK</CopyrightCity>\r\n
@@ -662,83 +712,7 @@ http_interactions:
         SERVICES;2011;SS;MostRecentYear|32/320;ECONOMICS;2011;SS;MostRecentYear</PublicationCategoryRankingList>\r\n
         \   <AuthorCitationCountList>1,0,0|2,0,0|3,0,0|4,0,0</AuthorCitationCountList>\r\n
         \   <CopyrightStateProvince>NY</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
-        STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
-        \   <PublicationItemID>62142265</PublicationItemID>\r\n    <Title>Patient-tailored
-        modulation of the immune system may revolutionize future lung cancer treatment</Title>\r\n
-        \   <Abstract>Cancer research has devoted most of its energy over the past
-        decades on unraveling the control mechanisms within tumor cells that govern
-        its behavior. From this we know that the onset of cancer is the result of
-        cumulative genetic mutations and epigenetic alterations in tumor cells leading
-        to an unregulated cell cycle, unlimited replicative potential and the possibility
-        for tissue invasion and metastasis. Until recently it was often thought that
-        tumors are more or less undetected or tolerated by the patient's immune system
-        causing the neoplastic cells to divide and spread without resistance. However,
-        it is without any doubt that the tumor environment contains a wide variety
-        of recruited host immune cells. These tumor infiltrating immune cells influence
-        anti-tumor responses in opposing ways and emerges as a critical regulator
-        of tumor growth. Here we provide a summary of the relevant immunological cell
-        types and their complex and dynamic roles within an established tumor microenvironment.
-        For this, we focus on both the systemic compartment as well as the local presence
-        within the tumor microenvironment of late-stage non-small cell lung cancer
-        (NSCLC), admitting that this multifaceted cellular composition will be different
-        from earlier stages of the disease, between NSCLC patients. Understanding
-        the paradoxical role that the immune system plays in cancer and increasing
-        options for their modulation may alter the odds in favor of a more effective
-        anti-tumor immune response. We predict that the future standard of care of
-        lung cancer will involve patient-tailor-made combination therapies that associate
-        (traditional) chemotherapeutic drugs and biologicals with immune modulating
-        agents and in this way complement the therapeutic armamentarium for this disease.</Abstract>\r\n
-        \   <AuthorList>Heuvers,Marlies,E|Aerts,Joachim,G|Cornelissen,Robin,|Groen,Harry,|Hoogsteden,Henk,C|Hegmans,Joost,P</AuthorList>\r\n
-        \   <AuthorCount>6</AuthorCount>\r\n    <KeywordList>REGULATORY T-CELLS|ANTITUMOR
-        IMMUNITY|MAST-CELLS|DENDRITIC CELLS|FOXP3 EXPRESSION|ENDOTHELIAL GROWTH-FACTOR|TUMOR-ASSOCIATED
-        MACROPHAGES|NATURAL-KILLER-CELLS|SUPPRESSOR-CELLS|MALIGNANT PLEURAL EFFUSION|lung
-        cancer|personalized medicine|immune system|tumor microenvironment|cancer immunology</KeywordList>\r\n
-        \   <DocumentTypeList>Review</DocumentTypeList>\r\n    <DocumentCategory>Journal
-        Document</DocumentCategory>\r\n    <NumberOfReferences>180</NumberOfReferences>\r\n
-        \   <TimesCited>2</TimesCited>\r\n    <TimesNotSelfCited>1</TimesNotSelfCited>\r\n
-        \   <PMID>23217146</PMID>\r\n    <WoSItemID>000312907500001</WoSItemID>\r\n
-        \   <PublicationSourceTitle>BMC CANCER</PublicationSourceTitle>\r\n    <Volume>12</Volume>\r\n
-        \   <Pagination />\r\n    <PublicationDate>2012-12-05T00:00:00</PublicationDate>\r\n
-        \   <PublicationYear>2012</PublicationYear>\r\n    <PublicationType>Journal</PublicationType>\r\n
-        \   <PublicationSubjectCategoryList>Oncology</PublicationSubjectCategoryList>\r\n
-        \   <ISSN>1471-2407</ISSN>\r\n    <DOI>10.1186/1471-2407-12-580</DOI>\r\n
-        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
-        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>18</OrdinalRank>\r\n
-        \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
-        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>BIOMED
-        CENTRAL LTD</CopyrightPublisher>\r\n    <CopyrightCity>LONDON</CopyrightCity>\r\n
-        \   <ArticleNumber>580</ArticleNumber>\r\n    <PublicationImpactFactorList>3.011,2011,ClosestToPublicationYear|3.011,2011,MostRecentYear</PublicationImpactFactorList>\r\n
-        \   <PublicationCategoryRankingList>77/190;ONCOLOGY;2011;SC;ClosestToPublicationYear|77/190;ONCOLOGY;2011;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
-        \   <AuthorCitationCountList>1,0,2|2,1,1|3,0,2|4,0,2|5,0,2|6,1,1</AuthorCitationCountList>\r\n
-        \   <CopyrightStateProvince />\r\n    <CopyrightCountry>UNITED KINGDOM</CopyrightCountry>\r\n
-        \ </PublicationItem>\r\n  <PublicationItem>\r\n    <PublicationItemID>62075343</PublicationItemID>\r\n
-        \   <Title>The Role of Pretreatment PET/CT Parameters in Predicting Response
-        After Lung Cancer Treatment</Title>\r\n    <Abstract />\r\n    <AuthorList>Lavaf,A,|Tejwani,A,|DAYA,P,|Atia,M,|Ashamalla,H,</AuthorList>\r\n
-        \   <AuthorCount>5</AuthorCount>\r\n    <KeywordList />\r\n    <DocumentTypeList>Meeting
-        Abstract</DocumentTypeList>\r\n    <DocumentCategory>Conference Proceeding
-        Document</DocumentCategory>\r\n    <NumberOfReferences xsi:nil=\"true\" />\r\n
-        \   <TimesCited>0</TimesCited>\r\n    <TimesNotSelfCited>0</TimesNotSelfCited>\r\n
-        \   <PMID xsi:nil=\"true\" />\r\n    <WoSItemID>000310542902022</WoSItemID>\r\n
-        \   <PublicationSourceTitle>INTERNATIONAL JOURNAL OF RADIATION ONCOLOGY BIOLOGY
-        PHYSICS</PublicationSourceTitle>\r\n    <Volume>84</Volume>\r\n    <Issue>3</Issue>\r\n
-        \   <Pagination>S602-S603</Pagination>\r\n    <PublicationDate>2012-11-01T00:00:00</PublicationDate>\r\n
-        \   <PublicationYear>2012</PublicationYear>\r\n    <PublicationType>Journal</PublicationType>\r\n
-        \   <PublicationSubjectCategoryList>Oncology|Radiology, Nuclear Medicine &amp;
-        Medical Imaging</PublicationSubjectCategoryList>\r\n    <ISSN>0360-3016</ISSN>\r\n
-        \   <ConferenceTitle>54th Annual Meeting of the American-Society-for-Radiation-Oncology
-        (ASTRO)</ConferenceTitle>\r\n    <ConferenceStartDate>2012-10-28T00:00:00</ConferenceStartDate>\r\n
-        \   <ConferenceEndDate>2012-10-31T00:00:00</ConferenceEndDate>\r\n    <ConferenceCity>BOSTON</ConferenceCity>\r\n
-        \   <ConferenceStateCountry>MA</ConferenceStateCountry>\r\n    <Rank xsi:nil=\"true\"
-        />\r\n    <OrdinalRank>19</OrdinalRank>\r\n    <NormalizedRank xsi:nil=\"true\"
-        />\r\n    <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
-        \   <CopyrightPublisher>ELSEVIER SCIENCE INC</CopyrightPublisher>\r\n    <CopyrightCity>NEW
-        YORK</CopyrightCity>\r\n    <PublicationImpactFactorList>4.105,2011,ClosestToPublicationYear|4.105,2011,MostRecentYear</PublicationImpactFactorList>\r\n
-        \   <PublicationCategoryRankingList>45/190;ONCOLOGY;2011;SC;ClosestToPublicationYear|12/116;RADIOLOGY,
-        NUCLEAR MEDICINE &amp; MEDICAL IMAGING;2011;SC;ClosestToPublicationYear|45/190;ONCOLOGY;2011;SC;MostRecentYear|12/116;RADIOLOGY,
-        NUCLEAR MEDICINE &amp; MEDICAL IMAGING;2011;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
-        \   <AuthorCitationCountList>1,0,0|2,0,0|3,0,0|4,0,0|5,0,0</AuthorCitationCountList>\r\n
-        \   <CopyrightStateProvince>NY</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
         STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n</ArrayOfPublicationItem>"
     http_version: 
-  recorded_at: Fri, 27 Sep 2013 22:48:10 GMT
+  recorded_at: Tue, 19 Nov 2013 00:20:19 GMT
 recorded_with: VCR 2.5.0

@@ -37,7 +37,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Fri, 27 Sep 2013 22:47:31 GMT
+      - Tue, 19 Nov 2013 00:20:41 GMT
       Content-Length:
       - '6476'
     body:
@@ -109,7 +109,7 @@ http_interactions:
         artificial|intubation|neonatology|ventilation, high-frequency</KeywordList>\r\n
         \   <DocumentTypeList>Article</DocumentTypeList>\r\n    <DocumentCategory>Journal
         Document</DocumentCategory>\r\n    <NumberOfReferences>27</NumberOfReferences>\r\n
-        \   <TimesCited>11</TimesCited>\r\n    <TimesNotSelfCited>8</TimesNotSelfCited>\r\n
+        \   <TimesCited>12</TimesCited>\r\n    <TimesNotSelfCited>8</TimesNotSelfCited>\r\n
         \   <PMID>1914489</PMID>\r\n    <WoSItemID>A1991GK39000014</WoSItemID>\r\n
         \   <PublicationSourceTitle>CRITICAL CARE MEDICINE</PublicationSourceTitle>\r\n
         \   <Volume>19</Volume>\r\n    <Issue>10</Issue>\r\n    <Pagination>1310-1322</Pagination>\r\n
@@ -123,7 +123,7 @@ http_interactions:
         \   <CopyrightPublisher>LIPPINCOTT WILLIAMS &amp; WILKINS</CopyrightPublisher>\r\n
         \   <CopyrightCity>PHILADELPHIA</CopyrightCity>\r\n  </PublicationItem>\r\n</ArrayOfPublicationItem>"
     http_version: 
-  recorded_at: Fri, 27 Sep 2013 22:47:33 GMT
+  recorded_at: Tue, 19 Nov 2013 00:20:43 GMT
 - request:
     method: post
     uri: http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml
@@ -141,7 +141,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Fri, 27 Sep 2013 22:47:33 GMT
+      - Tue, 19 Nov 2013 00:20:42 GMT
       Server:
       - Apache
       Access-Control-Allow-Origin:
@@ -149,12 +149,14 @@ http_interactions:
       Cache-Control:
       - private
       Ncbi-Sid:
-      - 9DFD40A92460B051_0034SID
+      - 9DFC4D4628AAEDA1_0143SID
       Content-Type:
       - text/xml; charset=UTF-8
       Set-Cookie:
-      - ncbi_sid=9DFD40A92460B051_0034SID; domain=.nih.gov; path=/; expires=Sat, 27
-        Sep 2014 22:47:33 GMT
+      - ncbi_sid=9DFC4D4628AAEDA1_0143SID; domain=.nih.gov; path=/; expires=Wed, 19
+        Nov 2014 00:20:42 GMT
+      X-Ua-Compatible:
+      - IE=Edge
       Transfer-Encoding:
       - chunked
     body:
@@ -332,7 +334,7 @@ http_interactions:
         \       <ArticleIdList>\n            <ArticleId IdType=\"pubmed\">1914489</ArticleId>\n
         \       </ArticleIdList>\n    </PubmedData>\n</PubmedArticle>\n\n</PubmedArticleSet>\n"
     http_version: 
-  recorded_at: Fri, 27 Sep 2013 22:47:34 GMT
+  recorded_at: Tue, 19 Nov 2013 00:20:44 GMT
 - request:
     method: get
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationItems?format=xml&publicationItemIDs=
@@ -370,7 +372,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Fri, 27 Sep 2013 22:47:34 GMT
+      - Tue, 19 Nov 2013 00:20:43 GMT
       Content-Length:
       - '1208'
     body:
@@ -389,7 +391,7 @@ http_interactions:
         \ <h3>There is a problem with the resource you are looking for, and it cannot
         be displayed.</h3>\r\n </fieldset></div>\r\n</div>\r\n</body>\r\n</html>\r\n"
     http_version: 
-  recorded_at: Fri, 27 Sep 2013 22:47:35 GMT
+  recorded_at: Tue, 19 Nov 2013 00:20:45 GMT
 - request:
     method: post
     uri: http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml
@@ -407,7 +409,7 @@ http_interactions:
       message: Bad Request
     headers:
       Date:
-      - Fri, 27 Sep 2013 22:47:34 GMT
+      - Tue, 19 Nov 2013 00:20:44 GMT
       Server:
       - Apache
       Access-Control-Allow-Origin:
@@ -415,12 +417,14 @@ http_interactions:
       Cache-Control:
       - private
       Ncbi-Sid:
-      - 9DFC089F2460B061_0074SID
+      - 08DD2A7F28AAEDC1_0069SID
       Content-Type:
       - text/xml; charset=UTF-8
       Set-Cookie:
-      - ncbi_sid=9DFC089F2460B061_0074SID; domain=.nih.gov; path=/; expires=Sat, 27
-        Sep 2014 22:47:34 GMT
+      - ncbi_sid=08DD2A7F28AAEDC1_0069SID; domain=.nih.gov; path=/; expires=Wed, 19
+        Nov 2014 00:20:44 GMT
+      X-Ua-Compatible:
+      - IE=Edge
       Connection:
       - close
       Transfer-Encoding:
@@ -430,5 +434,5 @@ http_interactions:
       string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n\n<eFetchResult>\n\t<ERROR>WebEnv
         parameter is required</ERROR>\n</eFetchResult>\n"
     http_version: 
-  recorded_at: Fri, 27 Sep 2013 22:47:35 GMT
+  recorded_at: Tue, 19 Nov 2013 00:20:45 GMT
 recorded_with: VCR 2.5.0

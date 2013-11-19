@@ -382,7 +382,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Tue, 24 Sep 2013 23:41:17 GMT
+      - Mon, 18 Nov 2013 23:29:45 GMT
       Content-Length:
       - '33873'
     body:
@@ -668,7 +668,7 @@ http_interactions:
         \   <AuthorCount>1</AuthorCount>\r\n    <KeywordList>ALGORITHM</KeywordList>\r\n
         \   <DocumentTypeList>Article</DocumentTypeList>\r\n    <DocumentCategory>Journal
         Document</DocumentCategory>\r\n    <NumberOfReferences>25</NumberOfReferences>\r\n
-        \   <TimesCited>160</TimesCited>\r\n    <TimesNotSelfCited>153</TimesNotSelfCited>\r\n
+        \   <TimesCited>161</TimesCited>\r\n    <TimesNotSelfCited>154</TimesNotSelfCited>\r\n
         \   <PMID xsi:nil=\"true\" />\r\n    <WoSItemID>A1992KH76800010</WoSItemID>\r\n
         \   <PublicationSourceTitle>COMPUTER MUSIC JOURNAL</PublicationSourceTitle>\r\n
         \   <Volume>16</Volume>\r\n    <Issue>4</Issue>\r\n    <Pagination>74-98</Pagination>\r\n
@@ -682,7 +682,7 @@ http_interactions:
         \   <CopyrightCity>CAMBRIDGE</CopyrightCity>\r\n    <PublicationImpactFactorList>0.548,1994,ClosestToPublicationYear|0.706,2011,MostRecentYear</PublicationImpactFactorList>\r\n
         \   <PublicationCategoryRankingList>16/41;COMPUTER SCIENCE, INTERDISCIPLINARY
         APPLICATIONS;1994;SC;ClosestToPublicationYear|78/99;COMPUTER SCIENCE, INTERDISCIPLINARY
-        APPLICATIONS;2011;SC;MostRecentYear</PublicationCategoryRankingList>\r\n    <AuthorCitationCountList>1,7,153</AuthorCitationCountList>\r\n
+        APPLICATIONS;2011;SC;MostRecentYear</PublicationCategoryRankingList>\r\n    <AuthorCitationCountList>1,7,154</AuthorCitationCountList>\r\n
         \   <CopyrightStateProvince>MA</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
         STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
         \   <PublicationItemID>18544482</PublicationItemID>\r\n    <Title>FUNDAMENTALS
@@ -710,7 +710,7 @@ http_interactions:
         \   <AuthorList>Jaffe,D,A|Smith,J,O</AuthorList>\r\n    <AuthorCount>2</AuthorCount>\r\n
         \   <KeywordList />\r\n    <DocumentTypeList>Article</DocumentTypeList>\r\n
         \   <DocumentCategory>Journal Document</DocumentCategory>\r\n    <NumberOfReferences>12</NumberOfReferences>\r\n
-        \   <TimesCited>72</TimesCited>\r\n    <TimesNotSelfCited>62</TimesNotSelfCited>\r\n
+        \   <TimesCited>73</TimesCited>\r\n    <TimesNotSelfCited>63</TimesNotSelfCited>\r\n
         \   <PMID xsi:nil=\"true\" />\r\n    <WoSItemID>A1983QT84000004</WoSItemID>\r\n
         \   <PublicationSourceTitle>COMPUTER MUSIC JOURNAL</PublicationSourceTitle>\r\n
         \   <Volume>7</Volume>\r\n    <Issue>2</Issue>\r\n    <Pagination>56-69</Pagination>\r\n
@@ -723,7 +723,7 @@ http_interactions:
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>MIT PRESS</CopyrightPublisher>\r\n
         \   <CopyrightCity>CAMBRIDGE</CopyrightCity>\r\n    <PublicationImpactFactorList>0.706,2011,MostRecentYear</PublicationImpactFactorList>\r\n
         \   <PublicationCategoryRankingList>78/99;COMPUTER SCIENCE, INTERDISCIPLINARY
-        APPLICATIONS;2011;SC;MostRecentYear</PublicationCategoryRankingList>\r\n    <AuthorCitationCountList>1,2,70|2,8,64</AuthorCitationCountList>\r\n
+        APPLICATIONS;2011;SC;MostRecentYear</PublicationCategoryRankingList>\r\n    <AuthorCitationCountList>1,2,71|2,8,65</AuthorCitationCountList>\r\n
         \   <CopyrightStateProvince>MA</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
         STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
         \   <PublicationItemID>15615925</PublicationItemID>\r\n    <Title>VOLATILIZATION
@@ -769,7 +769,7 @@ http_interactions:
         \   <AuthorCitationCountList>1,0,0|2,0,0</AuthorCitationCountList>\r\n    <CopyrightStateProvince>TX</CopyrightStateProvince>\r\n
         \   <CopyrightCountry>UNITED STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n</ArrayOfPublicationItem>"
     http_version: 
-  recorded_at: Tue, 24 Sep 2013 23:41:18 GMT
+  recorded_at: Mon, 18 Nov 2013 23:29:47 GMT
 - request:
     method: post
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery?format=xml
@@ -829,7 +829,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Fri, 27 Sep 2013 22:46:31 GMT
+      - Tue, 19 Nov 2013 00:20:57 GMT
       Content-Length:
       - '280'
     body:
@@ -838,7 +838,7 @@ http_interactions:
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>129740</queryID>\r\n
         \ <queryResultRows>15</queryResultRows>\r\n  <totalRows>15</totalRows>\r\n</ScienceWireQueryIDResponse>"
     http_version: 
-  recorded_at: Fri, 27 Sep 2013 22:46:32 GMT
+  recorded_at: Tue, 19 Nov 2013 00:20:57 GMT
 - request:
     method: get
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/129740?format=xml&page=0&pageSize=2147483647&v=version/3
@@ -876,7 +876,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Fri, 27 Sep 2013 22:46:34 GMT
+      - Tue, 19 Nov 2013 00:20:57 GMT
       Content-Length:
       - '33873'
     body:
@@ -1162,7 +1162,7 @@ http_interactions:
         \   <AuthorCount>1</AuthorCount>\r\n    <KeywordList>ALGORITHM</KeywordList>\r\n
         \   <DocumentTypeList>Article</DocumentTypeList>\r\n    <DocumentCategory>Journal
         Document</DocumentCategory>\r\n    <NumberOfReferences>25</NumberOfReferences>\r\n
-        \   <TimesCited>160</TimesCited>\r\n    <TimesNotSelfCited>153</TimesNotSelfCited>\r\n
+        \   <TimesCited>161</TimesCited>\r\n    <TimesNotSelfCited>154</TimesNotSelfCited>\r\n
         \   <PMID xsi:nil=\"true\" />\r\n    <WoSItemID>A1992KH76800010</WoSItemID>\r\n
         \   <PublicationSourceTitle>COMPUTER MUSIC JOURNAL</PublicationSourceTitle>\r\n
         \   <Volume>16</Volume>\r\n    <Issue>4</Issue>\r\n    <Pagination>74-98</Pagination>\r\n
@@ -1176,7 +1176,7 @@ http_interactions:
         \   <CopyrightCity>CAMBRIDGE</CopyrightCity>\r\n    <PublicationImpactFactorList>0.548,1994,ClosestToPublicationYear|0.706,2011,MostRecentYear</PublicationImpactFactorList>\r\n
         \   <PublicationCategoryRankingList>16/41;COMPUTER SCIENCE, INTERDISCIPLINARY
         APPLICATIONS;1994;SC;ClosestToPublicationYear|78/99;COMPUTER SCIENCE, INTERDISCIPLINARY
-        APPLICATIONS;2011;SC;MostRecentYear</PublicationCategoryRankingList>\r\n    <AuthorCitationCountList>1,7,153</AuthorCitationCountList>\r\n
+        APPLICATIONS;2011;SC;MostRecentYear</PublicationCategoryRankingList>\r\n    <AuthorCitationCountList>1,7,154</AuthorCitationCountList>\r\n
         \   <CopyrightStateProvince>MA</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
         STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
         \   <PublicationItemID>18544482</PublicationItemID>\r\n    <Title>FUNDAMENTALS
@@ -1204,7 +1204,7 @@ http_interactions:
         \   <AuthorList>Jaffe,D,A|Smith,J,O</AuthorList>\r\n    <AuthorCount>2</AuthorCount>\r\n
         \   <KeywordList />\r\n    <DocumentTypeList>Article</DocumentTypeList>\r\n
         \   <DocumentCategory>Journal Document</DocumentCategory>\r\n    <NumberOfReferences>12</NumberOfReferences>\r\n
-        \   <TimesCited>72</TimesCited>\r\n    <TimesNotSelfCited>62</TimesNotSelfCited>\r\n
+        \   <TimesCited>73</TimesCited>\r\n    <TimesNotSelfCited>63</TimesNotSelfCited>\r\n
         \   <PMID xsi:nil=\"true\" />\r\n    <WoSItemID>A1983QT84000004</WoSItemID>\r\n
         \   <PublicationSourceTitle>COMPUTER MUSIC JOURNAL</PublicationSourceTitle>\r\n
         \   <Volume>7</Volume>\r\n    <Issue>2</Issue>\r\n    <Pagination>56-69</Pagination>\r\n
@@ -1217,7 +1217,7 @@ http_interactions:
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>MIT PRESS</CopyrightPublisher>\r\n
         \   <CopyrightCity>CAMBRIDGE</CopyrightCity>\r\n    <PublicationImpactFactorList>0.706,2011,MostRecentYear</PublicationImpactFactorList>\r\n
         \   <PublicationCategoryRankingList>78/99;COMPUTER SCIENCE, INTERDISCIPLINARY
-        APPLICATIONS;2011;SC;MostRecentYear</PublicationCategoryRankingList>\r\n    <AuthorCitationCountList>1,2,70|2,8,64</AuthorCitationCountList>\r\n
+        APPLICATIONS;2011;SC;MostRecentYear</PublicationCategoryRankingList>\r\n    <AuthorCitationCountList>1,2,71|2,8,65</AuthorCitationCountList>\r\n
         \   <CopyrightStateProvince>MA</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
         STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
         \   <PublicationItemID>15615925</PublicationItemID>\r\n    <Title>VOLATILIZATION
@@ -1263,5 +1263,5 @@ http_interactions:
         \   <AuthorCitationCountList>1,0,0|2,0,0</AuthorCitationCountList>\r\n    <CopyrightStateProvince>TX</CopyrightStateProvince>\r\n
         \   <CopyrightCountry>UNITED STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n</ArrayOfPublicationItem>"
     http_version: 
-  recorded_at: Fri, 27 Sep 2013 22:46:36 GMT
+  recorded_at: Tue, 19 Nov 2013 00:20:58 GMT
 recorded_with: VCR 2.5.0

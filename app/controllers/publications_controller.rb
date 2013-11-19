@@ -60,34 +60,38 @@ class PublicationsController < ApplicationController
 
   #desc "Look up existing records by title, and optionally by author, year and source"
   def sourcelookup
-    raise(ActionController::ParameterMissing.new(:title)) unless params[:title].presence
-
-    source = params.fetch(:source, Settings.manual_source + '+' + Settings.sciencewire_source)
-    logger.info("Executing source lookup for title #{params[:title]} with sources #{source}")
     all_matching_records = []
+    if params[:doi].presence
+      sources = [Settings.sciencewire_source]
+      all_matching_records << ScienceWireClient.new.get_pub_by_doi(params[:doi])
+    else
+      raise(ActionController::ParameterMissing.new(:title)) unless params[:title].presence
 
-    sources = source.split('+')
+      source = params.fetch(:source, Settings.manual_source + '+' + Settings.sciencewire_source)
+      logger.info("Executing source lookup for title #{params[:title]} with sources #{source}")
 
-    if sources.include?(Settings.sciencewire_source)
-      all_matching_records += ScienceWireClient.new.query_sciencewire_for_publication(params[:firstname], params[:lastname], params[:middlename], params[:title], params[:year], params.fetch(:max_rows, 20).to_i)
-      logger.debug(" -- sciencewire (#{all_matching_records.length})")
-    end
+      sources = source.split('+')
 
-    if sources.include?(Settings.manual_source)
-      user_submitted_source_records = UserSubmittedSourceRecord.arel_table
-
-      results = UserSubmittedSourceRecord.where(user_submitted_source_records[:title].matches("%#{params[:title]}%"))
-
-      if params[:year]
-        results = results.where(user_submitted_source_records[:year].eq(params[:year]))
+      if sources.include?(Settings.sciencewire_source)
+        all_matching_records += ScienceWireClient.new.query_sciencewire_for_publication(params[:firstname], params[:lastname], params[:middlename], params[:title], params[:year], params.fetch(:max_rows, 20).to_i)
+        logger.debug(" -- sciencewire (#{all_matching_records.length})")
       end
-      logger.debug(" -- manual source (#{results.length})")
 
-      all_matching_records += results.map {|source_record| source_record.publication }
+      if sources.include?(Settings.manual_source)
+        user_submitted_source_records = UserSubmittedSourceRecord.arel_table
+
+        results = UserSubmittedSourceRecord.where(user_submitted_source_records[:title].matches("%#{params[:title]}%"))
+
+        if params[:year]
+          results = results.where(user_submitted_source_records[:year].eq(params[:year]))
+        end
+        logger.debug(" -- manual source (#{results.length})")
+
+        all_matching_records += results.map {|source_record| source_record.publication }
+      end
     end
 
     description = "Search results from requested sources: #{sources.join(",")}"
-
 
     respond_to do |format|
       format.json {

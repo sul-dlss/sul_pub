@@ -179,7 +179,6 @@ class ScienceWireClient
   end
 
   def query_sciencewire_for_publication(first_name, last_name, middle_name, title, year, max_rows)
-    result = []
     xml_query = '<![CDATA[
 	     <query xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/
 	    XMLSchema">
@@ -233,19 +232,31 @@ class ScienceWireClient
 	     <MaximumRows>#{max_rows}</MaximumRows>
 	    </query>
 	    ]]>"
-    xml_results = query_sciencewire(xml_query, 3, 100)
 
-    xml_results.xpath('//PublicationItem').each do |sw_xml_doc|
-      # result << generate_json_for_pub(convert_sw_publication_doc_to_hash(sw_xml_doc))
-      pub_hash = SciencewireSourceRecord.convert_sw_publication_doc_to_hash(sw_xml_doc)
-      h = PubHash.new(pub_hash)
+    send_query_and_return_pub_hashes xml_query
+  end
 
-      pub_hash[:apa_citation] = h.to_apa_citation
-      pub_hash[:mla_citation] = h.to_mla_citation
-      pub_hash[:chicago_citation] = h.to_chicago_citation
-      result << pub_hash
-    end
-    result
+  def get_pub_by_doi doi, max_rows = 200
+    query = <<-XML
+      <![CDATA[
+      <query xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+          <Criterion>
+              <Criteria>
+                  <Criterion>
+                      <Filter>
+                          <Column>DOI</Column>
+                          <Operator>Equals</Operator>
+                          <Value>#{doi}</Value>
+                      </Filter>
+                  </Criterion>
+              </Criteria>
+          </Criterion>
+          <MaximumRows>#{max_rows}</MaximumRows>
+      </query>
+      ]]>
+    XML
+
+    send_query_and_return_pub_hashes query
   end
 
   # @params [Array<String>] wos_ids The WebOfScience Document Ids that are being requested
@@ -373,6 +384,21 @@ class ScienceWireClient
   end
 
   private
+
+  def send_query_and_return_pub_hashes xml_query
+    xml_results = query_sciencewire(xml_query, 3, 100)
+
+    xml_results.xpath('//PublicationItem').map do |sw_xml_doc|
+      pub_hash = SciencewireSourceRecord.convert_sw_publication_doc_to_hash(sw_xml_doc)
+      h = PubHash.new(pub_hash)
+
+      pub_hash[:apa_citation] = h.to_apa_citation
+      pub_hash[:mla_citation] = h.to_mla_citation
+      pub_hash[:chicago_citation] = h.to_chicago_citation
+      pub_hash
+    end
+  end
+
   def with_timeout_handling
     timeout_retries = @base_timeout_retries
     timeout_period = @base_timeout_period

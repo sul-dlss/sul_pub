@@ -48,7 +48,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Fri, 27 Sep 2013 22:47:41 GMT
+      - Tue, 19 Nov 2013 00:20:49 GMT
       Content-Length:
       - '277'
     body:
@@ -57,7 +57,7 @@ http_interactions:
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>81941</queryID>\r\n
         \ <queryResultRows>3</queryResultRows>\r\n  <totalRows>3</totalRows>\r\n</ScienceWireQueryIDResponse>"
     http_version: 
-  recorded_at: Fri, 27 Sep 2013 22:47:42 GMT
+  recorded_at: Tue, 19 Nov 2013 00:20:51 GMT
 - request:
     method: get
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/81941?format=xml&page=0&pageSize=2147483647&v=version/3
@@ -95,7 +95,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Fri, 27 Sep 2013 22:47:41 GMT
+      - Tue, 19 Nov 2013 00:20:49 GMT
       Content-Length:
       - '9626'
     body:
@@ -158,7 +158,7 @@ http_interactions:
         \   <AuthorCount>3</AuthorCount>\r\n    <KeywordList>TRAJECTORIES|TRANSITION|KINETICS</KeywordList>\r\n
         \   <DocumentTypeList>Article</DocumentTypeList>\r\n    <DocumentCategory>Journal
         Document</DocumentCategory>\r\n    <NumberOfReferences>20</NumberOfReferences>\r\n
-        \   <TimesCited>1</TimesCited>\r\n    <TimesNotSelfCited>0</TimesNotSelfCited>\r\n
+        \   <TimesCited>2</TimesCited>\r\n    <TimesNotSelfCited>0</TimesNotSelfCited>\r\n
         \   <PMID>23540906</PMID>\r\n    <WoSItemID>000317872800004</WoSItemID>\r\n
         \   <PublicationSourceTitle>JOURNAL OF THE AMERICAN CHEMICAL SOCIETY</PublicationSourceTitle>\r\n
         \   <Volume>135</Volume>\r\n    <Issue>15</Issue>\r\n    <Pagination>5501-5504</Pagination>\r\n
@@ -173,7 +173,7 @@ http_interactions:
         \   <PublicationImpactFactorList>9.907,2011,ClosestToPublicationYear|9.907,2011,MostRecentYear</PublicationImpactFactorList>\r\n
         \   <PublicationCategoryRankingList>11/149;CHEMISTRY, MULTIDISCIPLINARY;2011;SC;ClosestToPublicationYear|11/149;CHEMISTRY,
         MULTIDISCIPLINARY;2011;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
-        \   <AuthorCitationCountList>1,0,1|2,1,0|3,0,1</AuthorCitationCountList>\r\n
+        \   <AuthorCitationCountList>1,1,1|2,1,1|3,1,1</AuthorCitationCountList>\r\n
         \   <CopyrightStateProvince>DC</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
         STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
         \   <PublicationItemID>62922945</PublicationItemID>\r\n    <Title>Functional
@@ -213,7 +213,7 @@ http_interactions:
         \   <AuthorCitationCountList>1,0,0|2,0,0</AuthorCitationCountList>\r\n    <CopyrightStateProvince>NY</CopyrightStateProvince>\r\n
         \   <CopyrightCountry>UNITED STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n</ArrayOfPublicationItem>"
     http_version: 
-  recorded_at: Fri, 27 Sep 2013 22:47:42 GMT
+  recorded_at: Tue, 19 Nov 2013 00:20:51 GMT
 - request:
     method: post
     uri: http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml
@@ -231,7 +231,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Fri, 27 Sep 2013 22:47:42 GMT
+      - Tue, 19 Nov 2013 00:20:51 GMT
       Server:
       - Apache
       Access-Control-Allow-Origin:
@@ -239,21 +239,25 @@ http_interactions:
       Cache-Control:
       - private
       Ncbi-Sid:
-      - 9DFD0FE62460B0E1_0197SID
+      - 9DFD7A4528AAEE31_0121SID
       Content-Type:
       - text/xml; charset=UTF-8
       Set-Cookie:
-      - ncbi_sid=9DFD0FE62460B0E1_0197SID; domain=.nih.gov; path=/; expires=Sat, 27
-        Sep 2014 22:47:42 GMT
+      - ncbi_sid=9DFD7A4528AAEE31_0121SID; domain=.nih.gov; path=/; expires=Wed, 19
+        Nov 2014 00:20:51 GMT
+      X-Ua-Compatible:
+      - IE=Edge
       Transfer-Encoding:
       - chunked
     body:
       encoding: US-ASCII
       string: ! "<?xml version=\"1.0\"?>\n<!DOCTYPE PubmedArticleSet PUBLIC \"-//NLM//DTD
         PubMedArticle, 1st May 2013//EN\" \"http://www.ncbi.nlm.nih.gov/corehtml/query/DTD/pubmed_130501.dtd\">\n<PubmedArticleSet>\n<PubmedArticle>\n
-        \   <MedlineCitation Owner=\"NLM\" Status=\"In-Process\">\n        <PMID Version=\"1\">23565139</PMID>\n
+        \   <MedlineCitation Owner=\"NLM\" Status=\"MEDLINE\">\n        <PMID Version=\"1\">23565139</PMID>\n
         \       <DateCreated>\n            <Year>2013</Year>\n            <Month>04</Month>\n
-        \           <Day>08</Day>\n        </DateCreated>\n        <Article PubModel=\"Print-Electronic\">\n
+        \           <Day>08</Day>\n        </DateCreated>\n        <DateCompleted>\n
+        \           <Year>2013</Year>\n            <Month>10</Month>\n            <Day>30</Day>\n
+        \       </DateCompleted>\n        <Article PubModel=\"Print-Electronic\">\n
         \           <Journal>\n                <ISSN IssnType=\"Electronic\">1932-6203</ISSN>\n
         \               <JournalIssue CitedMedium=\"Internet\">\n                    <Volume>8</Volume>\n
         \                   <Issue>4</Issue>\n                    <PubDate>\n                        <Year>2013</Year>\n
@@ -308,7 +312,15 @@ http_interactions:
         \       </Article>\n        <MedlineJournalInfo>\n            <Country>United
         States</Country>\n            <MedlineTA>PLoS One</MedlineTA>\n            <NlmUniqueID>101285081</NlmUniqueID>\n
         \           <ISSNLinking>1932-6203</ISSNLinking>\n        </MedlineJournalInfo>\n
-        \       <CitationSubset>IM</CitationSubset>\n        <CommentsCorrectionsList>\n
+        \       <ChemicalList>\n            <Chemical>\n                <RegistryNumber>0</RegistryNumber>\n
+        \               <NameOfSubstance>Dipeptides</NameOfSubstance>\n            </Chemical>\n
+        \           <Chemical>\n                <RegistryNumber>0</RegistryNumber>\n
+        \               <NameOfSubstance>Microfilament Proteins</NameOfSubstance>\n
+        \           </Chemical>\n            <Chemical>\n                <RegistryNumber>0</RegistryNumber>\n
+        \               <NameOfSubstance>villin</NameOfSubstance>\n            </Chemical>\n
+        \           <Chemical>\n                <RegistryNumber>56-41-7</RegistryNumber>\n
+        \               <NameOfSubstance>Alanine</NameOfSubstance>\n            </Chemical>\n
+        \       </ChemicalList>\n        <CitationSubset>IM</CitationSubset>\n        <CommentsCorrectionsList>\n
         \           <CommentsCorrections RefType=\"Cites\">\n                <RefSource>Philos
         Trans A Math Phys Eng Sci. 2005 Feb 15;363(1827):357-75; discussion 375-7</RefSource>\n
         \               <PMID Version=\"1\">15664888</PMID>\n            </CommentsCorrections>\n
@@ -320,11 +332,16 @@ http_interactions:
         \           <CommentsCorrections RefType=\"Cites\">\n                <RefSource>BMC
         Bioinformatics. 2007;8 Suppl 2:S7</RefSource>\n                <PMID Version=\"1\">17493256</PMID>\n
         \           </CommentsCorrections>\n            <CommentsCorrections RefType=\"Cites\">\n
+        \               <RefSource>Proc Natl Acad Sci U S A. 2012 Oct 30;109(44):17807-13</RefSource>\n
+        \               <PMID Version=\"1\">22778442</PMID>\n            </CommentsCorrections>\n
+        \           <CommentsCorrections RefType=\"Cites\">\n                <RefSource>Science.
+        2011 Oct 28;334(6055):517-20</RefSource>\n                <PMID Version=\"1\">22034434</PMID>\n
+        \           </CommentsCorrections>\n            <CommentsCorrections RefType=\"Cites\">\n
         \               <RefSource>Proteins. 2008 Mar;70(4):1185-95</RefSource>\n
         \               <PMID Version=\"1\">17847092</PMID>\n            </CommentsCorrections>\n
         \           <CommentsCorrections RefType=\"Cites\">\n                <RefSource>Curr
-        Opin Struct Biol. 2008 Apr;18(2):154-62</RefSource>\n                <PMID
-        Version=\"1\">18378442</PMID>\n            </CommentsCorrections>\n            <CommentsCorrections
+        Opin Struct Biol. 2013 Feb;23(1):58-65</RefSource>\n                <PMID
+        Version=\"1\">23237705</PMID>\n            </CommentsCorrections>\n            <CommentsCorrections
         RefType=\"Cites\">\n                <RefSource>Methods. 2009 Oct;49(2):197-201</RefSource>\n
         \               <PMID Version=\"1\">19410002</PMID>\n            </CommentsCorrections>\n
         \           <CommentsCorrections RefType=\"Cites\">\n                <RefSource>J
@@ -332,37 +349,48 @@ http_interactions:
         \           </CommentsCorrections>\n            <CommentsCorrections RefType=\"Cites\">\n
         \               <RefSource>J Chem Phys. 2011 May 7;134(17):174105</RefSource>\n
         \               <PMID Version=\"1\">21548671</PMID>\n            </CommentsCorrections>\n
-        \           <CommentsCorrections RefType=\"Cites\">\n                <RefSource>Science.
-        2011 Oct 28;334(6055):517-20</RefSource>\n                <PMID Version=\"1\">22034434</PMID>\n
-        \           </CommentsCorrections>\n            <CommentsCorrections RefType=\"Cites\">\n
-        \               <RefSource>Proc Natl Acad Sci U S A. 2012 Oct 30;109(44):17807-13</RefSource>\n
-        \               <PMID Version=\"1\">22778442</PMID>\n            </CommentsCorrections>\n
         \           <CommentsCorrections RefType=\"Cites\">\n                <RefSource>Curr
-        Opin Struct Biol. 2013 Feb;23(1):58-65</RefSource>\n                <PMID
-        Version=\"1\">23237705</PMID>\n            </CommentsCorrections>\n        </CommentsCorrectionsList>\n
-        \       <OtherID Source=\"NLM\">PMC3614941</OtherID>\n    </MedlineCitation>\n
-        \   <PubmedData>\n        <History>\n            <PubMedPubDate PubStatus=\"received\">\n
-        \               <Year>2012</Year>\n                <Month>9</Month>\n                <Day>22</Day>\n
-        \           </PubMedPubDate>\n            <PubMedPubDate PubStatus=\"accepted\">\n
-        \               <Year>2013</Year>\n                <Month>2</Month>\n                <Day>5</Day>\n
-        \           </PubMedPubDate>\n            <PubMedPubDate PubStatus=\"epublish\">\n
-        \               <Year>2013</Year>\n                <Month>4</Month>\n                <Day>2</Day>\n
-        \           </PubMedPubDate>\n            <PubMedPubDate PubStatus=\"entrez\">\n
+        Opin Struct Biol. 2008 Apr;18(2):154-62</RefSource>\n                <PMID
+        Version=\"1\">18378442</PMID>\n            </CommentsCorrections>\n        </CommentsCorrectionsList>\n
+        \       <MeshHeadingList>\n            <MeshHeading>\n                <DescriptorName
+        MajorTopicYN=\"N\">Alanine</DescriptorName>\n                <QualifierName
+        MajorTopicYN=\"N\">chemistry</QualifierName>\n            </MeshHeading>\n
+        \           <MeshHeading>\n                <DescriptorName MajorTopicYN=\"Y\">Cluster
+        Analysis</DescriptorName>\n            </MeshHeading>\n            <MeshHeading>\n
+        \               <DescriptorName MajorTopicYN=\"N\">Dipeptides</DescriptorName>\n
+        \               <QualifierName MajorTopicYN=\"N\">chemistry</QualifierName>\n
+        \           </MeshHeading>\n            <MeshHeading>\n                <DescriptorName
+        MajorTopicYN=\"N\">Microfilament Proteins</DescriptorName>\n                <QualifierName
+        MajorTopicYN=\"N\">chemistry</QualifierName>\n            </MeshHeading>\n
+        \           <MeshHeading>\n                <DescriptorName MajorTopicYN=\"Y\">Molecular
+        Conformation</DescriptorName>\n            </MeshHeading>\n            <MeshHeading>\n
+        \               <DescriptorName MajorTopicYN=\"Y\">Molecular Dynamics Simulation</DescriptorName>\n
+        \           </MeshHeading>\n        </MeshHeadingList>\n        <OtherID Source=\"NLM\">PMC3614941</OtherID>\n
+        \   </MedlineCitation>\n    <PubmedData>\n        <History>\n            <PubMedPubDate
+        PubStatus=\"received\">\n                <Year>2012</Year>\n                <Month>9</Month>\n
+        \               <Day>22</Day>\n            </PubMedPubDate>\n            <PubMedPubDate
+        PubStatus=\"accepted\">\n                <Year>2013</Year>\n                <Month>2</Month>\n
+        \               <Day>5</Day>\n            </PubMedPubDate>\n            <PubMedPubDate
+        PubStatus=\"epublish\">\n                <Year>2013</Year>\n                <Month>4</Month>\n
+        \               <Day>2</Day>\n            </PubMedPubDate>\n            <PubMedPubDate
+        PubStatus=\"entrez\">\n                <Year>2013</Year>\n                <Month>4</Month>\n
+        \               <Day>9</Day>\n                <Hour>6</Hour>\n                <Minute>0</Minute>\n
+        \           </PubMedPubDate>\n            <PubMedPubDate PubStatus=\"pubmed\">\n
         \               <Year>2013</Year>\n                <Month>4</Month>\n                <Day>9</Day>\n
         \               <Hour>6</Hour>\n                <Minute>0</Minute>\n            </PubMedPubDate>\n
-        \           <PubMedPubDate PubStatus=\"pubmed\">\n                <Year>2013</Year>\n
-        \               <Month>4</Month>\n                <Day>9</Day>\n                <Hour>6</Hour>\n
-        \               <Minute>0</Minute>\n            </PubMedPubDate>\n            <PubMedPubDate
-        PubStatus=\"medline\">\n                <Year>2013</Year>\n                <Month>4</Month>\n
-        \               <Day>9</Day>\n                <Hour>6</Hour>\n                <Minute>0</Minute>\n
-        \           </PubMedPubDate>\n        </History>\n        <PublicationStatus>ppublish</PublicationStatus>\n
-        \       <ArticleIdList>\n            <ArticleId IdType=\"doi\">10.1371/journal.pone.0058699</ArticleId>\n
+        \           <PubMedPubDate PubStatus=\"medline\">\n                <Year>2013</Year>\n
+        \               <Month>10</Month>\n                <Day>31</Day>\n                <Hour>6</Hour>\n
+        \               <Minute>0</Minute>\n            </PubMedPubDate>\n        </History>\n
+        \       <PublicationStatus>ppublish</PublicationStatus>\n        <ArticleIdList>\n
+        \           <ArticleId IdType=\"doi\">10.1371/journal.pone.0058699</ArticleId>\n
         \           <ArticleId IdType=\"pii\">PONE-D-12-29130</ArticleId>\n            <ArticleId
         IdType=\"pubmed\">23565139</ArticleId>\n            <ArticleId IdType=\"pmc\">PMC3614941</ArticleId>\n
         \       </ArticleIdList>\n    </PubmedData>\n</PubmedArticle>\n\n\n<PubmedArticle>\n
-        \   <MedlineCitation Owner=\"NLM\" Status=\"In-Process\">\n        <PMID Version=\"1\">23540906</PMID>\n
+        \   <MedlineCitation Owner=\"NLM\" Status=\"MEDLINE\">\n        <PMID Version=\"1\">23540906</PMID>\n
         \       <DateCreated>\n            <Year>2013</Year>\n            <Month>04</Month>\n
-        \           <Day>17</Day>\n        </DateCreated>\n        <Article PubModel=\"Print-Electronic\">\n
+        \           <Day>17</Day>\n        </DateCreated>\n        <DateCompleted>\n
+        \           <Year>2013</Year>\n            <Month>10</Month>\n            <Day>21</Day>\n
+        \       </DateCompleted>\n        <Article PubModel=\"Print-Electronic\">\n
         \           <Journal>\n                <ISSN IssnType=\"Electronic\">1520-5126</ISSN>\n
         \               <JournalIssue CitedMedium=\"Internet\">\n                    <Volume>135</Volume>\n
         \                   <Issue>15</Issue>\n                    <PubDate>\n                        <Year>2013</Year>\n
@@ -407,7 +435,21 @@ http_interactions:
         \       </Article>\n        <MedlineJournalInfo>\n            <Country>United
         States</Country>\n            <MedlineTA>J Am Chem Soc</MedlineTA>\n            <NlmUniqueID>7503056</NlmUniqueID>\n
         \           <ISSNLinking>0002-7863</ISSNLinking>\n        </MedlineJournalInfo>\n
-        \       <CitationSubset>IM</CitationSubset>\n        <OtherID Source=\"NLM\">NIHMS464030
+        \       <ChemicalList>\n            <Chemical>\n                <RegistryNumber>0</RegistryNumber>\n
+        \               <NameOfSubstance>Proteins</NameOfSubstance>\n            </Chemical>\n
+        \       </ChemicalList>\n        <CitationSubset>IM</CitationSubset>\n        <MeshHeadingList>\n
+        \           <MeshHeading>\n                <DescriptorName MajorTopicYN=\"N\">Glass</DescriptorName>\n
+        \               <QualifierName MajorTopicYN=\"Y\">chemistry</QualifierName>\n
+        \           </MeshHeading>\n            <MeshHeading>\n                <DescriptorName
+        MajorTopicYN=\"Y\">Markov Chains</DescriptorName>\n            </MeshHeading>\n
+        \           <MeshHeading>\n                <DescriptorName MajorTopicYN=\"Y\">Models,
+        Molecular</DescriptorName>\n            </MeshHeading>\n            <MeshHeading>\n
+        \               <DescriptorName MajorTopicYN=\"Y\">Protein Folding</DescriptorName>\n
+        \           </MeshHeading>\n            <MeshHeading>\n                <DescriptorName
+        MajorTopicYN=\"N\">Protein Structure, Tertiary</DescriptorName>\n            </MeshHeading>\n
+        \           <MeshHeading>\n                <DescriptorName MajorTopicYN=\"N\">Proteins</DescriptorName>\n
+        \               <QualifierName MajorTopicYN=\"Y\">chemistry</QualifierName>\n
+        \           </MeshHeading>\n        </MeshHeadingList>\n        <OtherID Source=\"NLM\">NIHMS464030
         [Available on 04/17/14]</OtherID>\n        <OtherID Source=\"NLM\">PMC3677858
         [Available on 04/17/14]</OtherID>\n    </MedlineCitation>\n    <PubmedData>\n
         \       <History>\n            <PubMedPubDate PubStatus=\"aheadofprint\">\n
@@ -418,8 +460,8 @@ http_interactions:
         \           <PubMedPubDate PubStatus=\"pubmed\">\n                <Year>2013</Year>\n
         \               <Month>4</Month>\n                <Day>2</Day>\n                <Hour>6</Hour>\n
         \               <Minute>0</Minute>\n            </PubMedPubDate>\n            <PubMedPubDate
-        PubStatus=\"medline\">\n                <Year>2013</Year>\n                <Month>4</Month>\n
-        \               <Day>2</Day>\n                <Hour>6</Hour>\n                <Minute>0</Minute>\n
+        PubStatus=\"medline\">\n                <Year>2013</Year>\n                <Month>10</Month>\n
+        \               <Day>22</Day>\n                <Hour>6</Hour>\n                <Minute>0</Minute>\n
         \           </PubMedPubDate>\n            <PubMedPubDate PubStatus=\"pmc-release\">\n
         \               <Year>2014</Year>\n                <Month>4</Month>\n                <Day>17</Day>\n
         \               <Hour>0</Hour>\n                <Minute>0</Minute>\n            </PubMedPubDate>\n
@@ -490,5 +532,5 @@ http_interactions:
         IdType=\"pubmed\">23635172</ArticleId>\n            <ArticleId IdType=\"pmc\">PMC3651261</ArticleId>\n
         \       </ArticleIdList>\n    </PubmedData>\n</PubmedArticle>\n\n</PubmedArticleSet>\n"
     http_version: 
-  recorded_at: Fri, 27 Sep 2013 22:47:43 GMT
+  recorded_at: Tue, 19 Nov 2013 00:20:51 GMT
 recorded_with: VCR 2.5.0
