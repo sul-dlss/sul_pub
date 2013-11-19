@@ -63,7 +63,7 @@ class PublicationsController < ApplicationController
     all_matching_records = []
     if params[:doi].presence
       sources = [Settings.sciencewire_source]
-      all_matching_records << ScienceWireClient.new.get_pub_by_doi(params[:doi])
+      all_matching_records += ScienceWireClient.new.get_pub_by_doi(params[:doi])
     else
       raise(ActionController::ParameterMissing.new(:title)) unless params[:title].presence
 

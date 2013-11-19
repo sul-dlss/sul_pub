@@ -30,7 +30,7 @@ describe SulBib::API do
           response.status.should == 200
           result = JSON.parse(response.body)
           result["metadata"]["records"].should == "1"
-          result['records'].first.first['sw_id'].should == '60813767'
+          result['records'].first['sw_id'].should == '60813767'
         end
       end
     end
