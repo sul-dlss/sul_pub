@@ -93,6 +93,10 @@ class Publication < ActiveRecord::Base
     Publication.find_by_sciencewire_id(sw_id) || SciencewireSourceRecord.get_pub_by_sciencewire_id(sw_id)
   end
 
+  def self.find_by_doi(doi)
+    PublicationIdentifier.where(:identifier_type => 'doi', :identifier_value => doi).map {|id| id.publication}
+  end
+
   def self.build_new_manual_publication(provenance, pub_hash, original_source_string)
 
     existingRecord = UserSubmittedSourceRecord.find_or_initialize_by_source_data(original_source_string)

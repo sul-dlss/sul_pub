@@ -273,4 +273,18 @@ describe Publication do
       }.to raise_exception(ActiveRecord::RecordNotUnique)
     end
   end
+
+  describe ".find_by_doi" do
+    it "returns an array of Publications that have this doi" do
+      publication.pub_hash = { :identifier => [ { :type => "doi", :id => "10.1016/j.mcn.2012.03.008", :url => "http://dx.doi.org/10.1016/j.mcn.2012.03.008" } ] }
+      publication.sync_identifiers_in_pub_hash_to_db
+      res = Publication.find_by_doi '10.1016/j.mcn.2012.03.008'
+      expect(res.size).to eq(1)
+      expect(res.first.id).to eq(publication.id)
+    end
+
+    it "returns an empty array if the doi isn't found" do
+      expect(Publication.find_by_doi 'does not exist').to be_empty
+    end
+  end
 end
