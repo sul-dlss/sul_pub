@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130911203542) do
+ActiveRecord::Schema.define(:version => 20131119221527) do
 
   create_table "authors", :force => true do |t|
     t.integer  "cap_profile_id"
@@ -90,6 +90,7 @@ ActiveRecord::Schema.define(:version => 20130911203542) do
     t.datetime "updated_at",       :null => false
   end
 
+  add_index "publication_identifiers", ["identifier_type", "identifier_value"], :name => "pub_identifier_index_by_type_and_value"
   add_index "publication_identifiers", ["identifier_type", "publication_id"], :name => "pub_identifier_index_by_pub_and_type"
   add_index "publication_identifiers", ["identifier_type"], :name => "index_publication_identifiers_on_identifier_type"
   add_index "publication_identifiers", ["publication_id", "identifier_type"], :name => "pub_identifier_index_by_type_and_pub"
