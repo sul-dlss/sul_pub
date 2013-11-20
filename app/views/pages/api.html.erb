@@ -9,15 +9,15 @@
 
 <h5 style="padding-bottom:10px;text-align:left;">http://sulcap.stanford.edu/publications/{sulPubId}</h5>
 <p class="sultext">View, update, or delete a single publication resource.</p>
-<table class="table table-striped">       
+<table class="table table-striped">
         <tbody>
           <tr>
             <td>HEAD</td>
-            <td>Returns same as GET, but without body.</td>            
+            <td>Returns same as GET, but without body.</td>
           </tr>
           <tr>
             <td>OPTIONS</td>
-            <td>Lists available methods.</td>            
+            <td>Lists available methods.</td>
           </tr>
           <tr>
             <td>GET</td>
@@ -35,15 +35,15 @@
 </table>
 <p class="sultext"><%= link_to "See Full Spec", page_path('pubapi') %></p>
 <hr style="color:#000;background-color:#000;border-color:#000"/>
-     
- 
+
+
 <h5 style="padding-bottom:10px;text-align:left">http://sulcap.stanford.edu/publications</h5>
 <p class="sultext">Create one or more publication resources.</p>
-<table class="table table-striped">       
+<table class="table table-striped">
         <tbody>
           <tr>
             <td>OPTIONS</td>
-            <td>Lists available methods.</td>            
+            <td>Lists available methods.</td>
           </tr>
           <tr>
             <td>POST</td>
@@ -57,15 +57,15 @@
 
 <h5 style="padding-bottom:10px;text-align:left">http://sulcap.stanford.edu/publications?changedSince={YYYY-MM-DDTHH:MM:SSZ}&capProfileId={capId}&page={resultpage}&per={results_per_page}</h5>
 <p class="sultext">Returns all publications created or modified since the given date.  If the profile id is specified then only publications for that id are returned.</p>
-<table class="table table-striped">       
+<table class="table table-striped">
         <tbody>
           <tr>
             <td>HEAD</td>
-            <td>Returns same as GET, but without body.</td>            
+            <td>Returns same as GET, but without body.</td>
           </tr>
           <tr>
             <td>OPTIONS</td>
-            <td>Lists available methods.</td>            
+            <td>Lists available methods.</td>
           </tr>
           <tr>
             <td>GET</td>
@@ -79,11 +79,11 @@
 
 <h5 style="padding-bottom:10px;text-align:left">http://sulcap.stanford.edu/authorship</h5>
 <p class="sultext">Create or modify an authorship record.</p>
-<table class="table table-striped">       
+<table class="table table-striped">
         <tbody>
           <tr>
             <td>OPTIONS</td>
-            <td>Lists available methods.</td>            
+            <td>Lists available methods.</td>
           </tr>
           <tr>
             <td>POST</td>
@@ -95,17 +95,17 @@
 <hr style="color:#000;background-color:#000;border-color:#000"/>
 
 
-<h5 style="padding-bottom:10px;text-align:left">http://sulcap.stanford.edu/publications/sourcelookup?year={}&title={}&source={}</h5>
+<h5 style="padding-bottom:10px;text-align:left">http://sulcap.stanford.edu/publications/sourcelookup?year={}&title={}&source={}&doi={}</h5>
 <p class="sultext">Returns all matching publications from remote sources or from users' locally submitted publications.  </p>
-<table class="table table-striped">       
+<table class="table table-striped">
         <tbody>
           <tr>
             <td>HEAD</td>
-            <td>Returns same as GET, but without body.</td>            
+            <td>Returns same as GET, but without body.</td>
           </tr>
           <tr>
             <td>OPTIONS</td>
-            <td>Lists available methods.</td>            
+            <td>Lists available methods.</td>
           </tr>
           <tr>
             <td>GET</td>
@@ -115,7 +115,7 @@
 </table>
 <p class="sultext"><%= link_to "See Full Spec", page_path('queryapi') %></p>
 
-  
+
 
 
 
