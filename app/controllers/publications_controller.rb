@@ -62,11 +62,16 @@ class PublicationsController < ApplicationController
   def sourcelookup
     all_matching_records = []
     if params[:doi].presence
+      logger.info("Sourcelookup of doi #{params[:doi]}")
       sources = [Settings.sciencewire_source]
       all_matching_records += Publication.find_by_doi params[:doi]
       if all_matching_records.empty?
         all_matching_records += ScienceWireClient.new.get_pub_by_doi(params[:doi])
       end
+    elsif params[:pmid].presence
+      logger.info("Sourcelookup of pmid #{params[:pmid]}")
+      sources = [Settings.sciencewire_source, Settings.pubmed_source]
+      all_matching_records += PubmedHarvester.search_all_sources_by_pmid params[:pmid]
     else
       raise(ActionController::ParameterMissing.new(:title)) unless params[:title].presence
 

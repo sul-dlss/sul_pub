@@ -176,7 +176,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Wed, 20 Nov 2013 23:00:33 GMT
+      - Fri, 22 Nov 2013 21:44:22 GMT
       Content-Length:
       - '278'
     body:
@@ -185,7 +185,7 @@ http_interactions:
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>136741</queryID>\r\n
         \ <queryResultRows>1</queryResultRows>\r\n  <totalRows>1</totalRows>\r\n</ScienceWireQueryIDResponse>"
     http_version: 
-  recorded_at: Wed, 20 Nov 2013 23:00:34 GMT
+  recorded_at: Fri, 22 Nov 2013 21:44:25 GMT
 - request:
     method: get
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/136741?format=xml&page=0&pageSize=2147483647&v=version/3
@@ -223,7 +223,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Wed, 20 Nov 2013 23:00:33 GMT
+      - Fri, 22 Nov 2013 21:44:23 GMT
       Content-Length:
       - '3087'
     body:
@@ -266,7 +266,7 @@ http_interactions:
         \   <CopyrightStateProvince>NY</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
         STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n</ArrayOfPublicationItem>"
     http_version: 
-  recorded_at: Wed, 20 Nov 2013 23:00:34 GMT
+  recorded_at: Fri, 22 Nov 2013 21:44:26 GMT
 - request:
     method: post
     uri: http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml
@@ -284,7 +284,7 @@ http_interactions:
       message: Bad Request
     headers:
       Date:
-      - Wed, 20 Nov 2013 23:00:34 GMT
+      - Fri, 22 Nov 2013 21:44:23 GMT
       Server:
       - Apache
       Access-Control-Allow-Origin:
@@ -292,12 +292,12 @@ http_interactions:
       Cache-Control:
       - private
       Ncbi-Sid:
-      - 9DFD075728D3F121_0373SID
+      - 9DFC01B228FD0371_0386SID
       Content-Type:
       - text/xml; charset=UTF-8
       Set-Cookie:
-      - ncbi_sid=9DFD075728D3F121_0373SID; domain=.nih.gov; path=/; expires=Thu, 20
-        Nov 2014 23:00:34 GMT
+      - ncbi_sid=9DFC01B228FD0371_0386SID; domain=.nih.gov; path=/; expires=Sat, 22
+        Nov 2014 21:44:23 GMT
       X-Ua-Compatible:
       - IE=Edge
       Connection:
@@ -309,5 +309,5 @@ http_interactions:
       string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n\n<eFetchResult>\n\t<ERROR>WebEnv
         parameter is required</ERROR>\n</eFetchResult>\n"
     http_version: 
-  recorded_at: Wed, 20 Nov 2013 23:00:34 GMT
+  recorded_at: Fri, 22 Nov 2013 21:44:26 GMT
 recorded_with: VCR 2.5.0

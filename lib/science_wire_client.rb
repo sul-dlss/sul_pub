@@ -149,8 +149,8 @@ class ScienceWireClient
 
 
 
-  def pull_records_from_sciencewire_for_pmids(pmid_list)
-
+  def pull_records_from_sciencewire_for_pmids(pmids)
+    pmid_list = Array(pmids)
     pmidValuesAsXML = pmid_list.collect { |pmid| "&lt;Value&gt;#{pmid}&lt;/Value&gt;"}.join
     xml_query = '&lt;query xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
 	            &lt;Criterion ConjunctionOperator="AND"&gt;

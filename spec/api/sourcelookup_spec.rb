@@ -50,6 +50,24 @@ describe SulBib::API do
       end
     end
 
+    describe "?pmid" do
+      it "returns one document" do
+        VCR.use_cassette("sourcelookup_spec_pmid") do
+          get "/publications/sourcelookup?pmid=24196758",
+          { format: "json" },
+          {"HTTP_CAPKEY" => '***REMOVED***'}
+
+          response.status.should == 200
+          result = JSON.parse(response.body)
+          result["metadata"]["records"].should == "1"
+          result['records'].first['provenance'] == 'pubmed'
+          result['records'].first['chicago_citation'].should =~ /Sittig/
+        end
+      end
+
+
+    end
+
       it " returns bibjson with metadata section " do
         get "/publications/sourcelookup?title=pathological&maxrows=2",
           { format: "json" },

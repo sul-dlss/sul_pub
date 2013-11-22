@@ -152,10 +152,13 @@ def convert_pubmed_publication_doc_to_hash(publication)
 		journal_hash[:identifier] = journal_identifiers
 		record_as_hash[:journal] = journal_hash
 
-	    record_as_hash[:identifier] = [{:type =>'PMID', :id => pmid, :url => 'http://www.ncbi.nlm.nih.gov/pubmed/' + pmid } ]
-	    #puts "the record as hash"
-	    #puts record_as_hash.to_s
-	    record_as_hash
+    record_as_hash[:identifier] = [{:type =>'PMID', :id => pmid, :url => 'http://www.ncbi.nlm.nih.gov/pubmed/' + pmid } ]
+    doi = publication.at_xpath('//ArticleId[@IdType="doi"]')
+    record_as_hash[:identifier] << {:type => 'doi', :id => doi.text, :url => 'http://dx.doi.org/' + doi.text} if doi
+
+    #puts "the record as hash"
+    #puts record_as_hash.to_s
+    record_as_hash
   end
 
 end
