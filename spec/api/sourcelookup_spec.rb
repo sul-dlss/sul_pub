@@ -35,18 +35,20 @@ describe SulBib::API do
       end
 
       it "does not query sciencewire if there is an existing publication with the doi" do
-        ScienceWireClient.any_instance.should_not_receive(:get_pub_by_doi)
-        publication.pub_hash = { :identifier => [ { :type => "doi", :id => "10.1016/j.mcn.2012.03.008", :url => "http://dx.doi.org/10.1016/j.mcn.2012.03.008" } ] }
-        publication.sync_identifiers_in_pub_hash_to_db
+        VCR.use_cassette("sourcelookup_spec_doi_local_manual_found") do
+          publication.pub_hash = { :identifier => [ { :type => "doi", :id => "10.1016/j.mcn.2012.03.008", :url => "http://dx.doi.org/10.1016/j.mcn.2012.03.008" } ] }
+          publication.sync_identifiers_in_pub_hash_to_db
 
-        get "/publications/sourcelookup?doi=10.1016/j.mcn.2012.03.008",
-        { format: "json" },
-        {"HTTP_CAPKEY" => '***REMOVED***'}
+          get "/publications/sourcelookup?doi=10.1016/j.mcn.2012.03.008",
+          { format: "json" },
+          {"HTTP_CAPKEY" => '***REMOVED***'}
 
-        response.status.should == 200
-        result = JSON.parse(response.body)
-        result["metadata"]["records"].should == "1"
-        result['records'].first['title'].should match /How I learned Rails/
+          response.status.should == 200
+          result = JSON.parse(response.body)
+          result["metadata"]["records"].should == "1"
+          result['records'].first['title'].should match /Protein kinase C alpha/i
+          result['records'].first['provenance'].should match /sciencewire/
+        end
       end
     end
 

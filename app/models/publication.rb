@@ -373,6 +373,14 @@ class Publication < ActiveRecord::Base
     pub_hash[:year]
   end
 
+  def authoritative_doi_source?
+    if pub_hash[:provenance] && pub_hash[:provenance] =~ /sciencewire/i
+      true
+    else
+      false
+    end
+  end
+
 
 end
 

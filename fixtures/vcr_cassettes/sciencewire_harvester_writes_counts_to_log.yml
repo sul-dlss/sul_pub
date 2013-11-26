@@ -192,7 +192,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Fri, 22 Nov 2013 21:44:15 GMT
+      - Mon, 25 Nov 2013 22:44:16 GMT
       Content-Length:
       - '278'
     body:
@@ -201,7 +201,7 @@ http_interactions:
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>111021</queryID>\r\n
         \ <queryResultRows>0</queryResultRows>\r\n  <totalRows>0</totalRows>\r\n</ScienceWireQueryIDResponse>"
     http_version: 
-  recorded_at: Fri, 22 Nov 2013 21:44:19 GMT
+  recorded_at: Mon, 25 Nov 2013 22:44:16 GMT
 - request:
     method: get
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/111021?format=xml&page=0&pageSize=2147483647&v=version/3
@@ -239,7 +239,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Fri, 22 Nov 2013 21:44:17 GMT
+      - Mon, 25 Nov 2013 22:44:16 GMT
       Content-Length:
       - '148'
     body:
@@ -247,7 +247,7 @@ http_interactions:
       string: ! "<?xml version=\"1.0\"?>\r\n<ArrayOfPublicationItem xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" />"
     http_version: 
-  recorded_at: Fri, 22 Nov 2013 21:44:20 GMT
+  recorded_at: Mon, 25 Nov 2013 22:44:16 GMT
 - request:
     method: post
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery?format=xml
@@ -302,7 +302,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Fri, 22 Nov 2013 21:44:17 GMT
+      - Mon, 25 Nov 2013 22:44:16 GMT
       Content-Length:
       - '278'
     body:
@@ -311,7 +311,7 @@ http_interactions:
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>111021</queryID>\r\n
         \ <queryResultRows>0</queryResultRows>\r\n  <totalRows>0</totalRows>\r\n</ScienceWireQueryIDResponse>"
     http_version: 
-  recorded_at: Fri, 22 Nov 2013 21:44:20 GMT
+  recorded_at: Mon, 25 Nov 2013 22:44:17 GMT
 - request:
     method: get
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/111021?format=xml&page=0&pageSize=2147483647&v=version/3
@@ -349,7 +349,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Fri, 22 Nov 2013 21:44:18 GMT
+      - Mon, 25 Nov 2013 22:44:17 GMT
       Content-Length:
       - '148'
     body:
@@ -357,7 +357,7 @@ http_interactions:
       string: ! "<?xml version=\"1.0\"?>\r\n<ArrayOfPublicationItem xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" />"
     http_version: 
-  recorded_at: Fri, 22 Nov 2013 21:44:21 GMT
+  recorded_at: Mon, 25 Nov 2013 22:44:17 GMT
 - request:
     method: post
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery?format=xml
@@ -412,7 +412,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Fri, 22 Nov 2013 21:44:18 GMT
+      - Mon, 25 Nov 2013 22:44:17 GMT
       Content-Length:
       - '278'
     body:
@@ -421,7 +421,7 @@ http_interactions:
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>111021</queryID>\r\n
         \ <queryResultRows>0</queryResultRows>\r\n  <totalRows>0</totalRows>\r\n</ScienceWireQueryIDResponse>"
     http_version: 
-  recorded_at: Fri, 22 Nov 2013 21:44:21 GMT
+  recorded_at: Mon, 25 Nov 2013 22:44:17 GMT
 - request:
     method: get
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/111021?format=xml&page=0&pageSize=2147483647&v=version/3
@@ -459,7 +459,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Fri, 22 Nov 2013 21:44:18 GMT
+      - Mon, 25 Nov 2013 22:44:17 GMT
       Content-Length:
       - '148'
     body:
@@ -467,7 +467,7 @@ http_interactions:
       string: ! "<?xml version=\"1.0\"?>\r\n<ArrayOfPublicationItem xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" />"
     http_version: 
-  recorded_at: Fri, 22 Nov 2013 21:44:22 GMT
+  recorded_at: Mon, 25 Nov 2013 22:44:18 GMT
 - request:
     method: get
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationItems?format=xml&publicationItemIDs=
@@ -505,7 +505,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Fri, 22 Nov 2013 21:44:19 GMT
+      - Mon, 25 Nov 2013 22:44:17 GMT
       Content-Length:
       - '1208'
     body:
@@ -524,7 +524,7 @@ http_interactions:
         \ <h3>There is a problem with the resource you are looking for, and it cannot
         be displayed.</h3>\r\n </fieldset></div>\r\n</div>\r\n</body>\r\n</html>\r\n"
     http_version: 
-  recorded_at: Fri, 22 Nov 2013 21:44:22 GMT
+  recorded_at: Mon, 25 Nov 2013 22:44:18 GMT
 - request:
     method: post
     uri: http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml
@@ -542,7 +542,7 @@ http_interactions:
       message: Bad Request
     headers:
       Date:
-      - Fri, 22 Nov 2013 21:44:19 GMT
+      - Mon, 25 Nov 2013 22:44:18 GMT
       Server:
       - Apache
       Access-Control-Allow-Origin:
@@ -550,12 +550,12 @@ http_interactions:
       Cache-Control:
       - private
       Ncbi-Sid:
-      - 9DFC01B228FD0331_0385SID
+      - 08DE1CA5293D2C21_0024SID
       Content-Type:
       - text/xml; charset=UTF-8
       Set-Cookie:
-      - ncbi_sid=9DFC01B228FD0331_0385SID; domain=.nih.gov; path=/; expires=Sat, 22
-        Nov 2014 21:44:19 GMT
+      - ncbi_sid=08DE1CA5293D2C21_0024SID; domain=.nih.gov; path=/; expires=Tue, 25
+        Nov 2014 22:44:18 GMT
       X-Ua-Compatible:
       - IE=Edge
       Connection:
@@ -567,5 +567,5 @@ http_interactions:
       string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n\n<eFetchResult>\n\t<ERROR>WebEnv
         parameter is required</ERROR>\n</eFetchResult>\n"
     http_version: 
-  recorded_at: Fri, 22 Nov 2013 21:44:22 GMT
+  recorded_at: Mon, 25 Nov 2013 22:44:18 GMT
 recorded_with: VCR 2.5.0
