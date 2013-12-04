@@ -382,7 +382,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Fri, 22 Nov 2013 21:43:15 GMT
+      - Wed, 04 Dec 2013 00:38:40 GMT
       Content-Length:
       - '33873'
     body:
@@ -769,7 +769,7 @@ http_interactions:
         \   <AuthorCitationCountList>1,0,0|2,0,0</AuthorCitationCountList>\r\n    <CopyrightStateProvince>TX</CopyrightStateProvince>\r\n
         \   <CopyrightCountry>UNITED STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n</ArrayOfPublicationItem>"
     http_version: 
-  recorded_at: Fri, 22 Nov 2013 21:43:18 GMT
+  recorded_at: Wed, 04 Dec 2013 00:38:41 GMT
 - request:
     method: post
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery?format=xml
@@ -829,7 +829,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Mon, 25 Nov 2013 22:44:56 GMT
+      - Wed, 04 Dec 2013 21:17:54 GMT
       Content-Length:
       - '280'
     body:
@@ -838,7 +838,7 @@ http_interactions:
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>129740</queryID>\r\n
         \ <queryResultRows>15</queryResultRows>\r\n  <totalRows>15</totalRows>\r\n</ScienceWireQueryIDResponse>"
     http_version: 
-  recorded_at: Mon, 25 Nov 2013 22:44:56 GMT
+  recorded_at: Wed, 04 Dec 2013 21:17:55 GMT
 - request:
     method: get
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/129740?format=xml&page=0&pageSize=2147483647&v=version/3
@@ -876,7 +876,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Mon, 25 Nov 2013 22:44:56 GMT
+      - Wed, 04 Dec 2013 21:17:54 GMT
       Content-Length:
       - '33873'
     body:
@@ -1263,5 +1263,5 @@ http_interactions:
         \   <AuthorCitationCountList>1,0,0|2,0,0</AuthorCitationCountList>\r\n    <CopyrightStateProvince>TX</CopyrightStateProvince>\r\n
         \   <CopyrightCountry>UNITED STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n</ArrayOfPublicationItem>"
     http_version: 
-  recorded_at: Mon, 25 Nov 2013 22:44:57 GMT
+  recorded_at: Wed, 04 Dec 2013 21:17:55 GMT
 recorded_with: VCR 2.5.0

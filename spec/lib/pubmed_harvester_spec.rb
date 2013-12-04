@@ -48,5 +48,44 @@ describe PubmedHarvester do
       end
     end
 
+    context "mix of local plus SW/pubmed results" do
+
+      it "filters out batch/manual pubs from the resultset if SW/pubmed records were found" do
+        VCR.use_cassette('pubmed_harvester_spec_filter_batch_manual') do
+          pub2 = Publication.new
+          pub2.pub_hash = pub_hash
+          pub2.pub_hash[:provanance] = 'batch'
+          pub2.pmid = 10487815
+          pub2.save
+
+          h = PubmedHarvester.search_all_sources_by_pmid 10487815
+          expect(h.size).to eq 1
+          expect(h.first[:sw_id]).to eq '10340243'
+        end
+      end
+
+      it "does not do any filtering with a resultset of 2 manual/batch pubs" do
+        VCR.use_cassette('pubmed_harvester_spec_no_filtering_local_only') do
+          ph = pub_hash.clone
+          ph[:provanance] = 'cap'
+          publication.pmid = 99999999  # Pubmed ID that does not exist
+          publication.pub_hash = ph
+          publication.save
+
+          pub2 = Publication.new
+          pub2.pub_hash = pub_hash
+          pub2.pub_hash[:title] = 'batch pub'
+          pub2.pub_hash[:provanance] = 'batch'
+          pub2.pmid = 99999999
+          pub2.save
+
+          h = PubmedHarvester.search_all_sources_by_pmid 99999999
+          expect(h.size).to eq 2
+          expect(h.map {|hash| hash[:title]}).to include('batch pub', 'some title')
+        end
+      end
+
+    end
+
   end
 end

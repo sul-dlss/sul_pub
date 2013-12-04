@@ -51,7 +51,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Wed, 04 Dec 2013 00:36:36 GMT
+      - Wed, 04 Dec 2013 20:04:06 GMT
       Content-Length:
       - '278'
     body:
@@ -60,7 +60,7 @@ http_interactions:
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>142959</queryID>\r\n
         \ <queryResultRows>1</queryResultRows>\r\n  <totalRows>1</totalRows>\r\n</ScienceWireQueryIDResponse>"
     http_version: 
-  recorded_at: Wed, 04 Dec 2013 00:36:36 GMT
+  recorded_at: Wed, 04 Dec 2013 20:04:06 GMT
 - request:
     method: get
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/142959?format=xml&page=0&pageSize=2147483647&v=version/3
@@ -98,7 +98,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Wed, 04 Dec 2013 00:36:36 GMT
+      - Wed, 04 Dec 2013 20:04:06 GMT
       Content-Length:
       - '4217'
     body:
@@ -155,5 +155,5 @@ http_interactions:
         \   <CopyrightStateProvince>MO</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
         STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n</ArrayOfPublicationItem>"
     http_version: 
-  recorded_at: Wed, 04 Dec 2013 00:36:37 GMT
+  recorded_at: Wed, 04 Dec 2013 20:04:07 GMT
 recorded_with: VCR 2.5.0

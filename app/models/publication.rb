@@ -373,16 +373,18 @@ class Publication < ActiveRecord::Base
     pub_hash[:year]
   end
 
-  def authoritative_doi_source?
-    if pub_hash[:provenance] && pub_hash[:provenance] =~ /sciencewire/i
-      true
-    else
-      false
-    end
+  def sciencewire_pub?
+    (pub_hash[:provenance] && pub_hash[:provenance] =~ /sciencewire/i) ? true : false
   end
 
+  def pubmed_pub?
+    (pub_hash[:provenance] && pub_hash[:provenance] =~ /pubmed/i) ? true : false
+  end
+
+  def authoritative_pmid_source?
+    pubmed_pub? || sciencewire_pub?
+  end
+
+  alias_method :authoritative_doi_source?, :sciencewire_pub?
 
 end
-
-
-

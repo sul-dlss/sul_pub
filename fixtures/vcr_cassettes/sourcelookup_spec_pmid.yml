@@ -51,7 +51,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Fri, 22 Nov 2013 22:49:11 GMT
+      - Wed, 04 Dec 2013 00:37:13 GMT
       Content-Length:
       - '278'
     body:
@@ -60,7 +60,7 @@ http_interactions:
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>142975</queryID>\r\n
         \ <queryResultRows>0</queryResultRows>\r\n  <totalRows>0</totalRows>\r\n</ScienceWireQueryIDResponse>"
     http_version: 
-  recorded_at: Fri, 22 Nov 2013 22:49:15 GMT
+  recorded_at: Wed, 04 Dec 2013 00:37:14 GMT
 - request:
     method: get
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/142975?format=xml&page=0&pageSize=2147483647&v=version/3
@@ -98,7 +98,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Fri, 22 Nov 2013 22:49:11 GMT
+      - Wed, 04 Dec 2013 00:37:13 GMT
       Content-Length:
       - '148'
     body:
@@ -106,7 +106,7 @@ http_interactions:
       string: ! "<?xml version=\"1.0\"?>\r\n<ArrayOfPublicationItem xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" />"
     http_version: 
-  recorded_at: Fri, 22 Nov 2013 22:49:15 GMT
+  recorded_at: Wed, 04 Dec 2013 00:37:14 GMT
 - request:
     method: post
     uri: http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml
@@ -126,7 +126,7 @@ http_interactions:
     headers:
       !binary "RGF0ZQ==":
       - !binary |-
-        RnJpLCAyMiBOb3YgMjAxMyAyMjo0OToxMiBHTVQ=
+        V2VkLCAwNCBEZWMgMjAxMyAwMDozNzoxNCBHTVQ=
       !binary "U2VydmVy":
       - !binary |-
         QXBhY2hl
@@ -138,15 +138,15 @@ http_interactions:
         cHJpdmF0ZQ==
       !binary "TmNiaS1TaWQ=":
       - !binary |-
-        MDhERTNENUUyOEZERjY4MV8wMjM0U0lE
+        MDhERTNBNTYyOUU3OTNBMV8wMjg2U0lE
       !binary "Q29udGVudC1UeXBl":
       - !binary |-
         dGV4dC94bWw7IGNoYXJzZXQ9VVRGLTg=
       !binary "U2V0LUNvb2tpZQ==":
       - !binary |-
-        bmNiaV9zaWQ9MDhERTNENUUyOEZERjY4MV8wMjM0U0lEOyBkb21haW49Lm5p
-        aC5nb3Y7IHBhdGg9LzsgZXhwaXJlcz1TYXQsIDIyIE5vdiAyMDE0IDIyOjQ5
-        OjEyIEdNVA==
+        bmNiaV9zaWQ9MDhERTNBNTYyOUU3OTNBMV8wMjg2U0lEOyBkb21haW49Lm5p
+        aC5nb3Y7IHBhdGg9LzsgZXhwaXJlcz1UaHUsIDA0IERlYyAyMDE0IDAwOjM3
+        OjE0IEdNVA==
       !binary "WC1VYS1Db21wYXRpYmxl":
       - !binary |-
         SUU9RWRnZQ==
@@ -239,5 +239,5 @@ http_interactions:
         ICAgPC9BcnRpY2xlSWRMaXN0PgogICAgPC9QdWJtZWREYXRhPgo8L1B1Ym1l
         ZEFydGljbGU+Cgo8L1B1Ym1lZEFydGljbGVTZXQ+Cg==
     http_version: 
-  recorded_at: Fri, 22 Nov 2013 22:49:15 GMT
+  recorded_at: Wed, 04 Dec 2013 00:37:14 GMT
 recorded_with: VCR 2.5.0

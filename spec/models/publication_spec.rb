@@ -287,4 +287,24 @@ describe Publication do
       expect(Publication.find_by_doi 'does not exist').to be_empty
     end
   end
+
+  describe "#authoritative_pmid_source?" do
+    let(:pub) { Publication.new }
+
+    it "returns true if the pub has a provenance of 'pubmed'" do
+      pub.pub_hash = { :provenance => 'pubmed' }
+      expect(pub).to be_authoritative_pmid_source
+    end
+
+    it "returns true if the pub has a provenance of 'sciencewire'" do
+      pub.pub_hash = { :provenance => 'sciencewire' }
+      expect(pub).to be_authoritative_pmid_source
+    end
+
+    it "returns false if the pub does not have a provanance of 'pubmed' or 'sciencewire'" do
+      pub.pub_hash = { :provenance => 'cap' }
+      expect(pub).to_not be_authoritative_pmid_source
+    end
+  end
+
 end
