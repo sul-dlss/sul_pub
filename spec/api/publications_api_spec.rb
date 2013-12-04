@@ -24,6 +24,11 @@ describe SulBib::API do
     {"abstract":"","abstract_restricted":"","allAuthors":"author A, author B","author":[{"firstname":"John ","lastname":"Doe","middlename":"","name":"Doe  John ","role":"author"},{"firstname":"Raj","lastname":"Kathopalli","middlename":"","name":"Kathopalli  Raj","role":"author"}],"authorship":[{"cap_profile_id":#{author.cap_profile_id},"featured":true,"status":"APPROVED","visibility":"PUBLIC"}],"booktitle":"TEST Book I","edition":"2","etal":true,"identifier":[{"id":"1177188188181","type":"isbn"},{"type":"SULPubId","id":"164","url":"http://sulcap.stanford.edu/publications/164"}],"last_updated":"2013-08-10T21:03Z","provenance":"CAP","publisher":"Publisher","series":{"number":"919","title":"Series 1","volume":"1"},"type":"book","year":"2010"}
    JSON
     }
+
+  let(:json_with_pubmedid) { <<-JSON
+    {"abstract":"","abstract_restricted":"","allAuthors":"author A, author B","author":[{"firstname":"John ","lastname":"Doe","middlename":"","name":"Doe  John ","role":"author"},{"firstname":"Raj","lastname":"Kathopalli","middlename":"","name":"Kathopalli  Raj","role":"author"}],"authorship":[{"cap_profile_id":#{author.cap_profile_id},"featured":true,"status":"APPROVED","visibility":"PUBLIC"}],"booktitle":"TEST Book I","edition":"2","etal":true,"identifier":[{"id":"1177188188181","type":"isbn"},{"type":"doi","url":"18819910019"},{"type":"pmid","id":"999999999"}],"last_updated":"2013-08-10T21:03Z","provenance":"CAP","publisher":"Publisher","series":{"number":"919","title":"Series 1","volume":"1"},"type":"book","year":"2010"}
+   JSON
+  }
   describe "POST /publications" do
 
     context "when valid post" do
@@ -127,6 +132,16 @@ describe SulBib::API do
         expect(parsed_outgoing_json['identifier'].size).to eq(3)
         expect(pub.publication_identifiers).to have(2).items
         expect(pub.publication_identifiers.map { |x| x.identifier_type }).to include("doi", "isbn")
+        expect(response.body).to eq(pub.pub_hash.to_json)
+      end
+
+      it "creates a pub with with pmid" do
+        post "/publications", json_with_pubmedid, headers
+        response.status.should == 201
+        pub = Publication.last.reload
+        parsed_outgoing_json = JSON.parse(response.body)
+        expect(parsed_outgoing_json['identifier']).to include({"id"=>"999999999", "type"=>"pmid"})
+        expect(pub.publication_identifiers.map { |x| x.identifier_type }).to include("pmid")
         expect(response.body).to eq(pub.pub_hash.to_json)
       end
 

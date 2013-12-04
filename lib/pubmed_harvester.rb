@@ -8,6 +8,9 @@ class PubmedHarvester
   def self.search_all_sources_by_pmid pmid
 
     result = Publication.where(:pmid => pmid) # TODO index manual and batch with pmid?
+    if result.empty?
+      result = Publication.find_by_pmid_in_pub_id_table(pmid)
+    end
 
     if result.none? { |p| p.authoritative_pmid_source? }
       sw_records_doc = ScienceWireClient.new.pull_records_from_sciencewire_for_pmids(pmid)

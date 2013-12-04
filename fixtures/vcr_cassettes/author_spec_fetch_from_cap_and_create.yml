@@ -52,11 +52,11 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Wed, 04 Dec 2013 21:17:52 GMT
+      - Wed, 04 Dec 2013 22:49:50 GMT
       Server:
       - Apache
       X-Irt-Transaction-Id:
-      - Up@cAKwZaGYAAFpOX-gAAAAE
+      - Up@xjqwZaGYAABBqe2AAAAAJ
       Transfer-Encoding:
       - chunked
       Content-Type:
@@ -67,7 +67,7 @@ http_interactions:
         University","lastName":"Kwon"}],"lastModified":"2013-12-04T06:04:05.827-08:00","profile":{"californiaPhysicianLicense":"G80767","displayName":"Hower
         Kwon","email":"hower.kwon@stanford.edu","meta":{"etag":"1323726193","links":[{"href":"http://irt-ppapp-02:12011/cap-api-qa/api/profiles/v1/3871","rel":"https://cap.stanford.edu/rel/self"},{"href":"https://irt-dev.stanford.edu/cap-su-qa/3871","rel":"https://cap.stanford.edu/rel/public"},{"href":"https://cap-irt-dev.stanford.edu/profiles-qa/auth/frdActionServlet?choiceId=facProfile&profileId=3871","rel":"https://cap.stanford.edu/rel/intranet"},{"href":"https://cap-irt-dev.stanford.edu/profiles-qa/frdActionServlet?choiceId=printerprofile&profileversion=full&profileId=3871","rel":"https://cap.stanford.edu/rel/pdf"},{"href":"http://irt-ppapp-02:12011/cap-api-qa/api/cap/v1/schemas/profile","rel":"https://cap.stanford.edu/rel/schema"}]},"names":{"legal":{"firstName":"Hower","lastName":"Kwon"},"preferred":{"firstName":"Hower","lastName":"Kwon"}},"profileId":3871,"uid":"howerk","universityId":"04777025"},"profileId":3871,"visibility":"public"}'
     http_version: 
-  recorded_at: Wed, 04 Dec 2013 21:17:54 GMT
+  recorded_at: Wed, 04 Dec 2013 22:49:51 GMT
 - request:
     method: get
     uri: https://irt-dev.stanford.edu/cap-api-qa/api/cap/v1/authors/3871
@@ -89,11 +89,11 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Wed, 04 Dec 2013 21:17:54 GMT
+      - Wed, 04 Dec 2013 22:49:51 GMT
       Server:
       - Apache
       X-Irt-Transaction-Id:
-      - Up@cAqwZaGYAAA8NaOgAAAAH
+      - Up@xj6wZaGYAAFpaejcAAAAX
       Transfer-Encoding:
       - chunked
       Content-Type:
@@ -104,7 +104,7 @@ http_interactions:
         University","lastName":"Kwon"}],"lastModified":"2013-12-04T06:04:05.827-08:00","profile":{"californiaPhysicianLicense":"G80767","displayName":"Hower
         Kwon","email":"hower.kwon@stanford.edu","meta":{"etag":"1323726193","links":[{"href":"http://irt-ppapp-02:12011/cap-api-qa/api/profiles/v1/3871","rel":"https://cap.stanford.edu/rel/self"},{"href":"https://irt-dev.stanford.edu/cap-su-qa/3871","rel":"https://cap.stanford.edu/rel/public"},{"href":"https://cap-irt-dev.stanford.edu/profiles-qa/auth/frdActionServlet?choiceId=facProfile&profileId=3871","rel":"https://cap.stanford.edu/rel/intranet"},{"href":"https://cap-irt-dev.stanford.edu/profiles-qa/frdActionServlet?choiceId=printerprofile&profileversion=full&profileId=3871","rel":"https://cap.stanford.edu/rel/pdf"},{"href":"http://irt-ppapp-02:12011/cap-api-qa/api/cap/v1/schemas/profile","rel":"https://cap.stanford.edu/rel/schema"}]},"names":{"legal":{"firstName":"Hower","lastName":"Kwon"},"preferred":{"firstName":"Hower","lastName":"Kwon"}},"profileId":3871,"uid":"howerk","universityId":"04777025"},"profileId":3871,"visibility":"public"}'
     http_version: 
-  recorded_at: Wed, 04 Dec 2013 21:17:54 GMT
+  recorded_at: Wed, 04 Dec 2013 22:49:51 GMT
 - request:
     method: get
     uri: https://irt-dev.stanford.edu/cap-api-qa/api/cap/v1/authors/3871
@@ -126,11 +126,11 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Wed, 04 Dec 2013 21:17:54 GMT
+      - Wed, 04 Dec 2013 22:49:51 GMT
       Server:
       - Apache
       X-Irt-Transaction-Id:
-      - Up@cAqwZaGYAAFpRclUAAAAC
+      - Up@xj6wZaGYAAA7CQEcAAAAT
       Transfer-Encoding:
       - chunked
       Content-Type:
@@ -141,5 +141,5 @@ http_interactions:
         University","lastName":"Kwon"}],"lastModified":"2013-12-04T06:04:05.827-08:00","profile":{"californiaPhysicianLicense":"G80767","displayName":"Hower
         Kwon","email":"hower.kwon@stanford.edu","meta":{"etag":"1323726193","links":[{"href":"http://irt-ppapp-02:12011/cap-api-qa/api/profiles/v1/3871","rel":"https://cap.stanford.edu/rel/self"},{"href":"https://irt-dev.stanford.edu/cap-su-qa/3871","rel":"https://cap.stanford.edu/rel/public"},{"href":"https://cap-irt-dev.stanford.edu/profiles-qa/auth/frdActionServlet?choiceId=facProfile&profileId=3871","rel":"https://cap.stanford.edu/rel/intranet"},{"href":"https://cap-irt-dev.stanford.edu/profiles-qa/frdActionServlet?choiceId=printerprofile&profileversion=full&profileId=3871","rel":"https://cap.stanford.edu/rel/pdf"},{"href":"http://irt-ppapp-02:12011/cap-api-qa/api/cap/v1/schemas/profile","rel":"https://cap.stanford.edu/rel/schema"}]},"names":{"legal":{"firstName":"Hower","lastName":"Kwon"},"preferred":{"firstName":"Hower","lastName":"Kwon"}},"profileId":3871,"uid":"howerk","universityId":"04777025"},"profileId":3871,"visibility":"public"}'
     http_version: 
-  recorded_at: Wed, 04 Dec 2013 21:17:54 GMT
+  recorded_at: Wed, 04 Dec 2013 22:49:51 GMT
 recorded_with: VCR 2.5.0

@@ -97,6 +97,10 @@ class Publication < ActiveRecord::Base
     PublicationIdentifier.where(:identifier_type => 'doi', :identifier_value => doi).map {|id| id.publication}
   end
 
+  def self.find_by_pmid_in_pub_id_table(pmid)
+    PublicationIdentifier.where(:identifier_type => 'pmid', :identifier_value => pmid).map {|id| id.publication}
+  end
+
   def self.build_new_manual_publication(provenance, pub_hash, original_source_string)
 
     existingRecord = UserSubmittedSourceRecord.find_or_initialize_by_source_data(original_source_string)
