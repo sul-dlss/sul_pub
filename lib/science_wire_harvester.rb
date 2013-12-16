@@ -536,18 +536,20 @@ class ScienceWireHarvester
 
         # process the last batch of WOS ids
         if current_profile_id != batch_profile_id
-          unless batch_profile_id.nil?
-            sunetid = Author.where(:cap_profile_id => batch_profile_id).pluck(:sunetid).first
-            if sunetid.nil?
-              @sw_harvest_logger.error "No sunetid found for cap_profile_id: #{batch_profile_id}. Skipping"
-            else
-              @sw_harvest_logger.info "Starting harvest for sunetid: #{sunetid} cap_profile_id: #{batch_profile_id}"
-              harvest_sw_pubs_by_wos_array_and_sunetid sunetid, wos_ids
+          begin
+            unless batch_profile_id.nil?
+              sunetid = Author.where(:cap_profile_id => batch_profile_id).pluck(:sunetid).first
+              if sunetid.nil?
+                @sw_harvest_logger.error "No sunetid found for cap_profile_id: #{batch_profile_id}. Skipping"
+              else
+                @sw_harvest_logger.info "Starting harvest for sunetid: #{sunetid} cap_profile_id: #{batch_profile_id} with #{wos_ids.size} WOS ids"
+                harvest_sw_pubs_by_wos_array_and_sunetid sunetid, wos_ids
+              end
             end
+          ensure
+            wos_ids = []
+            batch_profile_id = current_profile_id
           end
-
-          wos_ids = []
-          batch_profile_id = current_profile_id
         end
         wos_ids << wos_id
 
