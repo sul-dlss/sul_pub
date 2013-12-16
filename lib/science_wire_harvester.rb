@@ -539,8 +539,9 @@ class ScienceWireHarvester
           unless batch_profile_id.nil?
             sunetid = Author.where(:cap_profile_id => batch_profile_id).pluck(:sunetid).first
             if sunetid.nil?
-              sw_harvest_logger.error "No sunetid found for cap_profile_id: #{batch_profile_id}. Skipping"
+              @sw_harvest_logger.error "No sunetid found for cap_profile_id: #{batch_profile_id}. Skipping"
             else
+              @sw_harvest_logger.info "Starting harvest for sunetid: #{sunetid} cap_profile_id: #{batch_profile_id}"
               harvest_sw_pubs_by_wos_array_and_sunetid sunetid, wos_ids
             end
           end
