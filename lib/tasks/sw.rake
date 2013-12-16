@@ -43,4 +43,9 @@ namespace :sw do
   task :wos_sunetid_json, [:sunetid,:path_to_json] => :environment do |t, args|
     harvester.harvest_for_sunetid_with_wos_json args[:sunetid], args[:path_to_json]
   end
+
+  desc "Harvest using a text report file of WOS ids and cap_profile_ids"
+  task :wos_profile_id_report, [:path_to_report] => :environment do |t, args|
+    harvester.harvest_from_wos_id_cap_profile_id_report args[:path_to_report]
+  end
 end

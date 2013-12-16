@@ -490,6 +490,18 @@ class ScienceWireHarvester
     process_queued_pubmed_records
   end
 
+  def harvest_sw_pubs_by_wos_array_and_sunetid(sunetid, wos_ids, batch_size = 20)
+    batches = wos_ids.size / batch_size
+    (0...batches).each do |batch_num|
+      starting_index = batch_num * batch_size
+      @sw_harvest_logger.info "Starting next batch at #{starting_index}"
+      wos_batch = wos_ids[starting_index, batch_size]
+      harvest_sw_pubs_by_wos_id_for_author sunetid, wos_batch
+    end
+    log_counts
+    process_queued_pubmed_records
+  end
+
   # Used for targeted harvesting for an author by sunetid and a json-file with an array of WOS id
   # Instantiates the logger too
   def harvest_for_sunetid_with_wos_json(sunetid, path_to_json, batch_size = 20)
@@ -501,15 +513,48 @@ class ScienceWireHarvester
     @sw_harvest_logger.info "Started Web Of Science harvest for #{sunetid} with wos-json #{path_to_json}"
 
     wos_ids = JSON.parse IO.read path_to_json
-    batches = wos_ids.size / batch_size
-    (0...batches).each do |batch_num|
-      starting_index = batch_num * batch_size
-      @sw_harvest_logger.info "Starting next batch at #{starting_index}"
-      wos_batch = wos_ids[starting_index, batch_size]
-      harvest_sw_pubs_by_wos_id_for_author sunetid, wos_batch
+    harvest_sw_pubs_by_wos_array_and_sunetid sunetid, wos_ids, batch_size
+  end
+
+  # Process a text file with lines that have this format of WOS document id and cap profile id:
+  #  WOS:000314860700023	38808
+  def harvest_from_wos_id_cap_profile_id_report(path_to_report)
+    @sw_harvest_logger = Logger.new(Rails.root.join('log', 'wos_harvest.log'))
+    @sw_harvest_logger.datetime_format = "%Y-%m-%d %H:%M:%S"
+    @sw_harvest_logger.formatter = proc { |severity, datetime, progname, msg|
+      "#{severity} #{datetime}: #{msg}\n"
+    }
+
+    lines = IO.readlines path_to_report
+    batch_profile_id = nil
+    wos_ids = []
+    lines.each do |line|
+      begin
+        line =~ /WOS:(.*)\s+(\d+)/
+        wos_id = $1
+        current_profile_id = $2
+
+        # process the last batch of WOS ids
+        if current_profile_id != batch_profile_id
+          unless batch_profile_id.nil?
+            sunetid = Author.where(:cap_profile_id => batch_profile_id).pluck(:sunetid).first
+            if sunetid.nil?
+              sw_harvest_logger.error "No sunetid found for cap_profile_id: #{batch_profile_id}. Skipping"
+            else
+              harvest_sw_pubs_by_wos_array_and_sunetid sunetid, wos_ids
+            end
+          end
+
+          wos_ids = []
+          batch_profile_id = current_profile_id
+        end
+        wos_ids << wos_id
+
+      rescue => e
+        @sw_harvest_logger.error "Unable to process line: #{line}"
+        @sw_harvest_logger.error e.inspect << "\n" << e.backtrace.join("\n")
+      end
     end
-    log_counts
-    process_queued_pubmed_records
   end
 
 
