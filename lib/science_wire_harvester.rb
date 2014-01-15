@@ -526,25 +526,20 @@ class ScienceWireHarvester
     }
 
     lines = IO.readlines path_to_report
-    batch_profile_id = nil
+
+    wid, batch_profile_id = parse_wos_line(lines.first)
     wos_ids = []
     lines.each do |line|
+      next if line.empty?
+
       begin
-        line =~ /WOS:(.*)\s+(\d+)/
-        wos_id = $1
-        current_profile_id = $2
+        wos_id, current_profile_id  = parse_wos_line(line)
 
         # process the last batch of WOS ids
         if current_profile_id != batch_profile_id
           begin
             unless batch_profile_id.nil?
-              sunetid = Author.where(:cap_profile_id => batch_profile_id).pluck(:sunetid).first
-              if sunetid.nil?
-                @sw_harvest_logger.error "No sunetid found for cap_profile_id: #{batch_profile_id}. Skipping"
-              else
-                @sw_harvest_logger.info "Starting harvest for sunetid: #{sunetid} cap_profile_id: #{batch_profile_id} with #{wos_ids.size} WOS ids"
-                harvest_sw_pubs_by_wos_array_and_sunetid sunetid, wos_ids
-              end
+              process_wos_ids_for_author(batch_profile_id, wos_ids)
             end
           ensure
             wos_ids = []
@@ -557,6 +552,26 @@ class ScienceWireHarvester
         @sw_harvest_logger.error "Unable to process line: #{line}"
         @sw_harvest_logger.error e.inspect << "\n" << e.backtrace.join("\n")
       end
+    end
+
+    # handle last set of WOS ids
+    process_wos_ids_for_author(batch_profile_id, wos_ids)
+  end
+
+  # @param [String] line A string with the format "WOS:000314860700023	38808"
+  # @return [Array<String>] first element wos_id. second_element cap_profile_id
+  def parse_wos_line(line)
+    line =~ /WOS:([^\s]*)\s+(\d+)/
+    [$1, $2]
+  end
+
+  def process_wos_ids_for_author(cap_profile_id, wos_ids)
+    sunetid = Author.where(:cap_profile_id => cap_profile_id).pluck(:sunetid).first
+    if sunetid.nil?
+      @sw_harvest_logger.error "No sunetid found for cap_profile_id: #{cap_profile_id}. Skipping"
+    else
+      @sw_harvest_logger.info "Starting harvest for sunetid: #{sunetid} cap_profile_id: #{cap_profile_id} with #{wos_ids.size} WOS ids"
+      harvest_sw_pubs_by_wos_array_and_sunetid sunetid, wos_ids
     end
   end
 
