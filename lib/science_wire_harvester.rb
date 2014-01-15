@@ -538,9 +538,7 @@ class ScienceWireHarvester
         # process the last batch of WOS ids
         if current_profile_id != batch_profile_id
           begin
-            unless batch_profile_id.nil?
-              process_wos_ids_for_author(batch_profile_id, wos_ids)
-            end
+            process_wos_ids_for_author(batch_profile_id, wos_ids)
           ensure
             wos_ids = []
             batch_profile_id = current_profile_id
