@@ -492,7 +492,7 @@ class ScienceWireHarvester
 
   def harvest_sw_pubs_by_wos_array_and_sunetid(sunetid, wos_ids, batch_size = 20)
     batches = wos_ids.size / batch_size
-    (0...batches).each do |batch_num|
+    (0..batches).each do |batch_num|
       starting_index = batch_num * batch_size
       @sw_harvest_logger.info "Starting next batch at #{starting_index}"
       wos_batch = wos_ids[starting_index, batch_size]
