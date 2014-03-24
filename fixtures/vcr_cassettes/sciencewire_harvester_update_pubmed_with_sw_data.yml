@@ -37,7 +37,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Wed, 04 Dec 2013 00:37:27 GMT
+      - Sat, 22 Mar 2014 00:50:27 GMT
       Content-Length:
       - '2075'
     body:
@@ -68,7 +68,7 @@ http_interactions:
         />\r\n    <NewPublicationItemID>42711845</NewPublicationItemID>\r\n    <IsObsolete>false</IsObsolete>\r\n
         \   <CopyrightPublisher />\r\n    <CopyrightCity />\r\n  </PublicationItem>\r\n</ArrayOfPublicationItem>"
     http_version: 
-  recorded_at: Wed, 04 Dec 2013 00:37:27 GMT
+  recorded_at: Sat, 22 Mar 2014 00:50:27 GMT
 - request:
     method: post
     uri: http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml
@@ -86,7 +86,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Wed, 04 Dec 2013 00:37:27 GMT
+      - Sat, 22 Mar 2014 00:50:27 GMT
       Server:
       - Apache
       Access-Control-Allow-Origin:
@@ -94,12 +94,12 @@ http_interactions:
       Cache-Control:
       - private
       Ncbi-Sid:
-      - 08DE4C9229E79471_0280SID
+      - 08DE57CA32CDE531_0815SID
       Content-Type:
       - text/xml; charset=UTF-8
       Set-Cookie:
-      - ncbi_sid=08DE4C9229E79471_0280SID; domain=.nih.gov; path=/; expires=Thu, 04
-        Dec 2014 00:37:27 GMT
+      - ncbi_sid=08DE57CA32CDE531_0815SID; domain=.nih.gov; path=/; expires=Sun, 22
+        Mar 2015 00:50:27 GMT
       X-Ua-Compatible:
       - IE=Edge
       Transfer-Encoding:
@@ -107,7 +107,7 @@ http_interactions:
     body:
       encoding: US-ASCII
       string: ! "<?xml version=\"1.0\"?>\n<!DOCTYPE PubmedArticleSet PUBLIC \"-//NLM//DTD
-        PubMedArticle, 1st May 2013//EN\" \"http://www.ncbi.nlm.nih.gov/corehtml/query/DTD/pubmed_130501.dtd\">\n<PubmedArticleSet>\n<PubmedArticle>\n
+        PubMedArticle, 1st January 2014//EN\" \"http://www.ncbi.nlm.nih.gov/corehtml/query/DTD/pubmed_140101.dtd\">\n<PubmedArticleSet>\n<PubmedArticle>\n
         \   <MedlineCitation Owner=\"NLM\" Status=\"MEDLINE\">\n        <PMID Version=\"1\">10048354</PMID>\n
         \       <DateCreated>\n            <Year>1999</Year>\n            <Month>04</Month>\n
         \           <Day>22</Day>\n        </DateCreated>\n        <DateCompleted>\n
@@ -131,11 +131,11 @@ http_interactions:
         and experimental imaging studies and treatment options are also reviewed.
         An effort is made to give the orthopedic perspective on each issue, providing
         a valuable resource for all orthopedic surgeons involved in the care of the
-        patient with frostbite.</AbstractText>\n            </Abstract>\n            <Affiliation>Department
-        of Orthopaedics and Rehabilitation, University of New Mexico, Albuquerque,
-        USA.</Affiliation>\n            <AuthorList CompleteYN=\"Y\">\n                <Author
-        ValidYN=\"Y\">\n                    <LastName>McAdams</LastName>\n                    <ForeName>T
-        R</ForeName>\n                    <Initials>TR</Initials>\n                </Author>\n
+        patient with frostbite.</AbstractText>\n            </Abstract>\n            <AuthorList
+        CompleteYN=\"Y\">\n                <Author ValidYN=\"Y\">\n                    <LastName>McAdams</LastName>\n
+        \                   <ForeName>T R</ForeName>\n                    <Initials>TR</Initials>\n
+        \                   <Affiliation>Department of Orthopaedics and Rehabilitation,
+        University of New Mexico, Albuquerque, USA.</Affiliation>\n                </Author>\n
         \               <Author ValidYN=\"Y\">\n                    <LastName>Swenson</LastName>\n
         \                   <ForeName>D R</ForeName>\n                    <Initials>DR</Initials>\n
         \               </Author>\n                <Author ValidYN=\"Y\">\n                    <LastName>Miller</LastName>\n
@@ -178,7 +178,7 @@ http_interactions:
         \       <ArticleIdList>\n            <ArticleId IdType=\"pubmed\">10048354</ArticleId>\n
         \       </ArticleIdList>\n    </PubmedData>\n</PubmedArticle>\n\n</PubmedArticleSet>\n"
     http_version: 
-  recorded_at: Wed, 04 Dec 2013 00:37:27 GMT
+  recorded_at: Sat, 22 Mar 2014 00:50:28 GMT
 - request:
     method: post
     uri: http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml
@@ -196,7 +196,7 @@ http_interactions:
       message: Bad Request
     headers:
       Date:
-      - Wed, 04 Dec 2013 00:37:28 GMT
+      - Sat, 22 Mar 2014 00:50:28 GMT
       Server:
       - Apache
       Access-Control-Allow-Origin:
@@ -204,12 +204,12 @@ http_interactions:
       Cache-Control:
       - private
       Ncbi-Sid:
-      - 08DE759429E79481_0142SID
+      - 9DFC4EF432CDE541_0641SID
       Content-Type:
       - text/xml; charset=UTF-8
       Set-Cookie:
-      - ncbi_sid=08DE759429E79481_0142SID; domain=.nih.gov; path=/; expires=Thu, 04
-        Dec 2014 00:37:28 GMT
+      - ncbi_sid=9DFC4EF432CDE541_0641SID; domain=.nih.gov; path=/; expires=Sun, 22
+        Mar 2015 00:50:28 GMT
       X-Ua-Compatible:
       - IE=Edge
       Connection:
@@ -218,8 +218,9 @@ http_interactions:
       - chunked
     body:
       encoding: US-ASCII
-      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n\n<eFetchResult>\n\t<ERROR>WebEnv
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE eEfetchResult
+        PUBLIC \"-//NLM//DTD efetch 20131226//EN\" \"http://eutils.ncbi.nlm.nih.gov/eutils/dtd/20131226/efetch.dtd\">\n<eFetchResult>\n\t<ERROR>WebEnv
         parameter is required</ERROR>\n</eFetchResult>\n"
     http_version: 
-  recorded_at: Wed, 04 Dec 2013 00:37:28 GMT
+  recorded_at: Sat, 22 Mar 2014 00:50:28 GMT
 recorded_with: VCR 2.5.0

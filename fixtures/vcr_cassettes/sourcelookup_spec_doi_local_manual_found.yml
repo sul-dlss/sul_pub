@@ -47,7 +47,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Wed, 04 Dec 2013 00:37:12 GMT
+      - Mon, 24 Mar 2014 17:57:36 GMT
       Content-Length:
       - '278'
     body:
@@ -56,7 +56,7 @@ http_interactions:
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>143234</queryID>\r\n
         \ <queryResultRows>1</queryResultRows>\r\n  <totalRows>1</totalRows>\r\n</ScienceWireQueryIDResponse>"
     http_version: 
-  recorded_at: Wed, 04 Dec 2013 00:37:13 GMT
+  recorded_at: Mon, 24 Mar 2014 17:57:37 GMT
 - request:
     method: get
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/143234?format=xml&page=0&pageSize=2147483647&v=version/3
@@ -94,7 +94,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Wed, 04 Dec 2013 00:37:13 GMT
+      - Mon, 24 Mar 2014 17:57:36 GMT
       Content-Length:
       - '3709'
     body:
@@ -125,7 +125,7 @@ http_interactions:
         AXONS|PKC-DELTA|ACTIVATION|MOUSE OPTIC CHIASM|Shh|axon guidance|ILK|PKC alpha</KeywordList>\r\n
         \   <DocumentTypeList>Article</DocumentTypeList>\r\n    <DocumentCategory>Journal
         Document</DocumentCategory>\r\n    <NumberOfReferences>63</NumberOfReferences>\r\n
-        \   <TimesCited>2</TimesCited>\r\n    <TimesNotSelfCited>2</TimesNotSelfCited>\r\n
+        \   <TimesCited>4</TimesCited>\r\n    <TimesNotSelfCited>4</TimesNotSelfCited>\r\n
         \   <PMID>22521536</PMID>\r\n    <WoSItemID>000305547700008</WoSItemID>\r\n
         \   <PublicationSourceTitle>MOLECULAR AND CELLULAR NEUROSCIENCE</PublicationSourceTitle>\r\n
         \   <Volume>50</Volume>\r\n    <Issue>1</Issue>\r\n    <Pagination>82-92</Pagination>\r\n
@@ -139,9 +139,9 @@ http_interactions:
         PRESS INC ELSEVIER SCIENCE</CopyrightPublisher>\r\n    <CopyrightCity>SAN
         DIEGO</CopyrightCity>\r\n    <PublicationImpactFactorList>3.663,2011,ClosestToPublicationYear|3.663,2011,MostRecentYear</PublicationImpactFactorList>\r\n
         \   <PublicationCategoryRankingList>77/242;NEUROSCIENCES;2011;SC;ClosestToPublicationYear|77/242;NEUROSCIENCES;2011;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
-        \   <AuthorCitationCountList>1,0,2|2,0,2|3,0,2|4,0,2|5,0,2</AuthorCitationCountList>\r\n
+        \   <AuthorCitationCountList>1,0,4|2,0,4|3,0,4|4,0,4|5,0,4</AuthorCitationCountList>\r\n
         \   <CopyrightStateProvince>CA</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
         STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n</ArrayOfPublicationItem>"
     http_version: 
-  recorded_at: Wed, 04 Dec 2013 00:37:13 GMT
+  recorded_at: Mon, 24 Mar 2014 17:57:37 GMT
 recorded_with: VCR 2.5.0

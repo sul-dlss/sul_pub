@@ -17,7 +17,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Wed, 04 Dec 2013 00:37:54 GMT
+      - Mon, 24 Mar 2014 17:48:42 GMT
       Server:
       - Apache
       Access-Control-Allow-Origin:
@@ -25,12 +25,12 @@ http_interactions:
       Cache-Control:
       - private
       Ncbi-Sid:
-      - 9DFD1F1829E79621_0050SID
+      - 9DFD21B03306FFA1_0149SID
       Content-Type:
       - text/xml; charset=UTF-8
       Set-Cookie:
-      - ncbi_sid=9DFD1F1829E79621_0050SID; domain=.nih.gov; path=/; expires=Thu, 04
-        Dec 2014 00:37:54 GMT
+      - ncbi_sid=9DFD21B03306FFA1_0149SID; domain=.nih.gov; path=/; expires=Tue, 24
+        Mar 2015 17:48:42 GMT
       X-Ua-Compatible:
       - IE=Edge
       Transfer-Encoding:
@@ -38,13 +38,13 @@ http_interactions:
     body:
       encoding: US-ASCII
       string: ! "<?xml version=\"1.0\"?>\n<!DOCTYPE PubmedArticleSet PUBLIC \"-//NLM//DTD
-        PubMedArticle, 1st May 2013//EN\" \"http://www.ncbi.nlm.nih.gov/corehtml/query/DTD/pubmed_130501.dtd\">\n<PubmedArticleSet>\n<PubmedArticle>\n
+        PubMedArticle, 1st January 2014//EN\" \"http://www.ncbi.nlm.nih.gov/corehtml/query/DTD/pubmed_140101.dtd\">\n<PubmedArticleSet>\n<PubmedArticle>\n
         \   <MedlineCitation Owner=\"NLM\" Status=\"MEDLINE\">\n        <PMID Version=\"1\">211</PMID>\n
         \       <DateCreated>\n            <Year>1976</Year>\n            <Month>02</Month>\n
         \           <Day>09</Day>\n        </DateCreated>\n        <DateCompleted>\n
         \           <Year>1976</Year>\n            <Month>02</Month>\n            <Day>09</Day>\n
-        \       </DateCompleted>\n        <DateRevised>\n            <Year>2006</Year>\n
-        \           <Month>11</Month>\n            <Day>15</Day>\n        </DateRevised>\n
+        \       </DateCompleted>\n        <DateRevised>\n            <Year>2013</Year>\n
+        \           <Month>11</Month>\n            <Day>21</Day>\n        </DateRevised>\n
         \       <Article PubModel=\"Print\">\n            <Journal>\n                <ISSN
         IssnType=\"Print\">0300-1725</ISSN>\n                <JournalIssue CitedMedium=\"Print\">\n
         \                   <Volume>4</Volume>\n                    <PubDate>\n                        <Year>1975</Year>\n
@@ -78,16 +78,16 @@ http_interactions:
         \               <NameOfSubstance>Ketoglutaric Acids</NameOfSubstance>\n            </Chemical>\n
         \           <Chemical>\n                <RegistryNumber>0</RegistryNumber>\n
         \               <NameOfSubstance>Maleates</NameOfSubstance>\n            </Chemical>\n
-        \           <Chemical>\n                <RegistryNumber>56-65-5</RegistryNumber>\n
+        \           <Chemical>\n                <RegistryNumber>8L70Q75FXE</RegistryNumber>\n
         \               <NameOfSubstance>Adenosine Triphosphate</NameOfSubstance>\n
-        \           </Chemical>\n            <Chemical>\n                <RegistryNumber>59-66-5</RegistryNumber>\n
-        \               <NameOfSubstance>Acetazolamide</NameOfSubstance>\n            </Chemical>\n
-        \           <Chemical>\n                <RegistryNumber>7440-09-7</RegistryNumber>\n
-        \               <NameOfSubstance>Potassium</NameOfSubstance>\n            </Chemical>\n
-        \           <Chemical>\n                <RegistryNumber>7440-23-5</RegistryNumber>\n
+        \           </Chemical>\n            <Chemical>\n                <RegistryNumber>9NEZ333N27</RegistryNumber>\n
         \               <NameOfSubstance>Sodium</NameOfSubstance>\n            </Chemical>\n
-        \           <Chemical>\n                <RegistryNumber>7440-38-2</RegistryNumber>\n
+        \           <Chemical>\n                <RegistryNumber>N712M78A8G</RegistryNumber>\n
         \               <NameOfSubstance>Arsenic</NameOfSubstance>\n            </Chemical>\n
+        \           <Chemical>\n                <RegistryNumber>O3FX965V0I</RegistryNumber>\n
+        \               <NameOfSubstance>Acetazolamide</NameOfSubstance>\n            </Chemical>\n
+        \           <Chemical>\n                <RegistryNumber>RWP5GA015D</RegistryNumber>\n
+        \               <NameOfSubstance>Potassium</NameOfSubstance>\n            </Chemical>\n
         \       </ChemicalList>\n        <CitationSubset>IM</CitationSubset>\n        <MeshHeadingList>\n
         \           <MeshHeading>\n                <DescriptorName MajorTopicYN=\"N\">Acetazolamide</DescriptorName>\n
         \               <QualifierName MajorTopicYN=\"N\">pharmacology</QualifierName>\n
@@ -137,8 +137,8 @@ http_interactions:
         \       <DateCreated>\n            <Year>1976</Year>\n            <Month>02</Month>\n
         \           <Day>19</Day>\n        </DateCreated>\n        <DateCompleted>\n
         \           <Year>1976</Year>\n            <Month>02</Month>\n            <Day>19</Day>\n
-        \       </DateCompleted>\n        <DateRevised>\n            <Year>2009</Year>\n
-        \           <Month>10</Month>\n            <Day>27</Day>\n        </DateRevised>\n
+        \       </DateCompleted>\n        <DateRevised>\n            <Year>2013</Year>\n
+        \           <Month>11</Month>\n            <Day>21</Day>\n        </DateRevised>\n
         \       <Article PubModel=\"Print\">\n            <Journal>\n                <ISSN
         IssnType=\"Print\">0091-679X</ISSN>\n                <JournalIssue CitedMedium=\"Print\">\n
         \                   <Volume>12</Volume>\n                    <PubDate>\n                        <Year>1975</Year>\n
@@ -165,11 +165,11 @@ http_interactions:
         \               <NameOfSubstance>Phenanthrolines</NameOfSubstance>\n            </Chemical>\n
         \           <Chemical>\n                <RegistryNumber>0</RegistryNumber>\n
         \               <NameOfSubstance>Protease Inhibitors</NameOfSubstance>\n            </Chemical>\n
-        \           <Chemical>\n                <RegistryNumber>329-98-6</RegistryNumber>\n
-        \               <NameOfSubstance>Phenylmethylsulfonyl Fluoride</NameOfSubstance>\n
-        \           </Chemical>\n            <Chemical>\n                <RegistryNumber>55-91-4</RegistryNumber>\n
+        \           <Chemical>\n                <RegistryNumber>12UHW9R67N</RegistryNumber>\n
         \               <NameOfSubstance>Isoflurophate</NameOfSubstance>\n            </Chemical>\n
-        \           <Chemical>\n                <RegistryNumber>60-00-4</RegistryNumber>\n
+        \           <Chemical>\n                <RegistryNumber>57KD15003I</RegistryNumber>\n
+        \               <NameOfSubstance>Phenylmethylsulfonyl Fluoride</NameOfSubstance>\n
+        \           </Chemical>\n            <Chemical>\n                <RegistryNumber>9G34HU7RV0</RegistryNumber>\n
         \               <NameOfSubstance>Edetic Acid</NameOfSubstance>\n            </Chemical>\n
         \           <Chemical>\n                <RegistryNumber>EC 1.1.1.37</RegistryNumber>\n
         \               <NameOfSubstance>Malate Dehydrogenase</NameOfSubstance>\n
@@ -323,8 +323,8 @@ http_interactions:
         \       <DateCreated>\n            <Year>1976</Year>\n            <Month>02</Month>\n
         \           <Day>19</Day>\n        </DateCreated>\n        <DateCompleted>\n
         \           <Year>1976</Year>\n            <Month>02</Month>\n            <Day>19</Day>\n
-        \       </DateCompleted>\n        <DateRevised>\n            <Year>2003</Year>\n
-        \           <Month>11</Month>\n            <Day>14</Day>\n        </DateRevised>\n
+        \       </DateCompleted>\n        <DateRevised>\n            <Year>2013</Year>\n
+        \           <Month>11</Month>\n            <Day>21</Day>\n        </DateRevised>\n
         \       <Article PubModel=\"Print\">\n            <Journal>\n                <ISSN
         IssnType=\"Print\">0003-9861</ISSN>\n                <JournalIssue CitedMedium=\"Print\">\n
         \                   <Volume>171</Volume>\n                    <Issue>2</Issue>\n
@@ -352,10 +352,10 @@ http_interactions:
         \               <NameOfSubstance>Iodoacetates</NameOfSubstance>\n            </Chemical>\n
         \           <Chemical>\n                <RegistryNumber>0</RegistryNumber>\n
         \               <NameOfSubstance>Sulfhydryl Compounds</NameOfSubstance>\n
-        \           </Chemical>\n            <Chemical>\n                <RegistryNumber>53-59-8</RegistryNumber>\n
-        \               <NameOfSubstance>NADP</NameOfSubstance>\n            </Chemical>\n
-        \           <Chemical>\n                <RegistryNumber>53-84-9</RegistryNumber>\n
+        \           </Chemical>\n            <Chemical>\n                <RegistryNumber>0U46U6E8UK</RegistryNumber>\n
         \               <NameOfSubstance>NAD</NameOfSubstance>\n            </Chemical>\n
+        \           <Chemical>\n                <RegistryNumber>53-59-8</RegistryNumber>\n
+        \               <NameOfSubstance>NADP</NameOfSubstance>\n            </Chemical>\n
         \           <Chemical>\n                <RegistryNumber>EC 1.2.1.-</RegistryNumber>\n
         \               <NameOfSubstance>Glyceraldehyde-3-Phosphate Dehydrogenases</NameOfSubstance>\n
         \           </Chemical>\n        </ChemicalList>\n        <CitationSubset>IM</CitationSubset>\n
@@ -402,5 +402,5 @@ http_interactions:
         \       <ArticleIdList>\n            <ArticleId IdType=\"pubmed\">960</ArticleId>\n
         \       </ArticleIdList>\n    </PubmedData>\n</PubmedArticle>\n\n</PubmedArticleSet>\n"
     http_version: 
-  recorded_at: Wed, 04 Dec 2013 00:37:54 GMT
+  recorded_at: Mon, 24 Mar 2014 17:48:42 GMT
 recorded_with: VCR 2.5.0

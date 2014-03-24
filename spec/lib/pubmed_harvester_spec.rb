@@ -41,10 +41,12 @@ describe PubmedHarvester do
 
     it "searches Pubmed by pmid if not found in ScienceWire and returns a pubhash" do
       VCR.use_cassette('pubmed_harvester_spec_find_by_pmid_through_pubmed') do
-        h = PubmedHarvester.search_all_sources_by_pmid 24196758
+        # This pmid might eventually show up in SW.  If that's the case, search the recent production logs for publication sourcelookups with this format:
+        # /publications/sourcelookup?pmid=
+        h = PubmedHarvester.search_all_sources_by_pmid 24645947
         expect(h.first[:provenance]).to eq('pubmed')
-        expect(h.first[:identifier]).to include( {:type=>"doi", :id=>"10.1590/S0325-00752013000600003", :url=>"http://dx.doi.org/10.1590/S0325-00752013000600003"} )
-        expect(h.first[:chicago_citation]).to match(/Rights and Responsibilities of Electronic Health Records/)
+        expect(h.first[:identifier]).to include( {:type=>"doi", :id=>"10.1056/NEJMicm1309192", :url=>"http://dx.doi.org/10.1056/NEJMicm1309192"} )
+        expect(h.first[:chicago_citation]).to match(/Bilateral Digital Ischemia/)
       end
     end
 

@@ -1,6 +1,102 @@
 ---
 http_interactions:
 - request:
+    method: get
+    uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/142975?format=xml&page=0&pageSize=2147483647&v=version/3
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+      Content-Type:
+      - text/xml
+      Licenseid:
+      - ***REMOVED***
+      Host:
+      - sciencewirerest.discoverylogic.com
+      Connection:
+      - Keep-Alive
+  response:
+    status:
+      code: 200
+      message: !binary |-
+        T0s=
+    headers:
+      !binary "Q2FjaGUtQ29udHJvbA==":
+      - !binary |-
+        cHJpdmF0ZQ==
+      !binary "Q29udGVudC1UeXBl":
+      - !binary |-
+        YXBwbGljYXRpb24veG1sOyBjaGFyc2V0PXV0Zi04
+      !binary "U2VydmVy":
+      - !binary |-
+        TWljcm9zb2Z0LUlJUy83LjU=
+      !binary "WC1Bc3BuZXRtdmMtVmVyc2lvbg==":
+      - !binary |-
+        Mi4w
+      !binary "WC1Bc3BuZXQtVmVyc2lvbg==":
+      - !binary |-
+        NC4wLjMwMzE5
+      !binary "WC1Qb3dlcmVkLUJ5":
+      - !binary |-
+        QVNQLk5FVA==
+      !binary "RGF0ZQ==":
+      - !binary |-
+        TW9uLCAyNCBNYXIgMjAxNCAxODoxMjoyNiBHTVQ=
+      !binary "Q29udGVudC1MZW5ndGg=":
+      - !binary |-
+        MTg4OA==
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        PD94bWwgdmVyc2lvbj0iMS4wIj8+DQo8QXJyYXlPZlB1YmxpY2F0aW9uSXRl
+        bSB4bWxuczp4c2Q9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1h
+        IiB4bWxuczp4c2k9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1h
+        LWluc3RhbmNlIj4NCiAgPFB1YmxpY2F0aW9uSXRlbT4NCiAgICA8UHVibGlj
+        YXRpb25JdGVtSUQ+NjQ3NDA3OTU8L1B1YmxpY2F0aW9uSXRlbUlEPg0KICAg
+        IDxUaXRsZT5SaWdodHMgYW5kIHJlc3BvbnNpYmlsaXRpZXMgb2YgZWxlY3Ry
+        b25pYyBoZWFsdGggcmVjb3JkcyAoRUhSKSB1c2VycyBjYXJpbmcgZm9yIGNo
+        aWxkcmVuLjwvVGl0bGU+DQogICAgPEFic3RyYWN0IC8+DQogICAgPEF1dGhv
+        ckxpc3Q+U2l0dGlnLERlYW4sRnxTaW5naCxIYXJkZWVwLHxMb25naHVyc3Qs
+        Q2hyaXN0b3BoZXIsQTwvQXV0aG9yTGlzdD4NCiAgICA8QXV0aG9yQ291bnQ+
+        MzwvQXV0aG9yQ291bnQ+DQogICAgPEtleXdvcmRMaXN0IC8+DQogICAgPERv
+        Y3VtZW50VHlwZUxpc3Q+Sm91cm5hbCBBcnRpY2xlPC9Eb2N1bWVudFR5cGVM
+        aXN0Pg0KICAgIDxEb2N1bWVudENhdGVnb3J5PkpvdXJuYWwgRG9jdW1lbnQ8
+        L0RvY3VtZW50Q2F0ZWdvcnk+DQogICAgPE51bWJlck9mUmVmZXJlbmNlcyB4
+        c2k6bmlsPSJ0cnVlIiAvPg0KICAgIDxUaW1lc0NpdGVkIHhzaTpuaWw9InRy
+        dWUiIC8+DQogICAgPFRpbWVzTm90U2VsZkNpdGVkIHhzaTpuaWw9InRydWUi
+        IC8+DQogICAgPFBNSUQ+MjQxOTY3NTg8L1BNSUQ+DQogICAgPFB1YmxpY2F0
+        aW9uU291cmNlVGl0bGU+QXJjaGl2b3MgYXJnZW50aW5vcyBkZSBwZWRpYXRy
+        w61hPC9QdWJsaWNhdGlvblNvdXJjZVRpdGxlPg0KICAgIDxWb2x1bWU+MTEx
+        PC9Wb2x1bWU+DQogICAgPElzc3VlPjY8L0lzc3VlPg0KICAgIDxQYWdpbmF0
+        aW9uPjQ2OC00NzE8L1BhZ2luYXRpb24+DQogICAgPFB1YmxpY2F0aW9uRGF0
+        ZT4yMDEzLTEyLTAxVDAwOjAwOjAwPC9QdWJsaWNhdGlvbkRhdGU+DQogICAg
+        PFB1YmxpY2F0aW9uWWVhcj4yMDEzPC9QdWJsaWNhdGlvblllYXI+DQogICAg
+        PFB1YmxpY2F0aW9uU3ViamVjdENhdGVnb3J5TGlzdCAvPg0KICAgIDxJU1NO
+        PjAzMjUtMDA3NTwvSVNTTj4NCiAgICA8RE9JPjEwLjE1OTAvUzAzMjUtMDA3
+        NTIwMTMwMDA2MDAwMDM8L0RPST4NCiAgICA8Q29uZmVyZW5jZVN0YXJ0RGF0
+        ZSB4c2k6bmlsPSJ0cnVlIiAvPg0KICAgIDxDb25mZXJlbmNlRW5kRGF0ZSB4
+        c2k6bmlsPSJ0cnVlIiAvPg0KICAgIDxSYW5rIHhzaTpuaWw9InRydWUiIC8+
+        DQogICAgPE9yZGluYWxSYW5rPjA8L09yZGluYWxSYW5rPg0KICAgIDxOb3Jt
+        YWxpemVkUmFuayB4c2k6bmlsPSJ0cnVlIiAvPg0KICAgIDxOZXdQdWJsaWNh
+        dGlvbkl0ZW1JRCB4c2k6bmlsPSJ0cnVlIiAvPg0KICAgIDxJc09ic29sZXRl
+        PmZhbHNlPC9Jc09ic29sZXRlPg0KICAgIDxDb3B5cmlnaHRQdWJsaXNoZXIg
+        Lz4NCiAgICA8Q29weXJpZ2h0Q2l0eSAvPg0KICAgIDxQdWJsaWNhdGlvbklt
+        cGFjdEZhY3Rvckxpc3Q+MC4zMjMsMjAxMixDbG9zZXN0VG9QdWJsaWNhdGlv
+        blllYXJ8MC4zMjMsMjAxMixNb3N0UmVjZW50WWVhcjwvUHVibGljYXRpb25J
+        bXBhY3RGYWN0b3JMaXN0Pg0KICAgIDxQdWJsaWNhdGlvbkNhdGVnb3J5UmFu
+        a2luZ0xpc3Q+MTE0LzEyMjtQRURJQVRSSUNTOzIwMTI7U0M7Q2xvc2VzdFRv
+        UHVibGljYXRpb25ZZWFyfDExNC8xMjI7UEVESUFUUklDUzsyMDEyO1NDO01v
+        c3RSZWNlbnRZZWFyPC9QdWJsaWNhdGlvbkNhdGVnb3J5UmFua2luZ0xpc3Q+
+        DQogICAgPENvcHlyaWdodFN0YXRlUHJvdmluY2UgLz4NCiAgICA8Q29weXJp
+        Z2h0Q291bnRyeT5BUkdFTlRJTkE8L0NvcHlyaWdodENvdW50cnk+DQogIDwv
+        UHVibGljYXRpb25JdGVtPg0KPC9BcnJheU9mUHVibGljYXRpb25JdGVtPg==
+    http_version: 
+  recorded_at: Mon, 24 Mar 2014 18:12:27 GMT
+- request:
     method: post
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery?format=xml
     body:
@@ -11,7 +107,7 @@ http_interactions:
         \           &lt;Criterion ConjunctionOperator=\"AND\"&gt;\n\t              &lt;Criteria&gt;\n\t
         \               &lt;Criterion&gt;\n\t                  &lt;Filter&gt;\n\t
         \                   &lt;Column&gt;PMID&lt;/Column&gt;\n\t                    &lt;Operator&gt;In&lt;/Operator&gt;\n\t
-        \                   &lt;Values&gt;&lt;Value&gt;24196758&lt;/Value&gt;&lt;/Values&gt;\n\t
+        \                   &lt;Values&gt;&lt;Value&gt;24645947&lt;/Value&gt;&lt;/Values&gt;\n\t
         \                 &lt;/Filter&gt;\n\t                &lt;/Criterion&gt;\n\t
         \             &lt;/Criteria&gt;\n\t            &lt;/Criterion&gt;\n\t            &lt;Columns&gt;\n\t
         \             &lt;SortColumn&gt;\n\t                &lt;Column&gt;Rank&lt;/Column&gt;\n\t
@@ -51,19 +147,19 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Wed, 04 Dec 2013 00:36:37 GMT
+      - Mon, 24 Mar 2014 18:46:19 GMT
       Content-Length:
       - '278'
     body:
       encoding: US-ASCII
       string: ! "<?xml version=\"1.0\"?>\r\n<ScienceWireQueryIDResponse xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
-        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>142975</queryID>\r\n
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>158344</queryID>\r\n
         \ <queryResultRows>0</queryResultRows>\r\n  <totalRows>0</totalRows>\r\n</ScienceWireQueryIDResponse>"
     http_version: 
-  recorded_at: Wed, 04 Dec 2013 00:36:38 GMT
+  recorded_at: Mon, 24 Mar 2014 18:46:20 GMT
 - request:
     method: get
-    uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/142975?format=xml&page=0&pageSize=2147483647&v=version/3
+    uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/158344?format=xml&page=0&pageSize=2147483647&v=version/3
     body:
       encoding: US-ASCII
       string: ''
@@ -98,7 +194,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Wed, 04 Dec 2013 00:36:37 GMT
+      - Mon, 24 Mar 2014 18:46:19 GMT
       Content-Length:
       - '148'
     body:
@@ -106,13 +202,13 @@ http_interactions:
       string: ! "<?xml version=\"1.0\"?>\r\n<ArrayOfPublicationItem xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" />"
     http_version: 
-  recorded_at: Wed, 04 Dec 2013 00:36:38 GMT
+  recorded_at: Mon, 24 Mar 2014 18:46:20 GMT
 - request:
     method: post
     uri: http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml
     body:
       encoding: US-ASCII
-      string: ! '&id=24196758'
+      string: ! '&id=24645947'
     headers:
       Accept:
       - ! '*/*'
@@ -121,123 +217,70 @@ http_interactions:
   response:
     status:
       code: 200
-      message: !binary |-
-        T0s=
+      message: OK
     headers:
-      !binary "RGF0ZQ==":
-      - !binary |-
-        V2VkLCAwNCBEZWMgMjAxMyAwMDozNjozOSBHTVQ=
-      !binary "U2VydmVy":
-      - !binary |-
-        QXBhY2hl
-      !binary "QWNjZXNzLUNvbnRyb2wtQWxsb3ctT3JpZ2lu":
-      - !binary |-
-        Kg==
-      !binary "Q2FjaGUtQ29udHJvbA==":
-      - !binary |-
-        cHJpdmF0ZQ==
-      !binary "TmNiaS1TaWQ=":
-      - !binary |-
-        OURGQzMyNEEyOUU3OTE3MV8wMjk5U0lE
-      !binary "Q29udGVudC1UeXBl":
-      - !binary |-
-        dGV4dC94bWw7IGNoYXJzZXQ9VVRGLTg=
-      !binary "U2V0LUNvb2tpZQ==":
-      - !binary |-
-        bmNiaV9zaWQ9OURGQzMyNEEyOUU3OTE3MV8wMjk5U0lEOyBkb21haW49Lm5p
-        aC5nb3Y7IHBhdGg9LzsgZXhwaXJlcz1UaHUsIDA0IERlYyAyMDE0IDAwOjM2
-        OjM5IEdNVA==
-      !binary "WC1VYS1Db21wYXRpYmxl":
-      - !binary |-
-        SUU9RWRnZQ==
-      !binary "VHJhbnNmZXItRW5jb2Rpbmc=":
-      - !binary |-
-        Y2h1bmtlZA==
+      Date:
+      - Mon, 24 Mar 2014 18:46:20 GMT
+      Server:
+      - Apache
+      Access-Control-Allow-Origin:
+      - ! '*'
+      Cache-Control:
+      - private
+      Ncbi-Sid:
+      - 9DFC365A3307D7C1_0095SID
+      Content-Type:
+      - text/xml; charset=UTF-8
+      Set-Cookie:
+      - ncbi_sid=9DFC365A3307D7C1_0095SID; domain=.nih.gov; path=/; expires=Tue, 24
+        Mar 2015 18:46:20 GMT
+      X-Ua-Compatible:
+      - IE=Edge
+      Transfer-Encoding:
+      - chunked
     body:
-      encoding: ASCII-8BIT
-      string: !binary |-
-        PD94bWwgdmVyc2lvbj0iMS4wIj8+CjwhRE9DVFlQRSBQdWJtZWRBcnRpY2xl
-        U2V0IFBVQkxJQyAiLS8vTkxNLy9EVEQgUHViTWVkQXJ0aWNsZSwgMXN0IE1h
-        eSAyMDEzLy9FTiIgImh0dHA6Ly93d3cubmNiaS5ubG0ubmloLmdvdi9jb3Jl
-        aHRtbC9xdWVyeS9EVEQvcHVibWVkXzEzMDUwMS5kdGQiPgo8UHVibWVkQXJ0
-        aWNsZVNldD4KPFB1Ym1lZEFydGljbGU+CiAgICA8TWVkbGluZUNpdGF0aW9u
-        IFN0YXR1cz0iUHVibGlzaGVyIiBPd25lcj0iTkxNIj4KICAgICAgICA8UE1J
-        RCBWZXJzaW9uPSIxIj4yNDE5Njc1ODwvUE1JRD4KICAgICAgICA8RGF0ZUNy
-        ZWF0ZWQ+CiAgICAgICAgICAgIDxZZWFyPjIwMTM8L1llYXI+CiAgICAgICAg
-        ICAgIDxNb250aD4xMTwvTW9udGg+CiAgICAgICAgICAgIDxEYXk+NzwvRGF5
-        PgogICAgICAgIDwvRGF0ZUNyZWF0ZWQ+CiAgICAgICAgPEFydGljbGUgUHVi
-        TW9kZWw9IlByaW50Ij4KICAgICAgICAgICAgPEpvdXJuYWw+CiAgICAgICAg
-        ICAgICAgICA8SVNTTiBJc3NuVHlwZT0iRWxlY3Ryb25pYyI+MTY2OC0zNTAx
-        PC9JU1NOPgogICAgICAgICAgICAgICAgPEpvdXJuYWxJc3N1ZSBDaXRlZE1l
-        ZGl1bT0iSW50ZXJuZXQiPgogICAgICAgICAgICAgICAgICAgIDxWb2x1bWU+
-        MTExPC9Wb2x1bWU+CiAgICAgICAgICAgICAgICAgICAgPElzc3VlPjY8L0lz
-        c3VlPgogICAgICAgICAgICAgICAgICAgIDxQdWJEYXRlPgogICAgICAgICAg
-        ICAgICAgICAgICAgICA8WWVhcj4yMDEzPC9ZZWFyPgogICAgICAgICAgICAg
-        ICAgICAgICAgICA8TW9udGg+RGVjPC9Nb250aD4KICAgICAgICAgICAgICAg
-        ICAgICA8L1B1YkRhdGU+CiAgICAgICAgICAgICAgICA8L0pvdXJuYWxJc3N1
-        ZT4KICAgICAgICAgICAgICAgIDxUaXRsZT5BcmNoaXZvcyBhcmdlbnRpbm9z
-        IGRlIHBlZGlhdHJpYTwvVGl0bGU+CiAgICAgICAgICAgICAgICA8SVNPQWJi
-        cmV2aWF0aW9uPkFyY2ggQXJnZW50IFBlZGlhdHI8L0lTT0FiYnJldmlhdGlv
-        bj4KICAgICAgICAgICAgPC9Kb3VybmFsPgogICAgICAgICAgICA8QXJ0aWNs
-        ZVRpdGxlPlJpZ2h0cyBhbmQgcmVzcG9uc2liaWxpdGllcyBvZiBlbGVjdHJv
-        bmljIGhlYWx0aCByZWNvcmRzIChFSFIpIHVzZXJzIGNhcmluZyBmb3IgY2hp
-        bGRyZW4uPC9BcnRpY2xlVGl0bGU+CiAgICAgICAgICAgIDxQYWdpbmF0aW9u
-        PgogICAgICAgICAgICAgICAgPE1lZGxpbmVQZ24vPgogICAgICAgICAgICA8
-        L1BhZ2luYXRpb24+CiAgICAgICAgICAgIDxFTG9jYXRpb25JRCBFSWRUeXBl
-        PSJwaWkiPlMwMzI1LTAwNzUyMDEzMDAwNjAwMDAzPC9FTG9jYXRpb25JRD4K
-        ICAgICAgICAgICAgPEF1dGhvckxpc3Q+CiAgICAgICAgICAgICAgICA8QXV0
-        aG9yPgogICAgICAgICAgICAgICAgICAgIDxMYXN0TmFtZT5TaXR0aWc8L0xh
-        c3ROYW1lPgogICAgICAgICAgICAgICAgICAgIDxGb3JlTmFtZT5EZWFuIEY8
-        L0ZvcmVOYW1lPgogICAgICAgICAgICAgICAgICAgIDxJbml0aWFscz5ERjwv
-        SW5pdGlhbHM+CiAgICAgICAgICAgICAgICA8L0F1dGhvcj4KICAgICAgICAg
-        ICAgICAgIDxBdXRob3I+CiAgICAgICAgICAgICAgICAgICAgPExhc3ROYW1l
-        PlNpbmdoPC9MYXN0TmFtZT4KICAgICAgICAgICAgICAgICAgICA8Rm9yZU5h
-        bWU+SGFyZGVlcDwvRm9yZU5hbWU+CiAgICAgICAgICAgICAgICAgICAgPElu
-        aXRpYWxzPkg8L0luaXRpYWxzPgogICAgICAgICAgICAgICAgPC9BdXRob3I+
-        CiAgICAgICAgICAgICAgICA8QXV0aG9yPgogICAgICAgICAgICAgICAgICAg
-        IDxMYXN0TmFtZT5Mb25naHVyc3Q8L0xhc3ROYW1lPgogICAgICAgICAgICAg
-        ICAgICAgIDxGb3JlTmFtZT5DaHJpc3RvcGhlciBBPC9Gb3JlTmFtZT4KICAg
-        ICAgICAgICAgICAgICAgICA8SW5pdGlhbHM+Q0E8L0luaXRpYWxzPgogICAg
-        ICAgICAgICAgICAgPC9BdXRob3I+CiAgICAgICAgICAgIDwvQXV0aG9yTGlz
-        dD4KICAgICAgICAgICAgPExhbmd1YWdlPkVORzwvTGFuZ3VhZ2U+CiAgICAg
-        ICAgICAgIDxMYW5ndWFnZT5TUEE8L0xhbmd1YWdlPgogICAgICAgICAgICA8
-        UHVibGljYXRpb25UeXBlTGlzdD4KICAgICAgICAgICAgICAgIDxQdWJsaWNh
-        dGlvblR5cGU+Sk9VUk5BTCBBUlRJQ0xFPC9QdWJsaWNhdGlvblR5cGU+CiAg
-        ICAgICAgICAgIDwvUHVibGljYXRpb25UeXBlTGlzdD4KICAgICAgICAgICAg
-        PFZlcm5hY3VsYXJUaXRsZT5EZXJlY2hvcyB5IHJlc3BvbnNhYmlsaWRhZGVz
-        IGRlIGxvcyB1c3VhcmlvcyBkZSB1bmEgSGlzdG9yaWEgQ2zDrW5pY2EgRWxl
-        Y3Ryw7NuaWNhLjwvVmVybmFjdWxhclRpdGxlPgogICAgICAgIDwvQXJ0aWNs
-        ZT4KICAgICAgICA8TWVkbGluZUpvdXJuYWxJbmZvPgogICAgICAgICAgICA8
-        TWVkbGluZVRBPkFyY2ggQXJnZW50IFBlZGlhdHI8L01lZGxpbmVUQT4KICAg
-        ICAgICAgICAgPE5sbVVuaXF1ZUlEPjAzNzI0NjA8L05sbVVuaXF1ZUlEPgog
-        ICAgICAgICAgICA8SVNTTkxpbmtpbmc+MDMyNS0wMDc1PC9JU1NOTGlua2lu
-        Zz4KICAgICAgICA8L01lZGxpbmVKb3VybmFsSW5mbz4KICAgIDwvTWVkbGlu
-        ZUNpdGF0aW9uPgogICAgPFB1Ym1lZERhdGE+CiAgICAgICAgPEhpc3Rvcnk+
-        CiAgICAgICAgICAgIDxQdWJNZWRQdWJEYXRlIFB1YlN0YXR1cz0iZW50cmV6
-        Ij4KICAgICAgICAgICAgICAgIDxZZWFyPjIwMTM8L1llYXI+CiAgICAgICAg
-        ICAgICAgICA8TW9udGg+MTE8L01vbnRoPgogICAgICAgICAgICAgICAgPERh
-        eT44PC9EYXk+CiAgICAgICAgICAgICAgICA8SG91cj42PC9Ib3VyPgogICAg
-        ICAgICAgICAgICAgPE1pbnV0ZT4wPC9NaW51dGU+CiAgICAgICAgICAgIDwv
-        UHViTWVkUHViRGF0ZT4KICAgICAgICAgICAgPFB1Yk1lZFB1YkRhdGUgUHVi
-        U3RhdHVzPSJwdWJtZWQiPgogICAgICAgICAgICAgICAgPFllYXI+MjAxMzwv
-        WWVhcj4KICAgICAgICAgICAgICAgIDxNb250aD4xMTwvTW9udGg+CiAgICAg
-        ICAgICAgICAgICA8RGF5Pjg8L0RheT4KICAgICAgICAgICAgICAgIDxIb3Vy
-        PjY8L0hvdXI+CiAgICAgICAgICAgICAgICA8TWludXRlPjA8L01pbnV0ZT4K
-        ICAgICAgICAgICAgPC9QdWJNZWRQdWJEYXRlPgogICAgICAgICAgICA8UHVi
-        TWVkUHViRGF0ZSBQdWJTdGF0dXM9Im1lZGxpbmUiPgogICAgICAgICAgICAg
-        ICAgPFllYXI+MjAxMzwvWWVhcj4KICAgICAgICAgICAgICAgIDxNb250aD4x
-        MTwvTW9udGg+CiAgICAgICAgICAgICAgICA8RGF5Pjg8L0RheT4KICAgICAg
-        ICAgICAgICAgIDxIb3VyPjY8L0hvdXI+CiAgICAgICAgICAgICAgICA8TWlu
-        dXRlPjA8L01pbnV0ZT4KICAgICAgICAgICAgPC9QdWJNZWRQdWJEYXRlPgog
-        ICAgICAgIDwvSGlzdG9yeT4KICAgICAgICA8UHVibGljYXRpb25TdGF0dXM+
-        cHB1Ymxpc2g8L1B1YmxpY2F0aW9uU3RhdHVzPgogICAgICAgIDxBcnRpY2xl
-        SWRMaXN0PgogICAgICAgICAgICA8QXJ0aWNsZUlkIElkVHlwZT0icGlpIj5T
-        MDMyNS0wMDc1MjAxMzAwMDYwMDAwMzwvQXJ0aWNsZUlkPgogICAgICAgICAg
-        ICA8QXJ0aWNsZUlkIElkVHlwZT0iZG9pIj4xMC4xNTkwL1MwMzI1LTAwNzUy
-        MDEzMDAwNjAwMDAzPC9BcnRpY2xlSWQ+CiAgICAgICAgICAgIDxBcnRpY2xl
-        SWQgSWRUeXBlPSJwdWJtZWQiPjI0MTk2NzU4PC9BcnRpY2xlSWQ+CiAgICAg
-        ICAgPC9BcnRpY2xlSWRMaXN0PgogICAgPC9QdWJtZWREYXRhPgo8L1B1Ym1l
-        ZEFydGljbGU+Cgo8L1B1Ym1lZEFydGljbGVTZXQ+Cg==
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\"?>\n<!DOCTYPE PubmedArticleSet PUBLIC \"-//NLM//DTD
+        PubMedArticle, 1st January 2014//EN\" \"http://www.ncbi.nlm.nih.gov/corehtml/query/DTD/pubmed_140101.dtd\">\n<PubmedArticleSet>\n<PubmedArticle>\n
+        \   <MedlineCitation Owner=\"NLM\" Status=\"In-Process\">\n        <PMID Version=\"1\">24645947</PMID>\n
+        \       <DateCreated>\n            <Year>2014</Year>\n            <Month>03</Month>\n
+        \           <Day>20</Day>\n        </DateCreated>\n        <Article PubModel=\"Print\">\n
+        \           <Journal>\n                <ISSN IssnType=\"Electronic\">1533-4406</ISSN>\n
+        \               <JournalIssue CitedMedium=\"Internet\">\n                    <Volume>370</Volume>\n
+        \                   <Issue>12</Issue>\n                    <PubDate>\n                        <Year>2014</Year>\n
+        \                       <Month>Mar</Month>\n                        <Day>20</Day>\n
+        \                   </PubDate>\n                </JournalIssue>\n                <Title>The
+        New England journal of medicine</Title>\n                <ISOAbbreviation>N.
+        Engl. J. Med.</ISOAbbreviation>\n            </Journal>\n            <ArticleTitle>Images
+        in clinical medicine. Bilateral digital ischemia.</ArticleTitle>\n            <Pagination>\n
+        \               <MedlinePgn>1148</MedlinePgn>\n            </Pagination>\n
+        \           <ELocationID EIdType=\"doi\" ValidYN=\"Y\">10.1056/NEJMicm1309192</ELocationID>\n
+        \           <AuthorList CompleteYN=\"Y\">\n                <Author ValidYN=\"Y\">\n
+        \                   <LastName>Rosenberg</LastName>\n                    <ForeName>Jacob
+        M</ForeName>\n                    <Initials>JM</Initials>\n                    <Affiliation>Stanford
+        University School of Medicine, Stanford, CA jakeros@stanford.edu.</Affiliation>\n
+        \               </Author>\n                <Author ValidYN=\"Y\">\n                    <LastName>Rosenberg</LastName>\n
+        \                   <ForeName>Ralph</ForeName>\n                    <Initials>R</Initials>\n
+        \               </Author>\n            </AuthorList>\n            <Language>eng</Language>\n
+        \           <PublicationTypeList>\n                <PublicationType>Journal
+        Article</PublicationType>\n            </PublicationTypeList>\n        </Article>\n
+        \       <MedlineJournalInfo>\n            <Country>United States</Country>\n
+        \           <MedlineTA>N Engl J Med</MedlineTA>\n            <NlmUniqueID>0255562</NlmUniqueID>\n
+        \           <ISSNLinking>0028-4793</ISSNLinking>\n        </MedlineJournalInfo>\n
+        \       <CitationSubset>AIM</CitationSubset>\n        <CitationSubset>IM</CitationSubset>\n
+        \   </MedlineCitation>\n    <PubmedData>\n        <History>\n            <PubMedPubDate
+        PubStatus=\"entrez\">\n                <Year>2014</Year>\n                <Month>3</Month>\n
+        \               <Day>21</Day>\n                <Hour>6</Hour>\n                <Minute>0</Minute>\n
+        \           </PubMedPubDate>\n            <PubMedPubDate PubStatus=\"pubmed\">\n
+        \               <Year>2014</Year>\n                <Month>3</Month>\n                <Day>22</Day>\n
+        \               <Hour>6</Hour>\n                <Minute>0</Minute>\n            </PubMedPubDate>\n
+        \           <PubMedPubDate PubStatus=\"medline\">\n                <Year>2014</Year>\n
+        \               <Month>3</Month>\n                <Day>22</Day>\n                <Hour>6</Hour>\n
+        \               <Minute>0</Minute>\n            </PubMedPubDate>\n        </History>\n
+        \       <PublicationStatus>ppublish</PublicationStatus>\n        <ArticleIdList>\n
+        \           <ArticleId IdType=\"doi\">10.1056/NEJMicm1309192</ArticleId>\n
+        \           <ArticleId IdType=\"pubmed\">24645947</ArticleId>\n        </ArticleIdList>\n
+        \   </PubmedData>\n</PubmedArticle>\n\n</PubmedArticleSet>\n"
     http_version: 
-  recorded_at: Wed, 04 Dec 2013 00:36:39 GMT
+  recorded_at: Mon, 24 Mar 2014 18:46:21 GMT
 recorded_with: VCR 2.5.0

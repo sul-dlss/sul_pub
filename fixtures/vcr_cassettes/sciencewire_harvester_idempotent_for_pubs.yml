@@ -37,7 +37,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Wed, 04 Dec 2013 00:37:15 GMT
+      - Sat, 22 Mar 2014 00:50:30 GMT
       Content-Length:
       - '6476'
     body:
@@ -123,7 +123,7 @@ http_interactions:
         \   <CopyrightPublisher>LIPPINCOTT WILLIAMS &amp; WILKINS</CopyrightPublisher>\r\n
         \   <CopyrightCity>PHILADELPHIA</CopyrightCity>\r\n  </PublicationItem>\r\n</ArrayOfPublicationItem>"
     http_version: 
-  recorded_at: Wed, 04 Dec 2013 00:37:15 GMT
+  recorded_at: Sat, 22 Mar 2014 00:50:31 GMT
 - request:
     method: post
     uri: http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml
@@ -141,7 +141,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Wed, 04 Dec 2013 00:37:15 GMT
+      - Sat, 22 Mar 2014 00:50:31 GMT
       Server:
       - Apache
       Access-Control-Allow-Origin:
@@ -149,12 +149,12 @@ http_interactions:
       Cache-Control:
       - private
       Ncbi-Sid:
-      - 08DD761029E793B1_0317SID
+      - 9DFD0F5432CDE571_0105SID
       Content-Type:
       - text/xml; charset=UTF-8
       Set-Cookie:
-      - ncbi_sid=08DD761029E793B1_0317SID; domain=.nih.gov; path=/; expires=Thu, 04
-        Dec 2014 00:37:15 GMT
+      - ncbi_sid=9DFD0F5432CDE571_0105SID; domain=.nih.gov; path=/; expires=Sun, 22
+        Mar 2015 00:50:31 GMT
       X-Ua-Compatible:
       - IE=Edge
       Transfer-Encoding:
@@ -162,7 +162,7 @@ http_interactions:
     body:
       encoding: US-ASCII
       string: ! "<?xml version=\"1.0\"?>\n<!DOCTYPE PubmedArticleSet PUBLIC \"-//NLM//DTD
-        PubMedArticle, 1st May 2013//EN\" \"http://www.ncbi.nlm.nih.gov/corehtml/query/DTD/pubmed_130501.dtd\">\n<PubmedArticleSet>\n<PubmedArticle>\n
+        PubMedArticle, 1st January 2014//EN\" \"http://www.ncbi.nlm.nih.gov/corehtml/query/DTD/pubmed_140101.dtd\">\n<PubmedArticleSet>\n<PubmedArticle>\n
         \   <MedlineCitation Owner=\"NLM\" Status=\"MEDLINE\">\n        <PMID Version=\"1\">10048354</PMID>\n
         \       <DateCreated>\n            <Year>1999</Year>\n            <Month>04</Month>\n
         \           <Day>22</Day>\n        </DateCreated>\n        <DateCompleted>\n
@@ -186,11 +186,11 @@ http_interactions:
         and experimental imaging studies and treatment options are also reviewed.
         An effort is made to give the orthopedic perspective on each issue, providing
         a valuable resource for all orthopedic surgeons involved in the care of the
-        patient with frostbite.</AbstractText>\n            </Abstract>\n            <Affiliation>Department
-        of Orthopaedics and Rehabilitation, University of New Mexico, Albuquerque,
-        USA.</Affiliation>\n            <AuthorList CompleteYN=\"Y\">\n                <Author
-        ValidYN=\"Y\">\n                    <LastName>McAdams</LastName>\n                    <ForeName>T
-        R</ForeName>\n                    <Initials>TR</Initials>\n                </Author>\n
+        patient with frostbite.</AbstractText>\n            </Abstract>\n            <AuthorList
+        CompleteYN=\"Y\">\n                <Author ValidYN=\"Y\">\n                    <LastName>McAdams</LastName>\n
+        \                   <ForeName>T R</ForeName>\n                    <Initials>TR</Initials>\n
+        \                   <Affiliation>Department of Orthopaedics and Rehabilitation,
+        University of New Mexico, Albuquerque, USA.</Affiliation>\n                </Author>\n
         \               <Author ValidYN=\"Y\">\n                    <LastName>Swenson</LastName>\n
         \                   <ForeName>D R</ForeName>\n                    <Initials>DR</Initials>\n
         \               </Author>\n                <Author ValidYN=\"Y\">\n                    <LastName>Miller</LastName>\n
@@ -284,26 +284,27 @@ http_interactions:
         NlmCategory=\"CONCLUSIONS\">These data indicate that endotracheal intubation
         and mechanical ventilation, regardless of the method of ventilation, cause
         damage to the tracheal mucosa, but that poorly humidified inspired gases cause
-        significantly greater damage.</AbstractText>\n            </Abstract>\n            <Affiliation>Department
-        of Pediatrics, Westmead Hospital, NSW, Australia.</Affiliation>\n            <AuthorList
+        significantly greater damage.</AbstractText>\n            </Abstract>\n            <AuthorList
         CompleteYN=\"Y\">\n                <Author ValidYN=\"Y\">\n                    <LastName>Todd</LastName>\n
         \                   <ForeName>D A</ForeName>\n                    <Initials>DA</Initials>\n
-        \               </Author>\n                <Author ValidYN=\"Y\">\n                    <LastName>John</LastName>\n
-        \                   <ForeName>E</ForeName>\n                    <Initials>E</Initials>\n
-        \               </Author>\n                <Author ValidYN=\"Y\">\n                    <LastName>Osborn</LastName>\n
-        \                   <ForeName>R A</ForeName>\n                    <Initials>RA</Initials>\n
-        \               </Author>\n            </AuthorList>\n            <Language>eng</Language>\n
-        \           <PublicationTypeList>\n                <PublicationType>Comparative
-        Study</PublicationType>\n                <PublicationType>Journal Article</PublicationType>\n
-        \           </PublicationTypeList>\n        </Article>\n        <MedlineJournalInfo>\n
-        \           <Country>UNITED STATES</Country>\n            <MedlineTA>Crit
-        Care Med</MedlineTA>\n            <NlmUniqueID>0355501</NlmUniqueID>\n            <ISSNLinking>0090-3493</ISSNLinking>\n
-        \       </MedlineJournalInfo>\n        <CitationSubset>AIM</CitationSubset>\n
-        \       <CitationSubset>IM</CitationSubset>\n        <MeshHeadingList>\n            <MeshHeading>\n
-        \               <DescriptorName MajorTopicYN=\"N\">Animals</DescriptorName>\n
-        \           </MeshHeading>\n            <MeshHeading>\n                <DescriptorName
-        MajorTopicYN=\"N\">Animals, Newborn</DescriptorName>\n            </MeshHeading>\n
-        \           <MeshHeading>\n                <DescriptorName MajorTopicYN=\"N\">Female</DescriptorName>\n
+        \                   <Affiliation>Department of Pediatrics, Westmead Hospital,
+        NSW, Australia.</Affiliation>\n                </Author>\n                <Author
+        ValidYN=\"Y\">\n                    <LastName>John</LastName>\n                    <ForeName>E</ForeName>\n
+        \                   <Initials>E</Initials>\n                </Author>\n                <Author
+        ValidYN=\"Y\">\n                    <LastName>Osborn</LastName>\n                    <ForeName>R
+        A</ForeName>\n                    <Initials>RA</Initials>\n                </Author>\n
+        \           </AuthorList>\n            <Language>eng</Language>\n            <PublicationTypeList>\n
+        \               <PublicationType>Comparative Study</PublicationType>\n                <PublicationType>Journal
+        Article</PublicationType>\n            </PublicationTypeList>\n        </Article>\n
+        \       <MedlineJournalInfo>\n            <Country>UNITED STATES</Country>\n
+        \           <MedlineTA>Crit Care Med</MedlineTA>\n            <NlmUniqueID>0355501</NlmUniqueID>\n
+        \           <ISSNLinking>0090-3493</ISSNLinking>\n        </MedlineJournalInfo>\n
+        \       <CitationSubset>AIM</CitationSubset>\n        <CitationSubset>IM</CitationSubset>\n
+        \       <MeshHeadingList>\n            <MeshHeading>\n                <DescriptorName
+        MajorTopicYN=\"N\">Animals</DescriptorName>\n            </MeshHeading>\n
+        \           <MeshHeading>\n                <DescriptorName MajorTopicYN=\"N\">Animals,
+        Newborn</DescriptorName>\n            </MeshHeading>\n            <MeshHeading>\n
+        \               <DescriptorName MajorTopicYN=\"N\">Female</DescriptorName>\n
         \           </MeshHeading>\n            <MeshHeading>\n                <DescriptorName
         MajorTopicYN=\"N\">High-Frequency Ventilation</DescriptorName>\n                <QualifierName
         MajorTopicYN=\"Y\">adverse effects</QualifierName>\n            </MeshHeading>\n
@@ -334,7 +335,7 @@ http_interactions:
         \       <ArticleIdList>\n            <ArticleId IdType=\"pubmed\">1914489</ArticleId>\n
         \       </ArticleIdList>\n    </PubmedData>\n</PubmedArticle>\n\n</PubmedArticleSet>\n"
     http_version: 
-  recorded_at: Wed, 04 Dec 2013 00:37:16 GMT
+  recorded_at: Sat, 22 Mar 2014 00:50:31 GMT
 - request:
     method: get
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationItems?format=xml&publicationItemIDs=
@@ -372,7 +373,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Wed, 04 Dec 2013 00:37:17 GMT
+      - Sat, 22 Mar 2014 00:50:31 GMT
       Content-Length:
       - '1208'
     body:
@@ -391,7 +392,7 @@ http_interactions:
         \ <h3>There is a problem with the resource you are looking for, and it cannot
         be displayed.</h3>\r\n </fieldset></div>\r\n</div>\r\n</body>\r\n</html>\r\n"
     http_version: 
-  recorded_at: Wed, 04 Dec 2013 00:37:17 GMT
+  recorded_at: Sat, 22 Mar 2014 00:50:32 GMT
 - request:
     method: post
     uri: http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml
@@ -409,7 +410,7 @@ http_interactions:
       message: Bad Request
     headers:
       Date:
-      - Wed, 04 Dec 2013 00:37:17 GMT
+      - Sat, 22 Mar 2014 00:50:32 GMT
       Server:
       - Apache
       Access-Control-Allow-Origin:
@@ -417,12 +418,12 @@ http_interactions:
       Cache-Control:
       - private
       Ncbi-Sid:
-      - 9DFC3B4729E793D1_0304SID
+      - 08DD7B5E32CDE581_0997SID
       Content-Type:
       - text/xml; charset=UTF-8
       Set-Cookie:
-      - ncbi_sid=9DFC3B4729E793D1_0304SID; domain=.nih.gov; path=/; expires=Thu, 04
-        Dec 2014 00:37:17 GMT
+      - ncbi_sid=08DD7B5E32CDE581_0997SID; domain=.nih.gov; path=/; expires=Sun, 22
+        Mar 2015 00:50:32 GMT
       X-Ua-Compatible:
       - IE=Edge
       Connection:
@@ -431,8 +432,9 @@ http_interactions:
       - chunked
     body:
       encoding: US-ASCII
-      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n\n<eFetchResult>\n\t<ERROR>WebEnv
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE eEfetchResult
+        PUBLIC \"-//NLM//DTD efetch 20131226//EN\" \"http://eutils.ncbi.nlm.nih.gov/eutils/dtd/20131226/efetch.dtd\">\n<eFetchResult>\n\t<ERROR>WebEnv
         parameter is required</ERROR>\n</eFetchResult>\n"
     http_version: 
-  recorded_at: Wed, 04 Dec 2013 00:37:17 GMT
+  recorded_at: Sat, 22 Mar 2014 00:50:33 GMT
 recorded_with: VCR 2.5.0

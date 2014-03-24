@@ -382,9 +382,9 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Wed, 04 Dec 2013 21:17:54 GMT
+      - Mon, 24 Mar 2014 17:57:51 GMT
       Content-Length:
-      - '33873'
+      - '40098'
     body:
       encoding: US-ASCII
       string: ! "<?xml version=\"1.0\"?>\r\n<ArrayOfPublicationItem xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
@@ -604,6 +604,46 @@ http_interactions:
         \   <PublicationCategoryRankingList>17/88;PSYCHOLOGY;1995;SS;MostRecentYear</PublicationCategoryRankingList>\r\n
         \   <AuthorCitationCountList>1,0,0</AuthorCitationCountList>\r\n    <CopyrightStateProvince>DC</CopyrightStateProvince>\r\n
         \   <CopyrightCountry>UNITED STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n
+        \ <PublicationItem>\r\n    <PublicationItemID>45811885</PublicationItemID>\r\n
+        \   <Title>Molecular equivalence of carbohydrates to carbon dioxide in photosynthesis</Title>\r\n
+        \   <Abstract />\r\n    <AuthorList>SMITH,J,HC</AuthorList>\r\n    <AuthorCount>1</AuthorCount>\r\n
+        \   <KeywordList />\r\n    <DocumentTypeList>Article</DocumentTypeList>\r\n
+        \   <DocumentCategory>Journal Document</DocumentCategory>\r\n    <NumberOfReferences>18</NumberOfReferences>\r\n
+        \   <TimesCited>20</TimesCited>\r\n    <TimesNotSelfCited>19</TimesNotSelfCited>\r\n
+        \   <PMID>16653840</PMID>\r\n    <WoSItemID>000200810800005</WoSItemID>\r\n
+        \   <PublicationSourceTitle>PLANT PHYSIOLOGY</PublicationSourceTitle>\r\n
+        \   <Volume>18</Volume>\r\n    <Issue>2</Issue>\r\n    <Pagination>207-223</Pagination>\r\n
+        \   <PublicationDate>1943-04-01T00:00:00</PublicationDate>\r\n    <PublicationYear>1943</PublicationYear>\r\n
+        \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Plant
+        Sciences</PublicationSubjectCategoryList>\r\n    <ISSN>0032-0889</ISSN>\r\n
+        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
+        />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>7</OrdinalRank>\r\n    <NormalizedRank>50</NormalizedRank>\r\n
+        \   <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
+        \   <CopyrightPublisher>AMER SOC PLANT BIOLOGISTS</CopyrightPublisher>\r\n
+        \   <CopyrightCity>ROCKVILLE</CopyrightCity>\r\n    <PublicationImpactFactorList>6.535,2011,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>7/189;PLANT SCIENCES;2011;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <AuthorCitationCountList>1,1,19</AuthorCitationCountList>\r\n    <CopyrightStateProvince>MD</CopyrightStateProvince>\r\n
+        \   <CopyrightCountry>UNITED STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n
+        \ <PublicationItem>\r\n    <PublicationItemID>45811671</PublicationItemID>\r\n
+        \   <Title>The absorption of carbon dioxide by unilluminated leaves</Title>\r\n
+        \   <Abstract />\r\n    <AuthorList>SMITH,J,HC</AuthorList>\r\n    <AuthorCount>1</AuthorCount>\r\n
+        \   <KeywordList />\r\n    <DocumentTypeList>Article</DocumentTypeList>\r\n
+        \   <DocumentCategory>Journal Document</DocumentCategory>\r\n    <NumberOfReferences>37</NumberOfReferences>\r\n
+        \   <TimesCited>15</TimesCited>\r\n    <TimesNotSelfCited>11</TimesNotSelfCited>\r\n
+        \   <PMID>16653626</PMID>\r\n    <WoSItemID>000200809600002</WoSItemID>\r\n
+        \   <PublicationSourceTitle>PLANT PHYSIOLOGY</PublicationSourceTitle>\r\n
+        \   <Volume>15</Volume>\r\n    <Issue>2</Issue>\r\n    <Pagination>183-224</Pagination>\r\n
+        \   <PublicationDate>1940-04-01T00:00:00</PublicationDate>\r\n    <PublicationYear>1940</PublicationYear>\r\n
+        \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Plant
+        Sciences</PublicationSubjectCategoryList>\r\n    <ISSN>0032-0889</ISSN>\r\n
+        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
+        />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>8</OrdinalRank>\r\n    <NormalizedRank>50</NormalizedRank>\r\n
+        \   <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
+        \   <CopyrightPublisher>AMER SOC PLANT BIOLOGISTS</CopyrightPublisher>\r\n
+        \   <CopyrightCity>ROCKVILLE</CopyrightCity>\r\n    <PublicationImpactFactorList>6.535,2011,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>7/189;PLANT SCIENCES;2011;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <AuthorCitationCountList>1,4,11</AuthorCitationCountList>\r\n    <CopyrightStateProvince>MD</CopyrightStateProvince>\r\n
+        \   <CopyrightCountry>UNITED STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n
         \ <PublicationItem>\r\n    <PublicationItemID>45321005</PublicationItemID>\r\n
         \   <Title>Antibodies and conditioned reflexes.</Title>\r\n    <Abstract />\r\n
         \   <AuthorList>Smith,J,W</AuthorList>\r\n    <AuthorCount>1</AuthorCount>\r\n
@@ -617,7 +657,7 @@ http_interactions:
         \   <PublicationYear>1951</PublicationYear>\r\n    <PublicationSubjectCategoryList
         />\r\n    <ISSN>0376-2602</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\"
         />\r\n    <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n
-        \   <OrdinalRank>7</OrdinalRank>\r\n    <NormalizedRank>50</NormalizedRank>\r\n
+        \   <OrdinalRank>9</OrdinalRank>\r\n    <NormalizedRank>50</NormalizedRank>\r\n
         \   <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
         \   <CopyrightPublisher />\r\n    <CopyrightCity />\r\n    <CopyrightStateProvince
         />\r\n    <CopyrightCountry />\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
@@ -633,7 +673,7 @@ http_interactions:
         \   <PublicationYear>2002</PublicationYear>\r\n    <PublicationType>Journal</PublicationType>\r\n
         \   <PublicationSubjectCategoryList>Sociology</PublicationSubjectCategoryList>\r\n
         \   <ISSN>0094-3061</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
-        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>8</OrdinalRank>\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>10</OrdinalRank>\r\n
         \   <NormalizedRank>50</NormalizedRank>\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>AMER SOCIOLOGICAL
         ASSOC</CopyrightPublisher>\r\n    <CopyrightCity>WASHINGTON</CopyrightCity>\r\n
@@ -654,7 +694,7 @@ http_interactions:
         \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Computer
         Science, Interdisciplinary Applications|Music</PublicationSubjectCategoryList>\r\n
         \   <ISSN>0148-9267</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
-        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>9</OrdinalRank>\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>11</OrdinalRank>\r\n
         \   <NormalizedRank>50</NormalizedRank>\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>M I T
         PRESS</CopyrightPublisher>\r\n    <CopyrightCity>CAMBRIDGE</CopyrightCity>\r\n
@@ -668,7 +708,7 @@ http_interactions:
         \   <AuthorCount>1</AuthorCount>\r\n    <KeywordList>ALGORITHM</KeywordList>\r\n
         \   <DocumentTypeList>Article</DocumentTypeList>\r\n    <DocumentCategory>Journal
         Document</DocumentCategory>\r\n    <NumberOfReferences>25</NumberOfReferences>\r\n
-        \   <TimesCited>161</TimesCited>\r\n    <TimesNotSelfCited>154</TimesNotSelfCited>\r\n
+        \   <TimesCited>162</TimesCited>\r\n    <TimesNotSelfCited>155</TimesNotSelfCited>\r\n
         \   <PMID xsi:nil=\"true\" />\r\n    <WoSItemID>A1992KH76800010</WoSItemID>\r\n
         \   <PublicationSourceTitle>COMPUTER MUSIC JOURNAL</PublicationSourceTitle>\r\n
         \   <Volume>16</Volume>\r\n    <Issue>4</Issue>\r\n    <Pagination>74-98</Pagination>\r\n
@@ -676,14 +716,46 @@ http_interactions:
         \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Computer
         Science, Interdisciplinary Applications|Music</PublicationSubjectCategoryList>\r\n
         \   <ISSN>0148-9267</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
-        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>10</OrdinalRank>\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>12</OrdinalRank>\r\n
         \   <NormalizedRank>50</NormalizedRank>\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>MIT PRESS</CopyrightPublisher>\r\n
         \   <CopyrightCity>CAMBRIDGE</CopyrightCity>\r\n    <PublicationImpactFactorList>0.548,1994,ClosestToPublicationYear|0.706,2011,MostRecentYear</PublicationImpactFactorList>\r\n
         \   <PublicationCategoryRankingList>16/41;COMPUTER SCIENCE, INTERDISCIPLINARY
         APPLICATIONS;1994;SC;ClosestToPublicationYear|78/99;COMPUTER SCIENCE, INTERDISCIPLINARY
-        APPLICATIONS;2011;SC;MostRecentYear</PublicationCategoryRankingList>\r\n    <AuthorCitationCountList>1,7,154</AuthorCitationCountList>\r\n
+        APPLICATIONS;2011;SC;MostRecentYear</PublicationCategoryRankingList>\r\n    <AuthorCitationCountList>1,7,155</AuthorCitationCountList>\r\n
         \   <CopyrightStateProvince>MA</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
+        STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
+        \   <PublicationItemID>23488997</PublicationItemID>\r\n    <Title>LONG-TERM
+        SCINTIGRAPHIC APPEARANCE OF EXTREMITIES FOLLOWING BONE-TUMOR RESECTION AND
+        ALLOGRAFT RECONSTRUCTION</Title>\r\n    <Abstract>The authors retrospectively
+        reviewed the Tc-99m medronate scan findings in six patients who had no evidence
+        of metastatic disease following en bloc resection of a primary osteosarcoma
+        and subsequent limb reconstruction using allograft bone. Persistently increased
+        radionuclide uptake was noted at the junction between the host bone and the
+        graft, while the graft cortical bone showed persistently decreased activity.
+        Radionuclide uptake at the periphery of the graft varied. Over time the youngest
+        patient in the series had increasingly normal scan findings.</Abstract>\r\n
+        \   <AuthorList>SMITH,J,T|Smith,L,M|Rinsky,L,|Goris,M,L</AuthorList>\r\n    <AuthorCount>4</AuthorCount>\r\n
+        \   <KeywordList />\r\n    <DocumentTypeList>Article</DocumentTypeList>\r\n
+        \   <DocumentCategory>Journal Document</DocumentCategory>\r\n    <NumberOfReferences>3</NumberOfReferences>\r\n
+        \   <TimesCited>8</TimesCited>\r\n    <TimesNotSelfCited>8</TimesNotSelfCited>\r\n
+        \   <PMID>1663013</PMID>\r\n    <WoSItemID>A1991KC60900005</WoSItemID>\r\n
+        \   <PublicationSourceTitle>CLINICAL NUCLEAR MEDICINE</PublicationSourceTitle>\r\n
+        \   <Volume>16</Volume>\r\n    <Issue>12</Issue>\r\n    <Pagination>907-909</Pagination>\r\n
+        \   <PublicationDate>1991-12-01T00:00:00</PublicationDate>\r\n    <PublicationYear>1991</PublicationYear>\r\n
+        \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Radiology,
+        Nuclear Medicine &amp; Medical Imaging</PublicationSubjectCategoryList>\r\n
+        \   <ISSN>0363-9762</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>13</OrdinalRank>\r\n
+        \   <NormalizedRank>50</NormalizedRank>\r\n    <NewPublicationItemID xsi:nil=\"true\"
+        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>LIPPINCOTT-RAVEN
+        PUBL</CopyrightPublisher>\r\n    <CopyrightCity>PHILADELPHIA</CopyrightCity>\r\n
+        \   <PublicationImpactFactorList>0.367,1994,ClosestToPublicationYear|3.674,2011,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>55/68;RADIOLOGY, NUCLEAR MEDICINE &amp;
+        MEDICAL IMAGING;1994;SC;ClosestToPublicationYear|16/116;RADIOLOGY, NUCLEAR
+        MEDICINE &amp; MEDICAL IMAGING;2011;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <AuthorCitationCountList>1,0,8|2,0,8|3,0,8|4,0,8</AuthorCitationCountList>\r\n
+        \   <CopyrightStateProvince>PA</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
         STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
         \   <PublicationItemID>18544482</PublicationItemID>\r\n    <Title>FUNDAMENTALS
         OF DIGITAL-FILTER THEORY</Title>\r\n    <Abstract />\r\n    <AuthorList>Smith,J,O</AuthorList>\r\n
@@ -697,7 +769,7 @@ http_interactions:
         \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Computer
         Science, Interdisciplinary Applications|Music</PublicationSubjectCategoryList>\r\n
         \   <ISSN>0148-9267</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
-        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>11</OrdinalRank>\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>14</OrdinalRank>\r\n
         \   <NormalizedRank>50</NormalizedRank>\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>MIT PRESS</CopyrightPublisher>\r\n
         \   <CopyrightCity>CAMBRIDGE</CopyrightCity>\r\n    <PublicationImpactFactorList>0.706,2011,MostRecentYear</PublicationImpactFactorList>\r\n
@@ -718,7 +790,7 @@ http_interactions:
         \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Computer
         Science, Interdisciplinary Applications|Music</PublicationSubjectCategoryList>\r\n
         \   <ISSN>0148-9267</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
-        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>12</OrdinalRank>\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>15</OrdinalRank>\r\n
         \   <NormalizedRank>50</NormalizedRank>\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>MIT PRESS</CopyrightPublisher>\r\n
         \   <CopyrightCity>CAMBRIDGE</CopyrightCity>\r\n    <PublicationImpactFactorList>0.706,2011,MostRecentYear</PublicationImpactFactorList>\r\n
@@ -738,7 +810,7 @@ http_interactions:
         \   <PublicationYear>1981</PublicationYear>\r\n    <PublicationType>Journal</PublicationType>\r\n
         \   <PublicationSubjectCategoryList>Environmental Sciences</PublicationSubjectCategoryList>\r\n
         \   <ISSN>0045-6535</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
-        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>13</OrdinalRank>\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>16</OrdinalRank>\r\n
         \   <NormalizedRank>50</NormalizedRank>\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>PERGAMON-ELSEVIER
         SCIENCE LTD</CopyrightPublisher>\r\n    <CopyrightCity>OXFORD</CopyrightCity>\r\n
@@ -759,7 +831,7 @@ http_interactions:
         \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Energy
         &amp; Fuels|Engineering, Chemical|Engineering, Petroleum</PublicationSubjectCategoryList>\r\n
         \   <ISSN>0018-8190</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
-        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>14</OrdinalRank>\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>17</OrdinalRank>\r\n
         \   <NormalizedRank>50</NormalizedRank>\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>GULF PUBL
         CO</CopyrightPublisher>\r\n    <CopyrightCity>HOUSTON</CopyrightCity>\r\n
@@ -769,7 +841,7 @@ http_interactions:
         \   <AuthorCitationCountList>1,0,0|2,0,0</AuthorCitationCountList>\r\n    <CopyrightStateProvince>TX</CopyrightStateProvince>\r\n
         \   <CopyrightCountry>UNITED STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n</ArrayOfPublicationItem>"
     http_version: 
-  recorded_at: Wed, 04 Dec 2013 21:17:55 GMT
+  recorded_at: Mon, 24 Mar 2014 17:57:52 GMT
 - request:
     method: post
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery?format=xml
@@ -829,16 +901,16 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Wed, 04 Dec 2013 22:49:08 GMT
+      - Mon, 24 Mar 2014 18:12:29 GMT
       Content-Length:
       - '280'
     body:
       encoding: US-ASCII
       string: ! "<?xml version=\"1.0\"?>\r\n<ScienceWireQueryIDResponse xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>129740</queryID>\r\n
-        \ <queryResultRows>15</queryResultRows>\r\n  <totalRows>15</totalRows>\r\n</ScienceWireQueryIDResponse>"
+        \ <queryResultRows>18</queryResultRows>\r\n  <totalRows>18</totalRows>\r\n</ScienceWireQueryIDResponse>"
     http_version: 
-  recorded_at: Wed, 04 Dec 2013 22:49:08 GMT
+  recorded_at: Mon, 24 Mar 2014 18:12:30 GMT
 - request:
     method: get
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/129740?format=xml&page=0&pageSize=2147483647&v=version/3
@@ -876,9 +948,9 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Wed, 04 Dec 2013 22:49:08 GMT
+      - Mon, 24 Mar 2014 18:12:29 GMT
       Content-Length:
-      - '33873'
+      - '40098'
     body:
       encoding: US-ASCII
       string: ! "<?xml version=\"1.0\"?>\r\n<ArrayOfPublicationItem xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
@@ -1098,6 +1170,46 @@ http_interactions:
         \   <PublicationCategoryRankingList>17/88;PSYCHOLOGY;1995;SS;MostRecentYear</PublicationCategoryRankingList>\r\n
         \   <AuthorCitationCountList>1,0,0</AuthorCitationCountList>\r\n    <CopyrightStateProvince>DC</CopyrightStateProvince>\r\n
         \   <CopyrightCountry>UNITED STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n
+        \ <PublicationItem>\r\n    <PublicationItemID>45811885</PublicationItemID>\r\n
+        \   <Title>Molecular equivalence of carbohydrates to carbon dioxide in photosynthesis</Title>\r\n
+        \   <Abstract />\r\n    <AuthorList>SMITH,J,HC</AuthorList>\r\n    <AuthorCount>1</AuthorCount>\r\n
+        \   <KeywordList />\r\n    <DocumentTypeList>Article</DocumentTypeList>\r\n
+        \   <DocumentCategory>Journal Document</DocumentCategory>\r\n    <NumberOfReferences>18</NumberOfReferences>\r\n
+        \   <TimesCited>20</TimesCited>\r\n    <TimesNotSelfCited>19</TimesNotSelfCited>\r\n
+        \   <PMID>16653840</PMID>\r\n    <WoSItemID>000200810800005</WoSItemID>\r\n
+        \   <PublicationSourceTitle>PLANT PHYSIOLOGY</PublicationSourceTitle>\r\n
+        \   <Volume>18</Volume>\r\n    <Issue>2</Issue>\r\n    <Pagination>207-223</Pagination>\r\n
+        \   <PublicationDate>1943-04-01T00:00:00</PublicationDate>\r\n    <PublicationYear>1943</PublicationYear>\r\n
+        \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Plant
+        Sciences</PublicationSubjectCategoryList>\r\n    <ISSN>0032-0889</ISSN>\r\n
+        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
+        />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>7</OrdinalRank>\r\n    <NormalizedRank>50</NormalizedRank>\r\n
+        \   <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
+        \   <CopyrightPublisher>AMER SOC PLANT BIOLOGISTS</CopyrightPublisher>\r\n
+        \   <CopyrightCity>ROCKVILLE</CopyrightCity>\r\n    <PublicationImpactFactorList>6.535,2011,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>7/189;PLANT SCIENCES;2011;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <AuthorCitationCountList>1,1,19</AuthorCitationCountList>\r\n    <CopyrightStateProvince>MD</CopyrightStateProvince>\r\n
+        \   <CopyrightCountry>UNITED STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n
+        \ <PublicationItem>\r\n    <PublicationItemID>45811671</PublicationItemID>\r\n
+        \   <Title>The absorption of carbon dioxide by unilluminated leaves</Title>\r\n
+        \   <Abstract />\r\n    <AuthorList>SMITH,J,HC</AuthorList>\r\n    <AuthorCount>1</AuthorCount>\r\n
+        \   <KeywordList />\r\n    <DocumentTypeList>Article</DocumentTypeList>\r\n
+        \   <DocumentCategory>Journal Document</DocumentCategory>\r\n    <NumberOfReferences>37</NumberOfReferences>\r\n
+        \   <TimesCited>15</TimesCited>\r\n    <TimesNotSelfCited>11</TimesNotSelfCited>\r\n
+        \   <PMID>16653626</PMID>\r\n    <WoSItemID>000200809600002</WoSItemID>\r\n
+        \   <PublicationSourceTitle>PLANT PHYSIOLOGY</PublicationSourceTitle>\r\n
+        \   <Volume>15</Volume>\r\n    <Issue>2</Issue>\r\n    <Pagination>183-224</Pagination>\r\n
+        \   <PublicationDate>1940-04-01T00:00:00</PublicationDate>\r\n    <PublicationYear>1940</PublicationYear>\r\n
+        \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Plant
+        Sciences</PublicationSubjectCategoryList>\r\n    <ISSN>0032-0889</ISSN>\r\n
+        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
+        />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>8</OrdinalRank>\r\n    <NormalizedRank>50</NormalizedRank>\r\n
+        \   <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
+        \   <CopyrightPublisher>AMER SOC PLANT BIOLOGISTS</CopyrightPublisher>\r\n
+        \   <CopyrightCity>ROCKVILLE</CopyrightCity>\r\n    <PublicationImpactFactorList>6.535,2011,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>7/189;PLANT SCIENCES;2011;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <AuthorCitationCountList>1,4,11</AuthorCitationCountList>\r\n    <CopyrightStateProvince>MD</CopyrightStateProvince>\r\n
+        \   <CopyrightCountry>UNITED STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n
         \ <PublicationItem>\r\n    <PublicationItemID>45321005</PublicationItemID>\r\n
         \   <Title>Antibodies and conditioned reflexes.</Title>\r\n    <Abstract />\r\n
         \   <AuthorList>Smith,J,W</AuthorList>\r\n    <AuthorCount>1</AuthorCount>\r\n
@@ -1111,7 +1223,7 @@ http_interactions:
         \   <PublicationYear>1951</PublicationYear>\r\n    <PublicationSubjectCategoryList
         />\r\n    <ISSN>0376-2602</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\"
         />\r\n    <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n
-        \   <OrdinalRank>7</OrdinalRank>\r\n    <NormalizedRank>50</NormalizedRank>\r\n
+        \   <OrdinalRank>9</OrdinalRank>\r\n    <NormalizedRank>50</NormalizedRank>\r\n
         \   <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
         \   <CopyrightPublisher />\r\n    <CopyrightCity />\r\n    <CopyrightStateProvince
         />\r\n    <CopyrightCountry />\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
@@ -1127,7 +1239,7 @@ http_interactions:
         \   <PublicationYear>2002</PublicationYear>\r\n    <PublicationType>Journal</PublicationType>\r\n
         \   <PublicationSubjectCategoryList>Sociology</PublicationSubjectCategoryList>\r\n
         \   <ISSN>0094-3061</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
-        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>8</OrdinalRank>\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>10</OrdinalRank>\r\n
         \   <NormalizedRank>50</NormalizedRank>\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>AMER SOCIOLOGICAL
         ASSOC</CopyrightPublisher>\r\n    <CopyrightCity>WASHINGTON</CopyrightCity>\r\n
@@ -1148,7 +1260,7 @@ http_interactions:
         \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Computer
         Science, Interdisciplinary Applications|Music</PublicationSubjectCategoryList>\r\n
         \   <ISSN>0148-9267</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
-        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>9</OrdinalRank>\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>11</OrdinalRank>\r\n
         \   <NormalizedRank>50</NormalizedRank>\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>M I T
         PRESS</CopyrightPublisher>\r\n    <CopyrightCity>CAMBRIDGE</CopyrightCity>\r\n
@@ -1162,7 +1274,7 @@ http_interactions:
         \   <AuthorCount>1</AuthorCount>\r\n    <KeywordList>ALGORITHM</KeywordList>\r\n
         \   <DocumentTypeList>Article</DocumentTypeList>\r\n    <DocumentCategory>Journal
         Document</DocumentCategory>\r\n    <NumberOfReferences>25</NumberOfReferences>\r\n
-        \   <TimesCited>161</TimesCited>\r\n    <TimesNotSelfCited>154</TimesNotSelfCited>\r\n
+        \   <TimesCited>162</TimesCited>\r\n    <TimesNotSelfCited>155</TimesNotSelfCited>\r\n
         \   <PMID xsi:nil=\"true\" />\r\n    <WoSItemID>A1992KH76800010</WoSItemID>\r\n
         \   <PublicationSourceTitle>COMPUTER MUSIC JOURNAL</PublicationSourceTitle>\r\n
         \   <Volume>16</Volume>\r\n    <Issue>4</Issue>\r\n    <Pagination>74-98</Pagination>\r\n
@@ -1170,14 +1282,46 @@ http_interactions:
         \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Computer
         Science, Interdisciplinary Applications|Music</PublicationSubjectCategoryList>\r\n
         \   <ISSN>0148-9267</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
-        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>10</OrdinalRank>\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>12</OrdinalRank>\r\n
         \   <NormalizedRank>50</NormalizedRank>\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>MIT PRESS</CopyrightPublisher>\r\n
         \   <CopyrightCity>CAMBRIDGE</CopyrightCity>\r\n    <PublicationImpactFactorList>0.548,1994,ClosestToPublicationYear|0.706,2011,MostRecentYear</PublicationImpactFactorList>\r\n
         \   <PublicationCategoryRankingList>16/41;COMPUTER SCIENCE, INTERDISCIPLINARY
         APPLICATIONS;1994;SC;ClosestToPublicationYear|78/99;COMPUTER SCIENCE, INTERDISCIPLINARY
-        APPLICATIONS;2011;SC;MostRecentYear</PublicationCategoryRankingList>\r\n    <AuthorCitationCountList>1,7,154</AuthorCitationCountList>\r\n
+        APPLICATIONS;2011;SC;MostRecentYear</PublicationCategoryRankingList>\r\n    <AuthorCitationCountList>1,7,155</AuthorCitationCountList>\r\n
         \   <CopyrightStateProvince>MA</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
+        STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
+        \   <PublicationItemID>23488997</PublicationItemID>\r\n    <Title>LONG-TERM
+        SCINTIGRAPHIC APPEARANCE OF EXTREMITIES FOLLOWING BONE-TUMOR RESECTION AND
+        ALLOGRAFT RECONSTRUCTION</Title>\r\n    <Abstract>The authors retrospectively
+        reviewed the Tc-99m medronate scan findings in six patients who had no evidence
+        of metastatic disease following en bloc resection of a primary osteosarcoma
+        and subsequent limb reconstruction using allograft bone. Persistently increased
+        radionuclide uptake was noted at the junction between the host bone and the
+        graft, while the graft cortical bone showed persistently decreased activity.
+        Radionuclide uptake at the periphery of the graft varied. Over time the youngest
+        patient in the series had increasingly normal scan findings.</Abstract>\r\n
+        \   <AuthorList>SMITH,J,T|Smith,L,M|Rinsky,L,|Goris,M,L</AuthorList>\r\n    <AuthorCount>4</AuthorCount>\r\n
+        \   <KeywordList />\r\n    <DocumentTypeList>Article</DocumentTypeList>\r\n
+        \   <DocumentCategory>Journal Document</DocumentCategory>\r\n    <NumberOfReferences>3</NumberOfReferences>\r\n
+        \   <TimesCited>8</TimesCited>\r\n    <TimesNotSelfCited>8</TimesNotSelfCited>\r\n
+        \   <PMID>1663013</PMID>\r\n    <WoSItemID>A1991KC60900005</WoSItemID>\r\n
+        \   <PublicationSourceTitle>CLINICAL NUCLEAR MEDICINE</PublicationSourceTitle>\r\n
+        \   <Volume>16</Volume>\r\n    <Issue>12</Issue>\r\n    <Pagination>907-909</Pagination>\r\n
+        \   <PublicationDate>1991-12-01T00:00:00</PublicationDate>\r\n    <PublicationYear>1991</PublicationYear>\r\n
+        \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Radiology,
+        Nuclear Medicine &amp; Medical Imaging</PublicationSubjectCategoryList>\r\n
+        \   <ISSN>0363-9762</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>13</OrdinalRank>\r\n
+        \   <NormalizedRank>50</NormalizedRank>\r\n    <NewPublicationItemID xsi:nil=\"true\"
+        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>LIPPINCOTT-RAVEN
+        PUBL</CopyrightPublisher>\r\n    <CopyrightCity>PHILADELPHIA</CopyrightCity>\r\n
+        \   <PublicationImpactFactorList>0.367,1994,ClosestToPublicationYear|3.674,2011,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>55/68;RADIOLOGY, NUCLEAR MEDICINE &amp;
+        MEDICAL IMAGING;1994;SC;ClosestToPublicationYear|16/116;RADIOLOGY, NUCLEAR
+        MEDICINE &amp; MEDICAL IMAGING;2011;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <AuthorCitationCountList>1,0,8|2,0,8|3,0,8|4,0,8</AuthorCitationCountList>\r\n
+        \   <CopyrightStateProvince>PA</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
         STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
         \   <PublicationItemID>18544482</PublicationItemID>\r\n    <Title>FUNDAMENTALS
         OF DIGITAL-FILTER THEORY</Title>\r\n    <Abstract />\r\n    <AuthorList>Smith,J,O</AuthorList>\r\n
@@ -1191,7 +1335,7 @@ http_interactions:
         \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Computer
         Science, Interdisciplinary Applications|Music</PublicationSubjectCategoryList>\r\n
         \   <ISSN>0148-9267</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
-        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>11</OrdinalRank>\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>14</OrdinalRank>\r\n
         \   <NormalizedRank>50</NormalizedRank>\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>MIT PRESS</CopyrightPublisher>\r\n
         \   <CopyrightCity>CAMBRIDGE</CopyrightCity>\r\n    <PublicationImpactFactorList>0.706,2011,MostRecentYear</PublicationImpactFactorList>\r\n
@@ -1212,7 +1356,7 @@ http_interactions:
         \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Computer
         Science, Interdisciplinary Applications|Music</PublicationSubjectCategoryList>\r\n
         \   <ISSN>0148-9267</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
-        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>12</OrdinalRank>\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>15</OrdinalRank>\r\n
         \   <NormalizedRank>50</NormalizedRank>\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>MIT PRESS</CopyrightPublisher>\r\n
         \   <CopyrightCity>CAMBRIDGE</CopyrightCity>\r\n    <PublicationImpactFactorList>0.706,2011,MostRecentYear</PublicationImpactFactorList>\r\n
@@ -1232,7 +1376,7 @@ http_interactions:
         \   <PublicationYear>1981</PublicationYear>\r\n    <PublicationType>Journal</PublicationType>\r\n
         \   <PublicationSubjectCategoryList>Environmental Sciences</PublicationSubjectCategoryList>\r\n
         \   <ISSN>0045-6535</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
-        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>13</OrdinalRank>\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>16</OrdinalRank>\r\n
         \   <NormalizedRank>50</NormalizedRank>\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>PERGAMON-ELSEVIER
         SCIENCE LTD</CopyrightPublisher>\r\n    <CopyrightCity>OXFORD</CopyrightCity>\r\n
@@ -1253,7 +1397,7 @@ http_interactions:
         \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Energy
         &amp; Fuels|Engineering, Chemical|Engineering, Petroleum</PublicationSubjectCategoryList>\r\n
         \   <ISSN>0018-8190</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
-        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>14</OrdinalRank>\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>17</OrdinalRank>\r\n
         \   <NormalizedRank>50</NormalizedRank>\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>GULF PUBL
         CO</CopyrightPublisher>\r\n    <CopyrightCity>HOUSTON</CopyrightCity>\r\n
@@ -1263,5 +1407,5 @@ http_interactions:
         \   <AuthorCitationCountList>1,0,0|2,0,0</AuthorCitationCountList>\r\n    <CopyrightStateProvince>TX</CopyrightStateProvince>\r\n
         \   <CopyrightCountry>UNITED STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n</ArrayOfPublicationItem>"
     http_version: 
-  recorded_at: Wed, 04 Dec 2013 22:49:08 GMT
+  recorded_at: Mon, 24 Mar 2014 18:12:30 GMT
 recorded_with: VCR 2.5.0
