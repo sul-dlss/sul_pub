@@ -165,9 +165,13 @@ describe ScienceWireHarvester do
 					expect {
 						science_wire_harvester.harvest_pubs_for_author_ids([author.id, author_with_seed_email.id, author_without_seed_data.id])
 						}.to change(Publication, :count).by(2)
+					p = Publication.where(:sciencewire_id => '42711845').first
+					utime = p.updated_at.localtime
+					sleep(2)
 					expect {
 						science_wire_harvester.harvest_pubs_for_author_ids([author.id, author_with_seed_email.id, author_without_seed_data.id])
 						}.to_not change(Publication, :count)
+					expect(p.reload.updated_at.localtime).to eq(utime)
 				end
 			end
 			it "should be idempotent for contributions" do

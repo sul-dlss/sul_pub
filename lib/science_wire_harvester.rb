@@ -247,10 +247,7 @@ class ScienceWireHarvester
 
     existing_pub = Publication.where(sciencewire_id: sciencewire_id).first
     if existing_pub
-
       add_contribution_for_harvest_suggestion(author, existing_pub)
-      existing_pub.rebuild_authorship
-      existing_pub.save
       @matches_on_existing_swid_count += 1
       true
     else
@@ -264,6 +261,7 @@ class ScienceWireHarvester
         publication_id: publication.id,
         author_id: author.id).first
     if contrib
+      # Existing contrib, do not modify the publication
       @existing_contributions_count += 1
     else
       Contribution.create(
@@ -274,6 +272,8 @@ class ScienceWireHarvester
           visibility: 'private',
           featured: false )
       @contributions_created_count += 1
+      publication.rebuild_authorship
+      publication.save
     end
     #puts "new contrib id: #{contrib.id} for author: #{author.id} and pub: #{publication.id}"
   end
