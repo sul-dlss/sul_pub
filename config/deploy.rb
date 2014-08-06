@@ -19,7 +19,7 @@ set :application, "sulbib"
 
 set :scm, :git
 ssh_options[:forward_agent] = true
-set :repository,  "git@github.com:DMSTech/sul-pub.git"
+set :repository,  "git@github.com:sul-dlss/sul-pub.git"
 set :branch, "master"
 
 set :user, "***REMOVED***"
