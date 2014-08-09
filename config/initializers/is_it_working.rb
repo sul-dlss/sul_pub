@@ -10,4 +10,13 @@ Rails.configuration.middleware.use(IsItWorking::Handler) do |h|
       status.info("unable to connect to CAP")
     end
   end
+
+  h.check :version do |status|
+    begin
+      ver = IO.read(Rails.root.join('VERSION')).strip
+      status.info(ver)
+    rescue
+      status.info("unable to read version number")
+    end
+  end
 end
