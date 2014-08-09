@@ -30,3 +30,4 @@ coverage
 config/database.yml
 config/cap_auth.yaml
 config/sciencewire_auth.yaml
+.ruby-*
