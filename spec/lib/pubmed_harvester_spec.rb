@@ -43,10 +43,10 @@ describe PubmedHarvester do
       VCR.use_cassette('pubmed_harvester_spec_find_by_pmid_through_pubmed') do
         # This pmid might eventually show up in SW.  If that's the case, search the recent production logs for publication sourcelookups with this format:
         # /publications/sourcelookup?pmid=
-        h = PubmedHarvester.search_all_sources_by_pmid 24645947
+        h = PubmedHarvester.search_all_sources_by_pmid 24930130
         expect(h.first[:provenance]).to eq('pubmed')
-        expect(h.first[:identifier]).to include( {:type=>"doi", :id=>"10.1056/NEJMicm1309192", :url=>"http://dx.doi.org/10.1056/NEJMicm1309192"} )
-        expect(h.first[:chicago_citation]).to match(/Bilateral Digital Ischemia/)
+        expect(h.first[:identifier]).to include( {:type=>"doi", :id=>"10.1038/nmeth.2999", :url=>"http://dx.doi.org/10.1038/nmeth.2999"} )
+        expect(h.first[:chicago_citation]).to match(/Chemically Defined Generation/)
       end
     end
 

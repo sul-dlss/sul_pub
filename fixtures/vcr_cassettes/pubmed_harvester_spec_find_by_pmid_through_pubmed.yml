@@ -97,6 +97,72 @@ http_interactions:
     http_version: 
   recorded_at: Mon, 24 Mar 2014 18:12:27 GMT
 - request:
+    method: get
+    uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/158344?format=xml&page=0&pageSize=2147483647&v=version/3
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+      Content-Type:
+      - text/xml
+      Licenseid:
+      - ***REMOVED***
+      Host:
+      - sciencewirerest.discoverylogic.com
+      Connection:
+      - Keep-Alive
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - private
+      Content-Type:
+      - application/xml; charset=utf-8
+      Server:
+      - Microsoft-IIS/7.5
+      X-Aspnetmvc-Version:
+      - '2.0'
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+      Date:
+      - Sat, 09 Aug 2014 00:22:11 GMT
+      Content-Length:
+      - '1872'
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\"?>\r\n<ArrayOfPublicationItem xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <PublicationItem>\r\n
+        \   <PublicationItemID>65392771</PublicationItemID>\r\n    <Title>Images in
+        clinical medicine. Bilateral digital ischemia.</Title>\r\n    <Abstract />\r\n
+        \   <AuthorList>Rosenberg,Jacob,M|Rosenberg,Ralph,</AuthorList>\r\n    <AuthorCount>2</AuthorCount>\r\n
+        \   <KeywordList />\r\n    <DocumentTypeList>Journal Article</DocumentTypeList>\r\n
+        \   <DocumentCategory>Journal Document</DocumentCategory>\r\n    <NumberOfReferences
+        xsi:nil=\"true\" />\r\n    <TimesCited xsi:nil=\"true\" />\r\n    <TimesNotSelfCited
+        xsi:nil=\"true\" />\r\n    <PMID>24645947</PMID>\r\n    <PublicationSourceTitle>New
+        England journal of medicine</PublicationSourceTitle>\r\n    <Volume>370</Volume>\r\n
+        \   <Issue>12</Issue>\r\n    <Pagination>1148-?</Pagination>\r\n    <PublicationDate>2014-03-20T00:00:00</PublicationDate>\r\n
+        \   <PublicationYear>2014</PublicationYear>\r\n    <PublicationSubjectCategoryList
+        />\r\n    <ISSN>0028-4793</ISSN>\r\n    <DOI>10.1056/NEJMicm1309192</DOI>\r\n
+        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>0</OrdinalRank>\r\n
+        \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
+        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher />\r\n
+        \   <CopyrightCity />\r\n    <PublicationImpactFactorList>51.658,2012,ClosestToPublicationYear|51.658,2012,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>1/155;MEDICINE, GENERAL &amp; INTERNAL;2012;SC;ClosestToPublicationYear|1/155;MEDICINE,
+        GENERAL &amp; INTERNAL;2012;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <CopyrightStateProvince />\r\n    <CopyrightCountry>UNITED STATES</CopyrightCountry>\r\n
+        \ </PublicationItem>\r\n</ArrayOfPublicationItem>"
+    http_version: 
+  recorded_at: Sat, 09 Aug 2014 00:22:12 GMT
+- request:
     method: post
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery?format=xml
     body:
@@ -107,7 +173,7 @@ http_interactions:
         \           &lt;Criterion ConjunctionOperator=\"AND\"&gt;\n\t              &lt;Criteria&gt;\n\t
         \               &lt;Criterion&gt;\n\t                  &lt;Filter&gt;\n\t
         \                   &lt;Column&gt;PMID&lt;/Column&gt;\n\t                    &lt;Operator&gt;In&lt;/Operator&gt;\n\t
-        \                   &lt;Values&gt;&lt;Value&gt;24645947&lt;/Value&gt;&lt;/Values&gt;\n\t
+        \                   &lt;Values&gt;&lt;Value&gt;24930130&lt;/Value&gt;&lt;/Values&gt;\n\t
         \                 &lt;/Filter&gt;\n\t                &lt;/Criterion&gt;\n\t
         \             &lt;/Criteria&gt;\n\t            &lt;/Criterion&gt;\n\t            &lt;Columns&gt;\n\t
         \             &lt;SortColumn&gt;\n\t                &lt;Column&gt;Rank&lt;/Column&gt;\n\t
@@ -147,19 +213,19 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Mon, 24 Mar 2014 18:46:19 GMT
+      - Sat, 09 Aug 2014 00:28:52 GMT
       Content-Length:
       - '278'
     body:
       encoding: US-ASCII
       string: ! "<?xml version=\"1.0\"?>\r\n<ScienceWireQueryIDResponse xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
-        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>158344</queryID>\r\n
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>168160</queryID>\r\n
         \ <queryResultRows>0</queryResultRows>\r\n  <totalRows>0</totalRows>\r\n</ScienceWireQueryIDResponse>"
     http_version: 
-  recorded_at: Mon, 24 Mar 2014 18:46:20 GMT
+  recorded_at: Sat, 09 Aug 2014 00:28:53 GMT
 - request:
     method: get
-    uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/158344?format=xml&page=0&pageSize=2147483647&v=version/3
+    uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/168160?format=xml&page=0&pageSize=2147483647&v=version/3
     body:
       encoding: US-ASCII
       string: ''
@@ -194,7 +260,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Mon, 24 Mar 2014 18:46:19 GMT
+      - Sat, 09 Aug 2014 00:28:53 GMT
       Content-Length:
       - '148'
     body:
@@ -202,13 +268,13 @@ http_interactions:
       string: ! "<?xml version=\"1.0\"?>\r\n<ArrayOfPublicationItem xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" />"
     http_version: 
-  recorded_at: Mon, 24 Mar 2014 18:46:20 GMT
+  recorded_at: Sat, 09 Aug 2014 00:28:53 GMT
 - request:
     method: post
     uri: http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml
     body:
       encoding: US-ASCII
-      string: ! '&id=24645947'
+      string: ! '&id=24930130'
     headers:
       Accept:
       - ! '*/*'
@@ -220,7 +286,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 24 Mar 2014 18:46:20 GMT
+      - Sat, 09 Aug 2014 00:28:53 GMT
       Server:
       - Apache
       Access-Control-Allow-Origin:
@@ -228,12 +294,12 @@ http_interactions:
       Cache-Control:
       - private
       Ncbi-Sid:
-      - 9DFC365A3307D7C1_0095SID
+      - 9DFC09983E56B451_0058SID
       Content-Type:
       - text/xml; charset=UTF-8
       Set-Cookie:
-      - ncbi_sid=9DFC365A3307D7C1_0095SID; domain=.nih.gov; path=/; expires=Tue, 24
-        Mar 2015 18:46:20 GMT
+      - ncbi_sid=9DFC09983E56B451_0058SID; domain=.nih.gov; path=/; expires=Sun, 09
+        Aug 2015 00:28:53 GMT
       X-Ua-Compatible:
       - IE=Edge
       Transfer-Encoding:
@@ -242,45 +308,173 @@ http_interactions:
       encoding: US-ASCII
       string: ! "<?xml version=\"1.0\"?>\n<!DOCTYPE PubmedArticleSet PUBLIC \"-//NLM//DTD
         PubMedArticle, 1st January 2014//EN\" \"http://www.ncbi.nlm.nih.gov/corehtml/query/DTD/pubmed_140101.dtd\">\n<PubmedArticleSet>\n<PubmedArticle>\n
-        \   <MedlineCitation Owner=\"NLM\" Status=\"In-Process\">\n        <PMID Version=\"1\">24645947</PMID>\n
-        \       <DateCreated>\n            <Year>2014</Year>\n            <Month>03</Month>\n
-        \           <Day>20</Day>\n        </DateCreated>\n        <Article PubModel=\"Print\">\n
-        \           <Journal>\n                <ISSN IssnType=\"Electronic\">1533-4406</ISSN>\n
-        \               <JournalIssue CitedMedium=\"Internet\">\n                    <Volume>370</Volume>\n
-        \                   <Issue>12</Issue>\n                    <PubDate>\n                        <Year>2014</Year>\n
-        \                       <Month>Mar</Month>\n                        <Day>20</Day>\n
-        \                   </PubDate>\n                </JournalIssue>\n                <Title>The
-        New England journal of medicine</Title>\n                <ISOAbbreviation>N.
-        Engl. J. Med.</ISOAbbreviation>\n            </Journal>\n            <ArticleTitle>Images
-        in clinical medicine. Bilateral digital ischemia.</ArticleTitle>\n            <Pagination>\n
-        \               <MedlinePgn>1148</MedlinePgn>\n            </Pagination>\n
-        \           <ELocationID EIdType=\"doi\" ValidYN=\"Y\">10.1056/NEJMicm1309192</ELocationID>\n
-        \           <AuthorList CompleteYN=\"Y\">\n                <Author ValidYN=\"Y\">\n
-        \                   <LastName>Rosenberg</LastName>\n                    <ForeName>Jacob
-        M</ForeName>\n                    <Initials>JM</Initials>\n                    <Affiliation>Stanford
-        University School of Medicine, Stanford, CA jakeros@stanford.edu.</Affiliation>\n
-        \               </Author>\n                <Author ValidYN=\"Y\">\n                    <LastName>Rosenberg</LastName>\n
-        \                   <ForeName>Ralph</ForeName>\n                    <Initials>R</Initials>\n
-        \               </Author>\n            </AuthorList>\n            <Language>eng</Language>\n
-        \           <PublicationTypeList>\n                <PublicationType>Journal
-        Article</PublicationType>\n            </PublicationTypeList>\n        </Article>\n
+        \   <MedlineCitation Owner=\"NLM\" Status=\"In-Data-Review\">\n        <PMID
+        Version=\"1\">24930130</PMID>\n        <DateCreated>\n            <Year>2014</Year>\n
+        \           <Month>07</Month>\n            <Day>31</Day>\n        </DateCreated>\n
+        \       <Article PubModel=\"Print-Electronic\">\n            <Journal>\n                <ISSN
+        IssnType=\"Electronic\">1548-7105</ISSN>\n                <JournalIssue CitedMedium=\"Internet\">\n
+        \                   <Volume>11</Volume>\n                    <Issue>8</Issue>\n
+        \                   <PubDate>\n                        <Year>2014</Year>\n
+        \                       <Month>Aug</Month>\n                    </PubDate>\n
+        \               </JournalIssue>\n                <Title>Nature methods</Title>\n
+        \               <ISOAbbreviation>Nat. Methods</ISOAbbreviation>\n            </Journal>\n
+        \           <ArticleTitle>Chemically defined generation of human cardiomyocytes.</ArticleTitle>\n
+        \           <Pagination>\n                <MedlinePgn>855-60</MedlinePgn>\n
+        \           </Pagination>\n            <ELocationID EIdType=\"doi\" ValidYN=\"Y\">10.1038/nmeth.2999</ELocationID>\n
+        \           <Abstract>\n                <AbstractText>Existing methods for
+        human induced pluripotent stem cell (hiPSC) cardiac differentiation are efficient
+        but require complex, undefined medium constituents that hinder further elucidation
+        of the molecular mechanisms of cardiomyogenesis. Using hiPSCs derived under
+        chemically defined conditions on synthetic matrices, we systematically developed
+        an optimized cardiac differentiation strategy, using a chemically defined
+        medium consisting of just three components: the basal medium RPMI 1640, L-ascorbic
+        acid 2-phosphate and rice-derived recombinant human albumin. Along with small
+        molecule-based induction of differentiation, this protocol produced contractile
+        sheets of up to 95% TNNT2(+) cardiomyocytes at a yield of up to 100 cardiomyocytes
+        for every input pluripotent cell and was effective in 11 hiPSC lines tested.
+        This chemically defined platform for cardiac specification of hiPSCs will
+        allow the elucidation of cardiomyocyte macromolecular and metabolic requirements
+        and will provide a minimal system for the study of maturation and subtype
+        specification.</AbstractText>\n            </Abstract>\n            <AuthorList
+        CompleteYN=\"Y\">\n                <Author ValidYN=\"Y\">\n                    <LastName>Burridge</LastName>\n
+        \                   <ForeName>Paul W</ForeName>\n                    <Initials>PW</Initials>\n
+        \                   <Affiliation>1] Stanford Cardiovascular Institute, Stanford
+        University School of Medicine, Stanford, California, USA. [2] Institute for
+        Stem Cell Biology and Regenerative Medicine, Stanford University School of
+        Medicine, Stanford, California, USA. [3] Department of Medicine, Division
+        of Cardiology, Stanford University School of Medicine, Stanford, California,
+        USA.</Affiliation>\n                </Author>\n                <Author ValidYN=\"Y\">\n
+        \                   <LastName>Matsa</LastName>\n                    <ForeName>Elena</ForeName>\n
+        \                   <Initials>E</Initials>\n                    <Affiliation>1]
+        Stanford Cardiovascular Institute, Stanford University School of Medicine,
+        Stanford, California, USA. [2] Institute for Stem Cell Biology and Regenerative
+        Medicine, Stanford University School of Medicine, Stanford, California, USA.
+        [3] Department of Medicine, Division of Cardiology, Stanford University School
+        of Medicine, Stanford, California, USA.</Affiliation>\n                </Author>\n
+        \               <Author ValidYN=\"Y\">\n                    <LastName>Shukla</LastName>\n
+        \                   <ForeName>Praveen</ForeName>\n                    <Initials>P</Initials>\n
+        \                   <Affiliation>1] Stanford Cardiovascular Institute, Stanford
+        University School of Medicine, Stanford, California, USA. [2] Institute for
+        Stem Cell Biology and Regenerative Medicine, Stanford University School of
+        Medicine, Stanford, California, USA. [3] Department of Medicine, Division
+        of Cardiology, Stanford University School of Medicine, Stanford, California,
+        USA.</Affiliation>\n                </Author>\n                <Author ValidYN=\"Y\">\n
+        \                   <LastName>Lin</LastName>\n                    <ForeName>Ziliang
+        C</ForeName>\n                    <Initials>ZC</Initials>\n                    <Affiliation>Department
+        of Applied Physics, Stanford University School of Medicine, Stanford, California,
+        USA.</Affiliation>\n                </Author>\n                <Author ValidYN=\"Y\">\n
+        \                   <LastName>Churko</LastName>\n                    <ForeName>Jared
+        M</ForeName>\n                    <Initials>JM</Initials>\n                    <Affiliation>1]
+        Stanford Cardiovascular Institute, Stanford University School of Medicine,
+        Stanford, California, USA. [2] Institute for Stem Cell Biology and Regenerative
+        Medicine, Stanford University School of Medicine, Stanford, California, USA.
+        [3] Department of Medicine, Division of Cardiology, Stanford University School
+        of Medicine, Stanford, California, USA.</Affiliation>\n                </Author>\n
+        \               <Author ValidYN=\"Y\">\n                    <LastName>Ebert</LastName>\n
+        \                   <ForeName>Antje D</ForeName>\n                    <Initials>AD</Initials>\n
+        \                   <Affiliation>1] Stanford Cardiovascular Institute, Stanford
+        University School of Medicine, Stanford, California, USA. [2] Institute for
+        Stem Cell Biology and Regenerative Medicine, Stanford University School of
+        Medicine, Stanford, California, USA. [3] Department of Medicine, Division
+        of Cardiology, Stanford University School of Medicine, Stanford, California,
+        USA.</Affiliation>\n                </Author>\n                <Author ValidYN=\"Y\">\n
+        \                   <LastName>Lan</LastName>\n                    <ForeName>Feng</ForeName>\n
+        \                   <Initials>F</Initials>\n                    <Affiliation>1]
+        Stanford Cardiovascular Institute, Stanford University School of Medicine,
+        Stanford, California, USA. [2] Institute for Stem Cell Biology and Regenerative
+        Medicine, Stanford University School of Medicine, Stanford, California, USA.
+        [3] Department of Medicine, Division of Cardiology, Stanford University School
+        of Medicine, Stanford, California, USA.</Affiliation>\n                </Author>\n
+        \               <Author ValidYN=\"Y\">\n                    <LastName>Diecke</LastName>\n
+        \                   <ForeName>Sebastian</ForeName>\n                    <Initials>S</Initials>\n
+        \                   <Affiliation>1] Stanford Cardiovascular Institute, Stanford
+        University School of Medicine, Stanford, California, USA. [2] Institute for
+        Stem Cell Biology and Regenerative Medicine, Stanford University School of
+        Medicine, Stanford, California, USA. [3] Department of Medicine, Division
+        of Cardiology, Stanford University School of Medicine, Stanford, California,
+        USA.</Affiliation>\n                </Author>\n                <Author ValidYN=\"Y\">\n
+        \                   <LastName>Huber</LastName>\n                    <ForeName>Bruno</ForeName>\n
+        \                   <Initials>B</Initials>\n                    <Affiliation>1]
+        Stanford Cardiovascular Institute, Stanford University School of Medicine,
+        Stanford, California, USA. [2] Institute for Stem Cell Biology and Regenerative
+        Medicine, Stanford University School of Medicine, Stanford, California, USA.
+        [3] Department of Medicine, Division of Cardiology, Stanford University School
+        of Medicine, Stanford, California, USA.</Affiliation>\n                </Author>\n
+        \               <Author ValidYN=\"Y\">\n                    <LastName>Mordwinkin</LastName>\n
+        \                   <ForeName>Nicholas M</ForeName>\n                    <Initials>NM</Initials>\n
+        \                   <Affiliation>1] Stanford Cardiovascular Institute, Stanford
+        University School of Medicine, Stanford, California, USA. [2] Institute for
+        Stem Cell Biology and Regenerative Medicine, Stanford University School of
+        Medicine, Stanford, California, USA. [3] Department of Medicine, Division
+        of Cardiology, Stanford University School of Medicine, Stanford, California,
+        USA.</Affiliation>\n                </Author>\n                <Author ValidYN=\"Y\">\n
+        \                   <LastName>Plews</LastName>\n                    <ForeName>Jordan
+        R</ForeName>\n                    <Initials>JR</Initials>\n                    <Affiliation>1]
+        Stanford Cardiovascular Institute, Stanford University School of Medicine,
+        Stanford, California, USA. [2] Institute for Stem Cell Biology and Regenerative
+        Medicine, Stanford University School of Medicine, Stanford, California, USA.
+        [3] Department of Medicine, Division of Cardiology, Stanford University School
+        of Medicine, Stanford, California, USA.</Affiliation>\n                </Author>\n
+        \               <Author ValidYN=\"Y\">\n                    <LastName>Abilez</LastName>\n
+        \                   <ForeName>Oscar J</ForeName>\n                    <Initials>OJ</Initials>\n
+        \                   <Identifier Source=\"ORCID\">000000029991400X</Identifier>\n
+        \                   <Affiliation>1] Stanford Cardiovascular Institute, Stanford
+        University School of Medicine, Stanford, California, USA. [2] Institute for
+        Stem Cell Biology and Regenerative Medicine, Stanford University School of
+        Medicine, Stanford, California, USA. [3] Department of Medicine, Division
+        of Cardiology, Stanford University School of Medicine, Stanford, California,
+        USA.</Affiliation>\n                </Author>\n                <Author ValidYN=\"Y\">\n
+        \                   <LastName>Cui</LastName>\n                    <ForeName>Bianxiao</ForeName>\n
+        \                   <Initials>B</Initials>\n                    <Affiliation>Department
+        of Chemistry, Stanford University School of Medicine, Stanford, California,
+        USA.</Affiliation>\n                </Author>\n                <Author ValidYN=\"Y\">\n
+        \                   <LastName>Gold</LastName>\n                    <ForeName>Joseph
+        D</ForeName>\n                    <Initials>JD</Initials>\n                    <Affiliation>Stanford
+        Cardiovascular Institute, Stanford University School of Medicine, Stanford,
+        California, USA.</Affiliation>\n                </Author>\n                <Author
+        ValidYN=\"Y\">\n                    <LastName>Wu</LastName>\n                    <ForeName>Joseph
+        C</ForeName>\n                    <Initials>JC</Initials>\n                    <Affiliation>1]
+        Stanford Cardiovascular Institute, Stanford University School of Medicine,
+        Stanford, California, USA. [2] Institute for Stem Cell Biology and Regenerative
+        Medicine, Stanford University School of Medicine, Stanford, California, USA.
+        [3] Department of Medicine, Division of Cardiology, Stanford University School
+        of Medicine, Stanford, California, USA.</Affiliation>\n                </Author>\n
+        \           </AuthorList>\n            <Language>eng</Language>\n            <GrantList
+        CompleteYN=\"Y\">\n                <Grant>\n                    <GrantID>R01
+        HL113006</GrantID>\n                    <Acronym>HL</Acronym>\n                    <Agency>NHLBI
+        NIH HHS</Agency>\n                    <Country>United States</Country>\n                </Grant>\n
+        \               <Grant>\n                    <GrantID>R24 HL117756</GrantID>\n
+        \                   <Acronym>HL</Acronym>\n                    <Agency>NHLBI
+        NIH HHS</Agency>\n                    <Country>United States</Country>\n                </Grant>\n
+        \               <Grant>\n                    <GrantID>U01 HL099776</GrantID>\n
+        \                   <Acronym>HL</Acronym>\n                    <Agency>NHLBI
+        NIH HHS</Agency>\n                    <Country>United States</Country>\n                </Grant>\n
+        \           </GrantList>\n            <PublicationTypeList>\n                <PublicationType>Journal
+        Article</PublicationType>\n            </PublicationTypeList>\n            <ArticleDate
+        DateType=\"Electronic\">\n                <Year>2014</Year>\n                <Month>06</Month>\n
+        \               <Day>15</Day>\n            </ArticleDate>\n        </Article>\n
         \       <MedlineJournalInfo>\n            <Country>United States</Country>\n
-        \           <MedlineTA>N Engl J Med</MedlineTA>\n            <NlmUniqueID>0255562</NlmUniqueID>\n
-        \           <ISSNLinking>0028-4793</ISSNLinking>\n        </MedlineJournalInfo>\n
-        \       <CitationSubset>AIM</CitationSubset>\n        <CitationSubset>IM</CitationSubset>\n
-        \   </MedlineCitation>\n    <PubmedData>\n        <History>\n            <PubMedPubDate
-        PubStatus=\"entrez\">\n                <Year>2014</Year>\n                <Month>3</Month>\n
-        \               <Day>21</Day>\n                <Hour>6</Hour>\n                <Minute>0</Minute>\n
-        \           </PubMedPubDate>\n            <PubMedPubDate PubStatus=\"pubmed\">\n
-        \               <Year>2014</Year>\n                <Month>3</Month>\n                <Day>22</Day>\n
+        \           <MedlineTA>Nat Methods</MedlineTA>\n            <NlmUniqueID>101215604</NlmUniqueID>\n
+        \           <ISSNLinking>1548-7091</ISSNLinking>\n        </MedlineJournalInfo>\n
+        \       <CitationSubset>IM</CitationSubset>\n    </MedlineCitation>\n    <PubmedData>\n
+        \       <History>\n            <PubMedPubDate PubStatus=\"received\">\n                <Year>2013</Year>\n
+        \               <Month>10</Month>\n                <Day>15</Day>\n            </PubMedPubDate>\n
+        \           <PubMedPubDate PubStatus=\"accepted\">\n                <Year>2014</Year>\n
+        \               <Month>5</Month>\n                <Day>06</Day>\n            </PubMedPubDate>\n
+        \           <PubMedPubDate PubStatus=\"aheadofprint\">\n                <Year>2014</Year>\n
+        \               <Month>6</Month>\n                <Day>15</Day>\n            </PubMedPubDate>\n
+        \           <PubMedPubDate PubStatus=\"entrez\">\n                <Year>2014</Year>\n
+        \               <Month>6</Month>\n                <Day>16</Day>\n                <Hour>6</Hour>\n
+        \               <Minute>0</Minute>\n            </PubMedPubDate>\n            <PubMedPubDate
+        PubStatus=\"pubmed\">\n                <Year>2014</Year>\n                <Month>6</Month>\n
+        \               <Day>16</Day>\n                <Hour>6</Hour>\n                <Minute>0</Minute>\n
+        \           </PubMedPubDate>\n            <PubMedPubDate PubStatus=\"medline\">\n
+        \               <Year>2014</Year>\n                <Month>6</Month>\n                <Day>16</Day>\n
         \               <Hour>6</Hour>\n                <Minute>0</Minute>\n            </PubMedPubDate>\n
-        \           <PubMedPubDate PubStatus=\"medline\">\n                <Year>2014</Year>\n
-        \               <Month>3</Month>\n                <Day>22</Day>\n                <Hour>6</Hour>\n
-        \               <Minute>0</Minute>\n            </PubMedPubDate>\n        </History>\n
-        \       <PublicationStatus>ppublish</PublicationStatus>\n        <ArticleIdList>\n
-        \           <ArticleId IdType=\"doi\">10.1056/NEJMicm1309192</ArticleId>\n
-        \           <ArticleId IdType=\"pubmed\">24645947</ArticleId>\n        </ArticleIdList>\n
-        \   </PubmedData>\n</PubmedArticle>\n\n</PubmedArticleSet>\n"
+        \       </History>\n        <PublicationStatus>ppublish</PublicationStatus>\n
+        \       <ArticleIdList>\n            <ArticleId IdType=\"pii\">nmeth.2999</ArticleId>\n
+        \           <ArticleId IdType=\"doi\">10.1038/nmeth.2999</ArticleId>\n            <ArticleId
+        IdType=\"pubmed\">24930130</ArticleId>\n        </ArticleIdList>\n    </PubmedData>\n</PubmedArticle>\n\n</PubmedArticleSet>\n"
     http_version: 
-  recorded_at: Mon, 24 Mar 2014 18:46:21 GMT
+  recorded_at: Sat, 09 Aug 2014 00:28:53 GMT
 recorded_with: VCR 2.5.0

@@ -47,7 +47,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Mon, 24 Mar 2014 17:47:35 GMT
+      - Fri, 08 Aug 2014 23:48:33 GMT
       Content-Length:
       - '278'
     body:
@@ -56,7 +56,7 @@ http_interactions:
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>142611</queryID>\r\n
         \ <queryResultRows>1</queryResultRows>\r\n  <totalRows>1</totalRows>\r\n</ScienceWireQueryIDResponse>"
     http_version: 
-  recorded_at: Mon, 24 Mar 2014 17:47:36 GMT
+  recorded_at: Fri, 08 Aug 2014 23:48:33 GMT
 - request:
     method: get
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/142611?format=xml&page=0&pageSize=2147483647&v=version/3
@@ -94,9 +94,9 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Mon, 24 Mar 2014 17:47:40 GMT
+      - Fri, 08 Aug 2014 23:48:33 GMT
       Content-Length:
-      - '4061'
+      - '4065'
     body:
       encoding: US-ASCII
       string: ! "<?xml version=\"1.0\"?>\r\n<ArrayOfPublicationItem xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
@@ -130,7 +130,7 @@ http_interactions:
         \   <AuthorCount>3</AuthorCount>\r\n    <KeywordList>MONOVISION|survey|fitting|presbyopia|multifocal
         contact lenses|monovision correction</KeywordList>\r\n    <DocumentTypeList>Article</DocumentTypeList>\r\n
         \   <DocumentCategory>Journal Document</DocumentCategory>\r\n    <NumberOfReferences>13</NumberOfReferences>\r\n
-        \   <TimesCited>9</TimesCited>\r\n    <TimesNotSelfCited>8</TimesNotSelfCited>\r\n
+        \   <TimesCited>10</TimesCited>\r\n    <TimesNotSelfCited>9</TimesNotSelfCited>\r\n
         \   <PMID>21039845</PMID>\r\n    <WoSItemID>000285755000012</WoSItemID>\r\n
         \   <PublicationSourceTitle>CLINICAL AND EXPERIMENTAL OPTOMETRY</PublicationSourceTitle>\r\n
         \   <Volume>94</Volume>\r\n    <Issue>1</Issue>\r\n    <Pagination>87-92</Pagination>\r\n
@@ -141,11 +141,11 @@ http_interactions:
         />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>0</OrdinalRank>\r\n
         \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>WILEY-BLACKWELL</CopyrightPublisher>\r\n
-        \   <CopyrightCity>MALDEN</CopyrightCity>\r\n    <PublicationImpactFactorList>1.047,2011,ExactPublicationYear|1.047,2011,MostRecentYear</PublicationImpactFactorList>\r\n
-        \   <PublicationCategoryRankingList>36/56;OPHTHALMOLOGY;2011;SC;ExactPublicationYear|36/56;OPHTHALMOLOGY;2011;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
-        \   <AuthorCitationCountList>1,0,9|2,0,9|3,1,8</AuthorCitationCountList>\r\n
-        \   <CopyrightStateProvince>MA</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
+        \   <CopyrightCity>HOBOKEN</CopyrightCity>\r\n    <PublicationImpactFactorList>1.047,2011,ExactPublicationYear|0.916,2012,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>36/56;OPHTHALMOLOGY;2011;SC;ExactPublicationYear|44/59;OPHTHALMOLOGY;2012;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <AuthorCitationCountList>1,0,10|2,0,10|3,1,9</AuthorCitationCountList>\r\n
+        \   <CopyrightStateProvince>NJ</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
         STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n</ArrayOfPublicationItem>"
     http_version: 
-  recorded_at: Mon, 24 Mar 2014 17:47:41 GMT
+  recorded_at: Fri, 08 Aug 2014 23:48:33 GMT
 recorded_with: VCR 2.5.0
