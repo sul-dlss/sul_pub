@@ -4,7 +4,7 @@ require 'capistrano/ext/multistage'
 
 #role :app, "sul-lyberservices-dev.stanford.edu"
 
-set :stages, ["development", "staging", "production", "qa"]
+set :stages, ["development", "dev_solo", "production", "qa"]
 set :default_stage, "staging"
 
 #set :rvm_type, :system
