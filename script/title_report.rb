@@ -47,9 +47,33 @@ class TitleReport
     }
   end
 
-  def work file
+  def parse_lines file
     raw = IO.read file
     @lines = raw.split("\r")
+  end
+
+  def profile_names file
+    parse_lines file
+
+    @lines.each do |l|
+      dept, prof_id = l.split(',')
+      if @processed_ids.member? prof_id
+        @logger.warn "Skipping duplicate profile_id in line: #{l}"
+      end
+      @processed_ids << prof_id
+    end
+
+    CSV.open("/tmp/report/all_official_first_last_names.csv", 'w') do |csv|
+      csv << ['cap_profile_id', 'official_first_last_name']
+      @processed_ids.each do |id|
+        auth = Author.where(:cap_profile_id => id).first
+        csv << [id, "#{auth.official_first_name} #{auth.official_last_name}"]
+      end
+    end
+  end
+
+  def work file
+    parse_lines file
     @count = 0
     @lines.each do |line|
       @count += 1
