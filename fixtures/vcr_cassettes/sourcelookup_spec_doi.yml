@@ -47,7 +47,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Fri, 08 Aug 2014 23:49:45 GMT
+      - Sat, 06 Dec 2014 02:07:00 GMT
       Content-Length:
       - '278'
     body:
@@ -56,7 +56,7 @@ http_interactions:
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>142612</queryID>\r\n
         \ <queryResultRows>1</queryResultRows>\r\n  <totalRows>1</totalRows>\r\n</ScienceWireQueryIDResponse>"
     http_version: 
-  recorded_at: Fri, 08 Aug 2014 23:49:46 GMT
+  recorded_at: Sat, 06 Dec 2014 02:07:00 GMT
 - request:
     method: get
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/142612?format=xml&page=0&pageSize=2147483647&v=version/3
@@ -94,9 +94,9 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Fri, 08 Aug 2014 23:49:45 GMT
+      - Sat, 06 Dec 2014 02:07:00 GMT
       Content-Length:
-      - '4111'
+      - '4116'
     body:
       encoding: US-ASCII
       string: ! "<?xml version=\"1.0\"?>\r\n<ArrayOfPublicationItem xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
@@ -131,7 +131,7 @@ http_interactions:
         FACTOR-9|OLIGODENDROCYTE|MYELIN|thyroid hormone|cuprizone|Klf9|BTEB1</KeywordList>\r\n
         \   <DocumentTypeList>Article</DocumentTypeList>\r\n    <DocumentCategory>Journal
         Document</DocumentCategory>\r\n    <NumberOfReferences>61</NumberOfReferences>\r\n
-        \   <TimesCited>7</TimesCited>\r\n    <TimesNotSelfCited>7</TimesNotSelfCited>\r\n
+        \   <TimesCited>11</TimesCited>\r\n    <TimesNotSelfCited>11</TimesNotSelfCited>\r\n
         \   <PMID>22472204</PMID>\r\n    <WoSItemID>000305547700005</WoSItemID>\r\n
         \   <PublicationSourceTitle>MOLECULAR AND CELLULAR NEUROSCIENCE</PublicationSourceTitle>\r\n
         \   <Volume>50</Volume>\r\n    <Issue>1</Issue>\r\n    <Pagination>45-57</Pagination>\r\n
@@ -145,11 +145,11 @@ http_interactions:
         PRESS INC ELSEVIER SCIENCE</CopyrightPublisher>\r\n    <CopyrightCity>SAN
         DIEGO</CopyrightCity>\r\n    <PublicationImpactFactorList>3.663,2011,ClosestToPublicationYear|3.663,2011,MostRecentYear</PublicationImpactFactorList>\r\n
         \   <PublicationCategoryRankingList>77/242;NEUROSCIENCES;2011;SC;ClosestToPublicationYear|77/242;NEUROSCIENCES;2011;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
-        \   <AuthorCitationCountList>1,0,7|2,0,7|3,0,7</AuthorCitationCountList>\r\n
+        \   <AuthorCitationCountList>1,0,11|2,0,11|3,0,11</AuthorCitationCountList>\r\n
         \   <CopyrightStateProvince>CA</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
         STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n</ArrayOfPublicationItem>"
     http_version: 
-  recorded_at: Fri, 08 Aug 2014 23:49:46 GMT
+  recorded_at: Sat, 06 Dec 2014 02:07:01 GMT
 - request:
     method: post
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery?format=xml
@@ -197,7 +197,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Sat, 09 Aug 2014 00:22:42 GMT
+      - Sat, 06 Dec 2014 02:32:27 GMT
       Content-Length:
       - '278'
     body:
@@ -206,7 +206,7 @@ http_interactions:
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>142612</queryID>\r\n
         \ <queryResultRows>1</queryResultRows>\r\n  <totalRows>1</totalRows>\r\n</ScienceWireQueryIDResponse>"
     http_version: 
-  recorded_at: Sat, 09 Aug 2014 00:22:42 GMT
+  recorded_at: Sat, 06 Dec 2014 02:32:28 GMT
 - request:
     method: get
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/142612?format=xml&page=0&pageSize=2147483647&v=version/3
@@ -244,9 +244,9 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Sat, 09 Aug 2014 00:22:42 GMT
+      - Sat, 06 Dec 2014 02:32:28 GMT
       Content-Length:
-      - '4111'
+      - '4116'
     body:
       encoding: US-ASCII
       string: ! "<?xml version=\"1.0\"?>\r\n<ArrayOfPublicationItem xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
@@ -281,7 +281,7 @@ http_interactions:
         FACTOR-9|OLIGODENDROCYTE|MYELIN|thyroid hormone|cuprizone|Klf9|BTEB1</KeywordList>\r\n
         \   <DocumentTypeList>Article</DocumentTypeList>\r\n    <DocumentCategory>Journal
         Document</DocumentCategory>\r\n    <NumberOfReferences>61</NumberOfReferences>\r\n
-        \   <TimesCited>7</TimesCited>\r\n    <TimesNotSelfCited>7</TimesNotSelfCited>\r\n
+        \   <TimesCited>11</TimesCited>\r\n    <TimesNotSelfCited>11</TimesNotSelfCited>\r\n
         \   <PMID>22472204</PMID>\r\n    <WoSItemID>000305547700005</WoSItemID>\r\n
         \   <PublicationSourceTitle>MOLECULAR AND CELLULAR NEUROSCIENCE</PublicationSourceTitle>\r\n
         \   <Volume>50</Volume>\r\n    <Issue>1</Issue>\r\n    <Pagination>45-57</Pagination>\r\n
@@ -295,9 +295,9 @@ http_interactions:
         PRESS INC ELSEVIER SCIENCE</CopyrightPublisher>\r\n    <CopyrightCity>SAN
         DIEGO</CopyrightCity>\r\n    <PublicationImpactFactorList>3.663,2011,ClosestToPublicationYear|3.663,2011,MostRecentYear</PublicationImpactFactorList>\r\n
         \   <PublicationCategoryRankingList>77/242;NEUROSCIENCES;2011;SC;ClosestToPublicationYear|77/242;NEUROSCIENCES;2011;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
-        \   <AuthorCitationCountList>1,0,7|2,0,7|3,0,7</AuthorCitationCountList>\r\n
+        \   <AuthorCitationCountList>1,0,11|2,0,11|3,0,11</AuthorCitationCountList>\r\n
         \   <CopyrightStateProvince>CA</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
         STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n</ArrayOfPublicationItem>"
     http_version: 
-  recorded_at: Sat, 09 Aug 2014 00:22:43 GMT
+  recorded_at: Sat, 06 Dec 2014 02:32:28 GMT
 recorded_with: VCR 2.5.0

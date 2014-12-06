@@ -176,6 +176,7 @@ describe SulBib::API do
         end
 
         it "creates an Author when a new cap_profile_id is passed in" do
+          pending "Administrative Systems firewall only allows IP-based requests"
           VCR.use_cassette("api_publications_spec_create_new_auth") do
             post "/publications", json_with_new_author, headers
             response.status.should == 201

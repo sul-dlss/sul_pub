@@ -28,6 +28,7 @@ gem "strong_parameters"
 gem "turnout"
 gem "parallel"
 gem "acts_as_trashable"
+gem 'libv8', '>=3.16.14.7'
 #gem 'always_verify_ssl_certificates'
 
 group :development, :test do

@@ -1,39 +1,6 @@
 ---
 http_interactions:
 - request:
-    method: post
-    uri: https://sul:***REMOVED***@***REMOVED***/oauth/token
-    body:
-      encoding: US-ASCII
-      string: grant_type=client_credentials
-    headers:
-      Accept:
-      - ! '*/*'
-      User-Agent:
-      - Ruby
-      Content-Type:
-      - application/x-www-form-urlencoded
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Mon, 24 Mar 2014 17:48:43 GMT
-      Cache-Control:
-      - no-store
-      Pragma:
-      - no-cache
-      Content-Type:
-      - application/json;charset=UTF-8
-      Transfer-Encoding:
-      - chunked
-    body:
-      encoding: US-ASCII
-      string: ! '{"access_token":"eyJhbGciOiJSUzI1NiJ9.eyJqdGkiOiIzNjJhYzMwMS05YjI5LTQwMjktYjZhYS1lMjkxZDdiMGRiMjAiLCJzdWIiOiJzdWwiLCJhdXRob3JpdGllcyI6WyJwcm9maWxlcy5yZWFkX2FsbCJdLCJzY29wZSI6WyJwcm9maWxlcy5yZWFkX2FsbCJdLCJjbGllbnRfaWQiOiJzdWwiLCJjaWQiOiJzdWwiLCJncmFudF90eXBlIjoiY2xpZW50X2NyZWRlbnRpYWxzIiwiaWF0IjoxMzk1NjgzMzIzLCJleHAiOjEzOTU3Njk3MjMsImlzcyI6Imh0dHBzOi8vYXV0aHotdGVzdC5zdGFuZm9yZC5lZHUvb2F1dGgvdG9rZW4iLCJhdWQiOlsicHJvZmlsZXMiXX0.ZJpVV3fsmH9TlirO7thrTdOq0K8C7cjbWpL2l3kSY2YxZwQZs577Wgh3o_LvzdKjpBsJPZ0nCST_73xS-pduyzKar1mRgsFIdoGxkE12BIEoxVGntxnFX1q05p5WzHtMjoKI2D4vvDWhA_4trLC_TIM1cqEIGA6a1C8VjzL-dX8U6h5T_ocR38tSmNQhF1k-lgV4lZd83AYsjoHlk_yyDTS8_FeBI5pK2ROdulWM-qAfgkOJLhmWgFW-RC-9boSsgg5qOqFexlqOmUm8PbcD8XMKb5zos2oa0jSs7fTE-_ufWoxo9tWeQ12C1kNYyekmlPFIXx8WBRJwb3usdhaDOA","token_type":"bearer","expires_in":86399,"scope":"profiles.read_all","jti":"362ac301-9b29-4029-b6aa-e291d7b0db20"}'
-    http_version: 
-  recorded_at: Mon, 24 Mar 2014 17:48:43 GMT
-- request:
     method: get
     uri: https://irt-dev.stanford.edu/cap-api-qa/api/cap/v1/authors/3810
     body:
@@ -148,4 +115,230 @@ http_interactions:
         J. Lowe, MD","email":"hlowe@stanford.edu","meta":{"etag":"1506345827","links":[{"href":"http://irt-ppapp-02:12011/cap-api-qa/api/profiles/v1/3810","rel":"https://cap.stanford.edu/rel/self"},{"href":"https://irt-dev.stanford.edu/cap-su-qa/henry-lowe","rel":"https://cap.stanford.edu/rel/public"},{"href":"https://cap-irt-dev.stanford.edu/profiles-qa/auth/frdActionServlet?choiceId=facProfile&profileId=3810","rel":"https://cap.stanford.edu/rel/intranet"},{"href":"https://cap-irt-dev.stanford.edu/profiles-qa/frdActionServlet?choiceId=printerprofile&profileversion=full&profileId=3810","rel":"https://cap.stanford.edu/rel/pdf"},{"href":"http://irt-ppapp-02:12011/cap-api-qa/api/cap/v1/schemas/profile","rel":"https://cap.stanford.edu/rel/schema"}]},"names":{"legal":{"firstName":"Henry","lastName":"Lowe","middleName":"J"},"preferred":{"firstName":"Henry","lastName":"Lowe","middleName":"J."}},"npi":"1831301399","profileId":3810,"uid":"hlowe","universityId":"09724972"},"profileId":3810,"visibility":"public"}'
     http_version: 
   recorded_at: Sat, 09 Aug 2014 00:21:24 GMT
+- request:
+    method: get
+    uri: https://cap-dev.stanford.edu/cap-api/api/cap/v1/authors/3810
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+      Authorization:
+      - bearer eyJhbGciOiJSUzI1NiJ9.eyJqdGkiOiI1ODgwMTgzNy1jODAzLTQ0YmQtODk0OC1jZDEwYTUxOWViNDQiLCJzdWIiOiJzdWwiLCJhdXRob3JpdGllcyI6WyJwcm9maWxlcy5yZWFkX2FsbCJdLCJzY29wZSI6WyJwcm9maWxlcy5yZWFkX2FsbCJdLCJjbGllbnRfaWQiOiJzdWwiLCJjaWQiOiJzdWwiLCJncmFudF90eXBlIjoiY2xpZW50X2NyZWRlbnRpYWxzIiwiaWF0IjoxNDE3ODMxNTg0LCJleHAiOjE0MTc5MTc5ODQsImlzcyI6Imh0dHBzOi8vYXV0aHotdGVzdC5zdGFuZm9yZC5lZHUvb2F1dGgvdG9rZW4iLCJhdWQiOlsicHJvZmlsZXMiXX0.ha__N6SZWK9yHFlOsUcOeg4MdmmEbtKD07Zr7Pgjins43Bpnis7BYAsZxLCsvtQ1Rsm16aWxCvq4eMmfT9Q810g53VhsyQ_5a3eaWeUNqrQ2xA_DoKUpqHYxTZya5ITpFO8EpB-YxmWu4KtxZFQTe7THrjg1cVCEQ9hSZxJeWL1xNK7G2ug0TrED94GRvFmc0ls9fZ6L_Hs6gges7ipNyRloV9zKXawcp9B0RvwXz1-qt5QGUt0z-fnePyx0bTAGGHLf2ghR4HYRqMJWIMEIEsLeFBMN-L3iIwXk8VJu25c_oaUYyOs_5PSUit2RVeQbc5D1GthUvk1WQJzdDUnfKA
+  response:
+    status:
+      code: 401
+      message: Unauthorized
+    headers:
+      Date:
+      - Sat, 06 Dec 2014 02:06:15 GMT
+      Server:
+      - Apache/2.2.15 (Oracle)
+      Cache-Control:
+      - no-store
+      Pragma:
+      - no-cache
+      Www-Authenticate:
+      - ! 'Bearer realm="oauth", error="invalid_token", error_description="Invalid
+        access token. Unable to decode or verify JWT: eyJhbGciOiJSUzI1NiJ9.eyJqdGkiOiI1ODgwMTgzNy1jODAzLTQ0YmQtODk0OC1jZDEwYTUxOWViNDQiLCJzdWIiOiJzdWwiLCJhdXRob3JpdGllcyI6WyJwcm9maWxlcy5yZWFkX2FsbCJdLCJzY29wZSI6WyJwcm9maWxlcy5yZWFkX2FsbCJdLCJjbGllbnRfaWQiOiJzdWwiLCJjaWQiOiJzdWwiLCJncmFudF90eXBlIjoiY2xpZW50X2NyZWRlbnRpYWxzIiwiaWF0IjoxNDE3ODMxNTg0LCJleHAiOjE0MTc5MTc5ODQsImlzcyI6Imh0dHBzOi8vYXV0aHotdGVzdC5zdGFuZm9yZC5lZHUvb2F1dGgvdG9rZW4iLCJhdWQiOlsicHJvZmlsZXMiXX0.ha__N6SZWK9yHFlOsUcOeg4MdmmEbtKD07Zr7Pgjins43Bpnis7BYAsZxLCsvtQ1Rsm16aWxCvq4eMmfT9Q810g53VhsyQ_5a3eaWeUNqrQ2xA_DoKUpqHYxTZya5ITpFO8EpB-YxmWu4KtxZFQTe7THrjg1cVCEQ9hSZxJeWL1xNK7G2ug0TrED94GRvFmc0ls9fZ6L_Hs6gges7ipNyRloV9zKXawcp9B0RvwXz1-qt5QGUt0z-fnePyx0bTAGGHLf2ghR4HYRqMJWIMEIEsLeFBMN-L3iIwXk8VJu25c_oaUYyOs_5PSUit2RVeQbc5D1GthUvk1WQJzdDUnfKA"'
+      Connection:
+      - close
+      Transfer-Encoding:
+      - chunked
+      Content-Type:
+      - application/json;charset=UTF-8
+    body:
+      encoding: US-ASCII
+      string: ! '{"error":"invalid_token","error_description":"Invalid access token.
+        Unable to decode or verify JWT: eyJhbGciOiJSUzI1NiJ9.eyJqdGkiOiI1ODgwMTgzNy1jODAzLTQ0YmQtODk0OC1jZDEwYTUxOWViNDQiLCJzdWIiOiJzdWwiLCJhdXRob3JpdGllcyI6WyJwcm9maWxlcy5yZWFkX2FsbCJdLCJzY29wZSI6WyJwcm9maWxlcy5yZWFkX2FsbCJdLCJjbGllbnRfaWQiOiJzdWwiLCJjaWQiOiJzdWwiLCJncmFudF90eXBlIjoiY2xpZW50X2NyZWRlbnRpYWxzIiwiaWF0IjoxNDE3ODMxNTg0LCJleHAiOjE0MTc5MTc5ODQsImlzcyI6Imh0dHBzOi8vYXV0aHotdGVzdC5zdGFuZm9yZC5lZHUvb2F1dGgvdG9rZW4iLCJhdWQiOlsicHJvZmlsZXMiXX0.ha__N6SZWK9yHFlOsUcOeg4MdmmEbtKD07Zr7Pgjins43Bpnis7BYAsZxLCsvtQ1Rsm16aWxCvq4eMmfT9Q810g53VhsyQ_5a3eaWeUNqrQ2xA_DoKUpqHYxTZya5ITpFO8EpB-YxmWu4KtxZFQTe7THrjg1cVCEQ9hSZxJeWL1xNK7G2ug0TrED94GRvFmc0ls9fZ6L_Hs6gges7ipNyRloV9zKXawcp9B0RvwXz1-qt5QGUt0z-fnePyx0bTAGGHLf2ghR4HYRqMJWIMEIEsLeFBMN-L3iIwXk8VJu25c_oaUYyOs_5PSUit2RVeQbc5D1GthUvk1WQJzdDUnfKA"}'
+    http_version: 
+  recorded_at: Sat, 06 Dec 2014 02:06:39 GMT
+- request:
+    method: post
+    uri: https://sul:***REMOVED***@***REMOVED***/oauth/token
+    body:
+      encoding: US-ASCII
+      string: grant_type=client_credentials
+    headers:
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sat, 06 Dec 2014 02:06:39 GMT
+      Cache-Control:
+      - no-store
+      Pragma:
+      - no-cache
+      Content-Type:
+      - application/json;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: US-ASCII
+      string: ! '{"access_token":"eyJhbGciOiJSUzI1NiJ9.eyJqdGkiOiJhNzNkZjY2OC03YWYyLTRmNjMtYjczNi03NjM2Y2NiMGI0N2UiLCJzdWIiOiJzdWwiLCJhdXRob3JpdGllcyI6WyJwcm9maWxlcy5yZWFkX2FsbCJdLCJzY29wZSI6WyJwcm9maWxlcy5yZWFkX2FsbCJdLCJjbGllbnRfaWQiOiJzdWwiLCJjaWQiOiJzdWwiLCJncmFudF90eXBlIjoiY2xpZW50X2NyZWRlbnRpYWxzIiwiaWF0IjoxNDE3ODMxNTk5LCJleHAiOjE0MTc5MTc5OTksImlzcyI6Imh0dHBzOi8vYXV0aHotdGVzdC5zdGFuZm9yZC5lZHUvb2F1dGgvdG9rZW4iLCJhdWQiOlsicHJvZmlsZXMiXX0.RUqOCNbQwZfgwtf5fMrGU10NJU5UlbOIkxBaRu47WvmvGhnaDfgAm8oTRHirJ9Wy8MTc5qjK8xMawBySbx8Rr3fgl5YY_R6-8RUrMJdkz7PMS_lKsqXOfQCyBqNRYMHW3XfrODyYAwGZMDqKrIEcHmidp81knK2nLc525ORIF5YLq9AeC5pz_pU_hsv3FUt_HwDSxNAU6_Nx3I4TWcAljWVqeNCvs78UMY6jBNRWTHkp3bBaKWx9vfEk9ZbRZFesZSDJpeuVleUMhywT-0QcdBOYKyvyVVzyaCDlFw2pzbVopFB-LTEggTUcATRcSuUtKaj-Dk-A7wzlVESpYPZoEQ","token_type":"bearer","expires_in":86399,"scope":"profiles.read_all","jti":"a73df668-7af2-4f63-b736-7636ccb0b47e"}'
+    http_version: 
+  recorded_at: Sat, 06 Dec 2014 02:06:39 GMT
+- request:
+    method: get
+    uri: https://cap-dev.stanford.edu/cap-api/api/cap/v1/authors/3810
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+      Authorization:
+      - bearer eyJhbGciOiJSUzI1NiJ9.eyJqdGkiOiJhNzNkZjY2OC03YWYyLTRmNjMtYjczNi03NjM2Y2NiMGI0N2UiLCJzdWIiOiJzdWwiLCJhdXRob3JpdGllcyI6WyJwcm9maWxlcy5yZWFkX2FsbCJdLCJzY29wZSI6WyJwcm9maWxlcy5yZWFkX2FsbCJdLCJjbGllbnRfaWQiOiJzdWwiLCJjaWQiOiJzdWwiLCJncmFudF90eXBlIjoiY2xpZW50X2NyZWRlbnRpYWxzIiwiaWF0IjoxNDE3ODMxNTk5LCJleHAiOjE0MTc5MTc5OTksImlzcyI6Imh0dHBzOi8vYXV0aHotdGVzdC5zdGFuZm9yZC5lZHUvb2F1dGgvdG9rZW4iLCJhdWQiOlsicHJvZmlsZXMiXX0.RUqOCNbQwZfgwtf5fMrGU10NJU5UlbOIkxBaRu47WvmvGhnaDfgAm8oTRHirJ9Wy8MTc5qjK8xMawBySbx8Rr3fgl5YY_R6-8RUrMJdkz7PMS_lKsqXOfQCyBqNRYMHW3XfrODyYAwGZMDqKrIEcHmidp81knK2nLc525ORIF5YLq9AeC5pz_pU_hsv3FUt_HwDSxNAU6_Nx3I4TWcAljWVqeNCvs78UMY6jBNRWTHkp3bBaKWx9vfEk9ZbRZFesZSDJpeuVleUMhywT-0QcdBOYKyvyVVzyaCDlFw2pzbVopFB-LTEggTUcATRcSuUtKaj-Dk-A7wzlVESpYPZoEQ
+      Host:
+      - cap-dev.stanford.edu
+  response:
+    status:
+      code: 401
+      message: Unauthorized
+    headers:
+      Date:
+      - Sat, 06 Dec 2014 02:06:16 GMT
+      Server:
+      - Apache/2.2.15 (Oracle)
+      Cache-Control:
+      - no-store
+      Pragma:
+      - no-cache
+      Www-Authenticate:
+      - ! 'Bearer realm="oauth", error="invalid_token", error_description="Invalid
+        access token. Unable to decode or verify JWT: eyJhbGciOiJSUzI1NiJ9.eyJqdGkiOiJhNzNkZjY2OC03YWYyLTRmNjMtYjczNi03NjM2Y2NiMGI0N2UiLCJzdWIiOiJzdWwiLCJhdXRob3JpdGllcyI6WyJwcm9maWxlcy5yZWFkX2FsbCJdLCJzY29wZSI6WyJwcm9maWxlcy5yZWFkX2FsbCJdLCJjbGllbnRfaWQiOiJzdWwiLCJjaWQiOiJzdWwiLCJncmFudF90eXBlIjoiY2xpZW50X2NyZWRlbnRpYWxzIiwiaWF0IjoxNDE3ODMxNTk5LCJleHAiOjE0MTc5MTc5OTksImlzcyI6Imh0dHBzOi8vYXV0aHotdGVzdC5zdGFuZm9yZC5lZHUvb2F1dGgvdG9rZW4iLCJhdWQiOlsicHJvZmlsZXMiXX0.RUqOCNbQwZfgwtf5fMrGU10NJU5UlbOIkxBaRu47WvmvGhnaDfgAm8oTRHirJ9Wy8MTc5qjK8xMawBySbx8Rr3fgl5YY_R6-8RUrMJdkz7PMS_lKsqXOfQCyBqNRYMHW3XfrODyYAwGZMDqKrIEcHmidp81knK2nLc525ORIF5YLq9AeC5pz_pU_hsv3FUt_HwDSxNAU6_Nx3I4TWcAljWVqeNCvs78UMY6jBNRWTHkp3bBaKWx9vfEk9ZbRZFesZSDJpeuVleUMhywT-0QcdBOYKyvyVVzyaCDlFw2pzbVopFB-LTEggTUcATRcSuUtKaj-Dk-A7wzlVESpYPZoEQ"'
+      Connection:
+      - close
+      Transfer-Encoding:
+      - chunked
+      Content-Type:
+      - application/json;charset=UTF-8
+    body:
+      encoding: US-ASCII
+      string: ! '{"error":"invalid_token","error_description":"Invalid access token.
+        Unable to decode or verify JWT: eyJhbGciOiJSUzI1NiJ9.eyJqdGkiOiJhNzNkZjY2OC03YWYyLTRmNjMtYjczNi03NjM2Y2NiMGI0N2UiLCJzdWIiOiJzdWwiLCJhdXRob3JpdGllcyI6WyJwcm9maWxlcy5yZWFkX2FsbCJdLCJzY29wZSI6WyJwcm9maWxlcy5yZWFkX2FsbCJdLCJjbGllbnRfaWQiOiJzdWwiLCJjaWQiOiJzdWwiLCJncmFudF90eXBlIjoiY2xpZW50X2NyZWRlbnRpYWxzIiwiaWF0IjoxNDE3ODMxNTk5LCJleHAiOjE0MTc5MTc5OTksImlzcyI6Imh0dHBzOi8vYXV0aHotdGVzdC5zdGFuZm9yZC5lZHUvb2F1dGgvdG9rZW4iLCJhdWQiOlsicHJvZmlsZXMiXX0.RUqOCNbQwZfgwtf5fMrGU10NJU5UlbOIkxBaRu47WvmvGhnaDfgAm8oTRHirJ9Wy8MTc5qjK8xMawBySbx8Rr3fgl5YY_R6-8RUrMJdkz7PMS_lKsqXOfQCyBqNRYMHW3XfrODyYAwGZMDqKrIEcHmidp81knK2nLc525ORIF5YLq9AeC5pz_pU_hsv3FUt_HwDSxNAU6_Nx3I4TWcAljWVqeNCvs78UMY6jBNRWTHkp3bBaKWx9vfEk9ZbRZFesZSDJpeuVleUMhywT-0QcdBOYKyvyVVzyaCDlFw2pzbVopFB-LTEggTUcATRcSuUtKaj-Dk-A7wzlVESpYPZoEQ"}'
+    http_version: 
+  recorded_at: Sat, 06 Dec 2014 02:06:40 GMT
+- request:
+    method: post
+    uri: https://sul:***REMOVED***@***REMOVED***/oauth/token
+    body:
+      encoding: US-ASCII
+      string: grant_type=client_credentials
+    headers:
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sat, 06 Dec 2014 02:06:39 GMT
+      Cache-Control:
+      - no-store
+      Pragma:
+      - no-cache
+      Content-Type:
+      - application/json;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: US-ASCII
+      string: ! '{"access_token":"eyJhbGciOiJSUzI1NiJ9.eyJqdGkiOiI4NzIyYjhlYS03M2Q0LTQ1OTgtYWZhNS02YTI0NzNlOTg2YzUiLCJzdWIiOiJzdWwiLCJhdXRob3JpdGllcyI6WyJwcm9maWxlcy5yZWFkX2FsbCJdLCJzY29wZSI6WyJwcm9maWxlcy5yZWFkX2FsbCJdLCJjbGllbnRfaWQiOiJzdWwiLCJjaWQiOiJzdWwiLCJncmFudF90eXBlIjoiY2xpZW50X2NyZWRlbnRpYWxzIiwiaWF0IjoxNDE3ODMxNjAwLCJleHAiOjE0MTc5MTgwMDAsImlzcyI6Imh0dHBzOi8vYXV0aHotdGVzdC5zdGFuZm9yZC5lZHUvb2F1dGgvdG9rZW4iLCJhdWQiOlsicHJvZmlsZXMiXX0.bwhSgOe4cJMEYXseLNMyqX0jPs49Tla0tMmNwr0eh3dO91-OPyIllx36PVh8cb54aA2CxZlRPoQn8Vh_80nDFDX5LKvFK60xRGVLgwZUc4cAJg9DWp1Y72ZAy4vYBF8yFyAWsN4c40qtSbra-kV10GA5FSGIU38jN9m4YAf7HwXQk2yCmGjklNJGYkNKAW1Wbn6n6vziAder1BJYQsG26r2SbZ7cnT0q9vY_8IuLhQFwLONXA5ujEzNuUQS22LbzAecKbI0dtIMMKsFNx5xyp00JmXaMfbAbcOBdYMzd-luUIwpqrgOg16fqU-v_uF4quoeeQLVdFba3h-9ImZFrXA","token_type":"bearer","expires_in":86399,"scope":"profiles.read_all","jti":"8722b8ea-73d4-4598-afa5-6a2473e986c5"}'
+    http_version: 
+  recorded_at: Sat, 06 Dec 2014 02:06:40 GMT
+- request:
+    method: get
+    uri: https://cap-dev.stanford.edu/cap-api/api/cap/v1/authors/3810
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+      Authorization:
+      - bearer eyJhbGciOiJSUzI1NiJ9.eyJqdGkiOiI4NzIyYjhlYS03M2Q0LTQ1OTgtYWZhNS02YTI0NzNlOTg2YzUiLCJzdWIiOiJzdWwiLCJhdXRob3JpdGllcyI6WyJwcm9maWxlcy5yZWFkX2FsbCJdLCJzY29wZSI6WyJwcm9maWxlcy5yZWFkX2FsbCJdLCJjbGllbnRfaWQiOiJzdWwiLCJjaWQiOiJzdWwiLCJncmFudF90eXBlIjoiY2xpZW50X2NyZWRlbnRpYWxzIiwiaWF0IjoxNDE3ODMxNjAwLCJleHAiOjE0MTc5MTgwMDAsImlzcyI6Imh0dHBzOi8vYXV0aHotdGVzdC5zdGFuZm9yZC5lZHUvb2F1dGgvdG9rZW4iLCJhdWQiOlsicHJvZmlsZXMiXX0.bwhSgOe4cJMEYXseLNMyqX0jPs49Tla0tMmNwr0eh3dO91-OPyIllx36PVh8cb54aA2CxZlRPoQn8Vh_80nDFDX5LKvFK60xRGVLgwZUc4cAJg9DWp1Y72ZAy4vYBF8yFyAWsN4c40qtSbra-kV10GA5FSGIU38jN9m4YAf7HwXQk2yCmGjklNJGYkNKAW1Wbn6n6vziAder1BJYQsG26r2SbZ7cnT0q9vY_8IuLhQFwLONXA5ujEzNuUQS22LbzAecKbI0dtIMMKsFNx5xyp00JmXaMfbAbcOBdYMzd-luUIwpqrgOg16fqU-v_uF4quoeeQLVdFba3h-9ImZFrXA
+      Host:
+      - cap-dev.stanford.edu
+  response:
+    status:
+      code: 401
+      message: Unauthorized
+    headers:
+      Date:
+      - Sat, 06 Dec 2014 02:06:16 GMT
+      Server:
+      - Apache/2.2.15 (Oracle)
+      Cache-Control:
+      - no-store
+      Pragma:
+      - no-cache
+      Www-Authenticate:
+      - ! 'Bearer realm="oauth", error="invalid_token", error_description="Invalid
+        access token. Unable to decode or verify JWT: eyJhbGciOiJSUzI1NiJ9.eyJqdGkiOiI4NzIyYjhlYS03M2Q0LTQ1OTgtYWZhNS02YTI0NzNlOTg2YzUiLCJzdWIiOiJzdWwiLCJhdXRob3JpdGllcyI6WyJwcm9maWxlcy5yZWFkX2FsbCJdLCJzY29wZSI6WyJwcm9maWxlcy5yZWFkX2FsbCJdLCJjbGllbnRfaWQiOiJzdWwiLCJjaWQiOiJzdWwiLCJncmFudF90eXBlIjoiY2xpZW50X2NyZWRlbnRpYWxzIiwiaWF0IjoxNDE3ODMxNjAwLCJleHAiOjE0MTc5MTgwMDAsImlzcyI6Imh0dHBzOi8vYXV0aHotdGVzdC5zdGFuZm9yZC5lZHUvb2F1dGgvdG9rZW4iLCJhdWQiOlsicHJvZmlsZXMiXX0.bwhSgOe4cJMEYXseLNMyqX0jPs49Tla0tMmNwr0eh3dO91-OPyIllx36PVh8cb54aA2CxZlRPoQn8Vh_80nDFDX5LKvFK60xRGVLgwZUc4cAJg9DWp1Y72ZAy4vYBF8yFyAWsN4c40qtSbra-kV10GA5FSGIU38jN9m4YAf7HwXQk2yCmGjklNJGYkNKAW1Wbn6n6vziAder1BJYQsG26r2SbZ7cnT0q9vY_8IuLhQFwLONXA5ujEzNuUQS22LbzAecKbI0dtIMMKsFNx5xyp00JmXaMfbAbcOBdYMzd-luUIwpqrgOg16fqU-v_uF4quoeeQLVdFba3h-9ImZFrXA"'
+      Connection:
+      - close
+      Transfer-Encoding:
+      - chunked
+      Content-Type:
+      - application/json;charset=UTF-8
+    body:
+      encoding: US-ASCII
+      string: ! '{"error":"invalid_token","error_description":"Invalid access token.
+        Unable to decode or verify JWT: eyJhbGciOiJSUzI1NiJ9.eyJqdGkiOiI4NzIyYjhlYS03M2Q0LTQ1OTgtYWZhNS02YTI0NzNlOTg2YzUiLCJzdWIiOiJzdWwiLCJhdXRob3JpdGllcyI6WyJwcm9maWxlcy5yZWFkX2FsbCJdLCJzY29wZSI6WyJwcm9maWxlcy5yZWFkX2FsbCJdLCJjbGllbnRfaWQiOiJzdWwiLCJjaWQiOiJzdWwiLCJncmFudF90eXBlIjoiY2xpZW50X2NyZWRlbnRpYWxzIiwiaWF0IjoxNDE3ODMxNjAwLCJleHAiOjE0MTc5MTgwMDAsImlzcyI6Imh0dHBzOi8vYXV0aHotdGVzdC5zdGFuZm9yZC5lZHUvb2F1dGgvdG9rZW4iLCJhdWQiOlsicHJvZmlsZXMiXX0.bwhSgOe4cJMEYXseLNMyqX0jPs49Tla0tMmNwr0eh3dO91-OPyIllx36PVh8cb54aA2CxZlRPoQn8Vh_80nDFDX5LKvFK60xRGVLgwZUc4cAJg9DWp1Y72ZAy4vYBF8yFyAWsN4c40qtSbra-kV10GA5FSGIU38jN9m4YAf7HwXQk2yCmGjklNJGYkNKAW1Wbn6n6vziAder1BJYQsG26r2SbZ7cnT0q9vY_8IuLhQFwLONXA5ujEzNuUQS22LbzAecKbI0dtIMMKsFNx5xyp00JmXaMfbAbcOBdYMzd-luUIwpqrgOg16fqU-v_uF4quoeeQLVdFba3h-9ImZFrXA"}'
+    http_version: 
+  recorded_at: Sat, 06 Dec 2014 02:06:40 GMT
+- request:
+    method: post
+    uri: https://sul:***REMOVED***@***REMOVED***/oauth/token
+    body:
+      encoding: US-ASCII
+      string: grant_type=client_credentials
+    headers:
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sat, 06 Dec 2014 02:06:40 GMT
+      Cache-Control:
+      - no-store
+      Pragma:
+      - no-cache
+      Content-Type:
+      - application/json;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: US-ASCII
+      string: ! '{"access_token":"eyJhbGciOiJSUzI1NiJ9.eyJqdGkiOiJkNDZlYWM2Zi03MDc0LTQ5MzYtYmFlOC0wZDAyNzkzZDQzNzMiLCJzdWIiOiJzdWwiLCJhdXRob3JpdGllcyI6WyJwcm9maWxlcy5yZWFkX2FsbCJdLCJzY29wZSI6WyJwcm9maWxlcy5yZWFkX2FsbCJdLCJjbGllbnRfaWQiOiJzdWwiLCJjaWQiOiJzdWwiLCJncmFudF90eXBlIjoiY2xpZW50X2NyZWRlbnRpYWxzIiwiaWF0IjoxNDE3ODMxNjAwLCJleHAiOjE0MTc5MTgwMDAsImlzcyI6Imh0dHBzOi8vYXV0aHotdGVzdC5zdGFuZm9yZC5lZHUvb2F1dGgvdG9rZW4iLCJhdWQiOlsicHJvZmlsZXMiXX0.UB5KwgVKkNc3tNNsIjZA5SoQqON9f3ZN8y5nF7Ffz_Y-VTLM1coaZDRJpyx-TCd2PQ8eUXcsIvq7DEiqJ3PjYOtAqjzpDQKAkRIP8cXWNrPyEvt5utQ2-JHRL4f-tFUm7qhz9EH-rcaBaPlu20jG17kWFSsHMguMPpE3WjzLYU1qosrMileb5_H1b109P-K3YlVdO8f7J7jM7pKQadfgWxCu04cNh7IHQh6udqZjAqAud9qUBHafOcG46vjiPO9AQKitnNqyWvVliHmJ_HjAyTIOOlR4-_lMo2n7ql7iBfBWwAWK13V-wFFnUNuV6oPVK6SGBgXId9DWtSQGaN2bAQ","token_type":"bearer","expires_in":86399,"scope":"profiles.read_all","jti":"d46eac6f-7074-4936-bae8-0d02793d4373"}'
+    http_version: 
+  recorded_at: Sat, 06 Dec 2014 02:06:40 GMT
 recorded_with: VCR 2.5.0

@@ -114,6 +114,7 @@ describe Author do
   describe ".fetch_from_cap_and_create" do
 
     it "creates an author from the passed in cap profile id" do
+      pending "Administrative Systems firewall rules only allow IP-based requests"
       VCR.use_cassette("author_spec_fetch_from_cap_and_create") do
         auth = Author.fetch_from_cap_and_create 3871
         auth.cap_last_name.should == 'Kwon'

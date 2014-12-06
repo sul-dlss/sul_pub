@@ -17,7 +17,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Fri, 08 Aug 2014 23:46:19 GMT
+      - Sat, 06 Dec 2014 02:07:04 GMT
       Server:
       - Apache
       Access-Control-Allow-Origin:
@@ -25,12 +25,12 @@ http_interactions:
       Cache-Control:
       - private
       Ncbi-Sid:
-      - 9DFC6C3E3E5614B1_0898SID
+      - 73BE697448264C81_0872SID
       Content-Type:
       - text/xml; charset=UTF-8
       Set-Cookie:
-      - ncbi_sid=9DFC6C3E3E5614B1_0898SID; domain=.nih.gov; path=/; expires=Sat, 08
-        Aug 2015 23:46:19 GMT
+      - ncbi_sid=73BE697448264C81_0872SID; domain=.nih.gov; path=/; expires=Sun, 06
+        Dec 2015 02:07:04 GMT
       X-Ua-Compatible:
       - IE=Edge
       Transfer-Encoding:
@@ -42,9 +42,12 @@ http_interactions:
         <!DOCTYPE PubmedArticleSet PUBLIC "-//NLM//DTD PubMedArticle, 1st January
         2014//EN" "http://www.ncbi.nlm.nih.gov/corehtml/query/DTD/pubmed_140101.dtd">
 
-        <PubmedArticleSet></PubmedArticleSet>
+        <PubmedArticleSet>
+
+
+        </PubmedArticleSet>
 
 '
     http_version: 
-  recorded_at: Fri, 08 Aug 2014 23:46:19 GMT
+  recorded_at: Sat, 06 Dec 2014 02:07:05 GMT
 recorded_with: VCR 2.5.0

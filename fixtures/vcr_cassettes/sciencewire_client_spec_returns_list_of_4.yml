@@ -382,9 +382,9 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Sat, 09 Aug 2014 00:21:31 GMT
+      - Sat, 06 Dec 2014 02:06:12 GMT
       Content-Length:
-      - '38352'
+      - '36554'
     body:
       encoding: US-ASCII
       string: ! "<?xml version=\"1.0\"?>\r\n<ArrayOfPublicationItem xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
@@ -521,7 +521,7 @@ http_interactions:
         All rights reserved.</Abstract>\r\n    <AuthorList>Sanchez,Maria,S|Lloyd-Smith,James,O|Williams,Brian,G|Porco,Travis,C|Ryan,Sadie,J|Borgdorff,Martien,W|Mansoer,John,|Dye,Christopher,|Getz,Wayne,M</AuthorList>\r\n
         \   <AuthorCount>9</AuthorCount>\r\n    <KeywordList />\r\n    <DocumentTypeList>Article</DocumentTypeList>\r\n
         \   <DocumentCategory>Journal Document</DocumentCategory>\r\n    <NumberOfReferences>56</NumberOfReferences>\r\n
-        \   <TimesCited>3</TimesCited>\r\n    <TimesNotSelfCited>1</TimesNotSelfCited>\r\n
+        \   <TimesCited>4</TimesCited>\r\n    <TimesNotSelfCited>2</TimesNotSelfCited>\r\n
         \   <PMID>21352748</PMID>\r\n    <WoSItemID>000208232800003</WoSItemID>\r\n
         \   <PublicationSourceTitle>EPIDEMICS</PublicationSourceTitle>\r\n    <Volume>1</Volume>\r\n
         \   <Issue>1</Issue>\r\n    <Pagination>14-20</Pagination>\r\n    <PublicationDate>2009-03-01T00:00:00</PublicationDate>\r\n
@@ -534,7 +534,7 @@ http_interactions:
         \   <CopyrightPublisher>ELSEVIER SCIENCE BV</CopyrightPublisher>\r\n    <CopyrightCity>AMSTERDAM</CopyrightCity>\r\n
         \   <PublicationImpactFactorList>2.151,2011,ClosestToPublicationYear|2.151,2011,MostRecentYear</PublicationImpactFactorList>\r\n
         \   <PublicationCategoryRankingList>45/70;INFECTIOUS DISEASES;2011;SC;ClosestToPublicationYear|45/70;INFECTIOUS
-        DISEASES;2011;SC;MostRecentYear</PublicationCategoryRankingList>\r\n    <AuthorCitationCountList>1,2,1|2,2,1|3,1,2|4,0,3|5,0,3|6,0,3|7,0,3|8,0,3|9,2,1</AuthorCitationCountList>\r\n
+        DISEASES;2011;SC;MostRecentYear</PublicationCategoryRankingList>\r\n    <AuthorCitationCountList>1,2,2|2,2,2|3,1,3|4,0,4|5,0,4|6,0,4|7,0,4|8,0,4|9,2,2</AuthorCitationCountList>\r\n
         \   <CopyrightStateProvince />\r\n    <CopyrightCountry>NETHERLANDS</CopyrightCountry>\r\n
         \ </PublicationItem>\r\n  <PublicationItem>\r\n    <PublicationItemID>63755405</PublicationItemID>\r\n
         \   <Title>Pathogen-Host Associations and Predicted Range Shifts of Human
@@ -584,29 +584,9 @@ http_interactions:
         \   <AuthorCitationCountList>1,0,0|2,0,0|3,0,0|4,0,0|5,0,0|6,0,0|7,0,0|8,0,0|9,0,0|10,0,0|11,0,0|12,0,0|13,0,0|14,0,0|15,0,0|16,0,0|17,0,0|18,0,0|19,0,0|20,0,0|21,0,0|22,0,0</AuthorCitationCountList>\r\n
         \   <CopyrightStateProvince>CA</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
         STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
-        \   <PublicationItemID>45811885</PublicationItemID>\r\n    <Title>Molecular
-        equivalence of carbohydrates to carbon dioxide in photosynthesis</Title>\r\n
-        \   <Abstract />\r\n    <AuthorList>SMITH,J,HC</AuthorList>\r\n    <AuthorCount>1</AuthorCount>\r\n
-        \   <KeywordList />\r\n    <DocumentTypeList>Article</DocumentTypeList>\r\n
-        \   <DocumentCategory>Journal Document</DocumentCategory>\r\n    <NumberOfReferences>18</NumberOfReferences>\r\n
-        \   <TimesCited>20</TimesCited>\r\n    <TimesNotSelfCited>19</TimesNotSelfCited>\r\n
-        \   <PMID>16653840</PMID>\r\n    <WoSItemID>000200810800005</WoSItemID>\r\n
-        \   <PublicationSourceTitle>PLANT PHYSIOLOGY</PublicationSourceTitle>\r\n
-        \   <Volume>18</Volume>\r\n    <Issue>2</Issue>\r\n    <Pagination>207-223</Pagination>\r\n
-        \   <PublicationDate>1943-04-01T00:00:00</PublicationDate>\r\n    <PublicationYear>1943</PublicationYear>\r\n
-        \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Plant
-        Sciences</PublicationSubjectCategoryList>\r\n    <ISSN>0032-0889</ISSN>\r\n
-        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
-        />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>6</OrdinalRank>\r\n    <NormalizedRank>50</NormalizedRank>\r\n
-        \   <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
-        \   <CopyrightPublisher>AMER SOC PLANT BIOLOGISTS</CopyrightPublisher>\r\n
-        \   <CopyrightCity>ROCKVILLE</CopyrightCity>\r\n    <PublicationImpactFactorList>6.535,2011,MostRecentYear</PublicationImpactFactorList>\r\n
-        \   <PublicationCategoryRankingList>7/189;PLANT SCIENCES;2011;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
-        \   <AuthorCitationCountList>1,1,19</AuthorCitationCountList>\r\n    <CopyrightStateProvince>MD</CopyrightStateProvince>\r\n
-        \   <CopyrightCountry>UNITED STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n
-        \ <PublicationItem>\r\n    <PublicationItemID>45811671</PublicationItemID>\r\n
-        \   <Title>The absorption of carbon dioxide by unilluminated leaves</Title>\r\n
-        \   <Abstract />\r\n    <AuthorList>SMITH,J,HC</AuthorList>\r\n    <AuthorCount>1</AuthorCount>\r\n
+        \   <PublicationItemID>45811671</PublicationItemID>\r\n    <Title>The absorption
+        of carbon dioxide by unilluminated leaves</Title>\r\n    <Abstract />\r\n
+        \   <AuthorList>SMITH,J,HC</AuthorList>\r\n    <AuthorCount>1</AuthorCount>\r\n
         \   <KeywordList />\r\n    <DocumentTypeList>Article</DocumentTypeList>\r\n
         \   <DocumentCategory>Journal Document</DocumentCategory>\r\n    <NumberOfReferences>37</NumberOfReferences>\r\n
         \   <TimesCited>15</TimesCited>\r\n    <TimesNotSelfCited>11</TimesNotSelfCited>\r\n
@@ -617,7 +597,7 @@ http_interactions:
         \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Plant
         Sciences</PublicationSubjectCategoryList>\r\n    <ISSN>0032-0889</ISSN>\r\n
         \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
-        />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>7</OrdinalRank>\r\n    <NormalizedRank>50</NormalizedRank>\r\n
+        />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>6</OrdinalRank>\r\n    <NormalizedRank>50</NormalizedRank>\r\n
         \   <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
         \   <CopyrightPublisher>AMER SOC PLANT BIOLOGISTS</CopyrightPublisher>\r\n
         \   <CopyrightCity>ROCKVILLE</CopyrightCity>\r\n    <PublicationImpactFactorList>6.535,2011,MostRecentYear</PublicationImpactFactorList>\r\n
@@ -637,7 +617,7 @@ http_interactions:
         \   <PublicationYear>1951</PublicationYear>\r\n    <PublicationSubjectCategoryList
         />\r\n    <ISSN>0376-2602</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\"
         />\r\n    <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n
-        \   <OrdinalRank>8</OrdinalRank>\r\n    <NormalizedRank>50</NormalizedRank>\r\n
+        \   <OrdinalRank>7</OrdinalRank>\r\n    <NormalizedRank>50</NormalizedRank>\r\n
         \   <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
         \   <CopyrightPublisher />\r\n    <CopyrightCity />\r\n    <CopyrightStateProvince
         />\r\n    <CopyrightCountry />\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
@@ -653,7 +633,7 @@ http_interactions:
         \   <PublicationYear>2002</PublicationYear>\r\n    <PublicationType>Journal</PublicationType>\r\n
         \   <PublicationSubjectCategoryList>Sociology</PublicationSubjectCategoryList>\r\n
         \   <ISSN>0094-3061</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
-        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>9</OrdinalRank>\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>8</OrdinalRank>\r\n
         \   <NormalizedRank>50</NormalizedRank>\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>AMER SOCIOLOGICAL
         ASSOC</CopyrightPublisher>\r\n    <CopyrightCity>WASHINGTON</CopyrightCity>\r\n
@@ -674,7 +654,7 @@ http_interactions:
         \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Computer
         Science, Interdisciplinary Applications|Music</PublicationSubjectCategoryList>\r\n
         \   <ISSN>0148-9267</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
-        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>10</OrdinalRank>\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>9</OrdinalRank>\r\n
         \   <NormalizedRank>50</NormalizedRank>\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>M I T
         PRESS</CopyrightPublisher>\r\n    <CopyrightCity>CAMBRIDGE</CopyrightCity>\r\n
@@ -696,7 +676,7 @@ http_interactions:
         \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Computer
         Science, Interdisciplinary Applications|Music</PublicationSubjectCategoryList>\r\n
         \   <ISSN>0148-9267</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
-        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>11</OrdinalRank>\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>10</OrdinalRank>\r\n
         \   <NormalizedRank>50</NormalizedRank>\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>MIT PRESS</CopyrightPublisher>\r\n
         \   <CopyrightCity>CAMBRIDGE</CopyrightCity>\r\n    <PublicationImpactFactorList>0.548,1994,ClosestToPublicationYear|0.706,2011,MostRecentYear</PublicationImpactFactorList>\r\n
@@ -726,7 +706,7 @@ http_interactions:
         \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Radiology,
         Nuclear Medicine &amp; Medical Imaging</PublicationSubjectCategoryList>\r\n
         \   <ISSN>0363-9762</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
-        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>12</OrdinalRank>\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>11</OrdinalRank>\r\n
         \   <NormalizedRank>50</NormalizedRank>\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>LIPPINCOTT-RAVEN
         PUBL</CopyrightPublisher>\r\n    <CopyrightCity>PHILADELPHIA</CopyrightCity>\r\n
@@ -749,7 +729,7 @@ http_interactions:
         \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Computer
         Science, Interdisciplinary Applications|Music</PublicationSubjectCategoryList>\r\n
         \   <ISSN>0148-9267</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
-        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>13</OrdinalRank>\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>12</OrdinalRank>\r\n
         \   <NormalizedRank>50</NormalizedRank>\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>MIT PRESS</CopyrightPublisher>\r\n
         \   <CopyrightCity>CAMBRIDGE</CopyrightCity>\r\n    <PublicationImpactFactorList>0.706,2011,MostRecentYear</PublicationImpactFactorList>\r\n
@@ -770,7 +750,7 @@ http_interactions:
         \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Computer
         Science, Interdisciplinary Applications|Music</PublicationSubjectCategoryList>\r\n
         \   <ISSN>0148-9267</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
-        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>14</OrdinalRank>\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>13</OrdinalRank>\r\n
         \   <NormalizedRank>50</NormalizedRank>\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>MIT PRESS</CopyrightPublisher>\r\n
         \   <CopyrightCity>CAMBRIDGE</CopyrightCity>\r\n    <PublicationImpactFactorList>0.706,2011,MostRecentYear</PublicationImpactFactorList>\r\n
@@ -790,7 +770,7 @@ http_interactions:
         \   <PublicationYear>1981</PublicationYear>\r\n    <PublicationType>Journal</PublicationType>\r\n
         \   <PublicationSubjectCategoryList>Environmental Sciences</PublicationSubjectCategoryList>\r\n
         \   <ISSN>0045-6535</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
-        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>15</OrdinalRank>\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>14</OrdinalRank>\r\n
         \   <NormalizedRank>50</NormalizedRank>\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>PERGAMON-ELSEVIER
         SCIENCE LTD</CopyrightPublisher>\r\n    <CopyrightCity>OXFORD</CopyrightCity>\r\n
@@ -811,7 +791,7 @@ http_interactions:
         \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Energy
         &amp; Fuels|Engineering, Chemical|Engineering, Petroleum</PublicationSubjectCategoryList>\r\n
         \   <ISSN>0018-8190</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
-        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>16</OrdinalRank>\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>15</OrdinalRank>\r\n
         \   <NormalizedRank>50</NormalizedRank>\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>GULF PUBL
         CO</CopyrightPublisher>\r\n    <CopyrightCity>HOUSTON</CopyrightCity>\r\n
@@ -821,7 +801,7 @@ http_interactions:
         \   <AuthorCitationCountList>1,0,0|2,0,0</AuthorCitationCountList>\r\n    <CopyrightStateProvince>TX</CopyrightStateProvince>\r\n
         \   <CopyrightCountry>UNITED STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n</ArrayOfPublicationItem>"
     http_version: 
-  recorded_at: Sat, 09 Aug 2014 00:21:31 GMT
+  recorded_at: Sat, 06 Dec 2014 02:06:12 GMT
 - request:
     method: post
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery?format=xml
@@ -881,16 +861,16 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Sat, 09 Aug 2014 00:29:23 GMT
+      - Sat, 06 Dec 2014 02:32:36 GMT
       Content-Length:
       - '280'
     body:
       encoding: US-ASCII
       string: ! "<?xml version=\"1.0\"?>\r\n<ScienceWireQueryIDResponse xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>129740</queryID>\r\n
-        \ <queryResultRows>17</queryResultRows>\r\n  <totalRows>17</totalRows>\r\n</ScienceWireQueryIDResponse>"
+        \ <queryResultRows>16</queryResultRows>\r\n  <totalRows>16</totalRows>\r\n</ScienceWireQueryIDResponse>"
     http_version: 
-  recorded_at: Sat, 09 Aug 2014 00:29:23 GMT
+  recorded_at: Sat, 06 Dec 2014 02:32:37 GMT
 - request:
     method: get
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/129740?format=xml&page=0&pageSize=2147483647&v=version/3
@@ -928,9 +908,9 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Sat, 09 Aug 2014 00:29:23 GMT
+      - Sat, 06 Dec 2014 02:32:36 GMT
       Content-Length:
-      - '38352'
+      - '36554'
     body:
       encoding: US-ASCII
       string: ! "<?xml version=\"1.0\"?>\r\n<ArrayOfPublicationItem xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
@@ -1067,7 +1047,7 @@ http_interactions:
         All rights reserved.</Abstract>\r\n    <AuthorList>Sanchez,Maria,S|Lloyd-Smith,James,O|Williams,Brian,G|Porco,Travis,C|Ryan,Sadie,J|Borgdorff,Martien,W|Mansoer,John,|Dye,Christopher,|Getz,Wayne,M</AuthorList>\r\n
         \   <AuthorCount>9</AuthorCount>\r\n    <KeywordList />\r\n    <DocumentTypeList>Article</DocumentTypeList>\r\n
         \   <DocumentCategory>Journal Document</DocumentCategory>\r\n    <NumberOfReferences>56</NumberOfReferences>\r\n
-        \   <TimesCited>3</TimesCited>\r\n    <TimesNotSelfCited>1</TimesNotSelfCited>\r\n
+        \   <TimesCited>4</TimesCited>\r\n    <TimesNotSelfCited>2</TimesNotSelfCited>\r\n
         \   <PMID>21352748</PMID>\r\n    <WoSItemID>000208232800003</WoSItemID>\r\n
         \   <PublicationSourceTitle>EPIDEMICS</PublicationSourceTitle>\r\n    <Volume>1</Volume>\r\n
         \   <Issue>1</Issue>\r\n    <Pagination>14-20</Pagination>\r\n    <PublicationDate>2009-03-01T00:00:00</PublicationDate>\r\n
@@ -1080,7 +1060,7 @@ http_interactions:
         \   <CopyrightPublisher>ELSEVIER SCIENCE BV</CopyrightPublisher>\r\n    <CopyrightCity>AMSTERDAM</CopyrightCity>\r\n
         \   <PublicationImpactFactorList>2.151,2011,ClosestToPublicationYear|2.151,2011,MostRecentYear</PublicationImpactFactorList>\r\n
         \   <PublicationCategoryRankingList>45/70;INFECTIOUS DISEASES;2011;SC;ClosestToPublicationYear|45/70;INFECTIOUS
-        DISEASES;2011;SC;MostRecentYear</PublicationCategoryRankingList>\r\n    <AuthorCitationCountList>1,2,1|2,2,1|3,1,2|4,0,3|5,0,3|6,0,3|7,0,3|8,0,3|9,2,1</AuthorCitationCountList>\r\n
+        DISEASES;2011;SC;MostRecentYear</PublicationCategoryRankingList>\r\n    <AuthorCitationCountList>1,2,2|2,2,2|3,1,3|4,0,4|5,0,4|6,0,4|7,0,4|8,0,4|9,2,2</AuthorCitationCountList>\r\n
         \   <CopyrightStateProvince />\r\n    <CopyrightCountry>NETHERLANDS</CopyrightCountry>\r\n
         \ </PublicationItem>\r\n  <PublicationItem>\r\n    <PublicationItemID>63755405</PublicationItemID>\r\n
         \   <Title>Pathogen-Host Associations and Predicted Range Shifts of Human
@@ -1130,29 +1110,9 @@ http_interactions:
         \   <AuthorCitationCountList>1,0,0|2,0,0|3,0,0|4,0,0|5,0,0|6,0,0|7,0,0|8,0,0|9,0,0|10,0,0|11,0,0|12,0,0|13,0,0|14,0,0|15,0,0|16,0,0|17,0,0|18,0,0|19,0,0|20,0,0|21,0,0|22,0,0</AuthorCitationCountList>\r\n
         \   <CopyrightStateProvince>CA</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
         STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
-        \   <PublicationItemID>45811885</PublicationItemID>\r\n    <Title>Molecular
-        equivalence of carbohydrates to carbon dioxide in photosynthesis</Title>\r\n
-        \   <Abstract />\r\n    <AuthorList>SMITH,J,HC</AuthorList>\r\n    <AuthorCount>1</AuthorCount>\r\n
-        \   <KeywordList />\r\n    <DocumentTypeList>Article</DocumentTypeList>\r\n
-        \   <DocumentCategory>Journal Document</DocumentCategory>\r\n    <NumberOfReferences>18</NumberOfReferences>\r\n
-        \   <TimesCited>20</TimesCited>\r\n    <TimesNotSelfCited>19</TimesNotSelfCited>\r\n
-        \   <PMID>16653840</PMID>\r\n    <WoSItemID>000200810800005</WoSItemID>\r\n
-        \   <PublicationSourceTitle>PLANT PHYSIOLOGY</PublicationSourceTitle>\r\n
-        \   <Volume>18</Volume>\r\n    <Issue>2</Issue>\r\n    <Pagination>207-223</Pagination>\r\n
-        \   <PublicationDate>1943-04-01T00:00:00</PublicationDate>\r\n    <PublicationYear>1943</PublicationYear>\r\n
-        \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Plant
-        Sciences</PublicationSubjectCategoryList>\r\n    <ISSN>0032-0889</ISSN>\r\n
-        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
-        />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>6</OrdinalRank>\r\n    <NormalizedRank>50</NormalizedRank>\r\n
-        \   <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
-        \   <CopyrightPublisher>AMER SOC PLANT BIOLOGISTS</CopyrightPublisher>\r\n
-        \   <CopyrightCity>ROCKVILLE</CopyrightCity>\r\n    <PublicationImpactFactorList>6.535,2011,MostRecentYear</PublicationImpactFactorList>\r\n
-        \   <PublicationCategoryRankingList>7/189;PLANT SCIENCES;2011;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
-        \   <AuthorCitationCountList>1,1,19</AuthorCitationCountList>\r\n    <CopyrightStateProvince>MD</CopyrightStateProvince>\r\n
-        \   <CopyrightCountry>UNITED STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n
-        \ <PublicationItem>\r\n    <PublicationItemID>45811671</PublicationItemID>\r\n
-        \   <Title>The absorption of carbon dioxide by unilluminated leaves</Title>\r\n
-        \   <Abstract />\r\n    <AuthorList>SMITH,J,HC</AuthorList>\r\n    <AuthorCount>1</AuthorCount>\r\n
+        \   <PublicationItemID>45811671</PublicationItemID>\r\n    <Title>The absorption
+        of carbon dioxide by unilluminated leaves</Title>\r\n    <Abstract />\r\n
+        \   <AuthorList>SMITH,J,HC</AuthorList>\r\n    <AuthorCount>1</AuthorCount>\r\n
         \   <KeywordList />\r\n    <DocumentTypeList>Article</DocumentTypeList>\r\n
         \   <DocumentCategory>Journal Document</DocumentCategory>\r\n    <NumberOfReferences>37</NumberOfReferences>\r\n
         \   <TimesCited>15</TimesCited>\r\n    <TimesNotSelfCited>11</TimesNotSelfCited>\r\n
@@ -1163,7 +1123,7 @@ http_interactions:
         \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Plant
         Sciences</PublicationSubjectCategoryList>\r\n    <ISSN>0032-0889</ISSN>\r\n
         \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
-        />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>7</OrdinalRank>\r\n    <NormalizedRank>50</NormalizedRank>\r\n
+        />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>6</OrdinalRank>\r\n    <NormalizedRank>50</NormalizedRank>\r\n
         \   <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
         \   <CopyrightPublisher>AMER SOC PLANT BIOLOGISTS</CopyrightPublisher>\r\n
         \   <CopyrightCity>ROCKVILLE</CopyrightCity>\r\n    <PublicationImpactFactorList>6.535,2011,MostRecentYear</PublicationImpactFactorList>\r\n
@@ -1183,7 +1143,7 @@ http_interactions:
         \   <PublicationYear>1951</PublicationYear>\r\n    <PublicationSubjectCategoryList
         />\r\n    <ISSN>0376-2602</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\"
         />\r\n    <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n
-        \   <OrdinalRank>8</OrdinalRank>\r\n    <NormalizedRank>50</NormalizedRank>\r\n
+        \   <OrdinalRank>7</OrdinalRank>\r\n    <NormalizedRank>50</NormalizedRank>\r\n
         \   <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
         \   <CopyrightPublisher />\r\n    <CopyrightCity />\r\n    <CopyrightStateProvince
         />\r\n    <CopyrightCountry />\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
@@ -1199,7 +1159,7 @@ http_interactions:
         \   <PublicationYear>2002</PublicationYear>\r\n    <PublicationType>Journal</PublicationType>\r\n
         \   <PublicationSubjectCategoryList>Sociology</PublicationSubjectCategoryList>\r\n
         \   <ISSN>0094-3061</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
-        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>9</OrdinalRank>\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>8</OrdinalRank>\r\n
         \   <NormalizedRank>50</NormalizedRank>\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>AMER SOCIOLOGICAL
         ASSOC</CopyrightPublisher>\r\n    <CopyrightCity>WASHINGTON</CopyrightCity>\r\n
@@ -1220,7 +1180,7 @@ http_interactions:
         \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Computer
         Science, Interdisciplinary Applications|Music</PublicationSubjectCategoryList>\r\n
         \   <ISSN>0148-9267</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
-        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>10</OrdinalRank>\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>9</OrdinalRank>\r\n
         \   <NormalizedRank>50</NormalizedRank>\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>M I T
         PRESS</CopyrightPublisher>\r\n    <CopyrightCity>CAMBRIDGE</CopyrightCity>\r\n
@@ -1242,7 +1202,7 @@ http_interactions:
         \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Computer
         Science, Interdisciplinary Applications|Music</PublicationSubjectCategoryList>\r\n
         \   <ISSN>0148-9267</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
-        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>11</OrdinalRank>\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>10</OrdinalRank>\r\n
         \   <NormalizedRank>50</NormalizedRank>\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>MIT PRESS</CopyrightPublisher>\r\n
         \   <CopyrightCity>CAMBRIDGE</CopyrightCity>\r\n    <PublicationImpactFactorList>0.548,1994,ClosestToPublicationYear|0.706,2011,MostRecentYear</PublicationImpactFactorList>\r\n
@@ -1272,7 +1232,7 @@ http_interactions:
         \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Radiology,
         Nuclear Medicine &amp; Medical Imaging</PublicationSubjectCategoryList>\r\n
         \   <ISSN>0363-9762</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
-        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>12</OrdinalRank>\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>11</OrdinalRank>\r\n
         \   <NormalizedRank>50</NormalizedRank>\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>LIPPINCOTT-RAVEN
         PUBL</CopyrightPublisher>\r\n    <CopyrightCity>PHILADELPHIA</CopyrightCity>\r\n
@@ -1295,7 +1255,7 @@ http_interactions:
         \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Computer
         Science, Interdisciplinary Applications|Music</PublicationSubjectCategoryList>\r\n
         \   <ISSN>0148-9267</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
-        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>13</OrdinalRank>\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>12</OrdinalRank>\r\n
         \   <NormalizedRank>50</NormalizedRank>\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>MIT PRESS</CopyrightPublisher>\r\n
         \   <CopyrightCity>CAMBRIDGE</CopyrightCity>\r\n    <PublicationImpactFactorList>0.706,2011,MostRecentYear</PublicationImpactFactorList>\r\n
@@ -1316,7 +1276,7 @@ http_interactions:
         \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Computer
         Science, Interdisciplinary Applications|Music</PublicationSubjectCategoryList>\r\n
         \   <ISSN>0148-9267</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
-        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>14</OrdinalRank>\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>13</OrdinalRank>\r\n
         \   <NormalizedRank>50</NormalizedRank>\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>MIT PRESS</CopyrightPublisher>\r\n
         \   <CopyrightCity>CAMBRIDGE</CopyrightCity>\r\n    <PublicationImpactFactorList>0.706,2011,MostRecentYear</PublicationImpactFactorList>\r\n
@@ -1336,7 +1296,7 @@ http_interactions:
         \   <PublicationYear>1981</PublicationYear>\r\n    <PublicationType>Journal</PublicationType>\r\n
         \   <PublicationSubjectCategoryList>Environmental Sciences</PublicationSubjectCategoryList>\r\n
         \   <ISSN>0045-6535</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
-        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>15</OrdinalRank>\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>14</OrdinalRank>\r\n
         \   <NormalizedRank>50</NormalizedRank>\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>PERGAMON-ELSEVIER
         SCIENCE LTD</CopyrightPublisher>\r\n    <CopyrightCity>OXFORD</CopyrightCity>\r\n
@@ -1357,7 +1317,7 @@ http_interactions:
         \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Energy
         &amp; Fuels|Engineering, Chemical|Engineering, Petroleum</PublicationSubjectCategoryList>\r\n
         \   <ISSN>0018-8190</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
-        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>16</OrdinalRank>\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>15</OrdinalRank>\r\n
         \   <NormalizedRank>50</NormalizedRank>\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>GULF PUBL
         CO</CopyrightPublisher>\r\n    <CopyrightCity>HOUSTON</CopyrightCity>\r\n
@@ -1367,5 +1327,5 @@ http_interactions:
         \   <AuthorCitationCountList>1,0,0|2,0,0</AuthorCitationCountList>\r\n    <CopyrightStateProvince>TX</CopyrightStateProvince>\r\n
         \   <CopyrightCountry>UNITED STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n</ArrayOfPublicationItem>"
     http_version: 
-  recorded_at: Sat, 09 Aug 2014 00:29:23 GMT
+  recorded_at: Sat, 06 Dec 2014 02:32:37 GMT
 recorded_with: VCR 2.5.0
