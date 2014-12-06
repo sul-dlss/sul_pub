@@ -12,7 +12,6 @@ class CapHttpClient
   		http = Net::HTTP.new(@auth[:get_token_uri], @auth[:get_token_port])
 			http.use_ssl = true
 			http.verify_mode = OpenSSL::SSL::VERIFY_PEER
-			http.ssl_version = :SSLv3
 			request = Net::HTTP::Post.new(@auth[:get_token_path])
 			request.basic_auth(@auth[:get_token_user], @auth[:get_token_pass])
 			request.set_form_data({"grant_type" => "client_credentials"})
@@ -107,7 +106,6 @@ private
     http.read_timeout = @base_timeout_period
     http.use_ssl = true
     http.verify_mode = OpenSSL::SSL::VERIFY_PEER
-    http.ssl_version = :SSLv3
     http
   end
 end

@@ -15,7 +15,6 @@ require 'bibtex'
 http = Net::HTTP.new("sciencewirerest.discoverylogic.com", 443)
 http.use_ssl = true
 http.verify_mode = OpenSSL::SSL::VERIFY_PEER
-http.ssl_version = :SSLv3
 request = Net::HTTP::Post.new("/PublicationCatalog/MatchedPublicationItemIdsForAuthor?format=xml")
 request["Content_Type"] = "text/xml"
 request["LicenseID"] = "***REMOVED***"
@@ -28,7 +27,7 @@ request.body = '<?xml version="1.0"?> <PublicationAuthorMatchParameters xmlns:xs
 response = http.request(request)
 
 commaSepIds = Nokogiri::XML(response.body).xpath('//PublicationItemID').map(&:text).join(',')
-    
+
 fullPubsRequest = Net::HTTP::Get.new("/PublicationCatalog/PublicationItems?format=xml&publicationItemIDs=" + commaSepIds)
 fullPubsRequest["Content_Type"] = "text/xml"
 fullPubsRequest["LicenseID"] = "***REMOVED***"
@@ -46,7 +45,7 @@ fullPubResponse = http.request(fullPubsRequest)
 #publications = scienceWireDoc.xpath("//PublicationItem")
 
 Nokogiri::XML(fullPubResponse.body).xpath('//PublicationItem').each do |publication|
-	
+
 
     title = publication.xpath("Title").text
     the_abstract = publication.xpath("Abstract").text
@@ -58,8 +57,8 @@ Nokogiri::XML(fullPubResponse.body).xpath('//PublicationItem').each do |publicat
     timesCited = publication.xpath("TimesCited").text
     timesNotSelfCited = publication.xpath("TimesNotSelfCited").text
     article_identifiers = [
-        {:type =>'PMID', :id => publication.xpath("PMID").text, :url => 'http://www.ncbi.nlm.nih.gov/pubmed/' + publication.xpath("PMID").text }, 
-        {:type => 'WoSItemID', :id => publication.xpath("WoSItemID").text, :url => 'http://wosuri/' + publication.xpath("WoSItemID").text}, 
+        {:type =>'PMID', :id => publication.xpath("PMID").text, :url => 'http://www.ncbi.nlm.nih.gov/pubmed/' + publication.xpath("PMID").text },
+        {:type => 'WoSItemID', :id => publication.xpath("WoSItemID").text, :url => 'http://wosuri/' + publication.xpath("WoSItemID").text},
         {:type => 'PublicationItemID', :id => publication.xpath("PublicationItemID").text, :url => 'http://sciencewireURI/' + publication.xpath("PublicationItemID").text}
     ]
     # the journal info
@@ -88,11 +87,11 @@ Nokogiri::XML(fullPubResponse.body).xpath('//PublicationItem').each do |publicat
 #[{"id"=>"Gettys90", "type"=>"article-journal", "author"=>[{"family"=>"Gettys", "given"=>"Jim"}, {"family"=>"Karlton", "given"=>"Phil"}, {"family"=>"McGregor", "given"=>"Scott"}], "title"=>"The {X} Window System, Version 11", "container-title"=>"Software Practice and Experience", "volume"=>"20", "issue"=>"S2", "abstract"=>"A technical overview of the X11 functionality.  This is an update of the X10 TOG paper by Scheifler \\& Gettys.", "issued"=>{"date-parts"=>[[1990]]}}]
 
 authors_for_citeproc = []
-authors.each do |author| 
+authors.each do |author|
     last_name = ""
     rest_of_name = ""
     author.split(',').each_with_index do |name_part, index|
-        if index == 0 
+        if index == 0
             last_name = name_part
         elsif name_part.length == 1
             rest_of_name << ' ' << name_part << '.'
@@ -141,16 +140,16 @@ mla_citation = CiteProc.process(cit, :style => 'https://github.com/citation-styl
         },
     ]
 
-    
-   
 
-    jsonString = Jbuilder.encode do |json| 
-        json.identifier(article_identifiers) do  |identifier|        
-                    json.(identifier, :id, :type, :url)      
+
+
+    jsonString = Jbuilder.encode do |json|
+        json.identifier(article_identifiers) do  |identifier|
+                    json.(identifier, :id, :type, :url)
         end
         json.title title
         json.abstract the_abstract
-        json.keywords keywords 
+        json.keywords keywords
         json.author authors do | author |
             json.name author
         end
@@ -207,11 +206,11 @@ mla_citation = CiteProc.process(cit, :style => 'https://github.com/citation-styl
 ]
 =end
 	xmlbuilder = Nokogiri::XML::Builder.new do |newPubDoc|
-		
+
 			newPubDoc.publication {
-                
+
 				newPubDoc.title title
-				authors.each do | authorName | 
+				authors.each do | authorName |
 					newPubDoc.author {
 						newPubDoc.name authorName
 					}
@@ -228,9 +227,9 @@ mla_citation = CiteProc.process(cit, :style => 'https://github.com/citation-styl
                     newPubDoc.title publicationTitle
                 }
 
-               # also add the last_update_at_source, last_retrieved_from_source, 
+               # also add the last_update_at_source, last_retrieved_from_source,
 			}
-		
+
 
 	end
 	theXML = xmlbuilder.to_xml
@@ -238,4 +237,3 @@ mla_citation = CiteProc.process(cit, :style => 'https://github.com/citation-styl
     Publication.create( active: true, human_readable_title: title, xml: theXML, json: jsonString    )
 end
 
-  

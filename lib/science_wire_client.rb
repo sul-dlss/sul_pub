@@ -40,7 +40,6 @@ class ScienceWireClient
 
     http.use_ssl = true
     http.verify_mode = OpenSSL::SSL::VERIFY_PEER
-    http.ssl_version = :SSLv3
     timeout_retries ||= 3
     timeout_period ||= 100
     http.read_timeout = timeout_period
@@ -352,7 +351,6 @@ class ScienceWireClient
     http.read_timeout = timeout_period
     http.use_ssl = true
     http.verify_mode = OpenSSL::SSL::VERIFY_PEER
-    http.ssl_version = :SSLv3
     fullPubsRequest = Net::HTTP::Get.new(@auth[:get_pubs_for_ids_path] + sciencewire_ids)
     fullPubsRequest["Content-Type"] = "text/xml"
     fullPubsRequest["LicenseID"] = @auth[:get_license_id]
@@ -426,7 +424,6 @@ class ScienceWireClient
     http.read_timeout = @base_timeout_period
     http.use_ssl = true
     http.verify_mode = OpenSSL::SSL::VERIFY_PEER
-    http.ssl_version = :SSLv3
     http
   end
 
