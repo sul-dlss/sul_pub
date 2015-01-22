@@ -7,8 +7,15 @@ class ScienceWireClient
   end
 
   def get_sciencewire_id_suggestions(last_name, first_name, middle_name,  seed_list)
-
     ids = []
+    generate_suggestion_queries(last_name, first_name, middle_name, seed_list) do |bod|
+      ids.concat make_sciencewire_suggestion_call(bod)
+    end
+
+    ids
+  end
+
+  def generate_suggestion_queries(last_name, first_name, middle_name, seed_list)
     ["Journal Document", "Conference Proceeding Document"].each do |category|
       bod = "<?xml version='1.0'?>
       <PublicationAuthorMatchParameters xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema'>
@@ -30,9 +37,8 @@ class ScienceWireClient
       bod << '<LimitToHighQualityMatchesOnly>true</LimitToHighQualityMatchesOnly>'
       bod << '</PublicationAuthorMatchParameters>'
 
-      ids.concat make_sciencewire_suggestion_call(bod)
+      yield bod
     end
-    ids
   end
 
   def make_sciencewire_suggestion_call(body)
