@@ -190,7 +190,7 @@ class ScienceWireHarvester
       suggested_sciencewire_ids = @sciencewire_client.query_sciencewire_by_author_name(first_name, middle_name, last_name)
       @authors_with_no_seed_data_count += 1
     else
-      suggested_sciencewire_ids = @sciencewire_client.get_sciencewire_id_suggestions(last_name, first_name, middle_name, seed_list)
+      suggested_sciencewire_ids = @sciencewire_client.get_sciencewire_id_suggestions(last_name, first_name, middle_name, author.email, seed_list)
     end
 
     suggested_sciencewire_ids.each do |suggested_sciencewire_id|

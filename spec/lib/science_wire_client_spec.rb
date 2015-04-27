@@ -26,23 +26,31 @@ describe ScienceWireClient do
 	describe "#get_sciencewire_id_suggestions" do
 
 		it "returns suggestions for email address and name" do
-      pending
-      # VCR.use_cassette("sciencewire_client_spec_returns_suggestions_for_email") do
-      #   expect(
-      #     science_wire_client.
-      #       get_sciencewire_id_suggestions("edler", "alice", "", "alice.edler@stanford.edu", [])).
-      #     to have_at_least(4).items
-      # end
+      VCR.use_cassette("sciencewire_client_spec_returns_suggestions_for_email") do
+        seeds = [ 5199247,7877232,844542,1178390,29434219,30072480,30502634,46558063,31222988]
+
+        expect(
+          science_wire_client.
+            get_sciencewire_id_suggestions("edler", "alice", "", "alice.edler@stanford.edu", seeds)).
+          to have_at_least(4).items
+      end
 		end
 
 		it "gets suggestions from journals" do
-      pending
-      #       VCR.use_cassette("sciencewire_client_spec_searches_journals_and_proceedings") do
-      #   expect(
-      #     science_wire_client.
-      #       get_sciencewire_id_suggestions("benson", "sally", "", "smbenson@stanford.edu", [])).
-      #     to have_at_least(7).items
-      # end
+      VCR.use_cassette("sciencewire_client_spec_searches_journals_and_proceedings") do
+        seeds = [532237,29681830,29693742,30153017,30563572,30711058,30991998,31488302,31623382,32897909,
+          33038883,33139791,33878760,47444872,53640378,54368177,59612803,59641485,60094854,60223059,60478790,
+          62816475,62823609,62903742,63182944,62767480,59904158,37634308,63378178,63775722,63911215,4167402,63891331,
+          63814446,62976803,59811972,59878565,37635302,59936785,37630237,37632866,59839380,29114844,24672363,22528207,
+          22411820,21667389,64357283,27876654,16447626,34333979,21865294,22624536,23216217,24575036,35196221,2627002,
+          3769378,3704704,4513632,6434468,6368152,571008,35566141,36119242,6008013,36234880,36225095,36139437,36127090,
+          36208464,35640871,23804292,22654678,17870903,23364040,45141719,64799575,65697723,66020502,67583123]
+
+        expect(
+          science_wire_client.
+            get_sciencewire_id_suggestions("benson", "sally", "", "smbenson@stanford.edu", seeds)).
+          to have_at_least(180).items
+      end
 		end
 
 	end

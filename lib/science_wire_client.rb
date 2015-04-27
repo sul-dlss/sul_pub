@@ -6,16 +6,23 @@ class ScienceWireClient
     @base_timeout_period = 100
   end
 
-  def get_sciencewire_id_suggestions(last_name, first_name, middle_name,  seed_list)
+  def get_sciencewire_id_suggestions(last_name, first_name, middle_name, email, seed_list)
     ids = []
-    generate_suggestion_queries(last_name, first_name, middle_name, seed_list) do |bod|
+    generate_suggestion_queries(last_name, first_name, middle_name, email, seed_list) do |bod|
       ids.concat make_sciencewire_suggestion_call(bod)
     end
 
     ids
   end
 
-  def generate_suggestion_queries(last_name, first_name, middle_name, seed_list)
+  def generate_suggestion_queries(last_name, first_name, middle_name, email, seed_list)
+    if email && email != ''
+      email_xml = "<Emails>
+                    <string>#{email}</string>
+                  </Emails>"
+    else
+      email_xml = ''
+    end
     ["Journal Document", "Conference Proceeding Document"].each do |category|
       bod = "<?xml version='1.0'?>
       <PublicationAuthorMatchParameters xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema'>
@@ -24,6 +31,11 @@ class ScienceWireClient
             <LastName>#{last_name}</LastName>
             <FirstName>#{first_name}</FirstName>
             <MiddleName>#{middle_name}</MiddleName>
+            <City>Stanford</City>
+            <State>CA</State>
+            <Country>USA</Country>
+            #{email_xml}
+            <Version>1</Version>
          </Author>
       </Authors>
       <DocumentCategory>#{category}</DocumentCategory>"

@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: post
-    uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery?format=xml
+    uri: https://stg.sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery?format=xml
     body:
       encoding: US-ASCII
       string: ! "<?xml version=\"1.0\"?>\n      <ScienceWireQueryXMLParameter xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
@@ -22,7 +22,7 @@ http_interactions:
       Licenseid:
       - ***REMOVED***
       Host:
-      - sciencewirerest.discoverylogic.com
+      - stg.sciencewirerest.discoverylogic.com
       Connection:
       - Keep-Alive
       Expect:
@@ -47,19 +47,19 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Mon, 27 Apr 2015 21:33:49 GMT
+      - Mon, 27 Apr 2015 22:07:25 GMT
       Content-Length:
-      - '278'
+      - '277'
     body:
       encoding: US-ASCII
       string: ! "<?xml version=\"1.0\"?>\r\n<ScienceWireQueryIDResponse xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
-        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>142611</queryID>\r\n
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>79594</queryID>\r\n
         \ <queryResultRows>1</queryResultRows>\r\n  <totalRows>1</totalRows>\r\n</ScienceWireQueryIDResponse>"
     http_version: 
-  recorded_at: Mon, 27 Apr 2015 21:33:51 GMT
+  recorded_at: Mon, 27 Apr 2015 22:07:26 GMT
 - request:
     method: get
-    uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/142611?format=xml&page=0&pageSize=2147483647&v=version/3
+    uri: https://stg.sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/79594?format=xml&page=0&pageSize=2147483647&v=version/3
     body:
       encoding: US-ASCII
       string: ''
@@ -73,7 +73,7 @@ http_interactions:
       Licenseid:
       - ***REMOVED***
       Host:
-      - sciencewirerest.discoverylogic.com
+      - stg.sciencewirerest.discoverylogic.com
       Connection:
       - Keep-Alive
   response:
@@ -94,7 +94,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Mon, 27 Apr 2015 21:33:50 GMT
+      - Mon, 27 Apr 2015 22:07:25 GMT
       Content-Length:
       - '4067'
     body:
@@ -147,5 +147,5 @@ http_interactions:
         \   <CopyrightStateProvince>NJ</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
         STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n</ArrayOfPublicationItem>"
     http_version: 
-  recorded_at: Mon, 27 Apr 2015 21:33:52 GMT
+  recorded_at: Mon, 27 Apr 2015 22:07:27 GMT
 recorded_with: VCR 2.5.0

@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationItems?format=xml&publicationItemIDs=42711845,22686456
+    uri: https://stg.sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationItems?format=xml&publicationItemIDs=42711845,22686456
     body:
       encoding: US-ASCII
       string: ''
@@ -16,7 +16,7 @@ http_interactions:
       Licenseid:
       - ***REMOVED***
       Host:
-      - sciencewirerest.discoverylogic.com
+      - stg.sciencewirerest.discoverylogic.com
       Connection:
       - Keep-Alive
   response:
@@ -37,7 +37,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Mon, 27 Apr 2015 21:33:31 GMT
+      - Mon, 27 Apr 2015 22:07:14 GMT
       Content-Length:
       - '6476'
     body:
@@ -123,7 +123,7 @@ http_interactions:
         \   <CopyrightPublisher>LIPPINCOTT WILLIAMS &amp; WILKINS</CopyrightPublisher>\r\n
         \   <CopyrightCity>PHILADELPHIA</CopyrightCity>\r\n  </PublicationItem>\r\n</ArrayOfPublicationItem>"
     http_version: 
-  recorded_at: Mon, 27 Apr 2015 21:33:32 GMT
+  recorded_at: Mon, 27 Apr 2015 22:07:15 GMT
 - request:
     method: post
     uri: http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml
@@ -141,7 +141,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 27 Apr 2015 21:33:31 GMT
+      - Mon, 27 Apr 2015 22:07:14 GMT
       Server:
       - Apache
       Access-Control-Allow-Origin:
@@ -149,12 +149,12 @@ http_interactions:
       Cache-Control:
       - private
       Ncbi-Sid:
-      - 08DD624153EAB2B1_0248SID
+      - 08DD5EFE53EB3121_0412SID
       Content-Type:
       - text/xml; charset=UTF-8
       Set-Cookie:
-      - ncbi_sid=08DD624153EAB2B1_0248SID; domain=.nih.gov; path=/; expires=Wed, 27
-        Apr 2016 21:33:31 GMT
+      - ncbi_sid=08DD5EFE53EB3121_0412SID; domain=.nih.gov; path=/; expires=Wed, 27
+        Apr 2016 22:07:14 GMT
       X-Ua-Compatible:
       - IE=Edge
       Transfer-Encoding:
@@ -344,5 +344,5 @@ http_interactions:
         \       <ArticleIdList>\n            <ArticleId IdType=\"pubmed\">1914489</ArticleId>\n
         \       </ArticleIdList>\n    </PubmedData>\n</PubmedArticle>\n\n</PubmedArticleSet>\n"
     http_version: 
-  recorded_at: Mon, 27 Apr 2015 21:33:32 GMT
+  recorded_at: Mon, 27 Apr 2015 22:07:16 GMT
 recorded_with: VCR 2.5.0
