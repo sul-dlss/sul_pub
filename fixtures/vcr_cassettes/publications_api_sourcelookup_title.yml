@@ -48,7 +48,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Sat, 06 Dec 2014 02:06:43 GMT
+      - Mon, 27 Apr 2015 21:33:07 GMT
       Content-Length:
       - '279'
     body:
@@ -57,7 +57,7 @@ http_interactions:
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>50106</queryID>\r\n
         \ <queryResultRows>20</queryResultRows>\r\n  <totalRows>20</totalRows>\r\n</ScienceWireQueryIDResponse>"
     http_version: 
-  recorded_at: Sat, 06 Dec 2014 02:06:43 GMT
+  recorded_at: Mon, 27 Apr 2015 21:33:09 GMT
 - request:
     method: get
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/50106?format=xml&page=0&pageSize=2147483647&v=version/3
@@ -95,651 +95,1414 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Sat, 06 Dec 2014 02:06:44 GMT
+      - Mon, 27 Apr 2015 21:33:09 GMT
       Content-Length:
-      - '55788'
+      - '63089'
     body:
-      encoding: US-ASCII
-      string: ! "<?xml version=\"1.0\"?>\r\n<ArrayOfPublicationItem xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
-        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <PublicationItem>\r\n
-        \   <PublicationItemID>68035832</PublicationItemID>\r\n    <Title>Development
-        in lung cancer treatment - from one size fits all to personalised therapy</Title>\r\n
-        \   <Abstract />\r\n    <AuthorList>Espersen,B,</AuthorList>\r\n    <AuthorCount>1</AuthorCount>\r\n
-        \   <KeywordList />\r\n    <DocumentTypeList>Meeting Abstract</DocumentTypeList>\r\n
-        \   <DocumentCategory>Conference Proceeding Document</DocumentCategory>\r\n
-        \   <NumberOfReferences>5</NumberOfReferences>\r\n    <TimesCited>0</TimesCited>\r\n
-        \   <TimesNotSelfCited>0</TimesNotSelfCited>\r\n    <PMID xsi:nil=\"true\"
-        />\r\n    <WoSItemID>000343363500002</WoSItemID>\r\n    <PublicationSourceTitle>EUROPEAN
-        JOURNAL OF ONCOLOGY NURSING</PublicationSourceTitle>\r\n    <Volume>18</Volume>\r\n
-        \   <Pagination>S1-S1</Pagination>\r\n    <PublicationDate>2014-09-01T00:00:00</PublicationDate>\r\n
-        \   <PublicationYear>2014</PublicationYear>\r\n    <PublicationType>Journal</PublicationType>\r\n
-        \   <PublicationSubjectCategoryList>Oncology|Nursing</PublicationSubjectCategoryList>\r\n
-        \   <ISSN>1462-3889</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
-        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank xsi:nil=\"true\" />\r\n
-        \   <OrdinalRank>0</OrdinalRank>\r\n    <NormalizedRank xsi:nil=\"true\" />\r\n
-        \   <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
-        \   <CopyrightPublisher>ELSEVIER SCI LTD</CopyrightPublisher>\r\n    <CopyrightCity>OXFORD</CopyrightCity>\r\n
-        \   <PublicationImpactFactorList>1.794,2013,ClosestToPublicationYear|1.794,2013,MostRecentYear</PublicationImpactFactorList>\r\n
-        \   <PublicationCategoryRankingList>148/203;ONCOLOGY;2013;SC;ClosestToPublicationYear|13/107;NURSING;2013;SC;ClosestToPublicationYear|12/105;NURSING;2013;SS;ClosestToPublicationYear|148/203;ONCOLOGY;2013;SC;MostRecentYear|13/107;NURSING;2013;SC;MostRecentYear|12/105;NURSING;2013;SS;MostRecentYear</PublicationCategoryRankingList>\r\n
-        \   <AuthorCitationCountList>1,0,0</AuthorCitationCountList>\r\n    <CopyrightStateProvince>OXON</CopyrightStateProvince>\r\n
-        \   <CopyrightCountry>UNITED KINGDOM</CopyrightCountry>\r\n  </PublicationItem>\r\n
-        \ <PublicationItem>\r\n    <PublicationItemID>67955507</PublicationItemID>\r\n
-        \   <Title>SMALL CELL LUNG CANCER IN DAILY PRACTICE; SCOT REGISTRY (SMALL
-        CELL LUNG CANCER TREATMENT AND OUTCOME)</Title>\r\n    <Abstract />\r\n    <AuthorList>Postmus,Pieter,E|Quoix,Elisabeth,|Ardizzioni,Andrea,|Le
-        Chevalier,Thierry,|Garrido,Pilar,|Raillard,Alice,|Rabier,Paola,|Lavigne,Stephane,|Deville,Coralie,|Fletcher,Joanne,|Sapunar,Francisco,|Mehmud,Faisal,</AuthorList>\r\n
-        \   <AuthorCount>12</AuthorCount>\r\n    <KeywordList>small cell lung cancer|chemoradiotherapy|Platinum/Etoposide</KeywordList>\r\n
-        \   <DocumentTypeList>Meeting Abstract</DocumentTypeList>\r\n    <DocumentCategory>Conference
-        Proceeding Document</DocumentCategory>\r\n    <NumberOfReferences xsi:nil=\"true\"
-        />\r\n    <TimesCited>0</TimesCited>\r\n    <TimesNotSelfCited>0</TimesNotSelfCited>\r\n
-        \   <PMID xsi:nil=\"true\" />\r\n    <WoSItemID>000339624901203</WoSItemID>\r\n
-        \   <PublicationSourceTitle>JOURNAL OF THORACIC ONCOLOGY</PublicationSourceTitle>\r\n
-        \   <Volume>8</Volume>\r\n    <Pagination>S339-S339</Pagination>\r\n    <PublicationDate>2013-11-01T00:00:00</PublicationDate>\r\n
-        \   <PublicationYear>2013</PublicationYear>\r\n    <PublicationType>Journal</PublicationType>\r\n
-        \   <PublicationSubjectCategoryList>Oncology|Respiratory System</PublicationSubjectCategoryList>\r\n
-        \   <ISSN>1556-0864</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
-        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank xsi:nil=\"true\" />\r\n
-        \   <OrdinalRank>1</OrdinalRank>\r\n    <NormalizedRank xsi:nil=\"true\" />\r\n
-        \   <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
-        \   <CopyrightPublisher>LIPPINCOTT WILLIAMS &amp; WILKINS</CopyrightPublisher>\r\n
-        \   <CopyrightCity>PHILADELPHIA</CopyrightCity>\r\n    <PublicationImpactFactorList>4.473,2012,ClosestToPublicationYear|4.473,2012,MostRecentYear</PublicationImpactFactorList>\r\n
-        \   <PublicationCategoryRankingList>42/197;ONCOLOGY;2012;SC;ClosestToPublicationYear|6/50;RESPIRATORY
-        SYSTEM;2012;SC;ClosestToPublicationYear|42/197;ONCOLOGY;2012;SC;MostRecentYear|6/50;RESPIRATORY
-        SYSTEM;2012;SC;MostRecentYear</PublicationCategoryRankingList>\r\n    <AuthorCitationCountList>1,0,0|2,0,0|3,0,0|4,0,0|5,0,0|6,0,0|7,0,0|8,0,0|9,0,0|10,0,0|11,0,0|12,0,0</AuthorCitationCountList>\r\n
-        \   <CopyrightStateProvince>PA</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
-        STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
-        \   <PublicationItemID>67917818</PublicationItemID>\r\n    <Title>A PHASE
-        II STUDY OF CISPLATIN AND ORAL VINORELBINE CONCOMITANTLY WITH RADIOTHERAPY
-        IN LOCALLY ADVANCED NON-SMALL-CELL LUNG CANCER TREATMENT: EFICACY AND SAFETY
-        RESULTS.</Title>\r\n    <Abstract />\r\n    <AuthorList>Juan,Oscar,|Vazquez,Sergio,|Garcia,Jose,|Luis
-        Firvida,Jose,|Aparisi,Francisco,|Munoz,Jose,|Casal,Joaquin,|Giner,Vicente,|Girones,Regina,|Lazaro,Martin,|Garde,Javier,|Sanchez-Hernandez,Alfredo,</AuthorList>\r\n
-        \   <AuthorCount>12</AuthorCount>\r\n    <KeywordList>cisplatin|vinorelbine|non-small-cell
-        lung cancer|radiotherapy</KeywordList>\r\n    <DocumentTypeList>Meeting Abstract</DocumentTypeList>\r\n
-        \   <DocumentCategory>Conference Proceeding Document</DocumentCategory>\r\n
-        \   <NumberOfReferences xsi:nil=\"true\" />\r\n    <TimesCited>0</TimesCited>\r\n
-        \   <TimesNotSelfCited>0</TimesNotSelfCited>\r\n    <PMID xsi:nil=\"true\"
-        />\r\n    <WoSItemID>000339624905272</WoSItemID>\r\n    <PublicationSourceTitle>JOURNAL
-        OF THORACIC ONCOLOGY</PublicationSourceTitle>\r\n    <Volume>8</Volume>\r\n
-        \   <Pagination>S1153-S1154</Pagination>\r\n    <PublicationDate>2013-11-01T00:00:00</PublicationDate>\r\n
-        \   <PublicationYear>2013</PublicationYear>\r\n    <PublicationType>Journal</PublicationType>\r\n
-        \   <PublicationSubjectCategoryList>Oncology|Respiratory System</PublicationSubjectCategoryList>\r\n
-        \   <ISSN>1556-0864</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
-        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank xsi:nil=\"true\" />\r\n
-        \   <OrdinalRank>2</OrdinalRank>\r\n    <NormalizedRank xsi:nil=\"true\" />\r\n
-        \   <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
-        \   <CopyrightPublisher>LIPPINCOTT WILLIAMS &amp; WILKINS</CopyrightPublisher>\r\n
-        \   <CopyrightCity>PHILADELPHIA</CopyrightCity>\r\n    <PublicationImpactFactorList>4.473,2012,ClosestToPublicationYear|4.473,2012,MostRecentYear</PublicationImpactFactorList>\r\n
-        \   <PublicationCategoryRankingList>42/197;ONCOLOGY;2012;SC;ClosestToPublicationYear|6/50;RESPIRATORY
-        SYSTEM;2012;SC;ClosestToPublicationYear|42/197;ONCOLOGY;2012;SC;MostRecentYear|6/50;RESPIRATORY
-        SYSTEM;2012;SC;MostRecentYear</PublicationCategoryRankingList>\r\n    <AuthorCitationCountList>1,0,0|2,0,0|3,0,0|4,0,0|5,0,0|6,0,0|7,0,0|8,0,0|9,0,0|10,0,0|11,0,0|12,0,0</AuthorCitationCountList>\r\n
-        \   <CopyrightStateProvince>PA</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
-        STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
-        \   <PublicationItemID>67806067</PublicationItemID>\r\n    <Title>THE COSTS
-        AND REIMBURSEMENTS FOR LUNG CANCER TREATMENT AMONG SELECTED HEALTH CARE PROVIDERS
-        IN THE CZECH REPUBLIC</Title>\r\n    <Abstract>The objective of the article
-        is to objectivise and assess the costs for the lung cancer therapy from the
-        payer's (health insurance company) and the healthcare provider's (hospital)
-        perspective based on information available from several large hospitals and
-        specialised centres. No comprehensive assessment of costs related to the treatment
-        of lung cancers at all stages has been published in the Czech Republic to-date.
-        The results in this study are calculated based on diagnostic and therapeutic
-        algorithms, i.e. process maps. These, in turn, are derived from the recommended
-        therapeutic procedures issued by the Masaryk Institute of Oncology, the University
-        Hospital in Hradec Kralove and the University Hospital in Plzen. In total,
-        the costs and reimbursements were calculated for 32 utilized algorithms, i.e.
-        process maps. The costs for therapeutic processes account for 22 results,
-        while 10 results correspond to diagnostic processes. Both direct and indirect
-        costs were included in individual calculations. The calculations imply that
-        treatment costs significantly differ depending on the selected diagnostic
-        and therapeutic procedure. It becomes apparent that the setting of the reimbursement
-        system presently generates different stimuli for providers, who may reach
-        both positive and negative balances. This fact, in turn, may have an effect
-        on the economic result leading, in its consequence, to the preference of more
-        suitable alternatives in terms of reimbursement regardless of the optimum
-        procedures for the particular patient. This fact is, to a certain extent,
-        reflected by the reimbursements calculated by means of the DRG system. The
-        given algorithms may potentially be used by health care providers to reach
-        working costs, which will allow accurate calculations for particular hospitals.</Abstract>\r\n
-        \   <AuthorList>Simrova,Jana,|Bartak,Miroslav,|Vojtisek,Radovan,|Rogalewicz,Vladimir,</AuthorList>\r\n
-        \   <AuthorCount>4</AuthorCount>\r\n    <KeywordList>UNITED-KINGDOM|NETHERLANDS|MANAGEMENT|GERMANY|FRANCE|healthcare
-        costs|lung cancer|Process Maps|health care reimbursement</KeywordList>\r\n
-        \   <DocumentTypeList>Article</DocumentTypeList>\r\n    <DocumentCategory>Journal
-        Document</DocumentCategory>\r\n    <NumberOfReferences>31</NumberOfReferences>\r\n
-        \   <TimesCited>0</TimesCited>\r\n    <TimesNotSelfCited>0</TimesNotSelfCited>\r\n
-        \   <PMID xsi:nil=\"true\" />\r\n    <WoSItemID>000342261200007</WoSItemID>\r\n
-        \   <PublicationSourceTitle>E &amp; M EKONOMIE A MANAGEMENT</PublicationSourceTitle>\r\n
-        \   <Volume>17</Volume>\r\n    <Issue>3</Issue>\r\n    <Pagination>74-85</Pagination>\r\n
-        \   <PublicationDate>2014-01-01T00:00:00</PublicationDate>\r\n    <PublicationYear>2014</PublicationYear>\r\n
-        \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Economics|Management</PublicationSubjectCategoryList>\r\n
-        \   <ISSN>1212-3609</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
-        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank xsi:nil=\"true\" />\r\n
-        \   <OrdinalRank>3</OrdinalRank>\r\n    <NormalizedRank xsi:nil=\"true\" />\r\n
-        \   <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
-        \   <CopyrightPublisher>TECHNICKA UNIV &amp; LIBERCI</CopyrightPublisher>\r\n
-        \   <CopyrightCity>LIBEREC 1</CopyrightCity>\r\n    <PublicationImpactFactorList>0.633,2012,ClosestToPublicationYear|0.633,2012,MostRecentYear</PublicationImpactFactorList>\r\n
-        \   <PublicationCategoryRankingList>200/333;ECONOMICS;2012;SS;ClosestToPublicationYear|131/174;MANAGEMENT;2012;SS;ClosestToPublicationYear|200/333;ECONOMICS;2012;SS;MostRecentYear|131/174;MANAGEMENT;2012;SS;MostRecentYear</PublicationCategoryRankingList>\r\n
-        \   <AuthorCitationCountList>1,0,0|2,0,0|3,0,0|4,0,0</AuthorCitationCountList>\r\n
-        \   <CopyrightStateProvince />\r\n    <CopyrightCountry>CZECH REPUBLIC</CopyrightCountry>\r\n
-        \ </PublicationItem>\r\n  <PublicationItem>\r\n    <PublicationItemID>67795320</PublicationItemID>\r\n
-        \   <Title>Paclitaxel (Taxol) and Taxoid Derivates for Lung Cancer Treatment:
-        Potential for Aerosol Delivery</Title>\r\n    <Abstract>Paclitaxel (PTX, Taxol)
-        has revolutionized cancer treatment in the past decade and is recognized as
-        one of the biggest advances in oncology medicine. In spite of the good clinical
-        efficacy shown by PTX, there is still a growing need to achieve better safety
-        and pharmacokinetic profile of PTX in patients. The standard delivery modalities
-        of intravenous infusion result in multiple side effects, and targeting of
-        the drug to specific areas within the body can result in better efficacy and
-        lower toxicity. Aerosol delivery of therapeutic agents has the potential of
-        localizing the drugs specifically to the lung tissue, with a comparable or
-        better pharmacokinetics as compared to intravenous, oral or intraperitoneal
-        delivery. Aerosol delivery of PTX has not been studied extensively, however,
-        it holds immense potential for improving the efficacy against lung tumors.
-        Early pre-clinical studies in mice and dogs have shown good promise, both
-        for pharmacokinetics of PTX, safety and efficacy in lung cancer models. This
-        review looks at the still developing approach of aerosol delivery of PTX for
-        lung cancer, documents the progress so far and the future directions that
-        can bring this approach to clinical reality.</Abstract>\r\n    <AuthorList>Gautam,Ajay,|Koshkina,Nadezhda,</AuthorList>\r\n
-        \   <AuthorCount>2</AuthorCount>\r\n    <KeywordList />\r\n    <DocumentTypeList>Article</DocumentTypeList>\r\n
-        \   <DocumentCategory>Journal Document</DocumentCategory>\r\n    <NumberOfReferences>62</NumberOfReferences>\r\n
-        \   <TimesCited>23</TimesCited>\r\n    <TimesNotSelfCited>23</TimesNotSelfCited>\r\n
-        \   <PMID xsi:nil=\"true\" />\r\n    <WoSItemID>000209053000006</WoSItemID>\r\n
-        \   <PublicationSourceTitle>CURRENT CANCER DRUG TARGETS</PublicationSourceTitle>\r\n
-        \   <Volume>3</Volume>\r\n    <Issue>4</Issue>\r\n    <Pagination>287-296</Pagination>\r\n
-        \   <PublicationDate>2003-01-01T00:00:00</PublicationDate>\r\n    <PublicationYear>2003</PublicationYear>\r\n
-        \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Oncology</PublicationSubjectCategoryList>\r\n
-        \   <ISSN>1568-0096</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
-        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank xsi:nil=\"true\" />\r\n
-        \   <OrdinalRank>4</OrdinalRank>\r\n    <NormalizedRank xsi:nil=\"true\" />\r\n
-        \   <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
-        \   <CopyrightPublisher>BENTHAM SCIENCE PUBL LTD</CopyrightPublisher>\r\n
-        \   <CopyrightCity>SHARJAH</CopyrightCity>\r\n    <PublicationImpactFactorList>5.677,2006,ClosestToPublicationYear|4,2012,MostRecentYear</PublicationImpactFactorList>\r\n
-        \   <PublicationCategoryRankingList>17/127;ONCOLOGY;2006;SC;ClosestToPublicationYear|54/197;ONCOLOGY;2012;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
-        \   <AuthorCitationCountList>1,0,23|2,0,23</AuthorCitationCountList>\r\n    <CopyrightStateProvince
-        />\r\n    <CopyrightCountry>U ARAB EMIRATES</CopyrightCountry>\r\n  </PublicationItem>\r\n
-        \ <PublicationItem>\r\n    <PublicationItemID>67709259</PublicationItemID>\r\n
-        \   <Title>COST-EFFECTIVENESS ANALYSIS OF BEVACIZUMAB IN COMBINATION WITH
-        PC REGIMEN VERSUS PC REGIMEN IN NON-SMALL CELL LUNG CANCER TREATMENT</Title>\r\n
-        \   <Abstract />\r\n    <AuthorList>Nguyen,T,TT|Tran,T,TH</AuthorList>\r\n
-        \   <AuthorCount>2</AuthorCount>\r\n    <KeywordList />\r\n    <DocumentTypeList>Meeting
-        Abstract</DocumentTypeList>\r\n    <DocumentCategory>Conference Proceeding
-        Document</DocumentCategory>\r\n    <NumberOfReferences xsi:nil=\"true\" />\r\n
-        \   <TimesCited>0</TimesCited>\r\n    <TimesNotSelfCited>0</TimesNotSelfCited>\r\n
-        \   <PMID xsi:nil=\"true\" />\r\n    <WoSItemID>000341082000473</WoSItemID>\r\n
-        \   <PublicationSourceTitle>VALUE IN HEALTH</PublicationSourceTitle>\r\n    <Volume>17</Volume>\r\n
-        \   <Issue>3</Issue>\r\n    <Pagination>A87-A87</Pagination>\r\n    <PublicationDate>2014-05-01T00:00:00</PublicationDate>\r\n
-        \   <PublicationYear>2014</PublicationYear>\r\n    <PublicationType>Journal</PublicationType>\r\n
-        \   <PublicationSubjectCategoryList>Economics|Health Care Sciences &amp; Services|Health
-        Policy &amp; Services</PublicationSubjectCategoryList>\r\n    <ISSN>1098-3015</ISSN>\r\n
-        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
-        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>5</OrdinalRank>\r\n
-        \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
-        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>ELSEVIER
-        SCIENCE INC</CopyrightPublisher>\r\n    <CopyrightCity>NEW YORK</CopyrightCity>\r\n
-        \   <PublicationImpactFactorList>2.191,2012,ClosestToPublicationYear|2.191,2012,MostRecentYear</PublicationImpactFactorList>\r\n
-        \   <PublicationCategoryRankingList>26/83;HEALTH CARE SCIENCES &amp; SERVICES;2012;SC;ClosestToPublicationYear|16/67;HEALTH
-        POLICY &amp; SERVICES;2012;SS;ClosestToPublicationYear|36/333;ECONOMICS;2012;SS;ClosestToPublicationYear|26/83;HEALTH
-        CARE SCIENCES &amp; SERVICES;2012;SC;MostRecentYear|16/67;HEALTH POLICY &amp;
-        SERVICES;2012;SS;MostRecentYear|36/333;ECONOMICS;2012;SS;MostRecentYear</PublicationCategoryRankingList>\r\n
-        \   <AuthorCitationCountList>1,0,0|2,0,0</AuthorCitationCountList>\r\n    <CopyrightStateProvince>NY</CopyrightStateProvince>\r\n
-        \   <CopyrightCountry>UNITED STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n
-        \ <PublicationItem>\r\n    <PublicationItemID>67681489</PublicationItemID>\r\n
-        \   <Title>A REVELation in non-small-cell lung cancer treatment?</Title>\r\n
-        \   <Abstract />\r\n    <AuthorList>Mok,Tony,SK|Loong,Herbert,H</AuthorList>\r\n
-        \   <AuthorCount>2</AuthorCount>\r\n    <KeywordList>COMBINATION|DOCETAXEL|ENDOTHELIAL
-        GROWTH-FACTOR|CHEMOTHERAPY|BEVACIZUMAB|CARBOPLATIN|MUTATIONS|PHASE-III|TRIAL</KeywordList>\r\n
-        \   <DocumentTypeList>Editorial Material</DocumentTypeList>\r\n    <DocumentCategory>Other</DocumentCategory>\r\n
-        \   <NumberOfReferences>12</NumberOfReferences>\r\n    <TimesCited>0</TimesCited>\r\n
-        \   <TimesNotSelfCited>0</TimesNotSelfCited>\r\n    <PMID>24933331</PMID>\r\n
-        \   <WoSItemID>000341359100007</WoSItemID>\r\n    <PublicationSourceTitle>LANCET</PublicationSourceTitle>\r\n
-        \   <Volume>384</Volume>\r\n    <Issue>9944</Issue>\r\n    <Pagination>640-642</Pagination>\r\n
-        \   <PublicationDate>2014-08-23T00:00:00</PublicationDate>\r\n    <PublicationYear>2014</PublicationYear>\r\n
-        \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Medicine,
-        General &amp; Internal</PublicationSubjectCategoryList>\r\n    <ISSN>0140-6736</ISSN>\r\n
-        \   <DOI>10.1016/S0140-6736(14)60895-3</DOI>\r\n    <ConferenceStartDate xsi:nil=\"true\"
-        />\r\n    <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank xsi:nil=\"true\"
-        />\r\n    <OrdinalRank>6</OrdinalRank>\r\n    <NormalizedRank xsi:nil=\"true\"
-        />\r\n    <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
-        \   <CopyrightPublisher>ELSEVIER SCIENCE INC</CopyrightPublisher>\r\n    <CopyrightCity>NEW
-        YORK</CopyrightCity>\r\n    <PublicationImpactFactorList>39.06,2012,ClosestToPublicationYear|39.06,2012,MostRecentYear</PublicationImpactFactorList>\r\n
-        \   <PublicationCategoryRankingList>2/155;MEDICINE, GENERAL &amp; INTERNAL;2012;SC;ClosestToPublicationYear|2/155;MEDICINE,
-        GENERAL &amp; INTERNAL;2012;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
-        \   <AuthorCitationCountList>1,0,0|2,0,0</AuthorCitationCountList>\r\n    <CopyrightStateProvince>NY</CopyrightStateProvince>\r\n
-        \   <CopyrightCountry>UNITED STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n
-        \ <PublicationItem>\r\n    <PublicationItemID>67666958</PublicationItemID>\r\n
-        \   <Title>[Lung cancer: progress in diagnosis and treatments. Topics: III.
-        Treatment; 7. Lung cancer treatment in elderly and/or high risk patients].</Title>\r\n
-        \   <Abstract />\r\n    <AuthorList>Kimura,Tastuo,|Kudoh,Shinzoh,|Hirata,Kazuto,</AuthorList>\r\n
-        \   <AuthorCount>3</AuthorCount>\r\n    <KeywordList />\r\n    <DocumentTypeList>Journal
-        Article</DocumentTypeList>\r\n    <DocumentCategory>Journal Document</DocumentCategory>\r\n
-        \   <NumberOfReferences xsi:nil=\"true\" />\r\n    <TimesCited xsi:nil=\"true\"
-        />\r\n    <TimesNotSelfCited xsi:nil=\"true\" />\r\n    <PMID>25151800</PMID>\r\n
-        \   <PublicationSourceTitle>Nihon Naika Gakkai zasshi. The Journal of the
-        Japanese Society of Internal Medicine</PublicationSourceTitle>\r\n    <Volume>103</Volume>\r\n
-        \   <Issue>6</Issue>\r\n    <Pagination>1346-1354</Pagination>\r\n    <PublicationDate>2014-06-10T00:00:00</PublicationDate>\r\n
-        \   <PublicationYear>2014</PublicationYear>\r\n    <PublicationSubjectCategoryList
-        />\r\n    <ISSN>0021-5384</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\"
-        />\r\n    <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank xsi:nil=\"true\"
-        />\r\n    <OrdinalRank>7</OrdinalRank>\r\n    <NormalizedRank xsi:nil=\"true\"
-        />\r\n    <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
-        \   <CopyrightPublisher />\r\n    <CopyrightCity />\r\n    <CopyrightStateProvince
-        />\r\n    <CopyrightCountry>JAPAN</CopyrightCountry>\r\n  </PublicationItem>\r\n
-        \ <PublicationItem>\r\n    <PublicationItemID>67578852</PublicationItemID>\r\n
-        \   <Title>Pulmonary Multifunctional Nano-Oncological Modules for Lung Cancer
-        Treatment and Prevention</Title>\r\n    <Abstract>Mortality associated with
-        lung cancer and its metastasis has outnumbered those related to other forms
-        of cancer. Despite being a directly accessible organ, conventional oncological
-        strategies exhibiting prolific outcome in treatment and prevention of lung
-        cancer is far from reality. This is attributed to numerous challenges posed
-        by lung environment. The extracellular aura of lung comprises immensely complicated
-        structures, ciliary escalators, omnipresence of mucus and alveolar fluid,
-        and macrophagial uptake which presents an array of impediments to the arrival
-        of therapeutic moiety at the tumor site. Besides these, intracellular obstacles
-        viz enzymatic degradation, cell membrane translocation, endosomal escape and/or
-        nuclear entry also limit superior therapeutic efficacy. The current review
-        elaborates wide-ranging challenges to lung cancer treatment and its circumvention
-        by latest developments in multifunctional nano-oncological modules delivered
-        via the pulmonary route-which smartly deal with the abovementioned issues
-        and bestow positivity to this complication.</Abstract>\r\n    <AuthorList>Shete,Harshad,K|Vyas,Swati,S|Patravale,Vandana,B|Disouza,John,I</AuthorList>\r\n
-        \   <AuthorCount>4</AuthorCount>\r\n    <KeywordList>FUNCTIONALIZED GOLD NANOPARTICLES|DRUG-DELIVERY|SMALL
-        INTERFERING RNA|WALL CARBON NANOHORNS|CELLS IN-VITRO|IRON-OXIDE NANOPARTICLES|HUMAN-TUMOR
-        XENOGRAFTS|MOLONEY LEUKEMIA-VIRUS|MESOPOROUS SILICA NANOPARTICLE|NANOSTRUCTURED
-        LIPID CARRIERS|pulmonary delivery|lung cancer|nanoparticles|metastasis|Nano-Oncological
-        Modules</KeywordList>\r\n    <DocumentTypeList>Review</DocumentTypeList>\r\n
-        \   <DocumentCategory>Journal Document</DocumentCategory>\r\n    <NumberOfReferences>276</NumberOfReferences>\r\n
-        \   <TimesCited>1</TimesCited>\r\n    <TimesNotSelfCited>1</TimesNotSelfCited>\r\n
-        \   <PMID xsi:nil=\"true\" />\r\n    <WoSItemID>000339430600010</WoSItemID>\r\n
-        \   <PublicationSourceTitle>JOURNAL OF BIOMEDICAL NANOTECHNOLOGY</PublicationSourceTitle>\r\n
-        \   <Volume>10</Volume>\r\n    <Issue>9</Issue>\r\n    <Pagination>1863-1893</Pagination>\r\n
-        \   <PublicationDate>2014-09-01T00:00:00</PublicationDate>\r\n    <PublicationYear>2014</PublicationYear>\r\n
-        \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Nanoscience
-        &amp; Nanotechnology|Materials Science, Biomaterials</PublicationSubjectCategoryList>\r\n
-        \   <ISSN>1550-7033</ISSN>\r\n    <DOI>10.1166/jbn.2014.1900</DOI>\r\n    <ConferenceStartDate
-        xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank
-        xsi:nil=\"true\" />\r\n    <OrdinalRank>8</OrdinalRank>\r\n    <NormalizedRank
-        xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
-        \   <CopyrightPublisher>AMER SCIENTIFIC PUBLISHERS</CopyrightPublisher>\r\n
-        \   <CopyrightCity>VALENCIA</CopyrightCity>\r\n    <PublicationImpactFactorList>5.256,2012,ClosestToPublicationYear|5.256,2012,MostRecentYear</PublicationImpactFactorList>\r\n
-        \   <PublicationCategoryRankingList>17/69;NANOSCIENCE &amp; NANOTECHNOLOGY;2012;SC;ClosestToPublicationYear|16/121;MEDICINE,
-        RESEARCH &amp; EXPERIMENTAL;2012;SC;ClosestToPublicationYear|17/69;NANOSCIENCE
-        &amp; NANOTECHNOLOGY;2012;SC;MostRecentYear|16/121;MEDICINE, RESEARCH &amp;
-        EXPERIMENTAL;2012;SC;MostRecentYear</PublicationCategoryRankingList>\r\n    <AuthorCitationCountList>1,0,1|2,0,1|3,0,1|4,0,1</AuthorCitationCountList>\r\n
-        \   <CopyrightStateProvince>CA</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
-        STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
-        \   <PublicationItemID>67547749</PublicationItemID>\r\n    <Title>Association
-        of Patient-Provider Communication Domains with Lung Cancer Treatment</Title>\r\n
-        \   <Abstract>Background: Patient-physician communication is critical for
-        helping patients understand and complete the complex steps needed to diagnose
-        stage and treat lung cancer. We assessed which domains of patient-physician
-        communication about lung cancer and its treatment are associated with receipt
-        of disease-directed, stage-appropriate treatment.  Methods: Patients with
-        recently diagnosed lung cancer were recruited from four medical centers in
-        New York City from 2008 to 2011. Participants were surveyed about discussions
-        with physicians regarding treatment, symptoms, and needs. Multiple regression
-        analysis and structural equation modeling were used to assess which communication
-        factors were associated with disease treatment.  Results: Of the 352 participants,
-        191 (54%) received disease-directed, stage-appropriate treatment. Unadjusted
-        associations between communication items and treatment found that participants
-        who felt that their physicians explained the risks and disadvantages of lung
-        cancer treatment (p &lt; 0.01), discussed their chances of cure (p = 0.02),
-        discussed goals of treatment (p &lt; 0.01), or who were warm and friendly
-        (p = 0.04) were more likely to undergo treatment. Three communication domains
-        were identified: treatment information, physician support, and patient symptoms/needs.
-        After adjusting for known determinants of lung cancer treatment, increased
-        treatment information was associated with higher probability of cancer-directed
-        treatment (p = 0.003). Other communication domains (physician support or patient
-        symptoms/needs) were not independent predictors of treatment (p &gt; 0.05
-        for both comparisons).  Conclusion: These data suggest that treatment information
-        is particularly important for increasing the probability of cancer-directed
-        therapy among lung cancer patients. Clinicians should ensure that they clearly
-        discuss treatment goals and options with patients while maintaining empathy,
-        supporting patient needs, and addressing symptoms.</Abstract>\r\n    <AuthorList>Lin,Jenny,J|Lake,Jessica,|Wall,Melanie,M|Berman,Andrew,R|Salazar-Schicchi,John,|Powell,Charles,|Keller,Steven,M|Halm,Ethan,A|Leventhal,Howard,|Wisnivesky,Juan,P</AuthorList>\r\n
-        \   <AuthorCount>10</AuthorCount>\r\n    <KeywordList>MEDICAL CONSULTATIONS|SOCIAL
-        SUPPORT|POPULATION|SATISFACTION|PHYSICIAN COMMUNICATION|BREAST-CANCER|ADHERENCE|CHEMOTHERAPY|HEALTH
-        OUTCOMES|INFORMATION|lung cancer|patient-provider communication|treatment</KeywordList>\r\n
-        \   <DocumentTypeList>Article</DocumentTypeList>\r\n    <DocumentCategory>Journal
-        Document</DocumentCategory>\r\n    <NumberOfReferences>37</NumberOfReferences>\r\n
-        \   <TimesCited>0</TimesCited>\r\n    <TimesNotSelfCited>0</TimesNotSelfCited>\r\n
-        \   <PMID>25122421</PMID>\r\n    <WoSItemID>000341025800009</WoSItemID>\r\n
-        \   <PublicationSourceTitle>JOURNAL OF THORACIC ONCOLOGY</PublicationSourceTitle>\r\n
-        \   <Volume>9</Volume>\r\n    <Issue>9</Issue>\r\n    <Pagination>1249-1254</Pagination>\r\n
-        \   <PublicationDate>2014-09-01T00:00:00</PublicationDate>\r\n    <PublicationYear>2014</PublicationYear>\r\n
-        \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Oncology|Respiratory
-        System</PublicationSubjectCategoryList>\r\n    <ISSN>1556-0864</ISSN>\r\n
-        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
-        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>9</OrdinalRank>\r\n
-        \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
-        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>LIPPINCOTT
-        WILLIAMS &amp; WILKINS</CopyrightPublisher>\r\n    <CopyrightCity>PHILADELPHIA</CopyrightCity>\r\n
-        \   <PublicationImpactFactorList>4.473,2012,ClosestToPublicationYear|4.473,2012,MostRecentYear</PublicationImpactFactorList>\r\n
-        \   <PublicationCategoryRankingList>42/197;ONCOLOGY;2012;SC;ClosestToPublicationYear|6/50;RESPIRATORY
-        SYSTEM;2012;SC;ClosestToPublicationYear|42/197;ONCOLOGY;2012;SC;MostRecentYear|6/50;RESPIRATORY
-        SYSTEM;2012;SC;MostRecentYear</PublicationCategoryRankingList>\r\n    <AuthorCitationCountList>1,0,0|2,0,0|3,0,0|4,0,0|5,0,0|6,0,0|7,0,0|8,0,0|9,0,0|10,0,0</AuthorCitationCountList>\r\n
-        \   <CopyrightStateProvince>PA</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
-        STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
-        \   <PublicationItemID>67407985</PublicationItemID>\r\n    <Title>The role
-        of patient, tumour and system factors in socioeconomic inequalities in lung
-        cancer treatment: population-based study</Title>\r\n    <Abstract>Background:
-        Reducing socioeconomic inequalities in lung cancer treatment may reduce survival
-        inequalities. However, the reasons for treatment variation are unclear.  Methods:
-        Northern and Yorkshire cancer registry, Hospital Episode Statistics and lung
-        cancer audit data sets were linked. Logistic regression was used to explore
-        the role of stage, histology, performance status and comorbidity in socioeconomic
-        inequalities in lung cancer treatment, for 28 733 lung cancer patients diagnosed
-        in 2006-2010, and in a subgroup with stage recorded (n = 7769, 27%).  Results:
-        Likelihood of receiving surgery was significantly lower in the most deprived
-        group (odds ratio (OR) = 0.75, 95% confidence interval (CI) 0.65-0.86); however,
-        the OR was attenuated when including histological subtype (OR = 0.82, 95%
-        CI 0.71-0.96). Patients in the most deprived group were significantly less
-        likely to receive chemotherapy in the fully adjusted full cohort model including
-        performance status (OR = 0.64, 95% CI 0.58-0.72) but not in the staged subgroup
-        model when performance status was included (OR = 0.88, 95% CI 0.72-1.08).
-        Socioeconomic inequalities in radiotherapy were not found.  Interpretation:
-        Socioeconomic inequalities in performance status statistically explained socioeconomic
-        inequalities in receipt of chemotherapy in the selective staged subgroup,
-        but not in the full cohort. Socioeconomic variation in histological subtype
-        may account for some of the socioeconomic inequalities in surgery.</Abstract>\r\n
-        \   <AuthorList>Forrest,L,F|White,M,|Rubin,G,|Adams,J,</AuthorList>\r\n    <AuthorCount>4</AuthorCount>\r\n
-        \   <KeywordList>ENGLAND|SURVIVAL|COMORBIDITY|AGE|UK|SUBTYPE|surgery|lung
-        cancer|treatment|chemotherapy|socioeconomic position|radiotherapy</KeywordList>\r\n
-        \   <DocumentTypeList>Article</DocumentTypeList>\r\n    <DocumentCategory>Journal
-        Document</DocumentCategory>\r\n    <NumberOfReferences>35</NumberOfReferences>\r\n
-        \   <TimesCited>0</TimesCited>\r\n    <TimesNotSelfCited>0</TimesNotSelfCited>\r\n
-        \   <PMID>24918815</PMID>\r\n    <WoSItemID>000340205400025</WoSItemID>\r\n
-        \   <PublicationSourceTitle>BRITISH JOURNAL OF CANCER</PublicationSourceTitle>\r\n
-        \   <Volume>111</Volume>\r\n    <Issue>3</Issue>\r\n    <Pagination>608-618</Pagination>\r\n
-        \   <PublicationDate>2014-07-29T00:00:00</PublicationDate>\r\n    <PublicationYear>2014</PublicationYear>\r\n
-        \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Oncology</PublicationSubjectCategoryList>\r\n
-        \   <ISSN>0007-0920</ISSN>\r\n    <DOI>10.1038/bjc.2014.310</DOI>\r\n    <ConferenceStartDate
-        xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank
-        xsi:nil=\"true\" />\r\n    <OrdinalRank>10</OrdinalRank>\r\n    <NormalizedRank
-        xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
-        \   <CopyrightPublisher>NATURE PUBLISHING GROUP</CopyrightPublisher>\r\n    <CopyrightCity>LONDON</CopyrightCity>\r\n
-        \   <PublicationImpactFactorList>5.082,2012,ClosestToPublicationYear|5.082,2012,MostRecentYear</PublicationImpactFactorList>\r\n
-        \   <PublicationCategoryRankingList>35/197;ONCOLOGY;2012;SC;ClosestToPublicationYear|35/197;ONCOLOGY;2012;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
-        \   <AuthorCitationCountList>1,0,0|2,0,0|3,0,0|4,0,0</AuthorCitationCountList>\r\n
-        \   <CopyrightStateProvince />\r\n    <CopyrightCountry>UNITED KINGDOM</CopyrightCountry>\r\n
-        \ </PublicationItem>\r\n  <PublicationItem>\r\n    <PublicationItemID>67375959</PublicationItemID>\r\n
-        \   <Title>Non-small Cell Lung Cancer Treatment Receipt and Survival Among
-        African-Americans and Whites in a Rural Area</Title>\r\n    <Abstract>Data
-        on racial disparities among lung cancer patients in rural areas are scarce.
-        We examined differences in treatment receipt and survival among African-American
-        (AA) and Non-Hispanic White (NHW) non-small cell lung cancer (NSCLC) patients
-        residing in Southwest Georgia (SWGA)-a primarily rural 33-county area; population
-        700,000. Medical records for 934 SWGA NSCLC patients diagnosed in 2001-2003
-        were used to extract information on age, race, marital status, insurance coverage,
-        comorbidities, and treatment. Information pertaining to socioeconomic status,
-        urban/rural residence, and survival was obtained from the cancer registry.
-        Multivariable logistic regression analyses examined the relation of various
-        patient and disease characteristics to receipt of tumor-directed therapy.
-        Cox regression models were used to assess determinants of survival. Treatment
-        receipt was associated with age, marital status, comorbidities, and disease
-        stage in most analyses. No associations were observed between race and either
-        surgery [odds ratio (OR) 0.83, 95 % confidence interval (CI) 0.49-1.39] or
-        radiation (OR 0.72; 95 % CI 0.52-1.00). NHW patients were more likely to receive
-        no treatment at all (OR 1.50, 95 % CI 1.01-2.23). There was no racial difference
-        in survival (hazard ratio = 1.07, 95 % CI 0.90-1.26). Effects of insurance
-        and treatment on survival were most pronounced within 6 months post-diagnosis,
-        but were attenuated over time. We found no evidence of racial disparities
-        in survival and, in some analyses, a decreased likelihood of treatment receipt
-        among NHW NSCLC patients compared to AA. The results from SWGA stand in contrast
-        to studies that applied different methodologies and were conducted elsewhere.</Abstract>\r\n
-        \   <AuthorList>Hua,Xinwei,|Ward,Kevin,C|Gillespie,Theresa,W|Lipscomb,Joseph,|Goodman,Michael,</AuthorList>\r\n
-        \   <AuthorCount>5</AuthorCount>\r\n    <KeywordList>MEDICAL-RECORD|HEALTH|SMOKING|COMORBIDITY|DISPARITIES|SOCIOECONOMIC-STATUS|WATER|SANITATION|RACE|OUTCOMES|racial
-        disparities|prognosis|lung cancer|rural residence|treatment receipt</KeywordList>\r\n
-        \   <DocumentTypeList>Article</DocumentTypeList>\r\n    <DocumentCategory>Journal
-        Document</DocumentCategory>\r\n    <NumberOfReferences>33</NumberOfReferences>\r\n
-        \   <TimesCited>0</TimesCited>\r\n    <TimesNotSelfCited>0</TimesNotSelfCited>\r\n
-        \   <PMID>24346819</PMID>\r\n    <WoSItemID>000338539800009</WoSItemID>\r\n
-        \   <PublicationSourceTitle>JOURNAL OF COMMUNITY HEALTH</PublicationSourceTitle>\r\n
-        \   <Volume>39</Volume>\r\n    <Issue>4</Issue>\r\n    <Pagination>696-705</Pagination>\r\n
-        \   <PublicationDate>2014-08-01T00:00:00</PublicationDate>\r\n    <PublicationYear>2014</PublicationYear>\r\n
-        \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Health
-        Policy &amp; Services|Public, Environmental &amp; Occupational Health</PublicationSubjectCategoryList>\r\n
-        \   <ISSN>0094-5145</ISSN>\r\n    <DOI>10.1007/s10900-013-9813-7</DOI>\r\n
-        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
-        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>11</OrdinalRank>\r\n
-        \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
-        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>SPRINGER</CopyrightPublisher>\r\n
-        \   <CopyrightCity>NEW YORK</CopyrightCity>\r\n    <PublicationImpactFactorList>1.293,2012,ClosestToPublicationYear|1.293,2012,MostRecentYear</PublicationImpactFactorList>\r\n
-        \   <PublicationCategoryRankingList>44/67;HEALTH POLICY &amp; SERVICES;2012;SS;ClosestToPublicationYear|76/139;PUBLIC,
-        ENVIRONMENTAL &amp; OCCUPATIONAL HEALTH;2012;SS;ClosestToPublicationYear|44/67;HEALTH
-        POLICY &amp; SERVICES;2012;SS;MostRecentYear|76/139;PUBLIC, ENVIRONMENTAL
-        &amp; OCCUPATIONAL HEALTH;2012;SS;MostRecentYear</PublicationCategoryRankingList>\r\n
-        \   <AuthorCitationCountList>1,0,0|2,0,0|3,0,0|4,0,0|5,0,0</AuthorCitationCountList>\r\n
-        \   <CopyrightStateProvince>NY</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
-        STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
-        \   <PublicationItemID>66227041</PublicationItemID>\r\n    <Title>Regression
-        analysis of indicating multiple incremental cost-effectiveness ratios for
-        non-small cell lung cancer treatment.</Title>\r\n    <Abstract>OBJECTIVES
-        The value of a health technology can be measured in terms of cost and benefit
-        on two-dimensional co-ordinates. This study is to quantitatively analyze the
-        correlation and to conduct a regression on the X-Y plane constituted by cost
-        and QALYs (quality-adjusted life years) associated with the first line treatment,
-        the maintenance treatment, and the second line treatment for non-small cell
-        lung cancer (NSCLC).\r\nMETHODS The cost-effectiveness data of the cost and
-        QALYs were extracted, with respect to the three categories of the NSCLC treatment,
-        from the CEA Registry at Tufts Medical Center, regarding the literature published
-        from 2000-2011. As a result, 44 QALY-cost ratios were identified.\r\nRESULTS
-        Based on those extracted data, the correlation and regression analyses were
-        performed by mathematical model using log and square-root functions. The plotted
-        ratios stratified by the three stages for the NSCLC treatment were visually
-        grouped into three clusters. There were statistically significant differences
-        among the correlation coefficients of the cluster. In regression, the log
-        model was found to be better fitted than the square-root model; formulating
-        QALY?=?-1.12?+?0.16 log(Cost), -1.99?+?0.28 log(Cost), and -0.69?+?0.10 log(Cost)
-        for the first line, the maintenance, and the second line treatment, respectively.
-        Monetary units were standardized to 2008 US dollars.\r\nCONCLUSION A good
-        methodological potential was confirmed so as to assess the Incremental Cost
-        Effectiveness Ratio (ICER) variations, considering stratification by multiple
-        factors such as disease and treatment categories. This study has certain limitations,
-        such as the small number of included articles and the stratification, not
-        reflecting a factor of new genetic findings.</Abstract>\r\n    <AuthorList>Nakahara,Naohiro,|Kamae,Isao,</AuthorList>\r\n
-        \   <AuthorCount>2</AuthorCount>\r\n    <KeywordList>ICER|Incremental cost
-        effectiveness ratio|QALYs|Quality-adjusted life years|Regression Non-small
-        cell lung cancer</KeywordList>\r\n    <DocumentTypeList>Journal Article</DocumentTypeList>\r\n
-        \   <DocumentCategory>Journal Document</DocumentCategory>\r\n    <NumberOfReferences
-        xsi:nil=\"true\" />\r\n    <TimesCited xsi:nil=\"true\" />\r\n    <TimesNotSelfCited
-        xsi:nil=\"true\" />\r\n    <PMID>24826807</PMID>\r\n    <PublicationSourceTitle>Journal
-        of medical economics</PublicationSourceTitle>\r\n    <Volume>17</Volume>\r\n
-        \   <Issue>8</Issue>\r\n    <Pagination>547-554</Pagination>\r\n    <PublicationDate>2014-08-01T00:00:00</PublicationDate>\r\n
-        \   <PublicationYear>2014</PublicationYear>\r\n    <PublicationSubjectCategoryList
-        />\r\n    <ISSN>1369-6998</ISSN>\r\n    <DOI>10.3111/13696998.2014.923890</DOI>\r\n
-        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
-        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>12</OrdinalRank>\r\n
-        \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
-        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher />\r\n
-        \   <CopyrightCity />\r\n    <CopyrightStateProvince />\r\n    <CopyrightCountry>UNITED
-        KINGDOM</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
-        \   <PublicationItemID>66135060</PublicationItemID>\r\n    <Title>ICOVIR-15
-        and Inducible Caspase-9 Delivered By Mesenchymal Stromal Cells (MSCs) for
-        Lung Cancer Treatment</Title>\r\n    <Abstract />\r\n    <AuthorList>Hoyos,Valentina,|Yagyu,Shigeki,|Ando,Miki,|Del
-        Bufalo,Francesca,|Tao,Wade,|Ramos,Carlos,|Dotti,Gianpietro,|Alemany,Ramon,|Brenner,Malcolm,K</AuthorList>\r\n
-        \   <AuthorCount>9</AuthorCount>\r\n    <KeywordList />\r\n    <DocumentTypeList>Meeting
-        Abstract</DocumentTypeList>\r\n    <DocumentCategory>Conference Proceeding
-        Document</DocumentCategory>\r\n    <NumberOfReferences xsi:nil=\"true\" />\r\n
-        \   <TimesCited>0</TimesCited>\r\n    <TimesNotSelfCited>0</TimesNotSelfCited>\r\n
-        \   <PMID xsi:nil=\"true\" />\r\n    <WoSItemID>000337231300173</WoSItemID>\r\n
-        \   <PublicationSourceTitle>MOLECULAR THERAPY</PublicationSourceTitle>\r\n
-        \   <Volume>22</Volume>\r\n    <Pagination>S65-S66</Pagination>\r\n    <PublicationDate>2014-05-01T00:00:00</PublicationDate>\r\n
-        \   <PublicationYear>2014</PublicationYear>\r\n    <PublicationType>Journal</PublicationType>\r\n
-        \   <PublicationSubjectCategoryList>Biotechnology &amp; Applied Microbiology|Genetics
-        &amp; Heredity|Medicine, Research &amp; Experimental</PublicationSubjectCategoryList>\r\n
-        \   <ISSN>1525-0016</ISSN>\r\n    <ConferenceTitle>17th Annual Meeting of
-        the American-Society-of-Gene-and-Cell-Therapy (ASGCT)</ConferenceTitle>\r\n
-        \   <ConferenceStartDate>2014-05-21T00:00:00</ConferenceStartDate>\r\n    <ConferenceEndDate>2014-05-24T00:00:00</ConferenceEndDate>\r\n
-        \   <ConferenceCity>WASHINGTON</ConferenceCity>\r\n    <ConferenceStateCountry>DC</ConferenceStateCountry>\r\n
-        \   <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>13</OrdinalRank>\r\n    <NormalizedRank
-        xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
-        \   <CopyrightPublisher>NATURE PUBLISHING GROUP</CopyrightPublisher>\r\n    <CopyrightCity>NEW
-        YORK</CopyrightCity>\r\n    <PublicationImpactFactorList>7.041,2012,ClosestToPublicationYear|7.041,2012,MostRecentYear</PublicationImpactFactorList>\r\n
-        \   <PublicationCategoryRankingList>9/160;BIOTECHNOLOGY &amp; APPLIED MICROBIOLOGY;2012;SC;ClosestToPublicationYear|16/161;GENETICS
-        &amp; HEREDITY;2012;SC;ClosestToPublicationYear|10/121;MEDICINE, RESEARCH
-        &amp; EXPERIMENTAL;2012;SC;ClosestToPublicationYear|9/160;BIOTECHNOLOGY &amp;
-        APPLIED MICROBIOLOGY;2012;SC;MostRecentYear|16/161;GENETICS &amp; HEREDITY;2012;SC;MostRecentYear|10/121;MEDICINE,
-        RESEARCH &amp; EXPERIMENTAL;2012;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
-        \   <AuthorCitationCountList>1,0,0|2,0,0|3,0,0|4,0,0|5,0,0|6,0,0|7,0,0|8,0,0|9,0,0</AuthorCitationCountList>\r\n
-        \   <CopyrightStateProvince>NY</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
-        STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
-        \   <PublicationItemID>66103701</PublicationItemID>\r\n    <Title>Non-small-cell
-        lung cancer: treatment of late stage disease: chemotherapeutics and new frontiers.</Title>\r\n
-        \   <Abstract>Systemic therapy should be considered in patients with advanced
-        non-small cell lung cancer (NSCLC) who are no longer amenable to local therapies.
-        Systemic therapy has been shown to improve survival and preserve quality of
-        life in patients with a reasonable performance status. In unselected patients,
-        the standard of care for initial therapy remains platinum-based chemotherapy.
-        At progression, further treatment typically consists of the sequential administration
-        of single-agent therapy, which has also been shown to improve survival and
-        reduce cancer-related symptoms. Molecular biomarkers are essential to guide
-        targeted agents. This analysis requires ample tumor DNA; thus adequate biopsy
-        samples are critical to guide therapeutic options. More biomarkers are currently
-        being validated and may potentially have specific targeted therapy. In the
-        near future, it is likely that rapid multiplexed genotype testing will help
-        reduce the need for large amounts of tumor for analysis and will promote personalized
-        cancer therapy. We review recent changes in the definition of stage IV NSCLC
-        and review current and future systemic therapeutic approaches for patients
-        with advanced disease. </Abstract>\r\n    <AuthorList>Scheff,Ronald,J|Schneider,Bryan,J</AuthorList>\r\n
-        \   <AuthorCount>2</AuthorCount>\r\n    <KeywordList>chemotherapy|non-small
-        cell lung cancer|systemic therapy|targeted therapy</KeywordList>\r\n    <DocumentTypeList>Journal
-        Article|Review</DocumentTypeList>\r\n    <DocumentCategory>Journal Document</DocumentCategory>\r\n
-        \   <NumberOfReferences xsi:nil=\"true\" />\r\n    <TimesCited xsi:nil=\"true\"
-        />\r\n    <TimesNotSelfCited xsi:nil=\"true\" />\r\n    <PMID>24436536</PMID>\r\n
-        \   <PublicationSourceTitle>Seminars in interventional radiology</PublicationSourceTitle>\r\n
-        \   <Volume>30</Volume>\r\n    <Issue>2</Issue>\r\n    <Pagination>191-198</Pagination>\r\n
-        \   <PublicationDate>2013-06-01T00:00:00</PublicationDate>\r\n    <PublicationYear>2013</PublicationYear>\r\n
-        \   <PublicationSubjectCategoryList />\r\n    <ISSN>0739-9529</ISSN>\r\n    <DOI>10.1055/s-0033-1342961</DOI>\r\n
-        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
-        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>14</OrdinalRank>\r\n
-        \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
-        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher />\r\n
-        \   <CopyrightCity />\r\n    <PublicationImpactFactorList>0.16,2000,MostRecentYear</PublicationImpactFactorList>\r\n
-        \   <PublicationCategoryRankingList>77/80;RADIOLOGY, NUCLEAR MEDICINE &amp;
-        MEDICAL IMAGING;2000;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
-        \   <CopyrightStateProvince />\r\n    <CopyrightCountry>UNITED STATES</CopyrightCountry>\r\n
-        \ </PublicationItem>\r\n  <PublicationItem>\r\n    <PublicationItemID>66099926</PublicationItemID>\r\n
-        \   <Title>[State of the lung cancer treatment].</Title>\r\n    <Abstract
-        />\r\n    <AuthorList>Kawamura,Masafumi,</AuthorList>\r\n    <AuthorCount>1</AuthorCount>\r\n
-        \   <KeywordList />\r\n    <DocumentTypeList>Introductory Journal Article</DocumentTypeList>\r\n
-        \   <DocumentCategory>Other</DocumentCategory>\r\n    <NumberOfReferences
-        xsi:nil=\"true\" />\r\n    <TimesCited xsi:nil=\"true\" />\r\n    <TimesNotSelfCited
-        xsi:nil=\"true\" />\r\n    <PMID>24946516</PMID>\r\n    <PublicationSourceTitle>Nihon
-        Geka Gakkai zasshi</PublicationSourceTitle>\r\n    <Volume>115</Volume>\r\n
-        \   <Issue>3</Issue>\r\n    <Pagination>119-?</Pagination>\r\n    <PublicationDate>2014-05-01T00:00:00</PublicationDate>\r\n
-        \   <PublicationYear>2014</PublicationYear>\r\n    <PublicationSubjectCategoryList
-        />\r\n    <ISSN>0301-4894</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\"
-        />\r\n    <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank xsi:nil=\"true\"
-        />\r\n    <OrdinalRank>15</OrdinalRank>\r\n    <NormalizedRank xsi:nil=\"true\"
-        />\r\n    <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
-        \   <CopyrightPublisher />\r\n    <CopyrightCity />\r\n    <CopyrightStateProvince
-        />\r\n    <CopyrightCountry>JAPAN</CopyrightCountry>\r\n  </PublicationItem>\r\n
-        \ <PublicationItem>\r\n    <PublicationItemID>66026815</PublicationItemID>\r\n
-        \   <Title>Registration Accuracy with Four-Dimensional Cone-Beam CT for Lung
-        Cancer Treatment</Title>\r\n    <Abstract />\r\n    <AuthorList>Haga,A,|Kotoku,J,|Kida,S,|Masutani,Y,|Yamashita,H,|Takahashi,W,|Imae,T,|Nakagawa,K,</AuthorList>\r\n
-        \   <AuthorCount>8</AuthorCount>\r\n    <KeywordList />\r\n    <DocumentTypeList>Meeting
-        Abstract</DocumentTypeList>\r\n    <DocumentCategory>Conference Proceeding
-        Document</DocumentCategory>\r\n    <NumberOfReferences xsi:nil=\"true\" />\r\n
-        \   <TimesCited>0</TimesCited>\r\n    <TimesNotSelfCited>0</TimesNotSelfCited>\r\n
-        \   <PMID xsi:nil=\"true\" />\r\n    <WoSItemID>000336849902590</WoSItemID>\r\n
-        \   <PublicationSourceTitle>MEDICAL PHYSICS</PublicationSourceTitle>\r\n    <Volume>40</Volume>\r\n
-        \   <Issue>6</Issue>\r\n    <Pagination />\r\n    <PublicationDate>2013-06-01T00:00:00</PublicationDate>\r\n
-        \   <PublicationYear>2013</PublicationYear>\r\n    <PublicationType>Journal</PublicationType>\r\n
-        \   <PublicationSubjectCategoryList>Radiology, Nuclear Medicine &amp; Medical
-        Imaging</PublicationSubjectCategoryList>\r\n    <ISSN>0094-2405</ISSN>\r\n
-        \   <DOI>10.1118/1.4813966</DOI>\r\n    <ConferenceTitle>55th Annual Meeting
-        and Exhibition of the American-Association-of-Physicists-in-Medicine (AAPM)</ConferenceTitle>\r\n
-        \   <ConferenceStartDate>2013-08-04T00:00:00</ConferenceStartDate>\r\n    <ConferenceEndDate>2013-08-08T00:00:00</ConferenceEndDate>\r\n
-        \   <ConferenceCity>INDIANAPOLIS</ConferenceCity>\r\n    <ConferenceStateCountry>IN</ConferenceStateCountry>\r\n
-        \   <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>16</OrdinalRank>\r\n    <NormalizedRank
-        xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
-        \   <CopyrightPublisher>AMER ASSOC PHYSICISTS MEDICINE AMER INST PHYSICS</CopyrightPublisher>\r\n
-        \   <CopyrightCity>MELVILLE</CopyrightCity>\r\n    <PublicationImpactFactorList>2.83,2011,ClosestToPublicationYear|2.83,2011,MostRecentYear</PublicationImpactFactorList>\r\n
-        \   <PublicationCategoryRankingList>29/116;RADIOLOGY, NUCLEAR MEDICINE &amp;
-        MEDICAL IMAGING;2011;SC;ClosestToPublicationYear|29/116;RADIOLOGY, NUCLEAR
-        MEDICINE &amp; MEDICAL IMAGING;2011;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
-        \   <AuthorCitationCountList>1,0,0|2,0,0|3,0,0|4,0,0|5,0,0|6,0,0|7,0,0|8,0,0</AuthorCitationCountList>\r\n
-        \   <CopyrightStateProvince>NY</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
-        STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
-        \   <PublicationItemID>66016784</PublicationItemID>\r\n    <Title>Impact of
-        race on early-stage lung cancer treatment and survival</Title>\r\n    <Abstract
-        />\r\n    <AuthorList>Williams,Christina,D|Provenzale,Dawn,T|Stechuchak,Karen,M|Kelley,Michael,J</AuthorList>\r\n
-        \   <AuthorCount>4</AuthorCount>\r\n    <KeywordList />\r\n    <DocumentTypeList>Meeting
-        Abstract</DocumentTypeList>\r\n    <DocumentCategory>Conference Proceeding
-        Document</DocumentCategory>\r\n    <NumberOfReferences xsi:nil=\"true\" />\r\n
-        \   <TimesCited>0</TimesCited>\r\n    <TimesNotSelfCited>0</TimesNotSelfCited>\r\n
-        \   <PMID xsi:nil=\"true\" />\r\n    <WoSItemID>000208943900230</WoSItemID>\r\n
-        \   <PublicationSourceTitle>JOURNAL OF CLINICAL ONCOLOGY</PublicationSourceTitle>\r\n
-        \   <Volume>30</Volume>\r\n    <Issue>34</Issue>\r\n    <Pagination />\r\n
-        \   <PublicationDate>2012-12-01T00:00:00</PublicationDate>\r\n    <PublicationYear>2012</PublicationYear>\r\n
-        \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Oncology</PublicationSubjectCategoryList>\r\n
-        \   <ISSN>0732-183X</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
-        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank xsi:nil=\"true\" />\r\n
-        \   <OrdinalRank>17</OrdinalRank>\r\n    <NormalizedRank xsi:nil=\"true\"
-        />\r\n    <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
-        \   <CopyrightPublisher>AMER SOC CLINICAL ONCOLOGY</CopyrightPublisher>\r\n
-        \   <CopyrightCity>ALEXANDRIA</CopyrightCity>\r\n    <PublicationImpactFactorList>18.038,2012,ExactPublicationYear|18.038,2012,MostRecentYear</PublicationImpactFactorList>\r\n
-        \   <PublicationCategoryRankingList>5/197;ONCOLOGY;2012;SC;ExactPublicationYear|5/197;ONCOLOGY;2012;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
-        \   <AuthorCitationCountList>1,0,0|2,0,0|3,0,0|4,0,0</AuthorCitationCountList>\r\n
-        \   <CopyrightStateProvince>VA</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
-        STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
-        \   <PublicationItemID>65972752</PublicationItemID>\r\n    <Title>WVU Cancer
-        Center study focuses on promising new lung cancer treatment.</Title>\r\n    <Abstract
-        />\r\n    <AuthorList />\r\n    <AuthorCount>0</AuthorCount>\r\n    <KeywordList
-        />\r\n    <DocumentTypeList>Journal Article</DocumentTypeList>\r\n    <DocumentCategory>Journal
-        Document</DocumentCategory>\r\n    <NumberOfReferences xsi:nil=\"true\" />\r\n
-        \   <TimesCited xsi:nil=\"true\" />\r\n    <TimesNotSelfCited xsi:nil=\"true\"
-        />\r\n    <PMID>24902470</PMID>\r\n    <PublicationSourceTitle>West Virginia
-        medical journal</PublicationSourceTitle>\r\n    <Volume>110</Volume>\r\n    <Issue>2</Issue>\r\n
-        \   <Pagination>49-?</Pagination>\r\n    <PublicationDate>2014-03-01T00:00:00</PublicationDate>\r\n
-        \   <PublicationYear>2014</PublicationYear>\r\n    <PublicationSubjectCategoryList
-        />\r\n    <ISSN>0043-3284</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\"
-        />\r\n    <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank xsi:nil=\"true\"
-        />\r\n    <OrdinalRank>18</OrdinalRank>\r\n    <NormalizedRank xsi:nil=\"true\"
-        />\r\n    <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
-        \   <CopyrightPublisher />\r\n    <CopyrightCity />\r\n    <CopyrightStateProvince
-        />\r\n    <CopyrightCountry>UNITED STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n
-        \ <PublicationItem>\r\n    <PublicationItemID>65924245</PublicationItemID>\r\n
-        \   <Title>Relapsed small cell lung cancer: treatment options and latest developments</Title>\r\n
-        \   <Abstract>According to recent analyses, there was a modest yet significant
-        improvement in median survival time and 5-year survival rate of limited stage
-        small cell lung cancer (SCLC) in North America, Europe, Japan and other countries
-        over the last 30 years. The median survival time of limited stage SCLC is
-        15-20 months and 5-year survival rate is 15% or less. In terms of extensive
-        stage SCLC, a median survival time of 9.4-12.8 months and 2-year survival
-        of 5.2-19.5% are still disappointing. Despite being highly sensitive to first-line
-        chemotherapy and radiotherapy treatments, most patients with SCLC experience
-        relapse within 2 years and die from systemic metastasis. While several clinical
-        trials of cytotoxic chemotherapies and molecular targeting agents have been
-        investigated in the treatment of relapsed SCLC, none showed a significant
-        clinical activity to be able to exceed topotecan as second-line chemotherapy.
-        There are problematic issues to address for relapsed SCLC, such as standardizing
-        the treatment for third-line chemotherapy. Topotecan alone was the first approved
-        therapy for second-line treatment for relapsed SCLC. Amrubicin is a promising
-        drug and a variety of trials evaluating its efficacy have been carried out.
-        Amrubicin has shown superiority to topotecan in a Japanese population, but
-        was not superior in a study of western patients. There are some controversial
-        issues for relapsed SCLC, such as treatment for older patients, third-line
-        chemotherapy and efficacy of molecular targeting therapy. This article reviews
-        current standard treatment, recent clinical trials and other topics on relapsed
-        SCLC.</Abstract>\r\n    <AuthorList>Asai,Nobuhiro,|Ohkuni,Yoshihiro,|Kaneko,Norihiro,|Yamaguchi,Etsuro,|Kubo,Akihito,</AuthorList>\r\n
-        \   <AuthorCount>5</AuthorCount>\r\n    <KeywordList>ACTIVE METABOLITE|COMBINATION
-        CHEMOTHERAPY|PREVIOUSLY TREATED PATIENTS|ENDOTHELIAL GROWTH-FACTOR|PHASE-II
-        TRIAL|ADOPTIVE IMMUNOTHERAPY|2ND-LINE CHEMOTHERAPY|FACTOR RECEPTOR MUTATIONS|INTRAVENOUS
-        TOPOTECAN|3RD-LINE CHEMOTHERAPY|chemotherapy|small cell lung cancer|sensitive
-        relapse|Refractory relapse</KeywordList>\r\n    <DocumentTypeList>Review</DocumentTypeList>\r\n
-        \   <DocumentCategory>Journal Document</DocumentCategory>\r\n    <NumberOfReferences>86</NumberOfReferences>\r\n
-        \   <TimesCited>0</TimesCited>\r\n    <TimesNotSelfCited>0</TimesNotSelfCited>\r\n
-        \   <PMID>24587832</PMID>\r\n    <WoSItemID>000335816900004</WoSItemID>\r\n
-        \   <PublicationSourceTitle>THERAPEUTIC ADVANCES IN MEDICAL ONCOLOGY</PublicationSourceTitle>\r\n
-        \   <Volume>6</Volume>\r\n    <Issue>2</Issue>\r\n    <Pagination>69-82</Pagination>\r\n
-        \   <PublicationDate>2014-03-01T00:00:00</PublicationDate>\r\n    <PublicationYear>2014</PublicationYear>\r\n
-        \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Oncology</PublicationSubjectCategoryList>\r\n
-        \   <ISSN>1758-8340</ISSN>\r\n    <DOI>10.1177/1758834013517413</DOI>\r\n
-        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
-        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>19</OrdinalRank>\r\n
-        \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
-        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>SAGE PUBLICATIONS
-        LTD</CopyrightPublisher>\r\n    <CopyrightCity>LONDON</CopyrightCity>\r\n
-        \   <AuthorCitationCountList>1,0,0|2,0,0|3,0,0|4,0,0|5,0,0</AuthorCitationCountList>\r\n
-        \   <CopyrightStateProvince />\r\n    <CopyrightCountry>UNITED KINGDOM</CopyrightCountry>\r\n
-        \ </PublicationItem>\r\n</ArrayOfPublicationItem>"
+      encoding: ASCII-8BIT
+      string: !binary |-
+        PD94bWwgdmVyc2lvbj0iMS4wIj8+DQo8QXJyYXlPZlB1YmxpY2F0aW9uSXRl
+        bSB4bWxuczp4c2Q9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1h
+        IiB4bWxuczp4c2k9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1h
+        LWluc3RhbmNlIj4NCiAgPFB1YmxpY2F0aW9uSXRlbT4NCiAgICA8UHVibGlj
+        YXRpb25JdGVtSUQ+Njk0NDQ4ODQ8L1B1YmxpY2F0aW9uSXRlbUlEPg0KICAg
+        IDxUaXRsZT5BIHRoZXJhbm9zdGljIGFwcHJvYWNoIGJhc2VkIG9uIHRoZSB1
+        c2Ugb2YgYSBkdWFsIGJvcm9uL0dkIGFnZW50IHRvIGltcHJvdmUgdGhlIGVm
+        ZmljYWN5IG9mIEJvcm9uIE5ldXRyb24gQ2FwdHVyZSBUaGVyYXB5IGluIHRo
+        ZSBsdW5nIGNhbmNlciB0cmVhdG1lbnQuPC9UaXRsZT4NCiAgICA8QWJzdHJh
+        Y3Q+VU5MQUJFTExFRCBUaGlzIHN0dWR5IGFpbXMgYXQgZGV2ZWxvcGluZyBh
+        biBpbm5vdmF0aXZlIHRoZXJhbm9zdGljIGFwcHJvYWNoIGZvciBsdW5nIHR1
+        bW9yIGFuZCBtZXRhc3Rhc2VzIHRyZWF0bWVudCwgYmFzZWQgb24gQm9yb24g
+        TmV1dHJvbiBDYXB0dXJlIFRoZXJhcHkgKEJOQ1QpLiBJdCByZWxpZXMgb24g
+        dG8gdGhlIHVzZSBvZiBsb3cgZGVuc2l0eSBsaXBvcHJvdGVpbnMgKExETCkg
+        YXMgY2FycmllcnMgYWJsZSB0byBtYXhpbWl6ZSB0aGUgc2VsZWN0aXZlIHVw
+        dGFrZSBvZiBib3JvbiBhdG9tcyBpbiB0dW1vciBjZWxscyBhbmQsIGF0IHRo
+        ZSBzYW1lIHRpbWUsIHRvIHF1YW50aWZ5IHRoZSBpbiB2aXZvIGJvcm9uIGRp
+        c3RyaWJ1dGlvbiBieSBtYWduZXRpYyByZXNvbmFuY2UgaW1hZ2luZyAoTVJJ
+        KS4gVHVtb3IgY2VsbHMgdXB0YWtlIHdhcyBpbml0aWFsbHkgYXNzZXNzZWQg
+        YnkgSUNQLU1TIGFuZCBNUkkgb24gZm91ciB0eXBlcyBvZiB0dW1vciAoVFVC
+        TywgQjE2LUYxMCwgTUNGLTcsIEE1NDkpIGFuZCBvbmUgaGVhbHRoeSAoTi1N
+        VUcpIGNlbGwgbGluZXMuIEx1bmcgbWV0YXN0YXNlcyB3ZXJlIGdlbmVyYXRl
+        ZCBieSBpbnRyYXZlbm91cyBpbmplY3Rpb24gb2YgYSBIZXIyKyBicmVhc3Qg
+        Y2FuY2VyIGNlbGwgbGluZSAoaS5lLiBUVUJPKSBpbiBCQUxCL2MgbWljZSBh
+        bmQgdHJhbnNnZW5pYyBFTUw0LUFMSyBtaWNlIHdlcmUgdXNlZCBhcyBwcmlt
+        YXJ5IHR1bW9yIG1vZGVsLiBBZnRlciBuZXV0cm9uIGlycmFkaWF0aW9uLCB0
+        dW1vciBncm93dGggd2FzIGZvbGxvd2VkIGZvciAzMC00MGRheXMgYnkgTVJJ
+        LiBUdW1vciBtYXNzZXMgb2YgYm9yb24gdHJlYXRlZCBtaWNlIGluY3JlYXNl
+        ZCBtYXJrZWRseSBzbG93bHkgdGhhbiB0aGUgY29udHJvbCBncm91cC4NCkZS
+        T00gVEhFIENMSU5JQ0FMIEVESVRPUiBJbiB0aGlzIGFydGljbGUsIHRoZSBh
+        dXRob3JzIGRlc2NyaWJlZCBhbiBpbXByb3ZlbWVudCB0byBleGlzdGluZyBi
+        b3JvbiBuZXV0cm9uIGNhcHR1cmUgdGhlcmFweS4gVGhlIGR1YWwgTVJJL0JO
+        Q1QgYWdlbnQsIGNhcnJpZWQgYnkgTERMcywgd2FzIGFibGUgdG8gbWF4aW1p
+        emUgdGhlIHNlbGVjdGl2ZSB1cHRha2Ugb2YgYm9yb24gaW4gdHVtb3IgY2Vs
+        bHMsIGFuZCwgYXQgdGhlIHNhbWUgdGltZSwgcXVhbnRpZnkgYm9yb24gZGlz
+        dHJpYnV0aW9uIGluIHR1bW9yIGFuZCBpbiBvdGhlciB0aXNzdWVzIHVzaW5n
+        IE1SSS4gU3Vic2VxdWVudCBpbiB2aXRybyBhbmQgaW4gdml2byBleHBlcmlt
+        ZW50cyBzaG93ZWQgdHVtb3IgY2VsbCBraWxsaW5nIGFmdGVyIG5ldXRyb24g
+        aXJyYWRpYXRpb24uPC9BYnN0cmFjdD4NCiAgICA8QXV0aG9yTGlzdD5BbGJl
+        cnRpLERpZWdvLHxQcm90dGksTmljb2xldHRhLHxUb3BwaW5vLEFudG9uaW8s
+        fERlYWdvc3Rpbm8sQW5uYW1hcmlhLHxMYW56YXJkbyxTdGVmYW5pYSx8Qm9y
+        dG9sdXNzaSxTaWx2YSx8QWx0aWVyaSxTYXZlcmlvLHxWb2VuYSxDbGF1ZGlh
+        LHxDaGlhcmxlLFJvYmVydG8sfEdlbmluYXR0aSBDcmljaCxTaW1vbmV0dGEs
+        fEFpbWUsU2lsdmlvLDwvQXV0aG9yTGlzdD4NCiAgICA8QXV0aG9yQ291bnQ+
+        MTE8L0F1dGhvckNvdW50Pg0KICAgIDxLZXl3b3JkTGlzdD5Cb3JvbiBOZXV0
+        cm9uIENhcHR1cmUgVGhlcmFweSAoQk5DVCl8Q2FyYm9yYW5lc3xMb3cgZGVu
+        c2l0eSBsaXBvcHJvdGVpbnMgKExETCl8TVJJfFRoZXJhbm9zdGljIGFnZW50
+        czwvS2V5d29yZExpc3Q+DQogICAgPERvY3VtZW50VHlwZUxpc3Q+Sm91cm5h
+        bCBBcnRpY2xlPC9Eb2N1bWVudFR5cGVMaXN0Pg0KICAgIDxEb2N1bWVudENh
+        dGVnb3J5PkpvdXJuYWwgRG9jdW1lbnQ8L0RvY3VtZW50Q2F0ZWdvcnk+DQog
+        ICAgPE51bWJlck9mUmVmZXJlbmNlcyB4c2k6bmlsPSJ0cnVlIiAvPg0KICAg
+        IDxUaW1lc0NpdGVkIHhzaTpuaWw9InRydWUiIC8+DQogICAgPFRpbWVzTm90
+        U2VsZkNpdGVkIHhzaTpuaWw9InRydWUiIC8+DQogICAgPFBNSUQ+MjU1OTYw
+        NzQ8L1BNSUQ+DQogICAgPFB1YmxpY2F0aW9uU291cmNlVGl0bGU+TmFub21l
+        ZGljaW5lIDogbmFub3RlY2hub2xvZ3ksIGJpb2xvZ3ksIGFuZCBtZWRpY2lu
+        ZTwvUHVibGljYXRpb25Tb3VyY2VUaXRsZT4NCiAgICA8Vm9sdW1lPjExPC9W
+        b2x1bWU+DQogICAgPElzc3VlPjM8L0lzc3VlPg0KICAgIDxQYWdpbmF0aW9u
+        Pjc0MS03NTA8L1BhZ2luYXRpb24+DQogICAgPFB1YmxpY2F0aW9uRGF0ZT4y
+        MDE1LTA0LTAxVDAwOjAwOjAwPC9QdWJsaWNhdGlvbkRhdGU+DQogICAgPFB1
+        YmxpY2F0aW9uWWVhcj4yMDE1PC9QdWJsaWNhdGlvblllYXI+DQogICAgPFB1
+        YmxpY2F0aW9uU3ViamVjdENhdGVnb3J5TGlzdCAvPg0KICAgIDxJU1NOPjE1
+        NDktOTYzNDwvSVNTTj4NCiAgICA8RE9JPjEwLjEwMTYvai5uYW5vLjIwMTQu
+        MTIuMDA0PC9ET0k+DQogICAgPENvbmZlcmVuY2VTdGFydERhdGUgeHNpOm5p
+        bD0idHJ1ZSIgLz4NCiAgICA8Q29uZmVyZW5jZUVuZERhdGUgeHNpOm5pbD0i
+        dHJ1ZSIgLz4NCiAgICA8UmFuayB4c2k6bmlsPSJ0cnVlIiAvPg0KICAgIDxP
+        cmRpbmFsUmFuaz4wPC9PcmRpbmFsUmFuaz4NCiAgICA8Tm9ybWFsaXplZFJh
+        bmsgeHNpOm5pbD0idHJ1ZSIgLz4NCiAgICA8TmV3UHVibGljYXRpb25JdGVt
+        SUQgeHNpOm5pbD0idHJ1ZSIgLz4NCiAgICA8SXNPYnNvbGV0ZT5mYWxzZTwv
+        SXNPYnNvbGV0ZT4NCiAgICA8Q29weXJpZ2h0UHVibGlzaGVyPkVMU0VWSUVS
+        IElOQzwvQ29weXJpZ2h0UHVibGlzaGVyPg0KICAgIDxDb3B5cmlnaHRDaXR5
+        IC8+DQogICAgPFB1YmxpY2F0aW9uSW1wYWN0RmFjdG9yTGlzdD41Ljk3OCwy
+        MDEzLENsb3Nlc3RUb1B1YmxpY2F0aW9uWWVhcnw1Ljk3OCwyMDEzLE1vc3RS
+        ZWNlbnRZZWFyPC9QdWJsaWNhdGlvbkltcGFjdEZhY3Rvckxpc3Q+DQogICAg
+        PFB1YmxpY2F0aW9uQ2F0ZWdvcnlSYW5raW5nTGlzdD4xNS83MztOQU5PU0NJ
+        RU5DRSAmYW1wOyBOQU5PVEVDSE5PTE9HWTsyMDEzO1NDO0Nsb3Nlc3RUb1B1
+        YmxpY2F0aW9uWWVhcnwxMi8xMjQ7TUVESUNJTkUsIFJFU0VBUkNIICZhbXA7
+        IEVYUEVSSU1FTlRBTDsyMDEzO1NDO0Nsb3Nlc3RUb1B1YmxpY2F0aW9uWWVh
+        cnwxNS83MztOQU5PU0NJRU5DRSAmYW1wOyBOQU5PVEVDSE5PTE9HWTsyMDEz
+        O1NDO01vc3RSZWNlbnRZZWFyfDEyLzEyNDtNRURJQ0lORSwgUkVTRUFSQ0gg
+        JmFtcDsgRVhQRVJJTUVOVEFMOzIwMTM7U0M7TW9zdFJlY2VudFllYXI8L1B1
+        YmxpY2F0aW9uQ2F0ZWdvcnlSYW5raW5nTGlzdD4NCiAgICA8Q29weXJpZ2h0
+        U3RhdGVQcm92aW5jZSAvPg0KICAgIDxDb3B5cmlnaHRDb3VudHJ5PlVOSVRF
+        RCBTVEFURVM8L0NvcHlyaWdodENvdW50cnk+DQogIDwvUHVibGljYXRpb25J
+        dGVtPg0KICA8UHVibGljYXRpb25JdGVtPg0KICAgIDxQdWJsaWNhdGlvbkl0
+        ZW1JRD42OTQxNjg1NzwvUHVibGljYXRpb25JdGVtSUQ+DQogICAgPFRpdGxl
+        Pkl0YWxpYW4gbXVsdGljZW50ZXIgc3VydmV5IHRvIGV2YWx1YXRlIHRoZSBv
+        cGluaW9uIG9mIHBhdGllbnRzIGFuZCB0aGVpciByZWZlcmVuY2UgY2xpbmlj
+        aWFucyBvbiB0aGUgInRvbGVyYW5jZSIgdG8gdGFyZ2V0ZWQgdGhlcmFwaWVz
+        IGFscmVhZHkgYXZhaWxhYmxlIGZvciBub24tc21hbGwgY2VsbCBsdW5nIGNh
+        bmNlciB0cmVhdG1lbnQgaW4gZGFpbHkgY2xpbmljYWwgcHJhY3RpY2UuPC9U
+        aXRsZT4NCiAgICA8QWJzdHJhY3Q+SU5UUk9EVUNUSU9OIFRoZSBpbnRyb2R1
+        Y3Rpb24gb2YgdGFyZ2V0ZWQgdGhlcmFwaWVzIGluIG5vbi1zbWFsbCBjZWxs
+        IGx1bmcgY2FuY2VyIChOU0NMQykgdHJlYXRtZW50IGhhcyBsZWQgdG8gZW1l
+        cmdpbmcgdG94aWNpdGllcywgd2hvc2UgbWFuYWdlbWVudCBhbmQgaW1wYWN0
+        IG9uIHF1YWxpdHktb2YtbGlmZSAoUW9MKSBpcyBub3QgY2xlYXJseSBkZWZp
+        bmVkLiBBaW0gb2YgdGhpcyBJdGFsaWFuIG11bHRpY2VudGVyIHN1cnZleSB3
+        YXMgdG8gaGlnaGxpZ2h0IGFueSBkaXNjcmVwYW5jeSBiZXR3ZWVuIHBhdGll
+        bnRzJyBhbmQgY2xpbmljaWFucycgcGVyY2VwdGlvbiBvZiBzdWNoIHRveGlj
+        aXRpZXMgaW4gb3JkZXIgdG8gaW1wcm92ZSB0aGVpciBtYW5hZ2VtZW50Lg0K
+        TUVUSE9EUyBGcm9tIE9jdG9iZXIgMjAxMyB0byBBcHJpbCAyMDE0LCAxMzMg
+        TlNDTEMgYWR2YW5jZWQgcGF0aWVudHMsIHRyZWF0ZWQgd2l0aCB0YXJnZXRl
+        ZCB0aGVyYXBpZXMsIHdlcmUgY29uc2VjdXRpdmVseSBlbnJvbGxlZCB0byBh
+        c3Nlc3MgdG94aWNpdGllcyBhbmQgUW9MIHdpdGggZGVkaWNhdGVkIHF1ZXN0
+        aW9ubmFpcmVzLiBPbmUgaHVuZHJlZCBhbmQgc2l4dGVlbiBwYXRpZW50cyB3
+        ZXJlIGluY2x1ZGVkIGluIHRoZSBmaW5hbCBhbmFseXNpcywgaGF2aW5nIGF0
+        dGVuZGVkIHRocmVlIGNvbnNlY3V0aXZlIGV2YWx1YXRpb25zIChUMCwgVDEs
+        IFQyKSwgc3RhcnRpbmcgYXQgbGVhc3QgMTUgZGF5cyBhZnRlciB0aGUgYmlv
+        bG9naWNhbCB0cmVhdG1lbnQuIFRoZSBzdXJ2ZXkgcmVxdWlyZWQgbW9udGhs
+        eSBjb21waWxhdGlvbiBvZiBib3RoIHBoeXNpY2lhbnMgYW5kIHBhdGllbnRz
+        JyBxdWVzdGlvbm5haXJlcywgYmFzaW5nIGFkdmVyc2UgZXZlbnQgZXZhbHVh
+        dGlvbiBvbiBDVENBRSB2ZXJzaW9uIDQuMC4NClJFU1VMVFMgTW9zdCBvZiB0
+        aGUgcGF0aWVudHMgcmVjZWl2ZWQgZWl0aGVyIGFuIEVHRlItVEtJIG9yIGFu
+        IGFuYXBsYXN0aWMgbHltcGhvbWEga2luYXNlIChBTEspIGluaGliaXRvciBh
+        cyB0YXJnZXRlZCB0aGVyYXB5ICg4NC41JSBhbmQgMTMuOCUsIHJlc3BlY3Rp
+        dmVseSkuIEF0IGV2ZXJ5IGNoZWNrcG9pbnQgKFQwLCBUMSwgVDIpIGEgc2ln
+        bmlmaWNhbnQgZGlmZmVyZW5jZSBpbiB0ZXJtcyBvZiBwZXJjZXB0aW9uIG9m
+        IHRhcmdldGVkIHRoZXJhcGllcy1yZWxhdGVkIHRveGljaXRpZXMgb2YgYW55
+        IHR5cGUgYW5kIGdyYWRlIHdhcyBkZXNjcmliZWQgKFAgdmFsdWUgPTAuMDAw
+        MSBpbiBhbGwgY2FzZXMpLiBUaGlzIGRpZmZlcmVuY2Ugd2FzIG1vcmUgcHJv
+        bm91bmNlZCBmb3Igc2tpbiB0b3hpY2l0eSwgZmF0aWd1ZSBhbmQgZGlhcnJo
+        ZWEuIEZ1cnRoZXJtb3JlLCBhbHNvIHRoZSBhc3Nlc3NtZW50IG9mIFFvTCBy
+        ZXZlYWxlZCBjb250cmFzdGluZyBkYXRhIGJldHdlZW4gcGF0aWVudHMgYW5k
+        IGNsaW5pY2lhbnMsIG1haW5seSBRb0wgcmVwb3J0ZWQgYXMgZ29vZCBieSB0
+        aGUgbWFqb3JpdHkgb2YgcGF0aWVudHMgYW5kIGRhaWx5IGFjdGl2aXRpZXMg
+        Y29uc2lkZXJlZCBhcyBzbGlnaHRseSBpbmZsdWVuY2VkIGJ5IHRhcmdldGVk
+        IHRoZXJhcGllcy4NCkNPTkNMVVNJT05TIEluIG91ciBrbm93bGVkZ2UsIHRo
+        aXMgaXMgdGhlIGZpcnN0IHByb3NwZWN0aXZlIHN1cnZleSBpbiBwYXRpZW50
+        cyBhbmQgZG9jdG9ycyBzcGVjaWZpY2FsbHkgZGVzaWduZWQgZm9yIHRhcmdl
+        dGVkIHRoZXJhcGllcyBpbiBhZHZhbmNlZCBOU0NMQy4gVGhlIHJlc3VsdHMg
+        c2hvdyBhbiB1bmRlcmVzdGltYXRpb24gb2YgdG94aWNpdGllcyBieSBjbGlu
+        aWNpYW5zIHdoZW4gY29tcGFyZWQgd2l0aCBwYXRpZW50cywgdGhlIGRpZmZl
+        cmVuY2UgYmVpbmcgZ3JlYXRlciBmb3IgYWR2ZXJzZSBldmVudHMgbW9yZSBz
+        dHJvbmdseSBhc3NvY2lhdGVkIHdpdGggZGFpbHkgbGlmZSBhbmQgUW9MLiBG
+        dXJ0aGVyIHN0dWRpZXMgYXJlIG5lZWRlZCB0byBjb25maXJtIG91ciBmaXJz
+        dCByZXN1bHRzLiBUaGUgZGlzY3JlcGFuY3kgaW4gcGVyY2VwdGlvbiBvZiB0
+        YXJnZXRlZCB0aGVyYXBpZXMtcmVsYXRlZCB0b3hpY2l0aWVzIHNob3VsZCBi
+        ZSBhIHJlc3VsdCBmcm9tIHdoaWNoIHRvIHN0YXJ0IHRoaW5raW5nIGFib3V0
+        IGEgbmV3IGFwcHJvYWNoIGluIHRoZWlyIG1hbmFnZW1lbnQuPC9BYnN0cmFj
+        dD4NCiAgICA8QXV0aG9yTGlzdD5Ob3ZlbGxvLFNpbHZpYSx8Q2FwZWxsZXR0
+        byxFbnJpY2EsfENvcnRpbm92aXMsRGllZ28sfFRpc2VvLE1hcmNlbGxvLHxH
+        YWxldHRhLERvbWVuaWNvLHxWYWxtYWRyZSxHaXVzZXBwZSx8Q2FzYXJ0ZWxs
+        aSxDbGVsaWEsfFJhcGV0dGksU2ltb25ldHRhLEdyYXppYXxSb3NzaSxBbnRv
+        bmlvLDwvQXV0aG9yTGlzdD4NCiAgICA8QXV0aG9yQ291bnQ+OTwvQXV0aG9y
+        Q291bnQ+DQogICAgPEtleXdvcmRMaXN0PkFkdmVyc2UgZWZmZWN0c3xub24t
+        c21hbGwgY2VsbCBsdW5nIGNhbmNlciAoTlNDTEMpfHBhdGllbnRz4oCZIHJl
+        cG9ydHN8dGFyZ2V0ZWQgdGhlcmFweTwvS2V5d29yZExpc3Q+DQogICAgPERv
+        Y3VtZW50VHlwZUxpc3Q+Sm91cm5hbCBBcnRpY2xlPC9Eb2N1bWVudFR5cGVM
+        aXN0Pg0KICAgIDxEb2N1bWVudENhdGVnb3J5PkpvdXJuYWwgRG9jdW1lbnQ8
+        L0RvY3VtZW50Q2F0ZWdvcnk+DQogICAgPE51bWJlck9mUmVmZXJlbmNlcyB4
+        c2k6bmlsPSJ0cnVlIiAvPg0KICAgIDxUaW1lc0NpdGVkIHhzaTpuaWw9InRy
+        dWUiIC8+DQogICAgPFRpbWVzTm90U2VsZkNpdGVkIHhzaTpuaWw9InRydWUi
+        IC8+DQogICAgPFBNSUQ+MjU4MDYyOTc8L1BNSUQ+DQogICAgPFB1YmxpY2F0
+        aW9uU291cmNlVGl0bGU+VHJhbnNsYXRpb25hbCBsdW5nIGNhbmNlciByZXNl
+        YXJjaDwvUHVibGljYXRpb25Tb3VyY2VUaXRsZT4NCiAgICA8Vm9sdW1lPjM8
+        L1ZvbHVtZT4NCiAgICA8SXNzdWU+MzwvSXNzdWU+DQogICAgPFBhZ2luYXRp
+        b24+MTczLTE4MDwvUGFnaW5hdGlvbj4NCiAgICA8UHVibGljYXRpb25EYXRl
+        PjIwMTQtMDYtMDFUMDA6MDA6MDA8L1B1YmxpY2F0aW9uRGF0ZT4NCiAgICA8
+        UHVibGljYXRpb25ZZWFyPjIwMTQ8L1B1YmxpY2F0aW9uWWVhcj4NCiAgICA8
+        UHVibGljYXRpb25TdWJqZWN0Q2F0ZWdvcnlMaXN0IC8+DQogICAgPElTU04+
+        MjIxOC02NzUxPC9JU1NOPg0KICAgIDxET0k+MTAuMzk3OC9qLmlzc24uMjIx
+        OC02NzUxLjIwMTQuMDYuMTA8L0RPST4NCiAgICA8Q29uZmVyZW5jZVN0YXJ0
+        RGF0ZSB4c2k6bmlsPSJ0cnVlIiAvPg0KICAgIDxDb25mZXJlbmNlRW5kRGF0
+        ZSB4c2k6bmlsPSJ0cnVlIiAvPg0KICAgIDxSYW5rIHhzaTpuaWw9InRydWUi
+        IC8+DQogICAgPE9yZGluYWxSYW5rPjE8L09yZGluYWxSYW5rPg0KICAgIDxO
+        b3JtYWxpemVkUmFuayB4c2k6bmlsPSJ0cnVlIiAvPg0KICAgIDxOZXdQdWJs
+        aWNhdGlvbkl0ZW1JRCB4c2k6bmlsPSJ0cnVlIiAvPg0KICAgIDxJc09ic29s
+        ZXRlPmZhbHNlPC9Jc09ic29sZXRlPg0KICAgIDxDb3B5cmlnaHRQdWJsaXNo
+        ZXIgLz4NCiAgICA8Q29weXJpZ2h0Q2l0eSAvPg0KICAgIDxDb3B5cmlnaHRT
+        dGF0ZVByb3ZpbmNlIC8+DQogICAgPENvcHlyaWdodENvdW50cnk+Q0hJTkE8
+        L0NvcHlyaWdodENvdW50cnk+DQogIDwvUHVibGljYXRpb25JdGVtPg0KICA8
+        UHVibGljYXRpb25JdGVtPg0KICAgIDxQdWJsaWNhdGlvbkl0ZW1JRD42OTQw
+        MjQ0ODwvUHVibGljYXRpb25JdGVtSUQ+DQogICAgPFRpdGxlPkEgc3Ryb25n
+        IHN0ZXAgZm9yd2FyZCBpbiBtYWludGVuYW5jZSB0aGVyYXB5IGZvciBub24t
+        c21hbGwgY2VsbCBsdW5nIGNhbmNlciB0cmVhdG1lbnQuPC9UaXRsZT4NCiAg
+        ICA8QWJzdHJhY3QgLz4NCiAgICA8QXV0aG9yTGlzdD5TYW50b3MsRWRnYXJk
+        byxTfE1la2hhaWwsVGFyZWssPC9BdXRob3JMaXN0Pg0KICAgIDxBdXRob3JD
+        b3VudD4yPC9BdXRob3JDb3VudD4NCiAgICA8S2V5d29yZExpc3QgLz4NCiAg
+        ICA8RG9jdW1lbnRUeXBlTGlzdD5Kb3VybmFsIEFydGljbGU8L0RvY3VtZW50
+        VHlwZUxpc3Q+DQogICAgPERvY3VtZW50Q2F0ZWdvcnk+Sm91cm5hbCBEb2N1
+        bWVudDwvRG9jdW1lbnRDYXRlZ29yeT4NCiAgICA8TnVtYmVyT2ZSZWZlcmVu
+        Y2VzIHhzaTpuaWw9InRydWUiIC8+DQogICAgPFRpbWVzQ2l0ZWQgeHNpOm5p
+        bD0idHJ1ZSIgLz4NCiAgICA8VGltZXNOb3RTZWxmQ2l0ZWQgeHNpOm5pbD0i
+        dHJ1ZSIgLz4NCiAgICA8UE1JRD4yNTgwNjE2NDwvUE1JRD4NCiAgICA8UHVi
+        bGljYXRpb25Tb3VyY2VUaXRsZT5UcmFuc2xhdGlvbmFsIGx1bmcgY2FuY2Vy
+        IHJlc2VhcmNoPC9QdWJsaWNhdGlvblNvdXJjZVRpdGxlPg0KICAgIDxWb2x1
+        bWU+MTwvVm9sdW1lPg0KICAgIDxJc3N1ZT4yPC9Jc3N1ZT4NCiAgICA8UGFn
+        aW5hdGlvbj45OS0xMDE8L1BhZ2luYXRpb24+DQogICAgPFB1YmxpY2F0aW9u
+        RGF0ZT4yMDEyLTA2LTAxVDAwOjAwOjAwPC9QdWJsaWNhdGlvbkRhdGU+DQog
+        ICAgPFB1YmxpY2F0aW9uWWVhcj4yMDEyPC9QdWJsaWNhdGlvblllYXI+DQog
+        ICAgPFB1YmxpY2F0aW9uU3ViamVjdENhdGVnb3J5TGlzdCAvPg0KICAgIDxJ
+        U1NOPjIyMTgtNjc1MTwvSVNTTj4NCiAgICA8RE9JPjEwLjM5Nzgvai5pc3Nu
+        LjIyMTgtNjc1MS4yMDEyLjA0LjAxPC9ET0k+DQogICAgPENvbmZlcmVuY2VT
+        dGFydERhdGUgeHNpOm5pbD0idHJ1ZSIgLz4NCiAgICA8Q29uZmVyZW5jZUVu
+        ZERhdGUgeHNpOm5pbD0idHJ1ZSIgLz4NCiAgICA8UmFuayB4c2k6bmlsPSJ0
+        cnVlIiAvPg0KICAgIDxPcmRpbmFsUmFuaz4yPC9PcmRpbmFsUmFuaz4NCiAg
+        ICA8Tm9ybWFsaXplZFJhbmsgeHNpOm5pbD0idHJ1ZSIgLz4NCiAgICA8TmV3
+        UHVibGljYXRpb25JdGVtSUQgeHNpOm5pbD0idHJ1ZSIgLz4NCiAgICA8SXNP
+        YnNvbGV0ZT5mYWxzZTwvSXNPYnNvbGV0ZT4NCiAgICA8Q29weXJpZ2h0UHVi
+        bGlzaGVyIC8+DQogICAgPENvcHlyaWdodENpdHkgLz4NCiAgICA8Q29weXJp
+        Z2h0U3RhdGVQcm92aW5jZSAvPg0KICAgIDxDb3B5cmlnaHRDb3VudHJ5PkNI
+        SU5BPC9Db3B5cmlnaHRDb3VudHJ5Pg0KICA8L1B1YmxpY2F0aW9uSXRlbT4N
+        CiAgPFB1YmxpY2F0aW9uSXRlbT4NCiAgICA8UHVibGljYXRpb25JdGVtSUQ+
+        NjkyNjkxOTA8L1B1YmxpY2F0aW9uSXRlbUlEPg0KICAgIDxUaXRsZT5JbnRl
+        bnNpdHktbW9kdWxhdGVkIHJhZGlvdGhlcmFweSBhbmQgdm9sdW1ldHJpYy1t
+        b2R1bGF0ZWQgYXJjIHRoZXJhcHkgaGF2ZSBkaXN0aW5jdCBjbGluaWNhbCBh
+        ZHZhbnRhZ2VzIGluIG5vbi1zbWFsbCBjZWxsIGx1bmcgY2FuY2VyIHRyZWF0
+        bWVudC48L1RpdGxlPg0KICAgIDxBYnN0cmFjdD5UaGlzIHN0dWR5IHdhcyBj
+        b25kdWN0ZWQgdG8gY29tcGFyZSB0aGUgZWZmaWNhY3kgb2YgaW50ZW5zaXR5
+        LW1vZHVsYXRlZCByYWRpb3RoZXJhcHkgKElNUlQpIGFuZCB2b2x1bWV0cmlj
+        LW1vZHVsYXRlZCBhcmMgdGhlcmFweSAoVk1BVCkgaW4gZGVsaXZlcmluZyB0
+        aGUgcGxhbm5lZCBkb3NhZ2UgaW4gdGhlIHRyZWF0bWVudCBvZiBub24tc21h
+        bGwgY2VsbCBsdW5nIGNhbmNlciAoTlNDTEMpLiBCZXR3ZWVuIFNlcHRlbWJl
+        ciAyMDEzIGFuZCBNYXJjaCAyMDE0LCAxMjUgTlNDTEMgcGF0aWVudHMgd2Vy
+        ZSByYW5kb21seSBjaG9zZW4gYW5kIGFsbG9jYXRlZCB0byB0aGUgSU1SVCBn
+        cm91cCAobsKgPcKgNjUpIGFuZCBWTUFUIGdyb3VwIChuwqA9wqA2MCkuIFdl
+        IGNvbXBhcmVkIG11bHRpcGxlIHBhcmFtZXRlcnMgc3VjaCBhcyB0YXJnZXQg
+        ZG9zZSwgb3JnYW4gZG9zaW1ldHJ5LCBtb25pdG9yIHVuaXQgKE1VKSBhbmQg
+        dGltZSBvZiB0aGVyYXB5IGJldHdlZW4gSU1SVCBhbmQgVk1BVCBncm91cHMu
+        IFRoZSBwcmVzY3JpYmVkIGRvc2UgY292ZXJhZ2Ugb2YgYm90aCBwbGFubmlu
+        ZyB0ZWNobmlxdWVzIHdhcyA5NcKgJSBvZiB0aGUgcGxhbm5pbmcgdGFyZ2V0
+        IHZvbHVtZXMgKFBUVnMpLiBQVFYgOTXCoCUgYW5kIGhvbW9nZW5lb3VzIGlu
+        ZGV4IGluIElNUlQgcGxhbiB3ZXJlIGdyZWF0ZXIgdGhhbiB0aG9zZSBpbiBW
+        TUFUIHBsYW4gKGJvdGggUMKgJmx0O8KgMC4wNSksIHdoaWxlIG5vIHNpZ25p
+        ZmljYW50IGRpZmZlcmVuY2UgaW4gY29uZm9ybWl0eSBpbmRleCB3YXMgb2Jz
+        ZXJ2ZWQgKFDCoCZndDvCoDAuMDUpLiBUaGUgbWVhbiB0b3RhbCBsdW5nIFY1
+        IGFuZCBWMTAgaW4gVk1BVCBncm91cCB3ZXJlIG1hcmtlZGx5IGhpZ2hlciB0
+        aGFuIHRob3NlIGluIElNUlQgZ3JvdXAsIGJ1dCB0aGUgVjIwLCBWMzAsIGFu
+        ZCBWNDAgaW4gVk1BVCBncm91cCB3ZXJlIHNpZ25pZmljYW50bHkgbG93ZXIg
+        KGFsbCBQwqAmbHQ7wqAwLjA1KSwgYnV0IG5vIHN0YXRpc3RpY2FsbHkgc2ln
+        bmlmaWNhbnQgZGlmZmVyZW5jZSB3YXMgb2JzZXJ2ZWQgaW4gVjE1IGFuZCBW
+        MjAgKFDCoCZndDvCoDAuMDUpLiBGdXJ0aGVybW9yZSwgdGhlIHBsYW5uaW5n
+        IHNwaW5lIGFuZCBlc29waGFndXMgYXQgcmlzayB2b2x1bWUgc2hvd2VkIG5v
+        IHN0YXRpc3RpY2FsIHNpZ25pZmljYW5jZXMgaW4gYm90aCBncm91cHMgKFDC
+        oCZndDvCoDAuMDUpLiBNVSBvZiBJTVJUIHBsYW4gd2FzIGFib3V0IDQuMsKg
+        JSBsZXNzIHRoYW4gdGhhdCBvZiBWTUFUIHBsYW4sIHdoaWNoIHdhcyBzdGF0
+        aXN0aWNhbGx5IHNpZ25pZmljYW50IChQwqAmbHQ7wqAwLjAwMSkuIEJvdGgg
+        SU1SVCBhbmQgVk1BVCBoYWQgc2lnbmlmaWNhbnQgYWR2YW50YWdlcyBpbiB0
+        aGUgdHJlYXRtZW50IG9mIE5TQ0xDLiBUaGUgSU1SVCBtYXkgYmUgYmV0dGVy
+        IGZvciBOU0NMQyBwYXRpZW50cyB3aXRoIHBvb3IgcHVsbW9uYXJ5IGZ1bmN0
+        aW9uLCBhbmQgVk1BVCBtYXkgYmUgcmVjb21tZW5kZWQgZm9yIE5TQ0xDIHBh
+        dGllbnRzIHdpdGggbm9ybWFsIHB1bG1vbmFyeSBmdW5jdGlvbi4gPC9BYnN0
+        cmFjdD4NCiAgICA8QXV0aG9yTGlzdD5aaGFuZyxKdW4sfFl1LFhpYW8tTGlu
+        Zyx8WmhlbmcsR3VvLUZlbmcsfFpoYW8sRmVpLDwvQXV0aG9yTGlzdD4NCiAg
+        ICA8QXV0aG9yQ291bnQ+NDwvQXV0aG9yQ291bnQ+DQogICAgPEtleXdvcmRM
+        aXN0IC8+DQogICAgPERvY3VtZW50VHlwZUxpc3Q+Sm91cm5hbCBBcnRpY2xl
+        PC9Eb2N1bWVudFR5cGVMaXN0Pg0KICAgIDxEb2N1bWVudENhdGVnb3J5Pkpv
+        dXJuYWwgRG9jdW1lbnQ8L0RvY3VtZW50Q2F0ZWdvcnk+DQogICAgPE51bWJl
+        ck9mUmVmZXJlbmNlcyB4c2k6bmlsPSJ0cnVlIiAvPg0KICAgIDxUaW1lc0Np
+        dGVkIHhzaTpuaWw9InRydWUiIC8+DQogICAgPFRpbWVzTm90U2VsZkNpdGVk
+        IHhzaTpuaWw9InRydWUiIC8+DQogICAgPFBNSUQ+MjU3MjU4MTM8L1BNSUQ+
+        DQogICAgPFB1YmxpY2F0aW9uU291cmNlVGl0bGU+TWVkaWNhbCBvbmNvbG9n
+        eSA8L1B1YmxpY2F0aW9uU291cmNlVGl0bGU+DQogICAgPFZvbHVtZT4zMjwv
+        Vm9sdW1lPg0KICAgIDxJc3N1ZT40PC9Jc3N1ZT4NCiAgICA8UGFnaW5hdGlv
+        bj41NDYtPzwvUGFnaW5hdGlvbj4NCiAgICA8UHVibGljYXRpb25EYXRlPjIw
+        MTUtMDQtMDFUMDA6MDA6MDA8L1B1YmxpY2F0aW9uRGF0ZT4NCiAgICA8UHVi
+        bGljYXRpb25ZZWFyPjIwMTU8L1B1YmxpY2F0aW9uWWVhcj4NCiAgICA8UHVi
+        bGljYXRpb25TdWJqZWN0Q2F0ZWdvcnlMaXN0IC8+DQogICAgPElTU04+MTM1
+        Ny0wNTYwPC9JU1NOPg0KICAgIDxET0k+MTAuMTAwNy9zMTIwMzItMDE1LTA1
+        NDYtNjwvRE9JPg0KICAgIDxDb25mZXJlbmNlU3RhcnREYXRlIHhzaTpuaWw9
+        InRydWUiIC8+DQogICAgPENvbmZlcmVuY2VFbmREYXRlIHhzaTpuaWw9InRy
+        dWUiIC8+DQogICAgPFJhbmsgeHNpOm5pbD0idHJ1ZSIgLz4NCiAgICA8T3Jk
+        aW5hbFJhbms+MzwvT3JkaW5hbFJhbms+DQogICAgPE5vcm1hbGl6ZWRSYW5r
+        IHhzaTpuaWw9InRydWUiIC8+DQogICAgPE5ld1B1YmxpY2F0aW9uSXRlbUlE
+        IHhzaTpuaWw9InRydWUiIC8+DQogICAgPElzT2Jzb2xldGU+ZmFsc2U8L0lz
+        T2Jzb2xldGU+DQogICAgPENvcHlyaWdodFB1Ymxpc2hlciAvPg0KICAgIDxD
+        b3B5cmlnaHRDaXR5IC8+DQogICAgPFB1YmxpY2F0aW9uSW1wYWN0RmFjdG9y
+        TGlzdD4yLjA1OCwyMDEzLENsb3Nlc3RUb1B1YmxpY2F0aW9uWWVhcnwyLjA1
+        OCwyMDEzLE1vc3RSZWNlbnRZZWFyPC9QdWJsaWNhdGlvbkltcGFjdEZhY3Rv
+        ckxpc3Q+DQogICAgPFB1YmxpY2F0aW9uQ2F0ZWdvcnlSYW5raW5nTGlzdD4x
+        MzYvMjAzO09OQ09MT0dZOzIwMTM7U0M7Q2xvc2VzdFRvUHVibGljYXRpb25Z
+        ZWFyfDEzNi8yMDM7T05DT0xPR1k7MjAxMztTQztNb3N0UmVjZW50WWVhcjwv
+        UHVibGljYXRpb25DYXRlZ29yeVJhbmtpbmdMaXN0Pg0KICAgIDxDb3B5cmln
+        aHRTdGF0ZVByb3ZpbmNlIC8+DQogICAgPENvcHlyaWdodENvdW50cnk+VU5J
+        VEVEIFNUQVRFUzwvQ29weXJpZ2h0Q291bnRyeT4NCiAgPC9QdWJsaWNhdGlv
+        bkl0ZW0+DQogIDxQdWJsaWNhdGlvbkl0ZW0+DQogICAgPFB1YmxpY2F0aW9u
+        SXRlbUlEPjY5MTkzNTM2PC9QdWJsaWNhdGlvbkl0ZW1JRD4NCiAgICA8VGl0
+        bGU+UHVsbW9uYXJ5IGFydGVyeSByZXNlY3Rpb25zIGFuZCByZWNvbnN0cnVj
+        dGlvbnMgZm9yIGx1bmcgY2FuY2VyIHRyZWF0bWVudDogYW4gYW5hdG9taWNh
+        bC10ZWNobmljYWwgYW5hbHlzaXMgYW5kIHN1cnZpdmFsIHJlbGF0aW9uc2hp
+        cHM8L1RpdGxlPg0KICAgIDxBYnN0cmFjdD5CYWNrZ3JvdW5kOiBUaGlzIHN0
+        dWR5IGFpbXMgdG8gcmVwb3J0IHRoZSByZXN1bHRzIG9mIHB1bG1vbmFyeSBh
+        cnRlcmlhbCAoUEEpIHJlc2VjdGlvbnMgYW5kIHJlY29uc3RydWN0aW9ucyB3
+        aXRoIGVpdGhlciBhIHBhdGNoIG9yIGVuZC10by1lbmQgYW5hc3RvbW9zaXMg
+        Zm9yIGx1bmcgY2FuY2VyIHdoaWNoIGFyZSBjdXJyZW50bHkgcmFyZWx5IHVz
+        ZWQuICBNZXRob2RzOiBCZXR3ZWVuIEphbnVhcnkgMjAwNSBhbmQgSmFudWFy
+        eSAyMDEyLCA3MTIgbm9uLXNtYWxsIGNlbGwgbHVuZyBjYW5jZXIgcGF0aWVu
+        dHMgdW5kZXJ3ZW50IHN1cmdlcnkgb2Ygd2hpY2ggMzIgKDI2IG1hbGVzLCA2
+        IGZlbWFsZXM7IG1lYW4gYWdlIDYyIDggeWVhcnM7IHJhbmdlIDM5IHRvIDgw
+        IHllYXJzKSBoYWQgbG9iZWN0b215IGFuZCBtYWpvciByZWNvbnN0cnVjdGl2
+        ZSBzdXJnZXJ5IGZvciBQQSAoMTQgcGFydGlhbCwgaW5jbHVkaW5nIGZvdXIg
+        UEEgcmVjb25zdHJ1Y3Rpb25zIHdpdGggYW4gYXV0b2xvZ291cyBwZXJpY2Fy
+        ZGlhbCBwYXRjaCBhbmQgMTAgUEEgcmVjb25zdHJ1Y3Rpb25zIHdpdGggYSBw
+        b2x5dGV0cmFmbG91cm9ldGh5bGVuZSBncmFmdCBhbmQgMTggY2lyY3VtZmVy
+        ZW50aWFsKS4gIFJlc3VsdHM6IFRoZSBtZWRpYW4gc3Vydml2YWwgd2FzIDQ4
+        IDggbW9udGhzLiBGaXZlIGFuZCBzZXZlbi15ZWFyIHN1cnZpdmFsIHJhdGVz
+        IHdlcmUgMjclIGFuZCA5JSByZXNwZWN0aXZlbHkuIE5vIG9wZXJhdGl2ZSBt
+        b3J0YWxpdHkgd2FzIHNlZW4uIE1vcmJpZGl0eSByYXRlcyB3ZXJlIDQxJSAo
+        bWlub3IgMzElIGFuZCBtYWpvciAxMCUpLiBBbGwgcGF0aWVudHMgd2l0aCBh
+        IHJpZ2h0LXNpZGVkIHJlc2VjdGlvbiBoYWQgYWxzbyBhIGJyb25jaGlhbCBz
+        bGVldmUgcmVzZWN0aW9ucyB3aXRoIGEgcmF0ZSBvZiA1OSUgaW4gdGhlIGxl
+        ZnQgbHVuZyAocD0wLjAzKS4gVGhlIHJhdGUgb2YgZG91YmxlIHNsZWV2ZSBy
+        ZXNlY3Rpb24gd2FzIDQ3JS4gVGhlIG1lZGlhbiBhbmQgZml2ZS15ZWFyIHN1
+        cnZpdmFsIHJhdGVzIHdlcmUgNjAgMzYgbW9udGhzIGFuZCAzNyUgaW4gdGhl
+        IGFydGVyaWFsIHBhdGNoIHBsYXN0eSBvcGVyYXRpb25zIHJlc3BlY3RpdmVs
+        eSwgd2hlcmVhcyBpdCB3YXMgNDMgMTMgbW9udGhzIGFuZCAyMiUgaW4gY2ly
+        Y3VtZmVyZW50aWFsIHJlc2VjdGlvbnMgYW5kIGVuZC10by1lbmQgYW5hc3Rv
+        bW9zaXMgcGF0aWVudHMsIHJlc3BlY3RpdmVseSAocD0wLjM4KS4gVGhlcmUg
+        d2FzIG5vIHN0YXRpc3RpY2FsbHkgc2lnbmlmaWNhbnQgZGlmZmVyZW5jZSBp
+        biB0aGUgY29tcGxpY2F0aW9uIHJhdGUgYmV0d2VlbiB0aGUgY2lyY3VtZmVy
+        ZW50aWFsIHJlc2VjdGlvbnMgd2l0aCBwYXRjaCBwbGFzdHkgb3BlcmF0aW9u
+        cyBhbmQgZW5kLXRvLWVuZCBhbmFzdG9tb3NpcyAocD0wLjgwOCkuIEZpdmUt
+        eWVhciBzdXJ2aXZhbCByYXRlIHdhcyAxNiUgaW4gZG91YmxlIHNsZWV2ZSBy
+        ZXNlY3Rpb25zIGFuZCA0OCUgaW4gb3RoZXJzIChwPTAuMjgyKS4gVW5pdmFy
+        aWF0ZSBhbmFseXNpcyBvZiBzdXJ2aXZhbCBkZW1vbnN0cmF0ZWQgbm8gc2ln
+        bmlmaWNhbnQgZGlmZmVyZW5jZXMgaW4gdGVybXMgb2YgYWdlIChwPTAuMTg1
+        KSwgc2lkZSAocD0wLjUyNyksIG5lb2FkanV2YW50IHRyZWF0bWVudCAocD0y
+        NzkpLCBOIHN0YXR1cyAocD0wLjg3OCksIHR5cGUgb2YgYWRqdXZhbnQgdHJl
+        YXRtZW50IChwPTAuOTc4KSBhbmQgbWV0YXN0YXNpcyBkZXZlbG9wbWVudCAo
+        cD0wLjQ3MSkuIEZlbWFsZSBnZW5kZXIgKHA9MC4wNSksIGFkanV2YW50IHRy
+        ZWF0bWVudCAocD0wLjAwMSkgYW5kIGRldmVsb3BtZW50IG9mIHBvc3RvcGVy
+        YXRpdmUgY29tcGxpY2F0aW9ucyAocD0wLjAzOCkgd2VyZSBpZGVudGlmaWVk
+        IGFzIHBvc2l0aXZlIHByZWRpY3RvcnMgZm9yIGxvbmctdGVybSBzdXJ2aXZh
+        bC4gIENvbmNsdXNpb246IFB1bG1vbmFyeSBhcnRlcmlhbCByZXNlY3Rpb25z
+        IGFuZCByZWNvbnN0cnVjdGlvbnMgdG8gcHJldmVudCBwbmV1bW9uZWN0b215
+        IGFyZSBmZWFzaWJsZSBhbmQgZWZmZWN0aXZlIHN1cmdpY2FsIHByb2NlZHVy
+        ZXMgd2l0aCBhY2NlcHRhYmxlIG1vcmJpZGl0eSBhbmQgbW9ydGFsaXR5IHJh
+        dGVzLiBGZW1hbGUgZ2VuZGVyLCBwb3N0b3BlcmF0aXZlIGFkanV2YW50IG9u
+        Y29sb2dpY2FsIHRyZWF0bWVudCBhbmQgbm9uLWNvbXBsaWNhdGVkIHBvc3Rv
+        cGVyYXRpdmUgY291cnNlIGFwcGVhciB0byBiZSBwb3RlbnRpYWwgaW5mbHVl
+        bmNpbmcgZmFjdG9ycyBvbiBsb25nLXRlcm0gc3Vydml2YWwuPC9BYnN0cmFj
+        dD4NCiAgICA8QXV0aG9yTGlzdD5Ub2tlcixBbHBlcix8RGVtaXIsQWRhbGV0
+        LHxLYWJhLEVya2FuLHxLYXBkYWdsaSxNdXJhdCx8Wml5YWRlLFNlZGF0LHxT
+        YXJhY29nbHUsQmFzYWssfEVydXMsU3VhdCx8T3prYW4sQmVya2VyLHxUYW5q
+        dSxTZXJoYW4sPC9BdXRob3JMaXN0Pg0KICAgIDxBdXRob3JDb3VudD45PC9B
+        dXRob3JDb3VudD4NCiAgICA8S2V5d29yZExpc3Q+T1BFUkFUSU9OfExPTkct
+        VEVSTSBTVVJWSVZBTHxTTEVFVkUgTE9CRUNUT01ZfE1PUkJJRElUWXxNT1JU
+        QUxJVFl8UE5FVU1PTkVDVE9NWXxCUk9OQ0hJQUwtQ0FSQ0lOT01BfGx1bmcg
+        Y2FuY2VyfGxvYmVjdG9teXxwdWxtb25hcnkgYXJ0ZXJ5fHNsZWV2ZSByZXNl
+        Y3Rpb248L0tleXdvcmRMaXN0Pg0KICAgIDxEb2N1bWVudFR5cGVMaXN0PkFy
+        dGljbGU8L0RvY3VtZW50VHlwZUxpc3Q+DQogICAgPERvY3VtZW50Q2F0ZWdv
+        cnk+Sm91cm5hbCBEb2N1bWVudDwvRG9jdW1lbnRDYXRlZ29yeT4NCiAgICA8
+        TnVtYmVyT2ZSZWZlcmVuY2VzPjIxPC9OdW1iZXJPZlJlZmVyZW5jZXM+DQog
+        ICAgPFRpbWVzQ2l0ZWQ+MDwvVGltZXNDaXRlZD4NCiAgICA8VGltZXNOb3RT
+        ZWxmQ2l0ZWQ+MDwvVGltZXNOb3RTZWxmQ2l0ZWQ+DQogICAgPFBNSUQgeHNp
+        Om5pbD0idHJ1ZSIgLz4NCiAgICA8V29TSXRlbUlEPjAwMDM0ODk2MjUwMDAx
+        MTwvV29TSXRlbUlEPg0KICAgIDxQdWJsaWNhdGlvblNvdXJjZVRpdGxlPlRV
+        UksgR09HVVMgS0FMUCBEQU1BUiBDRVJSQUhJU0kgREVSR0lTSS1UVVJLSVNI
+        IEpPVVJOQUwgT0YgVEhPUkFDSUMgQU5EIENBUkRJT1ZBU0NVTEFSIFNVUkdF
+        Ulk8L1B1YmxpY2F0aW9uU291cmNlVGl0bGU+DQogICAgPFZvbHVtZT4yMzwv
+        Vm9sdW1lPg0KICAgIDxJc3N1ZT4xPC9Jc3N1ZT4NCiAgICA8UGFnaW5hdGlv
+        bj42Ni03NDwvUGFnaW5hdGlvbj4NCiAgICA8UHVibGljYXRpb25EYXRlPjIw
+        MTUtMDEtMDFUMDA6MDA6MDA8L1B1YmxpY2F0aW9uRGF0ZT4NCiAgICA8UHVi
+        bGljYXRpb25ZZWFyPjIwMTU8L1B1YmxpY2F0aW9uWWVhcj4NCiAgICA8UHVi
+        bGljYXRpb25UeXBlPkpvdXJuYWw8L1B1YmxpY2F0aW9uVHlwZT4NCiAgICA8
+        UHVibGljYXRpb25TdWJqZWN0Q2F0ZWdvcnlMaXN0PlN1cmdlcnk8L1B1Ymxp
+        Y2F0aW9uU3ViamVjdENhdGVnb3J5TGlzdD4NCiAgICA8SVNTTj4xMzAxLTU2
+        ODA8L0lTU04+DQogICAgPERPST4xMC41NjA2L3Rna2RjLmRlcmdpc2kuMjAx
+        NS45NDY3PC9ET0k+DQogICAgPENvbmZlcmVuY2VTdGFydERhdGUgeHNpOm5p
+        bD0idHJ1ZSIgLz4NCiAgICA8Q29uZmVyZW5jZUVuZERhdGUgeHNpOm5pbD0i
+        dHJ1ZSIgLz4NCiAgICA8UmFuayB4c2k6bmlsPSJ0cnVlIiAvPg0KICAgIDxP
+        cmRpbmFsUmFuaz40PC9PcmRpbmFsUmFuaz4NCiAgICA8Tm9ybWFsaXplZFJh
+        bmsgeHNpOm5pbD0idHJ1ZSIgLz4NCiAgICA8TmV3UHVibGljYXRpb25JdGVt
+        SUQgeHNpOm5pbD0idHJ1ZSIgLz4NCiAgICA8SXNPYnNvbGV0ZT5mYWxzZTwv
+        SXNPYnNvbGV0ZT4NCiAgICA8Q29weXJpZ2h0UHVibGlzaGVyPkJBWUNJTkFS
+        IE1FRElDQUwgUFVCTC1CQVlDSU5BUiBUSUJCSSBZQVlJTkNJTElLPC9Db3B5
+        cmlnaHRQdWJsaXNoZXI+DQogICAgPENvcHlyaWdodENpdHk+QVRBU0VISVI8
+        L0NvcHlyaWdodENpdHk+DQogICAgPFB1YmxpY2F0aW9uSW1wYWN0RmFjdG9y
+        TGlzdD4wLjEzNiwyMDEzLENsb3Nlc3RUb1B1YmxpY2F0aW9uWWVhcnwwLjEz
+        NiwyMDEzLE1vc3RSZWNlbnRZZWFyPC9QdWJsaWNhdGlvbkltcGFjdEZhY3Rv
+        ckxpc3Q+DQogICAgPFB1YmxpY2F0aW9uQ2F0ZWdvcnlSYW5raW5nTGlzdD4y
+        MDAvMjA0O1NVUkdFUlk7MjAxMztTQztDbG9zZXN0VG9QdWJsaWNhdGlvblll
+        YXJ8MjAwLzIwNDtTVVJHRVJZOzIwMTM7U0M7TW9zdFJlY2VudFllYXI8L1B1
+        YmxpY2F0aW9uQ2F0ZWdvcnlSYW5raW5nTGlzdD4NCiAgICA8QXV0aG9yQ2l0
+        YXRpb25Db3VudExpc3Q+MSwwLDB8MiwwLDB8MywwLDB8NCwwLDB8NSwwLDB8
+        NiwwLDB8NywwLDB8OCwwLDB8OSwwLDA8L0F1dGhvckNpdGF0aW9uQ291bnRM
+        aXN0Pg0KICAgIDxDb3B5cmlnaHRTdGF0ZVByb3ZpbmNlPklTVEFOQlVMPC9D
+        b3B5cmlnaHRTdGF0ZVByb3ZpbmNlPg0KICAgIDxDb3B5cmlnaHRDb3VudHJ5
+        PlRVUktFWTwvQ29weXJpZ2h0Q291bnRyeT4NCiAgPC9QdWJsaWNhdGlvbkl0
+        ZW0+DQogIDxQdWJsaWNhdGlvbkl0ZW0+DQogICAgPFB1YmxpY2F0aW9uSXRl
+        bUlEPjY5MTI5MjM5PC9QdWJsaWNhdGlvbkl0ZW1JRD4NCiAgICA8VGl0bGU+
+        Y1JHRCBHcmFmdGVkIHNpUk5BIE5hbm8tY29uc3RydWN0cyBmb3IgQ2hlbW9z
+        ZW5zaXRpemF0aW9uIG9mIEdlbWNpdGFiaW5lIEh5ZHJvY2hsb3JpZGUgaW4g
+        THVuZyBDYW5jZXIgVHJlYXRtZW50PC9UaXRsZT4NCiAgICA8QWJzdHJhY3Q+
+        VGhlIGFpbSBvZiBwcmVzZW50IGludmVzdGlnYXRpb24gd2FzIHRvIGVmZmVj
+        dGl2ZWx5IGRlbGl2ZXIgcmlib251Y2xlb3RpZGUgcmVkdWN0YXNlIHN1YnVu
+        aXQgMSAoUlJNMSkgdGFyZ2V0ZWQgc2lSTkEgYW5kIGFzc2VzcyBjaGVtby1z
+        ZW5zaXRpemF0aW9uIG9mIGx1bmcgY2FuY2VyIGNlbGxzIGFnYWluc3QgR2Vt
+        Y2l0YWJpbmUgaHlkcm9jaGxvcmlkZS4gSXQgd2FzIGh5cG90aGVzaXNlZCB0
+        aGF0IGVmZmVjdGl2ZSBhbmQgc2VsZWN0aXZlIGRlbGl2ZXJ5IG9mIFJSTTEg
+        c2lSTkEgd2lsbCBoZWxwIGluIHRoZSB0cmVhdG1lbnQgb2YgbHVuZyBjYW5j
+        ZXIgY2hlbW90aGVyYXB5IHVzaW5nIEdlbWNpdGFiaW5lIGh5ZHJvY2hsb3Jp
+        ZGUgYnkgcmVkdWNpbmcgZHJ1ZyBkb3NlIGFuZCB0aGVyZWJ5LCByZWR1Y2Vz
+        IGRvc2UgcmVsYXRlZCB0b3hpY2l0eSBvZiBHZW1jaXRhYmluZSBoeWRyb2No
+        bG9yaWRlLiAgSW4gdGhpcyBpbnZlc3RpZ2F0aW9uLCBjUkdEIGdyYWZ0ZWQg
+        c2lSTkEgbmFuby1jb25zdHJ1Y3RzIHdlcmUgZGV2ZWxvcGVkIGZvciBlZmZp
+        Y2llbnQgYW5kIHRhcmdldGVkIGludHJhY2VsbHVsYXIgZGVsaXZlcnkgb2Yg
+        c2lSTkEuIERldmVsb3BlZCBmb3JtdWxhdGlvbnMgd2VyZSBjaGFyYWN0ZXJp
+        emVkIGZvciBnZWwgcmV0YXJkYXRpb24gYXNzYXksIHBhcnRpY2xlIHNpemUs
+        IHpldGEgcG90ZW50aWFsLCBjcnlvIHRyYW5zbWlzc2lvbiBlbGVjdHJvbiBt
+        aWNyb3Njb3B5LCBzZXJ1bSBzdGFiaWxpdHksIGluIHZpdHJvIGN5dG90b3hp
+        Y2l0eSwgcXVhbGl0YXRpdmUgYW5kIHF1YW50aXRhdGl2ZSBjZWxsIHVwdGFr
+        ZSwgZ2VuZSBleHByZXNzaW9uLCBhbmQgY2hlbW8tc2Vuc2l0aXphdGlvbi4g
+        IENvbXBsZXRlIGNvbXBsZXhhdGlvbiBvZiBzaVJOQSB3aXRoIGNSR0QgZ3Jh
+        ZnRlZCBuYW5vLWNvbnN0cnVjdHMgd2FzIGZvdW5kIGF0IE4vUCByYXRpbyBv
+        ZiAyLjAuIE5ha2VkIHNpUk5BIHdhcyBmb3VuZCB0byBkZWdyYWRlIHdpdGhp
+        biA2IGggaW4gcHJlc2VuY2Ugb2YgNTAlIHNlcnVtIHdoaWxlIG5hbm8tY29u
+        c3RydWN0cyBwcm90ZWN0ZWQgdGhlIGNvbXBsZXhlZCBzaVJOQSBldmVuIGFm
+        dGVyIDI0IGguIFJSTTEgbGV2ZWwgc2lnbmlmaWNhbnRseSByZWR1Y2VkIHdo
+        ZW4gc2lSTkEgd2FzIGRlbGl2ZXJlZCBpbiBuYW5vLWNvbnN0cnVjdCBmb3Jt
+        IGFzIGNvbXBhcmVkIHRvIG5ha2VkIHNpUk5BLiBQcmUtZXhwb3N1cmUgb2Yg
+        UlJNMSBzaVJOQSBkZWNyZWFzZWQgdGhlIElDNTAgdmFsdWUgb2YgR2VtY2l0
+        YWJpbmUgaHlkcm9jaGxvcmlkZSA1IGZvbGRzIGluIEEtNTQ5IGNlbGxzIGNv
+        bXBhcmVkIHRvIEdlbWNpdGFiaW5lIGh5ZHJvY2hsb3JpZGUgYWxvbmUuICBU
+        aGVzZSByZXN1bHRzIHN1Z2dlc3QgdGhlIGFwcGxpY2F0aW9uIG9mIHByZXNl
+        bnQgc2lSTkEgZGVsaXZlcnkgc3RyYXRlZ3kgdG8gcG90ZW50aWF0ZSB0aGUg
+        Y2hlbW90aGVyYXBldXRpYyBlZmZlY3QgYnkgbWVhbnMgb2YgY2hlbW9zZW5z
+        aXRpemF0aW9uIHdoaWNoIG1heSBiZSB1dGlsaXplZCBmb3IgZWZmZWN0aXZl
+        IGFuZCB0aG9yb3VnaCByZW1pc3Npb24gb2YgbHVuZyBjYW5jZXIuPC9BYnN0
+        cmFjdD4NCiAgICA8QXV0aG9yTGlzdD5LaGF0cmksTmlyYXYsfFJhdGhpLE1v
+        aGFuLHxCYXJhZGlhLERpcGVzaCx8TWlzcmEsQW1iaWthbmFuZGFuLDwvQXV0
+        aG9yTGlzdD4NCiAgICA8QXV0aG9yQ291bnQ+NDwvQXV0aG9yQ291bnQ+DQog
+        ICAgPEtleXdvcmRMaXN0PlJJQk9OVUNMRU9USURFIFJFRFVDVEFTRXxQSEFT
+        RS1JSUkgVFJJQUx8REVMSVZFUll8Uk5BIElOVEVSRkVSRU5DRXxJTi1WSVRS
+        T3xET0NFVEFYRUx8Q0hFTU9USEVSQVBZfFBMQVNNSUQgRE5BfFBMQVRJTlVN
+        fEVYUFJFU1NJT058Z2VtY2l0YWJpbmV8Y1JHRHxOYW5vLWNvbnN0cnVjdHxD
+        aGVtby1zZW5zaXRpc2F0aW9ufFJSTTEgc2lSTkE8L0tleXdvcmRMaXN0Pg0K
+        ICAgIDxEb2N1bWVudFR5cGVMaXN0PkFydGljbGU8L0RvY3VtZW50VHlwZUxp
+        c3Q+DQogICAgPERvY3VtZW50Q2F0ZWdvcnk+Sm91cm5hbCBEb2N1bWVudDwv
+        RG9jdW1lbnRDYXRlZ29yeT4NCiAgICA8TnVtYmVyT2ZSZWZlcmVuY2VzPjI4
+        PC9OdW1iZXJPZlJlZmVyZW5jZXM+DQogICAgPFRpbWVzQ2l0ZWQ+MDwvVGlt
+        ZXNDaXRlZD4NCiAgICA8VGltZXNOb3RTZWxmQ2l0ZWQ+MDwvVGltZXNOb3RT
+        ZWxmQ2l0ZWQ+DQogICAgPFBNSUQ+MjQ3OTI4MjM8L1BNSUQ+DQogICAgPFdv
+        U0l0ZW1JRD4wMDAzNDkzNTczMDAwMDc8L1dvU0l0ZW1JRD4NCiAgICA8UHVi
+        bGljYXRpb25Tb3VyY2VUaXRsZT5QSEFSTUFDRVVUSUNBTCBSRVNFQVJDSDwv
+        UHVibGljYXRpb25Tb3VyY2VUaXRsZT4NCiAgICA8Vm9sdW1lPjMyPC9Wb2x1
+        bWU+DQogICAgPElzc3VlPjM8L0lzc3VlPg0KICAgIDxQYWdpbmF0aW9uPjgw
+        Ni04MTg8L1BhZ2luYXRpb24+DQogICAgPFB1YmxpY2F0aW9uRGF0ZT4yMDE1
+        LTAzLTAxVDAwOjAwOjAwPC9QdWJsaWNhdGlvbkRhdGU+DQogICAgPFB1Ymxp
+        Y2F0aW9uWWVhcj4yMDE1PC9QdWJsaWNhdGlvblllYXI+DQogICAgPFB1Ymxp
+        Y2F0aW9uVHlwZT5Kb3VybmFsPC9QdWJsaWNhdGlvblR5cGU+DQogICAgPFB1
+        YmxpY2F0aW9uU3ViamVjdENhdGVnb3J5TGlzdD5DaGVtaXN0cnksIE11bHRp
+        ZGlzY2lwbGluYXJ5fFBoYXJtYWNvbG9neSAmYW1wOyBQaGFybWFjeTwvUHVi
+        bGljYXRpb25TdWJqZWN0Q2F0ZWdvcnlMaXN0Pg0KICAgIDxJU1NOPjA3MjQt
+        ODc0MTwvSVNTTj4NCiAgICA8RE9JPjEwLjEwMDcvczExMDk1LTAxNC0xMzUx
+        LTE8L0RPST4NCiAgICA8Q29uZmVyZW5jZVN0YXJ0RGF0ZSB4c2k6bmlsPSJ0
+        cnVlIiAvPg0KICAgIDxDb25mZXJlbmNlRW5kRGF0ZSB4c2k6bmlsPSJ0cnVl
+        IiAvPg0KICAgIDxSYW5rIHhzaTpuaWw9InRydWUiIC8+DQogICAgPE9yZGlu
+        YWxSYW5rPjU8L09yZGluYWxSYW5rPg0KICAgIDxOb3JtYWxpemVkUmFuayB4
+        c2k6bmlsPSJ0cnVlIiAvPg0KICAgIDxOZXdQdWJsaWNhdGlvbkl0ZW1JRCB4
+        c2k6bmlsPSJ0cnVlIiAvPg0KICAgIDxJc09ic29sZXRlPmZhbHNlPC9Jc09i
+        c29sZXRlPg0KICAgIDxDb3B5cmlnaHRQdWJsaXNoZXI+U1BSSU5HRVIvUExF
+        TlVNIFBVQkxJU0hFUlM8L0NvcHlyaWdodFB1Ymxpc2hlcj4NCiAgICA8Q29w
+        eXJpZ2h0Q2l0eT5ORVcgWU9SSzwvQ29weXJpZ2h0Q2l0eT4NCiAgICA8UHVi
+        bGljYXRpb25JbXBhY3RGYWN0b3JMaXN0PjMuOTUyLDIwMTMsQ2xvc2VzdFRv
+        UHVibGljYXRpb25ZZWFyfDMuOTUyLDIwMTMsTW9zdFJlY2VudFllYXI8L1B1
+        YmxpY2F0aW9uSW1wYWN0RmFjdG9yTGlzdD4NCiAgICA8UHVibGljYXRpb25D
+        YXRlZ29yeVJhbmtpbmdMaXN0PjMxLzE0ODtDSEVNSVNUUlksIE1VTFRJRElT
+        Q0lQTElOQVJZOzIwMTM7U0M7Q2xvc2VzdFRvUHVibGljYXRpb25ZZWFyfDM5
+        LzI1NjtQSEFSTUFDT0xPR1kgJmFtcDsgUEhBUk1BQ1k7MjAxMztTQztDbG9z
+        ZXN0VG9QdWJsaWNhdGlvblllYXJ8MzEvMTQ4O0NIRU1JU1RSWSwgTVVMVElE
+        SVNDSVBMSU5BUlk7MjAxMztTQztNb3N0UmVjZW50WWVhcnwzOS8yNTY7UEhB
+        Uk1BQ09MT0dZICZhbXA7IFBIQVJNQUNZOzIwMTM7U0M7TW9zdFJlY2VudFll
+        YXI8L1B1YmxpY2F0aW9uQ2F0ZWdvcnlSYW5raW5nTGlzdD4NCiAgICA8QXV0
+        aG9yQ2l0YXRpb25Db3VudExpc3Q+MSwwLDB8MiwwLDB8MywwLDB8NCwwLDA8
+        L0F1dGhvckNpdGF0aW9uQ291bnRMaXN0Pg0KICAgIDxDb3B5cmlnaHRTdGF0
+        ZVByb3ZpbmNlPk5ZPC9Db3B5cmlnaHRTdGF0ZVByb3ZpbmNlPg0KICAgIDxD
+        b3B5cmlnaHRDb3VudHJ5PlVOSVRFRCBTVEFURVM8L0NvcHlyaWdodENvdW50
+        cnk+DQogIDwvUHVibGljYXRpb25JdGVtPg0KICA8UHVibGljYXRpb25JdGVt
+        Pg0KICAgIDxQdWJsaWNhdGlvbkl0ZW1JRD42OTAzNTYyNzwvUHVibGljYXRp
+        b25JdGVtSUQ+DQogICAgPFRpdGxlPkFTRVNTTUVOVCBPRiBMVU5HIENBTkNF
+        UiBUUkVBVE1FTlQgQlkgRElTRUFTRSBQSEFTRSBVU0lORyBOQVRJT05BTCBD
+        QU5DRVIgUkVHSVNUUlkgREFUQSBMSU5LRUQgV0lUSCBUUkVBVE1FTlQgUEFU
+        SFdBWSBDT1NUIERBVEEgSU4gQVVTVFJJQTwvVGl0bGU+DQogICAgPEFic3Ry
+        YWN0IC8+DQogICAgPEF1dGhvckxpc3Q+WmF1bmVyLEcsfFBvcHBlcixOLHxC
+        cmVpdGVuZWNrZXIsRiw8L0F1dGhvckxpc3Q+DQogICAgPEF1dGhvckNvdW50
+        PjM8L0F1dGhvckNvdW50Pg0KICAgIDxLZXl3b3JkTGlzdCAvPg0KICAgIDxE
+        b2N1bWVudFR5cGVMaXN0Pk1lZXRpbmcgQWJzdHJhY3Q8L0RvY3VtZW50VHlw
+        ZUxpc3Q+DQogICAgPERvY3VtZW50Q2F0ZWdvcnk+Q29uZmVyZW5jZSBQcm9j
+        ZWVkaW5nIERvY3VtZW50PC9Eb2N1bWVudENhdGVnb3J5Pg0KICAgIDxOdW1i
+        ZXJPZlJlZmVyZW5jZXMgeHNpOm5pbD0idHJ1ZSIgLz4NCiAgICA8VGltZXND
+        aXRlZD4wPC9UaW1lc0NpdGVkPg0KICAgIDxUaW1lc05vdFNlbGZDaXRlZD4w
+        PC9UaW1lc05vdFNlbGZDaXRlZD4NCiAgICA8UE1JRCB4c2k6bmlsPSJ0cnVl
+        IiAvPg0KICAgIDxXb1NJdGVtSUQ+MDAwMzQ2OTE3MzAyNDExPC9Xb1NJdGVt
+        SUQ+DQogICAgPFB1YmxpY2F0aW9uU291cmNlVGl0bGU+VkFMVUUgSU4gSEVB
+        TFRIPC9QdWJsaWNhdGlvblNvdXJjZVRpdGxlPg0KICAgIDxWb2x1bWU+MTc8
+        L1ZvbHVtZT4NCiAgICA8SXNzdWU+NzwvSXNzdWU+DQogICAgPFBhZ2luYXRp
+        b24+QTY1My1BNjUzPC9QYWdpbmF0aW9uPg0KICAgIDxQdWJsaWNhdGlvbkRh
+        dGU+MjAxNC0xMS0wMVQwMDowMDowMDwvUHVibGljYXRpb25EYXRlPg0KICAg
+        IDxQdWJsaWNhdGlvblllYXI+MjAxNDwvUHVibGljYXRpb25ZZWFyPg0KICAg
+        IDxQdWJsaWNhdGlvblR5cGU+Sm91cm5hbDwvUHVibGljYXRpb25UeXBlPg0K
+        ICAgIDxQdWJsaWNhdGlvblN1YmplY3RDYXRlZ29yeUxpc3Q+RWNvbm9taWNz
+        fEhlYWx0aCBDYXJlIFNjaWVuY2VzICZhbXA7IFNlcnZpY2VzfEhlYWx0aCBQ
+        b2xpY3kgJmFtcDsgU2VydmljZXM8L1B1YmxpY2F0aW9uU3ViamVjdENhdGVn
+        b3J5TGlzdD4NCiAgICA8SVNTTj4xMDk4LTMwMTU8L0lTU04+DQogICAgPENv
+        bmZlcmVuY2VTdGFydERhdGUgeHNpOm5pbD0idHJ1ZSIgLz4NCiAgICA8Q29u
+        ZmVyZW5jZUVuZERhdGUgeHNpOm5pbD0idHJ1ZSIgLz4NCiAgICA8UmFuayB4
+        c2k6bmlsPSJ0cnVlIiAvPg0KICAgIDxPcmRpbmFsUmFuaz42PC9PcmRpbmFs
+        UmFuaz4NCiAgICA8Tm9ybWFsaXplZFJhbmsgeHNpOm5pbD0idHJ1ZSIgLz4N
+        CiAgICA8TmV3UHVibGljYXRpb25JdGVtSUQgeHNpOm5pbD0idHJ1ZSIgLz4N
+        CiAgICA8SXNPYnNvbGV0ZT5mYWxzZTwvSXNPYnNvbGV0ZT4NCiAgICA8Q29w
+        eXJpZ2h0UHVibGlzaGVyPkVMU0VWSUVSIFNDSUVOQ0UgSU5DPC9Db3B5cmln
+        aHRQdWJsaXNoZXI+DQogICAgPENvcHlyaWdodENpdHk+TkVXIFlPUks8L0Nv
+        cHlyaWdodENpdHk+DQogICAgPFB1YmxpY2F0aW9uSW1wYWN0RmFjdG9yTGlz
+        dD4yLjg5MSwyMDEzLENsb3Nlc3RUb1B1YmxpY2F0aW9uWWVhcnwyLjg5MSwy
+        MDEzLE1vc3RSZWNlbnRZZWFyPC9QdWJsaWNhdGlvbkltcGFjdEZhY3Rvckxp
+        c3Q+DQogICAgPFB1YmxpY2F0aW9uQ2F0ZWdvcnlSYW5raW5nTGlzdD4xNi84
+        NjtIRUFMVEggQ0FSRSBTQ0lFTkNFUyAmYW1wOyBTRVJWSUNFUzsyMDEzO1ND
+        O0Nsb3Nlc3RUb1B1YmxpY2F0aW9uWWVhcnw5LzcwO0hFQUxUSCBQT0xJQ1kg
+        JmFtcDsgU0VSVklDRVM7MjAxMztTUztDbG9zZXN0VG9QdWJsaWNhdGlvblll
+        YXJ8MjAvMzMzO0VDT05PTUlDUzsyMDEzO1NTO0Nsb3Nlc3RUb1B1YmxpY2F0
+        aW9uWWVhcnwxNi84NjtIRUFMVEggQ0FSRSBTQ0lFTkNFUyAmYW1wOyBTRVJW
+        SUNFUzsyMDEzO1NDO01vc3RSZWNlbnRZZWFyfDkvNzA7SEVBTFRIIFBPTElD
+        WSAmYW1wOyBTRVJWSUNFUzsyMDEzO1NTO01vc3RSZWNlbnRZZWFyfDIwLzMz
+        MztFQ09OT01JQ1M7MjAxMztTUztNb3N0UmVjZW50WWVhcjwvUHVibGljYXRp
+        b25DYXRlZ29yeVJhbmtpbmdMaXN0Pg0KICAgIDxBdXRob3JDaXRhdGlvbkNv
+        dW50TGlzdD4xLDAsMHwyLDAsMHwzLDAsMDwvQXV0aG9yQ2l0YXRpb25Db3Vu
+        dExpc3Q+DQogICAgPENvcHlyaWdodFN0YXRlUHJvdmluY2U+Tlk8L0NvcHly
+        aWdodFN0YXRlUHJvdmluY2U+DQogICAgPENvcHlyaWdodENvdW50cnk+VU5J
+        VEVEIFNUQVRFUzwvQ29weXJpZ2h0Q291bnRyeT4NCiAgPC9QdWJsaWNhdGlv
+        bkl0ZW0+DQogIDxQdWJsaWNhdGlvbkl0ZW0+DQogICAgPFB1YmxpY2F0aW9u
+        SXRlbUlEPjY5MDI4Mjg4PC9QdWJsaWNhdGlvbkl0ZW1JRD4NCiAgICA8VGl0
+        bGU+Q09TVC1VVElMSVRZIE9GIEJFVkFDSVpVTUFCIFdJVEggUEMgUkVHSU1F
+        TiBJTiBOT04tU01BTEwgQ0VMTCBMVU5HIENBTkNFUiBUUkVBVE1FTlQ8L1Rp
+        dGxlPg0KICAgIDxBYnN0cmFjdCAvPg0KICAgIDxBdXRob3JMaXN0Pk5ndXll
+        bixULFRUfFRyYW4sVCxUSDwvQXV0aG9yTGlzdD4NCiAgICA8QXV0aG9yQ291
+        bnQ+MjwvQXV0aG9yQ291bnQ+DQogICAgPEtleXdvcmRMaXN0IC8+DQogICAg
+        PERvY3VtZW50VHlwZUxpc3Q+TWVldGluZyBBYnN0cmFjdDwvRG9jdW1lbnRU
+        eXBlTGlzdD4NCiAgICA8RG9jdW1lbnRDYXRlZ29yeT5Db25mZXJlbmNlIFBy
+        b2NlZWRpbmcgRG9jdW1lbnQ8L0RvY3VtZW50Q2F0ZWdvcnk+DQogICAgPE51
+        bWJlck9mUmVmZXJlbmNlcyB4c2k6bmlsPSJ0cnVlIiAvPg0KICAgIDxUaW1l
+        c0NpdGVkPjA8L1RpbWVzQ2l0ZWQ+DQogICAgPFRpbWVzTm90U2VsZkNpdGVk
+        PjA8L1RpbWVzTm90U2VsZkNpdGVkPg0KICAgIDxQTUlEIHhzaTpuaWw9InRy
+        dWUiIC8+DQogICAgPFdvU0l0ZW1JRD4wMDAzNDY5MTczMDMxNDg8L1dvU0l0
+        ZW1JRD4NCiAgICA8UHVibGljYXRpb25Tb3VyY2VUaXRsZT5WQUxVRSBJTiBI
+        RUFMVEg8L1B1YmxpY2F0aW9uU291cmNlVGl0bGU+DQogICAgPFZvbHVtZT4x
+        NzwvVm9sdW1lPg0KICAgIDxJc3N1ZT43PC9Jc3N1ZT4NCiAgICA8UGFnaW5h
+        dGlvbj5BNzI1LUE3MjU8L1BhZ2luYXRpb24+DQogICAgPFB1YmxpY2F0aW9u
+        RGF0ZT4yMDE0LTExLTAxVDAwOjAwOjAwPC9QdWJsaWNhdGlvbkRhdGU+DQog
+        ICAgPFB1YmxpY2F0aW9uWWVhcj4yMDE0PC9QdWJsaWNhdGlvblllYXI+DQog
+        ICAgPFB1YmxpY2F0aW9uVHlwZT5Kb3VybmFsPC9QdWJsaWNhdGlvblR5cGU+
+        DQogICAgPFB1YmxpY2F0aW9uU3ViamVjdENhdGVnb3J5TGlzdD5FY29ub21p
+        Y3N8SGVhbHRoIENhcmUgU2NpZW5jZXMgJmFtcDsgU2VydmljZXN8SGVhbHRo
+        IFBvbGljeSAmYW1wOyBTZXJ2aWNlczwvUHVibGljYXRpb25TdWJqZWN0Q2F0
+        ZWdvcnlMaXN0Pg0KICAgIDxJU1NOPjEwOTgtMzAxNTwvSVNTTj4NCiAgICA8
+        Q29uZmVyZW5jZVN0YXJ0RGF0ZSB4c2k6bmlsPSJ0cnVlIiAvPg0KICAgIDxD
+        b25mZXJlbmNlRW5kRGF0ZSB4c2k6bmlsPSJ0cnVlIiAvPg0KICAgIDxSYW5r
+        IHhzaTpuaWw9InRydWUiIC8+DQogICAgPE9yZGluYWxSYW5rPjc8L09yZGlu
+        YWxSYW5rPg0KICAgIDxOb3JtYWxpemVkUmFuayB4c2k6bmlsPSJ0cnVlIiAv
+        Pg0KICAgIDxOZXdQdWJsaWNhdGlvbkl0ZW1JRCB4c2k6bmlsPSJ0cnVlIiAv
+        Pg0KICAgIDxJc09ic29sZXRlPmZhbHNlPC9Jc09ic29sZXRlPg0KICAgIDxD
+        b3B5cmlnaHRQdWJsaXNoZXI+RUxTRVZJRVIgU0NJRU5DRSBJTkM8L0NvcHly
+        aWdodFB1Ymxpc2hlcj4NCiAgICA8Q29weXJpZ2h0Q2l0eT5ORVcgWU9SSzwv
+        Q29weXJpZ2h0Q2l0eT4NCiAgICA8UHVibGljYXRpb25JbXBhY3RGYWN0b3JM
+        aXN0PjIuODkxLDIwMTMsQ2xvc2VzdFRvUHVibGljYXRpb25ZZWFyfDIuODkx
+        LDIwMTMsTW9zdFJlY2VudFllYXI8L1B1YmxpY2F0aW9uSW1wYWN0RmFjdG9y
+        TGlzdD4NCiAgICA8UHVibGljYXRpb25DYXRlZ29yeVJhbmtpbmdMaXN0PjE2
+        Lzg2O0hFQUxUSCBDQVJFIFNDSUVOQ0VTICZhbXA7IFNFUlZJQ0VTOzIwMTM7
+        U0M7Q2xvc2VzdFRvUHVibGljYXRpb25ZZWFyfDkvNzA7SEVBTFRIIFBPTElD
+        WSAmYW1wOyBTRVJWSUNFUzsyMDEzO1NTO0Nsb3Nlc3RUb1B1YmxpY2F0aW9u
+        WWVhcnwyMC8zMzM7RUNPTk9NSUNTOzIwMTM7U1M7Q2xvc2VzdFRvUHVibGlj
+        YXRpb25ZZWFyfDE2Lzg2O0hFQUxUSCBDQVJFIFNDSUVOQ0VTICZhbXA7IFNF
+        UlZJQ0VTOzIwMTM7U0M7TW9zdFJlY2VudFllYXJ8OS83MDtIRUFMVEggUE9M
+        SUNZICZhbXA7IFNFUlZJQ0VTOzIwMTM7U1M7TW9zdFJlY2VudFllYXJ8MjAv
+        MzMzO0VDT05PTUlDUzsyMDEzO1NTO01vc3RSZWNlbnRZZWFyPC9QdWJsaWNh
+        dGlvbkNhdGVnb3J5UmFua2luZ0xpc3Q+DQogICAgPEF1dGhvckNpdGF0aW9u
+        Q291bnRMaXN0PjEsMCwwfDIsMCwwPC9BdXRob3JDaXRhdGlvbkNvdW50TGlz
+        dD4NCiAgICA8Q29weXJpZ2h0U3RhdGVQcm92aW5jZT5OWTwvQ29weXJpZ2h0
+        U3RhdGVQcm92aW5jZT4NCiAgICA8Q29weXJpZ2h0Q291bnRyeT5VTklURUQg
+        U1RBVEVTPC9Db3B5cmlnaHRDb3VudHJ5Pg0KICA8L1B1YmxpY2F0aW9uSXRl
+        bT4NCiAgPFB1YmxpY2F0aW9uSXRlbT4NCiAgICA8UHVibGljYXRpb25JdGVt
+        SUQ+NjkwMTQwNDU8L1B1YmxpY2F0aW9uSXRlbUlEPg0KICAgIDxUaXRsZT5E
+        ZXZlbG9waW5nIGFuIGVmZmVjdGl2ZSB0aGVyYXBldXRpYyBieSBkZWxpdmVy
+        eSBvZiBzeW50aGV0aWMgbWljcm9STkEtNTIwZSBpbiBsdW5nIGNhbmNlciB0
+        cmVhdG1lbnQ8L1RpdGxlPg0KICAgIDxBYnN0cmFjdD5NaWNyb1JOQXMgKG1p
+        Uk5BcykgY2FuIGZ1bmN0aW9uIGFzIHR1bW9yIHN1cHByZXNzb3JzIGFuZCBt
+        aWdodCBwcm92aWRlIGFuIGVmZmljaWVudCBzdHJhdGVneSBmb3IgYW5uaWhp
+        bGF0aW5nIGNhbmNlci4gU3BlY2lmaWMgbWlSTkFzIGNhbiBiZSByZWludHJv
+        ZHVjZWQgaW50byB0dW1vciBjZWxscyB0byBjb21wbGVtZW50IHRoZSBsb3Nz
+        IG9mIHR1bW9yIHN1cHByZXNzaW9uIGFjdGl2aXRpZXMuIFRoZSAibWlSTkEg
+        cmVwbGFjZW1lbnQgdGhlcmFweSIgaXMgYmFzZWQgb24gdGhlIGNvbmNlcHQg
+        dGhhdCB0aGUgcmVpbnRyb2R1Y3Rpb24gb2YgbWlSTkFzIGRlcGxldGVkIGlu
+        IGNhbmNlciBjZWxscyByZWFjdGl2YXRlcyBjZWxsdWxhciBwYXRod2F5cyB0
+        aGF0IGxlYWQgdG8gdGhlcmFwZXV0aWMgcmVzcG9uc2VzLiBIZXJlLCB3ZSBy
+        ZXBvcnQgdGhlIGRldmVsb3BtZW50IG9mIG1pUk5BIGRlbGl2ZXJ5IGZvcm11
+        bGF0aW9uIHVzaW5nIHN5bnRoZXNpemVkIG1pUi01MjBlLiBUaGlzIGZvcm11
+        bGF0aW9uIHByb3ZlZCB0byBiZSBlZmZlY3RpdmUgZWl0aGVyIGxvY2FsbHkg
+        b3Igc3lzdGVtYXRpY2FsbHkuIE1pUi01MjBlIGFjY3VtdWxhdGlvbiBiZWNv
+        bWVzIGV2aWRlbnQgaW4gdHVtb3IgY2VsbHMgYW5kIHRoZW4gZXhlcnRzIGFu
+        dGktcHJvbGlmZXJhdGl2ZSBmdW5jdGlvbi4gTWVhbndoaWxlLCBpbnRyYXZl
+        bm91cyBkZWxpdmVyeSBvZiBmb3JtdWxhdGVkIG1pUi01MjBlIGRvZXMgbm90
+        IGluZHVjZSBhbnkgZGVyZWd1bGF0aW9uIGluIGN5dG9raW5lIGxldmVscyBh
+        bmQgbGl2ZXIgZW56eW1lcy4gVGFrZW4gdG9nZXRoZXIsIG91ciByZXN1bHRz
+        IHNoZWQgbmV3IGxpZ2h0cyBvbiB0aGUgY29uY2VwdCB0aGF0IHN5c3RlbWF0
+        aWMgZGVsaXZlcnkgb2Ygc3ludGhldGljIG1pbWljcyBmb3IgdHVtb3Igc3Vw
+        cHJlc3NvciBtaVItNTIwZSBhbmQgcHJvdmlkZSBwb3RlbnRpYWwgaW1wbGlj
+        YXRpb25zIGZvciBtaVJOQSB0aGVyYXB5IGluIGNsaW5pYy4gKEMpIDIwMTQg
+        RWxzZXZpZXIgTWFzc29uIFNBUy4gQWxsIHJpZ2h0cyByZXNlcnZlZC48L0Fi
+        c3RyYWN0Pg0KICAgIDxBdXRob3JMaXN0Pk1hLERlZG9uZyx8THUsSG9uZ3hp
+        dSx8UXUsWWlxaW5nLHxGdSxXZWlqaWFuZyx8TWEsWmhlLDwvQXV0aG9yTGlz
+        dD4NCiAgICA8QXV0aG9yQ291bnQ+NTwvQXV0aG9yQ291bnQ+DQogICAgPEtl
+        eXdvcmRMaXN0PkNFTExTfEJSRUFTVHxDQVJDSU5PTUF8VEFSR0VUU3xQVEVO
+        fFRVTU9SLVNVUFBSRVNTT1J8TUVUQVNUQVNJU3xJTlZBU0lPTnxsdW5nIGNh
+        bmNlciB0cmVhdG1lbnR8bWljcm9STkEtNTIwZXxTeXN0ZW1hdGljIGRlbGl2
+        ZXJ5PC9LZXl3b3JkTGlzdD4NCiAgICA8RG9jdW1lbnRUeXBlTGlzdD5BcnRp
+        Y2xlPC9Eb2N1bWVudFR5cGVMaXN0Pg0KICAgIDxEb2N1bWVudENhdGVnb3J5
+        PkpvdXJuYWwgRG9jdW1lbnQ8L0RvY3VtZW50Q2F0ZWdvcnk+DQogICAgPE51
+        bWJlck9mUmVmZXJlbmNlcz4yOTwvTnVtYmVyT2ZSZWZlcmVuY2VzPg0KICAg
+        IDxUaW1lc0NpdGVkPjA8L1RpbWVzQ2l0ZWQ+DQogICAgPFRpbWVzTm90U2Vs
+        ZkNpdGVkPjA8L1RpbWVzTm90U2VsZkNpdGVkPg0KICAgIDxQTUlEPjI1NjYx
+        MzY2PC9QTUlEPg0KICAgIDxXb1NJdGVtSUQ+MDAwMzQ5NTQ4ODAwMDM3PC9X
+        b1NJdGVtSUQ+DQogICAgPFB1YmxpY2F0aW9uU291cmNlVGl0bGU+QklPTUVE
+        SUNJTkUgJmFtcDsgUEhBUk1BQ09USEVSQVBZPC9QdWJsaWNhdGlvblNvdXJj
+        ZVRpdGxlPg0KICAgIDxWb2x1bWU+Njk8L1ZvbHVtZT4NCiAgICA8UGFnaW5h
+        dGlvbj4yNDktMjU0PC9QYWdpbmF0aW9uPg0KICAgIDxQdWJsaWNhdGlvbkRh
+        dGU+MjAxNS0wMi0wMVQwMDowMDowMDwvUHVibGljYXRpb25EYXRlPg0KICAg
+        IDxQdWJsaWNhdGlvblllYXI+MjAxNTwvUHVibGljYXRpb25ZZWFyPg0KICAg
+        IDxQdWJsaWNhdGlvblR5cGU+Sm91cm5hbDwvUHVibGljYXRpb25UeXBlPg0K
+        ICAgIDxQdWJsaWNhdGlvblN1YmplY3RDYXRlZ29yeUxpc3Q+TWVkaWNpbmUs
+        IFJlc2VhcmNoICZhbXA7IEV4cGVyaW1lbnRhbHxQaGFybWFjb2xvZ3kgJmFt
+        cDsgUGhhcm1hY3k8L1B1YmxpY2F0aW9uU3ViamVjdENhdGVnb3J5TGlzdD4N
+        CiAgICA8SVNTTj4wNzUzLTMzMjI8L0lTU04+DQogICAgPERPST4xMC4xMDE2
+        L2ouYmlvcGhhLjIwMTQuMTIuMDA5PC9ET0k+DQogICAgPENvbmZlcmVuY2VT
+        dGFydERhdGUgeHNpOm5pbD0idHJ1ZSIgLz4NCiAgICA8Q29uZmVyZW5jZUVu
+        ZERhdGUgeHNpOm5pbD0idHJ1ZSIgLz4NCiAgICA8UmFuayB4c2k6bmlsPSJ0
+        cnVlIiAvPg0KICAgIDxPcmRpbmFsUmFuaz44PC9PcmRpbmFsUmFuaz4NCiAg
+        ICA8Tm9ybWFsaXplZFJhbmsgeHNpOm5pbD0idHJ1ZSIgLz4NCiAgICA8TmV3
+        UHVibGljYXRpb25JdGVtSUQgeHNpOm5pbD0idHJ1ZSIgLz4NCiAgICA8SXNP
+        YnNvbGV0ZT5mYWxzZTwvSXNPYnNvbGV0ZT4NCiAgICA8Q29weXJpZ2h0UHVi
+        bGlzaGVyPkVMU0VWSUVSIEZSQU5DRS1FRElUSU9OUyBTQ0lFTlRJRklRVUVT
+        IE1FRElDQUxFUyBFTFNFVklFUjwvQ29weXJpZ2h0UHVibGlzaGVyPg0KICAg
+        IDxDb3B5cmlnaHRDaXR5PlBBUklTPC9Db3B5cmlnaHRDaXR5Pg0KICAgIDxQ
+        dWJsaWNhdGlvbkltcGFjdEZhY3Rvckxpc3Q+Mi4xMDgsMjAxMyxDbG9zZXN0
+        VG9QdWJsaWNhdGlvblllYXJ8Mi4xMDgsMjAxMyxNb3N0UmVjZW50WWVhcjwv
+        UHVibGljYXRpb25JbXBhY3RGYWN0b3JMaXN0Pg0KICAgIDxQdWJsaWNhdGlv
+        bkNhdGVnb3J5UmFua2luZ0xpc3Q+NjYvMTI0O01FRElDSU5FLCBSRVNFQVJD
+        SCAmYW1wOyBFWFBFUklNRU5UQUw7MjAxMztTQztDbG9zZXN0VG9QdWJsaWNh
+        dGlvblllYXJ8MTQzLzI1NjtQSEFSTUFDT0xPR1kgJmFtcDsgUEhBUk1BQ1k7
+        MjAxMztTQztDbG9zZXN0VG9QdWJsaWNhdGlvblllYXJ8NjYvMTI0O01FRElD
+        SU5FLCBSRVNFQVJDSCAmYW1wOyBFWFBFUklNRU5UQUw7MjAxMztTQztNb3N0
+        UmVjZW50WWVhcnwxNDMvMjU2O1BIQVJNQUNPTE9HWSAmYW1wOyBQSEFSTUFD
+        WTsyMDEzO1NDO01vc3RSZWNlbnRZZWFyPC9QdWJsaWNhdGlvbkNhdGVnb3J5
+        UmFua2luZ0xpc3Q+DQogICAgPEF1dGhvckNpdGF0aW9uQ291bnRMaXN0PjEs
+        MCwwfDIsMCwwfDMsMCwwfDQsMCwwfDUsMCwwPC9BdXRob3JDaXRhdGlvbkNv
+        dW50TGlzdD4NCiAgICA8Q29weXJpZ2h0U3RhdGVQcm92aW5jZSAvPg0KICAg
+        IDxDb3B5cmlnaHRDb3VudHJ5PkZSQU5DRTwvQ29weXJpZ2h0Q291bnRyeT4N
+        CiAgPC9QdWJsaWNhdGlvbkl0ZW0+DQogIDxQdWJsaWNhdGlvbkl0ZW0+DQog
+        ICAgPFB1YmxpY2F0aW9uSXRlbUlEPjY4OTAyNzUwPC9QdWJsaWNhdGlvbkl0
+        ZW1JRD4NCiAgICA8VGl0bGU+VGFyZ2V0ZWQgcHJvZ3JhbW1lZCBjZWxsIGRl
+        YXRoIGluIGx1bmcgY2FuY2VyIHRyZWF0bWVudC48L1RpdGxlPg0KICAgIDxB
+        YnN0cmFjdCAvPg0KICAgIDxBdXRob3JMaXN0PlppbW1lcm1hbixNYXJqLFB8
+        TWVocixTdGFudG9uLFI8L0F1dGhvckxpc3Q+DQogICAgPEF1dGhvckNvdW50
+        PjI8L0F1dGhvckNvdW50Pg0KICAgIDxLZXl3b3JkTGlzdCAvPg0KICAgIDxE
+        b2N1bWVudFR5cGVMaXN0PkpvdXJuYWwgQXJ0aWNsZTwvRG9jdW1lbnRUeXBl
+        TGlzdD4NCiAgICA8RG9jdW1lbnRDYXRlZ29yeT5Kb3VybmFsIERvY3VtZW50
+        PC9Eb2N1bWVudENhdGVnb3J5Pg0KICAgIDxOdW1iZXJPZlJlZmVyZW5jZXMg
+        eHNpOm5pbD0idHJ1ZSIgLz4NCiAgICA8VGltZXNDaXRlZCB4c2k6bmlsPSJ0
+        cnVlIiAvPg0KICAgIDxUaW1lc05vdFNlbGZDaXRlZCB4c2k6bmlsPSJ0cnVl
+        IiAvPg0KICAgIDxQTUlEPjI1NjE4NjMwPC9QTUlEPg0KICAgIDxQdWJsaWNh
+        dGlvblNvdXJjZVRpdGxlPkFtZXJpY2FuIGpvdXJuYWwgb2YgbWFuYWdlZCBj
+        YXJlPC9QdWJsaWNhdGlvblNvdXJjZVRpdGxlPg0KICAgIDxWb2x1bWU+MjA8
+        L1ZvbHVtZT4NCiAgICA8SXNzdWU+NTwvSXNzdWU+DQogICAgPFBhZ2luYXRp
+        b24+RTMtPzwvUGFnaW5hdGlvbj4NCiAgICA8UHVibGljYXRpb25EYXRlPjIw
+        MTQtMDMtMDFUMDA6MDA6MDA8L1B1YmxpY2F0aW9uRGF0ZT4NCiAgICA8UHVi
+        bGljYXRpb25ZZWFyPjIwMTQ8L1B1YmxpY2F0aW9uWWVhcj4NCiAgICA8UHVi
+        bGljYXRpb25TdWJqZWN0Q2F0ZWdvcnlMaXN0IC8+DQogICAgPElTU04+MTA4
+        OC0wMjI0PC9JU1NOPg0KICAgIDxDb25mZXJlbmNlU3RhcnREYXRlIHhzaTpu
+        aWw9InRydWUiIC8+DQogICAgPENvbmZlcmVuY2VFbmREYXRlIHhzaTpuaWw9
+        InRydWUiIC8+DQogICAgPFJhbmsgeHNpOm5pbD0idHJ1ZSIgLz4NCiAgICA8
+        T3JkaW5hbFJhbms+OTwvT3JkaW5hbFJhbms+DQogICAgPE5vcm1hbGl6ZWRS
+        YW5rIHhzaTpuaWw9InRydWUiIC8+DQogICAgPE5ld1B1YmxpY2F0aW9uSXRl
+        bUlEIHhzaTpuaWw9InRydWUiIC8+DQogICAgPElzT2Jzb2xldGU+ZmFsc2U8
+        L0lzT2Jzb2xldGU+DQogICAgPENvcHlyaWdodFB1Ymxpc2hlciAvPg0KICAg
+        IDxDb3B5cmlnaHRDaXR5IC8+DQogICAgPFB1YmxpY2F0aW9uSW1wYWN0RmFj
+        dG9yTGlzdD4yLjE2NiwyMDEzLENsb3Nlc3RUb1B1YmxpY2F0aW9uWWVhcnwy
+        LjE2NiwyMDEzLE1vc3RSZWNlbnRZZWFyPC9QdWJsaWNhdGlvbkltcGFjdEZh
+        Y3Rvckxpc3Q+DQogICAgPFB1YmxpY2F0aW9uQ2F0ZWdvcnlSYW5raW5nTGlz
+        dD4zMC84NjtIRUFMVEggQ0FSRSBTQ0lFTkNFUyAmYW1wOyBTRVJWSUNFUzsy
+        MDEzO1NDO0Nsb3Nlc3RUb1B1YmxpY2F0aW9uWWVhcnw0MS8xNTY7TUVESUNJ
+        TkUsIEdFTkVSQUwgJmFtcDsgSU5URVJOQUw7MjAxMztTQztDbG9zZXN0VG9Q
+        dWJsaWNhdGlvblllYXJ8MTcvNzA7SEVBTFRIIFBPTElDWSAmYW1wOyBTRVJW
+        SUNFUzsyMDEzO1NTO0Nsb3Nlc3RUb1B1YmxpY2F0aW9uWWVhcnwzMC84NjtI
+        RUFMVEggQ0FSRSBTQ0lFTkNFUyAmYW1wOyBTRVJWSUNFUzsyMDEzO1NDO01v
+        c3RSZWNlbnRZZWFyfDQxLzE1NjtNRURJQ0lORSwgR0VORVJBTCAmYW1wOyBJ
+        TlRFUk5BTDsyMDEzO1NDO01vc3RSZWNlbnRZZWFyfDE3LzcwO0hFQUxUSCBQ
+        T0xJQ1kgJmFtcDsgU0VSVklDRVM7MjAxMztTUztNb3N0UmVjZW50WWVhcjwv
+        UHVibGljYXRpb25DYXRlZ29yeVJhbmtpbmdMaXN0Pg0KICAgIDxDb3B5cmln
+        aHRTdGF0ZVByb3ZpbmNlIC8+DQogICAgPENvcHlyaWdodENvdW50cnk+VU5J
+        VEVEIFNUQVRFUzwvQ29weXJpZ2h0Q291bnRyeT4NCiAgPC9QdWJsaWNhdGlv
+        bkl0ZW0+DQogIDxQdWJsaWNhdGlvbkl0ZW0+DQogICAgPFB1YmxpY2F0aW9u
+        SXRlbUlEPjY4ODg3NzIxPC9QdWJsaWNhdGlvbkl0ZW1JRD4NCiAgICA8VGl0
+        bGU+TFVORyBDQU5DRVIgSU4gMjAxNCBPcHRpbWl6aW5nIGx1bmcgY2FuY2Vy
+        IHRyZWF0bWVudCBhcHByb2FjaGVzPC9UaXRsZT4NCiAgICA8QWJzdHJhY3Q+
+        SW4gMjAxNCwgZGV2ZWxvcG1lbnRzIGluIG91ciB1bmRlcnN0YW5kaW5nIG9m
+        IGVzY2FwZSBzaWduYWxsaW5nIGNpcmN1aXRzIGltcGxpY2F0ZWQgaW4gcmVz
+        aXN0YW5jZSB0byB0YXJnZXRlZCBhZ2VudHMgaW4gcGF0aWVudHMgd2l0aCBs
+        dW5nIGNhbmNlciBoYXZlIGxlZCB0byBpbXByb3ZlbWVudHMgaW4gdGFja2xp
+        bmcgc3VjaCByZXNpc3RhbmNlLiBUaGUgcG90ZW50aWFsIHJvbGUgZm9yIFBF
+        VCBpbiB0aGUgbWFuYWdlbWVudCBvZiBlcmxvdGluaWIgdGhlcmFweSwgbm92
+        ZWwgY29tYmluYXRpb24gdGhlcmFwaWVzIGFuZCBwaGFybWFjb2dlbm9taWMt
+        ZHJpdmVuIGluZGl2aWR1YWxpemF0aW9uIG9mIHBsYXRpbnVtLWJhc2VkIGNo
+        ZW1vdGhlcmFweSByZXByZXNlbnQgb3RoZXIga2V5IGFkdmFuY2VzLjwvQWJz
+        dHJhY3Q+DQogICAgPEF1dGhvckxpc3Q+Um9zZWxsLFJhZmFlbCx8S2FyYWNo
+        YWxpb3UsTmlraSw8L0F1dGhvckxpc3Q+DQogICAgPEF1dGhvckNvdW50PjI8
+        L0F1dGhvckNvdW50Pg0KICAgIDxLZXl3b3JkTGlzdD5DRUxMU3xTVEFUM3xS
+        RVNJU1RBTkNFfE1VVEFUSU9OU3xFUkxPVElOSUJ8QUNUSVZBVElPTjwvS2V5
+        d29yZExpc3Q+DQogICAgPERvY3VtZW50VHlwZUxpc3Q+RWRpdG9yaWFsIE1h
+        dGVyaWFsPC9Eb2N1bWVudFR5cGVMaXN0Pg0KICAgIDxEb2N1bWVudENhdGVn
+        b3J5Pk90aGVyPC9Eb2N1bWVudENhdGVnb3J5Pg0KICAgIDxOdW1iZXJPZlJl
+        ZmVyZW5jZXM+OTwvTnVtYmVyT2ZSZWZlcmVuY2VzPg0KICAgIDxUaW1lc0Np
+        dGVkPjA8L1RpbWVzQ2l0ZWQ+DQogICAgPFRpbWVzTm90U2VsZkNpdGVkPjA8
+        L1RpbWVzTm90U2VsZkNpdGVkPg0KICAgIDxQTUlEPjI1NTMzOTQzPC9QTUlE
+        Pg0KICAgIDxXb1NJdGVtSUQ+MDAwMzQ4ODYxMzAwMDA1PC9Xb1NJdGVtSUQ+
+        DQogICAgPFB1YmxpY2F0aW9uU291cmNlVGl0bGU+TkFUVVJFIFJFVklFV1Mg
+        Q0xJTklDQUwgT05DT0xPR1k8L1B1YmxpY2F0aW9uU291cmNlVGl0bGU+DQog
+        ICAgPFZvbHVtZT4xMjwvVm9sdW1lPg0KICAgIDxJc3N1ZT4yPC9Jc3N1ZT4N
+        CiAgICA8UGFnaW5hdGlvbj43NS03NjwvUGFnaW5hdGlvbj4NCiAgICA8UHVi
+        bGljYXRpb25EYXRlPjIwMTUtMDItMDFUMDA6MDA6MDA8L1B1YmxpY2F0aW9u
+        RGF0ZT4NCiAgICA8UHVibGljYXRpb25ZZWFyPjIwMTU8L1B1YmxpY2F0aW9u
+        WWVhcj4NCiAgICA8UHVibGljYXRpb25UeXBlPkpvdXJuYWw8L1B1YmxpY2F0
+        aW9uVHlwZT4NCiAgICA8UHVibGljYXRpb25TdWJqZWN0Q2F0ZWdvcnlMaXN0
+        Pk9uY29sb2d5PC9QdWJsaWNhdGlvblN1YmplY3RDYXRlZ29yeUxpc3Q+DQog
+        ICAgPElTU04+MTc1OS00Nzc0PC9JU1NOPg0KICAgIDxET0k+MTAuMTAzOC9u
+        cmNsaW5vbmMuMjAxNC4yMjU8L0RPST4NCiAgICA8Q29uZmVyZW5jZVN0YXJ0
+        RGF0ZSB4c2k6bmlsPSJ0cnVlIiAvPg0KICAgIDxDb25mZXJlbmNlRW5kRGF0
+        ZSB4c2k6bmlsPSJ0cnVlIiAvPg0KICAgIDxSYW5rIHhzaTpuaWw9InRydWUi
+        IC8+DQogICAgPE9yZGluYWxSYW5rPjEwPC9PcmRpbmFsUmFuaz4NCiAgICA8
+        Tm9ybWFsaXplZFJhbmsgeHNpOm5pbD0idHJ1ZSIgLz4NCiAgICA8TmV3UHVi
+        bGljYXRpb25JdGVtSUQgeHNpOm5pbD0idHJ1ZSIgLz4NCiAgICA8SXNPYnNv
+        bGV0ZT5mYWxzZTwvSXNPYnNvbGV0ZT4NCiAgICA8Q29weXJpZ2h0UHVibGlz
+        aGVyPk5BVFVSRSBQVUJMSVNISU5HIEdST1VQPC9Db3B5cmlnaHRQdWJsaXNo
+        ZXI+DQogICAgPENvcHlyaWdodENpdHk+TkVXIFlPUks8L0NvcHlyaWdodENp
+        dHk+DQogICAgPFB1YmxpY2F0aW9uSW1wYWN0RmFjdG9yTGlzdD4xNS42OTYs
+        MjAxMyxDbG9zZXN0VG9QdWJsaWNhdGlvblllYXJ8MTUuNjk2LDIwMTMsTW9z
+        dFJlY2VudFllYXI8L1B1YmxpY2F0aW9uSW1wYWN0RmFjdG9yTGlzdD4NCiAg
+        ICA8UHVibGljYXRpb25DYXRlZ29yeVJhbmtpbmdMaXN0PjcvMjAzO09OQ09M
+        T0dZOzIwMTM7U0M7Q2xvc2VzdFRvUHVibGljYXRpb25ZZWFyfDcvMjAzO09O
+        Q09MT0dZOzIwMTM7U0M7TW9zdFJlY2VudFllYXI8L1B1YmxpY2F0aW9uQ2F0
+        ZWdvcnlSYW5raW5nTGlzdD4NCiAgICA8QXV0aG9yQ2l0YXRpb25Db3VudExp
+        c3Q+MSwwLDB8MiwwLDA8L0F1dGhvckNpdGF0aW9uQ291bnRMaXN0Pg0KICAg
+        IDxDb3B5cmlnaHRTdGF0ZVByb3ZpbmNlPk5ZPC9Db3B5cmlnaHRTdGF0ZVBy
+        b3ZpbmNlPg0KICAgIDxDb3B5cmlnaHRDb3VudHJ5PlVOSVRFRCBTVEFURVM8
+        L0NvcHlyaWdodENvdW50cnk+DQogIDwvUHVibGljYXRpb25JdGVtPg0KICA8
+        UHVibGljYXRpb25JdGVtPg0KICAgIDxQdWJsaWNhdGlvbkl0ZW1JRD42ODc0
+        Mzg0MTwvUHVibGljYXRpb25JdGVtSUQ+DQogICAgPFRpdGxlPkRFRkFDVElO
+        SUIgSFlEUk9DSExPUklERSBEdWFsIEZBSzEvUFlLMiBJbmhpYml0b3IgVHJl
+        YXRtZW50IG9mIG5vbi1zbWFsbCBjZWxsIGx1bmcgY2FuY2VyIFRyZWF0bWVu
+        dCBvZiBtYWxpZ25hbnQgbWVzb3RoZWxpb21hIFRyZWF0bWVudCBvZiBvdmFy
+        aWFuIGNhbmNlcjwvVGl0bGU+DQogICAgPEFic3RyYWN0PkRlZmFjdGluaWIg
+        KFZTLTYwNjMsIGZvcm1lcmx5IFBGLTA0NTU0ODc4KSBpcyBhIHNlY29uZC1n
+        ZW5lcmF0aW9uIGZvY2FsIGFkaGVzaW9uIGtpbmFzZSAxIChGQUsxKSBhbmQg
+        cHJvbGluZS1yaWNoIHR5cm9zaW5lIGtpbmFzZSAyIChQWUsyLCBGQUsyKSBp
+        bmhpYml0b3IuIEZBS3MgcmVndWxhdGUgY2VsbCBzaWduYWxpbmcgd2l0aGlu
+        IHRoZSB0dW1vciBtaWNyb2Vudmlyb25tZW50LCBpbmNsdWRpbmcgY2VsbCBt
+        b3RpbGl0eSwgc3Vydml2YWwgYW5kIGFwb3B0b3NpcyBhbmQsIGFzIHN1Y2gs
+        IGFyZSBhbiBhdHRyYWN0aXZlIHRhcmdldCBmb3IgZHJ1ZyBkZXZlbG9wbWVu
+        dCAoMS0zKS4gU3BlY2lmaWNhbGx5IGluIG92YXJpYW4gY2FuY2VyLCBnZW5l
+        dGljIGFuZCBtb2xlY3VsYXIgZGF0YSBwb2ludHMgdG8gRkFLIGFzIGEgdGFy
+        Z2V0IG9mIGtleSBpbXBvcnRhbmNlLiBUaGUgY2hyb21vc29tYWwgcmVnaW9u
+        IHRoYXQgZW5jb2RlcyBwcm90ZWluIHR5cm9zaW5lIGtpbmFzZSAyIChQVEsy
+        KSAod2hpY2ggaW4gdHVybiBlbmNvZGVzIEZBSykgaXMgbGlua2VkIHRvIGlu
+        Y3JlYXNlZCBzdXNjZXB0aWJpbGl0eSBmb3Igb3ZhcmlhbiBjYW5jZXIsIGFu
+        ZCBUaGUgQ2FuY2VyIEdlbm9tZSBBdGxhcyAoVENHQSkgaGFzIHJlcG9ydGVk
+        IGluY3JlYXNlZCBGQUsgbVJOQSBpbiBoaWdoLWdyYWRlIHNlcm91cyBjYW5j
+        ZXJzLiBUaGVzZSBoaWdoZXIgbGV2ZWxzIGFyZSBjb3JyZWxhdGVkIHdpdGgg
+        cG9vciBzdXJ2aXZhbCAoMSwgNCwgNSkuIERlZmFjdGluaWIgaGFzIGJlZW4g
+        c2hvd24gdG8gYmUgYSBwb3RlbnQgYW5kIHNlbGVjdGl2ZSByZXZlcnNpYmxl
+        IGluaGliaXRvciBvZiByZWNvbWJpbmFudCBodW1hbiBGQUsgYW5kIFBZSzIg
+        a2luYXNlLiBQcmVjbGluaWNhbCBkYXRhIHN1cHBvcnRlZCBldmFsdWF0aW9u
+        IG9mIHRoaXMgYWdlbnQgaW4gY2xpbmljYWwgdHJpYWxzLiBEZWZhY3Rpbmli
+        IGhhcyBiZWVuIGludmVzdGlnYXRlZCBpbiBhIHBoYXNlIEkgdHJpYWwgb2Yg
+        cGF0aWVudHMgd2l0aCBub25oZW1hdG9sb2dpYyBtYWxpZ25hbmNpZXMgKE5D
+        VDAwNzg3MDMzKS4gVGhpcyB0cmlhbCBkZW1vbnN0cmF0ZWQgZ29vZCBwaGFy
+        bWFjb2tpbmV0aWNzIHdpdGggZG9zZXMgZnJvbSAxMi41IHRvIDc1MCBtZyB0
+        d2ljZSBhIGRheSAoYi5pLmQuKSBvcmFsbHkuIFRyZWF0bWVudCB3YXMgd2Vs
+        bCB0b2xlcmF0ZWQgYW5kIHRoZSByZWNvbW1lbmRlZCBwaGFzZSBJSSBkb3Nl
+        IHdhcyA0MjUgbWcgb3JhbGx5IGIuaS5kLiBPZiBub3RlLCBzdGFibGUgZGlz
+        ZWFzZSB3YXMgb2JzZXJ2ZWQgaW4gc2V2ZXJhbCBwYXRpZW50cyBpbiB0aGlz
+        IHBoYXNlIEkgdHJpYWwgd2l0aCBvdmFyaWFuIGNhbmNlciwgY29sb3JlY3Rh
+        bCBvciBiaWxpYXJ5IHR1bW9ycywgZnVydGhlciBzdXBwb3J0aW5nIGV4cGxv
+        cmF0aW9uIGluIG92YXJpYW4gY2FuY2VyICg2KS4gRkFLIGhhcyBhbHNvIGJl
+        ZW4gc2hvd24gdG8gaW5jcmVhc2Ugc2Vuc2l0aXZpdHkgdG8gY2hlbW90aGVy
+        YXB5IGFjcm9zcyBhIG51bWJlciBvZiBwcmVjbGluaWNhbCB0dW1vciBtb2Rl
+        bHMuIEZvciBleGFtcGxlLCBGQUsgYXBwZWFycyB0byBpbmNyZWFzZSBzZW5z
+        aXRpdml0eSB0byBnZW1jaXRhYmluZSBpbiBwYW5jcmVhdGljIG1vZGVscywg
+        YW5kIHRvIDUtZmx1b3JvdXJhY2lsIGluIGNvbG9uIGNhbmNlci4gSG93IHRo
+        aXMgaW5jcmVhc2UgaW4gY2hlbW9zZW5zaXRpdml0eSBvY2N1cnJlZCBpcyBu
+        b3QgZW50aXJlbHkga25vd24gYnV0IG1heSBiZSByZWxhdGVkIHRvIEZBSyBp
+        bmhpYml0b3ItbWVkaWF0ZWQgcmVkdWN0aW9uIGluIG51Y2xlYXIgZmFjdG9y
+        LWthcHBhIEIgYWN0aXZpdHkgKDMpLiBJbiBvdmFyaWFuIGNhbmNlciwgS2Fu
+        ZyBldCBhbC4gZGV0ZXJtaW5lZCB0aGF0IGluaGliaXRpb24gb2YgRkFLIHdp
+        dGggZGVmYWN0aW5pYiBlbmhhbmNlZCBzZW5zaXRpdml0eSBvZiB0YXhhbmUt
+        cmVzaXN0YW50IGNlbGwgbGluZXMgdG8gdHJlYXRtZW50IHdpdGggcGFjbGl0
+        YXhlbCwgYSBkcnVnIGNvbW1vbmx5IHVzZWQgaW4gb3ZhcmlhbiBjYW5jZXIu
+        IFRoaXMgZWZmZWN0IHdhcyByZWxhdGVkIHRvIEZBSyBpbmhpYml0aW9uIG92
+        ZXJjb21pbmcgWS1ib3gtYmluZGluZyBwcm90ZWluIDEgKFlCLTEpLW1lZGlh
+        dGVkIHBsYXRpbnVtIHJlc2lzdGFuY2UgaW4gYW4gQUtULWRlcGVuZGVudCBw
+        YXRod2F5ICg3KS4gVGhpcyBleGNpdGluZyB3b3JrIGxlZCB0byB0aGUgcGhh
+        c2UgSS9JYiBzdHVkeSBvZiBkZWZhY3RpbmliIHdpdGggd2Vla2x5IHBhY2xp
+        dGF4ZWwgaW4gcmVjdXJyZW50IG92YXJpYW4gY2FuY2VyIChOQ1QwMTc3ODgw
+        MykuIFRoaXMgdHJpYWwgaGFzIGNvbXBsZXRlZCByZWNydWl0aW5nIGFuZCB3
+        YXMgcHJlc2VudGVkIGF0IEFTQ08gMjAxNCAoOCkuIEluaGliaXRpb24gb2Yg
+        RkFLIGhvbGRzIHByb21pc2UgYXMgYSB0aGVyYXBldXRpYyB0YXJnZXQgYWNy
+        b3NzIGEgbnVtYmVyIG9mIHR1bW9yIHR5cGVzIGFuZCBpbiBjb21iaW5hdGlv
+        biB3aXRoIGEgbnVtYmVyIG9mIGN5dG90b3hpYyBhbmQgdGFyZ2V0ZWQgdGhl
+        cmFwaWVzLjwvQWJzdHJhY3Q+DQogICAgPEF1dGhvckxpc3Q+TW9vcmUsSyx8
+        V2FsdGVyLEEsPC9BdXRob3JMaXN0Pg0KICAgIDxBdXRob3JDb3VudD4yPC9B
+        dXRob3JDb3VudD4NCiAgICA8S2V5d29yZExpc3Q+Rk9DQUwtQURIRVNJT04g
+        S0lOQVNFfEVQSVRIRUxJQUwgT1ZBUklBTi1DQU5DRVJ8QlJFQVNUfE1EUjEg
+        R0VORS1FWFBSRVNTSU9OfERSVUctUkVTSVNUQU5DRXxQUk9HUkVTU0lPTnxN
+        RVRBU1RBU0lTfFNURU18TUFSS0VSIE5BTk9HfEVORE9USEVMSUFMLUNFTEwg
+        RkFLfE9WQVJJQU4gQ0FOQ0VSfG1hbGlnbmFudCBwbGV1cmFsIG1lc290aGVs
+        aW9tYXxEZWZhY3RpbmlifEZvY2FsIGFkaGVzaW9uIGtpbmFzZSAoRkFLKSBp
+        bmhpYml0b3JzfEtSQVMtbXV0YXRlZCBub24tc21hbGwgY2VsbCBsdW5nIGNh
+        bmNlcnxQRi00NTU0ODc4PC9LZXl3b3JkTGlzdD4NCiAgICA8RG9jdW1lbnRU
+        eXBlTGlzdD5BcnRpY2xlPC9Eb2N1bWVudFR5cGVMaXN0Pg0KICAgIDxEb2N1
+        bWVudENhdGVnb3J5PkpvdXJuYWwgRG9jdW1lbnQ8L0RvY3VtZW50Q2F0ZWdv
+        cnk+DQogICAgPE51bWJlck9mUmVmZXJlbmNlcz40NTwvTnVtYmVyT2ZSZWZl
+        cmVuY2VzPg0KICAgIDxUaW1lc0NpdGVkPjA8L1RpbWVzQ2l0ZWQ+DQogICAg
+        PFRpbWVzTm90U2VsZkNpdGVkPjA8L1RpbWVzTm90U2VsZkNpdGVkPg0KICAg
+        IDxQTUlEIHhzaTpuaWw9InRydWUiIC8+DQogICAgPFdvU0l0ZW1JRD4wMDAz
+        NDYwNzc0MDAwMDE8L1dvU0l0ZW1JRD4NCiAgICA8UHVibGljYXRpb25Tb3Vy
+        Y2VUaXRsZT5EUlVHUyBPRiBUSEUgRlVUVVJFPC9QdWJsaWNhdGlvblNvdXJj
+        ZVRpdGxlPg0KICAgIDxWb2x1bWU+Mzk8L1ZvbHVtZT4NCiAgICA8SXNzdWU+
+        MTE8L0lzc3VlPg0KICAgIDxQYWdpbmF0aW9uPjc2Ny03NzM8L1BhZ2luYXRp
+        b24+DQogICAgPFB1YmxpY2F0aW9uRGF0ZT4yMDE0LTExLTAxVDAwOjAwOjAw
+        PC9QdWJsaWNhdGlvbkRhdGU+DQogICAgPFB1YmxpY2F0aW9uWWVhcj4yMDE0
+        PC9QdWJsaWNhdGlvblllYXI+DQogICAgPFB1YmxpY2F0aW9uVHlwZT5Kb3Vy
+        bmFsPC9QdWJsaWNhdGlvblR5cGU+DQogICAgPFB1YmxpY2F0aW9uU3ViamVj
+        dENhdGVnb3J5TGlzdD5QaGFybWFjb2xvZ3kgJmFtcDsgUGhhcm1hY3k8L1B1
+        YmxpY2F0aW9uU3ViamVjdENhdGVnb3J5TGlzdD4NCiAgICA8SVNTTj4wMzc3
+        LTgyODI8L0lTU04+DQogICAgPERPST4xMC4xMzU4L2RvZi4yMDE0LjM5LjEx
+        LjIyMzU4MzQ8L0RPST4NCiAgICA8Q29uZmVyZW5jZVN0YXJ0RGF0ZSB4c2k6
+        bmlsPSJ0cnVlIiAvPg0KICAgIDxDb25mZXJlbmNlRW5kRGF0ZSB4c2k6bmls
+        PSJ0cnVlIiAvPg0KICAgIDxSYW5rIHhzaTpuaWw9InRydWUiIC8+DQogICAg
+        PE9yZGluYWxSYW5rPjExPC9PcmRpbmFsUmFuaz4NCiAgICA8Tm9ybWFsaXpl
+        ZFJhbmsgeHNpOm5pbD0idHJ1ZSIgLz4NCiAgICA8TmV3UHVibGljYXRpb25J
+        dGVtSUQgeHNpOm5pbD0idHJ1ZSIgLz4NCiAgICA8SXNPYnNvbGV0ZT5mYWxz
+        ZTwvSXNPYnNvbGV0ZT4NCiAgICA8Q29weXJpZ2h0UHVibGlzaGVyPlBST1VT
+        IFNDSUVOQ0UsIFNBVS1USE9NU09OIFJFVVRFUlM8L0NvcHlyaWdodFB1Ymxp
+        c2hlcj4NCiAgICA8Q29weXJpZ2h0Q2l0eT5CQVJDRUxPTkE8L0NvcHlyaWdo
+        dENpdHk+DQogICAgPFB1YmxpY2F0aW9uSW1wYWN0RmFjdG9yTGlzdD4wLjI1
+        MywyMDEzLENsb3Nlc3RUb1B1YmxpY2F0aW9uWWVhcnwwLjI1MywyMDEzLE1v
+        c3RSZWNlbnRZZWFyPC9QdWJsaWNhdGlvbkltcGFjdEZhY3Rvckxpc3Q+DQog
+        ICAgPFB1YmxpY2F0aW9uQ2F0ZWdvcnlSYW5raW5nTGlzdD4yNTAvMjU2O1BI
+        QVJNQUNPTE9HWSAmYW1wOyBQSEFSTUFDWTsyMDEzO1NDO0Nsb3Nlc3RUb1B1
+        YmxpY2F0aW9uWWVhcnwyNTAvMjU2O1BIQVJNQUNPTE9HWSAmYW1wOyBQSEFS
+        TUFDWTsyMDEzO1NDO01vc3RSZWNlbnRZZWFyPC9QdWJsaWNhdGlvbkNhdGVn
+        b3J5UmFua2luZ0xpc3Q+DQogICAgPEF1dGhvckNpdGF0aW9uQ291bnRMaXN0
+        PjEsMCwwfDIsMCwwPC9BdXRob3JDaXRhdGlvbkNvdW50TGlzdD4NCiAgICA8
+        Q29weXJpZ2h0U3RhdGVQcm92aW5jZSAvPg0KICAgIDxDb3B5cmlnaHRDb3Vu
+        dHJ5PlNQQUlOPC9Db3B5cmlnaHRDb3VudHJ5Pg0KICA8L1B1YmxpY2F0aW9u
+        SXRlbT4NCiAgPFB1YmxpY2F0aW9uSXRlbT4NCiAgICA8UHVibGljYXRpb25J
+        dGVtSUQ+Njg2OTI3NzM8L1B1YmxpY2F0aW9uSXRlbUlEPg0KICAgIDxUaXRs
+        ZT5QaG90b2R5bmFtaWMgdGhlcmFweSBmb3IgbHVuZyBjYW5jZXIgdHJlYXRt
+        ZW50OiBkZXZlbG9wbWVudCBvZiBhbiBvcnRob3RvcGljIGFuaW1hbCBtb2Rl
+        bDwvVGl0bGU+DQogICAgPEFic3RyYWN0IC8+DQogICAgPEF1dGhvckxpc3Q+
+        TGluZGVubWFubixKLHxMYXJhbmpvLE0sfEFicmFudGVzLEEsTXxTYW50b3Ms
+        Syx8T2xpdmVpcmEsQyx8VGF2YXJlcy1TaWx2YSxFLHxTZXJyYSxBLHxQaW5l
+        aXJvLE0sfFJvY2hhIEdvbmNhbHZlcyxBLHxDYXJ2YWxobyxMLHxCb3RlbGhv
+        LEYsPC9BdXRob3JMaXN0Pg0KICAgIDxBdXRob3JDb3VudD4xMTwvQXV0aG9y
+        Q291bnQ+DQogICAgPEtleXdvcmRMaXN0IC8+DQogICAgPERvY3VtZW50VHlw
+        ZUxpc3Q+TWVldGluZyBBYnN0cmFjdDwvRG9jdW1lbnRUeXBlTGlzdD4NCiAg
+        ICA8RG9jdW1lbnRDYXRlZ29yeT5Db25mZXJlbmNlIFByb2NlZWRpbmcgRG9j
+        dW1lbnQ8L0RvY3VtZW50Q2F0ZWdvcnk+DQogICAgPE51bWJlck9mUmVmZXJl
+        bmNlcyB4c2k6bmlsPSJ0cnVlIiAvPg0KICAgIDxUaW1lc0NpdGVkPjA8L1Rp
+        bWVzQ2l0ZWQ+DQogICAgPFRpbWVzTm90U2VsZkNpdGVkPjA8L1RpbWVzTm90
+        U2VsZkNpdGVkPg0KICAgIDxQTUlEIHhzaTpuaWw9InRydWUiIC8+DQogICAg
+        PFdvU0l0ZW1JRD4wMDAzNDQzODY4MDI0MjA8L1dvU0l0ZW1JRD4NCiAgICA8
+        UHVibGljYXRpb25Tb3VyY2VUaXRsZT5WSVJDSE9XUyBBUkNISVY8L1B1Ymxp
+        Y2F0aW9uU291cmNlVGl0bGU+DQogICAgPFZvbHVtZT40NjU8L1ZvbHVtZT4N
+        CiAgICA8UGFnaW5hdGlvbj5TMzYzLVMzNjM8L1BhZ2luYXRpb24+DQogICAg
+        PFB1YmxpY2F0aW9uRGF0ZT4yMDE0LTA4LTAxVDAwOjAwOjAwPC9QdWJsaWNh
+        dGlvbkRhdGU+DQogICAgPFB1YmxpY2F0aW9uWWVhcj4yMDE0PC9QdWJsaWNh
+        dGlvblllYXI+DQogICAgPFB1YmxpY2F0aW9uVHlwZT5Kb3VybmFsPC9QdWJs
+        aWNhdGlvblR5cGU+DQogICAgPFB1YmxpY2F0aW9uU3ViamVjdENhdGVnb3J5
+        TGlzdD5QYXRob2xvZ3k8L1B1YmxpY2F0aW9uU3ViamVjdENhdGVnb3J5TGlz
+        dD4NCiAgICA8SVNTTj4wOTQ1LTYzMTc8L0lTU04+DQogICAgPENvbmZlcmVu
+        Y2VTdGFydERhdGUgeHNpOm5pbD0idHJ1ZSIgLz4NCiAgICA8Q29uZmVyZW5j
+        ZUVuZERhdGUgeHNpOm5pbD0idHJ1ZSIgLz4NCiAgICA8UmFuayB4c2k6bmls
+        PSJ0cnVlIiAvPg0KICAgIDxPcmRpbmFsUmFuaz4xMjwvT3JkaW5hbFJhbms+
+        DQogICAgPE5vcm1hbGl6ZWRSYW5rIHhzaTpuaWw9InRydWUiIC8+DQogICAg
+        PE5ld1B1YmxpY2F0aW9uSXRlbUlEIHhzaTpuaWw9InRydWUiIC8+DQogICAg
+        PElzT2Jzb2xldGU+ZmFsc2U8L0lzT2Jzb2xldGU+DQogICAgPENvcHlyaWdo
+        dFB1Ymxpc2hlcj5TUFJJTkdFUjwvQ29weXJpZ2h0UHVibGlzaGVyPg0KICAg
+        IDxDb3B5cmlnaHRDaXR5Pk5FVyBZT1JLPC9Db3B5cmlnaHRDaXR5Pg0KICAg
+        IDxQdWJsaWNhdGlvbkltcGFjdEZhY3Rvckxpc3Q+Mi41NiwyMDEzLENsb3Nl
+        c3RUb1B1YmxpY2F0aW9uWWVhcnwyLjU2LDIwMTMsTW9zdFJlY2VudFllYXI8
+        L1B1YmxpY2F0aW9uSW1wYWN0RmFjdG9yTGlzdD4NCiAgICA8UHVibGljYXRp
+        b25DYXRlZ29yeVJhbmtpbmdMaXN0PjI0Lzc2O1BBVEhPTE9HWTsyMDEzO1ND
+        O0Nsb3Nlc3RUb1B1YmxpY2F0aW9uWWVhcnwyNC83NjtQQVRIT0xPR1k7MjAx
+        MztTQztNb3N0UmVjZW50WWVhcjwvUHVibGljYXRpb25DYXRlZ29yeVJhbmtp
+        bmdMaXN0Pg0KICAgIDxBdXRob3JDaXRhdGlvbkNvdW50TGlzdD4xLDAsMHwy
+        LDAsMHwzLDAsMHw0LDAsMHw1LDAsMHw2LDAsMHw3LDAsMHw4LDAsMHw5LDAs
+        MHwxMCwwLDB8MTEsMCwwPC9BdXRob3JDaXRhdGlvbkNvdW50TGlzdD4NCiAg
+        ICA8Q29weXJpZ2h0U3RhdGVQcm92aW5jZT5OWTwvQ29weXJpZ2h0U3RhdGVQ
+        cm92aW5jZT4NCiAgICA8Q29weXJpZ2h0Q291bnRyeT5VTklURUQgU1RBVEVT
+        PC9Db3B5cmlnaHRDb3VudHJ5Pg0KICA8L1B1YmxpY2F0aW9uSXRlbT4NCiAg
+        PFB1YmxpY2F0aW9uSXRlbT4NCiAgICA8UHVibGljYXRpb25JdGVtSUQ+Njg1
+        MTk1MDM8L1B1YmxpY2F0aW9uSXRlbUlEPg0KICAgIDxUaXRsZT5JdGFsaWFu
+        IE11bHRpY2VudGVyIFBoYXNlIElJSSBSYW5kb21pemVkIFN0dWR5IG9mIENp
+        c3BsYXRpbi1FdG9wb3NpZGUgV2l0aCBvciBXaXRob3V0IEJldmFjaXp1bWFi
+        IGFzIEZpcnN0LUxpbmUgVHJlYXRtZW50IGluIEV4dGVuc2l2ZSBTdGFnZSBT
+        bWFsbCBDZWxsIEx1bmcgQ2FuY2VyOiBUcmVhdG1lbnQgUmF0aW9uYWxlIGFu
+        ZCBQcm90b2NvbCBEZXNpZ24gb2YgdGhlIEdPSVJDLUFJRkEgRkFSTTZQTUZK
+        TSBUcmlhbDwvVGl0bGU+DQogICAgPEFic3RyYWN0PkJhY2tncm91bmQ6IE5l
+        b2FuZ2lvZ2VuZXNpcyBpcyBwYXJ0aWN1bGFybHkgYWJ1bmRhbnQgaW4gc21h
+        bGwtY2VsbCBsdW5nIGNhbmNlciAoU0NMQykgYW5kIGlzIGFzc29jaWF0ZWQg
+        d2l0aCBwb29yIHByb2dub3Npcy4gQXMgYSByZXN1bHQgb2YgdGhlIHByb21p
+        c2luZyBuYXR1cmUgb2YgcGhhc2UgSUkgc3R1ZGllcywgYSByYW5kb21pemVk
+        IHBoYXNlIElJSSB0cmlhbCB3YXMgZGVzaWduZWQgdG8gYXNzZXNzIHRoZSBl
+        ZmZpY2FjeSBvZiBhZGRpbmcgYmV2YWNpenVtYWIgdG8gZmlyc3QtbGluZSBj
+        aGVtb3RoZXJhcHkgd2l0aCBjaXNwbGF0aW4tZXRvcG9zaWRlIGZvciB0cmVh
+        dG1lbnQgb2YgZXh0ZW5zaXZlIGRpc2Vhc2UgU0NMQy4gV2UgcHJlc2VudCB0
+        aGUgdHJlYXRtZW50IHJhdGlvbmFsZSBhbmQgc3R1ZHkgZGVzaWduIG9mIEdP
+        SVJDIHRyaWFsIChGQVJNNlBNRkpNIHN0dWR5KSwgYSBtdWx0aWNlbnRlciBy
+        YW5kb21pemVkIHBoYXNlIElJSSBzdHVkeSwgc3VwcG9ydGVkIGJ5IEFJRkEg
+        KEFnZW56aWEgSXRhbGlhbmEgZGVsIEZhcm1hY28pLiBQYXRpZW50cyBhbmQg
+        TWV0aG9kczogUGF0aWVudHMgYXJlIHJhbmRvbWl6ZWQgdG8gcmVjZWl2ZSBl
+        aXRoZXIgY2lzcGxhdGluIDI1bWcvbSgyKSBhbmQgZXRvcG9zaWRlIDEwMG1n
+        L20oMikgaW50cmF2ZW5vdXNseSBvbiBkYXlzIDEgdG8gMyAoY29udHJvbCBh
+        cm0pIG9yIHRoZSBzYW1lIGNoZW1vdGhlcmFweSBjb21iaW5lZCB3aXRoIGJl
+        dmFjaXp1bWFiIDcuNSBtZy9rZyBpbnRyYXZlbm91c2x5IG9uIGRheSAxIChl
+        eHBlcmltZW50YWwgYXJtKS4gVHJlYXRtZW50IGlzIHJlcGVhdGVkIGV2ZXJ5
+        IDMgd2Vla3MgYW5kIGZvciBhIG1heGltdW0gb2YgNiBjb3Vyc2VzLiBQYXRp
+        ZW50cyByYW5kb21pemVkIHRvIHRoZSBleHBlcmltZW50YWwgYXJtIGluIHRo
+        ZSBhYnNlbmNlIG9mIGRpc2Vhc2UgcHJvZ3Jlc3Npb24gYWZ0ZXIgNiBjeWNs
+        ZXMgY29udGludWUgYmV2YWNpenVtYWIgYWxvbmUgdW50aWwgcHJvZ3Jlc3Np
+        b24gb3IgZm9yIGFtYXhpbXVtb2YgMTggY291cnNlcy4gVHVtb3IgYXNzZXNz
+        bWVudCBpcyBkb25lIGV2ZXJ5IDMgY3ljbGVzLiBNYWpvciBlbGlnaWJpbGl0
+        eSBjcml0ZXJpYSBhcmU6IGFnZSAmZ3Q7PSAxOCB5ZWFyczsgaGlzdG9sb2dp
+        Y2FsbHkgb3IgY3l0b2xvZ2ljYWxseSBkb2N1bWVudGVkIGV4dGVuc2l2ZSBk
+        aXNlYXNlIFNDTEM7IEVhc3Rlcm4gQ29vcGVyYXRpdmUgT25jb2xvZ3kgR3Jv
+        dXAgcGVyZm9ybWFuY2Ugc3RhdHVzICZndDs9IDI7IGFkZXF1YXRlIGhlbWF0
+        b2xvZ2ljYWwsIGhlcGF0aWMgYW5kIHJlbmFsIGZ1bmN0aW9uczsgbm8gaGlz
+        dG9yeSBvZiBncmFkZSAyIG9yIGhpZ2hlciBoZW1vcHR5c2lzOyBhbmQgbm8g
+        ZXZpZGVuY2Ugb2YgdHVtb3IgY2F2aXRhdGlvbi4gVGhlIHByaW1hcnkgZW5k
+        IHBvaW50IG9mIHRoaXMgc3R1ZHkgaXMgb3ZlcmFsbCBzdXJ2aXZhbC4gU2Vj
+        b25kYXJ5IGVuZCBwb2ludHMgaW5jbHVkZSByZXNwb25zZSByYXRlLCB0aW1l
+        IHRvIHByb2dyZXNzaW9uLCBhbmQgdG94aWNpdHkuIENvbmNsdXNpb246IEFu
+        IGludGVyaW0gZnV0aWxpdHkgYW5hbHlzaXMgd2FzIHBlcmZvcm1lZCBieSBh
+        biBJbmRlcGVuZGVudCBEYXRhIE1vbml0b3JpbmcgQ29tbWl0dGVlIGluIFNl
+        cHRlbWJlciAyMDEzIGFuZCB0aGUgdHJpYWwgb2J0YWluZWQgYXBwcm92YWwg
+        dG8gY29udGludWUuIEFzIG9mIEp1bHkgMzEsIDIwMTQsIDE3MSBwYXRpZW50
+        cyBvZiAyMDYgcGxhbm5lZCBoYXZlIGJlZW4gcmFuZG9taXplZC4gKEMpIDIw
+        MTUgRWxzZXZpZXIgSW5jLiBBbGwgcmlnaHRzIHJlc2VydmVkLjwvQWJzdHJh
+        Y3Q+DQogICAgPEF1dGhvckxpc3Q+VGlzZW8sTWFyY2VsbG8sfEJvbmksTHVj
+        YSx8QW1icm9zaW8sRnJhbmNlc2NhLHxDYW1lcmluaSxBbmRyZWEsfFZpdGFs
+        ZSxNYXJpYSxHaXVzZXBwYXxCYWxkaW5pLEVkaXR0YSx8Q2luaWVyaSxTYXZl
+        cmlvLHxaYW5lbGxpLEZyYW5jZXNjYSx8RGVmcmFpYSxFZmlzaW8sfFBhc3Nh
+        bGFjcXVhLFJvZG9sZm8sfENyaW5vLEx1Y2lvLHxEYXp6aSxDbGF1ZGlvLHxU
+        aWJhbGRpLENhcm1lbG8sfFR1cm9sbGEsR2lhbm5pLE18RCdBbGVzc2FuZHJv
+        LFZpdG8sfFppbGVtYm8sTmljb2xldHRhLHxSaWNjYXJkaSxGZXJkaW5hbmRv
+        LHxBcmRpenpvbmksQW5kcmVhLDwvQXV0aG9yTGlzdD4NCiAgICA8QXV0aG9y
+        Q291bnQ+MTg8L0F1dGhvckNvdW50Pg0KICAgIDxLZXl3b3JkTGlzdD5WRUdG
+        fElSSU5PVEVDQU58dmFzY3VsYXIgZW5kb3RoZWxpYWwgZ3Jvd3RoIGZhY3Rv
+        cnxTQ0xDfGJldmFjaXp1bWFifGV4dGVuZGVkIGRpc2Vhc2U8L0tleXdvcmRM
+        aXN0Pg0KICAgIDxEb2N1bWVudFR5cGVMaXN0PkVkaXRvcmlhbCBNYXRlcmlh
+        bDwvRG9jdW1lbnRUeXBlTGlzdD4NCiAgICA8RG9jdW1lbnRDYXRlZ29yeT5P
+        dGhlcjwvRG9jdW1lbnRDYXRlZ29yeT4NCiAgICA8TnVtYmVyT2ZSZWZlcmVu
+        Y2VzPjE1PC9OdW1iZXJPZlJlZmVyZW5jZXM+DQogICAgPFRpbWVzQ2l0ZWQ+
+        MDwvVGltZXNDaXRlZD4NCiAgICA8VGltZXNOb3RTZWxmQ2l0ZWQ+MDwvVGlt
+        ZXNOb3RTZWxmQ2l0ZWQ+DQogICAgPFBNSUQ+MjU0NTA4Nzk8L1BNSUQ+DQog
+        ICAgPFdvU0l0ZW1JRD4wMDAzNDY0ODkzMDAwMTE8L1dvU0l0ZW1JRD4NCiAg
+        ICA8UHVibGljYXRpb25Tb3VyY2VUaXRsZT5DTElOSUNBTCBMVU5HIENBTkNF
+        UjwvUHVibGljYXRpb25Tb3VyY2VUaXRsZT4NCiAgICA8Vm9sdW1lPjE2PC9W
+        b2x1bWU+DQogICAgPElzc3VlPjE8L0lzc3VlPg0KICAgIDxQYWdpbmF0aW9u
+        PjY3LTcwPC9QYWdpbmF0aW9uPg0KICAgIDxQdWJsaWNhdGlvbkRhdGU+MjAx
+        NS0wMS0wMVQwMDowMDowMDwvUHVibGljYXRpb25EYXRlPg0KICAgIDxQdWJs
+        aWNhdGlvblllYXI+MjAxNTwvUHVibGljYXRpb25ZZWFyPg0KICAgIDxQdWJs
+        aWNhdGlvblR5cGU+Sm91cm5hbDwvUHVibGljYXRpb25UeXBlPg0KICAgIDxQ
+        dWJsaWNhdGlvblN1YmplY3RDYXRlZ29yeUxpc3Q+T25jb2xvZ3k8L1B1Ymxp
+        Y2F0aW9uU3ViamVjdENhdGVnb3J5TGlzdD4NCiAgICA8SVNTTj4xNTI1LTcz
+        MDQ8L0lTU04+DQogICAgPERPST4xMC4xMDE2L2ouY2xsYy4yMDE0LjA5LjAw
+        MTwvRE9JPg0KICAgIDxDb25mZXJlbmNlU3RhcnREYXRlIHhzaTpuaWw9InRy
+        dWUiIC8+DQogICAgPENvbmZlcmVuY2VFbmREYXRlIHhzaTpuaWw9InRydWUi
+        IC8+DQogICAgPFJhbmsgeHNpOm5pbD0idHJ1ZSIgLz4NCiAgICA8T3JkaW5h
+        bFJhbms+MTM8L09yZGluYWxSYW5rPg0KICAgIDxOb3JtYWxpemVkUmFuayB4
+        c2k6bmlsPSJ0cnVlIiAvPg0KICAgIDxOZXdQdWJsaWNhdGlvbkl0ZW1JRCB4
+        c2k6bmlsPSJ0cnVlIiAvPg0KICAgIDxJc09ic29sZXRlPmZhbHNlPC9Jc09i
+        c29sZXRlPg0KICAgIDxDb3B5cmlnaHRQdWJsaXNoZXI+Q0lHIE1FRElBIEdS
+        T1VQLCBMUDwvQ29weXJpZ2h0UHVibGlzaGVyPg0KICAgIDxDb3B5cmlnaHRD
+        aXR5PkRBTExBUzwvQ29weXJpZ2h0Q2l0eT4NCiAgICA8UHVibGljYXRpb25J
+        bXBhY3RGYWN0b3JMaXN0PjMuMjIsMjAxMyxDbG9zZXN0VG9QdWJsaWNhdGlv
+        blllYXJ8My4yMiwyMDEzLE1vc3RSZWNlbnRZZWFyPC9QdWJsaWNhdGlvbklt
+        cGFjdEZhY3Rvckxpc3Q+DQogICAgPFB1YmxpY2F0aW9uQ2F0ZWdvcnlSYW5r
+        aW5nTGlzdD43OS8yMDM7T05DT0xPR1k7MjAxMztTQztDbG9zZXN0VG9QdWJs
+        aWNhdGlvblllYXJ8NzkvMjAzO09OQ09MT0dZOzIwMTM7U0M7TW9zdFJlY2Vu
+        dFllYXI8L1B1YmxpY2F0aW9uQ2F0ZWdvcnlSYW5raW5nTGlzdD4NCiAgICA8
+        QXV0aG9yQ2l0YXRpb25Db3VudExpc3Q+MSwwLDB8MiwwLDB8MywwLDB8NCww
+        LDB8NSwwLDB8NiwwLDB8NywwLDB8OCwwLDB8OSwwLDB8MTAsMCwwfDExLDAs
+        MHwxMiwwLDB8MTMsMCwwfDE0LDAsMHwxNSwwLDB8MTYsMCwwfDE3LDAsMHwx
+        OCwwLDA8L0F1dGhvckNpdGF0aW9uQ291bnRMaXN0Pg0KICAgIDxDb3B5cmln
+        aHRTdGF0ZVByb3ZpbmNlPlRYPC9Db3B5cmlnaHRTdGF0ZVByb3ZpbmNlPg0K
+        ICAgIDxDb3B5cmlnaHRDb3VudHJ5PlVOSVRFRCBTVEFURVM8L0NvcHlyaWdo
+        dENvdW50cnk+DQogIDwvUHVibGljYXRpb25JdGVtPg0KICA8UHVibGljYXRp
+        b25JdGVtPg0KICAgIDxQdWJsaWNhdGlvbkl0ZW1JRD42ODMxMzUxMTwvUHVi
+        bGljYXRpb25JdGVtSUQ+DQogICAgPFRpdGxlPkVHRlIgTXV0YXRpb24gUG9z
+        aXRpdmUgU3RhZ2UgSVYgTm9uLVNtYWxsLUNlbGwgTHVuZyBDYW5jZXI6IFRy
+        ZWF0bWVudCBCZXlvbmQgUHJvZ3Jlc3Npb24uPC9UaXRsZT4NCiAgICA8QWJz
+        dHJhY3Q+Tm9uLXNtYWxsLWNlbGwgbHVuZyBjYW5jZXIgKE5TQ0xDKSBpcyB0
+        aGUgbGVhZGluZyBjYXVzZSBvZiBkZWF0aCBmcm9tIGNhbmNlciBmb3IgYm90
+        aCBtZW4gYW5kIHdvbWVuLiBDaGVtb3RoZXJhcHkgaXMgdGhlIG1haW5zdGF5
+        IG9mIHRyZWF0bWVudCBpbiBhZHZhbmNlZCBkaXNlYXNlLCBidXQgaXMgb25s
+        eSBtYXJnaW5hbGx5IGVmZmVjdGl2ZS4gSW4gYWJvdXQgMzAlIG9mIHBhdGll
+        bnRzIHdpdGggYWR2YW5jZWQgTlNDTEMgaW4gRWFzdCBBc2lhIGFuZCBpbiAx
+        MC0xNSUgaW4gV2VzdGVybiBjb3VudHJpZXMsIGVwaWRlcm1hbCBncm93dGgg
+        ZmFjdG9yIHJlY2VwdG9yIChFR0ZSKSBtdXRhdGlvbnMgYXJlIGZvdW5kLiBJ
+        biB0aGlzIHBvcHVsYXRpb24sIGZpcnN0LWxpbmUgdHJlYXRtZW50IHdpdGgg
+        dGhlIHR5cm9zaW5lIGtpbmFzZSBpbmhpYml0b3JzIChUS0lzKSBlcmxvdGlu
+        aWIsIGdlZml0aW5pYiwgb3IgYWZhdGluaWIgaXMgcmVjb21tZW5kZWQuIFRo
+        ZSB0cmVhdG1lbnQgYmV5b25kIHByb2dyZXNzaW9uIGlzIGxlc3Mgd2VsbC1k
+        ZWZpbmVkLiBJbiB0aGlzIHBhcGVyLCB3ZSBwcmVzZW50IHRocmVlIHBhdGll
+        bnRzLCBFR0ZSIG11dGF0aW9uIHBvc2l0aXZlLCB3aXRoIGxvY2FsIHByb2dy
+        ZXNzaW9uIGFmdGVyIGFuIGluaXRpYWwgdHJlYXRtZW50IHdpdGggVEtJLiBU
+        aGVzZSBwYXRpZW50cyB3ZXJlIHRyZWF0ZWQgd2l0aCBsb2NhbCByYWRpb3Ro
+        ZXJhcHkuIFRLSSB3YXMgdGVtcG9yYXJpbHkgc3RvcHBlZCBhbmQgcmVzdGFy
+        dGVkIGFmdGVyIHJhZGlvdGhlcmFweS4gV2UgZ2l2ZSBhbiBvdmVydmlldyBv
+        ZiB0aGUgbGl0ZXJhdHVyZSBhbmQgZGlzY3VzcyB0aGUgZGlmZmVyZW50IHRy
+        ZWF0bWVudCBvcHRpb25zIGluIGNhc2Ugb2YgcHJvZ3Jlc3Npb24gYWZ0ZXIg
+        VEtJOiBUS0kgY29udGludWF0aW9uIHdpdGggb3Igd2l0aG91dCBjaGVtb3Ro
+        ZXJhcHksIFRLSSBjb250aW51YXRpb24gd2l0aCBsb2NhbCB0aGVyYXB5LCBh
+        bHRlcm5hdGl2ZSBkb3Npbmcgb3Igc3dpdGNoIHRvIG5leHQtZ2VuZXJhdGlv
+        biBUS0kgb3IgY29tYmluYXRpb24gdGhlcmFweS4gVGhlcmUgYXJlIGRpZmZl
+        cmVudCBvcHRpb25zIGZvciB0cmVhdG1lbnQgYmV5b25kIHByb2dyZXNzaW9u
+        IGluIEVHRlIgbXV0YXRpb24gcG9zaXRpdmUgbWV0YXN0YXRpYyBOU0NMQywg
+        YnV0IHRoZSBvcHRpbWFsIHN0cmF0ZWd5IGlzIHN0aWxsIHRvIGJlIGRlZmlu
+        ZWQuIEZ1cnRoZXIgcmVzZWFyY2ggb24gdGhpcyB0b3BpYyBpcyBvbmdvaW5n
+        LiA8L0Fic3RyYWN0Pg0KICAgIDxBdXRob3JMaXN0PlZhbiBBc3NjaGUsS2F0
+        cmlqbix8RmVyZGluYW5kZSxMaWVzYmV0aCx8TGlldmVucyxZb2xhbmRlLHxW
+        YW5kZWNhc3RlZWxlLEthdHJpZW4sfFN1cm1vbnQsVmVlcmxlLDwvQXV0aG9y
+        TGlzdD4NCiAgICA8QXV0aG9yQ291bnQ+NTwvQXV0aG9yQ291bnQ+DQogICAg
+        PEtleXdvcmRMaXN0PkVHRlIgbXV0YXRpb258YWR2YW5jZWQgbm9uLXNtYWxs
+        LWNlbGwgbHVuZyBjYW5jZXJ8bG9jYWwgcHJvZ3Jlc3Npb258cmFkaW90aGVy
+        YXB5fHR5cm9zaW5lIGtpbmFzZSBpbmhpYml0b3I8L0tleXdvcmRMaXN0Pg0K
+        ICAgIDxEb2N1bWVudFR5cGVMaXN0PkpvdXJuYWwgQXJ0aWNsZTwvRG9jdW1l
+        bnRUeXBlTGlzdD4NCiAgICA8RG9jdW1lbnRDYXRlZ29yeT5Kb3VybmFsIERv
+        Y3VtZW50PC9Eb2N1bWVudENhdGVnb3J5Pg0KICAgIDxOdW1iZXJPZlJlZmVy
+        ZW5jZXMgeHNpOm5pbD0idHJ1ZSIgLz4NCiAgICA8VGltZXNDaXRlZCB4c2k6
+        bmlsPSJ0cnVlIiAvPg0KICAgIDxUaW1lc05vdFNlbGZDaXRlZCB4c2k6bmls
+        PSJ0cnVlIiAvPg0KICAgIDxQTUlEPjI1NTM4ODk0PC9QTUlEPg0KICAgIDxQ
+        dWJsaWNhdGlvblNvdXJjZVRpdGxlPkZyb250aWVycyBpbiBvbmNvbG9neTwv
+        UHVibGljYXRpb25Tb3VyY2VUaXRsZT4NCiAgICA8Vm9sdW1lPjQ8L1ZvbHVt
+        ZT4NCiAgICA8UGFnaW5hdGlvbj4zNTAtPzwvUGFnaW5hdGlvbj4NCiAgICA8
+        UHVibGljYXRpb25EYXRlPjIwMTQtMDEtMDFUMDA6MDA6MDA8L1B1YmxpY2F0
+        aW9uRGF0ZT4NCiAgICA8UHVibGljYXRpb25ZZWFyPjIwMTQ8L1B1YmxpY2F0
+        aW9uWWVhcj4NCiAgICA8UHVibGljYXRpb25TdWJqZWN0Q2F0ZWdvcnlMaXN0
+        IC8+DQogICAgPElTU04+MjIzNC05NDNYPC9JU1NOPg0KICAgIDxET0k+MTAu
+        MzM4OS9mb25jLjIwMTQuMDAzNTA8L0RPST4NCiAgICA8Q29uZmVyZW5jZVN0
+        YXJ0RGF0ZSB4c2k6bmlsPSJ0cnVlIiAvPg0KICAgIDxDb25mZXJlbmNlRW5k
+        RGF0ZSB4c2k6bmlsPSJ0cnVlIiAvPg0KICAgIDxSYW5rIHhzaTpuaWw9InRy
+        dWUiIC8+DQogICAgPE9yZGluYWxSYW5rPjE0PC9PcmRpbmFsUmFuaz4NCiAg
+        ICA8Tm9ybWFsaXplZFJhbmsgeHNpOm5pbD0idHJ1ZSIgLz4NCiAgICA8TmV3
+        UHVibGljYXRpb25JdGVtSUQgeHNpOm5pbD0idHJ1ZSIgLz4NCiAgICA8SXNP
+        YnNvbGV0ZT5mYWxzZTwvSXNPYnNvbGV0ZT4NCiAgICA8Q29weXJpZ2h0UHVi
+        bGlzaGVyIC8+DQogICAgPENvcHlyaWdodENpdHkgLz4NCiAgICA8Q29weXJp
+        Z2h0U3RhdGVQcm92aW5jZSAvPg0KICAgIDxDb3B5cmlnaHRDb3VudHJ5PlNX
+        SVRaRVJMQU5EPC9Db3B5cmlnaHRDb3VudHJ5Pg0KICA8L1B1YmxpY2F0aW9u
+        SXRlbT4NCiAgPFB1YmxpY2F0aW9uSXRlbT4NCiAgICA8UHVibGljYXRpb25J
+        dGVtSUQ+NjgxODE0MjE8L1B1YmxpY2F0aW9uSXRlbUlEPg0KICAgIDxUaXRs
+        ZT5MdW5nIENhbmNlciBUcmVhdG1lbnQgRGlzcGFyaXRpZXMgaW4gQ2hpbmE6
+        IEEgUXVlc3Rpb24gaW4gTmVlZCBvZiBhbiBBbnN3ZXI8L1RpdGxlPg0KICAg
+        IDxBYnN0cmFjdD5CYWNrZ3JvdW5kLiBTdWJzdGFudGlhbCBwcm9ncmVzcyBo
+        YXMgYmVlbiBtYWRlIGluIHRoZSB0cmVhdG1lbnQgb2YgbWFsaWduYW5jaWVz
+        IGluIHRoZSBQZW9wbGUncyBSZXB1YmxpYyBvZiBDaGluYSBpbiByZWNlbnQg
+        eWVhcnMuIFRoZSBnb2FsIG9mIHRoaXMgc3R1ZHkgd2FzIHRvIGlkZW50aWZ5
+        IHRoZSBleHRlbnQgdG8gd2hpY2ggbmF0aW9uYWwgdHJlYXRtZW50IGd1aWRl
+        bGluZXMgYXJlIGJlaW5nIHVzZWQgdG8gY3VzdG9taXplIHBhdGllbnQgY2Fy
+        ZSBpbiBsdW5nIGNhbmNlciBhbmQgdG8gYW5hbHl6ZSB0aGUgcmVhc29ucyBm
+        b3IgdHJlYXRtZW50IGRpc3Bhcml0aWVzLiAgTWV0aG9kcy4gUGF0aWVudCBj
+        aGFyYWN0ZXJpc3RpY3MgYW5kIHRyZWF0bWVudHMgd2VyZSBpbnZlc3RpZ2F0
+        ZWQgcmV0cm9zcGVjdGl2ZWx5IGZvciB0aGUgcGVyaW9kIGZyb20gT2N0b2Jl
+        ciAyMDA0IHRvIEphbnVhcnkgMjAxMyB1c2luZyB0aGUgb3V0cGF0aWVudCBk
+        YXRhYmFzZSBvZiB0aGUgR3Vhbmdkb25nIEx1bmcgQ2FuY2VyIEluc3RpdHV0
+        ZSAoR0xDSSkgaW4gQ2hpbmEuICBSZXN1bHRzLiBBIHRvdGFsIG9mIDIsNTM1
+        IG91dHBhdGllbnRzIHdpdGggbHVuZyBjYW5jZXIgd2VyZSBzdHVkaWVkIGlu
+        IHRoaXMgcmV0cm9zcGVjdGl2ZSBhbmFseXNpcy4gVGhlIHRyZWF0bWVudCBk
+        aXNwYXJpdHkgd2FzIDQ1LjMlLiBPdmVyYWxsLCAyMC42JSBvZiBwYXRpZW50
+        cyB3aXRoIHN0YWdlIEkgbm9uLXNtYWxsIGNlbGwgbHVuZyBjYW5jZXIgKE5T
+        Q0xDKSB3ZXJlIG92ZXJ0cmVhdGVkLCBhbmQgMjAuMSUgb2Ygc3RhZ2UgSUkg
+        cGF0aWVudHMgd2VyZSB1bmRlcnRyZWF0ZWQuIE9ubHkgMTkuNiUgb2Ygc3Rh
+        Z2UgSUlJQSBwYXRpZW50cyBhbmQgMzAuNyUgb2Ygc3RhZ2UgSUlJQiBwYXRp
+        ZW50cyB1bmRlcndlbnQgdGhlIHJlY29tbWVuZGVkIGNvbWJpbmF0aW9uIG9m
+        IGNoZW1vdGhlcmFweSBhbmQgcmFkaW90aGVyYXB5LCByZXNwZWN0aXZlbHku
+        IEZvciBhZHZhbmNlZCBOU0NMQywgdGhlIGdyZWF0ZXN0IHRyZWF0bWVudCBk
+        aXNwYXJpdHkgYXBwZWFyZWQgaW4gdGhlIHNlY29uZC1saW5lIHNldHRpbmcg
+        YW5kIGJleW9uZC4gUGF0aWVudHMgd2hvIHdlcmUgcG9zaXRpdmUgZm9yIGVw
+        aWRlcm1hbCBncm93dGggZmFjdG9yIHJlY2VwdG9yIChFR0ZSKSBhbmQgcmVj
+        ZWl2aW5nIEVHRlIgdHlyb3NpbmUga2luYXNlIGluaGliaXRvcnMgZXhwZXJp
+        ZW5jZWQgc2lnbmlmaWNhbnQgcHJvbG9uZ2F0aW9uIG9mIHN1cnZpdmFsIGNv
+        bXBhcmVkIHdpdGggcGF0aWVudHMgd2hvIHdlcmUgRUdGUiBuZWdhdGl2ZSBv
+        ciB3aG9zZSBFR0ZSIG11dGF0aW9uIHN0YXR1cyB3YXMgdW5rbm93biAoaGF6
+        YXJkIHJhdGlvOiAwLjc5OyBwID0gLjAzNykuIFRoZSB0cmVhdG1lbnQgZGlz
+        cGFyaXRpZXMgd2VyZSBzaWduaWZpY2FudGx5IGxhcmdlciBhbW9uZyBwYXRp
+        ZW50cyBhZ2VkIHlvdW5nZXIgdGhhbiA2NSB5ZWFycyBhbmQgaW4gcGF0aWVu
+        dHMgZnJvbSBkZXZlbG9waW5nIHJlZ2lvbnMgY29tcGFyZWQgd2l0aCBwYXRp
+        ZW50cyBhZ2VkIDY1IHllYXJzIGFuZCBvbGRlciBhbmQgZnJvbSBkZXZlbG9w
+        ZWQgcmVnaW9ucywgcmVzcGVjdGl2ZWx5IChwICZsdDsgLjAwMSwgcCA9IC4w
+        NDYpLiBUaGUgZGlmZmVyZW5jZSBpbiB0cmVhdG1lbnQgZGlzcGFyaXR5IHdh
+        cyBzdGF0aXN0aWNhbGx5IHNpZ25pZmljYW50IGJldHdlZW4gR0xDSSBhbmQg
+        b3RoZXIgaG9zcGl0YWxzIChwICZsdDsgLjAwMSkuICBDb25jbHVzaW9uLiBU
+        aGlzIHJldHJvc3BlY3RpdmUgc3R1ZHkgb2YgYSBsYXJnZSBudW1iZXIgb2Yg
+        cGF0aWVudHMgZnJvbSBhbiBvdXRwYXRpZW50IG9uY29sb2d5IGRhdGFiYXNl
+        IGRlbW9uc3RyYXRlZCBsYXJnZSBkaXNwYXJpdGllcyBpbiB0aGUgdHJlYXRt
+        ZW50IG9mIGx1bmcgY2FuY2VyIGluIENoaW5hLiBJdCBpcyBpbXBvcnRhbnQg
+        dG8gZGV2ZWxvcCBhIG5ldyBndWlkZWxpbmUgZm9yIHJlY29tbWVuZGF0aW9u
+        cyB0aGF0IGFyZSBiYXNlZCBvbiByZXNvdXJjZSBjbGFzc2lmaWNhdGlvbi48
+        L0Fic3RyYWN0Pg0KICAgIDxBdXRob3JMaXN0PllhbmcsTHUtTHUsfFpoYW5n
+        LFh1LUNoYW8sfFlhbmcsWHVlLU5pbmcsfFlhbmcsSmluLUppLHxXYW5nLFpo
+        ZW4sfENoZW4sSHVhLUp1bix8WWFuLEhvbmctSG9uZyx8WHUsQ2hvbmctUnVp
+        LHxHdWFuLEppLUxpbix8SGUsWWFuLXlhbix8WmhvbmcsV2VuLVpoYW8sfEFu
+        LFNoZS1KdWFuLHxXdSxZaS1Mb25nLDwvQXV0aG9yTGlzdD4NCiAgICA8QXV0
+        aG9yQ291bnQ+MTM8L0F1dGhvckNvdW50Pg0KICAgIDxLZXl3b3JkTGlzdD5Q
+        SEFTRS1JSUkgVFJJQUx8U1VSVklWQUx8RE9DRVRBWEVMfFFVQUxJVFl8Q0hF
+        TU9USEVSQVBZfENPTkNVUlJFTlR8Q0FSRXxTRVFVRU5USUFMIENIRU1PUkFE
+        SU9USEVSQVBZfGx1bmcgY2FuY2VyfHJldHJvc3BlY3RpdmUgc3R1ZGllc3xQ
+        ZW9wbGUncyBSZXB1YmxpYyBvZiBDaGluYXxUcmVhdG1lbnQgZGlzcGFyaXR5
+        PC9LZXl3b3JkTGlzdD4NCiAgICA8RG9jdW1lbnRUeXBlTGlzdD5BcnRpY2xl
+        PC9Eb2N1bWVudFR5cGVMaXN0Pg0KICAgIDxEb2N1bWVudENhdGVnb3J5Pkpv
+        dXJuYWwgRG9jdW1lbnQ8L0RvY3VtZW50Q2F0ZWdvcnk+DQogICAgPE51bWJl
+        ck9mUmVmZXJlbmNlcz4xNzwvTnVtYmVyT2ZSZWZlcmVuY2VzPg0KICAgIDxU
+        aW1lc0NpdGVkPjE8L1RpbWVzQ2l0ZWQ+DQogICAgPFRpbWVzTm90U2VsZkNp
+        dGVkPjE8L1RpbWVzTm90U2VsZkNpdGVkPg0KICAgIDxQTUlEPjI1MjIzNDYz
+        PC9QTUlEPg0KICAgIDxXb1NJdGVtSUQ+MDAwMzQzOTEwNTAwMDE0PC9Xb1NJ
+        dGVtSUQ+DQogICAgPFB1YmxpY2F0aW9uU291cmNlVGl0bGU+T05DT0xPR0lT
+        VDwvUHVibGljYXRpb25Tb3VyY2VUaXRsZT4NCiAgICA8Vm9sdW1lPjE5PC9W
+        b2x1bWU+DQogICAgPElzc3VlPjEwPC9Jc3N1ZT4NCiAgICA8UGFnaW5hdGlv
+        bj4xMDg0LTEwOTA8L1BhZ2luYXRpb24+DQogICAgPFB1YmxpY2F0aW9uRGF0
+        ZT4yMDE0LTEwLTAxVDAwOjAwOjAwPC9QdWJsaWNhdGlvbkRhdGU+DQogICAg
+        PFB1YmxpY2F0aW9uWWVhcj4yMDE0PC9QdWJsaWNhdGlvblllYXI+DQogICAg
+        PFB1YmxpY2F0aW9uVHlwZT5Kb3VybmFsPC9QdWJsaWNhdGlvblR5cGU+DQog
+        ICAgPFB1YmxpY2F0aW9uU3ViamVjdENhdGVnb3J5TGlzdD5PbmNvbG9neTwv
+        UHVibGljYXRpb25TdWJqZWN0Q2F0ZWdvcnlMaXN0Pg0KICAgIDxJU1NOPjEw
+        ODMtNzE1OTwvSVNTTj4NCiAgICA8RE9JPjEwLjE2MzQvdGhlb25jb2xvZ2lz
+        dC4yMDE0LTAwMDc8L0RPST4NCiAgICA8Q29uZmVyZW5jZVN0YXJ0RGF0ZSB4
+        c2k6bmlsPSJ0cnVlIiAvPg0KICAgIDxDb25mZXJlbmNlRW5kRGF0ZSB4c2k6
+        bmlsPSJ0cnVlIiAvPg0KICAgIDxSYW5rIHhzaTpuaWw9InRydWUiIC8+DQog
+        ICAgPE9yZGluYWxSYW5rPjE1PC9PcmRpbmFsUmFuaz4NCiAgICA8Tm9ybWFs
+        aXplZFJhbmsgeHNpOm5pbD0idHJ1ZSIgLz4NCiAgICA8TmV3UHVibGljYXRp
+        b25JdGVtSUQgeHNpOm5pbD0idHJ1ZSIgLz4NCiAgICA8SXNPYnNvbGV0ZT5m
+        YWxzZTwvSXNPYnNvbGV0ZT4NCiAgICA8Q29weXJpZ2h0UHVibGlzaGVyPkFM
+        UEhBTUVEIFBSRVNTPC9Db3B5cmlnaHRQdWJsaXNoZXI+DQogICAgPENvcHly
+        aWdodENpdHk+RFVSSEFNPC9Db3B5cmlnaHRDaXR5Pg0KICAgIDxQdWJsaWNh
+        dGlvbkltcGFjdEZhY3Rvckxpc3Q+NC41NCwyMDEzLENsb3Nlc3RUb1B1Ymxp
+        Y2F0aW9uWWVhcnw0LjU0LDIwMTMsTW9zdFJlY2VudFllYXI8L1B1YmxpY2F0
+        aW9uSW1wYWN0RmFjdG9yTGlzdD4NCiAgICA8UHVibGljYXRpb25DYXRlZ29y
+        eVJhbmtpbmdMaXN0PjQ0LzIwMztPTkNPTE9HWTsyMDEzO1NDO0Nsb3Nlc3RU
+        b1B1YmxpY2F0aW9uWWVhcnw0NC8yMDM7T05DT0xPR1k7MjAxMztTQztNb3N0
+        UmVjZW50WWVhcjwvUHVibGljYXRpb25DYXRlZ29yeVJhbmtpbmdMaXN0Pg0K
+        ICAgIDxBdXRob3JDaXRhdGlvbkNvdW50TGlzdD4xLDAsMXwyLDAsMXwzLDAs
+        MXw0LDAsMXw1LDAsMXw2LDAsMXw3LDAsMXw4LDAsMXw5LDAsMXwxMCwwLDF8
+        MTEsMCwxfDEyLDAsMXwxMywwLDE8L0F1dGhvckNpdGF0aW9uQ291bnRMaXN0
+        Pg0KICAgIDxDb3B5cmlnaHRTdGF0ZVByb3ZpbmNlPk5DPC9Db3B5cmlnaHRT
+        dGF0ZVByb3ZpbmNlPg0KICAgIDxDb3B5cmlnaHRDb3VudHJ5PlVOSVRFRCBT
+        VEFURVM8L0NvcHlyaWdodENvdW50cnk+DQogIDwvUHVibGljYXRpb25JdGVt
+        Pg0KICA8UHVibGljYXRpb25JdGVtPg0KICAgIDxQdWJsaWNhdGlvbkl0ZW1J
+        RD42ODE4MTA1ODwvUHVibGljYXRpb25JdGVtSUQ+DQogICAgPFRpdGxlPlNv
+        Y2lvZWNvbm9taWMgU3RhdHVzIElzIEFzc29jaWF0ZWQgd2l0aCBEZXByZXNz
+        aXZlIFNldmVyaXR5IEFtb25nIFBhdGllbnRzIHdpdGggQWR2YW5jZWQgTm9u
+        LVNtYWxsLUNlbGwgTHVuZyBDYW5jZXI6IFRyZWF0bWVudCBTZXR0aW5nIGFu
+        ZCBNaW5vcml0eSBTdGF0dXMgRG8gTm90IE1ha2UgYSBEaWZmZXJlbmNlPC9U
+        aXRsZT4NCiAgICA8QWJzdHJhY3Q+SW50cm9kdWN0aW9uOiBOb24tc21hbGwt
+        Y2VsbCBsdW5nIGNhbmNlciAoTlNDTEMpIGlzIHRoZSBsZWFkaW5nIGNhdXNl
+        IG9mIGNhbmNlci1yZWxhdGVkIG1vcmJpZGl0eSBhbmQgbW9ydGFsaXR5LiBV
+        bmZvcnR1bmF0ZWx5LCBwYXRpZW50cyB3aXRoIE5TQ0xDIGhhdmUgcmVsYXRp
+        dmVseSBwb29yIHN1cnZpdmFsIHJhdGVzIGNvbXBhcmVkIHdpdGggcGF0aWVu
+        dHMgZGlhZ25vc2VkIHdpdGggbW9zdCBvdGhlciB0eXBlcyBvZiBjYW5jZXIu
+        IEFjY29yZGluZ2x5LCBtYW5hZ2luZyBwaHlzaWNhbCBhbmQgbWVudGFsIGhl
+        YWx0aCBzeW1wdG9tcyBhcmUgaW1wb3J0YW50IHRyZWF0bWVudCBnb2Fscy4g
+        SW4gdGhlIGN1cnJlbnQgaW52ZXN0aWdhdGlvbiwgd2Ugc291Z2h0IHRvIGRl
+        dGVybWluZSB3aGV0aGVyIGluZGl2aWR1YWwgc29jaW9lY29ub21pYyBzdGF0
+        dXMgKFNFUzsgYXMgaW5kZXhlZCBieSBsZXZlbCBvZiBlZHVjYXRpb24pLCBy
+        YWNpYWwvZXRobmljIG1pbm9yaXR5IHN0YXR1cywgYW5kIGhvc3BpdGFsIHR5
+        cGUgKHB1YmxpYyB2ZXJzdXMgdGVydGlhcnkgY2FyZSBjZW50ZXIpIHdlcmUg
+        YXNzb2NpYXRlZCB3aXRoIE5TQ0xDIGNhbmNlciBwYXRpZW50cycgZGVwcmVz
+        c2l2ZSBzZXZlcml0eS4gSW1wb3J0YW50bHksIHdlIGludmVzdGlnYXRlZCB3
+        aGV0aGVyIE5TQ0xDIHBhdGllbnRzJyBpbmRpdmlkdWFsIFNFUyB3YXMgbW9y
+        ZSBvciBsZXNzIHByb2dub3N0aWMgb2YgdGhlaXIgZGVwcmVzc2l2ZSBzZXZl
+        cml0eSBjb21wYXJlZCB3aXRoIG1pbm9yaXR5IHN0YXR1cyBhbmQgdGhlIGhv
+        c3BpdGFsIGNvbnRleHQgd2hlcmUgdGhleSByZWNlaXZlZCB0cmVhdG1lbnQu
+        ICBNZXRob2RzOiBQYXRpZW50cyBzY2hlZHVsZWQgZm9yIGNoZW1vdGhlcmFw
+        eSB3ZXJlIGFzc2Vzc2VkIGZvciBkZXByZXNzZWQgbW9vZCBieSB0aGUgQmVj
+        ayBEZXByZXNzaW9uIEludmVudG9yeS1JSSAoQkRJLUlJKS4gRGF0YSB3ZXJl
+        IGNvbGxlY3RlZCBhdCBiYXNlbGluZSBhbmQgYXQgYXBwcm94aW1hdGVseSA2
+        LCAxMiwgYW5kIDE4IHdlZWtzLiAgUmVzdWx0czogTlNDTEMgcGF0aWVudHMg
+        d2l0aCBsZXNzIGVkdWNhdGlvbiBoYWQgbW9yZSBkZXByZXNzaXZlIHNldmVy
+        aXR5IHRoYW4gdGhvc2Ugd2l0aCBtb3JlIGVkdWNhdGlvbi4gVHJlYXRtZW50
+        IHNldHRpbmcgYW5kIG1pbm9yaXR5IHN0YXR1cyB3ZXJlIG5vdCBhc3NvY2lh
+        dGVkIHdpdGggZGVwcmVzc2l2ZSBzZXZlcml0eS4gVGhlIGludGVyYWN0aW9u
+        IGJldHdlZW4gZWR1Y2F0aW9uIGxldmVsIGFuZCB0cmVhdG1lbnQgc2V0dGlu
+        ZyBwcmVkaWN0aW5nIGRlcHJlc3NpdmUgc2V2ZXJpdHkgd2FzIG5vdCBzaWdu
+        aWZpY2FudCwgc3VnZ2VzdGluZyB0aGF0IHRoZSBhc3NvY2lhdGlvbiBiZXR3
+        ZWVuIGVkdWNhdGlvbiBsZXZlbCBhbmQgZGVwcmVzc2l2ZSBzZXZlcml0eSBk
+        aWQgbm90IGRpZmZlciBieSB0cmVhdG1lbnQgc2V0dGluZy4gIENvbmNsdXNp
+        b246IE91ciBzdHVkeSBicmluZ3MgaGVpZ2h0ZW5lZCBhd2FyZW5lc3MgdG8g
+        dGhlIHN1YnN0YW50aWFsLCBwZXJzaXN0ZW50IFNFUyBkaWZmZXJlbmNlcyB0
+        aGF0IGV4aXN0IGluIGRlcHJlc3NpdmUgc2V2ZXJpdHkgYW1vbmcgbGF0ZS1z
+        dGFnZSBOU0NMQyBwYXRpZW50cy4gRnVydGhlcm1vcmUsIHRoZXNlIGZpbmRp
+        bmdzIHNlZW0gdG8gcGVyc2lzdCwgcmVnYXJkbGVzcyBvZiBtaW5vcml0eSBz
+        dGF0dXMgYW5kIHdoZXRoZXIgdGhlIHBhdGllbnQgaXMgdHJlYXRlZCBhdCBh
+        IHB1YmxpYyBob3NwaXRhbCBvciB0ZXJ0aWFyeSBjYW5jZXIgY2VudGVyLjwv
+        QWJzdHJhY3Q+DQogICAgPEF1dGhvckxpc3Q+RmFndW5kZXMsQ2hyaXN0b3Bo
+        ZXIsfEpvbmVzLERlc2lyZWUsfFZpY2hheWEsRWxpc2FiZXRoLHxMdSxDaGFy
+        bGVzLHxDbGVlbGFuZCxDaGFybGVzLFM8L0F1dGhvckxpc3Q+DQogICAgPEF1
+        dGhvckNvdW50PjU8L0F1dGhvckNvdW50Pg0KICAgIDxLZXl3b3JkTGlzdD5I
+        RUFMVEh8U09DSUFMIFNVUFBPUlR8UVVBTElUWS1PRi1MSUZFfERJU1BBUklU
+        SUVTfFJJU0stRkFDVE9SU3xWSUVXfFBBTExJQVRJVkUgQ0FSRXxNSVNTSU5H
+        IERBVEF8cXVhbGl0eSBvZiBsaWZlfHNvY2lvZWNvbm9taWMgc3RhdHVzfG5v
+        bi1zbWFsbC1jZWxsIGx1bmcgY2FuY2VyfGRlcHJlc3Npb258bWVkaWNhbGx5
+        IHVuZGVyc2VydmVkPC9LZXl3b3JkTGlzdD4NCiAgICA8RG9jdW1lbnRUeXBl
+        TGlzdD5BcnRpY2xlPC9Eb2N1bWVudFR5cGVMaXN0Pg0KICAgIDxEb2N1bWVu
+        dENhdGVnb3J5PkpvdXJuYWwgRG9jdW1lbnQ8L0RvY3VtZW50Q2F0ZWdvcnk+
+        DQogICAgPE51bWJlck9mUmVmZXJlbmNlcz4zMTwvTnVtYmVyT2ZSZWZlcmVu
+        Y2VzPg0KICAgIDxUaW1lc0NpdGVkPjA8L1RpbWVzQ2l0ZWQ+DQogICAgPFRp
+        bWVzTm90U2VsZkNpdGVkPjA8L1RpbWVzTm90U2VsZkNpdGVkPg0KICAgIDxQ
+        TUlEPjI1MTcwNjQwPC9QTUlEPg0KICAgIDxXb1NJdGVtSUQ+MDAwMzQ0MzY4
+        MDAwMDEwPC9Xb1NJdGVtSUQ+DQogICAgPFB1YmxpY2F0aW9uU291cmNlVGl0
+        bGU+Sk9VUk5BTCBPRiBUSE9SQUNJQyBPTkNPTE9HWTwvUHVibGljYXRpb25T
+        b3VyY2VUaXRsZT4NCiAgICA8Vm9sdW1lPjk8L1ZvbHVtZT4NCiAgICA8SXNz
+        dWU+MTA8L0lzc3VlPg0KICAgIDxQYWdpbmF0aW9uPjE0NTktMTQ2MzwvUGFn
+        aW5hdGlvbj4NCiAgICA8UHVibGljYXRpb25EYXRlPjIwMTQtMTAtMDFUMDA6
+        MDA6MDA8L1B1YmxpY2F0aW9uRGF0ZT4NCiAgICA8UHVibGljYXRpb25ZZWFy
+        PjIwMTQ8L1B1YmxpY2F0aW9uWWVhcj4NCiAgICA8UHVibGljYXRpb25UeXBl
+        PkpvdXJuYWw8L1B1YmxpY2F0aW9uVHlwZT4NCiAgICA8UHVibGljYXRpb25T
+        dWJqZWN0Q2F0ZWdvcnlMaXN0Pk9uY29sb2d5fFJlc3BpcmF0b3J5IFN5c3Rl
+        bTwvUHVibGljYXRpb25TdWJqZWN0Q2F0ZWdvcnlMaXN0Pg0KICAgIDxJU1NO
+        PjE1NTYtMDg2NDwvSVNTTj4NCiAgICA8RE9JPjEwLjEwOTcvSlRPLjAwMDAw
+        MDAwMDAwMDAyODQ8L0RPST4NCiAgICA8Q29uZmVyZW5jZVN0YXJ0RGF0ZSB4
+        c2k6bmlsPSJ0cnVlIiAvPg0KICAgIDxDb25mZXJlbmNlRW5kRGF0ZSB4c2k6
+        bmlsPSJ0cnVlIiAvPg0KICAgIDxSYW5rIHhzaTpuaWw9InRydWUiIC8+DQog
+        ICAgPE9yZGluYWxSYW5rPjE2PC9PcmRpbmFsUmFuaz4NCiAgICA8Tm9ybWFs
+        aXplZFJhbmsgeHNpOm5pbD0idHJ1ZSIgLz4NCiAgICA8TmV3UHVibGljYXRp
+        b25JdGVtSUQgeHNpOm5pbD0idHJ1ZSIgLz4NCiAgICA8SXNPYnNvbGV0ZT5m
+        YWxzZTwvSXNPYnNvbGV0ZT4NCiAgICA8Q29weXJpZ2h0UHVibGlzaGVyPkxJ
+        UFBJTkNPVFQgV0lMTElBTVMgJmFtcDsgV0lMS0lOUzwvQ29weXJpZ2h0UHVi
+        bGlzaGVyPg0KICAgIDxDb3B5cmlnaHRDaXR5PlBISUxBREVMUEhJQTwvQ29w
+        eXJpZ2h0Q2l0eT4NCiAgICA8UHVibGljYXRpb25JbXBhY3RGYWN0b3JMaXN0
+        PjUuOCwyMDEzLENsb3Nlc3RUb1B1YmxpY2F0aW9uWWVhcnw1LjgsMjAxMyxN
+        b3N0UmVjZW50WWVhcjwvUHVibGljYXRpb25JbXBhY3RGYWN0b3JMaXN0Pg0K
+        ICAgIDxQdWJsaWNhdGlvbkNhdGVnb3J5UmFua2luZ0xpc3Q+MjYvMjAzO09O
+        Q09MT0dZOzIwMTM7U0M7Q2xvc2VzdFRvUHVibGljYXRpb25ZZWFyfDUvNTQ7
+        UkVTUElSQVRPUlkgU1lTVEVNOzIwMTM7U0M7Q2xvc2VzdFRvUHVibGljYXRp
+        b25ZZWFyfDI2LzIwMztPTkNPTE9HWTsyMDEzO1NDO01vc3RSZWNlbnRZZWFy
+        fDUvNTQ7UkVTUElSQVRPUlkgU1lTVEVNOzIwMTM7U0M7TW9zdFJlY2VudFll
+        YXI8L1B1YmxpY2F0aW9uQ2F0ZWdvcnlSYW5raW5nTGlzdD4NCiAgICA8QXV0
+        aG9yQ2l0YXRpb25Db3VudExpc3Q+MSwwLDB8MiwwLDB8MywwLDB8NCwwLDB8
+        NSwwLDA8L0F1dGhvckNpdGF0aW9uQ291bnRMaXN0Pg0KICAgIDxDb3B5cmln
+        aHRTdGF0ZVByb3ZpbmNlPlBBPC9Db3B5cmlnaHRTdGF0ZVByb3ZpbmNlPg0K
+        ICAgIDxDb3B5cmlnaHRDb3VudHJ5PlVOSVRFRCBTVEFURVM8L0NvcHlyaWdo
+        dENvdW50cnk+DQogIDwvUHVibGljYXRpb25JdGVtPg0KICA8UHVibGljYXRp
+        b25JdGVtPg0KICAgIDxQdWJsaWNhdGlvbkl0ZW1JRD42ODAzNTgzMjwvUHVi
+        bGljYXRpb25JdGVtSUQ+DQogICAgPFRpdGxlPkRldmVsb3BtZW50IGluIGx1
+        bmcgY2FuY2VyIHRyZWF0bWVudCAtIGZyb20gb25lIHNpemUgZml0cyBhbGwg
+        dG8gcGVyc29uYWxpc2VkIHRoZXJhcHk8L1RpdGxlPg0KICAgIDxBYnN0cmFj
+        dCAvPg0KICAgIDxBdXRob3JMaXN0PkVzcGVyc2VuLEIsPC9BdXRob3JMaXN0
+        Pg0KICAgIDxBdXRob3JDb3VudD4xPC9BdXRob3JDb3VudD4NCiAgICA8S2V5
+        d29yZExpc3QgLz4NCiAgICA8RG9jdW1lbnRUeXBlTGlzdD5NZWV0aW5nIEFi
+        c3RyYWN0PC9Eb2N1bWVudFR5cGVMaXN0Pg0KICAgIDxEb2N1bWVudENhdGVn
+        b3J5PkNvbmZlcmVuY2UgUHJvY2VlZGluZyBEb2N1bWVudDwvRG9jdW1lbnRD
+        YXRlZ29yeT4NCiAgICA8TnVtYmVyT2ZSZWZlcmVuY2VzPjU8L051bWJlck9m
+        UmVmZXJlbmNlcz4NCiAgICA8VGltZXNDaXRlZD4wPC9UaW1lc0NpdGVkPg0K
+        ICAgIDxUaW1lc05vdFNlbGZDaXRlZD4wPC9UaW1lc05vdFNlbGZDaXRlZD4N
+        CiAgICA8UE1JRCB4c2k6bmlsPSJ0cnVlIiAvPg0KICAgIDxXb1NJdGVtSUQ+
+        MDAwMzQzMzYzNTAwMDAyPC9Xb1NJdGVtSUQ+DQogICAgPFB1YmxpY2F0aW9u
+        U291cmNlVGl0bGU+RVVST1BFQU4gSk9VUk5BTCBPRiBPTkNPTE9HWSBOVVJT
+        SU5HPC9QdWJsaWNhdGlvblNvdXJjZVRpdGxlPg0KICAgIDxWb2x1bWU+MTg8
+        L1ZvbHVtZT4NCiAgICA8UGFnaW5hdGlvbj5TMS1TMTwvUGFnaW5hdGlvbj4N
+        CiAgICA8UHVibGljYXRpb25EYXRlPjIwMTQtMDktMDFUMDA6MDA6MDA8L1B1
+        YmxpY2F0aW9uRGF0ZT4NCiAgICA8UHVibGljYXRpb25ZZWFyPjIwMTQ8L1B1
+        YmxpY2F0aW9uWWVhcj4NCiAgICA8UHVibGljYXRpb25UeXBlPkpvdXJuYWw8
+        L1B1YmxpY2F0aW9uVHlwZT4NCiAgICA8UHVibGljYXRpb25TdWJqZWN0Q2F0
+        ZWdvcnlMaXN0Pk9uY29sb2d5fE51cnNpbmc8L1B1YmxpY2F0aW9uU3ViamVj
+        dENhdGVnb3J5TGlzdD4NCiAgICA8SVNTTj4xNDYyLTM4ODk8L0lTU04+DQog
+        ICAgPENvbmZlcmVuY2VTdGFydERhdGUgeHNpOm5pbD0idHJ1ZSIgLz4NCiAg
+        ICA8Q29uZmVyZW5jZUVuZERhdGUgeHNpOm5pbD0idHJ1ZSIgLz4NCiAgICA8
+        UmFuayB4c2k6bmlsPSJ0cnVlIiAvPg0KICAgIDxPcmRpbmFsUmFuaz4xNzwv
+        T3JkaW5hbFJhbms+DQogICAgPE5vcm1hbGl6ZWRSYW5rIHhzaTpuaWw9InRy
+        dWUiIC8+DQogICAgPE5ld1B1YmxpY2F0aW9uSXRlbUlEIHhzaTpuaWw9InRy
+        dWUiIC8+DQogICAgPElzT2Jzb2xldGU+ZmFsc2U8L0lzT2Jzb2xldGU+DQog
+        ICAgPENvcHlyaWdodFB1Ymxpc2hlcj5FTFNFVklFUiBTQ0kgTFREPC9Db3B5
+        cmlnaHRQdWJsaXNoZXI+DQogICAgPENvcHlyaWdodENpdHk+T1hGT1JEPC9D
+        b3B5cmlnaHRDaXR5Pg0KICAgIDxQdWJsaWNhdGlvbkltcGFjdEZhY3Rvckxp
+        c3Q+MS43OTQsMjAxMyxDbG9zZXN0VG9QdWJsaWNhdGlvblllYXJ8MS43OTQs
+        MjAxMyxNb3N0UmVjZW50WWVhcjwvUHVibGljYXRpb25JbXBhY3RGYWN0b3JM
+        aXN0Pg0KICAgIDxQdWJsaWNhdGlvbkNhdGVnb3J5UmFua2luZ0xpc3Q+MTQ4
+        LzIwMztPTkNPTE9HWTsyMDEzO1NDO0Nsb3Nlc3RUb1B1YmxpY2F0aW9uWWVh
+        cnwxMy8xMDc7TlVSU0lORzsyMDEzO1NDO0Nsb3Nlc3RUb1B1YmxpY2F0aW9u
+        WWVhcnwxMi8xMDU7TlVSU0lORzsyMDEzO1NTO0Nsb3Nlc3RUb1B1YmxpY2F0
+        aW9uWWVhcnwxNDgvMjAzO09OQ09MT0dZOzIwMTM7U0M7TW9zdFJlY2VudFll
+        YXJ8MTMvMTA3O05VUlNJTkc7MjAxMztTQztNb3N0UmVjZW50WWVhcnwxMi8x
+        MDU7TlVSU0lORzsyMDEzO1NTO01vc3RSZWNlbnRZZWFyPC9QdWJsaWNhdGlv
+        bkNhdGVnb3J5UmFua2luZ0xpc3Q+DQogICAgPEF1dGhvckNpdGF0aW9uQ291
+        bnRMaXN0PjEsMCwwPC9BdXRob3JDaXRhdGlvbkNvdW50TGlzdD4NCiAgICA8
+        Q29weXJpZ2h0U3RhdGVQcm92aW5jZT5PWE9OPC9Db3B5cmlnaHRTdGF0ZVBy
+        b3ZpbmNlPg0KICAgIDxDb3B5cmlnaHRDb3VudHJ5PlVOSVRFRCBLSU5HRE9N
+        PC9Db3B5cmlnaHRDb3VudHJ5Pg0KICA8L1B1YmxpY2F0aW9uSXRlbT4NCiAg
+        PFB1YmxpY2F0aW9uSXRlbT4NCiAgICA8UHVibGljYXRpb25JdGVtSUQ+Njc5
+        NTU1MDc8L1B1YmxpY2F0aW9uSXRlbUlEPg0KICAgIDxUaXRsZT5TTUFMTCBD
+        RUxMIExVTkcgQ0FOQ0VSIElOIERBSUxZIFBSQUNUSUNFOyBTQ09UIFJFR0lT
+        VFJZIChTTUFMTCBDRUxMIExVTkcgQ0FOQ0VSIFRSRUFUTUVOVCBBTkQgT1VU
+        Q09NRSk8L1RpdGxlPg0KICAgIDxBYnN0cmFjdCAvPg0KICAgIDxBdXRob3JM
+        aXN0PlBvc3RtdXMsUGlldGVyLEV8UXVvaXgsRWxpc2FiZXRoLHxBcmRpenpp
+        b25pLEFuZHJlYSx8TGUgQ2hldmFsaWVyLFRoaWVycnksfEdhcnJpZG8sUGls
+        YXIsfFJhaWxsYXJkLEFsaWNlLHxSYWJpZXIsUGFvbGEsfExhdmlnbmUsU3Rl
+        cGhhbmUsfERldmlsbGUsQ29yYWxpZSx8RmxldGNoZXIsSm9hbm5lLHxTYXB1
+        bmFyLEZyYW5jaXNjbyx8TWVobXVkLEZhaXNhbCw8L0F1dGhvckxpc3Q+DQog
+        ICAgPEF1dGhvckNvdW50PjEyPC9BdXRob3JDb3VudD4NCiAgICA8S2V5d29y
+        ZExpc3Q+c21hbGwgY2VsbCBsdW5nIGNhbmNlcnxjaGVtb3JhZGlvdGhlcmFw
+        eXxQbGF0aW51bS9FdG9wb3NpZGU8L0tleXdvcmRMaXN0Pg0KICAgIDxEb2N1
+        bWVudFR5cGVMaXN0Pk1lZXRpbmcgQWJzdHJhY3Q8L0RvY3VtZW50VHlwZUxp
+        c3Q+DQogICAgPERvY3VtZW50Q2F0ZWdvcnk+Q29uZmVyZW5jZSBQcm9jZWVk
+        aW5nIERvY3VtZW50PC9Eb2N1bWVudENhdGVnb3J5Pg0KICAgIDxOdW1iZXJP
+        ZlJlZmVyZW5jZXMgeHNpOm5pbD0idHJ1ZSIgLz4NCiAgICA8VGltZXNDaXRl
+        ZD4wPC9UaW1lc0NpdGVkPg0KICAgIDxUaW1lc05vdFNlbGZDaXRlZD4wPC9U
+        aW1lc05vdFNlbGZDaXRlZD4NCiAgICA8UE1JRCB4c2k6bmlsPSJ0cnVlIiAv
+        Pg0KICAgIDxXb1NJdGVtSUQ+MDAwMzM5NjI0OTAxMjAzPC9Xb1NJdGVtSUQ+
+        DQogICAgPFB1YmxpY2F0aW9uU291cmNlVGl0bGU+Sk9VUk5BTCBPRiBUSE9S
+        QUNJQyBPTkNPTE9HWTwvUHVibGljYXRpb25Tb3VyY2VUaXRsZT4NCiAgICA8
+        Vm9sdW1lPjg8L1ZvbHVtZT4NCiAgICA8UGFnaW5hdGlvbj5TMzM5LVMzMzk8
+        L1BhZ2luYXRpb24+DQogICAgPFB1YmxpY2F0aW9uRGF0ZT4yMDEzLTExLTAx
+        VDAwOjAwOjAwPC9QdWJsaWNhdGlvbkRhdGU+DQogICAgPFB1YmxpY2F0aW9u
+        WWVhcj4yMDEzPC9QdWJsaWNhdGlvblllYXI+DQogICAgPFB1YmxpY2F0aW9u
+        VHlwZT5Kb3VybmFsPC9QdWJsaWNhdGlvblR5cGU+DQogICAgPFB1YmxpY2F0
+        aW9uU3ViamVjdENhdGVnb3J5TGlzdD5PbmNvbG9neXxSZXNwaXJhdG9yeSBT
+        eXN0ZW08L1B1YmxpY2F0aW9uU3ViamVjdENhdGVnb3J5TGlzdD4NCiAgICA8
+        SVNTTj4xNTU2LTA4NjQ8L0lTU04+DQogICAgPENvbmZlcmVuY2VTdGFydERh
+        dGUgeHNpOm5pbD0idHJ1ZSIgLz4NCiAgICA8Q29uZmVyZW5jZUVuZERhdGUg
+        eHNpOm5pbD0idHJ1ZSIgLz4NCiAgICA8UmFuayB4c2k6bmlsPSJ0cnVlIiAv
+        Pg0KICAgIDxPcmRpbmFsUmFuaz4xODwvT3JkaW5hbFJhbms+DQogICAgPE5v
+        cm1hbGl6ZWRSYW5rIHhzaTpuaWw9InRydWUiIC8+DQogICAgPE5ld1B1Ymxp
+        Y2F0aW9uSXRlbUlEIHhzaTpuaWw9InRydWUiIC8+DQogICAgPElzT2Jzb2xl
+        dGU+ZmFsc2U8L0lzT2Jzb2xldGU+DQogICAgPENvcHlyaWdodFB1Ymxpc2hl
+        cj5MSVBQSU5DT1RUIFdJTExJQU1TICZhbXA7IFdJTEtJTlM8L0NvcHlyaWdo
+        dFB1Ymxpc2hlcj4NCiAgICA8Q29weXJpZ2h0Q2l0eT5QSElMQURFTFBISUE8
+        L0NvcHlyaWdodENpdHk+DQogICAgPFB1YmxpY2F0aW9uSW1wYWN0RmFjdG9y
+        TGlzdD41LjgsMjAxMyxFeGFjdFB1YmxpY2F0aW9uWWVhcnw1LjgsMjAxMyxN
+        b3N0UmVjZW50WWVhcjwvUHVibGljYXRpb25JbXBhY3RGYWN0b3JMaXN0Pg0K
+        ICAgIDxQdWJsaWNhdGlvbkNhdGVnb3J5UmFua2luZ0xpc3Q+MjYvMjAzO09O
+        Q09MT0dZOzIwMTM7U0M7RXhhY3RQdWJsaWNhdGlvblllYXJ8NS81NDtSRVNQ
+        SVJBVE9SWSBTWVNURU07MjAxMztTQztFeGFjdFB1YmxpY2F0aW9uWWVhcnwy
+        Ni8yMDM7T05DT0xPR1k7MjAxMztTQztNb3N0UmVjZW50WWVhcnw1LzU0O1JF
+        U1BJUkFUT1JZIFNZU1RFTTsyMDEzO1NDO01vc3RSZWNlbnRZZWFyPC9QdWJs
+        aWNhdGlvbkNhdGVnb3J5UmFua2luZ0xpc3Q+DQogICAgPEF1dGhvckNpdGF0
+        aW9uQ291bnRMaXN0PjEsMCwwfDIsMCwwfDMsMCwwfDQsMCwwfDUsMCwwfDYs
+        MCwwfDcsMCwwfDgsMCwwfDksMCwwfDEwLDAsMHwxMSwwLDB8MTIsMCwwPC9B
+        dXRob3JDaXRhdGlvbkNvdW50TGlzdD4NCiAgICA8Q29weXJpZ2h0U3RhdGVQ
+        cm92aW5jZT5QQTwvQ29weXJpZ2h0U3RhdGVQcm92aW5jZT4NCiAgICA8Q29w
+        eXJpZ2h0Q291bnRyeT5VTklURUQgU1RBVEVTPC9Db3B5cmlnaHRDb3VudHJ5
+        Pg0KICA8L1B1YmxpY2F0aW9uSXRlbT4NCiAgPFB1YmxpY2F0aW9uSXRlbT4N
+        CiAgICA8UHVibGljYXRpb25JdGVtSUQ+Njc5MTc4MTg8L1B1YmxpY2F0aW9u
+        SXRlbUlEPg0KICAgIDxUaXRsZT5BIFBIQVNFIElJIFNUVURZIE9GIENJU1BM
+        QVRJTiBBTkQgT1JBTCBWSU5PUkVMQklORSBDT05DT01JVEFOVExZIFdJVEgg
+        UkFESU9USEVSQVBZIElOIExPQ0FMTFkgQURWQU5DRUQgTk9OLVNNQUxMLUNF
+        TEwgTFVORyBDQU5DRVIgVFJFQVRNRU5UOiBFRklDQUNZIEFORCBTQUZFVFkg
+        UkVTVUxUUy48L1RpdGxlPg0KICAgIDxBYnN0cmFjdCAvPg0KICAgIDxBdXRo
+        b3JMaXN0Pkp1YW4sT3NjYXIsfFZhenF1ZXosU2VyZ2lvLHxHYXJjaWEsSm9z
+        ZSx8THVpcyBGaXJ2aWRhLEpvc2UsfEFwYXJpc2ksRnJhbmNpc2NvLHxNdW5v
+        eixKb3NlLHxDYXNhbCxKb2FxdWluLHxHaW5lcixWaWNlbnRlLHxHaXJvbmVz
+        LFJlZ2luYSx8TGF6YXJvLE1hcnRpbix8R2FyZGUsSmF2aWVyLHxTYW5jaGV6
+        LUhlcm5hbmRleixBbGZyZWRvLDwvQXV0aG9yTGlzdD4NCiAgICA8QXV0aG9y
+        Q291bnQ+MTI8L0F1dGhvckNvdW50Pg0KICAgIDxLZXl3b3JkTGlzdD5jaXNw
+        bGF0aW58dmlub3JlbGJpbmV8bm9uLXNtYWxsLWNlbGwgbHVuZyBjYW5jZXJ8
+        cmFkaW90aGVyYXB5PC9LZXl3b3JkTGlzdD4NCiAgICA8RG9jdW1lbnRUeXBl
+        TGlzdD5NZWV0aW5nIEFic3RyYWN0PC9Eb2N1bWVudFR5cGVMaXN0Pg0KICAg
+        IDxEb2N1bWVudENhdGVnb3J5PkNvbmZlcmVuY2UgUHJvY2VlZGluZyBEb2N1
+        bWVudDwvRG9jdW1lbnRDYXRlZ29yeT4NCiAgICA8TnVtYmVyT2ZSZWZlcmVu
+        Y2VzIHhzaTpuaWw9InRydWUiIC8+DQogICAgPFRpbWVzQ2l0ZWQ+MDwvVGlt
+        ZXNDaXRlZD4NCiAgICA8VGltZXNOb3RTZWxmQ2l0ZWQ+MDwvVGltZXNOb3RT
+        ZWxmQ2l0ZWQ+DQogICAgPFBNSUQgeHNpOm5pbD0idHJ1ZSIgLz4NCiAgICA8
+        V29TSXRlbUlEPjAwMDMzOTYyNDkwNTI3MjwvV29TSXRlbUlEPg0KICAgIDxQ
+        dWJsaWNhdGlvblNvdXJjZVRpdGxlPkpPVVJOQUwgT0YgVEhPUkFDSUMgT05D
+        T0xPR1k8L1B1YmxpY2F0aW9uU291cmNlVGl0bGU+DQogICAgPFZvbHVtZT44
+        PC9Wb2x1bWU+DQogICAgPFBhZ2luYXRpb24+UzExNTMtUzExNTQ8L1BhZ2lu
+        YXRpb24+DQogICAgPFB1YmxpY2F0aW9uRGF0ZT4yMDEzLTExLTAxVDAwOjAw
+        OjAwPC9QdWJsaWNhdGlvbkRhdGU+DQogICAgPFB1YmxpY2F0aW9uWWVhcj4y
+        MDEzPC9QdWJsaWNhdGlvblllYXI+DQogICAgPFB1YmxpY2F0aW9uVHlwZT5K
+        b3VybmFsPC9QdWJsaWNhdGlvblR5cGU+DQogICAgPFB1YmxpY2F0aW9uU3Vi
+        amVjdENhdGVnb3J5TGlzdD5PbmNvbG9neXxSZXNwaXJhdG9yeSBTeXN0ZW08
+        L1B1YmxpY2F0aW9uU3ViamVjdENhdGVnb3J5TGlzdD4NCiAgICA8SVNTTj4x
+        NTU2LTA4NjQ8L0lTU04+DQogICAgPENvbmZlcmVuY2VTdGFydERhdGUgeHNp
+        Om5pbD0idHJ1ZSIgLz4NCiAgICA8Q29uZmVyZW5jZUVuZERhdGUgeHNpOm5p
+        bD0idHJ1ZSIgLz4NCiAgICA8UmFuayB4c2k6bmlsPSJ0cnVlIiAvPg0KICAg
+        IDxPcmRpbmFsUmFuaz4xOTwvT3JkaW5hbFJhbms+DQogICAgPE5vcm1hbGl6
+        ZWRSYW5rIHhzaTpuaWw9InRydWUiIC8+DQogICAgPE5ld1B1YmxpY2F0aW9u
+        SXRlbUlEIHhzaTpuaWw9InRydWUiIC8+DQogICAgPElzT2Jzb2xldGU+ZmFs
+        c2U8L0lzT2Jzb2xldGU+DQogICAgPENvcHlyaWdodFB1Ymxpc2hlcj5MSVBQ
+        SU5DT1RUIFdJTExJQU1TICZhbXA7IFdJTEtJTlM8L0NvcHlyaWdodFB1Ymxp
+        c2hlcj4NCiAgICA8Q29weXJpZ2h0Q2l0eT5QSElMQURFTFBISUE8L0NvcHly
+        aWdodENpdHk+DQogICAgPFB1YmxpY2F0aW9uSW1wYWN0RmFjdG9yTGlzdD41
+        LjgsMjAxMyxFeGFjdFB1YmxpY2F0aW9uWWVhcnw1LjgsMjAxMyxNb3N0UmVj
+        ZW50WWVhcjwvUHVibGljYXRpb25JbXBhY3RGYWN0b3JMaXN0Pg0KICAgIDxQ
+        dWJsaWNhdGlvbkNhdGVnb3J5UmFua2luZ0xpc3Q+MjYvMjAzO09OQ09MT0dZ
+        OzIwMTM7U0M7RXhhY3RQdWJsaWNhdGlvblllYXJ8NS81NDtSRVNQSVJBVE9S
+        WSBTWVNURU07MjAxMztTQztFeGFjdFB1YmxpY2F0aW9uWWVhcnwyNi8yMDM7
+        T05DT0xPR1k7MjAxMztTQztNb3N0UmVjZW50WWVhcnw1LzU0O1JFU1BJUkFU
+        T1JZIFNZU1RFTTsyMDEzO1NDO01vc3RSZWNlbnRZZWFyPC9QdWJsaWNhdGlv
+        bkNhdGVnb3J5UmFua2luZ0xpc3Q+DQogICAgPEF1dGhvckNpdGF0aW9uQ291
+        bnRMaXN0PjEsMCwwfDIsMCwwfDMsMCwwfDQsMCwwfDUsMCwwfDYsMCwwfDcs
+        MCwwfDgsMCwwfDksMCwwfDEwLDAsMHwxMSwwLDB8MTIsMCwwPC9BdXRob3JD
+        aXRhdGlvbkNvdW50TGlzdD4NCiAgICA8Q29weXJpZ2h0U3RhdGVQcm92aW5j
+        ZT5QQTwvQ29weXJpZ2h0U3RhdGVQcm92aW5jZT4NCiAgICA8Q29weXJpZ2h0
+        Q291bnRyeT5VTklURUQgU1RBVEVTPC9Db3B5cmlnaHRDb3VudHJ5Pg0KICA8
+        L1B1YmxpY2F0aW9uSXRlbT4NCjwvQXJyYXlPZlB1YmxpY2F0aW9uSXRlbT4=
     http_version: 
-  recorded_at: Sat, 06 Dec 2014 02:06:44 GMT
+  recorded_at: Mon, 27 Apr 2015 21:33:10 GMT
 recorded_with: VCR 2.5.0

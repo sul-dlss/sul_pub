@@ -51,7 +51,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Sat, 06 Dec 2014 02:06:26 GMT
+      - Mon, 27 Apr 2015 21:32:47 GMT
       Content-Length:
       - '278'
     body:
@@ -60,7 +60,7 @@ http_interactions:
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>142959</queryID>\r\n
         \ <queryResultRows>1</queryResultRows>\r\n  <totalRows>1</totalRows>\r\n</ScienceWireQueryIDResponse>"
     http_version: 
-  recorded_at: Sat, 06 Dec 2014 02:06:27 GMT
+  recorded_at: Mon, 27 Apr 2015 21:32:48 GMT
 - request:
     method: get
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/142959?format=xml&page=0&pageSize=2147483647&v=version/3
@@ -98,7 +98,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Sat, 06 Dec 2014 02:06:26 GMT
+      - Mon, 27 Apr 2015 21:32:47 GMT
       Content-Length:
       - '4218'
     body:
@@ -137,7 +137,7 @@ http_interactions:
         method|photosynthesis|leaf size|leaf life span|seed plants|correlated evolution</KeywordList>\r\n
         \   <DocumentTypeList>Article</DocumentTypeList>\r\n    <DocumentCategory>Journal
         Document</DocumentCategory>\r\n    <NumberOfReferences>65</NumberOfReferences>\r\n
-        \   <TimesCited>143</TimesCited>\r\n    <TimesNotSelfCited>125</TimesNotSelfCited>\r\n
+        \   <TimesCited>149</TimesCited>\r\n    <TimesNotSelfCited>131</TimesNotSelfCited>\r\n
         \   <PMID>10487815</PMID>\r\n    <WoSItemID>000082779300008</WoSItemID>\r\n
         \   <PublicationSourceTitle>AMERICAN JOURNAL OF BOTANY</PublicationSourceTitle>\r\n
         \   <Volume>86</Volume>\r\n    <Issue>9</Issue>\r\n    <Pagination>1272-1281</Pagination>\r\n
@@ -149,11 +149,11 @@ http_interactions:
         \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>BOTANICAL
         SOC AMER INC</CopyrightPublisher>\r\n    <CopyrightCity>ST LOUIS</CopyrightCity>\r\n
-        \   <PublicationImpactFactorList>2.383,1999,ExactPublicationYear|2.664,2011,MostRecentYear</PublicationImpactFactorList>\r\n
-        \   <PublicationCategoryRankingList>18/136;PLANT SCIENCES;1999;SC;ExactPublicationYear|47/189;PLANT
-        SCIENCES;2011;SC;MostRecentYear</PublicationCategoryRankingList>\r\n    <AuthorCitationCountList>1,8,135|2,10,133</AuthorCitationCountList>\r\n
+        \   <PublicationImpactFactorList>2.383,1999,ExactPublicationYear|2.463,2013,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>18/136;PLANT SCIENCES;1999;SC;ExactPublicationYear|52/199;PLANT
+        SCIENCES;2013;SC;MostRecentYear</PublicationCategoryRankingList>\r\n    <AuthorCitationCountList>1,8,141|2,10,139</AuthorCitationCountList>\r\n
         \   <CopyrightStateProvince>MO</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
         STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n</ArrayOfPublicationItem>"
     http_version: 
-  recorded_at: Sat, 06 Dec 2014 02:06:27 GMT
+  recorded_at: Mon, 27 Apr 2015 21:32:49 GMT
 recorded_with: VCR 2.5.0
