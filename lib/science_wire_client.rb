@@ -16,13 +16,7 @@ class ScienceWireClient
   end
 
   def generate_suggestion_queries(last_name, first_name, middle_name, email, seed_list)
-    if email && email != ''
-      email_xml = "<Emails>
-                    <string>#{email}</string>
-                  </Emails>"
-    else
-      email_xml = ''
-    end
+
     ["Journal Document", "Conference Proceeding Document"].each do |category|
       bod = "<?xml version='1.0'?>
       <PublicationAuthorMatchParameters xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema'>
@@ -34,11 +28,17 @@ class ScienceWireClient
             <City>Stanford</City>
             <State>CA</State>
             <Country>USA</Country>
-            #{email_xml}
             <Version>1</Version>
          </Author>
       </Authors>
-      <DocumentCategory>#{category}</DocumentCategory>"
+      <DocumentCategory>#{category}</DocumentCategory>
+      "
+
+      if email && email != ''
+        bod << "<Emails>
+                  <string>#{email}</string>
+                </Emails>"
+      end
 
       unless seed_list.blank?
         bod << '<PublicationItemIds>'

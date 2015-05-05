@@ -235,7 +235,7 @@ class ScienceWireHarvester
     seed_list = author.publications.approved.with_sciencewire_id.pluck(:sciencewire_id).uniq
 
     queries = []
-    @sciencewire_client.generate_suggestion_queries(last_name, first_name, middle_name, seed_list) do |bod|
+    @sciencewire_client.generate_suggestion_queries(last_name, first_name, middle_name, author.email, seed_list) do |bod|
       queries << bod
     end
     queries
