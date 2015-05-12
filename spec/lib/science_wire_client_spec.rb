@@ -49,7 +49,7 @@ describe ScienceWireClient do
         expect(
           science_wire_client.
             get_sciencewire_id_suggestions("benson", "sally", "", "smbenson@stanford.edu", seeds)).
-          to have_at_least(180).items
+          to have_at_least(111).items
       end
 		end
 
