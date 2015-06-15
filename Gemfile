@@ -46,6 +46,9 @@ group :development, :test do
 end
 
 group :debug do
+  gem 'pry'
+  gem 'pry-remote'
+  gem 'pry-stack_explorer'
   gem 'pry-debugger', :platforms => :mri_19
 end
 
