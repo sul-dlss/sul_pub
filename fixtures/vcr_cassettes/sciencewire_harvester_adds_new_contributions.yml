@@ -37,7 +37,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Tue, 12 May 2015 23:28:52 GMT
+      - Mon, 15 Jun 2015 21:53:36 GMT
       Content-Length:
       - '6476'
     body:
@@ -123,7 +123,7 @@ http_interactions:
         \   <CopyrightPublisher>LIPPINCOTT WILLIAMS &amp; WILKINS</CopyrightPublisher>\r\n
         \   <CopyrightCity>PHILADELPHIA</CopyrightCity>\r\n  </PublicationItem>\r\n</ArrayOfPublicationItem>"
     http_version: 
-  recorded_at: Tue, 12 May 2015 23:28:52 GMT
+  recorded_at: Mon, 15 Jun 2015 21:53:36 GMT
 - request:
     method: post
     uri: http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml
@@ -141,7 +141,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 12 May 2015 23:28:52 GMT
+      - Mon, 15 Jun 2015 21:53:37 GMT
       Server:
       - Apache
       Access-Control-Allow-Origin:
@@ -149,12 +149,12 @@ http_interactions:
       Cache-Control:
       - private
       Ncbi-Sid:
-      - 08DD63035528CB41_0964SID
+      - 08DD490B57F49611_0458SID
       Content-Type:
       - text/xml; charset=UTF-8
       Set-Cookie:
-      - ncbi_sid=08DD63035528CB41_0964SID; domain=.nih.gov; path=/; expires=Thu, 12
-        May 2016 23:28:52 GMT
+      - ncbi_sid=08DD490B57F49611_0458SID; domain=.nih.gov; path=/; expires=Wed, 15
+        Jun 2016 21:53:37 GMT
       X-Ua-Compatible:
       - IE=Edge
       Transfer-Encoding:
@@ -344,5 +344,5 @@ http_interactions:
         \       <ArticleIdList>\n            <ArticleId IdType=\"pubmed\">1914489</ArticleId>\n
         \       </ArticleIdList>\n    </PubmedData>\n</PubmedArticle>\n\n</PubmedArticleSet>\n"
     http_version: 
-  recorded_at: Tue, 12 May 2015 23:28:52 GMT
+  recorded_at: Mon, 15 Jun 2015 21:53:37 GMT
 recorded_with: VCR 2.5.0

@@ -59,7 +59,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Tue, 12 May 2015 23:31:05 GMT
+      - Mon, 15 Jun 2015 21:52:23 GMT
       Content-Length:
       - '279'
     body:
@@ -68,7 +68,7 @@ http_interactions:
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>79593</queryID>\r\n
         \ <queryResultRows>14</queryResultRows>\r\n  <totalRows>14</totalRows>\r\n</ScienceWireQueryIDResponse>"
     http_version: 
-  recorded_at: Tue, 12 May 2015 23:31:05 GMT
+  recorded_at: Mon, 15 Jun 2015 21:52:23 GMT
 - request:
     method: get
     uri: https://stg.sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/79593?format=xml&page=0&pageSize=2147483647&v=version/3
@@ -106,7 +106,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Tue, 12 May 2015 23:31:05 GMT
+      - Mon, 15 Jun 2015 21:52:23 GMT
       Content-Length:
       - '33497'
     body:
@@ -132,6 +132,44 @@ http_interactions:
         \   <PublicationCategoryRankingList>39/42;SOCIAL ISSUES;2013;SS;MostRecentYear</PublicationCategoryRankingList>\r\n
         \   <AuthorCitationCountList>1,0,0</AuthorCitationCountList>\r\n    <CopyrightStateProvince>MD</CopyrightStateProvince>\r\n
         \   <CopyrightCountry>UNITED STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n
+        \ <PublicationItem>\r\n    <PublicationItemID>29704997</PublicationItemID>\r\n
+        \   <Title>Fetal health assessment using prenatal diagnostic techniques</Title>\r\n
+        \   <Abstract>Purpose of review  The assessment of fetal health has occupied
+        our professional attention for many years. As the development of technologies
+        for prenatal diagnostic techniques has progressed, applications of such technologies
+        have aided in the overall assessment of fetal wellbeing.  Recent findings
+        \ Fetal heart-rate monitoring remains the main form of fetal assessment for
+        high-risk pregnancies. The additional assessments afforded by the analysis
+        of ST and T-wave changes of the fetal electrocardiogram hold promise for improving
+        the predictive value of fetal heart-rate assessments. Ultrasound has been
+        invaluable for assessment of fetal anatomy, and the use of Doppler ultrasound
+        has given insight into fetal cardiovascular responses to such conditions as
+        intrauterine growth restriction and fetal anemia caused by red blood cell
+        alloimmunization.  Summary  As prenatal diagnostic techniques evolve, their
+        application to the assessment of fetal well-being offers insight into pathophysiologic
+        mechanisms of fetal disease, innovative tools to assess fetal health, and
+        fertile ground for future investigation.</Abstract>\r\n    <AuthorList>Smith,James,F</AuthorList>\r\n
+        \   <AuthorCount>1</AuthorCount>\r\n    <KeywordList>METABOLIC-ACIDOSIS|CARDIOTOCOGRAPHY|ELECTROCARDIOGRAM|WAVE-FORM
+        ANALYSIS|ECG|LABOR|DOPPLER|MULTICENTER|ST ANALYSIS|FETAL MONITORING|intrauterine
+        growth restriction|electrocardiogram|fetal anemia|Doppler</KeywordList>\r\n
+        \   <DocumentTypeList>Article</DocumentTypeList>\r\n    <DocumentCategory>Journal
+        Document</DocumentCategory>\r\n    <NumberOfReferences>28</NumberOfReferences>\r\n
+        \   <TimesCited>3</TimesCited>\r\n    <TimesNotSelfCited>3</TimesNotSelfCited>\r\n
+        \   <PMID>18388815</PMID>\r\n    <WoSItemID>000254572900013</WoSItemID>\r\n
+        \   <PublicationSourceTitle>CURRENT OPINION IN OBSTETRICS &amp; GYNECOLOGY</PublicationSourceTitle>\r\n
+        \   <Volume>20</Volume>\r\n    <Issue>2</Issue>\r\n    <Pagination>152-156</Pagination>\r\n
+        \   <PublicationDate>2008-04-01T00:00:00</PublicationDate>\r\n    <PublicationYear>2008</PublicationYear>\r\n
+        \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Obstetrics
+        &amp; Gynecology</PublicationSubjectCategoryList>\r\n    <ISSN>1040-872X</ISSN>\r\n
+        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
+        />\r\n    <Rank>86</Rank>\r\n    <OrdinalRank>1</OrdinalRank>\r\n    <NormalizedRank>76.785714285714292</NormalizedRank>\r\n
+        \   <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
+        \   <CopyrightPublisher>LIPPINCOTT WILLIAMS &amp; WILKINS</CopyrightPublisher>\r\n
+        \   <CopyrightCity>PHILADELPHIA</CopyrightCity>\r\n    <PublicationImpactFactorList>2.276,2008,ExactPublicationYear|2.37,2013,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>19/61;OBSTETRICS &amp; GYNECOLOGY;2008;SC;ExactPublicationYear|20/78;OBSTETRICS
+        &amp; GYNECOLOGY;2013;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <AuthorCitationCountList>1,0,3</AuthorCitationCountList>\r\n    <CopyrightStateProvince>PA</CopyrightStateProvince>\r\n
+        \   <CopyrightCountry>UNITED STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n
         \ <PublicationItem>\r\n    <PublicationItemID>59862982</PublicationItemID>\r\n
         \   <Title>IS VITAMIN D ASSOCIATED WITH ED? A REVIEW OF A COMPUTERIZED MEDICAL
         RECORD SYSTEM AT A TERTIARY CARE MEDICAL CENTER</Title>\r\n    <Abstract />\r\n
@@ -146,7 +184,7 @@ http_interactions:
         \   <PublicationYear>2012</PublicationYear>\r\n    <PublicationType>Journal</PublicationType>\r\n
         \   <PublicationSubjectCategoryList>Urology &amp; Nephrology</PublicationSubjectCategoryList>\r\n
         \   <ISSN>1743-6095</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
-        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>85</Rank>\r\n    <OrdinalRank>1</OrdinalRank>\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>85</Rank>\r\n    <OrdinalRank>2</OrdinalRank>\r\n
         \   <NormalizedRank>75.892857142857139</NormalizedRank>\r\n    <NewPublicationItemID
         xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>WILEY-BLACKWELL</CopyrightPublisher>\r\n
         \   <CopyrightCity>MALDEN</CopyrightCity>\r\n    <PublicationImpactFactorList>3.513,2012,ExactPublicationYear|3.15,2013,MostRecentYear</PublicationImpactFactorList>\r\n
@@ -155,47 +193,9 @@ http_interactions:
         \   <AuthorCitationCountList>1,0,0|2,0,0|3,0,0|4,0,0</AuthorCitationCountList>\r\n
         \   <CopyrightStateProvince>MA</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
         STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
-        \   <PublicationItemID>29704997</PublicationItemID>\r\n    <Title>Fetal health
-        assessment using prenatal diagnostic techniques</Title>\r\n    <Abstract>Purpose
-        of review  The assessment of fetal health has occupied our professional attention
-        for many years. As the development of technologies for prenatal diagnostic
-        techniques has progressed, applications of such technologies have aided in
-        the overall assessment of fetal wellbeing.  Recent findings  Fetal heart-rate
-        monitoring remains the main form of fetal assessment for high-risk pregnancies.
-        The additional assessments afforded by the analysis of ST and T-wave changes
-        of the fetal electrocardiogram hold promise for improving the predictive value
-        of fetal heart-rate assessments. Ultrasound has been invaluable for assessment
-        of fetal anatomy, and the use of Doppler ultrasound has given insight into
-        fetal cardiovascular responses to such conditions as intrauterine growth restriction
-        and fetal anemia caused by red blood cell alloimmunization.  Summary  As prenatal
-        diagnostic techniques evolve, their application to the assessment of fetal
-        well-being offers insight into pathophysiologic mechanisms of fetal disease,
-        innovative tools to assess fetal health, and fertile ground for future investigation.</Abstract>\r\n
-        \   <AuthorList>Smith,James,F</AuthorList>\r\n    <AuthorCount>1</AuthorCount>\r\n
-        \   <KeywordList>METABOLIC-ACIDOSIS|CARDIOTOCOGRAPHY|ELECTROCARDIOGRAM|WAVE-FORM
-        ANALYSIS|ECG|LABOR|DOPPLER|MULTICENTER|ST ANALYSIS|FETAL MONITORING|intrauterine
-        growth restriction|electrocardiogram|fetal anemia|Doppler</KeywordList>\r\n
-        \   <DocumentTypeList>Article</DocumentTypeList>\r\n    <DocumentCategory>Journal
-        Document</DocumentCategory>\r\n    <NumberOfReferences>28</NumberOfReferences>\r\n
-        \   <TimesCited>3</TimesCited>\r\n    <TimesNotSelfCited>3</TimesNotSelfCited>\r\n
-        \   <PMID>18388815</PMID>\r\n    <WoSItemID>000254572900013</WoSItemID>\r\n
-        \   <PublicationSourceTitle>CURRENT OPINION IN OBSTETRICS &amp; GYNECOLOGY</PublicationSourceTitle>\r\n
-        \   <Volume>20</Volume>\r\n    <Issue>2</Issue>\r\n    <Pagination>152-156</Pagination>\r\n
-        \   <PublicationDate>2008-04-01T00:00:00</PublicationDate>\r\n    <PublicationYear>2008</PublicationYear>\r\n
-        \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Obstetrics
-        &amp; Gynecology</PublicationSubjectCategoryList>\r\n    <ISSN>1040-872X</ISSN>\r\n
-        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
-        />\r\n    <Rank>83</Rank>\r\n    <OrdinalRank>2</OrdinalRank>\r\n    <NormalizedRank>74.107142857142861</NormalizedRank>\r\n
-        \   <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
-        \   <CopyrightPublisher>LIPPINCOTT WILLIAMS &amp; WILKINS</CopyrightPublisher>\r\n
-        \   <CopyrightCity>PHILADELPHIA</CopyrightCity>\r\n    <PublicationImpactFactorList>2.276,2008,ExactPublicationYear|2.37,2013,MostRecentYear</PublicationImpactFactorList>\r\n
-        \   <PublicationCategoryRankingList>19/61;OBSTETRICS &amp; GYNECOLOGY;2008;SC;ExactPublicationYear|20/78;OBSTETRICS
-        &amp; GYNECOLOGY;2013;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
-        \   <AuthorCitationCountList>1,0,3</AuthorCitationCountList>\r\n    <CopyrightStateProvince>PA</CopyrightStateProvince>\r\n
-        \   <CopyrightCountry>UNITED STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n
-        \ <PublicationItem>\r\n    <PublicationItemID>22407572</PublicationItemID>\r\n
-        \   <Title>SMITH,J.O. COMMENTS ON SULLIVAN KARPLUS-STRONG ARTICLE</Title>\r\n
-        \   <Abstract />\r\n    <AuthorList>Smith,J,O</AuthorList>\r\n    <AuthorCount>1</AuthorCount>\r\n
+        \   <PublicationItemID>22407572</PublicationItemID>\r\n    <Title>SMITH,J.O.
+        COMMENTS ON SULLIVAN KARPLUS-STRONG ARTICLE</Title>\r\n    <Abstract />\r\n
+        \   <AuthorList>Smith,J,O</AuthorList>\r\n    <AuthorCount>1</AuthorCount>\r\n
         \   <KeywordList>ALGORITHM|TIMBRES</KeywordList>\r\n    <DocumentTypeList>Letter</DocumentTypeList>\r\n
         \   <DocumentCategory>Journal Document</DocumentCategory>\r\n    <NumberOfReferences>6</NumberOfReferences>\r\n
         \   <TimesCited>2</TimesCited>\r\n    <TimesNotSelfCited>2</TimesNotSelfCited>\r\n
@@ -253,7 +253,7 @@ http_interactions:
         \   <PublicationSubjectCategoryList>Infectious Diseases</PublicationSubjectCategoryList>\r\n
         \   <ISSN>1755-4365</ISSN>\r\n    <DOI>10.1016/j.epidem.2008.08.001</DOI>\r\n
         \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
-        />\r\n    <Rank>69</Rank>\r\n    <OrdinalRank>4</OrdinalRank>\r\n    <NormalizedRank>61.607142857142861</NormalizedRank>\r\n
+        />\r\n    <Rank>72</Rank>\r\n    <OrdinalRank>4</OrdinalRank>\r\n    <NormalizedRank>64.285714285714292</NormalizedRank>\r\n
         \   <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
         \   <CopyrightPublisher>ELSEVIER SCIENCE BV</CopyrightPublisher>\r\n    <CopyrightCity>AMSTERDAM</CopyrightCity>\r\n
         \   <PublicationImpactFactorList>2.151,2011,ClosestToPublicationYear|2.378,2013,MostRecentYear</PublicationImpactFactorList>\r\n
@@ -299,7 +299,7 @@ http_interactions:
         \   <PublicationSubjectCategoryList>Multidisciplinary Sciences</PublicationSubjectCategoryList>\r\n
         \   <ISSN>1932-6203</ISSN>\r\n    <DOI>10.1371/journal.pone.0066071</DOI>\r\n
         \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
-        />\r\n    <Rank>59</Rank>\r\n    <OrdinalRank>5</OrdinalRank>\r\n    <NormalizedRank>52.678571428571431</NormalizedRank>\r\n
+        />\r\n    <Rank>61</Rank>\r\n    <OrdinalRank>5</OrdinalRank>\r\n    <NormalizedRank>54.464285714285708</NormalizedRank>\r\n
         \   <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
         \   <CopyrightPublisher>PUBLIC LIBRARY SCIENCE</CopyrightPublisher>\r\n    <CopyrightCity>SAN
         FRANCISCO</CopyrightCity>\r\n    <ArticleNumber>e66071</ArticleNumber>\r\n
@@ -488,5 +488,5 @@ http_interactions:
         \   <AuthorCitationCountList>1,0,0|2,0,0</AuthorCitationCountList>\r\n    <CopyrightStateProvince>TX</CopyrightStateProvince>\r\n
         \   <CopyrightCountry>UNITED STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n</ArrayOfPublicationItem>"
     http_version: 
-  recorded_at: Tue, 12 May 2015 23:31:06 GMT
+  recorded_at: Mon, 15 Jun 2015 21:52:24 GMT
 recorded_with: VCR 2.5.0
