@@ -1,3 +1,5 @@
+require 'csv'
+
 class PublicationsController < ApplicationController
 
   before_filter :check_authorization
@@ -22,7 +24,6 @@ class PublicationsController < ApplicationController
     last_changed = DateTime.parse(params.fetch(:changedSince, "1000-01-01")).to_s
 
     benchmark "Querying for publications" do
-
       if capProfileId.blank?
         logger.debug(" -- CAP Profile ID not provided, returning all records modified after #{last_changed}")
         description = "Records that have changed since #{last_changed}"
@@ -44,7 +45,12 @@ class PublicationsController < ApplicationController
         else
           description = "All known publications for CAP profile id " + capProfileId
           logger.debug("Limited to all publications for author #{author.inspect}")
-          matching_records = author.publications.order('publications.id').page(page).per(per).select('publications.pub_hash')
+
+          if(params[:format] =~ /csv/i)
+            csv_string = generate_csv_report author
+          else
+            matching_records = author.publications.order('publications.id').page(page).per(per).select('publications.pub_hash')
+          end
         end
       end
 
@@ -53,9 +59,14 @@ class PublicationsController < ApplicationController
         format.json {
           self.response_body = Yajl::Encoder.enum_for(:encode, wrap_as_bibjson_collection(description, env["ORIGINAL_FULLPATH"].to_s, matching_records.lazy, page, per))
         }
+        format.csv {
+          render :csv => csv_string, :filename => "author_report", :chunked => true
+        }
       end
     end
   end
+
+
 
 
   #desc "Look up existing records by title, and optionally by author, year and source"
@@ -124,4 +135,22 @@ class PublicationsController < ApplicationController
         records: records.map { |x| (x.pub_hash if x.respond_to? :pub_hash) || x}
     }
   end
+
+  # @return [String] contains csv report of an author's publications
+  def generate_csv_report author
+    csv_str = CSV.generate do |csv|
+      csv << ['sul_pub_id', 'sciencewire_id', 'pubmed_id', 'doi', 'wos_id', 'title', 'journal', 'year', 'pages', 'issn', 'status_for_this_author', 'contributor_cap_profile_ids']
+        author.publications.find_each do |pub|
+          journ = pub.pub_hash[:journal]
+          contrib_prof_ids = pub.authors.pluck(:cap_profile_id).join(";")
+          wos_id = pub.publication_identifiers.where(:identifier_type => 'WoSItemID').pluck(:identifier_value).first
+          doi = pub.publication_identifiers.where(:identifier_type => 'doi').pluck(:identifier_value).first
+          status = pub.contributions.for_author(author).pluck(:status).first
+
+          csv << [pub.id, pub.sciencewire_id, pub.pmid, doi, wos_id, pub.title, journ[:name], pub.year, pub.pages, pub.issn, status, contrib_prof_ids]
+        end
+    end
+    csv_str
+  end
+
 end
