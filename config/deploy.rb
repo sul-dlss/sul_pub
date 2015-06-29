@@ -24,3 +24,5 @@ set :linked_dirs, fetch(:linked_dirs, []).push('log',
                                                'public/system')
 
 before 'deploy:publishing', 'squash:write_revision'
+
+set :bundle_audit_ignore, %w{CVE-2015-3226}
