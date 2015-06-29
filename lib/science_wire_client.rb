@@ -59,7 +59,7 @@ class ScienceWireClient
     http.use_ssl = true
     http.verify_mode = OpenSSL::SSL::VERIFY_PEER
     timeout_retries ||= 3
-    timeout_period ||= 100
+    timeout_period ||= 500
     http.read_timeout = timeout_period
     request = Net::HTTP::Post.new(@auth[:get_recommendation_path])
     request["LicenseID"] = @auth[:get_license_id]

@@ -2,9 +2,9 @@
 http_interactions:
 - request:
     method: post
-    uri: https://stg.sciencewirerest.discoverylogic.com/PublicationCatalog/MatchedPublicationItemIdsForAuthor?format=xml
+    uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/MatchedPublicationItemIdsForAuthor?format=xml
     body:
-      encoding: US-ASCII
+      encoding: UTF-8
       string: |-
         <?xml version='1.0'?>
               <PublicationAuthorMatchParameters xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema'>
@@ -24,6 +24,8 @@ http_interactions:
                           <string>smbenson@stanford.edu</string>
                         </Emails><PublicationItemIds><int>532237</int><int>29681830</int><int>29693742</int><int>30153017</int><int>30563572</int><int>30711058</int><int>30991998</int><int>31488302</int><int>31623382</int><int>32897909</int><int>33038883</int><int>33139791</int><int>33878760</int><int>47444872</int><int>53640378</int><int>54368177</int><int>59612803</int><int>59641485</int><int>60094854</int><int>60223059</int><int>60478790</int><int>62816475</int><int>62823609</int><int>62903742</int><int>63182944</int><int>62767480</int><int>59904158</int><int>37634308</int><int>63378178</int><int>63775722</int><int>63911215</int><int>4167402</int><int>63891331</int><int>63814446</int><int>62976803</int><int>59811972</int><int>59878565</int><int>37635302</int><int>59936785</int><int>37630237</int><int>37632866</int><int>59839380</int><int>29114844</int><int>24672363</int><int>22528207</int><int>22411820</int><int>21667389</int><int>64357283</int><int>27876654</int><int>16447626</int><int>34333979</int><int>21865294</int><int>22624536</int><int>23216217</int><int>24575036</int><int>35196221</int><int>2627002</int><int>3769378</int><int>3704704</int><int>4513632</int><int>6434468</int><int>6368152</int><int>571008</int><int>35566141</int><int>36119242</int><int>6008013</int><int>36234880</int><int>36225095</int><int>36139437</int><int>36127090</int><int>36208464</int><int>35640871</int><int>23804292</int><int>22654678</int><int>17870903</int><int>23364040</int><int>45141719</int><int>64799575</int><int>65697723</int><int>66020502</int><int>67583123</int></PublicationItemIds><LimitToHighQualityMatchesOnly>true</LimitToHighQualityMatchesOnly></PublicationAuthorMatchParameters>
     headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
       - "*/*"
       User-Agent:
@@ -31,7 +33,7 @@ http_interactions:
       Licenseid:
       - ***REMOVED***
       Host:
-      - stg.sciencewirerest.discoverylogic.com
+      - sciencewirerest.discoverylogic.com
       Connection:
       - Keep-Alive
       Expect:
@@ -56,21 +58,21 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Mon, 15 Jun 2015 21:53:00 GMT
+      - Mon, 29 Jun 2015 17:19:52 GMT
       Content-Length:
-      - '16755'
+      - '16929'
     body:
-      encoding: US-ASCII
+      encoding: UTF-8
       string: "<?xml version=\"1.0\"?>\r\n<ArrayOfItemMatchResult xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <ItemMatchResult>\r\n
         \   <MatchRank>1</MatchRank>\r\n    <PublicationItemID>69233159</PublicationItemID>\r\n
         \   <MatchScore>1.5625</MatchScore>\r\n  </ItemMatchResult>\r\n  <ItemMatchResult>\r\n
         \   <MatchRank>2</MatchRank>\r\n    <PublicationItemID>70617184</PublicationItemID>\r\n
-        \   <MatchScore>1.2399678230285645</MatchScore>\r\n  </ItemMatchResult>\r\n
+        \   <MatchScore>1.2399618625640869</MatchScore>\r\n  </ItemMatchResult>\r\n
         \ <ItemMatchResult>\r\n    <MatchRank>3</MatchRank>\r\n    <PublicationItemID>69263833</PublicationItemID>\r\n
         \   <MatchScore>1.2291666269302368</MatchScore>\r\n  </ItemMatchResult>\r\n
         \ <ItemMatchResult>\r\n    <MatchRank>4</MatchRank>\r\n    <PublicationItemID>64655920</PublicationItemID>\r\n
-        \   <MatchScore>1.1931257247924805</MatchScore>\r\n  </ItemMatchResult>\r\n
+        \   <MatchScore>1.193128228187561</MatchScore>\r\n  </ItemMatchResult>\r\n
         \ <ItemMatchResult>\r\n    <MatchRank>5</MatchRank>\r\n    <PublicationItemID>1092203</PublicationItemID>\r\n
         \   <MatchScore>1.1815476417541504</MatchScore>\r\n  </ItemMatchResult>\r\n
         \ <ItemMatchResult>\r\n    <MatchRank>6</MatchRank>\r\n    <PublicationItemID>30005030</PublicationItemID>\r\n
@@ -84,17 +86,17 @@ http_interactions:
         \ <ItemMatchResult>\r\n    <MatchRank>10</MatchRank>\r\n    <PublicationItemID>64278316</PublicationItemID>\r\n
         \   <MatchScore>1.0815476179122925</MatchScore>\r\n  </ItemMatchResult>\r\n
         \ <ItemMatchResult>\r\n    <MatchRank>11</MatchRank>\r\n    <PublicationItemID>29852865</PublicationItemID>\r\n
-        \   <MatchScore>0.91722887754440308</MatchScore>\r\n  </ItemMatchResult>\r\n
+        \   <MatchScore>0.91730403900146484</MatchScore>\r\n  </ItemMatchResult>\r\n
         \ <ItemMatchResult>\r\n    <MatchRank>12</MatchRank>\r\n    <PublicationItemID>69388095</PublicationItemID>\r\n
         \   <MatchScore>0.73066818714141846</MatchScore>\r\n  </ItemMatchResult>\r\n
         \ <ItemMatchResult>\r\n    <MatchRank>13</MatchRank>\r\n    <PublicationItemID>361169</PublicationItemID>\r\n
-        \   <MatchScore>0.65096664428710938</MatchScore>\r\n  </ItemMatchResult>\r\n
+        \   <MatchScore>0.65097934007644653</MatchScore>\r\n  </ItemMatchResult>\r\n
         \ <ItemMatchResult>\r\n    <MatchRank>14</MatchRank>\r\n    <PublicationItemID>60013184</PublicationItemID>\r\n
-        \   <MatchScore>0.63952493667602539</MatchScore>\r\n  </ItemMatchResult>\r\n
+        \   <MatchScore>0.63952499628067017</MatchScore>\r\n  </ItemMatchResult>\r\n
         \ <ItemMatchResult>\r\n    <MatchRank>15</MatchRank>\r\n    <PublicationItemID>61126334</PublicationItemID>\r\n
-        \   <MatchScore>0.63952481746673584</MatchScore>\r\n  </ItemMatchResult>\r\n
+        \   <MatchScore>0.63952487707138062</MatchScore>\r\n  </ItemMatchResult>\r\n
         \ <ItemMatchResult>\r\n    <MatchRank>16</MatchRank>\r\n    <PublicationItemID>60990970</PublicationItemID>\r\n
-        \   <MatchScore>0.63952440023422241</MatchScore>\r\n  </ItemMatchResult>\r\n
+        \   <MatchScore>0.63952445983886719</MatchScore>\r\n  </ItemMatchResult>\r\n
         \ <ItemMatchResult>\r\n    <MatchRank>17</MatchRank>\r\n    <PublicationItemID>68086174</PublicationItemID>\r\n
         \   <MatchScore>0.635430097579956</MatchScore>\r\n  </ItemMatchResult>\r\n
         \ <ItemMatchResult>\r\n    <MatchRank>18</MatchRank>\r\n    <PublicationItemID>67773131</PublicationItemID>\r\n
@@ -102,37 +104,37 @@ http_interactions:
         \ <ItemMatchResult>\r\n    <MatchRank>19</MatchRank>\r\n    <PublicationItemID>63184660</PublicationItemID>\r\n
         \   <MatchScore>0.56548851728439331</MatchScore>\r\n  </ItemMatchResult>\r\n
         \ <ItemMatchResult>\r\n    <MatchRank>20</MatchRank>\r\n    <PublicationItemID>23664104</PublicationItemID>\r\n
-        \   <MatchScore>0.54507565498352051</MatchScore>\r\n  </ItemMatchResult>\r\n
+        \   <MatchScore>0.54510319232940674</MatchScore>\r\n  </ItemMatchResult>\r\n
         \ <ItemMatchResult>\r\n    <MatchRank>21</MatchRank>\r\n    <PublicationItemID>61630622</PublicationItemID>\r\n
+        \   <MatchScore>0.54428678750991821</MatchScore>\r\n  </ItemMatchResult>\r\n
+        \ <ItemMatchResult>\r\n    <MatchRank>22</MatchRank>\r\n    <PublicationItemID>61145275</PublicationItemID>\r\n
         \   <MatchScore>0.54428672790527344</MatchScore>\r\n  </ItemMatchResult>\r\n
-        \ <ItemMatchResult>\r\n    <MatchRank>22</MatchRank>\r\n    <PublicationItemID>62302198</PublicationItemID>\r\n
+        \ <ItemMatchResult>\r\n    <MatchRank>23</MatchRank>\r\n    <PublicationItemID>62302198</PublicationItemID>\r\n
         \   <MatchScore>0.54428672790527344</MatchScore>\r\n  </ItemMatchResult>\r\n
-        \ <ItemMatchResult>\r\n    <MatchRank>23</MatchRank>\r\n    <PublicationItemID>61145275</PublicationItemID>\r\n
-        \   <MatchScore>0.54428666830062866</MatchScore>\r\n  </ItemMatchResult>\r\n
         \ <ItemMatchResult>\r\n    <MatchRank>24</MatchRank>\r\n    <PublicationItemID>63094653</PublicationItemID>\r\n
         \   <MatchScore>0.54347777366638184</MatchScore>\r\n  </ItemMatchResult>\r\n
         \ <ItemMatchResult>\r\n    <MatchRank>25</MatchRank>\r\n    <PublicationItemID>68665173</PublicationItemID>\r\n
-        \   <MatchScore>0.54019194841384888</MatchScore>\r\n  </ItemMatchResult>\r\n
+        \   <MatchScore>0.54019200801849365</MatchScore>\r\n  </ItemMatchResult>\r\n
         \ <ItemMatchResult>\r\n    <MatchRank>26</MatchRank>\r\n    <PublicationItemID>67984767</PublicationItemID>\r\n
-        \   <MatchScore>0.5401918888092041</MatchScore>\r\n  </ItemMatchResult>\r\n
+        \   <MatchScore>0.54019194841384888</MatchScore>\r\n  </ItemMatchResult>\r\n
         \ <ItemMatchResult>\r\n    <MatchRank>27</MatchRank>\r\n    <PublicationItemID>63375977</PublicationItemID>\r\n
-        \   <MatchScore>0.53286772966384888</MatchScore>\r\n  </ItemMatchResult>\r\n
+        \   <MatchScore>0.53286778926849365</MatchScore>\r\n  </ItemMatchResult>\r\n
         \ <ItemMatchResult>\r\n    <MatchRank>28</MatchRank>\r\n    <PublicationItemID>70761506</PublicationItemID>\r\n
-        \   <MatchScore>0.53286582231521606</MatchScore>\r\n  </ItemMatchResult>\r\n
+        \   <MatchScore>0.53286588191986084</MatchScore>\r\n  </ItemMatchResult>\r\n
         \ <ItemMatchResult>\r\n    <MatchRank>29</MatchRank>\r\n    <PublicationItemID>63127835</PublicationItemID>\r\n
-        \   <MatchScore>0.51638412475585938</MatchScore>\r\n  </ItemMatchResult>\r\n
+        \   <MatchScore>0.51638418436050415</MatchScore>\r\n  </ItemMatchResult>\r\n
         \ <ItemMatchResult>\r\n    <MatchRank>30</MatchRank>\r\n    <PublicationItemID>54809958</PublicationItemID>\r\n
-        \   <MatchScore>0.51398485898971558</MatchScore>\r\n  </ItemMatchResult>\r\n
+        \   <MatchScore>0.51398491859436035</MatchScore>\r\n  </ItemMatchResult>\r\n
         \ <ItemMatchResult>\r\n    <MatchRank>31</MatchRank>\r\n    <PublicationItemID>63797757</PublicationItemID>\r\n
-        \   <MatchScore>0.51043146848678589</MatchScore>\r\n  </ItemMatchResult>\r\n
+        \   <MatchScore>0.51043152809143066</MatchScore>\r\n  </ItemMatchResult>\r\n
         \ <ItemMatchResult>\r\n    <MatchRank>32</MatchRank>\r\n    <PublicationItemID>68757708</PublicationItemID>\r\n
         \   <MatchScore>0.510430097579956</MatchScore>\r\n  </ItemMatchResult>\r\n
         \ <ItemMatchResult>\r\n    <MatchRank>33</MatchRank>\r\n    <PublicationItemID>69090160</PublicationItemID>\r\n
-        \   <MatchScore>0.5104299783706665</MatchScore>\r\n  </ItemMatchResult>\r\n
+        \   <MatchScore>0.51043003797531128</MatchScore>\r\n  </ItemMatchResult>\r\n
         \ <ItemMatchResult>\r\n    <MatchRank>34</MatchRank>\r\n    <PublicationItemID>62820761</PublicationItemID>\r\n
         \   <MatchScore>0.5089949369430542</MatchScore>\r\n  </ItemMatchResult>\r\n
         \ <ItemMatchResult>\r\n    <MatchRank>35</MatchRank>\r\n    <PublicationItemID>64794630</PublicationItemID>\r\n
-        \   <MatchScore>0.50209766626358032</MatchScore>\r\n  </ItemMatchResult>\r\n
+        \   <MatchScore>0.5020977258682251</MatchScore>\r\n  </ItemMatchResult>\r\n
         \ <ItemMatchResult>\r\n    <MatchRank>36</MatchRank>\r\n    <PublicationItemID>64250771</PublicationItemID>\r\n
         \   <MatchScore>0.50209760665893555</MatchScore>\r\n  </ItemMatchResult>\r\n
         \ <ItemMatchResult>\r\n    <MatchRank>37</MatchRank>\r\n    <PublicationItemID>64436234</PublicationItemID>\r\n
@@ -140,7 +142,7 @@ http_interactions:
         \ <ItemMatchResult>\r\n    <MatchRank>38</MatchRank>\r\n    <PublicationItemID>62798735</PublicationItemID>\r\n
         \   <MatchScore>0.49257475137710571</MatchScore>\r\n  </ItemMatchResult>\r\n
         \ <ItemMatchResult>\r\n    <MatchRank>39</MatchRank>\r\n    <PublicationItemID>63815530</PublicationItemID>\r\n
-        \   <MatchScore>0.49257463216781616</MatchScore>\r\n  </ItemMatchResult>\r\n
+        \   <MatchScore>0.49257466197013855</MatchScore>\r\n  </ItemMatchResult>\r\n
         \ <ItemMatchResult>\r\n    <MatchRank>40</MatchRank>\r\n    <PublicationItemID>63813815</PublicationItemID>\r\n
         \   <MatchScore>0.49257397651672363</MatchScore>\r\n  </ItemMatchResult>\r\n
         \ <ItemMatchResult>\r\n    <MatchRank>41</MatchRank>\r\n    <PublicationItemID>64203571</PublicationItemID>\r\n
@@ -148,116 +150,118 @@ http_interactions:
         \ <ItemMatchResult>\r\n    <MatchRank>42</MatchRank>\r\n    <PublicationItemID>64682293</PublicationItemID>\r\n
         \   <MatchScore>0.49257382750511169</MatchScore>\r\n  </ItemMatchResult>\r\n
         \ <ItemMatchResult>\r\n    <MatchRank>43</MatchRank>\r\n    <PublicationItemID>65738087</PublicationItemID>\r\n
-        \   <MatchScore>0.49257349967956543</MatchScore>\r\n  </ItemMatchResult>\r\n
+        \   <MatchScore>0.49257352948188782</MatchScore>\r\n  </ItemMatchResult>\r\n
         \ <ItemMatchResult>\r\n    <MatchRank>44</MatchRank>\r\n    <PublicationItemID>66027262</PublicationItemID>\r\n
-        \   <MatchScore>0.492573082447052</MatchScore>\r\n  </ItemMatchResult>\r\n
+        \   <MatchScore>0.49257311224937439</MatchScore>\r\n  </ItemMatchResult>\r\n
         \ <ItemMatchResult>\r\n    <MatchRank>45</MatchRank>\r\n    <PublicationItemID>65894106</PublicationItemID>\r\n
-        \   <MatchScore>0.49257305264472961</MatchScore>\r\n  </ItemMatchResult>\r\n
+        \   <MatchScore>0.492573082447052</MatchScore>\r\n  </ItemMatchResult>\r\n
         \ <ItemMatchResult>\r\n    <MatchRank>46</MatchRank>\r\n    <PublicationItemID>68068457</PublicationItemID>\r\n
-        \   <MatchScore>0.49257296323776245</MatchScore>\r\n  </ItemMatchResult>\r\n
+        \   <MatchScore>0.49257299304008484</MatchScore>\r\n  </ItemMatchResult>\r\n
         \ <ItemMatchResult>\r\n    <MatchRank>47</MatchRank>\r\n    <PublicationItemID>68176873</PublicationItemID>\r\n
         \   <MatchScore>0.49257293343544006</MatchScore>\r\n  </ItemMatchResult>\r\n
         \ <ItemMatchResult>\r\n    <MatchRank>48</MatchRank>\r\n    <PublicationItemID>69462406</PublicationItemID>\r\n
-        \   <MatchScore>0.48391500115394592</MatchScore>\r\n  </ItemMatchResult>\r\n
+        \   <MatchScore>0.48391503095626831</MatchScore>\r\n  </ItemMatchResult>\r\n
         \ <ItemMatchResult>\r\n    <MatchRank>49</MatchRank>\r\n    <PublicationItemID>64333326</PublicationItemID>\r\n
-        \   <MatchScore>0.47451186180114746</MatchScore>\r\n  </ItemMatchResult>\r\n
+        \   <MatchScore>0.47451189160346985</MatchScore>\r\n  </ItemMatchResult>\r\n
         \ <ItemMatchResult>\r\n    <MatchRank>50</MatchRank>\r\n    <PublicationItemID>9783907</PublicationItemID>\r\n
-        \   <MatchScore>0.47375920414924622</MatchScore>\r\n  </ItemMatchResult>\r\n
+        \   <MatchScore>0.47376838326454163</MatchScore>\r\n  </ItemMatchResult>\r\n
         \ <ItemMatchResult>\r\n    <MatchRank>51</MatchRank>\r\n    <PublicationItemID>65708657</PublicationItemID>\r\n
         \   <MatchScore>0.46209716796875</MatchScore>\r\n  </ItemMatchResult>\r\n
         \ <ItemMatchResult>\r\n    <MatchRank>52</MatchRank>\r\n    <PublicationItemID>67390352</PublicationItemID>\r\n
         \   <MatchScore>0.45594328641891479</MatchScore>\r\n  </ItemMatchResult>\r\n
         \ <ItemMatchResult>\r\n    <MatchRank>53</MatchRank>\r\n    <PublicationItemID>68758926</PublicationItemID>\r\n
-        \   <MatchScore>0.455942839384079</MatchScore>\r\n  </ItemMatchResult>\r\n
+        \   <MatchScore>0.45594286918640137</MatchScore>\r\n  </ItemMatchResult>\r\n
         \ <ItemMatchResult>\r\n    <MatchRank>54</MatchRank>\r\n    <PublicationItemID>60614627</PublicationItemID>\r\n
-        \   <MatchScore>0.44904863834381104</MatchScore>\r\n  </ItemMatchResult>\r\n
+        \   <MatchScore>0.44904869794845581</MatchScore>\r\n  </ItemMatchResult>\r\n
         \ <ItemMatchResult>\r\n    <MatchRank>55</MatchRank>\r\n    <PublicationItemID>63680849</PublicationItemID>\r\n
-        \   <MatchScore>0.44495564699172974</MatchScore>\r\n  </ItemMatchResult>\r\n
+        \   <MatchScore>0.44495567679405212</MatchScore>\r\n  </ItemMatchResult>\r\n
         \ <ItemMatchResult>\r\n    <MatchRank>56</MatchRank>\r\n    <PublicationItemID>62706400</PublicationItemID>\r\n
-        \   <MatchScore>0.44495561718940735</MatchScore>\r\n  </ItemMatchResult>\r\n
+        \   <MatchScore>0.44495564699172974</MatchScore>\r\n  </ItemMatchResult>\r\n
         \ <ItemMatchResult>\r\n    <MatchRank>57</MatchRank>\r\n    <PublicationItemID>63816663</PublicationItemID>\r\n
-        \   <MatchScore>0.44495558738708496</MatchScore>\r\n  </ItemMatchResult>\r\n
+        \   <MatchScore>0.44495561718940735</MatchScore>\r\n  </ItemMatchResult>\r\n
         \ <ItemMatchResult>\r\n    <MatchRank>58</MatchRank>\r\n    <PublicationItemID>63974868</PublicationItemID>\r\n
-        \   <MatchScore>0.4449554979801178</MatchScore>\r\n  </ItemMatchResult>\r\n
+        \   <MatchScore>0.44495552778244019</MatchScore>\r\n  </ItemMatchResult>\r\n
         \ <ItemMatchResult>\r\n    <MatchRank>59</MatchRank>\r\n    <PublicationItemID>62835242</PublicationItemID>\r\n
-        \   <MatchScore>0.44495546817779541</MatchScore>\r\n  </ItemMatchResult>\r\n
+        \   <MatchScore>0.4449554979801178</MatchScore>\r\n  </ItemMatchResult>\r\n
         \ <ItemMatchResult>\r\n    <MatchRank>60</MatchRank>\r\n    <PublicationItemID>63407804</PublicationItemID>\r\n
-        \   <MatchScore>0.44495537877082825</MatchScore>\r\n  </ItemMatchResult>\r\n
+        \   <MatchScore>0.44495540857315063</MatchScore>\r\n  </ItemMatchResult>\r\n
         \ <ItemMatchResult>\r\n    <MatchRank>61</MatchRank>\r\n    <PublicationItemID>63964727</PublicationItemID>\r\n
-        \   <MatchScore>0.44495534896850586</MatchScore>\r\n  </ItemMatchResult>\r\n
+        \   <MatchScore>0.44495537877082825</MatchScore>\r\n  </ItemMatchResult>\r\n
         \ <ItemMatchResult>\r\n    <MatchRank>62</MatchRank>\r\n    <PublicationItemID>64250033</PublicationItemID>\r\n
-        \   <MatchScore>0.44495531916618347</MatchScore>\r\n  </ItemMatchResult>\r\n
+        \   <MatchScore>0.44495534896850586</MatchScore>\r\n  </ItemMatchResult>\r\n
         \ <ItemMatchResult>\r\n    <MatchRank>63</MatchRank>\r\n    <PublicationItemID>64339090</PublicationItemID>\r\n
-        \   <MatchScore>0.44495496153831482</MatchScore>\r\n  </ItemMatchResult>\r\n
+        \   <MatchScore>0.44495499134063721</MatchScore>\r\n  </ItemMatchResult>\r\n
         \ <ItemMatchResult>\r\n    <MatchRank>64</MatchRank>\r\n    <PublicationItemID>64358876</PublicationItemID>\r\n
         \   <MatchScore>0.44495478272438049</MatchScore>\r\n  </ItemMatchResult>\r\n
         \ <ItemMatchResult>\r\n    <MatchRank>65</MatchRank>\r\n    <PublicationItemID>67586318</PublicationItemID>\r\n
         \   <MatchScore>0.44495478272438049</MatchScore>\r\n  </ItemMatchResult>\r\n
         \ <ItemMatchResult>\r\n    <MatchRank>66</MatchRank>\r\n    <PublicationItemID>65623513</PublicationItemID>\r\n
-        \   <MatchScore>0.44495448470115662</MatchScore>\r\n  </ItemMatchResult>\r\n
+        \   <MatchScore>0.444954514503479</MatchScore>\r\n  </ItemMatchResult>\r\n
         \ <ItemMatchResult>\r\n    <MatchRank>67</MatchRank>\r\n    <PublicationItemID>65561958</PublicationItemID>\r\n
-        \   <MatchScore>0.44495439529418945</MatchScore>\r\n  </ItemMatchResult>\r\n
+        \   <MatchScore>0.44495442509651184</MatchScore>\r\n  </ItemMatchResult>\r\n
         \ <ItemMatchResult>\r\n    <MatchRank>68</MatchRank>\r\n    <PublicationItemID>67560745</PublicationItemID>\r\n
-        \   <MatchScore>0.44495394825935364</MatchScore>\r\n  </ItemMatchResult>\r\n
+        \   <MatchScore>0.444953978061676</MatchScore>\r\n  </ItemMatchResult>\r\n
         \ <ItemMatchResult>\r\n    <MatchRank>69</MatchRank>\r\n    <PublicationItemID>68043913</PublicationItemID>\r\n
-        \   <MatchScore>0.44495394825935364</MatchScore>\r\n  </ItemMatchResult>\r\n
+        \   <MatchScore>0.444953978061676</MatchScore>\r\n  </ItemMatchResult>\r\n
         \ <ItemMatchResult>\r\n    <MatchRank>70</MatchRank>\r\n    <PublicationItemID>68740888</PublicationItemID>\r\n
-        \   <MatchScore>0.44495391845703125</MatchScore>\r\n  </ItemMatchResult>\r\n
+        \   <MatchScore>0.44495394825935364</MatchScore>\r\n  </ItemMatchResult>\r\n
         \ <ItemMatchResult>\r\n    <MatchRank>71</MatchRank>\r\n    <PublicationItemID>69236329</PublicationItemID>\r\n
-        \   <MatchScore>0.44495388865470886</MatchScore>\r\n  </ItemMatchResult>\r\n
+        \   <MatchScore>0.44495391845703125</MatchScore>\r\n  </ItemMatchResult>\r\n
         \ <ItemMatchResult>\r\n    <MatchRank>72</MatchRank>\r\n    <PublicationItemID>68123875</PublicationItemID>\r\n
-        \   <MatchScore>0.44495385885238647</MatchScore>\r\n  </ItemMatchResult>\r\n
-        \ <ItemMatchResult>\r\n    <MatchRank>73</MatchRank>\r\n    <PublicationItemID>62718556</PublicationItemID>\r\n
-        \   <MatchScore>0.44428595900535583</MatchScore>\r\n  </ItemMatchResult>\r\n
-        \ <ItemMatchResult>\r\n    <MatchRank>74</MatchRank>\r\n    <PublicationItemID>63963161</PublicationItemID>\r\n
-        \   <MatchScore>0.43253320455551147</MatchScore>\r\n  </ItemMatchResult>\r\n
-        \ <ItemMatchResult>\r\n    <MatchRank>75</MatchRank>\r\n    <PublicationItemID>63681187</PublicationItemID>\r\n
-        \   <MatchScore>0.43253305554389954</MatchScore>\r\n  </ItemMatchResult>\r\n
-        \ <ItemMatchResult>\r\n    <MatchRank>76</MatchRank>\r\n    <PublicationItemID>64184335</PublicationItemID>\r\n
+        \   <MatchScore>0.44495388865470886</MatchScore>\r\n  </ItemMatchResult>\r\n
+        \ <ItemMatchResult>\r\n    <MatchRank>73</MatchRank>\r\n    <PublicationItemID>70887552</PublicationItemID>\r\n
+        \   <MatchScore>0.44495388865470886</MatchScore>\r\n  </ItemMatchResult>\r\n
+        \ <ItemMatchResult>\r\n    <MatchRank>74</MatchRank>\r\n    <PublicationItemID>62718556</PublicationItemID>\r\n
+        \   <MatchScore>0.44428598880767822</MatchScore>\r\n  </ItemMatchResult>\r\n
+        \ <ItemMatchResult>\r\n    <MatchRank>75</MatchRank>\r\n    <PublicationItemID>63963161</PublicationItemID>\r\n
+        \   <MatchScore>0.43253323435783386</MatchScore>\r\n  </ItemMatchResult>\r\n
+        \ <ItemMatchResult>\r\n    <MatchRank>76</MatchRank>\r\n    <PublicationItemID>63681187</PublicationItemID>\r\n
+        \   <MatchScore>0.43253308534622192</MatchScore>\r\n  </ItemMatchResult>\r\n
+        \ <ItemMatchResult>\r\n    <MatchRank>77</MatchRank>\r\n    <PublicationItemID>64184335</PublicationItemID>\r\n
         \   <MatchScore>0.43253260850906372</MatchScore>\r\n  </ItemMatchResult>\r\n
-        \ <ItemMatchResult>\r\n    <MatchRank>77</MatchRank>\r\n    <PublicationItemID>69389656</PublicationItemID>\r\n
-        \   <MatchScore>0.42209678888320923</MatchScore>\r\n  </ItemMatchResult>\r\n
-        \ <ItemMatchResult>\r\n    <MatchRank>78</MatchRank>\r\n    <PublicationItemID>59617818</PublicationItemID>\r\n
-        \   <MatchScore>0.41095373034477234</MatchScore>\r\n  </ItemMatchResult>\r\n
-        \ <ItemMatchResult>\r\n    <MatchRank>79</MatchRank>\r\n    <PublicationItemID>60161600</PublicationItemID>\r\n
+        \ <ItemMatchResult>\r\n    <MatchRank>78</MatchRank>\r\n    <PublicationItemID>69389656</PublicationItemID>\r\n
+        \   <MatchScore>0.42209681868553162</MatchScore>\r\n  </ItemMatchResult>\r\n
+        \ <ItemMatchResult>\r\n    <MatchRank>79</MatchRank>\r\n    <PublicationItemID>59617818</PublicationItemID>\r\n
+        \   <MatchScore>0.41095376014709473</MatchScore>\r\n  </ItemMatchResult>\r\n
+        \ <ItemMatchResult>\r\n    <MatchRank>80</MatchRank>\r\n    <PublicationItemID>60161600</PublicationItemID>\r\n
         \   <MatchScore>0.40326184034347534</MatchScore>\r\n  </ItemMatchResult>\r\n
-        \ <ItemMatchResult>\r\n    <MatchRank>80</MatchRank>\r\n    <PublicationItemID>62022012</PublicationItemID>\r\n
+        \ <ItemMatchResult>\r\n    <MatchRank>81</MatchRank>\r\n    <PublicationItemID>62022012</PublicationItemID>\r\n
         \   <MatchScore>0.39733666181564331</MatchScore>\r\n  </ItemMatchResult>\r\n
-        \ <ItemMatchResult>\r\n    <MatchRank>81</MatchRank>\r\n    <PublicationItemID>63382453</PublicationItemID>\r\n
+        \ <ItemMatchResult>\r\n    <MatchRank>82</MatchRank>\r\n    <PublicationItemID>63382453</PublicationItemID>\r\n
+        \   <MatchScore>0.39733663201332092</MatchScore>\r\n  </ItemMatchResult>\r\n
+        \ <ItemMatchResult>\r\n    <MatchRank>83</MatchRank>\r\n    <PublicationItemID>62095044</PublicationItemID>\r\n
         \   <MatchScore>0.39733660221099854</MatchScore>\r\n  </ItemMatchResult>\r\n
-        \ <ItemMatchResult>\r\n    <MatchRank>82</MatchRank>\r\n    <PublicationItemID>62095044</PublicationItemID>\r\n
-        \   <MatchScore>0.39733657240867615</MatchScore>\r\n  </ItemMatchResult>\r\n
-        \ <ItemMatchResult>\r\n    <MatchRank>83</MatchRank>\r\n    <PublicationItemID>62989235</PublicationItemID>\r\n
-        \   <MatchScore>0.39733657240867615</MatchScore>\r\n  </ItemMatchResult>\r\n
-        \ <ItemMatchResult>\r\n    <MatchRank>84</MatchRank>\r\n    <PublicationItemID>64588810</PublicationItemID>\r\n
-        \   <MatchScore>0.3973364531993866</MatchScore>\r\n  </ItemMatchResult>\r\n
-        \ <ItemMatchResult>\r\n    <MatchRank>85</MatchRank>\r\n    <PublicationItemID>63765848</PublicationItemID>\r\n
-        \   <MatchScore>0.39733630418777466</MatchScore>\r\n  </ItemMatchResult>\r\n
-        \ <ItemMatchResult>\r\n    <MatchRank>86</MatchRank>\r\n    <PublicationItemID>64011378</PublicationItemID>\r\n
-        \   <MatchScore>0.397335946559906</MatchScore>\r\n  </ItemMatchResult>\r\n
-        \ <ItemMatchResult>\r\n    <MatchRank>87</MatchRank>\r\n    <PublicationItemID>64574929</PublicationItemID>\r\n
+        \ <ItemMatchResult>\r\n    <MatchRank>84</MatchRank>\r\n    <PublicationItemID>62989235</PublicationItemID>\r\n
+        \   <MatchScore>0.39733660221099854</MatchScore>\r\n  </ItemMatchResult>\r\n
+        \ <ItemMatchResult>\r\n    <MatchRank>85</MatchRank>\r\n    <PublicationItemID>64588810</PublicationItemID>\r\n
+        \   <MatchScore>0.397336483001709</MatchScore>\r\n  </ItemMatchResult>\r\n
+        \ <ItemMatchResult>\r\n    <MatchRank>86</MatchRank>\r\n    <PublicationItemID>63765848</PublicationItemID>\r\n
+        \   <MatchScore>0.39733633399009705</MatchScore>\r\n  </ItemMatchResult>\r\n
+        \ <ItemMatchResult>\r\n    <MatchRank>87</MatchRank>\r\n    <PublicationItemID>64011378</PublicationItemID>\r\n
+        \   <MatchScore>0.39733597636222839</MatchScore>\r\n  </ItemMatchResult>\r\n
+        \ <ItemMatchResult>\r\n    <MatchRank>88</MatchRank>\r\n    <PublicationItemID>64574929</PublicationItemID>\r\n
         \   <MatchScore>0.39733573794364929</MatchScore>\r\n  </ItemMatchResult>\r\n
-        \ <ItemMatchResult>\r\n    <MatchRank>88</MatchRank>\r\n    <PublicationItemID>68271025</PublicationItemID>\r\n
-        \   <MatchScore>0.39733535051345825</MatchScore>\r\n  </ItemMatchResult>\r\n
-        \ <ItemMatchResult>\r\n    <MatchRank>89</MatchRank>\r\n    <PublicationItemID>65988694</PublicationItemID>\r\n
+        \ <ItemMatchResult>\r\n    <MatchRank>89</MatchRank>\r\n    <PublicationItemID>68271025</PublicationItemID>\r\n
+        \   <MatchScore>0.39733538031578064</MatchScore>\r\n  </ItemMatchResult>\r\n
+        \ <ItemMatchResult>\r\n    <MatchRank>90</MatchRank>\r\n    <PublicationItemID>65988694</PublicationItemID>\r\n
         \   <MatchScore>0.39733511209487915</MatchScore>\r\n  </ItemMatchResult>\r\n
-        \ <ItemMatchResult>\r\n    <MatchRank>90</MatchRank>\r\n    <PublicationItemID>67785280</PublicationItemID>\r\n
+        \ <ItemMatchResult>\r\n    <MatchRank>91</MatchRank>\r\n    <PublicationItemID>67785280</PublicationItemID>\r\n
         \   <MatchScore>0.3973349928855896</MatchScore>\r\n  </ItemMatchResult>\r\n
-        \ <ItemMatchResult>\r\n    <MatchRank>91</MatchRank>\r\n    <PublicationItemID>67601994</PublicationItemID>\r\n
-        \   <MatchScore>0.39733493328094482</MatchScore>\r\n  </ItemMatchResult>\r\n
-        \ <ItemMatchResult>\r\n    <MatchRank>92</MatchRank>\r\n    <PublicationItemID>68683838</PublicationItemID>\r\n
-        \   <MatchScore>0.39733484387397766</MatchScore>\r\n  </ItemMatchResult>\r\n
-        \ <ItemMatchResult>\r\n    <MatchRank>93</MatchRank>\r\n    <PublicationItemID>70704483</PublicationItemID>\r\n
-        \   <MatchScore>0.39733484387397766</MatchScore>\r\n  </ItemMatchResult>\r\n
-        \ <ItemMatchResult>\r\n    <MatchRank>94</MatchRank>\r\n    <PublicationItemID>68806574</PublicationItemID>\r\n
-        \   <MatchScore>0.39733481407165527</MatchScore>\r\n  </ItemMatchResult>\r\n</ArrayOfItemMatchResult>"
+        \ <ItemMatchResult>\r\n    <MatchRank>92</MatchRank>\r\n    <PublicationItemID>67601994</PublicationItemID>\r\n
+        \   <MatchScore>0.39733496308326721</MatchScore>\r\n  </ItemMatchResult>\r\n
+        \ <ItemMatchResult>\r\n    <MatchRank>93</MatchRank>\r\n    <PublicationItemID>68683838</PublicationItemID>\r\n
+        \   <MatchScore>0.39733487367630005</MatchScore>\r\n  </ItemMatchResult>\r\n
+        \ <ItemMatchResult>\r\n    <MatchRank>94</MatchRank>\r\n    <PublicationItemID>70704483</PublicationItemID>\r\n
+        \   <MatchScore>0.39733487367630005</MatchScore>\r\n  </ItemMatchResult>\r\n
+        \ <ItemMatchResult>\r\n    <MatchRank>95</MatchRank>\r\n    <PublicationItemID>68806574</PublicationItemID>\r\n
+        \   <MatchScore>0.39733484387397766</MatchScore>\r\n  </ItemMatchResult>\r\n</ArrayOfItemMatchResult>"
     http_version: 
-  recorded_at: Mon, 15 Jun 2015 21:53:00 GMT
+  recorded_at: Mon, 29 Jun 2015 17:19:53 GMT
 - request:
     method: post
-    uri: https://stg.sciencewirerest.discoverylogic.com/PublicationCatalog/MatchedPublicationItemIdsForAuthor?format=xml
+    uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/MatchedPublicationItemIdsForAuthor?format=xml
     body:
-      encoding: US-ASCII
+      encoding: UTF-8
       string: |-
         <?xml version='1.0'?>
               <PublicationAuthorMatchParameters xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema'>
@@ -277,6 +281,8 @@ http_interactions:
                           <string>smbenson@stanford.edu</string>
                         </Emails><PublicationItemIds><int>532237</int><int>29681830</int><int>29693742</int><int>30153017</int><int>30563572</int><int>30711058</int><int>30991998</int><int>31488302</int><int>31623382</int><int>32897909</int><int>33038883</int><int>33139791</int><int>33878760</int><int>47444872</int><int>53640378</int><int>54368177</int><int>59612803</int><int>59641485</int><int>60094854</int><int>60223059</int><int>60478790</int><int>62816475</int><int>62823609</int><int>62903742</int><int>63182944</int><int>62767480</int><int>59904158</int><int>37634308</int><int>63378178</int><int>63775722</int><int>63911215</int><int>4167402</int><int>63891331</int><int>63814446</int><int>62976803</int><int>59811972</int><int>59878565</int><int>37635302</int><int>59936785</int><int>37630237</int><int>37632866</int><int>59839380</int><int>29114844</int><int>24672363</int><int>22528207</int><int>22411820</int><int>21667389</int><int>64357283</int><int>27876654</int><int>16447626</int><int>34333979</int><int>21865294</int><int>22624536</int><int>23216217</int><int>24575036</int><int>35196221</int><int>2627002</int><int>3769378</int><int>3704704</int><int>4513632</int><int>6434468</int><int>6368152</int><int>571008</int><int>35566141</int><int>36119242</int><int>6008013</int><int>36234880</int><int>36225095</int><int>36139437</int><int>36127090</int><int>36208464</int><int>35640871</int><int>23804292</int><int>22654678</int><int>17870903</int><int>23364040</int><int>45141719</int><int>64799575</int><int>65697723</int><int>66020502</int><int>67583123</int></PublicationItemIds><LimitToHighQualityMatchesOnly>true</LimitToHighQualityMatchesOnly></PublicationAuthorMatchParameters>
     headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
       - "*/*"
       User-Agent:
@@ -284,7 +290,7 @@ http_interactions:
       Licenseid:
       - ***REMOVED***
       Host:
-      - stg.sciencewirerest.discoverylogic.com
+      - sciencewirerest.discoverylogic.com
       Connection:
       - Keep-Alive
       Expect:
@@ -309,209 +315,53 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Mon, 15 Jun 2015 21:53:04 GMT
+      - Mon, 29 Jun 2015 17:19:55 GMT
       Content-Length:
-      - '3674'
+      - '3676'
     body:
-      encoding: US-ASCII
+      encoding: UTF-8
       string: "<?xml version=\"1.0\"?>\r\n<ArrayOfItemMatchResult xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <ItemMatchResult>\r\n
         \   <MatchRank>1</MatchRank>\r\n    <PublicationItemID>59811306</PublicationItemID>\r\n
-        \   <MatchScore>1.7723939418792725</MatchScore>\r\n  </ItemMatchResult>\r\n
+        \   <MatchScore>1.7718850374221802</MatchScore>\r\n  </ItemMatchResult>\r\n
         \ <ItemMatchResult>\r\n    <MatchRank>2</MatchRank>\r\n    <PublicationItemID>68717165</PublicationItemID>\r\n
-        \   <MatchScore>1.7305504083633423</MatchScore>\r\n  </ItemMatchResult>\r\n
+        \   <MatchScore>1.7306445837020874</MatchScore>\r\n  </ItemMatchResult>\r\n
         \ <ItemMatchResult>\r\n    <MatchRank>3</MatchRank>\r\n    <PublicationItemID>37881105</PublicationItemID>\r\n
-        \   <MatchScore>1.5933306217193604</MatchScore>\r\n  </ItemMatchResult>\r\n
+        \   <MatchScore>1.5928406715393066</MatchScore>\r\n  </ItemMatchResult>\r\n
         \ <ItemMatchResult>\r\n    <MatchRank>4</MatchRank>\r\n    <PublicationItemID>69172036</PublicationItemID>\r\n
         \   <MatchScore>1.5625</MatchScore>\r\n  </ItemMatchResult>\r\n  <ItemMatchResult>\r\n
         \   <MatchRank>5</MatchRank>\r\n    <PublicationItemID>69153906</PublicationItemID>\r\n
         \   <MatchScore>1.3244047164916992</MatchScore>\r\n  </ItemMatchResult>\r\n
         \ <ItemMatchResult>\r\n    <MatchRank>6</MatchRank>\r\n    <PublicationItemID>68708493</PublicationItemID>\r\n
-        \   <MatchScore>1.3051729202270508</MatchScore>\r\n  </ItemMatchResult>\r\n
+        \   <MatchScore>1.3052232265472412</MatchScore>\r\n  </ItemMatchResult>\r\n
         \ <ItemMatchResult>\r\n    <MatchRank>7</MatchRank>\r\n    <PublicationItemID>68727364</PublicationItemID>\r\n
-        \   <MatchScore>1.1931257247924805</MatchScore>\r\n  </ItemMatchResult>\r\n
+        \   <MatchScore>1.193128228187561</MatchScore>\r\n  </ItemMatchResult>\r\n
         \ <ItemMatchResult>\r\n    <MatchRank>8</MatchRank>\r\n    <PublicationItemID>53950452</PublicationItemID>\r\n
         \   <MatchScore>0.9377976655960083</MatchScore>\r\n  </ItemMatchResult>\r\n
         \ <ItemMatchResult>\r\n    <MatchRank>9</MatchRank>\r\n    <PublicationItemID>2760811</PublicationItemID>\r\n
         \   <MatchScore>0.89177489280700684</MatchScore>\r\n  </ItemMatchResult>\r\n
         \ <ItemMatchResult>\r\n    <MatchRank>10</MatchRank>\r\n    <PublicationItemID>68673074</PublicationItemID>\r\n
-        \   <MatchScore>0.86131894588470459</MatchScore>\r\n  </ItemMatchResult>\r\n
+        \   <MatchScore>0.860404372215271</MatchScore>\r\n  </ItemMatchResult>\r\n
         \ <ItemMatchResult>\r\n    <MatchRank>11</MatchRank>\r\n    <PublicationItemID>65212547</PublicationItemID>\r\n
         \   <MatchScore>0.80654764175415039</MatchScore>\r\n  </ItemMatchResult>\r\n
         \ <ItemMatchResult>\r\n    <MatchRank>12</MatchRank>\r\n    <PublicationItemID>1788601</PublicationItemID>\r\n
-        \   <MatchScore>0.80310600996017456</MatchScore>\r\n  </ItemMatchResult>\r\n
+        \   <MatchScore>0.80322802066802979</MatchScore>\r\n  </ItemMatchResult>\r\n
         \ <ItemMatchResult>\r\n    <MatchRank>13</MatchRank>\r\n    <PublicationItemID>37893296</PublicationItemID>\r\n
-        \   <MatchScore>0.798206090927124</MatchScore>\r\n  </ItemMatchResult>\r\n
+        \   <MatchScore>0.79743283987045288</MatchScore>\r\n  </ItemMatchResult>\r\n
         \ <ItemMatchResult>\r\n    <MatchRank>14</MatchRank>\r\n    <PublicationItemID>2225627</PublicationItemID>\r\n
-        \   <MatchScore>0.6797296404838562</MatchScore>\r\n  </ItemMatchResult>\r\n
+        \   <MatchScore>0.68007433414459229</MatchScore>\r\n  </ItemMatchResult>\r\n
         \ <ItemMatchResult>\r\n    <MatchRank>15</MatchRank>\r\n    <PublicationItemID>68684238</PublicationItemID>\r\n
-        \   <MatchScore>0.55543911457061768</MatchScore>\r\n  </ItemMatchResult>\r\n
+        \   <MatchScore>0.55417126417160034</MatchScore>\r\n  </ItemMatchResult>\r\n
         \ <ItemMatchResult>\r\n    <MatchRank>16</MatchRank>\r\n    <PublicationItemID>27282101</PublicationItemID>\r\n
-        \   <MatchScore>0.50252431631088257</MatchScore>\r\n  </ItemMatchResult>\r\n
+        \   <MatchScore>0.50255918502807617</MatchScore>\r\n  </ItemMatchResult>\r\n
         \ <ItemMatchResult>\r\n    <MatchRank>17</MatchRank>\r\n    <PublicationItemID>30120215</PublicationItemID>\r\n
-        \   <MatchScore>0.468953013420105</MatchScore>\r\n  </ItemMatchResult>\r\n
+        \   <MatchScore>0.46902817487716675</MatchScore>\r\n  </ItemMatchResult>\r\n
         \ <ItemMatchResult>\r\n    <MatchRank>18</MatchRank>\r\n    <PublicationItemID>68743531</PublicationItemID>\r\n
-        \   <MatchScore>0.45688271522521973</MatchScore>\r\n  </ItemMatchResult>\r\n
+        \   <MatchScore>0.45696306228637695</MatchScore>\r\n  </ItemMatchResult>\r\n
         \ <ItemMatchResult>\r\n    <MatchRank>19</MatchRank>\r\n    <PublicationItemID>7966646</PublicationItemID>\r\n
-        \   <MatchScore>0.31983309984207153</MatchScore>\r\n  </ItemMatchResult>\r\n
+        \   <MatchScore>0.31984582543373108</MatchScore>\r\n  </ItemMatchResult>\r\n
         \ <ItemMatchResult>\r\n    <MatchRank>20</MatchRank>\r\n    <PublicationItemID>7173442</PublicationItemID>\r\n
-        \   <MatchScore>0.31189292669296265</MatchScore>\r\n  </ItemMatchResult>\r\n</ArrayOfItemMatchResult>"
+        \   <MatchScore>0.31191262602806091</MatchScore>\r\n  </ItemMatchResult>\r\n</ArrayOfItemMatchResult>"
     http_version: 
-  recorded_at: Mon, 15 Jun 2015 21:53:04 GMT
-- request:
-    method: post
-    uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/MatchedPublicationItemIdsForAuthor?format=xml
-    body:
-      encoding: UTF-8
-      string: |-
-        <?xml version='1.0'?>
-              <PublicationAuthorMatchParameters xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema'>
-                <Authors>
-                  <Author>
-                    <LastName>benson</LastName>
-                    <FirstName>sally</FirstName>
-                    <MiddleName></MiddleName>
-                    <City>Stanford</City>
-                    <State>CA</State>
-                    <Country>USA</Country>
-                    <Version>1</Version>
-                 </Author>
-              </Authors>
-              <DocumentCategory>Journal Document</DocumentCategory>
-              <Emails>
-                          <string>smbenson@stanford.edu</string>
-                        </Emails><PublicationItemIds><int>532237</int><int>29681830</int><int>29693742</int><int>30153017</int><int>30563572</int><int>30711058</int><int>30991998</int><int>31488302</int><int>31623382</int><int>32897909</int><int>33038883</int><int>33139791</int><int>33878760</int><int>47444872</int><int>53640378</int><int>54368177</int><int>59612803</int><int>59641485</int><int>60094854</int><int>60223059</int><int>60478790</int><int>62816475</int><int>62823609</int><int>62903742</int><int>63182944</int><int>62767480</int><int>59904158</int><int>37634308</int><int>63378178</int><int>63775722</int><int>63911215</int><int>4167402</int><int>63891331</int><int>63814446</int><int>62976803</int><int>59811972</int><int>59878565</int><int>37635302</int><int>59936785</int><int>37630237</int><int>37632866</int><int>59839380</int><int>29114844</int><int>24672363</int><int>22528207</int><int>22411820</int><int>21667389</int><int>64357283</int><int>27876654</int><int>16447626</int><int>34333979</int><int>21865294</int><int>22624536</int><int>23216217</int><int>24575036</int><int>35196221</int><int>2627002</int><int>3769378</int><int>3704704</int><int>4513632</int><int>6434468</int><int>6368152</int><int>571008</int><int>35566141</int><int>36119242</int><int>6008013</int><int>36234880</int><int>36225095</int><int>36139437</int><int>36127090</int><int>36208464</int><int>35640871</int><int>23804292</int><int>22654678</int><int>17870903</int><int>23364040</int><int>45141719</int><int>64799575</int><int>65697723</int><int>66020502</int><int>67583123</int></PublicationItemIds><LimitToHighQualityMatchesOnly>true</LimitToHighQualityMatchesOnly></PublicationAuthorMatchParameters>
-    headers:
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - "*/*"
-      User-Agent:
-      - Ruby
-      Licenseid:
-      - some-license-id
-      Host:
-      - sciencewirerest.discoverylogic.com
-      Connection:
-      - Keep-Alive
-      Expect:
-      - 100-continue
-      Content-Type:
-      - text/xml
-  response:
-    status:
-      code: 500
-      message: Internal Server Error
-    headers:
-      Cache-Control:
-      - private
-      Content-Type:
-      - text/html
-      Server:
-      - Microsoft-IIS/7.5
-      X-Aspnetmvc-Version:
-      - '2.0'
-      X-Aspnet-Version:
-      - 4.0.30319
-      X-Powered-By:
-      - ASP.NET
-      Date:
-      - Mon, 29 Jun 2015 15:50:37 GMT
-      Content-Length:
-      - '1208'
-    body:
-      encoding: UTF-8
-      string: "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\r\n<html
-        xmlns=\"http://www.w3.org/1999/xhtml\">\r\n<head>\r\n<meta http-equiv=\"Content-Type\"
-        content=\"text/html; charset=iso-8859-1\"/>\r\n<title>500 - Internal server
-        error.</title>\r\n<style type=\"text/css\">\r\n<!--\r\nbody{margin:0;font-size:.7em;font-family:Verdana,
-        Arial, Helvetica, sans-serif;background:#EEEEEE;}\r\nfieldset{padding:0 15px
-        10px 15px;} \r\nh1{font-size:2.4em;margin:0;color:#FFF;}\r\nh2{font-size:1.7em;margin:0;color:#CC0000;}
-        \r\nh3{font-size:1.2em;margin:10px 0 0 0;color:#000000;} \r\n#header{width:96%;margin:0
-        0 0 0;padding:6px 2% 6px 2%;font-family:\"trebuchet MS\", Verdana, sans-serif;color:#FFF;\r\nbackground-color:#555555;}\r\n#content{margin:0
-        0 0 2%;position:relative;}\r\n.content-container{background:#FFF;width:96%;margin-top:8px;padding:10px;position:relative;}\r\n-->\r\n</style>\r\n</head>\r\n<body>\r\n<div
-        id=\"header\"><h1>Server Error</h1></div>\r\n<div id=\"content\">\r\n <div
-        class=\"content-container\"><fieldset>\r\n  <h2>500 - Internal server error.</h2>\r\n
-        \ <h3>There is a problem with the resource you are looking for, and it cannot
-        be displayed.</h3>\r\n </fieldset></div>\r\n</div>\r\n</body>\r\n</html>\r\n"
-    http_version: 
-  recorded_at: Mon, 29 Jun 2015 15:50:38 GMT
-- request:
-    method: post
-    uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/MatchedPublicationItemIdsForAuthor?format=xml
-    body:
-      encoding: UTF-8
-      string: |-
-        <?xml version='1.0'?>
-              <PublicationAuthorMatchParameters xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema'>
-                <Authors>
-                  <Author>
-                    <LastName>benson</LastName>
-                    <FirstName>sally</FirstName>
-                    <MiddleName></MiddleName>
-                    <City>Stanford</City>
-                    <State>CA</State>
-                    <Country>USA</Country>
-                    <Version>1</Version>
-                 </Author>
-              </Authors>
-              <DocumentCategory>Conference Proceeding Document</DocumentCategory>
-              <Emails>
-                          <string>smbenson@stanford.edu</string>
-                        </Emails><PublicationItemIds><int>532237</int><int>29681830</int><int>29693742</int><int>30153017</int><int>30563572</int><int>30711058</int><int>30991998</int><int>31488302</int><int>31623382</int><int>32897909</int><int>33038883</int><int>33139791</int><int>33878760</int><int>47444872</int><int>53640378</int><int>54368177</int><int>59612803</int><int>59641485</int><int>60094854</int><int>60223059</int><int>60478790</int><int>62816475</int><int>62823609</int><int>62903742</int><int>63182944</int><int>62767480</int><int>59904158</int><int>37634308</int><int>63378178</int><int>63775722</int><int>63911215</int><int>4167402</int><int>63891331</int><int>63814446</int><int>62976803</int><int>59811972</int><int>59878565</int><int>37635302</int><int>59936785</int><int>37630237</int><int>37632866</int><int>59839380</int><int>29114844</int><int>24672363</int><int>22528207</int><int>22411820</int><int>21667389</int><int>64357283</int><int>27876654</int><int>16447626</int><int>34333979</int><int>21865294</int><int>22624536</int><int>23216217</int><int>24575036</int><int>35196221</int><int>2627002</int><int>3769378</int><int>3704704</int><int>4513632</int><int>6434468</int><int>6368152</int><int>571008</int><int>35566141</int><int>36119242</int><int>6008013</int><int>36234880</int><int>36225095</int><int>36139437</int><int>36127090</int><int>36208464</int><int>35640871</int><int>23804292</int><int>22654678</int><int>17870903</int><int>23364040</int><int>45141719</int><int>64799575</int><int>65697723</int><int>66020502</int><int>67583123</int></PublicationItemIds><LimitToHighQualityMatchesOnly>true</LimitToHighQualityMatchesOnly></PublicationAuthorMatchParameters>
-    headers:
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - "*/*"
-      User-Agent:
-      - Ruby
-      Licenseid:
-      - some-license-id
-      Host:
-      - sciencewirerest.discoverylogic.com
-      Connection:
-      - Keep-Alive
-      Expect:
-      - 100-continue
-      Content-Type:
-      - text/xml
-  response:
-    status:
-      code: 500
-      message: Internal Server Error
-    headers:
-      Cache-Control:
-      - private
-      Content-Type:
-      - text/html
-      Server:
-      - Microsoft-IIS/7.5
-      X-Aspnetmvc-Version:
-      - '2.0'
-      X-Aspnet-Version:
-      - 4.0.30319
-      X-Powered-By:
-      - ASP.NET
-      Date:
-      - Mon, 29 Jun 2015 15:50:39 GMT
-      Content-Length:
-      - '1208'
-    body:
-      encoding: UTF-8
-      string: "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\r\n<html
-        xmlns=\"http://www.w3.org/1999/xhtml\">\r\n<head>\r\n<meta http-equiv=\"Content-Type\"
-        content=\"text/html; charset=iso-8859-1\"/>\r\n<title>500 - Internal server
-        error.</title>\r\n<style type=\"text/css\">\r\n<!--\r\nbody{margin:0;font-size:.7em;font-family:Verdana,
-        Arial, Helvetica, sans-serif;background:#EEEEEE;}\r\nfieldset{padding:0 15px
-        10px 15px;} \r\nh1{font-size:2.4em;margin:0;color:#FFF;}\r\nh2{font-size:1.7em;margin:0;color:#CC0000;}
-        \r\nh3{font-size:1.2em;margin:10px 0 0 0;color:#000000;} \r\n#header{width:96%;margin:0
-        0 0 0;padding:6px 2% 6px 2%;font-family:\"trebuchet MS\", Verdana, sans-serif;color:#FFF;\r\nbackground-color:#555555;}\r\n#content{margin:0
-        0 0 2%;position:relative;}\r\n.content-container{background:#FFF;width:96%;margin-top:8px;padding:10px;position:relative;}\r\n-->\r\n</style>\r\n</head>\r\n<body>\r\n<div
-        id=\"header\"><h1>Server Error</h1></div>\r\n<div id=\"content\">\r\n <div
-        class=\"content-container\"><fieldset>\r\n  <h2>500 - Internal server error.</h2>\r\n
-        \ <h3>There is a problem with the resource you are looking for, and it cannot
-        be displayed.</h3>\r\n </fieldset></div>\r\n</div>\r\n</body>\r\n</html>\r\n"
-    http_version: 
-  recorded_at: Mon, 29 Jun 2015 15:50:39 GMT
+  recorded_at: Mon, 29 Jun 2015 17:19:55 GMT
 recorded_with: VCR 2.5.0
