@@ -89,3 +89,9 @@ gem 'jquery-rails'
 
 # To use debugger
 # gem 'debugger'
+
+# Use Squash for exception reporting
+gem 'squash_ruby', require: 'squash/ruby'
+
+# Pinned to 1.3.3 until https://github.com/SquareSquash/rails/pull/15
+gem 'squash_rails', '1.3.3', require: 'squash/rails'
