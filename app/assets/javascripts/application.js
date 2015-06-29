@@ -12,4 +12,5 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require retina_tag
 //= require_tree .

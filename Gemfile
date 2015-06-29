@@ -95,3 +95,4 @@ gem 'jquery-rails'
 # Use Squash for exception reporting
 gem 'squash_ruby', require: 'squash/ruby'
 gem 'squash_rails', require: 'squash/rails'
+gem 'retina_tag'
