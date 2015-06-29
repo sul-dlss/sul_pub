@@ -16,9 +16,7 @@ module SulBib
       end
     end
 
-
-    group (:authorship) { mount SulBib::AuthorshipAPI }
-    group (:publications) { mount SulBib::PublicationsAPI }
+    group(:authorship) { mount SulBib::AuthorshipAPI }
+    group(:publications) { mount SulBib::PublicationsAPI }
   end
-
 end

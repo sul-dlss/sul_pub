@@ -1,5 +1,5 @@
 Sulbib::Application.configure do
- # config.force_ssl = true
+  # config.force_ssl = true
   # Settings specified here will take precedence over those in config/application.rb
   config.eager_load = false
 
@@ -11,7 +11,7 @@ Sulbib::Application.configure do
 
   # Configure static asset server for tests with Cache-Control for performance
   config.serve_static_files = true
-  config.static_cache_control = "public, max-age=3600"
+  config.static_cache_control = 'public, max-age=3600'
 
   # Log error messages when you accidentally call methods on nil
   config.whiny_nils = true

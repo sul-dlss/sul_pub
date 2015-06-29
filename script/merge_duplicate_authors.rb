@@ -4,7 +4,7 @@ class MergeDuplicateAuths
   CONTRIB_CHECK = true
 
   def initialize
-    @logger = Logger.new(Rails.root.join('log', "merge_duplicate_auths.log"))
+    @logger = Logger.new(Rails.root.join('log', 'merge_duplicate_auths.log'))
     @clones_removed = 0
     @contribs_fixed = 0
   end
@@ -14,13 +14,13 @@ class MergeDuplicateAuths
   # Rebuild the publications
   def merge(cap_id)
     moved_contribs = false
-    auths = Author.where(:cap_profile_id => cap_id)
+    auths = Author.where(cap_profile_id: cap_id)
     master = auths.shift
 
     auths.each do |clone|
-      if(CONTRIB_CHECK)
+      if CONTRIB_CHECK
         clone.contributions.each do |contrib|
-          unless(master.contributions.where(:publication_id => contrib.publication_id).exists?)
+          unless master.contributions.where(publication_id: contrib.publication_id).exists?
             new_contrib = contrib.dup
             new_contrib.author_id = master.id
             new_contrib.save
@@ -42,7 +42,7 @@ class MergeDuplicateAuths
       pub.save
     end
 
-  rescue ActiveRecord::RecordNotFound => e
+  rescue ActiveRecord::RecordNotFound
     @logger.warn "Author id not found #{auth_id}"
   end
 
@@ -53,7 +53,7 @@ class MergeDuplicateAuths
     dup_cap_ids.each do |cap_id|
       begin
         count += 1
-        @logger.info "Processed #{count}" if(count % 100 == 0)
+        @logger.info "Processed #{count}" if (count % 100 == 0)
 
         merge cap_id
       rescue => e

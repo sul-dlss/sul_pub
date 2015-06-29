@@ -1,24 +1,20 @@
 
 class PubmedHarvester
-
   # Searches locally, then ScienceWire, then Pubmed for a publication by PubmedId
   # @param [String] pmid PubmedId
   # @return [Array<Hash>] publication in BibJson format.  Usually for Publication sourcelookup requests
   #   If no publication found, returns an empty Array
-  def self.search_all_sources_by_pmid pmid
+  def self.search_all_sources_by_pmid(pmid)
+    result = Publication.where(pmid: pmid).to_a # TODO: index manual and batch with pmid?
+    result = Publication.find_by_pmid_in_pub_id_table(pmid) if result.empty?
 
-    result = Publication.where(:pmid => pmid).to_a # TODO index manual and batch with pmid?
-    if result.empty?
-      result = Publication.find_by_pmid_in_pub_id_table(pmid)
-    end
-
-    if result.none? { |p| p.authoritative_pmid_source? }
+    if result.none?(&:authoritative_pmid_source?)
       sw_records_doc = ScienceWireClient.new.pull_records_from_sciencewire_for_pmids(pmid)
       sw_records_doc.xpath('//PublicationItem').each do |sw_doc|
         result << SciencewireSourceRecord.convert_sw_publication_doc_to_hash(sw_doc)
       end
 
-      if result.none? {|p| p.is_a? Hash }
+      if result.none? { |p| p.is_a? Hash }
         pm_xml = PubmedClient.new.fetch_records_for_pmid_list pmid
         Nokogiri::XML(pm_xml).xpath('//PubmedArticle').each do |doc|
           pm_rec = PubmedSourceRecord.new
@@ -29,9 +25,9 @@ class PubmedHarvester
 
     # If we have more than one result, we could have a mix of local and pubmed/SW records
     # Only clean out manual/batch if there's a mix
-    if result.size > 1 && result.any? {|p| p.kind_of? Hash }
+    if result.size > 1 && result.any? { |p| p.is_a? Hash }
       result.reject! do |pub|
-        if(pub.is_a?(Publication) && pub.pub_hash[:provanance] =~ /cap|batch/i)
+        if pub.is_a?(Publication) && pub.pub_hash[:provanance] =~ /cap|batch/i
           true
         else
           false

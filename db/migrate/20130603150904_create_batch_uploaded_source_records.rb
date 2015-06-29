@@ -21,6 +21,5 @@ class CreateBatchUploadedSourceRecords < ActiveRecord::Migration
     add_index :batch_uploaded_source_records, :author_id
     add_index :batch_uploaded_source_records, :batch_name
     add_index :batch_uploaded_source_records, :title
-
   end
 end

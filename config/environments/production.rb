@@ -72,11 +72,9 @@ end
 require 'socket'
 
 module SulBib
-  if(Socket.gethostname =~ /^sulcap-prod/)
+  if Socket.gethostname =~ /^sulcap-prod/
     API_KEY = '***REMOVED***'
   else
     API_KEY = '***REMOVED***'
   end
 end
-
-

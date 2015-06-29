@@ -9,7 +9,7 @@ Bundler.require(*Rails.groups)
 module Sulbib
   class Application < Rails::Application
     config.force_ssl = false
-    
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
@@ -20,9 +20,9 @@ module Sulbib
     config.autoload_paths += Dir["#{config.root}/lib/**/"]
 
     # Auto-load API and its subdirectories
-    config.paths.add "app/api", :glob => "**/*.rb"
+    config.paths.add 'app/api', glob: '**/*.rb'
     config.autoload_paths += Dir["#{Rails.root}/app/api/*"]
-    
+
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named.
     # config.plugins = [ :exception_notification, :ssl_requirement, :all ]
@@ -39,7 +39,7 @@ module Sulbib
     # config.i18n.default_locale = :de
 
     # Configure the default encoding used in templates for Ruby 1.9.
-    config.encoding = "utf-8"
+    config.encoding = 'utf-8'
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]

@@ -3,38 +3,35 @@ class CapProfileIdRewriter
   include ActionView::Helpers::DateHelper
 
   def rewrite_cap_profile_ids_from_feed(starting = 0)
+    @cap_http_client = CapHttpClient.new
 
-    begin
-      @cap_http_client = CapHttpClient.new
+    @cap_authorship_logger = Logger.new(Rails.root.join('log', 'cap_profile_id_rewrite.log'))
+    @cap_authorship_logger.info "Started cap profile id rewrite  - #{Time.zone.now}"
+    @page_count = starting
+    @last_page = false
 
-      @cap_authorship_logger = Logger.new(Rails.root.join('log', 'cap_profile_id_rewrite.log'))
-      @cap_authorship_logger.info "Started cap profile id rewrite  - #{DateTime.now}"
-      @page_count = starting
-      @last_page = false
+    initialize_counts_for_logging
+    until @last_page
+      @page_count += 1
+      process_next_batch_of_authorship_data(@page_count, 1000)
+      Rails.logger.debug "#{@total_running_count} in #{distance_of_time_in_words_to_now(@start_time, true)}"
+      @cap_authorship_logger.info @total_running_count.to_s + ' records were processed in ' + distance_of_time_in_words_to_now(@start_time)
 
-      initialize_counts_for_logging
-      until @last_page
-        @page_count += 1
-        process_next_batch_of_authorship_data(@page_count, 1000)
-        puts (@total_running_count).to_s + " in " + distance_of_time_in_words_to_now(@start_time, include_seconds = true)
-        @cap_authorship_logger.info @total_running_count.to_s + " records were processed in " + distance_of_time_in_words_to_now(@start_time)
-
-        #if page_count === 1 then break end
-      end
-      write_counts_to_log
-
-    rescue => e
-      @cap_authorship_logger = Logger.new(Rails.root.join('log', 'cap_profile_id_rewrite.log'))
-      @cap_authorship_logger.error "cap profile id rewrite import failed - #{DateTime.now}"
-      @cap_authorship_logger.error e.message
-      @cap_authorship_logger.error e.backtrace
-      puts e.message
-      puts e.backtrace
+      # if page_count === 1 then break end
     end
+    write_counts_to_log
+
+  rescue => e
+    @cap_authorship_logger = Logger.new(Rails.root.join('log', 'cap_profile_id_rewrite.log'))
+    @cap_authorship_logger.error "cap profile id rewrite import failed - #{Time.zone.now}"
+    @cap_authorship_logger.error e.message
+    @cap_authorship_logger.error e.backtrace
+    Rails.logger.warn e.message
+    Rails.logger.info e.backtrace
   end
 
   def initialize_counts_for_logging
-    @start_time = Time.now
+    @start_time = Time.zone.now
     @total_running_count = 0
     @new_author_count = 0
     @authors_updated_count = 0
@@ -49,7 +46,7 @@ class CapProfileIdRewriter
   end
 
   def write_counts_to_log
-    @cap_authorship_logger.info "Finished cap profile id rewrite - #{DateTime.now}"
+    @cap_authorship_logger.info "Finished cap profile id rewrite - #{Time.zone.now}"
     @cap_authorship_logger.info "#{@total_running_count} records were processed in " + distance_of_time_in_words_to_now(@start_time)
     @cap_authorship_logger.info "#{@new_author_count} authors were created."
     @cap_authorship_logger.info "#{@no_import_settings_count} records with no import settings."
@@ -60,28 +57,27 @@ class CapProfileIdRewriter
     @cap_authorship_logger.info "#{@authors_updated_count} authors were updated."
     @cap_authorship_logger.info "#{@import_enabled_count} authors had import enabled."
     @cap_authorship_logger.info "#{@import_disabled_count} authors had import disabled."
-    puts @new_author_count.to_s + " authors were created."
-    puts @page_count.to_s + " pages of 1000 records were processed in " + distance_of_time_in_words_to_now(@start_time)
-    puts @total_running_count.to_s + " total records were processed in " + distance_of_time_in_words_to_now(@start_time)
+    Rails.logger.info @new_author_count.to_s + ' authors were created.'
+    Rails.logger.info @page_count.to_s + ' pages of 1000 records were processed in ' + distance_of_time_in_words_to_now(@start_time)
+    Rails.logger.info @total_running_count.to_s + ' total records were processed in ' + distance_of_time_in_words_to_now(@start_time)
   end
 
   def process_next_batch_of_authorship_data(page_count, page_size)
     json_response = @cap_http_client.get_batch_from_cap_api(page_count, page_size, nil)
 
-
-    if json_response["values"].blank?
-      puts "unexpected json: " + json_response.to_s
-      @cap_authorship_logger.info "Authorship import ended unexpectedly. Returned json: "
+    if json_response['values'].blank?
+      Rails.logger.warn 'unexpected json: ' + json_response.to_s
+      @cap_authorship_logger.info 'Authorship import ended unexpectedly. Returned json: '
       @cap_authorship_logger.info json_response.to_s
-      # TODO send an email here.
-      raise
+      # TODO: send an email here.
+      fail
     else
-      json_response["values"].each do | record |
+      json_response['values'].each do |record|
         @total_running_count += 1
 
         attrs = Author.build_attribute_hash_from_cap_profile(record)
 
-        if !attrs[:sunetid].blank?
+        unless attrs[:sunetid].blank?
           author = Author.where(sunetid: attrs[:sunetid]).first
         end
         if author.nil? && !attrs[:university_id].blank?
@@ -92,7 +88,7 @@ class CapProfileIdRewriter
         end
         if author
           author.update_attributes(attrs)
-          author.contributions.each { |contrib | contrib.update_attribute(:cap_profile_id, author.cap_profile_id)}
+          author.contributions.each { |contrib| contrib.update_attribute(:cap_profile_id, author.cap_profile_id) }
           @authors_updated_count += 1
         else
           # SKIP new authors?
@@ -100,11 +96,7 @@ class CapProfileIdRewriter
           @new_author_count += 1
         end
       end
-      @last_page = json_response["lastPage"]
+      @last_page = json_response['lastPage']
     end
   end
-
-
-
-
 end

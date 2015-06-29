@@ -15,6 +15,5 @@ class CreateContributions < ActiveRecord::Migration
     add_index :contributions, :publication_id
     add_index :contributions, :author_id
     add_index :contributions, [:publication_id, :author_id]
-    
   end
 end
