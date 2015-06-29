@@ -5,19 +5,35 @@ http_interactions:
     uri: https://stg.sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery?format=xml
     body:
       encoding: US-ASCII
-      string: ! "<?xml version=\"1.0\"?>\n      <ScienceWireQueryXMLParameter xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
-        xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\n      <xmlQuery><![CDATA[\n
-        \     <query xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\n
-        \       <Criterion ConjunctionOperator=\"AND\">\n          <Criteria>\n            <Criterion>\n
-        \             <Filter>\n                <Column>WoSItemID</Column>\n                <Operator>In</Operator>\n
-        \               <Values>\n<Value>000224492700003</Value>\n</Values>\n                </Filter>\n
-        \             </Criterion>\n            </Criteria>\n          </Criterion><Columns>\n
-        \           <SortColumn>\n              <Column>PublicationItemID</Column>\n
-        \             <Direction>Ascending</Direction>\n            </SortColumn>\n
-        \         </Columns>\n        </query>\n    ]]></xmlQuery>\n      </ScienceWireQueryXMLParameter>"
+      string: |-
+        <?xml version="1.0"?>
+              <ScienceWireQueryXMLParameter xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+              <xmlQuery><![CDATA[
+              <query xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+                <Criterion ConjunctionOperator="AND">
+                  <Criteria>
+                    <Criterion>
+                      <Filter>
+                        <Column>WoSItemID</Column>
+                        <Operator>In</Operator>
+                        <Values>
+        <Value>000224492700003</Value>
+        </Values>
+                        </Filter>
+                      </Criterion>
+                    </Criteria>
+                  </Criterion><Columns>
+                    <SortColumn>
+                      <Column>PublicationItemID</Column>
+                      <Direction>Ascending</Direction>
+                    </SortColumn>
+                  </Columns>
+                </query>
+            ]]></xmlQuery>
+              </ScienceWireQueryXMLParameter>
     headers:
       Accept:
-      - ! '*/*'
+      - "*/*"
       User-Agent:
       - Ruby
       Licenseid:
@@ -53,7 +69,7 @@ http_interactions:
       - '277'
     body:
       encoding: US-ASCII
-      string: ! "<?xml version=\"1.0\"?>\r\n<ScienceWireQueryIDResponse xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
+      string: "<?xml version=\"1.0\"?>\r\n<ScienceWireQueryIDResponse xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>79588</queryID>\r\n
         \ <queryResultRows>1</queryResultRows>\r\n  <totalRows>1</totalRows>\r\n</ScienceWireQueryIDResponse>"
     http_version: 
@@ -66,7 +82,7 @@ http_interactions:
       string: ''
     headers:
       Accept:
-      - ! '*/*'
+      - "*/*"
       User-Agent:
       - Ruby
       Content-Type:
@@ -100,7 +116,7 @@ http_interactions:
       - '3567'
     body:
       encoding: US-ASCII
-      string: ! "<?xml version=\"1.0\"?>\r\n<ArrayOfPublicationItem xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
+      string: "<?xml version=\"1.0\"?>\r\n<ArrayOfPublicationItem xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <PublicationItem>\r\n
         \   <PublicationItemID>6076211</PublicationItemID>\r\n    <Title>System analysis
         of power transients in advanced WDM networks</Title>\r\n    <Abstract>This
@@ -142,14 +158,236 @@ http_interactions:
     http_version: 
   recorded_at: Mon, 15 Jun 2015 21:53:17 GMT
 - request:
+    method: get
+    uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/?format=xml&page=0&pageSize=2147483647&v=version/3
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Content-Type:
+      - text/xml
+      Licenseid:
+      - some-license-id
+      Host:
+      - sciencewirerest.discoverylogic.com
+      Connection:
+      - Keep-Alive
+  response:
+    status:
+      code: 500
+      message: Internal Server Error
+    headers:
+      Cache-Control:
+      - private
+      Content-Type:
+      - text/html
+      Server:
+      - Microsoft-IIS/7.5
+      X-Aspnetmvc-Version:
+      - '2.0'
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+      Date:
+      - Mon, 29 Jun 2015 15:51:31 GMT
+      Content-Length:
+      - '1208'
+    body:
+      encoding: UTF-8
+      string: "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\r\n<html
+        xmlns=\"http://www.w3.org/1999/xhtml\">\r\n<head>\r\n<meta http-equiv=\"Content-Type\"
+        content=\"text/html; charset=iso-8859-1\"/>\r\n<title>500 - Internal server
+        error.</title>\r\n<style type=\"text/css\">\r\n<!--\r\nbody{margin:0;font-size:.7em;font-family:Verdana,
+        Arial, Helvetica, sans-serif;background:#EEEEEE;}\r\nfieldset{padding:0 15px
+        10px 15px;} \r\nh1{font-size:2.4em;margin:0;color:#FFF;}\r\nh2{font-size:1.7em;margin:0;color:#CC0000;}
+        \r\nh3{font-size:1.2em;margin:10px 0 0 0;color:#000000;} \r\n#header{width:96%;margin:0
+        0 0 0;padding:6px 2% 6px 2%;font-family:\"trebuchet MS\", Verdana, sans-serif;color:#FFF;\r\nbackground-color:#555555;}\r\n#content{margin:0
+        0 0 2%;position:relative;}\r\n.content-container{background:#FFF;width:96%;margin-top:8px;padding:10px;position:relative;}\r\n-->\r\n</style>\r\n</head>\r\n<body>\r\n<div
+        id=\"header\"><h1>Server Error</h1></div>\r\n<div id=\"content\">\r\n <div
+        class=\"content-container\"><fieldset>\r\n  <h2>500 - Internal server error.</h2>\r\n
+        \ <h3>There is a problem with the resource you are looking for, and it cannot
+        be displayed.</h3>\r\n </fieldset></div>\r\n</div>\r\n</body>\r\n</html>\r\n"
+    http_version: 
+  recorded_at: Mon, 29 Jun 2015 15:51:31 GMT
+- request:
+    method: post
+    uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery?format=xml
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+              <ScienceWireQueryXMLParameter xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+              <xmlQuery><![CDATA[
+              <query xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+                <Criterion ConjunctionOperator="AND">
+                  <Criteria>
+                    <Criterion>
+                      <Filter>
+                        <Column>WoSItemID</Column>
+                        <Operator>In</Operator>
+                        <Values>
+        <Value>000224492700003</Value>
+        </Values>
+                        </Filter>
+                      </Criterion>
+                    </Criteria>
+                  </Criterion><Columns>
+                    <SortColumn>
+                      <Column>PublicationItemID</Column>
+                      <Direction>Ascending</Direction>
+                    </SortColumn>
+                  </Columns>
+                </query>
+            ]]></xmlQuery>
+              </ScienceWireQueryXMLParameter>
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Licenseid:
+      - ***REMOVED***
+      Host:
+      - sciencewirerest.discoverylogic.com
+      Connection:
+      - Keep-Alive
+      Expect:
+      - 100-continue
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - private
+      Content-Type:
+      - application/xml; charset=utf-8
+      Server:
+      - Microsoft-IIS/7.5
+      X-Aspnetmvc-Version:
+      - '2.0'
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+      Date:
+      - Mon, 29 Jun 2015 15:53:06 GMT
+      Content-Length:
+      - '277'
+    body:
+      encoding: UTF-8
+      string: "<?xml version=\"1.0\"?>\r\n<ScienceWireQueryIDResponse xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>82248</queryID>\r\n
+        \ <queryResultRows>1</queryResultRows>\r\n  <totalRows>1</totalRows>\r\n</ScienceWireQueryIDResponse>"
+    http_version: 
+  recorded_at: Mon, 29 Jun 2015 15:53:07 GMT
+- request:
+    method: get
+    uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/82248?format=xml&page=0&pageSize=2147483647&v=version/3
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Content-Type:
+      - text/xml
+      Licenseid:
+      - ***REMOVED***
+      Host:
+      - sciencewirerest.discoverylogic.com
+      Connection:
+      - Keep-Alive
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - private
+      Content-Type:
+      - application/xml; charset=utf-8
+      Server:
+      - Microsoft-IIS/7.5
+      X-Aspnetmvc-Version:
+      - '2.0'
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+      Date:
+      - Mon, 29 Jun 2015 15:53:06 GMT
+      Content-Length:
+      - '3567'
+    body:
+      encoding: UTF-8
+      string: "<?xml version=\"1.0\"?>\r\n<ArrayOfPublicationItem xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <PublicationItem>\r\n
+        \   <PublicationItemID>6076211</PublicationItemID>\r\n    <Title>System analysis
+        of power transients in advanced WDM networks</Title>\r\n    <Abstract>This
+        paper considers dynamical transient effects in the physical layer of an optical
+        circuit-switched wavelength-division-multiplexed network. These transients
+        of the average transmission power have millisecond time scales. Instead of
+        studying detailed nonlinear dynamics of the network elements, such as optical
+        line amplifiers, a linearized model of the dynamics around a given steady
+        state is considered. System-level analysis in this paper uses modern control
+        theory methods and handles nonlinearity as uncertainty. The analysis translates
+        requirements on the network performance into the requirements to the network
+        elements. These requirements involve a few gross measures of performance for
+        network elements and do not depend on the circuit switching state. One such
+        performance measure is the worst amplification gain for all harmonic disturbances
+        of the average transmission power. Another is cross-coupling of the wavelength
+        channel power variations. The derived requirements guarantee system-level
+        performance for all network configurations and can be used for specifying
+        optical components and subsystems.</Abstract>\r\n    <AuthorList>Gorinevsky,D,|Farber,G,</AuthorList>\r\n
+        \   <AuthorCount>2</AuthorCount>\r\n    <KeywordList>AMPLIFIERS|system analysis|dynamics|optical
+        network|transient|physical laver</KeywordList>\r\n    <DocumentTypeList>Article</DocumentTypeList>\r\n
+        \   <DocumentCategory>Journal Document</DocumentCategory>\r\n    <NumberOfReferences>10</NumberOfReferences>\r\n
+        \   <TimesCited>5</TimesCited>\r\n    <TimesNotSelfCited>5</TimesNotSelfCited>\r\n
+        \   <PMID xsi:nil=\"true\" />\r\n    <WoSItemID>000224492700003</WoSItemID>\r\n
+        \   <PublicationSourceTitle>JOURNAL OF LIGHTWAVE TECHNOLOGY</PublicationSourceTitle>\r\n
+        \   <Volume>22</Volume>\r\n    <Issue>10</Issue>\r\n    <Pagination>2245-2255</Pagination>\r\n
+        \   <PublicationDate>2004-10-01T00:00:00</PublicationDate>\r\n    <PublicationYear>2004</PublicationYear>\r\n
+        \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Engineering,
+        Electrical &amp; Electronic|Optics</PublicationSubjectCategoryList>\r\n    <ISSN>0733-8724</ISSN>\r\n
+        \   <DOI>10.1109/JLT.2004.833274</DOI>\r\n    <ConferenceStartDate xsi:nil=\"true\"
+        />\r\n    <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank xsi:nil=\"true\"
+        />\r\n    <OrdinalRank>0</OrdinalRank>\r\n    <NormalizedRank xsi:nil=\"true\"
+        />\r\n    <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
+        \   <CopyrightPublisher>IEEE-INST ELECTRICAL ELECTRONICS ENGINEERS INC</CopyrightPublisher>\r\n
+        \   <CopyrightCity>PISCATAWAY</CopyrightCity>\r\n    <PublicationImpactFactorList>2.113,2004,ExactPublicationYear|2.862,2013,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>24/209;ENGINEERING, ELECTRICAL &amp; ELECTRONIC;2004;SC;ExactPublicationYear|11/54;OPTICS;2004;SC;ExactPublicationYear|32/248;ENGINEERING,
+        ELECTRICAL &amp; ELECTRONIC;2013;SC;MostRecentYear|16/83;OPTICS;2013;SC;MostRecentYear|7/78;TELECOMMUNICATIONS;2013;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <AuthorCitationCountList>1,0,5|2,0,5</AuthorCitationCountList>\r\n    <CopyrightStateProvince>NJ</CopyrightStateProvince>\r\n
+        \   <CopyrightCountry>UNITED STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n</ArrayOfPublicationItem>"
+    http_version: 
+  recorded_at: Mon, 29 Jun 2015 15:53:07 GMT
+- request:
     method: post
     uri: http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml
     body:
       encoding: US-ASCII
       string: ''
     headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
-      - ! '*/*'
+      - "*/*"
       User-Agent:
       - Ruby
   response:
@@ -158,20 +396,20 @@ http_interactions:
       message: Bad Request
     headers:
       Date:
-      - Mon, 15 Jun 2015 21:53:18 GMT
+      - Mon, 29 Jun 2015 15:53:08 GMT
       Server:
       - Apache
       Access-Control-Allow-Origin:
-      - ! '*'
+      - "*"
       Cache-Control:
       - private
       Ncbi-Sid:
-      - 9DFD2A0557F494E1_0446SID
+      - 73BF7EA159169E41_0877SID
       Content-Type:
       - text/xml; charset=UTF-8
       Set-Cookie:
-      - ncbi_sid=9DFD2A0557F494E1_0446SID; domain=.nih.gov; path=/; expires=Wed, 15
-        Jun 2016 21:53:18 GMT
+      - ncbi_sid=73BF7EA159169E41_0877SID; domain=.nih.gov; path=/; expires=Wed, 29
+        Jun 2016 15:53:08 GMT
       X-Ua-Compatible:
       - IE=Edge
       Connection:
@@ -179,10 +417,10 @@ http_interactions:
       Transfer-Encoding:
       - chunked
     body:
-      encoding: US-ASCII
-      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE eEfetchResult
+      encoding: UTF-8
+      string: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE eEfetchResult
         PUBLIC \"-//NLM//DTD efetch 20131226//EN\" \"http://eutils.ncbi.nlm.nih.gov/eutils/dtd/20131226/efetch.dtd\">\n<eFetchResult>\n\t<ERROR>WebEnv
         parameter is required</ERROR>\n</eFetchResult>\n"
     http_version: 
-  recorded_at: Mon, 15 Jun 2015 21:53:18 GMT
+  recorded_at: Mon, 29 Jun 2015 15:53:08 GMT
 recorded_with: VCR 2.5.0

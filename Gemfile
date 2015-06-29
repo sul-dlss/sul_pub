@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.19'
+gem 'rails', '3.2.22'
 gem 'bootstrap-sass', '2.0.4'
 
 gem 'mysql2'
@@ -33,16 +33,17 @@ gem 'libv8', '>=3.16.14.7'
 
 group :development, :test do
   gem 'sqlite3'
-  gem 'rspec-rails'
+  gem 'rspec-rails', '~> 2.99'
   gem 'guard-rspec'
   gem 'guard-spork'
   gem 'spork'
-  gem 'capistrano'
-  gem 'rvm-capistrano'
   gem 'debugger', :platforms => :mri_19
   gem 'factory_girl_rails'
+end
 
-
+group :deployment do
+  gem 'capistrano'
+  gem 'rvm-capistrano'
 end
 
 group :debug do
@@ -60,6 +61,7 @@ group :test do
     gem 'simplecov', :require => false
     gem 'vcr'
     gem 'webmock', '1.11'
+    gem 'test-unit', require: false
 end
 
 # Gems used only for assets and not required

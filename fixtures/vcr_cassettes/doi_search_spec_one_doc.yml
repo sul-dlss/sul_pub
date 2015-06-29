@@ -2,171 +2,33 @@
 http_interactions:
 - request:
     method: post
-    uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery?format=xml
-    body:
-      encoding: US-ASCII
-      string: ! "<?xml version=\"1.0\"?>\n      <ScienceWireQueryXMLParameter xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
-        xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\n      <xmlQuery>      <![CDATA[\n
-        \     <query xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\n
-        \         <Criterion>\n              <Criteria>\n                  <Criterion>\n
-        \                     <Filter>\n                          <Column>DOI</Column>\n
-        \                         <Operator>Equals</Operator>\n                          <Value>10.1016/j.mcn.2012.03.007</Value>\n
-        \                     </Filter>\n                  </Criterion>\n              </Criteria>\n
-        \         </Criterion>\n          <MaximumRows>200</MaximumRows>\n      </query>\n
-        \     ]]>\n</xmlQuery>\n      </ScienceWireQueryXMLParameter>"
-    headers:
-      Accept:
-      - ! '*/*'
-      User-Agent:
-      - Ruby
-      Licenseid:
-      - ***REMOVED***
-      Host:
-      - sciencewirerest.discoverylogic.com
-      Connection:
-      - Keep-Alive
-      Expect:
-      - 100-continue
-      Content-Type:
-      - text/xml
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Cache-Control:
-      - private
-      Content-Type:
-      - application/xml; charset=utf-8
-      Server:
-      - Microsoft-IIS/7.5
-      X-Aspnetmvc-Version:
-      - '2.0'
-      X-Aspnet-Version:
-      - 4.0.30319
-      X-Powered-By:
-      - ASP.NET
-      Date:
-      - Mon, 27 Apr 2015 21:33:20 GMT
-      Content-Length:
-      - '278'
-    body:
-      encoding: US-ASCII
-      string: ! "<?xml version=\"1.0\"?>\r\n<ScienceWireQueryIDResponse xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
-        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>142612</queryID>\r\n
-        \ <queryResultRows>1</queryResultRows>\r\n  <totalRows>1</totalRows>\r\n</ScienceWireQueryIDResponse>"
-    http_version: 
-  recorded_at: Mon, 27 Apr 2015 21:33:21 GMT
-- request:
-    method: get
-    uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/142612?format=xml&page=0&pageSize=2147483647&v=version/3
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - ! '*/*'
-      User-Agent:
-      - Ruby
-      Content-Type:
-      - text/xml
-      Licenseid:
-      - ***REMOVED***
-      Host:
-      - sciencewirerest.discoverylogic.com
-      Connection:
-      - Keep-Alive
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Cache-Control:
-      - private
-      Content-Type:
-      - application/xml; charset=utf-8
-      Server:
-      - Microsoft-IIS/7.5
-      X-Aspnetmvc-Version:
-      - '2.0'
-      X-Aspnet-Version:
-      - 4.0.30319
-      X-Powered-By:
-      - ASP.NET
-      Date:
-      - Mon, 27 Apr 2015 21:33:20 GMT
-      Content-Length:
-      - '4108'
-    body:
-      encoding: US-ASCII
-      string: ! "<?xml version=\"1.0\"?>\r\n<ArrayOfPublicationItem xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
-        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <PublicationItem>\r\n
-        \   <PublicationItemID>60813767</PublicationItemID>\r\n    <Title>The T3-induced
-        gene KLF9 regulates oligodendrocyte differentiation and myelin regeneration</Title>\r\n
-        \   <Abstract>Hypothyroidism is a well-described cause of hypomyelination.
-        In addition, thyroid hormone (T3) has recently been shown to enhance remyelination
-        in various animal models of CNS demyelination. What are the ways in which
-        T3 promotes the development and regeneration of healthy myelin? To begin to
-        understand the mechanisms by which 13 drives myelination, we have identified
-        genes regulated specifically by T3 in purified oligodendrocyte precursor cells
-        (OPCs). Among the genes identified by genomic expression analyses were four
-        transcription factors, Kruppel-like factor 9 (KLF9), basic helix-loop-helix
-        family member e22 (BHLHe22), Hairless (Hr), and Albumin D box-binding protein
-        (DBP), all of which were induced in OPCs by both brief and long term exposure
-        to T3. To begin to investigate the role of these genes in myelination, we
-        focused on the most rapidly and robustly induced of these, KLF9, and found
-        it is both necessary and sufficient to promote oligodendrocyte differentiation
-        in vitro. Surprisingly, we found that loss of KLF9 in vivo negligibly affects
-        the formation of CNS myelin during development, but does significantly delay
-        remyelination in cuprizone-induced demyelinated lesions. These experiments
-        indicate that KLF9 is likely a novel integral component of the T3-driven signaling
-        cascade that promotes the regeneration of lost myelin. Future analyses of
-        the roles of KLF9 and other identified T3-induced genes in myelination may
-        lead to novel insights into how to enhance the regeneration of myelin in demyelinating
-        diseases such as multiple sclerosis. (c) 2012 Elsevier Inc. All rights reserved.</Abstract>\r\n
-        \   <AuthorList>Dugas,Jason,C|Ibrahim,Adiljan,|Barres,Ben,A</AuthorList>\r\n
-        \   <AuthorCount>3</AuthorCount>\r\n    <KeywordList>IN-VIVO|CONGENITAL HYPOTHYROIDISM|THYROID-HORMONE
-        ACTION|CENTRAL-NERVOUS-SYSTEM|ELEMENT-BINDING PROTEIN-1|MAGNETIC-RESONANCE
-        SPECTROSCOPY|RAT-BRAIN|EXPERIMENTAL HYPOTHYROIDISM|SPINAL-CORD DEMYELINATION|KRUPPEL-LIKE
-        FACTOR-9|OLIGODENDROCYTE|MYELIN|thyroid hormone|cuprizone|Klf9|BTEB1</KeywordList>\r\n
-        \   <DocumentTypeList>Article</DocumentTypeList>\r\n    <DocumentCategory>Journal
-        Document</DocumentCategory>\r\n    <NumberOfReferences>61</NumberOfReferences>\r\n
-        \   <TimesCited>16</TimesCited>\r\n    <TimesNotSelfCited>16</TimesNotSelfCited>\r\n
-        \   <PMID>22472204</PMID>\r\n    <WoSItemID>000305547700005</WoSItemID>\r\n
-        \   <PublicationSourceTitle>MOLECULAR AND CELLULAR NEUROSCIENCE</PublicationSourceTitle>\r\n
-        \   <Volume>50</Volume>\r\n    <Issue>1</Issue>\r\n    <Pagination>45-57</Pagination>\r\n
-        \   <PublicationDate>2012-05-01T00:00:00</PublicationDate>\r\n    <PublicationYear>2012</PublicationYear>\r\n
-        \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Neurosciences</PublicationSubjectCategoryList>\r\n
-        \   <ISSN>1044-7431</ISSN>\r\n    <DOI>10.1016/j.mcn.2012.03.007</DOI>\r\n
-        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
-        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>0</OrdinalRank>\r\n
-        \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
-        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>ACADEMIC
-        PRESS INC ELSEVIER SCIENCE</CopyrightPublisher>\r\n    <CopyrightCity>SAN
-        DIEGO</CopyrightCity>\r\n    <PublicationImpactFactorList>3.837,2012,ExactPublicationYear|3.734,2013,MostRecentYear</PublicationImpactFactorList>\r\n
-        \   <PublicationCategoryRankingList>74/252;NEUROSCIENCES;2012;SC;ExactPublicationYear|82/252;NEUROSCIENCES;2013;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
-        \   <AuthorCitationCountList>1,0,16|2,0,16|3,0,16</AuthorCitationCountList>\r\n
-        \   <CopyrightStateProvince>CA</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
-        STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n</ArrayOfPublicationItem>"
-    http_version: 
-  recorded_at: Mon, 27 Apr 2015 21:33:22 GMT
-- request:
-    method: post
     uri: https://stg.sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery?format=xml
     body:
       encoding: US-ASCII
-      string: ! "<?xml version=\"1.0\"?>\n      <ScienceWireQueryXMLParameter xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
-        xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\n      <xmlQuery>      <![CDATA[\n
-        \     <query xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\n
-        \         <Criterion>\n              <Criteria>\n                  <Criterion>\n
-        \                     <Filter>\n                          <Column>DOI</Column>\n
-        \                         <Operator>Equals</Operator>\n                          <Value>10.1016/j.mcn.2012.03.007</Value>\n
-        \                     </Filter>\n                  </Criterion>\n              </Criteria>\n
-        \         </Criterion>\n          <MaximumRows>200</MaximumRows>\n      </query>\n
-        \     ]]>\n</xmlQuery>\n      </ScienceWireQueryXMLParameter>"
+      string: |-
+        <?xml version="1.0"?>
+              <ScienceWireQueryXMLParameter xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+              <xmlQuery>      <![CDATA[
+              <query xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+                  <Criterion>
+                      <Criteria>
+                          <Criterion>
+                              <Filter>
+                                  <Column>DOI</Column>
+                                  <Operator>Equals</Operator>
+                                  <Value>10.1016/j.mcn.2012.03.007</Value>
+                              </Filter>
+                          </Criterion>
+                      </Criteria>
+                  </Criterion>
+                  <MaximumRows>200</MaximumRows>
+              </query>
+              ]]>
+        </xmlQuery>
+              </ScienceWireQueryXMLParameter>
     headers:
       Accept:
-      - ! '*/*'
+      - "*/*"
       User-Agent:
       - Ruby
       Licenseid:
@@ -202,7 +64,7 @@ http_interactions:
       - '277'
     body:
       encoding: US-ASCII
-      string: ! "<?xml version=\"1.0\"?>\r\n<ScienceWireQueryIDResponse xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
+      string: "<?xml version=\"1.0\"?>\r\n<ScienceWireQueryIDResponse xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>94510</queryID>\r\n
         \ <queryResultRows>1</queryResultRows>\r\n  <totalRows>1</totalRows>\r\n</ScienceWireQueryIDResponse>"
     http_version: 
@@ -215,7 +77,7 @@ http_interactions:
       string: ''
     headers:
       Accept:
-      - ! '*/*'
+      - "*/*"
       User-Agent:
       - Ruby
       Content-Type:
@@ -249,7 +111,7 @@ http_interactions:
       - '4108'
     body:
       encoding: US-ASCII
-      string: ! "<?xml version=\"1.0\"?>\r\n<ArrayOfPublicationItem xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
+      string: "<?xml version=\"1.0\"?>\r\n<ArrayOfPublicationItem xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <PublicationItem>\r\n
         \   <PublicationItemID>60813767</PublicationItemID>\r\n    <Title>The T3-induced
         gene KLF9 regulates oligodendrocyte differentiation and myelin regeneration</Title>\r\n
@@ -300,4 +162,229 @@ http_interactions:
         STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n</ArrayOfPublicationItem>"
     http_version: 
   recorded_at: Mon, 15 Jun 2015 21:53:16 GMT
+- request:
+    method: get
+    uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/?format=xml&page=0&pageSize=2147483647&v=version/3
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Content-Type:
+      - text/xml
+      Licenseid:
+      - some-license-id
+      Host:
+      - sciencewirerest.discoverylogic.com
+      Connection:
+      - Keep-Alive
+  response:
+    status:
+      code: 500
+      message: Internal Server Error
+    headers:
+      Cache-Control:
+      - private
+      Content-Type:
+      - text/html
+      Server:
+      - Microsoft-IIS/7.5
+      X-Aspnetmvc-Version:
+      - '2.0'
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+      Date:
+      - Mon, 29 Jun 2015 15:51:09 GMT
+      Content-Length:
+      - '1208'
+    body:
+      encoding: UTF-8
+      string: "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\r\n<html
+        xmlns=\"http://www.w3.org/1999/xhtml\">\r\n<head>\r\n<meta http-equiv=\"Content-Type\"
+        content=\"text/html; charset=iso-8859-1\"/>\r\n<title>500 - Internal server
+        error.</title>\r\n<style type=\"text/css\">\r\n<!--\r\nbody{margin:0;font-size:.7em;font-family:Verdana,
+        Arial, Helvetica, sans-serif;background:#EEEEEE;}\r\nfieldset{padding:0 15px
+        10px 15px;} \r\nh1{font-size:2.4em;margin:0;color:#FFF;}\r\nh2{font-size:1.7em;margin:0;color:#CC0000;}
+        \r\nh3{font-size:1.2em;margin:10px 0 0 0;color:#000000;} \r\n#header{width:96%;margin:0
+        0 0 0;padding:6px 2% 6px 2%;font-family:\"trebuchet MS\", Verdana, sans-serif;color:#FFF;\r\nbackground-color:#555555;}\r\n#content{margin:0
+        0 0 2%;position:relative;}\r\n.content-container{background:#FFF;width:96%;margin-top:8px;padding:10px;position:relative;}\r\n-->\r\n</style>\r\n</head>\r\n<body>\r\n<div
+        id=\"header\"><h1>Server Error</h1></div>\r\n<div id=\"content\">\r\n <div
+        class=\"content-container\"><fieldset>\r\n  <h2>500 - Internal server error.</h2>\r\n
+        \ <h3>There is a problem with the resource you are looking for, and it cannot
+        be displayed.</h3>\r\n </fieldset></div>\r\n</div>\r\n</body>\r\n</html>\r\n"
+    http_version: 
+  recorded_at: Mon, 29 Jun 2015 15:51:10 GMT
+- request:
+    method: post
+    uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery?format=xml
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+              <ScienceWireQueryXMLParameter xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+              <xmlQuery>      <![CDATA[
+              <query xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+                  <Criterion>
+                      <Criteria>
+                          <Criterion>
+                              <Filter>
+                                  <Column>DOI</Column>
+                                  <Operator>Equals</Operator>
+                                  <Value>10.1016/j.mcn.2012.03.007</Value>
+                              </Filter>
+                          </Criterion>
+                      </Criteria>
+                  </Criterion>
+                  <MaximumRows>200</MaximumRows>
+              </query>
+              ]]>
+        </xmlQuery>
+              </ScienceWireQueryXMLParameter>
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Licenseid:
+      - ***REMOVED***
+      Host:
+      - sciencewirerest.discoverylogic.com
+      Connection:
+      - Keep-Alive
+      Expect:
+      - 100-continue
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - private
+      Content-Type:
+      - application/xml; charset=utf-8
+      Server:
+      - Microsoft-IIS/7.5
+      X-Aspnetmvc-Version:
+      - '2.0'
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+      Date:
+      - Mon, 29 Jun 2015 15:58:41 GMT
+      Content-Length:
+      - '278'
+    body:
+      encoding: UTF-8
+      string: "<?xml version=\"1.0\"?>\r\n<ScienceWireQueryIDResponse xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>142612</queryID>\r\n
+        \ <queryResultRows>1</queryResultRows>\r\n  <totalRows>1</totalRows>\r\n</ScienceWireQueryIDResponse>"
+    http_version: 
+  recorded_at: Mon, 29 Jun 2015 15:58:42 GMT
+- request:
+    method: get
+    uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/142612?format=xml&page=0&pageSize=2147483647&v=version/3
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Content-Type:
+      - text/xml
+      Licenseid:
+      - ***REMOVED***
+      Host:
+      - sciencewirerest.discoverylogic.com
+      Connection:
+      - Keep-Alive
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - private
+      Content-Type:
+      - application/xml; charset=utf-8
+      Server:
+      - Microsoft-IIS/7.5
+      X-Aspnetmvc-Version:
+      - '2.0'
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+      Date:
+      - Mon, 29 Jun 2015 15:58:43 GMT
+      Content-Length:
+      - '4108'
+    body:
+      encoding: UTF-8
+      string: "<?xml version=\"1.0\"?>\r\n<ArrayOfPublicationItem xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <PublicationItem>\r\n
+        \   <PublicationItemID>60813767</PublicationItemID>\r\n    <Title>The T3-induced
+        gene KLF9 regulates oligodendrocyte differentiation and myelin regeneration</Title>\r\n
+        \   <Abstract>Hypothyroidism is a well-described cause of hypomyelination.
+        In addition, thyroid hormone (T3) has recently been shown to enhance remyelination
+        in various animal models of CNS demyelination. What are the ways in which
+        T3 promotes the development and regeneration of healthy myelin? To begin to
+        understand the mechanisms by which 13 drives myelination, we have identified
+        genes regulated specifically by T3 in purified oligodendrocyte precursor cells
+        (OPCs). Among the genes identified by genomic expression analyses were four
+        transcription factors, Kruppel-like factor 9 (KLF9), basic helix-loop-helix
+        family member e22 (BHLHe22), Hairless (Hr), and Albumin D box-binding protein
+        (DBP), all of which were induced in OPCs by both brief and long term exposure
+        to T3. To begin to investigate the role of these genes in myelination, we
+        focused on the most rapidly and robustly induced of these, KLF9, and found
+        it is both necessary and sufficient to promote oligodendrocyte differentiation
+        in vitro. Surprisingly, we found that loss of KLF9 in vivo negligibly affects
+        the formation of CNS myelin during development, but does significantly delay
+        remyelination in cuprizone-induced demyelinated lesions. These experiments
+        indicate that KLF9 is likely a novel integral component of the T3-driven signaling
+        cascade that promotes the regeneration of lost myelin. Future analyses of
+        the roles of KLF9 and other identified T3-induced genes in myelination may
+        lead to novel insights into how to enhance the regeneration of myelin in demyelinating
+        diseases such as multiple sclerosis. (c) 2012 Elsevier Inc. All rights reserved.</Abstract>\r\n
+        \   <AuthorList>Dugas,Jason,C|Ibrahim,Adiljan,|Barres,Ben,A</AuthorList>\r\n
+        \   <AuthorCount>3</AuthorCount>\r\n    <KeywordList>IN-VIVO|CONGENITAL HYPOTHYROIDISM|THYROID-HORMONE
+        ACTION|CENTRAL-NERVOUS-SYSTEM|ELEMENT-BINDING PROTEIN-1|MAGNETIC-RESONANCE
+        SPECTROSCOPY|RAT-BRAIN|EXPERIMENTAL HYPOTHYROIDISM|SPINAL-CORD DEMYELINATION|KRUPPEL-LIKE
+        FACTOR-9|OLIGODENDROCYTE|MYELIN|thyroid hormone|cuprizone|Klf9|BTEB1</KeywordList>\r\n
+        \   <DocumentTypeList>Article</DocumentTypeList>\r\n    <DocumentCategory>Journal
+        Document</DocumentCategory>\r\n    <NumberOfReferences>61</NumberOfReferences>\r\n
+        \   <TimesCited>16</TimesCited>\r\n    <TimesNotSelfCited>16</TimesNotSelfCited>\r\n
+        \   <PMID>22472204</PMID>\r\n    <WoSItemID>000305547700005</WoSItemID>\r\n
+        \   <PublicationSourceTitle>MOLECULAR AND CELLULAR NEUROSCIENCE</PublicationSourceTitle>\r\n
+        \   <Volume>50</Volume>\r\n    <Issue>1</Issue>\r\n    <Pagination>45-57</Pagination>\r\n
+        \   <PublicationDate>2012-05-01T00:00:00</PublicationDate>\r\n    <PublicationYear>2012</PublicationYear>\r\n
+        \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Neurosciences</PublicationSubjectCategoryList>\r\n
+        \   <ISSN>1044-7431</ISSN>\r\n    <DOI>10.1016/j.mcn.2012.03.007</DOI>\r\n
+        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>0</OrdinalRank>\r\n
+        \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
+        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>ACADEMIC
+        PRESS INC ELSEVIER SCIENCE</CopyrightPublisher>\r\n    <CopyrightCity>SAN
+        DIEGO</CopyrightCity>\r\n    <PublicationImpactFactorList>3.837,2012,ExactPublicationYear|3.734,2013,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>74/252;NEUROSCIENCES;2012;SC;ExactPublicationYear|82/252;NEUROSCIENCES;2013;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <AuthorCitationCountList>1,0,16|2,0,16|3,0,16</AuthorCitationCountList>\r\n
+        \   <CopyrightStateProvince>CA</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
+        STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n</ArrayOfPublicationItem>"
+    http_version: 
+  recorded_at: Mon, 29 Jun 2015 15:58:43 GMT
 recorded_with: VCR 2.5.0

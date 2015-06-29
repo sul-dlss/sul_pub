@@ -5,17 +5,27 @@ http_interactions:
     uri: https://stg.sciencewirerest.discoverylogic.com/PublicationCatalog/MatchedPublicationItemIdsForAuthor?format=xml
     body:
       encoding: US-ASCII
-      string: ! "<?xml version='1.0'?>\n      <PublicationAuthorMatchParameters xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
-        xmlns:xsd='http://www.w3.org/2001/XMLSchema'>\n        <Authors>\n          <Author>\n
-        \           <LastName>benson</LastName>\n            <FirstName>sally</FirstName>\n
-        \           <MiddleName></MiddleName>\n            <City>Stanford</City>\n
-        \           <State>CA</State>\n            <Country>USA</Country>\n            <Version>1</Version>\n
-        \        </Author>\n      </Authors>\n      <DocumentCategory>Journal Document</DocumentCategory>\n
-        \     <Emails>\n                  <string>smbenson@stanford.edu</string>\n
-        \               </Emails><PublicationItemIds><int>532237</int><int>29681830</int><int>29693742</int><int>30153017</int><int>30563572</int><int>30711058</int><int>30991998</int><int>31488302</int><int>31623382</int><int>32897909</int><int>33038883</int><int>33139791</int><int>33878760</int><int>47444872</int><int>53640378</int><int>54368177</int><int>59612803</int><int>59641485</int><int>60094854</int><int>60223059</int><int>60478790</int><int>62816475</int><int>62823609</int><int>62903742</int><int>63182944</int><int>62767480</int><int>59904158</int><int>37634308</int><int>63378178</int><int>63775722</int><int>63911215</int><int>4167402</int><int>63891331</int><int>63814446</int><int>62976803</int><int>59811972</int><int>59878565</int><int>37635302</int><int>59936785</int><int>37630237</int><int>37632866</int><int>59839380</int><int>29114844</int><int>24672363</int><int>22528207</int><int>22411820</int><int>21667389</int><int>64357283</int><int>27876654</int><int>16447626</int><int>34333979</int><int>21865294</int><int>22624536</int><int>23216217</int><int>24575036</int><int>35196221</int><int>2627002</int><int>3769378</int><int>3704704</int><int>4513632</int><int>6434468</int><int>6368152</int><int>571008</int><int>35566141</int><int>36119242</int><int>6008013</int><int>36234880</int><int>36225095</int><int>36139437</int><int>36127090</int><int>36208464</int><int>35640871</int><int>23804292</int><int>22654678</int><int>17870903</int><int>23364040</int><int>45141719</int><int>64799575</int><int>65697723</int><int>66020502</int><int>67583123</int></PublicationItemIds><LimitToHighQualityMatchesOnly>true</LimitToHighQualityMatchesOnly></PublicationAuthorMatchParameters>"
+      string: |-
+        <?xml version='1.0'?>
+              <PublicationAuthorMatchParameters xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema'>
+                <Authors>
+                  <Author>
+                    <LastName>benson</LastName>
+                    <FirstName>sally</FirstName>
+                    <MiddleName></MiddleName>
+                    <City>Stanford</City>
+                    <State>CA</State>
+                    <Country>USA</Country>
+                    <Version>1</Version>
+                 </Author>
+              </Authors>
+              <DocumentCategory>Journal Document</DocumentCategory>
+              <Emails>
+                          <string>smbenson@stanford.edu</string>
+                        </Emails><PublicationItemIds><int>532237</int><int>29681830</int><int>29693742</int><int>30153017</int><int>30563572</int><int>30711058</int><int>30991998</int><int>31488302</int><int>31623382</int><int>32897909</int><int>33038883</int><int>33139791</int><int>33878760</int><int>47444872</int><int>53640378</int><int>54368177</int><int>59612803</int><int>59641485</int><int>60094854</int><int>60223059</int><int>60478790</int><int>62816475</int><int>62823609</int><int>62903742</int><int>63182944</int><int>62767480</int><int>59904158</int><int>37634308</int><int>63378178</int><int>63775722</int><int>63911215</int><int>4167402</int><int>63891331</int><int>63814446</int><int>62976803</int><int>59811972</int><int>59878565</int><int>37635302</int><int>59936785</int><int>37630237</int><int>37632866</int><int>59839380</int><int>29114844</int><int>24672363</int><int>22528207</int><int>22411820</int><int>21667389</int><int>64357283</int><int>27876654</int><int>16447626</int><int>34333979</int><int>21865294</int><int>22624536</int><int>23216217</int><int>24575036</int><int>35196221</int><int>2627002</int><int>3769378</int><int>3704704</int><int>4513632</int><int>6434468</int><int>6368152</int><int>571008</int><int>35566141</int><int>36119242</int><int>6008013</int><int>36234880</int><int>36225095</int><int>36139437</int><int>36127090</int><int>36208464</int><int>35640871</int><int>23804292</int><int>22654678</int><int>17870903</int><int>23364040</int><int>45141719</int><int>64799575</int><int>65697723</int><int>66020502</int><int>67583123</int></PublicationItemIds><LimitToHighQualityMatchesOnly>true</LimitToHighQualityMatchesOnly></PublicationAuthorMatchParameters>
     headers:
       Accept:
-      - ! '*/*'
+      - "*/*"
       User-Agent:
       - Ruby
       Licenseid:
@@ -51,7 +61,7 @@ http_interactions:
       - '16755'
     body:
       encoding: US-ASCII
-      string: ! "<?xml version=\"1.0\"?>\r\n<ArrayOfItemMatchResult xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
+      string: "<?xml version=\"1.0\"?>\r\n<ArrayOfItemMatchResult xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <ItemMatchResult>\r\n
         \   <MatchRank>1</MatchRank>\r\n    <PublicationItemID>69233159</PublicationItemID>\r\n
         \   <MatchScore>1.5625</MatchScore>\r\n  </ItemMatchResult>\r\n  <ItemMatchResult>\r\n
@@ -248,17 +258,27 @@ http_interactions:
     uri: https://stg.sciencewirerest.discoverylogic.com/PublicationCatalog/MatchedPublicationItemIdsForAuthor?format=xml
     body:
       encoding: US-ASCII
-      string: ! "<?xml version='1.0'?>\n      <PublicationAuthorMatchParameters xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
-        xmlns:xsd='http://www.w3.org/2001/XMLSchema'>\n        <Authors>\n          <Author>\n
-        \           <LastName>benson</LastName>\n            <FirstName>sally</FirstName>\n
-        \           <MiddleName></MiddleName>\n            <City>Stanford</City>\n
-        \           <State>CA</State>\n            <Country>USA</Country>\n            <Version>1</Version>\n
-        \        </Author>\n      </Authors>\n      <DocumentCategory>Conference Proceeding
-        Document</DocumentCategory>\n      <Emails>\n                  <string>smbenson@stanford.edu</string>\n
-        \               </Emails><PublicationItemIds><int>532237</int><int>29681830</int><int>29693742</int><int>30153017</int><int>30563572</int><int>30711058</int><int>30991998</int><int>31488302</int><int>31623382</int><int>32897909</int><int>33038883</int><int>33139791</int><int>33878760</int><int>47444872</int><int>53640378</int><int>54368177</int><int>59612803</int><int>59641485</int><int>60094854</int><int>60223059</int><int>60478790</int><int>62816475</int><int>62823609</int><int>62903742</int><int>63182944</int><int>62767480</int><int>59904158</int><int>37634308</int><int>63378178</int><int>63775722</int><int>63911215</int><int>4167402</int><int>63891331</int><int>63814446</int><int>62976803</int><int>59811972</int><int>59878565</int><int>37635302</int><int>59936785</int><int>37630237</int><int>37632866</int><int>59839380</int><int>29114844</int><int>24672363</int><int>22528207</int><int>22411820</int><int>21667389</int><int>64357283</int><int>27876654</int><int>16447626</int><int>34333979</int><int>21865294</int><int>22624536</int><int>23216217</int><int>24575036</int><int>35196221</int><int>2627002</int><int>3769378</int><int>3704704</int><int>4513632</int><int>6434468</int><int>6368152</int><int>571008</int><int>35566141</int><int>36119242</int><int>6008013</int><int>36234880</int><int>36225095</int><int>36139437</int><int>36127090</int><int>36208464</int><int>35640871</int><int>23804292</int><int>22654678</int><int>17870903</int><int>23364040</int><int>45141719</int><int>64799575</int><int>65697723</int><int>66020502</int><int>67583123</int></PublicationItemIds><LimitToHighQualityMatchesOnly>true</LimitToHighQualityMatchesOnly></PublicationAuthorMatchParameters>"
+      string: |-
+        <?xml version='1.0'?>
+              <PublicationAuthorMatchParameters xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema'>
+                <Authors>
+                  <Author>
+                    <LastName>benson</LastName>
+                    <FirstName>sally</FirstName>
+                    <MiddleName></MiddleName>
+                    <City>Stanford</City>
+                    <State>CA</State>
+                    <Country>USA</Country>
+                    <Version>1</Version>
+                 </Author>
+              </Authors>
+              <DocumentCategory>Conference Proceeding Document</DocumentCategory>
+              <Emails>
+                          <string>smbenson@stanford.edu</string>
+                        </Emails><PublicationItemIds><int>532237</int><int>29681830</int><int>29693742</int><int>30153017</int><int>30563572</int><int>30711058</int><int>30991998</int><int>31488302</int><int>31623382</int><int>32897909</int><int>33038883</int><int>33139791</int><int>33878760</int><int>47444872</int><int>53640378</int><int>54368177</int><int>59612803</int><int>59641485</int><int>60094854</int><int>60223059</int><int>60478790</int><int>62816475</int><int>62823609</int><int>62903742</int><int>63182944</int><int>62767480</int><int>59904158</int><int>37634308</int><int>63378178</int><int>63775722</int><int>63911215</int><int>4167402</int><int>63891331</int><int>63814446</int><int>62976803</int><int>59811972</int><int>59878565</int><int>37635302</int><int>59936785</int><int>37630237</int><int>37632866</int><int>59839380</int><int>29114844</int><int>24672363</int><int>22528207</int><int>22411820</int><int>21667389</int><int>64357283</int><int>27876654</int><int>16447626</int><int>34333979</int><int>21865294</int><int>22624536</int><int>23216217</int><int>24575036</int><int>35196221</int><int>2627002</int><int>3769378</int><int>3704704</int><int>4513632</int><int>6434468</int><int>6368152</int><int>571008</int><int>35566141</int><int>36119242</int><int>6008013</int><int>36234880</int><int>36225095</int><int>36139437</int><int>36127090</int><int>36208464</int><int>35640871</int><int>23804292</int><int>22654678</int><int>17870903</int><int>23364040</int><int>45141719</int><int>64799575</int><int>65697723</int><int>66020502</int><int>67583123</int></PublicationItemIds><LimitToHighQualityMatchesOnly>true</LimitToHighQualityMatchesOnly></PublicationAuthorMatchParameters>
     headers:
       Accept:
-      - ! '*/*'
+      - "*/*"
       User-Agent:
       - Ruby
       Licenseid:
@@ -294,7 +314,7 @@ http_interactions:
       - '3674'
     body:
       encoding: US-ASCII
-      string: ! "<?xml version=\"1.0\"?>\r\n<ArrayOfItemMatchResult xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
+      string: "<?xml version=\"1.0\"?>\r\n<ArrayOfItemMatchResult xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <ItemMatchResult>\r\n
         \   <MatchRank>1</MatchRank>\r\n    <PublicationItemID>59811306</PublicationItemID>\r\n
         \   <MatchScore>1.7723939418792725</MatchScore>\r\n  </ItemMatchResult>\r\n
@@ -338,4 +358,160 @@ http_interactions:
         \   <MatchScore>0.31189292669296265</MatchScore>\r\n  </ItemMatchResult>\r\n</ArrayOfItemMatchResult>"
     http_version: 
   recorded_at: Mon, 15 Jun 2015 21:53:04 GMT
+- request:
+    method: post
+    uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/MatchedPublicationItemIdsForAuthor?format=xml
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version='1.0'?>
+              <PublicationAuthorMatchParameters xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema'>
+                <Authors>
+                  <Author>
+                    <LastName>benson</LastName>
+                    <FirstName>sally</FirstName>
+                    <MiddleName></MiddleName>
+                    <City>Stanford</City>
+                    <State>CA</State>
+                    <Country>USA</Country>
+                    <Version>1</Version>
+                 </Author>
+              </Authors>
+              <DocumentCategory>Journal Document</DocumentCategory>
+              <Emails>
+                          <string>smbenson@stanford.edu</string>
+                        </Emails><PublicationItemIds><int>532237</int><int>29681830</int><int>29693742</int><int>30153017</int><int>30563572</int><int>30711058</int><int>30991998</int><int>31488302</int><int>31623382</int><int>32897909</int><int>33038883</int><int>33139791</int><int>33878760</int><int>47444872</int><int>53640378</int><int>54368177</int><int>59612803</int><int>59641485</int><int>60094854</int><int>60223059</int><int>60478790</int><int>62816475</int><int>62823609</int><int>62903742</int><int>63182944</int><int>62767480</int><int>59904158</int><int>37634308</int><int>63378178</int><int>63775722</int><int>63911215</int><int>4167402</int><int>63891331</int><int>63814446</int><int>62976803</int><int>59811972</int><int>59878565</int><int>37635302</int><int>59936785</int><int>37630237</int><int>37632866</int><int>59839380</int><int>29114844</int><int>24672363</int><int>22528207</int><int>22411820</int><int>21667389</int><int>64357283</int><int>27876654</int><int>16447626</int><int>34333979</int><int>21865294</int><int>22624536</int><int>23216217</int><int>24575036</int><int>35196221</int><int>2627002</int><int>3769378</int><int>3704704</int><int>4513632</int><int>6434468</int><int>6368152</int><int>571008</int><int>35566141</int><int>36119242</int><int>6008013</int><int>36234880</int><int>36225095</int><int>36139437</int><int>36127090</int><int>36208464</int><int>35640871</int><int>23804292</int><int>22654678</int><int>17870903</int><int>23364040</int><int>45141719</int><int>64799575</int><int>65697723</int><int>66020502</int><int>67583123</int></PublicationItemIds><LimitToHighQualityMatchesOnly>true</LimitToHighQualityMatchesOnly></PublicationAuthorMatchParameters>
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Licenseid:
+      - some-license-id
+      Host:
+      - sciencewirerest.discoverylogic.com
+      Connection:
+      - Keep-Alive
+      Expect:
+      - 100-continue
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 500
+      message: Internal Server Error
+    headers:
+      Cache-Control:
+      - private
+      Content-Type:
+      - text/html
+      Server:
+      - Microsoft-IIS/7.5
+      X-Aspnetmvc-Version:
+      - '2.0'
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+      Date:
+      - Mon, 29 Jun 2015 15:50:37 GMT
+      Content-Length:
+      - '1208'
+    body:
+      encoding: UTF-8
+      string: "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\r\n<html
+        xmlns=\"http://www.w3.org/1999/xhtml\">\r\n<head>\r\n<meta http-equiv=\"Content-Type\"
+        content=\"text/html; charset=iso-8859-1\"/>\r\n<title>500 - Internal server
+        error.</title>\r\n<style type=\"text/css\">\r\n<!--\r\nbody{margin:0;font-size:.7em;font-family:Verdana,
+        Arial, Helvetica, sans-serif;background:#EEEEEE;}\r\nfieldset{padding:0 15px
+        10px 15px;} \r\nh1{font-size:2.4em;margin:0;color:#FFF;}\r\nh2{font-size:1.7em;margin:0;color:#CC0000;}
+        \r\nh3{font-size:1.2em;margin:10px 0 0 0;color:#000000;} \r\n#header{width:96%;margin:0
+        0 0 0;padding:6px 2% 6px 2%;font-family:\"trebuchet MS\", Verdana, sans-serif;color:#FFF;\r\nbackground-color:#555555;}\r\n#content{margin:0
+        0 0 2%;position:relative;}\r\n.content-container{background:#FFF;width:96%;margin-top:8px;padding:10px;position:relative;}\r\n-->\r\n</style>\r\n</head>\r\n<body>\r\n<div
+        id=\"header\"><h1>Server Error</h1></div>\r\n<div id=\"content\">\r\n <div
+        class=\"content-container\"><fieldset>\r\n  <h2>500 - Internal server error.</h2>\r\n
+        \ <h3>There is a problem with the resource you are looking for, and it cannot
+        be displayed.</h3>\r\n </fieldset></div>\r\n</div>\r\n</body>\r\n</html>\r\n"
+    http_version: 
+  recorded_at: Mon, 29 Jun 2015 15:50:38 GMT
+- request:
+    method: post
+    uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/MatchedPublicationItemIdsForAuthor?format=xml
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version='1.0'?>
+              <PublicationAuthorMatchParameters xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema'>
+                <Authors>
+                  <Author>
+                    <LastName>benson</LastName>
+                    <FirstName>sally</FirstName>
+                    <MiddleName></MiddleName>
+                    <City>Stanford</City>
+                    <State>CA</State>
+                    <Country>USA</Country>
+                    <Version>1</Version>
+                 </Author>
+              </Authors>
+              <DocumentCategory>Conference Proceeding Document</DocumentCategory>
+              <Emails>
+                          <string>smbenson@stanford.edu</string>
+                        </Emails><PublicationItemIds><int>532237</int><int>29681830</int><int>29693742</int><int>30153017</int><int>30563572</int><int>30711058</int><int>30991998</int><int>31488302</int><int>31623382</int><int>32897909</int><int>33038883</int><int>33139791</int><int>33878760</int><int>47444872</int><int>53640378</int><int>54368177</int><int>59612803</int><int>59641485</int><int>60094854</int><int>60223059</int><int>60478790</int><int>62816475</int><int>62823609</int><int>62903742</int><int>63182944</int><int>62767480</int><int>59904158</int><int>37634308</int><int>63378178</int><int>63775722</int><int>63911215</int><int>4167402</int><int>63891331</int><int>63814446</int><int>62976803</int><int>59811972</int><int>59878565</int><int>37635302</int><int>59936785</int><int>37630237</int><int>37632866</int><int>59839380</int><int>29114844</int><int>24672363</int><int>22528207</int><int>22411820</int><int>21667389</int><int>64357283</int><int>27876654</int><int>16447626</int><int>34333979</int><int>21865294</int><int>22624536</int><int>23216217</int><int>24575036</int><int>35196221</int><int>2627002</int><int>3769378</int><int>3704704</int><int>4513632</int><int>6434468</int><int>6368152</int><int>571008</int><int>35566141</int><int>36119242</int><int>6008013</int><int>36234880</int><int>36225095</int><int>36139437</int><int>36127090</int><int>36208464</int><int>35640871</int><int>23804292</int><int>22654678</int><int>17870903</int><int>23364040</int><int>45141719</int><int>64799575</int><int>65697723</int><int>66020502</int><int>67583123</int></PublicationItemIds><LimitToHighQualityMatchesOnly>true</LimitToHighQualityMatchesOnly></PublicationAuthorMatchParameters>
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Licenseid:
+      - some-license-id
+      Host:
+      - sciencewirerest.discoverylogic.com
+      Connection:
+      - Keep-Alive
+      Expect:
+      - 100-continue
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 500
+      message: Internal Server Error
+    headers:
+      Cache-Control:
+      - private
+      Content-Type:
+      - text/html
+      Server:
+      - Microsoft-IIS/7.5
+      X-Aspnetmvc-Version:
+      - '2.0'
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+      Date:
+      - Mon, 29 Jun 2015 15:50:39 GMT
+      Content-Length:
+      - '1208'
+    body:
+      encoding: UTF-8
+      string: "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\r\n<html
+        xmlns=\"http://www.w3.org/1999/xhtml\">\r\n<head>\r\n<meta http-equiv=\"Content-Type\"
+        content=\"text/html; charset=iso-8859-1\"/>\r\n<title>500 - Internal server
+        error.</title>\r\n<style type=\"text/css\">\r\n<!--\r\nbody{margin:0;font-size:.7em;font-family:Verdana,
+        Arial, Helvetica, sans-serif;background:#EEEEEE;}\r\nfieldset{padding:0 15px
+        10px 15px;} \r\nh1{font-size:2.4em;margin:0;color:#FFF;}\r\nh2{font-size:1.7em;margin:0;color:#CC0000;}
+        \r\nh3{font-size:1.2em;margin:10px 0 0 0;color:#000000;} \r\n#header{width:96%;margin:0
+        0 0 0;padding:6px 2% 6px 2%;font-family:\"trebuchet MS\", Verdana, sans-serif;color:#FFF;\r\nbackground-color:#555555;}\r\n#content{margin:0
+        0 0 2%;position:relative;}\r\n.content-container{background:#FFF;width:96%;margin-top:8px;padding:10px;position:relative;}\r\n-->\r\n</style>\r\n</head>\r\n<body>\r\n<div
+        id=\"header\"><h1>Server Error</h1></div>\r\n<div id=\"content\">\r\n <div
+        class=\"content-container\"><fieldset>\r\n  <h2>500 - Internal server error.</h2>\r\n
+        \ <h3>There is a problem with the resource you are looking for, and it cannot
+        be displayed.</h3>\r\n </fieldset></div>\r\n</div>\r\n</body>\r\n</html>\r\n"
+    http_version: 
+  recorded_at: Mon, 29 Jun 2015 15:50:39 GMT
 recorded_with: VCR 2.5.0

@@ -5,19 +5,37 @@ http_interactions:
     uri: https://stg.sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery?format=xml
     body:
       encoding: US-ASCII
-      string: ! "<?xml version=\"1.0\"?>\n      <ScienceWireQueryXMLParameter xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
-        xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\n      <xmlQuery><![CDATA[\n
-        \     <query xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\n
-        \       <Criterion ConjunctionOperator=\"AND\">\n          <Criteria>\n            <Criterion>\n
-        \             <Filter>\n                <Column>WoSItemID</Column>\n                <Operator>In</Operator>\n
-        \               <Values>\n<Value>000318550800072</Value>\n<Value>000317872800004</Value>\n<Value>000317717300006</Value>\n</Values>\n
-        \               </Filter>\n              </Criterion>\n            </Criteria>\n
-        \         </Criterion><Columns>\n            <SortColumn>\n              <Column>PublicationItemID</Column>\n
-        \             <Direction>Ascending</Direction>\n            </SortColumn>\n
-        \         </Columns>\n        </query>\n    ]]></xmlQuery>\n      </ScienceWireQueryXMLParameter>"
+      string: |-
+        <?xml version="1.0"?>
+              <ScienceWireQueryXMLParameter xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+              <xmlQuery><![CDATA[
+              <query xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+                <Criterion ConjunctionOperator="AND">
+                  <Criteria>
+                    <Criterion>
+                      <Filter>
+                        <Column>WoSItemID</Column>
+                        <Operator>In</Operator>
+                        <Values>
+        <Value>000318550800072</Value>
+        <Value>000317872800004</Value>
+        <Value>000317717300006</Value>
+        </Values>
+                        </Filter>
+                      </Criterion>
+                    </Criteria>
+                  </Criterion><Columns>
+                    <SortColumn>
+                      <Column>PublicationItemID</Column>
+                      <Direction>Ascending</Direction>
+                    </SortColumn>
+                  </Columns>
+                </query>
+            ]]></xmlQuery>
+              </ScienceWireQueryXMLParameter>
     headers:
       Accept:
-      - ! '*/*'
+      - "*/*"
       User-Agent:
       - Ruby
       Licenseid:
@@ -53,7 +71,7 @@ http_interactions:
       - '277'
     body:
       encoding: US-ASCII
-      string: ! "<?xml version=\"1.0\"?>\r\n<ScienceWireQueryIDResponse xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
+      string: "<?xml version=\"1.0\"?>\r\n<ScienceWireQueryIDResponse xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>79589</queryID>\r\n
         \ <queryResultRows>3</queryResultRows>\r\n  <totalRows>3</totalRows>\r\n</ScienceWireQueryIDResponse>"
     http_version: 
@@ -66,7 +84,7 @@ http_interactions:
       string: ''
     headers:
       Accept:
-      - ! '*/*'
+      - "*/*"
       User-Agent:
       - Ruby
       Content-Type:
@@ -100,7 +118,7 @@ http_interactions:
       - '9640'
     body:
       encoding: US-ASCII
-      string: ! "<?xml version=\"1.0\"?>\r\n<ArrayOfPublicationItem xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
+      string: "<?xml version=\"1.0\"?>\r\n<ArrayOfPublicationItem xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <PublicationItem>\r\n
         \   <PublicationItemID>62851007</PublicationItemID>\r\n    <Title>Persistent
         Topology and Metastable State in Conformational Dynamics</Title>\r\n    <Abstract>The
@@ -214,4 +232,299 @@ http_interactions:
         STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n</ArrayOfPublicationItem>"
     http_version: 
   recorded_at: Mon, 15 Jun 2015 21:52:18 GMT
+- request:
+    method: get
+    uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/?format=xml&page=0&pageSize=2147483647&v=version/3
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Content-Type:
+      - text/xml
+      Licenseid:
+      - some-license-id
+      Host:
+      - sciencewirerest.discoverylogic.com
+      Connection:
+      - Keep-Alive
+  response:
+    status:
+      code: 500
+      message: Internal Server Error
+    headers:
+      Cache-Control:
+      - private
+      Content-Type:
+      - text/html
+      Server:
+      - Microsoft-IIS/7.5
+      X-Aspnetmvc-Version:
+      - '2.0'
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+      Date:
+      - Mon, 29 Jun 2015 15:50:39 GMT
+      Content-Length:
+      - '1208'
+    body:
+      encoding: UTF-8
+      string: "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\r\n<html
+        xmlns=\"http://www.w3.org/1999/xhtml\">\r\n<head>\r\n<meta http-equiv=\"Content-Type\"
+        content=\"text/html; charset=iso-8859-1\"/>\r\n<title>500 - Internal server
+        error.</title>\r\n<style type=\"text/css\">\r\n<!--\r\nbody{margin:0;font-size:.7em;font-family:Verdana,
+        Arial, Helvetica, sans-serif;background:#EEEEEE;}\r\nfieldset{padding:0 15px
+        10px 15px;} \r\nh1{font-size:2.4em;margin:0;color:#FFF;}\r\nh2{font-size:1.7em;margin:0;color:#CC0000;}
+        \r\nh3{font-size:1.2em;margin:10px 0 0 0;color:#000000;} \r\n#header{width:96%;margin:0
+        0 0 0;padding:6px 2% 6px 2%;font-family:\"trebuchet MS\", Verdana, sans-serif;color:#FFF;\r\nbackground-color:#555555;}\r\n#content{margin:0
+        0 0 2%;position:relative;}\r\n.content-container{background:#FFF;width:96%;margin-top:8px;padding:10px;position:relative;}\r\n-->\r\n</style>\r\n</head>\r\n<body>\r\n<div
+        id=\"header\"><h1>Server Error</h1></div>\r\n<div id=\"content\">\r\n <div
+        class=\"content-container\"><fieldset>\r\n  <h2>500 - Internal server error.</h2>\r\n
+        \ <h3>There is a problem with the resource you are looking for, and it cannot
+        be displayed.</h3>\r\n </fieldset></div>\r\n</div>\r\n</body>\r\n</html>\r\n"
+    http_version: 
+  recorded_at: Mon, 29 Jun 2015 15:50:40 GMT
+- request:
+    method: post
+    uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery?format=xml
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+              <ScienceWireQueryXMLParameter xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+              <xmlQuery><![CDATA[
+              <query xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+                <Criterion ConjunctionOperator="AND">
+                  <Criteria>
+                    <Criterion>
+                      <Filter>
+                        <Column>WoSItemID</Column>
+                        <Operator>In</Operator>
+                        <Values>
+        <Value>000318550800072</Value>
+        <Value>000317872800004</Value>
+        <Value>000317717300006</Value>
+        </Values>
+                        </Filter>
+                      </Criterion>
+                    </Criteria>
+                  </Criterion><Columns>
+                    <SortColumn>
+                      <Column>PublicationItemID</Column>
+                      <Direction>Ascending</Direction>
+                    </SortColumn>
+                  </Columns>
+                </query>
+            ]]></xmlQuery>
+              </ScienceWireQueryXMLParameter>
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Licenseid:
+      - ***REMOVED***
+      Host:
+      - sciencewirerest.discoverylogic.com
+      Connection:
+      - Keep-Alive
+      Expect:
+      - 100-continue
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - private
+      Content-Type:
+      - application/xml; charset=utf-8
+      Server:
+      - Microsoft-IIS/7.5
+      X-Aspnetmvc-Version:
+      - '2.0'
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+      Date:
+      - Mon, 29 Jun 2015 15:58:39 GMT
+      Content-Length:
+      - '277'
+    body:
+      encoding: UTF-8
+      string: "<?xml version=\"1.0\"?>\r\n<ScienceWireQueryIDResponse xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>81941</queryID>\r\n
+        \ <queryResultRows>3</queryResultRows>\r\n  <totalRows>3</totalRows>\r\n</ScienceWireQueryIDResponse>"
+    http_version: 
+  recorded_at: Mon, 29 Jun 2015 15:58:40 GMT
+- request:
+    method: get
+    uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/81941?format=xml&page=0&pageSize=2147483647&v=version/3
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Content-Type:
+      - text/xml
+      Licenseid:
+      - ***REMOVED***
+      Host:
+      - sciencewirerest.discoverylogic.com
+      Connection:
+      - Keep-Alive
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - private
+      Content-Type:
+      - application/xml; charset=utf-8
+      Server:
+      - Microsoft-IIS/7.5
+      X-Aspnetmvc-Version:
+      - '2.0'
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+      Date:
+      - Mon, 29 Jun 2015 15:58:40 GMT
+      Content-Length:
+      - '9641'
+    body:
+      encoding: UTF-8
+      string: "<?xml version=\"1.0\"?>\r\n<ArrayOfPublicationItem xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <PublicationItem>\r\n
+        \   <PublicationItemID>62851007</PublicationItemID>\r\n    <Title>Persistent
+        Topology and Metastable State in Conformational Dynamics</Title>\r\n    <Abstract>The
+        large amount of molecular dynamics simulation data produced by modern computational
+        models brings big opportunities and challenges to researchers. Clustering
+        algorithms play an important role in understanding biomolecular kinetics from
+        the simulation data, especially under the Markov state model framework. However,
+        the ruggedness of the free energy landscape in a biomolecular system makes
+        common clustering algorithms very sensitive to perturbations of the data.
+        Here, we introduce a data-exploratory tool which provides an overview of the
+        clustering structure under different parameters. The proposed Multi-Persistent
+        Clustering analysis combines insights from recent studies on the dynamics
+        of systems with dominant metastable states with the concept of multi-dimensional
+        persistence in computational topology. We propose to explore the clustering
+        structure of the data based on its persistence on scale and density. The analysis
+        provides a systematic way to discover clusters that are robust to perturbations
+        of the data. The dominant states of the system can be chosen with confidence.
+        For the clusters on the borderline, the user can choose to do more simulation
+        or make a decision based on their structural characteristics. Furthermore,
+        our multi-resolution analysis gives users information about the relative potential
+        of the clusters and their hierarchical relationship. The effectiveness of
+        the proposed method is illustrated in three biomolecules: alanine dipeptide,
+        Villin headpiece, and the FiP35 WW domain.</Abstract>\r\n    <AuthorList>Chang,Huang-Wei,|Bacallado,Sergio,|Pande,Vijay,S|Carlsson,Gunnar,E</AuthorList>\r\n
+        \   <AuthorCount>4</AuthorCount>\r\n    <KeywordList>DENSITY|KINETICS|MODELS|MOLECULAR-DYNAMICS|PROTEINS</KeywordList>\r\n
+        \   <DocumentTypeList>Article</DocumentTypeList>\r\n    <DocumentCategory>Journal
+        Document</DocumentCategory>\r\n    <NumberOfReferences>31</NumberOfReferences>\r\n
+        \   <TimesCited>1</TimesCited>\r\n    <TimesNotSelfCited>1</TimesNotSelfCited>\r\n
+        \   <PMID>23565139</PMID>\r\n    <WoSItemID>000317717300006</WoSItemID>\r\n
+        \   <PublicationSourceTitle>PLOS ONE</PublicationSourceTitle>\r\n    <Volume>8</Volume>\r\n
+        \   <Issue>4</Issue>\r\n    <Pagination />\r\n    <PublicationDate>2013-04-02T00:00:00</PublicationDate>\r\n
+        \   <PublicationYear>2013</PublicationYear>\r\n    <PublicationType>Journal</PublicationType>\r\n
+        \   <PublicationSubjectCategoryList>Multidisciplinary Sciences</PublicationSubjectCategoryList>\r\n
+        \   <ISSN>1932-6203</ISSN>\r\n    <DOI>10.1371/journal.pone.0058699</DOI>\r\n
+        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>0</OrdinalRank>\r\n
+        \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
+        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>PUBLIC
+        LIBRARY SCIENCE</CopyrightPublisher>\r\n    <CopyrightCity>SAN FRANCISCO</CopyrightCity>\r\n
+        \   <ArticleNumber>e58699</ArticleNumber>\r\n    <PublicationImpactFactorList>3.534,2013,ExactPublicationYear|3.534,2013,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>8/55;MULTIDISCIPLINARY SCIENCES;2013;SC;ExactPublicationYear|8/55;MULTIDISCIPLINARY
+        SCIENCES;2013;SC;MostRecentYear</PublicationCategoryRankingList>\r\n    <AuthorCitationCountList>1,0,1|2,0,1|3,0,1|4,0,1</AuthorCitationCountList>\r\n
+        \   <CopyrightStateProvince>CA</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
+        STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
+        \   <PublicationItemID>62856137</PublicationItemID>\r\n    <Title>Emergence
+        of Glass-like Behavior in Markov State Models of Protein Folding Dynamics</Title>\r\n
+        \   <Abstract>The extent to which glass-like kinetics govern dynamics in protein
+        folding has been heavily debated. Here, we address the subject with an application
+        of space-time perturbation theory to the dynamics of protein folding Markov
+        state models. Borrowing techniques from the s-ensemble method, we argue that
+        distinct active and inactive phases exist for protein folding dynamics, and
+        that kinetics for specific systems can fall into either dynamical regime.
+        We do not, however, observe a true glass transition in any system studied.
+        We go on to discuss how these inactive and active phases might relate to general
+        protein folding properties.</Abstract>\r\n    <AuthorList>Weber,Jeffrey,K|Jack,Robert,L|Pande,Vijay,S</AuthorList>\r\n
+        \   <AuthorCount>3</AuthorCount>\r\n    <KeywordList>TRAJECTORIES|TRANSITION|KINETICS</KeywordList>\r\n
+        \   <DocumentTypeList>Article</DocumentTypeList>\r\n    <DocumentCategory>Journal
+        Document</DocumentCategory>\r\n    <NumberOfReferences>20</NumberOfReferences>\r\n
+        \   <TimesCited>11</TimesCited>\r\n    <TimesNotSelfCited>6</TimesNotSelfCited>\r\n
+        \   <PMID>23540906</PMID>\r\n    <WoSItemID>000317872800004</WoSItemID>\r\n
+        \   <PublicationSourceTitle>JOURNAL OF THE AMERICAN CHEMICAL SOCIETY</PublicationSourceTitle>\r\n
+        \   <Volume>135</Volume>\r\n    <Issue>15</Issue>\r\n    <Pagination>5501-5504</Pagination>\r\n
+        \   <PublicationDate>2013-04-17T00:00:00</PublicationDate>\r\n    <PublicationYear>2013</PublicationYear>\r\n
+        \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Chemistry,
+        Multidisciplinary</PublicationSubjectCategoryList>\r\n    <ISSN>0002-7863</ISSN>\r\n
+        \   <DOI>10.1021/ja4002663</DOI>\r\n    <ConferenceStartDate xsi:nil=\"true\"
+        />\r\n    <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank xsi:nil=\"true\"
+        />\r\n    <OrdinalRank>1</OrdinalRank>\r\n    <NormalizedRank xsi:nil=\"true\"
+        />\r\n    <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
+        \   <CopyrightPublisher>AMER CHEMICAL SOC</CopyrightPublisher>\r\n    <CopyrightCity>WASHINGTON</CopyrightCity>\r\n
+        \   <PublicationImpactFactorList>11.444,2013,ExactPublicationYear|11.444,2013,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>10/148;CHEMISTRY, MULTIDISCIPLINARY;2013;SC;ExactPublicationYear|10/148;CHEMISTRY,
+        MULTIDISCIPLINARY;2013;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <AuthorCitationCountList>1,4,7|2,2,9|3,4,7</AuthorCitationCountList>\r\n
+        \   <CopyrightStateProvince>DC</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
+        STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
+        \   <PublicationItemID>62922945</PublicationItemID>\r\n    <Title>Functional
+        understanding of solvent structure in GroEL cavity through dipole field analysis</Title>\r\n
+        \   <Abstract>Solvent plays a ubiquitous role in all biophysical phenomena.
+        Yet, just how the molecular nature of water impacts processes in biology remains
+        an important question. While one can simulate the behavior of water near biomolecules
+        such as proteins, it is challenging to gauge the potential structural role
+        solvent plays in mediating both kinetic and equilibrium processes. Here, we
+        propose an analysis scheme for understanding the nature of solvent structure
+        at a local level. We first calculate coarse-grained dipole vector fields for
+        an explicitly solvated system simulated through molecular dynamics. We then
+        analyze correlations between these vector fields to characterize water structure
+        under biologically relevant conditions. In applying our method to the interior
+        of the wild type chaperonin complex GroEL+ES, along with nine additional mutant
+        GroEL complexes, we find that dipole field correlations are strongly related
+        to chaperonin function. (C) 2013 AIP Publishing LLC.</Abstract>\r\n    <AuthorList>Weber,Jeffrey,K|Pande,Vijay,S</AuthorList>\r\n
+        \   <AuthorCount>2</AuthorCount>\r\n    <KeywordList>SOLUTE|PROTEIN|WATER|CHAPERONINS</KeywordList>\r\n
+        \   <DocumentTypeList>Article</DocumentTypeList>\r\n    <DocumentCategory>Journal
+        Document</DocumentCategory>\r\n    <NumberOfReferences>20</NumberOfReferences>\r\n
+        \   <TimesCited>2</TimesCited>\r\n    <TimesNotSelfCited>1</TimesNotSelfCited>\r\n
+        \   <PMID>23635172</PMID>\r\n    <WoSItemID>000318550800072</WoSItemID>\r\n
+        \   <PublicationSourceTitle>JOURNAL OF CHEMICAL PHYSICS</PublicationSourceTitle>\r\n
+        \   <Volume>138</Volume>\r\n    <Issue>16</Issue>\r\n    <Pagination />\r\n
+        \   <PublicationDate>2013-04-28T00:00:00</PublicationDate>\r\n    <PublicationYear>2013</PublicationYear>\r\n
+        \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Physics,
+        Atomic, Molecular &amp; Chemical</PublicationSubjectCategoryList>\r\n    <ISSN>0021-9606</ISSN>\r\n
+        \   <DOI>10.1063/1.4801942</DOI>\r\n    <ConferenceStartDate xsi:nil=\"true\"
+        />\r\n    <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank xsi:nil=\"true\"
+        />\r\n    <OrdinalRank>2</OrdinalRank>\r\n    <NormalizedRank xsi:nil=\"true\"
+        />\r\n    <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
+        \   <CopyrightPublisher>AMER INST PHYSICS</CopyrightPublisher>\r\n    <CopyrightCity>MELVILLE</CopyrightCity>\r\n
+        \   <ArticleNumber>165101</ArticleNumber>\r\n    <PublicationImpactFactorList>3.122,2013,ExactPublicationYear|3.122,2013,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>8/33;PHYSICS, ATOMIC, MOLECULAR &amp;
+        CHEMICAL;2013;SC;ExactPublicationYear|8/33;PHYSICS, ATOMIC, MOLECULAR &amp;
+        CHEMICAL;2013;SC;MostRecentYear</PublicationCategoryRankingList>\r\n    <AuthorCitationCountList>1,0,2|2,1,1</AuthorCitationCountList>\r\n
+        \   <CopyrightStateProvince>NY</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
+        STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n</ArrayOfPublicationItem>"
+    http_version: 
+  recorded_at: Mon, 29 Jun 2015 15:58:40 GMT
 recorded_with: VCR 2.5.0

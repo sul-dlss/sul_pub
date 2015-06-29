@@ -4,11 +4,13 @@ http_interactions:
     method: post
     uri: http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml
     body:
-      encoding: US-ASCII
-      string: ! '&id=211&id=589&id=591&id=960'
+      encoding: UTF-8
+      string: "&id=211&id=589&id=591&id=960"
     headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
-      - ! '*/*'
+      - "*/*"
       User-Agent:
       - Ruby
   response:
@@ -17,423 +19,783 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 15 Jun 2015 21:54:51 GMT
+      - Mon, 29 Jun 2015 15:48:13 GMT
       Server:
       - Apache
       Access-Control-Allow-Origin:
-      - ! '*'
+      - "*"
       Cache-Control:
       - private
       Ncbi-Sid:
-      - 08DE046357F49AB1_0780SID
+      - 08DD0C9A59168BD1_0611SID
       Content-Type:
       - text/xml; charset=UTF-8
       Set-Cookie:
-      - ncbi_sid=08DE046357F49AB1_0780SID; domain=.nih.gov; path=/; expires=Wed, 15
-        Jun 2016 21:54:51 GMT
+      - ncbi_sid=08DD0C9A59168BD1_0611SID; domain=.nih.gov; path=/; expires=Wed, 29
+        Jun 2016 15:48:13 GMT
       X-Ua-Compatible:
       - IE=Edge
       Transfer-Encoding:
       - chunked
     body:
-      encoding: US-ASCII
-      string: ! "<?xml version=\"1.0\"?>\n<!DOCTYPE PubmedArticleSet PUBLIC \"-//NLM//DTD
-        PubMedArticle, 1st January 2015//EN\" \"http://www.ncbi.nlm.nih.gov/corehtml/query/DTD/pubmed_150101.dtd\">\n<PubmedArticleSet>\n<PubmedArticle>\n
-        \   <MedlineCitation Owner=\"NLM\" Status=\"MEDLINE\">\n        <PMID Version=\"1\">211</PMID>\n
-        \       <DateCreated>\n            <Year>1976</Year>\n            <Month>02</Month>\n
-        \           <Day>09</Day>\n        </DateCreated>\n        <DateCompleted>\n
-        \           <Year>1976</Year>\n            <Month>02</Month>\n            <Day>09</Day>\n
-        \       </DateCompleted>\n        <DateRevised>\n            <Year>2013</Year>\n
-        \           <Month>11</Month>\n            <Day>21</Day>\n        </DateRevised>\n
-        \       <Article PubModel=\"Print\">\n            <Journal>\n                <ISSN
-        IssnType=\"Print\">0300-1725</ISSN>\n                <JournalIssue CitedMedium=\"Print\">\n
-        \                   <Volume>4</Volume>\n                    <PubDate>\n                        <Year>1975</Year>\n
-        \                   </PubDate>\n                </JournalIssue>\n                <Title>Current
-        problems in clinical biochemistry</Title>\n                <ISOAbbreviation>Curr
-        Probl Clin Biochem</ISOAbbreviation>\n            </Journal>\n            <ArticleTitle>Effects
-        of maleate on renal reabsorption of bicarbonate.</ArticleTitle>\n            <Pagination>\n
-        \               <MedlinePgn>101-5</MedlinePgn>\n            </Pagination>\n
-        \           <AuthorList CompleteYN=\"Y\">\n                <Author ValidYN=\"Y\">\n
-        \                   <LastName>Gmaj</LastName>\n                    <ForeName>P</ForeName>\n
-        \                   <Initials>P</Initials>\n                </Author>\n                <Author
-        ValidYN=\"Y\">\n                    <LastName>Hoppe</LastName>\n                    <ForeName>A</ForeName>\n
-        \                   <Initials>A</Initials>\n                </Author>\n                <Author
-        ValidYN=\"Y\">\n                    <LastName>Angielski</LastName>\n                    <ForeName>S</ForeName>\n
-        \                   <Initials>S</Initials>\n                </Author>\n                <Author
-        ValidYN=\"Y\">\n                    <LastName>Rogulski</LastName>\n                    <ForeName>J</ForeName>\n
-        \                   <Initials>J</Initials>\n                </Author>\n                <Author
-        ValidYN=\"Y\">\n                    <LastName>Metler</LastName>\n                    <ForeName>M</ForeName>\n
-        \                   <Initials>M</Initials>\n                </Author>\n            </AuthorList>\n
-        \           <Language>eng</Language>\n            <PublicationTypeList>\n
-        \               <PublicationType UI=\"D003160\">Comparative Study</PublicationType>\n
-        \               <PublicationType UI=\"D016428\">Journal Article</PublicationType>\n
-        \           </PublicationTypeList>\n        </Article>\n        <MedlineJournalInfo>\n
-        \           <Country>SWITZERLAND</Country>\n            <MedlineTA>Curr Probl
-        Clin Biochem</MedlineTA>\n            <NlmUniqueID>0353507</NlmUniqueID>\n
-        \           <ISSNLinking>0300-1725</ISSNLinking>\n        </MedlineJournalInfo>\n
-        \       <ChemicalList>\n            <Chemical>\n                <RegistryNumber>0</RegistryNumber>\n
-        \               <NameOfSubstance UI=\"D001639\">Bicarbonates</NameOfSubstance>\n
-        \           </Chemical>\n            <Chemical>\n                <RegistryNumber>0</RegistryNumber>\n
-        \               <NameOfSubstance UI=\"D002712\">Chlorides</NameOfSubstance>\n
-        \           </Chemical>\n            <Chemical>\n                <RegistryNumber>0</RegistryNumber>\n
-        \               <NameOfSubstance UI=\"D007656\">Ketoglutaric Acids</NameOfSubstance>\n
-        \           </Chemical>\n            <Chemical>\n                <RegistryNumber>0</RegistryNumber>\n
-        \               <NameOfSubstance UI=\"D008298\">Maleates</NameOfSubstance>\n
-        \           </Chemical>\n            <Chemical>\n                <RegistryNumber>8L70Q75FXE</RegistryNumber>\n
-        \               <NameOfSubstance UI=\"D000255\">Adenosine Triphosphate</NameOfSubstance>\n
-        \           </Chemical>\n            <Chemical>\n                <RegistryNumber>9NEZ333N27</RegistryNumber>\n
-        \               <NameOfSubstance UI=\"D012964\">Sodium</NameOfSubstance>\n
-        \           </Chemical>\n            <Chemical>\n                <RegistryNumber>N712M78A8G</RegistryNumber>\n
-        \               <NameOfSubstance UI=\"D001151\">Arsenic</NameOfSubstance>\n
-        \           </Chemical>\n            <Chemical>\n                <RegistryNumber>O3FX965V0I</RegistryNumber>\n
-        \               <NameOfSubstance UI=\"D000086\">Acetazolamide</NameOfSubstance>\n
-        \           </Chemical>\n            <Chemical>\n                <RegistryNumber>RWP5GA015D</RegistryNumber>\n
-        \               <NameOfSubstance UI=\"D011188\">Potassium</NameOfSubstance>\n
-        \           </Chemical>\n        </ChemicalList>\n        <CitationSubset>IM</CitationSubset>\n
-        \       <MeshHeadingList>\n            <MeshHeading>\n                <DescriptorName
-        MajorTopicYN=\"N\" UI=\"D000086\">Acetazolamide</DescriptorName>\n                <QualifierName
-        MajorTopicYN=\"N\" UI=\"Q000494\">pharmacology</QualifierName>\n            </MeshHeading>\n
-        \           <MeshHeading>\n                <DescriptorName MajorTopicYN=\"N\"
-        UI=\"D000255\">Adenosine Triphosphate</DescriptorName>\n                <QualifierName
-        MajorTopicYN=\"N\" UI=\"Q000378\">metabolism</QualifierName>\n            </MeshHeading>\n
-        \           <MeshHeading>\n                <DescriptorName MajorTopicYN=\"N\"
-        UI=\"D000818\">Animals</DescriptorName>\n            </MeshHeading>\n            <MeshHeading>\n
-        \               <DescriptorName MajorTopicYN=\"N\" UI=\"D001151\">Arsenic</DescriptorName>\n
-        \               <QualifierName MajorTopicYN=\"N\" UI=\"Q000494\">pharmacology</QualifierName>\n
-        \           </MeshHeading>\n            <MeshHeading>\n                <DescriptorName
-        MajorTopicYN=\"N\" UI=\"D001639\">Bicarbonates</DescriptorName>\n                <QualifierName
-        MajorTopicYN=\"Y\" UI=\"Q000378\">metabolism</QualifierName>\n            </MeshHeading>\n
-        \           <MeshHeading>\n                <DescriptorName MajorTopicYN=\"N\"
-        UI=\"D002712\">Chlorides</DescriptorName>\n                <QualifierName
-        MajorTopicYN=\"N\" UI=\"Q000652\">urine</QualifierName>\n            </MeshHeading>\n
-        \           <MeshHeading>\n                <DescriptorName MajorTopicYN=\"N\"
-        UI=\"D005919\">Glomerular Filtration Rate</DescriptorName>\n                <QualifierName
-        MajorTopicYN=\"N\" UI=\"Q000187\">drug effects</QualifierName>\n            </MeshHeading>\n
-        \           <MeshHeading>\n                <DescriptorName MajorTopicYN=\"N\"
-        UI=\"D006863\">Hydrogen-Ion Concentration</DescriptorName>\n            </MeshHeading>\n
-        \           <MeshHeading>\n                <DescriptorName MajorTopicYN=\"N\"
-        UI=\"D007656\">Ketoglutaric Acids</DescriptorName>\n                <QualifierName
-        MajorTopicYN=\"N\" UI=\"Q000652\">urine</QualifierName>\n            </MeshHeading>\n
-        \           <MeshHeading>\n                <DescriptorName MajorTopicYN=\"N\"
-        UI=\"D007668\">Kidney</DescriptorName>\n                <QualifierName MajorTopicYN=\"N\"
-        UI=\"Q000187\">drug effects</QualifierName>\n                <QualifierName
-        MajorTopicYN=\"Y\" UI=\"Q000378\">metabolism</QualifierName>\n            </MeshHeading>\n
-        \           <MeshHeading>\n                <DescriptorName MajorTopicYN=\"N\"
-        UI=\"D008298\">Maleates</DescriptorName>\n                <QualifierName MajorTopicYN=\"Y\"
-        UI=\"Q000494\">pharmacology</QualifierName>\n            </MeshHeading>\n
-        \           <MeshHeading>\n                <DescriptorName MajorTopicYN=\"N\"
-        UI=\"D011188\">Potassium</DescriptorName>\n                <QualifierName
-        MajorTopicYN=\"N\" UI=\"Q000652\">urine</QualifierName>\n            </MeshHeading>\n
-        \           <MeshHeading>\n                <DescriptorName MajorTopicYN=\"N\"
-        UI=\"D051381\">Rats</DescriptorName>\n            </MeshHeading>\n            <MeshHeading>\n
-        \               <DescriptorName MajorTopicYN=\"N\" UI=\"D012964\">Sodium</DescriptorName>\n
-        \               <QualifierName MajorTopicYN=\"N\" UI=\"Q000652\">urine</QualifierName>\n
-        \           </MeshHeading>\n        </MeshHeadingList>\n    </MedlineCitation>\n
-        \   <PubmedData>\n        <History>\n            <PubMedPubDate PubStatus=\"pubmed\">\n
-        \               <Year>1975</Year>\n                <Month>1</Month>\n                <Day>1</Day>\n
-        \           </PubMedPubDate>\n            <PubMedPubDate PubStatus=\"medline\">\n
-        \               <Year>1975</Year>\n                <Month>1</Month>\n                <Day>1</Day>\n
-        \               <Hour>0</Hour>\n                <Minute>1</Minute>\n            </PubMedPubDate>\n
-        \           <PubMedPubDate PubStatus=\"entrez\">\n                <Year>1975</Year>\n
-        \               <Month>1</Month>\n                <Day>1</Day>\n                <Hour>0</Hour>\n
-        \               <Minute>0</Minute>\n            </PubMedPubDate>\n        </History>\n
-        \       <PublicationStatus>ppublish</PublicationStatus>\n        <ArticleIdList>\n
-        \           <ArticleId IdType=\"pubmed\">211</ArticleId>\n        </ArticleIdList>\n
-        \   </PubmedData>\n</PubmedArticle>\n\n\n<PubmedArticle>\n    <MedlineCitation
-        Owner=\"NLM\" Status=\"MEDLINE\">\n        <PMID Version=\"1\">589</PMID>\n
-        \       <DateCreated>\n            <Year>1976</Year>\n            <Month>02</Month>\n
-        \           <Day>19</Day>\n        </DateCreated>\n        <DateCompleted>\n
-        \           <Year>1976</Year>\n            <Month>02</Month>\n            <Day>19</Day>\n
-        \       </DateCompleted>\n        <DateRevised>\n            <Year>2013</Year>\n
-        \           <Month>11</Month>\n            <Day>21</Day>\n        </DateRevised>\n
-        \       <Article PubModel=\"Print\">\n            <Journal>\n                <ISSN
-        IssnType=\"Print\">0091-679X</ISSN>\n                <JournalIssue CitedMedium=\"Print\">\n
-        \                   <Volume>12</Volume>\n                    <PubDate>\n                        <Year>1975</Year>\n
-        \                   </PubDate>\n                </JournalIssue>\n                <Title>Methods
-        in cell biology</Title>\n                <ISOAbbreviation>Methods Cell Biol.</ISOAbbreviation>\n
-        \           </Journal>\n            <ArticleTitle>Methods for avoiding proteolytic
-        artefacts in studies of enzymes and other proteins from yeasts.</ArticleTitle>\n
-        \           <Pagination>\n                <MedlinePgn>149-84</MedlinePgn>\n
-        \           </Pagination>\n            <AuthorList CompleteYN=\"Y\">\n                <Author
-        ValidYN=\"Y\">\n                    <LastName>Pringle</LastName>\n                    <ForeName>J
-        R</ForeName>\n                    <Initials>JR</Initials>\n                </Author>\n
-        \           </AuthorList>\n            <Language>eng</Language>\n            <PublicationTypeList>\n
-        \               <PublicationType UI=\"D016428\">Journal Article</PublicationType>\n
-        \               <PublicationType UI=\"D013486\">Research Support, U.S. Gov't,
-        Non-P.H.S.</PublicationType>\n                <PublicationType UI=\"D013487\">Research
-        Support, U.S. Gov't, P.H.S.</PublicationType>\n                <PublicationType
-        UI=\"D016454\">Review</PublicationType>\n            </PublicationTypeList>\n
-        \       </Article>\n        <MedlineJournalInfo>\n            <Country>UNITED
-        STATES</Country>\n            <MedlineTA>Methods Cell Biol</MedlineTA>\n            <NlmUniqueID>0373334</NlmUniqueID>\n
-        \           <ISSNLinking>0091-679X</ISSNLinking>\n        </MedlineJournalInfo>\n
-        \       <ChemicalList>\n            <Chemical>\n                <RegistryNumber>0</RegistryNumber>\n
-        \               <NameOfSubstance UI=\"D002729\">Chloromercuribenzoates</NameOfSubstance>\n
-        \           </Chemical>\n            <Chemical>\n                <RegistryNumber>0</RegistryNumber>\n
-        \               <NameOfSubstance UI=\"D010436\">Pepstatins</NameOfSubstance>\n
-        \           </Chemical>\n            <Chemical>\n                <RegistryNumber>0</RegistryNumber>\n
-        \               <NameOfSubstance UI=\"D010618\">Phenanthrolines</NameOfSubstance>\n
-        \           </Chemical>\n            <Chemical>\n                <RegistryNumber>0</RegistryNumber>\n
-        \               <NameOfSubstance UI=\"D011480\">Protease Inhibitors</NameOfSubstance>\n
-        \           </Chemical>\n            <Chemical>\n                <RegistryNumber>12UHW9R67N</RegistryNumber>\n
-        \               <NameOfSubstance UI=\"D007531\">Isoflurophate</NameOfSubstance>\n
-        \           </Chemical>\n            <Chemical>\n                <RegistryNumber>57KD15003I</RegistryNumber>\n
-        \               <NameOfSubstance UI=\"D010664\">Phenylmethylsulfonyl Fluoride</NameOfSubstance>\n
-        \           </Chemical>\n            <Chemical>\n                <RegistryNumber>9G34HU7RV0</RegistryNumber>\n
-        \               <NameOfSubstance UI=\"D004492\">Edetic Acid</NameOfSubstance>\n
-        \           </Chemical>\n            <Chemical>\n                <RegistryNumber>EC
-        1.1.1.37</RegistryNumber>\n                <NameOfSubstance UI=\"D008291\">Malate
-        Dehydrogenase</NameOfSubstance>\n            </Chemical>\n            <Chemical>\n
-        \               <RegistryNumber>EC 2.7.1.1</RegistryNumber>\n                <NameOfSubstance
-        UI=\"D006593\">Hexokinase</NameOfSubstance>\n            </Chemical>\n            <Chemical>\n
-        \               <RegistryNumber>EC 2.7.1.11</RegistryNumber>\n                <NameOfSubstance
-        UI=\"D010732\">Phosphofructokinase-1</NameOfSubstance>\n            </Chemical>\n
-        \           <Chemical>\n                <RegistryNumber>EC 3.4.-</RegistryNumber>\n
-        \               <NameOfSubstance UI=\"D002268\">Carboxypeptidases</NameOfSubstance>\n
-        \           </Chemical>\n            <Chemical>\n                <RegistryNumber>EC
-        3.4.-</RegistryNumber>\n                <NameOfSubstance UI=\"D010447\">Peptide
-        Hydrolases</NameOfSubstance>\n            </Chemical>\n            <Chemical>\n
-        \               <RegistryNumber>EC 3.4.11.-</RegistryNumber>\n                <NameOfSubstance
-        UI=\"D000626\">Aminopeptidases</NameOfSubstance>\n            </Chemical>\n
-        \           <Chemical>\n                <RegistryNumber>EC 4.1.1.1</RegistryNumber>\n
-        \               <NameOfSubstance UI=\"D011767\">Pyruvate Decarboxylase</NameOfSubstance>\n
-        \           </Chemical>\n        </ChemicalList>\n        <CitationSubset>IM</CitationSubset>\n
-        \       <MeshHeadingList>\n            <MeshHeading>\n                <DescriptorName
-        MajorTopicYN=\"N\" UI=\"D000626\">Aminopeptidases</DescriptorName>\n                <QualifierName
-        MajorTopicYN=\"N\" UI=\"Q000378\">metabolism</QualifierName>\n            </MeshHeading>\n
-        \           <MeshHeading>\n                <DescriptorName MajorTopicYN=\"N\"
-        UI=\"D002268\">Carboxypeptidases</DescriptorName>\n                <QualifierName
-        MajorTopicYN=\"N\" UI=\"Q000378\">metabolism</QualifierName>\n            </MeshHeading>\n
-        \           <MeshHeading>\n                <DescriptorName MajorTopicYN=\"N\"
-        UI=\"D002458\">Cell Fractionation</DescriptorName>\n            </MeshHeading>\n
-        \           <MeshHeading>\n                <DescriptorName MajorTopicYN=\"N\"
-        UI=\"D002729\">Chloromercuribenzoates</DescriptorName>\n                <QualifierName
-        MajorTopicYN=\"N\" UI=\"Q000494\">pharmacology</QualifierName>\n            </MeshHeading>\n
-        \           <MeshHeading>\n                <DescriptorName MajorTopicYN=\"N\"
-        UI=\"D004492\">Edetic Acid</DescriptorName>\n                <QualifierName
-        MajorTopicYN=\"N\" UI=\"Q000494\">pharmacology</QualifierName>\n            </MeshHeading>\n
-        \           <MeshHeading>\n                <DescriptorName MajorTopicYN=\"N\"
-        UI=\"D006593\">Hexokinase</DescriptorName>\n                <QualifierName
-        MajorTopicYN=\"N\" UI=\"Q000302\">isolation &amp; purification</QualifierName>\n
-        \           </MeshHeading>\n            <MeshHeading>\n                <DescriptorName
-        MajorTopicYN=\"N\" UI=\"D006863\">Hydrogen-Ion Concentration</DescriptorName>\n
-        \           </MeshHeading>\n            <MeshHeading>\n                <DescriptorName
-        MajorTopicYN=\"N\" UI=\"D007526\">Isoelectric Point</DescriptorName>\n            </MeshHeading>\n
-        \           <MeshHeading>\n                <DescriptorName MajorTopicYN=\"N\"
-        UI=\"D007531\">Isoflurophate</DescriptorName>\n                <QualifierName
-        MajorTopicYN=\"N\" UI=\"Q000494\">pharmacology</QualifierName>\n            </MeshHeading>\n
-        \           <MeshHeading>\n                <DescriptorName MajorTopicYN=\"N\"
-        UI=\"D008291\">Malate Dehydrogenase</DescriptorName>\n                <QualifierName
-        MajorTopicYN=\"N\" UI=\"Q000302\">isolation &amp; purification</QualifierName>\n
-        \           </MeshHeading>\n            <MeshHeading>\n                <DescriptorName
-        MajorTopicYN=\"N\" UI=\"D008970\">Molecular Weight</DescriptorName>\n            </MeshHeading>\n
-        \           <MeshHeading>\n                <DescriptorName MajorTopicYN=\"N\"
-        UI=\"D010436\">Pepstatins</DescriptorName>\n                <QualifierName
-        MajorTopicYN=\"N\" UI=\"Q000494\">pharmacology</QualifierName>\n            </MeshHeading>\n
-        \           <MeshHeading>\n                <DescriptorName MajorTopicYN=\"N\"
-        UI=\"D010447\">Peptide Hydrolases</DescriptorName>\n                <QualifierName
-        MajorTopicYN=\"N\" UI=\"Q000032\">analysis</QualifierName>\n                <QualifierName
-        MajorTopicYN=\"Y\" UI=\"Q000378\">metabolism</QualifierName>\n            </MeshHeading>\n
-        \           <MeshHeading>\n                <DescriptorName MajorTopicYN=\"N\"
-        UI=\"D010618\">Phenanthrolines</DescriptorName>\n                <QualifierName
-        MajorTopicYN=\"N\" UI=\"Q000494\">pharmacology</QualifierName>\n            </MeshHeading>\n
-        \           <MeshHeading>\n                <DescriptorName MajorTopicYN=\"N\"
-        UI=\"D010664\">Phenylmethylsulfonyl Fluoride</DescriptorName>\n                <QualifierName
-        MajorTopicYN=\"N\" UI=\"Q000494\">pharmacology</QualifierName>\n            </MeshHeading>\n
-        \           <MeshHeading>\n                <DescriptorName MajorTopicYN=\"N\"
-        UI=\"D010732\">Phosphofructokinase-1</DescriptorName>\n                <QualifierName
-        MajorTopicYN=\"N\" UI=\"Q000302\">isolation &amp; purification</QualifierName>\n
-        \           </MeshHeading>\n            <MeshHeading>\n                <DescriptorName
-        MajorTopicYN=\"N\" UI=\"D011480\">Protease Inhibitors</DescriptorName>\n            </MeshHeading>\n
-        \           <MeshHeading>\n                <DescriptorName MajorTopicYN=\"N\"
-        UI=\"D011489\">Protein Denaturation</DescriptorName>\n            </MeshHeading>\n
-        \           <MeshHeading>\n                <DescriptorName MajorTopicYN=\"N\"
-        UI=\"D011767\">Pyruvate Decarboxylase</DescriptorName>\n                <QualifierName
-        MajorTopicYN=\"N\" UI=\"Q000302\">isolation &amp; purification</QualifierName>\n
-        \           </MeshHeading>\n            <MeshHeading>\n                <DescriptorName
-        MajorTopicYN=\"N\" UI=\"D012441\">Saccharomyces cerevisiae</DescriptorName>\n
-        \               <QualifierName MajorTopicYN=\"Y\" UI=\"Q000201\">enzymology</QualifierName>\n
-        \           </MeshHeading>\n            <MeshHeading>\n                <DescriptorName
-        MajorTopicYN=\"N\" UI=\"D013696\">Temperature</DescriptorName>\n            </MeshHeading>\n
-        \           <MeshHeading>\n                <DescriptorName MajorTopicYN=\"N\"
-        UI=\"D014617\">Vacuoles</DescriptorName>\n            </MeshHeading>\n        </MeshHeadingList>\n
-        \       <NumberOfReferences>191</NumberOfReferences>\n    </MedlineCitation>\n
-        \   <PubmedData>\n        <History>\n            <PubMedPubDate PubStatus=\"pubmed\">\n
-        \               <Year>1975</Year>\n                <Month>1</Month>\n                <Day>1</Day>\n
-        \           </PubMedPubDate>\n            <PubMedPubDate PubStatus=\"medline\">\n
-        \               <Year>1975</Year>\n                <Month>1</Month>\n                <Day>1</Day>\n
-        \               <Hour>0</Hour>\n                <Minute>1</Minute>\n            </PubMedPubDate>\n
-        \           <PubMedPubDate PubStatus=\"entrez\">\n                <Year>1975</Year>\n
-        \               <Month>1</Month>\n                <Day>1</Day>\n                <Hour>0</Hour>\n
-        \               <Minute>0</Minute>\n            </PubMedPubDate>\n        </History>\n
-        \       <PublicationStatus>ppublish</PublicationStatus>\n        <ArticleIdList>\n
-        \           <ArticleId IdType=\"pubmed\">589</ArticleId>\n        </ArticleIdList>\n
-        \   </PubmedData>\n</PubmedArticle>\n\n\n<PubmedArticle>\n    <MedlineCitation
-        Owner=\"NLM\" Status=\"MEDLINE\">\n        <PMID Version=\"1\">591</PMID>\n
-        \       <DateCreated>\n            <Year>1976</Year>\n            <Month>02</Month>\n
-        \           <Day>19</Day>\n        </DateCreated>\n        <DateCompleted>\n
-        \           <Year>1976</Year>\n            <Month>02</Month>\n            <Day>19</Day>\n
-        \       </DateCompleted>\n        <DateRevised>\n            <Year>2008</Year>\n
-        \           <Month>11</Month>\n            <Day>21</Day>\n        </DateRevised>\n
-        \       <Article PubModel=\"Print\">\n            <Journal>\n                <ISSN
-        IssnType=\"Print\">0091-679X</ISSN>\n                <JournalIssue CitedMedium=\"Print\">\n
-        \                   <Volume>12</Volume>\n                    <PubDate>\n                        <Year>1975</Year>\n
-        \                   </PubDate>\n                </JournalIssue>\n                <Title>Methods
-        in cell biology</Title>\n                <ISOAbbreviation>Methods Cell Biol.</ISOAbbreviation>\n
-        \           </Journal>\n            <ArticleTitle>Induction, selection, and
-        experimental uses of temperature-sensitive and other conditional mutants of
-        yeast.</ArticleTitle>\n            <Pagination>\n                <MedlinePgn>233-72</MedlinePgn>\n
-        \           </Pagination>\n            <AuthorList CompleteYN=\"Y\">\n                <Author
-        ValidYN=\"Y\">\n                    <LastName>Pringle</LastName>\n                    <ForeName>J
-        R</ForeName>\n                    <Initials>JR</Initials>\n                </Author>\n
-        \           </AuthorList>\n            <Language>eng</Language>\n            <PublicationTypeList>\n
-        \               <PublicationType UI=\"D016428\">Journal Article</PublicationType>\n
-        \               <PublicationType UI=\"D013487\">Research Support, U.S. Gov't,
-        P.H.S.</PublicationType>\n                <PublicationType UI=\"D016454\">Review</PublicationType>\n
-        \           </PublicationTypeList>\n        </Article>\n        <MedlineJournalInfo>\n
-        \           <Country>UNITED STATES</Country>\n            <MedlineTA>Methods
-        Cell Biol</MedlineTA>\n            <NlmUniqueID>0373334</NlmUniqueID>\n            <ISSNLinking>0091-679X</ISSNLinking>\n
-        \       </MedlineJournalInfo>\n        <ChemicalList>\n            <Chemical>\n
-        \               <RegistryNumber>0</RegistryNumber>\n                <NameOfSubstance
-        UI=\"D005656\">Fungal Proteins</NameOfSubstance>\n            </Chemical>\n
-        \           <Chemical>\n                <RegistryNumber>63231-63-0</RegistryNumber>\n
-        \               <NameOfSubstance UI=\"D012313\">RNA</NameOfSubstance>\n            </Chemical>\n
-        \       </ChemicalList>\n        <CitationSubset>IM</CitationSubset>\n        <MeshHeadingList>\n
-        \           <MeshHeading>\n                <DescriptorName MajorTopicYN=\"N\"
-        UI=\"D002455\">Cell Division</DescriptorName>\n            </MeshHeading>\n
-        \           <MeshHeading>\n                <DescriptorName MajorTopicYN=\"N\"
-        UI=\"D002470\">Cell Survival</DescriptorName>\n            </MeshHeading>\n
-        \           <MeshHeading>\n                <DescriptorName MajorTopicYN=\"N\"
-        UI=\"D003080\">Cold Temperature</DescriptorName>\n            </MeshHeading>\n
-        \           <MeshHeading>\n                <DescriptorName MajorTopicYN=\"N\"
-        UI=\"D003433\">Crosses, Genetic</DescriptorName>\n            </MeshHeading>\n
-        \           <MeshHeading>\n                <DescriptorName MajorTopicYN=\"N\"
-        UI=\"D004261\">DNA Replication</DescriptorName>\n            </MeshHeading>\n
-        \           <MeshHeading>\n                <DescriptorName MajorTopicYN=\"N\"
-        UI=\"D005656\">Fungal Proteins</DescriptorName>\n                <QualifierName
-        MajorTopicYN=\"N\" UI=\"Q000096\">biosynthesis</QualifierName>\n            </MeshHeading>\n
-        \           <MeshHeading>\n                <DescriptorName MajorTopicYN=\"Y\"
-        UI=\"D005796\">Genes</DescriptorName>\n            </MeshHeading>\n            <MeshHeading>\n
-        \               <DescriptorName MajorTopicYN=\"N\" UI=\"D005816\">Genetic
-        Complementation Test</DescriptorName>\n            </MeshHeading>\n            <MeshHeading>\n
-        \               <DescriptorName MajorTopicYN=\"Y\" UI=\"D005821\">Genetic
-        Techniques</DescriptorName>\n            </MeshHeading>\n            <MeshHeading>\n
-        \               <DescriptorName MajorTopicYN=\"N\" UI=\"D006863\">Hydrogen-Ion
-        Concentration</DescriptorName>\n            </MeshHeading>\n            <MeshHeading>\n
-        \               <DescriptorName MajorTopicYN=\"Y\" UI=\"D009154\">Mutation</DescriptorName>\n
-        \           </MeshHeading>\n            <MeshHeading>\n                <DescriptorName
-        MajorTopicYN=\"N\" UI=\"D009994\">Osmolar Concentration</DescriptorName>\n
-        \           </MeshHeading>\n            <MeshHeading>\n                <DescriptorName
-        MajorTopicYN=\"N\" UI=\"D010641\">Phenotype</DescriptorName>\n            </MeshHeading>\n
-        \           <MeshHeading>\n                <DescriptorName MajorTopicYN=\"N\"
-        UI=\"D012313\">RNA</DescriptorName>\n                <QualifierName MajorTopicYN=\"N\"
-        UI=\"Q000096\">biosynthesis</QualifierName>\n            </MeshHeading>\n
-        \           <MeshHeading>\n                <DescriptorName MajorTopicYN=\"Y\"
-        UI=\"D012440\">Saccharomyces</DescriptorName>\n                <QualifierName
-        MajorTopicYN=\"N\" UI=\"Q000166\">cytology</QualifierName>\n                <QualifierName
-        MajorTopicYN=\"N\" UI=\"Q000378\">metabolism</QualifierName>\n            </MeshHeading>\n
-        \           <MeshHeading>\n                <DescriptorName MajorTopicYN=\"N\"
-        UI=\"D013489\">Suppression, Genetic</DescriptorName>\n            </MeshHeading>\n
-        \           <MeshHeading>\n                <DescriptorName MajorTopicYN=\"N\"
-        UI=\"D013696\">Temperature</DescriptorName>\n            </MeshHeading>\n
-        \       </MeshHeadingList>\n        <NumberOfReferences>161</NumberOfReferences>\n
-        \   </MedlineCitation>\n    <PubmedData>\n        <History>\n            <PubMedPubDate
-        PubStatus=\"pubmed\">\n                <Year>1975</Year>\n                <Month>1</Month>\n
-        \               <Day>1</Day>\n            </PubMedPubDate>\n            <PubMedPubDate
-        PubStatus=\"medline\">\n                <Year>1975</Year>\n                <Month>1</Month>\n
-        \               <Day>1</Day>\n                <Hour>0</Hour>\n                <Minute>1</Minute>\n
-        \           </PubMedPubDate>\n            <PubMedPubDate PubStatus=\"entrez\">\n
-        \               <Year>1975</Year>\n                <Month>1</Month>\n                <Day>1</Day>\n
-        \               <Hour>0</Hour>\n                <Minute>0</Minute>\n            </PubMedPubDate>\n
-        \       </History>\n        <PublicationStatus>ppublish</PublicationStatus>\n
-        \       <ArticleIdList>\n            <ArticleId IdType=\"pubmed\">591</ArticleId>\n
-        \       </ArticleIdList>\n    </PubmedData>\n</PubmedArticle>\n\n\n<PubmedArticle>\n
-        \   <MedlineCitation Owner=\"NLM\" Status=\"MEDLINE\">\n        <PMID Version=\"1\">960</PMID>\n
-        \       <DateCreated>\n            <Year>1976</Year>\n            <Month>02</Month>\n
-        \           <Day>19</Day>\n        </DateCreated>\n        <DateCompleted>\n
-        \           <Year>1976</Year>\n            <Month>02</Month>\n            <Day>19</Day>\n
-        \       </DateCompleted>\n        <DateRevised>\n            <Year>2013</Year>\n
-        \           <Month>11</Month>\n            <Day>21</Day>\n        </DateRevised>\n
-        \       <Article PubModel=\"Print\">\n            <Journal>\n                <ISSN
-        IssnType=\"Print\">0003-9861</ISSN>\n                <JournalIssue CitedMedium=\"Print\">\n
-        \                   <Volume>171</Volume>\n                    <Issue>2</Issue>\n
-        \                   <PubDate>\n                        <Year>1975</Year>\n
-        \                       <Month>Dec</Month>\n                    </PubDate>\n
-        \               </JournalIssue>\n                <Title>Archives of biochemistry
-        and biophysics</Title>\n                <ISOAbbreviation>Arch. Biochem. Biophys.</ISOAbbreviation>\n
-        \           </Journal>\n            <ArticleTitle>Glyceraldehyde-3-phosphate
-        dehydrogenases from Euglena gracilis. Purification and physical and chemical
-        characterization.</ArticleTitle>\n            <Pagination>\n                <MedlinePgn>444-58</MedlinePgn>\n
-        \           </Pagination>\n            <AuthorList CompleteYN=\"Y\">\n                <Author
-        ValidYN=\"Y\">\n                    <LastName>Grissom</LastName>\n                    <ForeName>F
-        E</ForeName>\n                    <Initials>FE</Initials>\n                </Author>\n
-        \               <Author ValidYN=\"Y\">\n                    <LastName>Kahn</LastName>\n
-        \                   <ForeName>J S</ForeName>\n                    <Initials>JS</Initials>\n
-        \               </Author>\n            </AuthorList>\n            <Language>eng</Language>\n
-        \           <PublicationTypeList>\n                <PublicationType UI=\"D016428\">Journal
-        Article</PublicationType>\n            </PublicationTypeList>\n        </Article>\n
-        \       <MedlineJournalInfo>\n            <Country>UNITED STATES</Country>\n
-        \           <MedlineTA>Arch Biochem Biophys</MedlineTA>\n            <NlmUniqueID>0372430</NlmUniqueID>\n
-        \           <ISSNLinking>0003-9861</ISSNLinking>\n        </MedlineJournalInfo>\n
-        \       <ChemicalList>\n            <Chemical>\n                <RegistryNumber>0</RegistryNumber>\n
-        \               <NameOfSubstance UI=\"D000596\">Amino Acids</NameOfSubstance>\n
-        \           </Chemical>\n            <Chemical>\n                <RegistryNumber>0</RegistryNumber>\n
-        \               <NameOfSubstance UI=\"D007461\">Iodoacetates</NameOfSubstance>\n
-        \           </Chemical>\n            <Chemical>\n                <RegistryNumber>0</RegistryNumber>\n
-        \               <NameOfSubstance UI=\"D013438\">Sulfhydryl Compounds</NameOfSubstance>\n
-        \           </Chemical>\n            <Chemical>\n                <RegistryNumber>0U46U6E8UK</RegistryNumber>\n
-        \               <NameOfSubstance UI=\"D009243\">NAD</NameOfSubstance>\n            </Chemical>\n
-        \           <Chemical>\n                <RegistryNumber>53-59-8</RegistryNumber>\n
-        \               <NameOfSubstance UI=\"D009249\">NADP</NameOfSubstance>\n            </Chemical>\n
-        \           <Chemical>\n                <RegistryNumber>EC 1.2.1.-</RegistryNumber>\n
-        \               <NameOfSubstance UI=\"D005987\">Glyceraldehyde-3-Phosphate
-        Dehydrogenases</NameOfSubstance>\n            </Chemical>\n        </ChemicalList>\n
-        \       <CitationSubset>IM</CitationSubset>\n        <MeshHeadingList>\n            <MeshHeading>\n
-        \               <DescriptorName MajorTopicYN=\"N\" UI=\"D000596\">Amino Acids</DescriptorName>\n
-        \               <QualifierName MajorTopicYN=\"N\" UI=\"Q000032\">analysis</QualifierName>\n
-        \           </MeshHeading>\n            <MeshHeading>\n                <DescriptorName
-        MajorTopicYN=\"N\" UI=\"D000818\">Animals</DescriptorName>\n            </MeshHeading>\n
-        \           <MeshHeading>\n                <DescriptorName MajorTopicYN=\"N\"
-        UI=\"D001665\">Binding Sites</DescriptorName>\n            </MeshHeading>\n
-        \           <MeshHeading>\n                <DescriptorName MajorTopicYN=\"N\"
-        UI=\"D005056\">Euglena gracilis</DescriptorName>\n                <QualifierName
-        MajorTopicYN=\"Y\" UI=\"Q000201\">enzymology</QualifierName>\n            </MeshHeading>\n
-        \           <MeshHeading>\n                <DescriptorName MajorTopicYN=\"N\"
-        UI=\"D005987\">Glyceraldehyde-3-Phosphate Dehydrogenases</DescriptorName>\n
-        \               <QualifierName MajorTopicYN=\"N\" UI=\"Q000032\">analysis</QualifierName>\n
-        \               <QualifierName MajorTopicYN=\"N\" UI=\"Q000302\">isolation
-        &amp; purification</QualifierName>\n                <QualifierName MajorTopicYN=\"Y\"
-        UI=\"Q000378\">metabolism</QualifierName>\n            </MeshHeading>\n            <MeshHeading>\n
-        \               <DescriptorName MajorTopicYN=\"N\" UI=\"D006863\">Hydrogen-Ion
-        Concentration</DescriptorName>\n            </MeshHeading>\n            <MeshHeading>\n
-        \               <DescriptorName MajorTopicYN=\"N\" UI=\"D007461\">Iodoacetates</DescriptorName>\n
-        \               <QualifierName MajorTopicYN=\"N\" UI=\"Q000494\">pharmacology</QualifierName>\n
-        \           </MeshHeading>\n            <MeshHeading>\n                <DescriptorName
-        MajorTopicYN=\"N\" UI=\"D007700\">Kinetics</DescriptorName>\n            </MeshHeading>\n
-        \           <MeshHeading>\n                <DescriptorName MajorTopicYN=\"N\"
-        UI=\"D008970\">Molecular Weight</DescriptorName>\n            </MeshHeading>\n
-        \           <MeshHeading>\n                <DescriptorName MajorTopicYN=\"N\"
-        UI=\"D009243\">NAD</DescriptorName>\n            </MeshHeading>\n            <MeshHeading>\n
-        \               <DescriptorName MajorTopicYN=\"N\" UI=\"D009249\">NADP</DescriptorName>\n
-        \           </MeshHeading>\n            <MeshHeading>\n                <DescriptorName
-        MajorTopicYN=\"N\" UI=\"D011485\">Protein Binding</DescriptorName>\n            </MeshHeading>\n
-        \           <MeshHeading>\n                <DescriptorName MajorTopicYN=\"N\"
-        UI=\"D011487\">Protein Conformation</DescriptorName>\n            </MeshHeading>\n
-        \           <MeshHeading>\n                <DescriptorName MajorTopicYN=\"N\"
-        UI=\"D013438\">Sulfhydryl Compounds</DescriptorName>\n                <QualifierName
-        MajorTopicYN=\"N\" UI=\"Q000032\">analysis</QualifierName>\n            </MeshHeading>\n
-        \           <MeshHeading>\n                <DescriptorName MajorTopicYN=\"N\"
-        UI=\"D014783\">Viscosity</DescriptorName>\n            </MeshHeading>\n        </MeshHeadingList>\n
-        \   </MedlineCitation>\n    <PubmedData>\n        <History>\n            <PubMedPubDate
-        PubStatus=\"pubmed\">\n                <Year>1975</Year>\n                <Month>12</Month>\n
-        \               <Day>1</Day>\n            </PubMedPubDate>\n            <PubMedPubDate
-        PubStatus=\"medline\">\n                <Year>1975</Year>\n                <Month>12</Month>\n
-        \               <Day>1</Day>\n                <Hour>0</Hour>\n                <Minute>1</Minute>\n
-        \           </PubMedPubDate>\n            <PubMedPubDate PubStatus=\"entrez\">\n
-        \               <Year>1975</Year>\n                <Month>12</Month>\n                <Day>1</Day>\n
-        \               <Hour>0</Hour>\n                <Minute>0</Minute>\n            </PubMedPubDate>\n
-        \       </History>\n        <PublicationStatus>ppublish</PublicationStatus>\n
-        \       <ArticleIdList>\n            <ArticleId IdType=\"pubmed\">960</ArticleId>\n
-        \       </ArticleIdList>\n    </PubmedData>\n</PubmedArticle>\n\n</PubmedArticleSet>\n"
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0"?>
+        <!DOCTYPE PubmedArticleSet PUBLIC "-//NLM//DTD PubMedArticle, 1st January 2015//EN" "http://www.ncbi.nlm.nih.gov/corehtml/query/DTD/pubmed_150101.dtd">
+        <PubmedArticleSet>
+        <PubmedArticle>
+            <MedlineCitation Owner="NLM" Status="MEDLINE">
+                <PMID Version="1">211</PMID>
+                <DateCreated>
+                    <Year>1976</Year>
+                    <Month>02</Month>
+                    <Day>09</Day>
+                </DateCreated>
+                <DateCompleted>
+                    <Year>1976</Year>
+                    <Month>02</Month>
+                    <Day>09</Day>
+                </DateCompleted>
+                <DateRevised>
+                    <Year>2013</Year>
+                    <Month>11</Month>
+                    <Day>21</Day>
+                </DateRevised>
+                <Article PubModel="Print">
+                    <Journal>
+                        <ISSN IssnType="Print">0300-1725</ISSN>
+                        <JournalIssue CitedMedium="Print">
+                            <Volume>4</Volume>
+                            <PubDate>
+                                <Year>1975</Year>
+                            </PubDate>
+                        </JournalIssue>
+                        <Title>Current problems in clinical biochemistry</Title>
+                        <ISOAbbreviation>Curr Probl Clin Biochem</ISOAbbreviation>
+                    </Journal>
+                    <ArticleTitle>Effects of maleate on renal reabsorption of bicarbonate.</ArticleTitle>
+                    <Pagination>
+                        <MedlinePgn>101-5</MedlinePgn>
+                    </Pagination>
+                    <AuthorList CompleteYN="Y">
+                        <Author ValidYN="Y">
+                            <LastName>Gmaj</LastName>
+                            <ForeName>P</ForeName>
+                            <Initials>P</Initials>
+                        </Author>
+                        <Author ValidYN="Y">
+                            <LastName>Hoppe</LastName>
+                            <ForeName>A</ForeName>
+                            <Initials>A</Initials>
+                        </Author>
+                        <Author ValidYN="Y">
+                            <LastName>Angielski</LastName>
+                            <ForeName>S</ForeName>
+                            <Initials>S</Initials>
+                        </Author>
+                        <Author ValidYN="Y">
+                            <LastName>Rogulski</LastName>
+                            <ForeName>J</ForeName>
+                            <Initials>J</Initials>
+                        </Author>
+                        <Author ValidYN="Y">
+                            <LastName>Metler</LastName>
+                            <ForeName>M</ForeName>
+                            <Initials>M</Initials>
+                        </Author>
+                    </AuthorList>
+                    <Language>eng</Language>
+                    <PublicationTypeList>
+                        <PublicationType UI="D003160">Comparative Study</PublicationType>
+                        <PublicationType UI="D016428">Journal Article</PublicationType>
+                    </PublicationTypeList>
+                </Article>
+                <MedlineJournalInfo>
+                    <Country>SWITZERLAND</Country>
+                    <MedlineTA>Curr Probl Clin Biochem</MedlineTA>
+                    <NlmUniqueID>0353507</NlmUniqueID>
+                    <ISSNLinking>0300-1725</ISSNLinking>
+                </MedlineJournalInfo>
+                <ChemicalList>
+                    <Chemical>
+                        <RegistryNumber>0</RegistryNumber>
+                        <NameOfSubstance UI="D001639">Bicarbonates</NameOfSubstance>
+                    </Chemical>
+                    <Chemical>
+                        <RegistryNumber>0</RegistryNumber>
+                        <NameOfSubstance UI="D002712">Chlorides</NameOfSubstance>
+                    </Chemical>
+                    <Chemical>
+                        <RegistryNumber>0</RegistryNumber>
+                        <NameOfSubstance UI="D007656">Ketoglutaric Acids</NameOfSubstance>
+                    </Chemical>
+                    <Chemical>
+                        <RegistryNumber>0</RegistryNumber>
+                        <NameOfSubstance UI="D008298">Maleates</NameOfSubstance>
+                    </Chemical>
+                    <Chemical>
+                        <RegistryNumber>8L70Q75FXE</RegistryNumber>
+                        <NameOfSubstance UI="D000255">Adenosine Triphosphate</NameOfSubstance>
+                    </Chemical>
+                    <Chemical>
+                        <RegistryNumber>9NEZ333N27</RegistryNumber>
+                        <NameOfSubstance UI="D012964">Sodium</NameOfSubstance>
+                    </Chemical>
+                    <Chemical>
+                        <RegistryNumber>N712M78A8G</RegistryNumber>
+                        <NameOfSubstance UI="D001151">Arsenic</NameOfSubstance>
+                    </Chemical>
+                    <Chemical>
+                        <RegistryNumber>O3FX965V0I</RegistryNumber>
+                        <NameOfSubstance UI="D000086">Acetazolamide</NameOfSubstance>
+                    </Chemical>
+                    <Chemical>
+                        <RegistryNumber>RWP5GA015D</RegistryNumber>
+                        <NameOfSubstance UI="D011188">Potassium</NameOfSubstance>
+                    </Chemical>
+                </ChemicalList>
+                <CitationSubset>IM</CitationSubset>
+                <MeshHeadingList>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D000086">Acetazolamide</DescriptorName>
+                        <QualifierName MajorTopicYN="N" UI="Q000494">pharmacology</QualifierName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D000255">Adenosine Triphosphate</DescriptorName>
+                        <QualifierName MajorTopicYN="N" UI="Q000378">metabolism</QualifierName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D000818">Animals</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D001151">Arsenic</DescriptorName>
+                        <QualifierName MajorTopicYN="N" UI="Q000494">pharmacology</QualifierName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D001639">Bicarbonates</DescriptorName>
+                        <QualifierName MajorTopicYN="Y" UI="Q000378">metabolism</QualifierName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D002712">Chlorides</DescriptorName>
+                        <QualifierName MajorTopicYN="N" UI="Q000652">urine</QualifierName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D005919">Glomerular Filtration Rate</DescriptorName>
+                        <QualifierName MajorTopicYN="N" UI="Q000187">drug effects</QualifierName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D006863">Hydrogen-Ion Concentration</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D007656">Ketoglutaric Acids</DescriptorName>
+                        <QualifierName MajorTopicYN="N" UI="Q000652">urine</QualifierName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D007668">Kidney</DescriptorName>
+                        <QualifierName MajorTopicYN="N" UI="Q000187">drug effects</QualifierName>
+                        <QualifierName MajorTopicYN="Y" UI="Q000378">metabolism</QualifierName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D008298">Maleates</DescriptorName>
+                        <QualifierName MajorTopicYN="Y" UI="Q000494">pharmacology</QualifierName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D011188">Potassium</DescriptorName>
+                        <QualifierName MajorTopicYN="N" UI="Q000652">urine</QualifierName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D051381">Rats</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D012964">Sodium</DescriptorName>
+                        <QualifierName MajorTopicYN="N" UI="Q000652">urine</QualifierName>
+                    </MeshHeading>
+                </MeshHeadingList>
+            </MedlineCitation>
+            <PubmedData>
+                <History>
+                    <PubMedPubDate PubStatus="pubmed">
+                        <Year>1975</Year>
+                        <Month>1</Month>
+                        <Day>1</Day>
+                    </PubMedPubDate>
+                    <PubMedPubDate PubStatus="medline">
+                        <Year>1975</Year>
+                        <Month>1</Month>
+                        <Day>1</Day>
+                        <Hour>0</Hour>
+                        <Minute>1</Minute>
+                    </PubMedPubDate>
+                    <PubMedPubDate PubStatus="entrez">
+                        <Year>1975</Year>
+                        <Month>1</Month>
+                        <Day>1</Day>
+                        <Hour>0</Hour>
+                        <Minute>0</Minute>
+                    </PubMedPubDate>
+                </History>
+                <PublicationStatus>ppublish</PublicationStatus>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">211</ArticleId>
+                </ArticleIdList>
+            </PubmedData>
+        </PubmedArticle>
+
+
+        <PubmedArticle>
+            <MedlineCitation Owner="NLM" Status="MEDLINE">
+                <PMID Version="1">589</PMID>
+                <DateCreated>
+                    <Year>1976</Year>
+                    <Month>02</Month>
+                    <Day>19</Day>
+                </DateCreated>
+                <DateCompleted>
+                    <Year>1976</Year>
+                    <Month>02</Month>
+                    <Day>19</Day>
+                </DateCompleted>
+                <DateRevised>
+                    <Year>2013</Year>
+                    <Month>11</Month>
+                    <Day>21</Day>
+                </DateRevised>
+                <Article PubModel="Print">
+                    <Journal>
+                        <ISSN IssnType="Print">0091-679X</ISSN>
+                        <JournalIssue CitedMedium="Print">
+                            <Volume>12</Volume>
+                            <PubDate>
+                                <Year>1975</Year>
+                            </PubDate>
+                        </JournalIssue>
+                        <Title>Methods in cell biology</Title>
+                        <ISOAbbreviation>Methods Cell Biol.</ISOAbbreviation>
+                    </Journal>
+                    <ArticleTitle>Methods for avoiding proteolytic artefacts in studies of enzymes and other proteins from yeasts.</ArticleTitle>
+                    <Pagination>
+                        <MedlinePgn>149-84</MedlinePgn>
+                    </Pagination>
+                    <AuthorList CompleteYN="Y">
+                        <Author ValidYN="Y">
+                            <LastName>Pringle</LastName>
+                            <ForeName>J R</ForeName>
+                            <Initials>JR</Initials>
+                        </Author>
+                    </AuthorList>
+                    <Language>eng</Language>
+                    <PublicationTypeList>
+                        <PublicationType UI="D016428">Journal Article</PublicationType>
+                        <PublicationType UI="D013486">Research Support, U.S. Gov't, Non-P.H.S.</PublicationType>
+                        <PublicationType UI="D013487">Research Support, U.S. Gov't, P.H.S.</PublicationType>
+                        <PublicationType UI="D016454">Review</PublicationType>
+                    </PublicationTypeList>
+                </Article>
+                <MedlineJournalInfo>
+                    <Country>UNITED STATES</Country>
+                    <MedlineTA>Methods Cell Biol</MedlineTA>
+                    <NlmUniqueID>0373334</NlmUniqueID>
+                    <ISSNLinking>0091-679X</ISSNLinking>
+                </MedlineJournalInfo>
+                <ChemicalList>
+                    <Chemical>
+                        <RegistryNumber>0</RegistryNumber>
+                        <NameOfSubstance UI="D002729">Chloromercuribenzoates</NameOfSubstance>
+                    </Chemical>
+                    <Chemical>
+                        <RegistryNumber>0</RegistryNumber>
+                        <NameOfSubstance UI="D010436">Pepstatins</NameOfSubstance>
+                    </Chemical>
+                    <Chemical>
+                        <RegistryNumber>0</RegistryNumber>
+                        <NameOfSubstance UI="D010618">Phenanthrolines</NameOfSubstance>
+                    </Chemical>
+                    <Chemical>
+                        <RegistryNumber>0</RegistryNumber>
+                        <NameOfSubstance UI="D011480">Protease Inhibitors</NameOfSubstance>
+                    </Chemical>
+                    <Chemical>
+                        <RegistryNumber>12UHW9R67N</RegistryNumber>
+                        <NameOfSubstance UI="D007531">Isoflurophate</NameOfSubstance>
+                    </Chemical>
+                    <Chemical>
+                        <RegistryNumber>57KD15003I</RegistryNumber>
+                        <NameOfSubstance UI="D010664">Phenylmethylsulfonyl Fluoride</NameOfSubstance>
+                    </Chemical>
+                    <Chemical>
+                        <RegistryNumber>9G34HU7RV0</RegistryNumber>
+                        <NameOfSubstance UI="D004492">Edetic Acid</NameOfSubstance>
+                    </Chemical>
+                    <Chemical>
+                        <RegistryNumber>EC 1.1.1.37</RegistryNumber>
+                        <NameOfSubstance UI="D008291">Malate Dehydrogenase</NameOfSubstance>
+                    </Chemical>
+                    <Chemical>
+                        <RegistryNumber>EC 2.7.1.1</RegistryNumber>
+                        <NameOfSubstance UI="D006593">Hexokinase</NameOfSubstance>
+                    </Chemical>
+                    <Chemical>
+                        <RegistryNumber>EC 2.7.1.11</RegistryNumber>
+                        <NameOfSubstance UI="D010732">Phosphofructokinase-1</NameOfSubstance>
+                    </Chemical>
+                    <Chemical>
+                        <RegistryNumber>EC 3.4.-</RegistryNumber>
+                        <NameOfSubstance UI="D002268">Carboxypeptidases</NameOfSubstance>
+                    </Chemical>
+                    <Chemical>
+                        <RegistryNumber>EC 3.4.-</RegistryNumber>
+                        <NameOfSubstance UI="D010447">Peptide Hydrolases</NameOfSubstance>
+                    </Chemical>
+                    <Chemical>
+                        <RegistryNumber>EC 3.4.11.-</RegistryNumber>
+                        <NameOfSubstance UI="D000626">Aminopeptidases</NameOfSubstance>
+                    </Chemical>
+                    <Chemical>
+                        <RegistryNumber>EC 4.1.1.1</RegistryNumber>
+                        <NameOfSubstance UI="D011767">Pyruvate Decarboxylase</NameOfSubstance>
+                    </Chemical>
+                </ChemicalList>
+                <CitationSubset>IM</CitationSubset>
+                <MeshHeadingList>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D000626">Aminopeptidases</DescriptorName>
+                        <QualifierName MajorTopicYN="N" UI="Q000378">metabolism</QualifierName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D002268">Carboxypeptidases</DescriptorName>
+                        <QualifierName MajorTopicYN="N" UI="Q000378">metabolism</QualifierName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D002458">Cell Fractionation</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D002729">Chloromercuribenzoates</DescriptorName>
+                        <QualifierName MajorTopicYN="N" UI="Q000494">pharmacology</QualifierName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D004492">Edetic Acid</DescriptorName>
+                        <QualifierName MajorTopicYN="N" UI="Q000494">pharmacology</QualifierName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D006593">Hexokinase</DescriptorName>
+                        <QualifierName MajorTopicYN="N" UI="Q000302">isolation &amp; purification</QualifierName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D006863">Hydrogen-Ion Concentration</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D007526">Isoelectric Point</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D007531">Isoflurophate</DescriptorName>
+                        <QualifierName MajorTopicYN="N" UI="Q000494">pharmacology</QualifierName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D008291">Malate Dehydrogenase</DescriptorName>
+                        <QualifierName MajorTopicYN="N" UI="Q000302">isolation &amp; purification</QualifierName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D008970">Molecular Weight</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D010436">Pepstatins</DescriptorName>
+                        <QualifierName MajorTopicYN="N" UI="Q000494">pharmacology</QualifierName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D010447">Peptide Hydrolases</DescriptorName>
+                        <QualifierName MajorTopicYN="N" UI="Q000032">analysis</QualifierName>
+                        <QualifierName MajorTopicYN="Y" UI="Q000378">metabolism</QualifierName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D010618">Phenanthrolines</DescriptorName>
+                        <QualifierName MajorTopicYN="N" UI="Q000494">pharmacology</QualifierName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D010664">Phenylmethylsulfonyl Fluoride</DescriptorName>
+                        <QualifierName MajorTopicYN="N" UI="Q000494">pharmacology</QualifierName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D010732">Phosphofructokinase-1</DescriptorName>
+                        <QualifierName MajorTopicYN="N" UI="Q000302">isolation &amp; purification</QualifierName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D011480">Protease Inhibitors</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D011489">Protein Denaturation</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D011767">Pyruvate Decarboxylase</DescriptorName>
+                        <QualifierName MajorTopicYN="N" UI="Q000302">isolation &amp; purification</QualifierName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D012441">Saccharomyces cerevisiae</DescriptorName>
+                        <QualifierName MajorTopicYN="Y" UI="Q000201">enzymology</QualifierName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D013696">Temperature</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D014617">Vacuoles</DescriptorName>
+                    </MeshHeading>
+                </MeshHeadingList>
+                <NumberOfReferences>191</NumberOfReferences>
+            </MedlineCitation>
+            <PubmedData>
+                <History>
+                    <PubMedPubDate PubStatus="pubmed">
+                        <Year>1975</Year>
+                        <Month>1</Month>
+                        <Day>1</Day>
+                    </PubMedPubDate>
+                    <PubMedPubDate PubStatus="medline">
+                        <Year>1975</Year>
+                        <Month>1</Month>
+                        <Day>1</Day>
+                        <Hour>0</Hour>
+                        <Minute>1</Minute>
+                    </PubMedPubDate>
+                    <PubMedPubDate PubStatus="entrez">
+                        <Year>1975</Year>
+                        <Month>1</Month>
+                        <Day>1</Day>
+                        <Hour>0</Hour>
+                        <Minute>0</Minute>
+                    </PubMedPubDate>
+                </History>
+                <PublicationStatus>ppublish</PublicationStatus>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">589</ArticleId>
+                </ArticleIdList>
+            </PubmedData>
+        </PubmedArticle>
+
+
+        <PubmedArticle>
+            <MedlineCitation Owner="NLM" Status="MEDLINE">
+                <PMID Version="1">591</PMID>
+                <DateCreated>
+                    <Year>1976</Year>
+                    <Month>02</Month>
+                    <Day>19</Day>
+                </DateCreated>
+                <DateCompleted>
+                    <Year>1976</Year>
+                    <Month>02</Month>
+                    <Day>19</Day>
+                </DateCompleted>
+                <DateRevised>
+                    <Year>2008</Year>
+                    <Month>11</Month>
+                    <Day>21</Day>
+                </DateRevised>
+                <Article PubModel="Print">
+                    <Journal>
+                        <ISSN IssnType="Print">0091-679X</ISSN>
+                        <JournalIssue CitedMedium="Print">
+                            <Volume>12</Volume>
+                            <PubDate>
+                                <Year>1975</Year>
+                            </PubDate>
+                        </JournalIssue>
+                        <Title>Methods in cell biology</Title>
+                        <ISOAbbreviation>Methods Cell Biol.</ISOAbbreviation>
+                    </Journal>
+                    <ArticleTitle>Induction, selection, and experimental uses of temperature-sensitive and other conditional mutants of yeast.</ArticleTitle>
+                    <Pagination>
+                        <MedlinePgn>233-72</MedlinePgn>
+                    </Pagination>
+                    <AuthorList CompleteYN="Y">
+                        <Author ValidYN="Y">
+                            <LastName>Pringle</LastName>
+                            <ForeName>J R</ForeName>
+                            <Initials>JR</Initials>
+                        </Author>
+                    </AuthorList>
+                    <Language>eng</Language>
+                    <PublicationTypeList>
+                        <PublicationType UI="D016428">Journal Article</PublicationType>
+                        <PublicationType UI="D013487">Research Support, U.S. Gov't, P.H.S.</PublicationType>
+                        <PublicationType UI="D016454">Review</PublicationType>
+                    </PublicationTypeList>
+                </Article>
+                <MedlineJournalInfo>
+                    <Country>UNITED STATES</Country>
+                    <MedlineTA>Methods Cell Biol</MedlineTA>
+                    <NlmUniqueID>0373334</NlmUniqueID>
+                    <ISSNLinking>0091-679X</ISSNLinking>
+                </MedlineJournalInfo>
+                <ChemicalList>
+                    <Chemical>
+                        <RegistryNumber>0</RegistryNumber>
+                        <NameOfSubstance UI="D005656">Fungal Proteins</NameOfSubstance>
+                    </Chemical>
+                    <Chemical>
+                        <RegistryNumber>63231-63-0</RegistryNumber>
+                        <NameOfSubstance UI="D012313">RNA</NameOfSubstance>
+                    </Chemical>
+                </ChemicalList>
+                <CitationSubset>IM</CitationSubset>
+                <MeshHeadingList>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D002455">Cell Division</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D002470">Cell Survival</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D003080">Cold Temperature</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D003433">Crosses, Genetic</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D004261">DNA Replication</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D005656">Fungal Proteins</DescriptorName>
+                        <QualifierName MajorTopicYN="N" UI="Q000096">biosynthesis</QualifierName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="Y" UI="D005796">Genes</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D005816">Genetic Complementation Test</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="Y" UI="D005821">Genetic Techniques</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D006863">Hydrogen-Ion Concentration</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="Y" UI="D009154">Mutation</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D009994">Osmolar Concentration</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D010641">Phenotype</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D012313">RNA</DescriptorName>
+                        <QualifierName MajorTopicYN="N" UI="Q000096">biosynthesis</QualifierName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="Y" UI="D012440">Saccharomyces</DescriptorName>
+                        <QualifierName MajorTopicYN="N" UI="Q000166">cytology</QualifierName>
+                        <QualifierName MajorTopicYN="N" UI="Q000378">metabolism</QualifierName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D013489">Suppression, Genetic</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D013696">Temperature</DescriptorName>
+                    </MeshHeading>
+                </MeshHeadingList>
+                <NumberOfReferences>161</NumberOfReferences>
+            </MedlineCitation>
+            <PubmedData>
+                <History>
+                    <PubMedPubDate PubStatus="pubmed">
+                        <Year>1975</Year>
+                        <Month>1</Month>
+                        <Day>1</Day>
+                    </PubMedPubDate>
+                    <PubMedPubDate PubStatus="medline">
+                        <Year>1975</Year>
+                        <Month>1</Month>
+                        <Day>1</Day>
+                        <Hour>0</Hour>
+                        <Minute>1</Minute>
+                    </PubMedPubDate>
+                    <PubMedPubDate PubStatus="entrez">
+                        <Year>1975</Year>
+                        <Month>1</Month>
+                        <Day>1</Day>
+                        <Hour>0</Hour>
+                        <Minute>0</Minute>
+                    </PubMedPubDate>
+                </History>
+                <PublicationStatus>ppublish</PublicationStatus>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">591</ArticleId>
+                </ArticleIdList>
+            </PubmedData>
+        </PubmedArticle>
+
+
+        <PubmedArticle>
+            <MedlineCitation Owner="NLM" Status="MEDLINE">
+                <PMID Version="1">960</PMID>
+                <DateCreated>
+                    <Year>1976</Year>
+                    <Month>02</Month>
+                    <Day>19</Day>
+                </DateCreated>
+                <DateCompleted>
+                    <Year>1976</Year>
+                    <Month>02</Month>
+                    <Day>19</Day>
+                </DateCompleted>
+                <DateRevised>
+                    <Year>2013</Year>
+                    <Month>11</Month>
+                    <Day>21</Day>
+                </DateRevised>
+                <Article PubModel="Print">
+                    <Journal>
+                        <ISSN IssnType="Print">0003-9861</ISSN>
+                        <JournalIssue CitedMedium="Print">
+                            <Volume>171</Volume>
+                            <Issue>2</Issue>
+                            <PubDate>
+                                <Year>1975</Year>
+                                <Month>Dec</Month>
+                            </PubDate>
+                        </JournalIssue>
+                        <Title>Archives of biochemistry and biophysics</Title>
+                        <ISOAbbreviation>Arch. Biochem. Biophys.</ISOAbbreviation>
+                    </Journal>
+                    <ArticleTitle>Glyceraldehyde-3-phosphate dehydrogenases from Euglena gracilis. Purification and physical and chemical characterization.</ArticleTitle>
+                    <Pagination>
+                        <MedlinePgn>444-58</MedlinePgn>
+                    </Pagination>
+                    <AuthorList CompleteYN="Y">
+                        <Author ValidYN="Y">
+                            <LastName>Grissom</LastName>
+                            <ForeName>F E</ForeName>
+                            <Initials>FE</Initials>
+                        </Author>
+                        <Author ValidYN="Y">
+                            <LastName>Kahn</LastName>
+                            <ForeName>J S</ForeName>
+                            <Initials>JS</Initials>
+                        </Author>
+                    </AuthorList>
+                    <Language>eng</Language>
+                    <PublicationTypeList>
+                        <PublicationType UI="D016428">Journal Article</PublicationType>
+                    </PublicationTypeList>
+                </Article>
+                <MedlineJournalInfo>
+                    <Country>UNITED STATES</Country>
+                    <MedlineTA>Arch Biochem Biophys</MedlineTA>
+                    <NlmUniqueID>0372430</NlmUniqueID>
+                    <ISSNLinking>0003-9861</ISSNLinking>
+                </MedlineJournalInfo>
+                <ChemicalList>
+                    <Chemical>
+                        <RegistryNumber>0</RegistryNumber>
+                        <NameOfSubstance UI="D000596">Amino Acids</NameOfSubstance>
+                    </Chemical>
+                    <Chemical>
+                        <RegistryNumber>0</RegistryNumber>
+                        <NameOfSubstance UI="D007461">Iodoacetates</NameOfSubstance>
+                    </Chemical>
+                    <Chemical>
+                        <RegistryNumber>0</RegistryNumber>
+                        <NameOfSubstance UI="D013438">Sulfhydryl Compounds</NameOfSubstance>
+                    </Chemical>
+                    <Chemical>
+                        <RegistryNumber>0U46U6E8UK</RegistryNumber>
+                        <NameOfSubstance UI="D009243">NAD</NameOfSubstance>
+                    </Chemical>
+                    <Chemical>
+                        <RegistryNumber>53-59-8</RegistryNumber>
+                        <NameOfSubstance UI="D009249">NADP</NameOfSubstance>
+                    </Chemical>
+                    <Chemical>
+                        <RegistryNumber>EC 1.2.1.-</RegistryNumber>
+                        <NameOfSubstance UI="D005987">Glyceraldehyde-3-Phosphate Dehydrogenases</NameOfSubstance>
+                    </Chemical>
+                </ChemicalList>
+                <CitationSubset>IM</CitationSubset>
+                <MeshHeadingList>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D000596">Amino Acids</DescriptorName>
+                        <QualifierName MajorTopicYN="N" UI="Q000032">analysis</QualifierName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D000818">Animals</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D001665">Binding Sites</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D005056">Euglena gracilis</DescriptorName>
+                        <QualifierName MajorTopicYN="Y" UI="Q000201">enzymology</QualifierName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D005987">Glyceraldehyde-3-Phosphate Dehydrogenases</DescriptorName>
+                        <QualifierName MajorTopicYN="N" UI="Q000032">analysis</QualifierName>
+                        <QualifierName MajorTopicYN="N" UI="Q000302">isolation &amp; purification</QualifierName>
+                        <QualifierName MajorTopicYN="Y" UI="Q000378">metabolism</QualifierName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D006863">Hydrogen-Ion Concentration</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D007461">Iodoacetates</DescriptorName>
+                        <QualifierName MajorTopicYN="N" UI="Q000494">pharmacology</QualifierName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D007700">Kinetics</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D008970">Molecular Weight</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D009243">NAD</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D009249">NADP</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D011485">Protein Binding</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D011487">Protein Conformation</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D013438">Sulfhydryl Compounds</DescriptorName>
+                        <QualifierName MajorTopicYN="N" UI="Q000032">analysis</QualifierName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D014783">Viscosity</DescriptorName>
+                    </MeshHeading>
+                </MeshHeadingList>
+            </MedlineCitation>
+            <PubmedData>
+                <History>
+                    <PubMedPubDate PubStatus="pubmed">
+                        <Year>1975</Year>
+                        <Month>12</Month>
+                        <Day>1</Day>
+                    </PubMedPubDate>
+                    <PubMedPubDate PubStatus="medline">
+                        <Year>1975</Year>
+                        <Month>12</Month>
+                        <Day>1</Day>
+                        <Hour>0</Hour>
+                        <Minute>1</Minute>
+                    </PubMedPubDate>
+                    <PubMedPubDate PubStatus="entrez">
+                        <Year>1975</Year>
+                        <Month>12</Month>
+                        <Day>1</Day>
+                        <Hour>0</Hour>
+                        <Minute>0</Minute>
+                    </PubMedPubDate>
+                </History>
+                <PublicationStatus>ppublish</PublicationStatus>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">960</ArticleId>
+                </ArticleIdList>
+            </PubmedData>
+        </PubmedArticle>
+
+        </PubmedArticleSet>
     http_version: 
-  recorded_at: Mon, 15 Jun 2015 21:54:51 GMT
+  recorded_at: Mon, 29 Jun 2015 15:48:13 GMT
 recorded_with: VCR 2.5.0

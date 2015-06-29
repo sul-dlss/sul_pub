@@ -4,11 +4,13 @@ http_interactions:
     method: post
     uri: http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml
     body:
-      encoding: US-ASCII
-      string: ! '&id=233333333333333&id=45555666666666'
+      encoding: UTF-8
+      string: "&id=233333333333333&id=45555666666666"
     headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
-      - ! '*/*'
+      - "*/*"
       User-Agent:
       - Ruby
   response:
@@ -17,37 +19,32 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 15 Jun 2015 21:54:51 GMT
+      - Mon, 29 Jun 2015 15:48:14 GMT
       Server:
       - Apache
       Access-Control-Allow-Origin:
-      - ! '*'
+      - "*"
       Cache-Control:
       - private
       Ncbi-Sid:
-      - 08DE5DC457F49AB1_0831SID
+      - 08DD16E659168BE1_0573SID
       Content-Type:
       - text/xml; charset=UTF-8
       Set-Cookie:
-      - ncbi_sid=08DE5DC457F49AB1_0831SID; domain=.nih.gov; path=/; expires=Wed, 15
-        Jun 2016 21:54:51 GMT
+      - ncbi_sid=08DD16E659168BE1_0573SID; domain=.nih.gov; path=/; expires=Wed, 29
+        Jun 2016 15:48:14 GMT
       X-Ua-Compatible:
       - IE=Edge
       Transfer-Encoding:
       - chunked
     body:
-      encoding: US-ASCII
-      string: ! '<?xml version="1.0"?>
-
-        <!DOCTYPE PubmedArticleSet PUBLIC "-//NLM//DTD PubMedArticle, 1st January
-        2015//EN" "http://www.ncbi.nlm.nih.gov/corehtml/query/DTD/pubmed_150101.dtd">
-
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0"?>
+        <!DOCTYPE PubmedArticleSet PUBLIC "-//NLM//DTD PubMedArticle, 1st January 2015//EN" "http://www.ncbi.nlm.nih.gov/corehtml/query/DTD/pubmed_150101.dtd">
         <PubmedArticleSet>
 
-
         </PubmedArticleSet>
-
-'
     http_version: 
-  recorded_at: Mon, 15 Jun 2015 21:54:51 GMT
+  recorded_at: Mon, 29 Jun 2015 15:48:14 GMT
 recorded_with: VCR 2.5.0
