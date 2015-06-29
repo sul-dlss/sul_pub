@@ -8,16 +8,6 @@ class Publication < ActiveRecord::Base
     save
   end
 
-  # columns we actually use and query on
-  attr_accessible :deleted,
-                  :pub_hash,
-                  :pmid,
-                  :sciencewire_id,
-                  :updated_at
-
-  # beats me what these are for.
-  attr_accessible :active, :lock_version
-
   # we actually do query these columns in
   # create_or_update_pub_and_contribution_with_harvested_sw_doc
   # :title,
@@ -102,7 +92,6 @@ class Publication < ActiveRecord::Base
   end
 
   def self.build_new_manual_publication(provenance, pub_hash, original_source_string)
-
     existingRecord = UserSubmittedSourceRecord.find_or_initialize_by_source_data(original_source_string)
 
     if existingRecord and existingRecord.publication
@@ -123,7 +112,7 @@ class Publication < ActiveRecord::Base
 
     incoming_pub_hash[:provenance] = provenance
     self.pub_hash = incoming_pub_hash.dup
-    r = self.user_submitted_source_records.first_or_initialize
+    r = self.user_submitted_source_records.first || UserSubmittedSourceRecord.find_or_initialize_by_source_data(original_source_string)
     r.assign_attributes(
         is_active: true,
         :source_data => original_source_string,

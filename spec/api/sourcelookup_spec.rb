@@ -15,9 +15,10 @@ describe SulBib::API do
   describe "GET /publications/sourcelookup " do
 
     it "raises an error when title and doi are not sent" do
+      expect {
       get "/publications/sourcelookup", {},
         {"HTTP_CAPKEY" => '***REMOVED***'}
-      expect(response.status).to eq(400)
+      }.to raise_error ActionController::ParameterMissing
     end
 
     describe "?doi" do

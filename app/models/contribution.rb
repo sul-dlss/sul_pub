@@ -1,5 +1,4 @@
 class Contribution < ActiveRecord::Base
-  attr_accessible :status, :visibility, :featured, :author_id, :publication_id, :cap_profile_id
 
   def cap_profile_id
     (author.cap_profile_id if author) || self[:cap_profile_id]
@@ -8,11 +7,10 @@ class Contribution < ActiveRecord::Base
   belongs_to :publication
   belongs_to :author
  # has_one :publication_identifier, :foreign_key => "publication_id"
-  has_one :publication_identifier, 
+  has_one :publication_identifier, -> { where("publication_identifiers.identifier_type = 'PublicationItemId'") },
           :class_name => "PublicationIdentifier",
           :foreign_key => "publication_id",
-          :primary_key => "publication_id",
-          :conditions => "publication_identifiers.identifier_type = 'PublicationItemId'"
+          :primary_key => "publication_id"
   #has_one :population_membership, :foreign_key => "author_id"
 
   def self.valid_authorship_hash?(authorship_hash)

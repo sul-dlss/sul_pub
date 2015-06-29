@@ -19,7 +19,7 @@ describe HighVoltage::PagesController, '#show' do
       end
 
       it { expect(response.status).to eq(200) }
-      it { is_expected.to render_template("pages/" + page.sub('.json', '')) }
+      it { is_expected.to render_template("pages/" + page) }
     end
   end
 
@@ -30,7 +30,7 @@ describe HighVoltage::PagesController, '#show' do
       end
 
       it { expect(response.status).to eq(200) }
-      it { is_expected.to render_template("pages/" + page.sub('.bibtex', '')) }
+      it { is_expected.to render_template("pages/" + page) }
     end
   end
 
