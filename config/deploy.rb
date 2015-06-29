@@ -1,56 +1,26 @@
-#require 'rvm/capistrano'  # Add RVM integration
-require 'bundler/capistrano'  # Add Bundler integration
-require 'capistrano/ext/multistage' 
+# config valid only for current version of Capistrano
+lock '3.4.0'
 
-#role :app, "sul-lyberservices-dev.stanford.edu"
+set :application, 'CAP'
+set :repo_url, 'git@github.com:sul-dlss/sul-pub.git'
+set :ssh_options, {
+  keys: [Capistrano::OneTimeKey.temporary_ssh_private_key_path],
+  forward_agent: true,
+  auth_methods: %w(publickey password)
+}
 
-set :stages, ["development", "dev_solo", "production", "qa"]
-set :default_stage, "staging"
+# Default deploy_to directory is /var/www/my_app_name
+set :deploy_to, "/home/***REMOVED***/sulbib"
 
-#set :rvm_type, :system
-#set :rvm_path, "/usr/local/rvm"
+# Default value for :linked_files is []
+set :linked_files, fetch(:linked_files, []).push('config/database.yml', 'config/sciencewire_auth.yaml', 'config/cap_auth.yaml', 'config/initializers/squash.rb')
 
-set :application, "sulbib"
+# Default value for linked_dirs is []
+set :linked_dirs, fetch(:linked_dirs, []).push('log',
+                                               'tmp/pids',
+                                               'tmp/cache',
+                                               'tmp/sockets',
+                                               'vendor/bundle',
+                                               'public/system')
 
-#set :whenever_command, "bundle exec whenever"
-#set :whenever_environment, defer { deploy_env }
-#set :whenever_roles, [:app, :db]
-#require "whenever/capistrano"
-
-set :scm, :git
-ssh_options[:forward_agent] = true
-set :repository,  "git@github.com:sul-dlss/sul-pub.git"
-set :branch, "master"
-
-set :user, "***REMOVED***"
-set :deploy_to, "/home/***REMOVED***/#{application}"
-set :use_sudo, false
-set :deploy_via, :remote_cache
-
-set :shared_children, %w(
-  tmp
-  log
-  config/database.yml
-  config/sciencewire_auth.yaml
-  config/cap_auth.yaml
-)
-
-load 'deploy/assets'
-
-
-# if you want to clean up old releases on each deploy uncomment this:
-# after "deploy:restart", "deploy:cleanup"
-
-# if you're still using the script/reaper helper you will need
-# these http://github.com/rails/irs_process_scripts
-
-# If you are using Passenger mod_rails uncomment this:
- namespace :deploy do
-   task :start do ; end
-   task :stop do ; end
-   task :restart, :roles => :app, :except => { :no_release => true } do
-     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
-   end
- end
-
- 
+before 'deploy:publishing', 'squash:write_revision'

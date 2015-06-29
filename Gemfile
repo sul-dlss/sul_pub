@@ -43,7 +43,9 @@ end
 
 group :deployment do
   gem 'capistrano'
-  gem 'rvm-capistrano'
+  gem 'capistrano-passenger'
+  gem 'capistrano-rails'
+  gem 'lyberteam-capistrano-devel'
 end
 
 group :debug do
@@ -92,6 +94,4 @@ gem 'jquery-rails'
 
 # Use Squash for exception reporting
 gem 'squash_ruby', require: 'squash/ruby'
-
-# Pinned to 1.3.3 until https://github.com/SquareSquash/rails/pull/15
-gem 'squash_rails', '1.3.3', require: 'squash/rails'
+gem 'squash_rails', require: 'squash/rails'
