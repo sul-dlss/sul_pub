@@ -413,7 +413,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Mon, 29 Jun 2015 15:52:47 GMT
+      - Mon, 29 Jun 2015 16:53:29 GMT
       Content-Length:
       - '278'
     body:
@@ -422,7 +422,7 @@ http_interactions:
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>142975</queryID>\r\n
         \ <queryResultRows>1</queryResultRows>\r\n  <totalRows>1</totalRows>\r\n</ScienceWireQueryIDResponse>"
     http_version: 
-  recorded_at: Mon, 29 Jun 2015 15:52:48 GMT
+  recorded_at: Mon, 29 Jun 2015 16:53:30 GMT
 - request:
     method: get
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/142975?format=xml&page=0&pageSize=2147483647&v=version/3
@@ -462,7 +462,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Mon, 29 Jun 2015 15:52:47 GMT
+      - Mon, 29 Jun 2015 16:53:29 GMT
       Content-Length:
       - '1880'
     body:
@@ -511,5 +511,5 @@ http_interactions:
         cnk+QVJHRU5USU5BPC9Db3B5cmlnaHRDb3VudHJ5Pg0KICA8L1B1YmxpY2F0
         aW9uSXRlbT4NCjwvQXJyYXlPZlB1YmxpY2F0aW9uSXRlbT4=
     http_version: 
-  recorded_at: Mon, 29 Jun 2015 15:52:48 GMT
+  recorded_at: Mon, 29 Jun 2015 16:53:30 GMT
 recorded_with: VCR 2.5.0

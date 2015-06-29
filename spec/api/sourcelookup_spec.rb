@@ -27,10 +27,10 @@ describe SulBib::API do
           { format: "json" },
           {"HTTP_CAPKEY" => '***REMOVED***'}
 
-          response.status.should == 200
+          expect(response.status).to eq(200)
           result = JSON.parse(response.body)
-          result["metadata"]["records"].should == "1"
-          result['records'].first['sw_id'].should == '60813767'
+          expect(result["metadata"]["records"]).to eq("1")
+          expect(result['records'].first['sw_id']).to eq('60813767')
         end
       end
 
@@ -43,11 +43,11 @@ describe SulBib::API do
           { format: "json" },
           {"HTTP_CAPKEY" => '***REMOVED***'}
 
-          response.status.should == 200
+          expect(response.status).to eq(200)
           result = JSON.parse(response.body)
-          result["metadata"]["records"].should == "1"
-          result['records'].first['title'].should match /Protein kinase C alpha/i
-          result['records'].first['provenance'].should match /sciencewire/
+          expect(result["metadata"]["records"]).to eq("1")
+          expect(result['records'].first['title']).to match /Protein kinase C alpha/i
+          expect(result['records'].first['provenance']).to match /sciencewire/
         end
       end
     end
@@ -59,11 +59,11 @@ describe SulBib::API do
           { format: "json" },
           {"HTTP_CAPKEY" => '***REMOVED***'}
 
-          response.status.should == 200
+          expect(response.status).to eq(200)
           result = JSON.parse(response.body)
-          result["metadata"]["records"].should == "1"
+          expect(result["metadata"]["records"]).to eq("1")
           result['records'].first['provenance'] == 'pubmed'
-          result['records'].first['chicago_citation'].should =~ /Sittig/
+          expect(result['records'].first['chicago_citation']).to match(/Sittig/)
         end
       end
 
@@ -76,25 +76,25 @@ describe SulBib::API do
           {"HTTP_CAPKEY" => '***REMOVED***'}
         result = JSON.parse(response.body)
 
-        result["metadata"].should be
+        expect(result["metadata"]).to be
       end
 
       it " returns bibjson with results section " do
-        pending
+        skip
         get "/publications/sourcelookup?title=pathological&maxrows=2",
           { format: "json" },
           {"HTTP_CAPKEY" => '***REMOVED***'}
         result = JSON.parse(response.body)
-        result["records"].should be
+        expect(result["records"]).to be
       end
 
       it " returns bibjson with maxrows number of results  " do
-        pending
+        skip
         get "/publications/sourcelookup?title=pathological&maxrows=5",
           { format: "json" },
           {"HTTP_CAPKEY" => '***REMOVED***'}
-        response.status.should == 200
-        JSON.parse(response.body)["records"].length.should be == 5
+        expect(response.status).to eq(200)
+        expect(JSON.parse(response.body)["records"].length).to eq(5)
 
       end
 
@@ -106,7 +106,7 @@ describe SulBib::API do
         get "/publications/sourcelookup?title=pathological",
           { format: "json" },
           {"HTTP_CAPKEY" => '***REMOVED***'}
-          JSON.parse(response.body).should be
+          expect(JSON.parse(response.body)).to be
       end
 
       it "returns results that match the requested title"

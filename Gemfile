@@ -33,7 +33,7 @@ gem 'libv8', '>=3.16.14.7'
 
 group :development, :test do
   gem 'sqlite3'
-  gem 'rspec-rails', '~> 2.99'
+  gem 'rspec-rails', '~> 3.0'
   gem 'guard-rspec'
   gem 'guard-spork'
   gem 'spork'
@@ -54,7 +54,7 @@ group :debug do
 end
 
 group :test do
-    gem 'capybara', '1.1.2'
+    gem 'capybara'
     gem 'rb-fsevent', '0.9.1', :require => false
     gem 'growl', '1.0.3'
     gem 'faker'

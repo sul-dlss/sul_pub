@@ -14,12 +14,12 @@ describe ScienceWireHarvester do
 		context "for author with first name last name only" do
 
 			it "uses the client query by name method" do
-				science_wire_client.should_receive(:query_sciencewire_by_author_name).and_call_original
+				expect(science_wire_client).to receive(:query_sciencewire_by_author_name).and_call_original
 				science_wire_harvester.harvest_for_author(author_without_seed_data)
 			end
 
 			it "doesn't use the client query by email or seed method" do
-				science_wire_client.should_not_receive(:get_sciencewire_id_suggestions)
+				expect(science_wire_client).not_to receive(:get_sciencewire_id_suggestions)
 				science_wire_harvester.harvest_for_author(author_without_seed_data)
 			end
 		end
@@ -27,13 +27,13 @@ describe ScienceWireHarvester do
 		context "seed records and querying" do
 
 			it "uses the publication query by name if the author has less than 10 seeds" do
-			  pending
+			  skip
         # science_wire_client.should_not_receive(:query_sciencewire_by_author_name)
         # science_wire_harvester.harvest_for_author(author_with_seed_email)
 			end
 
 			it "uses the suggestion query if the author has more than 10 seeds" do
-			  pending
+			  skip
         # science_wire_client.should_receive(:get_sciencewire_id_suggestions).and_call_original
         # science_wire_harvester.harvest_for_author(author_with_seed_email)
 			end
@@ -42,22 +42,22 @@ describe ScienceWireHarvester do
 
 		context "when sciencewire suggestions are made" do
 			it "calls create_contrib_for_pub_if_exists" do
-				science_wire_client.should_receive(:query_sciencewire_by_author_name).and_return(['42711845', '22686456'])
-				science_wire_harvester.should_receive(:create_contrib_for_pub_if_exists).once.with('42711845', author_without_seed_data)
-				science_wire_harvester.should_receive(:create_contrib_for_pub_if_exists).once.with('22686456', author_without_seed_data)
+				expect(science_wire_client).to receive(:query_sciencewire_by_author_name).and_return(['42711845', '22686456'])
+				expect(science_wire_harvester).to receive(:create_contrib_for_pub_if_exists).once.with('42711845', author_without_seed_data)
+				expect(science_wire_harvester).to receive(:create_contrib_for_pub_if_exists).once.with('22686456', author_without_seed_data)
 				science_wire_harvester.harvest_for_author(author_without_seed_data)
 			end
 			context "and when pub already exists locally" do
 				it "adds nothing to pub med retrieval queue" do
-					science_wire_client.should_receive(:query_sciencewire_by_author_name).and_return(['42711845'])
-					science_wire_harvester.should_receive(:create_contrib_for_pub_if_exists).once.with('42711845', author_without_seed_data).and_return(true)
+					expect(science_wire_client).to receive(:query_sciencewire_by_author_name).and_return(['42711845'])
+					expect(science_wire_harvester).to receive(:create_contrib_for_pub_if_exists).once.with('42711845', author_without_seed_data).and_return(true)
 					expect {
 						science_wire_harvester.harvest_for_author(author_without_seed_data)
 						}.to_not change{science_wire_harvester.records_queued_for_pubmed_retrieval}
 				end
 				it "adds nothing to sciencewire retrieval queue" do
-					science_wire_client.should_receive(:query_sciencewire_by_author_name).and_return(['42711845'])
-					science_wire_harvester.should_receive(:create_contrib_for_pub_if_exists).once.with('42711845', author_without_seed_data).and_return(true)
+					expect(science_wire_client).to receive(:query_sciencewire_by_author_name).and_return(['42711845'])
+					expect(science_wire_harvester).to receive(:create_contrib_for_pub_if_exists).once.with('42711845', author_without_seed_data).and_return(true)
 					expect {
 						science_wire_harvester.harvest_for_author(author_without_seed_data)
 						}.to_not change{science_wire_harvester.records_queued_for_pubmed_retrieval}
@@ -65,8 +65,8 @@ describe ScienceWireHarvester do
 			end
 			context "and when pub doesn't exist locally" do
 				it "adds to sciencewire retrieval queue" do
-					science_wire_client.should_receive(:query_sciencewire_by_author_name).and_return(['42711845'])
-					science_wire_harvester.should_receive(:create_contrib_for_pub_if_exists).once.with('42711845', author_without_seed_data).and_return(false)
+					expect(science_wire_client).to receive(:query_sciencewire_by_author_name).and_return(['42711845'])
+					expect(science_wire_harvester).to receive(:create_contrib_for_pub_if_exists).once.with('42711845', author_without_seed_data).and_return(false)
 
 					expect {
 						science_wire_harvester.harvest_for_author(author_without_seed_data)
@@ -76,28 +76,28 @@ describe ScienceWireHarvester do
 		end
 
 		it "triggers batch call when queue is full" do
-			pending
+			skip
 		end
 	end
 
 	describe "#harvest_pubs_for_author_ids" do
 		context "for valid author" do
 			it "calls harvest_for_author" do
-				science_wire_harvester.should_receive(:harvest_for_author).exactly(3).times.with(kind_of(Author))
+				expect(science_wire_harvester).to receive(:harvest_for_author).exactly(3).times.with(kind_of(Author))
 				science_wire_harvester.harvest_pubs_for_author_ids([author.id, author_with_seed_email.id, author_without_seed_data.id])
 			end
 			it "calls write_counts_to_log" do
 				VCR.use_cassette("sciencewire_harvester_writes_counts_to_log") do
-					science_wire_harvester.should_receive(:write_counts_to_log).once
+					expect(science_wire_harvester).to receive(:write_counts_to_log).once
 					science_wire_harvester.harvest_pubs_for_author_ids([author.id, author_with_seed_email.id, author_without_seed_data.id])
 				end
 			end
 		end
 		context "for invalid author" do
 			it "calls the Notification Manager" do
-        pending("Authors will always be valid.. for now.")
+        skip("Authors will always be valid.. for now.")
 				VCR.use_cassette("sciencewire_harvester_calls_notification_manager") do
-					NotificationManager.should_receive(:handle_harvest_problem)
+					expect(NotificationManager).to receive(:handle_harvest_problem)
 					science_wire_harvester.harvest_pubs_for_author_ids([67676767676])
 				end
 			end
@@ -105,7 +105,7 @@ describe ScienceWireHarvester do
 		context "when no existing publication" do
 			it "adds new publications" do
 				VCR.use_cassette("sciencewire_harvester_adds_new_publication") do
-					science_wire_client.should_receive(:query_sciencewire_by_author_name).exactly(3).times.and_return(['42711845', '22686456'])
+					expect(science_wire_client).to receive(:query_sciencewire_by_author_name).exactly(3).times.and_return(['42711845', '22686456'])
 					#science_wire_client.should_not_receive(:get_sciencewire_id_suggestions)
 					expect{
 						science_wire_harvester.harvest_pubs_for_author_ids([author.id, author_with_seed_email.id, author_without_seed_data.id])
@@ -114,7 +114,7 @@ describe ScienceWireHarvester do
 			end
 			it "adds new contributions" do
 				VCR.use_cassette("sciencewire_harvester_adds_new_contributions") do
-					science_wire_client.should_receive(:query_sciencewire_by_author_name).exactly(3).times.and_return(['42711845', '22686456'])
+					expect(science_wire_client).to receive(:query_sciencewire_by_author_name).exactly(3).times.and_return(['42711845', '22686456'])
 					#science_wire_client.should_receive(:get_sciencewire_id_suggestions).twice.and_return(['42711845', '22686456'])
 					expect {
 						science_wire_harvester.harvest_pubs_for_author_ids([author.id, author_with_seed_email.id, author_without_seed_data.id])
@@ -128,7 +128,7 @@ describe ScienceWireHarvester do
 				VCR.use_cassette('sciencewire_harvester_update_pubmed_with_sw_data') do
 					sw_id = pub_with_sw_id_and_pmid.sciencewire_id.to_s
 
-					science_wire_client.should_receive(:query_sciencewire_by_author_name).once.and_return([sw_id])
+					expect(science_wire_client).to receive(:query_sciencewire_by_author_name).once.and_return([sw_id])
 					pub_with_sw_id_and_pmid.update_attribute(:sciencewire_id, 2)
 					#expect(pub_with_sw_id_and_pmid.sciencewire_id).to change
 
@@ -160,7 +160,7 @@ describe ScienceWireHarvester do
 		context "when run consecutively" do
 			it "should be idempotent for pubs" do
 				VCR.use_cassette("sciencewire_harvester_idempotent_for_pubs") do
-					science_wire_client.should_receive(:query_sciencewire_by_author_name).exactly(6).times.and_return(['42711845', '22686456'])
+					expect(science_wire_client).to receive(:query_sciencewire_by_author_name).exactly(6).times.and_return(['42711845', '22686456'])
 					#science_wire_client.should_receive(:get_sciencewire_id_suggestions).exactly(4).times.and_return(['42711845', '22686456'])
 					expect {
 						science_wire_harvester.harvest_pubs_for_author_ids([author.id, author_with_seed_email.id, author_without_seed_data.id])
@@ -176,7 +176,7 @@ describe ScienceWireHarvester do
 			end
 			it "should be idempotent for contributions" do
 				VCR.use_cassette("sciencewire_harvester_idempotent_for_contribs") do
-					science_wire_client.should_receive(:query_sciencewire_by_author_name).exactly(6).times.and_return(['42711845', '22686456'])
+					expect(science_wire_client).to receive(:query_sciencewire_by_author_name).exactly(6).times.and_return(['42711845', '22686456'])
 					#science_wire_client.should_receive(:get_sciencewire_id_suggestions).exactly(4).times.and_return(['42711845', '22686456'])
 					expect {
 						science_wire_harvester.harvest_pubs_for_author_ids([author.id, author_with_seed_email.id, author_without_seed_data.id])
@@ -200,10 +200,10 @@ describe ScienceWireHarvester do
 	    VCR.use_cassette("sciencewire_harvester_wos_to_sw_for_author") do
 	      expect(PubmedSourceRecord.count).to eq(0)
 	      science_wire_harvester.harvest_sw_pubs_by_wos_id_for_author('pande', ['000318550800072', '000317872800004', '000317717300006'])
-        expect(auth.publications).to have(3).items
+        expect(auth.publications.size).to eq(3)
         pub_hash = auth.publications.first.pub_hash
         expect(pub_hash[:authorship].first[:sul_author_id]).to eq(auth.id)
-        expect(pub_hash[:identifier]).to have(5).items
+        expect(pub_hash[:identifier].size).to eq(5)
         expect(PubmedSourceRecord.count).to eq(3)
       end
 	  end
@@ -213,7 +213,7 @@ describe ScienceWireHarvester do
 	    VCR.use_cassette("sciencewire_harvester_wos_no_pubmed") do
 	      expect(PubmedSourceRecord.count).to eq(0)
 	      science_wire_harvester.harvest_sw_pubs_by_wos_id_for_author('gorin', ['000224492700003'])
-        expect(auth.publications).to have(1).items
+        expect(auth.publications.size).to eq(1)
         pub_hash = auth.publications.first.pub_hash
         expect(pub_hash[:authorship].first[:sul_author_id]).to eq(auth.id)
         expect(pub_hash[:identifier].select {|id| id[:type] == 'PMID'}).to be_empty
@@ -229,7 +229,7 @@ describe ScienceWireHarvester do
 	    auth = create(:author, :sunetid => 'mix')
       VCR.use_cassette("sciencewire_harvester_wos_mix") do
         science_wire_harvester.harvest_from_directory_of_wos_id_files(Rails.root.join('fixtures', 'wos_bibtex', 'mix_dir').to_s)
-        expect(auth.publications).to have(1).items
+        expect(auth.publications.size).to eq(1)
       end
 	  end
 

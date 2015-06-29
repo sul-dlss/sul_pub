@@ -186,7 +186,7 @@ let(:conference_pub_in_book_hash) {{title: "My test title",
       it "builds citations with just the first 5 and suppends et al" do
         h = PubHash.new(pub_hash)
         cite = h.to_chicago_citation
-        cite.should =~ /^Sohl, G./
+        expect(cite).to match(/^Sohl, G./)
         expect(cite).to include("B. Odermatt")
         expect(cite).to include("S. Maxeiner")
         expect(cite).to include("J. Degen")
@@ -316,7 +316,7 @@ let(:conference_pub_in_book_hash) {{title: "My test title",
       it "builds citations with just the first 5" do
         h = PubHash.new(pub_hash)
         cite = h.to_mla_citation
-        cite.should =~ /^Sohl, G./
+        expect(cite).to match(/^Sohl, G./)
         expect(h.pub_hash[:author]).to_not include({:name=>"et al."})
       end
     end
@@ -371,11 +371,11 @@ let(:conference_pub_in_book_hash) {{title: "My test title",
                   }}
 
       it "adds et al whenever the flag is true" do
-        pending "have to further modify CSL or code somehow"
+        skip "have to further modify CSL or code somehow"
         h = PubHash.new(et_hash)
         cite = h.to_chicago_citation
-        cite.should =~ /^Sohl, G./
-        cite.should =~ /et al./
+        expect(cite).to match(/^Sohl, G./)
+        expect(cite).to match(/et al./)
         expect(h.pub_hash[:author]).to_not include({:name=>"et al."})
       end
     end

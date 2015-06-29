@@ -219,7 +219,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Mon, 29 Jun 2015 15:52:26 GMT
+      - Mon, 29 Jun 2015 16:47:48 GMT
       Content-Length:
       - '278'
     body:
@@ -228,7 +228,7 @@ http_interactions:
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>143802</queryID>\r\n
         \ <queryResultRows>0</queryResultRows>\r\n  <totalRows>0</totalRows>\r\n</ScienceWireQueryIDResponse>"
     http_version: 
-  recorded_at: Mon, 29 Jun 2015 15:52:27 GMT
+  recorded_at: Mon, 29 Jun 2015 16:47:50 GMT
 - request:
     method: get
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/143802?format=xml&page=0&pageSize=2147483647&v=version/3
@@ -268,7 +268,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Mon, 29 Jun 2015 15:52:26 GMT
+      - Mon, 29 Jun 2015 16:47:50 GMT
       Content-Length:
       - '148'
     body:
@@ -276,7 +276,7 @@ http_interactions:
       string: "<?xml version=\"1.0\"?>\r\n<ArrayOfPublicationItem xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" />"
     http_version: 
-  recorded_at: Mon, 29 Jun 2015 15:52:27 GMT
+  recorded_at: Mon, 29 Jun 2015 16:47:50 GMT
 - request:
     method: post
     uri: http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml
@@ -296,7 +296,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 29 Jun 2015 15:52:27 GMT
+      - Mon, 29 Jun 2015 16:47:50 GMT
       Server:
       - Apache
       Access-Control-Allow-Origin:
@@ -304,12 +304,12 @@ http_interactions:
       Cache-Control:
       - private
       Ncbi-Sid:
-      - 73BF7DD159169BB1_0862SID
+      - 73BF618C59176B61_0317SID
       Content-Type:
       - text/xml; charset=UTF-8
       Set-Cookie:
-      - ncbi_sid=73BF7DD159169BB1_0862SID; domain=.nih.gov; path=/; expires=Wed, 29
-        Jun 2016 15:52:27 GMT
+      - ncbi_sid=73BF618C59176B61_0317SID; domain=.nih.gov; path=/; expires=Wed, 29
+        Jun 2016 16:47:50 GMT
       X-Ua-Compatible:
       - IE=Edge
       Transfer-Encoding:
@@ -322,5 +322,5 @@ http_interactions:
         <PubmedArticleSet>
         </PubmedArticleSet>
     http_version: 
-  recorded_at: Mon, 29 Jun 2015 15:52:27 GMT
+  recorded_at: Mon, 29 Jun 2015 16:47:50 GMT
 recorded_with: VCR 2.5.0

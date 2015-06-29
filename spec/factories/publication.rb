@@ -9,7 +9,7 @@ FactoryGirl.define do
   	end
 
   	factory :publication_with_contributions, parent: :publication do
-  		ignore do
+  		transient do
         	contributions_count 15
       	end
       	after(:create) do |publication, evaluator|

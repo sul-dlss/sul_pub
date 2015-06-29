@@ -7,7 +7,7 @@ describe ScienceWireClient do
 
 			it "returns a list of 12 sciencewire ids" do
 				VCR.use_cassette("sciencewire_client_spec_returns_list_of_4") do
-					expect(science_wire_client.query_sciencewire_by_author_name("james", "", "smith")).to have(10).items
+					expect(science_wire_client.query_sciencewire_by_author_name("james", "", "smith").size).to eq(10)
 				end
 			end
 
@@ -16,7 +16,7 @@ describe ScienceWireClient do
 
 			it "returns an empty array" do
 				VCR.use_cassette("sciencewire_client_spec_returns_empty_array") do
-					expect(science_wire_client.query_sciencewire_by_author_name("yukon", "", "ottawa", 4)).to have(0).items
+					expect(science_wire_client.query_sciencewire_by_author_name("yukon", "", "ottawa", 4).size).to eq(0)
 				end
 			end
 
@@ -31,8 +31,8 @@ describe ScienceWireClient do
 
         expect(
           science_wire_client.
-            get_sciencewire_id_suggestions("edler", "alice", "", "alice.edler@stanford.edu", seeds)).
-          to have_at_least(4).items
+            get_sciencewire_id_suggestions("edler", "alice", "", "alice.edler@stanford.edu", seeds).size).
+          to be >= 4
       end
 		end
 
@@ -48,8 +48,8 @@ describe ScienceWireClient do
 
         expect(
           science_wire_client.
-            get_sciencewire_id_suggestions("benson", "sally", "", "smbenson@stanford.edu", seeds)).
-          to have_at_least(111).items
+            get_sciencewire_id_suggestions("benson", "sally", "", "smbenson@stanford.edu", seeds).size).
+          to be >= 111
       end
 		end
 
@@ -61,7 +61,7 @@ describe ScienceWireClient do
 	    VCR.use_cassette("sciencewire_client_spec_gets_sw_pubs_with_wos_ids") do
 	      doc = science_wire_client.get_full_sciencewire_pubs_for_wos_ids(['000318550800072', '000317872800004', '000317717300006'])
 				expect(doc).to be_a(Nokogiri::XML::Document)
-				expect(doc.xpath('//PublicationItem')).to have(3).items
+				expect(doc.xpath('//PublicationItem').size).to eq(3)
 			end
 	  end
 

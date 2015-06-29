@@ -30,32 +30,32 @@ describe SulBib::API do
       end
       it "responds with 201 Accepted" do
         post "/authorship", valid_json_for_pub_with_contributions, headers
-        response.status.should == 201
+        expect(response.status).to eq(201)
       end
       it "adds the authorship entry to the pub_hash for the publication" do
         post "/authorship", valid_json_for_pub_with_contributions, headers
         publication_with_contributions.reload
-        publication_with_contributions.pub_hash[:authorship].any? { |entry| entry[:sul_author_id] == author.id }.should be_true
+        expect(publication_with_contributions.pub_hash[:authorship].any? { |entry| entry[:sul_author_id] == author.id }).to be_truthy
       end
       it 'creates a new authorship record without overwriting existing authorship records' do
         post "/authorship", valid_json_for_pub_with_contributions, headers
         expect(response.status).to eq(201)
-        publication_with_contributions.contributions(true).should have(3).items
+        expect(publication_with_contributions.contributions(true).size).to eq(3)
       end
       it 'creates a contribution record with matching status' do       
         post "/authorship", valid_json_for_pub_with_contributions, headers
-        Contribution.where(publication_id: publication_with_contributions.id, author_id: author.id).first.status.should == 'denied'
+        expect(Contribution.where(publication_id: publication_with_contributions.id, author_id: author.id).first.status).to eq('denied')
       end
       it 'creates a contribution record with matching visibility' do       
         post "/authorship", valid_json_for_pub_with_contributions, headers
         expect(response.status).to eq(201)
-        Contribution.where(publication_id: publication_with_contributions.id, author_id: author.id).first.visibility.should == 'private'
+        expect(Contribution.where(publication_id: publication_with_contributions.id, author_id: author.id).first.visibility).to eq('private')
       end
       it 'should not create more than one contribution ' do
         post "/authorship", valid_json_for_pub_with_contributions, headers
        # puts "the count: " + Contribution.where(publication_id: publication_with_contributions.id, author_id: author.id).count.to_s
         count = Contribution.where(publication_id: publication_with_contributions.id, author_id: author.id).count
-        count.should eq 1
+        expect(count).to eq 1
       end     
       it 'increases number of contribution records for specified publication by one' do
         expect {
@@ -88,25 +88,25 @@ describe SulBib::API do
 
       it "adds pub for pubmed_id not already in system" do
         post "/authorship", valid_json_for_pubmed_id, headers
-        response.status.should == 201
+        expect(response.status).to eq(201)
         new_pub = Publication.last
-        response.body.should == new_pub.pub_hash.to_json
+        expect(response.body).to eq(new_pub.pub_hash.to_json)
         result = JSON.parse(response.body)
-        result["pmid"].should == "23684686"
-        result["authorship"].should be
-        Contribution.where(publication_id: new_pub.id, author_id: author.id).first.status.should == 'denied'
+        expect(result["pmid"]).to eq("23684686")
+        expect(result["authorship"]).to be
+        expect(Contribution.where(publication_id: new_pub.id, author_id: author.id).first.status).to eq('denied')
       end
 
       it " adds pub for sciencewire_id not already in system " do 
         post "/authorship", valid_json_for_sw_id, headers
-        response.status.should == 201
+        expect(response.status).to eq(201)
         new_pub = Publication.last
-        response.body.should == new_pub.pub_hash.to_json
+        expect(response.body).to eq(new_pub.pub_hash.to_json)
         result = JSON.parse(response.body)
-        result["sw_id"].should == "10379039"
-        Contribution.where(publication_id: new_pub.id, author_id: author.id).first.status.should == 'denied'
-        result["authorship"].should be
-        result["authorship"][0]["sul_author_id"].should == author.id
+        expect(result["sw_id"]).to eq("10379039")
+        expect(Contribution.where(publication_id: new_pub.id, author_id: author.id).first.status).to eq('denied')
+        expect(result["authorship"]).to be
+        expect(result["authorship"][0]["sul_author_id"]).to eq(author.id)
         
         #Contribution.where(publication_id: new_pub.id, author_id: author.id).first.status.should == 'denied'
       end

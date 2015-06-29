@@ -620,7 +620,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Mon, 29 Jun 2015 15:52:51 GMT
+      - Mon, 29 Jun 2015 16:47:25 GMT
       Content-Length:
       - '278'
     body:
@@ -629,7 +629,7 @@ http_interactions:
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>111021</queryID>\r\n
         \ <queryResultRows>0</queryResultRows>\r\n  <totalRows>0</totalRows>\r\n</ScienceWireQueryIDResponse>"
     http_version: 
-  recorded_at: Mon, 29 Jun 2015 15:52:51 GMT
+  recorded_at: Mon, 29 Jun 2015 16:47:26 GMT
 - request:
     method: get
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/111021?format=xml&page=0&pageSize=2147483647&v=version/3
@@ -669,7 +669,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Mon, 29 Jun 2015 15:52:51 GMT
+      - Mon, 29 Jun 2015 16:47:27 GMT
       Content-Length:
       - '148'
     body:
@@ -677,7 +677,7 @@ http_interactions:
       string: "<?xml version=\"1.0\"?>\r\n<ArrayOfPublicationItem xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" />"
     http_version: 
-  recorded_at: Mon, 29 Jun 2015 15:52:52 GMT
+  recorded_at: Mon, 29 Jun 2015 16:47:27 GMT
 - request:
     method: post
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery?format=xml
@@ -734,7 +734,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Mon, 29 Jun 2015 15:52:51 GMT
+      - Mon, 29 Jun 2015 16:47:27 GMT
       Content-Length:
       - '278'
     body:
@@ -743,7 +743,7 @@ http_interactions:
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>111021</queryID>\r\n
         \ <queryResultRows>0</queryResultRows>\r\n  <totalRows>0</totalRows>\r\n</ScienceWireQueryIDResponse>"
     http_version: 
-  recorded_at: Mon, 29 Jun 2015 15:52:52 GMT
+  recorded_at: Mon, 29 Jun 2015 16:47:27 GMT
 - request:
     method: get
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/111021?format=xml&page=0&pageSize=2147483647&v=version/3
@@ -783,7 +783,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Mon, 29 Jun 2015 15:52:52 GMT
+      - Mon, 29 Jun 2015 16:47:27 GMT
       Content-Length:
       - '148'
     body:
@@ -791,7 +791,7 @@ http_interactions:
       string: "<?xml version=\"1.0\"?>\r\n<ArrayOfPublicationItem xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" />"
     http_version: 
-  recorded_at: Mon, 29 Jun 2015 15:52:53 GMT
+  recorded_at: Mon, 29 Jun 2015 16:47:27 GMT
 - request:
     method: post
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery?format=xml
@@ -848,7 +848,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Mon, 29 Jun 2015 15:52:53 GMT
+      - Mon, 29 Jun 2015 16:47:28 GMT
       Content-Length:
       - '278'
     body:
@@ -857,7 +857,7 @@ http_interactions:
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>111021</queryID>\r\n
         \ <queryResultRows>0</queryResultRows>\r\n  <totalRows>0</totalRows>\r\n</ScienceWireQueryIDResponse>"
     http_version: 
-  recorded_at: Mon, 29 Jun 2015 15:52:53 GMT
+  recorded_at: Mon, 29 Jun 2015 16:47:28 GMT
 - request:
     method: get
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/111021?format=xml&page=0&pageSize=2147483647&v=version/3
@@ -897,7 +897,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Mon, 29 Jun 2015 15:52:52 GMT
+      - Mon, 29 Jun 2015 16:47:28 GMT
       Content-Length:
       - '148'
     body:
@@ -905,7 +905,7 @@ http_interactions:
       string: "<?xml version=\"1.0\"?>\r\n<ArrayOfPublicationItem xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" />"
     http_version: 
-  recorded_at: Mon, 29 Jun 2015 15:52:53 GMT
+  recorded_at: Mon, 29 Jun 2015 16:47:28 GMT
 - request:
     method: get
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationItems?format=xml&publicationItemIDs=
@@ -945,7 +945,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Mon, 29 Jun 2015 15:52:53 GMT
+      - Mon, 29 Jun 2015 16:47:28 GMT
       Content-Length:
       - '1208'
     body:
@@ -964,7 +964,7 @@ http_interactions:
         \ <h3>There is a problem with the resource you are looking for, and it cannot
         be displayed.</h3>\r\n </fieldset></div>\r\n</div>\r\n</body>\r\n</html>\r\n"
     http_version: 
-  recorded_at: Mon, 29 Jun 2015 15:52:54 GMT
+  recorded_at: Mon, 29 Jun 2015 16:47:28 GMT
 - request:
     method: post
     uri: http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml
@@ -984,7 +984,7 @@ http_interactions:
       message: Bad Request
     headers:
       Date:
-      - Mon, 29 Jun 2015 15:52:54 GMT
+      - Mon, 29 Jun 2015 16:47:29 GMT
       Server:
       - Apache
       Access-Control-Allow-Origin:
@@ -992,12 +992,12 @@ http_interactions:
       Cache-Control:
       - private
       Ncbi-Sid:
-      - 73BE199559169D61_0779SID
+      - 73BF667E59176A11_0304SID
       Content-Type:
       - text/xml; charset=UTF-8
       Set-Cookie:
-      - ncbi_sid=73BE199559169D61_0779SID; domain=.nih.gov; path=/; expires=Wed, 29
-        Jun 2016 15:52:54 GMT
+      - ncbi_sid=73BF667E59176A11_0304SID; domain=.nih.gov; path=/; expires=Wed, 29
+        Jun 2016 16:47:29 GMT
       X-Ua-Compatible:
       - IE=Edge
       Connection:
@@ -1010,5 +1010,5 @@ http_interactions:
         PUBLIC \"-//NLM//DTD efetch 20131226//EN\" \"http://eutils.ncbi.nlm.nih.gov/eutils/dtd/20131226/efetch.dtd\">\n<eFetchResult>\n\t<ERROR>WebEnv
         parameter is required</ERROR>\n</eFetchResult>\n"
     http_version: 
-  recorded_at: Mon, 29 Jun 2015 15:52:54 GMT
+  recorded_at: Mon, 29 Jun 2015 16:47:29 GMT
 recorded_with: VCR 2.5.0

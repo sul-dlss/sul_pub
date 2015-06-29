@@ -45,7 +45,7 @@ describe Publication do
     end
 
     it "should rebuild authors" do
-      expect(subject.contributions).to have(1).entry
+      expect(subject.contributions.entries.size).to eq(1)
       expect(subject.pub_hash[:authorship].length).to be > 0
       expect(subject.pub_hash[:authorship]).to include(subject.contributions.first.to_pub_hash)
     end
@@ -71,7 +71,7 @@ describe Publication do
       publication.pub_hash = { :identifier => [ { :type => "SULPubId", :id => "y", :url => "z" } ] }
       expect {
         publication.sync_identifiers_in_pub_hash_to_db
-      }.to_not change(publication, :publication_identifiers).by(1)
+      }.to_not change(publication, :publication_identifiers)
     end
 
     it "updates existing ids with new values" do
@@ -110,7 +110,7 @@ describe Publication do
       publication.pub_hash = { :authorship => [ { :status => "x", :sul_author_id => author.id }]}
       publication.update_any_new_contribution_info_in_pub_hash_to_db
       publication.save
-      expect(publication.contributions).to have(1).contribution
+      expect(publication.contributions.size).to eq(1)
       c = publication.contributions.last
       expect(c.author).to eq(author)
       expect(c.status).to eq("x")
@@ -121,7 +121,7 @@ describe Publication do
       publication.pub_hash = { :authorship => [ { :status => "z", :sul_author_id => author.id }]}
       publication.update_any_new_contribution_info_in_pub_hash_to_db
       publication.save
-      expect(publication.contributions).to have(1).contribution
+      expect(publication.contributions.size).to eq(1)
       c = publication.contributions(true).last
       expect(c.author).to eq(author)
       expect(c.status).to eq("z")
@@ -135,7 +135,7 @@ describe Publication do
       publication.update_any_new_contribution_info_in_pub_hash_to_db
 
       publication.save
-      expect(publication.contributions).to have(1).contribution
+      expect(publication.contributions.size).to eq(1)
       c = publication.contributions.last
       expect(c.author).to eq(author)
       expect(c.status).to eq("z")
@@ -152,7 +152,7 @@ describe Publication do
   describe "add_any_pubmed_data_to_hash" do
     it "should add mesh and abstract data if available" do
       publication.pmid = 1
-      PubmedSourceRecord.stub(:get_pubmed_hash_for_pmid).with(1).and_return :mesh_headings => "x", :abstract => "y"
+      allow(PubmedSourceRecord).to receive(:get_pubmed_hash_for_pmid).with(1).and_return :mesh_headings => "x", :abstract => "y"
 
       publication.add_any_pubmed_data_to_hash
 
@@ -167,7 +167,7 @@ describe Publication do
 
     it "should ignore records with an empty pubmed record" do
       publication.pmid = 1
-      PubmedSourceRecord.stub(:get_pubmed_hash_for_pmid).with(1).and_return nil
+      allow(PubmedSourceRecord).to receive(:get_pubmed_hash_for_pmid).with(1).and_return nil
 
       publication.add_any_pubmed_data_to_hash
     end
@@ -176,7 +176,7 @@ describe Publication do
   describe "delete!" do
     it "should mark the publication deleted" do
       publication.delete!
-      expect(publication.deleted).to be_true
+      expect(publication.deleted).to be_truthy
       expect(publication).to be_deleted
     end
   end
@@ -190,18 +190,17 @@ describe Publication do
 
   describe "update_formatted_citations" do
     it "should update the apa, mla, and chicago citations" do
-      publication.stub(:pub_hash => {})
+      allow(publication).to receive(:pub_hash).and_return({})
       apa = double()
       mla = double()
       chicago = double()
-      PubHash.any_instance.should_receive(:to_apa_citation).and_return(apa)
-      PubHash.any_instance.should_receive(:to_mla_citation).and_return(mla)
-      PubHash.any_instance.should_receive(:to_chicago_citation).and_return(chicago)
+      expect_any_instance_of(PubHash).to receive(:to_apa_citation).and_return(apa)
+      expect_any_instance_of(PubHash).to receive(:to_mla_citation).and_return(mla)
+      expect_any_instance_of(PubHash).to receive(:to_chicago_citation).and_return(chicago)
       publication.update_formatted_citations
       expect(publication.pub_hash[:apa_citation]).to eq(apa)
       expect(publication.pub_hash[:mla_citation]).to eq(mla)
       expect(publication.pub_hash[:chicago_citation]).to eq(chicago)
-
     end
   end
 
@@ -227,7 +226,7 @@ describe Publication do
     it "should add a publication" do
       pub = Publication.build_new_manual_publication("some where", pub_hash, "some string")
       pub.save!
-      expect(pub.authors).to have(1).author
+      expect(pub.authors.size).to eq(1)
     end
 
     it "should refuse to add a publication with the same source record" do

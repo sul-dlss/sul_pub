@@ -11,12 +11,12 @@ describe BibtexIngester do
 	  it "creates pub for each new bibtex record" do
         expect {bibtex_ingester.ingest_from_source_directory(Rails.root.join('fixtures', 'bibtex_for_batch').to_s)
 						}.to change(Publication, :count).by(4)
-		expect(author_with_bibtex.publications).to have(4).items
+		expect(author_with_bibtex.publications.size).to eq(4)
 	  end
 
 	  it "associates pubs with author by sunet" do
         	bibtex_ingester.ingest_from_source_directory(Rails.root.join('fixtures', 'bibtex_for_batch').to_s)
-			expect(author_with_bibtex.publications).to have(4).items
+			expect(author_with_bibtex.publications.size).to eq(4)
 	  end
 
 	  it "doesn't duplicate existing publications" do
@@ -77,19 +77,19 @@ describe BibtexIngester do
 
 	  it "adds publication_identifier for isbn" do
 	  	bibtex_ingester.ingest_from_source_directory(Rails.root.join('fixtures', 'bibtex_for_batch').to_s)
-	  	expect(PublicationIdentifier.exists?(identifier_type: 'isbn', identifier_value: 3233333)).to be_true
+	  	expect(PublicationIdentifier.exists?(identifier_type: 'isbn', identifier_value: 3233333)).to be_truthy
 	  end
 
 	  it "adds publication_identifier for DOI" do
 	  	bibtex_ingester.ingest_from_source_directory(Rails.root.join('fixtures', 'bibtex_for_batch').to_s)
-	  	expect(PublicationIdentifier.exists?(identifier_type: 'doi', identifier_value: 8484848484)).to be_true
+	  	expect(PublicationIdentifier.exists?(identifier_type: 'doi', identifier_value: 8484848484)).to be_truthy
 	  end
 
 	  it "doesn't add publication_identifier for sulpubid" do
 	  	bibtex_ingester.ingest_from_source_directory(Rails.root.join('fixtures', 'bibtex_for_batch').to_s)
 	  	pub = Publication.where(title: 'Systematic Review: The Safety and Efficacy of Growth Hormone in the Healthy Elderly').first
 
-	  	expect(PublicationIdentifier.exists?(identifier_type: 'SULPubId', identifier_value: pub.id)).to be_false
+	  	expect(PublicationIdentifier.exists?(identifier_type: 'SULPubId', identifier_value: pub.id)).to be_falsey
 	  end
 
 	  it "puts SULPubId into identifer part of pubhash" do

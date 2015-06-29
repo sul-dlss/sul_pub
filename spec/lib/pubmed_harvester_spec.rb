@@ -40,7 +40,7 @@ describe PubmedHarvester do
     end
 
     it "searches Pubmed by pmid if not found in ScienceWire and returns a pubhash" do
-      pending "find an example pubmid not yet in sw"
+      skip "find an example pubmid not yet in sw"
       VCR.use_cassette('pubmed_harvester_spec_find_by_pmid_through_pubmed') do
         # This pmid might eventually show up in SW.  If that's the case, search the recent production logs for publication sourcelookups with this format:
         # /publications/sourcelookup?pmid=

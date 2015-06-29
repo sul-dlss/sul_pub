@@ -35,17 +35,17 @@ describe SulBib::API do
 
       it "should respond with 200" do
         post "/publications", valid_json_for_post, headers
-        response.status.should == 201
+        expect(response.status).to eq(201)
       end
 
       it " returns bibjson from the pub_hash for the new publication" do
         post "/publications", valid_json_for_post, headers
-          response.body.should == Publication.last.pub_hash.to_json
+          expect(response.body).to eq(Publication.last.pub_hash.to_json)
       end
 
       it 'creates a new contributions record in the db' do
         post "/publications", valid_json_for_post, headers
-        Contribution.where(publication_id: Publication.last.id, author_id: author.id).first.status.should == 'denied'
+        expect(Contribution.where(publication_id: Publication.last.id, author_id: author.id).first.status).to eq('denied')
       end
 
       it 'increases number of contribution records by one' do
@@ -70,7 +70,7 @@ describe SulBib::API do
 
       it "creates an appropriate publication record from the posted bibjson" do
         post "/publications", valid_json_for_post, headers
-        response.status.should == 201
+        expect(response.status).to eq(201)
         pub = Publication.last
 
         parsed_outgoing_json = JSON.parse(valid_json_for_post)
@@ -84,7 +84,7 @@ describe SulBib::API do
 
       it "creates a matching pub_hash in the publication record from the posted bibjson" do
         post "/publications", valid_json_for_post, headers
-        response.status.should == 201
+        expect(response.status).to eq(201)
         pub_hash = Publication.last.reload.pub_hash
 
         parsed_outgoing_json = JSON.parse(response.body)
@@ -99,7 +99,7 @@ describe SulBib::API do
 
       it " creates a pub with matching authorship info in hash and contributions table" do
         post "/publications", valid_json_for_post, headers
-        response.status.should == 201
+        expect(response.status).to eq(201)
         pub = Publication.last
         parsed_outgoing_json = JSON.parse(response.body)
         contrib = Contribution.where(publication_id: pub.id, author_id: author.id).first
@@ -114,30 +114,30 @@ describe SulBib::API do
         json_with_sul_pub_id = { :type => 'book', :identifier => [ { :type => "SULPubId", :id => "n", :url => "m" } ], authorship: [{sul_author_id: author.id, status: "denied", visibility: "public", featured: true}] }.to_json
 
         post "/publications", json_with_sul_pub_id, headers
-        response.status.should == 201
+        expect(response.status).to eq(201)
         parsed_outgoing_json = JSON.parse(response.body)
 
-        expect(parsed_outgoing_json['identifier'].select { |x| x['type'] == "SULPubId"}).to have(1).item
+        expect(parsed_outgoing_json['identifier'].select { |x| x['type'] == "SULPubId"}.size).to eq(1)
         expect(parsed_outgoing_json['identifier'][0]['id']).to_not eq("n")
       end
 
       it "creates a pub with with isbn" do
         post "/publications", json_with_isbn, headers
-        response.status.should == 201
+        expect(response.status).to eq(201)
         pub = Publication.last.reload
         parsed_outgoing_json = JSON.parse(response.body)
         expect(parsed_outgoing_json['identifier']).to include({"id"=>"1177188188181", "type"=>"isbn"})
         expect(parsed_outgoing_json['identifier']).to include({"type"=>"doi","url"=>"18819910019"})
         expect(parsed_outgoing_json['identifier']).to include({"type"=>"SULPubId","url"=>"http://sulcap.stanford.edu/publications/#{pub.id}","id"=>"#{pub.id}"})
         expect(parsed_outgoing_json['identifier'].size).to eq(3)
-        expect(pub.publication_identifiers).to have(2).items
+        expect(pub.publication_identifiers.size).to eq(2)
         expect(pub.publication_identifiers.map { |x| x.identifier_type }).to include("doi", "isbn")
         expect(response.body).to eq(pub.pub_hash.to_json)
       end
 
       it "creates a pub with with pmid" do
         post "/publications", json_with_pubmedid, headers
-        response.status.should == 201
+        expect(response.status).to eq(201)
         pub = Publication.last.reload
         parsed_outgoing_json = JSON.parse(response.body)
         expect(parsed_outgoing_json['identifier']).to include({"id"=>"999999999", "type"=>"pmid"})
@@ -153,10 +153,10 @@ describe SulBib::API do
         json_with_sul_pub_id = { :type => 'book', :identifier => [ { :type => "SULPubId", :id => "n", :url => "m" } ], authorship: [{sul_author_id: author.id, status: "denied", visibility: "public", featured: true}] }.to_json
 
         put "/publications/#{publication.id}", json_with_sul_pub_id, headers
-        response.status.should == 200
+        expect(response.status).to eq(200)
         parsed_outgoing_json = JSON.parse(response.body)
 
-        expect(parsed_outgoing_json['identifier'].select { |x| x['type'] == "SULPubId"}).to have(1).item
+        expect(parsed_outgoing_json['identifier'].select { |x| x['type'] == "SULPubId"}.size).to eq(1)
         expect(parsed_outgoing_json['identifier'][0]['id']).to_not eq("n")
       end
     end
@@ -165,24 +165,24 @@ describe SulBib::API do
 
         it " returns 302 for duplicate pub" do
           post "/publications", valid_json_for_post, headers
-          response.status.should == 201
+          expect(response.status).to eq(201)
           post "/publications", valid_json_for_post, headers
-          response.status.should == 302
+          expect(response.status).to eq(302)
         end
 
         it " returns 406 - Not Acceptable for  bibjson without an authorship entry" do
           post "/publications", invalid_json_for_post, headers
-          response.status.should == 406
+          expect(response.status).to eq(406)
         end
 
         it "creates an Author when a new cap_profile_id is passed in" do
-          pending "Administrative Systems firewall only allows IP-based requests"
+          skip "Administrative Systems firewall only allows IP-based requests"
           VCR.use_cassette("api_publications_spec_create_new_auth") do
             post "/publications", json_with_new_author, headers
-            response.status.should == 201
+            expect(response.status).to eq(201)
 
             auth = Author.where(:cap_profile_id => '3810').first
-            auth.cap_last_name.should == 'Lowe'
+            expect(auth.cap_last_name).to eq('Lowe')
           end
         end
     end
@@ -220,14 +220,14 @@ describe SulBib::API do
         get "/publications/#{publication.id}",
           { format: "json" },
           {"HTTP_CAPKEY" => '***REMOVED***'}
-      response.status.should == 200
+      expect(response.status).to eq(200)
     end
     it "returns a publication bibjson doc by id" do
       publication
       get "/publications/#{publication.id}",
           { format: "json" },
           {"HTTP_CAPKEY" => '***REMOVED***'}
-      response.body.should == publication.pub_hash.to_json
+      expect(response.body).to eq(publication.pub_hash.to_json)
     end
 
     it "returns a pub with valid bibjson for sw harvested records" do
@@ -237,8 +237,8 @@ describe SulBib::API do
        get "/publications/#{new_pub.id}",
           { format: "json" },
           {"HTTP_CAPKEY" => '***REMOVED***'}
-       response.status.should == 200
-       response.body.should == new_pub.pub_hash.to_json
+       expect(response.status).to eq(200)
+       expect(response.body).to eq(new_pub.pub_hash.to_json)
        result = JSON.parse(response.body)
        #puts result
        #result["provenance"].should == "sciencewire"
@@ -254,7 +254,7 @@ describe SulBib::API do
         get "/publications/88888888888",
           { format: "json" },
           {"HTTP_CAPKEY" => '***REMOVED***'}
-        response.status.should == 404
+        expect(response.status).to eq(404)
       end
     end
 
@@ -268,8 +268,8 @@ describe SulBib::API do
             { format: "json" },
             {"HTTP_CAPKEY" => '***REMOVED***'}
         result = JSON.parse(response.body)
-        result["metadata"]["page"].should == 1
-        JSON.parse(response.body)["records"].should be
+        expect(result["metadata"]["page"]).to eq(1)
+        expect(JSON.parse(response.body)["records"]).to be
       end
 
     end # end of context
@@ -281,7 +281,7 @@ describe SulBib::API do
         publication_list
         get "/publications?page=1&per=7",
             { format: "json" }
-        response.status.should == 403
+        expect(response.status).to eq(403)
       end
 
       it "returns a one page collection of 100 bibjson records when no paging is specified" do
@@ -289,14 +289,14 @@ describe SulBib::API do
         get "/publications?page=1&per=7",
           { format: "json" },
           {"HTTP_CAPKEY" => '***REMOVED***'}
-        response.status.should == 200
+        expect(response.status).to eq(200)
         expect(response.headers['Content-Type']).to be =~ /application\/json/
 
         result = JSON.parse(response.body)
 
-        result["metadata"]["records"].should == "7"
-        result["metadata"]["page"].should == 1
-        result["records"][2]["author"].should be
+        expect(result["metadata"]["records"]).to eq("7")
+        expect(result["metadata"]["page"]).to eq(1)
+        expect(result["records"][2]["author"]).to be
       end
 
       it "should filter by active authors" do
@@ -304,10 +304,10 @@ describe SulBib::API do
         get "/publications?page=1&per=1&capActive=true",
             { format: "json" },
             {"HTTP_CAPKEY" => '***REMOVED***'}
-        response.status.should == 200
+        expect(response.status).to eq(200)
         result = JSON.parse(response.body)
-        result["metadata"]["records"].should == "1"
-        result["metadata"]["page"].should == 1
+        expect(result["metadata"]["records"]).to eq("1")
+        expect(result["metadata"]["page"]).to eq(1)
       end
 
 
@@ -316,10 +316,10 @@ describe SulBib::API do
         get "/publications?page=2&per=1&capActive=true",
             { format: "json" },
             {"HTTP_CAPKEY" => '***REMOVED***'}
-        response.status.should == 200
+        expect(response.status).to eq(200)
         result = JSON.parse(response.body)
-        result["metadata"]["records"].should == "1"
-        result["metadata"]["page"].should == 2
+        expect(result["metadata"]["records"]).to eq("1")
+        expect(result["metadata"]["page"]).to eq(2)
 
       end
     end # end of context
@@ -336,9 +336,9 @@ describe SulBib::API do
           { format: "json" },
           {"HTTP_CAPKEY" => '***REMOVED***'}
 
-          response.status.should == 200
+          expect(response.status).to eq(200)
           result = JSON.parse(response.body)
-          result["metadata"]["records"].should == "20"
+          expect(result["metadata"]["records"]).to eq("20")
         end
       end
     end

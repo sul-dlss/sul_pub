@@ -9,7 +9,6 @@ end
 
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
-require 'rspec/autorun'
 require 'factory_girl_rails'
 
 
@@ -22,13 +21,8 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
 RSpec.configure do |config|
 
-  config.include RSpec::Rails::RequestExampleGroup, type: :request, example_group: {
-    file_path: /spec\/api/
-  }
-
- config.include RSpec::Rails::RequestExampleGroup, type: :request, example_group: {
-    file_path: /spec\/lib/
-  }
+  config.include RSpec::Rails::RequestExampleGroup, type: :request, file_path: /spec\/api/
+  config.include RSpec::Rails::RequestExampleGroup, type: :request, file_path: /spec\/lib/
 
   config.include FactoryGirl::Syntax::Methods
 
@@ -60,4 +54,15 @@ RSpec.configure do |config|
   # the seed, which is printed after each run.
   #     --seed 1234
   config.order = "random"
+
+  # rspec-rails 3 will no longer automatically infer an example group's spec type
+  # from the file location. You can explicitly opt-in to the feature using this
+  # config option.
+  # To explicitly tag specs without using automatic inference, set the `:type`
+  # metadata manually:
+  #
+  #     describe ThingsController, :type => :controller do
+  #       # Equivalent to being in spec/controllers
+  #     end
+  config.infer_spec_type_from_file_location!
 end
