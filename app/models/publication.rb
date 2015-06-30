@@ -1,5 +1,5 @@
 class Publication < ActiveRecord::Base
-  acts_as_trashable
+  has_paper_trail on: [:destroy]
 
   before_save :sync_publication_hash_and_db, if: proc { |pub| pub.pubhash_needs_update? }
 

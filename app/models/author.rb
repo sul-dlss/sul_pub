@@ -1,5 +1,5 @@
 class Author < ActiveRecord::Base
-  acts_as_trashable
+  has_paper_trail on: [:destroy]
 
   has_many :contributions, dependent: :destroy, after_add: :contributions_changed_callback, after_remove: :contributions_changed_callback do
     def build_or_update(publication, contribution_hash = {})

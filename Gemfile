@@ -32,7 +32,7 @@ gem 'whenever', require: false
 gem 'yajl-ruby', require: 'yajl'
 gem 'turnout'
 gem 'parallel'
-gem 'acts_as_trashable'
+gem 'paper_trail', '4.0.0.rc1'
 
 gem 'libv8', '3.16.14.7' # pin libv8 version to an installable version
 

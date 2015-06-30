@@ -8,6 +8,9 @@ SimpleCov.start do
 end
 
 require File.expand_path('../../config/environment', __FILE__)
+
+ActiveRecord::Migration.maintain_test_schema!
+
 require 'rspec/rails'
 require 'factory_girl_rails'
 
