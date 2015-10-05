@@ -55,7 +55,7 @@ class PublicationsController < ApplicationController
 
       respond_to do |format|
         format.json do
-          self.response_body = Yajl::Encoder.enum_for(:encode, wrap_as_bibjson_collection(description, env['ORIGINAL_FULLPATH'].to_s, matching_records.lazy, page, per))
+          self.response_body = Yajl::Encoder.enum_for(:encode, wrap_as_bibjson_collection(description, env['ORIGINAL_FULLPATH'].to_s, matching_records, page, per))
         end
         format.csv do
           render csv: csv_string, filename: 'author_report', chunked: true
@@ -106,7 +106,7 @@ class PublicationsController < ApplicationController
 
     respond_to do |format|
       format.json do
-        self.response_body =  Yajl::Encoder.enum_for(:encode, wrap_as_bibjson_collection(description, env['ORIGINAL_FULLPATH'].to_s, all_matching_records.lazy))
+        self.response_body =  Yajl::Encoder.enum_for(:encode, wrap_as_bibjson_collection(description, env['ORIGINAL_FULLPATH'].to_s, all_matching_records))
       end
     end
   end
