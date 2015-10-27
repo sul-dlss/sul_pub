@@ -2,16 +2,16 @@
 
 FactoryGirl.define do
   factory :batch_uploaded_source_record do
-    sunet_id "MyString"
+    sunet_id 'MyString'
     author_id 1
     cap_profile_id 1
     successful_import false
-    bibtex_source_data "MyText"
-    source_fingerprint "MyString"
+    bibtex_source_data 'MyText'
+    source_fingerprint 'MyString'
     is_active false
-    title "MyString"
+    title 'MyString'
     year 1
-    batch_name "MyString"
-    error_message "MyText"
+    batch_name 'MyString'
+    error_message 'MyText'
   end
 end

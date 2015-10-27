@@ -16,6 +16,5 @@ class CreatePublications < ActiveRecord::Migration
 
     add_index :publications, :sciencewire_id
     add_index :publications, :pmid
-    
   end
 end

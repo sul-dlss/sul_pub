@@ -1,9 +1,9 @@
 FactoryGirl.define do
   factory :contribution do
-    status "approved"
-    visibility  "public"
+    status 'approved'
+    visibility 'public'
     featured true
-    author 
+    author
     publication
   end
 end

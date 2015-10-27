@@ -1,13 +1,11 @@
 require 'csv'
 
 class RepairMixedAuths
-
   def initialize
-    @logger = Logger.new(Rails.root.join('log', "repair_mixed_auths.log"))
+    @logger = Logger.new(Rails.root.join('log', 'repair_mixed_auths.log'))
     @auths_fixed = 0
     @contribs_fixed = 0
   end
-
 
   def fix(row)
     return if row[:cap_profile_id] == row[:sul_profile_id]
@@ -32,17 +30,17 @@ class RepairMixedAuths
       @contribs_fixed += 1
     end
 
-  rescue ActiveRecord::RecordNotFound => e
+  rescue ActiveRecord::RecordNotFound
     @logger.warn "Author id not found #{auth_id}"
   end
 
   def work
     ActiveRecord::Base.logger.level = 1
     count = 0
-    CSV.foreach(Rails.root.join('authors_with_profiles_utf8.csv'), :headers  => true, :header_converters => :symbol) do |row|
+    CSV.foreach(Rails.root.join('authors_with_profiles_utf8.csv'), headers: true, header_converters: :symbol) do |row|
       begin
         count += 1
-        @logger.info "Processed #{count}" if(count % 100 == 0)
+        @logger.info "Processed #{count}" if (count % 100 == 0)
 
         fix row
       rescue => e
