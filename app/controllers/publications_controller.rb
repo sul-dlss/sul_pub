@@ -135,7 +135,7 @@ class PublicationsController < ApplicationController
     csv_str = CSV.generate do |csv|
       csv << %w(sul_pub_id sciencewire_id pubmed_id doi wos_id title journal year pages issn status_for_this_author contributor_cap_profile_ids)
       author.publications.find_each do |pub|
-        journ = pub.pub_hash[:journal]
+        pub.pub_hash[:journal] ? journ = pub.pub_hash[:journal] : journ = { name: '' }
         contrib_prof_ids = pub.authors.pluck(:cap_profile_id).join(';')
         wos_id = pub.publication_identifiers.where(identifier_type: 'WoSItemID').pluck(:identifier_value).first
         doi = pub.publication_identifiers.where(identifier_type: 'doi').pluck(:identifier_value).first
