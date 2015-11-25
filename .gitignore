@@ -8,8 +8,17 @@
 # Developers add their own, capistrano uses shared dir version
 config/database.yml
 
-# Ignore bundler config
-/.bundle
+# Ignore bundler files
+.bundle/
+.binstubs/
+vendor/
+
+# Ignore gems
+.gems/
+
+# Ignore ctags
+.tags
+.gemtags
 
 # Ignore the default SQLite database.
 /db/*.sqlite3
@@ -30,9 +39,11 @@ coverage
 config/database.yml
 config/cap_auth.yaml
 config/sciencewire_auth.yaml
+README_configs.txt
+
+## Ignore ruby version pins
 .ruby-*
 
 ## Specific to SublimeText:
 *.sublime-project
 *.sublime-workspace
-
