@@ -2,10 +2,19 @@
 ENV['RAILS_ENV'] ||= 'test'
 
 require 'simplecov'
-SimpleCov.start do
-  add_filter '/spec/'
+require 'coveralls'
+SimpleCov.profiles.define 'sul-pub' do
+  add_filter '.gems'
   add_filter '/config/environments/'
+  add_filter 'pkg'
+  add_filter 'spec'
+  add_filter 'vendor'
 end
+SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
+  SimpleCov::Formatter::HTMLFormatter,
+  Coveralls::SimpleCov::Formatter
+]
+SimpleCov.start 'sul-pub'
 
 require File.expand_path('../../config/environment', __FILE__)
 
@@ -13,10 +22,6 @@ ActiveRecord::Migration.maintain_test_schema!
 
 require 'rspec/rails'
 require 'factory_girl_rails'
-
-# Requires supporting ruby files with custom matchers and macros, etc,
-# in spec/support/ and its subdirectories.
-Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
 RSpec.configure do |config|
   config.include RSpec::Rails::RequestExampleGroup, type: :request, file_path: %r{spec/api}
@@ -61,4 +66,17 @@ RSpec.configure do |config|
   #       # Equivalent to being in spec/controllers
   #     end
   config.infer_spec_type_from_file_location!
+end
+
+require 'vcr'
+cassette_ttl = 7 * 24 * 60 * 60  # 7 days, in seconds
+VCR.configure do |c|
+  c.cassette_library_dir = 'fixtures/vcr_cassettes'
+  c.hook_into :webmock
+  c.allow_http_connections_when_no_cassette = true
+  c.default_cassette_options = {
+    :record => :new_episodes,  # :once is default
+    :re_record_interval => cassette_ttl
+  }
+  c.configure_rspec_metadata!
 end

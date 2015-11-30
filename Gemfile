@@ -51,6 +51,7 @@ end
 
 group :test do
   gem 'capybara'
+  gem 'coveralls', require: false
   gem 'simplecov', require: false
   gem 'vcr'
   gem 'webmock', '1.11'
