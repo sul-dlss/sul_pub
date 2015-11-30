@@ -17,7 +17,6 @@ gem 'mysql2'
 gem 'pubmed_search'
 gem 'bio'
 gem 'grape'
-gem 'therubyracer'
 gem 'kaminari'
 gem 'rest-client'
 gem 'citeproc-ruby', '0.0.6'
@@ -32,14 +31,15 @@ gem 'whenever', require: false
 gem 'yajl-ruby', require: 'yajl'
 gem 'turnout'
 gem 'parallel'
-gem 'paper_trail', '4.0.0.rc1'
-
-gem 'libv8', '3.16.14.7' # pin libv8 version to an installable version
+gem 'paper_trail'
+gem 'libv8'
 
 group :development, :test do
   gem 'sqlite3'
   gem 'rspec-rails', '~> 3.0'
   gem 'factory_girl_rails'
+  gem 'pry'
+  gem 'pry-doc'
 end
 
 group :deployment do
@@ -54,7 +54,7 @@ group :test do
   gem 'coveralls', require: false
   gem 'simplecov', require: false
   gem 'vcr'
-  gem 'webmock', '1.11'
+  gem 'webmock'
 end
 
 gem 'jquery-rails'
