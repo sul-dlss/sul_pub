@@ -2,589 +2,44 @@
 http_interactions:
 - request:
     method: post
-    uri: https://stg.sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery?format=xml
-    body:
-      encoding: US-ASCII
-      string: "<?xml version=\"1.0\"?>\n      <ScienceWireQueryXMLParameter xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
-        xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\n      <xmlQuery><![CDATA[\n\t
-        \    <query xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/\n\t
-        \   XMLSchema\">\n\t      <Criterion>\n\t        <Criteria><Criterion>\n\t
-        \           <TextSearch>\n                  <QueryPredicate>(\",\" or \",\")
-        and Stanford</QueryPredicate>\n                  <SearchType>ExactMatch</SearchType>\n
-        \                 <Columns>AggregateText</Columns>\n                  <MaximumRows>200</MaximumRows>\n
-        \                 </TextSearch>\n\t          </Criterion><Criterion>\n      \t
-        \           <Filter>\n      \t              <Column>DocumentCategory</Column>\n
-        \     \t              <Operator>In</Operator>\n                      <Values>\n
-        \     \t                <Value>Journal Document</Value>\n                        <Value>Conference
-        Proceeding Document</Value>\n                      </Values>\n      \t            </Filter>\n
-        \     \t          </Criterion></Criteria>\n\t      </Criterion>\n\t      <Columns>\n\t
-        \       <SortColumn>\n\t          <Column>Rank</Column>\n\t          <Direction>Descending</Direction>\n\t
-        \       </SortColumn>\n\t      </Columns>\n\t     <MaximumRows>200</MaximumRows>\n\t
-        \   </query>\n\t    ]]></xmlQuery>\n      </ScienceWireQueryXMLParameter>"
-    headers:
-      Accept:
-      - "*/*"
-      User-Agent:
-      - Ruby
-      Licenseid:
-      - ***REMOVED***
-      Host:
-      - stg.sciencewirerest.discoverylogic.com
-      Connection:
-      - Keep-Alive
-      Expect:
-      - 100-continue
-      Content-Type:
-      - text/xml
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Cache-Control:
-      - private
-      Content-Type:
-      - application/xml; charset=utf-8
-      Server:
-      - Microsoft-IIS/7.5
-      X-Aspnetmvc-Version:
-      - '2.0'
-      X-Aspnet-Version:
-      - 4.0.30319
-      X-Powered-By:
-      - ASP.NET
-      Date:
-      - Mon, 15 Jun 2015 21:53:23 GMT
-      Content-Length:
-      - '277'
-    body:
-      encoding: US-ASCII
-      string: "<?xml version=\"1.0\"?>\r\n<ScienceWireQueryIDResponse xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
-        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>79590</queryID>\r\n
-        \ <queryResultRows>0</queryResultRows>\r\n  <totalRows>0</totalRows>\r\n</ScienceWireQueryIDResponse>"
-    http_version: 
-  recorded_at: Mon, 15 Jun 2015 21:53:24 GMT
-- request:
-    method: get
-    uri: https://stg.sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/79590?format=xml&page=0&pageSize=2147483647&v=version/3
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - "*/*"
-      User-Agent:
-      - Ruby
-      Content-Type:
-      - text/xml
-      Licenseid:
-      - ***REMOVED***
-      Host:
-      - stg.sciencewirerest.discoverylogic.com
-      Connection:
-      - Keep-Alive
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Cache-Control:
-      - private
-      Content-Type:
-      - application/xml; charset=utf-8
-      Server:
-      - Microsoft-IIS/7.5
-      X-Aspnetmvc-Version:
-      - '2.0'
-      X-Aspnet-Version:
-      - 4.0.30319
-      X-Powered-By:
-      - ASP.NET
-      Date:
-      - Mon, 15 Jun 2015 21:53:24 GMT
-      Content-Length:
-      - '148'
-    body:
-      encoding: US-ASCII
-      string: "<?xml version=\"1.0\"?>\r\n<ArrayOfPublicationItem xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
-        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" />"
-    http_version: 
-  recorded_at: Mon, 15 Jun 2015 21:53:24 GMT
-- request:
-    method: post
-    uri: https://stg.sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery?format=xml
-    body:
-      encoding: US-ASCII
-      string: "<?xml version=\"1.0\"?>\n      <ScienceWireQueryXMLParameter xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
-        xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\n      <xmlQuery><![CDATA[\n\t
-        \    <query xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/\n\t
-        \   XMLSchema\">\n\t      <Criterion>\n\t        <Criteria><Criterion>\n\t
-        \           <TextSearch>\n                  <QueryPredicate>(\",\" or \",\")
-        and Stanford</QueryPredicate>\n                  <SearchType>ExactMatch</SearchType>\n
-        \                 <Columns>AggregateText</Columns>\n                  <MaximumRows>200</MaximumRows>\n
-        \                 </TextSearch>\n\t          </Criterion><Criterion>\n      \t
-        \           <Filter>\n      \t              <Column>DocumentCategory</Column>\n
-        \     \t              <Operator>In</Operator>\n                      <Values>\n
-        \     \t                <Value>Journal Document</Value>\n                        <Value>Conference
-        Proceeding Document</Value>\n                      </Values>\n      \t            </Filter>\n
-        \     \t          </Criterion></Criteria>\n\t      </Criterion>\n\t      <Columns>\n\t
-        \       <SortColumn>\n\t          <Column>Rank</Column>\n\t          <Direction>Descending</Direction>\n\t
-        \       </SortColumn>\n\t      </Columns>\n\t     <MaximumRows>200</MaximumRows>\n\t
-        \   </query>\n\t    ]]></xmlQuery>\n      </ScienceWireQueryXMLParameter>"
-    headers:
-      Accept:
-      - "*/*"
-      User-Agent:
-      - Ruby
-      Licenseid:
-      - ***REMOVED***
-      Host:
-      - stg.sciencewirerest.discoverylogic.com
-      Connection:
-      - Keep-Alive
-      Expect:
-      - 100-continue
-      Content-Type:
-      - text/xml
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Cache-Control:
-      - private
-      Content-Type:
-      - application/xml; charset=utf-8
-      Server:
-      - Microsoft-IIS/7.5
-      X-Aspnetmvc-Version:
-      - '2.0'
-      X-Aspnet-Version:
-      - 4.0.30319
-      X-Powered-By:
-      - ASP.NET
-      Date:
-      - Mon, 15 Jun 2015 21:53:24 GMT
-      Content-Length:
-      - '277'
-    body:
-      encoding: US-ASCII
-      string: "<?xml version=\"1.0\"?>\r\n<ScienceWireQueryIDResponse xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
-        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>79590</queryID>\r\n
-        \ <queryResultRows>0</queryResultRows>\r\n  <totalRows>0</totalRows>\r\n</ScienceWireQueryIDResponse>"
-    http_version: 
-  recorded_at: Mon, 15 Jun 2015 21:53:24 GMT
-- request:
-    method: get
-    uri: https://stg.sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/79590?format=xml&page=0&pageSize=2147483647&v=version/3
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - "*/*"
-      User-Agent:
-      - Ruby
-      Content-Type:
-      - text/xml
-      Licenseid:
-      - ***REMOVED***
-      Host:
-      - stg.sciencewirerest.discoverylogic.com
-      Connection:
-      - Keep-Alive
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Cache-Control:
-      - private
-      Content-Type:
-      - application/xml; charset=utf-8
-      Server:
-      - Microsoft-IIS/7.5
-      X-Aspnetmvc-Version:
-      - '2.0'
-      X-Aspnet-Version:
-      - 4.0.30319
-      X-Powered-By:
-      - ASP.NET
-      Date:
-      - Mon, 15 Jun 2015 21:53:24 GMT
-      Content-Length:
-      - '148'
-    body:
-      encoding: US-ASCII
-      string: "<?xml version=\"1.0\"?>\r\n<ArrayOfPublicationItem xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
-        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" />"
-    http_version: 
-  recorded_at: Mon, 15 Jun 2015 21:53:25 GMT
-- request:
-    method: post
-    uri: https://stg.sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery?format=xml
-    body:
-      encoding: US-ASCII
-      string: "<?xml version=\"1.0\"?>\n      <ScienceWireQueryXMLParameter xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
-        xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\n      <xmlQuery><![CDATA[\n\t
-        \    <query xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/\n\t
-        \   XMLSchema\">\n\t      <Criterion>\n\t        <Criteria><Criterion>\n\t
-        \           <TextSearch>\n                  <QueryPredicate>(\",\" or \",\")
-        and Stanford</QueryPredicate>\n                  <SearchType>ExactMatch</SearchType>\n
-        \                 <Columns>AggregateText</Columns>\n                  <MaximumRows>200</MaximumRows>\n
-        \                 </TextSearch>\n\t          </Criterion><Criterion>\n      \t
-        \           <Filter>\n      \t              <Column>DocumentCategory</Column>\n
-        \     \t              <Operator>In</Operator>\n                      <Values>\n
-        \     \t                <Value>Journal Document</Value>\n                        <Value>Conference
-        Proceeding Document</Value>\n                      </Values>\n      \t            </Filter>\n
-        \     \t          </Criterion></Criteria>\n\t      </Criterion>\n\t      <Columns>\n\t
-        \       <SortColumn>\n\t          <Column>Rank</Column>\n\t          <Direction>Descending</Direction>\n\t
-        \       </SortColumn>\n\t      </Columns>\n\t     <MaximumRows>200</MaximumRows>\n\t
-        \   </query>\n\t    ]]></xmlQuery>\n      </ScienceWireQueryXMLParameter>"
-    headers:
-      Accept:
-      - "*/*"
-      User-Agent:
-      - Ruby
-      Licenseid:
-      - ***REMOVED***
-      Host:
-      - stg.sciencewirerest.discoverylogic.com
-      Connection:
-      - Keep-Alive
-      Expect:
-      - 100-continue
-      Content-Type:
-      - text/xml
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Cache-Control:
-      - private
-      Content-Type:
-      - application/xml; charset=utf-8
-      Server:
-      - Microsoft-IIS/7.5
-      X-Aspnetmvc-Version:
-      - '2.0'
-      X-Aspnet-Version:
-      - 4.0.30319
-      X-Powered-By:
-      - ASP.NET
-      Date:
-      - Mon, 15 Jun 2015 21:53:25 GMT
-      Content-Length:
-      - '277'
-    body:
-      encoding: US-ASCII
-      string: "<?xml version=\"1.0\"?>\r\n<ScienceWireQueryIDResponse xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
-        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>79590</queryID>\r\n
-        \ <queryResultRows>0</queryResultRows>\r\n  <totalRows>0</totalRows>\r\n</ScienceWireQueryIDResponse>"
-    http_version: 
-  recorded_at: Mon, 15 Jun 2015 21:53:25 GMT
-- request:
-    method: get
-    uri: https://stg.sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/79590?format=xml&page=0&pageSize=2147483647&v=version/3
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - "*/*"
-      User-Agent:
-      - Ruby
-      Content-Type:
-      - text/xml
-      Licenseid:
-      - ***REMOVED***
-      Host:
-      - stg.sciencewirerest.discoverylogic.com
-      Connection:
-      - Keep-Alive
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Cache-Control:
-      - private
-      Content-Type:
-      - application/xml; charset=utf-8
-      Server:
-      - Microsoft-IIS/7.5
-      X-Aspnetmvc-Version:
-      - '2.0'
-      X-Aspnet-Version:
-      - 4.0.30319
-      X-Powered-By:
-      - ASP.NET
-      Date:
-      - Mon, 15 Jun 2015 21:53:25 GMT
-      Content-Length:
-      - '148'
-    body:
-      encoding: US-ASCII
-      string: "<?xml version=\"1.0\"?>\r\n<ArrayOfPublicationItem xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
-        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" />"
-    http_version: 
-  recorded_at: Mon, 15 Jun 2015 21:53:25 GMT
-- request:
-    method: get
-    uri: https://stg.sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationItems?format=xml&publicationItemIDs=
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - "*/*"
-      User-Agent:
-      - Ruby
-      Content-Type:
-      - text/xml
-      Licenseid:
-      - ***REMOVED***
-      Host:
-      - stg.sciencewirerest.discoverylogic.com
-      Connection:
-      - Keep-Alive
-  response:
-    status:
-      code: 500
-      message: Internal Server Error
-    headers:
-      Cache-Control:
-      - private
-      Content-Type:
-      - text/html
-      Server:
-      - Microsoft-IIS/7.5
-      X-Aspnetmvc-Version:
-      - '2.0'
-      X-Aspnet-Version:
-      - 4.0.30319
-      X-Powered-By:
-      - ASP.NET
-      Date:
-      - Mon, 15 Jun 2015 21:53:25 GMT
-      Content-Length:
-      - '1208'
-    body:
-      encoding: US-ASCII
-      string: "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\r\n<html
-        xmlns=\"http://www.w3.org/1999/xhtml\">\r\n<head>\r\n<meta http-equiv=\"Content-Type\"
-        content=\"text/html; charset=iso-8859-1\"/>\r\n<title>500 - Internal server
-        error.</title>\r\n<style type=\"text/css\">\r\n<!--\r\nbody{margin:0;font-size:.7em;font-family:Verdana,
-        Arial, Helvetica, sans-serif;background:#EEEEEE;}\r\nfieldset{padding:0 15px
-        10px 15px;} \r\nh1{font-size:2.4em;margin:0;color:#FFF;}\r\nh2{font-size:1.7em;margin:0;color:#CC0000;}
-        \r\nh3{font-size:1.2em;margin:10px 0 0 0;color:#000000;} \r\n#header{width:96%;margin:0
-        0 0 0;padding:6px 2% 6px 2%;font-family:\"trebuchet MS\", Verdana, sans-serif;color:#FFF;\r\nbackground-color:#555555;}\r\n#content{margin:0
-        0 0 2%;position:relative;}\r\n.content-container{background:#FFF;width:96%;margin-top:8px;padding:10px;position:relative;}\r\n-->\r\n</style>\r\n</head>\r\n<body>\r\n<div
-        id=\"header\"><h1>Server Error</h1></div>\r\n<div id=\"content\">\r\n <div
-        class=\"content-container\"><fieldset>\r\n  <h2>500 - Internal server error.</h2>\r\n
-        \ <h3>There is a problem with the resource you are looking for, and it cannot
-        be displayed.</h3>\r\n </fieldset></div>\r\n</div>\r\n</body>\r\n</html>\r\n"
-    http_version: 
-  recorded_at: Mon, 15 Jun 2015 21:53:26 GMT
-- request:
-    method: get
-    uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/?format=xml&page=0&pageSize=2147483647&v=version/3
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - "*/*"
-      User-Agent:
-      - Ruby
-      Content-Type:
-      - text/xml
-      Licenseid:
-      - some-license-id
-      Host:
-      - sciencewirerest.discoverylogic.com
-      Connection:
-      - Keep-Alive
-  response:
-    status:
-      code: 500
-      message: Internal Server Error
-    headers:
-      Cache-Control:
-      - private
-      Content-Type:
-      - text/html
-      Server:
-      - Microsoft-IIS/7.5
-      X-Aspnetmvc-Version:
-      - '2.0'
-      X-Aspnet-Version:
-      - 4.0.30319
-      X-Powered-By:
-      - ASP.NET
-      Date:
-      - Mon, 29 Jun 2015 15:51:27 GMT
-      Content-Length:
-      - '1208'
-    body:
-      encoding: UTF-8
-      string: "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\r\n<html
-        xmlns=\"http://www.w3.org/1999/xhtml\">\r\n<head>\r\n<meta http-equiv=\"Content-Type\"
-        content=\"text/html; charset=iso-8859-1\"/>\r\n<title>500 - Internal server
-        error.</title>\r\n<style type=\"text/css\">\r\n<!--\r\nbody{margin:0;font-size:.7em;font-family:Verdana,
-        Arial, Helvetica, sans-serif;background:#EEEEEE;}\r\nfieldset{padding:0 15px
-        10px 15px;} \r\nh1{font-size:2.4em;margin:0;color:#FFF;}\r\nh2{font-size:1.7em;margin:0;color:#CC0000;}
-        \r\nh3{font-size:1.2em;margin:10px 0 0 0;color:#000000;} \r\n#header{width:96%;margin:0
-        0 0 0;padding:6px 2% 6px 2%;font-family:\"trebuchet MS\", Verdana, sans-serif;color:#FFF;\r\nbackground-color:#555555;}\r\n#content{margin:0
-        0 0 2%;position:relative;}\r\n.content-container{background:#FFF;width:96%;margin-top:8px;padding:10px;position:relative;}\r\n-->\r\n</style>\r\n</head>\r\n<body>\r\n<div
-        id=\"header\"><h1>Server Error</h1></div>\r\n<div id=\"content\">\r\n <div
-        class=\"content-container\"><fieldset>\r\n  <h2>500 - Internal server error.</h2>\r\n
-        \ <h3>There is a problem with the resource you are looking for, and it cannot
-        be displayed.</h3>\r\n </fieldset></div>\r\n</div>\r\n</body>\r\n</html>\r\n"
-    http_version: 
-  recorded_at: Mon, 29 Jun 2015 15:51:27 GMT
-- request:
-    method: get
-    uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/?format=xml&page=0&pageSize=2147483647&v=version/3
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - "*/*"
-      User-Agent:
-      - Ruby
-      Content-Type:
-      - text/xml
-      Licenseid:
-      - some-license-id
-      Host:
-      - sciencewirerest.discoverylogic.com
-      Connection:
-      - Keep-Alive
-  response:
-    status:
-      code: 500
-      message: Internal Server Error
-    headers:
-      Cache-Control:
-      - private
-      Content-Type:
-      - text/html
-      Server:
-      - Microsoft-IIS/7.5
-      X-Aspnetmvc-Version:
-      - '2.0'
-      X-Aspnet-Version:
-      - 4.0.30319
-      X-Powered-By:
-      - ASP.NET
-      Date:
-      - Mon, 29 Jun 2015 15:51:27 GMT
-      Content-Length:
-      - '1208'
-    body:
-      encoding: UTF-8
-      string: "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\r\n<html
-        xmlns=\"http://www.w3.org/1999/xhtml\">\r\n<head>\r\n<meta http-equiv=\"Content-Type\"
-        content=\"text/html; charset=iso-8859-1\"/>\r\n<title>500 - Internal server
-        error.</title>\r\n<style type=\"text/css\">\r\n<!--\r\nbody{margin:0;font-size:.7em;font-family:Verdana,
-        Arial, Helvetica, sans-serif;background:#EEEEEE;}\r\nfieldset{padding:0 15px
-        10px 15px;} \r\nh1{font-size:2.4em;margin:0;color:#FFF;}\r\nh2{font-size:1.7em;margin:0;color:#CC0000;}
-        \r\nh3{font-size:1.2em;margin:10px 0 0 0;color:#000000;} \r\n#header{width:96%;margin:0
-        0 0 0;padding:6px 2% 6px 2%;font-family:\"trebuchet MS\", Verdana, sans-serif;color:#FFF;\r\nbackground-color:#555555;}\r\n#content{margin:0
-        0 0 2%;position:relative;}\r\n.content-container{background:#FFF;width:96%;margin-top:8px;padding:10px;position:relative;}\r\n-->\r\n</style>\r\n</head>\r\n<body>\r\n<div
-        id=\"header\"><h1>Server Error</h1></div>\r\n<div id=\"content\">\r\n <div
-        class=\"content-container\"><fieldset>\r\n  <h2>500 - Internal server error.</h2>\r\n
-        \ <h3>There is a problem with the resource you are looking for, and it cannot
-        be displayed.</h3>\r\n </fieldset></div>\r\n</div>\r\n</body>\r\n</html>\r\n"
-    http_version: 
-  recorded_at: Mon, 29 Jun 2015 15:51:28 GMT
-- request:
-    method: get
-    uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/?format=xml&page=0&pageSize=2147483647&v=version/3
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - "*/*"
-      User-Agent:
-      - Ruby
-      Content-Type:
-      - text/xml
-      Licenseid:
-      - some-license-id
-      Host:
-      - sciencewirerest.discoverylogic.com
-      Connection:
-      - Keep-Alive
-  response:
-    status:
-      code: 500
-      message: Internal Server Error
-    headers:
-      Cache-Control:
-      - private
-      Content-Type:
-      - text/html
-      Server:
-      - Microsoft-IIS/7.5
-      X-Aspnetmvc-Version:
-      - '2.0'
-      X-Aspnet-Version:
-      - 4.0.30319
-      X-Powered-By:
-      - ASP.NET
-      Date:
-      - Mon, 29 Jun 2015 15:51:29 GMT
-      Content-Length:
-      - '1208'
-    body:
-      encoding: UTF-8
-      string: "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\r\n<html
-        xmlns=\"http://www.w3.org/1999/xhtml\">\r\n<head>\r\n<meta http-equiv=\"Content-Type\"
-        content=\"text/html; charset=iso-8859-1\"/>\r\n<title>500 - Internal server
-        error.</title>\r\n<style type=\"text/css\">\r\n<!--\r\nbody{margin:0;font-size:.7em;font-family:Verdana,
-        Arial, Helvetica, sans-serif;background:#EEEEEE;}\r\nfieldset{padding:0 15px
-        10px 15px;} \r\nh1{font-size:2.4em;margin:0;color:#FFF;}\r\nh2{font-size:1.7em;margin:0;color:#CC0000;}
-        \r\nh3{font-size:1.2em;margin:10px 0 0 0;color:#000000;} \r\n#header{width:96%;margin:0
-        0 0 0;padding:6px 2% 6px 2%;font-family:\"trebuchet MS\", Verdana, sans-serif;color:#FFF;\r\nbackground-color:#555555;}\r\n#content{margin:0
-        0 0 2%;position:relative;}\r\n.content-container{background:#FFF;width:96%;margin-top:8px;padding:10px;position:relative;}\r\n-->\r\n</style>\r\n</head>\r\n<body>\r\n<div
-        id=\"header\"><h1>Server Error</h1></div>\r\n<div id=\"content\">\r\n <div
-        class=\"content-container\"><fieldset>\r\n  <h2>500 - Internal server error.</h2>\r\n
-        \ <h3>There is a problem with the resource you are looking for, and it cannot
-        be displayed.</h3>\r\n </fieldset></div>\r\n</div>\r\n</body>\r\n</html>\r\n"
-    http_version: 
-  recorded_at: Mon, 29 Jun 2015 15:51:29 GMT
-- request:
-    method: post
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery?format=xml
     body:
       encoding: UTF-8
-      string: "<?xml version=\"1.0\"?>\n      <ScienceWireQueryXMLParameter xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
-        xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\n      <xmlQuery><![CDATA[\n\t
-        \    <query xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/\n\t
-        \   XMLSchema\">\n\t      <Criterion>\n\t        <Criteria><Criterion>\n\t
-        \           <TextSearch>\n                  <QueryPredicate>(\",\" or \",\")
-        and Stanford</QueryPredicate>\n                  <SearchType>ExactMatch</SearchType>\n
-        \                 <Columns>AggregateText</Columns>\n                  <MaximumRows>200</MaximumRows>\n
-        \                 </TextSearch>\n\t          </Criterion><Criterion>\n      \t
-        \           <Filter>\n      \t              <Column>DocumentCategory</Column>\n
-        \     \t              <Operator>In</Operator>\n                      <Values>\n
-        \     \t                <Value>Journal Document</Value>\n                        <Value>Conference
-        Proceeding Document</Value>\n                      </Values>\n      \t            </Filter>\n
-        \     \t          </Criterion></Criteria>\n\t      </Criterion>\n\t      <Columns>\n\t
-        \       <SortColumn>\n\t          <Column>Rank</Column>\n\t          <Direction>Descending</Direction>\n\t
-        \       </SortColumn>\n\t      </Columns>\n\t     <MaximumRows>200</MaximumRows>\n\t
-        \   </query>\n\t    ]]></xmlQuery>\n      </ScienceWireQueryXMLParameter>"
+      string: |-
+        <?xml version="1.0"?>
+              <ScienceWireQueryXMLParameter xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+              <xmlQuery><![CDATA[
+               <query xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/
+              XMLSchema">
+                <Criterion>
+                  <Criteria><Criterion>
+                      <TextSearch>
+                          <QueryPredicate>("," or ",") and Stanford</QueryPredicate>
+                          <SearchType>ExactMatch</SearchType>
+                          <Columns>AggregateText</Columns>
+                          <MaximumRows>200</MaximumRows>
+                          </TextSearch>
+                    </Criterion><Criterion>
+                            <Filter>
+                              <Column>DocumentCategory</Column>
+                              <Operator>In</Operator>
+                              <Values>
+                                <Value>Journal Document</Value>
+                                <Value>Conference Proceeding Document</Value>
+                              </Values>
+                            </Filter>
+                          </Criterion></Criteria>
+                </Criterion>
+                <Columns>
+                  <SortColumn>
+                    <Column>Rank</Column>
+                    <Direction>Descending</Direction>
+                  </SortColumn>
+                </Columns>
+               <MaximumRows>200</MaximumRows>
+              </query>
+              ]]></xmlQuery>
+              </ScienceWireQueryXMLParameter>
     headers:
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
@@ -595,7 +50,7 @@ http_interactions:
       Licenseid:
       - ***REMOVED***
       Host:
-      - sciencewirerest.discoverylogic.com
+      - stg.sciencewirerest.discoverylogic.com
       Connection:
       - Keep-Alive
       Expect:
@@ -620,7 +75,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Mon, 29 Jun 2015 16:47:25 GMT
+      - Tue, 01 Dec 2015 19:07:18 GMT
       Content-Length:
       - '278'
     body:
@@ -629,7 +84,7 @@ http_interactions:
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>111021</queryID>\r\n
         \ <queryResultRows>0</queryResultRows>\r\n  <totalRows>0</totalRows>\r\n</ScienceWireQueryIDResponse>"
     http_version: 
-  recorded_at: Mon, 29 Jun 2015 16:47:26 GMT
+  recorded_at: Tue, 01 Dec 2015 19:07:19 GMT
 - request:
     method: get
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/111021?format=xml&page=0&pageSize=2147483647&v=version/3
@@ -648,7 +103,7 @@ http_interactions:
       Licenseid:
       - ***REMOVED***
       Host:
-      - sciencewirerest.discoverylogic.com
+      - stg.sciencewirerest.discoverylogic.com
       Connection:
       - Keep-Alive
   response:
@@ -669,7 +124,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Mon, 29 Jun 2015 16:47:27 GMT
+      - Tue, 01 Dec 2015 19:07:18 GMT
       Content-Length:
       - '148'
     body:
@@ -677,28 +132,47 @@ http_interactions:
       string: "<?xml version=\"1.0\"?>\r\n<ArrayOfPublicationItem xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" />"
     http_version: 
-  recorded_at: Mon, 29 Jun 2015 16:47:27 GMT
+  recorded_at: Tue, 01 Dec 2015 19:07:19 GMT
 - request:
     method: post
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery?format=xml
     body:
       encoding: UTF-8
-      string: "<?xml version=\"1.0\"?>\n      <ScienceWireQueryXMLParameter xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
-        xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\n      <xmlQuery><![CDATA[\n\t
-        \    <query xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/\n\t
-        \   XMLSchema\">\n\t      <Criterion>\n\t        <Criteria><Criterion>\n\t
-        \           <TextSearch>\n                  <QueryPredicate>(\",\" or \",\")
-        and Stanford</QueryPredicate>\n                  <SearchType>ExactMatch</SearchType>\n
-        \                 <Columns>AggregateText</Columns>\n                  <MaximumRows>200</MaximumRows>\n
-        \                 </TextSearch>\n\t          </Criterion><Criterion>\n      \t
-        \           <Filter>\n      \t              <Column>DocumentCategory</Column>\n
-        \     \t              <Operator>In</Operator>\n                      <Values>\n
-        \     \t                <Value>Journal Document</Value>\n                        <Value>Conference
-        Proceeding Document</Value>\n                      </Values>\n      \t            </Filter>\n
-        \     \t          </Criterion></Criteria>\n\t      </Criterion>\n\t      <Columns>\n\t
-        \       <SortColumn>\n\t          <Column>Rank</Column>\n\t          <Direction>Descending</Direction>\n\t
-        \       </SortColumn>\n\t      </Columns>\n\t     <MaximumRows>200</MaximumRows>\n\t
-        \   </query>\n\t    ]]></xmlQuery>\n      </ScienceWireQueryXMLParameter>"
+      string: |-
+        <?xml version="1.0"?>
+              <ScienceWireQueryXMLParameter xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+              <xmlQuery><![CDATA[
+               <query xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/
+              XMLSchema">
+                <Criterion>
+                  <Criteria><Criterion>
+                      <TextSearch>
+                          <QueryPredicate>("," or ",") and Stanford</QueryPredicate>
+                          <SearchType>ExactMatch</SearchType>
+                          <Columns>AggregateText</Columns>
+                          <MaximumRows>200</MaximumRows>
+                          </TextSearch>
+                    </Criterion><Criterion>
+                            <Filter>
+                              <Column>DocumentCategory</Column>
+                              <Operator>In</Operator>
+                              <Values>
+                                <Value>Journal Document</Value>
+                                <Value>Conference Proceeding Document</Value>
+                              </Values>
+                            </Filter>
+                          </Criterion></Criteria>
+                </Criterion>
+                <Columns>
+                  <SortColumn>
+                    <Column>Rank</Column>
+                    <Direction>Descending</Direction>
+                  </SortColumn>
+                </Columns>
+               <MaximumRows>200</MaximumRows>
+              </query>
+              ]]></xmlQuery>
+              </ScienceWireQueryXMLParameter>
     headers:
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
@@ -709,7 +183,7 @@ http_interactions:
       Licenseid:
       - ***REMOVED***
       Host:
-      - sciencewirerest.discoverylogic.com
+      - stg.sciencewirerest.discoverylogic.com
       Connection:
       - Keep-Alive
       Expect:
@@ -734,7 +208,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Mon, 29 Jun 2015 16:47:27 GMT
+      - Tue, 01 Dec 2015 19:07:20 GMT
       Content-Length:
       - '278'
     body:
@@ -743,7 +217,7 @@ http_interactions:
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>111021</queryID>\r\n
         \ <queryResultRows>0</queryResultRows>\r\n  <totalRows>0</totalRows>\r\n</ScienceWireQueryIDResponse>"
     http_version: 
-  recorded_at: Mon, 29 Jun 2015 16:47:27 GMT
+  recorded_at: Tue, 01 Dec 2015 19:07:20 GMT
 - request:
     method: get
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/111021?format=xml&page=0&pageSize=2147483647&v=version/3
@@ -762,7 +236,7 @@ http_interactions:
       Licenseid:
       - ***REMOVED***
       Host:
-      - sciencewirerest.discoverylogic.com
+      - stg.sciencewirerest.discoverylogic.com
       Connection:
       - Keep-Alive
   response:
@@ -783,7 +257,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Mon, 29 Jun 2015 16:47:27 GMT
+      - Tue, 01 Dec 2015 19:07:20 GMT
       Content-Length:
       - '148'
     body:
@@ -791,28 +265,47 @@ http_interactions:
       string: "<?xml version=\"1.0\"?>\r\n<ArrayOfPublicationItem xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" />"
     http_version: 
-  recorded_at: Mon, 29 Jun 2015 16:47:27 GMT
+  recorded_at: Tue, 01 Dec 2015 19:07:20 GMT
 - request:
     method: post
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery?format=xml
     body:
       encoding: UTF-8
-      string: "<?xml version=\"1.0\"?>\n      <ScienceWireQueryXMLParameter xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
-        xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\n      <xmlQuery><![CDATA[\n\t
-        \    <query xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/\n\t
-        \   XMLSchema\">\n\t      <Criterion>\n\t        <Criteria><Criterion>\n\t
-        \           <TextSearch>\n                  <QueryPredicate>(\",\" or \",\")
-        and Stanford</QueryPredicate>\n                  <SearchType>ExactMatch</SearchType>\n
-        \                 <Columns>AggregateText</Columns>\n                  <MaximumRows>200</MaximumRows>\n
-        \                 </TextSearch>\n\t          </Criterion><Criterion>\n      \t
-        \           <Filter>\n      \t              <Column>DocumentCategory</Column>\n
-        \     \t              <Operator>In</Operator>\n                      <Values>\n
-        \     \t                <Value>Journal Document</Value>\n                        <Value>Conference
-        Proceeding Document</Value>\n                      </Values>\n      \t            </Filter>\n
-        \     \t          </Criterion></Criteria>\n\t      </Criterion>\n\t      <Columns>\n\t
-        \       <SortColumn>\n\t          <Column>Rank</Column>\n\t          <Direction>Descending</Direction>\n\t
-        \       </SortColumn>\n\t      </Columns>\n\t     <MaximumRows>200</MaximumRows>\n\t
-        \   </query>\n\t    ]]></xmlQuery>\n      </ScienceWireQueryXMLParameter>"
+      string: |-
+        <?xml version="1.0"?>
+              <ScienceWireQueryXMLParameter xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+              <xmlQuery><![CDATA[
+               <query xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/
+              XMLSchema">
+                <Criterion>
+                  <Criteria><Criterion>
+                      <TextSearch>
+                          <QueryPredicate>("," or ",") and Stanford</QueryPredicate>
+                          <SearchType>ExactMatch</SearchType>
+                          <Columns>AggregateText</Columns>
+                          <MaximumRows>200</MaximumRows>
+                          </TextSearch>
+                    </Criterion><Criterion>
+                            <Filter>
+                              <Column>DocumentCategory</Column>
+                              <Operator>In</Operator>
+                              <Values>
+                                <Value>Journal Document</Value>
+                                <Value>Conference Proceeding Document</Value>
+                              </Values>
+                            </Filter>
+                          </Criterion></Criteria>
+                </Criterion>
+                <Columns>
+                  <SortColumn>
+                    <Column>Rank</Column>
+                    <Direction>Descending</Direction>
+                  </SortColumn>
+                </Columns>
+               <MaximumRows>200</MaximumRows>
+              </query>
+              ]]></xmlQuery>
+              </ScienceWireQueryXMLParameter>
     headers:
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
@@ -823,7 +316,7 @@ http_interactions:
       Licenseid:
       - ***REMOVED***
       Host:
-      - sciencewirerest.discoverylogic.com
+      - stg.sciencewirerest.discoverylogic.com
       Connection:
       - Keep-Alive
       Expect:
@@ -848,7 +341,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Mon, 29 Jun 2015 16:47:28 GMT
+      - Tue, 01 Dec 2015 19:07:20 GMT
       Content-Length:
       - '278'
     body:
@@ -857,7 +350,7 @@ http_interactions:
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>111021</queryID>\r\n
         \ <queryResultRows>0</queryResultRows>\r\n  <totalRows>0</totalRows>\r\n</ScienceWireQueryIDResponse>"
     http_version: 
-  recorded_at: Mon, 29 Jun 2015 16:47:28 GMT
+  recorded_at: Tue, 01 Dec 2015 19:07:20 GMT
 - request:
     method: get
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/111021?format=xml&page=0&pageSize=2147483647&v=version/3
@@ -876,7 +369,7 @@ http_interactions:
       Licenseid:
       - ***REMOVED***
       Host:
-      - sciencewirerest.discoverylogic.com
+      - stg.sciencewirerest.discoverylogic.com
       Connection:
       - Keep-Alive
   response:
@@ -897,7 +390,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Mon, 29 Jun 2015 16:47:28 GMT
+      - Tue, 01 Dec 2015 19:07:20 GMT
       Content-Length:
       - '148'
     body:
@@ -905,7 +398,7 @@ http_interactions:
       string: "<?xml version=\"1.0\"?>\r\n<ArrayOfPublicationItem xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" />"
     http_version: 
-  recorded_at: Mon, 29 Jun 2015 16:47:28 GMT
+  recorded_at: Tue, 01 Dec 2015 19:07:21 GMT
 - request:
     method: get
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationItems?format=xml&publicationItemIDs=
@@ -924,7 +417,7 @@ http_interactions:
       Licenseid:
       - ***REMOVED***
       Host:
-      - sciencewirerest.discoverylogic.com
+      - stg.sciencewirerest.discoverylogic.com
       Connection:
       - Keep-Alive
   response:
@@ -945,7 +438,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Mon, 29 Jun 2015 16:47:28 GMT
+      - Tue, 01 Dec 2015 19:07:20 GMT
       Content-Length:
       - '1208'
     body:
@@ -964,7 +457,7 @@ http_interactions:
         \ <h3>There is a problem with the resource you are looking for, and it cannot
         be displayed.</h3>\r\n </fieldset></div>\r\n</div>\r\n</body>\r\n</html>\r\n"
     http_version: 
-  recorded_at: Mon, 29 Jun 2015 16:47:28 GMT
+  recorded_at: Tue, 01 Dec 2015 19:07:21 GMT
 - request:
     method: post
     uri: http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml
@@ -984,7 +477,7 @@ http_interactions:
       message: Bad Request
     headers:
       Date:
-      - Mon, 29 Jun 2015 16:47:29 GMT
+      - Tue, 01 Dec 2015 19:07:21 GMT
       Server:
       - Apache
       Access-Control-Allow-Origin:
@@ -992,12 +485,12 @@ http_interactions:
       Cache-Control:
       - private
       Ncbi-Sid:
-      - 73BF667E59176A11_0304SID
+      - 9DFD046865DEFE91_0426SID
       Content-Type:
       - text/xml; charset=UTF-8
       Set-Cookie:
-      - ncbi_sid=73BF667E59176A11_0304SID; domain=.nih.gov; path=/; expires=Wed, 29
-        Jun 2016 16:47:29 GMT
+      - ncbi_sid=9DFD046865DEFE91_0426SID; domain=.nih.gov; path=/; expires=Thu, 01
+        Dec 2016 19:07:21 GMT
       X-Ua-Compatible:
       - IE=Edge
       Connection:
@@ -1010,5 +503,5 @@ http_interactions:
         PUBLIC \"-//NLM//DTD efetch 20131226//EN\" \"http://eutils.ncbi.nlm.nih.gov/eutils/dtd/20131226/efetch.dtd\">\n<eFetchResult>\n\t<ERROR>WebEnv
         parameter is required</ERROR>\n</eFetchResult>\n"
     http_version: 
-  recorded_at: Mon, 29 Jun 2015 16:47:29 GMT
-recorded_with: VCR 2.5.0
+  recorded_at: Tue, 01 Dec 2015 19:07:21 GMT
+recorded_with: VCR 2.9.3

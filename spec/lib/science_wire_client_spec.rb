@@ -1,19 +1,19 @@
 require 'spec_helper'
 
 describe ScienceWireClient do
-  let(:science_wire_client) { ScienceWireClient.new }
+  let(:sw_client) { ScienceWireClient.new }
   describe '#query_sciencewire_by_author_name' do
     context 'with common last name, first name' do
       it 'returns a list of 12 sciencewire ids' do
         VCR.use_cassette('sciencewire_client_spec_returns_list_of_4') do
-          expect(science_wire_client.query_sciencewire_by_author_name('james', '', 'smith').size).to eq(10)
+          expect(sw_client.query_sciencewire_by_author_name('james', '', 'smith').size).to eq(10)
         end
       end
     end
     context 'with uncommon last name, first name, and max rows 4' do
       it 'returns an empty array' do
         VCR.use_cassette('sciencewire_client_spec_returns_empty_array') do
-          expect(science_wire_client.query_sciencewire_by_author_name('yukon', '', 'ottawa', 4).size).to eq(0)
+          expect(sw_client.query_sciencewire_by_author_name('yukon', '', 'ottawa', 4).size).to eq(0)
         end
       end
     end
@@ -25,7 +25,7 @@ describe ScienceWireClient do
         seeds = [5_199_247, 7_877_232, 844_542, 1_178_390, 29_434_219, 30_072_480, 30_502_634, 46_558_063, 31_222_988]
 
         expect(
-          science_wire_client
+          sw_client
             .get_sciencewire_id_suggestions('edler', 'alice', '', 'alice.edler@stanford.edu', seeds).size)
           .to be >= 4
       end
@@ -42,9 +42,9 @@ describe ScienceWireClient do
                  36_208_464, 35_640_871, 23_804_292, 22_654_678, 17_870_903, 23_364_040, 45_141_719, 64_799_575, 65_697_723, 66_020_502, 67_583_123]
 
         expect(
-          science_wire_client
+          sw_client
             .get_sciencewire_id_suggestions('benson', 'sally', '', 'smbenson@stanford.edu', seeds).size)
-          .to be >= 111
+          .to be >= 100
       end
     end
   end
@@ -52,7 +52,7 @@ describe ScienceWireClient do
   describe '#get_full_sciencewire_pubs_for_wos_ids' do
     it 'returns a Nokogiri::XML::Document containing all SW pubs when passed an array of WebOfScience ids' do
       VCR.use_cassette('sciencewire_client_spec_gets_sw_pubs_with_wos_ids') do
-        doc = science_wire_client.get_full_sciencewire_pubs_for_wos_ids(%w(000318550800072 000317872800004 000317717300006))
+        doc = sw_client.get_full_sciencewire_pubs_for_wos_ids(%w(000318550800072 000317872800004 000317717300006))
         expect(doc).to be_a(Nokogiri::XML::Document)
         expect(doc.xpath('//PublicationItem').size).to eq(3)
       end
@@ -62,7 +62,7 @@ describe ScienceWireClient do
   describe '#get_pub_by_doi' do
     it 'returns an array with one pubhash' do
       VCR.use_cassette('sciencewire_client_spec_get_pub_by_doi') do
-        result = science_wire_client.get_pub_by_doi '10.1111/j.1444-0938.2010.00524.x'
+        result = sw_client.get_pub_by_doi '10.1111/j.1444-0938.2010.00524.x'
         expect(result).to be_an(Array)
         expect(result.first[:sw_id]).to eq('37929883')
       end

@@ -28,7 +28,6 @@ gem 'dotiw'
 gem 'high_voltage'
 gem 'is_it_working-cbeer', require: 'is_it_working'
 gem 'whenever', require: false
-gem 'yajl-ruby', require: 'yajl'
 gem 'turnout'
 gem 'parallel'
 gem 'paper_trail'

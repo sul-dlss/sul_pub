@@ -1,108 +1,176 @@
 require 'spec_helper'
 
 describe SulBib::API do
-  let(:publication_with_test_title) { create :publication, title: 'pathological' }
+  let(:capkey) { { 'HTTP_CAPKEY' => '***REMOVED***' } }
+  let(:headers) { capkey.merge({ 'CONTENT_TYPE' => 'application/json' }) }
   let(:publication) { create :publication }
   let(:author) { create :author }
-  let(:headers) { { 'HTTP_CAPKEY' => '***REMOVED***', 'CONTENT_TYPE' => 'application/json' } }
-  let(:valid_json_for_post) { { title: 'some title', year: 1938, author: [{ name: 'jackson joe' }], authorship: [{ sul_author_id: author.id, status: 'denied', visibility: 'public', featured: true }] }.to_json }
+  let(:test_title) {'pathological'}
+  let(:publication_with_test_title) { create :publication, title: test_title }
+  let(:sourcelookup_path) {'/publications/sourcelookup'}
+  let(:sourcelookup_by_title) {
+    publication_with_test_title
+    VCR.use_cassette('publications_api_sourcelookup_test_title') do
+      params = { format: 'json', title: test_title, maxrows: 2 }
+      get sourcelookup_path, params, capkey
+      expect(response.status).to eq(200)
+      JSON.parse(response.body)
+    end
+  }
+  let(:test_doi) {'10.1016/j.mcn.2012.03.008'}
+  let(:sourcelookup_by_doi) {
+    VCR.use_cassette('publications_api_sourcelookup_test_doi') do
+      params = { format: 'json', doi: test_doi }
+      get sourcelookup_path, params, capkey
+      expect(response.status).to eq(200)
+      JSON.parse(response.body)
+    end
+  }
+  let(:valid_json_for_post) {
+    {
+      title: 'some title',
+      year: 1938,
+      author: [
+        {
+          name: 'jackson joe'
+        }
+      ],
+      authorship: [
+        {
+          sul_author_id: author.id,
+          status: 'denied',
+          visibility: 'public',
+          featured: true
+        }
+      ]
+    }.to_json
+  }
 
   describe 'GET /publications/sourcelookup ' do
+
     it 'raises an error when title and doi are not sent' do
       expect do
-        get '/publications/sourcelookup', {},
-            'HTTP_CAPKEY' => '***REMOVED***'
+        get sourcelookup_path, {}, capkey
       end.to raise_error ActionController::ParameterMissing
     end
 
     describe '?doi' do
       it 'returns one document ' do
-        VCR.use_cassette('sourcelookup_spec_doi') do
-          get '/publications/sourcelookup?doi=10.1016/j.mcn.2012.03.007',
-              { format: 'json' },
-              'HTTP_CAPKEY' => '***REMOVED***'
-
-          expect(response.status).to eq(200)
-          result = JSON.parse(response.body)
+        # VCR.use_cassette('sourcelookup_spec_doi') do
+          result = sourcelookup_by_doi
           expect(result['metadata']['records']).to eq('1')
-          expect(result['records'].first['sw_id']).to eq('60813767')
-        end
+          expect(result['records'].first['sw_id']).to eq('60830932')
+        # end
       end
 
       it 'does not query sciencewire if there is an existing publication with the doi' do
-        VCR.use_cassette('sourcelookup_spec_doi_local_manual_found') do
-          publication.pub_hash = { identifier: [{ type: 'doi', id: '10.1016/j.mcn.2012.03.008', url: 'http://dx.doi.org/10.1016/j.mcn.2012.03.008' }] }
+        # VCR.use_cassette('sourcelookup_spec_doi_local_manual_found') do
+          publication.pub_hash = {
+            identifier: [
+              {
+                type: 'doi',
+                id: test_doi,
+                url: "http://dx.doi.org/#{test_doi}"
+              }
+            ]
+          }
           publication.sync_identifiers_in_pub_hash_to_db
-
-          get '/publications/sourcelookup?doi=10.1016/j.mcn.2012.03.008',
-              { format: 'json' },
-              'HTTP_CAPKEY' => '***REMOVED***'
-
-          expect(response.status).to eq(200)
-          result = JSON.parse(response.body)
+          result = sourcelookup_by_doi
+          expect(result['metadata']).to include('records')
           expect(result['metadata']['records']).to eq('1')
-          expect(result['records'].first['title']).to match(/Protein kinase C alpha/i)
-          expect(result['records'].first['provenance']).to match(/sciencewire/)
-        end
+          record = result['records'].first
+          expect(record['title']).to match(/Protein kinase C alpha/i)
+          expect(record['provenance']).to match(/sciencewire/)
+        # end
       end
     end
 
     describe '?pmid' do
       it 'returns one document' do
-        VCR.use_cassette('sourcelookup_spec_pmid') do
-          get '/publications/sourcelookup?pmid=24196758',
-              { format: 'json' },
-              headers
-
-          expect(response.status).to eq(200)
-          result = JSON.parse(response.body)
-          expect(result['metadata']['records']).to eq('1')
-          expect(result['records'].first['provenance']).to eq 'sciencewire'
-          expect(result['records'].first['chicago_citation']).to match(/Sittig/)
-        end
+        path = '/publications/sourcelookup'
+        params = { format: 'json', pmid: '24196758' }
+        get path, params, capkey
+        expect(response.status).to eq(200)
+        result = JSON.parse(response.body)
+        expect(result['metadata']).to include('records')
+        expect(result['metadata']['records']).to eq('1')
+        record = result['records'].first
+        expect(record).to include('provenance')
+        expect(record['provenance']).to eq 'sciencewire'
+        expect(record).to include('chicago_citation')
+        expect(record['chicago_citation']).to match(/Sittig/)
       end
     end
 
-    it ' returns bibjson with metadata section ' do
-      get '/publications/sourcelookup?title=pathological&maxrows=2',
-          { format: 'json' },
-          headers
+    describe '?title=' do
 
-      result = JSON.parse(response.body)
+      describe 'returns bibjson' do
+        it 'with metadata section' do
+          result = sourcelookup_by_title
+          expect(result).to include('metadata')
+          expect(result['metadata']).not_to be_empty
+        end
+        it 'with records section' do
+          result = sourcelookup_by_title
+          expect(result).to include('records')
+          expect(result['records']).not_to be_empty
+        end
+      end
 
-      expect(result['metadata']).to be
+      it 'with maxrows number of records' do
+        params = { format: 'json', title: test_title, maxrows: 5 }
+        get sourcelookup_path, params, capkey
+        expect(response.status).to eq(200)
+        result = JSON.parse(response.body)
+        expect(result['records'].length).to eq(5)
+      end
+
+      it 'does a sciencewire title search' do
+        # VCR.use_cassette('publications_api_sourcelookup_title') do
+          title = 'lung cancer treatment'
+          params = { format: 'json', title: title }
+          get sourcelookup_path, params, capkey
+          expect(response.status).to eq(200)
+          result = JSON.parse(response.body)
+          expect(result['metadata']['records']).to eq('20')
+        # end
+      end
+
+      it 'returns results that match the requested title' do
+        result = sourcelookup_by_title
+        expect(result).to include('records')
+        expect(result['records']).not_to be_empty
+        records = result['records']
+        matches = records.count {|r| r['title'] =~ /#{test_title}/i }
+        expect(matches).to eq(records.count) # ALL records match
+      end
+
+      it 'returns results that match the requested year' do
+        year = 2015.to_s
+        params = { format: 'json', title: test_title, year: year}
+        get sourcelookup_path, params, capkey
+        expect(response.status).to eq(200)
+        result = JSON.parse(response.body)
+        expect(result).to include('records')
+        expect(result['records']).not_to be_empty
+        records = result['records']
+        matches = records.count {|r| r['year'] == year }
+        expect(matches).to eq(records.count) # ALL records match
+      end
+
     end
 
-    it ' returns bibjson with results section ' do
-      skip
-      get '/publications/sourcelookup?title=pathological&maxrows=2',
-          { format: 'json' },
-          headers
-      result = JSON.parse(response.body)
-      expect(result['records']).to be
-    end
-
-    it ' returns bibjson with maxrows number of results  ' do
-      skip
-      get '/publications/sourcelookup?title=pathological&maxrows=5',
-          { format: 'json' },
-          headers
-      expect(response.status).to eq(200)
-      expect(JSON.parse(response.body)['records'].length).to eq(5)
-    end
-
+    # TODO: discriminate between sciencewire and local somehow?
     it 'returns results from sciencewire'
     it 'returns results from local pubs'
-    it 'returns combined results from sciencewire and local pubs' do
-      publication_with_test_title
-      get '/publications/sourcelookup?title=pathological',
-          { format: 'json' },
-          headers
-      expect(JSON.parse(response.body)).to be
-    end
+    it 'returns combined results from sciencewire and local pubs'
+    # it 'returns combined results from sciencewire and local pubs' do
+    #   skip
+    #   publication_with_test_title
+    #   result = sourcelookup_by_title
+    #   expect(result).to include('records')
+    #   # binding.pry
+    # end
 
-    it 'returns results that match the requested title'
-
-    it 'returns results that match the requested year'
   end
 end

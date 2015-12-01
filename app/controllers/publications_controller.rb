@@ -55,7 +55,8 @@ class PublicationsController < ApplicationController
 
       respond_to do |format|
         format.json do
-          self.response_body = Yajl::Encoder.enum_for(:encode, wrap_as_bibjson_collection(description, env['ORIGINAL_FULLPATH'].to_s, matching_records, page, per))
+          bibjson = wrap_as_bibjson_collection(description, env['ORIGINAL_FULLPATH'].to_s, matching_records, page, per)
+          self.response_body = JSON.dump(bibjson)
         end
         format.csv do
           render csv: csv_string, filename: 'author_report', chunked: true
@@ -101,12 +102,16 @@ class PublicationsController < ApplicationController
         all_matching_records += results.map(&:publication)
       end
     end
+    # When params[:maxrows] is nil, rows is -1 and returns everything
+    rows = params[:maxrows].to_i - 1
+    matching_records = all_matching_records[0..rows]
 
-    description = "Search results from requested sources: #{sources.join(',')}"
+    description = "Search results from requested sources: #{sources.join(', ')}"
 
     respond_to do |format|
       format.json do
-        self.response_body =  Yajl::Encoder.enum_for(:encode, wrap_as_bibjson_collection(description, env['ORIGINAL_FULLPATH'].to_s, all_matching_records))
+        bibjson = wrap_as_bibjson_collection(description, env['ORIGINAL_FULLPATH'].to_s, matching_records)
+        self.response_body = JSON.dump(bibjson)
       end
     end
   end

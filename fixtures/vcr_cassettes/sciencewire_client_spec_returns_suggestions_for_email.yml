@@ -2,146 +2,6 @@
 http_interactions:
 - request:
     method: post
-    uri: https://stg.sciencewirerest.discoverylogic.com/PublicationCatalog/MatchedPublicationItemIdsForAuthor?format=xml
-    body:
-      encoding: US-ASCII
-      string: |-
-        <?xml version='1.0'?>
-              <PublicationAuthorMatchParameters xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema'>
-                <Authors>
-                  <Author>
-                    <LastName>edler</LastName>
-                    <FirstName>alice</FirstName>
-                    <MiddleName></MiddleName>
-                    <City>Stanford</City>
-                    <State>CA</State>
-                    <Country>USA</Country>
-                    <Version>1</Version>
-                 </Author>
-              </Authors>
-              <DocumentCategory>Journal Document</DocumentCategory>
-              <Emails>
-                          <string>alice.edler@stanford.edu</string>
-                        </Emails><PublicationItemIds><int>5199247</int><int>7877232</int><int>844542</int><int>1178390</int><int>29434219</int><int>30072480</int><int>30502634</int><int>46558063</int><int>31222988</int></PublicationItemIds><LimitToHighQualityMatchesOnly>true</LimitToHighQualityMatchesOnly></PublicationAuthorMatchParameters>
-    headers:
-      Accept:
-      - "*/*"
-      User-Agent:
-      - Ruby
-      Licenseid:
-      - ***REMOVED***
-      Host:
-      - stg.sciencewirerest.discoverylogic.com
-      Connection:
-      - Keep-Alive
-      Expect:
-      - 100-continue
-      Content-Type:
-      - text/xml
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Cache-Control:
-      - private
-      Content-Type:
-      - application/xml; charset=utf-8
-      Server:
-      - Microsoft-IIS/7.5
-      X-Aspnetmvc-Version:
-      - '2.0'
-      X-Aspnet-Version:
-      - 4.0.30319
-      X-Powered-By:
-      - ASP.NET
-      Date:
-      - Mon, 15 Jun 2015 21:53:05 GMT
-      Content-Length:
-      - '875'
-    body:
-      encoding: US-ASCII
-      string: "<?xml version=\"1.0\"?>\r\n<ArrayOfItemMatchResult xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
-        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <ItemMatchResult>\r\n
-        \   <MatchRank>1</MatchRank>\r\n    <PublicationItemID>29352378</PublicationItemID>\r\n
-        \   <MatchScore>1.2708333730697632</MatchScore>\r\n  </ItemMatchResult>\r\n
-        \ <ItemMatchResult>\r\n    <MatchRank>2</MatchRank>\r\n    <PublicationItemID>29187981</PublicationItemID>\r\n
-        \   <MatchScore>0.99060600996017456</MatchScore>\r\n  </ItemMatchResult>\r\n
-        \ <ItemMatchResult>\r\n    <MatchRank>3</MatchRank>\r\n    <PublicationItemID>46795732</PublicationItemID>\r\n
-        \   <MatchScore>0.5175514817237854</MatchScore>\r\n  </ItemMatchResult>\r\n
-        \ <ItemMatchResult>\r\n    <MatchRank>4</MatchRank>\r\n    <PublicationItemID>47593787</PublicationItemID>\r\n
-        \   <MatchScore>0.49674057960510254</MatchScore>\r\n  </ItemMatchResult>\r\n</ArrayOfItemMatchResult>"
-    http_version: 
-  recorded_at: Mon, 15 Jun 2015 21:53:05 GMT
-- request:
-    method: post
-    uri: https://stg.sciencewirerest.discoverylogic.com/PublicationCatalog/MatchedPublicationItemIdsForAuthor?format=xml
-    body:
-      encoding: US-ASCII
-      string: |-
-        <?xml version='1.0'?>
-              <PublicationAuthorMatchParameters xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema'>
-                <Authors>
-                  <Author>
-                    <LastName>edler</LastName>
-                    <FirstName>alice</FirstName>
-                    <MiddleName></MiddleName>
-                    <City>Stanford</City>
-                    <State>CA</State>
-                    <Country>USA</Country>
-                    <Version>1</Version>
-                 </Author>
-              </Authors>
-              <DocumentCategory>Conference Proceeding Document</DocumentCategory>
-              <Emails>
-                          <string>alice.edler@stanford.edu</string>
-                        </Emails><PublicationItemIds><int>5199247</int><int>7877232</int><int>844542</int><int>1178390</int><int>29434219</int><int>30072480</int><int>30502634</int><int>46558063</int><int>31222988</int></PublicationItemIds><LimitToHighQualityMatchesOnly>true</LimitToHighQualityMatchesOnly></PublicationAuthorMatchParameters>
-    headers:
-      Accept:
-      - "*/*"
-      User-Agent:
-      - Ruby
-      Licenseid:
-      - ***REMOVED***
-      Host:
-      - stg.sciencewirerest.discoverylogic.com
-      Connection:
-      - Keep-Alive
-      Expect:
-      - 100-continue
-      Content-Type:
-      - text/xml
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Cache-Control:
-      - private
-      Content-Type:
-      - application/xml; charset=utf-8
-      Server:
-      - Microsoft-IIS/7.5
-      X-Aspnetmvc-Version:
-      - '2.0'
-      X-Aspnet-Version:
-      - 4.0.30319
-      X-Powered-By:
-      - ASP.NET
-      Date:
-      - Mon, 15 Jun 2015 21:53:05 GMT
-      Content-Length:
-      - '349'
-    body:
-      encoding: US-ASCII
-      string: "<?xml version=\"1.0\"?>\r\n<ArrayOfItemMatchResult xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
-        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <ItemMatchResult>\r\n
-        \   <MatchRank>1</MatchRank>\r\n    <PublicationItemID>10389828</PublicationItemID>\r\n
-        \   <MatchScore>0.34762454032897949</MatchScore>\r\n  </ItemMatchResult>\r\n</ArrayOfItemMatchResult>"
-    http_version: 
-  recorded_at: Mon, 15 Jun 2015 21:53:06 GMT
-- request:
-    method: post
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/MatchedPublicationItemIdsForAuthor?format=xml
     body:
       encoding: UTF-8
@@ -173,7 +33,7 @@ http_interactions:
       Licenseid:
       - ***REMOVED***
       Host:
-      - sciencewirerest.discoverylogic.com
+      - stg.sciencewirerest.discoverylogic.com
       Connection:
       - Keep-Alive
       Expect:
@@ -198,9 +58,9 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Mon, 29 Jun 2015 16:53:11 GMT
+      - Tue, 01 Dec 2015 19:06:39 GMT
       Content-Length:
-      - '875'
+      - '872'
     body:
       encoding: UTF-8
       string: "<?xml version=\"1.0\"?>\r\n<ArrayOfItemMatchResult xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
@@ -208,13 +68,13 @@ http_interactions:
         \   <MatchRank>1</MatchRank>\r\n    <PublicationItemID>29352378</PublicationItemID>\r\n
         \   <MatchScore>1.2708333730697632</MatchScore>\r\n  </ItemMatchResult>\r\n
         \ <ItemMatchResult>\r\n    <MatchRank>2</MatchRank>\r\n    <PublicationItemID>29187981</PublicationItemID>\r\n
-        \   <MatchScore>0.99072802066802979</MatchScore>\r\n  </ItemMatchResult>\r\n
+        \   <MatchScore>0.991500735282898</MatchScore>\r\n  </ItemMatchResult>\r\n
         \ <ItemMatchResult>\r\n    <MatchRank>3</MatchRank>\r\n    <PublicationItemID>46795732</PublicationItemID>\r\n
-        \   <MatchScore>0.51769149303436279</MatchScore>\r\n  </ItemMatchResult>\r\n
+        \   <MatchScore>0.51869171857833862</MatchScore>\r\n  </ItemMatchResult>\r\n
         \ <ItemMatchResult>\r\n    <MatchRank>4</MatchRank>\r\n    <PublicationItemID>47593787</PublicationItemID>\r\n
-        \   <MatchScore>0.4968426525592804</MatchScore>\r\n  </ItemMatchResult>\r\n</ArrayOfItemMatchResult>"
+        \   <MatchScore>0.497712105512619</MatchScore>\r\n  </ItemMatchResult>\r\n</ArrayOfItemMatchResult>"
     http_version: 
-  recorded_at: Mon, 29 Jun 2015 16:53:12 GMT
+  recorded_at: Tue, 01 Dec 2015 19:06:39 GMT
 - request:
     method: post
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/MatchedPublicationItemIdsForAuthor?format=xml
@@ -248,7 +108,7 @@ http_interactions:
       Licenseid:
       - ***REMOVED***
       Host:
-      - sciencewirerest.discoverylogic.com
+      - stg.sciencewirerest.discoverylogic.com
       Connection:
       - Keep-Alive
       Expect:
@@ -273,7 +133,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Mon, 29 Jun 2015 16:53:12 GMT
+      - Tue, 01 Dec 2015 19:06:39 GMT
       Content-Length:
       - '349'
     body:
@@ -281,7 +141,7 @@ http_interactions:
       string: "<?xml version=\"1.0\"?>\r\n<ArrayOfItemMatchResult xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <ItemMatchResult>\r\n
         \   <MatchRank>1</MatchRank>\r\n    <PublicationItemID>10389828</PublicationItemID>\r\n
-        \   <MatchScore>0.34773862361907959</MatchScore>\r\n  </ItemMatchResult>\r\n</ArrayOfItemMatchResult>"
+        \   <MatchScore>0.34899818897247314</MatchScore>\r\n  </ItemMatchResult>\r\n</ArrayOfItemMatchResult>"
     http_version: 
-  recorded_at: Mon, 29 Jun 2015 16:53:12 GMT
-recorded_with: VCR 2.5.0
+  recorded_at: Tue, 01 Dec 2015 19:06:39 GMT
+recorded_with: VCR 2.9.3

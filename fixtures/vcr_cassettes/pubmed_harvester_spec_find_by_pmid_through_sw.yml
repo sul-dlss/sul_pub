@@ -2,376 +2,33 @@
 http_interactions:
 - request:
     method: post
-    uri: https://stg.sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery?format=xml
-    body:
-      encoding: US-ASCII
-      string: "<?xml version=\"1.0\"?>\n      <ScienceWireQueryXMLParameter xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
-        xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\n      <xmlQuery>&lt;query
-        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"&gt;\n\t
-        \           &lt;Criterion ConjunctionOperator=\"AND\"&gt;\n\t              &lt;Criteria&gt;\n\t
-        \               &lt;Criterion&gt;\n\t                  &lt;Filter&gt;\n\t
-        \                   &lt;Column&gt;PMID&lt;/Column&gt;\n\t                    &lt;Operator&gt;In&lt;/Operator&gt;\n\t
-        \                   &lt;Values&gt;&lt;Value&gt;10487815&lt;/Value&gt;&lt;/Values&gt;\n\t
-        \                 &lt;/Filter&gt;\n\t                &lt;/Criterion&gt;\n\t
-        \             &lt;/Criteria&gt;\n\t            &lt;/Criterion&gt;\n\t            &lt;Columns&gt;\n\t
-        \             &lt;SortColumn&gt;\n\t                &lt;Column&gt;Rank&lt;/Column&gt;\n\t
-        \               &lt;Direction&gt;Descending&lt;/Direction&gt;\n\t              &lt;/SortColumn&gt;\n\t
-        \           &lt;/Columns&gt;\n\t            &lt;MaximumRows&gt;1000&lt;/MaximumRows&gt;\n\t
-        \         &lt;/query&gt;</xmlQuery>\n      </ScienceWireQueryXMLParameter>"
-    headers:
-      Accept:
-      - "*/*"
-      User-Agent:
-      - Ruby
-      Licenseid:
-      - ***REMOVED***
-      Host:
-      - stg.sciencewirerest.discoverylogic.com
-      Connection:
-      - Keep-Alive
-      Expect:
-      - 100-continue
-      Content-Type:
-      - text/xml
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Cache-Control:
-      - private
-      Content-Type:
-      - application/xml; charset=utf-8
-      Server:
-      - Microsoft-IIS/7.5
-      X-Aspnetmvc-Version:
-      - '2.0'
-      X-Aspnet-Version:
-      - 4.0.30319
-      X-Powered-By:
-      - ASP.NET
-      Date:
-      - Mon, 15 Jun 2015 21:53:08 GMT
-      Content-Length:
-      - '277'
-    body:
-      encoding: US-ASCII
-      string: "<?xml version=\"1.0\"?>\r\n<ScienceWireQueryIDResponse xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
-        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>94512</queryID>\r\n
-        \ <queryResultRows>1</queryResultRows>\r\n  <totalRows>1</totalRows>\r\n</ScienceWireQueryIDResponse>"
-    http_version: 
-  recorded_at: Mon, 15 Jun 2015 21:53:08 GMT
-- request:
-    method: get
-    uri: https://stg.sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/94512?format=xml&page=0&pageSize=2147483647&v=version/3
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - "*/*"
-      User-Agent:
-      - Ruby
-      Content-Type:
-      - text/xml
-      Licenseid:
-      - ***REMOVED***
-      Host:
-      - stg.sciencewirerest.discoverylogic.com
-      Connection:
-      - Keep-Alive
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Cache-Control:
-      - private
-      Content-Type:
-      - application/xml; charset=utf-8
-      Server:
-      - Microsoft-IIS/7.5
-      X-Aspnetmvc-Version:
-      - '2.0'
-      X-Aspnet-Version:
-      - 4.0.30319
-      X-Powered-By:
-      - ASP.NET
-      Date:
-      - Mon, 15 Jun 2015 21:53:08 GMT
-      Content-Length:
-      - '4218'
-    body:
-      encoding: US-ASCII
-      string: "<?xml version=\"1.0\"?>\r\n<ArrayOfPublicationItem xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
-        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <PublicationItem>\r\n
-        \   <PublicationItemID>10340243</PublicationItemID>\r\n    <Title>Convergence
-        and correlations among leaf size and function in seed plants: A comparative
-        test using independent contrasts</Title>\r\n    <Abstract>Prior studies of
-        a broad array of seed plants have reported strong correlations among leaf
-        life span, specific leaf area, nitrogen concentration, and carbon assimilation
-        rates, which have been interpreted as evidence of coordinated leaf physiological
-        strategies. However, it is not known whether these relationships reflect patterns
-        of evolutionary convergence, or whether they are due to contrasting characteristics
-        of major seed plant lineages. We reevaluated a published data set for these
-        seven traits measured in over 100 species, using phylogenetic independent
-        contrasts calculated over a range of alternative seed plant phylogenies derived
-        from recent molecular systematic analyses. In general, pairwise correlations
-        among these seven traits were similar with and without consideration of phylogeny,
-        and results were robust over a range of alternative phylogenies. We also evaluated
-        relationships between these seven traits and lamina area, another important
-        aspect of leaf function, and found moderate correlations with specific leaf
-        area (0.64), mass-based photosynthesis (0.54), area-based nitrogen (-0.56),
-        and leaf life span (-0.42). However, several of these correlations were markedly
-        reduced using independent contrasts; for example, the correlation between
-        leaf life span and lamina area was reduced to close to zero. This change reflects
-        the large differences in both these traits between conifers and angiosperms
-        and the absence of a relationship between the traits within these groups.
-        This analysis illustrates that most interspecific relationships among leaf
-        functional traits, considered across a broad range of seed plant taxa, reflect
-        significant patterns of correlated evolutionary change, lending further support
-        to the adaptive interpretation of these relationships.</Abstract>\r\n    <AuthorList>Ackerly,D,D|Reich,P,B</AuthorList>\r\n
-        \   <AuthorCount>2</AuthorCount>\r\n    <KeywordList>PROGRESS REPORT|DATA
-        SETS|RBCL|PHYLOGENY|LIFE-SPAN|CROWN ARCHITECTURE|SEQUENCE DATA|TROPICAL TREES|CORNERS
-        RULES|TAXONOMIC RELATEDNESS|independent contrasts|specific leaf area|comparative
-        method|photosynthesis|leaf size|leaf life span|seed plants|correlated evolution</KeywordList>\r\n
-        \   <DocumentTypeList>Article</DocumentTypeList>\r\n    <DocumentCategory>Journal
-        Document</DocumentCategory>\r\n    <NumberOfReferences>65</NumberOfReferences>\r\n
-        \   <TimesCited>151</TimesCited>\r\n    <TimesNotSelfCited>133</TimesNotSelfCited>\r\n
-        \   <PMID>10487815</PMID>\r\n    <WoSItemID>000082779300008</WoSItemID>\r\n
-        \   <PublicationSourceTitle>AMERICAN JOURNAL OF BOTANY</PublicationSourceTitle>\r\n
-        \   <Volume>86</Volume>\r\n    <Issue>9</Issue>\r\n    <Pagination>1272-1281</Pagination>\r\n
-        \   <PublicationDate>1999-09-01T00:00:00</PublicationDate>\r\n    <PublicationYear>1999</PublicationYear>\r\n
-        \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Plant
-        Sciences</PublicationSubjectCategoryList>\r\n    <ISSN>0002-9122</ISSN>\r\n
-        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
-        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>0</OrdinalRank>\r\n
-        \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
-        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>BOTANICAL
-        SOC AMER INC</CopyrightPublisher>\r\n    <CopyrightCity>ST LOUIS</CopyrightCity>\r\n
-        \   <PublicationImpactFactorList>2.383,1999,ExactPublicationYear|2.463,2013,MostRecentYear</PublicationImpactFactorList>\r\n
-        \   <PublicationCategoryRankingList>18/136;PLANT SCIENCES;1999;SC;ExactPublicationYear|52/199;PLANT
-        SCIENCES;2013;SC;MostRecentYear</PublicationCategoryRankingList>\r\n    <AuthorCitationCountList>1,8,143|2,10,141</AuthorCitationCountList>\r\n
-        \   <CopyrightStateProvince>MO</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
-        STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n</ArrayOfPublicationItem>"
-    http_version: 
-  recorded_at: Mon, 15 Jun 2015 21:53:09 GMT
-- request:
-    method: get
-    uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/?format=xml&page=0&pageSize=2147483647&v=version/3
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - "*/*"
-      User-Agent:
-      - Ruby
-      Content-Type:
-      - text/xml
-      Licenseid:
-      - some-license-id
-      Host:
-      - sciencewirerest.discoverylogic.com
-      Connection:
-      - Keep-Alive
-  response:
-    status:
-      code: 500
-      message: Internal Server Error
-    headers:
-      Cache-Control:
-      - private
-      Content-Type:
-      - text/html
-      Server:
-      - Microsoft-IIS/7.5
-      X-Aspnetmvc-Version:
-      - '2.0'
-      X-Aspnet-Version:
-      - 4.0.30319
-      X-Powered-By:
-      - ASP.NET
-      Date:
-      - Mon, 29 Jun 2015 15:51:11 GMT
-      Content-Length:
-      - '1208'
-    body:
-      encoding: UTF-8
-      string: "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\r\n<html
-        xmlns=\"http://www.w3.org/1999/xhtml\">\r\n<head>\r\n<meta http-equiv=\"Content-Type\"
-        content=\"text/html; charset=iso-8859-1\"/>\r\n<title>500 - Internal server
-        error.</title>\r\n<style type=\"text/css\">\r\n<!--\r\nbody{margin:0;font-size:.7em;font-family:Verdana,
-        Arial, Helvetica, sans-serif;background:#EEEEEE;}\r\nfieldset{padding:0 15px
-        10px 15px;} \r\nh1{font-size:2.4em;margin:0;color:#FFF;}\r\nh2{font-size:1.7em;margin:0;color:#CC0000;}
-        \r\nh3{font-size:1.2em;margin:10px 0 0 0;color:#000000;} \r\n#header{width:96%;margin:0
-        0 0 0;padding:6px 2% 6px 2%;font-family:\"trebuchet MS\", Verdana, sans-serif;color:#FFF;\r\nbackground-color:#555555;}\r\n#content{margin:0
-        0 0 2%;position:relative;}\r\n.content-container{background:#FFF;width:96%;margin-top:8px;padding:10px;position:relative;}\r\n-->\r\n</style>\r\n</head>\r\n<body>\r\n<div
-        id=\"header\"><h1>Server Error</h1></div>\r\n<div id=\"content\">\r\n <div
-        class=\"content-container\"><fieldset>\r\n  <h2>500 - Internal server error.</h2>\r\n
-        \ <h3>There is a problem with the resource you are looking for, and it cannot
-        be displayed.</h3>\r\n </fieldset></div>\r\n</div>\r\n</body>\r\n</html>\r\n"
-    http_version: 
-  recorded_at: Mon, 29 Jun 2015 15:51:11 GMT
-- request:
-    method: post
-    uri: http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml
-    body:
-      encoding: UTF-8
-      string: "&id=10487815"
-    headers:
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - "*/*"
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Mon, 29 Jun 2015 15:51:11 GMT
-      Server:
-      - Apache
-      Access-Control-Allow-Origin:
-      - "*"
-      Cache-Control:
-      - private
-      Ncbi-Sid:
-      - 73BF7D33591696F1_0854SID
-      Content-Type:
-      - text/xml; charset=UTF-8
-      Set-Cookie:
-      - ncbi_sid=73BF7D33591696F1_0854SID; domain=.nih.gov; path=/; expires=Wed, 29
-        Jun 2016 15:51:11 GMT
-      X-Ua-Compatible:
-      - IE=Edge
-      Transfer-Encoding:
-      - chunked
-    body:
-      encoding: UTF-8
-      string: |
-        <?xml version="1.0"?>
-        <!DOCTYPE PubmedArticleSet PUBLIC "-//NLM//DTD PubMedArticle, 1st January 2015//EN" "http://www.ncbi.nlm.nih.gov/corehtml/query/DTD/pubmed_150101.dtd">
-        <PubmedArticleSet>
-        <PubmedArticle>
-            <MedlineCitation Owner="NLM" Status="PubMed-not-MEDLINE">
-                <PMID Version="1">10487815</PMID>
-                <DateCreated>
-                    <Year>2011</Year>
-                    <Month>06</Month>
-                    <Day>16</Day>
-                </DateCreated>
-                <DateCompleted>
-                    <Year>2012</Year>
-                    <Month>10</Month>
-                    <Day>02</Day>
-                </DateCompleted>
-                <Article PubModel="Print">
-                    <Journal>
-                        <ISSN IssnType="Print">0002-9122</ISSN>
-                        <JournalIssue CitedMedium="Print">
-                            <Volume>86</Volume>
-                            <Issue>9</Issue>
-                            <PubDate>
-                                <Year>1999</Year>
-                                <Month>Sep</Month>
-                            </PubDate>
-                        </JournalIssue>
-                        <Title>American journal of botany</Title>
-                        <ISOAbbreviation>Am. J. Bot.</ISOAbbreviation>
-                    </Journal>
-                    <ArticleTitle>Convergence and correlations among leaf size and function in seed plants: a comparative test using independent contrasts.</ArticleTitle>
-                    <Pagination>
-                        <MedlinePgn>1272-81</MedlinePgn>
-                    </Pagination>
-                    <Abstract>
-                        <AbstractText>Prior studies of a broad array of seed plants have reported strong correlations among leaf life span, specific leaf area, nitrogen concentration, and carbon assimilation rates, which have been interpreted as evidence of coordinated leaf physiological strategies. However, it is not known whether these relationships reflect patterns of evolutionary convergence, or whether they are due to contrasting characteristics of major seed plant lineages. We reevaluated a published data set for these seven traits measured in over 100 species, using phylogenetic independent contrasts calculated over a range of alternative seed plant phylogenies derived from recent molecular systematic analyses. In general, pairwise correlations among these seven traits were similar with and without consideration of phylogeny, and results were robust over a range of alternative phylogenies. We also evaluated relationships between these seven traits and lamina area, another important aspect of leaf function, and found moderate correlations with specific leaf area (0.64), mass-based photosynthesis (0.54), area-based nitrogen (-0.56), and leaf life span (-0.42). However, several of these correlations were markedly reduced using independent contrasts; for example, the correlation between leaf life span and lamina area was reduced to close to zero. This change reflects the large differences in both these traits between conifers and angiosperms and the absence of a relationship between the traits within these groups. This analysis illustrates that most interspecific relationships among leaf functional traits, considered across a broad range of seed plant taxa, reflect significant patterns of correlated evolutionary change, lending further support to the adaptive interpretation of these relationships.</AbstractText>
-                    </Abstract>
-                    <AuthorList CompleteYN="Y">
-                        <Author ValidYN="Y">
-                            <LastName>Ackerly</LastName>
-                            <ForeName>D D</ForeName>
-                            <Initials>DD</Initials>
-                            <AffiliationInfo>
-                                <Affiliation>Department of Biological Sciences, Stanford University, Stanford, California 94305; and.</Affiliation>
-                            </AffiliationInfo>
-                        </Author>
-                        <Author ValidYN="Y">
-                            <LastName>Reich</LastName>
-                            <ForeName>P B</ForeName>
-                            <Initials>PB</Initials>
-                        </Author>
-                    </AuthorList>
-                    <Language>eng</Language>
-                    <PublicationTypeList>
-                        <PublicationType UI="D016428">Journal Article</PublicationType>
-                    </PublicationTypeList>
-                </Article>
-                <MedlineJournalInfo>
-                    <Country>United States</Country>
-                    <MedlineTA>Am J Bot</MedlineTA>
-                    <NlmUniqueID>0370467</NlmUniqueID>
-                    <ISSNLinking>0002-9122</ISSNLinking>
-                </MedlineJournalInfo>
-            </MedlineCitation>
-            <PubmedData>
-                <History>
-                    <PubMedPubDate PubStatus="pubmed">
-                        <Year>1999</Year>
-                        <Month>9</Month>
-                        <Day>17</Day>
-                        <Hour>0</Hour>
-                        <Minute>0</Minute>
-                    </PubMedPubDate>
-                    <PubMedPubDate PubStatus="medline">
-                        <Year>1999</Year>
-                        <Month>9</Month>
-                        <Day>17</Day>
-                        <Hour>0</Hour>
-                        <Minute>1</Minute>
-                    </PubMedPubDate>
-                    <PubMedPubDate PubStatus="entrez">
-                        <Year>1999</Year>
-                        <Month>9</Month>
-                        <Day>17</Day>
-                        <Hour>0</Hour>
-                        <Minute>0</Minute>
-                    </PubMedPubDate>
-                </History>
-                <PublicationStatus>ppublish</PublicationStatus>
-                <ArticleIdList>
-                    <ArticleId IdType="pii">86/9/1272</ArticleId>
-                    <ArticleId IdType="pubmed">10487815</ArticleId>
-                </ArticleIdList>
-            </PubmedData>
-        </PubmedArticle>
-
-        </PubmedArticleSet>
-    http_version: 
-  recorded_at: Mon, 29 Jun 2015 15:51:12 GMT
-- request:
-    method: post
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery?format=xml
     body:
       encoding: UTF-8
-      string: "<?xml version=\"1.0\"?>\n      <ScienceWireQueryXMLParameter xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
-        xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\n      <xmlQuery>&lt;query
-        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"&gt;\n\t
-        \           &lt;Criterion ConjunctionOperator=\"AND\"&gt;\n\t              &lt;Criteria&gt;\n\t
-        \               &lt;Criterion&gt;\n\t                  &lt;Filter&gt;\n\t
-        \                   &lt;Column&gt;PMID&lt;/Column&gt;\n\t                    &lt;Operator&gt;In&lt;/Operator&gt;\n\t
-        \                   &lt;Values&gt;&lt;Value&gt;10487815&lt;/Value&gt;&lt;/Values&gt;\n\t
-        \                 &lt;/Filter&gt;\n\t                &lt;/Criterion&gt;\n\t
-        \             &lt;/Criteria&gt;\n\t            &lt;/Criterion&gt;\n\t            &lt;Columns&gt;\n\t
-        \             &lt;SortColumn&gt;\n\t                &lt;Column&gt;Rank&lt;/Column&gt;\n\t
-        \               &lt;Direction&gt;Descending&lt;/Direction&gt;\n\t              &lt;/SortColumn&gt;\n\t
-        \           &lt;/Columns&gt;\n\t            &lt;MaximumRows&gt;1000&lt;/MaximumRows&gt;\n\t
-        \         &lt;/query&gt;</xmlQuery>\n      </ScienceWireQueryXMLParameter>"
+      string: |-
+        <?xml version="1.0"?>
+              <ScienceWireQueryXMLParameter xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+              <xmlQuery>&lt;query xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+                      &lt;Criterion ConjunctionOperator="AND"&gt;
+                        &lt;Criteria&gt;
+                          &lt;Criterion&gt;
+                            &lt;Filter&gt;
+                              &lt;Column&gt;PMID&lt;/Column&gt;
+                              &lt;Operator&gt;In&lt;/Operator&gt;
+                              &lt;Values&gt;&lt;Value&gt;10487815&lt;/Value&gt;&lt;/Values&gt;
+                                    &lt;/Filter&gt;
+                                  &lt;/Criterion&gt;
+                                &lt;/Criteria&gt;
+                              &lt;/Criterion&gt;
+                              &lt;Columns&gt;
+                                &lt;SortColumn&gt;
+                                  &lt;Column&gt;Rank&lt;/Column&gt;
+                                  &lt;Direction&gt;Descending&lt;/Direction&gt;
+                                &lt;/SortColumn&gt;
+                              &lt;/Columns&gt;
+                              &lt;MaximumRows&gt;1000&lt;/MaximumRows&gt;
+                            &lt;/query&gt;</xmlQuery>
+              </ScienceWireQueryXMLParameter>
     headers:
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
@@ -382,7 +39,7 @@ http_interactions:
       Licenseid:
       - ***REMOVED***
       Host:
-      - sciencewirerest.discoverylogic.com
+      - stg.sciencewirerest.discoverylogic.com
       Connection:
       - Keep-Alive
       Expect:
@@ -407,7 +64,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Mon, 29 Jun 2015 16:47:47 GMT
+      - Tue, 01 Dec 2015 19:06:31 GMT
       Content-Length:
       - '278'
     body:
@@ -416,7 +73,7 @@ http_interactions:
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>142959</queryID>\r\n
         \ <queryResultRows>1</queryResultRows>\r\n  <totalRows>1</totalRows>\r\n</ScienceWireQueryIDResponse>"
     http_version: 
-  recorded_at: Mon, 29 Jun 2015 16:47:48 GMT
+  recorded_at: Tue, 01 Dec 2015 19:06:31 GMT
 - request:
     method: get
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/142959?format=xml&page=0&pageSize=2147483647&v=version/3
@@ -435,7 +92,7 @@ http_interactions:
       Licenseid:
       - ***REMOVED***
       Host:
-      - sciencewirerest.discoverylogic.com
+      - stg.sciencewirerest.discoverylogic.com
       Connection:
       - Keep-Alive
   response:
@@ -456,7 +113,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Mon, 29 Jun 2015 16:47:48 GMT
+      - Tue, 01 Dec 2015 19:06:32 GMT
       Content-Length:
       - '4218'
     body:
@@ -495,7 +152,7 @@ http_interactions:
         method|photosynthesis|leaf size|leaf life span|seed plants|correlated evolution</KeywordList>\r\n
         \   <DocumentTypeList>Article</DocumentTypeList>\r\n    <DocumentCategory>Journal
         Document</DocumentCategory>\r\n    <NumberOfReferences>65</NumberOfReferences>\r\n
-        \   <TimesCited>153</TimesCited>\r\n    <TimesNotSelfCited>135</TimesNotSelfCited>\r\n
+        \   <TimesCited>157</TimesCited>\r\n    <TimesNotSelfCited>139</TimesNotSelfCited>\r\n
         \   <PMID>10487815</PMID>\r\n    <WoSItemID>000082779300008</WoSItemID>\r\n
         \   <PublicationSourceTitle>AMERICAN JOURNAL OF BOTANY</PublicationSourceTitle>\r\n
         \   <Volume>86</Volume>\r\n    <Issue>9</Issue>\r\n    <Pagination>1272-1281</Pagination>\r\n
@@ -509,9 +166,9 @@ http_interactions:
         SOC AMER INC</CopyrightPublisher>\r\n    <CopyrightCity>ST LOUIS</CopyrightCity>\r\n
         \   <PublicationImpactFactorList>2.383,1999,ExactPublicationYear|2.463,2013,MostRecentYear</PublicationImpactFactorList>\r\n
         \   <PublicationCategoryRankingList>18/136;PLANT SCIENCES;1999;SC;ExactPublicationYear|52/199;PLANT
-        SCIENCES;2013;SC;MostRecentYear</PublicationCategoryRankingList>\r\n    <AuthorCitationCountList>1,8,145|2,10,143</AuthorCitationCountList>\r\n
+        SCIENCES;2013;SC;MostRecentYear</PublicationCategoryRankingList>\r\n    <AuthorCitationCountList>1,8,149|2,10,147</AuthorCitationCountList>\r\n
         \   <CopyrightStateProvince>MO</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
         STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n</ArrayOfPublicationItem>"
     http_version: 
-  recorded_at: Mon, 29 Jun 2015 16:47:48 GMT
-recorded_with: VCR 2.5.0
+  recorded_at: Tue, 01 Dec 2015 19:06:32 GMT
+recorded_with: VCR 2.9.3
