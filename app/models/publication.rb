@@ -357,11 +357,11 @@ class Publication < ActiveRecord::Base
   end
 
   def sciencewire_pub?
-    (pub_hash[:provenance] && pub_hash[:provenance] =~ /sciencewire/i) ? true : false
+    pub_hash[:provenance].to_s.downcase.include?('sciencewire')
   end
 
   def pubmed_pub?
-    (pub_hash[:provenance] && pub_hash[:provenance] =~ /pubmed/i) ? true : false
+    pub_hash[:provenance].to_s.downcase.include?('pubmed')
   end
 
   def authoritative_pmid_source?
