@@ -90,24 +90,20 @@ class Publication < ActiveRecord::Base
     PublicationIdentifier.where(identifier_type: 'pmid', identifier_value: pmid).map(&:publication)
   end
 
-  def self.build_new_manual_publication(provenance, pub_hash, original_source_string)
+  def self.build_new_manual_publication(pub_hash, original_source_string, provenance)
     existingRecord = UserSubmittedSourceRecord.find_or_initialize_by_source_data(original_source_string)
-
     if existingRecord && existingRecord.publication
       fail ActiveRecord::RecordNotUnique.new('Publication for user submitted source record already exists', nil)
     end
-
     pub = Publication.new(
       active: true,
       pub_hash: pub_hash
     )
-
-    pub.update_manual_pub_from_pub_hash(pub_hash, provenance, original_source_string)
-
+    pub.update_manual_pub_from_pub_hash(pub_hash, original_source_string, provenance)
     pub
   end
 
-  def update_manual_pub_from_pub_hash(incoming_pub_hash, provenance, original_source_string)
+  def update_manual_pub_from_pub_hash(incoming_pub_hash, original_source_string, provenance)
     incoming_pub_hash[:provenance] = provenance
     self.pub_hash = incoming_pub_hash.dup
     r = user_submitted_source_records.first || UserSubmittedSourceRecord.find_or_initialize_by_source_data(original_source_string)
@@ -117,13 +113,11 @@ class Publication < ActiveRecord::Base
       title: title,
       year: year
     )
-
     if r.new_record?
       self.user_submitted_source_records = [r]
     else
       r.save
     end
-
     update_any_new_contribution_info_in_pub_hash_to_db
     pubhash_needs_update! if persisted?
     self

@@ -220,47 +220,47 @@ describe Publication do
   end
 
   describe '.build_new_manual_publication' do
-    it 'should add a publication' do
-      pub = Publication.build_new_manual_publication('some where', pub_hash, 'some string')
+
+    def save_new_publication
+      pub = Publication.build_new_manual_publication(pub_hash, 'some string', 'some where')
       pub.save!
+      pub
+    end
+
+    it 'should add a publication' do
+      pub = save_new_publication
       expect(pub.authors.size).to eq(1)
     end
 
     it 'should refuse to add a publication with the same source record' do
-      pub = Publication.build_new_manual_publication('some where', pub_hash, 'some string')
-
-      pub.save!
-
+      save_new_publication
       expect do
-        Publication.build_new_manual_publication('some where', pub_hash, 'some string')
+        Publication.build_new_manual_publication(pub_hash, 'some string', 'some where')
       end.to raise_exception # sqlite 3.6 is inconsistent in raising the right kind of exception (ActiveRecord::RecordNotUnique)
     end
 
     it "should create a publication if a publication for that source record doesn't exist" do
       UserSubmittedSourceRecord.create source_data: 'some string'
-
       expect do
-        pub = Publication.build_new_manual_publication('some where', pub_hash, 'some string')
-        pub.save!
+        save_new_publication
       end.not_to raise_exception
     end
   end
 
   describe 'update_manual_pub_from_pub_Hash' do
     it 'should update the user submitted source record with the new content' do
-      pub = Publication.build_new_manual_publication('some where', { a: :b }, 'some string')
-      pub.update_manual_pub_from_pub_hash({ b: :c }, 'some where', 'some other string')
+      pub = Publication.build_new_manual_publication({ a: :b }, 'some string', 'some where')
+      pub.update_manual_pub_from_pub_hash({ b: :c }, 'some other string', 'some where')
       pub.save!
       expect(pub.user_submitted_source_records.first[:source_data]).to eq('some other string')
       expect(pub.pub_hash).to include(b: :c)
     end
 
     it 'should raise an exception if you try to update the record to match an existing source record' do
-      pub = Publication.build_new_manual_publication('some where', { a: :b }, 'some string')
+      pub = Publication.build_new_manual_publication({ a: :b }, 'some string', 'some where')
       pub.save
-
-      pub = Publication.build_new_manual_publication('some where', { b: :c }, 'some other string')
-      pub.update_manual_pub_from_pub_hash({ b: :c }, 'some where', 'some string')
+      pub = Publication.build_new_manual_publication({ b: :c }, 'some other string', 'some where')
+      pub.update_manual_pub_from_pub_hash({ b: :c }, 'some string', 'some where')
       expect do
         pub.save!
       end.to raise_exception # sqlite 3.6 is inconsistent in raising the right kind of exception (ActiveRecord::RecordNotUnique)
