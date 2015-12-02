@@ -18,6 +18,7 @@ describe SulBib::API do
         name: 'jackson joe'
       }],
       authorship: [{
+        cap_profile_id: author.cap_profile_id,
         sul_author_id: author.id,
         status: 'denied',
         visibility: 'public',
@@ -28,7 +29,6 @@ describe SulBib::API do
 
   let(:invalid_json_for_post) {
     pub = JSON.parse(valid_json_for_post.dup)
-    pub.delete 'type'
     pub.delete 'authorship'
     pub.to_json
   }
@@ -104,87 +104,90 @@ describe SulBib::API do
     pub.to_json
   end
 
+  def post_valid_json
+    post '/publications', valid_json_for_post, headers
+    expect(response.status).to eq(201)
+  end
+
   describe 'POST /publications' do
     context 'when valid post' do
-      it 'should respond with 200' do
-        post '/publications', valid_json_for_post, headers
-        expect(response.status).to eq(201)
+
+      it 'should respond with 201' do
+        post_valid_json
       end
 
       it ' returns bibjson from the pub_hash for the new publication' do
-        post '/publications', valid_json_for_post, headers
+        post_valid_json
         expect(response.body).to eq(Publication.last.pub_hash.to_json)
       end
 
       it 'creates a new contributions record in the db' do
-        post '/publications', valid_json_for_post, headers
+        post_valid_json
         expect(Contribution.where(publication_id: Publication.last.id, author_id: author.id).first.status).to eq('denied')
       end
 
       it 'increases number of contribution records by one' do
-        expect do
-          post '/publications', valid_json_for_post, headers
-        end.to change(Contribution, :count).by(1)
+        expect{ post_valid_json }.to change(Contribution, :count).by(1)
       end
 
       it 'increases number of publication records by one' do
-        expect do
-          post '/publications', valid_json_for_post, headers
-        end.to change(Publication, :count).by(1)
+        expect{ post_valid_json }.to change(Publication, :count).by(1)
       end
 
       it 'increases number of publication manual source records by one' do
-        expect do
-          post '/publications', valid_json_for_post, headers
-        end.to change(Publication, :count).by(1)
+        expect{ post_valid_json }.to change(Publication, :count).by(1)
       end
 
       it 'creates an appropriate publication record from the posted bibjson' do
-        post '/publications', valid_json_for_post, headers
-        expect(response.status).to eq(201)
+        post_valid_json
         pub = Publication.last
-
-        parsed_outgoing_json = JSON.parse(valid_json_for_post)
-
-        expect(pub.title).to eq(parsed_outgoing_json['title'])
-        expect(pub.year).to eq(parsed_outgoing_json['year'])
-        expect(pub.pages).to eq(parsed_outgoing_json['pages'])
-        expect(pub.issn).to eq(parsed_outgoing_json['issn'])
+        submission = JSON.parse(valid_json_for_post)
+        expect(pub.title).to eq(submission['title'])
+        expect(pub.year).to eq(submission['year'])
+        expect(pub.pages).to eq(submission['pages'])
+        expect(pub.issn).to eq(submission['issn'])
       end
 
       it 'creates a matching pub_hash in the publication record from the posted bibjson' do
-        post '/publications', valid_json_for_post, headers
-        expect(response.status).to eq(201)
+        post_valid_json
         pub_hash = Publication.last.reload.pub_hash
-
-        parsed_outgoing_json = JSON.parse(response.body)
-
-        expect(pub_hash[:author]).to eq(parsed_outgoing_json['author'])
-        expect(pub_hash[:authorship][0][:visibility]).to eq(parsed_outgoing_json['authorship'][0]['visibility'])
-        expect(pub_hash[:authorship][0][:status]).to eq(parsed_outgoing_json['authorship'][0]['status'])
-        expect(pub_hash[:authorship][0][:featured]).to eq(parsed_outgoing_json['authorship'][0]['featured'])
-        expect(pub_hash[:authorship][0][:cap_profile_id]).to eq(parsed_outgoing_json['authorship'][0]['cap_profile_id'])
+        submission = JSON.parse(valid_json_for_post)
+        expect(pub_hash[:author]).to eq(submission['author'])
+        expect(pub_hash[:authorship].length).to eq(submission['authorship'].length)
+        matching_fields = %w(visibility, status, featured, cap_profile_id)
+        pub_hash[:authorship].each_with_index do |pub_authorship, index|
+          sub_authorship = submission['authorship'][index]
+          expect(sub_authorship).not_to be_nil
+          expect(sub_authorship).not_to be_empty
+          expect(pub_authorship).not_to be_nil
+          expect(pub_authorship).not_to be_empty
+          matching_fields.each do |field|
+            pub_field = pub_authorship[field.to_sym]
+            sub_field = sub_authorship[field]
+            expect(sub_field).not_to be_nil
+            expect(pub_field).not_to be_nil
+            expect(pub_field).to eq(sub_field)
+          end
+        end
       end
 
       it ' creates a pub with matching authorship info in hash and contributions table' do
-        post '/publications', valid_json_for_post, headers
-        expect(response.status).to eq(201)
+        post_valid_json
         pub = Publication.last
-        parsed_outgoing_json = JSON.parse(response.body)
+        submission = JSON.parse(valid_json_for_post)
         contrib = Contribution.where(publication_id: pub.id, author_id: author.id).first
-        expect(contrib.visibility).to eq(parsed_outgoing_json['authorship'][0]['visibility'])
-        expect(contrib.status).to eq(parsed_outgoing_json['authorship'][0]['status'])
-        expect(contrib.featured).to eq(parsed_outgoing_json['authorship'][0]['featured'])
-        expect(contrib.cap_profile_id).to eq(parsed_outgoing_json['authorship'][0]['cap_profile_id'])
+        # TODO: evaluate whether authorship array should result in one or more contributions?
+        expect(contrib.visibility).to eq(submission['authorship'][0]['visibility'])
+        expect(contrib.status).to eq(submission['authorship'][0]['status'])
+        expect(contrib.featured).to eq(submission['authorship'][0]['featured'])
+        expect(contrib.cap_profile_id).to eq(submission['authorship'][0]['cap_profile_id'])
       end
 
       it 'does not duplicate SULPubIds' do
         json_with_sul_pub_id = { type: 'book', identifier: [{ type: 'SULPubId', id: 'n', url: 'm' }], authorship: [{ sul_author_id: author.id, status: 'denied', visibility: 'public', featured: true }] }.to_json
-
         post '/publications', json_with_sul_pub_id, headers
         expect(response.status).to eq(201)
         parsed_outgoing_json = JSON.parse(response.body)
-
         expect(parsed_outgoing_json['identifier'].count { |x| x['type'] == 'SULPubId' }).to eq(1)
         expect(parsed_outgoing_json['identifier'][0]['id']).to_not eq('n')
       end
@@ -193,6 +196,8 @@ describe SulBib::API do
         post '/publications', json_with_isbn, headers
         expect(response.status).to eq(201)
         pub = Publication.last.reload
+        # TODO: use the submission data to validate some of the identifier fields
+        # submission = JSON.parse(json_with_isbn)
         parsed_outgoing_json = JSON.parse(response.body)
         expect(parsed_outgoing_json['identifier']).to include('id' => '1177188188181', 'type' => 'isbn')
         expect(parsed_outgoing_json['identifier']).to include('type' => 'doi', 'url' => '18819910019')
@@ -235,7 +240,7 @@ describe SulBib::API do
         expect(response.status).to eq(302)
       end
 
-      it ' returns 406 - Not Acceptable for  bibjson without an authorship entry' do
+      it ' returns 406 - Not Acceptable for bibjson without an authorship entry' do
         post '/publications', invalid_json_for_post, headers
         expect(response.status).to eq(406)
       end
