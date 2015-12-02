@@ -99,10 +99,14 @@ describe SulBib::API do
     pub['identifier'] = [
       {type:'isbn', id:'1177188188181'},
       {type:'doi', url:'18819910019'},
-      {type:"pmid", id:"999999999"},
+      {type:'pmid', id:'999999999'},
     ]
     pub.to_json
   end
+
+
+  # ---------------------------------------------------------------------
+  # POST
 
   def post_valid_json
     post '/publications', valid_json_for_post, headers
@@ -219,19 +223,6 @@ describe SulBib::API do
       end
     end # end of the context
 
-    context 'updating record' do
-      it 'should not duplicate SULPubIDs' do
-        json_with_sul_pub_id = { type: 'book', identifier: [{ type: 'SULPubId', id: 'n', url: 'm' }], authorship: [{ sul_author_id: author.id, status: 'denied', visibility: 'public', featured: true }] }.to_json
-
-        put "/publications/#{publication.id}", json_with_sul_pub_id, headers
-        expect(response.status).to eq(200)
-        parsed_outgoing_json = JSON.parse(response.body)
-
-        expect(parsed_outgoing_json['identifier'].count { |x| x['type'] == 'SULPubId' }).to eq(1)
-        expect(parsed_outgoing_json['identifier'][0]['id']).to_not eq('n')
-      end
-    end
-
     context 'when valid post' do
       it ' returns 302 for duplicate pub' do
         post '/publications', valid_json_for_post, headers
@@ -258,16 +249,43 @@ describe SulBib::API do
     end
   end  # end of the describe
 
+
+  # ---------------------------------------------------------------------
+  # PUT
+
   describe 'PUT /publications/:id' do
+
+    it 'should not duplicate SULPubIDs' do
+      json_with_sul_pub_id = {
+        type: 'book',
+        identifier: [{
+          type: 'SULPubId',
+          id: 'n',
+          url: 'm'
+        }],
+        authorship: [{
+          sul_author_id: author.id,
+          status: 'denied',
+          visibility: 'public',
+          featured: true
+        }]
+      }.to_json
+      put "/publications/#{publication.id}", json_with_sul_pub_id, headers
+      expect(response.status).to eq(200)
+      parsed_outgoing_json = JSON.parse(response.body)
+      expect(parsed_outgoing_json['identifier'].count { |x| x['type'] == 'SULPubId' }).to eq(1)
+      expect(parsed_outgoing_json['identifier'][0]['id']).to_not eq('n')
+    end
+
     it 'updates an existing pub ' do
       post '/publications', json_with_isbn, headers
       id = Publication.last.id
       put "/publications/#{id}", json_with_isbn_changed_doi, headers
       parsed_outgoing_json = JSON.parse(response.body)
-      expect(parsed_outgoing_json['identifier']).to include('id' => '1177188188181', 'type' => 'isbn')
-      expect(parsed_outgoing_json['identifier']).to include('type' => 'doi', 'url' => '18819910019-updated')
-      expect(parsed_outgoing_json['identifier']).to include('type' => 'SULPubId', 'url' => "http://sulcap.stanford.edu/publications/#{id}", 'id' => "#{id}")
       expect(parsed_outgoing_json['identifier'].size).to eq(3)
+      expect(parsed_outgoing_json['identifier']).to include('type' => 'isbn', 'id' => '1177188188181')
+      expect(parsed_outgoing_json['identifier']).to include('type' => 'doi', 'url' => '18819910019-updated')
+      expect(parsed_outgoing_json['identifier']).to include('type' => 'SULPubId', 'id' => "#{id}", 'url' => "http://sulcap.stanford.edu/publications/#{id}")
     end
 
     it 'deletes an identifier from the db if it is not in the incoming json' do
@@ -275,13 +293,18 @@ describe SulBib::API do
       id = Publication.last.id
       put "/publications/#{id}", json_with_isbn_deleted_doi, headers
       parsed_outgoing_json = JSON.parse(response.body)
-      expect(parsed_outgoing_json['identifier']).to include('id' => '1177188188181', 'type' => 'isbn')
-      expect(parsed_outgoing_json['identifier']).to include('type' => 'SULPubId', 'url' => "http://sulcap.stanford.edu/publications/#{id}", 'id' => "#{id}")
       expect(parsed_outgoing_json['identifier'].size).to eq(2)
+      expect(parsed_outgoing_json['identifier']).to include('type' => 'isbn', 'id' => '1177188188181')
+      expect(parsed_outgoing_json['identifier']).to include('type' => 'SULPubId', 'url' => "http://sulcap.stanford.edu/publications/#{id}", 'id' => "#{id}")
     end
   end
 
+
+  # ---------------------------------------------------------------------
+  # GET
+
   describe 'GET /publications/:id' do
+
     it ' returns 200 for valid call ' do
       get "/publications/#{publication.id}",
           { format: 'json' },
