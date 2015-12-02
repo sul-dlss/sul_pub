@@ -7,30 +7,103 @@ describe SulBib::API do
   let(:author) { FactoryGirl.create :author }
   let(:author_with_sw_pubs) { create :author_with_sw_pubs }
   let(:headers) { { 'HTTP_CAPKEY' => '***REMOVED***', 'CONTENT_TYPE' => 'application/json' } }
-  let(:valid_json_for_post) { { type: 'book', title: 'some title', year: 1938, issn: '32242424', pages: '34-56', author: [{ name: 'jackson joe' }], authorship: [{ sul_author_id: author.id, status: 'denied', visibility: 'public', featured: true }] }.to_json }
-  let(:invalid_json_for_post) { { title: 'some title', year: 1938, issn: '32242424', pages: '34-56', author: [{ name: 'jackson joe' }] }.to_json }
-  let(:json_with_new_author) { { type: 'book', title: 'some title', year: 1938, issn: '32242424', pages: '34-56', author: [{ name: 'henry lowe' }], authorship: [{ cap_profile_id: '3810', status: 'denied', visibility: 'public', featured: true }] }.to_json }
+  let(:valid_json_for_post) {
+    {
+      type: 'book',
+      title: 'some title',
+      year: 1938,
+      issn: '32242424',
+      pages: '34-56',
+      author: [{
+        name: 'jackson joe'
+      }],
+      authorship: [{
+        sul_author_id: author.id,
+        status: 'denied',
+        visibility: 'public',
+        featured: true
+      }]
+    }.to_json
+  }
+
+  let(:invalid_json_for_post) {
+    pub = JSON.parse(valid_json_for_post.dup)
+    pub.delete 'type'
+    pub.delete 'authorship'
+    pub.to_json
+  }
+
+  let(:json_with_new_author) {
+    pub = JSON.parse(valid_json_for_post.dup)
+    pub['author'] = [{
+      name: 'henry lowe'
+    }]
+    pub['authorship'] = [{
+      cap_profile_id: '3810',
+      status: 'denied',
+      visibility: 'public',
+      featured: true
+    }]
+    pub.to_json
+  }
+
   let(:json_with_isbn) do
-    <<-JSON
-    {"abstract":"","abstract_restricted":"","allAuthors":"author A, author B","author":[{"firstname":"John ","lastname":"Doe","middlename":"","name":"Doe  John ","role":"author"},{"firstname":"Raj","lastname":"Kathopalli","middlename":"","name":"Kathopalli  Raj","role":"author"}],"authorship":[{"cap_profile_id":#{author.cap_profile_id},"featured":true,"status":"APPROVED","visibility":"PUBLIC"}],"booktitle":"TEST Book I","edition":"2","etal":true,"identifier":[{"id":"1177188188181","type":"isbn"},{"type":"doi","url":"18819910019"}],"last_updated":"2013-08-10T21:03Z","provenance":"CAP","publisher":"Publisher","series":{"number":"919","title":"Series 1","volume":"1"},"type":"book","year":"2010"}
-   JSON
+    {
+      abstract:'',
+      abstract_restricted:'',
+      allAuthors:'author A, author B',
+      author:[
+        {firstname:'John ', lastname:'Doe', middlename:'', name:'Doe  John ', role:'author'},
+        {firstname:'Raj', lastname:'Kathopalli', middlename:'', name:'Kathopalli  Raj', role:'author'}
+      ],
+      authorship:[
+        {cap_profile_id: author.cap_profile_id, featured:true, status:'APPROVED', visibility:'PUBLIC'}
+      ],
+      booktitle:'TEST Book I',
+      edition:'2',
+      etal:true,
+      identifier:[
+        {type:'isbn', id:'1177188188181'},
+        {type:'doi', url:'18819910019'}
+      ],
+      last_updated:'2013-08-10T21:03Z',
+      provenance:'CAP',
+      publisher:'Publisher',
+      series:{number:'919', title:'Series 1', volume:'1'},
+      type:'book',
+      year:'2010'
+    }.to_json
   end
+
   let(:json_with_isbn_changed_doi) do
-    <<-JSON
-    {"abstract":"","abstract_restricted":"","allAuthors":"author A, author B","author":[{"firstname":"John ","lastname":"Doe","middlename":"","name":"Doe  John ","role":"author"},{"firstname":"Raj","lastname":"Kathopalli","middlename":"","name":"Kathopalli  Raj","role":"author"}],"authorship":[{"cap_profile_id":#{author.cap_profile_id},"featured":true,"status":"APPROVED","visibility":"PUBLIC"}],"booktitle":"TEST Book I","edition":"2","etal":true,"identifier":[{"id":"1177188188181","type":"isbn"},{"type":"doi","url":"18819910019-updated"},{"type":"SULPubId","id":"164","url":"http://sulcap.stanford.edu/publications/164"}],"last_updated":"2013-08-10T21:03Z","provenance":"CAP","publisher":"Publisher","series":{"number":"919","title":"Series 1","volume":"1"},"type":"book","year":"2010"}
-   JSON
+    pub = JSON.parse(json_with_isbn.dup)
+    pub['identifier'] = [
+      {type:'isbn', id:'1177188188181'},
+      {type:'doi', url:'18819910019-updated' },
+      {type:'SULPubId', id:'164', url:'http://sulcap.stanford.edu/publications/164' }
+    ]
+    pub.to_json
   end
+
   let(:json_with_isbn_deleted_doi) do
-    <<-JSON
-    {"abstract":"","abstract_restricted":"","allAuthors":"author A, author B","author":[{"firstname":"John ","lastname":"Doe","middlename":"","name":"Doe  John ","role":"author"},{"firstname":"Raj","lastname":"Kathopalli","middlename":"","name":"Kathopalli  Raj","role":"author"}],"authorship":[{"cap_profile_id":#{author.cap_profile_id},"featured":true,"status":"APPROVED","visibility":"PUBLIC"}],"booktitle":"TEST Book I","edition":"2","etal":true,"identifier":[{"id":"1177188188181","type":"isbn"},{"type":"SULPubId","id":"164","url":"http://sulcap.stanford.edu/publications/164"}],"last_updated":"2013-08-10T21:03Z","provenance":"CAP","publisher":"Publisher","series":{"number":"919","title":"Series 1","volume":"1"},"type":"book","year":"2010"}
-   JSON
+    pub = JSON.parse(json_with_isbn_changed_doi.dup)
+    pub['identifier'] = [
+      {type:'isbn', id:'1177188188181'},
+      {type:'SULPubId', id:'164', url:'http://sulcap.stanford.edu/publications/164' }
+    ]
+    pub.to_json
   end
 
   let(:json_with_pubmedid) do
-    <<-JSON
-    {"abstract":"","abstract_restricted":"","allAuthors":"author A, author B","author":[{"firstname":"John ","lastname":"Doe","middlename":"","name":"Doe  John ","role":"author"},{"firstname":"Raj","lastname":"Kathopalli","middlename":"","name":"Kathopalli  Raj","role":"author"}],"authorship":[{"cap_profile_id":#{author.cap_profile_id},"featured":true,"status":"APPROVED","visibility":"PUBLIC"}],"booktitle":"TEST Book I","edition":"2","etal":true,"identifier":[{"id":"1177188188181","type":"isbn"},{"type":"doi","url":"18819910019"},{"type":"pmid","id":"999999999"}],"last_updated":"2013-08-10T21:03Z","provenance":"CAP","publisher":"Publisher","series":{"number":"919","title":"Series 1","volume":"1"},"type":"book","year":"2010"}
-   JSON
+    pub = JSON.parse(json_with_isbn.dup)
+    pub['identifier'] = [
+      {type:'isbn', id:'1177188188181'},
+      {type:'doi', url:'18819910019'},
+      {type:"pmid", id:"999999999"},
+    ]
+    pub.to_json
   end
+
   describe 'POST /publications' do
     context 'when valid post' do
       it 'should respond with 200' do
