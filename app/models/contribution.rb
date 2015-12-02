@@ -1,4 +1,5 @@
 class Contribution < ActiveRecord::Base
+
   def cap_profile_id
     (author.cap_profile_id if author) || self[:cap_profile_id]
   end
@@ -20,9 +21,9 @@ class Contribution < ActiveRecord::Base
   end
 
   def self.authors_valid?(contrib)
-    if !contrib[:sul_author_id].blank?
+    if ! contrib[:sul_author_id].blank?
       Author.exists?(contrib[:sul_author_id])
-    elsif !contrib[:cap_profile_id].blank?
+    elsif ! contrib[:cap_profile_id].blank?
       Author.exists?(cap_profile_id: contrib[:cap_profile_id])
     else
       # there must be at least one valid author id
@@ -31,7 +32,11 @@ class Contribution < ActiveRecord::Base
   end
 
   def self.all_fields_present?(contrib)
-    ! (contrib[:visibility].blank? || contrib[:featured].nil? || contrib[:status].blank?)
+    ! (
+        contrib[:featured].nil? ||
+        contrib[:status].blank? ||
+        contrib[:visibility].blank?
+      )
   end
 
   def self.find_or_create_by_author_and_publication(author, publication)
@@ -39,10 +44,12 @@ class Contribution < ActiveRecord::Base
   end
 
   def to_pub_hash
-    { cap_profile_id: cap_profile_id,
+    {
+      cap_profile_id: cap_profile_id,
       sul_author_id: author_id,
       status: status,
       visibility: visibility,
-      featured: featured }
+      featured: featured
+    }
   end
 end
