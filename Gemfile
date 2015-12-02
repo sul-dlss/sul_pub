@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '4.2.3'
+gem 'grape'
 
 # Use sass-powered bootstrap
 gem 'bootstrap-sass', '~> 3.3.4'
@@ -16,7 +17,6 @@ gem 'mysql2'
 
 gem 'pubmed_search'
 gem 'bio'
-gem 'grape'
 gem 'kaminari'
 gem 'rest-client'
 gem 'citeproc-ruby', '0.0.6'
