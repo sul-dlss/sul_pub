@@ -39,7 +39,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Tue, 01 Dec 2015 19:07:11 GMT
+      - Wed, 02 Dec 2015 20:58:43 GMT
       Content-Length:
       - '2075'
     body:
@@ -70,7 +70,7 @@ http_interactions:
         />\r\n    <NewPublicationItemID>42711845</NewPublicationItemID>\r\n    <IsObsolete>false</IsObsolete>\r\n
         \   <CopyrightPublisher />\r\n    <CopyrightCity />\r\n  </PublicationItem>\r\n</ArrayOfPublicationItem>"
     http_version: 
-  recorded_at: Tue, 01 Dec 2015 19:07:12 GMT
+  recorded_at: Wed, 02 Dec 2015 20:58:43 GMT
 - request:
     method: post
     uri: http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml
@@ -90,7 +90,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 01 Dec 2015 19:07:12 GMT
+      - Wed, 02 Dec 2015 20:58:43 GMT
       Server:
       - Apache
       Access-Control-Allow-Origin:
@@ -98,12 +98,12 @@ http_interactions:
       Cache-Control:
       - private
       Ncbi-Sid:
-      - 9DFC3E9465DEFE01_0076SID
+      - 08DD7E0365F5B831_0785SID
       Content-Type:
       - text/xml; charset=UTF-8
       Set-Cookie:
-      - ncbi_sid=9DFC3E9465DEFE01_0076SID; domain=.nih.gov; path=/; expires=Thu, 01
-        Dec 2016 19:07:12 GMT
+      - ncbi_sid=08DD7E0365F5B831_0785SID; domain=.nih.gov; path=/; expires=Fri, 02
+        Dec 2016 20:58:43 GMT
       X-Ua-Compatible:
       - IE=Edge
       Transfer-Encoding:
@@ -253,7 +253,7 @@ http_interactions:
 
         </PubmedArticleSet>
     http_version: 
-  recorded_at: Tue, 01 Dec 2015 19:07:12 GMT
+  recorded_at: Wed, 02 Dec 2015 20:58:44 GMT
 - request:
     method: post
     uri: http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml
@@ -273,7 +273,7 @@ http_interactions:
       message: Bad Request
     headers:
       Date:
-      - Tue, 01 Dec 2015 19:07:12 GMT
+      - Wed, 02 Dec 2015 20:58:44 GMT
       Server:
       - Apache
       Access-Control-Allow-Origin:
@@ -281,12 +281,12 @@ http_interactions:
       Cache-Control:
       - private
       Ncbi-Sid:
-      - 9DFC49C465DEFE01_0050SID
+      - 08DD785C65F5B841_0758SID
       Content-Type:
       - text/xml; charset=UTF-8
       Set-Cookie:
-      - ncbi_sid=9DFC49C465DEFE01_0050SID; domain=.nih.gov; path=/; expires=Thu, 01
-        Dec 2016 19:07:12 GMT
+      - ncbi_sid=08DD785C65F5B841_0758SID; domain=.nih.gov; path=/; expires=Fri, 02
+        Dec 2016 20:58:44 GMT
       X-Ua-Compatible:
       - IE=Edge
       Connection:
@@ -299,5 +299,5 @@ http_interactions:
         PUBLIC \"-//NLM//DTD efetch 20131226//EN\" \"http://eutils.ncbi.nlm.nih.gov/eutils/dtd/20131226/efetch.dtd\">\n<eFetchResult>\n\t<ERROR>WebEnv
         parameter is required</ERROR>\n</eFetchResult>\n"
     http_version: 
-  recorded_at: Tue, 01 Dec 2015 19:07:12 GMT
+  recorded_at: Wed, 02 Dec 2015 20:58:44 GMT
 recorded_with: VCR 2.9.3
