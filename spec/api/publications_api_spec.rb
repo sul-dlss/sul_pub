@@ -104,6 +104,27 @@ describe SulBib::API do
     pub.to_json
   end
 
+  let(:article_with_authorship_without_authors) {
+    {
+      allAuthors: '',
+      author: [{}],
+      authorship: [{
+        cap_profile_id: author.cap_profile_id,
+        featured: false,
+        status: 'APPROVED',
+        visibility: 'PUBLIC'
+      }],
+      etal: false,
+      journal: {},
+      last_updated: '2015-11-23T15:15Z',
+      provenance: 'CAP',
+      publisher: '',
+      type: 'article',
+      title: 'Test Article2 11-23-2015',
+      year: '2015'
+    }.to_json
+  }
+
 
   # ---------------------------------------------------------------------
   # POST
@@ -111,6 +132,26 @@ describe SulBib::API do
   def post_valid_json
     post '/publications', valid_json_for_post, headers
     expect(response.status).to eq(201)
+  end
+
+  def validate_authorship(pub_hash, submission)
+    expect(pub_hash[:author]).to eq(submission['author'])
+    expect(pub_hash[:authorship].length).to eq(submission['authorship'].length)
+    matching_fields = %w(visibility status featured cap_profile_id)
+    pub_hash[:authorship].each_with_index do |pub_authorship, index|
+      sub_authorship = submission['authorship'][index]
+      expect(sub_authorship).not_to be_nil
+      expect(sub_authorship).not_to be_empty
+      expect(pub_authorship).not_to be_nil
+      expect(pub_authorship).not_to be_empty
+      matching_fields.each do |field|
+        pub_field = pub_authorship[field.to_sym]
+        sub_field = sub_authorship[field]
+        expect(sub_field).not_to be_nil
+        expect(pub_field).not_to be_nil
+        expect(pub_field).to eq(sub_field)
+      end
+    end
   end
 
   describe 'POST /publications' do
@@ -156,23 +197,15 @@ describe SulBib::API do
         post_valid_json
         pub_hash = Publication.last.reload.pub_hash
         submission = JSON.parse(valid_json_for_post)
-        expect(pub_hash[:author]).to eq(submission['author'])
-        expect(pub_hash[:authorship].length).to eq(submission['authorship'].length)
-        matching_fields = %w(visibility status featured cap_profile_id)
-        pub_hash[:authorship].each_with_index do |pub_authorship, index|
-          sub_authorship = submission['authorship'][index]
-          expect(sub_authorship).not_to be_nil
-          expect(sub_authorship).not_to be_empty
-          expect(pub_authorship).not_to be_nil
-          expect(pub_authorship).not_to be_empty
-          matching_fields.each do |field|
-            pub_field = pub_authorship[field.to_sym]
-            sub_field = sub_authorship[field]
-            expect(sub_field).not_to be_nil
-            expect(pub_field).not_to be_nil
-            expect(pub_field).to eq(sub_field)
-          end
-        end
+        validate_authorship(pub_hash, submission)
+      end
+
+      it 'handles missing author using authorship from the posted bibjson' do
+        post '/publications', article_with_authorship_without_authors, headers
+        expect(response.status).to eq(201)
+        pub_hash = Publication.last.reload.pub_hash
+        submission = JSON.parse(article_with_authorship_without_authors)
+        validate_authorship(pub_hash, submission)
       end
 
       it ' creates a pub with matching authorship info in hash and contributions table' do
