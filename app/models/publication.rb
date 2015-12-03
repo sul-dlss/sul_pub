@@ -24,6 +24,15 @@ class Publication < ActiveRecord::Base
     self.year = pub_hash[:year] unless pub_hash[:year].blank?
   end
 
+  has_one :batch_uploaded_source_record
+  has_many :user_submitted_source_records
+  has_many :publication_identifiers, autosave: true, dependent: :destroy, after_add: :identifiers_changed_callback, after_remove: :identifiers_changed_callback do
+    def with_type(t)
+      where(identifier_type: t)
+    end
+  end
+
+  has_many :authors, autosave: true, through: :contributions,   after_add: :contributions_changed_callback, after_remove: :contributions_changed_callback
   has_many :contributions, autosave: true, dependent: :destroy, after_add: :contributions_changed_callback, after_remove: :contributions_changed_callback do
     def for_author(a)
       where(author_id: a.id)
@@ -31,7 +40,6 @@ class Publication < ActiveRecord::Base
 
     def build_or_update(author, contribution_hash = {})
       c = where(author_id: author.id).first_or_initialize
-
       c.assign_attributes contribution_hash.merge(author_id: author.id)
       if c.persisted?
         c.save
@@ -39,19 +47,9 @@ class Publication < ActiveRecord::Base
       else
         self << c
       end
-
       c
     end
   end
-
-  has_many :authors, autosave: true, through: :contributions, after_add: :contributions_changed_callback, after_remove: :contributions_changed_callback
-  has_many :publication_identifiers, autosave: true, dependent: :destroy, after_add: :identifiers_changed_callback, after_remove: :identifiers_changed_callback do
-    def with_type(t)
-      where(identifier_type: t)
-    end
-  end
-  has_many :user_submitted_source_records
-  has_one :batch_uploaded_source_record
 
   def contributions_changed_callback(*_args)
     pubhash_needs_update!
@@ -182,7 +180,6 @@ class Publication < ActiveRecord::Base
       build_from_pubmed_hash(pubmed_source_record.source_as_hash)
     end
     sync_publication_hash_and_db
-
     self
   end
 
