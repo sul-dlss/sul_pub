@@ -216,20 +216,18 @@ class Publication < ActiveRecord::Base
         featured: contrib[:featured]
       }
 
-      sul_author_id = contrib[:sul_author_id]
-
-      author = if sul_author_id
-                 Author.find(sul_author_id)
-               elsif contrib[:cap_profile_id]
+      author = if ! contrib[:sul_author_id].blank?
+                 Author.find(contrib[:sul_author_id])
+               elsif ! contrib[:cap_profile_id].blank?
                  Author.find_by_cap_profile_id(contrib[:cap_profile_id])
                end
-
       # todo??
       next if author.nil?
 
       hash_for_update[:author_id] = author.id
-      cap_profile_id = author.cap_profile_id
-      hash_for_update[:cap_profile_id] = cap_profile_id unless cap_profile_id.blank?
+      unless author.cap_profile_id.blank?
+        hash_for_update[:cap_profile_id] = author.cap_profile_id
+      end
       contrib = contributions.for_author(author).first_or_initialize
       contrib.assign_attributes(hash_for_update)
 
