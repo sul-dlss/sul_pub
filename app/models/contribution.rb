@@ -13,14 +13,11 @@ class Contribution < ActiveRecord::Base
           primary_key: 'publication_id'
   # has_one :population_membership, :foreign_key => "author_id"
 
-  def self.valid_authorship_hash?(authorship_hash)
-    # puts authorship_hash.to_s
-    authorship_hash.all? do |contrib|
-      authors_valid?(contrib) && all_fields_present?(contrib)
-    end
+  def self.authorship_valid?(authorship)
+    author_valid?(authorship) && all_fields_present?(authorship)
   end
 
-  def self.authors_valid?(contrib)
+  def self.author_valid?(contrib)
     if ! contrib[:sul_author_id].blank?
       Author.exists?(contrib[:sul_author_id])
     elsif ! contrib[:cap_profile_id].blank?
