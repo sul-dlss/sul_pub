@@ -5,14 +5,15 @@ describe Publication do
   let(:author) { FactoryGirl.create :author }
 
   let(:pub_hash) do
-    { title: 'some title',
+    {
+      title: 'some title',
       year: 1938,
       issn: '32242424',
       pages: '34-56',
       author: [{ name: 'jackson joe' }],
       authorship: [{ sul_author_id: author.id, status: 'denied', visibility: 'public', featured: true }],
       identifier: [{ type: 'x', id: 'y', url: 'z' }]
-                }
+    }
   end
 
   describe 'test pub hash syncing for new object' do
@@ -227,9 +228,10 @@ describe Publication do
       pub
     end
 
-    it 'should add a publication' do
+    it 'should add a publication with one author' do
       pub = save_new_publication
       expect(pub.authors.size).to eq(1)
+      expect(pub.pub_hash[:authorship].size).to eq(1)
     end
 
     it 'should refuse to add a publication with the same source record' do
