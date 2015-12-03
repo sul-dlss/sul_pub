@@ -158,7 +158,7 @@ describe SulBib::API do
         submission = JSON.parse(valid_json_for_post)
         expect(pub_hash[:author]).to eq(submission['author'])
         expect(pub_hash[:authorship].length).to eq(submission['authorship'].length)
-        matching_fields = %w(visibility, status, featured, cap_profile_id)
+        matching_fields = %w(visibility status featured cap_profile_id)
         pub_hash[:authorship].each_with_index do |pub_authorship, index|
           sub_authorship = submission['authorship'][index]
           expect(sub_authorship).not_to be_nil
