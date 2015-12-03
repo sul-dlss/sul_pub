@@ -234,7 +234,9 @@ class Publication < ActiveRecord::Base
       if contrib.persisted?
         contrib.save
       else
-        contributions << contrib
+        unless contributions.include? contrib
+          contributions << contrib
+        end
       end
     end
     true
