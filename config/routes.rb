@@ -1,6 +1,8 @@
 require 'sul_bib/api'
 
 Sulbib::Application.routes.draw do
+  mount RailsDb::Engine => '/rails/db', :as => 'rails_db'
+
   get '/publications' => 'publications#index'
   get '/publications/sourcelookup' => 'publications#sourcelookup'
 

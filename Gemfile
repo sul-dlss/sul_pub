@@ -48,6 +48,12 @@ group :deployment do
   gem 'lyberteam-capistrano-devel'
 end
 
+group :development do
+  # Administrative UI for MySQL DB
+  # https://github.com/igorkasyanchuk/rails_db
+  gem 'rails_db'
+end
+
 group :test do
   gem 'capybara'
   gem 'coveralls', require: false
