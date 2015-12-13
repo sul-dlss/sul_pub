@@ -179,8 +179,8 @@ describe SulBib::API do
         expect{ post_valid_json }.to change(Publication, :count).by(1)
       end
 
-      it 'increases number of publication manual source records by one' do
-        expect{ post_valid_json }.to change(Publication, :count).by(1)
+      it 'increases number of user submitted source records by one' do
+        expect{ post_valid_json }.to change(UserSubmittedSourceRecord, :count).by(1)
       end
 
       it 'creates an appropriate publication record from the posted bibjson' do
