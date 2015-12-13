@@ -5,7 +5,6 @@ gem 'grape'
 
 # Use sass-powered bootstrap
 gem 'bootstrap-sass', '~> 3.3.4'
-
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -15,43 +14,44 @@ gem 'therubyracer'
 
 gem 'mysql2'
 
-gem 'pubmed_search'
-gem 'bio'
-gem 'kaminari'
-gem 'rest-client'
-gem 'citeproc-ruby', '0.0.6'
-gem 'bibtex-ruby'
-gem 'yaml_db'
-gem 'settingslogic'
 gem 'activerecord-import'
+# To use ActiveModel has_secure_password
+# gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'bibtex-ruby'
+gem 'bio'
+gem 'citeproc-ruby', '0.0.6'
 gem 'dotiw'
 gem 'high_voltage'
 gem 'is_it_working-cbeer', require: 'is_it_working'
-gem 'whenever', require: false
+# To use Jbuilder templates for JSON
+gem 'jbuilder'
+gem 'jquery-rails'
+gem 'kaminari'
+gem 'libv8'
 gem 'turnout'
 gem 'parallel'
 gem 'paper_trail'
-gem 'libv8'
+gem 'pubmed_search'
+gem 'rest-client'
+gem 'settingslogic'
+gem 'whenever', require: false
+gem 'yaml_db'
+
+# Use Squash for exception reporting
+gem 'squash_ruby', require: 'squash/ruby'
+gem 'squash_rails', require: 'squash/rails'
+gem 'retina_tag'
 
 group :development, :test do
   gem 'sqlite3'
   gem 'rspec-rails', '~> 3.0'
   gem 'factory_girl_rails'
-  gem 'pry'
+  gem 'pry-rails'
   gem 'pry-doc'
-end
-
-group :deployment do
-  gem 'capistrano'
-  gem 'capistrano-passenger'
-  gem 'capistrano-rails'
-  gem 'lyberteam-capistrano-devel'
-end
-
-group :development do
   # Administrative UI for MySQL DB
   # https://github.com/igorkasyanchuk/rails_db
   gem 'rails_db'
+  gem 'thin' # app server
 end
 
 group :test do
@@ -62,21 +62,9 @@ group :test do
   gem 'webmock'
 end
 
-gem 'jquery-rails'
-
-# To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
-
-# To use Jbuilder templates for JSON
-gem 'jbuilder'
-
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# To use debugger
-# gem 'debugger'
-
-# Use Squash for exception reporting
-gem 'squash_ruby', require: 'squash/ruby'
-gem 'squash_rails', require: 'squash/rails'
-gem 'retina_tag'
+group :deployment do
+  gem 'capistrano'
+  gem 'capistrano-passenger'
+  gem 'capistrano-rails'
+  gem 'lyberteam-capistrano-devel'
+end
