@@ -31,6 +31,7 @@ gem 'libv8'
 gem 'turnout'
 gem 'parallel'
 gem 'paper_trail'
+gem 'pry-rails'
 gem 'pubmed_search'
 gem 'rest-client'
 gem 'settingslogic'
@@ -42,11 +43,11 @@ gem 'squash_ruby', require: 'squash/ruby'
 gem 'squash_rails', require: 'squash/rails'
 gem 'retina_tag'
 
+
 group :development, :test do
   gem 'sqlite3'
   gem 'rspec-rails', '~> 3.0'
   gem 'factory_girl_rails'
-  gem 'pry-rails'
   gem 'pry-doc'
   # Administrative UI for MySQL DB
   # https://github.com/igorkasyanchuk/rails_db
