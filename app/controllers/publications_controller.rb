@@ -8,11 +8,11 @@ class PublicationsController < ApplicationController
   end
 
   def index
-    logger.info('Getting all publications' +
-                    ((" for profile #{params[:capProfileId]}" if params[:capProfileId]) || '') +
-                    ((" where capActive = #{params[:capActive]}" if params[:capActive]) || '') +
-                    ((" limit to changedSize #{params[:changedSince]}" if params[:changedSince]) || '')
-               )
+    msg = "Getting publications"
+    msg += " for profile #{params[:capProfileId]}" if params[:capProfileId]
+    msg += " where capActive = #{params[:capActive]}" if params[:capActive]
+    msg += " where updated_at > #{params[:changedSince]}" if params[:changedSince]
+    logger.info msg
 
     matching_records = []
 
