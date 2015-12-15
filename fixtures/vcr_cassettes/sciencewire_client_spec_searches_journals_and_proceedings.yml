@@ -58,7 +58,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Wed, 02 Dec 2015 20:59:51 GMT
+      - Thu, 10 Dec 2015 20:24:58 GMT
       Content-Length:
       - '16926'
     body:
@@ -256,7 +256,7 @@ http_interactions:
         \ <ItemMatchResult>\r\n    <MatchRank>95</MatchRank>\r\n    <PublicationItemID>64184335</PublicationItemID>\r\n
         \   <MatchScore>0.43253287672996521</MatchScore>\r\n  </ItemMatchResult>\r\n</ArrayOfItemMatchResult>"
     http_version: 
-  recorded_at: Wed, 02 Dec 2015 20:59:51 GMT
+  recorded_at: Thu, 10 Dec 2015 20:24:58 GMT
 - request:
     method: post
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/MatchedPublicationItemIdsForAuthor?format=xml
@@ -315,7 +315,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Wed, 02 Dec 2015 20:59:53 GMT
+      - Thu, 10 Dec 2015 20:25:02 GMT
       Content-Length:
       - '2441'
     body:
@@ -349,5 +349,5 @@ http_interactions:
         \ <ItemMatchResult>\r\n    <MatchRank>13</MatchRank>\r\n    <PublicationItemID>7173442</PublicationItemID>\r\n
         \   <MatchScore>0.31213703751564026</MatchScore>\r\n  </ItemMatchResult>\r\n</ArrayOfItemMatchResult>"
     http_version: 
-  recorded_at: Wed, 02 Dec 2015 20:59:53 GMT
+  recorded_at: Thu, 10 Dec 2015 20:25:02 GMT
 recorded_with: VCR 2.9.3

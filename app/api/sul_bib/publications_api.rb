@@ -5,18 +5,39 @@ module SulBib
 
     helpers do
 
+      # Used in GET and PUT to return an existing publication record
+      # @param id [String] A unique publication ID
+      # @return pub [Publication] If found, returns a Publication record
+      #         returns an error if the publication is not found or if it has
+      #         been deleted (unless the request is a 'DELETE')
+      def publication_find(id)
+        begin
+          pub = Publication.find(id)
+        rescue ActiveRecord::RecordNotFound
+          error!({ 'error' => 'No such publication', 'detail' => "You've requested a non-existant publication." }, 404)
+        end
+        if pub.deleted? && !request.delete?
+          error!('Gone - old resource deleted.', 410)
+        end
+        pub
+      end
+
       # Check for existing authors.
-      # Returns true if any of the authors exist.
+      # @param authorship_list [Array<Hash>]
+      # @return status [boolean] true if any of the authors exist.
       def existing_authors?(authorship_list)
         # At least one of the authors in the authorship array must exist.
+        return false if authorship_list.nil?
         authorship_list.any? {|auth| Contribution.authorship_valid?(auth) }
       end
 
       # Check for existing authors or create new authors with a CAP profile ID.
-      # Returns true if any of the authors exist or can be created.
+      # @param authorship_list [Array<Hash>]
+      # @return status [boolean] true if any authors exist or are created.
       def validate_or_create_authors(authorship_list)
-        # At least one of the authors in the authorship array must exist or have a
-        # CAP profile that is the basis for creating a new SULCAP author.
+        # At least one of the authors in the authorship array must exist or have
+        # a CAP profile that is used to create a new SULCAP author.
+        return false if authorship_list.nil?
         status = false
         authorship_list.each do |authorship|
           # Contribution.authorship_valid? confirms existing authors;
@@ -60,7 +81,7 @@ module SulBib
         # So, this next line returns a 303 with Location equal to the pub's URI
         redirect env['REQUEST_URI'] + '/' + existing_record.publication_id.to_s
       else
-        if pub_hash[:authorship].nil? || !validate_or_create_authors(pub_hash[:authorship])
+        if !validate_or_create_authors(pub_hash[:authorship])
           error!('You have not supplied a valid authorship record.', 406)
         end
         pub = Publication.build_new_manual_publication(pub_hash, original_source, Settings.cap_provenance)
@@ -82,20 +103,12 @@ module SulBib
     put ':id' do
       # the last known etag must be sent in the 'if-match' header, returning `412 Precondition Failed` if etags don't match,
       # and a `428 Precondition Required` if the if-match header isn't supplied
-
       new_pub = params[:pub_hash]
-      begin
-        old_pub = Publication.find(params[:id])
-      rescue ActiveRecord::RecordNotFound
-        error!({ 'error' => 'No such publication', 'detail' => "You've requested a non-existant publication." }, 404)
-      end
-
+      old_pub = publication_find(params[:id])
       case
-      when old_pub.deleted?
-        error!('Gone - old resource deleted.', 410)
       when (!old_pub.sciencewire_id.blank?) || (!old_pub.pmid.blank?)
         error!({ 'error' => 'This record may not be modified.  If you had originally entered details for the record, it has been superceded by a central record.', 'detail' => 'missing widget' }, 403)
-      when new_pub[:authorship].nil? || !validate_or_create_authors(new_pub[:authorship])
+      when !validate_or_create_authors(new_pub[:authorship])
         error!('You have not supplied a valid authorship record.', 406)
       end
 
@@ -114,14 +127,7 @@ module SulBib
       requires :id
     end
     get ':id' do
-      begin
-        pub = Publication.find(params[:id])
-      rescue ActiveRecord::RecordNotFound
-        error!({ 'error' => 'No such publication', 'detail' => "You've requested a non-existant publication." }, 404)
-      end
-      if pub.deleted?
-        error!('Gone - old resource deleted.', 410)
-      end
+      pub = publication_find(params[:id])
       pub.pub_hash
     end
 
@@ -130,7 +136,7 @@ module SulBib
       requires :id
     end
     delete ':id' do
-      pub = Publication.find(params[:id])
+      pub = publication_find(params[:id])
       pub.delete!
     end
 

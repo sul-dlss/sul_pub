@@ -8,11 +8,11 @@ class PublicationsController < ApplicationController
   end
 
   def index
-    logger.info('Getting all publications' +
-                    ((" for profile #{params[:capProfileId]}" if params[:capProfileId]) || '') +
-                    ((" where capActive = #{params[:capActive]}" if params[:capActive]) || '') +
-                    ((" limit to changedSize #{params[:changedSince]}" if params[:changedSince]) || '')
-               )
+    msg = "Getting publications"
+    msg += " for profile #{params[:capProfileId]}" if params[:capProfileId]
+    msg += " where capActive = #{params[:capActive]}" if params[:capActive]
+    msg += " where updated_at > #{params[:changedSince]}" if params[:changedSince]
+    logger.info msg
 
     matching_records = []
 
@@ -138,15 +138,17 @@ class PublicationsController < ApplicationController
   # @return [String] contains csv report of an author's publications
   def generate_csv_report(author)
     csv_str = CSV.generate do |csv|
-      csv << %w(sul_pub_id sciencewire_id pubmed_id doi wos_id title journal year pages issn status_for_this_author contributor_cap_profile_ids)
+      csv << %w(sul_pub_id sciencewire_id pubmed_id doi wos_id title journal year pages issn status_for_this_author created_at updated_at contributor_cap_profile_ids)
       author.publications.find_each do |pub|
         pub.pub_hash[:journal] ? journ = pub.pub_hash[:journal] : journ = { name: '' }
         contrib_prof_ids = pub.authors.pluck(:cap_profile_id).join(';')
         wos_id = pub.publication_identifiers.where(identifier_type: 'WoSItemID').pluck(:identifier_value).first
         doi = pub.publication_identifiers.where(identifier_type: 'doi').pluck(:identifier_value).first
         status = pub.contributions.for_author(author).pluck(:status).first
+        created_at = pub.created_at.utc.strftime('%m/%d/%Y')
+        updated_at = pub.updated_at.utc.strftime('%m/%d/%Y')
 
-        csv << [pub.id, pub.sciencewire_id, pub.pmid, doi, wos_id, pub.title, journ[:name], pub.year, pub.pages, pub.issn, status, contrib_prof_ids]
+        csv << [pub.id, pub.sciencewire_id, pub.pmid, doi, wos_id, pub.title, journ[:name], pub.year, pub.pages, pub.issn, status, created_at, updated_at, contrib_prof_ids]
       end
     end
     csv_str

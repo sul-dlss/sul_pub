@@ -39,7 +39,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Wed, 02 Dec 2015 20:58:34 GMT
+      - Thu, 10 Dec 2015 20:26:45 GMT
       Content-Length:
       - '6476'
     body:
@@ -125,7 +125,7 @@ http_interactions:
         \   <CopyrightPublisher>LIPPINCOTT WILLIAMS &amp; WILKINS</CopyrightPublisher>\r\n
         \   <CopyrightCity>PHILADELPHIA</CopyrightCity>\r\n  </PublicationItem>\r\n</ArrayOfPublicationItem>"
     http_version: 
-  recorded_at: Wed, 02 Dec 2015 20:58:34 GMT
+  recorded_at: Thu, 10 Dec 2015 20:26:45 GMT
 - request:
     method: post
     uri: http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml
@@ -145,7 +145,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Wed, 02 Dec 2015 20:58:34 GMT
+      - Thu, 10 Dec 2015 20:26:45 GMT
       Server:
       - Apache
       Access-Control-Allow-Origin:
@@ -153,12 +153,12 @@ http_interactions:
       Cache-Control:
       - private
       Ncbi-Sid:
-      - 9DFD716365F5B7A1_0526SID
+      - 08DD5306669E0051_0193SID
       Content-Type:
       - text/xml; charset=UTF-8
       Set-Cookie:
-      - ncbi_sid=9DFD716365F5B7A1_0526SID; domain=.nih.gov; path=/; expires=Fri, 02
-        Dec 2016 20:58:34 GMT
+      - ncbi_sid=08DD5306669E0051_0193SID; domain=.nih.gov; path=/; expires=Sat, 10
+        Dec 2016 20:26:45 GMT
       X-Ua-Compatible:
       - IE=Edge
       Transfer-Encoding:
@@ -455,7 +455,7 @@ http_interactions:
 
         </PubmedArticleSet>
     http_version: 
-  recorded_at: Wed, 02 Dec 2015 20:58:35 GMT
+  recorded_at: Thu, 10 Dec 2015 20:26:46 GMT
 - request:
     method: get
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationItems?format=xml&publicationItemIDs=
@@ -495,7 +495,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Wed, 02 Dec 2015 20:58:35 GMT
+      - Thu, 10 Dec 2015 20:26:47 GMT
       Content-Length:
       - '1208'
     body:
@@ -514,7 +514,7 @@ http_interactions:
         \ <h3>There is a problem with the resource you are looking for, and it cannot
         be displayed.</h3>\r\n </fieldset></div>\r\n</div>\r\n</body>\r\n</html>\r\n"
     http_version: 
-  recorded_at: Wed, 02 Dec 2015 20:58:36 GMT
+  recorded_at: Thu, 10 Dec 2015 20:26:47 GMT
 - request:
     method: post
     uri: http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml
@@ -534,7 +534,7 @@ http_interactions:
       message: Bad Request
     headers:
       Date:
-      - Wed, 02 Dec 2015 20:58:36 GMT
+      - Thu, 10 Dec 2015 20:26:47 GMT
       Server:
       - Apache
       Access-Control-Allow-Origin:
@@ -542,12 +542,12 @@ http_interactions:
       Cache-Control:
       - private
       Ncbi-Sid:
-      - 9DFC372B65F5B7C1_0399SID
+      - 08DD56F6669E0071_0770SID
       Content-Type:
       - text/xml; charset=UTF-8
       Set-Cookie:
-      - ncbi_sid=9DFC372B65F5B7C1_0399SID; domain=.nih.gov; path=/; expires=Fri, 02
-        Dec 2016 20:58:36 GMT
+      - ncbi_sid=08DD56F6669E0071_0770SID; domain=.nih.gov; path=/; expires=Sat, 10
+        Dec 2016 20:26:47 GMT
       X-Ua-Compatible:
       - IE=Edge
       Connection:
@@ -560,5 +560,5 @@ http_interactions:
         PUBLIC \"-//NLM//DTD efetch 20131226//EN\" \"http://eutils.ncbi.nlm.nih.gov/eutils/dtd/20131226/efetch.dtd\">\n<eFetchResult>\n\t<ERROR>WebEnv
         parameter is required</ERROR>\n</eFetchResult>\n"
     http_version: 
-  recorded_at: Wed, 02 Dec 2015 20:58:36 GMT
+  recorded_at: Thu, 10 Dec 2015 20:26:47 GMT
 recorded_with: VCR 2.9.3
