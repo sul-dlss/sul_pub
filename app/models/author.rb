@@ -57,30 +57,24 @@ class Author < ActiveRecord::Base
       active_in_cap:  auth_hash['active'],
       cap_import_enabled: auth_hash['importEnabled']
     }
-
-    Author.add_to_hash_if_present(seed_hash, :sunetid, auth_hash['profile']['uid'])
-    Author.add_to_hash_if_present(seed_hash, :university_id, auth_hash['profile']['universityId'])
-    Author.add_to_hash_if_present(seed_hash, :email, auth_hash['profile']['email'])
-    Author.add_to_hash_if_present(seed_hash, :emails_for_harvest, auth_hash['profile']['email'])
-    Author.add_to_hash_if_present(seed_hash, :official_first_name, auth_hash['profile']['names']['legal']['firstName'])
-    Author.add_to_hash_if_present(seed_hash, :official_middle_name, auth_hash['profile']['names']['legal']['middleName'])
-    Author.add_to_hash_if_present(seed_hash, :official_last_name, auth_hash['profile']['names']['legal']['lastName'])
-    Author.add_to_hash_if_present(seed_hash, :cap_first_name, auth_hash['profile']['names']['preferred']['firstName'])
-    Author.add_to_hash_if_present(seed_hash, :cap_middle_name, auth_hash['profile']['names']['preferred']['middleName'])
-    Author.add_to_hash_if_present(seed_hash, :cap_last_name, auth_hash['profile']['names']['preferred']['lastName'])
-    Author.add_to_hash_if_present(seed_hash, :preferred_first_name, auth_hash['profile']['names']['preferred']['firstName'])
-    Author.add_to_hash_if_present(seed_hash, :preferred_middle_name, auth_hash['profile']['names']['preferred']['middleName'])
-    Author.add_to_hash_if_present(seed_hash, :preferred_last_name, auth_hash['profile']['names']['preferred']['lastName'])
-    Author.add_to_hash_if_present(seed_hash, :california_physician_license, auth_hash['profile']['californiaPhysicianLicense'])
+    profile = auth_hash['profile']
+    seed_hash[:sunetid] = profile['uid'] || ''
+    seed_hash[:university_id] = profile['universityId'] || ''
+    seed_hash[:california_physician_license] = profile['californiaPhysicianLicense'] || ''
+    seed_hash[:email] = profile['email'] || ''
+    seed_hash[:emails_for_harvest] = profile['email'] || ''
+    legal_name = profile['names']['legal']
+    pref_name = profile['names']['preferred']
+    seed_hash[:official_first_name] = legal_name['firstName'] || ''
+    seed_hash[:official_middle_name] = legal_name['middleName'] || ''
+    seed_hash[:official_last_name] = legal_name['lastName'] || ''
+    seed_hash[:cap_first_name] = pref_name['firstName'] || ''
+    seed_hash[:cap_middle_name] = pref_name['middleName'] || ''
+    seed_hash[:cap_last_name] = pref_name['lastName'] || ''
+    seed_hash[:preferred_first_name] = pref_name['firstName'] || ''
+    seed_hash[:preferred_middle_name] = pref_name['middleName'] || ''
+    seed_hash[:preferred_last_name] = pref_name['lastName'] || ''
     seed_hash
-  end
-
-  def self.add_to_hash_if_present(seed_hash, key, value)
-    if value.nil?
-      seed_hash[key] = ''
-    else
-      seed_hash[key] = value
-    end
   end
 
   def self.fetch_from_cap_and_create(profile_id)
