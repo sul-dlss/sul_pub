@@ -11,16 +11,24 @@ set :ssh_options,   keys: [Capistrano::OneTimeKey.temporary_ssh_private_key_path
 set :deploy_to, '/home/***REMOVED***/sulbib'
 
 # Default value for :linked_files is []
-set :linked_files, fetch(:linked_files, []).push('config/secrets.yml', 'config/database.yml', 'config/sciencewire_auth.yaml', 'config/cap_auth.yaml', 'config/initializers/squash.rb')
+set :linked_files, fetch(:linked_files, []).push(
+  'config/secrets.yml',
+  'config/database.yml',
+  'config/sciencewire_auth.yaml',
+  'config/cap_auth.yaml',
+  'config/initializers/squash.rb'
+)
 
 # Default value for linked_dirs is []
-set :linked_dirs, fetch(:linked_dirs, []).push('log',
-                                               'tmp/pids',
-                                               'tmp/cache',
-                                               'tmp/sockets',
-                                               'vendor/bundle',
-                                               'public/system')
+set :linked_dirs, fetch(:linked_dirs, []).push(
+  'log',
+  'tmp/pids',
+  'tmp/cache',
+  'tmp/sockets',
+  'vendor/bundle',
+  'public/system'
+)
 
 before 'deploy:publishing', 'squash:write_revision'
 
-set :bundle_audit_ignore, %w(CVE-2015-3226)
+# set :bundle_audit_ignore, %w(CVE-2015-3226)
