@@ -31,4 +31,4 @@ set :linked_dirs, fetch(:linked_dirs, []).push(
 
 before 'deploy:publishing', 'squash:write_revision'
 
-set :bundle_audit_ignore, %w(CVE-2015-3226)
+# set :bundle_audit_ignore, %w(CVE-2015-3226)
