@@ -10,6 +10,9 @@ set :ssh_options,   keys: [Capistrano::OneTimeKey.temporary_ssh_private_key_path
 # Default deploy_to directory is /var/www/my_app_name
 set :deploy_to, '/home/***REMOVED***/sulbib'
 
+# Default branch is the current checkout branch
+ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
+
 # Default value for :linked_files is []
 set :linked_files, fetch(:linked_files, []).push(
   'config/secrets.yml',
