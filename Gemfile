@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.2.3'
+gem 'rails', '~> 4.2.5'
 gem 'grape'
 
 # Use sass-powered bootstrap
@@ -52,6 +52,7 @@ group :development, :test do
   # Administrative UI for MySQL DB
   # https://github.com/igorkasyanchuk/rails_db
   gem 'rails_db'
+  gem 'axlsx_rails'
   gem 'thin' # app server
 end
 
