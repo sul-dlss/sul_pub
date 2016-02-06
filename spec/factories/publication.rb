@@ -2,7 +2,25 @@ FactoryGirl.define do
   factory :publication do
     title 'How I learned Rails'
     year '1972'
-    pub_hash { { title: 'How I learned Rails', type: 'article', year: '1972', author: [{ name: 'Jackson, Joe' }], authorship: [{ sul_author_id: 2222, status: 'denied', visibility: 'public', featured: true }] } }
+    pub_hash {
+      {
+        title: 'How I learned Rails',
+        type: 'article',
+        year: '1972',
+        author: [
+          { name: 'Jackson, Joe' }
+        ],
+        authorship: [
+          {
+            sul_author_id: 2222,
+            cap_profile_id: 3333,
+            status: 'approved',
+            visibility: 'public',
+            featured: true
+          }
+        ]
+      }
+    }
     active true
     deleted false
     publication_type 'article'

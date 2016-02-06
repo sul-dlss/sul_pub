@@ -1,8 +1,13 @@
 class MergeDuplicateAuthorship
 
   def initialize
-    @logger = Logger.new(Rails.root.join('log', 'merge_duplicate_authorship.log'))
+    @log_merge = logger 'duplicate_authorship_merge.log'
+    @log_record = logger 'duplicate_authorship_record.log'
     @records_modified = 0
+  end
+
+  def logger(filename)
+    Logger.new(Rails.root.join('log', filename))
   end
 
   # Preliminary analysis indicated that all duplicate authorship
@@ -23,7 +28,7 @@ class MergeDuplicateAuthorship
         if src_authorship_set.length != src_authorship_ids.length
           @logger.error "Publication #{pub[:id]}: src_authorship duplicate"
           status = true
-          require 'pry'; binding.pry
+          # require 'pry'; binding.pry
           # modify src authorship and recalculate fingerprint?
           # src.source_fingerprint
         end
@@ -34,25 +39,40 @@ class MergeDuplicateAuthorship
 
   # If the pub_hash[:authorship] array contains duplicate values,
   # save it as a set of authorship values.
-  def merge_authorship(pub)
+  def duplicate_authorship?(pub)
     authorship = pub.pub_hash[:authorship]
     if authorship.length > 1
       authorship_ids = authorship.map {|p| p[:cap_profile_id] }
       authorship_set = authorship_ids.to_set
       if authorship_set.length != authorship_ids.length
-        @logger.info "Publication #{pub[:id]} should be modified"
-        @logger.info "Publication #{pub[:id]} created_at #{pub[:created_at]}"
-        @logger.info "Publication #{pub[:id]} updated_at #{pub[:updated_at]}"
-        @logger.info "Publication #{pub[:id]} provenance: #{pub.pub_hash[:provenance]}"
-        @logger.info "Publication #{pub[:id]} authorship: #{JSON.dump(authorship)}"
+        @logger.warn "Publication #{pub[:id]} should be modified"
+        @logger.warn "Publication #{pub[:id]} created_at #{pub[:created_at]}"
+        @logger.warn "Publication #{pub[:id]} updated_at #{pub[:updated_at]}"
+        @logger.warn "Publication #{pub[:id]} provenance: #{pub.pub_hash[:provenance]}"
+        @logger.warn "Publication #{pub[:id]} authorship: #{JSON.dump(authorship)}"
         # Preliminary analysis indicated that all duplicate authorship
         # records did NOT have any duplicates in the source records.
         # source_record_authorship_dedup?(pub)
-        # Modify and save the pub_hash without authorship duplicates.
-        pub.pub_hash[:authorship] = authorship.to_set.to_a
-        pub.pubhash_needs_update!
+        return true
       end
-      if pub.pubhash_needs_update? && pub.save
+    end
+    false
+  rescue => e
+    msg = "Problem with publication: #{pub[:id]}\n"
+    msg += "#{e.inspect}\n"
+    msg += e.backtrace.join("\n")
+    @logger.error msg
+  end
+
+  # If the pub_hash[:authorship] array contains duplicate values,
+  # save it as a set of authorship values.
+  def merge_authorship(pub)
+    authorship = pub.pub_hash[:authorship]
+    if duplicate_authorship? pub
+      # Modify and save the pub_hash without authorship duplicates.
+      pub.pub_hash[:authorship] = authorship.to_set.to_a
+      pub.pubhash_needs_update!
+      if pub.save
         @records_modified += 1
         @logger.info "Publication #{pub[:id]} modified and saved at #{pub[:updated_at]}"
       end
@@ -64,12 +84,22 @@ class MergeDuplicateAuthorship
     @logger.error msg
   end
 
-  def work
+  def diagnostics
+    @logger = @log_record
     ActiveRecord::Base.logger.level = 1
-    # The bug creating duplicate authorship content was active from Oct-Dec, 2015
-    date_range = Time.zone.parse('2015-10-01')..Time.zone.parse('2015-12-31')
-    pubs = Publication.where(:updated_at => (date_range)).order(updated_at: :asc)
-    pubs.each do |pub|
+    Publication.find_each(batch_size: 500) do |pub|
+      duplicate_authorship? pub
+    end
+  rescue => e
+    msg = "#{e.inspect}\n"
+    msg += e.backtrace.join("\n")
+    @logger.error msg
+  end
+
+  def work
+    @logger = @log_merge
+    ActiveRecord::Base.logger.level = 1
+    Publication.find_each(batch_size: 500) do |pub|
       merge_authorship pub
     end
     @logger.info "Records modified: #{@records_modified}"

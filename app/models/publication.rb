@@ -1,8 +1,6 @@
 class Publication < ActiveRecord::Base
   has_paper_trail on: [:destroy]
 
-  before_save :sync_publication_hash_and_db, if: proc { |pub| pub.pubhash_needs_update? }
-
   after_create do
     set_sul_pub_id_in_hash
     save
@@ -17,6 +15,7 @@ class Publication < ActiveRecord::Base
   # :publication_type
 
   before_save do
+    sync_publication_hash_and_db if pubhash_needs_update?
     self.title = pub_hash[:title] unless pub_hash[:title].blank?
     self.issn = pub_hash[:issn] unless pub_hash[:issn].blank?
     self.pages = pub_hash[:pages] unless pub_hash[:pages].blank?
@@ -25,29 +24,59 @@ class Publication < ActiveRecord::Base
   end
 
   has_one :batch_uploaded_source_record
+
   has_many :user_submitted_source_records
-  has_many :publication_identifiers, autosave: true, dependent: :destroy, after_add: :identifiers_changed_callback, after_remove: :identifiers_changed_callback do
+
+  has_many :publication_identifiers,
+    autosave: true,
+    dependent: :destroy,
+    after_add: :identifiers_changed_callback,
+    after_remove: :identifiers_changed_callback do
     def with_type(t)
       where(identifier_type: t)
     end
   end
 
-  has_many :authors, autosave: true, through: :contributions,   after_add: :contributions_changed_callback, after_remove: :contributions_changed_callback
-  has_many :contributions, autosave: true, dependent: :destroy, after_add: :contributions_changed_callback, after_remove: :contributions_changed_callback do
+  has_many :authors,
+    autosave: true,
+    through: :contributions,
+    after_add: :contributions_changed_callback,
+    after_remove: :contributions_changed_callback
+
+  has_many :contributions,
+    autosave: true,
+    dependent: :destroy,
+    after_add: :contributions_changed_callback,
+    after_remove: :contributions_changed_callback do
     def for_author(a)
       where(author_id: a.id)
     end
 
+    # See also: update_any_new_contribution_info_in_pub_hash_to_db
     def build_or_update(author, contribution_hash = {})
-      c = where(author_id: author.id).first_or_initialize
-      c.assign_attributes contribution_hash.merge(author_id: author.id)
-      if c.persisted?
-        c.save
-        proxy_association.owner.contributions_changed_callback
-      else
-        self << c
+      # Assign or update these contribution attributes
+      # Ensure the contribution attributes contain the right author
+      contribution_hash[:author_id] = author.id
+      unless author.cap_profile_id.blank?
+        contribution_hash[:cap_profile_id] = author.cap_profile_id
       end
-      c
+      contrib = for_author(author).first_or_initialize
+      if contrib.persisted?
+        # Update an existing contribution
+        contrib.update(contribution_hash)
+      else
+        # Add a new contribution
+        contrib.assign_attributes(contribution_hash)
+        contrib.save
+        # SELF is an array of Contributions
+        unless self.include? contrib
+          self << contrib
+        end
+      end
+      # The `proxy_association.owner` is a Publication instance, so
+      # set a trigger that will force it to update it's pub_hash data.
+      proxy_association.owner.contributions_changed_callback
+      contrib
     end
   end
 
