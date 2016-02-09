@@ -33,7 +33,8 @@ Sulbib::Application.configure do
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   # config.force_ssl = true
 
-  # See everything in the log (default is :info)
+  # Set to `:info` to match the rails 4.x default, or
+  # set to `:debug` to opt-into rails 5.x default.
   config.log_level = :info
 
   # Prepend all log lines with the following tags
