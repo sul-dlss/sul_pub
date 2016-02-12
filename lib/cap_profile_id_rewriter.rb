@@ -51,21 +51,23 @@ class CapProfileIdRewriter
   end
 
   def write_counts_to_log
-    stats = "Finished cap profile id rewrite - #{Time.zone.now}"
-    stats += "#{@total_running_count} records were processed in " + distance_of_time_in_words_to_now(@start_time)
-    stats += "#{@new_author_count} authors were created."
-    stats += "#{@no_import_settings_count} records with no import settings."
-    stats += "#{@no_email_in_import_settings} records with no email in import settings."
-    stats += "#{@active_true_count} records with 'active' true."
-    stats += "#{@active_false_count} records with 'active' false."
-    stats += "#{@no_active_count} records with no 'active' field in profile."
-    stats += "#{@authors_updated_count} authors were updated."
-    stats += "#{@import_enabled_count} authors had import enabled."
-    stats += "#{@import_disabled_count} authors had import disabled."
+    process_time = distance_of_time_in_words_to_now(@start_time)
+    stats = "Finished cap profile id rewrite - #{Time.zone.now}\n"
+    stats += "#{@total_running_count} records were processed in #{process_time}\n"
+    stats += "#{@new_author_count} authors were created.\n"
+    stats += "#{@no_import_settings_count} records with no import settings.\n"
+    stats += "#{@no_email_in_import_settings} records with no email in import settings.\n"
+    stats += "#{@active_true_count} records with 'active' true.\n"
+    stats += "#{@active_false_count} records with 'active' false.\n"
+    stats += "#{@no_active_count} records with no 'active' field in profile.\n"
+    stats += "#{@authors_updated_count} authors were updated.\n"
+    stats += "#{@import_enabled_count} authors had import enabled.\n"
+    stats += "#{@import_disabled_count} authors had import disabled.\n"
     cap_authorship_logger.info stats
-    Rails.logger.info @new_author_count.to_s + ' authors were created.'
-    Rails.logger.info @page_count.to_s + ' pages of 1000 records were processed in ' + distance_of_time_in_words_to_now(@start_time)
-    Rails.logger.info @total_running_count.to_s + ' total records were processed in ' + distance_of_time_in_words_to_now(@start_time)
+    summary = "#{@new_author_count} authors were created.\n"
+    summary += "#{@page_count} pages of 1000 records were processed in #{process_time}.\n"
+    summary += "#{@total_running_count} total records were processed in #{process_time}.\n"
+    Rails.logger.info summary
   end
 
   def process_next_batch_of_authorship_data(page_count, page_size)

@@ -1,5 +1,8 @@
 require 'socket'
 class CapHttpClient
+
+  attr_reader :auth
+
   def initialize
     @auth = YAML.load(File.open(Rails.root.join('config', 'cap_auth.yaml')))
     @base_timeout_retries = 3
