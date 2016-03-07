@@ -1,81 +1,79 @@
 require 'dotiw'
 require 'time'
 class CapAuthorsPoller
+  include ActionView::Helpers::DateHelper
+
+  attr_reader :logger
+
   def initialize
     @sw_harvester = ScienceWireHarvester.new
     @cap_http_client = CapHttpClient.new
+    @logger = Logger.new(Rails.root.join('log', 'cap_authors_poller.log'))
+    @logger.datetime_format = '%Y-%m-%d %H:%M:%S'
+    @logger.formatter = proc { |severity, datetime, _progname, msg|
+      "#{severity} #{datetime}: #{msg}\n"
+    }
+    init_stats
   end
 
   def debug=(val)
-    write_stats_from_logging_variables_to_log
+    log_stats
     @sw_harvester.debug = val
   end
 
-  include ActionView::Helpers::DateHelper
-
   def get_authorship_data(days_ago = 1)
-    poll_since = convert_days_ago_to_timestamp(days_ago)
-
-    page_size = 1000
-    page_count = 0
-
+    logger.info "Started CAP authorship import - #{Time.zone.now}"
     @new_or_changed_authors_to_harvest_queue = []
-
-    @cap_authorship_logger = Logger.new(Rails.root.join('log', 'cap_authorship_api.log'))
-    @cap_authorship_logger.datetime_format = '%Y-%m-%d %H:%M:%S'
-    @cap_authorship_logger.formatter = proc { |severity, datetime, _progname, msg|
-      "#{severity} #{datetime}: #{msg}\n"
-    }
-    @cap_authorship_logger.info "Started authorship import - #{Time.zone.now}"
-
-    @last_page = false
-
-    set_up_logging_variables
-
-    until @last_page
-      page_count += 1
-      json_response = @cap_http_client.get_batch_from_cap_api(page_count, page_size, poll_since)
-      process_next_batch_of_authorship_data(json_response)
-      update_message = "#{@total_running_count} records were processed in #{distance_of_time_in_words_to_now(@start_time)}"
-      @cap_authorship_logger.info update_message
-      @last_page = json_response['lastPage']
+    page_count = 0
+    page_size = 1000
+    loop do
+      begin
+        page_count += 1
+        json_response = get_recent_cap_authorship(page_count, page_size, days_ago)
+        process_next_batch_of_authorship_data(json_response)
+        logger.info "#{@total_running_count} records were processed in #{log_process_time}"
+        break if json_response['lastPage']
+      rescue => e
+        logger.fail e.inspect
+        raise
+      end
     end
 
-    write_stats_from_logging_variables_to_log
+    log_stats
     do_science_wire_harvest
 
-    @cap_authorship_logger.info "#{page_count} pages with #{page_size} records per page were processed in #{distance_of_time_in_words_to_now(@start_time)}"
-    @cap_authorship_logger.info "#{@new_author_count} authors were created."
-    @cap_authorship_logger.info 'Finished authorship import'
-
+    info = []
+    info << "#{page_count} pages with #{page_size} records were processed in #{log_process_time}"
+    info << "#{@new_author_count} authors were created."
+    info << 'Finished authorship import'
+    logger.info info.join("\n")
   rescue => e
-    NotificationManager.handle_authorship_pull_error(e, "Authorship import failed - #{Time.zone.now}")
+    msg = "Authorship import failed - #{Time.zone.now}"
+    NotificationManager.handle_authorship_pull_error(e, msg)
   end
 
   def cap_authors_count(days_ago = 1)
-    poll_since = convert_days_ago_to_timestamp(days_ago)
-    @cap_http_client.get_batch_from_cap_api(1, 10, poll_since)['totalCount']
+    json_response = get_recent_cap_authorship(1, 10, days_ago)
+    json_response['totalCount']
   end
 
   def do_science_wire_harvest
-    @cap_authorship_logger.info 'authors to harvest: ' + @new_or_changed_authors_to_harvest_queue.to_s
+    logger.info 'authors to harvest: ' + @new_or_changed_authors_to_harvest_queue.to_s
     @sw_harvester.harvest_pubs_for_author_ids(@new_or_changed_authors_to_harvest_queue)
   end
 
   def process_next_batch_of_authorship_data(json_response)
     if json_response['count'].blank? || json_response['lastPage'].nil?
-      fail "unexpected json in cap_authors_poller#process_next_batch_of_authorship_data, first 500 chars: #{json_response}"
+      raise "unexpected json in cap_authors_poller#process_next_batch_of_authorship_data, first 500 chars: #{json_response}"
     elsif json_response['values']
       json_response['values'].each do |record|
         begin
           @total_running_count += 1
-
           process_record(record)
-
-          @cap_authorship_logger.info "Processed #{@total_running_count} authors" if @total_running_count % 10 == 0
-
+          logger.info "Processed #{@total_running_count} authors" if @total_running_count % 10 == 0
         rescue => e
-          NotificationManager.handle_authorship_pull_error(e, "Authorship import failed for incoming record containing: #{record.inspect if record} - #{Time.zone.now}")
+          msg = "Authorship import failed for incoming record containing: #{record.inspect if record} - #{Time.zone.now}"
+          NotificationManager.handle_authorship_pull_error(e, msg)
         end
       end
     end
@@ -86,19 +84,18 @@ class CapAuthorsPoller
 
     author = Author.find_or_initialize_by_cap_profile_id(record['profileId'])
     author.update_from_cap_authorship_profile_hash(record)
-
     if author.persisted?
-      @cap_authorship_logger.info "Updating author_id #{author.id}"
+      logger.info "Updating author_id #{author.id}"
       @authors_updated_count += 1
     else
-      @cap_authorship_logger.info "Creating author for cap_profile_id #{record['profileId']}"
+      logger.info "Creating author for cap_profile_id #{cap_profile_id}"
       @new_author_count += 1
     end
 
     if record['authorship'] && author.persisted?
       update_existing_contributions author, record['authorship']
-    elsif record['authorship'] && record['authorship'].size > 0 && author.new_record?
-      @cap_authorship_logger.warn "New author has authorship which will be skipped. cap_profile_id: #{record['profileId']}"
+    elsif record['authorship'] && !record['authorship'].empty? && author.new_record?
+      logger.warn "New author has authorship which will be skipped. cap_profile_id: #{record['profileId']}"
       @new_auth_with_contribs += 1
     end
 
@@ -109,43 +106,74 @@ class CapAuthorsPoller
       @new_or_changed_authors_to_harvest_queue << author.id
     else
       @no_sw_harvest_count += 1
-      @cap_authorship_logger.info "No import settings or author did not change. Skipping cap_profile_id #{author.cap_profile_id}"
+      logger.info "No import settings or author did not change. Skipping cap_profile_id #{author.cap_profile_id}"
     end
   end
 
   def update_existing_contributions(author, incoming_authorships)
     incoming_authorships.each do |authorship|
-      contribs = author.contributions.where(publication_id: authorship['sulPublicationId'])
+      pub_id = authorship['sulPublicationId']
+      contribs = author.contributions.where(publication_id: pub_id)
       if contribs.count == 0
-        @cap_authorship_logger.warn "Contribution does not exist- auth_id: #{author.id} publication_id: #{authorship['sulPublicationId']}"
+        logger.warn "Contribution does not exist for author_id: #{author.id} publication_id: #{pub_id}"
         @contrib_does_not_exist += 1
         next
       elsif contribs.count > 1
-        @cap_authorship_logger.warn "More than one contribution for auth_id: #{author.id} publication_id: #{authorship['sulPublicationId']}"
+        logger.warn "More than one contribution for author_id: #{author.id} publication_id: #{pub_id}"
         @too_many_contribs += 1
         next
       end
-
-      contrib = contribs.first
-      hash_for_update = {
-        status: authorship['status'],
-        visibility: authorship['visibility'],
-        featured: authorship['featured']
-      }
-      contrib.assign_attributes hash_for_update
-      if contrib.changed?
-        contrib.save
-        pub = contrib.publication
-        pub.set_last_updated_value_in_hash
-        pub.add_all_db_contributions_to_my_pub_hash
-        pub.save
-        @cap_authorship_logger.info "Contribution changed for auth_id: #{author.id} publication_id: #{authorship['sulPublicationId']}"
-        @contribs_changed += 1
-      end
+      update_existing_contribution(contribs.first, authorship)
     end
   end
 
-  def set_up_logging_variables
+  def update_existing_contribution(contribution, authorship)
+    hash_for_update = {
+      featured: authorship['featured'],
+      status: authorship['status'],
+      visibility: authorship['visibility']
+    }
+    contribution.assign_attributes hash_for_update
+    contribution_save(contribution) if contribution.changed?
+  end
+
+  def contribution_id(contribution)
+    author = contribution.author
+    pub = contribution.publication
+    "Contribution(author_id: #{author.id}, publication_id: #{pub.id})"
+  end
+
+  def contribution_save(contribution)
+    contribution.save
+    contribution_sync_to_pubhash(contribution)
+    logger.info "Updated #{contribution_id(contribution)}"
+    @contribs_changed += 1
+  end
+
+  def contribution_sync_to_pubhash(contribution)
+    pub = contribution.publication
+    pub.set_last_updated_value_in_hash
+    pub.add_all_db_contributions_to_my_pub_hash
+    pub.save
+  end
+
+  private
+
+  def convert_days_ago_to_timestamp(days_ago)
+    poll_time = Time.zone.now - (days_ago.to_i).days
+    poll_time.iso8601(3)
+  end
+
+  # @param page_count [Fixnum]  default = 1  -- 1st page
+  # @param page_size [Fixnum]   default = 10 -- 10 records
+  # @param days_ago [Fixnum]    default = 1  -- within the last 24 hours
+  # @return json_response
+  def get_recent_cap_authorship(page_count = 1, page_size = 10, days_ago = 1)
+    poll_since = convert_days_ago_to_timestamp(days_ago)
+    @cap_http_client.get_batch_from_cap_api(page_count, page_size, poll_since)
+  end
+
+  def init_stats
     @start_time = Time.zone.now
     @total_running_count = 0
     @new_author_count = 0
@@ -163,27 +191,26 @@ class CapAuthorsPoller
     @new_auth_with_contribs = 0
   end
 
-  def write_stats_from_logging_variables_to_log
-    @cap_authorship_logger.info "#{@total_running_count} records were processed in " + distance_of_time_in_words_to_now(@start_time)
-    @cap_authorship_logger.info "#{@new_author_count} authors were created."
-    @cap_authorship_logger.info "#{@no_sw_harvest_count} authors were not harvested because of no import settings or they did not change"
-    @cap_authorship_logger.info "#{@no_email_in_import_settings} records with no email in import settings."
-    @cap_authorship_logger.info "#{@active_true_count} records with 'active' true."
-    @cap_authorship_logger.info "#{@active_false_count} records with 'active' false."
-    @cap_authorship_logger.info "#{@no_active_count} records with no 'active' field in profile."
-    @cap_authorship_logger.info "#{@authors_updated_count} authors were updated."
-    @cap_authorship_logger.info "#{@import_enabled_count} authors had import enabled."
-    @cap_authorship_logger.info "#{@import_disabled_count} authors had import disabled."
-    @cap_authorship_logger.info "#{@contrib_does_not_exist} contributions did not exist for update"
-    @cap_authorship_logger.info "#{@too_many_contribs} contributions had more than one instance for an author"
-    @cap_authorship_logger.info "#{@new_auth_with_contribs} new authors had contributions which were ignored"
-    @cap_authorship_logger.info "#{@contribs_changed} contributions were updated"
+  def log_process_time
+    distance_of_time_in_words_to_now(@start_time)
   end
 
-  private
-
-  def convert_days_ago_to_timestamp(days_ago)
-    poll_time = Time.zone.now - (days_ago.to_i).days
-    poll_time.iso8601(3)
+  def log_stats
+    info = []
+    info << "#{@total_running_count} records were processed in #{log_process_time}"
+    info << "#{@new_author_count} authors were created."
+    info << "#{@no_sw_harvest_count} authors were not harvested because of no import settings or they did not change"
+    info << "#{@no_email_in_import_settings} records with no email in import settings."
+    info << "#{@active_true_count} records with 'active' true."
+    info << "#{@active_false_count} records with 'active' false."
+    info << "#{@no_active_count} records with no 'active' field in profile."
+    info << "#{@authors_updated_count} authors were updated."
+    info << "#{@import_enabled_count} authors had import enabled."
+    info << "#{@import_disabled_count} authors had import disabled."
+    info << "#{@contrib_does_not_exist} contributions did not exist for update"
+    info << "#{@too_many_contribs} contributions had more than one instance for an author"
+    info << "#{@new_auth_with_contribs} new authors had contributions which were ignored"
+    info << "#{@contribs_changed} contributions were updated"
+    logger.info info.join("\n")
   end
 end
