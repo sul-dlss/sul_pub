@@ -7,10 +7,8 @@ http_interactions:
       encoding: US-ASCII
       string: ''
     headers:
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
-      - "*/*"
+      - ! '*/*'
       User-Agent:
       - Ruby
       Content-Type:
@@ -39,12 +37,12 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Thu, 10 Dec 2015 20:26:45 GMT
+      - Mon, 07 Mar 2016 22:19:37 GMT
       Content-Length:
       - '6476'
     body:
-      encoding: UTF-8
-      string: "<?xml version=\"1.0\"?>\r\n<ArrayOfPublicationItem xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\"?>\r\n<ArrayOfPublicationItem xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <PublicationItem>\r\n
         \   <PublicationItemID>42711845</PublicationItemID>\r\n    <Title>Frostbite:
         an orthopedic perspective.</Title>\r\n    <Abstract>Frostbite injury to the
@@ -111,7 +109,7 @@ http_interactions:
         artificial|intubation|neonatology|ventilation, high-frequency</KeywordList>\r\n
         \   <DocumentTypeList>Article</DocumentTypeList>\r\n    <DocumentCategory>Journal
         Document</DocumentCategory>\r\n    <NumberOfReferences>27</NumberOfReferences>\r\n
-        \   <TimesCited>12</TimesCited>\r\n    <TimesNotSelfCited>8</TimesNotSelfCited>\r\n
+        \   <TimesCited>13</TimesCited>\r\n    <TimesNotSelfCited>9</TimesNotSelfCited>\r\n
         \   <PMID>1914489</PMID>\r\n    <WoSItemID>A1991GK39000014</WoSItemID>\r\n
         \   <PublicationSourceTitle>CRITICAL CARE MEDICINE</PublicationSourceTitle>\r\n
         \   <Volume>19</Volume>\r\n    <Issue>10</Issue>\r\n    <Pagination>1310-1322</Pagination>\r\n
@@ -125,18 +123,16 @@ http_interactions:
         \   <CopyrightPublisher>LIPPINCOTT WILLIAMS &amp; WILKINS</CopyrightPublisher>\r\n
         \   <CopyrightCity>PHILADELPHIA</CopyrightCity>\r\n  </PublicationItem>\r\n</ArrayOfPublicationItem>"
     http_version: 
-  recorded_at: Thu, 10 Dec 2015 20:26:45 GMT
+  recorded_at: Mon, 07 Mar 2016 22:19:37 GMT
 - request:
     method: post
     uri: http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml
     body:
-      encoding: UTF-8
-      string: "&id=10048354&id=1914489"
+      encoding: US-ASCII
+      string: ! '&id=10048354&id=1914489'
     headers:
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
-      - "*/*"
+      - ! '*/*'
       User-Agent:
       - Ruby
   response:
@@ -145,317 +141,210 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 10 Dec 2015 20:26:45 GMT
+      - Mon, 07 Mar 2016 22:19:37 GMT
       Server:
       - Apache
       Access-Control-Allow-Origin:
-      - "*"
+      - ! '*'
       Cache-Control:
       - private
       Ncbi-Sid:
-      - 08DD5306669E0051_0193SID
+      - 73BF54CA6DDFE791_0101SID
       Content-Type:
       - text/xml; charset=UTF-8
       Set-Cookie:
-      - ncbi_sid=08DD5306669E0051_0193SID; domain=.nih.gov; path=/; expires=Sat, 10
-        Dec 2016 20:26:45 GMT
+      - ncbi_sid=73BF54CA6DDFE791_0101SID; domain=.nih.gov; path=/; expires=Tue, 07
+        Mar 2017 22:19:37 GMT
       X-Ua-Compatible:
       - IE=Edge
       Transfer-Encoding:
       - chunked
     body:
-      encoding: UTF-8
-      string: |
-        <?xml version="1.0"?>
-        <!DOCTYPE PubmedArticleSet PUBLIC "-//NLM//DTD PubMedArticle, 1st January 2015//EN" "http://www.ncbi.nlm.nih.gov/corehtml/query/DTD/pubmed_150101.dtd">
-        <PubmedArticleSet>
-        <PubmedArticle>
-            <MedlineCitation Owner="NLM" Status="MEDLINE">
-                <PMID Version="1">10048354</PMID>
-                <DateCreated>
-                    <Year>1999</Year>
-                    <Month>04</Month>
-                    <Day>22</Day>
-                </DateCreated>
-                <DateCompleted>
-                    <Year>1999</Year>
-                    <Month>04</Month>
-                    <Day>22</Day>
-                </DateCompleted>
-                <DateRevised>
-                    <Year>2010</Year>
-                    <Month>01</Month>
-                    <Day>05</Day>
-                </DateRevised>
-                <Article PubModel="Print">
-                    <Journal>
-                        <ISSN IssnType="Print">1078-4519</ISSN>
-                        <JournalIssue CitedMedium="Print">
-                            <Volume>28</Volume>
-                            <Issue>1</Issue>
-                            <PubDate>
-                                <Year>1999</Year>
-                                <Month>Jan</Month>
-                            </PubDate>
-                        </JournalIssue>
-                        <Title>American journal of orthopedics (Belle Mead, N.J.)</Title>
-                        <ISOAbbreviation>Am J. Orthop.</ISOAbbreviation>
-                    </Journal>
-                    <ArticleTitle>Frostbite: an orthopedic perspective.</ArticleTitle>
-                    <Pagination>
-                        <MedlinePgn>21-6</MedlinePgn>
-                    </Pagination>
-                    <Abstract>
-                        <AbstractText>Frostbite injury to the extremities has the potential for disastrous effects. This review provides information valuable to the orthopedic surgeon to aid in the evaluation and treatment of frostbite. The pathophysiology and predisposing factors that provide a basic understanding of the nature of frostbite are discussed. Accepted and experimental imaging studies and treatment options are also reviewed. An effort is made to give the orthopedic perspective on each issue, providing a valuable resource for all orthopedic surgeons involved in the care of the patient with frostbite.</AbstractText>
-                    </Abstract>
-                    <AuthorList CompleteYN="Y">
-                        <Author ValidYN="Y">
-                            <LastName>McAdams</LastName>
-                            <ForeName>T R</ForeName>
-                            <Initials>TR</Initials>
-                            <AffiliationInfo>
-                                <Affiliation>Department of Orthopaedics and Rehabilitation, University of New Mexico, Albuquerque, USA.</Affiliation>
-                            </AffiliationInfo>
-                        </Author>
-                        <Author ValidYN="Y">
-                            <LastName>Swenson</LastName>
-                            <ForeName>D R</ForeName>
-                            <Initials>DR</Initials>
-                        </Author>
-                        <Author ValidYN="Y">
-                            <LastName>Miller</LastName>
-                            <ForeName>R A</ForeName>
-                            <Initials>RA</Initials>
-                        </Author>
-                    </AuthorList>
-                    <Language>eng</Language>
-                    <PublicationTypeList>
-                        <PublicationType UI="D002363">Case Reports</PublicationType>
-                        <PublicationType UI="D016428">Journal Article</PublicationType>
-                        <PublicationType UI="D016454">Review</PublicationType>
-                    </PublicationTypeList>
-                </Article>
-                <MedlineJournalInfo>
-                    <Country>UNITED STATES</Country>
-                    <MedlineTA>Am J Orthop (Belle Mead NJ)</MedlineTA>
-                    <NlmUniqueID>9502918</NlmUniqueID>
-                    <ISSNLinking>1078-4519</ISSNLinking>
-                </MedlineJournalInfo>
-                <CitationSubset>IM</CitationSubset>
-                <MeshHeadingList>
-                    <MeshHeading>
-                        <DescriptorName MajorTopicYN="N" UI="D003131">Combined Modality Therapy</DescriptorName>
-                    </MeshHeading>
-                    <MeshHeading>
-                        <DescriptorName MajorTopicYN="N" UI="D005260">Female</DescriptorName>
-                    </MeshHeading>
-                    <MeshHeading>
-                        <DescriptorName MajorTopicYN="N" UI="D005627">Frostbite</DescriptorName>
-                        <QualifierName MajorTopicYN="Y" UI="Q000175">diagnosis</QualifierName>
-                        <QualifierName MajorTopicYN="N" UI="Q000188">drug therapy</QualifierName>
-                        <QualifierName MajorTopicYN="N" UI="Q000503">physiopathology</QualifierName>
-                        <QualifierName MajorTopicYN="Y" UI="Q000601">surgery</QualifierName>
-                    </MeshHeading>
-                    <MeshHeading>
-                        <DescriptorName MajorTopicYN="N" UI="D006801">Humans</DescriptorName>
-                    </MeshHeading>
-                    <MeshHeading>
-                        <DescriptorName MajorTopicYN="N" UI="D015601">Injury Severity Score</DescriptorName>
-                    </MeshHeading>
-                    <MeshHeading>
-                        <DescriptorName MajorTopicYN="N" UI="D008297">Male</DescriptorName>
-                    </MeshHeading>
-                    <MeshHeading>
-                        <DescriptorName MajorTopicYN="N" UI="D008875">Middle Aged</DescriptorName>
-                    </MeshHeading>
-                    <MeshHeading>
-                        <DescriptorName MajorTopicYN="Y" UI="D019637">Orthopedic Procedures</DescriptorName>
-                    </MeshHeading>
-                    <MeshHeading>
-                        <DescriptorName MajorTopicYN="N" UI="D011379">Prognosis</DescriptorName>
-                    </MeshHeading>
-                </MeshHeadingList>
-                <NumberOfReferences>44</NumberOfReferences>
-            </MedlineCitation>
-            <PubmedData>
-                <History>
-                    <PubMedPubDate PubStatus="pubmed">
-                        <Year>1999</Year>
-                        <Month>2</Month>
-                        <Day>27</Day>
-                    </PubMedPubDate>
-                    <PubMedPubDate PubStatus="medline">
-                        <Year>1999</Year>
-                        <Month>2</Month>
-                        <Day>27</Day>
-                        <Hour>0</Hour>
-                        <Minute>1</Minute>
-                    </PubMedPubDate>
-                    <PubMedPubDate PubStatus="entrez">
-                        <Year>1999</Year>
-                        <Month>2</Month>
-                        <Day>27</Day>
-                        <Hour>0</Hour>
-                        <Minute>0</Minute>
-                    </PubMedPubDate>
-                </History>
-                <PublicationStatus>ppublish</PublicationStatus>
-                <ArticleIdList>
-                    <ArticleId IdType="pubmed">10048354</ArticleId>
-                </ArticleIdList>
-            </PubmedData>
-        </PubmedArticle>
-
-
-        <PubmedArticle>
-            <MedlineCitation Owner="NLM" Status="MEDLINE">
-                <PMID Version="1">1914489</PMID>
-                <DateCreated>
-                    <Year>1991</Year>
-                    <Month>11</Month>
-                    <Day>13</Day>
-                </DateCreated>
-                <DateCompleted>
-                    <Year>1991</Year>
-                    <Month>11</Month>
-                    <Day>13</Day>
-                </DateCompleted>
-                <DateRevised>
-                    <Year>2006</Year>
-                    <Month>11</Month>
-                    <Day>15</Day>
-                </DateRevised>
-                <Article PubModel="Print">
-                    <Journal>
-                        <ISSN IssnType="Print">0090-3493</ISSN>
-                        <JournalIssue CitedMedium="Print">
-                            <Volume>19</Volume>
-                            <Issue>10</Issue>
-                            <PubDate>
-                                <Year>1991</Year>
-                                <Month>Oct</Month>
-                            </PubDate>
-                        </JournalIssue>
-                        <Title>Critical care medicine</Title>
-                        <ISOAbbreviation>Crit. Care Med.</ISOAbbreviation>
-                    </Journal>
-                    <ArticleTitle>Tracheal damage following conventional and high-frequency ventilation at low and high humidity.</ArticleTitle>
-                    <Pagination>
-                        <MedlinePgn>1310-6</MedlinePgn>
-                    </Pagination>
-                    <Abstract>
-                        <AbstractText Label="OBJECTIVES" NlmCategory="OBJECTIVE">To compare the degree of tracheobronchial damage in newborn lambs ventilated for 6 hrs with relative humidities of 30% or 90% and continuous positive airway pressure breathing, conventional mechanical ventilation of 25 and 60 breaths/min, or high frequency flow-interrupted ventilation at 600 breaths/min.</AbstractText>
-                        <AbstractText Label="BACKGROUND AND METHODS" NlmCategory="METHODS">Tracheobronchial damage secondary to mechanical ventilation remains a major iatrogenic lesion of the newborn despite substantial advances in both mechanical design and ventilatory techniques. A histologic scoring system was used to compare the damage noted in the tracheobronchial epithelium of newborn lambs after 6 hrs of conventional mechanical ventilation or high-frequency flow-interrupted ventilation at two relative humidities. Three groups of animals were ventilated for 6 hrs with an FIO2 of 0.21 at 36.0 degrees C and relative humidity of 90%. The first group received continuous positive airway pressure of 4 cm H2O, the second group received slow rate, conventional mechanical ventilation at 25 breaths/min, and the third group received fast rate, conventional mechanical ventilation at 60 breaths/min. Two other groups of animals were ventilated for 6 hrs with an FIO2 of 0.21 at 36.0 degrees C and relative humidity of 30%. The first group was ventilated with high-frequency flow-interrupted ventilation at 600 breaths/min and the second group with slow rate, conventional mechanical ventilation at 25 breaths/min. Two additional groups served as nonintubated controls; one group was killed immediately after sedation and the other group was killed after 6 hrs of sedation.</AbstractText>
-                        <AbstractText Label="RESULTS" NlmCategory="RESULTS">The damage was mild but significantly different from controls when 90% humidity was used and there was no difference in the histology score between continuous positive airway pressure breathing and conventional mechanical ventilation at 25 or 60 breaths/min. Significant inflammation, erosion, necrosis, and blistering occurred with both conventional mechanical ventilation at 25 breaths/min and high-frequency flow-interrupted ventilation at 600 breaths/min when 30% humidity was used. The damage was only found 5 mm below the tip of the endotracheal tube and not at 3.5 cm beyond the endotrachea tube in the trachea nor in the right main bronchus.</AbstractText>
-                        <AbstractText Label="CONCLUSION" NlmCategory="CONCLUSIONS">These data indicate that endotracheal intubation and mechanical ventilation, regardless of the method of ventilation, cause damage to the tracheal mucosa, but that poorly humidified inspired gases cause significantly greater damage.</AbstractText>
-                    </Abstract>
-                    <AuthorList CompleteYN="Y">
-                        <Author ValidYN="Y">
-                            <LastName>Todd</LastName>
-                            <ForeName>D A</ForeName>
-                            <Initials>DA</Initials>
-                            <AffiliationInfo>
-                                <Affiliation>Department of Pediatrics, Westmead Hospital, NSW, Australia.</Affiliation>
-                            </AffiliationInfo>
-                        </Author>
-                        <Author ValidYN="Y">
-                            <LastName>John</LastName>
-                            <ForeName>E</ForeName>
-                            <Initials>E</Initials>
-                        </Author>
-                        <Author ValidYN="Y">
-                            <LastName>Osborn</LastName>
-                            <ForeName>R A</ForeName>
-                            <Initials>RA</Initials>
-                        </Author>
-                    </AuthorList>
-                    <Language>eng</Language>
-                    <PublicationTypeList>
-                        <PublicationType UI="D003160">Comparative Study</PublicationType>
-                        <PublicationType UI="D016428">Journal Article</PublicationType>
-                    </PublicationTypeList>
-                </Article>
-                <MedlineJournalInfo>
-                    <Country>UNITED STATES</Country>
-                    <MedlineTA>Crit Care Med</MedlineTA>
-                    <NlmUniqueID>0355501</NlmUniqueID>
-                    <ISSNLinking>0090-3493</ISSNLinking>
-                </MedlineJournalInfo>
-                <CitationSubset>AIM</CitationSubset>
-                <CitationSubset>IM</CitationSubset>
-                <MeshHeadingList>
-                    <MeshHeading>
-                        <DescriptorName MajorTopicYN="N" UI="D000818">Animals</DescriptorName>
-                    </MeshHeading>
-                    <MeshHeading>
-                        <DescriptorName MajorTopicYN="N" UI="D000831">Animals, Newborn</DescriptorName>
-                    </MeshHeading>
-                    <MeshHeading>
-                        <DescriptorName MajorTopicYN="N" UI="D005260">Female</DescriptorName>
-                    </MeshHeading>
-                    <MeshHeading>
-                        <DescriptorName MajorTopicYN="N" UI="D006612">High-Frequency Ventilation</DescriptorName>
-                        <QualifierName MajorTopicYN="Y" UI="Q000009">adverse effects</QualifierName>
-                    </MeshHeading>
-                    <MeshHeading>
-                        <DescriptorName MajorTopicYN="N" UI="D006813">Humidity</DescriptorName>
-                    </MeshHeading>
-                    <MeshHeading>
-                        <DescriptorName MajorTopicYN="N" UI="D007442">Intubation, Intratracheal</DescriptorName>
-                    </MeshHeading>
-                    <MeshHeading>
-                        <DescriptorName MajorTopicYN="N" UI="D008297">Male</DescriptorName>
-                    </MeshHeading>
-                    <MeshHeading>
-                        <DescriptorName MajorTopicYN="N" UI="D011175">Positive-Pressure Respiration</DescriptorName>
-                        <QualifierName MajorTopicYN="Y" UI="Q000009">adverse effects</QualifierName>
-                    </MeshHeading>
-                    <MeshHeading>
-                        <DescriptorName MajorTopicYN="N" UI="D012121">Respiration, Artificial</DescriptorName>
-                        <QualifierName MajorTopicYN="Y" UI="Q000009">adverse effects</QualifierName>
-                    </MeshHeading>
-                    <MeshHeading>
-                        <DescriptorName MajorTopicYN="N" UI="D012756">Sheep</DescriptorName>
-                    </MeshHeading>
-                    <MeshHeading>
-                        <DescriptorName MajorTopicYN="N" UI="D014132">Trachea</DescriptorName>
-                        <QualifierName MajorTopicYN="Y" UI="Q000293">injuries</QualifierName>
-                        <QualifierName MajorTopicYN="N" UI="Q000473">pathology</QualifierName>
-                    </MeshHeading>
-                </MeshHeadingList>
-            </MedlineCitation>
-            <PubmedData>
-                <History>
-                    <PubMedPubDate PubStatus="pubmed">
-                        <Year>1991</Year>
-                        <Month>10</Month>
-                        <Day>1</Day>
-                    </PubMedPubDate>
-                    <PubMedPubDate PubStatus="medline">
-                        <Year>1991</Year>
-                        <Month>10</Month>
-                        <Day>1</Day>
-                        <Hour>0</Hour>
-                        <Minute>1</Minute>
-                    </PubMedPubDate>
-                    <PubMedPubDate PubStatus="entrez">
-                        <Year>1991</Year>
-                        <Month>10</Month>
-                        <Day>1</Day>
-                        <Hour>0</Hour>
-                        <Minute>0</Minute>
-                    </PubMedPubDate>
-                </History>
-                <PublicationStatus>ppublish</PublicationStatus>
-                <ArticleIdList>
-                    <ArticleId IdType="pubmed">1914489</ArticleId>
-                </ArticleIdList>
-            </PubmedData>
-        </PubmedArticle>
-
-        </PubmedArticleSet>
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\"?>\n<!DOCTYPE PubmedArticleSet PUBLIC \"-//NLM//DTD
+        PubMedArticle, 1st January 2016//EN\" \"http://www.ncbi.nlm.nih.gov/corehtml/query/DTD/pubmed_160101.dtd\">\n<PubmedArticleSet>\n<PubmedArticle>\n
+        \   <MedlineCitation Owner=\"NLM\" Status=\"MEDLINE\">\n        <PMID Version=\"1\">10048354</PMID>\n
+        \       <DateCreated>\n            <Year>1999</Year>\n            <Month>04</Month>\n
+        \           <Day>22</Day>\n        </DateCreated>\n        <DateCompleted>\n
+        \           <Year>1999</Year>\n            <Month>04</Month>\n            <Day>22</Day>\n
+        \       </DateCompleted>\n        <DateRevised>\n            <Year>2010</Year>\n
+        \           <Month>01</Month>\n            <Day>05</Day>\n        </DateRevised>\n
+        \       <Article PubModel=\"Print\">\n            <Journal>\n                <ISSN
+        IssnType=\"Print\">1078-4519</ISSN>\n                <JournalIssue CitedMedium=\"Print\">\n
+        \                   <Volume>28</Volume>\n                    <Issue>1</Issue>\n
+        \                   <PubDate>\n                        <Year>1999</Year>\n
+        \                       <Month>Jan</Month>\n                    </PubDate>\n
+        \               </JournalIssue>\n                <Title>American journal of
+        orthopedics (Belle Mead, N.J.)</Title>\n                <ISOAbbreviation>Am
+        J. Orthop.</ISOAbbreviation>\n            </Journal>\n            <ArticleTitle>Frostbite:
+        an orthopedic perspective.</ArticleTitle>\n            <Pagination>\n                <MedlinePgn>21-6</MedlinePgn>\n
+        \           </Pagination>\n            <Abstract>\n                <AbstractText>Frostbite
+        injury to the extremities has the potential for disastrous effects. This review
+        provides information valuable to the orthopedic surgeon to aid in the evaluation
+        and treatment of frostbite. The pathophysiology and predisposing factors that
+        provide a basic understanding of the nature of frostbite are discussed. Accepted
+        and experimental imaging studies and treatment options are also reviewed.
+        An effort is made to give the orthopedic perspective on each issue, providing
+        a valuable resource for all orthopedic surgeons involved in the care of the
+        patient with frostbite.</AbstractText>\n            </Abstract>\n            <AuthorList
+        CompleteYN=\"Y\">\n                <Author ValidYN=\"Y\">\n                    <LastName>McAdams</LastName>\n
+        \                   <ForeName>T R</ForeName>\n                    <Initials>TR</Initials>\n
+        \                   <AffiliationInfo>\n                        <Affiliation>Department
+        of Orthopaedics and Rehabilitation, University of New Mexico, Albuquerque,
+        USA.</Affiliation>\n                    </AffiliationInfo>\n                </Author>\n
+        \               <Author ValidYN=\"Y\">\n                    <LastName>Swenson</LastName>\n
+        \                   <ForeName>D R</ForeName>\n                    <Initials>DR</Initials>\n
+        \               </Author>\n                <Author ValidYN=\"Y\">\n                    <LastName>Miller</LastName>\n
+        \                   <ForeName>R A</ForeName>\n                    <Initials>RA</Initials>\n
+        \               </Author>\n            </AuthorList>\n            <Language>eng</Language>\n
+        \           <PublicationTypeList>\n                <PublicationType UI=\"D002363\">Case
+        Reports</PublicationType>\n                <PublicationType UI=\"D016428\">Journal
+        Article</PublicationType>\n                <PublicationType UI=\"D016454\">Review</PublicationType>\n
+        \           </PublicationTypeList>\n        </Article>\n        <MedlineJournalInfo>\n
+        \           <Country>UNITED STATES</Country>\n            <MedlineTA>Am J
+        Orthop (Belle Mead NJ)</MedlineTA>\n            <NlmUniqueID>9502918</NlmUniqueID>\n
+        \           <ISSNLinking>1078-4519</ISSNLinking>\n        </MedlineJournalInfo>\n
+        \       <CitationSubset>IM</CitationSubset>\n        <MeshHeadingList>\n            <MeshHeading>\n
+        \               <DescriptorName MajorTopicYN=\"N\" UI=\"D003131\">Combined
+        Modality Therapy</DescriptorName>\n            </MeshHeading>\n            <MeshHeading>\n
+        \               <DescriptorName MajorTopicYN=\"N\" UI=\"D005260\">Female</DescriptorName>\n
+        \           </MeshHeading>\n            <MeshHeading>\n                <DescriptorName
+        MajorTopicYN=\"N\" UI=\"D005627\">Frostbite</DescriptorName>\n                <QualifierName
+        MajorTopicYN=\"Y\" UI=\"Q000175\">diagnosis</QualifierName>\n                <QualifierName
+        MajorTopicYN=\"N\" UI=\"Q000188\">drug therapy</QualifierName>\n                <QualifierName
+        MajorTopicYN=\"N\" UI=\"Q000503\">physiopathology</QualifierName>\n                <QualifierName
+        MajorTopicYN=\"Y\" UI=\"Q000601\">surgery</QualifierName>\n            </MeshHeading>\n
+        \           <MeshHeading>\n                <DescriptorName MajorTopicYN=\"N\"
+        UI=\"D006801\">Humans</DescriptorName>\n            </MeshHeading>\n            <MeshHeading>\n
+        \               <DescriptorName MajorTopicYN=\"N\" UI=\"D015601\">Injury Severity
+        Score</DescriptorName>\n            </MeshHeading>\n            <MeshHeading>\n
+        \               <DescriptorName MajorTopicYN=\"N\" UI=\"D008297\">Male</DescriptorName>\n
+        \           </MeshHeading>\n            <MeshHeading>\n                <DescriptorName
+        MajorTopicYN=\"N\" UI=\"D008875\">Middle Aged</DescriptorName>\n            </MeshHeading>\n
+        \           <MeshHeading>\n                <DescriptorName MajorTopicYN=\"Y\"
+        UI=\"D019637\">Orthopedic Procedures</DescriptorName>\n            </MeshHeading>\n
+        \           <MeshHeading>\n                <DescriptorName MajorTopicYN=\"N\"
+        UI=\"D011379\">Prognosis</DescriptorName>\n            </MeshHeading>\n        </MeshHeadingList>\n
+        \       <NumberOfReferences>44</NumberOfReferences>\n    </MedlineCitation>\n
+        \   <PubmedData>\n        <History>\n            <PubMedPubDate PubStatus=\"pubmed\">\n
+        \               <Year>1999</Year>\n                <Month>2</Month>\n                <Day>27</Day>\n
+        \           </PubMedPubDate>\n            <PubMedPubDate PubStatus=\"medline\">\n
+        \               <Year>1999</Year>\n                <Month>2</Month>\n                <Day>27</Day>\n
+        \               <Hour>0</Hour>\n                <Minute>1</Minute>\n            </PubMedPubDate>\n
+        \           <PubMedPubDate PubStatus=\"entrez\">\n                <Year>1999</Year>\n
+        \               <Month>2</Month>\n                <Day>27</Day>\n                <Hour>0</Hour>\n
+        \               <Minute>0</Minute>\n            </PubMedPubDate>\n        </History>\n
+        \       <PublicationStatus>ppublish</PublicationStatus>\n        <ArticleIdList>\n
+        \           <ArticleId IdType=\"pubmed\">10048354</ArticleId>\n        </ArticleIdList>\n
+        \   </PubmedData>\n</PubmedArticle>\n\n\n<PubmedArticle>\n    <MedlineCitation
+        Owner=\"NLM\" Status=\"MEDLINE\">\n        <PMID Version=\"1\">1914489</PMID>\n
+        \       <DateCreated>\n            <Year>1991</Year>\n            <Month>11</Month>\n
+        \           <Day>13</Day>\n        </DateCreated>\n        <DateCompleted>\n
+        \           <Year>1991</Year>\n            <Month>11</Month>\n            <Day>13</Day>\n
+        \       </DateCompleted>\n        <DateRevised>\n            <Year>2006</Year>\n
+        \           <Month>11</Month>\n            <Day>15</Day>\n        </DateRevised>\n
+        \       <Article PubModel=\"Print\">\n            <Journal>\n                <ISSN
+        IssnType=\"Print\">0090-3493</ISSN>\n                <JournalIssue CitedMedium=\"Print\">\n
+        \                   <Volume>19</Volume>\n                    <Issue>10</Issue>\n
+        \                   <PubDate>\n                        <Year>1991</Year>\n
+        \                       <Month>Oct</Month>\n                    </PubDate>\n
+        \               </JournalIssue>\n                <Title>Critical care medicine</Title>\n
+        \               <ISOAbbreviation>Crit. Care Med.</ISOAbbreviation>\n            </Journal>\n
+        \           <ArticleTitle>Tracheal damage following conventional and high-frequency
+        ventilation at low and high humidity.</ArticleTitle>\n            <Pagination>\n
+        \               <MedlinePgn>1310-6</MedlinePgn>\n            </Pagination>\n
+        \           <Abstract>\n                <AbstractText Label=\"OBJECTIVES\"
+        NlmCategory=\"OBJECTIVE\">To compare the degree of tracheobronchial damage
+        in newborn lambs ventilated for 6 hrs with relative humidities of 30% or 90%
+        and continuous positive airway pressure breathing, conventional mechanical
+        ventilation of 25 and 60 breaths/min, or high frequency flow-interrupted ventilation
+        at 600 breaths/min.</AbstractText>\n                <AbstractText Label=\"BACKGROUND
+        AND METHODS\" NlmCategory=\"METHODS\">Tracheobronchial damage secondary to
+        mechanical ventilation remains a major iatrogenic lesion of the newborn despite
+        substantial advances in both mechanical design and ventilatory techniques.
+        A histologic scoring system was used to compare the damage noted in the tracheobronchial
+        epithelium of newborn lambs after 6 hrs of conventional mechanical ventilation
+        or high-frequency flow-interrupted ventilation at two relative humidities.
+        Three groups of animals were ventilated for 6 hrs with an FIO2 of 0.21 at
+        36.0 degrees C and relative humidity of 90%. The first group received continuous
+        positive airway pressure of 4 cm H2O, the second group received slow rate,
+        conventional mechanical ventilation at 25 breaths/min, and the third group
+        received fast rate, conventional mechanical ventilation at 60 breaths/min.
+        Two other groups of animals were ventilated for 6 hrs with an FIO2 of 0.21
+        at 36.0 degrees C and relative humidity of 30%. The first group was ventilated
+        with high-frequency flow-interrupted ventilation at 600 breaths/min and the
+        second group with slow rate, conventional mechanical ventilation at 25 breaths/min.
+        Two additional groups served as nonintubated controls; one group was killed
+        immediately after sedation and the other group was killed after 6 hrs of sedation.</AbstractText>\n
+        \               <AbstractText Label=\"RESULTS\" NlmCategory=\"RESULTS\">The
+        damage was mild but significantly different from controls when 90% humidity
+        was used and there was no difference in the histology score between continuous
+        positive airway pressure breathing and conventional mechanical ventilation
+        at 25 or 60 breaths/min. Significant inflammation, erosion, necrosis, and
+        blistering occurred with both conventional mechanical ventilation at 25 breaths/min
+        and high-frequency flow-interrupted ventilation at 600 breaths/min when 30%
+        humidity was used. The damage was only found 5 mm below the tip of the endotracheal
+        tube and not at 3.5 cm beyond the endotrachea tube in the trachea nor in the
+        right main bronchus.</AbstractText>\n                <AbstractText Label=\"CONCLUSION\"
+        NlmCategory=\"CONCLUSIONS\">These data indicate that endotracheal intubation
+        and mechanical ventilation, regardless of the method of ventilation, cause
+        damage to the tracheal mucosa, but that poorly humidified inspired gases cause
+        significantly greater damage.</AbstractText>\n            </Abstract>\n            <AuthorList
+        CompleteYN=\"Y\">\n                <Author ValidYN=\"Y\">\n                    <LastName>Todd</LastName>\n
+        \                   <ForeName>D A</ForeName>\n                    <Initials>DA</Initials>\n
+        \                   <AffiliationInfo>\n                        <Affiliation>Department
+        of Pediatrics, Westmead Hospital, NSW, Australia.</Affiliation>\n                    </AffiliationInfo>\n
+        \               </Author>\n                <Author ValidYN=\"Y\">\n                    <LastName>John</LastName>\n
+        \                   <ForeName>E</ForeName>\n                    <Initials>E</Initials>\n
+        \               </Author>\n                <Author ValidYN=\"Y\">\n                    <LastName>Osborn</LastName>\n
+        \                   <ForeName>R A</ForeName>\n                    <Initials>RA</Initials>\n
+        \               </Author>\n            </AuthorList>\n            <Language>eng</Language>\n
+        \           <PublicationTypeList>\n                <PublicationType UI=\"D003160\">Comparative
+        Study</PublicationType>\n                <PublicationType UI=\"D016428\">Journal
+        Article</PublicationType>\n            </PublicationTypeList>\n        </Article>\n
+        \       <MedlineJournalInfo>\n            <Country>UNITED STATES</Country>\n
+        \           <MedlineTA>Crit Care Med</MedlineTA>\n            <NlmUniqueID>0355501</NlmUniqueID>\n
+        \           <ISSNLinking>0090-3493</ISSNLinking>\n        </MedlineJournalInfo>\n
+        \       <CitationSubset>AIM</CitationSubset>\n        <CitationSubset>IM</CitationSubset>\n
+        \       <MeshHeadingList>\n            <MeshHeading>\n                <DescriptorName
+        MajorTopicYN=\"N\" UI=\"D000818\">Animals</DescriptorName>\n            </MeshHeading>\n
+        \           <MeshHeading>\n                <DescriptorName MajorTopicYN=\"N\"
+        UI=\"D000831\">Animals, Newborn</DescriptorName>\n            </MeshHeading>\n
+        \           <MeshHeading>\n                <DescriptorName MajorTopicYN=\"N\"
+        UI=\"D005260\">Female</DescriptorName>\n            </MeshHeading>\n            <MeshHeading>\n
+        \               <DescriptorName MajorTopicYN=\"N\" UI=\"D006612\">High-Frequency
+        Ventilation</DescriptorName>\n                <QualifierName MajorTopicYN=\"Y\"
+        UI=\"Q000009\">adverse effects</QualifierName>\n            </MeshHeading>\n
+        \           <MeshHeading>\n                <DescriptorName MajorTopicYN=\"N\"
+        UI=\"D006813\">Humidity</DescriptorName>\n            </MeshHeading>\n            <MeshHeading>\n
+        \               <DescriptorName MajorTopicYN=\"N\" UI=\"D007442\">Intubation,
+        Intratracheal</DescriptorName>\n            </MeshHeading>\n            <MeshHeading>\n
+        \               <DescriptorName MajorTopicYN=\"N\" UI=\"D008297\">Male</DescriptorName>\n
+        \           </MeshHeading>\n            <MeshHeading>\n                <DescriptorName
+        MajorTopicYN=\"N\" UI=\"D011175\">Positive-Pressure Respiration</DescriptorName>\n
+        \               <QualifierName MajorTopicYN=\"Y\" UI=\"Q000009\">adverse effects</QualifierName>\n
+        \           </MeshHeading>\n            <MeshHeading>\n                <DescriptorName
+        MajorTopicYN=\"N\" UI=\"D012121\">Respiration, Artificial</DescriptorName>\n
+        \               <QualifierName MajorTopicYN=\"Y\" UI=\"Q000009\">adverse effects</QualifierName>\n
+        \           </MeshHeading>\n            <MeshHeading>\n                <DescriptorName
+        MajorTopicYN=\"N\" UI=\"D012756\">Sheep</DescriptorName>\n            </MeshHeading>\n
+        \           <MeshHeading>\n                <DescriptorName MajorTopicYN=\"N\"
+        UI=\"D014132\">Trachea</DescriptorName>\n                <QualifierName MajorTopicYN=\"Y\"
+        UI=\"Q000293\">injuries</QualifierName>\n                <QualifierName MajorTopicYN=\"N\"
+        UI=\"Q000473\">pathology</QualifierName>\n            </MeshHeading>\n        </MeshHeadingList>\n
+        \   </MedlineCitation>\n    <PubmedData>\n        <History>\n            <PubMedPubDate
+        PubStatus=\"pubmed\">\n                <Year>1991</Year>\n                <Month>10</Month>\n
+        \               <Day>1</Day>\n            </PubMedPubDate>\n            <PubMedPubDate
+        PubStatus=\"medline\">\n                <Year>1991</Year>\n                <Month>10</Month>\n
+        \               <Day>1</Day>\n                <Hour>0</Hour>\n                <Minute>1</Minute>\n
+        \           </PubMedPubDate>\n            <PubMedPubDate PubStatus=\"entrez\">\n
+        \               <Year>1991</Year>\n                <Month>10</Month>\n                <Day>1</Day>\n
+        \               <Hour>0</Hour>\n                <Minute>0</Minute>\n            </PubMedPubDate>\n
+        \       </History>\n        <PublicationStatus>ppublish</PublicationStatus>\n
+        \       <ArticleIdList>\n            <ArticleId IdType=\"pubmed\">1914489</ArticleId>\n
+        \       </ArticleIdList>\n    </PubmedData>\n</PubmedArticle>\n\n</PubmedArticleSet>\n"
     http_version: 
-  recorded_at: Thu, 10 Dec 2015 20:26:46 GMT
+  recorded_at: Mon, 07 Mar 2016 22:19:38 GMT
 - request:
     method: get
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationItems?format=xml&publicationItemIDs=
@@ -463,10 +352,8 @@ http_interactions:
       encoding: US-ASCII
       string: ''
     headers:
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
-      - "*/*"
+      - ! '*/*'
       User-Agent:
       - Ruby
       Content-Type:
@@ -495,12 +382,12 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Thu, 10 Dec 2015 20:26:47 GMT
+      - Mon, 07 Mar 2016 22:19:38 GMT
       Content-Length:
       - '1208'
     body:
-      encoding: UTF-8
-      string: "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\r\n<html
+      encoding: US-ASCII
+      string: ! "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\r\n<html
         xmlns=\"http://www.w3.org/1999/xhtml\">\r\n<head>\r\n<meta http-equiv=\"Content-Type\"
         content=\"text/html; charset=iso-8859-1\"/>\r\n<title>500 - Internal server
         error.</title>\r\n<style type=\"text/css\">\r\n<!--\r\nbody{margin:0;font-size:.7em;font-family:Verdana,
@@ -514,7 +401,7 @@ http_interactions:
         \ <h3>There is a problem with the resource you are looking for, and it cannot
         be displayed.</h3>\r\n </fieldset></div>\r\n</div>\r\n</body>\r\n</html>\r\n"
     http_version: 
-  recorded_at: Thu, 10 Dec 2015 20:26:47 GMT
+  recorded_at: Mon, 07 Mar 2016 22:19:39 GMT
 - request:
     method: post
     uri: http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml
@@ -522,10 +409,8 @@ http_interactions:
       encoding: US-ASCII
       string: ''
     headers:
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
-      - "*/*"
+      - ! '*/*'
       User-Agent:
       - Ruby
   response:
@@ -534,20 +419,20 @@ http_interactions:
       message: Bad Request
     headers:
       Date:
-      - Thu, 10 Dec 2015 20:26:47 GMT
+      - Mon, 07 Mar 2016 22:19:39 GMT
       Server:
       - Apache
       Access-Control-Allow-Origin:
-      - "*"
+      - ! '*'
       Cache-Control:
       - private
       Ncbi-Sid:
-      - 08DD56F6669E0071_0770SID
+      - 73BF42BA6DDFE7B1_0269SID
       Content-Type:
       - text/xml; charset=UTF-8
       Set-Cookie:
-      - ncbi_sid=08DD56F6669E0071_0770SID; domain=.nih.gov; path=/; expires=Sat, 10
-        Dec 2016 20:26:47 GMT
+      - ncbi_sid=73BF42BA6DDFE7B1_0269SID; domain=.nih.gov; path=/; expires=Tue, 07
+        Mar 2017 22:19:39 GMT
       X-Ua-Compatible:
       - IE=Edge
       Connection:
@@ -555,10 +440,10 @@ http_interactions:
       Transfer-Encoding:
       - chunked
     body:
-      encoding: UTF-8
-      string: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE eEfetchResult
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE eEfetchResult
         PUBLIC \"-//NLM//DTD efetch 20131226//EN\" \"http://eutils.ncbi.nlm.nih.gov/eutils/dtd/20131226/efetch.dtd\">\n<eFetchResult>\n\t<ERROR>WebEnv
         parameter is required</ERROR>\n</eFetchResult>\n"
     http_version: 
-  recorded_at: Thu, 10 Dec 2015 20:26:47 GMT
+  recorded_at: Mon, 07 Mar 2016 22:19:39 GMT
 recorded_with: VCR 2.9.3

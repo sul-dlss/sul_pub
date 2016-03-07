@@ -4,37 +4,20 @@ http_interactions:
     method: post
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery?format=xml
     body:
-      encoding: UTF-8
-      string: |-
-        <?xml version="1.0"?>
-              <ScienceWireQueryXMLParameter xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-              <xmlQuery><![CDATA[
-               <query xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/
-              XMLSchema">
-                <Criterion ConjunctionOperator="AND">
-                  <Criteria><Criterion>
-                      <Filter>
-                        <Column>Title</Column>
-                        <Operator>Contains</Operator>
-                        <Value>pathological</Value>
-                      </Filter>
-                    </Criterion></Criteria>
-                </Criterion>
-                <Columns>
-                  <SortColumn>
-                    <Column>Rank</Column>
-                    <Direction>Descending</Direction>
-                  </SortColumn>
-                </Columns>
-               <MaximumRows>20</MaximumRows>
-              </query>
-              ]]></xmlQuery>
-              </ScienceWireQueryXMLParameter>
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\"?>\n      <ScienceWireQueryXMLParameter xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\n      <xmlQuery><![CDATA[\n
+        \      <query xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/\n
+        \     XMLSchema\">\n        <Criterion ConjunctionOperator=\"AND\">\n          <Criteria><Criterion>\n
+        \             <Filter>\n                <Column>Title</Column>\n                <Operator>Contains</Operator>\n
+        \               <Value>pathological</Value>\n              </Filter>\n            </Criterion></Criteria>\n
+        \       </Criterion>\n        <Columns>\n          <SortColumn>\n            <Column>Rank</Column>\n
+        \           <Direction>Descending</Direction>\n          </SortColumn>\n        </Columns>\n
+        \      <MaximumRows>20</MaximumRows>\n      </query>\n      ]]></xmlQuery>\n
+        \     </ScienceWireQueryXMLParameter>"
     headers:
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
-      - "*/*"
+      - ! '*/*'
       User-Agent:
       - Ruby
       Licenseid:
@@ -65,16 +48,16 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Thu, 10 Dec 2015 20:25:21 GMT
+      - Mon, 07 Mar 2016 22:18:58 GMT
       Content-Length:
       - '279'
     body:
-      encoding: UTF-8
-      string: "<?xml version=\"1.0\"?>\r\n<ScienceWireQueryIDResponse xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\"?>\r\n<ScienceWireQueryIDResponse xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>41171</queryID>\r\n
         \ <queryResultRows>20</queryResultRows>\r\n  <totalRows>20</totalRows>\r\n</ScienceWireQueryIDResponse>"
     http_version: 
-  recorded_at: Thu, 10 Dec 2015 20:25:22 GMT
+  recorded_at: Mon, 07 Mar 2016 22:18:58 GMT
 - request:
     method: get
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/41171?format=xml&page=0&pageSize=2147483647&v=version/3
@@ -82,10 +65,8 @@ http_interactions:
       encoding: US-ASCII
       string: ''
     headers:
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
-      - "*/*"
+      - ! '*/*'
       User-Agent:
       - Ruby
       Content-Type:
@@ -114,1337 +95,639 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Thu, 10 Dec 2015 20:25:22 GMT
+      - Mon, 07 Mar 2016 22:18:58 GMT
       Content-Length:
-      - '59609'
+      - '58371'
     body:
-      encoding: ASCII-8BIT
-      string: !binary |-
-        PD94bWwgdmVyc2lvbj0iMS4wIj8+DQo8QXJyYXlPZlB1YmxpY2F0aW9uSXRl
-        bSB4bWxuczp4c2Q9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1h
-        IiB4bWxuczp4c2k9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1h
-        LWluc3RhbmNlIj4NCiAgPFB1YmxpY2F0aW9uSXRlbT4NCiAgICA8UHVibGlj
-        YXRpb25JdGVtSUQ+NzM1MTcxNTU8L1B1YmxpY2F0aW9uSXRlbUlEPg0KICAg
-        IDxUaXRsZT5Nb2xlY3VsYXIgcGF0aG9sb2dpY2FsIGVwaWRlbWlvbG9neSBn
-        aXZlcyBjbHVlcyB0byBwYXJhZG94aWNhbCBmaW5kaW5ncy48L1RpdGxlPg0K
-        ICAgIDxBYnN0cmFjdD5BIG51bWJlciBvZiBlcGlkZW1pb2xvZ2ljIHN0dWRp
-        ZXMgaGF2ZSBkZXNjcmliZWQgd2hhdCBhcHBlYXIgdG8gYmUgcGFyYWRveGlj
-        YWwgYXNzb2NpYXRpb25zLCB3aGVyZSBhbiBpbmNvbmdydW91cyByZWxhdGlv
-        bnNoaXAgaXMgb2JzZXJ2ZWQgYmV0d2VlbiBhIGNlcnRhaW4gd2VsbC1lc3Rh
-        Ymxpc2hlZCByaXNrIGZhY3RvciBmb3IgZGlzZWFzZSBpbmNpZGVuY2UgYW5k
-        IGZhdm9yYWJsZSBjbGluaWNhbCBvdXRjb21lIGFtb25nIHBhdGllbnRzIHdp
-        dGggdGhhdCBkaXNlYXNlLiBGb3IgZXhhbXBsZSwgdGhlICJvYmVzaXR5IHBh
-        cmFkb3giIHJlcHJlc2VudHMgdGhlIGFzc29jaWF0aW9uIGJldHdlZW4gb2Jl
-        c2l0eSBhbmQgYmV0dGVyIHN1cnZpdmFsIGFtb25nIHBhdGllbnRzIHdpdGgg
-        YSBjZXJ0YWluIGRpc2Vhc2Ugc3VjaCBhcyBjb3JvbmFyeSBoZWFydCBkaXNl
-        YXNlLiBQYXJhZG94aWNhbCBvYnNlcnZhdGlvbnMgY2F1c2UgdmV4aW5nIGNs
-        aW5pY2FsIGFuZCBwdWJsaWMgaGVhbHRoIHByb2JsZW1zIGFzIHRoZXkgcmFp
-        c2UgcXVlc3Rpb25zIG9uIGNhdXNhbCByZWxhdGlvbnNoaXBzIGFuZCBoaW5k
-        ZXIgdGhlIGRldmVsb3BtZW50IG9mIGVmZmVjdGl2ZSBpbnRlcnZlbnRpb25z
-        LiBDb21wZWxsaW5nIGV2aWRlbmNlIGluZGljYXRlcyB0aGF0IHBhdGhvZ2Vu
-        aWMgcHJvY2Vzc2VzIGVuY29tcGFzcyBtb2xlY3VsYXIgYWx0ZXJhdGlvbnMg
-        d2l0aGluIGNlbGxzIGFuZCB0aGUgbWljcm9lbnZpcm9ubWVudCwgaW5mbHVl
-        bmNlZCBieSB2YXJpb3VzIGV4b2dlbm91cyBhbmQgZW5kb2dlbm91cyBleHBv
-        c3VyZXMsIGFuZCB0aGF0IGludGVycGVyc29uYWwgaGV0ZXJvZ2VuZWl0eSBp
-        biBtb2xlY3VsYXIgcGF0aG9sb2d5IGFuZCBwYXRob3BoeXNpb2xvZ3kgZXhp
-        c3RzIGFtb25nIHBhdGllbnRzIHdpdGggYW55IGdpdmVuIGRpc2Vhc2UuIElu
-        IHRoaXMgYXJ0aWNsZSwgd2UgaW50cm9kdWNlIG1ldGhvZHMgb2YgdGhlIGVt
-        ZXJnaW5nIGludGVncmF0aXZlIGludGVyZGlzY2lwbGluYXJ5IGZpZWxkIG9m
-        IG1vbGVjdWxhciBwYXRob2xvZ2ljYWwgZXBpZGVtaW9sb2d5IChNUEUpLCB3
-        aGljaCBpcyBmb3VuZGVkIG9uIHRoZSB1bmlxdWUgZGlzZWFzZSBwcmluY2lw
-        bGUgYW5kIGRpc2Vhc2UgY29udGludXVtIHRoZW9yeS4gV2UgYW5hbHl6ZSBh
-        bmQgZGVjaXBoZXIgYXBwYXJlbnQgcGFyYWRveGljYWwgZmluZGluZ3MsIHV0
-        aWxpemluZyB0aGUgTVBFIGFwcHJvYWNoIGFuZCBhdmFpbGFibGUgbGl0ZXJh
-        dHVyZSBkYXRhIG9uIHR1bW9yIHNvbWF0aWMgZ2VuZXRpYyBhbmQgZXBpZ2Vu
-        ZXRpYyBjaGFyYWN0ZXJpc3RpY3MuIFRocm91Z2ggb3VyIGFuYWx5c2VzIGlu
-        IGNvbG9yZWN0YWwgY2FuY2VyLCByZW5hbCBjZWxsIGNhcmNpbm9tYSwgYW5k
-        IGdsaW9ibGFzdG9tYSAobWFsaWduYW50IGJyYWluIHR1bW9yKSwgd2UgY2Fu
-        IHJlYWRpbHkgZXhwbGFpbiBwYXJhZG94aWNhbCBhc3NvY2lhdGlvbnMgYmV0
-        d2VlbiBkaXNlYXNlIHJpc2sgZmFjdG9ycyBhbmQgYmV0dGVyIHByb2dub3Np
-        cyBhbW9uZyBkaXNlYXNlIHBhdGllbnRzLiBUaGUgTVBFIHBhcmFkaWdtIGFu
-        ZCBhcHByb2FjaCBjYW4gYmUgYXBwbGllZCB0byBub3Qgb25seSBuZW9wbGFz
-        bXMgYnV0IGFsc28gdmFyaW91cyBub24tbmVvcGxhc3RpYyBkaXNlYXNlcyB3
-        aGVyZSB0aGVyZSBleGlzdHMgaW5kaXNwdXRhYmxlIHViaXF1aXRvdXMgaGV0
-        ZXJvZ2VuZWl0eSBvZiBwYXRob2dlbmVzaXMgYW5kIG1vbGVjdWxhciBwYXRo
-        b2xvZ3kuIFRoZSBNUEUgcGFyYWRpZ20gaW5jbHVkaW5nIGNvbnNpZGVyYXRp
-        b24gb2YgZGlzZWFzZSBoZXRlcm9nZW5laXR5IHBsYXlzIGFuIGVzc2VudGlh
-        bCByb2xlIGluIGFkdmFuY2VtZW50cyBvZiBwcmVjaXNpb24gbWVkaWNpbmUg
-        YW5kIHB1YmxpYyBoZWFsdGguIDwvQWJzdHJhY3Q+DQogICAgPEF1dGhvckxp
-        c3Q+TmlzaGloYXJhLFJlaWtvLHxWYW5kZXJXZWVsZSxUeWxlcixKfFNoaWJ1
-        eWEsS2VuamksfE1pdHRsZW1hbixNdXJyYXksQXxXYW5nLE1vbGluLHxGaWVs
-        ZCxBbGlzb24sRXxHaW92YW5udWNjaSxFZHdhcmQsfExvY2hoZWFkLFBhdWws
-        fE9naW5vLFNodWppLDwvQXV0aG9yTGlzdD4NCiAgICA8QXV0aG9yQ291bnQ+
-        OTwvQXV0aG9yQ291bnQ+DQogICAgPEtleXdvcmRMaXN0PkJpYXN8Q2FyZGlv
-        dmFzY3VsYXIgZGlzZWFzZXxNb2xlY3VsYXIgZGlhZ25vc3RpY3N8TXVsdGlm
-        YWN0b3JpYWwgZGlzZWFzZXN8UGVyc29uYWxpemVkIG1lZGljaW5lPC9LZXl3
-        b3JkTGlzdD4NCiAgICA8RG9jdW1lbnRUeXBlTGlzdD5Kb3VybmFsIEFydGlj
-        bGU8L0RvY3VtZW50VHlwZUxpc3Q+DQogICAgPERvY3VtZW50Q2F0ZWdvcnk+
-        Sm91cm5hbCBEb2N1bWVudDwvRG9jdW1lbnRDYXRlZ29yeT4NCiAgICA8TnVt
-        YmVyT2ZSZWZlcmVuY2VzIHhzaTpuaWw9InRydWUiIC8+DQogICAgPFRpbWVz
-        Q2l0ZWQgeHNpOm5pbD0idHJ1ZSIgLz4NCiAgICA8VGltZXNOb3RTZWxmQ2l0
-        ZWQgeHNpOm5pbD0idHJ1ZSIgLz4NCiAgICA8UE1JRD4yNjQ0NTk5NjwvUE1J
-        RD4NCiAgICA8UHVibGljYXRpb25Tb3VyY2VUaXRsZT5FdXJvcGVhbiBqb3Vy
-        bmFsIG9mIGVwaWRlbWlvbG9neTwvUHVibGljYXRpb25Tb3VyY2VUaXRsZT4N
-        CiAgICA8Vm9sdW1lPjMwPC9Wb2x1bWU+DQogICAgPElzc3VlPjEwPC9Jc3N1
-        ZT4NCiAgICA8UGFnaW5hdGlvbj4xMTI5LTExMzU8L1BhZ2luYXRpb24+DQog
-        ICAgPFB1YmxpY2F0aW9uRGF0ZT4yMDE1LTEwLTAxVDAwOjAwOjAwPC9QdWJs
-        aWNhdGlvbkRhdGU+DQogICAgPFB1YmxpY2F0aW9uWWVhcj4yMDE1PC9QdWJs
-        aWNhdGlvblllYXI+DQogICAgPFB1YmxpY2F0aW9uU3ViamVjdENhdGVnb3J5
-        TGlzdCAvPg0KICAgIDxJU1NOPjAzOTMtMjk5MDwvSVNTTj4NCiAgICA8RE9J
-        PjEwLjEwMDcvczEwNjU0LTAxNS0wMDg4LTQ8L0RPST4NCiAgICA8Q29uZmVy
-        ZW5jZVN0YXJ0RGF0ZSB4c2k6bmlsPSJ0cnVlIiAvPg0KICAgIDxDb25mZXJl
-        bmNlRW5kRGF0ZSB4c2k6bmlsPSJ0cnVlIiAvPg0KICAgIDxSYW5rIHhzaTpu
-        aWw9InRydWUiIC8+DQogICAgPE9yZGluYWxSYW5rPjA8L09yZGluYWxSYW5r
-        Pg0KICAgIDxOb3JtYWxpemVkUmFuayB4c2k6bmlsPSJ0cnVlIiAvPg0KICAg
-        IDxOZXdQdWJsaWNhdGlvbkl0ZW1JRCB4c2k6bmlsPSJ0cnVlIiAvPg0KICAg
-        IDxJc09ic29sZXRlPmZhbHNlPC9Jc09ic29sZXRlPg0KICAgIDxDb3B5cmln
-        aHRQdWJsaXNoZXIgLz4NCiAgICA8Q29weXJpZ2h0Q2l0eSAvPg0KICAgIDxQ
-        dWJsaWNhdGlvbkltcGFjdEZhY3Rvckxpc3Q+NS4zMzksMjAxNCxDbG9zZXN0
-        VG9QdWJsaWNhdGlvblllYXJ8NS4zMzksMjAxNCxNb3N0UmVjZW50WWVhcjwv
-        UHVibGljYXRpb25JbXBhY3RGYWN0b3JMaXN0Pg0KICAgIDxQdWJsaWNhdGlv
-        bkNhdGVnb3J5UmFua2luZ0xpc3Q+OC8xNjI7UFVCTElDLCBFTlZJUk9OTUVO
-        VEFMICZhbXA7IE9DQ1VQQVRJT05BTCBIRUFMVEg7MjAxNDtTQztDbG9zZXN0
-        VG9QdWJsaWNhdGlvblllYXJ8OC8xNjI7UFVCTElDLCBFTlZJUk9OTUVOVEFM
-        ICZhbXA7IE9DQ1VQQVRJT05BTCBIRUFMVEg7MjAxNDtTQztNb3N0UmVjZW50
-        WWVhcjwvUHVibGljYXRpb25DYXRlZ29yeVJhbmtpbmdMaXN0Pg0KICAgIDxD
-        b3B5cmlnaHRTdGF0ZVByb3ZpbmNlIC8+DQogICAgPENvcHlyaWdodENvdW50
-        cnk+TkVUSEVSTEFORFM8L0NvcHlyaWdodENvdW50cnk+DQogIDwvUHVibGlj
-        YXRpb25JdGVtPg0KICA8UHVibGljYXRpb25JdGVtPg0KICAgIDxQdWJsaWNh
-        dGlvbkl0ZW1JRD43MzUxNjgzMjwvUHVibGljYXRpb25JdGVtSUQ+DQogICAg
-        PFRpdGxlPltEZXZlbG9wbWVudCBvZiBhIER1YWwgRGV0ZWN0aW9uIE1ldGhv
-        ZCB3aXRoIEZsdW9yZXNjZW5jZSBJbiBTaXR1IEh5YnJpZGl6YXRpb24gYW5k
-        IEltbXVub3N0YWluaW5nIG9uIEZvcm1hbGluLUZpeGVkIFBhcmFmZmluLUVt
-        YmVkZGVkIFRpc3N1ZSBTZWN0aW9ucy0tTW9sZWN1bGFyIFBhdGhvbG9naWNh
-        bCBEZXRlY3Rpb24gVGVjaG5pcXVlcyBhbmQgVGhlaXIgQXBwbGljYXRpb25z
-        IHRvIFBhdGhvbG9naWNhbCBEaWFnbm9zaXNdLjwvVGl0bGU+DQogICAgPEFi
-        c3RyYWN0PkZsdW9yZXNjZW5jZSBpbiBzaXR1IGh5YnJpZGl6YXRpb24gKEZJ
-        U0gpIGhhcyByZWNlbnRseSBiZWNvbWUgaW1wb3J0YW50IGZvciBwYXRob2xv
-        Z2ljYWwgZGlhZ25vc2lzLiBIb3dldmVyLCBpdHMgcHJhY3RpY2FsIGFwcGxp
-        Y2F0aW9ucyBpcyBub3Qgd2lkZXNwcmVhZCBiZWNhdXNlIEZJU0ggcHJvdG9j
-        b2wgd2l0aCBGRlBFIHNwZWNpbWVucyBpcyBjb21wbGljYXRlZC4gV2UgcmVw
-        b3J0IGEgZHVhbCBkZXRlY3Rpb24gbWV0aG9kIGJ5IG92ZXJsYXBwaW5nIEZJ
-        U0ggd2l0aCBmbHVvcmVzY2VudCBpbW11bm9zdGFpbmluZyBvbiBGRlBFIHNl
-        Y3Rpb25zLiBUaGlzIG1ldGhvZCBpcyBjaGFyYWN0ZXJpemVkIGJ5IGNoYW5n
-        aW5nIGJ1ZmZlcnMgZm9yIGhlYXQgdHJlYXRtZW50IHdpdGhvdXQgcHJvdGVv
-        bHl0aWMgZW56eW1lIHRyZWF0bWVudC4gU3Vic2VxdWVudCBwcm90ZW9seXRp
-        YyBlbnp5bWUgdHJlYXRtZW50IGNhbiBiZSBvbWl0dGVkIHVzaW5nIGFuIGFu
-        dGlnZW4gYWN0aXZhdGlvbiBzb2x1dGlvbiwgcEg5IChOaWNoaXJlaSBDb3Jw
-        b3JhdGlvbiksIGZvciBoZWF0IHRyZWF0bWVudC4gQWZ0ZXIgdGhlIHByZXRy
-        ZWF0bWVudCwgZHVhbCBkZXRlY3Rpb24gd2FzIGFjaGlldmVkIGJ5IEROQSBG
-        SVNIIGZvbGxvd2luZyBSTkEgRklTSCBhbmQgZmx1b3Jlc2NlbnQgaW1tdW5v
-        c3RhaW5pbmcuIFRoaXMgcHJvdG9jb2wgdmlzdWFsaXplZCBnZW5lIGFibm9y
-        bWFsaXRpZXMgYW5kIHByb3RlaW4gb3ZlcmV4cHJlc3Npb24gb24gdGhlIHNh
-        bWUgc2VjdGlvbnMuIE9mIG5vdGUsIGluIHBvb3JseSBkaWZmZXJlbnRpYXRl
-        ZCB0dW1vcnMgY29udGFpbmluZyBib3RoIG5vcm1hbCBhbmQgdHVtb3IgY2Vs
-        bHMsIHRoZSB0dW1vciBjZWxscyB3ZXJlIGNsZWFybHkgaWRlbnRpZmllZCBv
-        biB0aGUgc2VjdGlvbnMsIGFuZCBGSVNIIHNpZ25hbHMgY291bGQgYmUgY291
-        bnRlZCBpbiB0aGVzZSBjZWxscy4gSW4gYWRkaXRpb24sIEhFUjIgbVJOQSBv
-        dmVyZXhwcmVzc2lvbiBhbmQgZ2VuZSBhbXBsaWZpY2F0aW9uIHdlcmUgc2lt
-        dWx0YW5lb3VzbHkgZGV0ZWN0ZWQgaW4gSEVSMi1wb3NpdGl2ZSBnYXN0cmlj
-        IGNhbmNlci4gVGh1cywgdGhpcyBtZXRob2Qgc2hvdWxkIGJlIHdpZGVseSBh
-        cHBsaWNhYmxlIGluIGNsaW5pY2FsIHNldHRpbmdzLjwvQWJzdHJhY3Q+DQog
-        ICAgPEF1dGhvckxpc3Q+SWtlZGEsU2F0b3NoaSw8L0F1dGhvckxpc3Q+DQog
-        ICAgPEF1dGhvckNvdW50PjE8L0F1dGhvckNvdW50Pg0KICAgIDxLZXl3b3Jk
-        TGlzdCAvPg0KICAgIDxEb2N1bWVudFR5cGVMaXN0PkVuZ2xpc2ggQWJzdHJh
-        Y3R8Sm91cm5hbCBBcnRpY2xlPC9Eb2N1bWVudFR5cGVMaXN0Pg0KICAgIDxE
-        b2N1bWVudENhdGVnb3J5PkpvdXJuYWwgRG9jdW1lbnQ8L0RvY3VtZW50Q2F0
-        ZWdvcnk+DQogICAgPE51bWJlck9mUmVmZXJlbmNlcyB4c2k6bmlsPSJ0cnVl
-        IiAvPg0KICAgIDxUaW1lc0NpdGVkIHhzaTpuaWw9InRydWUiIC8+DQogICAg
-        PFRpbWVzTm90U2VsZkNpdGVkIHhzaTpuaWw9InRydWUiIC8+DQogICAgPFBN
-        SUQ+MjY1NDgyNDM8L1BNSUQ+DQogICAgPFB1YmxpY2F0aW9uU291cmNlVGl0
-        bGU+Umluc2hvIGJ5b3JpLiBUaGUgSmFwYW5lc2Ugam91cm5hbCBvZiBjbGlu
-        aWNhbCBwYXRob2xvZ3k8L1B1YmxpY2F0aW9uU291cmNlVGl0bGU+DQogICAg
-        PFZvbHVtZT42MzwvVm9sdW1lPg0KICAgIDxJc3N1ZT42PC9Jc3N1ZT4NCiAg
-        ICA8UGFnaW5hdGlvbj43NjktNzczPC9QYWdpbmF0aW9uPg0KICAgIDxQdWJs
-        aWNhdGlvbkRhdGU+MjAxNS0wNi0wMVQwMDowMDowMDwvUHVibGljYXRpb25E
-        YXRlPg0KICAgIDxQdWJsaWNhdGlvblllYXI+MjAxNTwvUHVibGljYXRpb25Z
-        ZWFyPg0KICAgIDxQdWJsaWNhdGlvblN1YmplY3RDYXRlZ29yeUxpc3QgLz4N
-        CiAgICA8SVNTTj4wMDQ3LTE4NjA8L0lTU04+DQogICAgPENvbmZlcmVuY2VT
-        dGFydERhdGUgeHNpOm5pbD0idHJ1ZSIgLz4NCiAgICA8Q29uZmVyZW5jZUVu
-        ZERhdGUgeHNpOm5pbD0idHJ1ZSIgLz4NCiAgICA8UmFuayB4c2k6bmlsPSJ0
-        cnVlIiAvPg0KICAgIDxPcmRpbmFsUmFuaz4xPC9PcmRpbmFsUmFuaz4NCiAg
-        ICA8Tm9ybWFsaXplZFJhbmsgeHNpOm5pbD0idHJ1ZSIgLz4NCiAgICA8TmV3
-        UHVibGljYXRpb25JdGVtSUQgeHNpOm5pbD0idHJ1ZSIgLz4NCiAgICA8SXNP
-        YnNvbGV0ZT5mYWxzZTwvSXNPYnNvbGV0ZT4NCiAgICA8Q29weXJpZ2h0UHVi
-        bGlzaGVyIC8+DQogICAgPENvcHlyaWdodENpdHkgLz4NCiAgICA8Q29weXJp
-        Z2h0U3RhdGVQcm92aW5jZSAvPg0KICAgIDxDb3B5cmlnaHRDb3VudHJ5PkpB
-        UEFOPC9Db3B5cmlnaHRDb3VudHJ5Pg0KICA8L1B1YmxpY2F0aW9uSXRlbT4N
-        CiAgPFB1YmxpY2F0aW9uSXRlbT4NCiAgICA8UHVibGljYXRpb25JdGVtSUQ+
-        NzM1MTU4MTY8L1B1YmxpY2F0aW9uSXRlbUlEPg0KICAgIDxUaXRsZT5HbHVj
-        b2NlcmVicm9zaWRhc2UgMSBkZWZpY2llbnQgRGFuaW8gcmVyaW8gbWlycm9y
-        IGtleSBwYXRob2xvZ2ljYWwgYXNwZWN0cyBvZiBodW1hbiBHYXVjaGVyIGRp
-        c2Vhc2UgYW5kIHByb3ZpZGUgZXZpZGVuY2Ugb2YgZWFybHkgbWljcm9nbGlh
-        bCBhY3RpdmF0aW9uIHByZWNlZGluZyBhbHBoYS1zeW51Y2xlaW4taW5kZXBl
-        bmRlbnQgbmV1cm9uYWwgY2VsbCBkZWF0aC48L1RpdGxlPg0KICAgIDxBYnN0
-        cmFjdD5BdXRvc29tYWwgcmVjZXNzaXZlbHkgaW5oZXJpdGVkIGdsdWNvY2Vy
-        ZWJyb3NpZGFzZSAxIChHQkExKSBtdXRhdGlvbnMgY2F1c2UgdGhlIGx5c29z
-        b21hbCBzdG9yYWdlIGRpc29yZGVyIEdhdWNoZXIncyBkaXNlYXNlIChHRCku
-        IEhldGVyb3p5Z291cyBHQkExIG11dGF0aW9ucyAoR0JBMSgrLy0pKSBhcmUg
-        dGhlIG1vc3QgY29tbW9uIHJpc2sgZmFjdG9yIGZvciBQYXJraW5zb24ncyBk
-        aXNlYXNlIChQRCkuIFByZXZpb3VzIHN0dWRpZXMgdHlwaWNhbGx5IGZvY3Vz
-        ZWQgb24gdGhlIGludGVyYWN0aW9uIGJldHdlZW4gdGhlIHJlZHVjdGlvbiBv
-        ZiBnbHVjb2NlcmVicm9zaWRhc2UgKGVuenltYXRpYykgYWN0aXZpdHkgaW4g
-        R0JBMSgrLy0pIGNhcnJpZXJzIGFuZCBhbHBoYS1zeW51Y2xlaW4tbWVkaWF0
-        ZWQgbmV1cm90b3hpY2l0eS4gSG93ZXZlciwgaXQgaXMgdW5jbGVhciB3aGV0
-        aGVyIG90aGVyIG1lY2hhbmlzbXMgYWxzbyBjb250cmlidXRlIHRvIHRoZSBp
-        bmNyZWFzZWQgcmlzayBvZiBQRCBpbiBHQkExKCsvLSkgY2FycmllcnMuIFRo
-        ZSB6ZWJyYWZpc2ggZ2Vub21lIGRvZXMgbm90IGNvbnRhaW4gYWxwaGEtc3lu
-        dWNsZWluIChTTkNBKSwgdGh1cyBwcm92aWRpbmcgYSB1bmlxdWUgb3Bwb3J0
-        dW5pdHkgdG8gc3R1ZHkgcGF0aG9nZW5pYyBtZWNoYW5pc21zIHVucmVsYXRl
-        ZCB0byBhbHBoYS1zeW51Y2xlaW4gdG94aWNpdHkuIEhlcmUgd2UgZGVzY3Jp
-        YmUgYSBtdXRhbnQgemVicmFmaXNoIGxpbmUgY3JlYXRlZCBieSBUQUxFTiBn
-        ZW5vbWUgZWRpdGluZyBjYXJyeWluZyBhIDIzIGJwIGRlbGV0aW9uIGluIGdi
-        YTEgKGdiYTEoYy4xMjc2XzEyOThkZWwpKSwgdGhlIHplYnJhZmlzaCBvcnRo
-        b2xvZ3VlIG9mIGh1bWFuIEdCQTEuIE1hcmtlZCBzcGhpbmdvbGlwaWQgYWNj
-        dW11bGF0aW9uIHdhcyBhbHJlYWR5IGRldGVjdGVkIGF0IDUgZGF5cyBwb3N0
-        LWZlcnRpbGl6YXRpb24gd2l0aCBhY2NvbXBhbnlpbmcgbWljcm9nbGlhbCBh
-        Y3RpdmF0aW9uIGFuZCBlYXJseSwgc3VzdGFpbmVkIHVwLXJlZ3VsYXRpb24g
-        b2YgbWlSLTE1NSwgYSBtYXN0ZXIgcmVndWxhdG9yIG9mIGluZmxhbW1hdGlv
-        bi4gZ2JhMShjLjEyNzZfMTI5OGRlbCkgbXV0YW50IHplYnJhZmlzaCBkZXZl
-        bG9wZWQgYSByYXBpZGx5IHdvcnNlbmluZyBwaGVub3R5cGUgZnJvbSA4IHdl
-        ZWtzIG9ud2FyZHMgd2l0aCBzdHJpa2luZyByZWR1Y3Rpb24gaW4gbW90b3Ig
-        YWN0aXZpdHkgYnkgMTIgd2Vla3MuIEhpc3RvcGF0aG9sb2dpY2FsbHksIHdl
-        IG9ic2VydmVkIG1hcmtlZCBHYXVjaGVyIGNlbGwgaW52YXNpb24gb2YgdGhl
-        IGJyYWluIGFuZCBvdGhlciBvcmdhbnMuIERvcGFtaW5lcmdpYyBuZXVyb25h
-        bCBjZWxsIGNvdW50IHdhcyBub3JtYWwgdGhyb3VnaCBkZXZlbG9wbWVudCBi
-        dXQgcmVkdWNlZCBieSAmZ3Q7MzAlIGF0IDEyIHdlZWtzIGluIHRoZSBwcmVz
-        ZW5jZSBvZiB1YmlxdWl0aW4tcG9zaXRpdmUsIGludHJhLW5ldXJvbmFsIGlu
-        Y2x1c2lvbnMuIFRoaXMgZ2JhMShjLjEyNzZfMTI5OGRlbCkgemVicmFmaXNo
-        IGxpbmUgaXMgdGhlIGZpcnN0IHZpYWJsZSB2ZXJ0ZWJyYXRlIG1vZGVsIHNo
-        YXJpbmcga2V5IHBhdGhvbG9naWNhbCBmZWF0dXJlcyBvZiBHRCBpbiBib3Ro
-        IG5ldXJvbmFsIGFuZCBub24tbmV1cm9uYWwgdGlzc3VlLiBPdXIgc3R1ZHkg
-        YWxzbyBwcm92aWRlcyBldmlkZW5jZSBmb3IgZWFybHkgbWljcm9nbGlhbCBh
-        Y3RpdmF0aW9uIHByaW9yIHRvIGFscGhhLXN5bnVjbGVpbi1pbmRlcGVuZGVu
-        dCBuZXVyb25hbCBjZWxsIGRlYXRoIGluIEdCQTEgZGVmaWNpZW5jeSBhbmQg
-        c3VnZ2VzdHMgdXByZWd1bGF0aW9uIG9mIG1pUi0xNTUgYXMgYSBjb21tb24g
-        ZGVub21pbmF0b3IgYWNyb3NzIGRpZmZlcmVudCBuZXVyb2RlZ2VuZXJhdGl2
-        ZSBkaXNvcmRlcnMuIDwvQWJzdHJhY3Q+DQogICAgPEF1dGhvckxpc3Q+S2Vh
-        dGluZ2UsTWFyY3VzLHxCdWksSGFpLHxNZW5rZSxBc3dpbix8Q2hlbixZdS1D
-        aGlhLHxTb2tvbCxBbm5hLE18QmFpLFFpbmcsfEVsbGV0dCxGZWxpeCx8RGEg
-        Q29zdGEsTWFyYyx8QnVya2UsRGVyZWssfEdlZ2csTWF0dGhldyx8VHJvbGxv
-        cGUsTGlzYSx8UGF5bmUsVGhvbWFzLHxNY1RpZ2hlLEFpbWVlLHxNb3J0aWJv
-        eXMsSGVhdGhlcix8RGUgSmFnZXIsU2FyYWgsfE51dGhhbGwsSHVnaCx8S3Vv
-        LE1pbmctU2hhbmcsfEZsZW1pbmcsQW5nZWxlZW4sfFNjaGFwaXJhLEFudGhv
-        bnksSFZ8UmVuc2hhdyxTdGVwaGVuLEF8SGlnaGxleSxKLFJvYmlufENoYWNp
-        bnNrYSxBZ25pZXN6a2EsfFBhbnVsYSxQZXJ0dGksfEJ1cnRvbixFZHdhcmQs
-        QXxPJ05laWxsLE1pY2hhZWwsSnxCYW5kbWFubixPbGl2ZXIsPC9BdXRob3JM
-        aXN0Pg0KICAgIDxBdXRob3JDb3VudD4yNjwvQXV0aG9yQ291bnQ+DQogICAg
-        PEtleXdvcmRMaXN0IC8+DQogICAgPERvY3VtZW50VHlwZUxpc3Q+Sm91cm5h
-        bCBBcnRpY2xlPC9Eb2N1bWVudFR5cGVMaXN0Pg0KICAgIDxEb2N1bWVudENh
-        dGVnb3J5PkpvdXJuYWwgRG9jdW1lbnQ8L0RvY3VtZW50Q2F0ZWdvcnk+DQog
-        ICAgPE51bWJlck9mUmVmZXJlbmNlcyB4c2k6bmlsPSJ0cnVlIiAvPg0KICAg
-        IDxUaW1lc0NpdGVkIHhzaTpuaWw9InRydWUiIC8+DQogICAgPFRpbWVzTm90
-        U2VsZkNpdGVkIHhzaTpuaWw9InRydWUiIC8+DQogICAgPFBNSUQ+MjYzNzY4
-        NjI8L1BNSUQ+DQogICAgPFB1YmxpY2F0aW9uU291cmNlVGl0bGU+SHVtYW4g
-        bW9sZWN1bGFyIGdlbmV0aWNzPC9QdWJsaWNhdGlvblNvdXJjZVRpdGxlPg0K
-        ICAgIDxWb2x1bWU+MjQ8L1ZvbHVtZT4NCiAgICA8SXNzdWU+MjM8L0lzc3Vl
-        Pg0KICAgIDxQYWdpbmF0aW9uPjY2NDAtNjY1MjwvUGFnaW5hdGlvbj4NCiAg
-        ICA8UHVibGljYXRpb25EYXRlPjIwMTUtMTItMDFUMDA6MDA6MDA8L1B1Ymxp
-        Y2F0aW9uRGF0ZT4NCiAgICA8UHVibGljYXRpb25ZZWFyPjIwMTU8L1B1Ymxp
-        Y2F0aW9uWWVhcj4NCiAgICA8UHVibGljYXRpb25TdWJqZWN0Q2F0ZWdvcnlM
-        aXN0IC8+DQogICAgPElTU04+MDk2NC02OTA2PC9JU1NOPg0KICAgIDxET0k+
-        MTAuMTA5My9obWcvZGR2MzY5PC9ET0k+DQogICAgPENvbmZlcmVuY2VTdGFy
-        dERhdGUgeHNpOm5pbD0idHJ1ZSIgLz4NCiAgICA8Q29uZmVyZW5jZUVuZERh
-        dGUgeHNpOm5pbD0idHJ1ZSIgLz4NCiAgICA8UmFuayB4c2k6bmlsPSJ0cnVl
-        IiAvPg0KICAgIDxPcmRpbmFsUmFuaz4yPC9PcmRpbmFsUmFuaz4NCiAgICA8
-        Tm9ybWFsaXplZFJhbmsgeHNpOm5pbD0idHJ1ZSIgLz4NCiAgICA8TmV3UHVi
-        bGljYXRpb25JdGVtSUQgeHNpOm5pbD0idHJ1ZSIgLz4NCiAgICA8SXNPYnNv
-        bGV0ZT5mYWxzZTwvSXNPYnNvbGV0ZT4NCiAgICA8Q29weXJpZ2h0UHVibGlz
-        aGVyPk9YRk9SRCBVTklWIFBSRVNTLjwvQ29weXJpZ2h0UHVibGlzaGVyPg0K
-        ICAgIDxDb3B5cmlnaHRDaXR5IC8+DQogICAgPFB1YmxpY2F0aW9uSW1wYWN0
-        RmFjdG9yTGlzdD42LjM5MywyMDE0LENsb3Nlc3RUb1B1YmxpY2F0aW9uWWVh
-        cnw2LjM5MywyMDE0LE1vc3RSZWNlbnRZZWFyPC9QdWJsaWNhdGlvbkltcGFj
-        dEZhY3Rvckxpc3Q+DQogICAgPFB1YmxpY2F0aW9uQ2F0ZWdvcnlSYW5raW5n
-        TGlzdD4zMi8yODk7QklPQ0hFTUlTVFJZICZhbXA7IE1PTEVDVUxBUiBCSU9M
-        T0dZOzIwMTQ7U0M7Q2xvc2VzdFRvUHVibGljYXRpb25ZZWFyfDE3LzE2NztH
-        RU5FVElDUyAmYW1wOyBIRVJFRElUWTsyMDE0O1NDO0Nsb3Nlc3RUb1B1Ymxp
-        Y2F0aW9uWWVhcnwzMi8yODk7QklPQ0hFTUlTVFJZICZhbXA7IE1PTEVDVUxB
-        UiBCSU9MT0dZOzIwMTQ7U0M7TW9zdFJlY2VudFllYXJ8MTcvMTY3O0dFTkVU
-        SUNTICZhbXA7IEhFUkVESVRZOzIwMTQ7U0M7TW9zdFJlY2VudFllYXI8L1B1
-        YmxpY2F0aW9uQ2F0ZWdvcnlSYW5raW5nTGlzdD4NCiAgICA8Q29weXJpZ2h0
-        U3RhdGVQcm92aW5jZSAvPg0KICAgIDxDb3B5cmlnaHRDb3VudHJ5PlVOSVRF
-        RCBLSU5HRE9NPC9Db3B5cmlnaHRDb3VudHJ5Pg0KICA8L1B1YmxpY2F0aW9u
-        SXRlbT4NCiAgPFB1YmxpY2F0aW9uSXRlbT4NCiAgICA8UHVibGljYXRpb25J
-        dGVtSUQ+NzM1MTU2NzM8L1B1YmxpY2F0aW9uSXRlbUlEPg0KICAgIDxUaXRs
-        ZT5NYWNyb3Njb3BpYyBBbm9tYWxpZXMgYW5kIFBhdGhvbG9naWNhbCBGaW5k
-        aW5ncyBpbiBhbmQgQXJvdW5kIHRoZSBBY2hpbGxlcyBUZW5kb246IE9ic2Vy
-        dmF0aW9ucyBGcm9tIDE2NjEgT3BlcmF0aW9ucyBEdXJpbmcgYSA0MC1ZZWFy
-        IFBlcmlvZC48L1RpdGxlPg0KICAgIDxBYnN0cmFjdD5CQUNLR1JPVU5EIE5v
-        bnN1cmdpY2FsIHRyZWF0bWVudHMgZm9yIGNocm9uaWMgQWNoaWxsZXMgdGVu
-        ZGlub3BhdGh5IChBVCkgcmVzdWx0cyBpbiB1bnByZWRpY3RhYmxlIHN1Y2Nl
-        c3MgcmF0ZXMuIFN1cmdpY2FsIHRyZWF0bWVudCBtYXkgYmUgY2hvc2VuIGFz
-        IHJlcG9ydHMgc2hvdyBtb3N0bHkgZW5jb3VyYWdpbmcgYnV0IHZhcmlhYmxl
-        IHN1Y2Nlc3MgcmF0ZXMgZGVwZW5kaW5nIG9uIHRoZSBwYXRob2xvZ3kuIFRo
-        ZSBkaXN0cmlidXRpb24gb2Ygc3VyZ2ljYWxseSBjb25maXJtZWQgcGF0aG9s
-        b2dpZXMgaW4gQVQgaXMgbGFyZ2VseSB1bmtub3duLg0KUFVSUE9TRSBUbyBh
-        c2NlcnRhaW4gdGhlIGRpc3RyaWJ1dGlvbnMgb2YgbWFjcm9zY29waWNhbGx5
-        IG9ic2VydmVkIGFub21hbGllcyBpbiBwYXJ0aWNpcGFudHMgdW5kZXJnb2lu
-        ZyBzdXJnaWNhbCB0cmVhdG1lbnQgZm9yIGNocm9uaWMgQVQuDQpTVFVEWSBE
-        RVNJR04gQ2FzZSBzZXJpZXM7IExldmVsIG9mIGV2aWRlbmNlLCA0Lg0KTUVU
-        SE9EUyBUaGUgbWFpbiBtYWNyb3Njb3BpYyBwYXRob2xvZ2llcyBvZiAxNjYx
-        IGNocm9uaWMgQWNoaWxsZXMgdGVuZG9uIG92ZXJ1c2UgaW5qdXJpZXMsIHdo
-        aWNoIHdlcmUgZGlhZ25vc2VkIGFuZCBzdXJnaWNhbGx5IHRyZWF0ZWQgYnkg
-        YSBzaW5nbGUgc3VyZ2Vvbiwgd2VyZSByZXZpZXdlZC4gVGhlIHN1cmdlcmll
-        cyB3ZXJlIHBlcmZvcm1lZCBvbiBwcm9mZXNzaW9uYWwgYW5kIHJlY3JlYXRp
-        b25hbCBhdGhsZXRlcyBkdXJpbmcgdGhlIHllYXJzIDE5NzYtMTk4MCwgMTk4
-        Ni0xOTkwLCAxOTk2LTIwMDAsIGFuZCAyMDA2LTIwMTAuIFN1cmdpY2FsIGRp
-        YWdub3NlcywgYWxvbmcgd2l0aCBhZ2UtIGFuZCBzcG9ydC1zcGVjaWZpYyBj
-        aGFyYWN0ZXJpc3RpY3MsIHdlcmUgY29sbGVjdGVkIHJldHJvc3BlY3RpdmVs
-        eSBmcm9tIHBhdGllbnQgcmVjb3Jkcy4NClJFU1VMVFMgVGhlIHJlbGF0aXZl
-        IHByb3BvcnRpb24gb2YgdGVuZGlub3NpcyBpbmNyZWFzZWQgZHVyaW5nIHRo
-        ZSBzdHVkeSBwZXJpb2QgZnJvbSA0LjIlIHRvIDIxJSwgYW5kIHBhcmF0ZW5v
-        bml0aXMgZGVjcmVhc2VkIGZyb20gNTAlIHRvIDI2JS4gUmV0cm9jYWxjYW5l
-        YWwgcGF0aG9sb2dpZXMgd2VyZSB0aGUgbW9zdCBjb21tb24gc3VyZ2ljYWxs
-        eSBjb25maXJtZWQgbGVzaW9ucyBhdCAzMCUsIHdoaWxlIHRoZSBtZWFuIGFn
-        ZSBhdCBzdXJnZXJ5IGluY3JlYXNlZCBieSAxMSB5ZWFycyBvdmVyIHRoZSBl
-        bnRpcmUgc3R1ZHkgcGVyaW9kLg0KQ09OQ0xVU0lPTiBTdXJnaWNhbGx5IGNv
-        bmZpcm1lZCBwYXRob2xvZ2llcyBpbiBhbmQgYXJvdW5kIHRoZSBBY2hpbGxl
-        cyB0ZW5kb24gc2hvd2VkIGNvaGVyZW50IGNoYW5nZXMsIGNocm9uaWMgcGFy
-        YXRlbm9uaXRpcywgYW5kIHJldHJvY2FsY2FuZWFsIHByb2JsZW1zIGFzIHRo
-        ZSBtb3N0IHByZXZhbGVudCBmaW5kaW5ncy4gVGhlIGNsYXNzaWZpY2F0aW9u
-        IG9mIG1pZHBvcnRpb24gYW5kIGluc2VydGlvbmFsIHRlbmRpbm9wYXRoeSBh
-        bmQgcmV0cm9jYWxjYW5lYWwgYnVyc2l0aXMgaW4gQVQgc2hvdWxkIHN0cmlj
-        dGx5IGJlIHVzZWQgYXMgYSBjbGluaWNhbCBkaWFnbm9zaXMuIER1cmluZyBz
-        dXJnaWNhbCBldmFsdWF0aW9ucywgdGhlIGRpYWdub3NpcyBpcyBmdXJ0aGVy
-        IGNsYXJpZmllZCBhcyBtb3JlIHNwZWNpZmljIHBhdGhvbG9naWVzIG1heSBi
-        ZSBpZGVudGlmaWVkLjwvQWJzdHJhY3Q+DQogICAgPEF1dGhvckxpc3Q+Sm9o
-        YW5zc29uLEtyaXN0aWFuLHxMZW1wYWluZW4sTGFzc2UsfFNhcmltbyxKYW5u
-        ZSx8TGFpdGFsYS1MZWlub25lbixUaWluYSx8T3JhdmEsU2FrYXJpLDwvQXV0
-        aG9yTGlzdD4NCiAgICA8QXV0aG9yQ291bnQ+NTwvQXV0aG9yQ291bnQ+DQog
-        ICAgPEtleXdvcmRMaXN0PkFjaGlsbGVzIHRlbmRvbnxvdmVydXNlIGluanVy
-        aWVzfHN1cmdlcnl8dGVuZGlub3BhdGh5PC9LZXl3b3JkTGlzdD4NCiAgICA8
-        RG9jdW1lbnRUeXBlTGlzdD5Kb3VybmFsIEFydGljbGU8L0RvY3VtZW50VHlw
-        ZUxpc3Q+DQogICAgPERvY3VtZW50Q2F0ZWdvcnk+Sm91cm5hbCBEb2N1bWVu
-        dDwvRG9jdW1lbnRDYXRlZ29yeT4NCiAgICA8TnVtYmVyT2ZSZWZlcmVuY2Vz
-        IHhzaTpuaWw9InRydWUiIC8+DQogICAgPFRpbWVzQ2l0ZWQgeHNpOm5pbD0i
-        dHJ1ZSIgLz4NCiAgICA8VGltZXNOb3RTZWxmQ2l0ZWQgeHNpOm5pbD0idHJ1
-        ZSIgLz4NCiAgICA8UE1JRD4yNjUzNTI5MzwvUE1JRD4NCiAgICA8UHVibGlj
-        YXRpb25Tb3VyY2VUaXRsZT5PcnRob3BhZWRpYyBqb3VybmFsIG9mIHNwb3J0
-        cyBtZWRpY2luZTwvUHVibGljYXRpb25Tb3VyY2VUaXRsZT4NCiAgICA8Vm9s
-        dW1lPjI8L1ZvbHVtZT4NCiAgICA8SXNzdWU+MTI8L0lzc3VlPg0KICAgIDxQ
-        YWdpbmF0aW9uPjIzMjU5NjcxMTQ1NjIzNzEtPzwvUGFnaW5hdGlvbj4NCiAg
-        ICA8UHVibGljYXRpb25EYXRlPjIwMTQtMTItMDFUMDA6MDA6MDA8L1B1Ymxp
-        Y2F0aW9uRGF0ZT4NCiAgICA8UHVibGljYXRpb25ZZWFyPjIwMTQ8L1B1Ymxp
-        Y2F0aW9uWWVhcj4NCiAgICA8UHVibGljYXRpb25TdWJqZWN0Q2F0ZWdvcnlM
-        aXN0IC8+DQogICAgPElTU04+MjMyNS05NjcxPC9JU1NOPg0KICAgIDxET0k+
-        MTAuMTE3Ny8yMzI1OTY3MTE0NTYyMzcxPC9ET0k+DQogICAgPENvbmZlcmVu
-        Y2VTdGFydERhdGUgeHNpOm5pbD0idHJ1ZSIgLz4NCiAgICA8Q29uZmVyZW5j
-        ZUVuZERhdGUgeHNpOm5pbD0idHJ1ZSIgLz4NCiAgICA8UmFuayB4c2k6bmls
-        PSJ0cnVlIiAvPg0KICAgIDxPcmRpbmFsUmFuaz4zPC9PcmRpbmFsUmFuaz4N
-        CiAgICA8Tm9ybWFsaXplZFJhbmsgeHNpOm5pbD0idHJ1ZSIgLz4NCiAgICA8
-        TmV3UHVibGljYXRpb25JdGVtSUQgeHNpOm5pbD0idHJ1ZSIgLz4NCiAgICA8
-        SXNPYnNvbGV0ZT5mYWxzZTwvSXNPYnNvbGV0ZT4NCiAgICA8Q29weXJpZ2h0
-        UHVibGlzaGVyIC8+DQogICAgPENvcHlyaWdodENpdHkgLz4NCiAgICA8Q29w
-        eXJpZ2h0U3RhdGVQcm92aW5jZSAvPg0KICAgIDxDb3B5cmlnaHRDb3VudHJ5
-        PlVOSVRFRCBTVEFURVM8L0NvcHlyaWdodENvdW50cnk+DQogIDwvUHVibGlj
-        YXRpb25JdGVtPg0KICA8UHVibGljYXRpb25JdGVtPg0KICAgIDxQdWJsaWNh
-        dGlvbkl0ZW1JRD43MzUxNDM5OTwvUHVibGljYXRpb25JdGVtSUQ+DQogICAg
-        PFRpdGxlPkVtZXJnaW5nIHBoeXNpb2xvZ2ljYWwgYW5kIHBhdGhvbG9naWNh
-        bCBpbXBsaWNhdGlvbnMgb2YgdHVubmVsaW5nIG5hbm90dWJlcyBmb3JtYXRp
-        b24gYmV0d2VlbiBjZWxscy48L1RpdGxlPg0KICAgIDxBYnN0cmFjdD5DZWxs
-        LXRvLWNlbGwgY29tbXVuaWNhdGlvbiBpcyBhIGNyaXRpY2FsIHJlcXVpcmVt
-        ZW50IHRvIGNvb3JkaW5hdGUgYmVoYXZpb3JzIG9mIHRoZSBjZWxscyBpbiBh
-        IGNvbW11bml0eSBhbmQgdGhlcmVieSBhY2hpZXZlIHRpc3N1ZSBob21lb3N0
-        YXNpcyBhbmQgY29uc2VydmF0aW9uIG9mIHRoZSBtdWx0aWNlbGx1bGFyIG9y
-        Z2FuaXNtcy4gVHVubmVsaW5nIG5hbm90dWJlcyAoVE5UcyksIGFzIGEgY2Vs
-        bC10by1jZWxsIGNvbW11bmljYXRpb24gb3ZlciBsb25nIGRpc3RhbmNlLCBh
-        bGxvdyBmb3IgYmktIG9yIHVuaS1kaXJlY3Rpb25hbCB0cmFuc2ZlciBvZiBj
-        ZWxsdWxhciBjb21wb25lbnRzIGJldHdlZW4gY2VsbHMuIElkZW50aWZpY2F0
-        aW9uIG9mIGluZHVjaW5nIGFnZW50cyBhbmQgdGhlIGNlbGwgYW5kIG1vbGVj
-        dWxhciBtZWNoYW5pc20gdW5kZXJsaW5nIHRoZSBmb3JtYXRpb24gb2YgVE5U
-        cyBhbmQgdGhlaXIgc3RydWN0dXJhbCBhbmQgZnVuY3Rpb25hbCBmZWF0dXJl
-        cyBtYXkgbGVhZCB0byBmaW5kaW5nIG5ldyBpbXBvcnRhbnQgcm9sZXMgZm9y
-        IHRoZXNlIGludGVyY2VsbHVsYXIgYnJpZGdlcyBpbiB2aXZvIGFuZCBpbiB2
-        aXRyby4gRHVyaW5nIHRoZSBsYXN0IGRlY2FkZSwgcmVzZWFyY2ggaGFzIHNo
-        b3duIFROVHMgaGF2ZSBkaWZmZXJlbnQgc3RydWN0dXJhbCBhbmQgZnVuY3Rp
-        b25hbCBwcm9wZXJ0aWVzLCB2YXJ5aW5nIGJldHdlZW4gYW5kIHdpdGhpbiBj
-        ZWxsIHN5c3RlbXMuIEluIHRoaXMgcmV2aWV3LCB3ZSB3aWxsIGZvY3VzIG9u
-        IFROVHMgYW5kIHRoZWlyIGNlbGwgYW5kIG1vbGVjdWxhciBtZWNoYW5pc20g
-        b2YgZm9ybWF0aW9uLiBNb3Jlb3ZlciwgdGhlIGxhdGVzdCBmaW5kaW5ncyBp
-        bnRvIHRoZWlyIGZ1bmN0aW9uYWwgcm9sZXMgaW4gcGh5c2lvbG9naWNhbCBh
-        bmQgcGF0aG9sb2dpY2FsIHByb2Nlc3Nlcywgc3VjaCBhcyBzaWduYWwgdHJh
-        bnNkdWN0aW9uLCBtaWNybyBhbmQgbmFuby1wYXJ0aWNsZXMgZGVsaXZlcnks
-        IGltbXVuZSByZXNwb25zZXMsIGVtYnJ5b2dlbmVzaXMsIGNlbGx1bGFyIHJl
-        cHJvZ3JhbW1pbmcsIGFwb3B0b3NpcywgY2FuY2VyLCBhbmQgbmV1cm9kZWdl
-        bmVyYXRpdmUgZGlzZWFzZXMgaW5pdGlhdGlvbiBhbmQgcHJvZ3Jlc3Npb24g
-        YW5kIHBhdGhvZ2VucyB0cmFuc2Zlciwgd2lsbCBiZSBkaXNjdXNzZWQuIDwv
-        QWJzdHJhY3Q+DQogICAgPEF1dGhvckxpc3Q+U2lzYWtodG5lemhhZCxTYWpq
-        YWQsfEtob3NyYXZpLExlaWxhLDwvQXV0aG9yTGlzdD4NCiAgICA8QXV0aG9y
-        Q291bnQ+MjwvQXV0aG9yQ291bnQ+DQogICAgPEtleXdvcmRMaXN0PkFwb3B0
-        b3Npc3xDYW5jZXJ8RW1icnlvZ2VuZXNpcyBhbmQgZGV2ZWxvcG1lbnR8SW1t
-        dW5lIHJlc3BvbnNlfEludGVyY2VsbHVsYXIgdHJhbnNmZXJ8TWljcm8tIGFu
-        ZCBuYW5vLXBhcnRpY2xlc3xOZXVyb2RlZ2VuZXJhdGl2ZSBkaXNlYXNlfFBh
-        dGhvZ2VufFJlcHJvZ3JhbW1pbmd8U2lnbmFsIHRyYW5zZHVjdGlvbnxUdW5u
-        ZWxpbmcgbmFub3R1YmU8L0tleXdvcmRMaXN0Pg0KICAgIDxEb2N1bWVudFR5
-        cGVMaXN0PkpvdXJuYWwgQXJ0aWNsZXxSZXZpZXc8L0RvY3VtZW50VHlwZUxp
-        c3Q+DQogICAgPERvY3VtZW50Q2F0ZWdvcnk+Sm91cm5hbCBEb2N1bWVudDwv
-        RG9jdW1lbnRDYXRlZ29yeT4NCiAgICA8TnVtYmVyT2ZSZWZlcmVuY2VzIHhz
-        aTpuaWw9InRydWUiIC8+DQogICAgPFRpbWVzQ2l0ZWQgeHNpOm5pbD0idHJ1
-        ZSIgLz4NCiAgICA8VGltZXNOb3RTZWxmQ2l0ZWQgeHNpOm5pbD0idHJ1ZSIg
-        Lz4NCiAgICA8UE1JRD4yNjE2NDM2ODwvUE1JRD4NCiAgICA8UHVibGljYXRp
-        b25Tb3VyY2VUaXRsZT5FdXJvcGVhbiBqb3VybmFsIG9mIGNlbGwgYmlvbG9n
-        eTwvUHVibGljYXRpb25Tb3VyY2VUaXRsZT4NCiAgICA8Vm9sdW1lPjk0PC9W
-        b2x1bWU+DQogICAgPElzc3VlPjEwPC9Jc3N1ZT4NCiAgICA8UGFnaW5hdGlv
-        bj40MjktNDQzPC9QYWdpbmF0aW9uPg0KICAgIDxQdWJsaWNhdGlvbkRhdGU+
-        MjAxNS0xMC0wMVQwMDowMDowMDwvUHVibGljYXRpb25EYXRlPg0KICAgIDxQ
-        dWJsaWNhdGlvblllYXI+MjAxNTwvUHVibGljYXRpb25ZZWFyPg0KICAgIDxQ
-        dWJsaWNhdGlvblN1YmplY3RDYXRlZ29yeUxpc3QgLz4NCiAgICA8SVNTTj4w
-        MTcxLTkzMzU8L0lTU04+DQogICAgPERPST4xMC4xMDE2L2ouZWpjYi4yMDE1
-        LjA2LjAxMDwvRE9JPg0KICAgIDxDb25mZXJlbmNlU3RhcnREYXRlIHhzaTpu
-        aWw9InRydWUiIC8+DQogICAgPENvbmZlcmVuY2VFbmREYXRlIHhzaTpuaWw9
-        InRydWUiIC8+DQogICAgPFJhbmsgeHNpOm5pbD0idHJ1ZSIgLz4NCiAgICA8
-        T3JkaW5hbFJhbms+NDwvT3JkaW5hbFJhbms+DQogICAgPE5vcm1hbGl6ZWRS
-        YW5rIHhzaTpuaWw9InRydWUiIC8+DQogICAgPE5ld1B1YmxpY2F0aW9uSXRl
-        bUlEIHhzaTpuaWw9InRydWUiIC8+DQogICAgPElzT2Jzb2xldGU+ZmFsc2U8
-        L0lzT2Jzb2xldGU+DQogICAgPENvcHlyaWdodFB1Ymxpc2hlcj5FTFNFVklF
-        UiBHTUJIPC9Db3B5cmlnaHRQdWJsaXNoZXI+DQogICAgPENvcHlyaWdodENp
-        dHkgLz4NCiAgICA8UHVibGljYXRpb25JbXBhY3RGYWN0b3JMaXN0PjMuODI1
-        LDIwMTQsQ2xvc2VzdFRvUHVibGljYXRpb25ZZWFyfDMuODI1LDIwMTQsTW9z
-        dFJlY2VudFllYXI8L1B1YmxpY2F0aW9uSW1wYWN0RmFjdG9yTGlzdD4NCiAg
-        ICA8UHVibGljYXRpb25DYXRlZ29yeVJhbmtpbmdMaXN0PjcyLzE4NDtDRUxM
-        IEJJT0xPR1k7MjAxNDtTQztDbG9zZXN0VG9QdWJsaWNhdGlvblllYXJ8NzIv
-        MTg0O0NFTEwgQklPTE9HWTsyMDE0O1NDO01vc3RSZWNlbnRZZWFyPC9QdWJs
-        aWNhdGlvbkNhdGVnb3J5UmFua2luZ0xpc3Q+DQogICAgPENvcHlyaWdodFN0
-        YXRlUHJvdmluY2UgLz4NCiAgICA8Q29weXJpZ2h0Q291bnRyeT5HRVJNQU5Z
-        PC9Db3B5cmlnaHRDb3VudHJ5Pg0KICA8L1B1YmxpY2F0aW9uSXRlbT4NCiAg
-        PFB1YmxpY2F0aW9uSXRlbT4NCiAgICA8UHVibGljYXRpb25JdGVtSUQ+NzM1
-        MTI4MTg8L1B1YmxpY2F0aW9uSXRlbUlEPg0KICAgIDxUaXRsZT5DbGluaWNv
-        LXBhdGhvbG9naWNhbCBzdWJ0eXBlcyBvZiBoaXBwb2NhbXBhbCBzY2xlcm9z
-        aXMgaW4gdGVtcG9yYWwgbG9iZSBlcGlsZXBzeSBhbmQgdGhlaXIgZGlmZmVy
-        ZW50aWFsIGltcGFjdCBvbiBtZW1vcnkgaW1wYWlybWVudC48L1RpdGxlPg0K
-        ICAgIDxBYnN0cmFjdD5IaXBwb2NhbXBhbCBhbmF0b215IGFuZCBuZXR3b3Jr
-        IG9yZ2FuaXphdGlvbiBhcmUgY2FwYWJsZSB0byBnZW5lcmF0ZSBkcnVnLXJl
-        c2lzdGFudCB0ZW1wb3JhbCBsb2JlIGVwaWxlcHN5IChUTEUpIGluIGh1bWFu
-        cyBhbmQgcGFydGljdWxhcmx5IHZ1bG5lcmFibGUgdG8gc2VnbWVudGFsIG5l
-        dXJvbmFsIGNlbGwgbG9zcy4gU3VyZ2ljYWwgaGlwcG9jYW1wZWN0b215IGhh
-        cyBiZWVuIHByb3ZlbiBzdWNjZXNzZnVsIGluIHRyZWF0bWVudCBhbmQgYXZh
-        aWxhYmxlIGh1bWFuIHRpc3N1ZSBzcGVjaW1lbnMgYWxsb3cgc3lzdGVtYXRp
-        YyBjbGluaWNvLXBhdGhvbG9naWNhbCBleGFtaW5hdGlvbi4gRGlmZmVyZW50
-        IHBhdHRlcm5zIG9mIGhpcHBvY2FtcGFsIGNlbGwgbG9zcyBoYXZlIGJlZW4g
-        aWRlbnRpZmllZCBpbiBUTEUgcGF0aWVudHMgYW5kIGFyZSByZWNlbnRseSBj
-        bGFzc2lmaWVkIGJ5IHRoZSBJbnRlcm5hdGlvbmFsIExlYWd1ZSBhZ2FpbnN0
-        IEVwaWxlcHN5IChJTEFFKSBpbnRvIGZvdXIgZGlzdGluY3Qgc3VidHlwZXMg
-        aW4gb3JkZXIgdG8gc3RyYXRpZnkgdGhlIGhldGVyb2dlbm91cyBncm91cCBv
-        ZiBUTEUgcGF0aWVudHMgYWxzbyB3aXRoIHJlc3BlY3QgdG8gcG9zdHN1cmdp
-        Y2FsIG91dGNvbWUuIEFub3RoZXIgaW1wb3J0YW50IGFpbSBvZiB0aGUgaW50
-        ZXJuYXRpb25hbCBjb25zZW5zdXMgY2xhc3NpZmljYXRpb24gc3lzdGVtIG9m
-        IGhpcHBvY2FtcGFsIHNjbGVyb3NpcyAoSFMpIGlzIHRvIGdhaW4gZnVydGhl
-        ciBpbnNpZ2h0cyBpbnRvIHRoZSBtb3JwaG8tZnVuY3Rpb25hbCBvcmdhbml6
-        YXRpb24gb2YgaHVtYW4gbWVtb3J5IGZyZXF1ZW50bHkgY29tcHJvbWlzZWQg
-        aW4gVExFIHBhdGllbnRzLiA8L0Fic3RyYWN0Pg0KICAgIDxBdXRob3JMaXN0
-        PkNvcmFzLFIsfEJsw7xtY2tlLEksPC9BdXRob3JMaXN0Pg0KICAgIDxBdXRo
-        b3JDb3VudD4yPC9BdXRob3JDb3VudD4NCiAgICA8S2V5d29yZExpc3Q+YnJh
-        aW58ZGVudGF0ZSBneXJ1c3xlcGlsZXBzeXxoaXBwb2NhbXB1c3xuZXVyb3Bh
-        dGhvbG9neXxzZWl6dXJlPC9LZXl3b3JkTGlzdD4NCiAgICA8RG9jdW1lbnRU
-        eXBlTGlzdD5Kb3VybmFsIEFydGljbGU8L0RvY3VtZW50VHlwZUxpc3Q+DQog
-        ICAgPERvY3VtZW50Q2F0ZWdvcnk+Sm91cm5hbCBEb2N1bWVudDwvRG9jdW1l
-        bnRDYXRlZ29yeT4NCiAgICA8TnVtYmVyT2ZSZWZlcmVuY2VzIHhzaTpuaWw9
-        InRydWUiIC8+DQogICAgPFRpbWVzQ2l0ZWQgeHNpOm5pbD0idHJ1ZSIgLz4N
-        CiAgICA8VGltZXNOb3RTZWxmQ2l0ZWQgeHNpOm5pbD0idHJ1ZSIgLz4NCiAg
-        ICA8UE1JRD4yNjI1NDgzMDwvUE1JRD4NCiAgICA8UHVibGljYXRpb25Tb3Vy
-        Y2VUaXRsZT5OZXVyb3NjaWVuY2U8L1B1YmxpY2F0aW9uU291cmNlVGl0bGU+
-        DQogICAgPFZvbHVtZT4zMDk8L1ZvbHVtZT4NCiAgICA8UGFnaW5hdGlvbj4x
-        NTMtMTYxPC9QYWdpbmF0aW9uPg0KICAgIDxQdWJsaWNhdGlvbkRhdGU+MjAx
-        NS0xMS0xOVQwMDowMDowMDwvUHVibGljYXRpb25EYXRlPg0KICAgIDxQdWJs
-        aWNhdGlvblllYXI+MjAxNTwvUHVibGljYXRpb25ZZWFyPg0KICAgIDxQdWJs
-        aWNhdGlvblN1YmplY3RDYXRlZ29yeUxpc3QgLz4NCiAgICA8SVNTTj4wMzA2
-        LTQ1MjI8L0lTU04+DQogICAgPERPST4xMC4xMDE2L2oubmV1cm9zY2llbmNl
-        LjIwMTUuMDguMDAzPC9ET0k+DQogICAgPENvbmZlcmVuY2VTdGFydERhdGUg
-        eHNpOm5pbD0idHJ1ZSIgLz4NCiAgICA8Q29uZmVyZW5jZUVuZERhdGUgeHNp
-        Om5pbD0idHJ1ZSIgLz4NCiAgICA8UmFuayB4c2k6bmlsPSJ0cnVlIiAvPg0K
-        ICAgIDxPcmRpbmFsUmFuaz41PC9PcmRpbmFsUmFuaz4NCiAgICA8Tm9ybWFs
-        aXplZFJhbmsgeHNpOm5pbD0idHJ1ZSIgLz4NCiAgICA8TmV3UHVibGljYXRp
-        b25JdGVtSUQgeHNpOm5pbD0idHJ1ZSIgLz4NCiAgICA8SXNPYnNvbGV0ZT5m
-        YWxzZTwvSXNPYnNvbGV0ZT4NCiAgICA8Q29weXJpZ2h0UHVibGlzaGVyPkVM
-        U0VWSUVSIExURDwvQ29weXJpZ2h0UHVibGlzaGVyPg0KICAgIDxDb3B5cmln
-        aHRDaXR5IC8+DQogICAgPFB1YmxpY2F0aW9uSW1wYWN0RmFjdG9yTGlzdD4z
-        LjM1NywyMDE0LENsb3Nlc3RUb1B1YmxpY2F0aW9uWWVhcnwzLjM1NywyMDE0
-        LE1vc3RSZWNlbnRZZWFyPC9QdWJsaWNhdGlvbkltcGFjdEZhY3Rvckxpc3Q+
-        DQogICAgPFB1YmxpY2F0aW9uQ2F0ZWdvcnlSYW5raW5nTGlzdD45NS8yNTI7
-        TkVVUk9TQ0lFTkNFUzsyMDE0O1NDO0Nsb3Nlc3RUb1B1YmxpY2F0aW9uWWVh
-        cnw5NS8yNTI7TkVVUk9TQ0lFTkNFUzsyMDE0O1NDO01vc3RSZWNlbnRZZWFy
-        PC9QdWJsaWNhdGlvbkNhdGVnb3J5UmFua2luZ0xpc3Q+DQogICAgPENvcHly
-        aWdodFN0YXRlUHJvdmluY2UgLz4NCiAgICA8Q29weXJpZ2h0Q291bnRyeT5V
-        TklURUQgU1RBVEVTPC9Db3B5cmlnaHRDb3VudHJ5Pg0KICA8L1B1YmxpY2F0
-        aW9uSXRlbT4NCiAgPFB1YmxpY2F0aW9uSXRlbT4NCiAgICA8UHVibGljYXRp
-        b25JdGVtSUQ+NzM1MTIxNTc8L1B1YmxpY2F0aW9uSXRlbUlEPg0KICAgIDxU
-        aXRsZT5SZXNwb25zZSB0byBCZW5vaXN0IGV0wqBhbC46IFBhdGhvbG9naWNh
-        bCByZXNwb25zZSB0byBwcmVvcGVyYXRpdmUgY2hlbW90aGVyYXB5IHdpdGhv
-        dXQgcGVsdmljIGlycmFkaWF0aW9uIGluIGxvY2FsbHkgYWR2YW5jZWQgcmVj
-        dGFsIGNhbmNlci48L1RpdGxlPg0KICAgIDxBYnN0cmFjdCAvPg0KICAgIDxB
-        dXRob3JMaXN0PkNoYW5kbGVyLFMsfEJleW5vbixKLDwvQXV0aG9yTGlzdD4N
-        CiAgICA8QXV0aG9yQ291bnQ+MjwvQXV0aG9yQ291bnQ+DQogICAgPEtleXdv
-        cmRMaXN0IC8+DQogICAgPERvY3VtZW50VHlwZUxpc3Q+TGV0dGVyPC9Eb2N1
-        bWVudFR5cGVMaXN0Pg0KICAgIDxEb2N1bWVudENhdGVnb3J5PkpvdXJuYWwg
-        RG9jdW1lbnQ8L0RvY3VtZW50Q2F0ZWdvcnk+DQogICAgPE51bWJlck9mUmVm
-        ZXJlbmNlcyB4c2k6bmlsPSJ0cnVlIiAvPg0KICAgIDxUaW1lc0NpdGVkIHhz
-        aTpuaWw9InRydWUiIC8+DQogICAgPFRpbWVzTm90U2VsZkNpdGVkIHhzaTpu
-        aWw9InRydWUiIC8+DQogICAgPFBNSUQ+MjYyOTE2MTU8L1BNSUQ+DQogICAg
-        PFB1YmxpY2F0aW9uU291cmNlVGl0bGU+Q29sb3JlY3RhbCBkaXNlYXNlIDwv
-        UHVibGljYXRpb25Tb3VyY2VUaXRsZT4NCiAgICA8Vm9sdW1lPjE3PC9Wb2x1
-        bWU+DQogICAgPElzc3VlPjEyPC9Jc3N1ZT4NCiAgICA8UGFnaW5hdGlvbj4x
-        MTIxLT88L1BhZ2luYXRpb24+DQogICAgPFB1YmxpY2F0aW9uRGF0ZT4yMDE1
-        LTEyLTAxVDAwOjAwOjAwPC9QdWJsaWNhdGlvbkRhdGU+DQogICAgPFB1Ymxp
-        Y2F0aW9uWWVhcj4yMDE1PC9QdWJsaWNhdGlvblllYXI+DQogICAgPFB1Ymxp
-        Y2F0aW9uU3ViamVjdENhdGVnb3J5TGlzdCAvPg0KICAgIDxJU1NOPjE0NjIt
-        ODkxMDwvSVNTTj4NCiAgICA8RE9JPjEwLjExMTEvY29kaS4xMzA5MjwvRE9J
-        Pg0KICAgIDxDb25mZXJlbmNlU3RhcnREYXRlIHhzaTpuaWw9InRydWUiIC8+
-        DQogICAgPENvbmZlcmVuY2VFbmREYXRlIHhzaTpuaWw9InRydWUiIC8+DQog
-        ICAgPFJhbmsgeHNpOm5pbD0idHJ1ZSIgLz4NCiAgICA8T3JkaW5hbFJhbms+
-        NjwvT3JkaW5hbFJhbms+DQogICAgPE5vcm1hbGl6ZWRSYW5rIHhzaTpuaWw9
-        InRydWUiIC8+DQogICAgPE5ld1B1YmxpY2F0aW9uSXRlbUlEIHhzaTpuaWw9
-        InRydWUiIC8+DQogICAgPElzT2Jzb2xldGU+ZmFsc2U8L0lzT2Jzb2xldGU+
-        DQogICAgPENvcHlyaWdodFB1Ymxpc2hlciAvPg0KICAgIDxDb3B5cmlnaHRD
-        aXR5IC8+DQogICAgPFB1YmxpY2F0aW9uSW1wYWN0RmFjdG9yTGlzdD4yLjM1
-        MSwyMDE0LENsb3Nlc3RUb1B1YmxpY2F0aW9uWWVhcnwyLjM1MSwyMDE0LE1v
-        c3RSZWNlbnRZZWFyPC9QdWJsaWNhdGlvbkltcGFjdEZhY3Rvckxpc3Q+DQog
-        ICAgPFB1YmxpY2F0aW9uQ2F0ZWdvcnlSYW5raW5nTGlzdD40NC83NjtHQVNU
-        Uk9FTlRFUk9MT0dZICZhbXA7IEhFUEFUT0xPR1k7MjAxNDtTQztDbG9zZXN0
-        VG9QdWJsaWNhdGlvblllYXJ8NTcvMTk4O1NVUkdFUlk7MjAxNDtTQztDbG9z
-        ZXN0VG9QdWJsaWNhdGlvblllYXJ8NDQvNzY7R0FTVFJPRU5URVJPTE9HWSAm
-        YW1wOyBIRVBBVE9MT0dZOzIwMTQ7U0M7TW9zdFJlY2VudFllYXJ8NTcvMTk4
-        O1NVUkdFUlk7MjAxNDtTQztNb3N0UmVjZW50WWVhcjwvUHVibGljYXRpb25D
-        YXRlZ29yeVJhbmtpbmdMaXN0Pg0KICAgIDxDb3B5cmlnaHRTdGF0ZVByb3Zp
-        bmNlIC8+DQogICAgPENvcHlyaWdodENvdW50cnk+VU5JVEVEIEtJTkdET008
-        L0NvcHlyaWdodENvdW50cnk+DQogIDwvUHVibGljYXRpb25JdGVtPg0KICA8
-        UHVibGljYXRpb25JdGVtPg0KICAgIDxQdWJsaWNhdGlvbkl0ZW1JRD43MzUx
-        MTg0MDwvUHVibGljYXRpb25JdGVtSUQ+DQogICAgPFRpdGxlPk51bWJlciBv
-        ZiBPc3Rlb3Bvcm9zaXMgUGF0aWVudHMgd2l0aCBQYXRob2xvZ2ljYWwgRnJh
-        Y3R1cmVzIEJ5IEdlbmRlciBpbiBPdXRwYXRpZW50IENhcmUgaW4gdGhlIExp
-        Z2h0IG9mIFBoeXNpb3RoZXJhcHkgQ2FyZSBpbiBIdW5nYXJ5LjwvVGl0bGU+
-        DQogICAgPEFic3RyYWN0IC8+DQogICAgPEF1dGhvckxpc3Q+TW9saWNzLEIs
-        fEVuZHJlaSxELHxSw6F0Z8OpYmVyLEwsfEd5dXLDsyxNLHxTZWJlc3R5w6lu
-        LEEsfEp1aMOhc3osUix8RWxtZXIsRCx8Qm9uY3osSSx8UMOpdGVyLEksfEp1
-        aMOhc3osSyx8SsOhcm9taSxNLDwvQXV0aG9yTGlzdD4NCiAgICA8QXV0aG9y
-        Q291bnQ+MTE8L0F1dGhvckNvdW50Pg0KICAgIDxLZXl3b3JkTGlzdCAvPg0K
-        ICAgIDxEb2N1bWVudFR5cGVMaXN0PkpvdXJuYWwgQXJ0aWNsZTwvRG9jdW1l
-        bnRUeXBlTGlzdD4NCiAgICA8RG9jdW1lbnRDYXRlZ29yeT5Kb3VybmFsIERv
-        Y3VtZW50PC9Eb2N1bWVudENhdGVnb3J5Pg0KICAgIDxOdW1iZXJPZlJlZmVy
-        ZW5jZXMgeHNpOm5pbD0idHJ1ZSIgLz4NCiAgICA8VGltZXNDaXRlZCB4c2k6
-        bmlsPSJ0cnVlIiAvPg0KICAgIDxUaW1lc05vdFNlbGZDaXRlZCB4c2k6bmls
-        PSJ0cnVlIiAvPg0KICAgIDxQTUlEPjI2NTMzNjgxPC9QTUlEPg0KICAgIDxQ
-        dWJsaWNhdGlvblNvdXJjZVRpdGxlPlZhbHVlIGluIGhlYWx0aCA8L1B1Ymxp
-        Y2F0aW9uU291cmNlVGl0bGU+DQogICAgPFZvbHVtZT4xODwvVm9sdW1lPg0K
-        ICAgIDxJc3N1ZT43PC9Jc3N1ZT4NCiAgICA8UGFnaW5hdGlvbj5BNjU2LT88
-        L1BhZ2luYXRpb24+DQogICAgPFB1YmxpY2F0aW9uRGF0ZT4yMDE1LTExLTAx
-        VDAwOjAwOjAwPC9QdWJsaWNhdGlvbkRhdGU+DQogICAgPFB1YmxpY2F0aW9u
-        WWVhcj4yMDE1PC9QdWJsaWNhdGlvblllYXI+DQogICAgPFB1YmxpY2F0aW9u
-        U3ViamVjdENhdGVnb3J5TGlzdCAvPg0KICAgIDxJU1NOPjEwOTgtMzAxNTwv
-        SVNTTj4NCiAgICA8RE9JPjEwLjEwMTYvai5qdmFsLjIwMTUuMDkuMjM2OTwv
-        RE9JPg0KICAgIDxDb25mZXJlbmNlU3RhcnREYXRlIHhzaTpuaWw9InRydWUi
-        IC8+DQogICAgPENvbmZlcmVuY2VFbmREYXRlIHhzaTpuaWw9InRydWUiIC8+
-        DQogICAgPFJhbmsgeHNpOm5pbD0idHJ1ZSIgLz4NCiAgICA8T3JkaW5hbFJh
-        bms+NzwvT3JkaW5hbFJhbms+DQogICAgPE5vcm1hbGl6ZWRSYW5rIHhzaTpu
-        aWw9InRydWUiIC8+DQogICAgPE5ld1B1YmxpY2F0aW9uSXRlbUlEIHhzaTpu
-        aWw9InRydWUiIC8+DQogICAgPElzT2Jzb2xldGU+ZmFsc2U8L0lzT2Jzb2xl
-        dGU+DQogICAgPENvcHlyaWdodFB1Ymxpc2hlciAvPg0KICAgIDxDb3B5cmln
-        aHRDaXR5IC8+DQogICAgPFB1YmxpY2F0aW9uSW1wYWN0RmFjdG9yTGlzdD4z
-        LjI3OSwyMDE0LENsb3Nlc3RUb1B1YmxpY2F0aW9uWWVhcnwzLjI3OSwyMDE0
-        LE1vc3RSZWNlbnRZZWFyPC9QdWJsaWNhdGlvbkltcGFjdEZhY3Rvckxpc3Q+
-        DQogICAgPFB1YmxpY2F0aW9uQ2F0ZWdvcnlSYW5raW5nTGlzdD4xMy84OTtI
-        RUFMVEggQ0FSRSBTQ0lFTkNFUyAmYW1wOyBTRVJWSUNFUzsyMDE0O1NDO0Ns
-        b3Nlc3RUb1B1YmxpY2F0aW9uWWVhcnw3LzcxO0hFQUxUSCBQT0xJQ1kgJmFt
-        cDsgU0VSVklDRVM7MjAxNDtTUztDbG9zZXN0VG9QdWJsaWNhdGlvblllYXJ8
-        MTQvMzMzO0VDT05PTUlDUzsyMDE0O1NTO0Nsb3Nlc3RUb1B1YmxpY2F0aW9u
-        WWVhcnwxMy84OTtIRUFMVEggQ0FSRSBTQ0lFTkNFUyAmYW1wOyBTRVJWSUNF
-        UzsyMDE0O1NDO01vc3RSZWNlbnRZZWFyfDcvNzE7SEVBTFRIIFBPTElDWSAm
-        YW1wOyBTRVJWSUNFUzsyMDE0O1NTO01vc3RSZWNlbnRZZWFyfDE0LzMzMztF
-        Q09OT01JQ1M7MjAxNDtTUztNb3N0UmVjZW50WWVhcjwvUHVibGljYXRpb25D
-        YXRlZ29yeVJhbmtpbmdMaXN0Pg0KICAgIDxDb3B5cmlnaHRTdGF0ZVByb3Zp
-        bmNlIC8+DQogICAgPENvcHlyaWdodENvdW50cnk+VU5JVEVEIFNUQVRFUzwv
-        Q29weXJpZ2h0Q291bnRyeT4NCiAgPC9QdWJsaWNhdGlvbkl0ZW0+DQogIDxQ
-        dWJsaWNhdGlvbkl0ZW0+DQogICAgPFB1YmxpY2F0aW9uSXRlbUlEPjczNTEx
-        NDU4PC9QdWJsaWNhdGlvbkl0ZW1JRD4NCiAgICA8VGl0bGU+SW5oaWJpdGlv
-        biBvZiBwYXRob2xvZ2ljYWwgYnJhaW4gYW5naW9nZW5lc2lzIHRocm91Z2gg
-        c3lzdGVtaWMgZGVsaXZlcnkgb2YgQUFWIHZlY3RvciBleHByZXNzaW5nIHNv
-        bHVibGUgRkxUMS48L1RpdGxlPg0KICAgIDxBYnN0cmFjdD5UaGUgc29sdWJs
-        ZSB2YXNjdWxhciBlbmRvdGhlbGlhbCBncm93dGggZmFjdG9yIChWRUdGKSBy
-        ZWNlcHRvciAxIChzRkxUMSkgaGFzIGJlZW4gdGVzdGVkIGluIGJvdGggYW5p
-        bWFscyBhbmQgaHVtYW5zIGZvciBhbnRpLWFuZ2lvZ2VuaWMgdGhlcmFwaWVz
-        LCBmb3IgZXhhbXBsZSwgYWdlLXJlbGF0ZWQgbWFjdWxhciBkZWdlbmVyYXRp
-        b24uIFdlIGh5cG90aGVzaXplZCB0aGF0IGFkZW5vLWFzc29jaWF0ZWQgdmly
-        YWwgdmVjdG9yIChBQVYpLW1lZGlhdGVkIHNGTFQxIGV4cHJlc3Npb24gY291
-        bGQgYmUgdXNlZCB0byBpbmhpYml0IGFibm9ybWFsIGJyYWluIGFuZ2lvZ2Vu
-        ZXNpcy4gV2UgdGVzdGVkIHRoZSBhbnRpLWFuZ2lvZ2VuaWMgZWZmZWN0IG9m
-        IHNGTFQxIGFuZCB0aGUgZmVhc2liaWxpdHkgb2YgdXNpbmcgQUFWIHNlcm90
-        eXBlIDkgdG8gZGVsaXZlciBzRkxUMSB0aHJvdWdoIGludHJhdmVub3VzIGlu
-        amVjdGlvbiAoSVYpIHRvIHRoZSBicmFpbiBhbmdpb2dlbmljIHJlZ2lvbi4g
-        QUFWcyB3ZXJlIHBhY2thZ2VkIGluIEFBViBzZXJvdHlwZXMgMSBhbmQgMiAo
-        c3RlcmVvdGFjdGljIGluamVjdGlvbikgYW5kIDkgKElWIGluamVjdGlvbiku
-        IEJyYWluIGFuZ2lvZ2VuZXNpcyB3YXMgaW5kdWNlZCBpbiBhZHVsdCBtaWNl
-        IHRocm91Z2ggc3RlcmVvdGFjdGljIGluamVjdGlvbiBvZiBBQVYxLVZFR0Yu
-        IEFBVjItc0ZMVDAyIGNvbnRhaW5pbmcgc0ZMVDEgVkVHRi1iaW5kaW5nIGRv
-        bWFpbiAoZG9tYWluIDIpIHdhcyBpbmplY3RlZCBpbnRvIHRoZSBicmFpbiBh
-        bmdpb2dlbmljIHJlZ2lvbiwgYW5kIEFBVjktc0ZMVDEgd2FzIGluamVjdGVk
-        IGludG8gdGhlIGp1Z3VsYXIgdmVpbiBhdCB0aGUgdGltZSBvZiBvciA0IHdl
-        ZWtzIGFmdGVyIEFBVjEtVkVHRiBpbmplY3Rpb24uIFdlIHNob3dlZCB0aGF0
-        IEFBVjItc0ZMVDAyIGluaGliaXRlZCBicmFpbiBhbmdpb2dlbmVzaXMgYXQg
-        Ym90aCB0aW1lIHBvaW50cy4gSVYgaW5qZWN0aW9uIG9mIEFBVjktc0ZMVDEg
-        aW5oaWJpdGVkIGFuZ2lvZ2VuZXNpcyBvbmx5IHdoZW4gdGhlIHZlY3RvciB3
-        YXMgaW5qZWN0ZWQgNCB3ZWVrcyBhZnRlciBhbmdpb2dlbmljIGluZHVjdGlv
-        bi4gTmVpdGhlciBseW1waG9jeXRlIGluZmlsdHJhdGlvbiBub3IgbmV1cm9u
-        IGxvc3Mgd2FzIG9ic2VydmVkIGluIEFBVjktc0ZMVDEtdHJlYXRlZCBtaWNl
-        LiBPdXIgZGF0YSBzaG93IHRoYXQgc3lzdGVtaWNhbGx5IGRlbGl2ZXJlZCBB
-        QVY5LXNGTFQxIGluaGliaXRzIGFuZ2lvZ2VuZXNpcyBpbiB0aGUgbW91c2Ug
-        YnJhaW4sIHdoaWNoIGNvdWxkIGJlIHV0aWxpemVkIHRvIHRyZWF0IGJyYWlu
-        IGFuZ2lvZ2VuaWMgZGlzZWFzZXMgc3VjaCBhcyBicmFpbiBhcnRlcmlvdmVu
-        b3VzIG1hbGZvcm1hdGlvbi4gPC9BYnN0cmFjdD4NCiAgICA8QXV0aG9yTGlz
-        dD5TaGVuLEYsfE1hbyxMLHxaaHUsVyx8TGF3dG9uLE0sVHxQZWNoYW4sUCx8
-        Q29sb3NpLFAsfFd1LFosfFNjYXJpYSxBLHxTdSxILDwvQXV0aG9yTGlzdD4N
-        CiAgICA8QXV0aG9yQ291bnQ+OTwvQXV0aG9yQ291bnQ+DQogICAgPEtleXdv
-        cmRMaXN0IC8+DQogICAgPERvY3VtZW50VHlwZUxpc3Q+Sm91cm5hbCBBcnRp
-        Y2xlPC9Eb2N1bWVudFR5cGVMaXN0Pg0KICAgIDxEb2N1bWVudENhdGVnb3J5
-        PkpvdXJuYWwgRG9jdW1lbnQ8L0RvY3VtZW50Q2F0ZWdvcnk+DQogICAgPE51
-        bWJlck9mUmVmZXJlbmNlcyB4c2k6bmlsPSJ0cnVlIiAvPg0KICAgIDxUaW1l
-        c0NpdGVkIHhzaTpuaWw9InRydWUiIC8+DQogICAgPFRpbWVzTm90U2VsZkNp
-        dGVkIHhzaTpuaWw9InRydWUiIC8+DQogICAgPFBNSUQ+MjYwOTA4NzQ8L1BN
-        SUQ+DQogICAgPFB1YmxpY2F0aW9uU291cmNlVGl0bGU+R2VuZSB0aGVyYXB5
-        PC9QdWJsaWNhdGlvblNvdXJjZVRpdGxlPg0KICAgIDxWb2x1bWU+MjI8L1Zv
-        bHVtZT4NCiAgICA8SXNzdWU+MTE8L0lzc3VlPg0KICAgIDxQYWdpbmF0aW9u
-        Pjg5My05MDA8L1BhZ2luYXRpb24+DQogICAgPFB1YmxpY2F0aW9uRGF0ZT4y
-        MDE1LTExLTAxVDAwOjAwOjAwPC9QdWJsaWNhdGlvbkRhdGU+DQogICAgPFB1
-        YmxpY2F0aW9uWWVhcj4yMDE1PC9QdWJsaWNhdGlvblllYXI+DQogICAgPFB1
-        YmxpY2F0aW9uU3ViamVjdENhdGVnb3J5TGlzdCAvPg0KICAgIDxJU1NOPjA5
-        NjktNzEyODwvSVNTTj4NCiAgICA8RE9JPjEwLjEwMzgvZ3QuMjAxNS41Nzwv
-        RE9JPg0KICAgIDxDb25mZXJlbmNlU3RhcnREYXRlIHhzaTpuaWw9InRydWUi
-        IC8+DQogICAgPENvbmZlcmVuY2VFbmREYXRlIHhzaTpuaWw9InRydWUiIC8+
-        DQogICAgPFJhbmsgeHNpOm5pbD0idHJ1ZSIgLz4NCiAgICA8T3JkaW5hbFJh
-        bms+ODwvT3JkaW5hbFJhbms+DQogICAgPE5vcm1hbGl6ZWRSYW5rIHhzaTpu
-        aWw9InRydWUiIC8+DQogICAgPE5ld1B1YmxpY2F0aW9uSXRlbUlEIHhzaTpu
-        aWw9InRydWUiIC8+DQogICAgPElzT2Jzb2xldGU+ZmFsc2U8L0lzT2Jzb2xl
-        dGU+DQogICAgPENvcHlyaWdodFB1Ymxpc2hlciAvPg0KICAgIDxDb3B5cmln
-        aHRDaXR5IC8+DQogICAgPFB1YmxpY2F0aW9uSW1wYWN0RmFjdG9yTGlzdD4z
-        LjEwNCwyMDE0LENsb3Nlc3RUb1B1YmxpY2F0aW9uWWVhcnwzLjEwNCwyMDE0
-        LE1vc3RSZWNlbnRZZWFyPC9QdWJsaWNhdGlvbkltcGFjdEZhY3Rvckxpc3Q+
-        DQogICAgPFB1YmxpY2F0aW9uQ2F0ZWdvcnlSYW5raW5nTGlzdD4xMTcvMjg5
-        O0JJT0NIRU1JU1RSWSAmYW1wOyBNT0xFQ1VMQVIgQklPTE9HWTsyMDE0O1ND
-        O0Nsb3Nlc3RUb1B1YmxpY2F0aW9uWWVhcnw0Ny8xNjI7QklPVEVDSE5PTE9H
-        WSAmYW1wOyBBUFBMSUVEIE1JQ1JPQklPTE9HWTsyMDE0O1NDO0Nsb3Nlc3RU
-        b1B1YmxpY2F0aW9uWWVhcnw2My8xNjc7R0VORVRJQ1MgJmFtcDsgSEVSRURJ
-        VFk7MjAxNDtTQztDbG9zZXN0VG9QdWJsaWNhdGlvblllYXJ8NDMvMTIzO01F
-        RElDSU5FLCBSRVNFQVJDSCAmYW1wOyBFWFBFUklNRU5UQUw7MjAxNDtTQztD
-        bG9zZXN0VG9QdWJsaWNhdGlvblllYXJ8MTE3LzI4OTtCSU9DSEVNSVNUUlkg
-        JmFtcDsgTU9MRUNVTEFSIEJJT0xPR1k7MjAxNDtTQztNb3N0UmVjZW50WWVh
-        cnw0Ny8xNjI7QklPVEVDSE5PTE9HWSAmYW1wOyBBUFBMSUVEIE1JQ1JPQklP
-        TE9HWTsyMDE0O1NDO01vc3RSZWNlbnRZZWFyfDYzLzE2NztHRU5FVElDUyAm
-        YW1wOyBIRVJFRElUWTsyMDE0O1NDO01vc3RSZWNlbnRZZWFyfDQzLzEyMztN
-        RURJQ0lORSwgUkVTRUFSQ0ggJmFtcDsgRVhQRVJJTUVOVEFMOzIwMTQ7U0M7
-        TW9zdFJlY2VudFllYXI8L1B1YmxpY2F0aW9uQ2F0ZWdvcnlSYW5raW5nTGlz
-        dD4NCiAgICA8Q29weXJpZ2h0U3RhdGVQcm92aW5jZSAvPg0KICAgIDxDb3B5
-        cmlnaHRDb3VudHJ5PlVOSVRFRCBLSU5HRE9NPC9Db3B5cmlnaHRDb3VudHJ5
-        Pg0KICA8L1B1YmxpY2F0aW9uSXRlbT4NCiAgPFB1YmxpY2F0aW9uSXRlbT4N
-        CiAgICA8UHVibGljYXRpb25JdGVtSUQ+NzM1MTEyMTg8L1B1YmxpY2F0aW9u
-        SXRlbUlEPg0KICAgIDxUaXRsZT5Nb2xlY3VsYXIgYW5kIHBhdGhvbG9naWNh
-        bCBjaGFyYWN0ZXJpemF0aW9uIG9mIHRoZSBFWkgyIHJzMzc1NzQ0MSBzaW5n
-        bGUgbnVjbGVvdGlkZSBwb2x5bW9ycGhpc20gaW4gY29sb3JlY3RhbCBjYW5j
-        ZXIuPC9UaXRsZT4NCiAgICA8QWJzdHJhY3Q+QkFDS0dST1VORCBUaGUgZW5o
-        YW5jZXIgb2YgemVzdGUtaG9tb2xvZyAyIChFWkgyKSBpcyBpbnZvbHZlZCBp
-        biBjYW5jZXIgZGV2ZWxvcG1lbnQgdGhyb3VnaCBnZW5lIHNpbGVuY2luZyBi
-        eSB0cmltZXRoeWxhdGlvbiBvZiBseXNpbmUgMjcgb2YgaGlzdG9uZSAzIChI
-        M0syN21lMykuIFRoZSBDL0MgZ2Vub3R5cGUgZm9yIHRoZSBFWkgyIHJzMzc1
-        NzQ0MSBzaW5nbGUtbnVjbGVvdGlkZSBwb2x5bW9ycGhpc20gKFNOUCkgaXMg
-        bGlua2VkIHdpdGggcG9vciBwcm9nbm9zaXMgaW4gbWV0YXN0YXRpYyBjb2xv
-        cmVjdGFsIGNhbmNlciAoQ1JDKSwgYnV0IG1vbGVjdWxhciBhbmQgcGF0aG9s
-        b2dpY2FsIGNoYXJhY3Rlcml6YXRpb24gb2YgdGhpcyBTTlAgaXMgbGFja2lu
-        Zy4NCk1FVEhPRFMgMTE5IHByaW1hcnkgQ1JDcyB3ZXJlIGFuYWx5emVkLiBT
-        TlAgd2FzIGV2YWx1YXRlZCBieSByZWFsLXRpbWUgUENSIGZyb20gY29sb25p
-        YyBoZWFsdGh5IHRpc3N1ZSwgd2hpbGUgRVpIMiBhbmQgSDNLMjdtZTMgZXhw
-        cmVzc2lvbiB3ZXJlIHN0dWRpZWQgYnkgaW1tdW5vaGlzdG9jaGVtaXN0cnku
-        IFdlIHByaW1hcmlseSBsb29rZWQgZm9yIGNvcnJlbGF0aW9uIGJldHdlZW4g
-        RVpIMiByczM3NTc0NDEgZ2Vub3R5cGVzIGFuZCBFWkgyL0gzSzI3bWUzIGV4
-        cHJlc3Npb24uIFBvdGVudGlhbCBhc3NvY2lhdGlvbnMgYmV0d2VlbiBFWkgy
-        L0gzSzI3bWUzIGV4cHJlc3Npb24gYW5kIGNsaW5pY28tcGF0aG9sb2dpY2Fs
-        IGZlYXR1cmVzIG9yIEtSQVMgZXhvbiAyIGFuZCBCUkFGIGV4b24gMTUgbXV0
-        YXRpb25zIHdlcmUgc2Vjb25kYXJ5IGVuZHBvaW50cy4gU3RhdGlzdGljYWwg
-        YW5hbHlzaXMgd2FzIHBlcmZvcm1lZCBieSBjaGktc3F1YXJlIHRlc3QsIFQt
-        dGVzdCBvciBBTk9WQS4NClJFU1VMVFMgVGhlIEMvQyBnZW5vdHlwZSB3YXMg
-        c2lnbmlmaWNhbnRseSBhc3NvY2lhdGVkIHdpdGggaGlnaGVyIEVaSDIgKDEw
-        MCB2cy4gNDQgJTsgUD89PzAuMDE5KSBhbmQgSDNLMjdtZTMgKDEwMCB2cy4g
-        MzggJTsgUD89PzAuMDA5KSBzdGFpbmluZyBpbnRlbnNpdHkgY29tcGFyZWQg
-        d2l0aCBDL1QgYW5kIFQvVC4gRVpIMiAzKyBzdGFpbmluZyBzaWduaWZpY2Fu
-        dGx5IGNvcnJlbGF0ZWQgd2l0aCBzdHJvbmdlciBIM0syN21lMyBleHByZXNz
-        aW9uIChQPz0/MC4wMzkpLiBLUkFTIGFuZCBCUkFGIG11dGF0aW9ucyB3ZXJl
-        IG5vdCBhc3NvY2lhdGVkIHdpdGggRVpIMiBvciBIM0syN21lMyBleHByZXNz
-        aW9uLg0KQ09OQ0xVU0lPTiBFWkgyIHJzMzc1NzQ0MSBDL0MgZ2Vub3R5cGUg
-        aXMgYXNzb2NpYXRlZCB3aXRoIHN0cm9uZ2VyIEVaSDIgYW5kIEgzSzI3bWUz
-        IGltbXVub3JlYWN0aXZpdHkgaW4gcHJpbWFyeSBDUkM6IHRoaXMgU05QIG1h
-        eSBzZXJ2ZSBhcyBhIHByb21pc2luZyBiaW9tYXJrZXIgZm9yIEVaSDItdGFy
-        Z2V0aW5nIGFnZW50cyBhbmQgbWF5IGFkZCBpbmRlcGVuZGVudCBpbmZvcm1h
-        dGlvbiB0byBLUkFTIGFuZCBCUkFGIHRlc3RpbmcuPC9BYnN0cmFjdD4NCiAg
-        ICA8QXV0aG9yTGlzdD5Gb3JuYXJvLExvcmVuem8sfEZhdmlhbmEsUGludWNj
-        aWEsfERlIEdyZWdvcmlvLFZlcm9uaWNhLHxWaXZhbGRpLENhdGVyaW5hLHxQ
-        YW9saWNjaGksRWxpc2EsfE1hc2ksR2lhbmx1Y2EsfExvdXBha2lzLEZvdGlv
-        cyx8U2Vuc2ksRWxpc2EsfEx1cGksQ3Jpc3RpYW5hLHxGb250YW5pbmksR2Fi
-        cmllbGxhLHxXYW5nLFl1emh1byx8RGFuZXNpLFJvbWFubyx8RmFsY29uZSxB
-        bGZyZWRvLHxDcmVhLEZyYW5jZXNjbyw8L0F1dGhvckxpc3Q+DQogICAgPEF1
-        dGhvckNvdW50PjE0PC9BdXRob3JDb3VudD4NCiAgICA8S2V5d29yZExpc3Qg
-        Lz4NCiAgICA8RG9jdW1lbnRUeXBlTGlzdD5Kb3VybmFsIEFydGljbGU8L0Rv
-        Y3VtZW50VHlwZUxpc3Q+DQogICAgPERvY3VtZW50Q2F0ZWdvcnk+Sm91cm5h
-        bCBEb2N1bWVudDwvRG9jdW1lbnRDYXRlZ29yeT4NCiAgICA8TnVtYmVyT2ZS
-        ZWZlcmVuY2VzIHhzaTpuaWw9InRydWUiIC8+DQogICAgPFRpbWVzQ2l0ZWQg
-        eHNpOm5pbD0idHJ1ZSIgLz4NCiAgICA8VGltZXNOb3RTZWxmQ2l0ZWQgeHNp
-        Om5pbD0idHJ1ZSIgLz4NCiAgICA8UE1JRD4yNjU1MzI5MTwvUE1JRD4NCiAg
-        ICA8UHVibGljYXRpb25Tb3VyY2VUaXRsZT5CTUMgY2FuY2VyPC9QdWJsaWNh
-        dGlvblNvdXJjZVRpdGxlPg0KICAgIDxWb2x1bWU+MTU8L1ZvbHVtZT4NCiAg
-        ICA8UGFnaW5hdGlvbj44NzQtPzwvUGFnaW5hdGlvbj4NCiAgICA8UHVibGlj
-        YXRpb25EYXRlPjIwMTUtMDEtMDFUMDA6MDA6MDA8L1B1YmxpY2F0aW9uRGF0
-        ZT4NCiAgICA8UHVibGljYXRpb25ZZWFyPjIwMTU8L1B1YmxpY2F0aW9uWWVh
-        cj4NCiAgICA8UHVibGljYXRpb25TdWJqZWN0Q2F0ZWdvcnlMaXN0IC8+DQog
-        ICAgPElTU04+MTQ3MS0yNDA3PC9JU1NOPg0KICAgIDxET0k+MTAuMTE4Ni9z
-        MTI4ODUtMDE1LTE4ODktMjwvRE9JPg0KICAgIDxDb25mZXJlbmNlU3RhcnRE
-        YXRlIHhzaTpuaWw9InRydWUiIC8+DQogICAgPENvbmZlcmVuY2VFbmREYXRl
-        IHhzaTpuaWw9InRydWUiIC8+DQogICAgPFJhbmsgeHNpOm5pbD0idHJ1ZSIg
-        Lz4NCiAgICA8T3JkaW5hbFJhbms+OTwvT3JkaW5hbFJhbms+DQogICAgPE5v
-        cm1hbGl6ZWRSYW5rIHhzaTpuaWw9InRydWUiIC8+DQogICAgPE5ld1B1Ymxp
-        Y2F0aW9uSXRlbUlEIHhzaTpuaWw9InRydWUiIC8+DQogICAgPElzT2Jzb2xl
-        dGU+ZmFsc2U8L0lzT2Jzb2xldGU+DQogICAgPENvcHlyaWdodFB1Ymxpc2hl
-        ciAvPg0KICAgIDxDb3B5cmlnaHRDaXR5IC8+DQogICAgPFB1YmxpY2F0aW9u
-        SW1wYWN0RmFjdG9yTGlzdD4zLjMxOSwyMDEzLENsb3Nlc3RUb1B1YmxpY2F0
-        aW9uWWVhcnwzLjMxOSwyMDEzLE1vc3RSZWNlbnRZZWFyPC9QdWJsaWNhdGlv
-        bkltcGFjdEZhY3Rvckxpc3Q+DQogICAgPFB1YmxpY2F0aW9uQ2F0ZWdvcnlS
-        YW5raW5nTGlzdD43NC8yMDM7T05DT0xPR1k7MjAxMztTQztDbG9zZXN0VG9Q
-        dWJsaWNhdGlvblllYXJ8NzQvMjAzO09OQ09MT0dZOzIwMTM7U0M7TW9zdFJl
-        Y2VudFllYXI8L1B1YmxpY2F0aW9uQ2F0ZWdvcnlSYW5raW5nTGlzdD4NCiAg
-        ICA8Q29weXJpZ2h0U3RhdGVQcm92aW5jZSAvPg0KICAgIDxDb3B5cmlnaHRD
-        b3VudHJ5PlVOSVRFRCBLSU5HRE9NPC9Db3B5cmlnaHRDb3VudHJ5Pg0KICA8
-        L1B1YmxpY2F0aW9uSXRlbT4NCiAgPFB1YmxpY2F0aW9uSXRlbT4NCiAgICA8
-        UHVibGljYXRpb25JdGVtSUQ+NzM1MTA2ODI8L1B1YmxpY2F0aW9uSXRlbUlE
-        Pg0KICAgIDxUaXRsZT5DbGluaWNhbCBzaWduaWZpY2FuY2Ugb2YgQy1yZWFj
-        dGl2ZSBwcm90ZWluIGxldmVscyBpbiB0aGUgZGV0ZXJtaW5hdGlvbiBvZiBw
-        YXRob2xvZ2ljYWwgdHlwZSBvZiBhY3V0ZSBhcHBlbmRpY2l0aXMuPC9UaXRs
-        ZT4NCiAgICA8QWJzdHJhY3Q+T0JKRUNUSVZFIFRvIGludmVzdGlnYXRlIHRo
-        ZSBzaWduaWZpY2FuY2Ugb2YgQy1yZWFjdGl2ZSBwcm90ZWluIChDUlApIGlu
-        IHRoZSBkaXNjcmltaW5hdGlvbiBvZiBhY3V0ZSBhcHBlbmRpY2l0aXMgcGF0
-        aG9sb2d5IGFuZCBpdHMgZ3VpZGluZyByb2xlIGluIHRoZSB0aW1pbmcgb2Yg
-        c3VyZ2VyeS4NCk1FVEhPRFMgMzA3IHBhdGllbnRzIGluIG91ciBob3NwaXRh
-        bCBmcm9tIEp1bHkgMjAxMiB0byBEZWNlbWJlciAyMDEzIHdlcmUgc2VsZWN0
-        ZWQsIHdobyByZWNlaXZlZCBhcHBlbmRlY3RvbXkgYW5kIHNpbXVsdGFuZW91
-        cyBkZXRlY3Rpb25zIG9mIFdCQywgbmV1dHJvcGhpbCBwZXJjZW50YWdlIGFu
-        ZCBDUlA7IGFuZCBMb2dpc3RpYyByZWdyZXNzaW9uIGFuYWx5c2lzIGFuZCBS
-        b2MgYW5hbHlzaXMgb2YgdGhlc2UgaW5kaWNhdG9ycyB3ZXJlIGNvbmR1Y3Rl
-        ZDsgUm9jIGN1cnZlIHdhcyBkcmF3bi4NClJFU1VMVFMgTG9naXN0aWMgcmVn
-        cmVzc2lvbiBhbmFseXNpcyBzaG93ZWQgdGhhdCB0aGUgcHJvcG9ydGlvbiBv
-        ZiBuZXV0cm9waGlscyBhbmQgQ1JQIHdlcmUgdGhlIHJpc2sgZmFjdG9ycyB0
-        byBkZXRlcm1pbmUgZ2FuZ3Jlbm91cyBhcHBlbmRpY2l0aXMsIGJ1dCB0aGUg
-        Ym94IGNoYXJ0IGFuZCBSb2MgY3VydmVzIHNob3dlZCB0aGF0IEMtcmVhY3Rp
-        dmUgcHJvdGVpbiB3YXMgc3VwZXJpb3IgdG8gbmV1dHJvcGhpbCBjbGFzc2lm
-        aWNhdGlvbiBpbiBkZXRlcm1pbmluZyBnYW5ncmVub3VzIGFwcGVuZGljaXRp
-        cyAoYXJlYXMgdW5kZXIgdGhlIGN1cnZlIHdlcmUgMC44ODIgYW5kIDAuNjY3
-        IHJlc3BlY3RpdmVseSksIGFuZCB0aGUgYmVzdCBkaWFnbm9zdGljIGN1dG9m
-        ZiB2YWx1ZSB3YXMgNDQuNDIgbWcvTCAoc2Vuc2l0aXZpdHkgNzMuMSUsIHNw
-        ZWNpZmljaXR5IDg5LjUlKS4NCkNPTkNMVVNJT04gQy1yZWFjdGl2ZSBwcm90
-        ZWluIGxldmVscyBjYW4gaGVscCBkaXN0aW5ndWlzaCBwYXRob2xvZ2ljYWwg
-        dHlwZXMgb2YgYWN1dGUgYXBwZW5kaWNpdGlzLCB3aGljaCBjYW4gYmUgdXNl
-        ZCBhcyBhIHJlZmVyZW5jZSBpbmRleCBmb3Igc3VyZ2VyeSBkZXRlcm1pbmF0
-        aW9uLjwvQWJzdHJhY3Q+DQogICAgPEF1dGhvckxpc3Q+UWksRmVuZy1RaW4s
-        fFpoYW5nLEJvLDwvQXV0aG9yTGlzdD4NCiAgICA8QXV0aG9yQ291bnQ+Mjwv
-        QXV0aG9yQ291bnQ+DQogICAgPEtleXdvcmRMaXN0PkNSUHxXQkMgY291bnR8
-        YWN1dGUgYXBwZW5kaWNpdGlzfG5ldXRyb3BoaWwgcGVyY2VudGFnZXxwYXRo
-        b2xvZ2ljYWwgdHlwZTwvS2V5d29yZExpc3Q+DQogICAgPERvY3VtZW50VHlw
-        ZUxpc3Q+Sm91cm5hbCBBcnRpY2xlPC9Eb2N1bWVudFR5cGVMaXN0Pg0KICAg
-        IDxEb2N1bWVudENhdGVnb3J5PkpvdXJuYWwgRG9jdW1lbnQ8L0RvY3VtZW50
-        Q2F0ZWdvcnk+DQogICAgPE51bWJlck9mUmVmZXJlbmNlcyB4c2k6bmlsPSJ0
-        cnVlIiAvPg0KICAgIDxUaW1lc0NpdGVkIHhzaTpuaWw9InRydWUiIC8+DQog
-        ICAgPFRpbWVzTm90U2VsZkNpdGVkIHhzaTpuaWw9InRydWUiIC8+DQogICAg
-        PFBNSUQ+MjY1NTAzNDQ8L1BNSUQ+DQogICAgPFB1YmxpY2F0aW9uU291cmNl
-        VGl0bGU+SW50ZXJuYXRpb25hbCBqb3VybmFsIG9mIGNsaW5pY2FsIGFuZCBl
-        eHBlcmltZW50YWwgbWVkaWNpbmU8L1B1YmxpY2F0aW9uU291cmNlVGl0bGU+
-        DQogICAgPFZvbHVtZT44PC9Wb2x1bWU+DQogICAgPElzc3VlPjg8L0lzc3Vl
-        Pg0KICAgIDxQYWdpbmF0aW9uPjEzODg3LTEzODkwPC9QYWdpbmF0aW9uPg0K
-        ICAgIDxQdWJsaWNhdGlvbkRhdGU+MjAxNS0wMS0wMVQwMDowMDowMDwvUHVi
-        bGljYXRpb25EYXRlPg0KICAgIDxQdWJsaWNhdGlvblllYXI+MjAxNTwvUHVi
-        bGljYXRpb25ZZWFyPg0KICAgIDxQdWJsaWNhdGlvblN1YmplY3RDYXRlZ29y
-        eUxpc3QgLz4NCiAgICA8SVNTTj4xOTQwLTU5MDE8L0lTU04+DQogICAgPENv
-        bmZlcmVuY2VTdGFydERhdGUgeHNpOm5pbD0idHJ1ZSIgLz4NCiAgICA8Q29u
-        ZmVyZW5jZUVuZERhdGUgeHNpOm5pbD0idHJ1ZSIgLz4NCiAgICA8UmFuayB4
-        c2k6bmlsPSJ0cnVlIiAvPg0KICAgIDxPcmRpbmFsUmFuaz4xMDwvT3JkaW5h
-        bFJhbms+DQogICAgPE5vcm1hbGl6ZWRSYW5rIHhzaTpuaWw9InRydWUiIC8+
-        DQogICAgPE5ld1B1YmxpY2F0aW9uSXRlbUlEIHhzaTpuaWw9InRydWUiIC8+
-        DQogICAgPElzT2Jzb2xldGU+ZmFsc2U8L0lzT2Jzb2xldGU+DQogICAgPENv
-        cHlyaWdodFB1Ymxpc2hlciAvPg0KICAgIDxDb3B5cmlnaHRDaXR5IC8+DQog
-        ICAgPFB1YmxpY2F0aW9uSW1wYWN0RmFjdG9yTGlzdD4xLjI3NywyMDE0LENs
-        b3Nlc3RUb1B1YmxpY2F0aW9uWWVhcnwxLjI3NywyMDE0LE1vc3RSZWNlbnRZ
-        ZWFyPC9QdWJsaWNhdGlvbkltcGFjdEZhY3Rvckxpc3Q+DQogICAgPFB1Ymxp
-        Y2F0aW9uQ2F0ZWdvcnlSYW5raW5nTGlzdD45Ni8xMjM7TUVESUNJTkUsIFJF
-        U0VBUkNIICZhbXA7IEVYUEVSSU1FTlRBTDsyMDE0O1NDO0Nsb3Nlc3RUb1B1
-        YmxpY2F0aW9uWWVhcnw5Ni8xMjM7TUVESUNJTkUsIFJFU0VBUkNIICZhbXA7
-        IEVYUEVSSU1FTlRBTDsyMDE0O1NDO01vc3RSZWNlbnRZZWFyPC9QdWJsaWNh
-        dGlvbkNhdGVnb3J5UmFua2luZ0xpc3Q+DQogICAgPENvcHlyaWdodFN0YXRl
-        UHJvdmluY2UgLz4NCiAgICA8Q29weXJpZ2h0Q291bnRyeT5VTklURUQgU1RB
-        VEVTPC9Db3B5cmlnaHRDb3VudHJ5Pg0KICA8L1B1YmxpY2F0aW9uSXRlbT4N
-        CiAgPFB1YmxpY2F0aW9uSXRlbT4NCiAgICA8UHVibGljYXRpb25JdGVtSUQ+
-        NzM1MTA2NjE8L1B1YmxpY2F0aW9uSXRlbUlEPg0KICAgIDxUaXRsZT5QYXRo
-        b2xvZ2ljYWwgZmVhdHVyZXMgb2YgcHJlY2xpbmljYWwgb3IgZWFybHkgY2xp
-        bmljYWwgc3RhZ2VzIG9mIGNvcnRpY29iYXNhbCBkZWdlbmVyYXRpb246IGEg
-        Y29tcGFyaXNvbiB3aXRoIGFkdmFuY2VkIGNhc2VzLjwvVGl0bGU+DQogICAg
-        PEFic3RyYWN0PkFJTVMgVGhlIG1hbm5lciBpbiB3aGljaCBwYXRob2xvZ2lj
-        YWwgbGVzaW9ucyBvZiBjb3J0aWNvYmFzYWwgZGVnZW5lcmF0aW9uIChDQkQp
-        IHByb2dyZXNzIHJlbWFpbnMgcG9vcmx5IHVuZGVyc3Rvb2QuIEJlY2F1c2Ug
-        dGhlIHBhdGhvbG9neSBvZiBlYXJseSBkaXNlYXNlIHN0YWdlcyBtYXkgYmUg
-        ZnVuZGFtZW50YWwgZm9yIGVsdWNpZGF0aW5nIGEgYm9yZGVyIGJldHdlZW4g
-        Y2xpbmljYWwgYW5kIHByZWNsaW5pY2FsIHN0YXRlcyBvZiBDQkQsIHRoZSBw
-        cmVzZW50IHN0dWR5IGFpbWVkIHRvIGRldGVjdCBwcmVjbGluaWNhbCBvciBl
-        YXJseSBjbGluaWNhbCBDQkQgY2FzZXMgYnkgZXhhbWluaW5nIGEgc2VyaWVz
-        IG9mIGZvcmVuc2ljIGF1dG9wc3kgY2FzZXMuDQpNRVRIT0RTIEEgc2VyaWVz
-        IG9mIDg4NyBicmFpbnMgZnJvbSBtZWRpY29sZWdhbCBhdXRvcHNpZXMgd2Fz
-        IGV4YW1pbmVkLiBJbW11bm9oaXN0b2NoZW1pc3RyeSBmb3IgdGF1IChBVDgs
-        IDMsIGFuZCA0LXJlcGVhdC10YXUpIGFuZCBHYWxseWFzLUJyYWFrIHdhcyBh
-        cHBsaWVkIGZvciBkaWFnbm9zaXMuIE5ldXJvcGF0aG9sb2dpY2FsIGRpYWdu
-        b3NpcyBvZiBDQkQgZm9sbG93ZWQgY3JpdGVyaWEgdXBkYXRlZCBpbiAyMDAy
-        IGJ5IGEgd29ya2luZyBncm91cC4NClJFU1VMVFMgVGhyZWUgYXV0b3BzeSBj
-        YXNlcyAoMC4zNCUpIHdlcmUgaWRlbnRpZmllZCB0aGF0IGZ1bGZpbGxlZCBD
-        QkQgcGF0aG9sb2dpY2FsIGNyaXRlcmlhLiBUd28gY2FzZXMgd2VyZSBwcmVj
-        bGluaWNhbCBvciB2ZXJ5IGVhcmx5IGNsaW5pY2FsIGNhc2VzIHdpdGhvdXQg
-        YnJhaW4gYXRyb3BoeTsgdGhlIG90aGVyIGNhc2UgaGFkIGV4aGliaXRlZCBh
-        IDUteWVhciBoaXN0b3J5IG9mIGFkdmFuY2VkIGZyb250b3RlbXBvcmFsIGRl
-        bWVudGlhLiBTaWduaWZpY2FudCBtaWNyb3Njb3BpYyBkaWZmZXJlbmNlcyBi
-        ZXR3ZWVuIHRoZSBzdWJjbGluaWNhbCBhbmQgY2xpbmljYWwgY2FzZXMgaW5j
-        bHVkZWQgb2NjdXJyZW5jZSBvZiBuZXVyb25hbCBsb3NzIHdpdGggc3Bvbmdp
-        b3NpcyBhbmQgZ2xpb3NpcywgYXMgd2VsbCBhcyBhIGRpZmZlcmVuY2UgaW4g
-        ZGVncmVlIG9mIHRhdSBwYXRob2xvZ3kgaW4gdGhlIHN1cGVyZmljaWFsIGxh
-        eWVyIG9mIHRoZSBuZW9jb3J0aWNhbCBhcmVhcyBhbmQgd2hpdGUgbWF0dGVy
-        LiBBbmF0b21pY2FsIGhpZXJhcmNoeSBvZiB0YXUgcGF0aG9sb2d5IGluIHRo
-        ZSBicmFpbiB3YXMgbm90IGV2aWRlbnQsIGJ1dCBhc3ltbWV0cmljIG5lb2Nv
-        cnRpY2FsIHRhdSBwYXRob2xvZ3kgdGhhdCBtaWdodCBpbmZsdWVuY2UgdGhl
-        IGNsaW5pY2FsIHBoZW5vdHlwZSB3YXMgZm91bmQgaW4gcHJlY2xpbmljYWwg
-        YW5kIGVhcmx5IGNsaW5pY2FsIGNhc2VzLg0KQ09OQ0xVU0lPTlMgVGhlIHJl
-        c3VsdHMgcmV2ZWFsZWQgdGhlIHBhdGhvbG9naWNhbCBmZWF0dXJlcyBvZiBz
-        dWJjbGluaWNhbCBhbmQgZWFybHkgY2xpbmljYWwgQ0JEIGNhc2VzLiBDb21w
-        YXJpc29uIHdpdGggY2xpbmljYWwgQ0JEIGNhc2VzIHNob3dlZCB0aGF0IG5l
-        dXJvbmFsIGxvc3MsIGNvcnRpY2FsIGF0cm9waHkgYW5kIHZvbHVtZSByZWR1
-        Y3Rpb24gb2Ygd2hpdGUgbWF0dGVyIG1heSBiZSBpbnZvbHZlZCBpbiB0aGUg
-        b2NjdXJyZW5jZSBvZiBjbGluaWNhbCBzeW1wdG9tcyBvZiBDQkQuIEFkZGl0
-        aW9uYWxseSwgaW1tdW5vaGlzdG9jaGVtaXN0cnkgaXMgZXNzZW50aWFsIGZv
-        ciBkZXRlY3RpbmcgcHJlY2xpbmljYWwgQ0JEIGNhc2VzLCByZWdhcmRsZXNz
-        IG9mIGNhc2Ugc2VsZWN0aW9uLjwvQWJzdHJhY3Q+DQogICAgPEF1dGhvckxp
-        c3Q+TmlzaGlkYSxOYW9raSx8WW9zaGlkYSxLb2ppLHxIYXRhLFl1a2lrbyx8
-        QXJhaSxZdWljaGksfEtpbm9zaGl0YSxLb3NoaSw8L0F1dGhvckxpc3Q+DQog
-        ICAgPEF1dGhvckNvdW50PjU8L0F1dGhvckNvdW50Pg0KICAgIDxLZXl3b3Jk
-        TGlzdD5jb3J0aWNvYmFzYWwgZGVnZW5lcmF0aW9ufGltbXVub2hpc3RvY2hl
-        bWlzdHJ5fHBhdGhvbG9neXx0YXVvcGF0aHk8L0tleXdvcmRMaXN0Pg0KICAg
-        IDxEb2N1bWVudFR5cGVMaXN0PkpvdXJuYWwgQXJ0aWNsZTwvRG9jdW1lbnRU
-        eXBlTGlzdD4NCiAgICA8RG9jdW1lbnRDYXRlZ29yeT5Kb3VybmFsIERvY3Vt
-        ZW50PC9Eb2N1bWVudENhdGVnb3J5Pg0KICAgIDxOdW1iZXJPZlJlZmVyZW5j
-        ZXMgeHNpOm5pbD0idHJ1ZSIgLz4NCiAgICA8VGltZXNDaXRlZCB4c2k6bmls
-        PSJ0cnVlIiAvPg0KICAgIDxUaW1lc05vdFNlbGZDaXRlZCB4c2k6bmlsPSJ0
-        cnVlIiAvPg0KICAgIDxQTUlEPjI1NzA4NjY4PC9QTUlEPg0KICAgIDxQdWJs
-        aWNhdGlvblNvdXJjZVRpdGxlPk5ldXJvcGF0aG9sb2d5IGFuZCBhcHBsaWVk
-        IG5ldXJvYmlvbG9neTwvUHVibGljYXRpb25Tb3VyY2VUaXRsZT4NCiAgICA8
-        Vm9sdW1lPjQxPC9Wb2x1bWU+DQogICAgPElzc3VlPjc8L0lzc3VlPg0KICAg
-        IDxQYWdpbmF0aW9uPjg5My05MDU8L1BhZ2luYXRpb24+DQogICAgPFB1Ymxp
-        Y2F0aW9uRGF0ZT4yMDE1LTEyLTAxVDAwOjAwOjAwPC9QdWJsaWNhdGlvbkRh
-        dGU+DQogICAgPFB1YmxpY2F0aW9uWWVhcj4yMDE1PC9QdWJsaWNhdGlvblll
-        YXI+DQogICAgPFB1YmxpY2F0aW9uU3ViamVjdENhdGVnb3J5TGlzdCAvPg0K
-        ICAgIDxJU1NOPjAzMDUtMTg0NjwvSVNTTj4NCiAgICA8RE9JPjEwLjExMTEv
-        bmFuLjEyMjI5PC9ET0k+DQogICAgPENvbmZlcmVuY2VTdGFydERhdGUgeHNp
-        Om5pbD0idHJ1ZSIgLz4NCiAgICA8Q29uZmVyZW5jZUVuZERhdGUgeHNpOm5p
-        bD0idHJ1ZSIgLz4NCiAgICA8UmFuayB4c2k6bmlsPSJ0cnVlIiAvPg0KICAg
-        IDxPcmRpbmFsUmFuaz4xMTwvT3JkaW5hbFJhbms+DQogICAgPE5vcm1hbGl6
-        ZWRSYW5rIHhzaTpuaWw9InRydWUiIC8+DQogICAgPE5ld1B1YmxpY2F0aW9u
-        SXRlbUlEIHhzaTpuaWw9InRydWUiIC8+DQogICAgPElzT2Jzb2xldGU+ZmFs
-        c2U8L0lzT2Jzb2xldGU+DQogICAgPENvcHlyaWdodFB1Ymxpc2hlcj5CUklU
-        SVNIIE5FVVJPUEFUSE9MT0dJQ0FMIFNPQzwvQ29weXJpZ2h0UHVibGlzaGVy
-        Pg0KICAgIDxDb3B5cmlnaHRDaXR5IC8+DQogICAgPFB1YmxpY2F0aW9uSW1w
-        YWN0RmFjdG9yTGlzdD4zLjkyNywyMDE0LENsb3Nlc3RUb1B1YmxpY2F0aW9u
-        WWVhcnwzLjkyNywyMDE0LE1vc3RSZWNlbnRZZWFyPC9QdWJsaWNhdGlvbklt
-        cGFjdEZhY3Rvckxpc3Q+DQogICAgPFB1YmxpY2F0aW9uQ2F0ZWdvcnlSYW5r
-        aW5nTGlzdD4zMy8xOTI7Q0xJTklDQUwgTkVVUk9MT0dZOzIwMTQ7U0M7Q2xv
-        c2VzdFRvUHVibGljYXRpb25ZZWFyfDY4LzI1MjtORVVST1NDSUVOQ0VTOzIw
-        MTQ7U0M7Q2xvc2VzdFRvUHVibGljYXRpb25ZZWFyfDEwLzc1O1BBVEhPTE9H
-        WTsyMDE0O1NDO0Nsb3Nlc3RUb1B1YmxpY2F0aW9uWWVhcnwzMy8xOTI7Q0xJ
-        TklDQUwgTkVVUk9MT0dZOzIwMTQ7U0M7TW9zdFJlY2VudFllYXJ8NjgvMjUy
-        O05FVVJPU0NJRU5DRVM7MjAxNDtTQztNb3N0UmVjZW50WWVhcnwxMC83NTtQ
-        QVRIT0xPR1k7MjAxNDtTQztNb3N0UmVjZW50WWVhcjwvUHVibGljYXRpb25D
-        YXRlZ29yeVJhbmtpbmdMaXN0Pg0KICAgIDxDb3B5cmlnaHRTdGF0ZVByb3Zp
-        bmNlIC8+DQogICAgPENvcHlyaWdodENvdW50cnk+VU5JVEVEIEtJTkdET008
-        L0NvcHlyaWdodENvdW50cnk+DQogIDwvUHVibGljYXRpb25JdGVtPg0KICA8
-        UHVibGljYXRpb25JdGVtPg0KICAgIDxQdWJsaWNhdGlvbkl0ZW1JRD43MzUw
-        ODE4MTwvUHVibGljYXRpb25JdGVtSUQ+DQogICAgPFRpdGxlPlJlZ3VsYXRv
-        cnMgb2YgRyBwcm90ZWluIHNpZ25hbGluZyAxMiBwcm9tb3RlcyBvc3Rlb2Ns
-        YXN0b2dlbmVzaXMgaW4gYm9uZSByZW1vZGVsaW5nIGFuZCBwYXRob2xvZ2lj
-        YWwgYm9uZSBsb3NzLjwvVGl0bGU+DQogICAgPEFic3RyYWN0PlJlZ3VsYXRv
-        cnMgb2YgRyBwcm90ZWluIHNpZ25hbGluZyAoUmdzKSBoYXZlIHBpdm90YWwg
-        cm9sZXMgaW4gY29udHJvbGxpbmcgdmFyaW91cyBjZWxsdWxhciBwcm9jZXNz
-        ZXMsIHN1Y2ggYXMgY2VsbCBkaWZmZXJlbnRpYXRpb24uIEhvdyBSZ3MgcHJv
-        dGVpbnMgcmVndWxhdGUgb3N0ZW9jbGFzdCAoT0MpIGRpZmZlcmVudGlhdGlv
-        biwgZnVuY3Rpb24gYW5kIGJvbmUgaG9tZW9zdGFzaXMgaXMgcG9vcmx5IHVu
-        ZGVyc3Rvb2QuIEl0IHdhcyBwcmV2aW91c2x5IGRlbW9uc3RyYXRlZCB0aGF0
-        IFJnczEyLCB0aGUgbGFyZ2VzdCBwcm90ZWluIGluIHRoZSBSZ3MgZmFtaWx5
-        LCBpcyBwcmVkb21pbmFudGx5IGV4cHJlc3NlZCBpbiBPQ3MgYW5kIHJlZ3Vs
-        YXRlcyBPQyBkaWZmZXJlbnRpYXRpb24gaW4gdml0cm8uIFRvIGZ1cnRoZXIg
-        dW5kZXJzdGFuZCB0aGUgcm9sZSBhbmQgbWVjaGFuaXNtIG9mIFJnczEyIGlu
-        IE9DIGRpZmZlcmVudGlhdGlvbiBhbmQgYm9uZSBkaXNlYXNlcyBpbiB2aXZv
-        LCB3ZSBjcmVhdGVkIE9DLXRhcmdldGVkIFJnczEyIGtub2Nrb3V0IG1pY2Ug
-        YnkgdXNpbmcgaW5kdWNpYmxlIE14MS1DcmUgYW5kIENEMTFiLUNyZS4gRGVs
-        ZXRpb24gb2YgUmdzMTIgaW4gaGVtYXRvcG9pZXRpYyBjZWxscyBvciBzcGVj
-        aWZpY2FsbHkgaW4gT0MgcHJlY3Vyc29ycyByZXN1bHRlZCBpbiBpbmNyZWFz
-        ZWQgYm9uZSBtYXNzIHdpdGggZGVjcmVhc2VkIE9DIG51bWJlcnMuIExvc3Mg
-        b2YgUmdzMTIgaW1wYWlyZWQgT0MgZGlmZmVyZW50aWF0aW9uIGFuZCBmdW5j
-        dGlvbiB3aXRoIGltcGFpcmVkIENhKDIrKSBvc2NpbGxhdGlvbnMgYW5kIHJl
-        ZHVjZWQgbnVjbGVhciBmYWN0b3Igb2YgYWN0aXZhdGVkIFQgY2VsbHMgKE5G
-        QVQpIDIgZXhwcmVzc2lvbi4gVGhlIGludHJvZHVjdGlvbiBvZiB3aWxkLXR5
-        cGUgb3N0ZW9ibGFzdHMgZGlkIG5vdCByZXNjdWUgdGhlIGRlZmVjdGl2ZSBv
-        c3Rlb2NsYXN0b2dlbmVzaXMuIEVjdG9waWMgZXhwcmVzc2lvbiBvZiBORkFU
-        MiByZXNjdWVkIGRlZmVjdGl2ZSBPQyBkaWZmZXJlbnRpYXRpb24gaW4gQ0Qx
-        MWI7UmdzMTIoZmwvZmwpIGNlbGxzIGFuZCBwcm9tb3RlZCBub3JtYWwgT0Mg
-        ZGlmZmVyZW50aWF0aW9uLiBNb3Jlb3ZlciwgZGVsZXRpb24gb2YgUmdzMTIg
-        c2lnbmlmaWNhbnRseSBpbmhpYml0ZWQgcGF0aG9sb2dpY2FsIG9zdGVvY2xh
-        c3RvZ2VuZXNpcyBhbmQgYm9uZSBkZXN0cnVjdGlvbiBpbiBSZ3MxMi1kZWZp
-        Y2llbnQgbWljZSB0aGF0IHdlcmUgc3ViamVjdGVkIHRvIG92YXJpZWN0b215
-        IGFuZCBsaXBvZHlzYWNjaGFyaWRlIGZvciBib25lIGxvc3MuIFRodXMgb3Vy
-        IGZpbmRpbmdzIGRlbW9uc3RyYXRlIHRoYXQgUmdzMTIgaXMgYW4gaW1wb3J0
-        YW50IHJlZ3VsYXRvciBpbiBPQyBkaWZmZXJlbnRpYXRpb24gYW5kIGZ1bmN0
-        aW9uIGFuZCBpZGVudGlmeSBSZ3MxMiBhcyBhIHBvdGVudGlhbCB0aGVyYXBl
-        dXRpYyB0YXJnZXQgZm9yIG9zdGVvcG9yb3NpcyBhbmQgaW5mbGFtbWF0aW9u
-        LWluZHVjZWQgYm9uZSBsb3NzLiA8L0Fic3RyYWN0Pg0KICAgIDxBdXRob3JM
-        aXN0Pll1YW4sWCx8Q2FvLEosfExpdSxULHxMaSxZLHxTY2FubmFwaWVjbyxG
-        LHxIZSxYLHxPdXJzbGVyLE0sSnxaaGFuZyxYLHxWYWNoZXIsSix8TGksQyx8
-        T2xzb24sRCx8WWFuZyxTLDwvQXV0aG9yTGlzdD4NCiAgICA8QXV0aG9yQ291
-        bnQ+MTI8L0F1dGhvckNvdW50Pg0KICAgIDxLZXl3b3JkTGlzdCAvPg0KICAg
-        IDxEb2N1bWVudFR5cGVMaXN0PkpvdXJuYWwgQXJ0aWNsZTwvRG9jdW1lbnRU
-        eXBlTGlzdD4NCiAgICA8RG9jdW1lbnRDYXRlZ29yeT5Kb3VybmFsIERvY3Vt
-        ZW50PC9Eb2N1bWVudENhdGVnb3J5Pg0KICAgIDxOdW1iZXJPZlJlZmVyZW5j
-        ZXMgeHNpOm5pbD0idHJ1ZSIgLz4NCiAgICA8VGltZXNDaXRlZCB4c2k6bmls
-        PSJ0cnVlIiAvPg0KICAgIDxUaW1lc05vdFNlbGZDaXRlZCB4c2k6bmlsPSJ0
-        cnVlIiAvPg0KICAgIDxQTUlEPjI1OTA5ODg5PC9QTUlEPg0KICAgIDxQdWJs
-        aWNhdGlvblNvdXJjZVRpdGxlPkNlbGwgZGVhdGggYW5kIGRpZmZlcmVudGlh
-        dGlvbjwvUHVibGljYXRpb25Tb3VyY2VUaXRsZT4NCiAgICA8Vm9sdW1lPjIy
-        PC9Wb2x1bWU+DQogICAgPElzc3VlPjEyPC9Jc3N1ZT4NCiAgICA8UGFnaW5h
-        dGlvbj4yMDQ2LTIwNTc8L1BhZ2luYXRpb24+DQogICAgPFB1YmxpY2F0aW9u
-        RGF0ZT4yMDE1LTEyLTAxVDAwOjAwOjAwPC9QdWJsaWNhdGlvbkRhdGU+DQog
-        ICAgPFB1YmxpY2F0aW9uWWVhcj4yMDE1PC9QdWJsaWNhdGlvblllYXI+DQog
-        ICAgPFB1YmxpY2F0aW9uU3ViamVjdENhdGVnb3J5TGlzdCAvPg0KICAgIDxJ
-        U1NOPjEzNTAtOTA0NzwvSVNTTj4NCiAgICA8RE9JPjEwLjEwMzgvY2RkLjIw
-        MTUuNDU8L0RPST4NCiAgICA8Q29uZmVyZW5jZVN0YXJ0RGF0ZSB4c2k6bmls
-        PSJ0cnVlIiAvPg0KICAgIDxDb25mZXJlbmNlRW5kRGF0ZSB4c2k6bmlsPSJ0
-        cnVlIiAvPg0KICAgIDxSYW5rIHhzaTpuaWw9InRydWUiIC8+DQogICAgPE9y
-        ZGluYWxSYW5rPjEyPC9PcmRpbmFsUmFuaz4NCiAgICA8Tm9ybWFsaXplZFJh
-        bmsgeHNpOm5pbD0idHJ1ZSIgLz4NCiAgICA8TmV3UHVibGljYXRpb25JdGVt
-        SUQgeHNpOm5pbD0idHJ1ZSIgLz4NCiAgICA8SXNPYnNvbGV0ZT5mYWxzZTwv
-        SXNPYnNvbGV0ZT4NCiAgICA8Q29weXJpZ2h0UHVibGlzaGVyIC8+DQogICAg
-        PENvcHlyaWdodENpdHkgLz4NCiAgICA8UHVibGljYXRpb25JbXBhY3RGYWN0
-        b3JMaXN0PjguMTg0LDIwMTQsQ2xvc2VzdFRvUHVibGljYXRpb25ZZWFyfDgu
-        MTg0LDIwMTQsTW9zdFJlY2VudFllYXI8L1B1YmxpY2F0aW9uSW1wYWN0RmFj
-        dG9yTGlzdD4NCiAgICA8UHVibGljYXRpb25DYXRlZ29yeVJhbmtpbmdMaXN0
-        PjI0LzI4OTtCSU9DSEVNSVNUUlkgJmFtcDsgTU9MRUNVTEFSIEJJT0xPR1k7
-        MjAxNDtTQztDbG9zZXN0VG9QdWJsaWNhdGlvblllYXJ8MjgvMTg0O0NFTEwg
-        QklPTE9HWTsyMDE0O1NDO0Nsb3Nlc3RUb1B1YmxpY2F0aW9uWWVhcnwyNC8y
-        ODk7QklPQ0hFTUlTVFJZICZhbXA7IE1PTEVDVUxBUiBCSU9MT0dZOzIwMTQ7
-        U0M7TW9zdFJlY2VudFllYXJ8MjgvMTg0O0NFTEwgQklPTE9HWTsyMDE0O1ND
-        O01vc3RSZWNlbnRZZWFyPC9QdWJsaWNhdGlvbkNhdGVnb3J5UmFua2luZ0xp
-        c3Q+DQogICAgPENvcHlyaWdodFN0YXRlUHJvdmluY2UgLz4NCiAgICA8Q29w
-        eXJpZ2h0Q291bnRyeT5VTklURUQgS0lOR0RPTTwvQ29weXJpZ2h0Q291bnRy
-        eT4NCiAgPC9QdWJsaWNhdGlvbkl0ZW0+DQogIDxQdWJsaWNhdGlvbkl0ZW0+
-        DQogICAgPFB1YmxpY2F0aW9uSXRlbUlEPjczNTA3OTExPC9QdWJsaWNhdGlv
-        bkl0ZW1JRD4NCiAgICA8VGl0bGU+U2hvdWxkIHRoZSB0cmVhdG1lbnQgb2Yg
-        YWR2YW5jZWQgbGVwaWRpYyBhZGVub2NhcmNpbm9tYSBiZSBhZGFwdGVkIHRv
-        IHRoZSBwYXRob2xvZ2ljYWwgc3VidHlwZT88L1RpdGxlPg0KICAgIDxBYnN0
-        cmFjdCAvPg0KICAgIDxBdXRob3JMaXN0PlBhZXNtYW5zLE1hcmlhbm5lLDwv
-        QXV0aG9yTGlzdD4NCiAgICA8QXV0aG9yQ291bnQ+MTwvQXV0aG9yQ291bnQ+
-        DQogICAgPEtleXdvcmRMaXN0IC8+DQogICAgPERvY3VtZW50VHlwZUxpc3Q+
-        RWRpdG9yaWFsPC9Eb2N1bWVudFR5cGVMaXN0Pg0KICAgIDxEb2N1bWVudENh
-        dGVnb3J5Pk90aGVyPC9Eb2N1bWVudENhdGVnb3J5Pg0KICAgIDxOdW1iZXJP
-        ZlJlZmVyZW5jZXMgeHNpOm5pbD0idHJ1ZSIgLz4NCiAgICA8VGltZXNDaXRl
-        ZCB4c2k6bmlsPSJ0cnVlIiAvPg0KICAgIDxUaW1lc05vdFNlbGZDaXRlZCB4
-        c2k6bmlsPSJ0cnVlIiAvPg0KICAgIDxQTUlEPjI2NTIxMjc4PC9QTUlEPg0K
-        ICAgIDxQdWJsaWNhdGlvblNvdXJjZVRpdGxlPkV1cm9wZWFuIHJlc3BpcmF0
-        b3J5IGpvdXJuYWw8L1B1YmxpY2F0aW9uU291cmNlVGl0bGU+DQogICAgPFZv
-        bHVtZT40NjwvVm9sdW1lPg0KICAgIDxJc3N1ZT41PC9Jc3N1ZT4NCiAgICA8
-        UGFnaW5hdGlvbj4xMjU5LTEyNjE8L1BhZ2luYXRpb24+DQogICAgPFB1Ymxp
-        Y2F0aW9uRGF0ZT4yMDE1LTExLTAxVDAwOjAwOjAwPC9QdWJsaWNhdGlvbkRh
-        dGU+DQogICAgPFB1YmxpY2F0aW9uWWVhcj4yMDE1PC9QdWJsaWNhdGlvblll
-        YXI+DQogICAgPFB1YmxpY2F0aW9uU3ViamVjdENhdGVnb3J5TGlzdCAvPg0K
-        ICAgIDxJU1NOPjA5MDMtMTkzNjwvSVNTTj4NCiAgICA8RE9JPjEwLjExODMv
-        MTM5OTMwMDMuMDE1NjMtMjAxNTwvRE9JPg0KICAgIDxDb25mZXJlbmNlU3Rh
-        cnREYXRlIHhzaTpuaWw9InRydWUiIC8+DQogICAgPENvbmZlcmVuY2VFbmRE
-        YXRlIHhzaTpuaWw9InRydWUiIC8+DQogICAgPFJhbmsgeHNpOm5pbD0idHJ1
-        ZSIgLz4NCiAgICA8T3JkaW5hbFJhbms+MTM8L09yZGluYWxSYW5rPg0KICAg
-        IDxOb3JtYWxpemVkUmFuayB4c2k6bmlsPSJ0cnVlIiAvPg0KICAgIDxOZXdQ
-        dWJsaWNhdGlvbkl0ZW1JRCB4c2k6bmlsPSJ0cnVlIiAvPg0KICAgIDxJc09i
-        c29sZXRlPmZhbHNlPC9Jc09ic29sZXRlPg0KICAgIDxDb3B5cmlnaHRQdWJs
-        aXNoZXI+RVI8L0NvcHlyaWdodFB1Ymxpc2hlcj4NCiAgICA8Q29weXJpZ2h0
-        Q2l0eSAvPg0KICAgIDxQdWJsaWNhdGlvbkltcGFjdEZhY3Rvckxpc3Q+Ny42
-        MzYsMjAxNCxDbG9zZXN0VG9QdWJsaWNhdGlvblllYXJ8Ny42MzYsMjAxNCxN
-        b3N0UmVjZW50WWVhcjwvUHVibGljYXRpb25JbXBhY3RGYWN0b3JMaXN0Pg0K
-        ICAgIDxQdWJsaWNhdGlvbkNhdGVnb3J5UmFua2luZ0xpc3Q+NC81NztSRVNQ
-        SVJBVE9SWSBTWVNURU07MjAxNDtTQztDbG9zZXN0VG9QdWJsaWNhdGlvblll
-        YXJ8NC81NztSRVNQSVJBVE9SWSBTWVNURU07MjAxNDtTQztNb3N0UmVjZW50
-        WWVhcjwvUHVibGljYXRpb25DYXRlZ29yeVJhbmtpbmdMaXN0Pg0KICAgIDxD
-        b3B5cmlnaHRTdGF0ZVByb3ZpbmNlIC8+DQogICAgPENvcHlyaWdodENvdW50
-        cnk+U1dJVFpFUkxBTkQ8L0NvcHlyaWdodENvdW50cnk+DQogIDwvUHVibGlj
-        YXRpb25JdGVtPg0KICA8UHVibGljYXRpb25JdGVtPg0KICAgIDxQdWJsaWNh
-        dGlvbkl0ZW1JRD43MzUwNzI2ODwvUHVibGljYXRpb25JdGVtSUQ+DQogICAg
-        PFRpdGxlPlBhdGhvbG9naWNhbCBzaGFycCB3YXZlcyBhbmQgaHlwZXJleGNp
-        dGFiaWxpdHkgaW4gYSBtb3VzZSBtb2RlbCBvZiBGZXRhbCBBbGNvaG9sIFNw
-        ZWN0cnVtIERpc29yZGVyIChGQVNEKS48L1RpdGxlPg0KICAgIDxBYnN0cmFj
-        dCAvPg0KICAgIDxBdXRob3JMaXN0PktyYXdjenlrLE1pY2FobCx8UmFtYW5p
-        LE1lZXJhLHxNeWx2YWdhbmFtLFNoYW50aGluaSx8Q2FybGVuLFBldGVyLEw8
-        L0F1dGhvckxpc3Q+DQogICAgPEF1dGhvckNvdW50PjQ8L0F1dGhvckNvdW50
-        Pg0KICAgIDxLZXl3b3JkTGlzdCAvPg0KICAgIDxEb2N1bWVudFR5cGVMaXN0
-        PkpvdXJuYWwgQXJ0aWNsZTwvRG9jdW1lbnRUeXBlTGlzdD4NCiAgICA8RG9j
-        dW1lbnRDYXRlZ29yeT5Kb3VybmFsIERvY3VtZW50PC9Eb2N1bWVudENhdGVn
-        b3J5Pg0KICAgIDxOdW1iZXJPZlJlZmVyZW5jZXMgeHNpOm5pbD0idHJ1ZSIg
-        Lz4NCiAgICA8VGltZXNDaXRlZCB4c2k6bmlsPSJ0cnVlIiAvPg0KICAgIDxU
-        aW1lc05vdFNlbGZDaXRlZCB4c2k6bmlsPSJ0cnVlIiAvPg0KICAgIDxQTUlE
-        PjI2NTMxMzcxPC9QTUlEPg0KICAgIDxQdWJsaWNhdGlvblNvdXJjZVRpdGxl
-        PkludGVybmF0aW9uYWwgam91cm5hbCBvZiBkZXZlbG9wbWVudGFsIG5ldXJv
-        c2NpZW5jZSA8L1B1YmxpY2F0aW9uU291cmNlVGl0bGU+DQogICAgPFZvbHVt
-        ZT40NzwvVm9sdW1lPg0KICAgIDxQYWdpbmF0aW9uPjE0LT88L1BhZ2luYXRp
-        b24+DQogICAgPFB1YmxpY2F0aW9uRGF0ZT4yMDE1LTEyLTAxVDAwOjAwOjAw
-        PC9QdWJsaWNhdGlvbkRhdGU+DQogICAgPFB1YmxpY2F0aW9uWWVhcj4yMDE1
-        PC9QdWJsaWNhdGlvblllYXI+DQogICAgPFB1YmxpY2F0aW9uU3ViamVjdENh
-        dGVnb3J5TGlzdCAvPg0KICAgIDxJU1NOPjA3MzYtNTc0ODwvSVNTTj4NCiAg
-        ICA8RE9JPjEwLjEwMTYvai5pamRldm5ldS4yMDE1LjA0LjA0OTwvRE9JPg0K
-        ICAgIDxDb25mZXJlbmNlU3RhcnREYXRlIHhzaTpuaWw9InRydWUiIC8+DQog
-        ICAgPENvbmZlcmVuY2VFbmREYXRlIHhzaTpuaWw9InRydWUiIC8+DQogICAg
-        PFJhbmsgeHNpOm5pbD0idHJ1ZSIgLz4NCiAgICA8T3JkaW5hbFJhbms+MTQ8
-        L09yZGluYWxSYW5rPg0KICAgIDxOb3JtYWxpemVkUmFuayB4c2k6bmlsPSJ0
-        cnVlIiAvPg0KICAgIDxOZXdQdWJsaWNhdGlvbkl0ZW1JRCB4c2k6bmlsPSJ0
-        cnVlIiAvPg0KICAgIDxJc09ic29sZXRlPmZhbHNlPC9Jc09ic29sZXRlPg0K
-        ICAgIDxDb3B5cmlnaHRQdWJsaXNoZXIgLz4NCiAgICA8Q29weXJpZ2h0Q2l0
-        eSAvPg0KICAgIDxQdWJsaWNhdGlvbkltcGFjdEZhY3Rvckxpc3Q+Mi41OCwy
-        MDE0LENsb3Nlc3RUb1B1YmxpY2F0aW9uWWVhcnwyLjU4LDIwMTQsTW9zdFJl
-        Y2VudFllYXI8L1B1YmxpY2F0aW9uSW1wYWN0RmFjdG9yTGlzdD4NCiAgICA8
-        UHVibGljYXRpb25DYXRlZ29yeVJhbmtpbmdMaXN0PjIyLzQxO0RFVkVMT1BN
-        RU5UQUwgQklPTE9HWTsyMDE0O1NDO0Nsb3Nlc3RUb1B1YmxpY2F0aW9uWWVh
-        cnwxNTAvMjUyO05FVVJPU0NJRU5DRVM7MjAxNDtTQztDbG9zZXN0VG9QdWJs
-        aWNhdGlvblllYXJ8MjIvNDE7REVWRUxPUE1FTlRBTCBCSU9MT0dZOzIwMTQ7
-        U0M7TW9zdFJlY2VudFllYXJ8MTUwLzI1MjtORVVST1NDSUVOQ0VTOzIwMTQ7
-        U0M7TW9zdFJlY2VudFllYXI8L1B1YmxpY2F0aW9uQ2F0ZWdvcnlSYW5raW5n
-        TGlzdD4NCiAgICA8Q29weXJpZ2h0U3RhdGVQcm92aW5jZSAvPg0KICAgIDxD
-        b3B5cmlnaHRDb3VudHJ5PlVOSVRFRCBLSU5HRE9NPC9Db3B5cmlnaHRDb3Vu
-        dHJ5Pg0KICA8L1B1YmxpY2F0aW9uSXRlbT4NCiAgPFB1YmxpY2F0aW9uSXRl
-        bT4NCiAgICA8UHVibGljYXRpb25JdGVtSUQ+NzM1MDU5NzA8L1B1YmxpY2F0
-        aW9uSXRlbUlEPg0KICAgIDxUaXRsZT5Eb2VzIHNob3J0LXRlcm0gZmFzdGlu
-        ZyBwcm9tb3RlIHBhdGhvbG9naWNhbCBlYXRpbmcgcGF0dGVybnM/PC9UaXRs
-        ZT4NCiAgICA8QWJzdHJhY3Q+RmFzdGluZywgb3IgZ29pbmcgYSBzaWduaWZp
-        Y2FudCBhbW91bnQgb2YgdGltZSB3aXRob3V0IGVhdGluZywgaGFzIGJlZW4g
-        aWRlbnRpZmllZCBhcyBhIHJpc2sgZmFjdG9yIGZvciB0aGUgZGV2ZWxvcG1l
-        bnQgb2YgcGF0aG9sb2dpY2FsIGVhdGluZyBwYXR0ZXJucy4gRmluZGluZ3Mg
-        ZnJvbSBzZXZlcmFsIHN0dWRpZXMgZXhhbWluaW5nIHRoZSBpbXBhY3Qgb2Yg
-        ZmFzdGluZyBvbiBzdWJzZXF1ZW50IGVhdGluZyBiZWhhdmlvcnMgaGF2ZSBi
-        ZWVuIG1peGVkLiBUaGUgY3VycmVudCBzdHVkeSByZWNydWl0ZWQgY29sbGVn
-        ZSBzdHVkZW50cyB0byByZWNvcmQgZm9vZCBpbnRha2UsIGVwaXNvZGVzIG9m
-        IGJpbmdlIGVhdGluZywgYW5kIHVzZSBvZiBjb21wZW5zYXRvcnkgYmVoYXZp
-        b3JzIGJlZm9yZSwgdGhyb3VnaG91dCwgYW5kIGZvbGxvd2luZyBhIDI0LWhv
-        dXIgZmFzdC4gUGFydGljaXBhbnRzIGF0dGVuZGVkIGFuIGluaXRpYWwgYXBw
-        b2ludG1lbnQgaW4gd2hpY2ggdGhleSBjb21wbGV0ZWQgbWVhc3VyZXMgb2Yg
-        ZGlldGFyeSByZXN0cmFpbnQgYW5kIGRpc2luaGliaXRpb24gYW5kIHJlY2Vp
-        dmVkIGluc3RydWN0aW9ucyBvbiBzZWxmLW1vbml0b3JpbmcgYW5kIGZhc3Rp
-        bmcuIFBhcnRpY2lwYW50cyAoTj0xMjIpIHNlbGYtbW9uaXRvcmVkIHRoZWly
-        IGVhdGluZyBiZWhhdmlvcnMgZm9yIDk2aCwgaW5jbHVkaW5nIGEgMjQtaG91
-        ciBmYXN0aW5nIHBlcmlvZC4gUGFydGljaXBhbnRzIGRpZCBub3QgZGVtb25z
-        dHJhdGUgc2lnbmlmaWNhbnQgaW5jcmVhc2VzIGluIGRpc29yZGVyZWQgZWF0
-        aW5nIGJlaGF2aW9ycyBmb2xsb3dpbmcgdGhlIGZhc3QgKGUuZy4sIG9iamVj
-        dGl2ZSBiaW5nZSBlcGlzb2Rlcywgc2VsZi1kZWZpbmVkIGV4Y2Vzc2l2ZSBl
-        YXRpbmcgb3IgY29tcGVuc2F0b3J5IGJlaGF2aW9yIHVzZSkuIEJhc2VsaW5l
-        IGRpc2luaGliaXRpb24gcHJlZGljdGVkIGV4Y2Vzc2l2ZSBlYXRpbmcgYXMg
-        d2VsbCBhcyBvYmplY3RpdmUgYmluZ2UgZXBpc29kZXMgYm90aCBiZWZvcmUg
-        YW5kIGFmdGVyIGZhc3RpbmcuIEFsdG9nZXRoZXIsIGZpbmRpbmdzIGhhdmUg
-        aW1wbGljYXRpb25zIGZvciByZXNlYXJjaCBzZWVraW5nIHRvIGZ1cnRoZXIg
-        dW5kZXJzdGFuZCBob3cgZmFzdGluZyBtYXkgY29udHJpYnV0ZSB0byB0aGUg
-        ZGV2ZWxvcG1lbnQgb2YgcGF0aG9sb2dpY2FsIGVhdGluZyBwYXR0ZXJuczsg
-        c3BlY2lmaWNhbGx5LCBpdCBzZWVtcyB0aGF0IHRoZSBFRCByaXNrIGFzc29j
-        aWF0ZWQgd2l0aCBmYXN0aW5nIGlzIGRlcml2ZWQgZnJvbSB0aGUgYmVoYXZp
-        b3IncyBpbnRlcmFjdGlvbiB3aXRoIG90aGVyIGluZGl2aWR1YWwgZGlmZmVy
-        ZW5jZSB2YXJpYWJsZXMuIDwvQWJzdHJhY3Q+DQogICAgPEF1dGhvckxpc3Q+
-        U2NoYXVtYmVyZyxLYXRoZXJpbmUsfEFuZGVyc29uLERyZXcsQXxSZWlsbHks
-        RXJpbixFfEFuZGVyc29uLExpc2EsTTwvQXV0aG9yTGlzdD4NCiAgICA8QXV0
-        aG9yQ291bnQ+NDwvQXV0aG9yQ291bnQ+DQogICAgPEtleXdvcmRMaXN0PkJp
-        bmdlIGVhdGluZ3xEaXNpbmhpYml0aW9ufEVhdGluZyBkaXNvcmRlcnN8RmFz
-        dGluZzwvS2V5d29yZExpc3Q+DQogICAgPERvY3VtZW50VHlwZUxpc3Q+Sm91
-        cm5hbCBBcnRpY2xlPC9Eb2N1bWVudFR5cGVMaXN0Pg0KICAgIDxEb2N1bWVu
-        dENhdGVnb3J5PkpvdXJuYWwgRG9jdW1lbnQ8L0RvY3VtZW50Q2F0ZWdvcnk+
-        DQogICAgPE51bWJlck9mUmVmZXJlbmNlcyB4c2k6bmlsPSJ0cnVlIiAvPg0K
-        ICAgIDxUaW1lc0NpdGVkIHhzaTpuaWw9InRydWUiIC8+DQogICAgPFRpbWVz
-        Tm90U2VsZkNpdGVkIHhzaTpuaWw9InRydWUiIC8+DQogICAgPFBNSUQ+MjY0
-        MzE5MDQ8L1BNSUQ+DQogICAgPFB1YmxpY2F0aW9uU291cmNlVGl0bGU+RWF0
-        aW5nIGJlaGF2aW9yczwvUHVibGljYXRpb25Tb3VyY2VUaXRsZT4NCiAgICA8
-        Vm9sdW1lPjE5PC9Wb2x1bWU+DQogICAgPFBhZ2luYXRpb24+MTY4LTE3Mjwv
-        UGFnaW5hdGlvbj4NCiAgICA8UHVibGljYXRpb25EYXRlPjIwMTUtMTItMDFU
-        MDA6MDA6MDA8L1B1YmxpY2F0aW9uRGF0ZT4NCiAgICA8UHVibGljYXRpb25Z
-        ZWFyPjIwMTU8L1B1YmxpY2F0aW9uWWVhcj4NCiAgICA8UHVibGljYXRpb25T
-        dWJqZWN0Q2F0ZWdvcnlMaXN0IC8+DQogICAgPElTU04+MTQ3MS0wMTUzPC9J
-        U1NOPg0KICAgIDxET0k+MTAuMTAxNi9qLmVhdGJlaC4yMDE1LjA5LjAwNTwv
-        RE9JPg0KICAgIDxDb25mZXJlbmNlU3RhcnREYXRlIHhzaTpuaWw9InRydWUi
-        IC8+DQogICAgPENvbmZlcmVuY2VFbmREYXRlIHhzaTpuaWw9InRydWUiIC8+
-        DQogICAgPFJhbmsgeHNpOm5pbD0idHJ1ZSIgLz4NCiAgICA8T3JkaW5hbFJh
-        bms+MTU8L09yZGluYWxSYW5rPg0KICAgIDxOb3JtYWxpemVkUmFuayB4c2k6
-        bmlsPSJ0cnVlIiAvPg0KICAgIDxOZXdQdWJsaWNhdGlvbkl0ZW1JRCB4c2k6
-        bmlsPSJ0cnVlIiAvPg0KICAgIDxJc09ic29sZXRlPmZhbHNlPC9Jc09ic29s
-        ZXRlPg0KICAgIDxDb3B5cmlnaHRQdWJsaXNoZXI+RUxTRVZJRVIgTFREPC9D
-        b3B5cmlnaHRQdWJsaXNoZXI+DQogICAgPENvcHlyaWdodENpdHkgLz4NCiAg
-        ICA8UHVibGljYXRpb25JbXBhY3RGYWN0b3JMaXN0PjEuNjgsMjAxNCxDbG9z
-        ZXN0VG9QdWJsaWNhdGlvblllYXJ8MS42OCwyMDE0LE1vc3RSZWNlbnRZZWFy
-        PC9QdWJsaWNhdGlvbkltcGFjdEZhY3Rvckxpc3Q+DQogICAgPFB1YmxpY2F0
-        aW9uQ2F0ZWdvcnlSYW5raW5nTGlzdD42MS8xMTk7UFNZQ0hPTE9HWSwgQ0xJ
-        TklDQUw7MjAxNDtTUztDbG9zZXN0VG9QdWJsaWNhdGlvblllYXJ8NjgvMTMz
-        O1BTWUNISUFUUlk7MjAxNDtTUztDbG9zZXN0VG9QdWJsaWNhdGlvblllYXJ8
-        NjEvMTE5O1BTWUNIT0xPR1ksIENMSU5JQ0FMOzIwMTQ7U1M7TW9zdFJlY2Vu
-        dFllYXJ8NjgvMTMzO1BTWUNISUFUUlk7MjAxNDtTUztNb3N0UmVjZW50WWVh
-        cjwvUHVibGljYXRpb25DYXRlZ29yeVJhbmtpbmdMaXN0Pg0KICAgIDxDb3B5
-        cmlnaHRTdGF0ZVByb3ZpbmNlIC8+DQogICAgPENvcHlyaWdodENvdW50cnk+
-        VU5JVEVEIFNUQVRFUzwvQ29weXJpZ2h0Q291bnRyeT4NCiAgPC9QdWJsaWNh
-        dGlvbkl0ZW0+DQogIDxQdWJsaWNhdGlvbkl0ZW0+DQogICAgPFB1YmxpY2F0
-        aW9uSXRlbUlEPjczNTA1OTI5PC9QdWJsaWNhdGlvbkl0ZW1JRD4NCiAgICA8
-        VGl0bGU+SW1wbGljYXRpb24gb2YgdGhlIHNlcm90b25pbiA1LUhUMkEgcmVj
-        ZXB0b3JzIGluIHRoZSBjb3JyZWN0aW9uIG9mIHRoZSBwYXRob2xvZ2ljYWwg
-        YmVoYXZpb3IgYnkgdGhlIG5ldXJvdHJvcGhpYyBmYWN0b3JzIEJETkYgYW5k
-        IEdETkYuPC9UaXRsZT4NCiAgICA8QWJzdHJhY3QgLz4NCiAgICA8QXV0aG9y
-        TGlzdD5Uc3lia28sQSxTfElsJ2NoaWJhZXZhLFQsVnxLb25kYXVyb3ZhLEUs
-        TXxCYXpvdmtpbmEsRCxWfE5hdW1lbmtvLFYsUzwvQXV0aG9yTGlzdD4NCiAg
-        ICA8QXV0aG9yQ291bnQ+NTwvQXV0aG9yQ291bnQ+DQogICAgPEtleXdvcmRM
-        aXN0IC8+DQogICAgPERvY3VtZW50VHlwZUxpc3Q+Sm91cm5hbCBBcnRpY2xl
-        PC9Eb2N1bWVudFR5cGVMaXN0Pg0KICAgIDxEb2N1bWVudENhdGVnb3J5Pkpv
-        dXJuYWwgRG9jdW1lbnQ8L0RvY3VtZW50Q2F0ZWdvcnk+DQogICAgPE51bWJl
-        ck9mUmVmZXJlbmNlcyB4c2k6bmlsPSJ0cnVlIiAvPg0KICAgIDxUaW1lc0Np
-        dGVkIHhzaTpuaWw9InRydWUiIC8+DQogICAgPFRpbWVzTm90U2VsZkNpdGVk
-        IHhzaTpuaWw9InRydWUiIC8+DQogICAgPFBNSUQ+MjY1MzEzOTQ8L1BNSUQ+
-        DQogICAgPFB1YmxpY2F0aW9uU291cmNlVGl0bGU+SW50ZXJuYXRpb25hbCBq
-        b3VybmFsIG9mIGRldmVsb3BtZW50YWwgbmV1cm9zY2llbmNlIDwvUHVibGlj
-        YXRpb25Tb3VyY2VUaXRsZT4NCiAgICA8Vm9sdW1lPjQ3PC9Wb2x1bWU+DQog
-        ICAgPFBhZ2luYXRpb24+MjMtPzwvUGFnaW5hdGlvbj4NCiAgICA8UHVibGlj
-        YXRpb25EYXRlPjIwMTUtMTItMDFUMDA6MDA6MDA8L1B1YmxpY2F0aW9uRGF0
-        ZT4NCiAgICA8UHVibGljYXRpb25ZZWFyPjIwMTU8L1B1YmxpY2F0aW9uWWVh
-        cj4NCiAgICA8UHVibGljYXRpb25TdWJqZWN0Q2F0ZWdvcnlMaXN0IC8+DQog
-        ICAgPElTU04+MDczNi01NzQ4PC9JU1NOPg0KICAgIDxET0k+MTAuMTAxNi9q
-        LmlqZGV2bmV1LjIwMTUuMDQuMDcwPC9ET0k+DQogICAgPENvbmZlcmVuY2VT
-        dGFydERhdGUgeHNpOm5pbD0idHJ1ZSIgLz4NCiAgICA8Q29uZmVyZW5jZUVu
-        ZERhdGUgeHNpOm5pbD0idHJ1ZSIgLz4NCiAgICA8UmFuayB4c2k6bmlsPSJ0
-        cnVlIiAvPg0KICAgIDxPcmRpbmFsUmFuaz4xNjwvT3JkaW5hbFJhbms+DQog
-        ICAgPE5vcm1hbGl6ZWRSYW5rIHhzaTpuaWw9InRydWUiIC8+DQogICAgPE5l
-        d1B1YmxpY2F0aW9uSXRlbUlEIHhzaTpuaWw9InRydWUiIC8+DQogICAgPElz
-        T2Jzb2xldGU+ZmFsc2U8L0lzT2Jzb2xldGU+DQogICAgPENvcHlyaWdodFB1
-        Ymxpc2hlciAvPg0KICAgIDxDb3B5cmlnaHRDaXR5IC8+DQogICAgPFB1Ymxp
-        Y2F0aW9uSW1wYWN0RmFjdG9yTGlzdD4yLjU4LDIwMTQsQ2xvc2VzdFRvUHVi
-        bGljYXRpb25ZZWFyfDIuNTgsMjAxNCxNb3N0UmVjZW50WWVhcjwvUHVibGlj
-        YXRpb25JbXBhY3RGYWN0b3JMaXN0Pg0KICAgIDxQdWJsaWNhdGlvbkNhdGVn
-        b3J5UmFua2luZ0xpc3Q+MjIvNDE7REVWRUxPUE1FTlRBTCBCSU9MT0dZOzIw
-        MTQ7U0M7Q2xvc2VzdFRvUHVibGljYXRpb25ZZWFyfDE1MC8yNTI7TkVVUk9T
-        Q0lFTkNFUzsyMDE0O1NDO0Nsb3Nlc3RUb1B1YmxpY2F0aW9uWWVhcnwyMi80
-        MTtERVZFTE9QTUVOVEFMIEJJT0xPR1k7MjAxNDtTQztNb3N0UmVjZW50WWVh
-        cnwxNTAvMjUyO05FVVJPU0NJRU5DRVM7MjAxNDtTQztNb3N0UmVjZW50WWVh
-        cjwvUHVibGljYXRpb25DYXRlZ29yeVJhbmtpbmdMaXN0Pg0KICAgIDxDb3B5
-        cmlnaHRTdGF0ZVByb3ZpbmNlIC8+DQogICAgPENvcHlyaWdodENvdW50cnk+
-        VU5JVEVEIEtJTkdET008L0NvcHlyaWdodENvdW50cnk+DQogIDwvUHVibGlj
-        YXRpb25JdGVtPg0KICA8UHVibGljYXRpb25JdGVtPg0KICAgIDxQdWJsaWNh
-        dGlvbkl0ZW1JRD43MzUwNTU4NjwvUHVibGljYXRpb25JdGVtSUQ+DQogICAg
-        PFRpdGxlPkZsdW9yZXNjZW5jZS1ndWlkZWQgYm9uZSByZXNlY3Rpb24gYnkg
-        dXNpbmcgVmlzdWFsbHkgRW5oYW5jZWQgTGVzaW9uIFNjb3BlIGluIGRpZmZ1
-        c2UgY2hyb25pYyBzY2xlcm9zaW5nb3N0ZW9teWVsaXRpcyBvZiB0aGUgbWFu
-        ZGlibGU6IENsaW5pY2FsIGFuZCBwYXRob2xvZ2ljYWwgZXZhbHVhdGlvbi48
-        L1RpdGxlPg0KICAgIDxBYnN0cmFjdD5VTkxBQkVMTEVEIERpZmZ1c2UgY2hy
-        b25pYyBzY2xlcm9zaW5nb3N0ZW9teWVsaXRpcyAoRENTTykgaXMgYSByZWZy
-        YWN0b3J5IGRpc2Vhc2UsIGJlY2F1c2V0aGUgZXRpb2xvZ3kgYW5kIHBhdGhv
-        Z2VuZXNpcyByZW1haW4gcG9vcmx5IHVuZGVyc3Rvb2QgYW5kIHRvIGRldGVy
-        bWluZSB0aGUgYm9yZGVyIGJldHdlZW51bmhlYWx0aHkgYm9uZWFuZGhlYWx0
-        aHlib25lIGlzIGRpZmZpY3VsdC4gSG93ZXZlciwgcHJvZ3Jlc3NpdmUgaW5m
-        bGFtbWF0aW9uLCBjbGluaWNhbCBzeW1wdG9tcyBhbmQgYSBoaWdoIHJlY3Vy
-        cmVuY2UgcmF0ZSBvZiBEQ1NPIHdlcmUgdGhlIHJlYXNvbnMgZm9yIHN1cmdp
-        Y2FsIHRyZWF0bWVudC4gV2UgcmVwb3J0IGEgY2FzZSBvZiBhIDY2LXllYXIg
-        b2xkIHdvbWFuIHdpdGggRENTTyBvZiB0aGUgcmlnaHQgc2lkZSBvZiBtYW5k
-        aWJsZSB3aG8gd2FzIHRyZWF0ZWQgd2l0aCBoZW1pbWFuZGlidWxlY3RvbXkg
-        YW5kIHNpbXVsdGFuZW91cyByZWNvbnN0cnVjdGlvbiBieSB2YXNjdWxhcml6
-        ZWQgZnJlZSBmaWJ1bGEgZmxhcC4gQWZ0ZXIgcHJlb3BlcmF0aXZlIGFkbWlu
-        aXN0cmF0aW9uIG9mIG1pbm9jeWNsaW5lIGZvciAxIG1vbnRoLCB0aGUgYm9u
-        ZSBmbHVvcmVzY2VuY2Ugd2FzIHN1Y2Nlc3NmdWxseSBtb25pdG9yZWQgYnkg
-        dXNpbmcgYSBWaXN1YWxseSBFbmhhbmNlZCBMZXNpb24gU2NvcGUgKFZFTHNj
-        b3Blwq4pLiBJbnRyYW9wZXJhdGl2ZWx5LCB3ZSBjb3VsZCBkZXRlcm1pbmUg
-        dGhlIHJlc2VjdGlvbiBib3VuZGFyaWVzLiBXZSBpbnZlc3RpZ2F0ZWQgdGhl
-        IGNsaW5pY2FsIGFuZCBoaXN0b3BhdGhvbG9naWNhbCBmaW5kaW5ncy4gVGhl
-        IGZsdW9yZXNjZW5jZSBmaW5kaW5ncyB3ZXJlIHdlbGwgY29ycmVsYXRlZCB3
-        aXRoIGhpc3RvcGF0aG9sb2dpY2FsIGZpbmRpbmdzLiBVc2luZyBhIFZFTHNj
-        b3Blwq53YXMgaGFuZHkgYW5kIHVzZWZ1bCB0byBkZXRlcm1pbmUgdGhlIGJv
-        cmRlciBiZXR3ZWVuIERDU08gbGVzaW9uIGFuZGhlYWx0aHlib25lLlRoZSBm
-        cmVlIGZpYnVsYSBmbGFwIHVuZGVyIHRoZSBtaW5vY3ljbGluZS1kZXJpdmVk
-        IGJvbmUgZmx1b3Jlc2NlbmNlIGJ5IHVzaW5nIGEgVkVMc2NvcGXCrm9mZmVy
-        ZWQgYSBnb29kIHF1YWxpdHkgb2YgbWFuZGlidWxhciBib25lIGFuZCB0aGUg
-        c3VjY2Vzc2Z1bCBtYW5hZ2VtZW50IG9mIGFuIGFkdmFuY2VkIGFuZCByZWZy
-        YWN0b3J5IERDU08uDQpLRVkgV09SRFMgRmx1b3Jlc2NlbmNlLWd1aWRlZCBi
-        b25lIHJlc2VjdGlvbiwgZmlidWxhciBmcmVlIGZsYXAsIG9zdGVvbXllbGl0
-        aXMgb2YgdGhlIG1hbmRpYmxlLCBkaWZmdXNlIGNocm9uaWNvc3Rlb215ZWxp
-        dGlzLCBWRUxzY29wZcKuLjwvQWJzdHJhY3Q+DQogICAgPEF1dGhvckxpc3Q+
-        WW9zaGlnYSxEYWlnbyx8U2FzYWd1cmksTWFzYWFraSx8TWF0c3VvLEtvdSx8
-        WW9zaGlkYSxTZWksfFVlaGFyYSxNYXNhdGFrYSx8SGFidSxNYW5hYnUsfEhh
-        cmFndWNoaSxLYXp1eWEsfFRhbmFrYSxUYXRzdXJvdSx8TW9yaW1vdG8sWWFz
-        dWhpcm8sfFlvc2hpb2thLEl6dW1pLHxUb21pbmFnYSxLYXp1aGlybyw8L0F1
-        dGhvckxpc3Q+DQogICAgPEF1dGhvckNvdW50PjExPC9BdXRob3JDb3VudD4N
-        CiAgICA8S2V5d29yZExpc3QgLz4NCiAgICA8RG9jdW1lbnRUeXBlTGlzdD5K
-        b3VybmFsIEFydGljbGU8L0RvY3VtZW50VHlwZUxpc3Q+DQogICAgPERvY3Vt
-        ZW50Q2F0ZWdvcnk+Sm91cm5hbCBEb2N1bWVudDwvRG9jdW1lbnRDYXRlZ29y
-        eT4NCiAgICA8TnVtYmVyT2ZSZWZlcmVuY2VzIHhzaTpuaWw9InRydWUiIC8+
-        DQogICAgPFRpbWVzQ2l0ZWQgeHNpOm5pbD0idHJ1ZSIgLz4NCiAgICA8VGlt
-        ZXNOb3RTZWxmQ2l0ZWQgeHNpOm5pbD0idHJ1ZSIgLz4NCiAgICA8UE1JRD4y
-        NjUzNTEwNjwvUE1JRD4NCiAgICA8UHVibGljYXRpb25Tb3VyY2VUaXRsZT5K
-        b3VybmFsIG9mIGNsaW5pY2FsIGFuZCBleHBlcmltZW50YWwgZGVudGlzdHJ5
-        PC9QdWJsaWNhdGlvblNvdXJjZVRpdGxlPg0KICAgIDxWb2x1bWU+NzwvVm9s
-        dW1lPg0KICAgIDxJc3N1ZT40PC9Jc3N1ZT4NCiAgICA8UGFnaW5hdGlvbj5l
-        NTQ4LTUxPC9QYWdpbmF0aW9uPg0KICAgIDxQdWJsaWNhdGlvbkRhdGU+MjAx
-        NS0xMC0wMVQwMDowMDowMDwvUHVibGljYXRpb25EYXRlPg0KICAgIDxQdWJs
-        aWNhdGlvblllYXI+MjAxNTwvUHVibGljYXRpb25ZZWFyPg0KICAgIDxQdWJs
-        aWNhdGlvblN1YmplY3RDYXRlZ29yeUxpc3QgLz4NCiAgICA8SVNTTj4xOTg5
-        LTU0ODg8L0lTU04+DQogICAgPERPST4xMC40MzE3L2pjZWQuNTIyNjg8L0RP
-        ST4NCiAgICA8Q29uZmVyZW5jZVN0YXJ0RGF0ZSB4c2k6bmlsPSJ0cnVlIiAv
-        Pg0KICAgIDxDb25mZXJlbmNlRW5kRGF0ZSB4c2k6bmlsPSJ0cnVlIiAvPg0K
-        ICAgIDxSYW5rIHhzaTpuaWw9InRydWUiIC8+DQogICAgPE9yZGluYWxSYW5r
-        PjE3PC9PcmRpbmFsUmFuaz4NCiAgICA8Tm9ybWFsaXplZFJhbmsgeHNpOm5p
-        bD0idHJ1ZSIgLz4NCiAgICA8TmV3UHVibGljYXRpb25JdGVtSUQgeHNpOm5p
-        bD0idHJ1ZSIgLz4NCiAgICA8SXNPYnNvbGV0ZT5mYWxzZTwvSXNPYnNvbGV0
-        ZT4NCiAgICA8Q29weXJpZ2h0UHVibGlzaGVyIC8+DQogICAgPENvcHlyaWdo
-        dENpdHkgLz4NCiAgICA8Q29weXJpZ2h0U3RhdGVQcm92aW5jZSAvPg0KICAg
-        IDxDb3B5cmlnaHRDb3VudHJ5PlNQQUlOPC9Db3B5cmlnaHRDb3VudHJ5Pg0K
-        ICA8L1B1YmxpY2F0aW9uSXRlbT4NCiAgPFB1YmxpY2F0aW9uSXRlbT4NCiAg
-        ICA8UHVibGljYXRpb25JdGVtSUQ+NzM1MDUzMjI8L1B1YmxpY2F0aW9uSXRl
-        bUlEPg0KICAgIDxUaXRsZT5FdmlkZW5jZSBmcm9tIEh1bWFuIGFuZCBBbmlt
-        YWwgU3R1ZGllczogUGF0aG9sb2dpY2FsIFJvbGVzIG9mIENEOCgrKSBUIENl
-        bGxzIGluIEF1dG9pbW11bmUgUGVyaXBoZXJhbCBOZXVyb3BhdGhpZXMuPC9U
-        aXRsZT4NCiAgICA8QWJzdHJhY3Q+QXV0b2ltbXVuZSBwZXJpcGhlcmFsIG5l
-        dXJvcGF0aGllcyBzdWNoIGFzIEd1aWxsYWluLUJhcnJlIFN5bmRyb21lIChH
-        QlMpIGFuZCBjaHJvbmljIGluZmxhbW1hdG9yeSBkZW15ZWxpbmF0aW5nIHBv
-        bHluZXVyb3BhdGh5IChDSURQKSBhZmZlY3QgbWlsbGlvbnMgb2YgcGVvcGxl
-        IHdvcmxkd2lkZS4gRGVzcGl0ZSBzaWduaWZpY2FudCBhZHZhbmNlcyBpbiB1
-        bmRlcnN0YW5kaW5nIHRoZSBwYXRob2xvZ3ksIHRoZSBtb2xlY3VsYXIgYW5k
-        IGNlbGx1bGFyIG1lY2hhbmlzbXMgb2YgaW1tdW5lLW1lZGlhdGVkIG5ldXJv
-        cGF0aGllcyByZW1haW4gZWx1c2l2ZS4gVCBseW1waG9jeXRlcyBkZWZpbml0
-        ZWx5IHBsYXkgYW4gaW1wb3J0YW50IHJvbGUgaW4gZGlzZWFzZSBwYXRob2dl
-        bmVzaXMgYW5kIENENCgrKSBUIGNlbGxzIGhhdmUgYmVlbiB0aGUgbWFpbiBh
-        cmVhIG9mIHJlc2VhcmNoIGZvciBkZWNhZGVzLiBUaGlzIGlzIHBhcnRseSBk
-        dWUgdG8gdGhlIGZhY3QgdGhhdCB0aGUgbW9zdCBmcmVxdWVudCBhbmltYWwg
-        bW9kZWwgdG8gc3R1ZHkgYXV0b2ltbXVuZSBwZXJpcGhlcmFsIG5ldXJvcGF0
-        aHkgaXMgZXhwZXJpbWVudGFsIGFsbGVyZ2ljIG5ldXJpdGlzIChFQU4pLiBB
-        cyBpdCBpcyBpbmR1Y2VkIGNvbW1vbmx5IGJ5IGltbXVuaXphdGlvbiB3aXRo
-        IHBlcmlwaGVyYWwgbmVydmUgcHJvdGVpbnMsIEVBTiBpcyBkcml2ZW4gbWFp
-        bmx5IGJ5IENENCgrKSBUIGNlbGxzLiBIb3dldmVyLCBzaW1pbGFybHkgdG8g
-        d2hhdCBoYXMgYmVlbiByZXBvcnRlZCBmb3IgcGF0aWVudHMgc3VmZmVyaW5n
-        IGZyb20gbXVsdGlwbGUgc2NsZXJvc2lzLCBhIHNpZ25pZmljYW50IGJvZHkg
-        b2YgZXZpZGVuY2UgaW5kaWNhdGVzIHRoYXQgQ0Q4KCspIFQgY2VsbHMgbWF5
-        IHBsYXkgYSBwYXRob2dlbmljIHJvbGUgaW4gR0JTIGFuZCBDSURQIGRpc2Vh
-        c2UgZGV2ZWxvcG1lbnQgYW5kL29yIHByb2dyZXNzaW9uLiBIZXJlLCB3ZSBz
-        dW1tYXJpemUgY2xpbmljYWwgc3R1ZGllcyBwZXJ0YWluaW5nIHRvIHRoZSBw
-        cmVzZW5jZSBhbmQgcG90ZW50aWFsIHJvbGUgb2YgQ0Q4KCspIFQgY2VsbHMg
-        aW4gYXV0b2ltbXVuZSBwZXJpcGhlcmFsIG5ldXJvcGF0aGllcy4gV2UgYWxz
-        byBkaXNjdXNzIHRoZSBmaW5kaW5ncyBmcm9tIG91ciBtb3N0IHJlY2VudCBz
-        dHVkaWVzIHVzaW5nIGEgdHJhbnNnZW5pYyBtb3VzZSBsaW5lIChMMzEgbWlj
-        ZSkgaW4gd2hpY2ggdGhlIFQgY2VsbCBjby1zdGltdWxhdG9yIG1vbGVjdWxl
-        IEI3LjIgKENEODYpIGlzIGNvbnN0aXR1dGl2ZWx5IGV4cHJlc3NlZCBpbiBh
-        bnRpZ2VuIHByZXNlbnRpbmcgY2VsbHMgb2YgdGhlIG5lcnZvdXMgdGlzc3Vl
-        cy4gTDMxIG1pY2Ugc3BvbnRhbmVvdXNseSBkZXZlbG9wIHBlcmlwaGVyYWwg
-        bmV1cm9wYXRoeSwgYW5kIENEOCgrKSBUIGNlbGxzIGFyZSBmb3VuZCBhY2N1
-        bXVsYXRpbmcgaW4gcGVyaXBoZXJhbCBuZXJ2ZXMgb2Ygc3ltcHRvbWF0aWMg
-        YW5pbWFscy4gSW50ZXJlc3RpbmdseSwgZGVwbGV0aW9uIG9mIENENCgrKSBU
-        IGNlbGxzIGFjY2VsZXJhdGVzIGRpc2Vhc2Ugb25zZXQgYW5kIGluY3JlYXNl
-        cyBkaXNlYXNlIHByZXZhbGVuY2UuIEZpbmFsbHksIHdlIHBvaW50IG91dCBz
-        b21lIHVuYW5zd2VyZWQgcXVlc3Rpb25zIGZvciBmdXR1cmUgcmVzZWFyY2gg
-        dG8gZGlzc2VjdCB0aGUgY3JpdGljYWwgcm9sZXMgb2YgQ0Q4KCspIFQgY2Vs
-        bHMgaW4gYXV0b2ltbXVuZSBwZXJpcGhlcmFsIG5ldXJvcGF0aGllcy4gPC9B
-        YnN0cmFjdD4NCiAgICA8QXV0aG9yTGlzdD5ZYW5nLE11LHxQZXlyZXQsQ29y
-        ZW50aW4sfFNoaSxYaWFuZyxRdW58U2lyb24sTmljb2xhcyx8SmFuZyxKZW9u
-        ZyxIb3xXdSxTb25pYSx8Rm91cm5pZXIsU3lsdmllLHxaaGFuZyxKaSw8L0F1
-        dGhvckxpc3Q+DQogICAgPEF1dGhvckNvdW50Pjg8L0F1dGhvckNvdW50Pg0K
-        ICAgIDxLZXl3b3JkTGlzdD5DRDggVCBjZWxsc3xHdWlsbGFpbi1CYXJyZSBz
-        eW5kcm9tZXxhbmltYWwgbW9kZWxzfGNocm9uaWMgaW5mbGFtbWF0b3J5IGRl
-        bXllbGluYXRpbmcgcG9seW5ldXJvcGF0aHl8Y28tc3RpbXVsYXRvcnkgbW9s
-        ZWN1bGVzfGN5dG9raW5lc3xtYWNyb3BoYWdlczwvS2V5d29yZExpc3Q+DQog
-        ICAgPERvY3VtZW50VHlwZUxpc3Q+Sm91cm5hbCBBcnRpY2xlfFJldmlldzwv
-        RG9jdW1lbnRUeXBlTGlzdD4NCiAgICA8RG9jdW1lbnRDYXRlZ29yeT5Kb3Vy
-        bmFsIERvY3VtZW50PC9Eb2N1bWVudENhdGVnb3J5Pg0KICAgIDxOdW1iZXJP
-        ZlJlZmVyZW5jZXMgeHNpOm5pbD0idHJ1ZSIgLz4NCiAgICA8VGltZXNDaXRl
-        ZCB4c2k6bmlsPSJ0cnVlIiAvPg0KICAgIDxUaW1lc05vdFNlbGZDaXRlZCB4
-        c2k6bmlsPSJ0cnVlIiAvPg0KICAgIDxQTUlEPjI2NTI4MjkzPC9QTUlEPg0K
-        ICAgIDxQdWJsaWNhdGlvblNvdXJjZVRpdGxlPkZyb250aWVycyBpbiBpbW11
-        bm9sb2d5PC9QdWJsaWNhdGlvblNvdXJjZVRpdGxlPg0KICAgIDxWb2x1bWU+
-        NjwvVm9sdW1lPg0KICAgIDxQYWdpbmF0aW9uPjUzMi0/PC9QYWdpbmF0aW9u
-        Pg0KICAgIDxQdWJsaWNhdGlvbkRhdGU+MjAxNS0wMS0wMVQwMDowMDowMDwv
-        UHVibGljYXRpb25EYXRlPg0KICAgIDxQdWJsaWNhdGlvblllYXI+MjAxNTwv
-        UHVibGljYXRpb25ZZWFyPg0KICAgIDxQdWJsaWNhdGlvblN1YmplY3RDYXRl
-        Z29yeUxpc3QgLz4NCiAgICA8SVNTTj4xNjY0LTMyMjQ8L0lTU04+DQogICAg
-        PERPST4xMC4zMzg5L2ZpbW11LjIwMTUuMDA1MzI8L0RPST4NCiAgICA8Q29u
-        ZmVyZW5jZVN0YXJ0RGF0ZSB4c2k6bmlsPSJ0cnVlIiAvPg0KICAgIDxDb25m
-        ZXJlbmNlRW5kRGF0ZSB4c2k6bmlsPSJ0cnVlIiAvPg0KICAgIDxSYW5rIHhz
-        aTpuaWw9InRydWUiIC8+DQogICAgPE9yZGluYWxSYW5rPjE4PC9PcmRpbmFs
-        UmFuaz4NCiAgICA8Tm9ybWFsaXplZFJhbmsgeHNpOm5pbD0idHJ1ZSIgLz4N
-        CiAgICA8TmV3UHVibGljYXRpb25JdGVtSUQgeHNpOm5pbD0idHJ1ZSIgLz4N
-        CiAgICA8SXNPYnNvbGV0ZT5mYWxzZTwvSXNPYnNvbGV0ZT4NCiAgICA8Q29w
-        eXJpZ2h0UHVibGlzaGVyIC8+DQogICAgPENvcHlyaWdodENpdHkgLz4NCiAg
-        ICA8Q29weXJpZ2h0U3RhdGVQcm92aW5jZSAvPg0KICAgIDxDb3B5cmlnaHRD
-        b3VudHJ5PlNXSVRaRVJMQU5EPC9Db3B5cmlnaHRDb3VudHJ5Pg0KICA8L1B1
-        YmxpY2F0aW9uSXRlbT4NCiAgPFB1YmxpY2F0aW9uSXRlbT4NCiAgICA8UHVi
-        bGljYXRpb25JdGVtSUQ+NzM1MDUxODg8L1B1YmxpY2F0aW9uSXRlbUlEPg0K
-        ICAgIDxUaXRsZT5SZXN2ZXJhdHJvbCBQcm90ZWN0cyBBZ2FpbnN0IFBhdGhv
-        bG9naWNhbCBQcmV0ZXJtIEJpcnRoIGJ5IFN1cHByZXNzaW9uIG9mIE1hY3Jv
-        cGhhZ2UtTWVkaWF0ZWQgSW5mbGFtbWF0aW9uLjwvVGl0bGU+DQogICAgPEFi
-        c3RyYWN0PkluZmxhbW1hdG9yeSBjeXRva2luZXMgcGxheSBhIG1ham9yIHJv
-        bGUgaW4gc3BvbnRhbmVvdXMgcHJldGVybSBiaXJ0aC4gUmVzdmVyYXRyb2wg
-        aGFzIHN0cm9uZyBhbnRpLWluZmxhbW1hdG9yeSBlZmZlY3RzLCBidXQgaXRz
-        IGVmZmVjdCBvbiBwcmV0ZXJtIGJpcnRoIGluIHZpdm8gaXMgdW5rbm93bi4g
-        V2UgaW52ZXN0aWdhdGVkIHdoZXRoZXIgcmVzdmVyYXRyb2wgcHJvdGVjdHMg
-        YWdhaW5zdCBwcmV0ZXJtIGJpcnRoIGluIHRoZSBsaXBvcG9seXNhY2NoYXJp
-        ZGUgKExQUyktaW5kdWNlZCBwcmV0ZXJtIG1vdXNlIG1vZGVsLiBUd2VsdmUt
-        ZGF5LW9sZCBwcmVnbmFudCBtaWNlIHdlcmUgZmVkIDIwIHRvIDQwIG1nL2tn
-        IHJlc3ZlcmF0cm9sIGRhaWx5LiBPbiBkYXkgMTUsIDEwIMK1ZyBvZiBMUFMg
-        d2FzIGluamVjdGVkIGludG8gdXRlcmluZSBjZXJ2aWNlcy4gUmVzdmVyYXRy
-        b2wgYWRtaW5pc3RyYXRpb24gc2lnbmlmaWNhbnRseSBkZWNyZWFzZWQgdGhl
-        IHJhdGUgb2YgcHJldGVybSBiaXJ0aC4gUmVzdmVyYXRyb2wgYWRtaW5pc3Ry
-        YXRpb24gYWJvbGlzaGVkIExQUy1pbmR1Y2VkIGVsZXZhdGlvbiBvZiB0dW1v
-        ciBuZWNyb3NpcyBmYWN0b3IgYSAoVE5GLWEpIGFuZCBpbnRlcmxldWtpbiAo
-        SUwpIDHDnyBidXQgbm90IElMLTYgbGV2ZWxzLiBUaGUgVE5GLWEgbWVzc2Vu
-        Z2VyIFJOQSBsZXZlbHMgd2VyZSBkZWNyZWFzZWQgaW4gdGhlIGNlcnZpY2Vz
-        IG9mIHJlc3ZlcmF0cm9sLWFkbWluaXN0ZXJlZCBtaWNlIGNvbXBhcmVkIHdp
-        dGggY29udHJvbHMuIFJlc3ZlcmF0cm9sIHRyZWF0bWVudCBzdXBwcmVzc2Vk
-        IHRoZSBlbGV2YXRpb24gaW4gVE5GLWEgYW5kIElMLTHDnyBsZXZlbHMgaW4g
-        TFBTLWV4cG9zZWQgcGVyaXRvbmVhbCBtYWNyb3BoYWdlcy4gRnVydGhlciBy
-        ZXN2ZXJhdHJvbCB0cmVhdG1lbnQgZXJhZGljYXRlZCB0aGUgcHJvaW5mbGFt
-        bWF0b3J5IGN5dG9raW5lLW1lZGlhdGVkIGVsZXZhdGlvbiBpbiBjeWNsb294
-        eWdlbmFzZSAyIChDT1gtMikgaW4gcGVyaXRvbmVhbCBtYWNyb3BoYWdlcy4g
-        UmVzdmVyYXRyb2wgbWF5IHByb3RlY3QgYWdhaW5zdCBwYXRob2xvZ2ljYWwg
-        cHJldGVybSBiaXJ0aCBieSBzdXBwcmVzc2lvbiBvZiBlbGV2YXRlZCBwcm9p
-        bmZsYW1tYXRvcnkgY3l0b2tpbmVzIGFuZCBjb25zZXF1ZW50IGVsZXZhdGlv
-        biBvZiBDT1gtMiBpbiBtYWNyb3BoYWdlcy4gPC9BYnN0cmFjdD4NCiAgICA8
-        QXV0aG9yTGlzdD5GdXJ1eWEsSGl0b21pLHxUYWd1Y2hpLEF5dW1pLHxLYXdh
-        bmEsS2VpLHxZYW1hc2hpdGEsQWtpLHxJbm91ZSxFcmksfFlvc2hpZGEsTWl0
-        c3V5byx8TmFrYW11cmEsSGlyb2UsfEZ1amltb3RvLEFzYWhhLHxJbm91ZSxU
-        b21va28sfFNhdG8sTWFzYWthenUsfE5pc2hpZGEsSGFydWthLHxOYWdhc2Fr
-        YSxLYXp1bm9yaSx8QWRhY2hpLEthdHN1eXVraSx8SG95YSxNYXJpLHxOYWdh
-        bWF0c3UsVGFrZXNoaSx8V2FkYS1IaXJhaWtlLE9zYW11LHxZYW1hc2hpdGEs
-        VGFrYWhpcm8sfE9zdWdhLFl1dGFrYSx8RnVqaWksVG9tb3l1a2ksPC9BdXRo
-        b3JMaXN0Pg0KICAgIDxBdXRob3JDb3VudD4xOTwvQXV0aG9yQ291bnQ+DQog
-        ICAgPEtleXdvcmRMaXN0PkNPWC0yfExQUy1pbmR1Y2VkIHByZXRlcm0gYmly
-        dGh8YW50aS1pbmZsYW1tYXRvcnkgZWZmZWN0fHBlcml0b25lYWwgbWFjcm9w
-        aGFnZXxyZXN2ZXJhdHJvbDwvS2V5d29yZExpc3Q+DQogICAgPERvY3VtZW50
-        VHlwZUxpc3Q+Sm91cm5hbCBBcnRpY2xlPC9Eb2N1bWVudFR5cGVMaXN0Pg0K
-        ICAgIDxEb2N1bWVudENhdGVnb3J5PkpvdXJuYWwgRG9jdW1lbnQ8L0RvY3Vt
-        ZW50Q2F0ZWdvcnk+DQogICAgPE51bWJlck9mUmVmZXJlbmNlcyB4c2k6bmls
-        PSJ0cnVlIiAvPg0KICAgIDxUaW1lc0NpdGVkIHhzaTpuaWw9InRydWUiIC8+
-        DQogICAgPFRpbWVzTm90U2VsZkNpdGVkIHhzaTpuaWw9InRydWUiIC8+DQog
-        ICAgPFBNSUQ+MjYwMzcyOTk8L1BNSUQ+DQogICAgPFB1YmxpY2F0aW9uU291
-        cmNlVGl0bGU+UmVwcm9kdWN0aXZlIHNjaWVuY2VzIDwvUHVibGljYXRpb25T
-        b3VyY2VUaXRsZT4NCiAgICA8Vm9sdW1lPjIyPC9Wb2x1bWU+DQogICAgPElz
-        c3VlPjEyPC9Jc3N1ZT4NCiAgICA8UGFnaW5hdGlvbj4xNTYxLTE1Njg8L1Bh
-        Z2luYXRpb24+DQogICAgPFB1YmxpY2F0aW9uRGF0ZT4yMDE1LTEyLTAxVDAw
-        OjAwOjAwPC9QdWJsaWNhdGlvbkRhdGU+DQogICAgPFB1YmxpY2F0aW9uWWVh
-        cj4yMDE1PC9QdWJsaWNhdGlvblllYXI+DQogICAgPFB1YmxpY2F0aW9uU3Vi
-        amVjdENhdGVnb3J5TGlzdCAvPg0KICAgIDxJU1NOPjE5MzMtNzE5MTwvSVNT
-        Tj4NCiAgICA8RE9JPjEwLjExNzcvMTkzMzcxOTExNTU4OTQxMzwvRE9JPg0K
-        ICAgIDxDb25mZXJlbmNlU3RhcnREYXRlIHhzaTpuaWw9InRydWUiIC8+DQog
-        ICAgPENvbmZlcmVuY2VFbmREYXRlIHhzaTpuaWw9InRydWUiIC8+DQogICAg
-        PFJhbmsgeHNpOm5pbD0idHJ1ZSIgLz4NCiAgICA8T3JkaW5hbFJhbms+MTk8
-        L09yZGluYWxSYW5rPg0KICAgIDxOb3JtYWxpemVkUmFuayB4c2k6bmlsPSJ0
-        cnVlIiAvPg0KICAgIDxOZXdQdWJsaWNhdGlvbkl0ZW1JRCB4c2k6bmlsPSJ0
-        cnVlIiAvPg0KICAgIDxJc09ic29sZXRlPmZhbHNlPC9Jc09ic29sZXRlPg0K
-        ICAgIDxDb3B5cmlnaHRQdWJsaXNoZXIgLz4NCiAgICA8Q29weXJpZ2h0Q2l0
-        eSAvPg0KICAgIDxQdWJsaWNhdGlvbkltcGFjdEZhY3Rvckxpc3Q+Mi4yMywy
-        MDE0LENsb3Nlc3RUb1B1YmxpY2F0aW9uWWVhcnwyLjIzLDIwMTQsTW9zdFJl
-        Y2VudFllYXI8L1B1YmxpY2F0aW9uSW1wYWN0RmFjdG9yTGlzdD4NCiAgICA8
-        UHVibGljYXRpb25DYXRlZ29yeVJhbmtpbmdMaXN0PjI2Lzc5O09CU1RFVFJJ
-        Q1MgJmFtcDsgR1lORUNPTE9HWTsyMDE0O1NDO0Nsb3Nlc3RUb1B1YmxpY2F0
-        aW9uWWVhcnwxNy8zMDtSRVBST0RVQ1RJVkUgQklPTE9HWTsyMDE0O1NDO0Ns
-        b3Nlc3RUb1B1YmxpY2F0aW9uWWVhcnwyNi83OTtPQlNURVRSSUNTICZhbXA7
-        IEdZTkVDT0xPR1k7MjAxNDtTQztNb3N0UmVjZW50WWVhcnwxNy8zMDtSRVBS
-        T0RVQ1RJVkUgQklPTE9HWTsyMDE0O1NDO01vc3RSZWNlbnRZZWFyPC9QdWJs
-        aWNhdGlvbkNhdGVnb3J5UmFua2luZ0xpc3Q+DQogICAgPENvcHlyaWdodFN0
-        YXRlUHJvdmluY2UgLz4NCiAgICA8Q29weXJpZ2h0Q291bnRyeT5VTklURUQg
-        U1RBVEVTPC9Db3B5cmlnaHRDb3VudHJ5Pg0KICA8L1B1YmxpY2F0aW9uSXRl
-        bT4NCjwvQXJyYXlPZlB1YmxpY2F0aW9uSXRlbT4=
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\"?>\r\n<ArrayOfPublicationItem xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <PublicationItem>\r\n
+        \   <PublicationItemID>75091659</PublicationItemID>\r\n    <Title>GENOTOXIC
+        AND PATHOLOGICAL EFFECTS OF MALATHION IN MALE JAPANESE QUAIL (Coturnix japonica)</Title>\r\n
+        \   <Abstract>In the present study, we examined the pathological and genotoxic
+        effects of malathion in Japanese quail. For this purpose, 105 quail were randomly
+        divided in seven equal groups (A-G) and were orally given technical grade
+        malathion @ 0, 20, 40, 60, 80, 100 and 120 mg/kg/day for 51 days. Decrease
+        in feed intake, body weight, seminiferous tubule diameter, serum testosterone
+        and different hematological parameters such as leukocytes, erythrocytes, hematocrit
+        and hemoglobin concentration started at day 17 in birds given malathion 100
+        and 120 mg/kg/day. Higher frequency of blebbed nucleated erythrocytes with
+        50 mg/kg/day, while micronucleus and binucleated erythrocytes with 75 mg/kg/day
+        start appearing at day 34. Grossly, regression of testicles, swollen bursa
+        and congestion in brain tissue was observed in groups given malathion @ 100
+        and 120 mg/kg/day. Histologically, lesser number of germinal layers in seminiferous
+        tubules with necrotic spermatozoa, vacuolar degeneration in bursa and Purkinje
+        cell necrosis in brain tissues was observed. Moreover, quail given higher
+        doses of malathion showed significant (P = 0.05) increase in blebbed and binucleated
+        erythrocytes along with increased frequency of micronucleus. On the basis
+        of these results, it can be concluded that malathion at different doses in
+        food chain poses mutagenesis and gonado-toxic effects in birds.</Abstract>\r\n
+        \   <AuthorList>Hussain,Riaz,|Mahmood,Fazal,|Khan,Ahrar,</AuthorList>\r\n
+        \   <AuthorCount>3</AuthorCount>\r\n    <KeywordList>METHYL PARATHION|CHICKS|TOXICITY|RATS|VITAMINS
+        C|histopathology|quail|micronucleus|pesticides|malathion</KeywordList>\r\n
+        \   <DocumentTypeList>Article</DocumentTypeList>\r\n    <DocumentCategory>Journal
+        Document</DocumentCategory>\r\n    <NumberOfReferences>35</NumberOfReferences>\r\n
+        \   <TimesCited>0</TimesCited>\r\n    <TimesNotSelfCited>0</TimesNotSelfCited>\r\n
+        \   <PMID xsi:nil=\"true\" />\r\n    <WoSItemID>000368904600036</WoSItemID>\r\n
+        \   <PublicationSourceTitle>PAKISTAN JOURNAL OF AGRICULTURAL SCIENCES</PublicationSourceTitle>\r\n
+        \   <Volume>52</Volume>\r\n    <Issue>4</Issue>\r\n    <Pagination>1149-1156</Pagination>\r\n
+        \   <PublicationDate>2015-12-01T00:00:00</PublicationDate>\r\n    <PublicationYear>2015</PublicationYear>\r\n
+        \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Agriculture,
+        Multidisciplinary</PublicationSubjectCategoryList>\r\n    <ISSN>0552-9034</ISSN>\r\n
+        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>0</OrdinalRank>\r\n
+        \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
+        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>UNIV AGRICULTURE,
+        FAC VETERINARY SCIENCE</CopyrightPublisher>\r\n    <CopyrightCity>FAISALABAD</CopyrightCity>\r\n
+        \   <PublicationImpactFactorList>1.049,2014,ClosestToPublicationYear|1.049,2014,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>17/56;AGRICULTURE, MULTIDISCIPLINARY;2014;SC;ClosestToPublicationYear|17/56;AGRICULTURE,
+        MULTIDISCIPLINARY;2014;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <AuthorCitationCountList>1,0,0|2,0,0|3,0,0</AuthorCitationCountList>\r\n
+        \   <CopyrightStateProvince />\r\n    <CopyrightCountry>PAKISTAN</CopyrightCountry>\r\n
+        \ </PublicationItem>\r\n  <PublicationItem>\r\n    <PublicationItemID>75091549</PublicationItemID>\r\n
+        \   <Title>The Clinical and Pathological Features of Maternal Gastric Adenocarcinoma
+        Metastatic to the Placenta</Title>\r\n    <Abstract />\r\n    <AuthorList>Wei,Ping,|Jin,Mulan,</AuthorList>\r\n
+        \   <AuthorCount>2</AuthorCount>\r\n    <KeywordList />\r\n    <DocumentTypeList>Meeting
+        Abstract</DocumentTypeList>\r\n    <DocumentCategory>Conference Proceeding
+        Document</DocumentCategory>\r\n    <NumberOfReferences xsi:nil=\"true\" />\r\n
+        \   <TimesCited>0</TimesCited>\r\n    <TimesNotSelfCited>0</TimesNotSelfCited>\r\n
+        \   <PMID xsi:nil=\"true\" />\r\n    <WoSItemID>000369270701631</WoSItemID>\r\n
+        \   <PublicationSourceTitle>LABORATORY INVESTIGATION</PublicationSourceTitle>\r\n
+        \   <Volume>96</Volume>\r\n    <Pagination>314A-314A</Pagination>\r\n    <PublicationDate>2016-02-01T00:00:00</PublicationDate>\r\n
+        \   <PublicationYear>2016</PublicationYear>\r\n    <PublicationType>Journal</PublicationType>\r\n
+        \   <PublicationSubjectCategoryList>Medicine, Research &amp; Experimental|Pathology</PublicationSubjectCategoryList>\r\n
+        \   <ISSN>0023-6837</ISSN>\r\n    <ConferenceTitle>105th Annual Meeting of
+        the United-States-and-Canadian-Academy-of-Pathology</ConferenceTitle>\r\n
+        \   <ConferenceStartDate>2016-03-12T00:00:00</ConferenceStartDate>\r\n    <ConferenceEndDate>2016-03-18T00:00:00</ConferenceEndDate>\r\n
+        \   <ConferenceCity>SEATTLE</ConferenceCity>\r\n    <ConferenceStateCountry>WA</ConferenceStateCountry>\r\n
+        \   <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>1</OrdinalRank>\r\n    <NormalizedRank
+        xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
+        \   <CopyrightPublisher>NATURE PUBLISHING GROUP</CopyrightPublisher>\r\n    <CopyrightCity>NEW
+        YORK</CopyrightCity>\r\n    <PublicationImpactFactorList>3.676,2014,ClosestToPublicationYear|3.676,2014,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>30/123;MEDICINE, RESEARCH &amp; EXPERIMENTAL;2014;SC;ClosestToPublicationYear|13/75;PATHOLOGY;2014;SC;ClosestToPublicationYear|30/123;MEDICINE,
+        RESEARCH &amp; EXPERIMENTAL;2014;SC;MostRecentYear|13/75;PATHOLOGY;2014;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <AuthorCitationCountList>1,0,0|2,0,0</AuthorCitationCountList>\r\n    <CopyrightStateProvince>NY</CopyrightStateProvince>\r\n
+        \   <CopyrightCountry>UNITED STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n
+        \ <PublicationItem>\r\n    <PublicationItemID>75090674</PublicationItemID>\r\n
+        \   <Title>Clinical and pathological presentation of squamous metaplasia of
+        the rete ovarii in a Zebu cow</Title>\r\n    <Abstract>Squamous metaplasia
+        of rete ovarii is characterized by replacement of the normal cuboidal epithelium
+        of rete ovarii by a keratinized stratified scamous epithelium, leading to
+        accumulation of keratinized material within the tubules and cystic dilatation
+        of rete ovarii. The present study decribes a case of scamous metaplasia of
+        rete ovarii in a 10 year old Zebu cow, including clinical, surgical, ultrasonographic,
+        histopathological and hormonal findings. At first ultrasound examination the
+        cow had lightly asymmetric ovaries with follicles presenting echogenicity
+        similar to luteinized follicular cysts. After transvaginal follicular aspiration
+        creamy yellowish sanguineous-purulent content was recovered. After unilateral
+        ovariectomy the ovary was sectioned and brownish viscous material drained
+        from cystic cavity. Histopathology confirmed the diagnosid of squamous metaplasia
+        of the rete ovarii. Progesterone concentrations assessed by chemiluminescent
+        enzyme immunoassay within different time periods after ovariectomy showed
+        that pathology did not compromise normal luteal ovarian activity in a contralateral
+        reminiscent ovary.</Abstract>\r\n    <AuthorList>Borges,A,M|Peixoto,D,GM|Paixao,T,A|Santos,R,L</AuthorList>\r\n
+        \   <AuthorCount>4</AuthorCount>\r\n    <KeywordList>epidermoid cyst|ovary|teratoma|bovine|Rete
+        ovarii</KeywordList>\r\n    <DocumentTypeList>Article</DocumentTypeList>\r\n
+        \   <DocumentCategory>Journal Document</DocumentCategory>\r\n    <NumberOfReferences>8</NumberOfReferences>\r\n
+        \   <TimesCited>0</TimesCited>\r\n    <TimesNotSelfCited>0</TimesNotSelfCited>\r\n
+        \   <PMID xsi:nil=\"true\" />\r\n    <WoSItemID>000369237800003</WoSItemID>\r\n
+        \   <PublicationSourceTitle>ARQUIVO BRASILEIRO DE MEDICINA VETERINARIA E ZOOTECNIA</PublicationSourceTitle>\r\n
+        \   <Volume>68</Volume>\r\n    <Issue>1</Issue>\r\n    <Pagination>17-21</Pagination>\r\n
+        \   <PublicationDate>2016-01-01T00:00:00</PublicationDate>\r\n    <PublicationYear>2016</PublicationYear>\r\n
+        \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Veterinary
+        Sciences</PublicationSubjectCategoryList>\r\n    <ISSN>0102-0935</ISSN>\r\n
+        \   <DOI>10.1590/1678-4162-8217</DOI>\r\n    <ConferenceStartDate xsi:nil=\"true\"
+        />\r\n    <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank xsi:nil=\"true\"
+        />\r\n    <OrdinalRank>2</OrdinalRank>\r\n    <NormalizedRank xsi:nil=\"true\"
+        />\r\n    <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
+        \   <CopyrightPublisher>ARQUIVO BRASILEIRO MEDICINA VETERINARIA ZOOTECNIA</CopyrightPublisher>\r\n
+        \   <CopyrightCity>MINAS GERAIS</CopyrightCity>\r\n    <PublicationImpactFactorList>0.24,2014,ClosestToPublicationYear|0.24,2014,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>119/133;VETERINARY SCIENCES;2014;SC;ClosestToPublicationYear|119/133;VETERINARY
+        SCIENCES;2014;SC;MostRecentYear</PublicationCategoryRankingList>\r\n    <AuthorCitationCountList>1,0,0|2,0,0|3,0,0|4,0,0</AuthorCitationCountList>\r\n
+        \   <CopyrightStateProvince />\r\n    <CopyrightCountry>BRAZIL</CopyrightCountry>\r\n
+        \ </PublicationItem>\r\n  <PublicationItem>\r\n    <PublicationItemID>75089505</PublicationItemID>\r\n
+        \   <Title>Pathological liver segmentation using stochastic resonance and
+        cellular automata</Title>\r\n    <Abstract>Liver segmentation continues to
+        remain a major challenge, largely due to its intensity complexity with surrounding
+        anatomical structures (stomach, kidney, and heart), high noise level and lack
+        of contrast in pathological computed tomography data. In this paper, we present
+        an approach to reconstructing the liver surface in low contrast computed tomography.
+        The main contributions are: (1) a stochastic resonance based methodology in
+        discrete cosine transform domain is developed to enhance the contrast of pathological
+        liver images, (2) a new formulation is proposed to prevent the object boundary,
+        resulted by cellular automata method, from leaking into the surrounding areas
+        of similar intensity, and (3) a level-set method is suggested to generate
+        intermediate segmentation contours from two segmented slices distantly located
+        in a subject sequence. We have tested the algorithm on real datasets obtained
+        from two sources, Hamad General Hospital and MICCAI Grand Challenge workshop.
+        Both qualitative and quantitative evaluation performed on liver data show
+        promising segmentation accuracy when compared with ground truth data reflecting
+        the potential of the proposed method. (C) 2015 Elsevier Inc. All rights reserved.</Abstract>\r\n
+        \   <AuthorList>Dakua,Sarada,Prasad|Abinahed,Julien,|Al-Ansari,Abdulla,A</AuthorList>\r\n
+        \   <AuthorCount>3</AuthorCount>\r\n    <KeywordList>NOISE|EDGES|TRANSFORM|ENHANCEMENT|MODELS|CT
+        IMAGES|IMAGE SEGMENTATION|EXTRACTION|CT|liver|stochastic resonance|contrast
+        enhancement|graph cut|image segmentation|discrete Gabor transform|dynamic
+        cellular automata</KeywordList>\r\n    <DocumentTypeList>Article</DocumentTypeList>\r\n
+        \   <DocumentCategory>Journal Document</DocumentCategory>\r\n    <NumberOfReferences>64</NumberOfReferences>\r\n
+        \   <TimesCited>0</TimesCited>\r\n    <TimesNotSelfCited>0</TimesNotSelfCited>\r\n
+        \   <PMID xsi:nil=\"true\" />\r\n    <WoSItemID>000368967400008</WoSItemID>\r\n
+        \   <PublicationSourceTitle>JOURNAL OF VISUAL COMMUNICATION AND IMAGE REPRESENTATION</PublicationSourceTitle>\r\n
+        \   <Volume>34</Volume>\r\n    <Pagination>89-102</Pagination>\r\n    <PublicationDate>2016-01-01T00:00:00</PublicationDate>\r\n
+        \   <PublicationYear>2016</PublicationYear>\r\n    <PublicationType>Journal</PublicationType>\r\n
+        \   <PublicationSubjectCategoryList>Computer Science, Information Systems|Computer
+        Science, Software Engineering</PublicationSubjectCategoryList>\r\n    <ISSN>1047-3203</ISSN>\r\n
+        \   <DOI>10.1016/j.jvcir.2015.10.016</DOI>\r\n    <ConferenceStartDate xsi:nil=\"true\"
+        />\r\n    <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank xsi:nil=\"true\"
+        />\r\n    <OrdinalRank>3</OrdinalRank>\r\n    <NormalizedRank xsi:nil=\"true\"
+        />\r\n    <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
+        \   <CopyrightPublisher>ACADEMIC PRESS INC ELSEVIER SCIENCE</CopyrightPublisher>\r\n
+        \   <CopyrightCity>SAN DIEGO</CopyrightCity>\r\n    <PublicationImpactFactorList>1.218,2014,ClosestToPublicationYear|1.218,2014,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>57/139;COMPUTER SCIENCE, INFORMATION SYSTEMS;2014;SC;ClosestToPublicationYear|39/104;COMPUTER
+        SCIENCE, SOFTWARE ENGINEERING;2014;SC;ClosestToPublicationYear|57/139;COMPUTER
+        SCIENCE, INFORMATION SYSTEMS;2014;SC;MostRecentYear|39/104;COMPUTER SCIENCE,
+        SOFTWARE ENGINEERING;2014;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <AuthorCitationCountList>1,0,0|2,0,0|3,0,0</AuthorCitationCountList>\r\n
+        \   <CopyrightStateProvince>CA</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
+        STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
+        \   <PublicationItemID>75085660</PublicationItemID>\r\n    <Title>Pathological
+        Investigation of Childhood Foreskin: Are Lichen Sclerosus and Phimosis Common?</Title>\r\n
+        \   <Abstract>Objective: To evaluate histopathological results of foreskin
+        removed during circumcision in the pediatric age group and the relationship
+        between these and the degree of phimosis.  Study Design: Cross-sectional study.
+        \ Place and Duration of Study: Department of Urology, Samsun Training and
+        Research Hospital, Samsun, Turkey, from June to December 2014.  Methodology:
+        Male children undergoing planned circumcision were examined for the presence
+        and degree of phimosis which was recorded before the operation. After circumcision,
+        the preputial skin was dermatopathologically investigated. Pathological investigation
+        carefully evaluated findings such as acute inflammation, chronic inflammation,
+        increased pigmentation and atrophy in addition to findings of Lichen Sclerosus
+        (LS) in all specimens. The pathological findings obtained were classified
+        by degree of phimosis and evaluated.  Results: The average age of the 140
+        children was 6.58 +/- 2.35 years. While 61 (43.6%) children did not have phimosis,
+        79 (56.4%) patients had different degrees of phimosis. Classic LS was not
+        identified in any patient. In a total of 14 (10%) children, early period findings
+        of LS were discovered. The frequency of LS with phimosis was 12.6%, without
+        phimosis was 6.5% (p=0.39). The incidence of histopathologically normal skin
+        in non-phimosis and phimosis groups was 37.7% and 22.7%, respectively. In
+        total, 41 (29.3%) of the 140 cases had totally normal foreskin.  Conclusion:
+        Important dermatoses such as LS may be observed in foreskin with or without
+        phimosis. The presence of phimosis may be an aggravating factor in the incidence
+        of these dermatoses.</Abstract>\r\n    <AuthorList>Irkilata,Lokman,|Bakirtas,Mustafa,|Aydin,Hasan,Reza|Aydin,Mustafa,|Demirel,Huseyin,Cihan|Adanur,Senol,|Moral,Caner,|Atilla,Mustafa,Kemal</AuthorList>\r\n
+        \   <AuthorCount>8</AuthorCount>\r\n    <KeywordList>CARCINOMA|ET-ATROPHICUS|PENIS|PREVENTION|SEXUALLY-TRANSMITTED
+        INFECTIONS|BOYS|MALE CIRCUMCISION|BALANITIS XEROTICA OBLITERANS|phimosis|lichen
+        sclerosus|male|foreskin|pathology|circumcision</KeywordList>\r\n    <DocumentTypeList>Article</DocumentTypeList>\r\n
+        \   <DocumentCategory>Journal Document</DocumentCategory>\r\n    <NumberOfReferences>24</NumberOfReferences>\r\n
+        \   <TimesCited>0</TimesCited>\r\n    <TimesNotSelfCited>0</TimesNotSelfCited>\r\n
+        \   <PMID xsi:nil=\"true\" />\r\n    <WoSItemID>000369704200014</WoSItemID>\r\n
+        \   <PublicationSourceTitle>JCPSP-JOURNAL OF THE COLLEGE OF PHYSICIANS AND
+        SURGEONS PAKISTAN</PublicationSourceTitle>\r\n    <Volume>26</Volume>\r\n
+        \   <Issue>2</Issue>\r\n    <Pagination>134-137</Pagination>\r\n    <PublicationDate>2016-02-01T00:00:00</PublicationDate>\r\n
+        \   <PublicationYear>2016</PublicationYear>\r\n    <PublicationType>Journal</PublicationType>\r\n
+        \   <PublicationSubjectCategoryList>Medicine, General &amp; Internal</PublicationSubjectCategoryList>\r\n
+        \   <ISSN>1022-386X</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank xsi:nil=\"true\" />\r\n
+        \   <OrdinalRank>4</OrdinalRank>\r\n    <NormalizedRank xsi:nil=\"true\" />\r\n
+        \   <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
+        \   <CopyrightPublisher>COLL PHYSICIANS &amp; SURGEONS PAKISTAN</CopyrightPublisher>\r\n
+        \   <CopyrightCity>KARACHI</CopyrightCity>\r\n    <PublicationImpactFactorList>0.353,2014,ClosestToPublicationYear|0.353,2014,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>136/153;MEDICINE, GENERAL &amp; INTERNAL;2014;SC;ClosestToPublicationYear|136/153;MEDICINE,
+        GENERAL &amp; INTERNAL;2014;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <AuthorCitationCountList>1,0,0|2,0,0|3,0,0|4,0,0|5,0,0|6,0,0|7,0,0|8,0,0</AuthorCitationCountList>\r\n
+        \   <CopyrightStateProvince />\r\n    <CopyrightCountry>PAKISTAN</CopyrightCountry>\r\n
+        \ </PublicationItem>\r\n  <PublicationItem>\r\n    <PublicationItemID>75085552</PublicationItemID>\r\n
+        \   <Title>Clinical-Pathological Features of 55 Papillary Thyroid Carcinomas
+        Carrying BRAF Mutations Other Than V600E</Title>\r\n    <Abstract />\r\n    <AuthorList>Basolo,Fulvio,|Sensi,Elisa,|Giordano,Mirella,|Torregrossa,Liborio,</AuthorList>\r\n
+        \   <AuthorCount>4</AuthorCount>\r\n    <KeywordList />\r\n    <DocumentTypeList>Meeting
+        Abstract</DocumentTypeList>\r\n    <DocumentCategory>Conference Proceeding
+        Document</DocumentCategory>\r\n    <NumberOfReferences xsi:nil=\"true\" />\r\n
+        \   <TimesCited>0</TimesCited>\r\n    <TimesNotSelfCited>0</TimesNotSelfCited>\r\n
+        \   <PMID xsi:nil=\"true\" />\r\n    <WoSItemID>000369270700571</WoSItemID>\r\n
+        \   <PublicationSourceTitle>LABORATORY INVESTIGATION</PublicationSourceTitle>\r\n
+        \   <Volume>96</Volume>\r\n    <Pagination>146A-146A</Pagination>\r\n    <PublicationDate>2016-02-01T00:00:00</PublicationDate>\r\n
+        \   <PublicationYear>2016</PublicationYear>\r\n    <PublicationType>Journal</PublicationType>\r\n
+        \   <PublicationSubjectCategoryList>Medicine, Research &amp; Experimental|Pathology</PublicationSubjectCategoryList>\r\n
+        \   <ISSN>0023-6837</ISSN>\r\n    <ConferenceTitle>105th Annual Meeting of
+        the United-States-and-Canadian-Academy-of-Pathology</ConferenceTitle>\r\n
+        \   <ConferenceStartDate>2016-03-12T00:00:00</ConferenceStartDate>\r\n    <ConferenceEndDate>2016-03-18T00:00:00</ConferenceEndDate>\r\n
+        \   <ConferenceCity>SEATTLE</ConferenceCity>\r\n    <ConferenceStateCountry>WA</ConferenceStateCountry>\r\n
+        \   <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>5</OrdinalRank>\r\n    <NormalizedRank
+        xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
+        \   <CopyrightPublisher>NATURE PUBLISHING GROUP</CopyrightPublisher>\r\n    <CopyrightCity>NEW
+        YORK</CopyrightCity>\r\n    <PublicationImpactFactorList>3.676,2014,ClosestToPublicationYear|3.676,2014,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>30/123;MEDICINE, RESEARCH &amp; EXPERIMENTAL;2014;SC;ClosestToPublicationYear|13/75;PATHOLOGY;2014;SC;ClosestToPublicationYear|30/123;MEDICINE,
+        RESEARCH &amp; EXPERIMENTAL;2014;SC;MostRecentYear|13/75;PATHOLOGY;2014;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <AuthorCitationCountList>1,0,0|2,0,0|3,0,0|4,0,0</AuthorCitationCountList>\r\n
+        \   <CopyrightStateProvince>NY</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
+        STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
+        \   <PublicationItemID>75085002</PublicationItemID>\r\n    <Title>Pathological
+        changes in the liver and thyroid in broiler chickens fed by rapeseed cake</Title>\r\n
+        \   <Abstract>The aim of this study was to investigate pathological changes
+        in the liver and thyroid gland, to determine the possibility of using different
+        levels of rapeseed cake in diets for chickens. The experiment was carried
+        out on three hundred and sixty day-old male Cobb hybrid chickens, were fed
+        by three different feeding regimens (T-0 = %; T-5 = 5 %; T-10 = 10 % of rapeseed
+        cake, \"double low\" cultivar Bristol). The rapeseed cake contains 2.86 mu
+        mol/g of glucosinolate (Gls) and the ratio of erucic acid was 0.08 % of total
+        fatty acids. Introduction of 5 % rapeseed cake to chicken feed increased mortality,
+        but it was still an acceptable mortality rate. The average liver mass increased
+        in groups T-5 and T-10 compared to the control group. The thyroid glands of
+        the treated animals showed no significant increase in weight compared to the
+        control group. Histopathologically, liver and thyroid lesions were more prominent
+        in treated animals compared to the control group. In the treated group a significantly
+        higher rate of perivascular necrosis of hepatocytes, and perivascular mixtocellular
+        cell infiltration in the liver was found in the T-5 group. In the liver, there
+        was a significantly higher rate of congestion, degeneration of blood vessels,
+        vasculitis, and hydropic degeneration in the T-10 group. The thyroid glands
+        of the treated animals showed a significantly higher rate of scattered proliferation
+        of follicular epithelial cells, and mild interstitial fibrosis in the T-5
+        group. Severe interstitial fibrosis was pronounced only in the T-10 group,
+        with a significantly higher rate. The highest rate of follicular haemorrhages
+        was found in the T-10 group, followed by the T-5 group. The relation between
+        these rapeseed cake specific changes, and the undesirable effects specific
+        to rapeseed cake remain to be elucidated. However, the existence of causative
+        factors other than erucic acid and glucosinolates cannot be excluded. In conclusion,
+        the introduction of 5 % and 10 % rapeseed cake (Bristol-\"double low\" cultivar)
+        to broiler chickens caused liver and thyroid changes, but these changes were
+        not severe enough to have any major impact on production results.</Abstract>\r\n
+        \   <AuthorList>Artukovic,Branka,|Bedekovic,Dalibor,|Pintar,Jasna,|Tisljar,Marina,|Kos,Ivica,|Siric,Ivan,|Severin,Kresimir,|Janjecic,Zlatko,</AuthorList>\r\n
+        \   <AuthorCount>8</AuthorCount>\r\n    <KeywordList>CANOLA-MEAL|ANTINUTRITIONAL
+        FACTORS|CHEMICAL-CHANGES|PERFORMANCE|LAYING HENS|CARCASS|TURKEYS|DIETS|SOYBEAN
+        OIL|LAMB PHYSIOLOGY|thyroid gland|liver|broiler chickens|pathological changes|rapeseed
+        cake</KeywordList>\r\n    <DocumentTypeList>Article</DocumentTypeList>\r\n
+        \   <DocumentCategory>Journal Document</DocumentCategory>\r\n    <NumberOfReferences>61</NumberOfReferences>\r\n
+        \   <TimesCited>0</TimesCited>\r\n    <TimesNotSelfCited>0</TimesNotSelfCited>\r\n
+        \   <PMID xsi:nil=\"true\" />\r\n    <WoSItemID>000369517400007</WoSItemID>\r\n
+        \   <PublicationSourceTitle>VETERINARSKI ARHIV</PublicationSourceTitle>\r\n
+        \   <Volume>85</Volume>\r\n    <Issue>6</Issue>\r\n    <Pagination>657-676</Pagination>\r\n
+        \   <PublicationDate>2015-01-01T00:00:00</PublicationDate>\r\n    <PublicationYear>2015</PublicationYear>\r\n
+        \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Veterinary
+        Sciences</PublicationSubjectCategoryList>\r\n    <ISSN>0372-5480</ISSN>\r\n
+        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>6</OrdinalRank>\r\n
+        \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
+        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>UNIV ZAGREB
+        VET FACULTY</CopyrightPublisher>\r\n    <CopyrightCity>ZAGREB</CopyrightCity>\r\n
+        \   <PublicationImpactFactorList>0.362,2014,ClosestToPublicationYear|0.362,2014,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>103/133;VETERINARY SCIENCES;2014;SC;ClosestToPublicationYear|103/133;VETERINARY
+        SCIENCES;2014;SC;MostRecentYear</PublicationCategoryRankingList>\r\n    <AuthorCitationCountList>1,0,0|2,0,0|3,0,0|4,0,0|5,0,0|6,0,0|7,0,0|8,0,0</AuthorCitationCountList>\r\n
+        \   <CopyrightStateProvince />\r\n    <CopyrightCountry>CROATIA</CopyrightCountry>\r\n
+        \ </PublicationItem>\r\n  <PublicationItem>\r\n    <PublicationItemID>75081182</PublicationItemID>\r\n
+        \   <Title>A Novel PET Imaging Probe for the Detection and Monitoring of Translocator
+        Protein 18 kDa Expression in Pathological Disorders</Title>\r\n    <Abstract>A
+        new fluorine-substituted ligand, compound 1 (CB251), with a very high affinity
+        (Ki = 0.27 +/- 0.09 nM) and selectivity for the 18-kDa translocator protein
+        (TSPO), is presented as an attractive biomarker for the diagnosis of neuroinflammation,
+        neurodegeneration and tumour progression. To test compound 1 as a TSPO PET
+        imaging agent in vivo, 2-(2-(4-(2-[F-18]fluoroethoxy)phenyl)-6,8-dichloroimidazo[1,2-a]pyridin-3-yl)-N,
+        N-dipropylacetamide ([F-18]1; [F-18]CB251) was synthesized by nucleophilic
+        aliphatic substitution in a single-step radiolabelling procedure with a 11.1
+        +/- 3.5% (n = 14, decay corrected) radiochemical yield and over 99% radiochemical
+        purity. In animal PET imaging studies, [F-18]CB251 provided a clearly visible
+        image of the inflammatory lesion with the binding potential of the specifically
+        bound radioligand relative to the non-displaceable radioligand in tissue (BPND
+        1.83 +/- 0.18), in a neuroinflammation rat model based on the unilateral stereotaxic
+        injection of lipopolysaccharide (LPS), comparable to that of [C-11]PBR28 (BPND
+        1.55 +/- 0.41). [F-18]CB251 showed moderate tumour uptake (1.96 +/- 0.11%ID/g
+        at 1 h post injection) in human glioblastoma U87-MG xenografts. These results
+        suggest that [F-18]CB251 is a promising TSPO PET imaging agent for neuroinflammation
+        and TSPO-rich cancers.</Abstract>\r\n    <AuthorList>Perrone,Mara,|Moon,Byung,Seok|Park,Hyun,Soo|Laquintana,Valentino,|Jung,Jae,Ho|Cutrignelli,Annalisa,|Lopedota,Angela,|Franco,Massimo,|Kim,Sang,Eun|Lee,Byung,Chul|Denora,Nunzio,</AuthorList>\r\n
+        \   <AuthorCount>11</AuthorCount>\r\n    <KeywordList>NEUROINFLAMMATION|LIGANDS|RAT
+        MODEL|BRAIN|RADIOSYNTHESIS|BINDING-SITES|IN-VIVO EVALUATION|PERIPHERAL BENZODIAZEPINE-RECEPTOR|TSPO|IMIDAZOPYRIDINEACETAMIDES</KeywordList>\r\n
+        \   <DocumentTypeList>Article</DocumentTypeList>\r\n    <DocumentCategory>Journal
+        Document</DocumentCategory>\r\n    <NumberOfReferences>36</NumberOfReferences>\r\n
+        \   <TimesCited>0</TimesCited>\r\n    <TimesNotSelfCited>0</TimesNotSelfCited>\r\n
+        \   <PMID xsi:nil=\"true\" />\r\n    <WoSItemID>000369568400001</WoSItemID>\r\n
+        \   <PublicationSourceTitle>SCIENTIFIC REPORTS</PublicationSourceTitle>\r\n
+        \   <Volume>6</Volume>\r\n    <Pagination />\r\n    <PublicationDate>2016-02-08T00:00:00</PublicationDate>\r\n
+        \   <PublicationYear>2016</PublicationYear>\r\n    <PublicationType>Journal</PublicationType>\r\n
+        \   <PublicationSubjectCategoryList>Multidisciplinary Sciences</PublicationSubjectCategoryList>\r\n
+        \   <ISSN>2045-2322</ISSN>\r\n    <DOI>10.1038/srep20422</DOI>\r\n    <ConferenceStartDate
+        xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank
+        xsi:nil=\"true\" />\r\n    <OrdinalRank>7</OrdinalRank>\r\n    <NormalizedRank
+        xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
+        \   <CopyrightPublisher>NATURE PUBLISHING GROUP</CopyrightPublisher>\r\n    <CopyrightCity>LONDON</CopyrightCity>\r\n
+        \   <ArticleNumber>20422</ArticleNumber>\r\n    <PublicationImpactFactorList>5.578,2014,ClosestToPublicationYear|5.578,2014,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>5/56;MULTIDISCIPLINARY SCIENCES;2014;SC;ClosestToPublicationYear|5/56;MULTIDISCIPLINARY
+        SCIENCES;2014;SC;MostRecentYear</PublicationCategoryRankingList>\r\n    <AuthorCitationCountList>1,0,0|2,0,0|3,0,0|4,0,0|5,0,0|6,0,0|7,0,0|8,0,0|9,0,0|10,0,0|11,0,0</AuthorCitationCountList>\r\n
+        \   <CopyrightStateProvince />\r\n    <CopyrightCountry>UNITED KINGDOM</CopyrightCountry>\r\n
+        \ </PublicationItem>\r\n  <PublicationItem>\r\n    <PublicationItemID>75078981</PublicationItemID>\r\n
+        \   <Title>Clinical Significance of the Pathological Evaluation of Non-Neoplastic
+        Renal Tissue in Post-Radical Nephrectomy</Title>\r\n    <Abstract />\r\n    <AuthorList>Moussa,Madeleine,|Mamut,Adiel,|Ibrahim,Gena,|Luke,Patrick,|Cui,Fulan,|Rowe,Neal,|Gabril,Manal,</AuthorList>\r\n
+        \   <AuthorCount>7</AuthorCount>\r\n    <KeywordList />\r\n    <DocumentTypeList>Meeting
+        Abstract</DocumentTypeList>\r\n    <DocumentCategory>Conference Proceeding
+        Document</DocumentCategory>\r\n    <NumberOfReferences xsi:nil=\"true\" />\r\n
+        \   <TimesCited>0</TimesCited>\r\n    <TimesNotSelfCited>0</TimesNotSelfCited>\r\n
+        \   <PMID xsi:nil=\"true\" />\r\n    <WoSItemID>000369270702348</WoSItemID>\r\n
+        \   <PublicationSourceTitle>LABORATORY INVESTIGATION</PublicationSourceTitle>\r\n
+        \   <Volume>96</Volume>\r\n    <Pagination>408A-408A</Pagination>\r\n    <PublicationDate>2016-02-01T00:00:00</PublicationDate>\r\n
+        \   <PublicationYear>2016</PublicationYear>\r\n    <PublicationType>Journal</PublicationType>\r\n
+        \   <PublicationSubjectCategoryList>Medicine, Research &amp; Experimental|Pathology</PublicationSubjectCategoryList>\r\n
+        \   <ISSN>0023-6837</ISSN>\r\n    <ConferenceTitle>105th Annual Meeting of
+        the United-States-and-Canadian-Academy-of-Pathology</ConferenceTitle>\r\n
+        \   <ConferenceStartDate>2016-03-12T00:00:00</ConferenceStartDate>\r\n    <ConferenceEndDate>2016-03-18T00:00:00</ConferenceEndDate>\r\n
+        \   <ConferenceCity>SEATTLE</ConferenceCity>\r\n    <ConferenceStateCountry>WA</ConferenceStateCountry>\r\n
+        \   <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>8</OrdinalRank>\r\n    <NormalizedRank
+        xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
+        \   <CopyrightPublisher>NATURE PUBLISHING GROUP</CopyrightPublisher>\r\n    <CopyrightCity>NEW
+        YORK</CopyrightCity>\r\n    <PublicationImpactFactorList>3.676,2014,ClosestToPublicationYear|3.676,2014,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>30/123;MEDICINE, RESEARCH &amp; EXPERIMENTAL;2014;SC;ClosestToPublicationYear|13/75;PATHOLOGY;2014;SC;ClosestToPublicationYear|30/123;MEDICINE,
+        RESEARCH &amp; EXPERIMENTAL;2014;SC;MostRecentYear|13/75;PATHOLOGY;2014;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <AuthorCitationCountList>1,0,0|2,0,0|3,0,0|4,0,0|5,0,0|6,0,0|7,0,0</AuthorCitationCountList>\r\n
+        \   <CopyrightStateProvince>NY</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
+        STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
+        \   <PublicationItemID>75077462</PublicationItemID>\r\n    <Title>Expression
+        profiling of white sponge nevus by RNA sequencing revealed pathological pathways
+        (vol 10, 72, 2015)</Title>\r\n    <Abstract />\r\n    <AuthorList>Cai,Wenping,|Jiang,Beizhan,|Feng,Tienan,|Xue,Jinfeng,|Yang,Jianhua,|Chen,Zhenghu,|Liu,Junjun,|Wei,Rongbin,|Zhao,Shouliang,|Wang,Xiaoping,|Liu,Shangfeng,</AuthorList>\r\n
+        \   <AuthorCount>11</AuthorCount>\r\n    <KeywordList />\r\n    <DocumentTypeList>Correction</DocumentTypeList>\r\n
+        \   <DocumentCategory>Other</DocumentCategory>\r\n    <NumberOfReferences>1</NumberOfReferences>\r\n
+        \   <TimesCited>0</TimesCited>\r\n    <TimesNotSelfCited>0</TimesNotSelfCited>\r\n
+        \   <PMID xsi:nil=\"true\" />\r\n    <WoSItemID>000369838900001</WoSItemID>\r\n
+        \   <PublicationSourceTitle>ORPHANET JOURNAL OF RARE DISEASES</PublicationSourceTitle>\r\n
+        \   <Volume>10</Volume>\r\n    <Pagination />\r\n    <PublicationDate>2015-09-23T00:00:00</PublicationDate>\r\n
+        \   <PublicationYear>2015</PublicationYear>\r\n    <PublicationType>Journal</PublicationType>\r\n
+        \   <PublicationSubjectCategoryList>Genetics &amp; Heredity|Medicine, Research
+        &amp; Experimental</PublicationSubjectCategoryList>\r\n    <ISSN>1750-1172</ISSN>\r\n
+        \   <DOI>10.1186/s13023-015-0308-8</DOI>\r\n    <ConferenceStartDate xsi:nil=\"true\"
+        />\r\n    <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank xsi:nil=\"true\"
+        />\r\n    <OrdinalRank>9</OrdinalRank>\r\n    <NormalizedRank xsi:nil=\"true\"
+        />\r\n    <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
+        \   <CopyrightPublisher>BIOMED CENTRAL LTD</CopyrightPublisher>\r\n    <CopyrightCity>LONDON</CopyrightCity>\r\n
+        \   <ArticleNumber>119</ArticleNumber>\r\n    <PublicationImpactFactorList>3.358,2014,ClosestToPublicationYear|3.358,2014,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>56/167;GENETICS &amp; HEREDITY;2014;SC;ClosestToPublicationYear|37/123;MEDICINE,
+        RESEARCH &amp; EXPERIMENTAL;2014;SC;ClosestToPublicationYear|56/167;GENETICS
+        &amp; HEREDITY;2014;SC;MostRecentYear|37/123;MEDICINE, RESEARCH &amp; EXPERIMENTAL;2014;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <AuthorCitationCountList>1,0,0|2,0,0|3,0,0|4,0,0|5,0,0|6,0,0|7,0,0|8,0,0|9,0,0|10,0,0|11,0,0</AuthorCitationCountList>\r\n
+        \   <CopyrightStateProvince />\r\n    <CopyrightCountry>UNITED KINGDOM</CopyrightCountry>\r\n
+        \ </PublicationItem>\r\n  <PublicationItem>\r\n    <PublicationItemID>75077342</PublicationItemID>\r\n
+        \   <Title>Evaluation of the Clinical TNM Staging System, Pathological TNM
+        Staging System, and BCLC Staging System of Hepatocellular Carcinoma: A Study
+        of 1021 Cases of Curative Liver Resection</Title>\r\n    <Abstract />\r\n
+        \   <AuthorList>Feng,Tian,|Yuan,Ji,</AuthorList>\r\n    <AuthorCount>2</AuthorCount>\r\n
+        \   <KeywordList />\r\n    <DocumentTypeList>Meeting Abstract</DocumentTypeList>\r\n
+        \   <DocumentCategory>Conference Proceeding Document</DocumentCategory>\r\n
+        \   <NumberOfReferences xsi:nil=\"true\" />\r\n    <TimesCited>0</TimesCited>\r\n
+        \   <TimesNotSelfCited>0</TimesNotSelfCited>\r\n    <PMID xsi:nil=\"true\"
+        />\r\n    <WoSItemID>000369270702393</WoSItemID>\r\n    <PublicationSourceTitle>LABORATORY
+        INVESTIGATION</PublicationSourceTitle>\r\n    <Volume>96</Volume>\r\n    <Pagination>419A-419A</Pagination>\r\n
+        \   <PublicationDate>2016-02-01T00:00:00</PublicationDate>\r\n    <PublicationYear>2016</PublicationYear>\r\n
+        \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Medicine,
+        Research &amp; Experimental|Pathology</PublicationSubjectCategoryList>\r\n
+        \   <ISSN>0023-6837</ISSN>\r\n    <ConferenceTitle>105th Annual Meeting of
+        the United-States-and-Canadian-Academy-of-Pathology</ConferenceTitle>\r\n
+        \   <ConferenceStartDate>2016-03-12T00:00:00</ConferenceStartDate>\r\n    <ConferenceEndDate>2016-03-18T00:00:00</ConferenceEndDate>\r\n
+        \   <ConferenceCity>SEATTLE</ConferenceCity>\r\n    <ConferenceStateCountry>WA</ConferenceStateCountry>\r\n
+        \   <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>10</OrdinalRank>\r\n    <NormalizedRank
+        xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
+        \   <CopyrightPublisher>NATURE PUBLISHING GROUP</CopyrightPublisher>\r\n    <CopyrightCity>NEW
+        YORK</CopyrightCity>\r\n    <PublicationImpactFactorList>3.676,2014,ClosestToPublicationYear|3.676,2014,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>30/123;MEDICINE, RESEARCH &amp; EXPERIMENTAL;2014;SC;ClosestToPublicationYear|13/75;PATHOLOGY;2014;SC;ClosestToPublicationYear|30/123;MEDICINE,
+        RESEARCH &amp; EXPERIMENTAL;2014;SC;MostRecentYear|13/75;PATHOLOGY;2014;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <AuthorCitationCountList>1,0,0|2,0,0</AuthorCitationCountList>\r\n    <CopyrightStateProvince>NY</CopyrightStateProvince>\r\n
+        \   <CopyrightCountry>UNITED STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n
+        \ <PublicationItem>\r\n    <PublicationItemID>75072359</PublicationItemID>\r\n
+        \   <Title>Biomarkers Predicting Pathological Complete Response to Neoadjuvant
+        Chemotherapy in Breast Cancer</Title>\r\n    <Abstract />\r\n    <AuthorList>Li,Xiaoxian,(Bill)|Krishnamurti,Uma,|Bhattarai,Shristi,|Klimov,Sergey,|Reid,Michelle,|Aneja,Ritu,</AuthorList>\r\n
+        \   <AuthorCount>6</AuthorCount>\r\n    <KeywordList />\r\n    <DocumentTypeList>Meeting
+        Abstract</DocumentTypeList>\r\n    <DocumentCategory>Conference Proceeding
+        Document</DocumentCategory>\r\n    <NumberOfReferences xsi:nil=\"true\" />\r\n
+        \   <TimesCited>0</TimesCited>\r\n    <TimesNotSelfCited>0</TimesNotSelfCited>\r\n
+        \   <PMID xsi:nil=\"true\" />\r\n    <WoSItemID>000369270700208</WoSItemID>\r\n
+        \   <PublicationSourceTitle>LABORATORY INVESTIGATION</PublicationSourceTitle>\r\n
+        \   <Volume>96</Volume>\r\n    <Pagination>54A-54A</Pagination>\r\n    <PublicationDate>2016-02-01T00:00:00</PublicationDate>\r\n
+        \   <PublicationYear>2016</PublicationYear>\r\n    <PublicationType>Journal</PublicationType>\r\n
+        \   <PublicationSubjectCategoryList>Medicine, Research &amp; Experimental|Pathology</PublicationSubjectCategoryList>\r\n
+        \   <ISSN>0023-6837</ISSN>\r\n    <ConferenceTitle>105th Annual Meeting of
+        the United-States-and-Canadian-Academy-of-Pathology</ConferenceTitle>\r\n
+        \   <ConferenceStartDate>2016-03-12T00:00:00</ConferenceStartDate>\r\n    <ConferenceEndDate>2016-03-18T00:00:00</ConferenceEndDate>\r\n
+        \   <ConferenceCity>SEATTLE</ConferenceCity>\r\n    <ConferenceStateCountry>WA</ConferenceStateCountry>\r\n
+        \   <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>11</OrdinalRank>\r\n    <NormalizedRank
+        xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
+        \   <CopyrightPublisher>NATURE PUBLISHING GROUP</CopyrightPublisher>\r\n    <CopyrightCity>NEW
+        YORK</CopyrightCity>\r\n    <PublicationImpactFactorList>3.676,2014,ClosestToPublicationYear|3.676,2014,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>30/123;MEDICINE, RESEARCH &amp; EXPERIMENTAL;2014;SC;ClosestToPublicationYear|13/75;PATHOLOGY;2014;SC;ClosestToPublicationYear|30/123;MEDICINE,
+        RESEARCH &amp; EXPERIMENTAL;2014;SC;MostRecentYear|13/75;PATHOLOGY;2014;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <AuthorCitationCountList>1,0,0|2,0,0|3,0,0|4,0,0|5,0,0|6,0,0</AuthorCitationCountList>\r\n
+        \   <CopyrightStateProvince>NY</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
+        STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
+        \   <PublicationItemID>75071950</PublicationItemID>\r\n    <Title>The Expanded
+        Eight-Probe Melanoma Fluorescence In Situ Hybridization (FISH) Assay as an
+        Ancillary Tool in Diagnosing Ambiguous Melanocytic Lesions: An Updated Clinical,
+        Pathological and Cytogenetic Review of 416 Cases</Title>\r\n    <Abstract
+        />\r\n    <AuthorList>Guo,Ruifeng,|Shah,Kabeer,|Erickson,Lori,A|Flotte,Thomas,|Sukov,William,R</AuthorList>\r\n
+        \   <AuthorCount>5</AuthorCount>\r\n    <KeywordList />\r\n    <DocumentTypeList>Meeting
+        Abstract</DocumentTypeList>\r\n    <DocumentCategory>Conference Proceeding
+        Document</DocumentCategory>\r\n    <NumberOfReferences xsi:nil=\"true\" />\r\n
+        \   <TimesCited>0</TimesCited>\r\n    <TimesNotSelfCited>0</TimesNotSelfCited>\r\n
+        \   <PMID xsi:nil=\"true\" />\r\n    <WoSItemID>000369270700501</WoSItemID>\r\n
+        \   <PublicationSourceTitle>LABORATORY INVESTIGATION</PublicationSourceTitle>\r\n
+        \   <Volume>96</Volume>\r\n    <Pagination>128A-129A</Pagination>\r\n    <PublicationDate>2016-02-01T00:00:00</PublicationDate>\r\n
+        \   <PublicationYear>2016</PublicationYear>\r\n    <PublicationType>Journal</PublicationType>\r\n
+        \   <PublicationSubjectCategoryList>Medicine, Research &amp; Experimental|Pathology</PublicationSubjectCategoryList>\r\n
+        \   <ISSN>0023-6837</ISSN>\r\n    <ConferenceTitle>105th Annual Meeting of
+        the United-States-and-Canadian-Academy-of-Pathology</ConferenceTitle>\r\n
+        \   <ConferenceStartDate>2016-03-12T00:00:00</ConferenceStartDate>\r\n    <ConferenceEndDate>2016-03-18T00:00:00</ConferenceEndDate>\r\n
+        \   <ConferenceCity>SEATTLE</ConferenceCity>\r\n    <ConferenceStateCountry>WA</ConferenceStateCountry>\r\n
+        \   <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>12</OrdinalRank>\r\n    <NormalizedRank
+        xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
+        \   <CopyrightPublisher>NATURE PUBLISHING GROUP</CopyrightPublisher>\r\n    <CopyrightCity>NEW
+        YORK</CopyrightCity>\r\n    <PublicationImpactFactorList>3.676,2014,ClosestToPublicationYear|3.676,2014,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>30/123;MEDICINE, RESEARCH &amp; EXPERIMENTAL;2014;SC;ClosestToPublicationYear|13/75;PATHOLOGY;2014;SC;ClosestToPublicationYear|30/123;MEDICINE,
+        RESEARCH &amp; EXPERIMENTAL;2014;SC;MostRecentYear|13/75;PATHOLOGY;2014;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <AuthorCitationCountList>1,0,0|2,0,0|3,0,0|4,0,0|5,0,0</AuthorCitationCountList>\r\n
+        \   <CopyrightStateProvince>NY</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
+        STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
+        \   <PublicationItemID>75069067</PublicationItemID>\r\n    <Title>Validation
+        of the Mobile Whole Slide Imaging as a Low Resource Acquisition and Transport
+        Technique for Microscopic Pathological Specimens</Title>\r\n    <Abstract
+        />\r\n    <AuthorList>Jelloul,Fatima-Zahra,|Auguste,Louis,J|Palsana,Dhaval,H|Bhuiya,Tawfiqul,|Esposito,Michael,J</AuthorList>\r\n
+        \   <AuthorCount>5</AuthorCount>\r\n    <KeywordList />\r\n    <DocumentTypeList>Meeting
+        Abstract</DocumentTypeList>\r\n    <DocumentCategory>Conference Proceeding
+        Document</DocumentCategory>\r\n    <NumberOfReferences xsi:nil=\"true\" />\r\n
+        \   <TimesCited>0</TimesCited>\r\n    <TimesNotSelfCited>0</TimesNotSelfCited>\r\n
+        \   <PMID xsi:nil=\"true\" />\r\n    <WoSItemID>000369270702302</WoSItemID>\r\n
+        \   <PublicationSourceTitle>LABORATORY INVESTIGATION</PublicationSourceTitle>\r\n
+        \   <Volume>96</Volume>\r\n    <Pagination>396A-396A</Pagination>\r\n    <PublicationDate>2016-02-01T00:00:00</PublicationDate>\r\n
+        \   <PublicationYear>2016</PublicationYear>\r\n    <PublicationType>Journal</PublicationType>\r\n
+        \   <PublicationSubjectCategoryList>Medicine, Research &amp; Experimental|Pathology</PublicationSubjectCategoryList>\r\n
+        \   <ISSN>0023-6837</ISSN>\r\n    <ConferenceTitle>105th Annual Meeting of
+        the United-States-and-Canadian-Academy-of-Pathology</ConferenceTitle>\r\n
+        \   <ConferenceStartDate>2016-03-12T00:00:00</ConferenceStartDate>\r\n    <ConferenceEndDate>2016-03-18T00:00:00</ConferenceEndDate>\r\n
+        \   <ConferenceCity>SEATTLE</ConferenceCity>\r\n    <ConferenceStateCountry>WA</ConferenceStateCountry>\r\n
+        \   <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>13</OrdinalRank>\r\n    <NormalizedRank
+        xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
+        \   <CopyrightPublisher>NATURE PUBLISHING GROUP</CopyrightPublisher>\r\n    <CopyrightCity>NEW
+        YORK</CopyrightCity>\r\n    <PublicationImpactFactorList>3.676,2014,ClosestToPublicationYear|3.676,2014,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>30/123;MEDICINE, RESEARCH &amp; EXPERIMENTAL;2014;SC;ClosestToPublicationYear|13/75;PATHOLOGY;2014;SC;ClosestToPublicationYear|30/123;MEDICINE,
+        RESEARCH &amp; EXPERIMENTAL;2014;SC;MostRecentYear|13/75;PATHOLOGY;2014;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <AuthorCitationCountList>1,0,0|2,0,0|3,0,0|4,0,0|5,0,0</AuthorCitationCountList>\r\n
+        \   <CopyrightStateProvince>NY</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
+        STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
+        \   <PublicationItemID>75068301</PublicationItemID>\r\n    <Title>False Negative
+        HPV Tests in Women with High Grade Squamous Intraepithelial Lesion or Carcinoma
+        Pap Tests: Clinical-Pathological Correlation</Title>\r\n    <Abstract />\r\n
+        \   <AuthorList>Crumley,Suzanne,M|Zhou,Haijun,|Lyons,Genevieve,R|Bassett,Roland,L|Khanna,Abha,|Staerkel,Gregg,|Guo,Ming,</AuthorList>\r\n
+        \   <AuthorCount>7</AuthorCount>\r\n    <KeywordList />\r\n    <DocumentTypeList>Meeting
+        Abstract</DocumentTypeList>\r\n    <DocumentCategory>Conference Proceeding
+        Document</DocumentCategory>\r\n    <NumberOfReferences xsi:nil=\"true\" />\r\n
+        \   <TimesCited>0</TimesCited>\r\n    <TimesNotSelfCited>0</TimesNotSelfCited>\r\n
+        \   <PMID xsi:nil=\"true\" />\r\n    <WoSItemID>000369270700372</WoSItemID>\r\n
+        \   <PublicationSourceTitle>LABORATORY INVESTIGATION</PublicationSourceTitle>\r\n
+        \   <Volume>96</Volume>\r\n    <Pagination>95A-95A</Pagination>\r\n    <PublicationDate>2016-02-01T00:00:00</PublicationDate>\r\n
+        \   <PublicationYear>2016</PublicationYear>\r\n    <PublicationType>Journal</PublicationType>\r\n
+        \   <PublicationSubjectCategoryList>Medicine, Research &amp; Experimental|Pathology</PublicationSubjectCategoryList>\r\n
+        \   <ISSN>0023-6837</ISSN>\r\n    <ConferenceTitle>105th Annual Meeting of
+        the United-States-and-Canadian-Academy-of-Pathology</ConferenceTitle>\r\n
+        \   <ConferenceStartDate>2016-03-12T00:00:00</ConferenceStartDate>\r\n    <ConferenceEndDate>2016-03-18T00:00:00</ConferenceEndDate>\r\n
+        \   <ConferenceCity>SEATTLE</ConferenceCity>\r\n    <ConferenceStateCountry>WA</ConferenceStateCountry>\r\n
+        \   <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>14</OrdinalRank>\r\n    <NormalizedRank
+        xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
+        \   <CopyrightPublisher>NATURE PUBLISHING GROUP</CopyrightPublisher>\r\n    <CopyrightCity>NEW
+        YORK</CopyrightCity>\r\n    <PublicationImpactFactorList>3.676,2014,ClosestToPublicationYear|3.676,2014,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>30/123;MEDICINE, RESEARCH &amp; EXPERIMENTAL;2014;SC;ClosestToPublicationYear|13/75;PATHOLOGY;2014;SC;ClosestToPublicationYear|30/123;MEDICINE,
+        RESEARCH &amp; EXPERIMENTAL;2014;SC;MostRecentYear|13/75;PATHOLOGY;2014;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <AuthorCitationCountList>1,0,0|2,0,0|3,0,0|4,0,0|5,0,0|6,0,0|7,0,0</AuthorCitationCountList>\r\n
+        \   <CopyrightStateProvince>NY</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
+        STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
+        \   <PublicationItemID>75066881</PublicationItemID>\r\n    <Title>Commentary:
+        Possible involvement of lysosomal dysfunction in pathological changes of the
+        brain in aged progranulin-deficient mice</Title>\r\n    <Abstract />\r\n    <AuthorList>Sargeant,Timothy,J</AuthorList>\r\n
+        \   <AuthorCount>1</AuthorCount>\r\n    <KeywordList>MODEL|DISEASE|RISK|NEURONAL
+        CEROID-LIPOFUSCINOSIS|MUTATIONS|GAUCHER|neurodegenerative diseases|Parkinson's
+        disease|lysosomes|Alzheimer's disease (AD)|lysosomal storage diseases|progranulin|frontotemporal
+        dementia (FTD)|glucocerebrosidase gene</KeywordList>\r\n    <DocumentTypeList>Editorial
+        Material</DocumentTypeList>\r\n    <DocumentCategory>Other</DocumentCategory>\r\n
+        \   <NumberOfReferences>16</NumberOfReferences>\r\n    <TimesCited>0</TimesCited>\r\n
+        \   <TimesNotSelfCited>0</TimesNotSelfCited>\r\n    <PMID xsi:nil=\"true\"
+        />\r\n    <WoSItemID>000369400200001</WoSItemID>\r\n    <PublicationSourceTitle>FRONTIERS
+        IN AGING NEUROSCIENCE</PublicationSourceTitle>\r\n    <Volume>8</Volume>\r\n
+        \   <Pagination />\r\n    <PublicationDate>2016-02-03T00:00:00</PublicationDate>\r\n
+        \   <PublicationYear>2016</PublicationYear>\r\n    <PublicationType>Journal</PublicationType>\r\n
+        \   <PublicationSubjectCategoryList>Geriatrics &amp; Gerontology|Neurosciences</PublicationSubjectCategoryList>\r\n
+        \   <ISSN>1663-4365</ISSN>\r\n    <DOI>10.3389/fnagi.2016.00011</DOI>\r\n
+        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>15</OrdinalRank>\r\n
+        \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
+        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>FRONTIERS
+        MEDIA SA</CopyrightPublisher>\r\n    <CopyrightCity>LAUSANNE</CopyrightCity>\r\n
+        \   <ArticleNumber>11</ArticleNumber>\r\n    <PublicationImpactFactorList>4,2014,ClosestToPublicationYear|4,2014,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>8/50;GERIATRICS &amp; GERONTOLOGY;2014;SC;ClosestToPublicationYear|65/252;NEUROSCIENCES;2014;SC;ClosestToPublicationYear|8/50;GERIATRICS
+        &amp; GERONTOLOGY;2014;SC;MostRecentYear|65/252;NEUROSCIENCES;2014;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <AuthorCitationCountList>1,0,0</AuthorCitationCountList>\r\n    <CopyrightStateProvince
+        />\r\n    <CopyrightCountry>SWITZERLAND</CopyrightCountry>\r\n  </PublicationItem>\r\n
+        \ <PublicationItem>\r\n    <PublicationItemID>75062582</PublicationItemID>\r\n
+        \   <Title>The relationship between the preoperative plasma level of HIF-1
+        alpha and clinic pathological features, prognosis in non-small cell lung cancer</Title>\r\n
+        \   <Abstract>Studies have found that hypoxia is the most common feature in
+        all of solid tumor progression, thus it has become a central issue in tumor
+        physiology and cancer treatment. Hypoxia-inducible factor-1 alpha (HIF-1 alpha)
+        could make the tumor produce adaptive biological response to hypoxia and become
+        more aggressive. In this paper, we used enzyme linked immune sorbent assay
+        to detect the plasma level of HIF-1 alpha in patients with NSCLC and healthy
+        volunteers. The results indicated that the 5-year survival rate of patients
+        with squamous cell carcinomas is negatively correlated with the plasma level
+        of HIF-1 alpha and the 5-year survival rate of patients with low level of
+        HIF-1 alpha is higher than those with high level of HIF-1 alpha. The plasma
+        level of HIF-1 alpha in patients with NSCLC is significantly higher than healthy
+        volunteers. There is no significant correlation between the plasma level of
+        HIF-1 alpha and clinical features of NSCLC patients. In a word, there is no
+        connection between the plasma level of HIF-1 alpha and the clinical features
+        of NSCLC patients as well as their prognosis. In stratified analysis, the
+        plasma level of HIF-1 alpha in patients with squamous cell carcinoma is associated
+        with regional lymph node status.</Abstract>\r\n    <AuthorList>He,Jiabei,|Hu,Ying,|Hu,Mingming,|Zhang,Siyi,|Li,Baolan,</AuthorList>\r\n
+        \   <AuthorCount>5</AuthorCount>\r\n    <KeywordList>PHASE-II|VINORELBINE|VEGF|HIF-1|TUMOR-GROWTH|PATHWAY|ANGIOGENESIS|EXPRESSION|HYPOXIA-INDUCIBLE
+        FACTORS|RADIATION-RESISTANCE</KeywordList>\r\n    <DocumentTypeList>Article</DocumentTypeList>\r\n
+        \   <DocumentCategory>Journal Document</DocumentCategory>\r\n    <NumberOfReferences>37</NumberOfReferences>\r\n
+        \   <TimesCited>0</TimesCited>\r\n    <TimesNotSelfCited>0</TimesNotSelfCited>\r\n
+        \   <PMID xsi:nil=\"true\" />\r\n    <WoSItemID>000369781300001</WoSItemID>\r\n
+        \   <PublicationSourceTitle>SCIENTIFIC REPORTS</PublicationSourceTitle>\r\n
+        \   <Volume>6</Volume>\r\n    <Pagination />\r\n    <PublicationDate>2016-02-08T00:00:00</PublicationDate>\r\n
+        \   <PublicationYear>2016</PublicationYear>\r\n    <PublicationType>Journal</PublicationType>\r\n
+        \   <PublicationSubjectCategoryList>Multidisciplinary Sciences</PublicationSubjectCategoryList>\r\n
+        \   <ISSN>2045-2322</ISSN>\r\n    <DOI>10.1038/srep20586</DOI>\r\n    <ConferenceStartDate
+        xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank
+        xsi:nil=\"true\" />\r\n    <OrdinalRank>16</OrdinalRank>\r\n    <NormalizedRank
+        xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
+        \   <CopyrightPublisher>NATURE PUBLISHING GROUP</CopyrightPublisher>\r\n    <CopyrightCity>LONDON</CopyrightCity>\r\n
+        \   <ArticleNumber>20586</ArticleNumber>\r\n    <PublicationImpactFactorList>5.578,2014,ClosestToPublicationYear|5.578,2014,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>5/56;MULTIDISCIPLINARY SCIENCES;2014;SC;ClosestToPublicationYear|5/56;MULTIDISCIPLINARY
+        SCIENCES;2014;SC;MostRecentYear</PublicationCategoryRankingList>\r\n    <AuthorCitationCountList>1,0,0|2,0,0|3,0,0|4,0,0|5,0,0</AuthorCitationCountList>\r\n
+        \   <CopyrightStateProvince />\r\n    <CopyrightCountry>UNITED KINGDOM</CopyrightCountry>\r\n
+        \ </PublicationItem>\r\n  <PublicationItem>\r\n    <PublicationItemID>75060222</PublicationItemID>\r\n
+        \   <Title>Clinical-Pathological Analysis of Women with Proliferative Breast
+        Disease Undergoing Multiple Benign Biopsies: A Mayo Benign Breast Disease
+        Cohort Study</Title>\r\n    <Abstract />\r\n    <AuthorList>Carter,Jodi,M|Radisky,Derek,C|Frank,Ryan,D|Vierkant,Robert,A|Winham,Stacey,|Frost,Marlene,H|Degnim,Amy,|Visscher,Daniel,W</AuthorList>\r\n
+        \   <AuthorCount>8</AuthorCount>\r\n    <KeywordList />\r\n    <DocumentTypeList>Meeting
+        Abstract</DocumentTypeList>\r\n    <DocumentCategory>Conference Proceeding
+        Document</DocumentCategory>\r\n    <NumberOfReferences xsi:nil=\"true\" />\r\n
+        \   <TimesCited>0</TimesCited>\r\n    <TimesNotSelfCited>0</TimesNotSelfCited>\r\n
+        \   <PMID xsi:nil=\"true\" />\r\n    <WoSItemID>000369270700133</WoSItemID>\r\n
+        \   <PublicationSourceTitle>LABORATORY INVESTIGATION</PublicationSourceTitle>\r\n
+        \   <Volume>96</Volume>\r\n    <Pagination>35A-35A</Pagination>\r\n    <PublicationDate>2016-02-01T00:00:00</PublicationDate>\r\n
+        \   <PublicationYear>2016</PublicationYear>\r\n    <PublicationType>Journal</PublicationType>\r\n
+        \   <PublicationSubjectCategoryList>Medicine, Research &amp; Experimental|Pathology</PublicationSubjectCategoryList>\r\n
+        \   <ISSN>0023-6837</ISSN>\r\n    <ConferenceTitle>105th Annual Meeting of
+        the United-States-and-Canadian-Academy-of-Pathology</ConferenceTitle>\r\n
+        \   <ConferenceStartDate>2016-03-12T00:00:00</ConferenceStartDate>\r\n    <ConferenceEndDate>2016-03-18T00:00:00</ConferenceEndDate>\r\n
+        \   <ConferenceCity>SEATTLE</ConferenceCity>\r\n    <ConferenceStateCountry>WA</ConferenceStateCountry>\r\n
+        \   <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>17</OrdinalRank>\r\n    <NormalizedRank
+        xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
+        \   <CopyrightPublisher>NATURE PUBLISHING GROUP</CopyrightPublisher>\r\n    <CopyrightCity>NEW
+        YORK</CopyrightCity>\r\n    <PublicationImpactFactorList>3.676,2014,ClosestToPublicationYear|3.676,2014,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>30/123;MEDICINE, RESEARCH &amp; EXPERIMENTAL;2014;SC;ClosestToPublicationYear|13/75;PATHOLOGY;2014;SC;ClosestToPublicationYear|30/123;MEDICINE,
+        RESEARCH &amp; EXPERIMENTAL;2014;SC;MostRecentYear|13/75;PATHOLOGY;2014;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <AuthorCitationCountList>1,0,0|2,0,0|3,0,0|4,0,0|5,0,0|6,0,0|7,0,0|8,0,0</AuthorCitationCountList>\r\n
+        \   <CopyrightStateProvince>NY</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
+        STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
+        \   <PublicationItemID>75060126</PublicationItemID>\r\n    <Title>Frequency
+        and Pathological Characteristics of Drug-Induced Liver Injury in a Tertiary
+        Medical Center</Title>\r\n    <Abstract />\r\n    <AuthorList>Ettel,Mark,|Acosta-Gonzalez,Gabriel,|Eze,Ogechukwu,|Gera,Shweta,|Hajdu,Cristina,H|Park,James,S|Sigal,Samuel,|Xu,Ruliang,</AuthorList>\r\n
+        \   <AuthorCount>8</AuthorCount>\r\n    <KeywordList />\r\n    <DocumentTypeList>Meeting
+        Abstract</DocumentTypeList>\r\n    <DocumentCategory>Conference Proceeding
+        Document</DocumentCategory>\r\n    <NumberOfReferences xsi:nil=\"true\" />\r\n
+        \   <TimesCited>0</TimesCited>\r\n    <TimesNotSelfCited>0</TimesNotSelfCited>\r\n
+        \   <PMID xsi:nil=\"true\" />\r\n    <WoSItemID>000369270702392</WoSItemID>\r\n
+        \   <PublicationSourceTitle>LABORATORY INVESTIGATION</PublicationSourceTitle>\r\n
+        \   <Volume>96</Volume>\r\n    <Pagination>419A-419A</Pagination>\r\n    <PublicationDate>2016-02-01T00:00:00</PublicationDate>\r\n
+        \   <PublicationYear>2016</PublicationYear>\r\n    <PublicationType>Journal</PublicationType>\r\n
+        \   <PublicationSubjectCategoryList>Medicine, Research &amp; Experimental|Pathology</PublicationSubjectCategoryList>\r\n
+        \   <ISSN>0023-6837</ISSN>\r\n    <ConferenceTitle>105th Annual Meeting of
+        the United-States-and-Canadian-Academy-of-Pathology</ConferenceTitle>\r\n
+        \   <ConferenceStartDate>2016-03-12T00:00:00</ConferenceStartDate>\r\n    <ConferenceEndDate>2016-03-18T00:00:00</ConferenceEndDate>\r\n
+        \   <ConferenceCity>SEATTLE</ConferenceCity>\r\n    <ConferenceStateCountry>WA</ConferenceStateCountry>\r\n
+        \   <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>18</OrdinalRank>\r\n    <NormalizedRank
+        xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
+        \   <CopyrightPublisher>NATURE PUBLISHING GROUP</CopyrightPublisher>\r\n    <CopyrightCity>NEW
+        YORK</CopyrightCity>\r\n    <PublicationImpactFactorList>3.676,2014,ClosestToPublicationYear|3.676,2014,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>30/123;MEDICINE, RESEARCH &amp; EXPERIMENTAL;2014;SC;ClosestToPublicationYear|13/75;PATHOLOGY;2014;SC;ClosestToPublicationYear|30/123;MEDICINE,
+        RESEARCH &amp; EXPERIMENTAL;2014;SC;MostRecentYear|13/75;PATHOLOGY;2014;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <AuthorCitationCountList>1,0,0|2,0,0|3,0,0|4,0,0|5,0,0|6,0,0|7,0,0|8,0,0</AuthorCitationCountList>\r\n
+        \   <CopyrightStateProvince>NY</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
+        STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
+        \   <PublicationItemID>75059314</PublicationItemID>\r\n    <Title>Pathological
+        Staging of Fibrosis by High-Resolution Magnetic Resonance Imaging of Liver
+        Microarchitecture</Title>\r\n    <Abstract />\r\n    <AuthorList>Valasek,Mark,|Vavinskaya,Vera,|Hosseini,Mojgan,|Sirlin,Claude,|Bydder,Graeme,|Szeverenyi,Nicklaus,</AuthorList>\r\n
+        \   <AuthorCount>6</AuthorCount>\r\n    <KeywordList />\r\n    <DocumentTypeList>Meeting
+        Abstract</DocumentTypeList>\r\n    <DocumentCategory>Conference Proceeding
+        Document</DocumentCategory>\r\n    <NumberOfReferences xsi:nil=\"true\" />\r\n
+        \   <TimesCited>0</TimesCited>\r\n    <TimesNotSelfCited>0</TimesNotSelfCited>\r\n
+        \   <PMID xsi:nil=\"true\" />\r\n    <WoSItemID>000369270703230</WoSItemID>\r\n
+        \   <PublicationSourceTitle>LABORATORY INVESTIGATION</PublicationSourceTitle>\r\n
+        \   <Volume>96</Volume>\r\n    <Pagination>523A-523A</Pagination>\r\n    <PublicationDate>2016-02-01T00:00:00</PublicationDate>\r\n
+        \   <PublicationYear>2016</PublicationYear>\r\n    <PublicationType>Journal</PublicationType>\r\n
+        \   <PublicationSubjectCategoryList>Medicine, Research &amp; Experimental|Pathology</PublicationSubjectCategoryList>\r\n
+        \   <ISSN>0023-6837</ISSN>\r\n    <ConferenceTitle>105th Annual Meeting of
+        the United-States-and-Canadian-Academy-of-Pathology</ConferenceTitle>\r\n
+        \   <ConferenceStartDate>2016-03-12T00:00:00</ConferenceStartDate>\r\n    <ConferenceEndDate>2016-03-18T00:00:00</ConferenceEndDate>\r\n
+        \   <ConferenceCity>SEATTLE</ConferenceCity>\r\n    <ConferenceStateCountry>WA</ConferenceStateCountry>\r\n
+        \   <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>19</OrdinalRank>\r\n    <NormalizedRank
+        xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
+        \   <CopyrightPublisher>NATURE PUBLISHING GROUP</CopyrightPublisher>\r\n    <CopyrightCity>NEW
+        YORK</CopyrightCity>\r\n    <PublicationImpactFactorList>3.676,2014,ClosestToPublicationYear|3.676,2014,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>30/123;MEDICINE, RESEARCH &amp; EXPERIMENTAL;2014;SC;ClosestToPublicationYear|13/75;PATHOLOGY;2014;SC;ClosestToPublicationYear|30/123;MEDICINE,
+        RESEARCH &amp; EXPERIMENTAL;2014;SC;MostRecentYear|13/75;PATHOLOGY;2014;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <AuthorCitationCountList>1,0,0|2,0,0|3,0,0|4,0,0|5,0,0|6,0,0</AuthorCitationCountList>\r\n
+        \   <CopyrightStateProvince>NY</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
+        STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n</ArrayOfPublicationItem>"
     http_version: 
-  recorded_at: Thu, 10 Dec 2015 20:25:23 GMT
+  recorded_at: Mon, 07 Mar 2016 22:18:58 GMT
 recorded_with: VCR 2.9.3

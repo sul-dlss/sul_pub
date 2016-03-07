@@ -4,36 +4,24 @@ http_interactions:
     method: post
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery?format=xml
     body:
-      encoding: UTF-8
-      string: |-
-        <?xml version="1.0"?>
-              <ScienceWireQueryXMLParameter xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-              <xmlQuery>&lt;query xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-                      &lt;Criterion ConjunctionOperator="AND"&gt;
-                        &lt;Criteria&gt;
-                          &lt;Criterion&gt;
-                            &lt;Filter&gt;
-                              &lt;Column&gt;PMID&lt;/Column&gt;
-                              &lt;Operator&gt;In&lt;/Operator&gt;
-                              &lt;Values&gt;&lt;Value&gt;10487815&lt;/Value&gt;&lt;/Values&gt;
-                                    &lt;/Filter&gt;
-                                  &lt;/Criterion&gt;
-                                &lt;/Criteria&gt;
-                              &lt;/Criterion&gt;
-                              &lt;Columns&gt;
-                                &lt;SortColumn&gt;
-                                  &lt;Column&gt;Rank&lt;/Column&gt;
-                                  &lt;Direction&gt;Descending&lt;/Direction&gt;
-                                &lt;/SortColumn&gt;
-                              &lt;/Columns&gt;
-                              &lt;MaximumRows&gt;1000&lt;/MaximumRows&gt;
-                            &lt;/query&gt;</xmlQuery>
-              </ScienceWireQueryXMLParameter>
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\"?>\n      <ScienceWireQueryXMLParameter xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\n      <xmlQuery>&lt;query
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"&gt;\n
+        \             &lt;Criterion ConjunctionOperator=\"AND\"&gt;\n                &lt;Criteria&gt;\n
+        \                 &lt;Criterion&gt;\n                    &lt;Filter&gt;\n
+        \                     &lt;Column&gt;PMID&lt;/Column&gt;\n                      &lt;Operator&gt;In&lt;/Operator&gt;\n
+        \                     &lt;Values&gt;&lt;Value&gt;10487815&lt;/Value&gt;&lt;/Values&gt;\n
+        \                           &lt;/Filter&gt;\n                          &lt;/Criterion&gt;\n
+        \                       &lt;/Criteria&gt;\n                      &lt;/Criterion&gt;\n
+        \                     &lt;Columns&gt;\n                        &lt;SortColumn&gt;\n
+        \                         &lt;Column&gt;Rank&lt;/Column&gt;\n                          &lt;Direction&gt;Descending&lt;/Direction&gt;\n
+        \                       &lt;/SortColumn&gt;\n                      &lt;/Columns&gt;\n
+        \                     &lt;MaximumRows&gt;1000&lt;/MaximumRows&gt;\n                    &lt;/query&gt;</xmlQuery>\n
+        \     </ScienceWireQueryXMLParameter>"
     headers:
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
-      - "*/*"
+      - ! '*/*'
       User-Agent:
       - Ruby
       Licenseid:
@@ -64,16 +52,16 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Thu, 10 Dec 2015 20:25:12 GMT
+      - Mon, 07 Mar 2016 22:19:25 GMT
       Content-Length:
       - '278'
     body:
-      encoding: UTF-8
-      string: "<?xml version=\"1.0\"?>\r\n<ScienceWireQueryIDResponse xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\"?>\r\n<ScienceWireQueryIDResponse xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>142959</queryID>\r\n
         \ <queryResultRows>1</queryResultRows>\r\n  <totalRows>1</totalRows>\r\n</ScienceWireQueryIDResponse>"
     http_version: 
-  recorded_at: Thu, 10 Dec 2015 20:25:12 GMT
+  recorded_at: Mon, 07 Mar 2016 22:19:25 GMT
 - request:
     method: get
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/142959?format=xml&page=0&pageSize=2147483647&v=version/3
@@ -81,10 +69,8 @@ http_interactions:
       encoding: US-ASCII
       string: ''
     headers:
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
-      - "*/*"
+      - ! '*/*'
       User-Agent:
       - Ruby
       Content-Type:
@@ -113,12 +99,12 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Thu, 10 Dec 2015 20:25:12 GMT
+      - Mon, 07 Mar 2016 22:19:25 GMT
       Content-Length:
       - '4218'
     body:
-      encoding: UTF-8
-      string: "<?xml version=\"1.0\"?>\r\n<ArrayOfPublicationItem xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\"?>\r\n<ArrayOfPublicationItem xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <PublicationItem>\r\n
         \   <PublicationItemID>10340243</PublicationItemID>\r\n    <Title>Convergence
         and correlations among leaf size and function in seed plants: A comparative
@@ -152,7 +138,7 @@ http_interactions:
         method|photosynthesis|leaf size|leaf life span|seed plants|correlated evolution</KeywordList>\r\n
         \   <DocumentTypeList>Article</DocumentTypeList>\r\n    <DocumentCategory>Journal
         Document</DocumentCategory>\r\n    <NumberOfReferences>65</NumberOfReferences>\r\n
-        \   <TimesCited>157</TimesCited>\r\n    <TimesNotSelfCited>139</TimesNotSelfCited>\r\n
+        \   <TimesCited>161</TimesCited>\r\n    <TimesNotSelfCited>142</TimesNotSelfCited>\r\n
         \   <PMID>10487815</PMID>\r\n    <WoSItemID>000082779300008</WoSItemID>\r\n
         \   <PublicationSourceTitle>AMERICAN JOURNAL OF BOTANY</PublicationSourceTitle>\r\n
         \   <Volume>86</Volume>\r\n    <Issue>9</Issue>\r\n    <Pagination>1272-1281</Pagination>\r\n
@@ -166,9 +152,9 @@ http_interactions:
         SOC AMER INC</CopyrightPublisher>\r\n    <CopyrightCity>ST LOUIS</CopyrightCity>\r\n
         \   <PublicationImpactFactorList>2.383,1999,ExactPublicationYear|2.463,2013,MostRecentYear</PublicationImpactFactorList>\r\n
         \   <PublicationCategoryRankingList>18/136;PLANT SCIENCES;1999;SC;ExactPublicationYear|52/199;PLANT
-        SCIENCES;2013;SC;MostRecentYear</PublicationCategoryRankingList>\r\n    <AuthorCitationCountList>1,8,149|2,10,147</AuthorCitationCountList>\r\n
+        SCIENCES;2013;SC;MostRecentYear</PublicationCategoryRankingList>\r\n    <AuthorCitationCountList>1,9,152|2,10,151</AuthorCitationCountList>\r\n
         \   <CopyrightStateProvince>MO</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
         STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n</ArrayOfPublicationItem>"
     http_version: 
-  recorded_at: Thu, 10 Dec 2015 20:25:12 GMT
+  recorded_at: Mon, 07 Mar 2016 22:19:26 GMT
 recorded_with: VCR 2.9.3

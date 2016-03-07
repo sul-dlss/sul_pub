@@ -4,33 +4,19 @@ http_interactions:
     method: post
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery?format=xml
     body:
-      encoding: UTF-8
-      string: |-
-        <?xml version="1.0"?>
-              <ScienceWireQueryXMLParameter xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-              <xmlQuery>      <![CDATA[
-              <query xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-                  <Criterion>
-                      <Criteria>
-                          <Criterion>
-                              <Filter>
-                                  <Column>DOI</Column>
-                                  <Operator>Equals</Operator>
-                                  <Value>10.1016/j.mcn.2012.03.007</Value>
-                              </Filter>
-                          </Criterion>
-                      </Criteria>
-                  </Criterion>
-                  <MaximumRows>200</MaximumRows>
-              </query>
-              ]]>
-        </xmlQuery>
-              </ScienceWireQueryXMLParameter>
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\"?>\n      <ScienceWireQueryXMLParameter xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\n      <xmlQuery>      <![CDATA[\n
+        \     <query xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\n
+        \         <Criterion>\n              <Criteria>\n                  <Criterion>\n
+        \                     <Filter>\n                          <Column>DOI</Column>\n
+        \                         <Operator>Equals</Operator>\n                          <Value>10.1016/j.mcn.2012.03.007</Value>\n
+        \                     </Filter>\n                  </Criterion>\n              </Criteria>\n
+        \         </Criterion>\n          <MaximumRows>200</MaximumRows>\n      </query>\n
+        \     ]]>\n</xmlQuery>\n      </ScienceWireQueryXMLParameter>"
     headers:
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
-      - "*/*"
+      - ! '*/*'
       User-Agent:
       - Ruby
       Licenseid:
@@ -61,16 +47,16 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Thu, 10 Dec 2015 20:25:12 GMT
+      - Mon, 07 Mar 2016 22:18:53 GMT
       Content-Length:
       - '278'
     body:
-      encoding: UTF-8
-      string: "<?xml version=\"1.0\"?>\r\n<ScienceWireQueryIDResponse xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\"?>\r\n<ScienceWireQueryIDResponse xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>142612</queryID>\r\n
         \ <queryResultRows>1</queryResultRows>\r\n  <totalRows>1</totalRows>\r\n</ScienceWireQueryIDResponse>"
     http_version: 
-  recorded_at: Thu, 10 Dec 2015 20:25:13 GMT
+  recorded_at: Mon, 07 Mar 2016 22:18:53 GMT
 - request:
     method: get
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/142612?format=xml&page=0&pageSize=2147483647&v=version/3
@@ -78,10 +64,8 @@ http_interactions:
       encoding: US-ASCII
       string: ''
     headers:
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
-      - "*/*"
+      - ! '*/*'
       User-Agent:
       - Ruby
       Content-Type:
@@ -110,12 +94,12 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Thu, 10 Dec 2015 20:25:14 GMT
+      - Mon, 07 Mar 2016 22:18:53 GMT
       Content-Length:
       - '4108'
     body:
-      encoding: UTF-8
-      string: "<?xml version=\"1.0\"?>\r\n<ArrayOfPublicationItem xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\"?>\r\n<ArrayOfPublicationItem xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <PublicationItem>\r\n
         \   <PublicationItemID>60813767</PublicationItemID>\r\n    <Title>The T3-induced
         gene KLF9 regulates oligodendrocyte differentiation and myelin regeneration</Title>\r\n
@@ -147,7 +131,7 @@ http_interactions:
         FACTOR-9|OLIGODENDROCYTE|MYELIN|thyroid hormone|cuprizone|Klf9|BTEB1</KeywordList>\r\n
         \   <DocumentTypeList>Article</DocumentTypeList>\r\n    <DocumentCategory>Journal
         Document</DocumentCategory>\r\n    <NumberOfReferences>61</NumberOfReferences>\r\n
-        \   <TimesCited>22</TimesCited>\r\n    <TimesNotSelfCited>22</TimesNotSelfCited>\r\n
+        \   <TimesCited>24</TimesCited>\r\n    <TimesNotSelfCited>24</TimesNotSelfCited>\r\n
         \   <PMID>22472204</PMID>\r\n    <WoSItemID>000305547700005</WoSItemID>\r\n
         \   <PublicationSourceTitle>MOLECULAR AND CELLULAR NEUROSCIENCE</PublicationSourceTitle>\r\n
         \   <Volume>50</Volume>\r\n    <Issue>1</Issue>\r\n    <Pagination>45-57</Pagination>\r\n
@@ -161,9 +145,9 @@ http_interactions:
         PRESS INC ELSEVIER SCIENCE</CopyrightPublisher>\r\n    <CopyrightCity>SAN
         DIEGO</CopyrightCity>\r\n    <PublicationImpactFactorList>3.837,2012,ExactPublicationYear|3.734,2013,MostRecentYear</PublicationImpactFactorList>\r\n
         \   <PublicationCategoryRankingList>74/252;NEUROSCIENCES;2012;SC;ExactPublicationYear|82/252;NEUROSCIENCES;2013;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
-        \   <AuthorCitationCountList>1,0,22|2,0,22|3,0,22</AuthorCitationCountList>\r\n
+        \   <AuthorCitationCountList>1,0,24|2,0,24|3,0,24</AuthorCitationCountList>\r\n
         \   <CopyrightStateProvince>CA</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
         STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n</ArrayOfPublicationItem>"
     http_version: 
-  recorded_at: Thu, 10 Dec 2015 20:25:14 GMT
+  recorded_at: Mon, 07 Mar 2016 22:18:53 GMT
 recorded_with: VCR 2.9.3

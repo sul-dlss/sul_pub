@@ -4,38 +4,20 @@ http_interactions:
     method: post
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery?format=xml
     body:
-      encoding: UTF-8
-      string: |-
-        <?xml version="1.0"?>
-              <ScienceWireQueryXMLParameter xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-              <xmlQuery><![CDATA[
-              <query xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-                <Criterion ConjunctionOperator="AND">
-                  <Criteria>
-                    <Criterion>
-                      <Filter>
-                        <Column>WoSItemID</Column>
-                        <Operator>In</Operator>
-                        <Values>
-        <Value>000309917800142</Value>
-        </Values>
-                        </Filter>
-                      </Criterion>
-                    </Criteria>
-                  </Criterion><Columns>
-                    <SortColumn>
-                      <Column>PublicationItemID</Column>
-                      <Direction>Ascending</Direction>
-                    </SortColumn>
-                  </Columns>
-                </query>
-            ]]></xmlQuery>
-              </ScienceWireQueryXMLParameter>
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\"?>\n      <ScienceWireQueryXMLParameter xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\n      <xmlQuery><![CDATA[\n
+        \     <query xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\n
+        \       <Criterion ConjunctionOperator=\"AND\">\n          <Criteria>\n            <Criterion>\n
+        \             <Filter>\n                <Column>WoSItemID</Column>\n                <Operator>In</Operator>\n
+        \               <Values>\n<Value>000309917800142</Value>\n</Values>\n                </Filter>\n
+        \             </Criterion>\n            </Criteria>\n          </Criterion><Columns>\n
+        \           <SortColumn>\n              <Column>PublicationItemID</Column>\n
+        \             <Direction>Ascending</Direction>\n            </SortColumn>\n
+        \         </Columns>\n        </query>\n    ]]></xmlQuery>\n      </ScienceWireQueryXMLParameter>"
     headers:
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
-      - "*/*"
+      - ! '*/*'
       User-Agent:
       - Ruby
       Licenseid:
@@ -66,16 +48,16 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Thu, 10 Dec 2015 20:26:34 GMT
+      - Mon, 07 Mar 2016 22:19:31 GMT
       Content-Length:
       - '278'
     body:
-      encoding: UTF-8
-      string: "<?xml version=\"1.0\"?>\r\n<ScienceWireQueryIDResponse xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\"?>\r\n<ScienceWireQueryIDResponse xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>136741</queryID>\r\n
         \ <queryResultRows>1</queryResultRows>\r\n  <totalRows>1</totalRows>\r\n</ScienceWireQueryIDResponse>"
     http_version: 
-  recorded_at: Thu, 10 Dec 2015 20:26:34 GMT
+  recorded_at: Mon, 07 Mar 2016 22:19:32 GMT
 - request:
     method: get
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/136741?format=xml&page=0&pageSize=2147483647&v=version/3
@@ -83,10 +65,8 @@ http_interactions:
       encoding: US-ASCII
       string: ''
     headers:
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
-      - "*/*"
+      - ! '*/*'
       User-Agent:
       - Ruby
       Content-Type:
@@ -115,12 +95,12 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Thu, 10 Dec 2015 20:26:34 GMT
+      - Mon, 07 Mar 2016 22:19:31 GMT
       Content-Length:
       - '2964'
     body:
-      encoding: UTF-8
-      string: "<?xml version=\"1.0\"?>\r\n<ArrayOfPublicationItem xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\"?>\r\n<ArrayOfPublicationItem xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <PublicationItem>\r\n
         \   <PublicationItemID>61861700</PublicationItemID>\r\n    <Title>Understanding
         the Role of Grain Boundaries in Sulfide Thin Film Solar Cells with Scanning
@@ -156,7 +136,7 @@ http_interactions:
         \   <CopyrightStateProvince>NY</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
         STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n</ArrayOfPublicationItem>"
     http_version: 
-  recorded_at: Thu, 10 Dec 2015 20:26:35 GMT
+  recorded_at: Mon, 07 Mar 2016 22:19:32 GMT
 - request:
     method: post
     uri: http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml
@@ -164,10 +144,8 @@ http_interactions:
       encoding: US-ASCII
       string: ''
     headers:
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
-      - "*/*"
+      - ! '*/*'
       User-Agent:
       - Ruby
   response:
@@ -176,20 +154,20 @@ http_interactions:
       message: Bad Request
     headers:
       Date:
-      - Thu, 10 Dec 2015 20:26:36 GMT
+      - Mon, 07 Mar 2016 22:19:32 GMT
       Server:
       - Apache
       Access-Control-Allow-Origin:
-      - "*"
+      - ! '*'
       Cache-Control:
       - private
       Ncbi-Sid:
-      - 9DFC3BF5669DFFC1_0961SID
+      - 73BF3D346DDFE741_0322SID
       Content-Type:
       - text/xml; charset=UTF-8
       Set-Cookie:
-      - ncbi_sid=9DFC3BF5669DFFC1_0961SID; domain=.nih.gov; path=/; expires=Sat, 10
-        Dec 2016 20:26:36 GMT
+      - ncbi_sid=73BF3D346DDFE741_0322SID; domain=.nih.gov; path=/; expires=Tue, 07
+        Mar 2017 22:19:32 GMT
       X-Ua-Compatible:
       - IE=Edge
       Connection:
@@ -197,10 +175,10 @@ http_interactions:
       Transfer-Encoding:
       - chunked
     body:
-      encoding: UTF-8
-      string: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE eEfetchResult
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE eEfetchResult
         PUBLIC \"-//NLM//DTD efetch 20131226//EN\" \"http://eutils.ncbi.nlm.nih.gov/eutils/dtd/20131226/efetch.dtd\">\n<eFetchResult>\n\t<ERROR>WebEnv
         parameter is required</ERROR>\n</eFetchResult>\n"
     http_version: 
-  recorded_at: Thu, 10 Dec 2015 20:26:36 GMT
+  recorded_at: Mon, 07 Mar 2016 22:19:33 GMT
 recorded_with: VCR 2.9.3
