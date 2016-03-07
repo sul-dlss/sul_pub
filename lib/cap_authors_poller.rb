@@ -81,8 +81,9 @@ class CapAuthorsPoller
 
   def process_record(record)
     # import_settings_exist = record["importSettings"] && record["importSettings"].any?
-
-    author = Author.find_or_initialize_by_cap_profile_id(record['profileId'])
+    cap_profile_id = record['profileId']
+    author = Author.where(cap_profile_id: cap_profile_id).first
+    author ||= Author.fetch_from_cap_and_create(cap_profile_id)
     author.update_from_cap_authorship_profile_hash(record)
     if author.persisted?
       logger.info "Updating author_id #{author.id}"
