@@ -17,17 +17,15 @@ class ScienceWireHarvester
     initialize_counts_for_reporting
   end
 
-  def harvest_pubs_for_query(query)
-    query.find_each do |author|
+  def harvest_pubs_for_authors(authors)
+    authors.find_each do |author|
       begin
         @harvested_for_author_count = 0
         @author_count += 1
-
         if @author_count % 50 == 0
-          string_to_print = "up to author id: #{author.id} with #{@total_suggested_count} total suggestions so far for #{@author_count} authors - #{Time.zone.now}"
-          @sw_harvest_logger.info string_to_print
+          msg = "up to author id: #{author.id} with #{@total_suggested_count} total suggestions so far for #{@author_count} authors - #{Time.zone.now}"
+          @sw_harvest_logger.info msg
         end
-
         harvest_for_author(author)
       rescue => e
         msg = "Error for #{author.official_last_name} - sul author id: #{author.id} "
@@ -36,7 +34,6 @@ class ScienceWireHarvester
         # NotificationManager.handle_harvest_problem(e, msg)
       end
     end
-
     process_queued_sciencewire_suggestions
     process_queued_pubmed_records
     write_counts_to_log
@@ -45,8 +42,7 @@ class ScienceWireHarvester
   def harvest_pubs_for_author_ids(author_ids)
     @sw_harvest_logger = Logger.new(Rails.root.join('log', 'sw_nightly_harvest.log'))
     @sw_harvest_logger.info "Started nightly authorship harvest #{Time.zone.now}"
-
-    harvest_pubs_for_query Author.where(id: author_ids)
+    harvest_pubs_for_authors Author.where(id: author_ids)
   rescue => e
     NotificationManager.handle_harvest_problem(e, 'Error for with nightly harvest.')
   end
@@ -54,12 +50,10 @@ class ScienceWireHarvester
   def harvest_pubs_for_all_authors(starting_author_id, ending_author_id = -1)
     @sw_harvest_logger = Logger.new(Rails.root.join('log', 'sw_harvest.log'))
     @sw_harvest_logger.info "Started full authorship harvest #{Time.zone.now}"
-
-    query = Author.where(active_in_cap: true, cap_import_enabled: true)
-    query = query.where(Author.arel_table[Author.primary_key].gteq(starting_author_id))
-    query = query.where(Author.arel_table[Author.primary_key].lteq(ending_author_id)) if ending_author_id > 0
-
-    harvest_pubs_for_query query
+    authors = Author.where(active_in_cap: true, cap_import_enabled: true)
+    authors = authors.where(Author.arel_table[Author.primary_key].gteq(starting_author_id))
+    authors = authors.where(Author.arel_table[Author.primary_key].lteq(ending_author_id)) if ending_author_id > 0
+    harvest_pubs_for_authors authors
   end
 
   def harvest_pubs_for_all_authors_parallel
@@ -84,10 +78,10 @@ class ScienceWireHarvester
 
       start_key = sack[0]
       stop_key = sack[1]
-      query = Author.where(active_in_cap: true, cap_import_enabled: true)
-              .where(Author.arel_table[Author.primary_key].gteq(start_key))
-              .where(Author.arel_table[Author.primary_key].lteq(stop_key))
-      harvest_pubs_for_query query
+      authors = Author.where(active_in_cap: true, cap_import_enabled: true)
+                .where(Author.arel_table[Author.primary_key].gteq(start_key))
+                .where(Author.arel_table[Author.primary_key].lteq(stop_key))
+      harvest_pubs_for_authors authors
     end
   end
 
@@ -105,18 +99,13 @@ class ScienceWireHarvester
     # some counts for reporting
     @total_suggested_count = 0
     @new_pubs_created_count = 0
-
     @author_count = 0
     @contributions_created_count = 0
     @existing_contributions_count = 0
-
     @authors_with_no_seed_data_count = 0
-
     @total_new_pubmed_source_count = 0
     @total_new_sciencewire_source_count = 0
-
     @suggestions_with_pubmed_ids_count = 0
-
     @matches_on_existing_swid_count = 0
     @matches_on_existing_pmid_count = 0
     @matches_on_issn_count = 0
@@ -131,17 +120,12 @@ class ScienceWireHarvester
 
   def log_counts
     @sw_harvest_logger.info "#{@total_suggested_count} total records were suggested for #{@author_count} authors."
-
     @sw_harvest_logger.info "#{@existing_contributions_count} existing contributions were found."
     @sw_harvest_logger.info "#{@contributions_created_count} new contributions were created."
-
     @sw_harvest_logger.info "#{@total_new_pubmed_source_count} new pubmed source records were created."
     @sw_harvest_logger.info "#{@total_new_sciencewire_source_count} new sciencewire source records were created."
-
     @sw_harvest_logger.info "#{@new_pubs_created_count} new publications were created."
-
     @sw_harvest_logger.info "#{@authors_with_no_seed_data_count} authors had no seed data and used the name search instead."
-
     @sw_harvest_logger.info "#{@matches_on_existing_swid_count} existing publications were found by sciencewire id."
     @sw_harvest_logger.info "#{@matches_on_existing_pmid_count} existing publications were deduped by pmid."
     @sw_harvest_logger.info "#{@matches_on_issn_count} existing publications were deduped by issn."
@@ -151,42 +135,30 @@ class ScienceWireHarvester
   def harvest_for_author(author)
     last_name = author.preferred_last_name
     first_name = author.preferred_first_name
-
-    if @use_middle_name
-      middle_name = author.preferred_middle_name
-    else
-      middle_name = ''
-    end
-
+    middle_name = @use_middle_name ? author.preferred_middle_name : ''
     seed_list = author.publications.approved.with_sciencewire_id.pluck(:sciencewire_id).uniq
-
     if seed_list.size < 50
-      suggested_sciencewire_ids = @sciencewire_client.query_sciencewire_by_author_name(first_name, middle_name, last_name)
+      sciencewire_ids = @sciencewire_client.query_sciencewire_by_author_name(first_name, middle_name, last_name)
       @authors_with_no_seed_data_count += 1
     else
-      suggested_sciencewire_ids = @sciencewire_client.get_sciencewire_id_suggestions(last_name, first_name, middle_name, author.email, seed_list)
+      sciencewire_ids = @sciencewire_client.get_sciencewire_id_suggestions(last_name, first_name, middle_name, author.email, seed_list)
     end
-
-    suggested_sciencewire_ids.each do |suggested_sciencewire_id|
+    sciencewire_ids.each do |sw_id|
       @total_suggested_count += 1
-      was_record_created = create_contrib_for_pub_if_exists(suggested_sciencewire_id, author)
+      was_record_created = create_contrib_for_pub_if_exists(sw_id, author)
       unless was_record_created
-        # queue up sciencewire id, along with any associated authors, for batched retrieval and processing
-        @records_queued_for_sciencewire_retrieval[suggested_sciencewire_id] ||= []
-        @records_queued_for_sciencewire_retrieval[suggested_sciencewire_id] << author.id
+        # queue up sciencewire id, along with any associated authors,
+        # for batched retrieval and processing
+        @records_queued_for_sciencewire_retrieval[sw_id] ||= []
+        @records_queued_for_sciencewire_retrieval[sw_id] << author.id
       end
-
       if @records_queued_for_sciencewire_retrieval.length > 100
         process_queued_sciencewire_suggestions
       end
-
       if @records_queued_for_pubmed_retrieval.length > 4000
         process_queued_pubmed_records
       end
-
-      # TODO???
       GC.start if @total_suggested_count % 1000 == 0
-
       if @debug
         log_counts
         @debug = false

@@ -35,8 +35,11 @@ FactoryGirl.define do
     end
   end
 
-  factory :pub_with_sw_id_and_pmid, parent: :publication do
-    pmid 10_048_354
+  factory :pub_with_sw_id, parent: :publication do
     sciencewire_id 42_711_845
+  end
+
+  factory :pub_with_sw_id_and_pmid, parent: :pub_with_sw_id do
+    pmid 10_048_354
   end
 end
