@@ -33,7 +33,6 @@ doc/
 .idea
 coverage
 config/cap_auth.yaml
-config/sciencewire_auth.yaml
 README_configs.txt
 
 ## Ignore ruby version pins
