@@ -14,6 +14,11 @@ SimpleCov.profiles.define 'sul-pub' do
   add_filter 'pkg'
   add_filter 'spec'
   add_filter 'vendor'
+
+  # Simplecov can detect changes using data from the
+  # last rspec run.  Travis will never have a previous
+  # dataset for comparison, so it can't fail a travis build.
+  maximum_coverage_drop 0.1
 end
 SimpleCov.formatter = SimpleCov::Formatter::HTMLFormatter
 SimpleCov.start 'sul-pub'
