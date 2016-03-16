@@ -12,10 +12,7 @@ SimpleCov.profiles.define 'sul-pub' do
   add_filter 'spec'
   add_filter 'vendor'
 end
-SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
-  SimpleCov::Formatter::HTMLFormatter,
-  Coveralls::SimpleCov::Formatter
-]
+SimpleCov.formatter = SimpleCov::Formatter::HTMLFormatter
 SimpleCov.start 'sul-pub'
 
 require File.expand_path('../../config/environment', __FILE__)
