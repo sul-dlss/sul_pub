@@ -86,7 +86,7 @@ describe SulBib::API do
     end
 
     describe '?pmid' do
-      it 'returns one document' do
+      it 'returns one document', :vcr do
         path = '/publications/sourcelookup'
         params = { format: 'json', pmid: '24196758' }
         get path, params, capkey
@@ -117,7 +117,7 @@ describe SulBib::API do
         end
       end
 
-      it 'with maxrows number of records' do
+      it 'with maxrows number of records', :vcr do
         params = { format: 'json', title: test_title, maxrows: 5 }
         get sourcelookup_path, params, capkey
         expect(response.status).to eq(200)
@@ -125,7 +125,7 @@ describe SulBib::API do
         expect(result['records'].length).to eq(5)
       end
 
-      it 'does a sciencewire title search' do
+      it 'does a sciencewire title search', :vcr do
         # VCR.use_cassette('publications_api_sourcelookup_title') do
           title = 'lung cancer treatment'
           params = { format: 'json', title: title }
@@ -145,7 +145,7 @@ describe SulBib::API do
         expect(matches).to eq(records.count) # ALL records match
       end
 
-      it 'returns results that match the requested year' do
+      it 'returns results that match the requested year', :vcr do
         year = 2015.to_s
         params = { format: 'json', title: test_title, year: year}
         get sourcelookup_path, params, capkey

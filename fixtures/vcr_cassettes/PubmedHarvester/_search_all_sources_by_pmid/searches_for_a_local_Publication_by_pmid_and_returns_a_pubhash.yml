@@ -1,0 +1,148 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery?format=xml
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+              <ScienceWireQueryXMLParameter xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+              <xmlQuery>&lt;query xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+                      &lt;Criterion ConjunctionOperator="AND"&gt;
+                        &lt;Criteria&gt;
+                          &lt;Criterion&gt;
+                            &lt;Filter&gt;
+                              &lt;Column&gt;PMID&lt;/Column&gt;
+                              &lt;Operator&gt;In&lt;/Operator&gt;
+                              &lt;Values&gt;&lt;Value&gt;10048354&lt;/Value&gt;&lt;/Values&gt;
+                                    &lt;/Filter&gt;
+                                  &lt;/Criterion&gt;
+                                &lt;/Criteria&gt;
+                              &lt;/Criterion&gt;
+                              &lt;Columns&gt;
+                                &lt;SortColumn&gt;
+                                  &lt;Column&gt;Rank&lt;/Column&gt;
+                                  &lt;Direction&gt;Descending&lt;/Direction&gt;
+                                &lt;/SortColumn&gt;
+                              &lt;/Columns&gt;
+                              &lt;MaximumRows&gt;1000&lt;/MaximumRows&gt;
+                            &lt;/query&gt;</xmlQuery>
+              </ScienceWireQueryXMLParameter>
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Licenseid:
+      - ***REMOVED***
+      Host:
+      - stg.sciencewirerest.discoverylogic.com
+      Connection:
+      - Keep-Alive
+      Expect:
+      - 100-continue
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - private
+      Content-Type:
+      - application/xml; charset=utf-8
+      Server:
+      - Microsoft-IIS/7.5
+      X-Aspnetmvc-Version:
+      - '2.0'
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+      Date:
+      - Thu, 17 Mar 2016 22:17:04 GMT
+      Content-Length:
+      - '278'
+    body:
+      encoding: UTF-8
+      string: "<?xml version=\"1.0\"?>\r\n<ScienceWireQueryIDResponse xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>143766</queryID>\r\n
+        \ <queryResultRows>1</queryResultRows>\r\n  <totalRows>1</totalRows>\r\n</ScienceWireQueryIDResponse>"
+    http_version: 
+  recorded_at: Thu, 17 Mar 2016 22:17:04 GMT
+- request:
+    method: get
+    uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/143766?format=xml&page=0&pageSize=2147483647&v=version/3
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Content-Type:
+      - text/xml
+      Licenseid:
+      - ***REMOVED***
+      Host:
+      - stg.sciencewirerest.discoverylogic.com
+      Connection:
+      - Keep-Alive
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - private
+      Content-Type:
+      - application/xml; charset=utf-8
+      Server:
+      - Microsoft-IIS/7.5
+      X-Aspnetmvc-Version:
+      - '2.0'
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+      Date:
+      - Thu, 17 Mar 2016 22:17:04 GMT
+      Content-Length:
+      - '2101'
+    body:
+      encoding: UTF-8
+      string: "<?xml version=\"1.0\"?>\r\n<ArrayOfPublicationItem xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <PublicationItem>\r\n
+        \   <PublicationItemID>42711845</PublicationItemID>\r\n    <Title>Frostbite:
+        an orthopedic perspective.</Title>\r\n    <Abstract>Frostbite injury to the
+        extremities has the potential for disastrous effects. This review provides
+        information valuable to the orthopedic surgeon to aid in the evaluation and
+        treatment of frostbite. The pathophysiology and predisposing factors that
+        provide a basic understanding of the nature of frostbite are discussed. Accepted
+        and experimental imaging studies and treatment options are also reviewed.
+        An effort is made to give the orthopedic perspective on each issue, providing
+        a valuable resource for all orthopedic surgeons involved in the care of the
+        patient with frostbite.</Abstract>\r\n    <AuthorList>McAdams,T,R|Swenson,D,R|MILLER,R,A</AuthorList>\r\n
+        \   <AuthorCount>3</AuthorCount>\r\n    <KeywordList />\r\n    <DocumentTypeList>Journal
+        Article|Review</DocumentTypeList>\r\n    <DocumentCategory>Journal Document</DocumentCategory>\r\n
+        \   <NumberOfReferences>44</NumberOfReferences>\r\n    <TimesCited xsi:nil=\"true\"
+        />\r\n    <TimesNotSelfCited xsi:nil=\"true\" />\r\n    <PMID>10048354</PMID>\r\n
+        \   <PublicationSourceTitle>American journal of orthopedics (Belle Mead, N.J.)</PublicationSourceTitle>\r\n
+        \   <Volume>28</Volume>\r\n    <Issue>1</Issue>\r\n    <Pagination>21-26</Pagination>\r\n
+        \   <PublicationDate>1999-01-01T00:00:00</PublicationDate>\r\n    <PublicationYear>1999</PublicationYear>\r\n
+        \   <PublicationSubjectCategoryList />\r\n    <ISSN>1078-4519</ISSN>\r\n    <ConferenceStartDate
+        xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank
+        xsi:nil=\"true\" />\r\n    <OrdinalRank>0</OrdinalRank>\r\n    <NormalizedRank
+        xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
+        \   <CopyrightPublisher />\r\n    <CopyrightCity />\r\n    <CopyrightStateProvince
+        />\r\n    <CopyrightCountry>UNITED STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n</ArrayOfPublicationItem>"
+    http_version: 
+  recorded_at: Thu, 17 Mar 2016 22:17:05 GMT
+recorded_with: VCR 2.9.3

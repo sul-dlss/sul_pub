@@ -11,12 +11,12 @@ describe ScienceWireHarvester do
 
   describe '#harvest_for_author' do
     context 'for author with first name last name only' do
-      it 'uses the client query by name method' do
+      it 'uses the client query by name method', :vcr do
         expect(science_wire_client).to receive(:query_sciencewire_by_author_name).and_call_original
         science_wire_harvester.harvest_for_author(author_without_seed_data)
       end
 
-      it "doesn't use the client query by email or seed method" do
+      it "doesn't use the client query by email or seed method", :vcr do
         expect(science_wire_client).not_to receive(:get_sciencewire_id_suggestions)
         science_wire_harvester.harvest_for_author(author_without_seed_data)
       end

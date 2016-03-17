@@ -1,0 +1,326 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationItems?format=xml&publicationItemIDs=10379039
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Content-Type:
+      - text/xml
+      Licenseid:
+      - ***REMOVED***
+      Host:
+      - stg.sciencewirerest.discoverylogic.com
+      Connection:
+      - Keep-Alive
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - private
+      Content-Type:
+      - application/xml; charset=utf-8
+      Server:
+      - Microsoft-IIS/7.5
+      X-Aspnetmvc-Version:
+      - '2.0'
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+      Date:
+      - Thu, 17 Mar 2016 21:58:12 GMT
+      Content-Length:
+      - '3660'
+    body:
+      encoding: UTF-8
+      string: "<?xml version=\"1.0\"?>\r\n<ArrayOfPublicationItem xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <PublicationItem>\r\n
+        \   <PublicationItemID>10379039</PublicationItemID>\r\n    <Title>Assessment
+        of atrioventricular nodal physiology in the mouse</Title>\r\n    <Abstract>Transgenic
+        mice are increasingly being utilized for understanding cardiac electrophysiologic
+        abnormalities. However, little is known about the normal atrioventricular
+        nodal and infraHisian physiology in the mouse because of the prior inability
+        to record a His-bundle deflection. We present the first comprehensive examination
+        of the murine atrioventricular nodal and His-Purkinje systems employing His-bundle
+        recordings. Normal, healthy, male C57BL/6J mice (n = 48) underwent an in vivo
+        electrophysiology study using a 2 F octapolar electrode catheter. Effective
+        refractory periods were determined during premature atrial and ventricular
+        stimulation. The PR interval measured 44 +/- 6 ms with a mean sinus cycle
+        length of 185 +/- 42 ms. Baseline AH intervals were 36 +/- 5 ms and HV intervals
+        were 10 +/- 2 ms. At a pacing cycle length of 140 ms the atrioventricular
+        nodal effective refractory period (AVNERP) and atrial effective refractory
+        period (AERP) were 86 +/- 19 ms and 57 +/- 17 ms, respectively. The mean AV
+        Wenckebach and 2:1 paced cycle length were 103 +/- 14 ms and 84 +/- 13 ms,
+        respectively. Premature atrial stimulation curves were asymptotic without
+        discontinuity. A subset of nine mice was studied after administration of isoproterenol.
+        The sinus cycle length, AVNERP and AERP decreased significantly from baseline
+        measurements. This method establishes a practical and feasible technique to
+        record in vivo His-bundle electrograms in the mouse to assess atrioventricular
+        nodal and infraHisian physiology. Use of this model will allow for the examination
+        of abnormalities of atrioventricular nodal and infraHisian conduction in transgenic
+        murine models.</Abstract>\r\n    <AuthorList>VanderBrink,B,A|Link,M,S|Aronovitz,M,J|Saba,S,|Sloan,S,B|Homoud,M,K|Estes,N,A|Wang,P,J</AuthorList>\r\n
+        \   <AuthorCount>8</AuthorCount>\r\n    <KeywordList>HEART|ARRHYTHMIAS|CONDUCTION
+        SYSTEM|TRANSGENIC MICE|FAMILIAL HYPERTROPHIC CARDIOMYOPATHY|RECEPTOR|BUNDLE|mice|atrioventricular
+        conduction|His-bundle|atrioventricular nodal effective refractory period</KeywordList>\r\n
+        \   <DocumentTypeList>Article</DocumentTypeList>\r\n    <DocumentCategory>Journal
+        Document</DocumentCategory>\r\n    <NumberOfReferences>17</NumberOfReferences>\r\n
+        \   <TimesCited>9</TimesCited>\r\n    <TimesNotSelfCited>5</TimesNotSelfCited>\r\n
+        \   <PMID>10490476</PMID>\r\n    <WoSItemID>000083225600002</WoSItemID>\r\n
+        \   <PublicationSourceTitle>JOURNAL OF INTERVENTIONAL CARDIAC ELECTROPHYSIOLOGY</PublicationSourceTitle>\r\n
+        \   <Volume>3</Volume>\r\n    <Issue>3</Issue>\r\n    <Pagination>207-212</Pagination>\r\n
+        \   <PublicationDate>1999-10-01T00:00:00</PublicationDate>\r\n    <PublicationYear>1999</PublicationYear>\r\n
+        \   <PublicationType>Journal</PublicationType>\r\n    <PublicationImpactFactor>0.782</PublicationImpactFactor>\r\n
+        \   <PublicationSubjectCategoryList>Cardiac &amp; Cardiovascular Systems</PublicationSubjectCategoryList>\r\n
+        \   <ISSN>1383-875X</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank xsi:nil=\"true\" />\r\n
+        \   <OrdinalRank>1</OrdinalRank>\r\n    <NormalizedRank xsi:nil=\"true\" />\r\n
+        \   <NewPublicationItemID>10379039</NewPublicationItemID>\r\n    <IsObsolete>false</IsObsolete>\r\n
+        \   <CopyrightPublisher>SPRINGER</CopyrightPublisher>\r\n    <CopyrightCity>DORDRECHT</CopyrightCity>\r\n
+        \ </PublicationItem>\r\n</ArrayOfPublicationItem>"
+    http_version: 
+  recorded_at: Thu, 17 Mar 2016 21:58:12 GMT
+- request:
+    method: post
+    uri: http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml
+    body:
+      encoding: UTF-8
+      string: "&id=10490476"
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 17 Mar 2016 21:58:13 GMT
+      Server:
+      - Apache
+      Access-Control-Allow-Origin:
+      - "*"
+      Cache-Control:
+      - private
+      Ncbi-Sid:
+      - 73BE025F6EB28751_0633SID
+      Content-Type:
+      - text/xml; charset=UTF-8
+      Set-Cookie:
+      - ncbi_sid=73BE025F6EB28751_0633SID; domain=.nih.gov; path=/; expires=Fri, 17
+        Mar 2017 21:58:13 GMT
+      X-Ua-Compatible:
+      - IE=Edge
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0"?>
+        <!DOCTYPE PubmedArticleSet PUBLIC "-//NLM//DTD PubMedArticle, 1st January 2016//EN" "http://www.ncbi.nlm.nih.gov/corehtml/query/DTD/pubmed_160101.dtd">
+        <PubmedArticleSet>
+        <PubmedArticle>
+            <MedlineCitation Owner="NLM" Status="MEDLINE">
+                <PMID Version="1">10490476</PMID>
+                <DateCreated>
+                    <Year>1999</Year>
+                    <Month>12</Month>
+                    <Day>02</Day>
+                </DateCreated>
+                <DateCompleted>
+                    <Year>1999</Year>
+                    <Month>12</Month>
+                    <Day>02</Day>
+                </DateCompleted>
+                <DateRevised>
+                    <Year>2015</Year>
+                    <Month>11</Month>
+                    <Day>19</Day>
+                </DateRevised>
+                <Article PubModel="Print">
+                    <Journal>
+                        <ISSN IssnType="Print">1383-875X</ISSN>
+                        <JournalIssue CitedMedium="Print">
+                            <Volume>3</Volume>
+                            <Issue>3</Issue>
+                            <PubDate>
+                                <Year>1999</Year>
+                                <Month>Oct</Month>
+                            </PubDate>
+                        </JournalIssue>
+                        <Title>Journal of interventional cardiac electrophysiology : an international journal of arrhythmias and pacing</Title>
+                        <ISOAbbreviation>J Interv Card Electrophysiol</ISOAbbreviation>
+                    </Journal>
+                    <ArticleTitle>Assessment of atrioventricular nodal physiology in the mouse.</ArticleTitle>
+                    <Pagination>
+                        <MedlinePgn>207-12</MedlinePgn>
+                    </Pagination>
+                    <Abstract>
+                        <AbstractText>Transgenic mice are increasingly being utilized for understanding cardiac electrophysiologic abnormalities. However, little is known about the normal atrioventricular nodal and infraHisian physiology in the mouse because of the prior inability to record a His-bundle deflection. We present the first comprehensive examination of the murine atrioventricular nodal and His-Purkinje systems employing His-bundle recordings. Normal, healthy, male C57BL/6J mice (n = 48) underwent an in vivo electrophysiology study using a 2 F octapolar electrode catheter. Effective refractory periods were determined during premature atrial and ventricular stimulation. The PR interval measured 44 +/- 6 ms with a mean sinus cycle length of 185 +/- 42 ms. Baseline AH intervals were 36 +/- 5 ms and HV intervals were 10 +/- 2 ms. At a pacing cycle length of 140 ms the atrioventricular nodal effective refractory period (AVNERP) and atrial effective refractory period (AERP) were 86 +/- 19 ms and 57 +/- 17 ms, respectively. The mean AV Wenckebach and 2:1 paced cycle length were 103 +/- 14 ms and 84 +/- 13 ms, respectively. Premature atrial stimulation curves were asymptotic without discontinuity. A subset of nine mice was studied after administration of isoproterenol. The sinus cycle length, AVNERP and AERP decreased significantly from baseline measurements. This method establishes a practical and feasible technique to record in vivo His-bundle electrograms in the mouse to assess atrioventricular nodal and infraHisian physiology. Use of this model will allow for the examination of abnormalities of atrioventricular nodal and infraHisian conduction in transgenic murine models.</AbstractText>
+                    </Abstract>
+                    <AuthorList CompleteYN="Y">
+                        <Author ValidYN="Y">
+                            <LastName>VanderBrink</LastName>
+                            <ForeName>B A</ForeName>
+                            <Initials>BA</Initials>
+                            <AffiliationInfo>
+                                <Affiliation>New England Cardiac Arrhythmia Center, New England Medical Center, Boston, MA.</Affiliation>
+                            </AffiliationInfo>
+                        </Author>
+                        <Author ValidYN="Y">
+                            <LastName>Link</LastName>
+                            <ForeName>M S</ForeName>
+                            <Initials>MS</Initials>
+                        </Author>
+                        <Author ValidYN="Y">
+                            <LastName>Aronovitz</LastName>
+                            <ForeName>M J</ForeName>
+                            <Initials>MJ</Initials>
+                        </Author>
+                        <Author ValidYN="Y">
+                            <LastName>Saba</LastName>
+                            <ForeName>S</ForeName>
+                            <Initials>S</Initials>
+                        </Author>
+                        <Author ValidYN="Y">
+                            <LastName>Sloan</LastName>
+                            <ForeName>S B</ForeName>
+                            <Initials>SB</Initials>
+                        </Author>
+                        <Author ValidYN="Y">
+                            <LastName>Homoud</LastName>
+                            <ForeName>M K</ForeName>
+                            <Initials>MK</Initials>
+                        </Author>
+                        <Author ValidYN="Y">
+                            <LastName>Estes III</LastName>
+                            <ForeName>N A</ForeName>
+                            <Initials>NA</Initials>
+                        </Author>
+                        <Author ValidYN="Y">
+                            <LastName>Wang</LastName>
+                            <ForeName>P J</ForeName>
+                            <Initials>PJ</Initials>
+                        </Author>
+                    </AuthorList>
+                    <Language>eng</Language>
+                    <PublicationTypeList>
+                        <PublicationType UI="D003160">Comparative Study</PublicationType>
+                        <PublicationType UI="D016428">Journal Article</PublicationType>
+                    </PublicationTypeList>
+                </Article>
+                <MedlineJournalInfo>
+                    <Country>UNITED STATES</Country>
+                    <MedlineTA>J Interv Card Electrophysiol</MedlineTA>
+                    <NlmUniqueID>9708966</NlmUniqueID>
+                    <ISSNLinking>1383-875X</ISSNLinking>
+                </MedlineJournalInfo>
+                <ChemicalList>
+                    <Chemical>
+                        <RegistryNumber>0</RegistryNumber>
+                        <NameOfSubstance UI="D000318">Adrenergic beta-Agonists</NameOfSubstance>
+                    </Chemical>
+                    <Chemical>
+                        <RegistryNumber>L628TT009W</RegistryNumber>
+                        <NameOfSubstance UI="D007545">Isoproterenol</NameOfSubstance>
+                    </Chemical>
+                </ChemicalList>
+                <CitationSubset>IM</CitationSubset>
+                <MeshHeadingList>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D000318">Adrenergic beta-Agonists</DescriptorName>
+                        <QualifierName MajorTopicYN="N" UI="Q000008">administration &amp; dosage</QualifierName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D000818">Animals</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D001283">Atrioventricular Node</DescriptorName>
+                        <QualifierName MajorTopicYN="N" UI="Q000187">drug effects</QualifierName>
+                        <QualifierName MajorTopicYN="Y" UI="Q000502">physiology</QualifierName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D002036">Bundle of His</DescriptorName>
+                        <QualifierName MajorTopicYN="N" UI="Q000187">drug effects</QualifierName>
+                        <QualifierName MajorTopicYN="N" UI="Q000502">physiology</QualifierName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D004594">Electrophysiology</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D006339">Heart Rate</DescriptorName>
+                        <QualifierName MajorTopicYN="N" UI="Q000187">drug effects</QualifierName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D007274">Injections, Intraperitoneal</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D007545">Isoproterenol</DescriptorName>
+                        <QualifierName MajorTopicYN="N" UI="Q000008">administration &amp; dosage</QualifierName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D008297">Male</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D051379">Mice</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D008810">Mice, Inbred C57BL</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D011690">Purkinje Fibers</DescriptorName>
+                        <QualifierName MajorTopicYN="N" UI="Q000187">drug effects</QualifierName>
+                        <QualifierName MajorTopicYN="N" UI="Q000502">physiology</QualifierName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D013268">Stimulation, Chemical</DescriptorName>
+                    </MeshHeading>
+                </MeshHeadingList>
+            </MedlineCitation>
+            <PubmedData>
+                <History>
+                    <PubMedPubDate PubStatus="pubmed">
+                        <Year>1999</Year>
+                        <Month>9</Month>
+                        <Day>18</Day>
+                    </PubMedPubDate>
+                    <PubMedPubDate PubStatus="medline">
+                        <Year>1999</Year>
+                        <Month>9</Month>
+                        <Day>18</Day>
+                        <Hour>0</Hour>
+                        <Minute>1</Minute>
+                    </PubMedPubDate>
+                    <PubMedPubDate PubStatus="entrez">
+                        <Year>1999</Year>
+                        <Month>9</Month>
+                        <Day>18</Day>
+                        <Hour>0</Hour>
+                        <Minute>0</Minute>
+                    </PubMedPubDate>
+                </History>
+                <PublicationStatus>ppublish</PublicationStatus>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">10490476</ArticleId>
+                </ArticleIdList>
+            </PubmedData>
+        </PubmedArticle>
+
+        </PubmedArticleSet>
+    http_version: 
+  recorded_at: Thu, 17 Mar 2016 21:58:13 GMT
+recorded_with: VCR 2.9.3
