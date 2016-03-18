@@ -221,7 +221,7 @@ describe SulBib::API do
         JSON.parse(response.body)
       end
 
-      it 'adds new publication' do
+      it 'adds new publication', :vcr do
         expect(result['pmid']).to eq(request_data[:pmid])
         expect(result['authorship'].length).to eq 1
         contribution = Contribution.where(
@@ -232,7 +232,7 @@ describe SulBib::API do
         expect(contribution.visibility).to eq(request_data[:visibility])
       end
 
-      it 'adds proper identifiers section' do
+      it 'adds proper identifiers section', :vcr do
         pub_ids = result['identifier']
         # Check the PMID, e.g.
         # {"type"=>"PMID", "id"=>"23684686", "url"=>"http://www.ncbi.nlm.nih.gov/pubmed/23684686"}
@@ -266,7 +266,7 @@ describe SulBib::API do
         JSON.parse(response.body)
       end
 
-      it 'adds new ScienceWire publication' do
+      it 'adds new ScienceWire publication', :vcr do
         expect(result['sw_id']).to eq(request_data[:sw_id])
         expect(result['authorship'].length).to eq 1
         expect(result['authorship'][0]['sul_author_id']).to eq(author.id)
@@ -278,7 +278,7 @@ describe SulBib::API do
         expect(contribution.visibility).to eq(request_data[:visibility])
       end
 
-      it 'adds new ScienceWire publication with proper identifiers section' do
+      it 'adds new ScienceWire publication with proper identifiers section', :vcr do
         pub_ids = result['identifier']
         # This doesn't result is a clearly identified ScienceWire identifier, e.g.
         # {"type"=>"PublicationItemID", "id"=>"10379039"}

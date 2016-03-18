@@ -45,7 +45,6 @@ gem 'retina_tag'
 
 
 group :development, :test do
-  gem 'sqlite3'
   gem 'rspec-rails', '~> 3.0'
   gem 'factory_girl_rails'
   gem 'pry-doc'

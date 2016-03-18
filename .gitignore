@@ -4,10 +4,6 @@
 # or operating system, you probably want to add a global ignore instead:
 #   git config --global core.excludesfile ~/.gitignore_global
 
-# Ignore the database settings - to protect passwords
-# Developers add their own, capistrano uses shared dir version
-config/database.yml
-
 # Ignore bundler files
 .bundle/
 .binstubs/
@@ -36,9 +32,7 @@ doc/
 .DS_Store
 .idea
 coverage
-config/database.yml
 config/cap_auth.yaml
-config/sciencewire_auth.yaml
 README_configs.txt
 
 ## Ignore ruby version pins

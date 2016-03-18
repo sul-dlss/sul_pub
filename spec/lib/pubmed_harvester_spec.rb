@@ -24,7 +24,7 @@ describe PubmedHarvester do
   end
 
   describe '.search_all_sources_by_pmid' do
-    it 'searches for a local Publication by pmid and returns a pubhash' do
+    it 'searches for a local Publication by pmid and returns a pubhash', :vcr do
       h = PubmedHarvester.search_all_sources_by_pmid 10_048_354
       expect(h.first[:issn]).to eq '32242424'
     end
