@@ -123,6 +123,9 @@ GEM
       capistrano-bundle_audit (>= 0.0.3)
       capistrano-one_time_key
       capistrano-releaseboard
+    dlss_cops (0.0.3)
+      rubocop (~> 0.37.0)
+      rubocop-rspec (~> 1.4.0)
     docile (1.1.5)
     domain_name (0.5.24)
       unf (>= 0.0.5, < 1.0.0)
@@ -301,12 +304,13 @@ GEM
       rspec-mocks (~> 3.3.0)
       rspec-support (~> 3.3.0)
     rspec-support (3.3.0)
-    rubocop (0.38.0)
-      parser (>= 2.3.0.6, < 3.0)
+    rubocop (0.37.2)
+      parser (>= 2.3.0.4, < 3.0)
       powerpack (~> 0.1)
       rainbow (>= 1.99.1, < 3.0)
       ruby-progressbar (~> 1.7)
-      unicode-display_width (~> 1.0, >= 1.0.1)
+      unicode-display_width (~> 0.3)
+    rubocop-rspec (1.4.0)
     ruby-progressbar (1.7.5)
     rubyzip (1.0.0)
     safe_yaml (1.0.4)
@@ -368,7 +372,7 @@ GEM
       unf_ext
     unf_ext (0.0.7.1)
     unicode (0.4.4.2)
-    unicode-display_width (1.0.2)
+    unicode-display_width (0.3.1)
     vcr (2.9.3)
     virtus (1.0.5)
       axiom-types (~> 0.1)
@@ -410,6 +414,7 @@ DEPENDENCIES
   coveralls
   database_cleaner
   dlss-capistrano
+  dlss_cops
   dotiw
   factory_girl_rails (~> 4.0)
   grape
@@ -431,7 +436,6 @@ DEPENDENCIES
   rest-client
   retina_tag
   rspec-rails (~> 3.0)
-  rubocop
   sass-rails (~> 5.0)
   settingslogic
   simplecov
