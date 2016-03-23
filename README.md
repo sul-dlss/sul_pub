@@ -3,5 +3,5 @@
 
 # SUL Bibliographic Management System
  
-[*SUL Bibliographic Management System*](http://sulcap-test.stanford.edu/)
-by [Stanford University Libraries](http://stanford.edu/).
+[*SUL Bibliographic Management System*](http://sulcap-dev.stanford.edu/)
+by [Stanford University Libraries](http://library.stanford.edu).
