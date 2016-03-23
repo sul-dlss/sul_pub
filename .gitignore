@@ -16,8 +16,9 @@ vendor/
 .tags
 .gemtags
 
-# Ignore the default SQLite database.
+# Ignore the database files
 /db/*.sqlite3
+config/database.yml
 
 # Ignore all logfiles and tempfiles.
 /log
