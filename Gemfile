@@ -46,13 +46,13 @@ gem 'squash_rails', require: 'squash/rails'
 gem 'retina_tag'
 
 group :development, :test do
+  gem 'dlss_cops' # includes rubocop
   gem 'rails_db'
   gem 'axlsx_rails'
 end
 
 group :development do
   gem 'pry-doc'
-  gem 'rubocop', require: false
   gem 'thin' # app server
   gem 'web-console', '~> 2.0'
 end
