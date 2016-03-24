@@ -3,5 +3,5 @@ cache: bundler
 rvm:
   - 2.2.2
 sudo: false
-script: bundle exec rake ci
+script: bundle exec rake
 services: mysql
