@@ -2,6 +2,8 @@
 # Add your own tasks in files placed in lib/tasks ending in .rake,
 # for example lib/tasks/capistrano.rake, and they will automatically be available to Rake.
 
+task default: [:ci, :rubocop]
+
 require File.expand_path('../config/application', __FILE__)
 
 Sulbib::Application.load_tasks
@@ -15,4 +17,9 @@ task ci: [:environment] do
   else
     system 'rake ci RAILS_ENV=test'
   end
+end
+
+desc 'Run rubocop on ruby files in a patch on master'
+task :rubocop_patch do
+  system "git diff --name-only HEAD..master | grep -E -i 'rake|*.rb|*.erb' | xargs bundle exec rubocop"
 end
