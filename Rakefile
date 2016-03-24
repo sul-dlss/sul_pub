@@ -18,3 +18,8 @@ task ci: [:environment] do
     system 'rake ci RAILS_ENV=test'
   end
 end
+
+desc 'Run rubocop on ruby files in a patch on master'
+task :rubocop_patch do
+  system "git diff --name-only HEAD..master | grep -E -i 'rake|*.rb|*.erb' | xargs bundle exec rubocop"
+end
