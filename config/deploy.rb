@@ -1,7 +1,7 @@
 # config valid only for current version of Capistrano
 lock '3.4.0'
 
-set :application, 'CAP'
+set :application, 'sul-pub'
 set :repo_url, 'git@github.com:sul-dlss/sul-pub.git'
 set :ssh_options,   keys: [Capistrano::OneTimeKey.temporary_ssh_private_key_path],
                     forward_agent: true,
