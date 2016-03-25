@@ -4,6 +4,10 @@
 
 task default: [:ci, :rubocop]
 
+# If the config/database.yml file does not exist, use the example file
+# so that the config/application can load.
+File.exist?('config/database.yml') || FileUtils.copy('config/database.yml.example', 'config/database.yml')
+
 require File.expand_path('../config/application', __FILE__)
 
 Sulbib::Application.load_tasks
