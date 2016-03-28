@@ -8,7 +8,9 @@ by [Stanford University Libraries](http://library.stanford.edu).
 
 ## Configuration
 
-The configuration files to review are:
+Configurations are currently being managed in multiple ways. The goal is to [consolidate](https://github.com/sul-dlss/sul-pub/issues/99) the approach. New configurations should be added in [`settings.yml`](https://github.com/sul-dlss/sul-pub/blob/master/config/application.yml). _Never check in private settings._ This project uses the [config gem](https://github.com/railsconfig/config) for managing settings. Private settings can be added locally in a *.local.yml file. See [Developer specific config files](https://github.com/railsconfig/config#developer-specific-config-files).
+
+Legacy configuration files to review are:
 - https://github.com/sul-dlss/sul-pub/blob/master/config/application.yml
   - Application configuration parameters (may not require any changes)
 - https://github.com/sul-dlss/sul-pub/blob/master/config/database.yml 
@@ -16,10 +18,6 @@ The configuration files to review are:
 - https://github.com/sul-dlss/sul-pub/blob/master/config/cap_auth.yaml.example
   - Authentication credentials for the CAP API
   - API routes
-- https://github.com/sul-dlss/sul-pub/blob/master/config/sciencewire_auth.yaml
-  - Authentication credentials for Thomson Reuters ScienceWire API
-  - API routes
-
 
 # Developer Setup
 
