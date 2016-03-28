@@ -103,6 +103,9 @@ GEM
       descendants_tracker (~> 0.0.1)
     colorize (0.7.7)
     concurrent-ruby (1.0.1)
+    config (1.0.0)
+      activesupport (>= 3.0)
+      deep_merge (~> 1.0.0)
     coveralls (0.8.9)
       json (~> 1.8)
       rest-client (>= 1.6.8, < 2)
@@ -115,6 +118,7 @@ GEM
     daemons (1.2.3)
     database_cleaner (1.5.1)
     debug_inspector (0.0.2)
+    deep_merge (1.0.1)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
     diff-lcs (1.2.5)
@@ -411,6 +415,7 @@ DEPENDENCIES
   capistrano-rails
   capybara
   citeproc-ruby (= 0.0.6)
+  config
   coveralls
   database_cleaner
   dlss-capistrano

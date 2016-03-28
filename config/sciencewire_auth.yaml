@@ -1,8 +1,0 @@
----
-:get_uri: sciencewirerest.discoverylogic.com
-:get_port: 443
-:get_recommendation_path: /PublicationCatalog/MatchedPublicationItemIdsForAuthor?format=xml
-:get_license_id: some-license-id
-:get_host: sciencewirerest.discoverylogic.com
-:get_pubs_for_ids_path: /PublicationCatalog/PublicationItems?format=xml&publicationItemIDs=
-:publication_query_path: /PublicationCatalog/PublicationQuery?format=xml
