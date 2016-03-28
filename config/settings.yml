@@ -1,3 +1,14 @@
+## Cap Auth Config
+CAP:
+  TOKEN_URI: something
+  PORT: 443
+  TOKEN_PATH: /oauth/token
+  TOKEN_USER: something
+  TOKEN_PASS: something
+  AUTHORSHIP_API_URI: something
+  AUTHORSHIP_API_PATH: /cap-api-qa/api/cap/v1/authors
+  AUTHORSHIP_API_PORT: 443
+
 ## Sciencewire Auth Config
 SCIENCEWIRE:
   BASE_URI: sciencewirerest.discoverylogic.com

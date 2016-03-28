@@ -17,7 +17,6 @@ ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
 set :linked_files, fetch(:linked_files, []).push(
   'config/secrets.yml',
   'config/database.yml',
-  'config/cap_auth.yaml',
   'config/initializers/squash.rb'
 )
 
