@@ -42,3 +42,8 @@ README_configs.txt
 ## Specific to SublimeText:
 *.sublime-project
 *.sublime-workspace
+
+## Config gem settings
+config/settings.local.yml
+config/settings/*.local.yml
+config/environments/*.local.yml
