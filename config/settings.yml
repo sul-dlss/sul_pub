@@ -1,0 +1,9 @@
+## Sciencewire Auth Config
+SCIENCEWIRE:
+  BASE_URI: sciencewirerest.discoverylogic.com
+  PORT: 443
+  RECOMMENDATION_PATH: /PublicationCatalog/MatchedPublicationItemIdsForAuthor?format=xml
+  LICENSE_ID: some-license-id
+  HOST: sciencewirerest.discoverylogic.com
+  PUBLICATION_ITEMS_PATH: /PublicationCatalog/PublicationItems?format=xml&publicationItemIDs=
+  PUBLICATION_QUERY_PATH: /PublicationCatalog/PublicationQuery?format=xml

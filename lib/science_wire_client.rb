@@ -1,6 +1,5 @@
 class ScienceWireClient
   def initialize
-    @auth = YAML.load(File.open(Rails.root.join('config', 'sciencewire_auth.yaml')))
     @base_timeout_retries = 3
     @base_timeout_period = 100
   end
@@ -52,16 +51,16 @@ class ScienceWireClient
   end
 
   def make_sciencewire_suggestion_call(body)
-    http = Net::HTTP.new(@auth[:get_uri], @auth[:get_port])
+    http = Net::HTTP.new(ConfigSettings.SCIENCEWIRE.BASE_URI, ConfigSettings.SCIENCEWIRE.PORT)
 
     http.use_ssl = true
     http.verify_mode = OpenSSL::SSL::VERIFY_PEER
     timeout_retries ||= 3
     timeout_period ||= 500
     http.read_timeout = timeout_period
-    request = Net::HTTP::Post.new(@auth[:get_recommendation_path])
-    request['LicenseID'] = @auth[:get_license_id]
-    request['Host'] = @auth[:get_host]
+    request = Net::HTTP::Post.new(ConfigSettings.SCIENCEWIRE.RECOMMENDATION_PATH)
+    request['LicenseID'] = ConfigSettings.SCIENCEWIRE.LICENSE_ID
+    request['Host'] = ConfigSettings.SCIENCEWIRE.HOST
     request['Connection'] = 'Keep-Alive'
     request['Expect'] = '100-continue'
     request['Content-Type'] = 'text/xml'
@@ -316,9 +315,9 @@ class ScienceWireClient
       <xmlQuery>' + xml_query + '</xmlQuery>
       </ScienceWireQueryXMLParameter>'
       http = setup_http
-      request = Net::HTTP::Post.new(@auth[:publication_query_path])
-      request['LicenseID'] = @auth[:get_license_id]
-      request['Host'] = @auth[:get_host]
+      request = Net::HTTP::Post.new(ConfigSettings.SCIENCEWIRE.PUBLICATION_QUERY_PATH)
+      request['LicenseID'] = ConfigSettings.SCIENCEWIRE.LICENSE_ID
+      request['Host'] = ConfigSettings.SCIENCEWIRE.HOST
       request['Connection'] = 'Keep-Alive'
       request['Expect'] = '100-continue'
       request['Content-Type'] = 'text/xml'
@@ -339,8 +338,8 @@ class ScienceWireClient
       http = setup_http
       fullPubsRequest = Net::HTTP::Get.new("/PublicationCatalog/PublicationQuery/#{queryId}?format=xml&v=version/3&page=0&pageSize=2147483647")
       fullPubsRequest['Content_Type'] = 'text/xml'
-      fullPubsRequest['LicenseID'] = @auth[:get_license_id]
-      fullPubsRequest['Host'] = @auth[:get_host]
+      fullPubsRequest['LicenseID'] = ConfigSettings.SCIENCEWIRE.LICENSE_ID
+      fullPubsRequest['Host'] = ConfigSettings.SCIENCEWIRE.HOST
       fullPubsRequest['Connection'] = 'Keep-Alive'
 
       fullPubResponse = http.request(fullPubsRequest)
@@ -351,16 +350,16 @@ class ScienceWireClient
   end
 
   def get_full_sciencewire_pubs_for_sciencewire_ids(sciencewire_ids)
-    http = Net::HTTP.new(@auth[:get_uri], @auth[:get_port])
+    http = Net::HTTP.new(ConfigSettings.SCIENCEWIRE.BASE_URI, ConfigSettings.SCIENCEWIRE.PORT)
     timeout_retries ||= 3
     timeout_period ||= 500
     http.read_timeout = timeout_period
     http.use_ssl = true
     http.verify_mode = OpenSSL::SSL::VERIFY_PEER
-    fullPubsRequest = Net::HTTP::Get.new(@auth[:get_pubs_for_ids_path] + sciencewire_ids)
+    fullPubsRequest = Net::HTTP::Get.new(ConfigSettings.SCIENCEWIRE.PUBLICATION_ITEMS_PATH + sciencewire_ids)
     fullPubsRequest['Content-Type'] = 'text/xml'
-    fullPubsRequest['LicenseID'] = @auth[:get_license_id]
-    fullPubsRequest['Host'] = @auth[:get_host]
+    fullPubsRequest['LicenseID'] = ConfigSettings.SCIENCEWIRE.LICENSE_ID
+    fullPubsRequest['Host'] = ConfigSettings.SCIENCEWIRE.HOST
     fullPubsRequest['Connection'] = 'Keep-Alive'
     #  http.start
     fullPubResponse = http.request(fullPubsRequest).body
@@ -426,7 +425,7 @@ class ScienceWireClient
   end
 
   def setup_http
-    http = Net::HTTP.new(@auth[:get_uri], @auth[:get_port])
+    http = Net::HTTP.new(ConfigSettings.SCIENCEWIRE.BASE_URI, ConfigSettings.SCIENCEWIRE.PORT)
     http.read_timeout = @base_timeout_period
     http.use_ssl = true
     http.verify_mode = OpenSSL::SSL::VERIFY_PEER
