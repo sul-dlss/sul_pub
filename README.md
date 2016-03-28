@@ -15,9 +15,6 @@ Legacy configuration files to review are:
   - Application configuration parameters (may not require any changes)
 - https://github.com/sul-dlss/sul-pub/blob/master/config/database.yml 
   - MySQL connection parameters
-- https://github.com/sul-dlss/sul-pub/blob/master/config/cap_auth.yaml.example
-  - Authentication credentials for the CAP API
-  - API routes
 
 # Developer Setup
 
