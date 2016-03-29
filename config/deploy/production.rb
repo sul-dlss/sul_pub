@@ -1,4 +1,4 @@
-server 'sul-pub-prod.stanford.edu', user: fetch(:user), roles: %w(web db app)
+server 'sul-pub-prod.stanford.edu', user: fetch(:user), roles: %w(web db app harvester)
 
 Capistrano::OneTimeKey.generate_one_time_key!
 

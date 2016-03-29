@@ -31,4 +31,6 @@ set :linked_dirs, fetch(:linked_dirs, []).push(
   'config/settings'
 )
 
+set :whenever_identifier, ->{ "#{fetch(:application)}_#{fetch(:stage)}" }
+
 before 'deploy:publishing', 'squash:write_revision'
