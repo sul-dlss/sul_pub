@@ -37,6 +37,8 @@ defaults: &defaults
   sciencewire_harvest_max: 2
 
   sw_doc_types_to_skip_a:
+    - Book Review
+    - Comment
     - Film Review
     - Hardware Review
     - Legal Cases
@@ -53,12 +55,9 @@ defaults: &defaults
     - Poetry
     - Record Review
     - Software Review
+    - TV Review Radio Review Video
     - Technical Report
     - Theater Review
-    - TV Review Radio Review Video
-    - Book Review
-    - Comment
-
 
 
 development:
