@@ -17,6 +17,10 @@ describe XpathUtils do
           <PublicationItemID>3</PublicationItemID>
           <DocumentTypeList>Letter</DocumentTypeList>
         </PublicationItem>
+       <PublicationItem>
+          <PublicationItemID>4</PublicationItemID>
+          <DocumentTypeList>Book Review</DocumentTypeList>
+        </PublicationItem>
       <ArrayOfPublicationItem>
       XML
       Nokogiri::XML xml
