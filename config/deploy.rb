@@ -27,7 +27,8 @@ set :linked_dirs, fetch(:linked_dirs, []).push(
   'tmp/cache',
   'tmp/sockets',
   'vendor/bundle',
-  'public/system'
+  'public/system',
+  'config/settings'
 )
 
 before 'deploy:publishing', 'squash:write_revision'
