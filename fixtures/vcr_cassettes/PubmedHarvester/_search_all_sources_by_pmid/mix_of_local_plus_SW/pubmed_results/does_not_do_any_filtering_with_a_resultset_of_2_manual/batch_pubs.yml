@@ -15,7 +15,7 @@ http_interactions:
                             &lt;Filter&gt;
                               &lt;Column&gt;PMID&lt;/Column&gt;
                               &lt;Operator&gt;In&lt;/Operator&gt;
-                              &lt;Values&gt;&lt;Value&gt;10048354&lt;/Value&gt;&lt;/Values&gt;
+                              &lt;Values&gt;&lt;Value&gt;99999999&lt;/Value&gt;&lt;/Values&gt;
                                     &lt;/Filter&gt;
                                   &lt;/Criterion&gt;
                                 &lt;/Criteria&gt;
@@ -64,19 +64,19 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Tue, 29 Mar 2016 01:16:28 GMT
+      - Tue, 29 Mar 2016 01:16:30 GMT
       Content-Length:
       - '278'
     body:
       encoding: UTF-8
       string: "<?xml version=\"1.0\"?>\r\n<ScienceWireQueryIDResponse xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
-        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>143766</queryID>\r\n
-        \ <queryResultRows>1</queryResultRows>\r\n  <totalRows>1</totalRows>\r\n</ScienceWireQueryIDResponse>"
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>143802</queryID>\r\n
+        \ <queryResultRows>0</queryResultRows>\r\n  <totalRows>0</totalRows>\r\n</ScienceWireQueryIDResponse>"
     http_version: 
-  recorded_at: Tue, 29 Mar 2016 01:16:28 GMT
+  recorded_at: Tue, 29 Mar 2016 01:16:30 GMT
 - request:
     method: get
-    uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/143766?format=xml&page=0&pageSize=2147483647&v=version/3
+    uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/143802?format=xml&page=0&pageSize=2147483647&v=version/3
     body:
       encoding: US-ASCII
       string: ''
@@ -113,36 +113,59 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Tue, 29 Mar 2016 01:16:28 GMT
+      - Tue, 29 Mar 2016 01:16:31 GMT
       Content-Length:
-      - '2101'
+      - '148'
     body:
       encoding: UTF-8
       string: "<?xml version=\"1.0\"?>\r\n<ArrayOfPublicationItem xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
-        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <PublicationItem>\r\n
-        \   <PublicationItemID>42711845</PublicationItemID>\r\n    <Title>Frostbite:
-        an orthopedic perspective.</Title>\r\n    <Abstract>Frostbite injury to the
-        extremities has the potential for disastrous effects. This review provides
-        information valuable to the orthopedic surgeon to aid in the evaluation and
-        treatment of frostbite. The pathophysiology and predisposing factors that
-        provide a basic understanding of the nature of frostbite are discussed. Accepted
-        and experimental imaging studies and treatment options are also reviewed.
-        An effort is made to give the orthopedic perspective on each issue, providing
-        a valuable resource for all orthopedic surgeons involved in the care of the
-        patient with frostbite.</Abstract>\r\n    <AuthorList>McAdams,T,R|Swenson,D,R|MILLER,R,A</AuthorList>\r\n
-        \   <AuthorCount>3</AuthorCount>\r\n    <KeywordList />\r\n    <DocumentTypeList>Journal
-        Article|Review</DocumentTypeList>\r\n    <DocumentCategory>Journal Document</DocumentCategory>\r\n
-        \   <NumberOfReferences>44</NumberOfReferences>\r\n    <TimesCited xsi:nil=\"true\"
-        />\r\n    <TimesNotSelfCited xsi:nil=\"true\" />\r\n    <PMID>10048354</PMID>\r\n
-        \   <PublicationSourceTitle>American journal of orthopedics (Belle Mead, N.J.)</PublicationSourceTitle>\r\n
-        \   <Volume>28</Volume>\r\n    <Issue>1</Issue>\r\n    <Pagination>21-26</Pagination>\r\n
-        \   <PublicationDate>1999-01-01T00:00:00</PublicationDate>\r\n    <PublicationYear>1999</PublicationYear>\r\n
-        \   <PublicationSubjectCategoryList />\r\n    <ISSN>1078-4519</ISSN>\r\n    <ConferenceStartDate
-        xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank
-        xsi:nil=\"true\" />\r\n    <OrdinalRank>0</OrdinalRank>\r\n    <NormalizedRank
-        xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
-        \   <CopyrightPublisher />\r\n    <CopyrightCity />\r\n    <CopyrightStateProvince
-        />\r\n    <CopyrightCountry>UNITED STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n</ArrayOfPublicationItem>"
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" />"
     http_version: 
-  recorded_at: Tue, 29 Mar 2016 01:16:28 GMT
+  recorded_at: Tue, 29 Mar 2016 01:16:31 GMT
+- request:
+    method: post
+    uri: http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml
+    body:
+      encoding: UTF-8
+      string: "&id=99999999"
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 29 Mar 2016 01:16:31 GMT
+      Server:
+      - Apache
+      Access-Control-Allow-Origin:
+      - "*"
+      Cache-Control:
+      - private
+      Ncbi-Sid:
+      - 73BF675B6F9D76F1_0137SID
+      Content-Type:
+      - text/xml; charset=UTF-8
+      Set-Cookie:
+      - ncbi_sid=73BF675B6F9D76F1_0137SID; domain=.nih.gov; path=/; expires=Wed, 29
+        Mar 2017 01:16:31 GMT
+      X-Ua-Compatible:
+      - IE=Edge
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0"?>
+        <!DOCTYPE PubmedArticleSet PUBLIC "-//NLM//DTD PubMedArticle, 1st January 2016//EN" "http://www.ncbi.nlm.nih.gov/corehtml/query/DTD/pubmed_160101.dtd">
+        <PubmedArticleSet>
+        </PubmedArticleSet>
+    http_version: 
+  recorded_at: Tue, 29 Mar 2016 01:16:31 GMT
 recorded_with: VCR 2.9.3
