@@ -24,6 +24,20 @@ task ci: [:environment] do
 end
 
 desc 'Run rubocop on ruby files in a patch on master'
+task :rubocop do
+  if Rails.env.test? || Rails.env.development?
+    begin
+      require 'rubocop/rake_task'
+      RuboCop::RakeTask.new
+    rescue LoadError
+      puts 'Unable to load RuboCop.'
+    end
+  end
+end
+
+desc 'Run rubocop on ruby files in a patch on master'
 task :rubocop_patch do
-  system "git diff --name-only HEAD..master | grep -E -i 'rake|*.rb|*.erb' | xargs bundle exec rubocop"
+  if Rails.env.test? || Rails.env.development?
+    system "git diff --name-only HEAD..master | grep -E -i 'rake|*.rb|*.erb' | xargs bundle exec rubocop"
+  end
 end
