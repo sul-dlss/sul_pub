@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe SulBib::API do
+describe SulBib::API, :vcr do
   let(:capkey) { { 'HTTP_CAPKEY' => '***REMOVED***' } }
   let(:headers) { capkey.merge({ 'CONTENT_TYPE' => 'application/json' }) }
   let(:publication) { create :publication }
@@ -10,21 +10,17 @@ describe SulBib::API do
   let(:sourcelookup_path) {'/publications/sourcelookup'}
   let(:sourcelookup_by_title) {
     publication_with_test_title
-    VCR.use_cassette('publications_api_sourcelookup_test_title') do
-      params = { format: 'json', title: test_title, maxrows: 2 }
-      get sourcelookup_path, params, capkey
-      expect(response.status).to eq(200)
-      JSON.parse(response.body)
-    end
+    params = { format: 'json', title: test_title, maxrows: 2 }
+    get sourcelookup_path, params, capkey
+    expect(response.status).to eq(200)
+    JSON.parse(response.body)
   }
   let(:test_doi) {'10.1016/j.mcn.2012.03.008'}
   let(:sourcelookup_by_doi) {
-    VCR.use_cassette('publications_api_sourcelookup_test_doi') do
-      params = { format: 'json', doi: test_doi }
-      get sourcelookup_path, params, capkey
-      expect(response.status).to eq(200)
-      JSON.parse(response.body)
-    end
+    params = { format: 'json', doi: test_doi }
+    get sourcelookup_path, params, capkey
+    expect(response.status).to eq(200)
+    JSON.parse(response.body)
   }
   let(:valid_json_for_post) {
     {
@@ -56,32 +52,28 @@ describe SulBib::API do
 
     describe '?doi' do
       it 'returns one document ' do
-        # VCR.use_cassette('sourcelookup_spec_doi') do
-          result = sourcelookup_by_doi
-          expect(result['metadata']['records']).to eq('1')
-          expect(result['records'].first['sw_id']).to eq('60830932')
-        # end
+        result = sourcelookup_by_doi
+        expect(result['metadata']['records']).to eq('1')
+        expect(result['records'].first['sw_id']).to eq('60830932')
       end
 
       it 'does not query sciencewire if there is an existing publication with the doi' do
-        # VCR.use_cassette('sourcelookup_spec_doi_local_manual_found') do
-          publication.pub_hash = {
-            identifier: [
-              {
-                type: 'doi',
-                id: test_doi,
-                url: "http://dx.doi.org/#{test_doi}"
-              }
-            ]
-          }
-          publication.sync_identifiers_in_pub_hash_to_db
-          result = sourcelookup_by_doi
-          expect(result['metadata']).to include('records')
-          expect(result['metadata']['records']).to eq('1')
-          record = result['records'].first
-          expect(record['title']).to match(/Protein kinase C alpha/i)
-          expect(record['provenance']).to match(/sciencewire/)
-        # end
+        publication.pub_hash = {
+          identifier: [
+            {
+              type: 'doi',
+              id: test_doi,
+              url: "http://dx.doi.org/#{test_doi}"
+            }
+          ]
+        }
+        publication.sync_identifiers_in_pub_hash_to_db
+        result = sourcelookup_by_doi
+        expect(result['metadata']).to include('records')
+        expect(result['metadata']['records']).to eq('1')
+        record = result['records'].first
+        expect(record['title']).to match(/Protein kinase C alpha/i)
+        expect(record['provenance']).to match(/sciencewire/)
       end
     end
 
@@ -125,15 +117,13 @@ describe SulBib::API do
         expect(result['records'].length).to eq(5)
       end
 
-      it 'does a sciencewire title search', :vcr do
-        # VCR.use_cassette('publications_api_sourcelookup_title') do
-          title = 'lung cancer treatment'
-          params = { format: 'json', title: title }
-          get sourcelookup_path, params, capkey
-          expect(response.status).to eq(200)
-          result = JSON.parse(response.body)
-          expect(result['metadata']['records']).to eq('20')
-        # end
+      it 'does a sciencewire title search' do
+        title = 'lung cancer treatment'
+        params = { format: 'json', title: title }
+        get sourcelookup_path, params, capkey
+        expect(response.status).to eq(200)
+        result = JSON.parse(response.body)
+        expect(result['metadata']['records']).to eq('20')
       end
 
       it 'returns results that match the requested title' do
