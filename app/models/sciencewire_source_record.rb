@@ -250,8 +250,19 @@ class SciencewireSourceRecord < ActiveRecord::Base
     type
   end
 
+  # This method maps a ScienceWire `DocumentCategory` into a corresponding
+  # value in `Settings.sul_doc_types`.
+  #
+  # The ScienceWire API documentation notes three valid values for the
+  # `DocumentCategory` field, i.e.:
+  # - 'Conference Proceeding Document'
+  # - 'Journal Document'
+  # - 'Other'
+  #
+  # @param sw_doc_category [String] One of the document categories
+  # @return sul_doc_type [String] One of the `Settings.sul_doc_types`
   def self.lookup_cap_doc_type_by_sw_doc_category(sw_doc_category)
-    if sw_doc_category =~ /^Conference Proceedings Document/i
+    if sw_doc_category == 'Conference Proceeding Document'
       return Settings.sul_doc_types.inproceedings
     else
       return Settings.sul_doc_types.article
