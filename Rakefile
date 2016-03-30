@@ -41,3 +41,26 @@ task :rubocop_patch do
     system "git diff --name-only HEAD..master | grep -E -i 'rake|*.rb|*.erb' | xargs bundle exec rubocop"
   end
 end
+
+namespace :vcr do
+  desc 'List all VCR cassettes'
+  task :cassettes do
+    Dir.glob("fixtures/vcr_cassettes/**/*.yml") { |f| puts f }
+  end
+
+  desc 'Remove private credentials from VCR cassettes'
+  task :sanitize do
+    public_license = 'some-license-id'
+    config_license = ConfigSettings.SCIENCEWIRE.LICENSE_ID
+    if config_license != public_license
+      puts "VCR SANITIZE: sanitizing a private license in the vcr cassettes"
+      Dir.glob("fixtures/vcr_cassettes/**/*.yml") do |file_name|
+        text = File.read(file_name)
+        if text.include? config_license
+          File.write(file_name, text.gsub(config_license, public_license))
+          puts "VCR SANITIZE: #{file_name}"
+        end
+      end
+    end
+  end
+end
