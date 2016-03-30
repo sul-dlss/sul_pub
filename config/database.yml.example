@@ -1,3 +1,5 @@
+# Derived from https://github.com/rails/rails/blob/v4.2.5.2/railties/lib/rails/generators/rails/app/templates/config/databases/mysql.yml
+#
 # MySQL.  Versions 5.0+ are recommended.
 #
 # Install the MYSQL driver
@@ -15,6 +17,7 @@ default: &default
   pool: 5
   username: root
   password:
+  host: localhost
 
 development:
   <<: *default
@@ -50,4 +53,4 @@ production:
   <<: *default
   database: sulbib_production
   username: sulbib
-  password: <%= ENV['MYSQL_DATABASE_PASSWORD'] %>
+  password: <%= ENV['SULBIB_DATABASE_PASSWORD'] %>
