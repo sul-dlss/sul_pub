@@ -15,6 +15,7 @@ class ScienceWireHarvester
   def initialize
     initialize_instance_vars
     initialize_counts_for_reporting
+    @reject_types = Settings.sw_doc_types_to_skip.join('|')
   end
 
   def harvest_pubs_for_authors(authors)
@@ -40,7 +41,7 @@ class ScienceWireHarvester
   end
 
   def harvest_pubs_for_author_ids(author_ids)
-    @sw_harvest_logger = Logger.new(Rails.root.join('log', 'sw_nightly_harvest.log'))
+    @sw_harvest_logger = Logger.new(Settings.SCIENCEWIRE.NIGHTLY_HARVEST_LOG)
     @sw_harvest_logger.info "Started nightly authorship harvest #{Time.zone.now}"
     harvest_pubs_for_authors Author.where(id: author_ids)
   rescue => e
@@ -48,7 +49,7 @@ class ScienceWireHarvester
   end
 
   def harvest_pubs_for_all_authors(starting_author_id, ending_author_id = -1)
-    @sw_harvest_logger = Logger.new(Rails.root.join('log', 'sw_harvest.log'))
+    @sw_harvest_logger = Logger.new(Settings.SCIENCEWIRE.HARVEST_LOG)
     @sw_harvest_logger.info "Started full authorship harvest #{Time.zone.now}"
     authors = Author.where(active_in_cap: true, cap_import_enabled: true)
     authors = authors.where(Author.arel_table[Author.primary_key].gteq(starting_author_id))
@@ -67,7 +68,7 @@ class ScienceWireHarvester
     batch_4 = [] << (3 * batch_size + 1) << last_id
     sacks = [] << batch_1 << batch_2 << batch_3 << batch_4
     Parallel.each(sacks, in_processes: 4) do |sack|
-      @sw_harvest_logger = Logger.new(Rails.root.join('log', "sw_harvest_p_#{Process.pid}.log"))
+      @sw_harvest_logger = Logger.new(Settings.SCIENCEWIRE.HARVEST_PID_LOG % Process.pid)
       @sw_harvest_logger.formatter = proc { |severity, datetime, _progname, msg|
         "#{severity} #{datetime}[#{Process.pid}]: #{msg}\n"
       }
@@ -187,7 +188,7 @@ class ScienceWireHarvester
 
   # @param [Array[String]] cap_profile_ids ids to generate files for
   def generate_smart_queries_for_authors(cap_profile_ids)
-    path = Pathname.new '/tmp/queries'
+    path = Pathname.new File.join(Settings.SCIENCEWIRE.TMPDIR, 'queries')
     path.mkpath
 
     cap_profile_ids.each do |id|
@@ -259,7 +260,7 @@ class ScienceWireHarvester
   def process_queued_sciencewire_suggestions
     list_of_sw_ids = @records_queued_for_sciencewire_retrieval.keys.join(',')
     sw_records_doc = @sciencewire_client.get_full_sciencewire_pubs_for_sciencewire_ids(list_of_sw_ids)
-    sw_records_doc.xpath("//PublicationItem[regex_reject(DocumentTypeList, '#{Settings.sw_doc_types_to_skip}')]", XpathUtils.new).each do |sw_doc|
+    sw_records_doc.xpath("//PublicationItem[regex_reject(DocumentTypeList, '#{@reject_types}')]", XpathUtils.new).each do |sw_doc|
       sciencewire_id = sw_doc.xpath('PublicationItemID').text
       pmid = sw_doc.xpath('PMID').text
       source_record_was_created = SciencewireSourceRecord.save_sw_source_record(sciencewire_id, pmid, sw_doc.to_xml)
@@ -355,7 +356,7 @@ class ScienceWireHarvester
   end
 
   def harvest_from_directory_of_wos_id_files(path_to_directory)
-    @sw_harvest_logger = Logger.new(Rails.root.join('log', 'wos_harvest.log'))
+    @sw_harvest_logger = Logger.new(Settings.SCIENCEWIRE.WOS_HARVEST_LOG)
     @sw_harvest_logger.datetime_format = '%Y-%m-%d %H:%M:%S'
     @sw_harvest_logger.formatter = proc { |severity, datetime, _progname, msg|
       "#{severity} #{datetime}: #{msg}\n"
@@ -452,7 +453,7 @@ class ScienceWireHarvester
   # Used for targeted harvesting for an author by sunetid and a json-file with an array of WOS id
   # Instantiates the logger too
   def harvest_for_sunetid_with_wos_json(sunetid, path_to_json, batch_size = 20)
-    @sw_harvest_logger = Logger.new(Rails.root.join('log', 'wos_harvest.log'))
+    @sw_harvest_logger = Logger.new(Settings.SCIENCEWIRE.WOS_HARVEST_LOG)
     @sw_harvest_logger.datetime_format = '%Y-%m-%d %H:%M:%S'
     @sw_harvest_logger.formatter = proc { |severity, datetime, _progname, msg|
       "#{severity} #{datetime}: #{msg}\n"
@@ -466,7 +467,7 @@ class ScienceWireHarvester
   # Process a text file with lines that have this format of WOS document id and cap profile id:
   #  WOS:000314860700023	38808
   def harvest_from_wos_id_cap_profile_id_report(path_to_report)
-    @sw_harvest_logger = Logger.new(Rails.root.join('log', 'wos_harvest.log'))
+    @sw_harvest_logger = Logger.new(Settings.SCIENCEWIRE.WOS_HARVEST_LOG)
     @sw_harvest_logger.datetime_format = '%Y-%m-%d %H:%M:%S'
     @sw_harvest_logger.formatter = proc { |severity, datetime, _progname, msg|
       "#{severity} #{datetime}: #{msg}\n"

@@ -1,5 +1,5 @@
-Squash::Ruby.configure api_host: ConfigSettings.SQUASH.API_HOST,
-                       api_key: ConfigSettings.SQUASH.API_KEY,
-                       disabled: ConfigSettings.SQUASH.DISABLED,
-                       environment: ConfigSettings.SQUASH.ENVIRONMENT || Rails.env,
+Squash::Ruby.configure api_host: Settings.SQUASH.API_HOST,
+                       api_key: Settings.SQUASH.API_KEY,
+                       disabled: Settings.SQUASH.DISABLED,
+                       environment: Settings.SQUASH.ENVIRONMENT || Rails.env,
                        revision_file: File.join(Rails.root, "REVISION")

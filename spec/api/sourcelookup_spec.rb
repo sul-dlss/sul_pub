@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe SulBib::API, :vcr do
-  let(:capkey) { { 'HTTP_CAPKEY' => '***REMOVED***' } }
+  let(:capkey) { { 'HTTP_CAPKEY' => Settings.API_KEY } }
   let(:headers) { capkey.merge({ 'CONTENT_TYPE' => 'application/json' }) }
   let(:publication) { create :publication }
   let(:author) { create :author }

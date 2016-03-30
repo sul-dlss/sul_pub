@@ -51,7 +51,7 @@ namespace :vcr do
   desc 'Remove private credentials from VCR cassettes'
   task :sanitize do
     public_license = 'some-license-id'
-    config_license = ConfigSettings.SCIENCEWIRE.LICENSE_ID
+    config_license = Settings.SCIENCEWIRE.LICENSE_ID
     if config_license != public_license
       puts "VCR SANITIZE: sanitizing a private license in the vcr cassettes"
       Dir.glob("fixtures/vcr_cassettes/**/*.yml") do |file_name|

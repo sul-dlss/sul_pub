@@ -1,27 +1,101 @@
 API_KEY: ***REMOVED***
 
+BIBTEX:
+  IMPORT:
+    DIR: data/bibtex_import_files
+    LOG: log/bibtext_import.log
+
 ## Cap Auth Config
 CAP:
-  TOKEN_URI: something
+  AUTHORS_POLL_LOG: log/cap_authors_poller.log
+  AUTHORSHIP_API_LOG: log/cap_authorship_api.log
+  AUTHORSHIP_LOG: log/cap_profile_id_rewrite.log
   PORT: 443
-  TOKEN_PATH: /oauth/token
-  TOKEN_USER: something
   TOKEN_PASS: something
-  AUTHORSHIP_API_URI: something
-  AUTHORSHIP_API_PATH: /cap-api-qa/api/cap/v1/authors
+  TOKEN_PATH: /oauth/token
+  TOKEN_URI: something
+  TOKEN_USER: something
+  AUTHORSHIP_API_PATH: /cap-api/api/cap/v1/authors
   AUTHORSHIP_API_PORT: 443
+  AUTHORSHIP_API_URI: something
+
+## PubMed Auth Config
+PUBMED:
+  API_LOG: log/pubmed_api.log
+  FETCH_PATH: /entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml
+  HOST: eutils.ncbi.nlm.nih.gov
 
 ## Sciencewire Auth Config
 SCIENCEWIRE:
   BASE_URI: sciencewirerest.discoverylogic.com
-  PORT: 443
-  RECOMMENDATION_PATH: /PublicationCatalog/MatchedPublicationItemIdsForAuthor?format=xml
+  HARVEST_LOG: log/sw_harvest.log
+  HARVEST_PID_LOG: log/sw_harvest_p_%d.log
+  HOST: stg.sciencewirerest.discoverylogic.com
   LICENSE_ID: some-license-id
-  HOST: sciencewirerest.discoverylogic.com
+  NIGHTLY_HARVEST_LOG: log/sw_nightly_harvest.log
+  PORT: 443
   PUBLICATION_ITEMS_PATH: /PublicationCatalog/PublicationItems?format=xml&publicationItemIDs=
   PUBLICATION_QUERY_PATH: /PublicationCatalog/PublicationQuery?format=xml
+  RECOMMENDATION_PATH: /PublicationCatalog/MatchedPublicationItemIdsForAuthor?format=xml
+  TMPDIR: /tmp
+  WOS_HARVEST_LOG: log/wos_harvest.log
 
 SQUASH:
   API_HOST: http://squash-host.example.com
   API_KEY: squash-api-key
   DISABLED: <%= (Rails.env.development? || Rails.env.test?) %>
+
+## Ported from application.yml
+sw_doc_type_mappings:
+  conference:
+    - Clinical Conference
+    - Congresses
+    - Consensus Development Conference
+    - Consensus Development Conference NIH
+    - Meeting Abstract
+    - Meeting Summary
+    - Meeting-Abstract
+    - Overall
+    - Proceedings Paper
+  book:
+    - Dictionary
+    - Directory
+    - Government Publications
+
+sul_doc_types:
+  inproceedings: inproceedings
+  book: book
+  article: article
+
+cap_provenance: cap
+
+manual_source: manual
+
+sciencewire_source: sciencewire
+
+pubmed_source: pubmed
+
+batch_source: batch
+
+sw_doc_types_to_skip:
+  - Book Review
+  - Comment
+  - Film Review
+  - Hardware Review
+  - Legal Cases
+  - Letter
+  - Meeting Abstract
+  - Meeting Summary
+  - Meeting-Abstract
+  - Music Performance Review
+  - Music Score
+  - Music Score Review
+  - News
+  - Note
+  - Patient Education Handout
+  - Poetry
+  - Record Review
+  - Software Review
+  - TV Review Radio Review Video
+  - Technical Report
+  - Theater Review

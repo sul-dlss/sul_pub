@@ -1,5 +1,4 @@
 require 'nokogiri'
-require 'settings'
 require 'activerecord-import'
 require 'dotiw'
 

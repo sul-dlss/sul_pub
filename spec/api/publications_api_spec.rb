@@ -6,7 +6,7 @@ describe SulBib::API do
   let(:publication_list) { create_list(:contribution, 15, visibility: 'public', status: 'approved') }
   let(:author) { FactoryGirl.create :author }
   let(:author_with_sw_pubs) { create :author_with_sw_pubs }
-  let(:headers) { { 'HTTP_CAPKEY' => '***REMOVED***', 'CONTENT_TYPE' => 'application/json' } }
+  let(:headers) { { 'HTTP_CAPKEY' => Settings.API_KEY, 'CONTENT_TYPE' => 'application/json' } }
   let(:valid_json_for_post) {
     {
       type: 'book',
@@ -348,7 +348,7 @@ describe SulBib::API do
       publication
       get "/publications/#{publication.id}",
           { format: 'json' },
-          'HTTP_CAPKEY' => '***REMOVED***'
+          'HTTP_CAPKEY' => Settings.API_KEY
       expect(response.body).to eq(publication.pub_hash.to_json)
     end
 

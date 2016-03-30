@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe SulBib::API, :vcr do
-  let(:headers) { { 'HTTP_CAPKEY' => '***REMOVED***', 'CONTENT_TYPE' => 'application/json' } }
+  let(:headers) { { 'HTTP_CAPKEY' => Settings.API_KEY, 'CONTENT_TYPE' => 'application/json' } }
   # The publication is defined in /spec/factories/publication.rb
   let(:publication) { create :publication }
   # The author is defined in /spec/factories/author.rb

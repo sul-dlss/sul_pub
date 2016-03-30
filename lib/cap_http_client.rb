@@ -10,11 +10,11 @@ class CapHttpClient
   end
 
   def generate_token
-    http = Net::HTTP.new(ConfigSettings.CAP.TOKEN_URI, ConfigSettings.CAP.PORT)
+    http = Net::HTTP.new(Settings.CAP.TOKEN_URI, Settings.CAP.PORT)
     http.use_ssl = true
     http.verify_mode = OpenSSL::SSL::VERIFY_PEER
-    request = Net::HTTP::Post.new(ConfigSettings.CAP.TOKEN_PATH)
-    request.basic_auth(ConfigSettings.CAP.TOKEN_USER, ConfigSettings.CAP.TOKEN_PASS)
+    request = Net::HTTP::Post.new(Settings.CAP.TOKEN_PATH)
+    request.basic_auth(Settings.CAP.TOKEN_USER, Settings.CAP.TOKEN_PASS)
     request.set_form_data('grant_type' => 'client_credentials')
     http.start
     http.finish if http.started?
@@ -35,17 +35,17 @@ class CapHttpClient
   end
 
   def get_batch_from_cap_api(page_count, page_size, since = '')
-    request_path = "#{ConfigSettings.CAP.AUTHORSHIP_API_PATH}?p=#{page_count}&ps=#{page_size}"
+    request_path = "#{Settings.CAP.AUTHORSHIP_API_PATH}?p=#{page_count}&ps=#{page_size}"
     request_path << "&since=#{since}" unless since.blank?
     make_cap_request(request_path)
   end
 
   def get_auth_profile(cap_profile_id)
-    make_cap_request("#{ConfigSettings.CAP.AUTHORSHIP_API_PATH}/#{cap_profile_id}")
+    make_cap_request("#{Settings.CAP.AUTHORSHIP_API_PATH}/#{cap_profile_id}")
   end
 
   def get_cap_profile_by_sunetid(sunetid)
-    make_cap_request("#{ConfigSettings.CAP.AUTHORSHIP_API_PATH}?uids=#{sunetid}")
+    make_cap_request("#{Settings.CAP.AUTHORSHIP_API_PATH}?uids=#{sunetid}")
   end
 
   private
@@ -96,7 +96,7 @@ class CapHttpClient
   end
 
   def setup_cap_http
-    http = Net::HTTP.new(ConfigSettings.CAP.AUTHORSHIP_API_URI, ConfigSettings.CAP.AUTHORSHIP_API_PORT)
+    http = Net::HTTP.new(Settings.CAP.AUTHORSHIP_API_URI, Settings.CAP.AUTHORSHIP_API_PORT)
     http.read_timeout = @base_timeout_period
     http.use_ssl = true
     http.verify_mode = OpenSSL::SSL::VERIFY_PEER

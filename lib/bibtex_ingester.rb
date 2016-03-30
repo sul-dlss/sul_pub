@@ -8,8 +8,8 @@ class BibtexIngester
   @@inproceedings_type_mapping = %w(conference proceedings inproceedings)
 
   def ingest_from_source_directory(directory)
-    @batch_dir = directory || '/Users/jameschartrand/Documents/OSS/projects/stanford-cap/bibtex_import_files'
-    @bibtex_import_logger = Logger.new(Rails.root.join('log', 'bibtext_import.log'))
+    @batch_dir = directory || Settings.BIBTEX.IMPORT.DIR
+    @bibtex_import_logger = Logger.new(Settings.BIBTEX.IMPORT.LOG)
     @bibtex_import_logger.info "Started bibtext import #{Time.zone.now}"
     @total_records_processed = 0
     @matches_on_issn_count = 0
