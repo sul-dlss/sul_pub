@@ -18,3 +18,8 @@ SCIENCEWIRE:
   HOST: sciencewirerest.discoverylogic.com
   PUBLICATION_ITEMS_PATH: /PublicationCatalog/PublicationItems?format=xml&publicationItemIDs=
   PUBLICATION_QUERY_PATH: /PublicationCatalog/PublicationQuery?format=xml
+
+SQUASH:
+  API_HOST: http://squash-host.example.com
+  API_KEY: squash-api-key
+  DISABLED: (Rails.env.development? || Rails.env.test?)
