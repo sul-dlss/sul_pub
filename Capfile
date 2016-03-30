@@ -22,10 +22,10 @@ require 'capistrano/deploy'
 # require 'capistrano/rails/migrations'
 
 require 'capistrano/bundler'
-require 'capistrano/passenger'
 require 'capistrano/rails'
+require 'capistrano/passenger'
 require 'dlss/capistrano'
-require 'squash/rails/capistrano3'
+require 'squash/rails/capistrano3' # Note that this inclusion requires a branch, not a tag, to be deployed
 
 # Loads custom tasks from `lib/capistrano/tasks' if you have any defined.
 Dir.glob('lib/capistrano/tasks/*.rake').each { |r| import r }

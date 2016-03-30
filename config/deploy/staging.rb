@@ -1,6 +1,8 @@
-server 'sul-pub-prod.stanford.edu', user: fetch(:user), roles: %w(web db app)
+server 'sul-pub-stage.stanford.edu', user: fetch(:user), roles: %w(web db app)
 
 Capistrano::OneTimeKey.generate_one_time_key!
+
+set :rails_env, 'production'
 
 set :bundle_without, %w(test development).join(' ')
 
