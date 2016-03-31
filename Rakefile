@@ -2,7 +2,7 @@
 # Add your own tasks in files placed in lib/tasks ending in .rake,
 # for example lib/tasks/capistrano.rake, and they will automatically be available to Rake.
 
-task default: [:ci, :rubocop]
+task default: [:rubocop, :ci, 'vcr:sanitize']
 
 # If the config/database.yml file does not exist, use the example file
 # so that the config/application can load.
