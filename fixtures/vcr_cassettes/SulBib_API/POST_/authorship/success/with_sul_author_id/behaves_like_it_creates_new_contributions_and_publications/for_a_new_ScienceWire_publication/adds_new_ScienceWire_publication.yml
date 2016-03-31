@@ -16,7 +16,7 @@ http_interactions:
       Content-Type:
       - text/xml
       Licenseid:
-      - ***REMOVED***
+      - some-license-id
       Host:
       - stg.sciencewirerest.discoverylogic.com
       Connection:
