@@ -88,17 +88,17 @@ class CapAuthorsPoller
     author ||= Author.fetch_from_cap_and_create(cap_profile_id)
     author.update_from_cap_authorship_profile_hash(record)
     if author.persisted?
-      logger.info "Updating author_id #{author.id}"
+      logger.info "Updating author_id: #{author.id}, cap_profile_id: #{cap_profile_id}"
       @authors_updated_count += 1
     else
-      logger.info "Creating author for cap_profile_id #{cap_profile_id}"
+      logger.info "Creating author_id: #{author.id}, cap_profile_id: #{cap_profile_id}"
       @new_author_count += 1
     end
 
     if record['authorship'] && author.persisted?
       update_existing_contributions author, record['authorship']
     elsif record['authorship'] && !record['authorship'].empty? && author.new_record?
-      logger.warn "New author has authorship which will be skipped. cap_profile_id: #{record['profileId']}"
+      logger.warn "New author has authorship which will be skipped; cap_profile_id: #{cap_profile_id}"
       @new_auth_with_contribs += 1
     end
 
@@ -109,7 +109,7 @@ class CapAuthorsPoller
       @new_or_changed_authors_to_harvest_queue << author.id
     else
       @no_sw_harvest_count += 1
-      logger.info "No import settings or author did not change. Skipping cap_profile_id #{author.cap_profile_id}"
+      logger.info "No import settings or author did not change. Skipping cap_profile_id: #{cap_profile_id}"
     end
   end
 
@@ -118,11 +118,11 @@ class CapAuthorsPoller
       pub_id = authorship['sulPublicationId']
       contribs = author.contributions.where(publication_id: pub_id)
       if contribs.count == 0
-        logger.warn "Contribution does not exist for author_id: #{author.id} publication_id: #{pub_id}"
+        logger.warn "Contribution does not exist for author_id: #{author.id}, cap_profile_id: #{author.cap_profile_id}, publication_id: #{pub_id}"
         @contrib_does_not_exist += 1
         next
       elsif contribs.count > 1
-        logger.warn "More than one contribution for author_id: #{author.id} publication_id: #{pub_id}"
+        logger.warn "More than one contribution for author_id: #{author.id}, cap_profile_id: #{author.cap_profile_id}, publication_id: #{pub_id}"
         @too_many_contribs += 1
         next
       end
@@ -143,7 +143,7 @@ class CapAuthorsPoller
   def contribution_id(contribution)
     author = contribution.author
     pub = contribution.publication
-    "Contribution(author_id: #{author.id}, publication_id: #{pub.id})"
+    "Contribution(author_id: #{author.id}, cap_profile_id: #{author.cap_profile_id}, publication_id: #{pub.id})"
   end
 
   def contribution_save(contribution)
