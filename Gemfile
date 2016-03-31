@@ -37,6 +37,7 @@ gem 'pry-rails'
 gem 'pubmed_search'
 gem 'rest-client'
 gem 'settingslogic'
+gem 'simple_form'
 gem 'whenever', require: false
 gem 'yaml_db'
 
