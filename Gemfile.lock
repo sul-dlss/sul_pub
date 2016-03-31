@@ -441,6 +441,7 @@ DEPENDENCIES
   rspec-rails (~> 3.0)
   sass-rails (~> 5.0)
   settingslogic
+  simple_form
   simplecov
   squash_rails
   squash_ruby
