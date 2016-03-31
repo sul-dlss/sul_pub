@@ -44,7 +44,7 @@ http_interactions:
       User-Agent:
       - Ruby
       Licenseid:
-      - ***REMOVED***
+      - some-license-id
       Host:
       - stg.sciencewirerest.discoverylogic.com
       Connection:
@@ -97,7 +97,7 @@ http_interactions:
       Content-Type:
       - text/xml
       Licenseid:
-      - ***REMOVED***
+      - some-license-id
       Host:
       - stg.sciencewirerest.discoverylogic.com
       Connection:
