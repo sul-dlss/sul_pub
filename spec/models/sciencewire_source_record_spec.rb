@@ -24,8 +24,8 @@ describe SciencewireSourceRecord do
   end
 
   describe '.lookup_cap_doc_type_by_sw_doc_category' do
-    it "maps DocumentCategory='Conference Proceedings Document' to cap type of 'inproceedings'" do
-      expect(SciencewireSourceRecord.lookup_cap_doc_type_by_sw_doc_category('Conference Proceedings Document')).to eq('inproceedings')
+    it "maps DocumentCategory='Conference Proceeding Document' to cap type of 'inproceedings'" do
+      expect(SciencewireSourceRecord.lookup_cap_doc_type_by_sw_doc_category('Conference Proceeding Document')).to eq('inproceedings')
     end
 
     it "maps DocumentCategory='Journal Document' to cap type of 'article'" do
