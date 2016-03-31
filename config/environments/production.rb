@@ -73,9 +73,5 @@ end
 require 'socket'
 
 module SulBib
-  if Socket.gethostname =~ /^sulcap-prod/
-    API_KEY = '***REMOVED***'
-  else
-    API_KEY = '***REMOVED***'
-  end
+  API_KEY = ConfigSettings.API_KEY
 end

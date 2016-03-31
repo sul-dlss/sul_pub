@@ -45,5 +45,5 @@ Sulbib::Application.configure do
 end
 
 module SulBib
-  API_KEY = '***REMOVED***'
+  API_KEY = ConfigSettings.API_KEY
 end
