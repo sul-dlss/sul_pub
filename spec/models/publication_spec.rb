@@ -238,7 +238,7 @@ describe Publication do
       save_new_publication
       expect do
         Publication.build_new_manual_publication(pub_hash, 'some string', 'some where')
-      end.to raise_exception # sqlite 3.6 is inconsistent in raising the right kind of exception (ActiveRecord::RecordNotUnique)
+      end.to raise_error(ActiveRecord::RecordNotUnique)
     end
 
     it "should create a publication if a publication for that source record doesn't exist" do
@@ -265,7 +265,7 @@ describe Publication do
       pub.update_manual_pub_from_pub_hash({ b: :c }, 'some string', 'some where')
       expect do
         pub.save!
-      end.to raise_exception # sqlite 3.6 is inconsistent in raising the right kind of exception (ActiveRecord::RecordNotUnique)
+      end.to raise_error(ActiveRecord::RecordNotUnique)
     end
   end
 
