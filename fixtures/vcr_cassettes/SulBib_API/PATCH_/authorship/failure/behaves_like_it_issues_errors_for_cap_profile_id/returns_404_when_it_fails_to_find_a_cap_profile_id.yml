@@ -1,0 +1,156 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://sul:***REMOVED***@authz.stanford.edu/oauth/token
+    body:
+      encoding: US-ASCII
+      string: grant_type=client_credentials
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 30 Mar 2016 01:36:02 GMT
+      Cache-Control:
+      - no-store
+      Pragma:
+      - no-cache
+      Content-Type:
+      - application/json;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '{"access_token":"eyJhbGciOiJSUzI1NiJ9.eyJqdGkiOiIwOWRlMTI5MC02M2FiLTRiNDgtYTFkNS0xOTQwODgyMWViNDEiLCJzdWIiOiJzdWwiLCJhdXRob3JpdGllcyI6WyJwcm9maWxlcy5yZWFkX2FsbCJdLCJzY29wZSI6WyJwcm9maWxlcy5yZWFkX2FsbCJdLCJjbGllbnRfaWQiOiJzdWwiLCJjaWQiOiJzdWwiLCJncmFudF90eXBlIjoiY2xpZW50X2NyZWRlbnRpYWxzIiwiaWF0IjoxNDU5MzAxNzYyLCJleHAiOjE0NTkzODgxNjIsImlzcyI6Imh0dHBzOi8vYXV0aHouc3RhbmZvcmQuZWR1L29hdXRoL3Rva2VuIiwiYXVkIjpbInByb2ZpbGVzIl19.fdDPZFDThjwEF-r2w32pgQSTJQRjnj23cVFGaO-U3vH1yS8ZRPOhOOOdvLmhcBXOBEdh6sTIXwDfgEWphBe4ZU4GtydBZDLzKyjJvjPsQr3W504wL_4WMB5yF4rdxS-paRJFqkvI4Ibx3e0TXoavNyjiO1lzom2wz5GjO2VT0SaSyYV4Uv2XjNTSJ9e3LKaZqF5ttfbNsm6V4GJGafNi5Tm3O5JqFyBV_zm2vJOdyvPZ1uganyNQNq92GLa669VHA_gVVytywjpPLBgh-etdJ1OFYYXS_BAZ6UulhIH4TSWUnD8wre9wBUOZe4wbIEWjfQDIZ6eOGKGgDzW7HytzNg","token_type":"bearer","expires_in":86399,"scope":"profiles.read_all","jti":"09de1290-63ab-4b48-a1d5-19408821eb41"}'
+    http_version: 
+  recorded_at: Wed, 30 Mar 2016 01:36:02 GMT
+- request:
+    method: get
+    uri: https://cap-dev.stanford.edu/cap-api/api/cap/v1/authors/999999
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Authorization:
+      - bearer eyJhbGciOiJSUzI1NiJ9.eyJqdGkiOiIwOWRlMTI5MC02M2FiLTRiNDgtYTFkNS0xOTQwODgyMWViNDEiLCJzdWIiOiJzdWwiLCJhdXRob3JpdGllcyI6WyJwcm9maWxlcy5yZWFkX2FsbCJdLCJzY29wZSI6WyJwcm9maWxlcy5yZWFkX2FsbCJdLCJjbGllbnRfaWQiOiJzdWwiLCJjaWQiOiJzdWwiLCJncmFudF90eXBlIjoiY2xpZW50X2NyZWRlbnRpYWxzIiwiaWF0IjoxNDU5MzAxNzYyLCJleHAiOjE0NTkzODgxNjIsImlzcyI6Imh0dHBzOi8vYXV0aHouc3RhbmZvcmQuZWR1L29hdXRoL3Rva2VuIiwiYXVkIjpbInByb2ZpbGVzIl19.fdDPZFDThjwEF-r2w32pgQSTJQRjnj23cVFGaO-U3vH1yS8ZRPOhOOOdvLmhcBXOBEdh6sTIXwDfgEWphBe4ZU4GtydBZDLzKyjJvjPsQr3W504wL_4WMB5yF4rdxS-paRJFqkvI4Ibx3e0TXoavNyjiO1lzom2wz5GjO2VT0SaSyYV4Uv2XjNTSJ9e3LKaZqF5ttfbNsm6V4GJGafNi5Tm3O5JqFyBV_zm2vJOdyvPZ1uganyNQNq92GLa669VHA_gVVytywjpPLBgh-etdJ1OFYYXS_BAZ6UulhIH4TSWUnD8wre9wBUOZe4wbIEWjfQDIZ6eOGKGgDzW7HytzNg
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Date:
+      - Wed, 30 Mar 2016 01:36:02 GMT
+      Server:
+      - Apache/2.2.15 (Oracle)
+      Vary:
+      - Accept-Encoding
+      Connection:
+      - close
+      Transfer-Encoding:
+      - chunked
+      Content-Type:
+      - application/json
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        { "meta": {  "status": 404, "message":"Object of class [edu.stanford.irt.cap.api.domain.AuthorEntity] with identifier [999999]: not found" } }
+    http_version: 
+  recorded_at: Wed, 30 Mar 2016 01:36:02 GMT
+- request:
+    method: get
+    uri: https://cap-dev.stanford.edu/cap-api/api/cap/v1/authors/999999
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Authorization:
+      - bearer eyJhbGciOiJSUzI1NiJ9.eyJqdGkiOiIwOWRlMTI5MC02M2FiLTRiNDgtYTFkNS0xOTQwODgyMWViNDEiLCJzdWIiOiJzdWwiLCJhdXRob3JpdGllcyI6WyJwcm9maWxlcy5yZWFkX2FsbCJdLCJzY29wZSI6WyJwcm9maWxlcy5yZWFkX2FsbCJdLCJjbGllbnRfaWQiOiJzdWwiLCJjaWQiOiJzdWwiLCJncmFudF90eXBlIjoiY2xpZW50X2NyZWRlbnRpYWxzIiwiaWF0IjoxNDU5MzAxNzYyLCJleHAiOjE0NTkzODgxNjIsImlzcyI6Imh0dHBzOi8vYXV0aHouc3RhbmZvcmQuZWR1L29hdXRoL3Rva2VuIiwiYXVkIjpbInByb2ZpbGVzIl19.fdDPZFDThjwEF-r2w32pgQSTJQRjnj23cVFGaO-U3vH1yS8ZRPOhOOOdvLmhcBXOBEdh6sTIXwDfgEWphBe4ZU4GtydBZDLzKyjJvjPsQr3W504wL_4WMB5yF4rdxS-paRJFqkvI4Ibx3e0TXoavNyjiO1lzom2wz5GjO2VT0SaSyYV4Uv2XjNTSJ9e3LKaZqF5ttfbNsm6V4GJGafNi5Tm3O5JqFyBV_zm2vJOdyvPZ1uganyNQNq92GLa669VHA_gVVytywjpPLBgh-etdJ1OFYYXS_BAZ6UulhIH4TSWUnD8wre9wBUOZe4wbIEWjfQDIZ6eOGKGgDzW7HytzNg
+      Host:
+      - cap-dev.stanford.edu
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Date:
+      - Wed, 30 Mar 2016 01:36:02 GMT
+      Server:
+      - Apache/2.2.15 (Oracle)
+      Vary:
+      - Accept-Encoding
+      Connection:
+      - close
+      Transfer-Encoding:
+      - chunked
+      Content-Type:
+      - application/json
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        { "meta": {  "status": 404, "message":"Object of class [edu.stanford.irt.cap.api.domain.AuthorEntity] with identifier [999999]: not found" } }
+    http_version: 
+  recorded_at: Wed, 30 Mar 2016 01:36:02 GMT
+- request:
+    method: get
+    uri: https://cap-dev.stanford.edu/cap-api/api/cap/v1/authors/999999
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Authorization:
+      - bearer eyJhbGciOiJSUzI1NiJ9.eyJqdGkiOiIwOWRlMTI5MC02M2FiLTRiNDgtYTFkNS0xOTQwODgyMWViNDEiLCJzdWIiOiJzdWwiLCJhdXRob3JpdGllcyI6WyJwcm9maWxlcy5yZWFkX2FsbCJdLCJzY29wZSI6WyJwcm9maWxlcy5yZWFkX2FsbCJdLCJjbGllbnRfaWQiOiJzdWwiLCJjaWQiOiJzdWwiLCJncmFudF90eXBlIjoiY2xpZW50X2NyZWRlbnRpYWxzIiwiaWF0IjoxNDU5MzAxNzYyLCJleHAiOjE0NTkzODgxNjIsImlzcyI6Imh0dHBzOi8vYXV0aHouc3RhbmZvcmQuZWR1L29hdXRoL3Rva2VuIiwiYXVkIjpbInByb2ZpbGVzIl19.fdDPZFDThjwEF-r2w32pgQSTJQRjnj23cVFGaO-U3vH1yS8ZRPOhOOOdvLmhcBXOBEdh6sTIXwDfgEWphBe4ZU4GtydBZDLzKyjJvjPsQr3W504wL_4WMB5yF4rdxS-paRJFqkvI4Ibx3e0TXoavNyjiO1lzom2wz5GjO2VT0SaSyYV4Uv2XjNTSJ9e3LKaZqF5ttfbNsm6V4GJGafNi5Tm3O5JqFyBV_zm2vJOdyvPZ1uganyNQNq92GLa669VHA_gVVytywjpPLBgh-etdJ1OFYYXS_BAZ6UulhIH4TSWUnD8wre9wBUOZe4wbIEWjfQDIZ6eOGKGgDzW7HytzNg
+      Host:
+      - cap-dev.stanford.edu
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Date:
+      - Wed, 30 Mar 2016 01:36:02 GMT
+      Server:
+      - Apache/2.2.15 (Oracle)
+      Vary:
+      - Accept-Encoding
+      Connection:
+      - close
+      Transfer-Encoding:
+      - chunked
+      Content-Type:
+      - application/json
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        { "meta": {  "status": 404, "message":"Object of class [edu.stanford.irt.cap.api.domain.AuthorEntity] with identifier [999999]: not found" } }
+    http_version: 
+  recorded_at: Wed, 30 Mar 2016 01:36:02 GMT
+recorded_with: VCR 3.0.1
