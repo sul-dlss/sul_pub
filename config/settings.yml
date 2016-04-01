@@ -24,4 +24,4 @@ SCIENCEWIRE:
 SQUASH:
   API_HOST: http://squash-host.example.com
   API_KEY: squash-api-key
-  DISABLED: (Rails.env.development? || Rails.env.test?)
+  DISABLED: <%= (Rails.env.development? || Rails.env.test?) %>
