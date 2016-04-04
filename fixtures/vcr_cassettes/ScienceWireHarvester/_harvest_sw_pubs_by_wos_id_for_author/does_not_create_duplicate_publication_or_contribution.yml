@@ -39,7 +39,7 @@ http_interactions:
       User-Agent:
       - Ruby
       Licenseid:
-      - some-license-id
+      - Settings.SCIENCEWIRE.LICENSE_ID
       Host:
       - sciencewirerest.discoverylogic.com
       Connection:
@@ -92,7 +92,7 @@ http_interactions:
       Content-Type:
       - text/xml
       Licenseid:
-      - some-license-id
+      - Settings.SCIENCEWIRE.LICENSE_ID
       Host:
       - sciencewirerest.discoverylogic.com
       Connection:
@@ -246,7 +246,7 @@ http_interactions:
       User-Agent:
       - Ruby
       Licenseid:
-      - some-license-id
+      - Settings.SCIENCEWIRE.LICENSE_ID
       Host:
       - sciencewirerest.discoverylogic.com
       Connection:
@@ -299,7 +299,7 @@ http_interactions:
       Content-Type:
       - text/xml
       Licenseid:
-      - some-license-id
+      - Settings.SCIENCEWIRE.LICENSE_ID
       Host:
       - sciencewirerest.discoverylogic.com
       Connection:

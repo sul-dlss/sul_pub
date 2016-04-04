@@ -37,9 +37,9 @@ http_interactions:
       User-Agent:
       - Ruby
       Licenseid:
-      - some-license-id
+      - Settings.SCIENCEWIRE.LICENSE_ID
       Host:
-      - stg.sciencewirerest.discoverylogic.com
+      - Settings.SCIENCEWIRE.HOST
       Connection:
       - Keep-Alive
       Expect:
@@ -90,9 +90,9 @@ http_interactions:
       Content-Type:
       - text/xml
       Licenseid:
-      - some-license-id
+      - Settings.SCIENCEWIRE.LICENSE_ID
       Host:
-      - stg.sciencewirerest.discoverylogic.com
+      - Settings.SCIENCEWIRE.HOST
       Connection:
       - Keep-Alive
   response:
