@@ -83,4 +83,9 @@ VCR.configure do |c|
     :record => :new_episodes,  # :once is default
   }
   c.configure_rspec_metadata!
+  c.filter_sensitive_data('Settings.CAP.TOKEN_USER:Settings.CAP.TOKEN_PASS@Settings.CAP.TOKEN_URI') do
+    "#{Settings.CAP.TOKEN_USER}:#{Settings.CAP.TOKEN_PASS}@#{Settings.CAP.TOKEN_URI}"
+  end
+  c.filter_sensitive_data('Settings.SCIENCEWIRE.HOST') { Settings.SCIENCEWIRE.HOST }
+  c.filter_sensitive_data('Settings.SCIENCEWIRE.LICENSE_ID') { Settings.SCIENCEWIRE.LICENSE_ID }
 end

@@ -16,9 +16,9 @@ http_interactions:
       Content-Type:
       - text/xml
       Licenseid:
-      - some-license-id
+      - Settings.SCIENCEWIRE.LICENSE_ID
       Host:
-      - stg.sciencewirerest.discoverylogic.com
+      - Settings.SCIENCEWIRE.HOST
       Connection:
       - Keep-Alive
   response:
