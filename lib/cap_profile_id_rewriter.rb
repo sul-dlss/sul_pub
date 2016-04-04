@@ -4,7 +4,7 @@ class CapProfileIdRewriter
 
   def cap_authorship_logger
     @cap_authorship_logger ||= begin
-      Logger.new(Rails.root.join('log', 'cap_profile_id_rewrite.log'))
+      Logger.new(Settings.CAP.AUTHORSHIP_LOG)
     end
   end
 

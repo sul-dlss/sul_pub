@@ -4,9 +4,9 @@ class PubmedClient
     pmidValuesForPost = pmid_list.collect { |pmid| "&id=#{pmid}" }.join
     timeout_retries ||= 3
     timeout_period ||= 500
-    http = Net::HTTP.new('eutils.ncbi.nlm.nih.gov')
+    http = Net::HTTP.new(Settings.PUBMED.HOST)
     http.read_timeout = timeout_period
-    request = Net::HTTP::Post.new('/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml')
+    request = Net::HTTP::Post.new(Settings.PUBMED.FETCH_PATH)
     request.body = pmidValuesForPost
     # http.start
     the_incoming_xml = http.request(request).body

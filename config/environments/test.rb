@@ -36,7 +36,3 @@ Sulbib::Application.configure do
 
   config.log_level = :debug
 end
-
-module SulBib
-  API_KEY = ConfigSettings.API_KEY
-end

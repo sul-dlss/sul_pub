@@ -27,7 +27,8 @@ describe XpathUtils do
     end
 
     it 'returns nodes where the passed in regex is not found' do
-      nodes = doc.xpath("//PublicationItem[regex_reject(DocumentTypeList, '#{Settings.sw_doc_types_to_skip}')]/PublicationItemID", XpathUtils.new)
+      reject_types = Settings.sw_doc_types_to_skip.join('|')
+      nodes = doc.xpath("//PublicationItem[regex_reject(DocumentTypeList, '#{reject_types}')]/PublicationItemID", XpathUtils.new)
       expect(nodes.size).to eq 1
       expect(nodes.first.text).to eq '2'
     end

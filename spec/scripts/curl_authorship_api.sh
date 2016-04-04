@@ -4,7 +4,7 @@ CONTENT_TYPE='Content-Type: application/json'
 
 # https://sulcap-dev.stanford.edu/rails/db/
 DEV_HOST='https://sulcap-dev.stanford.edu'
-DEV_API_KEY='CAPKEY: ***REMOVED***'
+DEV_API_KEY="CAPKEY: `grep ^API_KEY config/settings.yml | awk '{print $2}'`"
 
 # Check the admin interface for contributions at
 # https://sulcap-dev.stanford.edu/rails/db/tables/contributions/data
