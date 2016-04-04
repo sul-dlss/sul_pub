@@ -86,6 +86,12 @@ VCR.configure do |c|
   c.filter_sensitive_data('Settings.CAP.TOKEN_USER:Settings.CAP.TOKEN_PASS@Settings.CAP.TOKEN_URI') do
     "#{Settings.CAP.TOKEN_USER}:#{Settings.CAP.TOKEN_PASS}@#{Settings.CAP.TOKEN_URI}"
   end
+  c.filter_sensitive_data('private_access_token') do |interaction|
+    if interaction.request.body == "grant_type=client_credentials"
+      regex = %r("access_token":"(.*?)")
+      regex.match(interaction.response.body).captures.first
+    end
+  end
   c.filter_sensitive_data('Settings.SCIENCEWIRE.HOST') { Settings.SCIENCEWIRE.HOST }
   c.filter_sensitive_data('Settings.SCIENCEWIRE.LICENSE_ID') { Settings.SCIENCEWIRE.LICENSE_ID }
 end
