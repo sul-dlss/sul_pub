@@ -2,8 +2,8 @@
 [![Build Status](https://travis-ci.com/sul-dlss/sul-pub.svg?token=3yDDLeXpkveNfSKW8sHq&branch=master)](https://travis-ci.com/sul-dlss/sul-pub)
 
 # SUL Bibliographic Management System
- 
-[*SUL Bibliographic Management System*](http://sulcap-dev.stanford.edu/)
+
+[*SUL Bibliographic Management System*](http://sulcap.stanford.edu/)
 by [Stanford University Libraries](http://library.stanford.edu).
 
 ## Configuration
@@ -13,7 +13,7 @@ Configurations are currently being managed in multiple ways. The goal is to [con
 Legacy configuration files to review are:
 - https://github.com/sul-dlss/sul-pub/blob/master/config/application.yml
   - Application configuration parameters (may not require any changes)
-- https://github.com/sul-dlss/sul-pub/blob/master/config/database.yml 
+- https://github.com/sul-dlss/sul-pub/blob/master/config/database.yml
   - MySQL connection parameters
 
 # Developer Setup

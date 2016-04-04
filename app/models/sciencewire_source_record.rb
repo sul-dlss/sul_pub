@@ -149,6 +149,7 @@ class SciencewireSourceRecord < ActiveRecord::Base
     existing_sw_source_record.source_fingerprint != get_source_fingerprint(incoming_sw_source_doc)
   end
 
+  # rubocop:disable Metrics/AbcSize
   def self.convert_sw_publication_doc_to_hash(publication)
     record_as_hash = {}
 
@@ -195,7 +196,7 @@ class SciencewireSourceRecord < ActiveRecord::Base
     identifiers << { type: 'doi', id: publication.xpath('DOI').text, url: 'http://dx.doi.org/' + publication.xpath('DOI').text } unless publication.xpath('DOI').blank?
 
     # an issn is for either a journal or a book series (international standard series number)
-    issn = { type: 'issn', id: publication.xpath('ISSN').text, url: 'http://searchworks.stanford.edu/?search_field=advanced&number=' + publication.xpath('ISSN').text } unless publication.xpath('ISSN').blank?
+    issn = { type: 'issn', id: publication.xpath('ISSN').text, url: Settings.SULPUB_ID.SEARCHWORKS_URI + publication.xpath('ISSN').text } unless publication.xpath('ISSN').blank?
     record_as_hash[:issn] = publication.xpath('ISSN').text unless publication.xpath('ISSN').blank?
     if sul_document_type == Settings.sul_doc_types.inproceedings
       conference_hash = {}
@@ -220,7 +221,7 @@ class SciencewireSourceRecord < ActiveRecord::Base
       journal_hash[:articlenumber] = publication.xpath('ArticleNumber').text unless publication.xpath('ArticleNumber').blank?
       journal_hash[:pages] = publication.xpath('Pagination').text unless publication.xpath('Pagination').blank?
       journal_identifiers = []
-      journal_identifiers << { type: 'issn', id: publication.xpath('ISSN').text, url: 'http://searchworks.stanford.edu/?search_field=advanced&number=' + publication.xpath('ISSN').text } unless publication.xpath('ISSN').blank?
+      journal_identifiers << { type: 'issn', id: publication.xpath('ISSN').text, url: Settings.SULPUB_ID.SEARCHWORKS_URI + publication.xpath('ISSN').text } unless publication.xpath('ISSN').blank?
       journal_identifiers << { type: 'doi', id: publication.xpath('DOI').text, url: 'http://dx.doi.org/' + publication.xpath('DOI').text } unless publication.xpath('DOI').blank?
       journal_hash[:identifier] = journal_identifiers
       record_as_hash[:journal] = journal_hash
@@ -236,6 +237,7 @@ class SciencewireSourceRecord < ActiveRecord::Base
     record_as_hash[:identifier] = identifiers
     record_as_hash
   end
+  # rubocop:enable Metrics/AbcSize
 
   def self.lookup_sw_doc_type(doc_type_list)
     doc_types = Array(doc_type_list)

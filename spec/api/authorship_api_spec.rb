@@ -249,7 +249,7 @@ describe SulBib::API, :vcr do
         sul_pub_id = Publication.last.id.to_s
         expect(sul_hash['type']).to eq('SULPubId')
         expect(sul_hash['id']).to eq(sul_pub_id)
-        expect(sul_hash['url']).to eq("http://sulcap.stanford.edu/publications/#{sul_pub_id}")
+        expect(sul_hash['url']).to eq("#{Settings.SULPUB_ID.PUB_URI}/#{sul_pub_id}")
       end
     end # context 'for a new PubMed publication'
 
@@ -294,7 +294,7 @@ describe SulBib::API, :vcr do
         sul_pub_id = Publication.last.id.to_s
         expect(sul_hash['type']).to eq('SULPubId')
         expect(sul_hash['id']).to eq(sul_pub_id)
-        expect(sul_hash['url']).to eq("http://sulcap.stanford.edu/publications/#{sul_pub_id}")
+        expect(sul_hash['url']).to eq("#{Settings.SULPUB_ID.PUB_URI}/#{sul_pub_id}")
       end
     end  # context 'for a new ScienceWire publication'
   end

@@ -139,7 +139,7 @@ class PubmedSourceRecord < ActiveRecord::Base
     journal_identifiers = []
     issn = publication.xpath('MedlineCitation/Article/Journal/ISSN').text
     record_as_hash[:issn] = issn unless issn.blank?
-    journal_identifiers << { type: 'issn', id: issn, url: 'http://searchworks.stanford.edu/?search_field=advanced&number=' + issn } unless issn.blank?
+    journal_identifiers << { type: 'issn', id: issn, url: Settings.SULPUB_ID.SEARCHWORKS_URI + issn } unless issn.blank?
     journal_hash[:identifier] = journal_identifiers
     record_as_hash[:journal] = journal_hash
 

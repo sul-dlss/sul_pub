@@ -1,5 +1,11 @@
 API_KEY: ***REMOVED***
 
+## Settings for URI identifier prefixes used in the data; they should be working values in production
+SULPUB_ID:
+  PUB_URI: http://sulcap.stanford.edu/publications
+  AUTHORSHIP_URI: http://sulcap.stanford.edu/authorship
+  SEARCHWORKS_URI: http://searchworks.stanford.edu/?search_field=advanced&number=
+
 BIBTEX:
   IMPORT:
     DIR: data/bibtex_import_files

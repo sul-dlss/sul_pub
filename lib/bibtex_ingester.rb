@@ -217,11 +217,11 @@ class BibtexIngester
     doi = record['doi'].to_s.strip unless record['doi'].blank?
 
     unless issn.blank?
-      issn_for_id_array = { type: 'issn', id: issn, url: 'http://searchworks.stanford.edu/?search_field=advanced&number=' + issn }
+      issn_for_id_array = { type: 'issn', id: issn, url: Settings.SULPUB_ID.SEARCHWORKS_URI + issn }
       record_as_hash[:issn] = issn
     end
     unless isbn.blank?
-      isbn_for_id_array = { type: 'isbn', id: isbn, url: 'http://searchworks.stanford.edu/?search_field=advanced&number=' + isbn }
+      isbn_for_id_array = { type: 'isbn', id: isbn, url: Settings.SULPUB_ID.SEARCHWORKS_URI + isbn }
       record_as_hash[:isbn] = isbn
       identifiers << isbn_for_id_array
     end

@@ -27,8 +27,8 @@ describe Publication do
     it 'should rebuild identifiers' do
       expect(subject.pub_hash[:identifier].length).to be > 0
       expect(subject.pub_hash[:sulpubid]).to eq(subject.id.to_s)
-      expect(subject.pub_hash[:identifier]).to include(type: 'SULPubId', id: subject.id.to_s, url: "http://sulcap.stanford.edu/publications/#{subject.id}")
-      expect(subject.pub_hash[:identifier]).to_not include(type: 'SULPubId', url: 'http://sulcap.stanford.edu/publications/')
+      expect(subject.pub_hash[:identifier]).to include(type: 'SULPubId', id: subject.id.to_s, url: "#{Settings.SULPUB_ID.PUB_URI}/#{subject.id}")
+      expect(subject.pub_hash[:identifier]).to_not include(type: 'SULPubId', url: "#{Settings.SULPUB_ID.PUB_URI}/")
       expect(subject.pub_hash[:identifier]).to include(type: 'x', id: 'y', url: 'z')
     end
   end
@@ -54,7 +54,7 @@ describe Publication do
     it 'should rebuild identifiers' do
       expect(subject.pub_hash[:identifier].length).to be > 0
       expect(subject.pub_hash[:sulpubid]).to eq(subject.id.to_s)
-      expect(subject.pub_hash[:identifier]).to include(type: 'SULPubId', id: subject.id.to_s, url: "http://sulcap.stanford.edu/publications/#{subject.id}")
+      expect(subject.pub_hash[:identifier]).to include(type: 'SULPubId', id: subject.id.to_s, url: "#{Settings.SULPUB_ID.PUB_URI}/#{subject.id}")
       expect(subject.pub_hash[:identifier]).to include(type: 'x', id: 'y', url: 'z')
     end
   end
