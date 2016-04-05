@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160316181840) do
+ActiveRecord::Schema.define(version: 20160405194617) do
 
   create_table "authors", force: :cascade do |t|
     t.integer  "cap_profile_id",               limit: 4
@@ -46,13 +46,13 @@ ActiveRecord::Schema.define(version: 20160316181840) do
     t.integer  "author_id",          limit: 4
     t.integer  "cap_profile_id",     limit: 4
     t.boolean  "successful_import"
-    t.text     "bibtex_source_data", limit: 65535
+    t.text     "bibtex_source_data", limit: 16777215
     t.string   "source_fingerprint", limit: 255
     t.boolean  "is_active"
     t.text     "title",              limit: 65535
     t.integer  "year",               limit: 4
     t.string   "batch_name",         limit: 255
-    t.text     "error_message",      limit: 65535
+    t.text     "error_message",      limit: 16777215
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "publication_id",     limit: 4
@@ -103,7 +103,7 @@ ActiveRecord::Schema.define(version: 20160316181840) do
     t.text     "title",                   limit: 65535
     t.integer  "year",                    limit: 4
     t.integer  "lock_version",            limit: 4
-    t.text     "xml",                     limit: 65535
+    t.text     "xml",                     limit: 16777215
     t.text     "pub_hash",                limit: 16777215
     t.integer  "pmid",                    limit: 4
     t.integer  "sciencewire_id",          limit: 4
@@ -123,7 +123,7 @@ ActiveRecord::Schema.define(version: 20160316181840) do
   add_index "publications", ["year"], name: "index_publications_on_year", using: :btree
 
   create_table "pubmed_source_records", force: :cascade do |t|
-    t.text     "source_data",        limit: 65535
+    t.text     "source_data",        limit: 16777215
     t.integer  "pmid",               limit: 4
     t.integer  "lock_version",       limit: 4
     t.string   "source_fingerprint", limit: 255
@@ -135,7 +135,7 @@ ActiveRecord::Schema.define(version: 20160316181840) do
   add_index "pubmed_source_records", ["pmid"], name: "index_pubmed_source_records_on_pmid", using: :btree
 
   create_table "sciencewire_source_records", force: :cascade do |t|
-    t.text     "source_data",        limit: 65535
+    t.text     "source_data",        limit: 16777215
     t.integer  "pmid",               limit: 4
     t.integer  "sciencewire_id",     limit: 4
     t.integer  "lock_version",       limit: 4
@@ -149,7 +149,7 @@ ActiveRecord::Schema.define(version: 20160316181840) do
   add_index "sciencewire_source_records", ["sciencewire_id"], name: "index_sciencewire_source_records_on_sciencewire_id", using: :btree
 
   create_table "user_submitted_source_records", force: :cascade do |t|
-    t.text     "source_data",        limit: 65535
+    t.text     "source_data",        limit: 16777215
     t.integer  "pmid",               limit: 4
     t.integer  "lock_version",       limit: 4
     t.string   "source_fingerprint", limit: 255
@@ -165,11 +165,11 @@ ActiveRecord::Schema.define(version: 20160316181840) do
   add_index "user_submitted_source_records", ["source_fingerprint"], name: "index_user_submitted_source_records_on_source_fingerprint", unique: true, using: :btree
 
   create_table "versions", force: :cascade do |t|
-    t.string   "item_type",  limit: 255,   null: false
-    t.integer  "item_id",    limit: 4,     null: false
-    t.string   "event",      limit: 255,   null: false
+    t.string   "item_type",  limit: 255,      null: false
+    t.integer  "item_id",    limit: 4,        null: false
+    t.string   "event",      limit: 255,      null: false
     t.string   "whodunnit",  limit: 255
-    t.text     "object",     limit: 65535
+    t.text     "object",     limit: 16777215
     t.datetime "created_at"
   end
 
