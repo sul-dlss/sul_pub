@@ -3,14 +3,14 @@ require 'spec_helper'
 describe 'Documentation routing' do
   it 'routes root path to api' do
     expect(get: '/').to route_to(
-      id: 'api',
+      id: 'home',
       controller: 'high_voltage/pages',
       action: 'show'
     )
   end
-  it 'routes /api to api' do
-    expect(get: '/api').to route_to(
-      id: 'api',
+  it 'routes /home to home' do
+    expect(get: '/home').to route_to(
+      id: 'home',
       controller: 'high_voltage/pages',
       action: 'show'
     )
