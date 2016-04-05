@@ -80,7 +80,7 @@ describe SulBib::API do
     pub['identifier'] = [
       {type:'isbn', id:'1177188188181'},
       {type:'doi', url:'18819910019-updated' },
-      {type:'SULPubId', id:'164', url:'http://sulcap.stanford.edu/publications/164' }
+      {type:'SULPubId', id:'164', url:Settings.SULPUB_ID.PUB_URI + '/164' }
     ]
     pub.to_json
   end
@@ -89,7 +89,7 @@ describe SulBib::API do
     pub = JSON.parse(json_with_isbn_changed_doi.dup)
     pub['identifier'] = [
       {type:'isbn', id:'1177188188181'},
-      {type:'SULPubId', id:'164', url:'http://sulcap.stanford.edu/publications/164' }
+      {type:'SULPubId', id:'164', url:Settings.SULPUB_ID.PUB_URI + '/164' }
     ]
     pub.to_json
   end
@@ -238,7 +238,7 @@ describe SulBib::API do
         parsed_outgoing_json = JSON.parse(response.body)
         expect(parsed_outgoing_json['identifier']).to include('id' => '1177188188181', 'type' => 'isbn')
         expect(parsed_outgoing_json['identifier']).to include('type' => 'doi', 'url' => '18819910019')
-        expect(parsed_outgoing_json['identifier']).to include('type' => 'SULPubId', 'url' => "http://sulcap.stanford.edu/publications/#{pub.id}", 'id' => "#{pub.id}")
+        expect(parsed_outgoing_json['identifier']).to include('type' => 'SULPubId', 'url' => "#{Settings.SULPUB_ID.PUB_URI}/#{pub.id}", 'id' => "#{pub.id}")
         expect(parsed_outgoing_json['identifier'].size).to eq(3)
         expect(pub.publication_identifiers.size).to eq(2)
         expect(pub.publication_identifiers.map(&:identifier_type)).to include('doi', 'isbn')
@@ -318,7 +318,7 @@ describe SulBib::API do
       expect(parsed_outgoing_json['identifier'].size).to eq(3)
       expect(parsed_outgoing_json['identifier']).to include('type' => 'isbn', 'id' => '1177188188181')
       expect(parsed_outgoing_json['identifier']).to include('type' => 'doi', 'url' => '18819910019-updated')
-      expect(parsed_outgoing_json['identifier']).to include('type' => 'SULPubId', 'id' => "#{id}", 'url' => "http://sulcap.stanford.edu/publications/#{id}")
+      expect(parsed_outgoing_json['identifier']).to include('type' => 'SULPubId', 'id' => "#{id}", 'url' => "#{Settings.SULPUB_ID.PUB_URI}/#{id}")
     end
 
     it 'deletes an identifier from the db if it is not in the incoming json' do
@@ -328,7 +328,7 @@ describe SulBib::API do
       parsed_outgoing_json = JSON.parse(response.body)
       expect(parsed_outgoing_json['identifier'].size).to eq(2)
       expect(parsed_outgoing_json['identifier']).to include('type' => 'isbn', 'id' => '1177188188181')
-      expect(parsed_outgoing_json['identifier']).to include('type' => 'SULPubId', 'url' => "http://sulcap.stanford.edu/publications/#{id}", 'id' => "#{id}")
+      expect(parsed_outgoing_json['identifier']).to include('type' => 'SULPubId', 'url' => "#{Settings.SULPUB_ID.PUB_URI}/#{id}", 'id' => "#{id}")
     end
   end
 

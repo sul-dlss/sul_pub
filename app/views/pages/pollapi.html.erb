@@ -2,13 +2,13 @@
   <h2>Resource Description</h2>
 
 
-<b style="font-size:large">http://sulcap.stanford.edu/publications?population={popId}&changedSince={YYYY-MM-DDTHH:MM:SSZ}&capProfileId={capId}</b>
+<b style="font-size:large"><%=Settings.SULPUB_ID.PUB_URI %>?population={popId}&changedSince={YYYY-MM-DDTHH:MM:SSZ}&capProfileId={capId}</b>
 
 <hr style="color:#000;background-color:#000;border-color:#000"/>
 
 <h2 style="font-size:medium">URL Parameters</h2>
 
-<table class="table table-striped">       
+<table class="table table-striped">
         <tbody>
           <thead>
           <tr>
@@ -21,38 +21,38 @@
         </thead>
           <tr>
             <td>population</td>
-            <td>Predefined subset of authors from which to draw.</td>     
+            <td>Predefined subset of authors from which to draw.</td>
             <td>CAP</td>
-            <td>No</td>  
-            <td>N/A</td>     
+            <td>No</td>
+            <td>N/A</td>
           </tr>
           <tr>
             <td>changedSince</td>
             <td>All pubs changed since.</td>
             <td>ISO 8601 Date</td>
-            <td>No</td>   
-            <td>1000-01-01</td>            
+            <td>No</td>
+            <td>1000-01-01</td>
           </tr>
           <tr>
             <td>capProfileId</td>
             <td>Pubs for the given profile Id</td>
             <td>Integer</td>
-            <td>No</td>   
-            <td>N/A</td>            
+            <td>No</td>
+            <td>N/A</td>
           </tr>
           <tr>
             <td>page</td>
             <td>Result page to return.</td>
             <td>Integer</td>
-            <td>No</td>   
-            <td>N/A</td>            
+            <td>No</td>
+            <td>N/A</td>
           </tr>
           <tr>
             <td>per</td>
             <td>Number of results per page</td>
             <td>Integer</td>
-            <td>No</td>   
-            <td>N/A</td>            
+            <td>No</td>
+            <td>N/A</td>
           </tr>
           <tbody>
 </table>
@@ -61,7 +61,7 @@
 
 <h2 style="font-size:medium">HTTP Methods</h2>
 
-<table class="table table-striped">       
+<table class="table table-striped">
         <tbody>
           <thead>
           <tr>
@@ -73,15 +73,15 @@
         </thead>
           <tr>
             <td>HEAD</td>
-            <td>Same as GET, but returns no body.</td>     
+            <td>Same as GET, but returns no body.</td>
             <td>None.</td>
-            <td>None.</td>       
+            <td>None.</td>
           </tr>
           <tr>
             <td>OPTIONS</td>
             <td>Lists available methods.</td>
             <td>None.</td>
-            <td>No body - lists methods in 'Allow' header.</td>               
+            <td>No body - lists methods in 'Allow' header.</td>
           </tr>
           <tr>
             <td>GET</td>
@@ -117,8 +117,8 @@
             <td>N/A</td>
             <td>Authentication Key</td>
             <td>GET, OPTIONS</td>
-            <td>Yes</td>       
-          </tr>          
+            <td>Yes</td>
+          </tr>
         </tbody>
       </table>
 
@@ -145,9 +145,9 @@
             <td>Allow</td>
             <td>Method Names</td>
             <td>Lists allowed methods at URI</td>
-            <td>OPTIONS</td>     
+            <td>OPTIONS</td>
           </tr>
-         
+
         </tbody>
       </table>
 
@@ -169,37 +169,37 @@
             <td>OK - Request successfully processed.</td>
             <td>GET</td>
             <td>BibJSON collection</td>
-          </tr>    
+          </tr>
           <tr>
             <td>401</td>
             <td>Unauthorized</td>
             <td>GET, HEAD, OPTIONS</td>
             <td>None</td>
-          </tr>  
+          </tr>
           <tr>
             <td>404</td>
             <td>Not Found - if optional cap profile id not found.</td>
             <td>GET, HEAD, OPTIONS</td>
             <td>None</td>
-          </tr> 
+          </tr>
           <tr>
             <td>405</td>
             <td>Method Not Allowed</td>
             <td>POST, PATCH, PUT, DELETE</td>
             <td>No Entity, but allowed methods listed in Allow header</td>
-          </tr> 
+          </tr>
           <tr>
             <td>406</td>
             <td>Not Acceptable - Can't satisfy request accept header</td>
             <td>GET</td>
             <td>None</td>
-          </tr> 
+          </tr>
           <tr>
             <td>204</td>
             <td>No Content - Successful, but no entity returned.</td>
             <td>OPTIONS</td>
             <td>None</td>
-          </tr>     
+          </tr>
         </tbody>
       </table>
 
@@ -214,11 +214,3 @@
 <h2 style="font-size:medium">Sample CURL calls</h2>
 
 <p style="font-size:small">pending... </p>
-
-
-
-
-
-
-
- <!-- <%= link_to "GET /sulbib/v1/publications/1", '#', class: "btn btn-large btn-primary" %>  -->

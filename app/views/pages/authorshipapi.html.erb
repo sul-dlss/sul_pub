@@ -2,13 +2,13 @@
   <h2>Resource Description</h2>
 
 
-<b style="font-size:large">http://sulcap.stanford.edu/authorship</b>
+<b style="font-size:large"><%=Settings.SULPUB_ID.AUTHORSHIP_URI %></b>
 
 <hr style="color:#000;background-color:#000;border-color:#000"/>
 
 <h2 style="font-size:medium">HTTP Methods</h2>
 
-<table class="table table-striped">       
+<table class="table table-striped">
         <tbody>
           <thead>
           <tr>
@@ -20,17 +20,17 @@
         </thead>
           <tr>
             <td>HEAD</td>
-            <td>Same as GET, but returns no body.</td>     
+            <td>Same as GET, but returns no body.</td>
             <td>None.</td>
-            <td>None.</td>       
+            <td>None.</td>
           </tr>
           <tr>
             <td>OPTIONS</td>
             <td>Lists available methods.</td>
             <td>None.</td>
-            <td>No body - lists methods in 'Allow' header.</td>               
+            <td>No body - lists methods in 'Allow' header.</td>
           </tr>
-          
+
           <tr>
             <td>POST</td>
             <td>Creates or updates an authorship record.</td>
@@ -64,16 +64,16 @@
             <td>application/json</td>
             <td>The content type for submitted entity.</td>
             <td>POST</td>
-            <td>Yes</td>   
+            <td>Yes</td>
           </tr>
           <tr>
             <td>Stan-Key</td>
             <td>N/A</td>
             <td>Authentication Key - actual name and value vary.</td>
             <td>POST</td>
-            <td>Yes</td>       
+            <td>Yes</td>
           </tr>
-             
+
         </tbody>
       </table>
 
@@ -100,9 +100,9 @@
             <td>Allow</td>
             <td>Method Names</td>
             <td>Lists allowed methods at URI</td>
-            <td>OPTIONS</td>     
+            <td>OPTIONS</td>
           </tr>
-         
+
         </tbody>
       </table>
 
@@ -124,43 +124,43 @@
             <td>OK - Request successfully processed.</td>
             <td>POST</td>
             <td>BibJSON for affected publication record</td>
-          </tr>    
+          </tr>
           <tr>
             <td>400</td>
             <td>Bad Request</td>
             <td>POST</td>
             <td>Message: Invalid authorship record submitted, with details.</td>
-          </tr>  
+          </tr>
           <tr>
             <td>401</td>
             <td>Unauthorized</td>
             <td>POST</td>
             <td>None</td>
-          </tr> 
+          </tr>
           <tr>
             <td>404</td>
             <td>Does Not Exist- indicates one of the identifiers in the json was incorrect.</td>
             <td>POST</td>
             <td>Details about incorrect identifier.</td>
-          </tr>            
+          </tr>
           <tr>
             <td>405</td>
             <td>Method Not Allowed</td>
             <td>GET, PUT, PATCH, DELETE</td>
             <td>No Entity, but allowed methods listed in Allow header</td>
-          </tr> 
+          </tr>
           <tr>
             <td>406</td>
             <td>Not Acceptable</td>
             <td>POST</td>
             <td>None</td>
-          </tr> 
+          </tr>
            <tr>
             <td>415</td>
             <td>Unsupported Media Type - POST entity with wrong Content-Type</td>
             <td>POST</td>
             <td>None</td>
-          </tr> 
+          </tr>
         </tbody>
       </table>
 
@@ -175,4 +175,3 @@
 <h2 style="font-size:medium">Sample CURL calls</h2>
 
 <p style="font-size:small">pending... </p>
-

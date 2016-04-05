@@ -2,13 +2,13 @@
   <h2>Resource Description</h2>
 
 
-<b style="font-size:large">http://sulcap.stanford.edu/publications/sourcelookup?year={}&title={}&source={}</b>
+<b style="font-size:large"><%=Settings.SULPUB_ID.PUB_URI %>/sourcelookup?year={}&title={}&source={}</b>
 
 <hr style="color:#000;background-color:#000;border-color:#000"/>
 
 <h2 style="font-size:medium">URL Parameters</h2>
 
-<table class="table table-striped">       
+<table class="table table-striped">
         <tbody>
           <thead>
           <tr>
@@ -21,17 +21,17 @@
         </thead>
           <tr>
             <td>title</td>
-            <td>Title of the publication.</td>     
+            <td>Title of the publication.</td>
             <td>String</td>
-            <td>True</td>  
-            <td>N/A</td>     
+            <td>True</td>
+            <td>N/A</td>
           </tr>
           <tr>
             <td>year</td>
             <td>Year of publication.</td>
             <td>Four digit number between 1000 and 2100</td>
-            <td>False</td>   
-            <td>N/A</td>            
+            <td>False</td>
+            <td>N/A</td>
           </tr>
           <tr>
             <td>source</td>
@@ -40,14 +40,14 @@
             <td>False.</td>
             <td>SW+MAN</td>
           </tr>
-          
+
           <tbody>
 </table>
 <hr style="color:#000;background-color:#000;border-color:#000"/>
 
 <h2 style="font-size:medium">HTTP Methods</h2>
 
-<table class="table table-striped">       
+<table class="table table-striped">
         <tbody>
           <thead>
           <tr>
@@ -59,15 +59,15 @@
         </thead>
           <tr>
             <td>HEAD</td>
-            <td>Same as GET, but returns no body.</td>     
+            <td>Same as GET, but returns no body.</td>
             <td>None.</td>
-            <td>None.</td>       
+            <td>None.</td>
           </tr>
           <tr>
             <td>OPTIONS</td>
             <td>Lists available methods.</td>
             <td>None.</td>
-            <td>No body - lists methods in 'Allow' header.</td>               
+            <td>No body - lists methods in 'Allow' header.</td>
           </tr>
           <tr>
             <td>GET</td>
@@ -103,8 +103,8 @@
             <td>N/A</td>
             <td>Authentication Key</td>
             <td>GET, OPTIONS</td>
-            <td>Yes</td>       
-          </tr>          
+            <td>Yes</td>
+          </tr>
         </tbody>
       </table>
 
@@ -131,9 +131,9 @@
             <td>Allow</td>
             <td>Method Names</td>
             <td>Lists allowed methods at URI</td>
-            <td>OPTIONS</td>     
+            <td>OPTIONS</td>
           </tr>
-         
+
         </tbody>
       </table>
 
@@ -155,25 +155,25 @@
             <td>OK - Request successfully processed.</td>
             <td>GET</td>
             <td>BibJSON collection</td>
-          </tr>    
+          </tr>
           <tr>
             <td>401</td>
             <td>Unauthorized</td>
             <td>GET, HEAD, OPTIONS</td>
             <td>None</td>
-          </tr>  
+          </tr>
           <tr>
             <td>405</td>
             <td>Method Not Allowed</td>
             <td>POST, PATCH, PUT, DELETE</td>
             <td>No Entity, but allowed methods listed in Allow header</td>
-          </tr> 
+          </tr>
           <tr>
             <td>406</td>
             <td>Not Acceptable - Can't satisfy request accept header</td>
             <td>GET</td>
             <td>None</td>
-          </tr>     
+          </tr>
         </tbody>
       </table>
 
@@ -190,9 +190,3 @@
 <h2 style="font-size:medium">Sample CURL calls</h2>
 
 <p style="font-size:small">pending... </p>
-
-
-
-
-
-

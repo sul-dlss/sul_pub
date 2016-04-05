@@ -2,13 +2,13 @@
   <h2>Resource Description</h2>
 
 
-<b style="font-size:large">http://sulcap.stanford.edu/publications/{sulPubId}</b>
+<b style="font-size:large"><%=Settings.SULPUB_ID.PUB_URI %>/{sulPubId}</b>
 
 <hr style="color:#000;background-color:#000;border-color:#000"/>
 
 <h2 style="font-size:medium">HTTP Methods</h2>
 
-<table class="table table-striped">       
+<table class="table table-striped">
         <tbody>
           <thead>
           <tr>
@@ -20,15 +20,15 @@
         </thead>
           <tr>
             <td>HEAD</td>
-            <td>Same as GET, but returns no body.</td>     
+            <td>Same as GET, but returns no body.</td>
             <td>None.</td>
-            <td>None.</td>       
+            <td>None.</td>
           </tr>
           <tr>
             <td>OPTIONS</td>
             <td>Lists available methods.</td>
             <td>None.</td>
-            <td>No body - lists methods in 'Allow' header.</td>               
+            <td>No body - lists methods in 'Allow' header.</td>
           </tr>
           <tr>
             <td>GET</td>
@@ -76,22 +76,22 @@
             <td>text/bibliography application/json</td>
             <td>The content type for submitted entity.</td>
             <td>PUT</td>
-            <td>Yes</td>   
+            <td>Yes</td>
           </tr>
           <tr>
             <td>Stan-Key</td>
             <td>N/A</td>
             <td>Authentication Key - name and value vary.</td>
             <td>GET, PUT, DELETE</td>
-            <td>Yes</td>       
+            <td>Yes</td>
           </tr>
           <tr>
             <td>If-Match</td>
             <td>last given changed date in bibjson</td>
             <td>Updates only if dates match.</td>
             <td>PUT</td>
-            <td>Yes</td>       
-          </tr>             
+            <td>Yes</td>
+          </tr>
         </tbody>
       </table>
 
@@ -118,9 +118,9 @@
             <td>Allow</td>
             <td>Method Names</td>
             <td>Lists allowed methods at URI</td>
-            <td>OPTIONS</td>     
+            <td>OPTIONS</td>
           </tr>
-         
+
         </tbody>
       </table>
 
@@ -142,73 +142,73 @@
             <td>OK - Request successfully processed.</td>
             <td>GET PUT</td>
             <td>BibJSON for record</td>
-          </tr>    
+          </tr>
           <tr>
             <td>400</td>
             <td>Bad Request</td>
             <td>PUT</td>
             <td>Message: Invalid BibJSON or BibTeX</td>
-          </tr>  
+          </tr>
           <tr>
             <td>401</td>
             <td>Unauthorized</td>
             <td>GET, PUT, DELETE, HEAD, OPTIONS</td>
             <td>None</td>
-          </tr>  
+          </tr>
           <tr>
             <td>403</td>
             <td>Forbidden</td>
             <td>PUT, DELETE</td>
             <td>None</td>
-          </tr>            
+          </tr>
           <tr>
             <td>404</td>
             <td>Not Found</td>
             <td>GET, PUT, DELETE, HEAD, OPTIONS</td>
             <td>None</td>
-          </tr> 
+          </tr>
           <tr>
             <td>405</td>
             <td>Method Not Allowed</td>
             <td>POST, PATCH</td>
             <td>No Entity, but allowed methods listed in Allow header</td>
-          </tr> 
+          </tr>
           <tr>
             <td>406</td>
             <td>Not Acceptable</td>
             <td>GET</td>
             <td>None</td>
-          </tr> 
+          </tr>
           <tr>
             <td>410</td>
             <td>Gone - old resource probably deleted.</td>
             <td>GET, PUT, DELETE, HEAD, OPTIONS</td>
             <td>None</td>
-          </tr> 
+          </tr>
           <tr>
             <td>412</td>
             <td>PreCondition Failed - date in If-Match header doesn't match</td>
             <td>PUT</td>
             <td>None</td>
-          </tr> 
+          </tr>
            <tr>
             <td>415</td>
             <td>Unsupported Media Type - PUT entity with wrong Content-Type</td>
             <td>PUT</td>
             <td>None</td>
-          </tr> 
+          </tr>
           <tr>
             <td>428</td>
             <td>Precondition Requied - last changed date must be supplied in If-Match header</td>
             <td>PUT</td>
             <td>None</td>
-          </tr> 
+          </tr>
           <tr>
             <td>204</td>
             <td>No Content - Successful, but no entity returned.</td>
             <td>OPTIONS</td>
             <td>None</td>
-          </tr>     
+          </tr>
         </tbody>
       </table>
 
@@ -223,11 +223,3 @@
 <h2 style="font-size:medium">Sample CURL calls</h2>
 
 <p style="font-size:small">pending... </p>
-
-
-
-
-
-
-
- <!-- <%= link_to "GET /sulbib/v1/publications/1", '#', class: "btn btn-large btn-primary" %>  -->
