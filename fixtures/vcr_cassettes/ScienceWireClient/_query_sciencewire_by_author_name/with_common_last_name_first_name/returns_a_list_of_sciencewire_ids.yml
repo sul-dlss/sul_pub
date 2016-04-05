@@ -4,31 +4,59 @@ http_interactions:
     method: post
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery?format=xml
     body:
-      encoding: US-ASCII
-      string: ! "<?xml version=\"1.0\"?>\n      <ScienceWireQueryXMLParameter xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
-        xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\n      <xmlQuery><![CDATA[\n
-        \      <query xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/\n
-        \     XMLSchema\">\n        <Criterion>\n          <Criteria><Criterion>\n
-        \             <TextSearch>\n                  <QueryPredicate>(\"smith,james\"
-        or \"SMITH,J\") and Stanford</QueryPredicate>\n                  <SearchType>ExactMatch</SearchType>\n
-        \                 <Columns>AggregateText</Columns>\n                  <MaximumRows>200</MaximumRows>\n
-        \                 </TextSearch>\n            </Criterion><Criterion>\n                <Filter>\n
-        \                 <Column>AuthorLastName</Column>\n                  <Operator>BeginsWith</Operator>\n
-        \                 <Value>SMITH</Value>\n                </Filter>\n              </Criterion><Criterion>\n
-        \               <Filter>\n                  <Column>AuthorFirstName</Column>\n
-        \                 <Operator>BeginsWith</Operator>\n                  <Value>J</Value>\n
-        \               </Filter>\n              </Criterion><Criterion>\n                    <Filter>\n
-        \                     <Column>DocumentCategory</Column>\n                      <Operator>In</Operator>\n
-        \                     <Values>\n                        <Value>Journal Document</Value>\n
-        \                       <Value>Conference Proceeding Document</Value>\n                      </Values>\n
-        \                   </Filter>\n                  </Criterion></Criteria>\n
-        \       </Criterion>\n        <Columns>\n          <SortColumn>\n            <Column>Rank</Column>\n
-        \           <Direction>Descending</Direction>\n          </SortColumn>\n        </Columns>\n
-        \      <MaximumRows>200</MaximumRows>\n      </query>\n      ]]></xmlQuery>\n
-        \     </ScienceWireQueryXMLParameter>"
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+              <ScienceWireQueryXMLParameter xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+              <xmlQuery><![CDATA[
+               <query xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/
+              XMLSchema">
+                <Criterion>
+                  <Criteria><Criterion>
+                      <TextSearch>
+                          <QueryPredicate>("smith,james" or "SMITH,J") and Stanford</QueryPredicate>
+                          <SearchType>ExactMatch</SearchType>
+                          <Columns>AggregateText</Columns>
+                          <MaximumRows>200</MaximumRows>
+                          </TextSearch>
+                    </Criterion><Criterion>
+                        <Filter>
+                          <Column>AuthorLastName</Column>
+                          <Operator>BeginsWith</Operator>
+                          <Value>SMITH</Value>
+                        </Filter>
+                      </Criterion><Criterion>
+                        <Filter>
+                          <Column>AuthorFirstName</Column>
+                          <Operator>BeginsWith</Operator>
+                          <Value>J</Value>
+                        </Filter>
+                      </Criterion><Criterion>
+                            <Filter>
+                              <Column>DocumentCategory</Column>
+                              <Operator>In</Operator>
+                              <Values>
+                                <Value>Journal Document</Value>
+                                <Value>Conference Proceeding Document</Value>
+                              </Values>
+                            </Filter>
+                          </Criterion></Criteria>
+                </Criterion>
+                <Columns>
+                  <SortColumn>
+                    <Column>Rank</Column>
+                    <Direction>Descending</Direction>
+                  </SortColumn>
+                </Columns>
+               <MaximumRows>200</MaximumRows>
+              </query>
+              ]]></xmlQuery>
+              </ScienceWireQueryXMLParameter>
     headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
-      - ! '*/*'
+      - "*/*"
       User-Agent:
       - Ruby
       Licenseid:
@@ -59,16 +87,16 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Mon, 07 Mar 2016 22:17:52 GMT
+      - Tue, 05 Apr 2016 23:36:17 GMT
       Content-Length:
       - '280'
     body:
-      encoding: US-ASCII
-      string: ! "<?xml version=\"1.0\"?>\r\n<ScienceWireQueryIDResponse xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
+      encoding: UTF-8
+      string: "<?xml version=\"1.0\"?>\r\n<ScienceWireQueryIDResponse xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>129740</queryID>\r\n
-        \ <queryResultRows>15</queryResultRows>\r\n  <totalRows>15</totalRows>\r\n</ScienceWireQueryIDResponse>"
+        \ <queryResultRows>17</queryResultRows>\r\n  <totalRows>17</totalRows>\r\n</ScienceWireQueryIDResponse>"
     http_version: 
-  recorded_at: Mon, 07 Mar 2016 22:17:53 GMT
+  recorded_at: Tue, 05 Apr 2016 23:36:18 GMT
 - request:
     method: get
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/129740?format=xml&page=0&pageSize=2147483647&v=version/3
@@ -76,8 +104,10 @@ http_interactions:
       encoding: US-ASCII
       string: ''
     headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
-      - ! '*/*'
+      - "*/*"
       User-Agent:
       - Ruby
       Content-Type:
@@ -106,12 +136,12 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Mon, 07 Mar 2016 22:17:53 GMT
+      - Tue, 05 Apr 2016 23:36:18 GMT
       Content-Length:
-      - '35068'
+      - '40801'
     body:
-      encoding: US-ASCII
-      string: ! "<?xml version=\"1.0\"?>\r\n<ArrayOfPublicationItem xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
+      encoding: UTF-8
+      string: "<?xml version=\"1.0\"?>\r\n<ArrayOfPublicationItem xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <PublicationItem>\r\n
         \   <PublicationItemID>73471033</PublicationItemID>\r\n    <Title>What About
         This: Collected Poems of Frank Stanford</Title>\r\n    <Abstract />\r\n    <AuthorList>Smith,Jordan,</AuthorList>\r\n
@@ -234,19 +264,62 @@ http_interactions:
         APPLICATIONS;2013;SC;MostRecentYear</PublicationCategoryRankingList>\r\n    <AuthorCitationCountList>1,0,2</AuthorCitationCountList>\r\n
         \   <CopyrightStateProvince>MA</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
         STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
-        \   <PublicationItemID>47661107</PublicationItemID>\r\n    <Title>Incongruent
-        HIV and tuberculosis co-dynamics in Kenya: Interacting epidemics monitor each
-        other</Title>\r\n    <Abstract>Objective: Kenya is heralded as an example
-        of declining HIV in Africa, while its tuberculosis ( TB) numbers continue
-        rising. We conducted a comparative investigation of TB-HIV co-dynamics in
-        Africa to determine the likelihood of reported trends.  Methods and results:
-        Our mathematical modeling analysis exposes the notable incongruence of reported
-        trends in Kenya because TB-HIV co-dynamics, tightly knit worldwide and most
-        dramatically in sub-Saharan Africa, suggest that declining HIV trends should
-        trigger reductions in TB trends. Moreover, a continental-scale analysis of
-        TB-HIV trends places Kenya as an outlier in eastern and southern Africa, and
-        shows TB outpacing HIV in western central Africa. We further investigate which
-        TB processes across HIV stages have greater potential to reduce TB incidence
+        \   <PublicationItemID>75185686</PublicationItemID>\r\n    <Title>A Quantitative
+        Assessment of Factors Affecting the Technological Development and Adoption
+        of Companion Diagnostics.</Title>\r\n    <Abstract>Rapid innovation in (epi)genetics
+        and biomarker sciences is driving a new drug development and product development
+        pathway, with the personalized medicine era dominated by biologic therapeutics
+        and companion diagnostics. Companion diagnostics (CDx) are tests and assays
+        that detect biomarkers and specific mutations to elucidate disease pathways,
+        stratify patient populations, and target drug therapies. CDx can substantially
+        influence the development and regulatory approval for certain high-risk biologics.
+        However, despite the increasingly important role of companion diagnostics
+        in the realization of personalized medicine, in the USA, there are only 23
+        Food and Drug Administration (FDA) approved companion diagnostics on the market
+        for 11 unique indications. Personalized medicines have great potential, yet
+        their use is currently constrained. A major factor for this may lie in the
+        increased complexity of the companion diagnostic and corresponding therapeutic
+        development and adoption pathways. Understanding the market dynamics of companion
+        diagnostic/therapeutic (CDx/Rx) pairs is important to further development
+        and adoption of personalized medicine. Therefore, data collected on a variety
+        of factors may highlight incentives or disincentives driving the development
+        of companion diagnostics. Statistical analysis for 36 hypotheses resulted
+        in two significant relationships and 34 non-significant relationships. The
+        sensitivity of the companion diagnostic was the only factor that significantly
+        correlated with the price of the companion diagnostic. This result indicates
+        that while there is regulatory pressure for the diagnostic and pharmaceutical
+        industry to collaborate and co-develop companion diagnostics for the approval
+        of personalized therapeutics, there seems to be a lack of parallel economic
+        collaboration to incentivize development of companion diagnostics. </Abstract>\r\n
+        \   <AuthorList>Luo,Dee,|Smith,James,A|Meadows,Nick,A|Schuh,A,|Manescu,Katie,E|Bure,Kim,|Davies,Benjamin,|Horne,Rob,|Kope,Mike,|DiGiusto,David,L|Brindley,David,A</AuthorList>\r\n
+        \   <AuthorCount>11</AuthorCount>\r\n    <KeywordList>clinical adoption|combinational
+        therapy|companion diagnostic|healthcare risk management|healthcare translation|personalized
+        medicine|risk:benefit appraisal|stratified medicine</KeywordList>\r\n    <DocumentTypeList>Journal
+        Article</DocumentTypeList>\r\n    <DocumentCategory>Journal Document</DocumentCategory>\r\n
+        \   <NumberOfReferences xsi:nil=\"true\" />\r\n    <TimesCited xsi:nil=\"true\"
+        />\r\n    <TimesNotSelfCited xsi:nil=\"true\" />\r\n    <PMID>26858745</PMID>\r\n
+        \   <PublicationSourceTitle>Frontiers in genetics</PublicationSourceTitle>\r\n
+        \   <Volume>6</Volume>\r\n    <Pagination>357-?</Pagination>\r\n    <PublicationDate>2015-01-01T00:00:00</PublicationDate>\r\n
+        \   <PublicationYear>2015</PublicationYear>\r\n    <PublicationSubjectCategoryList
+        />\r\n    <ISSN>1664-8021</ISSN>\r\n    <DOI>10.3389/fgene.2015.00357</DOI>\r\n
+        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
+        />\r\n    <Rank>72</Rank>\r\n    <OrdinalRank>5</OrdinalRank>\r\n    <NormalizedRank>64.285714285714292</NormalizedRank>\r\n
+        \   <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
+        \   <CopyrightPublisher />\r\n    <CopyrightCity />\r\n    <CopyrightStateProvince
+        />\r\n    <CopyrightCountry>SWITZERLAND</CopyrightCountry>\r\n  </PublicationItem>\r\n
+        \ <PublicationItem>\r\n    <PublicationItemID>47661107</PublicationItemID>\r\n
+        \   <Title>Incongruent HIV and tuberculosis co-dynamics in Kenya: Interacting
+        epidemics monitor each other</Title>\r\n    <Abstract>Objective: Kenya is
+        heralded as an example of declining HIV in Africa, while its tuberculosis
+        ( TB) numbers continue rising. We conducted a comparative investigation of
+        TB-HIV co-dynamics in Africa to determine the likelihood of reported trends.
+        \ Methods and results: Our mathematical modeling analysis exposes the notable
+        incongruence of reported trends in Kenya because TB-HIV co-dynamics, tightly
+        knit worldwide and most dramatically in sub-Saharan Africa, suggest that declining
+        HIV trends should trigger reductions in TB trends. Moreover, a continental-scale
+        analysis of TB-HIV trends places Kenya as an outlier in eastern and southern
+        Africa, and shows TB outpacing HIV in western central Africa. We further investigate
+        which TB processes across HIV stages have greater potential to reduce TB incidence
         via a sensitivity analysis.  Conclusions: There are two parsimonious explanations:
         an unaccounted improvement in TB case detection has occurred, or HIV is not
         declining as reported. The TB-HIV mismatch could be compounded by surveillance
@@ -271,13 +344,37 @@ http_interactions:
         \   <PublicationSubjectCategoryList>Infectious Diseases</PublicationSubjectCategoryList>\r\n
         \   <ISSN>1755-4365</ISSN>\r\n    <DOI>10.1016/j.epidem.2008.08.001</DOI>\r\n
         \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
-        />\r\n    <Rank>72</Rank>\r\n    <OrdinalRank>5</OrdinalRank>\r\n    <NormalizedRank>64.285714285714292</NormalizedRank>\r\n
+        />\r\n    <Rank>72</Rank>\r\n    <OrdinalRank>6</OrdinalRank>\r\n    <NormalizedRank>64.285714285714292</NormalizedRank>\r\n
         \   <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
         \   <CopyrightPublisher>ELSEVIER SCIENCE BV</CopyrightPublisher>\r\n    <CopyrightCity>AMSTERDAM</CopyrightCity>\r\n
         \   <PublicationImpactFactorList>2.151,2011,ClosestToPublicationYear|2.378,2013,MostRecentYear</PublicationImpactFactorList>\r\n
         \   <PublicationCategoryRankingList>45/70;INFECTIOUS DISEASES;2011;SC;ClosestToPublicationYear|42/72;INFECTIOUS
         DISEASES;2013;SC;MostRecentYear</PublicationCategoryRankingList>\r\n    <AuthorCitationCountList>1,2,2|2,2,2|3,1,3|4,0,4|5,0,4|6,0,4|7,0,4|8,0,4|9,2,2</AuthorCitationCountList>\r\n
         \   <CopyrightStateProvince />\r\n    <CopyrightCountry>NETHERLANDS</CopyrightCountry>\r\n
+        \ </PublicationItem>\r\n  <PublicationItem>\r\n    <PublicationItemID>75266978</PublicationItemID>\r\n
+        \   <Title>Establishing good authentication practice (GAP) in secondary care
+        to protect against falsified medicines and improve patient safety</Title>\r\n
+        \   <Abstract />\r\n    <AuthorList>Naughton,Bernard,D|Smith,James,A|Brindley,David,A</AuthorList>\r\n
+        \   <AuthorCount>3</AuthorCount>\r\n    <KeywordList>SUBSTANDARD MEDICINES</KeywordList>\r\n
+        \   <DocumentTypeList>Article</DocumentTypeList>\r\n    <DocumentCategory>Journal
+        Document</DocumentCategory>\r\n    <NumberOfReferences>7</NumberOfReferences>\r\n
+        \   <TimesCited>0</TimesCited>\r\n    <TimesNotSelfCited>0</TimesNotSelfCited>\r\n
+        \   <PMID xsi:nil=\"true\" />\r\n    <WoSItemID>000371318500013</WoSItemID>\r\n
+        \   <PublicationSourceTitle>EUROPEAN JOURNAL OF HOSPITAL PHARMACY-SCIENCE
+        AND PRACTICE</PublicationSourceTitle>\r\n    <Volume>23</Volume>\r\n    <Issue>2</Issue>\r\n
+        \   <Pagination>118-120</Pagination>\r\n    <PublicationDate>2016-03-01T00:00:00</PublicationDate>\r\n
+        \   <PublicationYear>2016</PublicationYear>\r\n    <PublicationType>Journal</PublicationType>\r\n
+        \   <PublicationSubjectCategoryList>Pharmacology &amp; Pharmacy</PublicationSubjectCategoryList>\r\n
+        \   <ISSN>2047-9956</ISSN>\r\n    <DOI>10.1136/ejhpharm-2015-000750</DOI>\r\n
+        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
+        />\r\n    <Rank>64</Rank>\r\n    <OrdinalRank>7</OrdinalRank>\r\n    <NormalizedRank>57.142857142857139</NormalizedRank>\r\n
+        \   <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
+        \   <CopyrightPublisher>BMJ PUBLISHING GROUP</CopyrightPublisher>\r\n    <CopyrightCity>LONDON</CopyrightCity>\r\n
+        \   <PublicationImpactFactorList>0.433,2014,ClosestToPublicationYear|0.433,2014,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>244/254;PHARMACOLOGY &amp; PHARMACY;2014;SC;ClosestToPublicationYear|244/254;PHARMACOLOGY
+        &amp; PHARMACY;2014;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <AuthorCitationCountList>1,0,0|2,0,0|3,0,0</AuthorCitationCountList>\r\n
+        \   <CopyrightStateProvince />\r\n    <CopyrightCountry>UNITED KINGDOM</CopyrightCountry>\r\n
         \ </PublicationItem>\r\n  <PublicationItem>\r\n    <PublicationItemID>63755405</PublicationItemID>\r\n
         \   <Title>Pathogen-Host Associations and Predicted Range Shifts of Human
         Monkeypox in Response to Climate Change in Central Africa</Title>\r\n    <Abstract>Climate
@@ -317,7 +414,7 @@ http_interactions:
         \   <PublicationSubjectCategoryList>Multidisciplinary Sciences</PublicationSubjectCategoryList>\r\n
         \   <ISSN>1932-6203</ISSN>\r\n    <DOI>10.1371/journal.pone.0066071</DOI>\r\n
         \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
-        />\r\n    <Rank>61</Rank>\r\n    <OrdinalRank>6</OrdinalRank>\r\n    <NormalizedRank>54.464285714285708</NormalizedRank>\r\n
+        />\r\n    <Rank>61</Rank>\r\n    <OrdinalRank>8</OrdinalRank>\r\n    <NormalizedRank>54.464285714285708</NormalizedRank>\r\n
         \   <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
         \   <CopyrightPublisher>PUBLIC LIBRARY SCIENCE</CopyrightPublisher>\r\n    <CopyrightCity>SAN
         FRANCISCO</CopyrightCity>\r\n    <ArticleNumber>e66071</ArticleNumber>\r\n
@@ -338,7 +435,7 @@ http_interactions:
         \   <PublicationYear>2002</PublicationYear>\r\n    <PublicationType>Journal</PublicationType>\r\n
         \   <PublicationSubjectCategoryList>Sociology</PublicationSubjectCategoryList>\r\n
         \   <ISSN>0094-3061</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
-        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>7</OrdinalRank>\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>9</OrdinalRank>\r\n
         \   <NormalizedRank>50</NormalizedRank>\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>AMER SOCIOLOGICAL
         ASSOC</CopyrightPublisher>\r\n    <CopyrightCity>WASHINGTON</CopyrightCity>\r\n
@@ -359,7 +456,7 @@ http_interactions:
         \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Computer
         Science, Interdisciplinary Applications|Music</PublicationSubjectCategoryList>\r\n
         \   <ISSN>0148-9267</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
-        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>8</OrdinalRank>\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>10</OrdinalRank>\r\n
         \   <NormalizedRank>50</NormalizedRank>\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>M I T
         PRESS</CopyrightPublisher>\r\n    <CopyrightCity>CAMBRIDGE</CopyrightCity>\r\n
@@ -373,7 +470,7 @@ http_interactions:
         \   <AuthorCount>1</AuthorCount>\r\n    <KeywordList>ALGORITHM</KeywordList>\r\n
         \   <DocumentTypeList>Article</DocumentTypeList>\r\n    <DocumentCategory>Journal
         Document</DocumentCategory>\r\n    <NumberOfReferences>25</NumberOfReferences>\r\n
-        \   <TimesCited>169</TimesCited>\r\n    <TimesNotSelfCited>162</TimesNotSelfCited>\r\n
+        \   <TimesCited>170</TimesCited>\r\n    <TimesNotSelfCited>163</TimesNotSelfCited>\r\n
         \   <PMID xsi:nil=\"true\" />\r\n    <WoSItemID>A1992KH76800010</WoSItemID>\r\n
         \   <PublicationSourceTitle>COMPUTER MUSIC JOURNAL</PublicationSourceTitle>\r\n
         \   <Volume>16</Volume>\r\n    <Issue>4</Issue>\r\n    <Pagination>74-98</Pagination>\r\n
@@ -381,13 +478,13 @@ http_interactions:
         \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Computer
         Science, Interdisciplinary Applications|Music</PublicationSubjectCategoryList>\r\n
         \   <ISSN>0148-9267</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
-        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>9</OrdinalRank>\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>11</OrdinalRank>\r\n
         \   <NormalizedRank>50</NormalizedRank>\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>MIT PRESS</CopyrightPublisher>\r\n
         \   <CopyrightCity>CAMBRIDGE</CopyrightCity>\r\n    <PublicationImpactFactorList>0.548,1994,ClosestToPublicationYear|0.41,2013,MostRecentYear</PublicationImpactFactorList>\r\n
         \   <PublicationCategoryRankingList>16/41;COMPUTER SCIENCE, INTERDISCIPLINARY
         APPLICATIONS;1994;SC;ClosestToPublicationYear|99/102;COMPUTER SCIENCE, INTERDISCIPLINARY
-        APPLICATIONS;2013;SC;MostRecentYear</PublicationCategoryRankingList>\r\n    <AuthorCitationCountList>1,7,162</AuthorCitationCountList>\r\n
+        APPLICATIONS;2013;SC;MostRecentYear</PublicationCategoryRankingList>\r\n    <AuthorCitationCountList>1,7,163</AuthorCitationCountList>\r\n
         \   <CopyrightStateProvince>MA</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
         STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
         \   <PublicationItemID>23488997</PublicationItemID>\r\n    <Title>LONG-TERM
@@ -411,7 +508,7 @@ http_interactions:
         \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Radiology,
         Nuclear Medicine &amp; Medical Imaging</PublicationSubjectCategoryList>\r\n
         \   <ISSN>0363-9762</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
-        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>10</OrdinalRank>\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>12</OrdinalRank>\r\n
         \   <NormalizedRank>50</NormalizedRank>\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>LIPPINCOTT-RAVEN
         PUBL</CopyrightPublisher>\r\n    <CopyrightCity>PHILADELPHIA</CopyrightCity>\r\n
@@ -434,7 +531,7 @@ http_interactions:
         \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Computer
         Science, Interdisciplinary Applications|Music</PublicationSubjectCategoryList>\r\n
         \   <ISSN>0148-9267</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
-        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>11</OrdinalRank>\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>13</OrdinalRank>\r\n
         \   <NormalizedRank>50</NormalizedRank>\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>MIT PRESS</CopyrightPublisher>\r\n
         \   <CopyrightCity>CAMBRIDGE</CopyrightCity>\r\n    <PublicationImpactFactorList>0.41,2013,MostRecentYear</PublicationImpactFactorList>\r\n
@@ -455,7 +552,7 @@ http_interactions:
         \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Computer
         Science, Interdisciplinary Applications|Music</PublicationSubjectCategoryList>\r\n
         \   <ISSN>0148-9267</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
-        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>12</OrdinalRank>\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>14</OrdinalRank>\r\n
         \   <NormalizedRank>50</NormalizedRank>\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>MIT PRESS</CopyrightPublisher>\r\n
         \   <CopyrightCity>CAMBRIDGE</CopyrightCity>\r\n    <PublicationImpactFactorList>0.41,2013,MostRecentYear</PublicationImpactFactorList>\r\n
@@ -475,7 +572,7 @@ http_interactions:
         \   <PublicationYear>1981</PublicationYear>\r\n    <PublicationType>Journal</PublicationType>\r\n
         \   <PublicationSubjectCategoryList>Environmental Sciences</PublicationSubjectCategoryList>\r\n
         \   <ISSN>0045-6535</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
-        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>13</OrdinalRank>\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>15</OrdinalRank>\r\n
         \   <NormalizedRank>50</NormalizedRank>\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>PERGAMON-ELSEVIER
         SCIENCE LTD</CopyrightPublisher>\r\n    <CopyrightCity>OXFORD</CopyrightCity>\r\n
@@ -496,7 +593,7 @@ http_interactions:
         \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Energy
         &amp; Fuels|Engineering, Chemical|Engineering, Petroleum</PublicationSubjectCategoryList>\r\n
         \   <ISSN>0018-8190</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
-        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>14</OrdinalRank>\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>56</Rank>\r\n    <OrdinalRank>16</OrdinalRank>\r\n
         \   <NormalizedRank>50</NormalizedRank>\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>GULF PUBL
         CO</CopyrightPublisher>\r\n    <CopyrightCity>HOUSTON</CopyrightCity>\r\n
@@ -506,5 +603,5 @@ http_interactions:
         \   <AuthorCitationCountList>1,0,0|2,0,0</AuthorCitationCountList>\r\n    <CopyrightStateProvince>TX</CopyrightStateProvince>\r\n
         \   <CopyrightCountry>UNITED STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n</ArrayOfPublicationItem>"
     http_version: 
-  recorded_at: Mon, 07 Mar 2016 22:17:53 GMT
-recorded_with: VCR 2.9.3
+  recorded_at: Tue, 05 Apr 2016 23:36:18 GMT
+recorded_with: VCR 3.0.1
