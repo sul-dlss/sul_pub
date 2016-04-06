@@ -92,6 +92,13 @@ VCR.configure do |c|
       regex.match(interaction.response.body).captures.first
     end
   end
+  c.filter_sensitive_data('private_bearer_token') do |interaction|
+    auth = interaction.request.headers['Authorization']
+    if auth.kind_of? Array
+      bearer = auth.select {|a| a =~ /bearer/i }.first
+      bearer.gsub(/bearer /i, '') if bearer
+    end
+  end
   c.filter_sensitive_data('Settings.SCIENCEWIRE.HOST') { Settings.SCIENCEWIRE.HOST }
   c.filter_sensitive_data('Settings.SCIENCEWIRE.LICENSE_ID') { Settings.SCIENCEWIRE.LICENSE_ID }
 end

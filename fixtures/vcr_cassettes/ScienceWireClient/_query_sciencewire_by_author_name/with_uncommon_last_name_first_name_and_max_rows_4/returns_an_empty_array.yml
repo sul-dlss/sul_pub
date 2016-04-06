@@ -14,12 +14,24 @@ http_interactions:
                 <Criterion>
                   <Criteria><Criterion>
                       <TextSearch>
-                          <QueryPredicate>("," or ",") and Stanford</QueryPredicate>
+                          <QueryPredicate>("ottawa,yukon" or "OTTAWA,Y") and Stanford</QueryPredicate>
                           <SearchType>ExactMatch</SearchType>
                           <Columns>AggregateText</Columns>
-                          <MaximumRows>200</MaximumRows>
+                          <MaximumRows>4</MaximumRows>
                           </TextSearch>
                     </Criterion><Criterion>
+                        <Filter>
+                          <Column>AuthorLastName</Column>
+                          <Operator>BeginsWith</Operator>
+                          <Value>OTTAWA</Value>
+                        </Filter>
+                      </Criterion><Criterion>
+                        <Filter>
+                          <Column>AuthorFirstName</Column>
+                          <Operator>BeginsWith</Operator>
+                          <Value>Y</Value>
+                        </Filter>
+                      </Criterion><Criterion>
                             <Filter>
                               <Column>DocumentCategory</Column>
                               <Operator>In</Operator>
@@ -36,7 +48,7 @@ http_interactions:
                     <Direction>Descending</Direction>
                   </SortColumn>
                 </Columns>
-               <MaximumRows>200</MaximumRows>
+               <MaximumRows>4</MaximumRows>
               </query>
               ]]></xmlQuery>
               </ScienceWireQueryXMLParameter>
@@ -75,19 +87,19 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Tue, 05 Apr 2016 23:39:39 GMT
+      - Tue, 05 Apr 2016 23:39:05 GMT
       Content-Length:
       - '278'
     body:
       encoding: UTF-8
       string: "<?xml version=\"1.0\"?>\r\n<ScienceWireQueryIDResponse xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
-        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>111021</queryID>\r\n
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>129741</queryID>\r\n
         \ <queryResultRows>0</queryResultRows>\r\n  <totalRows>0</totalRows>\r\n</ScienceWireQueryIDResponse>"
     http_version: 
-  recorded_at: Tue, 05 Apr 2016 23:39:39 GMT
+  recorded_at: Tue, 05 Apr 2016 23:39:05 GMT
 - request:
     method: get
-    uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/111021?format=xml&page=0&pageSize=2147483647&v=version/3
+    uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/129741?format=xml&page=0&pageSize=2147483647&v=version/3
     body:
       encoding: US-ASCII
       string: ''
@@ -124,7 +136,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Tue, 05 Apr 2016 23:39:39 GMT
+      - Tue, 05 Apr 2016 23:39:04 GMT
       Content-Length:
       - '148'
     body:
@@ -132,5 +144,5 @@ http_interactions:
       string: "<?xml version=\"1.0\"?>\r\n<ArrayOfPublicationItem xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" />"
     http_version: 
-  recorded_at: Tue, 05 Apr 2016 23:39:39 GMT
+  recorded_at: Tue, 05 Apr 2016 23:39:05 GMT
 recorded_with: VCR 3.0.1

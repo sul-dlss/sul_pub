@@ -18,7 +18,7 @@ http_interactions:
       Licenseid:
       - Settings.SCIENCEWIRE.LICENSE_ID
       Host:
-      - sciencewirerest.discoverylogic.com
+      - Settings.SCIENCEWIRE.HOST
       Connection:
       - Keep-Alive
   response:
@@ -39,7 +39,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Mon, 28 Mar 2016 21:56:06 GMT
+      - Tue, 05 Apr 2016 23:39:28 GMT
       Content-Length:
       - '6476'
     body:
@@ -125,7 +125,7 @@ http_interactions:
         \   <CopyrightPublisher>LIPPINCOTT WILLIAMS &amp; WILKINS</CopyrightPublisher>\r\n
         \   <CopyrightCity>PHILADELPHIA</CopyrightCity>\r\n  </PublicationItem>\r\n</ArrayOfPublicationItem>"
     http_version: 
-  recorded_at: Mon, 28 Mar 2016 21:56:06 GMT
+  recorded_at: Tue, 05 Apr 2016 23:39:28 GMT
 - request:
     method: post
     uri: http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml
@@ -145,7 +145,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 28 Mar 2016 21:56:06 GMT
+      - Tue, 05 Apr 2016 23:39:28 GMT
       Server:
       - Apache
       Access-Control-Allow-Origin:
@@ -153,12 +153,12 @@ http_interactions:
       Cache-Control:
       - private
       Ncbi-Sid:
-      - 73BF34FA6F9A8761_0799SID
+      - 9DFD645C7044CB01_0892SID
       Content-Type:
       - text/xml; charset=UTF-8
       Set-Cookie:
-      - ncbi_sid=73BF34FA6F9A8761_0799SID; domain=.nih.gov; path=/; expires=Tue, 28
-        Mar 2017 21:56:06 GMT
+      - ncbi_sid=9DFD645C7044CB01_0892SID; domain=.nih.gov; path=/; expires=Wed, 05
+        Apr 2017 23:39:28 GMT
       X-Ua-Compatible:
       - IE=Edge
       Transfer-Encoding:
@@ -455,7 +455,7 @@ http_interactions:
 
         </PubmedArticleSet>
     http_version: 
-  recorded_at: Mon, 28 Mar 2016 21:56:06 GMT
+  recorded_at: Tue, 05 Apr 2016 23:39:28 GMT
 - request:
     method: get
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationItems?format=xml&publicationItemIDs=
@@ -474,7 +474,7 @@ http_interactions:
       Licenseid:
       - Settings.SCIENCEWIRE.LICENSE_ID
       Host:
-      - sciencewirerest.discoverylogic.com
+      - Settings.SCIENCEWIRE.HOST
       Connection:
       - Keep-Alive
   response:
@@ -495,7 +495,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Mon, 28 Mar 2016 21:56:09 GMT
+      - Tue, 05 Apr 2016 23:39:31 GMT
       Content-Length:
       - '1208'
     body:
@@ -514,7 +514,7 @@ http_interactions:
         \ <h3>There is a problem with the resource you are looking for, and it cannot
         be displayed.</h3>\r\n </fieldset></div>\r\n</div>\r\n</body>\r\n</html>\r\n"
     http_version: 
-  recorded_at: Mon, 28 Mar 2016 21:56:09 GMT
+  recorded_at: Tue, 05 Apr 2016 23:39:31 GMT
 - request:
     method: post
     uri: http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml
@@ -534,7 +534,7 @@ http_interactions:
       message: Bad Request
     headers:
       Date:
-      - Mon, 28 Mar 2016 21:56:09 GMT
+      - Tue, 05 Apr 2016 23:39:32 GMT
       Server:
       - Apache
       Access-Control-Allow-Origin:
@@ -542,12 +542,12 @@ http_interactions:
       Cache-Control:
       - private
       Ncbi-Sid:
-      - 73BE324B6F9A8791_0187SID
+      - 9DFD4F3B7044CB41_0253SID
       Content-Type:
       - text/xml; charset=UTF-8
       Set-Cookie:
-      - ncbi_sid=73BE324B6F9A8791_0187SID; domain=.nih.gov; path=/; expires=Tue, 28
-        Mar 2017 21:56:09 GMT
+      - ncbi_sid=9DFD4F3B7044CB41_0253SID; domain=.nih.gov; path=/; expires=Wed, 05
+        Apr 2017 23:39:32 GMT
       X-Ua-Compatible:
       - IE=Edge
       Connection:
@@ -560,5 +560,5 @@ http_interactions:
         PUBLIC \"-//NLM//DTD efetch 20131226//EN\" \"http://eutils.ncbi.nlm.nih.gov/eutils/dtd/20131226/efetch.dtd\">\n<eFetchResult>\n\t<ERROR>WebEnv
         parameter is required</ERROR>\n</eFetchResult>\n"
     http_version: 
-  recorded_at: Mon, 28 Mar 2016 21:56:09 GMT
-recorded_with: VCR 2.9.3
+  recorded_at: Tue, 05 Apr 2016 23:39:32 GMT
+recorded_with: VCR 3.0.1
