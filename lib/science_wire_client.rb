@@ -5,6 +5,12 @@ class ScienceWireClient
     @reject_types = Settings.sw_doc_types_to_skip.join('|')
   end
 
+  # Fetch a single publication by DOI and convert to pub_hash
+  def self.working?
+    pub_hashes = new.get_pub_by_doi('10.1038/nature11397', 1)
+    pub_hashes.present? && pub_hashes.length == 1 && pub_hashes.first.is_a?(Hash)
+  end
+
   def get_sciencewire_id_suggestions(last_name, first_name, middle_name, email, seed_list)
     ids = []
     generate_suggestion_queries(last_name, first_name, middle_name, email, seed_list) do |bod|

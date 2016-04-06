@@ -1,4 +1,9 @@
 class PubmedClient
+  # Fetch a single publication and parse the response
+  def self.working?
+    Nokogiri::XML(new.fetch_records_for_pmid_list('22895186')).present?
+  end
+
   def fetch_records_for_pmid_list(pmids)
     pmid_list = Array(pmids)
     pmidValuesForPost = pmid_list.collect { |pmid| "&id=#{pmid}" }.join
