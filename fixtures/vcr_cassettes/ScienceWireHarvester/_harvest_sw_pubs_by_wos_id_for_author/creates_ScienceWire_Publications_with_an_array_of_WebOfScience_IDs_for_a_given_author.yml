@@ -43,7 +43,7 @@ http_interactions:
       Licenseid:
       - Settings.SCIENCEWIRE.LICENSE_ID
       Host:
-      - sciencewirerest.discoverylogic.com
+      - Settings.SCIENCEWIRE.HOST
       Connection:
       - Keep-Alive
       Expect:
@@ -68,7 +68,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Mon, 28 Mar 2016 21:56:03 GMT
+      - Tue, 05 Apr 2016 23:39:12 GMT
       Content-Length:
       - '277'
     body:
@@ -77,7 +77,7 @@ http_interactions:
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>81941</queryID>\r\n
         \ <queryResultRows>3</queryResultRows>\r\n  <totalRows>3</totalRows>\r\n</ScienceWireQueryIDResponse>"
     http_version: 
-  recorded_at: Mon, 28 Mar 2016 21:56:04 GMT
+  recorded_at: Tue, 05 Apr 2016 23:39:12 GMT
 - request:
     method: get
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/81941?format=xml&page=0&pageSize=2147483647&v=version/3
@@ -96,7 +96,7 @@ http_interactions:
       Licenseid:
       - Settings.SCIENCEWIRE.LICENSE_ID
       Host:
-      - sciencewirerest.discoverylogic.com
+      - Settings.SCIENCEWIRE.HOST
       Connection:
       - Keep-Alive
   response:
@@ -117,7 +117,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Mon, 28 Mar 2016 21:56:04 GMT
+      - Tue, 05 Apr 2016 23:39:12 GMT
       Content-Length:
       - '9645'
     body:
@@ -180,7 +180,7 @@ http_interactions:
         \   <AuthorCount>3</AuthorCount>\r\n    <KeywordList>TRAJECTORIES|TRANSITION|KINETICS</KeywordList>\r\n
         \   <DocumentTypeList>Article</DocumentTypeList>\r\n    <DocumentCategory>Journal
         Document</DocumentCategory>\r\n    <NumberOfReferences>20</NumberOfReferences>\r\n
-        \   <TimesCited>17</TimesCited>\r\n    <TimesNotSelfCited>10</TimesNotSelfCited>\r\n
+        \   <TimesCited>18</TimesCited>\r\n    <TimesNotSelfCited>11</TimesNotSelfCited>\r\n
         \   <PMID>23540906</PMID>\r\n    <WoSItemID>000317872800004</WoSItemID>\r\n
         \   <PublicationSourceTitle>JOURNAL OF THE AMERICAN CHEMICAL SOCIETY</PublicationSourceTitle>\r\n
         \   <Volume>135</Volume>\r\n    <Issue>15</Issue>\r\n    <Pagination>5501-5504</Pagination>\r\n
@@ -195,7 +195,7 @@ http_interactions:
         \   <PublicationImpactFactorList>11.444,2013,ExactPublicationYear|11.444,2013,MostRecentYear</PublicationImpactFactorList>\r\n
         \   <PublicationCategoryRankingList>10/148;CHEMISTRY, MULTIDISCIPLINARY;2013;SC;ExactPublicationYear|10/148;CHEMISTRY,
         MULTIDISCIPLINARY;2013;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
-        \   <AuthorCitationCountList>1,5,12|2,3,14|3,5,12</AuthorCitationCountList>\r\n
+        \   <AuthorCitationCountList>1,5,13|2,3,15|3,5,13</AuthorCitationCountList>\r\n
         \   <CopyrightStateProvince>DC</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
         STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
         \   <PublicationItemID>62922945</PublicationItemID>\r\n    <Title>Functional
@@ -235,7 +235,7 @@ http_interactions:
         \   <CopyrightStateProvince>NY</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
         STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n</ArrayOfPublicationItem>"
     http_version: 
-  recorded_at: Mon, 28 Mar 2016 21:56:04 GMT
+  recorded_at: Tue, 05 Apr 2016 23:39:12 GMT
 - request:
     method: post
     uri: http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml
@@ -255,7 +255,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 28 Mar 2016 21:56:05 GMT
+      - Tue, 05 Apr 2016 23:39:13 GMT
       Server:
       - Apache
       Access-Control-Allow-Origin:
@@ -263,12 +263,12 @@ http_interactions:
       Cache-Control:
       - private
       Ncbi-Sid:
-      - 73BE2C6A6F9A8751_0181SID
+      - 9DFD5E097044CA11_0889SID
       Content-Type:
       - text/xml; charset=UTF-8
       Set-Cookie:
-      - ncbi_sid=73BE2C6A6F9A8751_0181SID; domain=.nih.gov; path=/; expires=Tue, 28
-        Mar 2017 21:56:05 GMT
+      - ncbi_sid=9DFD5E097044CA11_0889SID; domain=.nih.gov; path=/; expires=Wed, 05
+        Apr 2017 23:39:13 GMT
       X-Ua-Compatible:
       - IE=Edge
       Transfer-Encoding:
@@ -962,5 +962,5 @@ http_interactions:
 
         </PubmedArticleSet>
     http_version: 
-  recorded_at: Mon, 28 Mar 2016 21:56:05 GMT
-recorded_with: VCR 2.9.3
+  recorded_at: Tue, 05 Apr 2016 23:39:13 GMT
+recorded_with: VCR 3.0.1

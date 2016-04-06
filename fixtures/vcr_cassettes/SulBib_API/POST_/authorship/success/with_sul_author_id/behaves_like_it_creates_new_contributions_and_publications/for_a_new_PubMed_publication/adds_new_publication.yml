@@ -64,7 +64,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Thu, 17 Mar 2016 22:07:39 GMT
+      - Tue, 05 Apr 2016 23:38:27 GMT
       Content-Length:
       - '277'
     body:
@@ -73,7 +73,7 @@ http_interactions:
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>41173</queryID>\r\n
         \ <queryResultRows>1</queryResultRows>\r\n  <totalRows>1</totalRows>\r\n</ScienceWireQueryIDResponse>"
     http_version: 
-  recorded_at: Thu, 17 Mar 2016 22:07:39 GMT
+  recorded_at: Tue, 05 Apr 2016 23:38:27 GMT
 - request:
     method: get
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/41173?format=xml&page=0&pageSize=2147483647&v=version/3
@@ -113,7 +113,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Thu, 17 Mar 2016 22:07:39 GMT
+      - Tue, 05 Apr 2016 23:38:28 GMT
       Content-Length:
       - '4955'
     body:
@@ -158,7 +158,7 @@ http_interactions:
         ATHEROMA|atrial fibrillation|ablation|outcomes|neurocognitive dysfunction</KeywordList>\r\n
         \   <DocumentTypeList>Article</DocumentTypeList>\r\n    <DocumentCategory>Journal
         Document</DocumentCategory>\r\n    <NumberOfReferences>34</NumberOfReferences>\r\n
-        \   <TimesCited>22</TimesCited>\r\n    <TimesNotSelfCited>20</TimesNotSelfCited>\r\n
+        \   <TimesCited>23</TimesCited>\r\n    <TimesNotSelfCited>20</TimesNotSelfCited>\r\n
         \   <PMID>23684686</PMID>\r\n    <WoSItemID>000322524300008</WoSItemID>\r\n
         \   <PublicationSourceTitle>JOURNAL OF THE AMERICAN COLLEGE OF CARDIOLOGY</PublicationSourceTitle>\r\n
         \   <Volume>62</Volume>\r\n    <Issue>6</Issue>\r\n    <Pagination>531-539</Pagination>\r\n
@@ -173,11 +173,11 @@ http_interactions:
         YORK</CopyrightCity>\r\n    <PublicationImpactFactorList>15.343,2013,ExactPublicationYear|15.343,2013,MostRecentYear</PublicationImpactFactorList>\r\n
         \   <PublicationCategoryRankingList>1/125;CARDIAC &amp; CARDIOVASCULAR SYSTEMS;2013;SC;ExactPublicationYear|1/125;CARDIAC
         &amp; CARDIOVASCULAR SYSTEMS;2013;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
-        \   <AuthorCitationCountList>1,1,21|2,2,20|3,2,20|4,1,21|5,1,21|6,1,21|7,1,21|8,1,21</AuthorCitationCountList>\r\n
+        \   <AuthorCitationCountList>1,1,22|2,2,21|3,2,21|4,1,22|5,1,22|6,1,22|7,2,21|8,2,21</AuthorCitationCountList>\r\n
         \   <CopyrightStateProvince>NY</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
         STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n</ArrayOfPublicationItem>"
     http_version: 
-  recorded_at: Thu, 17 Mar 2016 22:07:39 GMT
+  recorded_at: Tue, 05 Apr 2016 23:38:28 GMT
 - request:
     method: post
     uri: http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml
@@ -197,7 +197,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 17 Mar 2016 22:07:39 GMT
+      - Tue, 05 Apr 2016 23:38:28 GMT
       Server:
       - Apache
       Access-Control-Allow-Origin:
@@ -205,12 +205,12 @@ http_interactions:
       Cache-Control:
       - private
       Ncbi-Sid:
-      - 73BF49886EB2AAB1_0275SID
+      - 9DFC5E3F7044C741_0358SID
       Content-Type:
       - text/xml; charset=UTF-8
       Set-Cookie:
-      - ncbi_sid=73BF49886EB2AAB1_0275SID; domain=.nih.gov; path=/; expires=Fri, 17
-        Mar 2017 22:07:39 GMT
+      - ncbi_sid=9DFC5E3F7044C741_0358SID; domain=.nih.gov; path=/; expires=Wed, 05
+        Apr 2017 23:38:28 GMT
       X-Ua-Compatible:
       - IE=Edge
       Transfer-Encoding:
@@ -532,5 +532,5 @@ http_interactions:
         PC9BcnRpY2xlSWRMaXN0PgogICAgPC9QdWJtZWREYXRhPgo8L1B1Ym1lZEFy
         dGljbGU+Cgo8L1B1Ym1lZEFydGljbGVTZXQ+Cg==
     http_version: 
-  recorded_at: Thu, 17 Mar 2016 22:07:39 GMT
-recorded_with: VCR 2.9.3
+  recorded_at: Tue, 05 Apr 2016 23:38:28 GMT
+recorded_with: VCR 3.0.1

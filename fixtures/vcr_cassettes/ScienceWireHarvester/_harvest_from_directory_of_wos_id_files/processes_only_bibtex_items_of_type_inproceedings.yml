@@ -41,7 +41,7 @@ http_interactions:
       Licenseid:
       - Settings.SCIENCEWIRE.LICENSE_ID
       Host:
-      - sciencewirerest.discoverylogic.com
+      - Settings.SCIENCEWIRE.HOST
       Connection:
       - Keep-Alive
       Expect:
@@ -66,7 +66,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Mon, 28 Mar 2016 21:55:59 GMT
+      - Tue, 05 Apr 2016 23:39:08 GMT
       Content-Length:
       - '278'
     body:
@@ -75,7 +75,7 @@ http_interactions:
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>136741</queryID>\r\n
         \ <queryResultRows>1</queryResultRows>\r\n  <totalRows>1</totalRows>\r\n</ScienceWireQueryIDResponse>"
     http_version: 
-  recorded_at: Mon, 28 Mar 2016 21:55:59 GMT
+  recorded_at: Tue, 05 Apr 2016 23:39:08 GMT
 - request:
     method: get
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/136741?format=xml&page=0&pageSize=2147483647&v=version/3
@@ -94,7 +94,7 @@ http_interactions:
       Licenseid:
       - Settings.SCIENCEWIRE.LICENSE_ID
       Host:
-      - sciencewirerest.discoverylogic.com
+      - Settings.SCIENCEWIRE.HOST
       Connection:
       - Keep-Alive
   response:
@@ -115,7 +115,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Mon, 28 Mar 2016 21:55:58 GMT
+      - Tue, 05 Apr 2016 23:39:08 GMT
       Content-Length:
       - '2964'
     body:
@@ -156,7 +156,7 @@ http_interactions:
         \   <CopyrightStateProvince>NY</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
         STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n</ArrayOfPublicationItem>"
     http_version: 
-  recorded_at: Mon, 28 Mar 2016 21:55:59 GMT
+  recorded_at: Tue, 05 Apr 2016 23:39:08 GMT
 - request:
     method: post
     uri: http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml
@@ -176,7 +176,7 @@ http_interactions:
       message: Bad Request
     headers:
       Date:
-      - Mon, 28 Mar 2016 21:56:00 GMT
+      - Tue, 05 Apr 2016 23:39:08 GMT
       Server:
       - Apache
       Access-Control-Allow-Origin:
@@ -184,12 +184,12 @@ http_interactions:
       Cache-Control:
       - private
       Ncbi-Sid:
-      - 73BE51B86F9A8701_0036SID
+      - 08DD14CA7044C9C1_0366SID
       Content-Type:
       - text/xml; charset=UTF-8
       Set-Cookie:
-      - ncbi_sid=73BE51B86F9A8701_0036SID; domain=.nih.gov; path=/; expires=Tue, 28
-        Mar 2017 21:56:00 GMT
+      - ncbi_sid=08DD14CA7044C9C1_0366SID; domain=.nih.gov; path=/; expires=Wed, 05
+        Apr 2017 23:39:08 GMT
       X-Ua-Compatible:
       - IE=Edge
       Connection:
@@ -202,5 +202,5 @@ http_interactions:
         PUBLIC \"-//NLM//DTD efetch 20131226//EN\" \"http://eutils.ncbi.nlm.nih.gov/eutils/dtd/20131226/efetch.dtd\">\n<eFetchResult>\n\t<ERROR>WebEnv
         parameter is required</ERROR>\n</eFetchResult>\n"
     http_version: 
-  recorded_at: Mon, 28 Mar 2016 21:56:00 GMT
-recorded_with: VCR 2.9.3
+  recorded_at: Tue, 05 Apr 2016 23:39:08 GMT
+recorded_with: VCR 3.0.1

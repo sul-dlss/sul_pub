@@ -21,7 +21,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 04 Apr 2016 23:50:26 GMT
+      - Tue, 05 Apr 2016 23:38:13 GMT
       Cache-Control:
       - no-store
       Pragma:
@@ -32,7 +32,7 @@ http_interactions:
       - chunked
     body:
       encoding: UTF-8
-      string: '{"access_token":"private_access_token","token_type":"bearer","expires_in":86399,"scope":"profiles.read_all","jti":"29046425-dcbf-48cc-a8f1-3570754c8120"}'
+      string: '{"access_token":"private_access_token","token_type":"bearer","expires_in":86399,"scope":"profiles.read_all","jti":"290b07ce-51c5-4c83-b654-aeca214c4266"}'
     http_version: 
-  recorded_at: Mon, 04 Apr 2016 23:50:26 GMT
+  recorded_at: Tue, 05 Apr 2016 23:38:13 GMT
 recorded_with: VCR 3.0.1

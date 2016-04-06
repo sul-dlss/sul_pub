@@ -18,7 +18,7 @@ http_interactions:
       Licenseid:
       - Settings.SCIENCEWIRE.LICENSE_ID
       Host:
-      - sciencewirerest.discoverylogic.com
+      - Settings.SCIENCEWIRE.HOST
       Connection:
       - Keep-Alive
   response:
@@ -39,7 +39,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Mon, 28 Mar 2016 21:56:21 GMT
+      - Tue, 05 Apr 2016 23:39:25 GMT
       Content-Length:
       - '1208'
     body:
@@ -58,7 +58,7 @@ http_interactions:
         \ <h3>There is a problem with the resource you are looking for, and it cannot
         be displayed.</h3>\r\n </fieldset></div>\r\n</div>\r\n</body>\r\n</html>\r\n"
     http_version: 
-  recorded_at: Mon, 28 Mar 2016 21:56:22 GMT
+  recorded_at: Tue, 05 Apr 2016 23:39:25 GMT
 - request:
     method: post
     uri: http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml
@@ -78,7 +78,7 @@ http_interactions:
       message: Bad Request
     headers:
       Date:
-      - Mon, 28 Mar 2016 21:56:22 GMT
+      - Tue, 05 Apr 2016 23:39:26 GMT
       Server:
       - Apache
       Access-Control-Allow-Origin:
@@ -86,12 +86,12 @@ http_interactions:
       Cache-Control:
       - private
       Ncbi-Sid:
-      - 73BE60076F9A8861_0940SID
+      - 08DE75217044CAE1_0986SID
       Content-Type:
       - text/xml; charset=UTF-8
       Set-Cookie:
-      - ncbi_sid=73BE60076F9A8861_0940SID; domain=.nih.gov; path=/; expires=Tue, 28
-        Mar 2017 21:56:22 GMT
+      - ncbi_sid=08DE75217044CAE1_0986SID; domain=.nih.gov; path=/; expires=Wed, 05
+        Apr 2017 23:39:26 GMT
       X-Ua-Compatible:
       - IE=Edge
       Connection:
@@ -104,7 +104,7 @@ http_interactions:
         PUBLIC \"-//NLM//DTD efetch 20131226//EN\" \"http://eutils.ncbi.nlm.nih.gov/eutils/dtd/20131226/efetch.dtd\">\n<eFetchResult>\n\t<ERROR>WebEnv
         parameter is required</ERROR>\n</eFetchResult>\n"
     http_version: 
-  recorded_at: Mon, 28 Mar 2016 21:56:22 GMT
+  recorded_at: Tue, 05 Apr 2016 23:39:26 GMT
 - request:
     method: get
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationItems?format=xml&publicationItemIDs=
@@ -123,7 +123,7 @@ http_interactions:
       Licenseid:
       - Settings.SCIENCEWIRE.LICENSE_ID
       Host:
-      - sciencewirerest.discoverylogic.com
+      - Settings.SCIENCEWIRE.HOST
       Connection:
       - Keep-Alive
   response:
@@ -144,7 +144,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Mon, 28 Mar 2016 21:56:22 GMT
+      - Tue, 05 Apr 2016 23:39:26 GMT
       Content-Length:
       - '1208'
     body:
@@ -163,7 +163,7 @@ http_interactions:
         \ <h3>There is a problem with the resource you are looking for, and it cannot
         be displayed.</h3>\r\n </fieldset></div>\r\n</div>\r\n</body>\r\n</html>\r\n"
     http_version: 
-  recorded_at: Mon, 28 Mar 2016 21:56:22 GMT
+  recorded_at: Tue, 05 Apr 2016 23:39:26 GMT
 - request:
     method: post
     uri: http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml
@@ -183,7 +183,7 @@ http_interactions:
       message: Bad Request
     headers:
       Date:
-      - Mon, 28 Mar 2016 21:56:22 GMT
+      - Tue, 05 Apr 2016 23:39:26 GMT
       Server:
       - Apache
       Access-Control-Allow-Origin:
@@ -191,12 +191,12 @@ http_interactions:
       Cache-Control:
       - private
       Ncbi-Sid:
-      - 73BE2CA86F9A8861_0199SID
+      - 08DE22247044CAE1_0926SID
       Content-Type:
       - text/xml; charset=UTF-8
       Set-Cookie:
-      - ncbi_sid=73BE2CA86F9A8861_0199SID; domain=.nih.gov; path=/; expires=Tue, 28
-        Mar 2017 21:56:22 GMT
+      - ncbi_sid=08DE22247044CAE1_0926SID; domain=.nih.gov; path=/; expires=Wed, 05
+        Apr 2017 23:39:26 GMT
       X-Ua-Compatible:
       - IE=Edge
       Connection:
@@ -209,5 +209,5 @@ http_interactions:
         PUBLIC \"-//NLM//DTD efetch 20131226//EN\" \"http://eutils.ncbi.nlm.nih.gov/eutils/dtd/20131226/efetch.dtd\">\n<eFetchResult>\n\t<ERROR>WebEnv
         parameter is required</ERROR>\n</eFetchResult>\n"
     http_version: 
-  recorded_at: Mon, 28 Mar 2016 21:56:22 GMT
-recorded_with: VCR 2.9.3
+  recorded_at: Tue, 05 Apr 2016 23:39:26 GMT
+recorded_with: VCR 3.0.1
