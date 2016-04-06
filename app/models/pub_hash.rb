@@ -5,14 +5,6 @@ class PubHash
     @hash = hash
   end
 
-  def citeproc_authors
-    @citeproc_authors ||= parse_authors[:authors]
-  end
-
-  def citeproc_editors
-    @citeproc_editors ||= parse_authors[:editors]
-  end
-
   def pub_hash
     @hash
   end
@@ -39,6 +31,21 @@ class PubHash
 
   def to_citation_data
     @citation_data ||= begin
+
+      if pub_hash[:provenance] =~ /cap/i
+        # This is a CAP manual submission
+        case pub_hash[:type]
+        when 'workingPaper', 'technicalReport'
+          # Map a CAP 'workingPaper' or 'technicalReport' to a CSL 'report'
+          return [create_csl_report]
+        end
+        ##
+        # Other doc-types include:
+        # - article
+        # - book
+        # - inbook
+        # - inproceedings
+      end
 
       cit_data_hash = {
         'id' => 'sulpub',
@@ -108,10 +115,6 @@ class PubHash
       end
 
       ##
-      # For a CAP type "technicalReport" just use a "report"
-      cit_data_hash['type'] = 'report' if pub_hash[:type] == 'technicalReport'
-
-      ##
       # For a CAP type "caseStudy" just use a "book"
       cit_data_hash['type'] = 'book' if pub_hash[:type] == 'caseStudy'
 
@@ -126,6 +129,64 @@ class PubHash
 end
 
 private
+
+  def citeproc_authors
+    @citeproc_authors ||= parse_authors[:authors]
+  end
+
+  def citeproc_editors
+    @citeproc_editors ||= parse_authors[:editors]
+  end
+
+  # @param [Array<Hash>] CAP authors array of hash data
+  # @return [Array<Hash>] CSL authors array of hash data
+  def cap_authors_to_csl(cap_authors, role = 'author')
+    cap_authors.map do |author|
+      author = author.symbolize_keys
+      next unless author[:role] == role
+      ln = author[:lastname].to_s.strip
+      fn = author[:firstname].to_s.strip
+      mn = author[:middlename].to_s.strip
+      given = "#{fn} #{mn}".strip
+      { 'family' => ln, 'given' => given }
+    end.compact
+  end
+
+  def create_csl_report
+    # Report – A document containing the findings of an individual or group.
+    # Can include a technical paper, publication, issue brief, or working paper.
+    #
+    # The Zotero and Mendeley mappings to a CSL report guided this implementation, see
+    # http://aurimasv.github.io/z2csl/typeMap.xml#map-report
+    # http://support.mendeley.com/customer/portal/articles/364144-csl-type-mapping
+    csl_report = {}
+    csl_report['id'] = 'sulpub'
+    csl_report['type'] = 'report'
+    authors = cap_authors_to_csl(pub_hash[:author])
+    csl_report['author'] = authors unless authors.empty?
+    editors = cap_authors_to_csl(pub_hash[:author], 'editor')
+    csl_report['editor'] = editors unless editors.empty?
+    csl_report['title'] = pub_hash[:title] if pub_hash[:title].present?
+    csl_report['abstract'] = pub_hash[:abstract] if pub_hash[:abstract].present?
+    csl_report['publisher'] = pub_hash[:publisher] if pub_hash[:publisher].present?
+    csl_report['publisher-place'] = pub_hash[:publicationSource] if pub_hash[:publicationSource].present?
+    # Date Accessed -> accessed
+    if pub_hash[:year].present?
+      csl_report['issued'] = {
+        'date-parts' => [[ pub_hash[:year] ]]
+      }
+    end
+    url = pub_hash[:publicationUrl]
+    csl_report['URL'] = url if url.present?
+    series = pub_hash[:series]
+    if series.present?
+      csl_report['collection-title'] = series[:title] if series[:title].present?
+      csl_report['volume'] = series[:volume] if series[:volume].present?
+      csl_report['number'] = series[:number] if series[:number].present?
+    end
+    csl_report['page'] = pub_hash[:pages] if pub_hash[:pages].present?
+    csl_report
+  end
 
   def parse_authors
     authors_for_citeproc = []

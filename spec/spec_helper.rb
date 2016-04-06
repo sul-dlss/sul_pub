@@ -3,6 +3,7 @@ ENV['RAILS_ENV'] ||= 'test'
 
 require 'pry'  # for debugging specs
 
+require 'fixtures/doc_types/working_paper'
 require 'fixtures/queries/suggestion_queries'
 require 'fixtures/queries/suggestion_query_xsd'
 require 'fixtures/responses/item_responses'
