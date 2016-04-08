@@ -1,0 +1,156 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://Settings.CAP.TOKEN_USER:Settings.CAP.TOKEN_PASS@Settings.CAP.TOKEN_URI/oauth/token
+    body:
+      encoding: US-ASCII
+      string: grant_type=client_credentials
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 07 Apr 2016 23:54:34 GMT
+      Cache-Control:
+      - no-store
+      Pragma:
+      - no-cache
+      Content-Type:
+      - application/json;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '{"access_token":"private_access_token","token_type":"bearer","expires_in":86399,"scope":"profiles.read_all","jti":"614daa94-5837-47cb-861e-9f463c89ba3e"}'
+    http_version: 
+  recorded_at: Thu, 07 Apr 2016 23:54:34 GMT
+- request:
+    method: get
+    uri: https://cap-dev.stanford.edu/cap-api/api/cap/v1/authors/999999
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Authorization:
+      - bearer private_bearer_token
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Date:
+      - Thu, 07 Apr 2016 23:54:34 GMT
+      Server:
+      - Apache/2.2.15 (Oracle)
+      Vary:
+      - Accept-Encoding
+      Connection:
+      - close
+      Transfer-Encoding:
+      - chunked
+      Content-Type:
+      - application/json
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        { "meta": {  "status": 404, "message":"Object of class [edu.stanford.irt.cap.api.domain.AuthorEntity] with identifier [999999]: not found" } }
+    http_version: 
+  recorded_at: Thu, 07 Apr 2016 23:54:34 GMT
+- request:
+    method: get
+    uri: https://cap-dev.stanford.edu/cap-api/api/cap/v1/authors/999999
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Authorization:
+      - bearer private_bearer_token
+      Host:
+      - cap-dev.stanford.edu
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Date:
+      - Thu, 07 Apr 2016 23:54:34 GMT
+      Server:
+      - Apache/2.2.15 (Oracle)
+      Vary:
+      - Accept-Encoding
+      Connection:
+      - close
+      Transfer-Encoding:
+      - chunked
+      Content-Type:
+      - application/json
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        { "meta": {  "status": 404, "message":"Object of class [edu.stanford.irt.cap.api.domain.AuthorEntity] with identifier [999999]: not found" } }
+    http_version: 
+  recorded_at: Thu, 07 Apr 2016 23:54:34 GMT
+- request:
+    method: get
+    uri: https://cap-dev.stanford.edu/cap-api/api/cap/v1/authors/999999
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Authorization:
+      - bearer private_bearer_token
+      Host:
+      - cap-dev.stanford.edu
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Date:
+      - Thu, 07 Apr 2016 23:54:34 GMT
+      Server:
+      - Apache/2.2.15 (Oracle)
+      Vary:
+      - Accept-Encoding
+      Connection:
+      - close
+      Transfer-Encoding:
+      - chunked
+      Content-Type:
+      - application/json
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        { "meta": {  "status": 404, "message":"Object of class [edu.stanford.irt.cap.api.domain.AuthorEntity] with identifier [999999]: not found" } }
+    http_version: 
+  recorded_at: Thu, 07 Apr 2016 23:54:34 GMT
+recorded_with: VCR 3.0.1
