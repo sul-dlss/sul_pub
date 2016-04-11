@@ -79,39 +79,29 @@ describe SulBib::API, :vcr do
       sul_pub_id: existing_contrib.publication.id
     }
   end
+  # The contribution is defined in /spec/factories/contribution.rb
+  # status 'approved', visibility 'public', featured true
+  # In the submissions below, use different values.
   let(:update_authorship_for_pub_with_contributions) do
-    # The contribution is defined in /spec/factories/contribution.rb
-    # status 'approved', visibility 'public', featured true
-    # In this submission, use different values.
     existing_contrib_ids.merge({
       featured: false,
       status: 'denied',
       visibility: 'private'
     })
   end
+  # For PATCH, the attribute params are optional, so only
+  # include those to be updated.
   let(:patch_featured_for_pub_with_contributions) do
-    # The contribution is defined in /spec/factories/contribution.rb
-    # status 'approved', visibility 'public', featured true
-    # In this submission, use different values.
-    # For PATCH, the other attributes are optional.
     existing_contrib_ids.merge({
       featured: false,
     })
   end
   let(:patch_status_for_pub_with_contributions) do
-    # The contribution is defined in /spec/factories/contribution.rb
-    # status 'approved', visibility 'public', featured true
-    # In this submission, use different values.
-    # For PATCH, the other attributes are optional.
     existing_contrib_ids.merge({
       status: 'denied',
     })
   end
   let(:patch_visibility_for_pub_with_contributions) do
-    # The contribution is defined in /spec/factories/contribution.rb
-    # status 'approved', visibility 'public', featured true
-    # In this submission, use different values.
-    # For PATCH, the other attributes are optional.
     existing_contrib_ids.merge({
       visibility: 'private'
     })
@@ -374,6 +364,141 @@ describe SulBib::API, :vcr do
 
 
   # ---
+  # shared examples for failures
+
+  shared_examples 'it issues errors without author params' do
+    let(:request_data) { valid_data_for_post }
+    it 'returns 400 with an error message' do
+      http_request
+      expect(response.status).to eq 400
+      # Check error message for some details
+      result = JSON.parse(response.body)
+      expect(result['error']).not_to be_nil
+      expect(result['error']).to include('sul_author_id')
+      expect(result['error']).to include('cap_profile_id')
+    end
+  end # shared_examples 'it issues errors without author params'
+
+  shared_examples 'it issues errors when sul_author_id does not exist' do
+    let(:sul_author_id) { '999999' }
+    let(:request_data) do
+      valid_data_for_post.merge(
+        {
+          sul_author_id: sul_author_id,
+        }
+      )
+    end
+    it 'returns 404 when it fails to find a sul_author_id' do
+      http_request
+      expect(response.status).to eq 404
+      # Check error message for some details
+      result = JSON.parse(response.body)
+      expect(result['error']).not_to be_nil
+      expect(result['error']).to include('sul_author_id')
+      expect(result['error']).to include(sul_author_id)
+    end
+  end
+
+  shared_examples 'it issues errors for cap_profile_id' do
+    let(:cap_profile_id) { '999999' }
+    let(:request_data) do
+      valid_data_for_post.merge(
+        {
+          cap_profile_id: cap_profile_id,
+        }
+      )
+    end
+    def check_response_error(code)
+      expect(response.status).to eq code
+      # Check error message for some details
+      result = JSON.parse(response.body)
+      expect(result['error']).not_to be_nil
+      expect(result['error']).to include('cap_profile_id')
+      expect(result['error']).to include(cap_profile_id)
+    end
+    it 'returns 404 when it fails to find a cap_profile_id' do
+      http_request
+      check_response_error 404
+    end
+    it 'returns 404 when it cannot retrieve a cap_profile_id' do
+      http_request
+      check_response_error 404
+    end
+    it 'returns 500 when it finds duplicate authors for a cap_profile_id' do
+      expect(Author).to receive(:where)
+        .with({ cap_profile_id: cap_profile_id })
+        .and_return([author, author])
+      http_request
+      check_response_error 500
+      result = JSON.parse(response.body)
+      expect(result['error']).to include('multiple records')
+    end
+  end # shared_examples 'it issues errors for cap_profile_id'
+
+  # When the database constraints for cap_profile_id are setup
+  # correctly and the AuthorshipAPI uses cap_profile_id before sul_author_id
+  # to find an author, it's virtually impossible to hit the errors tested
+  # by these specs.  However, the database constraints do not, yet,
+  # enforce NOT NULL and UNIQUE on the cap_profile_id.
+  shared_examples 'it checks author for the correct cap_profile_id' do
+    let(:cap_profile_id) { '999999' }
+    let(:request_data) do
+      valid_data_for_post.merge(
+        {
+          cap_profile_id: cap_profile_id,
+          sul_author_id: author.id,
+        }
+      )
+    end
+    it 'updates author without a cap_profile_id' do
+      author.cap_profile_id = ''
+      expect(Author).to receive(:where)
+        .with({ cap_profile_id: cap_profile_id })
+        .and_return([author])
+      http_request
+      expect(author.cap_profile_id).to eq(cap_profile_id.to_i)
+      # check_response_error 404
+    end
+    it 'returns 500 when author has a different cap_profile_id' do
+      author.cap_profile_id = '666666'
+      expect(Author).to receive(:where)
+        .with({ cap_profile_id: cap_profile_id })
+        .and_return([author])
+      http_request
+      expect(response.status).to eq 500
+      # Check error message for some details
+      result = JSON.parse(response.body)
+      expect(result['error']).not_to be_nil
+      expect(result['error']).to include('different cap_profile_id')
+      expect(result['error']).to include(cap_profile_id)
+      expect(result['error']).to include(author.cap_profile_id.to_s)
+      expect(result['error']).to include(author.id.to_s)
+    end
+  end # shared_examples 'it issues errors for cap_profile_id'
+
+  # When the database constraints for cap_profile_id are setup
+  # correctly and the AuthorshipAPI uses cap_profile_id before sul_author_id
+  # to find an author, it's virtually impossible to hit the errors tested
+  # by these specs.  However, the database constraints do not, yet,
+  # enforce NOT NULL and UNIQUE on the cap_profile_id.
+  shared_examples 'it checks author for a cap_profile_id' do
+    let(:request_data) do
+      author.cap_profile_id = ''
+      author.save!
+      valid_data_for_post.merge(
+        {
+          sul_author_id: author.id,
+        }
+      )
+    end
+    it 'logs a warning for an author without a cap_profile_id' do
+      expect(Rails.logger).to receive(:warn).once
+      http_request
+      expect(author.cap_profile_id).to be_nil
+    end
+  end # shared_examples 'it issues errors for cap_profile_id'
+
+  # ---
   # POST
 
   context 'POST /authorship' do
@@ -402,9 +527,90 @@ describe SulBib::API, :vcr do
       end
     end # context 'success'
 
-    # TODO
     context 'failure' do
-    end
+      # This http_request cannot expect a successful response.
+      let(:http_request) do
+        post '/authorship', json_data, headers
+      end
+      let(:json_data) { request_data.to_json }
+
+      it_behaves_like 'it issues errors without author params'
+      it_behaves_like 'it issues errors when sul_author_id does not exist'
+      it_behaves_like 'it issues errors for cap_profile_id'
+      it_behaves_like 'it checks author for the correct cap_profile_id'
+      it_behaves_like 'it checks author for a cap_profile_id'
+
+      it 'returns 500 error when publication contribution fails to save' do
+        # Mock a publication in the valid request data so it fails to save.
+        request_data = valid_data_for_post.merge(sul_author_hash)
+        pub = Publication.find(request_data[:sul_pub_id])
+        invalid = ActiveRecord::RecordNotSaved.new(pub)
+        expect(pub).to receive(:save!).and_raise(invalid)
+        expect(Publication).to receive(:find).with(pub.id.to_s).and_return(pub)
+        post '/authorship', request_data.to_json, headers
+        expect(response.status).to eq 500
+      end
+
+      context 'if there are publication errors' do
+        let(:no_pub_params) do
+          sul_author_hash.merge(
+            {
+              featured: false,
+              status: 'denied',
+              visibility: 'private',
+            }
+          )
+        end
+        it 'returns 400 when publication parameters are missing' do
+          request_data = no_pub_params
+          post '/authorship', request_data.to_json, headers
+          expect(response.status).to eq 400
+          # Check error message for some details
+          result = JSON.parse(response.body)
+          expect(result['error']).not_to be_nil
+          expect(result['error']).to include('no valid publication identifier')
+          expect(result['error']).to include('sul_pub_id')
+          expect(result['error']).to include('pmid')
+          expect(result['error']).to include('sw_id')
+        end
+        it 'returns 404 with error message for invalid sul_pub_id' do
+          # expect(Publication).to receive(:find).and_raise(ActiveRecord::RecordNotFound)
+          sul_pub_id = '0'
+          request_data = no_pub_params.merge({ sul_pub_id: sul_pub_id })
+          post '/authorship', request_data.to_json, headers
+          expect(response.status).to eq 404
+          # Check error message for some details
+          result = JSON.parse(response.body)
+          expect(result['error']).not_to be_nil
+          expect(result['error']).to include(sul_pub_id)
+          expect(result['error']).to include('does not exist')
+        end
+        it 'returns 404 with error message for invalid pmid' do
+          expect(Publication).to receive(:find_or_create_by_pmid).and_return(nil)
+          pmid = '0'
+          request_data = no_pub_params.merge({ pmid: pmid })
+          post '/authorship', request_data.to_json, headers
+          expect(response.status).to eq 404
+          # Check error message for some details
+          result = JSON.parse(response.body)
+          expect(result['error']).not_to be_nil
+          expect(result['error']).to include(pmid)
+          expect(result['error']).to include('was not found')
+        end
+        it 'returns 404 with error message for invalid sw_id' do
+          expect(Publication).to receive(:find_or_create_by_sciencewire_id).and_return(nil)
+          sw_id = '0'
+          request_data = no_pub_params.merge({ sw_id: sw_id })
+          post '/authorship', request_data.to_json, headers
+          expect(response.status).to eq 404
+          # Check error message for some details
+          result = JSON.parse(response.body)
+          expect(result['error']).not_to be_nil
+          expect(result['error']).to include(sw_id)
+          expect(result['error']).to include('was not found')
+        end
+      end # context 'if there are publication errors'
+    end # context 'failure'
   end # context 'POST /authorship'
 
 
@@ -474,9 +680,55 @@ describe SulBib::API, :vcr do
       end
     end # context 'success'
 
-    # TODO
     context 'failure' do
-      # TODO: it cannot create new contributions
+      # This http_request cannot expect a successful response.
+      let(:http_request) do
+        patch '/authorship', json_data, headers
+      end
+      let(:json_data) { request_data.to_json }
+
+      it_behaves_like 'it issues errors without author params'
+      it_behaves_like 'it issues errors when sul_author_id does not exist'
+      it_behaves_like 'it issues errors for cap_profile_id'
+      it_behaves_like 'it checks author for the correct cap_profile_id'
+      it_behaves_like 'it checks author for a cap_profile_id'
+
+      context 'if there are contribution record errors' do
+        # Use an existing contribution data for the request, to ensure it
+        # gets past all the parameter checks, and mock the Contribution.where
+        # method to ensure it returns missing or invalid data.
+        let(:request_data) { update_authorship_for_pub_with_contributions }
+        def check_error_details(result)
+          expect(result['error']).to include(existing_contrib.author.id.to_s)
+          expect(result['error']).to include(existing_contrib.publication.id.to_s)
+        end
+        it 'returns 404 with error message for missing contributions' do
+          # Although the request is valid and should find an existing
+          # contribution, mock the response to ensure it's empty:
+          expect(Contribution).to receive(:where).and_return([])
+          http_request # defined in context, uses json_data
+          expect(response.status).to eq 404
+          # Check error message for some details
+          result = JSON.parse(response.body)
+          expect(result['error']).not_to be_nil
+          expect(result['error']).to include('no contributions')
+          check_error_details(result)
+        end
+        it 'returns 500 with error message for duplicate contributions' do
+          # Although the request is valid and should find an existing
+          # contribution, mock the response to ensure it has duplicates:
+          expect(Contribution).to receive(:where).and_return(
+            [existing_contrib, existing_contrib]
+          )
+          http_request # defined in context, uses json_data
+          expect(response.status).to eq 500
+          # Check error message for some details
+          result = JSON.parse(response.body)
+          expect(result['error']).not_to be_nil
+          expect(result['error']).to include('multiple contributions')
+          check_error_details(result)
+        end
+      end # context 'if there are contribution record errors'
     end # context 'failure'
   end # context 'PATCH /authorship'
 end  # end of the describe
