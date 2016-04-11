@@ -5,6 +5,8 @@ require 'pry'  # for debugging specs
 
 require 'simplecov'
 require 'coveralls'
+require 'webmock/rspec'
+
 SimpleCov.profiles.define 'sul-pub' do
   add_filter '.gems'
   add_filter '/config/environments/'
