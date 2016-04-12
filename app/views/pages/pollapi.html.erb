@@ -2,7 +2,12 @@
   <h2>Resource Description</h2>
 
 
-<b style="font-size:large"><%=Settings.SULPUB_ID.PUB_URI %>?population={popId}&changedSince={YYYY-MM-DDTHH:MM:SSZ}&capProfileId={capId}</b>
+<ul>
+  <li><b><%=Settings.SULPUB_ID.PUB_URI %>?changedSince={YYYY-MM-DDTHH:MM:SSZ}&page=1&per=1000&format=json</b></li>
+  <li><b><%=Settings.SULPUB_ID.PUB_URI %>?changedSince={YYYY-MM-DDTHH:MM:SSZ}&capActive=true&page=1&per=1000&format=json</b></li>
+  <li><b><%=Settings.SULPUB_ID.PUB_URI %>?capProfileId={id}&page=1&per=1000&format=json</b></li>
+  <li><b><%=Settings.SULPUB_ID.PUB_URI %>?capProfileId={id}&format=csv</b></li>
+</ul>
 
 <hr style="color:#000;background-color:#000;border-color:#000"/>
 
@@ -24,7 +29,7 @@
             <td>Predefined subset of authors from which to draw.</td>
             <td>CAP</td>
             <td>No</td>
-            <td>N/A</td>
+            <td>Not Implemented</td>
           </tr>
           <tr>
             <td>changedSince</td>
@@ -38,21 +43,28 @@
             <td>Pubs for the given profile Id</td>
             <td>Integer</td>
             <td>No</td>
-            <td>N/A</td>
+            <td>None</td>
           </tr>
           <tr>
             <td>page</td>
             <td>Result page to return.</td>
             <td>Integer</td>
             <td>No</td>
-            <td>N/A</td>
+            <td>1</td>
           </tr>
           <tr>
             <td>per</td>
             <td>Number of results per page</td>
             <td>Integer</td>
             <td>No</td>
-            <td>N/A</td>
+            <td>1000</td>
+          </tr>
+          <tr>
+            <td>capActive</td>
+            <td>Limit to only active authors, if capProfileId is not given.</td>
+            <td>Boolean</td>
+            <td>No</td>
+            <td>false</td>
           </tr>
           <tbody>
 </table>
