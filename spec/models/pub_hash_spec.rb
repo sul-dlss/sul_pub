@@ -3,9 +3,9 @@ require 'spec_helper'
 describe PubHash do
   let(:conference_pub_in_journal_hash) do
     { title: 'My test title',
-      type: 'article-journal',
+      type: 'paper-conference',
       articlenumber: 33,
-      pages: '3-6',
+      pages: '33-56',
       author: [{ name: 'Smith, Jack', role: 'editor' },
                { name: 'Sprat, Jill', role: 'editor' },
                { name: 'Jones, P. L.' },
