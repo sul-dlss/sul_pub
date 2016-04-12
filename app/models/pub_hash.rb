@@ -35,7 +35,6 @@ class PubHash
       editors_for_citeproc = []
 
       authors = pub_hash[:author] || []
-
       if authors.length > 5
         # we pass the first five  authorsand the very last author because some
         # formats add the very last name when using et-al. the CSL should drop the sixth name if unused.
@@ -97,22 +96,21 @@ class PubHash
         end
       end
 
-      cit_data_hash = { 'id' => 'sulpub',
-                        'type' => pub_hash[:type],
-                        'author' => authors_for_citeproc,
-                        'title' => pub_hash[:title]
+      cit_data_hash = {
+        'id' => 'sulpub',
+        'type' => pub_hash[:type],
+        'author' => authors_for_citeproc,
+        'title' => pub_hash[:title]
+      }
 
-                   }
-
+      # Access to abstracts may be restricted by license agreements with data providers.
       # cit_data_hash["abstract"] = pub_hash[:abstract] unless pub_hash[:abstract].blank?
-
-      cit_data_hash['author'] = authors_for_citeproc unless authors_for_citeproc.empty?
 
       cit_data_hash['chapter-number'] = pub_hash[:articlenumber] unless pub_hash[:articlenumber].blank?
       cit_data_hash['page'] = pub_hash[:pages] unless pub_hash[:pages].blank?
       cit_data_hash['publisher'] = pub_hash[:publisher] unless pub_hash[:publisher].blank?
 
-      # add series information if it exists
+      # Add series information if it exists.
       if pub_hash.key?(:series)
         unless pub_hash[:series][:title].blank?
           cit_data_hash['type'] = 'book'
@@ -121,9 +119,9 @@ class PubHash
         cit_data_hash['volume'] = pub_hash[:series][:volume] unless pub_hash[:series][:volume].blank?
         cit_data_hash['number'] = pub_hash[:series][:number] unless pub_hash[:series][:number].blank?
         cit_data_hash['issued'] = { 'date-parts' => [[pub_hash[:series][:year]]] } unless pub_hash[:series][:year].blank?
-
       end
-      # add journal information if it exists
+
+      # Add journal information if it exists.
       if pub_hash.key?(:journal)
         unless pub_hash[:journal][:name].blank?
           cit_data_hash['type'] = 'article-journal'
@@ -135,8 +133,8 @@ class PubHash
         cit_data_hash['number'] = pub_hash[:supplement] unless pub_hash[:supplement].blank?
       end
 
-      # add any conference information, if it exists in a conference object
-      # this overrides the sciencewire fields above if both exist, which they shouldn't
+      # Add any conference information, if it exists in a conference object;
+      # this overrides the sciencewire fields above if both exist, which they shouldn't.
       if pub_hash.key?(:conference)
         cit_data_hash['event'] = pub_hash[:conference][:name] unless pub_hash[:conference][:name].blank?
         cit_data_hash['event-date'] = pub_hash[:conference][:startdate] unless pub_hash[:conference][:startdate].blank?
@@ -153,9 +151,9 @@ class PubHash
         # cit_data_hash["DOI"] = pub_hash[:conference][:DOI] unless pub_hash[:conference][:DOI].blank?
       end
 
-      # use a year at the top level if it exists, i.e, override any year we'd gotten above from journal or series
+      # Use a year at the top level if it exists, i.e, override any year we'd gotten above from journal or series.
       cit_data_hash['issued']  = { 'date-parts' => [[pub_hash[:year]]] } unless pub_hash[:year].blank?
-      # add book title if it exists, which indicates this pub is a chapter in the book
+      # Add book title if it exists, which indicates this pub is a chapter in the book.
       unless pub_hash[:booktitle].blank?
         cit_data_hash['type'] = 'book'
         cit_data_hash['container-title'] = pub_hash[:booktitle]
@@ -166,7 +164,6 @@ class PubHash
       end
 
       [cit_data_hash]
-
     end
   end
 end

@@ -3,9 +3,9 @@ require 'spec_helper'
 describe PubHash do
   let(:conference_pub_in_journal_hash) do
     { title: 'My test title',
-      type: 'article-journal',
+      type: 'paper-conference',
       articlenumber: 33,
-      pages: '3-6',
+      pages: '33-56',
       author: [{ name: 'Smith, Jack', role: 'editor' },
                { name: 'Sprat, Jill', role: 'editor' },
                { name: 'Jones, P. L.' },
@@ -15,7 +15,7 @@ describe PubHash do
       publisher: 'Some Publisher',
       journal: { name: 'Some Journal Name', volume: 33, issue: 32, year: 1999 },
       conference: { name: 'The Big Conference', year: 2345, number: 33, location: 'Knoxville, TN', city: 'Knoxville', statecountry: 'TN' }
-              }
+    }
   end
 
   let(:conference_pub_in_book_hash) do
@@ -31,7 +31,7 @@ describe PubHash do
       publisher: 'Smith Books',
       booktitle: 'The Giant Book of Giant Ideas',
       conference: { name: 'The Big Conference', year: 2345, number: 33, location: 'Knoxville, TN', city: 'Knoxville', statecountry: 'TN' }
-                }
+    }
   end
 
   let(:conference_pub_in_series_hash) do
@@ -48,7 +48,7 @@ describe PubHash do
       booktitle: 'The Giant Book of Giant Ideas',
       conference: { name: 'The Big Conference', year: 2345, number: 33, location: 'Knoxville, TN', city: 'Knoxville', statecountry: 'TN' },
       series: { title: 'The book series for kings and queens', volume: 1, number: 4, year: 1933 }
-           }
+    }
   end
 
   let(:conference_pub_in_nothing_hash) do
@@ -70,7 +70,7 @@ describe PubHash do
       year: '1987',
       publisher: 'Smith Books',
       booktitle: 'The Giant Book of Giant Ideas'
-      }
+    }
   end
 
   let(:book_pub_with_editors_hash) do
@@ -83,7 +83,7 @@ describe PubHash do
       year: '1987',
       publisher: 'Smith Books',
       booktitle: 'The Giant Book of Giant Ideas'
-        }
+    }
   end
 
   let(:series_pub_hash) do
@@ -97,7 +97,7 @@ describe PubHash do
       publisher: 'Smith Books',
       booktitle: 'The Giant Book of Giant Ideas',
       series: { title: 'The book series for Big Ideas', volume: 1, number: 4, year: 1933 }
-             }
+    }
   end
 
   let(:article_pub_hash) do
@@ -111,7 +111,7 @@ describe PubHash do
       year: '1987',
       publisher: 'Some Publisher',
       journal: { name: 'Some Journal Name', volume: 33, issue: 32, year: 1999 }
-               }
+    }
   end
 
   let(:pub_hash) do
@@ -168,7 +168,7 @@ describe PubHash do
                            status: 'unknown',
                            visibility: 'private',
                            featured: false }]
-     }
+    }
   end
 
   # describe "#sync_publication_hash" do
