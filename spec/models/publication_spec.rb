@@ -89,6 +89,20 @@ describe Publication do
         expect(subject.pub_hash[:authorship]).to include(subject.contributions.first.to_pub_hash)
       end
     end
+
+    context 'author does not exist and cannot be retrieved from CAP API' do
+      let(:logfile) { Settings.CAP.CONTRIBUTIONS_LOG }
+      let(:logger) { Logger.new('/dev/null') }
+      it 'logs errors' do
+        expect(Author).to receive(:find_by_cap_profile_id).and_return(nil)
+        expect(Author).to receive(:fetch_from_cap_and_create).and_raise(NoMethodError)
+        expect(Rails.logger).to receive(:error).once
+        expect(Logger).to receive(:new).with(logfile).once.and_return(logger)
+        expect(logger).to receive(:error).exactly(3)
+        publication.pub_hash = pub_hash_cap_authorship.dup
+        publication.update_any_new_contribution_info_in_pub_hash_to_db
+      end
+    end
   end
 
   describe 'sync_identifiers_in_pub_hash_to_db' do

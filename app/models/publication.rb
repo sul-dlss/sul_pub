@@ -257,10 +257,10 @@ class Publication < ActiveRecord::Base
           msg = "error retrieving CAP profile #{cap_profile_id}"
           msg += " for contribution: #{contrib}"
           Rails.logger.error msg
-          pub_logger = Logger.new(Rails.root.join('log', 'contributions_publications_errors.log'))
+          pub_logger = Logger.new(Settings.CAP.CONTRIBUTIONS_LOG)
           pub_logger.error msg
           pub_logger.error e.message
-          pub_logger.error e.backtrace
+          pub_logger.error e.backtrace if e.backtrace
           nil
         end
       end

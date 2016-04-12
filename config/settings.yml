@@ -17,6 +17,7 @@ CAP:
   AUTHORS_POLL_LOG: log/cap_authors_poller.log
   AUTHORSHIP_API_LOG: log/cap_authorship_api.log
   AUTHORSHIP_LOG: log/cap_profile_id_rewrite.log
+  CONTRIBUTIONS_LOG: log/contributions.log
   PORT: 443
   TOKEN_PASS: something
   TOKEN_PATH: /oauth/token
