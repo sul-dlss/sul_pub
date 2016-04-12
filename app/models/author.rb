@@ -1,6 +1,21 @@
 class Author < ActiveRecord::Base
   has_paper_trail on: [:destroy]
 
+  has_many :author_identities, dependent: :destroy
+  #
+  # An Author may have zero or more author identities and this method fetches
+  # any matching AuthorIdentity objects tagged as an "alternate"
+  #
+  # @example
+  #   `Author.find_by(1234).alternative_identities.present?`
+  #   `Author.find_by(1234).alternative_identities => [AuthorIdentity1, ...]`
+  #
+  # @return [Array<AuthorIdentity>]
+  #
+  def alternative_identities
+    author_identities.where('identity_type = ?', AuthorIdentity.identity_types[:alternate])
+  end
+
   has_many :contributions, dependent: :destroy, after_add: :contributions_changed_callback, after_remove: :contributions_changed_callback do
     def build_or_update(publication, contribution_hash = {})
       c = where(publication_id: publication.id).first_or_initialize
