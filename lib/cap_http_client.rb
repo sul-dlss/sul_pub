@@ -1,5 +1,10 @@
 require 'socket'
 class CapHttpClient
+  # Fetch a single object from CAP server and test its response
+  def self.working?
+    response = new.get_batch_from_cap_api(1, 1)
+    response['count'] == 1 && response['totalCount'] > 0 && response['values'].present?
+  end
 
   attr_reader :auth
 
