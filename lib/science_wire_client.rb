@@ -1,8 +1,6 @@
 class ScienceWireClient
   attr_reader :client
   def initialize
-    @base_timeout_retries = 3
-    @base_timeout_period = 100
     @reject_types = Settings.sw_doc_types_to_skip.join('|')
     @client = ScienceWire::Client.new(
       licence_id: Settings.SCIENCEWIRE.LICENSE_ID,
@@ -168,7 +166,7 @@ class ScienceWireClient
                       &lt;MaximumRows&gt;1000&lt;/MaximumRows&gt;
                     &lt;/query&gt;'
 
-    query_sciencewire(xml_query, 3, 100)
+    query_sciencewire(xml_query)
   end
 
   def query_sciencewire_for_publication(first_name, last_name, _middle_name, title, year, max_rows)
@@ -284,12 +282,10 @@ class ScienceWireClient
         </query>
     ]]>"
 
-    query_sciencewire(xml_query, 0, 60)
+    query_sciencewire(xml_query)
   end
 
-  def query_sciencewire(xml_query, timeout_retries = 3, timeout_period = 100)
-    @base_timeout_retries = timeout_retries
-    @base_timeout_period = timeout_period
+  def query_sciencewire(xml_query)
     queryId = send_sciencewire_publication_request(xml_query)
     get_sciencewire_publication_response(queryId)
   end
@@ -355,7 +351,7 @@ class ScienceWireClient
   private
 
   def send_query_and_return_pub_hashes(xml_query)
-    xml_results = query_sciencewire(xml_query, 3, 100)
+    xml_results = query_sciencewire(xml_query)
 
     xml_results.xpath('//PublicationItem').map do |sw_xml_doc|
       pub_hash = SciencewireSourceRecord.convert_sw_publication_doc_to_hash(sw_xml_doc)
@@ -369,24 +365,12 @@ class ScienceWireClient
   end
 
   def with_timeout_handling
-    timeout_retries = @base_timeout_retries
-    timeout_period = @base_timeout_period
-
-    begin
-      yield
-    rescue Timeout::Error => te
-      timeout_retries -= 1
-      if timeout_retries > 0
-        # increase timeout
-        timeout_period += 100
-        retry
-      else
-        NotificationManager.handle_harvest_problem(te, "Timeout error on call to sciencewire api - #{Time.zone.now}")
-        raise
-      end
-    rescue => e
-      NotificationManager.handle_harvest_problem(e, 'Problem with http call to sciencewire api')
-      raise
-    end
+  yield
+  rescue Faraday::TimeoutError => te
+    NotificationManager.handle_harvest_problem(te, "Timeout error on call to sciencewire api - #{Time.zone.now}")
+    raise
+  rescue => e
+    NotificationManager.handle_harvest_problem(e, 'Problem with http call to sciencewire api')
+    raise
   end
 end
