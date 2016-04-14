@@ -6,6 +6,7 @@ require 'pry'  # for debugging specs
 require 'simplecov'
 require 'coveralls'
 require 'webmock/rspec'
+WebMock.enable!
 
 SimpleCov.profiles.define 'sul-pub' do
   add_filter '.gems'
@@ -80,6 +81,7 @@ end
 require 'vcr'
 VCR.configure do |c|
   c.cassette_library_dir = 'fixtures/vcr_cassettes'
+  c.allow_http_connections_when_no_cassette = true
   c.hook_into :webmock
   c.default_cassette_options = {
     :record => :new_episodes,  # :once is default
