@@ -301,19 +301,7 @@ class ScienceWireClient
       <ScienceWireQueryXMLParameter xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
       <xmlQuery>' + xml_query + '</xmlQuery>
       </ScienceWireQueryXMLParameter>'
-      http = setup_http
-      request = Net::HTTP::Post.new(Settings.SCIENCEWIRE.PUBLICATION_QUERY_PATH)
-      request['LicenseID'] = Settings.SCIENCEWIRE.LICENSE_ID
-      request['Host'] = Settings.SCIENCEWIRE.HOST
-      request['Connection'] = 'Keep-Alive'
-      request['Expect'] = '100-continue'
-      request['Content-Type'] = 'text/xml'
-
-      request.body = wrapped_xml_query
-
-      response = http.request(request)
-      response_body = response.body
-      xml_doc = Nokogiri::XML(response_body)
+      xml_doc = Nokogiri::XML(client.publication_query(wrapped_xml_query))
       xml_doc.xpath('//queryID').text
     end
   end
