@@ -104,3 +104,11 @@ VCR.configure do |c|
   c.filter_sensitive_data('Settings.SCIENCEWIRE.HOST') { Settings.SCIENCEWIRE.HOST }
   c.filter_sensitive_data('Settings.SCIENCEWIRE.LICENSE_ID') { Settings.SCIENCEWIRE.LICENSE_ID }
 end
+
+def stub_post(path)
+  stub_request(:post, 'https://' + Settings.SCIENCEWIRE.BASE_URI + path)
+end
+
+def a_post(path)
+  a_request(:post, 'https://' + Settings.SCIENCEWIRE.BASE_URI + path)
+end

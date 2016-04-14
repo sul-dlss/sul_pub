@@ -1,8 +1,13 @@
 class ScienceWireClient
+  attr_reader :client
   def initialize
     @base_timeout_retries = 3
     @base_timeout_period = 100
     @reject_types = Settings.sw_doc_types_to_skip.join('|')
+    @client = ScienceWire::Client.new(
+      licence_id: Settings.SCIENCEWIRE.LICENSE_ID,
+      host: Settings.SCIENCEWIRE.HOST
+    )
   end
 
   # Fetch a single publication by DOI and convert to pub_hash
@@ -58,37 +63,12 @@ class ScienceWireClient
   end
 
   def make_sciencewire_suggestion_call(body)
-    http = Net::HTTP.new(Settings.SCIENCEWIRE.BASE_URI, Settings.SCIENCEWIRE.PORT)
-
-    http.use_ssl = true
-    http.verify_mode = OpenSSL::SSL::VERIFY_PEER
-    timeout_retries ||= 3
-    timeout_period ||= 500
-    http.read_timeout = timeout_period
-    request = Net::HTTP::Post.new(Settings.SCIENCEWIRE.RECOMMENDATION_PATH)
-    request['LicenseID'] = Settings.SCIENCEWIRE.LICENSE_ID
-    request['Host'] = Settings.SCIENCEWIRE.HOST
-    request['Connection'] = 'Keep-Alive'
-    request['Expect'] = '100-continue'
-    request['Content-Type'] = 'text/xml'
-
-    request.body = body
-    response = http.request(request)
-    response_body = response.body
-    xml_doc = Nokogiri::XML(response_body)
-
+    xml_doc = Nokogiri::XML(client.recommendation(body))
     xml_doc.xpath('/ArrayOfItemMatchResult/ItemMatchResult/PublicationItemID').collect(&:text)
 
-  rescue Timeout::Error => te
-    timeout_retries -= 1
-    if timeout_retries > 0
-      # increase timeout
-      timeout_period = + 100
-      retry
-    else
-      NotificationManager.handle_harvest_problem(te, "Timeout error on call to sciencewire api - #{Time.zone.now}")
-      raise
-    end
+  rescue Faraday::TimeoutError => te
+    NotificationManager.handle_harvest_problem(te, "Timeout error on call to sciencewire api - #{Time.zone.now}")
+    raise
   rescue => e
     NotificationManager.handle_harvest_problem(e, 'Problem with http call to sciencewire api')
     raise
