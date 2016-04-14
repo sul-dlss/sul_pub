@@ -33,6 +33,18 @@ namespace :sw do
     harvester.harvest_pubs_for_author_ids ids
   end
 
+  desc 'Harvest for a cap_profile_id using the name-only query'
+  task :cap_profile_harvest, [:cap_profile_id] => :environment do |_t, args|
+    harvester.use_middle_name = false
+    cap_profile_id = (args[:cap_profile_id]).to_i
+    author = Author.where(cap_profile_id: cap_profile_id).first
+    author ||= Author.fetch_from_cap_and_create(cap_profile_id)
+    harvester.harvest_pubs_for_author_ids author.id
+    # Summarize the publications harvested
+    pubs = Contribution.where(author_id: author.id).map {|c| c.publication }
+    pubs.each {|p| puts "publication #{p.id}: #{p.pub_hash[:apa_citation]}"}
+  end
+
   desc 'Harvest using a directory full of Web Of Science bibtex query results'
   task :wos_harvest, [:path_to_bibtex] => :environment do |_t, args|
     harvester.harvest_from_directory_of_wos_id_files args[:path_to_bibtex]
