@@ -4,14 +4,16 @@ module ScienceWire
   # response
   class Request
     attr_accessor :client
-    attr_reader :timeout_period, :body, :path, :response
+    attr_reader :timeout_period, :body, :path, :response, :request_method
     ##
     # @param [ScienceWire::Client] client
+    # @param [Symbol] request_method
     # @param [String] body
     # @param [String] path
     # @param [Integer] timeout_period
-    def initialize(client:, body: '', path: '', timeout_period: 100)
+    def initialize(client:, request_method:, body: '', path: '', timeout_period: 100)
       @client = client
+      @request_method = request_method
       @body = body
       @path = path
       @timeout_period = timeout_period
@@ -41,7 +43,7 @@ module ScienceWire
       # Sets additional request parameters
       # @return [Faraday::Response]
       def response
-        @response ||= connection.post do |req|
+        connection.send(request_method) do |req|
           req.url path
           req.headers['LicenseID'] = client.licence_id
           req.headers['Host'] = client.host

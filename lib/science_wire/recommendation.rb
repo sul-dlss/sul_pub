@@ -6,7 +6,10 @@ module ScienceWire
     # @param [String] body
     def recommendation(body)
       ScienceWire::Request.new(
-        client: self, body: body, path: Settings.SCIENCEWIRE.RECOMMENDATION_PATH
+        client: self,
+        request_method: :post,
+        body: body,
+        path: Settings.SCIENCEWIRE.RECOMMENDATION_PATH
       ).perform
     end
   end

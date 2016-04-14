@@ -6,7 +6,10 @@ module ScienceWire
     # @param [String] body
     def publication_query(body)
       ScienceWire::Request.new(
-        client: self, body: body, path: Settings.SCIENCEWIRE.PUBLICATION_QUERY_PATH
+        client: self,
+        request_method: :post,
+        body: body,
+        path: Settings.SCIENCEWIRE.PUBLICATION_QUERY_PATH
       ).perform
     end
   end
