@@ -9,7 +9,8 @@ module ScienceWire
         client: self,
         request_method: :post,
         body: body,
-        path: Settings.SCIENCEWIRE.RECOMMENDATION_PATH
+        path: Settings.SCIENCEWIRE.RECOMMENDATION_PATH,
+        timeout_period: 500
       ).perform
     end
   end
