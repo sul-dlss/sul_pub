@@ -23,6 +23,7 @@ gem 'bio'
 gem 'citeproc-ruby', '0.0.6'
 gem 'config'
 gem 'dotiw'
+gem 'faraday'
 gem 'high_voltage'
 gem 'is_it_working-cbeer', require: 'is_it_working'
 # To use Jbuilder templates for JSON
