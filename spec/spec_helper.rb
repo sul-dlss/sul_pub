@@ -114,3 +114,7 @@ end
 def a_post(path)
   a_request(:post, 'https://' + Settings.SCIENCEWIRE.BASE_URI + path)
 end
+
+def a_get(path)
+  a_request(:get, 'https://' + Settings.SCIENCEWIRE.BASE_URI + path)
+end

@@ -301,7 +301,7 @@ class ScienceWireClient
       <ScienceWireQueryXMLParameter xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
       <xmlQuery>' + xml_query + '</xmlQuery>
       </ScienceWireQueryXMLParameter>'
-      xml_doc = Nokogiri::XML(client.publication_query(wrapped_xml_query))
+      xml_doc = Nokogiri::XML(client.send_publication_query(wrapped_xml_query))
       xml_doc.xpath('//queryID').text
     end
   end
@@ -310,16 +310,7 @@ class ScienceWireClient
   # @returns [Nokogiri::XML::Document] the response to the specific query
   def get_sciencewire_publication_response(queryId)
     with_timeout_handling do
-      http = setup_http
-      fullPubsRequest = Net::HTTP::Get.new("#{Settings.SCIENCEWIRE.PUBLICATION_QUERY_PATH.split(/\?/).first}/#{queryId}?format=xml&v=version/3&page=0&pageSize=2147483647")
-      fullPubsRequest['Content_Type'] = 'text/xml'
-      fullPubsRequest['LicenseID'] = Settings.SCIENCEWIRE.LICENSE_ID
-      fullPubsRequest['Host'] = Settings.SCIENCEWIRE.HOST
-      fullPubsRequest['Connection'] = 'Keep-Alive'
-
-      fullPubResponse = http.request(fullPubsRequest)
-      xml_doc = Nokogiri::XML(fullPubResponse.body)
-      #   http.finish
+      xml_doc = Nokogiri::XML(client.retrieve_publication_query(queryId))
       xml_doc
     end
   end
@@ -397,13 +388,5 @@ class ScienceWireClient
       NotificationManager.handle_harvest_problem(e, 'Problem with http call to sciencewire api')
       raise
     end
-  end
-
-  def setup_http
-    http = Net::HTTP.new(Settings.SCIENCEWIRE.BASE_URI, Settings.SCIENCEWIRE.PORT)
-    http.read_timeout = @base_timeout_period
-    http.use_ssl = true
-    http.verify_mode = OpenSSL::SSL::VERIFY_PEER
-    http
   end
 end
