@@ -1,5 +1,5 @@
 
-[![Build Status](https://travis-ci.com/sul-dlss/sul-pub.svg?token=3yDDLeXpkveNfSKW8sHq&branch=master)](https://travis-ci.com/sul-dlss/sul-pub)
+[![Build Status](https://travis-ci.com/sul-dlss/sul-pub.svg?token=3yDDLeXpkveNfSKW8sHq&branch=master)](https://travis-ci.com/sul-dlss/sul-pub) | [![Dependency Status](https://gemnasium.com/badges/e7990e3b975aad55829f0dbf913695d0.svg)](https://gemnasium.com/github.com/sul-dlss/sul-pub)
 
 # SUL Bibliographic Management System
 
