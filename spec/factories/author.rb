@@ -13,6 +13,9 @@ FactoryGirl.define do
     official_first_name 'Alice'
     official_last_name 'Edler'
     official_middle_name 'Jim'
+    preferred_first_name 'Alice'
+    preferred_last_name 'Edler'
+    preferred_middle_name 'Jim'
     emails_for_harvest 'alice.edler@stanford.edu'
   end
 

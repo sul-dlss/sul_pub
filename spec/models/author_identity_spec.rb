@@ -72,4 +72,56 @@ RSpec.describe AuthorIdentity, type: :model do
       expect { subject.save! }.not_to raise_error
     end
   end
+
+  context 'relations' do
+    it 'will mirror identities in importSettings' do
+      subject.author.mirror_author_identities([{ 'firstName' => subject.author.preferred_first_name, 'lastName' => subject.author.preferred_last_name }])
+      expect(subject.author.alternative_identities.length).to be == 1
+    end
+
+    it 'will not mirror identical identities in importSettings' do
+      subject.author.mirror_author_identities([{
+        'firstName' => subject.author.preferred_first_name,
+        'middleName' => subject.author.preferred_middle_name,
+        'lastName' => subject.author.preferred_last_name,
+        'email' => subject.author.email,
+        'institution' => 'Stanford University'
+      }]) # must pass in only a single alternate identity for .length == 0
+      expect(subject.author.alternative_identities.length).to be == 0
+    end
+
+    it 'will not mirror identical identities in importSettings, *even if* dates are present' do
+      subject.author.mirror_author_identities([{
+        'firstName' => subject.author.preferred_first_name,
+        'middleName' => subject.author.preferred_middle_name,
+        'lastName' => subject.author.preferred_last_name,
+        'email' => subject.author.email,
+        'institution' => 'Stanford University',
+        'startDate' => { 'value' => '2000-01-01' },
+        'endDate' => { 'value' => '2010-12-31' }
+      }]) # must pass in only a single alternate identity for .length == 0
+      expect(subject.author.alternative_identities.length).to be == 0
+    end
+
+    it 'will handle blanks in required fields in importSettings' do
+      expect { subject.author.mirror_author_identities([{ 'firstName' => '  ', 'lastName' => '  ' }]) }.to raise_error(ActiveRecord::RecordInvalid)
+    end
+
+    it 'will handle missing required fields (firstName and lastName) in importSettings' do
+      # FactoryGirl creates (at least) 1 Author Identity, so we check for transactionality
+      prev = subject.author.alternative_identities
+
+      expect { subject.author.mirror_author_identities([{ 'firstName' => subject.author.preferred_first_name }]) }.to raise_error(ActiveRecord::RecordInvalid)
+      expect(subject.author.alternative_identities).to eq prev
+
+      expect { subject.author.mirror_author_identities([{ 'lastName' => subject.author.preferred_last_name }]) }.to raise_error(ActiveRecord::RecordInvalid)
+      expect(subject.author.alternative_identities).to eq prev
+    end
+
+    it 'will not change alternative_identities if data are missing' do
+      subject.author.author_identities.clear # explicitly clear FactoryGirl addition(s)
+      expect { subject.author.mirror_author_identities([{ 'firstName' => subject.author.preferred_first_name }]) }.to raise_error(ActiveRecord::RecordInvalid)
+      expect(subject.author.alternative_identities.length).to be == 0
+    end
+  end
 end

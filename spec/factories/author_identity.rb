@@ -1,12 +1,13 @@
+# we use sequences so that we can get a variety of alternate identities
 FactoryGirl.define do
   factory :author_identity do
-    first_name       'Jane'
-    middle_name      'R'
-    last_name        'Smith'
-    sequence(:email) { |n| "jrsmith#{n}@example.com" }
-    institution      'Example University'
-    start_date       { DateTime.current - 1.year }
-    end_date         { DateTime.current }
+    sequence(:first_name)   { |n| "Alice#{n}" }
+    sequence(:middle_name)  { |n| "Jim#{n}" }
+    sequence(:last_name)    { |n| "Edler#{n}" }
+    sequence(:email)        { |n| "alice.edler#{n}@stanford.edu" }
+    institution             'Example University'
+    start_date              { DateTime.current - 1.year }
+    end_date                { DateTime.current }
     author
   end
 end
