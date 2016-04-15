@@ -8,10 +8,6 @@ describe ScienceWire::API::MatchedPublicationItemIdsForAuthor do
   end
   describe '#matched_publication_item_ids_for_author' do
     let(:fake_body) { '<xml></xml>' }
-    before do
-      stub_post(Settings.SCIENCEWIRE.RECOMMENDATION_PATH)
-        .with(query: {format: 'xml'})
-    end
     it 'requests the publication catalog resource' do
       client.matched_publication_item_ids_for_author(fake_body)
       expect(a_post(

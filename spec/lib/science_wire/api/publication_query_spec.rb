@@ -8,10 +8,6 @@ describe ScienceWire::API::PublicationQuery do
   end
   describe '#send_publication_query' do
     let(:fake_body) { '<xml></xml>' }
-    before do
-      stub_post(Settings.SCIENCEWIRE.PUBLICATION_QUERY_PATH)
-        .with(query: {format: 'xml'})
-    end
     it 'requests the publication query' do
       client.send_publication_query(fake_body)
       expect(a_post(

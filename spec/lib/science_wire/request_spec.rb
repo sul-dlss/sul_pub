@@ -20,7 +20,6 @@ describe ScienceWire::Request do
       subject.perform
     end
     it 'creates a request' do
-      stub_post('/not_a_real_path').with(query: {format: 'xml'})
       described_class.new(
         client: client,
         request_method: :post,
