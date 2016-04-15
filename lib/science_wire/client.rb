@@ -1,13 +1,11 @@
-require 'science_wire/publication_query'
-require 'science_wire/recommendation'
+require 'science_wire/api'
 
 module ScienceWire
   ##
   # The configurable client and preferred API for interacting with the
   # ScienceWire library from within sul-pub.
   class Client
-    include ScienceWire::PublicationQuery
-    include ScienceWire::Recommendation
+    include ScienceWire::API
 
     attr_accessor :licence_id, :host
     ##

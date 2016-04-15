@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe ScienceWire::PublicationQuery do
+describe ScienceWire::API::PublicationQuery do
   let(:client) do
     ScienceWire::Client.new(
       licence_id: 'license', host: Settings.SCIENCEWIRE.HOST

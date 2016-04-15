@@ -61,7 +61,7 @@ class ScienceWireClient
   end
 
   def make_sciencewire_suggestion_call(body)
-    xml_doc = Nokogiri::XML(client.recommendation(body))
+    xml_doc = Nokogiri::XML(client.matched_publication_item_ids_for_author(body))
     xml_doc.xpath('/ArrayOfItemMatchResult/ItemMatchResult/PublicationItemID').collect(&:text)
 
   rescue Faraday::TimeoutError => te
