@@ -6,6 +6,7 @@ require 'pry'  # for debugging specs
 require 'simplecov'
 require 'coveralls'
 require 'webmock/rspec'
+WebMock.enable!
 
 SimpleCov.profiles.define 'sul-pub' do
   add_filter '.gems'
@@ -80,6 +81,7 @@ end
 require 'vcr'
 VCR.configure do |c|
   c.cassette_library_dir = 'fixtures/vcr_cassettes'
+  c.allow_http_connections_when_no_cassette = true
   c.hook_into :webmock
   c.default_cassette_options = {
     :record => :new_episodes,  # :once is default
@@ -103,4 +105,12 @@ VCR.configure do |c|
   end
   c.filter_sensitive_data('Settings.SCIENCEWIRE.HOST') { Settings.SCIENCEWIRE.HOST }
   c.filter_sensitive_data('Settings.SCIENCEWIRE.LICENSE_ID') { Settings.SCIENCEWIRE.LICENSE_ID }
+end
+
+def a_post(path)
+  a_request(:post, 'https://' + Settings.SCIENCEWIRE.BASE_URI + path)
+end
+
+def a_get(path)
+  a_request(:get, 'https://' + Settings.SCIENCEWIRE.BASE_URI + path)
 end

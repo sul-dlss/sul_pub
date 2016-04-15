@@ -1,8 +1,11 @@
 class ScienceWireClient
+  attr_reader :client
   def initialize
-    @base_timeout_retries = 3
-    @base_timeout_period = 100
     @reject_types = Settings.sw_doc_types_to_skip.join('|')
+    @client = ScienceWire::Client.new(
+      license_id: Settings.SCIENCEWIRE.LICENSE_ID,
+      host: Settings.SCIENCEWIRE.HOST
+    )
   end
 
   # Fetch a single publication by DOI and convert to pub_hash
@@ -58,37 +61,12 @@ class ScienceWireClient
   end
 
   def make_sciencewire_suggestion_call(body)
-    http = Net::HTTP.new(Settings.SCIENCEWIRE.BASE_URI, Settings.SCIENCEWIRE.PORT)
-
-    http.use_ssl = true
-    http.verify_mode = OpenSSL::SSL::VERIFY_PEER
-    timeout_retries ||= 3
-    timeout_period ||= 500
-    http.read_timeout = timeout_period
-    request = Net::HTTP::Post.new(Settings.SCIENCEWIRE.RECOMMENDATION_PATH)
-    request['LicenseID'] = Settings.SCIENCEWIRE.LICENSE_ID
-    request['Host'] = Settings.SCIENCEWIRE.HOST
-    request['Connection'] = 'Keep-Alive'
-    request['Expect'] = '100-continue'
-    request['Content-Type'] = 'text/xml'
-
-    request.body = body
-    response = http.request(request)
-    response_body = response.body
-    xml_doc = Nokogiri::XML(response_body)
-
+    xml_doc = Nokogiri::XML(client.matched_publication_item_ids_for_author(body))
     xml_doc.xpath('/ArrayOfItemMatchResult/ItemMatchResult/PublicationItemID').collect(&:text)
 
-  rescue Timeout::Error => te
-    timeout_retries -= 1
-    if timeout_retries > 0
-      # increase timeout
-      timeout_period = + 100
-      retry
-    else
-      NotificationManager.handle_harvest_problem(te, "Timeout error on call to sciencewire api - #{Time.zone.now}")
-      raise
-    end
+  rescue Faraday::TimeoutError => te
+    NotificationManager.handle_harvest_problem(te, "Timeout error on call to sciencewire api - #{Time.zone.now}")
+    raise
   rescue => e
     NotificationManager.handle_harvest_problem(e, 'Problem with http call to sciencewire api')
     raise
@@ -188,7 +166,7 @@ class ScienceWireClient
                       &lt;MaximumRows&gt;1000&lt;/MaximumRows&gt;
                     &lt;/query&gt;'
 
-    query_sciencewire(xml_query, 3, 100)
+    query_sciencewire(xml_query)
   end
 
   def query_sciencewire_for_publication(first_name, last_name, _middle_name, title, year, max_rows)
@@ -304,12 +282,10 @@ class ScienceWireClient
         </query>
     ]]>"
 
-    query_sciencewire(xml_query, 0, 60)
+    query_sciencewire(xml_query)
   end
 
-  def query_sciencewire(xml_query, timeout_retries = 3, timeout_period = 100)
-    @base_timeout_retries = timeout_retries
-    @base_timeout_period = timeout_period
+  def query_sciencewire(xml_query)
     queryId = send_sciencewire_publication_request(xml_query)
     get_sciencewire_publication_response(queryId)
   end
@@ -321,19 +297,7 @@ class ScienceWireClient
       <ScienceWireQueryXMLParameter xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
       <xmlQuery>' + xml_query + '</xmlQuery>
       </ScienceWireQueryXMLParameter>'
-      http = setup_http
-      request = Net::HTTP::Post.new(Settings.SCIENCEWIRE.PUBLICATION_QUERY_PATH)
-      request['LicenseID'] = Settings.SCIENCEWIRE.LICENSE_ID
-      request['Host'] = Settings.SCIENCEWIRE.HOST
-      request['Connection'] = 'Keep-Alive'
-      request['Expect'] = '100-continue'
-      request['Content-Type'] = 'text/xml'
-
-      request.body = wrapped_xml_query
-
-      response = http.request(request)
-      response_body = response.body
-      xml_doc = Nokogiri::XML(response_body)
+      xml_doc = Nokogiri::XML(client.send_publication_query(wrapped_xml_query))
       xml_doc.xpath('//queryID').text
     end
   end
@@ -342,47 +306,16 @@ class ScienceWireClient
   # @returns [Nokogiri::XML::Document] the response to the specific query
   def get_sciencewire_publication_response(queryId)
     with_timeout_handling do
-      http = setup_http
-      fullPubsRequest = Net::HTTP::Get.new("#{Settings.SCIENCEWIRE.PUBLICATION_QUERY_PATH.split(/\?/).first}/#{queryId}?format=xml&v=version/3&page=0&pageSize=2147483647")
-      fullPubsRequest['Content_Type'] = 'text/xml'
-      fullPubsRequest['LicenseID'] = Settings.SCIENCEWIRE.LICENSE_ID
-      fullPubsRequest['Host'] = Settings.SCIENCEWIRE.HOST
-      fullPubsRequest['Connection'] = 'Keep-Alive'
-
-      fullPubResponse = http.request(fullPubsRequest)
-      xml_doc = Nokogiri::XML(fullPubResponse.body)
-      #   http.finish
+      xml_doc = Nokogiri::XML(client.retrieve_publication_query(queryId))
       xml_doc
     end
   end
 
   def get_full_sciencewire_pubs_for_sciencewire_ids(sciencewire_ids)
-    http = Net::HTTP.new(Settings.SCIENCEWIRE.BASE_URI, Settings.SCIENCEWIRE.PORT)
-    timeout_retries ||= 3
-    timeout_period ||= 500
-    http.read_timeout = timeout_period
-    http.use_ssl = true
-    http.verify_mode = OpenSSL::SSL::VERIFY_PEER
-    fullPubsRequest = Net::HTTP::Get.new(Settings.SCIENCEWIRE.PUBLICATION_ITEMS_PATH + sciencewire_ids)
-    fullPubsRequest['Content-Type'] = 'text/xml'
-    fullPubsRequest['LicenseID'] = Settings.SCIENCEWIRE.LICENSE_ID
-    fullPubsRequest['Host'] = Settings.SCIENCEWIRE.HOST
-    fullPubsRequest['Connection'] = 'Keep-Alive'
-    #  http.start
-    fullPubResponse = http.request(fullPubsRequest).body
-    xml_doc = Nokogiri::XML(fullPubResponse)
-    #  http.finish
-    xml_doc
-  rescue Timeout::Error => te
-    timeout_retries -= 1
-    if timeout_retries > 0
-      # increase timeout
-      timeout_period = + 100
-      retry
-    else
-      NotificationManager.handle_harvest_problem(te, "Timeout error on call to sciencewire api - #{Time.zone.now}")
-      raise
-    end
+    Nokogiri::XML(client.publication_items(sciencewire_ids))
+  rescue Faraday::TimeoutError => te
+    NotificationManager.handle_harvest_problem(te, "Timeout error on call to sciencewire api - #{Time.zone.now}")
+    raise
   rescue => e
     NotificationManager.handle_harvest_problem(e, 'Problem with http call to sciencewire api')
     raise
@@ -396,7 +329,7 @@ class ScienceWireClient
   private
 
   def send_query_and_return_pub_hashes(xml_query)
-    xml_results = query_sciencewire(xml_query, 3, 100)
+    xml_results = query_sciencewire(xml_query)
 
     xml_results.xpath('//PublicationItem').map do |sw_xml_doc|
       pub_hash = SciencewireSourceRecord.convert_sw_publication_doc_to_hash(sw_xml_doc)
@@ -410,32 +343,12 @@ class ScienceWireClient
   end
 
   def with_timeout_handling
-    timeout_retries = @base_timeout_retries
-    timeout_period = @base_timeout_period
-
-    begin
-      yield
-    rescue Timeout::Error => te
-      timeout_retries -= 1
-      if timeout_retries > 0
-        # increase timeout
-        timeout_period += 100
-        retry
-      else
-        NotificationManager.handle_harvest_problem(te, "Timeout error on call to sciencewire api - #{Time.zone.now}")
-        raise
-      end
-    rescue => e
-      NotificationManager.handle_harvest_problem(e, 'Problem with http call to sciencewire api')
-      raise
-    end
-  end
-
-  def setup_http
-    http = Net::HTTP.new(Settings.SCIENCEWIRE.BASE_URI, Settings.SCIENCEWIRE.PORT)
-    http.read_timeout = @base_timeout_period
-    http.use_ssl = true
-    http.verify_mode = OpenSSL::SSL::VERIFY_PEER
-    http
+  yield
+  rescue Faraday::TimeoutError => te
+    NotificationManager.handle_harvest_problem(te, "Timeout error on call to sciencewire api - #{Time.zone.now}")
+    raise
+  rescue => e
+    NotificationManager.handle_harvest_problem(e, 'Problem with http call to sciencewire api')
+    raise
   end
 end
