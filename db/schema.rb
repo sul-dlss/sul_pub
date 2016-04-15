@@ -11,7 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160405194617) do
+ActiveRecord::Schema.define(version: 20160412224434) do
+
+  create_table "author_identities", force: :cascade do |t|
+    t.integer  "author_id",     limit: 4,               null: false
+    t.integer  "identity_type", limit: 1,   default: 0, null: false
+    t.string   "first_name",    limit: 255,             null: false
+    t.string   "middle_name",   limit: 255
+    t.string   "last_name",     limit: 255,             null: false
+    t.string   "email",         limit: 255
+    t.string   "institution",   limit: 255
+    t.date     "start_date"
+    t.date     "end_date"
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+  end
+
+  add_index "author_identities", ["author_id"], name: "index_author_identities_on_author_id", using: :btree
 
   create_table "authors", force: :cascade do |t|
     t.integer  "cap_profile_id",               limit: 4
@@ -175,4 +191,5 @@ ActiveRecord::Schema.define(version: 20160405194617) do
 
   add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
 
+  add_foreign_key "author_identities", "authors"
 end
