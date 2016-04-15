@@ -7,12 +7,12 @@ module ScienceWire
   class Client
     include ScienceWire::API
 
-    attr_accessor :licence_id, :host
+    attr_accessor :license_id, :host
     ##
-    # @param [String] licence_id
+    # @param [String] license_id
     # @param [String] host
-    def initialize(licence_id:, host:)
-      @licence_id = licence_id
+    def initialize(license_id:, host:)
+      @license_id = license_id
       @host = host
     end
   end

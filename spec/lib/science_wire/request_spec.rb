@@ -11,7 +11,7 @@ describe ScienceWire::Request do
   describe '#perform' do
     let(:client) do
       ScienceWire::Client.new(
-        licence_id: 'license', host: Settings.SCIENCEWIRE.HOST
+        license_id: 'license', host: Settings.SCIENCEWIRE.HOST
       )
     end
     subject { described_class.new(client: {}, request_method: :null) }

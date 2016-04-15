@@ -3,7 +3,7 @@ require 'spec_helper'
 describe ScienceWire::API::PublicationItems do
   let(:client) do
     ScienceWire::Client.new(
-      licence_id: 'license', host: Settings.SCIENCEWIRE.HOST
+      license_id: 'license', host: Settings.SCIENCEWIRE.HOST
     )
   end
   describe '#publication_items' do

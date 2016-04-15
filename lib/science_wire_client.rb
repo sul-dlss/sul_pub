@@ -3,7 +3,7 @@ class ScienceWireClient
   def initialize
     @reject_types = Settings.sw_doc_types_to_skip.join('|')
     @client = ScienceWire::Client.new(
-      licence_id: Settings.SCIENCEWIRE.LICENSE_ID,
+      license_id: Settings.SCIENCEWIRE.LICENSE_ID,
       host: Settings.SCIENCEWIRE.HOST
     )
   end

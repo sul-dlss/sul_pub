@@ -45,7 +45,7 @@ module ScienceWire
       def response
         connection.send(request_method) do |req|
           req.url path
-          req.headers['LicenseID'] = client.licence_id
+          req.headers['LicenseID'] = client.license_id
           req.headers['Host'] = client.host
           req.headers['Connection'] = 'Keep-Alive'
           req.headers['Expect'] = '100-continue'
