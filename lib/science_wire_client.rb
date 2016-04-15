@@ -312,32 +312,10 @@ class ScienceWireClient
   end
 
   def get_full_sciencewire_pubs_for_sciencewire_ids(sciencewire_ids)
-    http = Net::HTTP.new(Settings.SCIENCEWIRE.BASE_URI, Settings.SCIENCEWIRE.PORT)
-    timeout_retries ||= 3
-    timeout_period ||= 500
-    http.read_timeout = timeout_period
-    http.use_ssl = true
-    http.verify_mode = OpenSSL::SSL::VERIFY_PEER
-    fullPubsRequest = Net::HTTP::Get.new(Settings.SCIENCEWIRE.PUBLICATION_ITEMS_PATH + sciencewire_ids)
-    fullPubsRequest['Content-Type'] = 'text/xml'
-    fullPubsRequest['LicenseID'] = Settings.SCIENCEWIRE.LICENSE_ID
-    fullPubsRequest['Host'] = Settings.SCIENCEWIRE.HOST
-    fullPubsRequest['Connection'] = 'Keep-Alive'
-    #  http.start
-    fullPubResponse = http.request(fullPubsRequest).body
-    xml_doc = Nokogiri::XML(fullPubResponse)
-    #  http.finish
-    xml_doc
-  rescue Timeout::Error => te
-    timeout_retries -= 1
-    if timeout_retries > 0
-      # increase timeout
-      timeout_period = + 100
-      retry
-    else
-      NotificationManager.handle_harvest_problem(te, "Timeout error on call to sciencewire api - #{Time.zone.now}")
-      raise
-    end
+    Nokogiri::XML(client.publication_items(sciencewire_ids))
+  rescue Faraday::TimeoutError => te
+    NotificationManager.handle_harvest_problem(te, "Timeout error on call to sciencewire api - #{Time.zone.now}")
+    raise
   rescue => e
     NotificationManager.handle_harvest_problem(e, 'Problem with http call to sciencewire api')
     raise
