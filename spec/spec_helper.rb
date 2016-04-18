@@ -3,6 +3,8 @@ ENV['RAILS_ENV'] ||= 'test'
 
 require 'pry'  # for debugging specs
 
+require 'fixtures/queries/suggestion_queries'
+
 require 'simplecov'
 require 'coveralls'
 require 'webmock/rspec'
