@@ -25,38 +25,9 @@ class ScienceWireClient
 
   def generate_suggestion_queries(last_name, first_name, middle_name, email, seed_list)
     ['Journal Document', 'Conference Proceeding Document'].each do |category|
-      bod = "<?xml version='1.0'?>
-      <PublicationAuthorMatchParameters xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema'>
-        <Authors>
-          <Author>
-            <LastName>#{last_name}</LastName>
-            <FirstName>#{first_name}</FirstName>
-            <MiddleName>#{middle_name}</MiddleName>
-            <City>Stanford</City>
-            <State>CA</State>
-            <Country>USA</Country>
-            <Version>1</Version>
-         </Author>
-      </Authors>
-      <DocumentCategory>#{category}</DocumentCategory>
-      "
-
-      if email && email != ''
-        bod << "<Emails>
-                  <string>#{email}</string>
-                </Emails>"
-      end
-
-      unless seed_list.blank?
-        bod << '<PublicationItemIds>'
-        bod << seed_list.collect { |pubId| "<int>#{pubId}</int>" }.join
-        bod << '</PublicationItemIds>'
-      end
-
-      bod << '<LimitToHighQualityMatchesOnly>true</LimitToHighQualityMatchesOnly>'
-      bod << '</PublicationAuthorMatchParameters>'
-
-      yield bod
+      yield ScienceWire::Query::Suggestion.new(
+        last_name, first_name, middle_name, email, seed_list, category
+      ).generate
     end
   end
 
