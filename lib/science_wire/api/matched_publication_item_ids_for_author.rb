@@ -1,14 +1,22 @@
 module ScienceWire
   module API
     ##
-    # Module of methods for SUL "Recommendation" requests for ScienceWire using
+    # Class for SUL "Recommendation" requests for ScienceWire using
     # MatchedPublicationItemIdsForAuthor
-    module MatchedPublicationItemIdsForAuthor
+    class MatchedPublicationItemIdsForAuthor
+      attr_reader :client
+
+      ##
+      # @param [ScienceWire::Client] client
+      def initialize(client:)
+        @client = client
+      end
+
       ##
       # @param [String] body
       def matched_publication_item_ids_for_author(body)
         ScienceWire::Request.new(
-          client: self,
+          client: client,
           request_method: :post,
           body: body,
           path: Settings.SCIENCEWIRE.RECOMMENDATION_PATH,
