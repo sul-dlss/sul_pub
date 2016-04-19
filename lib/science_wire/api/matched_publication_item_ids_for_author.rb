@@ -23,6 +23,22 @@ module ScienceWire
           timeout_period: 500
         ).perform
       end
+
+      ##
+      # @param [String] body
+      # @return [Array]
+      def matched_publication_item_ids_for_author_and_parse(body)
+        parse(matched_publication_item_ids_for_author(body))
+      end
+
+      ##
+      # @param [String] response_body
+      # @return [Array]
+      def parse(response_body)
+        Nokogiri::XML(response_body)
+          .xpath('/ArrayOfItemMatchResult/ItemMatchResult/PublicationItemID')
+          .collect(&:text)
+      end
     end
   end
 end

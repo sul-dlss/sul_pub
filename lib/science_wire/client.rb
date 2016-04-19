@@ -6,7 +6,9 @@ module ScienceWire
     include ScienceWire::API
 
     attr_accessor :license_id, :host
-    delegate :matched_publication_item_ids_for_author, to: :matched_publication_item_ids_for_author_instance
+    delegate :matched_publication_item_ids_for_author,
+             :matched_publication_item_ids_for_author_and_parse,
+             to: :matched_publication_item_ids_for_author_instance
     delegate :publication_items, to: :publication_items_instance
     delegate :send_publication_query, :retrieve_publication_query, to: :publication_query_instance
 

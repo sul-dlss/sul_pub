@@ -32,9 +32,7 @@ class ScienceWireClient
   end
 
   def make_sciencewire_suggestion_call(body)
-    xml_doc = Nokogiri::XML(client.matched_publication_item_ids_for_author(body))
-    xml_doc.xpath('/ArrayOfItemMatchResult/ItemMatchResult/PublicationItemID').collect(&:text)
-
+    client.matched_publication_item_ids_for_author_and_parse(body)
   rescue Faraday::TimeoutError => te
     NotificationManager.handle_harvest_problem(te, "Timeout error on call to sciencewire api - #{Time.zone.now}")
     raise
