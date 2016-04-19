@@ -136,6 +136,8 @@ GEM
       actionpack (>= 3)
       i18n
     equalizer (0.0.11)
+    equivalent-xml (0.6.0)
+      nokogiri (>= 1.4.3)
     erubis (2.7.0)
     eventmachine (1.0.8)
     execjs (2.6.0)
@@ -418,6 +420,7 @@ DEPENDENCIES
   dlss-capistrano
   dlss_cops
   dotiw
+  equivalent-xml
   factory_girl_rails (~> 4.0)
   faraday
   grape

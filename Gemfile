@@ -68,6 +68,7 @@ group :test do
   gem 'simplecov', require: false
   gem 'vcr'
   gem 'webmock'
+  gem 'equivalent-xml'
 end
 
 group :deployment do
