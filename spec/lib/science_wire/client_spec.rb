@@ -17,7 +17,8 @@ describe ScienceWire::Client do
         :matched_publication_item_ids_for_author,
         :send_publication_query,
         :retrieve_publication_query,
-        :publication_items
+        :publication_items,
+        :id_suggestions
       ].each do |method|
         expect(subject).to respond_to method
       end

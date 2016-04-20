@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe ScienceWireClient, :vcr do
-  include SuggestionQueries
   let(:sw_client) { ScienceWireClient.new }
   describe '#query_sciencewire_by_author_name' do
     context 'with common last name, first name' do
@@ -76,38 +75,5 @@ describe ScienceWireClient, :vcr do
   end
 
   describe '#get_sw_xml_source_for_sw_id' do
-  end
-
-  describe '#generate_suggestion_queries' do
-    context 'with email and seed' do
-      it 'returns the body for a query for two document categories - Journal Document and Conference Proceeding Document' do
-        count = 0
-        yielded_strings = [journal_doc_email_and_seed, conf_proc_doc_email_and_seed]
-        sw_client.generate_suggestion_queries('Doe', 'John', 'S', 'johnsdoe@example.com', [532_237]) do |bod|
-          expect(bod).to be_equivalent_to(yielded_strings[count])
-          count += 1
-        end
-      end
-    end
-    context 'with email and no seed' do
-      it 'returns the body for a query for two document categories - Journal Document and Conference Proceeding Document' do
-        count = 0
-        yielded_strings = [journal_doc_email_no_seed, conf_proc_doc_email_no_seed]
-        sw_client.generate_suggestion_queries('Smith', 'Jane', '', 'jane_smith@example.com', '') do |bod|
-          expect(bod).to be_equivalent_to(yielded_strings[count])
-          count += 1
-        end
-      end
-    end
-    context 'with no email and no seed' do
-      it 'returns the body for a query for two document categories - Journal Document and Conference Proceeding Document' do
-        count = 0
-        yielded_strings = [journal_doc_no_email_no_seed, conf_proc_doc_no_email_no_seed]
-        sw_client.generate_suggestion_queries('Brown', 'Charlie', '', '', '') do |bod|
-          expect(bod).to be_equivalent_to(yielded_strings[count])
-          count += 1
-        end
-      end
-    end
   end
 end

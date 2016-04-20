@@ -15,24 +15,8 @@ class ScienceWireClient
   end
 
   def get_sciencewire_id_suggestions(last_name, first_name, middle_name, email, seed_list)
-    ids = []
-    generate_suggestion_queries(last_name, first_name, middle_name, email, seed_list) do |bod|
-      ids.concat make_sciencewire_suggestion_call(bod)
-    end
-
-    ids
-  end
-
-  def generate_suggestion_queries(last_name, first_name, middle_name, email, seed_list)
-    ['Journal Document', 'Conference Proceeding Document'].each do |category|
-      yield ScienceWire::Query::Suggestion.new(
-        last_name, first_name, middle_name, email, seed_list, category
-      ).generate
-    end
-  end
-
-  def make_sciencewire_suggestion_call(body)
-    client.matched_publication_item_ids_for_author_and_parse(body)
+    author_attributes = ScienceWire::AuthorAttributes.new(last_name, first_name, middle_name, email, seed_list)
+    client.id_suggestions(author_attributes)
   rescue Faraday::TimeoutError => te
     NotificationManager.handle_harvest_problem(te, "Timeout error on call to sciencewire api - #{Time.zone.now}")
     raise

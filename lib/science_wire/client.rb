@@ -11,6 +11,7 @@ module ScienceWire
              to: :matched_publication_item_ids_for_author_instance
     delegate :publication_items, to: :publication_items_instance
     delegate :send_publication_query, :retrieve_publication_query, to: :publication_query_instance
+    delegate :id_suggestions, to: :id_suggestions_instance
 
     ##
     # @param [String] license_id
@@ -21,6 +22,14 @@ module ScienceWire
     end
 
     private
+
+      ##
+      # @return [ScienceWire::IdSuggestions]
+      def id_suggestions_instance
+        @id_suggestions ||= begin
+          ScienceWire::IdSuggestions.new(client: self)
+        end
+      end
 
       ##
       # @return [ScienceWire::API::MatchedPublicationItemIdsForAuthor]
