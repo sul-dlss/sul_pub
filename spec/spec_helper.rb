@@ -4,7 +4,9 @@ ENV['RAILS_ENV'] ||= 'test'
 require 'pry'  # for debugging specs
 
 require 'fixtures/queries/suggestion_queries'
-
+require 'fixtures/responses/item_responses'
+require 'rspec/matchers'
+require 'equivalent-xml'
 require 'simplecov'
 require 'coveralls'
 require 'webmock/rspec'

@@ -15,55 +15,8 @@ class ScienceWireClient
   end
 
   def get_sciencewire_id_suggestions(last_name, first_name, middle_name, email, seed_list)
-    ids = []
-    generate_suggestion_queries(last_name, first_name, middle_name, email, seed_list) do |bod|
-      ids.concat make_sciencewire_suggestion_call(bod)
-    end
-
-    ids
-  end
-
-  def generate_suggestion_queries(last_name, first_name, middle_name, email, seed_list)
-    ['Journal Document', 'Conference Proceeding Document'].each do |category|
-      bod = "<?xml version='1.0'?>
-      <PublicationAuthorMatchParameters xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema'>
-        <Authors>
-          <Author>
-            <LastName>#{last_name}</LastName>
-            <FirstName>#{first_name}</FirstName>
-            <MiddleName>#{middle_name}</MiddleName>
-            <City>Stanford</City>
-            <State>CA</State>
-            <Country>USA</Country>
-            <Version>1</Version>
-         </Author>
-      </Authors>
-      <DocumentCategory>#{category}</DocumentCategory>
-      "
-
-      if email && email != ''
-        bod << "<Emails>
-                  <string>#{email}</string>
-                </Emails>"
-      end
-
-      unless seed_list.blank?
-        bod << '<PublicationItemIds>'
-        bod << seed_list.collect { |pubId| "<int>#{pubId}</int>" }.join
-        bod << '</PublicationItemIds>'
-      end
-
-      bod << '<LimitToHighQualityMatchesOnly>true</LimitToHighQualityMatchesOnly>'
-      bod << '</PublicationAuthorMatchParameters>'
-
-      yield bod
-    end
-  end
-
-  def make_sciencewire_suggestion_call(body)
-    xml_doc = Nokogiri::XML(client.matched_publication_item_ids_for_author(body))
-    xml_doc.xpath('/ArrayOfItemMatchResult/ItemMatchResult/PublicationItemID').collect(&:text)
-
+    author_attributes = ScienceWire::AuthorAttributes.new(last_name, first_name, middle_name, email, seed_list)
+    client.id_suggestions(author_attributes)
   rescue Faraday::TimeoutError => te
     NotificationManager.handle_harvest_problem(te, "Timeout error on call to sciencewire api - #{Time.zone.now}")
     raise

@@ -76,24 +76,4 @@ describe ScienceWireClient, :vcr do
 
   describe '#get_sw_xml_source_for_sw_id' do
   end
-
-  describe '#generate_suggestion_queries' do
-    include SuggestionQueries
-
-    context 'with email and seed' do
-      it 'returns the body for a query for two document categories - Journal Document and Conference Proceeding Document' do
-        expect { |b| sw_client.generate_suggestion_queries('Doe', 'John', 'S', "johnsdoe@example.com", [532_237], &b) }.to yield_successive_args(journal_doc_email_and_seed, conf_proc_doc_email_and_seed)
-      end
-    end
-    context 'with email and no seed' do
-      it 'returns the body for a query for two document categories - Journal Document and Conference Proceeding Document' do
-        expect { |b| sw_client.generate_suggestion_queries('Smith', 'Jane', '', "jane_smith@example.com", '', &b) }.to yield_successive_args(journal_doc_email_no_seed, conf_proc_doc_email_no_seed)
-      end
-    end
-    context 'with no email and no seed' do
-      it 'returns the body for a query for two document categories - Journal Document and Conference Proceeding Document' do
-        expect { |b| sw_client.generate_suggestion_queries('Brown', 'Charlie', '', '', '', &b) }.to yield_successive_args(journal_doc_no_email_no_seed, conf_proc_doc_no_email_no_seed)
-      end
-    end
-  end
 end
