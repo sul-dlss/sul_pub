@@ -83,33 +83,51 @@ class CapAuthorsPoller
 
   def process_record(record)
     # import_settings_exist = record["importSettings"] && record["importSettings"].any?
-    cap_profile_id = record['profileId']
-    author = Author.where(cap_profile_id: cap_profile_id).first
-    author ||= Author.fetch_from_cap_and_create(cap_profile_id)
-    author.update_from_cap_authorship_profile_hash(record)
-    if author.persisted?
-      logger.info "Updating author_id: #{author.id}, cap_profile_id: #{cap_profile_id}"
-      @authors_updated_count += 1
+    cap_profile_id = record['profileId'].to_i
+    author = Author.find_by_cap_profile_id(cap_profile_id)
+    if author.present?
+      process_record_for_existing_author(author, record)
     else
-      logger.info "Creating author_id: #{author.id}, cap_profile_id: #{cap_profile_id}"
-      @new_author_count += 1
+      process_record_for_new_author(cap_profile_id, record)
     end
+  end
 
-    if record['authorship'] && author.persisted?
-      update_existing_contributions author, record['authorship']
-    elsif record['authorship'] && !record['authorship'].empty? && author.new_record?
-      logger.warn "New author has authorship which will be skipped; cap_profile_id: #{cap_profile_id}"
-      @new_auth_with_contribs += 1
-    end
+  def process_record_for_existing_author(author, record)
+    author.update_from_cap_authorship_profile_hash(record)
+    logger.info "Updating author_id: #{author.id}, cap_profile_id: #{author.cap_profile_id}"
+    @authors_updated_count += 1
+
+    update_existing_contributions author, record['authorship'] if record['authorship'].present?
 
     auth_changed = author.changed?
-    author.save
+    author.save!
 
     if auth_changed && author.harvestable?
       @new_or_changed_authors_to_harvest_queue << author.id
     else
       @no_sw_harvest_count += 1
-      logger.info "No import settings or author did not change. Skipping cap_profile_id: #{cap_profile_id}"
+      logger.info "No import settings or author did not change. Skipping cap_profile_id: #{author.cap_profile_id}"
+    end
+  end
+
+  def process_record_for_new_author(cap_profile_id, record)
+    author = Author.fetch_from_cap_and_create(cap_profile_id)
+    logger.info "Creating author_id: #{author.id}, cap_profile_id: #{cap_profile_id}"
+    author.update_from_cap_authorship_profile_hash(record)
+    author.save!
+    @new_author_count += 1
+
+    if record['authorship'].present?
+      # TODO: not clear to me *why* authorship is ignored for new authors...
+      logger.warn "New author has authorship which will be skipped; cap_profile_id: #{cap_profile_id}"
+      @new_auth_with_contribs += 1
+    end
+
+    if author.harvestable?
+      @new_or_changed_authors_to_harvest_queue << author.id
+    else
+      @no_sw_harvest_count += 1
+      logger.info "Author marked as not harvestable. Skipping cap_profile_id: #{cap_profile_id}"
     end
   end
 
@@ -195,7 +213,7 @@ class CapAuthorsPoller
   end
 
   def log_process_time
-    distance_of_time_in_words_to_now(@start_time)
+    distance_of_time_in_words(@start_time, Time.zone.now)
   end
 
   def log_stats
