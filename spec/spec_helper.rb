@@ -5,8 +5,10 @@ require 'pry'  # for debugging specs
 
 require 'fixtures/queries/suggestion_queries'
 require 'fixtures/responses/item_responses'
+require 'fixtures/queries/author_name_queries'
 require 'rspec/matchers'
 require 'equivalent-xml'
+
 require 'simplecov'
 require 'coveralls'
 require 'webmock/rspec'
