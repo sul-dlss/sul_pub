@@ -119,7 +119,7 @@ describe CapAuthorsPoller, :vcr do
     context 'with an author retrieved from the CAP API' do
       before do
         expect(Author).to receive(:find_by_cap_profile_id).with(author.cap_profile_id).and_return(nil)
-        expect(Author).to receive(:fetch_from_cap_and_create).with(author.cap_profile_id).and_return(author)
+        expect(Author).to receive(:fetch_from_cap_and_create).with(author.cap_profile_id, instance_of(CapHttpClient)).and_return(author)
         expect(author).to receive(:'save!').and_call_original
       end
 

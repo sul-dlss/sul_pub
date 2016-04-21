@@ -111,7 +111,7 @@ class CapAuthorsPoller
   end
 
   def process_record_for_new_author(cap_profile_id, record)
-    author = Author.fetch_from_cap_and_create(cap_profile_id)
+    author = Author.fetch_from_cap_and_create(cap_profile_id, @cap_http_client)
     logger.info "Creating author_id: #{author.id}, cap_profile_id: #{cap_profile_id}"
     author.update_from_cap_authorship_profile_hash(record)
     author.save!
