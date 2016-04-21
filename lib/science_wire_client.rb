@@ -26,7 +26,8 @@ class ScienceWireClient
   end
 
   def query_sciencewire_by_author_name(first_name, middle_name, last_name, max_rows = 200)
-    author_name = ScienceWire::Query::AuthorName.new(first_name, middle_name, last_name, max_rows)
+    author_attributes = ScienceWire::AuthorAttributes.new(last_name, first_name, middle_name, '', '')
+    author_name = ScienceWire::Query::PublicationQueryByAuthorName.new(author_attributes, max_rows)
     xml_query = author_name.generate
 
     # Only select Publication types that are not on the skip list

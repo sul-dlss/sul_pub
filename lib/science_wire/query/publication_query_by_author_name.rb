@@ -1,12 +1,13 @@
 module ScienceWire
   module Query
-    class AuthorName
-      attr_reader :first_name, :middle_name, :last_name, :max_rows
+    class PublicationQueryByAuthorName
+      attr_reader :author_attributes, :max_rows
 
-      def initialize(first_name, middle_name, last_name, max_rows)
-        @first_name = first_name
-        @middle_name = middle_name
-        @last_name = last_name
+      ##
+      # @param [ScienceWire::AuthorAttributes] author_attributes
+      # @param [String] max_rows
+      def initialize(author_attributes, max_rows)
+        @author_attributes = author_attributes
         @max_rows = max_rows
       end
 
@@ -18,26 +19,24 @@ module ScienceWire
 
         def text_search_name_parts
           query = name_query_part
-          if middle_name && !middle_name.blank? && middle_name =~ /^([a-zA-Z])/
-            query << name_query_part_with_middle(Regexp.last_match(1))
-          end
+          query << name_query_part_with_middle(Regexp.last_match(1)) if author_attributes.middle_name =~ /^([[:alpha:]])/
           query
         end
 
         def name_query_part
-          %("#{last_name},#{first_name}" or "#{last_name.to_s.upcase},#{first_name_initial.upcase}")
+          %("#{author_attributes.last_name},#{author_attributes.first_name}" or "#{author_attributes.last_name.to_s.upcase},#{first_name_initial.upcase}")
         end
 
         def name_query_part_with_middle(mid)
-          " or \"#{last_name.to_s.upcase},#{first_name_initial.upcase}#{mid.upcase}\""
+          " or \"#{author_attributes.last_name.to_s.upcase},#{first_name_initial.upcase}#{mid.upcase}\""
         end
 
         def first_name_initial
-          first_name.to_s[0].to_s
+          author_attributes.first_name.to_s.strip[0].to_s
         end
 
         def start_block
-          <<-XML.strip_heredoc
+          <<-XML
           <![CDATA[
              <query xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/
             XMLSchema">
@@ -47,7 +46,7 @@ module ScienceWire
         end
 
         def text_search_criterion
-          <<-XML.strip_heredoc
+          <<-XML
             <Criterion>
               <TextSearch>
                 <QueryPredicate>(#{text_search_name_parts}) and Stanford</QueryPredicate>
@@ -60,13 +59,13 @@ module ScienceWire
         end
 
         def last_name_filter_criterion
-          if last_name.present?
-            <<-XML.strip_heredoc
+          if author_attributes.last_name.present?
+            <<-XML
               <Criterion>
                 <Filter>
                   <Column>AuthorLastName</Column>
                   <Operator>BeginsWith</Operator>
-                  <Value>#{last_name.upcase}</Value>
+                  <Value>#{author_attributes.last_name.upcase}</Value>
                 </Filter>
               </Criterion>
             XML
@@ -76,8 +75,8 @@ module ScienceWire
         end
 
         def first_name_filter_criterion
-          if first_name.present?
-            <<-XML.strip_heredoc
+          if author_attributes.first_name.present?
+            <<-XML
               <Criterion>
                 <Filter>
                   <Column>AuthorFirstName</Column>
@@ -92,7 +91,7 @@ module ScienceWire
         end
 
         def end_block
-          <<-XML.strip_heredoc
+          <<-XML
           <Criterion>
               <Filter>
                 <Column>DocumentCategory</Column>
@@ -102,16 +101,17 @@ module ScienceWire
                   <Value>Conference Proceeding Document</Value>
                 </Values>
               </Filter>
-            </Criterion></Criteria>
-              </Criterion>
-              <Columns>
-                <SortColumn>
-                  <Column>Rank</Column>
-                  <Direction>Descending</Direction>
-                </SortColumn>
-              </Columns>
-             <MaximumRows>#{max_rows}</MaximumRows>
-            </query>
+            </Criterion>
+          </Criteria>
+            </Criterion>
+            <Columns>
+              <SortColumn>
+                <Column>Rank</Column>
+                <Direction>Descending</Direction>
+              </SortColumn>
+            </Columns>
+           <MaximumRows>#{max_rows}</MaximumRows>
+          </query>
             ]]>
           XML
         end
