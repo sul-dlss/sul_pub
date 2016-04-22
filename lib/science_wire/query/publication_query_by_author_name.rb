@@ -92,7 +92,7 @@ module ScienceWire
 
         def end_block
           <<-XML
-          <Criterion>
+            <Criterion>
               <Filter>
                 <Column>DocumentCategory</Column>
                 <Operator>In</Operator>
