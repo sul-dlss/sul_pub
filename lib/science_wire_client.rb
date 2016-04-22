@@ -26,67 +26,9 @@ class ScienceWireClient
   end
 
   def query_sciencewire_by_author_name(first_name, middle_name, last_name, max_rows = 200)
-    query = %("#{last_name},#{first_name}" or "#{(last_name || '').upcase},#{((first_name || '')[0] || '').upcase}")
-    if middle_name && !middle_name.blank? && middle_name =~ /^([a-zA-Z])/
-      query << " or \"#{(last_name || '').upcase},#{((first_name || '')[0] || '').upcase}#{Regexp.last_match(1).upcase}\""
-    end
-
-    xml_query = '<![CDATA[
-       <query xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/
-      XMLSchema">
-        <Criterion>
-          <Criteria>'
-
-    xml_query << "<Criterion>
-              <TextSearch>
-                  <QueryPredicate>(#{query}) and Stanford</QueryPredicate>
-                  <SearchType>ExactMatch</SearchType>
-                  <Columns>AggregateText</Columns>
-                  <MaximumRows>#{max_rows}</MaximumRows>
-                  </TextSearch>
-            </Criterion>"
-
-    unless last_name.blank?
-      xml_query << "<Criterion>
-                <Filter>
-                  <Column>AuthorLastName</Column>
-                  <Operator>BeginsWith</Operator>
-                  <Value>#{last_name.upcase}</Value>
-                </Filter>
-              </Criterion>"
-    end
-    unless first_name.blank?
-      xml_query << "<Criterion>
-                <Filter>
-                  <Column>AuthorFirstName</Column>
-                  <Operator>BeginsWith</Operator>
-                  <Value>#{first_name[0].upcase}</Value>
-                </Filter>
-              </Criterion>"
-    end
-
-    xml_query << "<Criterion>
-                    <Filter>
-                      <Column>DocumentCategory</Column>
-                      <Operator>In</Operator>
-                      <Values>
-                        <Value>Journal Document</Value>
-                        <Value>Conference Proceeding Document</Value>
-                      </Values>
-                    </Filter>
-                  </Criterion>"
-
-    xml_query << "</Criteria>
-        </Criterion>
-        <Columns>
-          <SortColumn>
-            <Column>Rank</Column>
-            <Direction>Descending</Direction>
-          </SortColumn>
-        </Columns>
-       <MaximumRows>#{max_rows}</MaximumRows>
-      </query>
-      ]]>"
+    author_attributes = ScienceWire::AuthorAttributes.new(last_name, first_name, middle_name, '', '')
+    author_name = ScienceWire::Query::PublicationQueryByAuthorName.new(author_attributes, max_rows)
+    xml_query = author_name.generate
 
     # Only select Publication types that are not on the skip list
     # TODO: use returned documents instead of selecting IDs
