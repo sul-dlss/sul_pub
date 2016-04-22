@@ -2,72 +2,11 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe Author do
   let(:auth_hash) do
-    { 'active' => false,
-      'authorship' =>       [{ 'featured' => false,
-                               'status' => 'new',
-                               'sulPublicationId' => 198_465,
-                               'visibility' => 'public' }],
-      'importEnabled' => false,
-      'importSettings' =>        [{ 'firstName' => 'Henry', 'lastName' => 'Lowe', 'middleName' => 'J.' },
-                                  { 'firstName' => 'H',
-                                    'institution' => 'Stanford University',
-                                    'lastName' => 'Lowe',
-                                    'middleName' => 'J' }],
-      'lastModified' => '2013-08-03T06:12:25.767-07:00',
-      'populations' => %w(stanford som shc),
-      'profile' =>        { 'californiaPhysicianLicense' => 'C50735',
-                            'displayName' => 'Henry J. Lowe, MD',
-                            'email' => 'hlowe@stanford.edu',
-                            'meta' =>          { 'etag' => '17810123',
-                                                 'links' =>            [{ 'href' => 'http://irt-ppapp-02:12011/cap-api-qa/api/profiles/v1/3810',
-                                                                          'rel' => 'https://cap.stanford.edu/rel/self' },
-                                                                        { 'href' => 'https://irt-dev.stanford.edu/cap-su-qa/henry-lowe',
-                                                                          'rel' => 'https://cap.stanford.edu/rel/public' },
-                                                                        { 'href' =>               'https://irt-dev.stanford.edu/profiles-qa/auth/frdActionServlet?choiceId=facProfile&profileId=3810',
-                                                                          'rel' => 'https://cap.stanford.edu/rel/intranet' },
-                                                                        { 'href' =>               'https://irt-dev.stanford.edu/profiles-qa/frdActionServlet?choiceId=printerprofile&profileversion=full&profileId=3810',
-                                                                          'rel' => 'https://cap.stanford.edu/rel/pdf' }] },
-                            'names' =>          { 'legal' => { 'firstName' => 'Henry', 'lastName' => 'Lowe', 'middleName' => 'J' },
-                                                  'preferred' =>            { 'firstName' => 'Henry', 'lastName' => 'Lowe', 'middleName' => 'J.' } },
-                            'profileId' => 3810,
-                            'uid' => 'hlowe',
-                            'universityId' => '09724972' },
-      'profileId' => 3810,
-      'visibility' => 'public' }
+    JSON.parse(File.open('fixtures/cap_poll_author_3810.json', 'r').read)
   end
 
   let(:missing_fields) do
-    { 'active' => false,
-      'authorship' =>       [{ 'featured' => false,
-                               'status' => 'new',
-                               'sulPublicationId' => 198_465,
-                               'visibility' => 'public' }],
-      'importEnabled' => false,
-      'importSettings' =>        [{ 'firstName' => 'Henry', 'lastName' => 'Lowe', 'middleName' => 'J.' },
-                                  { 'firstName' => 'H',
-                                    'institution' => 'Stanford University',
-                                    'lastName' => 'Lowe',
-                                    'middleName' => 'J' }],
-      'lastModified' => '2013-08-03T06:12:25.767-07:00',
-      'populations' => %w(stanford som shc),
-      'profile' =>        { 'californiaPhysicianLicense' => 'C50735',
-                            'displayName' => 'Henry J. Lowe, MD',
-                            'meta' =>          { 'etag' => '17810123',
-                                                 'links' =>            [{ 'href' => 'http://irt-ppapp-02:12011/cap-api-qa/api/profiles/v1/3810',
-                                                                          'rel' => 'https://cap.stanford.edu/rel/self' },
-                                                                        { 'href' => 'https://irt-dev.stanford.edu/cap-su-qa/henry-lowe',
-                                                                          'rel' => 'https://cap.stanford.edu/rel/public' },
-                                                                        { 'href' =>               'https://irt-dev.stanford.edu/profiles-qa/auth/frdActionServlet?choiceId=facProfile&profileId=3810',
-                                                                          'rel' => 'https://cap.stanford.edu/rel/intranet' },
-                                                                        { 'href' =>               'https://irt-dev.stanford.edu/profiles-qa/frdActionServlet?choiceId=printerprofile&profileversion=full&profileId=3810',
-                                                                          'rel' => 'https://cap.stanford.edu/rel/pdf' }] },
-                            'names' =>          { 'legal' => { 'firstName' => 'Henry', 'lastName' => 'Lowe', 'middleName' => 'J' },
-                                                  'preferred' =>            { 'firstName' => 'Henry', 'lastName' => 'Lowe' } },
-                            'profileId' => 3810,
-                            'uid' => 'hlowe',
-                            'universityId' => '09724972' },
-      'profileId' => 3810,
-      'visibility' => 'public' }
+    JSON.parse(File.open('fixtures/cap_poll_author_3810_missing.json', 'r').read)
   end
 
   describe '.update_from_cap_authorship_profile_hash' do
@@ -85,8 +24,16 @@ describe Author do
       auth.update_from_cap_authorship_profile_hash(missing_fields)
       expect(auth.email).to be_blank
       expect(auth.preferred_middle_name).to be_blank
-      expect(auth.email).to be_blank
       expect(auth.emails_for_harvest).to be_blank
+    end
+
+    it 'duplicates data' do # TODO: why we don't know?
+      auth = Author.new
+      auth.update_from_cap_authorship_profile_hash(auth_hash)
+      expect(auth.emails_for_harvest).to eq(auth.email)
+      expect(auth.preferred_first_name).to eq(auth.cap_first_name)
+      expect(auth.preferred_middle_name).to eq(auth.cap_middle_name)
+      expect(auth.preferred_last_name).to eq(auth.cap_last_name)
     end
   end
 

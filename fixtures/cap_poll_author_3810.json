@@ -1,0 +1,74 @@
+{
+  "active": false,
+  "authorship": [
+    {
+      "featured": false,
+      "status": "new",
+      "sulPublicationId": 198465,
+      "visibility": "public"
+    }
+  ],
+  "importEnabled": false,
+  "importSettings": [
+    {
+      "firstName": "Henry",
+      "lastName": "Lowe",
+      "middleName": "J."
+    },
+    {
+      "firstName": "H",
+      "institution": "Stanford University",
+      "lastName": "Lowe",
+      "middleName": "J"
+    }
+  ],
+  "lastModified": "2013-08-03T06:12:25.767-07:00",
+  "populations": [
+    "stanford",
+    "som",
+    "shc"
+  ],
+  "profile": {
+    "californiaPhysicianLicense": "C50735",
+    "displayName": "Henry J. Lowe, MD",
+    "email": "hlowe@stanford.edu",
+    "meta": {
+      "etag": "17810123",
+      "links": [
+        {
+          "href": "http://irt-ppapp-02:12011/cap-api-qa/api/profiles/v1/3810",
+          "rel": "https://cap.stanford.edu/rel/self"
+        },
+        {
+          "href": "https://irt-dev.stanford.edu/cap-su-qa/henry-lowe",
+          "rel": "https://cap.stanford.edu/rel/public"
+        },
+        {
+          "href": "https://irt-dev.stanford.edu/profiles-qa/auth/frdActionServlet?choiceId=facProfile&profileId=3810",
+          "rel": "https://cap.stanford.edu/rel/intranet"
+        },
+        {
+          "href": "https://irt-dev.stanford.edu/profiles-qa/frdActionServlet?choiceId=printerprofile&profileversion=full&profileId=3810",
+          "rel": "https://cap.stanford.edu/rel/pdf"
+        }
+      ]
+    },
+    "names": {
+      "legal": {
+        "firstName": "Henry",
+        "lastName": "Lowe",
+        "middleName": "J"
+      },
+      "preferred": {
+        "firstName": "Henry",
+        "lastName": "Lowe",
+        "middleName": "J."
+      }
+    },
+    "profileId": 3810,
+    "uid": "hlowe",
+    "universityId": "09724972"
+  },
+  "profileId": 3810,
+  "visibility": "public"
+}
