@@ -10,5 +10,9 @@ module ScienceWire
       @email = email
       @seed_list = seed_list
     end
+
+    def first_name_initial
+      first_name.to_s.strip[0].to_s
+    end
   end
 end

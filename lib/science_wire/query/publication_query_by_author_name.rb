@@ -24,15 +24,11 @@ module ScienceWire
         end
 
         def name_query_part
-          %("#{author_attributes.last_name},#{author_attributes.first_name}" or "#{author_attributes.last_name.to_s.upcase},#{first_name_initial.upcase}")
+          %("#{author_attributes.last_name},#{author_attributes.first_name}" or "#{author_attributes.last_name.to_s.upcase},#{author_attributes.first_name_initial.upcase}")
         end
 
         def name_query_part_with_middle(mid)
-          " or \"#{author_attributes.last_name.to_s.upcase},#{first_name_initial.upcase}#{mid.upcase}\""
-        end
-
-        def first_name_initial
-          author_attributes.first_name.to_s.strip[0].to_s
+          " or \"#{author_attributes.last_name.to_s.upcase},#{author_attributes.first_name_initial.upcase}#{mid.upcase}\""
         end
 
         def start_block
@@ -81,7 +77,7 @@ module ScienceWire
                 <Filter>
                   <Column>AuthorFirstName</Column>
                   <Operator>BeginsWith</Operator>
-                  <Value>#{first_name_initial.upcase}</Value>
+                  <Value>#{author_attributes.first_name_initial.upcase}</Value>
                 </Filter>
               </Criterion>
             XML
