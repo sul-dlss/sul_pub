@@ -2,8 +2,6 @@
 # Add your own tasks in files placed in lib/tasks ending in .rake,
 # for example lib/tasks/capistrano.rake, and they will automatically be available to Rake.
 
-task default: [:rubocop, :ci]
-
 # If the config/database.yml file does not exist, use the example file
 # so that the config/application can load.
 File.exist?('config/database.yml') || FileUtils.copy('config/database.yml.example', 'config/database.yml')
@@ -14,12 +12,25 @@ Sulbib::Application.load_tasks
 
 desc 'Continuous integration task run on travis'
 task ci: [:environment] do
+  Rake::Task['rubocop'].invoke
   if Rails.env.test?
     Rake::Task['db:create'].invoke
     Rake::Task['db:migrate'].invoke
-    Rake::Task['spec'].invoke
+    Rake::Task['spec:without-data-integration'].invoke
   else
     system 'rake ci RAILS_ENV=test'
+  end
+end
+
+namespace :spec do
+  require 'rspec/core/rake_task'
+  desc 'spec task that runs only data-integration tests against live ScienceWire'
+  RSpec::Core::RakeTask.new('data-integration') do |t|
+    t.rspec_opts = '--tag data-integration'
+  end
+  desc 'spec task that ignores data-integration tests'
+  RSpec::Core::RakeTask.new('without-data-integration') do |t|
+    t.rspec_opts = '--tag ~data-integration'
   end
 end
 
