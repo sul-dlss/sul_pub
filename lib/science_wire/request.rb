@@ -11,7 +11,7 @@ module ScienceWire
     # @param [String] body
     # @param [String] path
     # @param [Integer] timeout_period
-    def initialize(client:, request_method:, body: '', path: '', timeout_period: 100)
+    def initialize(client:, request_method:, body: '', path: '', timeout_period: 300)
       @client = client
       @request_method = request_method
       @body = body
@@ -31,11 +31,17 @@ module ScienceWire
       # Sets initial connection parameters
       # @return [Faraday::Connection]
       def connection
-        Faraday.new(url: base_url, request: {
-          timeout: timeout_period
-        }) do |faraday|
-          faraday.request :retry, max: 3
-          faraday.adapter Faraday.default_adapter
+        @connection ||= begin
+          conn = Faraday.new(url: base_url) do |faraday|
+            faraday.request :retry, max: 2,
+              interval: 0.5,
+              interval_randomness: 0.5,
+              backoff_factor: 2
+            faraday.adapter :httpclient
+          end
+          conn.options.timeout = timeout_period
+          conn.options.open_timeout = 10
+          conn
         end
       end
 
