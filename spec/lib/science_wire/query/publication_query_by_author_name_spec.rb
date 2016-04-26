@@ -7,7 +7,7 @@ describe ScienceWire::Query::PublicationQueryByAuthorName do
     context 'common first and last name' do
       let(:author_attributes) do
         ScienceWire::AuthorAttributes.new(
-          'smith', 'james', '', '', ''
+          'smith', 'james', '', '', '', 'Example University'
         )
       end
       let(:max_rows) { '200' }
@@ -18,7 +18,7 @@ describe ScienceWire::Query::PublicationQueryByAuthorName do
     context 'middle name only' do
       let(:author_attributes) do
         ScienceWire::AuthorAttributes.new(
-          '', '', 'mary', '', ''
+          '', '', 'mary', '', '', ''
         )
       end
       let(:max_rows) { '200' }
