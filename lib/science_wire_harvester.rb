@@ -167,43 +167,6 @@ class ScienceWireHarvester
     end
   end
 
-  def generate_query_for_author(author)
-    last_name = author.preferred_last_name
-    first_name = author.preferred_first_name
-
-    if @use_middle_name
-      middle_name = author.preferred_middle_name
-    else
-      middle_name = ''
-    end
-
-    seed_list = author.publications.approved.with_sciencewire_id.pluck(:sciencewire_id).uniq
-
-    queries = []
-    @sciencewire_client.generate_suggestion_queries(last_name, first_name, middle_name, author.email, seed_list) do |bod|
-      queries << bod
-    end
-    queries
-  end
-
-  # @param [Array[String]] cap_profile_ids ids to generate files for
-  def generate_smart_queries_for_authors(cap_profile_ids)
-    path = Pathname.new File.join(Settings.SCIENCEWIRE.TMPDIR, 'queries')
-    path.mkpath
-
-    cap_profile_ids.each do |id|
-      auth = Author.where(cap_profile_id: id).first
-      queries = generate_query_for_author auth
-      File.open(path.join(auth.preferred_last_name + '-j.xml'), 'w') do |f|
-        f.puts queries.first
-      end
-      File.open(path.join(auth.preferred_last_name + '-cpd.xml'), 'w') do |f|
-        f.puts queries.last
-      end
-      Rails.logger.info "Finished #{auth.sunetid}"
-    end
-  end
-
   def create_contribs_for_author_ids_and_pub(author_ids, pub)
     author_ids.each do |author_id|
       add_contribution_for_harvest_suggestion(Author.find(author_id), pub)
