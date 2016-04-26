@@ -61,6 +61,16 @@ RAILS_ENV=test bundle exec rspec spec/api/publications_api_spec.rb
 RAILS_ENV=test bundle exec rspec spec/api/publications_api_spec.rb:157
 ```
 
+### Running integration tests
+
+This repository also uses the RSpec tag `data-integration` to define tests that are reliant on external APIs. When creating `data-integration` specs, make sure to add the RSpec tag `'data-integration': true`.
+
+To run the `data-integration` tests, make sure that your private credentials are appropriately configured. There is a convenient rake task to use for running the specs:
+
+```sh
+bundle exec rake spec:data-integration
+```
+
 ### Private Configuration Files
 
 There are private configuration data for this application, manged in a
