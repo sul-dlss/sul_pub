@@ -24,11 +24,11 @@ module ScienceWire
         end
 
         def name_query_part
-          %("#{author_attributes.last_name},#{author_attributes.first_name}" or "#{author_attributes.last_name.to_s.upcase},#{author_attributes.first_name_initial.upcase}")
+          %("#{author_attributes.last_name},#{author_attributes.first_name}" or "#{author_attributes.last_name.upcase},#{author_attributes.first_name_initial.upcase}")
         end
 
         def name_query_part_with_middle(mid)
-          " or \"#{author_attributes.last_name.to_s.upcase},#{author_attributes.first_name_initial.upcase}#{mid.upcase}\""
+          " or \"#{author_attributes.last_name.upcase},#{author_attributes.first_name_initial.upcase}#{mid.upcase}\""
         end
 
         def start_block
