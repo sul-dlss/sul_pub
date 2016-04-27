@@ -33,7 +33,7 @@ module ScienceWire
 
         def text_search_query_predicate
           return "(#{text_search_name_parts}) and \"#{author_attributes.institution}\"" if author_attributes.institution.present?
-          "(#{text_search_name_parts}) and \"Stanford\""
+          "(#{text_search_name_parts}) and \"stanford\""
         end
 
         def start_block
