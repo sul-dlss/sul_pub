@@ -25,4 +25,18 @@ describe ScienceWire::AuthorAttributes do
       end
     end
   end
+  describe '#normalize_institution' do
+    context 'when present' do
+      subject { described_class.new(nil, nil, [], 0, [], 'The University of North Carolina') }
+      it 'normalizes institution name' do
+        expect(subject.institution).to eq 'north carolina'
+      end
+    end
+    context 'when not present' do
+      subject { described_class.new(nil, nil, [], 0, [], '') }
+      it 'returns empty string' do
+        expect(subject.institution).to eq ''
+      end
+    end
+  end
 end

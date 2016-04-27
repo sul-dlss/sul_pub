@@ -9,11 +9,26 @@ module ScienceWire
       @middle_name = middle_name.to_s
       @email = email.to_s
       @seed_list = seed_list
-      @institution = institution.to_s
+      @institution = normalize_institution(institution.to_s)
     end
 
     def first_name_initial
       first_name.strip[0].to_s
+    end
+
+    # Normalize the institution by removing some common name elements that do
+    # nothing to distinguish the institution.
+    def normalize_institution(institution)
+      institution.gsub!(/university/i, '')
+      institution.gsub!(/institute/i, '')
+      institution.gsub!(/organization/i, '')
+      institution.gsub!(/corporation/i, '')
+      institution.gsub!(/and/i, '')
+      institution.gsub!(/the/i, '')
+      institution.gsub!(/of/i, '')
+      # TODO: what to do with 'all' or '*'?
+      institution.strip!
+      institution.downcase # it's not case sensitive
     end
   end
 end
