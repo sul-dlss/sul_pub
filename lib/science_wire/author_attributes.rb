@@ -2,13 +2,14 @@ module ScienceWire
   ##
   # Attributes used for creating author search queries
   class AuthorAttributes
-    attr_reader :last_name, :first_name, :middle_name, :email, :seed_list
-    def initialize(last_name, first_name, middle_name, email, seed_list)
+    attr_reader :last_name, :first_name, :middle_name, :email, :seed_list, :institution
+    def initialize(last_name, first_name, middle_name, email, seed_list, institution = '')
       @last_name = last_name.to_s
       @first_name = first_name.to_s
       @middle_name = middle_name.to_s
       @email = email.to_s
       @seed_list = seed_list
+      @institution = institution.to_s
     end
 
     def first_name_initial

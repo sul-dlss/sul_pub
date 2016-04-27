@@ -7,7 +7,7 @@ module AuthorNameQueries
           <Criteria>
             <Criterion>
               <TextSearch>
-                <QueryPredicate>("smith,james" or "SMITH,J") and Stanford</QueryPredicate>
+                <QueryPredicate>("smith,james" or "SMITH,J") and "Example University"</QueryPredicate>
                 <SearchType>ExactMatch</SearchType>
                 <Columns>AggregateText</Columns>
                 <MaximumRows>200</MaximumRows>
@@ -59,7 +59,7 @@ module AuthorNameQueries
           <Criteria>
             <Criterion>
               <TextSearch>
-                <QueryPredicate>("," or "," or ",M") and Stanford</QueryPredicate>
+                <QueryPredicate>("," or "," or ",M") and "Stanford"</QueryPredicate>
                 <SearchType>ExactMatch</SearchType>
                 <Columns>AggregateText</Columns>
                 <MaximumRows>200</MaximumRows>

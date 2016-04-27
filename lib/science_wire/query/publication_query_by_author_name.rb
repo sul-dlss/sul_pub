@@ -31,6 +31,11 @@ module ScienceWire
           " or \"#{author_attributes.last_name.upcase},#{author_attributes.first_name_initial.upcase}#{mid.upcase}\""
         end
 
+        def text_search_query_predicate
+          return "(#{text_search_name_parts}) and \"#{author_attributes.institution}\"" if author_attributes.institution.present?
+          "(#{text_search_name_parts}) and \"Stanford\""
+        end
+
         def start_block
           <<-XML
           <![CDATA[
@@ -45,7 +50,7 @@ module ScienceWire
           <<-XML
             <Criterion>
               <TextSearch>
-                <QueryPredicate>(#{text_search_name_parts}) and Stanford</QueryPredicate>
+                <QueryPredicate>#{text_search_query_predicate}</QueryPredicate>
                 <SearchType>ExactMatch</SearchType>
                 <Columns>AggregateText</Columns>
                 <MaximumRows>#{max_rows}</MaximumRows>
