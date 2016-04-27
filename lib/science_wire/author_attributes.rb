@@ -27,6 +27,7 @@ module ScienceWire
       institution.gsub!(/the/i, '')
       institution.gsub!(/of/i, '')
       # TODO: what to do with 'all' or '*'?
+      institution.gsub!(/\s+/, ' ')
       institution.strip!
       institution.downcase # it's not case sensitive
     end
