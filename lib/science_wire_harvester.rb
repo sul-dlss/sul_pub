@@ -133,17 +133,12 @@ class ScienceWireHarvester
     @sw_harvest_logger.info "#{@matches_on_title_count} existing publications were deduped by title."
   end
 
+  def increment_authors_with_limited_seed_data_count
+    @authors_with_no_seed_data_count += 1
+  end
+
   def harvest_for_author(author)
-    last_name = author.preferred_last_name
-    first_name = author.preferred_first_name
-    middle_name = @use_middle_name ? author.preferred_middle_name : ''
-    seed_list = author.publications.approved.with_sciencewire_id.pluck(:sciencewire_id).uniq
-    if seed_list.size < 50
-      sciencewire_ids = @sciencewire_client.query_sciencewire_by_author_name(first_name, middle_name, last_name)
-      @authors_with_no_seed_data_count += 1
-    else
-      sciencewire_ids = @sciencewire_client.get_sciencewire_id_suggestions(last_name, first_name, middle_name, author.email, seed_list)
-    end
+    sciencewire_ids = ScienceWire::HarvestBroker.new(author, self).generate_ids
     sciencewire_ids.each do |sw_id|
       @total_suggested_count += 1
       was_record_created = create_contrib_for_pub_if_exists(sw_id, author)
