@@ -111,16 +111,22 @@ module ScienceWire
           XML
         end
 
-        def end_block
+        def sort_columns
           <<-XML
-          </Criteria>
-            </Criterion>
             <Columns>
               <SortColumn>
                 <Column>Rank</Column>
                 <Direction>Descending</Direction>
               </SortColumn>
             </Columns>
+          XML
+        end
+
+        def end_block
+          <<-XML
+              </Criteria>
+            </Criterion>
+            #{sort_columns}
            <MaximumRows>#{max_rows}</MaximumRows>
           </query>
             ]]>
