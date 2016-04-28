@@ -52,7 +52,7 @@ module ScienceWire
                 </Criteria>
               </Criterion>
               #{sort_columns}
-              #{maximum_rows}
+              <MaximumRows>#{max_rows}</MaximumRows>
             </query>
           XML
         end
@@ -125,12 +125,6 @@ module ScienceWire
                 <Direction>Descending</Direction>
               </SortColumn>
             </Columns>
-          XML
-        end
-
-        def maximum_rows
-          <<-XML
-            <MaximumRows>#{max_rows}</MaximumRows>
           XML
         end
     end
