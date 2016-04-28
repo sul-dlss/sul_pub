@@ -12,7 +12,12 @@ module ScienceWire
       end
 
       def generate
-        start_block << text_search_criterion << last_name_filter_criterion << first_name_filter_criterion << end_block
+        start_block <<
+          text_search_criterion <<
+          last_name_filter_criterion <<
+          first_name_filter_criterion <<
+          document_category_criterion <<
+          end_block
       end
 
       private
@@ -91,7 +96,7 @@ module ScienceWire
           end
         end
 
-        def end_block
+        def document_category_criterion
           <<-XML
             <Criterion>
               <Filter>
@@ -103,6 +108,11 @@ module ScienceWire
                 </Values>
               </Filter>
             </Criterion>
+          XML
+        end
+
+        def end_block
+          <<-XML
           </Criteria>
             </Criterion>
             <Columns>
