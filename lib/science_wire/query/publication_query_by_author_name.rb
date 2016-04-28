@@ -36,8 +36,15 @@ module ScienceWire
         end
 
         def text_search_query_predicate
-          return "(#{text_search_name_parts}) and \"#{author_attributes.institution}\"" if author_attributes.institution.present?
-          "(#{text_search_name_parts}) and \"stanford\""
+          if author_attributes.institution.present? && author_attributes.email.present?
+            "(#{text_search_name_parts}) and \"#{author_attributes.institution}\" and \"#{author_attributes.email}\""
+          elsif author_attributes.institution.present? && !author_attributes.email.present?
+            "(#{text_search_name_parts}) and \"#{author_attributes.institution}\""
+          elsif !author_attributes.institution.present? && author_attributes.email.present?
+            "(#{text_search_name_parts}) and \"#{author_attributes.email}\""
+          else
+            "(#{text_search_name_parts}) and \"stanford\""
+          end
         end
 
         def query
