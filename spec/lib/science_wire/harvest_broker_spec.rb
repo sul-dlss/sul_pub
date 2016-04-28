@@ -2,13 +2,20 @@ require 'spec_helper'
 
 describe ScienceWire::HarvestBroker do
   let(:author) { create(:author) }
+  let(:alt_author) { create(:author_with_alternate_identities, alt_count: 3) }
   let(:contribution) { create(:contribution, author: author) }
   let(:harvester) { ScienceWireHarvester.new }
   subject { described_class.new(author, harvester) }
+  describe '#initialize' do
+    it 'default arguments' do
+      expect(subject.alternate_name_query).to be false
+    end
+  end
   describe '#generate_ids' do
-    it 'uses ids generated from an author' do
+    it 'a set of ids generated from an author and alternate names' do
       expect(subject).to receive(:ids_for_author).and_return([1])
-      expect(subject.generate_ids).to eq [1]
+      expect(subject).to receive(:ids_for_alterate_names).and_return([1, 2])
+      expect(subject.generate_ids).to eq [1, 2]
     end
   end
   describe '#ids_for_author' do
@@ -28,6 +35,23 @@ describe ScienceWire::HarvestBroker do
           .with('Edler', 'Alice', 'Jim', 'alice.edler@stanford.edu', duck_type(:[]))
           .and_return([1])
         expect(subject.ids_for_author).to eq [1]
+      end
+    end
+  end
+  describe '#ids_for_alterate_names' do
+    context 'when alternate_name_query is disabled' do
+      subject { described_class.new(alt_author, harvester, alternate_name_query: false) }
+      it 'returns an array' do
+        expect(subject.ids_for_alterate_names).to be_an Array
+        expect(subject.ids_for_alterate_names).to eq []
+      end
+    end
+    context 'when alternate_name_query is enabled' do
+      subject { described_class.new(alt_author, harvester, alternate_name_query: true) }
+      it 'returns an array of unique alternate name query ids' do
+        expect(subject).to receive(:ids_from_dumb_query).exactly(3).times
+          .and_return([1, 2], [2, 3], [3, 4])
+        expect(subject.ids_for_alterate_names).to eq [1, 2, 3, 4]
       end
     end
   end

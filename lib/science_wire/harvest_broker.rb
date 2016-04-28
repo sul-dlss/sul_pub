@@ -2,24 +2,27 @@ module ScienceWire
   ##
   # Brokers queries for an author
   class HarvestBroker
-    attr_reader :author, :sciencewire_harvester, :seed_list
+    attr_reader :author, :sciencewire_harvester, :seed_list, :alternate_name_query
     delegate :use_middle_name, :sciencewire_client, to: :sciencewire_harvester
 
     ##
     # @param [Author] author
     # @param [ScienceWireHarvester] sciencewire_harvester
-    def initialize(author, sciencewire_harvester)
+    def initialize(author, sciencewire_harvester, alternate_name_query: false)
       @author = author
       @sciencewire_harvester = sciencewire_harvester
+      @alternate_name_query = alternate_name_query
     end
 
     ##
+    # Returns a unique Array of ids for an Author's publications
     # @return [Array]
     def generate_ids
-      ids_for_author
+      ids_for_author | ids_for_alterate_names
     end
 
     ##
+    # The traditional Author only harvest approach
     # @return [Array]
     def ids_for_author
       if seed_list.size < 50
@@ -31,6 +34,21 @@ module ScienceWire
         ids_from_smart_query(
           author_last_name, author_first_name, author_middle_name, author.email, seed_list
         )
+      end
+    end
+
+    ##
+    # Generates alternate name ids using the "dumb" query
+    # @return [Array]
+    def ids_for_alterate_names
+      if alternate_name_query
+        author.author_identities.map do |author_identity|
+          ids_from_dumb_query(
+            author_identity.first_name, author_identity.middle_name, author_identity.last_name
+          ).flatten
+        end.flatten.uniq
+      else
+        []
       end
     end
 
