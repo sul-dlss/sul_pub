@@ -12,12 +12,11 @@ module ScienceWire
       end
 
       def generate
-        start_block <<
-          text_search_criterion <<
-          last_name_filter_criterion <<
-          first_name_filter_criterion <<
-          document_category_criterion <<
-          end_block
+        <<-XML
+          <![CDATA[
+             #{query}
+            ]]>
+        XML
       end
 
       private
@@ -41,13 +40,20 @@ module ScienceWire
           "(#{text_search_name_parts}) and \"stanford\""
         end
 
-        def start_block
+        def query
           <<-XML
-          <![CDATA[
-             <query xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/
-            XMLSchema">
+            <query xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
               <Criterion>
                 <Criteria>
+                  #{text_search_criterion}
+                  #{last_name_filter_criterion}
+                  #{first_name_filter_criterion}
+                  #{document_category_criterion}
+                </Criteria>
+              </Criterion>
+              #{sort_columns}
+              #{maximum_rows}
+            </query>
           XML
         end
 
@@ -125,17 +131,6 @@ module ScienceWire
         def maximum_rows
           <<-XML
             <MaximumRows>#{max_rows}</MaximumRows>
-          XML
-        end
-
-        def end_block
-          <<-XML
-              </Criteria>
-            </Criterion>
-            #{sort_columns}
-            #{maximum_rows}
-          </query>
-            ]]>
           XML
         end
     end
