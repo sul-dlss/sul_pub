@@ -122,12 +122,18 @@ module ScienceWire
           XML
         end
 
+        def maximum_rows
+          <<-XML
+            <MaximumRows>#{max_rows}</MaximumRows>
+          XML
+        end
+
         def end_block
           <<-XML
               </Criteria>
             </Criterion>
             #{sort_columns}
-           <MaximumRows>#{max_rows}</MaximumRows>
+            #{maximum_rows}
           </query>
             ]]>
           XML
