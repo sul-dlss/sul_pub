@@ -25,8 +25,8 @@ class ScienceWireClient
     raise
   end
 
-  def query_sciencewire_by_author_name(first_name, middle_name, last_name, max_rows = 200, institution = '')
-    author_attributes = ScienceWire::AuthorAttributes.new(last_name, first_name, middle_name, '', '', institution)
+  def query_sciencewire_by_author_name(first_name, middle_name, last_name, email='', max_rows = 200, institution = '')
+    author_attributes = ScienceWire::AuthorAttributes.new(last_name, first_name, middle_name, email, '', institution)
     author_name = ScienceWire::Query::PublicationQueryByAuthorName.new(author_attributes, max_rows)
     xml_query = author_name.generate
 

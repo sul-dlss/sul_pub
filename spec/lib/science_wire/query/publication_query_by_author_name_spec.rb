@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe ScienceWire::Query::PublicationQueryByAuthorName do
   include AuthorNameQueries
+  include InstitutionEmailQueries
   let(:max_rows) { 200 }
   let(:seeds) { [1, 2, 3] }
   let(:institution) { 'Example University' }
@@ -49,6 +50,36 @@ describe ScienceWire::Query::PublicationQueryByAuthorName do
         )
       end
       it_behaves_like 'XSD validates'
+    end
+    context 'institution and email provided' do
+      let(:author_attributes) do
+        ScienceWire::AuthorAttributes.new(
+          'brown', 'charlie', '', 'cbrown@example.com', '', institution
+        )
+      end
+      it 'generates a query' do
+        expect(without_cdata(subject.generate)).to be_equivalent_to(without_cdata(institution_and_email_provided))
+      end
+    end
+    context 'institution and no email provided' do
+      let(:author_attributes) do
+        ScienceWire::AuthorAttributes.new(
+          'brown', 'charlie', '', '', '', institution
+        )
+      end
+      it 'generates a query' do
+        expect(without_cdata(subject.generate)).to be_equivalent_to(without_cdata(institution_and_no_email_provided))
+      end
+    end
+    context 'no institution but email provided' do
+      let(:author_attributes) do
+        ScienceWire::AuthorAttributes.new(
+          'brown', 'charlie', '', 'cbrown@example.com', '', ''
+        )
+      end
+      it 'generates a query' do
+        expect(without_cdata(subject.generate)).to be_equivalent_to(without_cdata(no_institution_but_email_provided))
+      end
     end
   end
 end
