@@ -4,11 +4,12 @@ describe ScienceWire::Query::PublicationQueryByAuthorName do
   include AuthorDateQueries
   include AuthorNameQueries
   include InstitutionEmailQueries
+  include PublicationQueryXsd
   let(:max_rows) { 200 }
   let(:seeds) { [1, 2, 3] }
   let(:institution) { 'Example University' }
-  # The XSD is defined in fixture/queries/author_name_queries
-  let(:xsd) { author_publication_query_xsd }
+  # The XSD is defined in fixture/queries/publication_query_xsd
+  let(:xsd) { publication_query_xsd }
   let(:xml) { without_cdata(subject.generate) }
 
   shared_examples 'XSD validates' do
