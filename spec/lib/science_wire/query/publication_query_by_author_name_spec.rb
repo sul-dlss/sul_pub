@@ -54,10 +54,9 @@ describe ScienceWire::Query::PublicationQueryByAuthorName do
     context 'institution and email provided' do
       let(:author_attributes) do
         ScienceWire::AuthorAttributes.new(
-          'brown', 'charlie', '', 'cbrown@example.com', '', 'Example University'
+          'brown', 'charlie', '', 'cbrown@example.com', '', institution
         )
       end
-      let(:max_rows) { '200' }
       it 'generates a query' do
         expect(without_cdata(subject.generate)).to be_equivalent_to(without_cdata(institution_and_email_provided))
       end
@@ -65,10 +64,9 @@ describe ScienceWire::Query::PublicationQueryByAuthorName do
     context 'institution and no email provided' do
       let(:author_attributes) do
         ScienceWire::AuthorAttributes.new(
-          'brown', 'charlie', '', '', '', 'Example University'
+          'brown', 'charlie', '', '', '', institution
         )
       end
-      let(:max_rows) { '200' }
       it 'generates a query' do
         expect(without_cdata(subject.generate)).to be_equivalent_to(without_cdata(institution_and_no_email_provided))
       end
@@ -79,7 +77,6 @@ describe ScienceWire::Query::PublicationQueryByAuthorName do
           'brown', 'charlie', '', 'cbrown@example.com', '', ''
         )
       end
-      let(:max_rows) { '200' }
       it 'generates a query' do
         expect(without_cdata(subject.generate)).to be_equivalent_to(without_cdata(no_institution_but_email_provided))
       end

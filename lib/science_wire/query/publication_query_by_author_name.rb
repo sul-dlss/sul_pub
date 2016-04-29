@@ -35,13 +35,15 @@ module ScienceWire
           " or \"#{author_attributes.last_name.upcase},#{author_attributes.first_name_initial.upcase}#{mid.upcase}\""
         end
 
+        # Assume that `author_attributes.email` is a string containing one email address
+        # (the email is not an array of emails or a comma delimited list of emails).
         def text_search_query_predicate
           if author_attributes.institution.present? && author_attributes.email.present?
-            "(#{text_search_name_parts}) and \"#{author_attributes.institution}\" and \"#{author_attributes.email}\""
+            "(#{text_search_name_parts} or \"#{author_attributes.email}\") and \"#{author_attributes.institution}\""
           elsif author_attributes.institution.present? && !author_attributes.email.present?
             "(#{text_search_name_parts}) and \"#{author_attributes.institution}\""
           elsif !author_attributes.institution.present? && author_attributes.email.present?
-            "(#{text_search_name_parts}) and \"#{author_attributes.email}\""
+            "#{text_search_name_parts} or \"#{author_attributes.email}\""
           else
             "(#{text_search_name_parts}) and \"stanford\""
           end

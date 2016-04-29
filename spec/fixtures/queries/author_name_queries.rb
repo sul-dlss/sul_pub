@@ -169,5 +169,4 @@ XSD
     ]]>
     XML
   end
-
 end
