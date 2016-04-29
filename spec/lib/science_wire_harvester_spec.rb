@@ -6,40 +6,18 @@ describe ScienceWireHarvester, :vcr do
   let(:author) { create :author }
   let(:science_wire_harvester) { described_class.new }
   let(:science_wire_client) { science_wire_harvester.sciencewire_client }
+  let(:harvest_broker) { instance_double(ScienceWire::HarvestBroker) }
   let(:pub_with_sw_id) { create :pub_with_sw_id }
   let(:pub_with_sw_id_and_pmid) { create :pub_with_sw_id_and_pmid }
   let(:contrib_for_sw_pub) { create :contrib, publication: pub_with_sw_id_and_pmid, author: author }
 
   describe '#harvest_for_author' do
-    context 'for author with first name last name only' do
-      it 'uses the client query by name method', :vcr do
-        expect(science_wire_client).to receive(:query_sciencewire_by_author_name).and_call_original
-        science_wire_harvester.harvest_for_author(author_without_seed_data)
-      end
-
-      it "doesn't use the client query by email or seed method", :vcr do
-        expect(science_wire_client).not_to receive(:get_sciencewire_id_suggestions)
-        science_wire_harvester.harvest_for_author(author_without_seed_data)
-      end
+    before do
+      expect(ScienceWire::HarvestBroker).to receive(:new).and_return(harvest_broker)
     end
-
-    context 'seed records and querying' do
-      it 'uses the publication query by name if the author has less than 10 seeds' do
-        skip
-        # science_wire_client.should_not_receive(:query_sciencewire_by_author_name)
-        # science_wire_harvester.harvest_for_author(author_with_seed_email)
-      end
-
-      it 'uses the suggestion query if the author has more than 10 seeds' do
-        skip
-        # science_wire_client.should_receive(:get_sciencewire_id_suggestions).and_call_original
-        # science_wire_harvester.harvest_for_author(author_with_seed_email)
-      end
-    end
-
     context 'when sciencewire suggestions are made' do
       it 'calls create_contrib_for_pub_if_exists' do
-        expect(science_wire_client).to receive(:query_sciencewire_by_author_name).and_return(%w(42711845 22686456))
+        expect(harvest_broker).to receive(:generate_ids).and_return(%w(42711845 22686456))
         expect(science_wire_harvester).to receive(:create_contrib_for_pub_if_exists).once.with('42711845', author_without_seed_data)
         expect(science_wire_harvester).to receive(:create_contrib_for_pub_if_exists).once.with('22686456', author_without_seed_data)
         science_wire_harvester.harvest_for_author(author_without_seed_data)
@@ -47,7 +25,7 @@ describe ScienceWireHarvester, :vcr do
 
       context 'and when pub already exists locally' do
         it 'adds nothing to pub med retrieval queue' do
-          expect(science_wire_client).to receive(:query_sciencewire_by_author_name).and_return(['42711845'])
+          expect(harvest_broker).to receive(:generate_ids).and_return(['42711845'])
           expect(science_wire_harvester).to receive(:create_contrib_for_pub_if_exists).once.with('42711845', author_without_seed_data).and_return(true)
           expect do
             science_wire_harvester.harvest_for_author(author_without_seed_data)
@@ -55,7 +33,7 @@ describe ScienceWireHarvester, :vcr do
         end
 
         it 'adds nothing to sciencewire retrieval queue' do
-          expect(science_wire_client).to receive(:query_sciencewire_by_author_name).and_return(['42711845'])
+          expect(harvest_broker).to receive(:generate_ids).and_return(['42711845'])
           expect(science_wire_harvester).to receive(:create_contrib_for_pub_if_exists).once.with('42711845', author_without_seed_data).and_return(true)
           expect do
             science_wire_harvester.harvest_for_author(author_without_seed_data)
@@ -65,7 +43,7 @@ describe ScienceWireHarvester, :vcr do
 
       context "and when pub doesn't exist locally" do
         it 'adds to sciencewire retrieval queue' do
-          expect(science_wire_client).to receive(:query_sciencewire_by_author_name).and_return(['42711845'])
+          expect(harvest_broker).to receive(:generate_ids).and_return(['42711845'])
           expect(science_wire_harvester).to receive(:create_contrib_for_pub_if_exists).once.with('42711845', author_without_seed_data).and_return(false)
           expect do
             science_wire_harvester.harvest_for_author(author_without_seed_data)

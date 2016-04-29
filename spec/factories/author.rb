@@ -26,4 +26,15 @@ FactoryGirl.define do
   factory :inactive_author, parent: :author do
     active_in_cap false
   end
+
+  factory :author_with_alternate_identities, parent: :author do
+    transient do
+      alt_count 1 # default number of alternate identities to create
+    end
+    after(:create) do |author, evaluator|
+      evaluator.alt_count.times do
+        create(:author_identity, author: author)
+      end
+    end
+  end
 end
