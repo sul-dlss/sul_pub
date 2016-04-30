@@ -4,6 +4,7 @@ ENV['RAILS_ENV'] ||= 'test'
 require 'pry'  # for debugging specs
 
 require 'fixtures/queries/suggestion_queries'
+require 'fixtures/queries/suggestion_query_xsd'
 require 'fixtures/responses/item_responses'
 require 'fixtures/queries/author_date_queries'
 require 'fixtures/queries/author_name_queries'
