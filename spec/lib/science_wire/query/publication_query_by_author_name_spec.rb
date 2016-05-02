@@ -82,6 +82,16 @@ describe ScienceWire::Query::PublicationQueryByAuthorName do
         expect(without_cdata(subject.generate)).to be_equivalent_to(without_cdata(no_institution_but_email_provided))
       end
     end
+    context 'no institution no email provided' do
+      let(:author_attributes) do
+        ScienceWire::AuthorAttributes.new(
+          'brown', 'charlie', '', '', '', ''
+        )
+      end
+      it 'generates a query' do
+        expect(without_cdata(subject.generate)).to be_equivalent_to(without_cdata(no_institution_no_email_provided))
+      end
+    end
     context 'author with dates' do
       let(:author_attributes) do
         # last_name, first_name, middle_name, email, seed_list, institution, start_date, end_date
