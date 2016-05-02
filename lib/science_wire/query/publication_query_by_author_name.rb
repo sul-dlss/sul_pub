@@ -57,6 +57,8 @@ module ScienceWire
                   #{text_search_criterion}
                   #{last_name_filter_criterion}
                   #{first_name_filter_criterion}
+                  #{start_date_filter_criterion}
+                  #{end_date_filter_criterion}
                   #{document_category_criterion}
                 </Criteria>
               </Criterion>
@@ -103,6 +105,38 @@ module ScienceWire
                   <Column>AuthorFirstName</Column>
                   <Operator>BeginsWith</Operator>
                   <Value>#{author_attributes.first_name_initial.upcase}</Value>
+                </Filter>
+              </Criterion>
+            XML
+          else
+            ''
+          end
+        end
+
+        def start_date_filter_criterion
+          if author_attributes.start_date.present?
+            <<-XML
+              <Criterion>
+                <Filter>
+                  <Column>PublicationDate</Column>
+                  <Operator>GreaterThanOrEqualTo</Operator>
+                  <Value>#{author_attributes.start_date}</Value>
+                </Filter>
+              </Criterion>
+            XML
+          else
+            ''
+          end
+        end
+
+        def end_date_filter_criterion
+          if author_attributes.end_date.present?
+            <<-XML
+              <Criterion>
+                <Filter>
+                  <Column>PublicationDate</Column>
+                  <Operator>LessThanOrEqualTo</Operator>
+                  <Value>#{author_attributes.end_date}</Value>
                 </Filter>
               </Criterion>
             XML
