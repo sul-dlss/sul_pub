@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe ScienceWire::Query::PublicationQueryByAuthorName do
+  include AuthorDateQueries
   include AuthorNameQueries
   include InstitutionEmailQueries
   let(:max_rows) { 200 }
@@ -80,6 +81,19 @@ describe ScienceWire::Query::PublicationQueryByAuthorName do
       it 'generates a query' do
         expect(without_cdata(subject.generate)).to be_equivalent_to(without_cdata(no_institution_but_email_provided))
       end
+    end
+    context 'author with dates' do
+      let(:author_attributes) do
+        # last_name, first_name, middle_name, email, seed_list, institution, start_date, end_date
+        ScienceWire::AuthorAttributes.new(
+          'Bloggs', 'Fred', nil, nil, nil, institution,
+          Date.new(1990, 1, 1), Date.new(2000, 12, 31)
+        )
+      end
+      it 'generates a query' do
+        expect(xml).to be_equivalent_to(without_cdata(author_with_dates))
+      end
+      it_behaves_like 'XSD validates'
     end
   end
 end

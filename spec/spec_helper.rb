@@ -5,6 +5,7 @@ require 'pry'  # for debugging specs
 
 require 'fixtures/queries/suggestion_queries'
 require 'fixtures/responses/item_responses'
+require 'fixtures/queries/author_date_queries'
 require 'fixtures/queries/author_name_queries'
 require 'fixtures/queries/institution_and_email_queries'
 require 'rspec/matchers'
