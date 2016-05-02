@@ -93,29 +93,21 @@ class CapAuthorsPoller
   end
 
   def process_record_for_existing_author(author, record)
-    author.update_from_cap_authorship_profile_hash(record)
     logger.info "Updating author_id: #{author.id}, cap_profile_id: #{author.cap_profile_id}"
-    @authors_updated_count += 1
+    author.update_from_cap_authorship_profile_hash(record)
 
     update_existing_contributions author, record['authorship'] if record['authorship'].present?
 
-    auth_changed = author.changed?
-    author.save!
+    queue_author_for_harvest author, "No import settings or author did not change. Skipping cap_profile_id: #{author.cap_profile_id}"
 
-    if auth_changed && author.harvestable?
-      @new_or_changed_authors_to_harvest_queue << author.id
-    else
-      @no_sw_harvest_count += 1
-      logger.info "No import settings or author did not change. Skipping cap_profile_id: #{author.cap_profile_id}"
-    end
+    author.save!
+    @authors_updated_count += 1
   end
 
   def process_record_for_new_author(cap_profile_id, record)
     author = Author.fetch_from_cap_and_create(cap_profile_id, @cap_http_client)
     logger.info "Creating author_id: #{author.id}, cap_profile_id: #{cap_profile_id}"
     author.update_from_cap_authorship_profile_hash(record)
-    author.save!
-    @new_author_count += 1
 
     if record['authorship'].present?
       # TODO: not clear to me *why* authorship is ignored for new authors...
@@ -123,11 +115,20 @@ class CapAuthorsPoller
       @new_auth_with_contribs += 1
     end
 
-    if author.harvestable?
+    queue_author_for_harvest author, "Author marked as not harvestable. Skipping cap_profile_id: #{cap_profile_id}"
+
+    author.save!
+    @new_author_count += 1
+  end
+
+  # Add author to job queue if it's harvestable and new/changed
+  # @param [String] `skip_message` logs this message if it skips adding author to queue
+  def queue_author_for_harvest(author, skip_message)
+    if (author.new_record? || author.changed?) && author.harvestable?
       @new_or_changed_authors_to_harvest_queue << author.id
     else
       @no_sw_harvest_count += 1
-      logger.info "Author marked as not harvestable. Skipping cap_profile_id: #{cap_profile_id}"
+      logger.info skip_message
     end
   end
 

@@ -101,7 +101,8 @@ describe CapAuthorsPoller, :vcr do
         expect(queue).to include(author.id)
       end
 
-      it 'skips harvesting for an author' do # TODO: *why* do we skip harvesting?
+      it 'skips harvesting for an existing author if not marked harvestable' do
+        allow(author).to receive(:changed?).and_return(true)
         expect(author).to receive(:harvestable?).and_return(false)
         count = subject.instance_variable_get('@no_sw_harvest_count')
         subject.process_record(author_record)
@@ -121,18 +122,35 @@ describe CapAuthorsPoller, :vcr do
         expect(Author).to receive(:find_by_cap_profile_id).with(author.cap_profile_id).and_return(nil)
         expect(Author).to receive(:fetch_from_cap_and_create).with(author.cap_profile_id, instance_of(CapHttpClient)).and_return(author)
         expect(author).to receive(:'save!').and_call_original
+        allow(author).to receive(:new_record?).and_return(true)
       end
 
       it 'creates a new author' do
+        count = subject.instance_variable_get('@new_author_count')
         subject.process_record(author_record)
+        expect(subject.instance_variable_get('@new_author_count')).to eq(count + 1)
+      end
+
+      it 'harvests for new authors marked harvestable' do
+        expect(author).to receive(:harvestable?).and_return(true)
+        queue = subject.instance_variable_get('@new_or_changed_authors_to_harvest_queue')
+        subject.process_record(author_record)
+        expect(queue).to include(author.id)
+      end
+
+      it 'skips harvests for new authors not marked harvestable' do
+        expect(author).to receive(:harvestable?).and_return(false)
+        count = subject.instance_variable_get('@no_sw_harvest_count')
+        subject.process_record(author_record)
+        expect(subject.instance_variable_get('@no_sw_harvest_count')).to eq(count + 1)
       end
 
       context 'with an authorship record' do
         it 'recognizes authorship contributions' do
-          allow(author).to receive(:new_record?).and_return(true)
           count = subject.instance_variable_get('@new_auth_with_contribs')
           subject.process_record(authorship_record)
           expect(subject.instance_variable_get('@new_auth_with_contribs')).to eq(count + 1)
+          expect(subject).not_to receive(:update_existing_contributions)
         end
       end
     end
