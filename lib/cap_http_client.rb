@@ -2,8 +2,10 @@ require 'socket'
 class CapHttpClient
   # Fetch a single object from CAP server and test its response
   def self.working?
-    response = new.get_batch_from_cap_api(1, 1)
-    response['count'] == 1 && response['totalCount'] > 0 && response['values'].present?
+    response = new.get_auth_profile(41135)
+    response.is_a?(Hash) &&
+    response['profileId'] == 41135 &&
+    response['profile']['displayName'] == 'Darren Hardy'
   end
 
   attr_reader :auth

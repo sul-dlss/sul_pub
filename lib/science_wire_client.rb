@@ -8,10 +8,13 @@ class ScienceWireClient
     )
   end
 
-  # Fetch a single publication by DOI and convert to pub_hash
+  # Fetch a single publication by DOI, convert to pub_hash, then check the content for a match
   def self.working?
     pub_hashes = new.get_pub_by_doi('10.1038/nature11397', 1)
-    pub_hashes.present? && pub_hashes.length == 1 && pub_hashes.first.is_a?(Hash)
+    pub_hashes.is_a?(Array) &&
+    pub_hashes.first.is_a?(Hash) &&
+    pub_hashes.first[:sw_id] == '61158927' &&
+    pub_hashes.first[:title] == 'An index to assess the health and benefits of the global ocean'
   end
 
   def get_sciencewire_id_suggestions(last_name, first_name, middle_name, email, seed_list)
