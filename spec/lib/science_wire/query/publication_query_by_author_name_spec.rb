@@ -4,11 +4,12 @@ describe ScienceWire::Query::PublicationQueryByAuthorName do
   include AuthorDateQueries
   include AuthorNameQueries
   include InstitutionEmailQueries
+  include PublicationQueryXsd
   let(:max_rows) { 200 }
   let(:seeds) { [1, 2, 3] }
   let(:institution) { 'Example University' }
-  # The XSD is defined in fixture/queries/author_name_queries
-  let(:xsd) { author_publication_query_xsd }
+  # The XSD is defined in fixture/queries/publication_query_xsd
+  let(:xsd) { publication_query_xsd }
   let(:xml) { without_cdata(subject.generate) }
 
   shared_examples 'XSD validates' do
@@ -59,8 +60,9 @@ describe ScienceWire::Query::PublicationQueryByAuthorName do
         )
       end
       it 'generates a query' do
-        expect(without_cdata(subject.generate)).to be_equivalent_to(without_cdata(institution_and_email_provided))
+        expect(xml).to be_equivalent_to(without_cdata(institution_and_email_provided))
       end
+      it_behaves_like 'XSD validates'
     end
     context 'institution and no email provided' do
       let(:author_attributes) do
@@ -69,8 +71,9 @@ describe ScienceWire::Query::PublicationQueryByAuthorName do
         )
       end
       it 'generates a query' do
-        expect(without_cdata(subject.generate)).to be_equivalent_to(without_cdata(institution_and_no_email_provided))
+        expect(xml).to be_equivalent_to(without_cdata(institution_and_no_email_provided))
       end
+      it_behaves_like 'XSD validates'
     end
     context 'no institution but email provided' do
       let(:author_attributes) do
@@ -79,8 +82,9 @@ describe ScienceWire::Query::PublicationQueryByAuthorName do
         )
       end
       it 'generates a query' do
-        expect(without_cdata(subject.generate)).to be_equivalent_to(without_cdata(no_institution_but_email_provided))
+        expect(xml).to be_equivalent_to(without_cdata(no_institution_but_email_provided))
       end
+      it_behaves_like 'XSD validates'
     end
     context 'no institution no email provided' do
       let(:author_attributes) do
@@ -89,8 +93,9 @@ describe ScienceWire::Query::PublicationQueryByAuthorName do
         )
       end
       it 'generates a query' do
-        expect(without_cdata(subject.generate)).to be_equivalent_to(without_cdata(no_institution_no_email_provided))
+        expect(xml).to be_equivalent_to(without_cdata(no_institution_no_email_provided))
       end
+      it_behaves_like 'XSD validates'
     end
     context 'author with dates' do
       let(:author_attributes) do
