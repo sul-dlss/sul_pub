@@ -60,8 +60,9 @@ describe ScienceWire::Query::PublicationQueryByAuthorName do
         )
       end
       it 'generates a query' do
-        expect(without_cdata(subject.generate)).to be_equivalent_to(without_cdata(institution_and_email_provided))
+        expect(xml).to be_equivalent_to(without_cdata(institution_and_email_provided))
       end
+      it_behaves_like 'XSD validates'
     end
     context 'institution and no email provided' do
       let(:author_attributes) do
@@ -70,8 +71,9 @@ describe ScienceWire::Query::PublicationQueryByAuthorName do
         )
       end
       it 'generates a query' do
-        expect(without_cdata(subject.generate)).to be_equivalent_to(without_cdata(institution_and_no_email_provided))
+        expect(xml).to be_equivalent_to(without_cdata(institution_and_no_email_provided))
       end
+      it_behaves_like 'XSD validates'
     end
     context 'no institution but email provided' do
       let(:author_attributes) do
@@ -80,8 +82,9 @@ describe ScienceWire::Query::PublicationQueryByAuthorName do
         )
       end
       it 'generates a query' do
-        expect(without_cdata(subject.generate)).to be_equivalent_to(without_cdata(no_institution_but_email_provided))
+        expect(xml).to be_equivalent_to(without_cdata(no_institution_but_email_provided))
       end
+      it_behaves_like 'XSD validates'
     end
     context 'no institution no email provided' do
       let(:author_attributes) do
@@ -90,8 +93,9 @@ describe ScienceWire::Query::PublicationQueryByAuthorName do
         )
       end
       it 'generates a query' do
-        expect(without_cdata(subject.generate)).to be_equivalent_to(without_cdata(no_institution_no_email_provided))
+        expect(xml).to be_equivalent_to(without_cdata(no_institution_no_email_provided))
       end
+      it_behaves_like 'XSD validates'
     end
     context 'author with dates' do
       let(:author_attributes) do
