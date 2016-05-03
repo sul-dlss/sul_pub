@@ -13,11 +13,13 @@ module ScienceWire
 
       ##
       # @param [String] ids
-      def publication_items(ids)
+      def publication_items(ids, format = 'xml')
+        path = Settings.SCIENCEWIRE.PUBLICATION_ITEMS_PATH
+        path.gsub!('format=xml', 'format=json') if format == 'json'
         ScienceWire::Request.new(
           client: client,
           request_method: :get,
-          path: Settings.SCIENCEWIRE.PUBLICATION_ITEMS_PATH + ids,
+          path: path + ids,
           timeout_period: 500
         ).perform
       end
