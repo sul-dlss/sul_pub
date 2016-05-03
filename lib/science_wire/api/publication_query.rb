@@ -28,7 +28,7 @@ module ScienceWire
         ScienceWire::Request.new(
           client: client,
           request_method: :get,
-          path: "#{Settings.SCIENCEWIRE.PUBLICATION_QUERY_PATH.split(/\?/).first}/#{queryId}?format=xml&v=version/3&page=0&pageSize=2147483647"
+          path: "#{Settings.SCIENCEWIRE.PUBLICATION_QUERY_PATH.split(/\?/).first}/#{queryId}?format=xml&v=version/4&page=0&pageSize=2147483647"
         ).perform
       end
     end
