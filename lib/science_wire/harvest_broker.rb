@@ -18,7 +18,7 @@ module ScienceWire
     # Returns a unique Array of ids for an Author's publications
     # @return [Array]
     def generate_ids
-      ids_for_author | ids_for_alterate_names
+      ids_for_author | ids_for_alternate_names
     end
 
     ##
@@ -40,7 +40,7 @@ module ScienceWire
     ##
     # Generates alternate name ids using the "dumb" query
     # @return [Array]
-    def ids_for_alterate_names
+    def ids_for_alternate_names
       if alternate_name_query
         author.author_identities.map do |author_identity|
           ids_from_dumb_query(
