@@ -9,32 +9,34 @@ describe 'Smart query', 'data-integration': true do
   end
   context 'with email address only' do
     context 'using Darren Hardy' do
-      let(:known_confirmed_publications) { ['64367696'] }
       it 'returns suggestions' do
+        known_confirmed_publications = ['64367696']
         suggestions = client.id_suggestions(
           ScienceWire::AuthorAttributes.new(
             'Hardy', 'Darren', '', 'darren.hardy@stanford.edu', ''
           )
         )
-        expect(suggestions.count).to be >= 3
+        expect(suggestions.count).to be >= 1 # only 1 is correct
         expect(suggestions).to include(*known_confirmed_publications)
       end
       it 'returns suggestions' do
+        known_confirmed_publications = ['64367696']
         suggestions = client.id_suggestions(
           ScienceWire::AuthorAttributes.new(
             'Hardy', 'Darren', '', 'drh@stanford.edu', ''
           )
         )
-        expect(suggestions.count).to be >= 1
+        expect(suggestions.count).to be >= 1 # only 1 in correct
         expect(suggestions).to include(*known_confirmed_publications)
       end
       it 'returns suggestions' do
+        known_confirmed_publications = ['61063453', '64367696', '67380595']
         suggestions = client.id_suggestions(
           ScienceWire::AuthorAttributes.new(
             'Hardy', 'Darren', '', 'dhardy@bren.ucsb.edu', ''
           )
         )
-        expect(suggestions.count).to be >= 15
+        expect(suggestions.count).to be >= 3 # only 3 are correct
         expect(suggestions).to include(*known_confirmed_publications)
       end
     end
