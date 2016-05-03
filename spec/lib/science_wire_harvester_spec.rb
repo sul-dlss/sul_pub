@@ -53,8 +53,27 @@ describe ScienceWireHarvester, :vcr do
       end
     end
 
-    it 'triggers batch call when queue is full' do
-      skip
+    context 'batch execution for sciencewire queue' do
+      def setup(threshold)
+        expect(harvest_broker).to receive(:generate_ids).and_return((42_711_845..(42_711_845 + threshold - 1)).map(&:to_s)).once # generate batch of valid sw_id values
+        expect(science_wire_harvester).to receive(:create_contrib_for_pub_if_exists).exactly(threshold).with(instance_of(String), author_without_seed_data).and_return(false)
+      end
+
+      it 'triggers when exceeds threshold' do
+        threshold = 100 + 1
+        setup(threshold)
+        expect(science_wire_harvester).to receive(:process_queued_sciencewire_suggestions).once
+        science_wire_harvester.harvest_for_author(author_without_seed_data)
+        expect(science_wire_harvester.records_queued_for_sciencewire_retrieval.length).to eq(threshold)
+      end
+
+      it 'not triggered when inside the threshold' do
+        threshold = 100
+        setup(threshold)
+        expect(science_wire_harvester).to receive(:process_queued_sciencewire_suggestions).exactly(0)
+        science_wire_harvester.harvest_for_author(author_without_seed_data)
+        expect(science_wire_harvester.records_queued_for_sciencewire_retrieval.length).to eq(threshold)
+      end
     end
   end
 
