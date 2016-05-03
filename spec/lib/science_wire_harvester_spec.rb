@@ -24,20 +24,21 @@ describe ScienceWireHarvester, :vcr do
       end
 
       context 'and when pub already exists locally' do
-        it 'adds nothing to pub med retrieval queue' do
+        before do
           expect(harvest_broker).to receive(:generate_ids).and_return(['42711845'])
           expect(science_wire_harvester).to receive(:create_contrib_for_pub_if_exists).once.with('42711845', author_without_seed_data).and_return(true)
+        end
+
+        it 'adds nothing to pub med retrieval queue' do
           expect do
             science_wire_harvester.harvest_for_author(author_without_seed_data)
           end.to_not change { science_wire_harvester.records_queued_for_pubmed_retrieval }
         end
 
         it 'adds nothing to sciencewire retrieval queue' do
-          expect(harvest_broker).to receive(:generate_ids).and_return(['42711845'])
-          expect(science_wire_harvester).to receive(:create_contrib_for_pub_if_exists).once.with('42711845', author_without_seed_data).and_return(true)
           expect do
             science_wire_harvester.harvest_for_author(author_without_seed_data)
-          end.to_not change { science_wire_harvester.records_queued_for_pubmed_retrieval }
+          end.to_not change { science_wire_harvester.records_queued_for_sciencewire_retrieval }
         end
       end
 
@@ -47,7 +48,7 @@ describe ScienceWireHarvester, :vcr do
           expect(science_wire_harvester).to receive(:create_contrib_for_pub_if_exists).once.with('42711845', author_without_seed_data).and_return(false)
           expect do
             science_wire_harvester.harvest_for_author(author_without_seed_data)
-          end.to_not change { science_wire_harvester.records_queued_for_pubmed_retrieval }
+          end.to change { science_wire_harvester.records_queued_for_sciencewire_retrieval }
         end
       end
     end
