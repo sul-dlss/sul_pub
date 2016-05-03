@@ -14,7 +14,7 @@ describe ScienceWire::HarvestBroker do
   describe '#generate_ids' do
     it 'a set of ids generated from an author and alternate names' do
       expect(subject).to receive(:ids_for_author).and_return([1])
-      expect(subject).to receive(:ids_for_alterate_names).and_return([1, 2])
+      expect(subject).to receive(:ids_for_alternate_names).and_return([1, 2])
       expect(subject.generate_ids).to eq [1, 2]
     end
   end
@@ -38,12 +38,12 @@ describe ScienceWire::HarvestBroker do
       end
     end
   end
-  describe '#ids_for_alterate_names' do
+  describe '#ids_for_alternate_names' do
     context 'when alternate_name_query is disabled' do
       subject { described_class.new(alt_author, harvester, alternate_name_query: false) }
       it 'returns an array' do
-        expect(subject.ids_for_alterate_names).to be_an Array
-        expect(subject.ids_for_alterate_names).to eq []
+        expect(subject.ids_for_alternate_names).to be_an Array
+        expect(subject.ids_for_alternate_names).to eq []
       end
     end
     context 'when alternate_name_query is enabled' do
@@ -51,7 +51,7 @@ describe ScienceWire::HarvestBroker do
       it 'returns an array of unique alternate name query ids' do
         expect(subject).to receive(:ids_from_dumb_query).exactly(3).times
           .and_return([1, 2], [2, 3], [3, 4])
-        expect(subject.ids_for_alterate_names).to eq [1, 2, 3, 4]
+        expect(subject.ids_for_alternate_names).to eq [1, 2, 3, 4]
       end
     end
   end
