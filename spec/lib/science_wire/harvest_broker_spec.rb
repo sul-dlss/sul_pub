@@ -43,7 +43,7 @@ describe ScienceWire::HarvestBroker do
       subject { described_class.new(alt_author, harvester, alternate_name_query: false) }
       it 'returns an array' do
         expect(subject.ids_for_alternate_names).to be_an Array
-        expect(subject.ids_for_alternate_names).to eq []
+        expect(subject.ids_for_alternate_names).to be_empty
       end
     end
     context 'when alternate_name_query is enabled' do
