@@ -30,9 +30,9 @@ module ScienceWire
           <<-XML.strip_heredoc
             <Authors>
               <Author>
-                <LastName>#{author_attributes.last_name}</LastName>
-                <FirstName>#{author_attributes.first_name}</FirstName>
-                <MiddleName>#{author_attributes.middle_name}</MiddleName>
+                <LastName>#{author_attributes.name.last}</LastName>
+                <FirstName>#{author_attributes.name.first}</FirstName>
+                <MiddleName>#{author_attributes.name.middle}</MiddleName>
                 <City>Stanford</City>
                 <State>CA</State>
                 <Country>USA</Country>

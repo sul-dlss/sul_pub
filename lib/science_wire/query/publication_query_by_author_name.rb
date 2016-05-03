@@ -21,28 +21,36 @@ module ScienceWire
 
       private
 
+        def name
+          @name ||= author_attributes.name
+        end
+
+        def institution
+          @institution ||= author_attributes.institution.normalize_name
+        end
+
         def text_search_name_parts
           query = name_query_part
-          query << name_query_part_with_middle(Regexp.last_match(1)) if author_attributes.middle_name =~ /^([[:alpha:]])/
+          query << name_query_part_with_middle(Regexp.last_match(1)) if name.middle =~ /^([[:alpha:]])/
           query
         end
 
         def name_query_part
-          %("#{author_attributes.last_name},#{author_attributes.first_name}" or "#{author_attributes.last_name.upcase},#{author_attributes.first_name_initial.upcase}")
+          %("#{name.last},#{name.first}" or "#{name.last.upcase},#{name.first_initial}")
         end
 
         def name_query_part_with_middle(mid)
-          " or \"#{author_attributes.last_name.upcase},#{author_attributes.first_name_initial.upcase}#{mid.upcase}\""
+          " or \"#{name.last.upcase},#{name.first_initial}#{mid.upcase}\""
         end
 
         # Assume that `author_attributes.email` is a string containing one email address
         # (the email is not an array of emails or a comma delimited list of emails).
         def text_search_query_predicate
-          if author_attributes.institution.present? && author_attributes.email.present?
-            "(#{text_search_name_parts} or \"#{author_attributes.email}\") and \"#{author_attributes.institution}\""
-          elsif author_attributes.institution.present? && !author_attributes.email.present?
-            "(#{text_search_name_parts}) and \"#{author_attributes.institution}\""
-          elsif !author_attributes.institution.present? && author_attributes.email.present?
+          if institution.present? && author_attributes.email.present?
+            "(#{text_search_name_parts} or \"#{author_attributes.email}\") and \"#{institution}\""
+          elsif institution.present? && !author_attributes.email.present?
+            "(#{text_search_name_parts}) and \"#{institution}\""
+          elsif !institution.present? && author_attributes.email.present?
             "#{text_search_name_parts} or \"#{author_attributes.email}\""
           else
             "(#{text_search_name_parts}) and \"stanford\""
@@ -82,13 +90,13 @@ module ScienceWire
         end
 
         def last_name_filter_criterion
-          if author_attributes.last_name.present?
+          if name.last.present?
             <<-XML
               <Criterion>
                 <Filter>
                   <Column>AuthorLastName</Column>
                   <Operator>BeginsWith</Operator>
-                  <Value>#{author_attributes.last_name.upcase}</Value>
+                  <Value>#{name.last.upcase}</Value>
                 </Filter>
               </Criterion>
             XML
@@ -98,13 +106,13 @@ module ScienceWire
         end
 
         def first_name_filter_criterion
-          if author_attributes.first_name.present?
+          if name.first.present?
             <<-XML
               <Criterion>
                 <Filter>
                   <Column>AuthorFirstName</Column>
                   <Operator>BeginsWith</Operator>
-                  <Value>#{author_attributes.first_name_initial.upcase}</Value>
+                  <Value>#{name.first_initial}</Value>
                 </Filter>
               </Criterion>
             XML

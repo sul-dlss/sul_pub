@@ -5,6 +5,7 @@ describe ScienceWire::Query::PublicationQueryByAuthorName do
   include AuthorNameQueries
   include InstitutionEmailQueries
   include PublicationQueryXsd
+  let(:charlie_brown_name) { ScienceWire::AuthorName.new('brown', 'charlie', '') }
   let(:max_rows) { 200 }
   let(:seeds) { [1, 2, 3] }
   let(:institution) { 'Example University' }
@@ -23,41 +24,31 @@ describe ScienceWire::Query::PublicationQueryByAuthorName do
   describe '#generate' do
     subject { described_class.new(author_attributes, max_rows) }
     context 'common first and last name' do
-      let(:author_attributes) do
-        ScienceWire::AuthorAttributes.new(
-          'smith', 'james', '', '', '', institution
-        )
-      end
+      let(:author_name) { ScienceWire::AuthorName.new('smith', 'james', '') }
+      let(:author_attributes) { ScienceWire::AuthorAttributes.new(author_name, '', '', institution) }
       it 'generates a query' do
         expect(xml).to be_equivalent_to(without_cdata(common_first_last_name))
       end
       it_behaves_like 'XSD validates'
     end
     context 'middle name only' do
-      let(:author_attributes) do
-        ScienceWire::AuthorAttributes.new(
-          '', '', 'mary', '', '', ''
-        )
-      end
+      let(:author_name) { ScienceWire::AuthorName.new('', '', 'mary') }
+      let(:author_attributes) { ScienceWire::AuthorAttributes.new(author_name, '', '', '') }
       it 'generates a query' do
         expect(xml).to be_equivalent_to(without_cdata(middle_name_only))
       end
       it_behaves_like 'XSD validates'
     end
     context 'all attributes' do
+      let(:author_name) { ScienceWire::AuthorName.new('Smith', 'James', 'R') }
       let(:author_attributes) do
-        # last_name, first_name, middle_name, email, seed_list, institution
-        ScienceWire::AuthorAttributes.new(
-          'Smith', 'James', 'R', 'james.smith@example.com', seeds, institution
-        )
+        ScienceWire::AuthorAttributes.new(author_name, 'james.smith@example.com', seeds, institution)
       end
       it_behaves_like 'XSD validates'
     end
     context 'institution and email provided' do
       let(:author_attributes) do
-        ScienceWire::AuthorAttributes.new(
-          'brown', 'charlie', '', 'cbrown@example.com', '', institution
-        )
+        ScienceWire::AuthorAttributes.new(charlie_brown_name, 'cbrown@example.com', '', institution)
       end
       it 'generates a query' do
         expect(xml).to be_equivalent_to(without_cdata(institution_and_email_provided))
@@ -65,43 +56,32 @@ describe ScienceWire::Query::PublicationQueryByAuthorName do
       it_behaves_like 'XSD validates'
     end
     context 'institution and no email provided' do
-      let(:author_attributes) do
-        ScienceWire::AuthorAttributes.new(
-          'brown', 'charlie', '', '', '', institution
-        )
-      end
+      let(:author_attributes) { ScienceWire::AuthorAttributes.new(charlie_brown_name, '', '', institution) }
       it 'generates a query' do
         expect(xml).to be_equivalent_to(without_cdata(institution_and_no_email_provided))
       end
       it_behaves_like 'XSD validates'
     end
     context 'no institution but email provided' do
-      let(:author_attributes) do
-        ScienceWire::AuthorAttributes.new(
-          'brown', 'charlie', '', 'cbrown@example.com', '', ''
-        )
-      end
+      let(:author_attributes) { ScienceWire::AuthorAttributes.new(charlie_brown_name, 'cbrown@example.com', '', '') }
       it 'generates a query' do
         expect(xml).to be_equivalent_to(without_cdata(no_institution_but_email_provided))
       end
       it_behaves_like 'XSD validates'
     end
     context 'no institution no email provided' do
-      let(:author_attributes) do
-        ScienceWire::AuthorAttributes.new(
-          'brown', 'charlie', '', '', '', ''
-        )
-      end
+      let(:author_attributes) { ScienceWire::AuthorAttributes.new(charlie_brown_name, '', '', '') }
       it 'generates a query' do
         expect(xml).to be_equivalent_to(without_cdata(no_institution_no_email_provided))
       end
       it_behaves_like 'XSD validates'
     end
     context 'author with dates' do
+      let(:author_name) { ScienceWire::AuthorName.new('Bloggs', 'Fred', '') }
       let(:author_attributes) do
-        # last_name, first_name, middle_name, email, seed_list, institution, start_date, end_date
+        # name, email, seed_list, institution, start_date, end_date
         ScienceWire::AuthorAttributes.new(
-          'Bloggs', 'Fred', nil, nil, nil, institution,
+          author_name, nil, nil, institution,
           Date.new(1990, 1, 1), Date.new(2000, 12, 31)
         )
       end
