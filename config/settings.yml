@@ -49,6 +49,14 @@ SCIENCEWIRE:
 HARVESTER:
   USE_MIDDLE_NAME: true
   USE_AUTHOR_IDENTITIES: false
+  INSTITUTION:
+    name: Stanford University
+    address:
+      line1: ''
+      line2: ''
+      city: Stanford
+      state: CA
+      country: USA
 
 SQUASH:
   API_HOST: http://squash-host.example.com
