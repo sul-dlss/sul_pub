@@ -25,15 +25,12 @@ module ScienceWire
     # The traditional Author only harvest approach
     # @return [Array]
     def ids_for_author
+      name = AuthorName.new(author_last_name, author_first_name, author_middle_name)
       if seed_list.size < 50
         sciencewire_harvester.increment_authors_with_limited_seed_data_count
-        ids_from_dumb_query(
-          author_first_name, author_middle_name, author_last_name
-        )
+        ids_from_dumb_query(name)
       else
-        ids_from_smart_query(
-          author_last_name, author_first_name, author_middle_name, author.email, seed_list
-        )
+        ids_from_smart_query(name, author.email, seed_list)
       end
     end
 
@@ -43,9 +40,12 @@ module ScienceWire
     def ids_for_alternate_names
       if use_author_identities
         author.alternative_identities.map do |author_identity|
-          ids_from_dumb_query(
-            author_identity.first_name, author_identity.middle_name, author_identity.last_name
-          ).flatten
+          name = AuthorName.new(
+            author_identity.last_name,
+            author_identity.first_name,
+            use_middle_name ? author_identity.middle_name : ''
+          )
+          ids_from_dumb_query(name).flatten
         end.flatten.uniq
       else
         []
@@ -53,27 +53,19 @@ module ScienceWire
     end
 
     ##
-    # @param [String] first_name
-    # @param [String] middle_name
-    # @param [String] last_name
+    # @param [AuthorName] name
     # @return [Array]
-    def ids_from_dumb_query(first_name, middle_name, last_name)
-      sciencewire_client.query_sciencewire_by_author_name(
-        first_name, middle_name, last_name
-      )
+    def ids_from_dumb_query(name)
+      sciencewire_client.query_sciencewire_by_author_name(name)
     end
 
     ##
-    # @param [String] last_name
-    # @param [String] first_name
-    # @param [String] middle_name
+    # @param [AuthorName] name
     # @param [String] email
     # @param [Array] seed_list
     # @return [Array]
-    def ids_from_smart_query(last_name, first_name, middle_name, email, seed_list)
-      sciencewire_client.get_sciencewire_id_suggestions(
-        last_name, first_name, middle_name, email, seed_list
-      )
+    def ids_from_smart_query(name, email, seed_list)
+      sciencewire_client.get_sciencewire_id_suggestions(name, email, seed_list)
     end
 
     private

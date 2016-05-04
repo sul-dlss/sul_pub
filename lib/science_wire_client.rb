@@ -17,8 +17,8 @@ class ScienceWireClient
     pub_hashes.first[:title] == 'An index to assess the health and benefits of the global ocean'
   end
 
-  def get_sciencewire_id_suggestions(last_name, first_name, middle_name, email, seed_list)
-    author_attributes = ScienceWire::AuthorAttributes.new(last_name, first_name, middle_name, email, seed_list)
+  def get_sciencewire_id_suggestions(name, email, seed_list)
+    author_attributes = ScienceWire::AuthorAttributes.new(name, email, seed_list)
     client.id_suggestions(author_attributes)
   rescue Faraday::TimeoutError => te
     NotificationManager.handle_harvest_problem(te, "Timeout error on call to sciencewire api - #{Time.zone.now}")
@@ -28,10 +28,14 @@ class ScienceWireClient
     raise
   end
 
-  # FIXME: remove this rubocop:disable with a refactor
-  # rubocop:disable Metrics/ParameterLists
-  def query_sciencewire_by_author_name(first_name, middle_name, last_name, email='', max_rows = 200, institution = '', start_date = nil, end_date = nil)
-    author_attributes = ScienceWire::AuthorAttributes.new(last_name, first_name, middle_name, email, '', institution, start_date, end_date)
+  # @param [AuthorName] name
+  # @param [String] email
+  # @param [Integer] max_rows (200)
+  # @param [String] institution name ('')
+  # @param [Date] start_date
+  # @param [Date] end_date
+  def query_sciencewire_by_author_name(name, email='', max_rows = 200, institution = '', start_date = nil, end_date = nil)
+    author_attributes = ScienceWire::AuthorAttributes.new(name, email, '', institution, start_date, end_date)
     author_name = ScienceWire::Query::PublicationQueryByAuthorName.new(author_attributes, max_rows)
     xml_query = author_name.generate
 
@@ -39,7 +43,6 @@ class ScienceWireClient
     # TODO: use returned documents instead of selecting IDs
     query_sciencewire(xml_query).xpath("//PublicationItem[regex_reject(DocumentTypeList, '#{@reject_types}')]/PublicationItemID", XpathUtils.new).collect(&:text)
   end
-  # rubocop:enable Metrics/ParameterLists
 
   def pull_records_from_sciencewire_for_pmids(pmids)
     pmid_list = Array(pmids)

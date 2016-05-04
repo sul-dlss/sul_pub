@@ -5,9 +5,10 @@ describe ScienceWire::Query::Suggestion do
   describe '#generate' do
     subject { described_class.new(author_attributes, category) }
     context 'with email and seed' do
+      let(:author_name) { ScienceWire::AuthorName.new('Doe', 'John', 'S') }
       let(:author_attributes) do
         ScienceWire::AuthorAttributes.new(
-          'Doe', 'John', 'S', 'johnsdoe@example.com', [532_237]
+          author_name, 'johnsdoe@example.com', [532_237]
         )
       end
       let(:category) { 'Journal Document' }
@@ -16,9 +17,10 @@ describe ScienceWire::Query::Suggestion do
       end
     end
     context 'with email and no seed' do
+      let(:author_name) { ScienceWire::AuthorName.new('Smith', 'Jane', '') }
       let(:author_attributes) do
         ScienceWire::AuthorAttributes.new(
-          'Smith', 'Jane', '', 'jane_smith@example.com', ''
+          author_name, 'jane_smith@example.com', ''
         )
       end
       let(:category) { 'Journal Document' }
@@ -27,9 +29,10 @@ describe ScienceWire::Query::Suggestion do
       end
     end
     context 'with no email and no seed' do
+      let(:author_name) { ScienceWire::AuthorName.new('Brown', 'Charlie', '') }
       let(:author_attributes) do
         ScienceWire::AuthorAttributes.new(
-          'Brown', 'Charlie', '', '', ''
+          author_name, '', ''
         )
       end
       let(:category) { 'Journal Document' }

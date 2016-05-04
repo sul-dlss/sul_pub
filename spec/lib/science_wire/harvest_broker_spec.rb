@@ -2,6 +2,14 @@ require 'spec_helper'
 
 describe ScienceWire::HarvestBroker do
   let(:author) { create(:author) }
+  let(:author_name) do
+    ScienceWire::AuthorName.new(
+      author.preferred_last_name,
+      author.preferred_first_name,
+      author.preferred_middle_name
+    )
+  end
+  let(:feynman_name) { ScienceWire::AuthorName.new('Feynman', 'P', 'Richard') }
   let(:alt_author) { create(:author_with_alternate_identities, alt_count: 3) }
   let(:contribution) { create(:contribution, author: author) }
   let(:harvester) { ScienceWireHarvester.new }
@@ -23,7 +31,7 @@ describe ScienceWire::HarvestBroker do
       it 'calls the dumb query' do
         expect(harvester).to receive(:increment_authors_with_limited_seed_data_count)
         expect(subject).to receive(:ids_from_dumb_query)
-          .with('Alice', 'Jim', 'Edler').and_return([1])
+          .with(author_name).and_return([1])
         expect(subject.ids_for_author).to eq [1]
       end
     end
@@ -32,7 +40,7 @@ describe ScienceWire::HarvestBroker do
         expect(subject).to receive(:seed_list).twice
           .and_return((1..51).to_a)
         expect(subject).to receive(:ids_from_smart_query)
-          .with('Edler', 'Alice', 'Jim', 'alice.edler@stanford.edu', duck_type(:[]))
+          .with(author_name, 'alice.edler@stanford.edu', duck_type(:[]))
           .and_return([1])
         expect(subject.ids_for_author).to eq [1]
       end
@@ -63,7 +71,7 @@ describe ScienceWire::HarvestBroker do
     it 'gets ids from ScienceWireClient#query_sciencewire_by_author_name' do
       expect(client_instance).to receive(:query_sciencewire_by_author_name)
         .and_return([1, 2, 3])
-      expect(subject.ids_from_dumb_query('Richard', 'P', 'Feynman'))
+      expect(subject.ids_from_dumb_query(feynman_name))
         .to eq [1, 2, 3]
     end
   end
@@ -76,9 +84,8 @@ describe ScienceWire::HarvestBroker do
       expect(client_instance).to receive(:get_sciencewire_id_suggestions)
         .and_return([1, 2, 3])
       expect(
-        subject.ids_from_smart_query(
-          'Feynman', 'Richard', 'P', 'rf@caltech.edu', ''
-        )).to eq [1, 2, 3]
+        subject.ids_from_smart_query(feynman_name, 'rf@caltech.edu', [])
+      ).to eq [1, 2, 3]
     end
   end
 end
