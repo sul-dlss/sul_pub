@@ -32,7 +32,7 @@ http_interactions:
       - chunked
     body:
       encoding: UTF-8
-      string: '{"access_token":"private_access_token","token_type":"bearer","expires_in":86399,"scope":"profiles.read_all","jti":"7bdd3a60-70d7-4e5c-bc01-7a29eea77368"}'
+      string: '{"access_token":"private_access_token","token_type":"bearer","expires_in":86399,"scope":"profiles.read_all","jti":"120d5f58-a4da-40b7-9194-587565c47d53"}'
     http_version: 
   recorded_at: Mon, 18 Apr 2016 19:06:16 GMT
 recorded_with: VCR 3.0.1
