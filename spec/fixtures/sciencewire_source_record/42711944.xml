@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<ArrayOfPublicationItem xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <PublicationItem>
+    <PublicationItemID>42711944</PublicationItemID>
+    <Title>A brighter future for protein structure prediction.</Title>
+    <Abstract />
+    <AuthorList>Koehl,P,|Levitt,M,</AuthorList>
+    <AuthorCount>2</AuthorCount>
+    <KeywordList />
+    <DocumentTypeList>Congresses|Journal Article</DocumentTypeList>
+    <DocumentCategory>Other</DocumentCategory>
+    <NumberOfReferences xsi:nil="true" />
+    <TimesCited xsi:nil="true" />
+    <TimesNotSelfCited xsi:nil="true" />
+    <PMID>10048917</PMID>
+    <PublicationSourceTitle>Nature structural biology</PublicationSourceTitle>
+    <Volume>6</Volume>
+    <Issue>2</Issue>
+    <Pagination>108-111</Pagination>
+    <PublicationDate>1999-02-01T00:00:00</PublicationDate>
+    <PublicationYear>1999</PublicationYear>
+    <PublicationImpactFactor>13.555</PublicationImpactFactor>
+    <PublicationSubjectCategoryList />
+    <ISSN>1072-8368</ISSN>
+    <ConferenceStartDate xsi:nil="true" />
+    <ConferenceEndDate xsi:nil="true" />
+    <Rank xsi:nil="true" />
+    <OrdinalRank>1</OrdinalRank>
+    <NormalizedRank xsi:nil="true" />
+    <NewPublicationItemID>42711944</NewPublicationItemID>
+    <IsObsolete>false</IsObsolete>
+    <CopyrightPublisher />
+    <CopyrightCity />
+  </PublicationItem>
+</ArrayOfPublicationItem>

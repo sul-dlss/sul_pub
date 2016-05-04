@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<ArrayOfPublicationItem xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <PublicationItem>
+    <PublicationItemID>64367696</PublicationItemID>
+    <Title>Exploring Patterns of Seafood Provision Revealed in the Global Ocean Health Index</Title>
+    <Abstract>Sustainable provision of seafood from wild-capture fisheries and mariculture is a fundamental component of healthy marine ecosystems and a major component of the Ocean Health Index. Here we critically review the food provision model of the Ocean Health Index, and explore the implications of knowledge gaps, scale of analysis, choice of reference points, measures of sustainability, and quality of input data. Global patterns for fisheries are positively related to human development and latitude, whereas patterns for mariculture are most closely associated with economic importance of seafood. Sensitivity analyses show that scores are robust to several model assumptions, but highly sensitive to choice of reference points and, for fisheries, extent of time series available to estimate landings. We show how results for sustainable seafood may be interpreted and used, and we evaluate which modifications show the greatest potential for improvements.</Abstract>
+    <AuthorList>Kleisner,Kristin,M|Longo,Catherine,|Coll,Marta,|Halpern,Ben,S|Hardy,Darren,|Katona,Steven,K|Le Manach,Frederic,|Pauly,Daniel,|Rosenberg,Andrew,A|Samhouri,Jameal,F|Scarborough,Courtney,|Sumaila,U,Rashid|Watson,Reg,|Zeller,Dirk,</AuthorList>
+    <AuthorCount>14</AuthorCount>
+    <KeywordList>ECOSYSTEMS|FISHERIES|aquaculture|seafood|status|FAO|mariculture|assessment|fisheries|indicator</KeywordList>
+    <DocumentTypeList>Article</DocumentTypeList>
+    <DocumentCategory>Journal Document</DocumentCategory>
+    <NumberOfReferences>27</NumberOfReferences>
+    <TimesCited>6</TimesCited>
+    <TimesNotSelfCited>1</TimesNotSelfCited>
+    <PMID>24213991</PMID>
+    <WoSItemID>000326892600002</WoSItemID>
+    <PublicationSourceTitle>AMBIO</PublicationSourceTitle>
+    <Volume>42</Volume>
+    <Issue>8</Issue>
+    <Pagination>910-922</Pagination>
+    <PublicationDate>2013-11-01T00:00:00</PublicationDate>
+    <PublicationYear>2013</PublicationYear>
+    <PublicationType>Journal</PublicationType>
+    <PublicationImpactFactor>2.973</PublicationImpactFactor>
+    <PublicationSubjectCategoryList>Engineering, Environmental|Environmental Sciences</PublicationSubjectCategoryList>
+    <ISSN>0044-7447</ISSN>
+    <DOI>10.1007/s13280-013-0447-x</DOI>
+    <ConferenceStartDate xsi:nil="true"/>
+    <ConferenceEndDate xsi:nil="true"/>
+    <Rank xsi:nil="true"/>
+    <OrdinalRank>1</OrdinalRank>
+    <NormalizedRank xsi:nil="true"/>
+    <NewPublicationItemID>64367696</NewPublicationItemID>
+    <IsObsolete>false</IsObsolete>
+    <CopyrightPublisher>SPRINGER</CopyrightPublisher>
+    <CopyrightCity>DORDRECHT</CopyrightCity>
+  </PublicationItem>
+</ArrayOfPublicationItem>
