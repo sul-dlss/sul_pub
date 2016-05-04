@@ -2,8 +2,8 @@ module ScienceWire
   ##
   # Brokers queries for an author
   class HarvestBroker
-    attr_reader :author, :sciencewire_harvester, :seed_list, :alternate_name_query
-    delegate :use_middle_name, :sciencewire_client, to: :sciencewire_harvester
+    attr_reader :author, :sciencewire_harvester, :seed_list
+    delegate :use_author_identities, :use_middle_name, :sciencewire_client, to: :sciencewire_harvester
 
     ##
     # @param [Author] author
@@ -11,7 +11,7 @@ module ScienceWire
     def initialize(author, sciencewire_harvester, alternate_name_query: false)
       @author = author
       @sciencewire_harvester = sciencewire_harvester
-      @alternate_name_query = alternate_name_query
+      @sciencewire_harvester.use_author_identities = alternate_name_query
     end
 
     ##
@@ -41,7 +41,7 @@ module ScienceWire
     # Generates alternate name ids using the "dumb" query
     # @return [Array]
     def ids_for_alternate_names
-      if alternate_name_query
+      if use_author_identities
         author.alternative_identities.map do |author_identity|
           ids_from_dumb_query(
             author_identity.first_name, author_identity.middle_name, author_identity.last_name

@@ -46,6 +46,10 @@ SCIENCEWIRE:
   TMPDIR: /tmp
   WOS_HARVEST_LOG: log/wos_harvest.log
 
+HARVESTER:
+  USE_MIDDLE_NAME: true
+  USE_AUTHOR_IDENTITIES: false
+
 SQUASH:
   API_HOST: http://squash-host.example.com
   API_KEY: squash-api-key

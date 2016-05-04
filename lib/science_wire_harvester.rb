@@ -10,7 +10,7 @@ class ScienceWireHarvester
   attr_reader :records_queued_for_sciencewire_retrieval
   attr_reader :file_count
 
-  attr_accessor :debug, :use_middle_name, :use_alt_names
+  attr_accessor :debug, :use_middle_name, :use_author_identities
 
   def initialize
     initialize_instance_vars
@@ -92,8 +92,8 @@ class ScienceWireHarvester
     # our two queues for sciencewire and pubmed calls
     @records_queued_for_sciencewire_retrieval = {}
     @records_queued_for_pubmed_retrieval = {}
-    @use_middle_name = true
-    @use_alt_names = false
+    @use_middle_name = Settings.HARVESTER.USE_MIDDLE_NAME
+    @use_author_identities = Settings.HARVESTER.USE_AUTHOR_IDENTITIES
   end
 
   def initialize_counts_for_reporting
@@ -139,7 +139,7 @@ class ScienceWireHarvester
   end
 
   def harvest_for_author(author)
-    sciencewire_ids = ScienceWire::HarvestBroker.new(author, self, alternate_name_query: use_alt_names).generate_ids
+    sciencewire_ids = ScienceWire::HarvestBroker.new(author, self, alternate_name_query: use_author_identities).generate_ids
     sciencewire_ids.each do |sw_id|
       @total_suggested_count += 1
       was_record_created = create_contrib_for_pub_if_exists(sw_id, author)
