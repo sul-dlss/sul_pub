@@ -62,7 +62,7 @@ namespace :sw do
 
   desc 'Harvest for a cap_profile_id with alternate names'
   task :cap_profile_harvest_alt_names, [:cap_profile_id] => :environment do |_t, args|
-    harvester.use_alt_names = true
+    harvester.use_author_identities = true
     cap_profile_id = (args[:cap_profile_id]).to_i
     author = Author.where(cap_profile_id: cap_profile_id).first
     author ||= Author.fetch_from_cap_and_create(cap_profile_id)
