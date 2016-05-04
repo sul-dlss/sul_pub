@@ -23,7 +23,7 @@ describe ScienceWire::API::PublicationQuery do
         "/PublicationCatalog/PublicationQuery/#{queryId}"
       ).with(
         query: {
-          format: 'xml', page: 0, pageSize: 2_147_483_647, v: 'version/3'
+          format: 'xml', page: 0, pageSize: 2_147_483_647, v: 'version/4'
         }
       )).to have_been_made
     end
