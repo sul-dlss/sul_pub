@@ -36,8 +36,7 @@ describe ScienceWire::HarvestBroker do
     context 'with seed_list < 50' do
       it 'calls the dumb query' do
         expect(harvester).to receive(:increment_authors_with_limited_seed_data_count)
-        expect(subject).to receive(:ids_from_dumb_query)
-          .with(author_name).and_return([1])
+        expect(subject).to receive(:ids_from_dumb_query).and_return([1])
         expect(subject.ids_for_author).to eq [1]
       end
     end

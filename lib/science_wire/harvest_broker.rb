@@ -27,9 +27,10 @@ module ScienceWire
     # @return [Array<Integer>]
     def ids_for_author
       name = AuthorName.new(author_last_name, author_first_name, author_middle_name)
+      author_attributes = AuthorAttributes.new(name, '', '', '', '', '')
       if seed_list.size < 50
         sciencewire_harvester.increment_authors_with_limited_seed_data_count
-        ids_from_dumb_query(name)
+        ids_from_dumb_query(author_attributes)
       else
         ids_from_smart_query(name, author.email, seed_list)
       end
@@ -41,12 +42,7 @@ module ScienceWire
     def ids_for_alternate_names
       if alternate_name_query
         author.alternative_identities.map do |author_identity|
-          name = AuthorName.new(
-            author_identity.last_name,
-            author_identity.first_name,
-            use_middle_name ? author_identity.middle_name : ''
-          )
-          ids_from_dumb_query(name).flatten
+          ids_from_dumb_query(author_attributes_from_author_identity(author_identity)).flatten
         end.flatten.uniq
       else
         []
@@ -54,10 +50,10 @@ module ScienceWire
     end
 
     ##
-    # @param [AuthorName] name
-    # @return [Array<Integer>]
-    def ids_from_dumb_query(name)
-      sciencewire_client.query_sciencewire_by_author_name(name)
+    # @param [AuthorAttributes] author_attributes
+    # @return [Array]
+    def ids_from_dumb_query(author_attributes)
+      sciencewire_client.query_sciencewire_by_author_name(author_attributes)
     end
 
     ##
@@ -93,6 +89,22 @@ module ScienceWire
 
       def author_last_name
         author.preferred_last_name
+      end
+
+      def author_attributes_from_author_identity(author_identity)
+        name = AuthorName.new(
+          author_identity.last_name,
+          author_identity.first_name,
+          use_middle_name ? author_identity.middle_name : ''
+        )
+        AuthorAttributes.new(
+          name,
+          author_identity.email,
+          [],
+          author_identity.institution,
+          author_identity.start_date,
+          author_identity.end_date
+        )
       end
   end
 end
