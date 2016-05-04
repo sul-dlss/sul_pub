@@ -872,4 +872,748 @@ http_interactions:
         \ </PublicationItem>\r\n</ArrayOfPublicationItem>"
     http_version: 
   recorded_at: Tue, 05 Apr 2016 23:40:17 GMT
+- request:
+    method: get
+    uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/50106?format=xml&page=0&pageSize=2147483647&v=version/4
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.9.2
+      Accept:
+      - "*/*"
+      Accept-Encoding:
+      - gzip,deflate
+      Date:
+      - Wed, 04 May 2016 00:38:36 GMT
+      Licenseid:
+      - Settings.SCIENCEWIRE.LICENSE_ID
+      Host:
+      - Settings.SCIENCEWIRE.HOST
+      Connection:
+      - Keep-Alive
+      Expect:
+      - 100-continue
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - private
+      Content-Type:
+      - application/xml; charset=utf-8
+      Server:
+      - Microsoft-IIS/7.5
+      X-Aspnetmvc-Version:
+      - '2.0'
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+      Date:
+      - Wed, 04 May 2016 00:38:37 GMT
+      Content-Length:
+      - '60436'
+    body:
+      encoding: UTF-8
+      string: "<?xml version=\"1.0\"?>\r\n<ArrayOfPublicationItem xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <PublicationItem>\r\n
+        \   <PublicationItemID>75618307</PublicationItemID>\r\n    <Title>Timing in
+        initiating lung cancer treatment after bronchoscopy in France: Study from
+        medico-administrative database.</Title>\r\n    <Abstract>BACKGROUND Time-to-treatment
+        of cancer is becoming a serious political and social issue. A greater understanding
+        of the timeframes involved in cancer care is needed to reduce inequalities
+        in access to care caused by delays.\r\nOBJECTIVE To describe time delays in
+        each phase of lung cancer treatment after bronchoscopy.\r\nMETHOD Using the
+        international classification of diseases and medical procedures codes, from
+        national hospital discharge database we selected patients newly diagnosed
+        for Lung cancer in 2009-2010 who had undergone treatment.\r\nRESULTS We included
+        14,596 patients. Median times from bronchoscopy to 1) neo-adjuvant chemotherapy
+        and to surgery in patients with surgical pathway were 34d (Q25=22; Q75=47)
+        and 44d (Q25=26; Q75=82), respectively, 2) chemotherapy and to radiotherapy
+        in patients with non-surgical pathway, were 33d (Q25=22; Q75=49) and 88d (Q25=46;
+        Q75=162) respectively, 3) first treatment irrespective of pathway and treatment
+        combination was 34d (Q25=22; Q75=50). Time to first treatment was significantly
+        higher with age and with the status of the first care center. It was longer
+        in most northern regions and in overseas districts and shorter in southern
+        and eastern regions of the country.\r\nCONCLUSION To our knowledge, this is
+        the first study based on medico-administrative database describing time to
+        first treatment after bronchoscopy in patients suffering from lung cancer
+        in France. It could inform decision-making on guidelines on times to access
+        lung cancer treatment.</Abstract>\r\n    <AuthorList>Kudjawu,Yao,Cyril|Chatellier,Gilles,|Decool,Elsa,|de
+        Maria,Florence,|Beltzer,Nathalie,|Grémy,Isabelle,|Meyer,Guy,|Eilstein,Daniel,</AuthorList>\r\n
+        \   <AuthorCount>8</AuthorCount>\r\n    <KeywordList>Bronchoscopy|Hospital-discharge
+        database|Lung neoplasm|Time-to-treatment</KeywordList>\r\n    <DocumentTypeList>Journal
+        Article</DocumentTypeList>\r\n    <DocumentCategory>Journal Document</DocumentCategory>\r\n
+        \   <NumberOfReferences xsi:nil=\"true\" />\r\n    <TimesCited xsi:nil=\"true\"
+        />\r\n    <TimesNotSelfCited xsi:nil=\"true\" />\r\n    <PMID>27040851</PMID>\r\n
+        \   <PublicationSourceTitle>Lung cancer </PublicationSourceTitle>\r\n    <Volume>95</Volume>\r\n
+        \   <Pagination>44-50</Pagination>\r\n    <PublicationDate>2016-05-01T00:00:00</PublicationDate>\r\n
+        \   <PublicationYear>2016</PublicationYear>\r\n    <PublicationSubjectCategoryList
+        />\r\n    <ISSN>0169-5002</ISSN>\r\n    <DOI>10.1016/j.lungcan.2016.02.016</DOI>\r\n
+        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>0</OrdinalRank>\r\n
+        \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
+        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>ELSEVIER
+        IRELAND LTD</CopyrightPublisher>\r\n    <CopyrightCity />\r\n    <PublicationImpactFactorList>3.958,2014,ClosestToPublicationYear|3.958,2014,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>59/211;ONCOLOGY;2014;SC;ClosestToPublicationYear|12/57;RESPIRATORY
+        SYSTEM;2014;SC;ClosestToPublicationYear|59/211;ONCOLOGY;2014;SC;MostRecentYear|12/57;RESPIRATORY
+        SYSTEM;2014;SC;MostRecentYear</PublicationCategoryRankingList>\r\n    <CopyrightStateProvince
+        />\r\n    <CopyrightCountry>IRELAND</CopyrightCountry>\r\n  </PublicationItem>\r\n
+        \ <PublicationItem>\r\n    <PublicationItemID>75564620</PublicationItemID>\r\n
+        \   <Title>DEMCIZUMAB Anti-DLL4 monoclonal antibody Treatment of non-small
+        cell lung cancer Treatment of pancreatic cancer</Title>\r\n    <Abstract>Demcizumab
+        (OMP-21M18) is a novel anti-DLL4 (delta-like protein 4) humanized monoclonal
+        antibody (MAb) developed by researchers at OncoMed Pharmaceuticals. In preclinical
+        studies demcizumab demonstrated the ability to block Notch signaling and inhibit
+        tumor growth through multiple mechanisms, such as the reduction of cancer
+        stem cell frequency and the inhibition of angiogenesis. Phase I data demonstrated
+        that demcizumab was generally well tolerated and had promising antitumor activity
+        in patients with advanced solid tumors. This anti-DLL4 MAb is currently being
+        tested in additional phase I and phase II studies in combination with gemcitabine
+        with or without nab-paclitaxel in pancreatic cancer, with FOLFIRI in colorectal
+        cancer, with carboplatin and pemetrexed in lung cancer and with paclitaxel
+        in patients with platinum-resistant ovarian cancer.</Abstract>\r\n    <AuthorList>Gajdosik,Z,</AuthorList>\r\n
+        \   <AuthorCount>1</AuthorCount>\r\n    <KeywordList>CELLS|TUMOR|ANTI-DLL4|NSCLC|pancreatic
+        cancer|OMP-21M18|demcizumab|Anti-DLL4</KeywordList>\r\n    <DocumentTypeList>Article</DocumentTypeList>\r\n
+        \   <DocumentCategory>Journal Document</DocumentCategory>\r\n    <NumberOfReferences>16</NumberOfReferences>\r\n
+        \   <TimesCited>0</TimesCited>\r\n    <TimesNotSelfCited>0</TimesNotSelfCited>\r\n
+        \   <PMID xsi:nil=\"true\" />\r\n    <WoSItemID>000373119400001</WoSItemID>\r\n
+        \   <PublicationSourceTitle>DRUGS OF THE FUTURE</PublicationSourceTitle>\r\n
+        \   <Volume>41</Volume>\r\n    <Issue>1</Issue>\r\n    <Pagination>5-8</Pagination>\r\n
+        \   <PublicationDate>2016-01-01T00:00:00</PublicationDate>\r\n    <PublicationYear>2016</PublicationYear>\r\n
+        \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Pharmacology
+        &amp; Pharmacy</PublicationSubjectCategoryList>\r\n    <ISSN>0377-8282</ISSN>\r\n
+        \   <DOI>10.1358/dof.2016.041.01.2443234</DOI>\r\n    <ConferenceStartDate
+        xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank
+        xsi:nil=\"true\" />\r\n    <OrdinalRank>1</OrdinalRank>\r\n    <NormalizedRank
+        xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
+        \   <CopyrightPublisher>PROUS SCIENCE, SAU-THOMSON REUTERS</CopyrightPublisher>\r\n
+        \   <CopyrightCity>BARCELONA</CopyrightCity>\r\n    <PublicationImpactFactorList>0.17,2014,ClosestToPublicationYear|0.17,2014,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>253/254;PHARMACOLOGY &amp; PHARMACY;2014;SC;ClosestToPublicationYear|253/254;PHARMACOLOGY
+        &amp; PHARMACY;2014;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <AuthorCitationCountList>1,0,0</AuthorCitationCountList>\r\n    <CopyrightStateProvince
+        />\r\n    <CopyrightCountry>SPAIN</CopyrightCountry>\r\n  </PublicationItem>\r\n
+        \ <PublicationItem>\r\n    <PublicationItemID>75502195</PublicationItemID>\r\n
+        \   <Title>Non-Small-Cell Lung Cancer: Treatment of Late Stage Disease: Chemotherapeutics
+        and New Frontiers (vol 30, pg 191 , 2013)</Title>\r\n    <Abstract />\r\n
+        \   <AuthorList>Scheff,Ronald,J|Schneider,Bryan,J</AuthorList>\r\n    <AuthorCount>2</AuthorCount>\r\n
+        \   <KeywordList />\r\n    <DocumentTypeList>Correction</DocumentTypeList>\r\n
+        \   <DocumentCategory>Other</DocumentCategory>\r\n    <NumberOfReferences>1</NumberOfReferences>\r\n
+        \   <TimesCited>0</TimesCited>\r\n    <TimesNotSelfCited>0</TimesNotSelfCited>\r\n
+        \   <PMID xsi:nil=\"true\" />\r\n    <WoSItemID>000209671100001</WoSItemID>\r\n
+        \   <PublicationSourceTitle>SEMINARS IN INTERVENTIONAL RADIOLOGY</PublicationSourceTitle>\r\n
+        \   <Volume>30</Volume>\r\n    <Issue>2</Issue>\r\n    <Pagination>E1-E1</Pagination>\r\n
+        \   <PublicationDate>2013-06-01T00:00:00</PublicationDate>\r\n    <PublicationYear>2013</PublicationYear>\r\n
+        \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Radiology,
+        Nuclear Medicine &amp; Medical Imaging</PublicationSubjectCategoryList>\r\n
+        \   <ISSN>0739-9529</ISSN>\r\n    <DOI>10.1055/s-0033-1349396</DOI>\r\n    <ConferenceStartDate
+        xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank
+        xsi:nil=\"true\" />\r\n    <OrdinalRank>2</OrdinalRank>\r\n    <NormalizedRank
+        xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
+        \   <CopyrightPublisher>THIEME MEDICAL PUBL INC</CopyrightPublisher>\r\n    <CopyrightCity>NEW
+        YORK</CopyrightCity>\r\n    <PublicationImpactFactorList>0.16,2000,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>77/80;RADIOLOGY, NUCLEAR MEDICINE &amp;
+        MEDICAL IMAGING;2000;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <AuthorCitationCountList>1,0,0|2,0,0</AuthorCitationCountList>\r\n    <CopyrightStateProvince>NY</CopyrightStateProvince>\r\n
+        \   <CopyrightCountry>UNITED STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n
+        \ <PublicationItem>\r\n    <PublicationItemID>75436672</PublicationItemID>\r\n
+        \   <Title>Vitamin E TPGS conjugated carbon nanotubes improved efficacy of
+        docetaxel with safety for lung cancer treatment.</Title>\r\n    <Abstract>The
+        aim of this work was to develop multi-walled carbon nanotubes (MWCNT), which
+        were coated or covalently conjugated with d-alpha-tocopheryl polyethylene
+        glycol 1000 succinate (TPGS), and loaded docetaxel as a model drug for effective
+        treatment to lung cancer in comparison with the commercial docetaxel injection
+        (Docel™). The human lung cancer cells (A549 cells) were employed as an in-vitro
+        model to access cellular uptake, cytotoxicity, cellular apoptosis, cell cycle
+        analysis, and reactive oxygen species (ROS) study of the docetaxel/coumarin-6
+        loaded MWCNT. The safety of MWCNT formulations were studied by the measurements
+        of alkaline phosphatase (ALP), lactate dehydrogenase (LDH) and total protein
+        levels in bronchoalveolar lavage (BAL) fluid of rats after the treatments.
+        The IC50 values demonstrated that the TPGS conjugated MWCNT could be 80 folds
+        more effective than Docel™ after 24h treatment with the A549 cells. Flow cytometry
+        analysis confirmed that cancerous cells were appeared significantly (P&lt;0.05)
+        in the sub G1 phase for TPGS conjugated MWCNT. Results of TPGS conjugated
+        MWCNT have showed better efficacy with safety than non-coated or TPGS coated
+        MWCNT and Docel™. </Abstract>\r\n    <AuthorList>Singh,Rahul,Pratap|Sharma,Gunjan,|SONALI,,|Singh,Sanjay,|Kumar,Mohan,|Pandey,Bajarangprasad,L|Koch,Biplob,|Muthu,Madaswamy,S</AuthorList>\r\n
+        \   <AuthorCount>8</AuthorCount>\r\n    <KeywordList>Lung cancer|MWCNT|Nanomedicine|Nanotechnology|ROS
+        level|Safety|TPGS conjugation</KeywordList>\r\n    <DocumentTypeList>Journal
+        Article</DocumentTypeList>\r\n    <DocumentCategory>Journal Document</DocumentCategory>\r\n
+        \   <NumberOfReferences xsi:nil=\"true\" />\r\n    <TimesCited xsi:nil=\"true\"
+        />\r\n    <TimesNotSelfCited xsi:nil=\"true\" />\r\n    <PMID>26895505</PMID>\r\n
+        \   <PublicationSourceTitle>Colloids and surfaces. B, Biointerfaces</PublicationSourceTitle>\r\n
+        \   <Volume>141</Volume>\r\n    <Pagination>429-442</Pagination>\r\n    <PublicationDate>2016-05-01T00:00:00</PublicationDate>\r\n
+        \   <PublicationYear>2016</PublicationYear>\r\n    <PublicationSubjectCategoryList
+        />\r\n    <ISSN>0927-7765</ISSN>\r\n    <DOI>10.1016/j.colsurfb.2016.02.011</DOI>\r\n
+        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>3</OrdinalRank>\r\n
+        \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
+        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>ELSEVIER
+        B.V</CopyrightPublisher>\r\n    <CopyrightCity />\r\n    <PublicationImpactFactorList>4.152,2014,ClosestToPublicationYear|4.152,2014,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>16/73;BIOPHYSICS;2014;SC;ClosestToPublicationYear|34/139;CHEMISTRY,
+        PHYSICAL;2014;SC;ClosestToPublicationYear|8/33;MATERIALS SCIENCE, BIOMATERIALS;2014;SC;ClosestToPublicationYear|16/73;BIOPHYSICS;2014;SC;MostRecentYear|34/139;CHEMISTRY,
+        PHYSICAL;2014;SC;MostRecentYear|8/33;MATERIALS SCIENCE, BIOMATERIALS;2014;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <CopyrightStateProvince />\r\n    <CopyrightCountry>NETHERLANDS</CopyrightCountry>\r\n
+        \ </PublicationItem>\r\n  <PublicationItem>\r\n    <PublicationItemID>75425606</PublicationItemID>\r\n
+        \   <Title>CRM1 is overexpressed in lung tumorigenesis and represents an adjuvant
+        target for lung cancer treatment</Title>\r\n    <Abstract />\r\n    <AuthorList>Gao,Weimin,|Lu,Chuanwen,|Chen,Lixia,|Keohavong,Phouthone,</AuthorList>\r\n
+        \   <AuthorCount>4</AuthorCount>\r\n    <KeywordList />\r\n    <DocumentTypeList>Meeting
+        Abstract</DocumentTypeList>\r\n    <DocumentCategory>Conference Proceeding
+        Document</DocumentCategory>\r\n    <NumberOfReferences xsi:nil=\"true\" />\r\n
+        \   <TimesCited>0</TimesCited>\r\n    <TimesNotSelfCited>0</TimesNotSelfCited>\r\n
+        \   <PMID xsi:nil=\"true\" />\r\n    <WoSItemID>000371578503213</WoSItemID>\r\n
+        \   <PublicationSourceTitle>CANCER RESEARCH</PublicationSourceTitle>\r\n    <Volume>75</Volume>\r\n
+        \   <Pagination />\r\n    <PublicationDate>2015-08-01T00:00:00</PublicationDate>\r\n
+        \   <PublicationYear>2015</PublicationYear>\r\n    <PublicationType>Journal</PublicationType>\r\n
+        \   <PublicationSubjectCategoryList>Oncology</PublicationSubjectCategoryList>\r\n
+        \   <ISSN>0008-5472</ISSN>\r\n    <DOI>10.1158/1538-7445.AM2015-1726</DOI>\r\n
+        \   <ConferenceTitle>106th Annual Meeting of the American-Association-for-Cancer-Research
+        (AACR)</ConferenceTitle>\r\n    <ConferenceStartDate>2015-04-18T00:00:00</ConferenceStartDate>\r\n
+        \   <ConferenceEndDate>2015-04-22T00:00:00</ConferenceEndDate>\r\n    <ConferenceCity>PHILADELPHIA</ConferenceCity>\r\n
+        \   <ConferenceStateCountry>PA</ConferenceStateCountry>\r\n    <Rank xsi:nil=\"true\"
+        />\r\n    <OrdinalRank>4</OrdinalRank>\r\n    <NormalizedRank xsi:nil=\"true\"
+        />\r\n    <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
+        \   <CopyrightPublisher>AMER ASSOC CANCER RESEARCH</CopyrightPublisher>\r\n
+        \   <CopyrightCity>PHILADELPHIA</CopyrightCity>\r\n    <PublicationImpactFactorList>9.329,2014,ClosestToPublicationYear|9.329,2014,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>11/211;ONCOLOGY;2014;SC;ClosestToPublicationYear|11/211;ONCOLOGY;2014;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <AuthorCitationCountList>1,0,0|2,0,0|3,0,0|4,0,0</AuthorCitationCountList>\r\n
+        \   <CopyrightStateProvince>PA</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
+        STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
+        \   <PublicationItemID>75405991</PublicationItemID>\r\n    <Title>Early-Stage
+        Lung Cancer Treatment and Survival: Impact of Race</Title>\r\n    <Abstract
+        />\r\n    <AuthorList>Williams,Christina,D|Kelley,Michael,J</AuthorList>\r\n
+        \   <AuthorCount>2</AuthorCount>\r\n    <KeywordList>surgery|survival|disparity|race|radiotherapy</KeywordList>\r\n
+        \   <DocumentTypeList>Meeting Abstract</DocumentTypeList>\r\n    <DocumentCategory>Conference
+        Proceeding Document</DocumentCategory>\r\n    <NumberOfReferences xsi:nil=\"true\"
+        />\r\n    <TimesCited>0</TimesCited>\r\n    <TimesNotSelfCited>0</TimesNotSelfCited>\r\n
+        \   <PMID xsi:nil=\"true\" />\r\n    <WoSItemID>000370365101058</WoSItemID>\r\n
+        \   <PublicationSourceTitle>JOURNAL OF THORACIC ONCOLOGY</PublicationSourceTitle>\r\n
+        \   <Volume>10</Volume>\r\n    <Issue>9</Issue>\r\n    <Pagination>S281-S281</Pagination>\r\n
+        \   <PublicationDate>2015-09-01T00:00:00</PublicationDate>\r\n    <PublicationYear>2015</PublicationYear>\r\n
+        \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Oncology|Respiratory
+        System</PublicationSubjectCategoryList>\r\n    <ISSN>1556-0864</ISSN>\r\n
+        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>5</OrdinalRank>\r\n
+        \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
+        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>ELSEVIER
+        SCIENCE INC</CopyrightPublisher>\r\n    <CopyrightCity>NEW YORK</CopyrightCity>\r\n
+        \   <PublicationImpactFactorList>5.282,2014,ClosestToPublicationYear|5.282,2014,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>30/211;ONCOLOGY;2014;SC;ClosestToPublicationYear|7/57;RESPIRATORY
+        SYSTEM;2014;SC;ClosestToPublicationYear|30/211;ONCOLOGY;2014;SC;MostRecentYear|7/57;RESPIRATORY
+        SYSTEM;2014;SC;MostRecentYear</PublicationCategoryRankingList>\r\n    <AuthorCitationCountList>1,0,0|2,0,0</AuthorCitationCountList>\r\n
+        \   <CopyrightStateProvince>NY</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
+        STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
+        \   <PublicationItemID>75398481</PublicationItemID>\r\n    <Title>Fatal and
+        near Fatal Radiation Lung Injury after Lung Cancer Treatment</Title>\r\n    <Abstract
+        />\r\n    <AuthorList>Son,Choonhee,|Roh,Mee,Sook|Um,Soo-Jung,</AuthorList>\r\n
+        \   <AuthorCount>3</AuthorCount>\r\n    <KeywordList>interstitial lung disease|radiation
+        pneumonitis</KeywordList>\r\n    <DocumentTypeList>Meeting Abstract</DocumentTypeList>\r\n
+        \   <DocumentCategory>Conference Proceeding Document</DocumentCategory>\r\n
+        \   <NumberOfReferences xsi:nil=\"true\" />\r\n    <TimesCited>0</TimesCited>\r\n
+        \   <TimesNotSelfCited>0</TimesNotSelfCited>\r\n    <PMID xsi:nil=\"true\"
+        />\r\n    <WoSItemID>000370365103303</WoSItemID>\r\n    <PublicationSourceTitle>JOURNAL
+        OF THORACIC ONCOLOGY</PublicationSourceTitle>\r\n    <Volume>10</Volume>\r\n
+        \   <Issue>9</Issue>\r\n    <Pagination>S687-S687</Pagination>\r\n    <PublicationDate>2015-09-01T00:00:00</PublicationDate>\r\n
+        \   <PublicationYear>2015</PublicationYear>\r\n    <PublicationType>Journal</PublicationType>\r\n
+        \   <PublicationSubjectCategoryList>Oncology|Respiratory System</PublicationSubjectCategoryList>\r\n
+        \   <ISSN>1556-0864</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank xsi:nil=\"true\" />\r\n
+        \   <OrdinalRank>6</OrdinalRank>\r\n    <NormalizedRank xsi:nil=\"true\" />\r\n
+        \   <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
+        \   <CopyrightPublisher>ELSEVIER SCIENCE INC</CopyrightPublisher>\r\n    <CopyrightCity>NEW
+        YORK</CopyrightCity>\r\n    <PublicationImpactFactorList>5.282,2014,ClosestToPublicationYear|5.282,2014,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>30/211;ONCOLOGY;2014;SC;ClosestToPublicationYear|7/57;RESPIRATORY
+        SYSTEM;2014;SC;ClosestToPublicationYear|30/211;ONCOLOGY;2014;SC;MostRecentYear|7/57;RESPIRATORY
+        SYSTEM;2014;SC;MostRecentYear</PublicationCategoryRankingList>\r\n    <AuthorCitationCountList>1,0,0|2,0,0|3,0,0</AuthorCitationCountList>\r\n
+        \   <CopyrightStateProvince>NY</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
+        STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
+        \   <PublicationItemID>75383106</PublicationItemID>\r\n    <Title>Importance
+        of Exercise in Lung Cancer Treatment</Title>\r\n    <Abstract />\r\n    <AuthorList>Michaels,Carol,</AuthorList>\r\n
+        \   <AuthorCount>1</AuthorCount>\r\n    <KeywordList>exercise|physical activity|benefits
+        of physical activity for lung cancer patients|importance of exercise for lung
+        cancer survivors</KeywordList>\r\n    <DocumentTypeList>Meeting Abstract</DocumentTypeList>\r\n
+        \   <DocumentCategory>Conference Proceeding Document</DocumentCategory>\r\n
+        \   <NumberOfReferences xsi:nil=\"true\" />\r\n    <TimesCited>0</TimesCited>\r\n
+        \   <TimesNotSelfCited>0</TimesNotSelfCited>\r\n    <PMID xsi:nil=\"true\"
+        />\r\n    <WoSItemID>000370365100049</WoSItemID>\r\n    <PublicationSourceTitle>JOURNAL
+        OF THORACIC ONCOLOGY</PublicationSourceTitle>\r\n    <Volume>10</Volume>\r\n
+        \   <Issue>9</Issue>\r\n    <Pagination>S88-S88</Pagination>\r\n    <PublicationDate>2015-09-01T00:00:00</PublicationDate>\r\n
+        \   <PublicationYear>2015</PublicationYear>\r\n    <PublicationType>Journal</PublicationType>\r\n
+        \   <PublicationSubjectCategoryList>Oncology|Respiratory System</PublicationSubjectCategoryList>\r\n
+        \   <ISSN>1556-0864</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank xsi:nil=\"true\" />\r\n
+        \   <OrdinalRank>7</OrdinalRank>\r\n    <NormalizedRank xsi:nil=\"true\" />\r\n
+        \   <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
+        \   <CopyrightPublisher>ELSEVIER SCIENCE INC</CopyrightPublisher>\r\n    <CopyrightCity>NEW
+        YORK</CopyrightCity>\r\n    <PublicationImpactFactorList>5.282,2014,ClosestToPublicationYear|5.282,2014,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>30/211;ONCOLOGY;2014;SC;ClosestToPublicationYear|7/57;RESPIRATORY
+        SYSTEM;2014;SC;ClosestToPublicationYear|30/211;ONCOLOGY;2014;SC;MostRecentYear|7/57;RESPIRATORY
+        SYSTEM;2014;SC;MostRecentYear</PublicationCategoryRankingList>\r\n    <AuthorCitationCountList>1,0,0</AuthorCitationCountList>\r\n
+        \   <CopyrightStateProvince>NY</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
+        STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
+        \   <PublicationItemID>75366198</PublicationItemID>\r\n    <Title>Quality
+        of Lung Cancer Treatment in Two Neighbouring Regions of Germany and Denmark</Title>\r\n
+        \   <Abstract />\r\n    <AuthorList>Storm,Hans,H|Engholm,Gerda,|Pritzkuleit,Ron,|Kejs,Anne,Mette
+        T|Katalinic,Alexander,|Dunst,Juergen,|Hollaender,Niels,Henrik</AuthorList>\r\n
+        \   <AuthorCount>7</AuthorCount>\r\n    <KeywordList>lung cancer|population
+        based|stage specific|survival-benchmarking</KeywordList>\r\n    <DocumentTypeList>Meeting
+        Abstract</DocumentTypeList>\r\n    <DocumentCategory>Conference Proceeding
+        Document</DocumentCategory>\r\n    <NumberOfReferences xsi:nil=\"true\" />\r\n
+        \   <TimesCited>0</TimesCited>\r\n    <TimesNotSelfCited>0</TimesNotSelfCited>\r\n
+        \   <PMID xsi:nil=\"true\" />\r\n    <WoSItemID>000370365101121</WoSItemID>\r\n
+        \   <PublicationSourceTitle>JOURNAL OF THORACIC ONCOLOGY</PublicationSourceTitle>\r\n
+        \   <Volume>10</Volume>\r\n    <Issue>9</Issue>\r\n    <Pagination>S303-S303</Pagination>\r\n
+        \   <PublicationDate>2015-09-01T00:00:00</PublicationDate>\r\n    <PublicationYear>2015</PublicationYear>\r\n
+        \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Oncology|Respiratory
+        System</PublicationSubjectCategoryList>\r\n    <ISSN>1556-0864</ISSN>\r\n
+        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>8</OrdinalRank>\r\n
+        \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
+        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>ELSEVIER
+        SCIENCE INC</CopyrightPublisher>\r\n    <CopyrightCity>NEW YORK</CopyrightCity>\r\n
+        \   <PublicationImpactFactorList>5.282,2014,ClosestToPublicationYear|5.282,2014,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>30/211;ONCOLOGY;2014;SC;ClosestToPublicationYear|7/57;RESPIRATORY
+        SYSTEM;2014;SC;ClosestToPublicationYear|30/211;ONCOLOGY;2014;SC;MostRecentYear|7/57;RESPIRATORY
+        SYSTEM;2014;SC;MostRecentYear</PublicationCategoryRankingList>\r\n    <AuthorCitationCountList>1,0,0|2,0,0|3,0,0|4,0,0|5,0,0|6,0,0|7,0,0</AuthorCitationCountList>\r\n
+        \   <CopyrightStateProvince>NY</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
+        STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
+        \   <PublicationItemID>75315890</PublicationItemID>\r\n    <Title>Evaluation
+        of melanoma antigen gene A3 expression in drug resistance of epidermal growth
+        factor receptor-tyrosine kinase inhibitors in advanced nonsmall cell lung
+        cancer treatment</Title>\r\n    <Abstract>Objective: To investigate the correlation
+        between melanoma antigen gene A3 (MAGE-A3) expression and progression-free
+        survival (PFS) of nonsmall cell lung cancer (NSCLC) patients with epidermal
+        growth factor receptor-tyrosine kinase inhibitor (EGFR-TKIs) therapy, aiming
+        to provide a basis for research and treatment of EGFR-TKIs resistance. Research
+        and Methods: Retrospective analysis is conducted of PFS of 359 NSCLC patients
+        who have been tested positive for EGFR, and experienced drug resistance during
+        oral treatment of icotinib. MAGE-A3 expression is tested using immunology
+        and histology chemistry methods, and T790M and c-MeT expression are tested
+        using mutation-enriched polymerase chain reaction. Results: (1) MAGE-A3 expression
+        in targeted treatment of NSCLC patients shows a positive rate of 33.98%. The
+        comparative difference between MAGE-A3 expression and T790M, c-MeT and other
+        resistance genes was not statistically significant (P &gt; 0.05). (2) MAGE-A3
+        expression was higher in patients with NSCLC targeted therapy of primary drug
+        resistance of positive rate than acquired resistance; meanwhile the expression
+        level differences in three modes of acquired resistance are statistically
+        significant (P &lt; 0.05). (3) PFS of MAGE-A3 positive expression in the targeted
+        treatment of acquired drug resistance in patients with NSCLC is shorter than
+        the PFS of MAGE-A3 negative expression (P = 0.01); the comparative PFS differences
+        in the three kinds of acquired drug resistance pattern have statistical significance
+        (P = 0.02). (4) PFS and levels of MAGE-A3 expression in NSCLC patients with
+        the three modes of acquired resistance are negatively correlated (P &lt; 0.01),
+        and MAGE-A3 expression has no correlation with age, gender, pathological type
+        or PS score (P &gt; 0.05). Conclusion: MAGE-A3 expression in EGFR-TKIs target
+        therapy in NSCLC patient suggests that there might be EGFR-TKIs drug resistance,
+        and the higher the level of expression, the shorter the time of acquired drug
+        resistance.</Abstract>\r\n    <AuthorList>Jin,Ju,|Liu,Bang-Zhu,|Wu,Zhuo-Min,</AuthorList>\r\n
+        \   <AuthorCount>3</AuthorCount>\r\n    <KeywordList>CARCINOMA|DOCETAXEL|GEFITINIB|lung
+        cancer|drug resistance|target therapy|Melanoma antigen gene-A3</KeywordList>\r\n
+        \   <DocumentTypeList>Article</DocumentTypeList>\r\n    <DocumentCategory>Journal
+        Document</DocumentCategory>\r\n    <NumberOfReferences>9</NumberOfReferences>\r\n
+        \   <TimesCited>0</TimesCited>\r\n    <TimesNotSelfCited>0</TimesNotSelfCited>\r\n
+        \   <PMID xsi:nil=\"true\" />\r\n    <WoSItemID>000370873700009</WoSItemID>\r\n
+        \   <PublicationSourceTitle>JOURNAL OF CANCER RESEARCH AND THERAPEUTICS</PublicationSourceTitle>\r\n
+        \   <Volume>11</Volume>\r\n    <Issue>8</Issue>\r\n    <Pagination>271-274</Pagination>\r\n
+        \   <PublicationDate>2015-11-01T00:00:00</PublicationDate>\r\n    <PublicationYear>2015</PublicationYear>\r\n
+        \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Oncology</PublicationSubjectCategoryList>\r\n
+        \   <ISSN>0973-1482</ISSN>\r\n    <DOI>10.4103/0973-1482.170549</DOI>\r\n
+        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>9</OrdinalRank>\r\n
+        \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
+        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>MEDKNOW
+        PUBLICATIONS &amp; MEDIA PVT LTD</CopyrightPublisher>\r\n    <CopyrightCity>MUMBAI</CopyrightCity>\r\n
+        \   <PublicationImpactFactorList>0.791,2014,ClosestToPublicationYear|0.791,2014,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>197/211;ONCOLOGY;2014;SC;ClosestToPublicationYear|197/211;ONCOLOGY;2014;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <AuthorCitationCountList>1,0,0|2,0,0|3,0,0</AuthorCitationCountList>\r\n
+        \   <CopyrightStateProvince />\r\n    <CopyrightCountry>INDIA</CopyrightCountry>\r\n
+        \ </PublicationItem>\r\n  <PublicationItem>\r\n    <PublicationItemID>75210085</PublicationItemID>\r\n
+        \   <Title>On the pharmacogenetics of non-small cell lung cancer treatment</Title>\r\n
+        \   <Abstract>Introduction. Despite many clinical efforts, non-small-cell
+        lung cancer (NSCLC) has a dismal 5-year survival rate of 16%, and high incidence
+        of recurrence. The success of biologically targeted agents, as well as the
+        activity of well-established chemotherapeutic regimens, has been limited by
+        inherited/acquired resistance, and biomarkers to adapt the prescription of
+        anticancer drugs to patients' features are urgently warranted. Areas covered.
+        In oncology, pharmacogenetics should provide the way to select patients who
+        may benefit from a specific therapy that best match the individual and tumor
+        genetic profile, thus allowing maximum activity and minimal toxicity. The
+        present review summarizes the main findings on NSCLC pharmacogenetics, critically
+        reappraising the most important studies on polymorphisms correlated with outcome
+        of pemetrexed and EGFR-inhibitors, and provides perspective on clinical application
+        of genomic tests for treatment decision-making. Expert Opinion. A major challenge
+        in NSCLC is the identification of subgroups of diseases/patients that will
+        truly benefit from specific treatments. Ideally, convenient and minimally
+        invasive tests to decipher biomarkers of chemosensitivity/resistance and toxicity
+        should be developed alongside novel anticancer treatments. Integration with
+        the latest generation of whole-genome analyses and liquid biopsies as well
+        as prospective validation in large cohorts of patients will overcome the limitations
+        of the traditional pharmacogenetic approaches.</Abstract>\r\n    <AuthorList>Santarpia,Mariacarmela,|Rolfo,Christian,|Peters,G,J|Leon,Leticia,G|Giovannetti,Elisa,</AuthorList>\r\n
+        \   <AuthorCount>5</AuthorCount>\r\n    <KeywordList>GENOME-WIDE ASSOCIATION|PLATINUM-BASED
+        CHEMOTHERAPY|MESSENGER-RNA|GROWTH-FACTOR RECEPTOR|DINUCLEOTIDE REPEAT POLYMORPHISM|THYMIDYLATE
+        SYNTHASE|INTRON 1|RANDOMIZED PHASE-II|TYROSINE KINASE INHIBITORS|PEMETREXED-BASED
+        CHEMOTHERAPY|lung cancer|pemetrexed|EGFR inhibitors|methodological challenges|pharmacogenetic
+        studies</KeywordList>\r\n    <DocumentTypeList>Review</DocumentTypeList>\r\n
+        \   <DocumentCategory>Journal Document</DocumentCategory>\r\n    <NumberOfReferences>99</NumberOfReferences>\r\n
+        \   <TimesCited>0</TimesCited>\r\n    <TimesNotSelfCited>0</TimesNotSelfCited>\r\n
+        \   <PMID>26761638</PMID>\r\n    <WoSItemID>000370753000002</WoSItemID>\r\n
+        \   <PublicationSourceTitle>EXPERT OPINION ON DRUG METABOLISM &amp; TOXICOLOGY</PublicationSourceTitle>\r\n
+        \   <Volume>12</Volume>\r\n    <Issue>3</Issue>\r\n    <Pagination>307-317</Pagination>\r\n
+        \   <PublicationDate>2016-03-03T00:00:00</PublicationDate>\r\n    <PublicationYear>2016</PublicationYear>\r\n
+        \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Biochemistry
+        &amp; Molecular Biology|Pharmacology &amp; Pharmacy</PublicationSubjectCategoryList>\r\n
+        \   <ISSN>1742-5255</ISSN>\r\n    <DOI>10.1517/17425255.2016.1141894</DOI>\r\n
+        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>10</OrdinalRank>\r\n
+        \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
+        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>TAYLOR
+        &amp; FRANCIS LTD</CopyrightPublisher>\r\n    <CopyrightCity>ABINGDON</CopyrightCity>\r\n
+        \   <PublicationImpactFactorList>2.831,2014,ClosestToPublicationYear|2.831,2014,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>138/289;BIOCHEMISTRY &amp; MOLECULAR BIOLOGY;2014;SC;ClosestToPublicationYear|94/254;PHARMACOLOGY
+        &amp; PHARMACY;2014;SC;ClosestToPublicationYear|138/289;BIOCHEMISTRY &amp;
+        MOLECULAR BIOLOGY;2014;SC;MostRecentYear|94/254;PHARMACOLOGY &amp; PHARMACY;2014;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <AuthorCitationCountList>1,0,0|2,0,0|3,0,0|4,0,0|5,0,0</AuthorCitationCountList>\r\n
+        \   <CopyrightStateProvince>OXON</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
+        KINGDOM</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
+        \   <PublicationItemID>75182037</PublicationItemID>\r\n    <Title>The Utilization
+        of the Immune System in Lung Cancer Treatment: Beyond Chemotherapy.</Title>\r\n
+        \   <Abstract>Lung cancer is ranked first worldwide as one of the main cancers
+        in terms of prevalence and mortality rate. The development of effective treatment
+        strategies against lung cancer is therefore of paramount importance. Traditionally,
+        chemotherapy was employed in the treatment of various cancers. However, the
+        non-specific nature of the actions of chemotherapeutic drugs and the potential
+        for tumors to develop resistance to these drugs may render chemotherapy a
+        less favorable option for cancer treatment. Immunotherapy provides an alternative
+        strategy for this purpose. It involves the utilization of the immune system
+        and the immune effector cells to elicit an immune response to the tumors,
+        thereby eliminating them. Strategies include the administration of pro-inflammatory
+        cytokines for immune stimulation, the removal of immunological checkpoints
+        using monoclonal antibodies, and the use of cancer vaccines to enhance immunity
+        against tumors. This article summarizes the above strategies, highlights the
+        reasons why immunotherapy is superior to chemotherapy for the purpose of tumor
+        removal, and reviews the recent clinical studies comparing the clinical outcomes
+        of patients undergoing immunotherapy and chemotherapy. The article also describes
+        advances in immunotherapeutic strategies for the treatment of lung cancer.
+        </Abstract>\r\n    <AuthorList>Chan,Carmen,WH|Tsui,Stephen,KW|Law,Bernard,MH|So,Winnie,KW|Tang,Fiona,WK|Wong,Cho-Lee,</AuthorList>\r\n
+        \   <AuthorCount>6</AuthorCount>\r\n    <KeywordList>chemotherapy|immune system|immunotherapy|lung
+        cancer</KeywordList>\r\n    <DocumentTypeList>Journal Article</DocumentTypeList>\r\n
+        \   <DocumentCategory>Journal Document</DocumentCategory>\r\n    <NumberOfReferences
+        xsi:nil=\"true\" />\r\n    <TimesCited xsi:nil=\"true\" />\r\n    <TimesNotSelfCited
+        xsi:nil=\"true\" />\r\n    <PMID>26927069</PMID>\r\n    <PublicationSourceTitle>International
+        journal of molecular sciences</PublicationSourceTitle>\r\n    <Volume>17</Volume>\r\n
+        \   <Issue>3</Issue>\r\n    <PublicationDate>2016-01-01T00:00:00</PublicationDate>\r\n
+        \   <PublicationYear>2016</PublicationYear>\r\n    <PublicationSubjectCategoryList
+        />\r\n    <ISSN>1422-0067</ISSN>\r\n    <DOI>10.3390/ijms17030286</DOI>\r\n
+        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>11</OrdinalRank>\r\n
+        \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
+        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher />\r\n
+        \   <CopyrightCity />\r\n    <PublicationImpactFactorList>2.862,2014,ClosestToPublicationYear|2.862,2014,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>134/289;BIOCHEMISTRY &amp; MOLECULAR BIOLOGY;2014;SC;ClosestToPublicationYear|45/157;CHEMISTRY,
+        MULTIDISCIPLINARY;2014;SC;ClosestToPublicationYear|134/289;BIOCHEMISTRY &amp;
+        MOLECULAR BIOLOGY;2014;SC;MostRecentYear|45/157;CHEMISTRY, MULTIDISCIPLINARY;2014;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <CopyrightStateProvince />\r\n    <CopyrightCountry>SWITZERLAND</CopyrightCountry>\r\n
+        \ </PublicationItem>\r\n  <PublicationItem>\r\n    <PublicationItemID>74993773</PublicationItemID>\r\n
+        \   <Title>Lung cancer treatment is influenced by income, education, age and
+        place of residence in a country with universal health coverage</Title>\r\n
+        \   <Abstract>Selection of lung cancer treatment should be based on tumour
+        characteristics, physiological reserves and preferences of the patient. Our
+        aims were to identify and quantify other factors associated with treatment
+        received. Lung cancer patient data from 2002 to 2011 were obtained from the
+        national population-based Cancer Registry of Norway, Statistics Norway and
+        the Norwegian Patient Register. Multivariable logistic regression examined
+        whether year of diagnosis, age, sex, education, income, health trust, smoking
+        status, extent of disease, histology and comorbidities were associated with
+        choice of treatment; surgery or radical or palliative radiotherapy, within
+        1 year of diagnosis. Among the 24,324 lung cancer patients identified, the
+        resection rate remained constant while the proportion of radical radiotherapy
+        administered increased from 8.6 to 14.1%. Older patients, those with lower
+        household incomes and certain health trusts were less likely to receive any
+        treatment. Lower education and the male gender were identified as negative
+        predictors for receiving surgery. Smoking history was positively associated
+        with both radical and palliative radiotherapy, while comorbidity and symptoms
+        were independently associated with receiving surgery and palliative radiotherapy.
+        Although Norway is a highly egalitarian country with a free, universal healthcare
+        system, this study indicates that surgery and radical and palliative radiotherapy
+        were under-used among the elderly, those with a lower socioeconomic status
+        and those living in certain health trusts.</Abstract>\r\n    <AuthorList>Nilssen,Yngvar,|Strand,Trond-Eirik,|Fjellbirkeland,Lars,|Bartnes,Kristian,|Brustugun,Odd,Terje|O'Connell,Dianne,L|Yu,Xue,Qin|Moller,Bjorn,</AuthorList>\r\n
+        \   <AuthorCount>8</AuthorCount>\r\n    <KeywordList>SWEDEN|INEQUALITIES|SURGERY|SURGICAL
+        RESECTION|SURVIVAL|NORWAY|STAGE|RADIOTHERAPY|SOCIOECONOMIC POSITION|PALLIATIVE
+        RADIATION-THERAPY|surgery|lung cancer|radiotherapy|national population-based</KeywordList>\r\n
+        \   <DocumentTypeList>Article</DocumentTypeList>\r\n    <DocumentCategory>Journal
+        Document</DocumentCategory>\r\n    <NumberOfReferences>36</NumberOfReferences>\r\n
+        \   <TimesCited>0</TimesCited>\r\n    <TimesNotSelfCited>0</TimesNotSelfCited>\r\n
+        \   <PMID>26421593</PMID>\r\n    <WoSItemID>000370080900005</WoSItemID>\r\n
+        \   <PublicationSourceTitle>INTERNATIONAL JOURNAL OF CANCER</PublicationSourceTitle>\r\n
+        \   <Volume>138</Volume>\r\n    <Issue>6</Issue>\r\n    <Pagination>1350-1360</Pagination>\r\n
+        \   <PublicationDate>2016-03-15T00:00:00</PublicationDate>\r\n    <PublicationYear>2016</PublicationYear>\r\n
+        \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Oncology</PublicationSubjectCategoryList>\r\n
+        \   <ISSN>0020-7136</ISSN>\r\n    <DOI>10.1002/ijc.29875</DOI>\r\n    <ConferenceStartDate
+        xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank
+        xsi:nil=\"true\" />\r\n    <OrdinalRank>12</OrdinalRank>\r\n    <NormalizedRank
+        xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
+        \   <CopyrightPublisher>WILEY-BLACKWELL</CopyrightPublisher>\r\n    <CopyrightCity>HOBOKEN</CopyrightCity>\r\n
+        \   <PublicationImpactFactorList>5.085,2014,ClosestToPublicationYear|5.085,2014,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>31/211;ONCOLOGY;2014;SC;ClosestToPublicationYear|31/211;ONCOLOGY;2014;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <AuthorCitationCountList>1,0,0|2,0,0|3,0,0|4,0,0|5,0,0|6,0,0|7,0,0|8,0,0</AuthorCitationCountList>\r\n
+        \   <CopyrightStateProvince>NJ</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
+        STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
+        \   <PublicationItemID>74987116</PublicationItemID>\r\n    <Title>4D cone
+        beam CT-based dose assessment for SBRT lung cancer treatment</Title>\r\n    <Abstract>The
+        purpose of this research is to develop a 4DCBCT-based dose assessment method
+        for calculating actual delivered dose for patients with significant respiratory
+        motion or anatomical changes during the course of SBRT. To address the limitation
+        of 4DCT-based dose assessment, we propose to calculate the delivered dose
+        using time-varying ('fluoroscopic') 3D patient images generated from a 4DCBCT-based
+        motion model. The method includes four steps: (1) before each treatment, 4DCBCT
+        data is acquired with the patient in treatment position, based on which a
+        patient-specific motion model is created using a principal components analysis
+        algorithm. (2) During treatment, 2D time-varying kV projection images are
+        continuously acquired, from which time-varying 'fluoroscopic' 3D images of
+        the patient are reconstructed using the motion model. (3) Lateral truncation
+        artifacts are corrected using planning 4DCT images. (4) The 3D dose distribution
+        is computed for each timepoint in the set of 3D fluoroscopic images, from
+        which the total effective 3D delivered dose is calculated by accumulating
+        deformed dose distributions. This approach is validated using six modified
+        XCAT phantoms with lung tumors and different respiratory motions derived from
+        patient data. The estimated doses are compared to that calculated using ground-truth
+        XCAT phantoms. For each XCAT phantom, the calculated delivered tumor dose
+        values generally follow the same trend as that of the ground truth and at
+        most timepoints the difference is less than 5%. For the overall delivered
+        dose, the normalized error of calculated 3D dose distribution is generally
+        less than 3% and the tumor D95 error is less than 1.5%. XCAT phantom studies
+        indicate the potential of the proposed method to accurately estimate 3D tumor
+        dose distributions for SBRT lung treatment based on 4DCBCT imaging and motion
+        modeling. Further research is necessary to investigate its performance for
+        clinical patient data.</Abstract>\r\n    <AuthorList>Cai,Weixing,|Dhou,Salam,|Cifter,Fulya,|Myronakis,Marios,|Hurwitz,Martina,H|Williams,Christopher,L|Berbeco,Ross,I|Seco,Joao,|Lewis,John,H</AuthorList>\r\n
+        \   <AuthorCount>9</AuthorCount>\r\n    <KeywordList>IMAGE|FEASIBILITY|VERIFICATION|RESPIRATORY
+        MOTION|MONTE-CARLO|STEREOTACTIC BODY RADIOTHERAPY|EPID DOSIMETRY|MOTION MODEL|3D
+        TUMOR-LOCALIZATION|X-RAY PROJECTION|dose assessment|respiratory motion|SBRT|treatment
+        verification|4D cone beam CT</KeywordList>\r\n    <DocumentTypeList>Article</DocumentTypeList>\r\n
+        \   <DocumentCategory>Journal Document</DocumentCategory>\r\n    <NumberOfReferences>31</NumberOfReferences>\r\n
+        \   <TimesCited>0</TimesCited>\r\n    <TimesNotSelfCited>0</TimesNotSelfCited>\r\n
+        \   <PMID>26683530</PMID>\r\n    <WoSItemID>000369516600011</WoSItemID>\r\n
+        \   <PublicationSourceTitle>PHYSICS IN MEDICINE AND BIOLOGY</PublicationSourceTitle>\r\n
+        \   <Volume>61</Volume>\r\n    <Issue>2</Issue>\r\n    <Pagination>554-568</Pagination>\r\n
+        \   <PublicationDate>2016-01-21T00:00:00</PublicationDate>\r\n    <PublicationYear>2016</PublicationYear>\r\n
+        \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Engineering,
+        Biomedical|Radiology, Nuclear Medicine &amp; Medical Imaging</PublicationSubjectCategoryList>\r\n
+        \   <ISSN>0031-9155</ISSN>\r\n    <DOI>10.1088/0031-9155/61/2/554</DOI>\r\n
+        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>13</OrdinalRank>\r\n
+        \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
+        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>IOP PUBLISHING
+        LTD</CopyrightPublisher>\r\n    <CopyrightCity>BRISTOL</CopyrightCity>\r\n
+        \   <PublicationImpactFactorList>2.761,2014,ClosestToPublicationYear|2.761,2014,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>21/76;ENGINEERING, BIOMEDICAL;2014;SC;ClosestToPublicationYear|34/125;RADIOLOGY,
+        NUCLEAR MEDICINE &amp; MEDICAL IMAGING;2014;SC;ClosestToPublicationYear|21/76;ENGINEERING,
+        BIOMEDICAL;2014;SC;MostRecentYear|34/125;RADIOLOGY, NUCLEAR MEDICINE &amp;
+        MEDICAL IMAGING;2014;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <AuthorCitationCountList>1,0,0|2,0,0|3,0,0|4,0,0|5,0,0|6,0,0|7,0,0|8,0,0|9,0,0</AuthorCitationCountList>\r\n
+        \   <CopyrightStateProvince />\r\n    <CopyrightCountry>UNITED KINGDOM</CopyrightCountry>\r\n
+        \ </PublicationItem>\r\n  <PublicationItem>\r\n    <PublicationItemID>74927691</PublicationItemID>\r\n
+        \   <Title>Lung cancer treatment outcomes in recipients of lung transplant.</Title>\r\n
+        \   <Abstract>BACKGROUND Lung transplant recipients develop lung cancer more
+        commonly than the general population. The best treatment approach for these
+        patients is unclear. The goal of this study is to evaluate treatment outcomes
+        in this population.\r\nMETHODS We used the Cleveland Clinic lung transplant
+        database to identify patients diagnosed with lung cancer at the time of or
+        after lung transplant. Transplant and lung cancer-related data were retrospectively
+        reviewed.\r\nRESULTS Among 847 patients underwent lung transplant between
+        2005 and 2013, 17 (2%) were diagnosed with lung cancer and included. Median
+        age was 61 (range, 48-70) years. Majority were stage I/II (n=11), one had
+        stage IIIA, five had stage IV. Non-small cell lung cancer (NSCLC) were more
+        common than small cell lung cancer (SCLC) (n=15 vs. 2). Curative treatment
+        was performed as lobectomy in native lung (n=1), and radiation in transplanted
+        lung (n=2). Chemotherapy was given in 10 patients, primarily carboplatin-based
+        doublets with docetaxel, pemetrexed, or etoposide. Six of these received palliative
+        chemotherapy for either metastases at diagnosis (n=3) or recurrence after
+        early stage disease (n=3). Except for one patient with complete response,
+        all others had progressive disease following palliative chemotherapy. Overall,
+        patients who received chemotherapy had a median survival of 7.5 months from
+        the initiation of chemotherapy, but 30% developed grade 5 sepsis. Median survival
+        for stage I-IIIA and stage IV were 23.2 and 2.5 months respectively.\r\nCONCLUSIONS
+        Lung cancer in lung transplant recipients carries various clinical courses.
+        Patients with metastatic disease have substantial toxicities from chemotherapy
+        and poor survival. Early stage patients should be offered treatment with modified
+        dosages to decrease the risk of severe toxicities.</Abstract>\r\n    <AuthorList>Du,Lingling,|Pennell,Nathan,A|Elson,Paul,|Hashemi-Sadraei,Nooshin,</AuthorList>\r\n
+        \   <AuthorCount>4</AuthorCount>\r\n    <KeywordList>Lung cancer|chemotherapy|lung
+        transplant|outcome</KeywordList>\r\n    <DocumentTypeList>Journal Article</DocumentTypeList>\r\n
+        \   <DocumentCategory>Journal Document</DocumentCategory>\r\n    <NumberOfReferences
+        xsi:nil=\"true\" />\r\n    <TimesCited xsi:nil=\"true\" />\r\n    <TimesNotSelfCited
+        xsi:nil=\"true\" />\r\n    <PMID>26798588</PMID>\r\n    <PublicationSourceTitle>Translational
+        lung cancer research</PublicationSourceTitle>\r\n    <Volume>4</Volume>\r\n
+        \   <Issue>6</Issue>\r\n    <Pagination>784-791</Pagination>\r\n    <PublicationDate>2015-12-01T00:00:00</PublicationDate>\r\n
+        \   <PublicationYear>2015</PublicationYear>\r\n    <PublicationSubjectCategoryList
+        />\r\n    <ISSN>2218-6751</ISSN>\r\n    <DOI>10.3978/j.issn.2218-6751.2015.12.08</DOI>\r\n
+        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>14</OrdinalRank>\r\n
+        \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
+        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher />\r\n
+        \   <CopyrightCity />\r\n    <CopyrightStateProvince />\r\n    <CopyrightCountry>CHINA</CopyrightCountry>\r\n
+        \ </PublicationItem>\r\n  <PublicationItem>\r\n    <PublicationItemID>74753108</PublicationItemID>\r\n
+        \   <Title>TAREXTUMAB Anti-Notch 2/3 MAb Treatment of small cell lung cancer
+        Treatment of pancreatic cancer</Title>\r\n    <Abstract>Notch (neurogenic
+        locus notch homolog protein) signaling is a highly conserved pathway, with
+        many roles at various stages during development. Interestingly, Notch is also
+        a powerful stem cell-promoting pathway, which makes it a potential target
+        for therapeutic strategies in many types of tumors due to the undifferentiated
+        or de-differentiated state of cancer cells. Different approaches have been
+        attempted to inhibit Notch signaling, including gamma-secretase inhibitors,
+        alpha-secretase inhibitors and monoclonal antibodies targeting Notch family
+        members. Of these antibodies against Notch, ligands such as delta-like protein
+        4 have shown promising results as an antiangiogenic strategy. However, these
+        have also been found to cause vascular or endothelial cell-based tumors after
+        prolonged treatment in mice. Tarextumab (OMP-59R5) is a novel monoclonal antibody
+        specifically targeting Notch 2/3, currently under active development by OncoMed
+        Pharmaceuticals. Preclinical and clinical studies with this compound have
+        shown promising results for this antibody, alone or in combination with standard
+        chemotherapy, in various types of solid tumors including pancreatic cancer
+        and small cell lung cancer. This is a review of the development of tarextumab,
+        including main findings in both preclinical and clinical settings.</Abstract>\r\n
+        \   <AuthorList>Marques,F,</AuthorList>\r\n    <AuthorCount>1</AuthorCount>\r\n
+        \   <KeywordList>CELLS|INHIBITS TUMOR-GROWTH|SIGNALING PATHWAY|LUNG-CANCER|ANGIOGENESIS|EXPRESSION|DLL4|NUCLEAR
+        NOTCH3|Notch signaling|pancreatic cancer|small cell lung cancer|OMP-59R5|Tarextumab</KeywordList>\r\n
+        \   <DocumentTypeList>Article</DocumentTypeList>\r\n    <DocumentCategory>Journal
+        Document</DocumentCategory>\r\n    <NumberOfReferences>36</NumberOfReferences>\r\n
+        \   <TimesCited>0</TimesCited>\r\n    <TimesNotSelfCited>0</TimesNotSelfCited>\r\n
+        \   <PMID xsi:nil=\"true\" />\r\n    <WoSItemID>000368416500002</WoSItemID>\r\n
+        \   <PublicationSourceTitle>DRUGS OF THE FUTURE</PublicationSourceTitle>\r\n
+        \   <Volume>40</Volume>\r\n    <Issue>12</Issue>\r\n    <Pagination>809-812</Pagination>\r\n
+        \   <PublicationDate>2015-12-01T00:00:00</PublicationDate>\r\n    <PublicationYear>2015</PublicationYear>\r\n
+        \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Pharmacology
+        &amp; Pharmacy</PublicationSubjectCategoryList>\r\n    <ISSN>0377-8282</ISSN>\r\n
+        \   <DOI>10.1358/dof.2015.040.12.2420732</DOI>\r\n    <ConferenceStartDate
+        xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank
+        xsi:nil=\"true\" />\r\n    <OrdinalRank>15</OrdinalRank>\r\n    <NormalizedRank
+        xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
+        \   <CopyrightPublisher>PROUS SCIENCE, SAU-THOMSON REUTERS</CopyrightPublisher>\r\n
+        \   <CopyrightCity>BARCELONA</CopyrightCity>\r\n    <PublicationImpactFactorList>0.17,2014,ClosestToPublicationYear|0.17,2014,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>253/254;PHARMACOLOGY &amp; PHARMACY;2014;SC;ClosestToPublicationYear|253/254;PHARMACOLOGY
+        &amp; PHARMACY;2014;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <AuthorCitationCountList>1,0,0</AuthorCitationCountList>\r\n    <CopyrightStateProvince
+        />\r\n    <CopyrightCountry>SPAIN</CopyrightCountry>\r\n  </PublicationItem>\r\n
+        \ <PublicationItem>\r\n    <PublicationItemID>73915356</PublicationItemID>\r\n
+        \   <Title>WILLINGNESS TO PAY FOR LUNG CANCER TREATMENT: PATIENT VERSUS GENERAL
+        PUBLIC VALUES (vol 31, pg 264, 2015)</Title>\r\n    <Abstract>Owing to an
+        editorial error, in the article by Thongprasert et al. (1) in the August 2015
+        issue of International Journal of Technical Assessment in Health Care, Bruce
+        Crawford was incorrectly listed as the corresponding author. The corresponding
+        author is Unchalee Permsuwan.</Abstract>\r\n    <AuthorList>Thongprasert,Sumitra,|Crawford,Bruce,|Sakulbumrungsil,Rungpetch,|Chaiyakunapruk,Nathorn,|Petcharapiruch,Sirinthip,|Leartsakulpanitch,Jittrakul,|Permsuwan,Unchalee,</AuthorList>\r\n
+        \   <AuthorCount>7</AuthorCount>\r\n    <KeywordList />\r\n    <DocumentTypeList>Correction</DocumentTypeList>\r\n
+        \   <DocumentCategory>Other</DocumentCategory>\r\n    <NumberOfReferences>1</NumberOfReferences>\r\n
+        \   <TimesCited>0</TimesCited>\r\n    <TimesNotSelfCited>0</TimesNotSelfCited>\r\n
+        \   <PMID xsi:nil=\"true\" />\r\n    <WoSItemID>000366655300015</WoSItemID>\r\n
+        \   <PublicationSourceTitle>INTERNATIONAL JOURNAL OF TECHNOLOGY ASSESSMENT
+        IN HEALTH CARE</PublicationSourceTitle>\r\n    <Volume>31</Volume>\r\n    <Issue>4</Issue>\r\n
+        \   <Pagination>271-271</Pagination>\r\n    <PublicationDate>2015-01-01T00:00:00</PublicationDate>\r\n
+        \   <PublicationYear>2015</PublicationYear>\r\n    <PublicationType>Journal</PublicationType>\r\n
+        \   <PublicationSubjectCategoryList>Health Care Sciences &amp; Services|Public,
+        Environmental &amp; Occupational Health|Medical Informatics</PublicationSubjectCategoryList>\r\n
+        \   <ISSN>0266-4623</ISSN>\r\n    <DOI>10.1017/S026646231500063X</DOI>\r\n
+        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>16</OrdinalRank>\r\n
+        \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
+        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>CAMBRIDGE
+        UNIV PRESS</CopyrightPublisher>\r\n    <CopyrightCity>NEW YORK</CopyrightCity>\r\n
+        \   <PublicationImpactFactorList>1.308,2014,ClosestToPublicationYear|1.308,2014,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>65/89;HEALTH CARE SCIENCES &amp; SERVICES;2014;SC;ClosestToPublicationYear|101/162;PUBLIC,
+        ENVIRONMENTAL &amp; OCCUPATIONAL HEALTH;2014;SC;ClosestToPublicationYear|18/24;MEDICAL
+        INFORMATICS;2014;SC;ClosestToPublicationYear|65/89;HEALTH CARE SCIENCES &amp;
+        SERVICES;2014;SC;MostRecentYear|101/162;PUBLIC, ENVIRONMENTAL &amp; OCCUPATIONAL
+        HEALTH;2014;SC;MostRecentYear|18/24;MEDICAL INFORMATICS;2014;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <AuthorCitationCountList>1,0,0|2,0,0|3,0,0|4,0,0|5,0,0|6,0,0|7,0,0</AuthorCitationCountList>\r\n
+        \   <CopyrightStateProvince>NY</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
+        STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
+        \   <PublicationItemID>73861659</PublicationItemID>\r\n    <Title>China experts
+        consensus on icotinib for non-small cell lung cancer treatment (2015 version).</Title>\r\n
+        \   <Abstract />\r\n    <AuthorList>Shi,Yuankai,|Sun,Yan,|Ding,Cuimin,|Wang,Ziping,|Wang,Changli,|Wang,Zheng,|Bai,Chong,|Bai,Chunxue,|Feng,Jifeng,|Liu,Xiaoqing,|Li,Fang,|Yang,Yue,|Shu,Yongqian,|Wu,Milu,|He,Jianxing,|Zhang,Yiping,|Zhang,Shucai,|Chen,Gongyan,|Luo,Honghe,|Luo,Rongcheng,|Zhou,Caicun,|Zhou,Yanbin,|Pang,Qingsong,|Zhao,Hong,|Zhao,Qiong,|Gu,Aiqin,|Ling,Yang,|Huang,Cheng,|Han,Baohui,|Jiao,Shunchang,|Jiao,Hong,</AuthorList>\r\n
+        \   <AuthorCount>31</AuthorCount>\r\n    <KeywordList />\r\n    <DocumentTypeList>Journal
+        Article|Review</DocumentTypeList>\r\n    <DocumentCategory>Journal Document</DocumentCategory>\r\n
+        \   <NumberOfReferences xsi:nil=\"true\" />\r\n    <TimesCited xsi:nil=\"true\"
+        />\r\n    <TimesNotSelfCited xsi:nil=\"true\" />\r\n    <PMID>26605306</PMID>\r\n
+        \   <PublicationSourceTitle>Annals of translational medicine</PublicationSourceTitle>\r\n
+        \   <Volume>3</Volume>\r\n    <Issue>18</Issue>\r\n    <Pagination>260-?</Pagination>\r\n
+        \   <PublicationDate>2015-10-01T00:00:00</PublicationDate>\r\n    <PublicationYear>2015</PublicationYear>\r\n
+        \   <PublicationSubjectCategoryList />\r\n    <ISSN>2305-5839</ISSN>\r\n    <DOI>10.3978/j.issn.2305-5839.2015.10.30</DOI>\r\n
+        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>17</OrdinalRank>\r\n
+        \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
+        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher />\r\n
+        \   <CopyrightCity />\r\n    <CopyrightStateProvince />\r\n    <CopyrightCountry>CHINA</CopyrightCountry>\r\n
+        \ </PublicationItem>\r\n  <PublicationItem>\r\n    <PublicationItemID>73856784</PublicationItemID>\r\n
+        \   <Title>WILLINGNESS TO PAY FOR LUNG CANCER TREATMENT: PATIENT VERSUS GENERAL
+        PUBLIC VALUES</Title>\r\n    <Abstract>Objectives: Lung cancer has been the
+        most common cancer since 1985, accounting for 12-13 percent of cancer cases
+        worldwide. Newer targeted therapies with potential increased survival benefits
+        may not be affordable to patients. Many countries use arbitrary thresholds
+        to determine whether a medical intervention is cost-effective. As such, many
+        effective, albeit expensive, therapies are not being reimbursed. To understand
+        the value placed on effective therapies, this study evaluates the patient
+        and public willingness to pay (WTP) for a quality-adjusted life-year (QALY)
+        for lung cancer treatments using Thailand as an example.  Methods: A total
+        of 300 subjects responded to hypothetical lung cancer health states, described
+        by three levels of severity and two levels of side effects, and provided their
+        valuation of the level of quality of life and their WTP to improve from one
+        state to another.  Results: The patients with the lowest income and general
+        public were willing to pay more than twice the threshold for acceptability
+        in Thailand (US Dollar 5,123/QALY [Thai Baht 160,000/QALY]). This increased
+        significantly by wealth category. Patients' WTP was associated with quality
+        of life, financial difficulties, health insurance, diarrhea, and wealth.  Conclusions:
+        The current study highlights the value patients and general public place on
+        effective lung cancer therapies.</Abstract>\r\n    <AuthorList>Thongprasert,Sumitra,|Crawford,Bruce,|Sakulbumrungsil,Rungpetch,|Chaiyakunapruk,Nathorn,|Petcharapiruch,Sirinthip,|Leartsakulpanitch,Jittrakul,|Permsuwan,Unchalee,</AuthorList>\r\n
+        \   <AuthorCount>7</AuthorCount>\r\n    <KeywordList>willingness-to-pay|lung
+        cancer|health economics|cancer treatment|pharmacoeconomics</KeywordList>\r\n
+        \   <DocumentTypeList>Article</DocumentTypeList>\r\n    <DocumentCategory>Journal
+        Document</DocumentCategory>\r\n    <NumberOfReferences>13</NumberOfReferences>\r\n
+        \   <TimesCited>1</TimesCited>\r\n    <TimesNotSelfCited>0</TimesNotSelfCited>\r\n
+        \   <PMID>26353902</PMID>\r\n    <WoSItemID>000366655300014</WoSItemID>\r\n
+        \   <PublicationSourceTitle>INTERNATIONAL JOURNAL OF TECHNOLOGY ASSESSMENT
+        IN HEALTH CARE</PublicationSourceTitle>\r\n    <Volume>31</Volume>\r\n    <Issue>4</Issue>\r\n
+        \   <Pagination>264-270</Pagination>\r\n    <PublicationDate>2015-01-01T00:00:00</PublicationDate>\r\n
+        \   <PublicationYear>2015</PublicationYear>\r\n    <PublicationType>Journal</PublicationType>\r\n
+        \   <PublicationSubjectCategoryList>Health Care Sciences &amp; Services|Public,
+        Environmental &amp; Occupational Health|Medical Informatics</PublicationSubjectCategoryList>\r\n
+        \   <ISSN>0266-4623</ISSN>\r\n    <DOI>10.1017/S0266462315000409</DOI>\r\n
+        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>18</OrdinalRank>\r\n
+        \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
+        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>CAMBRIDGE
+        UNIV PRESS</CopyrightPublisher>\r\n    <CopyrightCity>NEW YORK</CopyrightCity>\r\n
+        \   <PublicationImpactFactorList>1.308,2014,ClosestToPublicationYear|1.308,2014,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>65/89;HEALTH CARE SCIENCES &amp; SERVICES;2014;SC;ClosestToPublicationYear|101/162;PUBLIC,
+        ENVIRONMENTAL &amp; OCCUPATIONAL HEALTH;2014;SC;ClosestToPublicationYear|18/24;MEDICAL
+        INFORMATICS;2014;SC;ClosestToPublicationYear|65/89;HEALTH CARE SCIENCES &amp;
+        SERVICES;2014;SC;MostRecentYear|101/162;PUBLIC, ENVIRONMENTAL &amp; OCCUPATIONAL
+        HEALTH;2014;SC;MostRecentYear|18/24;MEDICAL INFORMATICS;2014;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <AuthorCitationCountList>1,1,0|2,1,0|3,1,0|4,1,0|5,1,0|6,1,0|7,1,0</AuthorCitationCountList>\r\n
+        \   <CopyrightStateProvince>NY</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
+        STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
+        \   <PublicationItemID>73843960</PublicationItemID>\r\n    <Title>Immunotherapy:
+        the third wave in lung cancer treatment</Title>\r\n    <Abstract />\r\n    <AuthorList>Heigener,David,Felix|Reck,Martin,</AuthorList>\r\n
+        \   <AuthorCount>2</AuthorCount>\r\n    <KeywordList>DOCETAXEL|NIVOLUMAB|BMS-936558|ONO-4538</KeywordList>\r\n
+        \   <DocumentTypeList>Editorial Material</DocumentTypeList>\r\n    <DocumentCategory>Other</DocumentCategory>\r\n
+        \   <NumberOfReferences>7</NumberOfReferences>\r\n    <TimesCited>0</TimesCited>\r\n
+        \   <TimesNotSelfCited>0</TimesNotSelfCited>\r\n    <PMID>26679022</PMID>\r\n
+        \   <WoSItemID>000365817900023</WoSItemID>\r\n    <PublicationSourceTitle>LANCET
+        RESPIRATORY MEDICINE</PublicationSourceTitle>\r\n    <Volume>3</Volume>\r\n
+        \   <Issue>12</Issue>\r\n    <Pagination>923-924</Pagination>\r\n    <PublicationDate>2015-12-01T00:00:00</PublicationDate>\r\n
+        \   <PublicationYear>2015</PublicationYear>\r\n    <PublicationType>Journal</PublicationType>\r\n
+        \   <PublicationSubjectCategoryList>Critical Care Medicine|Respiratory System</PublicationSubjectCategoryList>\r\n
+        \   <ISSN>2213-2600</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank xsi:nil=\"true\" />\r\n
+        \   <OrdinalRank>19</OrdinalRank>\r\n    <NormalizedRank xsi:nil=\"true\"
+        />\r\n    <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
+        \   <CopyrightPublisher>ELSEVIER SCI LTD</CopyrightPublisher>\r\n    <CopyrightCity>OXFORD</CopyrightCity>\r\n
+        \   <PublicationImpactFactorList>9.629,2014,ClosestToPublicationYear|9.629,2014,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>2/57;RESPIRATORY SYSTEM;2014;SC;ClosestToPublicationYear|2/57;RESPIRATORY
+        SYSTEM;2014;SC;MostRecentYear</PublicationCategoryRankingList>\r\n    <AuthorCitationCountList>1,0,0|2,0,0</AuthorCitationCountList>\r\n
+        \   <CopyrightStateProvince>OXON</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
+        KINGDOM</CopyrightCountry>\r\n  </PublicationItem>\r\n</ArrayOfPublicationItem>"
+    http_version: 
+  recorded_at: Wed, 04 May 2016 00:38:37 GMT
 recorded_with: VCR 3.0.1

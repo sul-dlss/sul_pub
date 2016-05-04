@@ -1426,4 +1426,669 @@ http_interactions:
         dGlvbkl0ZW0+DQo8L0FycmF5T2ZQdWJsaWNhdGlvbkl0ZW0+
     http_version: 
   recorded_at: Tue, 05 Apr 2016 23:40:20 GMT
+- request:
+    method: get
+    uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/231219?format=xml&page=0&pageSize=2147483647&v=version/4
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.9.2
+      Accept:
+      - "*/*"
+      Accept-Encoding:
+      - gzip,deflate
+      Date:
+      - Wed, 04 May 2016 00:38:47 GMT
+      Licenseid:
+      - Settings.SCIENCEWIRE.LICENSE_ID
+      Host:
+      - Settings.SCIENCEWIRE.HOST
+      Connection:
+      - Keep-Alive
+      Expect:
+      - 100-continue
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - private
+      Content-Type:
+      - application/xml; charset=utf-8
+      Server:
+      - Microsoft-IIS/7.5
+      X-Aspnetmvc-Version:
+      - '2.0'
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+      Date:
+      - Wed, 04 May 2016 00:38:47 GMT
+      Content-Length:
+      - '54233'
+    body:
+      encoding: UTF-8
+      string: "<?xml version=\"1.0\"?>\r\n<ArrayOfPublicationItem xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <PublicationItem>\r\n
+        \   <PublicationItemID>75597824</PublicationItemID>\r\n    <Title>[The structure
+        of the internal carotid artery wall in pathological tortuosity].</Title>\r\n
+        \   <Abstract>OBJECTIVE to study a change in the content of main components
+        of the internal carotid artery (ICA) wall in pathological tortuosity (PT)
+        resulting from fibromuscular dysplasia, using immunohistochemistry and confocal
+        laser scanning microscopy.\r\nMATERIAL AND METHODS Immunohistochemical (IHC)
+        analysis using antibodies to elastin, collagen types I and III, and smooth
+        muscle actin was made. The levels of elastin and matrix metalloproteinase
+        9 (MMP-9) were determined by confocal laser scanning microscopy. The relative
+        area of expression and the area of co-location of these markers were measured.\r\nRESULTS
+        IHC examination of the expression of elastin revealed that the patients with
+        PT of ICA had its higher content than the controls, but they were observed
+        to have fiber fragmentation. Comparison of collagen types I and III expressions
+        showed no significant differences between the groups. The found significantly
+        lower smooth muscle actin expression in the patients with PT of ICA than in
+        the controls was suggestive of the decreased levels of smooth muscle cells.
+        Confocal microscopy analysis showed high elastin and low MMP-9 expressions
+        in the control group and, on the contrary, low elastin and high proteinase
+        levels in the PT group (?&lt;0.05).\r\nCONCLUSION One of the causes of PT
+        is impairment in vascular elastic properties due to the destruction of elastic
+        fibers and to their fragmentation, as well as to the decreased count of smooth
+        muscle cells, which in turn causes enhanced MMP-9 activity and tissue matrix
+        degradation.</Abstract>\r\n    <AuthorList>Paltseva,E,M|Oskolkova,S,A|Polyakova,V,O|Krylova,Y,US|Ivanova,A,G|Abramyan,A,V|Gavrilenko,A,V</AuthorList>\r\n
+        \   <AuthorCount>7</AuthorCount>\r\n    <KeywordList />\r\n    <DocumentTypeList>English
+        Abstract|Journal Article</DocumentTypeList>\r\n    <DocumentCategory>Journal
+        Document</DocumentCategory>\r\n    <NumberOfReferences xsi:nil=\"true\" />\r\n
+        \   <TimesCited xsi:nil=\"true\" />\r\n    <TimesNotSelfCited xsi:nil=\"true\"
+        />\r\n    <PMID>26978013</PMID>\r\n    <PublicationSourceTitle>Arkhiv patologii</PublicationSourceTitle>\r\n
+        \   <Volume>77</Volume>\r\n    <Issue>5</Issue>\r\n    <Pagination>3-8</Pagination>\r\n
+        \   <PublicationDate>2015-09-01T00:00:00</PublicationDate>\r\n    <PublicationYear>2015</PublicationYear>\r\n
+        \   <PublicationSubjectCategoryList />\r\n    <ISSN>0004-1955</ISSN>\r\n    <ConferenceStartDate
+        xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank
+        xsi:nil=\"true\" />\r\n    <OrdinalRank>0</OrdinalRank>\r\n    <NormalizedRank
+        xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
+        \   <CopyrightPublisher />\r\n    <CopyrightCity />\r\n    <CopyrightStateProvince
+        />\r\n    <CopyrightCountry>RUSSIA (FEDERATION)</CopyrightCountry>\r\n  </PublicationItem>\r\n
+        \ <PublicationItem>\r\n    <PublicationItemID>75589394</PublicationItemID>\r\n
+        \   <Title>[Module-based analysis: deciphering pathological and pharmacological
+        mechanisms of complex diseases and multi-target drugs].</Title>\r\n    <Abstract>A
+        complex disease is rarely a consequence of abnormality in a single gene. It
+        is known that many drugs exhibit a therapeutic effect by acting on multiple
+        targets, produce synergies to intervene the occurrence and development of
+        diseases. Unlike the traditional methods which act on single molecule or pathway,
+        this disease-drug target network constructed with high throughput data vividly
+        showed the complex relationship between drugs, their targets and diseases.
+        However, the networks are usually extremely complex. In order to reduce the
+        complexity, it is necessary to deconstruct the network and identify module
+        structures. In this study, framework of module analysis was summarized from
+        four aspects: module concept, structure and identification methods, importance
+        of disease-drug module identification, and its application. Module-based analysis
+        provides a new perspective for deciphering the drug intervention mechanisms
+        for complex diseases, and provides new ideas and pathways to reveal the mechanisms
+        of multi-target and multi-component drugs.</Abstract>\r\n    <AuthorList>Chen,Yin-Ying,|Feng,Li-Peng,|Li,Yong,|Wu,Ping,|Wang,Zhong,|Wang,Jie,</AuthorList>\r\n
+        \   <AuthorCount>6</AuthorCount>\r\n    <KeywordList />\r\n    <DocumentTypeList>English
+        Abstract|Journal Article</DocumentTypeList>\r\n    <DocumentCategory>Journal
+        Document</DocumentCategory>\r\n    <NumberOfReferences xsi:nil=\"true\" />\r\n
+        \   <TimesCited xsi:nil=\"true\" />\r\n    <TimesNotSelfCited xsi:nil=\"true\"
+        />\r\n    <PMID>27062835</PMID>\r\n    <PublicationSourceTitle>Zhongguo Zhong
+        yao za zhi = Zhongguo zhongyao zazhi = China journal of Chinese materia medica</PublicationSourceTitle>\r\n
+        \   <Volume>40</Volume>\r\n    <Issue>20</Issue>\r\n    <Pagination>4112-4116</Pagination>\r\n
+        \   <PublicationDate>2015-10-01T00:00:00</PublicationDate>\r\n    <PublicationYear>2015</PublicationYear>\r\n
+        \   <PublicationSubjectCategoryList />\r\n    <ISSN>1001-5302</ISSN>\r\n    <ConferenceStartDate
+        xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank
+        xsi:nil=\"true\" />\r\n    <OrdinalRank>1</OrdinalRank>\r\n    <NormalizedRank
+        xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
+        \   <CopyrightPublisher />\r\n    <CopyrightCity />\r\n    <CopyrightStateProvince
+        />\r\n    <CopyrightCountry>CHINA</CopyrightCountry>\r\n  </PublicationItem>\r\n
+        \ <PublicationItem>\r\n    <PublicationItemID>75586896</PublicationItemID>\r\n
+        \   <Title>Epidemiology, Pathological Characteristics and Estrogen and Progesterone
+        Receptor Status of Operated Cases of Female Breast Cancer: A Retrospective
+        Review of 266 Cases from Kerala.</Title>\r\n    <Abstract>Breast cancer is
+        presently the most common cancer among women in Kerala, in Southern India.
+        The objectives of this study were to analyze the epidemiology and pathological
+        characteristics of female breast carcinoma in Kerala. 266 patients who were
+        diagnosed with operable breast cancer between April 2009 and June 2010 were
+        studied. Various pathological characteristics including stage, grade, axillary
+        lymph nodal status, tumor size, and estrogen and progesterone receptor status
+        were studied. Estrogen and progesterone receptor status were evaluated by
+        immunohistochemistry. Chi-square test and frequency tables were used for statistical
+        analysis. The mean age at presentation was 50 years. 48.9 % of the patients
+        were premenopausal. 53.76 % had grade II tumors. Positive axillary lymph nodes
+        were found in 70.3 % patients, and 68 % presented with stage II disease. 54.13 %
+        were ER positive and 62 % were PR positive. The relatively young age at diagnosis,
+        late presentation of the disease, and lower estrogen and progesterone receptor
+        expression compared to patients from the West point toward the need for better
+        breast cancer awareness and screening programmes in Kerala. </Abstract>\r\n
+        \   <AuthorList>Vettuparambil,Ajith,|Rajan,Gautham,|Chirukandath,Ravindran,|Culas,Terence,B</AuthorList>\r\n
+        \   <AuthorCount>4</AuthorCount>\r\n    <KeywordList>Age|Breast cancer|Estrogen
+        receptor|Grade|Kerala|Lymph node|Menopause|Progesterone receptor|Stage</KeywordList>\r\n
+        \   <DocumentTypeList>Journal Article</DocumentTypeList>\r\n    <DocumentCategory>Journal
+        Document</DocumentCategory>\r\n    <NumberOfReferences xsi:nil=\"true\" />\r\n
+        \   <TimesCited xsi:nil=\"true\" />\r\n    <TimesNotSelfCited xsi:nil=\"true\"
+        />\r\n    <PMID>27065660</PMID>\r\n    <PublicationSourceTitle>Indian journal
+        of surgical oncology</PublicationSourceTitle>\r\n    <Volume>6</Volume>\r\n
+        \   <Issue>4</Issue>\r\n    <Pagination>352-355</Pagination>\r\n    <PublicationDate>2015-12-01T00:00:00</PublicationDate>\r\n
+        \   <PublicationYear>2015</PublicationYear>\r\n    <PublicationSubjectCategoryList
+        />\r\n    <ISSN>0975-7651</ISSN>\r\n    <DOI>10.1007/s13193-015-0425-9</DOI>\r\n
+        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>2</OrdinalRank>\r\n
+        \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
+        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher />\r\n
+        \   <CopyrightCity />\r\n    <CopyrightStateProvince />\r\n    <CopyrightCountry>INDIA</CopyrightCountry>\r\n
+        \ </PublicationItem>\r\n  <PublicationItem>\r\n    <PublicationItemID>75583377</PublicationItemID>\r\n
+        \   <Title>Hemato-biochemical and pathological changes on avian influenza
+        in naturally infected domestic ducks in Egypt.</Title>\r\n    <Abstract>AIM
+        Few studies have been made in regard to avian influenza (AI) in ducks, thus
+        the aim of this work was planned to investigate the hematological, biochemical,
+        and pathological changes in domestic Egyptian ducks naturally infected with
+        AI.\r\nMATERIALS AND METHODS 30 duck from private backyards 3-month-old 15
+        were clinically healthy (Group 1) and the other fifteen (Group 2) were naturally
+        diseased with AI (H5N1). The disease was diagnosed by polymerase chain reaction
+        as H5N1.\r\nRESULTS Duck showed cyanosis, subcutaneous edema of head and neck
+        with nervous signs (torticollis). Hematological studies revealed a microcytic
+        hypochromic anemia. Biochemical studies revealed a significant decrease in
+        total protein, albumin and globulin concentration with significant increase
+        of activities of aspartate aminotransferase, alanine aminotransferase, alkaline
+        phosphatase, ?-glutamyl transpeptidase, lactic acid dehydrogenase and creatine
+        phsphokinase. Prominent increase in creatinine and uric acid in addition to
+        hypocalcemia and hyperphosphatemia were significantly detected in the infected
+        ducks. Histopathological finding confirm these investigations.\r\nCONCLUSION
+        The highly pathogenic AIV (A/H5N1) became more severe infectious to ducks
+        than before and causes nervous manifestations and blindness which were uncommon
+        in ducks. Besides the significant increases of hepatic enzymes, brain, heart,
+        and renal markers as a response to virus damage to these organs.</Abstract>\r\n
+        \   <AuthorList>Mahmoud,Essam,A</AuthorList>\r\n    <AuthorCount>1</AuthorCount>\r\n
+        \   <KeywordList>aminotranseferases|anemia|avian influenza|creatinine|ducks|uric
+        acid</KeywordList>\r\n    <DocumentTypeList>Journal Article</DocumentTypeList>\r\n
+        \   <DocumentCategory>Journal Document</DocumentCategory>\r\n    <NumberOfReferences
+        xsi:nil=\"true\" />\r\n    <TimesCited xsi:nil=\"true\" />\r\n    <TimesNotSelfCited
+        xsi:nil=\"true\" />\r\n    <PMID>27047014</PMID>\r\n    <PublicationSourceTitle>Veterinary
+        world</PublicationSourceTitle>\r\n    <Volume>8</Volume>\r\n    <Issue>10</Issue>\r\n
+        \   <Pagination>1177-1182</Pagination>\r\n    <PublicationDate>2015-10-01T00:00:00</PublicationDate>\r\n
+        \   <PublicationYear>2015</PublicationYear>\r\n    <PublicationSubjectCategoryList
+        />\r\n    <ISSN>0972-8988</ISSN>\r\n    <DOI>10.14202/vetworld.2015.1177-1182</DOI>\r\n
+        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>3</OrdinalRank>\r\n
+        \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
+        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher />\r\n
+        \   <CopyrightCity />\r\n    <CopyrightStateProvince />\r\n    <CopyrightCountry>INDIA</CopyrightCountry>\r\n
+        \ </PublicationItem>\r\n  <PublicationItem>\r\n    <PublicationItemID>75575211</PublicationItemID>\r\n
+        \   <Title>Foot clearance estimation during overground walking and vertical
+        obstacle passing using shank-mounted MIMUs in healthy and pathological subjects</Title>\r\n
+        \   <Abstract>A method for assessing maximum foot clearance (maxFCl) during
+        overground walking and obstacle passing using magnetic and inertial measurement
+        units (MIMUs) placed above the malleoli is proposed and validated. The method
+        precision and accuracy were evaluated using a stereo-photogrammetric system
+        as a gold standard. The proposed method was applied to the data obtained from
+        the gait of both healthy subjects and patients with various abnormal gaits.
+        First, an optimally filtered direct and reverse integration (OFDRI) was used
+        for each gait cycle to determine the gait velocity. Then, the effect of an
+        additional OFDRI or a simple DRI approach for obtaining vertical foot displacement
+        was explored. The results showed that the mean absolute errors associated
+        to the maxFCl estimates were about 10% of its range of variation for the healthy
+        and pathological subjects during overground walking. An accurate estimate
+        of the maxFCl during obstacle passing was reached (mean absolute errors less
+        than 5%). Additional testing on gait at various gait speed and on a greater
+        number of subjects should be carried out to fully validate the MIMU-based
+        maxFCl estimates.</Abstract>\r\n    <AuthorList>Trojaniello,D,|Cereatti,A,|Della
+        Croce,U,</AuthorList>\r\n    <AuthorCount>3</AuthorCount>\r\n    <KeywordList>ADULTS|GAIT|YOUNG|PARAMETERS|LENGTH|SENSORS|INERTIAL
+        MEASUREMENT UNIT|TOE CLEARANCE|GROUND CLEARANCE</KeywordList>\r\n    <NumberOfReferences>18</NumberOfReferences>\r\n
+        \   <TimesCited>0</TimesCited>\r\n    <TimesNotSelfCited>0</TimesNotSelfCited>\r\n
+        \   <PMID xsi:nil=\"true\" />\r\n    <WoSItemID>000371717205191</WoSItemID>\r\n
+        \   <PublicationSourceTitle>2015 37TH ANNUAL INTERNATIONAL CONFERENCE OF THE
+        IEEE ENGINEERING IN MEDICINE AND BIOLOGY SOCIETY (EMBC)</PublicationSourceTitle>\r\n
+        \   <Pagination>5505-5508</Pagination>\r\n    <PublicationDate>2015-01-01T00:00:00</PublicationDate>\r\n
+        \   <PublicationYear>2015</PublicationYear>\r\n    <PublicationType>Book in
+        Series</PublicationType>\r\n    <PublicationSubjectCategoryList>Engineering,
+        Biomedical|Engineering, Electrical &amp; Electronic</PublicationSubjectCategoryList>\r\n
+        \   <ISSN>1557-170X</ISSN>\r\n    <ISBN>978-1-4244-9270-1</ISBN>\r\n    <ConferenceTitle>37th
+        Annual International Conference of the IEEE Engineering in Medicine and Biology
+        Society (EMBC)</ConferenceTitle>\r\n    <ConferenceStartDate>2015-08-25T00:00:00</ConferenceStartDate>\r\n
+        \   <ConferenceEndDate>2015-08-29T00:00:00</ConferenceEndDate>\r\n    <ConferenceCity>MILAN</ConferenceCity>\r\n
+        \   <ConferenceStateCountry>ITALY</ConferenceStateCountry>\r\n    <Rank xsi:nil=\"true\"
+        />\r\n    <OrdinalRank>4</OrdinalRank>\r\n    <NormalizedRank xsi:nil=\"true\"
+        />\r\n    <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
+        \   <CopyrightPublisher>IEEE</CopyrightPublisher>\r\n    <CopyrightCity>NEW
+        YORK</CopyrightCity>\r\n    <AuthorCitationCountList>1,0,0|2,0,0|3,0,0</AuthorCitationCountList>\r\n
+        \   <CopyrightStateProvince>NY</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
+        STATES</CopyrightCountry>\r\n    <BookSeriesTitle>IEEE Engineering in Medicine
+        and Biology Society Conference Proceedings</BookSeriesTitle>\r\n  </PublicationItem>\r\n
+        \ <PublicationItem>\r\n    <PublicationItemID>75556535</PublicationItemID>\r\n
+        \   <Title>Pathological examination after neoadjuvant chemotherapy (breast
+        carcinoma): A diagnostic challenge in surgical pathology</Title>\r\n    <Abstract
+        />\r\n    <AuthorList>Pujani,Meenu,|Agarwal,Shilpi,|Madan,Neha,K</AuthorList>\r\n
+        \   <AuthorCount>3</AuthorCount>\r\n    <KeywordList>CANCER</KeywordList>\r\n
+        \   <DocumentTypeList>Letter</DocumentTypeList>\r\n    <DocumentCategory>Journal
+        Document</DocumentCategory>\r\n    <NumberOfReferences>6</NumberOfReferences>\r\n
+        \   <TimesCited>0</TimesCited>\r\n    <TimesNotSelfCited>0</TimesNotSelfCited>\r\n
+        \   <PMID xsi:nil=\"true\" />\r\n    <WoSItemID>000373138400017</WoSItemID>\r\n
+        \   <PublicationSourceTitle>INDIAN JOURNAL OF CANCER</PublicationSourceTitle>\r\n
+        \   <Volume>52</Volume>\r\n    <Issue>4</Issue>\r\n    <Pagination>535-536</Pagination>\r\n
+        \   <PublicationDate>2015-10-01T00:00:00</PublicationDate>\r\n    <PublicationYear>2015</PublicationYear>\r\n
+        \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Oncology</PublicationSubjectCategoryList>\r\n
+        \   <ISSN>0019-509X</ISSN>\r\n    <DOI>10.4103/0019-509X.178415</DOI>\r\n
+        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>5</OrdinalRank>\r\n
+        \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
+        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>MEDKNOW
+        PUBLICATIONS &amp; MEDIA PVT LTD</CopyrightPublisher>\r\n    <CopyrightCity>MUMBAI</CopyrightCity>\r\n
+        \   <PublicationImpactFactorList>0.802,2014,ClosestToPublicationYear|0.802,2014,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>196/211;ONCOLOGY;2014;SC;ClosestToPublicationYear|196/211;ONCOLOGY;2014;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <AuthorCitationCountList>1,0,0|2,0,0|3,0,0</AuthorCitationCountList>\r\n
+        \   <CopyrightStateProvince />\r\n    <CopyrightCountry>INDIA</CopyrightCountry>\r\n
+        \ </PublicationItem>\r\n  <PublicationItem>\r\n    <PublicationItemID>75496231</PublicationItemID>\r\n
+        \   <Title>Healthy and Pathological Cerebellar Spiking Neural Networks in
+        Vestibulo-Ocular Reflex</Title>\r\n    <Abstract>Since the Marr-Albus model,
+        computational neuroscientists have been developing a variety of models of
+        the cerebellum, with different approaches and features. In this work, we developed
+        and tested realistic artificial Spiking Neural Networks inspired to this brain
+        region. We tested in computational simulations of the Vestibulo-Ocular Reflex
+        protocol three different models: a network equipped with a single plasticity
+        site, at the cortical level; a network equipped with a distributed plasticity,
+        at both cortical and nuclear levels; a network with a pathological plasticity
+        mechanism at the cortical level. We analyzed the learning performance of the
+        three different models, highlighting the behavioral differences among them.
+        We proved that the model with a distributed plasticity produces a faster and
+        more accurate cerebellar response, especially during a second session of acquisition,
+        compared with the single plasticity model. Furthermore, the pathological model
+        shows an impaired learning capability in Vestibulo-Ocular Reflex acquisition,
+        as found in neurophysiological studies. The effect of the different plasticity
+        conditions, which change fast and slow dynamics, memory consolidation and,
+        in general, learning capabilities of the cerebellar network, explains differences
+        in the behavioral outcome.</Abstract>\r\n    <AuthorList>Antonietti,Alberto,|Casellato,Claudia,|Geminiani,Alice,|D'Angelo,Egidio,|Pedrocchi,Alessandra,</AuthorList>\r\n
+        \   <AuthorCount>5</AuthorCount>\r\n    <KeywordList>PLASTICITY|SIMULATION</KeywordList>\r\n
+        \   <NumberOfReferences>16</NumberOfReferences>\r\n    <TimesCited>0</TimesCited>\r\n
+        \   <TimesNotSelfCited>0</TimesNotSelfCited>\r\n    <PMID xsi:nil=\"true\"
+        />\r\n    <WoSItemID>000371717202197</WoSItemID>\r\n    <PublicationSourceTitle>2015
+        37TH ANNUAL INTERNATIONAL CONFERENCE OF THE IEEE ENGINEERING IN MEDICINE AND
+        BIOLOGY SOCIETY (EMBC)</PublicationSourceTitle>\r\n    <Pagination>2514-2517</Pagination>\r\n
+        \   <PublicationDate>2015-01-01T00:00:00</PublicationDate>\r\n    <PublicationYear>2015</PublicationYear>\r\n
+        \   <PublicationType>Book in Series</PublicationType>\r\n    <PublicationSubjectCategoryList>Engineering,
+        Biomedical|Engineering, Electrical &amp; Electronic</PublicationSubjectCategoryList>\r\n
+        \   <ISSN>1557-170X</ISSN>\r\n    <ISBN>978-1-4244-9270-1</ISBN>\r\n    <ConferenceTitle>37th
+        Annual International Conference of the IEEE Engineering in Medicine and Biology
+        Society (EMBC)</ConferenceTitle>\r\n    <ConferenceStartDate>2015-08-25T00:00:00</ConferenceStartDate>\r\n
+        \   <ConferenceEndDate>2015-08-29T00:00:00</ConferenceEndDate>\r\n    <ConferenceCity>MILAN</ConferenceCity>\r\n
+        \   <ConferenceStateCountry>ITALY</ConferenceStateCountry>\r\n    <Rank xsi:nil=\"true\"
+        />\r\n    <OrdinalRank>6</OrdinalRank>\r\n    <NormalizedRank xsi:nil=\"true\"
+        />\r\n    <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
+        \   <CopyrightPublisher>IEEE</CopyrightPublisher>\r\n    <CopyrightCity>NEW
+        YORK</CopyrightCity>\r\n    <AuthorCitationCountList>1,0,0|2,0,0|3,0,0|4,0,0|5,0,0</AuthorCitationCountList>\r\n
+        \   <CopyrightStateProvince>NY</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
+        STATES</CopyrightCountry>\r\n    <BookSeriesTitle>IEEE Engineering in Medicine
+        and Biology Society Conference Proceedings</BookSeriesTitle>\r\n  </PublicationItem>\r\n
+        \ <PublicationItem>\r\n    <PublicationItemID>75470789</PublicationItemID>\r\n
+        \   <Title>Squamous Cell Carcinoma: Clinical and Pathological Features and
+        Associated Risk Factors in an Observational Study of 118 Patients.</Title>\r\n
+        \   <Abstract>BACKGROUND AND OBJECTIVE In the latest edition of its cancer
+        staging manual, the American Joint Committee on Cancer (AJCC) revised the
+        criteria for staging squamous cell carcinoma (SCC) by introducing high-risk
+        tumor features to define tumor stage (T) and help to identify tumors with
+        a higher risk of metastasis. The aim of this study was to investigate the
+        characteristics associated with SCC meeting the high-risk criteria defined
+        by the AJCC for T2 lesions.\r\nPATIENTS AND METHOD We performed a case-case
+        observational study in which patients with SCC were included over a period
+        of 18 months. We collected clinical, anthropometric, and tumor data, and analyzed
+        these using PASW Statistics (SPSS) version 18.\r\nRESULTS One-hundred eighteen
+        patients, the majority of whom were men, were included. Mean age was 77 years.
+        Over 70% of the tumors were located in the head region and a majority of tumors
+        measured 2 cm or less. The prevalence of SCC T2 was 61.9%. The risk factors
+        significantly associated with SCC T2 were an age of over 85 years (odds ratio
+        [OR], 4.48), location in the head and neck region (OR, 3.38), presence of
+        solar elastosis in the peritumoral tissue (OR, 2.08), a higher tumor growth
+        rate (&gt;1.5 mm·wk(-1); OR, 5.73), and higher cumulative exposure to smoking
+        (&gt;20 pack-years, OR, 3.63).\r\nCONCLUSIONS Advanced age, location in the
+        head and neck region, presence of solar elastosis, high tumor growth rate,
+        and high cumulative smoking exposure were all significantly associated with
+        the presence of SCC T2.</Abstract>\r\n    <AuthorList>Díaz-Corpas,T,|Morales-Suárez-Varela,M,|Rausell
+        Fontestad,N,|Fuertes Prósper,A,|Marquina-Vila,A,|Jordá-Cuevas,E,</AuthorList>\r\n
+        \   <AuthorCount>6</AuthorCount>\r\n    <KeywordList>Anciano|Carcinoma epidermoide
+        cutáneo de alto riesgo|Elderly|Factores de riesgo|High-risk squamous cell
+        carcinoma|Risk factors|Smoking|Tabaco</KeywordList>\r\n    <DocumentTypeList>Journal
+        Article</DocumentTypeList>\r\n    <DocumentCategory>Journal Document</DocumentCategory>\r\n
+        \   <NumberOfReferences xsi:nil=\"true\" />\r\n    <TimesCited xsi:nil=\"true\"
+        />\r\n    <TimesNotSelfCited xsi:nil=\"true\" />\r\n    <PMID>26272626</PMID>\r\n
+        \   <PublicationSourceTitle>Actas dermo-sifiliogra´ficas</PublicationSourceTitle>\r\n
+        \   <Volume>106</Volume>\r\n    <Issue>10</Issue>\r\n    <Pagination>806-815</Pagination>\r\n
+        \   <PublicationDate>2015-12-01T00:00:00</PublicationDate>\r\n    <PublicationYear>2015</PublicationYear>\r\n
+        \   <PublicationSubjectCategoryList />\r\n    <ISSN>0001-7310</ISSN>\r\n    <DOI>10.1016/j.ad.2015.07.001</DOI>\r\n
+        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>7</OrdinalRank>\r\n
+        \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
+        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>ELSEVIER
+        ESPAÑA, S.L.U. AND AEDV</CopyrightPublisher>\r\n    <CopyrightCity />\r\n
+        \   <CopyrightStateProvince />\r\n    <CopyrightCountry>SPAIN</CopyrightCountry>\r\n
+        \ </PublicationItem>\r\n  <PublicationItem>\r\n    <PublicationItemID>75440538</PublicationItemID>\r\n
+        \   <Title>[Association between pathological olfaction, immunological abnormalities
+        and predisposition to substance use].</Title>\r\n    <Abstract>OBJECTIVE To
+        reveal olfactory parameters of substance addiction formation through evaluation
+        of predictive capability of olfactometry combined with laboratory-immunological
+        methods.\r\nMATERIAL AND METHODS Authors examined 156 people of both sexes
+        aged 18-25 years. Three comparison groups with different attitudes towards
+        psychoactive substances were formed as follows: people who do not use psychoactive
+        substances (controls), episodic consumers (group at risk) and people with
+        dependence syndrome.\r\nRESULTS The occurrence of olfactory abnormalities
+        in the anamnesis has immunological, psychological and behavioral correlates
+        and is associated with earlier age of onset of substance consumption. The
+        severity of aversive reactions to the test odorant is reduced already in the
+        stage of episodic substance use and is associated with clinical signs of immune
+        deficiency, suppression of cellular immunity and an increase in blood cortisol
+        levels in substance abusers.\r\nCONCLUSION Diagnostic and predictive modeling
+        in the field of biological and clinical science of drug addiction is possible
+        based on immunological and olfactory parameters.</Abstract>\r\n    <AuthorList>Nevidimova,T,I|Batukhtina,E,I|Savochkina,D,N|Vetlugina,T,P|Nikitina,V,B|Bokhan,N,A</AuthorList>\r\n
+        \   <AuthorCount>6</AuthorCount>\r\n    <KeywordList />\r\n    <DocumentTypeList>English
+        Abstract|Journal Article</DocumentTypeList>\r\n    <DocumentCategory>Journal
+        Document</DocumentCategory>\r\n    <NumberOfReferences xsi:nil=\"true\" />\r\n
+        \   <TimesCited xsi:nil=\"true\" />\r\n    <TimesNotSelfCited xsi:nil=\"true\"
+        />\r\n    <PMID>26978055</PMID>\r\n    <PublicationSourceTitle>Zhurnal nevrologii
+        i psikhiatrii imeni S.S. Korsakova / Ministerstvo zdravookhraneniia i meditsinskoi?
+        promyshlennosti Rossii?skoi? Federatsii, Vserossii?skoe obshchestvo nevrologov
+        [i] Vserossii?skoe obshchestvo psikhiatrov</PublicationSourceTitle>\r\n    <Volume>115</Volume>\r\n
+        \   <Issue>11</Issue>\r\n    <Pagination>80-84</Pagination>\r\n    <PublicationDate>2015-01-01T00:00:00</PublicationDate>\r\n
+        \   <PublicationYear>2015</PublicationYear>\r\n    <PublicationSubjectCategoryList
+        />\r\n    <ISSN>1997-7298</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\"
+        />\r\n    <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank xsi:nil=\"true\"
+        />\r\n    <OrdinalRank>8</OrdinalRank>\r\n    <NormalizedRank xsi:nil=\"true\"
+        />\r\n    <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
+        \   <CopyrightPublisher />\r\n    <CopyrightCity />\r\n    <PublicationImpactFactorList>0.046,2013,ClosestToPublicationYear|0.046,2013,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>193/194;CLINICAL NEUROLOGY;2013;SC;ClosestToPublicationYear|134/136;PSYCHIATRY;2013;SC;ClosestToPublicationYear|193/194;CLINICAL
+        NEUROLOGY;2013;SC;MostRecentYear|134/136;PSYCHIATRY;2013;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <CopyrightStateProvince />\r\n    <CopyrightCountry>RUSSIA (FEDERATION)</CopyrightCountry>\r\n
+        \ </PublicationItem>\r\n  <PublicationItem>\r\n    <PublicationItemID>75428584</PublicationItemID>\r\n
+        \   <Title>Clinical-Pathological and Survival Analysis of Patients with Advanced
+        NSCLC and EGFR Mutation Treated With a Drug Therapy Anti-T790M</Title>\r\n
+        \   <Abstract />\r\n    <AuthorList>Corral,Jesus,|Cervera,Antonio,|Maiquez,Pilar,|Alonso,Miriam,|Dolores
+        Mediano,Maria,|Jose Flor,Maria,|Jimenez,Lucia,</AuthorList>\r\n    <AuthorCount>7</AuthorCount>\r\n
+        \   <KeywordList>inhibition|NSCLC|T790M|phase I unit</KeywordList>\r\n    <DocumentTypeList>Meeting
+        Abstract</DocumentTypeList>\r\n    <DocumentCategory>Conference Proceeding
+        Document</DocumentCategory>\r\n    <NumberOfReferences xsi:nil=\"true\" />\r\n
+        \   <TimesCited>0</TimesCited>\r\n    <TimesNotSelfCited>0</TimesNotSelfCited>\r\n
+        \   <PMID xsi:nil=\"true\" />\r\n    <WoSItemID>000370365102015</WoSItemID>\r\n
+        \   <PublicationSourceTitle>JOURNAL OF THORACIC ONCOLOGY</PublicationSourceTitle>\r\n
+        \   <Volume>10</Volume>\r\n    <Issue>9</Issue>\r\n    <Pagination>S411-S411</Pagination>\r\n
+        \   <PublicationDate>2015-09-01T00:00:00</PublicationDate>\r\n    <PublicationYear>2015</PublicationYear>\r\n
+        \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Oncology|Respiratory
+        System</PublicationSubjectCategoryList>\r\n    <ISSN>1556-0864</ISSN>\r\n
+        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>9</OrdinalRank>\r\n
+        \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
+        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>ELSEVIER
+        SCIENCE INC</CopyrightPublisher>\r\n    <CopyrightCity>NEW YORK</CopyrightCity>\r\n
+        \   <PublicationImpactFactorList>5.282,2014,ClosestToPublicationYear|5.282,2014,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>30/211;ONCOLOGY;2014;SC;ClosestToPublicationYear|7/57;RESPIRATORY
+        SYSTEM;2014;SC;ClosestToPublicationYear|30/211;ONCOLOGY;2014;SC;MostRecentYear|7/57;RESPIRATORY
+        SYSTEM;2014;SC;MostRecentYear</PublicationCategoryRankingList>\r\n    <AuthorCitationCountList>1,0,0|2,0,0|3,0,0|4,0,0|5,0,0|6,0,0|7,0,0</AuthorCitationCountList>\r\n
+        \   <CopyrightStateProvince>NY</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
+        STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
+        \   <PublicationItemID>75428215</PublicationItemID>\r\n    <Title>Accurate
+        Assessment of Vessel Invasion Using D2-40 and Victoria Blue Predicts Recurrence
+        in Patients with Pathological Stage I NSCLC</Title>\r\n    <Abstract />\r\n
+        \   <AuthorList>Okada,Satoshi,|Mizuguchi,Shinjiro,|Izumi,Nobuhiro,|Oka-Yamamoto,Hiroko,|Toda,Michihito,|Hara,Kantaro,|Nishiyama,Noritoshi,</AuthorList>\r\n
+        \   <AuthorCount>7</AuthorCount>\r\n    <KeywordList>lymphatic invasion|recurrence|blood
+        vessel invasion|pathological stage I NSCLC</KeywordList>\r\n    <DocumentTypeList>Meeting
+        Abstract</DocumentTypeList>\r\n    <DocumentCategory>Conference Proceeding
+        Document</DocumentCategory>\r\n    <NumberOfReferences xsi:nil=\"true\" />\r\n
+        \   <TimesCited>0</TimesCited>\r\n    <TimesNotSelfCited>0</TimesNotSelfCited>\r\n
+        \   <PMID xsi:nil=\"true\" />\r\n    <WoSItemID>000370365102091</WoSItemID>\r\n
+        \   <PublicationSourceTitle>JOURNAL OF THORACIC ONCOLOGY</PublicationSourceTitle>\r\n
+        \   <Volume>10</Volume>\r\n    <Issue>9</Issue>\r\n    <Pagination>S432-S432</Pagination>\r\n
+        \   <PublicationDate>2015-09-01T00:00:00</PublicationDate>\r\n    <PublicationYear>2015</PublicationYear>\r\n
+        \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Oncology|Respiratory
+        System</PublicationSubjectCategoryList>\r\n    <ISSN>1556-0864</ISSN>\r\n
+        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>10</OrdinalRank>\r\n
+        \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
+        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>ELSEVIER
+        SCIENCE INC</CopyrightPublisher>\r\n    <CopyrightCity>NEW YORK</CopyrightCity>\r\n
+        \   <PublicationImpactFactorList>5.282,2014,ClosestToPublicationYear|5.282,2014,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>30/211;ONCOLOGY;2014;SC;ClosestToPublicationYear|7/57;RESPIRATORY
+        SYSTEM;2014;SC;ClosestToPublicationYear|30/211;ONCOLOGY;2014;SC;MostRecentYear|7/57;RESPIRATORY
+        SYSTEM;2014;SC;MostRecentYear</PublicationCategoryRankingList>\r\n    <AuthorCitationCountList>1,0,0|2,0,0|3,0,0|4,0,0|5,0,0|6,0,0|7,0,0</AuthorCitationCountList>\r\n
+        \   <CopyrightStateProvince>NY</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
+        STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
+        \   <PublicationItemID>75418900</PublicationItemID>\r\n    <Title>Pathological
+        Response with Angiotensin Converting Enzyme Inhibitor/Angiotensin Receptor
+        Blocker Use in Advanced Non-Small Cell Lung Cancer</Title>\r\n    <Abstract
+        />\r\n    <AuthorList>Hyder,Jalal,|Bhooshan,Neha,|Feliciano,Josephine,L|Vyfhuis,Melissa,|Lam,Vincent,K|Suntharalingam,Mohan,|Burrows,Whitney,|Nichols,Elizabeth,M|Edelman,Martin,|Feigenberg,Steven,J|Cohen,Eric,P|Vujaskovic,Zeljko,|Mohindra,Pranshu,</AuthorList>\r\n
+        \   <AuthorCount>13</AuthorCount>\r\n    <KeywordList>Angiotensin converting
+        enzyme inhibitor|trimodality therapy|locally advanced NSCLS|radiation toxicities
+        mitigators</KeywordList>\r\n    <DocumentTypeList>Meeting Abstract</DocumentTypeList>\r\n
+        \   <DocumentCategory>Conference Proceeding Document</DocumentCategory>\r\n
+        \   <NumberOfReferences xsi:nil=\"true\" />\r\n    <TimesCited>0</TimesCited>\r\n
+        \   <TimesNotSelfCited>0</TimesNotSelfCited>\r\n    <PMID xsi:nil=\"true\"
+        />\r\n    <WoSItemID>000370365102480</WoSItemID>\r\n    <PublicationSourceTitle>JOURNAL
+        OF THORACIC ONCOLOGY</PublicationSourceTitle>\r\n    <Volume>10</Volume>\r\n
+        \   <Issue>9</Issue>\r\n    <Pagination>S549-S549</Pagination>\r\n    <PublicationDate>2015-09-01T00:00:00</PublicationDate>\r\n
+        \   <PublicationYear>2015</PublicationYear>\r\n    <PublicationType>Journal</PublicationType>\r\n
+        \   <PublicationSubjectCategoryList>Oncology|Respiratory System</PublicationSubjectCategoryList>\r\n
+        \   <ISSN>1556-0864</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank xsi:nil=\"true\" />\r\n
+        \   <OrdinalRank>11</OrdinalRank>\r\n    <NormalizedRank xsi:nil=\"true\"
+        />\r\n    <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
+        \   <CopyrightPublisher>ELSEVIER SCIENCE INC</CopyrightPublisher>\r\n    <CopyrightCity>NEW
+        YORK</CopyrightCity>\r\n    <PublicationImpactFactorList>5.282,2014,ClosestToPublicationYear|5.282,2014,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>30/211;ONCOLOGY;2014;SC;ClosestToPublicationYear|7/57;RESPIRATORY
+        SYSTEM;2014;SC;ClosestToPublicationYear|30/211;ONCOLOGY;2014;SC;MostRecentYear|7/57;RESPIRATORY
+        SYSTEM;2014;SC;MostRecentYear</PublicationCategoryRankingList>\r\n    <AuthorCitationCountList>1,0,0|2,0,0|3,0,0|4,0,0|5,0,0|6,0,0|7,0,0|8,0,0|9,0,0|10,0,0|11,0,0|12,0,0|13,0,0</AuthorCitationCountList>\r\n
+        \   <CopyrightStateProvince>NY</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
+        STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
+        \   <PublicationItemID>75418038</PublicationItemID>\r\n    <Title>Investigation
+        for the Optimum Resectable Pathological Size of Small Solitary Metastasis
+        from Colorectal Cancers</Title>\r\n    <Abstract />\r\n    <AuthorList>Sakao,Yukinori,|Kuroda,Hiroaki,|Okumura,Takehiro,|Boku,Narikazu,|Hishida,Tomoyuki,|Ohde,Yasuhisa,|Yoshiya,Katsuo,|Higashiyama,Masahiko,|Adachi,Hirofumi,|Satoh,Yukitoshi,|Kameyama,Kotaro,|Kanzaki,Masato,|Yoshimura,Masahiro,|Hata,Yoshinobu,|Matsuura,Motoki,|Chen,Fengshi,|Yoshida,Kazuo,|Sasaki,Hidefumi,|Horio,Hirotoshi,|Takenoyama,Mitsuhiro,|Yamashita,Motohiro,|Hashimoto,Takehisa,|Fujita,Atsushi,|Okumura,Meinoshin,|Funai,Kazuhito,|Shiono,Satoshi,|Asano,Hisatoshi,|Suzuki,Makoto,|Hoshi,Eishin,|Shiraishi,Yuji,|Nakayama,Mitsuo,|Yamazaki,Nobuhiro,|Matsuo,Toshihiro,|Miyazawa,Hideki,|Sato,Yukio,|Takao,Motoshi,|Nakayama,Haruhiko,|Yamada,Shunsuke,|Shimizu,Kimihiro,|Kataoka,Masafumi,|Nakamura,Haruhiko,|Watanabe,Takehiro,|Suzuki,Hiroyuki,|Akamine,Shinji,|Tsunezuka,Yoshio,|Nakata,Masao,|Kadokura,Mitsutaka,|Hyodo,Ichinosuke,|Mori,Keita,|Kondo,Haruhiko,</AuthorList>\r\n
+        \   <AuthorCount>50</AuthorCount>\r\n    <KeywordList>pulmonary metastasis|colorectal
+        cancer|solitary metastasis</KeywordList>\r\n    <DocumentTypeList>Meeting
+        Abstract</DocumentTypeList>\r\n    <DocumentCategory>Conference Proceeding
+        Document</DocumentCategory>\r\n    <NumberOfReferences xsi:nil=\"true\" />\r\n
+        \   <TimesCited>0</TimesCited>\r\n    <TimesNotSelfCited>0</TimesNotSelfCited>\r\n
+        \   <PMID xsi:nil=\"true\" />\r\n    <WoSItemID>000370365103117</WoSItemID>\r\n
+        \   <PublicationSourceTitle>JOURNAL OF THORACIC ONCOLOGY</PublicationSourceTitle>\r\n
+        \   <Volume>10</Volume>\r\n    <Issue>9</Issue>\r\n    <Pagination>S635-S635</Pagination>\r\n
+        \   <PublicationDate>2015-09-01T00:00:00</PublicationDate>\r\n    <PublicationYear>2015</PublicationYear>\r\n
+        \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Oncology|Respiratory
+        System</PublicationSubjectCategoryList>\r\n    <ISSN>1556-0864</ISSN>\r\n
+        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>12</OrdinalRank>\r\n
+        \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
+        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>ELSEVIER
+        SCIENCE INC</CopyrightPublisher>\r\n    <CopyrightCity>NEW YORK</CopyrightCity>\r\n
+        \   <PublicationImpactFactorList>5.282,2014,ClosestToPublicationYear|5.282,2014,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>30/211;ONCOLOGY;2014;SC;ClosestToPublicationYear|7/57;RESPIRATORY
+        SYSTEM;2014;SC;ClosestToPublicationYear|30/211;ONCOLOGY;2014;SC;MostRecentYear|7/57;RESPIRATORY
+        SYSTEM;2014;SC;MostRecentYear</PublicationCategoryRankingList>\r\n    <AuthorCitationCountList>1,0,0|2,0,0|3,0,0|4,0,0|5,0,0|6,0,0|7,0,0|8,0,0|9,0,0|10,0,0|11,0,0|12,0,0|13,0,0|14,0,0|15,0,0|16,0,0|17,0,0|18,0,0|19,0,0|20,0,0|21,0,0|22,0,0|23,0,0|24,0,0|25,0,0|26,0,0|27,0,0|28,0,0|29,0,0|30,0,0|31,0,0|32,0,0|33,0,0|34,0,0|35,0,0|36,0,0|37,0,0|38,0,0|39,0,0|40,0,0|41,0,0|42,0,0|43,0,0|44,0,0|45,0,0|46,0,0|47,0,0|48,0,0|49,0,0|50,0,0</AuthorCitationCountList>\r\n
+        \   <CopyrightStateProvince>NY</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
+        STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
+        \   <PublicationItemID>75416375</PublicationItemID>\r\n    <Title>Clinicopathological
+        Factors Associated With Postoperative Survival in Patients With Pathological
+        Stage IB Non-Small-Cell Lung Cancer</Title>\r\n    <Abstract />\r\n    <AuthorList>Shimomura,Masanori,|Ishihara,Shunta,</AuthorList>\r\n
+        \   <AuthorCount>2</AuthorCount>\r\n    <KeywordList>prognosis|surgery|non-small-cell
+        lung cancer|stage IB</KeywordList>\r\n    <DocumentTypeList>Meeting Abstract</DocumentTypeList>\r\n
+        \   <DocumentCategory>Conference Proceeding Document</DocumentCategory>\r\n
+        \   <NumberOfReferences xsi:nil=\"true\" />\r\n    <TimesCited>0</TimesCited>\r\n
+        \   <TimesNotSelfCited>0</TimesNotSelfCited>\r\n    <PMID xsi:nil=\"true\"
+        />\r\n    <WoSItemID>000370365103282</WoSItemID>\r\n    <PublicationSourceTitle>JOURNAL
+        OF THORACIC ONCOLOGY</PublicationSourceTitle>\r\n    <Volume>10</Volume>\r\n
+        \   <Issue>9</Issue>\r\n    <Pagination>S681-S681</Pagination>\r\n    <PublicationDate>2015-09-01T00:00:00</PublicationDate>\r\n
+        \   <PublicationYear>2015</PublicationYear>\r\n    <PublicationType>Journal</PublicationType>\r\n
+        \   <PublicationSubjectCategoryList>Oncology|Respiratory System</PublicationSubjectCategoryList>\r\n
+        \   <ISSN>1556-0864</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank xsi:nil=\"true\" />\r\n
+        \   <OrdinalRank>13</OrdinalRank>\r\n    <NormalizedRank xsi:nil=\"true\"
+        />\r\n    <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
+        \   <CopyrightPublisher>ELSEVIER SCIENCE INC</CopyrightPublisher>\r\n    <CopyrightCity>NEW
+        YORK</CopyrightCity>\r\n    <PublicationImpactFactorList>5.282,2014,ClosestToPublicationYear|5.282,2014,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>30/211;ONCOLOGY;2014;SC;ClosestToPublicationYear|7/57;RESPIRATORY
+        SYSTEM;2014;SC;ClosestToPublicationYear|30/211;ONCOLOGY;2014;SC;MostRecentYear|7/57;RESPIRATORY
+        SYSTEM;2014;SC;MostRecentYear</PublicationCategoryRankingList>\r\n    <AuthorCitationCountList>1,0,0|2,0,0</AuthorCitationCountList>\r\n
+        \   <CopyrightStateProvince>NY</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
+        STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
+        \   <PublicationItemID>75413311</PublicationItemID>\r\n    <Title>A MIXTURE
+        OF EXPERTS APPROACH TOWARDS INTELLIGIBILITY CLASSIFICATION OF PATHOLOGICAL
+        SPEECH</Title>\r\n    <Abstract>Pathological speech involves atypical speech
+        production which may result from several factors including oral diseases,
+        physical disabilities in the voice production system and atypical anatomy.
+        Automatic evaluation of intelligibility in patients with pathological speech
+        can assist accurate diagnosis of pathological conditions. Loss of intelligibility
+        may be associated with one of the several pathological conditions, making
+        automatic evaluation a challenging computational problem. A Mixture of Experts
+        (MoE) models class boundaries using a weighted combination of several experts
+        and can characterize the complex class boundaries arising due to pathological
+        variability. We train an MoE for intelligibility evaluation using a modified
+        Expectation Maximization (EM) algorithm based on joint simulated annealing-gradient
+        ascent procedure. Our algorithm optimizes the expert parameters and simultaneously
+        obtains the feature subsets for each expert. We observe that the MoE trained
+        using the new EM algorithm not only outperforms a single classifier baseline
+        but also the vanilla MoE. We perform further data analysis and interpret the
+        weights assigned to each expert during inference. Also, we obtain a different
+        feature subset per expert in the mixture. This illustrates feature use based
+        on location of the data point in the feature space.</Abstract>\r\n    <AuthorList>Gupta,Rahul,|Audhkhasi,Kartik,|Narayanan,Shrikanth,</AuthorList>\r\n
+        \   <AuthorCount>3</AuthorCount>\r\n    <KeywordList>ALGORITHM|FEATURE-SELECTION|MODELS|SYSTEM|VOICES|PACKET-BASED
+        FEATURES|intelligibility|simulated annealing|mixture of experts|gradient ascent|pathological
+        speech</KeywordList>\r\n    <NumberOfReferences>27</NumberOfReferences>\r\n
+        \   <TimesCited>0</TimesCited>\r\n    <TimesNotSelfCited>0</TimesNotSelfCited>\r\n
+        \   <PMID xsi:nil=\"true\" />\r\n    <WoSItemID>000368452402025</WoSItemID>\r\n
+        \   <PublicationSourceTitle>2015 IEEE INTERNATIONAL CONFERENCE ON ACOUSTICS,
+        SPEECH, AND SIGNAL PROCESSING (ICASSP)</PublicationSourceTitle>\r\n    <Pagination>1986-1990</Pagination>\r\n
+        \   <PublicationDate>2015-01-01T00:00:00</PublicationDate>\r\n    <PublicationYear>2015</PublicationYear>\r\n
+        \   <PublicationType>Book in Series</PublicationType>\r\n    <PublicationSubjectCategoryList>Acoustics|Engineering,
+        Electrical &amp; Electronic</PublicationSubjectCategoryList>\r\n    <ISSN>1520-6149</ISSN>\r\n
+        \   <ISBN>978-1-4673-6997-8</ISBN>\r\n    <ConferenceStartDate xsi:nil=\"true\"
+        />\r\n    <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank xsi:nil=\"true\"
+        />\r\n    <OrdinalRank>14</OrdinalRank>\r\n    <NormalizedRank xsi:nil=\"true\"
+        />\r\n    <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
+        \   <CopyrightPublisher>IEEE</CopyrightPublisher>\r\n    <CopyrightCity>NEW
+        YORK</CopyrightCity>\r\n    <AuthorCitationCountList>1,0,0|2,0,0|3,0,0</AuthorCitationCountList>\r\n
+        \   <CopyrightStateProvince>NY</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
+        STATES</CopyrightCountry>\r\n    <BookSeriesTitle>International Conference
+        on Acoustics Speech and Signal Processing ICASSP</BookSeriesTitle>\r\n  </PublicationItem>\r\n
+        \ <PublicationItem>\r\n    <PublicationItemID>75412899</PublicationItemID>\r\n
+        \   <Title>Clinico-Pathological Profile of Lung Cancer at New AIIMS Hospital
+        in Eastern India</Title>\r\n    <Abstract />\r\n    <AuthorList>Mohapatra,Prasanta,R|Bhuniya,Sourin,|Panigrahi,Manoj,K|Patra,Susama,|Mishra,Pritinanda,|Das
+        Majumdar,Saroj,K|Pradhan,Gourahari,|Behera,Priyadarshini,|Dey,Anupam,</AuthorList>\r\n
+        \   <AuthorCount>9</AuthorCount>\r\n    <KeywordList>lung cancer|India|epidemiology|Odisha</KeywordList>\r\n
+        \   <DocumentTypeList>Meeting Abstract</DocumentTypeList>\r\n    <DocumentCategory>Conference
+        Proceeding Document</DocumentCategory>\r\n    <NumberOfReferences xsi:nil=\"true\"
+        />\r\n    <TimesCited>0</TimesCited>\r\n    <TimesNotSelfCited>0</TimesNotSelfCited>\r\n
+        \   <PMID xsi:nil=\"true\" />\r\n    <WoSItemID>000370365103463</WoSItemID>\r\n
+        \   <PublicationSourceTitle>JOURNAL OF THORACIC ONCOLOGY</PublicationSourceTitle>\r\n
+        \   <Volume>10</Volume>\r\n    <Issue>9</Issue>\r\n    <Pagination>S732-S732</Pagination>\r\n
+        \   <PublicationDate>2015-09-01T00:00:00</PublicationDate>\r\n    <PublicationYear>2015</PublicationYear>\r\n
+        \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Oncology|Respiratory
+        System</PublicationSubjectCategoryList>\r\n    <ISSN>1556-0864</ISSN>\r\n
+        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>15</OrdinalRank>\r\n
+        \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
+        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>ELSEVIER
+        SCIENCE INC</CopyrightPublisher>\r\n    <CopyrightCity>NEW YORK</CopyrightCity>\r\n
+        \   <PublicationImpactFactorList>5.282,2014,ClosestToPublicationYear|5.282,2014,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>30/211;ONCOLOGY;2014;SC;ClosestToPublicationYear|7/57;RESPIRATORY
+        SYSTEM;2014;SC;ClosestToPublicationYear|30/211;ONCOLOGY;2014;SC;MostRecentYear|7/57;RESPIRATORY
+        SYSTEM;2014;SC;MostRecentYear</PublicationCategoryRankingList>\r\n    <AuthorCitationCountList>1,0,0|2,0,0|3,0,0|4,0,0|5,0,0|6,0,0|7,0,0|8,0,0|9,0,0</AuthorCitationCountList>\r\n
+        \   <CopyrightStateProvince>NY</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
+        STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
+        \   <PublicationItemID>75410182</PublicationItemID>\r\n    <Title>Prognostic
+        Factors in Resected Pathological Right Middle Lobe Non-Small Cell Lung Cancer</Title>\r\n
+        \   <Abstract />\r\n    <AuthorList>Liu,Tieqin,|Liu,Hongxu,</AuthorList>\r\n
+        \   <AuthorCount>2</AuthorCount>\r\n    <KeywordList>lymph node metastasis|Hilar/interlobar
+        zone metastases|Right middle lobe NSCLC</KeywordList>\r\n    <DocumentTypeList>Meeting
+        Abstract</DocumentTypeList>\r\n    <DocumentCategory>Conference Proceeding
+        Document</DocumentCategory>\r\n    <NumberOfReferences xsi:nil=\"true\" />\r\n
+        \   <TimesCited>0</TimesCited>\r\n    <TimesNotSelfCited>0</TimesNotSelfCited>\r\n
+        \   <PMID xsi:nil=\"true\" />\r\n    <WoSItemID>000370365103589</WoSItemID>\r\n
+        \   <PublicationSourceTitle>JOURNAL OF THORACIC ONCOLOGY</PublicationSourceTitle>\r\n
+        \   <Volume>10</Volume>\r\n    <Issue>9</Issue>\r\n    <Pagination>S769-S770</Pagination>\r\n
+        \   <PublicationDate>2015-09-01T00:00:00</PublicationDate>\r\n    <PublicationYear>2015</PublicationYear>\r\n
+        \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Oncology|Respiratory
+        System</PublicationSubjectCategoryList>\r\n    <ISSN>1556-0864</ISSN>\r\n
+        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>16</OrdinalRank>\r\n
+        \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
+        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>ELSEVIER
+        SCIENCE INC</CopyrightPublisher>\r\n    <CopyrightCity>NEW YORK</CopyrightCity>\r\n
+        \   <PublicationImpactFactorList>5.282,2014,ClosestToPublicationYear|5.282,2014,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>30/211;ONCOLOGY;2014;SC;ClosestToPublicationYear|7/57;RESPIRATORY
+        SYSTEM;2014;SC;ClosestToPublicationYear|30/211;ONCOLOGY;2014;SC;MostRecentYear|7/57;RESPIRATORY
+        SYSTEM;2014;SC;MostRecentYear</PublicationCategoryRankingList>\r\n    <AuthorCitationCountList>1,0,0|2,0,0</AuthorCitationCountList>\r\n
+        \   <CopyrightStateProvince>NY</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
+        STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
+        \   <PublicationItemID>75408755</PublicationItemID>\r\n    <Title>Clinico-pathological
+        significance of LINE-1 and ESR1 methylation levels in sporadic colorectal
+        cancer</Title>\r\n    <Abstract />\r\n    <AuthorList>Noguchi,Tomofumi,|Toiyama,Yuji,|Mori,Koichiro,|Ide,Shozo,|Imaoka,Hiroki,|Fujikawa,Hiroyuki,|Hiro,Junichiro,|Saigusa,Susumu,|Kobayashi,Minako,|Ohi,Masaki,|Tanaka,Koji,|Inoue,Yasuhiro,|Mohri,Yasuhiko,|Ishii,Kenichiro,|Kusunoki,Masato,</AuthorList>\r\n
+        \   <AuthorCount>15</AuthorCount>\r\n    <KeywordList />\r\n    <DocumentTypeList>Meeting
+        Abstract</DocumentTypeList>\r\n    <DocumentCategory>Conference Proceeding
+        Document</DocumentCategory>\r\n    <NumberOfReferences xsi:nil=\"true\" />\r\n
+        \   <TimesCited>0</TimesCited>\r\n    <TimesNotSelfCited>0</TimesNotSelfCited>\r\n
+        \   <PMID xsi:nil=\"true\" />\r\n    <WoSItemID>000371578502105</WoSItemID>\r\n
+        \   <PublicationSourceTitle>CANCER RESEARCH</PublicationSourceTitle>\r\n    <Volume>75</Volume>\r\n
+        \   <Pagination />\r\n    <PublicationDate>2015-08-01T00:00:00</PublicationDate>\r\n
+        \   <PublicationYear>2015</PublicationYear>\r\n    <PublicationType>Journal</PublicationType>\r\n
+        \   <PublicationSubjectCategoryList>Oncology</PublicationSubjectCategoryList>\r\n
+        \   <ISSN>0008-5472</ISSN>\r\n    <DOI>10.1158/1538-7445.AM2015-1061</DOI>\r\n
+        \   <ConferenceTitle>106th Annual Meeting of the American-Association-for-Cancer-Research
+        (AACR)</ConferenceTitle>\r\n    <ConferenceStartDate>2015-04-18T00:00:00</ConferenceStartDate>\r\n
+        \   <ConferenceEndDate>2015-04-22T00:00:00</ConferenceEndDate>\r\n    <ConferenceCity>PHILADELPHIA</ConferenceCity>\r\n
+        \   <ConferenceStateCountry>PA</ConferenceStateCountry>\r\n    <Rank xsi:nil=\"true\"
+        />\r\n    <OrdinalRank>17</OrdinalRank>\r\n    <NormalizedRank xsi:nil=\"true\"
+        />\r\n    <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
+        \   <CopyrightPublisher>AMER ASSOC CANCER RESEARCH</CopyrightPublisher>\r\n
+        \   <CopyrightCity>PHILADELPHIA</CopyrightCity>\r\n    <PublicationImpactFactorList>9.329,2014,ClosestToPublicationYear|9.329,2014,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>11/211;ONCOLOGY;2014;SC;ClosestToPublicationYear|11/211;ONCOLOGY;2014;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <AuthorCitationCountList>1,0,0|2,0,0|3,0,0|4,0,0|5,0,0|6,0,0|7,0,0|8,0,0|9,0,0|10,0,0|11,0,0|12,0,0|13,0,0|14,0,0|15,0,0</AuthorCitationCountList>\r\n
+        \   <CopyrightStateProvince>PA</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
+        STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
+        \   <PublicationItemID>75402047</PublicationItemID>\r\n    <Title>Mediastinal
+        Lymphadenectomy Fulfilling NCCN Criteria May Improve the Outcome of Clinical
+        N0-1 and Pathological N2 Non-Small Cell Lung Cancer</Title>\r\n    <Abstract
+        />\r\n    <AuthorList>Wu,Nan,|Wang,Xing,|Yan,Shi,|Phan,Kevin,|Yan,Tristan,D|Zhang,Lijian,|Yang,Yue,</AuthorList>\r\n
+        \   <AuthorCount>7</AuthorCount>\r\n    <KeywordList>outcome|lung cancer|lymphadenectomy</KeywordList>\r\n
+        \   <DocumentTypeList>Meeting Abstract</DocumentTypeList>\r\n    <DocumentCategory>Conference
+        Proceeding Document</DocumentCategory>\r\n    <NumberOfReferences xsi:nil=\"true\"
+        />\r\n    <TimesCited>0</TimesCited>\r\n    <TimesNotSelfCited>0</TimesNotSelfCited>\r\n
+        \   <PMID xsi:nil=\"true\" />\r\n    <WoSItemID>000370365100237</WoSItemID>\r\n
+        \   <PublicationSourceTitle>JOURNAL OF THORACIC ONCOLOGY</PublicationSourceTitle>\r\n
+        \   <Volume>10</Volume>\r\n    <Issue>9</Issue>\r\n    <Pagination>S183-S185</Pagination>\r\n
+        \   <PublicationDate>2015-09-01T00:00:00</PublicationDate>\r\n    <PublicationYear>2015</PublicationYear>\r\n
+        \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Oncology|Respiratory
+        System</PublicationSubjectCategoryList>\r\n    <ISSN>1556-0864</ISSN>\r\n
+        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>18</OrdinalRank>\r\n
+        \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
+        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>ELSEVIER
+        SCIENCE INC</CopyrightPublisher>\r\n    <CopyrightCity>NEW YORK</CopyrightCity>\r\n
+        \   <PublicationImpactFactorList>5.282,2014,ClosestToPublicationYear|5.282,2014,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>30/211;ONCOLOGY;2014;SC;ClosestToPublicationYear|7/57;RESPIRATORY
+        SYSTEM;2014;SC;ClosestToPublicationYear|30/211;ONCOLOGY;2014;SC;MostRecentYear|7/57;RESPIRATORY
+        SYSTEM;2014;SC;MostRecentYear</PublicationCategoryRankingList>\r\n    <AuthorCitationCountList>1,0,0|2,0,0|3,0,0|4,0,0|5,0,0|6,0,0|7,0,0</AuthorCitationCountList>\r\n
+        \   <CopyrightStateProvince>NY</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
+        STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
+        \   <PublicationItemID>75401341</PublicationItemID>\r\n    <Title>Feasibility
+        of office hysteroscopy for evaluation of women with postmenopausal bleeding
+        and association with improved pathological diagnosis</Title>\r\n    <Abstract
+        />\r\n    <AuthorList>Shaw,Jacquelyn,M|Mehta,Sukrant,|Chudnoff,Scott,|Levie,Mark,|Einstein,Mark,H|Goldberg,Gary,L|Nevadunsky,Nicole,S</AuthorList>\r\n
+        \   <AuthorCount>7</AuthorCount>\r\n    <KeywordList />\r\n    <DocumentTypeList>Meeting
+        Abstract</DocumentTypeList>\r\n    <DocumentCategory>Conference Proceeding
+        Document</DocumentCategory>\r\n    <NumberOfReferences xsi:nil=\"true\" />\r\n
+        \   <TimesCited>0</TimesCited>\r\n    <TimesNotSelfCited>0</TimesNotSelfCited>\r\n
+        \   <PMID xsi:nil=\"true\" />\r\n    <WoSItemID>000371597102266</WoSItemID>\r\n
+        \   <PublicationSourceTitle>CANCER RESEARCH</PublicationSourceTitle>\r\n    <Volume>75</Volume>\r\n
+        \   <Pagination />\r\n    <PublicationDate>2015-08-01T00:00:00</PublicationDate>\r\n
+        \   <PublicationYear>2015</PublicationYear>\r\n    <PublicationType>Journal</PublicationType>\r\n
+        \   <PublicationSubjectCategoryList>Oncology</PublicationSubjectCategoryList>\r\n
+        \   <ISSN>0008-5472</ISSN>\r\n    <DOI>10.1158/1538-7445.AM2015-3730</DOI>\r\n
+        \   <ConferenceTitle>106th Annual Meeting of the American-Association-for-Cancer-Research
+        (AACR)</ConferenceTitle>\r\n    <ConferenceStartDate>2015-04-18T00:00:00</ConferenceStartDate>\r\n
+        \   <ConferenceEndDate>2015-04-22T00:00:00</ConferenceEndDate>\r\n    <ConferenceCity>PHILADELPHIA</ConferenceCity>\r\n
+        \   <ConferenceStateCountry>PA</ConferenceStateCountry>\r\n    <Rank xsi:nil=\"true\"
+        />\r\n    <OrdinalRank>19</OrdinalRank>\r\n    <NormalizedRank xsi:nil=\"true\"
+        />\r\n    <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
+        \   <CopyrightPublisher>AMER ASSOC CANCER RESEARCH</CopyrightPublisher>\r\n
+        \   <CopyrightCity>PHILADELPHIA</CopyrightCity>\r\n    <PublicationImpactFactorList>9.329,2014,ClosestToPublicationYear|9.329,2014,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>11/211;ONCOLOGY;2014;SC;ClosestToPublicationYear|11/211;ONCOLOGY;2014;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <AuthorCitationCountList>1,0,0|2,0,0|3,0,0|4,0,0|5,0,0|6,0,0|7,0,0</AuthorCitationCountList>\r\n
+        \   <CopyrightStateProvince>PA</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
+        STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n</ArrayOfPublicationItem>"
+    http_version: 
+  recorded_at: Wed, 04 May 2016 00:38:48 GMT
 recorded_with: VCR 3.0.1

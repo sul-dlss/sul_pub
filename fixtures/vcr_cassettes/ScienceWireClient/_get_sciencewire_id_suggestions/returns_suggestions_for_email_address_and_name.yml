@@ -5,31 +5,39 @@ http_interactions:
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/MatchedPublicationItemIdsForAuthor?format=xml
     body:
       encoding: UTF-8
-      string: |-
+      string: |
         <?xml version='1.0'?>
-              <PublicationAuthorMatchParameters xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema'>
-                <Authors>
-                  <Author>
-                    <LastName>edler</LastName>
-                    <FirstName>alice</FirstName>
-                    <MiddleName></MiddleName>
-                    <City>Stanford</City>
-                    <State>CA</State>
-                    <Country>USA</Country>
-                    <Version>1</Version>
-                 </Author>
-              </Authors>
-              <DocumentCategory>Journal Document</DocumentCategory>
-              <Emails>
-                          <string>alice.edler@stanford.edu</string>
-                        </Emails><PublicationItemIds><int>5199247</int><int>7877232</int><int>844542</int><int>1178390</int><int>29434219</int><int>30072480</int><int>30502634</int><int>46558063</int><int>31222988</int></PublicationItemIds><LimitToHighQualityMatchesOnly>true</LimitToHighQualityMatchesOnly></PublicationAuthorMatchParameters>
+        <PublicationAuthorMatchParameters xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+          xmlns:xsd='http://www.w3.org/2001/XMLSchema'>
+        <Authors>
+          <Author>
+            <LastName>edler</LastName>
+            <FirstName>alice</FirstName>
+            <MiddleName></MiddleName>
+            <City>Stanford</City>
+            <State>CA</State>
+            <Country>USA</Country>
+            <Version>1</Version>
+          </Author>
+        </Authors>
+        <DocumentCategory>Journal Document</DocumentCategory>
+        <Emails>
+          <string>alice.edler@stanford.edu</string>
+        </Emails>
+        <PublicationItemIds>
+          <int>5199247</int><int>7877232</int><int>844542</int><int>1178390</int><int>29434219</int><int>30072480</int><int>30502634</int><int>46558063</int><int>31222988</int>
+        </PublicationItemIds>
+          <LimitToHighQualityMatchesOnly>true</LimitToHighQualityMatchesOnly>
+        </PublicationAuthorMatchParameters>
     headers:
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Faraday v0.9.2
       Accept:
       - "*/*"
-      User-Agent:
-      - Ruby
+      Accept-Encoding:
+      - gzip,deflate
+      Date:
+      - Wed, 04 May 2016 00:49:23 GMT
       Licenseid:
       - Settings.SCIENCEWIRE.LICENSE_ID
       Host:
@@ -58,9 +66,9 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Tue, 05 Apr 2016 23:38:46 GMT
+      - Wed, 04 May 2016 00:49:22 GMT
       Content-Length:
-      - '872'
+      - '876'
     body:
       encoding: UTF-8
       string: "<?xml version=\"1.0\"?>\r\n<ArrayOfItemMatchResult xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
@@ -68,43 +76,51 @@ http_interactions:
         \   <MatchRank>1</MatchRank>\r\n    <PublicationItemID>29352378</PublicationItemID>\r\n
         \   <MatchScore>1.2708333730697632</MatchScore>\r\n  </ItemMatchResult>\r\n
         \ <ItemMatchResult>\r\n    <MatchRank>2</MatchRank>\r\n    <PublicationItemID>29187981</PublicationItemID>\r\n
-        \   <MatchScore>0.992100179195404</MatchScore>\r\n  </ItemMatchResult>\r\n
+        \   <MatchScore>0.99226635694503784</MatchScore>\r\n  </ItemMatchResult>\r\n
         \ <ItemMatchResult>\r\n    <MatchRank>3</MatchRank>\r\n    <PublicationItemID>46795732</PublicationItemID>\r\n
-        \   <MatchScore>0.519425094127655</MatchScore>\r\n  </ItemMatchResult>\r\n
+        \   <MatchScore>0.51962459087371826</MatchScore>\r\n  </ItemMatchResult>\r\n
         \ <ItemMatchResult>\r\n    <MatchRank>4</MatchRank>\r\n    <PublicationItemID>47593787</PublicationItemID>\r\n
-        \   <MatchScore>0.49828395247459412</MatchScore>\r\n  </ItemMatchResult>\r\n</ArrayOfItemMatchResult>"
+        \   <MatchScore>0.49845153093338013</MatchScore>\r\n  </ItemMatchResult>\r\n</ArrayOfItemMatchResult>"
     http_version: 
-  recorded_at: Tue, 05 Apr 2016 23:38:46 GMT
+  recorded_at: Wed, 04 May 2016 00:49:23 GMT
 - request:
     method: post
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/MatchedPublicationItemIdsForAuthor?format=xml
     body:
       encoding: UTF-8
-      string: |-
+      string: |
         <?xml version='1.0'?>
-              <PublicationAuthorMatchParameters xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema'>
-                <Authors>
-                  <Author>
-                    <LastName>edler</LastName>
-                    <FirstName>alice</FirstName>
-                    <MiddleName></MiddleName>
-                    <City>Stanford</City>
-                    <State>CA</State>
-                    <Country>USA</Country>
-                    <Version>1</Version>
-                 </Author>
-              </Authors>
-              <DocumentCategory>Conference Proceeding Document</DocumentCategory>
-              <Emails>
-                          <string>alice.edler@stanford.edu</string>
-                        </Emails><PublicationItemIds><int>5199247</int><int>7877232</int><int>844542</int><int>1178390</int><int>29434219</int><int>30072480</int><int>30502634</int><int>46558063</int><int>31222988</int></PublicationItemIds><LimitToHighQualityMatchesOnly>true</LimitToHighQualityMatchesOnly></PublicationAuthorMatchParameters>
+        <PublicationAuthorMatchParameters xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+          xmlns:xsd='http://www.w3.org/2001/XMLSchema'>
+        <Authors>
+          <Author>
+            <LastName>edler</LastName>
+            <FirstName>alice</FirstName>
+            <MiddleName></MiddleName>
+            <City>Stanford</City>
+            <State>CA</State>
+            <Country>USA</Country>
+            <Version>1</Version>
+          </Author>
+        </Authors>
+        <DocumentCategory>Conference Proceeding Document</DocumentCategory>
+        <Emails>
+          <string>alice.edler@stanford.edu</string>
+        </Emails>
+        <PublicationItemIds>
+          <int>5199247</int><int>7877232</int><int>844542</int><int>1178390</int><int>29434219</int><int>30072480</int><int>30502634</int><int>46558063</int><int>31222988</int>
+        </PublicationItemIds>
+          <LimitToHighQualityMatchesOnly>true</LimitToHighQualityMatchesOnly>
+        </PublicationAuthorMatchParameters>
     headers:
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Faraday v0.9.2
       Accept:
       - "*/*"
-      User-Agent:
-      - Ruby
+      Accept-Encoding:
+      - gzip,deflate
+      Date:
+      - Wed, 04 May 2016 00:49:23 GMT
       Licenseid:
       - Settings.SCIENCEWIRE.LICENSE_ID
       Host:
@@ -133,15 +149,15 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Tue, 05 Apr 2016 23:38:46 GMT
+      - Wed, 04 May 2016 00:49:24 GMT
       Content-Length:
-      - '346'
+      - '349'
     body:
       encoding: UTF-8
       string: "<?xml version=\"1.0\"?>\r\n<ArrayOfItemMatchResult xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <ItemMatchResult>\r\n
         \   <MatchRank>1</MatchRank>\r\n    <PublicationItemID>10389828</PublicationItemID>\r\n
-        \   <MatchScore>0.34996497631073</MatchScore>\r\n  </ItemMatchResult>\r\n</ArrayOfItemMatchResult>"
+        \   <MatchScore>0.35025802254676819</MatchScore>\r\n  </ItemMatchResult>\r\n</ArrayOfItemMatchResult>"
     http_version: 
-  recorded_at: Tue, 05 Apr 2016 23:38:46 GMT
+  recorded_at: Wed, 04 May 2016 00:49:24 GMT
 recorded_with: VCR 3.0.1
