@@ -31,6 +31,35 @@ describe ScienceWireHarvester, :vcr do
     end
   end
 
+  describe '#default_institution' do
+    it 'is a ScienceWire::AuthorInstitution' do
+      expect(subject.default_institution).to be_an ScienceWire::AuthorInstitution
+    end
+    context 'name' do
+      it 'is a String' do
+        expect(subject.default_institution).to respond_to(:name)
+        expect(subject.default_institution.name).to be_an String
+      end
+      it 'is set by Settings' do
+        expect(subject.default_institution.name).to eq(Settings.HARVESTER.INSTITUTION.name)
+      end
+    end
+    context 'has an institution address' do
+      it 'is a ScienceWire::AuthorAddress' do
+        expect(subject.default_institution).to respond_to(:address)
+        expect(subject.default_institution.address).to be_an ScienceWire::AuthorAddress
+      end
+      it 'is set by Settings' do
+        address_hash = Settings.HARVESTER.INSTITUTION.address.to_hash
+        expect(subject.default_institution.address.line1).to eq(address_hash[:line1])
+        expect(subject.default_institution.address.line2).to eq(address_hash[:line2])
+        expect(subject.default_institution.address.city).to eq(address_hash[:city])
+        expect(subject.default_institution.address.state).to eq(address_hash[:state])
+        expect(subject.default_institution.address.country).to eq(address_hash[:country])
+      end
+    end
+  end
+
   describe '#harvest_for_author' do
     before do
       expect(ScienceWire::HarvestBroker).to receive(:new)

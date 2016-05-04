@@ -10,7 +10,10 @@ class ScienceWireHarvester
   attr_reader :records_queued_for_sciencewire_retrieval
   attr_reader :file_count
 
-  attr_accessor :debug, :use_middle_name, :use_author_identities
+  attr_accessor :debug,
+                :use_middle_name,
+                :use_author_identities,
+                :default_institution
 
   def initialize
     initialize_instance_vars
@@ -94,6 +97,10 @@ class ScienceWireHarvester
     @records_queued_for_pubmed_retrieval = {}
     @use_middle_name = Settings.HARVESTER.USE_MIDDLE_NAME
     @use_author_identities = Settings.HARVESTER.USE_AUTHOR_IDENTITIES
+    @default_institution = ScienceWire::AuthorInstitution.new(
+      Settings.HARVESTER.INSTITUTION.name,
+      ScienceWire::AuthorAddress.new(Settings.HARVESTER.INSTITUTION.address.to_hash)
+    )
   end
 
   def initialize_counts_for_reporting
