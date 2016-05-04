@@ -59,4 +59,17 @@ namespace :sw do
   task :wos_profile_id_report, [:path_to_report] => :environment do |_t, args|
     harvester.harvest_from_wos_id_cap_profile_id_report args[:path_to_report]
   end
+
+  desc 'Harvest for a cap_profile_id with alternate names'
+  task :cap_profile_harvest_alt_names, [:cap_profile_id] => :environment do |_t, args|
+    harvester.use_alt_names = true
+    cap_profile_id = (args[:cap_profile_id]).to_i
+    author = Author.where(cap_profile_id: cap_profile_id).first
+    author ||= Author.fetch_from_cap_and_create(cap_profile_id)
+    harvester.harvest_pubs_for_author_ids author.id
+    pubs = Contribution.where(author_id: author.id).map {|c| c.publication }.each do |p|
+      puts "publication #{p.id}: #{p.pub_hash[:apa_citation]}"
+    end
+    puts "Number of publications #{pubs.count}"
+  end
 end

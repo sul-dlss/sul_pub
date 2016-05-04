@@ -13,7 +13,10 @@ describe ScienceWireHarvester, :vcr do
 
   describe '#harvest_for_author' do
     before do
-      expect(ScienceWire::HarvestBroker).to receive(:new).and_return(harvest_broker)
+      expect(ScienceWire::HarvestBroker).to receive(:new)
+        .with(author_without_seed_data, science_wire_harvester,
+              alternate_name_query: science_wire_harvester.use_alt_names)
+        .and_return(harvest_broker)
     end
     context 'when sciencewire suggestions are made' do
       it 'calls create_contrib_for_pub_if_exists' do
