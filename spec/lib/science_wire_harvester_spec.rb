@@ -11,11 +11,31 @@ describe ScienceWireHarvester, :vcr do
   let(:pub_with_sw_id_and_pmid) { create :pub_with_sw_id_and_pmid }
   let(:contrib_for_sw_pub) { create :contrib, publication: pub_with_sw_id_and_pmid, author: author }
 
+  describe '#use_author_identities' do
+    it 'is a Boolean' do
+      expect(subject).to respond_to(:use_author_identities)
+      expect(subject.use_author_identities).to be false
+    end
+    it 'is set by Settings' do
+      expect(subject.use_author_identities).to eq(Settings.HARVESTER.USE_AUTHOR_IDENTITIES)
+    end
+  end
+
+  describe '#use_middle_name' do
+    it 'is a Boolean' do
+      expect(subject).to respond_to(:use_middle_name)
+      expect(subject.use_middle_name).to be true
+    end
+    it 'is set by Settings' do
+      expect(subject.use_middle_name).to eq(Settings.HARVESTER.USE_MIDDLE_NAME)
+    end
+  end
+
   describe '#harvest_for_author' do
     before do
       expect(ScienceWire::HarvestBroker).to receive(:new)
         .with(author_without_seed_data, science_wire_harvester,
-              alternate_name_query: science_wire_harvester.use_alt_names)
+              alternate_name_query: science_wire_harvester.use_author_identities)
         .and_return(harvest_broker)
     end
     context 'when sciencewire suggestions are made' do

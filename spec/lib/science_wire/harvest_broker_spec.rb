@@ -8,7 +8,7 @@ describe ScienceWire::HarvestBroker do
   subject { described_class.new(author, harvester) }
   describe '#initialize' do
     it 'default arguments' do
-      expect(subject.alternate_name_query).to be false
+      expect(subject.use_author_identities).to be false
     end
   end
   describe '#generate_ids' do
@@ -39,14 +39,14 @@ describe ScienceWire::HarvestBroker do
     end
   end
   describe '#ids_for_alternate_names' do
-    context 'when alternate_name_query is disabled' do
+    context 'when "use_author_identities" is disabled' do
       subject { described_class.new(alt_author, harvester, alternate_name_query: false) }
       it 'returns an array' do
         expect(subject.ids_for_alternate_names).to be_an Array
         expect(subject.ids_for_alternate_names).to be_empty
       end
     end
-    context 'when alternate_name_query is enabled' do
+    context 'when "use_author_identities" is enabled' do
       subject { described_class.new(alt_author, harvester, alternate_name_query: true) }
       it 'returns an array of unique alternate name query ids' do
         expect(subject).to receive(:ids_from_dumb_query).exactly(3).times
