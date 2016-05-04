@@ -42,7 +42,7 @@ module ScienceWire
     # @return [Array]
     def ids_for_alternate_names
       if alternate_name_query
-        author.author_identities.map do |author_identity|
+        author.alternative_identities.map do |author_identity|
           ids_from_dumb_query(
             author_identity.first_name, author_identity.middle_name, author_identity.last_name
           ).flatten
