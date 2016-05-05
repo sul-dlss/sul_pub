@@ -48,13 +48,17 @@ describe 'Smart query', 'data-integration': true do
       # If this were modified to raise an exception, this spec should change.
       # Adding `faraday.use Faraday::Response::RaiseError` can generate the exception.
       suggestions = client.id_suggestions(
-        ScienceWire::AuthorAttributes.new(ln, fn, mn, '', seeds)
+        ScienceWire::AuthorAttributes.new(
+          ScienceWire::AuthorName.new(ln, fn, mn), '', seeds
+        )
       )
       expect(suggestions).to be_empty
     end
     it '(name with email)' do
       suggestions = client.id_suggestions(
-        ScienceWire::AuthorAttributes.new(ln, fn, mn, email, seeds)
+        ScienceWire::AuthorAttributes.new(
+          ScienceWire::AuthorName.new(ln, fn, mn), email, seeds
+        )
       )
       check_suggestions(suggestions)
     end
@@ -117,7 +121,9 @@ describe 'Smart query', 'data-integration': true do
         known_confirmed_publications = ['64367696']
         suggestions = client.id_suggestions(
           ScienceWire::AuthorAttributes.new(
-            'Hardy', 'Darren', '', 'darren.hardy@stanford.edu', ''
+            ScienceWire::AuthorName.new(
+              'Hardy', 'Darren', ''
+            ), 'darren.hardy@stanford.edu', ''
           )
         )
         expect(suggestions.count).to be >= 1 # only 1 is correct
@@ -127,7 +133,9 @@ describe 'Smart query', 'data-integration': true do
         known_confirmed_publications = ['64367696']
         suggestions = client.id_suggestions(
           ScienceWire::AuthorAttributes.new(
-            'Hardy', 'Darren', '', 'drh@stanford.edu', ''
+            ScienceWire::AuthorName.new(
+              'Hardy', 'Darren', ''
+            ), 'drh@stanford.edu', ''
           )
         )
         expect(suggestions.count).to be >= 1 # only 1 in correct
@@ -137,7 +145,9 @@ describe 'Smart query', 'data-integration': true do
         known_confirmed_publications = ['61063453', '64367696', '67380595']
         suggestions = client.id_suggestions(
           ScienceWire::AuthorAttributes.new(
-            'Hardy', 'Darren', '', 'dhardy@bren.ucsb.edu', ''
+            ScienceWire::AuthorName.new(
+              'Hardy', 'Darren', ''
+            ), 'dhardy@bren.ucsb.edu', ''
           )
         )
         expect(suggestions.count).to be >= 3 # only 3 are correct
@@ -149,7 +159,9 @@ describe 'Smart query', 'data-integration': true do
         known_confirmed_publications = ['60931052']
         suggestions = client.id_suggestions(
           ScienceWire::AuthorAttributes.new(
-            'Reed', 'P', '', 'preed2@gsu.edu', ''
+            ScienceWire::AuthorName.new(
+              'Reed', 'P', ''
+            ), 'preed2@gsu.edu', ''
           )
         )
         expect(suggestions.count).to be >= 33
@@ -159,7 +171,9 @@ describe 'Smart query', 'data-integration': true do
         known_confirmed_publications = ['69178421']
         suggestions = client.id_suggestions(
           ScienceWire::AuthorAttributes.new(
-            'Reed', 'J', '', 'preed2@gsu.edu', ''
+            ScienceWire::AuthorName.new(
+              'Reed', 'J', ''
+            ), 'preed2@gsu.edu', ''
           )
         )
         expect(suggestions.count).to be >= 68
