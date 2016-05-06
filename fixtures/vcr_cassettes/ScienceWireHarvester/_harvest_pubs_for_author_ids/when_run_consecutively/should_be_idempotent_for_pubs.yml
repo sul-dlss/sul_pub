@@ -14,7 +14,7 @@ http_interactions:
       Accept-Encoding:
       - gzip,deflate
       Date:
-      - Wed, 04 May 2016 00:49:51 GMT
+      - Fri, 06 May 2016 19:05:45 GMT
       Licenseid:
       - Settings.SCIENCEWIRE.LICENSE_ID
       Host:
@@ -43,7 +43,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Wed, 04 May 2016 00:49:51 GMT
+      - Fri, 06 May 2016 19:05:45 GMT
       Content-Length:
       - '6476'
     body:
@@ -129,7 +129,7 @@ http_interactions:
         \   <CopyrightPublisher>LIPPINCOTT WILLIAMS &amp; WILKINS</CopyrightPublisher>\r\n
         \   <CopyrightCity>PHILADELPHIA</CopyrightCity>\r\n  </PublicationItem>\r\n</ArrayOfPublicationItem>"
     http_version: 
-  recorded_at: Wed, 04 May 2016 00:49:51 GMT
+  recorded_at: Fri, 06 May 2016 19:05:46 GMT
 - request:
     method: post
     uri: http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml
@@ -149,7 +149,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Wed, 04 May 2016 00:49:52 GMT
+      - Fri, 06 May 2016 19:05:46 GMT
       Server:
       - Apache
       Access-Control-Allow-Origin:
@@ -157,12 +157,12 @@ http_interactions:
       Cache-Control:
       - private
       Ncbi-Sid:
-      - 08DD24C172947301_0575SID
+      - 08DE104072CEB0A1_0914SID
       Content-Type:
       - text/xml; charset=UTF-8
       Set-Cookie:
-      - ncbi_sid=08DD24C172947301_0575SID; domain=.nih.gov; path=/; expires=Thu, 04
-        May 2017 00:49:52 GMT
+      - ncbi_sid=08DE104072CEB0A1_0914SID; domain=.nih.gov; path=/; expires=Sat, 06
+        May 2017 19:05:46 GMT
       X-Ua-Compatible:
       - IE=Edge
       Transfer-Encoding:
@@ -459,7 +459,7 @@ http_interactions:
 
         </PubmedArticleSet>
     http_version: 
-  recorded_at: Wed, 04 May 2016 00:49:52 GMT
+  recorded_at: Fri, 06 May 2016 19:05:47 GMT
 - request:
     method: get
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationItems?format=xml&publicationItemIDs=
@@ -474,7 +474,7 @@ http_interactions:
       Accept-Encoding:
       - gzip,deflate
       Date:
-      - Wed, 04 May 2016 00:49:54 GMT
+      - Fri, 06 May 2016 19:05:50 GMT
       Licenseid:
       - Settings.SCIENCEWIRE.LICENSE_ID
       Host:
@@ -503,7 +503,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Wed, 04 May 2016 00:49:55 GMT
+      - Fri, 06 May 2016 19:05:50 GMT
       Content-Length:
       - '1208'
     body:
@@ -522,51 +522,5 @@ http_interactions:
         \ <h3>There is a problem with the resource you are looking for, and it cannot
         be displayed.</h3>\r\n </fieldset></div>\r\n</div>\r\n</body>\r\n</html>\r\n"
     http_version: 
-  recorded_at: Wed, 04 May 2016 00:49:55 GMT
-- request:
-    method: post
-    uri: http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - "*/*"
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 400
-      message: Bad Request
-    headers:
-      Date:
-      - Wed, 04 May 2016 00:49:55 GMT
-      Server:
-      - Apache
-      Access-Control-Allow-Origin:
-      - "*"
-      Cache-Control:
-      - private
-      Ncbi-Sid:
-      - 9DFC3BD172947331_0319SID
-      Content-Type:
-      - text/xml; charset=UTF-8
-      Set-Cookie:
-      - ncbi_sid=9DFC3BD172947331_0319SID; domain=.nih.gov; path=/; expires=Thu, 04
-        May 2017 00:49:55 GMT
-      X-Ua-Compatible:
-      - IE=Edge
-      Connection:
-      - close
-      Transfer-Encoding:
-      - chunked
-    body:
-      encoding: UTF-8
-      string: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE eEfetchResult
-        PUBLIC \"-//NLM//DTD efetch 20131226//EN\" \"http://eutils.ncbi.nlm.nih.gov/eutils/dtd/20131226/efetch.dtd\">\n<eFetchResult>\n\t<ERROR>WebEnv
-        parameter is required</ERROR>\n</eFetchResult>\n"
-    http_version: 
-  recorded_at: Wed, 04 May 2016 00:49:55 GMT
+  recorded_at: Fri, 06 May 2016 19:05:50 GMT
 recorded_with: VCR 3.0.1
