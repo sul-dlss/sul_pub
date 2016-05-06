@@ -40,19 +40,16 @@ describe 'Smart query', 'data-integration': true do
   shared_examples 'it returns suggestions without seeds' do
     let(:seeds) { [] }
     it '(without email)' do
-      # Without an email or seeds, the smart query should fail.
       # The API requires either an email or a seed list.  It should respond with
       # a 422 HTTP status code (unprocessable entity), but it actually
-      # returns a 500 HTTP status.  However, it gets swalled at
-      # lib/science_wire/request.rb @ line 26 ScienceWire::Request#perform
-      # If this were modified to raise an exception, this spec should change.
-      # Adding `faraday.use Faraday::Response::RaiseError` can generate the exception.
-      suggestions = client.id_suggestions(
-        ScienceWire::AuthorAttributes.new(
-          ScienceWire::AuthorName.new(ln, fn, mn), '', seeds
+      # returns a 500 HTTP status.
+      expect do
+        client.id_suggestions(
+          ScienceWire::AuthorAttributes.new(
+            ScienceWire::AuthorName.new(ln, fn, mn), '', seeds
+          )
         )
-      )
-      expect(suggestions).to be_empty
+      end.to raise_error(Faraday::ClientError)
     end
     it '(name with email)' do
       suggestions = client.id_suggestions(
