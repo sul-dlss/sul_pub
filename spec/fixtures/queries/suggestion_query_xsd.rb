@@ -15,8 +15,21 @@ module SuggestionQueryXsd
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Author" maxOccurs="unbounded" minOccurs="0">
+                <!--
+                  The ScienceWire API documentation does not include a
+                  'Version' element within the 'Author' element.  When asked
+                  about this element, they say "... we essentially implemented a
+                  custom recommendation algorithm for Stanford to use,
+                  behind the MatchedPublicationItemIdsForAuthor API. Because
+                  that API is called elsewhere in TR, we did not simply want
+                  to overwrite the old algorithm with the new and thus this
+                  'Version' flag essentially says 'use the new algorithm.' I
+                  believe if you make the call without the 'Version' value
+                  present, you will get recommendations via the old
+                  algorithm."
+                -->
                 <xs:complexType>
-                  <xs:sequence>
+                  <xs:all>
                     <xs:element type="xs:string" name="LastName"/>
                     <xs:element type="xs:string" name="FirstName"/>
                     <xs:element type="xs:string" name="MiddleName" minOccurs="0"/>
@@ -25,7 +38,8 @@ module SuggestionQueryXsd
                     <xs:element type="xs:string" name="City" minOccurs="0"/>
                     <xs:element type="xs:string" name="State" minOccurs="0"/>
                     <xs:element type="xs:string" name="Country" minOccurs="0"/>
-                  </xs:sequence>
+                    <xs:element type="xs:int" name="Version"/>
+                  </xs:all>
                 </xs:complexType>
               </xs:element>
             </xs:sequence>
@@ -46,7 +60,7 @@ module SuggestionQueryXsd
           </xs:complexType>
         </xs:element>
         <xs:element type="xs:string" name="DocumentCategory"/>
-        <xs:element type="xs:string" name="LimitToHighQualityMatchesOnly"/>
+        <xs:element type="xs:boolean" name="LimitToHighQualityMatchesOnly"/>
       </xs:all>
     </xs:complexType>
   </xs:element>
