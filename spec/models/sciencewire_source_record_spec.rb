@@ -36,4 +36,86 @@ describe SciencewireSourceRecord do
       expect(SciencewireSourceRecord.lookup_sw_doc_type('Other')).to eq('article')
     end
   end
+
+  describe '.source_as_hash' do
+    describe 'parses one publication' do
+      subject { build_sciencewire_source_record_from_fixture(64_367_696).source_as_hash }
+      it 'extracts ids' do
+        expect(subject).to include(sw_id: '64367696', pmid: '24213991')
+      end
+      it 'extracts title' do
+        expect(subject[:title]).to eq 'Exploring Patterns of Seafood Provision Revealed in the Global Ocean Health Index'
+      end
+      it 'extracts author(s)' do
+        expect(subject[:author].length).to eq 14
+        expect(subject[:author][4]).to include(name: 'Hardy,Darren,')
+      end
+      it 'extracts abstract' do
+        expect(subject[:abstract_restricted]).to start_with 'Sustainable provision of seafood'
+      end
+      it 'extracts publication' do
+        expect(subject).to include(year: '2013',
+                                   issn: '0044-7447',
+                                   publisher: 'SPRINGER',
+                                   city: 'DORDRECHT',
+                                   pages: '910-922')
+      end
+      it 'extracts keywords' do
+        expect(subject[:keywords_sw]).to include(*%w(ECOSYSTEMS FISHERIES aquaculture seafood status FAO mariculture assessment fisheries indicator))
+      end
+      it 'extracts ScienceWire statistics' do
+        expect(subject).to include(numberofreferences_sw: '27',
+                                   timescited_sw_retricted: '6',
+                                   timenotselfcited_sw: '1',
+                                   ordinalrank_sw: '1')
+      end
+      it 'extracts identifiers' do
+        expect(subject[:identifier][0]).to include(type: 'PMID', id: '24213991')
+        expect(subject[:identifier][1]).to include(type: 'WoSItemID', id: '000326892600002')
+        expect(subject[:identifier][2]).to include(type: 'PublicationItemID', id: '64367696')
+        expect(subject[:identifier][3]).to include(type: 'doi', id: '10.1007/s13280-013-0447-x')
+      end
+    end
+
+    describe 'parses one journal article publication' do
+      subject { build_sciencewire_source_record_from_fixture(64_367_696).source_as_hash }
+      it 'extracts type' do
+        expect(subject).to include(type: 'article', documentcategory_sw: 'Journal Document')
+        expect(subject[:documenttypes_sw]).to include('Article')
+      end
+      it 'extracts metadata for an article' do
+        expect(subject[:journal]).to include(name: 'AMBIO',
+                                             volume: '42',
+                                             issue: '8',
+                                             pages: '910-922')
+        expect(subject[:journal][:articlenumber]).to be_nil
+        expect(subject[:journal][:identifier][0]).to include(type: 'issn', id: '0044-7447')
+        expect(subject[:journal][:identifier][1]).to include(type: 'doi', id: '10.1007/s13280-013-0447-x')
+      end
+    end
+
+    describe 'parses one "other" article publication' do
+      subject { build_sciencewire_source_record_from_fixture(42_711_944).source_as_hash }
+      it 'extracts type' do
+        expect(subject).to include(type: 'article', documentcategory_sw: 'Other')
+        expect(subject[:documenttypes_sw]).to include('Congresses', 'Journal Article')
+      end
+      it 'extracts metadata for an article' do
+        expect(subject[:journal]).to include(name: 'Nature structural biology',
+                                             volume: '6',
+                                             issue: '2',
+                                             pages: '108-111')
+        expect(subject[:journal][:identifier][0]).to include(type: 'issn', id: '1072-8368')
+      end
+    end
+
+    describe 'parses one book publication' do
+      it 'extracts type'
+      it 'extracts metadata for a book'
+    end
+    describe 'parses one inproceedings publication' do
+      it 'extracts type'
+      it 'extracts metadata for a paper in proceedings'
+    end
+  end
 end
