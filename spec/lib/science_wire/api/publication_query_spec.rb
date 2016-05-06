@@ -9,6 +9,7 @@ describe ScienceWire::API::PublicationQuery do
   describe '#send_publication_query' do
     let(:fake_body) { '<xml></xml>' }
     it 'requests the publication query' do
+      stub_request(:any, /#{Settings.SCIENCEWIRE.BASE_URI}.*/)
       client.send_publication_query(fake_body)
       expect(a_post(
         '/PublicationCatalog/PublicationQuery?format=xml'
@@ -18,6 +19,7 @@ describe ScienceWire::API::PublicationQuery do
   describe '#retrieve_publication_query' do
     let(:queryId) { 'abc123' }
     it 'requests the publication query' do
+      stub_request(:any, /#{Settings.SCIENCEWIRE.BASE_URI}.*/)
       client.retrieve_publication_query(queryId)
       expect(a_get(
         "/PublicationCatalog/PublicationQuery/#{queryId}"

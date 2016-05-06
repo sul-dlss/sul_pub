@@ -10,6 +10,7 @@ describe ScienceWire::API::PublicationItems do
     let(:fake_body) { '<xml></xml>' }
     let(:ids) { 'abc,123' }
     it 'requests the publication query' do
+      stub_request(:any, /#{Settings.SCIENCEWIRE.BASE_URI}.*/)
       client.publication_items(ids)
       expect(a_get(
         '/PublicationCatalog/PublicationItems?format=xml'

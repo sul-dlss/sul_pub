@@ -20,6 +20,7 @@ describe ScienceWire::Request do
       subject.perform
     end
     it 'creates a request' do
+      stub_request(:any, /#{Settings.SCIENCEWIRE.BASE_URI}.*/)
       described_class.new(
         client: client,
         request_method: :post,

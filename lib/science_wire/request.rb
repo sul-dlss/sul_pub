@@ -33,6 +33,7 @@ module ScienceWire
       def connection
         @connection ||= begin
           conn = Faraday.new(url: base_url) do |faraday|
+            faraday.use Faraday::Response::RaiseError
             faraday.request :retry, max: 2,
               interval: 0.5,
               interval_randomness: 0.5,

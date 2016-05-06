@@ -13,6 +13,7 @@ describe ScienceWire::API::MatchedPublicationItemIdsForAuthor do
   describe '#matched_publication_item_ids_for_author' do
     let(:fake_body) { '<xml></xml>' }
     it 'requests the publication catalog resource' do
+      stub_request(:any, /#{Settings.SCIENCEWIRE.BASE_URI}.*/)
       client.matched_publication_item_ids_for_author(fake_body)
       expect(a_post(
         '/PublicationCatalog/MatchedPublicationItemIdsForAuthor?format=xml'
