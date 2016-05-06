@@ -118,6 +118,11 @@ GEM
     database_cleaner (1.5.1)
     debug_inspector (0.0.2)
     deep_merge (1.0.1)
+    delayed_job (4.1.1)
+      activesupport (>= 3.0, < 5.0)
+    delayed_job_active_record (4.1.0)
+      activerecord (>= 3.0, < 5)
+      delayed_job (>= 3.0, < 5)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
     diff-lcs (1.2.5)
@@ -418,6 +423,8 @@ DEPENDENCIES
   config
   coveralls
   database_cleaner
+  delayed_job
+  delayed_job_active_record
   dlss-capistrano
   dlss_cops
   dotiw
