@@ -19,7 +19,7 @@ module ScienceWire
     # Returns a unique Array of ids for an Author's publications
     # @return [Array<Integer>]
     def generate_ids
-      ids_for_author | ids_for_alternate_names
+      (ids_for_author | ids_for_alternate_names) - seed_list
     end
 
     ##
