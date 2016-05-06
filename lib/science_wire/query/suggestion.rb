@@ -26,6 +26,16 @@ module ScienceWire
           XML
         end
 
+        # The ScienceWire API documentation does not include a <Version> element
+        # within the <Author>.  When asked about this element, they say "... we
+        # essentially implemented a custom recommendation algorithm for Stanford
+        # to use, behind the MatchedPublicationItemIdsForAuthor API. Because
+        # that API is called elsewhere in TR, we did not simply want to
+        # overwrite the old algorithm with the new and thus this <Version> flag
+        # essentially says 'use the new algorithm.' I believe if you make the
+        # call without the <Version> value present, you will get recommendations
+        # via the old algorithm."
+
         def authors_block
           <<-XML.strip_heredoc
             <Authors>
