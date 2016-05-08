@@ -30,6 +30,14 @@ module ScienceWire
       end
     end
 
+    def text_search_query
+      @text_search_query ||= begin
+        query = %("#{last},#{first}" or "#{last.upcase},#{first_initial}")
+        query << name_query_middle(Regexp.last_match(1)) if middle =~ /^([[:alpha:]])/
+        query
+      end
+    end
+
     def ==(other)
       last == other.last &&
       first == other.first &&
@@ -37,6 +45,10 @@ module ScienceWire
     end
 
     private
+
+      def name_query_middle(mid)
+        " or \"#{last.upcase},#{first_initial}#{mid.upcase}\""
+      end
 
       def as_string(param)
         param.to_s.strip

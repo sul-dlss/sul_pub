@@ -57,4 +57,16 @@ describe ScienceWire::AuthorName do
       end
     end
   end
+
+  describe '#text_search_query' do
+    context 'when no names are present' do
+      it 'returns an empty String' do
+        skip 'conflicts with publication_query_by_author_name_spec.rb:37'
+        expect(no_names.text_search_query).to eq ''
+      end
+    end
+    context 'when all names are present' do
+      # additional specs are in publication_query_by_author_name_spec.rb
+    end
+  end
 end
