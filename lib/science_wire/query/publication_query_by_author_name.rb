@@ -29,31 +29,17 @@ module ScienceWire
           @institution ||= author_attributes.institution.normalize_name
         end
 
-        def text_search_name_parts
-          query = name_query_part
-          query << name_query_part_with_middle(Regexp.last_match(1)) if name.middle =~ /^([[:alpha:]])/
-          query
-        end
-
-        def name_query_part
-          %("#{name.last},#{name.first}" or "#{name.last.upcase},#{name.first_initial}")
-        end
-
-        def name_query_part_with_middle(mid)
-          " or \"#{name.last.upcase},#{name.first_initial}#{mid.upcase}\""
-        end
-
         # Assume that `author_attributes.email` is a string containing one email address
         # (the email is not an array of emails or a comma delimited list of emails).
         def text_search_query_predicate
           if institution.present? && author_attributes.email.present?
-            "(#{text_search_name_parts} or \"#{author_attributes.email}\") and \"#{institution}\""
+            "(#{name.text_search_query} or \"#{author_attributes.email}\") and \"#{institution}\""
           elsif institution.present? && !author_attributes.email.present?
-            "(#{text_search_name_parts}) and \"#{institution}\""
+            "(#{name.text_search_query}) and \"#{institution}\""
           elsif !institution.present? && author_attributes.email.present?
-            "#{text_search_name_parts} or \"#{author_attributes.email}\""
+            "#{name.text_search_query} or \"#{author_attributes.email}\""
           else
-            "(#{text_search_name_parts}) and \"stanford\""
+            "(#{name.text_search_query}) and \"stanford\""
           end
         end
 
