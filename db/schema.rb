@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160412224434) do
+ActiveRecord::Schema.define(version: 20160506112216) do
 
   create_table "author_identities", force: :cascade do |t|
     t.integer  "author_id",     limit: 4,               null: false
@@ -95,6 +95,22 @@ ActiveRecord::Schema.define(version: 20160412224434) do
   add_index "contributions", ["cap_profile_id"], name: "index_contributions_on_cap_profile_id", using: :btree
   add_index "contributions", ["publication_id", "author_id"], name: "index_contributions_on_publication_id_and_author_id", using: :btree
   add_index "contributions", ["publication_id"], name: "index_contributions_on_publication_id", using: :btree
+
+  create_table "delayed_jobs", force: :cascade do |t|
+    t.integer  "priority",   limit: 4,     default: 0, null: false
+    t.integer  "attempts",   limit: 4,     default: 0, null: false
+    t.text     "handler",    limit: 65535,             null: false
+    t.text     "last_error", limit: 65535
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string   "locked_by",  limit: 255
+    t.string   "queue",      limit: 255
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
 
   create_table "publication_identifiers", force: :cascade do |t|
     t.integer  "publication_id",   limit: 4

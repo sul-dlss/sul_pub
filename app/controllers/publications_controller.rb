@@ -3,10 +3,6 @@ require 'csv'
 class PublicationsController < ApplicationController
   before_action :check_authorization
 
-  def check_authorization
-    head :forbidden unless env['HTTP_CAPKEY'] == Settings.API_KEY
-  end
-
   def index
     msg = "Getting publications"
     msg += " for profile #{params[:capProfileId]}" if params[:capProfileId]
