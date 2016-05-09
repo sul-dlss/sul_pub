@@ -114,7 +114,11 @@ describe SciencewireSourceRecord do
       it 'extracts metadata for a book'
     end
     describe 'parses one inproceedings publication' do
-      it 'extracts type'
+      subject { build_sciencewire_source_record_from_fixture(12_345_678).source_as_hash }
+      it 'extracts type' do
+        expect(subject).to include(type: 'inproceedings', documentcategory_sw: 'Conference Proceeding Document')
+        expect(subject[:documenttypes_sw]).to include('Meeting Abstract')
+      end
       it 'extracts metadata for a paper in proceedings'
     end
   end
