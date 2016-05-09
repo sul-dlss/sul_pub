@@ -23,14 +23,18 @@ task ci: [:environment] do
 end
 
 namespace :spec do
-  require 'rspec/core/rake_task'
-  desc 'spec task that runs only data-integration tests against live ScienceWire'
-  RSpec::Core::RakeTask.new('data-integration') do |t|
-    t.rspec_opts = '--tag data-integration'
-  end
-  desc 'spec task that ignores data-integration tests'
-  RSpec::Core::RakeTask.new('without-data-integration') do |t|
-    t.rspec_opts = '--tag ~data-integration'
+  begin
+    require 'rspec/core/rake_task'
+    desc 'spec task that runs only data-integration tests against live ScienceWire'
+    RSpec::Core::RakeTask.new('data-integration') do |t|
+      t.rspec_opts = '--tag data-integration'
+    end
+    desc 'spec task that ignores data-integration tests'
+    RSpec::Core::RakeTask.new('without-data-integration') do |t|
+      t.rspec_opts = '--tag ~data-integration'
+    end
+  rescue LoadError
+    puts 'Unable to load RSpec.'
   end
 end
 
