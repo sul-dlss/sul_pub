@@ -13,13 +13,15 @@ feature 'Author harvest', 'data-integration': true, type: :controller do
   scenario 'for an Author without alternate identities' do
     pre_harvest_count = author.publications.count
     post :harvest, cap_profile_id: author.cap_profile_id, format: :json
-    expect(Publication.all.count).to be > pre_harvest_count
-    expect(Publication.all.count).to be_between(500, 600).exclusive # 567 on 2016.05.06
+    post_harvest_count = author.publications.count
+    expect(post_harvest_count).to be >= pre_harvest_count
+    expect(post_harvest_count).to be_between(500, 600).exclusive # 567 on 2016.05.06
   end
   scenario 'for an Author with alternate identities' do
     pre_harvest_count = author.publications.count
     post :harvest, cap_profile_id: author.cap_profile_id, format: :json, altNames: 'true'
-    expect(Publication.all.count).to be > pre_harvest_count
-    expect(Publication.all.count).to be_between(600, 700).exclusive # 656 on 2016.05.06
+    post_harvest_count = author.publications.count
+    expect(post_harvest_count).to be >= pre_harvest_count
+    expect(post_harvest_count).to be_between(600, 700).exclusive # 656 on 2016.05.06
   end
 end
