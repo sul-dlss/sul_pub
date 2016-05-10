@@ -11,6 +11,13 @@ describe ScienceWire::HarvestBroker do
   end
   let(:feynman_name) { ScienceWire::AuthorName.new('Feynman', 'P', 'Richard') }
   let(:alt_author) { create(:author_with_alternate_identities, alt_count: 3) }
+  let(:alt_author_no_institution) do
+    auth = create(:author_with_alternate_identities, alt_count: 1)
+    alt = auth.alternative_identities.first
+    alt.institution = ''
+    alt.save
+    auth
+  end
   let(:contribution) { create(:contribution, author: author) }
   let(:harvester) { ScienceWireHarvester.new }
   subject { described_class.new(author, harvester) }
@@ -65,6 +72,14 @@ describe ScienceWire::HarvestBroker do
         expect(subject).to receive(:ids_from_dumb_query).exactly(3).times
           .and_return([1, 2], [2, 3], [3, 4])
         expect(subject.ids_for_alternate_names).to eq [1, 2, 3, 4]
+      end
+    end
+    context 'when "alternate_name_query" is enabled and no institution' do
+      subject { described_class.new(alt_author_no_institution, harvester, alternate_name_query: true) }
+      it 'returns an array of unique alternate name query ids' do
+        expect(subject).to receive(:ids_from_dumb_query).exactly(1).times
+          .and_return([1, 2])
+        expect(subject.ids_for_alternate_names).to eq [1, 2]
       end
     end
   end
