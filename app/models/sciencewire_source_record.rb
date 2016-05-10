@@ -77,8 +77,7 @@ class SciencewireSourceRecord < ActiveRecord::Base
 
   def self.get_and_store_sw_source_record_for_sw_id(sciencewire_id)
     sw_record_doc = ScienceWireClient.new.get_sw_xml_source_for_sw_id(sciencewire_id)
-    pmid = sw_record_doc.xpath('PMID').text
-    # sciencewire_id = sw_record_doc.xpath("PublicationItemID").text
+    pmid = extract_pmid(sw_record_doc)
 
     SciencewireSourceRecord.where(sciencewire_id: sciencewire_id).first_or_create(
       source_data: sw_record_doc.to_xml,
@@ -93,8 +92,8 @@ class SciencewireSourceRecord < ActiveRecord::Base
     count = 0
     source_records = []
     sw_records_doc.xpath('//PublicationItem').each do |sw_record_doc|
-      pmid = sw_record_doc.xpath('PMID').text
-      sciencewire_id = sw_record_doc.xpath('PublicationItemID').text
+      pmid = extract_pmid(sw_record_doc)
+      sciencewire_id = extract_swid(sw_record_doc)
       begin
         count += 1
         pmids.delete(pmid)
@@ -149,13 +148,29 @@ class SciencewireSourceRecord < ActiveRecord::Base
     existing_sw_source_record.source_fingerprint != get_source_fingerprint(incoming_sw_source_doc)
   end
 
-  # rubocop:disable Metrics/AbcSize
   def self.convert_sw_publication_doc_to_hash(publication)
-    record_as_hash = {}
+    doi = extract_doi(publication)
+    issn = extract_issn(publication)
+    pmid = extract_pmid(publication)
+    swid = extract_swid(publication)
+    wosid = extract_wosid(publication)
 
+    doi_identifier = { type: 'doi', id: doi, url: 'http://dx.doi.org/' + doi } unless doi.blank?
+    issn_identifier = { type: 'issn', id: issn, url: Settings.SULPUB_ID.SEARCHWORKS_URI + issn } unless issn.blank?
+
+    identifiers = []
+    identifiers << { type: 'PMID', id: pmid, url: 'http://www.ncbi.nlm.nih.gov/pubmed/' + pmid } unless pmid.blank?
+    identifiers << { type: 'WoSItemID', id: wosid, url: 'http://ws.isiknowledge.com/cps/openurl/service?url_ver=Z39.88-2004&rft_id=info:ut/' + wosid } unless wosid.blank?
+    identifiers << { type: 'PublicationItemID', id: swid } unless swid.blank?
+    identifiers << doi_identifier unless doi.blank?
+
+    record_as_hash = {}
     record_as_hash[:provenance] = Settings.sciencewire_source
-    record_as_hash[:pmid] = publication.xpath('PMID').text unless publication.xpath('PMID').blank?
-    record_as_hash[:sw_id] = publication.xpath('PublicationItemID').text
+    record_as_hash[:sw_id] = swid
+    record_as_hash[:pmid] = pmid unless pmid.blank?
+    record_as_hash[:issn] = issn unless issn.blank?
+    record_as_hash[:identifier] = identifiers
+
     record_as_hash[:title] = publication.xpath('Title').text unless publication.xpath('Title').blank?
     record_as_hash[:abstract_restricted] = publication.xpath('Abstract').text unless publication.xpath('Abstract').blank?
     record_as_hash[:author] = publication.xpath('AuthorList').text.split('|').collect { |author| { name: author } }
@@ -190,15 +205,6 @@ class SciencewireSourceRecord < ActiveRecord::Base
     record_as_hash[:country] = publication.xpath('CopyrightCountry').text unless publication.xpath('CopyrightCountry').blank?
     record_as_hash[:pages] = publication.xpath('Pagination').text unless publication.xpath('Pagination').blank?
 
-    identifiers = []
-    identifiers << { type: 'PMID', id: publication.at_xpath('PMID').text, url: 'http://www.ncbi.nlm.nih.gov/pubmed/' + publication.xpath('PMID').text } unless publication.at_xpath('PMID').nil? || publication.at_xpath('PMID').text.blank?
-    identifiers << { type: 'WoSItemID', id: publication.at_xpath('WoSItemID').text, url: 'http://ws.isiknowledge.com/cps/openurl/service?url_ver=Z39.88-2004&rft_id=info:ut/' + publication.xpath('WoSItemID').text } unless publication.at_xpath('WoSItemID').nil?
-    identifiers << { type: 'PublicationItemID', id: publication.at_xpath('PublicationItemID').text } unless publication.at_xpath('PublicationItemID').nil?
-    identifiers << { type: 'doi', id: publication.xpath('DOI').text, url: 'http://dx.doi.org/' + publication.xpath('DOI').text } unless publication.xpath('DOI').blank?
-
-    # an issn is for either a journal or a book series (international standard series number)
-    issn = { type: 'issn', id: publication.xpath('ISSN').text, url: Settings.SULPUB_ID.SEARCHWORKS_URI + publication.xpath('ISSN').text } unless publication.xpath('ISSN').blank?
-    record_as_hash[:issn] = publication.xpath('ISSN').text unless publication.xpath('ISSN').blank?
     if sul_document_type == Settings.sul_doc_types.inproceedings
       conference_hash = {}
       conference_hash[:startdate] = publication.xpath('ConferenceStartDate').text unless publication.xpath('ConferenceStartDate').blank?
@@ -206,12 +212,9 @@ class SciencewireSourceRecord < ActiveRecord::Base
       conference_hash[:city] = publication.xpath('ConferenceCity').text unless publication.xpath('ConferenceCity').blank?
       conference_hash[:statecountry] = publication.xpath('ConferenceStateCountry').text unless publication.xpath('ConferenceStateCountry').blank?
       record_as_hash[:conference] = conference_hash unless conference_hash.empty?
-
     elsif sul_document_type == Settings.sul_doc_types.book
       record_as_hash[:booktitle] = publication.xpath('PublicationSourceTitle').text unless publication.xpath('PublicationSourceTitle').blank?
       record_as_hash[:pages] = publication.xpath('Pagination').text unless publication.xpath('Pagination').blank?
-      identifiers << { type: 'doi', id: publication.xpath('DOI').text, url: 'http://dx.doi.org/' + publication.xpath('DOI').text } unless publication.xpath('DOI').blank?
-
     end
 
     if sul_document_type == Settings.sul_doc_types.article || (sul_document_type == Settings.sul_doc_types.inproceedings && !publication.xpath('Issue').blank?)
@@ -222,23 +225,21 @@ class SciencewireSourceRecord < ActiveRecord::Base
       journal_hash[:articlenumber] = publication.xpath('ArticleNumber').text unless publication.xpath('ArticleNumber').blank?
       journal_hash[:pages] = publication.xpath('Pagination').text unless publication.xpath('Pagination').blank?
       journal_identifiers = []
-      journal_identifiers << { type: 'issn', id: publication.xpath('ISSN').text, url: Settings.SULPUB_ID.SEARCHWORKS_URI + publication.xpath('ISSN').text } unless publication.xpath('ISSN').blank?
-      journal_identifiers << { type: 'doi', id: publication.xpath('DOI').text, url: 'http://dx.doi.org/' + publication.xpath('DOI').text } unless publication.xpath('DOI').blank?
+      journal_identifiers << issn_identifier unless issn.blank?
+      journal_identifiers << doi_identifier unless doi.blank?
       journal_hash[:identifier] = journal_identifiers
       record_as_hash[:journal] = journal_hash
     end
 
     # unless issn.blank? || publication.xpath('Issue').blank? || sul_document_type == Settings.sul_doc_types.article
     #   book_series_hash = {}
-    #   book_series_hash[:identifier] = [issn]
+    #   book_series_hash[:identifier] = [issn_identifier]
     #   book_series_hash[:title] = publication.xpath('PublicationSourceTitle').text unless publication.xpath('PublicationSourceTitle').blank?
     #   book_series_hash[:volume] = publication.xpath('Volume').text unless publication.xpath('Volume').blank?
     #   record_as_hash[:series] = book_series_hash
     # end
-    record_as_hash[:identifier] = identifiers
     record_as_hash
   end
-  # rubocop:enable Metrics/AbcSize
 
   def self.lookup_sw_doc_type(doc_type_list)
     doc_types = Array(doc_type_list)
@@ -269,5 +270,30 @@ class SciencewireSourceRecord < ActiveRecord::Base
     else
       return Settings.sul_doc_types.article
     end
+  end
+
+  def self.extract_pmid(doc)
+    element = doc.xpath('PMID')
+    element.nil? ? '' : element.text
+  end
+
+  def self.extract_swid(doc)
+    element = doc.xpath('PublicationItemID')
+    element.nil? ? '' : element.text
+  end
+
+  def self.extract_doi(doc)
+    element = doc.xpath('DOI')
+    element.nil? ? '' : element.text
+  end
+
+  def self.extract_issn(doc)
+    element = doc.xpath('ISSN')
+    element.nil? ? '' : element.text
+  end
+
+  def self.extract_wosid(doc)
+    element = doc.at_xpath('WoSItemID')
+    element.nil? ? '' : element.text
   end
 end
