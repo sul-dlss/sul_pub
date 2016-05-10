@@ -16,10 +16,10 @@ module ScienceWire
     end
 
     ##
-    # Returns a unique Array of ids for an Author's publications
+    # Returns a new set of ScienceWire PublicationIds to be harvested
     # @return [Array<Integer>]
     def generate_ids
-      (ids_for_author | ids_for_alternate_names) - seed_list
+      (ids_for_author | ids_for_alternate_names) - author_pub_swids
     end
 
     ##
@@ -77,6 +77,10 @@ module ScienceWire
       def seed_list
         @seed_list ||= author.publications.approved.with_sciencewire_id
                              .pluck(:sciencewire_id).uniq
+      end
+
+      def author_pub_swids
+        @author_pub_swids ||= author.publications.with_sciencewire_id.pluck(:sciencewire_id).uniq
       end
 
       def author_first_name
