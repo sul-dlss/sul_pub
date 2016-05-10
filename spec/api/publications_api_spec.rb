@@ -353,8 +353,9 @@ describe SulBib::API do
     end
 
     it 'returns a pub with valid bibjson for sw harvested records' do
-      author_with_sw_pubs
-      ScienceWireHarvester.new.harvest_pubs_for_author_ids([33])
+      auth = author_with_sw_pubs
+      auth.contributions.destroy_all # wipe the slate clean
+      ScienceWireHarvester.new.harvest_pubs_for_author_ids([auth.id])
       new_pub = Publication.last
       get "/publications/#{new_pub.id}",
           { format: 'json' },
@@ -362,7 +363,8 @@ describe SulBib::API do
       expect(response.status).to eq(200)
       expect(response.body).to eq(new_pub.pub_hash.to_json)
       result = JSON.parse(response.body)
-      expect(result['type']).to eq 'article'
+      expect(result['provenance']).to eq('sciencewire')
+      expect(result['type']).to eq('article')
     end
 
     it 'returns only those pubs changed since specified date'
