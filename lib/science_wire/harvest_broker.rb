@@ -17,14 +17,14 @@ module ScienceWire
 
     ##
     # Returns a unique Array of ids for an Author's publications
-    # @return [Array]
+    # @return [Array<Integer>]
     def generate_ids
       ids_for_author | ids_for_alternate_names
     end
 
     ##
     # The traditional Author only harvest approach
-    # @return [Array]
+    # @return [Array<Integer>]
     def ids_for_author
       name = AuthorName.new(author_last_name, author_first_name, author_middle_name)
       if seed_list.size < 50
@@ -37,7 +37,7 @@ module ScienceWire
 
     ##
     # Generates alternate name ids using the "dumb" query
-    # @return [Array]
+    # @return [Array<Integer>]
     def ids_for_alternate_names
       if alternate_name_query
         author.alternative_identities.map do |author_identity|
@@ -55,7 +55,7 @@ module ScienceWire
 
     ##
     # @param [AuthorName] name
-    # @return [Array]
+    # @return [Array<Integer>]
     def ids_from_dumb_query(name)
       sciencewire_client.query_sciencewire_by_author_name(name)
     end
@@ -64,7 +64,7 @@ module ScienceWire
     # @param [AuthorName] name
     # @param [String] email
     # @param [Array] seed_list
-    # @return [Array]
+    # @return [Array<Integer>]
     def ids_from_smart_query(name, email, seed_list)
       sciencewire_client.get_sciencewire_id_suggestions(name, email, seed_list)
     end

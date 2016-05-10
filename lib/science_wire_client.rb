@@ -17,6 +17,8 @@ class ScienceWireClient
     pub_hashes.first[:title] == 'An index to assess the health and benefits of the global ocean'
   end
 
+  ##
+  # @return [Array<Integer>]
   def get_sciencewire_id_suggestions(name, email, seed_list)
     author_attributes = ScienceWire::AuthorAttributes.new(name, email, seed_list)
     client.id_suggestions(author_attributes)
@@ -34,6 +36,7 @@ class ScienceWireClient
   # @param [String] institution name ('')
   # @param [Date] start_date
   # @param [Date] end_date
+  # @return [Array<Integer>]
   def query_sciencewire_by_author_name(name, email='', max_rows = 200, institution = '', start_date = nil, end_date = nil)
     author_attributes = ScienceWire::AuthorAttributes.new(name, email, '', institution, start_date, end_date)
     author_name = ScienceWire::Query::PublicationQueryByAuthorName.new(author_attributes, max_rows)
@@ -41,7 +44,8 @@ class ScienceWireClient
 
     # Only select Publication types that are not on the skip list
     # TODO: use returned documents instead of selecting IDs
-    query_sciencewire(xml_query).xpath("//PublicationItem[regex_reject(DocumentTypeList, '#{@reject_types}')]/PublicationItemID", XpathUtils.new).collect(&:text)
+    query_sciencewire(xml_query).xpath("//PublicationItem[regex_reject(DocumentTypeList, '#{@reject_types}')]/PublicationItemID", XpathUtils.new)
+                                .map { |item| item.text.to_i }
   end
 
   def pull_records_from_sciencewire_for_pmids(pmids)

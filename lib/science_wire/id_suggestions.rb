@@ -10,21 +10,21 @@ module ScienceWire
 
     ##
     # @param [ScienceWire::AuthorAttributes]
-    # @return [Array]
+    # @return [Array<Integer>]
     def id_suggestions(author_attributes)
       journal_suggestions(author_attributes) + conference_suggestions(author_attributes)
     end
 
     ##
     # @param [ScienceWire::AuthorAttributes]
-    # @return [Array]
+    # @return [Array<Integer>]
     def journal_suggestions(author_attributes)
       suggestions(ScienceWire::Query::JournalDocumentSuggestion.new(author_attributes))
     end
 
     ##
     # @param [ScienceWire::AuthorAttributes]
-    # @return [Array]
+    # @return [Array<Integer>]
     def conference_suggestions(author_attributes)
       suggestions(ScienceWire::Query::ConferenceProceedingDocumentSuggestion.new(author_attributes))
     end
@@ -32,7 +32,7 @@ module ScienceWire
     private
 
       ##
-      # @return [Array]
+      # @return [Array<Integer>]
       def suggestions(query)
         client.matched_publication_item_ids_for_author_and_parse(
           query.generate

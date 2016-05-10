@@ -33,7 +33,7 @@ describe ScienceWire::API::MatchedPublicationItemIdsForAuthor do
         parsed_response = subject.parse(publication_item_responses)
         expect(parsed_response).to be_an Array
         expect(parsed_response.count).to eq 4
-        expect(parsed_response).to include('29352378', '29187981', '46795732', '47593787')
+        expect(parsed_response).to include(29_352_378, 29_187_981, 46_795_732, 47_593_787)
       end
     end
     context 'with an unparseable response' do

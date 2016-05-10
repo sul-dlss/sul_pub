@@ -33,11 +33,11 @@ module ScienceWire
 
       ##
       # @param [String] response_body
-      # @return [Array]
+      # @return [Array<Integer>]
       def parse(response_body)
         Nokogiri::XML(response_body)
-          .xpath('/ArrayOfItemMatchResult/ItemMatchResult/PublicationItemID')
-          .collect(&:text)
+                .xpath('/ArrayOfItemMatchResult/ItemMatchResult/PublicationItemID')
+                .map { |item| item.text.to_i }
       end
     end
   end
