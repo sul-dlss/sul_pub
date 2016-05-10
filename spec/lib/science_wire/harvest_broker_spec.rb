@@ -25,10 +25,10 @@ describe ScienceWire::HarvestBroker do
       expect(subject).to receive(:ids_for_alternate_names).and_return([1, 2])
       expect(subject.generate_ids).to eq [1, 2]
     end
-    it 'removes any ids from a seed_list' do
+    it 'removes any ids for existing author publications' do
       expect(subject).to receive(:ids_for_author).and_return([1])
       expect(subject).to receive(:ids_for_alternate_names).and_return([1, 2, 3])
-      expect(subject).to receive(:seed_list).and_return([3])
+      expect(subject).to receive(:author_pub_swids).and_return([3])
       expect(subject.generate_ids).to eq [1, 2]
     end
   end
