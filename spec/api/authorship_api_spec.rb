@@ -421,6 +421,9 @@ describe SulBib::API, :vcr do
       check_response_error 404
     end
     it 'returns 404 when it cannot retrieve a cap_profile_id' do
+      expect(Author).to receive(:fetch_from_cap_and_create)
+        .with(cap_profile_id)
+        .and_return(nil)
       http_request
       check_response_error 404
     end
