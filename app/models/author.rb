@@ -16,6 +16,46 @@ class Author < ActiveRecord::Base
     author_identities.where('identity_type = ?', AuthorIdentity.identity_types[:alternate])
   end
 
+  # Provide consistent API for Author and AuthorIdentity
+  # @return [String] preferred_first_name
+  def first_name
+    preferred_first_name
+  end
+
+  # Provide consistent API for Author and AuthorIdentity
+  # @return [String] preferred_middle_name
+  def middle_name
+    preferred_middle_name
+  end
+
+  # Provide consistent API for Author and AuthorIdentity
+  # @return [String] preferred_last_name
+  def last_name
+    preferred_last_name
+  end
+
+  # Provide consistent API for Author and AuthorIdentity
+  # The default institution is set in
+  # Settings.HARVESTER.INSTITUTION.name
+  # @return [String] institution
+  def institution
+    Settings.HARVESTER.INSTITUTION.name
+  end
+
+  # TODO: CAP could provide dates for Stanford affiliation
+  # Provide consistent API for Author and AuthorIdentity
+  # @return [nil]
+  def start_date
+    nil
+  end
+
+  # TODO: CAP could provide dates for Stanford affiliation
+  # Provide consistent API for Author and AuthorIdentity
+  # @return [nil]
+  def end_date
+    nil
+  end
+
   has_many :contributions, dependent: :destroy, after_add: :contributions_changed_callback, after_remove: :contributions_changed_callback do
     def build_or_update(publication, contribution_hash = {})
       c = where(publication_id: publication.id).first_or_initialize
@@ -145,11 +185,10 @@ class Author < ActiveRecord::Base
         # not the identical identity where Author is assumed to be Stanford University
         # checks in order of likelihood of changes
         # note that this code works for nil/empty string comparisons by calling `to_s`
-        preferred_first_name.to_s.casecmp(author_identity.first_name.to_s) == 0 &&
-        preferred_middle_name.to_s.casecmp(author_identity.middle_name.to_s) == 0 &&
-        email.to_s.casecmp(author_identity.email.to_s) == 0 &&
-        preferred_last_name.to_s.casecmp(author_identity.last_name.to_s) == 0 &&
-        author_identity.institution.to_s =~ /stanford/i # be flexible about matching Stanford University
+        first_name.to_s.casecmp(author_identity.first_name.to_s) == 0 &&
+        middle_name.to_s.casecmp(author_identity.middle_name.to_s) == 0 &&
+        last_name.to_s.casecmp(author_identity.last_name.to_s) == 0 &&
+        institution.to_s.casecmp(author_identity.institution.to_s) == 0
       )
     end
 end
