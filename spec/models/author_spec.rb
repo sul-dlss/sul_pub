@@ -9,6 +9,52 @@ describe Author do
     JSON.parse(File.open('fixtures/cap_poll_author_3810_missing.json', 'r').read)
   end
 
+  describe '#first_name' do
+    it 'is the preferred_first_name' do
+      auth = Author.new
+      auth.update_from_cap_authorship_profile_hash(auth_hash)
+      expect(auth.first_name).to eq(auth.preferred_first_name)
+    end
+  end
+
+  describe '#middle_name' do
+    it 'is the preferred_middle_name' do
+      auth = Author.new
+      auth.update_from_cap_authorship_profile_hash(auth_hash)
+      expect(auth.middle_name).to eq(auth.preferred_middle_name)
+    end
+  end
+
+  describe '#last_name' do
+    it 'is the preferred_last_name' do
+      auth = Author.new
+      auth.update_from_cap_authorship_profile_hash(auth_hash)
+      expect(auth.last_name).to eq(auth.preferred_last_name)
+    end
+  end
+
+  describe '#institution' do
+    it 'is a default institution name provided by Settings' do
+      default_institution_name = Settings.HARVESTER.INSTITUTION.name
+      auth = Author.new
+      expect(auth.institution).to eq(default_institution_name)
+    end
+  end
+
+  describe '#start_date' do
+    it 'is nil (until CAP provides data)' do
+      auth = Author.new
+      expect(auth.start_date).to be_nil
+    end
+  end
+
+  describe '#end_date' do
+    it 'is nil (until CAP provides data)' do
+      auth = Author.new
+      expect(auth.end_date).to be_nil
+    end
+  end
+
   describe '.update_from_cap_authorship_profile_hash' do
     it 'creates an author from the profile JSON returned from the CAP authorship API' do
       auth = Author.new
