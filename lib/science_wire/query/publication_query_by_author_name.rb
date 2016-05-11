@@ -39,7 +39,7 @@ module ScienceWire
           elsif !institution.present? && author_attributes.email.present?
             "#{name.text_search_query} or \"#{author_attributes.email}\""
           else
-            "(#{name.text_search_query}) and \"stanford\""
+            name.text_search_query.to_s
           end
         end
 

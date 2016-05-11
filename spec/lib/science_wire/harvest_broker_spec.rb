@@ -4,12 +4,12 @@ describe ScienceWire::HarvestBroker do
   let(:author) { create(:author) }
   let(:author_name) do
     ScienceWire::AuthorName.new(
-      author.preferred_last_name,
-      author.preferred_first_name,
-      author.preferred_middle_name
+      author.last_name,
+      author.first_name,
+      author.middle_name
     )
   end
-  let(:feynman_name) { ScienceWire::AuthorName.new('Feynman', 'P', 'Richard') }
+  let(:feynman_name) { ScienceWire::AuthorName.new('Feynman', 'Richard', 'P') }
   let(:alt_author) { create(:author_with_alternate_identities, alt_count: 3) }
   let(:alt_author_no_institution) do
     auth = create(:author_with_alternate_identities, alt_count: 1)

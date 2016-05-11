@@ -163,7 +163,7 @@ module InstitutionEmailQueries
           <Criteria>
             <Criterion>
               <TextSearch>
-                <QueryPredicate>("brown,charlie" or "BROWN,C") and "stanford"</QueryPredicate>
+                <QueryPredicate>"brown,charlie" or "BROWN,C"</QueryPredicate>
                 <SearchType>ExactMatch</SearchType>
                 <Columns>AggregateText</Columns>
                 <MaximumRows>200</MaximumRows>

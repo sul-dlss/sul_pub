@@ -9,6 +9,7 @@ describe ScienceWire::Query::PublicationQueryByAuthorName do
   let(:max_rows) { 200 }
   let(:seeds) { [1, 2, 3] }
   let(:institution) { 'Example University' }
+  let(:default_institution_name) { Settings.HARVESTER.INSTITUTION.name }
   # The XSD is defined in fixture/queries/publication_query_xsd
   let(:xsd) { publication_query_xsd }
   let(:xml) { without_cdata(subject.generate) }
@@ -33,7 +34,7 @@ describe ScienceWire::Query::PublicationQueryByAuthorName do
     end
     context 'middle name only' do
       let(:author_name) { ScienceWire::AuthorName.new('', '', 'mary') }
-      let(:author_attributes) { ScienceWire::AuthorAttributes.new(author_name, '', '', '') }
+      let(:author_attributes) { ScienceWire::AuthorAttributes.new(author_name, '', '', default_institution_name) }
       it 'generates a query' do
         expect(xml).to be_equivalent_to(without_cdata(middle_name_only))
       end
@@ -63,14 +64,14 @@ describe ScienceWire::Query::PublicationQueryByAuthorName do
       it_behaves_like 'XSD validates'
     end
     context 'no institution but email provided' do
-      let(:author_attributes) { ScienceWire::AuthorAttributes.new(charlie_brown_name, 'cbrown@example.com', '', '') }
+      let(:author_attributes) { ScienceWire::AuthorAttributes.new(charlie_brown_name, 'cbrown@example.com') }
       it 'generates a query' do
         expect(xml).to be_equivalent_to(without_cdata(no_institution_but_email_provided))
       end
       it_behaves_like 'XSD validates'
     end
     context 'no institution no email provided' do
-      let(:author_attributes) { ScienceWire::AuthorAttributes.new(charlie_brown_name, '', '', '') }
+      let(:author_attributes) { ScienceWire::AuthorAttributes.new(charlie_brown_name, '') }
       it 'generates a query' do
         expect(xml).to be_equivalent_to(without_cdata(no_institution_no_email_provided))
       end

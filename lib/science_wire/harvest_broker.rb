@@ -26,8 +26,8 @@ module ScienceWire
     # The traditional Author only harvest approach
     # @return [Array<Integer>]
     def ids_for_author
-      name = AuthorName.new(author_last_name, author_first_name, author_middle_name)
-      author_attributes = AuthorAttributes.new(name, '', '', '', '', '')
+      name = author_name(author)
+      author_attributes = AuthorAttributes.new(name, '', [], author.institution)
       if seed_list.size < 50
         sciencewire_harvester.increment_authors_with_limited_seed_data_count
         ids_from_dumb_query(author_attributes)
@@ -79,24 +79,16 @@ module ScienceWire
         @author_pub_swids ||= author.publications.with_sciencewire_id.pluck(:sciencewire_id).uniq
       end
 
-      def author_first_name
-        author.preferred_first_name
-      end
-
-      def author_middle_name
-        use_middle_name ? author.preferred_middle_name : ''
-      end
-
-      def author_last_name
-        author.preferred_last_name
+      def author_name(person)
+        AuthorName.new(
+          person.last_name,
+          person.first_name,
+          use_middle_name ? person.middle_name : ''
+        )
       end
 
       def author_attributes_from_author_identity(author_identity)
-        name = AuthorName.new(
-          author_identity.last_name,
-          author_identity.first_name,
-          use_middle_name ? author_identity.middle_name : ''
-        )
+        name = author_name(author_identity)
         AuthorAttributes.new(
           name,
           author_identity.email,
