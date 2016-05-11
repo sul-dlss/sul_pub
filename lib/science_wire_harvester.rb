@@ -59,7 +59,7 @@ class ScienceWireHarvester
     authors = Author.where(active_in_cap: true, cap_import_enabled: true)
     authors = authors.where(Author.arel_table[Author.primary_key].gteq(starting_author_id))
     authors = authors.where(Author.arel_table[Author.primary_key].lteq(ending_author_id)) if ending_author_id > 0
-    harvest_pubs_for_authors authors
+    harvest_pubs_for_authors authors unless authors.empty?
   end
 
   def harvest_pubs_for_all_authors_parallel

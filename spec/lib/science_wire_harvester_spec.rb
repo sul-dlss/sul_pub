@@ -137,6 +137,15 @@ describe ScienceWireHarvester, :vcr do
         subject.harvest_pubs_for_all_authors(author.id, author.id)
       end
     end
+
+    context 'author is not enabled for harvest' do
+      it 'does not initiate harvesting' do
+        author.cap_import_enabled = false
+        author.save
+        expect(subject).not_to receive(:harvest_pubs_for_authors)
+        subject.harvest_pubs_for_all_authors(author.id, author.id)
+      end
+    end
   end
 
   describe '#harvest_pubs_for_author_ids' do
