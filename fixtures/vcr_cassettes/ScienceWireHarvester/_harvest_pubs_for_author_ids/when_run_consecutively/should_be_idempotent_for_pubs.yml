@@ -14,7 +14,7 @@ http_interactions:
       Accept-Encoding:
       - gzip,deflate
       Date:
-      - Fri, 06 May 2016 19:05:45 GMT
+      - Wed, 11 May 2016 04:09:15 GMT
       Licenseid:
       - Settings.SCIENCEWIRE.LICENSE_ID
       Host:
@@ -43,7 +43,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Fri, 06 May 2016 19:05:45 GMT
+      - Wed, 11 May 2016 04:09:21 GMT
       Content-Length:
       - '6476'
     body:
@@ -129,7 +129,7 @@ http_interactions:
         \   <CopyrightPublisher>LIPPINCOTT WILLIAMS &amp; WILKINS</CopyrightPublisher>\r\n
         \   <CopyrightCity>PHILADELPHIA</CopyrightCity>\r\n  </PublicationItem>\r\n</ArrayOfPublicationItem>"
     http_version: 
-  recorded_at: Fri, 06 May 2016 19:05:46 GMT
+  recorded_at: Wed, 11 May 2016 04:09:21 GMT
 - request:
     method: post
     uri: http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml
@@ -149,7 +149,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Fri, 06 May 2016 19:05:46 GMT
+      - Wed, 11 May 2016 04:09:21 GMT
       Server:
       - Apache
       Access-Control-Allow-Origin:
@@ -157,12 +157,12 @@ http_interactions:
       Cache-Control:
       - private
       Ncbi-Sid:
-      - 08DE104072CEB0A1_0914SID
+      - 9DFC4FE4732B0711_0337SID
       Content-Type:
       - text/xml; charset=UTF-8
       Set-Cookie:
-      - ncbi_sid=08DE104072CEB0A1_0914SID; domain=.nih.gov; path=/; expires=Sat, 06
-        May 2017 19:05:46 GMT
+      - ncbi_sid=9DFC4FE4732B0711_0337SID; domain=.nih.gov; path=/; expires=Thu, 11
+        May 2017 04:09:21 GMT
       X-Ua-Compatible:
       - IE=Edge
       Transfer-Encoding:
@@ -459,7 +459,7 @@ http_interactions:
 
         </PubmedArticleSet>
     http_version: 
-  recorded_at: Fri, 06 May 2016 19:05:47 GMT
+  recorded_at: Wed, 11 May 2016 04:09:22 GMT
 - request:
     method: get
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationItems?format=xml&publicationItemIDs=
@@ -474,7 +474,7 @@ http_interactions:
       Accept-Encoding:
       - gzip,deflate
       Date:
-      - Fri, 06 May 2016 19:05:50 GMT
+      - Wed, 11 May 2016 04:09:24 GMT
       Licenseid:
       - Settings.SCIENCEWIRE.LICENSE_ID
       Host:
@@ -503,7 +503,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Fri, 06 May 2016 19:05:50 GMT
+      - Wed, 11 May 2016 04:09:25 GMT
       Content-Length:
       - '1208'
     body:
@@ -522,5 +522,5 @@ http_interactions:
         \ <h3>There is a problem with the resource you are looking for, and it cannot
         be displayed.</h3>\r\n </fieldset></div>\r\n</div>\r\n</body>\r\n</html>\r\n"
     http_version: 
-  recorded_at: Fri, 06 May 2016 19:05:50 GMT
+  recorded_at: Wed, 11 May 2016 04:09:25 GMT
 recorded_with: VCR 3.0.1

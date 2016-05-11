@@ -2,11 +2,7 @@
 http_interactions:
 - request:
     method: post
-<<<<<<< HEAD
     uri: https://Settings.CAP.TOKEN_USER:Settings.CAP.TOKEN_PASS@Settings.CAP.TOKEN_URI/oauth/token
-=======
-    uri: https://sul:***REMOVED***@authz.stanford.edu/oauth/token
->>>>>>> Stash refactor of authorship api from complete-authorship-specs branch
     body:
       encoding: US-ASCII
       string: grant_type=client_credentials
@@ -25,11 +21,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-<<<<<<< HEAD
-      - Thu, 07 Apr 2016 23:54:35 GMT
-=======
-      - Wed, 30 Mar 2016 01:35:45 GMT
->>>>>>> Stash refactor of authorship api from complete-authorship-specs branch
+      - Wed, 11 May 2016 04:27:19 GMT
       Cache-Control:
       - no-store
       Pragma:
@@ -40,15 +32,9 @@ http_interactions:
       - chunked
     body:
       encoding: UTF-8
-<<<<<<< HEAD
-      string: '{"access_token":"private_access_token","token_type":"bearer","expires_in":86399,"scope":"profiles.read_all","jti":"a9d5b9ab-483c-4f27-a5c8-75f3e846564e"}'
+      string: '{"access_token":"private_access_token","token_type":"bearer","expires_in":86399,"scope":"profiles.read_all","jti":"e42cff9f-7cd4-4ad9-b232-e5648ea445a2"}'
     http_version: 
-  recorded_at: Thu, 07 Apr 2016 23:54:35 GMT
-=======
-      string: '{"access_token":"eyJhbGciOiJSUzI1NiJ9.eyJqdGkiOiJlZTE5OTU0Yy1iYzY0LTQ2ZjYtOTcyNC1mNTllYzk0ZWVkMzgiLCJzdWIiOiJzdWwiLCJhdXRob3JpdGllcyI6WyJwcm9maWxlcy5yZWFkX2FsbCJdLCJzY29wZSI6WyJwcm9maWxlcy5yZWFkX2FsbCJdLCJjbGllbnRfaWQiOiJzdWwiLCJjaWQiOiJzdWwiLCJncmFudF90eXBlIjoiY2xpZW50X2NyZWRlbnRpYWxzIiwiaWF0IjoxNDU5MzAxNzQ1LCJleHAiOjE0NTkzODgxNDUsImlzcyI6Imh0dHBzOi8vYXV0aHouc3RhbmZvcmQuZWR1L29hdXRoL3Rva2VuIiwiYXVkIjpbInByb2ZpbGVzIl19.agCqkshV4BN-DwS-eOohrGtt9cnfAYKYCwOlJA63CtW29erjZiVGdsC3ZudJUoxXa8HPfXJyYoOw6ldaVGPZ8pntXtRCoD6VkkIICtPNFRjDAjWZ_Fnbgk-NJ1foosJzuEmXV4BXaG0Q5e4ovkQAR0y1sZSstJCsWgwS2T-DW2ceTRC4WgSbIL1i7mWhGTLq1fn_myjapCx21wLTiqCUcIGwGXfIMfer86RkIT1rTt-mL1lJSJAiHSn1iXv073Uo89t77uXPTBWgyztOSHillsmTgMHTb8qmjThX4CuTggeFNqxHwXsZ9DuJjCeR4EpKiK08Y85fvCx4Yivkd6-A7Q","token_type":"bearer","expires_in":86399,"scope":"profiles.read_all","jti":"ee19954c-bc64-46f6-9724-f59ec94eed38"}'
-    http_version: 
-  recorded_at: Wed, 30 Mar 2016 01:35:45 GMT
->>>>>>> Stash refactor of authorship api from complete-authorship-specs branch
+  recorded_at: Wed, 11 May 2016 04:27:19 GMT
 - request:
     method: get
     uri: https://cap-dev.stanford.edu/cap-api/api/cap/v1/authors/999999
@@ -63,22 +49,14 @@ http_interactions:
       User-Agent:
       - Ruby
       Authorization:
-<<<<<<< HEAD
       - bearer private_bearer_token
-=======
-      - bearer eyJhbGciOiJSUzI1NiJ9.eyJqdGkiOiJlZTE5OTU0Yy1iYzY0LTQ2ZjYtOTcyNC1mNTllYzk0ZWVkMzgiLCJzdWIiOiJzdWwiLCJhdXRob3JpdGllcyI6WyJwcm9maWxlcy5yZWFkX2FsbCJdLCJzY29wZSI6WyJwcm9maWxlcy5yZWFkX2FsbCJdLCJjbGllbnRfaWQiOiJzdWwiLCJjaWQiOiJzdWwiLCJncmFudF90eXBlIjoiY2xpZW50X2NyZWRlbnRpYWxzIiwiaWF0IjoxNDU5MzAxNzQ1LCJleHAiOjE0NTkzODgxNDUsImlzcyI6Imh0dHBzOi8vYXV0aHouc3RhbmZvcmQuZWR1L29hdXRoL3Rva2VuIiwiYXVkIjpbInByb2ZpbGVzIl19.agCqkshV4BN-DwS-eOohrGtt9cnfAYKYCwOlJA63CtW29erjZiVGdsC3ZudJUoxXa8HPfXJyYoOw6ldaVGPZ8pntXtRCoD6VkkIICtPNFRjDAjWZ_Fnbgk-NJ1foosJzuEmXV4BXaG0Q5e4ovkQAR0y1sZSstJCsWgwS2T-DW2ceTRC4WgSbIL1i7mWhGTLq1fn_myjapCx21wLTiqCUcIGwGXfIMfer86RkIT1rTt-mL1lJSJAiHSn1iXv073Uo89t77uXPTBWgyztOSHillsmTgMHTb8qmjThX4CuTggeFNqxHwXsZ9DuJjCeR4EpKiK08Y85fvCx4Yivkd6-A7Q
->>>>>>> Stash refactor of authorship api from complete-authorship-specs branch
   response:
     status:
       code: 404
       message: Not Found
     headers:
       Date:
-<<<<<<< HEAD
-      - Thu, 07 Apr 2016 23:54:35 GMT
-=======
-      - Wed, 30 Mar 2016 01:35:45 GMT
->>>>>>> Stash refactor of authorship api from complete-authorship-specs branch
+      - Wed, 11 May 2016 04:27:19 GMT
       Server:
       - Apache/2.2.15 (Oracle)
       Vary:
@@ -94,11 +72,7 @@ http_interactions:
       string: |
         { "meta": {  "status": 404, "message":"Object of class [edu.stanford.irt.cap.api.domain.AuthorEntity] with identifier [999999]: not found" } }
     http_version: 
-<<<<<<< HEAD
-  recorded_at: Thu, 07 Apr 2016 23:54:35 GMT
-=======
-  recorded_at: Wed, 30 Mar 2016 01:35:45 GMT
->>>>>>> Stash refactor of authorship api from complete-authorship-specs branch
+  recorded_at: Wed, 11 May 2016 04:27:19 GMT
 - request:
     method: get
     uri: https://cap-dev.stanford.edu/cap-api/api/cap/v1/authors/999999
@@ -113,11 +87,7 @@ http_interactions:
       User-Agent:
       - Ruby
       Authorization:
-<<<<<<< HEAD
       - bearer private_bearer_token
-=======
-      - bearer eyJhbGciOiJSUzI1NiJ9.eyJqdGkiOiJlZTE5OTU0Yy1iYzY0LTQ2ZjYtOTcyNC1mNTllYzk0ZWVkMzgiLCJzdWIiOiJzdWwiLCJhdXRob3JpdGllcyI6WyJwcm9maWxlcy5yZWFkX2FsbCJdLCJzY29wZSI6WyJwcm9maWxlcy5yZWFkX2FsbCJdLCJjbGllbnRfaWQiOiJzdWwiLCJjaWQiOiJzdWwiLCJncmFudF90eXBlIjoiY2xpZW50X2NyZWRlbnRpYWxzIiwiaWF0IjoxNDU5MzAxNzQ1LCJleHAiOjE0NTkzODgxNDUsImlzcyI6Imh0dHBzOi8vYXV0aHouc3RhbmZvcmQuZWR1L29hdXRoL3Rva2VuIiwiYXVkIjpbInByb2ZpbGVzIl19.agCqkshV4BN-DwS-eOohrGtt9cnfAYKYCwOlJA63CtW29erjZiVGdsC3ZudJUoxXa8HPfXJyYoOw6ldaVGPZ8pntXtRCoD6VkkIICtPNFRjDAjWZ_Fnbgk-NJ1foosJzuEmXV4BXaG0Q5e4ovkQAR0y1sZSstJCsWgwS2T-DW2ceTRC4WgSbIL1i7mWhGTLq1fn_myjapCx21wLTiqCUcIGwGXfIMfer86RkIT1rTt-mL1lJSJAiHSn1iXv073Uo89t77uXPTBWgyztOSHillsmTgMHTb8qmjThX4CuTggeFNqxHwXsZ9DuJjCeR4EpKiK08Y85fvCx4Yivkd6-A7Q
->>>>>>> Stash refactor of authorship api from complete-authorship-specs branch
       Host:
       - cap-dev.stanford.edu
   response:
@@ -126,11 +96,7 @@ http_interactions:
       message: Not Found
     headers:
       Date:
-<<<<<<< HEAD
-      - Thu, 07 Apr 2016 23:54:35 GMT
-=======
-      - Wed, 30 Mar 2016 01:35:45 GMT
->>>>>>> Stash refactor of authorship api from complete-authorship-specs branch
+      - Wed, 11 May 2016 04:27:19 GMT
       Server:
       - Apache/2.2.15 (Oracle)
       Vary:
@@ -146,11 +112,7 @@ http_interactions:
       string: |
         { "meta": {  "status": 404, "message":"Object of class [edu.stanford.irt.cap.api.domain.AuthorEntity] with identifier [999999]: not found" } }
     http_version: 
-<<<<<<< HEAD
-  recorded_at: Thu, 07 Apr 2016 23:54:35 GMT
-=======
-  recorded_at: Wed, 30 Mar 2016 01:35:45 GMT
->>>>>>> Stash refactor of authorship api from complete-authorship-specs branch
+  recorded_at: Wed, 11 May 2016 04:27:20 GMT
 - request:
     method: get
     uri: https://cap-dev.stanford.edu/cap-api/api/cap/v1/authors/999999
@@ -165,11 +127,7 @@ http_interactions:
       User-Agent:
       - Ruby
       Authorization:
-<<<<<<< HEAD
       - bearer private_bearer_token
-=======
-      - bearer eyJhbGciOiJSUzI1NiJ9.eyJqdGkiOiJlZTE5OTU0Yy1iYzY0LTQ2ZjYtOTcyNC1mNTllYzk0ZWVkMzgiLCJzdWIiOiJzdWwiLCJhdXRob3JpdGllcyI6WyJwcm9maWxlcy5yZWFkX2FsbCJdLCJzY29wZSI6WyJwcm9maWxlcy5yZWFkX2FsbCJdLCJjbGllbnRfaWQiOiJzdWwiLCJjaWQiOiJzdWwiLCJncmFudF90eXBlIjoiY2xpZW50X2NyZWRlbnRpYWxzIiwiaWF0IjoxNDU5MzAxNzQ1LCJleHAiOjE0NTkzODgxNDUsImlzcyI6Imh0dHBzOi8vYXV0aHouc3RhbmZvcmQuZWR1L29hdXRoL3Rva2VuIiwiYXVkIjpbInByb2ZpbGVzIl19.agCqkshV4BN-DwS-eOohrGtt9cnfAYKYCwOlJA63CtW29erjZiVGdsC3ZudJUoxXa8HPfXJyYoOw6ldaVGPZ8pntXtRCoD6VkkIICtPNFRjDAjWZ_Fnbgk-NJ1foosJzuEmXV4BXaG0Q5e4ovkQAR0y1sZSstJCsWgwS2T-DW2ceTRC4WgSbIL1i7mWhGTLq1fn_myjapCx21wLTiqCUcIGwGXfIMfer86RkIT1rTt-mL1lJSJAiHSn1iXv073Uo89t77uXPTBWgyztOSHillsmTgMHTb8qmjThX4CuTggeFNqxHwXsZ9DuJjCeR4EpKiK08Y85fvCx4Yivkd6-A7Q
->>>>>>> Stash refactor of authorship api from complete-authorship-specs branch
       Host:
       - cap-dev.stanford.edu
   response:
@@ -178,11 +136,7 @@ http_interactions:
       message: Not Found
     headers:
       Date:
-<<<<<<< HEAD
-      - Thu, 07 Apr 2016 23:54:35 GMT
-=======
-      - Wed, 30 Mar 2016 01:35:45 GMT
->>>>>>> Stash refactor of authorship api from complete-authorship-specs branch
+      - Wed, 11 May 2016 04:27:20 GMT
       Server:
       - Apache/2.2.15 (Oracle)
       Vary:
@@ -198,9 +152,5 @@ http_interactions:
       string: |
         { "meta": {  "status": 404, "message":"Object of class [edu.stanford.irt.cap.api.domain.AuthorEntity] with identifier [999999]: not found" } }
     http_version: 
-<<<<<<< HEAD
-  recorded_at: Thu, 07 Apr 2016 23:54:35 GMT
-=======
-  recorded_at: Wed, 30 Mar 2016 01:35:45 GMT
->>>>>>> Stash refactor of authorship api from complete-authorship-specs branch
+  recorded_at: Wed, 11 May 2016 04:27:20 GMT
 recorded_with: VCR 3.0.1
