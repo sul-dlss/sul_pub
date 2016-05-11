@@ -30,12 +30,14 @@ http_interactions:
                             &lt;/query&gt;</xmlQuery>
               </ScienceWireQueryXMLParameter>
     headers:
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Faraday v0.9.2
       Accept:
       - "*/*"
-      User-Agent:
-      - Ruby
+      Accept-Encoding:
+      - gzip,deflate
+      Date:
+      - Wed, 11 May 2016 04:10:25 GMT
       Licenseid:
       - Settings.SCIENCEWIRE.LICENSE_ID
       Host:
@@ -64,7 +66,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Tue, 05 Apr 2016 23:38:27 GMT
+      - Wed, 11 May 2016 04:10:25 GMT
       Content-Length:
       - '277'
     body:
@@ -73,28 +75,32 @@ http_interactions:
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>41173</queryID>\r\n
         \ <queryResultRows>1</queryResultRows>\r\n  <totalRows>1</totalRows>\r\n</ScienceWireQueryIDResponse>"
     http_version: 
-  recorded_at: Tue, 05 Apr 2016 23:38:27 GMT
+  recorded_at: Wed, 11 May 2016 04:10:25 GMT
 - request:
     method: get
-    uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/41173?format=xml&page=0&pageSize=2147483647&v=version/3
+    uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/41173?format=xml&page=0&pageSize=2147483647&v=version/4
     body:
-      encoding: US-ASCII
+      encoding: UTF-8
       string: ''
     headers:
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Faraday v0.9.2
       Accept:
       - "*/*"
-      User-Agent:
-      - Ruby
-      Content-Type:
-      - text/xml
+      Accept-Encoding:
+      - gzip,deflate
+      Date:
+      - Wed, 11 May 2016 04:10:25 GMT
       Licenseid:
       - Settings.SCIENCEWIRE.LICENSE_ID
       Host:
       - Settings.SCIENCEWIRE.HOST
       Connection:
       - Keep-Alive
+      Expect:
+      - 100-continue
+      Content-Type:
+      - text/xml
   response:
     status:
       code: 200
@@ -113,7 +119,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Tue, 05 Apr 2016 23:38:28 GMT
+      - Wed, 11 May 2016 04:10:25 GMT
       Content-Length:
       - '4955'
     body:
@@ -177,7 +183,7 @@ http_interactions:
         \   <CopyrightStateProvince>NY</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
         STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n</ArrayOfPublicationItem>"
     http_version: 
-  recorded_at: Tue, 05 Apr 2016 23:38:28 GMT
+  recorded_at: Wed, 11 May 2016 04:10:26 GMT
 - request:
     method: post
     uri: http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml
@@ -197,7 +203,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 05 Apr 2016 23:38:28 GMT
+      - Wed, 11 May 2016 04:10:26 GMT
       Server:
       - Apache
       Access-Control-Allow-Origin:
@@ -205,12 +211,12 @@ http_interactions:
       Cache-Control:
       - private
       Ncbi-Sid:
-      - 9DFC5E3F7044C741_0358SID
+      - 08DD0FDC732B0B21_0337SID
       Content-Type:
       - text/xml; charset=UTF-8
       Set-Cookie:
-      - ncbi_sid=9DFC5E3F7044C741_0358SID; domain=.nih.gov; path=/; expires=Wed, 05
-        Apr 2017 23:38:28 GMT
+      - ncbi_sid=08DD0FDC732B0B21_0337SID; domain=.nih.gov; path=/; expires=Thu, 11
+        May 2017 04:10:26 GMT
       X-Ua-Compatible:
       - IE=Edge
       Transfer-Encoding:
@@ -532,113 +538,5 @@ http_interactions:
         PC9BcnRpY2xlSWRMaXN0PgogICAgPC9QdWJtZWREYXRhPgo8L1B1Ym1lZEFy
         dGljbGU+Cgo8L1B1Ym1lZEFydGljbGVTZXQ+Cg==
     http_version: 
-  recorded_at: Tue, 05 Apr 2016 23:38:28 GMT
-- request:
-    method: get
-    uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/41173?format=xml&page=0&pageSize=2147483647&v=version/4
-    body:
-      encoding: UTF-8
-      string: ''
-    headers:
-      User-Agent:
-      - Faraday v0.9.2
-      Accept:
-      - "*/*"
-      Accept-Encoding:
-      - gzip,deflate
-      Date:
-      - Wed, 04 May 2016 00:39:39 GMT
-      Licenseid:
-      - Settings.SCIENCEWIRE.LICENSE_ID
-      Host:
-      - Settings.SCIENCEWIRE.HOST
-      Connection:
-      - Keep-Alive
-      Expect:
-      - 100-continue
-      Content-Type:
-      - text/xml
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Cache-Control:
-      - private
-      Content-Type:
-      - application/xml; charset=utf-8
-      Server:
-      - Microsoft-IIS/7.5
-      X-Aspnetmvc-Version:
-      - '2.0'
-      X-Aspnet-Version:
-      - 4.0.30319
-      X-Powered-By:
-      - ASP.NET
-      Date:
-      - Wed, 04 May 2016 00:39:39 GMT
-      Content-Length:
-      - '4955'
-    body:
-      encoding: UTF-8
-      string: "<?xml version=\"1.0\"?>\r\n<ArrayOfPublicationItem xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
-        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <PublicationItem>\r\n
-        \   <PublicationItemID>63608489</PublicationItemID>\r\n    <Title>Subtle Post-Procedural
-        Cognitive Dysfunction After Atrial Fibrillation Ablation</Title>\r\n    <Abstract>Objectives
-        This study sought to determine whether post-operative neurocognitive dysfunction
-        (POCD) occurs after ablation for atrial fibrillation (AF).  Background Ablation
-        for AF is a highly effective strategy; however, the risk of transient ischemic
-        attack and stroke is approximately 0.5% to 1%. In addition, magnetic resonance
-        imaging studies report a 7% to 14% prevalence of silent cerebral infarction.
-        Whether cerebral ischemia results in POCD after ablation for AF is not well
-        established.  Methods The study included 150 patients; 60 patients undergoing
-        ablation for paroxysmal atrial fibrillation (PAF), 30 patients undergoing
-        ablation for persistent atrial fibrillation (PeAF), and 30 patients undergoing
-        ablation for supraventricular tachycardia (SVT) were compared with a matched
-        nonoperative control group of patients with AF awaiting radiofrequency ablation
-        (n = 30). Eight neuropsychological tests were administered at baseline and
-        at 2 days and 90 days post-operatively. The tests were administered at the
-        same time points to the nonoperative control group. The reliable change index
-        was used to calculate POCD.  Results The prevalences of POCD at day 2 post-procedure
-        were 28% in patients with PAF, 27% in patients with PeAF, 13% in patients
-        with SVT, and 0% in control patients with AF (p = 0.007). At day 90, the prevalences
-        of POCD were 13% in patients with PAF, 20% in patients with PeAF, 3% in patients
-        with SVT, and 0% in control patients with AF (p = 0.03). When analyzing the
-        3 procedural groups together, 29 of 120 patients (24%) manifested POCD at
-        day 2 and 15 of 120 patients (13%) at day 90 post-procedure (p = 0.029). On
-        univariate analysis, increasing left atrial access time was associated with
-        POCD at day 2 (p = 0.04) and day 90 (p = 0.03).  Conclusions Ablation for
-        AF is associated with a 13% to 20% prevalence of POCD in patients with AF
-        at long-term follow-up. These results were seen in a patient population with
-        predominant CHADS(2) (Congestive heart failure, Hypertension, Age &gt;= 75
-        years, Diabetes mellitus, previous Stroke/transient ischemic attack) scores
-        of 0 to 1, representing the majority of patients undergoing ablation for AF.
-        The long-term implications of these subtle changes require further study.
-        (J Am Coll Cardiol 2013;62:531-9) (C) 2013 by the American College of Cardiology
-        Foundation</Abstract>\r\n    <AuthorList>Medi,Caroline,|Evered,Lisbeth,|Silbert,Brendan,|Teh,Andrew,|Halloran,Karen,|Morton,Joseph,|Kistler,Peter,|Kalman,Jonathan,</AuthorList>\r\n
-        \   <AuthorCount>8</AuthorCount>\r\n    <KeywordList>TERM-FOLLOW-UP|MICROEMBOLI|CATHETER
-        ABLATION|CARDIOPULMONARY BYPASS|COMPLICATIONS|ARTERY-BYPASS-SURGERY|CARDIAC-SURGERY|RADIOFREQUENCY|CEREBRAL-LESIONS|AORTIC
-        ATHEROMA|atrial fibrillation|ablation|outcomes|neurocognitive dysfunction</KeywordList>\r\n
-        \   <DocumentTypeList>Article</DocumentTypeList>\r\n    <DocumentCategory>Journal
-        Document</DocumentCategory>\r\n    <NumberOfReferences>34</NumberOfReferences>\r\n
-        \   <TimesCited>23</TimesCited>\r\n    <TimesNotSelfCited>20</TimesNotSelfCited>\r\n
-        \   <PMID>23684686</PMID>\r\n    <WoSItemID>000322524300008</WoSItemID>\r\n
-        \   <PublicationSourceTitle>JOURNAL OF THE AMERICAN COLLEGE OF CARDIOLOGY</PublicationSourceTitle>\r\n
-        \   <Volume>62</Volume>\r\n    <Issue>6</Issue>\r\n    <Pagination>531-539</Pagination>\r\n
-        \   <PublicationDate>2013-08-06T00:00:00</PublicationDate>\r\n    <PublicationYear>2013</PublicationYear>\r\n
-        \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Cardiac
-        &amp; Cardiovascular Systems</PublicationSubjectCategoryList>\r\n    <ISSN>0735-1097</ISSN>\r\n
-        \   <DOI>10.1016/j.jacc.2013.03.073</DOI>\r\n    <ConferenceStartDate xsi:nil=\"true\"
-        />\r\n    <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank xsi:nil=\"true\"
-        />\r\n    <OrdinalRank>0</OrdinalRank>\r\n    <NormalizedRank xsi:nil=\"true\"
-        />\r\n    <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
-        \   <CopyrightPublisher>ELSEVIER SCIENCE INC</CopyrightPublisher>\r\n    <CopyrightCity>NEW
-        YORK</CopyrightCity>\r\n    <PublicationImpactFactorList>15.343,2013,ExactPublicationYear|15.343,2013,MostRecentYear</PublicationImpactFactorList>\r\n
-        \   <PublicationCategoryRankingList>1/125;CARDIAC &amp; CARDIOVASCULAR SYSTEMS;2013;SC;ExactPublicationYear|1/125;CARDIAC
-        &amp; CARDIOVASCULAR SYSTEMS;2013;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
-        \   <AuthorCitationCountList>1,1,22|2,2,21|3,2,21|4,1,22|5,1,22|6,1,22|7,2,21|8,2,21</AuthorCitationCountList>\r\n
-        \   <CopyrightStateProvince>NY</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
-        STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n</ArrayOfPublicationItem>"
-    http_version: 
-  recorded_at: Wed, 04 May 2016 00:39:39 GMT
+  recorded_at: Wed, 11 May 2016 04:10:26 GMT
 recorded_with: VCR 3.0.1

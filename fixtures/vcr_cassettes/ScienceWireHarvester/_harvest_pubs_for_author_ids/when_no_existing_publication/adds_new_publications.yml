@@ -14,7 +14,7 @@ http_interactions:
       Accept-Encoding:
       - gzip,deflate
       Date:
-      - Wed, 04 May 2016 00:49:57 GMT
+      - Wed, 11 May 2016 04:09:33 GMT
       Licenseid:
       - Settings.SCIENCEWIRE.LICENSE_ID
       Host:
@@ -43,7 +43,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Wed, 04 May 2016 00:49:58 GMT
+      - Wed, 11 May 2016 04:09:33 GMT
       Content-Length:
       - '6476'
     body:
@@ -129,7 +129,7 @@ http_interactions:
         \   <CopyrightPublisher>LIPPINCOTT WILLIAMS &amp; WILKINS</CopyrightPublisher>\r\n
         \   <CopyrightCity>PHILADELPHIA</CopyrightCity>\r\n  </PublicationItem>\r\n</ArrayOfPublicationItem>"
     http_version: 
-  recorded_at: Wed, 04 May 2016 00:49:58 GMT
+  recorded_at: Wed, 11 May 2016 04:09:34 GMT
 - request:
     method: post
     uri: http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml
@@ -149,7 +149,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Wed, 04 May 2016 00:49:58 GMT
+      - Wed, 11 May 2016 04:09:34 GMT
       Server:
       - Apache
       Access-Control-Allow-Origin:
@@ -157,12 +157,12 @@ http_interactions:
       Cache-Control:
       - private
       Ncbi-Sid:
-      - 9DFC135372947361_0062SID
+      - 9DFD18B8732B07E1_0173SID
       Content-Type:
       - text/xml; charset=UTF-8
       Set-Cookie:
-      - ncbi_sid=9DFC135372947361_0062SID; domain=.nih.gov; path=/; expires=Thu, 04
-        May 2017 00:49:58 GMT
+      - ncbi_sid=9DFD18B8732B07E1_0173SID; domain=.nih.gov; path=/; expires=Thu, 11
+        May 2017 04:09:34 GMT
       X-Ua-Compatible:
       - IE=Edge
       Transfer-Encoding:
@@ -459,5 +459,5 @@ http_interactions:
 
         </PubmedArticleSet>
     http_version: 
-  recorded_at: Wed, 04 May 2016 00:49:58 GMT
+  recorded_at: Wed, 11 May 2016 04:09:35 GMT
 recorded_with: VCR 3.0.1

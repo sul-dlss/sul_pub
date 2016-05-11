@@ -37,7 +37,7 @@ http_interactions:
       Accept-Encoding:
       - gzip,deflate
       Date:
-      - Fri, 06 May 2016 20:20:31 GMT
+      - Wed, 11 May 2016 04:12:34 GMT
       Licenseid:
       - Settings.SCIENCEWIRE.LICENSE_ID
       Host:
@@ -66,7 +66,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Fri, 06 May 2016 20:20:33 GMT
+      - Wed, 11 May 2016 04:12:35 GMT
       Content-Length:
       - '278'
     body:
@@ -75,7 +75,7 @@ http_interactions:
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>240714</queryID>\r\n
         \ <queryResultRows>0</queryResultRows>\r\n  <totalRows>0</totalRows>\r\n</ScienceWireQueryIDResponse>"
     http_version: 
-  recorded_at: Fri, 06 May 2016 20:20:33 GMT
+  recorded_at: Wed, 11 May 2016 04:12:35 GMT
 - request:
     method: get
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/240714?format=xml&page=0&pageSize=2147483647&v=version/4
@@ -90,7 +90,7 @@ http_interactions:
       Accept-Encoding:
       - gzip,deflate
       Date:
-      - Fri, 06 May 2016 20:20:33 GMT
+      - Wed, 11 May 2016 04:12:35 GMT
       Licenseid:
       - Settings.SCIENCEWIRE.LICENSE_ID
       Host:
@@ -119,7 +119,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Fri, 06 May 2016 20:20:33 GMT
+      - Wed, 11 May 2016 04:12:35 GMT
       Content-Length:
       - '148'
     body:
@@ -127,5 +127,5 @@ http_interactions:
       string: "<?xml version=\"1.0\"?>\r\n<ArrayOfPublicationItem xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" />"
     http_version: 
-  recorded_at: Fri, 06 May 2016 20:20:33 GMT
+  recorded_at: Wed, 11 May 2016 04:12:35 GMT
 recorded_with: VCR 3.0.1

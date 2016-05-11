@@ -27,12 +27,14 @@ http_interactions:
         </xmlQuery>
               </ScienceWireQueryXMLParameter>
     headers:
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Faraday v0.9.2
       Accept:
       - "*/*"
-      User-Agent:
-      - Ruby
+      Accept-Encoding:
+      - gzip,deflate
+      Date:
+      - Wed, 11 May 2016 04:11:09 GMT
       Licenseid:
       - Settings.SCIENCEWIRE.LICENSE_ID
       Host:
@@ -61,7 +63,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Tue, 05 Apr 2016 23:40:30 GMT
+      - Wed, 11 May 2016 04:11:09 GMT
       Content-Length:
       - '278'
     body:
@@ -70,96 +72,7 @@ http_interactions:
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>143234</queryID>\r\n
         \ <queryResultRows>1</queryResultRows>\r\n  <totalRows>1</totalRows>\r\n</ScienceWireQueryIDResponse>"
     http_version: 
-  recorded_at: Tue, 05 Apr 2016 23:40:31 GMT
-- request:
-    method: get
-    uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/143234?format=xml&page=0&pageSize=2147483647&v=version/3
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - "*/*"
-      User-Agent:
-      - Ruby
-      Content-Type:
-      - text/xml
-      Licenseid:
-      - Settings.SCIENCEWIRE.LICENSE_ID
-      Host:
-      - Settings.SCIENCEWIRE.HOST
-      Connection:
-      - Keep-Alive
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Cache-Control:
-      - private
-      Content-Type:
-      - application/xml; charset=utf-8
-      Server:
-      - Microsoft-IIS/7.5
-      X-Aspnetmvc-Version:
-      - '2.0'
-      X-Aspnet-Version:
-      - 4.0.30319
-      X-Powered-By:
-      - ASP.NET
-      Date:
-      - Tue, 05 Apr 2016 23:40:31 GMT
-      Content-Length:
-      - '3708'
-    body:
-      encoding: UTF-8
-      string: "<?xml version=\"1.0\"?>\r\n<ArrayOfPublicationItem xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
-        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <PublicationItem>\r\n
-        \   <PublicationItemID>60830932</PublicationItemID>\r\n    <Title>Protein
-        kinase C alpha and integrin-linked kinase mediate the negative axon guidance
-        effects of Sonic hedgehog</Title>\r\n    <Abstract>In addition to its role
-        as a morphogen, Sonic hedgehog (Shh) has also been shown to function as a
-        guidance factor that directly acts on the growth cones of various types of
-        axons. However, the noncanonical signaling pathways that mediate the guidance
-        effects of Shh protein remain poorly understood. We demonstrate that a novel
-        signaling pathway consisting of protein kinase C alpha (PKC alpha) and integrin-linked
-        kinase (ILK) mediates the negative guidance effects of high concentration
-        of Shh on retinal ganglion cell (RGC) axons. Shh rapidly increased Ca2+ level
-        and activated PKC alpha and ILK in the growth cones of RGC axons. By in vitro
-        kinase assay, PKC alpha was found to directly phosphorylate ILK on threonine-173
-        and -181. Inhibition of PKC alpha or expression of a mutant ILK with the PKC
-        alpha phosphorylation sites mutated (ILK-DM), abolished the Shh-induced macropinocytosis,
-        growth cone collapse and repulsive axon turning. In vivo, expression of a
-        dominant negative PKC alpha or ILK-DM disrupted RGC axon pathfinding at the
-        optic chiasm but not the projection toward the optic disk, supporting that
-        this signaling pathway plays a specific role in Shh-mediated negative guidance
-        effects. (c) 2012 Elsevier Inc. All rights reserved.</Abstract>\r\n    <AuthorList>Guo,Daorong,|Standley,Clive,|Bellve,Karl,|Fogarty,Kevin,|Bao,Zheng-Zheng,</AuthorList>\r\n
-        \   <AuthorCount>5</AuthorCount>\r\n    <KeywordList>SELECTIVE-INHIBITION|NERVE
-        GROWTH|STRUCTURAL BASIS|ILK|NEURITE OUTGROWTH|GROWTH CONE GUIDANCE|GANGLION-CELL
-        AXONS|PKC-DELTA|ACTIVATION|MOUSE OPTIC CHIASM|Shh|axon guidance|ILK|PKC alpha</KeywordList>\r\n
-        \   <DocumentTypeList>Article</DocumentTypeList>\r\n    <DocumentCategory>Journal
-        Document</DocumentCategory>\r\n    <NumberOfReferences>63</NumberOfReferences>\r\n
-        \   <TimesCited>12</TimesCited>\r\n    <TimesNotSelfCited>12</TimesNotSelfCited>\r\n
-        \   <PMID>22521536</PMID>\r\n    <WoSItemID>000305547700008</WoSItemID>\r\n
-        \   <PublicationSourceTitle>MOLECULAR AND CELLULAR NEUROSCIENCE</PublicationSourceTitle>\r\n
-        \   <Volume>50</Volume>\r\n    <Issue>1</Issue>\r\n    <Pagination>82-92</Pagination>\r\n
-        \   <PublicationDate>2012-05-01T00:00:00</PublicationDate>\r\n    <PublicationYear>2012</PublicationYear>\r\n
-        \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Neurosciences</PublicationSubjectCategoryList>\r\n
-        \   <ISSN>1044-7431</ISSN>\r\n    <DOI>10.1016/j.mcn.2012.03.008</DOI>\r\n
-        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
-        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>0</OrdinalRank>\r\n
-        \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
-        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>ACADEMIC
-        PRESS INC ELSEVIER SCIENCE</CopyrightPublisher>\r\n    <CopyrightCity>SAN
-        DIEGO</CopyrightCity>\r\n    <PublicationImpactFactorList>3.837,2012,ExactPublicationYear|3.734,2013,MostRecentYear</PublicationImpactFactorList>\r\n
-        \   <PublicationCategoryRankingList>74/252;NEUROSCIENCES;2012;SC;ExactPublicationYear|82/252;NEUROSCIENCES;2013;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
-        \   <AuthorCitationCountList>1,0,12|2,0,12|3,0,12|4,0,12|5,0,12</AuthorCitationCountList>\r\n
-        \   <CopyrightStateProvince>CA</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
-        STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n</ArrayOfPublicationItem>"
-    http_version: 
-  recorded_at: Tue, 05 Apr 2016 23:40:31 GMT
+  recorded_at: Wed, 11 May 2016 04:11:10 GMT
 - request:
     method: get
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/143234?format=xml&page=0&pageSize=2147483647&v=version/4
@@ -174,7 +87,7 @@ http_interactions:
       Accept-Encoding:
       - gzip,deflate
       Date:
-      - Wed, 04 May 2016 00:38:36 GMT
+      - Wed, 11 May 2016 04:11:10 GMT
       Licenseid:
       - Settings.SCIENCEWIRE.LICENSE_ID
       Host:
@@ -203,7 +116,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Wed, 04 May 2016 00:38:36 GMT
+      - Wed, 11 May 2016 04:11:10 GMT
       Content-Length:
       - '3708'
     body:
@@ -252,5 +165,5 @@ http_interactions:
         \   <CopyrightStateProvince>CA</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
         STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n</ArrayOfPublicationItem>"
     http_version: 
-  recorded_at: Wed, 04 May 2016 00:38:36 GMT
+  recorded_at: Wed, 11 May 2016 04:11:11 GMT
 recorded_with: VCR 3.0.1
