@@ -30,15 +30,9 @@ class ScienceWireClient
     raise
   end
 
-  # @param [AuthorName] name
-  # @param [String] email
+  # @param [AuthorAtributes] author_attributes
   # @param [Integer] max_rows (200)
-  # @param [String] institution name ('')
-  # @param [Date] start_date
-  # @param [Date] end_date
-  # @return [Array<Integer>]
-  def query_sciencewire_by_author_name(name, email='', max_rows = 200, institution = '', start_date = nil, end_date = nil)
-    author_attributes = ScienceWire::AuthorAttributes.new(name, email, '', institution, start_date, end_date)
+  def query_sciencewire_by_author_name(author_attributes, max_rows = 200)
     author_name = ScienceWire::Query::PublicationQueryByAuthorName.new(author_attributes, max_rows)
     xml_query = author_name.generate
 

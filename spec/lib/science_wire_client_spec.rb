@@ -6,7 +6,8 @@ describe ScienceWireClient, :vcr do
     context 'with common last name, first name' do
       it 'returns a list of sciencewire ids' do
         name = ScienceWire::AuthorName.new('smith', 'james', '')
-        sw_ids = sw_client.query_sciencewire_by_author_name(name)
+        author_attributes = ScienceWire::AuthorAttributes.new(name, '', '', '', '')
+        sw_ids = sw_client.query_sciencewire_by_author_name(author_attributes)
         expect(sw_ids).to be_an(Array)
         expect(sw_ids).not_to be_empty
         # Using a specific value here leads to too much churn on this spec
@@ -16,8 +17,9 @@ describe ScienceWireClient, :vcr do
     end
     context 'with uncommon last name, first name, and max rows 4' do
       it 'returns an empty array' do
-        name = ScienceWire::AuthorName.new('ottawa', 'yukon', '')
-        sw_ids = sw_client.query_sciencewire_by_author_name(name, '', 4)
+        name = ScienceWire::AuthorName.new('ottawa', '', 'yukon')
+        author_attributes = ScienceWire::AuthorAttributes.new(name, '', '', '', '')
+        sw_ids = sw_client.query_sciencewire_by_author_name(author_attributes, 4)
         expect(sw_ids).to be_an(Array)
         expect(sw_ids).to be_empty
       end
