@@ -129,7 +129,25 @@ describe ScienceWireHarvester, :vcr do
     end
   end
 
+  describe '#harvest_pubs_for_all_authors' do
+    context 'logging' do
+      let(:logfile) { Settings.SCIENCEWIRE.HARVEST_LOG }
+      it 'creates a new logger' do
+        expect(Logger).to receive(:new).with(logfile).and_call_original
+        subject.harvest_pubs_for_all_authors(author.id, author.id)
+      end
+    end
+  end
+
   describe '#harvest_pubs_for_author_ids' do
+    context 'logging' do
+      let(:logfile) { Settings.SCIENCEWIRE.NIGHTLY_HARVEST_LOG }
+      it 'creates a new logger' do
+        expect(Logger).to receive(:new).with(logfile).and_call_original
+        subject.harvest_pubs_for_author_ids([author.id])
+      end
+    end
+
     context 'for valid author' do
       it 'calls harvest_for_author' do
         expect(science_wire_harvester).to receive(:harvest_for_author).exactly(3).times.with(kind_of(Author))
@@ -315,9 +333,6 @@ describe ScienceWireHarvester, :vcr do
     end
   end
 
-  describe '#harvest_for_all_authors' do
-  end
-
   describe '#harvest_sw_pubs_by_wos_id_for_author' do
     it 'creates ScienceWire Publications with an array of WebOfScience IDs for a given author' do
       auth = create(:author, sunetid: 'pande')
@@ -374,6 +389,14 @@ describe ScienceWireHarvester, :vcr do
     it 'skips empty bibtex files' do
       science_wire_harvester.harvest_from_directory_of_wos_id_files(Rails.root.join('fixtures', 'wos_bibtex', 'empty_dir').to_s)
       expect(science_wire_harvester.file_count).to eq(0)
+    end
+  end
+
+  describe '#sw_harvest_logger' do
+    let(:logfile) { Settings.SCIENCEWIRE.WOS_HARVEST_LOG }
+    it 'creates a new logger' do
+      expect(Logger).to receive(:new).with(logfile).and_call_original
+      subject.send(:sw_harvest_logger)
     end
   end
 end
