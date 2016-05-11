@@ -151,14 +151,14 @@ describe ScienceWireHarvester, :vcr do
 
     context 'when no existing publication' do
       it 'adds new publications' do
-        expect(science_wire_client).to receive(:query_sciencewire_by_author_name).exactly(3).times.and_return(%w(42711845 22686456))
+        expect(science_wire_client).to receive(:query_sciencewire_by_author_name).exactly(3).times.and_return([42_711_845, 22_686_456])
         expect do
           science_wire_harvester.harvest_pubs_for_author_ids([author.id, author_with_seed_email.id, author_without_seed_data.id])
         end.to change(Publication, :count).by(2)
       end
 
       it 'adds new contributions' do
-        expect(science_wire_client).to receive(:query_sciencewire_by_author_name).exactly(3).times.and_return(%w(42711845 22686456))
+        expect(science_wire_client).to receive(:query_sciencewire_by_author_name).exactly(3).times.and_return([42_711_845, 22_686_456])
         expect do
           science_wire_harvester.harvest_pubs_for_author_ids([author.id, author_with_seed_email.id, author_without_seed_data.id])
         end.to change(Contribution, :count).by(6)
@@ -168,10 +168,11 @@ describe ScienceWireHarvester, :vcr do
     context 'when existing pubmed pub' do
       it 'updates an existing pubmed publication with sciencewire data' do
         pub = pub_with_sw_id_and_pmid
-        sw_id = pub.sciencewire_id.to_s
-        expect(science_wire_client).to receive(:query_sciencewire_by_author_name).once.and_return([sw_id])
+        sw_id = pub.sciencewire_id
+        sw_ids = [sw_id]
+        expect(science_wire_client).to receive(:query_sciencewire_by_author_name).once.and_return(sw_ids)
         expect(science_wire_harvester).to receive(:process_queued_sciencewire_suggestions).once.and_call_original
-        expect(science_wire_client).to receive(:get_full_sciencewire_pubs_for_sciencewire_ids).with(sw_id).and_call_original
+        expect(science_wire_client).to receive(:get_full_sciencewire_pubs_for_sciencewire_ids).with(sw_ids.join(',')).and_call_original
         expect(science_wire_harvester).to receive(:create_or_update_pub_and_contribution_with_harvested_sw_doc).and_call_original
         # Prior to harvest, modify the sciencewire_id in the db record
         pub.update_attribute(:sciencewire_id, 999)
@@ -180,7 +181,7 @@ describe ScienceWireHarvester, :vcr do
         end.to_not change(Publication, :count)
         # After the harvest, it should have updated the correct sciencewire_id
         pub.reload
-        expect(pub.sciencewire_id.to_s).to eq(sw_id)
+        expect(pub.sciencewire_id).to eq(sw_id)
       end
 
       it 'does not create duplicate publication' do
@@ -188,7 +189,7 @@ describe ScienceWireHarvester, :vcr do
         # Create publication.
         expect(Publication.count).to eq(0)
         pub = pub_with_sw_id_and_pmid
-        sw_id = pub.sciencewire_id.to_s
+        sw_id = pub.sciencewire_id
         expect(science_wire_client).to receive(:query_sciencewire_by_author_name).once.and_return([sw_id])
         # Harvest the same publication and it should not duplicate the publication
         expect do
@@ -203,7 +204,7 @@ describe ScienceWireHarvester, :vcr do
         # Create publication.
         pub = pub_with_sw_id_and_pmid
         # Harvest the same publication and it should create an authorship contribution
-        sw_id = pub.sciencewire_id.to_s
+        sw_id = pub.sciencewire_id
         expect(science_wire_client).to receive(:query_sciencewire_by_author_name).once.and_return([sw_id])
         expect(science_wire_harvester).to receive(:create_contrib_for_pub_if_exists).once.and_call_original
         expect(science_wire_harvester).to receive(:add_contribution_for_harvest_suggestion).once.and_call_original
@@ -219,16 +220,19 @@ describe ScienceWireHarvester, :vcr do
         # Create publication.
         pub = pub_with_sw_id_and_pmid
         # Harvest the same publication and it should create an authorship contribution
-        sw_id = pub.sciencewire_id.to_s
+        sw_id = pub.sciencewire_id
         expect(science_wire_client).to receive(:query_sciencewire_by_author_name).twice.and_return([sw_id])
-        expect(science_wire_harvester).to receive(:create_contrib_for_pub_if_exists).twice.and_call_original
-        expect(science_wire_harvester).to receive(:add_contribution_for_harvest_suggestion).twice.and_call_original
+        # HarvestBroker.generate_ids should de-dup the PublicationIds and return an empty array the second time.
+        expect(science_wire_harvester).to receive(:create_contrib_for_pub_if_exists).once.and_call_original
+        expect(science_wire_harvester).to receive(:add_contribution_for_harvest_suggestion).once.and_call_original
         expect(Contribution).to receive(:create).once.and_call_original
         expect(auth.publications.count).to eq(0)
         science_wire_harvester.harvest_pubs_for_author_ids([auth.id])
         auth.reload
         expect(auth.publications.count).to eq(1)
-        # Harvest the same publication and it should not duplicate authorship contribution
+        # Try to harvest the same publication and it should not duplicate authorship contribution, because
+        # while attempting to harvest the same publication, the HarvestBroker.generate_ids
+        # should de-dup the PublicationIds and return an empty array the second time.
         expect(Contribution).not_to receive(:create)
         science_wire_harvester.harvest_pubs_for_author_ids([auth.id])
         auth.reload
@@ -241,7 +245,7 @@ describe ScienceWireHarvester, :vcr do
         auth = author_without_seed_data
         # Create publication.
         pub = pub_with_sw_id
-        sw_id = pub.sciencewire_id.to_s
+        sw_id = pub.sciencewire_id
         expect(science_wire_client).to receive(:query_sciencewire_by_author_name).once.and_return([sw_id])
         # Harvest an existing publication and it should create a new authorship contribution
         expect(science_wire_harvester).to receive(:create_contrib_for_pub_if_exists).and_call_original
@@ -257,16 +261,19 @@ describe ScienceWireHarvester, :vcr do
         auth = author_without_seed_data
         # Create publication.
         pub = pub_with_sw_id
-        sw_id = pub.sciencewire_id.to_s
+        sw_id = pub.sciencewire_id
         expect(science_wire_client).to receive(:query_sciencewire_by_author_name).twice.and_return([sw_id])
-        expect(science_wire_harvester).to receive(:create_contrib_for_pub_if_exists).twice.and_call_original
-        expect(science_wire_harvester).to receive(:add_contribution_for_harvest_suggestion).twice.and_call_original
+        # HarvestBroker.generate_ids should de-dup the PublicationIds and return an empty array the second time.
+        expect(science_wire_harvester).to receive(:create_contrib_for_pub_if_exists).once.and_call_original
+        expect(science_wire_harvester).to receive(:add_contribution_for_harvest_suggestion).once.and_call_original
         expect(Contribution).to receive(:create).once.and_call_original
         expect(auth.publications.count).to eq(0)
         science_wire_harvester.harvest_pubs_for_author_ids([auth.id])
         auth.reload
         expect(auth.publications.count).to eq(1)
-        # Harvest the same publication and it should not duplicate authorship contribution
+        # Try to harvest the same publication and it should not duplicate authorship contribution, because
+        # while attempting to harvest the same publication, the HarvestBroker.generate_ids
+        # should de-dup the PublicationIds and return an empty array the second time.
         expect(Contribution).not_to receive(:create)
         science_wire_harvester.harvest_pubs_for_author_ids([auth.id])
         auth.reload
@@ -282,7 +289,7 @@ describe ScienceWireHarvester, :vcr do
 
     context 'when run consecutively' do
       it 'should be idempotent for pubs' do
-        expect(science_wire_client).to receive(:query_sciencewire_by_author_name).exactly(6).times.and_return(%w(42711845 22686456))
+        expect(science_wire_client).to receive(:query_sciencewire_by_author_name).exactly(6).times.and_return([42_711_845, 22_686_456])
         # science_wire_client.should_receive(:get_sciencewire_id_suggestions).exactly(4).times.and_return(['42711845', '22686456'])
         expect do
           science_wire_harvester.harvest_pubs_for_author_ids([author.id, author_with_seed_email.id, author_without_seed_data.id])
@@ -296,7 +303,7 @@ describe ScienceWireHarvester, :vcr do
         expect(p.reload.updated_at.localtime).to eq(utime)
       end
       it 'should be idempotent for contributions' do
-        expect(science_wire_client).to receive(:query_sciencewire_by_author_name).exactly(6).times.and_return(%w(42711845 22686456))
+        expect(science_wire_client).to receive(:query_sciencewire_by_author_name).exactly(6).times.and_return([42_711_845, 22_686_456])
         # science_wire_client.should_receive(:get_sciencewire_id_suggestions).exactly(4).times.and_return(['42711845', '22686456'])
         expect do
           science_wire_harvester.harvest_pubs_for_author_ids([author.id, author_with_seed_email.id, author_without_seed_data.id])

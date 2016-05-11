@@ -231,7 +231,7 @@ class ScienceWireHarvester
       pmid = sw_doc.xpath('PMID').text
       source_record_was_created = SciencewireSourceRecord.save_sw_source_record(sciencewire_id, pmid, sw_doc.to_xml)
       @total_new_sciencewire_source_count += 1 if source_record_was_created
-      create_or_update_pub_and_contribution_with_harvested_sw_doc(sw_doc, @records_queued_for_sciencewire_retrieval[sciencewire_id])
+      create_or_update_pub_and_contribution_with_harvested_sw_doc(sw_doc, @records_queued_for_sciencewire_retrieval[sciencewire_id.to_i])
     end
     @records_queued_for_sciencewire_retrieval.clear
   end

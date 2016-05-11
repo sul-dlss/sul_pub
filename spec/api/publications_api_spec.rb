@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe SulBib::API do
+describe SulBib::API, :vcr do
   let(:publication) { FactoryGirl.create :publication }
   let!(:publication_with_contributions) { create :publication_with_contributions, contributions_count: 2  }
   let(:publication_list) { create_list(:contribution, 15, visibility: 'public', status: 'approved') }
@@ -271,13 +271,10 @@ describe SulBib::API do
 
       it 'creates an Author when a new cap_profile_id is passed in' do
         skip 'Administrative Systems firewall only allows IP-based requests'
-        VCR.use_cassette('api_publications_spec_create_new_auth') do
-          post '/publications', json_with_new_author, headers
-          expect(response.status).to eq(201)
-
-          auth = Author.where(cap_profile_id: '3810').first
-          expect(auth.cap_last_name).to eq('Lowe')
-        end
+        post '/publications', json_with_new_author, headers
+        expect(response.status).to eq(201)
+        auth = Author.where(cap_profile_id: '3810').first
+        expect(auth.cap_last_name).to eq('Lowe')
       end
     end
   end  # end of the describe
@@ -353,8 +350,9 @@ describe SulBib::API do
     end
 
     it 'returns a pub with valid bibjson for sw harvested records' do
-      author_with_sw_pubs
-      ScienceWireHarvester.new.harvest_pubs_for_author_ids([33])
+      auth = author_with_sw_pubs
+      auth.contributions.destroy_all # wipe the slate clean
+      ScienceWireHarvester.new.harvest_pubs_for_author_ids([auth.id])
       new_pub = Publication.last
       get "/publications/#{new_pub.id}",
           { format: 'json' },
@@ -362,7 +360,8 @@ describe SulBib::API do
       expect(response.status).to eq(200)
       expect(response.body).to eq(new_pub.pub_hash.to_json)
       result = JSON.parse(response.body)
-      expect(result['type']).to eq 'article'
+      expect(result['provenance']).to eq('sciencewire')
+      expect(result['type']).to eq('article')
     end
 
     it 'returns only those pubs changed since specified date'
