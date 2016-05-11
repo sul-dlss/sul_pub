@@ -1,0 +1,2448 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery?format=xml
+    body:
+      encoding: UTF-8
+      string: "<?xml version=\"1.0\"?>\n      <ScienceWireQueryXMLParameter xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\n      <xmlQuery>          <![CDATA[\n
+        \                        <query xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\n              <Criterion>\n
+        \               <Criteria>\n                              <Criterion>\n              <TextSearch>\n
+        \               <QueryPredicate>(\"Edler,Alice\" or \"EDLER,A\" or \"EDLER,AJ\")
+        and \"stanford\"</QueryPredicate>\n                <SearchType>ExactMatch</SearchType>\n
+        \               <Columns>AggregateText</Columns>\n                <MaximumRows>200</MaximumRows>\n
+        \             </TextSearch>\n            </Criterion>\n\n                                <Criterion>\n
+        \               <Filter>\n                  <Column>AuthorLastName</Column>\n
+        \                 <Operator>BeginsWith</Operator>\n                  <Value>EDLER</Value>\n
+        \               </Filter>\n              </Criterion>\n\n                                <Criterion>\n
+        \               <Filter>\n                  <Column>AuthorFirstName</Column>\n
+        \                 <Operator>BeginsWith</Operator>\n                  <Value>A</Value>\n
+        \               </Filter>\n              </Criterion>\n\n                  \n
+        \                 \n                              <Criterion>\n              <Filter>\n
+        \               <Column>DocumentCategory</Column>\n                <Operator>In</Operator>\n
+        \               <Values>\n                  <Value>Journal Document</Value>\n
+        \                 <Value>Conference Proceeding Document</Value>\n                </Values>\n
+        \             </Filter>\n            </Criterion>\n\n                </Criteria>\n
+        \             </Criterion>\n                          <Columns>\n              <SortColumn>\n
+        \               <Column>Rank</Column>\n                <Direction>Descending</Direction>\n
+        \             </SortColumn>\n            </Columns>\n\n              <MaximumRows>200</MaximumRows>\n
+        \           </query>\n\n            ]]>\n</xmlQuery>\n      </ScienceWireQueryXMLParameter>"
+    headers:
+      User-Agent:
+      - Faraday v0.9.2
+      Accept:
+      - "*/*"
+      Accept-Encoding:
+      - gzip,deflate
+      Date:
+      - Wed, 11 May 2016 17:07:30 GMT
+      Licenseid:
+      - Settings.SCIENCEWIRE.LICENSE_ID
+      Host:
+      - Settings.SCIENCEWIRE.HOST
+      Connection:
+      - Keep-Alive
+      Expect:
+      - 100-continue
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - private
+      Content-Type:
+      - application/xml; charset=utf-8
+      Server:
+      - Microsoft-IIS/7.5
+      X-Aspnetmvc-Version:
+      - '2.0'
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+      Date:
+      - Wed, 11 May 2016 17:07:31 GMT
+      Content-Length:
+      - '280'
+    body:
+      encoding: UTF-8
+      string: "<?xml version=\"1.0\"?>\r\n<ScienceWireQueryIDResponse xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>240364</queryID>\r\n
+        \ <queryResultRows>16</queryResultRows>\r\n  <totalRows>16</totalRows>\r\n</ScienceWireQueryIDResponse>"
+    http_version: 
+  recorded_at: Wed, 11 May 2016 17:07:31 GMT
+- request:
+    method: get
+    uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/240364?format=xml&page=0&pageSize=2147483647&v=version/4
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.9.2
+      Accept:
+      - "*/*"
+      Accept-Encoding:
+      - gzip,deflate
+      Date:
+      - Wed, 11 May 2016 17:07:31 GMT
+      Licenseid:
+      - Settings.SCIENCEWIRE.LICENSE_ID
+      Host:
+      - Settings.SCIENCEWIRE.HOST
+      Connection:
+      - Keep-Alive
+      Expect:
+      - 100-continue
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - private
+      Content-Type:
+      - application/xml; charset=utf-8
+      Server:
+      - Microsoft-IIS/7.5
+      X-Aspnetmvc-Version:
+      - '2.0'
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+      Date:
+      - Wed, 11 May 2016 17:07:31 GMT
+      Content-Length:
+      - '40920'
+    body:
+      encoding: UTF-8
+      string: "<?xml version=\"1.0\"?>\r\n<ArrayOfPublicationItem xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <PublicationItem>\r\n
+        \   <PublicationItemID>32298537</PublicationItemID>\r\n    <Title>Paradigm
+        Consciousness: A New Approach to Understanding Anesthesia Knowledge and Education</Title>\r\n
+        \   <Abstract />\r\n    <AuthorList>Edler,Alice,A</AuthorList>\r\n    <AuthorCount>1</AuthorCount>\r\n
+        \   <KeywordList />\r\n    <DocumentTypeList>Letter</DocumentTypeList>\r\n
+        \   <DocumentCategory>Journal Document</DocumentCategory>\r\n    <NumberOfReferences>4</NumberOfReferences>\r\n
+        \   <TimesCited>0</TimesCited>\r\n    <TimesNotSelfCited>0</TimesNotSelfCited>\r\n
+        \   <PMID>20029255</PMID>\r\n    <WoSItemID>000270210100035</WoSItemID>\r\n
+        \   <PublicationSourceTitle>ANESTHESIOLOGY</PublicationSourceTitle>\r\n    <Volume>111</Volume>\r\n
+        \   <Issue>4</Issue>\r\n    <Pagination>920-920</Pagination>\r\n    <PublicationDate>2009-10-01T00:00:00</PublicationDate>\r\n
+        \   <PublicationYear>2009</PublicationYear>\r\n    <PublicationType>Journal</PublicationType>\r\n
+        \   <PublicationSubjectCategoryList>Anesthesiology</PublicationSubjectCategoryList>\r\n
+        \   <ISSN>0003-3022</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>144</Rank>\r\n    <OrdinalRank>0</OrdinalRank>\r\n
+        \   <NormalizedRank>100</NormalizedRank>\r\n    <NewPublicationItemID xsi:nil=\"true\"
+        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>LIPPINCOTT
+        WILLIAMS &amp; WILKINS</CopyrightPublisher>\r\n    <CopyrightCity>PHILADELPHIA</CopyrightCity>\r\n
+        \   <PublicationImpactFactorList>5.354,2009,ExactPublicationYear|6.168,2013,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>2/25;ANESTHESIOLOGY;2009;SC;ExactPublicationYear|1/29;ANESTHESIOLOGY;2013;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <AuthorCitationCountList>1,0,0</AuthorCitationCountList>\r\n    <CopyrightStateProvince>PA</CopyrightStateProvince>\r\n
+        \   <CopyrightCountry>UNITED STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n
+        \ <PublicationItem>\r\n    <PublicationItemID>31222988</PublicationItemID>\r\n
+        \   <Title>A case series of airway management for wireless capsule endoscopy
+        in pediatric patients</Title>\r\n    <Abstract />\r\n    <AuthorList>Edler,Alice,|Claure,Rebecca,</AuthorList>\r\n
+        \   <AuthorCount>2</AuthorCount>\r\n    <KeywordList />\r\n    <DocumentTypeList>Letter</DocumentTypeList>\r\n
+        \   <DocumentCategory>Journal Document</DocumentCategory>\r\n    <NumberOfReferences>0</NumberOfReferences>\r\n
+        \   <TimesCited>0</TimesCited>\r\n    <TimesNotSelfCited>0</TimesNotSelfCited>\r\n
+        \   <PMID>19335353</PMID>\r\n    <WoSItemID>000264165900021</WoSItemID>\r\n
+        \   <PublicationSourceTitle>PEDIATRIC ANESTHESIA</PublicationSourceTitle>\r\n
+        \   <Volume>19</Volume>\r\n    <Issue>4</Issue>\r\n    <Pagination>406-407</Pagination>\r\n
+        \   <PublicationDate>2009-04-01T00:00:00</PublicationDate>\r\n    <PublicationYear>2009</PublicationYear>\r\n
+        \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Anesthesiology|Pediatrics</PublicationSubjectCategoryList>\r\n
+        \   <ISSN>1155-5645</ISSN>\r\n    <DOI>10.1111/j.1460-9592.2009.02945.x</DOI>\r\n
+        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
+        />\r\n    <Rank>144</Rank>\r\n    <OrdinalRank>1</OrdinalRank>\r\n    <NormalizedRank>100</NormalizedRank>\r\n
+        \   <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
+        \   <CopyrightPublisher>WILEY-BLACKWELL</CopyrightPublisher>\r\n    <CopyrightCity>HOBOKEN</CopyrightCity>\r\n
+        \   <PublicationImpactFactorList>2.149,2009,ExactPublicationYear|1.742,2013,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>12/25;ANESTHESIOLOGY;2009;SC;ExactPublicationYear|24/94;PEDIATRICS;2009;SC;ExactPublicationYear|17/29;ANESTHESIOLOGY;2013;SC;MostRecentYear|46/118;PEDIATRICS;2013;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <AuthorCitationCountList>1,0,0|2,0,0</AuthorCitationCountList>\r\n    <CopyrightStateProvince>NJ</CopyrightStateProvince>\r\n
+        \   <CopyrightCountry>UNITED STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n
+        \ <PublicationItem>\r\n    <PublicationItemID>30502634</PublicationItemID>\r\n
+        \   <Title>Improving electrical safety for patients with Epidermolysis bullosa</Title>\r\n
+        \   <Abstract />\r\n    <AuthorList>Edler,Alice,A|Ramamurthi,Radhamangalam,J|Valenzuela,Glenn,A</AuthorList>\r\n
+        \   <AuthorCount>3</AuthorCount>\r\n    <KeywordList />\r\n    <DocumentTypeList>Letter</DocumentTypeList>\r\n
+        \   <DocumentCategory>Journal Document</DocumentCategory>\r\n    <NumberOfReferences>5</NumberOfReferences>\r\n
+        \   <TimesCited>0</TimesCited>\r\n    <TimesNotSelfCited>0</TimesNotSelfCited>\r\n
+        \   <PMID>18717808</PMID>\r\n    <WoSItemID>000259817100020</WoSItemID>\r\n
+        \   <PublicationSourceTitle>PEDIATRIC ANESTHESIA</PublicationSourceTitle>\r\n
+        \   <Volume>18</Volume>\r\n    <Issue>11</Issue>\r\n    <Pagination>1107-1109</Pagination>\r\n
+        \   <PublicationDate>2008-11-01T00:00:00</PublicationDate>\r\n    <PublicationYear>2008</PublicationYear>\r\n
+        \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Anesthesiology|Pediatrics</PublicationSubjectCategoryList>\r\n
+        \   <ISSN>1155-5645</ISSN>\r\n    <DOI>10.1111/j.1460-9592.2008.02715.x</DOI>\r\n
+        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
+        />\r\n    <Rank>144</Rank>\r\n    <OrdinalRank>2</OrdinalRank>\r\n    <NormalizedRank>100</NormalizedRank>\r\n
+        \   <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
+        \   <CopyrightPublisher>WILEY-BLACKWELL</CopyrightPublisher>\r\n    <CopyrightCity>HOBOKEN</CopyrightCity>\r\n
+        \   <PublicationImpactFactorList>1.469,2008,ExactPublicationYear|1.742,2013,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>15/22;ANESTHESIOLOGY;2008;SC;ExactPublicationYear|39/86;PEDIATRICS;2008;SC;ExactPublicationYear|17/29;ANESTHESIOLOGY;2013;SC;MostRecentYear|46/118;PEDIATRICS;2013;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <AuthorCitationCountList>1,0,0|2,0,0|3,0,0</AuthorCitationCountList>\r\n
+        \   <CopyrightStateProvince>NJ</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
+        STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
+        \   <PublicationItemID>30072480</PublicationItemID>\r\n    <Title>Training
+        attendings to be expert teachers: the Stanford Anesthesia Teaching Scholars
+        Program</Title>\r\n    <Abstract />\r\n    <AuthorList>Macario,Alex,|Edler,Alice,|Pearl,Ronald,</AuthorList>\r\n
+        \   <AuthorCount>3</AuthorCount>\r\n    <KeywordList>ACADEMY</KeywordList>\r\n
+        \   <DocumentTypeList>Letter</DocumentTypeList>\r\n    <DocumentCategory>Journal
+        Document</DocumentCategory>\r\n    <NumberOfReferences>4</NumberOfReferences>\r\n
+        \   <TimesCited>1</TimesCited>\r\n    <TimesNotSelfCited>1</TimesNotSelfCited>\r\n
+        \   <PMID>18502376</PMID>\r\n    <WoSItemID>000256730800021</WoSItemID>\r\n
+        \   <PublicationSourceTitle>JOURNAL OF CLINICAL ANESTHESIA</PublicationSourceTitle>\r\n
+        \   <Volume>20</Volume>\r\n    <Issue>3</Issue>\r\n    <Pagination>241-242</Pagination>\r\n
+        \   <PublicationDate>2008-05-01T00:00:00</PublicationDate>\r\n    <PublicationYear>2008</PublicationYear>\r\n
+        \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Anesthesiology</PublicationSubjectCategoryList>\r\n
+        \   <ISSN>0952-8180</ISSN>\r\n    <DOI>10.1016/j.jclinane.2008.01.002</DOI>\r\n
+        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
+        />\r\n    <Rank>144</Rank>\r\n    <OrdinalRank>3</OrdinalRank>\r\n    <NormalizedRank>100</NormalizedRank>\r\n
+        \   <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
+        \   <CopyrightPublisher>ELSEVIER SCIENCE INC</CopyrightPublisher>\r\n    <CopyrightCity>NEW
+        YORK</CopyrightCity>\r\n    <PublicationImpactFactorList>1.351,2008,ExactPublicationYear|1.21,2013,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>16/22;ANESTHESIOLOGY;2008;SC;ExactPublicationYear|23/29;ANESTHESIOLOGY;2013;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <AuthorCitationCountList>1,0,1|2,0,1|3,0,1</AuthorCitationCountList>\r\n
+        \   <CopyrightStateProvince>NY</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
+        STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
+        \   <PublicationItemID>29352378</PublicationItemID>\r\n    <Title>The use
+        of simulation education in competency assessment: More questions than answers</Title>\r\n
+        \   <Abstract />\r\n    <AuthorList>Edler,Alice,A</AuthorList>\r\n    <AuthorCount>1</AuthorCount>\r\n
+        \   <KeywordList>TEAMWORK</KeywordList>\r\n    <DocumentTypeList>Letter</DocumentTypeList>\r\n
+        \   <DocumentCategory>Journal Document</DocumentCategory>\r\n    <NumberOfReferences>8</NumberOfReferences>\r\n
+        \   <TimesCited>2</TimesCited>\r\n    <TimesNotSelfCited>2</TimesNotSelfCited>\r\n
+        \   <PMID>18156902</PMID>\r\n    <WoSItemID>000251905400030</WoSItemID>\r\n
+        \   <PublicationSourceTitle>ANESTHESIOLOGY</PublicationSourceTitle>\r\n    <Volume>108</Volume>\r\n
+        \   <Issue>1</Issue>\r\n    <Pagination>167-167</Pagination>\r\n    <PublicationDate>2008-01-01T00:00:00</PublicationDate>\r\n
+        \   <PublicationYear>2008</PublicationYear>\r\n    <PublicationType>Journal</PublicationType>\r\n
+        \   <PublicationSubjectCategoryList>Anesthesiology</PublicationSubjectCategoryList>\r\n
+        \   <ISSN>0003-3022</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>144</Rank>\r\n    <OrdinalRank>4</OrdinalRank>\r\n
+        \   <NormalizedRank>100</NormalizedRank>\r\n    <NewPublicationItemID xsi:nil=\"true\"
+        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>LIPPINCOTT
+        WILLIAMS &amp; WILKINS</CopyrightPublisher>\r\n    <CopyrightCity>PHILADELPHIA</CopyrightCity>\r\n
+        \   <PublicationImpactFactorList>5.124,2008,ExactPublicationYear|6.168,2013,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>2/22;ANESTHESIOLOGY;2008;SC;ExactPublicationYear|1/29;ANESTHESIOLOGY;2013;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <AuthorCitationCountList>1,0,2</AuthorCitationCountList>\r\n    <CopyrightStateProvince>PA</CopyrightStateProvince>\r\n
+        \   <CopyrightCountry>UNITED STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n
+        \ <PublicationItem>\r\n    <PublicationItemID>29187981</PublicationItemID>\r\n
+        \   <Title>Factors influencing Postanesthesia recovery after pediatric ambulatory
+        tonsillectomy and adenoidectomy - In response</Title>\r\n    <Abstract />\r\n
+        \   <AuthorList>Edler,Alice,|Golianu,Brenda,</AuthorList>\r\n    <AuthorCount>2</AuthorCount>\r\n
+        \   <KeywordList />\r\n    <DocumentTypeList>Letter</DocumentTypeList>\r\n
+        \   <DocumentCategory>Journal Document</DocumentCategory>\r\n    <NumberOfReferences>3</NumberOfReferences>\r\n
+        \   <TimesCited>0</TimesCited>\r\n    <TimesNotSelfCited>0</TimesNotSelfCited>\r\n
+        \   <PMID xsi:nil=\"true\" />\r\n    <WoSItemID>000250317500068</WoSItemID>\r\n
+        \   <PublicationSourceTitle>ANESTHESIA AND ANALGESIA</PublicationSourceTitle>\r\n
+        \   <Volume>105</Volume>\r\n    <Issue>5</Issue>\r\n    <Pagination>1513-1513</Pagination>\r\n
+        \   <PublicationDate>2007-11-01T00:00:00</PublicationDate>\r\n    <PublicationYear>2007</PublicationYear>\r\n
+        \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Anesthesiology</PublicationSubjectCategoryList>\r\n
+        \   <ISSN>0003-2999</ISSN>\r\n    <DOI>10.1213/01.ane.0000287015.05692.04</DOI>\r\n
+        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
+        />\r\n    <Rank>144</Rank>\r\n    <OrdinalRank>5</OrdinalRank>\r\n    <NormalizedRank>100</NormalizedRank>\r\n
+        \   <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
+        \   <CopyrightPublisher>LIPPINCOTT WILLIAMS &amp; WILKINS</CopyrightPublisher>\r\n
+        \   <CopyrightCity>PHILADELPHIA</CopyrightCity>\r\n    <PublicationImpactFactorList>2.214,2007,ExactPublicationYear|3.422,2013,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>8/22;ANESTHESIOLOGY;2007;SC;ExactPublicationYear|5/29;ANESTHESIOLOGY;2013;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <AuthorCitationCountList>1,0,0|2,0,0</AuthorCitationCountList>\r\n    <CopyrightStateProvince>PA</CopyrightStateProvince>\r\n
+        \   <CopyrightCountry>UNITED STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n
+        \ <PublicationItem>\r\n    <PublicationItemID>1178390</PublicationItemID>\r\n
+        \   <Title>\"A rose by any other name\"? Toward a common terminology in simulation
+        education and assessment</Title>\r\n    <Abstract />\r\n    <AuthorList>Edler,Alice,A|Fanning,Ruth,M</AuthorList>\r\n
+        \   <AuthorCount>2</AuthorCount>\r\n    <KeywordList>FEEDBACK</KeywordList>\r\n
+        \   <DocumentTypeList>Letter</DocumentTypeList>\r\n    <DocumentCategory>Journal
+        Document</DocumentCategory>\r\n    <NumberOfReferences>3</NumberOfReferences>\r\n
+        \   <TimesCited>0</TimesCited>\r\n    <TimesNotSelfCited>0</TimesNotSelfCited>\r\n
+        \   <PMID>17713387</PMID>\r\n    <WoSItemID>000249038700050</WoSItemID>\r\n
+        \   <PublicationSourceTitle>CRITICAL CARE MEDICINE</PublicationSourceTitle>\r\n
+        \   <Volume>35</Volume>\r\n    <Issue>9</Issue>\r\n    <Pagination>2237-2238</Pagination>\r\n
+        \   <PublicationDate>2007-09-01T00:00:00</PublicationDate>\r\n    <PublicationYear>2007</PublicationYear>\r\n
+        \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Critical
+        Care Medicine</PublicationSubjectCategoryList>\r\n    <ISSN>0090-3493</ISSN>\r\n
+        \   <DOI>10.1097/01.CCM.0000281643.88046.DC</DOI>\r\n    <ConferenceStartDate
+        xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>144</Rank>\r\n
+        \   <OrdinalRank>6</OrdinalRank>\r\n    <NormalizedRank>100</NormalizedRank>\r\n
+        \   <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
+        \   <CopyrightPublisher>LIPPINCOTT WILLIAMS &amp; WILKINS</CopyrightPublisher>\r\n
+        \   <CopyrightCity>PHILADELPHIA</CopyrightCity>\r\n    <PublicationImpactFactorList>6.283,2007,ExactPublicationYear|6.147,2013,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>2/19;CRITICAL CARE MEDICINE;2007;SC;ExactPublicationYear|3/27;CRITICAL
+        CARE MEDICINE;2013;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <AuthorCitationCountList>1,0,0|2,0,0</AuthorCitationCountList>\r\n    <CopyrightStateProvince>PA</CopyrightStateProvince>\r\n
+        \   <CopyrightCountry>UNITED STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n
+        \ <PublicationItem>\r\n    <PublicationItemID>46946372</PublicationItemID>\r\n
+        \   <Title>Teaching NonPhysician Anesthesia Providers in Tanzania: a movement
+        toward sustainable healthcare development.</Title>\r\n    <Abstract />\r\n
+        \   <AuthorList>Edler,Alice,A|Gipp,Melanie,S</AuthorList>\r\n    <AuthorCount>2</AuthorCount>\r\n
+        \   <KeywordList />\r\n    <DocumentTypeList>Journal Article</DocumentTypeList>\r\n
+        \   <DocumentCategory>Journal Document</DocumentCategory>\r\n    <NumberOfReferences
+        xsi:nil=\"true\" />\r\n    <TimesCited xsi:nil=\"true\" />\r\n    <TimesNotSelfCited
+        xsi:nil=\"true\" />\r\n    <PMID>20386227</PMID>\r\n    <PublicationSourceTitle>International
+        anesthesiology clinics</PublicationSourceTitle>\r\n    <Volume>48</Volume>\r\n
+        \   <Issue>2</Issue>\r\n    <Pagination>59-69</Pagination>\r\n    <PublicationDate>2010-03-21T00:00:00</PublicationDate>\r\n
+        \   <PublicationYear>2010</PublicationYear>\r\n    <PublicationSubjectCategoryList
+        />\r\n    <ISSN>0020-5907</ISSN>\r\n    <DOI>10.1097/AIA.0b013e3181cd15ef</DOI>\r\n
+        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
+        />\r\n    <Rank>128</Rank>\r\n    <OrdinalRank>7</OrdinalRank>\r\n    <NormalizedRank>88.888888888888886</NormalizedRank>\r\n
+        \   <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
+        \   <CopyrightPublisher />\r\n    <CopyrightCity />\r\n    <PublicationImpactFactorList>0.371,1999,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>25/27;ANESTHESIOLOGY;1999;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <CopyrightStateProvince />\r\n    <CopyrightCountry>UNITED STATES</CopyrightCountry>\r\n
+        \ </PublicationItem>\r\n  <PublicationItem>\r\n    <PublicationItemID>46558063</PublicationItemID>\r\n
+        \   <Title>Scenario and checklist for airway rescue during pediatric sedation.</Title>\r\n
+        \   <Abstract />\r\n    <AuthorList>Chen,Michael,I|Edler,Alice,|Wald,Samuel,|Dubois,Joshua,|Huang,Yue,Ming</AuthorList>\r\n
+        \   <AuthorCount>5</AuthorCount>\r\n    <KeywordList />\r\n    <DocumentTypeList>Journal
+        Article</DocumentTypeList>\r\n    <DocumentCategory>Journal Document</DocumentCategory>\r\n
+        \   <NumberOfReferences xsi:nil=\"true\" />\r\n    <TimesCited xsi:nil=\"true\"
+        />\r\n    <TimesNotSelfCited xsi:nil=\"true\" />\r\n    <PMID>19088623</PMID>\r\n
+        \   <PublicationSourceTitle>Simulation in healthcare </PublicationSourceTitle>\r\n
+        \   <Volume>2</Volume>\r\n    <Issue>3</Issue>\r\n    <Pagination>194-198</Pagination>\r\n
+        \   <PublicationDate>2007-10-01T00:00:00</PublicationDate>\r\n    <PublicationYear>2007</PublicationYear>\r\n
+        \   <PublicationSubjectCategoryList />\r\n    <ISSN>1559-2332</ISSN>\r\n    <DOI>10.1097/SIH.0b013e3181461b60</DOI>\r\n
+        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
+        />\r\n    <Rank>128</Rank>\r\n    <OrdinalRank>8</OrdinalRank>\r\n    <NormalizedRank>88.888888888888886</NormalizedRank>\r\n
+        \   <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
+        \   <CopyrightPublisher />\r\n    <CopyrightCity />\r\n    <PublicationImpactFactorList>2.036,2010,ClosestToPublicationYear|1.833,2011,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>26/72;HEALTH CARE SCIENCES &amp; SERVICES;2010;SC;ClosestToPublicationYear|35/75;HEALTH
+        CARE SCIENCES &amp; SERVICES;2011;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <CopyrightStateProvince />\r\n    <CopyrightCountry>UNITED STATES</CopyrightCountry>\r\n
+        \ </PublicationItem>\r\n  <PublicationItem>\r\n    <PublicationItemID>844542</PublicationItemID>\r\n
+        \   <Title>An analysis of factors influencing postanesthesia recovery after
+        pediatric ambulatory tonsillectomy and adenoidectomy</Title>\r\n    <Abstract>BACKGROUND:
+        Many factors contribute to prolonged length of stay (LOS) for pediatric patients
+        in the postanesthesia care unit (PACU). We designed this prospective study
+        to identify the pre- and postoperative factors that prolong LOS.  METHODS:
+        We studied 166 children, aged 1-18 yr, who underwent tonsillectomy and adenoidectomy
+        or tonsillectomy and adenoidectomy, and bilateral myringotomy with tube insertion
+        under general anesthesia. The primary outcome measure was the time spent in
+        the PACU until predetermined discharge criteria were met.  RESULTS: The number
+        of episodes of postoperative nausea and vomiting, patient age, and number
+        of oxygen desaturations contributed significantly (P &lt; 0.05) to prolonged
+        LOS. Each episode of postoperative nausea and vomiting (P &lt; 0.05) or oxygen
+        desaturation to &lt; 95% (P &lt; 0.05) increased the patient's LOS by 0.5
+        h. History of upper respiratory tract infection, emergence agitation, and
+        parental anxiety did not significantly predict increased LOS.  CONCLUSION:
+        This investigation is the first composite view of LOS in pediatric patients.
+        The significance of identifying patients at risk of prolonged LOS prior to
+        anesthesia is of use not only in allocating PACU resource and staffing needs,
+        but also for improving quality of care and ensuring a minimally traumatic
+        anesthetic experience for our pediatric patients and their families.</Abstract>\r\n
+        \   <AuthorList>Edler,Alice,A|Mariano,Edward,R|Golianu,Brenda,|Kuan,Calvin,|Pentcheva,Krassimira,</AuthorList>\r\n
+        \   <AuthorCount>5</AuthorCount>\r\n    <KeywordList>ANESTHESIA|ADMISSION|ADENOTONSILLECTOMY|SURGERY|DEXAMETHASONE|STAY|CHILDREN|RISK-FACTORS|COMPLICATIONS|CARE</KeywordList>\r\n
+        \   <DocumentTypeList>Article</DocumentTypeList>\r\n    <DocumentCategory>Journal
+        Document</DocumentCategory>\r\n    <NumberOfReferences>21</NumberOfReferences>\r\n
+        \   <TimesCited>22</TimesCited>\r\n    <TimesNotSelfCited>20</TimesNotSelfCited>\r\n
+        \   <PMID>17377083</PMID>\r\n    <WoSItemID>000245371900010</WoSItemID>\r\n
+        \   <PublicationSourceTitle>ANESTHESIA AND ANALGESIA</PublicationSourceTitle>\r\n
+        \   <Volume>104</Volume>\r\n    <Issue>4</Issue>\r\n    <Pagination>784-789</Pagination>\r\n
+        \   <PublicationDate>2007-04-01T00:00:00</PublicationDate>\r\n    <PublicationYear>2007</PublicationYear>\r\n
+        \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Anesthesiology</PublicationSubjectCategoryList>\r\n
+        \   <ISSN>0003-2999</ISSN>\r\n    <DOI>10.1213/01.ane.0000258771.53068.09</DOI>\r\n
+        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
+        />\r\n    <Rank>86</Rank>\r\n    <OrdinalRank>9</OrdinalRank>\r\n    <NormalizedRank>59.722222222222221</NormalizedRank>\r\n
+        \   <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
+        \   <CopyrightPublisher>LIPPINCOTT WILLIAMS &amp; WILKINS</CopyrightPublisher>\r\n
+        \   <CopyrightCity>PHILADELPHIA</CopyrightCity>\r\n    <PublicationImpactFactorList>2.214,2007,ExactPublicationYear|3.422,2013,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>8/22;ANESTHESIOLOGY;2007;SC;ExactPublicationYear|5/29;ANESTHESIOLOGY;2013;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <AuthorCitationCountList>1,1,21|2,1,21|3,1,21|4,0,22|5,0,22</AuthorCitationCountList>\r\n
+        \   <CopyrightStateProvince>PA</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
+        STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
+        \   <PublicationItemID>3850253</PublicationItemID>\r\n    <Title>Policies
+        for exposure to bloodborne pathogens among US-based international voluntary
+        medical organizations</Title>\r\n    <Abstract />\r\n    <AuthorList>Edler,A,|Olsen,M,A|Mbwille,M,CE</AuthorList>\r\n
+        \   <AuthorCount>3</AuthorCount>\r\n    <KeywordList />\r\n    <DocumentTypeList>Letter</DocumentTypeList>\r\n
+        \   <DocumentCategory>Journal Document</DocumentCategory>\r\n    <NumberOfReferences>3</NumberOfReferences>\r\n
+        \   <TimesCited>2</TimesCited>\r\n    <TimesNotSelfCited>2</TimesNotSelfCited>\r\n
+        \   <PMID>12095380</PMID>\r\n    <WoSItemID>000176711100016</WoSItemID>\r\n
+        \   <PublicationSourceTitle>JAMA-JOURNAL OF THE AMERICAN MEDICAL ASSOCIATION</PublicationSourceTitle>\r\n
+        \   <Volume>288</Volume>\r\n    <Issue>2</Issue>\r\n    <Pagination>166-166</Pagination>\r\n
+        \   <PublicationDate>2002-07-10T00:00:00</PublicationDate>\r\n    <PublicationYear>2002</PublicationYear>\r\n
+        \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Medicine,
+        General &amp; Internal</PublicationSubjectCategoryList>\r\n    <ISSN>0098-7484</ISSN>\r\n
+        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
+        />\r\n    <Rank>85</Rank>\r\n    <OrdinalRank>10</OrdinalRank>\r\n    <NormalizedRank>59.027777777777779</NormalizedRank>\r\n
+        \   <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
+        \   <CopyrightPublisher>AMER MEDICAL ASSOC</CopyrightPublisher>\r\n    <CopyrightCity>CHICAGO</CopyrightCity>\r\n
+        \   <PublicationImpactFactorList>16.586,2002,ExactPublicationYear|30.387,2013,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>2/107;MEDICINE, GENERAL &amp; INTERNAL;2002;SC;ExactPublicationYear|3/156;MEDICINE,
+        GENERAL &amp; INTERNAL;2013;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <AuthorCitationCountList>1,0,2|2,0,2|3,0,2</AuthorCitationCountList>\r\n
+        \   <CopyrightStateProvince>IL</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
+        STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
+        \   <PublicationItemID>47593787</PublicationItemID>\r\n    <Title>Leadership
+        lessons from military education for postgraduate medical curricular improvement.</Title>\r\n
+        \   <Abstract>BACKGROUND quality medical education includes both teaching
+        and learning of data-driven knowledge, and appropriate technical skills and
+        tacit behaviours, such as effective communication and professional leadership.
+        But these implicit behaviours are not readily adaptable to traditional medical
+        curriculum models. This manuscript explores a medical leadership curriculum
+        informed by military education.\r\nCONTEXT our paediatric anaesthesia residents
+        expressed a strong desire for more leadership opportunity within the training
+        programme. Upon exploration, current health care models for leadership training
+        were limited to short didactic presentations or lengthy certificate programmes.
+        We could not find an appropriate model for our 1-year fellowship.\r\nINNOVATION
+        in collaboration with the US Naval Academy, we modified the 'Leadership Education
+        and Development Program' curriculum to introduce daily and graduated leadership
+        opportunities: starting with low-risk decision-making tasks and progressing
+        to independent professional decision making and leadership. Each resident
+        who opted into the programme had a 3-month role as team leader and spent 9
+        months as a team member. At the end of the first year of this curriculum both
+        quantitative assessment and qualitative reflection from residents and faculty
+        members noted significantly improved clinical and administrative decision
+        making. The second-year residents' performance showed further improvement.\r\nIMPLICATIONS
+        medical education has long emphasised subject-matter knowledge as a prime
+        focus. However, in competency-based medical education, new curriculum models
+        are needed. Many helpful models can be found in other professional fields.
+        Collaborations between professional educators benefit the students, who are
+        learning these new skills, the medical educators, who work jointly with other
+        professionals, and the original curriculum designer, who has an opportunity
+        to reflect on the strengths and weaknesses of his or her model.</Abstract>\r\n
+        \   <AuthorList>Edler,Alice,|Adamshick,Mark,|Fanning,Ruth,|Piro,Nancy,</AuthorList>\r\n
+        \   <AuthorCount>4</AuthorCount>\r\n    <KeywordList />\r\n    <DocumentTypeList>Journal
+        Article</DocumentTypeList>\r\n    <DocumentCategory>Journal Document</DocumentCategory>\r\n
+        \   <NumberOfReferences xsi:nil=\"true\" />\r\n    <TimesCited xsi:nil=\"true\"
+        />\r\n    <TimesNotSelfCited xsi:nil=\"true\" />\r\n    <PMID>21134139</PMID>\r\n
+        \   <PublicationSourceTitle>The clinical teacher</PublicationSourceTitle>\r\n
+        \   <Volume>7</Volume>\r\n    <Issue>1</Issue>\r\n    <Pagination>26-31</Pagination>\r\n
+        \   <PublicationDate>2010-03-01T00:00:00</PublicationDate>\r\n    <PublicationYear>2010</PublicationYear>\r\n
+        \   <PublicationSubjectCategoryList />\r\n    <ISSN>1743-4971</ISSN>\r\n    <DOI>10.1111/j.1743-498X.2009.00336.x</DOI>\r\n
+        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
+        />\r\n    <Rank>76</Rank>\r\n    <OrdinalRank>11</OrdinalRank>\r\n    <NormalizedRank>52.777777777777779</NormalizedRank>\r\n
+        \   <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
+        \   <CopyrightPublisher>BLACKWELL PUBLISHING LT</CopyrightPublisher>\r\n    <CopyrightCity
+        />\r\n    <CopyrightStateProvince />\r\n    <CopyrightCountry>UNITED KINGDOM</CopyrightCountry>\r\n
+        \ </PublicationItem>\r\n  <PublicationItem>\r\n    <PublicationItemID>54661564</PublicationItemID>\r\n
+        \   <Title>Building faculty community: fellowship in graduate medical education
+        administration.</Title>\r\n    <Abstract>INTRODUCTION The Department of Graduate
+        Medical Education at Stanford Hospital and Clinics has developed a professional
+        training program for program directors. This paper outlines the goals, structure,
+        and expected outcomes for the one-year Fellowship in Graduate Medical Education
+        Administration program.\r\nBACKGROUND The skills necessary for leading a successful
+        Accreditation Council for Graduate Medical Education (ACGME) training program
+        require an increased level of curricular and administrative expertise. To
+        meet the ACGME Outcome Project goals, program directors must demonstrate not
+        only sophisticated understanding of curricular design but also competency-based
+        performance assessment, resource management, and employment law. Few faculty-development
+        efforts adequately address the complexities of educational administration.
+        As part of an institutional-needs assessment, 41% of Stanford program directors
+        indicated that they wanted more training from the Department of Graduate Medical
+        Education.\r\nINTERVENTION To address this need, the Fellowship in Graduate
+        Medical Education Administration program will provide a curriculum that includes
+        (1) readings and discussions in 9 topic areas, (2) regular mentoring by the
+        director of Graduate Medical Education (GME), (3) completion of a service
+        project that helps improve GME across the institution, and (4) completion
+        of an individual scholarly project that focuses on education.\r\nRESULTS The
+        first fellow was accepted during the 2008-2009 academic year. Outcomes for
+        the project include presentation of a project at a national meeting, internal
+        workshops geared towards disseminating learning to peer program directors,
+        and the completion of a GME service project. The paper also discusses lessons
+        learned for improving the program.</Abstract>\r\n    <AuthorList>Edler,Alice,A|Dohn,Ann,|Davidson,Heather,A|Grewal,Daisy,|Behravesh,Bardia,|Piro,Nancy,</AuthorList>\r\n
+        \   <AuthorCount>6</AuthorCount>\r\n    <KeywordList />\r\n    <DocumentTypeList>Journal
+        Article</DocumentTypeList>\r\n    <DocumentCategory>Journal Document</DocumentCategory>\r\n
+        \   <NumberOfReferences xsi:nil=\"true\" />\r\n    <TimesCited xsi:nil=\"true\"
+        />\r\n    <TimesNotSelfCited xsi:nil=\"true\" />\r\n    <PMID>21975722</PMID>\r\n
+        \   <PublicationSourceTitle>Journal of graduate medical education</PublicationSourceTitle>\r\n
+        \   <Volume>1</Volume>\r\n    <Issue>1</Issue>\r\n    <Pagination>146-149</Pagination>\r\n
+        \   <PublicationDate>2009-09-01T00:00:00</PublicationDate>\r\n    <PublicationYear>2009</PublicationYear>\r\n
+        \   <PublicationSubjectCategoryList />\r\n    <ISSN>1949-8357</ISSN>\r\n    <DOI>10.4300/01.01.0024</DOI>\r\n
+        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
+        />\r\n    <Rank>51</Rank>\r\n    <OrdinalRank>12</OrdinalRank>\r\n    <NormalizedRank>35.416666666666671</NormalizedRank>\r\n
+        \   <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
+        \   <CopyrightPublisher />\r\n    <CopyrightCity />\r\n    <CopyrightStateProvince
+        />\r\n    <CopyrightCountry>UNITED STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n
+        \ <PublicationItem>\r\n    <PublicationItemID>46795732</PublicationItemID>\r\n
+        \   <Title>Patient simulation: a literary synthesis of assessment tools in
+        anesthesiology.</Title>\r\n    <Abstract>High-fidelity patient simulation
+        (HFPS) has been hypothesized as a modality for assessing competency of knowledge
+        and skill in patient simulation, but uniform methods for HFPS performance
+        assessment (PA) have not yet been completely achieved. Anesthesiology as a
+        field founded the HFPS discipline and also leads in its PA. This project reviews
+        the types, quality, and designated purpose of HFPS PA tools in anesthesiology.
+        We used the systematic review method and systematically reviewed anesthesiology
+        literature referenced in PubMed to assess the quality and reliability of available
+        PA tools in HFPS. Of 412 articles identified, 50 met our inclusion criteria.
+        Seventy seven percent of studies have been published since 2000; more recent
+        studies demonstrated higher quality. Investigators reported a variety of test
+        construction and validation methods. The most commonly reported test construction
+        methods included \"modified Delphi Techniques\" for item selection, reliability
+        measurement using inter-rater agreement, and intra-class correlations between
+        test items or subtests. Modern test theory, in particular generalizability
+        theory, was used in nine (18%) of studies. Test score validity has been addressed
+        in multiple investigations and shown a significant improvement in reporting
+        accuracy. However the assessment of predicative has been low across the majority
+        of studies. Usability and practicality of testing occasions and tools was
+        only anecdotally reported. To more completely comply with the gold standards
+        for PA design, both shared experience of experts and recognition of test construction
+        standards, including reliability and validity measurements, instrument piloting,
+        rater training, and explicit identification of the purpose and proposed use
+        of the assessment tool, are required.</Abstract>\r\n    <AuthorList>Edler,Alice,A|Fanning,Ruth,G|Chen,Michael,I|Claure,Rebecca,|Almazan,Dondee,|Struyk,Brain,|Seiden,Samuel,C</AuthorList>\r\n
+        \   <AuthorCount>7</AuthorCount>\r\n    <KeywordList>Anesthesiology|High-Fidelity
+        Patient Simulation|Patient Simulation|Performance Assessment|Systemic Review|Test
+        Theory</KeywordList>\r\n    <DocumentTypeList>Journal Article</DocumentTypeList>\r\n
+        \   <DocumentCategory>Journal Document</DocumentCategory>\r\n    <NumberOfReferences
+        xsi:nil=\"true\" />\r\n    <TimesCited xsi:nil=\"true\" />\r\n    <TimesNotSelfCited
+        xsi:nil=\"true\" />\r\n    <PMID>20046456</PMID>\r\n    <PublicationSourceTitle>Journal
+        of educational evaluation for health professions</PublicationSourceTitle>\r\n
+        \   <Volume>6</Volume>\r\n    <Pagination>3-?</Pagination>\r\n    <PublicationDate>2009-01-01T00:00:00</PublicationDate>\r\n
+        \   <PublicationYear>2009</PublicationYear>\r\n    <PublicationSubjectCategoryList
+        />\r\n    <ISSN>1975-5937</ISSN>\r\n    <DOI>10.3352/jeehp.2009.6.3</DOI>\r\n
+        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
+        />\r\n    <Rank>51</Rank>\r\n    <OrdinalRank>13</OrdinalRank>\r\n    <NormalizedRank>35.416666666666671</NormalizedRank>\r\n
+        \   <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
+        \   <CopyrightPublisher />\r\n    <CopyrightCity />\r\n    <CopyrightStateProvince
+        />\r\n    <CopyrightCountry>KOREA (SOUTH)</CopyrightCountry>\r\n  </PublicationItem>\r\n
+        \ <PublicationItem>\r\n    <PublicationItemID>7877232</PublicationItemID>\r\n
+        \   <Title>Avian flu (H5N1): its epidemiology, prevention, and implications
+        for anesthesiology</Title>\r\n    <Abstract>Avian flu, influenza A subtype
+        H5N1, is an emergent and virulent disease that poses a threat to, Emerging;
+        the health and safety of the world community. Avian flu is I of more than
+        25 influenza A viruses that reside Disease notification; primarily in birds
+        but also infect humans and other mammals. Avian flu is responsible for the
+        current Disease outbreaks; outbreak in Asia; H5N1 has now displayed probable
+        human-to-human transmission; it could be a Disease transmission; harbinger
+        of a global epidemic. Anesthesiologists are exposed to a risk for infection
+        when they are influenza involved in airway instrurnentation of infected patients.
+        Given tile evidence of emerging resistance to, Avian common antiviral agents
+        used to treat H5N1 influenza virus and limited supply of H5N1 vaccine, prevention
+        is our best protection. The following article will detail the virology and
+        preventive public health practices for H5N1. This knowledge can also be used
+        to define and prevent other yet unidentified infectious threats. (c) 2006
+        Elsevier Inc. All rights reserved.</Abstract>\r\n    <AuthorList>Edler,A,A</AuthorList>\r\n
+        \   <AuthorCount>1</AuthorCount>\r\n    <KeywordList>OUTBREAK|TORONTO|INFLUENZA-A
+        H5N1|TRANSMISSION|disease outbreaks|disease transmission|disease notification|communicable
+        diseases, emerging|influenza, avian</KeywordList>\r\n    <DocumentTypeList>Article</DocumentTypeList>\r\n
+        \   <DocumentCategory>Journal Document</DocumentCategory>\r\n    <NumberOfReferences>12</NumberOfReferences>\r\n
+        \   <TimesCited>3</TimesCited>\r\n    <TimesNotSelfCited>3</TimesNotSelfCited>\r\n
+        \   <PMID>16517323</PMID>\r\n    <WoSItemID>000236198500001</WoSItemID>\r\n
+        \   <PublicationSourceTitle>JOURNAL OF CLINICAL ANESTHESIA</PublicationSourceTitle>\r\n
+        \   <Volume>18</Volume>\r\n    <Issue>1</Issue>\r\n    <Pagination>1-4</Pagination>\r\n
+        \   <PublicationDate>2006-02-01T00:00:00</PublicationDate>\r\n    <PublicationYear>2006</PublicationYear>\r\n
+        \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Anesthesiology</PublicationSubjectCategoryList>\r\n
+        \   <ISSN>0952-8180</ISSN>\r\n    <DOI>10.1016/j.jclinane.2005.12.004</DOI>\r\n
+        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
+        />\r\n    <Rank>51</Rank>\r\n    <OrdinalRank>14</OrdinalRank>\r\n    <NormalizedRank>35.416666666666671</NormalizedRank>\r\n
+        \   <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
+        \   <CopyrightPublisher>ELSEVIER SCIENCE INC</CopyrightPublisher>\r\n    <CopyrightCity>NEW
+        YORK</CopyrightCity>\r\n    <PublicationImpactFactorList>1.028,2006,ExactPublicationYear|1.21,2013,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>16/22;ANESTHESIOLOGY;2006;SC;ExactPublicationYear|23/29;ANESTHESIOLOGY;2013;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <AuthorCitationCountList>1,0,3</AuthorCitationCountList>\r\n    <CopyrightStateProvince>NY</CopyrightStateProvince>\r\n
+        \   <CopyrightCountry>UNITED STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n
+        \ <PublicationItem>\r\n    <PublicationItemID>5199247</PublicationItemID>\r\n
+        \   <Title>Blood loss during posterior spinal fusion surgery in patients with
+        neuromuscular disease: is there an increased risk?</Title>\r\n    <Abstract>Background:
+        Scoliosis surgery in paediatric patients can carry significant morbidity associated
+        with intraoperative blood loss and the resultant transfusion therapy. Patients
+        with neuromuscular disease may be at an increased risk for this intraoperative
+        blood loss, but it is unclear if this is because of direct vascular pathophysiological
+        changes or the fact that neuromuscular patients typically have more extensive
+        orthopaedic disease and more vertebral segments involved. This study examined
+        the risk of extensive blood loss (&gt;50% of total blood volume) in patients
+        with neuromuscular disease compared with patients who did not have neuromuscular
+        disease when the extent of the surgery (number of segments fused), age and
+        preoperative coagulation profile where taken into consideration.  Methods:
+        Retrospective chart review of 163 paediatric patients was preformed. Patients
+        who carried a diagnosis of preexisting neuromuscular disease were classified
+        as such. Idiopathic, traumatic and iatrogenic scoliosis were classified as
+        nonneuromuscular. Extensive blood loss was defined as &gt;50% of estimated
+        total blood volume. Logistic regression was used to predict the risk of extensive
+        blood loss between the two groups when age, weight, extent of surgery was
+        controlled for and anaesthetic and surgical techniques remained similar.  Results:
+        Patients with neuromuscular disease did not vary significantly in age, weight,
+        or preoperative haematocrit and platelet count from patients without neuromuscular
+        disease. Neuromuscular patients did have significantly more vertebral segments
+        fused. When this difference was controlled for statistically, neuromuscular
+        patients had an almost seven times higher risk (adjusted odds ration 6.9,
+        P &lt; 0.05) of losing &gt;50% of their estimated total blood volume during
+        scoliosis surgery.  Conclusions: Patients with neuromuscular disease can present
+        various anaesthetic challenges during scoliosis surgery, among these is the
+        inherent risk of extensive blood loss. Recognizing this may help anaesthesiologists
+        and surgeons more accurately prepare for and treat intraoperative blood loss
+        during scoliosis surgery in patients with neuromuscular disease.</Abstract>\r\n
+        \   <AuthorList>Edler,A,|Murray,D,J|Forbes,R,B</AuthorList>\r\n    <AuthorCount>3</AuthorCount>\r\n
+        \   <KeywordList>DUCHENNE MUSCULAR-DYSTROPHY|DYSFUNCTION|neuromuscular disease|blood
+        loss|spinal fusion|scoliosis surgery</KeywordList>\r\n    <DocumentTypeList>Article</DocumentTypeList>\r\n
+        \   <DocumentCategory>Journal Document</DocumentCategory>\r\n    <NumberOfReferences>10</NumberOfReferences>\r\n
+        \   <TimesCited>33</TimesCited>\r\n    <TimesNotSelfCited>33</TimesNotSelfCited>\r\n
+        \   <PMID>14617124</PMID>\r\n    <WoSItemID>000186655000011</WoSItemID>\r\n
+        \   <PublicationSourceTitle>PAEDIATRIC ANAESTHESIA</PublicationSourceTitle>\r\n
+        \   <Volume>13</Volume>\r\n    <Issue>9</Issue>\r\n    <Pagination>818-822</Pagination>\r\n
+        \   <PublicationDate>2003-11-01T00:00:00</PublicationDate>\r\n    <PublicationYear>2003</PublicationYear>\r\n
+        \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Pediatrics</PublicationSubjectCategoryList>\r\n
+        \   <ISSN>1155-5645</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>51</Rank>\r\n    <OrdinalRank>15</OrdinalRank>\r\n
+        \   <NormalizedRank>35.416666666666671</NormalizedRank>\r\n    <NewPublicationItemID
+        xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>WILEY-BLACKWELL</CopyrightPublisher>\r\n
+        \   <CopyrightCity>HOBOKEN</CopyrightCity>\r\n    <PublicationImpactFactorList>0.983,2003,ExactPublicationYear|0.983,2003,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>13/22;ANESTHESIOLOGY;2003;SC;ExactPublicationYear|37/68;PEDIATRICS;2003;SC;ExactPublicationYear|13/22;ANESTHESIOLOGY;2003;SC;MostRecentYear|37/68;PEDIATRICS;2003;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <AuthorCitationCountList>1,0,33|2,0,33|3,0,33</AuthorCitationCountList>\r\n
+        \   <CopyrightStateProvince>NJ</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
+        STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n</ArrayOfPublicationItem>"
+    http_version: 
+  recorded_at: Wed, 11 May 2016 17:07:31 GMT
+- request:
+    method: get
+    uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationItems?format=xml&publicationItemIDs=46946372,46558063,844542,47593787,54661564,46795732,7877232,5199247
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.9.2
+      Accept:
+      - "*/*"
+      Accept-Encoding:
+      - gzip,deflate
+      Date:
+      - Wed, 11 May 2016 17:07:31 GMT
+      Licenseid:
+      - Settings.SCIENCEWIRE.LICENSE_ID
+      Host:
+      - Settings.SCIENCEWIRE.HOST
+      Connection:
+      - Keep-Alive
+      Expect:
+      - 100-continue
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - private
+      Content-Type:
+      - application/xml; charset=utf-8
+      Server:
+      - Microsoft-IIS/7.5
+      X-Aspnetmvc-Version:
+      - '2.0'
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+      Date:
+      - Wed, 11 May 2016 17:07:31 GMT
+      Content-Length:
+      - '22855'
+    body:
+      encoding: UTF-8
+      string: "<?xml version=\"1.0\"?>\r\n<ArrayOfPublicationItem xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <PublicationItem>\r\n
+        \   <PublicationItemID>54661564</PublicationItemID>\r\n    <Title>Building
+        faculty community: fellowship in graduate medical education administration.</Title>\r\n
+        \   <Abstract>INTRODUCTION The Department of Graduate Medical Education at
+        Stanford Hospital and Clinics has developed a professional training program
+        for program directors. This paper outlines the goals, structure, and expected
+        outcomes for the one-year Fellowship in Graduate Medical Education Administration
+        program.\r\nBACKGROUND The skills necessary for leading a successful Accreditation
+        Council for Graduate Medical Education (ACGME) training program require an
+        increased level of curricular and administrative expertise. To meet the ACGME
+        Outcome Project goals, program directors must demonstrate not only sophisticated
+        understanding of curricular design but also competency-based performance assessment,
+        resource management, and employment law. Few faculty-development efforts adequately
+        address the complexities of educational administration. As part of an institutional-needs
+        assessment, 41% of Stanford program directors indicated that they wanted more
+        training from the Department of Graduate Medical Education.\r\nINTERVENTION
+        To address this need, the Fellowship in Graduate Medical Education Administration
+        program will provide a curriculum that includes (1) readings and discussions
+        in 9 topic areas, (2) regular mentoring by the director of Graduate Medical
+        Education (GME), (3) completion of a service project that helps improve GME
+        across the institution, and (4) completion of an individual scholarly project
+        that focuses on education.\r\nRESULTS The first fellow was accepted during
+        the 2008-2009 academic year. Outcomes for the project include presentation
+        of a project at a national meeting, internal workshops geared towards disseminating
+        learning to peer program directors, and the completion of a GME service project.
+        The paper also discusses lessons learned for improving the program.</Abstract>\r\n
+        \   <AuthorList>Edler,Alice,A|Dohn,Ann,|Davidson,Heather,A|Grewal,Daisy,|Behravesh,Bardia,|Piro,Nancy,</AuthorList>\r\n
+        \   <AuthorCount>6</AuthorCount>\r\n    <KeywordList />\r\n    <DocumentTypeList>Journal
+        Article</DocumentTypeList>\r\n    <DocumentCategory>Journal Document</DocumentCategory>\r\n
+        \   <NumberOfReferences xsi:nil=\"true\" />\r\n    <TimesCited xsi:nil=\"true\"
+        />\r\n    <TimesNotSelfCited xsi:nil=\"true\" />\r\n    <PMID>21975722</PMID>\r\n
+        \   <PublicationSourceTitle>Journal of graduate medical education</PublicationSourceTitle>\r\n
+        \   <Volume>1</Volume>\r\n    <Issue>1</Issue>\r\n    <Pagination>146-149</Pagination>\r\n
+        \   <PublicationDate>2009-09-01T00:00:00</PublicationDate>\r\n    <PublicationYear>2009</PublicationYear>\r\n
+        \   <PublicationImpactFactor xsi:nil=\"true\" />\r\n    <PublicationSubjectCategoryList
+        />\r\n    <ISSN>1949-8357</ISSN>\r\n    <DOI>10.4300/01.01.0024</DOI>\r\n
+        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>8</OrdinalRank>\r\n
+        \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID>54661564</NewPublicationItemID>\r\n
+        \   <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher />\r\n    <CopyrightCity
+        />\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n    <PublicationItemID>47593787</PublicationItemID>\r\n
+        \   <Title>Leadership lessons from military education for postgraduate medical
+        curricular improvement.</Title>\r\n    <Abstract>BACKGROUND quality medical
+        education includes both teaching and learning of data-driven knowledge, and
+        appropriate technical skills and tacit behaviours, such as effective communication
+        and professional leadership. But these implicit behaviours are not readily
+        adaptable to traditional medical curriculum models. This manuscript explores
+        a medical leadership curriculum informed by military education.\r\nCONTEXT
+        our paediatric anaesthesia residents expressed a strong desire for more leadership
+        opportunity within the training programme. Upon exploration, current health
+        care models for leadership training were limited to short didactic presentations
+        or lengthy certificate programmes. We could not find an appropriate model
+        for our 1-year fellowship.\r\nINNOVATION in collaboration with the US Naval
+        Academy, we modified the 'Leadership Education and Development Program' curriculum
+        to introduce daily and graduated leadership opportunities: starting with low-risk
+        decision-making tasks and progressing to independent professional decision
+        making and leadership. Each resident who opted into the programme had a 3-month
+        role as team leader and spent 9 months as a team member. At the end of the
+        first year of this curriculum both quantitative assessment and qualitative
+        reflection from residents and faculty members noted significantly improved
+        clinical and administrative decision making. The second-year residents' performance
+        showed further improvement.\r\nIMPLICATIONS medical education has long emphasised
+        subject-matter knowledge as a prime focus. However, in competency-based medical
+        education, new curriculum models are needed. Many helpful models can be found
+        in other professional fields. Collaborations between professional educators
+        benefit the students, who are learning these new skills, the medical educators,
+        who work jointly with other professionals, and the original curriculum designer,
+        who has an opportunity to reflect on the strengths and weaknesses of his or
+        her model.</Abstract>\r\n    <AuthorList>Edler,Alice,|Adamshick,Mark,|Fanning,Ruth,|Piro,Nancy,</AuthorList>\r\n
+        \   <AuthorCount>4</AuthorCount>\r\n    <KeywordList />\r\n    <DocumentTypeList>Journal
+        Article</DocumentTypeList>\r\n    <DocumentCategory>Journal Document</DocumentCategory>\r\n
+        \   <NumberOfReferences xsi:nil=\"true\" />\r\n    <TimesCited xsi:nil=\"true\"
+        />\r\n    <TimesNotSelfCited xsi:nil=\"true\" />\r\n    <PMID>21134139</PMID>\r\n
+        \   <PublicationSourceTitle>The clinical teacher</PublicationSourceTitle>\r\n
+        \   <Volume>7</Volume>\r\n    <Issue>1</Issue>\r\n    <Pagination>26-31</Pagination>\r\n
+        \   <PublicationDate>2010-03-01T00:00:00</PublicationDate>\r\n    <PublicationYear>2010</PublicationYear>\r\n
+        \   <PublicationImpactFactor xsi:nil=\"true\" />\r\n    <PublicationSubjectCategoryList
+        />\r\n    <ISSN>1743-4971</ISSN>\r\n    <DOI>10.1111/j.1743-498X.2009.00336.x</DOI>\r\n
+        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>7</OrdinalRank>\r\n
+        \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID>47593787</NewPublicationItemID>\r\n
+        \   <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>BLACKWELL PUBLISHING
+        LT</CopyrightPublisher>\r\n    <CopyrightCity />\r\n  </PublicationItem>\r\n
+        \ <PublicationItem>\r\n    <PublicationItemID>46946372</PublicationItemID>\r\n
+        \   <Title>Teaching NonPhysician Anesthesia Providers in Tanzania: a movement
+        toward sustainable healthcare development.</Title>\r\n    <Abstract />\r\n
+        \   <AuthorList>Edler,Alice,A|Gipp,Melanie,S</AuthorList>\r\n    <AuthorCount>2</AuthorCount>\r\n
+        \   <KeywordList />\r\n    <DocumentTypeList>Journal Article</DocumentTypeList>\r\n
+        \   <DocumentCategory>Journal Document</DocumentCategory>\r\n    <NumberOfReferences
+        xsi:nil=\"true\" />\r\n    <TimesCited xsi:nil=\"true\" />\r\n    <TimesNotSelfCited
+        xsi:nil=\"true\" />\r\n    <PMID>20386227</PMID>\r\n    <PublicationSourceTitle>International
+        anesthesiology clinics</PublicationSourceTitle>\r\n    <Volume>48</Volume>\r\n
+        \   <Issue>2</Issue>\r\n    <Pagination>59-69</Pagination>\r\n    <PublicationDate>2010-03-21T00:00:00</PublicationDate>\r\n
+        \   <PublicationYear>2010</PublicationYear>\r\n    <PublicationImpactFactor
+        xsi:nil=\"true\" />\r\n    <PublicationSubjectCategoryList />\r\n    <ISSN>0020-5907</ISSN>\r\n
+        \   <DOI>10.1097/AIA.0b013e3181cd15ef</DOI>\r\n    <ConferenceStartDate xsi:nil=\"true\"
+        />\r\n    <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank xsi:nil=\"true\"
+        />\r\n    <OrdinalRank>6</OrdinalRank>\r\n    <NormalizedRank xsi:nil=\"true\"
+        />\r\n    <NewPublicationItemID>46946372</NewPublicationItemID>\r\n    <IsObsolete>false</IsObsolete>\r\n
+        \   <CopyrightPublisher />\r\n    <CopyrightCity />\r\n  </PublicationItem>\r\n
+        \ <PublicationItem>\r\n    <PublicationItemID>46795732</PublicationItemID>\r\n
+        \   <Title>Patient simulation: a literary synthesis of assessment tools in
+        anesthesiology.</Title>\r\n    <Abstract>High-fidelity patient simulation
+        (HFPS) has been hypothesized as a modality for assessing competency of knowledge
+        and skill in patient simulation, but uniform methods for HFPS performance
+        assessment (PA) have not yet been completely achieved. Anesthesiology as a
+        field founded the HFPS discipline and also leads in its PA. This project reviews
+        the types, quality, and designated purpose of HFPS PA tools in anesthesiology.
+        We used the systematic review method and systematically reviewed anesthesiology
+        literature referenced in PubMed to assess the quality and reliability of available
+        PA tools in HFPS. Of 412 articles identified, 50 met our inclusion criteria.
+        Seventy seven percent of studies have been published since 2000; more recent
+        studies demonstrated higher quality. Investigators reported a variety of test
+        construction and validation methods. The most commonly reported test construction
+        methods included \"modified Delphi Techniques\" for item selection, reliability
+        measurement using inter-rater agreement, and intra-class correlations between
+        test items or subtests. Modern test theory, in particular generalizability
+        theory, was used in nine (18%) of studies. Test score validity has been addressed
+        in multiple investigations and shown a significant improvement in reporting
+        accuracy. However the assessment of predicative has been low across the majority
+        of studies. Usability and practicality of testing occasions and tools was
+        only anecdotally reported. To more completely comply with the gold standards
+        for PA design, both shared experience of experts and recognition of test construction
+        standards, including reliability and validity measurements, instrument piloting,
+        rater training, and explicit identification of the purpose and proposed use
+        of the assessment tool, are required.</Abstract>\r\n    <AuthorList>Edler,Alice,A|Fanning,Ruth,G|Chen,Michael,I|Claure,Rebecca,|Almazan,Dondee,|Struyk,Brain,|Seiden,Samuel,C</AuthorList>\r\n
+        \   <AuthorCount>7</AuthorCount>\r\n    <KeywordList>Anesthesiology|High-Fidelity
+        Patient Simulation|Patient Simulation|Performance Assessment|Systemic Review|Test
+        Theory</KeywordList>\r\n    <DocumentTypeList>Journal Article</DocumentTypeList>\r\n
+        \   <DocumentCategory>Journal Document</DocumentCategory>\r\n    <NumberOfReferences
+        xsi:nil=\"true\" />\r\n    <TimesCited xsi:nil=\"true\" />\r\n    <TimesNotSelfCited
+        xsi:nil=\"true\" />\r\n    <PMID>20046456</PMID>\r\n    <PublicationSourceTitle>Journal
+        of educational evaluation for health professions</PublicationSourceTitle>\r\n
+        \   <Volume>6</Volume>\r\n    <Pagination>3-?</Pagination>\r\n    <PublicationDate>2009-01-01T00:00:00</PublicationDate>\r\n
+        \   <PublicationYear>2009</PublicationYear>\r\n    <PublicationImpactFactor
+        xsi:nil=\"true\" />\r\n    <PublicationSubjectCategoryList />\r\n    <ISSN>1975-5937</ISSN>\r\n
+        \   <DOI>10.3352/jeehp.2009.6.3</DOI>\r\n    <ConferenceStartDate xsi:nil=\"true\"
+        />\r\n    <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank xsi:nil=\"true\"
+        />\r\n    <OrdinalRank>5</OrdinalRank>\r\n    <NormalizedRank xsi:nil=\"true\"
+        />\r\n    <NewPublicationItemID>46795732</NewPublicationItemID>\r\n    <IsObsolete>false</IsObsolete>\r\n
+        \   <CopyrightPublisher />\r\n    <CopyrightCity />\r\n  </PublicationItem>\r\n
+        \ <PublicationItem>\r\n    <PublicationItemID>46558063</PublicationItemID>\r\n
+        \   <Title>Scenario and checklist for airway rescue during pediatric sedation.</Title>\r\n
+        \   <Abstract />\r\n    <AuthorList>Chen,Michael,I|Edler,Alice,|Wald,Samuel,|Dubois,Joshua,|Huang,Yue,Ming</AuthorList>\r\n
+        \   <AuthorCount>5</AuthorCount>\r\n    <KeywordList />\r\n    <DocumentTypeList>Journal
+        Article</DocumentTypeList>\r\n    <DocumentCategory>Journal Document</DocumentCategory>\r\n
+        \   <NumberOfReferences xsi:nil=\"true\" />\r\n    <TimesCited xsi:nil=\"true\"
+        />\r\n    <TimesNotSelfCited xsi:nil=\"true\" />\r\n    <PMID>19088623</PMID>\r\n
+        \   <PublicationSourceTitle>Simulation in healthcare </PublicationSourceTitle>\r\n
+        \   <Volume>2</Volume>\r\n    <Issue>3</Issue>\r\n    <Pagination>194-198</Pagination>\r\n
+        \   <PublicationDate>2007-10-01T00:00:00</PublicationDate>\r\n    <PublicationYear>2007</PublicationYear>\r\n
+        \   <PublicationImpactFactor>2.036</PublicationImpactFactor>\r\n    <PublicationSubjectCategoryList
+        />\r\n    <ISSN>1559-2332</ISSN>\r\n    <DOI>10.1097/SIH.0b013e3181461b60</DOI>\r\n
+        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>4</OrdinalRank>\r\n
+        \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID>46558063</NewPublicationItemID>\r\n
+        \   <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher />\r\n    <CopyrightCity
+        />\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n    <PublicationItemID>7877232</PublicationItemID>\r\n
+        \   <Title>Avian flu (H5N1): its epidemiology, prevention, and implications
+        for anesthesiology</Title>\r\n    <Abstract>Avian flu, influenza A subtype
+        H5N1, is an emergent and virulent disease that poses a threat to, Emerging;
+        the health and safety of the world community. Avian flu is I of more than
+        25 influenza A viruses that reside Disease notification; primarily in birds
+        but also infect humans and other mammals. Avian flu is responsible for the
+        current Disease outbreaks; outbreak in Asia; H5N1 has now displayed probable
+        human-to-human transmission; it could be a Disease transmission; harbinger
+        of a global epidemic. Anesthesiologists are exposed to a risk for infection
+        when they are influenza involved in airway instrurnentation of infected patients.
+        Given tile evidence of emerging resistance to, Avian common antiviral agents
+        used to treat H5N1 influenza virus and limited supply of H5N1 vaccine, prevention
+        is our best protection. The following article will detail the virology and
+        preventive public health practices for H5N1. This knowledge can also be used
+        to define and prevent other yet unidentified infectious threats. (c) 2006
+        Elsevier Inc. All rights reserved.</Abstract>\r\n    <AuthorList>Edler,A,A</AuthorList>\r\n
+        \   <AuthorCount>1</AuthorCount>\r\n    <KeywordList>OUTBREAK|TORONTO|INFLUENZA-A
+        H5N1|TRANSMISSION|disease outbreaks|disease transmission|disease notification|communicable
+        diseases, emerging|influenza, avian</KeywordList>\r\n    <DocumentTypeList>Article</DocumentTypeList>\r\n
+        \   <DocumentCategory>Journal Document</DocumentCategory>\r\n    <NumberOfReferences>12</NumberOfReferences>\r\n
+        \   <TimesCited>3</TimesCited>\r\n    <TimesNotSelfCited>3</TimesNotSelfCited>\r\n
+        \   <PMID>16517323</PMID>\r\n    <WoSItemID>000236198500001</WoSItemID>\r\n
+        \   <PublicationSourceTitle>JOURNAL OF CLINICAL ANESTHESIA</PublicationSourceTitle>\r\n
+        \   <Volume>18</Volume>\r\n    <Issue>1</Issue>\r\n    <Pagination>1-4</Pagination>\r\n
+        \   <PublicationDate>2006-02-01T00:00:00</PublicationDate>\r\n    <PublicationYear>2006</PublicationYear>\r\n
+        \   <PublicationType>Journal</PublicationType>\r\n    <PublicationImpactFactor>1.028</PublicationImpactFactor>\r\n
+        \   <PublicationSubjectCategoryList>Anesthesiology</PublicationSubjectCategoryList>\r\n
+        \   <ISSN>0952-8180</ISSN>\r\n    <DOI>10.1016/j.jclinane.2005.12.004</DOI>\r\n
+        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>3</OrdinalRank>\r\n
+        \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID>7877232</NewPublicationItemID>\r\n
+        \   <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>ELSEVIER SCIENCE
+        INC</CopyrightPublisher>\r\n    <CopyrightCity>NEW YORK</CopyrightCity>\r\n
+        \ </PublicationItem>\r\n  <PublicationItem>\r\n    <PublicationItemID>5199247</PublicationItemID>\r\n
+        \   <Title>Blood loss during posterior spinal fusion surgery in patients with
+        neuromuscular disease: is there an increased risk?</Title>\r\n    <Abstract>Background:
+        Scoliosis surgery in paediatric patients can carry significant morbidity associated
+        with intraoperative blood loss and the resultant transfusion therapy. Patients
+        with neuromuscular disease may be at an increased risk for this intraoperative
+        blood loss, but it is unclear if this is because of direct vascular pathophysiological
+        changes or the fact that neuromuscular patients typically have more extensive
+        orthopaedic disease and more vertebral segments involved. This study examined
+        the risk of extensive blood loss (&gt;50% of total blood volume) in patients
+        with neuromuscular disease compared with patients who did not have neuromuscular
+        disease when the extent of the surgery (number of segments fused), age and
+        preoperative coagulation profile where taken into consideration.  Methods:
+        Retrospective chart review of 163 paediatric patients was preformed. Patients
+        who carried a diagnosis of preexisting neuromuscular disease were classified
+        as such. Idiopathic, traumatic and iatrogenic scoliosis were classified as
+        nonneuromuscular. Extensive blood loss was defined as &gt;50% of estimated
+        total blood volume. Logistic regression was used to predict the risk of extensive
+        blood loss between the two groups when age, weight, extent of surgery was
+        controlled for and anaesthetic and surgical techniques remained similar.  Results:
+        Patients with neuromuscular disease did not vary significantly in age, weight,
+        or preoperative haematocrit and platelet count from patients without neuromuscular
+        disease. Neuromuscular patients did have significantly more vertebral segments
+        fused. When this difference was controlled for statistically, neuromuscular
+        patients had an almost seven times higher risk (adjusted odds ration 6.9,
+        P &lt; 0.05) of losing &gt;50% of their estimated total blood volume during
+        scoliosis surgery.  Conclusions: Patients with neuromuscular disease can present
+        various anaesthetic challenges during scoliosis surgery, among these is the
+        inherent risk of extensive blood loss. Recognizing this may help anaesthesiologists
+        and surgeons more accurately prepare for and treat intraoperative blood loss
+        during scoliosis surgery in patients with neuromuscular disease.</Abstract>\r\n
+        \   <AuthorList>Edler,A,|Murray,D,J|Forbes,R,B</AuthorList>\r\n    <AuthorCount>3</AuthorCount>\r\n
+        \   <KeywordList>DUCHENNE MUSCULAR-DYSTROPHY|DYSFUNCTION|neuromuscular disease|blood
+        loss|spinal fusion|scoliosis surgery</KeywordList>\r\n    <DocumentTypeList>Article</DocumentTypeList>\r\n
+        \   <DocumentCategory>Journal Document</DocumentCategory>\r\n    <NumberOfReferences>10</NumberOfReferences>\r\n
+        \   <TimesCited>33</TimesCited>\r\n    <TimesNotSelfCited>33</TimesNotSelfCited>\r\n
+        \   <PMID>14617124</PMID>\r\n    <WoSItemID>000186655000011</WoSItemID>\r\n
+        \   <PublicationSourceTitle>PAEDIATRIC ANAESTHESIA</PublicationSourceTitle>\r\n
+        \   <Volume>13</Volume>\r\n    <Issue>9</Issue>\r\n    <Pagination>818-822</Pagination>\r\n
+        \   <PublicationDate>2003-11-01T00:00:00</PublicationDate>\r\n    <PublicationYear>2003</PublicationYear>\r\n
+        \   <PublicationType>Journal</PublicationType>\r\n    <PublicationImpactFactor>0.983</PublicationImpactFactor>\r\n
+        \   <PublicationSubjectCategoryList>Pediatrics</PublicationSubjectCategoryList>\r\n
+        \   <ISSN>1155-5645</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\" />\r\n
+        \   <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank xsi:nil=\"true\" />\r\n
+        \   <OrdinalRank>2</OrdinalRank>\r\n    <NormalizedRank xsi:nil=\"true\" />\r\n
+        \   <NewPublicationItemID>5199247</NewPublicationItemID>\r\n    <IsObsolete>false</IsObsolete>\r\n
+        \   <CopyrightPublisher>WILEY-BLACKWELL</CopyrightPublisher>\r\n    <CopyrightCity>HOBOKEN</CopyrightCity>\r\n
+        \ </PublicationItem>\r\n  <PublicationItem>\r\n    <PublicationItemID>844542</PublicationItemID>\r\n
+        \   <Title>An analysis of factors influencing postanesthesia recovery after
+        pediatric ambulatory tonsillectomy and adenoidectomy</Title>\r\n    <Abstract>BACKGROUND:
+        Many factors contribute to prolonged length of stay (LOS) for pediatric patients
+        in the postanesthesia care unit (PACU). We designed this prospective study
+        to identify the pre- and postoperative factors that prolong LOS.  METHODS:
+        We studied 166 children, aged 1-18 yr, who underwent tonsillectomy and adenoidectomy
+        or tonsillectomy and adenoidectomy, and bilateral myringotomy with tube insertion
+        under general anesthesia. The primary outcome measure was the time spent in
+        the PACU until predetermined discharge criteria were met.  RESULTS: The number
+        of episodes of postoperative nausea and vomiting, patient age, and number
+        of oxygen desaturations contributed significantly (P &lt; 0.05) to prolonged
+        LOS. Each episode of postoperative nausea and vomiting (P &lt; 0.05) or oxygen
+        desaturation to &lt; 95% (P &lt; 0.05) increased the patient's LOS by 0.5
+        h. History of upper respiratory tract infection, emergence agitation, and
+        parental anxiety did not significantly predict increased LOS.  CONCLUSION:
+        This investigation is the first composite view of LOS in pediatric patients.
+        The significance of identifying patients at risk of prolonged LOS prior to
+        anesthesia is of use not only in allocating PACU resource and staffing needs,
+        but also for improving quality of care and ensuring a minimally traumatic
+        anesthetic experience for our pediatric patients and their families.</Abstract>\r\n
+        \   <AuthorList>Edler,Alice,A|Mariano,Edward,R|Golianu,Brenda,|Kuan,Calvin,|Pentcheva,Krassimira,</AuthorList>\r\n
+        \   <AuthorCount>5</AuthorCount>\r\n    <KeywordList>ANESTHESIA|ADMISSION|ADENOTONSILLECTOMY|SURGERY|DEXAMETHASONE|STAY|CHILDREN|RISK-FACTORS|COMPLICATIONS|CARE</KeywordList>\r\n
+        \   <DocumentTypeList>Article</DocumentTypeList>\r\n    <DocumentCategory>Journal
+        Document</DocumentCategory>\r\n    <NumberOfReferences>21</NumberOfReferences>\r\n
+        \   <TimesCited>22</TimesCited>\r\n    <TimesNotSelfCited>20</TimesNotSelfCited>\r\n
+        \   <PMID>17377083</PMID>\r\n    <WoSItemID>000245371900010</WoSItemID>\r\n
+        \   <PublicationSourceTitle>ANESTHESIA AND ANALGESIA</PublicationSourceTitle>\r\n
+        \   <Volume>104</Volume>\r\n    <Issue>4</Issue>\r\n    <Pagination>784-789</Pagination>\r\n
+        \   <PublicationDate>2007-04-01T00:00:00</PublicationDate>\r\n    <PublicationYear>2007</PublicationYear>\r\n
+        \   <PublicationType>Journal</PublicationType>\r\n    <PublicationImpactFactor>2.214</PublicationImpactFactor>\r\n
+        \   <PublicationSubjectCategoryList>Anesthesiology</PublicationSubjectCategoryList>\r\n
+        \   <ISSN>0003-2999</ISSN>\r\n    <DOI>10.1213/01.ane.0000258771.53068.09</DOI>\r\n
+        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>1</OrdinalRank>\r\n
+        \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID>844542</NewPublicationItemID>\r\n
+        \   <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>LIPPINCOTT WILLIAMS
+        &amp; WILKINS</CopyrightPublisher>\r\n    <CopyrightCity>PHILADELPHIA</CopyrightCity>\r\n
+        \ </PublicationItem>\r\n</ArrayOfPublicationItem>"
+    http_version: 
+  recorded_at: Wed, 11 May 2016 17:07:32 GMT
+- request:
+    method: post
+    uri: http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml
+    body:
+      encoding: UTF-8
+      string: "&id=21975722&id=21134139&id=20386227&id=20046456&id=19088623&id=16517323&id=14617124&id=17377083"
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 11 May 2016 17:07:32 GMT
+      Server:
+      - Apache
+      Access-Control-Allow-Origin:
+      - "*"
+      Cache-Control:
+      - private
+      Ncbi-Sid:
+      - 08DE6D0973366D41_0215SID
+      Content-Type:
+      - text/xml; charset=UTF-8
+      Set-Cookie:
+      - ncbi_sid=08DE6D0973366D41_0215SID; domain=.nih.gov; path=/; expires=Thu, 11
+        May 2017 17:07:32 GMT
+      X-Ua-Compatible:
+      - IE=Edge
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0"?>
+        <!DOCTYPE PubmedArticleSet PUBLIC "-//NLM//DTD PubMedArticle, 1st January 2016//EN" "http://www.ncbi.nlm.nih.gov/corehtml/query/DTD/pubmed_160101.dtd">
+        <PubmedArticleSet>
+        <PubmedArticle>
+            <MedlineCitation Owner="NLM" Status="PubMed-not-MEDLINE">
+                <PMID Version="1">21975722</PMID>
+                <DateCreated>
+                    <Year>2011</Year>
+                    <Month>10</Month>
+                    <Day>06</Day>
+                </DateCreated>
+                <DateCompleted>
+                    <Year>2011</Year>
+                    <Month>11</Month>
+                    <Day>10</Day>
+                </DateCompleted>
+                <Article PubModel="Print">
+                    <Journal>
+                        <ISSN IssnType="Print">1949-8349</ISSN>
+                        <JournalIssue CitedMedium="Print">
+                            <Volume>1</Volume>
+                            <Issue>1</Issue>
+                            <PubDate>
+                                <Year>2009</Year>
+                                <Month>Sep</Month>
+                            </PubDate>
+                        </JournalIssue>
+                        <Title>Journal of graduate medical education</Title>
+                        <ISOAbbreviation>J Grad Med Educ</ISOAbbreviation>
+                    </Journal>
+                    <ArticleTitle>Building faculty community: fellowship in graduate medical education administration.</ArticleTitle>
+                    <Pagination>
+                        <MedlinePgn>146-9</MedlinePgn>
+                    </Pagination>
+                    <ELocationID EIdType="doi" ValidYN="Y">10.4300/01.01.0024</ELocationID>
+                    <Abstract>
+                        <AbstractText Label="INTRODUCTION" NlmCategory="BACKGROUND">The Department of Graduate Medical Education at Stanford Hospital and Clinics has developed a professional training program for program directors. This paper outlines the goals, structure, and expected outcomes for the one-year Fellowship in Graduate Medical Education Administration program.</AbstractText>
+                        <AbstractText Label="BACKGROUND" NlmCategory="BACKGROUND">The skills necessary for leading a successful Accreditation Council for Graduate Medical Education (ACGME) training program require an increased level of curricular and administrative expertise. To meet the ACGME Outcome Project goals, program directors must demonstrate not only sophisticated understanding of curricular design but also competency-based performance assessment, resource management, and employment law. Few faculty-development efforts adequately address the complexities of educational administration. As part of an institutional-needs assessment, 41% of Stanford program directors indicated that they wanted more training from the Department of Graduate Medical Education.</AbstractText>
+                        <AbstractText Label="INTERVENTION" NlmCategory="METHODS">To address this need, the Fellowship in Graduate Medical Education Administration program will provide a curriculum that includes (1) readings and discussions in 9 topic areas, (2) regular mentoring by the director of Graduate Medical Education (GME), (3) completion of a service project that helps improve GME across the institution, and (4) completion of an individual scholarly project that focuses on education.</AbstractText>
+                        <AbstractText Label="RESULTS" NlmCategory="RESULTS">The first fellow was accepted during the 2008-2009 academic year. Outcomes for the project include presentation of a project at a national meeting, internal workshops geared towards disseminating learning to peer program directors, and the completion of a GME service project. The paper also discusses lessons learned for improving the program.</AbstractText>
+                    </Abstract>
+                    <AuthorList CompleteYN="Y">
+                        <Author ValidYN="Y">
+                            <LastName>Edler</LastName>
+                            <ForeName>Alice A</ForeName>
+                            <Initials>AA</Initials>
+                        </Author>
+                        <Author ValidYN="Y">
+                            <LastName>Dohn</LastName>
+                            <ForeName>Ann</ForeName>
+                            <Initials>A</Initials>
+                        </Author>
+                        <Author ValidYN="Y">
+                            <LastName>Davidson</LastName>
+                            <ForeName>Heather A</ForeName>
+                            <Initials>HA</Initials>
+                        </Author>
+                        <Author ValidYN="Y">
+                            <LastName>Grewal</LastName>
+                            <ForeName>Daisy</ForeName>
+                            <Initials>D</Initials>
+                        </Author>
+                        <Author ValidYN="Y">
+                            <LastName>Behravesh</LastName>
+                            <ForeName>Bardia</ForeName>
+                            <Initials>B</Initials>
+                        </Author>
+                        <Author ValidYN="Y">
+                            <LastName>Piro</LastName>
+                            <ForeName>Nancy</ForeName>
+                            <Initials>N</Initials>
+                        </Author>
+                    </AuthorList>
+                    <Language>eng</Language>
+                    <PublicationTypeList>
+                        <PublicationType UI="D016428">Journal Article</PublicationType>
+                    </PublicationTypeList>
+                </Article>
+                <MedlineJournalInfo>
+                    <Country>United States</Country>
+                    <MedlineTA>J Grad Med Educ</MedlineTA>
+                    <NlmUniqueID>101521733</NlmUniqueID>
+                    <ISSNLinking>1949-8357</ISSNLinking>
+                </MedlineJournalInfo>
+                <OtherID Source="NLM">PMC2931184</OtherID>
+            </MedlineCitation>
+            <PubmedData>
+                <History>
+                    <PubMedPubDate PubStatus="entrez">
+                        <Year>2011</Year>
+                        <Month>10</Month>
+                        <Day>7</Day>
+                        <Hour>6</Hour>
+                        <Minute>0</Minute>
+                    </PubMedPubDate>
+                    <PubMedPubDate PubStatus="pubmed">
+                        <Year>2009</Year>
+                        <Month>9</Month>
+                        <Day>1</Day>
+                        <Hour>0</Hour>
+                        <Minute>0</Minute>
+                    </PubMedPubDate>
+                    <PubMedPubDate PubStatus="medline">
+                        <Year>2009</Year>
+                        <Month>9</Month>
+                        <Day>1</Day>
+                        <Hour>0</Hour>
+                        <Minute>1</Minute>
+                    </PubMedPubDate>
+                </History>
+                <PublicationStatus>ppublish</PublicationStatus>
+                <ArticleIdList>
+                    <ArticleId IdType="doi">10.4300/01.01.0024</ArticleId>
+                    <ArticleId IdType="pii">0044</ArticleId>
+                    <ArticleId IdType="pubmed">21975722</ArticleId>
+                    <ArticleId IdType="pmc">PMC2931184</ArticleId>
+                </ArticleIdList>
+            </PubmedData>
+        </PubmedArticle>
+
+
+        <PubmedArticle>
+            <MedlineCitation Owner="NLM" Status="MEDLINE">
+                <PMID Version="1">21134139</PMID>
+                <DateCreated>
+                    <Year>2010</Year>
+                    <Month>12</Month>
+                    <Day>07</Day>
+                </DateCreated>
+                <DateCompleted>
+                    <Year>2011</Year>
+                    <Month>05</Month>
+                    <Day>05</Day>
+                </DateCompleted>
+                <DateRevised>
+                    <Year>2011</Year>
+                    <Month>08</Month>
+                    <Day>25</Day>
+                </DateRevised>
+                <Article PubModel="Print">
+                    <Journal>
+                        <ISSN IssnType="Electronic">1743-498X</ISSN>
+                        <JournalIssue CitedMedium="Internet">
+                            <Volume>7</Volume>
+                            <Issue>1</Issue>
+                            <PubDate>
+                                <Year>2010</Year>
+                                <Month>Mar</Month>
+                            </PubDate>
+                        </JournalIssue>
+                        <Title>The clinical teacher</Title>
+                        <ISOAbbreviation>Clin Teach</ISOAbbreviation>
+                    </Journal>
+                    <ArticleTitle>Leadership lessons from military education for postgraduate medical curricular improvement.</ArticleTitle>
+                    <Pagination>
+                        <MedlinePgn>26-31</MedlinePgn>
+                    </Pagination>
+                    <ELocationID EIdType="doi" ValidYN="Y">10.1111/j.1743-498X.2009.00336.x</ELocationID>
+                    <Abstract>
+                        <AbstractText Label="BACKGROUND" NlmCategory="BACKGROUND">quality medical education includes both teaching and learning of data-driven knowledge, and appropriate technical skills and tacit behaviours, such as effective communication and professional leadership. But these implicit behaviours are not readily adaptable to traditional medical curriculum models. This manuscript explores a medical leadership curriculum informed by military education.</AbstractText>
+                        <AbstractText Label="CONTEXT" NlmCategory="BACKGROUND">our paediatric anaesthesia residents expressed a strong desire for more leadership opportunity within the training programme. Upon exploration, current health care models for leadership training were limited to short didactic presentations or lengthy certificate programmes. We could not find an appropriate model for our 1-year fellowship.</AbstractText>
+                        <AbstractText Label="INNOVATION" NlmCategory="METHODS">in collaboration with the US Naval Academy, we modified the 'Leadership Education and Development Program' curriculum to introduce daily and graduated leadership opportunities: starting with low-risk decision-making tasks and progressing to independent professional decision making and leadership. Each resident who opted into the programme had a 3-month role as team leader and spent 9 months as a team member. At the end of the first year of this curriculum both quantitative assessment and qualitative reflection from residents and faculty members noted significantly improved clinical and administrative decision making. The second-year residents' performance showed further improvement.</AbstractText>
+                        <AbstractText Label="IMPLICATIONS" NlmCategory="CONCLUSIONS">medical education has long emphasised subject-matter knowledge as a prime focus. However, in competency-based medical education, new curriculum models are needed. Many helpful models can be found in other professional fields. Collaborations between professional educators benefit the students, who are learning these new skills, the medical educators, who work jointly with other professionals, and the original curriculum designer, who has an opportunity to reflect on the strengths and weaknesses of his or her model.</AbstractText>
+                        <CopyrightInformation>Blackwell Publishing Ltd 2010.</CopyrightInformation>
+                    </Abstract>
+                    <AuthorList CompleteYN="Y">
+                        <Author ValidYN="Y">
+                            <LastName>Edler</LastName>
+                            <ForeName>Alice</ForeName>
+                            <Initials>A</Initials>
+                            <AffiliationInfo>
+                                <Affiliation>Stanford Hospital and Clinics, Stanford University School of Medicine, US Naval Academy, Stanford, California, USA. edlera@aaol.com</Affiliation>
+                            </AffiliationInfo>
+                        </Author>
+                        <Author ValidYN="Y">
+                            <LastName>Adamshick</LastName>
+                            <ForeName>Mark</ForeName>
+                            <Initials>M</Initials>
+                        </Author>
+                        <Author ValidYN="Y">
+                            <LastName>Fanning</LastName>
+                            <ForeName>Ruth</ForeName>
+                            <Initials>R</Initials>
+                        </Author>
+                        <Author ValidYN="Y">
+                            <LastName>Piro</LastName>
+                            <ForeName>Nancy</ForeName>
+                            <Initials>N</Initials>
+                        </Author>
+                    </AuthorList>
+                    <Language>eng</Language>
+                    <PublicationTypeList>
+                        <PublicationType UI="D016428">Journal Article</PublicationType>
+                        <PublicationType UI="D013485">Research Support, Non-U.S. Gov't</PublicationType>
+                    </PublicationTypeList>
+                </Article>
+                <MedlineJournalInfo>
+                    <Country>England</Country>
+                    <MedlineTA>Clin Teach</MedlineTA>
+                    <NlmUniqueID>101227511</NlmUniqueID>
+                    <ISSNLinking>1743-4971</ISSNLinking>
+                </MedlineJournalInfo>
+                <CitationSubset>IM</CitationSubset>
+                <MeshHeadingList>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D000776">Anesthesiology</DescriptorName>
+                        <QualifierName MajorTopicYN="Y" UI="Q000193">education</QualifierName>
+                        <QualifierName MajorTopicYN="N" UI="Q000592">standards</QualifierName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D002983">Clinical Competence</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D003479">Curriculum</DescriptorName>
+                        <QualifierName MajorTopicYN="Y" UI="Q000592">standards</QualifierName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D004503">Education, Medical, Graduate</DescriptorName>
+                        <QualifierName MajorTopicYN="Y" UI="Q000379">methods</QualifierName>
+                        <QualifierName MajorTopicYN="N" UI="Q000592">standards</QualifierName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D005180">Faculty, Medical</DescriptorName>
+                        <QualifierName MajorTopicYN="N" UI="Q000592">standards</QualifierName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D007722">Health Knowledge, Attitudes, Practice</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D006801">Humans</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D007396">Internship and Residency</DescriptorName>
+                        <QualifierName MajorTopicYN="Y" UI="Q000592">standards</QualifierName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="Y" UI="D007857">Leadership</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D007858">Learning</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D008887">Military Medicine</DescriptorName>
+                        <QualifierName MajorTopicYN="Y" UI="Q000193">education</QualifierName>
+                        <QualifierName MajorTopicYN="N" UI="Q000458">organization &amp; administration</QualifierName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D017145">Models, Educational</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D010372">Pediatrics</DescriptorName>
+                        <QualifierName MajorTopicYN="Y" UI="Q000193">education</QualifierName>
+                        <QualifierName MajorTopicYN="N" UI="Q000592">standards</QualifierName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D036301">Qualitative Research</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D013337">Students, Medical</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D013663">Teaching</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" Type="Geographic" UI="D014481">United States</DescriptorName>
+                    </MeshHeading>
+                </MeshHeadingList>
+            </MedlineCitation>
+            <PubmedData>
+                <History>
+                    <PubMedPubDate PubStatus="entrez">
+                        <Year>2010</Year>
+                        <Month>12</Month>
+                        <Day>8</Day>
+                        <Hour>6</Hour>
+                        <Minute>0</Minute>
+                    </PubMedPubDate>
+                    <PubMedPubDate PubStatus="pubmed">
+                        <Year>2010</Year>
+                        <Month>12</Month>
+                        <Day>8</Day>
+                        <Hour>6</Hour>
+                        <Minute>0</Minute>
+                    </PubMedPubDate>
+                    <PubMedPubDate PubStatus="medline">
+                        <Year>2011</Year>
+                        <Month>5</Month>
+                        <Day>6</Day>
+                        <Hour>6</Hour>
+                        <Minute>0</Minute>
+                    </PubMedPubDate>
+                </History>
+                <PublicationStatus>ppublish</PublicationStatus>
+                <ArticleIdList>
+                    <ArticleId IdType="doi">10.1111/j.1743-498X.2009.00336.x</ArticleId>
+                    <ArticleId IdType="pubmed">21134139</ArticleId>
+                </ArticleIdList>
+            </PubmedData>
+        </PubmedArticle>
+
+
+        <PubmedArticle>
+            <MedlineCitation Owner="NLM" Status="MEDLINE">
+                <PMID Version="1">20386227</PMID>
+                <DateCreated>
+                    <Year>2010</Year>
+                    <Month>04</Month>
+                    <Day>13</Day>
+                </DateCreated>
+                <DateCompleted>
+                    <Year>2010</Year>
+                    <Month>08</Month>
+                    <Day>06</Day>
+                </DateCompleted>
+                <DateRevised>
+                    <Year>2013</Year>
+                    <Month>11</Month>
+                    <Day>21</Day>
+                </DateRevised>
+                <Article PubModel="Print">
+                    <Journal>
+                        <ISSN IssnType="Electronic">1537-1913</ISSN>
+                        <JournalIssue CitedMedium="Internet">
+                            <Volume>48</Volume>
+                            <Issue>2</Issue>
+                            <PubDate>
+                                <Year>2010</Year>
+                                <Season>Spring</Season>
+                            </PubDate>
+                        </JournalIssue>
+                        <Title>International anesthesiology clinics</Title>
+                        <ISOAbbreviation>Int Anesthesiol Clin</ISOAbbreviation>
+                    </Journal>
+                    <ArticleTitle>Teaching NonPhysician Anesthesia Providers in Tanzania: a movement toward sustainable healthcare development.</ArticleTitle>
+                    <Pagination>
+                        <MedlinePgn>59-69</MedlinePgn>
+                    </Pagination>
+                    <ELocationID EIdType="doi" ValidYN="Y">10.1097/AIA.0b013e3181cd15ef</ELocationID>
+                    <AuthorList CompleteYN="Y">
+                        <Author ValidYN="Y">
+                            <LastName>Edler</LastName>
+                            <ForeName>Alice A</ForeName>
+                            <Initials>AA</Initials>
+                            <AffiliationInfo>
+                                <Affiliation>Stanford University Hospitals and Clinics, Stanford, California 94305, USA. Edlera@stanford.edu</Affiliation>
+                            </AffiliationInfo>
+                        </Author>
+                        <Author ValidYN="Y">
+                            <LastName>Gipp</LastName>
+                            <ForeName>Melanie S</ForeName>
+                            <Initials>MS</Initials>
+                        </Author>
+                    </AuthorList>
+                    <Language>eng</Language>
+                    <PublicationTypeList>
+                        <PublicationType UI="D016428">Journal Article</PublicationType>
+                    </PublicationTypeList>
+                </Article>
+                <MedlineJournalInfo>
+                    <Country>United States</Country>
+                    <MedlineTA>Int Anesthesiol Clin</MedlineTA>
+                    <NlmUniqueID>0370760</NlmUniqueID>
+                    <ISSNLinking>0020-5907</ISSNLinking>
+                </MedlineJournalInfo>
+                <CitationSubset>IM</CitationSubset>
+                <MeshHeadingList>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D000776">Anesthesiology</DescriptorName>
+                        <QualifierName MajorTopicYN="Y" UI="Q000193">education</QualifierName>
+                        <QualifierName MajorTopicYN="N" UI="Q000364">manpower</QualifierName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="Y" UI="D003695">Delivery of Health Care</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D006801">Humans</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" Type="Geographic" UI="D013636">Tanzania</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="Y" UI="D013663">Teaching</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="Y" UI="D014838">Volunteers</DescriptorName>
+                    </MeshHeading>
+                </MeshHeadingList>
+            </MedlineCitation>
+            <PubmedData>
+                <History>
+                    <PubMedPubDate PubStatus="entrez">
+                        <Year>2010</Year>
+                        <Month>4</Month>
+                        <Day>14</Day>
+                        <Hour>6</Hour>
+                        <Minute>0</Minute>
+                    </PubMedPubDate>
+                    <PubMedPubDate PubStatus="pubmed">
+                        <Year>2010</Year>
+                        <Month>4</Month>
+                        <Day>14</Day>
+                        <Hour>6</Hour>
+                        <Minute>0</Minute>
+                    </PubMedPubDate>
+                    <PubMedPubDate PubStatus="medline">
+                        <Year>2010</Year>
+                        <Month>8</Month>
+                        <Day>7</Day>
+                        <Hour>6</Hour>
+                        <Minute>0</Minute>
+                    </PubMedPubDate>
+                </History>
+                <PublicationStatus>ppublish</PublicationStatus>
+                <ArticleIdList>
+                    <ArticleId IdType="doi">10.1097/AIA.0b013e3181cd15ef</ArticleId>
+                    <ArticleId IdType="pii">00004311-201004820-00007</ArticleId>
+                    <ArticleId IdType="pubmed">20386227</ArticleId>
+                </ArticleIdList>
+            </PubmedData>
+        </PubmedArticle>
+
+
+        <PubmedArticle>
+            <MedlineCitation Owner="NLM" Status="PubMed-not-MEDLINE">
+                <PMID Version="1">20046456</PMID>
+                <DateCreated>
+                    <Year>2010</Year>
+                    <Month>01</Month>
+                    <Day>04</Day>
+                </DateCreated>
+                <DateCompleted>
+                    <Year>2011</Year>
+                    <Month>07</Month>
+                    <Day>14</Day>
+                </DateCompleted>
+                <DateRevised>
+                    <Year>2013</Year>
+                    <Month>05</Month>
+                    <Day>29</Day>
+                </DateRevised>
+                <Article PubModel="Electronic">
+                    <Journal>
+                        <ISSN IssnType="Electronic">1975-5937</ISSN>
+                        <JournalIssue CitedMedium="Internet">
+                            <Volume>6</Volume>
+                            <PubDate>
+                                <Year>2009</Year>
+                            </PubDate>
+                        </JournalIssue>
+                        <Title>Journal of educational evaluation for health professions</Title>
+                        <ISOAbbreviation>J Educ Eval Health Prof</ISOAbbreviation>
+                    </Journal>
+                    <ArticleTitle>Patient simulation: a literary synthesis of assessment tools in anesthesiology.</ArticleTitle>
+                    <Pagination>
+                        <MedlinePgn>3</MedlinePgn>
+                    </Pagination>
+                    <ELocationID EIdType="doi" ValidYN="Y">10.3352/jeehp.2009.6.3</ELocationID>
+                    <Abstract>
+                        <AbstractText>High-fidelity patient simulation (HFPS) has been hypothesized as a modality for assessing competency of knowledge and skill in patient simulation, but uniform methods for HFPS performance assessment (PA) have not yet been completely achieved. Anesthesiology as a field founded the HFPS discipline and also leads in its PA. This project reviews the types, quality, and designated purpose of HFPS PA tools in anesthesiology. We used the systematic review method and systematically reviewed anesthesiology literature referenced in PubMed to assess the quality and reliability of available PA tools in HFPS. Of 412 articles identified, 50 met our inclusion criteria. Seventy seven percent of studies have been published since 2000; more recent studies demonstrated higher quality. Investigators reported a variety of test construction and validation methods. The most commonly reported test construction methods included &quot;modified Delphi Techniques&quot; for item selection, reliability measurement using inter-rater agreement, and intra-class correlations between test items or subtests. Modern test theory, in particular generalizability theory, was used in nine (18%) of studies. Test score validity has been addressed in multiple investigations and shown a significant improvement in reporting accuracy. However the assessment of predicative has been low across the majority of studies. Usability and practicality of testing occasions and tools was only anecdotally reported. To more completely comply with the gold standards for PA design, both shared experience of experts and recognition of test construction standards, including reliability and validity measurements, instrument piloting, rater training, and explicit identification of the purpose and proposed use of the assessment tool, are required.</AbstractText>
+                    </Abstract>
+                    <AuthorList CompleteYN="Y">
+                        <Author ValidYN="Y">
+                            <LastName>Edler</LastName>
+                            <ForeName>Alice A</ForeName>
+                            <Initials>AA</Initials>
+                            <AffiliationInfo>
+                                <Affiliation>Department of Graduate Medical Education, Stanford Hospitals and Clinics, Stanford, CA.</Affiliation>
+                            </AffiliationInfo>
+                        </Author>
+                        <Author ValidYN="Y">
+                            <LastName>Fanning</LastName>
+                            <ForeName>Ruth G</ForeName>
+                            <Initials>RG</Initials>
+                        </Author>
+                        <Author ValidYN="Y">
+                            <LastName>Chen</LastName>
+                            <ForeName>Michael I</ForeName>
+                            <Initials>MI</Initials>
+                        </Author>
+                        <Author ValidYN="Y">
+                            <LastName>Claure</LastName>
+                            <ForeName>Rebecca</ForeName>
+                            <Initials>R</Initials>
+                        </Author>
+                        <Author ValidYN="Y">
+                            <LastName>Almazan</LastName>
+                            <ForeName>Dondee</ForeName>
+                            <Initials>D</Initials>
+                        </Author>
+                        <Author ValidYN="Y">
+                            <LastName>Struyk</LastName>
+                            <ForeName>Brain</ForeName>
+                            <Initials>B</Initials>
+                        </Author>
+                        <Author ValidYN="Y">
+                            <LastName>Seiden</LastName>
+                            <ForeName>Samuel C</ForeName>
+                            <Initials>SC</Initials>
+                        </Author>
+                    </AuthorList>
+                    <Language>eng</Language>
+                    <PublicationTypeList>
+                        <PublicationType UI="D016428">Journal Article</PublicationType>
+                    </PublicationTypeList>
+                    <ArticleDate DateType="Electronic">
+                        <Year>2009</Year>
+                        <Month>12</Month>
+                        <Day>20</Day>
+                    </ArticleDate>
+                </Article>
+                <MedlineJournalInfo>
+                    <Country>Korea (South)</Country>
+                    <MedlineTA>J Educ Eval Health Prof</MedlineTA>
+                    <NlmUniqueID>101490061</NlmUniqueID>
+                    <ISSNLinking>1975-5937</ISSNLinking>
+                </MedlineJournalInfo>
+                <CommentsCorrectionsList>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>Anesth Analg. 2003 Dec;97(6):1695-705</RefSource>
+                        <PMID Version="1">14633545</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>Anesth Analg. 2003 Dec;97(6):1690-4</RefSource>
+                        <PMID Version="1">14633544</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>Br J Anaesth. 2004 Mar;92(3):388-92</RefSource>
+                        <PMID Version="1">14742327</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>Med Teach. 2003 Nov;25(6):654-8</RefSource>
+                        <PMID Version="1">15369915</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>Anesthesiology. 2004 Nov;101(5):1084-95</RefSource>
+                        <PMID Version="1">15505443</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>Anaesthesia. 2005 Mar;60(3):245-50</RefSource>
+                        <PMID Version="1">15710009</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>AACN Clin Issues. 2005 Jan-Mar;16(1):89-104</RefSource>
+                        <PMID Version="1">15714021</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>Anesth Analg. 2005 May;100(5):1375-80, table of contents</RefSource>
+                        <PMID Version="1">15845689</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>Anesth Analg. 2005 Jul;101(1):48-58, table of contents</RefSource>
+                        <PMID Version="1">15976205</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>Anesthesiology. 2005 Aug;103(2):241-8</RefSource>
+                        <PMID Version="1">16052105</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>Anesth Analg. 2005 Oct;101(4):1068-74, table of contents</RefSource>
+                        <PMID Version="1">16192523</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>Anesth Analg. 2005 Oct;101(4):1127-34, table of contents</RefSource>
+                        <PMID Version="1">16192533</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>Crit Care Med. 2006 Jan;34(1):151-7</RefSource>
+                        <PMID Version="1">16374169</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>Anesth Analg. 2006 Mar;102(3):865-7</RefSource>
+                        <PMID Version="1">16492842</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>Anesthesiology. 2006 Mar;104(3):475-81</RefSource>
+                        <PMID Version="1">16508394</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>Med Teach. 2006 Feb;28(1):e10-5</RefSource>
+                        <PMID Version="1">16627314</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>Anesthesiology. 2006 Aug;105(2):260-6</RefSource>
+                        <PMID Version="1">16871059</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>Anesth Analg. 2006 Sep;103(3):551-6</RefSource>
+                        <PMID Version="1">16931660</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>Isr Med Assoc J. 2006 Oct;8(10):728-33</RefSource>
+                        <PMID Version="1">17125130</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>Anaesthesia. 2007 Feb;62(2):122-6</RefSource>
+                        <PMID Version="1">17223802</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>Anesthesiology. 2007 Apr;106(4):812-25</RefSource>
+                        <PMID Version="1">17413920</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>Anesthesiology. 2007 May;106(5):907-15</RefSource>
+                        <PMID Version="1">17457121</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>Emerg Med Australas. 2008 Feb;20(1):1-9</RefSource>
+                        <PMID Version="1">17999685</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>Anesthesiology. 2007 Nov;107(5):705-13</RefSource>
+                        <PMID Version="1">18073544</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>Pediatrics. 2008 Jan;121(1):e34-43</RefSource>
+                        <PMID Version="1">18166542</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>Anaesthesia. 2008 Apr;63(4):379-84</RefSource>
+                        <PMID Version="1">18336488</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>Anaesth Intensive Care. 2008 Mar;36(2):185-9</RefSource>
+                        <PMID Version="1">18361009</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>Anesthesiology. 2008 May;108(5):831-40</RefSource>
+                        <PMID Version="1">18431118</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>Nurs Educ Perspect. 2008 Mar-Apr;29(2):105-9</RefSource>
+                        <PMID Version="1">18459626</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>Simul Healthc. 2008 Summer;3(2):72-81</RefSource>
+                        <PMID Version="1">19088645</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>Aviat Space Environ Med. 1992 Sep;63(9):763-70</RefSource>
+                        <PMID Version="1">1524531</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>Anesthesiology. 1992 Apr;76(4):495-501</RefSource>
+                        <PMID Version="1">1550273</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>Anesth Analg. 1989 Apr;68(4):444-51</RefSource>
+                        <PMID Version="1">2929977</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>Am Psychol. 1973 Jan;28(1):1-14</RefSource>
+                        <PMID Version="1">4684069</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>Acad Med. 1995 Jul;70(7):642-53</RefSource>
+                        <PMID Version="1">7612129</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>Br J Anaesth. 1994 Sep;73(3):293-7</RefSource>
+                        <PMID Version="1">7946851</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>Br J Anaesth. 1997 May;78(5):553-6</RefSource>
+                        <PMID Version="1">9175971</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>Can J Anaesth. 1997 Sep;44(9):924-8</RefSource>
+                        <PMID Version="1">9305554</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>Can J Anaesth. 1997 Nov;44(11):1191-5</RefSource>
+                        <PMID Version="1">9398961</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>J Clin Monit. 1997 Nov;13(6):399-407</RefSource>
+                        <PMID Version="1">9495293</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>Br J Anaesth. 1998 Jan;80(1):58-62</RefSource>
+                        <PMID Version="1">9505779</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>Anesth Analg. 1998 Jun;86(6):1160-4</RefSource>
+                        <PMID Version="1">9620496</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>Anesthesiology. 1998 Jul;89(1):8-18</RefSource>
+                        <PMID Version="1">9667288</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>Acad Med. 1999 Feb;74(2):202</RefSource>
+                        <PMID Version="1">10065064</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>Crit Care Med. 1999 Apr;27(4):821-4</RefSource>
+                        <PMID Version="1">10321676</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>Med Educ. 2000 Jan;34(1):42-5</RefSource>
+                        <PMID Version="1">10607278</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>Acta Anaesthesiol Scand. 2001 Mar;45(3):315-9</RefSource>
+                        <PMID Version="1">11207467</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>Can J Anaesth. 2001 Mar;48(3):225-33</RefSource>
+                        <PMID Version="1">11305821</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>Anesthesiology. 2001 Jul;95(1):36-42</RefSource>
+                        <PMID Version="1">11465581</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>Acad Med. 2001 Oct;76(10):1053-5</RefSource>
+                        <PMID Version="1">11597848</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>Anesth Analg. 2002 Jan;94(1):149-53, table of contents</RefSource>
+                        <PMID Version="1">11772818</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>JAMA. 2002 Jan 9;287(2):226-35</RefSource>
+                        <PMID Version="1">11779266</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>Br J Anaesth. 2002 Mar;88(3):338-44</RefSource>
+                        <PMID Version="1">11990263</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>Med Educ. 2002 Sep;36(9):833-41</RefSource>
+                        <PMID Version="1">12354246</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>Anesthesiology. 2002 Dec;97(6):1434-44</RefSource>
+                        <PMID Version="1">12459669</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>Br J Anaesth. 2003 Jan;90(1):43-7</RefSource>
+                        <PMID Version="1">12488377</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>J Clin Monit Comput. 2000;16(4):273-85</RefSource>
+                        <PMID Version="1">12578075</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>Br J Anaesth. 2003 May;90(5):580-8</RefSource>
+                        <PMID Version="1">12697584</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>Anesthesiology. 2003 Jun;98(6):1345-55; discussion 5A</RefSource>
+                        <PMID Version="1">12766642</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>Br J Anaesth. 2003 Sep;91(3):312-8</RefSource>
+                        <PMID Version="1">12925467</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>Psychol Bull. 1955 Jul;52(4):281-302</RefSource>
+                        <PMID Version="1">13245896</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>Anesthesiology. 2003 Dec;99(6):1270-80</RefSource>
+                        <PMID Version="1">14639138</PMID>
+                    </CommentsCorrections>
+                </CommentsCorrectionsList>
+                <OtherID Source="NLM">PMC2796725</OtherID>
+                <KeywordList Owner="NOTNLM">
+                    <Keyword MajorTopicYN="N">Anesthesiology</Keyword>
+                    <Keyword MajorTopicYN="N">High-Fidelity Patient Simulation</Keyword>
+                    <Keyword MajorTopicYN="N">Patient Simulation</Keyword>
+                    <Keyword MajorTopicYN="N">Performance Assessment</Keyword>
+                    <Keyword MajorTopicYN="N">Systemic Review</Keyword>
+                    <Keyword MajorTopicYN="N">Test Theory</Keyword>
+                </KeywordList>
+            </MedlineCitation>
+            <PubmedData>
+                <History>
+                    <PubMedPubDate PubStatus="received">
+                        <Year>2009</Year>
+                        <Month>10</Month>
+                        <Day>17</Day>
+                    </PubMedPubDate>
+                    <PubMedPubDate PubStatus="accepted">
+                        <Year>2009</Year>
+                        <Month>12</Month>
+                        <Day>12</Day>
+                    </PubMedPubDate>
+                    <PubMedPubDate PubStatus="epublish">
+                        <Year>2009</Year>
+                        <Month>12</Month>
+                        <Day>20</Day>
+                    </PubMedPubDate>
+                    <PubMedPubDate PubStatus="entrez">
+                        <Year>2010</Year>
+                        <Month>1</Month>
+                        <Day>5</Day>
+                        <Hour>6</Hour>
+                        <Minute>0</Minute>
+                    </PubMedPubDate>
+                    <PubMedPubDate PubStatus="pubmed">
+                        <Year>2010</Year>
+                        <Month>1</Month>
+                        <Day>5</Day>
+                        <Hour>6</Hour>
+                        <Minute>0</Minute>
+                    </PubMedPubDate>
+                    <PubMedPubDate PubStatus="medline">
+                        <Year>2010</Year>
+                        <Month>1</Month>
+                        <Day>5</Day>
+                        <Hour>6</Hour>
+                        <Minute>1</Minute>
+                    </PubMedPubDate>
+                </History>
+                <PublicationStatus>epublish</PublicationStatus>
+                <ArticleIdList>
+                    <ArticleId IdType="doi">10.3352/jeehp.2009.6.3</ArticleId>
+                    <ArticleId IdType="pubmed">20046456</ArticleId>
+                    <ArticleId IdType="pmc">PMC2796725</ArticleId>
+                </ArticleIdList>
+            </PubmedData>
+        </PubmedArticle>
+
+
+        <PubmedArticle>
+            <MedlineCitation Owner="NLM" Status="MEDLINE">
+                <PMID Version="1">19088623</PMID>
+                <DateCreated>
+                    <Year>2008</Year>
+                    <Month>12</Month>
+                    <Day>17</Day>
+                </DateCreated>
+                <DateCompleted>
+                    <Year>2009</Year>
+                    <Month>01</Month>
+                    <Day>28</Day>
+                </DateCompleted>
+                <Article PubModel="Print">
+                    <Journal>
+                        <ISSN IssnType="Print">1559-2332</ISSN>
+                        <JournalIssue CitedMedium="Print">
+                            <Volume>2</Volume>
+                            <Issue>3</Issue>
+                            <PubDate>
+                                <Year>2007</Year>
+                                <Season>Fall</Season>
+                            </PubDate>
+                        </JournalIssue>
+                        <Title>Simulation in healthcare : journal of the Society for Simulation in Healthcare</Title>
+                        <ISOAbbreviation>Simul Healthc</ISOAbbreviation>
+                    </Journal>
+                    <ArticleTitle>Scenario and checklist for airway rescue during pediatric sedation.</ArticleTitle>
+                    <Pagination>
+                        <MedlinePgn>194-8</MedlinePgn>
+                    </Pagination>
+                    <ELocationID EIdType="doi" ValidYN="Y">10.1097/SIH.0b013e3181461b60</ELocationID>
+                    <AuthorList CompleteYN="Y">
+                        <Author ValidYN="Y">
+                            <LastName>Chen</LastName>
+                            <ForeName>Michael I</ForeName>
+                            <Initials>MI</Initials>
+                            <AffiliationInfo>
+                                <Affiliation>Stanford University Medical Center Stanford, CA, USA. michael1@stanford.edu</Affiliation>
+                            </AffiliationInfo>
+                        </Author>
+                        <Author ValidYN="Y">
+                            <LastName>Edler</LastName>
+                            <ForeName>Alice</ForeName>
+                            <Initials>A</Initials>
+                        </Author>
+                        <Author ValidYN="Y">
+                            <LastName>Wald</LastName>
+                            <ForeName>Samuel</ForeName>
+                            <Initials>S</Initials>
+                        </Author>
+                        <Author ValidYN="Y">
+                            <LastName>DuBois</LastName>
+                            <ForeName>Joshua</ForeName>
+                            <Initials>J</Initials>
+                        </Author>
+                        <Author ValidYN="Y">
+                            <LastName>Huang</LastName>
+                            <ForeName>Yue Ming</ForeName>
+                            <Initials>YM</Initials>
+                        </Author>
+                    </AuthorList>
+                    <Language>eng</Language>
+                    <PublicationTypeList>
+                        <PublicationType UI="D016428">Journal Article</PublicationType>
+                    </PublicationTypeList>
+                </Article>
+                <MedlineJournalInfo>
+                    <Country>United States</Country>
+                    <MedlineTA>Simul Healthc</MedlineTA>
+                    <NlmUniqueID>101264408</NlmUniqueID>
+                    <ISSNLinking>1559-2332</ISSNLinking>
+                </MedlineJournalInfo>
+                <CitationSubset>IM</CitationSubset>
+                <MeshHeadingList>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D000293">Adolescent</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="Y" UI="D016887">Cardiopulmonary Resuscitation</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D002648">Child</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D002669">Child Welfare</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D002675">Child, Preschool</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="Y" UI="D002983">Clinical Competence</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D003479">Curriculum</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D006801">Humans</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D007223">Infant</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D007231">Infant, Newborn</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="Y" UI="D016544">Patient Simulation</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="Y" UI="D010372">Pediatrics</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D012121">Respiration, Artificial</DescriptorName>
+                        <QualifierName MajorTopicYN="N" UI="Q000295">instrumentation</QualifierName>
+                    </MeshHeading>
+                </MeshHeadingList>
+            </MedlineCitation>
+            <PubmedData>
+                <History>
+                    <PubMedPubDate PubStatus="entrez">
+                        <Year>2008</Year>
+                        <Month>12</Month>
+                        <Day>18</Day>
+                        <Hour>9</Hour>
+                        <Minute>0</Minute>
+                    </PubMedPubDate>
+                    <PubMedPubDate PubStatus="pubmed">
+                        <Year>2007</Year>
+                        <Month>10</Month>
+                        <Day>1</Day>
+                        <Hour>0</Hour>
+                        <Minute>0</Minute>
+                    </PubMedPubDate>
+                    <PubMedPubDate PubStatus="medline">
+                        <Year>2009</Year>
+                        <Month>1</Month>
+                        <Day>29</Day>
+                        <Hour>9</Hour>
+                        <Minute>0</Minute>
+                    </PubMedPubDate>
+                </History>
+                <PublicationStatus>ppublish</PublicationStatus>
+                <ArticleIdList>
+                    <ArticleId IdType="doi">10.1097/SIH.0b013e3181461b60</ArticleId>
+                    <ArticleId IdType="pii">01266021-200700230-00006</ArticleId>
+                    <ArticleId IdType="pubmed">19088623</ArticleId>
+                </ArticleIdList>
+            </PubmedData>
+        </PubmedArticle>
+
+
+        <PubmedArticle>
+            <MedlineCitation Owner="NLM" Status="MEDLINE">
+                <PMID Version="1">16517323</PMID>
+                <DateCreated>
+                    <Year>2006</Year>
+                    <Month>03</Month>
+                    <Day>06</Day>
+                </DateCreated>
+                <DateCompleted>
+                    <Year>2006</Year>
+                    <Month>09</Month>
+                    <Day>12</Day>
+                </DateCompleted>
+                <DateRevised>
+                    <Year>2008</Year>
+                    <Month>11</Month>
+                    <Day>21</Day>
+                </DateRevised>
+                <Article PubModel="Print">
+                    <Journal>
+                        <ISSN IssnType="Print">0952-8180</ISSN>
+                        <JournalIssue CitedMedium="Print">
+                            <Volume>18</Volume>
+                            <Issue>1</Issue>
+                            <PubDate>
+                                <Year>2006</Year>
+                                <Month>Feb</Month>
+                            </PubDate>
+                        </JournalIssue>
+                        <Title>Journal of clinical anesthesia</Title>
+                        <ISOAbbreviation>J Clin Anesth</ISOAbbreviation>
+                    </Journal>
+                    <ArticleTitle>Avian flu (H5N1): its epidemiology, prevention, and implications for anesthesiology.</ArticleTitle>
+                    <Pagination>
+                        <MedlinePgn>1-4</MedlinePgn>
+                    </Pagination>
+                    <Abstract>
+                        <AbstractText>Avian flu, influenza A subtype H5N1, is an emergent and virulent disease that poses a threat to the health and safety of the world community. Avian flu is 1 of more than 25 influenza A viruses that reside primarily in birds but also infect humans and other mammals. Avian flu is responsible for the current outbreak in Asia; H5N1 has now displayed probable human-to-human transmission; it could be a harbinger of a global epidemic. Anesthesiologists are exposed to a risk for infection when they are involved in airway instrumentation of infected patients. Given the evidence of emerging resistance to common antiviral agents used to treat H5N1 influenza virus and limited supply of H5N1 vaccine, prevention is our best protection. The following article will detail the virology and preventive public health practices for H5N1. This knowledge can also be used to define and prevent other yet unidentified infectious threats.</AbstractText>
+                    </Abstract>
+                    <AuthorList CompleteYN="Y">
+                        <Author ValidYN="Y">
+                            <LastName>Edler</LastName>
+                            <ForeName>Alice A</ForeName>
+                            <Initials>AA</Initials>
+                            <AffiliationInfo>
+                                <Affiliation>Department of Anesthesia, Stanford University Medical Center, Stanford, CA 94305-5640, USA. edlera@aol.com</Affiliation>
+                            </AffiliationInfo>
+                        </Author>
+                    </AuthorList>
+                    <Language>eng</Language>
+                    <PublicationTypeList>
+                        <PublicationType UI="D016428">Journal Article</PublicationType>
+                    </PublicationTypeList>
+                </Article>
+                <MedlineJournalInfo>
+                    <Country>United States</Country>
+                    <MedlineTA>J Clin Anesth</MedlineTA>
+                    <NlmUniqueID>8812166</NlmUniqueID>
+                    <ISSNLinking>0952-8180</ISSNLinking>
+                </MedlineJournalInfo>
+                <CitationSubset>IM</CitationSubset>
+                <MeshHeadingList>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="Y" UI="D000776">Anesthesiology</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D004196">Disease Outbreaks</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D006801">Humans</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D017758">Infectious Disease Transmission, Patient-to-Professional</DescriptorName>
+                        <QualifierName MajorTopicYN="Y" UI="Q000517">prevention &amp; control</QualifierName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="Y" UI="D053124">Influenza A Virus, H5N1 Subtype</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D007251">Influenza, Human</DescriptorName>
+                        <QualifierName MajorTopicYN="N" UI="Q000453">epidemiology</QualifierName>
+                        <QualifierName MajorTopicYN="Y" UI="Q000517">prevention &amp; control</QualifierName>
+                        <QualifierName MajorTopicYN="N" UI="Q000628">therapy</QualifierName>
+                        <QualifierName MajorTopicYN="N" UI="Q000635">transmission</QualifierName>
+                    </MeshHeading>
+                </MeshHeadingList>
+            </MedlineCitation>
+            <PubmedData>
+                <History>
+                    <PubMedPubDate PubStatus="received">
+                        <Year>2005</Year>
+                        <Month>2</Month>
+                        <Day>8</Day>
+                    </PubMedPubDate>
+                    <PubMedPubDate PubStatus="accepted">
+                        <Year>2005</Year>
+                        <Month>12</Month>
+                        <Day>6</Day>
+                    </PubMedPubDate>
+                    <PubMedPubDate PubStatus="pubmed">
+                        <Year>2006</Year>
+                        <Month>3</Month>
+                        <Day>7</Day>
+                        <Hour>9</Hour>
+                        <Minute>0</Minute>
+                    </PubMedPubDate>
+                    <PubMedPubDate PubStatus="medline">
+                        <Year>2006</Year>
+                        <Month>9</Month>
+                        <Day>13</Day>
+                        <Hour>9</Hour>
+                        <Minute>0</Minute>
+                    </PubMedPubDate>
+                    <PubMedPubDate PubStatus="entrez">
+                        <Year>2006</Year>
+                        <Month>3</Month>
+                        <Day>7</Day>
+                        <Hour>9</Hour>
+                        <Minute>0</Minute>
+                    </PubMedPubDate>
+                </History>
+                <PublicationStatus>ppublish</PublicationStatus>
+                <ArticleIdList>
+                    <ArticleId IdType="pii">S0952-8180(05)00355-7</ArticleId>
+                    <ArticleId IdType="doi">10.1016/j.jclinane.2005.12.004</ArticleId>
+                    <ArticleId IdType="pubmed">16517323</ArticleId>
+                </ArticleIdList>
+            </PubmedData>
+        </PubmedArticle>
+
+
+        <PubmedArticle>
+            <MedlineCitation Owner="NLM" Status="MEDLINE">
+                <PMID Version="1">14617124</PMID>
+                <DateCreated>
+                    <Year>2003</Year>
+                    <Month>11</Month>
+                    <Day>17</Day>
+                </DateCreated>
+                <DateCompleted>
+                    <Year>2004</Year>
+                    <Month>04</Month>
+                    <Day>22</Day>
+                </DateCompleted>
+                <DateRevised>
+                    <Year>2006</Year>
+                    <Month>11</Month>
+                    <Day>15</Day>
+                </DateRevised>
+                <Article PubModel="Print">
+                    <Journal>
+                        <ISSN IssnType="Print">1155-5645</ISSN>
+                        <JournalIssue CitedMedium="Print">
+                            <Volume>13</Volume>
+                            <Issue>9</Issue>
+                            <PubDate>
+                                <Year>2003</Year>
+                                <Month>Nov</Month>
+                            </PubDate>
+                        </JournalIssue>
+                        <Title>Paediatric anaesthesia</Title>
+                        <ISOAbbreviation>Paediatr Anaesth</ISOAbbreviation>
+                    </Journal>
+                    <ArticleTitle>Blood loss during posterior spinal fusion surgery in patients with neuromuscular disease: is there an increased risk?</ArticleTitle>
+                    <Pagination>
+                        <MedlinePgn>818-22</MedlinePgn>
+                    </Pagination>
+                    <Abstract>
+                        <AbstractText Label="BACKGROUND" NlmCategory="BACKGROUND">Scoliosis surgery in paediatric patients can carry significant morbidity associated with intraoperative blood loss and the resultant transfusion therapy. Patients with neuromuscular disease may be at an increased risk for this intraoperative blood loss, but it is unclear if this is because of direct vascular pathophysiological changes or the fact that neuromuscular patients typically have more extensive orthopaedic disease and more vertebral segments involved. This study examined the risk of extensive blood loss (&gt;50% of total blood volume) in patients with neuromuscular disease compared with patients who did not have neuromuscular disease when the extent of the surgery (number of segments fused), age and preoperative coagulation profile where taken into consideration.</AbstractText>
+                        <AbstractText Label="METHODS" NlmCategory="METHODS">Retrospective chart review of 163 paediatric patients was preformed. Patients who carried a diagnosis of preexisting neuromuscular disease were classified as such. Idiopathic, traumatic and iatrogenic scoliosis were classified as nonneuromuscular. Extensive blood loss was defined as &gt;50% of estimated total blood volume. Logistic regression was used to predict the risk of extensive blood loss between the two groups when age, weight, extent of surgery was controlled for and anaesthetic and surgical techniques remained similar.</AbstractText>
+                        <AbstractText Label="RESULTS" NlmCategory="RESULTS">Patients with neuromuscular disease did not vary significantly in age, weight, or preoperative haematocrit and platelet count from patients without neuromuscular disease. Neuromuscular patients did have significantly more vertebral segments fused. When this difference was controlled for statistically, neuromuscular patients had an almost seven times higher risk (adjusted odds ration 6.9, P &lt; 0.05) of losing &gt;50% of their estimated total blood volume during scoliosis surgery.</AbstractText>
+                        <AbstractText Label="CONCLUSIONS" NlmCategory="CONCLUSIONS">Patients with neuromuscular disease can present various anaesthetic challenges during scoliosis surgery, among these is the inherent risk of extensive blood loss. Recognizing this may help anaesthesiologists and surgeons more accurately prepare for and treat intraoperative blood loss during scoliosis surgery in patients with neuromuscular disease.</AbstractText>
+                    </Abstract>
+                    <AuthorList CompleteYN="Y">
+                        <Author ValidYN="Y">
+                            <LastName>Edler</LastName>
+                            <ForeName>Alice</ForeName>
+                            <Initials>A</Initials>
+                            <AffiliationInfo>
+                                <Affiliation>Clinical Anesthesiology, Stanford University of Medicine, Stanford, CA, USA. edlera@stanford.edu</Affiliation>
+                            </AffiliationInfo>
+                        </Author>
+                        <Author ValidYN="Y">
+                            <LastName>Murray</LastName>
+                            <ForeName>David J</ForeName>
+                            <Initials>DJ</Initials>
+                        </Author>
+                        <Author ValidYN="Y">
+                            <LastName>Forbes</LastName>
+                            <ForeName>Robert B</ForeName>
+                            <Initials>RB</Initials>
+                        </Author>
+                    </AuthorList>
+                    <Language>eng</Language>
+                    <PublicationTypeList>
+                        <PublicationType UI="D003160">Comparative Study</PublicationType>
+                        <PublicationType UI="D016428">Journal Article</PublicationType>
+                    </PublicationTypeList>
+                </Article>
+                <MedlineJournalInfo>
+                    <Country>France</Country>
+                    <MedlineTA>Paediatr Anaesth</MedlineTA>
+                    <NlmUniqueID>9206575</NlmUniqueID>
+                    <ISSNLinking>1155-5645</ISSNLinking>
+                </MedlineJournalInfo>
+                <CitationSubset>IM</CitationSubset>
+                <MeshHeadingList>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D000293">Adolescent</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D000367">Age Factors</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D016063">Blood Loss, Surgical</DescriptorName>
+                        <QualifierName MajorTopicYN="Y" UI="Q000706">statistics &amp; numerical data</QualifierName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D001792">Blood Platelets</DescriptorName>
+                        <QualifierName MajorTopicYN="N" UI="Q000502">physiology</QualifierName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D001835">Body Weight</DescriptorName>
+                        <QualifierName MajorTopicYN="N" UI="Q000502">physiology</QualifierName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D006400">Hematocrit</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D006801">Humans</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D016015">Logistic Models</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D009468">Neuromuscular Diseases</DescriptorName>
+                        <QualifierName MajorTopicYN="Y" UI="Q000150">complications</QualifierName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D016017">Odds Ratio</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D012189">Retrospective Studies</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D012307">Risk Factors</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D012600">Scoliosis</DescriptorName>
+                        <QualifierName MajorTopicYN="Y" UI="Q000150">complications</QualifierName>
+                        <QualifierName MajorTopicYN="Y" UI="Q000601">surgery</QualifierName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D012720">Severity of Illness Index</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D013123">Spinal Fusion</DescriptorName>
+                        <QualifierName MajorTopicYN="Y" UI="Q000009">adverse effects</QualifierName>
+                    </MeshHeading>
+                </MeshHeadingList>
+            </MedlineCitation>
+            <PubmedData>
+                <History>
+                    <PubMedPubDate PubStatus="pubmed">
+                        <Year>2003</Year>
+                        <Month>11</Month>
+                        <Day>18</Day>
+                        <Hour>5</Hour>
+                        <Minute>0</Minute>
+                    </PubMedPubDate>
+                    <PubMedPubDate PubStatus="medline">
+                        <Year>2004</Year>
+                        <Month>4</Month>
+                        <Day>23</Day>
+                        <Hour>5</Hour>
+                        <Minute>0</Minute>
+                    </PubMedPubDate>
+                    <PubMedPubDate PubStatus="entrez">
+                        <Year>2003</Year>
+                        <Month>11</Month>
+                        <Day>18</Day>
+                        <Hour>5</Hour>
+                        <Minute>0</Minute>
+                    </PubMedPubDate>
+                </History>
+                <PublicationStatus>ppublish</PublicationStatus>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">14617124</ArticleId>
+                    <ArticleId IdType="pii">1171</ArticleId>
+                </ArticleIdList>
+            </PubmedData>
+        </PubmedArticle>
+
+
+        <PubmedArticle>
+            <MedlineCitation Owner="NLM" Status="MEDLINE">
+                <PMID Version="1">17377083</PMID>
+                <DateCreated>
+                    <Year>2007</Year>
+                    <Month>03</Month>
+                    <Day>22</Day>
+                </DateCreated>
+                <DateCompleted>
+                    <Year>2007</Year>
+                    <Month>04</Month>
+                    <Day>12</Day>
+                </DateCompleted>
+                <DateRevised>
+                    <Year>2013</Year>
+                    <Month>11</Month>
+                    <Day>21</Day>
+                </DateRevised>
+                <Article PubModel="Print">
+                    <Journal>
+                        <ISSN IssnType="Electronic">1526-7598</ISSN>
+                        <JournalIssue CitedMedium="Internet">
+                            <Volume>104</Volume>
+                            <Issue>4</Issue>
+                            <PubDate>
+                                <Year>2007</Year>
+                                <Month>Apr</Month>
+                            </PubDate>
+                        </JournalIssue>
+                        <Title>Anesthesia and analgesia</Title>
+                        <ISOAbbreviation>Anesth. Analg.</ISOAbbreviation>
+                    </Journal>
+                    <ArticleTitle>An analysis of factors influencing postanesthesia recovery after pediatric ambulatory tonsillectomy and adenoidectomy.</ArticleTitle>
+                    <Pagination>
+                        <MedlinePgn>784-9</MedlinePgn>
+                    </Pagination>
+                    <Abstract>
+                        <AbstractText Label="BACKGROUND" NlmCategory="BACKGROUND">Many factors contribute to prolonged length of stay (LOS) for pediatric patients in the postanesthesia care unit (PACU). We designed this prospective study to identify the pre- and postoperative factors that prolong LOS.</AbstractText>
+                        <AbstractText Label="METHODS" NlmCategory="METHODS">We studied 166 children, aged 1-18 yr, who underwent tonsillectomy and adenoidectomy or tonsillectomy and adenoidectomy, and bilateral myringotomy with tube insertion under general anesthesia. The primary outcome measure was the time spent in the PACU until predetermined discharge criteria were met.</AbstractText>
+                        <AbstractText Label="RESULTS" NlmCategory="RESULTS">The number of episodes of postoperative nausea and vomiting, patient age, and number of oxygen desaturations contributed significantly (P &lt; 0.05) to prolonged LOS. Each episode of postoperative nausea and vomiting (P &lt; 0.05) or oxygen desaturation to &lt;95% (P &lt; 0.05) increased the patient's LOS by 0.5 h. History of upper respiratory tract infection, emergence agitation, and parental anxiety did not significantly predict increased LOS.</AbstractText>
+                        <AbstractText Label="CONCLUSION" NlmCategory="CONCLUSIONS">This investigation is the first composite view of LOS in pediatric patients. The significance of identifying patients at risk of prolonged LOS prior to anesthesia is of use not only in allocating PACU resource and staffing needs, but also for improving quality of care and ensuring a minimally traumatic anesthetic experience for our pediatric patients and their families.</AbstractText>
+                    </Abstract>
+                    <AuthorList CompleteYN="Y">
+                        <Author ValidYN="Y">
+                            <LastName>Edler</LastName>
+                            <ForeName>Alice A</ForeName>
+                            <Initials>AA</Initials>
+                            <AffiliationInfo>
+                                <Affiliation>Department of Anesthesia, Lucile Packard Children's Hospital, Stanford University School of Medicine, Stanford, California 94305, USA. edlera@aol.com</Affiliation>
+                            </AffiliationInfo>
+                        </Author>
+                        <Author ValidYN="Y">
+                            <LastName>Mariano</LastName>
+                            <ForeName>Edward R</ForeName>
+                            <Initials>ER</Initials>
+                        </Author>
+                        <Author ValidYN="Y">
+                            <LastName>Golianu</LastName>
+                            <ForeName>Brenda</ForeName>
+                            <Initials>B</Initials>
+                        </Author>
+                        <Author ValidYN="Y">
+                            <LastName>Kuan</LastName>
+                            <ForeName>Calvin</ForeName>
+                            <Initials>C</Initials>
+                        </Author>
+                        <Author ValidYN="Y">
+                            <LastName>Pentcheva</LastName>
+                            <ForeName>Krassimira</ForeName>
+                            <Initials>K</Initials>
+                        </Author>
+                    </AuthorList>
+                    <Language>eng</Language>
+                    <PublicationTypeList>
+                        <PublicationType UI="D016428">Journal Article</PublicationType>
+                    </PublicationTypeList>
+                </Article>
+                <MedlineJournalInfo>
+                    <Country>United States</Country>
+                    <MedlineTA>Anesth Analg</MedlineTA>
+                    <NlmUniqueID>1310650</NlmUniqueID>
+                    <ISSNLinking>0003-2999</ISSNLinking>
+                </MedlineJournalInfo>
+                <ChemicalList>
+                    <Chemical>
+                        <RegistryNumber>S88TT14065</RegistryNumber>
+                        <NameOfSubstance UI="D010100">Oxygen</NameOfSubstance>
+                    </Chemical>
+                </ChemicalList>
+                <CitationSubset>AIM</CitationSubset>
+                <CitationSubset>IM</CitationSubset>
+                <CommentsCorrectionsList>
+                    <CommentsCorrections RefType="CommentIn">
+                        <RefSource>Anesth Analg. 2007 Nov;105(5):1512-3; author reply 1513</RefSource>
+                        <PMID Version="1">17959997</PMID>
+                    </CommentsCorrections>
+                </CommentsCorrectionsList>
+                <MeshHeadingList>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="Y" UI="D000233">Adenoidectomy</DescriptorName>
+                        <QualifierName MajorTopicYN="N" UI="Q000706">statistics &amp; numerical data</QualifierName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D000293">Adolescent</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D000367">Age Factors</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="Y" UI="D000556">Ambulatory Surgical Procedures</DescriptorName>
+                        <QualifierName MajorTopicYN="N" UI="Q000706">statistics &amp; numerical data</QualifierName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="Y" UI="D000762">Anesthesia Recovery Period</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D000768">Anesthesia, General</DescriptorName>
+                        <QualifierName MajorTopicYN="Y" UI="Q000706">statistics &amp; numerical data</QualifierName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" Type="Geographic" UI="D002140">California</DescriptorName>
+                        <QualifierName MajorTopicYN="N" UI="Q000453">epidemiology</QualifierName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D002648">Child</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D002675">Child, Preschool</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D015331">Cohort Studies</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D005163">Factor Analysis, Statistical</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D006776">Hospitals, Pediatric</DescriptorName>
+                        <QualifierName MajorTopicYN="N" UI="Q000706">statistics &amp; numerical data</QualifierName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D006801">Humans</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D007223">Infant</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D007902">Length of Stay</DescriptorName>
+                        <QualifierName MajorTopicYN="N" UI="Q000706">statistics &amp; numerical data</QualifierName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D016015">Logistic Models</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D016017">Odds Ratio</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D010100">Oxygen</DescriptorName>
+                        <QualifierName MajorTopicYN="N" UI="Q000097">blood</QualifierName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D020250">Postoperative Nausea and Vomiting</DescriptorName>
+                        <QualifierName MajorTopicYN="N" UI="Q000453">epidemiology</QualifierName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D011237">Predictive Value of Tests</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D011446">Prospective Studies</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D011997">Recovery Room</DescriptorName>
+                        <QualifierName MajorTopicYN="N" UI="Q000706">statistics &amp; numerical data</QualifierName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D018570">Risk Assessment</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D012307">Risk Factors</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="Y" UI="D014068">Tonsillectomy</DescriptorName>
+                        <QualifierName MajorTopicYN="N" UI="Q000706">statistics &amp; numerical data</QualifierName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName MajorTopicYN="N" UI="D014432">Tympanic Membrane</DescriptorName>
+                        <QualifierName MajorTopicYN="N" UI="Q000601">surgery</QualifierName>
+                    </MeshHeading>
+                </MeshHeadingList>
+            </MedlineCitation>
+            <PubmedData>
+                <History>
+                    <PubMedPubDate PubStatus="pubmed">
+                        <Year>2007</Year>
+                        <Month>3</Month>
+                        <Day>23</Day>
+                        <Hour>9</Hour>
+                        <Minute>0</Minute>
+                    </PubMedPubDate>
+                    <PubMedPubDate PubStatus="medline">
+                        <Year>2007</Year>
+                        <Month>4</Month>
+                        <Day>14</Day>
+                        <Hour>9</Hour>
+                        <Minute>0</Minute>
+                    </PubMedPubDate>
+                    <PubMedPubDate PubStatus="entrez">
+                        <Year>2007</Year>
+                        <Month>3</Month>
+                        <Day>23</Day>
+                        <Hour>9</Hour>
+                        <Minute>0</Minute>
+                    </PubMedPubDate>
+                </History>
+                <PublicationStatus>ppublish</PublicationStatus>
+                <ArticleIdList>
+                    <ArticleId IdType="pii">104/4/784</ArticleId>
+                    <ArticleId IdType="doi">10.1213/01.ane.0000258771.53068.09</ArticleId>
+                    <ArticleId IdType="pubmed">17377083</ArticleId>
+                </ArticleIdList>
+            </PubmedData>
+        </PubmedArticle>
+
+        </PubmedArticleSet>
+    http_version: 
+  recorded_at: Wed, 11 May 2016 17:07:33 GMT
+recorded_with: VCR 3.0.1
