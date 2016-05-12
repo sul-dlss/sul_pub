@@ -124,3 +124,10 @@ end
 def a_get(path)
   a_request(:get, 'https://' + Settings.SCIENCEWIRE.BASE_URI + path)
 end
+
+def default_institution
+  ScienceWire::AuthorInstitution.new(
+    Settings.HARVESTER.INSTITUTION.name,
+    ScienceWire::AuthorAddress.new(Settings.HARVESTER.INSTITUTION.address.to_hash)
+  )
+end

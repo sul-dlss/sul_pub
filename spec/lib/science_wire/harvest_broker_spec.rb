@@ -51,7 +51,7 @@ describe ScienceWire::HarvestBroker do
       it 'calls the smart query' do
         seed_list = (1..51).to_a
         author_attributes = ScienceWire::AuthorAttributes.new(
-          author_name, author.email, seed_list
+          author_name, author.email, seed_list, default_institution
         )
         expect(ScienceWire::AuthorAttributes).to receive(:new)
           .and_return(author_attributes)

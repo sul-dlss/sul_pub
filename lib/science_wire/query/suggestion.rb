@@ -43,9 +43,7 @@ module ScienceWire
                 <LastName>#{author_attributes.name.last}</LastName>
                 <FirstName>#{author_attributes.name.first}</FirstName>
                 <MiddleName>#{author_attributes.name.middle}</MiddleName>
-                <City>Stanford</City>
-                <State>CA</State>
-                <Country>USA</Country>
+                #{author_attributes.institution.address.to_xml}
                 <Version>1</Version>
               </Author>
             </Authors>
