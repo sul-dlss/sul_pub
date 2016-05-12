@@ -49,10 +49,16 @@ describe ScienceWire::HarvestBroker do
     end
     context 'with seed_list > 50' do
       it 'calls the smart query' do
+        seed_list = (1..51).to_a
+        author_attributes = ScienceWire::AuthorAttributes.new(
+          author_name, author.email, seed_list
+        )
+        expect(ScienceWire::AuthorAttributes).to receive(:new)
+          .and_return(author_attributes)
         expect(subject).to receive(:seed_list).twice
-          .and_return((1..51).to_a)
+          .and_return(seed_list)
         expect(subject).to receive(:ids_from_smart_query)
-          .with(author_name, 'alice.edler@stanford.edu', duck_type(:[]))
+          .with(author_attributes)
           .and_return([1])
         expect(subject.ids_for_author).to eq [1]
       end
@@ -101,10 +107,14 @@ describe ScienceWire::HarvestBroker do
       allow(ScienceWireClient).to receive(:new).and_return(client_instance)
     end
     it 'gets ids from ScienceWireClient#get_sciencewire_id_suggestions' do
+      author_attributes = ScienceWire::AuthorAttributes.new(
+        feynman_name, 'rf@caltech.edu', []
+      )
       expect(client_instance).to receive(:get_sciencewire_id_suggestions)
+        .with(author_attributes)
         .and_return([1, 2, 3])
       expect(
-        subject.ids_from_smart_query(feynman_name, 'rf@caltech.edu', [])
+        subject.ids_from_smart_query(author_attributes)
       ).to eq [1, 2, 3]
     end
   end
