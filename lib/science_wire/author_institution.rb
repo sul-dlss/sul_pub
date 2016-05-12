@@ -7,9 +7,9 @@ module ScienceWire
     # @param name [String]
     # @param address [Hash] with optional fields:
     #   :line1, :line2, :city, :state, :country
-    def initialize(name = '', address = {})
+    def initialize(name = '', address = nil)
       @name = name.to_s.strip
-      @address = address || {}
+      @address = init_address(address)
     end
 
     # Normalize the name by removing some common words
@@ -32,5 +32,19 @@ module ScienceWire
       normalize_name == other.normalize_name &&
       address == other.address
     end
+
+    private
+
+      def init_address(address)
+        if address.is_a? AuthorAddress
+          address
+        elsif address.is_a? String
+          # set the address line 1
+          AuthorAddress.new(line1: address)
+        else
+          # set an empty address
+          AuthorAddress.new
+        end
+      end
   end
 end
