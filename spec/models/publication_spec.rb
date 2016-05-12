@@ -16,6 +16,19 @@ describe Publication do
     }
   end
 
+  let(:pub_hash_cap_authorship) do
+    # This input simulates a manual publication submission for an author who is
+    # not yet in the SULCAP authors table, so there is no `author.id`.
+    cap_pub_hash = pub_hash.dup
+    cap_pub_hash[:authorship] = [{
+      cap_profile_id: 29091,
+      status: 'approved',
+      visibility: 'public',
+      featured: true
+    }]
+    cap_pub_hash
+  end
+
   describe 'test pub hash syncing for new object' do
     subject do
       p = Publication.new
@@ -34,28 +47,61 @@ describe Publication do
   end
 
   describe 'pubhash syncing' do
-    subject do
-      publication.pub_hash = pub_hash.dup
-      publication.update_any_new_contribution_info_in_pub_hash_to_db
-      publication.save
-      publication.reload
+    context 'author exists in authors table' do
+      subject do
+        expect(Author).to receive(:find_by_id).and_return(author)
+        publication.pub_hash = pub_hash.dup
+        publication.update_any_new_contribution_info_in_pub_hash_to_db
+        publication.save
+        publication.reload
+      end
+
+      it 'should set the last updated value to match the database row' do
+        expect(Time.zone.parse(subject.pub_hash[:last_updated])).to be >= (Time.zone.now - 1.minutes)
+      end
+
+      it 'should rebuild authors' do
+        expect(subject.contributions.entries.size).to eq(1)
+        expect(subject.pub_hash[:authorship].length).to be > 0
+        expect(subject.pub_hash[:authorship]).to include(subject.contributions.first.to_pub_hash)
+      end
+
+      it 'should rebuild identifiers' do
+        expect(subject.pub_hash[:identifier].length).to be > 0
+        expect(subject.pub_hash[:sulpubid]).to eq(subject.id.to_s)
+        expect(subject.pub_hash[:identifier]).to include(type: 'SULPubId', id: subject.id.to_s, url: "#{Settings.SULPUB_ID.PUB_URI}/#{subject.id}")
+        expect(subject.pub_hash[:identifier]).to include(type: 'x', id: 'y', url: 'z')
+      end
     end
 
-    it 'should set the last updated value to match the database row' do
-      expect(Time.zone.parse(subject.pub_hash[:last_updated])).to be >= (Time.zone.now - 1.minutes)
+    context 'author does not yet exist in authors table' do
+      subject do
+        expect(Author).to receive(:find_by_cap_profile_id).and_return(nil)
+        expect(Author).to receive(:fetch_from_cap_and_create).and_return(author)
+        publication.pub_hash = pub_hash_cap_authorship.dup
+        publication.update_any_new_contribution_info_in_pub_hash_to_db
+        publication.save
+        publication.reload
+      end
+      it 'should rebuild authors' do
+        expect(subject.contributions.entries.size).to eq(1)
+        expect(subject.pub_hash[:authorship].length).to be > 0
+        expect(subject.pub_hash[:authorship]).to include(subject.contributions.first.to_pub_hash)
+      end
     end
 
-    it 'should rebuild authors' do
-      expect(subject.contributions.entries.size).to eq(1)
-      expect(subject.pub_hash[:authorship].length).to be > 0
-      expect(subject.pub_hash[:authorship]).to include(subject.contributions.first.to_pub_hash)
-    end
-
-    it 'should rebuild identifiers' do
-      expect(subject.pub_hash[:identifier].length).to be > 0
-      expect(subject.pub_hash[:sulpubid]).to eq(subject.id.to_s)
-      expect(subject.pub_hash[:identifier]).to include(type: 'SULPubId', id: subject.id.to_s, url: "#{Settings.SULPUB_ID.PUB_URI}/#{subject.id}")
-      expect(subject.pub_hash[:identifier]).to include(type: 'x', id: 'y', url: 'z')
+    context 'author does not exist and cannot be retrieved from CAP API' do
+      let(:logfile) { Settings.CAP.CONTRIBUTIONS_LOG }
+      let(:logger) { Logger.new('/dev/null') }
+      it 'logs errors' do
+        expect(Author).to receive(:find_by_cap_profile_id).and_return(nil)
+        expect(Author).to receive(:fetch_from_cap_and_create).and_raise(NoMethodError)
+        expect(Rails.logger).to receive(:error).once
+        expect(Logger).to receive(:new).with(logfile).once.and_return(logger)
+        expect(logger).to receive(:error).exactly(3)
+        publication.pub_hash = pub_hash_cap_authorship.dup
+        publication.update_any_new_contribution_info_in_pub_hash_to_db
+      end
     end
   end
 

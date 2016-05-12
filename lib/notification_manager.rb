@@ -29,12 +29,16 @@ class NotificationManager
 
     private
 
-      def pubmed_logger
-        @pubmed_logger ||= Logger.new(Settings.PUBMED.API_LOG)
-      end
+    # rubocop:disable Style/ClassVars
+    def pubmed_logger
+      @@pubmed_logger ||= Logger.new(Settings.PUBMED.API_LOG)
+    end
+    # rubocop:enable Style/ClassVars
 
-      def cap_authorship_logger
-        @cap_authorship_logger ||= Logger.new(Settings.CAP.AUTHORSHIP_API_LOG)
-      end
+    # rubocop:disable Style/ClassVars
+    def cap_authorship_logger
+      @@cap_authorship_logger ||= Logger.new(Settings.CAP.AUTHORSHIP_API_LOG)
+    end
+    # rubocop:enable Style/ClassVars
   end
 end

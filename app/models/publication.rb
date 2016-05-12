@@ -245,12 +245,25 @@ class Publication < ActiveRecord::Base
         featured: contrib[:featured]
       }
 
-      author = if ! contrib[:sul_author_id].blank?
-                 Author.find(contrib[:sul_author_id])
-               elsif ! contrib[:cap_profile_id].blank?
-                 Author.find_by_cap_profile_id(contrib[:cap_profile_id])
-               end
-      # todo??
+      # Find or create an Author of the contribution
+      author_id = contrib[:sul_author_id]
+      cap_profile_id = contrib[:cap_profile_id]
+      author = Author.find_by_id(author_id)
+      unless cap_profile_id.blank?
+        author ||= Author.find_by_cap_profile_id(cap_profile_id)
+        author ||= begin
+          Author.fetch_from_cap_and_create(cap_profile_id)
+        rescue => e
+          msg = "error retrieving CAP profile #{cap_profile_id}"
+          msg += " for contribution: #{contrib}"
+          Rails.logger.error msg
+          pub_logger = Logger.new(Settings.CAP.CONTRIBUTIONS_LOG)
+          pub_logger.error msg
+          pub_logger.error e.message
+          pub_logger.error e.backtrace if e.backtrace
+          nil
+        end
+      end
       next if author.nil?
 
       hash_for_update[:author_id] = author.id
