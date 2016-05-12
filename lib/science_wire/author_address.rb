@@ -37,6 +37,10 @@ module ScienceWire
       country == other.country
     end
 
+    def empty?
+      to_xml.strip.empty?
+    end
+
     private
 
       def as_string(param)
