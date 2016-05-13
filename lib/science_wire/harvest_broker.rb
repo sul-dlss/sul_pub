@@ -43,8 +43,8 @@ module ScienceWire
     # @return [Array<Integer>]
     def ids_for_alternate_names
       if alternate_name_query
-        author.alternative_identities.map do |author_identity|
-          ids_from_dumb_query(author_attributes_from_author_identity(author_identity)).flatten
+        author.alternative_identities.select{|author_identity| required_data_for_alt_names_search(author_identity)}.map do |author_identity|
+          ids_from_dumb_query(author_identity).flatten
         end.flatten.uniq
       else
         []
@@ -97,6 +97,19 @@ module ScienceWire
           author_identity.start_date,
           author_identity.end_date
         )
+      end
+
+      def required_data_for_alt_names_search(author_identity)
+        #don't search unless first name, last name, and institution are provided
+        #and when the institution is NOT "all", blank, null, or *
+        return true if author_identity.first_name.present? && author_identity.last_name.present? && inst_valid_for_alt_names_search(author_identity.institution)
+        false
+      end
+
+      def inst_valid_for_alt_names_search(inst)
+        #don't search when institution is "all", blank, null, or *
+        return true if inst.present? && inst != 'all' && inst != '*'
+        false
       end
   end
 end
