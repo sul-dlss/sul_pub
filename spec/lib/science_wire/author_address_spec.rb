@@ -27,6 +27,18 @@ describe ScienceWire::AuthorAddress do
     end
   end
 
+  describe '#empty?' do
+    it 'returns true for an empty address' do
+      expect(empty_address.to_xml).to be_empty
+      expect(empty_address).to receive(:to_xml).and_call_original
+      expect(empty_address).to be_empty
+    end
+    it 'returns false for an address' do
+      expect(full_address).to receive(:to_xml).and_call_original
+      expect(full_address).not_to be_empty
+    end
+  end
+
   describe '#line1' do
     context 'when not present' do
       it 'returns an empty String' do

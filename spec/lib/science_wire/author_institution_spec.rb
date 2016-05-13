@@ -14,9 +14,10 @@ describe ScienceWire::AuthorInstitution do
     it 'address is optional' do
       expect{ described_class.new('name') }.not_to raise_error
     end
-    it 'address defaults to an empty Hash' do
+    it 'address defaults to an empty AuthorAddress' do
       address = described_class.new('name').address
-      expect(address).to be_an Hash
+      expect(address).to be_an ScienceWire::AuthorAddress
+      expect(address).to be_blank
       expect(address).to be_empty
     end
   end
