@@ -6,7 +6,7 @@ describe ScienceWire::Query::JournalDocumentSuggestion do
   let(:author_name) { ScienceWire::AuthorName.new('Doe', 'John', 'S') }
   let(:author_attributes) do
     ScienceWire::AuthorAttributes.new(
-      author_name, 'johnsdoe@example.com', [532_237]
+      author_name, 'johnsdoe@example.com', [532_237], default_institution
     )
   end
   it 'returns a suggestion query with journal document' do
