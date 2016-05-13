@@ -60,6 +60,15 @@ namespace :sw do
     harvester.harvest_from_wos_id_cap_profile_id_report args[:path_to_report]
   end
 
+  desc 'Retrieve and print a single publication by WOS id: wos_publication[wos_id]'
+  task :wos_publication, [:wos_id] => :environment do |_t, args|
+    fail "wos_id argument is required." unless args[:wos_id].present?
+    wos_ids = [args[:wos_id]]
+    sciencewire_client = ScienceWireClient.new
+    doc = sciencewire_client.get_full_sciencewire_pubs_for_wos_ids(wos_ids)
+    puts doc # XML document
+  end
+
   desc 'Harvest for a cap_profile_id with alternate names'
   task :cap_profile_harvest_alt_names, [:cap_profile_id] => :environment do |_t, args|
     harvester.use_author_identities = true
