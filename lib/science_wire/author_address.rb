@@ -18,13 +18,15 @@ module ScienceWire
     end
 
     def to_xml
-      xml = ''
-      xml += "<AddressLine1>#{line1}</AddressLine1>" unless line1.empty?
-      xml += "<AddressLine2>#{line2}</AddressLine2>" unless line2.empty?
-      xml += "<City>#{city}</City>" unless city.empty?
-      xml += "<State>#{state}</State>" unless state.empty?
-      xml += "<Country>#{country}</Country>" unless country.empty?
-      xml
+      @xml ||= begin
+        xml = ''
+        xml += "<AddressLine1>#{line1}</AddressLine1>" unless line1.empty?
+        xml += "<AddressLine2>#{line2}</AddressLine2>" unless line2.empty?
+        xml += "<City>#{city}</City>" unless city.empty?
+        xml += "<State>#{state}</State>" unless state.empty?
+        xml += "<Country>#{country}</Country>" unless country.empty?
+        xml
+      end
     end
 
     def ==(other)
