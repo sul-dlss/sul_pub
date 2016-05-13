@@ -9,6 +9,7 @@ describe ScienceWireClient, :vcr do
         author_attributes = ScienceWire::AuthorAttributes.new(name, '', '', '', '')
         sw_ids = sw_client.query_sciencewire_by_author_name(author_attributes)
         expect(sw_ids).to be_an(Array)
+        expect(sw_ids.first).to be_an(Integer)
         expect(sw_ids).not_to be_empty
         # Using a specific value here leads to too much churn on this spec
         # when the SW service returns slightly different results occasionally.
@@ -35,6 +36,7 @@ describe ScienceWireClient, :vcr do
       )
       sw_ids = sw_client.get_sciencewire_id_suggestions(author_attributes)
       expect(sw_ids).to be_an(Array)
+      expect(sw_ids.first).to be_an(Integer)
       expect(sw_ids).not_to be_empty
       expect(sw_ids.size).to be >= 4
     end
@@ -53,6 +55,7 @@ describe ScienceWireClient, :vcr do
       )
       sw_ids = sw_client.get_sciencewire_id_suggestions(author_attributes)
       expect(sw_ids).to be_an(Array)
+      expect(sw_ids.first).to be_an(Integer)
       expect(sw_ids).not_to be_empty
       expect(sw_ids.size).to be >= 100
     end
