@@ -30,7 +30,10 @@ describe ScienceWireClient, :vcr do
     it 'returns suggestions for email address and name' do
       name = ScienceWire::AuthorName.new('edler', 'alice', '')
       seeds = [5_199_247, 7_877_232, 844_542, 1_178_390, 29_434_219, 30_072_480, 30_502_634, 46_558_063, 31_222_988]
-      sw_ids = sw_client.get_sciencewire_id_suggestions(name, 'alice.edler@stanford.edu', seeds)
+      author_attributes = ScienceWire::AuthorAttributes.new(
+        name, 'alice.edler@stanford.edu', seeds
+      )
+      sw_ids = sw_client.get_sciencewire_id_suggestions(author_attributes)
       expect(sw_ids).to be_an(Array)
       expect(sw_ids).not_to be_empty
       expect(sw_ids.size).to be >= 4
@@ -45,7 +48,10 @@ describe ScienceWireClient, :vcr do
                22_411_820, 21_667_389, 64_357_283, 27_876_654, 16_447_626, 34_333_979, 21_865_294, 22_624_536, 23_216_217, 24_575_036, 35_196_221, 2_627_002,
                3_769_378, 3_704_704, 4_513_632, 6_434_468, 6_368_152, 571_008, 35_566_141, 36_119_242, 6_008_013, 36_234_880, 36_225_095, 36_139_437, 36_127_090,
                36_208_464, 35_640_871, 23_804_292, 22_654_678, 17_870_903, 23_364_040, 45_141_719, 64_799_575, 65_697_723, 66_020_502, 67_583_123]
-      sw_ids = sw_client.get_sciencewire_id_suggestions(name, 'smbenson@stanford.edu', seeds)
+      author_attributes = ScienceWire::AuthorAttributes.new(
+        name, 'smbenson@stanford.edu', seeds
+      )
+      sw_ids = sw_client.get_sciencewire_id_suggestions(author_attributes)
       expect(sw_ids).to be_an(Array)
       expect(sw_ids).not_to be_empty
       expect(sw_ids.size).to be >= 100

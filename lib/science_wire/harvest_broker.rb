@@ -27,12 +27,13 @@ module ScienceWire
     # @return [Array<Integer>]
     def ids_for_author
       name = author_name(author)
-      author_attributes = AuthorAttributes.new(name, '', [], author.institution)
       if seed_list.size < 50
         sciencewire_harvester.increment_authors_with_limited_seed_data_count
+        author_attributes = AuthorAttributes.new(name, '', [], author.institution)
         ids_from_dumb_query(author_attributes)
       else
-        ids_from_smart_query(name, author.email, seed_list)
+        author_attributes = AuthorAttributes.new(name, author.email, seed_list)
+        ids_from_smart_query(author_attributes)
       end
     end
 
@@ -51,18 +52,16 @@ module ScienceWire
 
     ##
     # @param [AuthorAttributes] author_attributes
-    # @return [Array]
+    # @return [Array<Integer>]
     def ids_from_dumb_query(author_attributes)
       sciencewire_client.query_sciencewire_by_author_name(author_attributes)
     end
 
     ##
-    # @param [AuthorName] name
-    # @param [String] email
-    # @param [Array] seed_list
+    # @param [AuthorAttributes] author_attributes
     # @return [Array<Integer>]
-    def ids_from_smart_query(name, email, seed_list)
-      sciencewire_client.get_sciencewire_id_suggestions(name, email, seed_list)
+    def ids_from_smart_query(author_attributes)
+      sciencewire_client.get_sciencewire_id_suggestions(author_attributes)
     end
 
     private

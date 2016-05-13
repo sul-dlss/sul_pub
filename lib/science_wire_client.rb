@@ -18,9 +18,9 @@ class ScienceWireClient
   end
 
   ##
+  # @param [AuthorAttributes] author_attributes
   # @return [Array<Integer>]
-  def get_sciencewire_id_suggestions(name, email, seed_list)
-    author_attributes = ScienceWire::AuthorAttributes.new(name, email, seed_list)
+  def get_sciencewire_id_suggestions(author_attributes)
     client.id_suggestions(author_attributes)
   rescue Faraday::TimeoutError => te
     NotificationManager.handle_harvest_problem(te, "Timeout error on call to sciencewire api - #{Time.zone.now}")
