@@ -18,6 +18,7 @@ class Contribution < ActiveRecord::Base
   end
 
   def self.author_valid?(contrib)
+    contrib = contrib.with_indifferent_access
     if ! contrib[:sul_author_id].blank?
       Author.exists?(contrib[:sul_author_id])
     elsif ! contrib[:cap_profile_id].blank?
@@ -29,6 +30,7 @@ class Contribution < ActiveRecord::Base
   end
 
   def self.all_fields_present?(contrib)
+    contrib = contrib.with_indifferent_access
     ! (
         contrib[:featured].nil? ||
         contrib[:status].blank? ||
