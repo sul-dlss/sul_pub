@@ -108,6 +108,82 @@ describe Contribution do
     end
   end
 
+  describe '.valid_fields?' do
+    it 'returns true for a valid authorship hash' do
+      expect(described_class.valid_fields?(authorship)).to be true
+    end
+    it 'returns false for an authorship hash without "featured"' do
+      auth = authorship
+      auth['featured'] = nil
+      expect(described_class.valid_fields?(auth)).to be false
+    end
+    it 'returns false for an authorship hash without "status"' do
+      auth = authorship
+      auth['status'] = nil
+      expect(described_class.valid_fields?(auth)).to be false
+    end
+    it 'returns false for an authorship hash without "visibility"' do
+      auth = authorship
+      auth['visibility'] = nil
+      expect(described_class.valid_fields?(auth)).to be false
+    end
+  end
+
+  describe '.featured_valid?' do
+    it 'returns true for a valid authorship hash' do
+      expect(described_class.featured_valid?(authorship)).to be true
+    end
+    it 'returns false for an authorship hash without "featured"' do
+      auth = authorship
+      auth['featured'] = nil
+      expect(described_class.featured_valid?(auth)).to be false
+    end
+  end
+
+  describe '.status_valid?' do
+    it 'returns true for a valid authorship hash' do
+      expect(described_class.status_valid?(authorship)).to be true
+    end
+    it 'returns true for an upper case field value' do
+      authorship['status'].upcase!
+      expect(described_class.status_valid?(authorship)).to be true
+    end
+    it 'returns false for an authorship hash without "status"' do
+      authorship.delete 'status'
+      expect(described_class.status_valid?(authorship)).to be false
+    end
+    it 'returns false for an authorship hash with a nil "status"' do
+      authorship['status'] = nil
+      expect(described_class.status_valid?(authorship)).to be false
+    end
+    it 'returns false for an authorship hash with an invalid "status"' do
+      authorship['status'] = 'invalid value'
+      expect(described_class.status_valid?(authorship)).to be false
+    end
+  end
+
+  describe '.visibility_valid?' do
+    it 'returns true for a valid authorship hash' do
+      expect(described_class.visibility_valid?(authorship)).to be true
+    end
+    it 'returns true for an upper case field value' do
+      authorship['visibility'].upcase!
+      expect(described_class.visibility_valid?(authorship)).to be true
+    end
+    it 'returns false for an authorship hash without "visibility"' do
+      authorship.delete 'visibility'
+      expect(described_class.visibility_valid?(authorship)).to be false
+    end
+    it 'returns false for an authorship hash with a nil "visibility"' do
+      authorship['visibility'] = nil
+      expect(described_class.visibility_valid?(authorship)).to be false
+    end
+    it 'returns false for an authorship hash with an invalid "visibility"' do
+      authorship['visibility'] = 'invalid value'
+      expect(described_class.visibility_valid?(authorship)).to be false
+    end
+  end
+
   describe '.find_or_create_by_author_and_publication' do
     it 'calls find_or_create_by_author_id_and_publication_id' do
       expect(described_class).to receive(:find_or_create_by)

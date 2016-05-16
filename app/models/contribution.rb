@@ -38,6 +38,38 @@ class Contribution < ActiveRecord::Base
       )
   end
 
+  def self.valid_fields?(contrib)
+    contrib = contrib.with_indifferent_access
+    featured_valid?(contrib) &&
+    status_valid?(contrib) &&
+    visibility_valid?(contrib)
+  end
+
+  # Allowed values for visibility
+  VISIBILITY_VALUES = %w(public private).freeze
+
+  # @return [Boolean]
+  def self.visibility_valid?(contrib)
+    contrib = contrib.with_indifferent_access
+    VISIBILITY_VALUES.include? contrib[:visibility].to_s.downcase
+  end
+
+  # Allowed values for status
+  STATUS_VALUES = %w(approved denied new unknown).freeze
+
+  # @return [Boolean]
+  def self.status_valid?(contrib)
+    contrib = contrib.with_indifferent_access
+    STATUS_VALUES.include? contrib[:status].to_s.downcase
+  end
+
+  # Allowed values for featured are true and false
+  # @return [Boolean]
+  def self.featured_valid?(contrib)
+    contrib = contrib.with_indifferent_access
+    contrib[:featured].to_s =~ /true|false/i ? true : false
+  end
+
   def self.find_or_create_by_author_and_publication(author, publication)
     find_or_create_by(author_id: author.id, publication_id: publication.id)
   end
