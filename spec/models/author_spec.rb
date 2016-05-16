@@ -11,47 +11,43 @@ describe Author do
 
   describe '#first_name' do
     it 'is the preferred_first_name' do
-      auth = Author.new
-      auth.update_from_cap_authorship_profile_hash(auth_hash)
-      expect(auth.first_name).to eq(auth.preferred_first_name)
+      subject.update_from_cap_authorship_profile_hash(auth_hash)
+      expect(subject.first_name).to eq(subject.preferred_first_name)
     end
   end
 
   describe '#middle_name' do
     it 'is the preferred_middle_name' do
-      auth = Author.new
-      auth.update_from_cap_authorship_profile_hash(auth_hash)
-      expect(auth.middle_name).to eq(auth.preferred_middle_name)
+      subject.update_from_cap_authorship_profile_hash(auth_hash)
+      expect(subject.middle_name).to eq(subject.preferred_middle_name)
     end
   end
 
   describe '#last_name' do
     it 'is the preferred_last_name' do
-      auth = Author.new
-      auth.update_from_cap_authorship_profile_hash(auth_hash)
-      expect(auth.last_name).to eq(auth.preferred_last_name)
+      subject.update_from_cap_authorship_profile_hash(auth_hash)
+      expect(subject.last_name).to eq(subject.preferred_last_name)
     end
   end
 
   describe '#institution' do
     it 'is a default institution name provided by Settings' do
       default_institution_name = Settings.HARVESTER.INSTITUTION.name
-      auth = Author.new
-      expect(auth.institution).to eq(default_institution_name)
+      expect(subject.institution).to eq(default_institution_name)
     end
   end
 
   describe '#start_date' do
     it 'is nil (until CAP provides data)' do
-      auth = Author.new
-      expect(auth.start_date).to be_nil
+      expect(subject.start_date).to be_nil
     end
   end
 
   describe '#end_date' do
     it 'is nil (until CAP provides data)' do
-      auth = Author.new
-      expect(auth.end_date).to be_nil
+      expect(subject.end_date).to be_nil
+    end
+  end
 
   describe '#approved_sciencewire_ids' do
     let(:pub_without_swid) do
@@ -126,29 +122,26 @@ describe Author do
 
   describe '.update_from_cap_authorship_profile_hash' do
     it 'creates an author from the profile JSON returned from the CAP authorship API' do
-      auth = Author.new
-      auth.update_from_cap_authorship_profile_hash(auth_hash)
-      expect(auth.cap_profile_id).to eq(auth_hash['profileId'])
-      expect(auth.cap_last_name).to eq(auth_hash['profile']['names']['preferred']['lastName'])
-      expect(auth.sunetid).to eq(auth_hash['profile']['uid'])
+      subject.update_from_cap_authorship_profile_hash(auth_hash)
+      expect(subject.cap_profile_id).to eq(auth_hash['profileId'])
+      expect(subject.cap_last_name).to eq(auth_hash['profile']['names']['preferred']['lastName'])
+      expect(subject.sunetid).to eq(auth_hash['profile']['uid'])
       # ...
     end
 
     it 'creates an author from a hash with missing fields' do
-      auth = Author.new
-      auth.update_from_cap_authorship_profile_hash(missing_fields)
-      expect(auth.email).to be_blank
-      expect(auth.preferred_middle_name).to be_blank
-      expect(auth.emails_for_harvest).to be_blank
+      subject.update_from_cap_authorship_profile_hash(missing_fields)
+      expect(subject.email).to be_blank
+      expect(subject.preferred_middle_name).to be_blank
+      expect(subject.emails_for_harvest).to be_blank
     end
 
     it 'duplicates data' do # TODO: why we don't know?
-      auth = Author.new
-      auth.update_from_cap_authorship_profile_hash(auth_hash)
-      expect(auth.emails_for_harvest).to eq(auth.email)
-      expect(auth.preferred_first_name).to eq(auth.cap_first_name)
-      expect(auth.preferred_middle_name).to eq(auth.cap_middle_name)
-      expect(auth.preferred_last_name).to eq(auth.cap_last_name)
+      subject.update_from_cap_authorship_profile_hash(auth_hash)
+      expect(subject.emails_for_harvest).to eq(subject.email)
+      expect(subject.preferred_first_name).to eq(subject.cap_first_name)
+      expect(subject.preferred_middle_name).to eq(subject.cap_middle_name)
+      expect(subject.preferred_last_name).to eq(subject.cap_last_name)
     end
   end
 
@@ -156,8 +149,8 @@ describe Author do
     it 'creates an author from the passed in cap profile id' do
       skip 'Administrative Systems firewall rules only allow IP-based requests'
       VCR.use_cassette('author_spec_fetch_from_cap_and_create') do
-        auth = Author.fetch_from_cap_and_create 3871
-        expect(auth.cap_last_name).to eq('Kwon')
+        author = Author.fetch_from_cap_and_create 3871
+        expect(author.cap_last_name).to eq('Kwon')
       end
     end
   end
@@ -167,15 +160,13 @@ describe Author do
       h = auth_hash
       h['active'] = true
       h['importEnabled'] = true
-      auth = Author.new
-      auth.update_from_cap_authorship_profile_hash h
-      expect(auth).to be_harvestable
+      subject.update_from_cap_authorship_profile_hash h
+      expect(subject).to be_harvestable
     end
 
     it 'returns false when the author is not active or not import_enabled' do
-      auth = Author.new
-      auth.update_from_cap_authorship_profile_hash auth_hash
-      expect(auth).not_to be_harvestable
+      subject.update_from_cap_authorship_profile_hash auth_hash
+      expect(subject).not_to be_harvestable
     end
   end
 end
