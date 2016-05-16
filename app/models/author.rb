@@ -56,6 +56,11 @@ class Author < ActiveRecord::Base
     nil
   end
 
+  # @return [Array<Integer>] ScienceWireIds for approved publications
+  def approved_sciencewire_ids
+    publications.approved.with_sciencewire_id.pluck(:sciencewire_id).uniq
+  end
+
   has_many :contributions, dependent: :destroy, after_add: :contributions_changed_callback, after_remove: :contributions_changed_callback do
     def build_or_update(publication, contribution_hash = {})
       c = where(publication_id: publication.id).first_or_initialize
