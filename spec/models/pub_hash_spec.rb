@@ -367,4 +367,18 @@ describe PubHash do
       end
     end
   end
+  describe 'Other paper' do
+    let(:other_paper) { create(:other_paper) }
+    context 'with minimum required fields' do
+      it 'creates a citation' do
+        pub_hash = PubHash.new(JSON.parse(other_paper.source_data, symbolize_names: true))
+        expect(pub_hash.to_chicago_citation)
+          .to eq 'Jayanthilal, Amith P. 2007. “Other Paper - Only Mandatory Fields”. NYC Publishers.'
+        expect(pub_hash.to_mla_citation)
+          .to eq 'Jayanthilal, Amith P. “Other Paper - Only Mandatory Fields”. 2007: n. pag. Print.'
+        expect(pub_hash.to_apa_citation)
+          .to eq 'Jayanthilal, A. P. (2007). other paper - only mandatory fields. NYC Publishers.'
+      end
+    end
+  end
 end
