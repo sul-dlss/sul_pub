@@ -14,7 +14,7 @@ class Contribution < ActiveRecord::Base
   # has_one :population_membership, :foreign_key => "author_id"
 
   def self.authorship_valid?(authorship)
-    author_valid?(authorship) && all_fields_present?(authorship)
+    author_valid?(authorship) && valid_fields?(authorship)
   end
 
   def self.author_valid?(contrib)
@@ -29,17 +29,7 @@ class Contribution < ActiveRecord::Base
     end
   end
 
-  def self.all_fields_present?(contrib)
-    contrib = contrib.with_indifferent_access
-    ! (
-        contrib[:featured].nil? ||
-        contrib[:status].blank? ||
-        contrib[:visibility].blank?
-      )
-  end
-
   def self.valid_fields?(contrib)
-    contrib = contrib.with_indifferent_access
     featured_valid?(contrib) &&
     status_valid?(contrib) &&
     visibility_valid?(contrib)
