@@ -11,6 +11,13 @@ describe UserSubmittedSourceRecord, type: :model do
     it 'has factory' do
       expect(user_submitted_source_record).to be_a described_class
     end
+    it 'is BibJSON' do
+      json = SulBib::BibJSONParser.call(user_submitted_source_record.source_data, nil)
+      expect(json).to be_a Hash
+      expect(json).to include(:pub_hash)
+      expect(json[:pub_hash]).to be_a Hash
+      expect(json[:pub_hash]['title']).to match(/^An improved TSVD-based Levenberg-Marquard/)
+    end
   end
 
   context 'working_paper' do

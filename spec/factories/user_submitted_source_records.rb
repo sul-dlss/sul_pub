@@ -2,13 +2,77 @@
 
 FactoryGirl.define do
   factory :user_submitted_source_record do
-    source_data 'MyText'
-    pmid 1
-    lock_version 1
-    source_fingerprint 'MyString'
-    is_active false
-    title 'MyString'
-    year 1
+    pmid nil
+    publication_id 1234
+    author_id nil
+    lock_version 0
+    source_fingerprint '62b1ebd89a6269eaeb04b7cc9f4502b4dd3e1faf8d984633234c8efba82c1ad4'
+    is_active true
+    title 'An improved TSVD-based Levenberg-Marquardt algorithm for history matching and comparison with Gauss-Newton'
+    year 2016
+    source_data '{
+      "identifier": [
+        {
+          "id": "10.1016/j.petrol.2016.02.026",
+          "type": "doi",
+          "url": "http://dx.doi.org/10.1016/j.petrol.2016.02.026",
+          "additionalProperties": {}
+        }
+      ],
+      "title": "An improved TSVD-based Levenberg-Marquardt algorithm for history matching and comparison with Gauss-Newton",
+      "authorship": [
+        {
+          "sul_author_id": null,
+          "cap_profile_id": 45516,
+          "featured": false,
+          "status": "APPROVED",
+          "visibility": "PUBLIC",
+          "additionalProperties": {}
+        }
+      ],
+      "year": "2016",
+      "type": "article",
+      "provenance": "CAP",
+      "mesh_headings": [],
+      "journal": {
+        "name": "Journal of Petroleum Science and Engineering",
+        "volume": "",
+        "issue": "",
+        "articleNumber": "",
+        "specialissue": false,
+        "year": "2016",
+        "pages": "",
+        "supplement": "",
+        "identifier": [],
+        "additionalProperties": {},
+        "number": ""
+      },
+      "allAuthors": "",
+      "author": [
+        {
+          "name": "Shirangi G Mehrdad",
+          "alternate": [],
+          "lastname": "Shirangi",
+          "firstname": "Mehrdad",
+          "middlename": "G",
+          "role": "author",
+          "additionalProperties": {}
+        },
+        {
+          "name": "Emerick A Alexandre",
+          "alternate": [],
+          "lastname": "Emerick",
+          "firstname": "Alexandre",
+          "middlename": "A",
+          "role": "author",
+          "additionalProperties": {}
+        }
+      ],
+      "etal": false,
+      "last_updated": "2016-03-02T12:59Z",
+      "publisher": "",
+      "additionalProperties": {}
+    }'
   end
 
   factory :working_paper, parent: :user_submitted_source_record do
