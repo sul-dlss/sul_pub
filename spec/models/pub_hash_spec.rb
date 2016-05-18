@@ -198,6 +198,20 @@ describe PubHash do
       publicationSource: 'New York'
     }
   end
+  let(:case_study_pub_hash) do
+    {
+      title: 'HCL Technologies',
+      type: 'caseStudy',
+      year: '2008',
+      author: [
+        { name: 'Hill, Linda' },
+        { name: 'Khanna, Tarun' },
+        { name: 'Stecker, Emily A.' }
+      ],
+      publisher: 'Harvard Business Publishing',
+      publicationSource: 'Boston'
+    }
+  end
 
   # describe "#sync_publication_hash" do
   #   context " with multiple contributions " do
@@ -462,6 +476,27 @@ describe PubHash do
       it 'creates a APA citation' do
         expect(pub_hash.to_apa_citation)
           .to eq "Mangiafico, P. A. (2016). This is Peter's Case Study on the Revs Digital Library (1-5). Stanford, CA: Stanford University. Retrieved from http://revslib.stanford.edu"
+      end
+    end
+    context 'given fixture' do
+      let(:pub_hash) { PubHash.new(case_study_pub_hash) }
+      ##
+      # Difference from our spec here is we don't add the optional "Case study." clarification string.
+      # http://www.easybib.com/guides/citation-guides/how-do-i-cite-a/case-study/
+      it 'returns a Chicago citation' do
+        expect(pub_hash.to_chicago_citation).to eq 'Hill, Linda, Tarun Khanna, and Emily A. Stecker. 2008. <i>HCL Technologies</i>. Boston: Harvard Business Publishing.'
+      end
+      ##
+      # Difference from our spec here is we don't add the optional "Case study." clarification string.
+      # http://www.easybib.com/guides/citation-guides/how-do-i-cite-a/case-study/
+      it 'returns a MLA citation' do
+        expect(pub_hash.to_mla_citation).to eq 'Hill, Linda, Tarun Khanna, and Emily A. Stecker. <i>HCL Technologies</i>. Boston: Harvard Business Publishing, 2008. Print.'
+      end
+      ##
+      # Difference from our spec here is we don't add the optional "[Case study]." clarification string.
+      # http://www.easybib.com/guides/citation-guides/how-do-i-cite-a/case-study/
+      it 'returns a APA citation' do
+        expect(pub_hash.to_apa_citation).to eq 'Hill, L., Khanna, T., &#38; Stecker, E. A. (2008). HCL Technologies. Boston: Harvard Business Publishing.'
       end
     end
   end

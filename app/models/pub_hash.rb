@@ -112,6 +112,10 @@ class PubHash
       cit_data_hash['type'] = 'report' if pub_hash[:type] == 'technicalReport'
 
       ##
+      # For a CAP type "caseStudy" just use a "book"
+      cit_data_hash['type'] = 'book' if pub_hash[:type] == 'caseStudy'
+
+      ##
       # Mapping custom fields from the CAP system.
       cit_data_hash['URL'] = pub_hash[:publicationUrl] if pub_hash[:publicationUrl].present?
       cit_data_hash['publisher-place'] = pub_hash[:publicationSource] if pub_hash[:publicationSource].present?
