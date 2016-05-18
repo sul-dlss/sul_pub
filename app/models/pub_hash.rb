@@ -29,6 +29,7 @@ class PubHash
     CiteProc.process(to_citation_data, style: apa_csl_file, format: 'html')
   end
 
+  # rubocop:disable Metrics/AbcSize, Metrics/MethodLength, Metrics/PerceivedComplexity
   def to_citation_data
     @citation_data ||= begin
       authors_for_citeproc = []
@@ -174,5 +175,6 @@ class PubHash
 
       [cit_data_hash]
     end
+    # rubocop:enable Metrics/AbcSize, Metrics/MethodLength, Metrics/PerceivedComplexity
   end
 end
