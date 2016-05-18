@@ -60,7 +60,7 @@ describe Contribution do
       described_class.authorship_valid?(authorship)
     end
     it 'calls #all_fields_present?' do
-      expect(described_class).to receive(:all_fields_present?)
+      expect(described_class).to receive(:valid_fields?)
       described_class.authorship_valid?(authorship)
     end
     it 'returns true for a valid authorship hash' do
@@ -84,27 +84,6 @@ describe Contribution do
       auth['cap_profile_id'] = nil
       auth['sul_author_id'] = nil
       expect(described_class.author_valid?(auth)).to be false
-    end
-  end
-
-  describe '.all_fields_present?' do
-    it 'returns true for a valid authorship hash' do
-      expect(described_class.all_fields_present?(authorship)).to be true
-    end
-    it 'returns false for an authorship hash without "featured"' do
-      auth = authorship
-      auth['featured'] = nil
-      expect(described_class.all_fields_present?(auth)).to be false
-    end
-    it 'returns false for an authorship hash without "status"' do
-      auth = authorship
-      auth['status'] = nil
-      expect(described_class.all_fields_present?(auth)).to be false
-    end
-    it 'returns false for an authorship hash without "visibility"' do
-      auth = authorship
-      auth['visibility'] = nil
-      expect(described_class.all_fields_present?(auth)).to be false
     end
   end
 
