@@ -163,6 +163,11 @@ class PubHash
         cit_data_hash['editor'] = editors_for_citeproc
       end
 
+      ##
+      # Mapping custom fields from the CAP system.
+      cit_data_hash['URL'] = pub_hash[:publicationUrl] if pub_hash[:publicationUrl].present?
+      cit_data_hash['publisher-place'] = pub_hash[:publicationSource] if pub_hash[:publicationSource].present?
+
       [cit_data_hash]
     end
   end
