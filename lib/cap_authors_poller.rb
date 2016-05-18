@@ -134,6 +134,14 @@ class CapAuthorsPoller
 
   def update_existing_contributions(author, incoming_authorships)
     incoming_authorships.each do |authorship|
+      if !Contribution.authorship_valid? authorship
+        msg = "Invalid authorship: cap_profile_id: #{author.cap_profile_id}; #{authorship.inspect}"
+        logger.error msg
+        exception = ArgumentError.new(msg)
+        NotificationManager.handle_authorship_pull_error(exception, msg)
+        @invalid_contribs += 1
+        next
+      end
       pub_id = authorship['sulPublicationId']
       contribs = author.contributions.where(publication_id: pub_id)
       if contribs.count == 0
@@ -209,6 +217,7 @@ class CapAuthorsPoller
     @import_disabled_count = 0
     @contribs_changed = 0
     @contrib_does_not_exist = 0
+    @invalid_contribs = 0
     @too_many_contribs = 0
     @new_auth_with_contribs = 0
   end
@@ -230,6 +239,7 @@ class CapAuthorsPoller
     info << "#{@import_enabled_count} authors had import enabled."
     info << "#{@import_disabled_count} authors had import disabled."
     info << "#{@contrib_does_not_exist} contributions did not exist for update"
+    info << "#{@invalid_contribs} contributions were invalid authorship data"
     info << "#{@too_many_contribs} contributions had more than one instance for an author"
     info << "#{@new_auth_with_contribs} new authors had contributions which were ignored"
     info << "#{@contribs_changed} contributions were updated"
