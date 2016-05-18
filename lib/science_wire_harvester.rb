@@ -32,10 +32,7 @@ class ScienceWireHarvester
         end
         harvest_for_author(author)
       rescue => e
-        msg = "Error for #{author.official_last_name} - sul author id: #{author.id} "
-        sw_harvest_logger.error "#{msg}-  #{e.inspect}"
-        sw_harvest_logger.error e.backtrace.join "\n"
-        # NotificationManager.handle_harvest_problem(e, msg)
+        NotificationManager.error(e, "#{author.official_last_name} - sul author id: #{author.id} ", self)
       end
     end
     process_queued_sciencewire_suggestions
@@ -49,7 +46,7 @@ class ScienceWireHarvester
     sw_harvest_logger.info "Started nightly authorship harvest #{Time.zone.now}"
     harvest_pubs_for_authors Author.where(id: author_ids)
   rescue => e
-    NotificationManager.handle_harvest_problem(e, 'Error for with nightly harvest.')
+    NotificationManager.error(e, 'Error for with nightly harvest.', self)
   end
 
   def harvest_pubs_for_all_authors(starting_author_id, ending_author_id = -1)
@@ -319,7 +316,7 @@ class ScienceWireHarvester
         pub.save
       end
     rescue => e
-      NotificationManager.handle_harvest_problem(e, 'The batch call to pubmed, process_queued_pubmed_records, failed.')
+      NotificationManager.error(e, 'The batch call to pubmed, process_queued_pubmed_records, failed.', self)
     end
     @records_queued_for_pubmed_retrieval.clear
   end

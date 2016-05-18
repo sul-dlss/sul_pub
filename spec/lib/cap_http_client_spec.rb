@@ -17,7 +17,7 @@ describe CapHttpClient do
     it 'on general StandardError' do
       stub_request(:post, request_path)
         .to_raise(StandardError)
-      expect(NotificationManager).to receive(:handle_authorship_pull_error)
+      expect(NotificationManager).to receive(:error)
       expect { subject.generate_token }.to raise_error StandardError
     end
   end

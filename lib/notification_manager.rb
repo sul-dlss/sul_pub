@@ -1,30 +1,44 @@
 class NotificationManager
 
   class << self
-    def notify(e, message)
+
+    def notify_squash(e, message)
       Squash::Ruby.notify(e, notify_message: message) unless Settings.SQUASH.DISABLED
     end
 
-    def handle_harvest_problem(e, message)
-      notify(e, 'sciencewire_harvest_problem: ' + message)
-    end
+    ##
+    # Handles notification of errors with behavior based on the callee
+    #
+    # @param [Exception] `e` -- the original exception
+    # @param [String] `message` -- human-readable message
+    # @param [Class] `callee` -- the callee object
+    def error(e, message, callee = nil, use_squash = true)
+      log_message = callee.class.name + ': ' + message
 
-    def handle_authorship_pull_error(e, message)
-      cap_authorship_logger.error message
-      cap_authorship_logger.error e.message
-      cap_authorship_logger.error e.backtrace.join("\n") if e.backtrace.present?
-
-      notify(e, 'authorship_pull_error: ' + message)
-    end
-
-    def handle_pubmed_pull_error(e, message)
-      pubmed_logger.error message
-      pubmed_logger.error e.message
-      pubmed_logger.error e.backtrace.join("\n") if e.backtrace.present?
-      Rails.logger.warn e.inspect
-      Rails.logger.info e.backtrace.join("\n") if e.backtrace.present?
-
-      notify(e, 'pubmed_pull_error: ' + message)
+      case callee
+      when ScienceWireHarvester, ScienceWireClient
+        # no logging -- TODO: why?
+      when PubmedHarvester, PubmedClient
+        pubmed_logger.error log_message
+        pubmed_logger.error e.message
+        pubmed_logger.error e.backtrace.join("\n") if e.backtrace.present?
+        Rails.logger.warn e.inspect
+        Rails.logger.info e.backtrace.join("\n") if e.backtrace.present?
+      when CapAuthorsPoller, CapHttpClient
+        cap_authorship_logger.error log_message
+        cap_authorship_logger.error e.message
+        cap_authorship_logger.error e.backtrace.join("\n") if e.backtrace.present?
+      else
+        Rails.logger.error log_message
+        Rails.logger.error e.inspect
+        Rails.logger.error e.backtrace.join("\n") if e.backtrace.present?
+        use_squash = false # only log error to Rails console
+      end
+    rescue => e2
+      Rails.logger.error e2.inspect
+      Rails.logger.error e2.backtrace.join("\n") if e2.backtrace.present?
+    ensure
+      notify_squash(e, log_message) if use_squash
     end
 
     private

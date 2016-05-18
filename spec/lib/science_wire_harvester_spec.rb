@@ -171,7 +171,7 @@ describe ScienceWireHarvester, :vcr do
 
     context 'for invalid author' do
       it 'calls the Notification Manager' do
-        expect(NotificationManager).to receive(:handle_harvest_problem)
+        expect(NotificationManager).to receive(:error)
         science_wire_harvester.harvest_pubs_for_author_ids([67_676_767_676])
       end
     end

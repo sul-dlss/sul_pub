@@ -49,7 +49,7 @@ class CapAuthorsPoller
     logger.info info.join("\n")
   rescue => e
     msg = "Authorship import failed - #{Time.zone.now}"
-    NotificationManager.handle_authorship_pull_error(e, msg)
+    NotificationManager.error(e, msg, self)
   end
 
   def cap_authors_count(days_ago = 1)
@@ -74,7 +74,7 @@ class CapAuthorsPoller
           logger.info "Processed #{@total_running_count} authors" if @total_running_count % 10 == 0
         rescue => e
           msg = "Authorship import failed for incoming record containing: #{record.inspect if record} - #{Time.zone.now}"
-          NotificationManager.handle_authorship_pull_error(e, msg)
+          NotificationManager.error(e, msg, self)
         end
       end
     end
@@ -138,7 +138,7 @@ class CapAuthorsPoller
         msg = "Invalid authorship: cap_profile_id: #{author.cap_profile_id}; #{authorship.inspect}"
         logger.error msg
         exception = ArgumentError.new(msg)
-        NotificationManager.handle_authorship_pull_error(exception, msg)
+        NotificationManager.error(exception, msg, self)
         @invalid_contribs += 1
         next
       end

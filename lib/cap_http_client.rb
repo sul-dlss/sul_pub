@@ -13,7 +13,7 @@ class CapHttpClient
   def initialize
     @base_timeout_retries = 3
     @base_timeout_period = 500
-    @auth_token = generate_token
+    @auth_token = nil
   end
 
   def generate_token
@@ -33,11 +33,11 @@ class CapHttpClient
       timeout_period += 500
       retry
     else
-      NotificationManager.handle_authorship_pull_error(te, "Timeout error on call to retrieve token for cap authorship feed - #{Time.zone.now}")
+      NotificationManager.error(te, "Timeout error on call to retrieve token for cap authorship feed - #{Time.zone.now}", self)
       raise
     end
   rescue => e
-    NotificationManager.handle_authorship_pull_error(e, 'Problem with http call to cap authorship api')
+    NotificationManager.error(e, 'Problem with http call to cap authorship api', self)
     raise
   end
 
@@ -65,6 +65,7 @@ class CapHttpClient
     begin
       http = setup_cap_http
       request = Net::HTTP::Get.new(request_path)
+      @auth_token ||= generate_token
       token = @auth_token
 
       3.times do
@@ -92,11 +93,11 @@ class CapHttpClient
         timeout_period += 500
         retry
       else
-        NotificationManager.handle_harvest_problem(te, "Timeout error on authorship call - #{Time.zone.now}")
+        NotificationManager.error(te, "Timeout error on authorship call - #{Time.zone.now}", self)
         raise
       end
     rescue => e
-      NotificationManager.handle_harvest_problem(e, 'Problem with http call to cap authorship api')
+      NotificationManager.error(e, 'Problem with http call to cap authorship api', self)
       raise
     end
     json_response
