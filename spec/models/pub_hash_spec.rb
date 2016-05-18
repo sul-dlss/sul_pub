@@ -170,6 +170,34 @@ describe PubHash do
                            featured: false }]
     }
   end
+  let(:technical_report_online_pub_hash) do
+    {
+      title: 'Laws of Attrition: Crackdown on Russia’s Civil Society After Putin’s Return to the Presidency',
+      type: 'technicalReport',
+      pages: '',
+      author: [{ name: 'Gorbunova, Yulia' }],
+      year: '2013',
+      publisher: 'Human Rights Watch',
+      publicationUrl: 'http://www.hrw.org/reports/2013/04/24/laws-attrition',
+      publicationUrlLabel: '',
+      publicationSource: 'New York'
+    }
+  end
+  let(:technical_report_print_pub_hash) do
+    {
+      title: 'Laws of Attrition: Crackdown on Russia’s Civil Society After Putin’s Return to the Presidency',
+      type: 'technicalReport',
+      author: [
+        { name: 'Gorbunova, Yulia' },
+        { name: 'Baranov, Konstantin' },
+      ],
+      year: '2013',
+      publisher: 'Human Rights Watch',
+      publicationUrl: '',
+      publicationUrlLabel: '',
+      publicationSource: 'New York'
+    }
+  end
 
   # describe "#sync_publication_hash" do
   #   context " with multiple contributions " do
@@ -370,5 +398,49 @@ describe PubHash do
   describe 'Other paper' do
     let(:other_paper) { create(:other_paper) }
     it 'creates a citation'
+  end
+  describe 'Technical report' do
+    let(:technical_report) { create(:technical_report) }
+    ##
+    # An example given from a direct import of a record entered in the CAP UAT environment.
+    context 'from cap with minimum required fields' do
+      it 'creates a citation' do
+        pub_hash = PubHash.new(JSON.parse(technical_report.source_data, symbolize_names: true))
+        expect(pub_hash.to_chicago_citation)
+          .to eq "Mangiafico, Peter A. 2016. <i>This Is Peter'S Technical Report On the Revs Digital Library</i>5. Series Name. Stanford, CA : Stanford University. http://revslib.stanford.edu."
+        expect(pub_hash.to_mla_citation)
+          .to eq "Mangiafico, Peter A. <i>This Is Peter'S Technical Report On the Revs Digital Library</i>. Stanford, CA : Stanford University, 2016. Web. Series Name."
+        expect(pub_hash.to_apa_citation)
+          .to eq "Mangiafico, P. A. (2016). <i>This is Peter's Technical Report on the Revs Digital Library</i> (No. 5) (1-5). Stanford, CA : Stanford University. Retrieved from http://revslib.stanford.edu"
+      end
+    end
+    context 'given fixture' do
+      context 'an online technical report' do
+        let(:pub_hash) { PubHash.new(technical_report_online_pub_hash) }
+        ##
+        # Example taken from: http://www.easybib.com/guides/citation-guides/chicago-turabian/how-to-cite-a-report-chicago-turabian/
+        # Differences: using the Sul-Pub preferred Chicago author-date format and a strange capitalization on "'s"
+        it 'returns a Chicago citation' do
+          expect(pub_hash.to_chicago_citation)
+            .to eq 'Gorbunova, Yulia. 2013. <i>Laws of Attrition: Crackdown On Russia’S Civil Society After Putin’S Return To the Presidency</i>. New York: Human Rights Watch. http://www.hrw.org/reports/2013/04/24/laws-attrition.'
+        end
+        ##
+        # Example taken from: http://www.easybib.com/guides/citation-guides/apa-format/how-to-cite-a-report-apa/
+        # Differences: not showing "Retrieved from 'Agency name' website:"
+        it 'returns an APA citation' do
+          expect(pub_hash.to_apa_citation)
+            .to eq 'Gorbunova, Y. (2013). <i>Laws of Attrition: Crackdown on Russia’s Civil Society After Putin’s Return to the Presidency</i>. New York: Human Rights Watch. Retrieved from http://www.hrw.org/reports/2013/04/24/laws-attrition'
+        end
+      end
+      ##
+      # Example take from: http://www.easybib.com/guides/citation-guides/mla-format/how-to-cite-a-report-mla/
+      # Differences: using a modified multiple authors format that we already support and a strange capitalization on "'s"
+      context 'a print technical report with multiple authors' do
+        it 'returns a MLA citation' do
+          expect(PubHash.new(technical_report_print_pub_hash).to_mla_citation)
+            .to eq 'Gorbunova, Yulia, and Konstantin Baranov. <i>Laws of Attrition: Crackdown On Russia’S Civil Society After Putin’S Return To the Presidency</i>. New York: Human Rights Watch, 2013. Print.'
+        end
+      end
+    end
   end
 end

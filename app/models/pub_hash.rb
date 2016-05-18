@@ -164,6 +164,10 @@ class PubHash
       end
 
       ##
+      # For a CAP type "technicalReport" just use a "report"
+      cit_data_hash['type'] = 'report' if pub_hash[:type] == 'technicalReport'
+
+      ##
       # Mapping custom fields from the CAP system.
       cit_data_hash['URL'] = pub_hash[:publicationUrl] if pub_hash[:publicationUrl].present?
       cit_data_hash['publisher-place'] = pub_hash[:publicationSource] if pub_hash[:publicationSource].present?
