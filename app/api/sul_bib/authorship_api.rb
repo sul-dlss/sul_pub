@@ -163,21 +163,21 @@ module SulBib
             error!(msg, 404)
           end
         elsif pmid
-          p = Publication.find_or_create_by_pmid(pmid)
-          if p.nil?
+          pub = Publication.find_or_create_by_pmid(pmid)
+          if pub.nil?
             msg = "The PMID:#{pmid} was not found either locally or at PubMed."
             logger.error msg
             error!(msg, 404)
           end
-          p
+          pub
         elsif sw_id
-          p = Publication.find_or_create_by_sciencewire_id(sw_id)
-          if p.nil?
+          pub = Publication.find_or_create_by_sciencewire_id(sw_id)
+          if pub.nil?
             msg = "The ScienceWire:#{sw_id} publication was not found either locally or at ScienceWire."
             logger.error msg
             error!(msg, 404)
           end
-          p
+          pub
         end
       end # get_publication
     end
