@@ -29,6 +29,7 @@ class PubHash
     CiteProc.process(to_citation_data, style: apa_csl_file, format: 'html')
   end
 
+  # rubocop:disable Metrics/AbcSize, Metrics/MethodLength, Metrics/PerceivedComplexity
   def to_citation_data
     @citation_data ||= begin
       authors_for_citeproc = []
@@ -163,7 +164,17 @@ class PubHash
         cit_data_hash['editor'] = editors_for_citeproc
       end
 
+      ##
+      # For a CAP type "technicalReport" just use a "report"
+      cit_data_hash['type'] = 'report' if pub_hash[:type] == 'technicalReport'
+
+      ##
+      # Mapping custom fields from the CAP system.
+      cit_data_hash['URL'] = pub_hash[:publicationUrl] if pub_hash[:publicationUrl].present?
+      cit_data_hash['publisher-place'] = pub_hash[:publicationSource] if pub_hash[:publicationSource].present?
+
       [cit_data_hash]
     end
+    # rubocop:enable Metrics/AbcSize, Metrics/MethodLength, Metrics/PerceivedComplexity
   end
 end
