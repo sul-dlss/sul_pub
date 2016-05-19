@@ -411,7 +411,7 @@ describe PubHash do
         expect(pub_hash.to_mla_citation)
           .to eq "Mangiafico, Peter A. <i>This Is Peter'S Technical Report On the Revs Digital Library</i>. Stanford, CA : Stanford University, 2016. Web. Series Name."
         expect(pub_hash.to_apa_citation)
-          .to eq "Mangiafico, P. A. (2016). <i>This is Peter's Technical Report on the Revs Digital Library</i> (No. 5) (1-5). Stanford, CA : Stanford University. Retrieved from http://revslib.stanford.edu"
+          .to eq "Mangiafico, P. A. (2016). <i>This is Peter's Technical Report on the Revs Digital Library</i> (Series Name No. 5) (1-5). Stanford, CA : Stanford University. Retrieved from http://revslib.stanford.edu"
       end
     end
     context 'given fixture' do
