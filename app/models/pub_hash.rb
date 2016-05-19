@@ -5,6 +5,14 @@ class PubHash
     @hash = hash
   end
 
+  def citeproc_authors
+    @citeproc_authors ||= parse_authors[:authors]
+  end
+
+  def citeproc_editors
+    @citeproc_editors ||= parse_authors[:editors]
+  end
+
   def pub_hash
     @hash
   end
@@ -32,75 +40,11 @@ class PubHash
   # rubocop:disable Metrics/AbcSize, Metrics/MethodLength, Metrics/PerceivedComplexity
   def to_citation_data
     @citation_data ||= begin
-      authors_for_citeproc = []
-      editors_for_citeproc = []
-
-      authors = pub_hash[:author] || []
-      if authors.length > 5
-        # we pass the first five  authorsand the very last author because some
-        # formats add the very last name when using et-al. the CSL should drop the sixth name if unused.
-        # We could in fact pass all the author names to the CSL processor and let it
-        # just take the first five, but that seemed to crash the processor for publications
-        # with a lot of authors (e.g, 2000 authors)
-        authors = authors[0..4]
-        authors << pub_hash[:author].last
-        #   authors << {:name=>"et al."}
-        # elsif pub_hash[:etal]
-        #   authors = pub_hash[:author].collect {|a| a}
-        #   authors << {:name=>"et al."}
-      end
-
-      authors.each do |author|
-        last_name = ''
-        rest_of_name = ''
-
-        # use parsed name parts if available
-        unless author[:lastname].blank?
-          last_name = author[:lastname]
-          unless author[:firstname].blank?
-            if author[:firstname].length == 1
-              rest_of_name << ' ' << author[:firstname] << '.'
-            else
-              rest_of_name << ' ' << author[:firstname]
-            end
-          end
-
-          unless author[:middlename].blank?
-            if author[:middlename].length == 1
-              rest_of_name << ' ' << author[:middlename] << '.'
-            else
-              rest_of_name << ' ' << author[:middlename]
-            end
-          end
-        end
-
-        # use name otherwise and if available
-        if last_name.blank? && !author[:name].blank?
-          author[:name].split(',').each_with_index do |name_part, index|
-            if index == 0
-              last_name = name_part
-            elsif name_part.length == 1
-              # the name part is only one character so an initial
-              rest_of_name << ' ' << name_part << '.'
-            elsif name_part.length > 1
-              rest_of_name << ' ' << name_part
-            end
-          end
-        end
-
-        unless last_name.blank?
-          if author[:role] && author[:role].casecmp('editor') == 0
-            editors_for_citeproc << { 'family' => last_name, 'given' => rest_of_name }
-          else
-            authors_for_citeproc << { 'family' => last_name, 'given' => rest_of_name }
-          end
-        end
-      end
 
       cit_data_hash = {
         'id' => 'sulpub',
         'type' => pub_hash[:type],
-        'author' => authors_for_citeproc,
+        'author' => citeproc_authors,
         'title' => pub_hash[:title]
       }
 
@@ -160,8 +104,8 @@ class PubHash
         cit_data_hash['container-title'] = pub_hash[:booktitle]
       end
 
-      if cit_data_hash['type'] && cit_data_hash['type'].casecmp('book') == 0 && !editors_for_citeproc.empty?
-        cit_data_hash['editor'] = editors_for_citeproc
+      if cit_data_hash['type'] && cit_data_hash['type'].casecmp('book') == 0 && !citeproc_editors.empty?
+        cit_data_hash['editor'] = citeproc_editors
       end
 
       ##
@@ -178,3 +122,76 @@ class PubHash
     # rubocop:enable Metrics/AbcSize, Metrics/MethodLength, Metrics/PerceivedComplexity
   end
 end
+
+private
+
+  def parse_authors
+    authors_for_citeproc = []
+    editors_for_citeproc = []
+
+    authors = pub_hash[:author] || []
+    if authors.length > 5
+      # we pass the first five  authorsand the very last author because some
+      # formats add the very last name when using et-al. the CSL should drop the sixth name if unused.
+      # We could in fact pass all the author names to the CSL processor and let it
+      # just take the first five, but that seemed to crash the processor for publications
+      # with a lot of authors (e.g, 2000 authors)
+      authors = authors[0..4]
+      authors << pub_hash[:author].last
+      #   authors << {:name=>"et al."}
+      # elsif pub_hash[:etal]
+      #   authors = pub_hash[:author].collect {|a| a}
+      #   authors << {:name=>"et al."}
+    end
+
+    authors.each do |author|
+      last_name = ''
+      rest_of_name = ''
+
+      # use parsed name parts if available
+      unless author[:lastname].blank?
+        last_name = author[:lastname]
+        unless author[:firstname].blank?
+          if author[:firstname].length == 1
+            rest_of_name << ' ' << author[:firstname] << '.'
+          else
+            rest_of_name << ' ' << author[:firstname]
+          end
+        end
+
+        unless author[:middlename].blank?
+          if author[:middlename].length == 1
+            rest_of_name << ' ' << author[:middlename] << '.'
+          else
+            rest_of_name << ' ' << author[:middlename]
+          end
+        end
+      end
+
+      # use name otherwise and if available
+      if last_name.blank? && !author[:name].blank?
+        author[:name].split(',').each_with_index do |name_part, index|
+          if index == 0
+            last_name = name_part
+          elsif name_part.length == 1
+            # the name part is only one character so an initial
+            rest_of_name << ' ' << name_part << '.'
+          elsif name_part.length > 1
+            rest_of_name << ' ' << name_part
+          end
+        end
+      end
+
+      unless last_name.blank?
+        if author[:role] && author[:role].casecmp('editor') == 0
+          editors_for_citeproc << { 'family' => last_name, 'given' => rest_of_name }
+        else
+          authors_for_citeproc << { 'family' => last_name, 'given' => rest_of_name }
+        end
+      end
+    end
+    {
+      authors: authors_for_citeproc,
+      editors: editors_for_citeproc
+    }
+  end
