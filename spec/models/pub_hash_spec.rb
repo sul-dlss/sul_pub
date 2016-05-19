@@ -440,6 +440,10 @@ describe PubHash do
           expect(PubHash.new(technical_report_print_pub_hash).to_mla_citation)
             .to eq 'Gorbunova, Yulia, and Konstantin Baranov. <i>Laws of Attrition: Crackdown On Russia’S Civil Society After Putin’S Return To the Presidency</i>. New York: Human Rights Watch, 2013. Print.'
         end
+        pending 'returns a MLA citation with correct pluralization in title' do
+          expect(PubHash.new(technical_report_print_pub_hash).to_mla_citation)
+            .to eq 'Gorbunova, Yulia, and Konstantin Baranov. <i>Laws of Attrition: Crackdown On Russia’s Civil Society After Putin’s Return To the Presidency</i>. New York: Human Rights Watch, 2013. Print.'
+        end
       end
     end
   end
