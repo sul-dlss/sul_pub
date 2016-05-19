@@ -477,6 +477,12 @@ describe PubHash do
         expect(pub_hash.to_apa_citation)
           .to eq "Mangiafico, P. A. (2016). This is Peter's Case Study on the Revs Digital Library (1-5). Stanford, CA: Stanford University. Retrieved from http://revslib.stanford.edu"
       end
+      pending 'creates a citation with correct pluralization in title' do
+        expect(pub_hash.to_chicago_citation)
+          .to eq "Mangiafico, Peter A. 2016. <i>This Is Peter's Case Study On the Revs Digital Library</i>. Series Name. Stanford, CA: Stanford University. http://revslib.stanford.edu."
+        expect(pub_hash.to_mla_citation)
+          .to eq "Mangiafico, Peter A. <i>This Is Peter's Case Study On the Revs Digital Library</i>. Stanford, CA: Stanford University, 2016. Web. Series Name."
+      end
     end
     context 'given fixture' do
       let(:pub_hash) { PubHash.new(case_study_pub_hash) }
