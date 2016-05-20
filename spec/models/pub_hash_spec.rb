@@ -354,7 +354,7 @@ describe PubHash do
         # from spec/fixtures/doc_types/working_paper.rb
         working_paper_for_hurricanes_as_csl_report
       end
-      let(:csl_report) { pub_hash.to_citation_data.first }
+      let(:csl_report) { pub_hash.csl_doc }
       let(:cite) { pub_hash.to_apa_citation }
       it_behaves_like 'it is a CSL report citation'
       context 'translates to a CSL report document' do
