@@ -1,43 +1,49 @@
 require 'citeproc'
 
 class PubHash
+  attr_reader :pub_hash
+
   def initialize(hash)
-    @hash = hash
+    @pub_hash = hash
   end
 
-  def pub_hash
-    @hash
+  # @param csl_citation_data [Array<Hash>] an array of CSL citation documents
+  # @param csl_style_file [String] a CSL citation style file path
+  # @return citation [String] a bibliographic citation
+  def generate_csl_citation(csl_citation_data, csl_style_file)
+    CiteProc.process(csl_citation_data, style: csl_style_file, format: 'html')
   end
 
   def to_chicago_citation
-    authors = pub_hash[:author] || []
-    if pub_hash[:etal] || authors.length > 5
-      chicago_csl_file = Rails.root.join('app', 'data', 'chicago-author-date_et_al.csl')
-    else
-      chicago_csl_file = Rails.root.join('app', 'data', 'chicago-author-date.csl')
+    @chicago_csl_file ||= begin
+      style_name = 'chicago-author-date'
+      # sul-pub has a custom modification that can be used for many authors
+      authors = pub_hash[:author] || []
+      style_name += '_et_al' if pub_hash[:etal].present? || authors.count > 5
+      Rails.root.join('app', 'data', style_name + '.csl')
     end
-    CiteProc.process(to_citation_data, style: chicago_csl_file, format: 'html')
+    generate_csl_citation([csl_doc], @chicago_csl_file)
   end
 
   def to_mla_citation
-    mla_csl_file = Rails.root.join('app', 'data', 'mla.csl')
-    CiteProc.process(to_citation_data, style: mla_csl_file, format: 'html')
+    @mla_csl_file ||= Rails.root.join('app', 'data', 'mla.csl')
+    generate_csl_citation([csl_doc], @mla_csl_file)
   end
 
   def to_apa_citation
-    apa_csl_file = Rails.root.join('app', 'data', 'apa.csl')
-    CiteProc.process(to_citation_data, style: apa_csl_file, format: 'html')
+    @apa_csl_file ||= Rails.root.join('app', 'data', 'apa.csl')
+    generate_csl_citation([csl_doc], @apa_csl_file)
   end
 
-  def to_citation_data
-    @citation_data ||= begin
+  def csl_doc
+    @csl_doc ||= begin
 
       if pub_hash[:provenance] =~ /cap/i
         # This is a CAP manual submission
         case pub_hash[:type]
         when 'workingPaper', 'technicalReport'
           # Map a CAP 'workingPaper' or 'technicalReport' to a CSL 'report'
-          return [create_csl_report]
+          return create_csl_report
         end
         ##
         # Other doc-types include:
@@ -123,7 +129,7 @@ class PubHash
       cit_data_hash['URL'] = pub_hash[:publicationUrl] if pub_hash[:publicationUrl].present?
       cit_data_hash['publisher-place'] = pub_hash[:publicationSource] if pub_hash[:publicationSource].present?
 
-      [cit_data_hash]
+      cit_data_hash
     end
   end
 end
