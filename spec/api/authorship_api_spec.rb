@@ -501,6 +501,19 @@ describe SulBib::API, :vcr do
     end
   end # shared_examples 'it issues errors for cap_profile_id'
 
+  shared_examples 'it handles invalid authorship attributes' do
+    let(:request_data) do
+      data = update_authorship_for_pub_with_contributions
+      data[:visibility] = 'invalid value'
+      data
+    end
+    it 'returns 406' do
+      http_request
+      expect(response.status).to eq 406
+    end
+  end # shared_examples 'it handles invalid authorship/contribution data'
+
+
   # ---
   # POST
 
@@ -542,6 +555,7 @@ describe SulBib::API, :vcr do
       it_behaves_like 'it issues errors for cap_profile_id'
       it_behaves_like 'it checks author for the correct cap_profile_id'
       it_behaves_like 'it checks author for a cap_profile_id'
+      it_behaves_like 'it handles invalid authorship attributes'
 
       it 'returns 500 error when publication contribution fails to save' do
         # Mock a publication in the valid request data so it fails to save.
@@ -695,6 +709,7 @@ describe SulBib::API, :vcr do
       it_behaves_like 'it issues errors for cap_profile_id'
       it_behaves_like 'it checks author for the correct cap_profile_id'
       it_behaves_like 'it checks author for a cap_profile_id'
+      it_behaves_like 'it handles invalid authorship attributes'
 
       context 'if there are contribution record errors' do
         # Use an existing contribution data for the request, to ensure it

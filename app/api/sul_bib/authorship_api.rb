@@ -235,7 +235,10 @@ module SulBib
       # update the contribution.  (When a request only requires an update, it
       # should use the PATCH method below.)
       authorship_hash = contrib_attr
-      Contribution.authorship_valid? authorship_hash
+      # Contribution.valid_fields? will confirm  the authorship fields are
+      # present and valid; the GrapeAPI checks the presence of required params.
+      Contribution.valid_fields?(authorship_hash) ||
+        error!('You have not supplied a valid authorship record.', 406)
       create_or_update_and_return_pub_hash(pub, author, authorship_hash)
     end # post end
 
@@ -290,9 +293,28 @@ module SulBib
       pub = contrib.publication
 
       # We've now got the contribution, gather the new attributes.  In a PATCH
-      # request, it's OK if some of them are missing.
-      authorship_hash = contrib_attr
+      # request, it's OK if some of them are missing; validate only the
+      # fields provided.  When check for 'featured', use .nil? because it
+      # is allowed to have a `false` value.
+      authorship_hash = contrib_attr.with_indifferent_access
+      !authorship_hash[:featured].nil? ||
+        authorship_hash[:status].present? ||
+        authorship_hash[:visibility].present? ||
+        error!("At least one authorship attribute is required: 'featured', 'status', 'visibility'.", 406)
+      unless authorship_hash[:featured].nil?
+        Contribution.featured_valid?(authorship_hash) ||
+          error!("The 'featured' param is invalid: #{authorship_hash[:featured]}.", 406)
+      end
+      if authorship_hash[:status].present?
+        Contribution.status_valid?(authorship_hash) ||
+          error!("The 'status' param is invalid: #{authorship_hash[:status]}.", 406)
+      end
+      if authorship_hash[:visibility].present?
+        Contribution.visibility_valid?(authorship_hash) ||
+          error!("The 'visibility' param is invalid: #{authorship_hash[:visibility]}.", 406)
+      end
       create_or_update_and_return_pub_hash(pub, author, authorship_hash)
     end # patch end
   end # class end
 end
+
