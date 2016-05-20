@@ -411,7 +411,27 @@ describe PubHash do
   end
   describe 'Other paper' do
     let(:other_paper) { create(:other_paper) }
-    it 'creates a citation'
+    context 'from cap' do
+      let(:pub_hash) { PubHash.new(JSON.parse(other_paper.source_data, symbolize_names: true)) }
+      it 'creates a Chicago citation' do
+        expect(pub_hash.to_chicago_citation)
+          .to eq "Mangiafico, Peter A. 2016. <i>This Is Peter'S Other Paper On the Revs Digital Library</i>. Series Name. Stanford, CA: Stanford University. http://revslib.stanford.edu."
+      end
+      it 'creates a MLA citation' do
+        expect(pub_hash.to_mla_citation)
+          .to eq "Mangiafico, Peter A. <i>This Is Peter'S Other Paper On the Revs Digital Library</i>. Stanford, CA: Stanford University, 2016. Web. Series Name."
+      end
+      it 'creates an APA citation' do
+        expect(pub_hash.to_apa_citation)
+          .to eq "Mangiafico, P. A. (2016). This is Peter's Other Paper on the Revs Digital Library (1-5). Stanford, CA: Stanford University. Retrieved from http://revslib.stanford.edu"
+      end
+      pending 'creates citations with correct pluralization title' do
+        expect(pub_hash.to_chicago_citation)
+          .to eq "Mangiafico, Peter A. 2016. <i>This Is Peter's Other Paper On the Revs Digital Library</i>. Series Name. Stanford, CA: Stanford University. http://revslib.stanford.edu."
+        expect(pub_hash.to_mla_citation)
+          .to eq "Mangiafico, Peter A. <i>This Is Peter's Other Paper On the Revs Digital Library</i>. Stanford, CA: Stanford University, 2016. Web. Series Name."
+      end
+    end
   end
   describe 'Technical report' do
     let(:technical_report) { create(:technical_report) }
