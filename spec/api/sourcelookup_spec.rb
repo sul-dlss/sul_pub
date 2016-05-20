@@ -78,7 +78,7 @@ describe SulBib::API, :vcr do
     end
 
     describe '?pmid' do
-      it 'returns one document', :vcr do
+      it 'returns one document' do
         path = '/publications/sourcelookup'
         params = { format: 'json', pmid: '24196758' }
         get path, params, capkey
@@ -89,8 +89,10 @@ describe SulBib::API, :vcr do
         record = result['records'].first
         expect(record).to include('provenance')
         expect(record['provenance']).to eq 'sciencewire'
+        expect(record).to include('apa_citation')
+        expect(record).to include('mla_citation')
         expect(record).to include('chicago_citation')
-        expect(record['chicago_citation']).to match(/Sittig/)
+        expect(record['apa_citation']).to match(/^Sittig, D. F./)
       end
     end
 
@@ -109,7 +111,7 @@ describe SulBib::API, :vcr do
         end
       end
 
-      it 'with maxrows number of records', :vcr do
+      it 'with maxrows number of records' do
         params = { format: 'json', title: test_title, maxrows: 5 }
         get sourcelookup_path, params, capkey
         expect(response.status).to eq(200)
@@ -135,7 +137,7 @@ describe SulBib::API, :vcr do
         expect(matches).to eq(records.count) # ALL records match
       end
 
-      it 'returns results that match the requested year', :vcr do
+      it 'returns results that match the requested year' do
         year = 2015.to_s
         params = { format: 'json', title: test_title, year: year}
         get sourcelookup_path, params, capkey
