@@ -354,13 +354,13 @@ describe PubHash do
         # The CSL citation does not exactly match the citation details initially
         # defined, which included some variations from APA standards.  The CSL
         # tools will not allow custom modifications.
-        sul_authors = "Imberman, S., Kugler, A. D., &#38; Sacerdote, B. (2009)."
+        sul_authors = "Imberman, S., Kugler, A. D., &amp; Sacerdote, B. (2009)."
         sul_title = "Katrina's children: evidence on the structure of peer effects from hurricane evacuees"
         sul_number = '(Working Paper No. 15291)' # 'Working Paper' is not in APA standard
         sul_website = "Retrieved from National Bureau of Economic Research website: http://www.nber.org/papers/w15291"
         # Variations in the CSL citation content:
         csl_series_number = '(NBER Working Paper Series No. 15291)'
-        csl_page = '(1-55).'
+        csl_page = '(pp. 1–55).'
         csl_publisher = 'National Bureau of Economic Research.'
         csl_publisher_place = 'Cambridge, MA'
         csl_website = 'Retrieved from http://www.nber.org/papers/w15291'
@@ -375,7 +375,7 @@ describe PubHash do
         expect(cite).to include(csl_website)
         expect(cite).not_to include(sul_website)
         # Expect a complete citation
-        expect(cite).to eq "Imberman, S., Kugler, A. D., &#38; Sacerdote, B. (2009). <i>Katrina's Children: Evidence on the Structure of Peer Effects from Hurricane Evacuees</i> (NBER Working Paper Series No. 15291) (1-55). Cambridge, MA: National Bureau of Economic Research. Retrieved from http://www.nber.org/papers/w15291"
+        expect(cite).to eq "Imberman, S., Kugler, A. D., &amp; Sacerdote, B. (2009). <i>Katrina's Children: Evidence on the Structure of Peer Effects from Hurricane Evacuees</i> (NBER Working Paper Series No. 15291) (pp. 1–55). Cambridge, MA: National Bureau of Economic Research. Retrieved from http://www.nber.org/papers/w15291"
       end
     end
 
@@ -432,7 +432,7 @@ describe PubHash do
       end
       it 'creates an APA citation' do
         expect(pub_hash.to_apa_citation)
-          .to eq "Imberman, S., Kugler, A. D., &#38; Sacerdote, B. (2009). <i>Katrina's Children: Evidence on the Structure of Peer Effects from Hurricane Evacuees</i> (NBER Working Paper Series No. 15291) (1-55). Cambridge, MA: National Bureau of Economic Research. Retrieved from http://www.nber.org/papers/w15291"
+          .to eq "Imberman, S., Kugler, A. D., &amp; Sacerdote, B. (2009). <i>Katrina's Children: Evidence on the Structure of Peer Effects from Hurricane Evacuees</i> (NBER Working Paper Series No. 15291) (pp. 1–55). Cambridge, MA: National Bureau of Economic Research. Retrieved from http://www.nber.org/papers/w15291"
       end
       it 'creates a Chicago citation' do
         expect(pub_hash.to_chicago_citation)
@@ -458,7 +458,7 @@ describe PubHash do
       let(:pub_hash) { PubHash.new(JSON.parse(working_paper.source_data, symbolize_names: true)) }
       it 'creates an APA citation' do
         expect(pub_hash.to_apa_citation)
-          .to eq "Mangiafico, P. A. (2016). <i>This is Peter's Working Paper on the Revs Digital Library</i> (Series Name No. Series Number) (5). Stanford, CA: Stanford University. Retrieved from http://revslib.stanford.edu"
+          .to eq "Mangiafico, P. A. (2016). <i>This is Peter's Working Paper on the Revs Digital Library</i> (Series Name No. Series Number) (p. 5). Stanford, CA: Stanford University. Retrieved from http://revslib.stanford.edu"
       end
       it 'creates a Chicago citation' do
         expect(pub_hash.to_chicago_citation)
@@ -680,7 +680,7 @@ describe PubHash do
       end
       it 'creates an APA citation' do
         expect(pub_hash.to_apa_citation)
-          .to eq "Mangiafico, P. A. (2016). This is Peter's Other Paper on the Revs Digital Library (1-5). Stanford, CA: Stanford University. Retrieved from http://revslib.stanford.edu"
+          .to eq "Mangiafico, P. A. (2016). <i>This is Peter's Other Paper on the Revs Digital Library</i> (pp. 1–5). Stanford, CA: Stanford University. Retrieved from http://revslib.stanford.edu"
       end
       pending 'creates citations with correct pluralization title' do
         expect(pub_hash.to_chicago_citation)
@@ -697,6 +697,10 @@ describe PubHash do
     # An example given from a direct import of a record entered in the CAP UAT environment.
     context 'from cap with minimum required fields' do
       let(:pub_hash) { PubHash.new(JSON.parse(technical_report.source_data, symbolize_names: true)) }
+      it 'creates an APA citation' do
+        expect(pub_hash.to_apa_citation)
+          .to eq "Mangiafico, P. A. (2016). <i>This is Peter's Technical Report on the Revs Digital Library</i> (Series Name No. 5) (pp. 1–5). Stanford, CA : Stanford University. Retrieved from http://revslib.stanford.edu"
+      end
       it 'creates a Chicago citation' do
         expect(pub_hash.to_chicago_citation)
           .to eq "Mangiafico, Peter A. 2016. <i>This Is Peter'S Technical Report On the Revs Digital Library</i>5. Series Name. Stanford, CA : Stanford University. http://revslib.stanford.edu."
@@ -704,10 +708,6 @@ describe PubHash do
       it 'creates an MLA citation' do
         expect(pub_hash.to_mla_citation)
           .to eq "Mangiafico, Peter A. <i>This Is Peter'S Technical Report On the Revs Digital Library</i>. Stanford, CA : Stanford University, 2016. Web. Series Name."
-      end
-      it 'creates an APA citation' do
-        expect(pub_hash.to_apa_citation)
-          .to eq "Mangiafico, P. A. (2016). <i>This is Peter's Technical Report on the Revs Digital Library</i> (Series Name No. 5) (1-5). Stanford, CA : Stanford University. Retrieved from http://revslib.stanford.edu"
       end
     end
 
@@ -767,7 +767,7 @@ describe PubHash do
       end
       it 'creates a APA citation' do
         expect(pub_hash.to_apa_citation)
-          .to eq "Mangiafico, P. A. (2016). This is Peter's Case Study on the Revs Digital Library (1-5). Stanford, CA: Stanford University. Retrieved from http://revslib.stanford.edu"
+          .to eq "Mangiafico, P. A. (2016). <i>This is Peter's Case Study on the Revs Digital Library</i> (pp. 1–5). Stanford, CA: Stanford University. Retrieved from http://revslib.stanford.edu"
       end
       pending 'creates a citation with correct pluralization in title' do
         expect(pub_hash.to_chicago_citation)
@@ -779,6 +779,12 @@ describe PubHash do
     context 'given fixture' do
       let(:pub_hash) { PubHash.new(case_study_pub_hash) }
       ##
+      # Difference from our spec here is we don't add the optional "[Case study]." clarification string.
+      # http://www.easybib.com/guides/citation-guides/how-do-i-cite-a/case-study/
+      it 'creates a APA citation' do
+        expect(pub_hash.to_apa_citation).to eq "Hill, L., Khanna, T., &amp; Stecker, E. A. (2008). <i>HCL Technologies</i>. Boston: Harvard Business Publishing."
+      end
+      ##
       # Difference from our spec here is we don't add the optional "Case study." clarification string.
       # http://www.easybib.com/guides/citation-guides/how-do-i-cite-a/case-study/
       it 'creates a Chicago citation' do
@@ -789,12 +795,6 @@ describe PubHash do
       # http://www.easybib.com/guides/citation-guides/how-do-i-cite-a/case-study/
       it 'creates a MLA citation' do
         expect(pub_hash.to_mla_citation).to eq 'Hill, Linda, Tarun Khanna, and Emily A. Stecker. <i>HCL Technologies</i>. Boston: Harvard Business Publishing, 2008. Print.'
-      end
-      ##
-      # Difference from our spec here is we don't add the optional "[Case study]." clarification string.
-      # http://www.easybib.com/guides/citation-guides/how-do-i-cite-a/case-study/
-      it 'creates a APA citation' do
-        expect(pub_hash.to_apa_citation).to eq 'Hill, L., Khanna, T., &#38; Stecker, E. A. (2008). HCL Technologies. Boston: Harvard Business Publishing.'
       end
     end
   end
@@ -808,7 +808,7 @@ describe PubHash do
         expect(pub_hash.to_mla_citation).to eq 'Reed, Phillip J., and Jane Stanford. <i>This Is a Book Title</i>. Vol. 3. Stanford University Press, 2015. Print. The Series Title.'
       end
       it 'creates a APA citation' do
-        expect(pub_hash.to_apa_citation).to eq 'Reed, P. J., &#38; Stanford, J. (2015). This is a book title (Vol. 3). Stanford University Press.'
+        expect(pub_hash.to_apa_citation).to eq 'Reed, P. J., &amp; Stanford, J. (2015). <i>This is a book title</i> (Vol. 3). Stanford University Press.'
       end
     end
     context 'book chapter' do
@@ -820,7 +820,7 @@ describe PubHash do
         expect(pub_hash.to_mla_citation).to eq "Hardy, Darren, Jack Reed, and Bess Sadler. <i>Geospatial Resource Discovery</i>. American Library Association Editions, 2016. Print."
       end
       it 'creates a APA citation' do
-        expect(pub_hash.to_apa_citation).to eq "Hardy, D., Reed, J., &#38; Sadler, B. (2016). Geospatial Resource Discovery. <i>Exploring Discovery: The Front Door to Your Library's Licensed and Digitized Content</i> (47-62). American Library Association Editions."
+        expect(pub_hash.to_apa_citation).to eq "Hardy, D., Reed, J., &amp; Sadler, B. (2016). <i>Geospatial Resource Discovery</i>. <i>Exploring Discovery: The Front Door to Your Library's Licensed and Digitized Content</i> (pp. 47–62). American Library Association Editions."
       end
     end
     context 'conference proceeding' do
@@ -844,7 +844,7 @@ describe PubHash do
         expect(pub_hash.to_mla_citation).to eq 'Glover, Jeffrey B., Kelly Woodard, P. Jack Reed, and Johnny Waits. “The Flat Rock Cemetery Mapping Project:  A Case Study In Community Archaeology”. <i>Early Georgia</i> 40.1 (2012): n. pag. Print.'
       end
       it 'creates a APA citation' do
-        expect(pub_hash.to_apa_citation).to eq 'Glover, J. B., Woodard, K., Reed, P. J., &#38; Waits, J. (2012). The Flat Rock Cemetery Mapping Project:  A Case Study in Community Archaeology. <i>Early Georgia</i>, <i>40</i>(1).'
+        expect(pub_hash.to_apa_citation).to eq 'Glover, J. B., Woodard, K., Reed, P. J., &amp; Waits, J. (2012). The Flat Rock Cemetery Mapping Project:  A Case Study in Community Archaeology. <i>Early Georgia</i>, <i>40</i>(1).'
       end
     end
   end
