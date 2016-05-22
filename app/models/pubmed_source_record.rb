@@ -97,6 +97,8 @@ class PubmedSourceRecord < ActiveRecord::Base
   end
 
   def convert_pubmed_publication_doc_to_hash(publication)
+    # MEDLINE®PubMed® XML Element Descriptions and their Attributes, see
+    # https://www.nlm.nih.gov/bsd/licensee/elements_descriptions.html
     record_as_hash = {}
     pmid = publication.xpath('MedlineCitation/PMID').text
 
@@ -109,16 +111,21 @@ class PubmedSourceRecord < ActiveRecord::Base
     record_as_hash[:title] = publication.xpath('MedlineCitation/Article/ArticleTitle').text unless publication.xpath('MedlineCitation/Article/ArticleTitle').blank?
     record_as_hash[:abstract] = abstract unless abstract.blank?
 
-    author_array = []
-    publication.xpath('MedlineCitation/Article/AuthorList/Author').each do |author|
-      author_hash = {}
-      author_hash[:lastname] = author.xpath('LastName').text
-      initials = author.xpath('Initials').text.scan(/./)
-      author_hash[:middlename] = initials[1] unless initials.length < 2
-      author_hash[:firstname] = initials[0] unless initials.length < 1
-      author_array << author_hash
-    end
-    record_as_hash[:author] = author_array
+    # See No. 20 at https://www.nlm.nih.gov/bsd/licensee/elements_descriptions.html
+    #
+    # USE OF LISTS AND ATTRIBUTE "CompleteYN" Three of the elements
+    # (<AuthorList>, <GrantList>, and <DataBankList>) use "lists" with the
+    # corresponding attribute of 'CompleteYN". 'Y', meaning Yes, represents that
+    # NLM has entered all list items that appear in the published journal
+    # article. 'N', meaning No, represents that NLM has not entered all list
+    # items that appear in the published journal article. The latter case
+    # (incomplete list) occurs on records created during periods of time when
+    # NLM policy was to enter fewer than all items that qualified. NLM
+    # recommends the following when encountering 'N' for the element lists:
+    #
+    # <AuthorList> when attribute = N, then supply the literal "et al." after last author name
+    author_list = publication.xpath('MedlineCitation/Article/AuthorList/Author')
+    record_as_hash[:author] = author_list.map { |a| author_to_hash(a) }.compact
 
     record_as_hash[:mesh_headings] = mesh_headings unless mesh_headings.blank?
     record_as_hash[:year] = publication.xpath('MedlineCitation/Article/Journal/JournalIssue/PubDate/Year').text unless publication.xpath('MedlineCitation/Article/Journal/JournalIssue/PubDate/Year').blank?
@@ -153,4 +160,86 @@ class PubmedSourceRecord < ActiveRecord::Base
 
     record_as_hash
   end
+
+  protected
+
+    # Parse <Author>
+    # See No. 20 at https://www.nlm.nih.gov/bsd/licensee/elements_descriptions.html
+    #
+    # Personal name <Author> data resides in the following elements:
+    # <LastName> contains the surname
+    # <ForeName> contains the remainder of name except for suffix
+    # <Suffix> contains a valid MEDLINE suffix (e.g., 2nd, or 3rd, etc., Jr or Sr).
+    #          Honorifics (e.g., PhD, MD, etc.) are not carried in the data.
+    # <Initials> contains up to two initials
+    # <Identifier> was added to <AuthorList> with the 2010 DTD, but was not used
+    #              until 2013. It is defined to contain a unique identifier associated
+    #              with the name. The value in the Identifier attribute Source designates
+    #              the organizational authority that established the unique identifier.
+    #              Identifier was renamed from NameID with the 2013 DTD. For example,
+    #              <Identifier Source="ORCID">0000000179841889</Identifier>.
+    # <AffiliationInfo> was added to <AuthorList> with the 2015 DTD. The <AffiliationInfo>
+    #                   envelope element includes <Affliliation> and <Identifier>.
+    #
+    # @return author_hash [Hash] with keys :firstname, :middlename and :lastname
+    def author_to_hash(author)
+      # <Author> examples provide many variations at No. 20 from
+      # https://www.nlm.nih.gov/bsd/licensee/elements_descriptions.html
+      ##
+      # Ignore an <Author> that contains only <CollectiveName>
+      return if author.xpath('CollectiveName').present?
+      # Ignore an <Author ValidYN="N">
+      return if author.attributes['ValidYN'].value == 'N'
+      # Extract name elements
+      lastname = author.xpath('LastName').text
+      forename = author.xpath('ForeName').text
+      initials = author.xpath('Initials').text
+      # Parse <Forename>
+      # Forename is everything after the last name and it can be mostly parsed
+      # by splitting it on whitespace.  Even when ForeName is only initials,
+      # there will be spaces between initials.
+      fn, mn = forename.split
+      # If ForeName includes particles, the first name is
+      # likely to be OK, but the middle name needs to be fixed.
+      if forename =~ /el-|el |da |de |del |do |dos |du |le /
+        # Try to scan this to keep the particles with the following name.
+        # Assume the first name begins with an upper case letter, so this
+        # scan pattern will skip over it.
+        mn = forename.scan(/[[:lower:]]+[ -][[:upper:]][[:lower:]]*/).first
+      end
+      ##
+      # Parse <Initials>
+      # Scan the initials to split it, allowing lower-case particles, dashes and
+      # spaces prior to a single upper case initial, e.g
+      # 'AB'.scan(/[[:lower:] -]*[[:upper:]]/) => ["A", "B"]
+      # 'Mdel R'.scan(/[[:lower:] -]*[[:upper:]]/) => ["M", "del R"]
+      # <ForeName>Mohamed el-Walid</ForeName>
+      # <Initials>Mel- W</Initials>
+      # 'Mel- W'.scan(/[[:lower:] -]*[[:upper:]]/) => ["M", "el- W"]
+      initials = initials.scan(/[[:lower:] -]*[[:upper:]]/)
+      # Remove an additional space added for hyphenated particles.
+      initials = initials.map { |initial| initial.sub('- ', '-') }
+      if initials.length >= 1
+        # If there is no data from <Forename>, use this first initial
+        fn = initials[0] if fn.blank?
+      end
+      if initials.length > 1
+        # If there is no data from <Forename>, use this middle initial
+        mn = initials[1] if mn.blank?
+      end
+      # Currently ignoring <Suffix> data
+      author_hash = {
+        firstname: fn,
+        middlename: mn,
+        lastname: lastname
+      }
+      # TODO: extract Identifier
+      # <Identifier> was added to <AuthorList> with the 2010 DTD, but was not used until 2013.
+      # <Identifier Source="ORCID">0000000179841889</Identifier>
+      ##
+      # TODO: extract Affiliation
+      # <AffiliationInfo> was added to <AuthorList> with the 2015 DTD.
+      # The <AffiliationInfo> envelope element includes <Affliliation> and <Identifier>.
+      author_hash
+    end
 end
