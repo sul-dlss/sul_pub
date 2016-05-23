@@ -1,7 +1,6 @@
 class ScienceWireClient
   attr_reader :client
   def initialize
-    @reject_types = Settings.sw_doc_types_to_skip.join('|')
     @client = ScienceWire::Client.new(
       license_id: Settings.SCIENCEWIRE.LICENSE_ID,
       host: Settings.SCIENCEWIRE.HOST
@@ -36,10 +35,11 @@ class ScienceWireClient
     author_name = ScienceWire::Query::PublicationQueryByAuthorName.new(author_attributes, max_rows)
     xml_query = author_name.generate
 
-    # Only select Publication types that are not on the skip list
     # TODO: use returned documents instead of selecting IDs
-    query_sciencewire(xml_query).xpath("//PublicationItem[regex_reject(DocumentTypeList, '#{@reject_types}')]/PublicationItemID", XpathUtils.new)
-                                .map { |item| item.text.to_i }
+    xml_docs = query_sciencewire(xml_query)
+    pubs = ScienceWirePublications.new(xml_docs)
+    pubs.remove_document_types!
+    pubs.publication_item_ids
   end
 
   def pull_records_from_sciencewire_for_pmids(pmids)

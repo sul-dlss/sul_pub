@@ -18,7 +18,6 @@ class ScienceWireHarvester
   def initialize
     initialize_instance_vars
     initialize_counts_for_reporting
-    @reject_types = Settings.sw_doc_types_to_skip.join('|')
   end
 
   def harvest_pubs_for_authors(authors)
@@ -229,7 +228,9 @@ class ScienceWireHarvester
   def process_queued_sciencewire_suggestions
     list_of_sw_ids = @records_queued_for_sciencewire_retrieval.keys.join(',')
     sw_records_doc = @sciencewire_client.get_full_sciencewire_pubs_for_sciencewire_ids(list_of_sw_ids)
-    sw_records_doc.xpath("//PublicationItem[regex_reject(DocumentTypeList, '#{@reject_types}')]", XpathUtils.new).each do |sw_doc|
+    pubs = ScienceWirePublications.new(sw_records_doc)
+    pubs.remove_document_types!
+    pubs.publication_items.each do |sw_doc|
       sciencewire_id = sw_doc.xpath('PublicationItemID').text
       pmid = sw_doc.xpath('PMID').text
       source_record_was_created = SciencewireSourceRecord.save_sw_source_record(sciencewire_id, pmid, sw_doc.to_xml)
