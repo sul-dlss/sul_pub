@@ -503,4 +503,87 @@ FactoryGirl.define do
       "additionalProperties": {}
     }'
   end
+  factory :journal_article, parent: :user_submitted_source_record do
+    pmid nil
+    lock_version 0
+    source_fingerprint '238f79e4f238069326122054ba149be4e0749a90f5330bcd1d5e504b581eeb75'
+    title 'The Flat Rock Cemetery Mapping Project:  A Case Study in Community Archaeology'
+    year 2012
+    is_active true
+    source_data '{
+      "identifier": [],
+      "title": "The Flat Rock Cemetery Mapping Project:  A Case Study in Community Archaeology",
+      "authorship": [
+        {
+          "sul_author_id": null,
+          "cap_profile_id": 62029,
+          "featured": false,
+          "status": "APPROVED",
+          "visibility": "PUBLIC",
+          "additionalProperties": {}
+        }
+      ],
+      "year": "2012",
+      "abstract_restricted": "",
+      "type": "article",
+      "provenance": "CAP",
+      "mesh_headings": [],
+      "journal": {
+        "name": "Early Georgia",
+        "volume": "40",
+        "issue": "1",
+        "articleNumber": "",
+        "specialissue": false,
+        "year": "2012",
+        "pages": "23-44",
+        "supplement": "",
+        "identifier": [],
+        "additionalProperties": {},
+        "number": "1"
+      },
+      "allAuthors": "",
+      "author": [
+        {
+          "name": "Glover B Jeffrey",
+          "alternate": [],
+          "lastname": "Glover",
+          "firstname": "Jeffrey",
+          "middlename": "B",
+          "role": "author",
+          "additionalProperties": {}
+        },
+        {
+          "name": "Woodard  Kelly",
+          "alternate": [],
+          "lastname": "Woodard",
+          "firstname": "Kelly",
+          "middlename": "",
+          "role": "author",
+          "additionalProperties": {}
+        },
+        {
+          "name": "Reed Jack P",
+          "alternate": [],
+          "lastname": "Reed",
+          "firstname": "P",
+          "middlename": "Jack",
+          "role": "author",
+          "additionalProperties": {}
+        },
+        {
+          "name": "Waits  Johnny",
+          "alternate": [],
+          "lastname": "Waits",
+          "firstname": "Johnny",
+          "middlename": "",
+          "role": "author",
+          "additionalProperties": {}
+        }
+      ],
+      "etal": false,
+      "last_updated": "2016-05-23T14:03Z",
+      "publisher": "The Society for Georgia Archaeology",
+      "additionalProperties": {}
+    }'
+  end
 end
