@@ -763,4 +763,54 @@ describe PubHash do
       end
     end
   end
+  describe 'User submitted source records' do
+    context 'book' do
+      let(:pub_hash) { PubHash.new(JSON.parse(create(:book).source_data, symbolize_names: true)) }
+      it 'creates a Chicago citation' do
+        expect(pub_hash.to_chicago_citation).to eq 'Reed, Phillip J., and Jane Stanford. 2015. <i>This Is a Book Title</i>. Vol. 3. The Series Title. Stanford University Press.'
+      end
+      it 'creates a MLA citation' do
+        expect(pub_hash.to_mla_citation).to eq 'Reed, Phillip J., and Jane Stanford. <i>This Is a Book Title</i>. Vol. 3. Stanford University Press, 2015. Print. The Series Title.'
+      end
+      it 'creates a APA citation' do
+        expect(pub_hash.to_apa_citation).to eq 'Reed, P. J., &#38; Stanford, J. (2015). This is a book title (Vol. 3). Stanford University Press.'
+      end
+    end
+    context 'book chapter' do
+      let(:pub_hash) { PubHash.new(JSON.parse(create(:book_chapter).source_data, symbolize_names: true)) }
+      it 'creates a Chicago citation' do
+        expect(pub_hash.to_chicago_citation).to eq "Hardy, Darren, Jack Reed, and Bess Sadler. 2016. <i>Geospatial Resource Discovery</i>. <i>Exploring Discovery: The Front Door To Your Library'S Licensed and Digitized Content</i>. American Library Association Editions."
+      end
+      it 'creates a MLA citation' do
+        expect(pub_hash.to_mla_citation).to eq "Hardy, Darren, Jack Reed, and Bess Sadler. <i>Geospatial Resource Discovery</i>. American Library Association Editions, 2016. Print."
+      end
+      it 'creates a APA citation' do
+        expect(pub_hash.to_apa_citation).to eq "Hardy, D., Reed, J., &#38; Sadler, B. (2016). Geospatial Resource Discovery. <i>Exploring Discovery: The Front Door to Your Library's Licensed and Digitized Content</i> (47-62). American Library Association Editions."
+      end
+    end
+    context 'conference proceeding' do
+      let(:pub_hash) { PubHash.new(JSON.parse(create(:conference_proceeding).source_data, symbolize_names: true)) }
+      it 'creates a Chicago citation' do
+        expect(pub_hash.to_chicago_citation).to eq 'Reed, Jack. 2015. “Preservation and Discovery For GIS Data”. Esri.'
+      end
+      it 'creates a MLA citation' do
+        expect(pub_hash.to_mla_citation).to eq 'Reed, Jack. “Preservation and Discovery For GIS Data”. 2015: n. pag. Print.'
+      end
+      it 'creates a APA citation' do
+        expect(pub_hash.to_apa_citation).to eq 'Reed, J. (2015). Preservation and discovery for GIS data. Presented at the Esri User Conference, San Diego, California: Esri.'
+      end
+    end
+    context 'journal article' do
+      let(:pub_hash) { PubHash.new(JSON.parse(create(:journal_article).source_data, symbolize_names: true)) }
+      it 'creates a Chicago citation' do
+        expect(pub_hash.to_chicago_citation).to eq 'Glover, Jeffrey B., Kelly Woodard, P. Jack Reed, and Johnny Waits. 2012. “The Flat Rock Cemetery Mapping Project:  A Case Study In Community Archaeology”. <i>Early Georgia</i> 40 (1).'
+      end
+      it 'creates a MLA citation' do
+        expect(pub_hash.to_mla_citation).to eq 'Glover, Jeffrey B., Kelly Woodard, P. Jack Reed, and Johnny Waits. “The Flat Rock Cemetery Mapping Project:  A Case Study In Community Archaeology”. <i>Early Georgia</i> 40.1 (2012): n. pag. Print.'
+      end
+      it 'creates a APA citation' do
+        expect(pub_hash.to_apa_citation).to eq 'Glover, J. B., Woodard, K., Reed, P. J., &#38; Waits, J. (2012). The Flat Rock Cemetery Mapping Project:  A Case Study in Community Archaeology. <i>Early Georgia</i>, <i>40</i>(1).'
+      end
+    end
+  end
 end
