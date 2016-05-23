@@ -448,4 +448,59 @@ FactoryGirl.define do
       "last_updated": "2016-05-23T12:01Z"
     }'
   end
+  factory :conference_proceeding, parent: :user_submitted_source_record do
+    pmid nil
+    lock_version 0
+    source_fingerprint 'fc74b1f712626c6f26d094d06408cfdcf1de013b956c7c837814bb87007707d3'
+    title 'Preservation and discovery for GIS data'
+    year 2015
+    is_active true
+    source_data '{
+      "identifier": [],
+      "title": "Preservation and discovery for GIS data",
+      "authorship": [
+        {
+          "sul_author_id": null,
+          "cap_profile_id": 62029,
+          "featured": false,
+          "status": "APPROVED",
+          "visibility": "PUBLIC",
+          "additionalProperties": {}
+        }
+      ],
+      "year": "2015",
+      "abstract_restricted": "",
+      "type": "inproceedings",
+      "provenance": "CAP",
+      "allAuthors": "",
+      "author": [
+        {
+          "name": "Reed  Jack",
+          "alternate": [],
+          "lastname": "Reed",
+          "firstname": "Jack",
+          "middlename": "",
+          "role": "author",
+          "additionalProperties": {}
+        }
+      ],
+      "etal": false,
+      "howpublished": "monograph",
+      "pages": "",
+      "publisher": "Esri",
+      "articlenumber": "",
+      "conference": {
+        "name": "Esri User Conference",
+        "location": "San Diego, California",
+        "number": "",
+        "organization": "",
+        "year": "2015",
+        "startdate": "July 20, 2015",
+        "enddate": "July 24, 2015",
+        "doi": "",
+        "additionalProperties": {}
+      },
+      "additionalProperties": {}
+    }'
+  end
 end
