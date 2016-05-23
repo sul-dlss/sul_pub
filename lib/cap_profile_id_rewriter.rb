@@ -4,7 +4,7 @@ class CapProfileIdRewriter
 
   def cap_authorship_logger
     @cap_authorship_logger ||= begin
-      Logger.new(Settings.CAP.AUTHORSHIP_LOG)
+      Logger.new(Settings.CAP.PROFILE_ID_REWRITE_LOG)
     end
   end
 
