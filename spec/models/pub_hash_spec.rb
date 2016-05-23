@@ -120,15 +120,17 @@ describe PubHash do
     { provenance: 'sciencewire',
       pmid: '15572175',
       sw_id: '6787731',
-      title:       'New insights into the expression and function of neural connexins with transgenic mouse mutants',
+      title: 'New insights into the expression and function of neural connexins with transgenic mouse mutants',
       abstract_restricted:       'Gap junctions represent direct intercellular conduits between contacting cells. The subunit proteins of these conduits are called connexins. To date, 20 and 21 connexin genes have been described in the mouse and human genome, respectiv',
-      author:       [{ name: 'Sohl,G,' },
-                     { name: 'Odermatt,B,' },
-                     { name: 'Maxeiner,S,' },
-                     { name: 'Degen,J,' },
-                     { name: 'Willecke,K,' },
-                     { name: 'SecondLast,T,' },
-                     { name: 'Last,O' }],
+      author: [
+        { name: 'Sohl,G,' },
+        { name: 'Odermatt,B,' },
+        { name: 'Maxeiner,S,' },
+        { name: 'Degen,J,' },
+        { name: 'Willecke,K,' },
+        { name: 'SecondLast,T,' },
+        { name: 'Last,O,' }
+      ],
       year: '2004',
       date: '2004-12-01T00:00:00',
       authorcount: '6',
@@ -232,12 +234,37 @@ describe PubHash do
     {
       title: 'HCL Technologies',
       type: 'caseStudy',
-      year: '2008',
+      provenance: 'CAP',
       author: [
-        { name: 'Hill, Linda' },
-        { name: 'Khanna, Tarun' },
-        { name: 'Stecker, Emily A.' }
+        {
+          name: 'Hill  Linda',
+          lastname: 'Hill',
+          firstname: 'Linda',
+          middlename: '',
+          alternate: [],
+          role: 'author',
+          additionalProperties: {}
+        },
+        {
+          name: 'Khanna  Tarun',
+          lastname: 'Khanna',
+          firstname: 'Tarun',
+          middlename: '',
+          alternate: [],
+          role: 'author',
+          additionalProperties: {}
+        },
+        {
+          name: 'Stecker A Emily',
+          lastname: 'Stecker',
+          firstname: 'Emily',
+          middlename: 'A',
+          alternate: [],
+          role: 'author',
+          additionalProperties: {}
+        }
       ],
+      year: '2008',
       publisher: 'Harvard Business Publishing',
       publicationSource: 'Boston'
     }
@@ -401,18 +428,18 @@ describe PubHash do
       end
       it 'creates a Chicago citation' do
         expect(pub_hash.to_chicago_citation)
-          .to eq "Imberman, Scott, Adriana D Kugler, and Bruce Sacerdote. 2009. <i>Katrina'S Children: Evidence On the Structure of Peer Effects From Hurricane Evacuees</i>15291. NBER Working Paper Series. Cambridge, MA: National Bureau of Economic Research. http://www.nber.org/papers/w15291."
+          .to eq "Imberman, Scott, Adriana D. Kugler, and Bruce Sacerdote. 2009. <i>Katrina'S Children: Evidence On the Structure of Peer Effects From Hurricane Evacuees</i>15291. NBER Working Paper Series. Cambridge, MA: National Bureau of Economic Research. http://www.nber.org/papers/w15291."
       end
       it 'creates an MLA citation' do
         expect(pub_hash.to_mla_citation)
-          .to eq "Imberman, Scott, Adriana D Kugler, and Bruce Sacerdote. <i>Katrina'S Children: Evidence On the Structure of Peer Effects From Hurricane Evacuees</i>. Cambridge, MA: National Bureau of Economic Research, 2009. Web. NBER Working Paper Series."
+          .to eq "Imberman, Scott, Adriana D. Kugler, and Bruce Sacerdote. <i>Katrina'S Children: Evidence On the Structure of Peer Effects From Hurricane Evacuees</i>. Cambridge, MA: National Bureau of Economic Research, 2009. Web. NBER Working Paper Series."
       end
       # The Chicago and MLA citations should not have strange case near an apostrophe
       pending 'creates a citation with correct pluralization in title' do
         expect(pub_hash.to_chicago_citation)
-          .to eq "Imberman, Scott, Adriana D Kugler, and Bruce Sacerdote. 2009. <i>Katrina's Children: Evidence On the Structure of Peer Effects From Hurricane Evacuees</i>15291. NBER Working Paper Series. Cambridge, MA: National Bureau of Economic Research. http://www.nber.org/papers/w15291."
+          .to eq "Imberman, Scott, Adriana D. Kugler, and Bruce Sacerdote. 2009. <i>Katrina's Children: Evidence On the Structure of Peer Effects From Hurricane Evacuees</i>15291. NBER Working Paper Series. Cambridge, MA: National Bureau of Economic Research. http://www.nber.org/papers/w15291."
         expect(pub_hash.to_mla_citation)
-          .to eq "Imberman, Scott, Adriana D Kugler, and Bruce Sacerdote. <i>Katrina's Children: Evidence On the Structure of Peer Effects From Hurricane Evacuees</i>. Cambridge, MA: National Bureau of Economic Research, 2009. Web. NBER Working Paper Series."
+          .to eq "Imberman, Scott, Adriana D. Kugler, and Bruce Sacerdote. <i>Katrina's Children: Evidence On the Structure of Peer Effects From Hurricane Evacuees</i>. Cambridge, MA: National Bureau of Economic Research, 2009. Web. NBER Working Paper Series."
       end
     end
 

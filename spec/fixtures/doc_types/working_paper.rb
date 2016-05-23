@@ -24,7 +24,7 @@ module CitationDocumentTypes
       'type' => 'report', # working paper
       'author' => [
         { 'family' => 'Imberman', 'given' => 'Scott' },
-        { 'family' => 'Kugler', 'given' => 'Adriana D' },
+        { 'family' => 'Kugler', 'given' => 'Adriana D.' },
         { 'family' => 'Sacerdote', 'given' => 'Bruce' },
       ],
       'title' => "Katrina's Children: Evidence on the Structure of Peer Effects from Hurricane Evacuees",
