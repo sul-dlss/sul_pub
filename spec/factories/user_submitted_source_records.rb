@@ -368,4 +368,84 @@ FactoryGirl.define do
       "last_updated": "2016-05-23T11:47Z"
     }'
   end
+  factory :book_chapter, parent: :user_submitted_source_record do
+    pmid nil
+    lock_version 0
+    source_fingerprint '3e858fd88a91c8441d37eb045aaab0e2e7811c2235214c0081add19635075606'
+    title 'Geospatial Resource Discovery'
+    year 2016
+    is_active true
+    source_data '{
+      "identifier": [
+        {
+          "id": "978-0-8389-1414-4",
+          "type": "isbn",
+          "url": null,
+          "additionalProperties": {}
+        }
+      ],
+      "title": "Geospatial Resource Discovery",
+      "authorship": [
+        {
+          "sul_author_id": null,
+          "cap_profile_id": 62029,
+          "featured": false,
+          "status": "APPROVED",
+          "visibility": "PUBLIC",
+          "additionalProperties": {}
+        }
+      ],
+      "year": "2016",
+      "abstract_restricted": "",
+      "type": "inbook",
+      "provenance": "CAP",
+      "allAuthors": "",
+      "author": [
+        {
+          "name": "Hardy  Darren",
+          "alternate": [],
+          "lastname": "Hardy",
+          "firstname": "Darren",
+          "middlename": "",
+          "role": "author",
+          "additionalProperties": {}
+        },
+        {
+          "name": "Reed  Jack",
+          "alternate": [],
+          "lastname": "Reed",
+          "firstname": "Jack",
+          "middlename": "",
+          "role": "author",
+          "additionalProperties": {}
+        },
+        {
+          "name": "Sadler  Bess",
+          "alternate": [],
+          "lastname": "Sadler",
+          "firstname": "Bess",
+          "middlename": "",
+          "role": "author",
+          "additionalProperties": {}
+        }
+      ],
+      "etal": false,
+      "booktitle": "Exploring Discovery: The Front Door to Your Library\'s Licensed and Digitized Content",
+      "edition": "",
+      "publisher": "American Library Association Editions",
+      "chapter": "5",
+      "pages": "47-62",
+      "series": {
+        "title": null,
+        "volume": null,
+        "publisher": null,
+        "number": null,
+        "publicationYear": null,
+        "identifier": [],
+        "additionalProperties": {}
+      },
+      "additionalProperties": {},
+      "last_updated": "2016-05-23T12:01Z"
+    }'
+  end
 end
