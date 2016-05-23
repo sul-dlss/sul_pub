@@ -299,4 +299,73 @@ FactoryGirl.define do
       "abstract": "This is the abstract."
     }'
   end
+  factory :book, parent: :user_submitted_source_record do
+    pmid nil
+    lock_version 0
+    title 'This is a book title'
+    source_fingerprint 'dc3f425b85d483182e8b9f40c48a93b83cf6c065dc058ab4cd6b3787a9f017ff'
+    year 2015
+    is_active true
+    source_data '{
+      "identifier": [
+        {
+          "id": "123456789",
+          "type": "isbn",
+          "url": null,
+          "additionalProperties": {}
+        }
+      ],
+      "title": "This is a book title",
+      "authorship": [
+        {
+          "sul_author_id": null,
+          "cap_profile_id": 62029,
+          "featured": false,
+          "status": "APPROVED",
+          "visibility": "PUBLIC",
+          "additionalProperties": {}
+        }
+      ],
+      "year": "2015",
+      "abstract_restricted": "This is an abstract for the book.",
+      "type": "book",
+      "provenance": "CAP",
+      "allAuthors": "",
+      "author": [
+        {
+          "name": "Reed J Phillip",
+          "alternate": [],
+          "lastname": "Reed",
+          "firstname": "Phillip",
+          "middlename": "J",
+          "role": "author",
+          "additionalProperties": {}
+        },
+        {
+          "name": "Stanford  Jane",
+          "alternate": [],
+          "lastname": "Stanford",
+          "firstname": "Jane",
+          "middlename": "",
+          "role": "author",
+          "additionalProperties": {}
+        }
+      ],
+      "etal": false,
+      "edition": "1",
+      "publisher": "Stanford University Press",
+      "pages": "",
+      "series": {
+        "title": "The Series Title",
+        "volume": "3",
+        "publisher": null,
+        "number": "2",
+        "publicationYear": null,
+        "identifier": [],
+        "additionalProperties": {}
+      },
+      "additionalProperties": {},
+      "last_updated": "2016-05-23T11:47Z"
+    }'
+  end
 end
