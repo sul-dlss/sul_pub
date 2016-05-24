@@ -31,11 +31,11 @@ class PubmedClient
         timeout_period = + 500
         retry
       else
-        NotificationManager.handle_pubmed_pull_error(te, "Timeout error on call to pubmed api - #{Time.zone.now}")
+        NotificationManager.error(te, "Timeout error on call to pubmed api - #{Time.zone.now}", self)
         raise
       end
     rescue => e
-      NotificationManager.handle_pubmed_pull_error(e, 'Problem with http call to pubmed api')
+      NotificationManager.error(e, 'Problem with http call to pubmed api', self)
       raise
   end
 end

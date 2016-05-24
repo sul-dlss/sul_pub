@@ -23,10 +23,10 @@ class ScienceWireClient
   def get_sciencewire_id_suggestions(author_attributes)
     client.id_suggestions(author_attributes)
   rescue Faraday::TimeoutError => te
-    NotificationManager.handle_harvest_problem(te, "Timeout error on call to sciencewire api - #{Time.zone.now}")
+    NotificationManager.error(te, "Timeout error on call to sciencewire api - #{Time.zone.now}", self)
     raise
   rescue => e
-    NotificationManager.handle_harvest_problem(e, 'Problem with http call to sciencewire api')
+    NotificationManager.error(e, 'Problem with http call to sciencewire api', self)
     raise
   end
 
@@ -216,10 +216,10 @@ class ScienceWireClient
   def get_full_sciencewire_pubs_for_sciencewire_ids(sciencewire_ids)
     Nokogiri::XML(client.publication_items(sciencewire_ids))
   rescue Faraday::TimeoutError => te
-    NotificationManager.handle_harvest_problem(te, "Timeout error on call to sciencewire api - #{Time.zone.now}")
+    NotificationManager.error(te, "Timeout error on call to sciencewire api - #{Time.zone.now}", self)
     raise
   rescue => e
-    NotificationManager.handle_harvest_problem(e, 'Problem with http call to sciencewire api')
+    NotificationManager.error(e, 'Problem with http call to sciencewire api', self)
     raise
   end
 
@@ -247,10 +247,10 @@ class ScienceWireClient
   def with_timeout_handling
   yield
   rescue Faraday::TimeoutError => te
-    NotificationManager.handle_harvest_problem(te, "Timeout error on call to sciencewire api - #{Time.zone.now}")
+    NotificationManager.error(te, "Timeout error on call to sciencewire api - #{Time.zone.now}", self)
     raise
   rescue => e
-    NotificationManager.handle_harvest_problem(e, 'Problem with http call to sciencewire api')
+    NotificationManager.error(e, 'Problem with http call to sciencewire api', self)
     raise
   end
 end
