@@ -55,7 +55,6 @@ class PubmedSourceRecord < ActiveRecord::Base
     # http.finish
     count = 0
     source_records = []
-    @cap_import_pmid_logger = Logger.new(Rails.root.join('log', 'cap_import_pmid.log'))
     Nokogiri::XML(the_incoming_xml).xpath('//PubmedArticle').each do |pub_doc|
       pmid = pub_doc.xpath('MedlineCitation/PMID').text
       begin
@@ -73,7 +72,6 @@ class PubmedSourceRecord < ActiveRecord::Base
       end
     end
     PubmedSourceRecord.import source_records
-    @cap_import_pmid_logger.info 'Invalid pmids: ' + pmids.to_a.join(',')
   end
 
   def extract_abstract_from_pubmed_record(pubmed_record)
