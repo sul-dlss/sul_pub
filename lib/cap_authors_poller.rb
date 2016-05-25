@@ -9,10 +9,6 @@ class CapAuthorsPoller
     @sw_harvester = ScienceWireHarvester.new
     @cap_http_client = CapHttpClient.new
     @logger = Logger.new(Settings.CAP.AUTHORS_POLL_LOG)
-    @logger.datetime_format = '%Y-%m-%d %H:%M:%S'
-    @logger.formatter = proc { |severity, datetime, _progname, msg|
-      "#{severity} #{datetime}: #{msg}\n"
-    }
     init_stats
   end
 

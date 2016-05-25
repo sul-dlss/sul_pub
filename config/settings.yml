@@ -14,8 +14,8 @@ BIBTEX:
 
 ## Cap Auth Config
 CAP:
+  API_LOG: log/cap_api.log
   AUTHORS_POLL_LOG: log/cap_authors_poller.log
-  AUTHORSHIP_API_LOG: log/cap_authorship_api.log
   PROFILE_ID_REWRITE_LOG: log/cap_profile_id_rewrite.log
   CONTRIBUTIONS_LOG: log/contributions.log
   CONTRIBUTIONS_PUBLICATIONS_ERRORS_LOG: log/contributions_publications_errors.log
@@ -36,6 +36,7 @@ PUBMED:
 
 ## Sciencewire Auth Config
 SCIENCEWIRE:
+  API_LOG: log/sciencewire_api.log
   BASE_URI: sciencewirerest.discoverylogic.com
   HARVEST_LOG: log/sw_harvest.log
   HARVEST_PID_LOG: log/sw_harvest_p_%d.log

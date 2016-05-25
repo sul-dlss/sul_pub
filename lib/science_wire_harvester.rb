@@ -27,7 +27,7 @@ class ScienceWireHarvester
         @author_count += 1
         if @author_count % 50 == 0
           msg = "up to author id: #{author.id} with #{@total_suggested_count} total suggestions so far for #{@author_count} authors - #{Time.zone.now}"
-          sw_harvest_logger.info msg
+          logger.info msg
         end
         harvest_for_author(author)
       rescue => e
@@ -40,18 +40,17 @@ class ScienceWireHarvester
   end
 
   def harvest_pubs_for_author_ids(author_ids)
-    # override the default initialization of the @sw_harvest_logger
-    @sw_harvest_logger = Logger.new(Settings.SCIENCEWIRE.NIGHTLY_HARVEST_LOG)
-    sw_harvest_logger.info "Started nightly authorship harvest #{Time.zone.now}"
+    # override the default initialization of the @logger - TODO: why?
+    @logger = Logger.new(Settings.SCIENCEWIRE.NIGHTLY_HARVEST_LOG)
+    logger.info 'Starting harvest for specific authors'
     harvest_pubs_for_authors Author.where(id: author_ids)
   rescue => e
-    NotificationManager.error(e, 'Error for with nightly harvest.', self)
+    NotificationManager.error(e, 'harvest for specific authors failed', self)
   end
 
   def harvest_pubs_for_all_authors(starting_author_id, ending_author_id = -1)
-    # override the default initialization of the @sw_harvest_logger
-    @sw_harvest_logger = Logger.new(Settings.SCIENCEWIRE.HARVEST_LOG)
-    sw_harvest_logger.info "Started full authorship harvest #{Time.zone.now}"
+    # override the default initialization of the @logger
+    logger.info 'Starting harvest for all authors'
     authors = Author.where(active_in_cap: true, cap_import_enabled: true)
     authors = authors.where(Author.arel_table[Author.primary_key].gteq(starting_author_id))
     authors = authors.where(Author.arel_table[Author.primary_key].lteq(ending_author_id)) if ending_author_id > 0
@@ -69,12 +68,12 @@ class ScienceWireHarvester
     batch_4 = [] << (3 * batch_size + 1) << last_id
     sacks = [] << batch_1 << batch_2 << batch_3 << batch_4
     Parallel.each(sacks, in_processes: 4) do |sack|
-      # override the default initialization of the @sw_harvest_logger
-      @sw_harvest_logger = Logger.new(Settings.SCIENCEWIRE.HARVEST_PID_LOG % Process.pid)
-      @sw_harvest_logger.formatter = proc { |severity, datetime, _progname, msg|
+      # override the default initialization of the @logger -- TODO: why?
+      @logger = Logger.new(Settings.SCIENCEWIRE.HARVEST_PID_LOG % Process.pid)
+      @logger.formatter = proc { |severity, datetime, _progname, msg|
         "#{severity} #{datetime}[#{Process.pid}]: #{msg}\n"
       }
-      sw_harvest_logger.info 'Started search'
+      logger.info 'Started search'
 
       ActiveRecord::Base.connection.reconnect!
       ActiveRecord::Base.logger.level = 1
@@ -122,22 +121,22 @@ class ScienceWireHarvester
   end
 
   def write_counts_to_log
-    sw_harvest_logger.info "Finished harvest at #{Time.zone.now}"
+    logger.info 'Finished harvest'
     log_counts
   end
 
   def log_counts
-    sw_harvest_logger.info "#{@total_suggested_count} total records were suggested for #{@author_count} authors."
-    sw_harvest_logger.info "#{@existing_contributions_count} existing contributions were found."
-    sw_harvest_logger.info "#{@contributions_created_count} new contributions were created."
-    sw_harvest_logger.info "#{@total_new_pubmed_source_count} new pubmed source records were created."
-    sw_harvest_logger.info "#{@total_new_sciencewire_source_count} new sciencewire source records were created."
-    sw_harvest_logger.info "#{@new_pubs_created_count} new publications were created."
-    sw_harvest_logger.info "#{@authors_with_no_seed_data_count} authors had no seed data and used the name search instead."
-    sw_harvest_logger.info "#{@matches_on_existing_swid_count} existing publications were found by sciencewire id."
-    sw_harvest_logger.info "#{@matches_on_existing_pmid_count} existing publications were deduped by pmid."
-    sw_harvest_logger.info "#{@matches_on_issn_count} existing publications were deduped by issn."
-    sw_harvest_logger.info "#{@matches_on_title_count} existing publications were deduped by title."
+    logger.info "#{@total_suggested_count} total records were suggested for #{@author_count} authors."
+    logger.info "#{@existing_contributions_count} existing contributions were found."
+    logger.info "#{@contributions_created_count} new contributions were created."
+    logger.info "#{@total_new_pubmed_source_count} new pubmed source records were created."
+    logger.info "#{@total_new_sciencewire_source_count} new sciencewire source records were created."
+    logger.info "#{@new_pubs_created_count} new publications were created."
+    logger.info "#{@authors_with_no_seed_data_count} authors had no seed data and used the name search instead."
+    logger.info "#{@matches_on_existing_swid_count} existing publications were found by sciencewire id."
+    logger.info "#{@matches_on_existing_pmid_count} existing publications were deduped by pmid."
+    logger.info "#{@matches_on_issn_count} existing publications were deduped by issn."
+    logger.info "#{@matches_on_title_count} existing publications were deduped by title."
   end
 
   def increment_authors_with_limited_seed_data_count
@@ -266,7 +265,7 @@ class ScienceWireHarvester
       # if still no pub then create a new pub
       pub ||= create_new_harvested_pub(sciencewire_id, pmid)
     else
-      Rails.logger.info "should find pmid here: #{pmid}"
+      Rails.logger.debug "should find pmid here: #{pmid}"
       pub = Publication.where(pmid: pmid).first
       if pub
         @matches_on_existing_pmid_count += 1
@@ -294,6 +293,10 @@ class ScienceWireHarvester
       pmid: pmid)
   end
 
+  # We process the PubMed harvesting in ScienceWireHarvester because the PubMed data
+  # supplements the ScienceWire data -- essentially we combine `SciencewireSourceRecord`
+  # and `PubmedSourceRecord` into the `Publication.pub_hash`. The `SciencewireSourceRecord`
+  # data include a PubMed ID (`pmid`) so that we can link the two records.
   def process_queued_pubmed_records
     begin
       pubmed_source_record = PubmedSourceRecord.new
@@ -317,33 +320,33 @@ class ScienceWireHarvester
         pub.save
       end
     rescue => e
-      NotificationManager.error(e, 'The batch call to pubmed, process_queued_pubmed_records, failed.', self)
+      NotificationManager.error(e, 'PubMed harvesting failed', self)
     end
     @records_queued_for_pubmed_retrieval.clear
   end
 
   def harvest_from_directory_of_wos_id_files(path_to_directory)
-    sw_harvest_logger.info "Started Web Of Science harvest #{Time.zone.now}"
+    @logger = Logger.new(Settings.SCIENCEWIRE.WOS_HARVEST_LOG) # TODO: why a different logfile?
+    logger.info 'Started Web Of Science harvest'
     @wos_ids_processed = 0
     @file_count = 0
     Dir.glob(path_to_directory.to_s + '/*').each do |f|
       begin
         sunetid = f.split('/').last
-        sw_harvest_logger.info "Processing #{sunetid}"
+        logger.info "Processing #{sunetid}"
         wos_ids = process_bibtex_file(f)
         if wos_ids.empty?
-          sw_harvest_logger.warn "No ids to process for #{sunetid}. Skipping"
+          logger.warn "No ids to process for #{sunetid}. Skipping"
           next
         end
         harvest_sw_pubs_by_wos_id_for_author(sunetid, wos_ids)
         @file_count += 1
       rescue => e
-        sw_harvest_logger.error "Problem with #{f}"
-        sw_harvest_logger.error e.inspect << "\n" << e.backtrace.join("\n")
+        log_exception("Problem with #{f}", e)
       end
     end
-    sw_harvest_logger.info "#{@file_count} files processed"
-    sw_harvest_logger.info "#{@wos_ids_processed} Web Of Science IDs parsed"
+    logger.info "#{@file_count} files processed"
+    logger.info "#{@wos_ids_processed} Web Of Science IDs parsed"
     write_counts_to_log
   end
 
@@ -386,14 +389,13 @@ class ScienceWireHarvester
           create_or_update_pub_and_contribution_with_harvested_sw_doc(sw_doc, [author.id])
         end
         if @debug
-          sw_harvest_logger.info "#{@file_count} files processed"
-          sw_harvest_logger.info "#{@wos_ids_processed} Web Of Science Ids processed"
+          logger.info "#{@file_count} files processed"
+          logger.info "#{@wos_ids_processed} Web Of Science Ids processed"
           log_counts
           @debug = false
         end
       rescue => e
-        sw_harvest_logger.error "Unable to process #{sciencewire_id}"
-        sw_harvest_logger.error e.inspect << "\n" << e.backtrace.join("\n")
+        log_exception("Unable to process #{sciencewire_id}", e)
       end
     end
 
@@ -404,7 +406,7 @@ class ScienceWireHarvester
     batches = wos_ids.size / batch_size
     (0..batches).each do |batch_num|
       starting_index = batch_num * batch_size
-      sw_harvest_logger.info "Starting next batch at #{starting_index}"
+      logger.info "Starting next batch at #{starting_index}"
       wos_batch = wos_ids[starting_index, batch_size]
       harvest_sw_pubs_by_wos_id_for_author sunetid, wos_batch
     end
@@ -413,9 +415,8 @@ class ScienceWireHarvester
   end
 
   # Used for targeted harvesting for an author by sunetid and a json-file with an array of WOS id
-  # Instantiates the logger too
   def harvest_for_sunetid_with_wos_json(sunetid, path_to_json, batch_size = 20)
-    sw_harvest_logger.info "Started Web Of Science harvest for #{sunetid} with wos-json #{path_to_json}"
+    logger.info "Started Web Of Science harvest for #{sunetid} with wos-json #{path_to_json}"
 
     wos_ids = JSON.parse IO.read path_to_json
     harvest_sw_pubs_by_wos_array_and_sunetid sunetid, wos_ids, batch_size
@@ -446,8 +447,7 @@ class ScienceWireHarvester
         wos_ids << wos_id
 
       rescue => e
-        sw_harvest_logger.error "Unable to process line: #{line}"
-        sw_harvest_logger.error e.inspect << "\n" << e.backtrace.join("\n")
+        log_exception("Unable to process line: #{line}", e)
       end
     end
 
@@ -465,23 +465,22 @@ class ScienceWireHarvester
   def process_wos_ids_for_author(cap_profile_id, wos_ids)
     sunetid = Author.where(cap_profile_id: cap_profile_id).pluck(:sunetid).first
     if sunetid.nil?
-      sw_harvest_logger.error "No sunetid found for cap_profile_id: #{cap_profile_id}. Skipping"
+      logger.error "No sunetid found for cap_profile_id: #{cap_profile_id}. Skipping"
     else
-      sw_harvest_logger.info "Starting harvest for sunetid: #{sunetid} cap_profile_id: #{cap_profile_id} with #{wos_ids.size} WOS ids"
+      logger.info "Starting harvest for sunetid: #{sunetid} cap_profile_id: #{cap_profile_id} with #{wos_ids.size} WOS ids"
       harvest_sw_pubs_by_wos_array_and_sunetid sunetid, wos_ids
     end
   end
 
   private
 
-    def sw_harvest_logger
-      @sw_harvest_logger ||= begin
-        logger = Logger.new(Settings.SCIENCEWIRE.WOS_HARVEST_LOG)
-        logger.datetime_format = '%Y-%m-%d %H:%M:%S'
-        logger.formatter = proc { |severity, datetime, _progname, msg|
-          "#{severity} #{datetime}: #{msg}\n"
-        }
-        logger
-      end
+    def logger
+      @logger ||= Logger.new(Settings.SCIENCEWIRE.HARVEST_LOG)
+    end
+
+    def log_exception(message, e)
+      logger.error message
+      logger.error e.inspect
+      logger.error e.backtrace.join("\n") if e.backtrace.present?
     end
 end
