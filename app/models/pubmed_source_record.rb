@@ -30,6 +30,7 @@ class PubmedSourceRecord < ActiveRecord::Base
     PubmedSourceRecord.find_by(pmid: pmid) || PubmedSourceRecord.get_pubmed_record_from_pubmed(pmid)
   end
 
+  # @return [PubmedSourceRecord] the recently downloaded pubmed_source_records data
   def self.get_pubmed_record_from_pubmed(pmid)
     get_and_store_records_from_pubmed([pmid])
     PubmedSourceRecord.find_by(pmid: pmid)
@@ -48,6 +49,7 @@ class PubmedSourceRecord < ActiveRecord::Base
     http = Net::HTTP.new('eutils.ncbi.nlm.nih.gov')
     request = Net::HTTP::Post.new('/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml')
     request.body = pmidValuesForPost
+
     # http.start
     the_incoming_xml = http.request(request).body
     # http.finish
@@ -144,8 +146,10 @@ class PubmedSourceRecord < ActiveRecord::Base
     record_as_hash[:journal] = journal_hash
 
     record_as_hash[:identifier] = [{ type: 'PMID', id: pmid, url: 'http://www.ncbi.nlm.nih.gov/pubmed/' + pmid }]
+    # the DOI can be in one of two places: ArticleId or ELocationID
     doi = publication.at_xpath('//ArticleId[@IdType="doi"]')
-    record_as_hash[:identifier] << { type: 'doi', id: doi.text, url: 'http://dx.doi.org/' + doi.text } if doi
+    doi = publication.at_xpath('//ELocationID[@EIdType="doi"]') unless doi.present? && doi.text.present?
+    record_as_hash[:identifier] << { type: 'doi', id: doi.text, url: 'http://dx.doi.org/' + doi.text } if doi.present? && doi.text.present?
 
     record_as_hash
   end
