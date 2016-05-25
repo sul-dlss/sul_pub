@@ -38,8 +38,38 @@ class PubHash
   def csl_doc
     @csl_doc ||= begin
 
-      if pub_hash[:provenance] =~ /cap/i
+      ##
+      # Parse authors for various provenance data:
+      # - batch
+      # - cap
+      # - pubmed
+      # - sciencewire
+      authors = pub_hash[:author] || []
+      case pub_hash[:provenance]
+      when /batch/i
+        # This is from BibtexIngester.convert_bibtex_record_to_pub_hash
+        @citeproc_authors ||= bibtex_authors_to_csl(authors)
+        @citeproc_editors ||= [] # there are no editors
+      when /cap/i
         # This is a CAP manual submission
+        @citeproc_authors ||= cap_authors_to_csl(authors, 'author')
+        @citeproc_editors ||= cap_authors_to_csl(authors, 'editor')
+      when /pubmed/i
+        # This is a PubMed publication and the author is created in
+        # PubmedSourceRecord.convert_pubmed_publication_doc_to_hash
+        @citeproc_authors ||= pubmed_authors_to_csl(authors)
+        @citeproc_editors ||= [] # there are no editors
+      when /sciencewire/i
+        # This is a ScienceWire publication and the author is created in
+        # SciencewireSourceRecord.convert_sw_publication_doc_to_hash
+        @citeproc_authors ||= sw_authors_to_csl(authors)
+        @citeproc_editors ||= [] # there are no editors
+      else
+        citeproc_authors # calls parse_authors
+        citeproc_editors # calls parse_authors
+      end
+
+      if pub_hash[:provenance] =~ /cap/i
         case pub_hash[:type]
         when 'workingPaper', 'technicalReport'
           # Map a CAP 'workingPaper' or 'technicalReport' to a CSL 'report'
@@ -136,28 +166,6 @@ end
 
 private
 
-  def citeproc_authors
-    @citeproc_authors ||= parse_authors[:authors]
-  end
-
-  def citeproc_editors
-    @citeproc_editors ||= parse_authors[:editors]
-  end
-
-  # @param [Array<Hash>] CAP authors array of hash data
-  # @return [Array<Hash>] CSL authors array of hash data
-  def cap_authors_to_csl(cap_authors, role = 'author')
-    cap_authors.map do |author|
-      author = author.symbolize_keys
-      next unless author[:role] == role
-      ln = author[:lastname].to_s.strip
-      fn = author[:firstname].to_s.strip
-      mn = author[:middlename].to_s.strip
-      given = "#{fn} #{mn}".strip
-      { 'family' => ln, 'given' => given }
-    end.compact
-  end
-
   def create_csl_report
     # Report – A document containing the findings of an individual or group.
     # Can include a technical paper, publication, issue brief, or working paper.
@@ -168,10 +176,8 @@ private
     csl_report = {}
     csl_report['id'] = 'sulpub'
     csl_report['type'] = 'report'
-    authors = cap_authors_to_csl(pub_hash[:author])
-    csl_report['author'] = authors unless authors.empty?
-    editors = cap_authors_to_csl(pub_hash[:author], 'editor')
-    csl_report['editor'] = editors unless editors.empty?
+    csl_report['author'] = citeproc_authors if citeproc_authors.present?
+    csl_report['editor'] = citeproc_editors if citeproc_editors.present?
     csl_report['title'] = pub_hash[:title] if pub_hash[:title].present?
     csl_report['abstract'] = pub_hash[:abstract] if pub_hash[:abstract].present?
     csl_report['publisher'] = pub_hash[:publisher] if pub_hash[:publisher].present?
@@ -192,6 +198,65 @@ private
     end
     csl_report['page'] = pub_hash[:pages] if pub_hash[:pages].present?
     csl_report
+  end
+
+  def citeproc_authors
+    @citeproc_authors ||= parse_authors[:authors]
+  end
+
+  def citeproc_editors
+    @citeproc_editors ||= parse_authors[:editors]
+  end
+
+  # Convert BibTexIngester authors into CSL authors
+  # @param [Array<Hash>] BibTexIngester authors array of hash data
+  # @return [Array<Hash>] CSL authors array of hash data
+  def bibtex_authors_to_csl(bibtex_authors)
+    bibtex_authors.map do |author|
+      author = author.symbolize_keys
+      next if author[:name].blank?
+      family, given = author[:name].split(',')
+      {'family' => family, 'given' => given }
+    end
+  end
+
+  # Convert CAP authors into CSL authors
+  # @param [Array<Hash>] CAP authors array of hash data
+  # @return [Array<Hash>] CSL authors array of hash data
+  def cap_authors_to_csl(cap_authors, role = 'author')
+    cap_authors.map do |author|
+      author = author.symbolize_keys
+      next unless author[:role].to_s.casecmp(role) >= 0
+      AuthorName.new(author).to_csl_author
+    end.compact
+  end
+
+  # Convert PubMed authors into CSL authors, see also
+  # PubmedSourceRecord.convert_pubmed_publication_doc_to_hash
+  # @param [Array<Hash>] PubMed authors array of hash data
+  # @return [Array<Hash>] CSL authors array of hash data
+  def pubmed_authors_to_csl(pubmed_authors)
+    pubmed_authors.map do |author|
+      author = author.symbolize_keys
+      AuthorName.new(author).to_csl_author
+    end.compact
+  end
+
+  # Convert ScienceWire authors into CSL authors, see also
+  # SciencewireSourceRecord.convert_sw_publication_doc_to_hash
+  # @param [Array<Hash>] ScienceWire authors array of hash data
+  # @return [Array<Hash>] CSL authors array of hash data
+  def sw_authors_to_csl(sw_authors)
+    # ScienceWire AuthorList is split('|') into an array of authors
+    sw_authors.map do |author|
+      # Each ScienceWire author is a CSV value: 'Lastname,Firstname,Middlename'
+      last, first, middle = author[:name].split(',')
+      AuthorName.new(
+        lastname: last,
+        firstname: first,
+        middlename: middle
+      ).to_csl_author
+    end.compact
   end
 
   def parse_authors
