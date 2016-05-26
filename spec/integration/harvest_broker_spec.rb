@@ -34,7 +34,7 @@ feature 'Harvest Brokering', 'data-integration': true do
       let(:author) { create(:author_roy_pea) }
       scenario 'Roy Pea' do
         expect(ids.count).to be_between(20, 30).exclusive
-        expect(alt_ids.count).to be_between(20, 30).exclusive
+        expect(alt_ids.count).to be_between(35, 45).exclusive #40 as of 2016.05.26
       end
     end
   end
