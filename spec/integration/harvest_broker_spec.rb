@@ -20,7 +20,7 @@ feature 'Harvest Brokering', 'data-integration': true do
       scenario 'Russ Altman' do
         expect(ids.count).to be > 100
         expect(alt_ids.count).to be > 100
-        expect(alt_ids.count).to be > ids.count
+        expect(broker.generate_ids.count).to be >= ids.count
       end
     end
     context 'an author with no seed publications' do
