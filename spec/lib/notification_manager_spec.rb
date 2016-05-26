@@ -56,7 +56,7 @@ describe NotificationManager do
       described_class.class_variable_set(:@@cap_logger, nil)
     end
     it 'creates a single logger' do
-      expect(Logger).to receive(:new).with(Settings.CAP.API_LOG).once
+      expect(Logger).to receive(:new).with(Settings.CAP.LOG).once
       described_class.error(exception, message, CapAuthorsPoller.new)
       described_class.error(exception, message, CapHttpClient.new)
     end
@@ -71,7 +71,7 @@ describe NotificationManager do
       described_class.class_variable_set(:@@pubmed_logger, nil)
     end
     it 'creates a single logger' do
-      expect(Logger).to receive(:new).with(Settings.PUBMED.API_LOG).once
+      expect(Logger).to receive(:new).with(Settings.PUBMED.LOG).once
       described_class.error(exception, message, PubmedHarvester.new)
       described_class.error(exception, message, PubmedClient.new)
     end
@@ -86,7 +86,7 @@ describe NotificationManager do
       described_class.class_variable_set(:@@sciencewire_logger, nil)
     end
     it 'creates a single logger' do
-      expect(Logger).to receive(:new).with(Settings.SCIENCEWIRE.API_LOG).once
+      expect(Logger).to receive(:new).with(Settings.SCIENCEWIRE.LOG).once
       described_class.error(exception, message, ScienceWireHarvester.new)
       described_class.error(exception, message, ScienceWireClient.new)
     end

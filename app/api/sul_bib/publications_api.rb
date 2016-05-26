@@ -71,7 +71,6 @@ module SulBib
       logger.info('adding new manual publication from BibJSON')
       logger.info(original_source)
       pub_hash = params[:pub_hash]
-      # Rails.logger.debug "Incoming bibjson post attributes hash: #{pub_hash}"
       fingerprint = Digest::SHA2.hexdigest(original_source)
       existing_record = UserSubmittedSourceRecord.where(source_fingerprint: fingerprint).first
       if existing_record

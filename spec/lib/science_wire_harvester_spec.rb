@@ -132,9 +132,10 @@ describe ScienceWireHarvester, :vcr do
 
   describe '#harvest_pubs_for_all_authors' do
     context 'logging' do
-      let(:logfile) { Settings.SCIENCEWIRE.HARVEST_LOG }
-      it 'creates a new logger' do
-        expect(Logger).to receive(:new).with(logfile).and_call_original
+      it 'uses standardized logfile' do
+        expect(NotificationManager).to receive(:sciencewire_logger).and_call_original
+        expect(subject).not_to receive(:harvest_pubs_for_authors) # authors will be empty
+        expect(author.cap_import_enabled).to be_falsey
         subject.harvest_pubs_for_all_authors(author.id, author.id)
       end
     end
@@ -151,9 +152,9 @@ describe ScienceWireHarvester, :vcr do
 
   describe '#harvest_pubs_for_author_ids' do
     context 'logging' do
-      let(:logfile) { Settings.SCIENCEWIRE.NIGHTLY_HARVEST_LOG }
-      it 'creates a new logger' do
-        expect(Logger).to receive(:new).with(logfile).and_call_original
+      it 'logs to a standardized location' do
+        expect(NotificationManager).to receive(:sciencewire_logger).and_call_original
+        expect(subject).to receive(:harvest_pubs_for_authors)
         subject.harvest_pubs_for_author_ids([author.id])
       end
     end
@@ -403,9 +404,8 @@ describe ScienceWireHarvester, :vcr do
   end
 
   describe '#logger' do
-    let(:logfile) { Settings.SCIENCEWIRE.HARVEST_LOG }
-    it 'creates a new logger' do
-      expect(Logger).to receive(:new).with(logfile).and_call_original
+    it 'uses standardized logfile' do
+      expect(NotificationManager).to receive(:sciencewire_logger)
       subject.send(:logger) # private method
     end
   end

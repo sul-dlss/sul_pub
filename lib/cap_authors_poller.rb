@@ -8,7 +8,7 @@ class CapAuthorsPoller
   def initialize
     @sw_harvester = ScienceWireHarvester.new
     @cap_http_client = CapHttpClient.new
-    @logger = Logger.new(Settings.CAP.AUTHORS_POLL_LOG)
+    @logger = NotificationManager.cap_logger
     init_stats
   end
 
@@ -30,7 +30,7 @@ class CapAuthorsPoller
         logger.info "#{@total_running_count} records were processed in #{log_process_time}"
         break if json_response['lastPage']
       rescue => e
-        logger.fail e.inspect
+        NotificationManager.error(e, 'get_authorship_data iteration failed', self)
         raise
       end
     end
@@ -44,8 +44,7 @@ class CapAuthorsPoller
     info << 'Finished authorship import'
     logger.info info.join("\n")
   rescue => e
-    msg = "Authorship import failed - #{Time.zone.now}"
-    NotificationManager.error(e, msg, self)
+    NotificationManager.error(e, 'Authorship import failed', self)
   end
 
   def cap_authors_count(days_ago = 1)
@@ -130,9 +129,7 @@ class CapAuthorsPoller
     incoming_authorships.each do |authorship|
       if !Contribution.authorship_valid? authorship
         msg = "Invalid authorship: cap_profile_id: #{author.cap_profile_id}; #{authorship.inspect}"
-        logger.error msg
-        exception = ArgumentError.new(msg)
-        NotificationManager.error(exception, msg, self)
+        NotificationManager.error(ArgumentError.new(msg), msg, self)
         @invalid_contribs += 1
         next
       end
