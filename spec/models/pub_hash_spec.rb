@@ -120,15 +120,17 @@ describe PubHash do
     { provenance: 'sciencewire',
       pmid: '15572175',
       sw_id: '6787731',
-      title:       'New insights into the expression and function of neural connexins with transgenic mouse mutants',
+      title: 'New insights into the expression and function of neural connexins with transgenic mouse mutants',
       abstract_restricted:       'Gap junctions represent direct intercellular conduits between contacting cells. The subunit proteins of these conduits are called connexins. To date, 20 and 21 connexin genes have been described in the mouse and human genome, respectiv',
-      author:       [{ name: 'Sohl,G,' },
-                     { name: 'Odermatt,B,' },
-                     { name: 'Maxeiner,S,' },
-                     { name: 'Degen,J,' },
-                     { name: 'Willecke,K,' },
-                     { name: 'SecondLast,T,' },
-                     { name: 'Last,O' }],
+      author: [
+        { name: 'Sohl,G,' },
+        { name: 'Odermatt,B,' },
+        { name: 'Maxeiner,S,' },
+        { name: 'Degen,J,' },
+        { name: 'Willecke,K,' },
+        { name: 'SecondLast,T,' },
+        { name: 'Last,O,' }
+      ],
       year: '2004',
       date: '2004-12-01T00:00:00',
       authorcount: '6',
@@ -232,12 +234,37 @@ describe PubHash do
     {
       title: 'HCL Technologies',
       type: 'caseStudy',
-      year: '2008',
+      provenance: 'CAP',
       author: [
-        { name: 'Hill, Linda' },
-        { name: 'Khanna, Tarun' },
-        { name: 'Stecker, Emily A.' }
+        {
+          name: 'Hill  Linda',
+          lastname: 'Hill',
+          firstname: 'Linda',
+          middlename: '',
+          alternate: [],
+          role: 'author',
+          additionalProperties: {}
+        },
+        {
+          name: 'Khanna  Tarun',
+          lastname: 'Khanna',
+          firstname: 'Tarun',
+          middlename: '',
+          alternate: [],
+          role: 'author',
+          additionalProperties: {}
+        },
+        {
+          name: 'Stecker A Emily',
+          lastname: 'Stecker',
+          firstname: 'Emily',
+          middlename: 'A',
+          alternate: [],
+          role: 'author',
+          additionalProperties: {}
+        }
       ],
+      year: '2008',
       publisher: 'Harvard Business Publishing',
       publicationSource: 'Boston'
     }
@@ -401,18 +428,18 @@ describe PubHash do
       end
       it 'creates a Chicago citation' do
         expect(pub_hash.to_chicago_citation)
-          .to eq "Imberman, Scott, Adriana D Kugler, and Bruce Sacerdote. 2009. <i>Katrina'S Children: Evidence On the Structure of Peer Effects From Hurricane Evacuees</i>15291. NBER Working Paper Series. Cambridge, MA: National Bureau of Economic Research. http://www.nber.org/papers/w15291."
+          .to eq "Imberman, Scott, Adriana D. Kugler, and Bruce Sacerdote. 2009. <i>Katrina'S Children: Evidence On the Structure of Peer Effects From Hurricane Evacuees</i>15291. NBER Working Paper Series. Cambridge, MA: National Bureau of Economic Research. http://www.nber.org/papers/w15291."
       end
       it 'creates an MLA citation' do
         expect(pub_hash.to_mla_citation)
-          .to eq "Imberman, Scott, Adriana D Kugler, and Bruce Sacerdote. <i>Katrina'S Children: Evidence On the Structure of Peer Effects From Hurricane Evacuees</i>. Cambridge, MA: National Bureau of Economic Research, 2009. Web. NBER Working Paper Series."
+          .to eq "Imberman, Scott, Adriana D. Kugler, and Bruce Sacerdote. <i>Katrina'S Children: Evidence On the Structure of Peer Effects From Hurricane Evacuees</i>. Cambridge, MA: National Bureau of Economic Research, 2009. Web. NBER Working Paper Series."
       end
       # The Chicago and MLA citations should not have strange case near an apostrophe
       pending 'creates a citation with correct pluralization in title' do
         expect(pub_hash.to_chicago_citation)
-          .to eq "Imberman, Scott, Adriana D Kugler, and Bruce Sacerdote. 2009. <i>Katrina's Children: Evidence On the Structure of Peer Effects From Hurricane Evacuees</i>15291. NBER Working Paper Series. Cambridge, MA: National Bureau of Economic Research. http://www.nber.org/papers/w15291."
+          .to eq "Imberman, Scott, Adriana D. Kugler, and Bruce Sacerdote. 2009. <i>Katrina's Children: Evidence On the Structure of Peer Effects From Hurricane Evacuees</i>15291. NBER Working Paper Series. Cambridge, MA: National Bureau of Economic Research. http://www.nber.org/papers/w15291."
         expect(pub_hash.to_mla_citation)
-          .to eq "Imberman, Scott, Adriana D Kugler, and Bruce Sacerdote. <i>Katrina's Children: Evidence On the Structure of Peer Effects From Hurricane Evacuees</i>. Cambridge, MA: National Bureau of Economic Research, 2009. Web. NBER Working Paper Series."
+          .to eq "Imberman, Scott, Adriana D. Kugler, and Bruce Sacerdote. <i>Katrina's Children: Evidence On the Structure of Peer Effects From Hurricane Evacuees</i>. Cambridge, MA: National Bureau of Economic Research, 2009. Web. NBER Working Paper Series."
       end
     end
 
@@ -760,6 +787,56 @@ describe PubHash do
       # http://www.easybib.com/guides/citation-guides/how-do-i-cite-a/case-study/
       it 'creates a APA citation' do
         expect(pub_hash.to_apa_citation).to eq 'Hill, L., Khanna, T., &#38; Stecker, E. A. (2008). HCL Technologies. Boston: Harvard Business Publishing.'
+      end
+    end
+  end
+  describe 'User submitted source records' do
+    context 'book' do
+      let(:pub_hash) { PubHash.new(JSON.parse(create(:book).source_data, symbolize_names: true)) }
+      it 'creates a Chicago citation' do
+        expect(pub_hash.to_chicago_citation).to eq 'Reed, Phillip J., and Jane Stanford. 2015. <i>This Is a Book Title</i>. Vol. 3. The Series Title. Stanford University Press.'
+      end
+      it 'creates a MLA citation' do
+        expect(pub_hash.to_mla_citation).to eq 'Reed, Phillip J., and Jane Stanford. <i>This Is a Book Title</i>. Vol. 3. Stanford University Press, 2015. Print. The Series Title.'
+      end
+      it 'creates a APA citation' do
+        expect(pub_hash.to_apa_citation).to eq 'Reed, P. J., &#38; Stanford, J. (2015). This is a book title (Vol. 3). Stanford University Press.'
+      end
+    end
+    context 'book chapter' do
+      let(:pub_hash) { PubHash.new(JSON.parse(create(:book_chapter).source_data, symbolize_names: true)) }
+      it 'creates a Chicago citation' do
+        expect(pub_hash.to_chicago_citation).to eq "Hardy, Darren, Jack Reed, and Bess Sadler. 2016. <i>Geospatial Resource Discovery</i>. <i>Exploring Discovery: The Front Door To Your Library'S Licensed and Digitized Content</i>. American Library Association Editions."
+      end
+      it 'creates a MLA citation' do
+        expect(pub_hash.to_mla_citation).to eq "Hardy, Darren, Jack Reed, and Bess Sadler. <i>Geospatial Resource Discovery</i>. American Library Association Editions, 2016. Print."
+      end
+      it 'creates a APA citation' do
+        expect(pub_hash.to_apa_citation).to eq "Hardy, D., Reed, J., &#38; Sadler, B. (2016). Geospatial Resource Discovery. <i>Exploring Discovery: The Front Door to Your Library's Licensed and Digitized Content</i> (47-62). American Library Association Editions."
+      end
+    end
+    context 'conference proceeding' do
+      let(:pub_hash) { PubHash.new(JSON.parse(create(:conference_proceeding).source_data, symbolize_names: true)) }
+      it 'creates a Chicago citation' do
+        expect(pub_hash.to_chicago_citation).to eq 'Reed, Jack. 2015. “Preservation and Discovery For GIS Data”. Esri.'
+      end
+      it 'creates a MLA citation' do
+        expect(pub_hash.to_mla_citation).to eq 'Reed, Jack. “Preservation and Discovery For GIS Data”. 2015: n. pag. Print.'
+      end
+      it 'creates a APA citation' do
+        expect(pub_hash.to_apa_citation).to eq 'Reed, J. (2015). Preservation and discovery for GIS data. Presented at the Esri User Conference, San Diego, California: Esri.'
+      end
+    end
+    context 'journal article' do
+      let(:pub_hash) { PubHash.new(JSON.parse(create(:journal_article).source_data, symbolize_names: true)) }
+      it 'creates a Chicago citation' do
+        expect(pub_hash.to_chicago_citation).to eq 'Glover, Jeffrey B., Kelly Woodard, P. Jack Reed, and Johnny Waits. 2012. “The Flat Rock Cemetery Mapping Project:  A Case Study In Community Archaeology”. <i>Early Georgia</i> 40 (1).'
+      end
+      it 'creates a MLA citation' do
+        expect(pub_hash.to_mla_citation).to eq 'Glover, Jeffrey B., Kelly Woodard, P. Jack Reed, and Johnny Waits. “The Flat Rock Cemetery Mapping Project:  A Case Study In Community Archaeology”. <i>Early Georgia</i> 40.1 (2012): n. pag. Print.'
+      end
+      it 'creates a APA citation' do
+        expect(pub_hash.to_apa_citation).to eq 'Glover, J. B., Woodard, K., Reed, P. J., &#38; Waits, J. (2012). The Flat Rock Cemetery Mapping Project:  A Case Study in Community Archaeology. <i>Early Georgia</i>, <i>40</i>(1).'
       end
     end
   end

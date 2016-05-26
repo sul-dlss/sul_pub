@@ -344,14 +344,9 @@ class Publication < ActiveRecord::Base
 
   def add_all_db_contributions_to_my_pub_hash
     pub_hash[:authorship] = contributions.map(&:to_pub_hash) if pub_hash
-  # elsif self.pub_hash && ! self.pub_hash[:authorship]
-  #  Logger.new(Rails.root.join('log', 'publications_errors.log')).info("No authorship entry in pub_hash for " + self.id.to_s)
-  # else
-  #  Logger.new(Rails.root.join('log', 'publications_errors.log')).info("No pub hash for " + self.id.to_s)
-  # end
   rescue => e
-    Rails.logger.info "some problem with hash: #{pub_hash}"
-    pub_logger = Logger.new(Rails.root.join('log', 'contributions_publications_errors.log'))
+    Rails.logger.error "some problem with hash: #{pub_hash}"
+    pub_logger = Logger.new(Settings.CAP.CONTRIBUTIONS_PUBLICATIONS_ERRORS_LOG)
     pub_logger.error "some problem with adding contributions to the hash for pub #{id}"
     pub_logger.error "the hash: #{pub_hash}"
     pub_logger.error e.message

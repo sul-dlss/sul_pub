@@ -5,7 +5,7 @@ describe AuthorsController do
   describe 'POST harvest' do
     it 'ensures authorization header is present' do
       post :harvest, cap_profile_id: 123
-      expect(response.status).to eq 403
+      expect(response.status).to eq 401
     end
     context 'when authorized' do
       before do

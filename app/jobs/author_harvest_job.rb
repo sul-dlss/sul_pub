@@ -15,5 +15,8 @@ class AuthorHarvestJob < ActiveJob::Base
       logger.info "publication #{p.id}: #{p.pub_hash[:apa_citation]}"
     end
     logger.info "Number of publications #{pubs.count}"
+  rescue => e
+    NotificationManager.notify_squash(e, "AuthorHarvestJob.perform(cap_profile_id=#{cap_profile_id}, harvest_alternate_names=#{harvest_alternate_names})")
+    raise
   end
 end

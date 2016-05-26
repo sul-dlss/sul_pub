@@ -178,7 +178,7 @@ describe CapAuthorsPoller, :vcr do
       authorship.delete 'visibility'
       expect(Contribution).to receive(:authorship_valid?).with(authorship).and_call_original
       # Test that an invalid authorship will generate error logging and notification
-      expect(NotificationManager).to receive(:handle_authorship_pull_error)
+      expect(NotificationManager).to receive(:error)
       expect(subject.logger).to receive(:error)
       # Test that an invalid authorship will increment the counter
       count = subject.instance_variable_get('@invalid_contribs')

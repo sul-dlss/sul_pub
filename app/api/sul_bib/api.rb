@@ -7,7 +7,8 @@ module SulBib
     logger Rails.logger
 
     before do
-      error!('Unauthorized', 401) unless env['HTTP_CAPKEY'] == Settings.API_KEY
+      error!('Unauthorized', 401) if env['HTTP_CAPKEY'].nil?
+      error!('Forbidden', 403) unless env['HTTP_CAPKEY'] == Settings.API_KEY
     end
 
     helpers do

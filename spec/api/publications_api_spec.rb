@@ -395,7 +395,7 @@ describe SulBib::API, :vcr do
         publication_list
         get '/publications?page=1&per=7',
             format: 'json'
-        expect(response.status).to eq(403)
+        expect(response.status).to eq(401)
       end
 
       it 'returns a one page collection of 100 bibjson records when no paging is specified' do

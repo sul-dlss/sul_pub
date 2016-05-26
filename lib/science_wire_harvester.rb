@@ -18,7 +18,6 @@ class ScienceWireHarvester
   def initialize
     initialize_instance_vars
     initialize_counts_for_reporting
-    @reject_types = Settings.sw_doc_types_to_skip.join('|')
   end
 
   def harvest_pubs_for_authors(authors)
@@ -32,10 +31,7 @@ class ScienceWireHarvester
         end
         harvest_for_author(author)
       rescue => e
-        msg = "Error for #{author.official_last_name} - sul author id: #{author.id} "
-        sw_harvest_logger.error "#{msg}-  #{e.inspect}"
-        sw_harvest_logger.error e.backtrace.join "\n"
-        # NotificationManager.handle_harvest_problem(e, msg)
+        NotificationManager.error(e, "#{author.official_last_name} - sul author id: #{author.id} ", self)
       end
     end
     process_queued_sciencewire_suggestions
@@ -49,7 +45,7 @@ class ScienceWireHarvester
     sw_harvest_logger.info "Started nightly authorship harvest #{Time.zone.now}"
     harvest_pubs_for_authors Author.where(id: author_ids)
   rescue => e
-    NotificationManager.handle_harvest_problem(e, 'Error for with nightly harvest.')
+    NotificationManager.error(e, 'Error for with nightly harvest.', self)
   end
 
   def harvest_pubs_for_all_authors(starting_author_id, ending_author_id = -1)
@@ -229,7 +225,9 @@ class ScienceWireHarvester
   def process_queued_sciencewire_suggestions
     list_of_sw_ids = @records_queued_for_sciencewire_retrieval.keys.join(',')
     sw_records_doc = @sciencewire_client.get_full_sciencewire_pubs_for_sciencewire_ids(list_of_sw_ids)
-    sw_records_doc.xpath("//PublicationItem[regex_reject(DocumentTypeList, '#{@reject_types}')]", XpathUtils.new).each do |sw_doc|
+    pubs = ScienceWirePublications.new(sw_records_doc)
+    pubs.remove_document_types!
+    pubs.publication_items.each do |sw_doc|
       sciencewire_id = sw_doc.xpath('PublicationItemID').text
       pmid = sw_doc.xpath('PMID').text
       source_record_was_created = SciencewireSourceRecord.save_sw_source_record(sciencewire_id, pmid, sw_doc.to_xml)
@@ -319,7 +317,7 @@ class ScienceWireHarvester
         pub.save
       end
     rescue => e
-      NotificationManager.handle_harvest_problem(e, 'The batch call to pubmed, process_queued_pubmed_records, failed.')
+      NotificationManager.error(e, 'The batch call to pubmed, process_queued_pubmed_records, failed.', self)
     end
     @records_queued_for_pubmed_retrieval.clear
   end
