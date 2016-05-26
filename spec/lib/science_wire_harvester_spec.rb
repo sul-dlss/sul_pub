@@ -401,11 +401,11 @@ describe ScienceWireHarvester, :vcr do
     end
   end
 
-  describe '#sw_harvest_logger' do
-    let(:logfile) { Settings.SCIENCEWIRE.WOS_HARVEST_LOG }
+  describe '#logger' do
+    let(:logfile) { Settings.SCIENCEWIRE.HARVEST_LOG }
     it 'creates a new logger' do
       expect(Logger).to receive(:new).with(logfile).and_call_original
-      subject.send(:sw_harvest_logger)
+      subject.send(:logger) # private method
     end
   end
 end

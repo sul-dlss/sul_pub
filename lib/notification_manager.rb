@@ -12,31 +12,23 @@ class NotificationManager
     # @param [Exception] `e` -- the original exception
     # @param [String] `message` -- human-readable message
     # @param [Class] `callee` -- the callee object
+    # @param [Boolean] `use_squash` -- if true, sends `e` to Squash
     def error(e, message, callee = nil, use_squash = true)
       log_message = callee.class.name + ': ' + message
 
       case callee
       when ScienceWireHarvester, ScienceWireClient
-        # no logging -- TODO: why?
+        log_exception(sciencewire_logger, log_message, e)
       when PubmedHarvester, PubmedClient
-        pubmed_logger.error log_message
-        pubmed_logger.error e.message
-        pubmed_logger.error e.backtrace.join("\n") if e.backtrace.present?
-        Rails.logger.warn e.inspect
-        Rails.logger.info e.backtrace.join("\n") if e.backtrace.present?
+        log_exception(pubmed_logger, log_message, e)
       when CapAuthorsPoller, CapHttpClient
-        cap_authorship_logger.error log_message
-        cap_authorship_logger.error e.message
-        cap_authorship_logger.error e.backtrace.join("\n") if e.backtrace.present?
+        log_exception(cap_logger, log_message, e)
       else
-        Rails.logger.error log_message
-        Rails.logger.error e.inspect
-        Rails.logger.error e.backtrace.join("\n") if e.backtrace.present?
+        log_exception(Rails.logger, log_message, e)
         use_squash = false # only log error to Rails console
       end
     rescue => e2
-      Rails.logger.error e2.inspect
-      Rails.logger.error e2.backtrace.join("\n") if e2.backtrace.present?
+      log_exception(Rails.logger, e2.message, e2)
     ensure
       notify_squash(e, log_message) if use_squash
     end
@@ -50,9 +42,22 @@ class NotificationManager
     # rubocop:enable Style/ClassVars
 
     # rubocop:disable Style/ClassVars
-    def cap_authorship_logger
-      @@cap_authorship_logger ||= Logger.new(Settings.CAP.AUTHORSHIP_API_LOG)
+    def cap_logger
+      @@cap_logger ||= Logger.new(Settings.CAP.API_LOG)
     end
     # rubocop:enable Style/ClassVars
+
+    # rubocop:disable Style/ClassVars
+    def sciencewire_logger
+      @@sciencewire_logger ||= Logger.new(Settings.SCIENCEWIRE.API_LOG)
+    end
+    # rubocop:enable Style/ClassVars
+
+    # Helper method to log exceptions in a consistent way
+    def log_exception(logger, message, e)
+      logger.error message
+      logger.error e.inspect
+      logger.error e.backtrace.join("\n") if e.backtrace.present?
+    end
   end
 end
