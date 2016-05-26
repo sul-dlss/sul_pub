@@ -329,10 +329,7 @@ describe PubHash do
   context 'CiteProc citation for working paper (report)' do
     context 'CSL report for hurricane working paper generates an acceptable APA citation' do
       let(:csl_renderer) { CiteProc::Ruby::Renderer.new format: 'html' }
-      let(:csl_style) do
-        CSL::Style.root = File.join(Rails.root, 'app', 'data')
-        CSL::Style.load('apa')
-      end
+      let(:csl_style) { CSL::Style.load('apa') }
       let(:cite) do
         item = CiteProc::CitationItem.new id: 'sulpub'
         item.data = CiteProc::Item.new(csl_report)
