@@ -61,16 +61,15 @@ class CapAuthorsPoller
   def process_next_batch_of_authorship_data(json_response)
     # rubocop:disable Style/GuardClause
     if json_response['count'].blank? || json_response['lastPage'].nil?
-      raise "unexpected json in cap_authors_poller#process_next_batch_of_authorship_data, first 500 chars: #{json_response}"
+      raise Net::HTTPBadResponse, "Missing JSON data in response: first 500 chars: #{json_response[0..500]}"
     elsif json_response['values']
       json_response['values'].each do |record|
         begin
           @total_running_count += 1
           process_record(record)
-          logger.info "Processed #{@total_running_count} authors" if @total_running_count % 10 == 0
+          log_stats if @total_running_count % 10 == 0
         rescue => e
-          msg = "Authorship import failed for incoming record containing: #{record.inspect if record} - #{Time.zone.now}"
-          NotificationManager.error(e, msg, self)
+          NotificationManager.error(e, "Authorship import failed for record: '#{record}'", self)
         end
       end
     end
@@ -78,7 +77,6 @@ class CapAuthorsPoller
   end
 
   def process_record(record)
-    # import_settings_exist = record["importSettings"] && record["importSettings"].any?
     cap_profile_id = record['profileId'].to_i
     author = Author.find_by_cap_profile_id(cap_profile_id)
     if author.present?
@@ -106,7 +104,7 @@ class CapAuthorsPoller
     author.update_from_cap_authorship_profile_hash(record)
 
     if record['authorship'].present?
-      # TODO: not clear to me *why* authorship is ignored for new authors...
+      # TODO: not clear to me *why* or even *if* authorship is ignored for new authors...
       logger.warn "New author has authorship which will be skipped; cap_profile_id: #{cap_profile_id}"
       @new_auth_with_contribs += 1
     end

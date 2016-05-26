@@ -31,7 +31,7 @@ class ScienceWireHarvester
         end
         harvest_for_author(author)
       rescue => e
-        NotificationManager.error(e, "#{author.official_last_name} - sul author id: #{author.id} ", self)
+        NotificationManager.error(e, "Harvest failed for author_id: #{author.id}, cap_profile_id: #{author.cap_profile_id}", self)
       end
     end
     process_queued_sciencewire_suggestions
@@ -45,7 +45,7 @@ class ScienceWireHarvester
     logger.info 'Starting harvest for specific authors'
     harvest_pubs_for_authors Author.where(id: author_ids)
   rescue => e
-    NotificationManager.error(e, 'harvest for specific authors failed', self)
+    NotificationManager.error(e, "Harvest failed for specific authors: n=#{author_ids.length} author_ids=#{author_ids.sort}", self)
   end
 
   def harvest_pubs_for_all_authors(starting_author_id, ending_author_id = -1)
@@ -338,13 +338,13 @@ class ScienceWireHarvester
         logger.info "Processing #{sunetid}"
         wos_ids = process_bibtex_file(f)
         if wos_ids.empty?
-          logger.warn "No ids to process for #{sunetid}. Skipping"
+          logger.warn "No wos_ids values to process for sunetid: #{sunetid}. Skipping"
           next
         end
         harvest_sw_pubs_by_wos_id_for_author(sunetid, wos_ids)
         @file_count += 1
       rescue => e
-        log_exception("Problem with #{f}", e)
+        log_exception("Harvesting from #{f} failed", e)
       end
     end
     logger.info "#{@file_count} files processed"
@@ -397,7 +397,7 @@ class ScienceWireHarvester
           @debug = false
         end
       rescue => e
-        log_exception("Unable to process #{sciencewire_id}", e)
+        log_exception("Unable to process sciencewire_id: #{sciencewire_id}", e)
       end
     end
 
@@ -449,7 +449,7 @@ class ScienceWireHarvester
         wos_ids << wos_id
 
       rescue => e
-        log_exception("Unable to process line: #{line}", e)
+        log_exception("Unable to process line: #{line} in #{path_to_report}", e)
       end
     end
 
