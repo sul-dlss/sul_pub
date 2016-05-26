@@ -1,4 +1,4 @@
-API_KEY: ***REMOVED***
+API_KEY: a fake key
 
 ## Settings for URI identifier prefixes used in the data; they should be working values in production
 SULPUB_ID:
