@@ -189,7 +189,7 @@ describe SulBib::API, :vcr do
         submission = JSON.parse(valid_json_for_post)
         expect(pub.title).to eq(submission['title'])
         expect(pub.year).to eq(submission['year'])
-        expect(pub.pages).to eq(submission['pages'])
+        expect(pub.pages).to eq(submission['pages'].sub('-', '–')) # em-dash
         expect(pub.issn).to eq(submission['issn'])
       end
 

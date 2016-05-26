@@ -1,38 +1,53 @@
-require 'citeproc'
+require 'citeproc/ruby'
+# You can install more recent styles using the 'csl-styles' gem or you can just
+# download the styles you need (just point CSL::Style.root to the directory and
+# you can load any style with just its name using CSL::Style.load).
+require 'csl/styles'
 
 class PubHash
+  attr_reader :csl_renderer
   attr_reader :pub_hash
 
   def initialize(hash)
     @pub_hash = hash
+    @csl_renderer = CiteProc::Ruby::Renderer.new format: 'html'
+    # Reset the CSL::Style.root to use our custom CSL files.  If a
+    # transition can be made to use the gem files, that could be an
+    # easier upgrade pathway for the CSL files.
+    CSL::Style.root = File.join(Rails.root, 'app', 'data')
   end
 
-  # @param csl_citation_data [Array<Hash>] an array of CSL citation documents
-  # @param csl_style_file [String] a CSL citation style file path
+  # @param csl_citation_data [Hash] a CSL citation document
+  # @param csl_style [CSL::Style] a CSL citation style
   # @return citation [String] a bibliographic citation
-  def generate_csl_citation(csl_citation_data, csl_style_file)
-    CiteProc.process(csl_citation_data, style: csl_style_file, format: 'html')
+  def generate_csl_citation(csl_citation_data, csl_style)
+    item = CiteProc::CitationItem.new id: 'sulpub'
+    item.data = CiteProc::Item.new(csl_citation_data)
+    csl_renderer.render item, csl_style.bibliography
   end
 
   def to_chicago_citation
-    @chicago_csl_file ||= begin
+    @chicago_style ||= begin
+      # This is the only one in the csl-style gem files
       style_name = 'chicago-author-date'
       # sul-pub has a custom modification that can be used for many authors
       authors = pub_hash[:author] || []
       style_name += '_et_al' if pub_hash[:etal].present? || authors.count > 5
-      Rails.root.join('app', 'data', style_name + '.csl')
+      CSL::Style.load(style_name)
     end
-    generate_csl_citation([csl_doc], @chicago_csl_file)
+    generate_csl_citation(csl_doc, @chicago_style)
   end
 
   def to_mla_citation
-    @mla_csl_file ||= Rails.root.join('app', 'data', 'mla.csl')
-    generate_csl_citation([csl_doc], @mla_csl_file)
+    # When using the csl-style gem files, this would be:
+    # @mla_style ||= CSL::Style.load('modern-language-association')
+    @mla_style ||= CSL::Style.load('mla')
+    generate_csl_citation(csl_doc, @mla_style)
   end
 
   def to_apa_citation
-    @apa_csl_file ||= Rails.root.join('app', 'data', 'apa.csl')
-    generate_csl_citation([csl_doc], @apa_csl_file)
+    @apa_style ||= CSL::Style.load('apa')
+    generate_csl_citation(csl_doc, @apa_style)
   end
 
   def csl_doc
