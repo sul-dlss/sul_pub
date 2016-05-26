@@ -6,7 +6,7 @@ class RefreshExistingAuthors
   attr_reader :logger
 
   def initialize
-    @logger = Logger.new(Rails.root.join('log', 'refresh_all_authors.log'))
+    @logger = Logger.new(Rails.root.join('log', 'refresh_existing_authors.log'))
     @logger.level = Logger::INFO
   end
 
