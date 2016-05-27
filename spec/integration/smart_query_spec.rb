@@ -161,7 +161,7 @@ describe 'Smart query', 'data-integration': true do
             ), 'preed2@gsu.edu', ''
           )
         )
-        expect(suggestions.count).to be >= 33
+        expect(suggestions.count).to be >= 24 #2016.05.26
         expect(suggestions).to include(*known_confirmed_publications)
       end
       it 'returns suggestions' do

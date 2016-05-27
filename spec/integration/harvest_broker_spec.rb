@@ -20,7 +20,7 @@ feature 'Harvest Brokering', 'data-integration': true do
       scenario 'Russ Altman' do
         expect(ids.count).to be > 100
         expect(alt_ids.count).to be > 100
-        expect(alt_ids.count).to be > ids.count
+        expect(broker.generate_ids.count).to be >= ids.count
       end
     end
     context 'an author with no seed publications' do
@@ -34,7 +34,7 @@ feature 'Harvest Brokering', 'data-integration': true do
       let(:author) { create(:author_roy_pea) }
       scenario 'Roy Pea' do
         expect(ids.count).to be_between(20, 30).exclusive
-        expect(alt_ids.count).to be_between(20, 30).exclusive
+        expect(alt_ids.count).to be_between(35, 45).exclusive #40 as of 2016.05.26
       end
     end
   end
