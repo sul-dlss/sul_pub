@@ -299,6 +299,7 @@ class ScienceWireHarvester
   # and `PubmedSourceRecord` into the `Publication.pub_hash`. The `SciencewireSourceRecord`
   # data include a PubMed ID (`pmid`) so that we can link the two records.
   def process_queued_pubmed_records
+    return if @records_queued_for_pubmed_retrieval.empty?
     begin
       pubmed_source_record = PubmedSourceRecord.new
       pub_med_records = @pubmed_client.fetch_records_for_pmid_list(@records_queued_for_pubmed_retrieval.keys)
