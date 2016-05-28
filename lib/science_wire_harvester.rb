@@ -222,6 +222,7 @@ class ScienceWireHarvester
 
   # TODO: have AggregateText results use this directly instead of pulling out IDs
   def process_queued_sciencewire_suggestions
+    return if @records_queued_for_sciencewire_retrieval.empty?
     list_of_sw_ids = @records_queued_for_sciencewire_retrieval.keys.join(',')
     sw_records_doc = @sciencewire_client.get_full_sciencewire_pubs_for_sciencewire_ids(list_of_sw_ids)
     pubs = ScienceWirePublications.new(sw_records_doc)
