@@ -31,10 +31,10 @@ class ScienceWireClient
 
   # @param [AuthorAtributes] author_attributes
   # @param [Integer] max_rows (200)
+  # @return [Array<Integer>]
   def query_sciencewire_by_author_name(author_attributes, max_rows = 200)
     author_name = ScienceWire::Query::PublicationQueryByAuthorName.new(author_attributes, max_rows)
     xml_query = author_name.generate
-
     # TODO: use returned documents instead of selecting IDs
     xml_docs = query_sciencewire(xml_query)
     pubs = ScienceWirePublications.new(xml_docs)
