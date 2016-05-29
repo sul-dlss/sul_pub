@@ -1,4 +1,5 @@
 require 'spec_helper'
+# See also spec/api/sul_bib/sourcelookup_spec.rb
 
 describe PublicationsController do
   it 'ensures authorization is checked' do
