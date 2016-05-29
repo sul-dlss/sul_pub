@@ -1,4 +1,5 @@
 require 'spec_helper'
+SingleCov.covered!
 # See also spec/api/sul_bib/sourcelookup_spec.rb
 
 describe PublicationsController do
