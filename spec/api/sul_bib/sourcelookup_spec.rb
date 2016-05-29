@@ -2,27 +2,27 @@ require 'spec_helper'
 
 describe SulBib::API, :vcr do
   let(:capkey) { { 'HTTP_CAPKEY' => Settings.API_KEY } }
-  let(:headers) { capkey.merge({ 'CONTENT_TYPE' => 'application/json' }) }
+  let(:headers) { capkey.merge('CONTENT_TYPE' => 'application/json') }
   let(:publication) { create :publication }
   let(:author) { create :author }
   let(:test_title) {'pathological'}
   let(:publication_with_test_title) { create :publication, title: test_title }
   let(:sourcelookup_path) {'/publications/sourcelookup'}
-  let(:sourcelookup_by_title) {
+  let(:sourcelookup_by_title) do
     publication_with_test_title
     params = { format: 'json', title: test_title, maxrows: 2 }
     get sourcelookup_path, params, capkey
     expect(response.status).to eq(200)
     JSON.parse(response.body)
-  }
+  end
   let(:test_doi) {'10.1016/j.mcn.2012.03.008'}
-  let(:sourcelookup_by_doi) {
+  let(:sourcelookup_by_doi) do
     params = { format: 'json', doi: test_doi }
     get sourcelookup_path, params, capkey
     expect(response.status).to eq(200)
     JSON.parse(response.body)
-  }
-  let(:valid_json_for_post) {
+  end
+  let(:valid_json_for_post) do
     {
       title: 'some title',
       year: 1938,
@@ -40,10 +40,9 @@ describe SulBib::API, :vcr do
         }
       ]
     }.to_json
-  }
+  end
 
   describe 'GET /publications/sourcelookup ' do
-
     it 'raises an error when title and doi are not sent' do
       expect do
         get sourcelookup_path, {}, capkey
@@ -97,7 +96,6 @@ describe SulBib::API, :vcr do
     end
 
     describe '?title=' do
-
       describe 'returns bibjson' do
         it 'with metadata section' do
           result = sourcelookup_by_title
@@ -149,7 +147,6 @@ describe SulBib::API, :vcr do
         matches = records.count {|r| r['year'] == year }
         expect(matches).to eq(records.count) # ALL records match
       end
-
     end
 
     # TODO: discriminate between sciencewire and local somehow?
@@ -163,6 +160,5 @@ describe SulBib::API, :vcr do
     #   expect(result).to include('records')
     #   # binding.pry
     # end
-
   end
 end
