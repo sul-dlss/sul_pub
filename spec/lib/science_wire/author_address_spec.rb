@@ -1,4 +1,5 @@
 require 'spec_helper'
+SingleCov.covered!
 
 describe ScienceWire::AuthorAddress do
   let(:line1) { 'Stanford University' }
