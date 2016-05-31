@@ -219,13 +219,12 @@ class ScienceWireHarvester
     list_of_sw_ids = @records_queued_for_sciencewire_retrieval.keys.join(',')
     sw_records_doc = @sciencewire_client.get_full_sciencewire_pubs_for_sciencewire_ids(list_of_sw_ids)
     pubs = ScienceWirePublications.new(sw_records_doc)
-    pubs.remove_document_types!
-    pubs.publication_items.each do |sw_doc|
-      sciencewire_id = sw_doc.xpath('PublicationItemID').text
-      pmid = sw_doc.xpath('PMID').text
-      source_record_was_created = SciencewireSourceRecord.save_sw_source_record(sciencewire_id, pmid, sw_doc.to_xml)
+    pubs.filter_publication_items.each do |pub|
+      sw_doc = pub.xml_doc
+      sciencewire_id = pub.publication_item_id
+      source_record_was_created = SciencewireSourceRecord.save_sw_source_record(sciencewire_id, pub.pmid, sw_doc.to_xml)
       @total_new_sciencewire_source_count += 1 if source_record_was_created
-      create_or_update_pub_and_contribution_with_harvested_sw_doc(sw_doc, @records_queued_for_sciencewire_retrieval[sciencewire_id.to_i])
+      create_or_update_pub_and_contribution_with_harvested_sw_doc(sw_doc, @records_queued_for_sciencewire_retrieval[sciencewire_id])
     end
     @records_queued_for_sciencewire_retrieval.clear
   end

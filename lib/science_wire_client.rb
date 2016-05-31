@@ -38,8 +38,7 @@ class ScienceWireClient
     # TODO: use returned documents instead of selecting IDs
     xml_docs = query_sciencewire(xml_query)
     pubs = ScienceWirePublications.new(xml_docs)
-    pubs.remove_document_types!
-    pubs.publication_item_ids
+    pubs.filter_publication_items.map(&:publication_item_id)
   end
 
   def pull_records_from_sciencewire_for_pmids(pmids)

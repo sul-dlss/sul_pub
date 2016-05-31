@@ -1,71 +1,49 @@
 class ScienceWirePublications
-  attr_reader :xml_docs
+  include Enumerable
+
+  attr_reader :xml_doc
+  attr_accessor :remove_document_types
+
+  # @return [Integer] a count of //PublicationItem
+  delegate :count, to: :publication_items
 
   # @param [Nokogiri::XML] an ArrayOfPublicationItem
-  def initialize(xml_docs)
-    @xml_docs = xml_docs
-    @reject_doc_types = Settings.sw_doc_types_to_skip
+  # @param remove_document_types [Array<String>] DocumentTypes to skip
+  def initialize(xml_doc, remove_document_types = Settings.sw_doc_types_to_skip)
+    @xml_doc = xml_doc
+    @remove_document_types = remove_document_types
   end
 
   # @return [Nokogiri::XML::Element]
   def array_of_publication_item
-    xml_docs.at_xpath('/ArrayOfPublicationItem')
+    xml_doc.xpath('//ArrayOfPublicationItem').first
   end
 
-  # @return [Array<String>]
-  def document_type_list
-    xml_docs.xpath('//PublicationItem/DocumentTypeList').map(&:text)
+  def each
+    publication_items.each {|pub| yield pub }
   end
 
-  # @return [Nokogiri::XML::NodeSet] a set of PublicationItem
-  def publication_items
-    xml_docs.xpath('//PublicationItem')
-  end
-
-  # @return [Array<Integer>] an array of PublicationItemID
-  def publication_item_ids
-    xml_docs.xpath('//PublicationItem/PublicationItemID').map { |item| item.text.to_i }
-  end
-
-  # Return PublicationItems that do not have any DocumentTypes in doc_types.
-  # @param doc_types [Array<String>] array of ScienceWire DocumentType
-  # @return [Nokogiri::XML::NodeSet] a set of PublicationItem without doc_types
-  def remove_document_types(doc_types = @reject_doc_types)
-    pubs = publication_items
-    publication_items.each { |pub| pubs.delete(pub) if publication_has_doc_types?(pub, doc_types) }
+  # Apply configured filter to remove any PublicationItem that contains a
+  # DocumentType in the list of remove_document_types.
+  # @return [Array<ScienceWirePublication>] selected ScienceWirePublication
+  def filter_publication_items
+    pubs = publication_items.dup
+    pubs.delete_if {|pub| pub.doc_type?(remove_document_types) } unless remove_document_types.blank?
     pubs
   end
 
-  # Return PublicationItems that do not have any DocumentTypes in doc_types; and
-  # delete PublicationItems with any DocumentType in doc_types (this modifies the xml_docs in place).
-  # @param doc_types [Array<String>] array of ScienceWire DocumentType
-  # @return [Nokogiri::XML::NodeSet] a set of PublicationItem without doc_types
-  def remove_document_types!(doc_types = @reject_doc_types)
-    xml_docs.at_xpath('/ArrayOfPublicationItem').children = remove_document_types(doc_types)
+  # @return [Array<ScienceWirePublication>] an array of ScienceWirePublication
+  def publication_items
+    pub_nodes = array_of_publication_item.xpath('PublicationItem')
+    pub_nodes.map {|item| ScienceWirePublication.new(item) }
   end
 
-  # @param doc_types [Array<String>] array of ScienceWire DocumentType
-  # @return [Nokogiri::XML::NodeSet] a set of PublicationItem with doc_types
-  def select_document_types(doc_types)
-    publication_items.select {|pub| publication_has_doc_types?(pub, doc_types) }
+  # Checks the xml_doc to verify that it is a Nokogiri::XML::Document
+  # that contains an <ArrayOfPublicationItem> element.
+  # @return [Boolean]
+  def valid?
+    return false unless xml_doc.is_a? Nokogiri::XML::Document
+    return false if array_of_publication_item.nil?
+    true
   end
-
-  private
-
-    # Select a PublicationItem if any of it's DocumentTypeList values
-    # are in the set of select_doc_types.
-    # @param pub [Nokogiri::XML::Element] a PublicationItem element
-    # @param doc_types [Array<String>] array of ScienceWire DocumentType
-    def publication_has_doc_types?(pub, doc_types)
-      pub_doc_types = pub.at_xpath('DocumentTypeList').text.split('|')
-      pub_doc_types.map { |type| doc_types.include? type }.any?
-    end
-
-    # Reject a PublicationItem if any of it's DocumentTypeList values
-    # are in the set of reject_doc_types.
-    # @param pub [Nokogiri::XML::Element] a PublicationItem element
-    # @param doc_types [Array<String>] array of ScienceWire DocumentType
-    def reject_publication?(pub, reject_doc_types = @reject_doc_types)
-      publication_has_doc_types?(pub, reject_doc_types)
-    end
 end
