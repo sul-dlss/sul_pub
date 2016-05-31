@@ -225,4 +225,9 @@ describe CapAuthorsPoller, :vcr do
       expect(subject.instance_variable_get('@too_many_contribs')).to eq(count + 1)
     end
   end
+  describe '.process_next_batch_of_authorship_data' do
+    it 'handles client-server data errors' do
+      expect { subject.process_next_batch_of_authorship_data(bogus: 'data') }.to raise_error(Net::HTTPBadResponse)
+    end
+  end
 end

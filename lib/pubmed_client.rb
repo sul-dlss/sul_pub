@@ -31,11 +31,11 @@ class PubmedClient
         timeout_period = + 500
         retry
       else
-        NotificationManager.error(te, "Timeout error on call to pubmed api - #{Time.zone.now}", self)
+        NotificationManager.error(te, 'Timeout::Error during PubMed Fetch API call', self)
         raise
       end
     rescue => e
-      NotificationManager.error(e, 'Problem with http call to pubmed api', self)
+      NotificationManager.error(e, "#{e.class.name} during PubMed Fetch API call", self)
       raise
   end
 end
