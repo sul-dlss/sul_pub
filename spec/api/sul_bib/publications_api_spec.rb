@@ -2,12 +2,12 @@ require 'spec_helper'
 
 describe SulBib::API, :vcr do
   let(:publication) { FactoryGirl.create :publication }
-  let!(:publication_with_contributions) { create :publication_with_contributions, contributions_count: 2  }
+  let!(:publication_with_contributions) { create :publication_with_contributions, contributions_count: 2 }
   let(:publication_list) { create_list(:contribution, 15, visibility: 'public', status: 'approved') }
   let(:author) { FactoryGirl.create :author }
   let(:author_with_sw_pubs) { create :author_with_sw_pubs }
   let(:headers) { { 'HTTP_CAPKEY' => Settings.API_KEY, 'CONTENT_TYPE' => 'application/json' } }
-  let(:valid_json_for_post) {
+  let(:valid_json_for_post) do
     {
       type: 'book',
       title: 'some title',
@@ -25,15 +25,15 @@ describe SulBib::API, :vcr do
         featured: true
       }]
     }.to_json
-  }
+  end
 
-  let(:invalid_json_for_post) {
+  let(:invalid_json_for_post) do
     pub = JSON.parse(valid_json_for_post.dup)
     pub.delete 'authorship'
     pub.to_json
-  }
+  end
 
-  let(:json_with_new_author) {
+  let(:json_with_new_author) do
     pub = JSON.parse(valid_json_for_post.dup)
     pub['author'] = [{
       name: 'henry lowe'
@@ -45,42 +45,42 @@ describe SulBib::API, :vcr do
       featured: true
     }]
     pub.to_json
-  }
+  end
 
   let(:json_with_isbn) do
     {
-      abstract:'',
-      abstract_restricted:'',
-      allAuthors:'author A, author B',
-      author:[
-        {firstname:'John ', lastname:'Doe', middlename:'', name:'Doe  John ', role:'author'},
-        {firstname:'Raj', lastname:'Kathopalli', middlename:'', name:'Kathopalli  Raj', role:'author'}
+      abstract: '',
+      abstract_restricted: '',
+      allAuthors: 'author A, author B',
+      author: [
+        {firstname: 'John ', lastname: 'Doe', middlename: '', name: 'Doe  John ', role: 'author'},
+        {firstname: 'Raj', lastname: 'Kathopalli', middlename: '', name: 'Kathopalli  Raj', role: 'author'}
       ],
-      authorship:[
-        {cap_profile_id: author.cap_profile_id, featured:true, status:'APPROVED', visibility:'PUBLIC'}
+      authorship: [
+        {cap_profile_id: author.cap_profile_id, featured: true, status: 'APPROVED', visibility: 'PUBLIC'}
       ],
-      booktitle:'TEST Book I',
-      edition:'2',
-      etal:true,
-      identifier:[
-        {type:'isbn', id:'1177188188181'},
-        {type:'doi', url:'18819910019'}
+      booktitle: 'TEST Book I',
+      edition: '2',
+      etal: true,
+      identifier: [
+        {type: 'isbn', id: '1177188188181'},
+        {type: 'doi', url: '18819910019'}
       ],
-      last_updated:'2013-08-10T21:03Z',
-      provenance:'CAP',
-      publisher:'Publisher',
-      series:{number:'919', title:'Series 1', volume:'1'},
-      type:'book',
-      year:'2010'
+      last_updated: '2013-08-10T21:03Z',
+      provenance: 'CAP',
+      publisher: 'Publisher',
+      series: {number: '919', title: 'Series 1', volume: '1'},
+      type: 'book',
+      year: '2010'
     }.to_json
   end
 
   let(:json_with_isbn_changed_doi) do
     pub = JSON.parse(json_with_isbn.dup)
     pub['identifier'] = [
-      {type:'isbn', id:'1177188188181'},
-      {type:'doi', url:'18819910019-updated' },
-      {type:'SULPubId', id:'164', url:Settings.SULPUB_ID.PUB_URI + '/164' }
+      {type: 'isbn', id: '1177188188181'},
+      {type: 'doi', url: '18819910019-updated' },
+      {type: 'SULPubId', id: '164', url: Settings.SULPUB_ID.PUB_URI + '/164' }
     ]
     pub.to_json
   end
@@ -88,8 +88,8 @@ describe SulBib::API, :vcr do
   let(:json_with_isbn_deleted_doi) do
     pub = JSON.parse(json_with_isbn_changed_doi.dup)
     pub['identifier'] = [
-      {type:'isbn', id:'1177188188181'},
-      {type:'SULPubId', id:'164', url:Settings.SULPUB_ID.PUB_URI + '/164' }
+      {type: 'isbn', id: '1177188188181'},
+      {type: 'SULPubId', id: '164', url: Settings.SULPUB_ID.PUB_URI + '/164' }
     ]
     pub.to_json
   end
@@ -97,14 +97,14 @@ describe SulBib::API, :vcr do
   let(:json_with_pubmedid) do
     pub = JSON.parse(json_with_isbn.dup)
     pub['identifier'] = [
-      {type:'isbn', id:'1177188188181'},
-      {type:'doi', url:'18819910019'},
-      {type:'pmid', id:'999999999'},
+      {type: 'isbn', id: '1177188188181'},
+      {type: 'doi', url: '18819910019'},
+      {type: 'pmid', id: '999999999'},
     ]
     pub.to_json
   end
 
-  let(:article_with_authorship_without_authors) {
+  let(:article_with_authorship_without_authors) do
     {
       allAuthors: '',
       author: [{}],
@@ -123,8 +123,7 @@ describe SulBib::API, :vcr do
       title: 'Test Article2 11-23-2015',
       year: '2015'
     }.to_json
-  }
-
+  end
 
   # ---------------------------------------------------------------------
   # POST
@@ -156,12 +155,11 @@ describe SulBib::API, :vcr do
 
   describe 'POST /publications' do
     context 'when valid post' do
-
-      it 'should respond with 201' do
+      it 'responds with 201' do
         post_valid_json
       end
 
-      it ' returns bibjson from the pub_hash for the new publication' do
+      it 'returns bibjson from the pub_hash for the new publication' do
         post_valid_json
         expect(response.body).to eq(Publication.last.pub_hash.to_json)
       end
@@ -226,7 +224,7 @@ describe SulBib::API, :vcr do
         expect(response.status).to eq(201)
         parsed_outgoing_json = JSON.parse(response.body)
         expect(parsed_outgoing_json['identifier'].count { |x| x['type'] == 'SULPubId' }).to eq(1)
-        expect(parsed_outgoing_json['identifier'][0]['id']).to_not eq('n')
+        expect(parsed_outgoing_json['identifier'][0]['id']).not_to eq('n')
       end
 
       it 'creates a pub with with isbn' do
@@ -238,7 +236,7 @@ describe SulBib::API, :vcr do
         parsed_outgoing_json = JSON.parse(response.body)
         expect(parsed_outgoing_json['identifier']).to include('id' => '1177188188181', 'type' => 'isbn')
         expect(parsed_outgoing_json['identifier']).to include('type' => 'doi', 'url' => '18819910019')
-        expect(parsed_outgoing_json['identifier']).to include('type' => 'SULPubId', 'url' => "#{Settings.SULPUB_ID.PUB_URI}/#{pub.id}", 'id' => "#{pub.id}")
+        expect(parsed_outgoing_json['identifier']).to include('type' => 'SULPubId', 'url' => "#{Settings.SULPUB_ID.PUB_URI}/#{pub.id}", 'id' => pub.id.to_s)
         expect(parsed_outgoing_json['identifier'].size).to eq(3)
         expect(pub.publication_identifiers.size).to eq(2)
         expect(pub.publication_identifiers.map(&:identifier_type)).to include('doi', 'isbn')
@@ -277,15 +275,13 @@ describe SulBib::API, :vcr do
         expect(auth.cap_last_name).to eq('Lowe')
       end
     end
-  end  # end of the describe
-
+  end # end of the describe
 
   # ---------------------------------------------------------------------
   # PUT
 
   describe 'PUT /publications/:id' do
-
-    it 'should not duplicate SULPubIDs' do
+    it 'does not duplicate SULPubIDs' do
       json_with_sul_pub_id = {
         type: 'book',
         identifier: [{
@@ -304,7 +300,7 @@ describe SulBib::API, :vcr do
       expect(response.status).to eq(200)
       parsed_outgoing_json = JSON.parse(response.body)
       expect(parsed_outgoing_json['identifier'].count { |x| x['type'] == 'SULPubId' }).to eq(1)
-      expect(parsed_outgoing_json['identifier'][0]['id']).to_not eq('n')
+      expect(parsed_outgoing_json['identifier'][0]['id']).not_to eq('n')
     end
 
     it 'updates an existing pub ' do
@@ -315,7 +311,7 @@ describe SulBib::API, :vcr do
       expect(parsed_outgoing_json['identifier'].size).to eq(3)
       expect(parsed_outgoing_json['identifier']).to include('type' => 'isbn', 'id' => '1177188188181')
       expect(parsed_outgoing_json['identifier']).to include('type' => 'doi', 'url' => '18819910019-updated')
-      expect(parsed_outgoing_json['identifier']).to include('type' => 'SULPubId', 'id' => "#{id}", 'url' => "#{Settings.SULPUB_ID.PUB_URI}/#{id}")
+      expect(parsed_outgoing_json['identifier']).to include('type' => 'SULPubId', 'id' => id.to_s, 'url' => "#{Settings.SULPUB_ID.PUB_URI}/#{id}")
     end
 
     it 'deletes an identifier from the db if it is not in the incoming json' do
@@ -325,16 +321,14 @@ describe SulBib::API, :vcr do
       parsed_outgoing_json = JSON.parse(response.body)
       expect(parsed_outgoing_json['identifier'].size).to eq(2)
       expect(parsed_outgoing_json['identifier']).to include('type' => 'isbn', 'id' => '1177188188181')
-      expect(parsed_outgoing_json['identifier']).to include('type' => 'SULPubId', 'url' => "#{Settings.SULPUB_ID.PUB_URI}/#{id}", 'id' => "#{id}")
+      expect(parsed_outgoing_json['identifier']).to include('type' => 'SULPubId', 'url' => "#{Settings.SULPUB_ID.PUB_URI}/#{id}", 'id' => id.to_s)
     end
   end
-
 
   # ---------------------------------------------------------------------
   # GET
 
   describe 'GET /publications/:id' do
-
     it ' returns 200 for valid call ' do
       get "/publications/#{publication.id}",
           { format: 'json' },
@@ -391,7 +385,7 @@ describe SulBib::API, :vcr do
     end # end of context
 
     context 'when there are 150 records' do
-      it "should be an error if a capkey isn't provided" do
+      it "raises an error if a capkey isn't provided" do
         publication_list
         get '/publications?page=1&per=7',
             format: 'json'
@@ -413,7 +407,7 @@ describe SulBib::API, :vcr do
         expect(result['records'][2]['author']).to be
       end
 
-      it 'should filter by active authors' do
+      it 'filters by active authors' do
         publication_list
         get '/publications?page=1&per=1&capActive=true',
             { format: 'json' },
@@ -424,7 +418,7 @@ describe SulBib::API, :vcr do
         expect(result['metadata']['page']).to eq(1)
       end
 
-      it 'should paginate by active authors' do
+      it 'paginates by active authors' do
         publication_list
         get '/publications?page=2&per=1&capActive=true',
             { format: 'json' },
@@ -436,5 +430,4 @@ describe SulBib::API, :vcr do
       end
     end # end of context
   end # end of the describe
-
 end
