@@ -40,8 +40,6 @@ class ScienceWireHarvester
   end
 
   def harvest_pubs_for_author_ids(author_ids)
-    # override the default initialization of the @logger - TODO: why?
-    @logger = Logger.new(Settings.SCIENCEWIRE.NIGHTLY_HARVEST_LOG)
     logger.info 'Starting harvest for specific authors'
     harvest_pubs_for_authors Author.where(id: author_ids)
   rescue => e
@@ -49,7 +47,6 @@ class ScienceWireHarvester
   end
 
   def harvest_pubs_for_all_authors(starting_author_id, ending_author_id = -1)
-    # override the default initialization of the @logger
     logger.info 'Starting harvest for all authors'
     authors = Author.where(active_in_cap: true, cap_import_enabled: true)
     authors = authors.where(Author.arel_table[Author.primary_key].gteq(starting_author_id))
@@ -68,11 +65,6 @@ class ScienceWireHarvester
     batch_4 = [] << (3 * batch_size + 1) << last_id
     sacks = [] << batch_1 << batch_2 << batch_3 << batch_4
     Parallel.each(sacks, in_processes: 4) do |sack|
-      # override the default initialization of the @logger -- TODO: why?
-      @logger = Logger.new(Settings.SCIENCEWIRE.HARVEST_PID_LOG % Process.pid)
-      @logger.formatter = proc { |severity, datetime, _progname, msg|
-        "#{severity} #{datetime}[#{Process.pid}]: #{msg}\n"
-      }
       logger.info 'Started search'
 
       ActiveRecord::Base.connection.reconnect!
@@ -99,6 +91,7 @@ class ScienceWireHarvester
       Settings.HARVESTER.INSTITUTION.name,
       ScienceWire::AuthorAddress.new(Settings.HARVESTER.INSTITUTION.address.to_hash)
     )
+    @logger = nil # explicitly set to nill to enable lazy eval of `logger` method
   end
 
   def initialize_counts_for_reporting
@@ -328,7 +321,6 @@ class ScienceWireHarvester
   end
 
   def harvest_from_directory_of_wos_id_files(path_to_directory)
-    @logger = Logger.new(Settings.SCIENCEWIRE.WOS_HARVEST_LOG) # TODO: why a different logfile?
     logger.info 'Started Web Of Science harvest'
     @wos_ids_processed = 0
     @file_count = 0
@@ -344,7 +336,7 @@ class ScienceWireHarvester
         harvest_sw_pubs_by_wos_id_for_author(sunetid, wos_ids)
         @file_count += 1
       rescue => e
-        log_exception("Harvesting from #{f} failed", e)
+        NotificationManager.log_exception(logger, "Harvesting from #{f} failed", e)
       end
     end
     logger.info "#{@file_count} files processed"
@@ -397,7 +389,7 @@ class ScienceWireHarvester
           @debug = false
         end
       rescue => e
-        log_exception("Unable to process sciencewire_id: #{sciencewire_id}", e)
+        NotificationManager.log_exception(logger, "Unable to process sciencewire_id: #{sciencewire_id}", e)
       end
     end
 
@@ -449,7 +441,7 @@ class ScienceWireHarvester
         wos_ids << wos_id
 
       rescue => e
-        log_exception("Unable to process line: #{line} in #{path_to_report}", e)
+        NotificationManager.log_exception(logger, "Unable to process line: #{line} in #{path_to_report}", e)
       end
     end
 
@@ -477,12 +469,6 @@ class ScienceWireHarvester
   private
 
     def logger
-      @logger ||= Logger.new(Settings.SCIENCEWIRE.HARVEST_LOG)
-    end
-
-    def log_exception(message, e)
-      logger.error message
-      logger.error e.inspect
-      logger.error e.backtrace.join("\n") if e.backtrace.present?
+      @logger ||= NotificationManager.sciencewire_logger
     end
 end

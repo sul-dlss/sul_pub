@@ -1,18 +1,17 @@
+# TODO: This code could be migrated into a runner script in `scripts/`
 require 'dotiw'
 class CapProfileIdRewriter
   include ActionView::Helpers::DateHelper
 
-  def cap_authorship_logger
-    @cap_authorship_logger ||= begin
-      Logger.new(Settings.CAP.PROFILE_ID_REWRITE_LOG)
-    end
+  def logger
+    @logger ||= Logger.new(Settings.CAP.PROFILE_ID_REWRITE_LOG)
   end
 
   def rewrite_cap_profile_ids_from_feed(starting = 0)
     @cap_http_client = CapHttpClient.new
-    cap_authorship_logger.info "Started cap profile id rewrite  - #{Time.zone.now}"
-    cap_authorship_logger.info 'CAP API client config: '
-    cap_authorship_logger.info @cap_http_client.auth.to_json
+    logger.info 'Started cap profile id rewrite'
+    logger.info 'CAP API client config: '
+    logger.info @cap_http_client.auth.to_json
 
     @page_count = starting
     @last_page = false
@@ -20,19 +19,15 @@ class CapProfileIdRewriter
     until @last_page
       @page_count += 1
       process_next_batch_of_authorship_data(@page_count, 1000)
-      Rails.logger.debug "#{@total_running_count} in #{distance_of_time_in_words_to_now(@start_time, true)}"
-      cap_authorship_logger.info @total_running_count.to_s + ' records were processed in ' + distance_of_time_in_words_to_now(@start_time)
+      logger.debug "#{@total_running_count} in #{distance_of_time_in_words_to_now(@start_time, true)}"
+      logger.info @total_running_count.to_s + ' records were processed in ' + distance_of_time_in_words_to_now(@start_time)
 
       # if page_count === 1 then break end
     end
     write_counts_to_log
 
   rescue => e
-    cap_authorship_logger.error "cap profile id rewrite import failed - #{Time.zone.now}"
-    cap_authorship_logger.error e.message
-    cap_authorship_logger.error e.backtrace.join("\n")
-    Rails.logger.warn e.message
-    Rails.logger.info e.backtrace
+    NotificationManager.log_exception(logger, "cap profile id rewrite import failed", e)
   end
 
   def initialize_counts_for_logging
@@ -52,7 +47,7 @@ class CapProfileIdRewriter
 
   def write_counts_to_log
     process_time = distance_of_time_in_words_to_now(@start_time)
-    stats = "Finished cap profile id rewrite - #{Time.zone.now}\n"
+    stats = "Finished cap profile id rewrite\n"
     stats += "#{@total_running_count} records were processed in #{process_time}\n"
     stats += "#{@new_author_count} authors were created.\n"
     stats += "#{@no_import_settings_count} records with no import settings.\n"
@@ -63,20 +58,19 @@ class CapProfileIdRewriter
     stats += "#{@authors_updated_count} authors were updated.\n"
     stats += "#{@import_enabled_count} authors had import enabled.\n"
     stats += "#{@import_disabled_count} authors had import disabled.\n"
-    cap_authorship_logger.info stats
+    logger.info stats
+
     summary = "#{@new_author_count} authors were created.\n"
     summary += "#{@page_count} pages of 1000 records were processed in #{process_time}.\n"
     summary += "#{@total_running_count} total records were processed in #{process_time}.\n"
-    Rails.logger.info summary
+    logger.info summary
   end
 
   def process_next_batch_of_authorship_data(page_count, page_size)
     json_response = @cap_http_client.get_batch_from_cap_api(page_count, page_size, nil)
 
     if json_response['values'].blank?
-      Rails.logger.warn 'unexpected json: ' + json_response.to_s
-      cap_authorship_logger.info 'Authorship import ended unexpectedly. Returned json: '
-      cap_authorship_logger.info json_response.to_s
+      logger.warn "Authorship import ended unexpectedly: unexpected json: #{json_response}"
       # TODO: send an email here.
       fail
     else

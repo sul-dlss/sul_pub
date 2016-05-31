@@ -33,23 +33,21 @@ class NotificationManager
       notify_squash(e, log_message) if use_squash
     end
 
-    private
-
     # rubocop:disable Style/ClassVars
     def pubmed_logger
-      @@pubmed_logger ||= Logger.new(Settings.PUBMED.API_LOG)
+      @@pubmed_logger ||= Logger.new(Settings.PUBMED.LOG)
     end
     # rubocop:enable Style/ClassVars
 
     # rubocop:disable Style/ClassVars
     def cap_logger
-      @@cap_logger ||= Logger.new(Settings.CAP.API_LOG)
+      @@cap_logger ||= Logger.new(Settings.CAP.LOG)
     end
     # rubocop:enable Style/ClassVars
 
     # rubocop:disable Style/ClassVars
     def sciencewire_logger
-      @@sciencewire_logger ||= Logger.new(Settings.SCIENCEWIRE.API_LOG)
+      @@sciencewire_logger ||= Logger.new(Settings.SCIENCEWIRE.LOG)
     end
     # rubocop:enable Style/ClassVars
 
