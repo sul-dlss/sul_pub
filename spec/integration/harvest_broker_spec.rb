@@ -58,7 +58,7 @@ feature 'Harvest Brokering', 'data-integration': true do
         expected_calls = 1 + valid_alt_name_count
         expect(broker).to receive(:ids_from_dumb_query).exactly(expected_calls).and_call_original
         expect(ids.count).to be_between(20, 30).exclusive
-        expect(alt_ids.count).to be_between(35, 45).exclusive #40 as of 2016.05.26
+        expect(alt_ids.count).to be_between(30, 40).exclusive #34 as of 2016.05.30 using 30 year period
       end
     end
   end
