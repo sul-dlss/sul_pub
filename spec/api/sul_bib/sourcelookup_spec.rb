@@ -1,4 +1,6 @@
 require 'spec_helper'
+SingleCov.covered! file: 'app/controllers/publications_controller.rb'
+# TODO: move this file to spec/controllers/publications_controller_spec.rb
 
 describe SulBib::API, :vcr do
   let(:capkey) { { 'HTTP_CAPKEY' => Settings.API_KEY } }

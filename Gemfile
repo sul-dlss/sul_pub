@@ -70,6 +70,7 @@ group :test do
   gem 'capybara'
   gem 'coveralls', require: false
   gem 'simplecov', require: false
+  gem 'single_cov'
   gem 'vcr'
   gem 'webmock'
   gem 'equivalent-xml'

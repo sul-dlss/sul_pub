@@ -1,4 +1,5 @@
 require 'spec_helper'
+SingleCov.covered!
 
 describe ScienceWireHarvester, :vcr do
   let(:author_without_seed_data) { create :author, emails_for_harvest: '' }

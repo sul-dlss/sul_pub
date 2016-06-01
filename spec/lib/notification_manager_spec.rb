@@ -1,4 +1,5 @@
 require 'spec_helper'
+SingleCov.covered!
 
 describe NotificationManager do
   let(:message) { 'this is an error message' }

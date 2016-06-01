@@ -1,4 +1,5 @@
 require 'spec_helper'
+SingleCov.covered!
 
 describe CapAuthorsPoller, :vcr do
   # The author is defined in /spec/factories/author.rb

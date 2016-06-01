@@ -1,4 +1,5 @@
 require 'spec_helper'
+SingleCov.covered!
 
 describe Publication do
   let(:publication) { FactoryGirl.create :publication }

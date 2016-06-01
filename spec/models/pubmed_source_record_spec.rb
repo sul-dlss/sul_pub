@@ -1,4 +1,5 @@
 require 'spec_helper'
+SingleCov.covered!
 
 describe PubmedSourceRecord, :vcr do
   let(:pmid_created_1999) { 10_000_166 }

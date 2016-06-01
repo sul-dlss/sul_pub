@@ -1,4 +1,5 @@
 require 'spec_helper'
+SingleCov.covered!
 
 describe ScienceWire::API::MatchedPublicationItemIdsForAuthor do
   include ItemResponses

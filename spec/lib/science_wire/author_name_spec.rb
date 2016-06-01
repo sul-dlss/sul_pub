@@ -1,4 +1,5 @@
 require 'spec_helper'
+SingleCov.covered!
 
 describe ScienceWire::AuthorName do
   let(:fn) { 'Amasa' }

@@ -14,6 +14,9 @@ require 'fixtures/queries/publication_query_xsd'
 require 'rspec/matchers'
 require 'equivalent-xml'
 
+require 'single_cov'
+SingleCov.setup :rspec
+
 require 'simplecov'
 require 'coveralls'
 require 'webmock/rspec'
