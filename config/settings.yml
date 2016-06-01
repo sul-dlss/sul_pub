@@ -38,7 +38,6 @@ SCIENCEWIRE:
   HOST: stg.sciencewirerest.discoverylogic.com
   LICENSE_ID: some-license-id
   PORT: 443
-  PUBLICATION_ITEMS_PATH: /PublicationCatalog/PublicationItems?format=xml&publicationItemIDs=
   PUBLICATION_QUERY_PATH: /PublicationCatalog/PublicationQuery?format=xml
   RECOMMENDATION_PATH: /PublicationCatalog/MatchedPublicationItemIdsForAuthor?format=xml
   TMPDIR: /tmp

@@ -213,7 +213,7 @@ class ScienceWireClient
   end
 
   def get_full_sciencewire_pubs_for_sciencewire_ids(sciencewire_ids)
-    Nokogiri::XML(client.publication_items(sciencewire_ids))
+    Nokogiri::XML(client.publication_items(sciencewire_ids, 'xml'))
   rescue Faraday::TimeoutError => te
     NotificationManager.error(te, 'Faraday::TimeoutError during ScienceWire Publication Items API call', self)
     raise
