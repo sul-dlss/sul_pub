@@ -26,12 +26,12 @@ class ScienceWireHarvester
         @harvested_for_author_count = 0
         @author_count += 1
         if @author_count % 50 == 0
-          msg = "up to author id: #{author.id} with #{@total_suggested_count} total suggestions so far for #{@author_count} authors - #{Time.zone.now}"
+          msg = "up to Author.find_by(id: #{author.id}) with #{@total_suggested_count} total suggestions so far for #{@author_count} authors - #{Time.zone.now}"
           logger.info msg
         end
         harvest_for_author(author)
       rescue => e
-        NotificationManager.error(e, "Harvest failed for author_id: #{author.id}, cap_profile_id: #{author.cap_profile_id}", self)
+        NotificationManager.error(e, "Harvest failed for Author.find_by(id: #{author.id}, cap_profile_id: #{author.cap_profile_id})", self)
       end
     end
     process_queued_sciencewire_suggestions
@@ -465,9 +465,9 @@ class ScienceWireHarvester
   def process_wos_ids_for_author(cap_profile_id, wos_ids)
     sunetid = Author.where(cap_profile_id: cap_profile_id).pluck(:sunetid).first
     if sunetid.nil?
-      logger.error "No sunetid found for cap_profile_id: #{cap_profile_id}. Skipping"
+      logger.error "No sunetid found for Author.find_by(cap_profile_id: #{cap_profile_id}). Skipping"
     else
-      logger.info "Starting harvest for sunetid: #{sunetid} cap_profile_id: #{cap_profile_id} with #{wos_ids.size} WOS ids"
+      logger.info "Starting harvest for Author.find_by(sunetid: #{sunetid}, cap_profile_id: #{cap_profile_id}) with #{wos_ids.size} WOS ids"
       harvest_sw_pubs_by_wos_array_and_sunetid sunetid, wos_ids
     end
   end

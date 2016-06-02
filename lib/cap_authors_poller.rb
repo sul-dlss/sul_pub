@@ -86,12 +86,12 @@ class CapAuthorsPoller
   end
 
   def process_record_for_existing_author(author, record)
-    logger.info "Updating author_id: #{author.id}, cap_profile_id: #{author.cap_profile_id}"
+    logger.info "Updating Author.find_by(id: #{author.id}, cap_profile_id: #{author.cap_profile_id})"
     author.update_from_cap_authorship_profile_hash(record)
 
     update_existing_contributions author, record['authorship'] if record['authorship'].present?
 
-    queue_author_for_harvest author, "No import settings or author did not change. Skipping cap_profile_id: #{author.cap_profile_id}"
+    queue_author_for_harvest author, "Author marked as not harvestable or did not change. Skipping Author.find_by(cap_profile_id: #{author.cap_profile_id})"
 
     author.save!
     @authors_updated_count += 1
@@ -99,16 +99,16 @@ class CapAuthorsPoller
 
   def process_record_for_new_author(cap_profile_id, record)
     author = Author.fetch_from_cap_and_create(cap_profile_id, @cap_http_client)
-    logger.info "Creating author_id: #{author.id}, cap_profile_id: #{cap_profile_id}"
+    logger.info "Creating Author.find_by(id: #{author.id}, cap_profile_id: #{cap_profile_id})"
     author.update_from_cap_authorship_profile_hash(record)
 
     if record['authorship'].present?
       # TODO: not clear to me *why* or even *if* authorship is ignored for new authors...
-      logger.warn "New author has authorship which will be skipped; cap_profile_id: #{cap_profile_id}"
+      logger.warn "New author has authorship which will be skipped; Author.find_by(cap_profile_id: #{cap_profile_id})"
       @new_auth_with_contribs += 1
     end
 
-    queue_author_for_harvest author, "Author marked as not harvestable. Skipping cap_profile_id: #{cap_profile_id}"
+    queue_author_for_harvest author, "Author marked as not harvestable. Skipping Author.find_by(cap_profile_id: #{cap_profile_id})"
 
     author.save!
     @new_author_count += 1
@@ -128,7 +128,7 @@ class CapAuthorsPoller
   def update_existing_contributions(author, incoming_authorships)
     incoming_authorships.each do |authorship|
       if !Contribution.authorship_valid? authorship
-        msg = "Invalid authorship: cap_profile_id: #{author.cap_profile_id}; #{authorship.inspect}"
+        msg = "Invalid authorship: Author.find_by(cap_profile_id: #{author.cap_profile_id}); #{authorship.inspect}"
         NotificationManager.error(ArgumentError.new(msg), msg, self)
         @invalid_contribs += 1
         next
@@ -136,11 +136,11 @@ class CapAuthorsPoller
       pub_id = authorship['sulPublicationId']
       contribs = author.contributions.where(publication_id: pub_id)
       if contribs.count == 0
-        logger.warn "Contribution does not exist for author_id: #{author.id}, cap_profile_id: #{author.cap_profile_id}, publication_id: #{pub_id}"
+        logger.warn "Contribution does not exist for Contribution.find_by(author_id: #{author.id}, cap_profile_id: #{author.cap_profile_id}, publication_id: #{pub_id})"
         @contrib_does_not_exist += 1
         next
       elsif contribs.count > 1
-        logger.warn "More than one contribution for author_id: #{author.id}, cap_profile_id: #{author.cap_profile_id}, publication_id: #{pub_id}"
+        logger.warn "More than one contribution for Contribution.where(author_id: #{author.id}, cap_profile_id: #{author.cap_profile_id}, publication_id: #{pub_id})"
         @too_many_contribs += 1
         next
       end
@@ -161,7 +161,7 @@ class CapAuthorsPoller
   def contribution_id(contribution)
     author = contribution.author
     pub = contribution.publication
-    "Contribution(author_id: #{author.id}, cap_profile_id: #{author.cap_profile_id}, publication_id: #{pub.id})"
+    "Contribution.find_by(author_id: #{author.id}, cap_profile_id: #{author.cap_profile_id}, publication_id: #{pub.id})"
   end
 
   def contribution_save(contribution)
