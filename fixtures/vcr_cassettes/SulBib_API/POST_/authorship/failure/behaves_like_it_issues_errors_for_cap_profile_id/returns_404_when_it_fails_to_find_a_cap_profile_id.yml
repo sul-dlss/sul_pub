@@ -21,7 +21,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Wed, 11 May 2016 04:27:19 GMT
+      - Thu, 02 Jun 2016 22:11:23 GMT
       Cache-Control:
       - no-store
       Pragma:
@@ -32,9 +32,9 @@ http_interactions:
       - chunked
     body:
       encoding: UTF-8
-      string: '{"access_token":"private_access_token","token_type":"bearer","expires_in":86399,"scope":"profiles.read_all","jti":"e42cff9f-7cd4-4ad9-b232-e5648ea445a2"}'
+      string: '{"access_token":"private_access_token","token_type":"bearer","expires_in":86399,"scope":"profiles.read_all","jti":"6344820d-b0c6-47f2-bc68-e99f4b01b41e"}'
     http_version: 
-  recorded_at: Wed, 11 May 2016 04:27:19 GMT
+  recorded_at: Thu, 02 Jun 2016 22:11:24 GMT
 - request:
     method: get
     uri: https://cap-dev.stanford.edu/cap-api/api/cap/v1/authors/999999
@@ -56,7 +56,7 @@ http_interactions:
       message: Not Found
     headers:
       Date:
-      - Wed, 11 May 2016 04:27:19 GMT
+      - Thu, 02 Jun 2016 22:11:24 GMT
       Server:
       - Apache/2.2.15 (Oracle)
       Vary:
@@ -69,50 +69,12 @@ http_interactions:
       - application/json
     body:
       encoding: ASCII-8BIT
-      string: |
-        { "meta": {  "status": 404, "message":"Object of class [edu.stanford.irt.cap.api.domain.AuthorEntity] with identifier [999999]: not found" } }
+      string: '{ "meta": {  "status": 404, "message":"Object of class [edu.stanford.irt.cap.api.domain.AuthorEntity]
+        with identifier [999999]: not found" } }
+
+'
     http_version: 
-  recorded_at: Wed, 11 May 2016 04:27:19 GMT
-- request:
-    method: get
-    uri: https://cap-dev.stanford.edu/cap-api/api/cap/v1/authors/999999
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - "*/*"
-      User-Agent:
-      - Ruby
-      Authorization:
-      - bearer private_bearer_token
-      Host:
-      - cap-dev.stanford.edu
-  response:
-    status:
-      code: 404
-      message: Not Found
-    headers:
-      Date:
-      - Wed, 11 May 2016 04:27:19 GMT
-      Server:
-      - Apache/2.2.15 (Oracle)
-      Vary:
-      - Accept-Encoding
-      Connection:
-      - close
-      Transfer-Encoding:
-      - chunked
-      Content-Type:
-      - application/json
-    body:
-      encoding: ASCII-8BIT
-      string: |
-        { "meta": {  "status": 404, "message":"Object of class [edu.stanford.irt.cap.api.domain.AuthorEntity] with identifier [999999]: not found" } }
-    http_version: 
-  recorded_at: Wed, 11 May 2016 04:27:20 GMT
+  recorded_at: Thu, 02 Jun 2016 22:11:24 GMT
 - request:
     method: get
     uri: https://cap-dev.stanford.edu/cap-api/api/cap/v1/authors/999999
@@ -136,7 +98,7 @@ http_interactions:
       message: Not Found
     headers:
       Date:
-      - Wed, 11 May 2016 04:27:20 GMT
+      - Thu, 02 Jun 2016 22:11:25 GMT
       Server:
       - Apache/2.2.15 (Oracle)
       Vary:
@@ -149,8 +111,52 @@ http_interactions:
       - application/json
     body:
       encoding: ASCII-8BIT
-      string: |
-        { "meta": {  "status": 404, "message":"Object of class [edu.stanford.irt.cap.api.domain.AuthorEntity] with identifier [999999]: not found" } }
+      string: '{ "meta": {  "status": 404, "message":"Object of class [edu.stanford.irt.cap.api.domain.AuthorEntity]
+        with identifier [999999]: not found" } }
+
+'
     http_version: 
-  recorded_at: Wed, 11 May 2016 04:27:20 GMT
+  recorded_at: Thu, 02 Jun 2016 22:11:25 GMT
+- request:
+    method: get
+    uri: https://cap-dev.stanford.edu/cap-api/api/cap/v1/authors/999999
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Authorization:
+      - bearer private_bearer_token
+      Host:
+      - cap-dev.stanford.edu
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Date:
+      - Thu, 02 Jun 2016 22:11:26 GMT
+      Server:
+      - Apache/2.2.15 (Oracle)
+      Vary:
+      - Accept-Encoding
+      Connection:
+      - close
+      Transfer-Encoding:
+      - chunked
+      Content-Type:
+      - application/json
+    body:
+      encoding: ASCII-8BIT
+      string: '{ "meta": {  "status": 404, "message":"Object of class [edu.stanford.irt.cap.api.domain.AuthorEntity]
+        with identifier [999999]: not found" } }
+
+'
+    http_version: 
+  recorded_at: Thu, 02 Jun 2016 22:11:26 GMT
 recorded_with: VCR 3.0.1
