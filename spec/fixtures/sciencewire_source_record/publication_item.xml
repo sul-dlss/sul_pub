@@ -5,13 +5,13 @@
     <Abstract/>
     <AuthorList>Sinnett-Smith,James,|Ni,Yang,|Ming,Ming,|Young,Steven,H|Rozengurt,Enrique,</AuthorList>
     <AuthorCount>5</AuthorCount>
-    <KeywordList/>
+    <KeywordList>Histone|Intestinal Epithelial Cell</KeywordList> <!-- fake for specs -->
     <DocumentTypeList>Journal Article|Meeting Abstract</DocumentTypeList>
     <DocumentCategory>Conference Proceeding Document</DocumentCategory>
     <NumberOfReferences xsi:nil="true"/>
     <TimesCited>0</TimesCited>
     <TimesNotSelfCited>0</TimesNotSelfCited>
-    <PMID>99999999</PMID> <!-- fake PMID -->
+    <PMID>99999999</PMID> <!-- fake for specs -->
     <WoSItemID>000371236403656</WoSItemID>
     <PublicationSourceTitle>GASTROENTEROLOGY</PublicationSourceTitle>
     <Volume>146</Volume>
@@ -22,7 +22,7 @@
     <PublicationType>Journal</PublicationType>
     <PublicationSubjectCategoryList>Gastroenterology &amp; Hepatology</PublicationSubjectCategoryList>
     <ISSN>0016-5085</ISSN>
-    <DOI>10.1038/447638a</DOI> <!-- fake DOI -->
+    <DOI>10.1038/447638a</DOI> <!-- fake for specs -->
     <ConferenceTitle>55th Annual Meeting of the Society-for-Surgery-of-the-Alimentary-Tract (SSAT) / Digestive Disease Week (DDW)</ConferenceTitle>
     <ConferenceStartDate>2014-05-03T00:00:00</ConferenceStartDate>
     <ConferenceEndDate>2014-05-06T00:00:00</ConferenceEndDate>
