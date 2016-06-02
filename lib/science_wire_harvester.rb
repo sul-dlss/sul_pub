@@ -43,6 +43,7 @@ class ScienceWireHarvester
     logger.info 'Starting harvest for specific authors'
     harvest_pubs_for_authors Author.where(id: author_ids)
   rescue => e
+    fail ArgumentError, "Invalid author_ids: #{author_ids}" unless author_ids.is_a?(Array) && !author_ids.empty?
     NotificationManager.error(e, "Harvest failed for specific authors: n=#{author_ids.length} author_ids=#{author_ids.sort}", self)
   end
 

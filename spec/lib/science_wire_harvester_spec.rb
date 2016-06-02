@@ -160,6 +160,17 @@ describe ScienceWireHarvester, :vcr do
       end
     end
 
+    context 'error handling' do
+      it 'fails on nil input' do
+        expect(subject).to receive(:harvest_pubs_for_authors).with([]).and_raise(RuntimeError)
+        expect { subject.harvest_pubs_for_author_ids(nil) }.to raise_error(ArgumentError)
+      end
+      it 'fails on empty input' do
+        expect(subject).to receive(:harvest_pubs_for_authors).with([]).and_raise(RuntimeError)
+        expect { subject.harvest_pubs_for_author_ids([]) }.to raise_error(ArgumentError)
+      end
+    end
+
     context 'for valid author' do
       it 'calls harvest_for_author' do
         expect(science_wire_harvester).to receive(:harvest_for_author).exactly(3).times.with(kind_of(Author))
