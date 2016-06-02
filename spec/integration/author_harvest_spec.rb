@@ -22,6 +22,7 @@ feature 'Author harvest', 'data-integration': true, type: :controller do
     post :harvest, cap_profile_id: author.cap_profile_id, format: :json
     expect(response.status).to eq 202
     sleep 10 # this is a delayed job API, wait for it to do something
+    author.publications.reload
     post_harvest_count = author.publications.count
     logger.info("author_harvest: author=#{author.last_name}, with-alt-names: false, pre: #{pre_harvest_count}, post: #{post_harvest_count}")
     expect(post_harvest_count).to be >= pre_harvest_count
@@ -32,6 +33,7 @@ feature 'Author harvest', 'data-integration': true, type: :controller do
     post :harvest, cap_profile_id: author.cap_profile_id, format: :json, altNames: 'true'
     expect(response.status).to eq 202
     sleep 10 # this is a delayed job API, wait for it to do something
+    author.publications.reload
     post_harvest_count = author.publications.count
     logger.info("author_harvest: author=#{author.last_name}, with-alt-names: true,  pre: #{pre_harvest_count}, post: #{post_harvest_count}")
     expect(post_harvest_count).to be >= pre_harvest_count
