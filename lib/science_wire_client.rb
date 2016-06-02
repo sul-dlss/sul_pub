@@ -199,7 +199,9 @@ class ScienceWireClient
     <ScienceWireQueryXMLParameter xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
     <xmlQuery>' + xml_query + '</xmlQuery>
     </ScienceWireQueryXMLParameter>'
-    Nokogiri::XML(client.send_publication_query(wrapped_xml_query))
+    xml_doc = Nokogiri::XML(client.send_publication_query(wrapped_xml_query))
+    validate_query_id_response_xml xml_doc
+    xml_doc
   rescue Faraday::TimeoutError => te
     NotificationManager.error(te, 'Faraday::TimeoutError during ScienceWire Publication Query API POST request', self)
     raise
@@ -212,11 +214,15 @@ class ScienceWireClient
   # @param [Integer] queryResultRows the total number of results for a query
   # @returns [Nokogiri::XML::Document] the ArrayOfPublicationItem response
   def get_sciencewire_publication_response(queryId, queryResultRows)
-    if queryResultRows > 0
-      Nokogiri::XML(client.retrieve_publication_query(queryId, queryResultRows, 'xml'))
-    else
-      Nokogiri::XML '<ArrayOfPublicationItem/>'
+    xml_doc = begin
+      if queryResultRows > 0
+        Nokogiri::XML(client.retrieve_publication_query(queryId, queryResultRows, 'xml'))
+      else
+        Nokogiri::XML '<ArrayOfPublicationItem/>'
+      end
     end
+    validate_array_of_publication_item_xml xml_doc
+    xml_doc
   rescue Faraday::TimeoutError => te
     NotificationManager.error(te, 'Faraday::TimeoutError during ScienceWire Publication Query API GET request', self)
     raise
@@ -227,7 +233,9 @@ class ScienceWireClient
 
   # @returns [Nokogiri::XML::Document] the ArrayOfPublicationItem response
   def get_full_sciencewire_pubs_for_sciencewire_ids(sciencewire_ids)
-    Nokogiri::XML(client.publication_items(sciencewire_ids, 'xml'))
+    xml_doc = Nokogiri::XML(client.publication_items(sciencewire_ids, 'xml'))
+    validate_array_of_publication_item_xml xml_doc
+    xml_doc
   rescue Faraday::TimeoutError => te
     NotificationManager.error(te, 'Faraday::TimeoutError during ScienceWire Publication Items API GET request', self)
     raise
@@ -242,6 +250,19 @@ class ScienceWireClient
   end
 
   private
+
+  def validate_array_of_publication_item_xml(xml_doc)
+    raise(ArgumentError, 'Did not receive a valid <ArrayOfPublicationItem>') unless
+      xml_doc.is_a?(Nokogiri::XML::Document) && !xml_doc.xpath('//ArrayOfPublicationItem').empty?
+  end
+
+  def validate_query_id_response_xml(xml_doc)
+    raise(ArgumentError, 'Did not receive a valid <ScienceWireQueryIDResponse>') unless
+      xml_doc.is_a?(Nokogiri::XML::Document) &&
+      !xml_doc.xpath('//ScienceWireQueryIDResponse').empty? &&
+      !xml_doc.xpath('//queryID').empty? &&
+      !xml_doc.xpath('//queryResultRows').empty?
+  end
 
   def send_query_and_return_pub_hashes(xml_query)
     xml_results = query_sciencewire(xml_query)
