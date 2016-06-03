@@ -1,4 +1,5 @@
 require 'spec_helper'
+SingleCov.covered!
 
 describe AuthorsController do
   let(:author) { create(:author) }

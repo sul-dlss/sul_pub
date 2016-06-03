@@ -106,9 +106,7 @@ class SciencewireSourceRecord < ActiveRecord::Base
           source_fingerprint: Digest::SHA2.hexdigest(sw_record_doc))
 
       rescue => e
-        Rails.logger.info e.message
-        Rails.logger.debug e.backtrace.inspect
-        Rails.logger.info 'The offending pmid: ' + pmid.to_s
+        NotificationManager.error(e, "Cannot create SciencewireSourceRecord: sciencewire_id: #{sciencewire_id}, pmid: #{pmid}", self)
       end
     end
     SciencewireSourceRecord.import source_records

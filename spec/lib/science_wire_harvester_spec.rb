@@ -1,4 +1,5 @@
 require 'spec_helper'
+SingleCov.covered!
 
 describe ScienceWireHarvester, :vcr do
   let(:author_without_seed_data) { create :author, emails_for_harvest: '' }
@@ -69,16 +70,16 @@ describe ScienceWireHarvester, :vcr do
     end
     context 'when sciencewire suggestions are made' do
       it 'calls create_contrib_for_pub_if_exists' do
-        expect(harvest_broker).to receive(:generate_ids).and_return(%w(42711845 22686456))
-        expect(science_wire_harvester).to receive(:create_contrib_for_pub_if_exists).once.with('42711845', author_without_seed_data)
-        expect(science_wire_harvester).to receive(:create_contrib_for_pub_if_exists).once.with('22686456', author_without_seed_data)
+        expect(harvest_broker).to receive(:generate_ids).and_return([42_711_845, 22_686_456])
+        expect(science_wire_harvester).to receive(:create_contrib_for_pub_if_exists).once.with(42_711_845, author_without_seed_data)
+        expect(science_wire_harvester).to receive(:create_contrib_for_pub_if_exists).once.with(22_686_456, author_without_seed_data)
         science_wire_harvester.harvest_for_author(author_without_seed_data)
       end
 
       context 'and when pub already exists locally' do
         before do
-          expect(harvest_broker).to receive(:generate_ids).and_return(['42711845'])
-          expect(science_wire_harvester).to receive(:create_contrib_for_pub_if_exists).once.with('42711845', author_without_seed_data).and_return(true)
+          expect(harvest_broker).to receive(:generate_ids).and_return([42_711_845])
+          expect(science_wire_harvester).to receive(:create_contrib_for_pub_if_exists).once.with(42_711_845, author_without_seed_data).and_return(true)
         end
 
         it 'adds nothing to pub med retrieval queue' do
@@ -96,8 +97,8 @@ describe ScienceWireHarvester, :vcr do
 
       context "and when pub doesn't exist locally" do
         it 'adds to sciencewire retrieval queue' do
-          expect(harvest_broker).to receive(:generate_ids).and_return(['42711845'])
-          expect(science_wire_harvester).to receive(:create_contrib_for_pub_if_exists).once.with('42711845', author_without_seed_data).and_return(false)
+          expect(harvest_broker).to receive(:generate_ids).and_return([42_711_845])
+          expect(science_wire_harvester).to receive(:create_contrib_for_pub_if_exists).once.with(42_711_845, author_without_seed_data).and_return(false)
           expect do
             science_wire_harvester.harvest_for_author(author_without_seed_data)
           end.to change { science_wire_harvester.records_queued_for_sciencewire_retrieval }
@@ -107,8 +108,9 @@ describe ScienceWireHarvester, :vcr do
 
     context 'batch execution for sciencewire queue' do
       def setup(threshold)
-        expect(harvest_broker).to receive(:generate_ids).and_return((42_711_845..(42_711_845 + threshold - 1)).map(&:to_s)).once # generate batch of valid sw_id values
-        expect(science_wire_harvester).to receive(:create_contrib_for_pub_if_exists).exactly(threshold).with(instance_of(String), author_without_seed_data).and_return(false)
+        pub_ids = [*42_711_845..(42_711_845 + threshold - 1)]
+        expect(harvest_broker).to receive(:generate_ids).and_return(pub_ids).once # generate batch of valid sw_id values
+        expect(science_wire_harvester).to receive(:create_contrib_for_pub_if_exists).exactly(threshold).with(instance_of(Fixnum), author_without_seed_data).and_return(false)
       end
 
       it 'triggers when exceeds threshold' do
@@ -131,9 +133,10 @@ describe ScienceWireHarvester, :vcr do
 
   describe '#harvest_pubs_for_all_authors' do
     context 'logging' do
-      let(:logfile) { Settings.SCIENCEWIRE.HARVEST_LOG }
-      it 'creates a new logger' do
-        expect(Logger).to receive(:new).with(logfile).and_call_original
+      it 'uses standardized logfile' do
+        expect(NotificationManager).to receive(:sciencewire_logger).and_call_original
+        expect(subject).not_to receive(:harvest_pubs_for_authors) # authors will be empty
+        expect(author.cap_import_enabled).to be_falsey
         subject.harvest_pubs_for_all_authors(author.id, author.id)
       end
     end
@@ -150,10 +153,21 @@ describe ScienceWireHarvester, :vcr do
 
   describe '#harvest_pubs_for_author_ids' do
     context 'logging' do
-      let(:logfile) { Settings.SCIENCEWIRE.NIGHTLY_HARVEST_LOG }
-      it 'creates a new logger' do
-        expect(Logger).to receive(:new).with(logfile).and_call_original
+      it 'logs to a standardized location' do
+        expect(NotificationManager).to receive(:sciencewire_logger).and_call_original
+        expect(subject).to receive(:harvest_pubs_for_authors)
         subject.harvest_pubs_for_author_ids([author.id])
+      end
+    end
+
+    context 'error handling' do
+      it 'fails on nil input' do
+        expect(subject).to receive(:harvest_pubs_for_authors).with([]).and_raise(RuntimeError)
+        expect { subject.harvest_pubs_for_author_ids(nil) }.to raise_error(ArgumentError)
+      end
+      it 'fails on empty input' do
+        expect(subject).to receive(:harvest_pubs_for_authors).with([]).and_raise(RuntimeError)
+        expect { subject.harvest_pubs_for_author_ids([]) }.to raise_error(ArgumentError)
       end
     end
 
@@ -321,7 +335,7 @@ describe ScienceWireHarvester, :vcr do
         expect do
           science_wire_harvester.harvest_pubs_for_author_ids([author.id, author_with_seed_email.id, author_without_seed_data.id])
         end.to change(Publication, :count).by(2)
-        p = Publication.where(sciencewire_id: '42711845').first
+        p = Publication.where(sciencewire_id: 42_711_845).first
         utime = p.updated_at.localtime
         sleep(2)
         expect do
@@ -401,11 +415,10 @@ describe ScienceWireHarvester, :vcr do
     end
   end
 
-  describe '#sw_harvest_logger' do
-    let(:logfile) { Settings.SCIENCEWIRE.WOS_HARVEST_LOG }
-    it 'creates a new logger' do
-      expect(Logger).to receive(:new).with(logfile).and_call_original
-      subject.send(:sw_harvest_logger)
+  describe '#logger' do
+    it 'uses standardized logfile' do
+      expect(NotificationManager).to receive(:sciencewire_logger)
+      subject.send(:logger) # private method
     end
   end
 end

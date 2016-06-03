@@ -44,7 +44,7 @@ module ScienceWire
     def ids_for_alternate_names
       if alternate_name_query
         author.alternative_identities.select{|author_identity| required_data_for_alt_names_search(author_identity)}.map do |author_identity|
-          ids_from_dumb_query(author_identity).flatten
+          ids_from_dumb_query(author_identity.to_author_attributes).flatten
         end.flatten.uniq
       else
         []
@@ -84,18 +84,6 @@ module ScienceWire
           person.last_name,
           person.first_name,
           use_middle_name ? person.middle_name : ''
-        )
-      end
-
-      def author_attributes_from_author_identity(author_identity)
-        name = author_name(author_identity)
-        AuthorAttributes.new(
-          name,
-          author_identity.email,
-          [],
-          author_identity.institution,
-          author_identity.start_date,
-          author_identity.end_date
         )
       end
 

@@ -6,7 +6,7 @@ FactoryGirl.define do
     sequence(:last_name)    { |n| "Edler#{n}" }
     sequence(:email)        { |n| "alice.edler#{n}@stanford.edu" }
     institution             'Example University'
-    start_date              { DateTime.current - 1.year }
+    start_date              { DateTime.current - 30.years }
     end_date                { DateTime.current }
     author
   end

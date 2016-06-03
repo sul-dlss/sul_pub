@@ -7,7 +7,7 @@ module InstitutionEmailQueries
           <Criteria>
             <Criterion>
               <TextSearch>
-                <QueryPredicate>("brown,charlie" or "BROWN,C" or "cbrown@example.com") and "example"</QueryPredicate>
+                <QueryPredicate>("Brown,Charlie" or "Brown,C" or "cbrown@example.com") and "example"</QueryPredicate>
                 <SearchType>ExactMatch</SearchType>
                 <Columns>AggregateText</Columns>
                 <MaximumRows>200</MaximumRows>
@@ -59,7 +59,7 @@ module InstitutionEmailQueries
           <Criteria>
             <Criterion>
               <TextSearch>
-                <QueryPredicate>("brown,charlie" or "BROWN,C") and "example"</QueryPredicate>
+                <QueryPredicate>("Brown,Charlie" or "Brown,C") and "example"</QueryPredicate>
                 <SearchType>ExactMatch</SearchType>
                 <Columns>AggregateText</Columns>
                 <MaximumRows>200</MaximumRows>
@@ -111,7 +111,7 @@ module InstitutionEmailQueries
           <Criteria>
             <Criterion>
               <TextSearch>
-                <QueryPredicate>"brown,charlie" or "BROWN,C" or "cbrown@example.com"</QueryPredicate>
+                <QueryPredicate>"Brown,Charlie" or "Brown,C" or "cbrown@example.com"</QueryPredicate>
                 <SearchType>ExactMatch</SearchType>
                 <Columns>AggregateText</Columns>
                 <MaximumRows>200</MaximumRows>
@@ -163,7 +163,7 @@ module InstitutionEmailQueries
           <Criteria>
             <Criterion>
               <TextSearch>
-                <QueryPredicate>"brown,charlie" or "BROWN,C"</QueryPredicate>
+                <QueryPredicate>"Brown,Charlie" or "Brown,C"</QueryPredicate>
                 <SearchType>ExactMatch</SearchType>
                 <Columns>AggregateText</Columns>
                 <MaximumRows>200</MaximumRows>

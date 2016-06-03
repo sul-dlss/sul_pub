@@ -20,7 +20,8 @@ gem 'activerecord-import'
 # gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'bibtex-ruby'
 gem 'bio'
-gem 'citeproc-ruby', '~> 0.0'
+gem 'citeproc-ruby', '~> 1.0'
+gem 'csl-styles', '~> 1.0'
 gem 'config'
 gem 'delayed_job'
 gem 'delayed_job_active_record'
@@ -69,6 +70,7 @@ group :test do
   gem 'capybara'
   gem 'coveralls', require: false
   gem 'simplecov', require: false
+  gem 'single_cov'
   gem 'vcr'
   gem 'webmock'
   gem 'equivalent-xml'

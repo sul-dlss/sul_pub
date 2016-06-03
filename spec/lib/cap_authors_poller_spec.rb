@@ -1,4 +1,5 @@
 require 'spec_helper'
+SingleCov.covered!
 
 describe CapAuthorsPoller, :vcr do
   # The author is defined in /spec/factories/author.rb
@@ -179,7 +180,6 @@ describe CapAuthorsPoller, :vcr do
       expect(Contribution).to receive(:authorship_valid?).with(authorship).and_call_original
       # Test that an invalid authorship will generate error logging and notification
       expect(NotificationManager).to receive(:error)
-      expect(subject.logger).to receive(:error)
       # Test that an invalid authorship will increment the counter
       count = subject.instance_variable_get('@invalid_contribs')
       subject.update_existing_contributions(contribution.author, authorship_record['authorship'])
@@ -223,6 +223,11 @@ describe CapAuthorsPoller, :vcr do
       count = subject.instance_variable_get('@too_many_contribs')
       subject.update_existing_contributions(contribution.author, authorship_record['authorship'])
       expect(subject.instance_variable_get('@too_many_contribs')).to eq(count + 1)
+    end
+  end
+  describe '.process_next_batch_of_authorship_data' do
+    it 'handles client-server data errors' do
+      expect { subject.process_next_batch_of_authorship_data(bogus: 'data') }.to raise_error(Net::HTTPBadResponse)
     end
   end
 end

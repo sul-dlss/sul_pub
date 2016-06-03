@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<PublicationItem>
+    <PublicationItemID>75299710</PublicationItemID>
+    <Title>PKD1-Mediates Class Iia Histone Deacetylase Phosphorylation and Nuclear/Cytoplasmic Shuttling in Intestinal Epithelial Cells</Title>
+    <Abstract/>
+    <AuthorList>Sinnett-Smith,James,|Ni,Yang,|Ming,Ming,|Young,Steven,H|Rozengurt,Enrique,</AuthorList>
+    <AuthorCount>5</AuthorCount>
+    <KeywordList>Histone|Intestinal Epithelial Cell</KeywordList> <!-- fake for specs -->
+    <DocumentTypeList>Journal Article|Meeting Abstract</DocumentTypeList>
+    <DocumentCategory>Conference Proceeding Document</DocumentCategory>
+    <NumberOfReferences xsi:nil="true"/>
+    <TimesCited>0</TimesCited>
+    <TimesNotSelfCited>0</TimesNotSelfCited>
+    <PMID>99999999</PMID> <!-- fake for specs -->
+    <WoSItemID>000371236403656</WoSItemID>
+    <PublicationSourceTitle>GASTROENTEROLOGY</PublicationSourceTitle>
+    <Volume>146</Volume>
+    <Issue>5</Issue>
+    <Pagination>S785-S785</Pagination>
+    <PublicationDate>2014-05-01T00:00:00</PublicationDate>
+    <PublicationYear>2014</PublicationYear>
+    <PublicationType>Journal</PublicationType>
+    <PublicationSubjectCategoryList>Gastroenterology &amp; Hepatology</PublicationSubjectCategoryList>
+    <ISSN>0016-5085</ISSN>
+    <DOI>10.1038/447638a</DOI> <!-- fake for specs -->
+    <ConferenceTitle>55th Annual Meeting of the Society-for-Surgery-of-the-Alimentary-Tract (SSAT) / Digestive Disease Week (DDW)</ConferenceTitle>
+    <ConferenceStartDate>2014-05-03T00:00:00</ConferenceStartDate>
+    <ConferenceEndDate>2014-05-06T00:00:00</ConferenceEndDate>
+    <ConferenceCity>CHICAGO</ConferenceCity>
+    <ConferenceStateCountry>IL</ConferenceStateCountry>
+    <Rank>216</Rank>
+    <OrdinalRank>30</OrdinalRank>
+    <NormalizedRank>50</NormalizedRank>
+    <NewPublicationItemID xsi:nil="true"/>
+    <IsObsolete>false</IsObsolete>
+    <CopyrightPublisher>W B SAUNDERS CO-ELSEVIER INC</CopyrightPublisher>
+    <CopyrightCity>PHILADELPHIA</CopyrightCity>
+    <PublicationImpactFactorList>16.716,2014,ExactPublicationYear|16.716,2014,MostRecentYear</PublicationImpactFactorList>
+    <PublicationCategoryRankingList>1/76;GASTROENTEROLOGY &amp; HEPATOLOGY;2014;SC;ExactPublicationYear|1/76;GASTROENTEROLOGY &amp; HEPATOLOGY;2014;SC;MostRecentYear</PublicationCategoryRankingList>
+    <AuthorCitationCountList>1,0,0|2,0,0|3,0,0|4,0,0|5,0,0</AuthorCitationCountList>
+    <CopyrightStateProvince>PA</CopyrightStateProvince>
+    <CopyrightCountry>UNITED STATES</CopyrightCountry>
+</PublicationItem>

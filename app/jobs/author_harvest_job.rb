@@ -16,7 +16,9 @@ class AuthorHarvestJob < ActiveJob::Base
     end
     logger.info "Number of publications #{pubs.count}"
   rescue => e
-    NotificationManager.notify_squash(e, "AuthorHarvestJob.perform(cap_profile_id=#{cap_profile_id}, harvest_alternate_names=#{harvest_alternate_names})")
+    msg = "AuthorHarvestJob.perform(cap_profile_id=#{cap_profile_id}, harvest_alternate_names=#{harvest_alternate_names})"
+    NotificationManager.log_exception(logger, msg, e)
+    NotificationManager.notify_squash(e, msg)
     raise
   end
 end

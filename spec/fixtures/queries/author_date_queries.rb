@@ -7,7 +7,7 @@ module AuthorDateQueries
           <Criteria>
             <Criterion>
               <TextSearch>
-                <QueryPredicate>("Bloggs,Fred" or "BLOGGS,F") and "example"</QueryPredicate>
+                <QueryPredicate>("Bloggs,Fred" or "Bloggs,F") and "example"</QueryPredicate>
                 <SearchType>ExactMatch</SearchType>
                 <Columns>AggregateText</Columns>
                 <MaximumRows>200</MaximumRows>

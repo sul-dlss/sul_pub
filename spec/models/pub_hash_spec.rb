@@ -1,4 +1,5 @@
 require 'spec_helper'
+SingleCov.covered!
 
 describe PubHash do
   include CitationDocumentTypes # spec/fixtures/doc_types/working_paper.rb
@@ -328,8 +329,13 @@ describe PubHash do
 
   context 'CiteProc citation for working paper (report)' do
     context 'CSL report for hurricane working paper generates an acceptable APA citation' do
-      let(:apa_csl_file) { Rails.root.join('app', 'data', 'apa.csl') }
-      let(:cite) { CiteProc.process(csl_report, style: apa_csl_file, format: 'html') }
+      let(:csl_renderer) { CiteProc::Ruby::Renderer.new format: 'html' }
+      let(:csl_style) { CSL::Style.load('apa') }
+      let(:cite) do
+        item = CiteProc::CitationItem.new id: 'sulpub'
+        item.data = CiteProc::Item.new(csl_report)
+        csl_renderer.render item, csl_style.bibliography
+      end
       let(:csl_report) do
         # from spec/fixtures/doc_types/working_paper.rb
         working_paper_for_hurricanes_as_csl_report
@@ -346,13 +352,13 @@ describe PubHash do
         # The CSL citation does not exactly match the citation details initially
         # defined, which included some variations from APA standards.  The CSL
         # tools will not allow custom modifications.
-        sul_authors = "Imberman, S., Kugler, A. D., &#38; Sacerdote, B. (2009)."
+        sul_authors = "Imberman, S., Kugler, A. D., &amp; Sacerdote, B. (2009)."
         sul_title = "Katrina's children: evidence on the structure of peer effects from hurricane evacuees"
         sul_number = '(Working Paper No. 15291)' # 'Working Paper' is not in APA standard
         sul_website = "Retrieved from National Bureau of Economic Research website: http://www.nber.org/papers/w15291"
         # Variations in the CSL citation content:
         csl_series_number = '(NBER Working Paper Series No. 15291)'
-        csl_page = '(1-55).'
+        csl_page = '(pp. 1–55).'
         csl_publisher = 'National Bureau of Economic Research.'
         csl_publisher_place = 'Cambridge, MA'
         csl_website = 'Retrieved from http://www.nber.org/papers/w15291'
@@ -367,7 +373,7 @@ describe PubHash do
         expect(cite).to include(csl_website)
         expect(cite).not_to include(sul_website)
         # Expect a complete citation
-        expect(cite).to eq "Imberman, S., Kugler, A. D., &#38; Sacerdote, B. (2009). <i>Katrina's Children: Evidence on the Structure of Peer Effects from Hurricane Evacuees</i> (NBER Working Paper Series No. 15291) (1-55). Cambridge, MA: National Bureau of Economic Research. Retrieved from http://www.nber.org/papers/w15291"
+        expect(cite).to eq "Imberman, S., Kugler, A. D., &amp; Sacerdote, B. (2009). <i>Katrina's Children: Evidence on the Structure of Peer Effects from Hurricane Evacuees</i> (NBER Working Paper Series No. 15291) (pp. 1–55). Cambridge, MA: National Bureau of Economic Research. Retrieved from http://www.nber.org/papers/w15291"
       end
     end
 
@@ -424,22 +430,15 @@ describe PubHash do
       end
       it 'creates an APA citation' do
         expect(pub_hash.to_apa_citation)
-          .to eq "Imberman, S., Kugler, A. D., &#38; Sacerdote, B. (2009). <i>Katrina's Children: Evidence on the Structure of Peer Effects from Hurricane Evacuees</i> (NBER Working Paper Series No. 15291) (1-55). Cambridge, MA: National Bureau of Economic Research. Retrieved from http://www.nber.org/papers/w15291"
+          .to eq "Imberman, S., Kugler, A. D., &amp; Sacerdote, B. (2009). <i>Katrina's Children: Evidence on the Structure of Peer Effects from Hurricane Evacuees</i> (NBER Working Paper Series No. 15291) (pp. 1–55). Cambridge, MA: National Bureau of Economic Research. Retrieved from http://www.nber.org/papers/w15291"
       end
       it 'creates a Chicago citation' do
         expect(pub_hash.to_chicago_citation)
-          .to eq "Imberman, Scott, Adriana D. Kugler, and Bruce Sacerdote. 2009. <i>Katrina'S Children: Evidence On the Structure of Peer Effects From Hurricane Evacuees</i>15291. NBER Working Paper Series. Cambridge, MA: National Bureau of Economic Research. http://www.nber.org/papers/w15291."
+          .to eq "Imberman, Scott, Adriana D. Kugler, and Bruce Sacerdote. 2009. “Katrina's Children: Evidence on the Structure of Peer Effects from Hurricane Evacuees.” 15291. NBER Working Paper Series. Cambridge, MA: National Bureau of Economic Research. http://www.nber.org/papers/w15291."
       end
       it 'creates an MLA citation' do
         expect(pub_hash.to_mla_citation)
-          .to eq "Imberman, Scott, Adriana D. Kugler, and Bruce Sacerdote. <i>Katrina'S Children: Evidence On the Structure of Peer Effects From Hurricane Evacuees</i>. Cambridge, MA: National Bureau of Economic Research, 2009. Web. NBER Working Paper Series."
-      end
-      # The Chicago and MLA citations should not have strange case near an apostrophe
-      pending 'creates a citation with correct pluralization in title' do
-        expect(pub_hash.to_chicago_citation)
-          .to eq "Imberman, Scott, Adriana D. Kugler, and Bruce Sacerdote. 2009. <i>Katrina's Children: Evidence On the Structure of Peer Effects From Hurricane Evacuees</i>15291. NBER Working Paper Series. Cambridge, MA: National Bureau of Economic Research. http://www.nber.org/papers/w15291."
-        expect(pub_hash.to_mla_citation)
-          .to eq "Imberman, Scott, Adriana D. Kugler, and Bruce Sacerdote. <i>Katrina's Children: Evidence On the Structure of Peer Effects From Hurricane Evacuees</i>. Cambridge, MA: National Bureau of Economic Research, 2009. Web. NBER Working Paper Series."
+          .to eq "Imberman, Scott, Adriana D. Kugler, and Bruce Sacerdote. <i>Katrina's Children: Evidence on the Structure of Peer Effects from Hurricane Evacuees</i>. Cambridge, MA: National Bureau of Economic Research, 2009. Web. NBER Working Paper Series."
       end
     end
 
@@ -450,31 +449,24 @@ describe PubHash do
       let(:pub_hash) { PubHash.new(JSON.parse(working_paper.source_data, symbolize_names: true)) }
       it 'creates an APA citation' do
         expect(pub_hash.to_apa_citation)
-          .to eq "Mangiafico, P. A. (2016). <i>This is Peter's Working Paper on the Revs Digital Library</i> (Series Name No. Series Number) (5). Stanford, CA: Stanford University. Retrieved from http://revslib.stanford.edu"
+          .to eq "Mangiafico, P. A. (2016). <i>This is Peter's Working Paper on the Revs Digital Library</i> (Series Name No. Series Number) (p. 5). Stanford, CA: Stanford University. Retrieved from http://revslib.stanford.edu"
       end
       it 'creates a Chicago citation' do
         expect(pub_hash.to_chicago_citation)
-          .to eq "Mangiafico, Peter A. 2016. <i>This Is Peter'S Working Paper On the Revs Digital Library</i>Series Number. Series Name. Stanford, CA: Stanford University. http://revslib.stanford.edu."
+          .to eq "Mangiafico, Peter A. 2016. “This Is Peter's Working Paper on the Revs Digital Library.” Series Number. Series Name. Stanford, CA: Stanford University. http://revslib.stanford.edu."
       end
       it 'creates an MLA citation' do
         expect(pub_hash.to_mla_citation)
-          .to eq "Mangiafico, Peter A. <i>This Is Peter'S Working Paper On the Revs Digital Library</i>. Stanford, CA: Stanford University, 2016. Web. Series Name."
-      end
-      # The Chicago and MLA citations should not have strange case near an apostrophe
-      pending 'creates a citation with correct pluralization in title' do
-        expect(pub_hash.to_chicago_citation)
-          .to eq "Mangiafico, Peter A. 2016. <i>This Is Peter's Working Paper On the Revs Digital Library</i>5. Series Name. Stanford, CA: Stanford University. http://revslib.stanford.edu."
-        expect(pub_hash.to_mla_citation)
-          .to eq "Mangiafico, Peter A. 2016. <i>This Is Peter's Working Paper On the Revs Digital Library</i>5. Series Name. Stanford, CA: Stanford University. http://revslib.stanford.edu."
+          .to eq "Mangiafico, Peter A. <i>This Is Peter's Working Paper on the Revs Digital Library</i>. Stanford, CA: Stanford University, 2016. Web. Series Name."
       end
     end
   end
 
   describe '#to_chicago_citation' do
     context 'with more than 5 authors' do
+      let(:hash) { PubHash.new(pub_hash) }
+      let(:cite) { hash.to_chicago_citation }
       it 'builds citations with just the first 5 and suppends et al' do
-        h = PubHash.new(pub_hash)
-        cite = h.to_chicago_citation
         expect(cite).to match(/^Sohl, G./)
         expect(cite).to include('B. Odermatt')
         expect(cite).to include('S. Maxeiner')
@@ -484,20 +476,28 @@ describe PubHash do
         expect(cite).to_not include(', and')
         expect(cite).to_not include('SecondLast')
         expect(cite).to_not include('Last')
-        expect(h.pub_hash[:author]).to_not include(name: 'et al.')
+        expect(hash.pub_hash[:author]).to_not include(name: 'et al.')
+      end
+      it 'creates a Chicago citation' do
+        expect(cite).to eq 'Sohl, G., B. Odermatt, S. Maxeiner, J. Degen, K. Willecke, et al. 2004. “New Insights into the Expression and Function of Neural Connexins with Transgenic Mouse Mutants.” <i>BRAIN RESEARCH REVIEWS</i> 47 (1-3). ELSEVIER SCIENCE BV: 245–59.'
       end
     end
 
     it 'includes capitalized title' do
       h = PubHash.new(pub_hash)
       cite = h.to_chicago_citation
-      expect(cite).to include('New Insights Into the Expression and Function of Neural Connexins With Transgenic Mouse Mutants')
+      expect(cite).to include('New Insights into the Expression and Function of Neural Connexins with Transgenic Mouse Mutants')
     end
 
     it 'includes authors from single name field' do
       h = PubHash.new(article_pub_hash)
       cite = h.to_chicago_citation
-      expect(cite).to include('Jones, P. L.')
+      expect(cite).to match(/Jones,\s+P. L./)
+    end
+    pending 'builds citations with first author name spacing correct' do
+      h = PubHash.new(article_pub_hash)
+      cite = h.to_chicago_citation
+      expect(cite).to match(/^Jones, P. L./)
     end
 
     it 'includes authors from compound name field' do
@@ -533,7 +533,7 @@ describe PubHash do
           conference_in_book_series = PubHash.new(conference_pub_in_series_hash)
           cite = conference_in_book_series.to_chicago_citation
           expect(cite).to include('The Giant Book of Giant Ideas')
-          expect(cite).to include('The Book Series For Kings and Queens')
+          expect(cite).to include('The Book Series for Kings and Queens')
           expect(cite).to include(conference_pub_in_series_hash[:publisher])
           expect(cite).to include(conference_pub_in_series_hash[:year])
         end
@@ -541,14 +541,13 @@ describe PubHash do
     end
 
     context 'for book' do
+      let(:book) { PubHash.new(book_pub_hash) }
+      let(:cite) { book.to_chicago_citation }
       it 'includes book information' do
-        book = PubHash.new(book_pub_hash)
-        cite = book.to_chicago_citation
         expect(cite).to include(book_pub_hash[:booktitle])
         expect(cite).to include(book_pub_hash[:publisher])
         expect(cite).to include(book_pub_hash[:year])
       end
-
       it 'includes editors' do
         book = PubHash.new(book_pub_with_editors_hash)
         cite = book.to_chicago_citation
@@ -556,51 +555,50 @@ describe PubHash do
         expect(cite).to include('Jill Sprat')
       end
       it 'includes authors' do
-        book = PubHash.new(book_pub_hash)
-        cite = book.to_chicago_citation
-        expect(cite).to include('Jones, P. L.')
+        expect(cite).to match(/^Jones,\s+P. L./)
         expect(cite).to include('Alan T. Jackson')
+      end
+      pending 'builds citations with first author name spacing correct' do
+        expect(cite).to match(/^Jones, P. L./)
       end
     end
 
     context 'for article' do
+      let(:article_in_journal) { PubHash.new(article_pub_hash) }
+      let(:cite) { article_in_journal.to_chicago_citation }
       it 'includes article information' do
-        article_in_journal = PubHash.new(article_pub_hash)
-        cite = article_in_journal.to_chicago_citation
         expect(cite).to include(article_pub_hash[:title].titlecase)
         expect(cite).to include(article_pub_hash[:year])
         expect(cite).to include(article_pub_hash[:journal][:name])
       end
-
       it 'includes journal volume issue and pages' do
-        article_in_journal = PubHash.new(article_pub_hash)
-        cite = article_in_journal.to_chicago_citation
-        expect(cite).to include("#{article_pub_hash[:journal][:volume]} (#{article_pub_hash[:journal][:issue]}): #{article_pub_hash[:pages]}")
+        expect(cite).to include("#{article_pub_hash[:journal][:volume]} (#{article_pub_hash[:journal][:issue]})")
+        expect(cite).to include(article_pub_hash[:pages])
       end
-
       it 'excludes editors' do
-        article_in_journal = PubHash.new(article_pub_hash)
-        cite = article_in_journal.to_chicago_citation
         expect(cite).to_not include('Jack Smith')
         expect(cite).to_not include('Jill Sprat')
       end
-
       it 'includes authors' do
-        article_in_journal = PubHash.new(article_pub_hash)
-        cite = article_in_journal.to_chicago_citation
-        expect(cite).to include('Jones, P. L.')
+        expect(cite).to match(/Jones,\s+P. L./)
         expect(cite).to include('Alan T. Jackson')
+      end
+      pending 'builds citations with first author name spacing correct' do
+        expect(cite).to match(/^Jones, P. L./)
+      end
+      it 'creates a Chicago citation' do
+        expect(cite).to eq 'Jones,   P. L., and Alan T. Jackson. 1987. “My Test Title.” <i>Some Journal Name</i> 33 (32). Some Publisher: 3–6.'
       end
     end
   end
 
   describe '#to_mla_citation' do
     context 'with more than 5 authors' do
+      let(:hash) { PubHash.new(pub_hash) }
+      let(:cite) { hash.to_mla_citation }
       it 'builds citations with just the first 5' do
-        h = PubHash.new(pub_hash)
-        cite = h.to_mla_citation
         expect(cite).to match(/^Sohl, G./)
-        expect(h.pub_hash[:author]).to_not include(name: 'et al.')
+        expect(hash.pub_hash[:author]).to_not include(name: 'et al.')
       end
     end
 
@@ -664,21 +662,15 @@ describe PubHash do
       let(:pub_hash) { PubHash.new(JSON.parse(other_paper.source_data, symbolize_names: true)) }
       it 'creates a Chicago citation' do
         expect(pub_hash.to_chicago_citation)
-          .to eq "Mangiafico, Peter A. 2016. <i>This Is Peter'S Other Paper On the Revs Digital Library</i>. Series Name. Stanford, CA: Stanford University. http://revslib.stanford.edu."
+          .to eq "Mangiafico, Peter A. 2016. <i>This Is Peter's Other Paper on the Revs Digital Library</i>. Series Name. Stanford, CA: Stanford University. http://revslib.stanford.edu."
       end
       it 'creates a MLA citation' do
         expect(pub_hash.to_mla_citation)
-          .to eq "Mangiafico, Peter A. <i>This Is Peter'S Other Paper On the Revs Digital Library</i>. Stanford, CA: Stanford University, 2016. Web. Series Name."
+          .to eq "Mangiafico, Peter A. <i>This Is Peter's Other Paper on the Revs Digital Library</i>. Stanford, CA: Stanford University, 2016. Web. Series Name."
       end
       it 'creates an APA citation' do
         expect(pub_hash.to_apa_citation)
-          .to eq "Mangiafico, P. A. (2016). This is Peter's Other Paper on the Revs Digital Library (1-5). Stanford, CA: Stanford University. Retrieved from http://revslib.stanford.edu"
-      end
-      pending 'creates citations with correct pluralization title' do
-        expect(pub_hash.to_chicago_citation)
-          .to eq "Mangiafico, Peter A. 2016. <i>This Is Peter's Other Paper On the Revs Digital Library</i>. Series Name. Stanford, CA: Stanford University. http://revslib.stanford.edu."
-        expect(pub_hash.to_mla_citation)
-          .to eq "Mangiafico, Peter A. <i>This Is Peter's Other Paper On the Revs Digital Library</i>. Stanford, CA: Stanford University, 2016. Web. Series Name."
+          .to eq "Mangiafico, P. A. (2016). <i>This is Peter's Other Paper on the Revs Digital Library</i> (pp. 1–5). Stanford, CA: Stanford University. Retrieved from http://revslib.stanford.edu"
       end
     end
   end
@@ -689,17 +681,17 @@ describe PubHash do
     # An example given from a direct import of a record entered in the CAP UAT environment.
     context 'from cap with minimum required fields' do
       let(:pub_hash) { PubHash.new(JSON.parse(technical_report.source_data, symbolize_names: true)) }
+      it 'creates an APA citation' do
+        expect(pub_hash.to_apa_citation)
+          .to eq "Mangiafico, P. A. (2016). <i>This is Peter's Technical Report on the Revs Digital Library</i> (Series Name No. 5) (pp. 1–5). Stanford, CA : Stanford University. Retrieved from http://revslib.stanford.edu"
+      end
       it 'creates a Chicago citation' do
         expect(pub_hash.to_chicago_citation)
-          .to eq "Mangiafico, Peter A. 2016. <i>This Is Peter'S Technical Report On the Revs Digital Library</i>5. Series Name. Stanford, CA : Stanford University. http://revslib.stanford.edu."
+          .to eq "Mangiafico, Peter A. 2016. “This Is Peter's Technical Report on the Revs Digital Library.” 5. Series Name. Stanford, CA : Stanford University. http://revslib.stanford.edu."
       end
       it 'creates an MLA citation' do
         expect(pub_hash.to_mla_citation)
-          .to eq "Mangiafico, Peter A. <i>This Is Peter'S Technical Report On the Revs Digital Library</i>. Stanford, CA : Stanford University, 2016. Web. Series Name."
-      end
-      it 'creates an APA citation' do
-        expect(pub_hash.to_apa_citation)
-          .to eq "Mangiafico, P. A. (2016). <i>This is Peter's Technical Report on the Revs Digital Library</i> (Series Name No. 5) (1-5). Stanford, CA : Stanford University. Retrieved from http://revslib.stanford.edu"
+          .to eq "Mangiafico, Peter A. <i>This Is Peter's Technical Report on the Revs Digital Library</i>. Stanford, CA : Stanford University, 2016. Web. Series Name."
       end
     end
 
@@ -708,10 +700,10 @@ describe PubHash do
         let(:pub_hash) { PubHash.new(technical_report_online_pub_hash) }
         ##
         # Example taken from: http://www.easybib.com/guides/citation-guides/chicago-turabian/how-to-cite-a-report-chicago-turabian/
-        # Differences: using the Sul-Pub preferred Chicago author-date format and a strange capitalization on "'s"
+        # Differences: using the Sul-Pub preferred Chicago author-date format
         it 'creates a Chicago citation' do
           expect(pub_hash.to_chicago_citation)
-            .to eq 'Gorbunova, Yulia. 2013. <i>Laws of Attrition: Crackdown On Russia’S Civil Society After Putin’S Return To the Presidency</i>. New York: Human Rights Watch. http://www.hrw.org/reports/2013/04/24/laws-attrition.'
+            .to eq "Gorbunova, Yulia. 2013. “Laws of Attrition: Crackdown on Russia’s Civil Society After Putin’s Return to the Presidency.” New York: Human Rights Watch. http://www.hrw.org/reports/2013/04/24/laws-attrition."
         end
         ##
         # Example taken from: http://www.easybib.com/guides/citation-guides/apa-format/how-to-cite-a-report-apa/
@@ -724,22 +716,18 @@ describe PubHash do
         # http://www.easybib.com/guides/citation-guides/mla-format/how-to-cite-a-report-mla/
         it 'creates a MLA citation' do
           expect(pub_hash.to_mla_citation)
-            .to eq 'Gorbunova, Yulia. <i>Laws of Attrition: Crackdown On Russia’S Civil Society After Putin’S Return To the Presidency</i>. New York: Human Rights Watch, 2013. Web.'
+            .to eq "Gorbunova, Yulia. <i>Laws of Attrition: Crackdown on Russia’s Civil Society After Putin’s Return to the Presidency</i>. New York: Human Rights Watch, 2013. Web."
         end
       end
 
       ##
       # Example take from: http://www.easybib.com/guides/citation-guides/mla-format/how-to-cite-a-report-mla/
-      # Differences: using a modified multiple authors format that we already support and a strange capitalization on "'s"
+      # Differences: using a modified multiple authors format that we already support
       context 'a print technical report with multiple authors' do
         let(:pub_hash) { PubHash.new(technical_report_print_pub_hash) }
         it 'creates a MLA citation' do
           expect(pub_hash.to_mla_citation)
-            .to eq 'Gorbunova, Yulia, and Konstantin Baranov. <i>Laws of Attrition: Crackdown On Russia’S Civil Society After Putin’S Return To the Presidency</i>. New York: Human Rights Watch, 2013. Print.'
-        end
-        pending 'creates a MLA citation with correct pluralization in title' do
-          expect(pub_hash.to_mla_citation)
-            .to eq 'Gorbunova, Yulia, and Konstantin Baranov. <i>Laws of Attrition: Crackdown On Russia’s Civil Society After Putin’s Return To the Presidency</i>. New York: Human Rights Watch, 2013. Print.'
+            .to eq "Gorbunova, Yulia, and Konstantin Baranov. <i>Laws of Attrition: Crackdown on Russia’s Civil Society After Putin’s Return to the Presidency</i>. New York: Human Rights Watch, 2013. Print."
         end
       end
     end
@@ -751,25 +739,25 @@ describe PubHash do
       let(:pub_hash) { PubHash.new(JSON.parse(case_study.source_data, symbolize_names: true)) }
       it 'creates a chicago citation' do
         expect(pub_hash.to_chicago_citation)
-          .to eq "Mangiafico, Peter A. 2016. <i>This Is Peter'S Case Study On the Revs Digital Library</i>. Series Name. Stanford, CA: Stanford University. http://revslib.stanford.edu."
+          .to eq "Mangiafico, Peter A. 2016. <i>This Is Peter's Case Study on the Revs Digital Library</i>. Series Name. Stanford, CA: Stanford University. http://revslib.stanford.edu."
       end
       it 'creates a MLA citation' do
         expect(pub_hash.to_mla_citation)
-          .to eq "Mangiafico, Peter A. <i>This Is Peter'S Case Study On the Revs Digital Library</i>. Stanford, CA: Stanford University, 2016. Web. Series Name."
+          .to eq "Mangiafico, Peter A. <i>This Is Peter's Case Study on the Revs Digital Library</i>. Stanford, CA: Stanford University, 2016. Web. Series Name."
       end
       it 'creates a APA citation' do
         expect(pub_hash.to_apa_citation)
-          .to eq "Mangiafico, P. A. (2016). This is Peter's Case Study on the Revs Digital Library (1-5). Stanford, CA: Stanford University. Retrieved from http://revslib.stanford.edu"
-      end
-      pending 'creates a citation with correct pluralization in title' do
-        expect(pub_hash.to_chicago_citation)
-          .to eq "Mangiafico, Peter A. 2016. <i>This Is Peter's Case Study On the Revs Digital Library</i>. Series Name. Stanford, CA: Stanford University. http://revslib.stanford.edu."
-        expect(pub_hash.to_mla_citation)
-          .to eq "Mangiafico, Peter A. <i>This Is Peter's Case Study On the Revs Digital Library</i>. Stanford, CA: Stanford University, 2016. Web. Series Name."
+          .to eq "Mangiafico, P. A. (2016). <i>This is Peter's Case Study on the Revs Digital Library</i> (pp. 1–5). Stanford, CA: Stanford University. Retrieved from http://revslib.stanford.edu"
       end
     end
     context 'given fixture' do
       let(:pub_hash) { PubHash.new(case_study_pub_hash) }
+      ##
+      # Difference from our spec here is we don't add the optional "[Case study]." clarification string.
+      # http://www.easybib.com/guides/citation-guides/how-do-i-cite-a/case-study/
+      it 'creates a APA citation' do
+        expect(pub_hash.to_apa_citation).to eq "Hill, L., Khanna, T., &amp; Stecker, E. A. (2008). <i>HCL Technologies</i>. Boston: Harvard Business Publishing."
+      end
       ##
       # Difference from our spec here is we don't add the optional "Case study." clarification string.
       # http://www.easybib.com/guides/citation-guides/how-do-i-cite-a/case-study/
@@ -782,12 +770,6 @@ describe PubHash do
       it 'creates a MLA citation' do
         expect(pub_hash.to_mla_citation).to eq 'Hill, Linda, Tarun Khanna, and Emily A. Stecker. <i>HCL Technologies</i>. Boston: Harvard Business Publishing, 2008. Print.'
       end
-      ##
-      # Difference from our spec here is we don't add the optional "[Case study]." clarification string.
-      # http://www.easybib.com/guides/citation-guides/how-do-i-cite-a/case-study/
-      it 'creates a APA citation' do
-        expect(pub_hash.to_apa_citation).to eq 'Hill, L., Khanna, T., &#38; Stecker, E. A. (2008). HCL Technologies. Boston: Harvard Business Publishing.'
-      end
     end
   end
   describe 'User submitted source records' do
@@ -797,31 +779,31 @@ describe PubHash do
         expect(pub_hash.to_chicago_citation).to eq 'Reed, Phillip J., and Jane Stanford. 2015. <i>This Is a Book Title</i>. Vol. 3. The Series Title. Stanford University Press.'
       end
       it 'creates a MLA citation' do
-        expect(pub_hash.to_mla_citation).to eq 'Reed, Phillip J., and Jane Stanford. <i>This Is a Book Title</i>. Vol. 3. Stanford University Press, 2015. Print. The Series Title.'
+        expect(pub_hash.to_mla_citation).to eq 'Reed, Phillip J., and Jane Stanford. <i>This Is a Book Title</i>. vol. 3. Stanford University Press, 2015. Print. The Series Title.'
       end
       it 'creates a APA citation' do
-        expect(pub_hash.to_apa_citation).to eq 'Reed, P. J., &#38; Stanford, J. (2015). This is a book title (Vol. 3). Stanford University Press.'
+        expect(pub_hash.to_apa_citation).to eq 'Reed, P. J., &amp; Stanford, J. (2015). <i>This is a book title</i> (Vol. 3). Stanford University Press.'
       end
     end
     context 'book chapter' do
       let(:pub_hash) { PubHash.new(JSON.parse(create(:book_chapter).source_data, symbolize_names: true)) }
       it 'creates a Chicago citation' do
-        expect(pub_hash.to_chicago_citation).to eq "Hardy, Darren, Jack Reed, and Bess Sadler. 2016. <i>Geospatial Resource Discovery</i>. <i>Exploring Discovery: The Front Door To Your Library'S Licensed and Digitized Content</i>. American Library Association Editions."
+        expect(pub_hash.to_chicago_citation).to eq "Hardy, Darren, Jack Reed, and Bess Sadler. 2016. <i>Geospatial Resource Discovery</i>. <i>Exploring Discovery: The Front Door to Your Library's Licensed and Digitized Content</i>. American Library Association Editions."
       end
       it 'creates a MLA citation' do
         expect(pub_hash.to_mla_citation).to eq "Hardy, Darren, Jack Reed, and Bess Sadler. <i>Geospatial Resource Discovery</i>. American Library Association Editions, 2016. Print."
       end
       it 'creates a APA citation' do
-        expect(pub_hash.to_apa_citation).to eq "Hardy, D., Reed, J., &#38; Sadler, B. (2016). Geospatial Resource Discovery. <i>Exploring Discovery: The Front Door to Your Library's Licensed and Digitized Content</i> (47-62). American Library Association Editions."
+        expect(pub_hash.to_apa_citation).to eq "Hardy, D., Reed, J., &amp; Sadler, B. (2016). <i>Geospatial Resource Discovery</i>. <i>Exploring Discovery: The Front Door to Your Library's Licensed and Digitized Content</i> (pp. 47–62). American Library Association Editions."
       end
     end
     context 'conference proceeding' do
       let(:pub_hash) { PubHash.new(JSON.parse(create(:conference_proceeding).source_data, symbolize_names: true)) }
       it 'creates a Chicago citation' do
-        expect(pub_hash.to_chicago_citation).to eq 'Reed, Jack. 2015. “Preservation and Discovery For GIS Data”. Esri.'
+        expect(pub_hash.to_chicago_citation).to eq 'Reed, Jack. 2015. “Preservation and Discovery for GIS Data.” Esri.'
       end
       it 'creates a MLA citation' do
-        expect(pub_hash.to_mla_citation).to eq 'Reed, Jack. “Preservation and Discovery For GIS Data”. 2015: n. pag. Print.'
+        expect(pub_hash.to_mla_citation).to eq 'Reed, Jack. “Preservation and Discovery for GIS Data.” 2015: n. pag. Print.'
       end
       it 'creates a APA citation' do
         expect(pub_hash.to_apa_citation).to eq 'Reed, J. (2015). Preservation and discovery for GIS data. Presented at the Esri User Conference, San Diego, California: Esri.'
@@ -830,13 +812,13 @@ describe PubHash do
     context 'journal article' do
       let(:pub_hash) { PubHash.new(JSON.parse(create(:journal_article).source_data, symbolize_names: true)) }
       it 'creates a Chicago citation' do
-        expect(pub_hash.to_chicago_citation).to eq 'Glover, Jeffrey B., Kelly Woodard, P. Jack Reed, and Johnny Waits. 2012. “The Flat Rock Cemetery Mapping Project:  A Case Study In Community Archaeology”. <i>Early Georgia</i> 40 (1).'
+        expect(pub_hash.to_chicago_citation).to eq 'Glover, Jeffrey B., Kelly Woodard, P. Jack Reed, and Johnny Waits. 2012. “The Flat Rock Cemetery Mapping Project:  A Case Study in Community Archaeology.” <i>Early Georgia</i> 40 (1). The Society for Georgia Archaeology.'
       end
       it 'creates a MLA citation' do
-        expect(pub_hash.to_mla_citation).to eq 'Glover, Jeffrey B., Kelly Woodard, P. Jack Reed, and Johnny Waits. “The Flat Rock Cemetery Mapping Project:  A Case Study In Community Archaeology”. <i>Early Georgia</i> 40.1 (2012): n. pag. Print.'
+        expect(pub_hash.to_mla_citation).to eq 'Glover, Jeffrey B. et al. “The Flat Rock Cemetery Mapping Project:  A Case Study in Community Archaeology.” <i>Early Georgia</i> 40.1 (2012): n. pag. Print.'
       end
       it 'creates a APA citation' do
-        expect(pub_hash.to_apa_citation).to eq 'Glover, J. B., Woodard, K., Reed, P. J., &#38; Waits, J. (2012). The Flat Rock Cemetery Mapping Project:  A Case Study in Community Archaeology. <i>Early Georgia</i>, <i>40</i>(1).'
+        expect(pub_hash.to_apa_citation).to eq 'Glover, J. B., Woodard, K., Reed, P. J., &amp; Waits, J. (2012). The Flat Rock Cemetery Mapping Project:  A Case Study in Community Archaeology. <i>Early Georgia</i>, <i>40</i>(1).'
       end
     end
   end

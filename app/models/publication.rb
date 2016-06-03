@@ -254,13 +254,8 @@ class Publication < ActiveRecord::Base
         author ||= begin
           Author.fetch_from_cap_and_create(cap_profile_id)
         rescue => e
-          msg = "error retrieving CAP profile #{cap_profile_id}"
-          msg += " for contribution: #{contrib}"
-          Rails.logger.error msg
-          pub_logger = Logger.new(Settings.CAP.CONTRIBUTIONS_LOG)
-          pub_logger.error msg
-          pub_logger.error e.message
-          pub_logger.error e.backtrace if e.backtrace
+          msg = "error retrieving CAP profile #{cap_profile_id} for contribution: #{contrib}"
+          NotificationManager.log_exception(NotificationManager.cap_logger, msg, e)
           nil
         end
       end
@@ -345,12 +340,8 @@ class Publication < ActiveRecord::Base
   def add_all_db_contributions_to_my_pub_hash
     pub_hash[:authorship] = contributions.map(&:to_pub_hash) if pub_hash
   rescue => e
-    Rails.logger.error "some problem with hash: #{pub_hash}"
-    pub_logger = Logger.new(Settings.CAP.CONTRIBUTIONS_PUBLICATIONS_ERRORS_LOG)
-    pub_logger.error "some problem with adding contributions to the hash for pub #{id}"
-    pub_logger.error "the hash: #{pub_hash}"
-    pub_logger.error e.message
-    pub_logger.error e.backtrace
+    message = "some problem with adding contributions to the hash for publications.id=#{id}: pub_hash=#{pub_hash}"
+    NotificationManager.log_exception(logger, message, e)
   end
 
   def update_formatted_citations

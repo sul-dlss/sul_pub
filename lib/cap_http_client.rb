@@ -33,11 +33,11 @@ class CapHttpClient
       timeout_period += 500
       retry
     else
-      NotificationManager.error(te, "Timeout error on call to retrieve token for cap authorship feed - #{Time.zone.now}", self)
+      NotificationManager.error(te, 'Timeout::Error during token generation', self)
       raise
     end
   rescue => e
-    NotificationManager.error(e, 'Problem with http call to cap authorship api', self)
+    NotificationManager.error(e, "#{e.class.name} during token generation", self)
     raise
   end
 
@@ -93,11 +93,11 @@ class CapHttpClient
         timeout_period += 500
         retry
       else
-        NotificationManager.error(te, "Timeout error on authorship call - #{Time.zone.now}", self)
+        NotificationManager.error(te, 'Timeout::Error during CAP request', self)
         raise
       end
     rescue => e
-      NotificationManager.error(e, 'Problem with http call to cap authorship api', self)
+      NotificationManager.error(e, "#{e.class.name} during CAP request", self)
       raise
     end
     json_response

@@ -1,38 +1,57 @@
-require 'citeproc'
+require 'citeproc/ruby'
+# You can install more recent styles using the 'csl-styles' gem or you can just
+# download the styles you need (just point CSL::Style.root to the directory and
+# you can load any style with just its name using CSL::Style.load).
+require 'csl/styles'
 
 class PubHash
+  attr_reader :csl_renderer
   attr_reader :pub_hash
+
+  CSL_STYLE_APA = CSL::Style.load('apa')
+  CSL_STYLE_MLA = CSL::Style.load('modern-language-association')
+
+  CSL_STYLE_CHICAGO = CSL::Style.load('chicago-author-date')
+  CSL_STYLE_CHICAGO_ET_AL = begin
+    # Modify the bibliography attributes so it uses 'et al.' after 5 authors
+    style_et_al = CSL::Style.load('chicago-author-date')
+    style_et_al.bibliography.attributes['et-al-min'] = 1
+    style_et_al.bibliography.attributes['et-al-use-first'] = 5
+    style_et_al
+  end
 
   def initialize(hash)
     @pub_hash = hash
   end
 
-  # @param csl_citation_data [Array<Hash>] an array of CSL citation documents
-  # @param csl_style_file [String] a CSL citation style file path
+  # @param csl_citation_data [Hash] a CSL citation document
+  # @param csl_style [CSL::Style] a CSL citation style
   # @return citation [String] a bibliographic citation
-  def generate_csl_citation(csl_citation_data, csl_style_file)
-    CiteProc.process(csl_citation_data, style: csl_style_file, format: 'html')
+  def generate_csl_citation(csl_citation_data, csl_style)
+    item = CiteProc::CitationItem.new id: 'sulpub'
+    item.data = CiteProc::Item.new(csl_citation_data)
+    # Generate a new render instance every time, so it has no history
+    # of any prior citations.  When it has history, it can assume that
+    # subsequent citations can refer to earlier citations, which has
+    # a different style for the subsequent citations.
+    csl_renderer = CiteProc::Ruby::Renderer.new format: 'html'
+    csl_renderer.render item, csl_style.bibliography
   end
 
   def to_chicago_citation
-    @chicago_csl_file ||= begin
-      style_name = 'chicago-author-date'
-      # sul-pub has a custom modification that can be used for many authors
-      authors = pub_hash[:author] || []
-      style_name += '_et_al' if pub_hash[:etal].present? || authors.count > 5
-      Rails.root.join('app', 'data', style_name + '.csl')
+    if csl_doc['author'].count > 5
+      generate_csl_citation(csl_doc, CSL_STYLE_CHICAGO_ET_AL)
+    else
+      generate_csl_citation(csl_doc, CSL_STYLE_CHICAGO)
     end
-    generate_csl_citation([csl_doc], @chicago_csl_file)
   end
 
   def to_mla_citation
-    @mla_csl_file ||= Rails.root.join('app', 'data', 'mla.csl')
-    generate_csl_citation([csl_doc], @mla_csl_file)
+    generate_csl_citation(csl_doc, CSL_STYLE_MLA)
   end
 
   def to_apa_citation
-    @apa_csl_file ||= Rails.root.join('app', 'data', 'apa.csl')
-    generate_csl_citation([csl_doc], @apa_csl_file)
+    generate_csl_citation(csl_doc, CSL_STYLE_APA)
   end
 
   def csl_doc

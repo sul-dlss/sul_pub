@@ -8,11 +8,7 @@ class CapAuthorsPoller
   def initialize
     @sw_harvester = ScienceWireHarvester.new
     @cap_http_client = CapHttpClient.new
-    @logger = Logger.new(Settings.CAP.AUTHORS_POLL_LOG)
-    @logger.datetime_format = '%Y-%m-%d %H:%M:%S'
-    @logger.formatter = proc { |severity, datetime, _progname, msg|
-      "#{severity} #{datetime}: #{msg}\n"
-    }
+    @logger = NotificationManager.cap_logger
     init_stats
   end
 
@@ -34,7 +30,7 @@ class CapAuthorsPoller
         logger.info "#{@total_running_count} records were processed in #{log_process_time}"
         break if json_response['lastPage']
       rescue => e
-        logger.fail e.inspect
+        NotificationManager.error(e, 'get_authorship_data iteration failed', self)
         raise
       end
     end
@@ -48,8 +44,7 @@ class CapAuthorsPoller
     info << 'Finished authorship import'
     logger.info info.join("\n")
   rescue => e
-    msg = "Authorship import failed - #{Time.zone.now}"
-    NotificationManager.error(e, msg, self)
+    NotificationManager.error(e, 'Authorship import failed', self)
   end
 
   def cap_authors_count(days_ago = 1)
@@ -65,16 +60,15 @@ class CapAuthorsPoller
   def process_next_batch_of_authorship_data(json_response)
     # rubocop:disable Style/GuardClause
     if json_response['count'].blank? || json_response['lastPage'].nil?
-      raise "unexpected json in cap_authors_poller#process_next_batch_of_authorship_data, first 500 chars: #{json_response}"
+      raise Net::HTTPBadResponse, "Missing JSON data in response: first 500 chars: #{json_response[0..500]}"
     elsif json_response['values']
       json_response['values'].each do |record|
         begin
           @total_running_count += 1
           process_record(record)
-          logger.info "Processed #{@total_running_count} authors" if @total_running_count % 10 == 0
+          log_stats if @total_running_count % 10 == 0
         rescue => e
-          msg = "Authorship import failed for incoming record containing: #{record.inspect if record} - #{Time.zone.now}"
-          NotificationManager.error(e, msg, self)
+          NotificationManager.error(e, "Authorship import failed for record: '#{record}'", self)
         end
       end
     end
@@ -82,7 +76,6 @@ class CapAuthorsPoller
   end
 
   def process_record(record)
-    # import_settings_exist = record["importSettings"] && record["importSettings"].any?
     cap_profile_id = record['profileId'].to_i
     author = Author.find_by_cap_profile_id(cap_profile_id)
     if author.present?
@@ -93,12 +86,12 @@ class CapAuthorsPoller
   end
 
   def process_record_for_existing_author(author, record)
-    logger.info "Updating author_id: #{author.id}, cap_profile_id: #{author.cap_profile_id}"
+    logger.info "Updating Author.find_by(id: #{author.id}, cap_profile_id: #{author.cap_profile_id})"
     author.update_from_cap_authorship_profile_hash(record)
 
     update_existing_contributions author, record['authorship'] if record['authorship'].present?
 
-    queue_author_for_harvest author, "No import settings or author did not change. Skipping cap_profile_id: #{author.cap_profile_id}"
+    queue_author_for_harvest author, "Author marked as not harvestable or did not change. Skipping Author.find_by(cap_profile_id: #{author.cap_profile_id})"
 
     author.save!
     @authors_updated_count += 1
@@ -106,16 +99,16 @@ class CapAuthorsPoller
 
   def process_record_for_new_author(cap_profile_id, record)
     author = Author.fetch_from_cap_and_create(cap_profile_id, @cap_http_client)
-    logger.info "Creating author_id: #{author.id}, cap_profile_id: #{cap_profile_id}"
+    logger.info "Creating Author.find_by(id: #{author.id}, cap_profile_id: #{cap_profile_id})"
     author.update_from_cap_authorship_profile_hash(record)
 
     if record['authorship'].present?
-      # TODO: not clear to me *why* authorship is ignored for new authors...
-      logger.warn "New author has authorship which will be skipped; cap_profile_id: #{cap_profile_id}"
+      # TODO: not clear to me *why* or even *if* authorship is ignored for new authors...
+      logger.warn "New author has authorship which will be skipped; Author.find_by(cap_profile_id: #{cap_profile_id})"
       @new_auth_with_contribs += 1
     end
 
-    queue_author_for_harvest author, "Author marked as not harvestable. Skipping cap_profile_id: #{cap_profile_id}"
+    queue_author_for_harvest author, "Author marked as not harvestable. Skipping Author.find_by(cap_profile_id: #{cap_profile_id})"
 
     author.save!
     @new_author_count += 1
@@ -135,21 +128,19 @@ class CapAuthorsPoller
   def update_existing_contributions(author, incoming_authorships)
     incoming_authorships.each do |authorship|
       if !Contribution.authorship_valid? authorship
-        msg = "Invalid authorship: cap_profile_id: #{author.cap_profile_id}; #{authorship.inspect}"
-        logger.error msg
-        exception = ArgumentError.new(msg)
-        NotificationManager.error(exception, msg, self)
+        msg = "Invalid authorship: Author.find_by(cap_profile_id: #{author.cap_profile_id}); #{authorship.inspect}"
+        NotificationManager.error(ArgumentError.new(msg), msg, self)
         @invalid_contribs += 1
         next
       end
       pub_id = authorship['sulPublicationId']
       contribs = author.contributions.where(publication_id: pub_id)
       if contribs.count == 0
-        logger.warn "Contribution does not exist for author_id: #{author.id}, cap_profile_id: #{author.cap_profile_id}, publication_id: #{pub_id}"
+        logger.warn "Contribution does not exist for Contribution.find_by(author_id: #{author.id}, cap_profile_id: #{author.cap_profile_id}, publication_id: #{pub_id})"
         @contrib_does_not_exist += 1
         next
       elsif contribs.count > 1
-        logger.warn "More than one contribution for author_id: #{author.id}, cap_profile_id: #{author.cap_profile_id}, publication_id: #{pub_id}"
+        logger.warn "More than one contribution for Contribution.where(author_id: #{author.id}, cap_profile_id: #{author.cap_profile_id}, publication_id: #{pub_id})"
         @too_many_contribs += 1
         next
       end
@@ -170,7 +161,7 @@ class CapAuthorsPoller
   def contribution_id(contribution)
     author = contribution.author
     pub = contribution.publication
-    "Contribution(author_id: #{author.id}, cap_profile_id: #{author.cap_profile_id}, publication_id: #{pub.id})"
+    "Contribution.find_by(author_id: #{author.id}, cap_profile_id: #{author.cap_profile_id}, publication_id: #{pub.id})"
   end
 
   def contribution_save(contribution)

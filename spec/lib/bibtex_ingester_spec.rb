@@ -1,4 +1,5 @@
 require 'spec_helper'
+SingleCov.covered!
 
 describe BibtexIngester do
   let!(:author_with_bibtex) { create :author, sunetid: 'james', cap_profile_id: 333_333 }

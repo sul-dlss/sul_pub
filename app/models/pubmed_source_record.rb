@@ -66,9 +66,7 @@ class PubmedSourceRecord < ActiveRecord::Base
           source_fingerprint: Digest::SHA2.hexdigest(pub_doc))
         pmids.delete(pmid)
       rescue => e
-        Rails.logger.error e.message
-        Rails.logger.error e.backtrace if e.backtrace.present?
-        Rails.logger.error "the offending pmid: #{pmid}"
+        NotificationManager.error(e, "Cannot create PubmedSourceRecord with pmid: #{pmid}", self)
       end
     end
     PubmedSourceRecord.import source_records

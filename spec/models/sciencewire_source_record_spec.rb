@@ -1,4 +1,5 @@
-require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
+require 'spec_helper'
+SingleCov.covered!
 
 describe SciencewireSourceRecord do
   describe '.lookup_sw_doc_type' do
