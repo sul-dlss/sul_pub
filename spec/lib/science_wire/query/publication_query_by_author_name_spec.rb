@@ -2,6 +2,7 @@ require 'spec_helper'
 SingleCov.covered!
 
 describe ScienceWire::Query::PublicationQueryByAuthorName do
+  # import modules from spec/fixtures/queries
   include AuthorDateQueries
   include AuthorNameQueries
   include InstitutionEmailQueries
@@ -10,7 +11,7 @@ describe ScienceWire::Query::PublicationQueryByAuthorName do
   let(:max_rows) { 200 }
   let(:seeds) { [1, 2, 3] }
   let(:institution) { 'Example University' }
-  # The XSD is defined in fixture/queries/publication_query_xsd
+  # The XSD is defined in spec/fixtures/queries/publication_query_xsd
   let(:xsd) { publication_query_xsd }
   let(:xml) { without_cdata(subject.generate) }
 
