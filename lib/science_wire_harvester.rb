@@ -217,22 +217,15 @@ class ScienceWireHarvester
   # TODO: have AggregateText results use this directly instead of pulling out IDs
   def process_queued_sciencewire_suggestions
     return if @records_queued_for_sciencewire_retrieval.empty?
-    # Get the documents in batches, because the request is made as a GET and a very long
-    # list of PublicationItemId values might exceed a URL length limit (approx. 2000 chars), see commentary in:
-    # http://stackoverflow.com/questions/417142/what-is-the-maximum-length-of-a-url-in-different-browsers
-    # Approx. 150 PublicationItemId values fits within 1500 chars (leaving room for the URL path); i.e.
-    # ([100000000] * 150).join(',').length == 1499
     sw_ids = @records_queued_for_sciencewire_retrieval.keys
-    sw_ids.each_slice(150) do |pub_ids|
-      sw_records_doc = @sciencewire_client.get_full_sciencewire_pubs_for_sciencewire_ids(pub_ids.join(','))
-      pubs = ScienceWirePublications.new(sw_records_doc)
-      pubs.filter_publication_items.each do |pub|
-        sw_doc = pub.xml_doc
-        sciencewire_id = pub.publication_item_id
-        source_record_was_created = SciencewireSourceRecord.save_sw_source_record(sciencewire_id, pub.pmid, sw_doc.to_xml)
-        @total_new_sciencewire_source_count += 1 if source_record_was_created
-        create_or_update_pub_and_contribution_with_harvested_sw_doc(sw_doc, @records_queued_for_sciencewire_retrieval[sciencewire_id])
-      end
+    sw_records_doc = @sciencewire_client.get_full_sciencewire_pubs_for_sciencewire_ids(sw_ids)
+    pubs = ScienceWirePublications.new(sw_records_doc)
+    pubs.filter_publication_items.each do |pub|
+      sw_doc = pub.xml_doc
+      sciencewire_id = pub.publication_item_id
+      source_record_was_created = SciencewireSourceRecord.save_sw_source_record(sciencewire_id, pub.pmid, sw_doc.to_xml)
+      @total_new_sciencewire_source_count += 1 if source_record_was_created
+      create_or_update_pub_and_contribution_with_harvested_sw_doc(sw_doc, @records_queued_for_sciencewire_retrieval[sciencewire_id])
     end
     @records_queued_for_sciencewire_retrieval.clear
   end
