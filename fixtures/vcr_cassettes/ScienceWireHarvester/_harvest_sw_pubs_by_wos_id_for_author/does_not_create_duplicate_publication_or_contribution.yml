@@ -7,8 +7,8 @@ http_interactions:
       encoding: UTF-8
       string: |-
         <?xml version="1.0"?>
-              <ScienceWireQueryXMLParameter xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-              <xmlQuery><![CDATA[
+            <ScienceWireQueryXMLParameter xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xmlQuery><![CDATA[
               <query xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
                 <Criterion ConjunctionOperator="AND">
                   <Criteria>
@@ -30,7 +30,7 @@ http_interactions:
                   </Columns>
                 </query>
             ]]></xmlQuery>
-              </ScienceWireQueryXMLParameter>
+            </ScienceWireQueryXMLParameter>
     headers:
       User-Agent:
       - Faraday v0.9.2
@@ -39,7 +39,7 @@ http_interactions:
       Accept-Encoding:
       - gzip,deflate
       Date:
-      - Wed, 11 May 2016 04:09:43 GMT
+      - Thu, 02 Jun 2016 22:10:35 GMT
       Licenseid:
       - Settings.SCIENCEWIRE.LICENSE_ID
       Host:
@@ -68,7 +68,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Wed, 11 May 2016 04:09:43 GMT
+      - Thu, 02 Jun 2016 15:53:32 GMT
       Content-Length:
       - '277'
     body:
@@ -77,10 +77,10 @@ http_interactions:
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>82248</queryID>\r\n
         \ <queryResultRows>1</queryResultRows>\r\n  <totalRows>1</totalRows>\r\n</ScienceWireQueryIDResponse>"
     http_version: 
-  recorded_at: Wed, 11 May 2016 04:09:43 GMT
+  recorded_at: Thu, 02 Jun 2016 22:10:36 GMT
 - request:
     method: get
-    uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/82248?format=xml&page=0&pageSize=2147483647&v=version/4
+    uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/82248?format=xml&page=0&pageSize=1&v=version/4
     body:
       encoding: UTF-8
       string: ''
@@ -92,7 +92,7 @@ http_interactions:
       Accept-Encoding:
       - gzip,deflate
       Date:
-      - Wed, 11 May 2016 04:09:43 GMT
+      - Thu, 02 Jun 2016 22:10:36 GMT
       Licenseid:
       - Settings.SCIENCEWIRE.LICENSE_ID
       Host:
@@ -121,7 +121,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Wed, 11 May 2016 04:09:43 GMT
+      - Thu, 02 Jun 2016 15:53:32 GMT
       Content-Length:
       - '3567'
     body:
@@ -166,53 +166,7 @@ http_interactions:
         \   <AuthorCitationCountList>1,0,5|2,0,5</AuthorCitationCountList>\r\n    <CopyrightStateProvince>NJ</CopyrightStateProvince>\r\n
         \   <CopyrightCountry>UNITED STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n</ArrayOfPublicationItem>"
     http_version: 
-  recorded_at: Wed, 11 May 2016 04:09:44 GMT
-- request:
-    method: post
-    uri: http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - "*/*"
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 400
-      message: Bad Request
-    headers:
-      Date:
-      - Wed, 11 May 2016 04:09:44 GMT
-      Server:
-      - Apache
-      Access-Control-Allow-Origin:
-      - "*"
-      Cache-Control:
-      - private
-      Ncbi-Sid:
-      - 08DD0C43732B0881_0319SID
-      Content-Type:
-      - text/xml; charset=UTF-8
-      Set-Cookie:
-      - ncbi_sid=08DD0C43732B0881_0319SID; domain=.nih.gov; path=/; expires=Thu, 11
-        May 2017 04:09:44 GMT
-      X-Ua-Compatible:
-      - IE=Edge
-      Connection:
-      - close
-      Transfer-Encoding:
-      - chunked
-    body:
-      encoding: UTF-8
-      string: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE eEfetchResult
-        PUBLIC \"-//NLM//DTD efetch 20131226//EN\" \"http://eutils.ncbi.nlm.nih.gov/eutils/dtd/20131226/efetch.dtd\">\n<eFetchResult>\n\t<ERROR>WebEnv
-        parameter is required</ERROR>\n</eFetchResult>\n"
-    http_version: 
-  recorded_at: Wed, 11 May 2016 04:09:44 GMT
+  recorded_at: Thu, 02 Jun 2016 22:10:36 GMT
 - request:
     method: post
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery?format=xml
@@ -220,8 +174,8 @@ http_interactions:
       encoding: UTF-8
       string: |-
         <?xml version="1.0"?>
-              <ScienceWireQueryXMLParameter xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-              <xmlQuery><![CDATA[
+            <ScienceWireQueryXMLParameter xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xmlQuery><![CDATA[
               <query xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
                 <Criterion ConjunctionOperator="AND">
                   <Criteria>
@@ -243,7 +197,7 @@ http_interactions:
                   </Columns>
                 </query>
             ]]></xmlQuery>
-              </ScienceWireQueryXMLParameter>
+            </ScienceWireQueryXMLParameter>
     headers:
       User-Agent:
       - Faraday v0.9.2
@@ -252,7 +206,7 @@ http_interactions:
       Accept-Encoding:
       - gzip,deflate
       Date:
-      - Wed, 11 May 2016 04:09:44 GMT
+      - Thu, 02 Jun 2016 22:10:36 GMT
       Licenseid:
       - Settings.SCIENCEWIRE.LICENSE_ID
       Host:
@@ -281,7 +235,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Wed, 11 May 2016 04:09:44 GMT
+      - Thu, 02 Jun 2016 22:10:37 GMT
       Content-Length:
       - '277'
     body:
@@ -290,10 +244,10 @@ http_interactions:
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>82248</queryID>\r\n
         \ <queryResultRows>1</queryResultRows>\r\n  <totalRows>1</totalRows>\r\n</ScienceWireQueryIDResponse>"
     http_version: 
-  recorded_at: Wed, 11 May 2016 04:09:45 GMT
+  recorded_at: Thu, 02 Jun 2016 22:10:37 GMT
 - request:
     method: get
-    uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/82248?format=xml&page=0&pageSize=2147483647&v=version/4
+    uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/82248?format=xml&page=0&pageSize=1&v=version/4
     body:
       encoding: UTF-8
       string: ''
@@ -305,7 +259,7 @@ http_interactions:
       Accept-Encoding:
       - gzip,deflate
       Date:
-      - Wed, 11 May 2016 04:09:45 GMT
+      - Thu, 02 Jun 2016 22:10:37 GMT
       Licenseid:
       - Settings.SCIENCEWIRE.LICENSE_ID
       Host:
@@ -334,7 +288,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Wed, 11 May 2016 04:09:44 GMT
+      - Thu, 02 Jun 2016 15:53:32 GMT
       Content-Length:
       - '3567'
     body:
@@ -379,51 +333,5 @@ http_interactions:
         \   <AuthorCitationCountList>1,0,5|2,0,5</AuthorCitationCountList>\r\n    <CopyrightStateProvince>NJ</CopyrightStateProvince>\r\n
         \   <CopyrightCountry>UNITED STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n</ArrayOfPublicationItem>"
     http_version: 
-  recorded_at: Wed, 11 May 2016 04:09:45 GMT
-- request:
-    method: post
-    uri: http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - "*/*"
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 400
-      message: Bad Request
-    headers:
-      Date:
-      - Wed, 11 May 2016 04:09:46 GMT
-      Server:
-      - Apache
-      Access-Control-Allow-Origin:
-      - "*"
-      Cache-Control:
-      - private
-      Ncbi-Sid:
-      - 08DD0DE7732B08A1_0331SID
-      Content-Type:
-      - text/xml; charset=UTF-8
-      Set-Cookie:
-      - ncbi_sid=08DD0DE7732B08A1_0331SID; domain=.nih.gov; path=/; expires=Thu, 11
-        May 2017 04:09:46 GMT
-      X-Ua-Compatible:
-      - IE=Edge
-      Connection:
-      - close
-      Transfer-Encoding:
-      - chunked
-    body:
-      encoding: UTF-8
-      string: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE eEfetchResult
-        PUBLIC \"-//NLM//DTD efetch 20131226//EN\" \"http://eutils.ncbi.nlm.nih.gov/eutils/dtd/20131226/efetch.dtd\">\n<eFetchResult>\n\t<ERROR>WebEnv
-        parameter is required</ERROR>\n</eFetchResult>\n"
-    http_version: 
-  recorded_at: Wed, 11 May 2016 04:09:46 GMT
+  recorded_at: Thu, 02 Jun 2016 22:10:37 GMT
 recorded_with: VCR 3.0.1

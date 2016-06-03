@@ -7,8 +7,8 @@ http_interactions:
       encoding: UTF-8
       string: |-
         <?xml version="1.0"?>
-              <ScienceWireQueryXMLParameter xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-              <xmlQuery><![CDATA[
+            <ScienceWireQueryXMLParameter xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xmlQuery><![CDATA[
                <query xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/
               XMLSchema">
                 <Criterion ConjunctionOperator="AND">
@@ -35,7 +35,7 @@ http_interactions:
                <MaximumRows>20</MaximumRows>
               </query>
               ]]></xmlQuery>
-              </ScienceWireQueryXMLParameter>
+            </ScienceWireQueryXMLParameter>
     headers:
       User-Agent:
       - Faraday v0.9.2
@@ -44,7 +44,7 @@ http_interactions:
       Accept-Encoding:
       - gzip,deflate
       Date:
-      - Wed, 11 May 2016 04:10:49 GMT
+      - Thu, 02 Jun 2016 22:12:35 GMT
       Licenseid:
       - Settings.SCIENCEWIRE.LICENSE_ID
       Host:
@@ -73,7 +73,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Wed, 11 May 2016 04:10:49 GMT
+      - Thu, 02 Jun 2016 15:53:32 GMT
       Content-Length:
       - '280'
     body:
@@ -82,10 +82,10 @@ http_interactions:
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>231219</queryID>\r\n
         \ <queryResultRows>20</queryResultRows>\r\n  <totalRows>20</totalRows>\r\n</ScienceWireQueryIDResponse>"
     http_version: 
-  recorded_at: Wed, 11 May 2016 04:10:49 GMT
+  recorded_at: Thu, 02 Jun 2016 22:12:35 GMT
 - request:
     method: get
-    uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/231219?format=xml&page=0&pageSize=2147483647&v=version/4
+    uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/231219?format=xml&page=0&pageSize=20&v=version/4
     body:
       encoding: UTF-8
       string: ''
@@ -97,7 +97,7 @@ http_interactions:
       Accept-Encoding:
       - gzip,deflate
       Date:
-      - Wed, 11 May 2016 04:10:49 GMT
+      - Thu, 02 Jun 2016 22:12:35 GMT
       Licenseid:
       - Settings.SCIENCEWIRE.LICENSE_ID
       Host:
@@ -126,7 +126,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Wed, 11 May 2016 04:10:49 GMT
+      - Thu, 02 Jun 2016 22:12:36 GMT
       Content-Length:
       - '54233'
     body:
@@ -747,5 +747,5 @@ http_interactions:
         \   <CopyrightStateProvince>PA</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
         STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n</ArrayOfPublicationItem>"
     http_version: 
-  recorded_at: Wed, 11 May 2016 04:10:50 GMT
+  recorded_at: Thu, 02 Jun 2016 22:12:36 GMT
 recorded_with: VCR 3.0.1

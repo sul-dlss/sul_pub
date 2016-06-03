@@ -19,7 +19,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Wed, 25 May 2016 17:09:58 GMT
+      - Thu, 02 Jun 2016 22:12:59 GMT
       Server:
       - Apache
       Access-Control-Allow-Origin:
@@ -27,12 +27,12 @@ http_interactions:
       Cache-Control:
       - private
       Ncbi-Sid:
-      - 08DE53AD745DC661_0454SID
+      - 08DD020A750AF6B1_0575SID
       Content-Type:
       - text/xml; charset=UTF-8
       Set-Cookie:
-      - ncbi_sid=08DE53AD745DC661_0454SID; domain=.nih.gov; path=/; expires=Thu, 25
-        May 2017 17:09:58 GMT
+      - ncbi_sid=08DD020A750AF6B1_0575SID; domain=.nih.gov; path=/; expires=Fri, 02
+        Jun 2017 22:12:59 GMT
       X-Ua-Compatible:
       - IE=Edge
       Transfer-Encoding:
@@ -398,5 +398,5 @@ http_interactions:
 
         </PubmedArticleSet>
     http_version: 
-  recorded_at: Wed, 25 May 2016 17:10:02 GMT
+  recorded_at: Thu, 02 Jun 2016 22:12:59 GMT
 recorded_with: VCR 3.0.1
