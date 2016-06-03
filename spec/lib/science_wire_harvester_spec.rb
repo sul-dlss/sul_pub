@@ -213,7 +213,7 @@ describe ScienceWireHarvester, :vcr do
         sw_ids = [sw_id]
         expect(science_wire_client).to receive(:query_sciencewire_by_author_name).once.and_return(sw_ids)
         expect(science_wire_harvester).to receive(:process_queued_sciencewire_suggestions).once.and_call_original
-        expect(science_wire_client).to receive(:get_full_sciencewire_pubs_for_sciencewire_ids).with(sw_ids.join(',')).and_call_original
+        expect(science_wire_client).to receive(:get_full_sciencewire_pubs_for_sciencewire_ids).with(sw_ids).and_call_original
         expect(science_wire_harvester).to receive(:create_or_update_pub_and_contribution_with_harvested_sw_doc).and_call_original
         # Prior to harvest, modify the sciencewire_id in the db record
         pub.update_attribute(:sciencewire_id, 999)

@@ -231,10 +231,31 @@ class ScienceWireClient
     raise
   end
 
+  # @param sciencewire_ids [Array<Integer>] array of PublicationItemID integers
   # @returns [Nokogiri::XML::Document] the ArrayOfPublicationItem response
   def get_full_sciencewire_pubs_for_sciencewire_ids(sciencewire_ids)
-    xml_doc = Nokogiri::XML(client.publication_items(sciencewire_ids, 'xml'))
+    # Get the documents in batches, because the request is made as a GET and a very long
+    # list of PublicationItemId values might exceed a URL length limit (approx. 2000 chars), see commentary in:
+    # http://stackoverflow.com/questions/417142/what-is-the-maximum-length-of-a-url-in-different-browsers
+    # Approx. 150 PublicationItemId values fits within 1500 chars (leaving room for the URL path); i.e.
+    # ([100000000] * 150).join(',').length == 1499
+    # So using batches of 100 is within the URL length limit and could also avoid some timeouts.
+    sw_id_slices = sciencewire_ids.each_slice(100).to_a
+    # Get the first set of 100 PublicationItem
+    id_slice = sw_id_slices.shift
+    xml_doc = Nokogiri::XML(client.publication_items(id_slice.join(','), 'xml'))
     validate_array_of_publication_item_xml xml_doc
+    pub_array = xml_doc.at_xpath('//ArrayOfPublicationItem')
+    # Collate additional results into pub_array
+    sw_id_slices.each do |id_sliceN|
+      xml_docN = Nokogiri::XML(client.publication_items(id_sliceN.join(','), 'xml'))
+      validate_array_of_publication_item_xml xml_docN
+      pub_arrayN = xml_docN.at_xpath('//ArrayOfPublicationItem')
+      pub_array.children += pub_arrayN.children
+    end
+    # Check that all the PublicationItem are collated into xml_doc
+    pub_items = xml_doc.xpath('//ArrayOfPublicationItem/PublicationItem')
+    raise 'Failed to collate PublicationItems' unless pub_items.count == sciencewire_ids.count
     xml_doc
   rescue Faraday::TimeoutError => te
     NotificationManager.error(te, 'Faraday::TimeoutError during ScienceWire Publication Items API GET request', self)
@@ -244,8 +265,10 @@ class ScienceWireClient
     raise
   end
 
+  # @param sciencewire_id [Integer] a PublicationItemID integer
+  # @returns [Nokogiri::XML::Element] a PublicationItem element
   def get_sw_xml_source_for_sw_id(sciencewire_id)
-    xml_doc = get_full_sciencewire_pubs_for_sciencewire_ids(sciencewire_id.to_s)
+    xml_doc = get_full_sciencewire_pubs_for_sciencewire_ids([sciencewire_id])
     xml_doc.xpath('//PublicationItem').first
   end
 
