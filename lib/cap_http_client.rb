@@ -5,7 +5,7 @@ class CapHttpClient
     response = new.get_auth_profile(41135)
     response.is_a?(Hash) &&
     response['profileId'] == 41135 &&
-    response['profile']['displayName'] == 'Darren Hardy'
+    ['Darren Hardy', 'John Wang'].include?(response['profile']['displayName']) # CAP-QA has different name
   end
 
   attr_reader :auth
