@@ -3,7 +3,7 @@ lock '3.4.0'
 
 set :application, 'sul-pub'
 set :user, 'pub'
-set :repo_url, "git@github.com:sul-dlss/#{fetch(:application)}.git"
+set :repo_url, "git@github.com:sul-dlss/sul_pub.git"
 set :ssh_options,   keys: [Capistrano::OneTimeKey.temporary_ssh_private_key_path],
                     forward_agent: true,
                     auth_methods: %w(publickey password)
