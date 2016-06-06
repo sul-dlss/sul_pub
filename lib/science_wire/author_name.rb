@@ -105,6 +105,8 @@ module ScienceWire
         name.scan(/[[:upper:]]/).first.to_s
       end
 
+      PARTICLE_REGEX = /^el$|^da$|^de$|^del$|^do$|^dos$|^du$|^le$/
+
       # If a name contains any capital letters, return it as is; otherwise
       # return a capitalized form of the name, taking into account some
       # particles that should not be capitalized.  For example,
@@ -112,7 +114,7 @@ module ScienceWire
       # proper_name('Berners-Lee'.downcase) => "Berners-Lee"
       def proper_name(name)
         return name if name =~ /[[:upper:]]/
-        name.gsub(/\b[[:alpha:]]+/) {|w| w =~ /^(el|da|de|del|do|dos|du|le)$/ ? w : w.capitalize }
+        name.gsub(/\b[[:alpha:]]+/) {|w| w =~ PARTICLE_REGEX ? w : w.capitalize }
       end
   end
 end
