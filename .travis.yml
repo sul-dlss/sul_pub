@@ -4,4 +4,4 @@ rvm:
   - 2.3.0
 sudo: false
 script: bundle exec rake ci
-services: mysql
+services: mysql 
