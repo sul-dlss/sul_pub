@@ -19,6 +19,8 @@ SingleCov.setup :rspec
 
 require 'simplecov'
 require 'coveralls'
+Coveralls.wear!('rails')
+
 require 'webmock/rspec'
 WebMock.enable!
 
