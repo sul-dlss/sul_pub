@@ -4,15 +4,12 @@ class Finder
   def fix(pub)
     return unless pub.sciencewire_id
 
-    h = pub.pub_hash
-    return unless h[:documentcategory_sw] =~ /^Conference Proceeding Document/i
-
-    if  h[:type] =~ /^article/i
+    # we've found a mis-categorized document, rebuild the pub_hash with the
+    # correct mapping code in place
+    if pub.pub_hash[:type] != SciencewireSourceRecord.lookup_cap_doc_type_by_sw_doc_category(pub.pub_hash[:documentcategory_sw])
       @found += 1
       @logger.info "Fixing #{pub.id}"
-      h[:type] = Settings.sul_doc_types.inproceedings
-      pub.pub_hash = h
-      pub.sync_publication_hash_and_db
+      pub.rebuild_pub_hash
       pub.save
     end
 
