@@ -56,3 +56,14 @@ task :rubocop_patch do
     system "git diff --name-only HEAD..master | grep -E -i 'rake|*.rb|*.erb' | xargs bundle exec rubocop"
   end
 end
+
+# we have to workaround a bug in the default `squash:notify[xxx]` task
+# that sends the wrong environment to Squash (Rails.env not what we want)
+namespace :squash do
+  Rake::Task['squash:notify'].clear
+  desc "notify a release (FIXED)"
+  task :notify, [:revision] => :environment do |_t, options|
+    puts "Running for #{Settings.SQUASH.ENVIRONMENT} and with options #{options}"
+    Squash::Ruby.notify_deploy Settings.SQUASH.ENVIRONMENT, options[:revision], Socket.gethostname.inspect
+  end
+end
