@@ -80,7 +80,7 @@ module ScienceWire
       end
 
       def author_name(person)
-        AuthorName.new(
+        ScienceWire::AuthorName.new(
           person.last_name,
           person.first_name,
           use_middle_name ? person.middle_name : ''
