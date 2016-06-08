@@ -9,17 +9,17 @@ by [Stanford University Libraries](http://library.stanford.edu).
 
 ## Configuration
 
-Configurations are currently being managed in multiple ways. The goal is to [consolidate](https://github.com/sul-dlss/sul-pub/issues/99) the approach. New configurations should be added in [`settings.yml`](https://github.com/sul-dlss/sul-pub/blob/master/config/application.yml). _Never check in private settings._ This project uses the [config gem](https://github.com/railsconfig/config) for managing settings. Private settings can be added locally in a *.local.yml file. See [Developer specific config files](https://github.com/railsconfig/config#developer-specific-config-files).
+Configurations are currently being managed in multiple ways. The goal is to [consolidate](https://github.com/sul-dlss/sul-pub/issues/99) the approach. New configurations should be added in [`settings.yml`](https://github.com/sul-dlss/sul_pub/blob/master/config/application.yml). _Never check in private settings._ This project uses the [config gem](https://github.com/railsconfig/config) for managing settings. Private settings can be added locally in a *.local.yml file. See [Developer specific config files](https://github.com/railsconfig/config#developer-specific-config-files).
 
 Legacy configuration files to review are:
-- https://github.com/sul-dlss/sul-pub/blob/master/config/application.yml
+- https://github.com/sul-dlss/sul_pub/blob/master/config/application.yml
   - Application configuration parameters (may not require any changes)
-- https://github.com/sul-dlss/sul-pub/blob/master/config/database.yml
+- https://github.com/sul-dlss/sul_pub/blob/master/config/database.yml
   - MySQL connection parameters
 
 # Developer Setup
 
-This is a ruby on rails application with an rspec test suite.  The ruby version currently used could be any version used in the [.travis.yml](https://github.com/sul-dlss/sul-pub/blob/master/.travis.yml) configuration file (preferably the latest stable version).  The application gems are managed by bundler, so the gem versions are all defined in the Gemfile (and Gemfile.lock).
+This is a ruby on rails application with an rspec test suite.  The ruby version currently used could be any version used in the [.travis.yml](https://github.com/sul-dlss/sul_pub/blob/master/.travis.yml) configuration file (preferably the latest stable version).  The application gems are managed by bundler, so the gem versions are all defined in the Gemfile (and Gemfile.lock).
 
 ### Code Conventions
 
@@ -28,8 +28,8 @@ The conventions to follow are noted in the [DLSS developer playbook](https://git
 ## Initial Setup
 
 ```sh
-git clone git@github.com:sul-dlss/sul-pub.git
-cd sul-pub
+git clone git@github.com:sul-dlss/sul_pub.git
+cd sul_pub
 bundle install
 ```
 
