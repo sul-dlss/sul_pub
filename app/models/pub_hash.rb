@@ -147,10 +147,13 @@ class PubHash
         # override the startdate if there is a year:
         cit_data_hash['event-date'] = { 'date-parts' => [[pub_hash[:conference][:year]]] } unless pub_hash[:conference][:year].blank?
         cit_data_hash['number'] = pub_hash[:conference][:number] unless pub_hash[:conference][:number].blank?
+        # favors city/state over location
         if !pub_hash[:conference][:city].blank? || !pub_hash[:conference][:statecountry].blank?
-          cit_data_hash['event-place'] = pub_hash[:conference][:city]
-          cit_data_hash['event-place'] << ',' unless pub_hash[:conference][:city].blank? || pub_hash[:conference][:statecountry].blank?
-          cit_data_hash['event-place'] << pub_hash[:conference][:statecountry] unless pub_hash[:conference][:statecountry].blank?
+          cit_data_hash['event-place'] = pub_hash[:conference][:city] || ''
+          if pub_hash[:conference][:statecountry].present?
+            cit_data_hash['event-place'] << ',' if cit_data_hash['event-place'].present?
+            cit_data_hash['event-place'] << pub_hash[:conference][:statecountry]
+          end
         elsif !pub_hash[:conference][:location].blank?
           cit_data_hash['event-place'] = pub_hash[:conference][:location]
         end
