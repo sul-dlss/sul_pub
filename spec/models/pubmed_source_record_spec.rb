@@ -89,6 +89,10 @@ describe PubmedSourceRecord, :vcr do
           xml: author_doc(' <Author ValidYN="N"> <LastName>Whitely</LastName> <ForeName>R J</ForeName> <Initials>RJ</Initials> </Author>'),
           hash: nil
         },
+        Whitely_Malformed: { # missing ValidYN attribute
+          xml: author_doc(' <Author> <LastName>Whitely</LastName> <ForeName>R J</ForeName> <Initials>RJ</Initials> </Author>'),
+          hash: nil
+        },
         Collective: {
           xml: author_doc(' <Author ValidYN="Y"> <CollectiveName>SBU-group. Swedish Council of Technology Assessment in Health Care</CollectiveName> </Author>'),
           hash: nil
@@ -103,6 +107,9 @@ describe PubmedSourceRecord, :vcr do
     end
     it 'extracts nothing for Whitely example' do
       check_author_hash(:Whitely)
+    end
+    it 'extracts nothing for malformed Whitely example' do
+      check_author_hash(:Whitely_Malformed)
     end
     it 'extracts nothing for Collective example' do
       check_author_hash(:Collective)
