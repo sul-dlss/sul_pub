@@ -346,4 +346,9 @@ describe Publication do
       expect(pub).to_not be_authoritative_pmid_source
     end
   end
+
+  describe '#rebuild_pub_hash' do
+    it 'correctly rebuilds pub_hash from SciencewireSourceRecord'
+    it 'correctly rebuilds pub_hash from PubmedSourceRecord'
+  end
 end
