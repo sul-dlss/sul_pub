@@ -35,6 +35,13 @@ feature 'Harvest Brokering', 'data-integration': true do
         expect(new_pubs - seeds).not_to be_empty # seeds should be removed already
         expect(new_pubs - smart_ids).not_to be_empty # alt-names add something
       end
+      describe 'seed_list' do
+        it 'returns an Array<Integer>' do
+          expect(seeds).to be_an Array
+          expect(seeds).not_to be_empty
+          expect(seeds.first).to be_an Integer
+        end
+      end
     end
     context 'an author with no seed publications' do
       let(:author) { create(:author_michael_halaas) }

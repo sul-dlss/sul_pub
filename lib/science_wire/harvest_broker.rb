@@ -71,8 +71,7 @@ module ScienceWire
       # Accessors for custom Author information. Eventually could migrate to
       # AuthorAttributes as the client changes underneath.
       def seed_list
-        @seed_list ||= author.publications.approved.with_sciencewire_id
-                             .pluck(:sciencewire_id).uniq
+        @seed_list ||= author.approved_sciencewire_ids
       end
 
       def author_pub_swids
