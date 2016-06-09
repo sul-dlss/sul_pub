@@ -1,7 +1,7 @@
 require 'spec_helper'
 SingleCov.covered!
 
-describe AuthorName do
+describe Csl::AuthorName do
   let(:fn) { 'Amasa' }
   let(:mn) { 'Leland' }
   let(:ln) { 'Stanford' }

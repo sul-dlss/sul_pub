@@ -246,7 +246,7 @@ private
     cap_authors.map do |author|
       author = author.symbolize_keys
       next unless author[:role].to_s.casecmp(role) >= 0
-      AuthorName.new(author).to_csl_author
+      Csl::AuthorName.new(author).to_csl_author
     end.compact
   end
 
@@ -257,7 +257,7 @@ private
   def pubmed_authors_to_csl(pubmed_authors)
     pubmed_authors.map do |author|
       author = author.symbolize_keys
-      AuthorName.new(author).to_csl_author
+      Csl::AuthorName.new(author).to_csl_author
     end.compact
   end
 
@@ -270,7 +270,7 @@ private
     sw_authors.map do |author|
       # Each ScienceWire author is a CSV value: 'Lastname,Firstname,Middlename'
       last, first, middle = author[:name].split(',')
-      AuthorName.new(
+      Csl::AuthorName.new(
         lastname: last,
         firstname: first,
         middlename: middle
