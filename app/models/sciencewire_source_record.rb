@@ -205,6 +205,7 @@ class SciencewireSourceRecord < ActiveRecord::Base
 
     if sul_document_type == Settings.sul_doc_types.inproceedings
       conference_hash = {}
+      conference_hash[:name] = publication.xpath('ConferenceTitle').text unless publication.xpath('ConferenceTitle').blank?
       conference_hash[:startdate] = publication.xpath('ConferenceStartDate').text unless publication.xpath('ConferenceStartDate').blank?
       conference_hash[:enddate] = publication.xpath('ConferenceEndDate').text unless publication.xpath('ConferenceEndDate').blank?
       conference_hash[:city] = publication.xpath('ConferenceCity').text unless publication.xpath('ConferenceCity').blank?

@@ -115,12 +115,25 @@ describe SciencewireSourceRecord do
       it 'extracts metadata for a book'
     end
     describe 'parses one inproceedings publication' do
-      subject { build_sciencewire_source_record_from_fixture(12_345_678).source_as_hash }
+      subject { build_sciencewire_source_record_from_fixture(9_538_214).source_as_hash }
       it 'extracts type' do
-        expect(subject).to include(type: 'inproceedings', documentcategory_sw: 'Conference Proceeding Document')
-        expect(subject[:documenttypes_sw]).to include('Meeting Abstract')
+        expect(subject).to include(type: 'inproceedings',
+                                   documentcategory_sw: 'Conference Proceeding Document')
+        expect(subject[:documenttypes_sw]).to include('Article')
       end
-      it 'extracts metadata for a paper in proceedings'
+      it 'extracts publication source' do # called because Issue is not blank
+        expect(subject[:journal]).to include(name: 'INTERNATIONAL JOURNAL OF MEDICAL INFORMATICS',
+                                             volume: '51',
+                                             issue: '2-3',
+                                             pages: '107-116')
+      end
+      it 'extracts metadata for a paper in proceedings' do
+        expect(subject[:conference]).to include(name: '3rd Annual General Meeting of HEALNet',
+                                                startdate: '1997-11-01T00:00:00',
+                                                enddate: '',
+                                                statecountry: 'CANADA')
+        expect(subject[:conference][:city]).to be_nil
+      end
     end
   end
 end

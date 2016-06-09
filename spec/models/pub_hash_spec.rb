@@ -809,6 +809,62 @@ describe PubHash do
         expect(pub_hash.to_apa_citation).to eq 'Reed, J. (2015). Preservation and discovery for GIS data. Presented at the Esri User Conference, San Diego, California: Esri.'
       end
     end
+    context 'conference proceeding without city' do
+      let(:pub_hash) do
+        h = JSON.parse(create(:conference_proceeding).source_data, symbolize_names: true)
+        h[:conference][:location] = nil
+        h[:conference][:city] = nil
+        h[:conference][:statecountry] = 'California'
+        PubHash.new(h)
+      end
+      it 'creates citation data for event-place' do
+        expect(pub_hash.csl_doc).to include('event-place' => 'California')
+      end
+      it 'creates a APA citation' do
+        expect(pub_hash.to_apa_citation).to eq 'Reed, J. (2015). Preservation and discovery for GIS data. Presented at the Esri User Conference, California: Esri.'
+      end
+    end
+    context 'conference proceeding with city but no state' do
+      let(:pub_hash) do
+        h = JSON.parse(create(:conference_proceeding).source_data, symbolize_names: true)
+        h[:conference][:location] = nil
+        h[:conference][:city] = 'San Diego'
+        h[:conference][:statecountry] = nil
+        PubHash.new(h)
+      end
+      it 'creates citation data for event-place' do
+        expect(pub_hash.csl_doc).to include('event-place' => 'San Diego')
+      end
+      it 'creates a APA citation' do
+        expect(pub_hash.to_apa_citation).to eq 'Reed, J. (2015). Preservation and discovery for GIS data. Presented at the Esri User Conference, San Diego: Esri.'
+      end
+    end
+    context 'conference proceeding with city and state' do
+      let(:pub_hash) do
+        h = conference_pub_in_journal_hash
+        h[:conference][:location] = nil
+        PubHash.new(h)
+      end
+      it 'has an event' do
+        expect(pub_hash.csl_doc).to include('event' => 'The Big Conference',
+                                            'event-place' => 'Knoxville,TN') # TODO: comma has no space after it
+      end
+    end
+    context 'conference proceeding published in a journal and location' do
+      let(:pub_hash) do
+        h = conference_pub_in_journal_hash
+        h[:conference][:city] = nil
+        h[:conference][:statecountry] = nil
+        PubHash.new(h)
+      end
+      it 'has a journal' do
+        expect(pub_hash.csl_doc).to include('container-title' => 'Some Journal Name')
+      end
+      it 'has an event with location' do
+        expect(pub_hash.csl_doc).to include('event' => 'The Big Conference',
+                                            'event-place' => 'Knoxville, TN')
+      end
+    end
     context 'journal article' do
       let(:pub_hash) { PubHash.new(JSON.parse(create(:journal_article).source_data, symbolize_names: true)) }
       it 'creates a Chicago citation' do

@@ -1,0 +1,40 @@
+<PublicationItem>
+    <PublicationItemID>9538214</PublicationItemID>
+    <Title>The diffusion of an evidence-based disease guidance system for managing stroke</Title>
+    <Abstract>This paper describes the diffusion of an evidence-based stroke guidance system (SGS) in a field setting through participatory research. SGS enables physicians to review relevant evidence-based literature, from which patient orders are generated for managing cerebrovascular accident. The paper focuses on the question 'what are the barriers and enablers to adopting SOS?' The research site consisted of eight hospitals within two health regions in Alberta, with 47 physicians as the intended users. The data sources consisted of surveys, education sessions, design feedback, field observations, and usage logs. Preliminary results revealed an initial slow rate of adoption that gradually improved with the influence of clinical champions, more effective communication, sustained education, round-the-clock support and continued system refinement. These initial findings suggest that models of technological diffusion can help us better understand the complexities of changing physician practice behaviors. (C) 1998 Elsevier Science Ireland Ltd. Ail rights reserved.</Abstract>
+    <AuthorList>Lau,F,|Penn,A,|Wilson,D,|Noseworthy,T,|Vincent,D,|Doze,S,</AuthorList>
+    <AuthorCount>6</AuthorCount>
+    <KeywordList>MEDICAL INFORMATICS|INFORMATION TECHNOLOGY|FRAMEWORK|PHYSICIANS|PRACTICE GUIDELINES|CLINICAL-PRACTICE|evidence-based practice|stroke management|diffusion of innovations</KeywordList>
+    <DocumentTypeList>Article</DocumentTypeList>
+    <DocumentCategory>Conference Proceeding Document</DocumentCategory>
+    <NumberOfReferences>46</NumberOfReferences>
+    <TimesCited>9</TimesCited>
+    <TimesNotSelfCited>9</TimesNotSelfCited>
+    <PMID>9794327</PMID>
+    <WoSItemID>000076130200005</WoSItemID>
+    <PublicationSourceTitle>INTERNATIONAL JOURNAL OF MEDICAL INFORMATICS</PublicationSourceTitle>
+    <Volume>51</Volume>
+    <Issue>2-3</Issue>
+    <Pagination>107-116</Pagination>
+    <PublicationDate>1998-08-01T00:00:00</PublicationDate>
+    <PublicationYear>1998</PublicationYear>
+    <PublicationType>Journal</PublicationType>
+    <PublicationSubjectCategoryList>Computer Science, Information Systems|Health Care Sciences &amp; Services|Medical Informatics</PublicationSubjectCategoryList>
+    <ISSN>1386-5056</ISSN>
+    <ConferenceTitle>3rd Annual General Meeting of HEALNet</ConferenceTitle>
+    <ConferenceStartDate>1997-11-01T00:00:00</ConferenceStartDate>
+    <ConferenceEndDate xsi:nil="true"/>
+    <ConferenceStateCountry>CANADA</ConferenceStateCountry>
+    <Rank xsi:nil="true"/>
+    <OrdinalRank>79</OrdinalRank>
+    <NormalizedRank xsi:nil="true"/>
+    <NewPublicationItemID xsi:nil="true"/>
+    <IsObsolete>false</IsObsolete>
+    <CopyrightPublisher>ELSEVIER IRELAND LTD</CopyrightPublisher>
+    <CopyrightCity>CLARE</CopyrightCity>
+    <PublicationImpactFactorList>0.375,1998,ExactPublicationYear|2.414,2011,MostRecentYear</PublicationImpactFactorList>
+    <PublicationCategoryRankingList>30/59;COMPUTER SCIENCE, INFORMATION SYSTEMS;1998;SC;ExactPublicationYear|18/20;MEDICAL INFORMATICS;1998;SC;ExactPublicationYear|12/133;COMPUTER SCIENCE, INFORMATION SYSTEMS;2011;SC;MostRecentYear|18/75;HEALTH CARE SCIENCES &amp; SERVICES;2011;SC;MostRecentYear|4/23;MEDICAL INFORMATICS;2011;SC;MostRecentYear</PublicationCategoryRankingList>
+    <AuthorCitationCountList>1,0,9|2,0,9|3,0,9|4,0,9|5,0,9|6,0,9</AuthorCitationCountList>
+    <CopyrightStateProvince/>
+    <CopyrightCountry>IRELAND</CopyrightCountry>
+  </PublicationItem>
