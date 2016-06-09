@@ -174,10 +174,10 @@ describe CapAuthorsPoller, :vcr do
 
     it 'handles when authorship is invalid submission' do
       authorship = authorship_record['authorship'].first
-      expect(Contribution.authorship_valid?(authorship)).to be true
+      expect(Contribution.valid_fields?(authorship)).to be true
       # Change the authorship so it fails to validate
       authorship.delete 'visibility'
-      expect(Contribution).to receive(:authorship_valid?).with(authorship).and_call_original
+      expect(Contribution).to receive(:valid_fields?).with(authorship).and_call_original
       # Test that an invalid authorship will generate error logging and notification
       expect(NotificationManager).to receive(:error)
       # Test that an invalid authorship will increment the counter
