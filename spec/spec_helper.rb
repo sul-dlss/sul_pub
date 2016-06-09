@@ -24,7 +24,7 @@ Coveralls.wear!('rails')
 require 'webmock/rspec'
 WebMock.enable!
 
-SimpleCov.profiles.define 'sul-pub' do
+SimpleCov.profiles.define 'sul_pub' do
   add_filter '.gems'
   add_filter '/config/environments/'
   add_filter 'config/initializers/mime_types.rb'
@@ -39,8 +39,11 @@ SimpleCov.profiles.define 'sul-pub' do
   # dataset for comparison, so it can't fail a travis build.
   maximum_coverage_drop 0.1
 end
-SimpleCov.formatter = SimpleCov::Formatter::HTMLFormatter
-SimpleCov.start 'sul-pub'
+SimpleCov::Formatter::MultiFormatter[
+  SimpleCov::Formatter::HTMLFormatter,
+  Coveralls::SimpleCov::Formatter
+]
+SimpleCov.start 'sul_pub'
 
 require File.expand_path('../../config/environment', __FILE__)
 
