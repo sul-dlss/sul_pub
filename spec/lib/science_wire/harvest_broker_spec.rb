@@ -146,4 +146,21 @@ describe ScienceWire::HarvestBroker do
       ).to eq [1, 2, 3]
     end
   end
+
+  describe 'seed_list' do
+    it 'returns an Array<Integer>' do
+      expect(author).to receive(:approved_sciencewire_ids).and_return([1])
+      seeds = subject.send(:seed_list)
+      expect(seeds).to be_an Array
+      expect(seeds).not_to be_empty
+      expect(seeds.first).to be_an Integer
+    end
+  end
+
+  describe 'author_name' do
+    it 'returns a ScienceWire::AuthorName' do
+      name = subject.send(:author_name, author)
+      expect(name).to be_an ScienceWire::AuthorName
+    end
+  end
 end
