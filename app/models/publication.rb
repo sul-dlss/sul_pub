@@ -232,7 +232,7 @@ class Publication < ActiveRecord::Base
       if i.persisted?
         i.save
       else
-        publication_identifiers << i
+        publication_identifiers << i unless publication_identifiers.include? i
       end
     end
   end
@@ -326,15 +326,15 @@ class Publication < ActiveRecord::Base
   end
 
   def add_all_identifiers_in_db_to_pub_hash
-    pub_hash[:identifier] ||= []
     publication_identifiers.reload if persisted?
-    pub_hash[:identifier] = publication_identifiers.collect do |identifier|
+    db_ids = publication_identifiers.collect do |id|
       ident_hash = {}
-      ident_hash[:type] = identifier.identifier_type unless identifier.identifier_type.blank?
-      ident_hash[:id] = identifier.identifier_value unless identifier.identifier_value.blank?
-      ident_hash[:url] = identifier.identifier_uri unless identifier.identifier_uri.blank?
+      ident_hash[:type] = id.identifier_type unless id.identifier_type.blank?
+      ident_hash[:id] = id.identifier_value unless id.identifier_value.blank?
+      ident_hash[:url] = id.identifier_uri unless id.identifier_uri.blank?
       ident_hash
     end
+    pub_hash[:identifier] = db_ids
   end
 
   def add_all_db_contributions_to_my_pub_hash
@@ -346,7 +346,6 @@ class Publication < ActiveRecord::Base
 
   def update_formatted_citations
     h = PubHash.new(pub_hash)
-
     pub_hash[:apa_citation] = h.to_apa_citation
     pub_hash[:mla_citation] = h.to_mla_citation
     pub_hash[:chicago_citation] = h.to_chicago_citation
