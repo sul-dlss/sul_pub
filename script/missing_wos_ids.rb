@@ -47,7 +47,31 @@ class MissingWosId
     msg += e.backtrace.join("\n")
     logger.error msg
   end
+
+  def work
+    ActiveRecord::Base.logger.level = 1
+    Publication.where.not(sciencewire_id: nil).find_each(batch_size: 500) do |pub|
+      if missing_wos_id? pub
+        src = SciencewireSourceRecord.find_by_sciencewire_id(pub.sciencewire_id)
+        fingerprint_before = src.source_fingerprint
+        src.sciencewire_update
+        src.reload
+        if src.source_fingerprint != fingerprint_before
+          if src.publication.wos_item_id.present?
+            logger.warn "Publication #{pub[:id]} has a new WoSItemID in SciencewireSourceRecord"
+          end
+          pub.rebuild_pub_hash
+          pub.save!
+          logger.warn "Updated Publication #{pub[:id]} with an updated SciencewireSourceRecord"
+        end
+      end
+    end
+  rescue => e
+    msg = "#{e.inspect}\n"
+    msg += e.backtrace.join("\n")
+    logger.error msg
+  end
 end
 
 c = MissingWosId.new
-c.diagnostics
+c.work
