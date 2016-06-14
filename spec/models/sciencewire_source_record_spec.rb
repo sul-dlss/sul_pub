@@ -1,7 +1,7 @@
 require 'spec_helper'
 SingleCov.covered!
 
-describe SciencewireSourceRecord do
+describe SciencewireSourceRecord, :vcr do
   describe '.lookup_sw_doc_type' do
     it 'maps document types to CAP inproceedings' do
       expect(SciencewireSourceRecord.lookup_sw_doc_type(['Meeting Abstract'])).to eq('inproceedings')
@@ -68,6 +68,58 @@ describe SciencewireSourceRecord do
       it 'parses the ScienceWire source XML' do
         expect(subject).to receive(:source_data).and_call_original
         subject.publication_xml
+      end
+    end
+
+    describe '#sciencewire_update' do
+      it 'updates the :pmid field' do
+        expect(subject.pmid).to eq 24_213_991
+        subject.pmid = 999
+        subject.save!
+        subject.reload
+        expect(subject.pmid).to eq 999
+        expect(subject.sciencewire_update).to be true
+        expect(subject.pmid).to eq 24_213_991
+      end
+
+      it 'updates the :is_active field' do
+        expect(subject.is_active).to be true
+        subject.is_active = false
+        subject.save!
+        subject.reload
+        expect(subject.is_active).to be false
+        expect(subject.sciencewire_update).to be true
+        expect(subject.is_active).to be true
+      end
+
+      it 'updates the :source_data field' do
+        expect(subject.source_data).not_to be_empty
+        subject.source_data = ''
+        subject.save!
+        subject.reload
+        expect(subject.source_data).to be_empty
+        expect(subject.sciencewire_update).to be true
+        expect(subject.source_data).not_to be_empty
+      end
+
+      it 'updates the :source_data field' do
+        expect(subject.source_data).not_to be_empty
+        subject.source_data = ''
+        subject.save!
+        subject.reload
+        expect(subject.source_data).to be_empty
+        expect(subject.sciencewire_update).to be true
+        expect(subject.source_data).not_to be_empty
+      end
+
+      it 'updates the :source_fingerprint field' do
+        expect(subject.source_fingerprint).not_to be_empty
+        subject.source_fingerprint = ''
+        subject.save!
+        subject.reload
+        expect(subject.source_fingerprint).to be_empty
+        expect(subject.sciencewire_update).to be true
+        expect(subject.source_fingerprint).not_to be_empty
       end
     end
   end

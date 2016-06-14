@@ -32,6 +32,20 @@ class SciencewireSourceRecord < ActiveRecord::Base
     @publication_xml ||= Nokogiri::XML(source_data)
   end
 
+  # Retrieve this PublicationItem from ScienceWire and update the pmid,
+  # is_active, source_data and the source_fingerprint fields.
+  # @return [Boolean] the return value from update_attributes!
+  def sciencewire_update
+    sw_record_doc = ScienceWireClient.new.get_sw_xml_source_for_sw_id(sciencewire_id)
+    sw_pub = ScienceWirePublication.new sw_record_doc
+    attrs = {}
+    attrs[:pmid] = sw_pub.pmid unless sw_pub.pmid.blank?
+    attrs[:is_active] = !sw_pub.obsolete?
+    attrs[:source_data] = sw_pub.to_xml
+    attrs[:source_fingerprint] = Digest::SHA2.hexdigest(sw_record_doc)
+    update_attributes! attrs
+  end
+
   ##
   # Class methods
 
