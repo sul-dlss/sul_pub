@@ -38,6 +38,40 @@ describe SciencewireSourceRecord do
     end
   end
 
+  describe 'instance methods' do
+    subject { build_sciencewire_source_record_from_fixture(64_367_696) }
+
+    describe '#publication' do
+      it 'returns a ScienceWirePublication' do
+        expect(subject.publication).to be_an ScienceWirePublication
+      end
+      it 'parses the ScienceWire source XML' do
+        expect(subject).to receive(:source_data).and_call_original
+        subject.publication
+      end
+    end
+
+    describe '#publication_item' do
+      it 'returns a Nokogiri::XML::Element' do
+        expect(subject.publication_item).to be_an Nokogiri::XML::Element
+      end
+      it 'parses the ScienceWire source XML' do
+        expect(subject).to receive(:source_data).and_call_original
+        subject.publication_item
+      end
+    end
+
+    describe '#publication_xml' do
+      it 'returns a Nokogiri::XML::Document' do
+        expect(subject.publication_xml).to be_an Nokogiri::XML::Document
+      end
+      it 'parses the ScienceWire source XML' do
+        expect(subject).to receive(:source_data).and_call_original
+        subject.publication_xml
+      end
+    end
+  end
+
   describe '.source_as_hash' do
     describe 'parses one publication' do
       subject { build_sciencewire_source_record_from_fixture(64_367_696).source_as_hash }
