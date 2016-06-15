@@ -177,11 +177,14 @@ class PubmedSourceRecord < ActiveRecord::Base
     # <AffiliationInfo> was added to <AuthorList> with the 2015 DTD. The <AffiliationInfo>
     #                   envelope element includes <Affliliation> and <Identifier>.
     #
+    # @param author [Nokogiri::XML::Element] an <Author> element
     # @return author_hash [Hash] with keys :firstname, :middlename and :lastname
     def author_to_hash(author)
       # <Author> examples provide many variations at No. 20 from
       # https://www.nlm.nih.gov/bsd/licensee/elements_descriptions.html
       ##
+      # Ignore an empty <Author/> element
+      return if author.children.empty?
       # Ignore an <Author> that contains only <CollectiveName>
       return if author.xpath('CollectiveName').present?
       # Ignore an <Author ValidYN="N"> or missing ValidYN attribute
