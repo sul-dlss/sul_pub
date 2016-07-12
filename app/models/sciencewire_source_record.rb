@@ -9,10 +9,45 @@ class SciencewireSourceRecord < ActiveRecord::Base
   @@sw_book_types ||= Settings.sw_doc_type_mappings.book.join('|')
 
   include ActionView::Helpers::DateHelper
-  # one instance method, the rest are class methods
+
+  ##
+  # Instance methods
+
   def source_as_hash
-    SciencewireSourceRecord.convert_sw_publication_doc_to_hash(Nokogiri::XML(source_data).xpath('//PublicationItem'))
+    SciencewireSourceRecord.convert_sw_publication_doc_to_hash(publication_item)
   end
+
+  # @return publication [ScienceWirePublication] PublicationItem object
+  def publication
+    @publication ||= ScienceWirePublication.new publication_item
+  end
+
+  # @return publication_item [Nokogiri::XML::Element] XML element for PublicationItem
+  def publication_item
+    @publication_item ||= publication_xml.at_xpath('//PublicationItem')
+  end
+
+  # @return publication_xml [Nokogiri::XML::Document] XML document
+  def publication_xml
+    @publication_xml ||= Nokogiri::XML(source_data)
+  end
+
+  # Retrieve this PublicationItem from ScienceWire and update the pmid,
+  # is_active, source_data and the source_fingerprint fields.
+  # @return [Boolean] the return value from update_attributes!
+  def sciencewire_update
+    sw_record_doc = ScienceWireClient.new.get_sw_xml_source_for_sw_id(sciencewire_id)
+    sw_pub = ScienceWirePublication.new sw_record_doc
+    attrs = {}
+    attrs[:pmid] = sw_pub.pmid unless sw_pub.pmid.blank?
+    attrs[:is_active] = !sw_pub.obsolete?
+    attrs[:source_data] = sw_pub.to_xml
+    attrs[:source_fingerprint] = Digest::SHA2.hexdigest(sw_record_doc)
+    update_attributes! attrs
+  end
+
+  ##
+  # Class methods
 
   def self.get_pub_by_pmid(pmid)
     sw_pub_hash = get_sciencewire_hash_for_pmid(pmid)
