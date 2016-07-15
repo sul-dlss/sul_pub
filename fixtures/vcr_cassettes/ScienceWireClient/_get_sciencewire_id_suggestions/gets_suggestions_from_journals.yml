@@ -20,7 +20,7 @@ http_interactions:
       Accept-Encoding:
       - gzip,deflate
       Date:
-      - Thu, 02 Jun 2016 22:12:04 GMT
+      - Fri, 15 Jul 2016 18:43:30 GMT
       Licenseid:
       - Settings.SCIENCEWIRE.LICENSE_ID
       Host:
@@ -49,7 +49,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Thu, 02 Jun 2016 22:12:31 GMT
+      - Fri, 15 Jul 2016 18:43:48 GMT
       Content-Length:
       - '26561'
     body:
@@ -355,7 +355,7 @@ http_interactions:
         \ <ItemMatchResult>\r\n    <MatchRank>149</MatchRank>\r\n    <PublicationItemID>75403702</PublicationItemID>\r\n
         \   <MatchScore>0.022072175517678261</MatchScore>\r\n  </ItemMatchResult>\r\n</ArrayOfItemMatchResult>"
     http_version: 
-  recorded_at: Thu, 02 Jun 2016 22:12:31 GMT
+  recorded_at: Fri, 15 Jul 2016 18:43:49 GMT
 - request:
     method: post
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/MatchedPublicationItemIdsForAuthor?format=xml
@@ -376,7 +376,7 @@ http_interactions:
       Accept-Encoding:
       - gzip,deflate
       Date:
-      - Thu, 02 Jun 2016 22:12:31 GMT
+      - Fri, 15 Jul 2016 18:43:49 GMT
       Licenseid:
       - Settings.SCIENCEWIRE.LICENSE_ID
       Host:
@@ -405,7 +405,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Thu, 02 Jun 2016 15:53:32 GMT
+      - Fri, 15 Jul 2016 18:43:51 GMT
       Content-Length:
       - '1909'
     body:
@@ -433,5 +433,5 @@ http_interactions:
         \ <ItemMatchResult>\r\n    <MatchRank>10</MatchRank>\r\n    <PublicationItemID>27282101</PublicationItemID>\r\n
         \   <MatchScore>0.12799873948097229</MatchScore>\r\n  </ItemMatchResult>\r\n</ArrayOfItemMatchResult>"
     http_version: 
-  recorded_at: Thu, 02 Jun 2016 22:12:34 GMT
+  recorded_at: Fri, 15 Jul 2016 18:43:51 GMT
 recorded_with: VCR 3.0.1

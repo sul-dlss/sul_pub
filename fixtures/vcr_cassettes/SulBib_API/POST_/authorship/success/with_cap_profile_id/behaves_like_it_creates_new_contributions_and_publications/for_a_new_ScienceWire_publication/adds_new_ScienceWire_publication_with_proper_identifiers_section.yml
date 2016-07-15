@@ -14,7 +14,7 @@ http_interactions:
       Accept-Encoding:
       - gzip,deflate
       Date:
-      - Thu, 02 Jun 2016 22:11:36 GMT
+      - Fri, 15 Jul 2016 18:42:48 GMT
       Licenseid:
       - Settings.SCIENCEWIRE.LICENSE_ID
       Host:
@@ -43,7 +43,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Thu, 02 Jun 2016 15:53:32 GMT
+      - Fri, 15 Jul 2016 18:42:48 GMT
       Content-Length:
       - '3660'
     body:
@@ -93,7 +93,7 @@ http_interactions:
         \   <CopyrightPublisher>SPRINGER</CopyrightPublisher>\r\n    <CopyrightCity>DORDRECHT</CopyrightCity>\r\n
         \ </PublicationItem>\r\n</ArrayOfPublicationItem>"
     http_version: 
-  recorded_at: Thu, 02 Jun 2016 22:11:37 GMT
+  recorded_at: Fri, 15 Jul 2016 18:42:48 GMT
 - request:
     method: post
     uri: http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml
@@ -113,7 +113,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 02 Jun 2016 22:11:37 GMT
+      - Fri, 15 Jul 2016 18:42:49 GMT
       Server:
       - Apache
       Access-Control-Allow-Origin:
@@ -121,12 +121,12 @@ http_interactions:
       Cache-Control:
       - private
       Ncbi-Sid:
-      - 9DFC065F750AF191_0279SID
+      - 9DFC07F57892EA91_0063SID
       Content-Type:
       - text/xml; charset=UTF-8
       Set-Cookie:
-      - ncbi_sid=9DFC065F750AF191_0279SID; domain=.nih.gov; path=/; expires=Fri, 02
-        Jun 2017 22:11:37 GMT
+      - ncbi_sid=9DFC07F57892EA91_0063SID; domain=.nih.gov; path=/; expires=Sat, 15
+        Jul 2017 18:42:49 GMT
       X-Ua-Compatible:
       - IE=Edge
       Transfer-Encoding:
@@ -326,5 +326,5 @@ http_interactions:
 
         </PubmedArticleSet>
     http_version: 
-  recorded_at: Thu, 02 Jun 2016 22:11:37 GMT
+  recorded_at: Fri, 15 Jul 2016 18:42:49 GMT
 recorded_with: VCR 3.0.1

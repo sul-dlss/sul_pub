@@ -10,7 +10,7 @@ http_interactions:
         \                        <query xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
         xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\n              <Criterion>\n
         \               <Criteria>\n                              <Criterion>\n              <TextSearch>\n
-        \               <QueryPredicate>\"ottawa,\" or \"OTTAWA,\" or \"OTTAWA,Y\"</QueryPredicate>\n
+        \               <QueryPredicate>\"Ottawa,\" or \"Ottawa,,Yukon\" or \"Ottawa,,Y\"</QueryPredicate>\n
         \               <SearchType>ExactMatch</SearchType>\n                <Columns>AggregateText</Columns>\n
         \               <MaximumRows>4</MaximumRows>\n              </TextSearch>\n
         \           </Criterion>\n\n                                <Criterion>\n
@@ -34,7 +34,7 @@ http_interactions:
       Accept-Encoding:
       - gzip,deflate
       Date:
-      - Thu, 02 Jun 2016 22:12:00 GMT
+      - Fri, 15 Jul 2016 18:43:24 GMT
       Licenseid:
       - Settings.SCIENCEWIRE.LICENSE_ID
       Host:
@@ -63,14 +63,14 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Thu, 02 Jun 2016 15:53:32 GMT
+      - Fri, 15 Jul 2016 18:43:25 GMT
       Content-Length:
       - '278'
     body:
       encoding: UTF-8
       string: "<?xml version=\"1.0\"?>\r\n<ScienceWireQueryIDResponse xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
-        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>242198</queryID>\r\n
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>263023</queryID>\r\n
         \ <queryResultRows>0</queryResultRows>\r\n  <totalRows>0</totalRows>\r\n</ScienceWireQueryIDResponse>"
     http_version: 
-  recorded_at: Thu, 02 Jun 2016 22:12:01 GMT
+  recorded_at: Fri, 15 Jul 2016 18:43:25 GMT
 recorded_with: VCR 3.0.1

@@ -10,10 +10,11 @@ http_interactions:
         \                        <query xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
         xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\n              <Criterion>\n
         \               <Criteria>\n                              <Criterion>\n              <TextSearch>\n
-        \               <QueryPredicate>(\"Edler,Alice\" or \"EDLER,A\" or \"EDLER,AJ\")
-        and \"stanford\"</QueryPredicate>\n                <SearchType>ExactMatch</SearchType>\n
-        \               <Columns>AggregateText</Columns>\n                <MaximumRows>200</MaximumRows>\n
-        \             </TextSearch>\n            </Criterion>\n\n                                <Criterion>\n
+        \               <QueryPredicate>(\"Edler,Alice\" or \"Edler,A\" or \"Edler,Alice,Jim\"
+        or \"Edler,Alice,J\" or \"Edler,A,J\") and \"stanford\"</QueryPredicate>\n
+        \               <SearchType>ExactMatch</SearchType>\n                <Columns>AggregateText</Columns>\n
+        \               <MaximumRows>200</MaximumRows>\n              </TextSearch>\n
+        \           </Criterion>\n\n                                <Criterion>\n
         \               <Filter>\n                  <Column>AuthorLastName</Column>\n
         \                 <Operator>BeginsWith</Operator>\n                  <Value>EDLER</Value>\n
         \               </Filter>\n              </Criterion>\n\n                                <Criterion>\n
@@ -37,7 +38,7 @@ http_interactions:
       Accept-Encoding:
       - gzip,deflate
       Date:
-      - Thu, 02 Jun 2016 22:10:49 GMT
+      - Fri, 15 Jul 2016 18:41:59 GMT
       Licenseid:
       - Settings.SCIENCEWIRE.LICENSE_ID
       Host:
@@ -66,19 +67,19 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Thu, 02 Jun 2016 15:53:32 GMT
+      - Fri, 15 Jul 2016 18:41:59 GMT
       Content-Length:
       - '280'
     body:
       encoding: UTF-8
       string: "<?xml version=\"1.0\"?>\r\n<ScienceWireQueryIDResponse xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
-        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>240364</queryID>\r\n
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>243446</queryID>\r\n
         \ <queryResultRows>16</queryResultRows>\r\n  <totalRows>16</totalRows>\r\n</ScienceWireQueryIDResponse>"
     http_version: 
-  recorded_at: Thu, 02 Jun 2016 22:10:50 GMT
+  recorded_at: Fri, 15 Jul 2016 18:41:59 GMT
 - request:
     method: get
-    uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/240364?format=xml&page=0&pageSize=16&v=version/4
+    uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/243446?format=xml&page=0&pageSize=16&v=version/4
     body:
       encoding: UTF-8
       string: ''
@@ -90,7 +91,7 @@ http_interactions:
       Accept-Encoding:
       - gzip,deflate
       Date:
-      - Thu, 02 Jun 2016 22:10:50 GMT
+      - Fri, 15 Jul 2016 18:41:59 GMT
       Licenseid:
       - Settings.SCIENCEWIRE.LICENSE_ID
       Host:
@@ -119,7 +120,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Thu, 02 Jun 2016 22:10:50 GMT
+      - Fri, 15 Jul 2016 18:42:00 GMT
       Content-Length:
       - '40920'
     body:
@@ -581,7 +582,7 @@ http_interactions:
         \   <CopyrightStateProvince>NJ</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
         STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n</ArrayOfPublicationItem>"
     http_version: 
-  recorded_at: Thu, 02 Jun 2016 22:10:50 GMT
+  recorded_at: Fri, 15 Jul 2016 18:42:00 GMT
 - request:
     method: post
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery?format=xml
@@ -592,10 +593,11 @@ http_interactions:
         \                        <query xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
         xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\n              <Criterion>\n
         \               <Criteria>\n                              <Criterion>\n              <TextSearch>\n
-        \               <QueryPredicate>(\"Edler,Alice\" or \"EDLER,A\" or \"EDLER,AJ\")
-        and \"stanford\"</QueryPredicate>\n                <SearchType>ExactMatch</SearchType>\n
-        \               <Columns>AggregateText</Columns>\n                <MaximumRows>200</MaximumRows>\n
-        \             </TextSearch>\n            </Criterion>\n\n                                <Criterion>\n
+        \               <QueryPredicate>(\"Edler,Alice\" or \"Edler,A\" or \"Edler,Alice,Jim\"
+        or \"Edler,Alice,J\" or \"Edler,A,J\") and \"stanford\"</QueryPredicate>\n
+        \               <SearchType>ExactMatch</SearchType>\n                <Columns>AggregateText</Columns>\n
+        \               <MaximumRows>200</MaximumRows>\n              </TextSearch>\n
+        \           </Criterion>\n\n                                <Criterion>\n
         \               <Filter>\n                  <Column>AuthorLastName</Column>\n
         \                 <Operator>BeginsWith</Operator>\n                  <Value>EDLER</Value>\n
         \               </Filter>\n              </Criterion>\n\n                                <Criterion>\n
@@ -619,7 +621,7 @@ http_interactions:
       Accept-Encoding:
       - gzip,deflate
       Date:
-      - Thu, 02 Jun 2016 22:10:50 GMT
+      - Fri, 15 Jul 2016 18:42:00 GMT
       Licenseid:
       - Settings.SCIENCEWIRE.LICENSE_ID
       Host:
@@ -648,19 +650,19 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Thu, 02 Jun 2016 22:10:50 GMT
+      - Fri, 15 Jul 2016 18:42:00 GMT
       Content-Length:
       - '280'
     body:
       encoding: UTF-8
       string: "<?xml version=\"1.0\"?>\r\n<ScienceWireQueryIDResponse xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
-        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>240364</queryID>\r\n
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>243446</queryID>\r\n
         \ <queryResultRows>16</queryResultRows>\r\n  <totalRows>16</totalRows>\r\n</ScienceWireQueryIDResponse>"
     http_version: 
-  recorded_at: Thu, 02 Jun 2016 22:10:51 GMT
+  recorded_at: Fri, 15 Jul 2016 18:42:00 GMT
 - request:
     method: get
-    uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/240364?format=xml&page=0&pageSize=16&v=version/4
+    uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/243446?format=xml&page=0&pageSize=16&v=version/4
     body:
       encoding: UTF-8
       string: ''
@@ -672,7 +674,7 @@ http_interactions:
       Accept-Encoding:
       - gzip,deflate
       Date:
-      - Thu, 02 Jun 2016 22:10:51 GMT
+      - Fri, 15 Jul 2016 18:42:00 GMT
       Licenseid:
       - Settings.SCIENCEWIRE.LICENSE_ID
       Host:
@@ -701,7 +703,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Thu, 02 Jun 2016 15:53:32 GMT
+      - Fri, 15 Jul 2016 18:42:00 GMT
       Content-Length:
       - '40920'
     body:
@@ -1163,7 +1165,7 @@ http_interactions:
         \   <CopyrightStateProvince>NJ</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
         STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n</ArrayOfPublicationItem>"
     http_version: 
-  recorded_at: Thu, 02 Jun 2016 22:10:51 GMT
+  recorded_at: Fri, 15 Jul 2016 18:42:02 GMT
 - request:
     method: post
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery?format=xml
@@ -1174,10 +1176,11 @@ http_interactions:
         \                        <query xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
         xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\n              <Criterion>\n
         \               <Criteria>\n                              <Criterion>\n              <TextSearch>\n
-        \               <QueryPredicate>(\"Edler,Alice\" or \"EDLER,A\" or \"EDLER,AJ\")
-        and \"stanford\"</QueryPredicate>\n                <SearchType>ExactMatch</SearchType>\n
-        \               <Columns>AggregateText</Columns>\n                <MaximumRows>200</MaximumRows>\n
-        \             </TextSearch>\n            </Criterion>\n\n                                <Criterion>\n
+        \               <QueryPredicate>(\"Edler,Alice\" or \"Edler,A\" or \"Edler,Alice,Jim\"
+        or \"Edler,Alice,J\" or \"Edler,A,J\") and \"stanford\"</QueryPredicate>\n
+        \               <SearchType>ExactMatch</SearchType>\n                <Columns>AggregateText</Columns>\n
+        \               <MaximumRows>200</MaximumRows>\n              </TextSearch>\n
+        \           </Criterion>\n\n                                <Criterion>\n
         \               <Filter>\n                  <Column>AuthorLastName</Column>\n
         \                 <Operator>BeginsWith</Operator>\n                  <Value>EDLER</Value>\n
         \               </Filter>\n              </Criterion>\n\n                                <Criterion>\n
@@ -1201,7 +1204,7 @@ http_interactions:
       Accept-Encoding:
       - gzip,deflate
       Date:
-      - Thu, 02 Jun 2016 22:10:51 GMT
+      - Fri, 15 Jul 2016 18:42:02 GMT
       Licenseid:
       - Settings.SCIENCEWIRE.LICENSE_ID
       Host:
@@ -1230,19 +1233,19 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Thu, 02 Jun 2016 22:10:52 GMT
+      - Fri, 15 Jul 2016 18:42:02 GMT
       Content-Length:
       - '280'
     body:
       encoding: UTF-8
       string: "<?xml version=\"1.0\"?>\r\n<ScienceWireQueryIDResponse xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
-        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>240364</queryID>\r\n
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>243446</queryID>\r\n
         \ <queryResultRows>16</queryResultRows>\r\n  <totalRows>16</totalRows>\r\n</ScienceWireQueryIDResponse>"
     http_version: 
-  recorded_at: Thu, 02 Jun 2016 22:10:52 GMT
+  recorded_at: Fri, 15 Jul 2016 18:42:02 GMT
 - request:
     method: get
-    uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/240364?format=xml&page=0&pageSize=16&v=version/4
+    uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/243446?format=xml&page=0&pageSize=16&v=version/4
     body:
       encoding: UTF-8
       string: ''
@@ -1254,7 +1257,7 @@ http_interactions:
       Accept-Encoding:
       - gzip,deflate
       Date:
-      - Thu, 02 Jun 2016 22:10:52 GMT
+      - Fri, 15 Jul 2016 18:42:02 GMT
       Licenseid:
       - Settings.SCIENCEWIRE.LICENSE_ID
       Host:
@@ -1283,7 +1286,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Thu, 02 Jun 2016 15:53:32 GMT
+      - Fri, 15 Jul 2016 18:42:03 GMT
       Content-Length:
       - '40920'
     body:
@@ -1745,7 +1748,7 @@ http_interactions:
         \   <CopyrightStateProvince>NJ</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
         STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n</ArrayOfPublicationItem>"
     http_version: 
-  recorded_at: Thu, 02 Jun 2016 22:10:52 GMT
+  recorded_at: Fri, 15 Jul 2016 18:42:04 GMT
 - request:
     method: get
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationItems?format=xml&publicationItemIDs=46946372,46558063,844542,47593787,54661564,46795732,7877232,5199247
@@ -1760,7 +1763,7 @@ http_interactions:
       Accept-Encoding:
       - gzip,deflate
       Date:
-      - Thu, 02 Jun 2016 22:10:52 GMT
+      - Fri, 15 Jul 2016 18:42:04 GMT
       Licenseid:
       - Settings.SCIENCEWIRE.LICENSE_ID
       Host:
@@ -1789,7 +1792,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Thu, 02 Jun 2016 22:10:52 GMT
+      - Fri, 15 Jul 2016 18:42:04 GMT
       Content-Length:
       - '22855'
     body:
@@ -2073,7 +2076,7 @@ http_interactions:
         &amp; WILKINS</CopyrightPublisher>\r\n    <CopyrightCity>PHILADELPHIA</CopyrightCity>\r\n
         \ </PublicationItem>\r\n</ArrayOfPublicationItem>"
     http_version: 
-  recorded_at: Thu, 02 Jun 2016 22:10:53 GMT
+  recorded_at: Fri, 15 Jul 2016 18:42:05 GMT
 - request:
     method: post
     uri: http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml
@@ -2093,7 +2096,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 02 Jun 2016 22:10:53 GMT
+      - Fri, 15 Jul 2016 18:42:05 GMT
       Server:
       - Apache
       Access-Control-Allow-Origin:
@@ -2101,12 +2104,12 @@ http_interactions:
       Cache-Control:
       - private
       Ncbi-Sid:
-      - 08DD6FEF750AEED1_0237SID
+      - 9DFD6BD97892E7D1_0526SID
       Content-Type:
       - text/xml; charset=UTF-8
       Set-Cookie:
-      - ncbi_sid=08DD6FEF750AEED1_0237SID; domain=.nih.gov; path=/; expires=Fri, 02
-        Jun 2017 22:10:53 GMT
+      - ncbi_sid=9DFD6BD97892E7D1_0526SID; domain=.nih.gov; path=/; expires=Sat, 15
+        Jul 2017 18:42:05 GMT
       X-Ua-Compatible:
       - IE=Edge
       Transfer-Encoding:
@@ -3608,5 +3611,5 @@ http_interactions:
 
         </PubmedArticleSet>
     http_version: 
-  recorded_at: Thu, 02 Jun 2016 22:10:58 GMT
+  recorded_at: Fri, 15 Jul 2016 18:42:05 GMT
 recorded_with: VCR 3.0.1

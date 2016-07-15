@@ -44,7 +44,7 @@ http_interactions:
       Accept-Encoding:
       - gzip,deflate
       Date:
-      - Thu, 02 Jun 2016 22:12:35 GMT
+      - Fri, 15 Jul 2016 18:43:01 GMT
       Licenseid:
       - Settings.SCIENCEWIRE.LICENSE_ID
       Host:
@@ -73,7 +73,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Thu, 02 Jun 2016 15:53:32 GMT
+      - Fri, 15 Jul 2016 18:43:01 GMT
       Content-Length:
       - '280'
     body:
@@ -82,7 +82,7 @@ http_interactions:
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>231219</queryID>\r\n
         \ <queryResultRows>20</queryResultRows>\r\n  <totalRows>20</totalRows>\r\n</ScienceWireQueryIDResponse>"
     http_version: 
-  recorded_at: Thu, 02 Jun 2016 22:12:35 GMT
+  recorded_at: Fri, 15 Jul 2016 18:43:02 GMT
 - request:
     method: get
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/231219?format=xml&page=0&pageSize=20&v=version/4
@@ -97,7 +97,7 @@ http_interactions:
       Accept-Encoding:
       - gzip,deflate
       Date:
-      - Thu, 02 Jun 2016 22:12:35 GMT
+      - Fri, 15 Jul 2016 18:43:02 GMT
       Licenseid:
       - Settings.SCIENCEWIRE.LICENSE_ID
       Host:
@@ -126,7 +126,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Thu, 02 Jun 2016 22:12:36 GMT
+      - Fri, 15 Jul 2016 18:43:02 GMT
       Content-Length:
       - '54233'
     body:
@@ -747,5 +747,5 @@ http_interactions:
         \   <CopyrightStateProvince>PA</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
         STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n</ArrayOfPublicationItem>"
     http_version: 
-  recorded_at: Thu, 02 Jun 2016 22:12:36 GMT
+  recorded_at: Fri, 15 Jul 2016 18:43:02 GMT
 recorded_with: VCR 3.0.1
