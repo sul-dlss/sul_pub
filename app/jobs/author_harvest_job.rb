@@ -18,7 +18,7 @@ class AuthorHarvestJob < ActiveJob::Base
   rescue => e
     msg = "AuthorHarvestJob.perform(cap_profile_id=#{cap_profile_id}, harvest_alternate_names=#{harvest_alternate_names})"
     NotificationManager.log_exception(logger, msg, e)
-    NotificationManager.notify_squash(e, msg)
+    Honeybadger.notify(e, context: { message: msg })
     raise
   end
 end

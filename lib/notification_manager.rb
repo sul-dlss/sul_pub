@@ -1,19 +1,13 @@
 class NotificationManager
 
   class << self
-
-    def notify_squash(e, message)
-      Squash::Ruby.notify(e, notify_message: message) unless Settings.SQUASH.DISABLED
-    end
-
     ##
     # Handles notification of errors with behavior based on the callee
     #
     # @param [Exception] `e` -- the original exception
     # @param [String] `message` -- human-readable message
     # @param [Class] `callee` -- the callee object
-    # @param [Boolean] `use_squash` -- if true, sends `e` to Squash
-    def error(e, message, callee = nil, use_squash = true)
+    def error(e, message, callee = nil)
       log_message = callee.class.name + ': ' + message
 
       case callee
@@ -25,12 +19,11 @@ class NotificationManager
         log_exception(cap_logger, log_message, e)
       else
         log_exception(Rails.logger, log_message, e)
-        use_squash = false # only log error to Rails console
       end
     rescue => e2
       log_exception(Rails.logger, e2.message, e2)
     ensure
-      notify_squash(e, log_message) if use_squash
+      Honeybadger.notify(e, context: { message: log_message })
     end
 
     # rubocop:disable Style/ClassVars

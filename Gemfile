@@ -46,9 +46,7 @@ gem 'whenever', require: false
 gem 'yaml_db'
 
 # -------------------
-# Use Squash for exception reporting
-gem 'squash_ruby', require: 'squash/ruby'
-gem 'squash_rails', require: 'squash/rails'
+gem 'honeybadger', '~> 2.0'
 gem 'retina_tag'
 
 group :development, :test do

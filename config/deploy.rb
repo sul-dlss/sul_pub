@@ -17,7 +17,8 @@ ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
 # Default value for :linked_files is []
 set :linked_files, fetch(:linked_files, []).push(
   'config/secrets.yml',
-  'config/database.yml'
+  'config/database.yml',
+  'config/honeybadger.yml'
 )
 
 # Default value for linked_dirs is []
@@ -32,5 +33,3 @@ set :linked_dirs, fetch(:linked_dirs, []).push(
 )
 
 set :whenever_identifier, ->{ "#{fetch(:application)}_#{fetch(:stage)}" }
-
-before 'deploy:publishing', 'squash:write_revision'
