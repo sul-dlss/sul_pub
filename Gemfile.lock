@@ -184,7 +184,6 @@ GEM
     httpclient (2.7.1)
     i18n (0.7.0)
     ice_nine (0.11.2)
-    is_it_working-cbeer (1.0.16)
     jbuilder (2.3.0)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
@@ -223,6 +222,7 @@ GEM
     nokogiri (1.6.8)
       mini_portile2 (~> 2.1.0)
       pkg-config (~> 1.1.7)
+    okcomputer (1.12.0)
     paper_trail (4.0.0)
       activerecord (>= 3.0, < 6.0)
       activesupport (>= 3.0, < 6.0)
@@ -440,12 +440,12 @@ DEPENDENCIES
   high_voltage
   honeybadger (~> 2.0)
   httpclient (~> 2.7)
-  is_it_working-cbeer
   jbuilder
   jquery-rails
   kaminari
   libv8
   mysql2 (~> 0.3.18)
+  okcomputer
   paper_trail
   parallel
   pry-doc
@@ -472,4 +472,4 @@ DEPENDENCIES
   yaml_db
 
 BUNDLED WITH
-   1.13.3
+   1.13.5
