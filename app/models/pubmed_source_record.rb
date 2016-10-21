@@ -148,11 +148,11 @@ class PubmedSourceRecord < ActiveRecord::Base
     journal_hash[:identifier] = journal_identifiers
     record_as_hash[:journal] = journal_hash
 
-    record_as_hash[:identifier] = [{ type: 'PMID', id: pmid, url: 'http://www.ncbi.nlm.nih.gov/pubmed/' + pmid }]
+    record_as_hash[:identifier] = [{ type: 'PMID', id: pmid, url: "#{Settings.PUBMED.ARTICLE_BASE_URI}#{pmid}"}]
     # the DOI can be in one of two places: ArticleId or ELocationID
     doi = publication.at_xpath('//ArticleId[@IdType="doi"]')
     doi = publication.at_xpath('//ELocationID[@EIdType="doi"]') unless doi.present? && doi.text.present?
-    record_as_hash[:identifier] << { type: 'doi', id: doi.text, url: 'http://dx.doi.org/' + doi.text } if doi.present? && doi.text.present?
+    record_as_hash[:identifier] << { type: 'doi', id: doi.text, url: "#{Settings.SCIENCEWIRE.DOI_BASE_URL}#{doi.text}" } if doi.present? && doi.text.present?
 
     record_as_hash
   end

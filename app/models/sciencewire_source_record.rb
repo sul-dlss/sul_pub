@@ -188,12 +188,12 @@ class SciencewireSourceRecord < ActiveRecord::Base
     swid = extract_swid(publication)
     wosid = extract_wosid(publication)
 
-    doi_identifier = { type: 'doi', id: doi, url: 'http://dx.doi.org/' + doi } unless doi.blank?
+    doi_identifier = { type: 'doi', id: doi, url: "#{Settings.SCIENCEWIRE.DOI_BASE_URL}#{doi}" } unless doi.blank?
     issn_identifier = { type: 'issn', id: issn, url: Settings.SULPUB_ID.SEARCHWORKS_URI + issn } unless issn.blank?
 
     identifiers = []
-    identifiers << { type: 'PMID', id: pmid, url: 'http://www.ncbi.nlm.nih.gov/pubmed/' + pmid } unless pmid.blank?
-    identifiers << { type: 'WoSItemID', id: wosid, url: 'http://ws.isiknowledge.com/cps/openurl/service?url_ver=Z39.88-2004&rft_id=info:ut/' + wosid } unless wosid.blank?
+    identifiers << { type: 'PMID', id: pmid, url: "#{Settings.PUBMED.ARTICLE_BASE_URI}#{pmid}" } unless pmid.blank?
+    identifiers << { type: 'WoSItemID', id: wosid, url: "#{Settings.SCIENCEWIRE.ARTICLE_BASE_URI}#{wosid}" } unless wosid.blank?
     identifiers << { type: 'PublicationItemID', id: swid } unless swid.blank?
     identifiers << doi_identifier unless doi.blank?
 

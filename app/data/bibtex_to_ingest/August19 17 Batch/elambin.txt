@@ -10,7 +10,7 @@ author = {Lambin E. F. and Gibbs H. and Ferreira L. and Grau R. and Mayaux P. an
 journal = {Global Environmental Change},
 title = {Estimating the world's potentially available cropland using a bottom-up approach},
 year = {2013},
-url = {http://dx.doi.org/10.1016/j.gloenvcha.2013.05.005},
+url = {https://dx.doi.org/10.1016/j.gloenvcha.2013.05.005},
 }
 
 @article{jvmrtfwcfsawfrra13,
@@ -39,7 +39,7 @@ journal = {Current Opinion in Environmental Sustainability},
 title = {Globalization of land use: Displacement and distant drivers},
 volume = {5},
 year = {2013},
-url = {http://dx.doi.org/10.1016/j.cosust.2013.04.003},
+url = {https://dx.doi.org/10.1016/j.cosust.2013.04.003},
 }
 
 @incollection{fp13,

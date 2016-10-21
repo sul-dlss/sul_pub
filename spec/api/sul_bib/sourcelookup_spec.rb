@@ -64,7 +64,7 @@ describe SulBib::API, :vcr do
             {
               type: 'doi',
               id: test_doi,
-              url: "http://dx.doi.org/#{test_doi}"
+              url: "https://dx.doi.org/#{test_doi}"
             }
           ]
         }

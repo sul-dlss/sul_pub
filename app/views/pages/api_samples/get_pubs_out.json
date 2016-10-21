@@ -14,12 +14,12 @@
                 {
                     "id": "15262723",
                     "type": "PMID",
-                    "url": "http://www.ncbi.nlm.nih.gov/pubmed/15262723"
+                    "url": "https://www.ncbi.nlm.nih.gov/pubmed/15262723"
                 },
                 {
                     "id": "",
                     "type": "WoSItemID",
-                    "url": "http://ws.isiknowledge.com/cps/openurl/service?url_ver=Z39.88-2004&rft_id=info:ut/"
+                    "url": "https://ws.isiknowledge.com/cps/openurl/service?url_ver=Z39.88-2004&rft_id=info:ut/"
                 },
                 {
                     "id": "45435892",
@@ -28,7 +28,7 @@
                 {
                     "id": "1573",
                     "type": "SULPubId",
-                    "url": "http://sulcap.stanford.edu/publications/1573"
+                    "url": "https://sulcap.stanford.edu/publications/1573"
                 }
             ],
             "title": "Use of a dual-mode erbium:YAG laser for the surgical correction of rhinophyma.",
@@ -162,12 +162,12 @@
                     {
                         "id": "1521-2491",
                         "type": "issn",
-                        "url": "http://searchworks.stanford.edu/?search_field=advanced&number=1521-2491"
+                        "url": "https://searchworks.stanford.edu/?search_field=advanced&number=1521-2491"
                     },
                     {
                         "id": "",
                         "type": "doi",
-                        "url": "http://dx.doi.org/"
+                        "url": "https://dx.doi.org/"
                     }
                 ],
                 "conferencestartdate": "",
@@ -191,12 +191,12 @@
                 {
                     "id": "15137956",
                     "type": "PMID",
-                    "url": "http://www.ncbi.nlm.nih.gov/pubmed/15137956"
+                    "url": "https://www.ncbi.nlm.nih.gov/pubmed/15137956"
                 },
                 {
                     "id": "",
                     "type": "WoSItemID",
-                    "url": "http://ws.isiknowledge.com/cps/openurl/service?url_ver=Z39.88-2004&rft_id=info:ut/"
+                    "url": "https://ws.isiknowledge.com/cps/openurl/service?url_ver=Z39.88-2004&rft_id=info:ut/"
                 },
                 {
                     "id": "45408384",
@@ -205,7 +205,7 @@
                 {
                     "id": "1574",
                     "type": "SULPubId",
-                    "url": "http://sulcap.stanford.edu/publications/1574"
+                    "url": "https://sulcap.stanford.edu/publications/1574"
                 }
             ],
             "title": "The etiology and epidemiology of anal cancer.",
@@ -397,12 +397,12 @@
                     {
                         "id": "1055-3207",
                         "type": "issn",
-                        "url": "http://searchworks.stanford.edu/?search_field=advanced&number=1055-3207"
+                        "url": "https://searchworks.stanford.edu/?search_field=advanced&number=1055-3207"
                     },
                     {
                         "id": "",
                         "type": "doi",
-                        "url": "http://dx.doi.org/"
+                        "url": "https://dx.doi.org/"
                     }
                 ],
                 "conferencestartdate": "",

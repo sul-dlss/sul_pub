@@ -226,15 +226,15 @@ describe SulBib::API, :vcr do
       it 'adds proper identifiers section' do
         pub_ids = result['identifier']
         # Check the PMID, e.g.
-        # {"type"=>"PMID", "id"=>"23684686", "url"=>"http://www.ncbi.nlm.nih.gov/pubmed/23684686"}
+        # {"type"=>"PMID", "id"=>"23684686", "url"=>"https://www.ncbi.nlm.nih.gov/pubmed/23684686"}
         pmid_hash = pub_ids.find {|id| id['type'] == 'PMID'}
         expect(pmid_hash).to be_instance_of Hash
         pmid = request_data[:pmid]
         expect(pmid_hash['type']).to eq('PMID')
         expect(pmid_hash['id']).to eq(pmid)
-        expect(pmid_hash['url']).to eq("http://www.ncbi.nlm.nih.gov/pubmed/#{pmid}")
+        expect(pmid_hash['url']).to eq("https://www.ncbi.nlm.nih.gov/pubmed/#{pmid}")
         # Check the SULPubId, e.g.
-        # {:type=>"SULPubId", :id=>"2355", :url=>"http://sulcap.stanford.edu/publications/2355"}],
+        # {:type=>"SULPubId", :id=>"2355", :url=>"https://sulcap.stanford.edu/publications/2355"}],
         sul_hash = pub_ids.find {|id| id['type'] == 'SULPubId'}
         expect(sul_hash).to be_instance_of Hash
         sul_pub_id = Publication.last.id.to_s

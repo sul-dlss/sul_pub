@@ -42,7 +42,7 @@ describe PubmedHarvester, :vcr do
       # /publications/sourcelookup?pmid=
       h = PubmedHarvester.search_all_sources_by_pmid 24_930_130
       expect(h.first[:provenance]).to eq('pubmed')
-      expect(h.first[:identifier]).to include(type: 'doi', id: '10.1038/nmeth.2999', url: 'http://dx.doi.org/10.1038/nmeth.2999')
+      expect(h.first[:identifier]).to include(type: 'doi', id: '10.1038/nmeth.2999', url: 'https://dx.doi.org/10.1038/nmeth.2999')
       expect(h.first[:chicago_citation]).to match(/Chemically Defined Generation/)
     end
 

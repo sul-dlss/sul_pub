@@ -94,7 +94,7 @@ title = {Intraplate Earthquakes, Regional Stress and Fault Mechanics in the Cent
 volume = {581},
 year = {2012},
 doi = {10.1016/j.tecto.2012.04.002},
-url = {http://dx.doi.org/10.1016/j.tecto.2012.04.002},
+url = {https://dx.doi.org/10.1016/j.tecto.2012.04.002},
 }
 
 @article{dz11,
@@ -330,7 +330,7 @@ title = {Viscous creep in room-dried unconsolidated Gulf of Mexico shale (II): D
 volume = {72},
 year = {2010},
 doi = {0.2118/110542-PA},
-url = {http://dx.doi.org/10.2118/110542-PA},
+url = {https://dx.doi.org/10.2118/110542-PA},
 }
 
 @article{cz09,
