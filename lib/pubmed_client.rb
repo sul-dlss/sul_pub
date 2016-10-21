@@ -16,7 +16,7 @@ class PubmedClient
     timeout_retries ||= 3
     timeout_period ||= 500
 
-    conn = Faraday.new(url: "https://#{Settings.PUBMED.HOST}") do |faraday|
+    conn = Faraday.new(url: Settings.PUBMED.HOST) do |faraday|
       faraday.request :retry, max: timeout_retries,
         interval: 0.5,
         interval_randomness: 0.5,
@@ -28,14 +28,14 @@ class PubmedClient
 
     response = conn.send(:post) do |req|
       req.url Settings.PUBMED.FETCH_PATH
-      req.headers['Host'] = Settings.PUBMED.HOST
       req.body = pmidValuesForPost
     end
 
     response.body
 
-    rescue => e
-      NotificationManager.error(e, "#{e.class.name} during PubMed Fetch API call", self)
-      raise
+  rescue => e
+    NotificationManager.error(e, "#{e.class.name} during PubMed Fetch API call", self)
+    raise
   end
+
 end

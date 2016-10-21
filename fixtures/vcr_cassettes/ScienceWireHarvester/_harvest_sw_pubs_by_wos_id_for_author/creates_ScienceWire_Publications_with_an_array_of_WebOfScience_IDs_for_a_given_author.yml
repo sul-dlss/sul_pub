@@ -969,4 +969,749 @@ http_interactions:
         </PubmedArticleSet>
     http_version: 
   recorded_at: Thu, 02 Jun 2016 22:10:35 GMT
+- request:
+    method: post
+    uri: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml
+    body:
+      encoding: UTF-8
+      string: "&id=23565139&id=23540906&id=23635172"
+    headers:
+      User-Agent:
+      - Faraday v0.9.2
+      Accept:
+      - "*/*"
+      Accept-Encoding:
+      - gzip,deflate
+      Date:
+      - Fri, 21 Oct 2016 19:58:08 GMT
+      Host:
+      - eutils.ncbi.nlm.nih.gov
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 21 Oct 2016 19:58:08 GMT
+      Server:
+      - Apache
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Content-Security-Policy:
+      - upgrade-insecure-requests
+      Content-Security-Policy-Report-Only:
+      - 'default-src https:; script-src https: ''unsafe-inline'' ''unsafe-eval'';
+        font-src https: data:; img-src https: data:; style-src https: ''unsafe-inline'';
+        report-uri https://www.ncbi.nlm.nih.gov/corecgi/csp/csp.cgi'
+      Access-Control-Allow-Origin:
+      - "*"
+      Cache-Control:
+      - private
+      Ncbi-Phid:
+      - 990D551480A6AE810000000003980377
+      Ncbi-Sid:
+      - 990D551480A73501_0920SID
+      Content-Type:
+      - text/xml; charset=UTF-8
+      Set-Cookie:
+      - ncbi_sid=990D551480A73501_0920SID; domain=.nih.gov; path=/; expires=Sat, 21
+        Oct 2017 19:58:08 GMT
+      Vary:
+      - Accept-Encoding
+      Content-Encoding:
+      - gzip
+      X-Ua-Compatible:
+      - IE=Edge
+      X-Xss-Protection:
+      - 1; mode=block
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" ?>
+        <!DOCTYPE PubmedArticleSet PUBLIC "-//NLM//DTD PubMedArticle, 1st January 2016//EN" "https://www.ncbi.nlm.nih.gov/corehtml/query/DTD/pubmed_160101.dtd">
+        <PubmedArticleSet>
+        <PubmedArticle>
+            <MedlineCitation Status="MEDLINE" Owner="NLM">
+                <PMID Version="1">23565139</PMID>
+                <DateCreated>
+                    <Year>2013</Year>
+                    <Month>4</Month>
+                    <Day>8</Day>
+                </DateCreated>
+                <DateCompleted>
+                    <Year>2013</Year>
+                    <Month>10</Month>
+                    <Day>30</Day>
+                </DateCompleted>
+                <DateRevised>
+                    <Year>2016</Year>
+                    <Month>10</Month>
+                    <Day>19</Day>
+                </DateRevised>
+                <Article PubModel="Print-Electronic">
+                    <Journal>
+                        <ISSN IssnType="Electronic">1932-6203</ISSN>
+                        <JournalIssue CitedMedium="Internet">
+                            <Volume>8</Volume>
+                            <Issue>4</Issue>
+                            <PubDate>
+                                <Year>2013</Year>
+                            </PubDate>
+                        </JournalIssue>
+                        <Title>PloS one</Title>
+                        <ISOAbbreviation>PLoS ONE</ISOAbbreviation>
+                    </Journal>
+                    <ArticleTitle>Persistent topology and metastable state in conformational dynamics.</ArticleTitle>
+                    <Pagination>
+                        <MedlinePgn>e58699</MedlinePgn>
+                    </Pagination>
+                    <ELocationID EIdType="doi" ValidYN="Y">10.1371/journal.pone.0058699</ELocationID>
+                    <Abstract>
+                        <AbstractText>The large amount of molecular dynamics simulation data produced by modern computational models brings big opportunities and challenges to researchers. Clustering algorithms play an important role in understanding biomolecular kinetics from the simulation data, especially under the Markov state model framework. However, the ruggedness of the free energy landscape in a biomolecular system makes common clustering algorithms very sensitive to perturbations of the data. Here, we introduce a data-exploratory tool which provides an overview of the clustering structure under different parameters. The proposed Multi-Persistent Clustering analysis combines insights from recent studies on the dynamics of systems with dominant metastable states with the concept of multi-dimensional persistence in computational topology. We propose to explore the clustering structure of the data based on its persistence on scale and density. The analysis provides a systematic way to discover clusters that are robust to perturbations of the data. The dominant states of the system can be chosen with confidence. For the clusters on the borderline, the user can choose to do more simulation or make a decision based on their structural characteristics. Furthermore, our multi-resolution analysis gives users information about the relative potential of the clusters and their hierarchical relationship. The effectiveness of the proposed method is illustrated in three biomolecules: alanine dipeptide, Villin headpiece, and the FiP35 WW domain.</AbstractText>
+                    </Abstract>
+                    <AuthorList CompleteYN="Y">
+                        <Author ValidYN="Y">
+                            <LastName>Chang</LastName>
+                            <ForeName>Huang-Wei</ForeName>
+                            <Initials>HW</Initials>
+                            <AffiliationInfo>
+                                <Affiliation>Institute for Computational and Mathematical Engineering, Stanford University, Stanford, California, United States of America. huangwei@stanford.edu</Affiliation>
+                            </AffiliationInfo>
+                        </Author>
+                        <Author ValidYN="Y">
+                            <LastName>Bacallado</LastName>
+                            <ForeName>Sergio</ForeName>
+                            <Initials>S</Initials>
+                        </Author>
+                        <Author ValidYN="Y">
+                            <LastName>Pande</LastName>
+                            <ForeName>Vijay S</ForeName>
+                            <Initials>VS</Initials>
+                        </Author>
+                        <Author ValidYN="Y">
+                            <LastName>Carlsson</LastName>
+                            <ForeName>Gunnar E</ForeName>
+                            <Initials>GE</Initials>
+                        </Author>
+                    </AuthorList>
+                    <Language>ENG</Language>
+                    <GrantList CompleteYN="Y">
+                        <Grant>
+                            <GrantID>R01-GM062868</GrantID>
+                            <Acronym>GM</Acronym>
+                            <Agency>NIGMS NIH HHS</Agency>
+                            <Country>United States</Country>
+                        </Grant>
+                    </GrantList>
+                    <PublicationTypeList>
+                        <PublicationType UI="D016428">Journal Article</PublicationType>
+                        <PublicationType UI="D052061">Research Support, N.I.H., Extramural</PublicationType>
+                        <PublicationType UI="D013486">Research Support, U.S. Gov't, Non-P.H.S.</PublicationType>
+                    </PublicationTypeList>
+                    <ArticleDate DateType="Electronic">
+                        <Year>2013</Year>
+                        <Month>Apr</Month>
+                        <Day>02</Day>
+                    </ArticleDate>
+                </Article>
+                <MedlineJournalInfo>
+                    <Country>United States</Country>
+                    <MedlineTA>PLoS One</MedlineTA>
+                    <NlmUniqueID>101285081</NlmUniqueID>
+                    <ISSNLinking>1932-6203</ISSNLinking>
+                </MedlineJournalInfo>
+                <ChemicalList>
+                    <Chemical>
+                        <RegistryNumber>0</RegistryNumber>
+                        <NameOfSubstance UI="D004151">Dipeptides</NameOfSubstance>
+                    </Chemical>
+                    <Chemical>
+                        <RegistryNumber>0</RegistryNumber>
+                        <NameOfSubstance UI="D008840">Microfilament Proteins</NameOfSubstance>
+                    </Chemical>
+                    <Chemical>
+                        <RegistryNumber>0</RegistryNumber>
+                        <NameOfSubstance UI="C026615">villin</NameOfSubstance>
+                    </Chemical>
+                    <Chemical>
+                        <RegistryNumber>OF5P57N2ZX</RegistryNumber>
+                        <NameOfSubstance UI="D000409">Alanine</NameOfSubstance>
+                    </Chemical>
+                </ChemicalList>
+                <CitationSubset>IM</CitationSubset>
+                <CommentsCorrectionsList>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>BMC Bioinformatics. 2007;8 Suppl 2:S7</RefSource>
+                        <PMID Version="1">17493256</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>Proteins. 2008 Mar;70(4):1185-95</RefSource>
+                        <PMID Version="1">17847092</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>Curr Opin Struct Biol. 2008 Apr;18(2):154-62</RefSource>
+                        <PMID Version="1">18378442</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>Methods. 2009 Oct;49(2):197-201</RefSource>
+                        <PMID Version="1">19410002</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>J Chem Phys. 2009 Sep 28;131(12):124101</RefSource>
+                        <PMID Version="1">19791846</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>J Chem Phys. 2007 Apr 21;126(15):155101</RefSource>
+                        <PMID Version="1">17461665</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>Science. 2011 Oct 28;334(6055):517-20</RefSource>
+                        <PMID Version="1">22034434</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>Proc Natl Acad Sci U S A. 2012 Oct 30;109(44):17807-13</RefSource>
+                        <PMID Version="1">22778442</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>Curr Opin Struct Biol. 2013 Feb;23(1):58-65</RefSource>
+                        <PMID Version="1">23237705</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>Philos Trans A Math Phys Eng Sci. 2005 Feb 15;363(1827):357-75; discussion 375-7</RefSource>
+                        <PMID Version="1">15664888</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>J Chem Phys. 2005 Nov 22;123(20):204909</RefSource>
+                        <PMID Version="1">16351319</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>J Chem Phys. 2011 May 7;134(17):174105</RefSource>
+                        <PMID Version="1">21548671</PMID>
+                    </CommentsCorrections>
+                </CommentsCorrectionsList>
+                <MeshHeadingList>
+                    <MeshHeading>
+                        <DescriptorName UI="D000409" MajorTopicYN="N">Alanine</DescriptorName>
+                        <QualifierName UI="Q000737" MajorTopicYN="N">chemistry</QualifierName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName UI="D016000" MajorTopicYN="Y">Cluster Analysis</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName UI="D004151" MajorTopicYN="N">Dipeptides</DescriptorName>
+                        <QualifierName UI="Q000737" MajorTopicYN="N">chemistry</QualifierName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName UI="D008840" MajorTopicYN="N">Microfilament Proteins</DescriptorName>
+                        <QualifierName UI="Q000737" MajorTopicYN="N">chemistry</QualifierName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName UI="D008968" MajorTopicYN="Y">Molecular Conformation</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName UI="D056004" MajorTopicYN="Y">Molecular Dynamics Simulation</DescriptorName>
+                    </MeshHeading>
+                </MeshHeadingList>
+                <OtherID Source="NLM">PMC3614941</OtherID>
+            </MedlineCitation>
+            <PubmedData>
+                <History>
+                    <PubMedPubDate PubStatus="received">
+                        <Year>2012</Year>
+                        <Month>9</Month>
+                        <Day>22</Day>
+                    </PubMedPubDate>
+                    <PubMedPubDate PubStatus="accepted">
+                        <Year>2013</Year>
+                        <Month>2</Month>
+                        <Day>5</Day>
+                    </PubMedPubDate>
+                    <PubMedPubDate PubStatus="entrez">
+                        <Year>2013</Year>
+                        <Month>4</Month>
+                        <Day>9</Day>
+                        <Hour>6</Hour>
+                        <Minute>0</Minute>
+                    </PubMedPubDate>
+                    <PubMedPubDate PubStatus="pubmed">
+                        <Year>2013</Year>
+                        <Month>4</Month>
+                        <Day>9</Day>
+                        <Hour>6</Hour>
+                        <Minute>0</Minute>
+                    </PubMedPubDate>
+                    <PubMedPubDate PubStatus="medline">
+                        <Year>2013</Year>
+                        <Month>10</Month>
+                        <Day>31</Day>
+                        <Hour>6</Hour>
+                        <Minute>0</Minute>
+                    </PubMedPubDate>
+                </History>
+                <PublicationStatus>ppublish</PublicationStatus>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">23565139</ArticleId>
+                    <ArticleId IdType="doi">10.1371/journal.pone.0058699</ArticleId>
+                    <ArticleId IdType="pii">PONE-D-12-29130</ArticleId>
+                    <ArticleId IdType="pmc">PMC3614941</ArticleId>
+                </ArticleIdList>
+            </PubmedData>
+        </PubmedArticle>
+
+
+        <PubmedArticle>
+            <MedlineCitation Status="MEDLINE" Owner="NLM">
+                <PMID Version="1">23540906</PMID>
+                <DateCreated>
+                    <Year>2013</Year>
+                    <Month>4</Month>
+                    <Day>17</Day>
+                </DateCreated>
+                <DateCompleted>
+                    <Year>2013</Year>
+                    <Month>10</Month>
+                    <Day>21</Day>
+                </DateCompleted>
+                <DateRevised>
+                    <Year>2016</Year>
+                    <Month>10</Month>
+                    <Day>19</Day>
+                </DateRevised>
+                <Article PubModel="Print-Electronic">
+                    <Journal>
+                        <ISSN IssnType="Electronic">1520-5126</ISSN>
+                        <JournalIssue CitedMedium="Internet">
+                            <Volume>135</Volume>
+                            <Issue>15</Issue>
+                            <PubDate>
+                                <Year>2013</Year>
+                                <Month>Apr</Month>
+                                <Day>17</Day>
+                            </PubDate>
+                        </JournalIssue>
+                        <Title>Journal of the American Chemical Society</Title>
+                        <ISOAbbreviation>J. Am. Chem. Soc.</ISOAbbreviation>
+                    </Journal>
+                    <ArticleTitle>Emergence of glass-like behavior in Markov state models of protein folding dynamics.</ArticleTitle>
+                    <Pagination>
+                        <MedlinePgn>5501-4</MedlinePgn>
+                    </Pagination>
+                    <ELocationID EIdType="doi" ValidYN="Y">10.1021/ja4002663</ELocationID>
+                    <Abstract>
+                        <AbstractText>The extent to which glass-like kinetics govern dynamics in protein folding has been heavily debated. Here, we address the subject with an application of space-time perturbation theory to the dynamics of protein folding Markov state models. Borrowing techniques from the s-ensemble method, we argue that distinct active and inactive phases exist for protein folding dynamics, and that kinetics for specific systems can fall into either dynamical regime. We do not, however, observe a true glass transition in any system studied. We go on to discuss how these inactive and active phases might relate to general protein folding properties.</AbstractText>
+                    </Abstract>
+                    <AuthorList CompleteYN="Y">
+                        <Author ValidYN="Y">
+                            <LastName>Weber</LastName>
+                            <ForeName>Jeffrey K</ForeName>
+                            <Initials>JK</Initials>
+                            <AffiliationInfo>
+                                <Affiliation>Department of Chemistry, Stanford University, Stanford, California 94305, USA.</Affiliation>
+                            </AffiliationInfo>
+                        </Author>
+                        <Author ValidYN="Y">
+                            <LastName>Jack</LastName>
+                            <ForeName>Robert L</ForeName>
+                            <Initials>RL</Initials>
+                        </Author>
+                        <Author ValidYN="Y">
+                            <LastName>Pande</LastName>
+                            <ForeName>Vijay S</ForeName>
+                            <Initials>VS</Initials>
+                        </Author>
+                    </AuthorList>
+                    <Language>ENG</Language>
+                    <GrantList CompleteYN="Y">
+                        <Grant>
+                            <GrantID>R01 GM062868</GrantID>
+                            <Acronym>GM</Acronym>
+                            <Agency>NIGMS NIH HHS</Agency>
+                            <Country>United States</Country>
+                        </Grant>
+                        <Grant>
+                            <GrantID>R01-GM062868</GrantID>
+                            <Acronym>GM</Acronym>
+                            <Agency>NIGMS NIH HHS</Agency>
+                            <Country>United States</Country>
+                        </Grant>
+                    </GrantList>
+                    <PublicationTypeList>
+                        <PublicationType UI="D016428">Journal Article</PublicationType>
+                        <PublicationType UI="D052061">Research Support, N.I.H., Extramural</PublicationType>
+                        <PublicationType UI="D013485">Research Support, Non-U.S. Gov't</PublicationType>
+                        <PublicationType UI="D013486">Research Support, U.S. Gov't, Non-P.H.S.</PublicationType>
+                    </PublicationTypeList>
+                    <ArticleDate DateType="Electronic">
+                        <Year>2013</Year>
+                        <Month>Apr</Month>
+                        <Day>03</Day>
+                    </ArticleDate>
+                </Article>
+                <MedlineJournalInfo>
+                    <Country>United States</Country>
+                    <MedlineTA>J Am Chem Soc</MedlineTA>
+                    <NlmUniqueID>7503056</NlmUniqueID>
+                    <ISSNLinking>0002-7863</ISSNLinking>
+                </MedlineJournalInfo>
+                <ChemicalList>
+                    <Chemical>
+                        <RegistryNumber>0</RegistryNumber>
+                        <NameOfSubstance UI="D011506">Proteins</NameOfSubstance>
+                    </Chemical>
+                </ChemicalList>
+                <CitationSubset>IM</CitationSubset>
+                <CommentsCorrectionsList>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>Proc Natl Acad Sci U S A. 2000 Oct 24;97(22):12014-9</RefSource>
+                        <PMID Version="1">11050233</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>Proc Natl Acad Sci U S A. 2012 Oct 30;109(44):17807-13</RefSource>
+                        <PMID Version="1">22778442</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>Proc Natl Acad Sci U S A. 1987 Nov;84(21):7524-8</RefSource>
+                        <PMID Version="1">3478708</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>Biophys Chem. 1989 Nov;34(3):187-99</RefSource>
+                        <PMID Version="1">2611345</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>Proc Natl Acad Sci U S A. 1999 May 25;96(11):6031-6</RefSource>
+                        <PMID Version="1">10339536</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>J Mol Biol. 1999 Jun 18;289(4):1055-73</RefSource>
+                        <PMID Version="1">10369782</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>Biophys J. 2005 Apr;88(4):2472-93</RefSource>
+                        <PMID Version="1">15665128</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>J Mol Biol. 2007 Nov 30;374(3):806-16</RefSource>
+                        <PMID Version="1">17950314</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>Annu Rev Biophys. 2008;37:289-316</RefSource>
+                        <PMID Version="1">18573083</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>J Am Chem Soc. 2010 Feb 10;132(5):1526-8</RefSource>
+                        <PMID Version="1">20070076</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>Proc Natl Acad Sci U S A. 2010 Jun 15;107(24):10890-5</RefSource>
+                        <PMID Version="1">20534497</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>J Am Chem Soc. 2011 Feb 2;133(4):664-7</RefSource>
+                        <PMID Version="1">21174461</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>Science. 2011 Oct 28;334(6055):517-20</RefSource>
+                        <PMID Version="1">22034434</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>J Am Chem Soc. 2011 Nov 16;133(45):18413-9</RefSource>
+                        <PMID Version="1">21988563</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>J Am Chem Soc. 2011 Dec 7;133(48):19338-41</RefSource>
+                        <PMID Version="1">22066714</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>Semin Cell Dev Biol. 2004 Feb;15(1):3-16</RefSource>
+                        <PMID Version="1">15036202</PMID>
+                    </CommentsCorrections>
+                </CommentsCorrectionsList>
+                <MeshHeadingList>
+                    <MeshHeading>
+                        <DescriptorName UI="D005898" MajorTopicYN="N">Glass</DescriptorName>
+                        <QualifierName UI="Q000737" MajorTopicYN="Y">chemistry</QualifierName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName UI="D008390" MajorTopicYN="Y">Markov Chains</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName UI="D008958" MajorTopicYN="Y">Models, Molecular</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName UI="D017510" MajorTopicYN="Y">Protein Folding</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName UI="D017434" MajorTopicYN="N">Protein Structure, Tertiary</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName UI="D011506" MajorTopicYN="N">Proteins</DescriptorName>
+                        <QualifierName UI="Q000737" MajorTopicYN="Y">chemistry</QualifierName>
+                    </MeshHeading>
+                </MeshHeadingList>
+                <OtherID Source="NLM">NIHMS464030</OtherID>
+                <OtherID Source="NLM">PMC3677858</OtherID>
+            </MedlineCitation>
+            <PubmedData>
+                <History>
+                    <PubMedPubDate PubStatus="entrez">
+                        <Year>2013</Year>
+                        <Month>4</Month>
+                        <Day>2</Day>
+                        <Hour>6</Hour>
+                        <Minute>0</Minute>
+                    </PubMedPubDate>
+                    <PubMedPubDate PubStatus="pubmed">
+                        <Year>2013</Year>
+                        <Month>4</Month>
+                        <Day>2</Day>
+                        <Hour>6</Hour>
+                        <Minute>0</Minute>
+                    </PubMedPubDate>
+                    <PubMedPubDate PubStatus="medline">
+                        <Year>2013</Year>
+                        <Month>10</Month>
+                        <Day>22</Day>
+                        <Hour>6</Hour>
+                        <Minute>0</Minute>
+                    </PubMedPubDate>
+                </History>
+                <PublicationStatus>ppublish</PublicationStatus>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">23540906</ArticleId>
+                    <ArticleId IdType="doi">10.1021/ja4002663</ArticleId>
+                    <ArticleId IdType="pmc">PMC3677858</ArticleId>
+                    <ArticleId IdType="mid">NIHMS464030</ArticleId>
+                </ArticleIdList>
+            </PubmedData>
+        </PubmedArticle>
+
+
+        <PubmedArticle>
+            <MedlineCitation Status="MEDLINE" Owner="NLM">
+                <PMID Version="1">23635172</PMID>
+                <DateCreated>
+                    <Year>2013</Year>
+                    <Month>5</Month>
+                    <Day>2</Day>
+                </DateCreated>
+                <DateCompleted>
+                    <Year>2013</Year>
+                    <Month>11</Month>
+                    <Day>26</Day>
+                </DateCompleted>
+                <DateRevised>
+                    <Year>2016</Year>
+                    <Month>10</Month>
+                    <Day>19</Day>
+                </DateRevised>
+                <Article PubModel="Print">
+                    <Journal>
+                        <ISSN IssnType="Electronic">1089-7690</ISSN>
+                        <JournalIssue CitedMedium="Internet">
+                            <Volume>138</Volume>
+                            <Issue>16</Issue>
+                            <PubDate>
+                                <Year>2013</Year>
+                                <Month>Apr</Month>
+                                <Day>28</Day>
+                            </PubDate>
+                        </JournalIssue>
+                        <Title>The Journal of chemical physics</Title>
+                        <ISOAbbreviation>J Chem Phys</ISOAbbreviation>
+                    </Journal>
+                    <ArticleTitle>Functional understanding of solvent structure in GroEL cavity through dipole field analysis.</ArticleTitle>
+                    <Pagination>
+                        <MedlinePgn>165101</MedlinePgn>
+                    </Pagination>
+                    <ELocationID EIdType="doi" ValidYN="Y">10.1063/1.4801942</ELocationID>
+                    <Abstract>
+                        <AbstractText>Solvent plays a ubiquitous role in all biophysical phenomena. Yet, just how the molecular nature of water impacts processes in biology remains an important question. While one can simulate the behavior of water near biomolecules such as proteins, it is challenging to gauge the potential structural role solvent plays in mediating both kinetic and equilibrium processes. Here, we propose an analysis scheme for understanding the nature of solvent structure at a local level. We first calculate coarse-grained dipole vector fields for an explicitly solvated system simulated through molecular dynamics. We then analyze correlations between these vector fields to characterize water structure under biologically relevant conditions. In applying our method to the interior of the wild type chaperonin complex GroEL+ES, along with nine additional mutant GroEL complexes, we find that dipole field correlations are strongly related to chaperonin function.</AbstractText>
+                    </Abstract>
+                    <AuthorList CompleteYN="Y">
+                        <Author ValidYN="Y">
+                            <LastName>Weber</LastName>
+                            <ForeName>Jeffrey K</ForeName>
+                            <Initials>JK</Initials>
+                            <AffiliationInfo>
+                                <Affiliation>Department of Chemistry, Stanford University, Stanford, California 94305-5080, USA.</Affiliation>
+                            </AffiliationInfo>
+                        </Author>
+                        <Author ValidYN="Y">
+                            <LastName>Pande</LastName>
+                            <ForeName>Vijay S</ForeName>
+                            <Initials>VS</Initials>
+                        </Author>
+                    </AuthorList>
+                    <Language>ENG</Language>
+                    <GrantList CompleteYN="Y">
+                        <Grant>
+                            <GrantID>R01 GM062868</GrantID>
+                            <Acronym>GM</Acronym>
+                            <Agency>NIGMS NIH HHS</Agency>
+                            <Country>United States</Country>
+                        </Grant>
+                        <Grant>
+                            <GrantID>R01-GM062868</GrantID>
+                            <Acronym>GM</Acronym>
+                            <Agency>NIGMS NIH HHS</Agency>
+                            <Country>United States</Country>
+                        </Grant>
+                    </GrantList>
+                    <PublicationTypeList>
+                        <PublicationType UI="D016428">Journal Article</PublicationType>
+                        <PublicationType UI="D052061">Research Support, N.I.H., Extramural</PublicationType>
+                        <PublicationType UI="D013485">Research Support, Non-U.S. Gov't</PublicationType>
+                        <PublicationType UI="D013486">Research Support, U.S. Gov't, Non-P.H.S.</PublicationType>
+                    </PublicationTypeList>
+                </Article>
+                <MedlineJournalInfo>
+                    <Country>United States</Country>
+                    <MedlineTA>J Chem Phys</MedlineTA>
+                    <NlmUniqueID>0375360</NlmUniqueID>
+                    <ISSNLinking>0021-9606</ISSNLinking>
+                </MedlineJournalInfo>
+                <ChemicalList>
+                    <Chemical>
+                        <RegistryNumber>0</RegistryNumber>
+                        <NameOfSubstance UI="D029968">Escherichia coli Proteins</NameOfSubstance>
+                    </Chemical>
+                    <Chemical>
+                        <RegistryNumber>0</RegistryNumber>
+                        <NameOfSubstance UI="C028715">GroE protein, E coli</NameOfSubstance>
+                    </Chemical>
+                    <Chemical>
+                        <RegistryNumber>0</RegistryNumber>
+                        <NameOfSubstance UI="D006360">Heat-Shock Proteins</NameOfSubstance>
+                    </Chemical>
+                    <Chemical>
+                        <RegistryNumber>0</RegistryNumber>
+                        <NameOfSubstance UI="D012997">Solvents</NameOfSubstance>
+                    </Chemical>
+                </ChemicalList>
+                <CitationSubset>IM</CitationSubset>
+                <CommentsCorrectionsList>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>Proc Natl Acad Sci U S A. 2001 May 22;98(11):5961-4</RefSource>
+                        <PMID Version="1">11344268</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>Proc Natl Acad Sci U S A. 2002 Jan 22;99(2):685-90</RefSource>
+                        <PMID Version="1">11805324</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>Science. 2002 Mar 8;295(5561):1852-8</RefSource>
+                        <PMID Version="1">11884745</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>Cell. 2002 Dec 27;111(7):1027-39</RefSource>
+                        <PMID Version="1">12507429</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>J Chem Phys. 2004 Oct 22;121(16):7955-65</RefSource>
+                        <PMID Version="1">15485258</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>Biochemistry. 1990 Aug 7;29(31):7133-55</RefSource>
+                        <PMID Version="1">2207096</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>J Chem Phys. 2013 Feb 28;138(8):085103</RefSource>
+                        <PMID Version="1">23464179</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>Phys Rev Lett. 2006 Jun 23;96(24):247802</RefSource>
+                        <PMID Version="1">16907281</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>Biophys J. 2007 Jan 15;92(2):373-8</RefSource>
+                        <PMID Version="1">16997876</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>J Am Chem Soc. 2008 Sep 10;130(36):11838-9</RefSource>
+                        <PMID Version="1">18710231</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>Biophys J. 2008 Oct;95(7):3391-9</RefSource>
+                        <PMID Version="1">18599630</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>J Phys Chem B. 2011 Jan 20;115(2):319-28</RefSource>
+                        <PMID Version="1">21174421</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>Proc Natl Acad Sci U S A. 2012 Sep 25;109(39):15740-5</RefSource>
+                        <PMID Version="1">22961256</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="Cites">
+                        <RefSource>Cell. 2006 Jun 2;125(5):903-14</RefSource>
+                        <PMID Version="1">16751100</PMID>
+                    </CommentsCorrections>
+                </CommentsCorrectionsList>
+                <MeshHeadingList>
+                    <MeshHeading>
+                        <DescriptorName UI="D029968" MajorTopicYN="N">Escherichia coli Proteins</DescriptorName>
+                        <QualifierName UI="Q000737" MajorTopicYN="Y">chemistry</QualifierName>
+                        <QualifierName UI="Q000235" MajorTopicYN="N">genetics</QualifierName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName UI="D006360" MajorTopicYN="N">Heat-Shock Proteins</DescriptorName>
+                        <QualifierName UI="Q000737" MajorTopicYN="Y">chemistry</QualifierName>
+                        <QualifierName UI="Q000235" MajorTopicYN="N">genetics</QualifierName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName UI="D008958" MajorTopicYN="N">Models, Molecular</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName UI="D056004" MajorTopicYN="N">Molecular Dynamics Simulation</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName UI="D015394" MajorTopicYN="N">Molecular Structure</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName UI="D012997" MajorTopicYN="N">Solvents</DescriptorName>
+                        <QualifierName UI="Q000737" MajorTopicYN="N">chemistry</QualifierName>
+                    </MeshHeading>
+                </MeshHeadingList>
+                <OtherID Source="NLM">PMC3651261</OtherID>
+            </MedlineCitation>
+            <PubmedData>
+                <History>
+                    <PubMedPubDate PubStatus="entrez">
+                        <Year>2013</Year>
+                        <Month>5</Month>
+                        <Day>3</Day>
+                        <Hour>6</Hour>
+                        <Minute>0</Minute>
+                    </PubMedPubDate>
+                    <PubMedPubDate PubStatus="pubmed">
+                        <Year>2013</Year>
+                        <Month>5</Month>
+                        <Day>3</Day>
+                        <Hour>6</Hour>
+                        <Minute>0</Minute>
+                    </PubMedPubDate>
+                    <PubMedPubDate PubStatus="medline">
+                        <Year>2013</Year>
+                        <Month>12</Month>
+                        <Day>16</Day>
+                        <Hour>6</Hour>
+                        <Minute>0</Minute>
+                    </PubMedPubDate>
+                </History>
+                <PublicationStatus>ppublish</PublicationStatus>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">23635172</ArticleId>
+                    <ArticleId IdType="doi">10.1063/1.4801942</ArticleId>
+                    <ArticleId IdType="pmc">PMC3651261</ArticleId>
+                </ArticleIdList>
+            </PubmedData>
+        </PubmedArticle>
+
+        </PubmedArticleSet>
+    http_version: 
+  recorded_at: Fri, 21 Oct 2016 19:58:08 GMT
 recorded_with: VCR 3.0.1

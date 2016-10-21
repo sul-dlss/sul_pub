@@ -29,7 +29,7 @@ CAP:
 PUBMED:
   LOG: log/pubmed.log
   FETCH_PATH: /entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml
-  HOST: eutils.ncbi.nlm.nih.gov
+  HOST: https://eutils.ncbi.nlm.nih.gov
 
 ## Sciencewire Auth Config
 SCIENCEWIRE:
