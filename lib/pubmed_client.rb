@@ -16,7 +16,7 @@ class PubmedClient
     timeout_retries ||= 3
     timeout_period ||= 500
 
-    conn = Faraday.new(url: Settings.PUBMED.HOST) do |faraday|
+    conn = Faraday.new(url: Settings.PUBMED.BASE_URI) do |faraday|
       faraday.request :retry, max: timeout_retries,
         interval: 0.5,
         interval_randomness: 0.5,
