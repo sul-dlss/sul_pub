@@ -222,7 +222,7 @@ GEM
     nokogiri (1.6.8)
       mini_portile2 (~> 2.1.0)
       pkg-config (~> 1.1.7)
-    okcomputer (1.12.0)
+    okcomputer (1.13.0)
     paper_trail (4.0.0)
       activerecord (>= 3.0, < 6.0)
       activesupport (>= 3.0, < 6.0)
