@@ -53,11 +53,6 @@ HARVESTER:
       state: CA
       country: USA
 
-SQUASH:
-  API_HOST: http://squash-host.example.com
-  API_KEY: squash-api-key
-  DISABLED: <%= (Rails.env.development? || Rails.env.test?) %>
-
 ## Ported from application.yml
 sw_doc_type_mappings:
   conference:
