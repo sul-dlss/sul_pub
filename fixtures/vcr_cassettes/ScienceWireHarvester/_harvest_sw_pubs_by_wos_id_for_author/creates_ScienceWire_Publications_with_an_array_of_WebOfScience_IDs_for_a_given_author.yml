@@ -41,7 +41,7 @@ http_interactions:
       Accept-Encoding:
       - gzip,deflate
       Date:
-      - Thu, 02 Jun 2016 22:10:33 GMT
+      - Fri, 15 Jul 2016 18:41:54 GMT
       Licenseid:
       - Settings.SCIENCEWIRE.LICENSE_ID
       Host:
@@ -70,7 +70,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Thu, 02 Jun 2016 22:10:33 GMT
+      - Fri, 15 Jul 2016 18:41:55 GMT
       Content-Length:
       - '277'
     body:
@@ -79,7 +79,7 @@ http_interactions:
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>81941</queryID>\r\n
         \ <queryResultRows>3</queryResultRows>\r\n  <totalRows>3</totalRows>\r\n</ScienceWireQueryIDResponse>"
     http_version: 
-  recorded_at: Thu, 02 Jun 2016 22:10:34 GMT
+  recorded_at: Fri, 15 Jul 2016 18:41:55 GMT
 - request:
     method: get
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/81941?format=xml&page=0&pageSize=3&v=version/4
@@ -94,7 +94,7 @@ http_interactions:
       Accept-Encoding:
       - gzip,deflate
       Date:
-      - Thu, 02 Jun 2016 22:10:34 GMT
+      - Fri, 15 Jul 2016 18:41:55 GMT
       Licenseid:
       - Settings.SCIENCEWIRE.LICENSE_ID
       Host:
@@ -123,7 +123,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Thu, 02 Jun 2016 15:53:32 GMT
+      - Fri, 15 Jul 2016 18:41:54 GMT
       Content-Length:
       - '9645'
     body:
@@ -241,7 +241,7 @@ http_interactions:
         \   <CopyrightStateProvince>NY</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
         STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n</ArrayOfPublicationItem>"
     http_version: 
-  recorded_at: Thu, 02 Jun 2016 22:10:34 GMT
+  recorded_at: Fri, 15 Jul 2016 18:41:55 GMT
 - request:
     method: post
     uri: http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml
@@ -261,7 +261,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 02 Jun 2016 22:10:34 GMT
+      - Fri, 15 Jul 2016 18:41:56 GMT
       Server:
       - Apache
       Access-Control-Allow-Origin:
@@ -269,12 +269,12 @@ http_interactions:
       Cache-Control:
       - private
       Ncbi-Sid:
-      - 9DFC71B5750AEDA1_0681SID
+      - 08DE61FA7892E741_0102SID
       Content-Type:
       - text/xml; charset=UTF-8
       Set-Cookie:
-      - ncbi_sid=9DFC71B5750AEDA1_0681SID; domain=.nih.gov; path=/; expires=Fri, 02
-        Jun 2017 22:10:34 GMT
+      - ncbi_sid=08DE61FA7892E741_0102SID; domain=.nih.gov; path=/; expires=Sat, 15
+        Jul 2017 18:41:56 GMT
       X-Ua-Compatible:
       - IE=Edge
       Transfer-Encoding:
@@ -968,5 +968,5 @@ http_interactions:
 
         </PubmedArticleSet>
     http_version: 
-  recorded_at: Thu, 02 Jun 2016 22:10:35 GMT
+  recorded_at: Fri, 15 Jul 2016 18:41:56 GMT
 recorded_with: VCR 3.0.1
