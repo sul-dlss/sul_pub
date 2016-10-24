@@ -226,7 +226,7 @@ class BibtexIngester
       identifiers << isbn_for_id_array
     end
     unless doi.blank?
-      doi_for_id_array = { type: 'doi', id: doi, url: "#{Settings.SCIENCEWIRE.DOI_BASE_URL}#{doi}" }
+      doi_for_id_array = { type: 'doi', id: doi, url: "#{Settings.DOI.BASE_URI}#{doi}" }
       identifiers << doi_for_id_array
       record_as_hash[:doi] = doi
     end

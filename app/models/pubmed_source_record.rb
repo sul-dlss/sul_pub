@@ -1,4 +1,5 @@
 require 'nokogiri'
+require 'nokogiri'
 
 class PubmedSourceRecord < ActiveRecord::Base
   # validates_uniqueness_of :pmid
@@ -152,7 +153,7 @@ class PubmedSourceRecord < ActiveRecord::Base
     # the DOI can be in one of two places: ArticleId or ELocationID
     doi = publication.at_xpath('//ArticleId[@IdType="doi"]')
     doi = publication.at_xpath('//ELocationID[@EIdType="doi"]') unless doi.present? && doi.text.present?
-    record_as_hash[:identifier] << { type: 'doi', id: doi.text, url: "#{Settings.SCIENCEWIRE.DOI_BASE_URL}#{doi.text}" } if doi.present? && doi.text.present?
+    record_as_hash[:identifier] << { type: 'doi', id: doi.text, url: "#{Settings.DOI.BASE_URI}#{doi.text}" } if doi.present? && doi.text.present?
 
     record_as_hash
   end

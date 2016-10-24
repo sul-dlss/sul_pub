@@ -41,7 +41,9 @@ SCIENCEWIRE:
   RECOMMENDATION_PATH: /PublicationCatalog/MatchedPublicationItemIdsForAuthor?format=xml
   TMPDIR: /tmp
   ARTICLE_BASE_URI: https://ws.isiknowledge.com/cps/openurl/service?url_ver=Z39.88-2004&rft_id=info:ut/
-  DOI_BASE_URL: https://dx.doi.org/
+
+DOI:
+  BASE_URI: https://dx.doi.org/
 
 HARVESTER:
   USE_MIDDLE_NAME: true
