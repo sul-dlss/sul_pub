@@ -128,7 +128,7 @@ http_interactions:
   recorded_at: Tue, 05 Apr 2016 23:39:36 GMT
 - request:
     method: post
-    uri: http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml
+    uri: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml
     body:
       encoding: UTF-8
       string: "&id=10048354&id=1914489"

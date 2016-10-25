@@ -1,4 +1,4 @@
-API_KEY: ***REMOVED***
+API_KEY: a fake key
 
 ## Settings for URI identifier prefixes used in the data; they should be working values in production
 SULPUB_ID:
@@ -29,7 +29,7 @@ CAP:
 PUBMED:
   API_LOG: log/pubmed_api.log
   FETCH_PATH: /entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml
-  HOST: eutils.ncbi.nlm.nih.gov
+  BASE_URI: https://eutils.ncbi.nlm.nih.gov
 
 ## Sciencewire Auth Config
 SCIENCEWIRE:
