@@ -27,7 +27,7 @@ journal = {Geological Society, London,},
 title = {Fluid flow through porous sandstone with overprinting and intersecting geological structures of various types},
 year = {2012},
 doi = {10.1144/SP374.11},
-url = {http://dx.doi.org/10.1144/SP374.11},
+url = {https://dx.doi.org/10.1144/SP374.11},
 comment = {Special Paper on Advances in the Study of Fractured Reservoirs},
 }
 
@@ -53,7 +53,7 @@ journal = {Journal of Structural Geology},
 title = {Growth processes, dimensional parameters and scaling relationships of two conjugate sets of compactive shear bands in porous carbonate grainstones, Favignana Island, Italy},
 year = {2012},
 doi = {10.1016/j.bbr.2011.03.031},
-url = {http://dx.doi.org/10.1016/j.bbr.2011.03.031},
+url = {https://dx.doi.org/10.1016/j.bbr.2011.03.031},
 }
 
 @article{na110,

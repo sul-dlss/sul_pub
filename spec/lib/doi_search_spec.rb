@@ -23,7 +23,7 @@ describe DoiSearch do
       VCR.use_cassette('doi_search_manual_doi_local') do
         publication.pub_hash = {
           provenance: 'cap',
-          identifier: [{ type: 'doi', id: '10.1111/j.1444-0938.2010.00524.x', url: 'http://dx.doi.org/10.1111/j.1444-0938.2010.00524.x' }]
+          identifier: [{ type: 'doi', id: '10.1111/j.1444-0938.2010.00524.x', url: 'https://dx.doi.org/10.1111/j.1444-0938.2010.00524.x' }]
         }
         publication.sync_identifiers_in_pub_hash_to_db
         publication.save

@@ -139,7 +139,7 @@ describe PubmedSourceRecord, :vcr do
         record.source_as_hash[:identifier].find { |id| id[:type] == 'doi' }
       end
       it 'constructs a URL based on the DOI' do
-        expect(doi(12_529_422)).to include(url: 'http://dx.doi.org/10.1091/mbc.E02-06-0327')
+        expect(doi(12_529_422)).to include(url: 'https://dx.doi.org/10.1091/mbc.E02-06-0327')
       end
       context 'extracts from ArticleId' do
         it 'works when ELocationID is missing' do

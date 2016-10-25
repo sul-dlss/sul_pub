@@ -3,12 +3,12 @@
         {
             "id": "7692670",
             "type": "PMID",
-            "url": "http://www.ncbi.nlm.nih.gov/pubmed/7692670"
+            "url": "https://www.ncbi.nlm.nih.gov/pubmed/7692670"
         },
         {
             "id": "A1993MB62100041",
             "type": "WoSItemID",
-            "url": "http://ws.isiknowledge.com/cps/openurl/service?url_ver=Z39.88-2004&rft_id=info:ut/A1993MB62100041"
+            "url": "https://ws.isiknowledge.com/cps/openurl/service?url_ver=Z39.88-2004&rft_id=info:ut/A1993MB62100041"
         },
         {
             "id": "24151039",
@@ -17,7 +17,7 @@
         {
             "id": "1702",
             "type": "SULPubId",
-            "url": "http://sulcap.stanford.edu/publications/1702"
+            "url": "https://sulcap.stanford.edu/publications/1702"
         }
     ],
     "title": "IDENTIFICATION OF A NEW NEUTRALIZATION EPITOPE ON VP7 OF HUMAN SEROTYPE-2 ROTAVIRUS AND EVIDENCE FOR ELECTROPHEROTYPE DIFFERENCES CAUSED BY SINGLE NUCLEOTIDE SUBSTITUTIONS",
@@ -295,12 +295,12 @@
             {
                 "id": "0042-6822",
                 "type": "issn",
-                "url": "http://searchworks.stanford.edu/?search_field=advanced&number=0042-6822"
+                "url": "https://searchworks.stanford.edu/?search_field=advanced&number=0042-6822"
             },
             {
                 "id": "",
                 "type": "doi",
-                "url": "http://dx.doi.org/"
+                "url": "https://dx.doi.org/"
             }
         ],
         "conferencestartdate": "",
