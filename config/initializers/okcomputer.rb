@@ -24,10 +24,12 @@ class DelegateCheck < OkComputer::Check
     else
       mark_failure
       mark_message 'not working'
+      Honeybadger.notify(RuntimeError.new("#{delegate.name} is not working"))
     end
   rescue => e
     mark_failure
     mark_message "#{e.class.name} received: #{e.message}"
+    Honeybadger.notify(e)
   end
 end
 
