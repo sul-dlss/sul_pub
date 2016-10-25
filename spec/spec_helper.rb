@@ -127,11 +127,11 @@ VCR.configure do |c|
 end
 
 def a_post(path)
-  a_request(:post, 'https://' + Settings.SCIENCEWIRE.BASE_URI + path)
+  a_request(:post, Settings.SCIENCEWIRE.BASE_URI + path)
 end
 
 def a_get(path)
-  a_request(:get, 'https://' + Settings.SCIENCEWIRE.BASE_URI + path)
+  a_request(:get, Settings.SCIENCEWIRE.BASE_URI + path)
 end
 
 def default_institution

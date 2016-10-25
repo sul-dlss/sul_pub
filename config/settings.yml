@@ -29,15 +29,14 @@ CAP:
 PUBMED:
   LOG: log/pubmed.log
   FETCH_PATH: /entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml
-  HOST: eutils.ncbi.nlm.nih.gov
-
+  BASE_URI: https://eutils.ncbi.nlm.nih.gov
+  
 ## Sciencewire Auth Config
 SCIENCEWIRE:
   LOG: log/sciencewire.log
-  BASE_URI: sciencewirerest.discoverylogic.com
+  BASE_URI: https://sciencewirerest.discoverylogic.com
   HOST: stg.sciencewirerest.discoverylogic.com
   LICENSE_ID: some-license-id
-  PORT: 443
   RECOMMENDATION_PATH: /PublicationCatalog/MatchedPublicationItemIdsForAuthor?format=xml
   TMPDIR: /tmp
 
