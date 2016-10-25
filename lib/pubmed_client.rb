@@ -9,27 +9,24 @@ class PubmedClient
     pmidValuesForPost = pmid_list.collect { |pmid| "&id=#{pmid}" }.join
     timeout_retries ||= 3
     timeout_period ||= 500
-    http = Net::HTTP.new(Settings.PUBMED.HOST)
-    http.read_timeout = timeout_period
-    request = Net::HTTP::Post.new(Settings.PUBMED.FETCH_PATH)
-    request.body = pmidValuesForPost
-    # http.start
-    the_incoming_xml = http.request(request).body
-    # http.finish
-    the_incoming_xml
+    conn = Faraday.new(url: Settings.PUBMED.BASE_URI) do |faraday|
+      faraday.request :retry, max: timeout_retries,
+        interval: 0.5,
+        interval_randomness: 0.5,
+        backoff_factor: 2
+      faraday.adapter :httpclient
+    end
+    conn.options.timeout = timeout_period
+    conn.options.open_timeout = 10
 
-    rescue Timeout::Error => te
-      timeout_retries -= 1
-      if timeout_retries > 0
-        # increase timeout
-        timeout_period = + 500
-        retry
-      else
-        NotificationManager.handle_pubmed_pull_error(te, "Timeout error on call to pubmed api - #{Time.zone.now}")
-        raise
-      end
-    rescue => e
-      NotificationManager.handle_pubmed_pull_error(e, 'Problem with http call to pubmed api')
-      raise
+    response = conn.send(:post) do |req|
+      req.url Settings.PUBMED.FETCH_PATH
+      req.body = pmidValuesForPost
+    end
+
+    response.body
+  rescue => e
+    NotificationManager.handle_pubmed_pull_error(e, 'Problem with http call to pubmed api')
+    raise
   end
 end
