@@ -33,4 +33,4 @@ set :linked_dirs, fetch(:linked_dirs, []).push(
 
 set :whenever_identifier, ->{ "#{fetch(:application)}_#{fetch(:stage)}" }
 
-before 'deploy:publishing', 'squash:write_revision'
+#before 'deploy:publishing', 'squash:write_revision'
