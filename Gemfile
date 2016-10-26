@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 4.2.5'
+gem 'rails', '~> 4.2.7.1'
 gem 'responders', '~> 2.0'
 gem 'grape'
 
@@ -19,6 +19,7 @@ gem 'activerecord-import'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'bibtex-ruby'
+gem 'nokogiri', '~> 1.6.8'
 gem 'bio'
 gem 'citeproc-ruby', '0.0.6'
 gem 'config'
