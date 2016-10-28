@@ -93,4 +93,4 @@ git reset --hard  # cleanup the private configuration files
 ## Deployment
 
 The application is deployed using capistrano (see `cap -T` for a list of available tasks).  A developer can deploy the application when they have Kerberos authentication enabled for the remote user@host definition of the deployment target.  The `config/deploy` path in the private configuration files (see above) contains all the deployment target definitions, see:
-- https://github.com/sul-dlss/shared_configs/tree/sulcap-laptop/config/deploy
+- https://github.com/sul-dlss/shared_configs/tree/sul-pub-laptop/config/deploy
