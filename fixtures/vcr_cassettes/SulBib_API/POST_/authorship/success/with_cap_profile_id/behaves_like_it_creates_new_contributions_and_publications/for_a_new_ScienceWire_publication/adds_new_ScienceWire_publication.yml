@@ -327,4 +327,257 @@ http_interactions:
         </PubmedArticleSet>
     http_version: 
   recorded_at: Thu, 02 Jun 2016 22:11:35 GMT
+- request:
+    method: post
+    uri: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml
+    body:
+      encoding: UTF-8
+      string: "&id=&id=10490476"
+    headers:
+      User-Agent:
+      - Faraday v0.9.2
+      Accept:
+      - "*/*"
+      Accept-Encoding:
+      - gzip,deflate
+      Date:
+      - Thu, 10 Nov 2016 18:41:15 GMT
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 10 Nov 2016 18:41:11 GMT
+      Server:
+      - Apache
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Content-Security-Policy:
+      - upgrade-insecure-requests
+      Content-Security-Policy-Report-Only:
+      - 'default-src https:; script-src https: ''unsafe-inline'' ''unsafe-eval'';
+        font-src https: data:; img-src https: data:; style-src https: ''unsafe-inline'';
+        report-uri https://www.ncbi.nlm.nih.gov/corecgi/csp/csp.cgi'
+      Access-Control-Allow-Origin:
+      - "*"
+      Cache-Control:
+      - private
+      Ncbi-Phid:
+      - 990C6175824B4D2100000000030702FD
+      Ncbi-Sid:
+      - 990C6175824BF471_0775SID
+      Content-Type:
+      - text/xml; charset=UTF-8
+      Set-Cookie:
+      - ncbi_sid=990C6175824BF471_0775SID; domain=.nih.gov; path=/; expires=Fri, 10
+        Nov 2017 18:41:11 GMT
+      Vary:
+      - Accept-Encoding
+      Content-Encoding:
+      - gzip
+      X-Ua-Compatible:
+      - IE=Edge
+      X-Xss-Protection:
+      - 1; mode=block
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" ?>
+        <!DOCTYPE PubmedArticleSet PUBLIC "-//NLM//DTD PubMedArticle, 1st January 2016//EN" "https://www.ncbi.nlm.nih.gov/corehtml/query/DTD/pubmed_160101.dtd">
+        <PubmedArticleSet>
+        <PubmedArticle>
+            <MedlineCitation Status="MEDLINE" Owner="NLM">
+                <PMID Version="1">10490476</PMID>
+                <DateCreated>
+                    <Year>1999</Year>
+                    <Month>12</Month>
+                    <Day>2</Day>
+                </DateCreated>
+                <DateCompleted>
+                    <Year>1999</Year>
+                    <Month>12</Month>
+                    <Day>02</Day>
+                </DateCompleted>
+                <DateRevised>
+                    <Year>2015</Year>
+                    <Month>11</Month>
+                    <Day>19</Day>
+                </DateRevised>
+                <Article PubModel="Print">
+                    <Journal>
+                        <ISSN IssnType="Print">1383-875X</ISSN>
+                        <JournalIssue CitedMedium="Print">
+                            <Volume>3</Volume>
+                            <Issue>3</Issue>
+                            <PubDate>
+                                <Year>1999</Year>
+                                <Month>Oct</Month>
+                            </PubDate>
+                        </JournalIssue>
+                        <Title>Journal of interventional cardiac electrophysiology : an international journal of arrhythmias and pacing</Title>
+                        <ISOAbbreviation>J Interv Card Electrophysiol</ISOAbbreviation>
+                    </Journal>
+                    <ArticleTitle>Assessment of atrioventricular nodal physiology in the mouse.</ArticleTitle>
+                    <Pagination>
+                        <MedlinePgn>207-12</MedlinePgn>
+                    </Pagination>
+                    <Abstract>
+                        <AbstractText>Transgenic mice are increasingly being utilized for understanding cardiac electrophysiologic abnormalities. However, little is known about the normal atrioventricular nodal and infraHisian physiology in the mouse because of the prior inability to record a His-bundle deflection. We present the first comprehensive examination of the murine atrioventricular nodal and His-Purkinje systems employing His-bundle recordings. Normal, healthy, male C57BL/6J mice (n = 48) underwent an in vivo electrophysiology study using a 2 F octapolar electrode catheter. Effective refractory periods were determined during premature atrial and ventricular stimulation. The PR interval measured 44 +/- 6 ms with a mean sinus cycle length of 185 +/- 42 ms. Baseline AH intervals were 36 +/- 5 ms and HV intervals were 10 +/- 2 ms. At a pacing cycle length of 140 ms the atrioventricular nodal effective refractory period (AVNERP) and atrial effective refractory period (AERP) were 86 +/- 19 ms and 57 +/- 17 ms, respectively. The mean AV Wenckebach and 2:1 paced cycle length were 103 +/- 14 ms and 84 +/- 13 ms, respectively. Premature atrial stimulation curves were asymptotic without discontinuity. A subset of nine mice was studied after administration of isoproterenol. The sinus cycle length, AVNERP and AERP decreased significantly from baseline measurements. This method establishes a practical and feasible technique to record in vivo His-bundle electrograms in the mouse to assess atrioventricular nodal and infraHisian physiology. Use of this model will allow for the examination of abnormalities of atrioventricular nodal and infraHisian conduction in transgenic murine models.</AbstractText>
+                    </Abstract>
+                    <AuthorList CompleteYN="Y">
+                        <Author ValidYN="Y">
+                            <LastName>VanderBrink</LastName>
+                            <ForeName>B A</ForeName>
+                            <Initials>BA</Initials>
+                            <AffiliationInfo>
+                                <Affiliation>New England Cardiac Arrhythmia Center, New England Medical Center, Boston, MA.</Affiliation>
+                            </AffiliationInfo>
+                        </Author>
+                        <Author ValidYN="Y">
+                            <LastName>Link</LastName>
+                            <ForeName>M S</ForeName>
+                            <Initials>MS</Initials>
+                        </Author>
+                        <Author ValidYN="Y">
+                            <LastName>Aronovitz</LastName>
+                            <ForeName>M J</ForeName>
+                            <Initials>MJ</Initials>
+                        </Author>
+                        <Author ValidYN="Y">
+                            <LastName>Saba</LastName>
+                            <ForeName>S</ForeName>
+                            <Initials>S</Initials>
+                        </Author>
+                        <Author ValidYN="Y">
+                            <LastName>Sloan</LastName>
+                            <ForeName>S B</ForeName>
+                            <Initials>SB</Initials>
+                        </Author>
+                        <Author ValidYN="Y">
+                            <LastName>Homoud</LastName>
+                            <ForeName>M K</ForeName>
+                            <Initials>MK</Initials>
+                        </Author>
+                        <Author ValidYN="Y">
+                            <LastName>Estes III</LastName>
+                            <ForeName>N A</ForeName>
+                            <Initials>NA</Initials>
+                        </Author>
+                        <Author ValidYN="Y">
+                            <LastName>Wang</LastName>
+                            <ForeName>P J</ForeName>
+                            <Initials>PJ</Initials>
+                        </Author>
+                    </AuthorList>
+                    <Language>ENG</Language>
+                    <PublicationTypeList>
+                        <PublicationType UI="D003160">Comparative Study</PublicationType>
+                        <PublicationType UI="D016428">Journal Article</PublicationType>
+                    </PublicationTypeList>
+                </Article>
+                <MedlineJournalInfo>
+                    <Country>Netherlands</Country>
+                    <MedlineTA>J Interv Card Electrophysiol</MedlineTA>
+                    <NlmUniqueID>9708966</NlmUniqueID>
+                    <ISSNLinking>1383-875X</ISSNLinking>
+                </MedlineJournalInfo>
+                <ChemicalList>
+                    <Chemical>
+                        <RegistryNumber>0</RegistryNumber>
+                        <NameOfSubstance UI="D000318">Adrenergic beta-Agonists</NameOfSubstance>
+                    </Chemical>
+                    <Chemical>
+                        <RegistryNumber>L628TT009W</RegistryNumber>
+                        <NameOfSubstance UI="D007545">Isoproterenol</NameOfSubstance>
+                    </Chemical>
+                </ChemicalList>
+                <CitationSubset>IM</CitationSubset>
+                <MeshHeadingList>
+                    <MeshHeading>
+                        <DescriptorName UI="D000318" MajorTopicYN="N">Adrenergic beta-Agonists</DescriptorName>
+                        <QualifierName UI="Q000008" MajorTopicYN="N">administration &amp; dosage</QualifierName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName UI="D000818" MajorTopicYN="N">Animals</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName UI="D001283" MajorTopicYN="N">Atrioventricular Node</DescriptorName>
+                        <QualifierName UI="Q000187" MajorTopicYN="N">drug effects</QualifierName>
+                        <QualifierName UI="Q000502" MajorTopicYN="Y">physiology</QualifierName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName UI="D002036" MajorTopicYN="N">Bundle of His</DescriptorName>
+                        <QualifierName UI="Q000187" MajorTopicYN="N">drug effects</QualifierName>
+                        <QualifierName UI="Q000502" MajorTopicYN="N">physiology</QualifierName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName UI="D004594" MajorTopicYN="N">Electrophysiology</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName UI="D006339" MajorTopicYN="N">Heart Rate</DescriptorName>
+                        <QualifierName UI="Q000187" MajorTopicYN="N">drug effects</QualifierName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName UI="D007274" MajorTopicYN="N">Injections, Intraperitoneal</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName UI="D007545" MajorTopicYN="N">Isoproterenol</DescriptorName>
+                        <QualifierName UI="Q000008" MajorTopicYN="N">administration &amp; dosage</QualifierName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName UI="D008297" MajorTopicYN="N">Male</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName UI="D051379" MajorTopicYN="N">Mice</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName UI="D008810" MajorTopicYN="N">Mice, Inbred C57BL</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName UI="D011690" MajorTopicYN="N">Purkinje Fibers</DescriptorName>
+                        <QualifierName UI="Q000187" MajorTopicYN="N">drug effects</QualifierName>
+                        <QualifierName UI="Q000502" MajorTopicYN="N">physiology</QualifierName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName UI="D013268" MajorTopicYN="N">Stimulation, Chemical</DescriptorName>
+                    </MeshHeading>
+                </MeshHeadingList>
+            </MedlineCitation>
+            <PubmedData>
+                <History>
+                    <PubMedPubDate PubStatus="pubmed">
+                        <Year>1999</Year>
+                        <Month>9</Month>
+                        <Day>18</Day>
+                    </PubMedPubDate>
+                    <PubMedPubDate PubStatus="medline">
+                        <Year>1999</Year>
+                        <Month>9</Month>
+                        <Day>18</Day>
+                        <Hour>0</Hour>
+                        <Minute>1</Minute>
+                    </PubMedPubDate>
+                    <PubMedPubDate PubStatus="entrez">
+                        <Year>1999</Year>
+                        <Month>9</Month>
+                        <Day>18</Day>
+                        <Hour>0</Hour>
+                        <Minute>0</Minute>
+                    </PubMedPubDate>
+                </History>
+                <PublicationStatus>ppublish</PublicationStatus>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">10490476</ArticleId>
+                </ArticleIdList>
+            </PubmedData>
+        </PubmedArticle>
+
+        </PubmedArticleSet>
+    http_version: 
+  recorded_at: Thu, 10 Nov 2016 18:41:16 GMT
 recorded_with: VCR 3.0.1
