@@ -45,12 +45,8 @@ class PubmedSourceRecord < ActiveRecord::Base
 
   def self.get_and_store_records_from_pubmed(pmids)
     pmidValuesForPost = pmids.collect { |pmid| "&id=#{pmid}" }.join
-    http = Net::HTTP.new('eutils.ncbi.nlm.nih.gov')
-    request = Net::HTTP::Post.new('/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml')
-    request.body = pmidValuesForPost
-    # http.start
-    the_incoming_xml = http.request(request).body
-    # http.finish
+    the_incoming_xml = PubmedClient.new.fetch_records_for_pmid_list pmidValuesForPost
+
     count = 0
     source_records = []
     @cap_import_pmid_logger = Logger.new(Rails.root.join('log', 'cap_import_pmid.log'))
