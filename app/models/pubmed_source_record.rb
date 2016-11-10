@@ -47,13 +47,8 @@ class PubmedSourceRecord < ActiveRecord::Base
 
   def self.get_and_store_records_from_pubmed(pmids)
     pmidValuesForPost = pmids.collect { |pmid| "&id=#{pmid}" }.join
-    http = Net::HTTP.new('eutils.ncbi.nlm.nih.gov')
-    request = Net::HTTP::Post.new('/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml')
-    request.body = pmidValuesForPost
+    the_incoming_xml = PubmedClient.new.fetch_records_for_pmid_list pmidValuesForPost
 
-    # http.start
-    the_incoming_xml = http.request(request).body
-    # http.finish
     count = 0
     source_records = []
     Nokogiri::XML(the_incoming_xml).xpath('//PubmedArticle').each do |pub_doc|
