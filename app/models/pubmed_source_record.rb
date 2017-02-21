@@ -196,7 +196,7 @@ class PubmedSourceRecord < ActiveRecord::Base
       fn, mn = forename.split
       # If ForeName includes particles, the first name is
       # likely to be OK, but the middle name needs to be fixed.
-      if forename =~ /el-|el |da |de |del |do |dos |du |le /
+      if forename =~ / el-| el | da | de | del | do | dos | du | le /
         # Try to scan this to keep the particles with the following name.
         # Assume the first name begins with an upper case letter, so this
         # scan pattern will skip over it.

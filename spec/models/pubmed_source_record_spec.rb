@@ -22,6 +22,10 @@ describe PubmedSourceRecord, :vcr do
           xml: author_doc(' <Author ValidYN="Y"> <LastName>Amara</LastName> <ForeName>Mohamed el-Walid</ForeName> <Initials>Mel- W</Initials> </Author>'),
           hash: {firstname: 'Mohamed', middlename: 'el-Walid', lastname: 'Amara'}
         },
+        Brown: {
+          xml: author_doc(' <Author ValidYN="Y"> <LastName>Brown</LastName> <ForeName>Canada Quincy</ForeName> <Initials>CQ</Initials> </Author>'),
+          hash: {firstname: 'Canada', middlename: 'Quincy', lastname: 'Brown'}
+        },
         Buncke: {
           xml: author_doc(' <Author ValidYN="Y"> <LastName>Buncke</LastName> <ForeName>Gregory M</ForeName> <Initials>GM</Initials> </Author>'),
           hash: {firstname: 'Gregory', middlename: 'M', lastname: 'Buncke'}
@@ -29,6 +33,10 @@ describe PubmedSourceRecord, :vcr do
         Gonzales: {
           xml: author_doc(' <Author ValidYN="Y"> <LastName>Gonzales-loza</LastName> <ForeName>María del R</ForeName> <Initials>Mdel R</Initials> </Author>'),
           hash: {firstname: 'María', middlename: 'del R', lastname: 'Gonzales-loza'}
+        },
+        Hauser: {
+          xml: author_doc(' <Author ValidYN="Y"> <LastName>Hauser</LastName> <ForeName>Michelle E</ForeName> <Initials>ME</Initials> </Author>'),
+          hash: {firstname: 'Michelle', middlename: 'E', lastname: 'Hauser'}
         },
         Johnson: {
           xml: author_doc(' <Author ValidYN="Y"> <LastName>Johnson</LastName> <Initials>DL</Initials> </Author>'),
@@ -60,11 +68,17 @@ describe PubmedSourceRecord, :vcr do
     it 'extracts names for Abrams example' do
       check_author_hash(:Abrams)
     end
+    it 'extracts names for Brown example' do
+      check_author_hash(:Brown)
+    end
     it 'extracts names for Buncke example' do
       check_author_hash(:Buncke)
     end
     it 'extracts names for Gonzales example' do
       check_author_hash(:Gonzales)
+    end
+    it 'extracts names for Hauser example' do
+      check_author_hash(:Hauser)
     end
     it 'extracts names for Krylov example' do
       check_author_hash(:Krylov)
