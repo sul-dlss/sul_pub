@@ -47,7 +47,7 @@ DOI:
 
 HARVESTER:
   USE_MIDDLE_NAME: true
-  USE_AUTHOR_IDENTITIES: false
+  USE_AUTHOR_IDENTITIES: true
   INSTITUTION:
     name: Stanford University
     address:
