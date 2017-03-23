@@ -48,13 +48,6 @@ GEM
       descendants_tracker (~> 0.0.4)
       ice_nine (~> 0.11.0)
       thread_safe (~> 0.3, >= 0.3.1)
-    axlsx (2.0.1)
-      htmlentities (~> 4.3.1)
-      nokogiri (>= 1.4.1)
-      rubyzip (~> 1.0.0)
-    axlsx_rails (0.4.0)
-      axlsx (>= 2.0.1)
-      rails (>= 3.1)
     bibtex-ruby (4.0.14)
       latex-decode (~> 0.0)
     binding_of_caller (0.7.2)
@@ -178,7 +171,6 @@ GEM
     hashie (3.4.4)
     high_voltage (2.3.0)
     honeybadger (2.6.1)
-    htmlentities (4.3.4)
     http-cookie (1.0.2)
       domain_name (~> 0.5)
     httpclient (2.7.1)
@@ -328,7 +320,6 @@ GEM
       unicode-display_width (~> 0.3)
     rubocop-rspec (1.4.0)
     ruby-progressbar (1.7.5)
-    rubyzip (1.0.0)
     safe_yaml (1.0.4)
     sass (3.4.21)
     sass-rails (5.0.4)
@@ -413,7 +404,6 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord-import
-  axlsx_rails
   bibtex-ruby
   bio
   bootstrap-sass (~> 3.3.4)
@@ -470,4 +460,4 @@ DEPENDENCIES
   yaml_db
 
 BUNDLED WITH
-   1.13.6
+   1.14.6
