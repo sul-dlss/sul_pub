@@ -52,7 +52,6 @@ gem 'retina_tag'
 group :development, :test do
   gem 'dlss_cops' # includes rubocop
   gem 'rails_db'
-  gem 'axlsx_rails'
 end
 
 group :development do
