@@ -24,6 +24,7 @@ require 'capistrano/deploy'
 require 'capistrano/bundler'
 require 'capistrano/rails'
 require 'capistrano/passenger'
+require 'capistrano/shared_configs'
 require 'dlss/capistrano'
 require 'whenever/capistrano'
 
