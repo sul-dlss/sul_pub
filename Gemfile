@@ -15,6 +15,8 @@ gem 'therubyracer'
 
 gem 'mysql2', '~> 0.3.18'
 
+gem 'nokogiri', '>= 1.7.1'
+
 gem 'activerecord-import'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
