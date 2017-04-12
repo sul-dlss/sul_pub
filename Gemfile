@@ -47,6 +47,10 @@ gem 'simple_form'
 gem 'whenever', require: false
 gem 'yaml_db'
 
+# http://stackoverflow.com/questions/35893584/nomethoderror-undefined-method-last-comment-after-upgrading-to-rake-11
+# same error in travis build with rake v12.0.0, so I chose to pin rake back
+gem 'rake', '~> 11.3.0'
+
 # -------------------
 gem 'honeybadger', '~> 2.0'
 gem 'retina_tag'
