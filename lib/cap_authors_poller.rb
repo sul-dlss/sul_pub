@@ -126,6 +126,11 @@ class CapAuthorsPoller
   end
 
   def update_existing_contributions(author, incoming_authorships)
+    # inject author identity into the authorship data
+    incoming_authorships = incoming_authorships.dup.map do |contrib|
+      contrib[:cap_profile_id] = author.cap_profile_id
+      contrib
+    end
     incoming_authorships.each do |authorship|
       if !Contribution.valid_fields? authorship
         msg = "Invalid fields in authorship: Author.find_by(cap_profile_id: #{author.cap_profile_id}); #{authorship.inspect}"
