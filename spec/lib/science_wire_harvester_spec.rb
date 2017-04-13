@@ -15,7 +15,7 @@ describe ScienceWireHarvester, :vcr do
   describe '#use_author_identities' do
     it 'is a Boolean' do
       expect(subject).to respond_to(:use_author_identities)
-      expect(subject.use_author_identities).to be false
+      expect(subject.use_author_identities).to be true
     end
     it 'is set by Settings' do
       expect(subject.use_author_identities).to eq(Settings.HARVESTER.USE_AUTHOR_IDENTITIES)
