@@ -312,6 +312,8 @@ class Publication < ActiveRecord::Base
 
     pub_hash[:mesh_headings] = pubmed_hash[:mesh_headings] unless pubmed_hash[:mesh_headings].blank?
     pub_hash[:abstract] = pubmed_hash[:abstract] unless pubmed_hash[:abstract].blank?
+    pmc_id = pubmed_hash[:identifier].detect {|id| id[:type] == 'pmc'}
+    pub_hash[:identifier] << pmc_id if pmc_id
   end
 
   def set_last_updated_value_in_hash

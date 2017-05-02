@@ -149,7 +149,8 @@ class PubmedSourceRecord < ActiveRecord::Base
     doi = publication.at_xpath('//ArticleId[@IdType="doi"]')
     doi = publication.at_xpath('//ELocationID[@EIdType="doi"]') unless doi.present? && doi.text.present?
     record_as_hash[:identifier] << { type: 'doi', id: doi.text, url: "#{Settings.DOI.BASE_URI}#{doi.text}" } if doi.present? && doi.text.present?
-
+    pmc = publication.at_xpath('//ArticleId[@IdType="pmc"]')
+    record_as_hash[:identifier] << { type: 'pmc', id: pmc.text } if pmc.present? && pmc.text.present?
     record_as_hash
   end
 
