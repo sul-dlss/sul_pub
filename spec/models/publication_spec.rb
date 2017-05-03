@@ -198,7 +198,7 @@ describe Publication do
   describe 'add_any_pubmed_data_to_hash' do
     it 'should add mesh and abstract data if available' do
       publication.pmid = 1
-      allow(PubmedSourceRecord).to receive(:get_pubmed_hash_for_pmid).with(1).and_return mesh_headings: 'x', abstract: 'y'
+      allow(PubmedSourceRecord).to receive(:get_pubmed_hash_for_pmid).with(1).and_return mesh_headings: 'x', abstract: 'y', identifier: [{ type: 'PMID', id: publication.pmid, url: "#{Settings.PUBMED.ARTICLE_BASE_URI}#{publication.pmid}"}]
 
       publication.add_any_pubmed_data_to_hash
 
@@ -208,6 +208,25 @@ describe Publication do
 
     it 'should ignore records without a pmid' do
       publication.add_any_pubmed_data_to_hash
+    end
+
+    it 'should add pmcid if available' do
+      publication.pmid = 1
+      allow(PubmedSourceRecord).to receive(:get_pubmed_hash_for_pmid).with(1).and_return(identifier: [{type: 'pmc', id: '123456'}])
+
+      publication.add_any_pubmed_data_to_hash
+
+      expect(publication.pub_hash[:identifier].include?(type: "pmc", id: "123456")).to be true
+    end
+
+    it 'should not add pmcid if not available' do
+      publication.pmid = 1
+      allow(PubmedSourceRecord).to receive(:get_pubmed_hash_for_pmid).with(1).and_return(identifier: [{type: 'some_odd_non_supported_type', id: '123456'}])
+
+      publication.add_any_pubmed_data_to_hash
+
+      expect(publication.pub_hash[:identifier].include?(type: "pmc", id: "123456")).to be false # no pmcid and no exception either
+      expect(publication.pub_hash[:identifier].include?(type: "some_odd_non_supported_type", id: "123456")).to be false # this one ain't there either
     end
 
     it 'should ignore records with an empty pubmed record' do
