@@ -440,6 +440,10 @@ describe PubHash do
         expect(pub_hash.to_mla_citation)
           .to eq "Imberman, Scott, Adriana D. Kugler, and Bruce Sacerdote. <i>Katrina's Children: Evidence on the Structure of Peer Effects from Hurricane Evacuees</i>. Cambridge, MA: National Bureau of Economic Research, 2009. Web. NBER Working Paper Series."
       end
+      it 'creates an NLM citation' do
+        expect(pub_hash.to_nlm_citation)
+          .to eq "Imberman S, Kugler AD, Sacerdote B. Katrina's Children: Evidence on the Structure of Peer Effects from Hurricane Evacuees [Internet]. Cambridge, MA: National Bureau of Economic Research; 2009 p. 1–55. (NBER Working Paper Series). Report No.: 15291. Retrieved from: http://www.nber.org/papers/w15291"
+      end
     end
 
     ##
@@ -458,6 +462,10 @@ describe PubHash do
       it 'creates an MLA citation' do
         expect(pub_hash.to_mla_citation)
           .to eq "Mangiafico, Peter A. <i>This Is Peter's Working Paper on the Revs Digital Library</i>. Stanford, CA: Stanford University, 2016. Web. Series Name."
+      end
+      it 'creates an NLM citation' do
+        expect(pub_hash.to_nlm_citation)
+          .to eq "Mangiafico PA. This is Peter's Working Paper on the Revs Digital Library [Internet]. Stanford, CA: Stanford University; 2016 p. 5. (Series Name). Report No.: Series Number. Retrieved from: http://revslib.stanford.edu"
       end
     end
   end
@@ -672,6 +680,10 @@ describe PubHash do
         expect(pub_hash.to_apa_citation)
           .to eq "Mangiafico, P. A. (2016). <i>This is Peter's Other Paper on the Revs Digital Library</i> (pp. 1–5). Stanford, CA: Stanford University. Retrieved from http://revslib.stanford.edu"
       end
+      it 'creates an NLM citation' do
+        expect(pub_hash.to_nlm_citation)
+          .to eq "Mangiafico PA. This is Peter's Other Paper on the Revs Digital Library [Internet]. Stanford, CA: Stanford University; 2016. (Series Name). Retrieved from: http://revslib.stanford.edu"
+      end
     end
   end
 
@@ -692,6 +704,10 @@ describe PubHash do
       it 'creates an MLA citation' do
         expect(pub_hash.to_mla_citation)
           .to eq "Mangiafico, Peter A. <i>This Is Peter's Technical Report on the Revs Digital Library</i>. Stanford, CA : Stanford University, 2016. Web. Series Name."
+      end
+      it 'creates an NLM citation' do
+        expect(pub_hash.to_nlm_citation)
+          .to eq "Mangiafico PA. This is Peter's Technical Report on the Revs Digital Library [Internet]. Stanford, CA : Stanford University; 2016 p. 1–5. (Series Name). Report No.: 5. Retrieved from: http://revslib.stanford.edu"
       end
     end
 
@@ -717,6 +733,11 @@ describe PubHash do
         it 'creates a MLA citation' do
           expect(pub_hash.to_mla_citation)
             .to eq "Gorbunova, Yulia. <i>Laws of Attrition: Crackdown on Russia’s Civil Society After Putin’s Return to the Presidency</i>. New York: Human Rights Watch, 2013. Web."
+        end
+
+        it 'creates an NLM citation' do
+          expect(pub_hash.to_nlm_citation)
+            .to eq "Gorbunova Y. Laws of Attrition: Crackdown on Russia’s Civil Society After Putin’s Return to the Presidency [Internet]. New York: Human Rights Watch; 2013. Retrieved from: http://www.hrw.org/reports/2013/04/24/laws-attrition"
         end
       end
 
@@ -749,6 +770,10 @@ describe PubHash do
         expect(pub_hash.to_apa_citation)
           .to eq "Mangiafico, P. A. (2016). <i>This is Peter's Case Study on the Revs Digital Library</i> (pp. 1–5). Stanford, CA: Stanford University. Retrieved from http://revslib.stanford.edu"
       end
+      it 'creates an NLM citation' do
+        expect(pub_hash.to_nlm_citation)
+          .to eq "Mangiafico PA. This is Peter's Case Study on the Revs Digital Library [Internet]. Stanford, CA: Stanford University; 2016. (Series Name). Retrieved from: http://revslib.stanford.edu"
+      end
     end
     context 'given fixture' do
       let(:pub_hash) { PubHash.new(case_study_pub_hash) }
@@ -770,6 +795,10 @@ describe PubHash do
       it 'creates a MLA citation' do
         expect(pub_hash.to_mla_citation).to eq 'Hill, Linda, Tarun Khanna, and Emily A. Stecker. <i>HCL Technologies</i>. Boston: Harvard Business Publishing, 2008. Print.'
       end
+
+      it 'creates an NLM citation' do
+        expect(pub_hash.to_nlm_citation).to eq 'Hill L, Khanna T, Stecker EA. HCL Technologies. Boston: Harvard Business Publishing; 2008. '
+      end
     end
   end
   describe 'User submitted source records' do
@@ -784,6 +813,9 @@ describe PubHash do
       it 'creates a APA citation' do
         expect(pub_hash.to_apa_citation).to eq 'Reed, P. J., &amp; Stanford, J. (2015). <i>This is a book title</i> (Vol. 3). Stanford University Press.'
       end
+      it 'creates a NLM citation' do
+        expect(pub_hash.to_nlm_citation).to eq 'Reed PJ, Stanford J. This is a book title. Stanford University Press; 2015. (The Series Title; vol. 3). '
+      end
     end
     context 'book chapter' do
       let(:pub_hash) { PubHash.new(JSON.parse(create(:book_chapter).source_data, symbolize_names: true)) }
@@ -794,6 +826,9 @@ describe PubHash do
         expect(pub_hash.to_mla_citation).to eq "Hardy, Darren, Jack Reed, and Bess Sadler. <i>Geospatial Resource Discovery</i>. American Library Association Editions, 2016. Print."
       end
       it 'creates a APA citation' do
+        expect(pub_hash.to_apa_citation).to eq "Hardy, D., Reed, J., &amp; Sadler, B. (2016). <i>Geospatial Resource Discovery</i>. <i>Exploring Discovery: The Front Door to Your Library's Licensed and Digitized Content</i> (pp. 47–62). American Library Association Editions."
+      end
+      it 'creates a NLM citation' do
         expect(pub_hash.to_apa_citation).to eq "Hardy, D., Reed, J., &amp; Sadler, B. (2016). <i>Geospatial Resource Discovery</i>. <i>Exploring Discovery: The Front Door to Your Library's Licensed and Digitized Content</i> (pp. 47–62). American Library Association Editions."
       end
     end
@@ -807,6 +842,9 @@ describe PubHash do
       end
       it 'creates a APA citation' do
         expect(pub_hash.to_apa_citation).to eq 'Reed, J. (2015). Preservation and discovery for GIS data. Presented at the Esri User Conference, San Diego, California: Esri.'
+      end
+      it 'creates a NLM citation' do
+        expect(pub_hash.to_nlm_citation).to eq 'Reed J. Preservation and discovery for GIS data. Esri; 2015. '
       end
     end
     context 'conference proceeding without city' do
@@ -875,6 +913,9 @@ describe PubHash do
       end
       it 'creates a APA citation' do
         expect(pub_hash.to_apa_citation).to eq 'Glover, J. B., Woodard, K., Reed, P. J., &amp; Waits, J. (2012). The Flat Rock Cemetery Mapping Project:  A Case Study in Community Archaeology. <i>Early Georgia</i>, <i>40</i>(1).'
+      end
+      it 'creates a NLM citation' do
+        expect(pub_hash.to_nlm_citation).to eq 'Glover JB, Woodard K, Reed PJ, Waits J. The Flat Rock Cemetery Mapping Project:  A Case Study in Community Archaeology. Early Georgia. The Society for Georgia Archaeology; 2012;40(1). '
       end
     end
   end
