@@ -160,7 +160,7 @@ describe SciencewireSourceRecord, :vcr do
         expect(subject[:identifier][0]).to include(type: 'PMID', id: '24213991')
         expect(subject[:identifier][1]).to include(type: 'WoSItemID', id: '000326892600002')
         expect(subject[:identifier][2]).to include(type: 'PublicationItemID', id: '64367696')
-        expect(subject[:identifier][3]).to include(type: 'doi', id: '10.1007/s13280-013-0447-x')
+        expect(subject[:identifier][3]).to include(type: 'doi', id: '10.1007/s13280-013-0447-x', url: 'https://dx.doi.org/10.1007/s13280-013-0447-x')
       end
     end
 
