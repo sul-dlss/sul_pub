@@ -188,7 +188,7 @@ class SciencewireSourceRecord < ActiveRecord::Base
     swid = extract_swid(publication)
     wosid = extract_wosid(publication)
 
-    doi_identifier = { type: 'doi', id: doi, url: "#{Settings.DOI.BASE_URL}#{doi}" } unless doi.blank?
+    doi_identifier = { type: 'doi', id: doi, url: "#{Settings.DOI.BASE_URI}#{doi}" } unless doi.blank?
     issn_identifier = { type: 'issn', id: issn, url: Settings.SULPUB_ID.SEARCHWORKS_URI + issn } unless issn.blank?
 
     identifiers = []
