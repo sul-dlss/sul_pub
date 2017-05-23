@@ -252,6 +252,71 @@ describe Publication do
     end
   end
 
+  describe 'update_from_pubmed' do
+    it 'should not update from pubmed source if there is no pmid' do
+      expect(publication.pmid).to be_nil
+      expect(publication.update_from_pubmed).to be false
+    end
+    it 'should update from pubmed source if there is a pmid' do
+      pmid = 1
+      publication.pmid = pmid
+      source_data = '<PubmedArticle><MedlineCitation Status="Publisher" Owner="NLM"><OriginalData/><Article><ArticleTitle>How I learned Rails</ArticleTitle></Article></PubmedArticle>'
+      new_source_data = '<PubmedArticle><MedlineCitation Status="Publisher" Owner="NLM"><Article><ArticleTitle>How I learned Rails</ArticleTitle></Article><PMID Version="1">123</PMID><SomeNewData/></PubmedArticle>'
+      pubmed_record = PubmedSourceRecord.create(pmid: pmid, source_data: source_data)
+      allow(PubmedSourceRecord).to receive(:find_by_pmid).with(pmid).and_return(pubmed_record)
+      expect(pubmed_record.source_data).to be_equivalent_to source_data
+      allow_any_instance_of(PubmedClient).to receive(:fetch_records_for_pmid_list).with(pmid).and_return(new_source_data)
+      expect(publication.pub_hash[:title]).to eq 'How I learned Rails'
+      expect(publication.pub_hash[:identifier]).to eq(
+        [
+          {type: 'SULPubId', id: publication.id.to_s, url: "http://sulcap.stanford.edu/publications/#{publication.id}"}
+        ]
+      )
+      expect(publication.pmid).to_not be_nil
+      expect(publication.update_from_pubmed).to be true
+      expect(publication.pub_hash[:title]).to eq 'How I learned Rails'
+      expect(publication.pub_hash[:identifier]).to eq(
+        [
+          {type: 'PMID', id: '123', url: 'https://www.ncbi.nlm.nih.gov/pubmed/123'},
+          {type: 'SULPubId', id: publication.id.to_s, url: "http://sulcap.stanford.edu/publications/#{publication.id}"}
+        ]
+      )
+      expect(PubmedSourceRecord.find_by_pmid(pmid).source_data).to be_equivalent_to new_source_data
+    end
+  end
+
+  describe 'update_from_sciencewire' do
+    it 'should not update from sciencewire source if there is no sciencewire_id' do
+      expect(publication.sciencewire_id).to be_nil
+      expect(publication.update_from_sciencewire).to be false
+    end
+    it 'should update from sciencewire source if there is a sciencewire_id' do
+      sciencewire_id = 1
+      publication.sciencewire_id = sciencewire_id
+      source_data = '<?xml version="1.0"?><PublicationItem><Title>How I learned Rails</Title><Abstract/></PublicationItem>'
+      new_source_data = '<?xml version="1.0"?><PublicationItem><Title>Some New Title</Title><Abstract/></PublicationItem>'
+      sw_record = SciencewireSourceRecord.create(sciencewire_id: sciencewire_id, source_data: source_data)
+      allow(SciencewireSourceRecord).to receive(:find_by_sciencewire_id).with(sciencewire_id).and_return(sw_record)
+      expect(sw_record.source_data).to be_equivalent_to source_data
+      allow_any_instance_of(ScienceWireClient).to receive(:get_sw_xml_source_for_sw_id).with(sciencewire_id).and_return(Nokogiri::XML(new_source_data).xpath('//PublicationItem').first)
+      expect(publication.pub_hash[:title]).to eq 'How I learned Rails'
+      expect(publication.pub_hash[:identifier]).to eq(
+        [
+          {type: 'SULPubId', id: publication.id.to_s, url: "http://sulcap.stanford.edu/publications/#{publication.id}"}
+        ]
+      )
+      expect(publication.sciencewire_id).to_not be_nil
+      expect(publication.update_from_sciencewire).to be true
+      expect(publication.pub_hash[:title]).to eq 'Some New Title'
+      expect(publication.pub_hash[:identifier]).to eq(
+        [
+          {type: 'SULPubId', id: publication.id.to_s, url: "http://sulcap.stanford.edu/publications/#{publication.id}"}
+        ]
+      )
+      expect(SciencewireSourceRecord.find_by_sciencewire_id(sciencewire_id).source_data).to be_equivalent_to new_source_data
+    end
+  end
+
   describe 'update_formatted_citations' do
     it 'should update the apa, mla, and chicago citations' do
       allow(publication).to receive(:pub_hash).and_return({})

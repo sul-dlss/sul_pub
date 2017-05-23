@@ -145,6 +145,29 @@ describe PubmedSourceRecord, :vcr do
     end
   end
 
+  describe '.pubmed_update' do
+    it 'updates the :source_data field' do
+      source_data = '<PubmedArticle><MedlineCitation Status="Publisher" Owner="NLM"><PMID Version="1">1</PMID><OriginalData/></PubmedArticle>'
+      new_source_data = '<PubmedArticle><MedlineCitation Status="Publisher" Owner="NLM"><PMID Version="1">1</PMID><SomeNewData/></PubmedArticle>'
+      pubmed_record = described_class.create(pmid: pmid_created_1999, source_data: source_data)
+      allow(described_class).to receive(:find_by_pmid).with(pmid_created_1999).and_return(pubmed_record)
+      expect(pubmed_record.source_data).to be_equivalent_to source_data
+      allow_any_instance_of(PubmedClient).to receive(:fetch_records_for_pmid_list).with(pmid_created_1999).and_return(new_source_data)
+      expect(pubmed_record.pubmed_update).to be true
+      expect(pubmed_record.source_data).to be_equivalent_to new_source_data
+    end
+    it 'does not update the :source_data field if no pubmed record is found' do
+      source_data = '<PubmedArticle><MedlineCitation Status="Publisher" Owner="NLM"><PMID Version="1">1</PMID><OriginalData/></PubmedArticle>'
+      new_source_data = '<?xml version="1.0" ?><!DOCTYPE PubmedArticleSet PUBLIC "-//NLM//DTD PubMedArticle, 1st January 2017//EN" "https://dtd.nlm.nih.gov/ncbi/pubmed/out/pubmed_170101.dtd"><PubmedArticleSet></PubmedArticleSet>'
+      pubmed_record = described_class.create(pmid: pmid_created_1999, source_data: source_data)
+      allow(described_class).to receive(:find_by_pmid).with(pmid_created_1999).and_return(pubmed_record)
+      expect(pubmed_record.source_data).to be_equivalent_to source_data
+      allow_any_instance_of(PubmedClient).to receive(:fetch_records_for_pmid_list).with(pmid_created_1999).and_return(new_source_data)
+      expect(pubmed_record.pubmed_update).to be false
+      expect(pubmed_record.source_data).to be_equivalent_to source_data
+    end
+  end
+
   context '.source_as_hash' do
     context 'DOI extraction' do
       def doi(pmid)
