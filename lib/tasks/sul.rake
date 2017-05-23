@@ -37,12 +37,15 @@ namespace :sul do
         puts message
         logger.error message
         error_count += 1
-      end      
+      end
       if error_count > max_errors
-        raise "Halting: Maximum number of errors #{max_errors} reached"
+        message = "Halting: Maximum number of errors #{max_errors} reached"
+        logger.error message
+        raise message
       end
     end
-    message = "Total: #{number_with_delimiter(total_pubs)}.  Successful: #{success_count}.  Error: #{error_count}.  Ended at #{Time.now}"
+    end_time = Time.now
+    message = "Total: #{number_with_delimiter(total_pubs)}.  Successful: #{success_count}.  Error: #{error_count}.  Ended at #{end_time}. Total time: #{distance_of_time_in_words(end_time,start_time)}"
     puts message
     logger.info message
   end
