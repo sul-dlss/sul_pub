@@ -43,6 +43,7 @@ class PubmedHarvester
       pub_hash[:apa_citation] = h.to_apa_citation unless pub_hash[:apa_citation]
       pub_hash[:mla_citation] = h.to_mla_citation unless pub_hash[:mla_citation]
       pub_hash[:chicago_citation] = h.to_chicago_citation unless pub_hash[:chicago_citation]
+      pub_hash[:nlm_citation] = h.to_nlm_citation unless pub_hash[:nlm_citation]
       pub_hash
     end
 

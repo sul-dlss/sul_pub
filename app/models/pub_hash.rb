@@ -11,6 +11,8 @@ class PubHash
   CSL_STYLE_APA = CSL::Style.load('apa')
   CSL_STYLE_MLA = CSL::Style.load('modern-language-association')
 
+  NLM_STYLE = CSL::Style.load('vancouver') # this is basically the NLM citation format (NLM is a dependent format)
+
   CSL_STYLE_CHICAGO = CSL::Style.load('chicago-author-date')
   CSL_STYLE_CHICAGO_ET_AL = begin
     # Modify the bibliography attributes so it uses 'et al.' after 5 authors
@@ -48,6 +50,10 @@ class PubHash
 
   def to_mla_citation
     generate_csl_citation(csl_doc, CSL_STYLE_MLA)
+  end
+
+  def to_nlm_citation
+    generate_csl_citation(csl_doc, NLM_STYLE)
   end
 
   def to_apa_citation

@@ -253,18 +253,21 @@ describe Publication do
   end
 
   describe 'update_formatted_citations' do
-    it 'should update the apa, mla, and chicago citations' do
+    it 'should update the apa, mla, nlm, and chicago citations' do
       allow(publication).to receive(:pub_hash).and_return({})
       apa = double
       mla = double
       chicago = double
+      nlm = double
       expect_any_instance_of(PubHash).to receive(:to_apa_citation).and_return(apa)
       expect_any_instance_of(PubHash).to receive(:to_mla_citation).and_return(mla)
       expect_any_instance_of(PubHash).to receive(:to_chicago_citation).and_return(chicago)
+      expect_any_instance_of(PubHash).to receive(:to_nlm_citation).and_return(nlm)
       publication.update_formatted_citations
       expect(publication.pub_hash[:apa_citation]).to eq(apa)
       expect(publication.pub_hash[:mla_citation]).to eq(mla)
       expect(publication.pub_hash[:chicago_citation]).to eq(chicago)
+      expect(publication.pub_hash[:nlm_citation]).to eq(nlm)
     end
   end
 
