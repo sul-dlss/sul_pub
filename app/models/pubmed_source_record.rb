@@ -68,6 +68,20 @@ class PubmedSourceRecord < ActiveRecord::Base
     PubmedSourceRecord.import source_records
   end
 
+  # Retrieve this pubmed record from PubMed and update
+  # is_active, source_data and the source_fingerprint fields.
+  # Used to update the pubmed source record on our end (similar to .sciencewire_update)
+  # @return [Boolean] the return value from update_attributes!
+  def pubmed_update
+    pubmed_source_xml = PubmedClient.new.fetch_records_for_pmid_list pmid
+    pub_doc = Nokogiri::XML(pubmed_source_xml).xpath('//PubmedArticle')[0]
+    return false unless pub_doc
+    attrs = {}
+    attrs[:source_data] = pub_doc.to_xml
+    attrs[:source_fingerprint] = Digest::SHA2.hexdigest(pub_doc)
+    update_attributes! attrs
+  end
+
   def extract_abstract_from_pubmed_record(pubmed_record)
     pubmed_record.xpath('MedlineCitation/Article/Abstract/AbstractText').text
   end

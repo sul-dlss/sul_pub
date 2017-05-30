@@ -3,6 +3,71 @@ namespace :pubmed do
     @client ||= PubmedClient.new
   end
 
+  desc 'update pubmed source records and rebuild pub_hashes for publications for a given list of cap_profile_ids passed in a text file'
+  # filename should be a list of cap_profile_id, one per line with no header
+  # call with RAILS_ENV=production bundle exec rake pubmed:update_pubmed_source_records_for_cap_profile_ids['filename.txt']
+  task :update_pubmed_source_records_for_cap_profile_ids, [:filename] => :environment do |_t, args|
+    filename = args[:filename]
+    fail "filename is required." unless filename.present?
+    cap_profile_ids=File.readlines(filename)
+    logger = Logger.new(Rails.root.join('log', 'update_pubmed_source_records_for_cap_profile_ids.log'))
+    include ActionView::Helpers::DateHelper
+    $stdout.sync = true # flush output immediately
+    total_authors = cap_profile_ids.size
+    error_count = 0
+    success_count = 0
+    authors_not_found = 0
+    pubs_updated_count = 0
+    start_time = Time.now
+    max_errors = 10
+    message = "Started at #{start_time}.  Working on #{total_authors} authors."
+    puts message
+    logger.info message
+    cap_profile_ids.each_with_index do |cap_profile_id, index|
+      id = cap_profile_id.chomp
+      current_time = Time.now
+      elapsed_time = current_time - start_time
+      avg_time_per_author = elapsed_time/(index+1)
+      total_time_remaining = (avg_time_per_author * (total_authors-index)).floor
+      message = "...#{current_time}: on cap_profile_id #{id} : #{index+1} of #{total_authors} : ~ #{distance_of_time_in_words(start_time,start_time + total_time_remaining.seconds)} left"
+      puts message
+      logger.info message
+      begin
+        author = Author.find_by_cap_profile_id(id)
+        unless author.blank?
+          pubs = author.publications.where("pmid is not null OR pmid !=''")
+          message = ".....#{author.first_name} #{author.last_name} has #{pubs.size} publications with a PMID"
+          puts message
+          logger.info message
+          pubs.each do |pub|
+            result = pub.update_from_pubmed
+            pubs_updated_count += 1 if result
+          end
+          success_count += 1
+        else
+          authors_not_found += 1
+          message = "*****cap_profile_id #{id} not found"
+          puts message
+          logger.error message
+        end
+      rescue  => e
+        message = "*****ERROR on cap_profile_id #{id}: #{e.message}"
+        puts message
+        logger.error message
+        error_count += 1
+      end
+      if error_count > max_errors
+        message = "Halting: Maximum number of errors #{max_errors} reached"
+        logger.error message
+        raise message
+      end
+    end
+    end_time = Time.now
+    message = "Total: #{total_authors}. Successful: #{success_count}.  Error: #{error_count}.  Authors not found: #{authors_not_found}. Publications updated: #{pubs_updated_count}.  Ended at #{end_time}.  Total time: #{distance_of_time_in_words(end_time,start_time)}"
+    puts message
+    logger.info message
+  end
+
   desc 'Retrieve and print a single publication by PubMed-ID'
   task :publication, [:pmid] => :environment do |_t, args|
     fail "pmid argument is required." unless args[:pmid].present?

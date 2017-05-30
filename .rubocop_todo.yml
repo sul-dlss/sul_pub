@@ -66,6 +66,7 @@ Performance/RangeInclude:
 RSpec/AnyInstance:
   Exclude:
     - 'spec/models/publication_spec.rb'
+    - 'spec/models/pubmed_source_record_spec.rb'
 
 # Offense count: 49
 RSpec/DescribedClass:
