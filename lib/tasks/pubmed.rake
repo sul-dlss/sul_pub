@@ -15,9 +15,10 @@ namespace :pubmed do
     $stdout.sync = true # flush output immediately
     total_authors = cap_profile_ids.size
     error_count = 0
-    success_count = 0
+    authors_found = 0
     authors_not_found = 0
     pubs_updated_count = 0
+    total_pubs = 0
     start_time = Time.now
     max_errors = 10
     message = "Started at #{start_time}.  Working on #{total_authors} authors."
@@ -32,29 +33,30 @@ namespace :pubmed do
       message = "...#{current_time}: on cap_profile_id #{id} : #{index+1} of #{total_authors} : ~ #{distance_of_time_in_words(start_time,start_time + total_time_remaining.seconds)} left"
       puts message
       logger.info message
-      begin
-        author = Author.find_by_cap_profile_id(id)
-        unless author.blank?
-          pubs = author.publications.where("pmid is not null OR pmid !=''")
-          message = ".....#{author.first_name} #{author.last_name} has #{pubs.size} publications with a PMID"
-          puts message
-          logger.info message
-          pubs.each do |pub|
+      author = Author.find_by_cap_profile_id(id)
+      unless author.blank?
+        pubs = author.publications.where("pmid is not null OR pmid !=''")
+        message = ".....#{author.first_name} #{author.last_name} has #{pubs.size} publications with a PMID"
+        puts message
+        logger.info message
+        total_pubs += pubs.count
+        pubs.each do |pub|
+          begin
             result = pub.update_from_pubmed
             pubs_updated_count += 1 if result
+          rescue  => e
+            message = "*****ERROR on cap_profile_id #{id} for publication_id #{pub.id}: #{e.message}"
+            puts message
+            logger.error message
+            error_count += 1
           end
-          success_count += 1
-        else
-          authors_not_found += 1
-          message = "*****cap_profile_id #{id} not found"
-          puts message
-          logger.error message
         end
-      rescue  => e
-        message = "*****ERROR on cap_profile_id #{id}: #{e.message}"
+        authors_found += 1
+      else
+        authors_not_found += 1
+        message = "*****cap_profile_id #{id} not found"
         puts message
         logger.error message
-        error_count += 1
       end
       if error_count > max_errors
         message = "Halting: Maximum number of errors #{max_errors} reached"
@@ -63,7 +65,7 @@ namespace :pubmed do
       end
     end
     end_time = Time.now
-    message = "Total: #{total_authors}. Successful: #{success_count}.  Error: #{error_count}.  Authors not found: #{authors_not_found}. Publications updated: #{pubs_updated_count}.  Ended at #{end_time}.  Total time: #{distance_of_time_in_words(end_time,start_time)}"
+    message = "Total: #{total_authors}. Authors found: #{authors_found}. Authors not found: #{authors_not_found}.  Total publications: #{total_pubs}.  Publications updated: #{pubs_updated_count}.  Errored publications: #{error_count}.  Ended at #{end_time}.  Total time: #{distance_of_time_in_words(end_time,start_time)}"
     puts message
     logger.info message
   end
