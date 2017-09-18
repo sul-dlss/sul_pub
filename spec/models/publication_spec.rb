@@ -407,7 +407,7 @@ describe Publication do
     end
 
     it "returns an empty array if the doi isn't found" do
-      expect(Publication.find_by_doi 'does not exist').to be_empty
+      expect(Publication.find_by_doi('does not exist')).to be_empty
     end
   end
 

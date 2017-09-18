@@ -11,8 +11,7 @@ module SulBib
       def contrib_attr
         # Gather optional contribution fields.
         contrib_attr = {}
-        fields = [:featured, :status, :visibility]
-        fields.each do |field|
+        [:featured, :status, :visibility].each do |field|
           # check params[field].nil? not .blank? because featured can be `false`.
           contrib_attr[field] = params[field] unless params[field].nil?
         end
@@ -117,12 +116,9 @@ module SulBib
             end
           end
         end
-        if author.cap_profile_id.blank?
-          # When POST only contains a sul_author_id and the author found has
-          # no cap_profile_id, log a warning.
-          msg = "SULCAP sul_author_id #{author.id} has no cap_profile_id"
-          logger.warn msg
-        end
+        return unless author.cap_profile_id.blank?
+        # When POST only contains a sul_author_id and the author found has no cap_profile_id, log a warning.
+        logger.warn "SULCAP sul_author_id #{author.id} has no cap_profile_id"
       end
 
       # Find an existing contribution by author/publication

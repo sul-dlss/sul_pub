@@ -79,19 +79,3 @@ Style/ClassVars:
   Exclude:
     - 'app/models/sciencewire_source_record.rb'
     - 'lib/bibtex_ingester.rb'
-
-# Offense count: 1
-# Configuration parameters: MinBodyLength.
-Style/GuardClause:
-  Exclude:
-    - 'app/models/sciencewire_source_record.rb'
-
-# Offense count: 1
-Style/NestedParenthesizedCalls:
-  Exclude:
-    - 'spec/models/publication_spec.rb'
-
-# Offense count: 1
-Style/ZeroLengthPredicate:
-  Exclude:
-    - 'script/delete_missing_auths.rb'
