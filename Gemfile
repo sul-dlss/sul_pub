@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 4.2.7.1'
+gem 'rails', '~> 4.2.9'
 gem 'responders', '~> 2.0'
 gem 'grape'
 
@@ -11,7 +11,7 @@ gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # JS Runtime. See https://github.com/rails/execjs#readme for more supported runtimes
-gem 'therubyracer'
+gem 'therubyracer', '~> 0.12.3' # conversion error in lower versions
 
 gem 'mysql2', '~> 0.3.18'
 
@@ -35,7 +35,7 @@ gem 'high_voltage'
 gem 'jbuilder'
 gem 'jquery-rails'
 gem 'kaminari'
-gem 'libv8'
+gem 'libv8', '~> 3.16.14'
 gem 'turnout'
 gem 'okcomputer' # for monitoring
 gem 'parallel'
