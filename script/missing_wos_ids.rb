@@ -11,7 +11,7 @@ class MissingWosId
     prov = pub.pub_hash[:provenance]
     ids = pub.pub_hash[:identifier]
     if prov =~ /sciencewire/i
-      return false if ids.any? {|id| id[:type] =~ /WoS/i }
+      return false if ids.any? { |id| id[:type] =~ /WoS/i }
       authorship = pub.pub_hash[:authorship]
       logger.warn "Publication #{pub.id} should be modified"
       logger.warn "Publication #{pub.id} created_at: #{pub.created_at}"
@@ -19,7 +19,7 @@ class MissingWosId
       logger.warn "Publication #{pub.id} provenance: #{prov}"
       logger.warn "Publication #{pub.id} identities: #{JSON.dump(ids)}"
       logger.warn "Publication #{pub.id} authorship: #{JSON.dump(authorship)}"
-      if pub.publication_identifiers.any? {|id| id.identifier_type =~ /WoS/i }
+      if pub.publication_identifiers.any? { |id| id.identifier_type =~ /WoS/i }
         logger.warn "Publication #{pub[:id]} has a WoSItemID identity"
       else
         src = SciencewireSourceRecord.find_by_sciencewire_id(pub.sciencewire_id)

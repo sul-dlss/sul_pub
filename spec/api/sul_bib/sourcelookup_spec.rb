@@ -7,9 +7,9 @@ describe SulBib::API, :vcr do
   let(:headers) { capkey.merge('CONTENT_TYPE' => 'application/json') }
   let(:publication) { create :publication }
   let(:author) { create :author }
-  let(:test_title) {'pathological'}
+  let(:test_title) { 'pathological' }
   let(:publication_with_test_title) { create :publication, title: test_title }
-  let(:sourcelookup_path) {'/publications/sourcelookup'}
+  let(:sourcelookup_path) { '/publications/sourcelookup' }
   let(:sourcelookup_by_title) do
     publication_with_test_title
     params = { format: 'json', title: test_title, maxrows: 2 }
@@ -17,7 +17,7 @@ describe SulBib::API, :vcr do
     expect(response.status).to eq(200)
     JSON.parse(response.body)
   end
-  let(:test_doi) {'10.1016/j.mcn.2012.03.008'}
+  let(:test_doi) { '10.1016/j.mcn.2012.03.008' }
   let(:sourcelookup_by_doi) do
     params = { format: 'json', doi: test_doi }
     get sourcelookup_path, params, capkey
@@ -133,20 +133,20 @@ describe SulBib::API, :vcr do
         expect(result).to include('records')
         expect(result['records']).not_to be_empty
         records = result['records']
-        matches = records.count {|r| r['title'] =~ /#{test_title}/i }
+        matches = records.count { |r| r['title'] =~ /#{test_title}/i }
         expect(matches).to eq(records.count) # ALL records match
       end
 
       it 'returns results that match the requested year' do
         year = 2015.to_s
-        params = { format: 'json', title: test_title, year: year}
+        params = { format: 'json', title: test_title, year: year }
         get sourcelookup_path, params, capkey
         expect(response.status).to eq(200)
         result = JSON.parse(response.body)
         expect(result).to include('records')
         expect(result['records']).not_to be_empty
         records = result['records']
-        matches = records.count {|r| r['year'] == year }
+        matches = records.count { |r| r['year'] == year }
         expect(matches).to eq(records.count) # ALL records match
       end
     end

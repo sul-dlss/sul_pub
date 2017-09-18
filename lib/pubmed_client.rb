@@ -4,10 +4,10 @@ class PubmedClient
   def self.working?
     response = new.fetch_records_for_pmid_list('22895186')
     response.is_a?(String) &&
-    response.include?('<PubmedArticleSet>') &&
-    (doc = Nokogiri::XML(response)).is_a?(Nokogiri::XML::Document) &&
-    doc.at_xpath('/PubmedArticleSet/PubmedArticle/MedlineCitation/PMID/text()').to_s == '22895186' &&
-    doc.at_xpath('//LastName[text()="Hardy"]').is_a?(Nokogiri::XML::Element)
+      response.include?('<PubmedArticleSet>') &&
+      (doc = Nokogiri::XML(response)).is_a?(Nokogiri::XML::Document) &&
+      doc.at_xpath('/PubmedArticleSet/PubmedArticle/MedlineCitation/PMID/text()').to_s == '22895186' &&
+      doc.at_xpath('//LastName[text()="Hardy"]').is_a?(Nokogiri::XML::Element)
   end
 
   def fetch_records_for_pmid_list(pmids)

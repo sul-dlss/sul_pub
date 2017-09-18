@@ -180,60 +180,60 @@ class CapAuthorsPoller
 
   private
 
-  def convert_days_ago_to_timestamp(days_ago)
-    poll_time = Time.zone.now - (days_ago.to_i).days
-    poll_time.iso8601(3)
-  end
+    def convert_days_ago_to_timestamp(days_ago)
+      poll_time = Time.zone.now - days_ago.to_i.days
+      poll_time.iso8601(3)
+    end
 
-  # @param page_count [Fixnum]  default = 1  -- 1st page
-  # @param page_size [Fixnum]   default = 10 -- 10 records
-  # @param days_ago [Fixnum]    default = 1  -- within the last 24 hours
-  # @return json_response
-  def get_recent_cap_authorship(page_count = 1, page_size = 10, days_ago = 1)
-    poll_since = convert_days_ago_to_timestamp(days_ago)
-    @cap_http_client.get_batch_from_cap_api(page_count, page_size, poll_since)
-  end
+    # @param page_count [Fixnum]  default = 1  -- 1st page
+    # @param page_size [Fixnum]   default = 10 -- 10 records
+    # @param days_ago [Fixnum]    default = 1  -- within the last 24 hours
+    # @return json_response
+    def get_recent_cap_authorship(page_count = 1, page_size = 10, days_ago = 1)
+      poll_since = convert_days_ago_to_timestamp(days_ago)
+      @cap_http_client.get_batch_from_cap_api(page_count, page_size, poll_since)
+    end
 
-  def init_stats
-    @start_time = Time.zone.now
-    @total_running_count = 0
-    @new_author_count = 0
-    @authors_updated_count = 0
-    @no_sw_harvest_count = 0
-    @no_email_in_import_settings = 0
-    @active_true_count = 0
-    @active_false_count = 0
-    @no_active_count = 0
-    @import_enabled_count = 0
-    @import_disabled_count = 0
-    @contribs_changed = 0
-    @contrib_does_not_exist = 0
-    @invalid_contribs = 0
-    @too_many_contribs = 0
-    @new_auth_with_contribs = 0
-  end
+    def init_stats
+      @start_time = Time.zone.now
+      @total_running_count = 0
+      @new_author_count = 0
+      @authors_updated_count = 0
+      @no_sw_harvest_count = 0
+      @no_email_in_import_settings = 0
+      @active_true_count = 0
+      @active_false_count = 0
+      @no_active_count = 0
+      @import_enabled_count = 0
+      @import_disabled_count = 0
+      @contribs_changed = 0
+      @contrib_does_not_exist = 0
+      @invalid_contribs = 0
+      @too_many_contribs = 0
+      @new_auth_with_contribs = 0
+    end
 
-  def log_process_time
-    distance_of_time_in_words(@start_time, Time.zone.now)
-  end
+    def log_process_time
+      distance_of_time_in_words(@start_time, Time.zone.now)
+    end
 
-  def log_stats
-    info = []
-    info << "#{@total_running_count} records were processed in #{log_process_time}"
-    info << "#{@new_author_count} authors were created."
-    info << "#{@no_sw_harvest_count} authors were not harvested because of no import settings or they did not change"
-    info << "#{@no_email_in_import_settings} records with no email in import settings."
-    info << "#{@active_true_count} records with 'active' true."
-    info << "#{@active_false_count} records with 'active' false."
-    info << "#{@no_active_count} records with no 'active' field in profile."
-    info << "#{@authors_updated_count} authors were updated."
-    info << "#{@import_enabled_count} authors had import enabled."
-    info << "#{@import_disabled_count} authors had import disabled."
-    info << "#{@contrib_does_not_exist} contributions did not exist for update"
-    info << "#{@invalid_contribs} contributions were invalid authorship data"
-    info << "#{@too_many_contribs} contributions had more than one instance for an author"
-    info << "#{@new_auth_with_contribs} new authors had contributions which were ignored"
-    info << "#{@contribs_changed} contributions were updated"
-    logger.info info.join("\n")
-  end
+    def log_stats
+      info = []
+      info << "#{@total_running_count} records were processed in #{log_process_time}"
+      info << "#{@new_author_count} authors were created."
+      info << "#{@no_sw_harvest_count} authors were not harvested because of no import settings or they did not change"
+      info << "#{@no_email_in_import_settings} records with no email in import settings."
+      info << "#{@active_true_count} records with 'active' true."
+      info << "#{@active_false_count} records with 'active' false."
+      info << "#{@no_active_count} records with no 'active' field in profile."
+      info << "#{@authors_updated_count} authors were updated."
+      info << "#{@import_enabled_count} authors had import enabled."
+      info << "#{@import_disabled_count} authors had import disabled."
+      info << "#{@contrib_does_not_exist} contributions did not exist for update"
+      info << "#{@invalid_contribs} contributions were invalid authorship data"
+      info << "#{@too_many_contribs} contributions had more than one instance for an author"
+      info << "#{@new_auth_with_contribs} new authors had contributions which were ignored"
+      info << "#{@contribs_changed} contributions were updated"
+      logger.info info.join("\n")
+    end
 end

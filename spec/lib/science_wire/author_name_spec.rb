@@ -163,13 +163,13 @@ describe ScienceWire::AuthorName do
       it 'does not include name with middle_name' do
         name = "\"#{all_names.last_name},#{all_names.first_name},#{all_names.middle_name}\""
         expect(fn_query).not_to include name
-        incl_mn = fn_query.any? {|n| n.include? ",#{all_names.middle_name}" }
+        incl_mn = fn_query.any? { |n| n.include? ",#{all_names.middle_name}" }
         expect(incl_mn).to be false
       end
       it 'does not include name with middle_initial' do
         name = "\"#{all_names.last_name},#{all_names.first_name},#{all_names.middle_initial}\""
         expect(fn_query).not_to include name
-        incl_mn = fn_query.any? {|n| n.include? ",#{all_names.middle_initial}" }
+        incl_mn = fn_query.any? { |n| n.include? ",#{all_names.middle_initial}" }
         expect(incl_mn).to be false
       end
     end

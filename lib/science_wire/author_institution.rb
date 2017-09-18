@@ -30,7 +30,7 @@ module ScienceWire
 
     def ==(other)
       normalize_name == other.normalize_name &&
-      address == other.address
+        address == other.address
     end
 
     private

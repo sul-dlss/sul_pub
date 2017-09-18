@@ -43,7 +43,7 @@ class ScienceWireHarvester
     logger.info 'Starting harvest for specific authors'
     harvest_pubs_for_authors Author.where(id: author_ids)
   rescue => e
-    fail ArgumentError, "Invalid author_ids: #{author_ids}" unless author_ids.is_a?(Array) && !author_ids.empty?
+    raise ArgumentError, "Invalid author_ids: #{author_ids}" unless author_ids.is_a?(Array) && !author_ids.empty?
     NotificationManager.error(e, "Harvest failed for specific authors: n=#{author_ids.length} author_ids=#{author_ids.sort}", self)
   end
 
@@ -74,8 +74,8 @@ class ScienceWireHarvester
       start_key = sack[0]
       stop_key = sack[1]
       authors = Author.where(active_in_cap: true, cap_import_enabled: true)
-                .where(Author.arel_table[Author.primary_key].gteq(start_key))
-                .where(Author.arel_table[Author.primary_key].lteq(stop_key))
+                      .where(Author.arel_table[Author.primary_key].gteq(start_key))
+                      .where(Author.arel_table[Author.primary_key].lteq(stop_key))
       harvest_pubs_for_authors authors
     end
   end
@@ -148,12 +148,8 @@ class ScienceWireHarvester
         @records_queued_for_sciencewire_retrieval[sw_id] ||= []
         @records_queued_for_sciencewire_retrieval[sw_id] << author.id
       end
-      if @records_queued_for_sciencewire_retrieval.length > 100
-        process_queued_sciencewire_suggestions
-      end
-      if @records_queued_for_pubmed_retrieval.length > 4000
-        process_queued_pubmed_records
-      end
+      process_queued_sciencewire_suggestions if @records_queued_for_sciencewire_retrieval.length > 100
+      process_queued_pubmed_records if @records_queued_for_pubmed_retrieval.length > 4000
       GC.start if @total_suggested_count % 1000 == 0
       if @debug
         log_counts
@@ -352,13 +348,12 @@ class ScienceWireHarvester
         mode = :inproceedings
         next
       end
-      if l =~ /^Unique-ID.*ISI:(.*)}},/
-        if (mode == :inproceedings)
-          @wos_ids_processed += 1
-          ids << Regexp.last_match(1)
-        end
-        mode = nil
+      next unless l =~ /^Unique-ID.*ISI:(.*)}},/
+      if mode == :inproceedings
+        @wos_ids_processed += 1
+        ids << Regexp.last_match(1)
       end
+      mode = nil
     end
     ids
   end
@@ -367,7 +362,7 @@ class ScienceWireHarvester
   # @param [Array<String>] wos_ids WebOfScienceID Document IDs to pull
   def harvest_sw_pubs_by_wos_id_for_author(sunetid, wos_ids)
     author = Author.where(sunetid: sunetid).first
-    fail("Author with sunetid #{sunetid} does not exist") if author.nil?
+    raise("Author with sunetid #{sunetid} does not exist") if author.nil?
 
     all_sw_docs = @sciencewire_client.get_full_sciencewire_pubs_for_wos_ids(wos_ids)
 
@@ -427,7 +422,7 @@ class ScienceWireHarvester
       next if line.empty?
 
       begin
-        wos_id, current_profile_id  = parse_wos_line(line)
+        wos_id, current_profile_id = parse_wos_line(line)
 
         # process the last batch of WOS ids
         if current_profile_id != batch_profile_id

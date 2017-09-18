@@ -31,10 +31,10 @@ describe ScienceWirePublication do
       expect(item.name).to eq 'PublicationItem'
     end
     it 'raises ArgumentError unless given a <PublicationItem> Nokogiri::XML::Element' do
-      expect{ described_class.new(wrong_element) }.to raise_error(ArgumentError)
+      expect { described_class.new(wrong_element) }.to raise_error(ArgumentError)
     end
     it 'raises ArgumentError unless given a Nokogiri::XML::Element' do
-      expect{ described_class.new('') }.to raise_error(ArgumentError)
+      expect { described_class.new('') }.to raise_error(ArgumentError)
     end
   end
 

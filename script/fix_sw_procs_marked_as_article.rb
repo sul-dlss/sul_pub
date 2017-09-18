@@ -44,11 +44,11 @@ class Finder
       start_key = sack[0]
       stop_key = sack[1]
       query = Publication.where(Publication.arel_table[Publication.primary_key].gteq(start_key))
-              .where(Publication.arel_table[Publication.primary_key].lteq(stop_key))
+                         .where(Publication.arel_table[Publication.primary_key].lteq(stop_key))
       query.find_each do |pub|
         count += 1
         fix(pub)
-        @logger.info "Processed #{count}" if (count % 1000 == 0)
+        @logger.info "Processed #{count}" if count % 1000 == 0
       end
       @logger.info "Done. Processed #{count}"
       @logger.info "Found #{@found}"

@@ -20,15 +20,14 @@ class MergeDuplicateAuths
     auths.each do |clone|
       if CONTRIB_CHECK
         clone.contributions.each do |contrib|
-          unless master.contributions.where(publication_id: contrib.publication_id).exists?
-            new_contrib = contrib.dup
-            new_contrib.author_id = master.id
-            new_contrib.save
+          next if master.contributions.where(publication_id: contrib.publication_id).exists?
+          new_contrib = contrib.dup
+          new_contrib.author_id = master.id
+          new_contrib.save
 
-            @logger.info "Moved pub #{contrib.publication_id} to auth: #{master.id}"
-            @contribs_fixed += 1
-            moved_contribs = true
-          end
+          @logger.info "Moved pub #{contrib.publication_id} to auth: #{master.id}"
+          @contribs_fixed += 1
+          moved_contribs = true
         end
       end
 
@@ -53,7 +52,7 @@ class MergeDuplicateAuths
     dup_cap_ids.each do |cap_id|
       begin
         count += 1
-        @logger.info "Processed #{count}" if (count % 100 == 0)
+        @logger.info "Processed #{count}" if count % 100 == 0
 
         merge cap_id
       rescue => e
@@ -66,7 +65,7 @@ class MergeDuplicateAuths
     @logger.info "Clones removed: #{@clones_removed}"
 
   rescue => e
-    @logger.error "#{e.inspect}"
+    @logger.error e.inspect.to_s
     @logger.error e.backtrace.join "\n"
   end
 end

@@ -1,7 +1,6 @@
 FactoryGirl.define do
-
   sequence(:random_id) do |n|
-    @random_ids ||= (10000..1000000).to_a.shuffle
+    @random_ids ||= (10_000..1_000_000).to_a.shuffle
     @random_ids[n]
   end
 

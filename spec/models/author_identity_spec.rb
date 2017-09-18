@@ -82,25 +82,25 @@ RSpec.describe AuthorIdentity, type: :model do
 
     it 'will not mirror identical identities in importSettings' do
       subject.author.mirror_author_identities([{
-        'firstName' => subject.author.preferred_first_name,
+                                                'firstName' => subject.author.preferred_first_name,
         'middleName' => subject.author.preferred_middle_name,
         'lastName' => subject.author.preferred_last_name,
         'email' => subject.author.email,
         'institution' => 'Stanford University'
-      }]) # must pass in only a single alternate identity for .length == 0
+                                              }]) # must pass in only a single alternate identity for .length == 0
       expect(subject.author.alternative_identities.length).to be == 0
     end
 
     it 'will not mirror identical identities in importSettings, *even if* dates are present' do
       subject.author.mirror_author_identities([{
-        'firstName' => subject.author.preferred_first_name,
+                                                'firstName' => subject.author.preferred_first_name,
         'middleName' => subject.author.preferred_middle_name,
         'lastName' => subject.author.preferred_last_name,
         'email' => subject.author.email,
         'institution' => 'Stanford University',
         'startDate' => { 'value' => '2000-01-01' },
         'endDate' => { 'value' => '2010-12-31' }
-      }]) # must pass in only a single alternate identity for .length == 0
+                                              }]) # must pass in only a single alternate identity for .length == 0
       expect(subject.author.alternative_identities.length).to be == 0
     end
 

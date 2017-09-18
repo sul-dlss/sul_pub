@@ -31,8 +31,8 @@ class Contribution < ActiveRecord::Base
 
   def self.valid_fields?(contrib)
     featured_valid?(contrib) &&
-    status_valid?(contrib) &&
-    visibility_valid?(contrib)
+      status_valid?(contrib) &&
+      visibility_valid?(contrib)
   end
 
   # Allowed values for visibility

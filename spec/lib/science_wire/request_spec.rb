@@ -28,11 +28,11 @@ describe ScienceWire::Request do
         path: '/not_a_real_path'
       ).perform
       expect(a_post('/not_a_real_path').with(headers: {
-        'Content-Type' => 'text/xml',
+                                               'Content-Type' => 'text/xml',
         'Expect' => '100-continue',
         'Host' => Settings.SCIENCEWIRE.HOST,
         'Licenseid' => 'license'
-      })).to have_been_made
+                                             })).to have_been_made
     end
   end
 end

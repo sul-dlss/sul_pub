@@ -342,7 +342,7 @@ describe PubHash do
       end
       it 'includes authors' do
         csl_report['author'].each do |a|
-          given = a['given'].split.map {|i| i[0] + '.'}.join(' ')
+          given = a['given'].split.map { |i| i[0] + '.' }.join(' ')
           name = "#{a['family']}, #{given}"
           expect(cite).to include(name)
         end

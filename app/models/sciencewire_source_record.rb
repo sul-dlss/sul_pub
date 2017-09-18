@@ -80,16 +80,12 @@ class SciencewireSourceRecord < ActiveRecord::Base
 
   def self.get_sciencewire_hash_for_sw_id(sciencewire_id)
     sciencewire_source_record = get_sciencewire_source_record_for_sw_id(sciencewire_id)
-    unless sciencewire_source_record.nil?
-      sciencewire_source_record.source_as_hash
-    end
+    sciencewire_source_record.source_as_hash unless sciencewire_source_record.nil?
   end
 
   def self.get_sciencewire_hash_for_pmid(pmid)
     sciencewire_source_record = get_sciencewire_source_record_for_pmid(pmid)
-    unless sciencewire_source_record.nil?
-      sciencewire_source_record.source_as_hash
-    end
+    sciencewire_source_record.source_as_hash unless sciencewire_source_record.nil?
   end
 
   def self.get_sciencewire_source_record_for_sw_id(sw_id)
@@ -220,19 +216,19 @@ class SciencewireSourceRecord < ActiveRecord::Base
     sul_document_type = lookup_cap_doc_type_by_sw_doc_category(record_as_hash[:documentcategory_sw])
     record_as_hash[:type] = sul_document_type
 
-    record_as_hash[:publicationimpactfactorlist_sw] = publication.xpath('PublicationImpactFactorList').text.split('|')  unless publication.xpath('PublicationImpactFactorList').blank?
-    record_as_hash[:publicationcategoryrankinglist_sw] = publication.xpath('PublicationCategoryRankingList').text.split('|')  unless publication.xpath('PublicationCategoryRankingList').blank?
+    record_as_hash[:publicationimpactfactorlist_sw] = publication.xpath('PublicationImpactFactorList').text.split('|') unless publication.xpath('PublicationImpactFactorList').blank?
+    record_as_hash[:publicationcategoryrankinglist_sw] = publication.xpath('PublicationCategoryRankingList').text.split('|') unless publication.xpath('PublicationCategoryRankingList').blank?
     record_as_hash[:numberofreferences_sw] = publication.xpath('NumberOfReferences').text unless publication.xpath('NumberOfReferences').blank?
     record_as_hash[:timescited_sw_retricted] = publication.xpath('TimesCited').text unless publication.xpath('TimesCited').blank?
     record_as_hash[:timenotselfcited_sw] = publication.xpath('TimesNotSelfCited').text unless publication.xpath('TimesNotSelfCited').blank?
     record_as_hash[:authorcitationcountlist_sw] = publication.xpath('AuthorCitationCountList').text unless publication.xpath('AuthorCitationCountList').blank?
-    record_as_hash[:rank_sw] =  publication.xpath('Rank').text unless publication.xpath('Rank').blank?
+    record_as_hash[:rank_sw] = publication.xpath('Rank').text unless publication.xpath('Rank').blank?
     record_as_hash[:ordinalrank_sw] = publication.xpath('OrdinalRank').text unless publication.xpath('OrdinalRank').blank?
     record_as_hash[:normalizedrank_sw] = publication.xpath('NormalizedRank').text unless publication.xpath('NormalizedRank').blank?
     record_as_hash[:newpublicationid_sw] = publication.xpath('NewPublicationItemID').text unless publication.xpath('NewPublicationItemID').blank?
     record_as_hash[:isobsolete_sw] = publication.xpath('IsObsolete').text unless publication.xpath('IsObsolete').blank?
 
-    record_as_hash[:publisher] =  publication.xpath('CopyrightPublisher').text unless publication.xpath('CopyrightPublisher').blank?
+    record_as_hash[:publisher] = publication.xpath('CopyrightPublisher').text unless publication.xpath('CopyrightPublisher').blank?
     record_as_hash[:city] = publication.xpath('CopyrightCity').text unless publication.xpath('CopyrightCity').blank?
     record_as_hash[:stateprovince] = publication.xpath('CopyrightStateProvince').text unless publication.xpath('CopyrightStateProvince').blank?
     record_as_hash[:country] = publication.xpath('CopyrightCountry').text unless publication.xpath('CopyrightCountry').blank?
@@ -277,13 +273,13 @@ class SciencewireSourceRecord < ActiveRecord::Base
 
   def self.lookup_sw_doc_type(doc_type_list)
     doc_types = Array(doc_type_list)
-    if doc_types.any? { |t| t =~ /^(#{@@sw_conference_proceedings_types})$/i }
-      type =  Settings.sul_doc_types.inproceedings
-    elsif doc_types.any? { |t| t =~ /^(#{@@sw_book_types})$/i }
-      type =  Settings.sul_doc_types.book
-    else
-      type =  Settings.sul_doc_types.article
-    end
+    type = if doc_types.any? { |t| t =~ /^(#{@@sw_conference_proceedings_types})$/i }
+             Settings.sul_doc_types.inproceedings
+           elsif doc_types.any? { |t| t =~ /^(#{@@sw_book_types})$/i }
+             Settings.sul_doc_types.book
+           else
+             Settings.sul_doc_types.article
+           end
     type
   end
 

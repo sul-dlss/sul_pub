@@ -40,7 +40,7 @@ class RepairMixedAuths
     CSV.foreach(Rails.root.join('authors_with_profiles_utf8.csv'), headers: true, header_converters: :symbol) do |row|
       begin
         count += 1
-        @logger.info "Processed #{count}" if (count % 100 == 0)
+        @logger.info "Processed #{count}" if count % 100 == 0
 
         fix row
       rescue => e
@@ -53,7 +53,7 @@ class RepairMixedAuths
     @logger.info "Contributions fixed: #{@contribs_fixed}"
 
   rescue => e
-    @logger.error "#{e.inspect}"
+    @logger.error e.inspect.to_s
     @logger.error e.backtrace.join "\n"
   end
 end
