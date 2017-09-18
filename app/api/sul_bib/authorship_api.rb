@@ -117,18 +117,16 @@ module SulBib
             end
           end
         end
-        # rubocop:disable Style/GuardClause
         if author.cap_profile_id.blank?
           # When POST only contains a sul_author_id and the author found has
           # no cap_profile_id, log a warning.
           msg = "SULCAP sul_author_id #{author.id} has no cap_profile_id"
           logger.warn msg
         end
-        # rubocop:enable Style/GuardClause
       end
 
+      # Find an existing contribution by author/publication
       def get_contribution(author, sul_pub_id)
-        # Find an existing contribution by author/publication
         contributions = Contribution.where(
           author_id: author.id,
           publication_id: sul_pub_id
@@ -316,4 +314,3 @@ module SulBib
     end # patch end
   end # class end
 end
-
