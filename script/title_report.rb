@@ -51,9 +51,7 @@ class TitleReport
 
     @lines.each do |l|
       _, prof_id = l.split(',')
-      if @processed_ids.member? prof_id
-        @logger.warn "Skipping duplicate profile_id in line: #{l}"
-      end
+      @logger.warn "Skipping duplicate profile_id in line: #{l}" if @processed_ids.member? prof_id
       @processed_ids << prof_id
     end
 
@@ -173,11 +171,11 @@ class TitleReport
     title_counter = {}
     dept.pubs.each do |pub|
       title = pub.journal_title
-      if title_counter.include? title
-        title_counter[title] = title_counter[title] + 1
-      else
-        title_counter[title] = 1
-      end
+      title_counter[title] = if title_counter.include? title
+                               title_counter[title] + 1
+                             else
+                               1
+                             end
     end
 
     CSV.open(@report_root + "#{dept.name.snakecase}_unique_journals.csv", 'w') do |csv|

@@ -16,43 +16,43 @@ describe PubmedSourceRecord, :vcr do
       {
         Abrams: {
           xml: author_doc(' <Author ValidYN="Y"> <LastName>Abrams</LastName> <ForeName>Judith</ForeName> <Initials>J</Initials> </Author>'),
-          hash: {firstname: 'Judith', middlename: nil, lastname: 'Abrams'}
+          hash: { firstname: 'Judith', middlename: nil, lastname: 'Abrams' }
         },
         Amara: {
           xml: author_doc(' <Author ValidYN="Y"> <LastName>Amara</LastName> <ForeName>Mohamed el-Walid</ForeName> <Initials>Mel- W</Initials> </Author>'),
-          hash: {firstname: 'Mohamed', middlename: 'el-Walid', lastname: 'Amara'}
+          hash: { firstname: 'Mohamed', middlename: 'el-Walid', lastname: 'Amara' }
         },
         Brown: {
           xml: author_doc(' <Author ValidYN="Y"> <LastName>Brown</LastName> <ForeName>Canada Quincy</ForeName> <Initials>CQ</Initials> </Author>'),
-          hash: {firstname: 'Canada', middlename: 'Quincy', lastname: 'Brown'}
+          hash: { firstname: 'Canada', middlename: 'Quincy', lastname: 'Brown' }
         },
         Buncke: {
           xml: author_doc(' <Author ValidYN="Y"> <LastName>Buncke</LastName> <ForeName>Gregory M</ForeName> <Initials>GM</Initials> </Author>'),
-          hash: {firstname: 'Gregory', middlename: 'M', lastname: 'Buncke'}
+          hash: { firstname: 'Gregory', middlename: 'M', lastname: 'Buncke' }
         },
         Gonzales: {
           xml: author_doc(' <Author ValidYN="Y"> <LastName>Gonzales-loza</LastName> <ForeName>María del R</ForeName> <Initials>Mdel R</Initials> </Author>'),
-          hash: {firstname: 'María', middlename: 'del R', lastname: 'Gonzales-loza'}
+          hash: { firstname: 'María', middlename: 'del R', lastname: 'Gonzales-loza' }
         },
         Hauser: {
           xml: author_doc(' <Author ValidYN="Y"> <LastName>Hauser</LastName> <ForeName>Michelle E</ForeName> <Initials>ME</Initials> </Author>'),
-          hash: {firstname: 'Michelle', middlename: 'E', lastname: 'Hauser'}
+          hash: { firstname: 'Michelle', middlename: 'E', lastname: 'Hauser' }
         },
         Johnson: {
           xml: author_doc(' <Author ValidYN="Y"> <LastName>Johnson</LastName> <Initials>DL</Initials> </Author>'),
-          hash: {firstname: 'D', middlename: 'L', lastname: 'Johnson'}
+          hash: { firstname: 'D', middlename: 'L', lastname: 'Johnson' }
         },
         Krylov: {
           xml: author_doc(' <Author ValidYN="Y"> <LastName>Krylov</LastName> <ForeName>Iakobish K</ForeName> <Initials>IaK</Initials> </Author>'),
-          hash: {firstname: 'Iakobish', middlename: 'K', lastname: 'Krylov'}
+          hash: { firstname: 'Iakobish', middlename: 'K', lastname: 'Krylov' }
         },
         Melosh: {
           xml: author_doc(' <Author ValidYN="Y"> <LastName>Melosh</LastName> <ForeName>H J</ForeName> <Suffix>3rd</Suffix> <Initials>HJ</Initials> </Author>'),
-          hash: {firstname: 'H', middlename: 'J', lastname: 'Melosh'}
+          hash: { firstname: 'H', middlename: 'J', lastname: 'Melosh' }
         },
         Todoroki: {
           xml: author_doc(' <Author ValidYN="Y"> <LastName>Todoroki</LastName> <ForeName>Shin-ichi</ForeName> <Initials>S</Initials> </Author>'),
-          hash: {firstname: 'Shin-ichi', middlename: nil, lastname: 'Todoroki'}
+          hash: { firstname: 'Shin-ichi', middlename: nil, lastname: 'Todoroki' }
         }
       }
     end

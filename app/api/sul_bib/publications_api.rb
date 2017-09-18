@@ -4,7 +4,6 @@ module SulBib
     default_format :json
 
     helpers do
-
       # Used in GET and PUT to return an existing publication record
       # @param id [String] A unique publication ID
       # @return pub [Publication] If found, returns a Publication record
@@ -16,9 +15,7 @@ module SulBib
         rescue ActiveRecord::RecordNotFound
           error!({ 'error' => 'No such publication', 'detail' => "You've requested a non-existant publication." }, 404)
         end
-        if pub.deleted? && !request.delete?
-          error!('Gone - old resource deleted.', 410)
-        end
+        error!('Gone - old resource deleted.', 410) if pub.deleted? && !request.delete?
         pub
       end
 
@@ -28,7 +25,7 @@ module SulBib
       def existing_authors?(authorship_list)
         # At least one of the authors in the authorship array must exist.
         return false if authorship_list.nil?
-        authorship_list.any? {|auth| Contribution.authorship_valid?(auth) }
+        authorship_list.any? { |auth| Contribution.authorship_valid?(auth) }
       end
 
       # Check for existing authors or create new authors with a CAP profile ID.
@@ -58,7 +55,6 @@ module SulBib
       def original_source
         @original_source ||= env['api.request.input']
       end
-
     end
 
     desc 'POST - CREATE A NEW MANUAL PUBLICATION'
@@ -105,7 +101,7 @@ module SulBib
       new_pub = params[:pub_hash]
       old_pub = publication_find(params[:id])
       case
-      when (!old_pub.sciencewire_id.blank?) || (!old_pub.pmid.blank?)
+      when !old_pub.sciencewire_id.blank? || !old_pub.pmid.blank?
         error!({ 'error' => 'This record may not be modified.  If you had originally entered details for the record, it has been superceded by a central record.', 'detail' => 'missing widget' }, 403)
       when !validate_or_create_authors(new_pub[:authorship])
         error!('You have not supplied a valid authorship record.', 406)

@@ -25,7 +25,7 @@ class PublicationsController < ApplicationController
 
         query = Publication.updated_after(last_changed).page(page).per(per)
 
-        if !capActive.blank? && capActive.downcase == 'true'
+        if !capActive.blank? && capActive.casecmp('true').zero?
           logger.debug(' -- Limit to only active authors')
           query = query.with_active_author
         end
@@ -74,7 +74,7 @@ class PublicationsController < ApplicationController
       sources = [Settings.sciencewire_source, Settings.pubmed_source]
       all_matching_records += PubmedHarvester.search_all_sources_by_pmid params[:pmid]
     else
-      fail ActionController::ParameterMissing, :title unless params[:title].presence
+      raise ActionController::ParameterMissing, :title unless params[:title].presence
 
       source = params.fetch(:source, Settings.manual_source + '+' + Settings.sciencewire_source)
       logger.info("Executing source lookup for title #{params[:title]} with sources #{source}")
@@ -91,9 +91,7 @@ class PublicationsController < ApplicationController
 
         results = UserSubmittedSourceRecord.where(user_submitted_source_records[:title].matches("%#{params[:title]}%"))
 
-        if params[:year]
-          results = results.where(user_submitted_source_records[:year].eq(params[:year]))
-        end
+        results = results.where(user_submitted_source_records[:year].eq(params[:year])) if params[:year]
         logger.debug(" -- manual source (#{results.length})")
 
         all_matching_records += results.map(&:publication)
@@ -115,39 +113,39 @@ class PublicationsController < ApplicationController
 
   private
 
-  def wrap_as_bibjson_collection(description, query, records, page = nil, per_page = nil)
-    metadata = {
-      _created: Time.zone.now.iso8601,
-      description: description,
-      format: 'BibJSON',
-      license: 'some licence',
-      query: query,
-      records:  records.count.to_s
-    }
-    metadata[:page] = page || 1
-    metadata[:per_page] = per_page || 'all'
-    {
-      metadata: metadata,
-      records: records.map { |x| (x.pub_hash if x.respond_to? :pub_hash) || x }
-    }
-  end
-
-  # @return [String] contains csv report of an author's publications
-  def generate_csv_report(author)
-    csv_str = CSV.generate do |csv|
-      csv << %w(sul_pub_id sciencewire_id pubmed_id doi wos_id title journal year pages issn status_for_this_author created_at updated_at contributor_cap_profile_ids)
-      author.publications.find_each do |pub|
-        pub.pub_hash[:journal] ? journ = pub.pub_hash[:journal] : journ = { name: '' }
-        contrib_prof_ids = pub.authors.pluck(:cap_profile_id).join(';')
-        wos_id = pub.publication_identifiers.where(identifier_type: 'WoSItemID').pluck(:identifier_value).first
-        doi = pub.publication_identifiers.where(identifier_type: 'doi').pluck(:identifier_value).first
-        status = pub.contributions.for_author(author).pluck(:status).first
-        created_at = pub.created_at.utc.strftime('%m/%d/%Y')
-        updated_at = pub.updated_at.utc.strftime('%m/%d/%Y')
-
-        csv << [pub.id, pub.sciencewire_id, pub.pmid, doi, wos_id, pub.title, journ[:name], pub.year, pub.pages, pub.issn, status, created_at, updated_at, contrib_prof_ids]
-      end
+    def wrap_as_bibjson_collection(description, query, records, page = nil, per_page = nil)
+      metadata = {
+        _created: Time.zone.now.iso8601,
+        description: description,
+        format: 'BibJSON',
+        license: 'some licence',
+        query: query,
+        records:  records.count.to_s
+      }
+      metadata[:page] = page || 1
+      metadata[:per_page] = per_page || 'all'
+      {
+        metadata: metadata,
+        records: records.map { |x| (x.pub_hash if x.respond_to? :pub_hash) || x }
+      }
     end
-    csv_str
-  end
+
+    # @return [String] contains csv report of an author's publications
+    def generate_csv_report(author)
+      csv_str = CSV.generate do |csv|
+        csv << %w(sul_pub_id sciencewire_id pubmed_id doi wos_id title journal year pages issn status_for_this_author created_at updated_at contributor_cap_profile_ids)
+        author.publications.find_each do |pub|
+          journ = pub.pub_hash[:journal] ? pub.pub_hash[:journal] : { name: '' }
+          contrib_prof_ids = pub.authors.pluck(:cap_profile_id).join(';')
+          wos_id = pub.publication_identifiers.where(identifier_type: 'WoSItemID').pluck(:identifier_value).first
+          doi = pub.publication_identifiers.where(identifier_type: 'doi').pluck(:identifier_value).first
+          status = pub.contributions.for_author(author).pluck(:status).first
+          created_at = pub.created_at.utc.strftime('%m/%d/%Y')
+          updated_at = pub.updated_at.utc.strftime('%m/%d/%Y')
+
+          csv << [pub.id, pub.sciencewire_id, pub.pmid, doi, wos_id, pub.title, journ[:name], pub.year, pub.pages, pub.issn, status, created_at, updated_at, contrib_prof_ids]
+        end
+      end
+      csv_str
+    end
 end

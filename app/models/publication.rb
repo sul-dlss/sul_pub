@@ -57,9 +57,7 @@ class Publication < ActiveRecord::Base
       # Assign or update these contribution attributes
       # Ensure the contribution attributes contain the right author
       contribution_hash[:author_id] = author.id
-      unless author.cap_profile_id.blank?
-        contribution_hash[:cap_profile_id] = author.cap_profile_id
-      end
+      contribution_hash[:cap_profile_id] = author.cap_profile_id unless author.cap_profile_id.blank?
       contrib = for_author(author).first_or_initialize
       if contrib.persisted?
         # Update an existing contribution
@@ -69,9 +67,7 @@ class Publication < ActiveRecord::Base
         contrib.assign_attributes(contribution_hash)
         contrib.save
         # SELF is an array of Contributions
-        unless self.include? contrib
-          self << contrib
-        end
+        self << contrib unless include? contrib
       end
       # The `proxy_association.owner` is a Publication instance, so
       # set a trigger that will force it to update it's pub_hash data.
@@ -120,7 +116,7 @@ class Publication < ActiveRecord::Base
   def self.build_new_manual_publication(pub_hash, original_source_string, provenance)
     existingRecord = UserSubmittedSourceRecord.find_or_initialize_by_source_data(original_source_string)
     if existingRecord && existingRecord.publication
-      fail ActiveRecord::RecordNotUnique.new('Publication for user submitted source record already exists', nil)
+      raise ActiveRecord::RecordNotUnique.new('Publication for user submitted source record already exists', nil)
     end
     pub = Publication.new(
       active: true,
@@ -237,7 +233,7 @@ class Publication < ActiveRecord::Base
   def sync_identifiers_in_pub_hash_to_db
     incoming_types = Array(pub_hash[:identifier]).map { |id| id[:type] }
     publication_identifiers.each do |id|
-      next if id.identifier_type =~ /^legacy_cap_pub_id$/i   # Do not delete legacy_cap_pub_id
+      next if id.identifier_type =~ /^legacy_cap_pub_id$/i # Do not delete legacy_cap_pub_id
       id.delete unless incoming_types.include? id.identifier_type
     end
 
@@ -284,18 +280,14 @@ class Publication < ActiveRecord::Base
       next if author.nil?
 
       hash_for_update[:author_id] = author.id
-      unless author.cap_profile_id.blank?
-        hash_for_update[:cap_profile_id] = author.cap_profile_id
-      end
+      hash_for_update[:cap_profile_id] = author.cap_profile_id unless author.cap_profile_id.blank?
       contrib = contributions.for_author(author).first_or_initialize
       contrib.assign_attributes(hash_for_update)
 
       if contrib.persisted?
         contrib.save
       else
-        unless contributions.include? contrib
-          contributions << contrib
-        end
+        contributions << contrib unless contributions.include? contrib
       end
     end
     true
@@ -334,7 +326,7 @@ class Publication < ActiveRecord::Base
 
     pub_hash[:mesh_headings] = pubmed_hash[:mesh_headings] unless pubmed_hash[:mesh_headings].blank?
     pub_hash[:abstract] = pubmed_hash[:abstract] unless pubmed_hash[:abstract].blank?
-    pmc_id = pubmed_hash[:identifier].detect {|id| id[:type] == 'pmc'}
+    pmc_id = pubmed_hash[:identifier].detect { |id| id[:type] == 'pmc' }
     pub_hash[:identifier] << pmc_id if pmc_id
   end
 
@@ -410,5 +402,5 @@ class Publication < ActiveRecord::Base
     pubmed_pub? || sciencewire_pub?
   end
 
-  alias_method :authoritative_doi_source?, :sciencewire_pub?
+  alias authoritative_doi_source? sciencewire_pub?
 end

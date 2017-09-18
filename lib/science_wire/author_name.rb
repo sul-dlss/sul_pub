@@ -50,15 +50,15 @@ module ScienceWire
     def text_search_query
       @text_search_query ||= begin
         names = [first_name_query, middle_name_query].flatten
-        names.delete_if {|name| name.to_s.empty? }
+        names.delete_if { |name| name.to_s.empty? }
         names.uniq.join(' or ')
       end
     end
 
     def ==(other)
       last == other.last &&
-      first == other.first &&
-      middle == other.middle
+        first == other.first &&
+        middle == other.middle
     end
 
     private
@@ -114,7 +114,7 @@ module ScienceWire
       # proper_name('Berners-Lee'.downcase) => "Berners-Lee"
       def proper_name(name)
         return name if name =~ /[[:upper:]]/
-        name.gsub(/\b[[:alpha:]]+/) {|w| w =~ PARTICLE_REGEX ? w : w.capitalize }
+        name.gsub(/\b[[:alpha:]]+/) { |w| w =~ PARTICLE_REGEX ? w : w.capitalize }
       end
   end
 end

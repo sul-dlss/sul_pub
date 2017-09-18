@@ -161,7 +161,7 @@ class PubHash
       end
 
       # Use a year at the top level if it exists, i.e, override any year we'd gotten above from journal or series.
-      cit_data_hash['issued']  = { 'date-parts' => [[pub_hash[:year]]] } unless pub_hash[:year].blank?
+      cit_data_hash['issued'] = { 'date-parts' => [[pub_hash[:year]]] } unless pub_hash[:year].blank?
       # Add book title if it exists, which indicates this pub is a chapter in the book.
       unless pub_hash[:booktitle].blank?
         cit_data_hash['type'] = 'book'
@@ -238,7 +238,7 @@ private
       author = author.symbolize_keys
       next if author[:name].blank?
       family, given = author[:name].split(',')
-      {'family' => family, 'given' => given }
+      { 'family' => family, 'given' => given }
     end
   end
 
@@ -338,12 +338,11 @@ private
         end
       end
 
-      unless last_name.blank?
-        if author[:role] && author[:role].casecmp('editor') == 0
-          editors_for_citeproc << { 'family' => last_name, 'given' => rest_of_name }
-        else
-          authors_for_citeproc << { 'family' => last_name, 'given' => rest_of_name }
-        end
+      next if last_name.blank?
+      if author[:role] && author[:role].casecmp('editor') == 0
+        editors_for_citeproc << { 'family' => last_name, 'given' => rest_of_name }
+      else
+        authors_for_citeproc << { 'family' => last_name, 'given' => rest_of_name }
       end
     end
     {

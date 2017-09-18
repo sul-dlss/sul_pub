@@ -116,7 +116,7 @@ describe Csl::AuthorName do
     context 'when no names are present' do
       it 'returns a Hash with empty String values' do
         expect(no_names.to_csl_author).to be_an Hash
-        csl_author = {'family' => '', 'given' => ''}
+        csl_author = { 'family' => '', 'given' => '' }
         expect(no_names.to_csl_author).to eq csl_author
       end
     end

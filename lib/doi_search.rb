@@ -1,9 +1,7 @@
 class DoiSearch
   def self.search(doi)
     results = Publication.find_by_doi doi
-    if results.none?(&:authoritative_doi_source?)
-      results += ScienceWireClient.new.get_pub_by_doi(doi)
-    end
+    results += ScienceWireClient.new.get_pub_by_doi(doi) if results.none?(&:authoritative_doi_source?)
     results.reject! { |pub| non_sw_pub pub } if results.size > 1
     results
   end

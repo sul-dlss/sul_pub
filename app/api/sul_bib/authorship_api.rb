@@ -130,9 +130,9 @@ module SulBib
       def get_contribution(author, sul_pub_id)
         # Find an existing contribution by author/publication
         contributions = Contribution.where(
-                        author_id: author.id,
-                        publication_id: sul_pub_id
-                      )
+          author_id: author.id,
+          publication_id: sul_pub_id
+        )
         if contributions.empty?
           msg = "SULCAP has no contributions by the author:#{author.id} for the publication:#{sul_pub_id}"
           logger.error msg
@@ -214,7 +214,7 @@ module SulBib
     post do
       request_body_unparsed = env['api.request.input']
       logger.info('POST Contribution JSON: ')
-      logger.info("#{request_body_unparsed}")
+      logger.info(request_body_unparsed.to_s)
 
       # Find or create an author
       author = get_author(
@@ -241,7 +241,6 @@ module SulBib
         error!('You have not supplied a valid authorship record.', 406)
       create_or_update_and_return_pub_hash(pub, author, authorship_hash)
     end # post end
-
 
     # TODO: create, enable, and test PUT API method.
 
@@ -275,7 +274,7 @@ module SulBib
     patch do
       request_body_unparsed = env['api.request.input']
       logger.info('PATCH Contribution JSON: ')
-      logger.info("#{request_body_unparsed}")
+      logger.info(request_body_unparsed.to_s)
 
       # Find an existing author
       author = get_author(

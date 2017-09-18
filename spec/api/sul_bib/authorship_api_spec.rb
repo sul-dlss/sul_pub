@@ -178,7 +178,7 @@ describe SulBib::API, :vcr do
         http_request
         publication_with_contributions.reload
         authorship = publication_with_contributions.pub_hash[:authorship]
-        expect(authorship.any? {|a| a[:sul_author_id] == author.id }).to be true
+        expect(authorship.any? { |a| a[:sul_author_id] == author.id }).to be true
       end
       it 'adds one authorship entry to response pub_hash' do
         # This specifically checks the response data, whereas the prior
@@ -227,7 +227,7 @@ describe SulBib::API, :vcr do
         pub_ids = result['identifier']
         # Check the PMID, e.g.
         # {"type"=>"PMID", "id"=>"23684686", "url"=>"https://www.ncbi.nlm.nih.gov/pubmed/23684686"}
-        pmid_hash = pub_ids.find {|id| id['type'] == 'PMID'}
+        pmid_hash = pub_ids.find { |id| id['type'] == 'PMID' }
         expect(pmid_hash).to be_instance_of Hash
         pmid = request_data[:pmid]
         expect(pmid_hash['type']).to eq('PMID')
@@ -235,7 +235,7 @@ describe SulBib::API, :vcr do
         expect(pmid_hash['url']).to eq("https://www.ncbi.nlm.nih.gov/pubmed/#{pmid}")
         # Check the SULPubId, e.g.
         # {:type=>"SULPubId", :id=>"2355", :url=>"https://sulcap.stanford.edu/publications/2355"}],
-        sul_hash = pub_ids.find {|id| id['type'] == 'SULPubId'}
+        sul_hash = pub_ids.find { |id| id['type'] == 'SULPubId' }
         expect(sul_hash).to be_instance_of Hash
         sul_pub_id = Publication.last.id.to_s
         expect(sul_hash['type']).to eq('SULPubId')
@@ -273,14 +273,14 @@ describe SulBib::API, :vcr do
         pub_ids = result['identifier']
         # This doesn't result is a clearly identified ScienceWire identifier, e.g.
         # {"type"=>"PublicationItemID", "id"=>"10379039"}
-        item_hash = pub_ids.find {|id| id['type'] == 'PublicationItemID'}
+        item_hash = pub_ids.find { |id| id['type'] == 'PublicationItemID' }
         expect(item_hash).to be_instance_of Hash
         swid = request_data[:sw_id]
         expect(item_hash['type']).to eq('PublicationItemID')
         expect(item_hash['id']).to eq(swid)
         # Check the SULPubId, e.g.
         # {:type=>"SULPubId", :id=>"2355", :url=>"http://sulcap.stanford.edu/publications/2355"}],
-        sul_hash = pub_ids.find {|id| id['type'] == 'SULPubId'}
+        sul_hash = pub_ids.find { |id| id['type'] == 'SULPubId' }
         expect(sul_hash).to be_instance_of Hash
         sul_pub_id = Publication.last.id.to_s
         expect(sul_hash['type']).to eq('SULPubId')
@@ -311,7 +311,7 @@ describe SulBib::API, :vcr do
     let!(:authorship_before) do
       authorship_matches = authorship_array.select do |a|
         a[:sul_author_id] == contrib_before.author.id ||
-        a[:cap_profile_id] == contrib_before.author.cap_profile_id
+          a[:cap_profile_id] == contrib_before.author.cap_profile_id
       end
       expect(authorship_matches.length).to eq(1)
       authorship_matches.first
@@ -349,7 +349,7 @@ describe SulBib::API, :vcr do
       expect(result_authorship.length).to eq(authorship_count)
       authorship_matches = result_authorship.select do |a|
         a['sul_author_id'] == request_data[:sul_author_id] ||
-        a['cap_profile_id'] == request_data[:cap_profile_id]
+          a['cap_profile_id'] == request_data[:cap_profile_id]
       end
       expect(authorship_matches.length).to eq(1)
       authorship = authorship_matches.first

@@ -20,7 +20,7 @@ class ScienceWirePublications
   end
 
   def each
-    publication_items.each {|pub| yield pub }
+    publication_items.each { |pub| yield pub }
   end
 
   # Apply configured filter to remove any PublicationItem that contains a
@@ -28,14 +28,14 @@ class ScienceWirePublications
   # @return [Array<ScienceWirePublication>] selected ScienceWirePublication
   def filter_publication_items
     pubs = publication_items.dup
-    pubs.delete_if {|pub| pub.doc_type?(remove_document_types) } unless remove_document_types.blank?
+    pubs.delete_if { |pub| pub.doc_type?(remove_document_types) } unless remove_document_types.blank?
     pubs
   end
 
   # @return [Array<ScienceWirePublication>] an array of ScienceWirePublication
   def publication_items
     pub_nodes = array_of_publication_item.xpath('PublicationItem')
-    pub_nodes.map {|item| ScienceWirePublication.new(item) }
+    pub_nodes.map { |item| ScienceWirePublication.new(item) }
   end
 
   # Checks the xml_doc to verify that it is a Nokogiri::XML::Document

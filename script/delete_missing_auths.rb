@@ -34,7 +34,7 @@ class DeleteMissingAuths
     CSV.foreach(Rails.root.join('authors_without_profiles_utf8.csv'), headers: true, header_converters: :symbol) do |row|
       begin
         count += 1
-        @logger.info "Processed #{count}" if (count % 100 == 0)
+        @logger.info "Processed #{count}" if count % 100 == 0
 
         fix row[:sul_author_id]
       rescue => e
@@ -43,9 +43,9 @@ class DeleteMissingAuths
       end
     end
 
-    rescue => e
-      @logger.error "#{e.inspect}"
-      @logger.error e.backtrace.join "\n"
+  rescue => e
+    @logger.error e.inspect.to_s
+    @logger.error e.backtrace.join "\n"
   end
 end
 

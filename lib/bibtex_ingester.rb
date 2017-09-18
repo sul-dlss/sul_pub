@@ -28,28 +28,27 @@ class BibtexIngester
     Dir.open(@batch_dir).each do |batch_dir_name|
       next if batch_dir_name == '.' || batch_dir_name == '..'
       batch_dir_full_path = "#{@batch_dir}/#{batch_dir_name}"
-      if File.directory? batch_dir_full_path
-        Dir.open(batch_dir_full_path).each do |bibtex_file_name|
-          # sunet_id = File.basename(bibtex_file_name, '.*')
-          next if batch_dir_name == '.' || batch_dir_name == '..'
+      next unless File.directory? batch_dir_full_path
+      Dir.open(batch_dir_full_path).each do |bibtex_file_name|
+        # sunet_id = File.basename(bibtex_file_name, '.*')
+        next if batch_dir_name == '.' || batch_dir_name == '..'
 
-          file_full_path = "#{batch_dir_full_path}/#{bibtex_file_name}"
-          log_file_full_path = "#{batch_dir_full_path}/#{bibtex_file_name}_import.log"
-          next if File.directory?(file_full_path) || bibtex_file_name == '.DS_Store' || bibtex_file_name.end_with?('.log')
-          @record_count_for_file = 0
-          @errors_for_file = 0
-          @ingested_for_file = 0
+        file_full_path = "#{batch_dir_full_path}/#{bibtex_file_name}"
+        log_file_full_path = "#{batch_dir_full_path}/#{bibtex_file_name}_import.log"
+        next if File.directory?(file_full_path) || bibtex_file_name == '.DS_Store' || bibtex_file_name.end_with?('.log')
+        @record_count_for_file = 0
+        @errors_for_file = 0
+        @ingested_for_file = 0
 
-          @bibtex_file_logger = Logger.new(log_file_full_path)
-          @bibtex_file_logger.info "Started bibtext import for file #{Time.zone.now}"
+        @bibtex_file_logger = Logger.new(log_file_full_path)
+        @bibtex_file_logger.info "Started bibtext import for file #{Time.zone.now}"
 
-          process_bibtex_file(file_full_path, batch_dir_name, bibtex_file_name)
+        process_bibtex_file(file_full_path, batch_dir_name, bibtex_file_name)
 
-          @bibtex_file_logger.info "Ended bibtext import for file #{Time.zone.now}"
-          @bibtex_file_logger.info "#{@record_count_for_file} records processed."
-          @bibtex_file_logger.info "#{@ingested_for_file} records were successfully ingested."
-          @bibtex_file_logger.info "#{@errors_for_file} records had problems and weren't ingested."
-        end
+        @bibtex_file_logger.info "Ended bibtext import for file #{Time.zone.now}"
+        @bibtex_file_logger.info "#{@record_count_for_file} records processed."
+        @bibtex_file_logger.info "#{@ingested_for_file} records were successfully ingested."
+        @bibtex_file_logger.info "#{@errors_for_file} records had problems and weren't ingested."
       end
     end
     @bibtex_import_logger.info "Finished bibtex import #{Time.zone.now}"
@@ -122,8 +121,8 @@ class BibtexIngester
       successful_import: true,
       bibtex_source_data: record.to_s
     }
-    source_attrib_hash[:title] =  record.title.to_s unless record['title'].blank?
-    source_attrib_hash[:year] =  record.year.to_s unless record['year'].blank?
+    source_attrib_hash[:title] = record.title.to_s unless record['title'].blank?
+    source_attrib_hash[:year] = record.year.to_s unless record['year'].blank?
 
     begin
       existing_source_record = BatchUploadedSourceRecord.where(sunet_id: author.sunetid, title: record.title.to_s).first
@@ -136,7 +135,7 @@ class BibtexIngester
       pub = existing_source_record.publication
       @total_duplicates += 1
       # if the publication has been updated with a sw or pubmed record since it was first submitted, then do nothing
-      if (pub.sciencewire_id.blank?) && (pub.pmid.blank?)
+      if pub.sciencewire_id.blank? && pub.pmid.blank?
         pub.update_attributes(active: true, pub_hash: convert_bibtex_record_to_pub_hash(record, author))
         existing_source_record.update_attributes(source_attrib_hash)
         existing_source_record.save
@@ -154,11 +153,11 @@ class BibtexIngester
       Contribution.where(
         author_id: author.id,
         publication_id: pub.id)
-        .first_or_create(
-          cap_profile_id: author.cap_profile_id,
-          status: 'approved',
-          visibility: 'private',
-          featured: false)
+                  .first_or_create(
+                    cap_profile_id: author.cap_profile_id,
+                    status: 'approved',
+                    visibility: 'private',
+                    featured: false)
       # have to sync the pub hash to update new information, including new authorship
       pub.sync_publication_hash_and_db
       pub.save

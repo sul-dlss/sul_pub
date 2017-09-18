@@ -11,9 +11,9 @@ class ScienceWireClient
   def self.working?
     pub_hashes = new.get_pub_by_doi('10.1038/nature11397', 1)
     pub_hashes.is_a?(Array) &&
-    pub_hashes.first.is_a?(Hash) &&
-    pub_hashes.first[:sw_id] == '61158927' &&
-    pub_hashes.first[:title] == 'An index to assess the health and benefits of the global ocean'
+      pub_hashes.first.is_a?(Hash) &&
+      pub_hashes.first[:sw_id] == '61158927' &&
+      pub_hashes.first[:title] == 'An index to assess the health and benefits of the global ocean'
   end
 
   ##
@@ -274,30 +274,30 @@ class ScienceWireClient
 
   private
 
-  def validate_array_of_publication_item_xml(xml_doc)
-    raise(ArgumentError, 'Did not receive a valid <ArrayOfPublicationItem>') unless
-      xml_doc.is_a?(Nokogiri::XML::Document) && !xml_doc.xpath('//ArrayOfPublicationItem').empty?
-  end
-
-  def validate_query_id_response_xml(xml_doc)
-    raise(ArgumentError, 'Did not receive a valid <ScienceWireQueryIDResponse>') unless
-      xml_doc.is_a?(Nokogiri::XML::Document) &&
-      !xml_doc.xpath('//ScienceWireQueryIDResponse').empty? &&
-      !xml_doc.xpath('//queryID').empty? &&
-      !xml_doc.xpath('//queryResultRows').empty?
-  end
-
-  def send_query_and_return_pub_hashes(xml_query)
-    xml_results = query_sciencewire(xml_query)
-
-    xml_results.xpath('//PublicationItem').map do |sw_xml_doc|
-      pub_hash = SciencewireSourceRecord.convert_sw_publication_doc_to_hash(sw_xml_doc)
-      h = PubHash.new(pub_hash)
-
-      pub_hash[:apa_citation] = h.to_apa_citation
-      pub_hash[:mla_citation] = h.to_mla_citation
-      pub_hash[:chicago_citation] = h.to_chicago_citation
-      pub_hash
+    def validate_array_of_publication_item_xml(xml_doc)
+      raise(ArgumentError, 'Did not receive a valid <ArrayOfPublicationItem>') unless
+        xml_doc.is_a?(Nokogiri::XML::Document) && !xml_doc.xpath('//ArrayOfPublicationItem').empty?
     end
-  end
+
+    def validate_query_id_response_xml(xml_doc)
+      raise(ArgumentError, 'Did not receive a valid <ScienceWireQueryIDResponse>') unless
+        xml_doc.is_a?(Nokogiri::XML::Document) &&
+        !xml_doc.xpath('//ScienceWireQueryIDResponse').empty? &&
+        !xml_doc.xpath('//queryID').empty? &&
+        !xml_doc.xpath('//queryResultRows').empty?
+    end
+
+    def send_query_and_return_pub_hashes(xml_query)
+      xml_results = query_sciencewire(xml_query)
+
+      xml_results.xpath('//PublicationItem').map do |sw_xml_doc|
+        pub_hash = SciencewireSourceRecord.convert_sw_publication_doc_to_hash(sw_xml_doc)
+        h = PubHash.new(pub_hash)
+
+        pub_hash[:apa_citation] = h.to_apa_citation
+        pub_hash[:mla_citation] = h.to_mla_citation
+        pub_hash[:chicago_citation] = h.to_chicago_citation
+        pub_hash
+      end
+    end
 end
