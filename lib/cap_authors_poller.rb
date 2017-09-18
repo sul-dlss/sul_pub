@@ -58,7 +58,6 @@ class CapAuthorsPoller
   end
 
   def process_next_batch_of_authorship_data(json_response)
-    # rubocop:disable Style/GuardClause
     if json_response['count'].blank? || json_response['lastPage'].nil?
       raise Net::HTTPBadResponse, "Missing JSON data in response: first 500 chars: #{json_response[0..500]}"
     elsif json_response['values']
@@ -72,7 +71,6 @@ class CapAuthorsPoller
         end
       end
     end
-    # rubocop:enable Style/GuardClause
   end
 
   def process_record(record)
