@@ -60,15 +60,15 @@ class CapAuthorsPoller
   def process_next_batch_of_authorship_data(json_response)
     if json_response['count'].blank? || json_response['lastPage'].nil?
       raise Net::HTTPBadResponse, "Missing JSON data in response: first 500 chars: #{json_response[0..500]}"
-    elsif json_response['values']
-      json_response['values'].each do |record|
-        begin
-          @total_running_count += 1
-          process_record(record)
-          log_stats if @total_running_count % 10 == 0
-        rescue => e
-          NotificationManager.error(e, "Authorship import failed for record: '#{record}'", self)
-        end
+    end
+    return unless json_response['values']
+    json_response['values'].each do |record|
+      begin
+        @total_running_count += 1
+        process_record(record)
+        log_stats if @total_running_count % 10 == 0
+      rescue => e
+        NotificationManager.error(e, "Authorship import failed for record: '#{record}'", self)
       end
     end
   end

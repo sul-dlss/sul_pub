@@ -13,7 +13,7 @@ class DeleteMissingAuths
     auth.destroy
     pub_ids.each do |pub_id|
       pub = Publication.find pub_id
-      if pub.contributions.size == 0
+      if pub.contributions.empty?
         @logger.info "   Destroying orphan pub #{pub_id}"
         pub.destroy
       else
@@ -35,7 +35,6 @@ class DeleteMissingAuths
       begin
         count += 1
         @logger.info "Processed #{count}" if count % 100 == 0
-
         fix row[:sul_author_id]
       rescue => e
         @logger.error "Problem author #{row[:sul_author_id]} #{e.inspect}"

@@ -51,30 +51,27 @@ class SciencewireSourceRecord < ActiveRecord::Base
 
   def self.get_pub_by_pmid(pmid)
     sw_pub_hash = get_sciencewire_hash_for_pmid(pmid)
-    unless sw_pub_hash.nil?
-      pub = Publication.new(
-        active: true,
-        sciencewire_id: sw_pub_hash[:sw_id],
-        pmid: pmid)
-      pub.build_from_sciencewire_hash(sw_pub_hash)
-      pub.sync_publication_hash_and_db
-      pub.save
-
-    end
+    return if sw_pub_hash.nil?
+    pub = Publication.new(
+      active: true,
+      sciencewire_id: sw_pub_hash[:sw_id],
+      pmid: pmid)
+    pub.build_from_sciencewire_hash(sw_pub_hash)
+    pub.sync_publication_hash_and_db
+    pub.save
     pub
   end
 
   def self.get_pub_by_sciencewire_id(sciencewire_id)
     sw_pub_hash = get_sciencewire_hash_for_sw_id(sciencewire_id)
-    unless sw_pub_hash.nil?
-      pub = Publication.new(
-        active: true,
-        sciencewire_id: sciencewire_id,
-        pmid: sw_pub_hash[:pmid])
-      pub.build_from_sciencewire_hash(sw_pub_hash)
-      pub.sync_publication_hash_and_db
-      pub.save
-    end
+    return if sw_pub_hash.nil?
+    pub = Publication.new(
+      active: true,
+      sciencewire_id: sciencewire_id,
+      pmid: sw_pub_hash[:pmid])
+    pub.build_from_sciencewire_hash(sw_pub_hash)
+    pub.sync_publication_hash_and_db
+    pub.save
     pub
   end
 
@@ -283,11 +280,8 @@ class SciencewireSourceRecord < ActiveRecord::Base
     type
   end
 
-  # This method maps a ScienceWire `DocumentCategory` into a corresponding
-  # value in `Settings.sul_doc_types`.
-  #
-  # The ScienceWire API documentation notes three valid values for the
-  # `DocumentCategory` field, i.e.:
+  # Maps a ScienceWire `DocumentCategory` to a corresponding value in `Settings.sul_doc_types`.
+  # The ScienceWire API documentation notes three valid values for the `DocumentCategory` field, i.e.:
   # - 'Conference Proceeding Document'
   # - 'Journal Document'
   # - 'Other'
@@ -295,11 +289,8 @@ class SciencewireSourceRecord < ActiveRecord::Base
   # @param sw_doc_category [String] One of the document categories
   # @return sul_doc_type [String] One of the `Settings.sul_doc_types`
   def self.lookup_cap_doc_type_by_sw_doc_category(sw_doc_category)
-    if sw_doc_category == 'Conference Proceeding Document'
-      return Settings.sul_doc_types.inproceedings
-    else
-      return Settings.sul_doc_types.article
-    end
+    return Settings.sul_doc_types.inproceedings if sw_doc_category == 'Conference Proceeding Document'
+    Settings.sul_doc_types.article
   end
 
   def self.extract_pmid(doc)
