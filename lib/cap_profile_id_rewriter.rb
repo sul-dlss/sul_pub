@@ -40,7 +40,7 @@ class CapProfileIdRewriter
     @active_true_count = 0
     @active_false_count = 0
     @no_profile_email_count =
-    @no_active_count = 0
+      @no_active_count = 0
     @import_enabled_count = 0
     @import_disabled_count = 0
   end
@@ -72,16 +72,14 @@ class CapProfileIdRewriter
     if json_response['values'].blank?
       logger.warn "Authorship import ended unexpectedly: unexpected json: #{json_response}"
       # TODO: send an email here.
-      fail
+      raise
     else
       json_response['values'].each do |record|
         @total_running_count += 1
 
         attrs = Author.build_attribute_hash_from_cap_profile(record)
 
-        unless attrs[:sunetid].blank?
-          author = Author.where(sunetid: attrs[:sunetid]).first
-        end
+        author = Author.where(sunetid: attrs[:sunetid]).first unless attrs[:sunetid].blank?
         if author.nil? && !attrs[:university_id].blank?
           author = Author.where(university_id: attrs[:university_id]).first
         end

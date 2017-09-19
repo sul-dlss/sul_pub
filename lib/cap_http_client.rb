@@ -2,10 +2,10 @@ require 'socket'
 class CapHttpClient
   # Fetch a single object from CAP server and test its response
   def self.working?
-    response = new.get_auth_profile(41135)
+    response = new.get_auth_profile(41_135)
     response.is_a?(Hash) &&
-    response['profileId'] == 41135 &&
-    ['Darren Hardy', 'John Wang'].include?(response['profile']['displayName']) # CAP-QA has different name
+      response['profileId'] == 41_135 &&
+      ['Darren Hardy', 'John Wang'].include?(response['profile']['displayName']) # CAP-QA has different name
   end
 
   attr_reader :auth
@@ -57,57 +57,57 @@ class CapHttpClient
 
   private
 
-  def make_cap_request(request_path)
-    json_response = {}
-    timeout_retries = @base_timeout_retries
-    timeout_period = @base_timeout_period
+    def make_cap_request(request_path)
+      json_response = {}
+      timeout_retries = @base_timeout_retries
+      timeout_period = @base_timeout_period
 
-    begin
-      http = setup_cap_http
-      request = Net::HTTP::Get.new(request_path)
-      @auth_token ||= generate_token
-      token = @auth_token
+      begin
+        http = setup_cap_http
+        request = Net::HTTP::Get.new(request_path)
+        @auth_token ||= generate_token
+        token = @auth_token
 
-      3.times do
-        request['Authorization'] = 'bearer ' + token
-        http.start
-        response = http.request(request)
+        3.times do
+          request['Authorization'] = 'bearer ' + token
+          http.start
+          response = http.request(request)
 
-        if response.class == Net::HTTPUnauthorized
-          http.finish if http.started?
-          token = generate_token
-        elsif response.class == Net::HTTPInternalServerError
-          http.finish
-          response_body = response.body
-          fail "Server error on authorship call - #{Time.zone.now} - message from server: #{response_body}"
-        else
-          response_body = response.body
-          json_response = JSON.parse(response_body)
-          http.finish if http.started?
+          if response.class == Net::HTTPUnauthorized
+            http.finish if http.started?
+            token = generate_token
+          elsif response.class == Net::HTTPInternalServerError
+            http.finish
+            response_body = response.body
+            raise "Server error on authorship call - #{Time.zone.now} - message from server: #{response_body}"
+          else
+            response_body = response.body
+            json_response = JSON.parse(response_body)
+            http.finish if http.started?
+          end
         end
-      end
-    rescue Timeout::Error => te
-      timeout_retries -= 1
-      if timeout_retries > 0
-        # increase timeout
-        timeout_period += 500
-        retry
-      else
-        NotificationManager.error(te, 'Timeout::Error during CAP request', self)
+      rescue Timeout::Error => te
+        timeout_retries -= 1
+        if timeout_retries > 0
+          # increase timeout
+          timeout_period += 500
+          retry
+        else
+          NotificationManager.error(te, 'Timeout::Error during CAP request', self)
+          raise
+        end
+      rescue => e
+        NotificationManager.error(e, "#{e.class.name} during CAP request", self)
         raise
       end
-    rescue => e
-      NotificationManager.error(e, "#{e.class.name} during CAP request", self)
-      raise
+      json_response
     end
-    json_response
-  end
 
-  def setup_cap_http
-    http = Net::HTTP.new(Settings.CAP.AUTHORSHIP_API_URI, Settings.CAP.AUTHORSHIP_API_PORT)
-    http.read_timeout = @base_timeout_period
-    http.use_ssl = true
-    http.verify_mode = OpenSSL::SSL::VERIFY_PEER
-    http
-  end
+    def setup_cap_http
+      http = Net::HTTP.new(Settings.CAP.AUTHORSHIP_API_URI, Settings.CAP.AUTHORSHIP_API_PORT)
+      http.read_timeout = @base_timeout_period
+      http.use_ssl = true
+      http.verify_mode = OpenSSL::SSL::VERIFY_PEER
+      http
+    end
 end

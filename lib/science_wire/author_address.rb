@@ -31,10 +31,10 @@ module ScienceWire
 
     def ==(other)
       line1 == other.line1 &&
-      line2 == other.line2 &&
-      city == other.city &&
-      state == other.state &&
-      country == other.country
+        line2 == other.line2 &&
+        city == other.city &&
+        state == other.state &&
+        country == other.country
     end
 
     def empty?

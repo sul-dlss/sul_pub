@@ -2,7 +2,7 @@ FactoryGirl.define do
   factory :publication do
     title 'How I learned Rails'
     year '1972'
-    pub_hash {
+    pub_hash do
       {
         title: 'How I learned Rails',
         type: 'article',
@@ -20,7 +20,7 @@ FactoryGirl.define do
           }
         ]
       }
-    }
+    end
     active true
     deleted false
     publication_type 'article'

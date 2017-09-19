@@ -43,8 +43,8 @@ module Csl
 
     def ==(other)
       last == other.last &&
-      first == other.first &&
-      middle == other.middle
+        first == other.first &&
+        middle == other.middle
     end
 
     protected

@@ -13,7 +13,7 @@ class DeleteMissingAuths
     auth.destroy
     pub_ids.each do |pub_id|
       pub = Publication.find pub_id
-      if pub.contributions.size == 0
+      if pub.contributions.empty?
         @logger.info "   Destroying orphan pub #{pub_id}"
         pub.destroy
       else
@@ -34,8 +34,7 @@ class DeleteMissingAuths
     CSV.foreach(Rails.root.join('authors_without_profiles_utf8.csv'), headers: true, header_converters: :symbol) do |row|
       begin
         count += 1
-        @logger.info "Processed #{count}" if (count % 100 == 0)
-
+        @logger.info "Processed #{count}" if count % 100 == 0
         fix row[:sul_author_id]
       rescue => e
         @logger.error "Problem author #{row[:sul_author_id]} #{e.inspect}"
@@ -43,9 +42,9 @@ class DeleteMissingAuths
       end
     end
 
-    rescue => e
-      @logger.error "#{e.inspect}"
-      @logger.error e.backtrace.join "\n"
+  rescue => e
+    @logger.error e.inspect.to_s
+    @logger.error e.backtrace.join "\n"
   end
 end
 

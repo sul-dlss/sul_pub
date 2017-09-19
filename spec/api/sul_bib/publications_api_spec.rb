@@ -54,23 +54,23 @@ describe SulBib::API, :vcr do
       abstract_restricted: '',
       allAuthors: 'author A, author B',
       author: [
-        {firstname: 'John ', lastname: 'Doe', middlename: '', name: 'Doe  John ', role: 'author'},
-        {firstname: 'Raj', lastname: 'Kathopalli', middlename: '', name: 'Kathopalli  Raj', role: 'author'}
+        { firstname: 'John ', lastname: 'Doe', middlename: '', name: 'Doe  John ', role: 'author' },
+        { firstname: 'Raj', lastname: 'Kathopalli', middlename: '', name: 'Kathopalli  Raj', role: 'author' }
       ],
       authorship: [
-        {cap_profile_id: author.cap_profile_id, featured: true, status: 'APPROVED', visibility: 'PUBLIC'}
+        { cap_profile_id: author.cap_profile_id, featured: true, status: 'APPROVED', visibility: 'PUBLIC' }
       ],
       booktitle: 'TEST Book I',
       edition: '2',
       etal: true,
       identifier: [
-        {type: 'isbn', id: '1177188188181'},
-        {type: 'doi', url: '18819910019'}
+        { type: 'isbn', id: '1177188188181' },
+        { type: 'doi', url: '18819910019' }
       ],
       last_updated: '2013-08-10T21:03Z',
       provenance: 'CAP',
       publisher: 'Publisher',
-      series: {number: '919', title: 'Series 1', volume: '1'},
+      series: { number: '919', title: 'Series 1', volume: '1' },
       type: 'book',
       year: '2010'
     }.to_json
@@ -79,9 +79,9 @@ describe SulBib::API, :vcr do
   let(:json_with_isbn_changed_doi) do
     pub = JSON.parse(json_with_isbn.dup)
     pub['identifier'] = [
-      {type: 'isbn', id: '1177188188181'},
-      {type: 'doi', url: '18819910019-updated' },
-      {type: 'SULPubId', id: '164', url: Settings.SULPUB_ID.PUB_URI + '/164' }
+      { type: 'isbn', id: '1177188188181' },
+      { type: 'doi', url: '18819910019-updated' },
+      { type: 'SULPubId', id: '164', url: Settings.SULPUB_ID.PUB_URI + '/164' }
     ]
     pub.to_json
   end
@@ -89,8 +89,8 @@ describe SulBib::API, :vcr do
   let(:json_with_isbn_deleted_doi) do
     pub = JSON.parse(json_with_isbn_changed_doi.dup)
     pub['identifier'] = [
-      {type: 'isbn', id: '1177188188181'},
-      {type: 'SULPubId', id: '164', url: Settings.SULPUB_ID.PUB_URI + '/164' }
+      { type: 'isbn', id: '1177188188181' },
+      { type: 'SULPubId', id: '164', url: Settings.SULPUB_ID.PUB_URI + '/164' }
     ]
     pub.to_json
   end
@@ -98,9 +98,9 @@ describe SulBib::API, :vcr do
   let(:json_with_pubmedid) do
     pub = JSON.parse(json_with_isbn.dup)
     pub['identifier'] = [
-      {type: 'isbn', id: '1177188188181'},
-      {type: 'doi', url: '18819910019'},
-      {type: 'pmid', id: '999999999'},
+      { type: 'isbn', id: '1177188188181' },
+      { type: 'doi', url: '18819910019' },
+      { type: 'pmid', id: '999999999' },
     ]
     pub.to_json
   end
@@ -171,15 +171,15 @@ describe SulBib::API, :vcr do
       end
 
       it 'increases number of contribution records by one' do
-        expect{ post_valid_json }.to change(Contribution, :count).by(1)
+        expect { post_valid_json }.to change(Contribution, :count).by(1)
       end
 
       it 'increases number of publication records by one' do
-        expect{ post_valid_json }.to change(Publication, :count).by(1)
+        expect { post_valid_json }.to change(Publication, :count).by(1)
       end
 
       it 'increases number of user submitted source records by one' do
-        expect{ post_valid_json }.to change(UserSubmittedSourceRecord, :count).by(1)
+        expect { post_valid_json }.to change(UserSubmittedSourceRecord, :count).by(1)
       end
 
       it 'creates an appropriate publication record from the posted bibjson' do

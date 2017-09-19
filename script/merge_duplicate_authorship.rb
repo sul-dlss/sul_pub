@@ -22,17 +22,15 @@ class MergeDuplicateAuthorship
       src_hash = JSON.parse(src.source_data)
       src_authorship = src_hash['authorship']
       @logger.info "Publication #{pub[:id]}: src_authorship: #{JSON.dump(src_authorship)}"
-      if src_authorship.length > 1
-        src_authorship_ids = src_authorship.map {|p| p['cap_profile_id'] }
-        src_authorship_set = src_authorship_ids.to_set
-        if src_authorship_set.length != src_authorship_ids.length
-          @logger.error "Publication #{pub[:id]}: src_authorship duplicate"
-          status = true
-          # require 'pry'; binding.pry
-          # modify src authorship and recalculate fingerprint?
-          # src.source_fingerprint
-        end
-      end
+      next unless src_authorship.length > 1
+      src_authorship_ids = src_authorship.map { |p| p['cap_profile_id'] }
+      src_authorship_set = src_authorship_ids.to_set
+      next unless src_authorship_set.length != src_authorship_ids.length
+      @logger.error "Publication #{pub[:id]}: src_authorship duplicate"
+      status = true
+      # require 'pry'; binding.pry
+      # modify src authorship and recalculate fingerprint?
+      # src.source_fingerprint
     end
     status
   end
@@ -42,7 +40,7 @@ class MergeDuplicateAuthorship
   def duplicate_authorship?(pub)
     authorship = pub.pub_hash[:authorship]
     if authorship.length > 1
-      authorship_ids = authorship.map {|p| p[:cap_profile_id] }
+      authorship_ids = authorship.map { |p| p[:cap_profile_id] }
       authorship_set = authorship_ids.to_set
       if authorship_set.length != authorship_ids.length
         @logger.warn "Publication #{pub[:id]} should be modified"

@@ -70,14 +70,14 @@ describe ScienceWirePublications do
 
   describe '#each' do
     it 'yields ScienceWirePublication items' do
-      subject.each {|pub| expect(pub).to be_an ScienceWirePublication }
+      subject.each { |pub| expect(pub).to be_an ScienceWirePublication }
     end
   end
 
   describe 'Enumerable mixin' do
     it 'responds to Enumerable.instance_methods' do
       methods = Enumerable.instance_methods
-      methods.each {|method| expect(subject).to respond_to(method) }
+      methods.each { |method| expect(subject).to respond_to(method) }
     end
   end
 

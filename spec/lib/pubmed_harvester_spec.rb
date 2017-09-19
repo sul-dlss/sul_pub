@@ -62,7 +62,7 @@ describe PubmedHarvester, :vcr do
       it 'does not do any filtering with a resultset of 2 manual/batch pubs' do
         ph = pub_hash.clone
         ph[:provanance] = 'cap'
-        publication.pmid = 99_999_999  # Pubmed ID that does not exist
+        publication.pmid = 99_999_999 # Pubmed ID that does not exist
         publication.pub_hash = ph
         publication.save
 

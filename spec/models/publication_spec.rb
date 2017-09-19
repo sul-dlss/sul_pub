@@ -22,7 +22,7 @@ describe Publication do
     # not yet in the SULCAP authors table, so there is no `author.id`.
     cap_pub_hash = pub_hash.dup
     cap_pub_hash[:authorship] = [{
-      cap_profile_id: 29091,
+      cap_profile_id: 29_091,
       status: 'approved',
       visibility: 'public',
       featured: true
@@ -58,7 +58,7 @@ describe Publication do
       end
 
       it 'should set the last updated value to match the database row' do
-        expect(Time.zone.parse(subject.pub_hash[:last_updated])).to be >= (Time.zone.now - 1.minutes)
+        expect(Time.zone.parse(subject.pub_hash[:last_updated])).to be >= (Time.zone.now - 1.minute)
       end
 
       it 'should rebuild authors' do
@@ -198,7 +198,7 @@ describe Publication do
   describe 'add_any_pubmed_data_to_hash' do
     it 'should add mesh and abstract data if available' do
       publication.pmid = 1
-      allow(PubmedSourceRecord).to receive(:get_pubmed_hash_for_pmid).with(1).and_return mesh_headings: 'x', abstract: 'y', identifier: [{ type: 'PMID', id: publication.pmid, url: "#{Settings.PUBMED.ARTICLE_BASE_URI}#{publication.pmid}"}]
+      allow(PubmedSourceRecord).to receive(:get_pubmed_hash_for_pmid).with(1).and_return mesh_headings: 'x', abstract: 'y', identifier: [{ type: 'PMID', id: publication.pmid, url: "#{Settings.PUBMED.ARTICLE_BASE_URI}#{publication.pmid}" }]
 
       publication.add_any_pubmed_data_to_hash
 
@@ -212,7 +212,7 @@ describe Publication do
 
     it 'should add pmcid if available' do
       publication.pmid = 1
-      allow(PubmedSourceRecord).to receive(:get_pubmed_hash_for_pmid).with(1).and_return(identifier: [{type: 'pmc', id: '123456'}])
+      allow(PubmedSourceRecord).to receive(:get_pubmed_hash_for_pmid).with(1).and_return(identifier: [{ type: 'pmc', id: '123456' }])
 
       publication.add_any_pubmed_data_to_hash
 
@@ -221,7 +221,7 @@ describe Publication do
 
     it 'should not add pmcid if not available' do
       publication.pmid = 1
-      allow(PubmedSourceRecord).to receive(:get_pubmed_hash_for_pmid).with(1).and_return(identifier: [{type: 'some_odd_non_supported_type', id: '123456'}])
+      allow(PubmedSourceRecord).to receive(:get_pubmed_hash_for_pmid).with(1).and_return(identifier: [{ type: 'some_odd_non_supported_type', id: '123456' }])
 
       publication.add_any_pubmed_data_to_hash
 
@@ -269,7 +269,7 @@ describe Publication do
       expect(publication.pub_hash[:title]).to eq 'How I learned Rails'
       expect(publication.pub_hash[:identifier]).to eq(
         [
-          {type: 'SULPubId', id: publication.id.to_s, url: "http://sulcap.stanford.edu/publications/#{publication.id}"}
+          { type: 'SULPubId', id: publication.id.to_s, url: "http://sulcap.stanford.edu/publications/#{publication.id}" }
         ]
       )
       expect(publication.pmid).to_not be_nil
@@ -277,8 +277,8 @@ describe Publication do
       expect(publication.pub_hash[:title]).to eq 'How I learned Rails'
       expect(publication.pub_hash[:identifier]).to eq(
         [
-          {type: 'PMID', id: '123', url: 'https://www.ncbi.nlm.nih.gov/pubmed/123'},
-          {type: 'SULPubId', id: publication.id.to_s, url: "http://sulcap.stanford.edu/publications/#{publication.id}"}
+          { type: 'PMID', id: '123', url: 'https://www.ncbi.nlm.nih.gov/pubmed/123' },
+          { type: 'SULPubId', id: publication.id.to_s, url: "http://sulcap.stanford.edu/publications/#{publication.id}" }
         ]
       )
       expect(PubmedSourceRecord.find_by_pmid(pmid).source_data).to be_equivalent_to new_source_data
@@ -302,7 +302,7 @@ describe Publication do
       expect(publication.pub_hash[:title]).to eq 'How I learned Rails'
       expect(publication.pub_hash[:identifier]).to eq(
         [
-          {type: 'SULPubId', id: publication.id.to_s, url: "http://sulcap.stanford.edu/publications/#{publication.id}"}
+          { type: 'SULPubId', id: publication.id.to_s, url: "http://sulcap.stanford.edu/publications/#{publication.id}" }
         ]
       )
       expect(publication.sciencewire_id).to_not be_nil
@@ -310,7 +310,7 @@ describe Publication do
       expect(publication.pub_hash[:title]).to eq 'Some New Title'
       expect(publication.pub_hash[:identifier]).to eq(
         [
-          {type: 'SULPubId', id: publication.id.to_s, url: "http://sulcap.stanford.edu/publications/#{publication.id}"}
+          { type: 'SULPubId', id: publication.id.to_s, url: "http://sulcap.stanford.edu/publications/#{publication.id}" }
         ]
       )
       expect(SciencewireSourceRecord.find_by_sciencewire_id(sciencewire_id).source_data).to be_equivalent_to new_source_data
@@ -350,7 +350,6 @@ describe Publication do
   end
 
   describe '.build_new_manual_publication' do
-
     def save_new_publication
       pub = Publication.build_new_manual_publication(pub_hash, 'some string', 'some where')
       pub.save!
@@ -408,7 +407,7 @@ describe Publication do
     end
 
     it "returns an empty array if the doi isn't found" do
-      expect(Publication.find_by_doi 'does not exist').to be_empty
+      expect(Publication.find_by_doi('does not exist')).to be_empty
     end
   end
 

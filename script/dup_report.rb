@@ -22,9 +22,7 @@ class Reporter
   def work
     @swids.each do |swid|
       Publication.where(sciencewire_id: swid).each do |pub|
-        if @pmids.delete? pub.pmid
-          @log.info "Removing pmid #{pub.pmid} from #{pub.id} with swid #{swid}"
-        end
+        @log.info "Removing pmid #{pub.pmid} from #{pub.id} with swid #{swid}" if @pmids.delete? pub.pmid
         @sw_pub_ids << [swid, pub.id]
         @all_pub_ids.add pub.id
       end
