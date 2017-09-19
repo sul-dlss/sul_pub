@@ -24,17 +24,16 @@ class PubHash
     @pub_hash = hash
   end
 
+  # Generates a new render instance every time, so it has no history of any prior citations.
+  # When it has history, it can assume that subsequent citations can refer to earlier citations,
+  # which has a different style for the subsequent citations.
   # @param csl_citation_data [Hash] a CSL citation document
   # @param csl_style [CSL::Style] a CSL citation style
   # @return citation [String] a bibliographic citation
   def generate_csl_citation(csl_citation_data, csl_style)
-    item = CiteProc::CitationItem.new id: 'sulpub'
+    item = CiteProc::CitationItem.new(id: 'sulpub')
     item.data = CiteProc::Item.new(csl_citation_data)
-    # Generate a new render instance every time, so it has no history
-    # of any prior citations.  When it has history, it can assume that
-    # subsequent citations can refer to earlier citations, which has
-    # a different style for the subsequent citations.
-    csl_renderer = CiteProc::Ruby::Renderer.new format: 'html'
+    csl_renderer = CiteProc::Ruby::Renderer.new(format: 'html')
     csl_renderer.render item, csl_style.bibliography
   end
 
@@ -188,13 +187,13 @@ end
 
 private
 
+  # Report – A document containing the findings of an individual or group.
+  # Can include a technical paper, publication, issue brief, or working paper.
+  #
+  # The Zotero and Mendeley mappings to a CSL report guided this implementation, see
+  # http://aurimasv.github.io/z2csl/typeMap.xml#map-report
+  # http://support.mendeley.com/customer/portal/articles/364144-csl-type-mapping
   def create_csl_report
-    # Report – A document containing the findings of an individual or group.
-    # Can include a technical paper, publication, issue brief, or working paper.
-    #
-    # The Zotero and Mendeley mappings to a CSL report guided this implementation, see
-    # http://aurimasv.github.io/z2csl/typeMap.xml#map-report
-    # http://support.mendeley.com/customer/portal/articles/364144-csl-type-mapping
     csl_report = {}
     csl_report['id'] = 'sulpub'
     csl_report['type'] = 'report'
@@ -294,46 +293,32 @@ private
       # with a lot of authors (e.g, 2000 authors)
       authors = authors[0..4]
       authors << pub_hash[:author].last
-      #   authors << {:name=>"et al."}
+      #   authors << { :name => "et al." }
       # elsif pub_hash[:etal]
-      #   authors = pub_hash[:author].collect {|a| a}
-      #   authors << {:name=>"et al."}
+      #   authors = pub_hash[:author].collect { |a| a }
+      #   authors << { :name => "et al." }
     end
 
     authors.each do |author|
-      last_name = ''
+      last_name = author[:lastname]
       rest_of_name = ''
 
-      # use parsed name parts if available
-      unless author[:lastname].blank?
-        last_name = author[:lastname]
-        unless author[:firstname].blank?
-          if author[:firstname].length == 1
-            rest_of_name << ' ' << author[:firstname] << '.'
-          else
-            rest_of_name << ' ' << author[:firstname]
-          end
-        end
-
-        unless author[:middlename].blank?
-          if author[:middlename].length == 1
-            rest_of_name << ' ' << author[:middlename] << '.'
-          else
-            rest_of_name << ' ' << author[:middlename]
-          end
+      # Use parsed name parts, if available.  Otherwise use :name, if available.
+      # Add period after single character (initials).
+      unless last_name.blank?
+        [:firstname, :middlename].map { |k| author[k] }.reject(&:blank?).each do |name_part|
+          rest_of_name << ' ' << name_part
+          rest_of_name << '.' if name_part.length == 1
         end
       end
 
-      # use name otherwise and if available
       if last_name.blank? && !author[:name].blank?
         author[:name].split(',').each_with_index do |name_part, index|
           if index == 0
             last_name = name_part
-          elsif name_part.length == 1
-            # the name part is only one character so an initial
-            rest_of_name << ' ' << name_part << '.'
-          elsif name_part.length > 1
+          else
             rest_of_name << ' ' << name_part
+            rest_of_name << '.' if name_part.length == 1
           end
         end
       end
