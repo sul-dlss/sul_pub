@@ -169,14 +169,14 @@ describe PubHash do
   let(:technical_report_print_pub_hash) do
     h = technical_report_online_pub_hash
     h[:author] << {
-                    name: 'Baranov Konstantin',
+      name: 'Baranov Konstantin',
                     lastname: 'Baranov',
                     firstname: 'Konstantin',
                     middlename: '',
                     alternate: [],
                     role: 'author',
                     additionalProperties: {}
-                  }
+    }
     h[:publicationUrl] = ''
     h.delete(:pages)
     h
@@ -378,7 +378,6 @@ describe PubHash do
           .to eq "Imberman, Scott, Adriana D. Kugler, and Bruce Sacerdote. <i>Katrina's Children: Evidence on the Structure of Peer Effects from Hurricane Evacuees</i>. Cambridge, MA: National Bureau of Economic Research, 2009. Web. NBER Working Paper Series."
       end
     end
-
 
     # An example given from a direct import of a record entered in the CAP UAT environment.
     context 'CAP working paper for Revs Digital Library' do
