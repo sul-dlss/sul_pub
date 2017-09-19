@@ -11,14 +11,13 @@ class PubmedSourceRecord < ActiveRecord::Base
 
   def self.get_pub_by_pmid(pmid)
     pubmed_pub_hash = PubmedSourceRecord.get_pubmed_hash_for_pmid(pmid)
-    unless pubmed_pub_hash.nil?
-      pub = Publication.new(
-        active: true,
-        pmid: pmid)
-      pub.build_from_pubmed_hash(pubmed_pub_hash)
-      pub.sync_publication_hash_and_db
-      pub.save
-    end
+    return if pubmed_pub_hash.nil?
+    pub = Publication.new(
+      active: true,
+      pmid: pmid)
+    pub.build_from_pubmed_hash(pubmed_pub_hash)
+    pub.sync_publication_hash_and_db
+    pub.save
     pub
   end
 
@@ -28,17 +27,17 @@ class PubmedSourceRecord < ActiveRecord::Base
   end
 
   def self.get_pubmed_source_record_for_pmid(pmid)
-    PubmedSourceRecord.find_by(pmid: pmid) || PubmedSourceRecord.get_pubmed_record_from_pubmed(pmid)
+    find_by(pmid: pmid) || get_pubmed_record_from_pubmed(pmid)
   end
 
   # @return [PubmedSourceRecord] the recently downloaded pubmed_source_records data
   def self.get_pubmed_record_from_pubmed(pmid)
     get_and_store_records_from_pubmed([pmid])
-    PubmedSourceRecord.find_by(pmid: pmid)
+    find_by(pmid: pmid)
   end
 
   def self.create_pubmed_source_record(pmid, pub_doc)
-    PubmedSourceRecord.where(pmid: pmid).first_or_create(
+    where(pmid: pmid).first_or_create(
       pmid: pmid,
       source_data: pub_doc.to_xml,
       is_active: true,
@@ -65,7 +64,7 @@ class PubmedSourceRecord < ActiveRecord::Base
         NotificationManager.error(e, "Cannot create PubmedSourceRecord with pmid: #{pmid}", self)
       end
     end
-    PubmedSourceRecord.import source_records
+    import source_records
   end
 
   # Retrieve this pubmed record from PubMed and update
