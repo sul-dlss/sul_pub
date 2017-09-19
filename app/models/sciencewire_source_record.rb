@@ -86,28 +86,28 @@ class SciencewireSourceRecord < ActiveRecord::Base
   end
 
   def self.get_sciencewire_source_record_for_sw_id(sw_id)
-    SciencewireSourceRecord.find_by(sciencewire_id: sw_id) || SciencewireSourceRecord.get_sciencewire_source_record_from_sciencewire_by_sw_id(sw_id)
+    find_by(sciencewire_id: sw_id) || get_sciencewire_source_record_from_sciencewire_by_sw_id(sw_id)
   end
 
   def self.get_sciencewire_source_record_for_pmid(pmid)
-    SciencewireSourceRecord.find_by(pmid: pmid) || SciencewireSourceRecord.get_sciencewire_source_record_from_sciencewire(pmid)
+    find_by(pmid: pmid) || get_sciencewire_source_record_from_sciencewire(pmid)
   end
 
   def self.get_sciencewire_source_record_from_sciencewire(pmid)
     get_and_store_sw_source_records([pmid])
-    SciencewireSourceRecord.find_by(pmid: pmid)
+    find_by(pmid: pmid)
   end
 
   def self.get_sciencewire_source_record_from_sciencewire_by_sw_id(sciencewire_id)
     get_and_store_sw_source_record_for_sw_id(sciencewire_id)
-    SciencewireSourceRecord.find_by(sciencewire_id: sciencewire_id)
+    find_by(sciencewire_id: sciencewire_id)
   end
 
   def self.get_and_store_sw_source_record_for_sw_id(sciencewire_id)
     sw_record_doc = ScienceWireClient.new.get_sw_xml_source_for_sw_id(sciencewire_id)
     pmid = extract_pmid(sw_record_doc)
 
-    SciencewireSourceRecord.where(sciencewire_id: sciencewire_id).first_or_create(
+    where(sciencewire_id: sciencewire_id).first_or_create(
       source_data: sw_record_doc.to_xml,
       is_active: true,
       pmid: pmid,
@@ -137,11 +137,11 @@ class SciencewireSourceRecord < ActiveRecord::Base
         NotificationManager.error(e, "Cannot create SciencewireSourceRecord: sciencewire_id: #{sciencewire_id}, pmid: #{pmid}", self)
       end
     end
-    SciencewireSourceRecord.import source_records
+    import source_records
   end
 
   def self.save_sw_source_record(sciencewire_id, pmid, incoming_sw_xml_as_string)
-    existing_sw_source_record = SciencewireSourceRecord.find_by(
+    existing_sw_source_record = find_by(
       sciencewire_id: sciencewire_id)
     if existing_sw_source_record.nil?
       new_source_fingerprint = get_source_fingerprint(incoming_sw_xml_as_string)
@@ -152,7 +152,7 @@ class SciencewireSourceRecord < ActiveRecord::Base
         source_fingerprint: new_source_fingerprint
       }
       attrs[:pmid] = pmid unless pmid.blank?
-      SciencewireSourceRecord.create(attrs)
+      create(attrs)
     end
     # return true or false to indicate if new record was created or one already existed.
     was_record_created = existing_sw_source_record.nil?
