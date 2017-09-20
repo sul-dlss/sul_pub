@@ -3,14 +3,7 @@ ENV['RAILS_ENV'] ||= 'test'
 
 require 'pry'  # for debugging specs
 
-require 'fixtures/doc_types/working_paper'
-require 'fixtures/queries/suggestion_queries'
-require 'fixtures/queries/suggestion_query_xsd'
-require 'fixtures/responses/item_responses'
-require 'fixtures/queries/author_date_queries'
-require 'fixtures/queries/author_name_queries'
-require 'fixtures/queries/institution_and_email_queries'
-require 'fixtures/queries/publication_query_xsd'
+Dir.glob(File.join(__dir__, 'fixtures', '**', '*.rb'), &method(:require)) # load all fixture files
 
 require 'rspec/matchers'
 require 'equivalent-xml'
@@ -55,14 +48,6 @@ RSpec.configure do |config|
   config.include RSpec::Rails::RequestExampleGroup, type: :request, file_path: %r{spec/lib}
 
   config.include FactoryGirl::Syntax::Methods
-
-  # ## Mock Framework
-  #
-  # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:
-  #
-  # config.mock_with :mocha
-  # config.mock_with :flexmock
-  # config.mock_with :rr
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   # config.fixture_path = "#{::Rails.root}/spec/fixtures"
