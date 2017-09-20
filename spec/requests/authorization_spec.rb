@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe 'Authorization checks' do
   context 'for Rails controllers' do
     context 'when no CAPKEY provided' do

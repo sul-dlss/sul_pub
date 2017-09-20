@@ -1,4 +1,3 @@
-require 'spec_helper'
 SingleCov.covered! file: 'app/api/sul_bib/authorship_api.rb'
 
 describe SulBib::API, :vcr do
