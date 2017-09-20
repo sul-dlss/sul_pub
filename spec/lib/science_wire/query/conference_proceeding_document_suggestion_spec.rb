@@ -1,4 +1,3 @@
-SingleCov.covered!
 
 describe ScienceWire::Query::ConferenceProceedingDocumentSuggestion do
   include SuggestionQueries

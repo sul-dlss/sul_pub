@@ -1,4 +1,3 @@
-SingleCov.covered!
 
 describe PubHash do
   include CitationDocumentTypes # spec/fixtures/doc_types/working_paper.rb

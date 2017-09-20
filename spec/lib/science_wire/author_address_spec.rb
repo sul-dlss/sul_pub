@@ -1,4 +1,3 @@
-SingleCov.covered!
 
 describe ScienceWire::AuthorAddress do
   let(:line1) { 'Stanford University' }

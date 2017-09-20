@@ -1,4 +1,3 @@
-SingleCov.covered!
 
 describe ScienceWire::AuthorInstitution do
   describe '#initialize' do

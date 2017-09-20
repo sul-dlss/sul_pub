@@ -1,4 +1,3 @@
-SingleCov.covered!
 
 describe ScienceWire::Query::PublicationQueryByAuthorName do
   # import modules from spec/fixtures/queries

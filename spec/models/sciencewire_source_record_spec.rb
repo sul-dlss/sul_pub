@@ -1,4 +1,3 @@
-SingleCov.covered!
 
 describe SciencewireSourceRecord, :vcr do
   describe '.lookup_sw_doc_type' do
