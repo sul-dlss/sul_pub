@@ -1,4 +1,3 @@
-SingleCov.covered!
 
 describe UserSubmittedSourceRecord, type: :model do
   let(:user_submitted_source_record) { create :user_submitted_source_record }

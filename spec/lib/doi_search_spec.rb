@@ -1,4 +1,3 @@
-SingleCov.covered!
 
 describe DoiSearch do
   let(:publication) { create :publication }

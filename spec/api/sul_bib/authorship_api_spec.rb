@@ -1,4 +1,3 @@
-SingleCov.covered! file: 'app/api/sul_bib/authorship_api.rb'
 
 describe SulBib::API, :vcr do
   let(:headers) { { 'HTTP_CAPKEY' => Settings.API_KEY, 'CONTENT_TYPE' => 'application/json' } }

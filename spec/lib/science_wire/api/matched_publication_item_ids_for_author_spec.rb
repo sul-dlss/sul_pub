@@ -1,4 +1,3 @@
-SingleCov.covered!
 
 describe ScienceWire::API::MatchedPublicationItemIdsForAuthor do
   include ItemResponses

@@ -11,11 +11,9 @@ require 'fixtures/queries/author_date_queries'
 require 'fixtures/queries/author_name_queries'
 require 'fixtures/queries/institution_and_email_queries'
 require 'fixtures/queries/publication_query_xsd'
+
 require 'rspec/matchers'
 require 'equivalent-xml'
-
-require 'single_cov'
-SingleCov.setup :rspec
 
 require 'simplecov'
 require 'coveralls'

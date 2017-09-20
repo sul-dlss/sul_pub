@@ -1,4 +1,3 @@
-SingleCov.covered!
 
 describe ScienceWireClient, :vcr do
   let(:sw_client) { ScienceWireClient.new }

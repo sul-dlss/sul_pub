@@ -1,4 +1,3 @@
-SingleCov.covered!
 
 describe CapHttpClient do
   let(:token) { 'cool token' }

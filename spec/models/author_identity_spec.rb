@@ -1,4 +1,3 @@
-SingleCov.covered!
 
 RSpec.describe AuthorIdentity, type: :model do
   subject { FactoryGirl.create :author_identity }

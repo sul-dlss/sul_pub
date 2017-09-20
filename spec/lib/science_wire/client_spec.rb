@@ -1,4 +1,3 @@
-SingleCov.covered!
 
 describe ScienceWire::Client do
   describe '#initialize' do

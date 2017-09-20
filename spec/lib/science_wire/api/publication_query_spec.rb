@@ -1,4 +1,3 @@
-SingleCov.covered!
 
 describe ScienceWire::API::PublicationQuery do
   let(:client) do
