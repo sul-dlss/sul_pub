@@ -94,15 +94,15 @@ class Publication < ActiveRecord::Base
 
   def self.with_active_author
     ids = joins(:authors).where('authors.active_in_cap' => true).select('publications.id').uniq.pluck(:id)
-    Publication.unscoped.where(id: ids)
+    unscoped.where(id: ids)
   end
 
   def self.find_or_create_by_pmid(pmid)
-    Publication.find_by_pmid(pmid) || SciencewireSourceRecord.get_pub_by_pmid(pmid) || PubmedSourceRecord.get_pub_by_pmid(pmid)
+    find_by_pmid(pmid) || SciencewireSourceRecord.get_pub_by_pmid(pmid) || PubmedSourceRecord.get_pub_by_pmid(pmid)
   end
 
   def self.find_or_create_by_sciencewire_id(sw_id)
-    Publication.find_by_sciencewire_id(sw_id) || SciencewireSourceRecord.get_pub_by_sciencewire_id(sw_id)
+    find_by_sciencewire_id(sw_id) || SciencewireSourceRecord.get_pub_by_sciencewire_id(sw_id)
   end
 
   def self.find_by_doi(doi)

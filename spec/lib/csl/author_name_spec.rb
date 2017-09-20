@@ -1,4 +1,3 @@
-require 'spec_helper'
 SingleCov.covered!
 
 describe Csl::AuthorName do

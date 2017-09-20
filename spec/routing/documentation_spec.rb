@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe 'Documentation routing' do
   it 'routes root path to api' do
     expect(get: '/').to route_to(

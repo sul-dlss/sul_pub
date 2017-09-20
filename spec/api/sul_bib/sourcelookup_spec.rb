@@ -1,4 +1,3 @@
-require 'spec_helper'
 SingleCov.covered! file: 'app/controllers/publications_controller.rb'
 # TODO: move this file to spec/controllers/publications_controller_spec.rb
 

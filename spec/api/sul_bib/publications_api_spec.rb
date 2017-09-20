@@ -1,4 +1,3 @@
-require 'spec_helper'
 SingleCov.covered! file: 'app/api/sul_bib/publications_api.rb'
 
 describe SulBib::API, :vcr do

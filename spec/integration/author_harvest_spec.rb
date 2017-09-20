@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 feature 'Author harvest', 'data-integration': true, type: :controller do
   before do
     Delayed::Worker.delay_jobs = false

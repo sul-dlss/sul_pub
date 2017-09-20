@@ -1,4 +1,3 @@
-require 'spec_helper'
 SingleCov.covered!
 
 describe PubHash do
@@ -22,47 +21,25 @@ describe PubHash do
   end
 
   let(:conference_pub_in_book_hash) do
-    { title: 'My test title',
-      type: 'paper-conference',
-      articlenumber: 33,
-      pages: '33-56',
-      author: [{ name: 'Smith, Jack', role: 'editor' },
-               { name: 'Sprat, Jill', role: 'editor' },
-               { name: 'Jones, P. L.' },
-               { firstname: 'Alan', middlename: 'T', lastname: 'Jackson' }],
-      year: '1987',
-      publisher: 'Smith Books',
-      booktitle: 'The Giant Book of Giant Ideas',
-      conference: { name: 'The Big Conference', year: 2345, number: 33, location: 'Knoxville, TN', city: 'Knoxville', statecountry: 'TN' }
-    }
+    conference_pub_in_journal_hash.reject { |k, _v| [:journal, :supplement].include?(k) }.merge(booktitle: 'The Giant Book of Giant Ideas')
   end
 
   let(:conference_pub_in_series_hash) do
-    { title: 'My test title',
-      type: 'paper-conference',
-      articlenumber: 33,
-      pages: '33-56',
-      author: [{ name: 'Smith, Jack', role: 'editor' },
-               { name: 'Sprat, Jill', role: 'editor' },
-               { name: 'Jones, P. L.' },
-               { firstname: 'Alan', middlename: 'T', lastname: 'Jackson' }],
-      year: '1987',
+    conference_pub_in_book_hash.merge(
       publisher: 'Smith Books',
-      booktitle: 'The Giant Book of Giant Ideas',
-      conference: { name: 'The Big Conference', year: 2345, number: 33, location: 'Knoxville, TN', city: 'Knoxville', statecountry: 'TN' },
       series: { title: 'The book series for kings and queens', volume: 1, number: 4, year: 1933 }
-    }
+    )
   end
 
-  let(:conference_pub_in_nothing_hash) do
-    { title: 'My test title',
-      type: 'speech',
-      author: [
-        { name: 'Jones, P. L.' },
-        { firstname: 'Alan', middlename: 'T', lastname: 'Jackson' }],
-      conference: { name: 'The Big Conference', year: '1999', number: 33, location: 'Knoxville, TN', city: 'Knoxville', statecountry: 'TN' }
-    }
-  end
+  # let(:conference_pub_in_nothing_hash) do
+  #   { title: 'My test title',
+  #     type: 'speech',
+  #     author: [
+  #       { name: 'Jones, P. L.' },
+  #       { firstname: 'Alan', middlename: 'T', lastname: 'Jackson' }],
+  #     conference: { name: 'The Big Conference', year: '1999', number: 33, location: 'Knoxville, TN', city: 'Knoxville', statecountry: 'TN' }
+  #   }
+  # end
 
   let(:book_pub_hash) do
     { title: 'My test title',
@@ -77,31 +54,18 @@ describe PubHash do
   end
 
   let(:book_pub_with_editors_hash) do
-    { title: 'My test title',
-      type: 'book',
-      author: [{ name: 'Smith, Jack', role: 'editor' },
-               { name: 'Sprat, Jill', role: 'editor' },
-               { name: 'Jones, P. L.' },
-               { firstname: 'Alan', middlename: 'T', lastname: 'Jackson' }],
-      year: '1987',
-      publisher: 'Smith Books',
-      booktitle: 'The Giant Book of Giant Ideas'
-    }
+    book_pub_hash.merge(author: [{ name: 'Smith, Jack', role: 'editor' },
+                                 { name: 'Sprat, Jill', role: 'editor' },
+                                 { name: 'Jones, P. L.' },
+                                 { firstname: 'Alan', middlename: 'T', lastname: 'Jackson' }]
+                       )
   end
 
-  let(:series_pub_hash) do
-    { title: 'My test title',
-      type: 'book',
-      author: [{ name: 'Smith, Jack', role: 'editor' },
-               { name: 'Sprat, Jill', role: 'editor' },
-               { name: 'Jones, P. L.' },
-               { firstname: 'Alan', middlename: 'T', lastname: 'Jackson' }],
-      year: '1987',
-      publisher: 'Smith Books',
-      booktitle: 'The Giant Book of Giant Ideas',
-      series: { title: 'The book series for Big Ideas', volume: 1, number: 4, year: 1933 }
-    }
-  end
+  # let(:series_pub_hash) do
+  #   book_pub_with_editors_hash.reject { |k, _v| k == :booktitle }.merge(
+  #     series: { title: 'The book series for Big Ideas', volume: 1, number: 4, year: 1933 }
+  #   )
+  # end
 
   let(:article_pub_hash) do
     { title: 'My test title',
@@ -175,6 +139,7 @@ describe PubHash do
                            featured: false }]
     }
   end
+
   let(:technical_report_online_pub_hash) do
     {
       title: 'Laws of Attrition: Crackdown on Russia’s Civil Society After Putin’s Return to the Presidency',
@@ -199,38 +164,23 @@ describe PubHash do
       publicationSource: 'New York'
     }
   end
+
   let(:technical_report_print_pub_hash) do
-    {
-      title: 'Laws of Attrition: Crackdown on Russia’s Civil Society After Putin’s Return to the Presidency',
-      type: 'technicalReport',
-      provenance: 'CAP',
-      author: [
-        {
-          name: 'Gorbunova Yulia',
-          lastname: 'Gorbunova',
-          firstname: 'Yulia',
-          middlename: '',
-          alternate: [],
-          role: 'author',
-          additionalProperties: {}
-        },
-        {
-          name: 'Baranov Konstantin',
-          lastname: 'Baranov',
-          firstname: 'Konstantin',
-          middlename: '',
-          alternate: [],
-          role: 'author',
-          additionalProperties: {}
-        }
-      ],
-      year: '2013',
-      publisher: 'Human Rights Watch',
-      publicationUrl: '',
-      publicationUrlLabel: '',
-      publicationSource: 'New York'
+    h = technical_report_online_pub_hash
+    h[:author] << {
+      name: 'Baranov Konstantin',
+                    lastname: 'Baranov',
+                    firstname: 'Konstantin',
+                    middlename: '',
+                    alternate: [],
+                    role: 'author',
+                    additionalProperties: {}
     }
+    h[:publicationUrl] = ''
+    h.delete(:pages)
+    h
   end
+
   let(:case_study_pub_hash) do
     {
       title: 'HCL Technologies',
@@ -331,65 +281,51 @@ describe PubHash do
     context 'CSL report for hurricane working paper generates an acceptable APA citation' do
       let(:csl_renderer) { CiteProc::Ruby::Renderer.new format: 'html' }
       let(:csl_style) { CSL::Style.load('apa') }
-      let(:cite) do
-        item = CiteProc::CitationItem.new id: 'sulpub'
+      subject(:cite) do
+        item = CiteProc::CitationItem.new(id: 'sulpub')
         item.data = CiteProc::Item.new(csl_report)
-        csl_renderer.render item, csl_style.bibliography
+        csl_renderer.render(item, csl_style.bibliography)
       end
       let(:csl_report) do
         # from spec/fixtures/doc_types/working_paper.rb
         working_paper_for_hurricanes_as_csl_report
       end
+
       it 'includes authors' do
         csl_report['author'].each do |a|
           given = a['given'].split.map { |i| i[0] + '.' }.join(' ')
           name = "#{a['family']}, #{given}"
-          expect(cite).to include(name)
+          expect(subject).to include(name)
         end
       end
       it_behaves_like 'it is a CSL report citation'
       it 'closely matches sul-pub requirements' do
-        # The CSL citation does not exactly match the citation details initially
-        # defined, which included some variations from APA standards.  The CSL
-        # tools will not allow custom modifications.
-        sul_authors = "Imberman, S., Kugler, A. D., &amp; Sacerdote, B. (2009)."
+        # The CSL citation does not exactly match the citation details initially defined, which included some variations from APA standards.
+        # The CSL tools will not allow custom modifications.
         sul_title = "Katrina's children: evidence on the structure of peer effects from hurricane evacuees"
-        sul_number = '(Working Paper No. 15291)' # 'Working Paper' is not in APA standard
-        sul_website = "Retrieved from National Bureau of Economic Research website: http://www.nber.org/papers/w15291"
-        # Variations in the CSL citation content:
-        csl_series_number = '(NBER Working Paper Series No. 15291)'
-        csl_page = '(pp. 1–55).'
-        csl_publisher = 'National Bureau of Economic Research.'
-        csl_publisher_place = 'Cambridge, MA'
-        csl_website = 'Retrieved from http://www.nber.org/papers/w15291'
-        # Expect specific inclusions
-        expect(cite).to include(sul_authors)
-        expect(cite).to match(/#{sul_title}/i) # case insenstive match
-        expect(cite).to include(csl_series_number)
-        expect(cite).not_to include(sul_number)
-        expect(cite).to include(csl_page)
-        expect(cite).to include(csl_publisher)
-        expect(cite).to include(csl_publisher_place)
-        expect(cite).to include(csl_website)
-        expect(cite).not_to include(sul_website)
+        expect(subject).to match(/#{sul_title}/i) # case insenstive match
+        expect(subject).to include('Imberman, S., Kugler, A. D., &amp; Sacerdote, B. (2009).', '(NBER Working Paper Series No. 15291)')
+        expect(subject).to include('(pp. 1–55).', 'National Bureau of Economic Research.', 'Cambridge, MA', 'Retrieved from http://www.nber.org/papers/w15291')
+        # note: 'Working Paper' is not in APA standard
+        expect(subject).not_to include('(Working Paper No. 15291)', 'Retrieved from National Bureau of Economic Research website: http://www.nber.org/papers/w15291')
         # Expect a complete citation
-        expect(cite).to eq "Imberman, S., Kugler, A. D., &amp; Sacerdote, B. (2009). <i>Katrina's Children: Evidence on the Structure of Peer Effects from Hurricane Evacuees</i> (NBER Working Paper Series No. 15291) (pp. 1–55). Cambridge, MA: National Bureau of Economic Research. Retrieved from http://www.nber.org/papers/w15291"
+        expect(subject).to eq "Imberman, S., Kugler, A. D., &amp; Sacerdote, B. (2009). <i>Katrina's Children: Evidence on the Structure of Peer Effects from Hurricane Evacuees</i> (NBER Working Paper Series No. 15291) (pp. 1–55). Cambridge, MA: National Bureau of Economic Research. Retrieved from http://www.nber.org/papers/w15291"
       end
     end
 
     context 'CAP working paper for hurricanes' do
       let(:pub_hash) do
         # from spec/fixtures/doc_types/working_paper.rb
-        hash = JSON.parse(working_paper_for_hurricanes.to_json, symbolize_names: true)
-        PubHash.new(hash)
+        PubHash.new(JSON.parse(working_paper_for_hurricanes.to_json, symbolize_names: true))
       end
       let(:target_csl_report) do
-        # from spec/fixtures/doc_types/working_paper.rb
-        working_paper_for_hurricanes_as_csl_report
+        working_paper_for_hurricanes_as_csl_report # from spec/fixtures/doc_types/working_paper.rb
       end
       let(:csl_report) { pub_hash.csl_doc }
       let(:cite) { pub_hash.to_apa_citation }
+
       it_behaves_like 'it is a CSL report citation'
+
       context 'translates to a CSL report document' do
         def expect_field_match(field)
           expect(csl_report[field]).to eq target_csl_report[field]
@@ -442,7 +378,6 @@ describe PubHash do
       end
     end
 
-    ##
     # An example given from a direct import of a record entered in the CAP UAT environment.
     context 'CAP working paper for Revs Digital Library' do
       let(:working_paper) { create(:working_paper) }
@@ -463,147 +398,130 @@ describe PubHash do
   end
 
   describe '#to_chicago_citation' do
+    let(:hash) { PubHash.new(pub_hash) }
+    subject { hash.to_chicago_citation }
+
     context 'with more than 5 authors' do
-      let(:hash) { PubHash.new(pub_hash) }
-      let(:cite) { hash.to_chicago_citation }
       it 'builds citations with just the first 5 and suppends et al' do
-        expect(cite).to match(/^Sohl, G./)
-        expect(cite).to include('B. Odermatt')
-        expect(cite).to include('S. Maxeiner')
-        expect(cite).to include('J. Degen')
-        expect(cite).to include('K. Willecke')
-        expect(cite).to include('et al.')
-        expect(cite).to_not include(', and')
-        expect(cite).to_not include('SecondLast')
-        expect(cite).to_not include('Last')
+        expect(subject).to match(/^Sohl, G./)
+        expect(subject).to include('B. Odermatt', 'S. Maxeiner', 'J. Degen', 'K. Willecke', 'et al.')
+        expect(subject).to_not include(', and', 'SecondLast', 'Last')
         expect(hash.pub_hash[:author]).to_not include(name: 'et al.')
       end
       it 'creates a Chicago citation' do
-        expect(cite).to eq 'Sohl, G., B. Odermatt, S. Maxeiner, J. Degen, K. Willecke, et al. 2004. “New Insights into the Expression and Function of Neural Connexins with Transgenic Mouse Mutants.” <i>BRAIN RESEARCH REVIEWS</i> 47 (1-3). ELSEVIER SCIENCE BV: 245–59.'
+        expect(subject).to eq 'Sohl, G., B. Odermatt, S. Maxeiner, J. Degen, K. Willecke, et al. 2004. “New Insights into the Expression and Function of Neural Connexins with Transgenic Mouse Mutants.” <i>BRAIN RESEARCH REVIEWS</i> 47 (1-3). ELSEVIER SCIENCE BV: 245–59.'
       end
     end
 
     it 'includes capitalized title' do
-      h = PubHash.new(pub_hash)
-      cite = h.to_chicago_citation
-      expect(cite).to include('New Insights into the Expression and Function of Neural Connexins with Transgenic Mouse Mutants')
+      expect(subject).to include('New Insights into the Expression and Function of Neural Connexins with Transgenic Mouse Mutants')
     end
 
-    it 'includes authors from single name field' do
-      h = PubHash.new(article_pub_hash)
-      cite = h.to_chicago_citation
-      expect(cite).to match(/Jones,\s+P. L./)
-    end
-    pending 'builds citations with first author name spacing correct' do
-      h = PubHash.new(article_pub_hash)
-      cite = h.to_chicago_citation
-      expect(cite).to match(/^Jones, P. L./)
-    end
-
-    it 'includes authors from compound name field' do
-      h = PubHash.new(article_pub_hash)
-      cite = h.to_chicago_citation
-      expect(cite).to include('Alan T. Jackson')
+    context 'article author names' do
+      let(:hash) { PubHash.new(article_pub_hash) }
+      it 'includes authors from single name field' do
+        expect(subject).to match(/Jones,\s+P. L./)
+      end
+      pending 'builds citations with first author name spacing correct' do
+        expect(subject).to match(/^Jones, P. L./)
+      end
+      it 'includes authors from compound name field' do
+        expect(subject).to include('Alan T. Jackson')
+      end
     end
 
     context 'for conference' do
       context 'published in book' do
+        let(:hash) { PubHash.new(conference_pub_in_book_hash) }
         it 'includes book information' do
-          conference_in_book = PubHash.new(conference_pub_in_book_hash)
-          cite = conference_in_book.to_chicago_citation
-          expect(cite).to include(conference_pub_in_book_hash[:booktitle])
-          expect(cite).to include(conference_pub_in_book_hash[:publisher])
-          expect(cite).to include(conference_pub_in_book_hash[:year])
+          expect(subject).to include(conference_pub_in_book_hash[:booktitle])
+          expect(subject).to include(conference_pub_in_book_hash[:publisher])
+          expect(subject).to include(conference_pub_in_book_hash[:year])
         end
       end
 
       context 'published in journal' do
+        let(:hash) { PubHash.new(conference_pub_in_journal_hash) }
         it 'includes journal information' do
-          conference_in_journal = PubHash.new(conference_pub_in_journal_hash)
-          cite = conference_in_journal.to_chicago_citation
-          expect(cite).to include(conference_pub_in_journal_hash[:title].titlecase)
-          expect(cite).to include(conference_pub_in_journal_hash[:pages])
-          expect(cite).to include(conference_pub_in_journal_hash[:year])
-          expect(cite).to include(conference_pub_in_journal_hash[:journal][:name])
+          expect(subject).to include(conference_pub_in_journal_hash[:title].titlecase)
+          expect(subject).to include(conference_pub_in_journal_hash[:pages])
+          expect(subject).to include(conference_pub_in_journal_hash[:year])
+          expect(subject).to include(conference_pub_in_journal_hash[:journal][:name])
         end
       end
 
       context 'published in book series' do
+        let(:hash) { PubHash.new(conference_pub_in_series_hash) }
         it 'includes book and series information' do
-          conference_in_book_series = PubHash.new(conference_pub_in_series_hash)
-          cite = conference_in_book_series.to_chicago_citation
-          expect(cite).to include('The Giant Book of Giant Ideas')
-          expect(cite).to include('The Book Series for Kings and Queens')
-          expect(cite).to include(conference_pub_in_series_hash[:publisher])
-          expect(cite).to include(conference_pub_in_series_hash[:year])
+          expect(subject).to include('The Giant Book of Giant Ideas', 'The Book Series for Kings and Queens')
+          expect(subject).to include(conference_pub_in_series_hash[:publisher])
+          expect(subject).to include(conference_pub_in_series_hash[:year])
         end
       end
     end
 
     context 'for book' do
-      let(:book) { PubHash.new(book_pub_hash) }
-      let(:cite) { book.to_chicago_citation }
+      let(:hash) { PubHash.new(book_pub_hash) }
       it 'includes book information' do
-        expect(cite).to include(book_pub_hash[:booktitle])
-        expect(cite).to include(book_pub_hash[:publisher])
-        expect(cite).to include(book_pub_hash[:year])
+        expect(subject).to include(book_pub_hash[:booktitle])
+        expect(subject).to include(book_pub_hash[:publisher])
+        expect(subject).to include(book_pub_hash[:year])
       end
-      it 'includes editors' do
-        book = PubHash.new(book_pub_with_editors_hash)
-        cite = book.to_chicago_citation
-        expect(cite).to include('Jack Smith')
-        expect(cite).to include('Jill Sprat')
+      describe 'with editors' do
+        let(:hash) { PubHash.new(book_pub_with_editors_hash) }
+        it 'includes editors' do
+          expect(subject).to include('Jack Smith', 'Jill Sprat')
+        end
       end
       it 'includes authors' do
-        expect(cite).to match(/^Jones,\s+P. L./)
-        expect(cite).to include('Alan T. Jackson')
+        expect(subject).to match(/^Jones,\s+P. L./)
+        expect(subject).to include('Alan T. Jackson')
       end
       pending 'builds citations with first author name spacing correct' do
-        expect(cite).to match(/^Jones, P. L./)
+        expect(subject).to match(/^Jones, P. L./)
       end
     end
 
     context 'for article' do
-      let(:article_in_journal) { PubHash.new(article_pub_hash) }
-      let(:cite) { article_in_journal.to_chicago_citation }
+      let(:hash) { PubHash.new(article_pub_hash) }
       it 'includes article information' do
-        expect(cite).to include(article_pub_hash[:title].titlecase)
-        expect(cite).to include(article_pub_hash[:year])
-        expect(cite).to include(article_pub_hash[:journal][:name])
+        expect(subject).to include(article_pub_hash[:title].titlecase)
+        expect(subject).to include(article_pub_hash[:year])
+        expect(subject).to include(article_pub_hash[:journal][:name])
       end
       it 'includes journal volume issue and pages' do
-        expect(cite).to include("#{article_pub_hash[:journal][:volume]} (#{article_pub_hash[:journal][:issue]})")
-        expect(cite).to include(article_pub_hash[:pages])
+        expect(subject).to include("#{article_pub_hash[:journal][:volume]} (#{article_pub_hash[:journal][:issue]})")
+        expect(subject).to include(article_pub_hash[:pages])
       end
       it 'excludes editors' do
-        expect(cite).to_not include('Jack Smith')
-        expect(cite).to_not include('Jill Sprat')
+        expect(subject).to_not include('Jack Smith', 'Jill Sprat')
       end
       it 'includes authors' do
-        expect(cite).to match(/Jones,\s+P. L./)
-        expect(cite).to include('Alan T. Jackson')
+        expect(subject).to match(/Jones,\s+P. L./)
+        expect(subject).to include('Alan T. Jackson')
       end
       pending 'builds citations with first author name spacing correct' do
-        expect(cite).to match(/^Jones, P. L./)
+        expect(subject).to match(/^Jones, P. L./)
       end
       it 'creates a Chicago citation' do
-        expect(cite).to eq 'Jones,   P. L., and Alan T. Jackson. 1987. “My Test Title.” <i>Some Journal Name</i> 33 (32). Some Publisher: 3–6.'
+        expect(subject).to eq 'Jones,   P. L., and Alan T. Jackson. 1987. “My Test Title.” <i>Some Journal Name</i> 33 (32). Some Publisher: 3–6.'
       end
     end
   end
 
   describe '#to_mla_citation' do
+    let(:hash) { PubHash.new(pub_hash) }
+    subject { hash.to_mla_citation }
+
     context 'with more than 5 authors' do
-      let(:hash) { PubHash.new(pub_hash) }
-      let(:cite) { hash.to_mla_citation }
       it 'builds citations with just the first 5' do
-        expect(cite).to match(/^Sohl, G./)
+        expect(subject).to match(/^Sohl, G./)
         expect(hash.pub_hash[:author]).to_not include(name: 'et al.')
       end
     end
 
     context 'with etal flag' do
-      let(:et_hash) do
+      let(:pub_hash) do
         { provenance: 'sciencewire',
           pmid: '15572175',
           sw_id: '6787731',
@@ -647,11 +565,9 @@ describe PubHash do
 
       it 'adds et al whenever the flag is true' do
         skip 'have to further modify CSL or code somehow'
-        h = PubHash.new(et_hash)
-        cite = h.to_chicago_citation
-        expect(cite).to match(/^Sohl, G./)
-        expect(cite).to match(/et al./)
-        expect(h.pub_hash[:author]).to_not include(name: 'et al.')
+        expect(subject).to match(/^Sohl, G./)
+        expect(subject).to match(/et al./)
+        expect(hash.pub_hash[:author]).to_not include(name: 'et al.')
       end
     end
   end
@@ -677,7 +593,7 @@ describe PubHash do
 
   describe 'Technical report' do
     let(:technical_report) { create(:technical_report) }
-    ##
+
     # An example given from a direct import of a record entered in the CAP UAT environment.
     context 'from cap with minimum required fields' do
       let(:pub_hash) { PubHash.new(JSON.parse(technical_report.source_data, symbolize_names: true)) }
@@ -698,21 +614,21 @@ describe PubHash do
     context 'given fixture' do
       context 'an online technical report' do
         let(:pub_hash) { PubHash.new(technical_report_online_pub_hash) }
-        ##
+
         # Example taken from: http://www.easybib.com/guides/citation-guides/chicago-turabian/how-to-cite-a-report-chicago-turabian/
         # Differences: using the Sul-Pub preferred Chicago author-date format
         it 'creates a Chicago citation' do
           expect(pub_hash.to_chicago_citation)
             .to eq "Gorbunova, Yulia. 2013. “Laws of Attrition: Crackdown on Russia’s Civil Society After Putin’s Return to the Presidency.” New York: Human Rights Watch. http://www.hrw.org/reports/2013/04/24/laws-attrition."
         end
-        ##
+
         # Example taken from: http://www.easybib.com/guides/citation-guides/apa-format/how-to-cite-a-report-apa/
         # Differences: not showing "Retrieved from 'Agency name' website:"
         it 'creates an APA citation' do
           expect(pub_hash.to_apa_citation)
             .to eq 'Gorbunova, Y. (2013). <i>Laws of Attrition: Crackdown on Russia’s Civil Society After Putin’s Return to the Presidency</i>. New York: Human Rights Watch. Retrieved from http://www.hrw.org/reports/2013/04/24/laws-attrition'
         end
-        ##
+
         # http://www.easybib.com/guides/citation-guides/mla-format/how-to-cite-a-report-mla/
         it 'creates a MLA citation' do
           expect(pub_hash.to_mla_citation)
@@ -720,7 +636,6 @@ describe PubHash do
         end
       end
 
-      ##
       # Example take from: http://www.easybib.com/guides/citation-guides/mla-format/how-to-cite-a-report-mla/
       # Differences: using a modified multiple authors format that we already support
       context 'a print technical report with multiple authors' do
@@ -735,6 +650,7 @@ describe PubHash do
 
   describe 'Case Studies' do
     let(:case_study) { create(:case_study) }
+
     context 'with minimum required fields' do
       let(:pub_hash) { PubHash.new(JSON.parse(case_study.source_data, symbolize_names: true)) }
       it 'creates a chicago citation' do
@@ -750,21 +666,22 @@ describe PubHash do
           .to eq "Mangiafico, P. A. (2016). <i>This is Peter's Case Study on the Revs Digital Library</i> (pp. 1–5). Stanford, CA: Stanford University. Retrieved from http://revslib.stanford.edu"
       end
     end
+
     context 'given fixture' do
       let(:pub_hash) { PubHash.new(case_study_pub_hash) }
-      ##
+
       # Difference from our spec here is we don't add the optional "[Case study]." clarification string.
       # http://www.easybib.com/guides/citation-guides/how-do-i-cite-a/case-study/
       it 'creates a APA citation' do
         expect(pub_hash.to_apa_citation).to eq "Hill, L., Khanna, T., &amp; Stecker, E. A. (2008). <i>HCL Technologies</i>. Boston: Harvard Business Publishing."
       end
-      ##
+
       # Difference from our spec here is we don't add the optional "Case study." clarification string.
       # http://www.easybib.com/guides/citation-guides/how-do-i-cite-a/case-study/
       it 'creates a Chicago citation' do
         expect(pub_hash.to_chicago_citation).to eq 'Hill, Linda, Tarun Khanna, and Emily A. Stecker. 2008. <i>HCL Technologies</i>. Boston: Harvard Business Publishing.'
       end
-      ##
+
       # Difference from our spec here is we don't add the optional "Case study." clarification string.
       # http://www.easybib.com/guides/citation-guides/how-do-i-cite-a/case-study/
       it 'creates a MLA citation' do
@@ -772,9 +689,12 @@ describe PubHash do
       end
     end
   end
+
   describe 'User submitted source records' do
+    let(:pub_hash) { PubHash.new(source_data) }
+    let(:source_data) { JSON.parse(create(source_data_key).source_data, symbolize_names: true) }
     context 'book' do
-      let(:pub_hash) { PubHash.new(JSON.parse(create(:book).source_data, symbolize_names: true)) }
+      let(:source_data_key) { :book }
       it 'creates a Chicago citation' do
         expect(pub_hash.to_chicago_citation).to eq 'Reed, Phillip J., and Jane Stanford. 2015. <i>This Is a Book Title</i>. Vol. 3. The Series Title. Stanford University Press.'
       end
@@ -786,7 +706,7 @@ describe PubHash do
       end
     end
     context 'book chapter' do
-      let(:pub_hash) { PubHash.new(JSON.parse(create(:book_chapter).source_data, symbolize_names: true)) }
+      let(:source_data_key) { :book_chapter }
       it 'creates a Chicago citation' do
         expect(pub_hash.to_chicago_citation).to eq "Hardy, Darren, Jack Reed, and Bess Sadler. 2016. <i>Geospatial Resource Discovery</i>. <i>Exploring Discovery: The Front Door to Your Library's Licensed and Digitized Content</i>. American Library Association Editions."
       end
@@ -798,7 +718,7 @@ describe PubHash do
       end
     end
     context 'conference proceeding' do
-      let(:pub_hash) { PubHash.new(JSON.parse(create(:conference_proceeding).source_data, symbolize_names: true)) }
+      let(:source_data_key) { :conference_proceeding }
       it 'creates a Chicago citation' do
         expect(pub_hash.to_chicago_citation).to eq 'Reed, Jack. 2015. “Preservation and Discovery for GIS Data.” Esri.'
       end
@@ -810,12 +730,12 @@ describe PubHash do
       end
     end
     context 'conference proceeding without city' do
-      let(:pub_hash) do
+      let(:source_data) do
         h = JSON.parse(create(:conference_proceeding).source_data, symbolize_names: true)
         h[:conference][:location] = nil
         h[:conference][:city] = nil
         h[:conference][:statecountry] = 'California'
-        PubHash.new(h)
+        h
       end
       it 'creates citation data for event-place' do
         expect(pub_hash.csl_doc).to include('event-place' => 'California')
@@ -825,12 +745,12 @@ describe PubHash do
       end
     end
     context 'conference proceeding with city but no state' do
-      let(:pub_hash) do
+      let(:source_data) do
         h = JSON.parse(create(:conference_proceeding).source_data, symbolize_names: true)
         h[:conference][:location] = nil
         h[:conference][:city] = 'San Diego'
         h[:conference][:statecountry] = nil
-        PubHash.new(h)
+        h
       end
       it 'creates citation data for event-place' do
         expect(pub_hash.csl_doc).to include('event-place' => 'San Diego')
@@ -840,10 +760,10 @@ describe PubHash do
       end
     end
     context 'conference proceeding with city and state' do
-      let(:pub_hash) do
+      let(:source_data) do
         h = conference_pub_in_journal_hash
         h[:conference][:location] = nil
-        PubHash.new(h)
+        h
       end
       it 'has an event' do
         expect(pub_hash.csl_doc).to include('event' => 'The Big Conference',
@@ -851,11 +771,11 @@ describe PubHash do
       end
     end
     context 'conference proceeding published in a journal and location' do
-      let(:pub_hash) do
+      let(:source_data) do
         h = conference_pub_in_journal_hash
         h[:conference][:city] = nil
         h[:conference][:statecountry] = nil
-        PubHash.new(h)
+        h
       end
       it 'has a journal' do
         expect(pub_hash.csl_doc).to include('container-title' => 'Some Journal Name')
@@ -866,7 +786,7 @@ describe PubHash do
       end
     end
     context 'journal article' do
-      let(:pub_hash) { PubHash.new(JSON.parse(create(:journal_article).source_data, symbolize_names: true)) }
+      let(:source_data_key) { :journal_article }
       it 'creates a Chicago citation' do
         expect(pub_hash.to_chicago_citation).to eq 'Glover, Jeffrey B., Kelly Woodard, P. Jack Reed, and Johnny Waits. 2012. “The Flat Rock Cemetery Mapping Project:  A Case Study in Community Archaeology.” <i>Early Georgia</i> 40 (1). The Society for Georgia Archaeology.'
       end

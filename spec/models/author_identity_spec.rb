@@ -1,4 +1,3 @@
-require 'spec_helper'
 SingleCov.covered!
 
 RSpec.describe AuthorIdentity, type: :model do
