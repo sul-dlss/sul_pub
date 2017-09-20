@@ -1,5 +1,3 @@
-require 'spec_helper'
-##
 # Requires private factories in `spec/factories/author.local.rb`
 feature 'Harvest Brokering', 'data-integration': true do
   let(:harvester) { ScienceWireHarvester.new }

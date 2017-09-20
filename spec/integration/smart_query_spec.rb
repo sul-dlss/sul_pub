@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe 'Smart query', 'data-integration': true do
   let(:client) do
     ScienceWire::Client.new(

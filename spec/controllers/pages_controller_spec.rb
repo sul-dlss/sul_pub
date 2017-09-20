@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe HighVoltage::PagesController, '#show' do
   %w(home authorshipapi bibtex pollapi pubapi pubsapi queryapi).each do |page|
     context 'on GET to /#{page}' do
