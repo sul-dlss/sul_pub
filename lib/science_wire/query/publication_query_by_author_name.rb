@@ -76,67 +76,55 @@ module ScienceWire
         end
 
         def last_name_filter_criterion
-          if name.last.present?
-            <<-XML
-              <Criterion>
-                <Filter>
-                  <Column>AuthorLastName</Column>
-                  <Operator>BeginsWith</Operator>
-                  <Value>#{name.last.upcase}</Value>
-                </Filter>
-              </Criterion>
-            XML
-          else
-            ''
-          end
+          return '' unless name.last.present?
+          <<-XML
+            <Criterion>
+              <Filter>
+                <Column>AuthorLastName</Column>
+                <Operator>BeginsWith</Operator>
+                <Value>#{name.last.upcase}</Value>
+              </Filter>
+            </Criterion>
+          XML
         end
 
         def first_name_filter_criterion
-          if name.first.present?
-            <<-XML
-              <Criterion>
-                <Filter>
-                  <Column>AuthorFirstName</Column>
-                  <Operator>BeginsWith</Operator>
-                  <Value>#{name.first_initial}</Value>
-                </Filter>
-              </Criterion>
-            XML
-          else
-            ''
-          end
+          return '' unless name.first.present?
+          <<-XML
+            <Criterion>
+              <Filter>
+                <Column>AuthorFirstName</Column>
+                <Operator>BeginsWith</Operator>
+                <Value>#{name.first_initial}</Value>
+              </Filter>
+            </Criterion>
+          XML
         end
 
         def start_date_filter_criterion
-          if author_attributes.start_date.present?
-            <<-XML
-              <Criterion>
-                <Filter>
-                  <Column>PublicationDate</Column>
-                  <Operator>GreaterThanOrEqualTo</Operator>
-                  <Value>#{author_attributes.start_date}</Value>
-                </Filter>
-              </Criterion>
-            XML
-          else
-            ''
-          end
+          return '' unless author_attributes.start_date.present?
+          <<-XML
+            <Criterion>
+              <Filter>
+                <Column>PublicationDate</Column>
+                <Operator>GreaterThanOrEqualTo</Operator>
+                <Value>#{author_attributes.start_date}</Value>
+              </Filter>
+            </Criterion>
+          XML
         end
 
         def end_date_filter_criterion
-          if author_attributes.end_date.present?
-            <<-XML
-              <Criterion>
-                <Filter>
-                  <Column>PublicationDate</Column>
-                  <Operator>LessThanOrEqualTo</Operator>
-                  <Value>#{author_attributes.end_date}</Value>
-                </Filter>
-              </Criterion>
-            XML
-          else
-            ''
-          end
+          return '' unless author_attributes.end_date.present?
+          <<-XML
+            <Criterion>
+              <Filter>
+                <Column>PublicationDate</Column>
+                <Operator>LessThanOrEqualTo</Operator>
+                <Value>#{author_attributes.end_date}</Value>
+              </Filter>
+            </Criterion>
+          XML
         end
 
         def document_category_criterion

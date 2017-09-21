@@ -52,27 +52,21 @@ module ScienceWire
         end
 
         def email_block
-          if author_attributes.email.present?
-            <<-XML.strip_heredoc
-              <Emails>
-                <string>#{author_attributes.email}</string>
-              </Emails>
-            XML
-          else
-            ''
-          end
+          return '' unless author_attributes.email.present?
+          <<-XML.strip_heredoc
+            <Emails>
+              <string>#{author_attributes.email}</string>
+            </Emails>
+          XML
         end
 
         def seed_list_block
-          if author_attributes.seed_list.present?
-            <<-XML.strip_heredoc
-              <PublicationItemIds>
-                #{seed_ints}
-              </PublicationItemIds>
-            XML
-          else
-            ''
-          end
+          return '' unless author_attributes.seed_list.present?
+          <<-XML.strip_heredoc
+            <PublicationItemIds>
+              #{seed_ints}
+            </PublicationItemIds>
+          XML
         end
 
         def seed_ints
