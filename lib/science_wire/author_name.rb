@@ -4,13 +4,13 @@ module ScienceWire
   class AuthorName
     attr_reader :last, :first, :middle
 
-    # @param last [String] last name
-    # @param first [String] first name
-    # @param middle [String] middle name
+    # @param last [String, #to_s] last name
+    # @param first [String, #to_s] first name
+    # @param middle [String, #to_s] middle name
     def initialize(last = '', first = '', middle = '')
-      @last = as_string last
-      @first = as_string first
-      @middle = as_string middle
+      @last = last.to_s.strip
+      @first = first.to_s.strip
+      @middle = middle.to_s.strip
     end
 
     def first_initial
@@ -87,10 +87,6 @@ module ScienceWire
           "\"#{last_name},#{first_name},#{middle_initial}\"",
           "\"#{last_name},#{first_initial},#{middle_initial}\""
         ]
-      end
-
-      def as_string(param)
-        param.to_s.strip
       end
 
       # Some names may contain particles, e.g. the
