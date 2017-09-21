@@ -3,18 +3,18 @@ module ScienceWire
   # Author/Institution address details used for creating search queries
   class AuthorAddress
     attr_reader :line1, :line2, :city, :state, :country
-    # @param options [Hash] options:
-    #   :line1 [String]
-    #   :line2 [String]
-    #   :city [String]
-    #   :state [String]
-    #   :country [String]
+    # @param [Hash] options query options
+    # @option options [String] :line1 AddressLine1
+    # @option options [String] :line2 AddressLine2
+    # @option options [String] :city
+    # @option options [String] :state
+    # @option options [String] :country
     def initialize(options = {})
-      @line1 = as_string options[:line1]
-      @line2 = as_string options[:line2]
-      @city = as_string options[:city]
-      @state = as_string options[:state]
-      @country = as_string options[:country]
+      @line1   = options[:line1].to_s.strip
+      @line2   = options[:line2].to_s.strip
+      @city    = options[:city].to_s.strip
+      @state   = options[:state].to_s.strip
+      @country = options[:country].to_s.strip
     end
 
     def to_xml
@@ -40,11 +40,5 @@ module ScienceWire
     def empty?
       to_xml.strip.empty?
     end
-
-    private
-
-      def as_string(param)
-        param.to_s.strip
-      end
   end
 end
