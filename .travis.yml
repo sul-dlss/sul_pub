@@ -1,11 +1,13 @@
+sudo: false
 language: ruby
 cache: bundler
 rvm:
   - 2.3.4
   - 2.4.1
-sudo: false
-script: bundle exec rake ci
 services: mysql
+script: bundle exec rake ci
+before_script:
+  - bundle exec rake db:create
 matrix:
   allow_failures:
     - rvm: 2.4.1

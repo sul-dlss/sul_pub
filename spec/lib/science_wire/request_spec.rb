@@ -1,4 +1,3 @@
-SingleCov.covered!
 
 describe ScienceWire::Request do
   describe '#initialize' do

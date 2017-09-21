@@ -1,4 +1,3 @@
-SingleCov.covered!
 
 describe ScienceWirePublication do
   let(:wrong_element) do

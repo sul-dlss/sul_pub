@@ -1,4 +1,3 @@
-SingleCov.covered!
 
 describe Author do
   let(:auth_hash) do

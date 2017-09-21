@@ -1,4 +1,3 @@
-SingleCov.covered!
 
 describe PubmedClient do
   let(:pubmed_client) { PubmedClient.new }

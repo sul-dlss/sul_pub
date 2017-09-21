@@ -1,4 +1,3 @@
-SingleCov.covered!
 
 describe Csl::AuthorName do
   let(:fn) { 'Amasa' }

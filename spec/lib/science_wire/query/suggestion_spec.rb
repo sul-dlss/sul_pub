@@ -1,4 +1,3 @@
-SingleCov.covered!
 
 describe ScienceWire::Query::Suggestion do
   include SuggestionQueries

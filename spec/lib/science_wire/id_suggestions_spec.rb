@@ -1,4 +1,3 @@
-SingleCov.covered!
 
 describe ScienceWire::IdSuggestions do
   let(:author_attributes) { double 'author_attributes' }

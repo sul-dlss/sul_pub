@@ -1,4 +1,3 @@
-SingleCov.covered!
 
 describe ScienceWire::HarvestBroker do
   let(:author) { create(:author) }

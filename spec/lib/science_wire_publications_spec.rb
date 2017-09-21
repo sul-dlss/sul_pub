@@ -1,4 +1,3 @@
-SingleCov.covered!
 
 describe ScienceWirePublications do
   let(:array_publication_item_doctypes) do

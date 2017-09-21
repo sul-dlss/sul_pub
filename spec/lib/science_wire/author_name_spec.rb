@@ -1,4 +1,3 @@
-SingleCov.covered!
 
 describe ScienceWire::AuthorName do
   let(:fn) { 'Amasa' }

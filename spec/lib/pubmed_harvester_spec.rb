@@ -1,4 +1,3 @@
-SingleCov.covered!
 
 describe PubmedHarvester, :vcr do
   let(:author) { FactoryGirl.create :author }
