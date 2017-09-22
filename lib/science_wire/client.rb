@@ -13,7 +13,6 @@ module ScienceWire
     delegate :send_publication_query, :retrieve_publication_query, to: :publication_query_instance
     delegate :id_suggestions, to: :id_suggestions_instance
 
-    ##
     # @param [String] license_id
     # @param [String] host
     def initialize(license_id:, host:)
@@ -23,36 +22,24 @@ module ScienceWire
 
     private
 
-      ##
       # @return [ScienceWire::IdSuggestions]
       def id_suggestions_instance
-        @id_suggestions ||= begin
-          ScienceWire::IdSuggestions.new(client: self)
-        end
+        @id_suggestions ||= ScienceWire::IdSuggestions.new(client: self)
       end
 
-      ##
       # @return [ScienceWire::API::MatchedPublicationItemIdsForAuthor]
       def matched_publication_item_ids_for_author_instance
-        @matched_publication_item_ids_for_author ||= begin
-          ScienceWire::API::MatchedPublicationItemIdsForAuthor.new(client: self)
-        end
+        @matched_publication_item_ids_for_author ||= ScienceWire::API::MatchedPublicationItemIdsForAuthor.new(client: self)
       end
 
-      ##
       # @return [ScienceWire::API::PublicationItems]
       def publication_items_instance
-        @publication_items_instance ||= begin
-          ScienceWire::API::PublicationItems.new(client: self)
-        end
+        @publication_items_instance ||= ScienceWire::API::PublicationItems.new(client: self)
       end
 
-      ##
       # @return [ScienceWire::API::PublicationQuery]
       def publication_query_instance
-        @publication_query_instance ||= begin
-          ScienceWire::API::PublicationQuery.new(client: self)
-        end
+        @publication_query_instance ||= ScienceWire::API::PublicationQuery.new(client: self)
       end
   end
 end

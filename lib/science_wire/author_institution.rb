@@ -36,15 +36,9 @@ module ScienceWire
     private
 
       def init_address(address)
-        if address.is_a? AuthorAddress
-          address
-        elsif address.is_a? String
-          # set the address line 1
-          AuthorAddress.new(line1: address)
-        else
-          # set an empty address
-          AuthorAddress.new
-        end
+        return address if address.is_a?(AuthorAddress)
+        # set the address line 1, or an empty (default)
+        AuthorAddress.new(address.is_a?(String) ? { line1: address } : {})
       end
   end
 end

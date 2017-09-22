@@ -5,9 +5,9 @@ module ScienceWire
     attr_reader :name, :email, :institution, :seed_list, :start_date, :end_date
 
     # @param name [AuthorName]
-    # @param email [String]
+    # @param email [String, #to_s]
     # @param seed_list [Array<Integer>]
-    # @param institution [String|AuthorInstitution]
+    # @param institution [String, AuthorInstitution]
     # @param start_date [Date]
     # @param end_date [Date]
     def initialize(name, email, seed_list = [], institution = nil, start_date = nil, end_date = nil)
@@ -26,15 +26,9 @@ module ScienceWire
       end
 
       def init_institution(institution)
-        if institution.is_a? AuthorInstitution
-          institution
-        elsif institution.is_a? String
-          # set the institution name
-          AuthorInstitution.new(institution)
-        else
-          # set a default institution
-          AuthorInstitution.new
-        end
+        return institution if institution.is_a?(AuthorInstitution)
+        # else set institution name, or nil (default)
+        AuthorInstitution.new(institution.is_a?(String) ? institution : nil)
       end
   end
 end
