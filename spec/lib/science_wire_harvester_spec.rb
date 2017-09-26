@@ -108,7 +108,7 @@ describe ScienceWireHarvester, :vcr do
       def setup(threshold)
         pub_ids = [*42_711_845..(42_711_845 + threshold - 1)]
         expect(harvest_broker).to receive(:generate_ids).and_return(pub_ids).once # generate batch of valid sw_id values
-        expect(science_wire_harvester).to receive(:create_contrib_for_pub_if_exists).exactly(threshold).with(instance_of(Fixnum), author_without_seed_data).and_return(false)
+        expect(science_wire_harvester).to receive(:create_contrib_for_pub_if_exists).exactly(threshold).with(kind_of(Integer), author_without_seed_data).and_return(false)
       end
 
       it 'triggers when exceeds threshold' do

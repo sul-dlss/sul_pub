@@ -183,9 +183,9 @@ class CapAuthorsPoller
       poll_time.iso8601(3)
     end
 
-    # @param page_count [Fixnum]  default = 1  -- 1st page
-    # @param page_size [Fixnum]   default = 10 -- 10 records
-    # @param days_ago [Fixnum]    default = 1  -- within the last 24 hours
+    # @param page_count [Integer]  default = 1  -- 1st page
+    # @param page_size [Integer]   default = 10 -- 10 records
+    # @param days_ago [Integer]    default = 1  -- within the last 24 hours
     # @return json_response
     def get_recent_cap_authorship(page_count = 1, page_size = 10, days_ago = 1)
       poll_since = convert_days_ago_to_timestamp(days_ago)
