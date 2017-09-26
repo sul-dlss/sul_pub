@@ -43,6 +43,7 @@ gem 'paper_trail'
 gem 'pry-rails'
 gem 'pubmed_search'
 gem 'rest-client'
+gem 'savon', '~> 2.11'
 gem 'simple_form'
 gem 'whenever', require: false
 gem 'yaml_db'
