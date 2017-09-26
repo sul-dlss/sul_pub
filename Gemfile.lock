@@ -101,13 +101,12 @@ GEM
     config (1.0.0)
       activesupport (>= 3.0)
       deep_merge (~> 1.0.0)
-    coveralls (0.8.9)
-      json (~> 1.8)
-      rest-client (>= 1.6.8, < 2)
-      simplecov (~> 0.10.0)
+    coveralls (0.8.21)
+      json (>= 1.8, < 3)
+      simplecov (~> 0.14.1)
       term-ansicolor (~> 1.3)
-      thor (~> 0.19.1)
-      tins (~> 1.6.0)
+      thor (~> 0.19.4)
+      tins (~> 1.6)
     crack (0.4.2)
       safe_yaml (~> 1.0.0)
     csl (1.4.5)
@@ -184,7 +183,7 @@ GEM
       rails-dom-testing (>= 1, < 3)
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
-    json (1.8.6)
+    json (2.1.0)
     kaminari (0.16.3)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
@@ -332,11 +331,11 @@ GEM
     simple_form (3.2.1)
       actionpack (> 4, < 5.1)
       activemodel (> 4, < 5.1)
-    simplecov (0.10.0)
+    simplecov (0.14.1)
       docile (~> 1.1.0)
-      json (~> 1.8)
+      json (>= 1.8, < 3)
       simplecov-html (~> 0.10.0)
-    simplecov-html (0.10.0)
+    simplecov-html (0.10.2)
     slop (3.6.0)
     sprockets (3.7.1)
       concurrent-ruby (~> 1.0)
@@ -348,11 +347,11 @@ GEM
     sshkit (1.13.1)
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
-    term-ansicolor (1.3.2)
+    term-ansicolor (1.6.0)
       tins (~> 1.0)
     terminal-table (1.5.2)
-    therubyracer (0.12.2)
-      libv8 (~> 3.16.14.0)
+    therubyracer (0.12.3)
+      libv8 (~> 3.16.14.15)
       ref
     thin (1.6.4)
       daemons (~> 1.0, >= 1.0.9)
@@ -361,15 +360,14 @@ GEM
     thor (0.19.4)
     thread_safe (0.3.6)
     tilt (2.0.7)
-    tins (1.6.0)
+    tins (1.15.0)
     turnout (2.1.0)
       rack (~> 1.3)
       rack-accept (~> 0.4)
     tzinfo (1.2.3)
       thread_safe (~> 0.1)
-    uglifier (2.7.2)
-      execjs (>= 0.3.0)
-      json (>= 1.8.0)
+    uglifier (3.2.0)
+      execjs (>= 0.3.0, < 3)
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.1)
@@ -413,7 +411,7 @@ DEPENDENCIES
   capybara
   citeproc-ruby (~> 1.0)
   config
-  coveralls
+  coveralls (~> 0.8)
   csl-styles (~> 1.0)
   database_cleaner
   delayed_job
@@ -449,11 +447,11 @@ DEPENDENCIES
   rspec-rails (~> 3.0)
   sass-rails (~> 5.0)
   simple_form
-  simplecov
+  simplecov (~> 0.13)
   therubyracer
   thin
   turnout
-  uglifier (>= 1.3.0)
+  uglifier (~> 3.0)
   vcr
   web-console (~> 2.0)
   webmock
@@ -461,4 +459,4 @@ DEPENDENCIES
   yaml_db
 
 BUNDLED WITH
-   1.14.6
+   1.16.0.pre.2

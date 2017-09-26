@@ -9,7 +9,7 @@ gem 'bootstrap-sass', '~> 3.3.4'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
+gem 'uglifier', '~> 3.0'
 # JS Runtime. See https://github.com/rails/execjs#readme for more supported runtimes
 gem 'therubyracer'
 
@@ -71,8 +71,8 @@ group :test do
   gem 'factory_girl_rails', '~> 4.0'
   gem 'database_cleaner'
   gem 'capybara'
-  gem 'coveralls', require: false
-  gem 'simplecov', require: false
+  gem 'coveralls', '~> 0.8', require: false
+  gem 'simplecov', '~> 0.13', require: false
   gem 'vcr'
   gem 'webmock'
   gem 'equivalent-xml'
