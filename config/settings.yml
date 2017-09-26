@@ -42,6 +42,11 @@ SCIENCEWIRE:
   TMPDIR: /tmp
   ARTICLE_BASE_URI: https://ws.isiknowledge.com/cps/openurl/service?url_ver=Z39.88-2004&rft_id=info:ut/
 
+## Web Of Science Auth Config
+WOS:
+  AUTH_CODE: secret
+  LOG_LEVEL: info
+
 DOI:
   BASE_URI: https://dx.doi.org/
 
