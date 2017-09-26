@@ -57,6 +57,9 @@ HARVESTER:
       state: CA
       country: USA
 
+web_of_science:
+  auth_key: X
+
 ## Ported from application.yml
 sw_doc_type_mappings:
   conference:
