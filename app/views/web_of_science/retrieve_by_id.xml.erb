@@ -1,0 +1,15 @@
+<woksearch:retrieveById>
+  <databaseId>WOS</databaseId>
+  <queryLanguage>en</queryLanguage>
+<% @uids.each do |uid| %>
+  <uid><%= uid %></uid>
+<% end %>
+  <retrieveParameters>
+    <firstRecord>1</firstRecord>
+    <count><%= @uids.count %></count>
+    <option>
+      <key>RecordIDs</key>
+      <value>On</value>
+    </option>
+  </retrieveParameters>
+</woksearch:retrieveById>

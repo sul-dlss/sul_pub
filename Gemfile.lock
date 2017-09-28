@@ -208,6 +208,7 @@ GEM
       enumerable-lazy
     mysql2 (0.3.18)
     namae (0.11.3)
+    net-http-persistent (2.9.4)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (4.1.0)
@@ -433,6 +434,7 @@ DEPENDENCIES
   kaminari
   libv8
   mysql2 (~> 0.3.18)
+  net-http-persistent
   nokogiri (>= 1.7.1)
   okcomputer
   paper_trail
