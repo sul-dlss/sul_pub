@@ -9,22 +9,13 @@ Sulbib::Application.load_tasks
 task default: [:ci]
 
 desc 'Continuous integration task run on travis'
-task ci: [:environment, :rubocop] do
-  if Rails.env.test?
-    Rake::Task['db:setup'].invoke # not db:migrate, use the dang schema!
-    Rake::Task['spec'].invoke
-  else
-    system 'rake ci RAILS_ENV=test'
-  end
-end
+task ci: [:rubocop, :spec]
 
 begin
   require 'rspec/core/rake_task'
-  RSpec::Core::RakeTask.new
-  namespace :spec do
-    desc 'run only data-integration tests against live ScienceWire (excluded by default)'
-    RSpec::Core::RakeTask.new('data-integration') { |t| t.rspec_opts = '--tag data-integration' }
-  end
+
+  desc 'Run only data-integration tests against live ScienceWire (excluded by default)'
+  RSpec::Core::RakeTask.new('spec_with_data_integration') { |t| t.rspec_opts = '--tag data-integration' }
 rescue LoadError
   puts 'Unable to load RSpec.'
 end
@@ -36,12 +27,5 @@ task :rubocop do
     RuboCop::RakeTask.new
   rescue LoadError
     puts 'Unable to load RuboCop.'
-  end
-end
-
-desc 'Run rubocop on ruby files in a patch on master'
-task :rubocop_patch do
-  if Rails.env.test? || Rails.env.development?
-    system "git diff --name-only HEAD..master | grep -E -i 'rake|*.rb|*.erb' | xargs bundle exec rubocop"
   end
 end
