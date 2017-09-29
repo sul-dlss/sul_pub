@@ -8,6 +8,9 @@ Dir.glob(File.join(__dir__, 'fixtures', '**', '*.rb'), &method(:require)) # load
 require 'rspec/matchers'
 require 'equivalent-xml'
 
+require 'single_cov'
+SingleCov.setup :rspec
+
 require 'simplecov'
 require 'coveralls'
 # Coveralls interferes with coverage reports on a laptop, only wear it on CI builds
