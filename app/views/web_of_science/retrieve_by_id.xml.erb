@@ -1,15 +1,19 @@
 <woksearch:retrieveById>
   <databaseId>WOS</databaseId>
-  <queryLanguage>en</queryLanguage>
 <% @uids.each do |uid| %>
   <uid><%= uid %></uid>
 <% end %>
+  <queryLanguage>en</queryLanguage>
   <retrieveParameters>
     <firstRecord>1</firstRecord>
-    <count><%= @uids.count %></count>
+    <count>100</count>
     <option>
       <key>RecordIDs</key>
       <value>On</value>
+    </option>
+    <option>
+      <key>targetNamespace</key>
+      <value>http://scientific.thomsonreuters.com/schema/wok5.4/public/FullRecord</value>
     </option>
   </retrieveParameters>
 </woksearch:retrieveById>
