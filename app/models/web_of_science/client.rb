@@ -1,10 +1,12 @@
 module WebOfScience
+  # Web Of Science documentation here:
+  # http://ipscience-help.thomsonreuters.com/wosWebServicesExpanded/WebServicesExpandedOverviewGroup/Introduction.html
   class Client
     attr_reader :host
 
     # @param [String] host
     # @note license_id not used in this version of API
-    def initialize(host: 'http://search.webofknowledge.com')
+    def initialize(host: 'search.webofknowledge.com')
       @host = host
     end
 
@@ -13,10 +15,10 @@ module WebOfScience
     end
 
     def connection
-      @conn ||= Faraday.new(:url => @host) do |f|
-        f.adapter :net_http_persistent
-        f.response :logger, logger, :bodies => true # debugging on for now
-        f.use Faraday::Response::RaiseError
+      @conn ||= Faraday.new(url: "http://#{@host}") do |f|
+        f.response :logger, logger, bodies: true # debugging on for now
+        f.adapter :net_http_persistent # order matters
+        # f.use Faraday::Response::RaiseError
       end
     end
 
@@ -26,7 +28,7 @@ module WebOfScience
       @controller ||= ApplicationController.new
     end
 
-    # @param [String] template
+    # @param [String] template path/name
     # @param [Hash] assigns key and value assignments to pass to the template
     # @return [String] the rendered document
     # @example render('web_of_science/search', search_params)
@@ -46,6 +48,7 @@ module WebOfScience
       raise ArgumentError, 'required: pass auth_key or set Settings.web_of_science.auth_key' unless auth_key
       auth = connection.post do |req|
         req.url '/esti/wokmws/ws/WOKMWSAuthenticate'
+        req.headers['Host'] = host
         req.headers['Content-Type'] = 'application/xml'
         req.headers['Authorization'] = "Basic #{auth_key}"
         req.body = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:auth="http://auth.cxf.wokmws.thomsonreuters.com"><soapenv:Header/><soapenv:Body><auth:authenticate/></soapenv:Body></soapenv:Envelope>'
@@ -69,67 +72,60 @@ module WebOfScience
     # id_suggestions
 
     # @param [Symbol] request_method
-    # @param [String] path
     # @param [String] body
+    # @param [String] path
     # @param [Integer] timeout_period
     # @yield [Faraday::Request] the prepared request object for further manipulation before sending
-    # @return [String] response body
-    def request(request_method: :get, path: '', body: '', timeout_period: 300)
+    # @return [Nokogiri::XML::Document] response body
+    def request(request_method: :post, body: '', path: '/esti/wokmws/ws/WokSearch', timeout_period: 300)
       response = connection.public_send(request_method) do |req|
         req.url path
         req.headers['Host'] = host
         req.headers['Connection'] = 'Keep-Alive'
-        req.headers['Content-Type'] = 'text/xml'
+        req.headers['Content-Type'] = 'text/xml;charset=UTF-8'
         req.headers['Cookie'] = "SID=\"#{session_id}\""
         req.body = body
         yield req if block_given?
       end
-      return response.body if response.success?
-      @session_id = nil unless response.status = '200' # ideally we target session expiry more specifically
+      return Nokogiri::XML(response.body) if response && response.success?
+      logger.warn "FAILED RESPONSE: " + (response ? response.body : '[EMPTY]')
+      # @session_id = nil # ideally we target session expiry more specifically
     end
 
     # @param [String] body request body XML
     # @return [Array<Integer>] identifiers
     def pub_ids_for_author(body)
-      response_body = request(
-        request_method: :post,
-        path: '/PublicationCatalog/MatchedPublicationItemIdsForAuthor', # need new path
-        body: body
+      response = request(
+        body: body # path: '/PublicationCatalog/MatchedPublicationItemIdsForAuthor'
       )
-      Nokogiri::XML(response_body)
+      response
         .xpath('/ArrayOfItemMatchResult/ItemMatchResult/PublicationItemID') # parse differently
         .map { |item| item.text.to_i }
     end
 
-    alias_method :matched_publication_item_ids_for_author_and_parse, :pub_ids_for_author
+    alias matched_publication_item_ids_for_author_and_parse pub_ids_for_author
 
     # @param [Array<String>] ids PublicationItemId values (no whitespace)
-    # @return [String] response body matching requested format
+    # @return [Nokogiri::XML::Document] response body
+    # @note previously had timeout_period: 500, but probably unneccessary w/ new API limits
     def publication_items(ids)
-      # previously had timeout_period: 500
-      request(
-        path: "/PublicationCatalog/PublicationItems?publicationItemIDs=#{ids}", # retreiveById?
-        body: render('web_of_science/retrieve_by_id', :@uids => ids)
-      )
+      request(body: render('web_of_science/retrieve_by_id', :@uids => ids))
+      # fragment = Nokogiri::XML.fragment response.xpath('//records').text
     end
 
     # @param [String] body XML request body
-    # @return [String] response body matching requested format
+    # @return [Nokogiri::XML::Document] response body
     def send_publication_query(body)
-      request(
-        request_method: :post,
-        path: '/PublicationCatalog/PublicationQuery', # search?
-        body: body
-      )
+      request(body: body)
     end
 
     # @param [Integer] queryId
     # @param [Integer] queryResultRows
-    # @return [String] response body matching requested format
+    # @return [Nokogiri::XML::Document] response body
     def retrieve_publication_query(queryId, queryResultRows = 100)
       raise ArgumentError, 'queryResultRows must be an Integer <= 100' if queryResultRows > 100
       request(
-        path: "/PublicationCatalog/PublicationQuery/#{queryId}?format=#{format}&v=version/4&page=0&pageSize=#{queryResultRows}", # search?
+        path: "/PublicationCatalog/PublicationQuery/#{queryId}?v=version/4&page=0&pageSize=#{queryResultRows}", # search?
       )
     end
 
