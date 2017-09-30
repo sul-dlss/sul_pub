@@ -30,6 +30,7 @@ gem 'delayed_job_active_record'
 gem 'dotiw'
 gem 'faraday'
 gem 'httpclient', '~> 2.7'
+gem 'net-http-persistent'
 gem 'high_voltage'
 # To use Jbuilder templates for JSON
 gem 'jbuilder'
