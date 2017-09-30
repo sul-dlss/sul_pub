@@ -8,3 +8,5 @@ services: mysql
 script: bundle exec rake ci
 before_script:
   - bundle exec rake db:create db:setup
+notifications:
+  email: false
