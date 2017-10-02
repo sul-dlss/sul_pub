@@ -31,11 +31,7 @@ class Publication < ActiveRecord::Base
     autosave: true,
     dependent: :destroy,
     after_add: :identifiers_changed_callback,
-    after_remove: :identifiers_changed_callback do
-    def with_type(t)
-      where(identifier_type: t)
-    end
-  end
+    after_remove: :identifiers_changed_callback
 
   has_many :authors,
     autosave: true,
