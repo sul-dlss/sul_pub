@@ -130,6 +130,7 @@ class PublicationsController < ApplicationController
       }
     end
 
+    # @param [Author] author
     # @return [String] contains csv report of an author's publications
     def generate_csv_report(author)
       csv_str = CSV.generate do |csv|
@@ -139,7 +140,7 @@ class PublicationsController < ApplicationController
           contrib_prof_ids = pub.authors.pluck(:cap_profile_id).join(';')
           wos_id = pub.publication_identifiers.where(identifier_type: 'WoSItemID').pluck(:identifier_value).first
           doi = pub.publication_identifiers.where(identifier_type: 'doi').pluck(:identifier_value).first
-          status = pub.contributions.for_author(author).pluck(:status).first
+          status = pub.contributions.where(author_id: author.id).pluck(:status).first
           created_at = pub.created_at.utc.strftime('%m/%d/%Y')
           updated_at = pub.updated_at.utc.strftime('%m/%d/%Y')
 

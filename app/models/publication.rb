@@ -44,17 +44,13 @@ class Publication < ActiveRecord::Base
     dependent: :destroy,
     after_add: :contributions_changed_callback,
     after_remove: :contributions_changed_callback do
-    def for_author(a)
-      where(author_id: a.id)
-    end
-
     # See also: update_any_new_contribution_info_in_pub_hash_to_db
     def build_or_update(author, contribution_hash = {})
       # Assign or update these contribution attributes
       # Ensure the contribution attributes contain the right author
       contribution_hash[:author_id] = author.id
       contribution_hash[:cap_profile_id] = author.cap_profile_id unless author.cap_profile_id.blank?
-      contrib = for_author(author).first_or_initialize
+      contrib = where(author_id: author.id).first_or_initialize
       if contrib.persisted?
         # Update an existing contribution
         contrib.update(contribution_hash)
@@ -277,7 +273,7 @@ class Publication < ActiveRecord::Base
 
       hash_for_update[:author_id] = author.id
       hash_for_update[:cap_profile_id] = author.cap_profile_id unless author.cap_profile_id.blank?
-      contrib = contributions.for_author(author).first_or_initialize
+      contrib = contributions.where(author_id: author.id).first_or_initialize
       contrib.assign_attributes(hash_for_update)
 
       if contrib.persisted?
