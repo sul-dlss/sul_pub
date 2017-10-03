@@ -75,7 +75,7 @@ module ScienceWire
       end
 
       def author_pub_swids
-        @author_pub_swids ||= author.publications.with_sciencewire_id.pluck(:sciencewire_id).uniq
+        @author_pub_swids ||= author.publications.where.not(sciencewire_id: nil).pluck(:sciencewire_id).uniq
       end
 
       def author_name(person)

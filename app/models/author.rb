@@ -45,7 +45,10 @@ class Author < ActiveRecord::Base
 
   # @return [Array<Integer>] ScienceWireIds for approved publications
   def approved_sciencewire_ids
-    publications.approved.with_sciencewire_id.pluck(:sciencewire_id).uniq
+    publications.where("contributions.status = 'approved'")
+                .where.not(sciencewire_id: nil)
+                .pluck(:sciencewire_id)
+                .uniq
   end
 
   has_many :contributions, dependent: :destroy, after_add: :contributions_changed_callback, after_remove: :contributions_changed_callback do
@@ -68,16 +71,7 @@ class Author < ActiveRecord::Base
   def contributions_changed_callback(*_args)
   end
 
-  has_many :publications, through: :contributions do
-    def approved
-      where("contributions.status='approved'")
-    end
-
-    def with_sciencewire_id
-      where(Publication.arel_table[:sciencewire_id].not_eq(nil))
-    end
-  end
-
+  has_many :publications, through: :contributions
   has_many :approved_sw_ids, -> { where("contributions.status = 'approved'") }, through: :contributions,
                                                                                 class_name: 'PublicationIdentifier',
                                                                                 source: :publication_identifier,
