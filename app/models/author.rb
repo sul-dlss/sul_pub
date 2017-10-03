@@ -17,22 +17,9 @@ class Author < ActiveRecord::Base
   end
 
   # Provide consistent API for Author and AuthorIdentity
-  # @return [String] preferred_first_name
-  def first_name
-    preferred_first_name
-  end
-
-  # Provide consistent API for Author and AuthorIdentity
-  # @return [String] preferred_middle_name
-  def middle_name
-    preferred_middle_name
-  end
-
-  # Provide consistent API for Author and AuthorIdentity
-  # @return [String] preferred_last_name
-  def last_name
-    preferred_last_name
-  end
+  alias_attribute :first_name, :preferred_first_name
+  alias_attribute :middle_name, :preferred_middle_name
+  alias_attribute :last_name, :preferred_last_name
 
   # Provide consistent API for Author and AuthorIdentity
   # The default institution is set in
