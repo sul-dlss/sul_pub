@@ -84,5 +84,6 @@ group :deployment do
   gem 'capistrano'
   gem 'capistrano-passenger'
   gem 'capistrano-rails'
+  gem 'capistrano-shell'
   gem 'dlss-capistrano'
 end
