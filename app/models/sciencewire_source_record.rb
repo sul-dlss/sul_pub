@@ -1,6 +1,5 @@
 require 'nokogiri'
 require 'activerecord-import'
-require 'dotiw'
 
 class SciencewireSourceRecord < ActiveRecord::Base
   # validates_uniqueness_of :sciencewire_id

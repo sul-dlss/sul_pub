@@ -1,4 +1,3 @@
-require 'dotiw'
 require 'parallel'
 
 class ScienceWireHarvester
