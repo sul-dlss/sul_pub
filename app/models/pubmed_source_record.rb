@@ -1,5 +1,4 @@
 require 'nokogiri'
-require 'nokogiri'
 
 class PubmedSourceRecord < ActiveRecord::Base
   # validates_uniqueness_of :pmid
