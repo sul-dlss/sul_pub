@@ -1,6 +1,5 @@
 require 'bibtex'
 require 'citeproc'
-require 'dotiw'
 
 class BibtexIngester
   @@book_type_mapping = %w(book booklet inbook incollection manual techreport)
