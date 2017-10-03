@@ -13,8 +13,9 @@ class PubmedSourceRecord < ActiveRecord::Base
     return if pubmed_pub_hash.nil?
     pub = Publication.new(
       active: true,
-      pmid: pmid)
-    pub.build_from_pubmed_hash(pubmed_pub_hash)
+      pmid: pmid,
+      pub_hash: pubmed_pub_hash
+    )
     pub.sync_publication_hash_and_db
     pub.save
     pub

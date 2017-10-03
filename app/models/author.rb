@@ -68,7 +68,7 @@ class Author < ActiveRecord::Base
       c.assign_attributes contribution_hash.merge(publication_id: publication.id)
       if c.persisted?
         c.save
-        publication.contributions_changed_callback
+        publication.pubhash_needs_update!
       else
         self << c
       end
