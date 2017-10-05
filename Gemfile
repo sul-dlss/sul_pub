@@ -29,6 +29,7 @@ gem 'delayed_job'
 gem 'delayed_job_active_record'
 gem 'dotiw'
 gem 'faraday'
+gem 'htmlentities', '~> 4.3'
 gem 'httpclient', '~> 2.7'
 gem 'high_voltage'
 # To use Jbuilder templates for JSON
