@@ -42,9 +42,9 @@ class WosRecords
 
   # Find duplicate WoS UID values
   # @param record_setB [WosRecords]
-  # @return [Set] duplicate WoS UID values
+  # @return [Array] duplicate WoS UID values
   def duplicate_uids(record_setB)
-    uids.to_set.intersection(record_setB.uids.to_set)
+    uids & record_setB.uids
   end
 
   # Find duplicate WoS records
