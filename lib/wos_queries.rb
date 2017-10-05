@@ -48,6 +48,19 @@ class WosQueries
     retrieve_records(:retrieve_by_id, message)
   end
 
+  # @param doi [String] a digital object identifier (DOI)
+  # @return [WosRecords]
+  def search_by_doi(doi)
+    message = search_by_doi_params(doi)
+    response = wos_client.search.call(:search, message: message)
+    records = records(response, :search_response)
+    # Return a unique DOI match or nothing, because the WoS API does partial string matching
+    # on the `DO` field.  When the result set is only one record, it's likely to be a good match; but
+    # otherwise the results could be nonsense.
+    return records if records.count == 1
+    WosRecords.new(records: '<records/>')
+  end
+
   # @param name [String] a CSV name pattern: {last name}, {first_name} [{middle_name} | {middle initial}]
   # @return [WosRecords]
   def search_by_name(name)
@@ -231,6 +244,13 @@ class WosQueries
         },
         retrieveParameters: retrieve_parameters
       }
+    end
+
+    # @param doi [String] a digital object identifier (DOI)
+    # @return [Hash] search query parameters
+    def search_by_doi_params(doi)
+      user_query = "DO=#{doi}"
+      search_params(user_query)
     end
 
     # @param name [String] a CSV name pattern: {last name}, {first_name} [{middle_name} | {middle initial}]
