@@ -11,6 +11,7 @@ class WosQueries
   START_DATE = '1970-01-01'.freeze
 
   attr_reader :wos_client
+  attr_reader :database
 
   # @param wos_client [WosClient] a Web Of Science client
   # @param database [String] a WOS database identifier (default 'WOK')
@@ -152,7 +153,7 @@ class WosQueries
     def cited_references_params(uid)
       retrieve_options = [ { key: 'Hot', value: 'On' } ]
       {
-        databaseId: @database,
+        databaseId: database,
         uid: uid,
         queryLanguage: QUERY_LANGUAGE,
         retrieveParameters: retrieve_parameters(options: retrieve_options)
@@ -163,7 +164,7 @@ class WosQueries
     # @return [Hash] citingArticles parameters
     def citing_articles_params(uid)
       {
-        databaseId: @database,
+        databaseId: database,
         uid: uid,
         timeSpan: time_span,
         queryLanguage: QUERY_LANGUAGE,
@@ -188,7 +189,7 @@ class WosQueries
     # @return [Hash] retrieveById parameters
     def retrieve_by_id_params(uids)
       {
-        databaseId: @database,
+        databaseId: database,
         uid: uids,
         queryLanguage: QUERY_LANGUAGE,
         retrieveParameters: retrieve_parameters
@@ -225,7 +226,7 @@ class WosQueries
     def search_params(user_query)
       {
         queryParameters: {
-          databaseId: @database,
+          databaseId: database,
           userQuery: user_query,
           timeSpan: time_span,
           queryLanguage: QUERY_LANGUAGE
