@@ -91,7 +91,7 @@ describe WosRecords do
     let(:dup_uids) { wos_recordsA.duplicate_uids(wos_recordsB) }
 
     it 'works' do
-      expect(dup_uids).to be_an Set
+      expect(dup_uids).to be_an Array
     end
     it 'returns duplicate UIDs' do
       expect(dup_uids.to_a).to eq ['WOS:A2']
