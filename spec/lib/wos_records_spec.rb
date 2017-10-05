@@ -68,9 +68,8 @@ describe WosRecords do
   end
 
   describe 'Enumerable mixin' do
-    it 'responds to Enumerable.instance_methods' do
-      methods = Enumerable.instance_methods
-      methods.each { |method| expect(wos_records_encoded).to respond_to(method) }
+    it 'is_a? Enumerable' do
+      expect(wos_records_decoded).to be_an Enumerable
     end
   end
 
