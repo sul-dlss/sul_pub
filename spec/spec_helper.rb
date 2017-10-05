@@ -8,8 +8,10 @@ Dir.glob(File.join(__dir__, 'fixtures', '**', '*.rb'), &method(:require)) # load
 require 'rspec/matchers'
 require 'equivalent-xml'
 
-require 'single_cov'
-SingleCov.setup :rspec
+if ENV['SINGLECOV']
+  require 'single_cov'
+  SingleCov.setup :rspec
+end
 
 require 'simplecov'
 require 'coveralls'
