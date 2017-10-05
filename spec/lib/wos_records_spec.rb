@@ -8,8 +8,6 @@ describe WosRecords do
   end
   let(:wos_records_encoded) { described_class.new(encoded_records: encoded_records) }
   let(:wos_records_decoded) { described_class.new(records: decoded_records) }
-  # let(:merge_records) { File.read('spec/fixtures/wos_client/wos_merge_records.html') }
-  # let(:record_setB) { described_class.new(encoded_records: merge_records) }
 
   let(:recordsA) do
     <<-XML_A
@@ -177,23 +175,42 @@ describe WosRecords do
     end
   end
 
-  describe '#to_xml' do
-    it 'works with encoded records' do
-      result = wos_records_encoded.to_xml
-      expect(result).to be_an String
+  # ---
+  # XML specs
+
+  shared_examples 'it has well formed XML' do
+    let(:html_char) { '&lt;' }
+
+    it 'returns an XML String' do
+      expect(xml_result).to be_an String
     end
-    it 'works with decoded records' do
-      result = wos_records_decoded.to_xml
-      expect(result).to be_an String
+    it 'returns well formed XML' do
+      expect do
+        Nokogiri::XML(xml_result) { |config| config.strict }
+      end.not_to raise_error
+    end
+    it 'contains no HTML encoding' do
+      expect(xml_result).not_to include html_char
     end
   end
 
-  # PRIVATE
+  describe '#to_xml' do
+    context 'with encoded records' do
+      let(:xml_result) { wos_records_encoded.to_xml }
+
+      it_behaves_like 'it has well formed XML'
+    end
+
+    context 'with decoded records' do
+      let(:xml_result) { wos_records_decoded.to_xml }
+
+      it_behaves_like 'it has well formed XML'
+    end
+  end
 
   describe '#decode_records' do
-    it 'works' do
-      result = wos_records_encoded.send(:decode_records)
-      expect(result).to be_an String
-    end
+    let(:xml_result) { wos_records_encoded.send(:decode_records) }
+
+    it_behaves_like 'it has well formed XML'
   end
 end
