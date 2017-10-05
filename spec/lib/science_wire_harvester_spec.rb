@@ -358,7 +358,7 @@ describe ScienceWireHarvester, :vcr do
     it 'creates ScienceWire Publications with an array of WebOfScience IDs for a given author' do
       auth = create(:author, sunetid: 'pande')
       expect(PubmedSourceRecord.count).to eq(0)
-      science_wire_harvester.harvest_sw_pubs_by_wos_id_for_author('pande', %w(000318550800072 000317872800004 000317717300006))
+      science_wire_harvester.send(:harvest_sw_pubs_by_wos_id_for_author, 'pande', %w(000318550800072 000317872800004 000317717300006))
       expect(auth.publications.size).to eq(3)
       pub_hash = auth.publications.first.pub_hash
       expect(pub_hash[:authorship].first[:sul_author_id]).to eq(auth.id)
@@ -369,7 +369,7 @@ describe ScienceWireHarvester, :vcr do
     it 'does not create empty values in the pub_hash for :pmid or an empty PMID identifier' do
       auth = create(:author, sunetid: 'gorin')
       expect(PubmedSourceRecord.count).to eq(0)
-      science_wire_harvester.harvest_sw_pubs_by_wos_id_for_author('gorin', ['000224492700003'])
+      science_wire_harvester.send(:harvest_sw_pubs_by_wos_id_for_author, 'gorin', ['000224492700003'])
       expect(auth.publications.size).to eq(1)
       pub_hash = auth.publications.first.pub_hash
       expect(pub_hash[:authorship].first[:sul_author_id]).to eq(auth.id)
@@ -384,7 +384,7 @@ describe ScienceWireHarvester, :vcr do
       expect(science_wire_harvester).to receive(:add_contribution_for_harvest_suggestion).twice.and_call_original
       expect(science_wire_harvester).to receive(:create_contrib_for_pub_if_exists_by_author_ids).and_call_original
       expect(auth.publications.count).to eq(0)
-      science_wire_harvester.harvest_sw_pubs_by_wos_id_for_author('gorin', ['000224492700003'])
+      science_wire_harvester.send(:harvest_sw_pubs_by_wos_id_for_author, 'gorin', ['000224492700003'])
       auth.reload
       expect(auth.publications.count).to eq(1)
       expect(SciencewireSourceRecord.count).to eq(1)
@@ -392,7 +392,7 @@ describe ScienceWireHarvester, :vcr do
       # Harvest the same publication and it should not duplicate.
       expect(science_wire_harvester).not_to receive(:create_contrib_for_pub_if_exists_by_author_ids)
       expect(science_wire_harvester).not_to receive(:create_or_update_pub_and_contribution_with_harvested_sw_doc)
-      science_wire_harvester.harvest_sw_pubs_by_wos_id_for_author('gorin', ['000224492700003'])
+      science_wire_harvester.send(:harvest_sw_pubs_by_wos_id_for_author, 'gorin', ['000224492700003'])
       auth.reload
       expect(auth.publications.count).to eq(1)
       expect(SciencewireSourceRecord.count).to eq(1)
