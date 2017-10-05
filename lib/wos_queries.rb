@@ -22,31 +22,36 @@ class WosQueries
   # @param uid [String] a WOS UID
   # @return [WosRecords]
   def cited_references(uid)
-    cited_references_collator(uid)
+    message = cited_references_params(uid)
+    retrieve_records(:cited_references, message)
   end
 
   # @param uid [String] a WOS UID
   # @return [WosRecords]
   def citing_articles(uid)
-    citing_articles_collator(uid)
+    message = citing_articles_params(uid)
+    retrieve_records(:citing_articles, message)
   end
 
   # @param uid [String] a WOS UID
   # @return [WosRecords]
   def related_records(uid)
-    related_records_collator(uid)
+    message = related_records_params(uid)
+    retrieve_records(:related_records, message)
   end
 
   # @param uids [Array<String>] a list of WOS UIDs
   # @return [WosRecords]
   def retrieve_by_id(uids)
-    retrieve_by_id_collator(uids)
+    message = retrieve_by_id_params(uids)
+    retrieve_records(:retrieve_by_id, message)
   end
 
   # @param name [String] a CSV name pattern: {last name}, {first_name} [{middle_name} | {middle initial}]
   # @return [WosRecords]
   def search_by_name(name)
-    search_by_name_collator(name)
+    message = search_by_name_params(name)
+    retrieve_records(:search, message)
   end
 
   private
@@ -54,53 +59,20 @@ class WosQueries
     ###################################################################
     # WoS Query Record Collators
 
-    # @param uid [String] a WOS UID
-    # @return [WosRecords]
-    def cited_references_collator(uid)
-      message = cited_references_params(uid)
-      response = wos_client.search.call(:cited_references, message: message)
-      retrieve_additional_records(response, :cited_references_response, :cited_references_retrieve)
-    end
-
-    # @param uid [String] a WOS UID
-    # @return [WosRecords]
-    def citing_articles_collator(uid)
-      message = citing_articles_params(uid)
-      response = wos_client.search.call(:citing_articles, message: message)
-      retrieve_additional_records(response, :citing_articles_response)
-    end
-
-    # @param uid [String] a WOS UID
-    # @return [WosRecords]
-    def related_records_collator(uid)
-      message = related_records_params(uid)
-      response = wos_client.search.call(:related_records, message: message)
-      retrieve_additional_records(response, :related_records_response)
-    end
-
-    # @param uids [Array<String>] a list of WOS UIDs
-    # @return [WosRecords]
-    def retrieve_by_id_collator(uids)
-      message = retrieve_by_id_params(uids)
-      response = wos_client.search.call(:retrieve_by_id, message: message)
-      retrieve_additional_records(response, :retrieve_by_id_response)
-    end
-
-    # @return [WosRecords]
-    def search_by_name_collator(name)
-      message = search_by_name_params(name)
-      response = wos_client.search.call(:search, message: message)
-      retrieve_additional_records(response, :search_response)
+    def retrieve_records(operation, message)
+      response = wos_client.search.call(operation, message: message)
+      retrieve_additional_records(response, "#{operation}_response".to_sym)
     end
 
     # @param response [Savon::Response]
     # @param response_type [Symbol]
-    # @param retrieve_operation [Symbol]
     # @return [WosRecords]
-    def retrieve_additional_records(response, response_type, retrieve_operation = :retrieve)
+    def retrieve_additional_records(response, response_type)
       records = records(response, response_type)
       record_total = records_found(response, response_type)
       if record_total > MAX_RECORDS
+        retrieve_operation = :retrieve
+        retrieve_operation = :cited_references_retrieve if response_type == :cited_references_response
         query_id = query_id(response, response_type)
         # How many iterations to go?  We've already got MAX_RECORDS
         iterations = record_total / MAX_RECORDS
