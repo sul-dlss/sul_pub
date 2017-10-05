@@ -148,52 +148,50 @@ class WosQueries
     ###################################################################
     # WoS Query Parameters
 
+    # @return [Hash] UID query parameters
+    def base_uid_params
+      {
+        databaseId: database,
+        uid: [],
+        queryLanguage: QUERY_LANGUAGE,
+        retrieveParameters: retrieve_parameters
+      }
+    end
+
     # @param uid [String] a WOS UID
     # @return [Hash] citedReferences parameters
     def cited_references_params(uid)
       retrieve_options = [ { key: 'Hot', value: 'On' } ]
-      {
-        databaseId: database,
+      base_uid_params.merge(
         uid: uid,
-        queryLanguage: QUERY_LANGUAGE,
         retrieveParameters: retrieve_parameters(options: retrieve_options)
-      }
+      )
     end
 
     # @param uid [String] a WOS UID
     # @return [Hash] citingArticles parameters
     def citing_articles_params(uid)
-      {
-        databaseId: database,
+      base_uid_params.merge(
         uid: uid,
-        timeSpan: time_span,
-        queryLanguage: QUERY_LANGUAGE,
-        retrieveParameters: retrieve_parameters
-      }
+        timeSpan: time_span
+      )
     end
 
     # @param uid [String] a WOS UID
     # @return [Hash] relatedRecords parameters
     def related_records_params(uid)
       # The 'WOS' database is the only option for this query
-      {
+      base_uid_params.merge(
         databaseId: 'WOS',
         uid: uid,
-        timeSpan: time_span,
-        queryLanguage: QUERY_LANGUAGE,
-        retrieveParameters: retrieve_parameters
-      }
+        timeSpan: time_span
+      )
     end
 
     # @param uids [Array<String>] a list of WOS UIDs
     # @return [Hash] retrieveById parameters
     def retrieve_by_id_params(uids)
-      {
-        databaseId: database,
-        uid: uids,
-        queryLanguage: QUERY_LANGUAGE,
-        retrieveParameters: retrieve_parameters
-      }
+      base_uid_params.merge(uid: uids)
     end
 
     # @param first_record [Integer] the record number offset (defaults to 1)
