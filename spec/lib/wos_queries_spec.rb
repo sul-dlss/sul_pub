@@ -14,10 +14,12 @@ describe WosQueries do
   let(:wos_client) { WosClient.new(wos_auth) }
   let(:wos_queries) { described_class.new(wos_client) }
   let(:wos_ids) { %w(WOS:A1976BW18000001 WOS:A1972N549400003) }
-  let(:wos_name_search_response) { File.read('spec/fixtures/wos_client/wos_name_search_response.xml') }
+  let(:wos_retrieve_by_id_response) { File.read('spec/fixtures/wos_client/wos_retrieve_by_id_response.xml') }
   let(:wos_search_by_doi_response) { File.read('spec/fixtures/wos_client/wos_search_by_doi_response.xml') }
   let(:wos_search_by_doi_mismatch_response) { File.read('spec/fixtures/wos_client/wos_search_by_doi_mismatch_response.xml') }
-  let(:wos_retrieve_by_id_response) { File.read('spec/fixtures/wos_client/wos_retrieve_by_id_response.xml') }
+  let(:wos_search_by_name_response) { File.read('spec/fixtures/wos_client/wos_search_by_name_response.xml') }
+  let(:wos_search_custom_response) { File.read('spec/fixtures/wos_client/wos_search_custom_response.xml') }
+  let(:wos_search_failure_response) { File.read('spec/fixtures/wos_client/wos_search_failure_response.xml') }
 
   let(:name) { "#{ln}, #{fn}" }
   let(:ln) { 'Lastname' }
@@ -38,25 +40,65 @@ describe WosQueries do
     it 'works' do
       savon.expects(:authenticate).returns(wos_auth_response)
       savon.expects(:search).with(message: :any).returns(wos_search_by_doi_response)
-      result = wos_queries.search_by_doi(doi)
-      expect(result).to be_an WosRecords
-      expect(result.count).to eq 1
+      records = wos_queries.search_by_doi(doi)
+      expect(records).to be_an WosRecords
+      expect(records.count).to eq 1
     end
     it 'returns nothing for partial matches' do
       savon.expects(:authenticate).returns(wos_auth_response)
       savon.expects(:search).with(message: :any).returns(wos_search_by_doi_mismatch_response)
-      result = wos_queries.search_by_doi(doi_mismatch)
-      expect(result).to be_an WosRecords
-      expect(result).to be_empty
+      records = wos_queries.search_by_doi(doi_mismatch)
+      expect(records).to be_an WosRecords
+      expect(records).to be_empty
+    end
+  end
+
+  describe '#search with valid query' do
+    let(:title) { 'A research roadmap for next-generation sequencing informatics' }
+    let(:query) { "TI=#{title}" }
+    let(:records) { wos_queries.search(query) }
+
+    before do
+      savon.expects(:authenticate).returns(wos_auth_response)
+      savon.expects(:search).with(message: :any).returns(wos_search_custom_response)
+    end
+    it 'works' do
+      expect(records).to be_an WosRecords
+    end
+    it 'returns publication(s)' do
+      expect(records.count >= 1).to be true
+    end
+    it 'returns a publication matching the query' do
+      expect(records.doc.search('titles').text).to include title
+    end
+  end
+
+  describe '#search with invalid query' do
+    let(:title) { 'A messed up query' }
+    let(:invalid_query) { "TI=#{title} & PY=2017" }
+    let(:records) { wos_queries.search(invalid_query) }
+
+    before do
+      savon.expects(:authenticate).returns(wos_auth_response)
+      savon.expects(:search).with(message: :any).returns(wos_search_failure_response)
+    end
+    it 'raises Savon::SOAPFault' do
+      expect { records }.to raise_error Savon::SOAPFault
     end
   end
 
   describe '#search_by_name' do
-    it 'works' do
+    let(:records) { wos_queries.search_by_name(name) }
+
+    before do
       savon.expects(:authenticate).returns(wos_auth_response)
-      savon.expects(:search).with(message: :any).returns(wos_name_search_response)
-      result = wos_queries.search_by_name(name)
-      expect(result).to be_an WosRecords
+      savon.expects(:search).with(message: :any).returns(wos_search_by_name_response)
+    end
+    it 'works' do
+      expect(records).to be_an WosRecords
+    end
+    it 'returns many results' do
+      expect(records.count > 1).to be true
     end
   end
 
@@ -64,8 +106,8 @@ describe WosQueries do
     it 'works' do
       savon.expects(:authenticate).returns(wos_auth_response)
       savon.expects(:retrieve_by_id).with(message: :any).returns(wos_retrieve_by_id_response)
-      result = wos_queries.retrieve_by_id(wos_ids)
-      expect(result).to be_an WosRecords
+      records = wos_queries.retrieve_by_id(wos_ids)
+      expect(records).to be_an WosRecords
     end
   end
 

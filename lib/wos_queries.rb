@@ -48,6 +48,14 @@ class WosQueries
     retrieve_records(:retrieve_by_id, message)
   end
 
+  # @param user_query [String] a custom user query
+  # @param message [Hash] optional search params (defaults to search_params)
+  # @return [WosRecords]
+  def search(user_query, message = search_params)
+    message[:user_query] = user_query
+    retrieve_records(:search, message)
+  end
+
   # @param doi [String] a digital object identifier (DOI)
   # @return [WosRecords]
   def search_by_doi(doi)
@@ -234,7 +242,7 @@ class WosQueries
 
     # @param user_query [String]
     # @return [Hash] search query parameters
-    def search_params(user_query)
+    def search_params(user_query = '')
       {
         queryParameters: {
           databaseId: database,
@@ -249,8 +257,7 @@ class WosQueries
     # @param doi [String] a digital object identifier (DOI)
     # @return [Hash] search query parameters
     def search_by_doi_params(doi)
-      user_query = "DO=#{doi}"
-      params = search_params(user_query)
+      params = search_params("DO=#{doi}")
       params[:retrieveParameters][:count] = 10
       params
     end

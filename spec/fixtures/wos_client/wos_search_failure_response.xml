@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap:Body>
+    <soap:Fault>
+      <faultcode>soap:Server</faultcode>
+      <faultstring>(QEE0001) The SOAP request message is invalid. Reason: The userQuery element is invalid. Cause: Translation Exception : Parse error - Missing Operator
+        . Remedy: Correct your request and submit it again.</faultstring>
+      <detail>
+        <ns2:QueryException xmlns:ns2="http://woksearch.v3.wokmws.thomsonreuters.com"/>
+      </detail>
+    </soap:Fault>
+  </soap:Body>
+</soap:Envelope>
