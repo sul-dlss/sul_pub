@@ -9,6 +9,9 @@ class WosRecords
   # @return [Integer] WOS record count
   def_delegators :rec_nodes, :count
 
+  # @return [Boolean] WOS records empty?
+  def_delegators :rec_nodes, :empty?
+
   # @return xml [String] WOS records in XML
   def_delegators :doc, :to_xml
 

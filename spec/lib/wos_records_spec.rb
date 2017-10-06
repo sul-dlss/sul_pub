@@ -67,6 +67,19 @@ describe WosRecords do
     end
   end
 
+  describe '#empty?' do
+    it 'delegates to rec_nodes.empty?' do
+      expect(wos_records_encoded.empty?).to eq wos_records_encoded.rec_nodes.empty?
+    end
+    it 'returns false when records exist' do
+      expect(wos_records_encoded.empty?).to be false
+    end
+    it 'returns true when records are missing' do
+      wos_records = described_class.new(records: '<records/>')
+      expect(wos_records.empty?).to be true
+    end
+  end
+
   describe 'Enumerable mixin' do
     it 'is_a? Enumerable' do
       expect(wos_records_decoded).to be_an Enumerable
