@@ -16,6 +16,7 @@ describe WosQueries do
   let(:wos_ids) { %w(WOS:A1976BW18000001 WOS:A1972N549400003) }
   let(:wos_name_search_response) { File.read('spec/fixtures/wos_client/wos_name_search_response.xml') }
   let(:wos_search_by_doi_response) { File.read('spec/fixtures/wos_client/wos_search_by_doi_response.xml') }
+  let(:wos_search_by_doi_mismatch_response) { File.read('spec/fixtures/wos_client/wos_search_by_doi_mismatch_response.xml') }
   let(:wos_retrieve_by_id_response) { File.read('spec/fixtures/wos_client/wos_retrieve_by_id_response.xml') }
 
   let(:name) { "#{ln}, #{fn}" }
@@ -32,6 +33,7 @@ describe WosQueries do
 
   describe '#search_by_doi' do
     let(:doi) { '10.1007/s12630-011-9462-1' }
+    let(:doi_mismatch) { '10.1007/s12630-011' }
 
     it 'works' do
       savon.expects(:authenticate).returns(wos_auth_response)
@@ -39,6 +41,13 @@ describe WosQueries do
       result = wos_queries.search_by_doi(doi)
       expect(result).to be_an WosRecords
       expect(result.count).to eq 1
+    end
+    it 'returns nothing for partial matches' do
+      savon.expects(:authenticate).returns(wos_auth_response)
+      savon.expects(:search).with(message: :any).returns(wos_search_by_doi_mismatch_response)
+      result = wos_queries.search_by_doi(doi_mismatch)
+      expect(result).to be_an WosRecords
+      expect(result).to be_empty
     end
   end
 
