@@ -17,6 +17,8 @@ class NotificationManager
         log_exception(pubmed_logger, log_message, e)
       when CapAuthorsPoller, CapHttpClient
         log_exception(cap_logger, log_message, e)
+      when WosClient
+        log_exception(wos_logger, log_message, e)
       else
         log_exception(Rails.logger, log_message, e)
       end
@@ -41,6 +43,12 @@ class NotificationManager
     # rubocop:disable Style/ClassVars
     def sciencewire_logger
       @@sciencewire_logger ||= Logger.new(Settings.SCIENCEWIRE.LOG)
+    end
+    # rubocop:enable Style/ClassVars
+
+    # rubocop:disable Style/ClassVars
+    def wos_logger
+      @@wos_logger ||= Logger.new(Settings.WOS.LOG)
     end
     # rubocop:enable Style/ClassVars
 
