@@ -250,7 +250,9 @@ class WosQueries
     # @return [Hash] search query parameters
     def search_by_doi_params(doi)
       user_query = "DO=#{doi}"
-      search_params(user_query)
+      params = search_params(user_query)
+      params[:retrieveParameters][:count] = 10
+      params
     end
 
     # @param name [String] a CSV name pattern: {last name}, {first_name} [{middle_name} | {middle initial}]
