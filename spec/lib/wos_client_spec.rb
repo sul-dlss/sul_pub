@@ -12,6 +12,7 @@ describe WosClient do
   let(:wos_auth) { 'secret' }
   let(:wos_client) { described_class.new(wos_auth) }
   let(:auth_xml) { File.read('spec/fixtures/wos_client/authenticate.xml') }
+  let(:no_session_matches) { File.read('spec/fixtures/wos_client/wos_session_close_fault_response.xml') }
 
   describe '#new' do
     it 'works' do
@@ -60,6 +61,22 @@ describe WosClient do
       savon.expects(:close_session).returns('')
       result = wos_client.session_close
       expect(result).to be_nil
+    end
+    context 'when there are no matches returned for SessionID' do
+      let(:null_logger) { Logger.new('/dev/null') }
+
+      before do
+        savon.expects(:close_session).returns(no_session_matches)
+        NotificationManager.class_variable_set(:@@wos_logger, nil)
+        allow(Logger).to receive(:new).and_return(null_logger)
+      end
+      it 'works' do
+        expect(wos_client.session_close).to be_nil
+      end
+      it 'creates a logger' do
+        expect(NotificationManager).to receive(:wos_logger).and_call_original
+        wos_client.session_close
+      end
     end
   end
 end

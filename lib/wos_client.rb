@@ -62,11 +62,22 @@ class WosClient
   # Resets the session_id and the search client
   # @return [nil]
   def session_close
-    auth.globals[:headers]['Cookie'] = "SID=\"#{session_id}\""
-    auth.call(:close_session)
+    begin
+      auth.globals[:headers]['Cookie'] = "SID=\"#{session_id}\""
+      auth.call(:close_session)
+    rescue Savon::SOAPFault => fault
+      # Savon::SOAPFault: (soap:Server) No matches returned for SessionID
+      logger.warn(fault.inspect)
+    end
     @auth = nil
-    @session_id = nil
     @search = nil
+    @session_id = nil
   end
+
+  private
+
+    def logger
+      @logger ||= NotificationManager.wos_logger
+    end
 
 end
