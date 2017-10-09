@@ -1,4 +1,3 @@
-
 describe ScienceWire::HarvestBroker do
   let(:author) { create(:author) }
   let(:author_name) do
@@ -64,7 +63,7 @@ describe ScienceWire::HarvestBroker do
       it 'calls the dumb query' do
         expect(harvester).to receive(:increment_authors_with_limited_seed_data_count)
         expect(subject).to receive(:ids_from_dumb_query).and_return([1])
-        expect(subject.ids_for_author).to eq [1]
+        expect(subject.send(:ids_for_author)).to eq [1]
       end
     end
     context 'with seed_list > 50' do
@@ -73,14 +72,10 @@ describe ScienceWire::HarvestBroker do
         author_attributes = ScienceWire::AuthorAttributes.new(
           author_name, author.email, seed_list, default_institution
         )
-        expect(ScienceWire::AuthorAttributes).to receive(:new)
-          .and_return(author_attributes)
-        expect(subject).to receive(:seed_list).twice
-          .and_return(seed_list)
-        expect(subject).to receive(:ids_from_smart_query)
-          .with(author_attributes)
-          .and_return([1])
-        expect(subject.ids_for_author).to eq [1]
+        expect(ScienceWire::AuthorAttributes).to receive(:new).and_return(author_attributes)
+        expect(subject).to receive(:seed_list).twice.and_return(seed_list)
+        expect(subject).to receive(:ids_from_smart_query).with(author_attributes).and_return([1])
+        expect(subject.send(:ids_for_author)).to eq [1]
       end
     end
   end
@@ -88,8 +83,7 @@ describe ScienceWire::HarvestBroker do
     context 'when "alternate_name_query" is disabled' do
       subject { described_class.new(alt_author, harvester, alternate_name_query: false) }
       it 'returns an array' do
-        expect(subject.ids_for_alternate_names).to be_an Array
-        expect(subject.ids_for_alternate_names).to be_empty
+        expect(subject.send(:ids_for_alternate_names)).to eq []
       end
     end
     context 'when "alternate_name_query" is enabled' do
@@ -97,21 +91,21 @@ describe ScienceWire::HarvestBroker do
       it 'returns an array of unique alternate name query ids' do
         expect(subject).to receive(:ids_from_dumb_query).exactly(3).times
           .and_return([1, 2], [2, 3], [3, 4])
-        expect(subject.ids_for_alternate_names).to eq [1, 2, 3, 4]
+        expect(subject.send(:ids_for_alternate_names)).to eq [1, 2, 3, 4]
       end
     end
     context 'when "alternate_name_query" is enabled and varying institution (blank, all, *)' do
       subject { described_class.new(alt_author_varying_institution, harvester, alternate_name_query: true) }
       it 'returns an empty array' do
         expect(subject).not_to receive(:ids_from_dumb_query)
-        expect(subject.ids_for_alternate_names).to eq []
+        expect(subject.send(:ids_for_alternate_names)).to eq []
       end
     end
     context 'when "alternate_name_query" is enabled and name pieces blank' do
       subject { described_class.new(alt_author_missing_name_pieces, harvester, alternate_name_query: true) }
       it 'returns an empty array' do
         expect(subject).not_to receive(:ids_from_dumb_query)
-        expect(subject.ids_for_alternate_names).to eq []
+        expect(subject.send(:ids_for_alternate_names)).to eq []
       end
     end
   end
