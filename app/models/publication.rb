@@ -30,35 +30,27 @@ class Publication < ActiveRecord::Base
   has_many :publication_identifiers,
     autosave: true,
     dependent: :destroy,
-    after_add: :identifiers_changed_callback,
-    after_remove: :identifiers_changed_callback do
-    def with_type(t)
-      where(identifier_type: t)
-    end
-  end
+    after_add: :pubhash_needs_update!,
+    after_remove: :pubhash_needs_update!
 
   has_many :authors,
     autosave: true,
     through: :contributions,
-    after_add: :contributions_changed_callback,
-    after_remove: :contributions_changed_callback
+    after_add: :pubhash_needs_update!,
+    after_remove: :pubhash_needs_update!
 
   has_many :contributions,
     autosave: true,
     dependent: :destroy,
-    after_add: :contributions_changed_callback,
-    after_remove: :contributions_changed_callback do
-    def for_author(a)
-      where(author_id: a.id)
-    end
-
+    after_add: :pubhash_needs_update!,
+    after_remove: :pubhash_needs_update! do
     # See also: update_any_new_contribution_info_in_pub_hash_to_db
     def build_or_update(author, contribution_hash = {})
       # Assign or update these contribution attributes
       # Ensure the contribution attributes contain the right author
       contribution_hash[:author_id] = author.id
       contribution_hash[:cap_profile_id] = author.cap_profile_id unless author.cap_profile_id.blank?
-      contrib = for_author(author).first_or_initialize
+      contrib = where(author_id: author.id).first_or_initialize
       if contrib.persisted?
         # Update an existing contribution
         contrib.update(contribution_hash)
@@ -71,19 +63,9 @@ class Publication < ActiveRecord::Base
       end
       # The `proxy_association.owner` is a Publication instance, so
       # set a trigger that will force it to update it's pub_hash data.
-      proxy_association.owner.contributions_changed_callback
+      proxy_association.owner.pubhash_needs_update!
       contrib
     end
-  end
-
-  def contributions_changed_callback(*_args)
-    pubhash_needs_update!
-    true
-  end
-
-  def identifiers_changed_callback(*_args)
-    pubhash_needs_update!
-    true
   end
 
   serialize :pub_hash, Hash
@@ -113,19 +95,17 @@ class Publication < ActiveRecord::Base
     PublicationIdentifier.where(identifier_type: 'pmid', identifier_value: pmid).map(&:publication)
   end
 
+  # @return [Publication] new object
   def self.build_new_manual_publication(pub_hash, original_source_string, provenance)
     existingRecord = UserSubmittedSourceRecord.find_or_initialize_by_source_data(original_source_string)
     if existingRecord && existingRecord.publication
       raise ActiveRecord::RecordNotUnique.new('Publication for user submitted source record already exists', nil)
     end
-    pub = Publication.new(
-      active: true,
-      pub_hash: pub_hash
-    )
-    pub.update_manual_pub_from_pub_hash(pub_hash, original_source_string, provenance)
-    pub
+    Publication.new(active: true, pub_hash: pub_hash)
+               .update_manual_pub_from_pub_hash(pub_hash, original_source_string, provenance)
   end
 
+  # @return [self]
   def update_manual_pub_from_pub_hash(incoming_pub_hash, original_source_string, provenance)
     incoming_pub_hash[:provenance] = provenance
     self.pub_hash = incoming_pub_hash.dup
@@ -146,6 +126,7 @@ class Publication < ActiveRecord::Base
     self
   end
 
+  # @return [self]
   def build_from_sciencewire_hash(new_sw_pub_hash)
     self.pub_hash = new_sw_pub_hash
 
@@ -159,13 +140,9 @@ class Publication < ActiveRecord::Base
     self
   end
 
-  def build_from_pubmed_hash(new_pubmed_pub_hash)
-    self.pub_hash = new_pubmed_pub_hash
-    self
-  end
-
   # this is a very temporary method to be used only for the initial import
   # of data from CAP.
+  # @return [self]
   def cutover_sync_hash_and_db
     set_sul_pub_id_in_hash
     pub_hash[:last_updated] = updated_at.to_s
@@ -182,15 +159,12 @@ class Publication < ActiveRecord::Base
     self
   end
 
+  # @return [self]
   def sync_publication_hash_and_db
-    set_last_updated_value_in_hash
-
-    add_all_db_contributions_to_my_pub_hash
-
+    rebuild_authorship
     sync_identifiers_in_pub_hash_to_db
     add_all_identifiers_in_db_to_pub_hash
     set_sul_pub_id_in_hash if persisted?
-
     update_formatted_citations
     @pubhash_needs_update = false
     self
@@ -218,13 +192,14 @@ class Publication < ActiveRecord::Base
     end
   end
 
+  # @return [self]
   def rebuild_pub_hash
     if sciencewire_id
       sw_source_record = SciencewireSourceRecord.find_by_sciencewire_id(sciencewire_id)
       build_from_sciencewire_hash(sw_source_record.source_as_hash)
     elsif pmid
       pubmed_source_record = PubmedSourceRecord.find_by_pmid(pmid)
-      build_from_pubmed_hash(pubmed_source_record.source_as_hash)
+      self.pub_hash = pubmed_source_record.source_as_hash
     end
     sync_publication_hash_and_db
     self
@@ -281,7 +256,7 @@ class Publication < ActiveRecord::Base
 
       hash_for_update[:author_id] = author.id
       hash_for_update[:cap_profile_id] = author.cap_profile_id unless author.cap_profile_id.blank?
-      contrib = contributions.for_author(author).first_or_initialize
+      contrib = contributions.where(author_id: author.id).first_or_initialize
       contrib.assign_attributes(hash_for_update)
 
       if contrib.persisted?
@@ -302,6 +277,7 @@ class Publication < ActiveRecord::Base
     deleted
   end
 
+  # @return [true]
   def pubhash_needs_update!(*_args)
     @pubhash_needs_update = true
   end

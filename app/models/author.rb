@@ -17,22 +17,9 @@ class Author < ActiveRecord::Base
   end
 
   # Provide consistent API for Author and AuthorIdentity
-  # @return [String] preferred_first_name
-  def first_name
-    preferred_first_name
-  end
-
-  # Provide consistent API for Author and AuthorIdentity
-  # @return [String] preferred_middle_name
-  def middle_name
-    preferred_middle_name
-  end
-
-  # Provide consistent API for Author and AuthorIdentity
-  # @return [String] preferred_last_name
-  def last_name
-    preferred_last_name
-  end
+  alias_attribute :first_name, :preferred_first_name
+  alias_attribute :middle_name, :preferred_middle_name
+  alias_attribute :last_name, :preferred_last_name
 
   # Provide consistent API for Author and AuthorIdentity
   # The default institution is set in
@@ -58,7 +45,10 @@ class Author < ActiveRecord::Base
 
   # @return [Array<Integer>] ScienceWireIds for approved publications
   def approved_sciencewire_ids
-    publications.approved.with_sciencewire_id.pluck(:sciencewire_id).uniq
+    publications.where("contributions.status = 'approved'")
+                .where.not(sciencewire_id: nil)
+                .pluck(:sciencewire_id)
+                .uniq
   end
 
   has_many :contributions, dependent: :destroy, after_add: :contributions_changed_callback, after_remove: :contributions_changed_callback do
@@ -68,7 +58,7 @@ class Author < ActiveRecord::Base
       c.assign_attributes contribution_hash.merge(publication_id: publication.id)
       if c.persisted?
         c.save
-        publication.contributions_changed_callback
+        publication.pubhash_needs_update!
       else
         self << c
       end
@@ -81,16 +71,7 @@ class Author < ActiveRecord::Base
   def contributions_changed_callback(*_args)
   end
 
-  has_many :publications, through: :contributions do
-    def approved
-      where("contributions.status='approved'")
-    end
-
-    def with_sciencewire_id
-      where(Publication.arel_table[:sciencewire_id].not_eq(nil))
-    end
-  end
-
+  has_many :publications, through: :contributions
   has_many :approved_sw_ids, -> { where("contributions.status = 'approved'") }, through: :contributions,
                                                                                 class_name: 'PublicationIdentifier',
                                                                                 source: :publication_identifier,
