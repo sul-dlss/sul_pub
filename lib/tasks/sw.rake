@@ -2,17 +2,15 @@ namespace :sw do
   def harvester
     @harvester ||= begin
       h = ScienceWireHarvester.new
-
       Signal.trap('USR1') do
         harvester.debug = true
       end
-
       h
     end
   end
 
   # rake sw:fortnightly_harvest[1, 5]
-  desc 'harvest from sciencewire by email or known sciencewire pub ids'
+  desc 'Harvest from sciencewire by email or known sciencewire pub ids'
   task :fortnightly_harvest, [:starting_author_id, :ending_author_id] => :environment do |_t, args|
     args.with_defaults(starting_author_id: 1, ending_author_id: -1)
     starting_author_id = (args[:starting_author_id]).to_i
@@ -21,7 +19,7 @@ namespace :sw do
     # CapAuthorshipMailer.welcome_email("harvest complete").deliver
   end
 
-  desc 'harvest (with multiple processes) from sciencewire by email or known sciencewire pub ids'
+  desc 'Harvest (with multiple processes) from sciencewire by email or known sciencewire pub ids'
   task parallel_harvest: :environment do
     harvester.harvest_pubs_for_all_authors_parallel
   end
@@ -58,6 +56,38 @@ namespace :sw do
   desc 'Harvest using a text report file of WOS ids and cap_profile_ids'
   task :wos_profile_id_report, [:path_to_report] => :environment do |_t, args|
     harvester.harvest_from_wos_id_cap_profile_id_report args[:path_to_report]
+  end
+
+  desc 'Compare publications (IDs) returned by APIs for an Author identified by their name [last,first,middle]'
+  task :wos_publications_for_name, [:last, :first, :middle] => :environment do |_t, args|
+    fail "last name argument is required" unless args[:last].present?
+    fail "first name argument is required" unless args[:first].present?
+    author_name = ScienceWire::AuthorName.new(args[:last], args[:first], args[:middle])
+    attribs = ScienceWire::AuthorAttributes.new(author_name, '', [], ScienceWireHarvester.new.default_institution)
+    puts "Querying ScienceWire for #{author_name.inspect}"
+    ids = ScienceWire::HarvestBroker.new(nil, ScienceWireHarvester.new).ids_from_dumb_query(attribs)
+    puts "\n" << ids.sort if ids.count > 0
+    puts "\nQuerying WebOfScience for #{author_name.full_name}"
+    records = WosQueries.new(WosClient.new(Settings.WOS.AUTH_CODE)).search_by_name(author_name.full_name)
+    uids = records.uids.sort
+    puts uids
+    puts "\n#{ids.count} ScienceWire IDs"
+    puts "#{uids.count} WebOfScience IDs"
+    wos_ids     = uids.select { |id| id =~ /^WOS:/ }.map { |id| id[4..-1] } # match and strip prefix
+    medline_ids = uids.select { |id| id =~ /^MEDLINE:/ }.map { |id| id[8..-1] } # match and strip prefix
+    wos_hits     = PublicationIdentifier.where(identifier_type: 'WoSItemID', identifier_value: wos_ids)
+    medline_hits = PublicationIdentifier.where(identifier_type: 'PMID', identifier_value: medline_ids)
+    swids_from_wos     = wos_hits.map { |pub_id| pub_id.publication.sciencewire_id }.compact
+    swids_from_medline = medline_hits.map { |pub_id| pub_id.publication.sciencewire_id }.compact
+    counts = Hash.new { 0 }
+    counts[:medline_intersection] = (ids & swids_from_medline).count
+    counts[:wos_intersection]     = (ids & swids_from_wos).count
+    puts "\t#{medline_ids.count} MEDLINE IDs: #{swids_from_medline.count} of #{medline_hits.count} matching PubIDs in DB have SW ID"
+    puts "\t#{wos_ids.count} WOS IDs: #{swids_from_wos.count} of #{wos_hits.count} matching PubIDs in DB have SW ID"
+    puts "\nTotal INTERSECTION of ScienceWire IDs (#{counts.values.sum})"
+    puts "\t#{counts[:medline_intersection]} MEDLINE"
+    puts "\t#{counts[:wos_intersection]} WOS"
+    puts "\nUnmatched ScienceWire IDs: " << ids - swids_from_medline - swids_from_wos if ids.count > counts.values.sum
   end
 
   desc 'Retrieve and print a single publication by WOS id: wos_publication[wos_id]'
