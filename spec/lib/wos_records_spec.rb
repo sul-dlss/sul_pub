@@ -187,6 +187,31 @@ describe WosRecords do
     end
   end
 
+  describe '#records_by_database' do
+    let(:records_by_db) do
+      <<-XML_DBS
+        <records>
+          <REC><UID>WOS:123</UID></REC>
+          <REC><UID>MEDLINE:456</UID></REC>
+        </records>
+      XML_DBS
+    end
+    let(:db_records) { described_class.new(records: records_by_db) }
+    let(:nodes_wos) { db_records.by_database }
+    let(:nodes_medline) { db_records.by_database('MEDLINE') }
+    let(:nodes_missing) { db_records.by_database('MISSING-DB') }
+
+    it 'extracts WOS records' do
+      expect(nodes_wos.count).to eq 1
+    end
+    it 'extracts MEDLINE records' do
+      expect(nodes_medline.count).to eq 1
+    end
+    it 'returns an empty node set when no database records exist' do
+      expect(nodes_missing).to be_empty
+    end
+  end
+
   # ---
   # XML specs
 
