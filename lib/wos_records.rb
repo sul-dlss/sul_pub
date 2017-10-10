@@ -27,6 +27,13 @@ class WosRecords
     @doc = Nokogiri::XML(@records) { |config| config.strict.noblanks }
   end
 
+  # Select records by the database prefix in the UID
+  # @param database [String] the UID database prefix (defaults to 'WOS')
+  # @return [Nokogiri::XML::NodeSet]
+  def by_database(database = 'WOS')
+    rec_nodes.select { |rec| record_uid(rec).start_with? database }
+  end
+
   # Iterate over the REC nodes
   # @yield rec [Nokogiri::XML::Element]
   def each
