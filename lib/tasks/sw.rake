@@ -66,11 +66,11 @@ namespace :sw do
     attribs = ScienceWire::AuthorAttributes.new(author_name, '', [], ScienceWireHarvester.new.default_institution)
     puts "Querying ScienceWire for #{author_name.inspect}"
     ids = ScienceWire::HarvestBroker.new(nil, ScienceWireHarvester.new).ids_from_dumb_query(attribs)
-    puts "\n" << ids.sort if ids.count > 0
+    puts "\n" << ids.sort.join("\n") if ids.count > 0
     puts "\nQuerying WebOfScience for #{author_name.full_name}"
     records = WosQueries.new(WosClient.new(Settings.WOS.AUTH_CODE)).search_by_name(author_name.full_name)
     uids = records.uids.sort
-    puts uids
+    puts uids.join("\n")
     puts "\n#{ids.count} ScienceWire IDs"
     puts "#{uids.count} WebOfScience IDs"
     wos_ids     = uids.select { |id| id =~ /^WOS:/ }.map { |id| id[4..-1] } # match and strip prefix
@@ -87,7 +87,7 @@ namespace :sw do
     puts "\nTotal INTERSECTION of ScienceWire IDs (#{counts.values.sum})"
     puts "\t#{counts[:medline_intersection]} MEDLINE"
     puts "\t#{counts[:wos_intersection]} WOS"
-    puts "\nUnmatched ScienceWire IDs: " << ids - swids_from_medline - swids_from_wos if ids.count > counts.values.sum
+    puts "\nUnmatched ScienceWire IDs: " << (ids - swids_from_medline - swids_from_wos).join("\n") if ids.count > counts.values.sum
   end
 
   desc 'Retrieve and print a single publication by WOS id: wos_publication[wos_id]'
