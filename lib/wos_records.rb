@@ -27,11 +27,19 @@ class WosRecords
     @doc = Nokogiri::XML(@records) { |config| config.strict.noblanks }
   end
 
-  # Select records by the database prefix in the UID
-  # @param database [String] the UID database prefix (defaults to 'WOS')
-  # @return [Nokogiri::XML::NodeSet]
-  def by_database(database = 'WOS')
-    rec_nodes.select { |rec| record_uid(rec).start_with? database }
+  # Group records by the database prefix in the UID
+  #  - where a database prefix is missing, groups records into 'MISSING_DB'
+  # @return [Hash<String => WosRecords>]
+  def by_database
+    db_recs = rec_nodes.group_by do |rec|
+      uid_split = record_uid(rec).split(':')
+      uid_split.length > 1 ? uid_split[0] : 'MISSING_DB'
+    end
+    db_recs.each_key do |db|
+      rec_doc = Nokogiri::XML("<records>#{db_recs[db].map(&:to_xml).join}</records>")
+      db_recs[db] = WosRecords.new(records: rec_doc.to_xml)
+    end
+    db_recs
   end
 
   # Iterate over the REC nodes
