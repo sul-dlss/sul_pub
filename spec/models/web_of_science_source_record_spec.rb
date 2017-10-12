@@ -2,11 +2,8 @@
 RSpec.describe WebOfScienceSourceRecord, type: :model do
   let(:encoded_records) { File.read('spec/fixtures/wos_client/wos_encoded_records.html') }
   let(:wos_records) { WosRecords.new(encoded_records: encoded_records) }
-  let(:wos_record) do
-    rec_node = wos_records.first
-    rec_node.to_xml(save_with: Nokogiri::XML::Node::SaveOptions::AS_XML | Nokogiri::XML::Node::SaveOptions::NO_DECLARATION).strip
-  end
-  let(:wos_src_rec) { described_class.new(source_data: wos_record) }
+  let(:wos_record) { wos_records.first }
+  let(:wos_src_rec) { described_class.new(source_data: wos_record.to_xml) }
 
   context 'initialize a new record' do
     it 'can be created from a WOS source record' do

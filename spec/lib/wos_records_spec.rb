@@ -62,8 +62,8 @@ describe WosRecords do
   end
 
   describe '#each' do
-    it 'yields WoS record elements' do
-      wos_records_encoded.all? { |rec| expect(rec).to be_an Nokogiri::XML::Element }
+    it 'yields WosRecord objects' do
+      wos_records_encoded.all? { |rec| expect(rec).to be_an WosRecord }
     end
   end
 

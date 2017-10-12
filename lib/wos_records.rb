@@ -42,10 +42,10 @@ class WosRecords
     db_recs
   end
 
-  # Iterate over the REC nodes
-  # @yield rec [Nokogiri::XML::Element]
+  # Iterate over WosRecord objects
+  # @yield wos_record [WosRecord]
   def each
-    rec_nodes.each { |rec| yield rec }
+    rec_nodes.each { |rec| yield WosRecord.new(record: rec.to_xml) }
   end
 
   # @return uids [Array<String>] the rec_nodes UID values (in order)
