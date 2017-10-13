@@ -84,10 +84,11 @@ namespace :sw do
     counts[:wos_intersection]     = (ids & swids_from_wos).count
     puts "\t#{medline_ids.count} MEDLINE IDs: #{swids_from_medline.count} of #{medline_hits.count} matching PubIDs in DB have SW ID"
     puts "\t#{wos_ids.count} WOS IDs: #{swids_from_wos.count} of #{wos_hits.count} matching PubIDs in DB have SW ID"
-    puts "\nTotal INTERSECTION of ScienceWire IDs (#{counts.values.sum})"
+    puts "\nTotal INTERSECTION with ScienceWire IDs (#{counts.values.sum} of #{ids.count}):"
     puts "\t#{counts[:medline_intersection]} MEDLINE"
     puts "\t#{counts[:wos_intersection]} WOS"
-    puts "\nUnmatched ScienceWire IDs: " << (ids - swids_from_medline - swids_from_wos).join("\n") if ids.count > counts.values.sum
+    unmatched = ids - swids_from_medline - swids_from_wos
+    puts "\n#{unmatched.count} Unmatched ScienceWire IDs:\n" << unmatched.join("\n") unless unmatched.empty?
   end
 
   desc 'Retrieve and print a single publication by WOS id: wos_publication[wos_id]'
