@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160506112216) do
+ActiveRecord::Schema.define(version: 20171010223256) do
 
   create_table "author_identities", force: :cascade do |t|
     t.integer  "author_id",     limit: 4,               null: false
@@ -206,6 +206,18 @@ ActiveRecord::Schema.define(version: 20160506112216) do
   end
 
   add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
+
+  create_table "web_of_science_source_records", force: :cascade do |t|
+    t.boolean  "active"
+    t.string   "database",           limit: 255
+    t.text     "source_data",        limit: 65535
+    t.string   "source_fingerprint", limit: 255
+    t.string   "uid",                limit: 255
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+  end
+
+  add_index "web_of_science_source_records", ["uid"], name: "web_of_science_uid_index", using: :btree
 
   add_foreign_key "author_identities", "authors"
 end
