@@ -216,7 +216,7 @@ GEM
     mustermann (1.0.1)
     mustermann-grape (1.0.0)
       mustermann (~> 1.0.0)
-    mysql2 (0.3.18)
+    mysql2 (0.4.9)
     namae (0.11.3)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
@@ -457,7 +457,7 @@ DEPENDENCIES
   jquery-rails
   kaminari
   libv8
-  mysql2 (~> 0.3.18)
+  mysql2 (~> 0.4.9)
   nokogiri (>= 1.7.1)
   okcomputer
   paper_trail
