@@ -51,7 +51,7 @@ GEM
       descendants_tracker (~> 0.0.4)
       ice_nine (~> 0.11.0)
       thread_safe (~> 0.3, >= 0.3.1)
-    bibtex-ruby (4.0.14)
+    bibtex-ruby (4.4.4)
       latex-decode (~> 0.0)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
@@ -399,7 +399,7 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.1)
-    unicode (0.4.4.2)
+    unicode (0.4.4.4)
     unicode-display_width (0.3.1)
     vcr (3.0.1)
     virtus (1.0.5)
