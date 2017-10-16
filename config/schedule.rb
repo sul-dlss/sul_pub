@@ -15,8 +15,3 @@ end
 every 1.day, at: stagger(4), roles: [:harvester] do
   rake 'cap:poll[1]'
 end
-
-# call a rake task that hits the OK computer external checks, triggering honeybadger notifications if there is an error
-every 30.minutes, roles: [:external_monitor] do
-  rake "sul:check_external_services[\"https://#{`hostname`.chomp!}\"]"
-end
