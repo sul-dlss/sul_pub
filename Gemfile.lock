@@ -55,7 +55,7 @@ GEM
       latex-decode (~> 0.0)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
-    bio (1.5.0)
+    bio (1.5.1)
     bootstrap-sass (3.3.7)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
