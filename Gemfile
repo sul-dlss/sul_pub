@@ -23,29 +23,29 @@ gem 'activerecord-import'
 gem 'bibtex-ruby'
 gem 'bio'
 gem 'citeproc-ruby', '~> 1.0'
-gem 'csl-styles', '~> 1.0'
 gem 'config'
+gem 'csl-styles', '~> 1.0'
 gem 'delayed_job'
 gem 'delayed_job_active_record'
 gem 'dotiw'
 gem 'faraday'
+gem 'high_voltage'
 gem 'htmlentities', '~> 4.3'
 gem 'httpclient', '~> 2.7'
-gem 'high_voltage'
 # To use Jbuilder templates for JSON
 gem 'jbuilder'
 gem 'jquery-rails'
 gem 'kaminari'
 gem 'libv8'
-gem 'turnout'
 gem 'okcomputer' # for monitoring
-gem 'parallel'
 gem 'paper_trail'
+gem 'parallel'
 gem 'pry-rails'
 gem 'pubmed_search'
 gem 'rest-client'
 gem 'savon', '~> 2.11'
 gem 'simple_form'
+gem 'turnout'
 gem 'whenever', require: false
 gem 'yaml_db'
 
@@ -69,16 +69,16 @@ group :development do
 end
 
 group :test do
-  gem 'rspec-rails', '~> 3.0'
-  gem 'factory_girl_rails', '~> 4.0'
-  gem 'database_cleaner'
   gem 'capybara'
   gem 'coveralls', '~> 0.8', require: false
+  gem 'database_cleaner'
+  gem 'equivalent-xml'
+  gem 'factory_girl_rails', '~> 4.0'
+  gem 'rspec-rails', '~> 3.0'
   gem 'simplecov', '~> 0.13', require: false
   gem 'single_cov'
   gem 'vcr'
   gem 'webmock'
-  gem 'equivalent-xml'
 end
 
 group :deployment do
