@@ -93,7 +93,7 @@ GEM
     chronic (0.10.2)
     citeproc (1.0.5)
       namae (~> 0.8)
-    citeproc-ruby (1.1.6)
+    citeproc-ruby (1.1.7)
       citeproc (>= 1.0.4, < 2.0)
       csl (~> 1.4)
     codemirror-rails (5.6)
@@ -441,7 +441,7 @@ DEPENDENCIES
   capistrano-rails
   capistrano-shell
   capybara
-  citeproc-ruby (~> 1.0)
+  citeproc-ruby (~> 1.1)
   config
   coveralls (~> 0.8)
   csl-styles (~> 1.0)
