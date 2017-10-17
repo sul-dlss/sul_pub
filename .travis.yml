@@ -5,9 +5,17 @@ rvm:
   - 2.3.4
   - 2.4.1
 services: mysql
-script: bundle exec rake ci
 before_script:
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
   - bundle exec rake db:create db:setup
+script: bundle exec rake ci
+after_script:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+env:
+  global:
+    - CC_TEST_REPORTER_ID=66a4c4244af78b2eaf74c47fed9bfa88560c30c2c9a4e921053f6cd7ce097677
 notifications:
   email: false
   slack:
