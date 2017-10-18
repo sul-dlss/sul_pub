@@ -203,7 +203,7 @@ namespace :cap_cutover do
       author = Author.where(cap_profile_id: row[:profile_id]).first
       pub_hash = convert_manual_publication_row_to_hash(row, author.id.to_s)
       original_source = row.to_s
-      pub = Publication.build_new_manual_publication(pub_hash, original_source, Settings.cap_provenance)
+      pub = Publication.build_new_manual_publication(pub_hash, original_source)
       pub.save
     end
     @cap_manual_import_logger.info 'Finished import.' + Time.zone.now.to_s
@@ -253,12 +253,12 @@ namespace :cap_cutover do
           else
             # Pub and UserSubmittedSourceRecord exist
             @cap_manual_import_logger.info "Updating Publication '#{row[:article_title]}' for #{row[:sunetid]}"
-            pub.update_manual_pub_from_pub_hash(pub_hash, original_source, Settings.cap_provenance)
+            pub.update_manual_pub_from_pub_hash(pub_hash, original_source)
           end
         else
           # Brand new UserSubmittedSourceRecord
           @cap_manual_import_logger.info "Creating brand new Publication '#{row[:article_title]}'  and SourceRecord for #{row[:sunetid]}"
-          pub = Publication.build_new_manual_publication(pub_hash, original_source, Settings.cap_provenance)
+          pub = Publication.build_new_manual_publication(pub_hash, original_source)
           pub.save
         end
       rescue => e
