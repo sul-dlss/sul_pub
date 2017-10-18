@@ -52,7 +52,7 @@ class PublicationsController < ApplicationController
 
       respond_to do |format|
         format.json do
-          bibjson = wrap_as_bibjson_collection(description, env['ORIGINAL_FULLPATH'].to_s, matching_records, page, per)
+          bibjson = wrap_as_bibjson_collection(description, matching_records, page, per)
           self.response_body = JSON.dump(bibjson)
         end
         format.csv do
@@ -105,7 +105,7 @@ class PublicationsController < ApplicationController
 
     respond_to do |format|
       format.json do
-        bibjson = wrap_as_bibjson_collection(description, env['ORIGINAL_FULLPATH'].to_s, matching_records)
+        bibjson = wrap_as_bibjson_collection(description, matching_records)
         self.response_body = JSON.dump(bibjson)
       end
     end
@@ -113,13 +113,13 @@ class PublicationsController < ApplicationController
 
   private
 
-    def wrap_as_bibjson_collection(description, query, records, page = nil, per_page = nil)
+    def wrap_as_bibjson_collection(description, records, page = nil, per_page = nil)
       metadata = {
         _created: Time.zone.now.iso8601,
         description: description,
         format: 'BibJSON',
         license: 'some licence',
-        query: query,
+        query: env['ORIGINAL_FULLPATH'].to_s,
         records:  records.count.to_s
       }
       metadata[:page] = page || 1
