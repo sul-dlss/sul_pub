@@ -35,9 +35,7 @@ class WosRecord
   def names
     @names ||= begin
       names = doc.search('static_data/summary/names/name').map do |name|
-        fields = attributes_map(name)
-        fields += name.children.map { |n| [n.name, n.text] }
-        fields.to_h
+        attributes_with_children_hash(name)
       end
       names.sort { |name| name['seq_no'].to_i }
     end
@@ -72,16 +70,12 @@ class WosRecord
       publishers = doc.search('static_data/summary/publishers/publisher').map do |publisher|
         # parse the publisher address(es)
         addresses = publisher.search('address_spec').map do |address|
-          attributes = attributes_map(address)
-          fields = attributes + address.children.map { |a| [a.name, a.text] }
-          fields.to_h
+          attributes_with_children_hash(address)
         end
         addresses.sort! { |a| a['addr_no'].to_i }
         # parse the publisher name(s)
         names = publisher.search('names/name').map do |name|
-          attributes = attributes_map(name)
-          fields = attributes + name.children.map { |n| [n.name, n.text] }
-          fields.to_h
+          attributes_with_children_hash(name)
         end
         # associate each publisher name with it's address by 'addr_no'
         names.each do |name|
@@ -152,6 +146,14 @@ class WosRecord
     # @return attributes [Array<Array[String, String]>]
     def attributes_map(element)
       element.attributes.map { |name, att| [name, att.value] }
+    end
+
+    # @param element [Nokogiri::XML::Element]
+    # @return fields [Hash]
+    def attributes_with_children_hash(element)
+      fields = attributes_map(element)
+      fields += element.children.map { |c| [c.name, c.text] }
+      fields.to_h
     end
 
     # Return a decoded record, whether it is passed in already or needs to be decoded
