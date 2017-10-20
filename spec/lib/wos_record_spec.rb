@@ -196,6 +196,28 @@ describe WosRecord do
     end
   end
 
+  describe '#to_h' do
+    let(:hash) { wos_record_encoded.to_h }
+
+    it 'works' do
+      expect(hash).to be_an Hash
+    end
+    it 'contains summary fields' do
+      expect(hash['summary']).to eq wos_record_encoded.summary
+    end
+  end
+
+  describe '#to_struct' do
+    let(:struct) { wos_record_encoded.to_struct }
+
+    it 'works' do
+      expect(struct).to be_an OpenStruct
+    end
+    it 'contains summary fields' do
+      expect(struct.summary).to be_an OpenStruct
+    end
+  end
+
   describe '#uid' do
     it 'works' do
       expect(wos_record_encoded.uid).to eq wos_uid
