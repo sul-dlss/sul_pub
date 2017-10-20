@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'grape', '~> 1.0'
+gem 'grape', '~> 0.19'
 gem 'rails', '~> 4.2.10'
 gem 'responders', '~> 2.4'
 
