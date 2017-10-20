@@ -120,6 +120,20 @@ class WosRecord
     end
   end
 
+  # Extract the REC fields
+  # @return [Hash]
+  def to_h
+    {
+      'summary' => summary,
+    }
+  end
+
+  # An OpenStruct for the REC fields
+  # @return [OpenStruct]
+  def to_struct
+    to_o(to_h)
+  end
+
   # @return xml [String] XML
   def to_xml
     doc.to_xml(save_with: XML_OPTIONS).strip
