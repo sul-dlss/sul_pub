@@ -79,7 +79,7 @@ module SulBib
         if !validate_or_create_authors(pub_hash[:authorship])
           error!('You have not supplied a valid authorship record.', 406)
         end
-        pub = Publication.build_new_manual_publication(pub_hash, original_source, Settings.cap_provenance)
+        pub = Publication.build_new_manual_publication(pub_hash, original_source)
         pub.save
         pub.reload
         logger.debug("Created new publication #{pub.inspect}")
@@ -110,7 +110,7 @@ module SulBib
       logger.info("Update manual publication #{old_pub.inspect} with BibJSON:")
       logger.info(original_source)
 
-      old_pub.update_manual_pub_from_pub_hash(new_pub, original_source, Settings.cap_provenance)
+      old_pub.update_manual_pub_from_pub_hash(new_pub, original_source)
       old_pub.save
       old_pub.reload
       logger.debug("resulting pub hash: #{old_pub.pub_hash}")

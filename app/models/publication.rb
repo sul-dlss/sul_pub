@@ -96,7 +96,7 @@ class Publication < ActiveRecord::Base
   end
 
   # @return [Publication] new object
-  def self.build_new_manual_publication(pub_hash, original_source_string, provenance)
+  def self.build_new_manual_publication(pub_hash, original_source_string, provenance = Settings.cap_provenance)
     existingRecord = UserSubmittedSourceRecord.find_or_initialize_by_source_data(original_source_string)
     if existingRecord && existingRecord.publication
       raise ActiveRecord::RecordNotUnique.new('Publication for user submitted source record already exists', nil)
@@ -106,7 +106,7 @@ class Publication < ActiveRecord::Base
   end
 
   # @return [self]
-  def update_manual_pub_from_pub_hash(incoming_pub_hash, original_source_string, provenance)
+  def update_manual_pub_from_pub_hash(incoming_pub_hash, original_source_string, provenance = Settings.cap_provenance)
     incoming_pub_hash[:provenance] = provenance
     self.pub_hash = incoming_pub_hash.dup
     r = user_submitted_source_records.first || UserSubmittedSourceRecord.find_or_initialize_by_source_data(original_source_string)
