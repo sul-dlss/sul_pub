@@ -17,7 +17,19 @@ require 'identifiers'
 # Identifiers::RepecId.extract('')
 # Identifiers::URN.extract('')
 
+# Exception for incorrect instantiation of a parser (not necessarily bad data)
+class ParseIdentifierTypeError < StandardError
+
+end
+
+# Exception for bad data
+class ParseIdentifierInvalidError < StandardError
+
+end
+
 # Parse the identifiers in a PublicationIdentifier
+#
+# This is a base class for ParseIdentifier* subclasses.
 #
 # This class should try to work with the input parameter as a read-only object.
 # It should only modify it when explicitly asked to `update` it.  If it's
@@ -26,152 +38,82 @@ require 'identifiers'
 # @see script/publication_identifier_normalization.rb
 class ParseIdentifier
 
-  URI_PREFIX_DOI = 'http://dx.doi.org/'.freeze
-  # URI_PREFIX_ISBN = ''.freeze # maybe there is no such thing?
-  URI_PREFIX_PMID = 'https://www.ncbi.nlm.nih.gov/pubmed/'.freeze
-
   attr_reader :pub_id
+  attr_reader :type
 
-  # The pub_id parameter should respond to these fields:
-  # pub_id[:identifier_type]
-  # pub_id[:identifier_value]
-  # pub_id[:identifier_uri]
-  # @param pub_id [PublicationIdentifier|Hash]
+  # @param pub_id [PublicationIdentifier]
   def initialize(pub_id)
     @pub_id = pub_id
-    raise "#{pub_info} is blank" if value.blank? && uri.blank?
+    @type = pub_id[:identifier_type]
+    raise(ParseIdentifierTypeError, "INVALID TYPE #{pub_id.inspect}") unless match_type
+    raise(ParseIdentifierInvalidError, "EMPTY DATA #{pub_id.inspect}") if empty?
+    raise(ParseIdentifierInvalidError, "INVALID DATA #{pub_id.inspect}") unless valid?
   end
 
-  def type
-    pub_id[:identifier_type]
-  end
-
-  def value
-    pub_id[:identifier_value]
-  end
-
-  def uri
-    pub_id[:identifier_uri]
+  def empty?
+    pub_id[:identifier_value].blank? && pub_id[:identifier_uri].blank?
   end
 
   # Update the pub_id with parsed data
-  # @return pub_id [PublicationIdentifier|Hash]
+  # @return pub_id [PublicationIdentifier]
   def update
-    if type_doi
-      pub_id[:identifier_value] = doi
-      pub_id[:identifier_uri] = doi_uri
-    elsif type_isbn
-      pub_id[:identifier_value] = isbn
-      pub_id[:identifier_uri] = isbn_uri
-    elsif type_pmid
-      pub_id[:identifier_value] = pmid
-      pub_id[:identifier_uri] = pmid_uri
-    end
+    pub_id[:identifier_value] = value
+    pub_id[:identifier_uri] = uri
     pub_id
   end
 
-  # ---
-  # DOI
-
-  # Extract a DOI value
-  # @return doi [String|nil]
-  def doi
-    @doi ||= begin
-      return nil unless type_doi
-      extract_value
-    end
+  # Does the data validate?
+  def valid?
+    # the base class does no validations
+    true
   end
 
-  # Extract a DOI URI
-  # @return doi_uri [String|nil]
-  def doi_uri
-    @doi_uri ||= begin
-      return nil unless type_doi
-      URI_PREFIX_DOI + doi
-    end
+  # Extract a value
+  # @return [String|nil]
+  def value
+    # this base class uses the pub_id value
+    @value ||= pub_id[:identifier_value]
   end
 
-  # ---
-  # ISBN
-
-  # Extract an ISBN value
-  # @return isbn [String|nil]
-  def isbn
-    @isbn ||= begin
-      return nil unless type_isbn
-      extract_value
-    end
-  end
-
-  # Extract an ISBN URI
-  # @return isbn_uri [String|nil]
-  def isbn_uri
-    nil # there is no URI
-  end
-
-  # ---
-  # PMID
-
-  # Extract a PMID value
-  # @return pmid [String|nil]
-  def pmid
-    @pmid ||= begin
-      return nil unless type_pmid
-      extract_value
-    end
-  end
-
-  # Extract an PMID URI
-  # @return pmid_uri [String|nil]
-  def pmid_uri
-    @pmid_uri ||= begin
-      return nil unless type_pmid
-      URI_PREFIX_PMID + pmid
-    end
+  # Extract a URI
+  # @return [String|nil]
+  def uri
+    # this base class uses the pub_id URI
+    @uri ||= compose_uri
   end
 
   private
 
+    # Compose a URI
+    # @return [String|nil]
+    def compose_uri
+      pub_id[:identifier_uri]
+    end
+
     def extractor
-      @extractor ||= if type_doi
-                       Identifiers::DOI
-                     elsif type_isbn
-                       Identifiers::ISBN
-                     elsif type_pmid
-                       Identifiers::PubmedId
-                     end
+      # subclasses can normalize data, otherwise this method should never get called
+      raise(NotImplementedError, "There is no ParseIdentifier for a #{type}")
     end
 
     def extract_value
-      extract = extractor.extract(value).first
-      extract = extractor.extract(uri).first if extract.blank?
-      msg = "#{type}: #{pub_info} '#{extract}' extracted from '#{value}' or '#{uri}'"
+      # the value should only ever be one identifier, so we can extract the .first
+      # and when it fails to extract an identifier, the .first call returns nil
+      extract = extractor.extract(pub_id[:identifier_value]).first
+      extract = extract_value_from_uri if extract.blank?
+      msg = "'#{extract}' extracted from '#{pub_id.inspect}'"
       extract.blank? ? logger.error(msg) : logger.info(msg)
       extract
+    end
+
+    def extract_value_from_uri
+      extractor.extract(pub_id[:identifier_uri]).first
     end
 
     def logger
       @logger ||= Logger.new(Rails.root.join('log', 'parse_identifier.log'))
     end
 
-    def pub_info
-      @pub_info ||= begin
-        id = pub_id[:id] || ''
-        pub = pub_id[:publication_id] || 'n/a'
-        "#{pub_id.class} #{id}: SulPubID #{pub}:"
-      end
+    def match_type
+      true # this base class can match anything and does nothing to them
     end
-
-    def type_doi
-      type =~ /\Adoi\z/i
-    end
-
-    def type_isbn
-      type =~ /\Aisbn\z/i
-    end
-
-    def type_pmid
-      type =~ /\Apmid\z/i
-    end
-
 end
