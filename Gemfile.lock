@@ -142,8 +142,8 @@ GEM
     docile (1.1.5)
     domain_name (0.5.24)
       unf (>= 0.0.5, < 1.0.0)
-    dotiw (3.0.1)
-      actionpack (>= 3)
+    dotiw (4.0.0)
+      actionpack (>= 4)
       i18n
     dry-configurable (0.7.0)
       concurrent-ruby (~> 1.0)
