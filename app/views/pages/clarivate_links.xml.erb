@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<request xmlns="http://www.isinet.com/xrpc41" src="app.id=API Demo">
+  <fn name="LinksAMR.retrieve">
+    <list>
+      <map>
+        <val name="username"><%= client.username %></val>
+        <val name="password"><%= client.password %></val>
+      </map>
+      <map>
+        <list name="WOS">
+          <% return_fields.each do |val| %>
+            <val><%= val %></val>
+          <% end %>
+        </list>
+      </map>
+      <map>
+        <% cites.first(50).each do |id| %>
+          <map name="cite_<%= id %>">
+            <val name="ut"><%= id %></val>
+          </map>
+        <% end %>
+      </map>
+    </list>
+  </fn>
+</request>
