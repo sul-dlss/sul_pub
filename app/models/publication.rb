@@ -16,11 +16,11 @@ class Publication < ActiveRecord::Base
 
   before_save do
     sync_publication_hash_and_db if pubhash_needs_update?
-    self.title = pub_hash[:title] unless pub_hash[:title].blank?
-    self.issn = pub_hash[:issn] unless pub_hash[:issn].blank?
-    self.pages = pub_hash[:pages] unless pub_hash[:pages].blank?
-    self.publication_type = pub_hash[:type] unless pub_hash[:type].blank?
-    self.year = pub_hash[:year] unless pub_hash[:year].blank?
+    self.title = pub_hash[:title] if pub_hash[:title].present?
+    self.issn = pub_hash[:issn] if pub_hash[:issn].present?
+    self.pages = pub_hash[:pages] if pub_hash[:pages].present?
+    self.publication_type = pub_hash[:type] if pub_hash[:type].present?
+    self.year = pub_hash[:year] if pub_hash[:year].present?
   end
 
   has_one :batch_uploaded_source_record
@@ -49,7 +49,7 @@ class Publication < ActiveRecord::Base
       # Assign or update these contribution attributes
       # Ensure the contribution attributes contain the right author
       contribution_hash[:author_id] = author.id
-      contribution_hash[:cap_profile_id] = author.cap_profile_id unless author.cap_profile_id.blank?
+      contribution_hash[:cap_profile_id] = author.cap_profile_id if author.cap_profile_id.present?
       contrib = where(author_id: author.id).first_or_initialize
       if contrib.persisted?
         # Update an existing contribution
@@ -132,7 +132,7 @@ class Publication < ActiveRecord::Base
 
     self.sciencewire_id = new_sw_pub_hash[:sw_id]
 
-    unless pmid.blank?
+    if pmid.present?
       new_sw_pub_hash[:pmid] = pmid.to_s # Preserve the pmid just in case incoming sciencewire doc doesn't have PMID
       add_any_pubmed_data_to_hash
     end
@@ -242,7 +242,7 @@ class Publication < ActiveRecord::Base
       author_id = contrib[:sul_author_id]
       cap_profile_id = contrib[:cap_profile_id]
       author = Author.find_by_id(author_id)
-      unless cap_profile_id.blank?
+      if cap_profile_id.present?
         author ||= Author.find_by_cap_profile_id(cap_profile_id)
         author ||= begin
           Author.fetch_from_cap_and_create(cap_profile_id)
@@ -255,7 +255,7 @@ class Publication < ActiveRecord::Base
       next if author.nil?
 
       hash_for_update[:author_id] = author.id
-      hash_for_update[:cap_profile_id] = author.cap_profile_id unless author.cap_profile_id.blank?
+      hash_for_update[:cap_profile_id] = author.cap_profile_id if author.cap_profile_id.present?
       contrib = contributions.where(author_id: author.id).first_or_initialize
       contrib.assign_attributes(hash_for_update)
 
@@ -300,8 +300,8 @@ class Publication < ActiveRecord::Base
     pubmed_hash = PubmedSourceRecord.get_pubmed_hash_for_pmid(pmid)
     return if pubmed_hash.nil?
 
-    pub_hash[:mesh_headings] = pubmed_hash[:mesh_headings] unless pubmed_hash[:mesh_headings].blank?
-    pub_hash[:abstract] = pubmed_hash[:abstract] unless pubmed_hash[:abstract].blank?
+    pub_hash[:mesh_headings] = pubmed_hash[:mesh_headings] if pubmed_hash[:mesh_headings].present?
+    pub_hash[:abstract] = pubmed_hash[:abstract] if pubmed_hash[:abstract].present?
     pmc_id = pubmed_hash[:identifier].detect { |id| id[:type] == 'pmc' }
     pub_hash[:identifier] << pmc_id if pmc_id
   end
@@ -321,9 +321,9 @@ class Publication < ActiveRecord::Base
     publication_identifiers.reload if persisted?
     db_ids = publication_identifiers.collect do |id|
       ident_hash = {}
-      ident_hash[:type] = id.identifier_type unless id.identifier_type.blank?
-      ident_hash[:id] = id.identifier_value unless id.identifier_value.blank?
-      ident_hash[:url] = id.identifier_uri unless id.identifier_uri.blank?
+      ident_hash[:type] = id.identifier_type if id.identifier_type.present?
+      ident_hash[:id] = id.identifier_value if id.identifier_value.present?
+      ident_hash[:url] = id.identifier_uri if id.identifier_uri.present?
       ident_hash
     end
     pub_hash[:identifier] = db_ids
