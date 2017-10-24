@@ -2,7 +2,7 @@
 # require the helper module
 require 'savon/mock/spec_helper'
 
-describe WosQueries do
+describe WebOfScience::Queries do
   include Savon::SpecHelper
 
   # set Savon in and out of mock mode
@@ -11,7 +11,7 @@ describe WosQueries do
 
   let(:wos_auth_response) { File.read('spec/fixtures/wos_client/authenticate.xml') }
   let(:wos_auth) { 'secret' }
-  let(:wos_client) { WosClient.new(wos_auth) }
+  let(:wos_client) { WebOfScience::Client.new(wos_auth) }
   let(:wos_queries) { described_class.new(wos_client) }
   let(:wos_ids) { %w(WOS:A1976BW18000001 WOS:A1972N549400003) }
   let(:wos_retrieve_by_id_response) { File.read('spec/fixtures/wos_client/wos_retrieve_by_id_response.xml') }
@@ -41,14 +41,14 @@ describe WosQueries do
       savon.expects(:authenticate).returns(wos_auth_response)
       savon.expects(:search).with(message: :any).returns(wos_search_by_doi_response)
       records = wos_queries.search_by_doi(doi)
-      expect(records).to be_an WosRecords
+      expect(records).to be_an WebOfScience::Records
       expect(records.count).to eq 1
     end
     it 'returns nothing for partial matches' do
       savon.expects(:authenticate).returns(wos_auth_response)
       savon.expects(:search).with(message: :any).returns(wos_search_by_doi_mismatch_response)
       records = wos_queries.search_by_doi(doi_mismatch)
-      expect(records).to be_an WosRecords
+      expect(records).to be_an WebOfScience::Records
       expect(records).to be_empty
     end
   end
@@ -63,7 +63,7 @@ describe WosQueries do
       savon.expects(:search).with(message: :any).returns(wos_search_custom_response)
     end
     it 'works' do
-      expect(records).to be_an WosRecords
+      expect(records).to be_an WebOfScience::Records
     end
     it 'returns publication(s)' do
       expect(records.count >= 1).to be true
@@ -95,7 +95,7 @@ describe WosQueries do
       savon.expects(:search).with(message: :any).returns(wos_search_by_name_response)
     end
     it 'works' do
-      expect(records).to be_an WosRecords
+      expect(records).to be_an WebOfScience::Records
     end
     it 'returns many results' do
       expect(records.count > 1).to be true
@@ -107,7 +107,7 @@ describe WosQueries do
       savon.expects(:authenticate).returns(wos_auth_response)
       savon.expects(:retrieve_by_id).with(message: :any).returns(wos_retrieve_by_id_response)
       records = wos_queries.retrieve_by_id(wos_ids)
-      expect(records).to be_an WosRecords
+      expect(records).to be_an WebOfScience::Records
     end
   end
 
