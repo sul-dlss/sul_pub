@@ -2,7 +2,7 @@
 # require the helper module
 require 'savon/mock/spec_helper'
 
-describe WosClient do
+describe WebOfScience::Client do
   include Savon::SpecHelper
 
   # set Savon in and out of mock mode
