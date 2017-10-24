@@ -19,13 +19,13 @@ module Clarivate
     # @return [Hash<String => Hash>]
     def links(ids)
       raise ArgumentError, "1-50 ids required" unless ids.present? && ids.count <= 50
-      response = connection.send(:post) do |req|
+      response = connection.post do |req|
         req.path = '/cps/xrpc'
         req.body = request_body(ids.uniq)
       end
       ng = Nokogiri::XML(response.body) { |config| config.strict.noblanks }.remove_namespaces!
       pairs = ng.xpath('response/fn/map/map').map do |node|
-        [node.attr('name').split('_').last, vals_to_hash(node.children.xpath('val'))]
+        [node.attr('name').split('_', 2).last, vals_to_hash(node.children.xpath('val'))]
       end
       pairs.to_h
     end
