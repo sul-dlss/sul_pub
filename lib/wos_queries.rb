@@ -70,9 +70,10 @@ class WosQueries
   end
 
   # @param name [String] a CSV name pattern: {last name}, {first_name} [{middle_name} | {middle initial}]
+  # @param institutions [Array<String>] a set of institutions the author belongs to
   # @return [WosRecords]
-  def search_by_name(name)
-    message = search_by_name_params(name)
+  def search_by_name(name, institutions = [])
+    message = search_by_name_params(name, institutions)
     retrieve_records(:search, message)
   end
 
@@ -158,12 +159,6 @@ class WosQueries
       name_query = "#{last_name} #{first_name} OR #{last_name} #{first_name[0]}"
       name_query += " OR #{last_name} #{first_name[0]}#{middle_name[0]} OR #{last_name} #{first_name} #{middle_name[0]}" unless middle_name.blank?
       name_query
-    end
-
-    # Search authors from these institutions
-    # @return [Array<String>] institution names
-    def institutions
-      ['Stanford University']
     end
 
     ###################################################################
@@ -263,9 +258,11 @@ class WosQueries
     end
 
     # @param name [String] a CSV name pattern: {last name}, {first_name} [{middle_name} | {middle initial}]
+    # @param institutions [Array<String>] a set of institutions the author belongs to
     # @return [Hash] search query parameters
-    def search_by_name_params(name)
-      user_query = "AU=(#{name_query(name)}) AND AD=(#{institutions.join(' OR ')})"
+    def search_by_name_params(name, institutions)
+      user_query = "AU=(#{name_query(name)})"
+      user_query += " AND AD=(#{institutions.join(' OR ')})" unless institutions.empty?
       search_params(user_query)
     end
 

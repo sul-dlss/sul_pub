@@ -24,7 +24,7 @@ describe WosQueries do
   let(:name) { "#{ln}, #{fn}" }
   let(:ln) { 'Lastname' }
   let(:fn) { 'Firstname' }
-  let(:institutions) { wos_queries.send(:institutions) }
+  let(:institutions) { ['Stanford University'] }
 
   describe '#new' do
     it 'works' do
@@ -127,15 +127,8 @@ describe WosQueries do
     end
   end
 
-  describe '#institutions' do
-    it 'works' do
-      expect(institutions).to be_an Array
-      expect(institutions.first).to be_an String
-    end
-  end
-
   describe '#search_by_name_params' do
-    let(:search_by_name_params) { wos_queries.send(:search_by_name_params, name) }
+    let(:search_by_name_params) { wos_queries.send(:search_by_name_params, name, institutions) }
     let(:query_params) { search_by_name_params[:queryParameters] }
     let(:user_query) { query_params[:userQuery] }
 
