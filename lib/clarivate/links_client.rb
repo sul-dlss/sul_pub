@@ -68,11 +68,11 @@ module Clarivate
       end
 
       # @param [Nokogiri::XML::Nodeset] vals
-      # @return [Hash<Symbol => String>] namespace to value
-      # Nodeset for [<val name="ut">UT value</val>, <val name="doi">DOI</val>]
-      # becomes { ut: 'UT value', doi: 'DOI'}
+      # @return [Hash<String => String>] namespace to value
+      # Nodeset for [<val name="ut">UT</val>, <val name="doi">DOI</val>]
+      # becomes { 'ut' => 'UT', 'doi' => 'DOI'}
       def vals_to_hash(vals)
-        vals.map { |val| [val.attr("name").downcase.to_sym, val.text.strip] }.to_h
+        vals.map { |val| [val.attr('name'), val.text] }.to_h
       end
   end
 end
