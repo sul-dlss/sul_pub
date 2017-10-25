@@ -2,12 +2,16 @@ module Clarivate
   # Links AMR (Article Match Retrieval) Service
   # @see http://ipscience-help.thomsonreuters.com/LAMRService/WebServicesOverviewGroup/overview.html Service documentation
   class LinksClient
+
+    LINKS_HOST = 'https://ws.isiknowledge.com'.freeze
+    LINKS_PATH = '/cps/xrpc'.freeze
+
     attr_reader :username, :password, :host
 
     # @param [String] username
     # @param [String] password
     # @param [String] host
-    def initialize(username: nil, password: nil, host: 'https://ws.isiknowledge.com')
+    def initialize(username: nil, password: nil, host: LINKS_HOST)
       @host = host
       @username = username
       @password = password
@@ -23,7 +27,7 @@ module Clarivate
       raise ArgumentError, '1-50 ids required' if ids.empty? || ids.count > 50
       raise ArgumentError, 'fields cannot be empty' if fields.empty?
       response = connection.post do |req|
-        req.path = '/cps/xrpc'
+        req.path = LINKS_PATH
         req.body = request_body(ids, fields)
       end
       response_parse(response)
