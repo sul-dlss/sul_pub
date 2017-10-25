@@ -62,8 +62,8 @@ describe WebOfScience::Records do
   end
 
   describe '#each' do
-    it 'yields WosRecord objects' do
-      wos_records_encoded.all? { |rec| expect(rec).to be_an WosRecord }
+    it 'yields WebOfScience::Record objects' do
+      wos_records_encoded.all? { |rec| expect(rec).to be_an WebOfScience::Record }
     end
   end
 

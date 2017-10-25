@@ -23,28 +23,28 @@ module WebOfScience
     end
 
     # @param uid [String] a WOS UID
-    # @return [WosRecords]
+    # @return [WebOfScience::Records]
     def cited_references(uid)
       message = cited_references_params(uid)
       retrieve_records(:cited_references, message)
     end
 
     # @param uid [String] a WOS UID
-    # @return [WosRecords]
+    # @return [WebOfScience::Records]
     def citing_articles(uid)
       message = citing_articles_params(uid)
       retrieve_records(:citing_articles, message)
     end
 
     # @param uid [String] a WOS UID
-    # @return [WosRecords]
+    # @return [WebOfScience::Records]
     def related_records(uid)
       message = related_records_params(uid)
       retrieve_records(:related_records, message)
     end
 
     # @param uids [Array<String>] a list of WOS UIDs
-    # @return [WosRecords]
+    # @return [WebOfScience::Records]
     def retrieve_by_id(uids)
       message = retrieve_by_id_params(uids)
       retrieve_records(:retrieve_by_id, message)
@@ -52,14 +52,14 @@ module WebOfScience
 
     # @param user_query [String] a custom user query
     # @param message [Hash] optional search params (defaults to search_params)
-    # @return [WosRecords]
+    # @return [WebOfScience::Records]
     def search(user_query, message = search_params)
       message[:user_query] = user_query
       retrieve_records(:search, message)
     end
 
     # @param doi [String] a digital object identifier (DOI)
-    # @return [WosRecords]
+    # @return [WebOfScience::Records]
     def search_by_doi(doi)
       message = search_by_doi_params(doi)
       response = wos_client.search.call(:search, message: message)
@@ -68,11 +68,11 @@ module WebOfScience
       # on the `DO` field.  When the result set is only one record, it's likely to be a good match; but
       # otherwise the results could be nonsense.
       return records if records.count == 1
-      WosRecords.new(records: '<records/>')
+      WebOfScience::Records.new(records: '<records/>')
     end
 
     # @param name [String] a CSV name pattern: {last name}, {first_name} [{middle_name} | {middle initial}]
-    # @return [WosRecords]
+    # @return [WebOfScience::Records]
     def search_by_name(name)
       message = search_by_name_params(name)
       retrieve_records(:search, message)
@@ -90,7 +90,7 @@ module WebOfScience
 
       # @param response [Savon::Response]
       # @param response_type [Symbol]
-      # @return [WosRecords]
+      # @return [WebOfScience::Records]
       def retrieve_additional_records(response, response_type)
         records = records(response, response_type)
         record_total = records_found(response, response_type)
@@ -141,9 +141,9 @@ module WebOfScience
 
       # @param response [Savon::Response] a WoS SOAP response
       # @param response_type [Symbol] a WoS SOAP response type
-      # @return [WosRecords]
+      # @return [WebOfScience::Records]
       def records(response, response_type)
-        WosRecords.new(records: response_return(response, response_type)[:records])
+        WebOfScience::Records.new(records: response_return(response, response_type)[:records])
       end
 
       ###################################################################
