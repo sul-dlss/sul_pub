@@ -14,14 +14,16 @@ module Clarivate
       (@username, @password) = Base64.decode64(Settings.WOS.AUTH_CODE).split(':', 2) unless username
     end
 
-    # Retrieve identifiers for the record 'ids'
+    # Retrieve identifier 'fields' for the record 'ids'
     # @param [Array<String>] ids
+    # @param [Array<String>] fields (defaults to ['pmid'])
     # @return [Hash<String => Hash>]
-    def links(ids)
-      raise ArgumentError, "1-50 ids required" unless ids.present? && ids.count <= 50
+    def links(ids, fields = ['pmid'])
+      raise ArgumentError, '1-50 ids required' if ids.empty? || ids.count > 50
+      raise ArgumentError, 'fields cannot be empty' if fields.empty?
       response = connection.post do |req|
         req.path = '/cps/xrpc'
-        req.body = request_body(ids.uniq, %w(ut doi pmid))
+        req.body = request_body(ids, fields)
       end
       response_parse(response)
     end
@@ -72,7 +74,7 @@ LINKS_XML
       # @param ids [Array<String>]
       # @return [String] xml for cite map
       def request_ids(ids)
-        ids.map { |id| "<map name=\"cite_#{id}\"><val name=\"ut\">#{id}</val></map>" }.join("\n")
+        ids.uniq.map { |id| "<map name=\"cite_#{id}\"><val name=\"ut\">#{id}</val></map>" }.join("\n")
       end
 
       # @param response [Faraday::Response]

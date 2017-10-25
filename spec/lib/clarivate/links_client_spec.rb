@@ -29,16 +29,18 @@ describe Clarivate::LinksClient do
 
     context 'with param' do
       let(:response_xml) { File.read('spec/fixtures/clarivate/links_response.xml') }
-      let(:wos_ids) { %w(000081515000015 000346594100007) }
-      let(:links) { subject.links(wos_ids) }
+      let(:ids) { %w(000081515000015 000346594100007) }
+      let(:fields) { %w(ut doi pmid) }
+      let(:links) { subject.links(ids, fields) }
+
       before do
         allow(subject.send(:connection)).to receive(:post).with(any_args).and_return(double(body: response_xml))
       end
 
       it 'returns matching identifiers' do
-        expect(links).to match a_hash_including(*wos_ids)
-        expect(links[wos_ids[0]]).to match a_hash_including(pmid: '10435530', ut: '000081515000015', doi: '10.1118/1.598623')
-        expect(links[wos_ids[1]]).to match a_hash_including(ut: '000346594100007', doi: '10.1002/2013GB004790')
+        expect(links).to match a_hash_including(*ids)
+        expect(links[ids[0]]).to match a_hash_including(pmid: '10435530', ut: '000081515000015', doi: '10.1118/1.598623')
+        expect(links[ids[1]]).to match a_hash_including(ut: '000346594100007', doi: '10.1002/2013GB004790')
       end
     end
   end
