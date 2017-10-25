@@ -39,8 +39,8 @@ describe Clarivate::LinksClient do
 
       it 'returns matching identifiers' do
         expect(links).to match a_hash_including(*ids)
-        expect(links[ids[0]]).to match a_hash_including(pmid: '10435530', ut: '000081515000015', doi: '10.1118/1.598623')
-        expect(links[ids[1]]).to match a_hash_including(ut: '000346594100007', doi: '10.1002/2013GB004790')
+        expect(links[ids[0]]).to match a_hash_including('pmid' => '10435530', 'ut' => '000081515000015', 'doi' => '10.1118/1.598623')
+        expect(links[ids[1]]).to match a_hash_including('ut' => '000346594100007', 'doi' => '10.1002/2013GB004790')
       end
     end
   end
