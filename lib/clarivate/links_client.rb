@@ -23,11 +23,7 @@ module Clarivate
         req.path = '/cps/xrpc'
         req.body = request_body(ids.uniq)
       end
-      ng = Nokogiri::XML(response.body) { |config| config.strict.noblanks }.remove_namespaces!
-      pairs = ng.xpath('response/fn/map/map').map do |node|
-        [node.attr('name').split('_', 2).last, vals_to_hash(node.children.xpath('val'))]
-      end
-      pairs.to_h
+      response_parse(response)
     end
 
     private
@@ -56,6 +52,15 @@ module Clarivate
             cites: ids
           }
         )
+      end
+
+      # @param response [Faraday::Response]
+      def response_parse(response)
+        ng = Nokogiri::XML(response.body) { |config| config.strict.noblanks }.remove_namespaces!
+        pairs = ng.xpath('response/fn/map/map').map do |node|
+          [node.attr('name').split('_', 2).last, vals_to_hash(node.children.xpath('val'))]
+        end
+        pairs.to_h
       end
 
       # @param [Nokogiri::XML::Nodeset] vals
