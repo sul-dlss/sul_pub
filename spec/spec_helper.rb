@@ -126,8 +126,8 @@ def a_get(path)
 end
 
 def default_institution
-  ScienceWire::AuthorInstitution.new(
+  Agent::AuthorInstitution.new(
     Settings.HARVESTER.INSTITUTION.name,
-    ScienceWire::AuthorAddress.new(Settings.HARVESTER.INSTITUTION.address.to_hash)
+    Agent::AuthorAddress.new(Settings.HARVESTER.INSTITUTION.address.to_hash)
   )
 end

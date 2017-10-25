@@ -44,7 +44,7 @@ describe 'Smart query', 'data-integration': true do
       expect do
         client.id_suggestions(
           ScienceWire::AuthorAttributes.new(
-            ScienceWire::AuthorName.new(ln, fn, mn), '', seeds
+            Agent::AuthorName.new(ln, fn, mn), '', seeds
           )
         )
       end.to raise_error(Faraday::ClientError)
@@ -52,7 +52,7 @@ describe 'Smart query', 'data-integration': true do
     it '(name with email)' do
       suggestions = client.id_suggestions(
         ScienceWire::AuthorAttributes.new(
-          ScienceWire::AuthorName.new(ln, fn, mn), email, seeds
+          Agent::AuthorName.new(ln, fn, mn), email, seeds
         )
       )
       check_suggestions(suggestions)
@@ -116,7 +116,7 @@ describe 'Smart query', 'data-integration': true do
         known_confirmed_publications = [ 64_367_696 ]
         suggestions = client.id_suggestions(
           ScienceWire::AuthorAttributes.new(
-            ScienceWire::AuthorName.new(
+            Agent::AuthorName.new(
               'Hardy', 'Darren', ''
             ), 'darren.hardy@stanford.edu', ''
           )
@@ -128,7 +128,7 @@ describe 'Smart query', 'data-integration': true do
         known_confirmed_publications = [ 64_367_696 ]
         suggestions = client.id_suggestions(
           ScienceWire::AuthorAttributes.new(
-            ScienceWire::AuthorName.new(
+            Agent::AuthorName.new(
               'Hardy', 'Darren', ''
             ), 'drh@stanford.edu', ''
           )
@@ -140,7 +140,7 @@ describe 'Smart query', 'data-integration': true do
         known_confirmed_publications = [ 61_063_453, 64_367_696, 67_380_595 ]
         suggestions = client.id_suggestions(
           ScienceWire::AuthorAttributes.new(
-            ScienceWire::AuthorName.new(
+            Agent::AuthorName.new(
               'Hardy', 'Darren', ''
             ), 'dhardy@bren.ucsb.edu', ''
           )
@@ -154,7 +154,7 @@ describe 'Smart query', 'data-integration': true do
         known_confirmed_publications = [ 60_931_052 ]
         suggestions = client.id_suggestions(
           ScienceWire::AuthorAttributes.new(
-            ScienceWire::AuthorName.new(
+            Agent::AuthorName.new(
               'Reed', 'P', ''
             ), 'preed2@gsu.edu', ''
           )
@@ -166,7 +166,7 @@ describe 'Smart query', 'data-integration': true do
         known_confirmed_publications = [ 69_178_421 ]
         suggestions = client.id_suggestions(
           ScienceWire::AuthorAttributes.new(
-            ScienceWire::AuthorName.new(
+            Agent::AuthorName.new(
               'Reed', 'J', ''
             ), 'preed2@gsu.edu', ''
           )

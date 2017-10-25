@@ -326,9 +326,9 @@ class ScienceWireHarvester
       @records_queued_for_pubmed_retrieval = {}
       @use_middle_name = Settings.HARVESTER.USE_MIDDLE_NAME
       @use_author_identities = Settings.HARVESTER.USE_AUTHOR_IDENTITIES
-      @default_institution = ScienceWire::AuthorInstitution.new(
+      @default_institution = Agent::AuthorInstitution.new(
         Settings.HARVESTER.INSTITUTION.name,
-        ScienceWire::AuthorAddress.new(Settings.HARVESTER.INSTITUTION.address.to_hash)
+        Agent::AuthorAddress.new(Settings.HARVESTER.INSTITUTION.address.to_hash)
       )
       @logger = nil # explicitly set to nill to enable lazy eval of `logger` method
     end

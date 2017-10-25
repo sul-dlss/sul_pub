@@ -62,7 +62,7 @@ namespace :sw do
   task :wos_publications_for_name, [:last, :first, :middle] => :environment do |_t, args|
     fail "last name argument is required" unless args[:last].present?
     fail "first name argument is required" unless args[:first].present?
-    author_name = ScienceWire::AuthorName.new(args[:last], args[:first], args[:middle])
+    author_name = Agent::AuthorName.new(args[:last], args[:first], args[:middle])
     attribs = ScienceWire::AuthorAttributes.new(author_name, '', [], ScienceWireHarvester.new.default_institution)
     puts "Querying ScienceWire for #{author_name.inspect}"
     ids = ScienceWire::HarvestBroker.new(nil, ScienceWireHarvester.new).ids_from_dumb_query(attribs)
