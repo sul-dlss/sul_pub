@@ -14,14 +14,14 @@ module Clarivate
       (@username, @password) = Base64.decode64(Settings.WOS.AUTH_CODE).split(':', 2) unless username
     end
 
-    # limited to 50 ids
+    # Retrieve identifiers for the record 'ids'
     # @param [Array<String>] ids
     # @return [Hash<String => Hash>]
     def links(ids)
       raise ArgumentError, "1-50 ids required" unless ids.present? && ids.count <= 50
       response = connection.post do |req|
         req.path = '/cps/xrpc'
-        req.body = request_body(ids.uniq)
+        req.body = request_body(ids.uniq, %w(ut doi pmid))
       end
       ng = Nokogiri::XML(response.body) { |config| config.strict.noblanks }.remove_namespaces!
       pairs = ng.xpath('response/fn/map/map').map do |node|
@@ -40,22 +40,43 @@ module Clarivate
         end
       end
 
-      # @return [ActionView::Base] used to render as though in an rails controller
-      def renderer
-        @renderer ||= ActionView::Base.new(ActionController::Base.view_paths, {})
+      # @param [Array<String>] ids
+      # @param [Array<String>] fields
+      # @return [String]
+      def request_body(ids, fields)
+        <<-LINKS_XML
+<?xml version="1.0" encoding="UTF-8"?>
+<request xmlns="http://www.isinet.com/xrpc41" src="app.id=API Demo">
+  <fn name="LinksAMR.retrieve">
+    <list>
+      <map>
+        <val name="username">#{username}</val>
+        <val name="password">#{password}</val>
+      </map>
+      <map>
+        <list name="WOS">
+          #{request_fields(fields)}
+        </list>
+      </map>
+      <map>
+        #{request_ids(ids)}
+      </map>
+    </list>
+  </fn>
+</request>
+LINKS_XML
       end
 
+      # @param [Array<String>] fields
       # @return [String]
-      def request_body(ids)
-        renderer.render(
-          file: 'pages/clarivate_links.xml',
-          layout: false,
-          locals: {
-            client: self,
-            return_fields: %w(ut doi pmid),
-            cites: ids
-          }
-        )
+      def request_fields(fields)
+        fields.map { |field| "<val>#{field}</val>" }.join("\n")
+      end
+
+      # @param ids [Array<String>]
+      # @return [String] xml for cite map
+      def request_ids(ids)
+        ids.map { |id| "<map name=\"cite_#{id}\"><val name=\"ut\">#{id}</val></map>" }.join("\n")
       end
 
       # @param [Nokogiri::XML::Nodeset] vals
