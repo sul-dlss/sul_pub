@@ -1,6 +1,6 @@
 require 'htmlentities'
 
-describe WosRecords do
+describe WebOfScience::Records do
   let(:encoded_records) { File.read('spec/fixtures/wos_client/wos_encoded_records.html') }
   let(:decoded_records) do
     coder = HTMLEntities.new
@@ -62,8 +62,8 @@ describe WosRecords do
   end
 
   describe '#each' do
-    it 'yields WosRecord objects' do
-      wos_records_encoded.all? { |rec| expect(rec).to be_an WosRecord }
+    it 'yields WebOfScience::Record objects' do
+      wos_records_encoded.all? { |rec| expect(rec).to be_an WebOfScience::Record }
     end
   end
 
@@ -238,7 +238,7 @@ describe WosRecords do
     end
     it 'returns well formed XML' do
       expect do
-        Nokogiri::XML(xml_result) { |config| config.strict }
+        Nokogiri::XML(xml_result) { |config| config.strict.noblanks }
       end.not_to raise_error
     end
     it 'contains no HTML encoding' do
