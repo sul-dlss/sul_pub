@@ -19,7 +19,7 @@ describe ScienceWire::Query::Suggestion do
 
     context 'with default_institution' do
       context 'with email and seed' do
-        let(:author_name) { ScienceWire::AuthorName.new('Doe', 'John', 'S') }
+        let(:author_name) { Agent::AuthorName.new('Doe', 'John', 'S') }
         let(:author_attributes) do
           ScienceWire::AuthorAttributes.new(
             author_name, 'johnsdoe@example.com', [532_237], default_institution
@@ -33,7 +33,7 @@ describe ScienceWire::Query::Suggestion do
       end
 
       context 'with email and no seed' do
-        let(:author_name) { ScienceWire::AuthorName.new('Smith', 'Jane', '') }
+        let(:author_name) { Agent::AuthorName.new('Smith', 'Jane', '') }
         let(:author_attributes) do
           ScienceWire::AuthorAttributes.new(
             author_name, 'jane_smith@example.com', '', default_institution
@@ -47,7 +47,7 @@ describe ScienceWire::Query::Suggestion do
       end
 
       context 'with no email and no seed' do
-        let(:author_name) { ScienceWire::AuthorName.new('Brown', 'Charlie', '') }
+        let(:author_name) { Agent::AuthorName.new('Brown', 'Charlie', '') }
         let(:author_attributes) do
           ScienceWire::AuthorAttributes.new(
             author_name, '', '', default_institution

@@ -1,4 +1,4 @@
-module ScienceWire
+module Agent
   ##
   # Attributes used for creating author search queries
   class AuthorInstitution
@@ -36,9 +36,9 @@ module ScienceWire
     private
 
       def init_address(address)
-        return address if address.is_a?(AuthorAddress)
+        return address if address.is_a?(Agent::AuthorAddress)
         # set the address line 1, or an empty (default)
-        AuthorAddress.new(address.is_a?(String) ? { line1: address } : {})
+        Agent::AuthorAddress.new(address.is_a?(String) ? { line1: address } : {})
       end
   end
 end

@@ -2,7 +2,7 @@
 describe ScienceWire::Query::JournalDocumentSuggestion do
   include SuggestionQueries
   subject { described_class.new(author_attributes) }
-  let(:author_name) { ScienceWire::AuthorName.new('Doe', 'John', 'S') }
+  let(:author_name) { Agent::AuthorName.new('Doe', 'John', 'S') }
   let(:author_attributes) do
     ScienceWire::AuthorAttributes.new(
       author_name, 'johnsdoe@example.com', [532_237], default_institution

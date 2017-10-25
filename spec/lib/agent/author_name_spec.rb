@@ -1,5 +1,5 @@
 
-describe ScienceWire::AuthorName do
+describe Agent::AuthorName do
   let(:fn) { 'Amasa' }
   let(:mn) { 'Leland' }
   let(:ln) { 'Stanford' }

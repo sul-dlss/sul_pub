@@ -1,5 +1,5 @@
 
-describe ScienceWire::AuthorAddress do
+describe Agent::AuthorAddress do
   let(:line1) { 'Stanford University' }
   let(:line2) { '' }
   let(:city) { 'Stanford' }

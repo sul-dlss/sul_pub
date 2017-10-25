@@ -1,4 +1,4 @@
-module ScienceWire
+module Agent
   ##
   # Attributes used for creating author search queries
   class AuthorName

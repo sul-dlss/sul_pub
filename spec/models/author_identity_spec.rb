@@ -127,8 +127,8 @@ RSpec.describe AuthorIdentity, type: :model do
     it 'returns an AuthorAttributes object' do
       expect(subject.to_author_attributes).to be_an ScienceWire::AuthorAttributes
     end
-    it 'sets the AuthorAttributes name to an AuthorName from itself' do
-      expect(subject.to_author_attributes.name).to eq ScienceWire::AuthorName.new(subject.last_name, subject.first_name, subject.middle_name)
+    it 'sets the AuthorAttributes name to an Agent::AuthorName from itself' do
+      expect(subject.to_author_attributes.name).to eq Agent::AuthorName.new(subject.last_name, subject.first_name, subject.middle_name)
     end
     it 'sets the AuthorAttributes seed_list from itself' do
       expect(subject.to_author_attributes.seed_list).to eq []
@@ -136,8 +136,8 @@ RSpec.describe AuthorIdentity, type: :model do
     it 'sets the AuthorAttributes email from itself' do
       expect(subject.to_author_attributes.email).to eq subject.email
     end
-    it 'sets the AuthorAttributes institution to an AuthorInstitution from itself' do
-      expect(subject.to_author_attributes.institution).to eq ScienceWire::AuthorInstitution.new(subject.institution)
+    it 'sets the AuthorAttributes institution to an Agent::AuthorInstitution from itself' do
+      expect(subject.to_author_attributes.institution).to eq Agent::AuthorInstitution.new(subject.institution)
     end
     it 'sets the AuthorAttributes start_date from itself' do
       expect(subject.to_author_attributes.start_date).to eq subject.start_date
