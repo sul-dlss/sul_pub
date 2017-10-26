@@ -14,14 +14,17 @@ module Clarivate
       (@username, @password) = Base64.decode64(Settings.WOS.AUTH_CODE).split(':', 2) unless username
     end
 
-    # limited to 50 ids
+    # Retrieve identifier 'fields' for the record 'ids'
     # @param [Array<String>] ids
+    # @param [Array<String>] fields (defaults to ['ut', 'doi', 'pmid'])
     # @return [Hash<String => Hash>]
-    def links(ids)
-      raise ArgumentError, "1-50 ids required" unless ids.present? && ids.count <= 50
+    def links(ids, fields = %w(ut doi pmid))
+      ids.uniq!
+      raise ArgumentError, '1-50 ids required' if ids.empty? || ids.count > 50
+      raise ArgumentError, 'fields cannot be empty' if fields.empty?
       response = connection.post do |req|
         req.path = '/cps/xrpc'
-        req.body = request_body(ids.uniq)
+        req.body = request_body(ids, fields)
       end
       response_parse(response)
     end
@@ -41,14 +44,15 @@ module Clarivate
         @renderer ||= ActionView::Base.new(ActionController::Base.view_paths, {})
       end
 
+      # @param [Array<String>] fields
       # @return [String]
-      def request_body(ids)
+      def request_body(ids, fields)
         renderer.render(
           file: 'pages/clarivate_links.xml',
           layout: false,
           locals: {
             client: self,
-            return_fields: %w(ut doi pmid),
+            return_fields: fields,
             cites: ids
           }
         )
