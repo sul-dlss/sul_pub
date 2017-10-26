@@ -70,8 +70,8 @@ namespace :sw do
     ids = ScienceWire::HarvestBroker.new(nil, sciencewire_harvester).ids_from_dumb_query(attribs)
     puts "\n" << ids.sort.join("\n") if ids.count > 0
     puts "\nQuerying WebOfScience for #{author_name.full_name}"
-    wos_queries = WosQueries.new(WosClient.new(Settings.WOS.AUTH_CODE))
-    records = wos_queries.search_by_name(author_name.full_name, [institution])
+    wos_queries = WebOfScience::Queries.new(WebOfScience::Client.new(Settings.WOS.AUTH_CODE))
+    records = wos_queries.search_by_name(author_name.full_name, [institution.name])
     uids = records.uids.sort
     puts uids.join("\n")
     puts "\n#{ids.count} ScienceWire IDs"
