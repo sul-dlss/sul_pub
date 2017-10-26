@@ -1,0 +1,24 @@
+
+
+-----------------------------------------
+|pub_hash       <==>         WOK Record |
+-----------------------------------------
+
+
+##identifier stored as identifier << {type: 'PMID' | 'DOI' | ..., id:..., ...}
+sw_id                ==>        "We don't have it anymore"
+pmid                 ==>        <UID>MEDLINE:.....</UID>
+WosItemId            ==>        <UID>WOS:.....</UID>
+
+
+doi                  ==>        dynamic_data->identifiers->identifier(type:'doi')(value:'...')
+issn                 ==>        dynamic_data->identifiers->identifier(type:'issn')(value:'...')
+
+
+
+
+:tile                 ==>       static_data->summary->titles->title(type:item)
+
+:abstract_restricted  ==>       static_data->fullrecord_metadata->abstracts->abstract->abstract_text
+
+:Author               ==>       static_data->names->name
