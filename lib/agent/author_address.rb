@@ -1,4 +1,4 @@
-module ScienceWire
+module Agent
   ##
   # Author/Institution address details used for creating search queries
   class AuthorAddress

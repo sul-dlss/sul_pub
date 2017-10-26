@@ -32,21 +32,15 @@ class NotificationManager
     def pubmed_logger
       @@pubmed_logger ||= Logger.new(Settings.PUBMED.LOG)
     end
-    # rubocop:enable Style/ClassVars
 
-    # rubocop:disable Style/ClassVars
     def cap_logger
       @@cap_logger ||= Logger.new(Settings.CAP.LOG)
     end
-    # rubocop:enable Style/ClassVars
 
-    # rubocop:disable Style/ClassVars
     def sciencewire_logger
       @@sciencewire_logger ||= Logger.new(Settings.SCIENCEWIRE.LOG)
     end
-    # rubocop:enable Style/ClassVars
 
-    # rubocop:disable Style/ClassVars
     def wos_logger
       @@wos_logger ||= Logger.new(Settings.WOS.LOG)
     end

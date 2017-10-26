@@ -64,7 +64,7 @@ namespace :sw do
     fail "first name argument is required" unless args[:first].present?
     sciencewire_harvester = ScienceWireHarvester.new
     institution = sciencewire_harvester.default_institution
-    author_name = ScienceWire::AuthorName.new(args[:last], args[:first], args[:middle])
+    author_name = Agent::AuthorName.new(args[:last], args[:first], args[:middle])
     attribs = ScienceWire::AuthorAttributes.new(author_name, '', [], institution)
     puts "Querying ScienceWire for #{author_name.inspect}"
     ids = ScienceWire::HarvestBroker.new(nil, sciencewire_harvester).ids_from_dumb_query(attribs)

@@ -39,7 +39,7 @@ module ScienceWire
     private
 
       def author_name(person)
-        ScienceWire::AuthorName.new(
+        Agent::AuthorName.new(
           person.last_name,
           person.first_name,
           use_middle_name ? person.middle_name : ''

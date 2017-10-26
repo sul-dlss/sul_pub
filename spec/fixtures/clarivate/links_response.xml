@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<response src="app.id=API Demo">
+<fn name="LinksAMR.retrieve" rc="OK">
+  <map>
+    <map name="cite_000346594100007">
+      <map name="WOS">
+        <val name="ut">000346594100007</val>
+        <val name="doi">10.1002/2013GB004790</val>
+      </map>
+    </map>
+    <map name="cite_000081515000015">
+      <map name="WOS">
+        <val name="pmid">10435530</val>
+        <val name="ut">000081515000015</val>
+        <val name="doi">10.1118/1.598623</val>
+      </map>
+    </map>
+  </map>
+</fn>
+</response>

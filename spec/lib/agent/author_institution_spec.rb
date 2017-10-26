@@ -1,5 +1,5 @@
 
-describe ScienceWire::AuthorInstitution do
+describe Agent::AuthorInstitution do
   describe '#initialize' do
     subject { described_class.new(nil, nil) }
     it 'casts name to String' do
@@ -13,9 +13,9 @@ describe ScienceWire::AuthorInstitution do
     it 'address is optional' do
       expect { described_class.new('name') }.not_to raise_error
     end
-    it 'address defaults to an empty AuthorAddress' do
+    it 'address defaults to an empty Agent::AuthorAddress' do
       address = described_class.new('name').address
-      expect(address).to be_an ScienceWire::AuthorAddress
+      expect(address).to be_an Agent::AuthorAddress
       expect(address).to be_blank
       expect(address).to be_empty
     end
