@@ -1,13 +1,13 @@
 describe ScienceWire::HarvestBroker do
   let(:author) { create(:author) }
   let(:author_name) do
-    ScienceWire::AuthorName.new(
+    Agent::AuthorName.new(
       author.last_name,
       author.first_name,
       author.middle_name
     )
   end
-  let(:feynman_name) { ScienceWire::AuthorName.new('Feynman', 'Richard', 'P') }
+  let(:feynman_name) { Agent::AuthorName.new('Feynman', 'Richard', 'P') }
   let(:alt_author) { create(:author_with_alternate_identities, alt_count: 3) }
   let(:alt_author_varying_institution) do
     auth = alt_author
@@ -150,9 +150,9 @@ describe ScienceWire::HarvestBroker do
   end
 
   describe 'author_name' do
-    it 'returns a ScienceWire::AuthorName' do
+    it 'returns a Agent::AuthorName' do
       name = subject.send(:author_name, author)
-      expect(name).to be_an ScienceWire::AuthorName
+      expect(name).to be_an Agent::AuthorName
     end
   end
 end

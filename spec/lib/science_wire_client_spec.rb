@@ -4,7 +4,7 @@ describe ScienceWireClient, :vcr do
   describe '#query_sciencewire_by_author_name' do
     context 'with common last name, first name' do
       it 'returns a list of sciencewire ids' do
-        name = ScienceWire::AuthorName.new('smith', 'james', '')
+        name = Agent::AuthorName.new('smith', 'james', '')
         author_attributes = ScienceWire::AuthorAttributes.new(name, '', '', '', '')
         sw_ids = sw_client.query_sciencewire_by_author_name(author_attributes)
         expect(sw_ids).to be_an(Array)
@@ -17,7 +17,7 @@ describe ScienceWireClient, :vcr do
     end
     context 'with uncommon last name, first name, and max rows 4' do
       it 'returns an empty array' do
-        name = ScienceWire::AuthorName.new('ottawa', '', 'yukon')
+        name = Agent::AuthorName.new('ottawa', '', 'yukon')
         author_attributes = ScienceWire::AuthorAttributes.new(name, '', '', '', '')
         sw_ids = sw_client.query_sciencewire_by_author_name(author_attributes, 4)
         expect(sw_ids).to be_an(Array)
@@ -28,7 +28,7 @@ describe ScienceWireClient, :vcr do
 
   describe '#get_sciencewire_id_suggestions' do
     it 'returns suggestions for email address and name' do
-      name = ScienceWire::AuthorName.new('edler', 'alice', '')
+      name = Agent::AuthorName.new('edler', 'alice', '')
       seeds = [5_199_247, 7_877_232, 844_542, 1_178_390, 29_434_219, 30_072_480, 30_502_634, 46_558_063, 31_222_988]
       author_attributes = ScienceWire::AuthorAttributes.new(
         name, 'alice.edler@stanford.edu', seeds
@@ -41,7 +41,7 @@ describe ScienceWireClient, :vcr do
     end
 
     it 'gets suggestions from journals' do
-      name = ScienceWire::AuthorName.new('benson', 'sally', '')
+      name = Agent::AuthorName.new('benson', 'sally', '')
       seeds = [532_237, 29_681_830, 29_693_742, 30_153_017, 30_563_572, 30_711_058, 30_991_998, 31_488_302, 31_623_382, 32_897_909,
                33_038_883, 33_139_791, 33_878_760, 47_444_872, 53_640_378, 54_368_177, 59_612_803, 59_641_485, 60_094_854, 60_223_059, 60_478_790,
                62_816_475, 62_823_609, 62_903_742, 63_182_944, 62_767_480, 59_904_158, 37_634_308, 63_378_178, 63_775_722, 63_911_215, 4_167_402, 63_891_331,

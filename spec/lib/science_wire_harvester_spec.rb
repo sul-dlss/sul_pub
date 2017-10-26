@@ -31,8 +31,8 @@ describe ScienceWireHarvester, :vcr do
   end
 
   describe '#default_institution' do
-    it 'is a ScienceWire::AuthorInstitution' do
-      expect(subject.default_institution).to be_an ScienceWire::AuthorInstitution
+    it 'is a Agent::AuthorInstitution' do
+      expect(subject.default_institution).to be_an Agent::AuthorInstitution
     end
     context 'name' do
       it 'is a String' do
@@ -44,9 +44,9 @@ describe ScienceWireHarvester, :vcr do
       end
     end
     context 'has an institution address' do
-      it 'is a ScienceWire::AuthorAddress' do
+      it 'is a Agent::AuthorAddress' do
         expect(subject.default_institution).to respond_to(:address)
-        expect(subject.default_institution.address).to be_an ScienceWire::AuthorAddress
+        expect(subject.default_institution.address).to be_an Agent::AuthorAddress
       end
       it 'is set by Settings' do
         address_hash = Settings.HARVESTER.INSTITUTION.address.to_hash

@@ -2,7 +2,7 @@
 describe ScienceWire::Query::ConferenceProceedingDocumentSuggestion do
   include SuggestionQueries
   subject { described_class.new(author_attributes) }
-  let(:author_name) { ScienceWire::AuthorName.new('Brown', 'Charlie', '') }
+  let(:author_name) { Agent::AuthorName.new('Brown', 'Charlie', '') }
   let(:author_attributes) do
     ScienceWire::AuthorAttributes.new(author_name, '', '', default_institution)
   end
