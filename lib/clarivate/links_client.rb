@@ -45,14 +45,17 @@ module Clarivate
 
       # @return [ActionView::Base] used to render as though in an rails controller
       def renderer
-        @renderer ||= ActionView::Base.new(ActionController::Base.view_paths, {})
+        @renderer ||= begin
+          view_paths = ActionView::PathSet.new([File.dirname(__FILE__)])
+          ActionView::Base.new(view_paths, {})
+        end
       end
 
       # @param [Array<String>] fields
       # @return [String]
       def request_body(ids, fields)
         renderer.render(
-          file: 'pages/clarivate_links.xml',
+          file: 'links_request.xml',
           layout: false,
           locals: {
             client: self,
