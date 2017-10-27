@@ -1,4 +1,4 @@
-describe Clarivate::LinksClient do
+describe WebOfScience::LinksClient do
   let(:ids) { %w(000081515000015 000346594100007) }
   let(:fields) { %w(ut doi pmid) }
 

@@ -1,4 +1,4 @@
-module Clarivate
+module WebOfScience
   # Links AMR (Article Match Retrieval) Service
   # @see http://ipscience-help.thomsonreuters.com/LAMRService/WebServicesOverviewGroup/overview.html Service documentation
   class LinksClient
