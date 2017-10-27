@@ -67,7 +67,7 @@ describe NotificationManager do
     end
   end
   context '.wos_logger' do
-    let(:wos_client) { WosClient.new(Settings.WOS.AUTH_CODE) }
+    let(:wos_client) { WebOfScience::Client.new(Settings.WOS.AUTH_CODE) }
 
     before do
       described_class.class_variable_set(:@@wos_logger, nil)

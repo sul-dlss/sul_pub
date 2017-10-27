@@ -1,6 +1,6 @@
 require 'htmlentities'
 
-describe WosRecord do
+describe WebOfScience::Record do
   let(:encoded_record) { File.read('spec/fixtures/wos_client/wos_encoded_record.html') }
   let(:decoded_record) do
     coder = HTMLEntities.new
