@@ -31,7 +31,7 @@ describe Clarivate::LinksClient do
     end
 
     context 'with param' do
-      let(:response_xml) { File.read('spec/fixtures/clarivate/links_response.xml') }
+      let(:response_xml) { File.read('spec/fixtures/wos_links/links_response.xml') }
       let(:links) { subject.links(ids, fields) }
 
       before do
