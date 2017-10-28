@@ -150,6 +150,12 @@ module WebOfScience
       @uid ||= doc.search('UID').text
     end
 
+    # Extract the {WOS_ITEM_ID} from a WOS-UID in the form {DB_PREFIX}:{WOS_ITEM_ID}
+    # @return [String]
+    def wos_item_id
+      @wos_item_id ||= uid.split(':').last
+    end
+
     private
 
       XML_OPTIONS = Nokogiri::XML::Node::SaveOptions::AS_XML | Nokogiri::XML::Node::SaveOptions::NO_DECLARATION
