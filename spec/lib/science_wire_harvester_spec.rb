@@ -1,4 +1,3 @@
-
 describe ScienceWireHarvester, :vcr do
   let(:author_without_seed_data) { create :author, emails_for_harvest: '' }
   let(:author_with_seed_email) { create :author }
