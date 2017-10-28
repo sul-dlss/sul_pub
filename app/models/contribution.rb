@@ -1,17 +1,23 @@
 class Contribution < ActiveRecord::Base
+  # Allowed values for visibility
+  VISIBILITY_VALUES = %w(public private).freeze
+  # Allowed values for status
+  STATUS_VALUES = %w(approved denied new unknown).freeze
 
-  def cap_profile_id
-    (author.cap_profile_id if author) || self[:cap_profile_id]
-  end
+  belongs_to :publication, required: true, inverse_of: :contributions
+  belongs_to :author, required: true, inverse_of: :contributions
 
-  belongs_to :publication
-  belongs_to :author
-  # has_one :publication_identifier, :foreign_key => "publication_id"
   has_one :publication_identifier, -> { where("publication_identifiers.identifier_type = 'PublicationItemId'") },
           class_name: 'PublicationIdentifier',
           foreign_key: 'publication_id',
           primary_key: 'publication_id'
-  # has_one :population_membership, :foreign_key => "author_id"
+
+  validates :visibility, inclusion: { in: VISIBILITY_VALUES }, allow_nil: true # TODO: disallow nil
+  validates :status, inclusion: { in: STATUS_VALUES }, allow_nil: true         # TODO: disallow nil
+
+  def cap_profile_id
+    (author.cap_profile_id if author) || self[:cap_profile_id]
+  end
 
   def self.authorship_valid?(authorship)
     author_valid?(authorship) && valid_fields?(authorship)
@@ -35,17 +41,11 @@ class Contribution < ActiveRecord::Base
       visibility_valid?(contrib)
   end
 
-  # Allowed values for visibility
-  VISIBILITY_VALUES = %w(public private).freeze
-
   # @return [Boolean]
   def self.visibility_valid?(contrib)
     contrib = contrib.with_indifferent_access
     VISIBILITY_VALUES.include? contrib[:visibility].to_s.downcase
   end
-
-  # Allowed values for status
-  STATUS_VALUES = %w(approved denied new unknown).freeze
 
   # @return [Boolean]
   def self.status_valid?(contrib)
