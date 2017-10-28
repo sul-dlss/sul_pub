@@ -244,6 +244,12 @@ describe WebOfScience::Record do
     end
   end
 
+  describe '#wos_item_id' do
+    it 'works' do
+      expect(wos_record_encoded.wos_item_id).to eq wos_uid.split(':').last
+    end
+  end
+
   # ---
   # XML specs
 
