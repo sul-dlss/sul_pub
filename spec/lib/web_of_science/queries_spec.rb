@@ -24,7 +24,6 @@ describe WebOfScience::Queries do
   let(:name) { "#{ln}, #{fn}" }
   let(:ln) { 'Lastname' }
   let(:fn) { 'Firstname' }
-  let(:institutions) { ['Stanford University'] }
 
   describe '#new' do
     it 'works' do
@@ -124,25 +123,6 @@ describe WebOfScience::Queries do
     end
     it 'includes last name' do
       expect(name_query).to include ln
-    end
-  end
-
-  describe '#search_by_name_params' do
-    let(:search_by_name_params) { wos_queries.send(:search_by_name_params, name, institutions) }
-    let(:query_params) { search_by_name_params[:queryParameters] }
-    let(:user_query) { query_params[:userQuery] }
-
-    it 'works' do
-      expect(search_by_name_params).to be_an Hash
-    end
-    it 'includes first name' do
-      expect(user_query).to include fn
-    end
-    it 'includes last name' do
-      expect(user_query).to include ln
-    end
-    it 'includes institutions' do
-      expect(user_query).to include institutions.sample
     end
   end
 end
