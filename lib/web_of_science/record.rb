@@ -103,7 +103,7 @@ module WebOfScience
     # Extract the REC summary fields
     # @return summary [Hash]
     def summary
-      {
+      @summary ||= {
         'doctypes' => doctypes,
         'names' => names,
         'pub_info' => pub_info,
