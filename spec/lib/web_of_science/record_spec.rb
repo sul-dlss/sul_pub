@@ -76,6 +76,26 @@ describe WebOfScience::Record do
       result = wos_record_encoded.identifiers
       expect(result).to eq('issn' => '0010-0870')
     end
+    describe '#doi' do
+      it 'is nil when not available in identifiers' do
+        # The mock record does not have one
+        expect(wos_record_encoded.doi).to be_nil
+      end
+      it 'is extracted from identifiers' do
+        allow(wos_record_encoded).to receive(:identifiers).and_return('doi' => 'DOI')
+        expect(wos_record_encoded.doi).to eq 'DOI'
+      end
+    end
+    describe '#pmid' do
+      it 'is nil when not available in identifiers' do
+        # The mock record does not have one
+        expect(wos_record_encoded.pmid).to be_nil
+      end
+      it 'is extracted from identifiers' do
+        allow(wos_record_encoded).to receive(:identifiers).and_return('pmid' => 'PMID')
+        expect(wos_record_encoded.pmid).to eq 'PMID'
+      end
+    end
   end
 
   describe '#doctypes' do

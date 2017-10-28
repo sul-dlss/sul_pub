@@ -25,6 +25,11 @@ module WebOfScience
       @doctypes ||= doc.search('static_data/summary/doctypes/doctype').map(&:text)
     end
 
+    # @return [String|nil]
+    def doi
+      identifiers['doi']
+    end
+
     # @return identifiers [Hash<String => String>]
     def identifiers
       @identifiers ||= begin
@@ -41,6 +46,11 @@ module WebOfScience
         end
         names.sort { |name| name['seq_no'].to_i }
       end
+    end
+
+    # @return [String|nil]
+    def pmid
+      identifiers['pmid']
     end
 
     # Pretty print the record in XML
@@ -137,7 +147,7 @@ module WebOfScience
 
     # @return uid [String] the UID
     def uid
-      doc.search('UID').text
+      @uid ||= doc.search('UID').text
     end
 
     private
