@@ -35,6 +35,7 @@ module WebOfScience
       @identifiers ||= begin
         ids = doc.search('dynamic_data/cluster_related/identifiers/identifier')
         ids = ids.map { |id| [id['type'], id['value']] }.to_h
+        ids['WosUID'] = uid
         ids['WosItemID'] = wos_item_id
         ids
       end
