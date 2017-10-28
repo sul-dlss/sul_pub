@@ -76,6 +76,10 @@ describe WebOfScience::Record do
       result = wos_record_encoded.identifiers
       expect(result).to include('issn' => '0010-0870')
     end
+    it 'adds a WosUID' do
+      result = wos_record_encoded.identifiers
+      expect(result).to include('WosUID' => wos_record_encoded.uid)
+    end
     it 'adds a WosItemID extracted from the UID' do
       result = wos_record_encoded.identifiers
       expect(result).to include('WosItemID' => wos_record_encoded.wos_item_id)
