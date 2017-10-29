@@ -20,6 +20,15 @@ module WebOfScience
       @authors ||= names.select { |name| name['role'] == 'author' }
     end
 
+    # Extract the {DB_PREFIX} from a WOS-UID in the form {DB_PREFIX}:{WOS_ITEM_ID}
+    # @return [String|nil]
+    def database
+      @database ||= begin
+        uid_split = uid.split(':')
+        uid_split.length > 1 ? uid_split[0] : nil
+      end
+    end
+
     # @return doctypes [Array<String>]
     def doctypes
       @doctypes ||= doc.search('static_data/summary/doctypes/doctype').map(&:text)
