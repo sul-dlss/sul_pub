@@ -65,6 +65,12 @@ describe WebOfScience::Record do
     it_behaves_like 'it is an array of names'
   end
 
+  describe '#database' do
+    it 'works' do
+      expect(wos_record_encoded.database).to eq wos_uid.split(':').first
+    end
+  end
+
   describe '#names' do
     let(:agents) { wos_record_encoded.names }
 
