@@ -97,6 +97,19 @@ describe WebOfScience::Record do
       result = wos_record_encoded.identifiers
       expect(result).to include('WosItemID' => wos_record_encoded.wos_item_id)
     end
+
+    context 'MEDLINE record' do
+      # => {"doi"=>"10.1038/psp.2013.66", "pmid"=>"24452614", "WosUID"=>"MEDLINE:24452614", "WosItemID"=>"24452614"}
+      let(:ids) { medline_record_encoded.identifiers }
+
+      it 'WosUID has a MEDLINE prefix' do
+        expect(ids).to include('WosUID' => 'MEDLINE:24452614')
+      end
+      it 'pmid is stripped of the MEDLINE prefix' do
+        expect(ids).to include('pmid' => '24452614')
+      end
+    end
+
     describe '#doi' do
       it 'is nil when not available in identifiers' do
         # The mock record does not have one
@@ -107,6 +120,7 @@ describe WebOfScience::Record do
         expect(wos_record_encoded.doi).to eq 'DOI'
       end
     end
+
     describe '#pmid' do
       it 'is nil when not available in identifiers' do
         # The mock record does not have one

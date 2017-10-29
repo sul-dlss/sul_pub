@@ -46,6 +46,7 @@ module WebOfScience
         ids = ids.map { |id| [id['type'], id['value']] }.to_h
         ids['WosUID'] = uid
         ids['WosItemID'] = wos_item_id
+        ids['pmid'].sub!('MEDLINE:', '') if database == 'MEDLINE'
         ids
       end
     end
