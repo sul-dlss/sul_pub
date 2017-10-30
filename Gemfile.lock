@@ -204,7 +204,7 @@ GEM
       builder (>= 2.1.2)
     hashdiff (0.2.3)
     hashie (3.5.6)
-    high_voltage (2.3.0)
+    high_voltage (3.0.0)
     honeybadger (2.6.1)
     htmlentities (4.3.4)
     http-cookie (1.0.2)
