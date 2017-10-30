@@ -348,7 +348,7 @@ describe Publication do
   end
 
   describe '.build_new_manual_publication' do
-    def save_new_publication
+    let(:save_new_publication) do
       pub = Publication.build_new_manual_publication(pub_hash, 'some string', 'some where')
       pub.save!
       pub
@@ -369,9 +369,7 @@ describe Publication do
 
     it "should create a publication if a publication for that source record doesn't exist" do
       UserSubmittedSourceRecord.create source_data: 'some string'
-      expect do
-        save_new_publication
-      end.not_to raise_exception
+      expect { save_new_publication }.not_to raise_exception
     end
   end
 
