@@ -25,28 +25,31 @@ module WebOfScience
     # @param uid [String] a WOS UID
     # @return [WebOfScience::Records]
     def cited_references(uid)
-      message = cited_references_params(uid)
+      retrieve_options = [ { key: 'Hot', value: 'On' } ]
+      message = base_uid_params.merge(uid: uid,
+                                      retrieveParameters: retrieve_parameters(options: retrieve_options))
       retrieve_records(:cited_references, message)
     end
 
     # @param uid [String] a WOS UID
     # @return [WebOfScience::Records]
     def citing_articles(uid)
-      message = citing_articles_params(uid)
+      message = base_uid_params.merge(uid: uid, timeSpan: time_span)
       retrieve_records(:citing_articles, message)
     end
 
     # @param uid [String] a WOS UID
     # @return [WebOfScience::Records]
     def related_records(uid)
-      message = related_records_params(uid)
+      # The 'WOS' database is the only option for this query
+      message = base_uid_params.merge(uid: uid, databaseId: 'WOS', timeSpan: time_span)
       retrieve_records(:related_records, message)
     end
 
     # @param uids [Array<String>] a list of WOS UIDs
     # @return [WebOfScience::Records]
     def retrieve_by_id(uids)
-      message = retrieve_by_id_params(uids)
+      message = base_uid_params.merge(uid: uids)
       retrieve_records(:retrieve_by_id, message)
     end
 
@@ -61,7 +64,8 @@ module WebOfScience
     # @param doi [String] a digital object identifier (DOI)
     # @return [WebOfScience::Records]
     def search_by_doi(doi)
-      message = search_by_doi_params(doi)
+      message = search_params("DO=#{doi}")
+      message[:retrieveParameters][:count] = 10
       response = wos_client.search.call(:search, message: message)
       records = records(response, :search_response)
       # Return a unique DOI match or nothing, because the WoS API does partial string matching
@@ -75,7 +79,9 @@ module WebOfScience
     # @param institutions [Array<String>] a set of institutions the author belongs to
     # @return [WebOfScience::Records]
     def search_by_name(name, institutions = [])
-      message = search_by_name_params(name, institutions)
+      user_query = "AU=(#{name_query(name)})"
+      user_query += " AND AD=(#{institutions.join(' OR ')})" unless institutions.empty?
+      message = search_params(user_query)
       retrieve_records(:search, message)
     end
 
@@ -159,7 +165,7 @@ module WebOfScience
         first_name = first_middle_name.split(' ')[0]
         middle_name = first_middle_name.split(' ')[1]
         name_query = "#{last_name} #{first_name} OR #{last_name} #{first_name[0]}"
-        name_query += " OR #{last_name} #{first_name[0]}#{middle_name[0]} OR #{last_name} #{first_name} #{middle_name[0]}" unless middle_name.blank?
+        name_query += " OR #{last_name} #{first_name[0]}#{middle_name[0]} OR #{last_name} #{first_name} #{middle_name[0]}" if middle_name.present?
         name_query
       end
 
@@ -174,42 +180,6 @@ module WebOfScience
           queryLanguage: QUERY_LANGUAGE,
           retrieveParameters: retrieve_parameters
         }
-      end
-
-      # @param uid [String] a WOS UID
-      # @return [Hash] citedReferences parameters
-      def cited_references_params(uid)
-        retrieve_options = [ { key: 'Hot', value: 'On' } ]
-        base_uid_params.merge(
-          uid: uid,
-          retrieveParameters: retrieve_parameters(options: retrieve_options)
-        )
-      end
-
-      # @param uid [String] a WOS UID
-      # @return [Hash] citingArticles parameters
-      def citing_articles_params(uid)
-        base_uid_params.merge(
-          uid: uid,
-          timeSpan: time_span
-        )
-      end
-
-      # @param uid [String] a WOS UID
-      # @return [Hash] relatedRecords parameters
-      def related_records_params(uid)
-        # The 'WOS' database is the only option for this query
-        base_uid_params.merge(
-          databaseId: 'WOS',
-          uid: uid,
-          timeSpan: time_span
-        )
-      end
-
-      # @param uids [Array<String>] a list of WOS UIDs
-      # @return [Hash] retrieveById parameters
-      def retrieve_by_id_params(uids)
-        base_uid_params.merge(uid: uids)
       end
 
       # @param first_record [Integer] the record number offset (defaults to 1)
@@ -249,23 +219,6 @@ module WebOfScience
           },
           retrieveParameters: retrieve_parameters
         }
-      end
-
-      # @param doi [String] a digital object identifier (DOI)
-      # @return [Hash] search query parameters
-      def search_by_doi_params(doi)
-        params = search_params("DO=#{doi}")
-        params[:retrieveParameters][:count] = 10
-        params
-      end
-
-      # @param name [String] a CSV name pattern: {last name}, {first_name} [{middle_name} | {middle initial}]
-      # @param institutions [Array<String>] a set of institutions the author belongs to
-      # @return [Hash] search query parameters
-      def search_by_name_params(name, institutions)
-        user_query = "AU=(#{name_query(name)})"
-        user_query += " AND AD=(#{institutions.join(' OR ')})" unless institutions.empty?
-        search_params(user_query)
       end
 
       # @return [Hash] time span dates
