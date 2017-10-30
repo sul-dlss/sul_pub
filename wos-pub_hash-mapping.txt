@@ -18,7 +18,19 @@ issn                 ==>        dynamic_data->identifiers->identifier(type:'issn
 
 
 :tile                 ==>       static_data->summary->titles->title(type:item)
+:abstract_restricted  ==>       static_data->fullrecord_metadata->abstracts->abstract->abstract_text->p
 
-:abstract_restricted  ==>       static_data->fullrecord_metadata->abstracts->abstract->abstract_text
+:Author               ==>       static_data->names->name  ->first_name> | ->last_name>
 
-:Author               ==>       static_data->names->name
+:year                 ==>       static_data->summary->pub_info(pubyear='')
+:date                 ==>       static_data->summary->pub_info(sortdater='')
+:authorcount          ==>       static_data->summary->names(count='')
+:documenttypes_sw     ==>       static_data->summary->doctypes->doctype
+
+:documentcategory_sw  ==>       "No More"
+:type                 ==>       related to :documentcategory_sw via function lookup_cap_doc_type_by_sw_doc_category (need review)
+:publisher            ==>       static_data->summary->publishers->publisher->names->name    ->display_name | ->full_name
+:city                 ==>       static_data->summary->publishers->publisher->address_spec->city
+:stateprovince        ==>       "No More" but exist within  (see ##..## value) "" "" ->address_spec-><full_address>615 CHESTNUT ST, 17TH FLOOR, PHILADELPHIA, ##PA## 19106-4404 USA</full_address>
+:country              ==>       "No More" but exist within  (see ##..## value) "" "" ->address_spec-><full_address>615 CHESTNUT ST, 17TH FLOOR, PHILADELPHIA, PA 19106-4404 ##USA##</full_address>
+:pages                ==>       static_data->summary->pub_info->page  (page beging='4702')(page end='4704') | get the text '4702-4704' (Caution: the old format was '4702-4')
