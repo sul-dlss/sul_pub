@@ -58,7 +58,7 @@ issn                 ==>        dynamic_data->identifiers->identifier(type='issn
 =============
 Note:
 
-Which of the following hash fields are actually used by CAP ? Also what did our provided do with them ? Is there a way to get them in the new API ?
+Which of the following hash fields are actually used by CAP ? Also what did our provider do with them ? Is there a way to get them in the new API ?
 
 :documenttypes_sw     /  DocumentTypeList
 :documentcategory_sw  /  DocumentCategory
