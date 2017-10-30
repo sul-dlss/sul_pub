@@ -1,4 +1,3 @@
-
 describe Publication do
   let(:publication) { FactoryGirl.create :publication }
   let(:author) { FactoryGirl.create :author }
@@ -151,38 +150,39 @@ describe Publication do
 
   describe 'update_any_new_contribution_info_in_pub_hash_to_db' do
     it 'should sync existing authors in the pub hash to contributions in the db' do
-      publication.pub_hash = { authorship: [{ status: 'x', sul_author_id: author.id }] }
+      publication.pub_hash = { authorship: [{ status: 'new', sul_author_id: author.id }] }
       publication.update_any_new_contribution_info_in_pub_hash_to_db
       publication.save
       expect(publication.contributions.size).to eq(1)
       c = publication.contributions.last
       expect(c.author).to eq(author)
-      expect(c.status).to eq('x')
+      expect(c.status).to eq('new')
     end
 
     it 'should update attributions of existing contributions to the database' do
-      publication.contributions.build_or_update author, status: 'y'
-      publication.pub_hash = { authorship: [{ status: 'z', sul_author_id: author.id }] }
+      expect(publication.contributions.size).to eq(0)
+      publication.contributions.build_or_update(author, status: 'new')
+      publication.pub_hash = { authorship: [{ status: 'new', sul_author_id: author.id }] }
       publication.update_any_new_contribution_info_in_pub_hash_to_db
       publication.save
       expect(publication.contributions.size).to eq(1)
       c = publication.contributions.reload.last
       expect(c.author).to eq(author)
-      expect(c.status).to eq('z')
+      expect(c.status).to eq('new')
     end
 
     it 'should look up authors by their cap profile id' do
       author.cap_profile_id = 'abc'
       author.save
 
-      publication.pub_hash = { authorship: [{ status: 'z', cap_profile_id: author.cap_profile_id }] }
+      publication.pub_hash = { authorship: [{ status: 'new', cap_profile_id: author.cap_profile_id }] }
       publication.update_any_new_contribution_info_in_pub_hash_to_db
 
       publication.save
       expect(publication.contributions.size).to eq(1)
       c = publication.contributions.last
       expect(c.author).to eq(author)
-      expect(c.status).to eq('z')
+      expect(c.status).to eq('new')
     end
 
     it 'should ignore unknown authors' do
@@ -333,17 +333,16 @@ describe Publication do
 
   describe 'contributions.build_or_update' do
     it 'should add a contribution' do
-      c = publication.contributions.build_or_update author, status: 'x'
+      c = publication.contributions.build_or_update(author, status: 'unknown')
       expect(c.author).to eq(author)
-      expect(c.status).to eq('x')
+      expect(c.status).to eq('unknown')
     end
 
     it 'should update a contribution record if the association exists' do
       publication.contributions.build_or_update author
-
-      c = publication.contributions.build_or_update author, status: 'y'
+      c = publication.contributions.build_or_update(author, status: 'new')
       expect(c.author).to eq(author)
-      expect(c.status).to eq('y')
+      expect(c.status).to eq('new')
     end
   end
 
