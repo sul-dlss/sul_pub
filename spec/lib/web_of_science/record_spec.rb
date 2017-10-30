@@ -1,23 +1,30 @@
 require 'htmlentities'
 
 describe WebOfScience::Record do
-  let(:encoded_record) { File.read('spec/fixtures/wos_client/wos_encoded_record.html') }
-  let(:decoded_record) do
+  let(:wos_encoded_record) { File.read('spec/fixtures/wos_client/wos_encoded_record.html') }
+  let(:wos_decoded_record) do
     coder = HTMLEntities.new
-    coder.decode(encoded_record)
+    coder.decode(wos_encoded_record)
   end
-  let(:wos_record_encoded) { described_class.new(encoded_record: encoded_record) }
-  let(:wos_record_decoded) { described_class.new(record: decoded_record) }
+  let(:wos_record_encoded) { described_class.new(encoded_record: wos_encoded_record) }
+  let(:wos_record_decoded) { described_class.new(record: wos_decoded_record) }
   let(:wos_uid) { 'WOS:A1972N549400003' }
+
+  let(:medline_encoded_record) { File.read('spec/fixtures/wos_client/medline_encoded_record.html') }
+  let(:medline_decoded_record) do
+    coder = HTMLEntities.new
+    coder.decode(medline_encoded_record)
+  end
+  let(:medline_record_encoded) { described_class.new(encoded_record: medline_encoded_record) }
+  let(:medline_record_decoded) { described_class.new(record: medline_decoded_record) }
+  let(:medline_uid) { 'MEDLINE:24452614' }
 
   describe '#new' do
     it 'works with encoded records' do
-      result = described_class.new(encoded_record: encoded_record)
-      expect(result).to be_an described_class
+      expect(wos_record_encoded).to be_an described_class
     end
     it 'works with decoded records' do
-      result = described_class.new(record: decoded_record)
-      expect(result).to be_an described_class
+      expect(wos_record_decoded).to be_an described_class
     end
     it 'raises RuntimeError with nil params' do
       expect { described_class.new }.to raise_error(RuntimeError)
@@ -290,7 +297,7 @@ describe WebOfScience::Record do
   end
 
   describe '#decode_records' do
-    let(:xml_result) { wos_record_encoded.send(:decode_record, nil, encoded_record) }
+    let(:xml_result) { wos_record_encoded.send(:decode_record, nil, wos_encoded_record) }
 
     it_behaves_like 'it has well formed XML'
   end

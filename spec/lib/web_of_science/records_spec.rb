@@ -1,13 +1,17 @@
 require 'htmlentities'
 
 describe WebOfScience::Records do
-  let(:encoded_records) { File.read('spec/fixtures/wos_client/wos_encoded_records.html') }
-  let(:decoded_records) do
+  let(:wos_encoded_records) { File.read('spec/fixtures/wos_client/wos_encoded_records.html') }
+  let(:wos_decoded_records) do
     coder = HTMLEntities.new
-    coder.decode(encoded_records)
+    coder.decode(wos_encoded_records)
   end
-  let(:wos_records_encoded) { described_class.new(encoded_records: encoded_records) }
-  let(:wos_records_decoded) { described_class.new(records: decoded_records) }
+  let(:wos_records_encoded) { described_class.new(encoded_records: wos_encoded_records) }
+  let(:wos_records_decoded) { described_class.new(records: wos_decoded_records) }
+
+  let(:medline_uids) { %w(MEDLINE:21121048 MEDLINE:7584390 MEDLINE:26776202 MEDLINE:24452614 MEDLINE:24303232) }
+  let(:medline_encoded_records) { File.read('spec/fixtures/wos_client/medline_encoded_records.html') }
+  let(:medline_records_encoded) { described_class.new(encoded_records: medline_encoded_records) }
 
   let(:recordsA) do
     <<-XML_A
@@ -30,12 +34,10 @@ describe WebOfScience::Records do
 
   describe '#new' do
     it 'works with encoded records' do
-      result = described_class.new(encoded_records: encoded_records)
-      expect(result).to be_an described_class
+      expect(wos_records_encoded).to be_an described_class
     end
     it 'works with decoded records' do
-      result = described_class.new(records: decoded_records)
-      expect(result).to be_an described_class
+      expect(wos_records_decoded).to be_an described_class
     end
   end
 
