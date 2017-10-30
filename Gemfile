@@ -31,7 +31,7 @@ gem 'dotiw'
 gem 'faraday'
 gem 'high_voltage'
 gem 'htmlentities', '~> 4.3'
-gem 'httpclient', '~> 2.7'
+gem 'httpclient', '~> 2.8'
 # To use Jbuilder templates for JSON
 gem 'jbuilder'
 gem 'jquery-rails'
