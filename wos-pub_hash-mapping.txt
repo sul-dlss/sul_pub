@@ -11,20 +11,20 @@ pmid                 ==>        <UID>MEDLINE:.....</UID>
 WosItemId            ==>        <UID>WOS:.....</UID>
 
 
-doi                  ==>        dynamic_data->identifiers->identifier(type:'doi')(value:'...')
-issn                 ==>        dynamic_data->identifiers->identifier(type:'issn')(value:'...')
+doi                  ==>        dynamic_data->identifiers->identifier(type='doi')(value='...')
+issn                 ==>        dynamic_data->identifiers->identifier(type='issn')(value='...')
 
 
 
 
-:tile                 ==>       static_data->summary->titles->title(type:item)
+:tile                 ==>       static_data->summary->titles->title(type='item')
 :abstract_restricted  ==>       static_data->fullrecord_metadata->abstracts->abstract->abstract_text->p
 
 :Author               ==>       static_data->names->name  ->first_name> | ->last_name>
 
-:year                 ==>       static_data->summary->pub_info(pubyear='')
-:date                 ==>       static_data->summary->pub_info(sortdater='')
-:authorcount          ==>       static_data->summary->names(count='')
+:year                 ==>       static_data->summary->pub_info(pubyear='...')
+:date                 ==>       static_data->summary->pub_info(sortdater='...')
+:authorcount          ==>       static_data->summary->names(count='...')
 :documenttypes_sw     ==>       static_data->summary->doctypes->doctype
 
 :documentcategory_sw  ==>       "No More"
@@ -34,3 +34,73 @@ issn                 ==>        dynamic_data->identifiers->identifier(type:'issn
 :stateprovince        ==>       "No More" but exist within  (see ##..## value) "" "" ->address_spec-><full_address>615 CHESTNUT ST, 17TH FLOOR, PHILADELPHIA, ##PA## 19106-4404 USA</full_address>
 :country              ==>       "No More" but exist within  (see ##..## value) "" "" ->address_spec-><full_address>615 CHESTNUT ST, 17TH FLOOR, PHILADELPHIA, PA 19106-4404 ##USA##</full_address>
 :pages                ==>       static_data->summary->pub_info->page  (page beging='4702')(page end='4704') | get the text '4702-4704' (Caution: the old format was '4702-4')
+
+
+:conference           ==>       static_data->summary->conferences->conference
+
+:conference[:name]          ==> static_data->summary->conferences->conference->conf_titles->conf_title
+:conference[:startdate]     ==> static_data->summary->conferences->conference->conf_dates->conf_date(conf_start='19950507')
+:conference[:enddate]       ==> static_data->summary->conferences->conference->conf_dates->conf_date(conf_end='19950511')
+:conference[:city]          ==> static_data->summary->conferences->conference->conf_locations->conf_location->conf_city
+:conference[:statecountry]  ==> static_data->summary->conferences->conference->conf_locations->conf_location->conf_state
+
+
+:journal              ==>
+
+:journal[:name]             ==> static_data->summary->titles->title(type='source')
+:journal[:volume]           ==> static_data->summary->pub_info(vol='...')
+:journal[:issue]            ==> static_data->summary->pub_info(issue='...')
+:journal[:pages]            ==> static_data->summary->pub_info(page_count='...')
+:journal[:articlenumber]    ==> "Have not found a local publication that has that information, and i found nothing like that coming from WOS"
+
+
+
+=============
+Note:
+
+Which of the following hash fields are actually used by CAP ? Also what did our provided do with them ? Is there a way to get them in the new API ?
+
+:documenttypes_sw     /  DocumentTypeList
+:documentcategory_sw  /  DocumentCategory
+:type
+     sul_document_type = lookup_cap_doc_type_by_sw_doc_category(record_as_hash[:documentcategory_sw])
+     record_as_hash[:type] = sul_document_type
+
+! Important !
+
+1/
+:documentcategory_sw/DocumentCategory has 3 possibles values: (a) Conference Proceeding Document (b) Journal Document (c) Other
+When applying the function lookup_cap_doc_type_by_sw_doc_category we get
+- "inProcedding" for (a)
+- article for everything else
+
+2/
+As of now the new Web of Science API returns:
+(i)  <doctype>[2]<doctype>Proceeding Paper</doctype> in lieu of (a)
+(ii) <doctype><doctype> Anything <doctype> in lieu of (b) or (c)
+
+In fact what is happening now is that (i) is added as a second  <doctype> to precise that it is indeed a proceeding. For everything else i.e. (a) and (b), those categories
+simply disapear, we only get the value that was used by :documenttypes_sw. Indeed if checked above you will see :documenttypes_sw     ==>       static_data->summary->doctypes->doctype
+=============
+
+
+
+
+=============
+Not available anymore
+1 - Does cap use any of these information
+2 - Is there still a way to obtain these information from our provider such as trough the LINKS ARM API
+=============
+Pub-Hash fields                       / ScienceWire fields (not Web of Science)
+
+:publicationimpactfactorlist_sw       / PublicationImpactFactorList
+:publicationcategoryrankinglist_sw    / PublicationCategoryRankingList
+:numberofreferences_sw                / NumberOfReferences
+:timescited_sw_retricted              / TimesCited
+:timenotselfcited_sw                  / TimesNotSelfCited
+:authorcitationcountlist_sw           / AuthorCitationCountList
+:rank_sw                              / Rank
+:ordinalrank_sw                       / OrdinalRank
+:normalizedrank_sw                    / NormalizedRank
+:newpublicationid_sw                  / NewPublicationItemID
+:isobsolete_sw                        / IsObsolete
