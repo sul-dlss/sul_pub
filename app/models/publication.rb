@@ -50,13 +50,14 @@ class Publication < ActiveRecord::Base
       # Ensure the contribution attributes contain the right author
       contribution_hash[:author_id] = author.id
       contribution_hash[:cap_profile_id] = author.cap_profile_id if author.cap_profile_id.present?
-      contrib = where(author_id: author.id).first_or_initialize
+      contrib = find_or_initialize_by(author_id: author.id) do |new_contrib|
+        new_contrib.assign_attributes(contribution_hash)
+        new_contrib.publication = proxy_association.owner
+      end
       if contrib.persisted?
         # Update an existing contribution
         contrib.update(contribution_hash)
       else
-        # Add a new contribution
-        contrib.assign_attributes(contribution_hash)
         contrib.save
         # SELF is an array of Contributions
         self << contrib unless include? contrib
@@ -311,11 +312,7 @@ class Publication < ActiveRecord::Base
 
     def update_any_new_contribution_info_in_pub_hash_to_db
       Array(pub_hash[:authorship]).each do |contrib|
-        hash_for_update = {
-          status: contrib[:status],
-          visibility: contrib[:visibility],
-          featured: contrib[:featured]
-        }
+        hash_for_update = contrib.slice(:status, :visibility, :featured)
         # Find or create an Author of the contribution
         author_id = contrib[:sul_author_id]
         cap_profile_id = contrib[:cap_profile_id]
