@@ -209,7 +209,7 @@ GEM
     htmlentities (4.3.4)
     http-cookie (1.0.2)
       domain_name (~> 0.5)
-    httpclient (2.7.1)
+    httpclient (2.8.3)
     httpi (2.4.2)
       rack
       socksify
@@ -492,7 +492,7 @@ DEPENDENCIES
   high_voltage
   honeybadger (~> 2.0)
   htmlentities (~> 4.3)
-  httpclient (~> 2.7)
+  httpclient (~> 2.8)
   jbuilder
   jquery-rails
   kaminari
