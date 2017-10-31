@@ -45,8 +45,9 @@ module WebOfScience
       # @return [ActionView::Base] used to render as though in an rails controller
       def renderer
         @renderer ||= begin
-          view_paths = ActionView::PathSet.new([File.dirname(__FILE__)])
-          ActionView::Base.new(view_paths, {})
+          lib_path = Rails.root.join('lib', 'web_of_science')
+          view_path = ActionView::PathSet.new([lib_path])
+          ActionView::Base.new(view_path, {})
         end
       end
 
