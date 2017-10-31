@@ -45,6 +45,25 @@ describe WebOfScience::LinksClient do
         expect(links[ids[1]]).to match a_hash_including('doi' => '10.1002/2013GB004790')
       end
     end
+
+    context 'no results found' do
+      let(:response_xml) { File.read('spec/fixtures/wos_links/links_no_result_found.xml') }
+      let(:ids) { ['MEDLINE:24452614'] }
+      let(:links) { links_client.links(ids) }
+
+      before do
+        allow(links_client.send(:connection)).to receive(:post).with(any_args).and_return(double(body: response_xml))
+      end
+      it 'returns a Hash with id-keys' do
+        expect(links.keys).to eq ids
+      end
+      it 'returns a Hash with Hash values' do
+        expect(links.values.first).to be_an Hash
+      end
+      it 'Hash values are empty' do
+        expect(links.values.first).to be_empty
+      end
+    end
   end
 
   describe '#request_body' do
