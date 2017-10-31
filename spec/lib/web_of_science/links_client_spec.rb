@@ -1,6 +1,6 @@
 describe WebOfScience::LinksClient do
   let(:ids) { %w(000081515000015 000346594100007) }
-  let(:fields) { %w(ut doi pmid) }
+  let(:fields) { %w(doi pmid) }
 
   before do
     allow(Settings.WOS).to receive(:AUTH_CODE).and_return("YXR6OmZvb2Jhcg==\n") # atz:foobar
@@ -32,7 +32,7 @@ describe WebOfScience::LinksClient do
 
     context 'with param' do
       let(:response_xml) { File.read('spec/fixtures/wos_links/links_response.xml') }
-      let(:links) { subject.links(ids, fields) }
+      let(:links) { subject.links(ids, fields: fields) }
 
       before do
         allow(subject.send(:connection)).to receive(:post).with(any_args).and_return(double(body: response_xml))
@@ -40,8 +40,8 @@ describe WebOfScience::LinksClient do
 
       it 'returns matching identifiers' do
         expect(links).to match a_hash_including(*ids)
-        expect(links[ids[0]]).to match a_hash_including('pmid' => '10435530', 'ut' => '000081515000015', 'doi' => '10.1118/1.598623')
-        expect(links[ids[1]]).to match a_hash_including('ut' => '000346594100007', 'doi' => '10.1002/2013GB004790')
+        expect(links[ids[0]]).to match a_hash_including('pmid' => '10435530', 'doi' => '10.1118/1.598623')
+        expect(links[ids[1]]).to match a_hash_including('doi' => '10.1002/2013GB004790')
       end
     end
   end
