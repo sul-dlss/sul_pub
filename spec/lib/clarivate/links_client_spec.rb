@@ -1,4 +1,4 @@
-describe WebOfScience::LinksClient do
+describe Clarivate::LinksClient do
   subject(:links_client) { described_class.new }
 
   let(:ids) { %w(000081515000015 000346594100007) }
@@ -32,7 +32,7 @@ describe WebOfScience::LinksClient do
     end
 
     context 'with param' do
-      let(:response_xml) { File.read('spec/fixtures/wos_links/links_response.xml') }
+      let(:response_xml) { File.read('spec/fixtures/clarivate/links_response.xml') }
       let(:links) { links_client.links(ids, fields: fields) }
 
       before do
@@ -47,7 +47,7 @@ describe WebOfScience::LinksClient do
     end
 
     context 'no results found' do
-      let(:response_xml) { File.read('spec/fixtures/wos_links/links_no_result_found.xml') }
+      let(:response_xml) { File.read('spec/fixtures/clarivate/links_no_result_found.xml') }
       let(:ids) { ['MEDLINE:24452614'] }
       let(:links) { links_client.links(ids) }
 
