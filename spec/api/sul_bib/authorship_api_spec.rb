@@ -149,7 +149,7 @@ describe SulBib::API, :vcr do
       it 'creates a new authorship record without overwriting existing authorship records' do
         http_request
         count = contribution_count + 1
-        expect(publication_with_contributions.contributions(true).size).to eq(count)
+        expect(publication_with_contributions.contributions.reload.size).to eq(count)
       end
       it 'increases number of contribution records for specified publication by one' do
         expect do
