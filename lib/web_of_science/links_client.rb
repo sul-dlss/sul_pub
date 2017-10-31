@@ -23,9 +23,8 @@ module WebOfScience
     # @param [Array<String>] fields (defaults to ['doi', 'pmid'])
     # @return [Hash<String => Hash>]
     def links(ids, fields: %w(doi pmid))
-      ids.uniq!
-      raise ArgumentError, '1-50 ids required' if ids.empty? || ids.count > 50
-      raise ArgumentError, 'fields cannot be empty' if fields.empty?
+      raise ArgumentError, '1-50 ids required' unless valid_identifier_list?(ids)
+      raise ArgumentError, 'fields cannot be empty' if fields.blank?
       response = connection.post do |req|
         req.path = LINKS_PATH
         req.body = request_body(ids, fields)
@@ -81,5 +80,14 @@ module WebOfScience
       def vals_to_hash(vals)
         vals.map { |val| [val.attr('name'), val.text] }.to_h
       end
+
+      # Validate the `ids` is an Enumerable and contains between 1-50 elements
+      # @param [Enumerable] ids
+      # @return [Boolean]
+      def valid_identifier_list?(ids)
+        return false unless ids.is_a? Enumerable
+        ids.count.between?(1, 50)
+      end
+
   end
 end
