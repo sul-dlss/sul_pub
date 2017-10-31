@@ -44,18 +44,14 @@ module WebOfScience
 
       # @return [ActionView::Base] used to render as though in an rails controller
       def renderer
-        @renderer ||= begin
-          lib_path = Rails.root.join('lib', 'web_of_science')
-          view_path = ActionView::PathSet.new([lib_path])
-          ActionView::Base.new(view_path, {})
-        end
+        @renderer ||= ActionView::Base.new
       end
 
       # @param [Array<String>] fields
       # @return [String]
       def request_body(ids, fields)
         renderer.render(
-          file: 'links_request.xml',
+          file: Rails.root.join('lib', 'web_of_science', 'links_request.xml'),
           layout: false,
           locals: {
             client: self,
