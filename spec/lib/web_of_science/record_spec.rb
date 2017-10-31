@@ -120,6 +120,22 @@ describe WebOfScience::Record do
       end
     end
 
+    context 'merge with links identifiers' do
+      let(:wos_id) { '000346594100007' }
+      let(:record4links) { File.read('spec/fixtures/wos_client/wos_record4links.html') }
+      let(:wos_record4links) { described_class.new(encoded_record: record4links) }
+
+      # links_client = Clarivate::LinksClient.new
+      # links = links_client.links([wos_id])
+      let(:links) { { '000346594100007' => { 'doi' => '10.1002/2013GB004790' } } }
+
+      it 'has compatible keys in the Hash value' do
+        # These sets of identifiers should both contain the 'doi' identifier
+        identifiers = wos_record4links.identifiers
+        expect(links[wos_id].keys & identifiers.keys).to include 'doi'
+      end
+    end
+
     describe '#doi' do
       it 'is nil when not available in identifiers' do
         # The mock record does not have one
