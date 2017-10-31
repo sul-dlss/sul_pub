@@ -1,11 +1,12 @@
 describe WebOfScience::LinksClient do
+  subject { described_class.new }
+
   let(:ids) { %w(000081515000015 000346594100007) }
   let(:fields) { %w(doi pmid) }
 
   before do
     allow(Settings.WOS).to receive(:AUTH_CODE).and_return("YXR6OmZvb2Jhcg==\n") # atz:foobar
   end
-  subject { described_class.new }
 
   describe '#initialize' do
     context 'with no params' do
