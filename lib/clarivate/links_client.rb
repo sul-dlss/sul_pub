@@ -1,4 +1,4 @@
-module WebOfScience
+module Clarivate
   # Links AMR (Article Match Retrieval) Service
   # @see http://ipscience-help.thomsonreuters.com/LAMRService/WebServicesOverviewGroup/overview.html Service documentation
   class LinksClient
@@ -51,7 +51,7 @@ module WebOfScience
       # @return [String]
       def request_body(ids, fields)
         renderer.render(
-          file: Rails.root.join('lib', 'web_of_science', 'links_request.xml'),
+          file: Rails.root.join('lib', 'clarivate', 'links_request.xml'),
           layout: false,
           locals: {
             client: self,
