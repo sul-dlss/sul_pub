@@ -1,5 +1,5 @@
 describe WebOfScience::LinksClient do
-  subject { described_class.new }
+  subject(:links_client) { described_class.new }
 
   let(:ids) { %w(000081515000015 000346594100007) }
   let(:fields) { %w(doi pmid) }
@@ -11,32 +11,32 @@ describe WebOfScience::LinksClient do
   describe '#initialize' do
     context 'with no params' do
       it 'has defaults, including auth from Settings' do
-        expect(subject.host).to eq 'https://ws.isiknowledge.com'
-        expect(subject.username).to eq 'atz'
-        expect(subject.password).to eq 'foobar'
+        expect(links_client.host).to eq 'https://ws.isiknowledge.com'
+        expect(links_client.username).to eq 'atz'
+        expect(links_client.password).to eq 'foobar'
       end
     end
     context 'with params' do
-      subject { described_class.new(username: 'leland', password: 'sunflower', host: 'http://proxy.us') }
+      subject(:links_client) { described_class.new(username: 'leland', password: 'sunflower', host: 'http://proxy.us') }
       it 'accepts overrides' do
-        expect(subject.host).to eq 'http://proxy.us'
-        expect(subject.username).to eq 'leland'
-        expect(subject.password).to eq 'sunflower'
+        expect(links_client.host).to eq 'http://proxy.us'
+        expect(links_client.username).to eq 'leland'
+        expect(links_client.password).to eq 'sunflower'
       end
     end
   end
 
   describe '#links' do
     it 'requires param' do
-      expect { subject.links }.to raise_error ArgumentError
+      expect { links_client.links }.to raise_error ArgumentError
     end
 
     context 'with param' do
       let(:response_xml) { File.read('spec/fixtures/wos_links/links_response.xml') }
-      let(:links) { subject.links(ids, fields: fields) }
+      let(:links) { links_client.links(ids, fields: fields) }
 
       before do
-        allow(subject.send(:connection)).to receive(:post).with(any_args).and_return(double(body: response_xml))
+        allow(links_client.send(:connection)).to receive(:post).with(any_args).and_return(double(body: response_xml))
       end
 
       it 'returns matching identifiers' do
@@ -48,7 +48,7 @@ describe WebOfScience::LinksClient do
   end
 
   describe '#request_body' do
-    let(:request_xml) { subject.send(:request_body, ids, fields) }
+    let(:request_xml) { links_client.send(:request_body, ids, fields) }
 
     it 'returns well formed XML' do
       expect { Nokogiri::XML(request_xml) { |config| config.strict.noblanks } }.not_to raise_error
