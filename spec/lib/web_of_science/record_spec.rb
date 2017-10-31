@@ -20,11 +20,21 @@ describe WebOfScience::Record do
   let(:medline_uid) { 'MEDLINE:24452614' }
 
   describe '#new' do
-    it 'works with encoded records' do
-      expect(wos_record_encoded).to be_an described_class
+    context 'WOS records' do
+      it 'works with WOS encoded records' do
+        expect(wos_record_encoded).to be_an described_class
+      end
+      it 'works with WOS decoded records' do
+        expect(wos_record_decoded).to be_an described_class
+      end
     end
-    it 'works with decoded records' do
-      expect(wos_record_decoded).to be_an described_class
+    context 'MEDLINE records' do
+      it 'works with MEDLINE encoded records' do
+        expect(medline_record_encoded).to be_an described_class
+      end
+      it 'works with MEDLINE decoded records' do
+        expect(medline_record_decoded).to be_an described_class
+      end
     end
     it 'raises RuntimeError with nil params' do
       expect { described_class.new }.to raise_error(RuntimeError)
@@ -274,8 +284,11 @@ describe WebOfScience::Record do
   end
 
   describe '#uid' do
-    it 'works' do
+    it 'WOS records have a WOS-UID' do
       expect(wos_record_encoded.uid).to eq wos_uid
+    end
+    it 'MEDLINE records have a MEDLINE-UID (PMID)' do
+      expect(medline_record_encoded.uid).to eq medline_uid
     end
   end
 
