@@ -33,11 +33,18 @@ describe WebOfScience::Records do
   let(:wos_recordsB) { described_class.new(records: recordsB) }
 
   describe '#new' do
-    it 'works with encoded records' do
-      expect(wos_records_encoded).to be_an described_class
+    context 'WOS records' do
+      it 'works with encoded records' do
+        expect(wos_records_encoded).to be_an described_class
+      end
+      it 'works with decoded records' do
+        expect(wos_records_decoded).to be_an described_class
+      end
     end
-    it 'works with decoded records' do
-      expect(wos_records_decoded).to be_an described_class
+    context 'MEDLINE records' do
+      it 'works with encoded records' do
+        expect(medline_records_encoded).to be_an described_class
+      end
     end
   end
 
@@ -98,6 +105,11 @@ describe WebOfScience::Records do
       result = wos_records_decoded.uids
       expect(result).to be_an Array
       expect(result.first).to be_an String
+    end
+    context 'MEDLINE records' do
+      it 'works with encoded records' do
+        expect(medline_records_encoded.uids).to include medline_uids.sample
+      end
     end
   end
 
