@@ -67,17 +67,27 @@ module WebOfScience
       # @param response [Faraday::Response]
       def response_parse(response)
         ng = Nokogiri::XML(response.body) { |config| config.strict.noblanks }.remove_namespaces!
-        pairs = ng.xpath('response/fn/map/map').map do |node|
-          [node.attr('name').split('_', 2).last, vals_to_hash(node.children.xpath('val'))]
-        end
-        pairs.to_h
+        ng.xpath('response/fn/map/map').map { |node| response_map_parse(node) }.to_h
       end
 
-      # @param [Nokogiri::XML::Nodeset] vals
-      # @return [Hash<String => String>] namespace to value
+      # @param node [Nokogiri::XML::Node] map node
+      # @return [Array<String, Hash>]
+      def response_map_parse(node)
+        [response_cite_to_id(node), response_vals_to_hash(node.children.xpath('val'))]
+      end
+
+      # Extract the 'cite_{id}' from the cite node (in the name attribute)
+      # @param node [Nokogiri::XML::Node] cite node
+      # @return [String]
+      def response_cite_to_id(node)
+        node.attr('name').split('_', 2).last
+      end
+
       # Nodeset for [<val name="ut">UT</val>, <val name="doi">DOI</val>]
       # becomes { 'ut' => 'UT', 'doi' => 'DOI'}
-      def vals_to_hash(vals)
+      # @param [Nokogiri::XML::Nodeset] vals
+      # @return [Hash<String => String>] namespace to value
+      def response_vals_to_hash(vals)
         vals.map { |val| [val.attr('name'), val.text] }.to_h
       end
 
