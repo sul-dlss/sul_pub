@@ -20,9 +20,9 @@ module WebOfScience
 
     # Retrieve identifier 'fields' for the record 'ids'
     # @param [Array<String>] ids
-    # @param [Array<String>] fields (defaults to ['ut', 'doi', 'pmid'])
+    # @param [Array<String>] fields (defaults to ['doi', 'pmid'])
     # @return [Hash<String => Hash>]
-    def links(ids, fields = %w(ut doi pmid))
+    def links(ids, fields: %w(doi pmid))
       ids.uniq!
       raise ArgumentError, '1-50 ids required' if ids.empty? || ids.count > 50
       raise ArgumentError, 'fields cannot be empty' if fields.empty?
