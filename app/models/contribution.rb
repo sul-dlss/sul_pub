@@ -15,6 +15,15 @@ class Contribution < ActiveRecord::Base
   validates :visibility, inclusion: { in: VISIBILITY_VALUES }, allow_nil: true # TODO: disallow nil
   validates :status, inclusion: { in: STATUS_VALUES }, allow_nil: true         # TODO: disallow nil
 
+  after_initialize :init
+
+  # apply some default values and coercions (lowercasing)
+  def init
+    self.featured   = false if featured.nil? # can't use ||= with boolean
+    self.status     = status.downcase if status
+    self.visibility = visibility.downcase if visibility
+  end
+
   def cap_profile_id
     (author.cap_profile_id if author) || self[:cap_profile_id]
   end
