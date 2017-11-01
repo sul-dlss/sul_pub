@@ -23,16 +23,20 @@ module Clarivate
     # @param [Array<String>] fields (defaults to ['doi', 'pmid'])
     # @return [Hash<String => Hash>]
     def links(ids, fields: %w(doi pmid))
-      raise ArgumentError, '1-50 ids required' unless valid_identifier_list?(ids)
+      raise ArgumentError, 'ids must be Enumerable' unless ids.is_a? Enumerable
       raise ArgumentError, 'fields cannot be empty' if fields.blank?
-      response = connection.post do |req|
-        req.path = LINKS_PATH
-        req.body = request_body(ids, fields)
-      end
-      response_parse(response)
+      collect_links(ids, fields)
     end
 
     private
+
+      # @param [Array<String>] ids
+      # @param [Array<String>] fields
+      def collect_links(ids, fields)
+        ids.each_slice(50).inject({}) do |links, slice_ids|
+          links.merge request_batch(slice_ids, fields)
+        end
+      end
 
       # @return [Faraday::Connection]
       def connection
@@ -47,6 +51,17 @@ module Clarivate
         @renderer ||= ActionView::Base.new
       end
 
+      # @param [Array<String>] ids
+      # @param [Array<String>] fields
+      def request_batch(ids, fields)
+        response = connection.post do |req|
+          req.path = LINKS_PATH
+          req.body = request_body(ids, fields)
+        end
+        response_parse(response)
+      end
+
+      # @param [Array<String>] ids
       # @param [Array<String>] fields
       # @return [String]
       def request_body(ids, fields)
@@ -62,6 +77,7 @@ module Clarivate
       end
 
       # @param response [Faraday::Response]
+      # @return [Hash<String => Hash>]
       def response_parse(response)
         ng = Nokogiri::XML(response.body) { |config| config.strict.noblanks }.remove_namespaces!
         ng.xpath('response/fn/map/map').map { |node| response_map_parse(node) }.to_h
@@ -88,14 +104,5 @@ module Clarivate
         return {} if vals.empty? || vals.first.text == 'No Result Found'
         vals.map { |val| [val.attr('name'), val.text] }.to_h
       end
-
-      # Validate the `ids` is an Enumerable and contains between 1-50 elements
-      # @param [Enumerable] ids
-      # @return [Boolean]
-      def valid_identifier_list?(ids)
-        return false unless ids.is_a? Enumerable
-        ids.count.between?(1, 50)
-      end
-
   end
 end
