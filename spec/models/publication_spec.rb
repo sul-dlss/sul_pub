@@ -108,7 +108,7 @@ describe Publication do
       publication.sync_identifiers_in_pub_hash_to_db
       i = PublicationIdentifier.last
       expect(i.identifier_type).to eq('x')
-      expect(publication.publication_identifiers(true)).to include(i)
+      expect(publication.publication_identifiers.reload).to include(i)
     end
 
     it 'should not persist SULPubIds' do
@@ -166,7 +166,7 @@ describe Publication do
       publication.update_any_new_contribution_info_in_pub_hash_to_db
       publication.save
       expect(publication.contributions.size).to eq(1)
-      c = publication.contributions(true).last
+      c = publication.contributions.reload.last
       expect(c.author).to eq(author)
       expect(c.status).to eq('z')
     end
