@@ -85,7 +85,7 @@ module Clarivate
       # @param [Nokogiri::XML::Nodeset] vals
       # @return [Hash<String => String>] namespace to value
       def response_vals_to_hash(vals)
-        return {} if vals.first.text == 'No Result Found'
+        return {} if vals.empty? || vals.first.text == 'No Result Found'
         vals.map { |val| [val.attr('name'), val.text] }.to_h
       end
 

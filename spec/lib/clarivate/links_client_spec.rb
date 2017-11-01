@@ -64,6 +64,25 @@ describe Clarivate::LinksClient do
         expect(links.values.first).to be_empty
       end
     end
+
+    context 'empty results' do
+      let(:response_xml) { File.read('spec/fixtures/clarivate/links_empty_results.xml') }
+      let(:ids) { %w(A1972N549400003 A1976BW18000001) }
+      let(:links) { links_client.links(ids) }
+
+      before do
+        allow(links_client.send(:connection)).to receive(:post).with(any_args).and_return(double(body: response_xml))
+      end
+      it 'returns a Hash with id-keys' do
+        expect(links.keys).to eq ids
+      end
+      it 'returns a Hash with Hash values' do
+        expect(links.values.first).to be_an Hash
+      end
+      it 'Hash values are empty' do
+        expect(links.values.first).to be_empty
+      end
+    end
   end
 
   describe '#request_body' do

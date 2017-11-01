@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<response xmlns="http://www.isinet.com/xrpc41" src="app.id=API Demo">
+<fn name="LinksAMR.retrieve" rc="OK">
+  <map>
+    <map name="cite_A1972N549400003">
+      <map name="WOS">
+      </map>
+    </map>
+    <map name="cite_A1976BW18000001">
+      <map name="WOS">
+      </map>
+    </map>
+  </map>
+</fn>
+</response>
