@@ -1,4 +1,3 @@
-
 class PubmedHarvester
   # Searches locally, then ScienceWire, then Pubmed for a publication by PubmedId
   # @param [String] pmid PubmedId
@@ -6,7 +5,7 @@ class PubmedHarvester
   #   If no publication found, returns an empty Array
   def self.search_all_sources_by_pmid(pmid)
     result = Publication.where(pmid: pmid).to_a # TODO: index manual and batch with pmid?
-    result = Publication.find_by_pmid_in_pub_id_table(pmid) if result.empty?
+    result = [Publication.find_by_pmid_pub_id(pmid)].compact if result.empty?
 
     if result.none?(&:authoritative_pmid_source?)
       sw_records_doc = ScienceWireClient.new.pull_records_from_sciencewire_for_pmids(pmid)

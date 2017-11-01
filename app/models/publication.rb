@@ -89,11 +89,13 @@ class Publication < ActiveRecord::Base
   end
 
   def self.find_by_doi(doi)
-    PublicationIdentifier.includes(:publication).where(identifier_type: 'doi', identifier_value: doi).map(&:publication)
+    Publication.includes(:publication_identifiers)
+               .find_by("publication_identifiers.identifier_type": 'doi', "publication_identifiers.identifier_value": doi)
   end
 
-  def self.find_by_pmid_in_pub_id_table(pmid)
-    PublicationIdentifier.includes(:publication).where(identifier_type: 'pmid', identifier_value: pmid).map(&:publication)
+  def self.find_by_pmid_pub_id(pmid)
+    Publication.includes(:publication_identifiers)
+               .find_by("publication_identifiers.identifier_type": 'pmid', "publication_identifiers.identifier_value": pmid)
   end
 
   # @return [Publication] new object

@@ -392,16 +392,15 @@ describe Publication do
   end
 
   describe '.find_by_doi' do
-    it 'returns an array of Publications that have this doi' do
+    it 'returns one Publication that has this doi' do
       publication.pub_hash = { identifier: [{ type: 'doi', id: '10.1016/j.mcn.2012.03.008', url: 'https://dx.doi.org/10.1016/j.mcn.2012.03.008' }] }
       publication.send(:sync_identifiers_in_pub_hash_to_db)
-      res = Publication.find_by_doi '10.1016/j.mcn.2012.03.008'
-      expect(res.size).to eq(1)
-      expect(res.first.id).to eq(publication.id)
+      res = Publication.find_by_doi('10.1016/j.mcn.2012.03.008')
+      expect(res.id).to eq(publication.id)
     end
 
-    it "returns an empty array if the doi isn't found" do
-      expect(Publication.find_by_doi('does not exist')).to be_empty
+    it "returns nil if the doi isn't found" do
+      expect(Publication.find_by_doi('does not exist')).to be_nil
     end
   end
 
