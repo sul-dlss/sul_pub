@@ -49,7 +49,7 @@ describe Publication do
       subject do
         expect(Author).to receive(:find_by_id).and_return(author)
         publication.pub_hash = pub_hash.dup
-        publication.update_any_new_contribution_info_in_pub_hash_to_db
+        publication.send(:update_any_new_contribution_info_in_pub_hash_to_db)
         publication.save
         publication.reload
       end
@@ -77,7 +77,7 @@ describe Publication do
         expect(Author).to receive(:find_by_cap_profile_id).and_return(nil)
         expect(Author).to receive(:fetch_from_cap_and_create).and_return(author)
         publication.pub_hash = pub_hash_cap_authorship.dup
-        publication.update_any_new_contribution_info_in_pub_hash_to_db
+        publication.send(:update_any_new_contribution_info_in_pub_hash_to_db)
         publication.save
         publication.reload
       end
@@ -96,7 +96,7 @@ describe Publication do
         expect(NotificationManager).to receive(:cap_logger).once.and_return(logger)
         expect(logger).to receive(:error).exactly(3)
         publication.pub_hash = pub_hash_cap_authorship.dup
-        publication.update_any_new_contribution_info_in_pub_hash_to_db
+        publication.send(:update_any_new_contribution_info_in_pub_hash_to_db)
       end
     end
   end
@@ -151,7 +151,7 @@ describe Publication do
   describe 'update_any_new_contribution_info_in_pub_hash_to_db' do
     it 'should sync existing authors in the pub hash to contributions in the db' do
       publication.pub_hash = { authorship: [{ status: 'new', sul_author_id: author.id }] }
-      publication.update_any_new_contribution_info_in_pub_hash_to_db
+      publication.send(:update_any_new_contribution_info_in_pub_hash_to_db)
       publication.save
       expect(publication.contributions.size).to eq(1)
       c = publication.contributions.last
@@ -161,9 +161,9 @@ describe Publication do
 
     it 'should update attributions of existing contributions to the database' do
       expect(publication.contributions.size).to eq(0)
-      publication.contributions.build_or_update(author, status: 'new')
+      publication.contributions.build_or_update(author, status: 'unknown')
       publication.pub_hash = { authorship: [{ status: 'new', sul_author_id: author.id }] }
-      publication.update_any_new_contribution_info_in_pub_hash_to_db
+      publication.send(:update_any_new_contribution_info_in_pub_hash_to_db)
       publication.save
       expect(publication.contributions.size).to eq(1)
       c = publication.contributions.reload.last
@@ -176,7 +176,7 @@ describe Publication do
       author.save
 
       publication.pub_hash = { authorship: [{ status: 'new', cap_profile_id: author.cap_profile_id }] }
-      publication.update_any_new_contribution_info_in_pub_hash_to_db
+      publication.send(:update_any_new_contribution_info_in_pub_hash_to_db)
 
       publication.save
       expect(publication.contributions.size).to eq(1)
@@ -187,7 +187,7 @@ describe Publication do
 
     it 'should ignore unknown authors' do
       publication.pub_hash = { authorship: [{ status: 'ignored', cap_profile_id: 'doesnt_exist' }] }
-      publication.update_any_new_contribution_info_in_pub_hash_to_db
+      publication.send(:update_any_new_contribution_info_in_pub_hash_to_db)
       publication.save
       expect(publication.contributions).to be_empty
     end
