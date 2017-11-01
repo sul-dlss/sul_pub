@@ -308,7 +308,7 @@ class Publication < ActiveRecord::Base
     sul_pub_id = id.to_s
     pub_hash[:sulpubid] = sul_pub_id
     pub_hash[:identifier] ||= []
-    pub_hash[:identifier] << { type: 'SULPubId', id: sul_pub_id, url: File.join(Settings.SULPUB_ID.PUB_URI, sul_pub_id) }
+    pub_hash[:identifier] << { type: 'SULPubId', id: sul_pub_id, url: "#{Settings.SULPUB_ID.PUB_URI}/#{sul_pub_id}" }
   end
 
   def add_all_identifiers_in_db_to_pub_hash
