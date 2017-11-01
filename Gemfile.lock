@@ -63,6 +63,7 @@ GEM
     bundler-audit (0.5.0)
       bundler (~> 1.2)
       thor (~> 0.18)
+    byebug (9.1.0)
     capistrano (3.8.0)
       airbrussh (>= 1.0.0)
       i18n
@@ -470,6 +471,7 @@ DEPENDENCIES
   bibtex-ruby
   bio
   bootstrap-sass (~> 3.3.7)
+  byebug
   capistrano
   capistrano-passenger
   capistrano-rails
