@@ -1,23 +1,40 @@
 require 'htmlentities'
 
 describe WebOfScience::Record do
-  let(:encoded_record) { File.read('spec/fixtures/wos_client/wos_encoded_record.html') }
-  let(:decoded_record) do
+  let(:wos_encoded_record) { File.read('spec/fixtures/wos_client/wos_encoded_record.html') }
+  let(:wos_decoded_record) do
     coder = HTMLEntities.new
-    coder.decode(encoded_record)
+    coder.decode(wos_encoded_record)
   end
-  let(:wos_record_encoded) { described_class.new(encoded_record: encoded_record) }
-  let(:wos_record_decoded) { described_class.new(record: decoded_record) }
+  let(:wos_record_encoded) { described_class.new(encoded_record: wos_encoded_record) }
+  let(:wos_record_decoded) { described_class.new(record: wos_decoded_record) }
   let(:wos_uid) { 'WOS:A1972N549400003' }
 
+  let(:medline_encoded_record) { File.read('spec/fixtures/wos_client/medline_encoded_record.html') }
+  let(:medline_decoded_record) do
+    coder = HTMLEntities.new
+    coder.decode(medline_encoded_record)
+  end
+  let(:medline_record_encoded) { described_class.new(encoded_record: medline_encoded_record) }
+  let(:medline_record_decoded) { described_class.new(record: medline_decoded_record) }
+  let(:medline_uid) { 'MEDLINE:24452614' }
+
   describe '#new' do
-    it 'works with encoded records' do
-      result = described_class.new(encoded_record: encoded_record)
-      expect(result).to be_an described_class
+    context 'WOS records' do
+      it 'works with WOS encoded records' do
+        expect(wos_record_encoded).to be_an described_class
+      end
+      it 'works with WOS decoded records' do
+        expect(wos_record_decoded).to be_an described_class
+      end
     end
-    it 'works with decoded records' do
-      result = described_class.new(record: decoded_record)
-      expect(result).to be_an described_class
+    context 'MEDLINE records' do
+      it 'works with MEDLINE encoded records' do
+        expect(medline_record_encoded).to be_an described_class
+      end
+      it 'works with MEDLINE decoded records' do
+        expect(medline_record_decoded).to be_an described_class
+      end
     end
     it 'raises RuntimeError with nil params' do
       expect { described_class.new }.to raise_error(RuntimeError)
@@ -65,6 +82,12 @@ describe WebOfScience::Record do
     it_behaves_like 'it is an array of names'
   end
 
+  describe '#database' do
+    it 'works' do
+      expect(wos_record_encoded.database).to eq wos_uid.split(':').first
+    end
+  end
+
   describe '#names' do
     let(:agents) { wos_record_encoded.names }
 
@@ -74,7 +97,65 @@ describe WebOfScience::Record do
   describe '#identifiers' do
     it 'works' do
       result = wos_record_encoded.identifiers
-      expect(result).to eq('issn' => '0010-0870')
+      expect(result).to include('issn' => '0010-0870')
+    end
+    it 'adds a WosUID' do
+      result = wos_record_encoded.identifiers
+      expect(result).to include('WosUID' => wos_record_encoded.uid)
+    end
+    it 'adds a WosItemID extracted from the UID' do
+      result = wos_record_encoded.identifiers
+      expect(result).to include('WosItemID' => wos_record_encoded.wos_item_id)
+    end
+
+    context 'MEDLINE record' do
+      # => {"doi"=>"10.1038/psp.2013.66", "pmid"=>"24452614", "WosUID"=>"MEDLINE:24452614", "WosItemID"=>"24452614"}
+      let(:ids) { medline_record_encoded.identifiers }
+
+      it 'WosUID has a MEDLINE prefix' do
+        expect(ids).to include('WosUID' => 'MEDLINE:24452614')
+      end
+      it 'pmid is stripped of the MEDLINE prefix' do
+        expect(ids).to include('pmid' => '24452614')
+      end
+    end
+
+    context 'merge with links identifiers' do
+      let(:wos_id) { '000346594100007' }
+      let(:record4links) { File.read('spec/fixtures/wos_client/wos_record4links.html') }
+      let(:wos_record4links) { described_class.new(encoded_record: record4links) }
+
+      # links_client = Clarivate::LinksClient.new
+      # links = links_client.links([wos_id])
+      let(:links) { { '000346594100007' => { 'doi' => '10.1002/2013GB004790' } } }
+
+      it 'has compatible keys in the Hash value' do
+        # These sets of identifiers should both contain the 'doi' identifier
+        identifiers = wos_record4links.identifiers
+        expect(links[wos_id].keys & identifiers.keys).to include 'doi'
+      end
+    end
+
+    describe '#doi' do
+      it 'is nil when not available in identifiers' do
+        # The mock record does not have one
+        expect(wos_record_encoded.doi).to be_nil
+      end
+      it 'is extracted from identifiers' do
+        allow(wos_record_encoded).to receive(:identifiers).and_return('doi' => 'DOI')
+        expect(wos_record_encoded.doi).to eq 'DOI'
+      end
+    end
+
+    describe '#pmid' do
+      it 'is nil when not available in identifiers' do
+        # The mock record does not have one
+        expect(wos_record_encoded.pmid).to be_nil
+      end
+      it 'is extracted from identifiers' do
+        allow(wos_record_encoded).to receive(:identifiers).and_return('pmid' => 'PMID')
+        expect(wos_record_encoded.pmid).to eq 'PMID'
+      end
     end
   end
 
@@ -219,8 +300,17 @@ describe WebOfScience::Record do
   end
 
   describe '#uid' do
-    it 'works' do
+    it 'WOS records have a WOS-UID' do
       expect(wos_record_encoded.uid).to eq wos_uid
+    end
+    it 'MEDLINE records have a MEDLINE-UID (PMID)' do
+      expect(medline_record_encoded.uid).to eq medline_uid
+    end
+  end
+
+  describe '#wos_item_id' do
+    it 'works' do
+      expect(wos_record_encoded.wos_item_id).to eq wos_uid.split(':').last
     end
   end
 
@@ -250,7 +340,7 @@ describe WebOfScience::Record do
   end
 
   describe '#decode_records' do
-    let(:xml_result) { wos_record_encoded.send(:decode_record, nil, encoded_record) }
+    let(:xml_result) { wos_record_encoded.send(:decode_record, nil, wos_encoded_record) }
 
     it_behaves_like 'it has well formed XML'
   end

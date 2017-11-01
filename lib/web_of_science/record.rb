@@ -20,16 +20,34 @@ module WebOfScience
       @authors ||= names.select { |name| name['role'] == 'author' }
     end
 
+    # Extract the {DB_PREFIX} from a WOS-UID in the form {DB_PREFIX}:{WOS_ITEM_ID}
+    # @return [String|nil]
+    def database
+      @database ||= begin
+        uid_split = uid.split(':')
+        uid_split.length > 1 ? uid_split[0] : nil
+      end
+    end
+
     # @return doctypes [Array<String>]
     def doctypes
       @doctypes ||= doc.search('static_data/summary/doctypes/doctype').map(&:text)
+    end
+
+    # @return [String|nil]
+    def doi
+      identifiers['doi']
     end
 
     # @return identifiers [Hash<String => String>]
     def identifiers
       @identifiers ||= begin
         ids = doc.search('dynamic_data/cluster_related/identifiers/identifier')
-        ids.map { |id| [id['type'], id['value']] }.to_h
+        ids = ids.map { |id| [id['type'], id['value']] }.to_h
+        ids['WosUID'] = uid
+        ids['WosItemID'] = wos_item_id
+        ids['pmid'].sub!('MEDLINE:', '') if database == 'MEDLINE'
+        ids
       end
     end
 
@@ -41,6 +59,11 @@ module WebOfScience
         end
         names.sort { |name| name['seq_no'].to_i }
       end
+    end
+
+    # @return [String|nil]
+    def pmid
+      identifiers['pmid']
     end
 
     # Pretty print the record in XML
@@ -93,7 +116,7 @@ module WebOfScience
     # Extract the REC summary fields
     # @return summary [Hash]
     def summary
-      {
+      @summary ||= {
         'doctypes' => doctypes,
         'names' => names,
         'pub_info' => pub_info,
@@ -137,7 +160,13 @@ module WebOfScience
 
     # @return uid [String] the UID
     def uid
-      doc.search('UID').text
+      @uid ||= doc.search('UID').text
+    end
+
+    # Extract the {WOS_ITEM_ID} from a WOS-UID in the form {DB_PREFIX}:{WOS_ITEM_ID}
+    # @return [String]
+    def wos_item_id
+      @wos_item_id ||= uid.split(':').last
     end
 
     private
