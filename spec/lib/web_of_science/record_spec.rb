@@ -82,12 +82,6 @@ describe WebOfScience::Record do
     it_behaves_like 'it is an array of names'
   end
 
-  describe '#database' do
-    it 'works' do
-      expect(wos_record_encoded.database).to eq wos_uid.split(':').first
-    end
-  end
-
   describe '#names' do
     let(:agents) { wos_record_encoded.names }
 
@@ -97,64 +91,23 @@ describe WebOfScience::Record do
   describe '#identifiers' do
     it 'works' do
       result = wos_record_encoded.identifiers
-      expect(result).to include('issn' => '0010-0870')
-    end
-    it 'adds a WosUID' do
-      result = wos_record_encoded.identifiers
-      expect(result).to include('WosUID' => wos_record_encoded.uid)
-    end
-    it 'adds a WosItemID extracted from the UID' do
-      result = wos_record_encoded.identifiers
-      expect(result).to include('WosItemID' => wos_record_encoded.wos_item_id)
+      expect(result).to be_an WebOfScience::Identifiers
     end
 
-    context 'MEDLINE record' do
-      # => {"doi"=>"10.1038/psp.2013.66", "pmid"=>"24452614", "WosUID"=>"MEDLINE:24452614", "WosItemID"=>"24452614"}
-      let(:ids) { medline_record_encoded.identifiers }
-
-      it 'WosUID has a MEDLINE prefix' do
-        expect(ids).to include('WosUID' => 'MEDLINE:24452614')
-      end
-      it 'pmid is stripped of the MEDLINE prefix' do
-        expect(ids).to include('pmid' => '24452614')
+    describe '#database' do
+      # check that it is delegated successfully to identifiers
+      it 'works' do
+        expect(wos_record_encoded.database).to eq wos_uid.split(':').first
       end
     end
 
-    context 'merge with links identifiers' do
-      let(:wos_id) { '000346594100007' }
-      let(:record4links) { File.read('spec/fixtures/wos_client/wos_record4links.html') }
-      let(:wos_record4links) { described_class.new(encoded_record: record4links) }
-
-      # links_client = Clarivate::LinksClient.new
-      # links = links_client.links([wos_id])
-      let(:links) { { '000346594100007' => { 'doi' => '10.1002/2013GB004790' } } }
-
-      it 'has compatible keys in the Hash value' do
-        # These sets of identifiers should both contain the 'doi' identifier
-        identifiers = wos_record4links.identifiers
-        expect(links[wos_id].keys & identifiers.keys).to include 'doi'
+    describe '#uid' do
+      # check that it is delegated successfully to identifiers
+      it 'WOS records have a WOS-UID' do
+        expect(wos_record_encoded.uid).to eq wos_uid
       end
-    end
-
-    describe '#doi' do
-      it 'is nil when not available in identifiers' do
-        # The mock record does not have one
-        expect(wos_record_encoded.doi).to be_nil
-      end
-      it 'is extracted from identifiers' do
-        allow(wos_record_encoded).to receive(:identifiers).and_return('doi' => 'DOI')
-        expect(wos_record_encoded.doi).to eq 'DOI'
-      end
-    end
-
-    describe '#pmid' do
-      it 'is nil when not available in identifiers' do
-        # The mock record does not have one
-        expect(wos_record_encoded.pmid).to be_nil
-      end
-      it 'is extracted from identifiers' do
-        allow(wos_record_encoded).to receive(:identifiers).and_return('pmid' => 'PMID')
-        expect(wos_record_encoded.pmid).to eq 'PMID'
+      it 'MEDLINE records have a MEDLINE-UID (PMID)' do
+        expect(medline_record_encoded.uid).to eq medline_uid
       end
     end
   end
@@ -296,21 +249,6 @@ describe WebOfScience::Record do
     end
     it 'contains summary fields' do
       expect(struct.summary).to be_an OpenStruct
-    end
-  end
-
-  describe '#uid' do
-    it 'WOS records have a WOS-UID' do
-      expect(wos_record_encoded.uid).to eq wos_uid
-    end
-    it 'MEDLINE records have a MEDLINE-UID (PMID)' do
-      expect(medline_record_encoded.uid).to eq medline_uid
-    end
-  end
-
-  describe '#wos_item_id' do
-    it 'works' do
-      expect(wos_record_encoded.wos_item_id).to eq wos_uid.split(':').last
     end
   end
 
