@@ -29,12 +29,14 @@ class PubmedSourceRecord < ActiveRecord::Base
   def self.get_pubmed_source_record_for_pmid(pmid)
     find_by(pmid: pmid) || get_pubmed_record_from_pubmed(pmid)
   end
+  private_class_method :get_pubmed_source_record_for_pmid
 
   # @return [PubmedSourceRecord] the recently downloaded pubmed_source_records data
   def self.get_pubmed_record_from_pubmed(pmid)
     get_and_store_records_from_pubmed([pmid])
     find_by(pmid: pmid)
   end
+  private_class_method :get_pubmed_record_from_pubmed
 
   def self.create_pubmed_source_record(pmid, pub_doc)
     where(pmid: pmid).first_or_create(
@@ -66,6 +68,7 @@ class PubmedSourceRecord < ActiveRecord::Base
     end
     import source_records
   end
+  private_class_method :get_and_store_records_from_pubmed
 
   # Retrieve this pubmed record from PubMed and update
   # is_active, source_data and the source_fingerprint fields.
