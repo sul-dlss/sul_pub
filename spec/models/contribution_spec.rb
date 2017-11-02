@@ -162,25 +162,6 @@ describe Contribution do
     end
   end
 
-  describe '.find_or_create_by_author_and_publication' do
-    it 'calls find_or_create_by_author_id_and_publication_id' do
-      expect(described_class).to receive(:find_or_create_by)
-        .with(
-          author_id: subject.author.id,
-          publication_id: subject.publication.id
-        ).and_call_original
-      described_class.find_or_create_by_author_and_publication(
-        subject.author, subject.publication
-      )
-    end
-    it 'returns an existing contribution' do
-      contrib = described_class.find_or_create_by_author_and_publication(
-        subject.author, subject.publication
-      )
-      expect(subject.id).to eq(contrib.id)
-    end
-  end
-
   describe '#to_pub_hash' do
     it 'returns a valid authorship hash' do
       auth = authorship.symbolize_keys

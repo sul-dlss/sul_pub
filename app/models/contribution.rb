@@ -60,10 +60,6 @@ class Contribution < ActiveRecord::Base
     contrib[:featured].to_s =~ /true|false/i ? true : false
   end
 
-  def self.find_or_create_by_author_and_publication(author, publication)
-    find_or_create_by(author_id: author.id, publication_id: publication.id)
-  end
-
   def to_pub_hash
     {
       cap_profile_id: cap_profile_id,
