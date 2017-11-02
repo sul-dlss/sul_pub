@@ -6,6 +6,8 @@ module Clarivate
     LINKS_HOST = 'https://ws.isiknowledge.com'.freeze
     LINKS_PATH = '/cps/xrpc'.freeze
 
+    ALL_FIELDS = %w(ut doi pmid title isbn issn issue vol year tpages sourceURL timesCited citingArticlesURL relatedRecordsURL).freeze
+
     attr_reader :username, :password, :host
 
     # @param [String] username
