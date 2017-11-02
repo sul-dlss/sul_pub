@@ -207,17 +207,6 @@ class Publication < ActiveRecord::Base
     set_last_updated_value_in_hash
   end
 
-  def add_any_pubmed_data_to_hash
-    return if pmid.blank?
-    pubmed_hash = PubmedSourceRecord.get_pubmed_hash_for_pmid(pmid)
-    return if pubmed_hash.nil?
-
-    pub_hash[:mesh_headings] = pubmed_hash[:mesh_headings] if pubmed_hash[:mesh_headings].present?
-    pub_hash[:abstract] = pubmed_hash[:abstract] if pubmed_hash[:abstract].present?
-    pmc_id = pubmed_hash[:identifier].detect { |id| id[:type] == 'pmc' }
-    pub_hash[:identifier] << pmc_id if pmc_id
-  end
-
   def set_last_updated_value_in_hash
     pub_hash[:last_updated] = Time.zone.now.to_s
   end
@@ -314,6 +303,16 @@ class Publication < ActiveRecord::Base
           publication_identifiers << i unless publication_identifiers.include? i
         end
       end
+    end
+
+    def add_any_pubmed_data_to_hash
+      return if pmid.blank?
+      pubmed_hash = PubmedSourceRecord.get_pubmed_hash_for_pmid(pmid)
+      return if pubmed_hash.nil?
+      pub_hash[:mesh_headings] = pubmed_hash[:mesh_headings] if pubmed_hash[:mesh_headings].present?
+      pub_hash[:abstract] = pubmed_hash[:abstract] if pubmed_hash[:abstract].present?
+      pmc_id = pubmed_hash[:identifier].detect { |id| id[:type] == 'pmc' }
+      pub_hash[:identifier] << pmc_id if pmc_id
     end
 
     def update_any_new_contribution_info_in_pub_hash_to_db
