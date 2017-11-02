@@ -140,25 +140,6 @@ class Publication < ActiveRecord::Base
     self
   end
 
-  # this is a very temporary method to be used only for the initial import
-  # of data from CAP.
-  # @return [self]
-  def cutover_sync_hash_and_db
-    set_sul_pub_id_in_hash
-    pub_hash[:last_updated] = updated_at.to_s
-    add_all_db_contributions_to_my_pub_hash
-    # add identifiers that are in the hash to the pub identifiers db table
-    pub_hash[:identifier].each do |identifier|
-      publication_identifiers.create(
-        identifier_type: identifier[:type],
-        certainty: 'confirmed',
-        identifier_value: identifier[:id],
-        identifier_uri: identifier[:url])
-    end
-    update_formatted_citations
-    self
-  end
-
   # @return [self]
   def sync_publication_hash_and_db
     rebuild_authorship
