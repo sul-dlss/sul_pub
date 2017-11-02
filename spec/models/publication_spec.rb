@@ -49,7 +49,7 @@ describe Publication do
       subject do
         expect(Author).to receive(:find_by_id).and_return(author)
         publication.pub_hash = pub_hash.dup
-        publication.send(:update_any_new_contribution_info_in_pub_hash_to_db)
+        publication.update_any_new_contribution_info_in_pub_hash_to_db
         publication.save
         publication.reload
       end
@@ -77,7 +77,7 @@ describe Publication do
         expect(Author).to receive(:find_by_cap_profile_id).and_return(nil)
         expect(Author).to receive(:fetch_from_cap_and_create).and_return(author)
         publication.pub_hash = pub_hash_cap_authorship.dup
-        publication.send(:update_any_new_contribution_info_in_pub_hash_to_db)
+        publication.update_any_new_contribution_info_in_pub_hash_to_db
         publication.save
         publication.reload
       end
@@ -96,7 +96,7 @@ describe Publication do
         expect(NotificationManager).to receive(:cap_logger).once.and_return(logger)
         expect(logger).to receive(:error).exactly(3)
         publication.pub_hash = pub_hash_cap_authorship.dup
-        publication.send(:update_any_new_contribution_info_in_pub_hash_to_db)
+        publication.update_any_new_contribution_info_in_pub_hash_to_db
       end
     end
   end
@@ -104,7 +104,7 @@ describe Publication do
   describe 'sync_identifiers_in_pub_hash_to_db' do
     it 'should sync identifiers in the pub hash to the database' do
       publication.pub_hash = { identifier: [{ type: 'x', id: 'y', url: 'z' }] }
-      publication.send(:sync_identifiers_in_pub_hash_to_db)
+      publication.sync_identifiers_in_pub_hash_to_db
       i = PublicationIdentifier.last
       expect(i.identifier_type).to eq('x')
       expect(publication.publication_identifiers.reload).to include(i)
@@ -113,15 +113,15 @@ describe Publication do
     it 'should not persist SULPubIds' do
       publication.pub_hash = { identifier: [{ type: 'SULPubId', id: 'y', url: 'z' }] }
       expect do
-        publication.send(:sync_identifiers_in_pub_hash_to_db)
+        publication.sync_identifiers_in_pub_hash_to_db
       end.to_not change(publication, :publication_identifiers)
     end
 
     it 'updates existing ids with new values' do
       publication.pub_hash = { identifier: [{ type: 'x', id: 'y', url: 'z' }] }
-      publication.send(:sync_identifiers_in_pub_hash_to_db)
+      publication.sync_identifiers_in_pub_hash_to_db
       publication.pub_hash = { identifier: [{ type: 'x', id: 'y2', url: 'z2' }] }
-      publication.send(:sync_identifiers_in_pub_hash_to_db)
+      publication.sync_identifiers_in_pub_hash_to_db
       ids = PublicationIdentifier.where(publication_id: publication.id).all
       expect(ids.size).to eq(1)
       expect(ids.first.identifier_type).to eq('x')
@@ -131,18 +131,18 @@ describe Publication do
 
     it 'deletes ids from the database that are not longer in the pub_hash' do
       publication.pub_hash = { identifier: [{ type: 'x', id: 'y', url: 'z' }] }
-      publication.send(:sync_identifiers_in_pub_hash_to_db)
+      publication.sync_identifiers_in_pub_hash_to_db
       publication.pub_hash = { identifier: [{ type: 'a', id: 'b', url: 'c' }] }
-      publication.send(:sync_identifiers_in_pub_hash_to_db)
+      publication.sync_identifiers_in_pub_hash_to_db
       expect(PublicationIdentifier.where(publication_id: publication.id, identifier_type: 'x').count).to eq(0)
       expect(PublicationIdentifier.where(publication_id: publication.id, identifier_type: 'a').count).to eq(1)
     end
 
     it 'does not delete legacy_cap_pub_id when missing from the incoming pub_hash' do
       publication.pub_hash = { identifier: [{ type: 'legacy_cap_pub_id', id: '258214' }] }
-      publication.send(:sync_identifiers_in_pub_hash_to_db)
+      publication.sync_identifiers_in_pub_hash_to_db
       publication.pub_hash = { identifier: [{ type: 'another', id: 'id', url: 'with a url' }] }
-      publication.send(:sync_identifiers_in_pub_hash_to_db)
+      publication.sync_identifiers_in_pub_hash_to_db
       expect(PublicationIdentifier.where(publication_id: publication.id, identifier_type: 'legacy_cap_pub_id').count).to eq(1)
       expect(PublicationIdentifier.where(publication_id: publication.id, identifier_type: 'another').count).to eq(1)
     end
@@ -151,7 +151,7 @@ describe Publication do
   describe 'update_any_new_contribution_info_in_pub_hash_to_db' do
     it 'should sync existing authors in the pub hash to contributions in the db' do
       publication.pub_hash = { authorship: [{ status: 'new', sul_author_id: author.id }] }
-      publication.send(:update_any_new_contribution_info_in_pub_hash_to_db)
+      publication.update_any_new_contribution_info_in_pub_hash_to_db
       publication.save
       expect(publication.contributions.size).to eq(1)
       c = publication.contributions.last
@@ -161,9 +161,9 @@ describe Publication do
 
     it 'should update attributions of existing contributions to the database' do
       expect(publication.contributions.size).to eq(0)
-      publication.contributions.build_or_update(author, status: 'unknown')
+      publication.contributions.build_or_update(author, status: 'new')
       publication.pub_hash = { authorship: [{ status: 'new', sul_author_id: author.id }] }
-      publication.send(:update_any_new_contribution_info_in_pub_hash_to_db)
+      publication.update_any_new_contribution_info_in_pub_hash_to_db
       publication.save
       expect(publication.contributions.size).to eq(1)
       c = publication.contributions.reload.last
@@ -176,7 +176,7 @@ describe Publication do
       author.save
 
       publication.pub_hash = { authorship: [{ status: 'new', cap_profile_id: author.cap_profile_id }] }
-      publication.send(:update_any_new_contribution_info_in_pub_hash_to_db)
+      publication.update_any_new_contribution_info_in_pub_hash_to_db
 
       publication.save
       expect(publication.contributions.size).to eq(1)
@@ -187,7 +187,7 @@ describe Publication do
 
     it 'should ignore unknown authors' do
       publication.pub_hash = { authorship: [{ status: 'ignored', cap_profile_id: 'doesnt_exist' }] }
-      publication.send(:update_any_new_contribution_info_in_pub_hash_to_db)
+      publication.update_any_new_contribution_info_in_pub_hash_to_db
       publication.save
       expect(publication.contributions).to be_empty
     end
@@ -386,14 +386,16 @@ describe Publication do
       pub.save
       pub = Publication.build_new_manual_publication({ b: :c }, 'some other string', 'some where')
       pub.update_manual_pub_from_pub_hash({ b: :c }, 'some string', 'some where')
-      expect { pub.save! }.to raise_error(ActiveRecord::RecordNotUnique)
+      expect do
+        pub.save!
+      end.to raise_error(ActiveRecord::RecordNotUnique)
     end
   end
 
   describe '.find_by_doi' do
     it 'returns an array of Publications that have this doi' do
       publication.pub_hash = { identifier: [{ type: 'doi', id: '10.1016/j.mcn.2012.03.008', url: 'https://dx.doi.org/10.1016/j.mcn.2012.03.008' }] }
-      publication.send(:sync_identifiers_in_pub_hash_to_db)
+      publication.sync_identifiers_in_pub_hash_to_db
       res = Publication.find_by_doi '10.1016/j.mcn.2012.03.008'
       expect(res.size).to eq(1)
       expect(res.first.id).to eq(publication.id)
