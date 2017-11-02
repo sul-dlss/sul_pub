@@ -159,6 +159,44 @@ describe WebOfScience::Record do
     end
   end
 
+  describe '#identifiers_merge' do
+    let(:identifiers) do
+      { 'issn'      => '0832-610X',
+        'doi'       => '10.1007/s12630-011-9462-1',
+        'xref_doi'  => '10.1007/s12630-011-9462-1',
+        'WosUID'    => 'WOS:000288663100014',
+        'WosItemID' => '000288663100014' }
+    end
+    let(:links) do
+      # The links-API can return these for WosItemID '000288663100014'
+      { 'doi' => '10.1007/s12630-011-9462-2', # artificially changed this to end with '2'
+        'pmid' => '21253920' }
+    end
+    let(:links_merged) do
+      wos_record_encoded.identifiers_merge(links)
+      wos_record_encoded.identifiers
+    end
+
+    before do
+      allow(wos_record_encoded).to receive(:identifiers).and_return(identifiers)
+    end
+
+    it 'returns a Hash' do
+      expect(links_merged).to be_an Hash
+    end
+    it 'preserves existing identifiers' do
+      # If it doesn't preserve them, the doi will end in `2` here
+      expect(links_merged).to include('doi' => '10.1007/s12630-011-9462-1')
+    end
+    it 'duplicate identifiers are discarded' do
+      # The inverse of the spec above, for completeness
+      expect(links_merged).not_to include('doi' => '10.1007/s12630-011-9462-2')
+    end
+    it 'merges additional identifiers' do
+      expect(links_merged).to include('pmid' => '21253920')
+    end
+  end
+
   describe '#doctypes' do
     let(:doctypes) { wos_record_encoded.doctypes }
 

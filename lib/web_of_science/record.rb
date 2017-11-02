@@ -51,6 +51,13 @@ module WebOfScience
       end
     end
 
+    # Update identifiers using a merge strategy to preserve the values already in the identifiers
+    # @param links [Hash<String => String>] other identifiers (from Links API)
+    # @return identifiers [Hash<String => String>]
+    def identifiers_merge(links)
+      identifiers.reverse_update links
+    end
+
     # @return names [Array<Hash<String => String>>]
     def names
       @names ||= begin
