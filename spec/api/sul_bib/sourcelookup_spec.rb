@@ -66,7 +66,7 @@ describe SulBib::API, :vcr do
             }
           ]
         }
-        publication.sync_identifiers_in_pub_hash_to_db
+        publication.send(:sync_identifiers_in_pub_hash_to_db)
         result = sourcelookup_by_doi
         expect(result['metadata']).to include('records')
         expect(result['metadata']['records']).to eq('1')

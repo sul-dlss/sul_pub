@@ -247,7 +247,7 @@ namespace :cap_cutover do
               title: pub_hash[:title],
               year: pub_hash[:year]
             )
-            pub.update_any_new_contribution_info_in_pub_hash_to_db
+            pub.send(:update_any_new_contribution_info_in_pub_hash_to_db)
             pub.sync_publication_hash_and_db
             pub.save
           else
