@@ -1,9 +1,13 @@
+require 'forwardable'
 require 'htmlentities'
 
 module WebOfScience
 
   # Utilities for working with a Web of Knowledge (WOK) record
   class Record
+    extend Forwardable
+
+    delegate %i(database doi issn pmid uid wos_item_id) => :identifiers
 
     # @return doc [Nokogiri::XML::Document] WOS record document
     attr_reader :doc
@@ -20,35 +24,14 @@ module WebOfScience
       @authors ||= names.select { |name| name['role'] == 'author' }
     end
 
-    # Extract the {DB_PREFIX} from a WOS-UID in the form {DB_PREFIX}:{WOS_ITEM_ID}
-    # @return [String|nil]
-    def database
-      @database ||= begin
-        uid_split = uid.split(':')
-        uid_split.length > 1 ? uid_split[0] : nil
-      end
-    end
-
     # @return doctypes [Array<String>]
     def doctypes
       @doctypes ||= doc.search('static_data/summary/doctypes/doctype').map(&:text)
     end
 
-    # @return [String|nil]
-    def doi
-      identifiers['doi']
-    end
-
     # @return identifiers [Hash<String => String>]
     def identifiers
-      @identifiers ||= begin
-        ids = doc.search('dynamic_data/cluster_related/identifiers/identifier')
-        ids = ids.map { |id| [id['type'], id['value']] }.to_h
-        ids['WosUID'] = uid
-        ids['WosItemID'] = wos_item_id
-        ids['pmid'].sub!('MEDLINE:', '') if database == 'MEDLINE'
-        ids
-      end
+      @identifiers ||= WebOfScience::Identifiers.new self
     end
 
     # @return names [Array<Hash<String => String>>]
@@ -59,11 +42,6 @@ module WebOfScience
         end
         names.sort { |name| name['seq_no'].to_i }
       end
-    end
-
-    # @return [String|nil]
-    def pmid
-      identifiers['pmid']
     end
 
     # Pretty print the record in XML
@@ -156,17 +134,6 @@ module WebOfScience
     # @return xml [String] XML
     def to_xml
       doc.to_xml(save_with: XML_OPTIONS).strip
-    end
-
-    # @return uid [String] the UID
-    def uid
-      @uid ||= doc.search('UID').text
-    end
-
-    # Extract the {WOS_ITEM_ID} from a WOS-UID in the form {DB_PREFIX}:{WOS_ITEM_ID}
-    # @return [String]
-    def wos_item_id
-      @wos_item_id ||= uid.split(':').last
     end
 
     private

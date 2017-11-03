@@ -1,0 +1,139 @@
+<?xml version='1.0'?>
+<REC r_id_disclaimer='ResearcherID data provided by Clarivate Analytics'>
+  <UID>MEDLINE:24452614</UID>
+  <static_data>
+    <summary>
+      <EWUID>
+        <WUID coll_id='MEDLINE'/>
+        <edition value='MEDLINE.MEDLINE'/>
+      </EWUID>
+      <pub_info coverdate='2014-Jan-22' edate='2014-01-22' has_abstract='Y' medium='Print' model='Electronic' pubday='22' pubmonth='Jan' pubtype='Journal' pubyear='2014' sortdate='2014-01-22' vol='3'>
+        <page begin='e93'>e93</page>
+      </pub_info>
+      <titles count='4'>
+        <title type='item'>
+          Identifying druggable targets by protein microenvironments matching:
+          application to transcription factors.
+        </title>
+        <title type='source'>CPT: pharmacometrics &amp; systems pharmacology</title>
+        <title type='abbrev_iso'>CPT Pharmacometrics Syst Pharmacol</title>
+        <title type='source_abbrev'>CPT Pharmacometrics Syst Pharmacol</title>
+      </titles>
+      <names count='2'>
+        <name display='Y' role='author' seq_no='1'>
+          <display_name>Liu, T</display_name>
+          <full_name>Liu, T</full_name>
+          <initials>T</initials>
+        </name>
+        <name display='Y' role='author' seq_no='2'>
+          <display_name>Altman, R B</display_name>
+          <full_name>Altman, R B</full_name>
+          <initials>RB</initials>
+        </name>
+      </names>
+      <doctypes count='1'>
+        <doctype>Journal Article</doctype>
+      </doctypes>
+    </summary>
+    <fullrecord_metadata>
+      <languages count='1'>
+        <language type='primary'>English</language>
+      </languages>
+      <normalized_languages count='1'>
+        <language type='primary'>English</language>
+      </normalized_languages>
+      <normalized_doctypes count='1'>
+        <doctype>Article</doctype>
+      </normalized_doctypes>
+      <addresses count='1'>
+        <address_name>
+          <address_spec addr_no='1'>
+            <full_address>Department of Genetics, Stanford University, Stanford, California, USA.</full_address>
+          </address_spec>
+        </address_name>
+      </addresses>
+      <fund_ack>
+        <grants complete='Y' count='3'>
+          <grant>
+            <grant_agency>NIGMS NIH HHS</grant_agency>
+            <grant_ids count='1'>
+              <grant_id>R01 GM102365</grant_id>
+            </grant_ids>
+            <country>United States</country>
+            <acronym>GM</acronym>
+          </grant>
+          <grant>
+            <grant_agency>NLM NIH HHS</grant_agency>
+            <grant_ids count='1'>
+              <grant_id>R01 LM005652</grant_id>
+            </grant_ids>
+            <country>United States</country>
+            <acronym>LM</acronym>
+          </grant>
+          <grant>
+            <grant_agency>NIGMS NIH HHS</grant_agency>
+            <grant_ids count='1'>
+              <grant_id>U54 GM072970</grant_id>
+            </grant_ids>
+            <country>United States</country>
+            <acronym>GM</acronym>
+          </grant>
+        </grants>
+      </fund_ack>
+      <abstracts count='1'>
+        <abstract>
+          <abstract_text>
+            <p>
+              Druggability of a protein is its potential to be modulated by
+              drug-like molecules. It is important in the target selection
+              phase. We hypothesize that: (i) known drug-binding sites contain
+              advantageous physicochemical properties for drug binding, or
+              "druggable microenvironments" and (ii) given a target, the
+              presence of multiple druggable microenvironments similar to those
+              seen previously is associated with a high likelihood of
+              druggability. We developed DrugFEATURE to quantify druggability by
+              assessing the microenvironments in potential small-molecule
+              binding sites. We benchmarked DrugFEATURE using two data sets. One
+              data set measures druggability using NMR-based screening.
+              DrugFEATURE correlates well with this metric. The second data set
+              is based on historical drug discovery outcomes. Using the
+              DrugFEATURE cutoffs derived from the first, we accurately
+              discriminated druggable and difficult targets in the second. We
+              further identified novel druggable transcription factors with
+              implications for cancer therapy. DrugFEATURE provides useful
+              insight for drug discovery, by evaluating druggability and
+              suggesting specific regions for interacting with drug-like
+              molecules.CPT: Pharmacometrics Systems Pharmacology (2014) 3, e93;
+              doi:10.1038/psp.2013.66; published online 22 January 2014. 
+            </p>
+          </abstract_text>
+        </abstract>
+      </abstracts>
+    </fullrecord_metadata>
+    <item xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' Owner='NLM' Status='PubMed-not-MEDLINE' coll_id='MEDLINE' xsi:type='itemType_medline'>
+      <MedlineJournalInfo>
+        <Country>United States</Country>
+        <NlmUniqueID>101580011</NlmUniqueID>
+        <ISSNLinking>2163-8306</ISSNLinking>
+      </MedlineJournalInfo>
+      <DateCreated>2014-01-23</DateCreated>
+      <DateCompleted>2014-01-23</DateCompleted>
+      <DateRevised>2016-10-19</DateRevised>
+      <Affiliation>Department of Genetics, Stanford University, Stanford, California, USA.</Affiliation>
+      <OtherID Source='NLM'>PMC3910014</OtherID>
+    </item>
+  </static_data>
+  <dynamic_data>
+    <citation_related>
+      <tc_list>
+        <silo_tc coll_id='MEDLINE' local_count='0'/>
+      </tc_list>
+    </citation_related>
+    <cluster_related>
+      <identifiers>
+        <identifier type='doi' value='10.1038/psp.2013.66'/>
+        <identifier type='pmid' value='MEDLINE:24452614'/>
+      </identifiers>
+    </cluster_related>
+  </dynamic_data>
+</REC>
