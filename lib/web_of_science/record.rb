@@ -11,12 +11,39 @@ module WebOfScience
 
     # @return doc [Nokogiri::XML::Document] WOS record document
     attr_reader :doc
+    attr_reader :database
+    attr_reader :uid
+    attr_reader :names
+    attr_reader :authors
+    attr_reader :doctypes
+    attr_reader :identifiers
+    attr_reader :doi
+    attr_reader :pmid
+    attr_reader :issn
+    attr_reader :pub_info
+    attr_reader :publishers
+    attr_reader :wos_item_id
+    attr_reader :titles
 
     # @param record [String] record in XML
     # @param encoded_record [String] record in HTML encoding
-    def initialize(record: nil, encoded_record: nil)
-      record = decode_record(record, encoded_record)
-      @doc = Nokogiri::XML(record) { |config| config.strict.noblanks }
+    def initialize(record: nil, encoded_record: nil, wosExtractor: WebOfScience::WosExtractor.new)
+      record       = decode_record(record, encoded_record)
+      @doc         = Nokogiri::XML(record) { |config| config.strict.noblanks }
+      @uid         = wosExtractor.extract_uid(@doc)
+      @database    = wosExtractor.extract_database(@uid)
+      @names       = wosExtractor.extract_names(@doc)
+      @authors     = wosExtractor.extract_authors(@names)
+      @doctypes    = wosExtractor.extract_doctypes(@doc)
+      @identifiers = wosExtractor.extract_identifiers(@doc)
+      @doi         = wosExtractor.extract_doi(@identifiers)
+      @pmid        = wosExtractor.extract_pmid(@identifiers)
+      @issn        = wosExtractor.extract_issn(@identifiers)
+      @pub_info    = wosExtractor.extract_pub_info(@doc)
+      @publishers  = wosExtractor.extract_publishers(@doc)
+      @wos_item_id = wosExtractor.extract_wos_item_id(@uid)
+      @titles      = wosExtractor.extract_titles(@doc)
+      @abstracts   = wosExtractor.extract_abstracts(@doc) #yes there might be multiple abstracts
     end
 
     # @return authors [Array<Hash<String => String>>]
@@ -55,104 +82,54 @@ module WebOfScience
       nil
     end
 
-    # @return pub_info [Hash<String => String>]
-    def pub_info
-      @pub_info ||= begin
-        info = doc.at('static_data/summary/pub_info')
-        fields = attributes_map(info)
-        fields += info.children.map do |child|
-          [child.name, attributes_map(child).to_h ]
-        end
-        fields.to_h
-      end
-    end
-
-    # @return publishers [Array<Hash>]
-    def publishers
-      @publishers ||= begin
-        publishers = doc.search('static_data/summary/publishers/publisher').map do |publisher|
-          # parse the publisher address(es)
-          addresses = publisher.search('address_spec').map do |address|
-            attributes_with_children_hash(address)
-          end
-          addresses.sort! { |a| a['addr_no'].to_i }
-          # parse the publisher name(s)
-          names = publisher.search('names/name').map do |name|
-            attributes_with_children_hash(name)
-          end
-          # associate each publisher name with it's address by 'addr_no'
-          names.each do |name|
-            address = addresses.find { |addr| addr['addr_no'] == name['addr_no'] }
-            name['address'] = address
-          end
-          names.sort { |name| name['seq_no'].to_i }
-        end
-        publishers.flatten
-      end
-    end
-
-    # Extract the REC summary fields
-    # @return summary [Hash]
-    def summary
-      @summary ||= {
-        'doctypes' => doctypes,
-        'names' => names,
-        'pub_info' => pub_info,
-        'publishers' => publishers,
-        'titles' => titles,
-      }
-    end
-
-    # An OpenStruct for the summary fields
-    # @return summary [OpenStruct]
-    def summary_struct
-      to_o(summary)
-    end
-
-    # @return titles [Hash<String => String>]
-    def titles
-      @titles ||= begin
-        titles = doc.search('static_data/summary/titles/title')
-        titles.map { |title| [title['type'], title.text] }.to_h
-      end
-    end
-
-    # Extract the REC fields
-    # @return [Hash]
-    def to_h
-      {
-        'summary' => summary,
-      }
-    end
-
-    # An OpenStruct for the REC fields
-    # @return [OpenStruct]
-    def to_struct
-      to_o(to_h)
-    end
-
     # @return xml [String] XML
     def to_xml
       doc.to_xml(save_with: XML_OPTIONS).strip
     end
 
+    def toPubHash
+      record_as_hash = {}
+      ids            = []
+
+      ids   << { type: 'PMID', id: @pmid, url: "#{Settings.PUBMED.ARTICLE_BASE_URI}#{@pmid}" } unless @pmid.blank?
+      ids   << { type: 'WoSItemID', id: @wos_item_id, url: "#{Settings.SCIENCEWIRE.ARTICLE_BASE_URI}#{@wos_item_id}" } unless @wos_item_id.blank?
+      ids   << { type: 'doi', id: @doi, url: "#{Settings.DOI.BASE_URI}#{@doi}" } unless @doi.blank?
+      ids   << { type: 'issn', id: @issn, url: Settings.SULPUB_ID.SEARCHWORKS_URI + @issn } unless (@issn == nil)
+
+      record_as_hash[:provenance] = Settings.sciencewire_source
+      record_as_hash[:pmid]       = @pmid unless @pmid.blank?
+      record_as_hash[:issn]       = @identifiers['issn']  unless (@identifiers['issn'] == nil)
+      record_as_hash[:identifier] = ids
+
+      record_as_hash[:title]                = @titles['item']
+      record_as_hash[:abstract_restricted]  = @abstracts #yes there might be multiple abstracts
+      record_as_hash[:author]               = @authors.map{|e|  { name: e['display_name']}}
+
+      record_as_hash[:year] = @pub_info['pubyear']
+      record_as_hash[:date] = @pub_info['sortdate']
+
+      record_as_hash[:authorcount] = @authors.count
+
+      record_as_hash[:documenttypes_sw] = @doctypes
+
+      #record_as_hash[:documentcategory_sw] = publication.xpath('DocumentCategory').text unless publication.xpath('DocumentCategory').blank?
+      #sul_document_type = lookup_cap_doc_type_by_sw_doc_category(record_as_hash[:documentcategory_sw])
+      #record_as_hash[:type] = sul_document_type
+
+      record_as_hash[:publisher] = publishers.map{|e| e['display_name']}
+      record_as_hash[:city] = publishers.map{|e| e['address']['city']} ## Something is not right with the addresses field, need to be double checked
+      #record_as_hash[:stateprovince] = publication.xpath('CopyrightStateProvince').text unless publication.xpath('CopyrightStateProvince').blank?
+      #record_as_hash[:country] = publication.xpath('CopyrightCountry').text unless publication.xpath('CopyrightCountry').blank?
+      record_as_hash[:pages] = @pub_info['page']['begin'] + '-' + @pub_info['page']['end']
+
+      record_as_hash
+
+      PubHash.new(record_as_hash)
+    end
+
     private
 
       XML_OPTIONS = Nokogiri::XML::Node::SaveOptions::AS_XML | Nokogiri::XML::Node::SaveOptions::NO_DECLARATION
-
-      # @param element [Nokogiri::XML::Element]
-      # @return attributes [Array<Array[String, String]>]
-      def attributes_map(element)
-        element.attributes.map { |name, att| [name, att.value] }
-      end
-
-      # @param element [Nokogiri::XML::Element]
-      # @return fields [Hash]
-      def attributes_with_children_hash(element)
-        fields = attributes_map(element)
-        fields += element.children.map { |c| [c.name, c.text] }
-        fields.to_h
-      end
 
       # Return a decoded record, whether it is passed in already or needs to be decoded
       # @param record [String] record in XML
@@ -164,11 +141,6 @@ module WebOfScience
         raise 'encoded_record is nil' if encoded_record.nil?
         coder = HTMLEntities.new
         coder.decode(encoded_record)
-      end
-
-      # Convert Hash to OpenStruct with recursive application to nested hashes
-      def to_o(hash)
-        JSON.parse(hash.to_json, object_class: OpenStruct)
       end
 
   end
