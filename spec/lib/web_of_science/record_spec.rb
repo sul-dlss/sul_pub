@@ -224,6 +224,7 @@ describe WebOfScience::Record do
     end
   end
 
+=begin
   describe '#summary' do
     let(:summary) { wos_record_encoded.summary }
 
@@ -246,6 +247,8 @@ describe WebOfScience::Record do
       expect(summary['titles']).to be_an Hash
     end
   end
+=end
+=begin
 
   describe '#summary_struct' do
     let(:summary) { wos_record_encoded.summary_struct }
@@ -269,6 +272,7 @@ describe WebOfScience::Record do
       expect(summary.titles).to be_an OpenStruct
     end
   end
+=end
 
   describe '#titles' do
     it 'works' do
@@ -277,6 +281,7 @@ describe WebOfScience::Record do
     end
   end
 
+=begin
   describe '#to_h' do
     let(:hash) { wos_record_encoded.to_h }
 
@@ -287,7 +292,9 @@ describe WebOfScience::Record do
       expect(hash['summary']).to eq wos_record_encoded.summary
     end
   end
+=end
 
+=begin
   describe '#to_struct' do
     let(:struct) { wos_record_encoded.to_struct }
 
@@ -298,6 +305,7 @@ describe WebOfScience::Record do
       expect(struct.summary).to be_an OpenStruct
     end
   end
+=end
 
   describe '#uid' do
     it 'WOS records have a WOS-UID' do
