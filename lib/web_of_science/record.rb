@@ -62,7 +62,7 @@ module WebOfScience
     end
 
 
-    def toPubHash
+    def to_pub_hash
       record_as_hash = {}
       ids            = []
 
