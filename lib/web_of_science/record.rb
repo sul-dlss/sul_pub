@@ -97,8 +97,6 @@ module WebOfScience
       #record_as_hash[:country] = publication.xpath('CopyrightCountry').text unless publication.xpath('CopyrightCountry').blank?
       record_as_hash[:pages]     = @pub_info['page']['begin'] + '-' + @pub_info['page']['end']
 
-      record_as_hash
-
       PubHash.new(record_as_hash)
     end
 
