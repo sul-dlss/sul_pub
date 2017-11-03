@@ -25,6 +25,7 @@ class PublicationIdentifierNormalization
 
   # @param pub [Publication] the Publication associated with a PublicationIdentifier
   def pub_hash_update(pub)
+    pub.publication_identifiers.reload # force a reload
     pub.add_all_identifiers_in_db_to_pub_hash
     pub.save!
   rescue => e
