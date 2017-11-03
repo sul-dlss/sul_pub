@@ -67,7 +67,7 @@ module WebOfScience
       ids            = []
 
       ids   << { type: 'PMID', id: @pmid, url: "#{Settings.PUBMED.ARTICLE_BASE_URI}#{@pmid}" } unless @pmid.blank?
-      ids   << { type: 'WoSItemID', id: @wos_item_id, url: "#{Settings.SCIENCEWIRE.ARTICLE_BASE_URI}#{@wos_item_id}" } unless @wos_item_id.blank?
+      ids   << { type: 'WoSItemID', id: @wos_item_id, url: "#{Settings.SCIENCEWIRE.ARTICLE_BASE_URI}#{@wos_item_id}"} unless @wos_item_id.blank?
       ids   << { type: 'doi', id: @doi, url: "#{Settings.DOI.BASE_URI}#{@doi}" } unless @doi.blank?
       ids   << { type: 'issn', id: @issn, url: Settings.SULPUB_ID.SEARCHWORKS_URI + @issn } unless @issn == nil
 
@@ -78,7 +78,7 @@ module WebOfScience
 
       record_as_hash[:title]                = @titles['item']
       record_as_hash[:abstract_restricted]  = @abstracts #yes there might be multiple abstracts
-      record_as_hash[:author]               = @authors.map {|e| { name: e['display_name']} }
+      record_as_hash[:author]               = @authors.map {|e| { name: e['display_name']}}
 
       record_as_hash[:year] = @pub_info['pubyear']
       record_as_hash[:date] = @pub_info['sortdate']
@@ -91,8 +91,8 @@ module WebOfScience
       #sul_document_type = lookup_cap_doc_type_by_sw_doc_category(record_as_hash[:documentcategory_sw])
       #record_as_hash[:type] = sul_document_type
 
-      record_as_hash[:publisher] = publishers.map{|e| e['display_name']}
-      record_as_hash[:city]      = publishers.map{|e| e['address']['city']} ## Something is not right with the addresses field, need to be double checked
+      record_as_hash[:publisher] = publishers.map {|e| e['display_name']}
+      record_as_hash[:city]      = publishers.map {|e| e['address']['city']} ## Something is not right with the addresses field, need to be double checked
       #record_as_hash[:stateprovince] = publication.xpath('CopyrightStateProvince').text unless publication.xpath('CopyrightStateProvince').blank?
       #record_as_hash[:country] = publication.xpath('CopyrightCountry').text unless publication.xpath('CopyrightCountry').blank?
       record_as_hash[:pages]     = @pub_info['page']['begin'] + '-' + @pub_info['page']['end']
