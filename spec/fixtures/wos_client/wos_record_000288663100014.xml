@@ -1,0 +1,194 @@
+<REC r_id_disclaimer='ResearcherID data provided by Clarivate Analytics'>
+  <UID>WOS:000288663100014</UID>
+  <static_data>
+    <summary>
+      <EWUID>
+        <WUID coll_id='WOS'/>
+        <edition value='WOS.SCI'/>
+      </EWUID>
+      <pub_info coverdate='APR 2011' has_abstract='N' issue='4' pubmonth='APR' pubtype='Journal' pubyear='2011' sortdate='2011-04-01' vol='58'>
+        <page begin='413' end='414' page_count='2'>413-414</page>
+      </pub_info>
+      <titles count='6'>
+        <title type='source'>CANADIAN JOURNAL OF ANESTHESIA-JOURNAL CANADIEN D ANESTHESIE</title>
+        <title type='source_abbrev'>CAN J ANESTH</title>
+        <title type='abbrev_iso'>Can. J. Anesth.</title>
+        <title type='abbrev_11'>CAN J ANEST</title>
+        <title type='abbrev_29'>CAN J ANESTH</title>
+        <title type='item'>Kinked PerifixA (R) FX Springwound epidural catheters</title>
+      </titles>
+      <names count='4'>
+        <name daisng_id='14891281' seq_no='1' addr_no='1' reprint='Y' role='author'>
+          <display_name>Hilton, Gillian</display_name>
+          <full_name>Hilton, Gillian</full_name>
+          <wos_standard>Hilton, G</wos_standard>
+          <first_name>Gillian</first_name>
+          <last_name>Hilton</last_name>
+          <email_addr>ghilton@stanford.edu</email_addr>
+        </name>
+        <name daisng_id='39140400' seq_no='2' addr_no='1' role='author'>
+          <display_name>Jette, Christine G.</display_name>
+          <full_name>Jette, Christine G.</full_name>
+          <wos_standard>Jette, CG</wos_standard>
+          <first_name>Christine G.</first_name>
+          <last_name>Jette</last_name>
+        </name>
+        <name daisng_id='13971962' seq_no='3' addr_no='1' role='author'>
+          <display_name>Ouyang, Yi-Bing</display_name>
+          <full_name>Ouyang, Yi-Bing</full_name>
+          <wos_standard>Ouyang, YB</wos_standard>
+          <first_name>Yi-Bing</first_name>
+          <last_name>Ouyang</last_name>
+        </name>
+        <name daisng_id='30381906' seq_no='4' addr_no='1' role='author'>
+          <display_name>Riley, Edward T.</display_name>
+          <full_name>Riley, Edward T.</full_name>
+          <wos_standard>Riley, ET</wos_standard>
+          <first_name>Edward T.</first_name>
+          <last_name>Riley</last_name>
+        </name>
+      </names>
+      <doctypes count='1'>
+        <doctype>Letter</doctype>
+      </doctypes>
+      <publishers>
+        <publisher>
+          <address_spec addr_no='1'>
+            <full_address>233 SPRING ST, NEW YORK, NY 10013 USA</full_address>
+            <city>NEW YORK</city>
+          </address_spec>
+          <names count='1'>
+            <name addr_no='1' role='publisher' seq_no='1'>
+              <display_name>SPRINGER</display_name>
+              <full_name>SPRINGER</full_name>
+            </name>
+          </names>
+        </publisher>
+      </publishers>
+    </summary>
+    <fullrecord_metadata>
+      <languages count='1'>
+        <language type='primary'>English</language>
+      </languages>
+      <normalized_languages count='1'>
+        <language type='primary'>English</language>
+      </normalized_languages>
+      <normalized_doctypes count='1'>
+        <doctype>Letter</doctype>
+      </normalized_doctypes>
+      <refs count='4'/>
+      <addresses count='1'>
+        <address_name>
+          <address_spec addr_no='1'>
+            <full_address>Stanford Univ, Sch Med, Stanford, CA 94305 USA</full_address>
+            <organizations count='2'>
+              <organization>Stanford Univ</organization>
+              <organization pref='Y'>Stanford University</organization>
+            </organizations>
+            <suborganizations count='1'>
+              <suborganization>Sch Med</suborganization>
+            </suborganizations>
+            <city>Stanford</city>
+            <state>CA</state>
+            <country>USA</country>
+            <zip location='AP'>94305</zip>
+          </address_spec>
+          <names count='4'>
+            <name daisng_id='14891281' seq_no='1' addr_no='1' reprint='Y' role='author'>
+              <display_name>Hilton, Gillian</display_name>
+              <full_name>Hilton, Gillian</full_name>
+              <wos_standard>Hilton, G</wos_standard>
+              <first_name>Gillian</first_name>
+              <last_name>Hilton</last_name>
+              <email_addr>ghilton@stanford.edu</email_addr>
+            </name>
+            <name daisng_id='39140400' seq_no='2' addr_no='1' role='author'>
+              <display_name>Jette, Christine G.</display_name>
+              <full_name>Jette, Christine G.</full_name>
+              <wos_standard>Jette, CG</wos_standard>
+              <first_name>Christine G.</first_name>
+              <last_name>Jette</last_name>
+            </name>
+            <name daisng_id='13971962' seq_no='3' addr_no='1' role='author'>
+              <display_name>Ouyang, Yi-Bing</display_name>
+              <full_name>Ouyang, Yi-Bing</full_name>
+              <wos_standard>Ouyang, YB</wos_standard>
+              <first_name>Yi-Bing</first_name>
+              <last_name>Ouyang</last_name>
+            </name>
+            <name daisng_id='30381906' seq_no='4' addr_no='1' role='author'>
+              <display_name>Riley, Edward T.</display_name>
+              <full_name>Riley, Edward T.</full_name>
+              <wos_standard>Riley, ET</wos_standard>
+              <first_name>Edward T.</first_name>
+              <last_name>Riley</last_name>
+            </name>
+          </names>
+        </address_name>
+      </addresses>
+      <reprint_addresses count='1'>
+        <address_name>
+          <address_spec addr_no='1'>
+            <full_address>Stanford Univ, Sch Med, Stanford, CA 94305 USA</full_address>
+            <organizations count='2'>
+              <organization>Stanford Univ</organization>
+              <organization pref='Y'>Stanford University</organization>
+            </organizations>
+            <suborganizations count='1'>
+              <suborganization>Sch Med</suborganization>
+            </suborganizations>
+            <city>Stanford</city>
+            <state>CA</state>
+            <country>USA</country>
+            <zip location='AP'>94305</zip>
+          </address_spec>
+          <names count='1'>
+            <name addr_no='1' reprint='Y' role='author' seq_no='1'>
+              <display_name>Hilton, Gillian</display_name>
+              <full_name>Hilton, Gillian</full_name>
+              <wos_standard>Hilton, G</wos_standard>
+              <first_name>Gillian</first_name>
+              <last_name>Hilton</last_name>
+              <email_addr>ghilton@stanford.edu</email_addr>
+            </name>
+          </names>
+        </address_name>
+      </reprint_addresses>
+      <category_info>
+        <headings count='1'>
+          <heading>Science &amp; Technology</heading>
+        </headings>
+        <subheadings count='1'>
+          <subheading>Life Sciences &amp; Biomedicine</subheading>
+        </subheadings>
+        <subjects count='3'>
+          <subject ascatype='traditional' code='BA'>Anesthesiology</subject>
+          <subject ascatype='extended'>Anesthesiology</subject>
+          <subject ascatype='traditional' code='BA'>ANESTHESIOLOGY</subject>
+        </subjects>
+      </category_info>
+    </fullrecord_metadata>
+    <item xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' coll_id='WOS' xsi:type='itemType_wos'>
+      <ids avail='N'>738SS</ids>
+      <bib_id>58 (4): 413-414 APR 2011</bib_id>
+      <bib_pagecount type='Journal'>72</bib_pagecount>
+      <keywords_plus count='1'>
+        <keyword>LABOR ANALGESIA</keyword>
+      </keywords_plus>
+    </item>
+  </static_data>
+  <dynamic_data>
+    <citation_related>
+      <tc_list>
+        <silo_tc coll_id='WOS' local_count='2'/>
+      </tc_list>
+    </citation_related>
+    <cluster_related>
+      <identifiers>
+        <identifier type='issn' value='0832-610X'/>
+        <identifier type='doi' value='10.1007/s12630-011-9462-1'/>
+        <identifier type='xref_doi' value='10.1007/s12630-011-9462-1'/>
+      </identifiers>
+    </cluster_related>
+  </dynamic_data>
+</REC>
