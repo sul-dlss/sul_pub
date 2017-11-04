@@ -41,6 +41,6 @@ class ParseIdentifierPMID < ParseIdentifier
     end
 
     def match_type
-      type =~ /\Apmid\z/i
+      type.casecmp('pmid').zero?
     end
 end

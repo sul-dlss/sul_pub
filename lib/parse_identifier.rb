@@ -49,7 +49,7 @@ class ParseIdentifier
   def initialize(pub_id)
     raise(ArgumentError, 'pub_id must be an PublicationIdentifier') unless pub_id.is_a? PublicationIdentifier
     @pub_id = pub_id
-    @type = pub_id[:identifier_type]
+    @type = pub_id[:identifier_type].to_s
     validate_data
   end
 
