@@ -7,6 +7,9 @@ shared_examples 'parser_new_works' do
     it 'works' do
       expect(parser).to be_an described_class
     end
+    it 'raises ArgumentError' do
+      expect { described_class.new('Darth Maul') }.to raise_error(ArgumentError)
+    end
   end
 end
 
@@ -104,8 +107,8 @@ end
 shared_examples 'blank_identifiers_raise_exception' do
   let(:blank_identifier) { FactoryGirl.create(:blank_publication_identifier, identifier_type: identifier_type) }
 
-  it 'raises ParseIdentifierInvalidError when value and uri are blank' do
-    expect { described_class.new(blank_identifier) }.to raise_error(ParseIdentifierInvalidError)
+  it 'raises ParseIdentifierEmptyError when value and uri are blank' do
+    expect { described_class.new(blank_identifier) }.to raise_error(ParseIdentifierEmptyError)
   end
 end
 
