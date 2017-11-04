@@ -22,7 +22,11 @@ class ParseIdentifierTypeError < StandardError
 
 end
 
-# Exception for bad data
+# Exception for blank data
+class ParseIdentifierEmptyError < StandardError
+
+end
+# Exception for invalid data
 class ParseIdentifierInvalidError < StandardError
 
 end
@@ -43,10 +47,11 @@ class ParseIdentifier
 
   # @param pub_id [PublicationIdentifier]
   def initialize(pub_id)
+    raise(ArgumentError, 'pub_id must be an PublicationIdentifier') unless pub_id.is_a? PublicationIdentifier
     @pub_id = pub_id
     @type = pub_id[:identifier_type]
     raise(ParseIdentifierTypeError, "INVALID TYPE #{pub_id.inspect}") unless match_type
-    raise(ParseIdentifierInvalidError, "EMPTY DATA #{pub_id.inspect}") if empty?
+    raise(ParseIdentifierEmptyError, "EMPTY DATA #{pub_id.inspect}") if empty?
     raise(ParseIdentifierInvalidError, "INVALID DATA #{pub_id.inspect}") unless valid?
   end
 
