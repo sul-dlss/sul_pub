@@ -50,9 +50,7 @@ class ParseIdentifier
     raise(ArgumentError, 'pub_id must be an PublicationIdentifier') unless pub_id.is_a? PublicationIdentifier
     @pub_id = pub_id
     @type = pub_id[:identifier_type]
-    raise(ParseIdentifierTypeError, "INVALID TYPE #{pub_id.inspect}") unless match_type
-    raise(ParseIdentifierEmptyError, "EMPTY DATA #{pub_id.inspect}") if empty?
-    raise(ParseIdentifierInvalidError, "INVALID DATA #{pub_id.inspect}") unless valid?
+    validate_data
   end
 
   def empty?
@@ -119,6 +117,13 @@ class ParseIdentifier
     end
 
     def match_type
-      true # this base class can match anything and does nothing to them
+      true # base class can match anything to detect blanks
     end
+
+    def validate_data
+      raise(ParseIdentifierTypeError, "INVALID TYPE #{pub_id.inspect}") unless match_type
+      raise(ParseIdentifierEmptyError, "EMPTY DATA #{pub_id.inspect}") if empty?
+      raise(ParseIdentifierInvalidError, "INVALID DATA #{pub_id.inspect}") unless valid?
+    end
+
 end
