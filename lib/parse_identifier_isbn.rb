@@ -31,6 +31,6 @@ class ParseIdentifierISBN < ParseIdentifier
     end
 
     def match_type
-      type =~ /\Aisbn\z/i
+      type.casecmp('isbn').zero?
     end
 end

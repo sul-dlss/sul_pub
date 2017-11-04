@@ -34,6 +34,6 @@ class ParseIdentifierDOI < ParseIdentifier
     end
 
     def match_type
-      type =~ /\Adoi\z/i
+      type.casecmp('doi').zero?
     end
 end
