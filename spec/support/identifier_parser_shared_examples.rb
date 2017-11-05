@@ -26,6 +26,20 @@ shared_examples 'parser_works' do
   it '#update works' do
     expect(parser.update).to be_an PublicationIdentifier
   end
+  describe '#identifier' do
+    it 'works' do
+      expect(parser.identifier).to be_an Hash
+    end
+    it 'has :type String' do
+      expect(parser.identifier[:type]).to be_an String
+    end
+    it 'has :id String' do
+      expect(parser.identifier[:id]).to be_an String
+    end
+    it 'might have :url String' do
+      expect(parser.identifier[:url]).to be_an String if parser.uri
+    end
+  end
 end
 
 shared_examples 'valid_identifier' do

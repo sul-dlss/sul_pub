@@ -57,6 +57,16 @@ class IdentifierParser
     pub_id[:identifier_value].blank? && pub_id[:identifier_uri].blank?
   end
 
+  # Construct an entry for Publication.pub_hash[:identifier]
+  # @return identifier [Hash]
+  def identifier
+    identifier = {}
+    identifier[:type] = type
+    identifier[:id] = value
+    identifier[:url] = uri if uri.present?
+    identifier
+  end
+
   # Update the pub_id with parsed data
   # @return pub_id [PublicationIdentifier]
   def update
