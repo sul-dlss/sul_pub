@@ -1,7 +1,7 @@
 # Load Shared Examples
-require Rails.root.join('spec', 'support', 'parse_identifier_shared_examples.rb')
+require Rails.root.join('spec', 'support', 'identifier_parser_shared_examples.rb')
 
-describe ParseIdentifierISBN do
+describe IdentifierParserISBN do
   let(:identifier_type) { 'isbn' }
   let(:identifier_value) { '9781904842781' }
   let(:identifier_uri) { nil }

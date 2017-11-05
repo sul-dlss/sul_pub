@@ -1,7 +1,7 @@
 # Load Shared Examples
-require Rails.root.join('spec', 'support', 'parse_identifier_shared_examples.rb')
+require Rails.root.join('spec', 'support', 'identifier_parser_shared_examples.rb')
 
-describe ParseIdentifier do
+describe IdentifierParser do
   let(:identifier_type) { 'other' }
   let(:identifier_value) { 'a value' }
   let(:identifier_uri) { 'a uri' }
