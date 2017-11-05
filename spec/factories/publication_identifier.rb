@@ -3,12 +3,8 @@ FactoryGirl.define do
     publication
     after(:create) do |pub_id|
       pub = pub_id.publication
-      id = {}
-      id[:type] = pub_id.identifier_type if pub_id.identifier_type.present?
-      id[:id] = pub_id.identifier_value if pub_id.identifier_value.present?
-      id[:url] = pub_id.identifier_uri if pub_id.identifier_uri.present?
       pub.pub_hash[:identifier] ||= []
-      pub.pub_hash[:identifier] << id
+      pub.pub_hash[:identifier] << pub_id.identifier
       pub.save
     end
   end
