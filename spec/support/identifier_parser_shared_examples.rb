@@ -1,6 +1,6 @@
 
 # ---
-# Shared Examples for ParseIdentifier* specs
+# Shared Examples for IdentifierParser* specs
 
 shared_examples 'parser_new_works' do
   describe '#new' do
@@ -84,8 +84,8 @@ shared_examples 'it_changes_nothing' do
 end
 
 shared_examples 'invalid_type' do
-  it 'raises ParseIdentifierTypeError' do
-    expect { parser }.to raise_error(ParseIdentifierTypeError)
+  it 'raises IdentifierParserTypeError' do
+    expect { parser }.to raise_error(IdentifierParserTypeError)
   end
 end
 
@@ -98,8 +98,8 @@ shared_examples 'invalid_value' do
                         )
     end
 
-    it 'raises ParseIdentifierInvalidError when value and uri do not validate' do
-      expect { described_class.new(invalid_identifier) }.to raise_error(ParseIdentifierInvalidError)
+    it 'raises IdentifierParserInvalidError when value and uri do not validate' do
+      expect { described_class.new(invalid_identifier) }.to raise_error(IdentifierParserInvalidError)
     end
   end
 end
@@ -107,8 +107,8 @@ end
 shared_examples 'blank_identifiers_raise_exception' do
   let(:blank_identifier) { FactoryGirl.create(:blank_publication_identifier, identifier_type: identifier_type) }
 
-  it 'raises ParseIdentifierEmptyError when value and uri are blank' do
-    expect { described_class.new(blank_identifier) }.to raise_error(ParseIdentifierEmptyError)
+  it 'raises IdentifierParserEmptyError when value and uri are blank' do
+    expect { described_class.new(blank_identifier) }.to raise_error(IdentifierParserEmptyError)
   end
 end
 

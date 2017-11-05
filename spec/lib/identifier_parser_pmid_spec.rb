@@ -1,7 +1,7 @@
 # Load Shared Examples
-require Rails.root.join('spec', 'support', 'parse_identifier_shared_examples.rb')
+require Rails.root.join('spec', 'support', 'identifier_parser_shared_examples.rb')
 
-describe ParseIdentifierPMID do
+describe IdentifierParserPMID do
   let(:identifier_type) { 'PMID' }
   let(:identifier_value) { '10002407' }
   let(:identifier_uri) { "https://www.ncbi.nlm.nih.gov/pubmed/#{identifier_value}" }

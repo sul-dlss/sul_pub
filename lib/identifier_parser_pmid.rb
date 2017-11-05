@@ -1,7 +1,7 @@
-require_relative 'parse_identifier'
+require_relative 'identifier_parser'
 
 # Parse the PMID identifiers in a PublicationIdentifier
-class ParseIdentifierPMID < ParseIdentifier
+class IdentifierParserPMID < IdentifierParser
 
   URI_PREFIX = 'https://www.ncbi.nlm.nih.gov/pubmed/'.freeze
 
@@ -37,7 +37,7 @@ class ParseIdentifierPMID < ParseIdentifier
     end
 
     def logger
-      @logger ||= Logger.new(Rails.root.join('log', 'parse_identifier_pmid.log'))
+      @logger ||= Logger.new(Rails.root.join('log', 'identifier_parser_pmid.log'))
     end
 
     def match_type

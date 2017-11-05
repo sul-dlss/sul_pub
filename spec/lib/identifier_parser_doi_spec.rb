@@ -1,7 +1,7 @@
 # Load Shared Examples
-require Rails.root.join('spec', 'support', 'parse_identifier_shared_examples.rb')
+require Rails.root.join('spec', 'support', 'identifier_parser_shared_examples.rb')
 
-describe ParseIdentifierDOI do
+describe IdentifierParserDOI do
   let(:identifier_type) { 'doi' }
   let(:identifier_value) { '10.1038/ncomms3199' }
   let(:identifier_uri) { "http://dx.doi.org/#{identifier_value}" }

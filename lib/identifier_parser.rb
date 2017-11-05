@@ -18,29 +18,29 @@ require 'identifiers'
 # Identifiers::URN.extract('')
 
 # Exception for incorrect instantiation of a parser (not necessarily bad data)
-class ParseIdentifierTypeError < StandardError
+class IdentifierParserTypeError < StandardError
 
 end
 
 # Exception for blank data
-class ParseIdentifierEmptyError < StandardError
+class IdentifierParserEmptyError < StandardError
 
 end
 # Exception for invalid data
-class ParseIdentifierInvalidError < StandardError
+class IdentifierParserInvalidError < StandardError
 
 end
 
 # Parse the identifiers in a PublicationIdentifier
 #
-# This is a base class for ParseIdentifier* subclasses.
+# This is a base class for IdentifierParser* subclasses.
 #
 # This class should try to work with the input parameter as a read-only object.
 # It should only modify it when explicitly asked to `update` it.  If it's
 # an active record object, assign new values to it, but don't save it, leave
 # that persistence action to the consumer; see the runner script in
 # @see script/publication_identifier_normalization.rb
-class ParseIdentifier
+class IdentifierParser
 
   attr_reader :pub_id
   attr_reader :type
@@ -95,7 +95,7 @@ class ParseIdentifier
 
     def extractor
       # subclasses can normalize data, otherwise this method should never get called
-      raise(NotImplementedError, "There is no ParseIdentifier for a #{type}")
+      raise(NotImplementedError, "There is no IdentifierParser for a #{type}")
     end
 
     def extract_value
@@ -113,7 +113,7 @@ class ParseIdentifier
     end
 
     def logger
-      @logger ||= Logger.new(Rails.root.join('log', 'parse_identifier.log'))
+      @logger ||= Logger.new(Rails.root.join('log', 'identifier_parser.log'))
     end
 
     def match_type
@@ -121,9 +121,9 @@ class ParseIdentifier
     end
 
     def validate_data
-      raise(ParseIdentifierTypeError, "INVALID TYPE #{pub_id.inspect}") unless match_type
-      raise(ParseIdentifierEmptyError, "EMPTY DATA #{pub_id.inspect}") if empty?
-      raise(ParseIdentifierInvalidError, "INVALID DATA #{pub_id.inspect}") unless valid?
+      raise(IdentifierParserTypeError, "INVALID TYPE #{pub_id.inspect}") unless match_type
+      raise(IdentifierParserEmptyError, "EMPTY DATA #{pub_id.inspect}") if empty?
+      raise(IdentifierParserInvalidError, "INVALID DATA #{pub_id.inspect}") unless valid?
     end
 
 end
