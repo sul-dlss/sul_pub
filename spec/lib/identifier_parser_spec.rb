@@ -14,6 +14,12 @@ describe IdentifierParser do
   end
   let(:parser) { described_class.new(identifier) }
 
+  let(:null_logger) { Logger.new('/dev/null') }
+
+  before do
+    allow(Logger).to receive(:new).and_return(null_logger)
+  end
+
   # Happy paths
   # - the base class does not extract or modify anything
   it_behaves_like 'parser_new_works'
