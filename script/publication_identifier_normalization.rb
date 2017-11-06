@@ -33,9 +33,10 @@ PublicationIdentifier.where(identifier_type: 'doi').find_each(batch_size: 200) d
   normalizer.normalize_record(pub_id)
 end
 
-PublicationIdentifier.where(identifier_type: 'isbn').find_each(batch_size: 200) do |pub_id|
-  normalizer.normalize_record(pub_id)
-end
+# ISBN normalization is pending a fix to https://github.com/sul-dlss/sul_pub/issues/393
+# PublicationIdentifier.where(identifier_type: 'isbn').find_each(batch_size: 200) do |pub_id|
+#   normalizer.normalize_record(pub_id)
+# end
 
 PublicationIdentifier.where(identifier_type: 'pmid').find_each(batch_size: 200) do |pub_id|
   normalizer.normalize_record(pub_id)
