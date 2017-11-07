@@ -70,8 +70,8 @@ class PubHash
         @citeproc_editors ||= [] # there are no editors
       when /cap/i
         # This is a CAP manual submission
-        @citeproc_authors ||= cap_authors_to_csl(authors, 'author')
-        @citeproc_editors ||= cap_authors_to_csl(authors, 'editor')
+        @citeproc_authors ||= cap_authors_to_csl(authors)
+        @citeproc_editors ||= cap_editors_to_csl(authors)
       when /pubmed/i
         # This is a PubMed publication and the author is created in
         # PubmedSourceRecord.convert_pubmed_publication_doc_to_hash
@@ -241,14 +241,23 @@ class PubHash
     end
 
     # Convert CAP authors into CSL authors
-    # @param [Array<Hash>] CAP authors array of hash data
+    # @param [Array<Hash>] cap_authors array of hash data
     # @return [Array<Hash>] CSL authors array of hash data
-    def cap_authors_to_csl(cap_authors, role = 'author')
-      cap_authors.map do |author|
-        author = author.symbolize_keys
-        next unless author[:role].to_s.casecmp(role).zero?
-        Csl::AuthorName.new(author).to_csl_author
-      end.compact
+    def cap_authors_to_csl(cap_authors)
+      # All the CAP authors are an author if they have no role or they have an 'author' role
+      authors = cap_authors.map(&:symbolize_keys)
+      authors.select! { |author| author[:role].nil? || author[:role].to_s.casecmp('author').zero? }
+      authors.map { |author| Csl::AuthorName.new(author).to_csl_author }
+    end
+
+    # Convert CAP editors into CSL editors
+    # @param [Array<Hash>] cap_authors array of hash data
+    # @return [Array<Hash>] CSL authors array of hash data
+    def cap_editors_to_csl(cap_authors)
+      # A CAP editor has an 'editor' role
+      editors = cap_authors.map(&:symbolize_keys)
+      editors.select! { |editor| editor[:role].to_s.casecmp('editor').zero? }
+      editors.map { |editor| Csl::AuthorName.new(editor).to_csl_author }
     end
 
     # Convert PubMed authors into CSL authors, see also
