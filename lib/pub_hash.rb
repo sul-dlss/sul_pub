@@ -167,7 +167,7 @@ class PubHash
         cit_data_hash['container-title'] = pub_hash[:booktitle]
       end
 
-      if cit_data_hash['type'] && cit_data_hash['type'].casecmp('book') == 0 && !citeproc_editors.empty?
+      if cit_data_hash['type'].to_s.casecmp('book').zero? && !citeproc_editors.empty?
         cit_data_hash['editor'] = citeproc_editors
       end
 
@@ -246,7 +246,7 @@ class PubHash
     def cap_authors_to_csl(cap_authors, role = 'author')
       cap_authors.map do |author|
         author = author.symbolize_keys
-        next unless author[:role].to_s.casecmp(role) >= 0
+        next unless author[:role].to_s.casecmp(role).zero?
         Csl::AuthorName.new(author).to_csl_author
       end.compact
     end
@@ -323,7 +323,7 @@ class PubHash
         end
 
         next if last_name.blank?
-        if author[:role] && author[:role].casecmp('editor') == 0
+        if author[:role].to_s.casecmp('editor').zero?
           editors_for_citeproc << { 'family' => last_name, 'given' => rest_of_name }
         else
           authors_for_citeproc << { 'family' => last_name, 'given' => rest_of_name }
