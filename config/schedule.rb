@@ -6,12 +6,17 @@ end
 
 set :output, 'log/cron.log'
 
-# fortnightly sciencewire harvest at 5pm-ish
-every 2.weeks, at: stagger(17), roles: [:harvester] do
+# fortnightly sciencewire harvest at 5pm in qa, on the 5th and 20th of the month
+every "0 17 5,20 * *", roles: [:harvester_qa] do
   rake 'sw:fortnightly_harvest'
 end
 
-# poll cap for new authorship information nightly at 4am-ish
-every 1.day, at: stagger(4), roles: [:harvester] do
+# fortnightly sciencewire harvest at 5pm in prod, on the 1st and 15th of the month
+every "0 17 1,15 * *", roles: [:harvester_prod] do
+  rake 'sw:fortnightly_harvest'
+end
+
+# poll cap for new authorship information nightly at 4am-ish in both prod and qa
+every 1.day, at: stagger(4), roles: [:harvester_qa, :harvester_prod] do
   rake 'cap:poll[1]'
 end
