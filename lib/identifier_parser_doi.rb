@@ -1,7 +1,7 @@
-require_relative 'parse_identifier'
+require_relative 'identifier_parser'
 
 # Parse the DOI identifiers in a PublicationIdentifier
-class ParseIdentifierDOI < ParseIdentifier
+class IdentifierParserDOI < IdentifierParser
 
   URI_PREFIX = 'http://dx.doi.org/'.freeze
 
@@ -30,10 +30,10 @@ class ParseIdentifierDOI < ParseIdentifier
     end
 
     def logger
-      @logger ||= Logger.new(Rails.root.join('log', 'parse_identifier_doi.log'))
+      @logger ||= Logger.new(Rails.root.join('log', 'identifier_parser_doi.log'))
     end
 
     def match_type
-      type =~ /\Adoi\z/i
+      type.casecmp('doi').zero?
     end
 end

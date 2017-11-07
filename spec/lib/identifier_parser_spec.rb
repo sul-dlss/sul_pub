@@ -1,7 +1,7 @@
 # Load Shared Examples
-require Rails.root.join('spec', 'support', 'parse_identifier_shared_examples.rb')
+require Rails.root.join('spec', 'support', 'identifier_parser_shared_examples.rb')
 
-describe ParseIdentifier do
+describe IdentifierParser do
   let(:identifier_type) { 'other' }
   let(:identifier_value) { 'a value' }
   let(:identifier_uri) { 'a uri' }
@@ -13,6 +13,12 @@ describe ParseIdentifier do
                       )
   end
   let(:parser) { described_class.new(identifier) }
+
+  let(:null_logger) { Logger.new('/dev/null') }
+
+  before do
+    allow(Logger).to receive(:new).and_return(null_logger)
+  end
 
   # Happy paths
   # - the base class does not extract or modify anything

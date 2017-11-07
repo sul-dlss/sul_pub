@@ -18,40 +18,53 @@ require 'identifiers'
 # Identifiers::URN.extract('')
 
 # Exception for incorrect instantiation of a parser (not necessarily bad data)
-class ParseIdentifierTypeError < StandardError
+class IdentifierParserTypeError < StandardError
 
 end
 
-# Exception for bad data
-class ParseIdentifierInvalidError < StandardError
+# Exception for blank data
+class IdentifierParserEmptyError < StandardError
+
+end
+# Exception for invalid data
+class IdentifierParserInvalidError < StandardError
 
 end
 
 # Parse the identifiers in a PublicationIdentifier
 #
-# This is a base class for ParseIdentifier* subclasses.
+# This is a base class for IdentifierParser* subclasses.
 #
 # This class should try to work with the input parameter as a read-only object.
 # It should only modify it when explicitly asked to `update` it.  If it's
 # an active record object, assign new values to it, but don't save it, leave
 # that persistence action to the consumer; see the runner script in
 # @see script/publication_identifier_normalization.rb
-class ParseIdentifier
+class IdentifierParser
 
   attr_reader :pub_id
   attr_reader :type
 
   # @param pub_id [PublicationIdentifier]
   def initialize(pub_id)
+    raise(ArgumentError, 'pub_id must be an PublicationIdentifier') unless pub_id.is_a? PublicationIdentifier
     @pub_id = pub_id
-    @type = pub_id[:identifier_type]
-    raise(ParseIdentifierTypeError, "INVALID TYPE #{pub_id.inspect}") unless match_type
-    raise(ParseIdentifierInvalidError, "EMPTY DATA #{pub_id.inspect}") if empty?
-    raise(ParseIdentifierInvalidError, "INVALID DATA #{pub_id.inspect}") unless valid?
+    @type = pub_id[:identifier_type].to_s
+    validate_data
   end
 
   def empty?
     pub_id[:identifier_value].blank? && pub_id[:identifier_uri].blank?
+  end
+
+  # Construct an entry for Publication.pub_hash[:identifier]
+  # @return identifier [Hash]
+  def identifier
+    identifier = {}
+    identifier[:type] = type
+    identifier[:id] = value
+    identifier[:url] = uri if uri.present?
+    identifier
   end
 
   # Update the pub_id with parsed data
@@ -92,7 +105,7 @@ class ParseIdentifier
 
     def extractor
       # subclasses can normalize data, otherwise this method should never get called
-      raise(NotImplementedError, "There is no ParseIdentifier for a #{type}")
+      raise(NotImplementedError, "There is no IdentifierParser for a #{type}")
     end
 
     def extract_value
@@ -110,10 +123,17 @@ class ParseIdentifier
     end
 
     def logger
-      @logger ||= Logger.new(Rails.root.join('log', 'parse_identifier.log'))
+      @logger ||= Logger.new(Rails.root.join('log', 'identifier_parser.log'))
     end
 
     def match_type
-      true # this base class can match anything and does nothing to them
+      true # base class can match anything to detect blanks
     end
+
+    def validate_data
+      raise(IdentifierParserTypeError, "INVALID TYPE #{pub_id.inspect}") unless match_type
+      raise(IdentifierParserEmptyError, "EMPTY DATA #{pub_id.inspect}") if empty?
+      raise(IdentifierParserInvalidError, "INVALID DATA #{pub_id.inspect}") unless valid?
+    end
+
 end

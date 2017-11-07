@@ -1,7 +1,7 @@
-require_relative 'parse_identifier'
+require_relative 'identifier_parser'
 
 # Parse the ISBN identifiers in a PublicationIdentifier
-class ParseIdentifierISBN < ParseIdentifier
+class IdentifierParserISBN < IdentifierParser
 
   # Does the data validate?
   def valid?
@@ -27,10 +27,10 @@ class ParseIdentifierISBN < ParseIdentifier
     end
 
     def logger
-      @logger ||= Logger.new(Rails.root.join('log', 'parse_identifier_isbn.log'))
+      @logger ||= Logger.new(Rails.root.join('log', 'identifier_parser_isbn.log'))
     end
 
     def match_type
-      type =~ /\Aisbn\z/i
+      type.casecmp('isbn').zero?
     end
 end

@@ -1,11 +1,14 @@
 
 # ---
-# Shared Examples for ParseIdentifier* specs
+# Shared Examples for IdentifierParser* specs
 
 shared_examples 'parser_new_works' do
   describe '#new' do
     it 'works' do
       expect(parser).to be_an described_class
+    end
+    it 'raises ArgumentError' do
+      expect { described_class.new('Darth Maul') }.to raise_error(ArgumentError)
     end
   end
 end
@@ -22,6 +25,20 @@ shared_examples 'parser_works' do
   end
   it '#update works' do
     expect(parser.update).to be_an PublicationIdentifier
+  end
+  describe '#identifier' do
+    it 'works' do
+      expect(parser.identifier).to be_an Hash
+    end
+    it 'has :type String' do
+      expect(parser.identifier[:type]).to be_an String
+    end
+    it 'has :id String' do
+      expect(parser.identifier[:id]).to be_an String
+    end
+    it 'might have :url String' do
+      expect(parser.identifier[:url]).to be_an String if parser.uri
+    end
   end
 end
 
@@ -81,8 +98,8 @@ shared_examples 'it_changes_nothing' do
 end
 
 shared_examples 'invalid_type' do
-  it 'raises ParseIdentifierTypeError' do
-    expect { parser }.to raise_error(ParseIdentifierTypeError)
+  it 'raises IdentifierParserTypeError' do
+    expect { parser }.to raise_error(IdentifierParserTypeError)
   end
 end
 
@@ -95,8 +112,8 @@ shared_examples 'invalid_value' do
                         )
     end
 
-    it 'raises ParseIdentifierInvalidError when value and uri do not validate' do
-      expect { described_class.new(invalid_identifier) }.to raise_error(ParseIdentifierInvalidError)
+    it 'raises IdentifierParserInvalidError when value and uri do not validate' do
+      expect { described_class.new(invalid_identifier) }.to raise_error(IdentifierParserInvalidError)
     end
   end
 end
@@ -104,8 +121,8 @@ end
 shared_examples 'blank_identifiers_raise_exception' do
   let(:blank_identifier) { FactoryGirl.create(:blank_publication_identifier, identifier_type: identifier_type) }
 
-  it 'raises ParseIdentifierInvalidError when value and uri are blank' do
-    expect { described_class.new(blank_identifier) }.to raise_error(ParseIdentifierInvalidError)
+  it 'raises IdentifierParserEmptyError when value and uri are blank' do
+    expect { described_class.new(blank_identifier) }.to raise_error(IdentifierParserEmptyError)
   end
 end
 
