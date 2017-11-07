@@ -229,7 +229,7 @@ class PubHash
     end
 
     # Convert BibTexIngester authors into CSL authors
-    # @param [Array<Hash>] BibTexIngester authors array of hash data
+    # @param [Array<Hash>] bibtex_authors array of hash data
     # @return [Array<Hash>] CSL authors array of hash data
     def bibtex_authors_to_csl(bibtex_authors)
       bibtex_authors.map do |author|
@@ -262,7 +262,7 @@ class PubHash
 
     # Convert PubMed authors into CSL authors, see also
     # PubmedSourceRecord.convert_pubmed_publication_doc_to_hash
-    # @param [Array<Hash>] PubMed authors array of hash data
+    # @param [Array<Hash>] pubmed_authors array of hash data
     # @return [Array<Hash>] CSL authors array of hash data
     def pubmed_authors_to_csl(pubmed_authors)
       pubmed_authors.map do |author|
@@ -273,7 +273,7 @@ class PubHash
 
     # Convert ScienceWire authors into CSL authors, see also
     # SciencewireSourceRecord.convert_sw_publication_doc_to_hash
-    # @param [Array<Hash>] ScienceWire authors array of hash data
+    # @param [Array<Hash>] sw_authors array of hash data
     # @return [Array<Hash>] CSL authors array of hash data
     def sw_authors_to_csl(sw_authors)
       # ScienceWire AuthorList is split('|') into an array of authors
