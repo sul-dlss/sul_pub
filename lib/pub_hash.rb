@@ -183,155 +183,156 @@ class PubHash
       cit_data_hash
     end
   end
-end
 
-private
+  private
 
-  # Report – A document containing the findings of an individual or group.
-  # Can include a technical paper, publication, issue brief, or working paper.
-  #
-  # The Zotero and Mendeley mappings to a CSL report guided this implementation, see
-  # http://aurimasv.github.io/z2csl/typeMap.xml#map-report
-  # http://support.mendeley.com/customer/portal/articles/364144-csl-type-mapping
-  def create_csl_report
-    csl_report = {}
-    csl_report['id'] = 'sulpub'
-    csl_report['type'] = 'report'
-    csl_report['author'] = citeproc_authors if citeproc_authors.present?
-    csl_report['editor'] = citeproc_editors if citeproc_editors.present?
-    csl_report['title'] = pub_hash[:title] if pub_hash[:title].present?
-    csl_report['abstract'] = pub_hash[:abstract] if pub_hash[:abstract].present?
-    csl_report['publisher'] = pub_hash[:publisher] if pub_hash[:publisher].present?
-    csl_report['publisher-place'] = pub_hash[:publicationSource] if pub_hash[:publicationSource].present?
-    # Date Accessed -> accessed
-    if pub_hash[:year].present?
-      csl_report['issued'] = {
-        'date-parts' => [[ pub_hash[:year] ]]
-      }
-    end
-    url = pub_hash[:publicationUrl]
-    csl_report['URL'] = url if url.present?
-    series = pub_hash[:series]
-    if series.present?
-      csl_report['collection-title'] = series[:title] if series[:title].present?
-      csl_report['volume'] = series[:volume] if series[:volume].present?
-      csl_report['number'] = series[:number] if series[:number].present?
-    end
-    csl_report['page'] = pub_hash[:pages] if pub_hash[:pages].present?
-    csl_report
-  end
-
-  def citeproc_authors
-    @citeproc_authors ||= parse_authors[:authors]
-  end
-
-  def citeproc_editors
-    @citeproc_editors ||= parse_authors[:editors]
-  end
-
-  # Convert BibTexIngester authors into CSL authors
-  # @param [Array<Hash>] BibTexIngester authors array of hash data
-  # @return [Array<Hash>] CSL authors array of hash data
-  def bibtex_authors_to_csl(bibtex_authors)
-    bibtex_authors.map do |author|
-      author = author.symbolize_keys
-      next if author[:name].blank?
-      family, given = author[:name].split(',')
-      { 'family' => family, 'given' => given }
-    end
-  end
-
-  # Convert CAP authors into CSL authors
-  # @param [Array<Hash>] CAP authors array of hash data
-  # @return [Array<Hash>] CSL authors array of hash data
-  def cap_authors_to_csl(cap_authors, role = 'author')
-    cap_authors.map do |author|
-      author = author.symbolize_keys
-      next unless author[:role].to_s.casecmp(role) >= 0
-      Csl::AuthorName.new(author).to_csl_author
-    end.compact
-  end
-
-  # Convert PubMed authors into CSL authors, see also
-  # PubmedSourceRecord.convert_pubmed_publication_doc_to_hash
-  # @param [Array<Hash>] PubMed authors array of hash data
-  # @return [Array<Hash>] CSL authors array of hash data
-  def pubmed_authors_to_csl(pubmed_authors)
-    pubmed_authors.map do |author|
-      author = author.symbolize_keys
-      Csl::AuthorName.new(author).to_csl_author
-    end.compact
-  end
-
-  # Convert ScienceWire authors into CSL authors, see also
-  # SciencewireSourceRecord.convert_sw_publication_doc_to_hash
-  # @param [Array<Hash>] ScienceWire authors array of hash data
-  # @return [Array<Hash>] CSL authors array of hash data
-  def sw_authors_to_csl(sw_authors)
-    # ScienceWire AuthorList is split('|') into an array of authors
-    sw_authors.map do |author|
-      # Each ScienceWire author is a CSV value: 'Lastname,Firstname,Middlename'
-      last, first, middle = author[:name].split(',')
-      Csl::AuthorName.new(
-        lastname: last,
-        firstname: first,
-        middlename: middle
-      ).to_csl_author
-    end.compact
-  end
-
-  def parse_authors
-    authors_for_citeproc = []
-    editors_for_citeproc = []
-
-    authors = pub_hash[:author] || []
-    if authors.length > 5
-      # we pass the first five  authorsand the very last author because some
-      # formats add the very last name when using et-al. the CSL should drop the sixth name if unused.
-      # We could in fact pass all the author names to the CSL processor and let it
-      # just take the first five, but that seemed to crash the processor for publications
-      # with a lot of authors (e.g, 2000 authors)
-      authors = authors[0..4]
-      authors << pub_hash[:author].last
-      #   authors << { :name => "et al." }
-      # elsif pub_hash[:etal]
-      #   authors = pub_hash[:author].collect { |a| a }
-      #   authors << { :name => "et al." }
+    # Report – A document containing the findings of an individual or group.
+    # Can include a technical paper, publication, issue brief, or working paper.
+    #
+    # The Zotero and Mendeley mappings to a CSL report guided this implementation, see
+    # http://aurimasv.github.io/z2csl/typeMap.xml#map-report
+    # http://support.mendeley.com/customer/portal/articles/364144-csl-type-mapping
+    def create_csl_report
+      csl_report = {}
+      csl_report['id'] = 'sulpub'
+      csl_report['type'] = 'report'
+      csl_report['author'] = citeproc_authors if citeproc_authors.present?
+      csl_report['editor'] = citeproc_editors if citeproc_editors.present?
+      csl_report['title'] = pub_hash[:title] if pub_hash[:title].present?
+      csl_report['abstract'] = pub_hash[:abstract] if pub_hash[:abstract].present?
+      csl_report['publisher'] = pub_hash[:publisher] if pub_hash[:publisher].present?
+      csl_report['publisher-place'] = pub_hash[:publicationSource] if pub_hash[:publicationSource].present?
+      # Date Accessed -> accessed
+      if pub_hash[:year].present?
+        csl_report['issued'] = {
+          'date-parts' => [[ pub_hash[:year] ]]
+        }
+      end
+      url = pub_hash[:publicationUrl]
+      csl_report['URL'] = url if url.present?
+      series = pub_hash[:series]
+      if series.present?
+        csl_report['collection-title'] = series[:title] if series[:title].present?
+        csl_report['volume'] = series[:volume] if series[:volume].present?
+        csl_report['number'] = series[:number] if series[:number].present?
+      end
+      csl_report['page'] = pub_hash[:pages] if pub_hash[:pages].present?
+      csl_report
     end
 
-    authors.each do |author|
-      last_name = author[:lastname]
-      rest_of_name = ''
+    def citeproc_authors
+      @citeproc_authors ||= parse_authors[:authors]
+    end
 
-      # Use parsed name parts, if available.  Otherwise use :name, if available.
-      # Add period after single character (initials).
-      unless last_name.blank?
-        [:firstname, :middlename].map { |k| author[k] }.reject(&:blank?).each do |name_part|
-          rest_of_name << ' ' << name_part
-          rest_of_name << '.' if name_part.length == 1
-        end
+    def citeproc_editors
+      @citeproc_editors ||= parse_authors[:editors]
+    end
+
+    # Convert BibTexIngester authors into CSL authors
+    # @param [Array<Hash>] BibTexIngester authors array of hash data
+    # @return [Array<Hash>] CSL authors array of hash data
+    def bibtex_authors_to_csl(bibtex_authors)
+      bibtex_authors.map do |author|
+        author = author.symbolize_keys
+        next if author[:name].blank?
+        family, given = author[:name].split(',')
+        { 'family' => family, 'given' => given }
+      end
+    end
+
+    # Convert CAP authors into CSL authors
+    # @param [Array<Hash>] CAP authors array of hash data
+    # @return [Array<Hash>] CSL authors array of hash data
+    def cap_authors_to_csl(cap_authors, role = 'author')
+      cap_authors.map do |author|
+        author = author.symbolize_keys
+        next unless author[:role].to_s.casecmp(role) >= 0
+        Csl::AuthorName.new(author).to_csl_author
+      end.compact
+    end
+
+    # Convert PubMed authors into CSL authors, see also
+    # PubmedSourceRecord.convert_pubmed_publication_doc_to_hash
+    # @param [Array<Hash>] PubMed authors array of hash data
+    # @return [Array<Hash>] CSL authors array of hash data
+    def pubmed_authors_to_csl(pubmed_authors)
+      pubmed_authors.map do |author|
+        author = author.symbolize_keys
+        Csl::AuthorName.new(author).to_csl_author
+      end.compact
+    end
+
+    # Convert ScienceWire authors into CSL authors, see also
+    # SciencewireSourceRecord.convert_sw_publication_doc_to_hash
+    # @param [Array<Hash>] ScienceWire authors array of hash data
+    # @return [Array<Hash>] CSL authors array of hash data
+    def sw_authors_to_csl(sw_authors)
+      # ScienceWire AuthorList is split('|') into an array of authors
+      sw_authors.map do |author|
+        # Each ScienceWire author is a CSV value: 'Lastname,Firstname,Middlename'
+        last, first, middle = author[:name].split(',')
+        Csl::AuthorName.new(
+          lastname: last,
+          firstname: first,
+          middlename: middle
+        ).to_csl_author
+      end.compact
+    end
+
+    def parse_authors
+      authors_for_citeproc = []
+      editors_for_citeproc = []
+
+      authors = pub_hash[:author] || []
+      if authors.length > 5
+        # we pass the first five  authorsand the very last author because some
+        # formats add the very last name when using et-al. the CSL should drop the sixth name if unused.
+        # We could in fact pass all the author names to the CSL processor and let it
+        # just take the first five, but that seemed to crash the processor for publications
+        # with a lot of authors (e.g, 2000 authors)
+        authors = authors[0..4]
+        authors << pub_hash[:author].last
+        #   authors << { :name => "et al." }
+        # elsif pub_hash[:etal]
+        #   authors = pub_hash[:author].collect { |a| a }
+        #   authors << { :name => "et al." }
       end
 
-      if last_name.blank? && !author[:name].blank?
-        author[:name].split(',').each_with_index do |name_part, index|
-          if index == 0
-            last_name = name_part
-          else
+      authors.each do |author|
+        last_name = author[:lastname]
+        rest_of_name = ''
+
+        # Use parsed name parts, if available.  Otherwise use :name, if available.
+        # Add period after single character (initials).
+        unless last_name.blank?
+          [:firstname, :middlename].map { |k| author[k] }.reject(&:blank?).each do |name_part|
             rest_of_name << ' ' << name_part
             rest_of_name << '.' if name_part.length == 1
           end
         end
-      end
 
-      next if last_name.blank?
-      if author[:role] && author[:role].casecmp('editor') == 0
-        editors_for_citeproc << { 'family' => last_name, 'given' => rest_of_name }
-      else
-        authors_for_citeproc << { 'family' => last_name, 'given' => rest_of_name }
+        if last_name.blank? && !author[:name].blank?
+          author[:name].split(',').each_with_index do |name_part, index|
+            if index == 0
+              last_name = name_part
+            else
+              rest_of_name << ' ' << name_part
+              rest_of_name << '.' if name_part.length == 1
+            end
+          end
+        end
+
+        next if last_name.blank?
+        if author[:role] && author[:role].casecmp('editor') == 0
+          editors_for_citeproc << { 'family' => last_name, 'given' => rest_of_name }
+        else
+          authors_for_citeproc << { 'family' => last_name, 'given' => rest_of_name }
+        end
       end
+      {
+        authors: authors_for_citeproc,
+        editors: editors_for_citeproc
+      }
     end
-    {
-      authors: authors_for_citeproc,
-      editors: editors_for_citeproc
-    }
-  end
+end
+
