@@ -313,14 +313,7 @@ class Publication < ActiveRecord::Base
 
   def add_all_identifiers_in_db_to_pub_hash
     publication_identifiers.reload if persisted?
-    db_ids = publication_identifiers.collect do |id|
-      ident_hash = {}
-      ident_hash[:type] = id.identifier_type if id.identifier_type.present?
-      ident_hash[:id] = id.identifier_value if id.identifier_value.present?
-      ident_hash[:url] = id.identifier_uri if id.identifier_uri.present?
-      ident_hash
-    end
-    pub_hash[:identifier] = db_ids
+    pub_hash[:identifier] = publication_identifiers.map(&:identifier)
   end
 
   def add_all_db_contributions_to_my_pub_hash
