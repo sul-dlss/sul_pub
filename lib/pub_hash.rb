@@ -109,65 +109,65 @@ class PubHash
       }
 
       # Access to abstracts may be restricted by license agreements with data providers.
-      # cit_data_hash["abstract"] = pub_hash[:abstract] unless pub_hash[:abstract].blank?
+      # cit_data_hash["abstract"] = pub_hash[:abstract] if pub_hash[:abstract].present?
 
-      cit_data_hash['chapter-number'] = pub_hash[:articlenumber] unless pub_hash[:articlenumber].blank?
-      cit_data_hash['page'] = pub_hash[:pages] unless pub_hash[:pages].blank?
-      cit_data_hash['publisher'] = pub_hash[:publisher] unless pub_hash[:publisher].blank?
+      cit_data_hash['chapter-number'] = pub_hash[:articlenumber] if pub_hash[:articlenumber].present?
+      cit_data_hash['page'] = pub_hash[:pages] if pub_hash[:pages].present?
+      cit_data_hash['publisher'] = pub_hash[:publisher] if pub_hash[:publisher].present?
 
       # Add series information if it exists.
       if pub_hash.key?(:series)
-        unless pub_hash[:series][:title].blank?
+        if pub_hash[:series][:title].present?
           cit_data_hash['type'] = 'book'
           cit_data_hash['collection-title'] = pub_hash[:series][:title]
         end
-        cit_data_hash['volume'] = pub_hash[:series][:volume] unless pub_hash[:series][:volume].blank?
-        cit_data_hash['number'] = pub_hash[:series][:number] unless pub_hash[:series][:number].blank?
-        cit_data_hash['issued'] = { 'date-parts' => [[pub_hash[:series][:year]]] } unless pub_hash[:series][:year].blank?
+        cit_data_hash['volume'] = pub_hash[:series][:volume] if pub_hash[:series][:volume].present?
+        cit_data_hash['number'] = pub_hash[:series][:number] if pub_hash[:series][:number].present?
+        cit_data_hash['issued'] = { 'date-parts' => [[pub_hash[:series][:year]]] } if pub_hash[:series][:year].present?
       end
 
       # Add journal information if it exists.
       if pub_hash.key?(:journal)
-        unless pub_hash[:journal][:name].blank?
+        if pub_hash[:journal][:name].present?
           cit_data_hash['type'] = 'article-journal'
           cit_data_hash['container-title'] = pub_hash[:journal][:name]
         end
-        cit_data_hash['volume'] = pub_hash[:journal][:volume] unless pub_hash[:journal][:volume].blank?
-        cit_data_hash['issue'] = pub_hash[:journal][:issue] unless pub_hash[:journal][:issue].blank?
-        cit_data_hash['issued'] = { 'date-parts' => [[pub_hash[:journal][:year]]] } unless pub_hash[:journal][:year].blank?
-        cit_data_hash['number'] = pub_hash[:supplement] unless pub_hash[:supplement].blank?
+        cit_data_hash['volume'] = pub_hash[:journal][:volume] if pub_hash[:journal][:volume].present?
+        cit_data_hash['issue'] = pub_hash[:journal][:issue] if pub_hash[:journal][:issue].present?
+        cit_data_hash['issued'] = { 'date-parts' => [[pub_hash[:journal][:year]]] } if pub_hash[:journal][:year].present?
+        cit_data_hash['number'] = pub_hash[:supplement] if pub_hash[:supplement].present?
       end
 
       # Add any conference information, if it exists in a conference object;
       # this overrides the sciencewire fields above if both exist, which they shouldn't.
       if pub_hash.key?(:conference)
-        cit_data_hash['event'] = pub_hash[:conference][:name] unless pub_hash[:conference][:name].blank?
-        cit_data_hash['event-date'] = pub_hash[:conference][:startdate] unless pub_hash[:conference][:startdate].blank?
+        cit_data_hash['event'] = pub_hash[:conference][:name] if pub_hash[:conference][:name].present?
+        cit_data_hash['event-date'] = pub_hash[:conference][:startdate] if pub_hash[:conference][:startdate].present?
         # override the startdate if there is a year:
-        cit_data_hash['event-date'] = { 'date-parts' => [[pub_hash[:conference][:year]]] } unless pub_hash[:conference][:year].blank?
-        cit_data_hash['number'] = pub_hash[:conference][:number] unless pub_hash[:conference][:number].blank?
+        cit_data_hash['event-date'] = { 'date-parts' => [[pub_hash[:conference][:year]]] } if pub_hash[:conference][:year].present?
+        cit_data_hash['number'] = pub_hash[:conference][:number] if pub_hash[:conference][:number].present?
         # favors city/state over location
-        if !pub_hash[:conference][:city].blank? || !pub_hash[:conference][:statecountry].blank?
+        if pub_hash[:conference][:city].present? || pub_hash[:conference][:statecountry].present?
           cit_data_hash['event-place'] = pub_hash[:conference][:city] || ''
           if pub_hash[:conference][:statecountry].present?
             cit_data_hash['event-place'] << ',' if cit_data_hash['event-place'].present?
             cit_data_hash['event-place'] << pub_hash[:conference][:statecountry]
           end
-        elsif !pub_hash[:conference][:location].blank?
+        elsif pub_hash[:conference][:location].present?
           cit_data_hash['event-place'] = pub_hash[:conference][:location]
         end
-        # cit_data_hash["DOI"] = pub_hash[:conference][:DOI] unless pub_hash[:conference][:DOI].blank?
+        # cit_data_hash["DOI"] = pub_hash[:conference][:DOI] if pub_hash[:conference][:DOI].present?
       end
 
       # Use a year at the top level if it exists, i.e, override any year we'd gotten above from journal or series.
-      cit_data_hash['issued'] = { 'date-parts' => [[pub_hash[:year]]] } unless pub_hash[:year].blank?
+      cit_data_hash['issued'] = { 'date-parts' => [[pub_hash[:year]]] } if pub_hash[:year].present?
       # Add book title if it exists, which indicates this pub is a chapter in the book.
-      unless pub_hash[:booktitle].blank?
+      if pub_hash[:booktitle].present?
         cit_data_hash['type'] = 'book'
         cit_data_hash['container-title'] = pub_hash[:booktitle]
       end
 
-      if cit_data_hash['type'].to_s.casecmp('book').zero? && !citeproc_editors.empty?
+      if cit_data_hash['type'].to_s.casecmp('book').zero? && citeproc_editors.present?
         cit_data_hash['editor'] = citeproc_editors
       end
 
