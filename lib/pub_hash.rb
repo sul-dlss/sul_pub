@@ -280,10 +280,11 @@ class PubHash
     end
 
     def parse_authors
-      authors_for_citeproc = []
-      editors_for_citeproc = []
-
-      authors = pub_hash[:author] || []
+      # All the pub_hash[:author] data is assumed be an editor or an author and
+      # the only way to tell is when the editor has role=='editor'
+      pub_hash_authors = pub_hash[:author] || []
+      authors = pub_hash_authors.reject { |a| a[:role].to_s.casecmp('editor').zero? }
+      editors = pub_hash_authors.select { |a| a[:role].to_s.casecmp('editor').zero? }
       if authors.length > 5
         # we pass the first five  authorsand the very last author because some
         # formats add the very last name when using et-al. the CSL should drop the sixth name if unused.
@@ -297,42 +298,41 @@ class PubHash
         #   authors = pub_hash[:author].collect { |a| a }
         #   authors << { :name => "et al." }
       end
+      {
+        authors: authors.map { |author| parse_author_name(author) }.compact,
+        editors: editors.map { |author| parse_author_name(author) }.compact
+      }
+    end
 
-      authors.each do |author|
-        last_name = author[:lastname]
-        rest_of_name = ''
+    # Extract { 'family' => last_name, 'given' => rest_of_name } or
+    # return nil if the the family name is blank.
+    # @return [Hash<String => String>|nil]
+    def parse_author_name(author)
+      last_name = author[:lastname]
+      rest_of_name = ''
 
-        # Use parsed name parts, if available.  Otherwise use :name, if available.
-        # Add period after single character (initials).
-        unless last_name.blank?
-          [:firstname, :middlename].map { |k| author[k] }.reject(&:blank?).each do |name_part|
+      # Use parsed name parts, if available.  Otherwise use :name, if available.
+      # Add period after single character (initials).
+      if last_name.present?
+        %i(firstname middlename).map { |k| author[k] }.reject(&:blank?).each do |name_part|
+          rest_of_name << ' ' << name_part
+          rest_of_name << '.' if name_part.length == 1
+        end
+      end
+
+      if last_name.blank? && author[:name].present?
+        author[:name].split(',').each_with_index do |name_part, index|
+          if index.zero?
+            last_name = name_part
+          else
             rest_of_name << ' ' << name_part
             rest_of_name << '.' if name_part.length == 1
           end
         end
-
-        if last_name.blank? && !author[:name].blank?
-          author[:name].split(',').each_with_index do |name_part, index|
-            if index == 0
-              last_name = name_part
-            else
-              rest_of_name << ' ' << name_part
-              rest_of_name << '.' if name_part.length == 1
-            end
-          end
-        end
-
-        next if last_name.blank?
-        if author[:role].to_s.casecmp('editor').zero?
-          editors_for_citeproc << { 'family' => last_name, 'given' => rest_of_name }
-        else
-          authors_for_citeproc << { 'family' => last_name, 'given' => rest_of_name }
-        end
       end
-      {
-        authors: authors_for_citeproc,
-        editors: editors_for_citeproc
-      }
+
+      return nil if last_name.blank?
+      { 'family' => last_name, 'given' => rest_of_name }
     end
 end
 

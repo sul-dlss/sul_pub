@@ -453,6 +453,14 @@ describe PubHash do
           expect(chicago_citation).to include(conference_pub_in_journal_hash[:year])
           expect(chicago_citation).to include(conference_pub_in_journal_hash[:journal][:name])
         end
+        it 'includes authors of the article' do
+          author_last_names = %w(Jones Jackson)
+          author_last_names.each { |ln| expect(chicago_citation).to include(ln) }
+        end
+        it 'excludes editors of the journal' do
+          editor_last_names = %w(Smith Sprat)
+          editor_last_names.each { |ln| expect(chicago_citation).not_to include(ln) }
+        end
       end
 
       context 'published in book series' do
