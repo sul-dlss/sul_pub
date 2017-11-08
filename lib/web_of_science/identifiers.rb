@@ -38,8 +38,18 @@ module WebOfScience
     end
 
     # @return [String|nil]
+    def doi_uri
+      "#{Settings.DOI.BASE_URI}#{doi}" if doi.present?
+    end
+
+    # @return [String|nil]
     def issn
       ids['issn']
+    end
+
+    # @return [String|nil]
+    def issn_uri
+      "#{Settings.SULPUB_ID.SEARCHWORKS_URI}#{issn}" if issn.present?
     end
 
     # Update identifiers to preserve the values already in the identifiers;
@@ -59,15 +69,46 @@ module WebOfScience
       ids['pmid']
     end
 
+    # @return [String|nil]
+    def pmid_uri
+      "#{Settings.PUBMED.ARTICLE_BASE_URI}#{pmid}" if pmid.present?
+    end
+
     # A mutable Hash of the identifiers
     # @return [Hash]
     def to_h
-      ids.dup
+      {
+        'doi'        => doi,
+        'doi_uri'    => doi_uri,
+        'issn'       => issn,
+        'issn_uri'   => issn_uri,
+        'pmid'       => pmid,
+        'pmid_uri'   => pmid_uri,
+        'WosUID'     => uid,
+        'WosItemID'  => wos_item_id,
+        'WosItemURI' => wos_item_uri
+      }
+    end
+
+    # @return [Array<Hash>]
+    def pub_hash
+      ids = []
+      ids << { type: 'doi', id: doi, url: doi_uri } if doi.present?
+      ids << { type: 'issn', id: issn, url: issn_uri } if issn.present?
+      ids << { type: 'pmid', id: pmid, url: pmid_uri } if pmid.present?
+      ids << { type: 'WosItemID', id: wos_item_id, url: wos_item_uri } if wos_item_id.present?
+      ids << { type: 'WosUID', id: uid }
+      ids
     end
 
     # @return [String|nil]
     def wos_item_id
       ids['WosItemID']
+    end
+
+    # @return [String|nil]
+    def wos_item_uri
+      "#{Settings.SCIENCEWIRE.ARTICLE_BASE_URI}#{wos_item_id}" if wos_item_id.present?
     end
 
     private
