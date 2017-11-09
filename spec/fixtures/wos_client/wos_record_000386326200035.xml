@@ -1,0 +1,404 @@
+<?xml version='1.0'?>
+<REC r_id_disclaimer='ResearcherID data provided by Clarivate Analytics'>
+  <UID>WOS:000386326200035</UID>
+  <static_data>
+    <summary>
+      <EWUID>
+        <WUID coll_id='WOS'/>
+        <edition value='WOS.ISTP'/>
+      </EWUID>
+      <pub_info sortdate='2016-01-01' pubyear='2016' has_abstract='Y' coverdate='2016' pubtype='Book in series'>
+        <page begin='381' end='392' page_count='12'>381-392</page>
+      </pub_info>
+      <titles count='7'>
+        <title type='source'>PACIFIC SYMPOSIUM ON BIOCOMPUTING 2016</title>
+        <title type='series'>Biocomputing-Pacific Symposium on Biocomputing</title>
+        <title type='source_abbrev'>BIOCOMPUT-PAC SYM</title>
+        <title type='abbrev_11'>BIOCOMPUT-P</title>
+        <title type='abbrev_29'>BIOCOMPUT-PAC SYMP BIOCOMPUT</title>
+        <title type='item'>SEPARATING THE CAUSES AND CONSEQUENCES IN DISEASE TRANSCRIPTOME</title>
+        <title type='book_series' translated='N'>Biocomputing-Pacific Symposium on Biocomputing</title>
+      </titles>
+      <names count='9'>
+        <name seq_no='1' role='author' addr_no='1 2' daisng_id='15785824'>
+          <display_name>Li, Yong Fuga</display_name>
+          <full_name>Li, Yong Fuga</full_name>
+          <wos_standard>Li, YF</wos_standard>
+          <first_name>Yong Fuga</first_name>
+          <last_name>Li</last_name>
+        </name>
+        <name seq_no='2' role='author' addr_no='3' daisng_id='38956526'>
+          <display_name>Xin, Fuxiao</display_name>
+          <full_name>Xin, Fuxiao</full_name>
+          <wos_standard>Xin, FX</wos_standard>
+          <first_name>Fuxiao</first_name>
+          <last_name>Xin</last_name>
+        </name>
+        <name seq_no='3' role='author' reprint='Y' addr_no='1 4' daisng_id='745091'>
+          <display_name>Altman, Russ B.</display_name>
+          <full_name>Altman, Russ B.</full_name>
+          <wos_standard>Altman, RB</wos_standard>
+          <first_name>Russ B.</first_name>
+          <last_name>Altman</last_name>
+          <email_addr>russ.altman@stanford.edu</email_addr>
+        </name>
+        <name seq_no='4' role='book_editor'>
+          <display_name>Altman, RB</display_name>
+          <full_name>Altman, RB</full_name>
+          <wos_standard>Altman, RB</wos_standard>
+          <first_name>RB</first_name>
+          <last_name>Altman</last_name>
+        </name>
+        <name seq_no='5' role='book_editor'>
+          <display_name>Dunker, AK</display_name>
+          <full_name>Dunker, AK</full_name>
+          <wos_standard>Dunker, AK</wos_standard>
+          <first_name>AK</first_name>
+          <last_name>Dunker</last_name>
+        </name>
+        <name seq_no='6' role='book_editor'>
+          <display_name>Hunter, L</display_name>
+          <full_name>Hunter, L</full_name>
+          <wos_standard>Hunter, L</wos_standard>
+          <first_name>L</first_name>
+          <last_name>Hunter</last_name>
+        </name>
+        <name seq_no='7' role='book_editor'>
+          <display_name>Ritchie, MD</display_name>
+          <full_name>Ritchie, MD</full_name>
+          <wos_standard>Ritchie, MD</wos_standard>
+          <first_name>MD</first_name>
+          <last_name>Ritchie</last_name>
+        </name>
+        <name seq_no='8' role='book_editor'>
+          <display_name>Murray, T</display_name>
+          <full_name>Murray, T</full_name>
+          <wos_standard>Murray, T</wos_standard>
+          <first_name>T</first_name>
+          <last_name>Murray</last_name>
+        </name>
+        <name seq_no='9' role='book_editor'>
+          <display_name>Klein, TE</display_name>
+          <full_name>Klein, TE</full_name>
+          <wos_standard>Klein, TE</wos_standard>
+          <first_name>TE</first_name>
+          <last_name>Klein</last_name>
+        </name>
+      </names>
+      <doctypes count='1'>
+        <doctype>Proceedings Paper</doctype>
+      </doctypes>
+      <conferences count='1'>
+        <conference conf_id='302652'>
+          <conf_infos count='1'>
+            <conf_info>21st Pacific Symposium on Biocomputing (PSB), JAN 04-08, 2016, HI</conf_info>
+          </conf_infos>
+          <conf_titles count='1'>
+            <conf_title>21st Pacific Symposium on Biocomputing (PSB)</conf_title>
+          </conf_titles>
+          <conf_dates count='1'>
+            <conf_date conf_start='20160104' conf_end='20160108'>JAN 04-08, 2016</conf_date>
+          </conf_dates>
+          <conf_locations count='1'>
+            <conf_location>
+              <conf_state>HI</conf_state>
+            </conf_location>
+          </conf_locations>
+        </conference>
+      </conferences>
+      <publishers>
+        <publisher>
+          <address_spec addr_no='1'>
+            <full_address>PO BOX 128 FARRER RD, SINGAPORE 9128, SINGAPORE</full_address>
+            <city>SINGAPORE</city>
+          </address_spec>
+          <names count='1'>
+            <name role='publisher' seq_no='1' addr_no='1'>
+              <display_name>WORLD SCIENTIFIC PUBL CO PTE LTD</display_name>
+              <full_name>WORLD SCIENTIFIC PUBL CO PTE LTD</full_name>
+            </name>
+          </names>
+        </publisher>
+      </publishers>
+    </summary>
+    <fullrecord_metadata>
+      <languages count='1'>
+        <language type='primary'>English</language>
+      </languages>
+      <normalized_languages count='1'>
+        <language type='primary'>English</language>
+      </normalized_languages>
+      <normalized_doctypes count='1'>
+        <doctype>Meeting</doctype>
+      </normalized_doctypes>
+      <refs count='50'/>
+      <addresses count='4'>
+        <address_name>
+          <address_spec addr_no='1'>
+            <full_address>Stanford Univ, Dept Bioengn, Stanford, CA 94305 USA</full_address>
+            <organizations count='2'>
+              <organization>Stanford Univ</organization>
+              <organization pref='Y'>Stanford University</organization>
+            </organizations>
+            <suborganizations count='1'>
+              <suborganization>Dept Bioengn</suborganization>
+            </suborganizations>
+            <city>Stanford</city>
+            <state>CA</state>
+            <country>USA</country>
+            <zip location='AP'>94305</zip>
+          </address_spec>
+          <names count='2'>
+            <name seq_no='1' role='author' addr_no='1' daisng_id='15785824'>
+              <display_name>Li, Yong Fuga</display_name>
+              <full_name>Li, Yong Fuga</full_name>
+              <wos_standard>Li, YF</wos_standard>
+              <first_name>Yong Fuga</first_name>
+              <last_name>Li</last_name>
+            </name>
+            <name seq_no='3' role='author' reprint='Y' addr_no='1' daisng_id='745091'>
+              <display_name>Altman, Russ B.</display_name>
+              <full_name>Altman, Russ B.</full_name>
+              <wos_standard>Altman, RB</wos_standard>
+              <first_name>Russ B.</first_name>
+              <last_name>Altman</last_name>
+              <email_addr>russ.altman@stanford.edu</email_addr>
+            </name>
+          </names>
+        </address_name>
+        <address_name>
+          <address_spec addr_no='2'>
+            <full_address>Stanford Univ, Stanford Genome Technol Ctr, Stanford, CA 94305 USA</full_address>
+            <organizations count='2'>
+              <organization>Stanford Univ</organization>
+              <organization pref='Y'>Stanford University</organization>
+            </organizations>
+            <suborganizations count='1'>
+              <suborganization>Stanford Genome Technol Ctr</suborganization>
+            </suborganizations>
+            <city>Stanford</city>
+            <state>CA</state>
+            <country>USA</country>
+            <zip location='AP'>94305</zip>
+          </address_spec>
+          <names count='1'>
+            <name seq_no='1' role='author' addr_no='2' daisng_id='15785824'>
+              <display_name>Li, Yong Fuga</display_name>
+              <full_name>Li, Yong Fuga</full_name>
+              <wos_standard>Li, YF</wos_standard>
+              <first_name>Yong Fuga</first_name>
+              <last_name>Li</last_name>
+            </name>
+          </names>
+        </address_name>
+        <address_name>
+          <address_spec addr_no='3'>
+            <full_address>Stanford Univ, Machine Learning Lab, GE Global Res, Stanford, CA 94305 USA</full_address>
+            <organizations count='3'>
+              <organization>Stanford Univ</organization>
+              <organization pref='Y'>General Electric</organization>
+              <organization pref='Y'>Stanford University</organization>
+            </organizations>
+            <suborganizations count='2'>
+              <suborganization>Machine Learning Lab</suborganization>
+              <suborganization>GE Global Res</suborganization>
+            </suborganizations>
+            <city>Stanford</city>
+            <state>CA</state>
+            <country>USA</country>
+            <zip location='AP'>94305</zip>
+          </address_spec>
+          <names count='1'>
+            <name seq_no='2' role='author' addr_no='3' daisng_id='38956526'>
+              <display_name>Xin, Fuxiao</display_name>
+              <full_name>Xin, Fuxiao</full_name>
+              <wos_standard>Xin, FX</wos_standard>
+              <first_name>Fuxiao</first_name>
+              <last_name>Xin</last_name>
+            </name>
+          </names>
+        </address_name>
+        <address_name>
+          <address_spec addr_no='4'>
+            <full_address>Stanford Univ, Dept Genet, Stanford, CA 94305 USA</full_address>
+            <organizations count='2'>
+              <organization>Stanford Univ</organization>
+              <organization pref='Y'>Stanford University</organization>
+            </organizations>
+            <suborganizations count='1'>
+              <suborganization>Dept Genet</suborganization>
+            </suborganizations>
+            <city>Stanford</city>
+            <state>CA</state>
+            <country>USA</country>
+            <zip location='AP'>94305</zip>
+          </address_spec>
+          <names count='1'>
+            <name seq_no='3' role='author' reprint='Y' addr_no='4' daisng_id='745091'>
+              <display_name>Altman, Russ B.</display_name>
+              <full_name>Altman, Russ B.</full_name>
+              <wos_standard>Altman, RB</wos_standard>
+              <first_name>Russ B.</first_name>
+              <last_name>Altman</last_name>
+              <email_addr>russ.altman@stanford.edu</email_addr>
+            </name>
+          </names>
+        </address_name>
+      </addresses>
+      <reprint_addresses count='2'>
+        <address_name>
+          <address_spec addr_no='1'>
+            <full_address>Stanford Univ, Dept Bioengn, Stanford, CA 94305 USA</full_address>
+            <organizations count='2'>
+              <organization>Stanford Univ</organization>
+              <organization pref='Y'>Stanford University</organization>
+            </organizations>
+            <suborganizations count='1'>
+              <suborganization>Dept Bioengn</suborganization>
+            </suborganizations>
+            <city>Stanford</city>
+            <state>CA</state>
+            <country>USA</country>
+            <zip location='AP'>94305</zip>
+          </address_spec>
+          <names count='1'>
+            <name seq_no='1' role='author' reprint='Y' addr_no='1'>
+              <display_name>Altman, Russ B.</display_name>
+              <full_name>Altman, Russ B.</full_name>
+              <wos_standard>Altman, RB</wos_standard>
+              <first_name>Russ B.</first_name>
+              <last_name>Altman</last_name>
+              <email_addr>russ.altman@stanford.edu</email_addr>
+            </name>
+          </names>
+        </address_name>
+        <address_name>
+          <address_spec addr_no='2'>
+            <full_address>Stanford Univ, Dept Genet, Stanford, CA 94305 USA</full_address>
+            <organizations count='2'>
+              <organization>Stanford Univ</organization>
+              <organization pref='Y'>Stanford University</organization>
+            </organizations>
+            <suborganizations count='1'>
+              <suborganization>Dept Genet</suborganization>
+            </suborganizations>
+            <city>Stanford</city>
+            <state>CA</state>
+            <country>USA</country>
+            <zip location='AP'>94305</zip>
+          </address_spec>
+          <names count='1'>
+            <name seq_no='1' role='author' reprint='Y' addr_no='2'>
+              <display_name>Altman, Russ B.</display_name>
+              <full_name>Altman, Russ B.</full_name>
+              <wos_standard>Altman, RB</wos_standard>
+              <first_name>Russ B.</first_name>
+              <last_name>Altman</last_name>
+              <email_addr>russ.altman@stanford.edu</email_addr>
+            </name>
+          </names>
+        </address_name>
+      </reprint_addresses>
+      <category_info>
+        <headings count='1'>
+          <heading>Science &amp; Technology</heading>
+        </headings>
+        <subheadings count='2'>
+          <subheading>Technology</subheading>
+          <subheading>Life Sciences &amp; Biomedicine</subheading>
+        </subheadings>
+        <subjects count='6'>
+          <subject ascatype='traditional' code='EV'>Computer Science, Interdisciplinary Applications</subject>
+          <subject ascatype='traditional' code='IQ'>Engineering, Electrical &amp; Electronic</subject>
+          <subject ascatype='traditional' code='MC'>Mathematical &amp; Computational Biology</subject>
+          <subject ascatype='extended'>Computer Science</subject>
+          <subject ascatype='extended'>Engineering</subject>
+          <subject ascatype='extended'>Mathematical &amp; Computational Biology</subject>
+        </subjects>
+      </category_info>
+      <abstracts count='1'>
+        <abstract>
+          <abstract_text count='1'>
+            <p>
+              The causes of complex diseases are multifactorial and the
+              phenotypes of complex diseases are typically heterogeneous,
+              posting significant challenges for both the experiment design and
+              statistical inference in the study of such diseases. Transcriptome
+              profiling can potentially provide key insights on the pathogenesis
+              of diseases, but the signals from the disease causes and
+              consequences are intertwined, leaving it to speculations what are
+              likely causal. Genome-wide association study on the other hand
+              provides direct evidences on the potential genetic causes of
+              diseases, but it does not provide a comprehensive view of disease
+              pathogenesis, and it has difficulties in detecting the weak
+              signals from individual genes. Here we propose an approach
+              diseaseExPatho that combines transcriptome data, regulome
+              knowledge, and GWAS results if available, for separating the
+              causes and consequences in the disease transcriptome.
+              DiseaseExPatho computationally deconvolutes the expression data
+              into gene expression modules, hierarchically ranks the modules
+              based on regulome using a novel algorithm, and given GWAS data, it
+              directly labels the potential causal gene modules based on their
+              correlations with genome-wide gene-disease associations.
+              Strikingly, we observed that the putative causal modules are not
+              necessarily differentially expressed in disease, while the other
+              modules can show strong differential expression without enrichment
+              of top GWAS variations. On the other hand, we showed that the
+              regulatory network based module ranking prioritized the putative
+              causal modules consistently in 6 diseases, We suggest that the
+              approach is applicable to other common and rare complex diseases
+              to prioritize causal pathways with or without genome-wide
+              association studies.
+            </p>
+          </abstract_text>
+        </abstract>
+      </abstracts>
+    </fullrecord_metadata>
+    <item xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:type='itemType_wos' coll_id='WOS'>
+      <ids avail='N'>BG0LW</ids>
+      <bib_id>: 381-392 2016</bib_id>
+      <bib_pagecount type='Book'>592</bib_pagecount>
+      <keywords_plus count='10'>
+        <keyword>INDEPENDENT COMPONENT ANALYSIS</keyword>
+        <keyword>ROBUST MULTIARRAY ANALYSIS</keyword>
+        <keyword>FUNCTIONAL GENOMICS</keyword>
+        <keyword>REGULATORY NETWORKS</keyword>
+        <keyword>WIDE ASSOCIATION</keyword>
+        <keyword>GENE DISCOVERY</keyword>
+        <keyword>DATABASE</keyword>
+        <keyword>TOOL</keyword>
+        <keyword>NORMALIZATION</keyword>
+        <keyword>ALGORITHMS</keyword>
+      </keywords_plus>
+      <book_pages>592</book_pages>
+      <book_notes count='2'>
+        <book_note>Figures</book_note>
+        <book_note>Color plates</book_note>
+      </book_notes>
+      <book_desc>
+        <bk_binding>P</bk_binding>
+        <bk_publisher>WORLD SCIENTIFIC PUBL CO INC, 687 HARTWELL ST, TEANECK, NJ 07666 USA</bk_publisher>
+        <bk_prepay>Y</bk_prepay>
+      </book_desc>
+      <book_desc>
+        <bk_binding>H</bk_binding>
+        <bk_publisher>WORLD SCIENTIFIC PUBL CO INC, 687 HARTWELL ST, TEANECK, NJ 07666 USA</bk_publisher>
+        <bk_prepay>Y</bk_prepay>
+      </book_desc>
+    </item>
+  </static_data>
+  <dynamic_data>
+    <citation_related>
+      <tc_list>
+        <silo_tc coll_id='WOS' local_count='0'/>
+      </tc_list>
+    </citation_related>
+    <cluster_related>
+      <identifiers>
+        <identifier type='issn' value='2335-6936'/>
+        <identifier type='eisbn' value='978-981-4749-40-4'/>
+        <identifier type='isbn' value='978-981-4749-41-1'/>
+      </identifiers>
+    </cluster_related>
+  </dynamic_data>
+</REC>
