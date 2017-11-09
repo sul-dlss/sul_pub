@@ -117,18 +117,27 @@ module WebOfScience
 
       ALLOWED_TYPES = %w(doi issn pmid).freeze
 
-      # @param ids [Hash]
-      def filter_ids(ids)
-        ids.select { |type, _v| ALLOWED_TYPES.include? type }
-      end
-
       # @param rec [WebOfScience::Record]
       def extract_ids(rec)
         ids = rec.doc.xpath('/REC/dynamic_data/cluster_related/identifiers/identifier')
         ids = ids.map { |id| [id['type'], id['value']] }.to_h
+        ids = filter_dois(ids)
         @ids = filter_ids(ids)
         @uid = rec.doc.xpath('/REC/UID').text.freeze
         @ids.update('WosUID' => uid)
+      end
+
+      # Extract an xref_doi as the doi, if the doi is not available and xref_doi is available
+      # @param ids [Hash]
+      def filter_dois(ids)
+        xref_doi = ids['xref_doi']
+        ids['doi'] ||= xref_doi if xref_doi.present?
+        ids
+      end
+
+      # @param ids [Hash]
+      def filter_ids(ids)
+        ids.select { |type, _v| ALLOWED_TYPES.include? type }
       end
 
       def parse_medline
