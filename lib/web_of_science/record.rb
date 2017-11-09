@@ -39,7 +39,7 @@ module WebOfScience
 
     # @return [Hash<String => String>]
     def identifiers
-      @identifiers ||= WebOfScience::Identifiers.new self
+      @identifiers ||= WebOfScience::Identifiers.new(self)
     end
 
     # @return [Array<Hash<String => String>>]
