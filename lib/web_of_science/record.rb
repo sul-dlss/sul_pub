@@ -32,6 +32,11 @@ module WebOfScience
       @authors ||= names.select { |name| name['role'] == 'author' }
     end
 
+    # @return [Array<Hash<String => String>>]
+    def editors
+      @editors ||= names.select { |name| name['role'] == 'book_editor' }
+    end
+
     # @return [Array<String>]
     def doctypes
       @doctypes ||= doc.search('static_data/summary/doctypes/doctype').map(&:text)

@@ -60,30 +60,43 @@ describe WebOfScience::Record do
       expect(agents).to be_an Array
     end
     it 'contains name data' do
-      expect(agents.count).to eq 1
+      expect(agents).not_to be_empty
     end
-    it 'contains first_name' do
-      expect(agents.first).to include('first_name' => 'DC')
-    end
-    it 'contains last_name' do
-      expect(agents.first).to include('last_name' => 'WEBER')
-    end
-    it 'contains role' do
-      expect(agents.first).to include('role' => 'author')
+    it 'conforms to expected key-value pairs' do
+      expect(agent).to include('first_name' => String, 'last_name' => String, 'role' => String)
     end
     it 'missing attribute data is nil' do
-      expect(agents.first['reprint']).to be_nil
+      expect(agent).not_to include('reprint')
     end
   end
 
   describe '#authors' do
     let(:agents) { wos_record_encoded.authors }
+    let(:agent) { agents.first }
 
     it_behaves_like 'it is an array of names'
+    it 'contains author values' do
+      expect(agent).to include('first_name' => 'DC', 'last_name' => 'WEBER', 'role' => 'author')
+    end
+  end
+
+  describe '#editors' do
+    let(:wos_xml) { File.read('spec/fixtures/wos_client/wos_record_000386326200035.xml') }
+    let(:wos_record) { described_class.new(record: wos_xml) }
+    let(:wos_uid) { 'WOS:000386326200035' }
+
+    let(:agents) { wos_record.editors }
+    let(:agent) { agents.first }
+
+    it_behaves_like 'it is an array of names'
+    it 'contains editor values' do
+      expect(agent).to include('first_name' => 'TE', 'last_name' => 'Klein', 'role' => 'book_editor')
+    end
   end
 
   describe '#names' do
     let(:agents) { wos_record_encoded.names }
+    let(:agent) { agents.first }
 
     it_behaves_like 'it is an array of names'
   end
