@@ -17,7 +17,9 @@ module WebOfScience
     # @param rec [WebOfScience::Record]
     def initialize(rec)
       raise(ArgumentError, 'ids must be a WebOfScience::Record') unless rec.is_a? WebOfScience::Record
-      extract_ids(rec)
+      @rec = rec
+      extract_ids
+      extract_uid
       parse_medline
       parse_wos
       @ids.freeze
@@ -114,17 +116,20 @@ module WebOfScience
     private
 
       attr_reader :ids
+      attr_reader :rec
 
       ALLOWED_TYPES = %w(doi issn pmid).freeze
 
-      # @param rec [WebOfScience::Record]
-      def extract_ids(rec)
+      def extract_ids
         ids = rec.doc.xpath('/REC/dynamic_data/cluster_related/identifiers/identifier')
         ids = ids.map { |id| [id['type'], id['value']] }.to_h
         ids = filter_dois(ids)
         @ids = filter_ids(ids)
+      end
+
+      def extract_uid
         @uid = rec.doc.xpath('/REC/UID').text.freeze
-        @ids.update('WosUID' => uid)
+        ids.update('WosUID' => @uid)
       end
 
       # Extract an xref_doi as the doi, if the doi is not available and xref_doi is available
@@ -148,7 +153,7 @@ module WebOfScience
 
       def parse_wos
         return unless database == 'WOS'
-        @ids.update('WosItemID' => uid.split(':').last)
+        ids.update('WosItemID' => uid.split(':').last)
       end
   end
 end
