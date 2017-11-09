@@ -133,8 +133,8 @@ describe WebOfScience::Identifiers do
     let(:doi) { '10.1038/psp.2013.66' }
     let(:doi_uri) { 'https://dx.doi.org/10.1038/psp.2013.66' }
 
-    let(:issn) { nil }
-    let(:issn_uri) { nil }
+    let(:issn) { '2163-8306' }
+    let(:issn_uri) { 'http://searchworks.stanford.edu/?search_field=advanced&number=2163-8306' }
 
     let(:pmid) { '24452614' }
     let(:pmid_uri) { 'https://www.ncbi.nlm.nih.gov/pubmed/24452614' }
@@ -160,6 +160,7 @@ describe WebOfScience::Identifiers do
     let(:pub_hash_data) do
       [
         { type: 'doi', id: doi, url: doi_uri },
+        { type: 'issn', id: issn, url: issn_uri },
         { type: 'pmid', id: pmid, url: pmid_uri },
         { type: 'WosUID', id: wos_uid },
       ]
