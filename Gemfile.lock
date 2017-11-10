@@ -1,6 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    StreetAddress (1.0.6)
     actionmailer (4.2.10)
       actionpack (= 4.2.10)
       actionview (= 4.2.10)
@@ -459,6 +460,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  StreetAddress (~> 1.0, >= 1.0.6)
   activerecord-import
   bibtex-ruby
   bio

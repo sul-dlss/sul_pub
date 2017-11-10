@@ -46,6 +46,7 @@ gem 'pry-rails'
 gem 'pubmed_search'
 gem 'savon', '~> 2.11'
 gem 'simple_form'
+gem 'StreetAddress', '~> 1.0', '>= 1.0.6'
 gem 'turnout'
 gem 'whenever', require: false
 gem 'yaml_db'
