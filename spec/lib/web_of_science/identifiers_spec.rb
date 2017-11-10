@@ -12,6 +12,12 @@ describe WebOfScience::Identifiers do
     it 'doi_uri' do
       expect(identifiers.doi_uri).to eq(ids['doi_uri'])
     end
+    it 'eissn' do
+      expect(identifiers.eissn).to eq(ids['eissn'])
+    end
+    it 'eissn_uri' do
+      expect(identifiers.eissn_uri).to eq(ids['eissn_uri'])
+    end
     it 'issn' do
       expect(identifiers.issn).to eq(ids['issn'])
     end
@@ -45,7 +51,7 @@ describe WebOfScience::Identifiers do
       expect(hash).to be_an Hash
     end
     it 'contains identifiers' do
-      expect(hash).to eq ids.reject { |type, _v| type == 'xref_doi' }
+      expect(hash).to eq ids.reject { |type, val| type == 'xref_doi' || val.nil? }
     end
     it 'is mutable and accepts anything' do
       hash.update(a: 1)
@@ -68,10 +74,13 @@ describe WebOfScience::Identifiers do
   end
 
   context 'WOS record' do
-    # use the default identifiers that has a WOS record already
+    # Use the subject(:identifiers), which is a WOS record already.
     let(:doi) { '10.1007/s12630-011-9462-1' }
     let(:doi_uri) { 'https://dx.doi.org/10.1007/s12630-011-9462-1' }
     let(:xref_doi) { '10.1007/s12630-011-9462-1' }
+
+    let(:eissn) { nil }
+    let(:eissn_uri) { nil }
 
     let(:issn) { '0832-610X' }
     let(:issn_uri) { 'http://searchworks.stanford.edu/?search_field=advanced&number=0832-610X' }
@@ -133,6 +142,9 @@ describe WebOfScience::Identifiers do
     let(:doi) { '10.1038/psp.2013.66' }
     let(:doi_uri) { 'https://dx.doi.org/10.1038/psp.2013.66' }
 
+    let(:eissn) { nil }
+    let(:eissn_uri) { nil }
+
     let(:issn) { '2163-8306' }
     let(:issn_uri) { 'http://searchworks.stanford.edu/?search_field=advanced&number=2163-8306' }
 
@@ -147,6 +159,8 @@ describe WebOfScience::Identifiers do
       {
         'doi'        => doi,
         'doi_uri'    => doi_uri,
+        'eissn'      => eissn,
+        'eissn_uri'  => eissn_uri,
         'issn'       => issn,
         'issn_uri'   => issn_uri,
         'pmid'       => pmid,

@@ -45,6 +45,16 @@ module WebOfScience
     end
 
     # @return [String|nil]
+    def eissn
+      ids['eissn']
+    end
+
+    # @return [String|nil]
+    def eissn_uri
+      "#{Settings.SULPUB_ID.SEARCHWORKS_URI}#{eissn}" if eissn.present?
+    end
+
+    # @return [String|nil]
     def issn
       ids['issn']
     end
@@ -77,25 +87,37 @@ module WebOfScience
     end
 
     # A mutable Hash of the identifiers
-    # @return [Hash]
+    # @return [Hash<String => String>]
     def to_h
-      {
-        'doi'        => doi,
-        'doi_uri'    => doi_uri,
-        'issn'       => issn,
-        'issn_uri'   => issn_uri,
-        'pmid'       => pmid,
-        'pmid_uri'   => pmid_uri,
-        'WosUID'     => uid,
-        'WosItemID'  => wos_item_id,
-        'WosItemURI' => wos_item_uri
-      }
+      hash = { 'WosUID' => uid }
+      if doi.present?
+        hash['doi']     = doi
+        hash['doi_uri'] = doi_uri
+      end
+      if eissn.present?
+        hash['eissn']     = eissn
+        hash['eissn_uri'] = eissn_uri
+      end
+      if issn.present?
+        hash['issn']     = issn
+        hash['issn_uri'] = issn_uri
+      end
+      if pmid.present?
+        hash['pmid']     = pmid
+        hash['pmid_uri'] = pmid_uri
+      end
+      if wos_item_id.present?
+        hash['WosItemID']  = wos_item_id
+        hash['WosItemURI'] = wos_item_uri
+      end
+      hash
     end
 
     # @return [Array<Hash>]
     def pub_hash
       ids = []
       ids << { type: 'doi', id: doi, url: doi_uri } if doi.present?
+      ids << { type: 'eissn', id: eissn, url: eissn_uri } if eissn.present?
       ids << { type: 'issn', id: issn, url: issn_uri } if issn.present?
       ids << { type: 'pmid', id: pmid, url: pmid_uri } if pmid.present?
       ids << { type: 'WosItemID', id: wos_item_id, url: wos_item_uri } if wos_item_id.present?
@@ -118,7 +140,7 @@ module WebOfScience
       attr_reader :ids
       attr_reader :rec
 
-      ALLOWED_TYPES = %w(doi issn pmid).freeze
+      ALLOWED_TYPES = %w(doi eissn issn pmid).freeze
 
       def extract_ids
         ids = rec.doc.xpath('/REC/dynamic_data/cluster_related/identifiers/identifier')
