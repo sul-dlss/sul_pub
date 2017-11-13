@@ -62,22 +62,23 @@ class PubHash
       # - cap
       # - pubmed
       # - sciencewire
+      provenance = pub_hash[:provenance].to_s.downcase
       authors = pub_hash[:author] || []
-      case pub_hash[:provenance]
-      when /batch/i
+      case provenance
+      when 'batch'
         # This is from BibtexIngester.convert_bibtex_record_to_pub_hash
         @citeproc_authors ||= bibtex_authors_to_csl(authors)
         @citeproc_editors ||= [] # there are no editors
-      when /cap/i
+      when 'cap'
         # This is a CAP manual submission
         @citeproc_authors ||= cap_authors_to_csl(authors)
         @citeproc_editors ||= cap_editors_to_csl(authors)
-      when /pubmed/i
+      when 'pubmed'
         # This is a PubMed publication and the author is created in
         # PubmedSourceRecord.convert_pubmed_publication_doc_to_hash
         @citeproc_authors ||= pubmed_authors_to_csl(authors)
         @citeproc_editors ||= [] # there are no editors
-      when /sciencewire/i
+      when 'sciencewire'
         # This is a ScienceWire publication and the author is created in
         # SciencewireSourceRecord.convert_sw_publication_doc_to_hash
         @citeproc_authors ||= sw_authors_to_csl(authors)
@@ -87,9 +88,9 @@ class PubHash
         citeproc_editors # calls parse_authors
       end
 
-      if pub_hash[:provenance] =~ /cap/i
-        case pub_hash[:type]
-        when 'workingPaper', 'technicalReport'
+      if provenance == 'cap'
+        case pub_hash[:type].to_s.downcase
+        when 'workingpaper', 'technicalreport'
           # Map a CAP 'workingPaper' or 'technicalReport' to a CSL 'report'
           return create_csl_report
         end
@@ -103,7 +104,7 @@ class PubHash
 
       cit_data_hash = {
         'id' => 'sulpub',
-        'type' => pub_hash[:type],
+        'type' => pub_hash[:type].to_s.downcase,
         'author' => citeproc_authors,
         'title' => pub_hash[:title]
       }
@@ -167,13 +168,11 @@ class PubHash
         cit_data_hash['container-title'] = pub_hash[:booktitle]
       end
 
-      if cit_data_hash['type'].to_s.casecmp('book').zero? && citeproc_editors.present?
-        cit_data_hash['editor'] = citeproc_editors
-      end
+      cit_data_hash['editor'] = citeproc_editors if cit_data_hash['type'].eql?('book') && citeproc_editors.present?
 
       ##
       # For a CAP type "caseStudy" just use a "book"
-      cit_data_hash['type'] = 'book' if pub_hash[:type] == 'caseStudy'
+      cit_data_hash['type'] = 'book' if pub_hash[:type].to_s.downcase.eql?('casestudy')
 
       ##
       # Mapping custom fields from the CAP system.
@@ -246,7 +245,7 @@ class PubHash
     def cap_authors_to_csl(cap_authors)
       # All the CAP authors are an author if they have no role or they have an 'author' role
       authors = cap_authors.map(&:symbolize_keys)
-      authors.select! { |author| author[:role].nil? || author[:role].to_s.casecmp('author').zero? }
+      authors.select! { |author| author[:role].nil? || author[:role].to_s.downcase.eql?('author') }
       authors.map { |author| Csl::AuthorName.new(author).to_csl_author }
     end
 
@@ -256,7 +255,7 @@ class PubHash
     def cap_editors_to_csl(cap_authors)
       # A CAP editor has an 'editor' role
       editors = cap_authors.map(&:symbolize_keys)
-      editors.select! { |editor| editor[:role].to_s.casecmp('editor').zero? }
+      editors.select! { |editor| editor[:role].to_s.downcase.eql?('editor') }
       editors.map { |editor| Csl::AuthorName.new(editor).to_csl_author }
     end
 
@@ -292,8 +291,8 @@ class PubHash
       # All the pub_hash[:author] data is assumed be an editor or an author and
       # the only way to tell is when the editor has role=='editor'
       pub_hash_authors = pub_hash[:author] || []
-      authors = pub_hash_authors.reject { |a| a[:role].to_s.casecmp('editor').zero? }
-      editors = pub_hash_authors.select { |a| a[:role].to_s.casecmp('editor').zero? }
+      authors = pub_hash_authors.reject { |a| a[:role].to_s.downcase.eql?('editor') }
+      editors = pub_hash_authors.select { |a| a[:role].to_s.downcase.eql?('editor') }
       if authors.length > 5
         # we pass the first five  authorsand the very last author because some
         # formats add the very last name when using et-al. the CSL should drop the sixth name if unused.
