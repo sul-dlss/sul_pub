@@ -31,13 +31,13 @@ http_interactions:
             </ScienceWireQueryXMLParameter>
     headers:
       User-Agent:
-      - Faraday v0.9.2
+      - Faraday v0.13.1
       Accept:
       - "*/*"
       Accept-Encoding:
       - gzip,deflate
       Date:
-      - Thu, 02 Jun 2016 22:11:30 GMT
+      - Mon, 13 Nov 2017 20:58:36 GMT
       Licenseid:
       - Settings.SCIENCEWIRE.LICENSE_ID
       Host:
@@ -66,7 +66,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Thu, 02 Jun 2016 22:11:31 GMT
+      - Mon, 13 Nov 2017 20:59:30 GMT
       Content-Length:
       - '277'
     body:
@@ -75,7 +75,7 @@ http_interactions:
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>41173</queryID>\r\n
         \ <queryResultRows>1</queryResultRows>\r\n  <totalRows>1</totalRows>\r\n</ScienceWireQueryIDResponse>"
     http_version: 
-  recorded_at: Thu, 02 Jun 2016 22:11:31 GMT
+  recorded_at: Mon, 13 Nov 2017 20:58:37 GMT
 - request:
     method: get
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/41173?format=xml&page=0&pageSize=1&v=version/4
@@ -84,13 +84,13 @@ http_interactions:
       string: ''
     headers:
       User-Agent:
-      - Faraday v0.9.2
+      - Faraday v0.13.1
       Accept:
       - "*/*"
       Accept-Encoding:
       - gzip,deflate
       Date:
-      - Thu, 02 Jun 2016 22:11:31 GMT
+      - Mon, 13 Nov 2017 20:58:37 GMT
       Licenseid:
       - Settings.SCIENCEWIRE.LICENSE_ID
       Host:
@@ -119,7 +119,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Thu, 02 Jun 2016 15:53:32 GMT
+      - Mon, 13 Nov 2017 20:59:31 GMT
       Content-Length:
       - '4955'
     body:
@@ -164,7 +164,7 @@ http_interactions:
         ATHEROMA|atrial fibrillation|ablation|outcomes|neurocognitive dysfunction</KeywordList>\r\n
         \   <DocumentTypeList>Article</DocumentTypeList>\r\n    <DocumentCategory>Journal
         Document</DocumentCategory>\r\n    <NumberOfReferences>34</NumberOfReferences>\r\n
-        \   <TimesCited>23</TimesCited>\r\n    <TimesNotSelfCited>20</TimesNotSelfCited>\r\n
+        \   <TimesCited>29</TimesCited>\r\n    <TimesNotSelfCited>26</TimesNotSelfCited>\r\n
         \   <PMID>23684686</PMID>\r\n    <WoSItemID>000322524300008</WoSItemID>\r\n
         \   <PublicationSourceTitle>JOURNAL OF THE AMERICAN COLLEGE OF CARDIOLOGY</PublicationSourceTitle>\r\n
         \   <Volume>62</Volume>\r\n    <Issue>6</Issue>\r\n    <Pagination>531-539</Pagination>\r\n
@@ -179,366 +179,11 @@ http_interactions:
         YORK</CopyrightCity>\r\n    <PublicationImpactFactorList>15.343,2013,ExactPublicationYear|15.343,2013,MostRecentYear</PublicationImpactFactorList>\r\n
         \   <PublicationCategoryRankingList>1/125;CARDIAC &amp; CARDIOVASCULAR SYSTEMS;2013;SC;ExactPublicationYear|1/125;CARDIAC
         &amp; CARDIOVASCULAR SYSTEMS;2013;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
-        \   <AuthorCitationCountList>1,1,22|2,2,21|3,2,21|4,1,22|5,1,22|6,1,22|7,2,21|8,2,21</AuthorCitationCountList>\r\n
+        \   <AuthorCitationCountList>1,1,28|2,2,27|3,2,27|4,1,28|5,1,28|6,1,28|7,2,27|8,2,27</AuthorCitationCountList>\r\n
         \   <CopyrightStateProvince>NY</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
         STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n</ArrayOfPublicationItem>"
     http_version: 
-  recorded_at: Thu, 02 Jun 2016 22:11:31 GMT
-- request:
-    method: post
-    uri: http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml
-    body:
-      encoding: UTF-8
-      string: "&id=23684686"
-    headers:
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - "*/*"
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Thu, 02 Jun 2016 22:11:32 GMT
-      Server:
-      - Apache
-      Access-Control-Allow-Origin:
-      - "*"
-      Cache-Control:
-      - private
-      Ncbi-Sid:
-      - 9DFC39B4750AF141_0941SID
-      Content-Type:
-      - text/xml; charset=UTF-8
-      Set-Cookie:
-      - ncbi_sid=9DFC39B4750AF141_0941SID; domain=.nih.gov; path=/; expires=Fri, 02
-        Jun 2017 22:11:32 GMT
-      X-Ua-Compatible:
-      - IE=Edge
-      Transfer-Encoding:
-      - chunked
-    body:
-      encoding: ASCII-8BIT
-      string: !binary |-
-        PD94bWwgdmVyc2lvbj0iMS4wIj8+CjwhRE9DVFlQRSBQdWJtZWRBcnRpY2xl
-        U2V0IFBVQkxJQyAiLS8vTkxNLy9EVEQgUHViTWVkQXJ0aWNsZSwgMXN0IEph
-        bnVhcnkgMjAxNi8vRU4iICJodHRwOi8vd3d3Lm5jYmkubmxtLm5paC5nb3Yv
-        Y29yZWh0bWwvcXVlcnkvRFREL3B1Ym1lZF8xNjAxMDEuZHRkIj4KPFB1Ym1l
-        ZEFydGljbGVTZXQ+CjxQdWJtZWRBcnRpY2xlPgogICAgPE1lZGxpbmVDaXRh
-        dGlvbiBPd25lcj0iTkxNIiBTdGF0dXM9Ik1FRExJTkUiPgogICAgICAgIDxQ
-        TUlEIFZlcnNpb249IjEiPjIzNjg0Njg2PC9QTUlEPgogICAgICAgIDxEYXRl
-        Q3JlYXRlZD4KICAgICAgICAgICAgPFllYXI+MjAxMzwvWWVhcj4KICAgICAg
-        ICAgICAgPE1vbnRoPjA4PC9Nb250aD4KICAgICAgICAgICAgPERheT4wMjwv
-        RGF5PgogICAgICAgIDwvRGF0ZUNyZWF0ZWQ+CiAgICAgICAgPERhdGVDb21w
-        bGV0ZWQ+CiAgICAgICAgICAgIDxZZWFyPjIwMTM8L1llYXI+CiAgICAgICAg
-        ICAgIDxNb250aD4xMDwvTW9udGg+CiAgICAgICAgICAgIDxEYXk+MzE8L0Rh
-        eT4KICAgICAgICA8L0RhdGVDb21wbGV0ZWQ+CiAgICAgICAgPEFydGljbGUg
-        UHViTW9kZWw9IlByaW50LUVsZWN0cm9uaWMiPgogICAgICAgICAgICA8Sm91
-        cm5hbD4KICAgICAgICAgICAgICAgIDxJU1NOIElzc25UeXBlPSJFbGVjdHJv
-        bmljIj4xNTU4LTM1OTc8L0lTU04+CiAgICAgICAgICAgICAgICA8Sm91cm5h
-        bElzc3VlIENpdGVkTWVkaXVtPSJJbnRlcm5ldCI+CiAgICAgICAgICAgICAg
-        ICAgICAgPFZvbHVtZT42MjwvVm9sdW1lPgogICAgICAgICAgICAgICAgICAg
-        IDxJc3N1ZT42PC9Jc3N1ZT4KICAgICAgICAgICAgICAgICAgICA8UHViRGF0
-        ZT4KICAgICAgICAgICAgICAgICAgICAgICAgPFllYXI+MjAxMzwvWWVhcj4K
-        ICAgICAgICAgICAgICAgICAgICAgICAgPE1vbnRoPkF1ZzwvTW9udGg+CiAg
-        ICAgICAgICAgICAgICAgICAgICAgIDxEYXk+NjwvRGF5PgogICAgICAgICAg
-        ICAgICAgICAgIDwvUHViRGF0ZT4KICAgICAgICAgICAgICAgIDwvSm91cm5h
-        bElzc3VlPgogICAgICAgICAgICAgICAgPFRpdGxlPkpvdXJuYWwgb2YgdGhl
-        IEFtZXJpY2FuIENvbGxlZ2Ugb2YgQ2FyZGlvbG9neTwvVGl0bGU+CiAgICAg
-        ICAgICAgICAgICA8SVNPQWJicmV2aWF0aW9uPkouIEFtLiBDb2xsLiBDYXJk
-        aW9sLjwvSVNPQWJicmV2aWF0aW9uPgogICAgICAgICAgICA8L0pvdXJuYWw+
-        CiAgICAgICAgICAgIDxBcnRpY2xlVGl0bGU+U3VidGxlIHBvc3QtcHJvY2Vk
-        dXJhbCBjb2duaXRpdmUgZHlzZnVuY3Rpb24gYWZ0ZXIgYXRyaWFsIGZpYnJp
-        bGxhdGlvbiBhYmxhdGlvbi48L0FydGljbGVUaXRsZT4KICAgICAgICAgICAg
-        PFBhZ2luYXRpb24+CiAgICAgICAgICAgICAgICA8TWVkbGluZVBnbj41MzEt
-        OTwvTWVkbGluZVBnbj4KICAgICAgICAgICAgPC9QYWdpbmF0aW9uPgogICAg
-        ICAgICAgICA8RUxvY2F0aW9uSUQgRUlkVHlwZT0iZG9pIiBWYWxpZFlOPSJZ
-        Ij4xMC4xMDE2L2ouamFjYy4yMDEzLjAzLjA3MzwvRUxvY2F0aW9uSUQ+CiAg
-        ICAgICAgICAgIDxFTG9jYXRpb25JRCBFSWRUeXBlPSJwaWkiIFZhbGlkWU49
-        IlkiPlMwNzM1LTEwOTcoMTMpMDE4ODItMjwvRUxvY2F0aW9uSUQ+CiAgICAg
-        ICAgICAgIDxBYnN0cmFjdD4KICAgICAgICAgICAgICAgIDxBYnN0cmFjdFRl
-        eHQgTGFiZWw9Ik9CSkVDVElWRVMiIE5sbUNhdGVnb3J5PSJPQkpFQ1RJVkUi
-        PlRoaXMgc3R1ZHkgc291Z2h0IHRvIGRldGVybWluZSB3aGV0aGVyIHBvc3Qt
-        b3BlcmF0aXZlIG5ldXJvY29nbml0aXZlIGR5c2Z1bmN0aW9uIChQT0NEKSBv
-        Y2N1cnMgYWZ0ZXIgYWJsYXRpb24gZm9yIGF0cmlhbCBmaWJyaWxsYXRpb24g
-        KEFGKS48L0Fic3RyYWN0VGV4dD4KICAgICAgICAgICAgICAgIDxBYnN0cmFj
-        dFRleHQgTGFiZWw9IkJBQ0tHUk9VTkQiIE5sbUNhdGVnb3J5PSJCQUNLR1JP
-        VU5EIj5BYmxhdGlvbiBmb3IgQUYgaXMgYSBoaWdobHkgZWZmZWN0aXZlIHN0
-        cmF0ZWd5OyBob3dldmVyLCB0aGUgcmlzayBvZiB0cmFuc2llbnQgaXNjaGVt
-        aWMgYXR0YWNrIGFuZCBzdHJva2UgaXMgYXBwcm94aW1hdGVseSAwLjUlIHRv
-        IDElLiBJbiBhZGRpdGlvbiwgbWFnbmV0aWMgcmVzb25hbmNlIGltYWdpbmcg
-        c3R1ZGllcyByZXBvcnQgYSA3JSB0byAxNCUgcHJldmFsZW5jZSBvZiBzaWxl
-        bnQgY2VyZWJyYWwgaW5mYXJjdGlvbi4gV2hldGhlciBjZXJlYnJhbCBpc2No
-        ZW1pYSByZXN1bHRzIGluIFBPQ0QgYWZ0ZXIgYWJsYXRpb24gZm9yIEFGIGlz
-        IG5vdCB3ZWxsIGVzdGFibGlzaGVkLjwvQWJzdHJhY3RUZXh0PgogICAgICAg
-        ICAgICAgICAgPEFic3RyYWN0VGV4dCBMYWJlbD0iTUVUSE9EUyIgTmxtQ2F0
-        ZWdvcnk9Ik1FVEhPRFMiPlRoZSBzdHVkeSBpbmNsdWRlZCAxNTAgcGF0aWVu
-        dHM7IDYwIHBhdGllbnRzIHVuZGVyZ29pbmcgYWJsYXRpb24gZm9yIHBhcm94
-        eXNtYWwgYXRyaWFsIGZpYnJpbGxhdGlvbiAoUEFGKSwgMzAgcGF0aWVudHMg
-        dW5kZXJnb2luZyBhYmxhdGlvbiBmb3IgcGVyc2lzdGVudCBhdHJpYWwgZmli
-        cmlsbGF0aW9uIChQZUFGKSwgYW5kIDMwIHBhdGllbnRzIHVuZGVyZ29pbmcg
-        YWJsYXRpb24gZm9yIHN1cHJhdmVudHJpY3VsYXIgdGFjaHljYXJkaWEgKFNW
-        VCkgd2VyZSBjb21wYXJlZCB3aXRowqBhIG1hdGNoZWQgbm9ub3BlcmF0aXZl
-        IGNvbnRyb2wgZ3JvdXAgb2YgcGF0aWVudHMgd2l0aCBBRiBhd2FpdGluZyBy
-        YWRpb2ZyZXF1ZW5jeSBhYmxhdGlvbiAobsKgPSAzMCkuIEVpZ2h0IG5ldXJv
-        cHN5Y2hvbG9naWNhbCB0ZXN0cyB3ZXJlIGFkbWluaXN0ZXJlZCBhdCBiYXNl
-        bGluZSBhbmQgYXQgMiBkYXlzIGFuZCA5MCBkYXlzIHBvc3Qtb3BlcmF0aXZl
-        bHkuIFRoZSB0ZXN0cyB3ZXJlIGFkbWluaXN0ZXJlZCBhdCB0aGUgc2FtZcKg
-        dGltZcKgcG9pbnRzIHRvIHRoZSBub25vcGVyYXRpdmUgY29udHJvbCBncm91
-        cC4gVGhlIHJlbGlhYmxlIGNoYW5nZSBpbmRleCB3YXMgdXNlZCB0byBjYWxj
-        dWxhdGUgUE9DRC48L0Fic3RyYWN0VGV4dD4KICAgICAgICAgICAgICAgIDxB
-        YnN0cmFjdFRleHQgTGFiZWw9IlJFU1VMVFMiIE5sbUNhdGVnb3J5PSJSRVNV
-        TFRTIj5UaGUgcHJldmFsZW5jZXMgb2YgUE9DRCBhdCBkYXkgMiBwb3N0LXBy
-        b2NlZHVyZSB3ZXJlIDI4JSBpbiBwYXRpZW50cyB3aXRoIFBBRiwgMjclIGlu
-        IHBhdGllbnRzIHdpdGggUGVBRiwgMTMlIGluIHBhdGllbnRzIHdpdGggU1ZU
-        LCBhbmQgMCUgaW4gY29udHJvbCBwYXRpZW50cyB3aXRoIEFGIChwwqA9IDAu
-        MDA3KS4gQXQgZGF5IDkwLCB0aGUgcHJldmFsZW5jZXMgb2YgUE9DRCB3ZXJl
-        IDEzJSBpbiBwYXRpZW50cyB3aXRoIFBBRiwgMjAlIGluIHBhdGllbnRzIHdp
-        dGggUGVBRiwgMyUgaW4gcGF0aWVudHMgd2l0aCBTVlQsIGFuZCAwJSBpbiBj
-        b250cm9sIHBhdGllbnRzIHdpdGggQUYgKHDCoD0gMC4wMykuIFdoZW4gYW5h
-        bHl6aW5nIHRoZSAzIHByb2NlZHVyYWwgZ3JvdXBzIHRvZ2V0aGVyLCAyOSBv
-        ZiAxMjAgcGF0aWVudHMgKDI0JSkgbWFuaWZlc3RlZCBQT0NEIGF0IGRheSAy
-        IGFuZCAxNSBvZiAxMjAgcGF0aWVudHMgKDEzJSkgYXQgZGF5IDkwIHBvc3Qt
-        cHJvY2VkdXJlIChwwqA9IDAuMDI5KS4gT24gdW5pdmFyaWF0ZSBhbmFseXNp
-        cywgaW5jcmVhc2luZyBsZWZ0IGF0cmlhbCBhY2Nlc3MgdGltZSB3YXMgYXNz
-        b2NpYXRlZCB3aXRoIFBPQ0QgYXQgZGF5IDIgKHDCoD0gMC4wNCkgYW5kIGRh
-        eSA5MCAocMKgPSAwLjAzKS48L0Fic3RyYWN0VGV4dD4KICAgICAgICAgICAg
-        ICAgIDxBYnN0cmFjdFRleHQgTGFiZWw9IkNPTkNMVVNJT05TIiBObG1DYXRl
-        Z29yeT0iQ09OQ0xVU0lPTlMiPkFibGF0aW9uIGZvciBBRiBpcyBhc3NvY2lh
-        dGVkIHdpdGggYSAxMyUgdG8gMjAlIHByZXZhbGVuY2Ugb2YgUE9DRCBpbiBw
-        YXRpZW50cyB3aXRoIEFGIGF0IGxvbmctdGVybSBmb2xsb3ctdXAuIFRoZXNl
-        IHJlc3VsdHMgd2VyZSBzZWVuIGluIGEgcGF0aWVudCBwb3B1bGF0aW9uIHdp
-        dGggcHJlZG9taW5hbnQgQ0hBRFMyIChDb25nZXN0aXZlIGhlYXJ0IGZhaWx1
-        cmUsIEh5cGVydGVuc2lvbiwgQWdlwqDiiaU3NSB5ZWFycywgRGlhYmV0ZXMg
-        bWVsbGl0dXMsIHByZXZpb3VzIFN0cm9rZS90cmFuc2llbnQgaXNjaGVtaWMg
-        YXR0YWNrKSBzY29yZXMgb2YgMCB0byAxLCByZXByZXNlbnRpbmcgdGhlIG1h
-        am9yaXR5IG9mIHBhdGllbnRzIHVuZGVyZ29pbmcgYWJsYXRpb24gZm9yIEFG
-        LiBUaGUgbG9uZy10ZXJtIGltcGxpY2F0aW9ucyBvZiB0aGVzZSBzdWJ0bGUg
-        Y2hhbmdlcyByZXF1aXJlIGZ1cnRoZXIgc3R1ZHkuPC9BYnN0cmFjdFRleHQ+
-        CiAgICAgICAgICAgICAgICA8Q29weXJpZ2h0SW5mb3JtYXRpb24+Q29weXJp
-        Z2h0IMKpIDIwMTMgQW1lcmljYW4gQ29sbGVnZSBvZiBDYXJkaW9sb2d5IEZv
-        dW5kYXRpb24uIFB1Ymxpc2hlZCBieSBFbHNldmllciBJbmMuIEFsbCByaWdo
-        dHMgcmVzZXJ2ZWQuPC9Db3B5cmlnaHRJbmZvcm1hdGlvbj4KICAgICAgICAg
-        ICAgPC9BYnN0cmFjdD4KICAgICAgICAgICAgPEF1dGhvckxpc3QgQ29tcGxl
-        dGVZTj0iWSI+CiAgICAgICAgICAgICAgICA8QXV0aG9yIFZhbGlkWU49Ilki
-        PgogICAgICAgICAgICAgICAgICAgIDxMYXN0TmFtZT5NZWRpPC9MYXN0TmFt
-        ZT4KICAgICAgICAgICAgICAgICAgICA8Rm9yZU5hbWU+Q2Fyb2xpbmU8L0Zv
-        cmVOYW1lPgogICAgICAgICAgICAgICAgICAgIDxJbml0aWFscz5DPC9Jbml0
-        aWFscz4KICAgICAgICAgICAgICAgICAgICA8QWZmaWxpYXRpb25JbmZvPgog
-        ICAgICAgICAgICAgICAgICAgICAgICA8QWZmaWxpYXRpb24+RGVwYXJ0bWVu
-        dCBvZiBDYXJkaW9sb2d5LCBUaGUgUm95YWwgTWVsYm91cm5lIEhvc3BpdGFs
-        LCBNZWxib3VybmUsIEF1c3RyYWxpYS48L0FmZmlsaWF0aW9uPgogICAgICAg
-        ICAgICAgICAgICAgIDwvQWZmaWxpYXRpb25JbmZvPgogICAgICAgICAgICAg
-        ICAgPC9BdXRob3I+CiAgICAgICAgICAgICAgICA8QXV0aG9yIFZhbGlkWU49
-        IlkiPgogICAgICAgICAgICAgICAgICAgIDxMYXN0TmFtZT5FdmVyZWQ8L0xh
-        c3ROYW1lPgogICAgICAgICAgICAgICAgICAgIDxGb3JlTmFtZT5MaXNiZXRo
-        PC9Gb3JlTmFtZT4KICAgICAgICAgICAgICAgICAgICA8SW5pdGlhbHM+TDwv
-        SW5pdGlhbHM+CiAgICAgICAgICAgICAgICA8L0F1dGhvcj4KICAgICAgICAg
-        ICAgICAgIDxBdXRob3IgVmFsaWRZTj0iWSI+CiAgICAgICAgICAgICAgICAg
-        ICAgPExhc3ROYW1lPlNpbGJlcnQ8L0xhc3ROYW1lPgogICAgICAgICAgICAg
-        ICAgICAgIDxGb3JlTmFtZT5CcmVuZGFuPC9Gb3JlTmFtZT4KICAgICAgICAg
-        ICAgICAgICAgICA8SW5pdGlhbHM+QjwvSW5pdGlhbHM+CiAgICAgICAgICAg
-        ICAgICA8L0F1dGhvcj4KICAgICAgICAgICAgICAgIDxBdXRob3IgVmFsaWRZ
-        Tj0iWSI+CiAgICAgICAgICAgICAgICAgICAgPExhc3ROYW1lPlRlaDwvTGFz
-        dE5hbWU+CiAgICAgICAgICAgICAgICAgICAgPEZvcmVOYW1lPkFuZHJldzwv
-        Rm9yZU5hbWU+CiAgICAgICAgICAgICAgICAgICAgPEluaXRpYWxzPkE8L0lu
-        aXRpYWxzPgogICAgICAgICAgICAgICAgPC9BdXRob3I+CiAgICAgICAgICAg
-        ICAgICA8QXV0aG9yIFZhbGlkWU49IlkiPgogICAgICAgICAgICAgICAgICAg
-        IDxMYXN0TmFtZT5IYWxsb3JhbjwvTGFzdE5hbWU+CiAgICAgICAgICAgICAg
-        ICAgICAgPEZvcmVOYW1lPkthcmVuPC9Gb3JlTmFtZT4KICAgICAgICAgICAg
-        ICAgICAgICA8SW5pdGlhbHM+SzwvSW5pdGlhbHM+CiAgICAgICAgICAgICAg
-        ICA8L0F1dGhvcj4KICAgICAgICAgICAgICAgIDxBdXRob3IgVmFsaWRZTj0i
-        WSI+CiAgICAgICAgICAgICAgICAgICAgPExhc3ROYW1lPk1vcnRvbjwvTGFz
-        dE5hbWU+CiAgICAgICAgICAgICAgICAgICAgPEZvcmVOYW1lPkpvc2VwaDwv
-        Rm9yZU5hbWU+CiAgICAgICAgICAgICAgICAgICAgPEluaXRpYWxzPko8L0lu
-        aXRpYWxzPgogICAgICAgICAgICAgICAgPC9BdXRob3I+CiAgICAgICAgICAg
-        ICAgICA8QXV0aG9yIFZhbGlkWU49IlkiPgogICAgICAgICAgICAgICAgICAg
-        IDxMYXN0TmFtZT5LaXN0bGVyPC9MYXN0TmFtZT4KICAgICAgICAgICAgICAg
-        ICAgICA8Rm9yZU5hbWU+UGV0ZXI8L0ZvcmVOYW1lPgogICAgICAgICAgICAg
-        ICAgICAgIDxJbml0aWFscz5QPC9Jbml0aWFscz4KICAgICAgICAgICAgICAg
-        IDwvQXV0aG9yPgogICAgICAgICAgICAgICAgPEF1dGhvciBWYWxpZFlOPSJZ
-        Ij4KICAgICAgICAgICAgICAgICAgICA8TGFzdE5hbWU+S2FsbWFuPC9MYXN0
-        TmFtZT4KICAgICAgICAgICAgICAgICAgICA8Rm9yZU5hbWU+Sm9uYXRoYW48
-        L0ZvcmVOYW1lPgogICAgICAgICAgICAgICAgICAgIDxJbml0aWFscz5KPC9J
-        bml0aWFscz4KICAgICAgICAgICAgICAgIDwvQXV0aG9yPgogICAgICAgICAg
-        ICA8L0F1dGhvckxpc3Q+CiAgICAgICAgICAgIDxMYW5ndWFnZT5lbmc8L0xh
-        bmd1YWdlPgogICAgICAgICAgICA8UHVibGljYXRpb25UeXBlTGlzdD4KICAg
-        ICAgICAgICAgICAgIDxQdWJsaWNhdGlvblR5cGUgVUk9IkQwMTY0MjgiPkpv
-        dXJuYWwgQXJ0aWNsZTwvUHVibGljYXRpb25UeXBlPgogICAgICAgICAgICA8
-        L1B1YmxpY2F0aW9uVHlwZUxpc3Q+CiAgICAgICAgICAgIDxBcnRpY2xlRGF0
-        ZSBEYXRlVHlwZT0iRWxlY3Ryb25pYyI+CiAgICAgICAgICAgICAgICA8WWVh
-        cj4yMDEzPC9ZZWFyPgogICAgICAgICAgICAgICAgPE1vbnRoPjA1PC9Nb250
-        aD4KICAgICAgICAgICAgICAgIDxEYXk+MTU8L0RheT4KICAgICAgICAgICAg
-        PC9BcnRpY2xlRGF0ZT4KICAgICAgICA8L0FydGljbGU+CiAgICAgICAgPE1l
-        ZGxpbmVKb3VybmFsSW5mbz4KICAgICAgICAgICAgPENvdW50cnk+VW5pdGVk
-        IFN0YXRlczwvQ291bnRyeT4KICAgICAgICAgICAgPE1lZGxpbmVUQT5KIEFt
-        IENvbGwgQ2FyZGlvbDwvTWVkbGluZVRBPgogICAgICAgICAgICA8TmxtVW5p
-        cXVlSUQ+ODMwMTM2NTwvTmxtVW5pcXVlSUQ+CiAgICAgICAgICAgIDxJU1NO
-        TGlua2luZz4wNzM1LTEwOTc8L0lTU05MaW5raW5nPgogICAgICAgIDwvTWVk
-        bGluZUpvdXJuYWxJbmZvPgogICAgICAgIDxDaXRhdGlvblN1YnNldD5BSU08
-        L0NpdGF0aW9uU3Vic2V0PgogICAgICAgIDxDaXRhdGlvblN1YnNldD5JTTwv
-        Q2l0YXRpb25TdWJzZXQ+CiAgICAgICAgPENvbW1lbnRzQ29ycmVjdGlvbnNM
-        aXN0PgogICAgICAgICAgICA8Q29tbWVudHNDb3JyZWN0aW9ucyBSZWZUeXBl
-        PSJDb21tZW50SW4iPgogICAgICAgICAgICAgICAgPFJlZlNvdXJjZT5KIEFt
-        IENvbGwgQ2FyZGlvbC4gMjAxMyBBdWcgNjs2Mig2KTo1NDAtMjwvUmVmU291
-        cmNlPgogICAgICAgICAgICAgICAgPFBNSUQgVmVyc2lvbj0iMSI+MjM2ODQ2
-        ODE8L1BNSUQ+CiAgICAgICAgICAgIDwvQ29tbWVudHNDb3JyZWN0aW9ucz4K
-        ICAgICAgICA8L0NvbW1lbnRzQ29ycmVjdGlvbnNMaXN0PgogICAgICAgIDxN
-        ZXNoSGVhZGluZ0xpc3Q+CiAgICAgICAgICAgIDxNZXNoSGVhZGluZz4KICAg
-        ICAgICAgICAgICAgIDxEZXNjcmlwdG9yTmFtZSBNYWpvclRvcGljWU49Ik4i
-        IFVJPSJEMDAwMzI4Ij5BZHVsdDwvRGVzY3JpcHRvck5hbWU+CiAgICAgICAg
-        ICAgIDwvTWVzaEhlYWRpbmc+CiAgICAgICAgICAgIDxNZXNoSGVhZGluZz4K
-        ICAgICAgICAgICAgICAgIDxEZXNjcmlwdG9yTmFtZSBNYWpvclRvcGljWU49
-        Ik4iIFVJPSJEMDAwMzY4Ij5BZ2VkPC9EZXNjcmlwdG9yTmFtZT4KICAgICAg
-        ICAgICAgPC9NZXNoSGVhZGluZz4KICAgICAgICAgICAgPE1lc2hIZWFkaW5n
-        PgogICAgICAgICAgICAgICAgPERlc2NyaXB0b3JOYW1lIE1ham9yVG9waWNZ
-        Tj0iTiIgVUk9IkQwMDEyODEiPkF0cmlhbCBGaWJyaWxsYXRpb248L0Rlc2Ny
-        aXB0b3JOYW1lPgogICAgICAgICAgICAgICAgPFF1YWxpZmllck5hbWUgTWFq
-        b3JUb3BpY1lOPSJOIiBVST0iUTAwMDE0NSI+Y2xhc3NpZmljYXRpb248L1F1
-        YWxpZmllck5hbWU+CiAgICAgICAgICAgICAgICA8UXVhbGlmaWVyTmFtZSBN
-        YWpvclRvcGljWU49IlkiIFVJPSJRMDAwNjAxIj5zdXJnZXJ5PC9RdWFsaWZp
-        ZXJOYW1lPgogICAgICAgICAgICA8L01lc2hIZWFkaW5nPgogICAgICAgICAg
-        ICA8TWVzaEhlYWRpbmc+CiAgICAgICAgICAgICAgICA8RGVzY3JpcHRvck5h
-        bWUgTWFqb3JUb3BpY1lOPSJOIiBVST0iRDAxNjAyMiI+Q2FzZS1Db250cm9s
-        IFN0dWRpZXM8L0Rlc2NyaXB0b3JOYW1lPgogICAgICAgICAgICA8L01lc2hI
-        ZWFkaW5nPgogICAgICAgICAgICA8TWVzaEhlYWRpbmc+CiAgICAgICAgICAg
-        ICAgICA8RGVzY3JpcHRvck5hbWUgTWFqb3JUb3BpY1lOPSJZIiBVST0iRDAx
-        NzExNSI+Q2F0aGV0ZXIgQWJsYXRpb248L0Rlc2NyaXB0b3JOYW1lPgogICAg
-        ICAgICAgICA8L01lc2hIZWFkaW5nPgogICAgICAgICAgICA8TWVzaEhlYWRp
-        bmc+CiAgICAgICAgICAgICAgICA8RGVzY3JpcHRvck5hbWUgTWFqb3JUb3Bp
-        Y1lOPSJOIiBVST0iRDAwMzA3MiI+Q29nbml0aW9uIERpc29yZGVyczwvRGVz
-        Y3JpcHRvck5hbWU+CiAgICAgICAgICAgICAgICA8UXVhbGlmaWVyTmFtZSBN
-        YWpvclRvcGljWU49Ik4iIFVJPSJRMDAwNDUzIj5lcGlkZW1pb2xvZ3k8L1F1
-        YWxpZmllck5hbWU+CiAgICAgICAgICAgICAgICA8UXVhbGlmaWVyTmFtZSBN
-        YWpvclRvcGljWU49IlkiIFVJPSJRMDAwMjA5Ij5ldGlvbG9neTwvUXVhbGlm
-        aWVyTmFtZT4KICAgICAgICAgICAgPC9NZXNoSGVhZGluZz4KICAgICAgICAg
-        ICAgPE1lc2hIZWFkaW5nPgogICAgICAgICAgICAgICAgPERlc2NyaXB0b3JO
-        YW1lIE1ham9yVG9waWNZTj0iTiIgVUk9IkQwMDUyNjAiPkZlbWFsZTwvRGVz
-        Y3JpcHRvck5hbWU+CiAgICAgICAgICAgIDwvTWVzaEhlYWRpbmc+CiAgICAg
-        ICAgICAgIDxNZXNoSGVhZGluZz4KICAgICAgICAgICAgICAgIDxEZXNjcmlw
-        dG9yTmFtZSBNYWpvclRvcGljWU49Ik4iIFVJPSJEMDA1NTAwIj5Gb2xsb3ct
-        VXAgU3R1ZGllczwvRGVzY3JpcHRvck5hbWU+CiAgICAgICAgICAgIDwvTWVz
-        aEhlYWRpbmc+CiAgICAgICAgICAgIDxNZXNoSGVhZGluZz4KICAgICAgICAg
-        ICAgICAgIDxEZXNjcmlwdG9yTmFtZSBNYWpvclRvcGljWU49Ik4iIFVJPSJE
-        MDA2ODAxIj5IdW1hbnM8L0Rlc2NyaXB0b3JOYW1lPgogICAgICAgICAgICA8
-        L01lc2hIZWFkaW5nPgogICAgICAgICAgICA8TWVzaEhlYWRpbmc+CiAgICAg
-        ICAgICAgICAgICA8RGVzY3JpcHRvck5hbWUgTWFqb3JUb3BpY1lOPSJOIiBV
-        ST0iRDAwODI5NyI+TWFsZTwvRGVzY3JpcHRvck5hbWU+CiAgICAgICAgICAg
-        IDwvTWVzaEhlYWRpbmc+CiAgICAgICAgICAgIDxNZXNoSGVhZGluZz4KICAg
-        ICAgICAgICAgICAgIDxEZXNjcmlwdG9yTmFtZSBNYWpvclRvcGljWU49Ik4i
-        IFVJPSJEMDA4ODc1Ij5NaWRkbGUgQWdlZDwvRGVzY3JpcHRvck5hbWU+CiAg
-        ICAgICAgICAgIDwvTWVzaEhlYWRpbmc+CiAgICAgICAgICAgIDxNZXNoSGVh
-        ZGluZz4KICAgICAgICAgICAgICAgIDxEZXNjcmlwdG9yTmFtZSBNYWpvclRv
-        cGljWU49Ik4iIFVJPSJEMDA5NDgzIj5OZXVyb3BzeWNob2xvZ2ljYWwgVGVz
-        dHM8L0Rlc2NyaXB0b3JOYW1lPgogICAgICAgICAgICA8L01lc2hIZWFkaW5n
-        PgogICAgICAgICAgICA8TWVzaEhlYWRpbmc+CiAgICAgICAgICAgICAgICA8
-        RGVzY3JpcHRvck5hbWUgTWFqb3JUb3BpY1lOPSJZIiBVST0iRDAxMTE4MyI+
-        UG9zdG9wZXJhdGl2ZSBDb21wbGljYXRpb25zPC9EZXNjcmlwdG9yTmFtZT4K
-        ICAgICAgICAgICAgPC9NZXNoSGVhZGluZz4KICAgICAgICAgICAgPE1lc2hI
-        ZWFkaW5nPgogICAgICAgICAgICAgICAgPERlc2NyaXB0b3JOYW1lIE1ham9y
-        VG9waWNZTj0iTiIgVUk9IkQwMTU5OTUiPlByZXZhbGVuY2U8L0Rlc2NyaXB0
-        b3JOYW1lPgogICAgICAgICAgICA8L01lc2hIZWFkaW5nPgogICAgICAgICAg
-        ICA8TWVzaEhlYWRpbmc+CiAgICAgICAgICAgICAgICA8RGVzY3JpcHRvck5h
-        bWUgTWFqb3JUb3BpY1lOPSJOIiBVST0iRDAxMzYxNyI+VGFjaHljYXJkaWEs
-        IFN1cHJhdmVudHJpY3VsYXI8L0Rlc2NyaXB0b3JOYW1lPgogICAgICAgICAg
-        ICAgICAgPFF1YWxpZmllck5hbWUgTWFqb3JUb3BpY1lOPSJOIiBVST0iUTAw
-        MDYwMSI+c3VyZ2VyeTwvUXVhbGlmaWVyTmFtZT4KICAgICAgICAgICAgPC9N
-        ZXNoSGVhZGluZz4KICAgICAgICA8L01lc2hIZWFkaW5nTGlzdD4KICAgICAg
-        ICA8S2V5d29yZExpc3QgT3duZXI9Ik5PVE5MTSI+CiAgICAgICAgICAgIDxL
-        ZXl3b3JkIE1ham9yVG9waWNZTj0iTiI+QUNUPC9LZXl3b3JkPgogICAgICAg
-        ICAgICA8S2V5d29yZCBNYWpvclRvcGljWU49Ik4iPkFGPC9LZXl3b3JkPgog
-        ICAgICAgICAgICA8S2V5d29yZCBNYWpvclRvcGljWU49Ik4iPkNFUkFEPC9L
-        ZXl3b3JkPgogICAgICAgICAgICA8S2V5d29yZCBNYWpvclRvcGljWU49Ik4i
-        PkNIQURTKDIpPC9LZXl3b3JkPgogICAgICAgICAgICA8S2V5d29yZCBNYWpv
-        clRvcGljWU49Ik4iPkNJPC9LZXl3b3JkPgogICAgICAgICAgICA8S2V5d29y
-        ZCBNYWpvclRvcGljWU49Ik4iPkNvbmdlc3RpdmUgaGVhcnQgZmFpbHVyZSwg
-        SHlwZXJ0ZW5zaW9uLCBBZ2XCoOKJpTc1IHllYXJzLCBEaWFiZXRlcyBtZWxs
-        aXR1cywgcHJldmlvdXMgU3Ryb2tlL3RyYW5zaWVudCBpc2NoZW1pYyBhdHRh
-        Y2s8L0tleXdvcmQ+CiAgICAgICAgICAgIDxLZXl3b3JkIE1ham9yVG9waWNZ
-        Tj0iTiI+Q29uc29ydGl1bSB0byBFc3RhYmxpc2ggYSBSZWdpc3RyeSBmb3Ig
-        QWx6aGVpbWVyJ3MgRGlzZWFzZTwvS2V5d29yZD4KICAgICAgICAgICAgPEtl
-        eXdvcmQgTWFqb3JUb3BpY1lOPSJOIj5JUTwvS2V5d29yZD4KICAgICAgICAg
-        ICAgPEtleXdvcmQgTWFqb3JUb3BpY1lOPSJOIj5NUkk8L0tleXdvcmQ+CiAg
-        ICAgICAgICAgIDxLZXl3b3JkIE1ham9yVG9waWNZTj0iTiI+T1I8L0tleXdv
-        cmQ+CiAgICAgICAgICAgIDxLZXl3b3JkIE1ham9yVG9waWNZTj0iTiI+UEFG
-        PC9LZXl3b3JkPgogICAgICAgICAgICA8S2V5d29yZCBNYWpvclRvcGljWU49
-        Ik4iPlBPQ0Q8L0tleXdvcmQ+CiAgICAgICAgICAgIDxLZXl3b3JkIE1ham9y
-        VG9waWNZTj0iTiI+UGVBRjwvS2V5d29yZD4KICAgICAgICAgICAgPEtleXdv
-        cmQgTWFqb3JUb3BpY1lOPSJOIj5SQ0k8L0tleXdvcmQ+CiAgICAgICAgICAg
-        IDxLZXl3b3JkIE1ham9yVG9waWNZTj0iTiI+UkZBPC9LZXl3b3JkPgogICAg
-        ICAgICAgICA8S2V5d29yZCBNYWpvclRvcGljWU49Ik4iPlNWVDwvS2V5d29y
-        ZD4KICAgICAgICAgICAgPEtleXdvcmQgTWFqb3JUb3BpY1lOPSJOIj5hYmxh
-        dGlvbjwvS2V5d29yZD4KICAgICAgICAgICAgPEtleXdvcmQgTWFqb3JUb3Bp
-        Y1lOPSJOIj5hY3RpdmF0ZWQgY2xvdHRpbmcgdGltZTwvS2V5d29yZD4KICAg
-        ICAgICAgICAgPEtleXdvcmQgTWFqb3JUb3BpY1lOPSJOIj5hdHJpYWwgZmli
-        cmlsbGF0aW9uPC9LZXl3b3JkPgogICAgICAgICAgICA8S2V5d29yZCBNYWpv
-        clRvcGljWU49Ik4iPmNvbmZpZGVuY2UgaW50ZXJ2YWw8L0tleXdvcmQ+CiAg
-        ICAgICAgICAgIDxLZXl3b3JkIE1ham9yVG9waWNZTj0iTiI+aW50ZWxsaWdl
-        bmNlIHF1b3RpZW50PC9LZXl3b3JkPgogICAgICAgICAgICA8S2V5d29yZCBN
-        YWpvclRvcGljWU49Ik4iPm1hZ25ldGljIHJlc29uYW5jZSBpbWFnaW5nPC9L
-        ZXl3b3JkPgogICAgICAgICAgICA8S2V5d29yZCBNYWpvclRvcGljWU49Ik4i
-        Pm5ldXJvY29nbml0aXZlIGR5c2Z1bmN0aW9uPC9LZXl3b3JkPgogICAgICAg
-        ICAgICA8S2V5d29yZCBNYWpvclRvcGljWU49Ik4iPm9kZHMgcmF0aW88L0tl
-        eXdvcmQ+CiAgICAgICAgICAgIDxLZXl3b3JkIE1ham9yVG9waWNZTj0iTiI+
-        b3V0Y29tZXM8L0tleXdvcmQ+CiAgICAgICAgICAgIDxLZXl3b3JkIE1ham9y
-        VG9waWNZTj0iTiI+cGFyb3h5c21hbCBhdHJpYWwgZmlicmlsbGF0aW9uPC9L
-        ZXl3b3JkPgogICAgICAgICAgICA8S2V5d29yZCBNYWpvclRvcGljWU49Ik4i
-        PnBlcnNpc3RlbnQgYXRyaWFsIGZpYnJpbGxhdGlvbjwvS2V5d29yZD4KICAg
-        ICAgICAgICAgPEtleXdvcmQgTWFqb3JUb3BpY1lOPSJOIj5wb3N0LW9wZXJh
-        dGl2ZSBjb2duaXRpdmUgZHlzZnVuY3Rpb248L0tleXdvcmQ+CiAgICAgICAg
-        ICAgIDxLZXl3b3JkIE1ham9yVG9waWNZTj0iTiI+cmFkaW9mcmVxdWVuY3kg
-        YWJsYXRpb248L0tleXdvcmQ+CiAgICAgICAgICAgIDxLZXl3b3JkIE1ham9y
-        VG9waWNZTj0iTiI+cmVsaWFibGUgY2hhbmdlIGluZGV4PC9LZXl3b3JkPgog
-        ICAgICAgICAgICA8S2V5d29yZCBNYWpvclRvcGljWU49Ik4iPnN1cHJhdmVu
-        dHJpY3VsYXIgdGFjaHljYXJkaWE8L0tleXdvcmQ+CiAgICAgICAgPC9LZXl3
-        b3JkTGlzdD4KICAgIDwvTWVkbGluZUNpdGF0aW9uPgogICAgPFB1Ym1lZERh
-        dGE+CiAgICAgICAgPEhpc3Rvcnk+CiAgICAgICAgICAgIDxQdWJNZWRQdWJE
-        YXRlIFB1YlN0YXR1cz0icmVjZWl2ZWQiPgogICAgICAgICAgICAgICAgPFll
-        YXI+MjAxMjwvWWVhcj4KICAgICAgICAgICAgICAgIDxNb250aD4xMTwvTW9u
-        dGg+CiAgICAgICAgICAgICAgICA8RGF5PjE8L0RheT4KICAgICAgICAgICAg
-        PC9QdWJNZWRQdWJEYXRlPgogICAgICAgICAgICA8UHViTWVkUHViRGF0ZSBQ
-        dWJTdGF0dXM9InJldmlzZWQiPgogICAgICAgICAgICAgICAgPFllYXI+MjAx
-        MzwvWWVhcj4KICAgICAgICAgICAgICAgIDxNb250aD4zPC9Nb250aD4KICAg
-        ICAgICAgICAgICAgIDxEYXk+MTI8L0RheT4KICAgICAgICAgICAgPC9QdWJN
-        ZWRQdWJEYXRlPgogICAgICAgICAgICA8UHViTWVkUHViRGF0ZSBQdWJTdGF0
-        dXM9ImFjY2VwdGVkIj4KICAgICAgICAgICAgICAgIDxZZWFyPjIwMTM8L1ll
-        YXI+CiAgICAgICAgICAgICAgICA8TW9udGg+MzwvTW9udGg+CiAgICAgICAg
-        ICAgICAgICA8RGF5PjE5PC9EYXk+CiAgICAgICAgICAgIDwvUHViTWVkUHVi
-        RGF0ZT4KICAgICAgICAgICAgPFB1Yk1lZFB1YkRhdGUgUHViU3RhdHVzPSJh
-        aGVhZG9mcHJpbnQiPgogICAgICAgICAgICAgICAgPFllYXI+MjAxMzwvWWVh
-        cj4KICAgICAgICAgICAgICAgIDxNb250aD41PC9Nb250aD4KICAgICAgICAg
-        ICAgICAgIDxEYXk+MTU8L0RheT4KICAgICAgICAgICAgPC9QdWJNZWRQdWJE
-        YXRlPgogICAgICAgICAgICA8UHViTWVkUHViRGF0ZSBQdWJTdGF0dXM9ImVu
-        dHJleiI+CiAgICAgICAgICAgICAgICA8WWVhcj4yMDEzPC9ZZWFyPgogICAg
-        ICAgICAgICAgICAgPE1vbnRoPjU8L01vbnRoPgogICAgICAgICAgICAgICAg
-        PERheT4yMTwvRGF5PgogICAgICAgICAgICAgICAgPEhvdXI+NjwvSG91cj4K
-        ICAgICAgICAgICAgICAgIDxNaW51dGU+MDwvTWludXRlPgogICAgICAgICAg
-        ICA8L1B1Yk1lZFB1YkRhdGU+CiAgICAgICAgICAgIDxQdWJNZWRQdWJEYXRl
-        IFB1YlN0YXR1cz0icHVibWVkIj4KICAgICAgICAgICAgICAgIDxZZWFyPjIw
-        MTM8L1llYXI+CiAgICAgICAgICAgICAgICA8TW9udGg+NTwvTW9udGg+CiAg
-        ICAgICAgICAgICAgICA8RGF5PjIxPC9EYXk+CiAgICAgICAgICAgICAgICA8
-        SG91cj42PC9Ib3VyPgogICAgICAgICAgICAgICAgPE1pbnV0ZT4wPC9NaW51
-        dGU+CiAgICAgICAgICAgIDwvUHViTWVkUHViRGF0ZT4KICAgICAgICAgICAg
-        PFB1Yk1lZFB1YkRhdGUgUHViU3RhdHVzPSJtZWRsaW5lIj4KICAgICAgICAg
-        ICAgICAgIDxZZWFyPjIwMTM8L1llYXI+CiAgICAgICAgICAgICAgICA8TW9u
-        dGg+MTE8L01vbnRoPgogICAgICAgICAgICAgICAgPERheT4xPC9EYXk+CiAg
-        ICAgICAgICAgICAgICA8SG91cj42PC9Ib3VyPgogICAgICAgICAgICAgICAg
-        PE1pbnV0ZT4wPC9NaW51dGU+CiAgICAgICAgICAgIDwvUHViTWVkUHViRGF0
-        ZT4KICAgICAgICA8L0hpc3Rvcnk+CiAgICAgICAgPFB1YmxpY2F0aW9uU3Rh
-        dHVzPnBwdWJsaXNoPC9QdWJsaWNhdGlvblN0YXR1cz4KICAgICAgICA8QXJ0
-        aWNsZUlkTGlzdD4KICAgICAgICAgICAgPEFydGljbGVJZCBJZFR5cGU9InB1
-        Ym1lZCI+MjM2ODQ2ODY8L0FydGljbGVJZD4KICAgICAgICAgICAgPEFydGlj
-        bGVJZCBJZFR5cGU9InBpaSI+UzA3MzUtMTA5NygxMykwMTg4Mi0yPC9BcnRp
-        Y2xlSWQ+CiAgICAgICAgICAgIDxBcnRpY2xlSWQgSWRUeXBlPSJkb2kiPjEw
-        LjEwMTYvai5qYWNjLjIwMTMuMDMuMDczPC9BcnRpY2xlSWQ+CiAgICAgICAg
-        PC9BcnRpY2xlSWRMaXN0PgogICAgPC9QdWJtZWREYXRhPgo8L1B1Ym1lZEFy
-        dGljbGU+Cgo8L1B1Ym1lZEFydGljbGVTZXQ+Cg==
-    http_version: 
-  recorded_at: Thu, 02 Jun 2016 22:11:33 GMT
+  recorded_at: Mon, 13 Nov 2017 20:58:37 GMT
 - request:
     method: post
     uri: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml
@@ -547,13 +192,13 @@ http_interactions:
       string: "&id=&id=23684686"
     headers:
       User-Agent:
-      - Faraday v0.9.2
+      - Faraday v0.13.1
       Accept:
       - "*/*"
       Accept-Encoding:
       - gzip,deflate
       Date:
-      - Thu, 10 Nov 2016 18:41:17 GMT
+      - Mon, 13 Nov 2017 20:58:37 GMT
       Content-Type:
       - application/x-www-form-urlencoded
   response:
@@ -562,30 +207,26 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 10 Nov 2016 18:41:13 GMT
+      - Mon, 13 Nov 2017 20:59:31 GMT
       Server:
       - Apache
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains; preload
       Content-Security-Policy:
       - upgrade-insecure-requests
-      Content-Security-Policy-Report-Only:
-      - 'default-src https:; script-src https: ''unsafe-inline'' ''unsafe-eval'';
-        font-src https: data:; img-src https: data:; style-src https: ''unsafe-inline'';
-        report-uri https://www.ncbi.nlm.nih.gov/corecgi/csp/csp.cgi'
       Access-Control-Allow-Origin:
       - "*"
       Cache-Control:
       - private
       Ncbi-Phid:
-      - 990C056E824BD0710000000000A2009F
+      - 990C4947A0A002F1000000000268025B
       Ncbi-Sid:
-      - 990C056E824BF491_0162SID
+      - 990C4947A0A07B31_0616SID
       Content-Type:
       - text/xml; charset=UTF-8
       Set-Cookie:
-      - ncbi_sid=990C056E824BF491_0162SID; domain=.nih.gov; path=/; expires=Fri, 10
-        Nov 2017 18:41:13 GMT
+      - ncbi_sid=990C4947A0A07B31_0616SID; domain=.nih.gov; path=/; expires=Tue, 13
+        Nov 2018 20:59:31 GMT
       Vary:
       - Accept-Encoding
       Content-Encoding:
@@ -598,17 +239,17 @@ http_interactions:
       - chunked
     body:
       encoding: UTF-8
-      string: |
+      string: |-
         <?xml version="1.0" ?>
-        <!DOCTYPE PubmedArticleSet PUBLIC "-//NLM//DTD PubMedArticle, 1st January 2016//EN" "https://www.ncbi.nlm.nih.gov/corehtml/query/DTD/pubmed_160101.dtd">
+        <!DOCTYPE PubmedArticleSet PUBLIC "-//NLM//DTD PubMedArticle, 1st January 2017//EN" "https://dtd.nlm.nih.gov/ncbi/pubmed/out/pubmed_170101.dtd">
         <PubmedArticleSet>
         <PubmedArticle>
             <MedlineCitation Status="MEDLINE" Owner="NLM">
                 <PMID Version="1">23684686</PMID>
                 <DateCreated>
                     <Year>2013</Year>
-                    <Month>8</Month>
-                    <Day>2</Day>
+                    <Month>08</Month>
+                    <Day>02</Day>
                 </DateCreated>
                 <DateCompleted>
                     <Year>2013</Year>
@@ -617,8 +258,8 @@ http_interactions:
                 </DateCompleted>
                 <DateRevised>
                     <Year>2013</Year>
-                    <Month>8</Month>
-                    <Day>2</Day>
+                    <Month>08</Month>
+                    <Day>02</Day>
                 </DateRevised>
                 <Article PubModel="Print-Electronic">
                     <Journal>
@@ -629,7 +270,7 @@ http_interactions:
                             <PubDate>
                                 <Year>2013</Year>
                                 <Month>Aug</Month>
-                                <Day>6</Day>
+                                <Day>06</Day>
                             </PubDate>
                         </JournalIssue>
                         <Title>Journal of the American College of Cardiology</Title>
@@ -694,13 +335,13 @@ http_interactions:
                             <Initials>J</Initials>
                         </Author>
                     </AuthorList>
-                    <Language>ENG</Language>
+                    <Language>eng</Language>
                     <PublicationTypeList>
                         <PublicationType UI="D016428">Journal Article</PublicationType>
                     </PublicationTypeList>
                     <ArticleDate DateType="Electronic">
                         <Year>2013</Year>
-                        <Month>May</Month>
+                        <Month>05</Month>
                         <Day>15</Day>
                     </ArticleDate>
                 </Article>
@@ -809,16 +450,16 @@ http_interactions:
                     <PubMedPubDate PubStatus="received">
                         <Year>2012</Year>
                         <Month>11</Month>
-                        <Day>1</Day>
+                        <Day>01</Day>
                     </PubMedPubDate>
                     <PubMedPubDate PubStatus="revised">
                         <Year>2013</Year>
-                        <Month>3</Month>
+                        <Month>03</Month>
                         <Day>12</Day>
                     </PubMedPubDate>
                     <PubMedPubDate PubStatus="accepted">
                         <Year>2013</Year>
-                        <Month>3</Month>
+                        <Month>03</Month>
                         <Day>19</Day>
                     </PubMedPubDate>
                     <PubMedPubDate PubStatus="entrez">
@@ -854,5 +495,5 @@ http_interactions:
 
         </PubmedArticleSet>
     http_version: 
-  recorded_at: Thu, 10 Nov 2016 18:41:18 GMT
+  recorded_at: Mon, 13 Nov 2017 20:58:38 GMT
 recorded_with: VCR 3.0.1
