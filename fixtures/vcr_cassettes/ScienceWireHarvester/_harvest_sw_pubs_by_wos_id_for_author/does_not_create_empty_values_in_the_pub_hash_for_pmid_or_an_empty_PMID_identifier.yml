@@ -33,13 +33,13 @@ http_interactions:
             </ScienceWireQueryXMLParameter>
     headers:
       User-Agent:
-      - Faraday v0.9.2
+      - Faraday v0.13.1
       Accept:
       - "*/*"
       Accept-Encoding:
       - gzip,deflate
       Date:
-      - Thu, 02 Jun 2016 22:10:32 GMT
+      - Mon, 13 Nov 2017 20:58:09 GMT
       Licenseid:
       - Settings.SCIENCEWIRE.LICENSE_ID
       Host:
@@ -68,7 +68,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Thu, 02 Jun 2016 22:10:32 GMT
+      - Mon, 13 Nov 2017 20:59:04 GMT
       Content-Length:
       - '277'
     body:
@@ -77,7 +77,7 @@ http_interactions:
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>82248</queryID>\r\n
         \ <queryResultRows>1</queryResultRows>\r\n  <totalRows>1</totalRows>\r\n</ScienceWireQueryIDResponse>"
     http_version: 
-  recorded_at: Thu, 02 Jun 2016 22:10:32 GMT
+  recorded_at: Mon, 13 Nov 2017 20:58:10 GMT
 - request:
     method: get
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/82248?format=xml&page=0&pageSize=1&v=version/4
@@ -86,13 +86,13 @@ http_interactions:
       string: ''
     headers:
       User-Agent:
-      - Faraday v0.9.2
+      - Faraday v0.13.1
       Accept:
       - "*/*"
       Accept-Encoding:
       - gzip,deflate
       Date:
-      - Thu, 02 Jun 2016 22:10:32 GMT
+      - Mon, 13 Nov 2017 20:58:10 GMT
       Licenseid:
       - Settings.SCIENCEWIRE.LICENSE_ID
       Host:
@@ -121,9 +121,9 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Thu, 02 Jun 2016 15:53:32 GMT
+      - Mon, 13 Nov 2017 20:59:04 GMT
       Content-Length:
-      - '3567'
+      - '3586'
     body:
       encoding: UTF-8
       string: "<?xml version=\"1.0\"?>\r\n<ArrayOfPublicationItem xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
@@ -154,11 +154,11 @@ http_interactions:
         \   <Volume>22</Volume>\r\n    <Issue>10</Issue>\r\n    <Pagination>2245-2255</Pagination>\r\n
         \   <PublicationDate>2004-10-01T00:00:00</PublicationDate>\r\n    <PublicationYear>2004</PublicationYear>\r\n
         \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Engineering,
-        Electrical &amp; Electronic|Optics</PublicationSubjectCategoryList>\r\n    <ISSN>0733-8724</ISSN>\r\n
-        \   <DOI>10.1109/JLT.2004.833274</DOI>\r\n    <ConferenceStartDate xsi:nil=\"true\"
-        />\r\n    <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank xsi:nil=\"true\"
-        />\r\n    <OrdinalRank>0</OrdinalRank>\r\n    <NormalizedRank xsi:nil=\"true\"
-        />\r\n    <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
+        Electrical &amp; Electronic|Optics|Telecommunications</PublicationSubjectCategoryList>\r\n
+        \   <ISSN>0733-8724</ISSN>\r\n    <DOI>10.1109/JLT.2004.833274</DOI>\r\n    <ConferenceStartDate
+        xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank
+        xsi:nil=\"true\" />\r\n    <OrdinalRank>0</OrdinalRank>\r\n    <NormalizedRank
+        xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
         \   <CopyrightPublisher>IEEE-INST ELECTRICAL ELECTRONICS ENGINEERS INC</CopyrightPublisher>\r\n
         \   <CopyrightCity>PISCATAWAY</CopyrightCity>\r\n    <PublicationImpactFactorList>2.113,2004,ExactPublicationYear|2.862,2013,MostRecentYear</PublicationImpactFactorList>\r\n
         \   <PublicationCategoryRankingList>24/209;ENGINEERING, ELECTRICAL &amp; ELECTRONIC;2004;SC;ExactPublicationYear|11/54;OPTICS;2004;SC;ExactPublicationYear|32/248;ENGINEERING,
@@ -166,5 +166,5 @@ http_interactions:
         \   <AuthorCitationCountList>1,0,5|2,0,5</AuthorCitationCountList>\r\n    <CopyrightStateProvince>NJ</CopyrightStateProvince>\r\n
         \   <CopyrightCountry>UNITED STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n</ArrayOfPublicationItem>"
     http_version: 
-  recorded_at: Thu, 02 Jun 2016 22:10:33 GMT
+  recorded_at: Mon, 13 Nov 2017 20:58:10 GMT
 recorded_with: VCR 3.0.1
