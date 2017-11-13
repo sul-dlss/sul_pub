@@ -32,13 +32,13 @@ http_interactions:
             </ScienceWireQueryXMLParameter>
     headers:
       User-Agent:
-      - Faraday v0.9.2
+      - Faraday v0.13.1
       Accept:
       - "*/*"
       Accept-Encoding:
       - gzip,deflate
       Date:
-      - Thu, 02 Jun 2016 22:12:51 GMT
+      - Mon, 13 Nov 2017 20:56:48 GMT
       Licenseid:
       - Settings.SCIENCEWIRE.LICENSE_ID
       Host:
@@ -67,7 +67,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Thu, 02 Jun 2016 15:53:32 GMT
+      - Mon, 13 Nov 2017 20:57:42 GMT
       Content-Length:
       - '279'
     body:
@@ -76,7 +76,7 @@ http_interactions:
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>41171</queryID>\r\n
         \ <queryResultRows>20</queryResultRows>\r\n  <totalRows>20</totalRows>\r\n</ScienceWireQueryIDResponse>"
     http_version: 
-  recorded_at: Thu, 02 Jun 2016 22:12:51 GMT
+  recorded_at: Mon, 13 Nov 2017 20:56:48 GMT
 - request:
     method: get
     uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/41171?format=xml&page=0&pageSize=20&v=version/4
@@ -85,13 +85,13 @@ http_interactions:
       string: ''
     headers:
       User-Agent:
-      - Faraday v0.9.2
+      - Faraday v0.13.1
       Accept:
       - "*/*"
       Accept-Encoding:
       - gzip,deflate
       Date:
-      - Thu, 02 Jun 2016 22:12:51 GMT
+      - Mon, 13 Nov 2017 20:56:48 GMT
       Licenseid:
       - Settings.SCIENCEWIRE.LICENSE_ID
       Host:
@@ -120,764 +120,784 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Thu, 02 Jun 2016 22:12:52 GMT
+      - Mon, 13 Nov 2017 20:57:42 GMT
       Content-Length:
-      - '64416'
+      - '65199'
     body:
       encoding: UTF-8
       string: "<?xml version=\"1.0\"?>\r\n<ArrayOfPublicationItem xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <PublicationItem>\r\n
-        \   <PublicationItemID>75624058</PublicationItemID>\r\n    <Title>Aryl hydrocarbon
-        receptor knockout rats are insensitive to the pathological effects of repeated
-        oral exposure to 2,3,7,8-tetrachlorodibenzo-p-dioxin.</Title>\r\n    <Abstract>Sustained
-        activation of the aryl hydrocarbon receptor (AHR) is believed to be the initial
-        key event in AHR receptor-mediated tumorigenesis in the rat liver. The role
-        of AHR in mediating pathological changes in the liver prior to tumor formation
-        was investigated in a 4-week, repeated-dose study using adult female wild-type
-        (WT) and AHR knockout (AHR-KO) rats treated with 2,3,7,8-tetrachlorodibenzo-p-dioxin
-        (TCDD). Beginning at 8?weeks of age, AHR-KO and WT rats were dosed by oral
-        gavage with varying concentrations of TCDD (0, 3, 22, 100, 300 and 1000?ng?kg(-1)
-        ?day(-1) ). Lung, liver and thymus histopathology, hematology, serum chemistry
-        and the distribution of TCDD in liver and adipose tissue were examined. Treatment-related
-        increases in the severity of liver and thymus pathology were observed in WT,
-        but not AHR-KO rats. In the liver, these included hepatocellular hypertrophy,
-        bile duct hyperplasia, multinucleated hepatocytes and inflammatory cell foci.
-        A loss of cellularity in the thymic cortex and thymic atrophy was observed.
-        Treatment-related changes in serum chemistry parameters were also observed
-        in WT, but not AHR-KO rats. Finally, dose-dependent accumulation of TCDD was
-        observed primarily in the liver of WT rats and primarily in the adipose tissue
-        of AHR-KO rats. The results suggest that AHR activation is the initial key
-        event underlying the progression of histological effects leading to liver
-        tumorigenesis following TCDD treatment. Copyright © 2015 John Wiley &amp;
-        Sons, Ltd. </Abstract>\r\n    <AuthorList>Harrill,Joshua,A|Layko,Debra,|Nyska,Abraham,|Hukkanen,Renee,R|Manno,Rosa,Anna|Grassetti,Andrea,|Lawson,Marie,|Martin,Greg,|Budinsky,Robert,A|Rowlands,J,Craig|Thomas,Russell,S</AuthorList>\r\n
-        \   <AuthorCount>11</AuthorCount>\r\n    <KeywordList>AHR knockout rat|aryl
-        hydrocarbon receptor|liver pathology|serum chemistry|thymic atrophy</KeywordList>\r\n
+        \   <PublicationItemID>79758785</PublicationItemID>\r\n    <Title>Decreased
+        expression of EphA5 is associated with Fuhrman nuclear grade and pathological
+        tumour stage in ccRCC.</Title>\r\n    <Abstract>The incidence of renal cell
+        carcinoma is increasing all over the world. The molecular mechanisms for tumorigenesis,
+        progression and prognosis are still unknown. The erythropoietin-producing
+        hepatoma amplified sequence (Eph) receptors have been reported to be expressed
+        aberrantly in many types of human cancers and in particular EphA5 may play
+        a role in certain human cancers. In this study, a set of clear cell renal
+        cell carcinoma (ccRCC) tissues were subjected to immunohistochemistry. The
+        relationship between EphA5 protein expression and clinicopathological parameters
+        was statistically analysed. Our data show that EphA5 protein was negatively
+        (0) or weakly (1+) expressed in 48 of 78 (61.5%), moderately (2+) expressed
+        in 15 of 78 (19.2%) and strongly (3+) expressed in 15 of 78 (19.2%) tumour
+        samples of ccRCC. Decreased expression of EphA5 was detected more often in
+        females than in males (P = 0.017, r\r\n = -0.267). Expression of EphA5 was
+        related negatively to Fuhrman grade (P = 0.013, r\r\n = -0.279) and pathological
+        tumour stage pT (P = 0.003, r\r\n = -0.334). No relation between the expression
+        of EphA5 and age of patients was found (P = 0.107, r\r\n = 0.184). Fuhrman
+        grade and pT stage are the most important factors used in prognosis of ccRCC.
+        Hence this study may provide a new and useful prognostic marker in the clinical
+        practice of ccRCC.</Abstract>\r\n    <AuthorList>Wang,Xiaolin,|Xu,Haifei,|Wu,Zhijun,|Chen,Xiao,|Wang,Jiandong,</AuthorList>\r\n
+        \   <AuthorCount>5</AuthorCount>\r\n    <KeywordList>EphA5|clear cell renal
+        cell carcinoma|receptor tyrosine kinase|renal cell carcinoma</KeywordList>\r\n
         \   <DocumentTypeList>Journal Article</DocumentTypeList>\r\n    <DocumentCategory>Journal
         Document</DocumentCategory>\r\n    <NumberOfReferences xsi:nil=\"true\" />\r\n
         \   <TimesCited xsi:nil=\"true\" />\r\n    <TimesNotSelfCited xsi:nil=\"true\"
-        />\r\n    <PMID>26278112</PMID>\r\n    <PublicationSourceTitle>Journal of
-        applied toxicology </PublicationSourceTitle>\r\n    <Volume>36</Volume>\r\n
-        \   <Issue>6</Issue>\r\n    <Pagination>802-814</Pagination>\r\n    <PublicationDate>2016-06-01T00:00:00</PublicationDate>\r\n
-        \   <PublicationYear>2016</PublicationYear>\r\n    <PublicationSubjectCategoryList
-        />\r\n    <ISSN>0260-437X</ISSN>\r\n    <DOI>10.1002/jat.3211</DOI>\r\n    <ConferenceStartDate
+        />\r\n    <PMID>28421649</PMID>\r\n    <PublicationSourceTitle>International
+        journal of experimental pathology</PublicationSourceTitle>\r\n    <Volume>98</Volume>\r\n
+        \   <Issue>1</Issue>\r\n    <Pagination>34-39</Pagination>\r\n    <PublicationDate>2017-02-01T00:00:00</PublicationDate>\r\n
+        \   <PublicationYear>2017</PublicationYear>\r\n    <PublicationSubjectCategoryList
+        />\r\n    <ISSN>0959-9673</ISSN>\r\n    <DOI>10.1111/iep.12219</DOI>\r\n    <ConferenceStartDate
         xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank
         xsi:nil=\"true\" />\r\n    <OrdinalRank>0</OrdinalRank>\r\n    <NormalizedRank
         xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
-        \   <CopyrightPublisher>JOHN WILEY &amp; SONS, LTD</CopyrightPublisher>\r\n
-        \   <CopyrightCity />\r\n    <PublicationImpactFactorList>2.982,2014,ClosestToPublicationYear|2.982,2014,MostRecentYear</PublicationImpactFactorList>\r\n
-        \   <PublicationCategoryRankingList>27/87;TOXICOLOGY;2014;SC;ClosestToPublicationYear|27/87;TOXICOLOGY;2014;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <CopyrightPublisher>INT JOURNAL OF EXPERIMENTAL PATHOLOGY</CopyrightPublisher>\r\n
+        \   <CopyrightCity />\r\n    <PublicationImpactFactorList>2.125,2015,ClosestToPublicationYear|2.125,2015,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>31/79;PATHOLOGY;2015;SC;ClosestToPublicationYear|31/79;PATHOLOGY;2015;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
         \   <CopyrightStateProvince />\r\n    <CopyrightCountry>UNITED KINGDOM</CopyrightCountry>\r\n
-        \ </PublicationItem>\r\n  <PublicationItem>\r\n    <PublicationItemID>75623590</PublicationItemID>\r\n
-        \   <Title>[Intestinal disorder of anaerobic bacteria aggravates pulmonary
-        immune pathological injury of mice infected with influenza virus].</Title>\r\n
-        \   <Abstract>Objective To investigate the relationship between the intestinal
-        disorder of anaerobic bacteria and influenza virus infection, and the effect
-        on pulmonary inflammatory cytokines in mice. Methods Totally 36 mice were
-        randomly divided into normal control group, virus-infected group and metronidazole
-        treatment group (12 mice in each group). Mice in the metronidazole group were
-        administrated orally with metronidazole sulfate for 8 days causing anaerobic
-        bacteria flora imbalance; then all groups except the normal control group
-        were treated transnasally with influenza virus (50 µL/d FM1) for 4 days to
-        establish the influenza virus-infected models. Their mental state and lung
-        index were observed, and the pathological morphological changes of lung tissues,
-        caecum and intestinal mucosa were examined by HE staining. The levels of interleukin
-        4 (IL-4), interferon ? (IFN-?), IL-10 and IL-17 in the lung homogenates were
-        determined by ELISA. Results Compared with the virus control group, the metronidazole
-        group showed obviously increased lung index and more serious pathological
-        changes of the lung tissue and appendix inflammation performance. After infected
-        by the FM1 influenza virus, IFN-? and IL-17 of the metronidazole group decreased
-        significantly and IL-4 and IL-10 levels were raised, but there was no statistically
-        difference between the metronidazole and virus control groups. Conclusion
-        Intestinal anaerobic bacteria may inhibit the adaptive immune response in
-        the lungs of mice infected with FM1 influenza virus through adjusting the
-        lung inflammatory factors, affect the replication and clean-up time of the
-        FM1 influenza virus, thus further aggravating pulmonary immune pathological
-        injury caused by the influenza virus infection. </Abstract>\r\n    <AuthorList>Wu,Sha,|Yan,Yuqi,|Zhang,Mengyuan,|Shi,ShanShan,|Jiang,Zhenyou,</AuthorList>\r\n
-        \   <AuthorCount>5</AuthorCount>\r\n    <KeywordList />\r\n    <DocumentTypeList>English
-        Abstract|Journal Article</DocumentTypeList>\r\n    <DocumentCategory>Journal
-        Document</DocumentCategory>\r\n    <NumberOfReferences xsi:nil=\"true\" />\r\n
-        \   <TimesCited xsi:nil=\"true\" />\r\n    <TimesNotSelfCited xsi:nil=\"true\"
-        />\r\n    <PMID>27053604</PMID>\r\n    <PublicationSourceTitle>Xi bao yu fen
-        zi mian yi xue za zhi = Chinese journal of cellular and molecular immunology</PublicationSourceTitle>\r\n
-        \   <Volume>32</Volume>\r\n    <Issue>4</Issue>\r\n    <Pagination>433-436</Pagination>\r\n
-        \   <PublicationDate>2016-04-01T00:00:00</PublicationDate>\r\n    <PublicationYear>2016</PublicationYear>\r\n
-        \   <PublicationSubjectCategoryList />\r\n    <ISSN>1007-8738</ISSN>\r\n    <ConferenceStartDate
-        xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank
-        xsi:nil=\"true\" />\r\n    <OrdinalRank>1</OrdinalRank>\r\n    <NormalizedRank
-        xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
-        \   <CopyrightPublisher />\r\n    <CopyrightCity />\r\n    <CopyrightStateProvince
-        />\r\n    <CopyrightCountry>CHINA</CopyrightCountry>\r\n  </PublicationItem>\r\n
-        \ <PublicationItem>\r\n    <PublicationItemID>75622625</PublicationItemID>\r\n
-        \   <Title>Identifying features of 'pathological demand avoidance' using the
-        Diagnostic Interview for Social and Communication Disorders (DISCO).</Title>\r\n
-        \   <Abstract>The term 'pathological demand avoidance' (PDA) was coined by
-        Elizabeth Newson to describe children within the autism spectrum who exhibit
-        obsessive resistance to everyday demands and requests (Newson et al., Arch
-        Dis Child 88:595-600, 2003). Clinical accounts describe avoidance strategies
-        including apparently strategic use of distraction or socially shocking behaviour,
-        and obsessive need for control, reflected in domineering behaviour to peers
-        and adults. Educational and management approaches effective for PDA reportedly
-        differ from those for 'typical' autism spectrum disorders (ASD), and include
-        novelty, humour and flexibility. Identification of PDA in individuals with
-        ASD may have important implications for management (Eaton and Banting, J Learn
-        Disabil Offending Behav 3:150-157, 2012). Despite increasing interest, no
-        clinician-rated instrument for PDA has been developed. Here, items relevant
-        to PDA were identified from the Diagnostic Interview for Social and Communication
-        Disorder (DISCO) (Wing et al., J Child Psychol Psychiatry 43:307-325, 2002).
-        The most PDA-specific subset of relevant DISCO items was selected, based on
-        low endorsement in general across a sample of 153 individuals assessed for
-        possible ASD using the DISCO. Having selected 11 DISCO PDA items for the measure,
-        a subset of individuals with a high number of these features was identified
-        (N = 27). Consistent with Newson's descriptions, this high scoring group was
-        characterised by lack of co-operation, use of apparently manipulative behaviour,
-        socially shocking behaviour, difficulties with other people, anxiety and sudden
-        behavioural changes from loving to aggression. All but one case met criteria
-        for an ASD. This study brings the field a step closer to a clinician-rated
-        measure of PDA features and highlights the need for further elucidation of
-        the PDA phenotype. </Abstract>\r\n    <AuthorList>O'Nions,Elizabeth,|Gould,Judith,|Christie,Phil,|Gillberg,Christopher,|Viding,Essi,|Happé,Francesca,</AuthorList>\r\n
-        \   <AuthorCount>6</AuthorCount>\r\n    <KeywordList>Autism spectrum disorder
-        (ASD)|Diagnostic Interview for Social and Communication Disorders (DISCO)|Pathological
-        demand avoidance (PDA)|Pervasive developmental disorder</KeywordList>\r\n
+        \ </PublicationItem>\r\n  <PublicationItem>\r\n    <PublicationItemID>79757794</PublicationItemID>\r\n
+        \   <Title>Clinico-pathological Study of Limb Salvage Surgery for Osteosarcoma:
+        Experience in a Rural Cancer Center.</Title>\r\n    <Abstract>Although recent
+        multimodality therapeutic protocols have led to improved survival in osteosarcoma
+        (OS), the outcome still remains dismal. Ongoing international multicentric
+        trials on OS aim to randomize patients for optimum management, based on histological
+        response to NACT. The pathologic response to neoadjuvant chemotherapy (NACT)
+        is the most important factor predicting prognosis. In this study of 23 cases
+        of limb salvage surgery post neoadjuvant chemotherapy, mean age was 18.3 years,
+        with male predominance. 65.5 % cases were conventional OS. Histologic assessment
+        of chemotherapeutic effect done by Huvos grading revealed good response (Huvos
+        lll and lV) in 15 (65.2 %) and poor response (Huvos l and ll) in eight (34.8 %).
+        A scoring based on MRI with a scale of 1-6 was compared with histologic response.
+        Five (62.5 %) of poor responders showed score of &gt;3 and 73.3 % of good
+        responders showed =3. Dose intensity of NACT was calculated and correlated
+        with the histological response. 53.3 % of good responders showed ARDI &gt; 0.9.
+        Five (21.7 %) developed local recurrence and 10(43.4 %) had pulmonary metastasis.
+        Adoption of more aggressive treatment modalities may ensure better histologic
+        response and longer event free survival.</Abstract>\r\n    <AuthorList>Vijayanarasimha,Divya,|Nayanar,Sangeetha,K|Vikram,Syam,|Patil,Vijay,M|Babu,Satheesh,|Satheesan
+        B,,</AuthorList>\r\n    <AuthorCount>6</AuthorCount>\r\n    <KeywordList>Histological
+        response osteosarcoma|Huvos scoring system|Limb salvage surgery|Neoadjuvant
+        chemotherapy|Osteosarcoma|Radiological scoring osteosarcoma</KeywordList>\r\n
         \   <DocumentTypeList>Journal Article</DocumentTypeList>\r\n    <DocumentCategory>Journal
         Document</DocumentCategory>\r\n    <NumberOfReferences xsi:nil=\"true\" />\r\n
         \   <TimesCited xsi:nil=\"true\" />\r\n    <TimesNotSelfCited xsi:nil=\"true\"
-        />\r\n    <PMID>26224583</PMID>\r\n    <PublicationSourceTitle>European child
-        &amp; adolescent psychiatry</PublicationSourceTitle>\r\n    <Volume>25</Volume>\r\n
-        \   <Issue>4</Issue>\r\n    <Pagination>407-419</Pagination>\r\n    <PublicationDate>2016-04-01T00:00:00</PublicationDate>\r\n
-        \   <PublicationYear>2016</PublicationYear>\r\n    <PublicationSubjectCategoryList
-        />\r\n    <ISSN>1018-8827</ISSN>\r\n    <DOI>10.1007/s00787-015-0740-2</DOI>\r\n
+        />\r\n    <PMID>28546707</PMID>\r\n    <PublicationSourceTitle>Indian journal
+        of surgical oncology</PublicationSourceTitle>\r\n    <Volume>8</Volume>\r\n
+        \   <Issue>2</Issue>\r\n    <Pagination>136-141</Pagination>\r\n    <PublicationDate>2017-06-01T00:00:00</PublicationDate>\r\n
+        \   <PublicationYear>2017</PublicationYear>\r\n    <PublicationSubjectCategoryList
+        />\r\n    <ISSN>0975-7651</ISSN>\r\n    <DOI>10.1007/s13193-016-0547-8</DOI>\r\n
+        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>1</OrdinalRank>\r\n
+        \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
+        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher />\r\n
+        \   <CopyrightCity />\r\n    <CopyrightStateProvince />\r\n    <CopyrightCountry>INDIA</CopyrightCountry>\r\n
+        \ </PublicationItem>\r\n  <PublicationItem>\r\n    <PublicationItemID>79757779</PublicationItemID>\r\n
+        \   <Title>Erratum to: Guards at the gate: physiological and pathological
+        roles of tissue-resident innate lymphoid cells in the lung.</Title>\r\n    <Abstract
+        />\r\n    <AuthorList>Cheng,Hang,|Jin,Chengyan,|Wu,Jing,|Zhu,Shan,|Liu,Yong-Jun,|Chen,Jingtao,</AuthorList>\r\n
+        \   <AuthorCount>6</AuthorCount>\r\n    <KeywordList />\r\n    <DocumentTypeList>Published
+        Erratum</DocumentTypeList>\r\n    <DocumentCategory>Other</DocumentCategory>\r\n
+        \   <NumberOfReferences xsi:nil=\"true\" />\r\n    <TimesCited xsi:nil=\"true\"
+        />\r\n    <TimesNotSelfCited xsi:nil=\"true\" />\r\n    <PMID>28386839</PMID>\r\n
+        \   <PublicationSourceTitle>Protein &amp; cell</PublicationSourceTitle>\r\n
+        \   <PublicationDate>2017-04-06T00:00:00</PublicationDate>\r\n    <PublicationYear>2017</PublicationYear>\r\n
+        \   <PublicationSubjectCategoryList />\r\n    <ISSN>1674-800X</ISSN>\r\n    <DOI>10.1007/s13238-017-0399-1</DOI>\r\n
         \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
         />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>2</OrdinalRank>\r\n
         \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher />\r\n
-        \   <CopyrightCity />\r\n    <PublicationImpactFactorList>3.336,2014,ClosestToPublicationYear|3.336,2014,MostRecentYear</PublicationImpactFactorList>\r\n
-        \   <PublicationCategoryRankingList>10/119;PEDIATRICS;2014;SC;ClosestToPublicationYear|45/140;PSYCHIATRY;2014;SC;ClosestToPublicationYear|29/133;PSYCHIATRY;2014;SS;ClosestToPublicationYear|13/68;PSYCHOLOGY,
-        DEVELOPMENTAL;2014;SS;ClosestToPublicationYear|10/119;PEDIATRICS;2014;SC;MostRecentYear|45/140;PSYCHIATRY;2014;SC;MostRecentYear|29/133;PSYCHIATRY;2014;SS;MostRecentYear|13/68;PSYCHOLOGY,
-        DEVELOPMENTAL;2014;SS;MostRecentYear</PublicationCategoryRankingList>\r\n
-        \   <CopyrightStateProvince />\r\n    <CopyrightCountry>GERMANY</CopyrightCountry>\r\n
-        \ </PublicationItem>\r\n  <PublicationItem>\r\n    <PublicationItemID>75622069</PublicationItemID>\r\n
-        \   <Title>Screen-detected breast carcinoma with macroscopic dystrophic calcification:
-        A pictorial essay with radiolological pathological correlation.</Title>\r\n
-        \   <Abstract>Breast calcifications are among the most common abnormal radiographic
-        findings detected at screening mammography. This essay illustrates the clinico-pathological
-        features of nine screen-detected breast carcinomas, which had benign-appearing
-        macrocalcifications, as a radiographically dominant presenting feature. We
-        aimed to demonstrate that benign-appearing calcifications within a breast
-        lesion are not diagnostic of a benign process if the other imaging characteristics
-        of the lesion are suspicious of malignancy. </Abstract>\r\n    <AuthorList>Ebrahim,Lamya,|Dissanayake,Deepthi,|Metcalf,Cecily,|Wylie,Elizabeth,</AuthorList>\r\n
-        \   <AuthorCount>4</AuthorCount>\r\n    <KeywordList>breast screening|calcification|malignancy|mammography</KeywordList>\r\n
-        \   <DocumentTypeList>Journal Article</DocumentTypeList>\r\n    <DocumentCategory>Journal
-        Document</DocumentCategory>\r\n    <NumberOfReferences xsi:nil=\"true\" />\r\n
-        \   <TimesCited xsi:nil=\"true\" />\r\n    <TimesNotSelfCited xsi:nil=\"true\"
-        />\r\n    <PMID>26748440</PMID>\r\n    <PublicationSourceTitle>Journal of
-        medical imaging and radiation oncology</PublicationSourceTitle>\r\n    <Volume>60</Volume>\r\n
-        \   <Issue>2</Issue>\r\n    <Pagination>216-223</Pagination>\r\n    <PublicationDate>2016-04-01T00:00:00</PublicationDate>\r\n
-        \   <PublicationYear>2016</PublicationYear>\r\n    <PublicationSubjectCategoryList
-        />\r\n    <ISSN>1754-9477</ISSN>\r\n    <DOI>10.1111/1754-9485.12426</DOI>\r\n
+        \   <CopyrightCity />\r\n    <PublicationImpactFactorList>3.817,2015,ClosestToPublicationYear|3.817,2015,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>73/187;CELL BIOLOGY;2015;SC;ClosestToPublicationYear|73/187;CELL
+        BIOLOGY;2015;SC;MostRecentYear</PublicationCategoryRankingList>\r\n    <CopyrightStateProvince
+        />\r\n    <CopyrightCountry>GERMANY</CopyrightCountry>\r\n  </PublicationItem>\r\n
+        \ <PublicationItem>\r\n    <PublicationItemID>79757061</PublicationItemID>\r\n
+        \   <Title>Hepatic perivascular epithelioid cell neoplasm: A clinical and
+        pathological experience in diagnosis and treatment.</Title>\r\n    <Abstract>Hepatic
+        perivascular epithelioid cell neoplasm (PEComa) is a rare type of neoplasm
+        derived from mesenchymal tumors that is often misdiagnosed as hepatocellular
+        carcinoma (HCC), hepatic hemangioma or other liver malignancies. The clinical
+        and histological characteristics of PEComa have yet to be fully documented.
+        To optimize the diagnosis and treatment of the disease, a retrospective analysis
+        was performed to investigate the clinicopathological characteristics of 7
+        patients diagnosed with hepatic PEComa in the Sun Yat-Sen Memorial Hospital
+        between January 2004 and December 2015. Briefly, all the patients lacked specific
+        symptoms, and a serological examination provided no further useful information.
+        Additionally, non-specific imaging manifestations were observed. Microscopically,
+        detection of epithelioid or spindle-shaped cells with adipocytes was suggestive
+        of the disease, and an analysis of biomarkers, including the monoclonal antibody
+        HMB-45, the melanocytic differentiation marker, Melan-A, and smooth muscle
+        a-actin (SMA), helped to confirm the diagnosis. Regarding the treatment, 6
+        patients (85.7%) received surgical resection procedures, and 1 patient (14.3%)
+        was admitted for tumor arterial embolization and percutaneous microwave coagulation
+        therapy. After a follow-up period of 12-20 months, no recurrence was observed.
+        Taken together, hepatic PEComa should be suspended in patients with a liver
+        tumor with asymptomatic manifestation and normal serological test results.
+        In imaging studies, hepatic PEComa was able to mimic HCC, hepatic hemangioma
+        and metastatic tumor, although the mass did not invade the adjacent organs
+        and vessel. The definitive diagnosis was made on the basis of the typical
+        morphological features and notable markers of the tumor tissue. It is recommended
+        that patients with PEComa in a benign pattern deserve serial imaging follow-up,
+        but surgery is indicated in patients suffering from large tumors (&gt;5 cm),
+        or progressive enlargement or malignant tendency.</Abstract>\r\n    <AuthorList>Chen,Wenying,|Liu,Yeqing,|Zhuang,Yanyan,|Peng,Juanfei,|Huang,Fengting,|Zhang,Shineng,</AuthorList>\r\n
+        \   <AuthorCount>6</AuthorCount>\r\n    <KeywordList>HMB-45|Melan-A|angiomyolipoma|perivascular
+        epithelioid cell neoplasm</KeywordList>\r\n    <DocumentTypeList>Journal Article</DocumentTypeList>\r\n
+        \   <DocumentCategory>Journal Document</DocumentCategory>\r\n    <NumberOfReferences
+        xsi:nil=\"true\" />\r\n    <TimesCited xsi:nil=\"true\" />\r\n    <TimesNotSelfCited
+        xsi:nil=\"true\" />\r\n    <PMID>28413654</PMID>\r\n    <PublicationSourceTitle>Molecular
+        and clinical oncology</PublicationSourceTitle>\r\n    <Volume>6</Volume>\r\n
+        \   <Issue>4</Issue>\r\n    <Pagination>487-493</Pagination>\r\n    <PublicationDate>2017-04-01T00:00:00</PublicationDate>\r\n
+        \   <PublicationYear>2017</PublicationYear>\r\n    <PublicationSubjectCategoryList
+        />\r\n    <ISSN>2049-9450</ISSN>\r\n    <DOI>10.3892/mco.2017.1168</DOI>\r\n
         \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
         />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>3</OrdinalRank>\r\n
         \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
-        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>THE ROYAL
-        AUSTRALIAN AND NEW ZEALAND COLL OF RADIOLOGISTS</CopyrightPublisher>\r\n    <CopyrightCity
-        />\r\n    <PublicationImpactFactorList>1.109,2014,ClosestToPublicationYear|1.109,2014,MostRecentYear</PublicationImpactFactorList>\r\n
-        \   <PublicationCategoryRankingList>98/125;RADIOLOGY, NUCLEAR MEDICINE &amp;
-        MEDICAL IMAGING;2014;SC;ClosestToPublicationYear|98/125;RADIOLOGY, NUCLEAR
-        MEDICINE &amp; MEDICAL IMAGING;2014;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
-        \   <CopyrightStateProvince />\r\n    <CopyrightCountry>AUSTRALIA</CopyrightCountry>\r\n
-        \ </PublicationItem>\r\n  <PublicationItem>\r\n    <PublicationItemID>75618259</PublicationItemID>\r\n
-        \   <Title>[A Case Report of a Pathological Complete Response of Rectal Cancer
-        to Preoperative Chemoradiotherapy with Tegafur].</Title>\r\n    <Abstract>We
-        report the case of a patient with advanced rectalcancer who achieved a pathologicalcompl
-        ete response to preoperative chemoradiotherapy(CRT). A 65-year-old man was
-        diagnosed as having a two-thirds circumferentialwel l- to moderately differentiated
-        tumor(Rb-P, type 2). To controll ocalrecurrence, we treated the patient with
-        CRT. Radiotherapy was adminis- tered in fractions of 2 Gy/day(total, 40 Gy).
-        Concurrently, S-1was administered orally at a fixed daily dose of 80mg/m2
-        for 20 days. Withdrawaland /or dose reduction of S-1 was not necessary in
-        spite of Grade 1 or 2 toxic effects, including diarrhea and periproctitis,
-        occurring on day 7. Laparoscopic abdominoperinealresection was performed 6
-        weeks after the finaldose of chemotherapy was administered. The histopathological
-        regression grade was Grade 3. No recurrence was detected on enhanced CT more
-        than 5 years after surgery. This case suggests that the regimen was both effective
-        and tolerated, and that preoperative chemoradiotherapy may be effective for
-        tumor suppression to prevent local recurrence. </Abstract>\r\n    <AuthorList>Morikawa,Tatsuya,|Teraishi,Fuminori,|Shima,Yasuo,|Iwata,Jun,</AuthorList>\r\n
-        \   <AuthorCount>4</AuthorCount>\r\n    <KeywordList />\r\n    <DocumentTypeList>English
-        Abstract|Journal Article</DocumentTypeList>\r\n    <DocumentCategory>Journal
-        Document</DocumentCategory>\r\n    <NumberOfReferences xsi:nil=\"true\" />\r\n
-        \   <TimesCited xsi:nil=\"true\" />\r\n    <TimesNotSelfCited xsi:nil=\"true\"
-        />\r\n    <PMID>27067861</PMID>\r\n    <PublicationSourceTitle>Gan to kagaku
-        ryoho. Cancer &amp; chemotherapy</PublicationSourceTitle>\r\n    <Volume>43</Volume>\r\n
-        \   <Issue>3</Issue>\r\n    <Pagination>381-384</Pagination>\r\n    <PublicationDate>2016-03-01T00:00:00</PublicationDate>\r\n
-        \   <PublicationYear>2016</PublicationYear>\r\n    <PublicationSubjectCategoryList
-        />\r\n    <ISSN>0385-0684</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\"
-        />\r\n    <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank xsi:nil=\"true\"
-        />\r\n    <OrdinalRank>4</OrdinalRank>\r\n    <NormalizedRank xsi:nil=\"true\"
-        />\r\n    <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
-        \   <CopyrightPublisher />\r\n    <CopyrightCity />\r\n    <CopyrightStateProvince
-        />\r\n    <CopyrightCountry>JAPAN</CopyrightCountry>\r\n  </PublicationItem>\r\n
-        \ <PublicationItem>\r\n    <PublicationItemID>75616988</PublicationItemID>\r\n
-        \   <Title>[Update of pathological diagnosis of pulmonary neuroendocrine tumor].</Title>\r\n
-        \   <Abstract>Pulmonary neuroendocrine tumors are common in pathological practice
-        and its pathological classification and histological grading are not exactly
-        the same as that of those in the digestive tract and pancreas. In 2015 edition
-        of World Health Organization classification, pulmonary neuroendocrine tumors
-        are classified as carcinoid tumors (including typical carcinoid and atypical
-        carcinoid), small cell lung carcinoma, large cell neuroendocrine carcinoma,
-        and precursor lesion diffuse idiopathic neuroendocrine cell hyperplasia; each
-        category has distinctive morphological and immunohistochemical features. The
-        morphologic features including growth patterns and cytological appearances
-        are keys for the diagnosis of neuroendocrine tumor, and immunohistochemical
-        findings are also critical for its diagnosis. Furthermore, the diagnostic
-        criteria vary for different types of specimen. In this article, we present
-        a concise review and summary of the update of clinicopathological characterizations
-        of pulmonary neuroendocrine tumor, with an emphasis on its diagnostic criteria
-        and differential diagnosis. </Abstract>\r\n    <AuthorList>Xiaodong,Teng,|Ming,Zhao,|Maode,Lai,</AuthorList>\r\n
-        \   <AuthorCount>3</AuthorCount>\r\n    <KeywordList />\r\n    <DocumentTypeList>English
-        Abstract|Journal Article</DocumentTypeList>\r\n    <DocumentCategory>Journal
-        Document</DocumentCategory>\r\n    <NumberOfReferences xsi:nil=\"true\" />\r\n
-        \   <TimesCited xsi:nil=\"true\" />\r\n    <TimesNotSelfCited xsi:nil=\"true\"
-        />\r\n    <PMID>27045239</PMID>\r\n    <PublicationSourceTitle>Zhejiang da
-        xue xue bao. Yi xue ban = Journal of Zhejiang University. Medical sciences</PublicationSourceTitle>\r\n
-        \   <Volume>45</Volume>\r\n    <Issue>1</Issue>\r\n    <Pagination>36-44</Pagination>\r\n
-        \   <PublicationDate>2016-05-25T00:00:00</PublicationDate>\r\n    <PublicationYear>2016</PublicationYear>\r\n
-        \   <PublicationSubjectCategoryList />\r\n    <ISSN>1008-9292</ISSN>\r\n    <ConferenceStartDate
-        xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank
-        xsi:nil=\"true\" />\r\n    <OrdinalRank>5</OrdinalRank>\r\n    <NormalizedRank
-        xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
-        \   <CopyrightPublisher />\r\n    <CopyrightCity />\r\n    <CopyrightStateProvince
-        />\r\n    <CopyrightCountry>CHINA</CopyrightCountry>\r\n  </PublicationItem>\r\n
-        \ <PublicationItem>\r\n    <PublicationItemID>75616833</PublicationItemID>\r\n
-        \   <Title>Iron in Frontotemporal Lobar Degeneration: A New Subcortical Pathological
-        Pathway?</Title>\r\n    <Abstract>INTRODUCTION Brain iron homeostasis dysregulation
-        has been widely related to neurodegeneration. In particular, human haemochromatosis
-        protein (HFE) is involved in iron metabolism, and HFE H63D polymorphism has
-        been related to the risk of amyotrophic lateral sclerosis and Alzheimer's
-        disease. Recently, iron accumulation in the basal ganglia of frontotemporal
-        lobar degeneration (FTLD) patients has been described.\r\nOBJECTIVE To explore
-        the relationship between HFE genetic variation and demographic, clinical and
-        imaging characteristics in a large cohort of FTLD patients.\r\nMETHODS A total
-        of 110 FTLD patients underwent neuropsychological and imaging evaluation and
-        blood sampling for HFE polymorphism determination. HFE H63D polymorphism was
-        considered in the present study. Two imaging approaches were applied to evaluate
-        the effect of HFE genetic variation on brain atrophy, namely voxel-based morphometry
-        and region of interest-based probabilistic approach (SPM8; Wellcome Trust
-        Centre for Neuroimaging).\r\nRESULTS FTLD patients carrying the D* genotype
-        (H/D or D/D) showed greater atrophy in the basal ganglia, bilaterally, compared
-        to H/H carriers (x, y, z: -22, -4, 0; T = 3.45; cluster size: 33 voxels, x,
-        y, z: 24, 4, -2; T = 3.38; cluster size: 36 voxels). The former group had
-        even more pronounced behavioural symptoms, as defined by the Frontal Behavioural
-        Inventory total scores.\r\nCONCLUSIONS Our data suggest that H63D polymorphism
-        could represent a disease-modifying gene in FTLD, fostering iron deposition
-        in the basal ganglia. This suggests a new possible mechanism of FTLD-associated
-        neurodegeneration.</Abstract>\r\n    <AuthorList>Gazzina,Stefano,|Premi,Enrico,|Zanella,Isabella,|Biasiotto,Giorgio,|Archetti,Silvana,|Cosseddu,Maura,|Scarpini,Elio,|Galimberti,Daniela,|Serpente,Maria,|Gasparotti,Roberto,|Padovani,Alessandro,|Borroni,Barbara,</AuthorList>\r\n
-        \   <AuthorCount>12</AuthorCount>\r\n    <KeywordList />\r\n    <DocumentTypeList>Journal
-        Article</DocumentTypeList>\r\n    <DocumentCategory>Journal Document</DocumentCategory>\r\n
-        \   <NumberOfReferences xsi:nil=\"true\" />\r\n    <TimesCited xsi:nil=\"true\"
-        />\r\n    <TimesNotSelfCited xsi:nil=\"true\" />\r\n    <PMID>26613252</PMID>\r\n
-        \   <PublicationSourceTitle>Neuro-degenerative diseases</PublicationSourceTitle>\r\n
-        \   <Volume>16</Volume>\r\n    <Issue>3-4</Issue>\r\n    <Pagination>172-178</Pagination>\r\n
-        \   <PublicationDate>2016-01-01T00:00:00</PublicationDate>\r\n    <PublicationYear>2016</PublicationYear>\r\n
-        \   <PublicationSubjectCategoryList />\r\n    <ISSN>1660-2854</ISSN>\r\n    <DOI>10.1159/000440843</DOI>\r\n
-        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
-        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>6</OrdinalRank>\r\n
-        \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
-        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>S. KARGER
-        AG</CopyrightPublisher>\r\n    <CopyrightCity>BASEL</CopyrightCity>\r\n    <PublicationImpactFactorList>3.511,2014,ClosestToPublicationYear|3.511,2014,MostRecentYear</PublicationImpactFactorList>\r\n
-        \   <PublicationCategoryRankingList>48/192;CLINICAL NEUROLOGY;2014;SC;ClosestToPublicationYear|90/252;NEUROSCIENCES;2014;SC;ClosestToPublicationYear|48/192;CLINICAL
-        NEUROLOGY;2014;SC;MostRecentYear|90/252;NEUROSCIENCES;2014;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
-        \   <CopyrightStateProvince />\r\n    <CopyrightCountry>SWITZERLAND</CopyrightCountry>\r\n
-        \ </PublicationItem>\r\n  <PublicationItem>\r\n    <PublicationItemID>75616394</PublicationItemID>\r\n
-        \   <Title>Unicystic Ameloblastomatoid Cystic Craniopharyngioma: Pathological
-        Discussion and Clinical Significance of Cyst Formation in Adamantinomatous
-        Craniopharyngioma.</Title>\r\n    <Abstract>An 8-year-old boy presented complaining
-        principally of headache and vomiting. A single large cystic lesion extending
-        from the suprasellar region to the ventral brainstem was identified, and total
-        extirpation was performed via a right orbitozygomatic, transtemporal transchoroidal
-        fissure approach. The cyst contents resembled motor oil, and no strong adhesions
-        were identified between the tumor and the surrounding tissue except at the
-        site of origin of the tumor, allowing easy dissection. The tumor originated
-        at the junction of the adenohypophysis and the pituitary stalk. Although the
-        histopathological diagnosis was adamantinomatous craniopharyngioma, the cyst
-        walls comprising the majority of the tumor were not thin, fragile tissues
-        formed by squamous metaplasia, but were thick and robust, bearing a close
-        resemblance to unicystic ameloblastoma mixed with solid tissue. The existence
-        of this type of cyst wall represents corroborating evidence that craniopharyngiomas
-        are derived from the oral primordium. The existence of such tumors that can
-        be totally extirpated in a single procedure while preserving hypothalamo-pituitary
-        function may be taken as a warning not to rush at random to perform treatments
-        that might encourage recurrence or regrowth by carrying out cyst fenestration
-        and drug injection with the addition of stereotactic radiotherapy. </Abstract>\r\n
-        \   <AuthorList>Okada,Tomu,|Fujitsu,Kazuhiko,|Ichikawa,Teruo,|Miyahara,Kousuke,|Tanino,Shin,|Niino,Hitoshi,|Yagishita,Saburou,</AuthorList>\r\n
-        \   <AuthorCount>7</AuthorCount>\r\n    <KeywordList />\r\n    <DocumentTypeList>Journal
-        Article</DocumentTypeList>\r\n    <DocumentCategory>Journal Document</DocumentCategory>\r\n
-        \   <NumberOfReferences xsi:nil=\"true\" />\r\n    <TimesCited xsi:nil=\"true\"
-        />\r\n    <TimesNotSelfCited xsi:nil=\"true\" />\r\n    <PMID>26795029</PMID>\r\n
-        \   <PublicationSourceTitle>Pediatric neurosurgery</PublicationSourceTitle>\r\n
-        \   <Volume>51</Volume>\r\n    <Issue>3</Issue>\r\n    <Pagination>158-163</Pagination>\r\n
-        \   <PublicationDate>2016-01-01T00:00:00</PublicationDate>\r\n    <PublicationYear>2016</PublicationYear>\r\n
-        \   <PublicationSubjectCategoryList />\r\n    <ISSN>1016-2291</ISSN>\r\n    <DOI>10.1159/000442992</DOI>\r\n
-        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
-        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>7</OrdinalRank>\r\n
-        \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
-        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>S. KARGER
-        AG</CopyrightPublisher>\r\n    <CopyrightCity>BASEL</CopyrightCity>\r\n    <PublicationImpactFactorList>0.326,2014,ClosestToPublicationYear|0.326,2014,MostRecentYear</PublicationImpactFactorList>\r\n
-        \   <PublicationCategoryRankingList>189/192;CLINICAL NEUROLOGY;2014;SC;ClosestToPublicationYear|117/119;PEDIATRICS;2014;SC;ClosestToPublicationYear|186/198;SURGERY;2014;SC;ClosestToPublicationYear|189/192;CLINICAL
-        NEUROLOGY;2014;SC;MostRecentYear|117/119;PEDIATRICS;2014;SC;MostRecentYear|186/198;SURGERY;2014;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
-        \   <CopyrightStateProvince />\r\n    <CopyrightCountry>SWITZERLAND</CopyrightCountry>\r\n
-        \ </PublicationItem>\r\n  <PublicationItem>\r\n    <PublicationItemID>75615496</PublicationItemID>\r\n
-        \   <Title>p38a MAPK Regulates Lineage Commitment and OPG Synthesis of Bone
-        Marrow Stromal Cells to Prevent Bone Loss under Physiological and Pathological
-        Conditions.</Title>\r\n    <Abstract>Bone marrow-derived mesenchymal stromal
-        cells (BM-MSCs) are capable of differentiating into osteoblasts, chondrocytes,
-        and adipocytes. Skewed differentiation of BM-MSCs contributes to the pathogenesis
-        of osteoporosis. Yet how BM-MSC lineage commitment is regulated remains unclear.
-        We show that ablation of p38a in Prx1+ BM-MSCs produced osteoporotic phenotypes,
-        growth plate defects, and increased bone marrow fat, secondary to biased BM-MSC
-        differentiation from osteoblast/chondrocyte to adipocyte and increased osteoclastogenesis
-        and bone resorption. p38a regulates BM-MSC osteogenic commitment through TAK1-NF-?B
-        signaling and osteoclastogenesis through osteoprotegerin (OPG) production
-        by BM-MSCs. Estrogen activates p38a to maintain OPG expression in BM-MSCs
-        to preserve the bone. Ablation of p38a in BM-MSCs positive for Dermo1, a later
-        BM-MSC marker, only affected osteogenic differentiation. Thus, p38a mitogen-activated
-        protein kinase (MAPK) in Prx1+ BM-MSCs acts to preserve the bone by promoting
-        osteogenic lineage commitment and sustaining OPG production. This study thus
-        unravels previously unidentified roles for p38a MAPK in skeletal development
-        and bone remodeling. </Abstract>\r\n    <AuthorList>Cong,Qian,|Jia,Hao,|Biswas,Soma,|Li,Ping,|Qiu,Shoutao,|Deng,Qi,|Guo,Xizhi,|Ma,Gang,|Ling
-        Chau,Jenny,Fang|Wang,Yibin,|Zhang,Zhen-Lin,|Jiang,Xinquan,|Liu,Huijuan,|Li,Baojie,</AuthorList>\r\n
-        \   <AuthorCount>14</AuthorCount>\r\n    <KeywordList />\r\n    <DocumentTypeList>Journal
-        Article</DocumentTypeList>\r\n    <DocumentCategory>Journal Document</DocumentCategory>\r\n
-        \   <NumberOfReferences xsi:nil=\"true\" />\r\n    <TimesCited xsi:nil=\"true\"
-        />\r\n    <TimesNotSelfCited xsi:nil=\"true\" />\r\n    <PMID>26947973</PMID>\r\n
-        \   <PublicationSourceTitle>Stem cell reports</PublicationSourceTitle>\r\n
-        \   <Volume>6</Volume>\r\n    <Issue>4</Issue>\r\n    <Pagination>566-578</Pagination>\r\n
-        \   <PublicationDate>2016-04-12T00:00:00</PublicationDate>\r\n    <PublicationYear>2016</PublicationYear>\r\n
-        \   <PublicationSubjectCategoryList />\r\n    <ISSN>2213-6711</ISSN>\r\n    <DOI>10.1016/j.stemcr.2016.02.001</DOI>\r\n
-        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
-        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>8</OrdinalRank>\r\n
-        \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
-        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>ELSEVIER
-        INC</CopyrightPublisher>\r\n    <CopyrightCity />\r\n    <PublicationImpactFactorList>5.365,2014,ClosestToPublicationYear|5.365,2014,MostRecentYear</PublicationImpactFactorList>\r\n
-        \   <PublicationCategoryRankingList>4/21;CELL &amp; TISSUE ENGINEERING;2014;SC;ClosestToPublicationYear|42/184;CELL
-        BIOLOGY;2014;SC;ClosestToPublicationYear|4/21;CELL &amp; TISSUE ENGINEERING;2014;SC;MostRecentYear|42/184;CELL
-        BIOLOGY;2014;SC;MostRecentYear</PublicationCategoryRankingList>\r\n    <CopyrightStateProvince
-        />\r\n    <CopyrightCountry>UNITED STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n
-        \ <PublicationItem>\r\n    <PublicationItemID>75615354</PublicationItemID>\r\n
-        \   <Title>A global proteomic study identifies distinct pathological features
-        of IgG4-related and primary sclerosing cholangitis.</Title>\r\n    <Abstract>AIMS
-        This combined proteomic and histopathological study was aimed to compare tissue
-        characteristics of immunoglobulin (Ig)G4-related sclerosing cholangitis (ISC)
-        and primary sclerosing cholangitis (PSC) in a global, non-biased manner.\r\nMETHODS
-        AND RESULTS Tissue proteomes and phosphorylomes of frozen large bile duct
-        samples were analysed by a conventional liquid chromatography-tandem mass
-        spectrometry (LC-MS/MS) protocol and additional phosphopeptide enrichment
-        methods. The proteomic examination identified 23 373 peptides and 4870 proteins,
-        including 4801 phosphopeptides and 1121 phosphoproteins. The expression profiles
-        of phosphopeptides discriminated ISC from PSC more clearly than those of non-phosphopeptides.
-        In the pathway analysis, ISC was found to have 11 more activated signal cascades,
-        including three immunological pathways, all B cell- or immunoglobulin-related.
-        On immunostaining, two immunological markers (FYN-binding protein and allograft
-        inflammatory factor-1) up-regulated in ISC were expressed mainly in M2 macrophages,
-        consistent with increased phagocytotic activity induced by the immunoglobulin
-        (Ig)G-Fc? receptor interaction. In contrast, PSC had two more activated signal
-        pathways related to extracellular matrix (ECM) remodelling. Filamin-A involved
-        in ECM remodelling was expressed aberrantly in injured bile ducts and associated
-        cholangiocarcinomas in PSC, suggesting its possible roles in periductal fibrosis
-        and carcinogenesis in PSC.\r\nCONCLUSIONS This study suggested crucial roles
-        of B cells and macrophages in ISC, and more dynamic ECM remodelling in PSC.</Abstract>\r\n
-        \   <AuthorList>Zen,Yoh,|Britton,David,|Mitra,Vikram,|Pike,Ian,|Heaton,Nigel,|Quaglia,Alberto,</AuthorList>\r\n
-        \   <AuthorCount>6</AuthorCount>\r\n    <KeywordList>B cell|autoimmune pancreatitis|pathogenesis|phosphoproteome|proteome</KeywordList>\r\n
-        \   <DocumentTypeList>Journal Article</DocumentTypeList>\r\n    <DocumentCategory>Journal
-        Document</DocumentCategory>\r\n    <NumberOfReferences xsi:nil=\"true\" />\r\n
-        \   <TimesCited xsi:nil=\"true\" />\r\n    <TimesNotSelfCited xsi:nil=\"true\"
-        />\r\n    <PMID>26308372</PMID>\r\n    <PublicationSourceTitle>Histopathology</PublicationSourceTitle>\r\n
-        \   <Volume>68</Volume>\r\n    <Issue>6</Issue>\r\n    <Pagination>796-809</Pagination>\r\n
-        \   <PublicationDate>2016-05-01T00:00:00</PublicationDate>\r\n    <PublicationYear>2016</PublicationYear>\r\n
-        \   <PublicationSubjectCategoryList />\r\n    <ISSN>0309-0167</ISSN>\r\n    <DOI>10.1111/his.12813</DOI>\r\n
-        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
-        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>9</OrdinalRank>\r\n
-        \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
-        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>JOHN WILEY
-        &amp; SONS LTD</CopyrightPublisher>\r\n    <CopyrightCity />\r\n    <PublicationImpactFactorList>3.453,2014,ClosestToPublicationYear|3.453,2014,MostRecentYear</PublicationImpactFactorList>\r\n
-        \   <PublicationCategoryRankingList>85/184;CELL BIOLOGY;2014;SC;ClosestToPublicationYear|15/75;PATHOLOGY;2014;SC;ClosestToPublicationYear|85/184;CELL
-        BIOLOGY;2014;SC;MostRecentYear|15/75;PATHOLOGY;2014;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
-        \   <CopyrightStateProvince />\r\n    <CopyrightCountry>UNITED KINGDOM</CopyrightCountry>\r\n
-        \ </PublicationItem>\r\n  <PublicationItem>\r\n    <PublicationItemID>75615019</PublicationItemID>\r\n
-        \   <Title>[Molecular Pathological Aspects in Visceral Surgery].</Title>\r\n
-        \   <Abstract>New insights gained in the field of molecular medicine have
-        led to fundamental progress in the diagnosis and treatment of tumour patients.
-        Individualised treatment has been essentially facilitated by molecular diagnostics,
-        which, by identifying and interpreting characteristic genetic alterations
-        (biomarkers) in single cells and tissues, provide specific information to
-        confirm the diagnosis and support the treatment of numerous diseases. Particularly
-        with regard to the use of new targeted drugs, which often require the presence
-        or absence of specific target structures or genetic alterations to induce
-        response, the molecular pathological determination of predictive biomarkers
-        plays an increasing role and helps clinicians to decide on optimal therapies
-        for individual patients. The aim of this review is to highlight general aspects
-        of molecular tumour pathology for relevant tumour entities and to present
-        available targeted therapies. </Abstract>\r\n    <AuthorList>Unger,T,|Sändig,I,|Wittekind,C,</AuthorList>\r\n
-        \   <AuthorCount>3</AuthorCount>\r\n    <KeywordList />\r\n    <DocumentTypeList>English
-        Abstract|Journal Article</DocumentTypeList>\r\n    <DocumentCategory>Journal
-        Document</DocumentCategory>\r\n    <NumberOfReferences xsi:nil=\"true\" />\r\n
-        \   <TimesCited xsi:nil=\"true\" />\r\n    <TimesNotSelfCited xsi:nil=\"true\"
-        />\r\n    <PMID>27074215</PMID>\r\n    <PublicationSourceTitle>Zentralblatt
-        fu¨r Chirurgie</PublicationSourceTitle>\r\n    <Volume>141</Volume>\r\n    <Issue>2</Issue>\r\n
-        \   <Pagination>220-228</Pagination>\r\n    <PublicationDate>2016-04-01T00:00:00</PublicationDate>\r\n
-        \   <PublicationYear>2016</PublicationYear>\r\n    <PublicationSubjectCategoryList
-        />\r\n    <ISSN>0044-409X</ISSN>\r\n    <DOI>10.1055/s-0041-109548</DOI>\r\n
-        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
-        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>10</OrdinalRank>\r\n
-        \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
-        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>GEORG
-        THIEME VERLAG KG STUTTGART ·</CopyrightPublisher>\r\n    <CopyrightCity>NEW
-        YORK</CopyrightCity>\r\n    <PublicationImpactFactorList>1.048,2014,ClosestToPublicationYear|1.048,2014,MostRecentYear</PublicationImpactFactorList>\r\n
-        \   <PublicationCategoryRankingList>134/198;SURGERY;2014;SC;ClosestToPublicationYear|134/198;SURGERY;2014;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
-        \   <CopyrightStateProvince />\r\n    <CopyrightCountry>GERMANY</CopyrightCountry>\r\n
-        \ </PublicationItem>\r\n  <PublicationItem>\r\n    <PublicationItemID>75614660</PublicationItemID>\r\n
-        \   <Title>Relationship Between Pathological Findings and Cholinesterase Activity
-        and Nitric Oxide Levels in Cattle Infected Naturally by Eurytrema coelomaticum.</Title>\r\n
-        \   <Abstract>The aim of this study was to evaluate the role of butyrylcholinesterase
-        (BChE) (in the serum and pancreas), acetylcholinesterase (AChE) (in the whole
-        blood and pancreas) and nitric oxide (NO) (in the serum and pancreas) in cattle
-        infected naturally by Eurytrema coelomaticum. Fifty-one cattle were studied,
-        including 33 infected by E. coelomaticum and 18 uninfected animals. Significantly
-        greater AChE activity was found in the pancreas of infected animals (P &lt;0.01);
-        however, these cattle had lower AChE activity in whole blood. BChE activity
-        was greater in the sera of infected animals (P = 0.05), but was less in pancreatic
-        samples. NO levels were significantly higher in the sera (P &lt;0.05) and
-        pancreas (P &lt;0.001) of infected cattle compared with uninfected animals.
-        A positive correlation was found between AChE activity in the pancreas and
-        parasite load, but there was negative correlation between pancreatic BChE
-        activity and parasitic load. Expression of AChE, BChE and NO is therefore
-        linked to the inflammation caused by E. coelomaticum in cattle. </Abstract>\r\n
-        \   <AuthorList>Schwertz,C,I|do Carmo,G,M|Bottari,N,B|da Silva,E,S|Gabriel,M,E|Lucca,N,J|Guarda,N,DosS|Moresco,R,N|Machado,G,|Morsch,V,M|Schetinger,M,RC|STEFANI,L,M|Mendes,R,E|da
-        Silva,A,S</AuthorList>\r\n    <AuthorCount>14</AuthorCount>\r\n    <KeywordList>acetylcholinesterase|butyrylcholinesterase|eurytrematosis|nitric
-        oxide</KeywordList>\r\n    <DocumentTypeList>Journal Article</DocumentTypeList>\r\n
+        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher />\r\n
+        \   <CopyrightCity />\r\n    <CopyrightStateProvince />\r\n    <CopyrightCountry>UNITED
+        KINGDOM</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
+        \   <PublicationItemID>79755405</PublicationItemID>\r\n    <Title>Reduction
+        of atlantoaxial dislocation prevented by pathological position of the transverse
+        ligament in fixed, irreducible os odontoideum: operative illustrations and
+        radiographic correlates in 41 patients.</Title>\r\n    <Abstract>OBJECTIVE
+        Os odontoideum (OO) is a craniovertebral junction (CVJ) abnormality in which
+        an ossicle (small bone) is cranial to a hypoplastic dens by a variable gap.
+        This abnormality can result in instability, which may be reducible or irreducible.
+        What leads to irreducibility in OO is unclear. Therefore, the authors sought
+        to better understand the causes of irreducibility in OO. METHODS A retrospective
+        review was conducted, which identified more than 200 patients who had undergone
+        surgical treatment for OO between 1978 and 2015 at the University of Iowa
+        Hospitals and Clinics. Only the 41 patients who had irreducible OO were included
+        in this study. All inpatient and outpatient records were retrospectively reviewed,
+        and patient demographics, clinical presentation, radiographic findings, surgical
+        treatment, and operative findings were recorded and analyzed. RESULTS The
+        cohort of 41 patients who were found to have irreducible OO included both
+        children and adults. A majority of patients were adults (61% were 18 years
+        or older). Clinical presentation included neck pain and headache in the majority
+        of patients (93%). Weakness, sensory disturbances, and myelopathy were invariably
+        present in all 41 patients (100%). Down syndrome was much more common in the
+        pediatric cohort than in the adult cohort; of the 16 pediatric patients, 6
+        had Down syndrome (38%), and none of the adults did. Of the 16 pediatric patients,
+        5 had segmentation failure (31%) in the subaxial spine, and none of the adults
+        did. A form of atlantoaxial dislocation was seen in all cases. On CT imaging,
+        atlantoaxial facets were dislocated in all 41 cases but did not have osseous
+        changes that would have prevented reduction. On MRI, the transverse ligament
+        was identified anterior and inferior to the ossicle and superior to the hypoplastic
+        odontoid process in all cases in which these studies were available (i.e.,
+        post-MRI era; 36 of 36 cases). The ligament was hypointense on T2-weighted
+        images but also had an associated hyperintense signal on T2 images. Intraoperatively,
+        the transverse ligament was identified anterior and inferior to the ossicle
+        and superior to the hypoplastic odontoid process in all 41 cases. CONCLUSIONS
+        In the largest series to date of irreducible OO and the only study to examine
+        variable factors that lead to irreducibility in OO, the authors found that
+        the position of the transverse ligament anterior and inferior to the ossicle
+        is the most common factor in the irreducibility of OO. The presence of granulation
+        tissue and of the dystopic variant of OO is also associated with irreducibility.
+        The presence of Down syndrome and segmentation failure probably leads to faster
+        progression of ligamentous incompetence and therefore earlier presentation
+        of instability and irreducibility. This is the first study in which intraoperative
+        findings regarding the transverse ligament have been correlated with MRI.</Abstract>\r\n
+        \   <AuthorList>Dlouhy,Brian,J|Policeni,Bruno,A|Menezes,Arnold,H</AuthorList>\r\n
+        \   <AuthorCount>3</AuthorCount>\r\n    <KeywordList>CMJ = cervicomedullary
+        junction|CVJ = craniovertebral junction|OO = os odontoideum|OP = odontoid
+        process|congenital|craniocervical junction|craniovertebral junction|cruciate
+        ligament|irreducible|os odontoideum|reducible|transoral approach|transverse
+        ligament</KeywordList>\r\n    <DocumentTypeList>Journal Article</DocumentTypeList>\r\n
         \   <DocumentCategory>Journal Document</DocumentCategory>\r\n    <NumberOfReferences
         xsi:nil=\"true\" />\r\n    <TimesCited xsi:nil=\"true\" />\r\n    <TimesNotSelfCited
-        xsi:nil=\"true\" />\r\n    <PMID>26929158</PMID>\r\n    <PublicationSourceTitle>Journal
-        of comparative pathology</PublicationSourceTitle>\r\n    <Volume>154</Volume>\r\n
-        \   <Issue>2-3</Issue>\r\n    <Pagination>150-156</Pagination>\r\n    <PublicationDate>2016-02-01T00:00:00</PublicationDate>\r\n
-        \   <PublicationYear>2016</PublicationYear>\r\n    <PublicationSubjectCategoryList
-        />\r\n    <ISSN>0021-9975</ISSN>\r\n    <DOI>10.1016/j.jcpa.2016.01.009</DOI>\r\n
+        xsi:nil=\"true\" />\r\n    <PMID>28387614</PMID>\r\n    <PublicationSourceTitle>Journal
+        of neurosurgery. Spine</PublicationSourceTitle>\r\n    <Pagination>1-9</Pagination>\r\n
+        \   <PublicationDate>2017-04-07T00:00:00</PublicationDate>\r\n    <PublicationYear>2017</PublicationYear>\r\n
+        \   <PublicationSubjectCategoryList />\r\n    <ISSN>1547-5646</ISSN>\r\n    <DOI>10.3171/2016.11.SPINE16733</DOI>\r\n
         \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
-        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>11</OrdinalRank>\r\n
-        \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
-        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>ELSEVIER
-        LTD</CopyrightPublisher>\r\n    <CopyrightCity />\r\n    <PublicationImpactFactorList>1.142,2014,ClosestToPublicationYear|1.142,2014,MostRecentYear</PublicationImpactFactorList>\r\n
-        \   <PublicationCategoryRankingList>60/75;PATHOLOGY;2014;SC;ClosestToPublicationYear|52/133;VETERINARY
-        SCIENCES;2014;SC;ClosestToPublicationYear|60/75;PATHOLOGY;2014;SC;MostRecentYear|52/133;VETERINARY
-        SCIENCES;2014;SC;MostRecentYear</PublicationCategoryRankingList>\r\n    <CopyrightStateProvince
-        />\r\n    <CopyrightCountry>UNITED KINGDOM</CopyrightCountry>\r\n  </PublicationItem>\r\n
-        \ <PublicationItem>\r\n    <PublicationItemID>75613679</PublicationItemID>\r\n
-        \   <Title>The Parkinson Disease gene SNCA: Evolutionary and structural insights
-        with pathological implication.</Title>\r\n    <Abstract>After Alzheimer, Parkinson's
-        disease (PD) is the second most common neurodegenerative disorder. Alpha synuclein
-        (SNCA) is deemed as a major component of Lewy bodies, a neuropathological
-        feature of PD. Five point mutations in SNCA have been reported so far, responsible
-        for autosomal dominant PD. This study aims to decipher evolutionary and structural
-        insights of SNCA by revealing its sequence and structural evolutionary patterns
-        among sarcopterygians and its paralogous counterparts (SNCB and SNCG). Rate
-        analysis detected strong purifying selection on entire synuclein family. Structural
-        dynamics divulges that during the course of sarcopterygian evolutionary history,
-        the region encompassed 32 to 58 of N-terminal domain of SNCA has acquired
-        its critical functional significance through the epistatic influence of the
-        lineage specific substitutions. In sum, these findings provide an evidence
-        that the region from 32 to 58 of N-terminal lipid binding alpha helix domain
-        of SNCA is the most critical region, not only from the evolutionary perspective
-        but also for the stability and the proper conformation of the protein as well
-        as crucial for the disease pathogenesis, harboring critical interaction sites.
-        </Abstract>\r\n    <AuthorList>Siddiqui,Irum,Javaid|Pervaiz,Nashaiman,|Abbasi,Amir,Ali</AuthorList>\r\n
-        \   <AuthorCount>3</AuthorCount>\r\n    <KeywordList />\r\n    <DocumentTypeList>Journal
-        Article</DocumentTypeList>\r\n    <DocumentCategory>Journal Document</DocumentCategory>\r\n
-        \   <NumberOfReferences xsi:nil=\"true\" />\r\n    <TimesCited xsi:nil=\"true\"
-        />\r\n    <TimesNotSelfCited xsi:nil=\"true\" />\r\n    <PMID>27080380</PMID>\r\n
-        \   <PublicationSourceTitle>Scientific reports</PublicationSourceTitle>\r\n
-        \   <Volume>6</Volume>\r\n    <Pagination>24475-?</Pagination>\r\n    <PublicationDate>2016-01-01T00:00:00</PublicationDate>\r\n
-        \   <PublicationYear>2016</PublicationYear>\r\n    <PublicationSubjectCategoryList
-        />\r\n    <ISSN>2045-2322</ISSN>\r\n    <DOI>10.1038/srep24475</DOI>\r\n    <ConferenceStartDate
-        xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank
-        xsi:nil=\"true\" />\r\n    <OrdinalRank>12</OrdinalRank>\r\n    <NormalizedRank
-        xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
-        \   <CopyrightPublisher />\r\n    <CopyrightCity />\r\n    <PublicationImpactFactorList>5.578,2014,ClosestToPublicationYear|5.578,2014,MostRecentYear</PublicationImpactFactorList>\r\n
-        \   <PublicationCategoryRankingList>5/56;MULTIDISCIPLINARY SCIENCES;2014;SC;ClosestToPublicationYear|5/56;MULTIDISCIPLINARY
-        SCIENCES;2014;SC;MostRecentYear</PublicationCategoryRankingList>\r\n    <CopyrightStateProvince
-        />\r\n    <CopyrightCountry>UNITED KINGDOM</CopyrightCountry>\r\n  </PublicationItem>\r\n
-        \ <PublicationItem>\r\n    <PublicationItemID>75612993</PublicationItemID>\r\n
-        \   <Title>Diagnostic Difficulties in Pathological Laboratories in Developing
-        Countries: A Case Report of Differentiated Squamous Cell Carcinoma in a Young
-        Togolese Woman.</Title>\r\n    <Abstract>We report a case of poorly differentiated
-        squamous cell carcinoma of the vulva induced by human papillomavirus in a
-        23-year-old woman, in whom we experienced diagnostic difficulties. </Abstract>\r\n
-        \   <AuthorList>Darré,Tchin,|Sonhaye,Lantam,|Tchaou,Mazamaesso,|Aboubakari,Abdoul-Samadou,|M'Bortche,Bingo,K|Amégbor,Kofi,|Napo-Koura,Gado,</AuthorList>\r\n
-        \   <AuthorCount>7</AuthorCount>\r\n    <KeywordList />\r\n    <DocumentTypeList>Journal
-        Article</DocumentTypeList>\r\n    <DocumentCategory>Journal Document</DocumentCategory>\r\n
-        \   <NumberOfReferences xsi:nil=\"true\" />\r\n    <TimesCited xsi:nil=\"true\"
-        />\r\n    <TimesNotSelfCited xsi:nil=\"true\" />\r\n    <PMID>27066286</PMID>\r\n
-        \   <PublicationSourceTitle>Case reports in pathology</PublicationSourceTitle>\r\n
-        \   <Volume>2016</Volume>\r\n    <Pagination>3727484-?</Pagination>\r\n    <PublicationDate>2016-01-01T00:00:00</PublicationDate>\r\n
-        \   <PublicationYear>2016</PublicationYear>\r\n    <PublicationSubjectCategoryList
-        />\r\n    <ISSN>2090-679X</ISSN>\r\n    <DOI>10.1155/2016/3727484</DOI>\r\n
-        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
-        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>13</OrdinalRank>\r\n
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>4</OrdinalRank>\r\n
         \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher />\r\n
         \   <CopyrightCity />\r\n    <CopyrightStateProvince />\r\n    <CopyrightCountry>UNITED
         STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
-        \   <PublicationItemID>75611919</PublicationItemID>\r\n    <Title>miRNAs Participate
-        in MS Pathological Processes and Its Therapeutic Response.</Title>\r\n    <Abstract>Multiple
-        sclerosis is the most common autoimmune disease of the central nervous system.
-        It is believed that the increased migration of autoreactive lymphocytes across
-        the blood-brain barrier (BBB) may be responsible for axonal demyelination
-        of neurons. In this review, we discuss microRNAs participating in the pathological
-        processes of MS, including periphery inflammation, blood-brain barrier disruption,
-        and CNS lesions, and in its therapeutic response, in order to find biomarkers
-        of disease severity and to predict the response to therapy of the diseases.
-        </Abstract>\r\n    <AuthorList>Wu,Ting,|Chen,Guangjie,</AuthorList>\r\n    <AuthorCount>2</AuthorCount>\r\n
-        \   <KeywordList />\r\n    <DocumentTypeList>Journal Article|Review</DocumentTypeList>\r\n
+        \   <PublicationItemID>79755213</PublicationItemID>\r\n    <Title>Epidermal
+        growth factor receptor mutations should be considered as a prognostic factor
+        for survival of patients with pathological fractures or painful bone metastases
+        from non-small cell lung cancer.</Title>\r\n    <Abstract>AIMS This study
+        aims to assess first, whether mutations in the epidermal growth factor receptor
+        (EGFR) and Kirsten rat sarcoma (kRAS) genes are associated with overall survival
+        (OS) in patients who present with symptomatic bone metastases from non-small
+        cell lung cancer (NSCLC) and secondly, whether mutation status should be incorporated
+        into prognostic models that are used when deciding on the appropriate palliative
+        treatment for symptomatic bone metastases.\r\nPATIENTS AND METHODS We studied
+        139 patients with NSCLC treated between 2007 and 2014 for symptomatic bone
+        metastases and whose mutation status was known. The association between mutation
+        status and overall survival was analysed and the results applied to a recently
+        published prognostic model to determine whether including the mutation status
+        would improve its discriminatory power.\r\nRESULTS The median OS was 3.9 months
+        (95% confidence interval (CI) 2.1 to 5.7). Patients with EGFR (15%) or kRAS
+        mutations (34%) had a median OS of 17.3 months (95% CI 12.7 to 22.0) and 1.8
+        months (95% CI 1.0 to 2.7), respectively. Compared with EGFR-positive patients,
+        EGFR-negative patients had a 2.5 times higher risk of death (95% CI 1.5 to
+        4.2). Incorporating EGFR mutation status in the prognostic model improved
+        its discriminatory power.\r\nCONCLUSION Survival prediction models for patients
+        with symptomatic bone metastases are used to determine the most appropriate
+        (surgical) treatment for painful or fractured lesions. This study shows that
+        NSCLC should not be regarded as a single entity in such models. Cite this
+        article: \r\nCONCLUSION  2017;99-B:516-21.</Abstract>\r\n    <AuthorList>Willeumier,J,J|van
+        der Hoeven,N,MA|Bollen,L,|Willems,L,NA|Fiocco,M,|van der Linden,Y,M|Dijkstra,P,DS</AuthorList>\r\n
+        \   <AuthorCount>7</AuthorCount>\r\n    <KeywordList>Bone metastases|Epidermal
+        growth factor receptor|Lung cancer|Pathological fracture|Prognosis|Survival</KeywordList>\r\n
+        \   <DocumentTypeList>Journal Article</DocumentTypeList>\r\n    <DocumentCategory>Journal
+        Document</DocumentCategory>\r\n    <NumberOfReferences xsi:nil=\"true\" />\r\n
+        \   <TimesCited xsi:nil=\"true\" />\r\n    <TimesNotSelfCited xsi:nil=\"true\"
+        />\r\n    <PMID>28385942</PMID>\r\n    <PublicationSourceTitle>bone &amp;
+        joint journal</PublicationSourceTitle>\r\n    <Volume>99-B</Volume>\r\n    <Issue>4</Issue>\r\n
+        \   <Pagination>516-521</Pagination>\r\n    <PublicationDate>2017-04-01T00:00:00</PublicationDate>\r\n
+        \   <PublicationYear>2017</PublicationYear>\r\n    <PublicationSubjectCategoryList
+        />\r\n    <ISSN>2049-4394</ISSN>\r\n    <DOI>10.1302/0301-620X.99B4.BJJ-2016-0872.R1</DOI>\r\n
+        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>5</OrdinalRank>\r\n
+        \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
+        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>THE BRITISH
+        EDITORIAL SOC OF BONE &amp; JOINT SURGERY</CopyrightPublisher>\r\n    <CopyrightCity
+        />\r\n    <PublicationImpactFactorList>2.66,2015,ClosestToPublicationYear|2.66,2015,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>11/74;ORTHOPEDICS;2015;SC;ClosestToPublicationYear|49/200;SURGERY;2015;SC;ClosestToPublicationYear|11/74;ORTHOPEDICS;2015;SC;MostRecentYear|49/200;SURGERY;2015;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <CopyrightStateProvince />\r\n    <CopyrightCountry>UNITED KINGDOM</CopyrightCountry>\r\n
+        \ </PublicationItem>\r\n  <PublicationItem>\r\n    <PublicationItemID>79754951</PublicationItemID>\r\n
+        \   <Title>Pathological findings of uterine tumors preoperatively diagnosed
+        as red degeneration of leiomyoma by MRI.</Title>\r\n    <Abstract>PURPOSE
+        Venous infarction of a leiomyoma is known as red degeneration of leiomyoma
+        (RDL) and can be a cause of acute abdomen. Although magnetic resonance imaging
+        (MRI) is the only modality that can depict the inner condition of a leiomyoma,
+        the typical MR findings of RDL are sometimes identified incidentally even
+        in asymptomatic patients. The purpose of this study is to clarify common pathological
+        findings of uterine tumors preoperatively diagnosed as RDL by MRI.\r\nMETHODS
+        We diagnosed 28 cases of RDL by MRI from March 2007 to April 2015. The ten
+        lesions subjected to pathological analysis after resection were included in
+        the study and reviewed by a gynecological pathologist. The average time from
+        MRI to operation was 4.7 months.\r\nRESULTS The typical beefy-red color was
+        not observed on the cut surface of the tumor except in one tumor resected
+        during the acute phase. All lesions diagnosed as RDL by MRI had common pathological
+        findings consistent with red degeneration of leiomyoma, including coagulative
+        necrosis. Other common pathological features of RDL besides extensive coagulative
+        necrosis appear to be a lack of inflammatory cell infiltrate or hemorrhage
+        in the entire lesion.\r\nCONCLUSIONS Although RDL is known to cause acute
+        abdomen, its typical MR findings can be observed even in asymptomatic patients
+        in a condition that manifests long after red degeneration. The characteristic
+        pathological findings in both the acute phase and the chronic phase that we
+        found in this study, along with radiology reports, will be helpful references
+        for gynecologists and pathologists in suspecting a history of red degeneration
+        and confirming the diagnosis.</Abstract>\r\n    <AuthorList>Nakai,Go,|Yamada,Takashi,|Hamada,Takamitsu,|Atsukawa,Natsuko,|Tanaka,Yoshikazu,|Yamamoto,Kiyohito,|Higashiyama,Akira,|Juri,Hiroshi,|Nakamoto,Atsushi,|Yamamoto,Kazuhiro,|Hirose,Yoshinobu,|Ohmichi,Masahide,|Narumi,Yoshifumi,</AuthorList>\r\n
+        \   <AuthorCount>13</AuthorCount>\r\n    <KeywordList>Imaging|Leiomyoma|MRI|Pathological
+        finding|Red degeneration</KeywordList>\r\n    <DocumentTypeList>Journal Article</DocumentTypeList>\r\n
         \   <DocumentCategory>Journal Document</DocumentCategory>\r\n    <NumberOfReferences
         xsi:nil=\"true\" />\r\n    <TimesCited xsi:nil=\"true\" />\r\n    <TimesNotSelfCited
-        xsi:nil=\"true\" />\r\n    <PMID>27073296</PMID>\r\n    <PublicationSourceTitle>Mediators
-        of inflammation</PublicationSourceTitle>\r\n    <Volume>2016</Volume>\r\n
-        \   <Pagination>4578230-?</Pagination>\r\n    <PublicationDate>2016-01-01T00:00:00</PublicationDate>\r\n
-        \   <PublicationYear>2016</PublicationYear>\r\n    <PublicationSubjectCategoryList
-        />\r\n    <ISSN>0962-9351</ISSN>\r\n    <DOI>10.1155/2016/4578230</DOI>\r\n
+        xsi:nil=\"true\" />\r\n    <PMID>28389786</PMID>\r\n    <PublicationSourceTitle>Abdominal
+        radiology </PublicationSourceTitle>\r\n    <PublicationDate>2017-04-07T00:00:00</PublicationDate>\r\n
+        \   <PublicationYear>2017</PublicationYear>\r\n    <PublicationSubjectCategoryList
+        />\r\n    <ISSN>2366-0058</ISSN>\r\n    <DOI>10.1007/s00261-017-1126-3</DOI>\r\n
         \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
-        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>14</OrdinalRank>\r\n
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>6</OrdinalRank>\r\n
         \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher />\r\n
-        \   <CopyrightCity />\r\n    <PublicationImpactFactorList>3.236,2014,ClosestToPublicationYear|3.236,2014,MostRecentYear</PublicationImpactFactorList>\r\n
-        \   <PublicationCategoryRankingList>97/184;CELL BIOLOGY;2014;SC;ClosestToPublicationYear|58/148;IMMUNOLOGY;2014;SC;ClosestToPublicationYear|97/184;CELL
-        BIOLOGY;2014;SC;MostRecentYear|58/148;IMMUNOLOGY;2014;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
-        \   <CopyrightStateProvince />\r\n    <CopyrightCountry>UNITED STATES</CopyrightCountry>\r\n
-        \ </PublicationItem>\r\n  <PublicationItem>\r\n    <PublicationItemID>75611624</PublicationItemID>\r\n
-        \   <Title>Pathological Characterization of an Outbreak of Porcine Reproductive
-        and Respiratory Syndrome in Northern Vietnam.</Title>\r\n    <Abstract>In
-        2007, a highly pathogenic porcine reproductive and respiratory syndrome virus
-        (HP-PRRSV) emerged in Vietnam and spread to nearly all regions of the country
-        by 2010. Ten representative pigs of different age groups, infected naturally
-        with HP-PRRSV in northern Vietnam in 2010, were used to characterize the pathological
-        features of the infection. Infection was confirmed using reverse transcriptase
-        polymerase chain reaction and viral isolation. The clinical signs and gross
-        findings in these pigs included high fever (&gt;40.2°C), red skin, blue ears,
-        anorexia, respiratory distress, diarrhoea, haemorrhagic pleurisy and lymphadenopathy.
-        Reproductive failure was the main clinical feature in sows. PRRSV infection-associated
-        microscopical lung and lymph node lesions were observed frequently, regardless
-        of age of the animals. Lung lesions were characterized by interstitial pneumonia
-        and were occasionally associated with haemorrhage and fluid exudation following
-        alveolar collapse. Lymph nodes exhibited characteristic haemorrhage and apoptosis,
-        lymphocytic depletion and disorganization secondary to fibrosis and capillary
-        formation. Haematoxylin and eosin staining or caspase-3 immunohistochemistry
-        revealed apoptosis induction in various tissues and organs, particularly the
-        lymph nodes and lungs. Primarily haemorrhagic microscopical lesions were observed
-        commonly in other organs including the spleen, liver, heart and kidney. Immunohistochemical
-        examination revealed HP-PRRS antigen in the lung, lymph node, liver and kidney
-        macrophages, and lung and kidney epithelial cells. Pigs infected naturally
-        with HP-PRRS in the field have multisystemic disease characterized by marked
-        apoptotic cell death. </Abstract>\r\n    <AuthorList>Huong Giang,N,T|Lan,N,T|Nam,N,H|Hirai,T,|Yamaguchi,R,</AuthorList>\r\n
-        \   <AuthorCount>5</AuthorCount>\r\n    <KeywordList>Vietnam|highly-pathogenic
-        porcine reproductive and respiratory syndrome virus|pathological characterization|pig</KeywordList>\r\n
-        \   <DocumentTypeList>Journal Article</DocumentTypeList>\r\n    <DocumentCategory>Journal
-        Document</DocumentCategory>\r\n    <NumberOfReferences xsi:nil=\"true\" />\r\n
-        \   <TimesCited xsi:nil=\"true\" />\r\n    <TimesNotSelfCited xsi:nil=\"true\"
-        />\r\n    <PMID>26774273</PMID>\r\n    <PublicationSourceTitle>Journal of
-        comparative pathology</PublicationSourceTitle>\r\n    <Volume>154</Volume>\r\n
-        \   <Issue>2-3</Issue>\r\n    <Pagination>135-149</Pagination>\r\n    <PublicationDate>2016-02-01T00:00:00</PublicationDate>\r\n
-        \   <PublicationYear>2016</PublicationYear>\r\n    <PublicationSubjectCategoryList
-        />\r\n    <ISSN>0021-9975</ISSN>\r\n    <DOI>10.1016/j.jcpa.2015.11.004</DOI>\r\n
-        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
-        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>15</OrdinalRank>\r\n
-        \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
-        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>ELSEVIER
-        LTD</CopyrightPublisher>\r\n    <CopyrightCity />\r\n    <PublicationImpactFactorList>1.142,2014,ClosestToPublicationYear|1.142,2014,MostRecentYear</PublicationImpactFactorList>\r\n
-        \   <PublicationCategoryRankingList>60/75;PATHOLOGY;2014;SC;ClosestToPublicationYear|52/133;VETERINARY
-        SCIENCES;2014;SC;ClosestToPublicationYear|60/75;PATHOLOGY;2014;SC;MostRecentYear|52/133;VETERINARY
-        SCIENCES;2014;SC;MostRecentYear</PublicationCategoryRankingList>\r\n    <CopyrightStateProvince
-        />\r\n    <CopyrightCountry>UNITED KINGDOM</CopyrightCountry>\r\n  </PublicationItem>\r\n
-        \ <PublicationItem>\r\n    <PublicationItemID>75607242</PublicationItemID>\r\n
-        \   <Title>Mediastinal lymphadenectomy fulfilling NCCN criteria may improve
-        the outcome of clinical N0-1 and pathological N2 non-small cell lung cancer.</Title>\r\n
-        \   <Abstract>BACKGROUND This retrospective study investigated whether mediastinal
-        lymphadenectomy compliant with the National Comprehensive Cancer Network (NCCN)
-        criteria will improve the oncological outcomes of clinical early-stage lung
-        cancer.\r\nMETHODS From 2003-2010, 712 consecutive cases of clinical N0/1
-        were included for retrospective analysis, including 152 confirmed cases of
-        pN2 and 560 of pN0-1 disease following surgery. Group A was defined as the
-        cases fulfilling NCCN lymphadenectomy criteria (= three stations of N2 nodes
-        dissection) and group B included all other cases. The groups were stratified
-        according to pN status and the outcomes were assessed.\r\nRESULTS Five-year
-        overall survival (OS) and 5-year disease-free survival (DFS) were significantly
-        different between group A versus B [72%±2% vs. 63%±4% (OS), P=0.014; 58.0%±2%
-        vs. 49%±4% (DFS), P=0.038] in the whole cohort. After stratification by pN
-        status, this difference was remained in pN2 subgroup [50%±5% vs. 25%±9% (OS),
-        P=0.006; 31.0%±4% vs. 13%±7% (DFS), P=0.014], but not in pN0-1 subgroups.
-        Cox regression analysis showed that performing a lymphadenectomy fulfilling
-        NCCN criteria was a significant prognostic factor for OS either in the whole
-        cohort [P=0.003, hazard ratio (HR): 0.598, 95% confidence interval (CI): 0.425-0.841]
-        or in patients of pN2 status (P=0.038, HR: 0.559, 95% CI: 0.323-0.968). Cases
-        with =4 N2 stations dissected did not achieve better survival benefit compared
-        to those harvesting 3 stations in cN0/1-pN2 group (P=0.152).\r\nCONCLUSIONS
-        Mediastinal lymphadenectomy fulfilling NCCN criteria appears to improve the
-        survival of unexpected N2 group (cN0/1-pN2) among early-stage lung cancer
-        patients. More extended N2 node dissection may not further improve the outcome
-        in this group.</Abstract>\r\n    <AuthorList>Wang,Xing,|Yan,Shi,|Phan,Kevin,|Yan,Tristan,D|Zhang,Lijian,|Yang,Yue,|Wu,Nan,</AuthorList>\r\n
-        \   <AuthorCount>7</AuthorCount>\r\n    <KeywordList>Lung cancer|lymphadenectomy|outcome</KeywordList>\r\n
-        \   <DocumentTypeList>Journal Article</DocumentTypeList>\r\n    <DocumentCategory>Journal
-        Document</DocumentCategory>\r\n    <NumberOfReferences xsi:nil=\"true\" />\r\n
-        \   <TimesCited xsi:nil=\"true\" />\r\n    <TimesNotSelfCited xsi:nil=\"true\"
-        />\r\n    <PMID>27076928</PMID>\r\n    <PublicationSourceTitle>Journal of
-        thoracic disease</PublicationSourceTitle>\r\n    <Volume>8</Volume>\r\n    <Issue>3</Issue>\r\n
-        \   <Pagination>342-349</Pagination>\r\n    <PublicationDate>2016-03-01T00:00:00</PublicationDate>\r\n
-        \   <PublicationYear>2016</PublicationYear>\r\n    <PublicationSubjectCategoryList
-        />\r\n    <ISSN>2072-1439</ISSN>\r\n    <DOI>10.21037/jtd.2016.02.49</DOI>\r\n
-        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
-        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>16</OrdinalRank>\r\n
-        \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
-        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher />\r\n
-        \   <CopyrightCity />\r\n    <PublicationImpactFactorList>1.783,2014,ClosestToPublicationYear|1.783,2014,MostRecentYear</PublicationImpactFactorList>\r\n
-        \   <PublicationCategoryRankingList>42/57;RESPIRATORY SYSTEM;2014;SC;ClosestToPublicationYear|42/57;RESPIRATORY
-        SYSTEM;2014;SC;MostRecentYear</PublicationCategoryRankingList>\r\n    <CopyrightStateProvince
-        />\r\n    <CopyrightCountry>CHINA</CopyrightCountry>\r\n  </PublicationItem>\r\n
-        \ <PublicationItem>\r\n    <PublicationItemID>75605588</PublicationItemID>\r\n
-        \   <Title>Complete Pathological Response After Neoadjuvant Long-Course Chemoradiotherapy
-        for Rectal Cancer and Its Relationship to the Degree of T3 Mesorectal Invasion.</Title>\r\n
-        \   <Abstract>BACKGROUND Many studies have shown significantly improved outcomes
-        (reduced local recurrence and improved overall survival) for patients achieving
-        a complete pathological response from neoadjuvant chemoradiotherapy.\r\nOBJECTIVE
-        This study aimed to document the complete pathological response rate and outcomes
-        in patients receiving preoperative long-course chemoradiotherapy stratified
-        for the extent of T3 mesorectal invasion measured on preoperative imaging.\r\nDESIGN
-        This is a retrospective study of prospectively collected data, of patients
-        with rectal cancer in the Cabrini Monash University Department of Surgery
-        colorectal neoplasia database, incorporating data from Cabrini Hospital and
-        The Alfred Hospital, identifying patients entered between January 2010 and
-        June 2014.\r\nPATIENTS AND SETTINGS One hundred eighteen patients with T3
-        rectal cancer met the selection criteria for the study; 26 achieved complete
-        pathological response (22%).\r\nMAIN OUTCOME MEASURES Outcomes in terms of
-        complete pathological response and oncological outcomes such as disease-free
-        and overall survival were analyzed.\r\nRESULTS Patients with complete pathological
-        response had significantly less preoperative invasion than those with no complete
-        pathological response (p &lt; 0.001). Depth of invasion was the only variable
-        associated with complete pathological response (p &lt; 0.002), and the likelihood
-        of complete pathological response decreased by 35% for every millimeter of
-        invasion. Complete pathological response was associated with increased disease-free
-        survival (p = 0.018) and a lower risk of cancer progression (p = 0.046). Depth
-        of invasion was associated with an increased risk of death after surgery;
-        HR increased by 1.07 (95% CI, 1.00-1.15) for each 1-mm increase in invasion.\r\nLIMITATIONS
-        This was a retrospective study with the usual limitations, although these
-        were minimized through the use of a clinician-driven prospective database.\r\nCONCLUSIONS
-        The smaller the degree of T3 invasion, the higher the chance of achieving
-        complete pathological response (up to 35%), which is associated with improved
-        disease-free and overall survival. A higher complete pathological response
-        rate is observed in early T3 disease in comparison with more extensive T3
-        invasion.</Abstract>\r\n    <AuthorList>Wilkins,Simon,|Haydon,Andrew,|Porter,Ian,|Oliva,Karen,|Staples,Margaret,|Carne,Peter,|McMurrick,Paul,|Bell,Stephen,</AuthorList>\r\n
-        \   <AuthorCount>8</AuthorCount>\r\n    <KeywordList />\r\n    <DocumentTypeList>Journal
+        \   <CopyrightCity />\r\n    <CopyrightStateProvince />\r\n    <CopyrightCountry>UNITED
+        STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
+        \   <PublicationItemID>79754826</PublicationItemID>\r\n    <Title>Inhibition
+        of pathological phenotype of hypertrophic scar fibroblasts via co-culture
+        with adipose derived stem cells.</Title>\r\n    <Abstract>Hypertrophic scar
+        (HS) is a dermal fibroproliferative disease characterized by fibroblast over-proliferation,
+        overproduction and deposition of the extracellular matrix (ECM). Growing evidence
+        demonstrated that adipose derived stem cells (ASCs) secrete a plethora of
+        trophic and anti-fibrotic factors, which suppress inflammation and ameliorate
+        fibrosis of different tissues. However, few studies investigate their effect
+        on repressing HS activity. This study evaluated the suppressing effect of
+        ASCs on HS fibroblast bioactivity and the possible mechanism via a co-culture
+        model. HS-derived fibroblasts (HSFs) and ASCs were isolated from individual
+        patients. HSFs or HSFs treated with transforming growth factor-ß1 (TGF-ß1)
+        were co-cultured with ASCs and the change of HSF cellular behaviors, such
+        as cell proliferation, migration, contractility and gene/protein expression
+        of scar-related molecules, were evaluated by cell counting assay, cell cycle
+        analysis, scratch wound assay, fibroblast-populated collagen lattice (FPCL)
+        contractility assay, real-time quantitative polymerase chain reaction (RT-qPCR),
+        ELISA, and western blotting assay. After 5 days of ASC co-culture treatment,
+        the expression levels of collagen I (Col 1), collagen III (Col 3), fibronectin
+        (FN), TGF-ß1, interleukin-6 (IL-6), interleukin-8(IL-8), connective tissue
+        growth factor (CTGF) and alpha-smooth muscle actin (a-SMA) in HSFs decreased
+        significantly while the expression levels of decorin (DCN) and MMP1/TIMP1
+        ration increased significantly. Besides, after 5 days of exogenous TGF-ß1
+        stimulation, the expression levels of collagen 1, fibronectin, TGF-ß1, IL-6,
+        CTGF and a-SMA in HSFs increased significantly. Impressively, all these increased
+        gene expression levels were reversed by 5 days of ASCs co-culture treatment.
+        Additionally, the proliferation, migration and contractility of HSFs were
+        all significantly reduced by ASC co-culture treatment. Furthermore, the protein
+        levels of TGF-ß1 and intracellular signal pathway related molecules,such as
+        p-smad2, p-smad3, p-Stat3 and p-ERK, were down-regulated significantly in
+        HSFs after 5 days of ASCs co-culture treatment.This study demonstrated that
+        co-culture of HSFs with ASCs not only inhibited proliferation, migration and
+        contractility of HSFs but also decreased the expression levels of HSF-related
+        or TGF-ß1-induced molecules. Additionally, the anti-fibrotic effect on HSFs
+        was likely mediated by the inhibition of multiple intracellular signaling.
+        The results of this study suggest the therapeutic potential of ASCs for HS
+        treatment, which is worth of further investigation.</Abstract>\r\n    <AuthorList>Deng,Jingcheng,|Shi,Yuan,|Gao,Zhen,|Zhang,Wen,Jie|Wu,Xiaoli,|Cao,Weigang,|Liu,Wei,</AuthorList>\r\n
+        \   <AuthorCount>7</AuthorCount>\r\n    <KeywordList />\r\n    <DocumentTypeList>Journal
         Article</DocumentTypeList>\r\n    <DocumentCategory>Journal Document</DocumentCategory>\r\n
         \   <NumberOfReferences xsi:nil=\"true\" />\r\n    <TimesCited xsi:nil=\"true\"
-        />\r\n    <TimesNotSelfCited xsi:nil=\"true\" />\r\n    <PMID>27050597</PMID>\r\n
-        \   <PublicationSourceTitle>Diseases of the colon &amp; rectum</PublicationSourceTitle>\r\n
-        \   <Volume>59</Volume>\r\n    <Issue>5</Issue>\r\n    <Pagination>361-368</Pagination>\r\n
-        \   <PublicationDate>2016-05-01T00:00:00</PublicationDate>\r\n    <PublicationYear>2016</PublicationYear>\r\n
-        \   <PublicationSubjectCategoryList />\r\n    <ISSN>0012-3706</ISSN>\r\n    <DOI>10.1097/DCR.0000000000000564</DOI>\r\n
+        />\r\n    <TimesNotSelfCited xsi:nil=\"true\" />\r\n    <PMID>28562226</PMID>\r\n
+        \   <PublicationSourceTitle>Tissue engineering. Part A</PublicationSourceTitle>\r\n
+        \   <PublicationDate>2017-05-31T00:00:00</PublicationDate>\r\n    <PublicationYear>2017</PublicationYear>\r\n
+        \   <PublicationSubjectCategoryList />\r\n    <ISSN>1937-3341</ISSN>\r\n    <DOI>10.1089/ten.TEA.2016.0550</DOI>\r\n
         \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
-        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>17</OrdinalRank>\r\n
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>7</OrdinalRank>\r\n
         \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher />\r\n
-        \   <CopyrightCity />\r\n    <PublicationImpactFactorList>3.749,2014,ClosestToPublicationYear|3.749,2014,MostRecentYear</PublicationImpactFactorList>\r\n
-        \   <PublicationCategoryRankingList>22/76;GASTROENTEROLOGY &amp; HEPATOLOGY;2014;SC;ClosestToPublicationYear|18/198;SURGERY;2014;SC;ClosestToPublicationYear|22/76;GASTROENTEROLOGY
-        &amp; HEPATOLOGY;2014;SC;MostRecentYear|18/198;SURGERY;2014;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <CopyrightCity />\r\n    <CopyrightStateProvince />\r\n    <CopyrightCountry>UNITED
+        STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
+        \   <PublicationItemID>79754736</PublicationItemID>\r\n    <Title>Clinico-pathological
+        features and outcomes of progression of CLL on the BCL2 inhibitor venetoclax.</Title>\r\n
+        \   <Abstract>The BCL2 inhibitor venetoclax achieves responses in ~79% of
+        patients with relapsed or refractory chronic lymphocytic leukemia/small lymphocytic
+        lymphoma (RR-CLL/SLL), irrespective of risk factors associated with poor response
+        to chemo-immunotherapy. A limitation of this targeted therapy is progressive
+        disease (PD) in some patients. To define the risk factors for progression,
+        the clinico-pathological features of PD and the outcomes for patients after
+        venetoclax failure, we analyzed 67 heavily pre-treated patients on three early
+        phase clinical trials. Investigations at progression included PET scan and
+        biopsy. Twenty-five (37%) patients manifested PD on therapy: 17 with Richter
+        transformation (RT) and eight with progressive CLL/SLL. RT occurred significantly
+        earlier (median 7.9 months) than progressive CLL (median 23.4 months) (p =
+        0.003). Among patients who received the recommended phase II dose of venetoclax
+        or higher (=400mg/day), fludarabine-refractoriness and complex karyotype were
+        associated with progression (hazard ratio 7.01 (95%CI 1.7 - 28.5); p=0.002
+        and 6.6 [1.5 - 29.8]; p = 0.005, respectively); while del(17p) and/or \r\n
+        mutation were not (p=0.75). Median post-progression survival was 13 (&lt;1
+        - 49.9) months. BTK inhibitors were active in progressive CLL, but outcomes
+        were mixed. Patients with disease that is fludarabine-refractory or has complex
+        cytogenetics should have occult RT excluded before initiating venetoclax therapy.</Abstract>\r\n
+        \   <AuthorList>Anderson,Mary,Ann|Tam,Constantine,|Lew,Thomas,E|Juneja,Surender,|Juneja,Manu,|Westerman,David,|Wall,Meaghan,|Lade,Stephen,|Gorelik,Alexandra,|Huang,David,CS|Seymour,John,F|Roberts,Andrew,W</AuthorList>\r\n
+        \   <AuthorCount>12</AuthorCount>\r\n    <KeywordList />\r\n    <DocumentTypeList>Journal
+        Article</DocumentTypeList>\r\n    <DocumentCategory>Journal Document</DocumentCategory>\r\n
+        \   <NumberOfReferences xsi:nil=\"true\" />\r\n    <TimesCited xsi:nil=\"true\"
+        />\r\n    <TimesNotSelfCited xsi:nil=\"true\" />\r\n    <PMID>28473407</PMID>\r\n
+        \   <PublicationSourceTitle>Blood</PublicationSourceTitle>\r\n    <PublicationDate>2017-05-04T00:00:00</PublicationDate>\r\n
+        \   <PublicationYear>2017</PublicationYear>\r\n    <PublicationSubjectCategoryList
+        />\r\n    <ISSN>0006-4971</ISSN>\r\n    <DOI>10.1182/blood-2017-01-763003</DOI>\r\n
+        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>8</OrdinalRank>\r\n
+        \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
+        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>AMER SOC
+        OF HEMATOLOGY</CopyrightPublisher>\r\n    <CopyrightCity />\r\n    <PublicationImpactFactorList>11.847,2015,ClosestToPublicationYear|11.847,2015,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>2/70;HEMATOLOGY;2015;SC;ClosestToPublicationYear|2/70;HEMATOLOGY;2015;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
         \   <CopyrightStateProvince />\r\n    <CopyrightCountry>UNITED STATES</CopyrightCountry>\r\n
-        \ </PublicationItem>\r\n  <PublicationItem>\r\n    <PublicationItemID>75605533</PublicationItemID>\r\n
-        \   <Title>[Clinico-pathological characteristics and prognosis of IgA nephropathy
-        patients with microalbuminuria and deposition of complement C3].</Title>\r\n
-        \   <Abstract>OBJECTIVE To analyze the clinical and pathological data and
-        prognosis of IgA nephropathy patients with microalbuminuria and deposition
-        of C3, and to investigate the significance of C3 deposition in IgA nephropathy
-        with microalbuminuria.\r\nMETHODS The clinical and pathological data of 127
-        IgA nephropathy patients with microalbuminuria confirmed by renal biopsy in
-        the Jining No.1 People's Hospital from January 2009 to January 2015 and minimum
-        6-month follow-up was reviewed, and patients were divided into positive group
-        (72 cases, 56.7%)and negative group (55 cases, 43.3%) according to the deposition
-        of C3 in the mesangial area of glomeruli. 24 h urine quantitative protein
-        being more than 1 g, or serum creatinine level becoming abnormal or double
-        by renal biopsy was defined as endpoint of follow-up. Renal survival was calculated
-        by Kaplan-Meier survival analysis.\r\nRESULTS A total of 127 IgA nephropathy
-        patients with microalbuminuria were followed up successfully, with an average
-        follow-up of (49.6±22.7) months. 24 h urine albumin[(261.3±47.4) vs (238.7±51.9)
-        mg, P=0.011], serum creatinine value[98.0(56.4, 118.6) vs 85.7(51.9, 107.8)
-        µmol/L, P=0.003], uric acid value[(384.0±93.7) vs (360.5±88.4) µmol/L, P=0.043]
-        and serum IgA value[(3.36±1.17) vs (3.12±1.05) g/L, P=0.044] were significantly
-        higher in the C3 positive group than those in the negative group, while the
-        serum complement C3 was significantly lower [(0.70±0.42) vs (0.98±0.49) mg,
-        P=0.047]. Pathological changes [Lee's grade ? and above ?: 21(16.5%) vs 11(8.7%),
-        P=0.034], glomerular sclerosis or adhesions [29(22.8%) vs 19(15.0%), P=0.047],
-        renal tubular atrophy or interstitial fibrosis [13(10.2%) vs 8(6.3%), P=0.027]
-        and crescent formation [7(5.5%) vs 2(1.6%), P=0.035] in the complement C3
-        positive group were more severe than those in the negative group. 38 cases
-        of complement C3 positive group and 14 cases of negative group accomplished
-        the study, and Kaplan-Meier survival analysis showed that there was a significant
-        difference in the median survival time between the two groups [(52.6±8.9)
-        vs (66.1±9.7) months, P=0.019].\r\nCONCLUSIONS The clinical and pathological
-        features in IgA nephropathy patients with microalbuminuria and deposition
-        of complement C3 were more severe than those without complement C3 deposition,
-        and the prognosis was not optimistic. Therefore, early and active intervention
-        treatment should be considered for these patients.</Abstract>\r\n    <AuthorList>Guo,Z,Y|Zhou,S,G|Wang,Y,Y|Li,X,|Xu,Y,|Du,X,Y|Zhang,W,|Wu,Y,M</AuthorList>\r\n
+        \ </PublicationItem>\r\n  <PublicationItem>\r\n    <PublicationItemID>79752527</PublicationItemID>\r\n
+        \   <Title>Clear Cell Carcinoma of the Uterine Cervix: A Clinical and Pathological
+        Analysis of 47 Patients Without Intrauterine Diethylstilbestrol Exposure.</Title>\r\n
+        \   <Abstract>OBJECTIVES The aim of this study was to summarize the clinical
+        and pathological characteristics and to conduct prognosis analysis of patients
+        who were diagnosed with clear cell carcinoma of the uterine cervix (CCCUC)
+        and without a history of exposure to diethylstilbestrol.\r\nMETHODS We performed
+        a retrospective review of all the patients with CCCUC who were diagnosed and
+        treated at Zhejiang Cancer Hospital between 1998 and 2014. Charts were reviewed
+        for clinical and pathological characteristics, and prognosis analysis was
+        conducted.\r\nRESULTS A total of 47 patients were included. Median age was
+        52 years. No patient had a history of exposure to diethylstilbestrol. The
+        International Federation of Gynecology and Obstetrics stage distribution was
+        55.3% (n = 26) stage I, 40.4% (n = 19) stage II, 2.1% (n = 1) stage III, and
+        2.1% (n = 1) stage IV. Forty-two patients (89.4%) underwent radical hysterectomy
+        and pelvic lymphadenectomy. Pathological examination revealed deep cervical
+        stromal invasion (greater than two thirds) in 20 patients (48.4%), pelvic
+        lymph node (PLN) metastasis in 10 patients (23.8%), lymphovascular space involvement
+        in 9 patients (21.4%), and ovarian metastasis in 1 patient (2.4%). Advanced
+        tumor stage (IIB-IV), larger tumor size (&gt;4 cm), and PLN metastasis had
+        negative effects on progression-free survival (PFS) and overall survival (OS)
+        (P &lt; 0.05). Adjuvant radiation therapy alone or concurrent chemoradiation
+        therapy after radical surgery did not affect PFS or OS in patients with risk
+        factors (P &gt; 0.05).\r\nCONCLUSIONS International Federation of Gynecology
+        and Obstetrics stage, tumor size, and PLN status were prognostic factors for
+        both PFS and OS in patients with CCCUC. The long-term effects of adjuvant
+        radiation therapy or concurrent chemoradiation therapy may be limited for
+        CCCUC patients with risk factors. Future larger case series or clinical trials
+        are required to confirm these findings.</Abstract>\r\n    <AuthorList>Yang,Li,|Zheng,Aiwen,|Zhang,Xiang,|Fang,Xianhua,|Sun,Wenyong,|Chen,Yaqing,</AuthorList>\r\n
+        \   <AuthorCount>6</AuthorCount>\r\n    <KeywordList />\r\n    <DocumentTypeList>Journal
+        Article</DocumentTypeList>\r\n    <DocumentCategory>Journal Document</DocumentCategory>\r\n
+        \   <NumberOfReferences xsi:nil=\"true\" />\r\n    <TimesCited xsi:nil=\"true\"
+        />\r\n    <TimesNotSelfCited xsi:nil=\"true\" />\r\n    <PMID>28498261</PMID>\r\n
+        \   <PublicationSourceTitle>International journal of gynecological cancer
+        </PublicationSourceTitle>\r\n    <Volume>27</Volume>\r\n    <Issue>5</Issue>\r\n
+        \   <Pagination>1009-1014</Pagination>\r\n    <PublicationDate>2017-06-01T00:00:00</PublicationDate>\r\n
+        \   <PublicationYear>2017</PublicationYear>\r\n    <PublicationSubjectCategoryList
+        />\r\n    <ISSN>1048-891X</ISSN>\r\n    <DOI>10.1097/IGC.0000000000000992</DOI>\r\n
+        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>9</OrdinalRank>\r\n
+        \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
+        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher />\r\n
+        \   <CopyrightCity />\r\n    <PublicationImpactFactorList>2.116,2015,ClosestToPublicationYear|2.116,2015,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>149/213;ONCOLOGY;2015;SC;ClosestToPublicationYear|31/80;OBSTETRICS
+        &amp; GYNECOLOGY;2015;SC;ClosestToPublicationYear|149/213;ONCOLOGY;2015;SC;MostRecentYear|31/80;OBSTETRICS
+        &amp; GYNECOLOGY;2015;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <CopyrightStateProvince />\r\n    <CopyrightCountry>UNITED STATES</CopyrightCountry>\r\n
+        \ </PublicationItem>\r\n  <PublicationItem>\r\n    <PublicationItemID>79751083</PublicationItemID>\r\n
+        \   <Title>Chronicles of a reductase: Biochemistry, genetics and physio-pathological
+        role of GSNOR.</Title>\r\n    <Abstract>S-nitrosylation is a major redox posttranslational
+        modification involved in cell signaling. The steady state concentration of
+        S-nitrosylated proteins depends on the balance between the relative ability
+        to generate nitric oxide (NO) via NO synthase and to reduce nitrosothiols
+        by denitrosylases. Numerous works have been published in last decades regarding
+        the role of NO and S-nitrosylation in the regulation of protein structure
+        and function, and in driving cellular activities in vertebrates. Notwithstanding
+        an increasing number of observations indicates that impairment of denitrosylation
+        equally affects cellular homeostasis, there is still no report providing comprehensive
+        knowledge on the impact that denitrosylation has on maintaining correct physiological
+        processes and organ activities. Among denitrosylases, S-nitrosoglutathione
+        reductase (GSNOR) represents the prototype enzyme to disclose how denitrosylation
+        plays a crucial role in tuning NO-bioactivity and how much it deeply impacts
+        on cell homeostasis and human patho-physiology. In this review we attempt
+        to illustrate the history of GSNOR discovery and provide the evidence so far
+        reported in support of GSNOR implications in development and human disease.</Abstract>\r\n
+        \   <AuthorList>Rizza,Salvatore,|Filomeni,Giuseppe,</AuthorList>\r\n    <AuthorCount>2</AuthorCount>\r\n
+        \   <KeywordList>ADH|FDH|GSNOR|Nitric oxide|Pathogenesis|Redox|S-nitrosoglutathione
+        reductase|S-nitrosylation|Signaling</KeywordList>\r\n    <DocumentTypeList>Journal
+        Article|Review</DocumentTypeList>\r\n    <DocumentCategory>Journal Document</DocumentCategory>\r\n
+        \   <NumberOfReferences xsi:nil=\"true\" />\r\n    <TimesCited xsi:nil=\"true\"
+        />\r\n    <TimesNotSelfCited xsi:nil=\"true\" />\r\n    <PMID>28533171</PMID>\r\n
+        \   <PublicationSourceTitle>Free radical biology and medicine</PublicationSourceTitle>\r\n
+        \   <Volume>110</Volume>\r\n    <Pagination>19-30</Pagination>\r\n    <PublicationDate>2017-05-19T00:00:00</PublicationDate>\r\n
+        \   <PublicationYear>2017</PublicationYear>\r\n    <PublicationSubjectCategoryList
+        />\r\n    <ISSN>0891-5849</ISSN>\r\n    <DOI>10.1016/j.freeradbiomed.2017.05.014</DOI>\r\n
+        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>10</OrdinalRank>\r\n
+        \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
+        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>ELSEVIER
+        INC</CopyrightPublisher>\r\n    <CopyrightCity />\r\n    <PublicationImpactFactorList>5.784,2015,ClosestToPublicationYear|5.784,2015,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>37/289;BIOCHEMISTRY &amp; MOLECULAR BIOLOGY;2015;SC;ClosestToPublicationYear|14/133;ENDOCRINOLOGY
+        &amp; METABOLISM;2015;SC;ClosestToPublicationYear|37/289;BIOCHEMISTRY &amp;
+        MOLECULAR BIOLOGY;2015;SC;MostRecentYear|14/133;ENDOCRINOLOGY &amp; METABOLISM;2015;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <CopyrightStateProvince />\r\n    <CopyrightCountry>UNITED STATES</CopyrightCountry>\r\n
+        \ </PublicationItem>\r\n  <PublicationItem>\r\n    <PublicationItemID>79750087</PublicationItemID>\r\n
+        \   <Title>Multiple long bone cysts revealed by MRI in trichorhinophalangeal
+        syndrome type II predisposing to pathological fractures.</Title>\r\n    <Abstract>Trichorhinophalangeal
+        syndrome type II is a rare genetic disorder with the few published case reports
+        mainly reporting the radiographic skeletal manifestations. There are no published
+        imaging reports of long bone cysts involving multiple bones in this condition.
+        We report a unique case of bone cysts involving multiple long bones detected
+        with MRI in a patient with trichorhinophalangeal syndrome type II complicated
+        by a subsequent pathological fracture. It is possible that the bone cysts
+        are a previously undescribed feature of this syndrome; however, the evidence
+        is insufficient to establish a definite association. Chromosomal abnormality
+        identified in this patient is consistent with trichorhinophalangeal syndrome
+        type II with no unusual features. Although the nature of these bone cysts
+        is unclear, they are one of the causes of the known increased fracture risk
+        observed in this syndrome.</Abstract>\r\n    <AuthorList>Konala,Praveen,|Kiely,Nigel,|Noakes,Charlotte,|Blair,Edward,|Cassar-Pullicino,Victor,N</AuthorList>\r\n
+        \   <AuthorCount>5</AuthorCount>\r\n    <KeywordList>Array-based comparative
+        genomic hybridisation|Bone cysts|Child|Fracture|Langer-Giedion syndrome|Magnetic
+        resonance imaging|Trichorhinophalangeal syndrome</KeywordList>\r\n    <DocumentTypeList>Journal
+        Article</DocumentTypeList>\r\n    <DocumentCategory>Journal Document</DocumentCategory>\r\n
+        \   <NumberOfReferences xsi:nil=\"true\" />\r\n    <TimesCited xsi:nil=\"true\"
+        />\r\n    <TimesNotSelfCited xsi:nil=\"true\" />\r\n    <PMID>28493010</PMID>\r\n
+        \   <PublicationSourceTitle>Pediatric radiology</PublicationSourceTitle>\r\n
+        \   <PublicationDate>2017-05-10T00:00:00</PublicationDate>\r\n    <PublicationYear>2017</PublicationYear>\r\n
+        \   <PublicationSubjectCategoryList />\r\n    <ISSN>0301-0449</ISSN>\r\n    <DOI>10.1007/s00247-017-3839-4</DOI>\r\n
+        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>11</OrdinalRank>\r\n
+        \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
+        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher />\r\n
+        \   <CopyrightCity />\r\n    <PublicationImpactFactorList>1.525,2015,ClosestToPublicationYear|1.525,2015,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>60/120;PEDIATRICS;2015;SC;ClosestToPublicationYear|82/124;RADIOLOGY,
+        NUCLEAR MEDICINE &amp; MEDICAL IMAGING;2015;SC;ClosestToPublicationYear|60/120;PEDIATRICS;2015;SC;MostRecentYear|82/124;RADIOLOGY,
+        NUCLEAR MEDICINE &amp; MEDICAL IMAGING;2015;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <CopyrightStateProvince />\r\n    <CopyrightCountry>GERMANY</CopyrightCountry>\r\n
+        \ </PublicationItem>\r\n  <PublicationItem>\r\n    <PublicationItemID>79750068</PublicationItemID>\r\n
+        \   <Title>[Pathological Complete Response of Metastatic Testicular Tumor
+        with Persistent Low Level Positive Human Chorionic Gonadotropin after Chemotherapy].</Title>\r\n
+        \   <Abstract>We describe a case of testicular tumor with multiple metastasis
+        to the lung,retoroperitoneal lymph node, and brain. After chemotherapy the
+        retroperitoneal lymph node and brain metastasis disappeared,but the multiple
+        pulmonary metastases but not disappear,although they were reduced in size.
+        Since the human chorionic gonadotoropin (HCG) was persistently dected at a
+        low level,we performed a testosterone tolerance test. The HCG level became
+        undetectable for a while,but was detected at a low level again. Then the patient
+        underwent residual tumor removal of some of the residual pulmonary disease,which
+        was diagnosed as tumor necrosis. The patient has been followed on an ambulatory
+        basis after surgery for 12 months without recurrence. In this case a definitive
+        diagnosis was difficult,because of the low positive level of HCG.</Abstract>\r\n
+        \   <AuthorList>Jikuya,Ryosuke,|Hashizume,Akihito,|Tatenuma,Tomoyuki,|Mizuno,Nobuhiko,|Muraoka,Kentaro,|Kawai,Masaki,|Takizawa,Akitoshi,|Kishida,Takeshi,</AuthorList>\r\n
         \   <AuthorCount>8</AuthorCount>\r\n    <KeywordList />\r\n    <DocumentTypeList>English
         Abstract|Journal Article</DocumentTypeList>\r\n    <DocumentCategory>Journal
         Document</DocumentCategory>\r\n    <NumberOfReferences xsi:nil=\"true\" />\r\n
         \   <TimesCited xsi:nil=\"true\" />\r\n    <TimesNotSelfCited xsi:nil=\"true\"
-        />\r\n    <PMID>27055509</PMID>\r\n    <PublicationSourceTitle>Zhonghua yi
-        xue za zhi</PublicationSourceTitle>\r\n    <Volume>96</Volume>\r\n    <Issue>9</Issue>\r\n
-        \   <Pagination>707-711</Pagination>\r\n    <PublicationDate>2016-03-01T00:00:00</PublicationDate>\r\n
+        />\r\n    <PMID>28331170</PMID>\r\n    <PublicationSourceTitle>Hinyokika kiyo.
+        Acta urologica Japonica</PublicationSourceTitle>\r\n    <Volume>63</Volume>\r\n
+        \   <Issue>3</Issue>\r\n    <Pagination>119-124</Pagination>\r\n    <PublicationDate>2017-03-01T00:00:00</PublicationDate>\r\n
+        \   <PublicationYear>2017</PublicationYear>\r\n    <PublicationSubjectCategoryList
+        />\r\n    <ISSN>0018-1994</ISSN>\r\n    <DOI>10.14989/ActaUrolJap_63_3_119</DOI>\r\n
+        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>12</OrdinalRank>\r\n
+        \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
+        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher />\r\n
+        \   <CopyrightCity />\r\n    <CopyrightStateProvince />\r\n    <CopyrightCountry>JAPAN</CopyrightCountry>\r\n
+        \ </PublicationItem>\r\n  <PublicationItem>\r\n    <PublicationItemID>79748046</PublicationItemID>\r\n
+        \   <Title>Clinico-Pathological Patterns of Patients Who Underwent Orbital
+        Exenteration in a Tertiary Eye Hospital of Nepal.</Title>\r\n    <Abstract>BACKGROUND
+        Orbital exenteration is a destructive procedure performed by removing all
+        or part of the orbital contents along with entire eyeball. It is a procedure
+        reserved for life threatening malignancies and some nonmalignant disorders
+        which are not controlled by conservative management.\r\nMETHODS This is a
+        retrospective study done on patients who underwent orbital exenteration at
+        Tilganga Institute of Ophthalmology from1 January 2006- 30 in December 2014.\r\nRESULTS
+        The mean age of patients was 30 years (range 1-78), with male preponderance
+        of 15(55.6%. Overall presenting duration of eye morbidity was 18 months (2
+        months-8.5 years). The most common presenting complaint was protrusion of
+        eyeball1, 4(50%), primary site of tumor being intraocular in 10 patients (35.7%,)
+        and total orbital exenteration was the most commonly performed type of surgery
+        in 16(57.1%) out of 27 patients. The most common etiology responsible for
+        orbital exenteration, in pediatric age group of 9/27 patients (64.2%), was
+        retinoblastoma whereas conjunctival squamous cell carcinoma (SCC)accounts
+        for 5 patients (38.4%) in adults. Overall, the most common cause of orbital
+        exenteration was retinoblastoma 9(32.1%).\r\nCONCLUSION The most common etiologies
+        requiring orbital exenteration were retinoblastoma (in children and overall)
+        and conjunctival squamous cell carcinoma (in adults), both diseases that could
+        be addressed with less invasive treatment modality if detected earlier in
+        the disease process. Designing strategy is important for early detection and
+        treatment of these conditions, which would decrease disease morbidity and
+        prognosis, potentially sparing sight and life.</Abstract>\r\n    <AuthorList>Ben,Limbu,|Aemero,Mengesha,|Gushchin,Anya,G|Moore,Grant,H|Rohit,Saiju,</AuthorList>\r\n
+        \   <AuthorCount>5</AuthorCount>\r\n    <KeywordList>Nepal|Orbital exenteration|histopathology
+        patterns|proptosis|retinoblastoma|squamous cell carcinoma</KeywordList>\r\n
+        \   <DocumentTypeList>Journal Article</DocumentTypeList>\r\n    <DocumentCategory>Journal
+        Document</DocumentCategory>\r\n    <NumberOfReferences xsi:nil=\"true\" />\r\n
+        \   <TimesCited xsi:nil=\"true\" />\r\n    <TimesNotSelfCited xsi:nil=\"true\"
+        />\r\n    <PMID>28450769</PMID>\r\n    <PublicationSourceTitle>Ethiopian journal
+        of health sciences</PublicationSourceTitle>\r\n    <Volume>26</Volume>\r\n
+        \   <Issue>6</Issue>\r\n    <Pagination>543-548</Pagination>\r\n    <PublicationDate>2016-11-01T00:00:00</PublicationDate>\r\n
         \   <PublicationYear>2016</PublicationYear>\r\n    <PublicationSubjectCategoryList
-        />\r\n    <ISSN>0376-2491</ISSN>\r\n    <DOI>10.3760/cma.j.issn.0376-2491.2016.09.009</DOI>\r\n
+        />\r\n    <ISSN>1029-1857</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\"
+        />\r\n    <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank xsi:nil=\"true\"
+        />\r\n    <OrdinalRank>13</OrdinalRank>\r\n    <NormalizedRank xsi:nil=\"true\"
+        />\r\n    <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
+        \   <CopyrightPublisher />\r\n    <CopyrightCity />\r\n    <CopyrightStateProvince
+        />\r\n    <CopyrightCountry>ETHIOPIA</CopyrightCountry>\r\n  </PublicationItem>\r\n
+        \ <PublicationItem>\r\n    <PublicationItemID>79746576</PublicationItemID>\r\n
+        \   <Title>Infantile myofibromatosis - a clinical and pathological diagnostic
+        challenge.</Title>\r\n    <Abstract>Infantile myofibromatosis is a rare disorder
+        of fibroblastic/myofibroblastic proliferation and represents the most frequent
+        type of mesenchymal tumor in the neonatal period and primary infancy.Three
+        clinical types have been described: solitary, multicentric, and generalized
+        (with visceral involvement). A correct characterization of the histopathology
+        is essential to diagnose these neoplasias in early infancy. We present a case
+        of multicentric infantile myofibromatosis with regression over time.</Abstract>\r\n
+        \   <AuthorList>Mota,Fernando,|Machado,Susana,|Moreno,Filipa,|Barbosa,Telma,|Selores,Manuela,</AuthorList>\r\n
+        \   <AuthorCount>5</AuthorCount>\r\n    <KeywordList />\r\n    <DocumentTypeList>Journal
+        Article</DocumentTypeList>\r\n    <DocumentCategory>Journal Document</DocumentCategory>\r\n
+        \   <NumberOfReferences xsi:nil=\"true\" />\r\n    <TimesCited xsi:nil=\"true\"
+        />\r\n    <TimesNotSelfCited xsi:nil=\"true\" />\r\n    <PMID>28541875</PMID>\r\n
+        \   <PublicationSourceTitle>Dermatology online journal</PublicationSourceTitle>\r\n
+        \   <Volume>23</Volume>\r\n    <Issue>4</Issue>\r\n    <PublicationDate>2017-04-15T00:00:00</PublicationDate>\r\n
+        \   <PublicationYear>2017</PublicationYear>\r\n    <PublicationSubjectCategoryList
+        />\r\n    <ISSN>1087-2108</ISSN>\r\n    <ConferenceStartDate xsi:nil=\"true\"
+        />\r\n    <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank xsi:nil=\"true\"
+        />\r\n    <OrdinalRank>14</OrdinalRank>\r\n    <NormalizedRank xsi:nil=\"true\"
+        />\r\n    <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
+        \   <CopyrightPublisher />\r\n    <CopyrightCity />\r\n    <CopyrightStateProvince
+        />\r\n    <CopyrightCountry>UNITED STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n
+        \ <PublicationItem>\r\n    <PublicationItemID>79744922</PublicationItemID>\r\n
+        \   <Title>In-depth clinico-pathological examination of RNA foci in a large
+        cohort of C9ORF72 expansion carriers.</Title>\r\n    <Abstract>A growing body
+        of evidence suggests that a loss of chromosome 9 open reading frame 72 (C9ORF72)
+        expression, formation of dipeptide-repeat proteins, and generation of RNA
+        foci contribute to disease pathogenesis in amyotrophic lateral sclerosis and
+        frontotemporal dementia. Although the levels of C9ORF72 transcripts and dipeptide-repeat
+        proteins have already been examined thoroughly, much remains unknown about
+        the role of RNA foci in C9ORF72-linked diseases. As such, we performed a comprehensive
+        RNA foci study in an extensive pathological cohort of C9ORF72 expansion carriers
+        (n = 63). We evaluated two brain regions using a newly developed computer-automated
+        pipeline allowing recognition of cell nuclei and RNA foci (sense and antisense)
+        supplemented by manual counting. In the frontal cortex, the percentage of
+        cells with sense or antisense RNA foci was 26 or 12%, respectively. In the
+        cerebellum, 23% of granule cells contained sense RNA foci and 1% antisense
+        RNA foci. Interestingly, the highest percentage of cells with RNA foci was
+        observed in cerebellar Purkinje cells (~70%). In general, more cells contained
+        sense RNA foci than antisense RNA foci; however, when antisense RNA foci were
+        present, they were usually more abundant. We also observed that an increase
+        in the percentage of cells with antisense RNA foci was associated with a delayed
+        age at onset in the frontal cortex (r = 0.43, p = 0.003), whereas no other
+        associations with clinico-pathological features were seen. Importantly, our
+        large-scale study is the first to provide conclusive evidence that RNA foci
+        are not the determining factor of the clinico-pathological variability observed
+        in C9ORF72 expansion carriers and it emphasizes that the distribution of RNA
+        foci does not follow the pattern of neurodegeneration, stressing the complex
+        interplay between different aspects of C9ORF72-related diseases.</Abstract>\r\n
+        \   <AuthorList>DeJesus-Hernandez,Mariely,|Finch,NiCole,A|Wang,Xue,|Gendron,Tania,F|Bieniek,Kevin,F|Heckman,Michael,G|Vasilevich,Aliaksei,|Murray,Melissa,E|Rousseau,Linda,|Weesner,Rachael,|Lucido,Anthony,|Parsons,Meeia,|Chew,Jeannie,|Josephs,Keith,A|Parisi,Joseph,E|Knopman,David,S|Petersen,Ronald,C|Boeve,Bradley,F|Graff-Radford,Neill,R|De
+        Boer,Jan,|Asmann,Yan,W|Petrucelli,Leonard,|Boylan,Kevin,B|Dickson,Dennis,W|van
+        Blitterswijk,Marka,|Rademakers,Rosa,</AuthorList>\r\n    <AuthorCount>26</AuthorCount>\r\n
+        \   <KeywordList>Amyotrophic lateral sclerosis|C9ORF72|Frontotemporal dementia|Frontotemporal
+        lobar degeneration|Motor neuron disease|RNA foci</KeywordList>\r\n    <DocumentTypeList>Journal
+        Article</DocumentTypeList>\r\n    <DocumentCategory>Journal Document</DocumentCategory>\r\n
+        \   <NumberOfReferences xsi:nil=\"true\" />\r\n    <TimesCited xsi:nil=\"true\"
+        />\r\n    <TimesNotSelfCited xsi:nil=\"true\" />\r\n    <PMID>28508101</PMID>\r\n
+        \   <PublicationSourceTitle>Acta neuropathologica</PublicationSourceTitle>\r\n
+        \   <PublicationDate>2017-05-15T00:00:00</PublicationDate>\r\n    <PublicationYear>2017</PublicationYear>\r\n
+        \   <PublicationSubjectCategoryList />\r\n    <ISSN>0001-6322</ISSN>\r\n    <DOI>10.1007/s00401-017-1725-7</DOI>\r\n
+        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>15</OrdinalRank>\r\n
+        \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
+        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher />\r\n
+        \   <CopyrightCity />\r\n    <PublicationImpactFactorList>11.36,2015,ClosestToPublicationYear|11.36,2015,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>4/193;CLINICAL NEUROLOGY;2015;SC;ClosestToPublicationYear|10/256;NEUROSCIENCES;2015;SC;ClosestToPublicationYear|2/79;PATHOLOGY;2015;SC;ClosestToPublicationYear|4/193;CLINICAL
+        NEUROLOGY;2015;SC;MostRecentYear|10/256;NEUROSCIENCES;2015;SC;MostRecentYear|2/79;PATHOLOGY;2015;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <CopyrightStateProvince />\r\n    <CopyrightCountry>GERMANY</CopyrightCountry>\r\n
+        \ </PublicationItem>\r\n  <PublicationItem>\r\n    <PublicationItemID>79742867</PublicationItemID>\r\n
+        \   <Title>Radiological and pathological evaluation of the level of arterial
+        division after colon cancer surgery.</Title>\r\n    <Abstract>AIM In aiming
+        to cure patients with colorectal cancer surgery, the surgeon must carefully
+        dissect the mesocolon and mesorectum and divide the vascular pedicle as near
+        to its origin so as to include all local lymph nodes. This has been termed
+        Complete Mesocolic Excision (CME). The distance from distal vascular tie to
+        the bowel wall in the fixed specimen is an indication as to the quality of
+        surgery but this does not assess the length of the residual vascular pedicle
+        and by implication, residual lymph nodes.. The aim of this study was to establish
+        if our surgeons were carrying out CME by assessing the length of the proximal
+        arterial pedicle and relating this to arterial length in the fixed specimen.\r\nMETHOD
+        This was a single centre prospective study of patients undergoing elective
+        surgery for locally advanced colorectal cancer. An abdominal and pelvic CT
+        scan was performed two days postoperatively and a radiologist blinded to the
+        operative procedure, measured the length of the residual arterial stump. Similarly,
+        the length of the vessel in the fixed resected specimen and lymph node yield
+        was also recorded..\r\nRESULTS 52 patients were recruited. The mean length
+        of the residual arterial stump was 38 mm (95% CI 33 - 43), which was significantly
+        longer than &lt;10 mm recommended in guidelines (p&lt;0.0001). The mean length
+        was 31 (95% CI 25 - 37), mm (and 49 (95% CI 40 - 57), mm for left and right
+        sided resections respectively. There was no correlation between the residual
+        arterial stump and the pathology.\r\nCONCLUSIONS The residual arterial length
+        was greater than suggested by guidelines and may indicate that our surgery
+        is less radical than we planned. Caution should be taken when using pathological
+        measurements of vascular ligation as it may not reflect the height of the
+        pedicle division. This article is protected by copyright. All rights reserved.</Abstract>\r\n
+        \   <AuthorList>Munkedal,Ditte,LouiseE|Rosenkilde,Mona,|Tønner Nielsen,Dennis,|Sommer,Thorbjørn,|West,Nicholas,P|Laurberg,Søren,</AuthorList>\r\n
+        \   <AuthorCount>6</AuthorCount>\r\n    <KeywordList />\r\n    <DocumentTypeList>Journal
+        Article</DocumentTypeList>\r\n    <DocumentCategory>Journal Document</DocumentCategory>\r\n
+        \   <NumberOfReferences xsi:nil=\"true\" />\r\n    <TimesCited xsi:nil=\"true\"
+        />\r\n    <TimesNotSelfCited xsi:nil=\"true\" />\r\n    <PMID>28590033</PMID>\r\n
+        \   <PublicationSourceTitle>Colorectal disease </PublicationSourceTitle>\r\n
+        \   <PublicationDate>2017-06-07T00:00:00</PublicationDate>\r\n    <PublicationYear>2017</PublicationYear>\r\n
+        \   <PublicationSubjectCategoryList />\r\n    <ISSN>1462-8910</ISSN>\r\n    <DOI>10.1111/codi.13756</DOI>\r\n
+        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>16</OrdinalRank>\r\n
+        \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
+        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher />\r\n
+        \   <CopyrightCity />\r\n    <PublicationImpactFactorList>2.452,2015,ClosestToPublicationYear|2.452,2015,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>43/79;GASTROENTEROLOGY &amp; HEPATOLOGY;2015;SC;ClosestToPublicationYear|56/200;SURGERY;2015;SC;ClosestToPublicationYear|43/79;GASTROENTEROLOGY
+        &amp; HEPATOLOGY;2015;SC;MostRecentYear|56/200;SURGERY;2015;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <CopyrightStateProvince />\r\n    <CopyrightCountry>UNITED KINGDOM</CopyrightCountry>\r\n
+        \ </PublicationItem>\r\n  <PublicationItem>\r\n    <PublicationItemID>79742093</PublicationItemID>\r\n
+        \   <Title>Pavlik harness treatment for pathological developmental dysplasia
+        of the hip: meeting the standard?</Title>\r\n    <Abstract>In the UK, the
+        Pavlik harness is generally the accepted treatment technique for the treatment
+        of neonatal and infant pathological developmental dysplasia of the hip. In
+        2013, the success rate of the Pavlik harness became an outcome measure from
+        the British Society of Children's Orthopaedic Surgery for appraisal and revalidation
+        with the GMC for paediatric orthopaedic surgery. The standard set requires
+        an 80% success rate, with less than 20% requiring surgery. This study evaluated
+        the outcomes of Pavlik harness treatment in neonates/infants with 'pathological
+        hips' diagnosed by ultrasound imaging in a district general hospital setting.
+        In a 10-year prospective observational longitudinal cohort study, modified
+        Graf type III and IV hips (excluding those presenting with irreducible hip
+        dislocation) were classified as pathological and splinted. A total of 2826
+        neonates/infants underwent ultrasound assessment in the paediatric orthopaedic
+        'screening clinic'. Neonates and infants were referred as 'at-risk' or as
+        clinically unstable by the Paediatric Department and by general practitioners.
+        Thirty-one Graf type III and 95 Graf type IV hips were identified and treated
+        with a Pavlik harness. One Graf type III (30/31=success rate 96.8%) and three
+        clinically unstable Graf type IV hips progressed to irreducible hip dislocations
+        (92/95=96.8%). The success rate of the Pavlik harness in Graf type III and
+        IV dysplasia was 96.8%, with 3.2% requiring surgery because of progression
+        of the condition, confirming acceptable results for this technique in a district
+        general hospital setting.</Abstract>\r\n    <AuthorList>Choudry,Qaisar,|Paton,Robin,W</AuthorList>\r\n
+        \   <AuthorCount>2</AuthorCount>\r\n    <KeywordList />\r\n    <DocumentTypeList>Journal
+        Article</DocumentTypeList>\r\n    <DocumentCategory>Journal Document</DocumentCategory>\r\n
+        \   <NumberOfReferences xsi:nil=\"true\" />\r\n    <TimesCited xsi:nil=\"true\"
+        />\r\n    <TimesNotSelfCited xsi:nil=\"true\" />\r\n    <PMID>28291024</PMID>\r\n
+        \   <PublicationSourceTitle>Journal of pediatric orthopedics. Part B</PublicationSourceTitle>\r\n
+        \   <Volume>26</Volume>\r\n    <Issue>4</Issue>\r\n    <Pagination>293-297</Pagination>\r\n
+        \   <PublicationDate>2017-07-01T00:00:00</PublicationDate>\r\n    <PublicationYear>2017</PublicationYear>\r\n
+        \   <PublicationSubjectCategoryList />\r\n    <ISSN>1060-152X</ISSN>\r\n    <DOI>10.1097/BPB.0000000000000413</DOI>\r\n
+        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
+        />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>17</OrdinalRank>\r\n
+        \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
+        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher />\r\n
+        \   <CopyrightCity />\r\n    <PublicationImpactFactorList>0.449,2015,ClosestToPublicationYear|0.449,2015,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>70/74;ORTHOPEDICS;2015;SC;ClosestToPublicationYear|115/120;PEDIATRICS;2015;SC;ClosestToPublicationYear|70/74;ORTHOPEDICS;2015;SC;MostRecentYear|115/120;PEDIATRICS;2015;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <CopyrightStateProvince />\r\n    <CopyrightCountry>UNITED STATES</CopyrightCountry>\r\n
+        \ </PublicationItem>\r\n  <PublicationItem>\r\n    <PublicationItemID>79739301</PublicationItemID>\r\n
+        \   <Title>A case of advanced gastric cancer achieved a pathological complete
+        response by chemotherapy.</Title>\r\n    <Abstract>BACKGROUND Although chemotherapy
+        is the first recommended treatment of unresectable gastric cancer, a pathological
+        complete response is a rare event.\r\nCASE PRESENTATION A 58-year-old male
+        was diagnosed as gastric cancer with a bulky tumor, lymphadenopathy, and suspicious
+        peritoneal dissemination. The patient underwent chemotherapy with S-1 and
+        cisplatin. After three courses of chemotherapy, a computed tomography showed
+        dramatic improvements in gastric wall thickening, shrinkage of lymphadenopathy,
+        and disappearance of disseminated peritoneal lesion. The patient underwent
+        potentially curative resection by total gastrectomy with D2 lymph node dissection.
+        Histological examination revealed the absence of malignant cells not only
+        in the resected specimen but also in the harvested lymph nodes. At present,
+        more than 7 years after the initial surgery, the patient is still alive without
+        any recurrence.\r\nCONCLUSIONS We obtained a pathological complete response
+        by chemotherapy with S-1 and cisplatin for advanced gastric cancer. Although
+        a pathological complete response is a rare event, it would be associated with
+        the long-term survival of patients with advanced gastric cancer.</Abstract>\r\n
+        \   <AuthorList>Tada,Kazuhiro,|Etoh,Tsuyoshi,|Shitomi,Yuki,|Ueda,Yoshitake,|Tojigamori,Manabu,|Shiroshita,Hidefumi,|Shiraishi,Norio,|Inomata,Masafumi,</AuthorList>\r\n
+        \   <AuthorCount>8</AuthorCount>\r\n    <KeywordList>Advanced gastric cancer|Long-term
+        survival|Pathological complete response</KeywordList>\r\n    <DocumentTypeList>Journal
+        Article</DocumentTypeList>\r\n    <DocumentCategory>Journal Document</DocumentCategory>\r\n
+        \   <NumberOfReferences xsi:nil=\"true\" />\r\n    <TimesCited xsi:nil=\"true\"
+        />\r\n    <TimesNotSelfCited xsi:nil=\"true\" />\r\n    <PMID>28500392</PMID>\r\n
+        \   <PublicationSourceTitle>Surgical case reports</PublicationSourceTitle>\r\n
+        \   <Volume>3</Volume>\r\n    <Issue>1</Issue>\r\n    <Pagination>68-?</Pagination>\r\n
+        \   <PublicationDate>2017-12-01T00:00:00</PublicationDate>\r\n    <PublicationYear>2017</PublicationYear>\r\n
+        \   <PublicationSubjectCategoryList />\r\n    <ISSN>2198-7793</ISSN>\r\n    <DOI>10.1186/s40792-017-0344-9</DOI>\r\n
         \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
         />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>18</OrdinalRank>\r\n
         \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher />\r\n
-        \   <CopyrightCity />\r\n    <CopyrightStateProvince />\r\n    <CopyrightCountry>CHINA</CopyrightCountry>\r\n
-        \ </PublicationItem>\r\n  <PublicationItem>\r\n    <PublicationItemID>75605312</PublicationItemID>\r\n
-        \   <Title>Blood-brain barrier and blood-cerebrospinal fluid barrier in normal
-        and pathological conditions.</Title>\r\n    <Abstract>Blood-borne substances
-        can invade into the extracellular spaces of the brain via endothelial cells
-        in sites without the blood-brain barrier (BBB), and can travel through the
-        interstitial fluid (ISF) of the brain parenchyma adjacent to non-BBB sites.
-        It has been shown that cerebrospinal fluid (CSF) drains directly into the
-        blood via the arachnoid villi and also into lymph nodes via the subarachnoid
-        spaces of the brain, while ISF drains into the cervical lymph nodes through
-        perivascular drainage pathways. In addition, the glymphatic pathway of fluids,
-        characterized by para-arterial pathways, aquaporin4-dependent passage through
-        astroglial cytoplasm, interstitial spaces, and paravenous routes, has been
-        established. Meningeal lymphatic vessels along the superior sagittal sinus
-        were very recently discovered. It is known that, in mice, blood-borne substances
-        can be transferred to areas with intact BBB function, such as the medial regions
-        of the hippocampus, presumably through leaky vessels in non-BBB sites. In
-        the present paper, we review the clearance mechanisms of interstitial substances,
-        such as amyloid-ß peptides, as well as summarize models of BBB deterioration
-        in response to different types of insults, including acute ischemia followed
-        by reperfusion, hypertension, and chronic hypoperfusion. Lastly, we discuss
-        the relationship between perivascular clearance and brain disorders. </Abstract>\r\n
-        \   <AuthorList>Ueno,Masaki,|Chiba,Yoichi,|Murakami,Ryuta,|Matsumoto,Koichi,|Kawauchi,Machi,|Fujihara,Ryuji,</AuthorList>\r\n
-        \   <AuthorCount>6</AuthorCount>\r\n    <KeywordList>Blood–brain barrier|Blood–cerebrospinal
-        fluid barrier|Glymphatic pathway|Perivascular drainage pathway</KeywordList>\r\n
-        \   <DocumentTypeList>Journal Article</DocumentTypeList>\r\n    <DocumentCategory>Journal
-        Document</DocumentCategory>\r\n    <NumberOfReferences xsi:nil=\"true\" />\r\n
-        \   <TimesCited xsi:nil=\"true\" />\r\n    <TimesNotSelfCited xsi:nil=\"true\"
-        />\r\n    <PMID>26920424</PMID>\r\n    <PublicationSourceTitle>Brain tumor
-        pathology</PublicationSourceTitle>\r\n    <Volume>33</Volume>\r\n    <Issue>2</Issue>\r\n
-        \   <Pagination>89-96</Pagination>\r\n    <PublicationDate>2016-04-01T00:00:00</PublicationDate>\r\n
-        \   <PublicationYear>2016</PublicationYear>\r\n    <PublicationSubjectCategoryList
-        />\r\n    <ISSN>1433-7398</ISSN>\r\n    <DOI>10.1007/s10014-016-0255-7</DOI>\r\n
+        \   <CopyrightCity />\r\n    <CopyrightStateProvince />\r\n    <CopyrightCountry>GERMANY</CopyrightCountry>\r\n
+        \ </PublicationItem>\r\n  <PublicationItem>\r\n    <PublicationItemID>79739104</PublicationItemID>\r\n
+        \   <Title>Nature of Hard Tissues in Oral Pathological Lesions -Using Modified
+        Gallego's Stain.</Title>\r\n    <Abstract>INTRODUCTION Histological stains
+        are dyes that bind to various tissues. Special stains form an integral part
+        of routine histopathology as an adjunct to Haematoxylin and Eosin (H&amp;E),
+        and give meaningful diagnostic information of the tissues available. By using
+        routine histological procedure like H&amp;E alone, it is difficult to differentiate
+        the various hard tissues present in the oral pathological lesions. Modified
+        Gallego's stain can be used as one of the differential stain for these hard
+        tissues.\r\nAIM To differentiate various hard tissues of teeth and to identify
+        the presence of hard tissue components in different oral pathological lesions
+        using Modified Gallego's stain under light microscope.\r\nMATERIALS AND METHODS
+        A total sample of 20 cases, amongst which 10 were human extracted teeth and
+        10 oral pathological lesions were included. From 10 human extracted teeth,
+        five ground sections and five decalcified sections were prepared. From pathological
+        lesions, two slides of each lesion were prepared. All the sections were stained
+        with Modified Gallego's stain and viewed under light microscopy.\r\nRESULTS
+        In properly stained slides, cementum stained red, dentin and bone stained
+        green and enamel stained pink in colour.\r\nCONCLUSION Modified Gallego's
+        stain can be used as a differential stain for various hard tissues in oral
+        pathological lesions and also for ground sections for which histochemical
+        stains are very rare.</Abstract>\r\n    <AuthorList>Mudhiraj,Panthala,Veenila|Vanje,Manjushri,Madhukar|Reddy,Bachamgari,Narender|Ahmed,Syed,Afroz|Suri,Charu,|Taveer,Shahela,|Kumar,Shravan,</AuthorList>\r\n
+        \   <AuthorCount>7</AuthorCount>\r\n    <KeywordList>Decalcified Sections|Differential
+        Stain|Ground sections</KeywordList>\r\n    <DocumentTypeList>Journal Article</DocumentTypeList>\r\n
+        \   <DocumentCategory>Journal Document</DocumentCategory>\r\n    <NumberOfReferences
+        xsi:nil=\"true\" />\r\n    <TimesCited xsi:nil=\"true\" />\r\n    <TimesNotSelfCited
+        xsi:nil=\"true\" />\r\n    <PMID>28571252</PMID>\r\n    <PublicationSourceTitle>Journal
+        of clinical and diagnostic research : JCDR</PublicationSourceTitle>\r\n    <Volume>11</Volume>\r\n
+        \   <Issue>4</Issue>\r\n    <Pagination>ZC13-ZC15</Pagination>\r\n    <PublicationDate>2017-04-01T00:00:00</PublicationDate>\r\n
+        \   <PublicationYear>2017</PublicationYear>\r\n    <PublicationSubjectCategoryList
+        />\r\n    <ISSN>0973-709X</ISSN>\r\n    <DOI>10.7860/JCDR/2017/25244.9566</DOI>\r\n
         \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
         />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>19</OrdinalRank>\r\n
         \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher />\r\n
-        \   <CopyrightCity />\r\n    <PublicationImpactFactorList>1.224,2014,ClosestToPublicationYear|1.224,2014,MostRecentYear</PublicationImpactFactorList>\r\n
-        \   <PublicationCategoryRankingList>185/211;ONCOLOGY;2014;SC;ClosestToPublicationYear|155/192;CLINICAL
-        NEUROLOGY;2014;SC;ClosestToPublicationYear|58/75;PATHOLOGY;2014;SC;ClosestToPublicationYear|185/211;ONCOLOGY;2014;SC;MostRecentYear|155/192;CLINICAL
-        NEUROLOGY;2014;SC;MostRecentYear|58/75;PATHOLOGY;2014;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
-        \   <CopyrightStateProvince />\r\n    <CopyrightCountry>JAPAN</CopyrightCountry>\r\n
+        \   <CopyrightCity />\r\n    <CopyrightStateProvince />\r\n    <CopyrightCountry>INDIA</CopyrightCountry>\r\n
         \ </PublicationItem>\r\n</ArrayOfPublicationItem>"
     http_version: 
-  recorded_at: Thu, 02 Jun 2016 22:12:52 GMT
+  recorded_at: Mon, 13 Nov 2017 20:56:49 GMT
 recorded_with: VCR 3.0.1

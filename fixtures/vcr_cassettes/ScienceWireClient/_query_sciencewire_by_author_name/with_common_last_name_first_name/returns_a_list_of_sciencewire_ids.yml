@@ -10,16 +10,15 @@ http_interactions:
         \                        <query xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
         xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\n              <Criterion>\n
         \               <Criteria>\n                              <Criterion>\n              <TextSearch>\n
-        \               <QueryPredicate>\"smith,james\" or \"SMITH,J\"</QueryPredicate>\n
+        \               <QueryPredicate>\"Smith,James\" or \"Smith,J\"</QueryPredicate>\n
         \               <SearchType>ExactMatch</SearchType>\n                <Columns>AggregateText</Columns>\n
         \               <MaximumRows>200</MaximumRows>\n              </TextSearch>\n
-        \           </Criterion>\n\n                                <Criterion>\n
-        \               <Filter>\n                  <Column>AuthorLastName</Column>\n
-        \                 <Operator>BeginsWith</Operator>\n                  <Value>SMITH</Value>\n
-        \               </Filter>\n              </Criterion>\n\n                                <Criterion>\n
-        \               <Filter>\n                  <Column>AuthorFirstName</Column>\n
-        \                 <Operator>BeginsWith</Operator>\n                  <Value>J</Value>\n
-        \               </Filter>\n              </Criterion>\n\n                  \n
+        \           </Criterion>\n\n                              <Criterion>\n              <Filter>\n
+        \               <Column>AuthorLastName</Column>\n                <Operator>BeginsWith</Operator>\n
+        \               <Value>SMITH</Value>\n              </Filter>\n            </Criterion>\n\n
+        \                             <Criterion>\n              <Filter>\n                <Column>AuthorFirstName</Column>\n
+        \               <Operator>BeginsWith</Operator>\n                <Value>J</Value>\n
+        \             </Filter>\n            </Criterion>\n\n                  \n
         \                 \n                              <Criterion>\n              <Filter>\n
         \               <Column>DocumentCategory</Column>\n                <Operator>In</Operator>\n
         \               <Values>\n                  <Value>Journal Document</Value>\n
@@ -31,13 +30,13 @@ http_interactions:
         \           </query>\n\n            ]]>\n</xmlQuery>\n    </ScienceWireQueryXMLParameter>"
     headers:
       User-Agent:
-      - Faraday v0.9.2
+      - Faraday v0.13.1
       Accept:
       - "*/*"
       Accept-Encoding:
       - gzip,deflate
       Date:
-      - Thu, 02 Jun 2016 22:11:58 GMT
+      - Mon, 13 Nov 2017 20:59:37 GMT
       Licenseid:
       - Settings.SCIENCEWIRE.LICENSE_ID
       Host:
@@ -66,31 +65,31 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Thu, 02 Jun 2016 15:53:32 GMT
+      - Mon, 13 Nov 2017 21:00:31 GMT
       Content-Length:
       - '280'
     body:
       encoding: UTF-8
       string: "<?xml version=\"1.0\"?>\r\n<ScienceWireQueryIDResponse xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
-        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>242189</queryID>\r\n
-        \ <queryResultRows>33</queryResultRows>\r\n  <totalRows>33</totalRows>\r\n</ScienceWireQueryIDResponse>"
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>263024</queryID>\r\n
+        \ <queryResultRows>34</queryResultRows>\r\n  <totalRows>34</totalRows>\r\n</ScienceWireQueryIDResponse>"
     http_version: 
-  recorded_at: Thu, 02 Jun 2016 22:11:58 GMT
+  recorded_at: Mon, 13 Nov 2017 20:59:37 GMT
 - request:
     method: get
-    uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/242189?format=xml&page=0&pageSize=33&v=version/4
+    uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/263024?format=xml&page=0&pageSize=34&v=version/4
     body:
       encoding: UTF-8
       string: ''
     headers:
       User-Agent:
-      - Faraday v0.9.2
+      - Faraday v0.13.1
       Accept:
       - "*/*"
       Accept-Encoding:
       - gzip,deflate
       Date:
-      - Thu, 02 Jun 2016 22:11:58 GMT
+      - Mon, 13 Nov 2017 20:59:37 GMT
       Licenseid:
       - Settings.SCIENCEWIRE.LICENSE_ID
       Host:
@@ -119,9 +118,9 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Thu, 02 Jun 2016 15:53:32 GMT
+      - Mon, 13 Nov 2017 21:00:31 GMT
       Content-Length:
-      - '58658'
+      - '62124'
     body:
       encoding: UTF-8
       string: "<?xml version=\"1.0\"?>\r\n<ArrayOfPublicationItem xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
@@ -611,7 +610,7 @@ http_interactions:
         the SES-health connection</Title>\r\n    <Abstract />\r\n    <AuthorList>Smith,James,P</AuthorList>\r\n
         \   <AuthorCount>1</AuthorCount>\r\n    <KeywordList />\r\n    <DocumentTypeList>Article</DocumentTypeList>\r\n
         \   <DocumentCategory>Journal Document</DocumentCategory>\r\n    <NumberOfReferences>17</NumberOfReferences>\r\n
-        \   <TimesCited>65</TimesCited>\r\n    <TimesNotSelfCited>61</TimesNotSelfCited>\r\n
+        \   <TimesCited>76</TimesCited>\r\n    <TimesNotSelfCited>72</TimesNotSelfCited>\r\n
         \   <PMID xsi:nil=\"true\" />\r\n    <WoSItemID>000202895900006</WoSItemID>\r\n
         \   <PublicationSourceTitle>POPULATION AND DEVELOPMENT REVIEW</PublicationSourceTitle>\r\n
         \   <Volume>30</Volume>\r\n    <Pagination>108-132</Pagination>\r\n    <PublicationDate>2004-01-01T00:00:00</PublicationDate>\r\n
@@ -623,7 +622,7 @@ http_interactions:
         />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>WILEY-BLACKWELL</CopyrightPublisher>\r\n
         \   <CopyrightCity>HOBOKEN</CopyrightCity>\r\n    <PublicationImpactFactorList>1.548,2004,ExactPublicationYear|2.306,2013,MostRecentYear</PublicationImpactFactorList>\r\n
         \   <PublicationCategoryRankingList>3/17;DEMOGRAPHY;2004;SS;ExactPublicationYear|6/90;SOCIOLOGY;2004;SS;ExactPublicationYear|2/25;DEMOGRAPHY;2013;SS;MostRecentYear|6/138;SOCIOLOGY;2013;SS;MostRecentYear</PublicationCategoryRankingList>\r\n
-        \   <AuthorCitationCountList>1,4,61</AuthorCitationCountList>\r\n    <CopyrightStateProvince>NJ</CopyrightStateProvince>\r\n
+        \   <AuthorCitationCountList>1,4,72</AuthorCitationCountList>\r\n    <CopyrightStateProvince>NJ</CopyrightStateProvince>\r\n
         \   <CopyrightCountry>UNITED STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n
         \ <PublicationItem>\r\n    <PublicationItemID>48535823</PublicationItemID>\r\n
         \   <Title>YEAR 1863 + SMITH,JAMES DIARY</Title>\r\n    <Abstract />\r\n    <AuthorList>Smith,J,</AuthorList>\r\n
@@ -698,7 +697,47 @@ http_interactions:
         ELECTRICAL &amp; ELECTRONIC;2013;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
         \   <AuthorCitationCountList>1,0,0</AuthorCitationCountList>\r\n    <CopyrightStateProvince>NJ</CopyrightStateProvince>\r\n
         \   <CopyrightCountry>UNITED STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n
-        \ <PublicationItem>\r\n    <PublicationItemID>47407488</PublicationItemID>\r\n
+        \ <PublicationItem>\r\n    <PublicationItemID>79728561</PublicationItemID>\r\n
+        \   <Title>Mechanism of Action for Obtaining Job Offers With Virtual Reality
+        Job Interview Training.</Title>\r\n    <Abstract>OBJECTIVE Four randomized
+        controlled trials revealed that virtual-reality job interview training (VR-JIT)
+        improved interviewing skills and the odds of obtaining a job offer among trainees
+        with severe mental illness or autism spectrum disorder. This study assessed
+        whether postintervention interviewing skills mediated the relationship between
+        completion of virtual interviews and receiving job offers by six-month follow-up.\r\nMETHODS
+        VR-JIT trainees (N=79) completed pre- and posttest mock interviews and a brief
+        survey approximately six months later to assess whether they received a job
+        offer.\r\nRESULTS As hypothesized, analyses indicated that the number of completed
+        virtual interviews predicted greater posttest interviewing skills (ß=.20,
+        95% posterior credible interval [PCI]=.08-.33), which in turn predicted trainees'
+        obtaining a job offer (ß=.28, 95% PCI=.01-.53).\r\nCONCLUSIONS VR-JIT may
+        provide a mechanism of action that helps trainees with various psychiatric
+        diagnoses obtain job offers in the community. Future research can evaluate
+        the community-based effectiveness of this novel intervention.</Abstract>\r\n
+        \   <AuthorList>Smith,Matthew,J|Smith,Justin,D|Fleming,Michael,F|Jordan,Neil,|Brown,C,Hendricks|Humm,Laura,|Olsen,Dale,|Bell,Morris,D</AuthorList>\r\n
+        \   <AuthorCount>8</AuthorCount>\r\n    <KeywordList>PTSD|Virtual reality
+        training|autism spectrum disorders|job interview skills|severe mental illness|vocational
+        outcomes|vocational training</KeywordList>\r\n    <DocumentTypeList>Journal
+        Article</DocumentTypeList>\r\n    <DocumentCategory>Journal Document</DocumentCategory>\r\n
+        \   <NumberOfReferences xsi:nil=\"true\" />\r\n    <TimesCited xsi:nil=\"true\"
+        />\r\n    <TimesNotSelfCited xsi:nil=\"true\" />\r\n    <PMID>28292223</PMID>\r\n
+        \   <PublicationSourceTitle>Psychiatric services </PublicationSourceTitle>\r\n
+        \   <Pagination>appips201600217-?</Pagination>\r\n    <PublicationDate>2017-03-15T00:00:00</PublicationDate>\r\n
+        \   <PublicationYear>2017</PublicationYear>\r\n    <PublicationSubjectCategoryList
+        />\r\n    <ISSN>1075-2730</ISSN>\r\n    <DOI>10.1176/appi.ps.201600217</DOI>\r\n
+        \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
+        />\r\n    <Rank>288</Rank>\r\n    <OrdinalRank>30</OrdinalRank>\r\n    <NormalizedRank>66.666666666666657</NormalizedRank>\r\n
+        \   <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
+        \   <CopyrightPublisher />\r\n    <CopyrightCity />\r\n    <PublicationImpactFactorList>2.335,2015,ClosestToPublicationYear|2.335,2015,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>51/173;PUBLIC, ENVIRONMENTAL &amp; OCCUPATIONAL
+        HEALTH;2015;SC;ClosestToPublicationYear|68/142;PSYCHIATRY;2015;SC;ClosestToPublicationYear|25/153;PUBLIC,
+        ENVIRONMENTAL &amp; OCCUPATIONAL HEALTH;2015;SS;ClosestToPublicationYear|19/75;HEALTH
+        POLICY &amp; SERVICES;2015;SS;ClosestToPublicationYear|68/142;PSYCHIATRY;2015;SC;MostRecentYear|51/173;PUBLIC,
+        ENVIRONMENTAL &amp; OCCUPATIONAL HEALTH;2015;SC;MostRecentYear|25/153;PUBLIC,
+        ENVIRONMENTAL &amp; OCCUPATIONAL HEALTH;2015;SS;MostRecentYear|19/75;HEALTH
+        POLICY &amp; SERVICES;2015;SS;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <CopyrightStateProvince />\r\n    <CopyrightCountry>UNITED STATES</CopyrightCountry>\r\n
+        \ </PublicationItem>\r\n  <PublicationItem>\r\n    <PublicationItemID>47407488</PublicationItemID>\r\n
         \   <Title>Retrospective clinical evaluation of gauze-based negative pressure
         wound therapy</Title>\r\n    <Abstract>Negative pressure wound therapy (NPWT)
         is an established modality in the treatment of challenging wounds. However,
@@ -721,7 +760,7 @@ http_interactions:
         \   <AuthorCount>3</AuthorCount>\r\n    <KeywordList>negative pressure wound
         therapy|gauze|Chariker-Jeter</KeywordList>\r\n    <DocumentTypeList>Article</DocumentTypeList>\r\n
         \   <DocumentCategory>Journal Document</DocumentCategory>\r\n    <NumberOfReferences>15</NumberOfReferences>\r\n
-        \   <TimesCited>44</TimesCited>\r\n    <TimesNotSelfCited>41</TimesNotSelfCited>\r\n
+        \   <TimesCited>46</TimesCited>\r\n    <TimesNotSelfCited>43</TimesNotSelfCited>\r\n
         \   <PMID>18494633</PMID>\r\n    <WoSItemID>000207843500016</WoSItemID>\r\n
         \   <PublicationSourceTitle>INTERNATIONAL WOUND JOURNAL</PublicationSourceTitle>\r\n
         \   <Volume>5</Volume>\r\n    <Issue>2</Issue>\r\n    <Pagination>280-286</Pagination>\r\n
@@ -729,12 +768,12 @@ http_interactions:
         \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Dermatology|Surgery</PublicationSubjectCategoryList>\r\n
         \   <ISSN>1742-4801</ISSN>\r\n    <DOI>10.1111/j.1742-481X.2008.00485.x</DOI>\r\n
         \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
-        />\r\n    <Rank>246</Rank>\r\n    <OrdinalRank>30</OrdinalRank>\r\n    <NormalizedRank>56.944444444444443</NormalizedRank>\r\n
+        />\r\n    <Rank>246</Rank>\r\n    <OrdinalRank>31</OrdinalRank>\r\n    <NormalizedRank>56.944444444444443</NormalizedRank>\r\n
         \   <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
         \   <CopyrightPublisher>WILEY-BLACKWELL</CopyrightPublisher>\r\n    <CopyrightCity>HOBOKEN</CopyrightCity>\r\n
         \   <PublicationImpactFactorList>1.427,2010,ClosestToPublicationYear|2.023,2013,MostRecentYear</PublicationImpactFactorList>\r\n
         \   <PublicationCategoryRankingList>31/55;DERMATOLOGY;2010;SC;ClosestToPublicationYear|18/61;DERMATOLOGY;2013;SC;MostRecentYear|68/204;SURGERY;2013;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
-        \   <AuthorCitationCountList>1,0,44|2,0,44|3,3,41</AuthorCitationCountList>\r\n
+        \   <AuthorCitationCountList>1,0,46|2,0,46|3,3,43</AuthorCitationCountList>\r\n
         \   <CopyrightStateProvince>NJ</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
         STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n  <PublicationItem>\r\n
         \   <PublicationItemID>48135684</PublicationItemID>\r\n    <Title>FRANCIS-OF-ASSISI
@@ -749,7 +788,7 @@ http_interactions:
         \   <PublicationYear>1976</PublicationYear>\r\n    <PublicationType>Journal</PublicationType>\r\n
         \   <PublicationSubjectCategoryList />\r\n    <ISSN>0008-8080</ISSN>\r\n    <ConferenceStartDate
         xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\" />\r\n    <Rank>224</Rank>\r\n
-        \   <OrdinalRank>31</OrdinalRank>\r\n    <NormalizedRank>51.851851851851848</NormalizedRank>\r\n
+        \   <OrdinalRank>32</OrdinalRank>\r\n    <NormalizedRank>51.851851851851848</NormalizedRank>\r\n
         \   <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
         \   <CopyrightPublisher>CATHOLIC UNIV AMER PRESS</CopyrightPublisher>\r\n
         \   <CopyrightCity>WASHINGTON</CopyrightCity>\r\n    <AuthorCitationCountList>1,0,0</AuthorCitationCountList>\r\n
@@ -767,7 +806,7 @@ http_interactions:
         \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Chemistry,
         Analytical</PublicationSubjectCategoryList>\r\n    <ISSN>0003-2700</ISSN>\r\n
         \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
-        />\r\n    <Rank>224</Rank>\r\n    <OrdinalRank>32</OrdinalRank>\r\n    <NormalizedRank>51.851851851851848</NormalizedRank>\r\n
+        />\r\n    <Rank>224</Rank>\r\n    <OrdinalRank>33</OrdinalRank>\r\n    <NormalizedRank>51.851851851851848</NormalizedRank>\r\n
         \   <NewPublicationItemID xsi:nil=\"true\" />\r\n    <IsObsolete>false</IsObsolete>\r\n
         \   <CopyrightPublisher>AMER CHEMICAL SOC</CopyrightPublisher>\r\n    <CopyrightCity>WASHINGTON</CopyrightCity>\r\n
         \   <PublicationImpactFactorList>5.635,2005,ExactPublicationYear|5.825,2013,MostRecentYear</PublicationImpactFactorList>\r\n
@@ -776,5 +815,5 @@ http_interactions:
         \   <CopyrightStateProvince>DC</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
         STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n</ArrayOfPublicationItem>"
     http_version: 
-  recorded_at: Thu, 02 Jun 2016 22:12:00 GMT
+  recorded_at: Mon, 13 Nov 2017 20:59:38 GMT
 recorded_with: VCR 3.0.1
