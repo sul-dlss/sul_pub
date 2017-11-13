@@ -105,13 +105,13 @@ class SciencewireSourceRecord < ActiveRecord::Base
   def self.get_and_store_sw_source_record_for_sw_id(sciencewire_id)
     sw_record_doc = ScienceWireClient.new.get_sw_xml_source_for_sw_id(sciencewire_id)
     pmid = extract_pmid(sw_record_doc)
-
     where(sciencewire_id: sciencewire_id).first_or_create(
       source_data: sw_record_doc.to_xml,
       is_active: true,
       pmid: pmid,
       source_fingerprint: Digest::SHA2.hexdigest(sw_record_doc))
   end
+  private_class_method :get_and_store_sw_source_record_for_sw_id
 
   # get and store sciencewire source records for pmid list
   def self.get_and_store_sw_source_records(pmids)
@@ -124,20 +124,19 @@ class SciencewireSourceRecord < ActiveRecord::Base
       begin
         count += 1
         pmids.delete(pmid)
-
         source_records << SciencewireSourceRecord.new(
           sciencewire_id: sciencewire_id,
           source_data: sw_record_doc.to_xml,
           is_active: true,
           pmid: pmid,
           source_fingerprint: Digest::SHA2.hexdigest(sw_record_doc))
-
       rescue => e
         NotificationManager.error(e, "Cannot create SciencewireSourceRecord: sciencewire_id: #{sciencewire_id}, pmid: #{pmid}", self)
       end
     end
     import source_records
   end
+  private_class_method :get_and_store_sw_source_records
 
   def self.save_sw_source_record(sciencewire_id, pmid, incoming_sw_xml_as_string)
     existing_sw_source_record = find_by(

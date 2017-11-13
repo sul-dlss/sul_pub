@@ -140,25 +140,6 @@ class Publication < ActiveRecord::Base
     self
   end
 
-  # this is a very temporary method to be used only for the initial import
-  # of data from CAP.
-  # @return [self]
-  def cutover_sync_hash_and_db
-    set_sul_pub_id_in_hash
-    pub_hash[:last_updated] = updated_at.to_s
-    add_all_db_contributions_to_my_pub_hash
-    # add identifiers that are in the hash to the pub identifiers db table
-    pub_hash[:identifier].each do |identifier|
-      publication_identifiers.create(
-        identifier_type: identifier[:type],
-        certainty: 'confirmed',
-        identifier_value: identifier[:id],
-        identifier_uri: identifier[:url])
-    end
-    update_formatted_citations
-    self
-  end
-
   # @return [self]
   def sync_publication_hash_and_db
     rebuild_authorship
@@ -199,69 +180,6 @@ class Publication < ActiveRecord::Base
     self
   end
 
-  def sync_identifiers_in_pub_hash_to_db
-    incoming_types = Array(pub_hash[:identifier]).map { |id| id[:type] }
-    publication_identifiers.each do |id|
-      next if id.identifier_type =~ /^legacy_cap_pub_id$/i # Do not delete legacy_cap_pub_id
-      id.delete unless incoming_types.include? id.identifier_type
-    end
-
-    Array(pub_hash[:identifier]).each do |identifier|
-      next if identifier[:type] =~ /^SULPubId$/i
-
-      i = publication_identifiers.find { |x| x.identifier_type == identifier[:type] } || PublicationIdentifier.new
-
-      i.assign_attributes certainty: 'confirmed',
-                          identifier_type: identifier[:type],
-                          identifier_value: identifier[:id],
-                          identifier_uri: identifier[:url]
-
-      if i.persisted?
-        i.save
-      else
-        publication_identifiers << i unless publication_identifiers.include? i
-      end
-    end
-  end
-
-  def update_any_new_contribution_info_in_pub_hash_to_db
-    Array(pub_hash[:authorship]).each do |contrib|
-      hash_for_update = {
-        status: contrib[:status],
-        visibility: contrib[:visibility],
-        featured: contrib[:featured]
-      }
-
-      # Find or create an Author of the contribution
-      author_id = contrib[:sul_author_id]
-      cap_profile_id = contrib[:cap_profile_id]
-      author = Author.find_by_id(author_id)
-      if cap_profile_id.present?
-        author ||= Author.find_by_cap_profile_id(cap_profile_id)
-        author ||= begin
-          Author.fetch_from_cap_and_create(cap_profile_id)
-        rescue => e
-          msg = "error retrieving CAP profile #{cap_profile_id} for contribution: #{contrib}"
-          NotificationManager.log_exception(NotificationManager.cap_logger, msg, e)
-          nil
-        end
-      end
-      next if author.nil?
-
-      hash_for_update[:author_id] = author.id
-      hash_for_update[:cap_profile_id] = author.cap_profile_id if author.cap_profile_id.present?
-      contrib = contributions.where(author_id: author.id).first_or_initialize
-      contrib.assign_attributes(hash_for_update)
-
-      if contrib.persisted?
-        contrib.save
-      else
-        contributions << contrib unless contributions.include? contrib
-      end
-    end
-    true
-  end
-
   def delete!
     self.deleted = true
     save
@@ -289,17 +207,6 @@ class Publication < ActiveRecord::Base
     set_last_updated_value_in_hash
   end
 
-  def add_any_pubmed_data_to_hash
-    return if pmid.blank?
-    pubmed_hash = PubmedSourceRecord.get_pubmed_hash_for_pmid(pmid)
-    return if pubmed_hash.nil?
-
-    pub_hash[:mesh_headings] = pubmed_hash[:mesh_headings] if pubmed_hash[:mesh_headings].present?
-    pub_hash[:abstract] = pubmed_hash[:abstract] if pubmed_hash[:abstract].present?
-    pmc_id = pubmed_hash[:identifier].detect { |id| id[:type] == 'pmc' }
-    pub_hash[:identifier] << pmc_id if pmc_id
-  end
-
   def set_last_updated_value_in_hash
     pub_hash[:last_updated] = Time.zone.now.to_s
   end
@@ -309,11 +216,6 @@ class Publication < ActiveRecord::Base
     pub_hash[:sulpubid] = sul_pub_id
     pub_hash[:identifier] ||= []
     pub_hash[:identifier] << { type: 'SULPubId', id: sul_pub_id, url: "#{Settings.SULPUB_ID.PUB_URI}/#{sul_pub_id}" }
-  end
-
-  def add_all_identifiers_in_db_to_pub_hash
-    publication_identifiers.reload if persisted?
-    pub_hash[:identifier] = publication_identifiers.map(&:identifier)
   end
 
   def add_all_db_contributions_to_my_pub_hash
@@ -366,4 +268,79 @@ class Publication < ActiveRecord::Base
   end
 
   alias authoritative_doi_source? sciencewire_pub?
+
+  private
+
+    def add_all_identifiers_in_db_to_pub_hash
+      publication_identifiers.reload if persisted?
+      pub_hash[:identifier] = publication_identifiers.map(&:identifier)
+    end
+
+    def sync_identifiers_in_pub_hash_to_db
+      incoming_types = Array(pub_hash[:identifier]).map { |id| id[:type] }
+      publication_identifiers.each do |id|
+        next if id.identifier_type =~ /^legacy_cap_pub_id$/i # Do not delete legacy_cap_pub_id
+        id.delete unless incoming_types.include? id.identifier_type
+      end
+
+      Array(pub_hash[:identifier]).each do |identifier|
+        next if identifier[:type] =~ /^SULPubId$/i
+        i = publication_identifiers.find { |x| x.identifier_type == identifier[:type] } || PublicationIdentifier.new
+        i.assign_attributes certainty: 'confirmed',
+                            identifier_type: identifier[:type],
+                            identifier_value: identifier[:id],
+                            identifier_uri: identifier[:url]
+        if i.persisted?
+          i.save
+        else
+          publication_identifiers << i unless publication_identifiers.include? i
+        end
+      end
+    end
+
+    def add_any_pubmed_data_to_hash
+      return if pmid.blank?
+      pubmed_hash = PubmedSourceRecord.get_pubmed_hash_for_pmid(pmid)
+      return if pubmed_hash.nil?
+      pub_hash[:mesh_headings] = pubmed_hash[:mesh_headings] if pubmed_hash[:mesh_headings].present?
+      pub_hash[:abstract] = pubmed_hash[:abstract] if pubmed_hash[:abstract].present?
+      pmc_id = pubmed_hash[:identifier].detect { |id| id[:type] == 'pmc' }
+      pub_hash[:identifier] << pmc_id if pmc_id
+    end
+
+    def update_any_new_contribution_info_in_pub_hash_to_db
+      Array(pub_hash[:authorship]).each do |contrib|
+        hash_for_update = {
+          status: contrib[:status],
+          visibility: contrib[:visibility],
+          featured: contrib[:featured]
+        }
+        # Find or create an Author of the contribution
+        author_id = contrib[:sul_author_id]
+        cap_profile_id = contrib[:cap_profile_id]
+        author = Author.find_by_id(author_id)
+        if cap_profile_id.present?
+          author ||= Author.find_by_cap_profile_id(cap_profile_id)
+          author ||= begin
+            Author.fetch_from_cap_and_create(cap_profile_id)
+          rescue => e
+            msg = "error retrieving CAP profile #{cap_profile_id} for contribution: #{contrib}"
+            NotificationManager.log_exception(NotificationManager.cap_logger, msg, e)
+            nil
+          end
+        end
+        next if author.nil?
+
+        hash_for_update[:author_id] = author.id
+        hash_for_update[:cap_profile_id] = author.cap_profile_id if author.cap_profile_id.present?
+        contrib = contributions.where(author_id: author.id).first_or_initialize
+        contrib.assign_attributes(hash_for_update)
+        if contrib.persisted?
+          contrib.save
+        else
+          contributions << contrib unless contributions.include? contrib
+        end
+      end
+      true
+    end
 end
