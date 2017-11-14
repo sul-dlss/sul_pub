@@ -62,7 +62,12 @@ namespace :cap_cutover do
 
   desc 'overwrite cap profile ids from CAP authorship feed - this is meant to be a very temporary, dangerous, and invasive procedure for creating qa machines for the School of Medicine testers.'
   task overwrite_profile_ids: :environment do
-    return if Rails.env == 'production'
+    if Rails.env == 'production'
+      puts 'This is a PRODUCTION system - are you sure? (Y/N)'
+      STDOUT.flush
+      input = STDIN.gets.chomp
+      return unless input.upcase == 'Y'
+    end
     CapProfileIdRewriter.new.rewrite_cap_profile_ids_from_feed
   end
 end
