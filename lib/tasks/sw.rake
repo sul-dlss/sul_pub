@@ -39,8 +39,8 @@ namespace :sw do
     author ||= Author.fetch_from_cap_and_create(cap_profile_id)
     harvester.harvest_pubs_for_author_ids author.id
     # Summarize the publications harvested
-    pubs = Contribution.where(author_id: author.id).map {|c| c.publication }
-    pubs.each {|p| puts "publication #{p.id}: #{p.pub_hash[:apa_citation]}"}
+    pubs = Contribution.where(author_id: author.id).map(&:publication)
+    pubs.each { |p| puts "publication #{p.id}: #{p.pub_hash[:apa_citation]}" }
   end
 
   desc 'Harvest using a directory full of Web Of Science bibtex query results'
@@ -60,8 +60,8 @@ namespace :sw do
 
   desc 'Compare publications (IDs) returned by APIs for an Author identified by their name [last,first,middle]'
   task :wos_publications_for_name, [:last, :first, :middle] => :environment do |_t, args|
-    fail "last name argument is required" unless args[:last].present?
-    fail "first name argument is required" unless args[:first].present?
+    raise "last name argument is required" unless args[:last].present?
+    raise "first name argument is required" unless args[:first].present?
     sciencewire_harvester = ScienceWireHarvester.new
     institution = sciencewire_harvester.default_institution
     author_name = Agent::AuthorName.new(args[:last], args[:first], args[:middle])
@@ -96,7 +96,7 @@ namespace :sw do
 
   desc 'Retrieve and print a single publication by WOS id: wos_publication[wos_id]'
   task :wos_publication, [:wos_id] => :environment do |_t, args|
-    fail "wos_id argument is required." unless args[:wos_id].present?
+    raise "wos_id argument is required." unless args[:wos_id].present?
     wos_ids = [args[:wos_id]]
     sciencewire_client = ScienceWireClient.new
     doc = sciencewire_client.get_full_sciencewire_pubs_for_wos_ids(wos_ids)
@@ -110,7 +110,7 @@ namespace :sw do
     author = Author.where(cap_profile_id: cap_profile_id).first
     author ||= Author.fetch_from_cap_and_create(cap_profile_id)
     harvester.harvest_pubs_for_author_ids author.id
-    pubs = Contribution.where(author_id: author.id).map {|c| c.publication }.each do |p|
+    pubs = Contribution.where(author_id: author.id).map(&:publication).each do |p|
       puts "publication #{p.id}: #{p.pub_hash[:apa_citation]}"
     end
     puts "Number of publications #{pubs.count}"
