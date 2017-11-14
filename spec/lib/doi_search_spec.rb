@@ -24,8 +24,9 @@ describe DoiSearch do
 
     it 'queries sciencewire if the locally found pub is non-sciencewire' do
       VCR.use_cassette('doi_search_manual_doi_local') do
-        doi_identifier.publication.pub_hash.merge(provenance: 'cap')
+        doi_identifier.publication.pub_hash.update(provenance: 'cap')
         doi_identifier.publication.save
+        expect(ScienceWireClient).to receive(:new).and_call_original
         result = DoiSearch.search doi_value
         expect(result.size).to eq 1
         expect(result.first[:provenance]).to eq 'sciencewire'
