@@ -34,7 +34,12 @@ namespace :pubmed do
       puts message
       logger.info message
       author = Author.find_by_cap_profile_id(id)
-      unless author.blank?
+      if author.blank?
+        authors_not_found += 1
+        message = "*****cap_profile_id #{id} not found"
+        puts message
+        logger.error message
+      else
         pubs = author.publications.where("pmid is not null OR pmid !=''")
         message = ".....#{author.first_name} #{author.last_name} has #{pubs.size} publications with a PMID"
         puts message
@@ -52,11 +57,6 @@ namespace :pubmed do
           end
         end
         authors_found += 1
-      else
-        authors_not_found += 1
-        message = "*****cap_profile_id #{id} not found"
-        puts message
-        logger.error message
       end
       next unless error_count > max_errors
       message = "Halting: Maximum number of errors #{max_errors} reached"
