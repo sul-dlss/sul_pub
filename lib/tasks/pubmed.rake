@@ -19,14 +19,14 @@ namespace :pubmed do
     authors_not_found = 0
     pubs_updated_count = 0
     total_pubs = 0
-    start_time = Time.now
+    start_time = Time.zone.now
     max_errors = 10
     message = "Started at #{start_time}.  Working on #{total_authors} authors."
     puts message
     logger.info message
     cap_profile_ids.each_with_index do |cap_profile_id, index|
       id = cap_profile_id.chomp
-      current_time = Time.now
+      current_time = Time.zone.now
       elapsed_time = current_time - start_time
       avg_time_per_author = elapsed_time / (index + 1)
       total_time_remaining = (avg_time_per_author * (total_authors - index)).floor
@@ -63,7 +63,7 @@ namespace :pubmed do
       logger.error message
       raise message
     end
-    end_time = Time.now
+    end_time = Time.zone.now
     message = "Total: #{total_authors}. Authors found: #{authors_found}. Authors not found: #{authors_not_found}.  Total publications: #{total_pubs}.  Publications updated: #{pubs_updated_count}.  Errored publications: #{error_count}.  Ended at #{end_time}.  Total time: #{distance_of_time_in_words(end_time, start_time)}"
     puts message
     logger.info message
