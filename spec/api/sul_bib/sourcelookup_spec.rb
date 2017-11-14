@@ -15,13 +15,7 @@ describe SulBib::API, :vcr do
     expect(response.status).to eq(200)
     JSON.parse(response.body)
   end
-  let(:test_doi) { '10.1016/j.mcn.2012.03.008' }
-  let(:sourcelookup_by_doi) do
-    params = { format: 'json', doi: test_doi }
-    get sourcelookup_path, params, capkey
-    expect(response.status).to eq(200)
-    JSON.parse(response.body)
-  end
+
   let(:valid_json_for_post) do
     {
       title: 'some title',
@@ -50,24 +44,27 @@ describe SulBib::API, :vcr do
     end
 
     describe '?doi' do
+      let(:doi_value) { '10.1016/j.mcn.2012.03.008' }
+      let(:doi_identifier) do
+        FactoryGirl.create(:publication_identifier,
+                           identifier_type: 'doi',
+                           identifier_value: doi_value,
+                           identifier_uri: "http://dx.doi.org/#{doi_value}")
+      end
+      let(:result) do
+        params = { format: 'json', doi: doi_value }
+        get sourcelookup_path, params, capkey
+        expect(response.status).to eq(200)
+        JSON.parse(response.body)
+      end
+
       it 'returns one document ' do
-        result = sourcelookup_by_doi
         expect(result['metadata']['records']).to eq('1')
         expect(result['records'].first['sw_id']).to eq('60830932')
       end
 
       it 'does not query sciencewire if there is an existing publication with the doi' do
-        publication.pub_hash = {
-          identifier: [
-            {
-              type: 'doi',
-              id: test_doi,
-              url: "https://dx.doi.org/#{test_doi}"
-            }
-          ]
-        }
-        publication.send(:sync_identifiers_in_pub_hash_to_db)
-        result = sourcelookup_by_doi
+        doi_identifier.publication.save
         expect(result['metadata']).to include('records')
         expect(result['metadata']['records']).to eq('1')
         record = result['records'].first
