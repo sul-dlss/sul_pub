@@ -13,14 +13,14 @@ namespace :sul do
     total_pubs = Publication.count
     error_count = 0
     success_count = 0
-    start_time = Time.now
+    start_time = Time.zone.now
     output_each = 500
     max_errors = 500
     message = "Calling #{method} for #{number_with_delimiter(total_pubs)} publications.  Started at #{start_time}.  Status update shown each #{output_each} publications."
     puts message
     logger.info message
     Publication.find_each.with_index do |pub, index|
-      current_time = Time.now
+      current_time = Time.zone.now
       elapsed_time = current_time - start_time
       avg_time_per_pub = elapsed_time / (index + 1)
       total_time_remaining = (avg_time_per_pub * (total_pubs - index)).floor
@@ -44,7 +44,7 @@ namespace :sul do
         raise message
       end
     end
-    end_time = Time.now
+    end_time = Time.zone.now
     message = "Total: #{number_with_delimiter(total_pubs)}.  Successful: #{success_count}.  Error: #{error_count}.  Ended at #{end_time}. Total time: #{distance_of_time_in_words(end_time, start_time)}"
     puts message
     logger.info message
@@ -56,7 +56,7 @@ namespace :sul do
     external_checks = %w(external-CapHttpClient external-ScienceWireClient external-PubmedClient)
     external_checks.each do |check_name|
       response = conn.get "/status/#{check_name}"
-      puts "#{Time.now}: #{check_name}: #{response.status} - #{response.body}"
+      puts "#{Time.zone.now}: #{check_name}: #{response.status} - #{response.body}"
     end
   end
 end
