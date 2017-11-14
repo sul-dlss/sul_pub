@@ -9,27 +9,21 @@ class PubmedSourceRecord < ActiveRecord::Base
   end
 
   def self.get_pub_by_pmid(pmid)
-    pubmed_pub_hash = PubmedSourceRecord.get_pubmed_hash_for_pmid(pmid)
-    return if pubmed_pub_hash.nil?
+    pubmed_record = PubmedSourceRecord.for_pmid(pmid)
+    return if pubmed_record.nil?
     pub = Publication.new(
       active: true,
       pmid: pmid,
-      pub_hash: pubmed_pub_hash
+      pub_hash: pubmed_record.source_as_hash
     )
     pub.sync_publication_hash_and_db
     pub.save
     pub
   end
 
-  def self.get_pubmed_hash_for_pmid(pmid)
-    pubmed_source_record = get_pubmed_source_record_for_pmid(pmid)
-    pubmed_source_record.source_as_hash unless pubmed_source_record.nil?
-  end
-
-  def self.get_pubmed_source_record_for_pmid(pmid)
+  def self.for_pmid(pmid)
     find_by(pmid: pmid) || get_pubmed_record_from_pubmed(pmid)
   end
-  private_class_method :get_pubmed_source_record_for_pmid
 
   # @return [PubmedSourceRecord] the recently downloaded pubmed_source_records data
   def self.get_pubmed_record_from_pubmed(pmid)
