@@ -19,8 +19,8 @@ namespace :cleanup do
     raise "Missing primary_cap_profile_id" unless primary_cap_profile_id
     raise "Missing duped_cap_profile_id" unless duped_cap_profile_id
 
-    primary_author=Author.find_by_cap_profile_id(primary_cap_profile_id)
-    duped_author=Author.find_by_cap_profile_id(duped_cap_profile_id)
+    primary_author = Author.find_by_cap_profile_id(primary_cap_profile_id)
+    duped_author = Author.find_by_cap_profile_id(duped_cap_profile_id)
 
     puts "Primary Author cap_profile_id: #{primary_cap_profile_id}; name: #{primary_author.first_name} #{primary_author.last_name}"
     puts "Duplicate Author cap_profile_id: #{duped_cap_profile_id}; name: #{duped_author.first_name} #{duped_author.last_name}"
@@ -32,8 +32,8 @@ namespace :cleanup do
     primary_publications = primary_author.publications
     dupes_publications = duped_author.publications
 
-    primary_pub_ids = primary_publications.map {|p| p.id}
-    dupes_pub_ids = dupes_publications.map {|p| p.id}
+    primary_pub_ids = primary_publications.map(&:id)
+    dupes_pub_ids = dupes_publications.map(&:id)
 
     moved = 0
     removed = 0
@@ -44,11 +44,11 @@ namespace :cleanup do
     duped_author.contributions.each do |contribution|
       if primary_pub_ids.include? contribution.publication_id # this publication already exists in the primary profile; remove it from the duped profile
         puts "Publication #{contribution.publication_id} already exists in the primary profile, removing this contribution from duped profile"
-        removed +=1
+        removed += 1
         contribution.destroy unless dry_run
       else
         puts "Moving #{contribution.publication_id} to primary profile"
-        moved +=1
+        moved += 1
         contribution.author_id = primary_author.id
         contribution.cap_profile_id = primary_author.cap_profile_id
         contribution.save unless dry_run
@@ -81,6 +81,5 @@ namespace :cleanup do
     puts
 
     puts "Duped author #{duped_author.cap_profile_id} now has #{duped_author.contributions.size} publications (should be 0) and primary author #{primary_author.cap_profile_id} has #{primary_author.contributions.size} publications"
-
   end
 end
