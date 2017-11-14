@@ -16,7 +16,7 @@ http_interactions:
                               <Filter>
                                   <Column>DOI</Column>
                                   <Operator>Equals</Operator>
-                                  <Value>10.1111/j.1444-0938.2010.00524.x</Value>
+                                  <Value>10.1016/j.mcn.2012.03.007</Value>
                               </Filter>
                           </Criterion>
                       </Criteria>
@@ -34,7 +34,7 @@ http_interactions:
       Accept-Encoding:
       - gzip,deflate
       Date:
-      - Mon, 13 Nov 2017 20:57:46 GMT
+      - Tue, 14 Nov 2017 01:21:28 GMT
       Licenseid:
       - Settings.SCIENCEWIRE.LICENSE_ID
       Host:
@@ -63,19 +63,19 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Mon, 13 Nov 2017 20:58:41 GMT
+      - Tue, 14 Nov 2017 01:37:39 GMT
       Content-Length:
       - '278'
     body:
       encoding: UTF-8
       string: "<?xml version=\"1.0\"?>\r\n<ScienceWireQueryIDResponse xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
-        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>142611</queryID>\r\n
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <queryID>142612</queryID>\r\n
         \ <queryResultRows>1</queryResultRows>\r\n  <totalRows>1</totalRows>\r\n</ScienceWireQueryIDResponse>"
     http_version: 
-  recorded_at: Mon, 13 Nov 2017 20:57:47 GMT
+  recorded_at: Tue, 14 Nov 2017 01:21:29 GMT
 - request:
     method: get
-    uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/142611?format=xml&page=0&pageSize=1&v=version/4
+    uri: https://sciencewirerest.discoverylogic.com/PublicationCatalog/PublicationQuery/142612?format=xml&page=0&pageSize=1&v=version/4
     body:
       encoding: UTF-8
       string: ''
@@ -87,7 +87,7 @@ http_interactions:
       Accept-Encoding:
       - gzip,deflate
       Date:
-      - Mon, 13 Nov 2017 20:57:47 GMT
+      - Tue, 14 Nov 2017 01:21:29 GMT
       Licenseid:
       - Settings.SCIENCEWIRE.LICENSE_ID
       Host:
@@ -116,58 +116,60 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Mon, 13 Nov 2017 20:58:41 GMT
+      - Tue, 14 Nov 2017 01:37:39 GMT
       Content-Length:
-      - '4067'
+      - '4108'
     body:
       encoding: UTF-8
       string: "<?xml version=\"1.0\"?>\r\n<ArrayOfPublicationItem xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <PublicationItem>\r\n
-        \   <PublicationItemID>37929883</PublicationItemID>\r\n    <Title>An international
-        survey of contact lens prescribing for presbyopia</Title>\r\n    <Abstract>Purpose:
-        \ The aim was to determine world-wide patterns of fitting contact lenses for
-        the correction of presbyopia.  Methods:  Up to 1,000 survey forms were sent
-        to contact lens fitters in each of 38 countries between January and March
-        every year over five consecutive years (2005 to 2009). Practitioners were
-        asked to record data relating to the first 10 contact lens fittings or refittings
-        performed after receiving the survey form.  Results:  Data were received relating
-        to 16,680 presbyopic (age 45 years or older) and 84,202 pre-presbyopic (15
-        to 44 years) contact lens wearers. Females are over-represented in presbyopic
-        versus pre-presbyopic groups, possibly reflecting a stronger desire for the
-        cosmetic benefits of contact lenses among older women. The extent to which
-        multifocal and monovision lenses are prescribed for presbyopes varies considerably
-        among nations, ranging from 79 per cent of all soft lenses in Portugal to
-        zero in Singapore. There appears to be significant under-prescribing of contact
-        lenses for the correction of presbyopia, although for those who do receive
-        such corrections, three times more multifocal lenses are fitted compared with
-        monovision fittings. Presbyopic corrections are most frequently prescribed
-        for full-time wear and monthly replacement.  Conclusions:  Despite apparent
-        improvements in multifocal design and an increase in available multifocal
-        options in recent years, practitioners are still under-prescribing with respect
-        to the provision of appropriate contact lenses for the correction of presbyopia.
-        Training of contact lens practitioners in presbyopic contact lens fitting
-        should be accelerated and clinical and laboratory research in this field should
-        be intensified to enhance the prospects of meeting the needs of presbyopic
-        contact lens wearers more fully.</Abstract>\r\n    <AuthorList>Morgan,Philip,B|Efron,Nathan,|Woods,Craig,A</AuthorList>\r\n
-        \   <AuthorCount>3</AuthorCount>\r\n    <KeywordList>MONOVISION|survey|fitting|presbyopia|multifocal
-        contact lenses|monovision correction</KeywordList>\r\n    <DocumentTypeList>Article</DocumentTypeList>\r\n
-        \   <DocumentCategory>Journal Document</DocumentCategory>\r\n    <NumberOfReferences>13</NumberOfReferences>\r\n
-        \   <TimesCited>29</TimesCited>\r\n    <TimesNotSelfCited>27</TimesNotSelfCited>\r\n
-        \   <PMID>21039845</PMID>\r\n    <WoSItemID>000285755000012</WoSItemID>\r\n
-        \   <PublicationSourceTitle>CLINICAL AND EXPERIMENTAL OPTOMETRY</PublicationSourceTitle>\r\n
-        \   <Volume>94</Volume>\r\n    <Issue>1</Issue>\r\n    <Pagination>87-92</Pagination>\r\n
-        \   <PublicationDate>2011-01-01T00:00:00</PublicationDate>\r\n    <PublicationYear>2011</PublicationYear>\r\n
-        \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Ophthalmology</PublicationSubjectCategoryList>\r\n
-        \   <ISSN>0816-4622</ISSN>\r\n    <DOI>10.1111/j.1444-0938.2010.00524.x</DOI>\r\n
+        \   <PublicationItemID>60813767</PublicationItemID>\r\n    <Title>The T3-induced
+        gene KLF9 regulates oligodendrocyte differentiation and myelin regeneration</Title>\r\n
+        \   <Abstract>Hypothyroidism is a well-described cause of hypomyelination.
+        In addition, thyroid hormone (T3) has recently been shown to enhance remyelination
+        in various animal models of CNS demyelination. What are the ways in which
+        T3 promotes the development and regeneration of healthy myelin? To begin to
+        understand the mechanisms by which 13 drives myelination, we have identified
+        genes regulated specifically by T3 in purified oligodendrocyte precursor cells
+        (OPCs). Among the genes identified by genomic expression analyses were four
+        transcription factors, Kruppel-like factor 9 (KLF9), basic helix-loop-helix
+        family member e22 (BHLHe22), Hairless (Hr), and Albumin D box-binding protein
+        (DBP), all of which were induced in OPCs by both brief and long term exposure
+        to T3. To begin to investigate the role of these genes in myelination, we
+        focused on the most rapidly and robustly induced of these, KLF9, and found
+        it is both necessary and sufficient to promote oligodendrocyte differentiation
+        in vitro. Surprisingly, we found that loss of KLF9 in vivo negligibly affects
+        the formation of CNS myelin during development, but does significantly delay
+        remyelination in cuprizone-induced demyelinated lesions. These experiments
+        indicate that KLF9 is likely a novel integral component of the T3-driven signaling
+        cascade that promotes the regeneration of lost myelin. Future analyses of
+        the roles of KLF9 and other identified T3-induced genes in myelination may
+        lead to novel insights into how to enhance the regeneration of myelin in demyelinating
+        diseases such as multiple sclerosis. (c) 2012 Elsevier Inc. All rights reserved.</Abstract>\r\n
+        \   <AuthorList>Dugas,Jason,C|Ibrahim,Adiljan,|Barres,Ben,A</AuthorList>\r\n
+        \   <AuthorCount>3</AuthorCount>\r\n    <KeywordList>IN-VIVO|CONGENITAL HYPOTHYROIDISM|THYROID-HORMONE
+        ACTION|CENTRAL-NERVOUS-SYSTEM|ELEMENT-BINDING PROTEIN-1|MAGNETIC-RESONANCE
+        SPECTROSCOPY|RAT-BRAIN|EXPERIMENTAL HYPOTHYROIDISM|SPINAL-CORD DEMYELINATION|KRUPPEL-LIKE
+        FACTOR-9|OLIGODENDROCYTE|MYELIN|thyroid hormone|cuprizone|Klf9|BTEB1</KeywordList>\r\n
+        \   <DocumentTypeList>Article</DocumentTypeList>\r\n    <DocumentCategory>Journal
+        Document</DocumentCategory>\r\n    <NumberOfReferences>61</NumberOfReferences>\r\n
+        \   <TimesCited>43</TimesCited>\r\n    <TimesNotSelfCited>43</TimesNotSelfCited>\r\n
+        \   <PMID>22472204</PMID>\r\n    <WoSItemID>000305547700005</WoSItemID>\r\n
+        \   <PublicationSourceTitle>MOLECULAR AND CELLULAR NEUROSCIENCE</PublicationSourceTitle>\r\n
+        \   <Volume>50</Volume>\r\n    <Issue>1</Issue>\r\n    <Pagination>45-57</Pagination>\r\n
+        \   <PublicationDate>2012-05-01T00:00:00</PublicationDate>\r\n    <PublicationYear>2012</PublicationYear>\r\n
+        \   <PublicationType>Journal</PublicationType>\r\n    <PublicationSubjectCategoryList>Neurosciences</PublicationSubjectCategoryList>\r\n
+        \   <ISSN>1044-7431</ISSN>\r\n    <DOI>10.1016/j.mcn.2012.03.007</DOI>\r\n
         \   <ConferenceStartDate xsi:nil=\"true\" />\r\n    <ConferenceEndDate xsi:nil=\"true\"
         />\r\n    <Rank xsi:nil=\"true\" />\r\n    <OrdinalRank>0</OrdinalRank>\r\n
         \   <NormalizedRank xsi:nil=\"true\" />\r\n    <NewPublicationItemID xsi:nil=\"true\"
-        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>WILEY-BLACKWELL</CopyrightPublisher>\r\n
-        \   <CopyrightCity>HOBOKEN</CopyrightCity>\r\n    <PublicationImpactFactorList>1.047,2011,ExactPublicationYear|1.256,2013,MostRecentYear</PublicationImpactFactorList>\r\n
-        \   <PublicationCategoryRankingList>36/56;OPHTHALMOLOGY;2011;SC;ExactPublicationYear|40/58;OPHTHALMOLOGY;2013;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
-        \   <AuthorCitationCountList>1,0,29|2,0,29|3,2,27</AuthorCitationCountList>\r\n
-        \   <CopyrightStateProvince>NJ</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
+        />\r\n    <IsObsolete>false</IsObsolete>\r\n    <CopyrightPublisher>ACADEMIC
+        PRESS INC ELSEVIER SCIENCE</CopyrightPublisher>\r\n    <CopyrightCity>SAN
+        DIEGO</CopyrightCity>\r\n    <PublicationImpactFactorList>3.837,2012,ExactPublicationYear|3.734,2013,MostRecentYear</PublicationImpactFactorList>\r\n
+        \   <PublicationCategoryRankingList>74/252;NEUROSCIENCES;2012;SC;ExactPublicationYear|82/252;NEUROSCIENCES;2013;SC;MostRecentYear</PublicationCategoryRankingList>\r\n
+        \   <AuthorCitationCountList>1,0,43|2,0,43|3,0,43</AuthorCitationCountList>\r\n
+        \   <CopyrightStateProvince>CA</CopyrightStateProvince>\r\n    <CopyrightCountry>UNITED
         STATES</CopyrightCountry>\r\n  </PublicationItem>\r\n</ArrayOfPublicationItem>"
     http_version: 
-  recorded_at: Mon, 13 Nov 2017 20:57:47 GMT
+  recorded_at: Tue, 14 Nov 2017 01:21:29 GMT
 recorded_with: VCR 3.0.1
