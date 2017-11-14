@@ -22,17 +22,17 @@ namespace :sul do
     Publication.find_each.with_index do |pub, index|
       current_time = Time.now
       elapsed_time = current_time - start_time
-      avg_time_per_pub = elapsed_time/(index+1)
-      total_time_remaining = (avg_time_per_pub * (total_pubs-index)).floor
+      avg_time_per_pub = elapsed_time / (index + 1)
+      total_time_remaining = (avg_time_per_pub * (total_pubs - index)).floor
       if index % output_each == 0 # provide some feedback every X pubs
-        message = "...#{current_time}: on publication #{number_with_delimiter(index+1)} of #{number_with_delimiter(total_pubs)} : ~ #{distance_of_time_in_words(start_time,start_time + total_time_remaining.seconds)} left"
+        message = "...#{current_time}: on publication #{number_with_delimiter(index + 1)} of #{number_with_delimiter(total_pubs)} : ~ #{distance_of_time_in_words(start_time, start_time + total_time_remaining.seconds)} left"
         logger.info message
       end
       begin
         pub.send(method)
         pub.save
         success_count += 1
-      rescue  => e
+      rescue => e
         message = "*****ERROR on publication ID #{pub.id}: #{e.message}"
         puts message
         logger.error message
@@ -45,15 +45,15 @@ namespace :sul do
       end
     end
     end_time = Time.now
-    message = "Total: #{number_with_delimiter(total_pubs)}.  Successful: #{success_count}.  Error: #{error_count}.  Ended at #{end_time}. Total time: #{distance_of_time_in_words(end_time,start_time)}"
+    message = "Total: #{number_with_delimiter(total_pubs)}.  Successful: #{success_count}.  Error: #{error_count}.  Ended at #{end_time}. Total time: #{distance_of_time_in_words(end_time, start_time)}"
     puts message
     logger.info message
   end
 
   desc 'check external services'
   task :check_external_services, [:server] => :environment do |_t, args|
-    conn = Faraday.new(:url=>args[:server])
-    external_checks=%w{external-CapHttpClient external-ScienceWireClient external-PubmedClient}
+    conn = Faraday.new(url: args[:server])
+    external_checks = %w(external-CapHttpClient external-ScienceWireClient external-PubmedClient)
     external_checks.each do |check_name|
       response = conn.get "/status/#{check_name}"
       puts "#{Time.now}: #{check_name}: #{response.status} - #{response.body}"
