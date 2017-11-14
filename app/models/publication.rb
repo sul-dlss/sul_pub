@@ -300,8 +300,9 @@ class Publication < ActiveRecord::Base
 
     def add_any_pubmed_data_to_hash
       return if pmid.blank?
-      pubmed_hash = PubmedSourceRecord.get_pubmed_hash_for_pmid(pmid)
-      return if pubmed_hash.nil?
+      pubmed_record = PubmedSourceRecord.for_pmid(pmid)
+      return if pubmed_record.nil?
+      pubmed_hash = pubmed_record.source_as_hash
       pub_hash[:mesh_headings] = pubmed_hash[:mesh_headings] if pubmed_hash[:mesh_headings].present?
       pub_hash[:abstract] = pubmed_hash[:abstract] if pubmed_hash[:abstract].present?
       pmc_id = pubmed_hash[:identifier].detect { |id| id[:type] == 'pmc' }
