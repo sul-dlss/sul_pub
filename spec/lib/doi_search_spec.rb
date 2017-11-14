@@ -1,16 +1,21 @@
 
 describe DoiSearch do
-  let(:publication) { create :publication }
-  let(:author) { create :author }
+  let(:doi_value) { '10.1016/j.mcn.2012.03.007' }
+  let(:doi_identifier) do
+    FactoryGirl.create(:publication_identifier,
+                       identifier_type: 'doi',
+                       identifier_value: doi_value,
+                       identifier_uri: "http://dx.doi.org/#{doi_value}")
+  end
 
   before(:each) do
-    publication
+    doi_identifier.publication.save
   end
 
   describe '.search' do
     it 'returns one document ' do
       VCR.use_cassette('doi_search_spec_one_doc') do
-        result = DoiSearch.search '10.1016/j.mcn.2012.03.007'
+        result = DoiSearch.search doi_value
 
         expect(result.size).to eq 1
         expect(result.first[:sw_id]).to eq '60813767'
@@ -19,14 +24,9 @@ describe DoiSearch do
 
     it 'queries sciencewire if the locally found pub is non-sciencewire' do
       VCR.use_cassette('doi_search_manual_doi_local') do
-        publication.pub_hash = {
-          provenance: 'cap',
-          identifier: [{ type: 'doi', id: '10.1111/j.1444-0938.2010.00524.x', url: 'https://dx.doi.org/10.1111/j.1444-0938.2010.00524.x' }]
-        }
-        publication.send(:sync_identifiers_in_pub_hash_to_db)
-        publication.save
-
-        result = DoiSearch.search '10.1111/j.1444-0938.2010.00524.x'
+        doi_identifier.publication.pub_hash.merge(provenance: 'cap')
+        doi_identifier.publication.save
+        result = DoiSearch.search doi_value
         expect(result.size).to eq 1
         expect(result.first[:provenance]).to eq 'sciencewire'
       end
