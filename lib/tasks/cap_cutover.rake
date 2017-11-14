@@ -59,4 +59,10 @@ namespace :cap_cutover do
     end
     Rails.logger.info total_running_count.to_s + ' in ' + distance_of_time_in_words_to_now(start_time)
   end
+
+  desc 'overwrite cap profile ids from CAP authorship feed - this is meant to be a very temporary, dangerous, and invasive procedure for creating qa machines for the School of Medicine testers.'
+  task overwrite_profile_ids: :environment do
+    return if Rails.env == 'production'
+    CapProfileIdRewriter.new.rewrite_cap_profile_ids_from_feed
+  end
 end
