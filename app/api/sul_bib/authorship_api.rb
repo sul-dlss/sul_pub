@@ -23,15 +23,12 @@ module SulBib
         # the data in the pub.pub_hash field. This is the most painful data
         # modeling aspect of this application.  It maintains a Hash in a
         # Publication.pub_hash field, breaking the elegant design of a RDBMS.
-
-        # See app/models/publication for the `build_or_update` method.  It
-        # should set the `pubhash_needs_update` to true, which will trigger
-        # a sync into the pub.push_hash before pub.save.
-        authorship[:cap_profile_id] = author.cap_profile_id
-        pub.contributions.build_or_update(author, authorship)
+        contrib = pub.contributions.find_or_initialize_by(author_id: author.id)
+        contrib.assign_attributes(authorship.merge(cap_profile_id: author.cap_profile_id, author_id: author.id))
+        pub.pubhash_needs_update! if contrib.persisted?
+        contrib.save
         begin
-          # Save the publication so it will sync the contribution into the
-          # pub.pub_hash[:authorship] array.
+          # Save the publication so it will sync the contribution into the pub.pub_hash[:authorship] array.
           pub.save!
         rescue ActiveRecord::ActiveRecordError => e
           error!(e.inspect, 500)

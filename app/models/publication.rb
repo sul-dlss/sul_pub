@@ -43,31 +43,7 @@ class Publication < ActiveRecord::Base
     autosave: true,
     dependent: :destroy,
     after_add: :pubhash_needs_update!,
-    after_remove: :pubhash_needs_update! do
-    # See also: update_any_new_contribution_info_in_pub_hash_to_db
-    def build_or_update(author, contribution_hash = {})
-      # Assign or update these contribution attributes
-      # Ensure the contribution attributes contain the right author
-      contribution_hash[:author_id] = author.id
-      contribution_hash[:cap_profile_id] = author.cap_profile_id if author.cap_profile_id.present?
-      contrib = find_or_initialize_by(author_id: author.id) do |new_contrib|
-        new_contrib.assign_attributes(contribution_hash)
-        new_contrib.publication = proxy_association.owner
-      end
-      if contrib.persisted?
-        # Update an existing contribution
-        contrib.update(contribution_hash)
-      else
-        contrib.save
-        # SELF is an array of Contributions
-        self << contrib unless include? contrib
-      end
-      # The `proxy_association.owner` is a Publication instance, so
-      # set a trigger that will force it to update it's pub_hash data.
-      proxy_association.owner.pubhash_needs_update!
-      contrib
-    end
-  end
+    after_remove: :pubhash_needs_update!
 
   serialize :pub_hash, Hash
 
@@ -316,9 +292,8 @@ class Publication < ActiveRecord::Base
       Array(pub_hash[:authorship]).each do |contrib|
         hash_for_update = contrib.slice(:status, :visibility, :featured)
         # Find or create an Author of the contribution
-        author_id = contrib[:sul_author_id]
         cap_profile_id = contrib[:cap_profile_id]
-        author = Author.find_by_id(author_id)
+        author = Author.find_by_id(contrib[:sul_author_id])
         if cap_profile_id.present?
           author ||= Author.find_by_cap_profile_id(cap_profile_id)
           author ||= begin
@@ -335,11 +310,7 @@ class Publication < ActiveRecord::Base
         hash_for_update[:cap_profile_id] = author.cap_profile_id if author.cap_profile_id.present?
         contrib = contributions.where(author_id: author.id).first_or_initialize
         contrib.assign_attributes(hash_for_update)
-        if contrib.persisted?
-          contrib.save
-        else
-          contributions << contrib unless contributions.include? contrib
-        end
+        contrib.save if contrib.changed?
       end
       true
     end
