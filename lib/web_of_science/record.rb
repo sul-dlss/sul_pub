@@ -14,7 +14,7 @@ module WebOfScience
     # @param record [String] record in XML
     # @param encoded_record [String] record in HTML encoding
     def initialize(record: nil, encoded_record: nil)
-      @doc = WebOfScience::XmlMapper.parse_xml(record, encoded_record)
+      @doc = WebOfScience::XmlParser.parse(record, encoded_record)
     end
 
     # @return authors [Array<Hash<String => String>>]
@@ -36,7 +36,7 @@ module WebOfScience
     def names
       @names ||= begin
         names = doc.search('static_data/summary/names/name').map do |name|
-          WebOfScience::XmlMapper.attributes_with_children_hash(name)
+          WebOfScience::XmlParser.attributes_with_children_hash(name)
         end
         names.sort { |name| name['seq_no'].to_i }
       end
@@ -58,9 +58,9 @@ module WebOfScience
     def pub_info
       @pub_info ||= begin
         info = doc.at('static_data/summary/pub_info')
-        fields = WebOfScience::XmlMapper.attributes_map(info)
+        fields = WebOfScience::XmlParser.attributes_map(info)
         fields += info.children.map do |child|
-          [child.name, WebOfScience::XmlMapper.attributes_map(child).to_h ]
+          [child.name, WebOfScience::XmlParser.attributes_map(child).to_h ]
         end
         fields.to_h
       end
@@ -72,12 +72,12 @@ module WebOfScience
         publishers = doc.search('static_data/summary/publishers/publisher').map do |publisher|
           # parse the publisher address(es)
           addresses = publisher.search('address_spec').map do |address|
-            WebOfScience::XmlMapper.attributes_with_children_hash(address)
+            WebOfScience::XmlParser.attributes_with_children_hash(address)
           end
           addresses.sort! { |a| a['addr_no'].to_i }
           # parse the publisher name(s)
           names = publisher.search('names/name').map do |name|
-            WebOfScience::XmlMapper.attributes_with_children_hash(name)
+            WebOfScience::XmlParser.attributes_with_children_hash(name)
           end
           # associate each publisher name with it's address by 'addr_no'
           names.each do |name|
@@ -132,7 +132,7 @@ module WebOfScience
 
     # @return xml [String] XML
     def to_xml
-      doc.to_xml(save_with: WebOfScience::XmlMapper::XML_OPTIONS).strip
+      doc.to_xml(save_with: WebOfScience::XmlParser::XML_OPTIONS).strip
     end
 
     private

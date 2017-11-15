@@ -22,7 +22,7 @@ module WebOfScience
     # @param records [String] records in XML
     # @param encoded_records [String] records in HTML encoding
     def initialize(records: nil, encoded_records: nil)
-      @doc = WebOfScience::XmlMapper.parse_xml(records, encoded_records)
+      @doc = WebOfScience::XmlParser.parse(records, encoded_records)
     end
 
     # Group records by the database prefix in the UID
