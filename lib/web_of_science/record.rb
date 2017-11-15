@@ -1,5 +1,4 @@
 require 'forwardable'
-require 'htmlentities'
 
 module WebOfScience
 
@@ -15,8 +14,7 @@ module WebOfScience
     # @param record [String] record in XML
     # @param encoded_record [String] record in HTML encoding
     def initialize(record: nil, encoded_record: nil)
-      record = decode_record(record, encoded_record)
-      @doc = Nokogiri::XML(record) { |config| config.strict.noblanks }
+      @doc = WebOfScience::XmlMapper.parse_xml(record, encoded_record)
     end
 
     # @return authors [Array<Hash<String => String>>]
@@ -38,7 +36,7 @@ module WebOfScience
     def names
       @names ||= begin
         names = doc.search('static_data/summary/names/name').map do |name|
-          attributes_with_children_hash(name)
+          WebOfScience::XmlMapper.attributes_with_children_hash(name)
         end
         names.sort { |name| name['seq_no'].to_i }
       end
@@ -60,9 +58,9 @@ module WebOfScience
     def pub_info
       @pub_info ||= begin
         info = doc.at('static_data/summary/pub_info')
-        fields = attributes_map(info)
+        fields = WebOfScience::XmlMapper.attributes_map(info)
         fields += info.children.map do |child|
-          [child.name, attributes_map(child).to_h ]
+          [child.name, WebOfScience::XmlMapper.attributes_map(child).to_h ]
         end
         fields.to_h
       end
@@ -74,12 +72,12 @@ module WebOfScience
         publishers = doc.search('static_data/summary/publishers/publisher').map do |publisher|
           # parse the publisher address(es)
           addresses = publisher.search('address_spec').map do |address|
-            attributes_with_children_hash(address)
+            WebOfScience::XmlMapper.attributes_with_children_hash(address)
           end
           addresses.sort! { |a| a['addr_no'].to_i }
           # parse the publisher name(s)
           names = publisher.search('names/name').map do |name|
-            attributes_with_children_hash(name)
+            WebOfScience::XmlMapper.attributes_with_children_hash(name)
           end
           # associate each publisher name with it's address by 'addr_no'
           names.each do |name|
@@ -134,38 +132,10 @@ module WebOfScience
 
     # @return xml [String] XML
     def to_xml
-      doc.to_xml(save_with: XML_OPTIONS).strip
+      doc.to_xml(save_with: WebOfScience::XmlMapper::XML_OPTIONS).strip
     end
 
     private
-
-      XML_OPTIONS = Nokogiri::XML::Node::SaveOptions::AS_XML | Nokogiri::XML::Node::SaveOptions::NO_DECLARATION
-
-      # @param element [Nokogiri::XML::Element]
-      # @return attributes [Array<Array[String, String]>]
-      def attributes_map(element)
-        element.attributes.map { |name, att| [name, att.value] }
-      end
-
-      # @param element [Nokogiri::XML::Element]
-      # @return fields [Hash]
-      def attributes_with_children_hash(element)
-        fields = attributes_map(element)
-        fields += element.children.map { |c| [c.name, c.text] }
-        fields.to_h
-      end
-
-      # Return a decoded record, whether it is passed in already or needs to be decoded
-      # @param record [String] record in XML
-      # @param encoded_record [String] record in HTML encoding
-      # @return decoded_record [String] WOS record in XML
-      # @raise RuntimeError when arguments are all nil
-      def decode_record(record, encoded_record)
-        return record unless record.nil?
-        raise 'encoded_record is nil' if encoded_record.nil?
-        coder = HTMLEntities.new
-        coder.decode(encoded_record)
-      end
 
       # Convert Hash to OpenStruct with recursive application to nested hashes
       def to_o(hash)
