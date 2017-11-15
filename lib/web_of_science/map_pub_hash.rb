@@ -1,5 +1,3 @@
-require 'street_address'
-
 module WebOfScience
 
   # Map WOS record data into the SUL PubHash data
@@ -36,7 +34,7 @@ module WebOfScience
         # - the PubHash class has methods to separate them when creating citations
         pub[:author] = pub_hash_names
         pub[:authorcount] = rec.authors.count
-        pub_hash_publisher
+        pub.update rec.publisher.pub_hash
       end
 
       # publication citation details
@@ -140,78 +138,5 @@ module WebOfScience
           fst == lst ? fst : [fst, lst].join('-')
         end
       end
-
-      # Extract publisher information into these fields:
-      # :publisher=>"OXFORD UNIV PRESS"
-      # :city=>"OXFORD"
-      # :stateprovince=>""
-      # :country=>"UNITED KINGDOM"
-      def pub_hash_publisher
-        return if rec.publishers.blank?
-        # The WOS record allows for multiple publishers, for some reason, but journals usually have only one
-        # publisher and our other data sources only provide one publisher; so choose the first one here.
-        publisher = rec.publishers.first
-        pub[:publisher] = publisher['full_name']
-        publisher_address(publisher['address'])
-      end
-
-      # Useful snippet to see a bunch of addresses
-      # altman_records = WOS.queries.search_by_name('Altman, Russ, B', ['Stanford University']);
-      # addresses = altman_records.map {|rec| rec.publishers.blank? ? {} : rec.publishers.first['address'] }
-      # To see non-USA addresses
-      # addresses.reject {|add| add['full_address'] =~ /USA/ }
-
-      # @param address [Hash]
-      def publisher_address(address)
-        return if address.blank?
-        # The city is provided by WOS
-        pub[:city] = address['city']
-        # The rest is a parsing game
-        full_address = address['full_address']
-        publisher_state(full_address)
-        publisher_country(full_address)
-      end
-
-      def medline_country
-        return false unless rec.database == 'MEDLINE'
-        country = rec.doc.xpath('/REC/static_data/item/MedlineJournalInfo/Country')
-        pub[:country] = country.text if country.present?
-        country.present?
-      end
-
-      # Extract a state from "{state} {zip} [{country}]"
-      def publisher_country(full_address)
-        return if medline_country
-        return if usa_address(full_address)
-        # This could be a US address that did not parse or it is an international address.
-        # A best guess at the country comes from the last CSV element:
-        country = full_address.split(',').last.to_s.strip
-        if country.end_with?('USA')
-          pub[:country] = 'USA'
-        elsif country.present?
-          pub[:country] = country #unless country =~ /[0-9]*/
-        end
-      end
-
-      # Extract a state from "{state} {zip} [{country}]"
-      def publisher_state(full_address)
-        return if usa_address(full_address)
-        # Some US addresses escape the StreetAddress parser.
-        # Most often, the state acronym is in the last CSV element.
-        state = full_address.split(',').last.to_s.strip
-        matches = state.match(/([A-Z]{2})\s+([0-9-]*)/)
-        pub[:stateprovince] = matches[1] if matches.present?
-      end
-
-      # Extract the state and country from a US address
-      def usa_address(full_address)
-        @usa_address ||= StreetAddress::US.parse(full_address)
-        return false if @usa_address.blank?
-        # This is a US address
-        pub[:stateprovince] = @usa_address.state
-        pub[:country] = 'USA'
-        true
-      end
-
   end
 end
