@@ -152,7 +152,6 @@ describe Publication do
     it 'should sync existing authors in the pub hash to contributions in the db' do
       publication.pub_hash = { authorship: [{ status: 'new', sul_author_id: author.id }] }
       publication.send(:update_any_new_contribution_info_in_pub_hash_to_db)
-      publication.save
       expect(publication.contributions.size).to eq(1)
       c = publication.contributions.last
       expect(c.author).to eq(author)
@@ -161,10 +160,9 @@ describe Publication do
 
     it 'should update attributions of existing contributions to the database' do
       expect(publication.contributions.size).to eq(0)
-      publication.contributions.build_or_update(author, status: 'unknown')
+      publication.contributions.create(author: author, cap_profile_id: author.cap_profile_id, status: 'unknown')
       publication.pub_hash = { authorship: [{ status: 'new', sul_author_id: author.id }] }
       publication.send(:update_any_new_contribution_info_in_pub_hash_to_db)
-      publication.save
       expect(publication.contributions.size).to eq(1)
       c = publication.contributions.reload.last
       expect(c.author).to eq(author)
@@ -174,7 +172,6 @@ describe Publication do
     it 'should look up authors by their cap profile id' do
       author.cap_profile_id = 'abc'
       author.save
-
       publication.pub_hash = { authorship: [{ status: 'new', cap_profile_id: author.cap_profile_id }] }
       publication.send(:update_any_new_contribution_info_in_pub_hash_to_db)
 
@@ -329,21 +326,6 @@ describe Publication do
       expect(publication.pub_hash[:apa_citation]).to eq(apa)
       expect(publication.pub_hash[:mla_citation]).to eq(mla)
       expect(publication.pub_hash[:chicago_citation]).to eq(chicago)
-    end
-  end
-
-  describe 'contributions.build_or_update' do
-    it 'should add a contribution' do
-      c = publication.contributions.build_or_update(author, status: 'unknown')
-      expect(c.author).to eq(author)
-      expect(c.status).to eq('unknown')
-    end
-
-    it 'should update a contribution record if the association exists' do
-      publication.contributions.build_or_update author
-      c = publication.contributions.build_or_update(author, status: 'new')
-      expect(c.author).to eq(author)
-      expect(c.status).to eq('new')
     end
   end
 
