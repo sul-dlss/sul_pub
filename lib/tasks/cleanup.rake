@@ -14,8 +14,6 @@ namespace :cleanup do
     primary_cap_profile_id = args[:primary_cap_profile_id] # the profile you will be merging publications into
     duped_cap_profile_id = args[:duped_cap_profile_id] # the profile you will be merging publications out of and will be disabled
 
-    dry_run = false # set to true to simply show IDs without moving or removing contributions
-
     raise "Missing primary_cap_profile_id" unless primary_cap_profile_id
     raise "Missing duped_cap_profile_id" unless duped_cap_profile_id
 
@@ -25,7 +23,6 @@ namespace :cleanup do
     puts "Primary Author cap_profile_id: #{primary_cap_profile_id}; name: #{primary_author.first_name} #{primary_author.last_name}"
     puts "Duplicate Author cap_profile_id: #{duped_cap_profile_id}; name: #{duped_author.first_name} #{duped_author.last_name}"
     puts "Merging duped author #{duped_author.cap_profile_id}'s #{duped_author.contributions.size} publications INTO primary author #{primary_author.cap_profile_id}'s #{primary_author.contributions.size} publications"
-    puts "DRY RUN" if dry_run
     puts
 
     primary_pub_ids = primary_author.publications.map(&:id)
@@ -40,13 +37,13 @@ namespace :cleanup do
       if primary_pub_ids.include? contribution.publication_id # this publication already exists in the primary profile; remove it from the duped profile
         puts "Publication #{contribution.publication_id} already exists in the primary profile, removing this contribution from duped profile"
         removed += 1
-        contribution.destroy unless dry_run
+        contribution.destroy
       else
         puts "Moving #{contribution.publication_id} to primary profile"
         moved += 1
         contribution.author_id = primary_author.id
         contribution.cap_profile_id = primary_author.cap_profile_id
-        contribution.save unless dry_run
+        contribution.save
       end
     end
 
@@ -54,21 +51,19 @@ namespace :cleanup do
     puts "#{moved} publications moved to primary profile"
     puts "Publication IDs that were moved to primary profile: #{dupes_pub_ids - primary_pub_ids}"
 
-    unless dry_run
-      primary_author.reload
-      duped_author.reload
-      # rebuild all publications on the primary author profile
-      primary_author.publications.each do |pub|
-        pub.sync_publication_hash_and_db
-        pub.save
-      end
+    primary_author.reload
+    duped_author.reload
+    # rebuild all publications on the primary author profile
+    primary_author.publications.each do |pub|
+      pub.sync_publication_hash_and_db
+      pub.save
     end
 
     puts "Authorship rebuilt in all publications associated with the primary profile"
 
     duped_author.cap_import_enabled = false
     duped_author.active_in_cap = false
-    duped_author.save unless dry_run
+    duped_author.save
 
     puts "Duped author set to inactive in cap\n"
     puts "Duped author #{duped_author.cap_profile_id} now has #{duped_author.contributions.size} publications (should be 0) and primary author #{primary_author.cap_profile_id} has #{primary_author.contributions.size} publications"
