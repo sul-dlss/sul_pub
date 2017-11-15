@@ -30,10 +30,7 @@ module WebOfScience
 
       # publication agents
       def pub_hash_agents
-        # - use names, with role, to include 'author' and other roles, possibly 'editor' also
-        # - the PubHash class has methods to separate them when creating citations
-        pub[:author] = pub_hash_names
-        pub[:authorcount] = rec.authors.count
+        pub.update WebOfScience::MapNames.new(rec).pub_hash
         pub.update rec.publisher.pub_hash
       end
 
@@ -65,27 +62,6 @@ module WebOfScience
         pub[:wos_uid] = rec.uid
         pub[:wos_item_id] = rec.wos_item_id if rec.wos_item_id.present?
         pub[:identifier] = rec.identifiers.pub_hash
-      end
-
-      # Parse the WOS names and return a Hash compatible with Csl::AuthorName
-      # @return [Hash]
-      def pub_hash_names
-        rec.names.map do |name|
-          name = name.slice('first_name', 'middle_name', 'last_name', 'full_name', 'role').symbolize_keys
-          match = name[:first_name].to_s.match(/\A([A-Z])([A-Z])/)
-          if match
-            # first_name is the initials, with first and middle initials combined
-            name[:first_name] = match[1]
-            name[:middle_name] ||= match[2]
-          end
-          name
-        end
-        # MEDLINE data might have a different form, e.g.
-        # <name display='Y' role='author' seq_no='2'>
-        #   <display_name>Altman, Russ B</display_name>
-        #   <full_name>Altman, Russ B</full_name>
-        #   <initials>RB</initials>
-        # </name>
       end
 
   end
