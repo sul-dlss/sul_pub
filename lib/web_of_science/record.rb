@@ -8,6 +8,8 @@ module WebOfScience
 
     delegate %i(database doi eissn issn pmid uid wos_item_id) => :identifiers
 
+    delegate %i(publishers) => :publisher
+
     # @return doc [Nokogiri::XML::Document] WOS record document
     attr_reader :doc
 
@@ -66,28 +68,9 @@ module WebOfScience
       end
     end
 
-    # @return publishers [Array<Hash>]
-    def publishers
-      @publishers ||= begin
-        publishers = doc.search('static_data/summary/publishers/publisher').map do |publisher|
-          # parse the publisher address(es)
-          addresses = publisher.search('address_spec').map do |address|
-            WebOfScience::XmlParser.attributes_with_children_hash(address)
-          end
-          addresses.sort! { |a| a['addr_no'].to_i }
-          # parse the publisher name(s)
-          names = publisher.search('names/name').map do |name|
-            WebOfScience::XmlParser.attributes_with_children_hash(name)
-          end
-          # associate each publisher name with it's address by 'addr_no'
-          names.each do |name|
-            address = addresses.find { |addr| addr['addr_no'] == name['addr_no'] }
-            name['address'] = address
-          end
-          names.sort { |name| name['seq_no'].to_i }
-        end
-        publishers.flatten
-      end
+    # @return [WebOfScience::MapPublisher]
+    def publisher
+      @publisher ||= WebOfScience::MapPublisher.new(self)
     end
 
     # Extract the REC summary fields
