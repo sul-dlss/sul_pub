@@ -273,10 +273,4 @@ describe WebOfScience::Records do
       it_behaves_like 'it has well formed XML'
     end
   end
-
-  describe '#decode_records' do
-    let(:xml_result) { wos_records_encoded.send(:decode_records) }
-
-    it_behaves_like 'it has well formed XML'
-  end
 end
