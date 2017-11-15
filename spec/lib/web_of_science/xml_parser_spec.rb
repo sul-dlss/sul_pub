@@ -1,6 +1,6 @@
 require 'htmlentities'
 
-describe WebOfScience::XmlMapper do
+describe WebOfScience::XmlParser do
   let(:wos_encoded_record) { File.read('spec/fixtures/wos_client/wos_encoded_record.html') }
   let(:wos_record_encoded) { WebOfScience::Record.new(encoded_record: wos_encoded_record) }
 
@@ -27,7 +27,7 @@ describe WebOfScience::XmlMapper do
   end
 
   describe '#parse_xml' do
-    let(:xml_result) { described_class.parse_xml(nil, wos_encoded_record).to_xml }
+    let(:xml_result) { described_class.parse(nil, wos_encoded_record).to_xml }
 
     it_behaves_like 'it has well formed XML'
   end
