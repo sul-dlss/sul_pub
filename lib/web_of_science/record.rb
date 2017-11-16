@@ -172,5 +172,9 @@ module WebOfScience
         JSON.parse(hash.to_json, object_class: OpenStruct)
       end
 
+      def logger
+        @logger ||= NotificationManager.wos_logger
+      end
+
   end
 end
