@@ -133,20 +133,20 @@ class Publication < ActiveRecord::Base
   def update_from_pubmed
     return false if pmid.blank?
     pm_source_record = PubmedSourceRecord.find_by_pmid(pmid)
+    return false unless pm_source_record
     pm_source_record.pubmed_update
     rebuild_pub_hash
-    save
   end
 
   def update_from_sciencewire
     return false if sciencewire_id.blank?
     sw_source = SciencewireSourceRecord.find_by_sciencewire_id(sciencewire_id)
+    return false unless sw_source
     sw_source.sciencewire_update
     rebuild_pub_hash
-    save
   end
 
-  # @return [self]
+  # @return [Boolean] true if .save is successful
   def rebuild_pub_hash
     if sciencewire_id
       sw_source_record = SciencewireSourceRecord.find_by_sciencewire_id(sciencewire_id)
@@ -156,7 +156,7 @@ class Publication < ActiveRecord::Base
       self.pub_hash = pubmed_source_record.source_as_hash
     end
     sync_publication_hash_and_db
-    self
+    save
   end
 
   def delete!

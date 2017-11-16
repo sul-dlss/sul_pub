@@ -11,7 +11,6 @@ class RebuildConferencePapers
           found += 1
           logger.debug "Rebuilding pub_hash for Publication.find(#{pub.id})"
           pub.rebuild_pub_hash # from SciencewireSourceRecord
-          pub.save
         end
       rescue => e
         logger.error "Problem with Publication.find(#{pub.id}): #{e.inspect}"
