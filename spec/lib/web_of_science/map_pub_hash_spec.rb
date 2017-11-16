@@ -28,9 +28,6 @@ describe WebOfScience::MapPubHash do
   end
 
   shared_examples 'contains_summary_data' do
-    xit 'has an abstract' do
-      expect(pub_hash[:abstract]).not_to be_nil
-    end
     it 'has an authors' do
       expect(pub_hash[:author]).not_to be_nil
     end
