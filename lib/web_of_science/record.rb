@@ -6,6 +6,8 @@ module WebOfScience
   class Record
     extend Forwardable
 
+    delegate %i(abstracts) => :abstract_mapper
+
     delegate %i(database doi eissn issn pmid uid wos_item_id) => :identifiers
 
     delegate %i(publishers) => :publisher
@@ -17,6 +19,11 @@ module WebOfScience
     # @param encoded_record [String] record in HTML encoding
     def initialize(record: nil, encoded_record: nil)
       @doc = WebOfScience::XmlParser.parse(record, encoded_record)
+    end
+
+    # @return abstract_mapper [WebOfScience::MapAbstract]
+    def abstract_mapper
+      @abstract_mapper ||= WebOfScience::MapAbstract.new(self)
     end
 
     # @return authors [Array<Hash<String => String>>]
@@ -77,6 +84,7 @@ module WebOfScience
     # @return summary [Hash]
     def summary
       @summary ||= {
+        'abstracts' => abstracts,
         'doctypes' => doctypes,
         'names' => names,
         'pub_info' => pub_info,
