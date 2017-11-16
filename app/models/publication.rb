@@ -74,7 +74,7 @@ class Publication < ActiveRecord::Base
                .find_by("publication_identifiers.identifier_type": 'pmid', "publication_identifiers.identifier_value": pmid)
   end
 
-  # @return [Publication] new object
+  # @return [Publication] new object, unsaved
   def self.build_new_manual_publication(pub_hash, original_source_string, provenance = Settings.cap_provenance)
     existingRecord = UserSubmittedSourceRecord.find_or_initialize_by_source_data(original_source_string)
     if existingRecord && existingRecord.publication
@@ -88,18 +88,16 @@ class Publication < ActiveRecord::Base
   def update_manual_pub_from_pub_hash(incoming_pub_hash, original_source_string, provenance = Settings.cap_provenance)
     incoming_pub_hash[:provenance] = provenance
     self.pub_hash = incoming_pub_hash.dup
-    r = user_submitted_source_records.first || UserSubmittedSourceRecord.find_or_initialize_by_source_data(original_source_string)
+    match = UserSubmittedSourceRecord.find_by_source_data(original_source_string)
+    match.publication = self if match # we may still throw this out w/o saving
+    r = user_submitted_source_records.first || match || user_submitted_source_records.build
     r.assign_attributes(
       is_active: true,
       source_data: original_source_string,
       title: title,
       year: year
     )
-    if r.new_record?
-      self.user_submitted_source_records = [r]
-    else
-      r.save
-    end
+    self.user_submitted_source_records = [r] if match # match is the only USSR not found/built via association
     update_any_new_contribution_info_in_pub_hash_to_db
     pubhash_needs_update! if persisted?
     self
@@ -119,11 +117,13 @@ class Publication < ActiveRecord::Base
     self
   end
 
+  # The expecation is that every time this method gets called, a save is about to happen,
+  # either because it is part of before_save callbacks or because the caller does it explicitly.
+  # Subparts are relieved from the burden of directly calling save themselves.
   # @return [self]
   def sync_publication_hash_and_db
     rebuild_authorship
-    sync_identifiers_in_pub_hash_to_db
-    add_all_identifiers_in_db_to_pub_hash
+    sync_identifiers_in_pub_hash
     set_sul_pub_id_in_hash if persisted?
     update_formatted_citations
     @pubhash_needs_update = false
@@ -250,31 +250,23 @@ class Publication < ActiveRecord::Base
 
   private
 
-    def add_all_identifiers_in_db_to_pub_hash
-      publication_identifiers.reload if persisted?
-      pub_hash[:identifier] = publication_identifiers.map(&:identifier)
-    end
-
-    def sync_identifiers_in_pub_hash_to_db
+    # doesn't actually write the Pub to DB, presumed to be part of before_save callback or explicit save
+    def sync_identifiers_in_pub_hash
       incoming_types = Array(pub_hash[:identifier]).map { |id| id[:type] }
       publication_identifiers.each do |id|
         next if id.identifier_type =~ /^legacy_cap_pub_id$/i # Do not delete legacy_cap_pub_id
-        id.delete unless incoming_types.include? id.identifier_type
+        publication_identifiers.delete(id) unless incoming_types.include?(id.identifier_type)
       end
 
       Array(pub_hash[:identifier]).each do |identifier|
         next if identifier[:type] =~ /^SULPubId$/i
-        i = publication_identifiers.find { |x| x.identifier_type == identifier[:type] } || PublicationIdentifier.new
-        i.assign_attributes certainty: 'confirmed',
-                            identifier_type: identifier[:type],
-                            identifier_value: identifier[:id],
-                            identifier_uri: identifier[:url]
-        if i.persisted?
-          i.save
-        else
-          publication_identifiers << i unless publication_identifiers.include? i
-        end
+        i = publication_identifiers.find { |x| x.identifier_type == identifier[:type] } # find includes not yet saved pub ids
+        i ||= publication_identifiers.find_or_initialize_by(identifier_type: identifier[:type])
+        i.certainty        = 'confirmed'
+        i.identifier_value = identifier[:id]
+        i.identifier_uri   = identifier[:url]
       end
+      pub_hash[:identifier] = publication_identifiers.map(&:identifier)
     end
 
     def add_any_pubmed_data_to_hash

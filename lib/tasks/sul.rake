@@ -30,7 +30,7 @@ namespace :sul do
       end
       begin
         pub.send(method)
-        pub.save
+        pub.save if pub.changed?
         success_count += 1
       rescue => e
         message = "*****ERROR on publication ID #{pub.id}: #{e.message}"

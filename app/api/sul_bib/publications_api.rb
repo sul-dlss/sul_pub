@@ -80,7 +80,7 @@ module SulBib
           error!('You have not supplied a valid authorship record.', 406)
         end
         pub = Publication.build_new_manual_publication(pub_hash, original_source)
-        pub.save
+        pub.save!
         pub.reload
         logger.debug("Created new publication #{pub.inspect}")
         header 'Location', env['REQUEST_URI'].to_s + '/' + pub.id.to_s
@@ -111,7 +111,7 @@ module SulBib
       logger.info(original_source)
 
       old_pub.update_manual_pub_from_pub_hash(new_pub, original_source)
-      old_pub.save
+      old_pub.save!
       old_pub.reload
       logger.debug("resulting pub hash: #{old_pub.pub_hash}")
       old_pub.pub_hash
