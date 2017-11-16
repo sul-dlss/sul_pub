@@ -14,6 +14,9 @@ module WebOfScience
     # @return [Boolean] WOS records empty?
     def_delegators :rec_nodes, :empty?
 
+    # @return [WebOfScience::Record]
+    def_delegators :to_a, :sample
+
     # @return xml [String] WOS records in XML
     def_delegators :doc, :to_xml
 
