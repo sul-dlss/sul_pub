@@ -23,9 +23,7 @@ module WebOfScience
 
       # publication abstract
       def pub_hash_abstract
-        # TODO
-        # binding.pry
-        # pub[:abstract_restricted] = abstracts #yes there might be multiple abstracts
+        pub.update rec.abstract_mapper.pub_hash
       end
 
       # publication agents
