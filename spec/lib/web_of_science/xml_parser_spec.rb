@@ -5,8 +5,6 @@ describe WebOfScience::XmlParser do
   let(:wos_record_encoded) { WebOfScience::Record.new(encoded_record: wos_encoded_record) }
 
   shared_examples 'it has well formed XML' do
-    let(:html_char) { '&lt;' }
-
     it 'returns an XML String' do
       expect(xml_result).to be_an String
     end
@@ -16,7 +14,7 @@ describe WebOfScience::XmlParser do
       end.not_to raise_error
     end
     it 'contains no HTML encoding' do
-      expect(xml_result).not_to include html_char
+      expect(xml_result).not_to include '&lt;'
     end
   end
 
@@ -26,7 +24,7 @@ describe WebOfScience::XmlParser do
     it_behaves_like 'it has well formed XML'
   end
 
-  describe '#parse_xml' do
+  describe '#parse' do
     let(:xml_result) { described_class.parse(nil, wos_encoded_record).to_xml }
 
     it_behaves_like 'it has well formed XML'
