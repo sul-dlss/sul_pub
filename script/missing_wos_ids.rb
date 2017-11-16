@@ -61,7 +61,6 @@ class MissingWosId
             logger.warn "Publication #{pub[:id]} has a new WoSItemID in SciencewireSourceRecord"
           end
           pub.rebuild_pub_hash
-          pub.save!
           logger.warn "Updated Publication #{pub[:id]} with an updated SciencewireSourceRecord"
         end
       end

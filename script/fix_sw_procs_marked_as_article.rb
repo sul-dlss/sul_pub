@@ -10,7 +10,6 @@ class Finder
       @found += 1
       @logger.info "Fixing #{pub.id}"
       pub.rebuild_pub_hash
-      pub.save
     end
 
   rescue => e
