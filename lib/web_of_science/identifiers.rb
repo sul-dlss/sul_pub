@@ -26,7 +26,7 @@ module WebOfScience
     end
 
     # Extract the {DB_PREFIX} from a WOS-UID in the form {DB_PREFIX}:{ITEM_ID}
-    # @return [String|nil]
+    # @return [String, nil]
     def database
       @database ||= begin
         uid_split = uid.split(':')
@@ -34,32 +34,32 @@ module WebOfScience
       end
     end
 
-    # @return [String|nil]
+    # @return [String, nil]
     def doi
       ids['doi']
     end
 
-    # @return [String|nil]
+    # @return [String, nil]
     def doi_uri
       "#{Settings.DOI.BASE_URI}#{doi}" if doi.present?
     end
 
-    # @return [String|nil]
+    # @return [String, nil]
     def eissn
       ids['eissn']
     end
 
-    # @return [String|nil]
+    # @return [String, nil]
     def eissn_uri
       "#{Settings.SULPUB_ID.SEARCHWORKS_URI}#{eissn}" if eissn.present?
     end
 
-    # @return [String|nil]
+    # @return [String, nil]
     def issn
       ids['issn']
     end
 
-    # @return [String|nil]
+    # @return [String, nil]
     def issn_uri
       "#{Settings.SULPUB_ID.SEARCHWORKS_URI}#{issn}" if issn.present?
     end
@@ -76,12 +76,12 @@ module WebOfScience
       self
     end
 
-    # @return [String|nil]
+    # @return [String, nil]
     def pmid
       ids['pmid']
     end
 
-    # @return [String|nil]
+    # @return [String, nil]
     def pmid_uri
       "#{Settings.PUBMED.ARTICLE_BASE_URI}#{pmid}" if pmid.present?
     end
@@ -125,12 +125,12 @@ module WebOfScience
       ids
     end
 
-    # @return [String|nil]
+    # @return [String, nil]
     def wos_item_id
       ids['WosItemID']
     end
 
-    # @return [String|nil]
+    # @return [String, nil]
     def wos_item_uri
       "#{Settings.SCIENCEWIRE.ARTICLE_BASE_URI}#{wos_item_id}" if wos_item_id.present?
     end
