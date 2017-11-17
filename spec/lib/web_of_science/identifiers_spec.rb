@@ -74,45 +74,31 @@ describe WebOfScience::Identifiers do
   end
 
   context 'WOS record' do
-    # Use the subject(:identifiers), which is a WOS record already.
+    # Use the subject(:identifiers), it's a WOS-db record already.
+
     let(:doi) { '10.1007/s12630-011-9462-1' }
-    let(:doi_uri) { 'https://dx.doi.org/10.1007/s12630-011-9462-1' }
-    let(:xref_doi) { '10.1007/s12630-011-9462-1' }
-
-    let(:eissn) { nil }
-    let(:eissn_uri) { nil }
-
-    let(:issn) { '0832-610X' }
-    let(:issn_uri) { 'http://searchworks.stanford.edu/?search_field=advanced&number=0832-610X' }
-
-    let(:pmid) { nil }
-    let(:pmid_uri) { nil }
-
-    let(:wos_uid) { 'WOS:000288663100014' }
-    let(:wos_item_id) { '000288663100014' }
-    let(:wos_item_uri) { 'https://ws.isiknowledge.com/cps/openurl/service?url_ver=Z39.88-2004&rft_id=info:ut/000288663100014' }
 
     let(:ids) do
       {
         'doi'        => doi,
-        'doi_uri'    => doi_uri,
-        'xref_doi'   => xref_doi,
-        'issn'       => issn,
-        'issn_uri'   => issn_uri,
-        'pmid'       => pmid,
-        'pmid_uri'   => pmid_uri,
-        'WosUID'     => wos_uid,
-        'WosItemID'  => wos_item_id,
-        'WosItemURI' => wos_item_uri
+        'doi_uri'    => "https://dx.doi.org/#{doi}",
+        'xref_doi'   => doi,
+        # eissn is missing
+        'issn'       => '0832-610X',
+        'issn_uri'   => 'http://searchworks.stanford.edu/?search_field=advanced&number=0832-610X',
+        # pmid is missing
+        'WosUID'     => 'WOS:000288663100014',
+        'WosItemID'  => '000288663100014',
+        'WosItemURI' => 'https://ws.isiknowledge.com/cps/openurl/service?url_ver=Z39.88-2004&rft_id=info:ut/000288663100014'
       }
     end
 
     let(:pub_hash_data) do
       [
-        { type: 'doi', id: doi, url: doi_uri },
-        { type: 'issn', id: issn, url: issn_uri },
-        { type: 'WosItemID', id: wos_item_id, url: wos_item_uri },
-        { type: 'WosUID', id: wos_uid },
+        { type: 'doi', id: ids['doi'], url: ids['doi_uri'] },
+        { type: 'issn', id: ids['issn'], url: ids['issn_uri'] },
+        { type: 'WosItemID', id: ids['WosItemID'], url: ids['WosItemURI'] },
+        { type: 'WosUID', id: ids['WosUID'] },
       ]
     end
 
@@ -127,8 +113,8 @@ describe WebOfScience::Identifiers do
     it_behaves_like 'pub_hash'
     context 'the dark side' do
       it 'filters out identifiers that are not allowed' do
-        # Is this WOS cruft?  Do we want an xref_doi?  If so, how is it different from DOI?
-        expect(identifiers.to_h).not_to include('xref_doi' => '10.1007/s12630-011-9462-1')
+        # An xref_doi is used as the doi, if there is no doi value
+        expect(identifiers.to_h).not_to include('xref_doi' => doi)
       end
     end
   end
@@ -139,44 +125,27 @@ describe WebOfScience::Identifiers do
     let(:medline_record_xml) { File.read('spec/fixtures/wos_client/medline_record_24452614.xml') }
     let(:medline_record) { WebOfScience::Record.new(record: medline_record_xml) }
 
-    let(:doi) { '10.1038/psp.2013.66' }
-    let(:doi_uri) { 'https://dx.doi.org/10.1038/psp.2013.66' }
-
-    let(:eissn) { nil }
-    let(:eissn_uri) { nil }
-
-    let(:issn) { '2163-8306' }
-    let(:issn_uri) { 'http://searchworks.stanford.edu/?search_field=advanced&number=2163-8306' }
-
-    let(:pmid) { '24452614' }
-    let(:pmid_uri) { 'https://www.ncbi.nlm.nih.gov/pubmed/24452614' }
-
-    let(:wos_uid) { 'MEDLINE:24452614' }
-    let(:wos_item_id) { nil }
-    let(:wos_item_uri) { nil }
-
     let(:ids) do
       {
-        'doi'        => doi,
-        'doi_uri'    => doi_uri,
-        'eissn'      => eissn,
-        'eissn_uri'  => eissn_uri,
-        'issn'       => issn,
-        'issn_uri'   => issn_uri,
-        'pmid'       => pmid,
-        'pmid_uri'   => pmid_uri,
-        'WosUID'     => wos_uid,
-        'WosItemID'  => wos_item_id,
-        'WosItemURI' => wos_item_uri
+        'doi'        => '10.1038/psp.2013.66',
+        'doi_uri'    => 'https://dx.doi.org/10.1038/psp.2013.66',
+        # eissn is missing
+        'issn'       => '2163-8306',
+        'issn_uri'   => 'http://searchworks.stanford.edu/?search_field=advanced&number=2163-8306',
+        'pmid'       => '24452614',
+        'pmid_uri'   => 'https://www.ncbi.nlm.nih.gov/pubmed/24452614',
+        'WosUID'     => 'MEDLINE:24452614',
+        # 'WosItemID'  is missing
+        # 'WosItemURI' is missing
       }
     end
 
     let(:pub_hash_data) do
       [
-        { type: 'doi', id: doi, url: doi_uri },
-        { type: 'issn', id: issn, url: issn_uri },
-        { type: 'pmid', id: pmid, url: pmid_uri },
-        { type: 'WosUID', id: wos_uid },
+        { type: 'doi', id: ids['doi'], url: ids['doi_uri'] },
+        { type: 'issn', id: ids['issn'], url: ids['issn_uri'] },
+        { type: 'pmid', id: ids['pmid'], url: ids['pmid_uri'] },
+        { type: 'WosUID', id: ids['WosUID'] },
       ]
     end
 
@@ -184,7 +153,7 @@ describe WebOfScience::Identifiers do
     it_behaves_like 'to_h'
     it_behaves_like 'pub_hash'
     it 'Wos-UID contains the pmid' do
-      expect(identifiers.uid).to match pmid
+      expect(identifiers.uid).to match ids['pmid']
     end
   end
 
