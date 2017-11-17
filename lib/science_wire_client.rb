@@ -292,11 +292,11 @@ class ScienceWireClient
 
       xml_results.xpath('//PublicationItem').map do |sw_xml_doc|
         pub_hash = SciencewireSourceRecord.convert_sw_publication_doc_to_hash(sw_xml_doc)
-        h = PubHash.new(pub_hash)
+        cite = Citation.new(pub_hash)
 
-        pub_hash[:apa_citation] = h.to_apa_citation
-        pub_hash[:mla_citation] = h.to_mla_citation
-        pub_hash[:chicago_citation] = h.to_chicago_citation
+        pub_hash[:apa_citation] = cite.to_apa_citation
+        pub_hash[:mla_citation] = cite.to_mla_citation
+        pub_hash[:chicago_citation] = cite.to_chicago_citation
         pub_hash
       end
     end

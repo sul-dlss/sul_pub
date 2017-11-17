@@ -328,9 +328,9 @@ describe Publication do
       apa = double
       mla = double
       chicago = double
-      expect_any_instance_of(PubHash).to receive(:to_apa_citation).and_return(apa)
-      expect_any_instance_of(PubHash).to receive(:to_mla_citation).and_return(mla)
-      expect_any_instance_of(PubHash).to receive(:to_chicago_citation).and_return(chicago)
+      expect_any_instance_of(Citation).to receive(:to_apa_citation).and_return(apa)
+      expect_any_instance_of(Citation).to receive(:to_mla_citation).and_return(mla)
+      expect_any_instance_of(Citation).to receive(:to_chicago_citation).and_return(chicago)
       publication.update_formatted_citations
       expect(publication.pub_hash[:apa_citation]).to eq(apa)
       expect(publication.pub_hash[:mla_citation]).to eq(mla)

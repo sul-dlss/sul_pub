@@ -2,7 +2,7 @@
 # Citation Style Language
 module Csl
   ##
-  # Author name used in PubHash to construct CSL authors
+  # Author name used in Citation to construct CSL authors
   class AuthorName
     attr_reader :last, :first, :middle
 

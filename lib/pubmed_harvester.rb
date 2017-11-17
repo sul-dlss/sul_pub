@@ -37,11 +37,11 @@ class PubmedHarvester
     # Turn everything into a pub_hash, then generate citations if needed
     result.map! do |pub|
       pub_hash = (pub.pub_hash if pub.respond_to? :pub_hash) || pub
-      h = PubHash.new(pub_hash)
+      cite = Citation.new(pub_hash)
 
-      pub_hash[:apa_citation] = h.to_apa_citation unless pub_hash[:apa_citation]
-      pub_hash[:mla_citation] = h.to_mla_citation unless pub_hash[:mla_citation]
-      pub_hash[:chicago_citation] = h.to_chicago_citation unless pub_hash[:chicago_citation]
+      pub_hash[:apa_citation] = cite.to_apa_citation unless pub_hash[:apa_citation]
+      pub_hash[:mla_citation] = cite.to_mla_citation unless pub_hash[:mla_citation]
+      pub_hash[:chicago_citation] = cite.to_chicago_citation unless pub_hash[:chicago_citation]
       pub_hash
     end
 
