@@ -4,7 +4,7 @@ require 'citeproc/ruby'
 # you can load any style with just its name using CSL::Style.load).
 require 'csl/styles'
 
-class PubHash
+class Citation
   attr_reader :csl_renderer
   attr_reader :pub_hash
 
@@ -20,8 +20,9 @@ class PubHash
     style_et_al
   end
 
-  def initialize(hash)
-    @pub_hash = hash
+  # @param pub_hash [Hash] a Publication.pub_hash
+  def initialize(pub_hash)
+    @pub_hash = pub_hash
   end
 
   # Generates a new render instance every time, so it has no history of any prior citations.

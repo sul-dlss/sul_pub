@@ -226,10 +226,10 @@ class Publication < ActiveRecord::Base
   end
 
   def update_formatted_citations
-    h = PubHash.new(pub_hash)
-    pub_hash[:apa_citation] = h.to_apa_citation
-    pub_hash[:mla_citation] = h.to_mla_citation
-    pub_hash[:chicago_citation] = h.to_chicago_citation
+    cite = Citation.new(pub_hash)
+    pub_hash[:apa_citation] = cite.to_apa_citation
+    pub_hash[:mla_citation] = cite.to_mla_citation
+    pub_hash[:chicago_citation] = cite.to_chicago_citation
   end
 
   ##
