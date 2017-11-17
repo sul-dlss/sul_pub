@@ -1,5 +1,5 @@
 
-describe Citation do
+describe Csl::Citation do
   include CitationDocumentTypes # spec/fixtures/doc_types/working_paper.rb
 
   let(:conference_pub_in_journal_hash) do
