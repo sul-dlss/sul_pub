@@ -3,47 +3,118 @@ describe WebOfScience::Identifiers do
 
   let(:wos_record_xml) { File.read('spec/fixtures/wos_client/wos_record_000288663100014.xml') }
   let(:wos_record) { WebOfScience::Record.new(record: wos_record_xml) }
-  let(:wos_uid) { 'WOS:000288663100014' }
 
-  let(:ids) do
-    { 'issn'      => '0832-610X',
-      'doi'       => '10.1007/s12630-011-9462-1',
-      'xref_doi'  => '10.1007/s12630-011-9462-1',
-      'WosUID'    => 'WOS:000288663100014',
-      'WosItemID' => '000288663100014' }
+  shared_examples 'identifier_accessors' do
+    # when ids['x'] is nil, the expectation is that it should be nil
+    it 'doi' do
+      expect(identifiers.doi).to eq(ids['doi'])
+    end
+    it 'doi_uri' do
+      expect(identifiers.doi_uri).to eq(ids['doi_uri'])
+    end
+    it 'eissn' do
+      expect(identifiers.eissn).to eq(ids['eissn'])
+    end
+    it 'eissn_uri' do
+      expect(identifiers.eissn_uri).to eq(ids['eissn_uri'])
+    end
+    it 'issn' do
+      expect(identifiers.issn).to eq(ids['issn'])
+    end
+    it 'issn_uri' do
+      expect(identifiers.issn_uri).to eq(ids['issn_uri'])
+    end
+    it 'pmid' do
+      expect(identifiers.pmid).to eq(ids['pmid'])
+    end
+    it 'pmid_uri' do
+      expect(identifiers.pmid_uri).to eq(ids['pmid_uri'])
+    end
+    it 'uid' do
+      expect(identifiers.uid).to eq(ids['WosUID'])
+    end
+    it 'uid is frozen' do
+      expect { identifiers.uid[0] = 'a' }.to raise_error(RuntimeError)
+    end
+    it 'wos_item_id' do
+      expect(identifiers.wos_item_id).to eq(ids['WosItemID'])
+    end
+    it 'wos_item_uri' do
+      expect(identifiers.wos_item_uri).to eq(ids['WosItemURI'])
+    end
+  end
+
+  shared_examples 'to_h' do
+    let(:hash) { identifiers.to_h }
+
+    it 'works' do
+      expect(hash).to be_an Hash
+    end
+    it 'contains identifiers' do
+      expect(hash).to eq ids.reject { |type, val| type == 'xref_doi' || val.nil? }
+    end
+    it 'is mutable and accepts anything' do
+      hash.update(a: 1)
+      expect(hash).to include(a: 1)
+    end
+  end
+
+  shared_examples 'pub_hash' do
+    let(:pub_hash) { identifiers.pub_hash }
+
+    it 'is an Array' do
+      expect(pub_hash).to be_an Array
+    end
+    it 'has Hash elements' do
+      expect(pub_hash.first).to be_an Hash
+    end
+    it 'contains identifiers' do
+      expect(pub_hash).to eq pub_hash_data
+    end
   end
 
   context 'WOS record' do
+    # Use the subject(:identifiers), it's a WOS-db record already.
+
+    let(:doi) { '10.1007/s12630-011-9462-1' }
+
+    let(:ids) do
+      {
+        'doi'        => doi,
+        'doi_uri'    => "https://dx.doi.org/#{doi}",
+        'xref_doi'   => doi,
+        # eissn is missing
+        'issn'       => '0832-610X',
+        'issn_uri'   => 'http://searchworks.stanford.edu/?search_field=advanced&number=0832-610X',
+        # pmid is missing
+        'WosUID'     => 'WOS:000288663100014',
+        'WosItemID'  => '000288663100014',
+        'WosItemURI' => 'https://ws.isiknowledge.com/cps/openurl/service?url_ver=Z39.88-2004&rft_id=info:ut/000288663100014'
+      }
+    end
+
+    let(:pub_hash_data) do
+      [
+        { type: 'doi', id: ids['doi'], url: ids['doi_uri'] },
+        { type: 'issn', id: ids['issn'], url: ids['issn_uri'] },
+        { type: 'WosItemID', id: ids['WosItemID'], url: ids['WosItemURI'] },
+        { type: 'WosUID', id: ids['WosUID'] },
+      ]
+    end
+
     it 'works' do
       expect(identifiers).to be_an described_class
     end
     it 'raises ArgumentError with nil params' do
       expect { described_class.new }.to raise_error(ArgumentError)
     end
-    context 'allows useful identifiers, like' do
-      it 'doi' do
-        expect(identifiers.doi).to eq(ids['doi'])
-      end
-      it 'issn' do
-        expect(identifiers.issn).to eq(ids['issn'])
-      end
-      it 'pmid' do
-        expect(identifiers.pmid).to eq(ids['pmid'])
-      end
-      it 'uid' do
-        expect(identifiers.uid).to eq(ids['WosUID'])
-      end
-      it 'uid is frozen' do
-        expect { identifiers.uid[0] = 'a' }.to raise_error(RuntimeError)
-      end
-      it 'wos_item_id' do
-        expect(identifiers.wos_item_id).to eq(ids['WosItemID'])
-      end
-    end
+    it_behaves_like 'identifier_accessors'
+    it_behaves_like 'to_h'
+    it_behaves_like 'pub_hash'
     context 'the dark side' do
       it 'filters out identifiers that are not allowed' do
-        # Is this WOS cruft?  Do we want an xref_doi?  If so, how is it different from DOI?
-        expect(identifiers.to_h).not_to include('xref_doi' => '10.1007/s12630-011-9462-1')
+        # An xref_doi is used as the doi, if there is no doi value
+        expect(identifiers.to_h).not_to include('xref_doi' => doi)
       end
     end
   end
@@ -53,47 +124,36 @@ describe WebOfScience::Identifiers do
 
     let(:medline_record_xml) { File.read('spec/fixtures/wos_client/medline_record_24452614.xml') }
     let(:medline_record) { WebOfScience::Record.new(record: medline_record_xml) }
-    let(:medline_uid) { 'MEDLINE:24452614' }
-    let(:medline_pmid) { '24452614' }
 
     let(:ids) do
-      { 'doi' => '10.1038/psp.2013.66',
-        'pmid' => '24452614',
-        'WosUID' => 'MEDLINE:24452614' }
+      {
+        'doi'        => '10.1038/psp.2013.66',
+        'doi_uri'    => 'https://dx.doi.org/10.1038/psp.2013.66',
+        # eissn is missing
+        'issn'       => '2163-8306',
+        'issn_uri'   => 'http://searchworks.stanford.edu/?search_field=advanced&number=2163-8306',
+        'pmid'       => '24452614',
+        'pmid_uri'   => 'https://www.ncbi.nlm.nih.gov/pubmed/24452614',
+        'WosUID'     => 'MEDLINE:24452614',
+        # 'WosItemID'  is missing
+        # 'WosItemURI' is missing
+      }
     end
 
-    it 'uid' do
-      expect(identifiers.uid).to eq(ids['WosUID'])
+    let(:pub_hash_data) do
+      [
+        { type: 'doi', id: ids['doi'], url: ids['doi_uri'] },
+        { type: 'issn', id: ids['issn'], url: ids['issn_uri'] },
+        { type: 'pmid', id: ids['pmid'], url: ids['pmid_uri'] },
+        { type: 'WosUID', id: ids['WosUID'] },
+      ]
     end
-    it 'doi' do
-      expect(identifiers.doi).to eq(ids['doi'])
-    end
-    it 'issn' do
-      expect(identifiers.issn).to be_nil
-    end
-    it 'pmid is stripped of the MEDLINE prefix' do
-      expect(identifiers.pmid).to eq medline_pmid
-    end
+
+    it_behaves_like 'identifier_accessors'
+    it_behaves_like 'to_h'
+    it_behaves_like 'pub_hash'
     it 'Wos-UID contains the pmid' do
-      expect(identifiers.uid).to match medline_pmid
-    end
-    it 'WosItemID is nil' do
-      expect(identifiers.wos_item_id).to be_nil
-    end
-  end
-
-  describe '#to_h' do
-    let(:hash) { identifiers.to_h }
-
-    it 'works' do
-      expect(hash).to be_an Hash
-    end
-    it 'contains identifiers' do
-      expect(hash).to eq ids.reject { |type, _v| type == 'xref_doi' }
-    end
-    it 'is mutable and accepts anything' do
-      hash.update(a: 1)
-      expect(hash).to include(a: 1)
+      expect(identifiers.uid).to match ids['pmid']
     end
   end
 

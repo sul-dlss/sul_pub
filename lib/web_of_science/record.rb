@@ -6,7 +6,7 @@ module WebOfScience
   class Record
     extend Forwardable
 
-    delegate %i(database doi issn pmid uid wos_item_id) => :identifiers
+    delegate %i(database doi eissn issn pmid uid wos_item_id) => :identifiers
 
     # @return doc [Nokogiri::XML::Document] WOS record document
     attr_reader :doc
