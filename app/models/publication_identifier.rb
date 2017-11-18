@@ -1,7 +1,7 @@
 class PublicationIdentifier < ActiveRecord::Base
   belongs_to :publication, required: true, inverse_of: :publication_identifiers
 
-  # A PubHash[:identifier] entry
+  # A pub_hash[:identifier] entry
   # @return identifier [Hash]
   def identifier
     ident_hash = {}

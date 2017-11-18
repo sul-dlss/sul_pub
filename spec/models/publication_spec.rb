@@ -323,18 +323,25 @@ describe Publication do
   end
 
   describe 'update_formatted_citations' do
-    it 'should update the apa, mla, and chicago citations' do
-      allow(publication).to receive(:pub_hash).and_return({})
-      apa = double
-      mla = double
-      chicago = double
-      expect_any_instance_of(PubHash).to receive(:to_apa_citation).and_return(apa)
-      expect_any_instance_of(PubHash).to receive(:to_mla_citation).and_return(mla)
-      expect_any_instance_of(PubHash).to receive(:to_chicago_citation).and_return(chicago)
-      publication.update_formatted_citations
-      expect(publication.pub_hash[:apa_citation]).to eq(apa)
-      expect(publication.pub_hash[:mla_citation]).to eq(mla)
-      expect(publication.pub_hash[:chicago_citation]).to eq(chicago)
+    before do
+      cite = Csl::Citation.new({})
+      allow(cite).to receive(:to_apa_citation).and_return('apa')
+      allow(cite).to receive(:to_mla_citation).and_return('mla')
+      allow(cite).to receive(:to_chicago_citation).and_return('chicago')
+      allow(Csl::Citation).to receive(:new).and_return(cite)
+    end
+
+    it 'update the APA citation' do
+      publication.pub_hash[:apa_citation] = 'before'
+      expect { publication.update_formatted_citations }.to change { publication.pub_hash[:apa_citation] }
+    end
+    it 'update the MLA citation' do
+      publication.pub_hash[:mla_citation] = 'before'
+      expect { publication.update_formatted_citations }.to change { publication.pub_hash[:mla_citation] }
+    end
+    it 'update the Chicago citation' do
+      publication.pub_hash[:chicago_citation] = 'before'
+      expect { publication.update_formatted_citations }.to change { publication.pub_hash[:chicago_citation] }
     end
   end
 

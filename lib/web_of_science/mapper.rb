@@ -1,6 +1,6 @@
 module WebOfScience
 
-  # Map WOS record data into the SUL PubHash data
+  # Map WOS record data into the SUL Publication.pub_hash data
   class Mapper
 
     # @param rec [WebOfScience::Record]

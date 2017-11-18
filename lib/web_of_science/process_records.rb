@@ -2,7 +2,7 @@ module WebOfScience
 
   # This class complements the WebOfScience::Harvester
   # Process records retrieved by any means; this is a progressive filtering of the harvested records to identify
-  # those records that should create a new Publication-PubHash, PublicationIdentifier(s) and Contribution(s).
+  # those records that should create a new Publication.pub_hash, PublicationIdentifier(s) and Contribution(s).
   class ProcessRecords
 
     # @param author [Author]
