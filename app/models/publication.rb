@@ -43,30 +43,7 @@ class Publication < ActiveRecord::Base
     autosave: true,
     dependent: :destroy,
     after_add: :pubhash_needs_update!,
-    after_remove: :pubhash_needs_update! do
-    # See also: update_any_new_contribution_info_in_pub_hash_to_db
-    def build_or_update(author, contribution_hash = {})
-      # Assign or update these contribution attributes
-      # Ensure the contribution attributes contain the right author
-      contribution_hash[:author_id] = author.id
-      contribution_hash[:cap_profile_id] = author.cap_profile_id if author.cap_profile_id.present?
-      contrib = where(author_id: author.id).first_or_initialize
-      if contrib.persisted?
-        # Update an existing contribution
-        contrib.update(contribution_hash)
-      else
-        # Add a new contribution
-        contrib.assign_attributes(contribution_hash)
-        contrib.save
-        # SELF is an array of Contributions
-        self << contrib unless include? contrib
-      end
-      # The `proxy_association.owner` is a Publication instance, so
-      # set a trigger that will force it to update it's pub_hash data.
-      proxy_association.owner.pubhash_needs_update!
-      contrib
-    end
-  end
+    after_remove: :pubhash_needs_update!
 
   serialize :pub_hash, Hash
 
@@ -88,14 +65,16 @@ class Publication < ActiveRecord::Base
   end
 
   def self.find_by_doi(doi)
-    PublicationIdentifier.includes(:publication).where(identifier_type: 'doi', identifier_value: doi).map(&:publication)
+    Publication.includes(:publication_identifiers)
+               .find_by("publication_identifiers.identifier_type": 'doi', "publication_identifiers.identifier_value": doi)
   end
 
-  def self.find_by_pmid_in_pub_id_table(pmid)
-    PublicationIdentifier.includes(:publication).where(identifier_type: 'pmid', identifier_value: pmid).map(&:publication)
+  def self.find_by_pmid_pub_id(pmid)
+    Publication.includes(:publication_identifiers)
+               .find_by("publication_identifiers.identifier_type": 'pmid', "publication_identifiers.identifier_value": pmid)
   end
 
-  # @return [Publication] new object
+  # @return [Publication] new object, unsaved
   def self.build_new_manual_publication(pub_hash, original_source_string, provenance = Settings.cap_provenance)
     existingRecord = UserSubmittedSourceRecord.find_or_initialize_by_source_data(original_source_string)
     if existingRecord && existingRecord.publication
@@ -109,18 +88,16 @@ class Publication < ActiveRecord::Base
   def update_manual_pub_from_pub_hash(incoming_pub_hash, original_source_string, provenance = Settings.cap_provenance)
     incoming_pub_hash[:provenance] = provenance
     self.pub_hash = incoming_pub_hash.dup
-    r = user_submitted_source_records.first || UserSubmittedSourceRecord.find_or_initialize_by_source_data(original_source_string)
+    match = UserSubmittedSourceRecord.find_by_source_data(original_source_string)
+    match.publication = self if match # we may still throw this out w/o saving
+    r = user_submitted_source_records.first || match || user_submitted_source_records.build
     r.assign_attributes(
       is_active: true,
       source_data: original_source_string,
       title: title,
       year: year
     )
-    if r.new_record?
-      self.user_submitted_source_records = [r]
-    else
-      r.save
-    end
+    self.user_submitted_source_records = [r] if match # match is the only USSR not found/built via association
     update_any_new_contribution_info_in_pub_hash_to_db
     pubhash_needs_update! if persisted?
     self
@@ -140,11 +117,13 @@ class Publication < ActiveRecord::Base
     self
   end
 
+  # The expecation is that every time this method gets called, a save is about to happen,
+  # either because it is part of before_save callbacks or because the caller does it explicitly.
+  # Subparts are relieved from the burden of directly calling save themselves.
   # @return [self]
   def sync_publication_hash_and_db
     rebuild_authorship
-    sync_identifiers_in_pub_hash_to_db
-    add_all_identifiers_in_db_to_pub_hash
+    sync_identifiers_in_pub_hash
     set_sul_pub_id_in_hash if persisted?
     update_formatted_citations
     @pubhash_needs_update = false
@@ -154,20 +133,20 @@ class Publication < ActiveRecord::Base
   def update_from_pubmed
     return false if pmid.blank?
     pm_source_record = PubmedSourceRecord.find_by_pmid(pmid)
+    return false unless pm_source_record
     pm_source_record.pubmed_update
     rebuild_pub_hash
-    save
   end
 
   def update_from_sciencewire
     return false if sciencewire_id.blank?
     sw_source = SciencewireSourceRecord.find_by_sciencewire_id(sciencewire_id)
+    return false unless sw_source
     sw_source.sciencewire_update
     rebuild_pub_hash
-    save
   end
 
-  # @return [self]
+  # @return [Boolean] true if .save is successful
   def rebuild_pub_hash
     if sciencewire_id
       sw_source_record = SciencewireSourceRecord.find_by_sciencewire_id(sciencewire_id)
@@ -177,7 +156,7 @@ class Publication < ActiveRecord::Base
       self.pub_hash = pubmed_source_record.source_as_hash
     end
     sync_publication_hash_and_db
-    self
+    save
   end
 
   def delete!
@@ -271,31 +250,23 @@ class Publication < ActiveRecord::Base
 
   private
 
-    def add_all_identifiers_in_db_to_pub_hash
-      publication_identifiers.reload if persisted?
-      pub_hash[:identifier] = publication_identifiers.map(&:identifier)
-    end
-
-    def sync_identifiers_in_pub_hash_to_db
+    # doesn't actually write the Pub to DB, presumed to be part of before_save callback or explicit save
+    def sync_identifiers_in_pub_hash
       incoming_types = Array(pub_hash[:identifier]).map { |id| id[:type] }
       publication_identifiers.each do |id|
         next if id.identifier_type =~ /^legacy_cap_pub_id$/i # Do not delete legacy_cap_pub_id
-        id.delete unless incoming_types.include? id.identifier_type
+        publication_identifiers.delete(id) unless incoming_types.include?(id.identifier_type)
       end
 
       Array(pub_hash[:identifier]).each do |identifier|
         next if identifier[:type] =~ /^SULPubId$/i
-        i = publication_identifiers.find { |x| x.identifier_type == identifier[:type] } || PublicationIdentifier.new
-        i.assign_attributes certainty: 'confirmed',
-                            identifier_type: identifier[:type],
-                            identifier_value: identifier[:id],
-                            identifier_uri: identifier[:url]
-        if i.persisted?
-          i.save
-        else
-          publication_identifiers << i unless publication_identifiers.include? i
-        end
+        i = publication_identifiers.find { |x| x.identifier_type == identifier[:type] } # find includes not yet saved pub ids
+        i ||= publication_identifiers.find_or_initialize_by(identifier_type: identifier[:type])
+        i.certainty        = 'confirmed'
+        i.identifier_value = identifier[:id]
+        i.identifier_uri   = identifier[:url]
       end
+      pub_hash[:identifier] = publication_identifiers.map(&:identifier)
     end
 
     def add_any_pubmed_data_to_hash
@@ -311,15 +282,10 @@ class Publication < ActiveRecord::Base
 
     def update_any_new_contribution_info_in_pub_hash_to_db
       Array(pub_hash[:authorship]).each do |contrib|
-        hash_for_update = {
-          status: contrib[:status],
-          visibility: contrib[:visibility],
-          featured: contrib[:featured]
-        }
+        hash_for_update = contrib.slice(:status, :visibility, :featured)
         # Find or create an Author of the contribution
-        author_id = contrib[:sul_author_id]
         cap_profile_id = contrib[:cap_profile_id]
-        author = Author.find_by_id(author_id)
+        author = Author.find_by_id(contrib[:sul_author_id])
         if cap_profile_id.present?
           author ||= Author.find_by_cap_profile_id(cap_profile_id)
           author ||= begin
@@ -336,11 +302,7 @@ class Publication < ActiveRecord::Base
         hash_for_update[:cap_profile_id] = author.cap_profile_id if author.cap_profile_id.present?
         contrib = contributions.where(author_id: author.id).first_or_initialize
         contrib.assign_attributes(hash_for_update)
-        if contrib.persisted?
-          contrib.save
-        else
-          contributions << contrib unless contributions.include? contrib
-        end
+        contrib.save if contrib.changed?
       end
       true
     end

@@ -66,7 +66,7 @@ module SulBib
     post do
       logger.info('adding new manual publication from BibJSON')
       logger.info(original_source)
-      pub_hash = params[:pub_hash]
+      pub_hash = params[:pub_hash].to_hash.deep_symbolize_keys # Avoid Hashie::Mash!
       fingerprint = Digest::SHA2.hexdigest(original_source)
       existing_record = UserSubmittedSourceRecord.where(source_fingerprint: fingerprint).first
       if existing_record
@@ -80,7 +80,7 @@ module SulBib
           error!('You have not supplied a valid authorship record.', 406)
         end
         pub = Publication.build_new_manual_publication(pub_hash, original_source)
-        pub.save
+        pub.save!
         pub.reload
         logger.debug("Created new publication #{pub.inspect}")
         header 'Location', env['REQUEST_URI'].to_s + '/' + pub.id.to_s
@@ -98,7 +98,7 @@ module SulBib
     put ':id' do
       # the last known etag must be sent in the 'if-match' header, returning `412 Precondition Failed` if etags don't match,
       # and a `428 Precondition Required` if the if-match header isn't supplied
-      new_pub = params[:pub_hash]
+      new_pub = params[:pub_hash].to_hash.deep_symbolize_keys # Avoid Hashie::Mash!
       old_pub = publication_find(params[:id])
       case
       when !old_pub.sciencewire_id.blank? || !old_pub.pmid.blank?
@@ -111,7 +111,7 @@ module SulBib
       logger.info(original_source)
 
       old_pub.update_manual_pub_from_pub_hash(new_pub, original_source)
-      old_pub.save
+      old_pub.save!
       old_pub.reload
       logger.debug("resulting pub hash: #{old_pub.pub_hash}")
       old_pub.pub_hash

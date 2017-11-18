@@ -56,7 +56,7 @@ describe SulBib::API, :vcr do
         { firstname: 'Raj', lastname: 'Kathopalli', middlename: '', name: 'Kathopalli  Raj', role: 'author' }
       ],
       authorship: [
-        { cap_profile_id: author.cap_profile_id, featured: true, status: 'APPROVED', visibility: 'PUBLIC' }
+        { cap_profile_id: author.cap_profile_id, featured: true, status: 'approved', visibility: 'public' }
       ],
       booktitle: 'TEST Book I',
       edition: '2',
@@ -75,7 +75,7 @@ describe SulBib::API, :vcr do
   end
 
   let(:json_with_isbn_changed_doi) do
-    pub = JSON.parse(json_with_isbn.dup)
+    pub = JSON.parse(json_with_isbn)
     pub['identifier'] = [
       { type: 'isbn', id: '1177188188181' },
       { type: 'doi', url: '18819910019-updated' },
@@ -85,7 +85,7 @@ describe SulBib::API, :vcr do
   end
 
   let(:json_with_isbn_deleted_doi) do
-    pub = JSON.parse(json_with_isbn_changed_doi.dup)
+    pub = JSON.parse(json_with_isbn_changed_doi)
     pub['identifier'] = [
       { type: 'isbn', id: '1177188188181' },
       { type: 'SULPubId', id: '164', url: Settings.SULPUB_ID.PUB_URI + '/164' }
@@ -94,7 +94,7 @@ describe SulBib::API, :vcr do
   end
 
   let(:json_with_pubmedid) do
-    pub = JSON.parse(json_with_isbn.dup)
+    pub = JSON.parse(json_with_isbn)
     pub['identifier'] = [
       { type: 'isbn', id: '1177188188181' },
       { type: 'doi', url: '18819910019' },
@@ -110,8 +110,8 @@ describe SulBib::API, :vcr do
       authorship: [{
         cap_profile_id: author.cap_profile_id,
         featured: false,
-        status: 'APPROVED',
-        visibility: 'PUBLIC'
+        status: 'approved',
+        visibility: 'public'
       }],
       etal: false,
       journal: {},
@@ -132,7 +132,10 @@ describe SulBib::API, :vcr do
     expect(response.status).to eq(201)
   end
 
+  # @param [Hash<Symbol => Object>] pub_hash
+  # @param [Hash<String => Object>] submission from JSON.parse()
   def validate_authorship(pub_hash, submission)
+    pub_hash = pub_hash.with_indifferent_access
     expect(pub_hash[:author]).to eq(submission['author'])
     expect(pub_hash[:authorship].length).to eq(submission['authorship'].length)
     matching_fields = %w(visibility status featured cap_profile_id)
@@ -154,6 +157,8 @@ describe SulBib::API, :vcr do
 
   describe 'POST /publications' do
     context 'when valid post' do
+      let(:submission) { JSON.parse(valid_json_for_post) }
+
       it 'responds with 201' do
         post_valid_json
       end
@@ -183,7 +188,6 @@ describe SulBib::API, :vcr do
       it 'creates an appropriate publication record from the posted bibjson' do
         post_valid_json
         pub = Publication.last
-        submission = JSON.parse(valid_json_for_post)
         expect(pub.title).to eq(submission['title'])
         expect(pub.year).to eq(submission['year'])
         expect(pub.pages).to eq(submission['pages'].sub('-', '–')) # em-dash
@@ -192,23 +196,18 @@ describe SulBib::API, :vcr do
 
       it 'creates a matching pub_hash in the publication record from the posted bibjson' do
         post_valid_json
-        pub_hash = Publication.last.reload.pub_hash
-        submission = JSON.parse(valid_json_for_post)
-        validate_authorship(pub_hash, submission)
+        validate_authorship(Publication.last.pub_hash, submission)
       end
 
       it 'handles missing author using authorship from the posted bibjson' do
         post '/publications', article_with_authorship_without_authors, headers
         expect(response.status).to eq(201)
-        pub_hash = Publication.last.reload.pub_hash
-        submission = JSON.parse(article_with_authorship_without_authors)
-        validate_authorship(pub_hash, submission)
+        validate_authorship(Publication.last.pub_hash, JSON.parse(article_with_authorship_without_authors))
       end
 
-      it ' creates a pub with matching authorship info in hash and contributions table' do
+      it 'creates a pub with matching authorship info in hash and contributions table' do
         post_valid_json
         pub = Publication.last
-        submission = JSON.parse(valid_json_for_post)
         contrib = Contribution.where(publication_id: pub.id, author_id: author.id).first
         # TODO: evaluate whether authorship array should result in one or more contributions?
         expect(contrib.visibility).to eq(submission['authorship'][0]['visibility'])
@@ -229,7 +228,7 @@ describe SulBib::API, :vcr do
       it 'creates a pub with with isbn' do
         post '/publications', json_with_isbn, headers
         expect(response.status).to eq(201)
-        pub = Publication.last.reload
+        pub = Publication.last
         # TODO: use the submission data to validate some of the identifier fields
         # submission = JSON.parse(json_with_isbn)
         parsed_outgoing_json = JSON.parse(response.body)
@@ -245,7 +244,7 @@ describe SulBib::API, :vcr do
       it 'creates a pub with with pmid' do
         post '/publications', json_with_pubmedid, headers
         expect(response.status).to eq(201)
-        pub = Publication.last.reload
+        pub = Publication.last
         parsed_outgoing_json = JSON.parse(response.body)
         expect(parsed_outgoing_json['identifier']).to include('id' => '999999999', 'type' => 'pmid')
         expect(pub.publication_identifiers.map(&:identifier_type)).to include('pmid')
@@ -254,14 +253,14 @@ describe SulBib::API, :vcr do
     end # end of the context
 
     context 'when valid post' do
-      it ' returns 302 for duplicate pub' do
+      it 'returns 302 for duplicate pub' do
         post '/publications', valid_json_for_post, headers
         expect(response.status).to eq(201)
         post '/publications', valid_json_for_post, headers
         expect(response.status).to eq(302)
       end
 
-      it ' returns 406 - Not Acceptable for bibjson without an authorship entry' do
+      it 'returns 406 - Not Acceptable for bibjson without an authorship entry' do
         post '/publications', invalid_json_for_post, headers
         expect(response.status).to eq(406)
       end
@@ -306,6 +305,7 @@ describe SulBib::API, :vcr do
       post '/publications', json_with_isbn, headers
       id = Publication.last.id
       put "/publications/#{id}", json_with_isbn_changed_doi, headers
+      expect(response.status).to eq(200)
       parsed_outgoing_json = JSON.parse(response.body)
       expect(parsed_outgoing_json['identifier'].size).to eq(3)
       expect(parsed_outgoing_json['identifier']).to include('type' => 'isbn', 'id' => '1177188188181')
@@ -317,6 +317,7 @@ describe SulBib::API, :vcr do
       post '/publications', json_with_isbn, headers
       id = Publication.last.id
       put "/publications/#{id}", json_with_isbn_deleted_doi, headers
+      expect(response.status).to eq(200)
       parsed_outgoing_json = JSON.parse(response.body)
       expect(parsed_outgoing_json['identifier'].size).to eq(2)
       expect(parsed_outgoing_json['identifier']).to include('type' => 'isbn', 'id' => '1177188188181')
