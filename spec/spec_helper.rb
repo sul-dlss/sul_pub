@@ -97,24 +97,48 @@ VCR.configure do |c|
     :record => :new_episodes,  # :once is default
   }
   c.configure_rspec_metadata!
-  c.filter_sensitive_data('Settings.CAP.TOKEN_USER:Settings.CAP.TOKEN_PASS@Settings.CAP.TOKEN_URI') do
-    "#{Settings.CAP.TOKEN_USER}:#{Settings.CAP.TOKEN_PASS}@#{Settings.CAP.TOKEN_URI}"
+  # CAP API filters
+  c.filter_sensitive_data('Settings.CAP.TOKEN_USER:Settings.CAP.TOKEN_PASS') do
+    Base64.strict_encode64("#{Settings.CAP.TOKEN_USER}:#{Settings.CAP.TOKEN_PASS}")
   end
+  c.filter_sensitive_data('Settings.CAP.TOKEN_URI') { Settings.CAP.TOKEN_URI }
+  c.filter_sensitive_data('Settings.CAP.AUTHORSHIP_API_URI') { Settings.CAP.AUTHORSHIP_API_URI }
+
   c.filter_sensitive_data('private_access_token') do |interaction|
-    if interaction.request.body == "grant_type=client_credentials"
-      regex = %r("access_token":"(.*?)")
-      regex.match(interaction.response.body).captures.first
+    if interaction.request.uri.include? Settings.CAP.TOKEN_PATH
+      token_match = interaction.response.body.match(/"access_token":"(.*?)"/)
+      token_match.captures.first if token_match
     end
   end
   c.filter_sensitive_data('private_bearer_token') do |interaction|
     auth = interaction.request.headers['Authorization']
-    if auth.kind_of? Array
-      bearer = auth.select {|a| a =~ /bearer/i }.first
+    if auth.is_a? Array
+      bearer = auth.select { |a| a =~ /bearer/i }.first
       bearer.gsub(/bearer /i, '') if bearer
     end
   end
   c.filter_sensitive_data('Settings.SCIENCEWIRE.HOST') { Settings.SCIENCEWIRE.HOST }
   c.filter_sensitive_data('Settings.SCIENCEWIRE.LICENSE_ID') { Settings.SCIENCEWIRE.LICENSE_ID }
+
+  # CAP-API profile data
+  c.filter_sensitive_data('CAP-LicenseID') do |interaction|
+    if interaction.request.uri.include? Settings.CAP.AUTHORSHIP_API_PATH
+      id_match = interaction.response.body.match(/"californiaPhysicianLicense".*?:.*?"(.*?)"/)
+      id_match.captures.first if id_match
+    end
+  end
+  c.filter_sensitive_data('CAP-UniversityID') do |interaction|
+    if interaction.request.uri.include? Settings.CAP.AUTHORSHIP_API_PATH
+      id_match = interaction.response.body.match(/"universityId".*?:.*?"(.*?)"/)
+      id_match.captures.first if id_match
+    end
+  end
+  c.filter_sensitive_data('CAP-UID') do |interaction|
+    if interaction.request.uri.include? Settings.CAP.AUTHORSHIP_API_PATH
+      id_match = interaction.response.body.match(/"uid".*?:.*?"(.*?)"/)
+      id_match.captures.first if id_match
+    end
+  end
 end
 
 def a_post(path)
@@ -130,4 +154,33 @@ def default_institution
     Settings.HARVESTER.INSTITUTION.name,
     Agent::AuthorAddress.new(Settings.HARVESTER.INSTITUTION.address.to_hash)
   )
+end
+
+# CAP API settings
+#
+# Private settings are stored in travis build environment variables, see
+# https://travis-ci.org/sul-dlss/sul_pub/settings
+
+def cap_authorship_uri
+  ENV['TRAVIS'] ? ENV['CAP_AUTHORSHIP_API_URI'] : Settings.CAP.AUTHORSHIP_API_URI
+end
+
+def cap_auth_uri
+  "#{cap_token_uri}#{Settings.CAP.TOKEN_PATH}"
+end
+
+def cap_token_uri
+  ENV['TRAVIS'] ? ENV['CAP_TOKEN_URI'] : Settings.CAP.TOKEN_URI
+end
+
+def cap_token_user
+  ENV['TRAVIS'] ? ENV['CAP_TOKEN_USER'] : Settings.CAP.TOKEN_USER
+end
+
+def cap_token_pass
+  ENV['TRAVIS'] ? ENV['CAP_TOKEN_PASS'] : Settings.CAP.TOKEN_PASS
+end
+
+def cap_token_code
+  Base64.strict_encode64("#{cap_token_user}:#{cap_token_pass}")
 end

@@ -1,0 +1,101 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: Settings.CAP.TOKEN_URI/oauth/token?grant_type=client_credentials
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.13.1
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip,deflate
+      Date:
+      - Tue, 28 Nov 2017 20:39:02 GMT
+      Content-Type:
+      - application/json
+      Authorization:
+      - Basic Settings.CAP.TOKEN_USER:Settings.CAP.TOKEN_PASS
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 28 Nov 2017 20:39:02 GMT
+      Cache-Control:
+      - no-store
+      Pragma:
+      - no-cache
+      Content-Type:
+      - application/json;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '{"access_token":"private_access_token","token_type":"bearer","expires_in":86399,"scope":"profiles.read_all","jti":"179d3ef3-9d37-42eb-8e49-5eddca4f2888"}'
+    http_version: 
+  recorded_at: Tue, 28 Nov 2017 20:39:02 GMT
+- request:
+    method: get
+    uri: Settings.CAP.AUTHORSHIP_API_URI/cap-api/api/cap/v1/authors?p=1&ps=1
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.13.1
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip,deflate
+      Date:
+      - Tue, 28 Nov 2017 20:39:02 GMT
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer private_bearer_token
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 28 Nov 2017 20:39:02 GMT
+      Server:
+      - Apache/2.2.15 (Oracle)
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - '0'
+      Strict-Transport-Security:
+      - max-age=31536000 ; includeSubDomains
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - DENY
+      X-Content-Type-Options:
+      - nosniff
+      Vary:
+      - Accept-Encoding
+      Content-Encoding:
+      - gzip
+      Connection:
+      - close
+      Transfer-Encoding:
+      - chunked
+      Content-Type:
+      - application/json;charset=UTF-8
+    body:
+      encoding: UTF-8
+      string: '{"count":1,"firstPage":true,"lastPage":false,"page":1,"totalCount":33611,"totalPages":33611,"values":[{"active":true,"authorModifiedOn":"2015-12-03T17:46:54.284-08:00","authorship":[{"featured":false,"status":"new","sulPublicationId":5079,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":5080,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":11734,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":15041,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":15665,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":24489,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":119129,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":4908,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":8583,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":157511,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":132839,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":43069,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":13282,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":61796,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":4020,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":5078,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":76912,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":124455,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":136014,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":8988,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":4019,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":5222,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":8246,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":135177,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":152160,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":154126,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":158013,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":167241,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":169426,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":169427,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":1382,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":3452,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":6498,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":10605,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":58813,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":133649,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":137338,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":163402,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":4673,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":4109,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":11332,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":16687,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":165778,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":16438,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":19163,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":169566,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":14665,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":166871,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":8247,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":250739,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":65538,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":65539,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":244637,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":146672,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":65537,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":250747,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":140851,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":253400,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":147434,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":147683,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":137005,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":137006,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":139006,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":74539,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":139014,"visibility":"public"}],"importEnabled":true,"importSettings":[{"firstName":"Robert","institution":"Stanford
+        University","lastName":"Riley","middleName":"W"}],"lastModified":"2015-12-03T18:51:50.351-08:00","populations":["communityPhysician"],"profile":{"californiaPhysicianLicense":"CAP-LicenseID","displayName":"Robert
+        Riley","meta":{"links":[{"href":"Settings.CAP.AUTHORSHIP_API_URI/cap-api/api/profiles/v1/11881","rel":"https://cap.stanford.edu/rel/self"},{"href":"Settings.CAP.AUTHORSHIP_API_URI/11881","rel":"https://cap.stanford.edu/rel/public"},{"href":"Settings.CAP.AUTHORSHIP_API_URI/profiles/auth/frdActionServlet?choiceId=facProfile&profileId=11881","rel":"https://cap.stanford.edu/rel/intranet"},{"href":"Settings.CAP.AUTHORSHIP_API_URI/profiles/frdActionServlet?choiceId=printerprofile&profileversion=full&profileId=11881","rel":"https://cap.stanford.edu/rel/pdf"},{"href":"Settings.CAP.AUTHORSHIP_API_URI/cap-api/api/cap/v1/schemas/ProfileDto","rel":"https://cap.stanford.edu/rel/schema"}]},"names":{"legal":{"firstName":"Robert","lastName":"Riley"},"preferred":{"firstName":"Robert","lastName":"Riley","middleName":"W"}},"npi":"1831264068","profileId":11881},"profileId":11881,"visibility":"public"}]}'
+    http_version: 
+  recorded_at: Tue, 28 Nov 2017 20:39:02 GMT
+recorded_with: VCR 3.0.3
