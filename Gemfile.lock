@@ -256,7 +256,7 @@ GEM
     nokogiri (1.8.1)
       mini_portile2 (~> 2.3.0)
     nori (2.6.0)
-    okcomputer (1.13.0)
+    okcomputer (1.17.1)
     paper_trail (8.0.1)
       activerecord (>= 4.2, < 5.2)
       request_store (~> 1.1)
