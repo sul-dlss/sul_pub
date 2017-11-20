@@ -1,0 +1,102 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://authz.stanford.edu/oauth/token?grant_type=client_credentials
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.13.1
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip,deflate
+      Date:
+      - Fri, 15 Dec 2017 20:40:49 GMT
+      Content-Type:
+      - application/json
+      Authorization:
+      - Basic Settings.CAP.TOKEN_USER:Settings.CAP.TOKEN_PASS
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 15 Dec 2017 20:40:49 GMT
+      Cache-Control:
+      - no-store
+      Pragma:
+      - no-cache
+      Content-Type:
+      - application/json;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '{"access_token":"private_access_token","token_type":"bearer","expires_in":86399,"scope":"profiles.read_all","jti":"087f37ae-1dac-4bc5-8459-847d88539f04"}'
+    http_version: 
+  recorded_at: Fri, 15 Dec 2017 20:40:50 GMT
+- request:
+    method: get
+    uri: https://cap-uat.stanford.edu/cap-api/api/cap/v1/authors/41135
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.13.1
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip,deflate
+      Date:
+      - Fri, 15 Dec 2017 20:40:50 GMT
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer private_bearer_token
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 15 Dec 2017 20:40:50 GMT
+      Server:
+      - Apache/2.2.15 (Oracle)
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - '0'
+      Strict-Transport-Security:
+      - max-age=31536000 ; includeSubDomains
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - DENY
+      X-Content-Type-Options:
+      - nosniff
+      Vary:
+      - Accept-Encoding
+      Content-Encoding:
+      - gzip
+      Connection:
+      - close
+      Transfer-Encoding:
+      - chunked
+      Content-Type:
+      - application/json;charset=UTF-8
+    body:
+      encoding: UTF-8
+      string: '{"active":true,"authorModifiedOn":"2017-12-07T11:43:45.000-08:00","importEnabled":false,"importSettings":[{"email":"CAP-UID@stanford.edu","firstName":"John","institution":"Stanford
+        University","lastName":"Wang","middleName":"C Y"}],"lastModified":"2017-12-07T12:15:13.578-08:00","populations":["stanford","stanfordOnly"],"profile":{"displayName":"John
+        Wang","email":"CAP-UID@stanford.edu","meta":{"links":[{"href":"https://cap-uat.stanford.edu/cap-api/api/profiles/v1/41135","rel":"https://cap.stanford.edu/rel/self"},{"href":"https://cap-uat.stanford.edu/john-wang","rel":"https://cap.stanford.edu/rel/public"},{"href":"https://cap-uat.stanford.edu/profiles/auth/frdActionServlet?choiceId=facProfile&profileId=41135","rel":"https://cap.stanford.edu/rel/intranet"},{"href":"https://cap-uat.stanford.edu/profiles/frdActionServlet?choiceId=printerprofile&profileversion=full&profileId=41135","rel":"https://cap.stanford.edu/rel/pdf"},{"href":"https://cap-uat.stanford.edu/cap-api/api/cap/v1/schemas/ProfileDto","rel":"https://cap.stanford.edu/rel/schema"}]},"names":{"legal":{"firstName":"John","lastName":"Wang","middleName":"C"},"preferred":{"firstName":"John","lastName":"Wang","middleName":"C
+        Y"}},"profileId":41135,"uid":"CAP-UID","universityId":"CAP-UniversityID"},"profileId":41135,"visibility":"public"}'
+    http_version: 
+  recorded_at: Fri, 15 Dec 2017 20:40:50 GMT
+recorded_with: VCR 4.0.0
