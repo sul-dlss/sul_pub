@@ -39,11 +39,7 @@ module WebOfScience
 
       # publication citation details
       def pub_hash_citation
-        pub[:year] = rec.pub_info['pubyear']
-        pub[:date] = rec.pub_info['sortdate']
-        pub[:pages] = pub_hash_pages if pub_hash_pages.present?
-        pub[:title] = rec.titles['item']
-        pub[:journal] = pub_hash_journal
+        pub.update WebOfScience::MapCitation.new(rec).pub_hash
       end
 
       # publication document types and categories
@@ -94,19 +90,6 @@ module WebOfScience
         pub[:identifier] = rec.identifiers.pub_hash
       end
 
-      # Journal information
-      # @return [Hash]
-      def pub_hash_journal
-        identifier = rec.identifiers.pub_hash.select { |id| id['type'] == 'issn' }
-        h = {}
-        h[:name] = rec.titles['source'] if rec.titles['source'].present?
-        h[:volume] = rec.pub_info['vol'] if rec.pub_info['vol'].present?
-        h[:issue] = rec.pub_info['issue'] if rec.pub_info['issue'].present?
-        h[:pages] = pub_hash_pages if pub_hash_pages.present?
-        h[:identifier] = identifier if identifier.present?
-        h
-      end
-
       # Parse the WOS names and return a Hash compatible with Csl::AuthorName
       # @return [Hash]
       def pub_hash_names
@@ -128,15 +111,5 @@ module WebOfScience
         # </name>
       end
 
-      # @return [String]
-      def pub_hash_pages
-        @pub_hash_pages ||= begin
-          page = rec.pub_info['page']
-          return if page.blank?
-          fst = page['begin']
-          lst = page['end']
-          fst == lst ? fst : [fst, lst].join('-')
-        end
-      end
   end
 end
