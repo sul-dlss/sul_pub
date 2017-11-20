@@ -241,6 +241,17 @@ describe WebOfScience::Record do
     end
   end
 
+  describe '#pub_hash' do
+    let(:pub_hash) { wos_record_encoded.pub_hash }
+
+    it 'works' do
+      expect(pub_hash).to be_an Hash
+    end
+    it 'has "wos" provenance' do
+      expect(pub_hash[:provenance]).to eq 'wos'
+    end
+  end
+
   describe '#to_struct' do
     let(:struct) { wos_record_encoded.to_struct }
 

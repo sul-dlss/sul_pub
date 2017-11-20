@@ -124,6 +124,12 @@ module WebOfScience
       }
     end
 
+    # Map WOS record data into the SUL PubHash data
+    # @return [Hash]
+    def pub_hash
+      @pub_hash ||= WebOfScience::MapPubHash.new(self).pub_hash
+    end
+
     # An OpenStruct for the REC fields
     # @return [OpenStruct]
     def to_struct
