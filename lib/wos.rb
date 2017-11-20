@@ -1,12 +1,11 @@
-# Web of Science/Knowlege (WOS) utilities
+# Web of Science (WOS) utilities
 module WOS
   # rubocop:disable Style/ClassVars
 
-  # WIP - commented out to avoid code-coverage failure
-  # # @return [WebOfScience::Harvester]
-  # def self.harvester
-  #   @@harvester ||= WebOfScience::Harvester.new
-  # end
+  # @return [WebOfScience::Harvester]
+  def self.harvester
+    @@harvester ||= WebOfScience::Harvester.new
+  end
 
   # @return [Clarivate::LinksClient]
   def self.links_client
