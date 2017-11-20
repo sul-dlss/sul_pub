@@ -1,6 +1,6 @@
 describe WOS do
   describe '#harvester' do
-    xit 'works' do
+    it 'works' do
       result = described_class.harvester
       expect(result).to be_an WebOfScience::Harvester
     end
