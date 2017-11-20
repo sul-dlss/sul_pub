@@ -44,30 +44,7 @@ module WebOfScience
 
       # publication document types and categories
       def pub_hash_doctypes
-        # binding.pry
-
-        # Notes for book reviews that are journal articles
-        #
-        # publication_id: 331355,
-        #   identifier_type: "WoSItemID",
-        #   identifier_value: "000244272600114",
-        #   identifier_uri: "https://ws.isiknowledge.com/cps/openurl/service?url_ver=Z39.88-2004&rft_id=info:ut/000244272600114",
-        # :sw_id=>"52846721",
-        # :issn=>"0002-8762",
-        #
-        # :documenttypes_sw=>["Book Review"],
-        # :type=>"article",
-
-        # Example MEDLINE record has "normalized_doctypes"
-        #   <fullrecord_metadata>
-        #     <normalized_doctypes count='2'>
-        #       <doctype>Other</doctype>
-        #       <doctype>Article</doctype>
-        #     </normalized_doctypes>
-
-        #[doctypes, [pub_info['pubtype']]].flatten
-        types = rec.doctypes
-        types << rec.pub_info['pubtype'] if rec.pub_info['pubtype'].present?
+        types = [rec.doctypes, rec.pub_info['pubtype']].flatten.compact
         pub[:documenttypes_sw] = types
         pub[:documentcategory_sw] = rec.pub_info['pubtype']
         pub[:type] = case rec.pub_info['pubtype']
