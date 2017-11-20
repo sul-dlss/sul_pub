@@ -99,25 +99,44 @@ VCR.configure do |c|
     :record => :new_episodes,  # :once is default
   }
   c.configure_rspec_metadata!
-  c.filter_sensitive_data('Settings.CAP.TOKEN_USER:Settings.CAP.TOKEN_PASS@Settings.CAP.TOKEN_URI') do
-    "#{Settings.CAP.TOKEN_USER}:#{Settings.CAP.TOKEN_PASS}@#{Settings.CAP.TOKEN_URI}"
-  end
-  c.filter_sensitive_data('private_access_token') do |interaction|
-    if interaction.request.body == "grant_type=client_credentials"
-      regex = %r("access_token":"(.*?)")
-      matches = regex.match(interaction.response.body)
-      matches.captures.first if matches.present?
-    end
-  end
   c.filter_sensitive_data('private_bearer_token') do |interaction|
     auth = interaction.request.headers['Authorization']
-    if auth.kind_of? Array
-      bearer = auth.select {|a| a =~ /bearer/i }.first
+    if auth.is_a? Array
+      bearer = auth.select { |a| a =~ /bearer/i }.first
       bearer.gsub(/bearer /i, '') if bearer
     end
   end
   c.filter_sensitive_data('Settings.SCIENCEWIRE.HOST') { Settings.SCIENCEWIRE.HOST }
   c.filter_sensitive_data('Settings.SCIENCEWIRE.LICENSE_ID') { Settings.SCIENCEWIRE.LICENSE_ID }
+
+  # CAP API filters
+  c.filter_sensitive_data('Settings.CAP.TOKEN_USER:Settings.CAP.TOKEN_PASS') do
+    Base64.strict_encode64("#{Settings.CAP.TOKEN_USER}:#{Settings.CAP.TOKEN_PASS}")
+  end
+  c.filter_sensitive_data('private_access_token') do |interaction|
+    if interaction.request.uri.include? Settings.CAP.TOKEN_PATH
+      token_match = interaction.response.body.match(/"access_token":"(.*?)"/)
+      token_match.captures.first if token_match
+    end
+  end
+  c.filter_sensitive_data('CAP-LicenseID') do |interaction|
+    if interaction.request.uri.include? Settings.CAP.AUTHORSHIP_API_PATH
+      id_match = interaction.response.body.match(/"californiaPhysicianLicense".*?:.*?"(.*?)"/)
+      id_match.captures.first if id_match
+    end
+  end
+  c.filter_sensitive_data('CAP-UniversityID') do |interaction|
+    if interaction.request.uri.include? Settings.CAP.AUTHORSHIP_API_PATH
+      id_match = interaction.response.body.match(/"universityId".*?:.*?"(.*?)"/)
+      id_match.captures.first if id_match
+    end
+  end
+  c.filter_sensitive_data('CAP-UID') do |interaction|
+    if interaction.request.uri.include? Settings.CAP.AUTHORSHIP_API_PATH
+      id_match = interaction.response.body.match(/"uid".*?:.*?"(.*?)"/)
+      id_match.captures.first if id_match
+    end
+  end
 end
 
 def a_post(path)
