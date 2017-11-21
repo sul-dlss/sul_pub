@@ -18,10 +18,11 @@ class Contribution < ActiveRecord::Base
   after_initialize :init
 
   # apply some default values and coercions (lowercasing)
+  # @note must use attributes[...] checks here instead of getter methods to support Contribution.select(:id)
   def init
-    self.featured   = false if featured.nil? # can't use ||= with boolean
-    self.status     = status.downcase if status
-    self.visibility = visibility.downcase if visibility
+    self.featured   = false if attributes['featured'].nil? # can't use ||=
+    self.status     = status.downcase if attributes['status']
+    self.visibility = visibility.downcase if attributes['visibility']
   end
 
   def cap_profile_id
