@@ -4,6 +4,7 @@ module WebOfScience
   # Process records retrieved by any means; this is a progressive filtering of the harvested records to identify
   # those records that should create a new Publication.pub_hash, PublicationIdentifier(s) and Contribution(s).
   class ProcessRecords
+    delegate :logger, to: :WebOfScience
 
     # @param author [Author]
     # @param records [WebOfScience::Records]
@@ -136,10 +137,6 @@ module WebOfScience
       def publication_identifier?(type, value)
         return false if value.nil?
         PublicationIdentifier.where(identifier_type: type, identifier_value: value).count > 0
-      end
-
-      def logger
-        @logger ||= NotificationManager.wos_logger
       end
   end
 end
