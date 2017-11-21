@@ -18,7 +18,7 @@ class NotificationManager
       when CapAuthorsPoller, CapHttpClient
         log_exception(cap_logger, log_message, e)
       when WebOfScience::Client, WebOfScience::Harvester, WebOfScience::ProcessRecords, WebOfScience::Record
-        log_exception(wos_logger, log_message, e)
+        log_exception(WebOfScience.logger, log_message, e)
       else
         log_exception(Rails.logger, log_message, e)
       end
@@ -39,10 +39,6 @@ class NotificationManager
 
     def sciencewire_logger
       @@sciencewire_logger ||= Logger.new(Settings.SCIENCEWIRE.LOG)
-    end
-
-    def wos_logger
-      @@wos_logger ||= Logger.new(Settings.WOS.LOG)
     end
     # rubocop:enable Style/ClassVars
 

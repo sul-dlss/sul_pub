@@ -9,10 +9,11 @@ module WebOfScience
   # http://ipscience-help.thomsonreuters.com/wosWebServicesExpanded/WebServicesExpandedOverviewGroup/Introduction.html
   # It uses the savon gem for SOAP, see http://savonrb.com/version2/client.html
   class Client
-
     API_VERSION = '3.0'.freeze # Based on USER GUIDE July 7, 2015
     AUTH_WSDL = 'http://search.webofknowledge.com/esti/wokmws/ws/WOKMWSAuthenticate?wsdl'.freeze
     SEARCH_WSDL = 'http://search.webofknowledge.com/esti/wokmws/ws/WokSearch?wsdl'.freeze
+
+    delegate :logger, to: :WebOfScience
 
     def initialize(auth_code, log_level = :info)
       @auth_code = auth_code
@@ -75,12 +76,5 @@ module WebOfScience
       @search = nil
       @session_id = nil
     end
-
-    private
-
-      def logger
-        @logger ||= NotificationManager.wos_logger
-      end
   end
 end
-

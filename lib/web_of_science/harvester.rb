@@ -5,6 +5,7 @@ module WebOfScience
   # This class is responsible for processing WebOfScience API response data
   # to integrate it into the application data models.
   class Harvester
+    delegate :logger, to: :WebOfScience
 
     # Harvest all publications for an author
     # @param author [Author]
@@ -136,10 +137,6 @@ module WebOfScience
           wos_client = WebOfScience::Client.new(Settings.WOS.AUTH_CODE)
           WebOfScience::Queries.new(wos_client)
         end
-      end
-
-      def logger
-        @logger ||= NotificationManager.wos_logger
       end
   end
 end

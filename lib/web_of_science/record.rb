@@ -7,6 +7,7 @@ module WebOfScience
     extend Forwardable
 
     delegate %i(database doi eissn issn pmid uid wos_item_id) => :identifiers
+    delegate logger: :WebOfScience
 
     # @return doc [Nokogiri::XML::Document] WOS record document
     attr_reader :doc
@@ -141,10 +142,5 @@ module WebOfScience
       def to_o(hash)
         JSON.parse(hash.to_json, object_class: OpenStruct)
       end
-
-      def logger
-        @logger ||= NotificationManager.wos_logger
-      end
-
   end
 end
