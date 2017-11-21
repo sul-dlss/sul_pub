@@ -66,7 +66,7 @@ module Agent
       # Add the name variants for:
       # 'Lastname,Firstname' or
       # 'Lastname,FirstInitial'
-      # @return names [Array<String>|String]
+      # @return [Array<String>|String] names
       def first_name_query
         return '' if last.empty? && first.empty?
         [
@@ -79,7 +79,7 @@ module Agent
       # 'Lastname,Firstname,Middlename' or
       # 'Lastname,Firstname,MiddleInitial' or
       # 'Lastname,FirstInitial,MiddleInitial'
-      # @return names [Array<String>|String]
+      # @return [Array<String>|String] names
       def middle_name_query
         return '' unless middle =~ /^[[:alpha:]]/
         [

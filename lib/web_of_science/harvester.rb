@@ -74,7 +74,7 @@ module WebOfScience
       # Retrieve WOS Records for Author
 
       # @param author [Author]
-      # @return records [WebOfScience::Records]
+      # @return [WebOfScience::Records]
       def records_for_author(author)
         # TODO: iterate on author identities also, or leave that to the consumer of this class?
         names = author_name(author).text_search_query

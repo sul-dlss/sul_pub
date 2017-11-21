@@ -7,7 +7,7 @@ module SulBib
       # Extract a hash of optional contribution parameters from the request.
       # When this method is called for a PATCH request, it's important that it
       # does not set any defaults.
-      # @return contrib_options [Hash] May contain any of :features, :status and :visibility
+      # @return [Hash] May contain any of :features, :status and :visibility
       def contrib_attr
         # Gather optional contribution fields.
         contrib_attr = {}

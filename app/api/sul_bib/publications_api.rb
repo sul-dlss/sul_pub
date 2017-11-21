@@ -6,7 +6,7 @@ module SulBib
     helpers do
       # Used in GET and PUT to return an existing publication record
       # @param id [String] A unique publication ID
-      # @return pub [Publication] If found, returns a Publication record
+      # @return [Publication] If found, returns a Publication record
       #         returns an error if the publication is not found or if it has
       #         been deleted (unless the request is a 'DELETE')
       def publication_find(id)
@@ -21,7 +21,7 @@ module SulBib
 
       # Check for existing authors.
       # @param authorship_list [Array<Hash>]
-      # @return status [boolean] true if any of the authors exist.
+      # @return [boolean] true if any of the authors exist.
       def existing_authors?(authorship_list)
         # At least one of the authors in the authorship array must exist.
         return false if authorship_list.nil?
@@ -30,7 +30,7 @@ module SulBib
 
       # Check for existing authors or create new authors with a CAP profile ID.
       # @param authorship_list [Array<Hash>]
-      # @return status [boolean] true if any authors exist or are created.
+      # @return [boolean] true if any authors exist or are created.
       def validate_or_create_authors(authorship_list)
         # At least one of the authors in the authorship array must exist or have
         # a CAP profile that is used to create a new SULCAP author.

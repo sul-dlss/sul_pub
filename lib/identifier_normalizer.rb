@@ -35,7 +35,7 @@ class IdentifierNormalizer
 
     # Choose a parser that can handle the PublicationIdentifier.identifier_type
     # @param pub_id [PublicationIdentifier]
-    # @return parser [IdentifierParser] a kind of IdentifierParser to handle the pub_id
+    # @return [IdentifierParser] a kind of IdentifierParser to handle the pub_id
     def identifier_parser(pub_id)
       case pub_id[:identifier_type].to_s.downcase
       when 'doi'

@@ -185,7 +185,7 @@ class PubmedSourceRecord < ActiveRecord::Base
     #                   envelope element includes <Affliliation> and <Identifier>.
     #
     # @param author [Nokogiri::XML::Element] an <Author> element
-    # @return author_hash [Hash] with keys :firstname, :middlename and :lastname
+    # @return [Hash<Symbol => String>] with keys :firstname, :middlename and :lastname
     def author_to_hash(author)
       # <Author> examples provide many variations at No. 20 from
       # https://www.nlm.nih.gov/bsd/licensee/elements_descriptions.html
