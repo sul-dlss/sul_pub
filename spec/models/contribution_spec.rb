@@ -16,6 +16,14 @@ describe Contribution do
 
   subject { pub_with_contrib.contributions.first }
 
+  # used by OK Computer checks, once broken by after_initialize/#init method
+  describe '#select' do
+    it 'still works' do
+      pub_with_contrib
+      expect(described_class.select(:id).first!).to be_present
+    end
+  end
+
   describe '#cap_profile_id' do
     it 'returns the author.cap_profile_id' do
       expect(subject.cap_profile_id).to eq(subject.author.cap_profile_id)
