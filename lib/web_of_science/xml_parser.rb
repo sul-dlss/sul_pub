@@ -8,13 +8,13 @@ module WebOfScience
     XML_OPTIONS = Nokogiri::XML::Node::SaveOptions::AS_XML | Nokogiri::XML::Node::SaveOptions::NO_DECLARATION
 
     # @param element [Nokogiri::XML::Element]
-    # @return attributes [Array<Array[String, String]>]
+    # @return [Array<Array[String, String]>]
     def self.attributes_map(element)
       element.attributes.map { |name, att| [name, att.value] }
     end
 
     # @param element [Nokogiri::XML::Element]
-    # @return fields [Hash]
+    # @return [Hash]
     def self.attributes_with_children_hash(element)
       fields = attributes_map(element)
       fields += element.children.map { |c| [c.name, c.text] }

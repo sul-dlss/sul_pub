@@ -16,17 +16,17 @@ class SciencewireSourceRecord < ActiveRecord::Base
     SciencewireSourceRecord.convert_sw_publication_doc_to_hash(publication_item)
   end
 
-  # @return publication [ScienceWirePublication] PublicationItem object
+  # @return [ScienceWirePublication] PublicationItem object
   def publication
     @publication ||= ScienceWirePublication.new publication_item
   end
 
-  # @return publication_item [Nokogiri::XML::Element] XML element for PublicationItem
+  # @return [Nokogiri::XML::Element] XML element for PublicationItem
   def publication_item
     @publication_item ||= publication_xml.at_xpath('//PublicationItem')
   end
 
-  # @return publication_xml [Nokogiri::XML::Document] XML document
+  # @return [Nokogiri::XML::Document] XML document
   def publication_xml
     @publication_xml ||= Nokogiri::XML(source_data)
   end
@@ -285,7 +285,7 @@ class SciencewireSourceRecord < ActiveRecord::Base
   # - 'Other'
   #
   # @param sw_doc_category [String] One of the document categories
-  # @return sul_doc_type [String] One of the `Settings.sul_doc_types`
+  # @return [String] One of the `Settings.sul_doc_types`
   def self.lookup_cap_doc_type_by_sw_doc_category(sw_doc_category)
     return Settings.sul_doc_types.inproceedings if sw_doc_category == 'Conference Proceeding Document'
     Settings.sul_doc_types.article

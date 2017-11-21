@@ -16,10 +16,11 @@ module WebOfScience
     # @return [WebOfScience::Record]
     def_delegators :to_a, :sample
 
-    # @return xml [String] WOS records in XML
+    # @return [String] WOS records in XML
     def_delegators :doc, :to_xml
 
-    # @return doc [Nokogiri::XML::Document] WOS records document
+    # @!attribute [r] doc
+    #   @return [Nokogiri::XML::Document] WOS records document
     attr_reader :doc
 
     # @param records [String] records in XML
@@ -44,17 +45,17 @@ module WebOfScience
     end
 
     # Iterate over WebOfScience::WokRecord objects
-    # @yield wos_record [WebOfScience::Record]
+    # @yield [WebOfScience::Record]
     def each
       rec_nodes.each { |rec| yield WebOfScience::Record.new(record: rec.to_xml) }
     end
 
-    # @return uids [Array<String>] the rec_nodes UID values (in order)
+    # @return [Array<String>] the rec_nodes UID values (in order)
     def uids
       uid_nodes.map(&:text)
     end
 
-    # @return uid_nodes [Nokogiri::XML::NodeSet] the rec_nodes UID nodes
+    # @return [Nokogiri::XML::NodeSet] the rec_nodes UID nodes
     def uid_nodes
       rec_nodes.search('UID')
     end
@@ -99,7 +100,7 @@ module WebOfScience
 
     # Merge WoS records
     # @param record_setB [WebOfScience::Records]
-    # @return records [WebOfScience::Records] merged set of records
+    # @return [WebOfScience::Records] merged set of records
     def merge_records(record_setB)
       # create a new set of records, use a philosophy of immutability
       # Nokogiri::XML::Document.dup is a deep copy
@@ -110,7 +111,7 @@ module WebOfScience
     end
 
     # Pretty print the records in XML
-    # @return nil
+    # @return [nil]
     def print
       require 'rexml/document'
       rexml_doc = REXML::Document.new(doc.to_xml)
@@ -130,7 +131,7 @@ module WebOfScience
 
       # The UID for a WoS REC
       # @param rec [Nokogiri::XML::Element] a Wos 'REC' element
-      # @return UID [String] a Wos 'UID' value
+      # @return [String] a Wos 'UID' value
       def record_uid(rec)
         rec.search('UID').text
       end

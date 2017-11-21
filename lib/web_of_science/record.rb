@@ -12,7 +12,8 @@ module WebOfScience
 
     delegate %i(publishers) => :publisher
 
-    # @return doc [Nokogiri::XML::Document] WOS record document
+    # @!attribute [r] doc
+    #   @return [Nokogiri::XML::Document] WOS record document
     attr_reader :doc
 
     # @param record [String] record in XML
@@ -21,27 +22,27 @@ module WebOfScience
       @doc = WebOfScience::XmlParser.parse(record, encoded_record)
     end
 
-    # @return abstract_mapper [WebOfScience::MapAbstract]
+    # @return [WebOfScience::MapAbstract]
     def abstract_mapper
       @abstract_mapper ||= WebOfScience::MapAbstract.new(self)
     end
 
-    # @return authors [Array<Hash<String => String>>]
+    # @return [Array<Hash<String => String>>]
     def authors
       @authors ||= names.select { |name| name['role'] == 'author' }
     end
 
-    # @return doctypes [Array<String>]
+    # @return [Array<String>]
     def doctypes
       @doctypes ||= doc.search('static_data/summary/doctypes/doctype').map(&:text)
     end
 
-    # @return identifiers [Hash<String => String>]
+    # @return [Hash<String => String>]
     def identifiers
       @identifiers ||= WebOfScience::Identifiers.new self
     end
 
-    # @return names [Array<Hash<String => String>>]
+    # @return [Array<Hash<String => String>>]
     def names
       @names ||= begin
         names = doc.search('static_data/summary/names/name').map do |name|
@@ -52,7 +53,7 @@ module WebOfScience
     end
 
     # Pretty print the record in XML
-    # @return nil
+    # @return [nil]
     def print
       require 'rexml/document'
       rexml_doc = REXML::Document.new(doc.to_xml)
@@ -63,7 +64,7 @@ module WebOfScience
       nil
     end
 
-    # @return pub_info [Hash<String => String>]
+    # @return [Hash<String => String>]
     def pub_info
       @pub_info ||= begin
         info = doc.at('static_data/summary/pub_info')
@@ -81,7 +82,7 @@ module WebOfScience
     end
 
     # Extract the REC summary fields
-    # @return summary [Hash]
+    # @return [Hash<String => Object>]
     def summary
       @summary ||= {
         'abstracts' => abstracts,
@@ -94,12 +95,12 @@ module WebOfScience
     end
 
     # An OpenStruct for the summary fields
-    # @return summary [OpenStruct]
+    # @return [OpenStruct]
     def summary_struct
       to_o(summary)
     end
 
-    # @return titles [Hash<String => String>]
+    # @return [Hash<String => String>]
     def titles
       @titles ||= begin
         titles = doc.search('static_data/summary/titles/title')
@@ -108,7 +109,7 @@ module WebOfScience
     end
 
     # Extract the REC fields
-    # @return [Hash]
+    # @return [Hash<String => Object>]
     def to_h
       {
         'summary' => summary,
@@ -127,7 +128,7 @@ module WebOfScience
       to_o(to_h)
     end
 
-    # @return xml [String] XML
+    # @return [String] XML
     def to_xml
       doc.to_xml(save_with: WebOfScience::XmlParser::XML_OPTIONS).strip
     end

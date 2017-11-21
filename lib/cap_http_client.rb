@@ -41,22 +41,26 @@ class CapHttpClient
     raise
   end
 
+  # @return [Hash, Array] results of JSON.parse
   def get_batch_from_cap_api(page_count, page_size, since = '')
     request_path = "#{Settings.CAP.AUTHORSHIP_API_PATH}?p=#{page_count}&ps=#{page_size}"
     request_path << "&since=#{since}" unless since.blank?
     make_cap_request(request_path)
   end
 
+  # @return [Hash, Array] results of JSON.parse
   def get_auth_profile(cap_profile_id)
     make_cap_request("#{Settings.CAP.AUTHORSHIP_API_PATH}/#{cap_profile_id}")
   end
 
+  # @return [Hash, Array] results of JSON.parse
   def get_cap_profile_by_sunetid(sunetid)
     make_cap_request("#{Settings.CAP.AUTHORSHIP_API_PATH}?uids=#{sunetid}")
   end
 
   private
 
+    # @return [Hash, Array] results of JSON.parse
     def make_cap_request(request_path)
       json_response = {}
       timeout_retries = @base_timeout_retries

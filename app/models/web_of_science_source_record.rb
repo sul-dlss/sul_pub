@@ -4,7 +4,7 @@ class WebOfScienceSourceRecord < ActiveRecord::Base
 
   after_initialize :check_source_data
 
-  # @return doc [Nokogiri::XML::Document] XML document
+  # @return [Nokogiri::XML::Document] XML document
   def doc
     @doc ||= Nokogiri::XML(source_data)
   end
@@ -25,7 +25,7 @@ class WebOfScienceSourceRecord < ActiveRecord::Base
     super || self.source_fingerprint = Digest::SHA2.hexdigest(source_data)
   end
 
-  # @return xml [String] XML
+  # @return [String] XML
   def to_xml
     doc.to_xml(save_with: XML_OPTIONS).strip
   end

@@ -58,7 +58,7 @@ class IdentifierParser
   end
 
   # Construct an entry for Publication.pub_hash[:identifier]
-  # @return identifier [Hash]
+  # @return [Hash<Symbol => String>]
   def identifier
     identifier = {}
     identifier[:type] = type
@@ -68,7 +68,7 @@ class IdentifierParser
   end
 
   # Update the pub_id with parsed data
-  # @return pub_id [PublicationIdentifier]
+  # @return [PublicationIdentifier] updated pub id (not saved)
   def update
     pub_id[:identifier_value] = value
     pub_id[:identifier_uri] = uri
@@ -82,14 +82,14 @@ class IdentifierParser
   end
 
   # Extract a value
-  # @return [String|nil]
+  # @return [String, nil]
   def value
     # this base class uses the pub_id value
     @value ||= pub_id[:identifier_value]
   end
 
   # Extract a URI
-  # @return [String|nil]
+  # @return [String, nil]
   def uri
     # this base class uses the pub_id URI
     @uri ||= compose_uri
@@ -98,7 +98,7 @@ class IdentifierParser
   private
 
     # Compose a URI
-    # @return [String|nil]
+    # @return [String, nil]
     def compose_uri
       pub_id[:identifier_uri]
     end
