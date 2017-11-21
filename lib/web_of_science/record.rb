@@ -6,7 +6,11 @@ module WebOfScience
   class Record
     extend Forwardable
 
+    delegate %i(abstracts) => :abstract_mapper
+
     delegate %i(database doi eissn issn pmid uid wos_item_id) => :identifiers
+
+    delegate %i(publishers) => :publisher
 
     # @return doc [Nokogiri::XML::Document] WOS record document
     attr_reader :doc
@@ -15,6 +19,11 @@ module WebOfScience
     # @param encoded_record [String] record in HTML encoding
     def initialize(record: nil, encoded_record: nil)
       @doc = WebOfScience::XmlParser.parse(record, encoded_record)
+    end
+
+    # @return abstract_mapper [WebOfScience::MapAbstract]
+    def abstract_mapper
+      @abstract_mapper ||= WebOfScience::MapAbstract.new(self)
     end
 
     # @return authors [Array<Hash<String => String>>]
@@ -66,34 +75,16 @@ module WebOfScience
       end
     end
 
-    # @return publishers [Array<Hash>]
-    def publishers
-      @publishers ||= begin
-        publishers = doc.search('static_data/summary/publishers/publisher').map do |publisher|
-          # parse the publisher address(es)
-          addresses = publisher.search('address_spec').map do |address|
-            WebOfScience::XmlParser.attributes_with_children_hash(address)
-          end
-          addresses.sort! { |a| a['addr_no'].to_i }
-          # parse the publisher name(s)
-          names = publisher.search('names/name').map do |name|
-            WebOfScience::XmlParser.attributes_with_children_hash(name)
-          end
-          # associate each publisher name with it's address by 'addr_no'
-          names.each do |name|
-            address = addresses.find { |addr| addr['addr_no'] == name['addr_no'] }
-            name['address'] = address
-          end
-          names.sort { |name| name['seq_no'].to_i }
-        end
-        publishers.flatten
-      end
+    # @return [WebOfScience::MapPublisher]
+    def publisher
+      @publisher ||= WebOfScience::MapPublisher.new(self)
     end
 
     # Extract the REC summary fields
     # @return summary [Hash]
     def summary
       @summary ||= {
+        'abstracts' => abstracts,
         'doctypes' => doctypes,
         'names' => names,
         'pub_info' => pub_info,
@@ -122,6 +113,12 @@ module WebOfScience
       {
         'summary' => summary,
       }
+    end
+
+    # Map WOS record data into the SUL PubHash data
+    # @return [Hash]
+    def pub_hash
+      @pub_hash ||= WebOfScience::MapPubHash.new(self).pub_hash
     end
 
     # An OpenStruct for the REC fields

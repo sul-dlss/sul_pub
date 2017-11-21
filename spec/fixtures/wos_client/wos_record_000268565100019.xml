@@ -1,0 +1,311 @@
+<?xml version='1.0'?>
+<REC r_id_disclaimer='ResearcherID data provided by Clarivate Analytics'>
+  <UID>WOS:000268565100019</UID>
+  <static_data>
+    <summary>
+      <EWUID>
+        <WUID coll_id='WOS'/>
+        <edition value='WOS.SCI'/>
+      </EWUID>
+      <pub_info coverdate='AUG 2009' has_abstract='Y' issue='2' pubmonth='AUG' pubtype='Journal' pubyear='2009' sortdate='2009-08-01' vol='86'>
+        <page begin='183' end='189' page_count='7'>183-189</page>
+      </pub_info>
+      <titles count='6'>
+        <title type='source'>CLINICAL PHARMACOLOGY &amp; THERAPEUTICS</title>
+        <title type='source_abbrev'>CLIN PHARMACOL THER</title>
+        <title type='abbrev_iso'>Clin. Pharmacol. Ther.</title>
+        <title type='abbrev_11'>CLIN PHARM</title>
+        <title type='abbrev_29'>CLIN PHARMACOL THER</title>
+        <title type='item'>Generating Genome-Scale Candidate Gene Lists for Pharmacogenomics</title>
+      </titles>
+      <names count='3'>
+        <name daisng_id='13886131' seq_no='1' addr_no='1 3' role='author'>
+          <display_name>Hansen, N. T.</display_name>
+          <full_name>Hansen, N. T.</full_name>
+          <wos_standard>Hansen, NT</wos_standard>
+          <first_name>N. T.</first_name>
+          <last_name>Hansen</last_name>
+        </name>
+        <name daisng_id='1001211729' seq_no='2' addr_no='3' role='author'>
+          <display_name>Brunak, S.</display_name>
+          <full_name>Brunak, S.</full_name>
+          <wos_standard>Brunak, S</wos_standard>
+          <first_name>S.</first_name>
+          <last_name>Brunak</last_name>
+        </name>
+        <name daisng_id='745091' seq_no='3' addr_no='1 2' dais_id='10190039' reprint='Y' role='author'>
+          <display_name>Altman, R. B.</display_name>
+          <full_name>Altman, R. B.</full_name>
+          <wos_standard>Altman, RB</wos_standard>
+          <first_name>R. B.</first_name>
+          <last_name>Altman</last_name>
+          <email_addr>russ.altman@stanford.edu</email_addr>
+        </name>
+      </names>
+      <doctypes count='1'>
+        <doctype>Article</doctype>
+      </doctypes>
+      <publishers>
+        <publisher>
+          <address_spec addr_no='1'>
+            <full_address>75 VARICK ST, 9TH FLR, NEW YORK, NY 10013-1917 USA</full_address>
+            <city>NEW YORK</city>
+          </address_spec>
+          <names count='1'>
+            <name addr_no='1' role='publisher' seq_no='1'>
+              <display_name>NATURE PUBLISHING GROUP</display_name>
+              <full_name>NATURE PUBLISHING GROUP</full_name>
+            </name>
+          </names>
+        </publisher>
+      </publishers>
+    </summary>
+    <fullrecord_metadata>
+      <languages count='1'>
+        <language type='primary'>English</language>
+      </languages>
+      <normalized_languages count='1'>
+        <language type='primary'>English</language>
+      </normalized_languages>
+      <normalized_doctypes count='1'>
+        <doctype>Article</doctype>
+      </normalized_doctypes>
+      <refs count='31'/>
+      <addresses count='3'>
+        <address_name>
+          <address_spec addr_no='1'>
+            <full_address>Stanford Univ, Dept Bioengn, Stanford, CA 94305 USA</full_address>
+            <organizations count='2'>
+              <organization>Stanford Univ</organization>
+              <organization pref='Y'>Stanford University</organization>
+            </organizations>
+            <suborganizations count='1'>
+              <suborganization>Dept Bioengn</suborganization>
+            </suborganizations>
+            <city>Stanford</city>
+            <state>CA</state>
+            <country>USA</country>
+            <zip location='AP'>94305</zip>
+          </address_spec>
+          <names count='2'>
+            <name daisng_id='13886131' seq_no='1' addr_no='1' role='author'>
+              <display_name>Hansen, N. T.</display_name>
+              <full_name>Hansen, N. T.</full_name>
+              <wos_standard>Hansen, NT</wos_standard>
+              <first_name>N. T.</first_name>
+              <last_name>Hansen</last_name>
+            </name>
+            <name daisng_id='745091' seq_no='3' addr_no='1' dais_id='10190039' reprint='Y' role='author'>
+              <display_name>Altman, R. B.</display_name>
+              <full_name>Altman, R. B.</full_name>
+              <wos_standard>Altman, RB</wos_standard>
+              <first_name>R. B.</first_name>
+              <last_name>Altman</last_name>
+              <email_addr>russ.altman@stanford.edu</email_addr>
+            </name>
+          </names>
+        </address_name>
+        <address_name>
+          <address_spec addr_no='2'>
+            <full_address>Stanford Univ, Dept Genet, Stanford, CA 94305 USA</full_address>
+            <organizations count='2'>
+              <organization>Stanford Univ</organization>
+              <organization pref='Y'>Stanford University</organization>
+            </organizations>
+            <suborganizations count='1'>
+              <suborganization>Dept Genet</suborganization>
+            </suborganizations>
+            <city>Stanford</city>
+            <state>CA</state>
+            <country>USA</country>
+            <zip location='AP'>94305</zip>
+          </address_spec>
+          <names count='1'>
+            <name daisng_id='745091' seq_no='3' addr_no='2' dais_id='10190039' reprint='Y' role='author'>
+              <display_name>Altman, R. B.</display_name>
+              <full_name>Altman, R. B.</full_name>
+              <wos_standard>Altman, RB</wos_standard>
+              <first_name>R. B.</first_name>
+              <last_name>Altman</last_name>
+              <email_addr>russ.altman@stanford.edu</email_addr>
+            </name>
+          </names>
+        </address_name>
+        <address_name>
+          <address_spec addr_no='3'>
+            <full_address>Tech Univ Denmark, Ctr Biol Sequence Anal, DK-2800 Lyngby, Denmark</full_address>
+            <organizations count='2'>
+              <organization>Tech Univ Denmark</organization>
+              <organization pref='Y'>Technical University of Denmark</organization>
+            </organizations>
+            <suborganizations count='1'>
+              <suborganization>Ctr Biol Sequence Anal</suborganization>
+            </suborganizations>
+            <city>Lyngby</city>
+            <country>Denmark</country>
+            <zip location='BC'>DK-2800</zip>
+          </address_spec>
+          <names count='2'>
+            <name daisng_id='13886131' seq_no='1' addr_no='3' role='author'>
+              <display_name>Hansen, N. T.</display_name>
+              <full_name>Hansen, N. T.</full_name>
+              <wos_standard>Hansen, NT</wos_standard>
+              <first_name>N. T.</first_name>
+              <last_name>Hansen</last_name>
+            </name>
+            <name daisng_id='1001211729' seq_no='2' addr_no='3' role='author'>
+              <display_name>Brunak, S.</display_name>
+              <full_name>Brunak, S.</full_name>
+              <wos_standard>Brunak, S</wos_standard>
+              <first_name>S.</first_name>
+              <last_name>Brunak</last_name>
+            </name>
+          </names>
+        </address_name>
+      </addresses>
+      <reprint_addresses count='1'>
+        <address_name>
+          <address_spec addr_no='1'>
+            <full_address>Stanford Univ, Dept Bioengn, Stanford, CA 94305 USA</full_address>
+            <organizations count='2'>
+              <organization>Stanford Univ</organization>
+              <organization pref='Y'>Stanford University</organization>
+            </organizations>
+            <suborganizations count='1'>
+              <suborganization>Dept Bioengn</suborganization>
+            </suborganizations>
+            <city>Stanford</city>
+            <state>CA</state>
+            <country>USA</country>
+            <zip location='AP'>94305</zip>
+          </address_spec>
+          <names count='1'>
+            <name addr_no='1' reprint='Y' role='author' seq_no='1'>
+              <display_name>Altman, R. B.</display_name>
+              <full_name>Altman, R. B.</full_name>
+              <wos_standard>Altman, RB</wos_standard>
+              <first_name>R. B.</first_name>
+              <last_name>Altman</last_name>
+              <email_addr>russ.altman@stanford.edu</email_addr>
+            </name>
+          </names>
+        </address_name>
+      </reprint_addresses>
+      <category_info>
+        <headings count='1'>
+          <heading>Science &amp; Technology</heading>
+        </headings>
+        <subheadings count='1'>
+          <subheading>Life Sciences &amp; Biomedicine</subheading>
+        </subheadings>
+        <subjects count='3'>
+          <subject ascatype='traditional' code='TU'>Pharmacology &amp; Pharmacy</subject>
+          <subject ascatype='extended'>Pharmacology &amp; Pharmacy</subject>
+          <subject ascatype='traditional' code='TU'>PHARMACOLOGY &amp; PHARMACY</subject>
+        </subjects>
+      </category_info>
+      <fund_ack>
+        <fund_text>
+          <p>
+            We thank G. Cooper for providing us with genome-wide data for
+            warfarin, M. E. Dolan and A. Stark for data on carboplatin, K. Lage
+            for access to InWeb interactome, R. Whaley for PharmGKB data, and B.
+            Daigle and Y. Garten for their valuable input on the manuscript. We
+            also acknowledge support from the National Institutes of Health
+            (grant GM61374 and LM05652), the National Science Foundation (award
+            CNS-0619926), the Villum Kann Rasmussen Foundation, and the NABIIT
+            (Nanoscience and Technology, Biotechnology and IT) program.
+          </p>
+        </fund_text>
+        <grants count='4'>
+          <grant>
+            <grant_agency>National Institutes of Health</grant_agency>
+            <grant_ids count='2'>
+              <grant_id>GM61374</grant_id>
+              <grant_id>LM05652</grant_id>
+            </grant_ids>
+          </grant>
+          <grant>
+            <grant_agency>National Science Foundation</grant_agency>
+            <grant_ids count='1'>
+              <grant_id>CNS-0619926</grant_id>
+            </grant_ids>
+          </grant>
+          <grant>
+            <grant_agency>Villum Kann Rasmussen Foundation</grant_agency>
+          </grant>
+          <grant>
+            <grant_agency>NABIIT (Nanoscience and Technology, Biotechnology and IT) program</grant_agency>
+          </grant>
+        </grants>
+      </fund_ack>
+      <abstracts count='1'>
+        <abstract>
+          <abstract_text count='1'>
+            <p>
+              A critical task in pharmacogenomics is identifying genes that may
+              be important modulators of drug response. High-throughput
+              experimental methods are often plagued by false positives and do
+              not take advantage of existing knowledge. Candidate gene lists can
+              usefully summarize existing knowledge, but they are expensive to
+              generate manually and may therefore have incomplete coverage. We
+              have developed a method that ranks 12,460 genes in the human
+              genome on the basis of their potential relevance to a specific
+              query drug and its putative indications. Our method uses known
+              gene-drug interactions, networks of gene-gene interactions, and
+              available measures of drug-drug similarity. It ranks genes by
+              building a local network of known interactions and assessing the
+              similarity of the query drug (by both structure and indication)
+              with drugs that interact with gene products in the local network.
+              In a comprehensive benchmark, our method achieves an overall area
+              under the curve of 0.82. To showcase our method, we found novel
+              gene candidates for warfarin, gefitinib, carboplatin, and
+              gemcitabine, and we provide the molecular hypotheses for these
+              predictions.
+            </p>
+          </abstract_text>
+        </abstract>
+      </abstracts>
+    </fullrecord_metadata>
+    <item xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' coll_id='WOS' xsi:type='itemType_wos'>
+      <ids avail='Y'>478CJ</ids>
+      <bib_id>86 (2): 183-189 AUG 2009</bib_id>
+      <bib_pagecount type='Journal'>112</bib_pagecount>
+      <keywords_plus count='10'>
+        <keyword>INTERACTION NETWORKS</keyword>
+        <keyword>WIDE ASSOCIATION</keyword>
+        <keyword>CELL-LINES</keyword>
+        <keyword>WARFARIN</keyword>
+        <keyword>EXPRESSION</keyword>
+        <keyword>VARIANTS</keyword>
+        <keyword>CYTOTOXICITY</keyword>
+        <keyword>GEMCITABINE</keyword>
+        <keyword>CHALLENGES</keyword>
+        <keyword>PROFILES</keyword>
+      </keywords_plus>
+    </item>
+    <contributors count='1'>
+      <contributor>
+        <name orcid_id='0000-0003-0316-5866' role='researcher_id' seq_no='1'>
+          <display_name>Brunak, Soren</display_name>
+          <full_name>Brunak, Soren</full_name>
+          <first_name>Soren</first_name>
+          <last_name>Brunak</last_name>
+        </name>
+      </contributor>
+    </contributors>
+  </static_data>
+  <dynamic_data>
+    <citation_related>
+      <tc_list>
+        <silo_tc coll_id='WOS' local_count='44'/>
+      </tc_list>
+    </citation_related>
+    <cluster_related>
+      <identifiers>
+        <identifier type='issn' value='0009-9236'/>
+        <identifier type='doi' value='10.1038/clpt.2009.42'/>
+      </identifiers>
+    </cluster_related>
+  </dynamic_data>
+</REC>
