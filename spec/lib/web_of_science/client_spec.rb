@@ -61,17 +61,11 @@ describe WebOfScience::Client do
     context 'when there are no matches returned for SessionID' do
       let(:null_logger) { Logger.new('/dev/null') }
 
-      before do
-        savon.expects(:close_session).returns(no_session_matches)
-        NotificationManager.class_variable_set(:@@wos_logger, nil)
-        allow(Logger).to receive(:new).and_return(null_logger)
-      end
-      it 'works' do
+      before { savon.expects(:close_session).returns(no_session_matches) }
+
+      it 'creates a logger and works' do
+        expect(WebOfScience).to receive(:logger).and_return(null_logger)
         expect(wos_client.session_close).to be_nil
-      end
-      it 'creates a logger' do
-        expect(NotificationManager).to receive(:wos_logger).and_call_original
-        wos_client.session_close
       end
     end
   end

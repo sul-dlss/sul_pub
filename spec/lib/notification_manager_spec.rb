@@ -66,17 +66,13 @@ describe NotificationManager do
       described_class.error(exception, message, ScienceWireClient.new)
     end
   end
-  context '.wos_logger' do
+  context 'WebOfScience.logger' do
     let(:wos_client) { WebOfScience::Client.new(Settings.WOS.AUTH_CODE) }
 
-    before do
-      described_class.class_variable_set(:@@wos_logger, nil)
-    end
-    it 'creates a single logger' do
-      expect(Logger).to receive(:new).with(Settings.WOS.LOG).once
-      described_class.error(exception, message, wos_client)
-    end
+    before { WebOfScience.class_variable_set(:@@logger, nil) }
+
     it 'logs errors' do
+      expect(WebOfScience).to receive(:logger).and_return(null_logger)
       expect(null_logger).to receive(:error).exactly(3)
       described_class.error(exception, message, wos_client)
     end
