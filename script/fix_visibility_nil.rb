@@ -15,7 +15,6 @@ class FixVisibilityNil
     @logger.info "Processing #{@author_ids.count} Authors"
     @updated = 0
     @errors = 0
-    @poller = CapAuthorsPoller.new
   end
 
   def work
@@ -41,7 +40,7 @@ class FixVisibilityNil
     author = Author.find(author_id)
     record = cap_client.get_auth_profile(author.cap_profile_id)
     @logger.info "Processing Author.find(#{author_id})"
-    @poller.process_record(record)
+    cap_poller.process_record(record)
   end
 
   private
@@ -50,6 +49,9 @@ class FixVisibilityNil
       @cap_client ||= Cap::Client.new
     end
 
+    def cap_poller
+      @cap_poller ||= Cap::AuthorsPoller.new
+    end
 end
 
 u = FixVisibilityNil.new
