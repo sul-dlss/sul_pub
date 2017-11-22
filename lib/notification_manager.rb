@@ -4,9 +4,9 @@ class NotificationManager
     ##
     # Handles notification of errors with behavior based on the callee
     #
-    # @param [Exception] `e` -- the original exception
-    # @param [String] `message` -- human-readable message
-    # @param [Class] `callee` -- the callee object
+    # @param [Exception] e -- the original exception
+    # @param [String] message -- human-readable message
+    # @param [Class] callee -- the callee object
     def error(e, message, callee = nil)
       log_message = callee.class.name + ': ' + message
 

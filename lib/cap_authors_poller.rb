@@ -113,7 +113,8 @@ class CapAuthorsPoller
   end
 
   # Add author to job queue if it's harvestable and new/changed
-  # @param [String] `skip_message` logs this message if it skips adding author to queue
+  # @param [Author] author
+  # @param [String] skip_message logs this message if it skips adding author to queue
   def queue_author_for_harvest(author, skip_message)
     if (author.new_record? || author.changed?) && author.harvestable?
       @new_or_changed_authors_to_harvest_queue << author.id

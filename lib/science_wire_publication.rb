@@ -4,7 +4,7 @@ class ScienceWirePublication
   # @return [String] XML for PublicationItem
   delegate :to_xml, to: :xml_doc
 
-  # @param [Nokogiri::XML::Element] a PublicationItem
+  # @param [Nokogiri::XML::Element] xml_doc a PublicationItem
   def initialize(xml_doc)
     @xml_doc = xml_doc
     raise(ArgumentError, 'xml_doc must be a <PublicationItem> Nokogiri::XML::Element') unless valid?
@@ -89,8 +89,8 @@ class ScienceWirePublication
     element_text 'AuthorList'
   end
 
-  # @return [Array<Hash>] an array of author names
-  #                       {lastname: '', firstname: '', middlename: ''}
+  # @return [Array<Hash>] array of author names
+  #                       lastname: '', firstname: '', middlename: ''
   def author_names
     authors.map do |name|
       ln, fn, mn = name.split(',')

@@ -151,7 +151,7 @@ class ScienceWireClient
     send_query_and_return_pub_hashes query
   end
 
-  # @params [Array<String>] wos_ids The WebOfScience Document Ids that are being requested
+  # @param [Array<String>] wos_ids The WebOfScience Document Ids that are being requested
   # @return [Nokogiri::XML::Document]
   def get_full_sciencewire_pubs_for_wos_ids(wos_ids)
     xml_query = %(<![CDATA[
@@ -193,7 +193,7 @@ class ScienceWireClient
     get_sciencewire_publication_response(queryId, queryResultRows)
   end
 
-  # @returns [Nokogiri::XML::Document] the ScienceWireQueryIDResponse
+  # @return [Nokogiri::XML::Document] the ScienceWireQueryIDResponse
   def send_sciencewire_publication_request(xml_query)
     wrapped_xml_query = '<?xml version="1.0"?>
     <ScienceWireQueryXMLParameter xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
@@ -212,7 +212,7 @@ class ScienceWireClient
 
   # @param [Integer] queryId used to identify a specific query result set
   # @param [Integer] queryResultRows the total number of results for a query
-  # @returns [Nokogiri::XML::Document] the ArrayOfPublicationItem response
+  # @return [Nokogiri::XML::Document] the ArrayOfPublicationItem response
   def get_sciencewire_publication_response(queryId, queryResultRows)
     xml_doc = begin
       if queryResultRows > 0
@@ -232,7 +232,7 @@ class ScienceWireClient
   end
 
   # @param sciencewire_ids [Array<Integer>] array of PublicationItemID integers
-  # @returns [Nokogiri::XML::Document] the ArrayOfPublicationItem response
+  # @return [Nokogiri::XML::Document] the ArrayOfPublicationItem response
   def get_full_sciencewire_pubs_for_sciencewire_ids(sciencewire_ids)
     # Get the documents in batches, because the request is made as a GET and a very long
     # list of PublicationItemId values might exceed a URL length limit (approx. 2000 chars), see commentary in:
@@ -266,7 +266,7 @@ class ScienceWireClient
   end
 
   # @param sciencewire_id [Integer] a PublicationItemID integer
-  # @returns [Nokogiri::XML::Element] a PublicationItem element
+  # @return [Nokogiri::XML::Element] a PublicationItem element
   def get_sw_xml_source_for_sw_id(sciencewire_id)
     xml_doc = get_full_sciencewire_pubs_for_sciencewire_ids([sciencewire_id])
     xml_doc.xpath('//PublicationItem').first

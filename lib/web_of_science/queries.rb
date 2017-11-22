@@ -75,7 +75,7 @@ module WebOfScience
       WebOfScience::Records.new(records: '<records/>')
     end
 
-    # @param name [String] a CSV name pattern: {last name}, {first_name} [{middle_name} | {middle initial}]
+    # @param name [String] a CSV name pattern: last_name, first_name [middle_name | middle initial]
     # @param institutions [Array<String>] a set of institutions the author belongs to
     # @return [WebOfScience::Records]
     def search_by_name(name, institutions = [])

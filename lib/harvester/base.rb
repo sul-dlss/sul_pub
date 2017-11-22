@@ -9,7 +9,7 @@ module Harvester
             .each { |batch| harvest(batch) }
     end
 
-    # @param [Enumerable<Author>] authors
+    # @param [Enumerable<Author>] _authors
     # @return [void]
     def harvest(_authors)
       raise "harvest must be implemented in subclass"

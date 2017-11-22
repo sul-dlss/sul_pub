@@ -85,7 +85,7 @@ class Author < ActiveRecord::Base
   # has_many :population_memberships, :dependent => :destroy
   # has_many :author_identifiers, :dependent => :destroy
 
-  # @param [Hash] `auth_hash` data as-is from CAP API
+  # @param [Hash] auth_hash data as-is from CAP API
   def update_from_cap_authorship_profile_hash(auth_hash)
     seed_hash = Author.build_attribute_hash_from_cap_profile(auth_hash)
     assign_attributes seed_hash
@@ -164,8 +164,8 @@ class Author < ActiveRecord::Base
 
   private
 
+    # @param [AuthorIdentity] author_identity is the candidate versus `self`'s identity
     # @return [Boolean] Is this author's identity different than our current identity?
-    # @param [AuthorIdentity] `author_identity` is the candidate versus `self`'s identity
     def author_identity_different?(author_identity)
       !(
         # not the identical identity where Author is assumed to be Stanford University

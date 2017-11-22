@@ -2,7 +2,7 @@ class AuthorsController < ApplicationController
   before_action :check_authorization
   before_action :ensure_json_request
 
-  # POST /authors/{cap_profile_id}/harvest.json
+  # POST /authors/:cap_profile_id/harvest.json
   def harvest
     if AuthorHarvestJob.perform_later(author_params[:cap_profile_id], harvest_alternate_names: alt_names)
       render json: {
