@@ -1,6 +1,6 @@
 # IdentifierNormalizer
 # - normalize PublicationIdentifier data
-# - uses lib/identifier_parser_{type} to normalize that {type} of identifier
+# - uses lib/identifier_parser_[type] to normalize that type of identifier
 # - the base class in lib/identifier_parser will handle anything thrown at it
 #   - it does not change any data; it detects blank PublicationIdentifier
 # - exceptions and data modifications are logged into various log/identifier*.log files
@@ -35,7 +35,7 @@ class IdentifierNormalizer
 
     # Choose a parser that can handle the PublicationIdentifier.identifier_type
     # @param pub_id [PublicationIdentifier]
-    # @return parser [IdentifierParser] a kind of IdentifierParser to handle the pub_id
+    # @return [IdentifierParser] a kind of IdentifierParser to handle the pub_id
     def identifier_parser(pub_id)
       case pub_id[:identifier_type].to_s.downcase
       when 'doi'

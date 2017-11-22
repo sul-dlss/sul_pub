@@ -50,7 +50,7 @@ module WebOfScience
 
       ## 2
       # Save and select new WebOfScienceSourceRecords
-      # @param [Array<WebOfScience::Record>]
+      # @param [Array<WebOfScience::Record>] records
       # @return [Array<WebOfScience::Record>]
       def save_wos_records(records)
         # IMPORTANT: add nothing to PublicationIdentifiers here, or new_records will reject them
@@ -66,7 +66,7 @@ module WebOfScience
 
       ## 3
       # Select records that have no matching PublicationIdentifiers
-      # @param [Array<WebOfScience::Record>]
+      # @param [Array<WebOfScience::Record>] records
       # @return [Array<WebOfScience::Record>]
       def filter_by_identifiers(records)
         return [] if records.empty?
@@ -77,8 +77,8 @@ module WebOfScience
       end
 
       ## 4
-      # @param [WebOfScience::Record]
-      # @return [String|nil] WosUID for a new Publication
+      # @param [WebOfScience::Record] rec
+      # @return [String, nil] WosUID for a new Publication
       def create_publication(rec)
         return nil if WebOfScienceSourceRecord.find_by(uid: rec.uid).nil?
         # All of this is TBD, it might live here or in another class

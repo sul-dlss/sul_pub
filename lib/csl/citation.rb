@@ -32,7 +32,7 @@ module Csl
     # which has a different style for the subsequent citations.
     # @param csl_citation_data [Hash] a CSL citation document
     # @param csl_style [CSL::Style] a CSL citation style
-    # @return citation [String] a bibliographic citation
+    # @return [String] a bibliographic citation
     def generate_csl_citation(csl_citation_data, csl_style)
       item = CiteProc::CitationItem.new(id: 'sulpub')
       item.data = CiteProc::Item.new(csl_citation_data)

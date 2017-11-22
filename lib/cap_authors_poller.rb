@@ -113,7 +113,8 @@ class CapAuthorsPoller
   end
 
   # Add author to job queue if it's harvestable and new/changed
-  # @param [String] `skip_message` logs this message if it skips adding author to queue
+  # @param [Author] author
+  # @param [String] skip_message logs this message if it skips adding author to queue
   def queue_author_for_harvest(author, skip_message)
     if (author.new_record? || author.changed?) && author.harvestable?
       @new_or_changed_authors_to_harvest_queue << author.id
@@ -183,10 +184,10 @@ class CapAuthorsPoller
       poll_time.iso8601(3)
     end
 
-    # @param page_count [Integer]  default = 1  -- 1st page
-    # @param page_size [Integer]   default = 10 -- 10 records
-    # @param days_ago [Integer]    default = 1  -- within the last 24 hours
-    # @return json_response
+    # @param page_count [Integer] 1st page
+    # @param page_size [Integer] number of records
+    # @param days_ago [Integer] number of days old records to be included
+    # @return [Hash, Array] response parsed from JSON
     def get_recent_cap_authorship(page_count = 1, page_size = 10, days_ago = 1)
       poll_since = convert_days_ago_to_timestamp(days_ago)
       @cap_http_client.get_batch_from_cap_api(page_count, page_size, poll_since)

@@ -7,7 +7,7 @@ class ScienceWirePublications
   # @return [Integer] a count of //PublicationItem
   delegate :count, to: :publication_items
 
-  # @param [Nokogiri::XML] an ArrayOfPublicationItem
+  # @param xml_doc [Nokogiri::XML] an ArrayOfPublicationItem
   # @param remove_document_types [Array<String>] DocumentTypes to skip
   def initialize(xml_doc, remove_document_types = Settings.sw_doc_types_to_skip)
     @xml_doc = xml_doc
