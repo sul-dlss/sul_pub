@@ -15,8 +15,8 @@ module ScienceWire
       end
 
       ##
+      # @param [String] sw_ids - CSV PublicationItemId values (no whitespace)
       # @param [String] format - either 'xml' or 'json'
-      # @param [String] ids - CSV PublicationItemId values (no whitespace)
       def publication_items(sw_ids, format = 'xml')
         raise ArgumentError, 'format must be "xml" or "json"' unless FORMATS.include?(format)
         path = PATH + "?format=#{format}&publicationItemIDs=#{sw_ids}"

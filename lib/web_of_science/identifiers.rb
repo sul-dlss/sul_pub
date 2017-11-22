@@ -25,7 +25,7 @@ module WebOfScience
       @ids.freeze
     end
 
-    # Extract the {DB_PREFIX} from a WOS-UID in the form {DB_PREFIX}:{ITEM_ID}
+    # Extract the DB_PREFIX from a WOS-UID in the form "DB_PREFIX:ITEM_ID"
     # @return [String, nil]
     def database
       @database ||= begin

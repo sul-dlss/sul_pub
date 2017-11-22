@@ -1,6 +1,6 @@
 # IdentifierNormalizer
 # - normalize PublicationIdentifier data
-# - uses lib/identifier_parser_{type} to normalize that {type} of identifier
+# - uses lib/identifier_parser_[type] to normalize that type of identifier
 # - the base class in lib/identifier_parser will handle anything thrown at it
 #   - it does not change any data; it detects blank PublicationIdentifier
 # - exceptions and data modifications are logged into various log/identifier*.log files

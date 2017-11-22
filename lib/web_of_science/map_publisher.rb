@@ -5,7 +5,7 @@ module WebOfScience
   # WOS publisher information
   class MapPublisher < Mapper
 
-    # @return publishers [Array<Hash>]
+    # @return [Array<Hash>]
     def publishers
       @publishers ||= begin
         publishers = rec.doc.search('static_data/summary/publishers/publisher').map do |publisher|
