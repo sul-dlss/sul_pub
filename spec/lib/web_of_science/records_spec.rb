@@ -201,7 +201,7 @@ describe WebOfScience::Records do
     end
   end
 
-  describe '#records_by_database' do
+  describe '#by_database' do
     let(:records_by_db) do
       <<-XML_DBS
         <records>
@@ -212,32 +212,32 @@ describe WebOfScience::Records do
           <!-- no db identifier -->
           <REC><UID>456</UID></REC>
           <REC><UID>567</UID></REC>
+          <!-- Unexpected DB -->
+          <REC><UID>CCC:012</UID></REC>
         </records>
       XML_DBS
     end
     let(:db_records) { described_class.new(records: records_by_db) }
-    let(:nodes_wos) { db_records.by_database['WOS'] }
-    let(:nodes_medline) { db_records.by_database['MEDLINE'] }
-    let(:nodes_missing_db) { db_records.by_database['MISSING_DB'] }
-    let(:nodes_none) { db_records.by_database['BIO-XX'] }
+
+    before { allow(db_records.logger).to receive(:warn) }
+
+    subject(:by_db) { db_records.by_database }
 
     it 'returns a Hash<String => WebOfScience::Records>' do
-      by_db = db_records.by_database
-      expect(by_db).to be_an Hash
-      expect(by_db.keys.first).to be_an String
-      expect(by_db['WOS']).to be_an described_class
+      expect(by_db).to match a_hash_including('WOS' => described_class, 'MEDLINE' => described_class)
     end
     it 'extracts WOS records' do
-      expect(nodes_wos.count).to eq 2
+      expect(by_db['WOS'].count).to eq 2
     end
     it 'extracts MEDLINE records' do
-      expect(nodes_medline.count).to eq 2
+      expect(by_db['MEDLINE'].count).to eq 2
     end
-    it 'returns MISSING_DB for records without a database prefix in the UID' do
-      expect(nodes_missing_db.count).to eq 2
+    it 'filters out unrecognized databases' do
+      expect(db_records.logger).to receive(:warn)
+      expect(by_db).not_to include('CCC')
     end
     it 'returns nil when no matching database exists' do
-      expect(nodes_none).to be_nil
+      expect(by_db['BIO-XX']).to be_nil
     end
   end
 

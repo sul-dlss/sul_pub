@@ -7,6 +7,8 @@ module WebOfScience
     extend Forwardable
     include Enumerable
 
+    delegate logger: :WebOfScience
+
     # @return [Integer] WOS record count
     def_delegators :rec_nodes, :count
 
@@ -28,19 +30,21 @@ module WebOfScience
       @doc = WebOfScience::XmlParser.parse(records, encoded_records)
     end
 
-    # Group records by the database prefix in the UID
-    #  - where a database prefix is missing, groups records into 'MISSING_DB'
+    # Group records by the recognized database prefix in the UID
+    # Unrecognized database records are filtered out
     # @return [Hash<String => WebOfScience::Records>]
     def by_database
       db_recs = rec_nodes.group_by do |rec|
         uid_split = record_uid(rec).split(':')
         uid_split.length > 1 ? uid_split[0] : 'MISSING_DB'
       end
-      db_recs.each_key do |db|
-        rec_doc = Nokogiri::XML("<records>#{db_recs[db].map(&:to_xml).join}</records>")
-        db_recs[db] = WebOfScience::Records.new(records: rec_doc.to_xml)
-      end
-      db_recs
+      db_recs.map do |db, recs|
+        unless %w(WOS MEDLINE).include?(db)
+          logger.warn("Discarding #{recs.count} records from unknown database: #{db}")
+          next
+        end
+        [db, WebOfScience::Records.new(records: "<records>#{recs.map(&:to_xml).join}</records>")]
+      end.compact.to_h
     end
 
     # Iterate over WebOfScience::WokRecord objects
