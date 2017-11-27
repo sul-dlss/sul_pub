@@ -3,7 +3,7 @@ namespace :wos do
   task :links, [:wos_id] => :environment do |_t, args|
     raise 'wos_id argument is required.' if args[:wos_id].blank?
     wos_ids = [args[:wos_id]]
-    links = WOS.links_client.links(wos_ids, fields: Clarivate::LinksClient::ALL_FIELDS)
+    links = WebOfScience.links_client.links(wos_ids, fields: Clarivate::LinksClient::ALL_FIELDS)
     puts JSON.pretty_generate(links)
   end
 
@@ -11,7 +11,7 @@ namespace :wos do
   task :publication, [:wos_id] => :environment do |_t, args|
     raise 'wos_id argument is required.' if args[:wos_id].blank?
     wos_ids = [args[:wos_id]]
-    records = WOS.queries.retrieve_by_id(wos_ids)
+    records = WebOfScience.queries.retrieve_by_id(wos_ids)
     records.each(&:print) # XML documents
   end
 end

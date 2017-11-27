@@ -1,5 +1,5 @@
 # Web of Science (WOS) utilities
-module WOS
+module WebOfScience
   # rubocop:disable Style/ClassVars
 
   # @return [WebOfScience::Harvester]
@@ -22,5 +22,8 @@ module WOS
     @@queries ||= WebOfScience::Queries.new(client)
   end
 
+  def self.logger
+    @@logger ||= Logger.new(Settings.WOS.LOG)
+  end
   # rubocop:enable Style/ClassVars
 end
