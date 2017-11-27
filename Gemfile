@@ -77,7 +77,7 @@ group :test do
   gem 'database_cleaner'
   gem 'equivalent-xml'
   gem 'factory_girl_rails', '~> 4.0'
-  gem 'rspec-rails', '~> 3.0'
+  gem 'rspec-rails', '~> 3.7'
   gem 'simplecov', '~> 0.13', require: false
   gem 'single_cov'
   gem 'vcr'
