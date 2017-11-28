@@ -24,7 +24,7 @@ class RefreshExistingAuthors
   private
 
     def cap_client
-      @cap_client ||= CapHttpClient.new
+      @cap_client ||= Cap::Client.new
     end
 
     # Queries the CAP API for all the authors
