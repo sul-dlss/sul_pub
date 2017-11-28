@@ -44,6 +44,9 @@ SCIENCEWIRE:
 
 ## Web Of Science Auth Config
 WOS:
+  ACCEPTED_DBS:
+    - WOS
+    - MEDLINE
   AUTH_CODE: secret
   LOG: log/web_of_science.log
   LOG_LEVEL: info
