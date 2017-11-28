@@ -32,7 +32,6 @@ class PubmedClient
     end
 
     response.body
-
   rescue => e
     NotificationManager.error(e, "#{e.class.name} during PubMed Fetch API call", self)
     raise

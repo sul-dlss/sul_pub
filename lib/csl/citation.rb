@@ -58,7 +58,6 @@ module Csl
 
     def csl_doc
       @csl_doc ||= begin
-
         ##
         # Parse authors for various provenance data:
         # - batch

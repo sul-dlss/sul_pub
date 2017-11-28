@@ -40,7 +40,6 @@ class MergeDuplicateAuths
       pub.sync_publication_hash_and_db
       pub.save
     end
-
   rescue ActiveRecord::RecordNotFound
     @logger.warn "Author id not found #{auth_id}"
   end
@@ -63,7 +62,6 @@ class MergeDuplicateAuths
 
     @logger.info "Contributions fixed: #{@contribs_fixed}"
     @logger.info "Clones removed: #{@clones_removed}"
-
   rescue => e
     @logger.error e.inspect.to_s
     @logger.error e.backtrace.join "\n"

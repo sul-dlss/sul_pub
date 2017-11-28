@@ -88,7 +88,8 @@ class ScienceWireHarvester
   def add_contribution_for_harvest_suggestion(author, publication)
     contrib = Contribution.where(
       publication_id: publication.id,
-      author_id: author.id).first
+      author_id: author.id
+    ).first
     if contrib
       # Existing contrib, do not modify the publication
       @existing_contributions_count += 1
@@ -99,7 +100,8 @@ class ScienceWireHarvester
         cap_profile_id: author.cap_profile_id,
         status: 'new',
         visibility: 'private',
-        featured: false)
+        featured: false
+      )
       @contributions_created_count += 1
       publication.rebuild_authorship
       publication.save
@@ -160,7 +162,6 @@ class ScienceWireHarvester
           end
         end
         wos_ids << wos_id
-
       rescue => e
         NotificationManager.log_exception(logger, "Unable to process line: #{line} in #{path_to_report}", e)
       end
@@ -202,7 +203,8 @@ class ScienceWireHarvester
       Publication.create(
         active: true,
         sciencewire_id: sciencewire_id,
-        pmid: pmid)
+        pmid: pmid
+      )
     end
 
     def create_or_update_pub_and_contribution_with_harvested_sw_doc(incoming_sw_xml_doc, author_ids)

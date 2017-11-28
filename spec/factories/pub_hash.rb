@@ -159,9 +159,9 @@ FactoryGirl.define do
           type: 'speech',
           author: [
             { name: 'Jones, P. L.' },
-            { firstname: 'Alan', middlename: 'T', lastname: 'Jackson' }],
-          conference: { name: 'The Big Conference', year: '1999', number: 33, location: 'Knoxville, TN', city: 'Knoxville', statecountry: 'TN' }
-         )
+            { firstname: 'Alan', middlename: 'T', lastname: 'Jackson' }
+          ],
+          conference: { name: 'The Big Conference', year: '1999', number: 33, location: 'Knoxville, TN', city: 'Knoxville', statecountry: 'TN' })
     end
   end
 
@@ -171,7 +171,8 @@ FactoryGirl.define do
           type: 'book',
           author: [
             { name: 'Jones, P. L.' },
-            { firstname: 'Alan', middlename: 'T', lastname: 'Jackson' }],
+            { firstname: 'Alan', middlename: 'T', lastname: 'Jackson' }
+          ],
           year: '1987',
           publisher: 'Smith Books',
           booktitle: 'The Giant Book of Giant Ideas')

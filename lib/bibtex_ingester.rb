@@ -125,7 +125,6 @@ class BibtexIngester
 
     begin
       existing_source_record = BatchUploadedSourceRecord.where(sunet_id: author.sunetid, title: record.title.to_s).first
-
     rescue => e
       @bibtex_import_logger.info "Search for existing batch upload for : #{record} failed probably because of unicode issue."
       @bibtex_import_logger.info "Error: #{e.message}"
@@ -151,12 +150,14 @@ class BibtexIngester
       # create the contribution regardless of whether we created a new pub or are using an existing pub
       Contribution.where(
         author_id: author.id,
-        publication_id: pub.id)
+        publication_id: pub.id
+      )
                   .first_or_create(
                     cap_profile_id: author.cap_profile_id,
                     status: 'approved',
                     visibility: 'private',
-                    featured: false)
+                    featured: false
+                  )
       # have to sync the pub hash to update new information, including new authorship
       pub.sync_publication_hash_and_db
       pub.save
@@ -166,7 +167,6 @@ class BibtexIngester
     end
     @ingested_for_file += 1
     @total_successfully_ingested += 1
-
   rescue => e
     @bibtex_import_logger.info "Record not ingested: #{record}"
     @bibtex_import_logger.info "Error: #{e.message}"
@@ -233,7 +233,8 @@ class BibtexIngester
       sul_author_id: author.id,
       status: 'approved',
       visibility: 'public',
-      featured: false }
+      featured: false
+    }
 
     authorship_hash[:cap_profile_id] = author.cap_profile_id unless author.cap_profile_id.blank?
 

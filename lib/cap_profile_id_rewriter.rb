@@ -25,7 +25,6 @@ class CapProfileIdRewriter
       # if page_count === 1 then break end
     end
     write_counts_to_log
-
   rescue => e
     NotificationManager.log_exception(logger, "cap profile id rewrite import failed", e)
   end

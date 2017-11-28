@@ -139,8 +139,7 @@ describe WebOfScience::Record do
         'coverdate'    => '1972',
         'vol'          => '33',
         'pubyear'      => '1972',
-        'page'         => { 'end' => '413', 'page_count' => '1', 'begin' => '413' }
-      }
+        'page'         => { 'end' => '413', 'page_count' => '1', 'begin' => '413' } }
     end
 
     it 'works' do

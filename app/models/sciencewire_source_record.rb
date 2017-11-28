@@ -54,7 +54,8 @@ class SciencewireSourceRecord < ActiveRecord::Base
     pub = Publication.new(
       active: true,
       sciencewire_id: sw_pub_hash[:sw_id],
-      pmid: pmid)
+      pmid: pmid
+    )
     pub.build_from_sciencewire_hash(sw_pub_hash)
     pub.sync_publication_hash_and_db
     pub.save
@@ -67,7 +68,8 @@ class SciencewireSourceRecord < ActiveRecord::Base
     pub = Publication.new(
       active: true,
       sciencewire_id: sciencewire_id,
-      pmid: sw_pub_hash[:pmid])
+      pmid: sw_pub_hash[:pmid]
+    )
     pub.build_from_sciencewire_hash(sw_pub_hash)
     pub.sync_publication_hash_and_db
     pub.save
@@ -109,7 +111,8 @@ class SciencewireSourceRecord < ActiveRecord::Base
       source_data: sw_record_doc.to_xml,
       is_active: true,
       pmid: pmid,
-      source_fingerprint: Digest::SHA2.hexdigest(sw_record_doc))
+      source_fingerprint: Digest::SHA2.hexdigest(sw_record_doc)
+    )
   end
   private_class_method :get_and_store_sw_source_record_for_sw_id
 
@@ -129,7 +132,8 @@ class SciencewireSourceRecord < ActiveRecord::Base
           source_data: sw_record_doc.to_xml,
           is_active: true,
           pmid: pmid,
-          source_fingerprint: Digest::SHA2.hexdigest(sw_record_doc))
+          source_fingerprint: Digest::SHA2.hexdigest(sw_record_doc)
+        )
       rescue => e
         NotificationManager.error(e, "Cannot create SciencewireSourceRecord: sciencewire_id: #{sciencewire_id}, pmid: #{pmid}", self)
       end
@@ -140,7 +144,8 @@ class SciencewireSourceRecord < ActiveRecord::Base
 
   def self.save_sw_source_record(sciencewire_id, pmid, incoming_sw_xml_as_string)
     existing_sw_source_record = find_by(
-      sciencewire_id: sciencewire_id)
+      sciencewire_id: sciencewire_id
+    )
     if existing_sw_source_record.nil?
       new_source_fingerprint = get_source_fingerprint(incoming_sw_xml_as_string)
       attrs = {
