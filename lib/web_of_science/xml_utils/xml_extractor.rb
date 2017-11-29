@@ -7,27 +7,22 @@ module WebOfScience
 
       # @return identifiers [Hash<String => String>]
       def extract_identifiers(doc)
-        ids = doc.search('dynamic_data/cluster_related/identifiers/identifier')
-        ids = ids.map { |id| [id['type'], id['value']] }.to_h
-        ids['WosUID'] = extract_uid(doc)
-        ids['WosItemID'] = extract_wos_item_id(ids['WosUID'])
-        ids['pmid'].sub!('MEDLINE:', '') if extract_database(ids['WosUID']) == 'MEDLINE'
-        ids
+        WebOfScience::Data::Identifiers.new(doc)
       end
 
       # @return [String|nil]
       def extract_doi(identifiers)
-        identifiers['doi']
+        identifiers.doi
       end
 
       # @return [String|nil]
       def extract_pmid(identifiers)
-        identifiers['pmid']
+        identifiers.pmid
       end
 
       # @return [String|nil]
       def extract_issn(identifiers)
-        identifiers['issn']
+        identifiers.issn
       end
 
       # @return uid [String] the UID
@@ -37,15 +32,14 @@ module WebOfScience
 
       # Extract the {WOS_ITEM_ID} from a WOS-UID in the form {DB_PREFIX}:{WOS_ITEM_ID}
       # @return [String]
-      def extract_wos_item_id(uid)
-        uid.split(':').last
+      def extract_wos_item_id(identifiers)
+        identifiers.wos_item_id
       end
 
       # Extract the {DB_PREFIX} from a WOS-UID in the form {DB_PREFIX}:{WOS_ITEM_ID}
       # @return [String|nil]
-      def extract_database(uid)
-        uid_split = uid.split(':')
-        uid_split.length > 1 ? uid_split[0] : nil
+      def extract_database(identifiers)
+        identifiers.database
       end
 
       # @return names [Array<Hash<String => String>>]
