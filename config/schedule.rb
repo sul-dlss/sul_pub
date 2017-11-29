@@ -6,14 +6,14 @@ end
 
 set :output, 'log/cron.log'
 
-# fortnightly sciencewire harvest at 5pm in qa, on the 8th and 23rd of the month
-every "0 17 8,23 * *", roles: [:harvester_qa] do
-  rake 'sw:fortnightly_harvest'
+# fortnightly sciencewire harvest at 5pm in qa, on the 5th and 20th of the month
+every "0 17 5,20 * *", roles: [:harvester_qa] do
+  rake 'wos:harvest_authors'
 end
 
 # fortnightly sciencewire harvest at 5pm in prod, on the 1st and 15th of the month
 every "0 17 1,15 * *", roles: [:harvester_prod] do
-  rake 'sw:fortnightly_harvest'
+  rake 'wos:harvest_authors'
 end
 
 # poll cap for new authorship information nightly at 4am-ish in both prod and qa
