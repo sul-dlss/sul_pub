@@ -7,6 +7,18 @@ module WebOfScience
   class Harvester
     delegate :logger, to: :WebOfScience
 
+    # @param [Enumerable<Author>] authors
+    # @return [nil]
+    def harvest(authors)
+      authors.each do |author|
+        begin
+          process_author(author)
+        rescue StandardError => e
+          NotificationManager.error(e, "WebOfScience harvest failed for author: '#{author.id}'", self)
+        end
+      end
+    end
+
     # Harvest all publications for an author
     # @param author [Author]
     # @return [Array<String>] WosUIDs that create Publications
