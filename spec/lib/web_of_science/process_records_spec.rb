@@ -64,8 +64,12 @@ describe WebOfScience::ProcessRecords do
     it 'creates new WebOfScienceSourceRecords' do
       expect { processor.execute }.to change { WebOfScienceSourceRecord.count }
     end
-    it 'creates new Publications'
-    it 'creates new PublicationIdentifiers'
+    it 'creates new Publications' do
+      expect { processor.execute }.to change { Publication.count }
+    end
+    it 'creates new PublicationIdentifiers' do
+      expect { processor.execute }.to change { PublicationIdentifier.count }
+    end
     it 'creates new Contributions'
 
     # ---
