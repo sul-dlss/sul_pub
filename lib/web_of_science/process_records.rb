@@ -55,7 +55,8 @@ module WebOfScience
       # @return [Array<WebOfScience::Record>]
       def match_wos_records(records)
         return [] if records.count.zero?
-        records.select { |rec| WebOfScienceSourceRecord.where(uid: rec.uid).count.zero? }
+        matching_uids = WebOfScienceSourceRecord.where(uid: records.map(&:uid)).pluck(:uid)
+        records.reject { |rec| matching_uids.include? rec.uid }
       end
 
       ## 3
