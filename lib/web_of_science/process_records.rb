@@ -93,8 +93,7 @@ module WebOfScience
       def create_publication(record)
         pub = Publication.new(active: true, pub_hash: record.pub_hash, xml: record.to_xml)
         pubmed_additions(record, pub) if record.pmid
-        # TODO: fix #453 to associate Publication with Author to create a new Contribution
-        # This needs to be done before pub.sync... because it uses Contributions to create pub_hash[:authorship]
+        create_contribution(pub)
         pub.sync_publication_hash_and_db # creates new PublicationIdentifiers
         pub.save
         record.uid
@@ -115,6 +114,19 @@ module WebOfScience
         raise "Failed to create a PubmedSourceRecord for PMID: #{record.uid}, #{record.pmid}" if pubmed_record.nil?
         pub.pub_hash.reverse_update(pubmed_record.source_as_hash)
         pub
+      end
+
+      # Create a Contribution to associate Publication with Author
+      # @param [Publication] pub
+      def create_contribution(pub)
+        # Saving a Contribution also saves pub to assign publication_id and it populates pub.pub_hash[:authorship]
+        contrib = pub.contributions.find_or_initialize_by(
+          author_id: author.id,
+          cap_profile_id: author.cap_profile_id,
+          featured: false,
+          status: 'new',
+          visibility: 'private')
+        contrib.save
       end
 
       # ----
