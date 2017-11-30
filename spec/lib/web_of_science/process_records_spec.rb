@@ -1,4 +1,4 @@
-describe WebOfScience::ProcessRecords do
+describe WebOfScience::ProcessRecords, :vcr do
   let(:author) do
     # public data from
     # - https://stanfordwho.stanford.edu
@@ -71,6 +71,28 @@ describe WebOfScience::ProcessRecords do
       expect { processor.execute }.to change { PublicationIdentifier.count }
     end
     it 'creates new Contributions'
+
+    # ---
+    # PubMed integration specs
+
+    it 'integrates PubMed data for WOS-db records' do
+      uids = processor.execute
+      uid = uids.select { |id| id.starts_with? 'WOS' }.sample
+      if uid
+        pub = Publication.for_uid(uid)
+        expect(pub.pub_hash).to include(:mesh_headings) if pub.pmid
+      end
+    end
+
+    # TODO: Fix #452 and test that any MEDLINE-db records create Pub.push_hash data with MESH headings
+    xit 'integrates PubMed data for MEDLINE-db records' do
+      uids = processor.execute
+      uid = uids.select { |id| id.starts_with? 'MEDLINE' }.sample
+      if uid
+        pub = Publication.for_uid(uid)
+        expect(pub.pub_hash).to include(:mesh_headings)
+      end
+    end
 
     # ---
     # Unhappy paths
