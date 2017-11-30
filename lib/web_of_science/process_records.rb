@@ -88,18 +88,18 @@ module WebOfScience
       end
 
       ## 4
-      # @param [WebOfScience::Record] rec
+      # @param [WebOfScience::Record] record
       # @return [String, nil] WosUID for a new Publication
-      def create_publication(rec)
-        return nil if WebOfScienceSourceRecord.find_by(uid: rec.uid).nil?
-        # All of this is TBD, it might live here or in another class
-        # TODO: For WOS-record that has a PMID, fetch data from PubMed
-        # TODO: create a new Publication, including Publication.pub_hash data
-        # TODO: create new PublicationIdentifiers from rec.identifiers
-        # TODO: associate Publication with Author and create Contribution
-        rec.uid
-      rescue
-        logger.error("#{rec.uid} failed to create Publication")
+      def create_publication(record)
+        pub = Publication.new(active: true, pub_hash: record.pub_hash, xml: record.to_xml)
+        # TODO: add pubmed data
+        # TODO: fix #453 to associate Publication with Author to create a new Contribution
+        # This needs to be done before pub.sync... because it uses Contributions to create pub_hash[:authorship]
+        pub.sync_publication_hash_and_db # creates new PublicationIdentifiers
+        pub.save
+        record.uid
+      rescue StandardError => e
+        NotificationManager.error(e, "#{record.uid} failed to create Publication", self)
         nil
       end
 
