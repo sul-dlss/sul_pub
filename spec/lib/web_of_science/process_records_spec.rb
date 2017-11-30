@@ -70,7 +70,15 @@ describe WebOfScience::ProcessRecords, :vcr do
     it 'creates new PublicationIdentifiers' do
       expect { processor.execute }.to change { PublicationIdentifier.count }
     end
-    it 'creates new Contributions'
+
+    it 'creates new Contributions' do
+      expect { processor.execute }.to change { Contribution.count }
+    end
+    it 'creates new contribution in the pub_hash[:authorship]' do
+      uids = processor.execute
+      pub = Publication.for_uid(uids.sample)
+      expect(pub.pub_hash).to include(:authorship)
+    end
 
     # ---
     # PubMed integration specs
