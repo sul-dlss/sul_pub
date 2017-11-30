@@ -1,4 +1,4 @@
-describe WOS do
+describe WebOfScience do
   describe '#harvester' do
     it 'works' do
       result = described_class.harvester
@@ -24,6 +24,13 @@ describe WOS do
     it 'works' do
       result = described_class.queries
       expect(result).to be_an WebOfScience::Queries
+    end
+  end
+
+  describe '#logger' do
+    it 'works' do
+      expect(Logger).to receive(:new).with(Settings.WOS.LOG).once.and_call_original
+      expect(described_class.logger).to be_a Logger
     end
   end
 end

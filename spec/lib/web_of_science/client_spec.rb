@@ -16,30 +16,27 @@ describe WebOfScience::Client do
 
   describe '#new' do
     it 'works' do
-      expect(wos_client).to be_an described_class
+      expect(wos_client).to be_a described_class
     end
   end
 
   describe '#auth' do
     it 'works' do
-      result = wos_client.auth
-      expect(result).to be_an Savon::Client
+      expect(wos_client.auth).to be_a Savon::Client
     end
   end
 
   describe '#authenticate' do
     it 'authenticates with the service' do
       savon.expects(:authenticate).returns(auth_xml)
-      response = wos_client.authenticate
-      expect(response).to be_successful
+      expect(wos_client.authenticate).to be_successful
     end
   end
 
   describe '#search' do
     it 'works' do
       savon.expects(:authenticate).returns(auth_xml)
-      result = wos_client.search
-      expect(result).to be_an Savon::Client
+      expect(wos_client.search).to be_a Savon::Client
     end
   end
 
@@ -47,7 +44,7 @@ describe WebOfScience::Client do
     it 'works' do
       savon.expects(:authenticate).returns(auth_xml)
       result = wos_client.session_id
-      expect(result).to be_an String
+      expect(result).to be_a String
       expect(result).to eq '2F669ZtP6fRizIymX8V'
     end
   end
@@ -59,23 +56,16 @@ describe WebOfScience::Client do
     end
     it 'works' do
       savon.expects(:close_session).returns('')
-      result = wos_client.session_close
-      expect(result).to be_nil
+      expect(wos_client.session_close).to be_nil
     end
     context 'when there are no matches returned for SessionID' do
       let(:null_logger) { Logger.new('/dev/null') }
 
-      before do
-        savon.expects(:close_session).returns(no_session_matches)
-        NotificationManager.class_variable_set(:@@wos_logger, nil)
-        allow(Logger).to receive(:new).and_return(null_logger)
-      end
-      it 'works' do
+      before { savon.expects(:close_session).returns(no_session_matches) }
+
+      it 'creates a logger and works' do
+        expect(WebOfScience).to receive(:logger).and_return(null_logger)
         expect(wos_client.session_close).to be_nil
-      end
-      it 'creates a logger' do
-        expect(NotificationManager).to receive(:wos_logger).and_call_original
-        wos_client.session_close
       end
     end
   end
