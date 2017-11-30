@@ -51,12 +51,10 @@ describe WebOfScience::ProcessRecords do
     # Happy paths
 
     it 'works' do
-      result = processor.execute
-      expect(result).not_to be_nil
+      expect(processor.execute).not_to be_nil
     end
     it 'returns an Array' do
-      result = processor.execute
-      expect(result).to be_an Array
+      expect(processor.execute).to be_an Array
     end
     it 'returns Array<String> with WosUIDs on success' do
       result = processor.execute
@@ -123,5 +121,25 @@ describe WebOfScience::ProcessRecords do
     end
 
     it_behaves_like '#execute'
+  end
+
+  context 'with records from excluded databases' do
+    subject(:processor) { described_class.new(author, records) }
+
+    let(:other_record_xml) do
+      xml = File.read('spec/fixtures/wos_client/wos_record_000288663100014.xml')
+      xml.gsub('WOS', 'EXCLUDED')
+    end
+    let(:other_records_xml) { "<records>#{other_record_xml}</records>" }
+    let(:other_records) { WebOfScience::Records.new(records: other_records_xml) }
+
+    let(:records) { other_records }
+
+    it 'does not create new WebOfScienceSourceRecords' do
+      expect { processor.execute }.not_to change { WebOfScienceSourceRecord.count }
+    end
+    it 'filters out excluded records' do
+      expect(processor.send(:filter_databases)).to be_empty
+    end
   end
 end

@@ -34,7 +34,8 @@ module WebOfScience
 
       # @return [Array<String>] WosUIDs that create a new Publication
       def create_publications
-        new_wos_records = match_wos_records # cf. WebOfScienceSourceRecord
+        filtered_records = filter_databases
+        new_wos_records = match_wos_records(filtered_records) # cf. WebOfScienceSourceRecord
         saved_wos_records = save_wos_records(new_wos_records) # save WebOfScienceSourceRecord
         records = filter_by_identifiers(saved_wos_records) # cf. PublicationIdentifier
         records.map { |rec| create_publication(rec) }.compact
@@ -43,12 +44,22 @@ module WebOfScience
       ## 1
       # Filter and select new WebOfScienceSourceRecords
       # @return [Array<WebOfScience::Record>]
-      def match_wos_records
+      def filter_databases
         return [] if records.count.zero?
-        records.select { |rec| WebOfScienceSourceRecord.where(uid: rec.uid).count.zero? }
+        return records if Settings.WOS.ACCEPTED_DBS.empty?
+        records.select { |rec| Settings.WOS.ACCEPTED_DBS.include? rec.database }
       end
 
       ## 2
+      # Filter and select new WebOfScienceSourceRecords
+      # @return [Array<WebOfScience::Record>]
+      def match_wos_records(records)
+        return [] if records.count.zero?
+        matching_uids = WebOfScienceSourceRecord.where(uid: records.map(&:uid)).pluck(:uid)
+        records.reject { |rec| matching_uids.include? rec.uid }
+      end
+
+      ## 3
       # Save and select new WebOfScienceSourceRecords
       # @param [Array<WebOfScience::Record>] records
       # @return [Array<WebOfScience::Record>]
@@ -64,7 +75,7 @@ module WebOfScience
         end
       end
 
-      ## 3
+      ## 4
       # Select records that have no matching PublicationIdentifiers
       # @param [Array<WebOfScience::Record>] records
       # @return [Array<WebOfScience::Record>]
