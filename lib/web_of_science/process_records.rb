@@ -10,7 +10,7 @@ module WebOfScience
     # @param records [WebOfScience::Records]
     def initialize(author, records)
       raise(ArgumentError, 'author must be an Author') unless author.is_a? Author
-      raise(ArgumentError, 'records must be an WebOfScience::Records') unless records.is_a? WebOfScience::Records
+      raise(ArgumentError, 'records must be an WebOfScience::Data::Records') unless records.is_a? WebOfScience::Data::Records
       @author = author
       @records = records
     end
