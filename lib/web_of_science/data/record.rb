@@ -25,7 +25,7 @@ module WebOfScience
 
       # @param record [String] record in XML
       # @param encoded_record [String] record in HTML encoding
-      def initialize(record: nil, encoded_record: nil, wosExtractor: WebOfScience::XmlUtil::XmlExtractor.new)
+      def initialize(record: nil, encoded_record: nil, wosExtractor: WebOfScience::XmlUtils::XmlExtractor.new)
         record       = decode_record(record, encoded_record)
         @doc         = Nokogiri::XML(record) { |config| config.strict.noblanks }
         @identifiers = wosExtractor.extract_identifiers(@doc)

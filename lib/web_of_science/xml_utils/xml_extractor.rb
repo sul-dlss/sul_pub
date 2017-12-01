@@ -1,7 +1,7 @@
 
 module WebOfScience
 
-  module XmlUtil
+  module XmlUtils
 
     class XmlExtractor
 
