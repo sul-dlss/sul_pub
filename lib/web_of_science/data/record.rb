@@ -22,6 +22,7 @@ module WebOfScience
       attr_reader :publishers
       attr_reader :wos_item_id
       attr_reader :titles
+      attr_reader :abstracts
 
       # @param record [String] record in XML
       # @param encoded_record [String] record in HTML encoding
