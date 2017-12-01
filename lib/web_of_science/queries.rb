@@ -72,7 +72,7 @@ module WebOfScience
       # on the `DO` field.  When the result set is only one record, it's likely to be a good match; but
       # otherwise the results could be nonsense.
       return records if records.count == 1
-      WebOfScience::Records.new(records: '<records/>')
+      WebOfScience::Data::Records.new(records: '<records/>')
     end
 
     # @param name [String] a CSV name pattern: last_name, first_name [middle_name | middle initial]
@@ -150,7 +150,7 @@ module WebOfScience
       # @param response_type [Symbol] a WoS SOAP response type
       # @return [WebOfScience::Records]
       def records(response, response_type)
-        WebOfScience::Records.new(records: response_return(response, response_type)[:records])
+        WebOfScience::Data::Records.new(records: response_return(response, response_type)[:records])
       end
 
       ###################################################################
