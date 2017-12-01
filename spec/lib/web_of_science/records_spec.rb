@@ -1,6 +1,6 @@
 require 'htmlentities'
 
-describe WebOfScience::Records do
+describe WebOfScience::Data::Records do
   let(:wos_encoded_records) { File.read('spec/fixtures/wos_client/wos_encoded_records.html') }
   let(:wos_decoded_records) do
     coder = HTMLEntities.new
@@ -72,7 +72,7 @@ describe WebOfScience::Records do
 
   describe '#each' do
     it 'yields WebOfScience::Record objects' do
-      wos_records_encoded.all? { |rec| expect(rec).to be_an WebOfScience::Record }
+      wos_records_encoded.all? { |rec| expect(rec).to be_an WebOfScience::Data::Record }
     end
   end
 

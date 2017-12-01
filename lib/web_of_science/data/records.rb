@@ -1,4 +1,5 @@
 require 'forwardable'
+require 'htmlentities'
 
 module WebOfScience
 
@@ -23,10 +24,25 @@ module WebOfScience
       # @return doc [Nokogiri::XML::Document] WOS records document
       attr_reader :doc
 
-      # @param xmlrecords [String] records in XML
+
+      # @param records [String] records in XML
       # @param encoded_records [String] records in HTML encoding
-      def initialize(xmlrecords: nil, encoded_records: nil)
-        @doc = WebOfScience::XmlParser.parse(xmlrecords, encoded_records)
+      def initialize(records: nil, encoded_records: nil)
+        @doc = parse(records, encoded_records)
+      end
+
+      # Return decoded XML, whether it is passed in already or needs to be decoded
+      # @param xml [String] XML
+      # @param encoded_xml [String] XML with HTML encoding
+      # @return [Nokogiri::XML::Document]
+      # @raise RuntimeError when arguments are all nil
+      def parse(xml, encoded_xml)
+        xml ||= begin
+          raise 'encoded_xml is nil' if encoded_xml.nil?
+          coder = HTMLEntities.new
+          coder.decode(encoded_xml)
+        end
+        Nokogiri::XML(xml) { |config| config.strict.noblanks }
       end
 
       # Group records by the database prefix in the UID
