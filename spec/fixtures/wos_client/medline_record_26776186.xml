@@ -1,0 +1,430 @@
+<?xml version='1.0'?>
+<REC r_id_disclaimer='ResearcherID data provided by Clarivate Analytics'>
+  <UID>MEDLINE:26776186</UID>
+  <static_data>
+    <summary>
+      <EWUID>
+        <WUID coll_id='MEDLINE'/>
+        <edition value='MEDLINE.MEDLINE'/>
+      </EWUID>
+      <pub_info sortdate='2016-01-01' pubyear='2016' coverdate='2016' vol='21' pubtype='Journal' medium='Internet' model='Print' has_abstract='Y'>
+        <page begin='195' end='206' page_count='12'>195-206</page>
+      </pub_info>
+      <titles count='4'>
+        <title type='item'>
+          DYNAMICALLY EVOLVING CLINICAL PRACTICES AND IMPLICATIONS FOR
+          PREDICTING MEDICAL DECISIONS.
+        </title>
+        <title type='source'>Pacific Symposium on Biocomputing. Pacific Symposium on Biocomputing</title>
+        <title type='abbrev_iso'>Pac Symp Biocomput</title>
+        <title type='source_abbrev'>Pac Symp Biocomput</title>
+      </titles>
+      <names count='4'>
+        <name seq_no='1' role='author' display='Y'>
+          <display_name>Chen, Jonathan H</display_name>
+          <full_name>Chen, Jonathan H</full_name>
+          <initials>JH</initials>
+        </name>
+        <name seq_no='2' role='author' display='Y'>
+          <display_name>Goldstein, Mary K</display_name>
+          <full_name>Goldstein, Mary K</full_name>
+          <initials>MK</initials>
+        </name>
+        <name seq_no='3' role='author' display='Y'>
+          <display_name>Asch, Steven M</display_name>
+          <full_name>Asch, Steven M</full_name>
+          <initials>SM</initials>
+        </name>
+        <name seq_no='4' role='author' display='Y'>
+          <display_name>Altman, Russ B</display_name>
+          <full_name>Altman, Russ B</full_name>
+          <initials>RB</initials>
+        </name>
+      </names>
+      <doctypes count='4'>
+        <doctype>Journal Article</doctype>
+        <doctype>Research Support, N.I.H., Extramural</doctype>
+        <doctype>Research Support, Non-U.S. Gov't</doctype>
+        <doctype>Research Support, U.S. Gov't, Non-P.H.S.</doctype>
+      </doctypes>
+    </summary>
+    <fullrecord_metadata>
+      <languages count='1'>
+        <language type='primary'>English</language>
+      </languages>
+      <normalized_languages count='1'>
+        <language type='primary'>English</language>
+      </normalized_languages>
+      <normalized_doctypes count='2'>
+        <doctype>Article</doctype>
+        <doctype>Other</doctype>
+      </normalized_doctypes>
+      <addresses count='1'>
+        <address_name>
+          <address_spec addr_no='1'>
+            <full_address>
+              Center for Innovation to Implementation (Ci2i), Veteran Affairs
+              Palo Alto Health Care System, Palo Alto, CA 94304, USA2Center for
+              Primary Care and Outcomes Research (PCOR), Stanford University,
+              Stanford, CA 94305, USA, jonc101@stanford.edu.
+            </full_address>
+          </address_spec>
+        </address_name>
+      </addresses>
+      <category_info>
+        <headings count='1'>
+          <heading>Science &amp; Technology</heading>
+        </headings>
+        <subheadings count='2'>
+          <subheading>Life Sciences &amp; Biomedicine</subheading>
+          <subheading>Technology</subheading>
+        </subheadings>
+        <subjects count='8'>
+          <subject ascatype='traditional' code='CU'>BIOLOGY</subject>
+          <subject ascatype='traditional'>INFORMATION SCIENCE LIBRARY SCIENCE</subject>
+          <subject ascatype='traditional' code='PT'>MEDICAL INFORMATICS</subject>
+          <subject ascatype='traditional'>HEALTH CARE SCIENCES SERVICES</subject>
+          <subject ascatype='extended'>Life Sciences &amp; Biomedicine - Other Topics</subject>
+          <subject ascatype='extended'>Information Science &amp; Library Science</subject>
+          <subject ascatype='extended'>Medical Informatics</subject>
+          <subject ascatype='extended'>Health Care Sciences &amp; Services</subject>
+        </subjects>
+      </category_info>
+      <fund_ack>
+        <grants count='9' complete='Y'>
+          <grant>
+            <grant_agency>NIGMS NIH HHS</grant_agency>
+            <grant_ids count='1'>
+              <grant_id>R24 GM061374</grant_id>
+            </grant_ids>
+            <country>United States</country>
+            <acronym>GM</acronym>
+          </grant>
+          <grant>
+            <grant_agency>NLM NIH HHS</grant_agency>
+            <grant_ids count='1'>
+              <grant_id>R01 LM005652</grant_id>
+            </grant_ids>
+            <country>United States</country>
+            <acronym>LM</acronym>
+          </grant>
+          <grant>
+            <grant_agency>NIEHS NIH HHS</grant_agency>
+            <grant_ids count='1'>
+              <grant_id>K01 ES026837</grant_id>
+            </grant_ids>
+            <country>United States</country>
+            <acronym>ES</acronym>
+          </grant>
+          <grant>
+            <grant_agency>NIGMS NIH HHS</grant_agency>
+            <grant_ids count='1'>
+              <grant_id>GM102365</grant_id>
+            </grant_ids>
+            <country>United States</country>
+            <acronym>GM</acronym>
+          </grant>
+          <grant>
+            <grant_agency>NLM NIH HHS</grant_agency>
+            <grant_ids count='1'>
+              <grant_id>LM05652</grant_id>
+            </grant_ids>
+            <country>United States</country>
+            <acronym>LM</acronym>
+          </grant>
+          <grant>
+            <grant_agency>NCRR NIH HHS</grant_agency>
+            <grant_ids count='1'>
+              <grant_id>UL1 RR025744</grant_id>
+            </grant_ids>
+            <country>United States</country>
+            <acronym>RR</acronym>
+          </grant>
+          <grant>
+            <grant_agency>NIGMS NIH HHS</grant_agency>
+            <grant_ids count='1'>
+              <grant_id>R01 GM102365</grant_id>
+            </grant_ids>
+            <country>United States</country>
+            <acronym>GM</acronym>
+          </grant>
+          <grant>
+            <grant_agency>NCATS NIH HHS</grant_agency>
+            <grant_ids count='1'>
+              <grant_id>UL1 TR001085</grant_id>
+            </grant_ids>
+            <country>United States</country>
+            <acronym>TR</acronym>
+          </grant>
+          <grant>
+            <grant_agency>NIGMS NIH HHS</grant_agency>
+            <grant_ids count='1'>
+              <grant_id>R24GM61374</grant_id>
+            </grant_ids>
+            <country>United States</country>
+            <acronym>GM</acronym>
+          </grant>
+        </grants>
+      </fund_ack>
+      <abstracts count='1'>
+        <abstract>
+          <abstract_text>
+            <p>
+              Automatically data-mining clinical practice patterns from
+              electronic health records (EHR) can enable prediction of future
+              practices as a form of clinical decision support (CDS). Our
+              objective is to determine the stability of learned clinical
+              practice patterns over time and what implication this has when
+              using varying longitudinal historical data sources towards
+              predicting future decisions. We trained an association rule engine
+              for clinical orders (e.g., labs, imaging, medications) using
+              structured inpatient data from a tertiary academic hospital.
+              Comparing top order associations per admission diagnosis from
+              training data in 2009 vs. 2012, we find practice variability from
+              unstable diagnoses with rank biased overlap (RBO)&lt;0.35 (e.g.,
+              pneumonia) to stable admissions for planned procedures (e.g.,
+              chemotherapy, surgery) with comparatively high RBO&gt;0.6.
+              Predicting admission orders for future (2013) patients with
+              associations trained on recent (2012) vs. older (2009) data
+              improved accuracy evaluated by area under the receiver operating
+              characteristic curve (ROC-AUC) 0.89 to 0.92, precision at ten
+              (positive predictive value of the top ten predictions against
+              actual orders) 30% to 37%, and weighted recall (sensitivity) at
+              ten 2.4% to 13%, (P&lt;10(-10)). Training with more longitudinal
+              data (2009-2012) was no better than only using recent (2012) data.
+              Secular trends in practice patterns likely explain why smaller but
+              more recent training data is more accurate at predicting future
+              practices.
+            </p>
+          </abstract_text>
+        </abstract>
+      </abstracts>
+    </fullrecord_metadata>
+    <item xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' Owner='NLM' Status='MEDLINE' xsi:type='itemType_medline' coll_id='MEDLINE'>
+      <MedlineJournalInfo>
+        <Country>United States</Country>
+        <NlmUniqueID>9711271</NlmUniqueID>
+      </MedlineJournalInfo>
+      <DateCreated>2016-01-18</DateCreated>
+      <DateCompleted>2016-10-24</DateCompleted>
+      <DateRevised>2016-12-30</DateRevised>
+      <Affiliation>
+        Center for Innovation to Implementation (Ci2i), Veteran Affairs Palo
+        Alto Health Care System, Palo Alto, CA 94304, USA2Center for Primary
+        Care and Outcomes Research (PCOR), Stanford University, Stanford, CA
+        94305, USA, jonc101@stanford.edu.
+      </Affiliation>
+      <CitationSubset>IM</CitationSubset>
+      <CommentsCorrectionsList>
+        <CommentsCorrections RefType='Cites'>
+          <RefSource>AMIA Annu Symp Proc. 2010;2010:387-91</RefSource>
+          <PMID Version='1'>21347006</PMID>
+        </CommentsCorrections>
+        <CommentsCorrections RefType='Cites'>
+          <RefSource>J Biomed Inform. 2010 Dec;43(6):891-901</RefSource>
+          <PMID Version='1'>20884377</PMID>
+        </CommentsCorrections>
+        <CommentsCorrections RefType='Cites'>
+          <RefSource>Fed Regist. 2012 Sep 4;77(171):54163-292</RefSource>
+          <PMID Version='1'>22946139</PMID>
+        </CommentsCorrections>
+        <CommentsCorrections RefType='Cites'>
+          <RefSource>J Biomed Inform. 2014 Apr;48:84-93</RefSource>
+          <PMID Version='1'>24355978</PMID>
+        </CommentsCorrections>
+        <CommentsCorrections RefType='Cites'>
+          <RefSource>N Engl J Med. 2014 May 1;370(18):1673-6</RefSource>
+          <PMID Version='1'>24738642</PMID>
+        </CommentsCorrections>
+        <CommentsCorrections RefType='Cites'>
+          <RefSource>Health Aff (Millwood). 2014 Jul;33(7):1123-31</RefSource>
+          <PMID Version='1'>25006137</PMID>
+        </CommentsCorrections>
+        <CommentsCorrections RefType='Cites'>
+          <RefSource>Health Aff (Millwood). 2014 Jul;33(7):1163-70</RefSource>
+          <PMID Version='1'>25006142</PMID>
+        </CommentsCorrections>
+        <CommentsCorrections RefType='Cites'>
+          <RefSource>Health Aff (Millwood). 2014 Jul;33(7):1229-35</RefSource>
+          <PMID Version='1'>25006150</PMID>
+        </CommentsCorrections>
+        <CommentsCorrections RefType='Cites'>
+          <RefSource>J Am Med Inform Assoc. 2014 Oct;21(e2):e304-11</RefSource>
+          <PMID Version='1'>24674844</PMID>
+        </CommentsCorrections>
+        <CommentsCorrections RefType='Cites'>
+          <RefSource>N Engl J Med. 2015 Jan 8;372(2):104-6</RefSource>
+          <PMID Version='1'>25564894</PMID>
+        </CommentsCorrections>
+        <CommentsCorrections RefType='Cites'>
+          <RefSource>N Engl J Med. 2015 Jan 8;372(2):106-8</RefSource>
+          <PMID Version='1'>25564895</PMID>
+        </CommentsCorrections>
+        <CommentsCorrections RefType='Cites'>
+          <RefSource>J Hosp Med. 2015 Jan;10(1):1-7</RefSource>
+          <PMID Version='1'>25044190</PMID>
+        </CommentsCorrections>
+        <CommentsCorrections RefType='Cites'>
+          <RefSource>J Biomed Inform. 2015 Feb;53:73-80</RefSource>
+          <PMID Version='1'>25236952</PMID>
+        </CommentsCorrections>
+        <CommentsCorrections RefType='Cites'>
+          <RefSource>Sci Data. 2014;1:140032</RefSource>
+          <PMID Version='1'>25977789</PMID>
+        </CommentsCorrections>
+        <CommentsCorrections RefType='Cites'>
+          <RefSource>Med Inform Internet Med. 2001 Jan-Mar;26(1):25-33</RefSource>
+          <PMID Version='1'>11583406</PMID>
+        </CommentsCorrections>
+        <CommentsCorrections RefType='Cites'>
+          <RefSource>Proc AMIA Symp. 2000;:300-4</RefSource>
+          <PMID Version='1'>11079893</PMID>
+        </CommentsCorrections>
+        <CommentsCorrections RefType='Cites'>
+          <RefSource>Med Care. 2013 Sep;51(9):759-60</RefSource>
+          <PMID Version='1'>23942217</PMID>
+        </CommentsCorrections>
+        <CommentsCorrections RefType='Cites'>
+          <RefSource>Arch Intern Med. 2003 Jun 23;163(12):1409-16</RefSource>
+          <PMID Version='1'>12824090</PMID>
+        </CommentsCorrections>
+        <CommentsCorrections RefType='Cites'>
+          <RefSource>J Am Med Inform Assoc. 2003 Nov-Dec;10(6):523-30</RefSource>
+          <PMID Version='1'>12925543</PMID>
+        </CommentsCorrections>
+        <CommentsCorrections RefType='Cites'>
+          <RefSource>J Am Med Inform Assoc. 1995 Sep-Oct;2(5):316-22</RefSource>
+          <PMID Version='1'>7496881</PMID>
+        </CommentsCorrections>
+        <CommentsCorrections RefType='Cites'>
+          <RefSource>J Am Med Inform Assoc. 1997 Sep-Oct;4(5):364-75</RefSource>
+          <PMID Version='1'>9292842</PMID>
+        </CommentsCorrections>
+        <CommentsCorrections RefType='Cites'>
+          <RefSource>Am J Respir Crit Care Med. 2005 Feb 15;171(4):388-416</RefSource>
+          <PMID Version='1'>15699079</PMID>
+        </CommentsCorrections>
+        <CommentsCorrections RefType='Cites'>
+          <RefSource>AMIA Annu Symp Proc. 2006;:819-23</RefSource>
+          <PMID Version='1'>17238455</PMID>
+        </CommentsCorrections>
+        <CommentsCorrections RefType='Cites'>
+          <RefSource>Clin Infect Dis. 2007 Mar 1;44 Suppl 2:S27-72</RefSource>
+          <PMID Version='1'>17278083</PMID>
+        </CommentsCorrections>
+        <CommentsCorrections RefType='Cites'>
+          <RefSource>J Biomed Inform. 2008 Apr;41(2):387-92</RefSource>
+          <PMID Version='1'>18029232</PMID>
+        </CommentsCorrections>
+        <CommentsCorrections RefType='Cites'>
+          <RefSource>Nature. 2009 Feb 19;457(7232):1012-4</RefSource>
+          <PMID Version='1'>19020500</PMID>
+        </CommentsCorrections>
+        <CommentsCorrections RefType='Cites'>
+          <RefSource>J Clin Pathol. 2009 Jul;62(7):577-8</RefSource>
+          <PMID Version='1'>19433408</PMID>
+        </CommentsCorrections>
+        <CommentsCorrections RefType='Cites'>
+          <RefSource>AMIA Annu Symp Proc. 2009;2009:244-8</RefSource>
+          <PMID Version='1'>20351858</PMID>
+        </CommentsCorrections>
+        <CommentsCorrections RefType='Cites'>
+          <RefSource>AMIA Annu Symp Proc. 2009;2009:333-7</RefSource>
+          <PMID Version='1'>20351875</PMID>
+        </CommentsCorrections>
+        <CommentsCorrections RefType='Cites'>
+          <RefSource>AMIA Annu Symp Proc. 2009;2009:391-5</RefSource>
+          <PMID Version='1'>20351886</PMID>
+        </CommentsCorrections>
+        <CommentsCorrections RefType='Cites'>
+          <RefSource>N Engl J Med. 2011 Nov 10;365(19):1758-9</RefSource>
+          <PMID Version='1'>22047518</PMID>
+        </CommentsCorrections>
+      </CommentsCorrectionsList>
+      <MeshHeadingList>
+        <MeshHeading>
+          <DescriptorName MajorTopicYN='N' UI='D019295'>Computational Biology</DescriptorName>
+          <QualifierName MajorTopicYN='N' UI='Q000379'>methods</QualifierName>
+          <QualifierName MajorTopicYN='N' UI='Q000706'>statistics &amp; numerical data</QualifierName>
+          <TreeCodeList>
+            <TreeCode MajorTopicYN='N'>H01.158.273.180</TreeCode>
+            <TreeCode MajorTopicYN='N'>L01.313.124</TreeCode>
+            <TreeCode MajorTopicYN='N'>Y33</TreeCode>
+            <TreeCode MajorTopicYN='N'>Y09</TreeCode>
+          </TreeCodeList>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName MajorTopicYN='N' UI='D057225'>Data Mining</DescriptorName>
+          <QualifierName MajorTopicYN='N' UI='Q000379'>methods</QualifierName>
+          <TreeCodeList>
+            <TreeCode MajorTopicYN='N'>L01.313.500.750.280.199</TreeCode>
+            <TreeCode MajorTopicYN='N'>L01.470.625</TreeCode>
+            <TreeCode MajorTopicYN='N'>Y33</TreeCode>
+          </TreeCodeList>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName MajorTopicYN='N' UI='D020000'>Decision Support Systems, Clinical</DescriptorName>
+          <QualifierName MajorTopicYN='Y' UI='Q000706'>statistics &amp; numerical data</QualifierName>
+          <TreeCodeList>
+            <TreeCode MajorTopicYN='N'>L01.313.500.750.300.190</TreeCode>
+            <TreeCode MajorTopicYN='Y'>Y09</TreeCode>
+          </TreeCodeList>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName MajorTopicYN='N' UI='D003955'>Diagnostic Tests, Routine</DescriptorName>
+          <QualifierName MajorTopicYN='N' UI='Q000706'>statistics &amp; numerical data</QualifierName>
+          <TreeCodeList>
+            <TreeCode MajorTopicYN='N'>E01.370.395</TreeCode>
+            <TreeCode MajorTopicYN='N'>Y09</TreeCode>
+          </TreeCodeList>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName MajorTopicYN='N' UI='D057286'>Electronic Health Records</DescriptorName>
+          <QualifierName MajorTopicYN='N' UI='Q000706'>statistics &amp; numerical data</QualifierName>
+          <TreeCodeList>
+            <TreeCode MajorTopicYN='N'>E05.318.308.940.968.249.500</TreeCode>
+            <TreeCode MajorTopicYN='N'>E05.318.308.940.968.625.500</TreeCode>
+            <TreeCode MajorTopicYN='N'>Y09</TreeCode>
+          </TreeCodeList>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName MajorTopicYN='N' UI='D006801'>Humans</DescriptorName>
+          <TreeCodeList>
+            <TreeCode MajorTopicYN='N'>B01.050.150.900.649.801.400.112.400.400</TreeCode>
+          </TreeCodeList>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName MajorTopicYN='N' UI='D000069550'>Machine Learning</DescriptorName>
+          <TreeCodeList>
+            <TreeCode MajorTopicYN='N'>G17.035.250.500</TreeCode>
+            <TreeCode MajorTopicYN='N'>L01.224.050.375.530</TreeCode>
+          </TreeCodeList>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName MajorTopicYN='N' UI='D010818'>Practice Patterns, Physicians'</DescriptorName>
+          <QualifierName MajorTopicYN='Y' UI='Q000706'>statistics &amp; numerical data</QualifierName>
+          <TreeCodeList>
+            <TreeCode MajorTopicYN='N'>N04.590.374.577</TreeCode>
+            <TreeCode MajorTopicYN='N'>N05.300.625</TreeCode>
+            <TreeCode MajorTopicYN='Y'>Y09</TreeCode>
+          </TreeCodeList>
+        </MeshHeading>
+      </MeshHeadingList>
+      <OtherID Source='NLM'>NIHMS742523</OtherID>
+      <OtherID Source='NLM'>PMC4719775</OtherID>
+    </item>
+  </static_data>
+  <dynamic_data>
+    <citation_related>
+      <tc_list>
+        <silo_tc coll_id='MEDLINE' local_count='0'/>
+      </tc_list>
+    </citation_related>
+    <cluster_related>
+      <identifiers>
+        <identifier type='issn' value='2335-6936'/>
+        <identifier type='pmid' value='MEDLINE:26776186'/>
+      </identifiers>
+    </cluster_related>
+  </dynamic_data>
+</REC>
