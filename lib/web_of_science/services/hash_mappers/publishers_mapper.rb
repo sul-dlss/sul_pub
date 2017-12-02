@@ -49,7 +49,7 @@ module WebOfScience
 
           # Extract the state and country from a US address
           def map_usa_address_to_hash(full_address)
-            usa_address ||= StreetAddress::US.parse(full_address)
+            usa_address = StreetAddress::US.parse(full_address)
             return {} if usa_address.blank?
             pub = {}
             pub[:stateprovince] = usa_address.state
@@ -80,7 +80,7 @@ module WebOfScience
           end
 
           def map_medline_country_to_hash(record)
-            return unless record.database == 'MEDLINE'
+            return {} unless record.database == 'MEDLINE'
             pub = {}
             country = record.doc.xpath('/REC/static_data/item/MedlineJournalInfo/Country')
             pub[:country] = country.text if country.present?
