@@ -1,4 +1,9 @@
 namespace :wos do
+  desc 'Harvest from Web of Science, for all authors'
+  task harvest_authors: :environment do
+    WebOfScience.harvester.harvest_all
+  end
+
   desc 'Retrieve and print links for a publication by WOS-UID or WosItemId'
   task :links, [:wos_id] => :environment do |_t, args|
     raise 'wos_id argument is required.' if args[:wos_id].blank?

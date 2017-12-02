@@ -4,8 +4,20 @@ module WebOfScience
   # This is the bridge between the WebOfScience API and the SUL-PUB application.
   # This class is responsible for processing WebOfScience API response data
   # to integrate it into the application data models.
-  class Harvester
+  class Harvester < ::Harvester::Base
     delegate :logger, to: :WebOfScience
+
+    # @param [Enumerable<Author>] authors
+    # @return [void]
+    def harvest(authors)
+      authors.each do |author|
+        begin
+          process_author(author)
+        rescue StandardError => e
+          NotificationManager.error(e, "WebOfScience harvest failed for author: '#{author.id}'", self)
+        end
+      end
+    end
 
     # Harvest all publications for an author
     # @param author [Author]

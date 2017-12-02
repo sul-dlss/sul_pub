@@ -70,6 +70,24 @@ describe WebOfScience::Harvester do
     end
   end
 
+  describe '#harvest' do
+    before do
+      savon.expects(:authenticate).returns(wos_auth_response)
+      savon.expects(:search).with(message: :any).returns(wos_search_by_name_response)
+    end
+
+    let(:harvest_process) { harvester.harvest([author]) }
+
+    it_behaves_like 'it_can_process_records'
+    it 'logs exceptions for processing an author' do
+      processor = WebOfScience::ProcessRecords.new(author, any_records_will_do)
+      allow(processor).to receive(:execute).and_raise(RuntimeError)
+      allow(WebOfScience::ProcessRecords).to receive(:new).and_return(processor)
+      expect(NotificationManager).to receive(:error)
+      harvest_process
+    end
+  end
+
   describe '#process_author' do
     before do
       savon.expects(:authenticate).returns(wos_auth_response)
