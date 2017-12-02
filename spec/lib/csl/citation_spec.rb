@@ -15,8 +15,7 @@ describe Csl::Citation do
       supplement: '33',
       publisher: 'Some Publisher',
       journal: { name: 'Some Journal Name', volume: 33, issue: 32, year: 1999 },
-      conference: { name: 'The Big Conference', year: 2345, number: 33, location: 'Knoxville, TN', city: 'Knoxville', statecountry: 'TN' }
-    }
+      conference: { name: 'The Big Conference', year: 2345, number: 33, location: 'Knoxville, TN', city: 'Knoxville', statecountry: 'TN' } }
   end
 
   let(:conference_pub_in_book_hash) do
@@ -45,19 +44,18 @@ describe Csl::Citation do
       type: 'book',
       author: [
         { name: 'Jones, P. L.' },
-        { firstname: 'Alan', middlename: 'T', lastname: 'Jackson' }],
+        { firstname: 'Alan', middlename: 'T', lastname: 'Jackson' }
+      ],
       year: '1987',
       publisher: 'Smith Books',
-      booktitle: 'The Giant Book of Giant Ideas'
-    }
+      booktitle: 'The Giant Book of Giant Ideas' }
   end
 
   let(:book_pub_with_editors_hash) do
     book_pub_hash.merge(author: [{ name: 'Smith, Jack', role: 'editor' },
                                  { name: 'Sprat, Jill', role: 'editor' },
                                  { name: 'Jones, P. L.' },
-                                 { firstname: 'Alan', middlename: 'T', lastname: 'Jackson' }]
-                       )
+                                 { firstname: 'Alan', middlename: 'T', lastname: 'Jackson' }])
   end
 
   # let(:series_pub_hash) do
@@ -76,8 +74,7 @@ describe Csl::Citation do
                { firstname: 'Alan', middlename: 'T', lastname: 'Jackson' }],
       year: '1987',
       publisher: 'Some Publisher',
-      journal: { name: 'Some Journal Name', volume: 33, issue: 32, year: 1999 }
-    }
+      journal: { name: 'Some Journal Name', volume: 33, issue: 32, year: 1999 } }
   end
 
   let(:pub_hash) do
@@ -135,8 +132,7 @@ describe Csl::Citation do
                            sul_author_id: 2579,
                            status: 'unknown',
                            visibility: 'private',
-                           featured: false }]
-    }
+                           featured: false }] }
   end
 
   let(:technical_report_online_pub_hash) do
@@ -577,8 +573,7 @@ describe Csl::Citation do
                                          sul_author_id: 2579,
                                          status: 'unknown',
                                          visibility: 'private',
-                                         featured: false }]
-                  }
+                                         featured: false }] }
       end
 
       it 'adds et al whenever the flag is true' do

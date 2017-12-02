@@ -37,7 +37,8 @@ class PubmedSourceRecord < ActiveRecord::Base
       pmid: pmid,
       source_data: pub_doc.to_xml,
       is_active: true,
-      source_fingerprint: Digest::SHA2.hexdigest(pub_doc))
+      source_fingerprint: Digest::SHA2.hexdigest(pub_doc)
+    )
   end
 
   def self.get_and_store_records_from_pubmed(pmids)
@@ -54,7 +55,8 @@ class PubmedSourceRecord < ActiveRecord::Base
           pmid: pmid,
           source_data: pub_doc.to_xml,
           is_active: true,
-          source_fingerprint: Digest::SHA2.hexdigest(pub_doc))
+          source_fingerprint: Digest::SHA2.hexdigest(pub_doc)
+        )
         pmids.delete(pmid)
       rescue => e
         NotificationManager.error(e, "Cannot create PubmedSourceRecord with pmid: #{pmid}", self)

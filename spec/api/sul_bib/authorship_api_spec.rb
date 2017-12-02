@@ -160,14 +160,16 @@ describe SulBib::API, :vcr do
         http_request
         count = Contribution.where(
           publication_id: publication_with_contributions.id,
-          author_id: author.id).count
+          author_id: author.id
+        ).count
         expect(count).to eq 1
       end
       it 'creates a contribution record with matching attributes' do
         http_request
         contribution = Contribution.where(
           publication_id: publication_with_contributions.id,
-          author_id: author.id).first
+          author_id: author.id
+        ).first
         expect(contribution.featured).to be false
         expect(contribution.status).to eq('denied')
         expect(contribution.visibility).to eq('private')
@@ -215,7 +217,8 @@ describe SulBib::API, :vcr do
         expect(result['authorship'].length).to eq 1
         contribution = Contribution.where(
           publication_id: new_pub.id,
-          author_id: author.id).first
+          author_id: author.id
+        ).first
         expect(contribution.featured).to eq(request_data[:featured])
         expect(contribution.status).to eq(request_data[:status])
         expect(contribution.visibility).to eq(request_data[:visibility])
@@ -261,7 +264,8 @@ describe SulBib::API, :vcr do
         expect(result['authorship'][0]['sul_author_id']).to eq(author.id)
         contribution = Contribution.where(
           publication_id: new_pub.id,
-          author_id: author.id).first
+          author_id: author.id
+        ).first
         expect(contribution.featured).to eq(request_data[:featured])
         expect(contribution.status).to eq(request_data[:status])
         expect(contribution.visibility).to eq(request_data[:visibility])

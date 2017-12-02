@@ -18,8 +18,7 @@ module Agent
       @normalize_name ||= begin
         return '' if name.empty?
         exclude = %w(corporation institute organization university
-                     all and of the
-                    ).join('|')
+                     all and of the).join('|')
         tmp = name.dup
         tmp.gsub!(/#{exclude}/i, '')
         tmp.gsub!(/\s+/, ' ')

@@ -70,9 +70,7 @@ class TitleReport
     @lines.each do |line|
       @count += 1
       begin
-
         parse_line line
-
       rescue => e
         @logger.error "Skipping line: #{line}\n#{e.inspect}\n#{e.backtrace.join("\n")}"
       end
