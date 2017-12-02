@@ -27,17 +27,6 @@ describe WebOfScience::ProcessRecords, :vcr do
     author
   end
 
-  let(:medline_xml) { File.read('spec/fixtures/wos_client/medline_encoded_records.html') }
-  let(:medline_records) { WebOfScience::Records.new(encoded_records: medline_xml) }
-
-  let(:wos_record_uid) { 'WOS:000288663100014' }
-  let(:wos_record_xml) { File.read('spec/fixtures/wos_client/wos_record_000288663100014.xml') }
-  let(:wos_records_xml) { "<records>#{wos_record_xml}</records>" }
-  let(:wos_records) { WebOfScience::Records.new(records: wos_records_xml) }
-  let(:wos_records_links) do
-    { 'WOS:000288663100014' => { 'pmid' => '21253920', 'doi' => '10.1007/s12630-011-9462-1' } }
-  end
-
   let(:links_client) { Clarivate::LinksClient.new }
   let(:null_logger) { Logger.new('/dev/null') }
 
@@ -76,29 +65,9 @@ describe WebOfScience::ProcessRecords, :vcr do
     end
     it 'creates new contribution in the pub_hash[:authorship]' do
       uids = processor.execute
-      pub = Publication.for_uid(uids.sample)
-      expect(pub.pub_hash).to include(:authorship)
-    end
-
-    # ---
-    # PubMed integration specs
-
-    it 'integrates PubMed data for WOS-db records' do
-      uids = processor.execute
-      uid = uids.select { |id| id.starts_with? 'WOS' }.sample
-      if uid
+      uids.each do |uid|
         pub = Publication.for_uid(uid)
-        expect(pub.pub_hash).to include(:mesh_headings) if pub.pmid
-      end
-    end
-
-    # TODO: Fix #452 and test that any MEDLINE-db records create Pub.push_hash data with MESH headings
-    xit 'integrates PubMed data for MEDLINE-db records' do
-      uids = processor.execute
-      uid = uids.select { |id| id.starts_with? 'MEDLINE' }.sample
-      if uid
-        pub = Publication.for_uid(uid)
-        expect(pub.pub_hash).to include(:mesh_headings)
+        expect(pub.pub_hash).to include(:authorship)
       end
     end
 
@@ -135,26 +104,70 @@ describe WebOfScience::ProcessRecords, :vcr do
     end
   end
 
+  # ---
+  # PubMed integration specs
+  # Note: not all PubMed/MEDLINE records contain MESH headings, so these
+  # specs have to check that pub.pub_hash contains them only for records
+  # that have the source data to begin with.
+
+  shared_examples 'wos_has_mesh_headings' do
+    it 'integrates PubMed data for WOS-db records' do
+      # Note: uids => ["WOS:000288663100014"] and this pub gets MESH headings
+      uids = processor.execute
+      uids.select { |id| id.starts_with? 'WOS' }.each do |uid|
+        pub = Publication.for_uid(uid)
+        next unless pub.pmid
+        pmid_rec = PubmedSourceRecord.find_by(pmid: pub.pmid)
+        next unless pmid_rec.source_as_hash.include?(:mesh_headings)
+        expect(pub.pub_hash).to include(:mesh_headings)
+      end
+    end
+  end
+
+  shared_examples 'medline_has_mesh_headings' do
+    # TODO: Fix #452 and test that any MEDLINE-db records create Pub.push_hash data with MESH headings
+    # TODO: Identify MEDLINE records with MESH, eg. MEDLINE:26776186 from PR #483
+    xit 'integrates PubMed data for MEDLINE-db records' do
+      uids = processor.execute
+      uids.select { |id| id.starts_with? 'MEDLINE' }.each do |uid|
+        pub = Publication.for_uid(uid)
+        # TODO: check that the MEDLINE source record has MESH headings
+        expect(pub.pub_hash).to include(:mesh_headings)
+      end
+    end
+  end
+
   context 'with MEDLINE records' do
     subject(:processor) { described_class.new(author, records) }
 
-    let(:records) { medline_records }
+    let(:medline_xml) { File.read('spec/fixtures/wos_client/medline_encoded_records.html') }
+    let(:records) { WebOfScience::Records.new(encoded_records: medline_xml) }
 
     # Note: medline records are not submitted to the links-API
 
     it_behaves_like '#execute'
+    it_behaves_like 'medline_has_mesh_headings'
   end
 
   context 'with WOS records' do
     subject(:processor) { described_class.new(author, records) }
 
-    let(:records) { wos_records }
+    # Note: "WOS:000288663100014" has a PMID and it gets MESH headings from PubMed
+    let(:wos_record_uid) { 'WOS:000288663100014' }
+    let(:wos_record_xml) { File.read('spec/fixtures/wos_client/wos_record_000288663100014.xml') }
+    let(:wos_records_xml) { "<records>#{wos_record_xml}</records>" }
+    let(:wos_records_links) do
+      { 'WOS:000288663100014' => { 'pmid' => '21253920', 'doi' => '10.1007/s12630-011-9462-1' } }
+    end
+
+    let(:records) { WebOfScience::Records.new(records: wos_records_xml) }
 
     before do
       allow(links_client).to receive(:links).with([wos_record_uid]).and_return(wos_records_links)
     end
 
     it_behaves_like '#execute'
+    it_behaves_like 'wos_has_mesh_headings'
   end
 
   context 'with records from excluded databases' do
