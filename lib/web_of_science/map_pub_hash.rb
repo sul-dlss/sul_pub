@@ -17,6 +17,7 @@ module WebOfScience
           pub_hash_citation
           pub_hash_doctypes
           pub_hash_identifiers
+          pub_hash_mesh
           pub
         end
       end
@@ -62,5 +63,9 @@ module WebOfScience
         pub[:identifier] = rec.identifiers.pub_hash
       end
 
+      # publication MESH headings
+      def pub_hash_mesh
+        pub.update WebOfScience::MapMesh.new(rec).pub_hash
+      end
   end
 end
