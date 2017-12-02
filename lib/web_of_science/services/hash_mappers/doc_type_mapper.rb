@@ -1,5 +1,5 @@
 
-module WebOdScience
+module WebOfScience
   module Services
     module HashMappers
       class DocTypeMapper

@@ -3,9 +3,17 @@ module WebOfScience
 
   module Services
 
+    module HashMappers
+
+
     class PublicationMapper
 
-      def initialize(abstract_mapper, names_mapper, citation_mapper, identifiers_mapper, publishers_mapper, doctype_mapper)
+      def initialize(abstract_mapper: WebOfScience::Services::HashMappers::AbstractMapper.new,
+                     names_mapper: WebOfScience::Services::HashMappers::NamesMapper.new,
+                     citation_mapper: WebOfScience::Services::HashMappers::CitationMapper.new,
+                     identifiers_mapper: WebOfScience::Services::HashMappers::IdentifiersMapper.new,
+                     publishers_mapper: WebOfScience::Services::HashMappers::PublishersMapper.new,
+                     doctype_mapper: WebOfScience::Services::HashMappers::DocTypeMapper.new)
 
         @abstract_mapper     = abstract_mapper
         @names_mapper        = names_mapper
@@ -29,6 +37,5 @@ module WebOfScience
     end
 
   end
-
-
+  end
 end

@@ -12,9 +12,9 @@ module WebOfScience
           pub = {}
           pub[:provenance] = Settings.wos_source
           pub[:doi] = rec.doi if rec.doi.present?
-          pub[:eissn] = rec.eissn if rec.eissn.present?
-          pub[:issn] = rec.issn if rec.issn.present?
-          pub[:pmid] = rec.pmid if rec.pmid.present?
+          pub[:eissn] = rec.identifiers.eissn if rec.identifiers.eissn.present?
+          pub[:issn] = rec.identifiers.issn if rec.identifiers.issn.present?
+          pub[:pmid] = rec.identifiers.pmid if rec.identifiers.pmid.present?
           pub[:wos_uid] = rec.uid
           pub[:wos_item_id] = rec.wos_item_id if rec.wos_item_id.present?
           pub[:identifier] = rec.identifiers.pub_hash
