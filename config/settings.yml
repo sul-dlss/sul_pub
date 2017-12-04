@@ -34,6 +34,7 @@ PUBMED:
 
 ## Sciencewire Auth Config
 SCIENCEWIRE:
+  enabled: true
   LOG: log/sciencewire.log
   BASE_URI: https://sciencewirerest.discoverylogic.com
   HOST: stg.sciencewirerest.discoverylogic.com
@@ -44,6 +45,7 @@ SCIENCEWIRE:
 
 ## Web Of Science Auth Config
 WOS:
+  enabled: true
   ACCEPTED_DBS:
     - WOS
     - MEDLINE
