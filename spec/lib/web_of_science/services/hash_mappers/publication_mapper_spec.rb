@@ -41,10 +41,10 @@ describe WebOfScience::Services::HashMappers::PublicationMapper do
       expect(pub_hash[:publisher]).not_to be_nil
     end
     #it 'has a city' do
-      #expect(pub_hash[:city]).not_to be_nil
+    #expect(pub_hash[:city]).not_to be_nil
     #end
     #it 'has a country' do
-      #expect(pub_hash[:country]).not_to be_nil
+    #expect(pub_hash[:country]).not_to be_nil
     #end
   end
 
