@@ -167,6 +167,14 @@ describe Publication do
       expect(c.status).to eq('new')
     end
 
+    it 'should downcase status and visibility values' do
+      publication.pub_hash = { authorship: [{ status: 'NEW', sul_author_id: author.id, visibility: 'PUBLIC' }] }
+      publication.send(:update_any_new_contribution_info_in_pub_hash_to_db)
+      c = publication.contributions.last
+      expect(c.status).to eq('new')
+      expect(c.visibility).to eq('public')
+    end
+
     it 'should update attributions of existing contributions to the database' do
       expect(publication.contributions.size).to eq(0)
       publication.contributions.create(author: author, cap_profile_id: author.cap_profile_id, status: 'unknown')

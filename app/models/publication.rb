@@ -282,7 +282,7 @@ class Publication < ActiveRecord::Base
 
     def update_any_new_contribution_info_in_pub_hash_to_db
       Array(pub_hash[:authorship]).each do |contrib|
-        hash_for_update = contrib.slice(:status, :visibility, :featured)
+        hash_for_update = contrib.slice(:status, :visibility, :featured).each { |_k, v| v.downcase! if v.respond_to?(:downcase!) }
         # Find or create an Author of the contribution
         cap_profile_id = contrib[:cap_profile_id]
         author = Author.find_by_id(contrib[:sul_author_id])
