@@ -131,7 +131,7 @@ describe WebOfScience::ProcessRecords do
       xml.gsub('WOS', 'EXCLUDED')
     end
     let(:other_records_xml) { "<records>#{other_record_xml}</records>" }
-    let(:other_records) { WebOfScience::Records.new(records: other_records_xml) }
+    let(:other_records) { WebOfScience::Data::Records.new(records: other_records_xml) }
 
     let(:records) { other_records }
 
