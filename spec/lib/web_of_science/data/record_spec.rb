@@ -80,6 +80,7 @@ describe WebOfScience::Data::Record do
     end
   end
 
+=begin
   describe '#editors' do
     let(:wos_xml) { File.read('spec/fixtures/wos_client/wos_record_000386326200035.xml') }
     let(:wos_record) { described_class.new(record: wos_xml) }
@@ -93,6 +94,7 @@ describe WebOfScience::Data::Record do
       expect(agent).to include('first_name' => 'TE', 'last_name' => 'Klein', 'role' => 'book_editor')
     end
   end
+=end
 
   describe '#names' do
     let(:agents) { wos_record_encoded.names }

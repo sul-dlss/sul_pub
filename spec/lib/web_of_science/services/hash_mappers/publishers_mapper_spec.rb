@@ -46,7 +46,7 @@ describe WebOfScience::Services::HashMappers::PublishersMapper do
     let(:pub_hash) { mapper.map_publisher_to_hash(medline_record) }
 
     it 'works with MEDLINE records' do
-      expect(publisher).to be_an described_class
+      expect(mapper).to be_an described_class
     end
     it_behaves_like 'pub_hash'
   end
