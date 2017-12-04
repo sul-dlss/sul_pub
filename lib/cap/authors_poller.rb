@@ -37,7 +37,9 @@ module Cap
       end
 
       log_stats
+      logger.info 'authors to harvest: ' + @new_or_changed_authors_to_harvest_queue.to_s
       do_science_wire_harvest
+      do_wos_harvest
 
       info = []
       info << "#{page_count} pages with #{page_size} records were processed in #{log_process_time}"
@@ -54,8 +56,14 @@ module Cap
     end
 
     def do_science_wire_harvest
-      logger.info 'authors to harvest: ' + @new_or_changed_authors_to_harvest_queue.to_s
       @sw_harvester.harvest_pubs_for_author_ids(@new_or_changed_authors_to_harvest_queue)
+    end
+
+    def do_wos_harvest
+      return unless Settings.WOS.enabled
+      Author.where(id: @new_or_changed_authors_to_harvest_queue).find_in_batches(batch_size: 250) do |authors|
+        WebOfScience.harvester.harvest(authors)
+      end
     end
 
     def process_next_batch_of_authorship_data(json_response)
