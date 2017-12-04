@@ -35,7 +35,8 @@ end
 [
   CapHttpClient,
   PubmedClient,
-  ScienceWireClient
+  ScienceWireClient,
+  WebOfScience::Queries
 ].each do |klass|
   OkComputer::Registry.register "external-#{klass.name}", DelegateCheck.new(klass)
 end
