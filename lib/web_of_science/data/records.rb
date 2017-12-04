@@ -24,7 +24,6 @@ module WebOfScience
       # @return doc [Nokogiri::XML::Document] WOS records document
       attr_reader :doc
 
-
       # @param records [String] records in XML
       # @param encoded_records [String] records in HTML encoding
       def initialize(records: nil, encoded_records: nil)

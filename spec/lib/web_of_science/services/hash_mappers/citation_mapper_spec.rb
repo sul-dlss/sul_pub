@@ -37,7 +37,6 @@ describe WebOfScience::Services::HashMappers::CitationMapper do
   end
 
   context 'WOS records' do
-
     subject(:mapper) { described_class.new }
     let(:pub_hash) { mapper.map_citation_to_hash(wos_record) }
 
@@ -51,7 +50,6 @@ describe WebOfScience::Services::HashMappers::CitationMapper do
   context 'MEDLINE records' do
     subject(:mapper) { described_class.new }
     let(:pub_hash) { mapper.map_citation_to_hash(medline_record) }
-
 
     it 'works with MEDLINE records' do
       expect(mapper).to be_an described_class

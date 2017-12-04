@@ -12,7 +12,6 @@ describe WebOfScience::Services::HashMappers::PublishersMapper do
     end
   end
 
-
   shared_examples 'pub_hash' do
     it 'works' do
       expect(pub_hash).to be_an Hash
@@ -50,8 +49,5 @@ describe WebOfScience::Services::HashMappers::PublishersMapper do
       expect(publisher).to be_an described_class
     end
     it_behaves_like 'pub_hash'
-    #it 'has no publishers' do
-      #expect(publisher.publishers).to be_empty
-    #end
   end
 end

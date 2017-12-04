@@ -70,7 +70,6 @@ describe WebOfScience::Services::HashMappers::PublicationMapper do
     subject(:mapper) { described_class.new }
     let(:pub_hash) { mapper.map_publication_to_hash(wos_record) }
 
-
     it 'works with WOS records' do
       expect(mapper).to be_an described_class
     end
@@ -81,7 +80,6 @@ describe WebOfScience::Services::HashMappers::PublicationMapper do
   end
 
   context 'MEDLINE records' do
-
     subject(:mapper) { described_class.new }
     let(:pub_hash) { mapper.map_publication_to_hash(medline_record) }
 

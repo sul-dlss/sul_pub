@@ -190,14 +190,12 @@ describe WebOfScience::Data::Record do
     end
   end
 
-
   describe '#titles' do
     it 'works' do
       result = wos_record_encoded.titles
       expect(result).to include('source' => 'COLLEGE & RESEARCH LIBRARIES')
     end
   end
-
 
   # ---
   # XML specs

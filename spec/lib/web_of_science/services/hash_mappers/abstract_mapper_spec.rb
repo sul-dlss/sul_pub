@@ -19,7 +19,6 @@ describe WebOfScience::Services::HashMappers::AbstractMapper do
     end
   end
 
-
   shared_examples 'abstract' do
     it 'pub_hash has an abstract_restricted' do
       expect(pub_hash[:abstract]).not_to be_nil
@@ -47,7 +46,7 @@ describe WebOfScience::Services::HashMappers::AbstractMapper do
   context 'WOS record with no abstract' do
     subject(:mapper) { described_class.new }
 
-    let(:pub_hash) { mapper.map_abstract_to_hash(wos_record)}
+    let(:pub_hash) { mapper.map_abstract_to_hash(wos_record) }
 
     it 'works with WOS records' do
       expect(mapper).to be_an described_class
