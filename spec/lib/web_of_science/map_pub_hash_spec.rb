@@ -2,8 +2,8 @@ describe WebOfScience::MapPubHash do
   let(:wos_encoded_xml) { File.read('spec/fixtures/wos_client/wos_encoded_record.html') }
   let(:wos_record) { WebOfScience::Record.new(encoded_record: wos_encoded_xml) }
 
-  let(:medline_encoded_xml) { File.read('spec/fixtures/wos_client/medline_encoded_record.html') }
-  let(:medline_record) { WebOfScience::Record.new(encoded_record: medline_encoded_xml) }
+  let(:medline_xml) { File.read('spec/fixtures/wos_client/medline_record_26776186.xml') }
+  let(:medline_record) { WebOfScience::Record.new(record: medline_xml) }
 
   describe '#new' do
     it 'works with WOS records' do
@@ -96,5 +96,8 @@ describe WebOfScience::MapPubHash do
     it_behaves_like 'common_citation_data'
     # it_behaves_like 'contains_publisher_data' # No, it does not.
     it_behaves_like 'contains_summary_data'
+    it 'contains MESH headings' do
+      expect(pub_hash[:mesh_headings]).to be_an Array
+    end
   end
 end
