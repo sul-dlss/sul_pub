@@ -15,9 +15,19 @@ module WebOfScience
     attr_reader :wos_client
     attr_reader :database
 
+    # Fetch a single publication and parse and ensure we have a correct response.
+    # We check in steps that the response is XML and it includes the correct content.
+    def self.working?
+      uids = %w(WOS:A1976BW18000001 WOS:A1972N549400003)
+      response = new.retrieve_by_id(uids)
+      raise 'WebOfScience::Queries has no records' unless response.is_a?(WebOfScience::Records) && response.count > 0
+      raise 'WebOfScience::Queries did not parse records' unless response.first.is_a?(WebOfScience::Record)
+      true
+    end
+
     # @param wos_client [WebOfScience::Client] a Web Of Science client
     # @param database [String] a WOS database identifier (default 'WOK')
-    def initialize(wos_client, database = 'WOK')
+    def initialize(wos_client = WebOfScience.client, database = 'WOK')
       @wos_client = wos_client
       @database = database
     end
