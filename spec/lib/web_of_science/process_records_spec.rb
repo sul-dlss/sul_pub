@@ -105,33 +105,16 @@ describe WebOfScience::ProcessRecords, :vcr do
   end
 
   # ---
-  # PubMed integration specs
-  # Note: not all PubMed/MEDLINE records contain MESH headings, so these
-  # specs have to check that pub.pub_hash contains them only for records
-  # that have the source data to begin with.
+  # MESH headings - integration specs
+  # Note: not all PubMed/MEDLINE records contain MESH headings, so the
+  # spec example records were chosen to contain or fetch MESH headings
 
-  shared_examples 'wos_has_mesh_headings' do
-    it 'integrates PubMed data for WOS-db records' do
-      # Note: uids => ["WOS:000288663100014"] and this pub gets MESH headings
-      uids = processor.execute
-      uids.select { |id| id.starts_with? 'WOS' }.each do |uid|
-        pub = Publication.for_uid(uid)
-        next unless pub.pmid
-        pmid_rec = PubmedSourceRecord.find_by(pmid: pub.pmid)
-        next unless pmid_rec.source_as_hash.include?(:mesh_headings)
-        expect(pub.pub_hash).to include(:mesh_headings)
-      end
-    end
-  end
-
-  shared_examples 'medline_has_mesh_headings' do
-    # TODO: Fix #452 and test that any MEDLINE-db records create Pub.push_hash data with MESH headings
-    # TODO: Identify MEDLINE records with MESH, eg. MEDLINE:26776186 from PR #483
-    xit 'integrates PubMed data for MEDLINE-db records' do
-      uids = processor.execute
-      uids.select { |id| id.starts_with? 'MEDLINE' }.each do |uid|
-        pub = Publication.for_uid(uid)
-        # TODO: check that the MEDLINE source record has MESH headings
+  shared_examples 'pubs_with_pmid_have_mesh_headings' do
+    # Note: the spec example records have MESH headings
+    it 'creates publication.pub_hash with MESH headings' do
+      processor.execute
+      records.select(&:pmid).each do |rec|
+        pub = Publication.for_uid(rec.uid)
         expect(pub.pub_hash).to include(:mesh_headings)
       end
     end
@@ -140,13 +123,15 @@ describe WebOfScience::ProcessRecords, :vcr do
   context 'with MEDLINE records' do
     subject(:processor) { described_class.new(author, records) }
 
-    let(:medline_xml) { File.read('spec/fixtures/wos_client/medline_encoded_records.html') }
-    let(:records) { WebOfScience::Records.new(encoded_records: medline_xml) }
+    # Note: "MEDLINE:26776186" has a PMID and MESH headings
+    let(:medline_xml) { File.read('spec/fixtures/wos_client/medline_record_26776186.xml') }
+    let(:records_xml) { "<records>#{medline_xml}</records>" }
+    let(:records) { WebOfScience::Records.new(records: records_xml) }
 
     # Note: medline records are not submitted to the links-API
 
     it_behaves_like '#execute'
-    it_behaves_like 'medline_has_mesh_headings'
+    it_behaves_like 'pubs_with_pmid_have_mesh_headings'
   end
 
   context 'with WOS records' do
@@ -167,7 +152,7 @@ describe WebOfScience::ProcessRecords, :vcr do
     end
 
     it_behaves_like '#execute'
-    it_behaves_like 'wos_has_mesh_headings'
+    it_behaves_like 'pubs_with_pmid_have_mesh_headings'
   end
 
   context 'with records from excluded databases' do

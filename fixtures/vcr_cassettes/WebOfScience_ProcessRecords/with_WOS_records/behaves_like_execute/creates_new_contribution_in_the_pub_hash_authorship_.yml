@@ -14,7 +14,7 @@ http_interactions:
       Accept-Encoding:
       - gzip,deflate
       Date:
-      - Thu, 30 Nov 2017 21:17:25 GMT
+      - Tue, 05 Dec 2017 02:10:29 GMT
       Content-Type:
       - application/x-www-form-urlencoded
   response:
@@ -23,7 +23,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 30 Nov 2017 21:17:26 GMT
+      - Tue, 05 Dec 2017 02:10:31 GMT
       Server:
       - Apache
       Strict-Transport-Security:
@@ -35,14 +35,14 @@ http_interactions:
       Cache-Control:
       - private
       Ncbi-Phid:
-      - 03ED507BA206BD410000000003BE03A7
+      - 03EE07E2A25FD741000000000131012B
       Ncbi-Sid:
-      - 03ED507BA2075661_0958SID
+      - 03EE07E2A2600171_0305SID
       Content-Type:
       - text/xml; charset=UTF-8
       Set-Cookie:
-      - ncbi_sid=03ED507BA2075661_0958SID; domain=.nih.gov; path=/; expires=Fri, 30
-        Nov 2018 21:17:26 GMT
+      - ncbi_sid=03EE07E2A2600171_0305SID; domain=.nih.gov; path=/; expires=Wed, 05
+        Dec 2018 02:10:31 GMT
       Vary:
       - Accept-Encoding
       Content-Encoding:
@@ -199,5 +199,5 @@ http_interactions:
 
         </PubmedArticleSet>
     http_version: 
-  recorded_at: Thu, 30 Nov 2017 21:17:26 GMT
+  recorded_at: Tue, 05 Dec 2017 02:10:29 GMT
 recorded_with: VCR 3.0.3
