@@ -31,7 +31,7 @@ module Csl
         when 'pubmed'
           # This is a PubMed publication and the author is created in
           # PubmedSourceRecord.convert_pubmed_publication_doc_to_hash
-          @citeproc_authors ||= pubmed_authors_to_csl(authors)
+          @citeproc_authors ||= Csl::PubmedMapper.authors_to_csl(authors)
           @citeproc_editors ||= [] # there are no editors
         when 'sciencewire'
           # This is a ScienceWire publication and the author is created in
@@ -200,17 +200,6 @@ module Csl
         editors = cap_authors.map(&:symbolize_keys)
         editors.select! { |editor| editor[:role].to_s.downcase.eql?('editor') }
         editors.map { |editor| Csl::AuthorName.new(editor).to_csl_author }
-      end
-
-      # Convert PubMed authors into CSL authors, see also
-      # PubmedSourceRecord.convert_pubmed_publication_doc_to_hash
-      # @param [Array<Hash>] pubmed_authors array of hash data
-      # @return [Array<Hash>] CSL authors array of hash data
-      def pubmed_authors_to_csl(pubmed_authors)
-        pubmed_authors.map do |author|
-          author = author.symbolize_keys
-          Csl::AuthorName.new(author).to_csl_author
-        end.compact
       end
 
       def parse_authors
