@@ -1,39 +1,21 @@
-describe WebOfScience::MapAbstract do
-  subject(:mapper) { described_class.new(wos_record) }
+describe WebOfScience::Services::HashMappers::AbstractMapper do
+  subject(:mapper) { described_class.new }
 
   let(:wos_encoded_xml) { File.read('spec/fixtures/wos_client/wos_encoded_record.html') }
-  let(:wos_record) { WebOfScience::Record.new(encoded_record: wos_encoded_xml) }
+  let(:wos_record) { WebOfScience::Data::Record.new(encoded_record: wos_encoded_xml) }
 
   let(:medline_encoded_xml) { File.read('spec/fixtures/wos_client/medline_encoded_record.html') }
-  let(:medline_record) { WebOfScience::Record.new(encoded_record: medline_encoded_xml) }
+  let(:medline_record) { WebOfScience::Data::Record.new(encoded_record: medline_encoded_xml) }
 
   describe '#new' do
-    it 'works with WOS records' do
+    it 'works' do
       expect(mapper).to be_an described_class
-    end
-    it 'raises ArgumentError with nil params' do
-      expect { described_class.new }.to raise_error(ArgumentError)
-    end
-    it 'raises ArgumentError with anything other than WebOfScience::Record' do
-      expect { described_class.new('could be xml') }.to raise_error(ArgumentError)
     end
   end
 
   shared_examples 'pub_hash' do
     it 'works' do
       expect(pub_hash).to be_an Hash
-    end
-  end
-
-  shared_examples 'abstracts' do
-    it 'works' do
-      expect(mapper.abstracts).not_to be_empty
-    end
-  end
-
-  shared_examples 'no_abstracts' do
-    it 'works' do
-      expect(mapper.abstracts).to be_empty
     end
   end
 
@@ -62,45 +44,42 @@ describe WebOfScience::MapAbstract do
   end
 
   context 'WOS record with no abstract' do
-    subject(:mapper) { described_class.new(wos_record) }
+    subject(:mapper) { described_class.new }
 
-    let(:pub_hash) { mapper.pub_hash }
+    let(:pub_hash) { mapper.map_abstract_to_hash(wos_record) }
 
     it 'works with WOS records' do
       expect(mapper).to be_an described_class
     end
     it_behaves_like 'pub_hash'
-    it_behaves_like 'no_abstracts'
     it_behaves_like 'no_abstract'
     it_behaves_like 'no_abstract_restricted'
   end
 
   context 'WOS record with an abstract' do
-    subject(:mapper) { described_class.new(wos_record) }
+    subject(:mapper) { described_class.new }
 
     let(:wos_xml) { File.read('spec/fixtures/wos_client/wos_record_000268565100019.xml') }
-    let(:wos_record) { WebOfScience::Record.new(record: wos_xml) }
-    let(:pub_hash) { mapper.pub_hash }
+    let(:wos_record) { WebOfScience::Data::Record.new(record: wos_xml) }
+    let(:pub_hash) { mapper.map_abstract_to_hash(wos_record) }
 
     it 'works with WOS records' do
       expect(mapper).to be_an described_class
     end
     it_behaves_like 'pub_hash'
-    it_behaves_like 'abstracts'
     it_behaves_like 'no_abstract'
     it_behaves_like 'abstract_restricted'
   end
 
   context 'MEDLINE records' do
-    subject(:mapper) { described_class.new(medline_record) }
+    subject(:mapper) { described_class.new }
 
-    let(:pub_hash) { mapper.pub_hash }
+    let(:pub_hash) { mapper.map_abstract_to_hash(medline_record) }
 
     it 'works with MEDLINE records' do
       expect(mapper).to be_an described_class
     end
     it_behaves_like 'pub_hash'
-    it_behaves_like 'abstracts'
     it_behaves_like 'abstract'
     it_behaves_like 'no_abstract_restricted'
   end

@@ -1,7 +1,7 @@
 
 RSpec.describe WebOfScienceSourceRecord, type: :model do
   let(:encoded_records) { File.read('spec/fixtures/wos_client/wos_encoded_records.html') }
-  let(:wos_records) { WebOfScience::Records.new(encoded_records: encoded_records) }
+  let(:wos_records) { WebOfScience::Data::Records.new(encoded_records: encoded_records) }
   let(:wos_record) { wos_records.first }
   let(:wos_src_rec) { described_class.new(source_data: wos_record.to_xml) }
 

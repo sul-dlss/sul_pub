@@ -28,12 +28,12 @@ describe WebOfScience::ProcessRecords do
   end
 
   let(:medline_xml) { File.read('spec/fixtures/wos_client/medline_encoded_records.html') }
-  let(:medline_records) { WebOfScience::Records.new(encoded_records: medline_xml) }
+  let(:medline_records) { WebOfScience::Data::Records.new(encoded_records: medline_xml) }
 
   let(:wos_record_uid) { 'WOS:000288663100014' }
   let(:wos_record_xml) { File.read('spec/fixtures/wos_client/wos_record_000288663100014.xml') }
   let(:wos_records_xml) { "<records>#{wos_record_xml}</records>" }
-  let(:wos_records) { WebOfScience::Records.new(records: wos_records_xml) }
+  let(:wos_records) { WebOfScience::Data::Records.new(records: wos_records_xml) }
   let(:wos_records_links) do
     { 'WOS:000288663100014' => { 'pmid' => '21253920', 'doi' => '10.1007/s12630-011-9462-1' } }
   end
@@ -131,7 +131,7 @@ describe WebOfScience::ProcessRecords do
       xml.gsub('WOS', 'EXCLUDED')
     end
     let(:other_records_xml) { "<records>#{other_record_xml}</records>" }
-    let(:other_records) { WebOfScience::Records.new(records: other_records_xml) }
+    let(:other_records) { WebOfScience::Data::Records.new(records: other_records_xml) }
 
     let(:records) { other_records }
 

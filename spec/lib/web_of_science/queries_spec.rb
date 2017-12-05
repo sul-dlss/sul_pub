@@ -40,14 +40,14 @@ describe WebOfScience::Queries do
       savon.expects(:authenticate).returns(wos_auth_response)
       savon.expects(:search).with(message: :any).returns(wos_search_by_doi_response)
       records = wos_queries.search_by_doi(doi)
-      expect(records).to be_an WebOfScience::Records
+      expect(records).to be_an WebOfScience::Data::Records
       expect(records.count).to eq 1
     end
     it 'returns nothing for partial matches' do
       savon.expects(:authenticate).returns(wos_auth_response)
       savon.expects(:search).with(message: :any).returns(wos_search_by_doi_mismatch_response)
       records = wos_queries.search_by_doi(doi_mismatch)
-      expect(records).to be_an WebOfScience::Records
+      expect(records).to be_an WebOfScience::Data::Records
       expect(records).to be_empty
     end
   end
@@ -62,7 +62,7 @@ describe WebOfScience::Queries do
       savon.expects(:search).with(message: :any).returns(wos_search_custom_response)
     end
     it 'works' do
-      expect(records).to be_an WebOfScience::Records
+      expect(records).to be_an WebOfScience::Data::Records
     end
     it 'returns publication(s)' do
       expect(records.count >= 1).to be true
@@ -94,7 +94,7 @@ describe WebOfScience::Queries do
       savon.expects(:search).with(message: :any).returns(wos_search_by_name_response)
     end
     it 'works' do
-      expect(records).to be_an WebOfScience::Records
+      expect(records).to be_an WebOfScience::Data::Records
     end
     it 'returns many results' do
       expect(records.count > 1).to be true
@@ -106,7 +106,7 @@ describe WebOfScience::Queries do
       savon.expects(:authenticate).returns(wos_auth_response)
       savon.expects(:retrieve_by_id).with(message: :any).returns(wos_retrieve_by_id_response)
       records = wos_queries.retrieve_by_id(wos_ids)
-      expect(records).to be_an WebOfScience::Records
+      expect(records).to be_an WebOfScience::Data::Records
     end
   end
 

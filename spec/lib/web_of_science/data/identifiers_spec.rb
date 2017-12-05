@@ -1,8 +1,8 @@
-describe WebOfScience::Identifiers do
-  subject(:identifiers) { described_class.new wos_record }
+describe WebOfScience::Data::Identifiers do
+  subject(:identifiers) { described_class.new wos_record.doc }
 
   let(:wos_record_xml) { File.read('spec/fixtures/wos_client/wos_record_000288663100014.xml') }
-  let(:wos_record) { WebOfScience::Record.new(record: wos_record_xml) }
+  let(:wos_record) { WebOfScience::Data::Record.new(record: wos_record_xml) }
 
   shared_examples 'identifier_accessors' do
     # when ids['x'] is nil, the expectation is that it should be nil
@@ -120,10 +120,10 @@ describe WebOfScience::Identifiers do
   end
 
   context 'MEDLINE record' do
-    subject(:identifiers) { described_class.new medline_record }
+    subject(:identifiers) { described_class.new medline_record.doc }
 
     let(:medline_record_xml) { File.read('spec/fixtures/wos_client/medline_record_24452614.xml') }
-    let(:medline_record) { WebOfScience::Record.new(record: medline_record_xml) }
+    let(:medline_record) { WebOfScience::Data::Record.new(record: medline_record_xml) }
 
     let(:ids) do
       {
@@ -194,11 +194,11 @@ describe WebOfScience::Identifiers do
   end
 
   context 'can merge with links identifiers' do
-    subject(:identifiers) { described_class.new wos_record4links }
+    subject(:identifiers) { described_class.new wos_record4links.doc }
 
     let(:wos_id) { '000346594100007' }
     let(:record4links) { File.read('spec/fixtures/wos_client/wos_record4links.html') }
-    let(:wos_record4links) { WebOfScience::Record.new(encoded_record: record4links) }
+    let(:wos_record4links) { WebOfScience::Data::Record.new(encoded_record: record4links) }
 
     # links_client = Clarivate::LinksClient.new
     # links = links_client.links([wos_id], fields: ['doi', 'pmid'])

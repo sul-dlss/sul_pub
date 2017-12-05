@@ -1,6 +1,6 @@
 require 'htmlentities'
 
-describe WebOfScience::Record do
+describe WebOfScience::Data::Record do
   let(:wos_encoded_record) { File.read('spec/fixtures/wos_client/wos_encoded_record.html') }
   let(:wos_decoded_record) do
     coder = HTMLEntities.new
@@ -80,6 +80,7 @@ describe WebOfScience::Record do
     end
   end
 
+=begin
   describe '#editors' do
     let(:wos_xml) { File.read('spec/fixtures/wos_client/wos_record_000386326200035.xml') }
     let(:wos_record) { described_class.new(record: wos_xml) }
@@ -93,6 +94,7 @@ describe WebOfScience::Record do
       expect(agent).to include('first_name' => 'TE', 'last_name' => 'Klein', 'role' => 'book_editor')
     end
   end
+=end
 
   describe '#names' do
     let(:agents) { wos_record_encoded.names }
@@ -104,7 +106,7 @@ describe WebOfScience::Record do
   describe '#identifiers' do
     it 'works' do
       result = wos_record_encoded.identifiers
-      expect(result).to be_an WebOfScience::Identifiers
+      expect(result).to be_an WebOfScience::Data::Identifiers
     end
 
     describe '#database' do
@@ -190,89 +192,10 @@ describe WebOfScience::Record do
     end
   end
 
-  describe '#summary' do
-    let(:summary) { wos_record_encoded.summary }
-
-    it 'works' do
-      expect(summary).to be_an Hash
-    end
-    it 'contains doctypes Array' do
-      expect(summary['doctypes']).to be_an Array
-    end
-    it 'contains names Array' do
-      expect(summary['names']).to be_an Array
-    end
-    it 'contains pub_info Hash' do
-      expect(summary['pub_info']).to be_an Hash
-    end
-    it 'contains publishers Array' do
-      expect(summary['publishers']).to be_an Array
-    end
-    it 'contains titles Hash' do
-      expect(summary['titles']).to be_an Hash
-    end
-  end
-
-  describe '#summary_struct' do
-    let(:summary) { wos_record_encoded.summary_struct }
-
-    it 'works' do
-      expect(summary).to be_an OpenStruct
-    end
-    it 'contains doctypes Array' do
-      expect(summary.doctypes).to be_an Array
-    end
-    it 'contains names Array' do
-      expect(summary.names).to be_an Array
-    end
-    it 'contains pub_info OpenStruct' do
-      expect(summary.pub_info).to be_an OpenStruct
-    end
-    it 'contains publishers Array' do
-      expect(summary.publishers).to be_an Array
-    end
-    it 'contains titles OpenStruct' do
-      expect(summary.titles).to be_an OpenStruct
-    end
-  end
-
   describe '#titles' do
     it 'works' do
       result = wos_record_encoded.titles
       expect(result).to include('source' => 'COLLEGE & RESEARCH LIBRARIES')
-    end
-  end
-
-  describe '#to_h' do
-    let(:hash) { wos_record_encoded.to_h }
-
-    it 'works' do
-      expect(hash).to be_an Hash
-    end
-    it 'contains summary fields' do
-      expect(hash['summary']).to eq wos_record_encoded.summary
-    end
-  end
-
-  describe '#pub_hash' do
-    let(:pub_hash) { wos_record_encoded.pub_hash }
-
-    it 'works' do
-      expect(pub_hash).to be_an Hash
-    end
-    it 'has "wos" provenance' do
-      expect(pub_hash[:provenance]).to eq 'wos'
-    end
-  end
-
-  describe '#to_struct' do
-    let(:struct) { wos_record_encoded.to_struct }
-
-    it 'works' do
-      expect(struct).to be_an OpenStruct
-    end
-    it 'contains summary fields' do
-      expect(struct.summary).to be_an OpenStruct
     end
   end
 

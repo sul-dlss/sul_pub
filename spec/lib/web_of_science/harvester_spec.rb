@@ -23,7 +23,7 @@ describe WebOfScience::Harvester do
   let(:wos_search_by_name_response) { File.read('spec/fixtures/wos_client/wos_search_by_name_response.xml') }
 
   let(:medline_xml) { File.read('spec/fixtures/wos_client/medline_encoded_records.html') }
-  let(:any_records_will_do) { WebOfScience::Records.new(encoded_records: medline_xml) }
+  let(:any_records_will_do) { WebOfScience::Data::Records.new(encoded_records: medline_xml) }
 
   let(:author) do
     # public data from
