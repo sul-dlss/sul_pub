@@ -22,7 +22,7 @@ module Csl
         case provenance
         when 'batch'
           # This is from BibtexIngester.convert_bibtex_record_to_pub_hash
-          @citeproc_authors ||= bibtex_authors_to_csl(authors)
+          @citeproc_authors ||= Csl::BibtexMapper.authors_to_csl(authors)
           @citeproc_editors ||= [] # there are no editors
         when 'cap'
           # This is a CAP manual submission
@@ -180,18 +180,6 @@ module Csl
 
       def citeproc_editors
         @citeproc_editors ||= parse_authors[:editors]
-      end
-
-      # Convert BibTexIngester authors into CSL authors
-      # @param [Array<Hash>] bibtex_authors array of hash data
-      # @return [Array<Hash>] CSL authors array of hash data
-      def bibtex_authors_to_csl(bibtex_authors)
-        bibtex_authors.map do |author|
-          author = author.symbolize_keys
-          next if author[:name].blank?
-          family, given = author[:name].split(',')
-          { 'family' => family, 'given' => given }
-        end
       end
 
       # Convert CAP authors into CSL authors
