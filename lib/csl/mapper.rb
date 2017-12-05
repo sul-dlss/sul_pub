@@ -36,7 +36,7 @@ module Csl
         when 'sciencewire'
           # This is a ScienceWire publication and the author is created in
           # SciencewireSourceRecord.convert_sw_publication_doc_to_hash
-          @citeproc_authors ||= sw_authors_to_csl(authors)
+          @citeproc_authors ||= Csl::SciencewireMapper.authors_to_csl(authors)
           @citeproc_editors ||= [] # there are no editors
         else
           citeproc_authors # calls parse_authors
@@ -222,23 +222,6 @@ module Csl
         pubmed_authors.map do |author|
           author = author.symbolize_keys
           Csl::AuthorName.new(author).to_csl_author
-        end.compact
-      end
-
-      # Convert ScienceWire authors into CSL authors, see also
-      # SciencewireSourceRecord.convert_sw_publication_doc_to_hash
-      # @param [Array<Hash>] sw_authors array of hash data
-      # @return [Array<Hash>] CSL authors array of hash data
-      def sw_authors_to_csl(sw_authors)
-        # ScienceWire AuthorList is split('|') into an array of authors
-        sw_authors.map do |author|
-          # Each ScienceWire author is a CSV value: 'Lastname,Firstname,Middlename'
-          last, first, middle = author[:name].split(',')
-          Csl::AuthorName.new(
-            lastname: last,
-            firstname: first,
-            middlename: middle
-          ).to_csl_author
         end.compact
       end
 
