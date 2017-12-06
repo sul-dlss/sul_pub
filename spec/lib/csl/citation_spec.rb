@@ -1,24 +1,11 @@
 
 describe Csl::Citation do
   # Fixture data from spec/fixtures/pub_hash/*.rb
+  include PubHash::Article
   include PubHash::Book
   include PubHash::CaseStudy
   include PubHash::Conference
   include PubHash::WorkingPaper
-
-  let(:article_pub_hash) do
-    { title: 'My test title',
-      type: 'article',
-      pages: '3-6',
-      author: [{ name: 'Smith, Jack', role: 'editor' },
-               { name: 'Sprat, Jill', role: 'editor' },
-               { name: 'Jones, P. L.' },
-               { firstname: 'Alan', middlename: 'T', lastname: 'Jackson' }],
-      year: '1987',
-      publisher: 'Some Publisher',
-      journal: { name: 'Some Journal Name', volume: 33, issue: 32, year: 1999 }
-    }
-  end
 
   let(:pub_hash) do
     { provenance: 'sciencewire',
@@ -401,9 +388,12 @@ describe Csl::Citation do
         expect(chicago_citation).to include(article_pub_hash[:year])
         expect(chicago_citation).to include(article_pub_hash[:journal][:name])
       end
-      it 'includes journal volume issue and pages' do
+      it 'includes journal volume (issue)' do
         expect(chicago_citation).to include("#{article_pub_hash[:journal][:volume]} (#{article_pub_hash[:journal][:issue]})")
-        expect(chicago_citation).to include(article_pub_hash[:pages])
+      end
+      it 'includes journal pages' do
+        # the chicago citation translates a hyphen (code 45) into an en-dash (code 226-218-147)
+        expect(chicago_citation).to include(article_pub_hash[:pages].sub('-', '–'))
       end
       it 'excludes editors' do
         expect(chicago_citation).not_to include('Jack Smith', 'Jill Sprat')
