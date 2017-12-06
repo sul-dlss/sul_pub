@@ -1,35 +1,10 @@
 
 describe Csl::Citation do
   # Fixture data from spec/fixtures/pub_hash/*.rb
+  include PubHash::Book
   include PubHash::CaseStudy
   include PubHash::Conference
   include PubHash::WorkingPaper
-
-  let(:book_pub_hash) do
-    { title: 'My test title',
-      type: 'book',
-      author: [
-        { name: 'Jones, P. L.' },
-        { firstname: 'Alan', middlename: 'T', lastname: 'Jackson' }],
-      year: '1987',
-      publisher: 'Smith Books',
-      booktitle: 'The Giant Book of Giant Ideas'
-    }
-  end
-
-  let(:book_pub_with_editors_hash) do
-    book_pub_hash.merge(author: [{ name: 'Smith, Jack', role: 'editor' },
-                                 { name: 'Sprat, Jill', role: 'editor' },
-                                 { name: 'Jones, P. L.' },
-                                 { firstname: 'Alan', middlename: 'T', lastname: 'Jackson' }]
-                       )
-  end
-
-  # let(:series_pub_hash) do
-  #   book_pub_with_editors_hash.reject { |k, _v| k == :booktitle }.merge(
-  #     series: { title: 'The book series for Big Ideas', volume: 1, number: 4, year: 1933 }
-  #   )
-  # end
 
   let(:article_pub_hash) do
     { title: 'My test title',
@@ -403,7 +378,7 @@ describe Csl::Citation do
         expect(chicago_citation).to include(book_pub_hash[:year])
       end
       describe 'with editors' do
-        let(:hash) { described_class.new(book_pub_with_editors_hash) }
+        let(:hash) { described_class.new(book_with_editors_pub_hash) }
 
         it 'includes editors' do
           expect(chicago_citation).to include('Jack Smith', 'Jill Sprat')
