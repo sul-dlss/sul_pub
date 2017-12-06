@@ -364,6 +364,15 @@ describe SulBib::API, :vcr do
         it_behaves_like 'it creates new contributions and publications' # TODO: modifies existing contributions.
       end
 
+      context 'with allcaps or mixed case strings' do
+        let(:request_data) { sul_author_hash.merge(sul_pub_id: publication_with_contributions.id, visibility: 'PRIVATE', status: 'New', featured: true) }
+        it 'downcases appropriately' do
+          expect { http_request }.not_to change { existing_contrib }
+          contrib = publication_with_contributions.contributions.reload.last
+          expect(contrib.status).to eq 'new'
+          expect(contrib.visibility).to eq 'private'
+        end
+      end
     end # context 'success'
 
     context 'failure' do
@@ -463,6 +472,16 @@ describe SulBib::API, :vcr do
           http_request # defined in context, uses request_data
           expect { existing_contrib.reload }.not_to change { [existing_contrib.status, existing_contrib.featured] }
           expect(existing_contrib.visibility).to eq 'private'
+        end
+      end
+
+      context 'with allcaps or mixed case strings' do
+        let(:request_data) { existing_contrib_ids.merge(visibility: 'PUBLIC', status: 'New') }
+        it 'downcases appropriately' do
+          http_request # defined in context, uses request_data
+          expect { existing_contrib.reload }.not_to change { existing_contrib.featured }
+          expect(existing_contrib.status).to eq 'new'
+          expect(existing_contrib.visibility).to eq 'public'
         end
       end
     end # context 'success'
