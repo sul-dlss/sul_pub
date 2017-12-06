@@ -5,11 +5,9 @@ module SulBib
 
     helpers do
       # Extract a hash of optional contribution parameters from the request.
-      # When this method is called for a PATCH request, it's important that it
-      # does not set any defaults.
-      # @return [Hash] May contain any of :features, :status and :visibility
+      # When this method is called for a PATCH request, it's important that it does not set any defaults.
+      # @return [Hash<Symbol => [String, Boolean]>] May contain any of :features, :status and :visibility
       def contrib_attr
-        # Gather optional contribution fields.
         contrib_attr = {}
         [:featured, :status, :visibility].each do |field|
           # check params[field].nil? not .blank? because featured can be `false`.
@@ -26,8 +24,8 @@ module SulBib
         contrib = pub.contributions.find_or_initialize_by(author_id: author.id)
         contrib.assign_attributes(authorship.merge(cap_profile_id: author.cap_profile_id, author_id: author.id))
         pub.pubhash_needs_update! if contrib.persisted?
-        contrib.save
         begin
+          contrib.save!
           # Save the publication so it will sync the contribution into the pub.pub_hash[:authorship] array.
           pub.save!
         rescue ActiveRecord::ActiveRecordError => e
@@ -199,8 +197,8 @@ module SulBib
       # the other attributes of an existing contribution.  Because this POST
       # conflates creation with update, these attributes must be explicit.
       requires :featured, type: Boolean, desc: 'The JSON body must indicate if the contribution is featured'
-      requires :status, type: String, desc: 'The JSON body must indicate if the contribution is approved'
-      requires :visibility, type: String, desc: 'The JSON body must indicate if the contribution is visible'
+      requires :status, type: String, desc: 'The JSON body must indicate if the contribution is approved', coerce_with: ->(val) { val.downcase }
+      requires :visibility, type: String, desc: 'The JSON body must indicate if the contribution is visible', coerce_with: ->(val) { val.downcase }
     end
     post do
       request_body_unparsed = env['api.request.input']
@@ -259,8 +257,8 @@ module SulBib
       # An update request can omit any of the contribution attributes, so long
       # as no defaults are specified here.
       optional :featured, type: Boolean, desc: 'The JSON body should indicate if the contribution is featured'
-      optional :status, type: String, desc: 'The JSON body should indicate if the contribution is approved'
-      optional :visibility, type: String, desc: 'The JSON body should indicate if the contribution is visible'
+      optional :status, type: String, desc: 'The JSON body should indicate if the contribution is approved', coerce_with: ->(val) { val.downcase }
+      optional :visibility, type: String, desc: 'The JSON body should indicate if the contribution is visible', coerce_with: ->(val) { val.downcase }
     end
     patch do
       request_body_unparsed = env['api.request.input']
