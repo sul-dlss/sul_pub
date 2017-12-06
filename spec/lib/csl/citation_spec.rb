@@ -5,6 +5,7 @@ describe Csl::Citation do
   include PubHash::Book
   include PubHash::CaseStudy
   include PubHash::Conference
+  include PubHash::TechnicalReport
   include PubHash::WorkingPaper
 
   let(:pub_hash) do
@@ -64,47 +65,6 @@ describe Csl::Citation do
                            visibility: 'private',
                            featured: false }]
     }
-  end
-
-  let(:technical_report_online_pub_hash) do
-    {
-      title: 'Laws of Attrition: Crackdown on Russia’s Civil Society After Putin’s Return to the Presidency',
-      type: 'technicalReport',
-      provenance: 'CAP',
-      pages: '',
-      author: [
-        {
-          name: 'Gorbunova Yulia',
-          lastname: 'Gorbunova',
-          firstname: 'Yulia',
-          middlename: '',
-          alternate: [],
-          role: 'author',
-          additionalProperties: {}
-        }
-      ],
-      year: '2013',
-      publisher: 'Human Rights Watch',
-      publicationUrl: 'http://www.hrw.org/reports/2013/04/24/laws-attrition',
-      publicationUrlLabel: '',
-      publicationSource: 'New York'
-    }
-  end
-
-  let(:technical_report_print_pub_hash) do
-    h = technical_report_online_pub_hash
-    h[:author] << {
-      name: 'Baranov Konstantin',
-                    lastname: 'Baranov',
-                    firstname: 'Konstantin',
-                    middlename: '',
-                    alternate: [],
-                    role: 'author',
-                    additionalProperties: {}
-    }
-    h[:publicationUrl] = ''
-    h.delete(:pages)
-    h
   end
 
   shared_examples 'it is a CSL report citation' do
