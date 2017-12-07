@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171116185807) do
+ActiveRecord::Schema.define(version: 20171207233451) do
 
   create_table "author_identities", force: :cascade do |t|
     t.integer  "author_id",     limit: 4,               null: false
@@ -144,6 +144,7 @@ ActiveRecord::Schema.define(version: 20171116185807) do
     t.string   "pages",                   limit: 255
     t.string   "issn",                    limit: 255
     t.string   "publication_type",        limit: 255
+    t.string   "wos_uid",                 limit: 255
   end
 
   add_index "publications", ["issn"], name: "index_publications_on_issn", using: :btree
@@ -152,6 +153,7 @@ ActiveRecord::Schema.define(version: 20171116185807) do
   add_index "publications", ["sciencewire_id"], name: "index_publications_on_sciencewire_id", using: :btree
   add_index "publications", ["title"], name: "index_publications_on_title", length: {"title"=>255}, using: :btree
   add_index "publications", ["updated_at"], name: "index_publications_on_updated_at", using: :btree
+  add_index "publications", ["wos_uid"], name: "index_publications_on_wos_uid", using: :btree
   add_index "publications", ["year"], name: "index_publications_on_year", using: :btree
 
   create_table "pubmed_source_records", force: :cascade do |t|
