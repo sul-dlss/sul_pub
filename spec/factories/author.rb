@@ -18,10 +18,6 @@ FactoryBot.define do
     emails_for_harvest 'alice.edler@stanford.edu'
   end
 
-  factory :author_with_sw_pubs, parent: :author do
-    id 33
-  end
-
   factory :inactive_author, parent: :author do
     active_in_cap false
   end
