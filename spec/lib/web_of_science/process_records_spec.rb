@@ -1,4 +1,4 @@
-describe WebOfScience::ProcessRecords do
+describe WebOfScience::ProcessRecords, :vcr do
   let(:author) do
     # public data from
     # - https://stanfordwho.stanford.edu
@@ -27,17 +27,6 @@ describe WebOfScience::ProcessRecords do
     author
   end
 
-  let(:medline_xml) { File.read('spec/fixtures/wos_client/medline_encoded_records.html') }
-  let(:medline_records) { WebOfScience::Records.new(encoded_records: medline_xml) }
-
-  let(:wos_record_uid) { 'WOS:000288663100014' }
-  let(:wos_record_xml) { File.read('spec/fixtures/wos_client/wos_record_000288663100014.xml') }
-  let(:wos_records_xml) { "<records>#{wos_record_xml}</records>" }
-  let(:wos_records) { WebOfScience::Records.new(records: wos_records_xml) }
-  let(:wos_records_links) do
-    { 'WOS:000288663100014' => { 'pmid' => '21253920', 'doi' => '10.1007/s12630-011-9462-1' } }
-  end
-
   let(:links_client) { Clarivate::LinksClient.new }
   let(:null_logger) { Logger.new('/dev/null') }
 
@@ -64,9 +53,23 @@ describe WebOfScience::ProcessRecords do
     it 'creates new WebOfScienceSourceRecords' do
       expect { processor.execute }.to change { WebOfScienceSourceRecord.count }
     end
-    it 'creates new Publications'
-    it 'creates new PublicationIdentifiers'
-    it 'creates new Contributions'
+    it 'creates new Publications' do
+      expect { processor.execute }.to change { Publication.count }
+    end
+    it 'creates new PublicationIdentifiers' do
+      expect { processor.execute }.to change { PublicationIdentifier.count }
+    end
+
+    it 'creates new Contributions' do
+      expect { processor.execute }.to change { Contribution.count }
+    end
+    it 'creates new contribution in the pub_hash[:authorship]' do
+      uids = processor.execute
+      uids.each do |uid|
+        pub = Publication.for_uid(uid)
+        expect(pub.pub_hash).to include(:authorship)
+      end
+    end
 
     # ---
     # Unhappy paths
@@ -101,26 +104,55 @@ describe WebOfScience::ProcessRecords do
     end
   end
 
+  # ---
+  # MESH headings - integration specs
+  # Note: not all PubMed/MEDLINE records contain MESH headings, so the
+  # spec example records were chosen to contain or fetch MESH headings
+
+  shared_examples 'pubs_with_pmid_have_mesh_headings' do
+    # Note: the spec example records have MESH headings
+    it 'creates publication.pub_hash with MESH headings' do
+      processor.execute
+      records.select(&:pmid).each do |rec|
+        pub = Publication.for_uid(rec.uid)
+        expect(pub.pub_hash).to include(:mesh_headings)
+      end
+    end
+  end
+
   context 'with MEDLINE records' do
     subject(:processor) { described_class.new(author, records) }
 
-    let(:records) { medline_records }
+    # Note: "MEDLINE:26776186" has a PMID and MESH headings
+    let(:medline_xml) { File.read('spec/fixtures/wos_client/medline_record_26776186.xml') }
+    let(:records_xml) { "<records>#{medline_xml}</records>" }
+    let(:records) { WebOfScience::Records.new(records: records_xml) }
 
     # Note: medline records are not submitted to the links-API
 
     it_behaves_like '#execute'
+    it_behaves_like 'pubs_with_pmid_have_mesh_headings'
   end
 
   context 'with WOS records' do
     subject(:processor) { described_class.new(author, records) }
 
-    let(:records) { wos_records }
+    # Note: "WOS:000288663100014" has a PMID and it gets MESH headings from PubMed
+    let(:wos_record_uid) { 'WOS:000288663100014' }
+    let(:wos_record_xml) { File.read('spec/fixtures/wos_client/wos_record_000288663100014.xml') }
+    let(:wos_records_xml) { "<records>#{wos_record_xml}</records>" }
+    let(:wos_records_links) do
+      { 'WOS:000288663100014' => { 'pmid' => '21253920', 'doi' => '10.1007/s12630-011-9462-1' } }
+    end
+
+    let(:records) { WebOfScience::Records.new(records: wos_records_xml) }
 
     before do
       allow(links_client).to receive(:links).with([wos_record_uid]).and_return(wos_records_links)
     end
 
     it_behaves_like '#execute'
+    it_behaves_like 'pubs_with_pmid_have_mesh_headings'
   end
 
   context 'with records from excluded databases' do

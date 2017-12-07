@@ -1,4 +1,3 @@
-<?xml version='1.0'?>
 <REC r_id_disclaimer='ResearcherID data provided by Clarivate Analytics'>
   <UID>MEDLINE:24452614</UID>
   <static_data>
@@ -104,7 +103,7 @@
               insight for drug discovery, by evaluating druggability and
               suggesting specific regions for interacting with drug-like
               molecules.CPT: Pharmacometrics Systems Pharmacology (2014) 3, e93;
-              doi:10.1038/psp.2013.66; published online 22 January 2014. 
+              doi:10.1038/psp.2013.66; published online 22 January 2014.
             </p>
           </abstract_text>
         </abstract>

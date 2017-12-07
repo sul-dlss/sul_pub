@@ -1,0 +1,203 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml
+    body:
+      encoding: UTF-8
+      string: "&id=&id=21253920"
+    headers:
+      User-Agent:
+      - Faraday v0.13.1
+      Accept:
+      - "*/*"
+      Accept-Encoding:
+      - gzip,deflate
+      Date:
+      - Tue, 05 Dec 2017 02:10:28 GMT
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 05 Dec 2017 02:10:30 GMT
+      Server:
+      - Apache
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Content-Security-Policy:
+      - upgrade-insecure-requests
+      Access-Control-Allow-Origin:
+      - "*"
+      Cache-Control:
+      - private
+      Ncbi-Phid:
+      - 990CE42EA25FB8B100000000020C0204
+      Ncbi-Sid:
+      - 990CE42EA2600161_0524SID
+      Content-Type:
+      - text/xml; charset=UTF-8
+      Set-Cookie:
+      - ncbi_sid=990CE42EA2600161_0524SID; domain=.nih.gov; path=/; expires=Wed, 05
+        Dec 2018 02:10:30 GMT
+      Vary:
+      - Accept-Encoding
+      Content-Encoding:
+      - gzip
+      X-Ua-Compatible:
+      - IE=Edge
+      X-Xss-Protection:
+      - 1; mode=block
+      Content-Length:
+      - '1372'
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0" ?>
+        <!DOCTYPE PubmedArticleSet PUBLIC "-//NLM//DTD PubMedArticle, 1st January 2018//EN" "https://dtd.nlm.nih.gov/ncbi/pubmed/out/pubmed_180101.dtd">
+        <PubmedArticleSet>
+        <PubmedArticle>
+            <MedlineCitation Status="MEDLINE" Owner="NLM">
+                <PMID Version="1">21253920</PMID>
+                <DateCompleted>
+                    <Year>2011</Year>
+                    <Month>08</Month>
+                    <Day>01</Day>
+                </DateCompleted>
+                <DateRevised>
+                    <Year>2011</Year>
+                    <Month>03</Month>
+                    <Day>22</Day>
+                </DateRevised>
+                <Article PubModel="Print-Electronic">
+                    <Journal>
+                        <ISSN IssnType="Electronic">1496-8975</ISSN>
+                        <JournalIssue CitedMedium="Internet">
+                            <Volume>58</Volume>
+                            <Issue>4</Issue>
+                            <PubDate>
+                                <Year>2011</Year>
+                                <Month>Apr</Month>
+                            </PubDate>
+                        </JournalIssue>
+                        <Title>Canadian journal of anaesthesia = Journal canadien d'anesthesie</Title>
+                        <ISOAbbreviation>Can J Anaesth</ISOAbbreviation>
+                    </Journal>
+                    <ArticleTitle>Kinked Perifix® FX Springwound epidural catheters.</ArticleTitle>
+                    <Pagination>
+                        <MedlinePgn>413-4</MedlinePgn>
+                    </Pagination>
+                    <ELocationID EIdType="doi" ValidYN="Y">10.1007/s12630-011-9462-1</ELocationID>
+                    <AuthorList CompleteYN="Y">
+                        <Author ValidYN="Y">
+                            <LastName>Hilton</LastName>
+                            <ForeName>Gillian</ForeName>
+                            <Initials>G</Initials>
+                        </Author>
+                        <Author ValidYN="Y">
+                            <LastName>Jette</LastName>
+                            <ForeName>Christine G</ForeName>
+                            <Initials>CG</Initials>
+                        </Author>
+                        <Author ValidYN="Y">
+                            <LastName>Ouyang</LastName>
+                            <ForeName>Yi-Bing</ForeName>
+                            <Initials>YB</Initials>
+                        </Author>
+                        <Author ValidYN="Y">
+                            <LastName>Riley</LastName>
+                            <ForeName>Edward T</ForeName>
+                            <Initials>ET</Initials>
+                        </Author>
+                    </AuthorList>
+                    <Language>eng</Language>
+                    <PublicationTypeList>
+                        <PublicationType UI="D016422">Letter</PublicationType>
+                        <PublicationType UI="D013485">Research Support, Non-U.S. Gov't</PublicationType>
+                    </PublicationTypeList>
+                    <ArticleDate DateType="Electronic">
+                        <Year>2011</Year>
+                        <Month>01</Month>
+                        <Day>21</Day>
+                    </ArticleDate>
+                </Article>
+                <MedlineJournalInfo>
+                    <Country>United States</Country>
+                    <MedlineTA>Can J Anaesth</MedlineTA>
+                    <NlmUniqueID>8701709</NlmUniqueID>
+                    <ISSNLinking>0832-610X</ISSNLinking>
+                </MedlineJournalInfo>
+                <CitationSubset>IM</CitationSubset>
+                <MeshHeadingList>
+                    <MeshHeading>
+                        <DescriptorName UI="D000767" MajorTopicYN="N">Anesthesia, Epidural</DescriptorName>
+                        <QualifierName UI="Q000295" MajorTopicYN="Y">instrumentation</QualifierName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName UI="D000773" MajorTopicYN="N">Anesthesia, Obstetrical</DescriptorName>
+                        <QualifierName UI="Q000295" MajorTopicYN="Y">instrumentation</QualifierName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName UI="D002404" MajorTopicYN="N">Catheterization</DescriptorName>
+                        <QualifierName UI="Q000295" MajorTopicYN="Y">instrumentation</QualifierName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName UI="D005260" MajorTopicYN="N">Female</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName UI="D006801" MajorTopicYN="N">Humans</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName UI="D011247" MajorTopicYN="N">Pregnancy</DescriptorName>
+                    </MeshHeading>
+                </MeshHeadingList>
+            </MedlineCitation>
+            <PubmedData>
+                <History>
+                    <PubMedPubDate PubStatus="received">
+                        <Year>2010</Year>
+                        <Month>12</Month>
+                        <Day>09</Day>
+                    </PubMedPubDate>
+                    <PubMedPubDate PubStatus="accepted">
+                        <Year>2011</Year>
+                        <Month>01</Month>
+                        <Day>10</Day>
+                    </PubMedPubDate>
+                    <PubMedPubDate PubStatus="entrez">
+                        <Year>2011</Year>
+                        <Month>1</Month>
+                        <Day>22</Day>
+                        <Hour>6</Hour>
+                        <Minute>0</Minute>
+                    </PubMedPubDate>
+                    <PubMedPubDate PubStatus="pubmed">
+                        <Year>2011</Year>
+                        <Month>1</Month>
+                        <Day>22</Day>
+                        <Hour>6</Hour>
+                        <Minute>0</Minute>
+                    </PubMedPubDate>
+                    <PubMedPubDate PubStatus="medline">
+                        <Year>2011</Year>
+                        <Month>8</Month>
+                        <Day>2</Day>
+                        <Hour>6</Hour>
+                        <Minute>0</Minute>
+                    </PubMedPubDate>
+                </History>
+                <PublicationStatus>ppublish</PublicationStatus>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">21253920</ArticleId>
+                    <ArticleId IdType="doi">10.1007/s12630-011-9462-1</ArticleId>
+                </ArticleIdList>
+            </PubmedData>
+        </PubmedArticle>
+
+        </PubmedArticleSet>
+    http_version: 
+  recorded_at: Tue, 05 Dec 2017 02:10:28 GMT
+recorded_with: VCR 3.0.3

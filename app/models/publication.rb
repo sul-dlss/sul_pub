@@ -74,6 +74,16 @@ class Publication < ActiveRecord::Base
                .find_by("publication_identifiers.identifier_type": 'pmid', "publication_identifiers.identifier_value": pmid)
   end
 
+  # Publication for a WOS-UID
+  # @param [String] a WOS-UID
+  # @return [Publication, nil]
+  def self.for_uid(uid)
+    # Until the Publication model supports a `wos_uid` field, get the pub via the identifiers
+    pub_ids = PublicationIdentifier.where(identifier_type: 'WosUID', identifier_value: uid)
+    return if pub_ids.empty?
+    pub_ids.first.publication
+  end
+
   # @return [Publication] new object, unsaved
   def self.build_new_manual_publication(pub_hash, original_source_string, provenance = Settings.cap_provenance)
     existingRecord = UserSubmittedSourceRecord.find_or_initialize_by_source_data(original_source_string)
