@@ -1,0 +1,83 @@
+<PubmedArticle>
+  <MedlineCitation Status="Publisher" Owner="NLM">
+    <PMID Version="1">10000166</PMID>
+    <DateRevised>
+      <Year>1999</Year>
+      <Month>02</Month>
+      <Day>17</Day>
+    </DateRevised>
+    <Article PubModel="Print">
+      <Journal>
+        <ISSN IssnType="Print">0163-1829</ISSN>
+        <JournalIssue CitedMedium="Print">
+          <Volume>45</Volume>
+          <Issue>1</Issue>
+          <PubDate>
+            <Year>1992</Year>
+            <Month>Jan</Month>
+            <Day>01</Day>
+          </PubDate>
+        </JournalIssue>
+        <Title>Physical review. B, Condensed matter</Title>
+        <ISOAbbreviation>Phys. Rev., B Condens. Matter</ISOAbbreviation>
+      </Journal>
+      <ArticleTitle>Fluid permeability in porous media: Comparison of electrical estimates with hydrodynamical calculations.</ArticleTitle>
+      <Pagination>
+        <MedlinePgn>186-195</MedlinePgn>
+      </Pagination>
+      <AuthorList CompleteYN="Y">
+        <Author ValidYN="Y">
+          <LastName>Kostek</LastName>
+          <Initials>S</Initials>
+        </Author>
+        <Author ValidYN="Y">
+          <LastName>Schwartz</LastName>
+          <Initials>LM</Initials>
+        </Author>
+        <Author ValidYN="Y">
+          <LastName>Johnson</LastName>
+          <Initials>DL</Initials>
+        </Author>
+      </AuthorList>
+      <Language>eng</Language>
+      <PublicationTypeList>
+        <PublicationType UI="D016428">Journal Article</PublicationType>
+      </PublicationTypeList>
+    </Article>
+    <MedlineJournalInfo>
+      <Country>United States</Country>
+      <MedlineTA>Phys Rev B Condens Matter</MedlineTA>
+      <NlmUniqueID>9878217</NlmUniqueID>
+      <ISSNLinking>0163-1829</ISSNLinking>
+    </MedlineJournalInfo>
+  </MedlineCitation>
+  <PubmedData>
+    <History>
+      <PubMedPubDate PubStatus="pubmed">
+        <Year>1992</Year>
+        <Month>1</Month>
+        <Day>1</Day>
+        <Hour>0</Hour>
+        <Minute>0</Minute>
+      </PubMedPubDate>
+      <PubMedPubDate PubStatus="medline">
+        <Year>1999</Year>
+        <Month>2</Month>
+        <Day>19</Day>
+        <Hour>0</Hour>
+        <Minute>0</Minute>
+      </PubMedPubDate>
+      <PubMedPubDate PubStatus="entrez">
+        <Year>1992</Year>
+        <Month>1</Month>
+        <Day>1</Day>
+        <Hour>0</Hour>
+        <Minute>0</Minute>
+      </PubMedPubDate>
+    </History>
+    <PublicationStatus>ppublish</PublicationStatus>
+    <ArticleIdList>
+      <ArticleId IdType="pubmed">10000166</ArticleId>
+    </ArticleIdList>
+  </PubmedData>
+</PubmedArticle>
