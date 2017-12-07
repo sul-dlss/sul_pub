@@ -7,6 +7,7 @@ describe 'cleanup rake tasks' do
   end
   before(:each) do
     Rake::Task['cleanup:merge_profiles'].reenable
+    allow($stdout).to receive(:puts)
   end
 
   describe 'merge profiles task' do
