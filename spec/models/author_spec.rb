@@ -1,4 +1,3 @@
-
 describe Author do
   let(:auth_hash) do
     JSON.parse(File.open('fixtures/cap_poll_author_3810.json', 'r').read)
@@ -6,6 +5,13 @@ describe Author do
 
   let(:missing_fields) do
     JSON.parse(File.open('fixtures/cap_poll_author_3810_missing.json', 'r').read)
+  end
+
+  describe '#cap_profile_id' do
+    it 'validates uniqueness' do
+      Author.find_or_create_by!(cap_profile_id: 1)
+      expect { Author.create!(cap_profile_id: 1) }.to raise_error ActiveRecord::RecordInvalid
+    end
   end
 
   describe '#first_name' do
