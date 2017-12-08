@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171207233451) do
+ActiveRecord::Schema.define(version: 20171208233331) do
 
   create_table "author_identities", force: :cascade do |t|
     t.integer  "author_id",     limit: 4,               null: false
@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(version: 20171207233451) do
 
   add_index "authors", ["active_in_cap"], name: "index_authors_on_active_in_cap", using: :btree
   add_index "authors", ["california_physician_license"], name: "index_authors_on_california_physician_license", using: :btree
-  add_index "authors", ["cap_profile_id"], name: "index_authors_on_cap_profile_id", using: :btree
+  add_index "authors", ["cap_profile_id"], name: "index_authors_on_cap_profile_id", unique: true, using: :btree
   add_index "authors", ["sunetid"], name: "index_authors_on_sunetid", using: :btree
   add_index "authors", ["university_id"], name: "index_authors_on_university_id", using: :btree
 
