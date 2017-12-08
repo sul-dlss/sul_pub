@@ -1,11 +1,8 @@
+# Note: there is no 'Bibtex' module in sul_pub to avoid any conflicts with other gems
 require 'bibtex'
 require 'citeproc'
 
 class BibtexIngester
-  BOOK_TYPE_MAPPING = %w(book booklet inbook incollection manual techreport).freeze
-  ARTICLE_TYPE_MAPPING = %w(article misc unpublished).freeze
-  INPROCEEDINGS_TYPE_MAPPING = %w(conference proceedings inproceedings).freeze
-
   def ingest_from_source_directory(directory)
     @batch_dir = directory || Settings.BIBTEX.IMPORT.DIR
     @bibtex_import_logger = Logger.new(Settings.BIBTEX.IMPORT.LOG)
@@ -113,7 +110,12 @@ class BibtexIngester
   end
 
   def process_record(record, author)
-    pub = nil
+    begin
+      existing_source_record = BatchUploadedSourceRecord.where(sunet_id: author.sunetid, title: record.title.to_s).first
+    rescue => e
+      @bibtex_import_logger.info "Search for existing batch upload for : #{record} failed probably because of unicode issue."
+      @bibtex_import_logger.info "Error: #{e.message}"
+    end
 
     source_attrib_hash = {
       is_active: true,
@@ -124,26 +126,21 @@ class BibtexIngester
     source_attrib_hash[:title] = record.title.to_s if record['title'].present?
     source_attrib_hash[:year] = record.year.to_s if record['year'].present?
 
-    begin
-      existing_source_record = BatchUploadedSourceRecord.where(sunet_id: author.sunetid, title: record.title.to_s).first
-    rescue => e
-      @bibtex_import_logger.info "Search for existing batch upload for : #{record} failed probably because of unicode issue."
-      @bibtex_import_logger.info "Error: #{e.message}"
-    end
-    if !existing_source_record.nil?
+    bibtex_mapper = BibtexMapper.new(record)
+
+    if existing_source_record
       pub = existing_source_record.publication
       @total_duplicates += 1
       # if the publication has been updated with a sw or pubmed record since it was first submitted, then do nothing
       if pub.sciencewire_id.blank? && pub.pmid.blank?
-        pub.update_attributes(active: true, pub_hash: convert_bibtex_record_to_pub_hash(record, author))
+        pub.update_attributes(active: true, pub_hash: bibtex_pub_hash(bibtex_mapper, author))
         existing_source_record.update_attributes(source_attrib_hash)
         existing_source_record.save
       end
-    elsif !determine_sul_pub_type(record.type.to_s.strip).nil?
+    elsif bibtex_mapper.sul_document_type.present?
       pub = find_existing_pub(record)
       if pub.nil?
-
-        pub = Publication.create(active: true, pub_hash: convert_bibtex_record_to_pub_hash(record, author))
+        pub = Publication.create(active: true, pub_hash: bibtex_pub_hash(bibtex_mapper, author))
         @total_new_pubs += 1
       end
       BatchUploadedSourceRecord.create(publication_id: pub.id).update_attributes(source_attrib_hash)
@@ -168,9 +165,10 @@ class BibtexIngester
     end
     @ingested_for_file += 1
     @total_successfully_ingested += 1
-  rescue => e
-    @bibtex_import_logger.info "Record not ingested: #{record}"
-    @bibtex_import_logger.info "Error: #{e.message}"
+  rescue StandardError => e
+    @bibtex_import_logger.error "Record not ingested: #{record}"
+    @bibtex_import_logger.error "Error: #{e.message}"
+    @bibtex_import_logger.error e.backtrace.join("\n") if e.backtrace.present?
     @total_faulty_record_count += 1
   end
 
@@ -206,103 +204,26 @@ class BibtexIngester
     pub
   end
 
-  def convert_bibtex_record_to_pub_hash(record, author)
-    sul_document_type = determine_sul_pub_type(record.type.to_s.strip)
+  private
 
-    record_as_hash = {}
-    identifiers = []
-    issn = record['issn'].to_s.strip if record['issn'].present?
-    isbn = record['isbn'].to_s.strip if record['isbn'].present?
-    doi = record['doi'].to_s.strip if record['doi'].present?
-
-    if issn.present?
-      issn_for_id_array = { type: 'issn', id: issn, url: Settings.SULPUB_ID.SEARCHWORKS_URI + issn }
-      record_as_hash[:issn] = issn
-    end
-    if isbn.present?
-      isbn_for_id_array = { type: 'isbn', id: isbn, url: Settings.SULPUB_ID.SEARCHWORKS_URI + isbn }
-      record_as_hash[:isbn] = isbn
-      identifiers << isbn_for_id_array
-    end
-    if doi.present?
-      doi_for_id_array = { type: 'doi', id: doi, url: "#{Settings.DOI.BASE_URI}#{doi}" }
-      identifiers << doi_for_id_array
-      record_as_hash[:doi] = doi
+    # @param [Author] author
+    # @return [Array<Hash>]
+    def bibtex_authorship(author)
+      authorship_hash = {
+        sul_author_id: author.id,
+        status: 'approved',
+        visibility: 'public',
+        featured: false
+      }
+      authorship_hash[:cap_profile_id] = author.cap_profile_id if author.cap_profile_id.present?
+      [authorship_hash]
     end
 
-    authorship_hash = {
-      sul_author_id: author.id,
-      status: 'approved',
-      visibility: 'public',
-      featured: false
-    }
-
-    authorship_hash[:cap_profile_id] = author.cap_profile_id if author.cap_profile_id.present?
-
-    record_as_hash[:authorship] = [authorship_hash]
-
-    record_as_hash[:provenance] = Settings.batch_source
-    record_as_hash[:title] = record.title.to_s.strip if record['title'].present?
-    # unless !record["title"].blank && record["title"].blank? then record_as_hash[:title] = record.chapter.to_s.strip end
-    record_as_hash[:booktitle] = record.booktitle.to_s.strip if record['booktitle'].present?
-    if record['author'].present?
-      record_as_hash[:author] = record.author.collect { |a| { name: a.to_s } }
-      record_as_hash[:allAuthors] = record.author.to_a.join(', ')
+    # @param [BibtexMapper] bibtex_mapper
+    # @param [Author] author
+    # @return [Hash]
+    def bibtex_pub_hash(bibtex_mapper, author)
+      bibtex_mapper.pub_hash.merge(authorship: bibtex_authorship(author))
     end
 
-    record_as_hash[:editor] = record.editor.to_s.strip if record['editor'].present?
-    record_as_hash[:publisher] =  record.publisher.to_s.strip if record['publisher'].present?
-    record_as_hash[:year] = record.year.to_s.strip if record['year'].present?
-    record_as_hash[:address] = record.address.to_s.strip if record['address'].present?
-    record_as_hash[:howpublished] = record.howpublished.to_s.strip if record['howpublished'].present?
-    record_as_hash[:edition] = record.edition.to_s.strip if record['edition'].present?
-    record_as_hash[:chapter] = record.chapter.to_s.strip if record['chapter'].present?
-
-    record_as_hash[:type] = sul_document_type
-    record_as_hash[:bibtex_type] = record.type.to_s.strip
-
-    if sul_document_type == Settings.sul_doc_types.inproceedings
-      conference_hash = { organization: record['organization'].to_s.strip } if record['organization'].present?
-      record_as_hash[:conference] = conference_hash unless conference_hash.nil?
-    end
-
-    if sul_document_type == Settings.sul_doc_types.article || record.journal.present?
-      journal_hash = {}
-      journal_hash[:name] = record.journal.to_s.strip if record['journal'].present?
-      journal_hash[:volume] = record.volume.to_s.strip if record['volume'].present?
-      journal_hash[:issue] = record.issue.to_s.strip if record['issue'].present?
-      journal_hash[:articlenumber] = record.number.to_s.strip if record['number'].present?
-      journal_hash[:pages] = record.pages.to_s.strip if record['pages'].present?
-      journal_hash[:month] = record.month.to_s.strip if record['month'].present?
-      journal_identifiers = []
-      journal_identifiers << issn_for_id_array if issn.present?
-
-      journal_hash[:identifier] = journal_identifiers
-      record_as_hash[:journal] = journal_hash unless journal_hash.empty?
-    elsif record['pages'].present?
-      # if this is an article then the pages go in the article object, but if not put it in the main object.
-      record_as_hash[:pages] = record.pages.to_s.strip
-    end
-
-    if record['series']
-      book_series_hash = {}
-      book_series_hash[:identifier] = [issn_for_id_array]
-      book_series_hash[:title] = record.series.to_s.strip  if record['series'].present?
-      book_series_hash[:volume] = record.volume.to_s.strip if record['volume'].present?
-      book_series_hash[:month] = record.month.to_s.strip if record['month'].present?
-      record_as_hash[:series] = book_series_hash unless book_series_hash.empty?
-    end
-    record_as_hash[:identifier] = identifiers
-    record_as_hash
-  end
-
-  def determine_sul_pub_type(bibtex_type)
-    if BOOK_TYPE_MAPPING.include?(bibtex_type)
-      Settings.sul_doc_types.book
-    elsif ARTICLE_TYPE_MAPPING.include?(bibtex_type)
-      Settings.sul_doc_types.article
-    elsif INPROCEEDINGS_TYPE_MAPPING.include?(bibtex_type)
-      Settings.sul_doc_types.inproceedings
-    end
-  end
 end
