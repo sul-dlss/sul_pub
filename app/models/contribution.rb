@@ -45,29 +45,15 @@ class Contribution < ActiveRecord::Base
     end
   end
 
+  # checks featured, status and visibility
+  # @return [Boolean]
   def self.valid_fields?(contrib)
-    featured_valid?(contrib) &&
-      status_valid?(contrib) &&
-      visibility_valid?(contrib)
-  end
-
-  # @return [Boolean]
-  def self.visibility_valid?(contrib)
-    contrib = contrib.with_indifferent_access
-    VISIBILITY_VALUES.include? contrib[:visibility].to_s.downcase
-  end
-
-  # @return [Boolean]
-  def self.status_valid?(contrib)
-    contrib = contrib.with_indifferent_access
-    STATUS_VALUES.include? contrib[:status].to_s.downcase
-  end
-
-  # Allowed values for featured are true and false
-  # @return [Boolean]
-  def self.featured_valid?(contrib)
-    contrib = contrib.with_indifferent_access
-    contrib[:featured].to_s =~ /true|false/i ? true : false
+    segment = contrib.with_indifferent_access.slice(:featured, :status, :visibility)
+    return false unless segment.size == 3
+    return false if segment.values.any?(&:nil?)
+    prototype = Contribution.new(segment)
+    prototype.validate # we KNOW it won't validate (w/o author and publication), but we check for the other fields
+    prototype.errors.messages.slice(:featured, :status, :visibility).empty?
   end
 
   def to_pub_hash
