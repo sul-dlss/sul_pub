@@ -70,14 +70,12 @@ class Publication < ActiveRecord::Base
                .find_by("publication_identifiers.identifier_type": 'pmid', "publication_identifiers.identifier_value": pmid)
   end
 
-  # Publication for a WOS-UID
-  # @param [String] a WOS-UID
+  # Queries publication_identifiers (like the poorly-named find_by_xxx methods above)
+  # @param [String] a WOS-UID, including database prefix
   # @return [Publication, nil]
   def self.for_uid(uid)
-    # Until the Publication model supports a `wos_uid` field, get the pub via the identifiers
-    pub_ids = PublicationIdentifier.where(identifier_type: 'WosUID', identifier_value: uid)
-    return if pub_ids.empty?
-    pub_ids.first.publication
+    Publication.includes(:publication_identifiers)
+               .find_by("publication_identifiers.identifier_type": 'WosUID', "publication_identifiers.identifier_value": uid)
   end
 
   # @return [Publication] new object, unsaved
@@ -110,16 +108,14 @@ class Publication < ActiveRecord::Base
   end
 
   # @return [self]
+  # @deprecated
   def build_from_sciencewire_hash(new_sw_pub_hash)
     self.pub_hash = new_sw_pub_hash
-
     self.sciencewire_id = new_sw_pub_hash[:sw_id]
-
     if pmid.present?
       new_sw_pub_hash[:pmid] = pmid.to_s # Preserve the pmid just in case incoming sciencewire doc doesn't have PMID
       add_any_pubmed_data_to_hash
     end
-
     self
   end
 
