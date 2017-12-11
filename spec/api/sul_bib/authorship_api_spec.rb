@@ -269,49 +269,9 @@ describe SulBib::API, :vcr do
       check_response_error 404
     end
     it 'returns 404 when it cannot retrieve a cap_profile_id' do
-      expect(Author).to receive(:fetch_from_cap_and_create)
-        .with(cap_profile_id)
-        .and_return(nil)
+      expect(Author).to receive(:fetch_from_cap_and_create).with(cap_profile_id)
       http_request
       check_response_error 404
-    end
-    it 'returns 500 when it finds duplicate authors for a cap_profile_id' do
-      expect(Author).to receive(:where)
-        .with(cap_profile_id: cap_profile_id)
-        .and_return([author, author])
-      http_request
-      check_response_error 500
-      expect(result['error']).to include('multiple records')
-    end
-  end # shared_examples 'it issues errors for cap_profile_id'
-
-  # When the database constraints for cap_profile_id are setup
-  # correctly and the AuthorshipAPI uses cap_profile_id before sul_author_id
-  # to find an author, it's virtually impossible to hit the errors tested
-  # by these specs.  However, the database constraints do not, yet,
-  # enforce NOT NULL and UNIQUE on the cap_profile_id.
-  shared_examples 'it checks author for the correct cap_profile_id' do
-    let(:cap_profile_id) { '999999' }
-    let(:request_data) do
-      valid_data_for_post.merge(
-        cap_profile_id: cap_profile_id,
-        sul_author_id: author.id
-      )
-    end
-    it 'updates author without a cap_profile_id' do
-      author.cap_profile_id = ''
-      expect(Author).to receive(:where).with(cap_profile_id: cap_profile_id).and_return([author])
-      http_request
-      expect(author.cap_profile_id).to eq(cap_profile_id.to_i)
-      # check_response_error 404
-    end
-    it 'returns 500 when author has a different cap_profile_id' do
-      author.cap_profile_id = '666666'
-      expect(Author).to receive(:where).with(cap_profile_id: cap_profile_id).and_return([author])
-      http_request
-      expect(response.status).to eq 500
-      result = JSON.parse(response.body)
-      expect(result['error']).to include('different cap_profile_id', cap_profile_id, author.cap_profile_id.to_s, author.id.to_s)
     end
   end # shared_examples 'it issues errors for cap_profile_id'
 
@@ -361,7 +321,6 @@ describe SulBib::API, :vcr do
       it_behaves_like 'it issues errors without author params'
       it_behaves_like 'it issues errors when sul_author_id does not exist'
       it_behaves_like 'it issues errors for cap_profile_id'
-      it_behaves_like 'it checks author for the correct cap_profile_id'
       it_behaves_like 'it handles invalid authorship attributes'
 
       it 'returns 500 error when publication contribution fails to save' do
@@ -471,7 +430,6 @@ describe SulBib::API, :vcr do
       it_behaves_like 'it issues errors without author params'
       it_behaves_like 'it issues errors when sul_author_id does not exist'
       it_behaves_like 'it issues errors for cap_profile_id'
-      it_behaves_like 'it checks author for the correct cap_profile_id'
       it_behaves_like 'it handles invalid authorship attributes'
 
       context 'if there are contribution record errors' do
