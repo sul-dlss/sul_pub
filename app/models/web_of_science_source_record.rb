@@ -21,6 +21,11 @@ class WebOfScienceSourceRecord < ActiveRecord::Base
     end
   end
 
+  # @return [WebOfScience::Record]
+  def record
+    @record ||= WebOfScience::Record.new(record: source_data)
+  end
+
   def source_fingerprint
     super || self.source_fingerprint = Digest::SHA2.hexdigest(source_data)
   end
