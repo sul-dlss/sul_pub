@@ -53,9 +53,19 @@ describe WebOfScience::ProcessRecords, :vcr do
     it 'creates new WebOfScienceSourceRecords' do
       expect { processor.execute }.to change { WebOfScienceSourceRecord.count }
     end
+
     it 'creates new Publications' do
       expect { processor.execute }.to change { Publication.count }
     end
+    it 'creates Publications with WOS attributes' do
+      processor.execute
+      records.uids.each do |uid|
+        pub = Publication.find_by(wos_uid: uid)
+        expect(pub).not_to be_nil
+        expect(pub.pub_hash[:provenance]).to eq Settings.wos_source
+      end
+    end
+
     it 'creates new PublicationIdentifiers' do
       expect { processor.execute }.to change { PublicationIdentifier.count }
     end

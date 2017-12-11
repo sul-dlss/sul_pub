@@ -91,7 +91,11 @@ module WebOfScience
       # @param [WebOfScience::Record] record
       # @return [String, nil] WosUID for a new Publication
       def create_publication(record)
-        pub = Publication.new(active: true, pub_hash: record.pub_hash, xml: record.to_xml)
+        pub = Publication.new(
+          active: true,
+          pub_hash: record.pub_hash,
+          xml: record.to_xml,
+          wos_uid: record.uid)
         pubmed_additions(record, pub) if record.pmid
         create_contribution(pub)
         pub.sync_publication_hash_and_db # creates new PublicationIdentifiers
