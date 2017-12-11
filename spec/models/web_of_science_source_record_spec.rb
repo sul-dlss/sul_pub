@@ -36,6 +36,9 @@ RSpec.describe WebOfScienceSourceRecord, type: :model do
     it 'has a Nokogiri::XML::Document' do
       expect(wos_src_rec.doc).to be_an Nokogiri::XML::Document
     end
+    it 'has a WebOfScience::Record' do
+      expect(wos_src_rec.record).to be_a WebOfScience::Record
+    end
     it 'has an XML String' do
       expect(wos_src_rec.to_xml).to be_an String
     end
