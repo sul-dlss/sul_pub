@@ -23,7 +23,8 @@ module SulBib
         # Publication.pub_hash field, breaking the elegant design of a RDBMS.
         contrib = pub.contributions.find_or_initialize_by(author_id: author.id)
         contrib.assign_attributes(authorship.merge(cap_profile_id: author.cap_profile_id, author_id: author.id))
-        pub.pubhash_needs_update! if contrib.persisted?
+        # error!('You have not supplied a valid authorship record.', 406)
+        pub.pubhash_needs_update! if contrib.persisted? && contrib.changed?
         begin
           contrib.save!
           # Save the publication so it will sync the contribution into the pub.pub_hash[:authorship] array.
@@ -40,54 +41,24 @@ module SulBib
       # helper can retrieve a CAP profile if an author does not exist yet.
       def get_author(cap_profile_id, sul_author_id)
         if cap_profile_id.blank? && sul_author_id.blank?
-          msg = "The request is missing 'sul_author_id' and 'cap_profile_id'."
-          logger.error msg
-          error!(msg, 400)
+          log_and_error!("The request is missing 'sul_author_id' and 'cap_profile_id'.", 400)
         end
-        if cap_profile_id
-          get_cap_author(cap_profile_id)
-        elsif sul_author_id
-          get_sul_author(sul_author_id)
-        end
+        return get_cap_author(cap_profile_id) if cap_profile_id
+        get_sul_author(sul_author_id)
       end
 
       def get_cap_author(cap_profile_id)
-        # The author must be identified in the Author table; do not trust the
-        # cap_profile_id field in the Contribution table.
-        authors = Author.where(cap_profile_id: cap_profile_id)
-        if authors.length == 1
-          profile = authors.first
-        elsif authors.empty?
-          begin
-            profile = Author.fetch_from_cap_and_create(cap_profile_id)
-          rescue => e
-            msg = "SULCAP cannot retrieve cap_profile_id: #{cap_profile_id}\n"
-            msg += e.message
-            status = 404
-          end
-        else
-          # Hitting this block of code should be a cause for concern.  This
-          # should be impossible if unique constraint is applied to Authors.
-          msg = "SULCAP has multiple records for cap_profile_id: #{cap_profile_id}\n"
-          msg += authors.to_json
-          status = 500
-        end
-        profile || begin
-          if msg.nil?
-            msg = "SULCAP has no record for cap_profile_id: #{cap_profile_id}"
-            status = 404
-          end
-          logger.error msg
-          error!(msg, status)
-        end
+        Author.find_by(cap_profile_id: cap_profile_id) ||
+          Author.fetch_from_cap_and_create(cap_profile_id) ||
+          log_and_error!("SULCAP has no record for cap_profile_id: #{cap_profile_id}")
+      rescue => e
+        log_and_error!("SULCAP cannot retrieve cap_profile_id: #{cap_profile_id}\n#{e.message}")
       end
 
       def get_sul_author(sul_author_id)
         Author.find(sul_author_id)
       rescue ActiveRecord::RecordNotFound
-        msg = "SULCAP has no record for sul_author_id: #{sul_author_id}"
-        logger.error msg
-        error!(msg, 404)
+        log_and_error!("SULCAP has no record for sul_author_id: #{sul_author_id}")
       end
 
       # Double check the author contains a cap_profile_id and, if one is
@@ -106,8 +77,7 @@ module SulBib
               msg = "SULCAP has an author record with a different cap_profile_id\n"
               msg += "Found     cap_profile_id: #{author.cap_profile_id} in sul_author_id: #{author.id}\n"
               msg += "Requested cap_profile_id: #{cap_profile_id}"
-              logger.error msg
-              error!(msg, 500)
+              log_and_error!(msg, 500)
             end
           end
         end
@@ -123,52 +93,44 @@ module SulBib
           publication_id: sul_pub_id
         )
         if contributions.empty?
-          msg = "SULCAP has no contributions by the author:#{author.id} for the publication:#{sul_pub_id}"
-          logger.error msg
-          error!(msg, 404)
+          log_and_error!("SULCAP has no contributions by the author:#{author.id} for the publication:#{sul_pub_id}")
         elsif contributions.length > 1
           # Hitting this block of code should be a cause for concern.
-          msg = "SULCAP has multiple contributions by the author:#{author.id} for the publication:#{sul_pub_id}"
-          logger.error msg
-          error!(msg, 500)
+          log_and_error!("SULCAP has multiple contributions by the author:#{author.id} for the publication:#{sul_pub_id}", 500)
         end
         contributions.first
       end
 
-      # Find an existing SUL publication or, if it doesn't exist, it
-      # may be fetched from PubMed (pmid) or ScienceWire (sw_id).
-      def get_publication(sul_pub_id, pmid, sw_id)
-        if sul_pub_id.blank? && pmid.blank? && sw_id.blank?
-          msg = 'There is no valid publication identifier: sul_pub_id || pmid || sw_id.'
-          logger.error msg
-          error!(msg, 400)
+      # Find an existing SUL publication or, if it doesn't exist, it may be fetched based on ID provided
+      # @param [String] sul_pub_id internal ID
+      # @param [String] pmid PubMed ID
+      # @param [String] sw_id ScienceWire ID
+      # @param [String] wos_uid WebOfScience ID
+      def get_publication(sul_pub_id, pmid, sw_id, wos_uid)
+        if sul_pub_id.blank? && pmid.blank? && sw_id.blank? && wos_uid.blank?
+          log_and_error!('There is no valid publication identifier: sul_pub_id || pmid || sw_id || wos_uid.', 400)
         end
         if sul_pub_id
           begin
             Publication.find(sul_pub_id)
           rescue ActiveRecord::RecordNotFound
-            msg = "The SUL:#{sul_pub_id} publication does not exist."
-            logger.error msg
-            error!(msg, 404)
+            log_and_error!("The SUL:#{sul_pub_id} publication does not exist.")
           end
         elsif pmid
-          pub = Publication.find_or_create_by_pmid(pmid)
-          if pub.nil?
-            msg = "The PMID:#{pmid} was not found either locally or at PubMed."
-            logger.error msg
-            error!(msg, 404)
-          end
-          pub
+          Publication.find_or_create_by_pmid(pmid) || log_and_error!("The PMID:#{pmid} was not found either locally or at PubMed.")
+        elsif wos_uid
+          Publication.for_uid(wos_uid) || WebOfScience.Harvester.new || log_and_error!("The #{wos_uid} publication was not found either locally or at WebOfScience.")
         elsif sw_id
-          pub = Publication.find_or_create_by_sciencewire_id(sw_id)
-          if pub.nil?
-            msg = "The ScienceWire:#{sw_id} publication was not found either locally or at ScienceWire."
-            logger.error msg
-            error!(msg, 404)
-          end
-          pub
+          Publication.find_or_create_by_sciencewire_id(sw_id) || log_and_error!("The ScienceWire:#{sw_id} publication was not found either locally or at ScienceWire.")
         end
       end # get_publication
+
+      # @param [String] msg Message to log and send in response
+      # @param [Integer] code HTTP status code
+      def log_and_error!(msg, code = 404)
+        logger.error msg
+        error!(msg, code)
+      end
     end
 
     # This POST can create new authors and publications or update an existing
@@ -186,6 +148,7 @@ module SulBib
       optional :sul_pub_id, type: String, desc: 'The JSON body can contain a SUL publication identifier: "sul_pub_id".'
       optional :pmid, type: String, desc: 'The JSON body can contain a PubMed identifier: "pmid".'
       optional :sw_id, type: String, desc: 'The JSON body can contain a ScienceWire identifier with "sw_id".'
+      optional :wos_uid, type: String, desc: 'The JSON body can contain a WebOfScience identifier with "wos_uid".'
 
       # The request can identify an author by either of these params:
       optional :sul_author_id, type: String, desc: 'The JSON body can contain an author identifier: "sul_author_id".'
@@ -213,22 +176,23 @@ module SulBib
       check_author_ids(author, params[:cap_profile_id])
 
       # Now find an existing sul publication or, if it doesn't exist, it
-      # may be fetched from PubMed (pmid) or ScienceWire (sw_id).
+      # may be fetched from PubMed (pmid), WebOfScience (wos_uid) or ScienceWire (sw_id).
       pub = get_publication(
         params[:sul_pub_id],
         params[:pmid],
-        params[:sw_id]
+        params[:sw_id],
+        params[:wos_uid]
       )
 
       # We've now got the author and pub, validate the authorship and create or
       # update the contribution.  (When a request only requires an update, it
       # should use the PATCH method below.)
-      authorship_hash = contrib_attr
-      # Contribution.valid_fields? will confirm  the authorship fields are
+
+      # Contribution.valid_fields? will confirm the authorship fields are
       # present and valid; the GrapeAPI checks the presence of required params.
-      Contribution.valid_fields?(authorship_hash) ||
+      Contribution.valid_fields?(contrib_attr) ||
         error!('You have not supplied a valid authorship record.', 406)
-      create_or_update_and_return_pub_hash(pub, author, authorship_hash)
+      create_or_update_and_return_pub_hash(pub, author, contrib_attr)
     end # post end
 
     # TODO: create, enable, and test PUT API method.
@@ -272,13 +236,8 @@ module SulBib
       )
       check_author_ids(author, params[:cap_profile_id])
 
-      # The Grape API requires the sul_pub_id parameter, so there should be no
-      # need to check or validate it here.
-      sul_pub_id = params[:sul_pub_id]
-
       # Find an existing contribution by author/publication
-      contrib = get_contribution(author, sul_pub_id)
-      pub = contrib.publication
+      pub = get_contribution(author, params[:sul_pub_id]).publication
 
       # We've now got the contribution, gather the new attributes.  In a PATCH
       # request, it's OK if some of them are missing; validate only the
