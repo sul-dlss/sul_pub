@@ -178,10 +178,10 @@ GEM
     erubis (2.7.0)
     eventmachine (1.2.5)
     execjs (2.7.0)
-    factory_girl (4.5.0)
+    factory_girl (4.9.0)
       activesupport (>= 3.0.0)
-    factory_girl_rails (4.5.0)
-      factory_girl (~> 4.5.0)
+    factory_girl_rails (4.9.0)
+      factory_girl (~> 4.9.0)
       railties (>= 3.0.0)
     faraday (0.13.1)
       multipart-post (>= 1.2, < 3)
@@ -479,7 +479,7 @@ DEPENDENCIES
   dlss_cops
   dotiw
   equivalent-xml
-  factory_girl_rails (~> 4.0)
+  factory_girl_rails (~> 4.9)
   faraday
   grape (~> 0.19)
   high_voltage
