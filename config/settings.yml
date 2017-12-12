@@ -18,12 +18,12 @@ CAP:
   PROFILE_ID_REWRITE_LOG: log/cap_profile_id_rewrite.log
   PORT: 443
   TOKEN_PATH: /oauth/token
-  TOKEN_URI: authz.stanford.edu
+  TOKEN_URI: https://authz.stanford.edu
   TOKEN_USER: sul
   TOKEN_PASS: something
   AUTHORSHIP_API_PATH: /cap-api/api/cap/v1/authors
   AUTHORSHIP_API_PORT: 443
-  AUTHORSHIP_API_URI: cap-uat.stanford.edu
+  AUTHORSHIP_API_URI: https://cap-uat.stanford.edu
 
 ## PubMed Auth Config
 PUBMED:
