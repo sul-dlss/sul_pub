@@ -1,5 +1,5 @@
 # we use sequences so that we can get a variety of alternate identities
-FactoryGirl.define do
+FactoryBot.define do
   factory :author_identity do
     sequence(:first_name)   { |n| "Alice#{n}" }
     sequence(:middle_name)  { |n| "Jim#{n}" }

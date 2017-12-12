@@ -2,7 +2,7 @@
 describe DoiSearch do
   let(:doi_value) { '10.1016/j.mcn.2012.03.007' }
   let(:doi_identifier) do
-    FactoryGirl.create(:publication_identifier,
+    FactoryBot.create(:publication_identifier,
                        identifier_type: 'doi',
                        identifier_value: doi_value,
                        identifier_uri: "http://dx.doi.org/#{doi_value}")

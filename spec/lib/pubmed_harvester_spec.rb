@@ -1,6 +1,6 @@
 
 describe PubmedHarvester, :vcr do
-  let(:author) { FactoryGirl.create :author }
+  let(:author) { FactoryBot.create :author }
 
   let(:pub_hash) do
     {
@@ -15,7 +15,7 @@ describe PubmedHarvester, :vcr do
   end
 
   let(:publication) do
-    FactoryGirl.create :pub_with_sw_id_and_pmid, pub_hash: pub_hash
+    FactoryBot.create :pub_with_sw_id_and_pmid, pub_hash: pub_hash
   end
 
   before(:each) do

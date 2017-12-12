@@ -1,6 +1,6 @@
 describe Publication do
-  let(:publication) { FactoryGirl.create :publication }
-  let(:author) { FactoryGirl.create :author }
+  let(:publication) { FactoryBot.create :publication }
+  let(:author) { FactoryBot.create :author }
 
   let(:pub_hash) do
     {

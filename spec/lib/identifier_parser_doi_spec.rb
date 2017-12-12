@@ -6,7 +6,7 @@ describe IdentifierParserDOI do
   let(:identifier_value) { '10.1038/ncomms3199' }
   let(:identifier_uri) { "http://dx.doi.org/#{identifier_value}" }
   let(:identifier) do
-    FactoryGirl.create(:publication_identifier,
+    FactoryBot.create(:publication_identifier,
                        identifier_type: identifier_type,
                        identifier_value: identifier_value,
                        identifier_uri: identifier_uri

@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :publication do
     title 'How I learned Rails'
     year '1972'
@@ -31,7 +31,7 @@ FactoryGirl.define do
       contributions_count 15
     end
     after(:create) do |publication, evaluator|
-      FactoryGirl.create_list(:contribution, evaluator.contributions_count, publication: publication)
+      FactoryBot.create_list(:contribution, evaluator.contributions_count, publication: publication)
     end
   end
 

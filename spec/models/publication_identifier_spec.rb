@@ -1,5 +1,5 @@
 describe PublicationIdentifier do
-  subject(:pub_id) { FactoryGirl.create(:doi_publication_identifier) }
+  subject(:pub_id) { FactoryBot.create(:doi_publication_identifier) }
 
   let(:doi_type) { pub_id.identifier_type }
   let(:doi_value) { pub_id.identifier_value }
