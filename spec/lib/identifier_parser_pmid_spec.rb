@@ -10,7 +10,7 @@ describe IdentifierParserPMID do
                        identifier_type: identifier_type,
                        identifier_value: identifier_value,
                        identifier_uri: identifier_uri
-                      )
+                     )
   end
   let(:parser) { described_class.new(identifier) }
 
