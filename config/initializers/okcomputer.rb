@@ -32,12 +32,13 @@ class DelegateCheck < OkComputer::Check
 end
 
 # delegate to the clients to see if they are working
-[
+clients = [
   CapHttpClient,
-  PubmedClient,
-  ScienceWireClient,
-  WebOfScience::Queries
-].each do |klass|
+  PubmedClient
+]
+clients << ScienceWireClient if Settings.SCIENCEWIRE.enabled
+clients << WebOfScience::Queries if Settings.WOS.enabled
+clients.each do |klass|
   OkComputer::Registry.register "external-#{klass.name}", DelegateCheck.new(klass)
 end
 
