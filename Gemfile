@@ -76,7 +76,7 @@ group :test do
   gem 'coveralls', '~> 0.8', require: false
   gem 'database_cleaner'
   gem 'equivalent-xml'
-  gem 'factory_girl_rails', '~> 4.9'
+  gem 'factory_bot_rails'
   gem 'rspec-rails', '~> 3.7'
   gem 'simplecov', '~> 0.13', require: false
   gem 'single_cov'
