@@ -27,14 +27,16 @@ SimpleCov.profiles.define 'sul_pub' do
   add_filter 'config/initializers/mime_types.rb'
   add_filter 'config/initializers/is_it_working.rb'
   add_filter 'config/initializers/pry.rb'
+  add_filter 'db'
   add_filter 'pkg'
   add_filter 'spec'
   add_filter 'vendor'
 
+  # https://github.com/colszowka/simplecov#maximum-coverage-drop
   # Simplecov can detect changes using data from the
   # last rspec run.  Travis will never have a previous
   # dataset for comparison, so it can't fail a travis build.
-  maximum_coverage_drop 0.1
+  maximum_coverage_drop 1
 end
 SimpleCov::Formatter::MultiFormatter.new(
   [
