@@ -148,14 +148,6 @@ class Publication < ActiveRecord::Base
     rebuild_pub_hash
   end
 
-  def update_from_sciencewire
-    return false if sciencewire_id.blank?
-    sw_source = SciencewireSourceRecord.find_by_sciencewire_id(sciencewire_id)
-    return false unless sw_source
-    sw_source.sciencewire_update
-    rebuild_pub_hash
-  end
-
   # @return [Boolean] true if .save is successful
   def rebuild_pub_hash
     if sciencewire_id
