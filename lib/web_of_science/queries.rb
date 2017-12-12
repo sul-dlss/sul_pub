@@ -67,7 +67,7 @@ module WebOfScience
     # @param message [Hash] optional search params (defaults to search_params)
     # @return [WebOfScience::Records]
     def search(user_query, message = search_params)
-      message[:user_query] = user_query
+      message[:queryParameters][:userQuery] = user_query
       retrieve_records(:search, message)
     end
 
