@@ -106,10 +106,10 @@ end
 shared_examples 'invalid_value' do
   context 'identifier is invalid' do
     let(:invalid_identifier) do
-      FactoryGirl.create(:publication_identifier,
+      FactoryBot.create(:publication_identifier,
                          identifier_type: identifier_type,
                          identifier_value: invalid_value
-                        )
+                       )
     end
 
     it 'raises IdentifierParserInvalidError when value and uri do not validate' do
@@ -119,7 +119,7 @@ shared_examples 'invalid_value' do
 end
 
 shared_examples 'blank_identifiers_raise_exception' do
-  let(:blank_identifier) { FactoryGirl.create(:blank_publication_identifier, identifier_type: identifier_type) }
+  let(:blank_identifier) { FactoryBot.create(:blank_publication_identifier, identifier_type: identifier_type) }
 
   it 'raises IdentifierParserEmptyError when value and uri are blank' do
     expect { described_class.new(blank_identifier) }.to raise_error(IdentifierParserEmptyError)
@@ -129,11 +129,11 @@ end
 shared_examples 'other_identifiers_raise_exception' do
   context '#update using an identifier it does not handle' do
     let(:identifier) do
-      FactoryGirl.create(:publication_identifier,
+      FactoryBot.create(:publication_identifier,
                          identifier_type: 'Huh?',
                          identifier_value: 'some-value',
                          identifier_uri: 'some-uri'
-                        )
+                       )
     end
 
     it_behaves_like 'invalid_type'
@@ -141,11 +141,11 @@ shared_examples 'other_identifiers_raise_exception' do
 
   context '#update using a WoSItemID' do
     let(:identifier) do
-      FactoryGirl.create(:publication_identifier,
+      FactoryBot.create(:publication_identifier,
                          identifier_type:  'WoSItemID',
                          identifier_value: 'A1976CM52800051',
                          identifier_uri:   'https://ws.isiknowledge.com/cps/openurl/service?url_ver=Z39.88-2004&rft_id=info:ut/A1976CM52800051'
-                        )
+                       )
     end
 
     it_behaves_like 'invalid_type'
@@ -153,11 +153,11 @@ shared_examples 'other_identifiers_raise_exception' do
 
   context '#update using a PublicationItemID' do
     let(:identifier) do
-      FactoryGirl.create(:publication_identifier,
+      FactoryBot.create(:publication_identifier,
                          identifier_type:  'PublicationItemID',
                          identifier_value: '13276514',
                          identifier_uri:   nil
-                        )
+                       )
     end
 
     it_behaves_like 'invalid_type'
@@ -167,10 +167,10 @@ end
 shared_examples 'update_works_with_only_valid_uri' do
   context '#update using only a valid URI' do
     let(:identifier) do
-      FactoryGirl.create(:publication_identifier,
+      FactoryBot.create(:publication_identifier,
                          identifier_type: identifier_type,
                          identifier_uri: identifier_uri
-                        )
+                       )
     end
 
     it_behaves_like 'parser_works'
@@ -183,10 +183,10 @@ end
 shared_examples 'update_works_with_only_valid_value' do
   context '#update using only a valid value' do
     let(:identifier) do
-      FactoryGirl.create(:publication_identifier,
+      FactoryBot.create(:publication_identifier,
                          identifier_type: identifier_type,
                          identifier_value: identifier_value
-                        )
+                       )
     end
 
     it_behaves_like 'parser_works'
@@ -199,10 +199,10 @@ end
 shared_examples 'update_works_with_only_valid_value_in_uri' do
   context '#update using a valid value, but in the URI' do
     let(:identifier) do
-      FactoryGirl.create(:publication_identifier,
+      FactoryBot.create(:publication_identifier,
                          identifier_type: identifier_type,
                          identifier_uri: identifier_value
-                        )
+                       )
     end
 
     it_behaves_like 'parser_works'

@@ -1,6 +1,6 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :batch_uploaded_source_record do
     sunet_id 'MyString'
     author_id 1

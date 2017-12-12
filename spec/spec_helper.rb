@@ -49,13 +49,13 @@ require File.expand_path('../../config/environment', __FILE__)
 ActiveRecord::Migration.maintain_test_schema!
 
 require 'rspec/rails'
-require 'factory_girl_rails'
+require 'factory_bot_rails'
 
 RSpec.configure do |config|
   config.include RSpec::Rails::RequestExampleGroup, type: :request, file_path: %r{spec/api}
   config.include RSpec::Rails::RequestExampleGroup, type: :request, file_path: %r{spec/lib}
 
-  config.include FactoryGirl::Syntax::Methods
+  config.include FactoryBot::Syntax::Methods
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   # config.fixture_path = "#{::Rails.root}/spec/fixtures"

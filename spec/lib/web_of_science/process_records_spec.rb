@@ -3,21 +3,21 @@ describe WebOfScience::ProcessRecords, :vcr do
     # public data from
     # - https://stanfordwho.stanford.edu
     # - https://med.stanford.edu/profiles/russ-altman
-    author = FactoryGirl.create(:author,
+    author = FactoryBot.create(:author,
                                  preferred_first_name: 'Russ',
                                  preferred_last_name: 'Altman',
                                  preferred_middle_name: 'Biagio',
                                  email: 'Russ.Altman@stanford.edu',
                                  cap_import_enabled: true)
     # create some `author.alternative_identities`
-    FactoryGirl.create(:author_identity,
+    FactoryBot.create(:author_identity,
                        author: author,
                        first_name: 'R',
                        middle_name: 'B',
                        last_name: 'Altman',
                        email: nil,
                        institution: 'Stanford University')
-    FactoryGirl.create(:author_identity,
+    FactoryBot.create(:author_identity,
                        author: author,
                        first_name: 'Russ',
                        middle_name: nil,

@@ -1,12 +1,12 @@
-FactoryGirl.define do
+FactoryBot.define do
   sequence(:random_id) do |n|
     @random_ids ||= (10_000..1_000_000).to_a.shuffle
     @random_ids[n]
   end
 
   factory :author do
-    sunetid { FactoryGirl.generate(:random_id) }
-    cap_profile_id { FactoryGirl.generate(:random_id) }
+    sunetid { FactoryBot.generate(:random_id) }
+    cap_profile_id { FactoryBot.generate(:random_id) }
     active_in_cap true
     email 'alice.edler@stanford.edu'
     official_first_name 'Alice'

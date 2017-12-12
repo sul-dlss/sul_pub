@@ -1,7 +1,7 @@
 describe IdentifierNormalizer do
   subject(:normalizer) { described_class.new }
 
-  let(:doi_identifier) { FactoryGirl.create(:doi_publication_identifier) }
+  let(:doi_identifier) { FactoryBot.create(:doi_publication_identifier) }
   let(:doi_pub) { doi_identifier.publication }
 
   # Data used in factory - to capture desired results
@@ -118,7 +118,7 @@ describe IdentifierNormalizer do
       normalizer.delete_blanks = true
       doi_identifier.save
     end
-    let(:doi_identifier) { FactoryGirl.create(:doi_empty_publication_identifier) }
+    let(:doi_identifier) { FactoryBot.create(:doi_empty_publication_identifier) }
 
     it_behaves_like 'deletes_pub_id'
     it_behaves_like 'deletes_pub_hash_entry'
@@ -130,7 +130,7 @@ describe IdentifierNormalizer do
     end
 
     context 'valid value, empty URI' do
-      let(:doi_identifier) { FactoryGirl.create(:doi_empty_uri_publication_identifier) }
+      let(:doi_identifier) { FactoryBot.create(:doi_empty_uri_publication_identifier) }
 
       it_behaves_like 'preserves_value'
       it_behaves_like 'updates_uri'
@@ -138,7 +138,7 @@ describe IdentifierNormalizer do
     end
 
     context 'valid URI, empty value' do
-      let(:doi_identifier) { FactoryGirl.create(:doi_empty_value_publication_identifier) }
+      let(:doi_identifier) { FactoryBot.create(:doi_empty_value_publication_identifier) }
 
       it_behaves_like 'updates_value'
       it_behaves_like 'preserves_uri'
@@ -152,7 +152,7 @@ describe IdentifierNormalizer do
     end
 
     context 'valid denormalized value, empty URI' do
-      let(:doi_identifier) { FactoryGirl.create(:doi_denormalized_value_publication_identifier) }
+      let(:doi_identifier) { FactoryBot.create(:doi_denormalized_value_publication_identifier) }
 
       it_behaves_like 'updates_value'
       it_behaves_like 'updates_uri'
@@ -166,7 +166,7 @@ describe IdentifierNormalizer do
       normalizer.delete_invalid = true
       doi_identifier.save
     end
-    let(:doi_identifier) { FactoryGirl.create(:doi_invalid_publication_identifier) }
+    let(:doi_identifier) { FactoryBot.create(:doi_invalid_publication_identifier) }
 
     it_behaves_like 'deletes_pub_id'
     it_behaves_like 'deletes_pub_hash_entry'
@@ -181,22 +181,22 @@ describe IdentifierNormalizer do
       expect(result).to be_an IdentifierParserDOI
     end
     it 'works for isbn' do
-      identifier = FactoryGirl.create(:isbn_publication_identifier)
+      identifier = FactoryBot.create(:isbn_publication_identifier)
       result = normalizer.send(:identifier_parser, identifier)
       expect(result).to be_an IdentifierParserISBN
     end
     it 'works for pmid' do
-      identifier = FactoryGirl.create(:pmid_publication_identifier)
+      identifier = FactoryBot.create(:pmid_publication_identifier)
       result = normalizer.send(:identifier_parser, identifier)
       expect(result).to be_an IdentifierParserPMID
     end
     it 'works for SulPubId' do
-      identifier = FactoryGirl.create(:sul_publication_identifier)
+      identifier = FactoryBot.create(:sul_publication_identifier)
       result = normalizer.send(:identifier_parser, identifier)
       expect(result).to be_an IdentifierParser
     end
     it 'works for PublicationItemID' do
-      identifier = FactoryGirl.create(:publicationItemID_publication_identifier)
+      identifier = FactoryBot.create(:publicationItemID_publication_identifier)
       result = normalizer.send(:identifier_parser, identifier)
       expect(result).to be_an IdentifierParser
     end

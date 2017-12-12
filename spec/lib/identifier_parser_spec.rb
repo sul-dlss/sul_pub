@@ -6,11 +6,11 @@ describe IdentifierParser do
   let(:identifier_value) { 'a value' }
   let(:identifier_uri) { 'a uri' }
   let(:identifier) do
-    FactoryGirl.create(:publication_identifier,
+    FactoryBot.create(:publication_identifier,
                        identifier_type: identifier_type,
                        identifier_value: identifier_value,
                        identifier_uri: identifier_uri
-                      )
+                     )
   end
   let(:parser) { described_class.new(identifier) }
 
@@ -39,11 +39,11 @@ describe IdentifierParser do
 
   context '#update using a WoSItemID' do
     let(:identifier) do
-      FactoryGirl.create(:publication_identifier,
+      FactoryBot.create(:publication_identifier,
                          identifier_type:  'WoSItemID',
                          identifier_value: 'A1976CM52800051',
                          identifier_uri:   'https://ws.isiknowledge.com/cps/openurl/service?url_ver=Z39.88-2004&rft_id=info:ut/A1976CM52800051'
-                        )
+                       )
     end
 
     it_behaves_like 'it_changes_nothing'
@@ -51,11 +51,11 @@ describe IdentifierParser do
 
   context '#update using a PublicationItemID' do
     let(:identifier) do
-      FactoryGirl.create(:publication_identifier,
+      FactoryBot.create(:publication_identifier,
                          identifier_type:  'PublicationItemID',
                          identifier_value: '13276514',
                          identifier_uri:   nil
-                        )
+                       )
     end
 
     it_behaves_like 'it_changes_nothing'

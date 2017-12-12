@@ -1,9 +1,9 @@
 
 describe SulBib::API, :vcr do
-  let(:publication) { FactoryGirl.create :publication }
+  let(:publication) { FactoryBot.create :publication }
   let!(:publication_with_contributions) { create :publication_with_contributions, contributions_count: 2 }
   let(:publication_list) { create_list(:contribution, 15, visibility: 'public', status: 'approved') }
-  let(:author) { FactoryGirl.create :author }
+  let(:author) { FactoryBot.create :author }
   let(:author_with_sw_pubs) { create :author_with_sw_pubs }
   let(:headers) { { 'HTTP_CAPKEY' => Settings.API_KEY, 'CONTENT_TYPE' => 'application/json' } }
   let(:valid_json_for_post) do

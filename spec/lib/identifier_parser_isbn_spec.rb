@@ -6,11 +6,11 @@ describe IdentifierParserISBN do
   let(:identifier_value) { '9781904842781' }
   let(:identifier_uri) { nil }
   let(:identifier) do
-    FactoryGirl.create(:publication_identifier,
+    FactoryBot.create(:publication_identifier,
                        identifier_type: identifier_type,
                        identifier_value: identifier_value,
                        identifier_uri: identifier_uri
-                      )
+                     )
   end
   let(:parser) { described_class.new(identifier) }
 
@@ -36,10 +36,10 @@ describe IdentifierParserISBN do
 
   context '#update using only a valid value' do
     let(:identifier) do
-      FactoryGirl.create(:publication_identifier,
+      FactoryBot.create(:publication_identifier,
                          identifier_type: identifier_type,
                          identifier_value: identifier_value
-                        )
+                       )
     end
 
     it_behaves_like 'parser_works'
@@ -50,10 +50,10 @@ describe IdentifierParserISBN do
 
   context '#update using a valid value, but in the URI' do
     let(:identifier) do
-      FactoryGirl.create(:publication_identifier,
+      FactoryBot.create(:publication_identifier,
                          identifier_type: identifier_type,
                          identifier_uri: identifier_value
-                        )
+                       )
     end
     let(:parser) { described_class.new(identifier) }
 
