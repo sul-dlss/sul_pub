@@ -103,7 +103,8 @@ VCR.configure do |c|
   c.filter_sensitive_data('private_access_token') do |interaction|
     if interaction.request.body == "grant_type=client_credentials"
       regex = %r("access_token":"(.*?)")
-      regex.match(interaction.response.body).captures.first
+      matches = regex.match(interaction.response.body)
+      matches.captures.first if matches.present?
     end
   end
   c.filter_sensitive_data('private_bearer_token') do |interaction|
