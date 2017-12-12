@@ -10,7 +10,7 @@ describe IdentifierParserISBN do
                        identifier_type: identifier_type,
                        identifier_value: identifier_value,
                        identifier_uri: identifier_uri
-                      )
+                     )
   end
   let(:parser) { described_class.new(identifier) }
 
@@ -39,7 +39,7 @@ describe IdentifierParserISBN do
       FactoryBot.create(:publication_identifier,
                          identifier_type: identifier_type,
                          identifier_value: identifier_value
-                        )
+                       )
     end
 
     it_behaves_like 'parser_works'
@@ -53,7 +53,7 @@ describe IdentifierParserISBN do
       FactoryBot.create(:publication_identifier,
                          identifier_type: identifier_type,
                          identifier_uri: identifier_value
-                        )
+                       )
     end
     let(:parser) { described_class.new(identifier) }
 
