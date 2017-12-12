@@ -33,7 +33,7 @@ end
 
 # delegate to the clients to see if they are working
 [
-  CapHttpClient,
+  Cap::Client,
   PubmedClient,
   ScienceWireClient,
   WebOfScience::Queries

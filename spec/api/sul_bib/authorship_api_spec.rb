@@ -38,6 +38,12 @@ describe SulBib::API, :vcr do
 
   # For PATCH, the attribute params are optional, so only include those to be updated.
 
+  before do
+    stub_const('Cap::Client::API_URI', cap_authorship_uri)
+    stub_const('Cap::Client::AUTH_URI', cap_auth_uri)
+    stub_const('Cap::Client::AUTH_CODE', cap_token_code)
+  end
+
   # The shared examples require the calling example (or it's context)
   # to define a let(:http_request) that specifies the request
   # method path, json, headers

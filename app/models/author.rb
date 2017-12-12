@@ -150,7 +150,7 @@ class Author < ActiveRecord::Base
   end
 
   def self.fetch_from_cap_and_create(profile_id, cap_client = nil)
-    cap_client = CapHttpClient.new unless cap_client.present?
+    cap_client = Cap::Client.new unless cap_client.is_a? Cap::Client
     profile_hash = cap_client.get_auth_profile(profile_id)
     a = Author.new
     a.update_from_cap_authorship_profile_hash(profile_hash)

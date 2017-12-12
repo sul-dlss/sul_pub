@@ -1,0 +1,101 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: Settings.CAP.TOKEN_URI/oauth/token?grant_type=client_credentials
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.13.1
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip,deflate
+      Date:
+      - Tue, 28 Nov 2017 20:39:01 GMT
+      Content-Type:
+      - application/json
+      Authorization:
+      - Basic Settings.CAP.TOKEN_USER:Settings.CAP.TOKEN_PASS
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 28 Nov 2017 20:39:01 GMT
+      Cache-Control:
+      - no-store
+      Pragma:
+      - no-cache
+      Content-Type:
+      - application/json;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '{"access_token":"private_access_token","token_type":"bearer","expires_in":86399,"scope":"profiles.read_all","jti":"e4d0f133-1a38-4ccc-86ae-ce9ea3310819"}'
+    http_version: 
+  recorded_at: Tue, 28 Nov 2017 20:39:01 GMT
+- request:
+    method: get
+    uri: Settings.CAP.AUTHORSHIP_API_URI/cap-api/api/cap/v1/authors/9957
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.13.1
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip,deflate
+      Date:
+      - Tue, 28 Nov 2017 20:39:01 GMT
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer private_bearer_token
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 28 Nov 2017 20:39:01 GMT
+      Server:
+      - Apache/2.2.15 (Oracle)
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - '0'
+      Strict-Transport-Security:
+      - max-age=31536000 ; includeSubDomains
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - DENY
+      X-Content-Type-Options:
+      - nosniff
+      Vary:
+      - Accept-Encoding
+      Content-Encoding:
+      - gzip
+      Connection:
+      - close
+      Transfer-Encoding:
+      - chunked
+      Content-Type:
+      - application/json;charset=UTF-8
+    body:
+      encoding: UTF-8
+      string: '{"active":true,"authorModifiedOn":"2017-09-12T16:00:01.000-07:00","authorship":[{"featured":false,"status":"approved","sulPublicationId":59096,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":66471,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":132555,"visibility":"public"},{"featured":false,"status":"unknown","sulPublicationId":101436,"visibility":"public"},{"featured":false,"status":"unknown","sulPublicationId":91268,"visibility":"public"},{"featured":true,"status":"approved","sulPublicationId":50103,"visibility":"public"},{"featured":false,"status":"unknown","sulPublicationId":56895,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":67303,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":111045,"visibility":"public"},{"featured":false,"status":"unknown","sulPublicationId":105790,"visibility":"public"},{"featured":true,"status":"approved","sulPublicationId":131277,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":197042,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":346709,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":265930,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":321964,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":349808,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":321965,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":274509,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":353798,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":283101,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":321826,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":309543,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":378910,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":380894,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":377847,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":389416,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":393740,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":397911,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":403284,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":404596,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":404569,"visibility":"public"}],"importEnabled":true,"importSettings":[{"email":"CAP-UID@stanford.edu","firstName":"David","institution":"Stanford
+        University","lastName":"Furman"}],"lastModified":"2017-09-12T16:20:23.075-07:00","populations":["stanford","stanfordOnly","som"],"profile":{"displayName":"David
+        Furman","email":"CAP-UID@stanford.edu","meta":{"links":[{"href":"Settings.CAP.AUTHORSHIP_API_URI/cap-api/api/profiles/v1/9957","rel":"https://cap.stanford.edu/rel/self"},{"href":"Settings.CAP.AUTHORSHIP_API_URI/david-furman","rel":"https://cap.stanford.edu/rel/public"},{"href":"Settings.CAP.AUTHORSHIP_API_URI/profiles/auth/frdActionServlet?choiceId=facProfile&profileId=9957","rel":"https://cap.stanford.edu/rel/intranet"},{"href":"Settings.CAP.AUTHORSHIP_API_URI/profiles/frdActionServlet?choiceId=printerprofile&profileversion=full&profileId=9957","rel":"https://cap.stanford.edu/rel/pdf"},{"href":"Settings.CAP.AUTHORSHIP_API_URI/cap-api/api/cap/v1/schemas/ProfileDto","rel":"https://cap.stanford.edu/rel/schema"}]},"names":{"legal":{"firstName":"David","lastName":"Furman"},"preferred":{"firstName":"David","lastName":"Furman"}},"profileId":9957,"uid":"CAP-UID","universityId":"CAP-UniversityID"},"profileId":9957,"visibility":"public"}'
+    http_version: 
+  recorded_at: Tue, 28 Nov 2017 20:39:01 GMT
+recorded_with: VCR 3.0.3

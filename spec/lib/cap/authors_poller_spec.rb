@@ -1,5 +1,5 @@
 
-describe CapAuthorsPoller, :vcr do
+describe Cap::AuthorsPoller, :vcr do
   # The author is defined in /spec/factories/author.rb
   let(:author) { create :author }
   # The publication is defined in /spec/factories/publication.rb
@@ -119,7 +119,7 @@ describe CapAuthorsPoller, :vcr do
     context 'with an author retrieved from the CAP API' do
       before do
         expect(Author).to receive(:find_by_cap_profile_id).with(author.cap_profile_id).and_return(nil)
-        expect(Author).to receive(:fetch_from_cap_and_create).with(author.cap_profile_id, instance_of(CapHttpClient)).and_return(author)
+        expect(Author).to receive(:fetch_from_cap_and_create).with(author.cap_profile_id, instance_of(Cap::Client)).and_return(author)
         expect(author).to receive(:'save!').and_call_original
         allow(author).to receive(:new_record?).and_return(true)
       end
@@ -223,6 +223,7 @@ describe CapAuthorsPoller, :vcr do
       expect(subject.instance_variable_get('@too_many_contribs')).to eq(count + 1)
     end
   end
+
   describe '.process_next_batch_of_authorship_data' do
     it 'handles client-server data errors' do
       expect { subject.process_next_batch_of_authorship_data(bogus: 'data') }.to raise_error(Net::HTTPBadResponse)

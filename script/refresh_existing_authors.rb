@@ -24,7 +24,7 @@ class RefreshExistingAuthors
   private
 
     def cap_client
-      @cap_client ||= CapHttpClient.new
+      @cap_client ||= Cap::Client.new
     end
 
     # Queries the CAP API for all the authors
@@ -48,7 +48,7 @@ class RefreshExistingAuthors
     end
 
     # For *existing* authors, we update their identities with data from the given CAP API data
-    # This code mimics what CapAuthorsPoller does by calling `update_from_cap_authorship_profile_hash` then `save!`
+    # This code mimics what Cap::AuthorsPoller does by calling `update_from_cap_authorship_profile_hash` then `save!`
     # @param [Hash] `author_hash` the author data from the CAP API
     def process_author(author_hash)
       cap_profile_id = author_hash['profileId'].to_i
