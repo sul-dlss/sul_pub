@@ -12,6 +12,9 @@ describe Author do
       Author.find_or_create_by!(cap_profile_id: 1)
       expect { Author.create!(cap_profile_id: 1) }.to raise_error ActiveRecord::RecordInvalid
     end
+    it 'validates presence' do
+      expect { Author.create!(cap_profile_id: '') }.to raise_error ActiveRecord::RecordInvalid
+    end
   end
 
   describe '#first_name' do
