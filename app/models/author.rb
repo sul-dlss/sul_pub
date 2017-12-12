@@ -1,6 +1,6 @@
 class Author < ActiveRecord::Base
   has_paper_trail on: [:destroy]
-  validates :cap_profile_id, uniqueness: true
+  validates :cap_profile_id, uniqueness: true, presence: true
 
   has_many :author_identities, dependent: :destroy
   #
