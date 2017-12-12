@@ -298,38 +298,6 @@ describe Publication do
     end
   end
 
-  describe 'update_from_sciencewire' do
-    it 'should not update from sciencewire source if there is no sciencewire_id' do
-      expect(publication.sciencewire_id).to be_nil
-      expect(publication.update_from_sciencewire).to be false
-    end
-    it 'should update from sciencewire source if there is a sciencewire_id' do
-      sciencewire_id = 1
-      publication.sciencewire_id = sciencewire_id
-      source_data = '<?xml version="1.0"?><PublicationItem><Title>How I learned Rails</Title><Abstract/></PublicationItem>'
-      new_source_data = '<?xml version="1.0"?><PublicationItem><Title>Some New Title</Title><Abstract/></PublicationItem>'
-      sw_record = SciencewireSourceRecord.create(sciencewire_id: sciencewire_id, source_data: source_data)
-      allow(SciencewireSourceRecord).to receive(:find_by_sciencewire_id).with(sciencewire_id).and_return(sw_record)
-      expect(sw_record.source_data).to be_equivalent_to source_data
-      allow_any_instance_of(ScienceWireClient).to receive(:get_sw_xml_source_for_sw_id).with(sciencewire_id).and_return(Nokogiri::XML(new_source_data).xpath('//PublicationItem').first)
-      expect(publication.pub_hash[:title]).to eq 'How I learned Rails'
-      expect(publication.pub_hash[:identifier]).to eq(
-        [
-          { type: 'SULPubId', id: publication.id.to_s, url: "http://sulcap.stanford.edu/publications/#{publication.id}" }
-        ]
-      )
-      expect(publication.sciencewire_id).to_not be_nil
-      expect(publication.update_from_sciencewire).to be true
-      expect(publication.pub_hash[:title]).to eq 'Some New Title'
-      expect(publication.pub_hash[:identifier]).to eq(
-        [
-          { type: 'SULPubId', id: publication.id.to_s, url: "http://sulcap.stanford.edu/publications/#{publication.id}" }
-        ]
-      )
-      expect(SciencewireSourceRecord.find_by_sciencewire_id(sciencewire_id).source_data).to be_equivalent_to new_source_data
-    end
-  end
-
   describe 'update_formatted_citations' do
     before do
       cite = Csl::Citation.new({})
