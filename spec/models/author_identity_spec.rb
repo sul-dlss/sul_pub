@@ -1,6 +1,6 @@
 
 RSpec.describe AuthorIdentity, type: :model do
-  subject { FactoryGirl.create :author_identity }
+  subject { FactoryBot.create :author_identity }
 
   context 'basics' do
     it 'has working factories' do
@@ -107,7 +107,7 @@ RSpec.describe AuthorIdentity, type: :model do
     end
 
     it 'will handle missing required fields (firstName and lastName) in importSettings' do
-      # FactoryGirl creates (at least) 1 Author Identity, so we check for transactionality
+      # FactoryBot creates (at least) 1 Author Identity, so we check for transactionality
       prev = subject.author.alternative_identities
 
       expect { subject.author.mirror_author_identities([{ 'firstName' => subject.author.preferred_first_name }]) }.to raise_error(ActiveRecord::RecordInvalid)
@@ -118,7 +118,7 @@ RSpec.describe AuthorIdentity, type: :model do
     end
 
     it 'will not change alternative_identities if data are missing' do
-      subject.author.author_identities.clear # explicitly clear FactoryGirl addition(s)
+      subject.author.author_identities.clear # explicitly clear FactoryBot addition(s)
       expect { subject.author.mirror_author_identities([{ 'firstName' => subject.author.preferred_first_name }]) }.to raise_error(ActiveRecord::RecordInvalid)
       expect(subject.author.alternative_identities.length).to be == 0
     end

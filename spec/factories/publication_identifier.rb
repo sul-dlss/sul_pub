@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :publication_identifier do
     publication
     after(:create) do |pub_id|

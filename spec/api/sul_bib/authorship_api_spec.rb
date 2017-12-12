@@ -12,7 +12,7 @@ describe SulBib::API, :vcr do
   # Use let! to force the method's invocation before each example.
   let!(:publication_with_contributions) do
     pub = create :publication_with_contributions, contributions_count: contribution_count
-    # FactoryGirl knows nothing about the Publication.pub_hash sync issue, so
+    # FactoryBot knows nothing about the Publication.pub_hash sync issue, so
     # it must be forced to update that data with the contributions.
     pub.pubhash_needs_update!
     pub.save # to update the pub.pub_hash

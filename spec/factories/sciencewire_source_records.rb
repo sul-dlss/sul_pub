@@ -1,6 +1,6 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :sciencewire_source_record do
     sciencewire_id      1
     source_data         'MyText'

@@ -54,7 +54,7 @@ describe Author do
       # The contributions are are defined in /spec/factories/contribution.rb
       pub = create :publication_with_contributions, contributions_count: 1
       pub.sciencewire_id = nil
-      # FactoryGirl knows nothing about the Publication.pub_hash sync issue, so
+      # FactoryBot knows nothing about the Publication.pub_hash sync issue, so
       # it must be forced to update that data with the contributions.
       pub.pubhash_needs_update!
       pub.save # to update the pub.pub_hash

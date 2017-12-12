@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :pub_hash do
     initialize_with do
       new(provenance: 'sciencewire',

@@ -1,5 +1,5 @@
 describe Harvester::Base do
-  let(:authors) { FactoryGirl.create_list(:author, 5, cap_import_enabled: true) }
+  let(:authors) { FactoryBot.create_list(:author, 5, cap_import_enabled: true) }
   let(:subclass) { Class.new(described_class) }
   let(:instance) { subclass.new }
 
