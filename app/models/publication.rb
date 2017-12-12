@@ -1,5 +1,6 @@
 class Publication < ActiveRecord::Base
   has_paper_trail on: [:destroy]
+  scope :with_active_author, -> { joins(:authors).where('authors.active_in_cap' => true).uniq }
 
   after_create do
     set_sul_pub_id_in_hash
@@ -49,11 +50,6 @@ class Publication < ActiveRecord::Base
 
   def self.updated_after(date)
     where('publications.updated_at > ?', date)
-  end
-
-  def self.with_active_author
-    ids = joins(:authors).where('authors.active_in_cap' => true).select('publications.id').uniq.pluck(:id)
-    unscoped.where(id: ids)
   end
 
   def self.find_or_create_by_pmid(pmid)
