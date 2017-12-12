@@ -74,10 +74,10 @@ describe WebOfScience::ProcessRecords, :vcr do
       expect { processor.execute }.to change { Contribution.count }
     end
     it 'creates new contribution in the pub_hash[:authorship]' do
-      uids = processor.execute
-      uids.each do |uid|
-        pub = Publication.for_uid(uid)
-        expect(pub.pub_hash).to include(:authorship)
+      processor.execute
+      records.each do |rec|
+        pub = Publication.find_by(wos_uid: rec.uid)
+        expect(pub.pub_hash).to include(:mesh_headings)
       end
     end
 
@@ -124,7 +124,7 @@ describe WebOfScience::ProcessRecords, :vcr do
     it 'creates publication.pub_hash with MESH headings' do
       processor.execute
       records.select(&:pmid).each do |rec|
-        pub = Publication.for_uid(rec.uid)
+        pub = Publication.find_by(wos_uid: rec.uid)
         expect(pub.pub_hash).to include(:mesh_headings)
       end
     end
