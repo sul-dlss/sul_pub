@@ -49,7 +49,7 @@ require File.expand_path('../../config/environment', __FILE__)
 ActiveRecord::Migration.maintain_test_schema!
 
 require 'rspec/rails'
-require 'factory_girl_rails'
+require 'factory_bot_rails'
 
 RSpec.configure do |config|
   config.include RSpec::Rails::RequestExampleGroup, type: :request, file_path: %r{spec/api}
