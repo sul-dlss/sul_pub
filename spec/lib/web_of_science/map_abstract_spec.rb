@@ -85,6 +85,12 @@ describe WebOfScience::MapAbstract do
     it 'works with WOS records' do
       expect(mapper).to be_an described_class
     end
+
+    it 'confirms title and abstract have leading/trailing whitespace removed' do
+      expect(pub_hash[:abstract_restricted][0, 10]).to eq 'A critical' # whitespace trimmed from the front so the first characters of the abstract are not whitespace
+      expect(pub_hash[:abstract_restricted][-12, 12]).to eq 'predictions.' # whitespace trimmed from the front so the last characters of the abstract are not whitespace
+    end
+
     it_behaves_like 'pub_hash'
     it_behaves_like 'abstracts'
     it_behaves_like 'no_abstract'
