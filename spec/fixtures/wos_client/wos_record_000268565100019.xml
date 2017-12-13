@@ -243,6 +243,7 @@
         <abstract>
           <abstract_text count='1'>
             <p>
+              &#13;&#13;&#032;&#032;&#032;&#032;&#032;
               A critical task in pharmacogenomics is identifying genes that may
               be important modulators of drug response. High-throughput
               experimental methods are often plagued by false positives and do
@@ -262,6 +263,7 @@
               gene candidates for warfarin, gefitinib, carboplatin, and
               gemcitabine, and we provide the molecular hypotheses for these
               predictions.
+              &#13;&#10;&#032;&#032;&#032;&#032;&#032;
             </p>
           </abstract_text>
         </abstract>

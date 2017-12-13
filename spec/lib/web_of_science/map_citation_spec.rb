@@ -51,6 +51,9 @@ describe WebOfScience::MapCitation do
     end
     it_behaves_like 'pub_hash'
     it_behaves_like 'common_citation_data'
+    it 'trims the whitespace from the title' do
+      expect(pub_hash[:title]).to eq 'LIBRARY MANAGEMENT - BEHAVIOR-BASED PERSONNEL SYSTEMS (BBPS) - FRAMEWORK FOR ANALYSIS - KEMPER,RE' # whitespace trimmed
+    end
   end
 
   context 'MEDLINE records' do
@@ -62,5 +65,8 @@ describe WebOfScience::MapCitation do
     end
     it_behaves_like 'pub_hash'
     it_behaves_like 'common_citation_data'
+    it 'trims the whitespace from the title' do
+      expect(pub_hash[:title]).to eq 'Identifying druggable targets by protein microenvironments matching: application to transcription factors.' # whitespace trimmed
+    end
   end
 end
