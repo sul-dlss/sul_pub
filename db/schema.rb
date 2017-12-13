@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171208233331) do
+ActiveRecord::Schema.define(version: 20171213201429) do
 
   create_table "author_identities", force: :cascade do |t|
     t.integer  "author_id",     limit: 4,               null: false
@@ -212,11 +212,11 @@ ActiveRecord::Schema.define(version: 20171208233331) do
   create_table "web_of_science_source_records", force: :cascade do |t|
     t.boolean  "active"
     t.string   "database",           limit: 255
-    t.text     "source_data",        limit: 65535
+    t.text     "source_data",        limit: 16777215
     t.string   "source_fingerprint", limit: 255
     t.string   "uid",                limit: 255
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
     t.string   "doi",                limit: 255
     t.string   "pmid",               limit: 255
   end
