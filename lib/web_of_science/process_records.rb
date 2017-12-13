@@ -18,8 +18,9 @@ module WebOfScience
     # @return [Array<String>] WosUIDs that create a new Publication
     def execute
       return [] if records.count.zero?
-      create_publications
-      # TODO: batch harvest PubMed data for WOS records with a PMID?
+      uids = create_publications
+      pubmed_additions(uids)
+      uids
     rescue StandardError => err
       logger.error(err.inspect)
       []
@@ -96,28 +97,14 @@ module WebOfScience
           pub_hash: record.pub_hash,
           xml: record.to_xml,
           wos_uid: record.uid)
-        pubmed_additions(record, pub) if record.pmid
         create_contribution(pub)
         pub.sync_publication_hash_and_db # creates new PublicationIdentifiers
         pub.save
         record.uid
       rescue StandardError => e
-        NotificationManager.error(e, "#{record.uid} failed to create Publication", self)
+        message = "Author: #{author.id}, #{record.uid}; Publication failed"
+        NotificationManager.error(e, message, self)
         nil
-      end
-
-      # For WOS-record that has a PMID, fetch data from PubMed and enhance the pub.pub_hash with PubMed data
-      # @param [WebOfScience::Record] record
-      # @param [Publication] pub
-      # @return [Publication, nil]
-      def pubmed_additions(record, pub)
-        # TODO: compare this with private method in Publication.add_any_pubmed_data_to_hash
-        pub.pmid = record.pmid
-        return pub if record.database == 'MEDLINE'
-        pubmed_record = PubmedSourceRecord.for_pmid(record.pmid)
-        raise "Failed to create a PubmedSourceRecord for PMID: #{record.uid}, #{record.pmid}" if pubmed_record.nil?
-        pub.pub_hash.reverse_update(pubmed_record.source_as_hash)
-        pub
       end
 
       # Create a Contribution to associate Publication with Author
@@ -131,6 +118,28 @@ module WebOfScience
           status: 'new',
           visibility: 'private')
         contrib.save
+      end
+
+      # For WOS-records with a PMID, try to enhance them with PubMed data
+      # @return [void]
+      def pubmed_additions(uids)
+        records.select { |rec| uids.include?(rec.uid) && rec.pmid.present? }.each { |rec| pubmed_addition(rec) }
+      end
+
+      # For WOS-record that has a PMID, fetch data from PubMed and enhance the pub.pub_hash with PubMed data
+      # @param [WebOfScience::Record] record
+      # @return [void]
+      def pubmed_addition(record)
+        pub = Publication.find_by(wos_uid: record.uid)
+        pub.pmid = record.pmid
+        pub.save
+        return if record.database == 'MEDLINE'
+        pubmed_record = PubmedSourceRecord.for_pmid(record.pmid)
+        pub.pub_hash.reverse_update(pubmed_record.source_as_hash)
+        pub.save
+      rescue StandardError => e
+        message = "Author: #{author.id}, #{record.uid}, PubmedSourceRecord failed, PMID: #{record.pmid}"
+        NotificationManager.error(e, message, self)
       end
 
       # ----
