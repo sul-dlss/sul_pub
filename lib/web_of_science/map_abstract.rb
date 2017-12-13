@@ -18,7 +18,7 @@ module WebOfScience
         @abstract ||= begin
           # Often there is only one abstract; if there is more than one,
           # assume the first abstract is the most useful abstract.
-          abstract = abstracts.first
+          abstract = abstracts.first.strip
           case rec.database
           when 'MEDLINE'
             { abstract: abstract }
