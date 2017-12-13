@@ -1,4 +1,3 @@
-
 describe CapAuthorsPoller, :vcr do
   # The author is defined in /spec/factories/author.rb
   let(:author) { create :author }
@@ -82,14 +81,12 @@ describe CapAuthorsPoller, :vcr do
     context 'with an existing author' do
       before do
         expect(Author).to receive(:find_by_cap_profile_id).with(author.cap_profile_id).and_return(author)
-        expect(author).to receive(:'save!').and_call_original
+        expect(author).to receive(:'save!')
       end
 
       it 'updates an existing author' do
         expect(author).to receive(:harvestable?).and_return(true)
-        count = subject.instance_variable_get('@authors_updated_count')
-        subject.process_record(author_record)
-        expect(subject.instance_variable_get('@authors_updated_count')).to eq(count + 1)
+        expect { subject.process_record(author_record) }.to change { subject.instance_variable_get('@authors_updated_count') }.by(1)
       end
 
       it 'adds author.id to the harvest queue when harvesting is enabled' do
@@ -103,9 +100,7 @@ describe CapAuthorsPoller, :vcr do
       it 'skips harvesting for an existing author if not marked harvestable' do
         allow(author).to receive(:changed?).and_return(true)
         expect(author).to receive(:harvestable?).and_return(false)
-        count = subject.instance_variable_get('@no_sw_harvest_count')
-        subject.process_record(author_record)
-        expect(subject.instance_variable_get('@no_sw_harvest_count')).to eq(count + 1)
+        expect { subject.process_record(author_record) }.to change { subject.instance_variable_get('@no_sw_harvest_count') }.by(1)
       end
 
       context 'with an authorship record' do
@@ -120,14 +115,12 @@ describe CapAuthorsPoller, :vcr do
       before do
         expect(Author).to receive(:find_by_cap_profile_id).with(author.cap_profile_id).and_return(nil)
         expect(Author).to receive(:fetch_from_cap_and_create).with(author.cap_profile_id, instance_of(CapHttpClient)).and_return(author)
-        expect(author).to receive(:'save!').and_call_original
+        expect(author).to receive(:'save!')
         allow(author).to receive(:new_record?).and_return(true)
       end
 
       it 'creates a new author' do
-        count = subject.instance_variable_get('@new_author_count')
-        subject.process_record(author_record)
-        expect(subject.instance_variable_get('@new_author_count')).to eq(count + 1)
+        expect { subject.process_record(author_record) }.to change { subject.instance_variable_get('@new_author_count') }.by(1)
       end
 
       it 'harvests for new authors marked harvestable' do
@@ -139,17 +132,13 @@ describe CapAuthorsPoller, :vcr do
 
       it 'skips harvests for new authors not marked harvestable' do
         expect(author).to receive(:harvestable?).and_return(false)
-        count = subject.instance_variable_get('@no_sw_harvest_count')
-        subject.process_record(author_record)
-        expect(subject.instance_variable_get('@no_sw_harvest_count')).to eq(count + 1)
+        expect { subject.process_record(author_record) }.to change { subject.instance_variable_get('@no_sw_harvest_count') }.by(1)
       end
 
       context 'with an authorship record' do
         it 'recognizes authorship contributions' do
-          count = subject.instance_variable_get('@new_auth_with_contribs')
-          subject.process_record(authorship_record)
-          expect(subject.instance_variable_get('@new_auth_with_contribs')).to eq(count + 1)
           expect(subject).not_to receive(:update_existing_contributions)
+          expect { subject.process_record(authorship_record) }.to change { subject.instance_variable_get('@new_auth_with_contribs') }.by(1)
         end
       end
     end
