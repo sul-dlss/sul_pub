@@ -77,7 +77,7 @@ describe WebOfScience::ProcessRecords, :vcr do
       processor.execute
       records.each do |rec|
         pub = Publication.find_by(wos_uid: rec.uid)
-        expect(pub.pub_hash).to include(:mesh_headings)
+        expect(pub.pub_hash).to include(:authorship)
       end
     end
 
