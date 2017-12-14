@@ -153,12 +153,23 @@ module WebOfScience
       #       identifiers will get added to PublicationIdentifier after a Publication is created.
       #
       # @param records [Array<WebOfScience::Record>]
+      # @return [void]
       def process_links(records)
         return if records.empty?
         links = links_client.links records.map(&:uid)
-        records.each { |rec| rec.identifiers.update links[rec.uid] }
+        records.each { |rec| process_link(rec, links[rec.uid]) }
       rescue StandardError => err
         message = "Author: #{author.id}, ProcessLinks failed"
+        NotificationManager.error(err, message, self)
+      end
+
+      # @param record [WebOfScience::Record]
+      # @param links [Hash<String => String>] other identifiers (from Links API)
+      # @return [void]
+      def process_link(record, links)
+        record.identifiers.update links
+      rescue StandardError => err
+        message = "Author: #{author.id}, #{record.uid}, ProcessLink failed"
         NotificationManager.error(err, message, self)
       end
 
