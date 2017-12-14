@@ -315,24 +315,6 @@ describe SulBib::API, :vcr do
     end
   end # shared_examples 'it issues errors for cap_profile_id'
 
-  # When the database constraints for cap_profile_id are setup
-  # correctly and the AuthorshipAPI uses cap_profile_id before sul_author_id
-  # to find an author, it's virtually impossible to hit the errors tested
-  # by these specs.  However, the database constraints do not, yet,
-  # enforce NOT NULL and UNIQUE on the cap_profile_id.
-  shared_examples 'it checks author for a cap_profile_id' do
-    let(:request_data) do
-      author.cap_profile_id = ''
-      author.save!
-      valid_data_for_post.merge(sul_author_id: author.id)
-    end
-    it 'logs a warning for an author without a cap_profile_id' do
-      expect(Rails.logger).to receive(:warn).once
-      http_request
-      expect(author.cap_profile_id).to be_nil
-    end
-  end
-
   shared_examples 'it handles invalid authorship attributes' do
     let(:request_data) do
       update_authorship_for_pub_with_contributions.merge(visibility: 'invalid value')
@@ -380,7 +362,6 @@ describe SulBib::API, :vcr do
       it_behaves_like 'it issues errors when sul_author_id does not exist'
       it_behaves_like 'it issues errors for cap_profile_id'
       it_behaves_like 'it checks author for the correct cap_profile_id'
-      it_behaves_like 'it checks author for a cap_profile_id'
       it_behaves_like 'it handles invalid authorship attributes'
 
       it 'returns 500 error when publication contribution fails to save' do
@@ -491,7 +472,6 @@ describe SulBib::API, :vcr do
       it_behaves_like 'it issues errors when sul_author_id does not exist'
       it_behaves_like 'it issues errors for cap_profile_id'
       it_behaves_like 'it checks author for the correct cap_profile_id'
-      it_behaves_like 'it checks author for a cap_profile_id'
       it_behaves_like 'it handles invalid authorship attributes'
 
       context 'if there are contribution record errors' do
