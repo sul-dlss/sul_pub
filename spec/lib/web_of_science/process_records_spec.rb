@@ -177,6 +177,40 @@ describe WebOfScience::ProcessRecords, :vcr do
 
     it_behaves_like '#execute'
     it_behaves_like 'pubs_with_pmid_have_mesh_headings'
+
+    context 'WOS links fail' do
+      # only WOS records use the links service
+      # any failure to add links data is not catastrophic - just log it
+      before do
+        allow(links_client).to receive(:links).and_raise(RuntimeError)
+      end
+
+      it 'continues to create new Publications' do
+        expect { processor.execute }.to change { Publication.count }
+      end
+      it 'logs errors' do
+        expect(NotificationManager).to receive(:error)
+        processor.execute
+      end
+    end
+
+    context 'WOS links - identifier update fails' do
+      # only WOS records use the links service
+      # any failure to add links data is not catastrophic - just log it
+      before do
+        identifiers = WebOfScience::Identifiers.new(records.first)
+        allow(identifiers).to receive(:update).and_raise(RuntimeError)
+        allow(WebOfScience::Identifiers).to receive(:new).and_return(identifiers)
+      end
+
+      it 'continues to create new Publications' do
+        expect { processor.execute }.to change { Publication.count }
+      end
+      it 'logs errors' do
+        expect(NotificationManager).to receive(:error)
+        processor.execute
+      end
+    end
   end
 
   context 'with records from excluded databases' do
