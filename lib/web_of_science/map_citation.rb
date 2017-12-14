@@ -13,7 +13,7 @@ module WebOfScience
           c[:year] = rec.pub_info['pubyear']
           c[:date] = rec.pub_info['sortdate']
           c[:pages] = pages if pages.present?
-          c[:title] = rec.titles['item']
+          c[:title] = rec.titles['item'].strip
           c[:journal] = journal
           c
         end
@@ -23,7 +23,7 @@ module WebOfScience
       # @return [Hash]
       def journal
         j = {}
-        j[:name] = rec.titles['source'] if rec.titles['source'].present?
+        j[:name] = rec.titles['source'].strip if rec.titles['source'].present?
         j[:volume] = rec.pub_info['vol'] if rec.pub_info['vol'].present?
         j[:issue] = rec.pub_info['issue'] if rec.pub_info['issue'].present?
         j[:pages] = pages if pages.present?
