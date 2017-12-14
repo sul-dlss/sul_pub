@@ -17,9 +17,7 @@ module WebOfScience
     # @return [Array<String>] WosUIDs that create a new Publication
     def execute
       return [] if records.count.zero?
-      uids = create_publications
-      pubmed_additions(uids)
-      uids
+      create_publications
     rescue StandardError => err
       message = "Author: #{author.id}, ProcessRecords failed"
       NotificationManager.error(err, message, self)
@@ -36,10 +34,12 @@ module WebOfScience
 
       # @return [Array<String>] WosUIDs that create a new Publication
       def create_publications
-        new_wos_records = select_new_wos_records(filter_databases) # cf. WebOfScienceSourceRecord
-        saved_wos_records = save_wos_records(new_wos_records) # save WebOfScienceSourceRecord
-        new_publications = filter_by_identifiers(saved_wos_records) # cf. PublicationIdentifier
-        new_publications.map { |rec| create_publication(rec) }.compact
+        new_records = select_new_wos_records(filter_databases) # cf. WebOfScienceSourceRecord
+        new_records = save_wos_records(new_records) # save WebOfScienceSourceRecord
+        new_records = filter_by_identifiers(new_records) # cf. PublicationIdentifier
+        new_records = new_records.select { |rec| create_publication(rec) }
+        pubmed_additions(new_records)
+        new_records.map(&:uid)
       end
 
       ## 1
@@ -89,9 +89,9 @@ module WebOfScience
         end
       end
 
-      ## 4
+      ## 5
       # @param [WebOfScience::Record] record
-      # @return [String, nil] WosUID for a new Publication
+      # @return [Boolean] WebOfScience::Record created a new Publication?
       def create_publication(record)
         pub = Publication.new(
           active: true,
@@ -100,12 +100,11 @@ module WebOfScience
           wos_uid: record.uid)
         create_contribution(pub)
         pub.sync_publication_hash_and_db # creates new PublicationIdentifiers
-        pub.save
-        record.uid
+        pub.save!
       rescue StandardError => err
         message = "Author: #{author.id}, #{record.uid}; Publication or Contribution failed"
         NotificationManager.error(err, message, self)
-        nil
+        false
       end
 
       # Create a Contribution to associate Publication with Author
@@ -122,9 +121,10 @@ module WebOfScience
       end
 
       # For WOS-records with a PMID, try to enhance them with PubMed data
+      # @param [Array<WebOfScience::Record>] records
       # @return [void]
-      def pubmed_additions(uids)
-        records.select { |rec| uids.include?(rec.uid) && rec.pmid.present? }.each { |rec| pubmed_addition(rec) }
+      def pubmed_additions(records)
+        records.select { |rec| rec.pmid.present? }.each { |rec| pubmed_addition(rec) }
       end
 
       # For WOS-record that has a PMID, fetch data from PubMed and enhance the pub.pub_hash with PubMed data

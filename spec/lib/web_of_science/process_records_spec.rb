@@ -134,11 +134,14 @@ describe WebOfScience::ProcessRecords, :vcr do
   # spec example records were chosen to contain or fetch MESH headings
 
   shared_examples 'pubs_with_pmid_have_mesh_headings' do
-    # Note: the spec example records have MESH headings
-    it 'creates publication.pub_hash with MESH headings' do
+    # The spec example records calling this must be associated with a PMID
+    # - for MEDLINE records, they have a PMID
+    # - for WOS records, they may not have PMID, but they could get one from the links service in the processing
+    it 'persists PMID and publication.pub_hash has MESH headings' do
       processor.execute
-      records.select(&:pmid).each do |rec|
+      records.each do |rec|
         pub = Publication.find_by(wos_uid: rec.uid)
+        expect(pub.pmid).to be_an Integer
         expect(pub.pub_hash).to include(:mesh_headings)
       end
     end
@@ -177,6 +180,22 @@ describe WebOfScience::ProcessRecords, :vcr do
 
     it_behaves_like '#execute'
     it_behaves_like 'pubs_with_pmid_have_mesh_headings'
+
+    context 'PubMed integration fails' do
+      # only WOS records can be supplemented by PubMed data
+      # any failure is not catastrophic - just log it
+      before do
+        allow(PubmedSourceRecord).to receive(:for_pmid).and_raise(RuntimeError)
+      end
+
+      it 'continues to create new Publications' do
+        expect { processor.execute }.to change { Publication.count }
+      end
+      it 'logs errors' do
+        expect(NotificationManager).to receive(:error)
+        processor.execute
+      end
+    end
 
     context 'WOS links fail' do
       # only WOS records use the links service
