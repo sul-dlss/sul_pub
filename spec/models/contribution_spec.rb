@@ -66,7 +66,7 @@ describe Contribution do
   end
 
   describe '#authorship_valid?' do
-    it 'calls #author_valid? and #all_fields_present?' do
+    it 'calls #author_valid? and #valid_fields?' do
       expect(described_class).to receive(:author_valid?).and_return(true)
       expect(described_class).to receive(:valid_fields?)
       described_class.authorship_valid?(authorship)
@@ -95,71 +95,23 @@ describe Contribution do
     it 'returns true for a valid authorship hash' do
       expect(described_class.valid_fields?(authorship)).to be true
     end
-    it 'returns false for an authorship hash without "featured"' do
-      authorship['featured'] = nil
-      expect(described_class.valid_fields?(authorship)).to be false
-    end
-    it 'returns false for an authorship hash without "status"' do
-      authorship['status'] = nil
-      expect(described_class.valid_fields?(authorship)).to be false
-    end
-    it 'returns false for an authorship hash without "visibility"' do
-      authorship['visibility'] = nil
-      expect(described_class.valid_fields?(authorship)).to be false
-    end
-  end
-
-  describe '.featured_valid?' do
-    it 'returns true for a valid authorship hash' do
-      expect(described_class.featured_valid?(authorship)).to be true
-    end
-    it 'returns false for an authorship hash without "featured"' do
-      authorship['featured'] = nil
-      expect(described_class.featured_valid?(authorship)).to be false
-    end
-  end
-
-  describe '.status_valid?' do
-    it 'returns true for a valid authorship hash' do
-      expect(described_class.status_valid?(authorship)).to be true
-    end
-    it 'returns true for an upper case field value' do
-      authorship['status'].upcase!
-      expect(described_class.status_valid?(authorship)).to be true
-    end
-    it 'returns false for an authorship hash without "status"' do
-      authorship.delete 'status'
-      expect(described_class.status_valid?(authorship)).to be false
-    end
-    it 'returns false for an authorship hash with a nil "status"' do
-      authorship['status'] = nil
-      expect(described_class.status_valid?(authorship)).to be false
-    end
-    it 'returns false for an authorship hash with an invalid "status"' do
-      authorship['status'] = 'invalid value'
-      expect(described_class.status_valid?(authorship)).to be false
-    end
-  end
-
-  describe '.visibility_valid?' do
-    it 'returns true for a valid authorship hash' do
-      expect(described_class.visibility_valid?(authorship)).to be true
-    end
-    it 'returns true for an upper case field value' do
-      authorship['visibility'].upcase!
-      expect(described_class.visibility_valid?(authorship)).to be true
-    end
-    it 'returns false for an authorship hash without "visibility"' do
-      authorship.delete 'visibility'
-      expect(described_class.visibility_valid?(authorship)).to be false
-    end
-    it 'returns false for an authorship hash with a nil "visibility"' do
-      authorship['visibility'] = nil
-      expect(described_class.visibility_valid?(authorship)).to be false
-    end
-    it 'returns false for an authorship hash with an invalid "visibility"' do
-      authorship['visibility'] = 'invalid value'
-      expect(described_class.visibility_valid?(authorship)).to be false
+    context 'for invalid authorship hashes' do
+      it 'returns false for bad values' do
+        expect(described_class.valid_fields?(authorship.merge(status: 'XYZ'))).to be false
+        expect(described_class.valid_fields?(authorship.merge(visibility: 'transparent'))).to be false
+      end
+      it 'returns false without "featured"' do
+        authorship['featured'] = nil
+        expect(described_class.valid_fields?(authorship)).to be false
+      end
+      it 'returns false without "status"' do
+        authorship['status'] = nil
+        expect(described_class.valid_fields?(authorship)).to be false
+      end
+      it 'returns false without "visibility"' do
+        authorship['visibility'] = nil
+        expect(described_class.valid_fields?(authorship)).to be false
+      end
     end
   end
 

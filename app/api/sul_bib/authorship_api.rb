@@ -289,17 +289,13 @@ module SulBib
         authorship_hash[:status].present? ||
         authorship_hash[:visibility].present? ||
         error!("At least one authorship attribute is required: 'featured', 'status', 'visibility'.", 406)
-      unless authorship_hash[:featured].nil?
-        Contribution.featured_valid?(authorship_hash) ||
-          error!("The 'featured' param is invalid: #{authorship_hash[:featured]}.", 406)
-      end
-      if authorship_hash[:status].present?
-        Contribution.status_valid?(authorship_hash) ||
-          error!("The 'status' param is invalid: #{authorship_hash[:status]}.", 406)
-      end
-      if authorship_hash[:visibility].present?
-        Contribution.visibility_valid?(authorship_hash) ||
-          error!("The 'visibility' param is invalid: #{authorship_hash[:visibility]}.", 406)
+
+      prototype = Contribution.new(authorship_hash.slice(:featured, :status, :visibility))
+      prototype.validate # we KNOW it won't validate (w/o author and publication), but we check for the other fields
+      errors = prototype.errors.messages.slice(:featured, :status, :visibility)
+      if errors.present?
+        msg = errors.map { |k, v| "The '#{k}' param is invalid: #{authorship_hash[k]} -- #{v}" }.join("\n")
+        error!(msg, 406)
       end
       create_or_update_and_return_pub_hash(pub, author, authorship_hash)
     end # patch end
