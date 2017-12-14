@@ -100,13 +100,30 @@ describe WebOfScience::ProcessRecords, :vcr do
         expect(NotificationManager).to receive(:error)
         processor.execute
       end
-      it 'returns an Array' do
-        result = processor.execute
-        expect(result).to be_an Array
+      it 'returns empty Array' do
+        expect(processor.execute).to be_an Array
+        expect(processor.execute).to be_empty
+      end
+    end
+
+    context 'create_publication fails' do
+      before do
+        allow(Publication).to receive(:new).and_raise(ActiveRecord::RecordInvalid)
+      end
+
+      it 'does not create new Publications' do
+        expect { processor.execute }.not_to change { Publication.count }
+      end
+      it 'does not create new Contributions' do
+        expect { processor.execute }.not_to change { Contribution.count }
+      end
+      it 'logs errors' do
+        expect(NotificationManager).to receive(:error)
+        processor.execute
       end
       it 'returns empty Array' do
-        result = processor.execute
-        expect(result).to be_empty
+        expect(processor.execute).to be_an Array
+        expect(processor.execute).to be_empty
       end
     end
   end
