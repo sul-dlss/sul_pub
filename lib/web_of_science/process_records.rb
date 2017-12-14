@@ -4,7 +4,6 @@ module WebOfScience
   # Process records retrieved by any means; this is a progressive filtering of the harvested records to identify
   # those records that should create a new Publication.pub_hash, PublicationIdentifier(s) and Contribution(s).
   class ProcessRecords
-    delegate :logger, to: :WebOfScience
 
     # @param author [Author]
     # @param records [WebOfScience::Records]
@@ -22,7 +21,8 @@ module WebOfScience
       pubmed_additions(uids)
       uids
     rescue StandardError => err
-      logger.error(err.inspect)
+      message = "Author: #{author.id}, ProcessRecords failed"
+      NotificationManager.error(err, message, self)
       []
     end
 
@@ -101,9 +101,9 @@ module WebOfScience
         pub.sync_publication_hash_and_db # creates new PublicationIdentifiers
         pub.save
         record.uid
-      rescue StandardError => e
-        message = "Author: #{author.id}, #{record.uid}; Publication failed"
-        NotificationManager.error(e, message, self)
+      rescue StandardError => err
+        message = "Author: #{author.id}, #{record.uid}; Publication or Contribution failed"
+        NotificationManager.error(err, message, self)
         nil
       end
 
@@ -137,9 +137,9 @@ module WebOfScience
         pubmed_record = PubmedSourceRecord.for_pmid(record.pmid)
         pub.pub_hash.reverse_update(pubmed_record.source_as_hash)
         pub.save
-      rescue StandardError => e
+      rescue StandardError => err
         message = "Author: #{author.id}, #{record.uid}, PubmedSourceRecord failed, PMID: #{record.pmid}"
-        NotificationManager.error(e, message, self)
+        NotificationManager.error(err, message, self)
       end
 
       # ----
@@ -158,7 +158,8 @@ module WebOfScience
         links = links_client.links records.map(&:uid)
         records.each { |rec| rec.identifiers.update links[rec.uid] }
       rescue StandardError => err
-        logger.error(err.inspect)
+        message = "Author: #{author.id}, ProcessLinks failed"
+        NotificationManager.error(err, message, self)
       end
 
       # @return [WebOfScience::LinksClient]

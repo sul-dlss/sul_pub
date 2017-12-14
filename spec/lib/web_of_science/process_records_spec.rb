@@ -28,10 +28,10 @@ describe WebOfScience::ProcessRecords, :vcr do
   end
 
   let(:links_client) { Clarivate::LinksClient.new }
-  let(:null_logger) { Logger.new('/dev/null') }
 
   before do
-    allow(processor).to receive(:logger).and_return(null_logger)
+    null_logger = Logger.new('/dev/null')
+    allow(WebOfScience).to receive(:logger).and_return(null_logger)
     allow(processor).to receive(:links_client).and_return(links_client)
   end
 
@@ -39,9 +39,6 @@ describe WebOfScience::ProcessRecords, :vcr do
     # ---
     # Happy paths
 
-    it 'works' do
-      expect(processor.execute).not_to be_nil
-    end
     it 'returns an Array' do
       expect(processor.execute).to be_an Array
     end
@@ -100,7 +97,7 @@ describe WebOfScience::ProcessRecords, :vcr do
         expect { processor.execute }.not_to change { WebOfScienceSourceRecord.count }
       end
       it 'logs errors' do
-        expect(null_logger).to receive(:error)
+        expect(NotificationManager).to receive(:error)
         processor.execute
       end
       it 'returns an Array' do
