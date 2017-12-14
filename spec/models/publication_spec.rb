@@ -379,6 +379,19 @@ describe Publication do
     end
   end
 
+  describe '.for_uid' do
+    it 'returns one Publication that has this uid' do
+      publication.pub_hash = { identifier: [{ type: 'WosUID', id: 'ABC123' }] }
+      publication.send(:sync_identifiers_in_pub_hash)
+      publication.save!
+      expect(Publication.for_uid('ABC123').id).to eq(publication.id)
+    end
+
+    it 'returns nil if not found' do
+      expect(Publication.for_uid('does not exist')).to be_nil
+    end
+  end
+
   describe '#authoritative_pmid_source?' do
     let(:pub) { Publication.new }
 
