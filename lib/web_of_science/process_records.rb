@@ -65,14 +65,15 @@ module WebOfScience
       # @param [Array<WebOfScience::Record>] records
       # @return [Array<WebOfScience::Record>]
       def save_wos_records(records)
-        # IMPORTANT: add nothing to PublicationIdentifiers here, or new_records will reject them
+        # IMPORTANT: add nothing to PublicationIdentifiers here, or filter_by_identifiers will reject them
         return [] if records.empty?
         # We only want the 'pmid' for "WOS" records ("MEDLINE" records have one already)
         process_links(records.select { |rec| rec.database == 'WOS' })
         records.select do |rec|
-          saved = WebOfScienceSourceRecord.new(source_data: rec.to_xml).save!
-          # TODO: add all identifiers to src-record, including links-API identifiers
-          saved
+          attr = { source_data: rec.to_xml }
+          attr[:doi] = rec.doi if rec.doi.present?
+          attr[:pmid] = rec.pmid if rec.pmid.present?
+          WebOfScienceSourceRecord.new(attr).save!
         end
       end
 
