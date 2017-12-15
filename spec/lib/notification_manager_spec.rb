@@ -27,12 +27,12 @@ describe NotificationManager do
     end
     it 'creates a single logger' do
       expect(Logger).to receive(:new).with(Settings.CAP.LOG).once
-      described_class.error(exception, message, CapAuthorsPoller.new)
+      described_class.error(exception, message, Cap::AuthorsPoller.new)
       described_class.error(exception, message, CapHttpClient.new)
     end
     it 'logs errors' do
       expect(null_logger).to receive(:error).exactly(6)
-      described_class.error(exception, message, CapAuthorsPoller.new)
+      described_class.error(exception, message, Cap::AuthorsPoller.new)
       described_class.error(exception, message, CapHttpClient.new)
     end
   end
