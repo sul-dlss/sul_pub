@@ -16,7 +16,7 @@ class FixVisibilityNil
     @updated = 0
     @errors = 0
     @cap_http_client = CapHttpClient.new
-    @poller = CapAuthorsPoller.new
+    @poller = Cap::AuthorsPoller.new
   end
 
   def work
