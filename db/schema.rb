@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171213201429) do
+ActiveRecord::Schema.define(version: 20171215001732) do
 
   create_table "author_identities", force: :cascade do |t|
     t.integer  "author_id",     limit: 4,               null: false
@@ -218,7 +218,7 @@ ActiveRecord::Schema.define(version: 20171213201429) do
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.string   "doi",                limit: 255
-    t.string   "pmid",               limit: 255
+    t.integer  "pmid",               limit: 4
   end
 
   add_index "web_of_science_source_records", ["doi"], name: "web_of_science_doi_index", using: :btree
