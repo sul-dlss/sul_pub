@@ -2,7 +2,7 @@
 namespace :cap do
   desc 'poll cap for new authorship information'
   task :poll, [:days_ago] => :environment do |_t, args|
-    poller = CapAuthorsPoller.new
+    poller = Cap::AuthorsPoller.new
     Signal.trap('USR1') do
       poller.debug = true
     end
@@ -22,7 +22,7 @@ namespace :cap do
     raise "cap_profile_id argument is required." unless args[:cap_profile_id].present?
     cap_http_client = CapHttpClient.new
     record = cap_http_client.get_auth_profile(args[:cap_profile_id])
-    poller = CapAuthorsPoller.new
+    poller = Cap::AuthorsPoller.new
     poller.process_record(record)
   end
 end
