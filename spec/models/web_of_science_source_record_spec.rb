@@ -30,6 +30,10 @@ RSpec.describe WebOfScienceSourceRecord, type: :model do
     it 'works' do
       expect(wos_src_rec.valid?).to be true
     end
+    it 'allows select' do
+      expect(wos_src_rec.save!).to be true
+      expect(described_class.select(:id).first).to be_an described_class
+    end
   end
 
   context 'utility methods' do

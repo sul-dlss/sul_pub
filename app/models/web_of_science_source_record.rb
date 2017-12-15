@@ -2,49 +2,30 @@ class WebOfScienceSourceRecord < ActiveRecord::Base
 
   validates :active, :database, :source_data, :source_fingerprint, :uid, presence: true
 
-  after_initialize :check_source_data
+  after_initialize :init
 
-  # @return [Nokogiri::XML::Document] XML document
-  def doc
-    @doc ||= Nokogiri::XML(source_data)
-  end
-
-  def active
-    # assume records are active until we discover a deprecation attribute
-    super || self.active = true
-  end
-
-  def database
-    super || begin
-      uid_split = uid.split(':')
-      self.database = uid_split.length > 1 ? uid_split[0] : nil
-    end
-  end
+  delegate :doc, to: :record
+  delegate :to_xml, to: :record
 
   # @return [WebOfScience::Record]
   def record
     @record ||= WebOfScience::Record.new(record: source_data)
   end
 
-  def source_fingerprint
-    super || self.source_fingerprint = Digest::SHA2.hexdigest(source_data)
-  end
-
-  # @return [String] XML
-  def to_xml
-    doc.to_xml(save_with: XML_OPTIONS).strip
-  end
-
-  def uid
-    super || self.uid = doc.search('UID').text
-  end
-
   private
 
-    XML_OPTIONS = Nokogiri::XML::Node::SaveOptions::AS_XML | Nokogiri::XML::Node::SaveOptions::NO_DECLARATION
+    def init
+      # assume records are active until we discover a deprecation attribute
+      self.active = true if attributes.key?('active') && attributes['active'].nil?
+      init_from_source if attributes.key?('source_data')
+    end
 
-    def check_source_data
+    # Assign default attributes using source_data
+    def init_from_source
       raise 'Missing source_data' if source_data.nil?
+      self.database ||= record.database
+      self.source_fingerprint ||= Digest::SHA2.hexdigest(source_data)
+      self.uid ||= record.uid
     end
 
 end
