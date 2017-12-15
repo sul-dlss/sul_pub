@@ -2,20 +2,23 @@ sudo: false
 language: ruby
 cache: bundler
 rvm:
-  - 2.3.4
-  - 2.4.1
+- 2.3.4
+- 2.4.1
 services: mysql
 before_script:
-  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-  - chmod +x ./cc-test-reporter
-  - ./cc-test-reporter before-build
-  - bundle exec rake db:create db:setup
+- curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64
+  > ./cc-test-reporter
+- chmod +x ./cc-test-reporter
+- "./cc-test-reporter before-build"
+- bundle exec rake db:create db:setup
 script: bundle exec rake ci
 after_script:
-  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+- "./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT"
 env:
   global:
-    - CC_TEST_REPORTER_ID=66a4c4244af78b2eaf74c47fed9bfa88560c30c2c9a4e921053f6cd7ce097677
+  - CC_TEST_REPORTER_ID=66a4c4244af78b2eaf74c47fed9bfa88560c30c2c9a4e921053f6cd7ce097677
+  matrix:
+    secure: Liwbhcq7lVcoYR0Os1PPlur1Lo3wTbgxfQWeH2pw2fUylCpVbKgfILWfRnwYTpDejcKyF8yDHkMw9a8dY4iwpmJMsMfDcxwULMfmQZneklmMZx1zgegzUqSJcKWHgCtwGLBT1qGrCSFX7Nt/U2Y6Gvn7qG1s7JzkMX258xKLNPvq+ISjygy5h1MPvnragWSYHA1gpvv/oLHkll0/MnD5wK5k5aEue2ISGlonyLg+7xRZl/cgRgNT1/0NRyW54Exapi/GLGwlRJoA7QEbVmA0tyXqbQLeTz8p4EY4PX0vv0ufYfRjEM8LYNnZHXmimuTYhktF5fKGFbDJ3MhBs9oeJMdzC8jF4I56Ru6xaBtPT4jTyRdRGR7hfE4R5PL+28buazUEQClvua1vd94ujIcL+qJb3qsrPXuYM/emGLRf7Rwk5VE5rJyqd5In+kX7haxESQ1DWDX60+4DbpYXlqzuOcBTZ/wHh0elNRefAvLZKXX/vwOJ/bLeyJI02Erzp1hW3Ty+rg/PAsvOLqlNgBsqNwJnP/g4LHfItmdAFF2mZuxI1FGWAEAkoCiunyvyXG6MoDNN0FBmBMXwwq40AEQuvy8twSpBhWYljLGplIH4MKj24RBrY7ax84wbLscVe1vZUGegoZx7xSkwbq0vWpu3P13T7dXJiDRNLM0x12DmO98=
 notifications:
   email: false
   slack:

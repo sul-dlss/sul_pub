@@ -54,9 +54,9 @@ module Cap
         @counts ||= Hash.new { 0 } # default 0
       end
 
-      # @return [CapHttpClient]
+      # @return [Cap::Client]
       def client
-        @client ||= CapHttpClient.new
+        @client ||= Cap::Client.new
       end
 
       def write_counts_to_log

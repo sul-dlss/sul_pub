@@ -1,0 +1,102 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://authz.stanford.edu/oauth/token?grant_type=client_credentials
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.13.1
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip,deflate
+      Date:
+      - Fri, 15 Dec 2017 22:03:11 GMT
+      Content-Type:
+      - application/json
+      Authorization:
+      - Basic Settings.CAP.TOKEN_USER:Settings.CAP.TOKEN_PASS
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 15 Dec 2017 22:03:11 GMT
+      Cache-Control:
+      - no-store
+      Pragma:
+      - no-cache
+      Content-Type:
+      - application/json;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '{"access_token":"private_access_token","token_type":"bearer","expires_in":86399,"scope":"profiles.read_all","jti":"5d6855bb-8bde-4e64-8d86-ca63e948cd39"}'
+    http_version: 
+  recorded_at: Fri, 15 Dec 2017 22:03:11 GMT
+- request:
+    method: get
+    uri: https://cap-uat.stanford.edu/cap-api/api/cap/v1/authors/999999
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.13.1
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip,deflate
+      Date:
+      - Fri, 15 Dec 2017 22:03:11 GMT
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer private_bearer_token
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Date:
+      - Fri, 15 Dec 2017 22:03:11 GMT
+      Server:
+      - Apache/2.2.15 (Oracle)
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - '0'
+      Strict-Transport-Security:
+      - max-age=31536000 ; includeSubDomains
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - DENY
+      X-Content-Type-Options:
+      - nosniff
+      Vary:
+      - Accept-Encoding
+      Content-Encoding:
+      - gzip
+      Connection:
+      - close
+      Transfer-Encoding:
+      - chunked
+      Content-Type:
+      - application/json
+    body:
+      encoding: UTF-8
+      string: '{ "meta": {  "status": 404, "message":"Object of class [edu.stanford.irt.cap.api.domain.AuthorEntity]
+        with identifier [999999]: not found" } }
+
+'
+    http_version: 
+  recorded_at: Fri, 15 Dec 2017 22:03:11 GMT
+recorded_with: VCR 4.0.0

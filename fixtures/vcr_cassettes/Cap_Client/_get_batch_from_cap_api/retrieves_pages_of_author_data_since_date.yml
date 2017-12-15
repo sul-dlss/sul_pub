@@ -1,0 +1,101 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://authz.stanford.edu/oauth/token?grant_type=client_credentials
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.13.1
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip,deflate
+      Date:
+      - Fri, 15 Dec 2017 20:40:50 GMT
+      Content-Type:
+      - application/json
+      Authorization:
+      - Basic Settings.CAP.TOKEN_USER:Settings.CAP.TOKEN_PASS
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 15 Dec 2017 20:40:50 GMT
+      Cache-Control:
+      - no-store
+      Pragma:
+      - no-cache
+      Content-Type:
+      - application/json;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '{"access_token":"private_access_token","token_type":"bearer","expires_in":86399,"scope":"profiles.read_all","jti":"bed30687-2e5d-4a84-8f20-e3d75b2611b5"}'
+    http_version: 
+  recorded_at: Fri, 15 Dec 2017 20:40:51 GMT
+- request:
+    method: get
+    uri: https://cap-uat.stanford.edu/cap-api/api/cap/v1/authors?p=1&ps=1&since=2017-06-06T21:16:17.784Z
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.13.1
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip,deflate
+      Date:
+      - Fri, 15 Dec 2017 20:40:51 GMT
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer private_bearer_token
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 15 Dec 2017 20:40:51 GMT
+      Server:
+      - Apache/2.2.15 (Oracle)
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - '0'
+      Strict-Transport-Security:
+      - max-age=31536000 ; includeSubDomains
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - DENY
+      X-Content-Type-Options:
+      - nosniff
+      Vary:
+      - Accept-Encoding
+      Content-Encoding:
+      - gzip
+      Connection:
+      - close
+      Transfer-Encoding:
+      - chunked
+      Content-Type:
+      - application/json;charset=UTF-8
+    body:
+      encoding: UTF-8
+      string: '{"count":1,"firstPage":true,"lastPage":false,"page":1,"totalCount":33497,"totalPages":33497,"values":[{"active":true,"authorModifiedOn":"2017-06-11T11:42:27.000-07:00","authorship":[{"featured":false,"status":"new","sulPublicationId":24367,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":392606,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":392607,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":392608,"visibility":"public"}],"importEnabled":true,"importSettings":[{"firstName":"Jan","institution":"Stanford
+        University","lastName":"Boublik"}],"lastModified":"2017-06-11T18:44:32.457-07:00","populations":["shc","lpch"],"profile":{"californiaPhysicianLicense":"CAP-LicenseID","displayName":"Jan
+        Boublik","meta":{"links":[{"href":"https://cap-uat.stanford.edu/cap-api/api/profiles/v1/104999","rel":"https://cap.stanford.edu/rel/self"},{"href":"https://cap-uat.stanford.edu/104999","rel":"https://cap.stanford.edu/rel/public"},{"href":"https://cap-uat.stanford.edu/profiles/auth/frdActionServlet?choiceId=facProfile&profileId=104999","rel":"https://cap.stanford.edu/rel/intranet"},{"href":"https://cap-uat.stanford.edu/profiles/frdActionServlet?choiceId=printerprofile&profileversion=full&profileId=104999","rel":"https://cap.stanford.edu/rel/pdf"},{"href":"https://cap-uat.stanford.edu/cap-api/api/cap/v1/schemas/ProfileDto","rel":"https://cap.stanford.edu/rel/schema"}]},"names":{"legal":{"firstName":"Jan","lastName":"Boublik"},"preferred":{"firstName":"Jan","lastName":"Boublik"}},"npi":"1497945471","profileId":104999},"profileId":104999,"visibility":"public"}]}'
+    http_version: 
+  recorded_at: Fri, 15 Dec 2017 20:40:51 GMT
+recorded_with: VCR 4.0.0
