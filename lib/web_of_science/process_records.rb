@@ -4,7 +4,6 @@ module WebOfScience
   # Process records retrieved by any means; this is a progressive filtering of the harvested records to identify
   # those records that should create a new Publication.pub_hash, PublicationIdentifier(s) and Contribution(s).
   class ProcessRecords
-    delegate :logger, to: :WebOfScience
 
     # @param author [Author]
     # @param records [WebOfScience::Records]
@@ -19,9 +18,9 @@ module WebOfScience
     def execute
       return [] if records.count.zero?
       create_publications
-      # TODO: batch harvest PubMed data for WOS records with a PMID?
     rescue StandardError => err
-      logger.error(err.inspect)
+      message = "Author: #{author.id}, ProcessRecords failed"
+      NotificationManager.error(err, message, self)
       []
     end
 
@@ -35,10 +34,12 @@ module WebOfScience
 
       # @return [Array<String>] WosUIDs that create a new Publication
       def create_publications
-        new_wos_records = select_new_wos_records(filter_databases) # cf. WebOfScienceSourceRecord
-        saved_wos_records = save_wos_records(new_wos_records) # save WebOfScienceSourceRecord
-        new_publications = filter_by_identifiers(saved_wos_records) # cf. PublicationIdentifier
-        new_publications.map { |rec| create_publication(rec) }.compact
+        new_records = select_new_wos_records(filter_databases) # cf. WebOfScienceSourceRecord
+        new_records = save_wos_records(new_records) # save WebOfScienceSourceRecord
+        new_records = filter_by_identifiers(new_records) # cf. PublicationIdentifier
+        new_records = new_records.select { |rec| create_publication(rec) }
+        pubmed_additions(new_records)
+        new_records.map(&:uid)
       end
 
       ## 1
@@ -64,14 +65,15 @@ module WebOfScience
       # @param [Array<WebOfScience::Record>] records
       # @return [Array<WebOfScience::Record>]
       def save_wos_records(records)
-        # IMPORTANT: add nothing to PublicationIdentifiers here, or new_records will reject them
+        # IMPORTANT: add nothing to PublicationIdentifiers here, or filter_by_identifiers will reject them
         return [] if records.empty?
         # We only want the 'pmid' for "WOS" records ("MEDLINE" records have one already)
         process_links(records.select { |rec| rec.database == 'WOS' })
         records.select do |rec|
-          saved = WebOfScienceSourceRecord.new(source_data: rec.to_xml).save!
-          # TODO: add all identifiers to src-record, including links-API identifiers
-          saved
+          attr = { source_data: rec.to_xml }
+          attr[:doi] = rec.doi if rec.doi.present?
+          attr[:pmid] = rec.pmid if rec.pmid.present?
+          WebOfScienceSourceRecord.new(attr).save!
         end
       end
 
@@ -87,37 +89,22 @@ module WebOfScience
         end
       end
 
-      ## 4
+      ## 5
       # @param [WebOfScience::Record] record
-      # @return [String, nil] WosUID for a new Publication
+      # @return [Boolean] WebOfScience::Record created a new Publication?
       def create_publication(record)
         pub = Publication.new(
           active: true,
           pub_hash: record.pub_hash,
           xml: record.to_xml,
           wos_uid: record.uid)
-        pubmed_additions(record, pub) if record.pmid
         create_contribution(pub)
         pub.sync_publication_hash_and_db # creates new PublicationIdentifiers
-        pub.save
-        record.uid
-      rescue StandardError => e
-        NotificationManager.error(e, "#{record.uid} failed to create Publication", self)
-        nil
-      end
-
-      # For WOS-record that has a PMID, fetch data from PubMed and enhance the pub.pub_hash with PubMed data
-      # @param [WebOfScience::Record] record
-      # @param [Publication] pub
-      # @return [Publication, nil]
-      def pubmed_additions(record, pub)
-        # TODO: compare this with private method in Publication.add_any_pubmed_data_to_hash
-        pub.pmid = record.pmid
-        return pub if record.database == 'MEDLINE'
-        pubmed_record = PubmedSourceRecord.for_pmid(record.pmid)
-        raise "Failed to create a PubmedSourceRecord for PMID: #{record.uid}, #{record.pmid}" if pubmed_record.nil?
-        pub.pub_hash.reverse_update(pubmed_record.source_as_hash)
-        pub
+        pub.save!
+      rescue StandardError => err
+        message = "Author: #{author.id}, #{record.uid}; Publication or Contribution failed"
+        NotificationManager.error(err, message, self)
+        false
       end
 
       # Create a Contribution to associate Publication with Author
@@ -133,6 +120,29 @@ module WebOfScience
         contrib.save
       end
 
+      # For WOS-records with a PMID, try to enhance them with PubMed data
+      # @param [Array<WebOfScience::Record>] records
+      # @return [void]
+      def pubmed_additions(records)
+        records.select { |rec| rec.pmid.present? }.each { |rec| pubmed_addition(rec) }
+      end
+
+      # For WOS-record that has a PMID, fetch data from PubMed and enhance the pub.pub_hash with PubMed data
+      # @param [WebOfScience::Record] record
+      # @return [void]
+      def pubmed_addition(record)
+        pub = Publication.find_by(wos_uid: record.uid)
+        pub.pmid = record.pmid
+        pub.save
+        return if record.database == 'MEDLINE'
+        pubmed_record = PubmedSourceRecord.for_pmid(record.pmid)
+        pub.pub_hash.reverse_update(pubmed_record.source_as_hash)
+        pub.save
+      rescue StandardError => err
+        message = "Author: #{author.id}, #{record.uid}, PubmedSourceRecord failed, PMID: #{record.pmid}"
+        NotificationManager.error(err, message, self)
+      end
+
       # ----
       # WOS Links API methods
 
@@ -144,12 +154,24 @@ module WebOfScience
       #       identifiers will get added to PublicationIdentifier after a Publication is created.
       #
       # @param records [Array<WebOfScience::Record>]
+      # @return [void]
       def process_links(records)
         return if records.empty?
         links = links_client.links records.map(&:uid)
-        records.each { |rec| rec.identifiers.update links[rec.uid] }
+        records.each { |rec| process_link(rec, links[rec.uid]) }
       rescue StandardError => err
-        logger.error(err.inspect)
+        message = "Author: #{author.id}, ProcessLinks failed"
+        NotificationManager.error(err, message, self)
+      end
+
+      # @param record [WebOfScience::Record]
+      # @param links [Hash<String => String>] other identifiers (from Links API)
+      # @return [void]
+      def process_link(record, links)
+        record.identifiers.update links
+      rescue StandardError => err
+        message = "Author: #{author.id}, #{record.uid}, ProcessLink failed"
+        NotificationManager.error(err, message, self)
       end
 
       # @return [WebOfScience::LinksClient]

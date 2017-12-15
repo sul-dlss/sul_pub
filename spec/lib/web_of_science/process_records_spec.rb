@@ -28,10 +28,10 @@ describe WebOfScience::ProcessRecords, :vcr do
   end
 
   let(:links_client) { Clarivate::LinksClient.new }
-  let(:null_logger) { Logger.new('/dev/null') }
 
   before do
-    allow(processor).to receive(:logger).and_return(null_logger)
+    null_logger = Logger.new('/dev/null')
+    allow(WebOfScience).to receive(:logger).and_return(null_logger)
     allow(processor).to receive(:links_client).and_return(links_client)
   end
 
@@ -39,9 +39,6 @@ describe WebOfScience::ProcessRecords, :vcr do
     # ---
     # Happy paths
 
-    it 'works' do
-      expect(processor.execute).not_to be_nil
-    end
     it 'returns an Array' do
       expect(processor.execute).to be_an Array
     end
@@ -77,7 +74,7 @@ describe WebOfScience::ProcessRecords, :vcr do
       processor.execute
       records.each do |rec|
         pub = Publication.find_by(wos_uid: rec.uid)
-        expect(pub.pub_hash).to include(:mesh_headings)
+        expect(pub.pub_hash).to include(:authorship)
       end
     end
 
@@ -100,16 +97,33 @@ describe WebOfScience::ProcessRecords, :vcr do
         expect { processor.execute }.not_to change { WebOfScienceSourceRecord.count }
       end
       it 'logs errors' do
-        expect(null_logger).to receive(:error)
+        expect(NotificationManager).to receive(:error)
         processor.execute
       end
-      it 'returns an Array' do
-        result = processor.execute
-        expect(result).to be_an Array
+      it 'returns empty Array' do
+        expect(processor.execute).to be_an Array
+        expect(processor.execute).to be_empty
+      end
+    end
+
+    context 'create_publication fails' do
+      before do
+        allow(Publication).to receive(:new).and_raise(ActiveRecord::RecordInvalid)
+      end
+
+      it 'does not create new Publications' do
+        expect { processor.execute }.not_to change { Publication.count }
+      end
+      it 'does not create new Contributions' do
+        expect { processor.execute }.not_to change { Contribution.count }
+      end
+      it 'logs errors' do
+        expect(NotificationManager).to receive(:error)
+        processor.execute
       end
       it 'returns empty Array' do
-        result = processor.execute
-        expect(result).to be_empty
+        expect(processor.execute).to be_an Array
+        expect(processor.execute).to be_empty
       end
     end
   end
@@ -120,11 +134,14 @@ describe WebOfScience::ProcessRecords, :vcr do
   # spec example records were chosen to contain or fetch MESH headings
 
   shared_examples 'pubs_with_pmid_have_mesh_headings' do
-    # Note: the spec example records have MESH headings
-    it 'creates publication.pub_hash with MESH headings' do
+    # The spec example records calling this must be associated with a PMID
+    # - for MEDLINE records, they have a PMID
+    # - for WOS records, they may not have PMID, but they could get one from the links service in the processing
+    it 'persists PMID and publication.pub_hash has MESH headings' do
       processor.execute
-      records.select(&:pmid).each do |rec|
+      records.each do |rec|
         pub = Publication.find_by(wos_uid: rec.uid)
+        expect(pub.pmid).to be_an Integer
         expect(pub.pub_hash).to include(:mesh_headings)
       end
     end
@@ -163,6 +180,56 @@ describe WebOfScience::ProcessRecords, :vcr do
 
     it_behaves_like '#execute'
     it_behaves_like 'pubs_with_pmid_have_mesh_headings'
+
+    context 'PubMed integration fails' do
+      # only WOS records can be supplemented by PubMed data
+      # any failure is not catastrophic - just log it
+      before do
+        allow(PubmedSourceRecord).to receive(:for_pmid).and_raise(RuntimeError)
+      end
+
+      it 'continues to create new Publications' do
+        expect { processor.execute }.to change { Publication.count }
+      end
+      it 'logs errors' do
+        expect(NotificationManager).to receive(:error)
+        processor.execute
+      end
+    end
+
+    context 'WOS links fail' do
+      # only WOS records use the links service
+      # any failure to add links data is not catastrophic - just log it
+      before do
+        allow(links_client).to receive(:links).and_raise(RuntimeError)
+      end
+
+      it 'continues to create new Publications' do
+        expect { processor.execute }.to change { Publication.count }
+      end
+      it 'logs errors' do
+        expect(NotificationManager).to receive(:error)
+        processor.execute
+      end
+    end
+
+    context 'WOS links - identifier update fails' do
+      # only WOS records use the links service
+      # any failure to add links data is not catastrophic - just log it
+      before do
+        identifiers = WebOfScience::Identifiers.new(records.first)
+        allow(identifiers).to receive(:update).and_raise(RuntimeError)
+        allow(WebOfScience::Identifiers).to receive(:new).and_return(identifiers)
+      end
+
+      it 'continues to create new Publications' do
+        expect { processor.execute }.to change { Publication.count }
+      end
+      it 'logs errors' do
+        expect(NotificationManager).to receive(:error)
+        processor.execute
+      end
+    end
   end
 
   context 'with records from excluded databases' do
