@@ -33,7 +33,7 @@ end
 
 # delegate to the clients to see if they are working
 clients = [
-  CapHttpClient,
+  Cap::Client,
   PubmedClient
 ]
 clients << ScienceWireClient if Settings.SCIENCEWIRE.enabled

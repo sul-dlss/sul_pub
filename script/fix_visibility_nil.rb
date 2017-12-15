@@ -15,7 +15,7 @@ class FixVisibilityNil
     @logger.info "Processing #{@author_ids.count} Authors"
     @updated = 0
     @errors = 0
-    @cap_http_client = CapHttpClient.new
+    @cap_http_client = Cap::Client.new
     @poller = Cap::AuthorsPoller.new
   end
 

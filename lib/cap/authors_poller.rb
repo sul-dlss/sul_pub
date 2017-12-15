@@ -8,7 +8,7 @@ module Cap
 
     def initialize
       @sw_harvester = ScienceWireHarvester.new
-      @cap_client = CapHttpClient.new
+      @cap_client = Cap::Client.new
       @logger = NotificationManager.cap_logger
       init_stats
     end
