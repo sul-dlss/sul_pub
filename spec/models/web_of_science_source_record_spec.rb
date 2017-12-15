@@ -26,12 +26,32 @@ RSpec.describe WebOfScienceSourceRecord, type: :model do
     end
   end
 
+  context 'sets identifiers' do
+    before do
+      identifiers = WebOfScience::Identifiers.new(wos_record)
+      allow(identifiers).to receive(:doi).and_return('doi')
+      allow(identifiers).to receive(:pmid).and_return('123')
+      allow(WebOfScience::Identifiers).to receive(:new).and_return(identifiers)
+    end
+    it 'sets doi' do
+      expect(wos_src_rec.doi).to eq 'doi'
+    end
+    it 'sets pmid' do
+      expect(wos_src_rec.pmid).to eq 123
+    end
+    it 'allows select' do
+      wos_src_rec.save!
+      expect(described_class.select(:doi).first).to be_an described_class
+      expect(described_class.select(:pmid).first).to be_an described_class
+    end
+  end
+
   context 'source record validation' do
     it 'works' do
       expect(wos_src_rec.valid?).to be true
     end
     it 'allows select' do
-      expect(wos_src_rec.save!).to be true
+      wos_src_rec.save!
       expect(described_class.select(:id).first).to be_an described_class
     end
   end

@@ -23,9 +23,15 @@ class WebOfScienceSourceRecord < ActiveRecord::Base
     # Assign default attributes using source_data
     def init_from_source
       raise 'Missing source_data' if source_data.nil?
-      self.database ||= record.database
       self.source_fingerprint ||= Digest::SHA2.hexdigest(source_data)
+      self.database ||= record.database
       self.uid ||= record.uid
+      init_optional_attributes
     end
 
+    # Assign optional attributes using source_data
+    def init_optional_attributes
+      self.doi ||= record.doi if record.doi.present?
+      self.pmid ||= record.pmid if record.pmid.present?
+    end
 end
