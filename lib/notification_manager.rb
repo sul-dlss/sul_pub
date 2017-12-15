@@ -15,7 +15,7 @@ class NotificationManager
         log_exception(sciencewire_logger, log_message, e)
       when PubmedHarvester, PubmedClient, PubmedSourceRecord
         log_exception(pubmed_logger, log_message, e)
-      when Cap::AuthorsPoller, CapHttpClient
+      when Cap::AuthorsPoller, Cap::Client
         log_exception(cap_logger, log_message, e)
       when WebOfScience::Client, WebOfScience::Harvester, WebOfScience::ProcessRecords, WebOfScience::Record
         log_exception(WebOfScience.logger, log_message, e)
