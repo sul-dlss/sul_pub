@@ -68,6 +68,6 @@ namespace :cap_cutover do
       input = STDIN.gets.chomp
       return unless input.upcase == 'Y'
     end
-    CapProfileIdRewriter.new.rewrite_cap_profile_ids_from_feed
+    Cap::ProfileIdRewriter.new.rewrite_cap_profile_ids_from_feed
   end
 end
