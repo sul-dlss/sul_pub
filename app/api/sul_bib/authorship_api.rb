@@ -16,24 +16,23 @@ module SulBib
         contrib_attr
       end
 
+      # A publication manages a contribution update, so that it can update
+      # the data in the pub.pub_hash field. This is the most painful data
+      # modeling aspect of this application. It maintains a Hash in a
+      # Publication.pub_hash field, breaking the elegant design of a RDBMS.
+      # @return [Hash] the entire pub_hash, not just the contribution
+      # @note contribution should be in the pub_hash[:authorship] array
       def create_or_update_and_return_pub_hash(pub, author, authorship)
-        # A publication manages a contribution update, so that it can update
-        # the data in the pub.pub_hash field. This is the most painful data
-        # modeling aspect of this application.  It maintains a Hash in a
-        # Publication.pub_hash field, breaking the elegant design of a RDBMS.
         contrib = pub.contributions.find_or_initialize_by(author_id: author.id)
         contrib.assign_attributes(authorship.merge(cap_profile_id: author.cap_profile_id, author_id: author.id))
         # error!('You have not supplied a valid authorship record.', 406)
         pub.pubhash_needs_update! if contrib.persisted? && contrib.changed?
         begin
           contrib.save!
-          # Save the publication so it will sync the contribution into the pub.pub_hash[:authorship] array.
-          pub.save!
+          pub.save! # sync the contribution into the pub.pub_hash[:authorship] array
         rescue ActiveRecord::ActiveRecordError => e
           error!(e.inspect, 500)
         end
-        # Return the entire pub_hash rather than just the contribution.  The
-        # contribution should be in the pub_hash[:authorship] array.
         pub.pub_hash
       end
 
@@ -61,29 +60,16 @@ module SulBib
         log_and_error!("SULCAP has no record for sul_author_id: #{sul_author_id}")
       end
 
-      # Double check the author contains a cap_profile_id and, if one is
-      # specified in the request, ensure we have the right one!
-      def check_author_ids(author, cap_profile_id)
-        unless cap_profile_id.blank?
-          if author.cap_profile_id != cap_profile_id.to_i
-            if author.cap_profile_id.blank?
-              # The author was found by 'sul_author_id' and it has
-              # never had a 'cap_profile_id' assigned to it, so do it now.
-              author.cap_profile_id = cap_profile_id.to_i
-              author.save
-            else
-              # The author was found by 'sul_author_id' and it has
-              # a different 'cap_profile_id' assigned to it, barf!
-              msg = "SULCAP has an author record with a different cap_profile_id\n"
-              msg += "Found     cap_profile_id: #{author.cap_profile_id} in sul_author_id: #{author.id}\n"
-              msg += "Requested cap_profile_id: #{cap_profile_id}"
-              log_and_error!(msg, 500)
-            end
-          end
+      # Double check they aren't identifying two different authors
+      def check_author_ids!(author, cap_profile_id)
+        return if cap_profile_id.blank?
+        if author.cap_profile_id != cap_profile_id.to_i
+          # Author found by 'sul_author_id' has a different 'cap_profile_id' assigned, barf!
+          msg = "SULCAP has an author record with a different cap_profile_id\n"
+          msg += "Found     cap_profile_id: #{author.cap_profile_id} in sul_author_id: #{author.id}\n"
+          msg += "Requested cap_profile_id: #{cap_profile_id}"
+          log_and_error!(msg, 500)
         end
-        return unless author.cap_profile_id.blank?
-        # When POST only contains a sul_author_id and the author found has no cap_profile_id, log a warning.
-        logger.warn "SULCAP sul_author_id #{author.id} has no cap_profile_id"
       end
 
       # Find an existing contribution by author/publication
@@ -173,7 +159,7 @@ module SulBib
         params[:cap_profile_id],
         params[:sul_author_id]
       )
-      check_author_ids(author, params[:cap_profile_id])
+      check_author_ids!(author, params[:cap_profile_id])
 
       # Now find an existing sul publication or, if it doesn't exist, it
       # may be fetched from PubMed (pmid), WebOfScience (wos_uid) or ScienceWire (sw_id).
@@ -234,7 +220,7 @@ module SulBib
         params[:cap_profile_id],
         params[:sul_author_id]
       )
-      check_author_ids(author, params[:cap_profile_id])
+      check_author_ids!(author, params[:cap_profile_id])
 
       # Find an existing contribution by author/publication
       pub = get_contribution(author, params[:sul_pub_id]).publication
