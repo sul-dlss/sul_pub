@@ -44,16 +44,13 @@ gem 'paper_trail'
 gem 'parallel'
 gem 'pry-rails'
 gem 'pubmed_search'
+gem 'rake'
 gem 'savon', '~> 2.11'
 gem 'simple_form'
 gem 'StreetAddress', '~> 1.0', '>= 1.0.6'
 gem 'turnout'
 gem 'whenever', require: false
 gem 'yaml_db'
-
-# http://stackoverflow.com/questions/35893584/nomethoderror-undefined-method-last-comment-after-upgrading-to-rake-11
-# same error in travis build with rake v12.0.0, so I chose to pin rake back
-gem 'rake', '~> 11.3.0'
 
 # -------------------
 gem 'honeybadger', '~> 3.2'

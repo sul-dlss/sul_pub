@@ -320,7 +320,7 @@ GEM
       thor (>= 0.18.1, < 2.0)
     rainbow (2.2.2)
       rake
-    rake (11.3.0)
+    rake (12.3.0)
     ransack (1.8.4)
       actionpack (>= 3.0)
       activerecord (>= 3.0)
@@ -504,7 +504,7 @@ DEPENDENCIES
   pubmed_search
   rails (~> 4.2.10)
   rails_db
-  rake (~> 11.3.0)
+  rake
   responders (~> 2.4)
   retina_tag
   rspec-rails (~> 3.7)
