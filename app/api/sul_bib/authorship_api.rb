@@ -62,14 +62,12 @@ module SulBib
 
       # Double check they aren't identifying two different authors
       def check_author_ids!(author, cap_profile_id)
-        return if cap_profile_id.blank?
-        if author.cap_profile_id != cap_profile_id.to_i
-          # Author found by 'sul_author_id' has a different 'cap_profile_id' assigned, barf!
-          msg = "SULCAP has an author record with a different cap_profile_id\n"
-          msg += "Found     cap_profile_id: #{author.cap_profile_id} in sul_author_id: #{author.id}\n"
-          msg += "Requested cap_profile_id: #{cap_profile_id}"
-          log_and_error!(msg, 500)
-        end
+        return if cap_profile_id.blank? || author.cap_profile_id == cap_profile_id.to_i
+        # Author found by 'sul_author_id' has a different 'cap_profile_id' assigned, barf!
+        msg = "SULCAP has an author record with a different cap_profile_id\n"
+        msg += "Found     cap_profile_id: #{author.cap_profile_id} in sul_author_id: #{author.id}\n"
+        msg += "Requested cap_profile_id: #{cap_profile_id}"
+        log_and_error!(msg, 500)
       end
 
       # Find an existing contribution by author/publication
@@ -89,27 +87,37 @@ module SulBib
 
       # Find an existing SUL publication or, if it doesn't exist, it may be fetched based on ID provided
       # @param [String] sul_pub_id internal ID
+      # @return [Publication]
+      def get_local_publication!(sul_pub_id)
+        Publication.find(sul_pub_id)
+      rescue ActiveRecord::RecordNotFound
+        log_and_error!("The SUL:#{sul_pub_id} publication does not exist.")
+      end
+
       # @param [String] pmid PubMed ID
+      # @return [Publication]
+      def get_publication_via_pubmed!(pmid)
+        Publication.find_or_create_by_pmid(pmid) ||
+          log_and_error!("The PMID:#{pmid} was not found either locally or at PubMed.")
+      end
+
       # @param [String] sw_id ScienceWire ID
+      # @return [Publication]
+      def get_publication_via_sciencewire!(sw_id)
+        Publication.find_or_create_by_sciencewire_id(sw_id) ||
+          log_and_error!("The ScienceWire:#{sw_id} publication was not found either locally or at ScienceWire.")
+      end
+
+      # @param [Author] author, note this variation from other methods, because harvester requires author
       # @param [String] wos_uid WebOfScience ID
-      def get_publication(sul_pub_id, pmid, sw_id, wos_uid)
-        if sul_pub_id.blank? && pmid.blank? && sw_id.blank? && wos_uid.blank?
-          log_and_error!('There is no valid publication identifier: sul_pub_id || pmid || sw_id || wos_uid.', 400)
-        end
-        if sul_pub_id
-          begin
-            Publication.find(sul_pub_id)
-          rescue ActiveRecord::RecordNotFound
-            log_and_error!("The SUL:#{sul_pub_id} publication does not exist.")
-          end
-        elsif pmid
-          Publication.find_or_create_by_pmid(pmid) || log_and_error!("The PMID:#{pmid} was not found either locally or at PubMed.")
-        elsif wos_uid
-          Publication.for_uid(wos_uid) || WebOfScience.Harvester.new || log_and_error!("The #{wos_uid} publication was not found either locally or at WebOfScience.")
-        elsif sw_id
-          Publication.find_or_create_by_sciencewire_id(sw_id) || log_and_error!("The ScienceWire:#{sw_id} publication was not found either locally or at ScienceWire.")
-        end
-      end # get_publication
+      # @return [Publication]
+      def get_publication_via_wos!(author, wos_uid)
+        pub = Publication.find_by(wos_uid: wos_uid)
+        return pub if pub
+        uids = WebOfScience.harvester.process_uids(author, [wos_uid])
+        uids.present? || log_and_error!("The #{wos_uid} publication was not found either locally or at WebOfScience.")
+        Publication.find_by(wos_uid: uids.first)
+      end
 
       # @param [String] msg Message to log and send in response
       # @param [Integer] code HTTP status code
@@ -150,9 +158,8 @@ module SulBib
       requires :visibility, type: String, desc: 'The JSON body must indicate if the contribution is visible', coerce_with: ->(val) { val.downcase }
     end
     post do
-      request_body_unparsed = env['api.request.input']
       logger.info('POST Contribution JSON: ')
-      logger.info(request_body_unparsed.to_s)
+      logger.info(env['api.request.input'].to_s)
 
       # Find or create an author
       author = get_author(
@@ -161,14 +168,18 @@ module SulBib
       )
       check_author_ids!(author, params[:cap_profile_id])
 
+      ids = params.slice(:sul_pub_id, :pmid, :sw_id, :wos_uid).to_h.symbolize_keys
+      ids.reject! { |_, v| v.blank? }
+      unless ids.any?
+        log_and_error!('There is no valid publication identifier: sul_pub_id || pmid || sw_id || wos_uid.', 400)
+      end
+
       # Now find an existing sul publication or, if it doesn't exist, it
       # may be fetched from PubMed (pmid), WebOfScience (wos_uid) or ScienceWire (sw_id).
-      pub = get_publication(
-        params[:sul_pub_id],
-        params[:pmid],
-        params[:sw_id],
-        params[:wos_uid]
-      )
+      pub = get_local_publication!(ids[:sul_pub_id]) if ids[:sul_pub_id]
+      pub ||= get_publication_via_pubmed!(ids[:pmid]) if ids[:pmid]
+      pub ||= get_publication_via_sciencewire!(ids[:sw_id]) if ids[:sw_id]
+      pub ||= get_publication_via_wos!(author, ids[:wos_uid]) if ids[:wos_uid]
 
       # We've now got the author and pub, validate the authorship and create or
       # update the contribution.  (When a request only requires an update, it
@@ -211,9 +222,8 @@ module SulBib
       optional :visibility, type: String, desc: 'The JSON body should indicate if the contribution is visible', coerce_with: ->(val) { val.downcase }
     end
     patch do
-      request_body_unparsed = env['api.request.input']
       logger.info('PATCH Contribution JSON: ')
-      logger.info(request_body_unparsed.to_s)
+      logger.info(env['api.request.input'].to_s)
 
       # Find an existing author
       author = get_author(

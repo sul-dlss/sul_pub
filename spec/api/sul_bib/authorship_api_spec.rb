@@ -47,6 +47,8 @@ describe SulBib::API, :vcr do
   # end
 
   shared_examples 'it creates new contributions and publications' do
+    let(:new_pub) { Publication.last }
+
     context 'with no other contributions' do
       let(:request_data) { valid_data_for_post.merge(author_hash) }
       it 'successfully creates one new contribution' do
@@ -80,12 +82,10 @@ describe SulBib::API, :vcr do
         expect(authorship.any? { |a| a[:sul_author_id] == author.id }).to be true
       end
       it 'adds one authorship entry to response pub_hash' do
-        # This specifically checks the response data, whereas the prior
-        # spec checks the data model.
+        # This specifically checks response data, whereas the prior spec checks data model.
         http_request
         # Expect a change in the number of contributions
-        result_pubhash = JSON.parse(response.body)
-        result_authorship = result_pubhash['authorship']
+        result_authorship = result['authorship']
         expect(result_authorship.length).to eq(contribution_count + 1)
         authorship_matches = result_authorship.select do |a|
           a['sul_author_id'] == author.id
@@ -97,12 +97,9 @@ describe SulBib::API, :vcr do
 
     context 'for a new PubMed publication' do
       let(:request_data) { base_data.merge(pmid: '23684686').merge(author_hash) }
-      let(:new_pub) { Publication.last }
-      # Use `let!` to issue HTTP request and check result before each example.
-      let!(:result) do
+      before do
         http_request
         expect(response.body).to eq(new_pub.pub_hash.to_json)
-        JSON.parse(response.body)
       end
 
       it 'adds new publication' do
@@ -117,28 +114,18 @@ describe SulBib::API, :vcr do
       end
 
       it 'adds proper identifiers section' do
-        pub_ids = result['identifier']
-        # Check the PMID, e.g.
-        # {"type"=>"PMID", "id"=>"23684686", "url"=>"https://www.ncbi.nlm.nih.gov/pubmed/23684686"}
-        pmid_hash = pub_ids.find { |id| id['type'] == 'PMID' }
-        pmid = request_data[:pmid]
-        expect(pmid_hash).to match a_hash_including('type' => 'PMID', 'id' => pmid, 'url' => "https://www.ncbi.nlm.nih.gov/pubmed/#{pmid}")
-        # Check the SULPubId, e.g.
-        # {:type=>"SULPubId", :id=>"2355", :url=>"https://sulcap.stanford.edu/publications/2355"}],
-        sul_hash = pub_ids.find { |id| id['type'] == 'SULPubId' }
-        sul_pub_id = Publication.last.id.to_s
-        expect(sul_hash).to match a_hash_including('type' => 'SULPubId', 'id' => sul_pub_id, 'url' => "#{Settings.SULPUB_ID.PUB_URI}/#{sul_pub_id}")
+        expect(result['identifier']).to include(
+          a_hash_including('type' => 'PMID', 'id' => request_data[:pmid], 'url' => "https://www.ncbi.nlm.nih.gov/pubmed/#{request_data[:pmid]}"),
+          a_hash_including('type' => 'SULPubId', 'id' => new_pub.id.to_s, 'url' => "#{Settings.SULPUB_ID.PUB_URI}/#{new_pub.id}")
+        )
       end
     end # context 'for a new PubMed publication'
 
     context 'for a new ScienceWire publication' do
       let(:request_data) { base_data.merge(sw_id: '10379039').merge(author_hash) }
-      let(:new_pub) { Publication.last }
-      # Use `let!` to issue HTTP request and check result before each example.
-      let!(:result) do
-        http_request # defined in context, uses request_data
+      before do
+        http_request
         expect(response.body).to eq(new_pub.pub_hash.to_json)
-        JSON.parse(response.body)
       end
 
       it 'adds new ScienceWire publication' do
@@ -154,18 +141,55 @@ describe SulBib::API, :vcr do
       end
 
       it 'adds new ScienceWire publication with proper identifiers section' do
-        pub_ids = result['identifier']
-        # This doesn't result is a clearly identified ScienceWire identifier, e.g.
-        # {"type"=>"PublicationItemID", "id"=>"10379039"}
-        item_hash = pub_ids.find { |id| id['type'] == 'PublicationItemID' }
-        expect(item_hash).to match a_hash_including('type' => 'PublicationItemID', 'id' => request_data[:sw_id])
-        # Check the SULPubId, e.g.
-        # {'type'=>'SULPubId', 'id'=>'2355', 'url'=>"http://sulcap.stanford.edu/publications/2355"}],
-        sul_hash = pub_ids.find { |id| id['type'] == 'SULPubId' }
-        sul_pub_id = new_pub.id.to_s
-        expect(sul_hash).to match a_hash_including('type' => 'SULPubId', 'id' => sul_pub_id, 'url' => "#{Settings.SULPUB_ID.PUB_URI}/#{sul_pub_id}")
+        expect(result['identifier']).to include(
+          a_hash_including('type' => 'PublicationItemID', 'id' => request_data[:sw_id]),
+          a_hash_including('type' => 'SULPubId', 'id' => new_pub.id.to_s, 'url' => "#{Settings.SULPUB_ID.PUB_URI}/#{new_pub.id}")
+        )
       end
     end # context 'for a new ScienceWire publication'
+
+    context 'for a new WoS publication' do
+      let(:request_data) { base_data.merge(wos_uid: wos_record_uid).merge(author_hash) }
+      let(:wos_record_xml) { File.read('spec/fixtures/wos_client/wos_record_000386326200035.xml') }
+      let(:wos_record_uid) { 'WOS:000386326200035' }
+      let(:wos_record_links) { { wos_record_uid => {} } } # it has no DOI or PMID from the links API
+      let(:records) { WebOfScience::Records.new(records: "<records>#{wos_record_xml}</records>") }
+      let(:wos_queries) do
+        wos_client = instance_double(WebOfScience::Client)
+        WebOfScience::Queries.new(wos_client)
+      end
+      let(:links_client) { Clarivate::LinksClient.new }
+
+      before do
+        allow(links_client).to receive(:links).with([wos_record_uid]).and_return(wos_record_links)
+        processor = WebOfScience::ProcessRecords.new(author, records)
+        allow(processor).to receive(:links_client).and_return(links_client)
+        allow(WebOfScience::ProcessRecords).to receive(:new).and_return(processor)
+        allow(wos_queries).to receive(:retrieve_by_id).and_return(records)
+        allow(WebOfScience.harvester).to receive(:wos_queries).and_return(wos_queries)
+        http_request
+        expect(response.body).to eq(new_pub.pub_hash.to_json)
+      end
+
+      it 'adds new WoS publication' do
+        expect(result['wos_uid']).to eq(request_data[:wos_uid])
+        expect(result['authorship'].length).to eq 1
+        expect(result['authorship'][0]['sul_author_id']).to eq(author.id)
+        contribution = Contribution.find_by(
+          publication_id: new_pub.id,
+          author_id: author.id)
+        expect(contribution.featured).to eq(request_data[:featured])
+        expect(contribution.status).to eq(request_data[:status])
+        expect(contribution.visibility).to eq(request_data[:visibility])
+      end
+
+      it 'adds new WoS publication with proper identifiers section' do
+        expect(result['identifier']).to include(
+          a_hash_including('type' => 'WosUID', 'id' => request_data[:wos_uid]),
+          a_hash_including('type' => 'SULPubId', 'id' => new_pub.id.to_s, 'url' => "#{Settings.SULPUB_ID.PUB_URI}/#{new_pub.id}")
+        )
+      end
+    end # new WoS
   end
 
   shared_examples 'it updates an existing contribution' do
@@ -211,8 +235,7 @@ describe SulBib::API, :vcr do
       # Expect no change in the number of contributions, only a
       # change in the attributes of the contribution updated.  In this
       # spec, the attributes must be checked in the response.
-      result_pubhash = JSON.parse(response.body)
-      result_authorship = result_pubhash['authorship']
+      result_authorship = result['authorship']
       expect(result_authorship.length).to eq(authorship_array.length)
       authorship_matches = result_authorship.select do |a|
         a['sul_author_id'] == request_data[:sul_author_id] ||
@@ -230,15 +253,11 @@ describe SulBib::API, :vcr do
     end
   end # 'it updates an existing contribution'
 
-  # ---
-  # shared examples for failures
-
   shared_examples 'it issues errors without author params' do
     let(:request_data) { valid_data_for_post }
     it 'returns 400 with an error message' do
       http_request
       expect(response.status).to eq 400
-      result = JSON.parse(response.body)
       expect(result['error']).to include('sul_author_id', 'cap_profile_id')
     end
   end
@@ -250,7 +269,6 @@ describe SulBib::API, :vcr do
     it 'returns 404 when it fails to find a sul_author_id' do
       http_request
       expect(response.status).to eq 404
-      result = JSON.parse(response.body)
       expect(result['error']).to include('sul_author_id', sul_author_id)
     end
   end
@@ -258,7 +276,6 @@ describe SulBib::API, :vcr do
   shared_examples 'it issues errors for cap_profile_id' do
     let(:cap_profile_id) { '999999' }
     let(:request_data) { valid_data_for_post.merge(cap_profile_id: cap_profile_id) }
-    let(:result) { JSON.parse(response.body) }
 
     def check_response_error(code)
       expect(response.status).to eq code
@@ -285,11 +302,13 @@ describe SulBib::API, :vcr do
     end
   end
 
+  # end of shared_examples
   # ---
   # POST
 
   context 'POST /authorship' do
     let(:http_request) { post '/authorship', request_data.to_json, headers }
+    let(:result) { JSON.parse(response.body) } # invoke after http_request
 
     context 'success' do
       after(:example) { expect(response.status).to eq(201) }
@@ -335,34 +354,38 @@ describe SulBib::API, :vcr do
 
       context 'if there are publication errors' do
         let(:no_pub_params) { sul_author_hash.merge(base_data) }
-        let(:result) { JSON.parse(response.body) }
         let(:id) { '0' }
 
         it 'returns 400 when publication parameters are missing' do
           post '/authorship', no_pub_params.to_json, headers
           expect(response.status).to eq 400
-          expect(result['error']).to include('no valid publication identifier', 'sul_pub_id', 'pmid', 'sw_id')
+          expect(result['error']).to include('no valid publication identifier', 'sul_pub_id', 'pmid', 'sw_id', 'wos_uid')
         end
-        it 'returns 404 with error message for invalid sul_pub_id' do
-          # expect(Publication).to receive(:find).and_raise(ActiveRecord::RecordNotFound)
-          request_data = no_pub_params.merge(sul_pub_id: id)
-          post '/authorship', request_data.to_json, headers
-          expect(response.status).to eq 404
-          expect(result['error']).to include(id, 'does not exist')
-        end
-        it 'returns 404 with error message for invalid pmid' do
-          expect(Publication).to receive(:find_or_create_by_pmid).and_return(nil)
-          request_data = no_pub_params.merge(pmid: id)
-          post '/authorship', request_data.to_json, headers
-          expect(response.status).to eq 404
-          expect(result['error']).to include(id, 'was not found')
-        end
-        it 'returns 404 with error message for invalid sw_id' do
-          expect(Publication).to receive(:find_or_create_by_sciencewire_id).and_return(nil)
-          request_data = no_pub_params.merge(sw_id: id)
-          post '/authorship', request_data.to_json, headers
-          expect(response.status).to eq 404
-          expect(result['error']).to include(id, 'was not found')
+        context 'returns 404 with error message for invalid' do
+          after { expect(response.status).to eq 404 }
+          it 'sul_pub_id' do
+            request_data = no_pub_params.merge(sul_pub_id: id)
+            post '/authorship', request_data.to_json, headers
+            expect(result['error']).to include(id, 'does not exist')
+          end
+          it 'pmid' do
+            expect(Publication).to receive(:find_or_create_by_pmid)
+            request_data = no_pub_params.merge(pmid: id)
+            post '/authorship', request_data.to_json, headers
+            expect(result['error']).to include(id, 'was not found')
+          end
+          it 'sw_id' do
+            expect(Publication).to receive(:find_or_create_by_sciencewire_id)
+            request_data = no_pub_params.merge(sw_id: id)
+            post '/authorship', request_data.to_json, headers
+            expect(result['error']).to include(id, 'was not found')
+          end
+          it 'wos_uid' do
+            expect(WebOfScience.harvester).to receive(:process_uids).with(Author, [id])
+            request_data = no_pub_params.merge(wos_uid: id)
+            post '/authorship', request_data.to_json, headers
+            expect(result['error']).to include(id, 'was not found')
+          end
         end
       end # context 'if there are publication errors'
     end # context 'failure'
@@ -373,6 +396,7 @@ describe SulBib::API, :vcr do
 
   context 'PATCH /authorship' do
     let(:http_request) { patch '/authorship', request_data.to_json, headers }
+    let(:result) { JSON.parse(response.body) } # invoke after http_request
 
     context 'success' do
       # The POST specs use either sul_author_id or cap_profile_id for creating
@@ -437,7 +461,6 @@ describe SulBib::API, :vcr do
         # gets past all the parameter checks, and mock the Contribution.where
         # method to ensure it returns missing or invalid data.
         let(:request_data) { update_authorship_for_pub_with_contributions }
-        let(:result) { JSON.parse(response.body) }
 
         it 'returns 404 with error message for missing contributions' do
           # Although the request is valid and should find an existing
