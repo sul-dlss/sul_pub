@@ -15,7 +15,7 @@ module WebOfScience
 
     delegate :logger, to: :WebOfScience
 
-    def initialize(auth_code, log_level = :info)
+    def initialize(auth_code, log_level = Settings.WOS.LOG_LEVEL.to_sym)
       @auth_code = auth_code
       @log_level = log_level
     end
