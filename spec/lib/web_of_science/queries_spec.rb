@@ -16,6 +16,7 @@ describe WebOfScience::Queries do
   let(:wos_client) { WebOfScience::Client.new(wos_auth) }
   let(:wos_ids) { %w(WOS:A1976BW18000001 WOS:A1972N549400003) }
   let(:wos_retrieve_by_id_response) { File.read('spec/fixtures/wos_client/wos_retrieve_by_id_response.xml') }
+  let(:wos_retrieve_by_id_PMID) { File.read('spec/fixtures/wos_client/wos_retrieve_by_id_response_MEDLINE26776186.xml') }
   let(:wos_search_by_doi_response) { File.read('spec/fixtures/wos_client/wos_search_by_doi_response.xml') }
   let(:wos_search_by_doi_mismatch_response) { File.read('spec/fixtures/wos_client/wos_search_by_doi_mismatch_response.xml') }
   let(:wos_search_by_name_response) { File.read('spec/fixtures/wos_client/wos_search_by_name_response.xml') }
@@ -126,6 +127,15 @@ describe WebOfScience::Queries do
       savon.expects(:authenticate).returns(wos_auth_response)
       savon.expects(:retrieve_by_id).with(message: :any).returns(wos_retrieve_by_id_response)
       records = wos_queries.retrieve_by_id(wos_ids)
+      expect(records).to be_an WebOfScience::Records
+    end
+  end
+
+  describe '#retrieve_by_pmid' do
+    it 'works' do
+      savon.expects(:authenticate).returns(wos_auth_response)
+      savon.expects(:retrieve_by_id).with(message: :any).returns(wos_retrieve_by_id_PMID)
+      records = wos_queries.retrieve_by_pmid(['26776186'])
       expect(records).to be_an WebOfScience::Records
     end
   end
