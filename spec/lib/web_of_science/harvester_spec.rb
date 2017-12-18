@@ -21,6 +21,7 @@ describe WebOfScience::Harvester do
   let(:wos_retrieve_by_id_response) { File.read('spec/fixtures/wos_client/wos_retrieve_by_id_response.xml') }
   let(:wos_search_by_doi_response) { File.read('spec/fixtures/wos_client/wos_search_by_doi_response.xml') }
   let(:wos_search_by_name_response) { File.read('spec/fixtures/wos_client/wos_search_by_name_response.xml') }
+  let(:wos_retrieve_by_id_PMID) { File.read('spec/fixtures/wos_client/wos_retrieve_by_id_response_MEDLINE26776186.xml') }
 
   let(:medline_xml) { File.read('spec/fixtures/wos_client/medline_encoded_records.html') }
   let(:any_records_will_do) { WebOfScience::Records.new(encoded_records: medline_xml) }
@@ -114,13 +115,13 @@ describe WebOfScience::Harvester do
   describe '#process_pmids' do
     before do
       savon.expects(:authenticate).returns(wos_auth_response)
-      #TODO: savon.expects(:search).with(message: :any).returns(wos_search_by_pmid_response)
+      savon.expects(:retrieve_by_id).with(message: :any).returns(wos_retrieve_by_id_PMID)
     end
 
-    let(:pmid) { 'A PMID' } # don't care if this actually belongs to the author or not
+    let(:pmid) { '26776186' } # don't care if this actually belongs to the author or not
     let(:harvest_process) { harvester.process_pmids(author, [pmid]) }
 
-    # TODO: it_behaves_like 'it_can_process_records'
+    it_behaves_like 'it_can_process_records'
   end
 
   describe '#process_uids' do
