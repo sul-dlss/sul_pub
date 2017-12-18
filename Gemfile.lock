@@ -203,7 +203,7 @@ GEM
     hashdiff (0.2.3)
     hashie (3.5.6)
     high_voltage (2.3.0)
-    honeybadger (3.1.2)
+    honeybadger (3.2.0)
     htmlentities (4.3.4)
     httpclient (2.8.3)
     httpi (2.4.2)
@@ -483,7 +483,7 @@ DEPENDENCIES
   faraday
   grape (~> 0.19)
   high_voltage
-  honeybadger (~> 3.1)
+  honeybadger (~> 3.2)
   htmlentities (~> 4.3)
   httpclient (~> 2.8)
   identifiers (~> 0.9)
