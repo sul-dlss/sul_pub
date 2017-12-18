@@ -56,7 +56,7 @@ gem 'yaml_db'
 gem 'rake', '~> 11.3.0'
 
 # -------------------
-gem 'honeybadger', '~> 3.1'
+gem 'honeybadger', '~> 3.2'
 gem 'retina_tag'
 
 group :development, :test do
