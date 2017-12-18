@@ -63,6 +63,14 @@ module WebOfScience
       retrieve_records(:retrieve_by_id, message)
     end
 
+    # Search for MEDLINE records matching PMIDs
+    # @param pmids [Array<String>] a list of PMIDs
+    # @return [WebOfScience::Records]
+    def retrieve_by_pmid(pmids)
+      uids = pmids.map { |pmid| "MEDLINE:#{pmid}" }
+      retrieve_by_id(uids)
+    end
+
     # @param user_query [String] a custom user query
     # @param message [Hash] optional search params (defaults to search_params)
     # @return [WebOfScience::Records]
