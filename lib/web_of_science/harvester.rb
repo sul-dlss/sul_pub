@@ -52,12 +52,7 @@ module WebOfScience
       # TODO: normalize the pmids using altmetrics identifier gem, as in PR #246
       pmids.reject! { |pmid| publication_identifier?('pmid', pmid) }
       return [] if pmids.empty?
-      # TODO: define the flow for retrieving this data
-      # PMID ->  links-API to get UID -> WOS API to get record (likely MEDLINE record)
-      #      -> (if that fails) PubMed API for PubMed record
-      # TODO: process_records author, wos_queries.retrieve_by_id(pmids) # Does this work?
-      author.id # this is only here to avoid a rubocop error
-      raise(NotImplementedError, 'There is no processor defined for PMID publications')
+      process_records author, wos_queries.retrieve_by_pmid(pmids)
     end
 
     # Harvest WOS-UID publications for an author

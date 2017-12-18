@@ -97,7 +97,8 @@ module WebOfScience
           active: true,
           pub_hash: record.pub_hash,
           xml: record.to_xml,
-          wos_uid: record.uid)
+          wos_uid: record.uid
+        )
         create_contribution(pub)
         pub.sync_publication_hash_and_db # creates new PublicationIdentifiers
         pub.save!
@@ -116,7 +117,8 @@ module WebOfScience
           cap_profile_id: author.cap_profile_id,
           featured: false,
           status: 'new',
-          visibility: 'private')
+          visibility: 'private'
+        )
         contrib.save
       end
 
