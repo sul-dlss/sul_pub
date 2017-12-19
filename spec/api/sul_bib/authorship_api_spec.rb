@@ -150,7 +150,16 @@ describe SulBib::API, :vcr do
 
     context 'for a new WoS publication' do
       let(:request_data) { base_data.merge(wos_uid: 'WOS:000386326200035').merge(author_hash) }
+      let(:wos_record_xml) { File.read('spec/fixtures/wos_client/wos_record_000386326200035.xml') }
+      let(:records) { WebOfScience::Records.new(records: "<records>#{wos_record_xml}</records>") }
+      let(:wos_queries) do
+        wos_client = instance_double(WebOfScience::Client)
+        WebOfScience::Queries.new(wos_client)
+      end
+
       before do
+        allow(wos_queries).to receive(:retrieve_by_id).and_return(records)
+        allow(WebOfScience.harvester).to receive(:wos_queries).and_return(wos_queries)
         http_request
         expect(response.body).to eq(new_pub.pub_hash.to_json)
       end
