@@ -14,6 +14,11 @@ describe WebOfScience::Client do
   let(:auth_xml) { File.read('spec/fixtures/wos_client/authenticate.xml') }
   let(:no_session_matches) { File.read('spec/fixtures/wos_client/wos_session_close_fault_response.xml') }
 
+  before do
+    null_logger = Logger.new('/dev/null')
+    allow(WebOfScience).to receive(:logger).and_return(null_logger)
+  end
+
   describe '#new' do
     it 'works' do
       expect(wos_client).to be_a described_class
