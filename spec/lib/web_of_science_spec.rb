@@ -28,8 +28,13 @@ describe WebOfScience do
   end
 
   describe '#logger' do
+    before do
+      described_class.class_variable_set('@@logger', nil)
+    end
     it 'works' do
-      expect(Logger).to receive(:new).with(Settings.WOS.LOG).once.and_call_original
+      null_logger = Logger.new('/dev/null')
+      expect(Logger).to receive(:new).with(Settings.WOS.LOG).once.and_return(null_logger)
+      expect(described_class.logger).to be_a Logger
       expect(described_class.logger).to be_a Logger
     end
   end

@@ -27,6 +27,7 @@ module WebOfScience
         wsdl: AUTH_WSDL,
         headers: { 'Authorization' => "Basic #{@auth_code}", 'SOAPAction' => [''] },
         env_namespace: :soapenv,
+        logger: logger,
         log: true,
         log_level: @log_level,
         pretty_print_xml: true
@@ -46,6 +47,7 @@ module WebOfScience
         wsdl: SEARCH_WSDL,
         headers: { 'Cookie' => "SID=\"#{session_id}\"", 'SOAPAction' => '' },
         env_namespace: :soapenv,
+        logger: logger,
         log: true,
         log_level: @log_level,
         pretty_print_xml: true
