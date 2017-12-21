@@ -59,6 +59,7 @@ gem 'retina_tag'
 group :development, :test do
   gem 'dlss_cops' # includes rubocop
   gem 'rails_db'
+  gem 'rspec-rails', '~> 3.7', require: false
 end
 
 group :development do
@@ -74,7 +75,6 @@ group :test do
   gem 'database_cleaner'
   gem 'equivalent-xml'
   gem 'factory_bot_rails'
-  gem 'rspec-rails', '~> 3.7'
   gem 'simplecov', '~> 0.13', require: false
   gem 'single_cov'
   gem 'vcr'
