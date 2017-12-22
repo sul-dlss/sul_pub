@@ -51,7 +51,7 @@ WOS:
     - MEDLINE
   AUTH_CODE: secret
   LOG: log/web_of_science.log
-  LOG_LEVEL: info
+  LOG_LEVEL: warn
 
 DOI:
   BASE_URI: https://dx.doi.org/
