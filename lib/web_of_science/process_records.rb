@@ -96,7 +96,6 @@ module WebOfScience
         pub = Publication.new(
           active: true,
           pub_hash: record.pub_hash,
-          xml: record.to_xml,
           wos_uid: record.uid
         )
         create_contribution(pub)
