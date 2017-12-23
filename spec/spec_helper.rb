@@ -109,6 +109,15 @@ VCR.configure do |c|
   c.filter_sensitive_data('Settings.SCIENCEWIRE.HOST') { Settings.SCIENCEWIRE.HOST }
   c.filter_sensitive_data('Settings.SCIENCEWIRE.LICENSE_ID') { Settings.SCIENCEWIRE.LICENSE_ID }
 
+  # WOS Links-AMR filters
+  (links_username, links_password) = Base64.decode64(Settings.WOS.AUTH_CODE).split(':', 2)
+  c.filter_sensitive_data('links_username') do |interaction|
+    links_username if interaction.request.uri.include? Clarivate::LinksClient::LINKS_HOST
+  end
+  c.filter_sensitive_data('links_password') do |interaction|
+    links_password if interaction.request.uri.include? Clarivate::LinksClient::LINKS_HOST
+  end
+
   # CAP API filters
   c.filter_sensitive_data('Settings.CAP.TOKEN_USER:Settings.CAP.TOKEN_PASS') do
     Base64.strict_encode64("#{Settings.CAP.TOKEN_USER}:#{Settings.CAP.TOKEN_PASS}")
