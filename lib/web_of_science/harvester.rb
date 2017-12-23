@@ -29,7 +29,7 @@ module WebOfScience
       # TODO: iterate on author identities also, or leave that to the consumer of this class?
       raise(ArgumentError, 'author must be an Author') unless author.is_a? Author
       logger.info "#{self.class} - processing author: #{author.id}"
-      uids = author_record_uids(author)
+      uids = WebOfScience::QueryAuthor.new(author).uids
       uids = process_uids(author, uids)
       logger.info "#{self.class} - processed author: #{author.id}"
       uids
@@ -89,61 +89,6 @@ module WebOfScience
       def process_records(author, records)
         processor = WebOfScience::ProcessRecords.new(author, records)
         processor.execute
-      end
-
-      # ----
-      # Retrieve WOS Records for Author
-
-      # @param author [Author]
-      # @return [Array<String>]
-      def author_record_uids(author)
-        records = queries.search(author_query(author))
-        records.uids
-      end
-
-      # @param author [Author]
-      # @return [Hash]
-      def author_query(author)
-        names = author_name(author).text_search_query
-        institution = author_institution(author).normalize_name
-        user_query = "AU=(#{names}) AND AD=(#{institution})"
-        params = queries.params_for_fields(empty_fields)
-        params[:queryParameters][:userQuery] = user_query
-        params
-      end
-
-      # @param author [Author]
-      # @return [Agent::AuthorName]
-      def author_name(author)
-        Agent::AuthorName.new(
-          author.last_name,
-          author.first_name,
-          Settings.HARVESTER.USE_MIDDLE_NAME ? author.middle_name : ''
-        )
-      end
-
-      # @param author [Author]
-      # @return [Agent::AuthorInstitution]
-      def author_institution(author)
-        return default_institution if author.institution.blank?
-        Agent::AuthorInstitution.new(author.institution)
-      end
-
-      # @return [Agent::AuthorInstitution]
-      def default_institution
-        @default_institution ||= begin
-          Agent::AuthorInstitution.new(
-            Settings.HARVESTER.INSTITUTION.name,
-            Agent::AuthorAddress.new(Settings.HARVESTER.INSTITUTION.address.to_hash)
-          )
-        end
-      end
-
-      # ----
-      # Utility methods
-
-      def empty_fields
-        @empty_fields ||= Settings.WOS.ACCEPTED_DBS.map { |db| { collectionName: db, fieldName: [''] } }
       end
 
   end
