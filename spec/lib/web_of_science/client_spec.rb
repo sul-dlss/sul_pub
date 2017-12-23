@@ -16,7 +16,7 @@ describe WebOfScience::Client do
 
   before do
     null_logger = Logger.new('/dev/null')
-    allow(WebOfScience).to receive(:logger).and_return(null_logger)
+    allow(wos_client).to receive(:logger).and_return(null_logger)
   end
 
   describe '#new' do
@@ -69,7 +69,7 @@ describe WebOfScience::Client do
       before { savon.expects(:close_session).returns(no_session_matches) }
 
       it 'creates a logger and works' do
-        expect(WebOfScience).to receive(:logger).and_return(null_logger)
+        expect(wos_client).to receive(:logger).and_return(null_logger)
         expect(wos_client.session_close).to be_nil
       end
     end
