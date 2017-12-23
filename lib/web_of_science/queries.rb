@@ -35,6 +35,7 @@ module WebOfScience
     # @param uid [String] a WOS UID
     # @return [WebOfScience::Records]
     def cited_references(uid)
+      return empty_records if uid.blank?
       retrieve_options = [ { key: 'Hot', value: 'On' } ]
       message = base_uid_params.merge(uid: uid,
                                       retrieveParameters: retrieve_parameters(options: retrieve_options))
@@ -44,6 +45,7 @@ module WebOfScience
     # @param uid [String] a WOS UID
     # @return [WebOfScience::Records]
     def citing_articles(uid)
+      return empty_records if uid.blank?
       message = base_uid_params.merge(uid: uid, timeSpan: time_span)
       retrieve_records(:citing_articles, message)
     end
@@ -51,6 +53,7 @@ module WebOfScience
     # @param uid [String] a WOS UID
     # @return [WebOfScience::Records]
     def related_records(uid)
+      return empty_records if uid.blank?
       # The 'WOS' database is the only option for this query
       message = base_uid_params.merge(uid: uid, databaseId: 'WOS', timeSpan: time_span)
       retrieve_records(:related_records, message)
@@ -59,6 +62,7 @@ module WebOfScience
     # @param uids [Array<String>] a list of WOS UIDs
     # @return [WebOfScience::Records]
     def retrieve_by_id(uids)
+      return empty_records if uids.blank?
       message = base_uid_params.merge(uid: uids)
       retrieve_records(:retrieve_by_id, message)
     end
@@ -67,6 +71,7 @@ module WebOfScience
     # @param pmids [Array<String>] a list of PMIDs
     # @return [WebOfScience::Records]
     def retrieve_by_pmid(pmids)
+      return empty_records if pmids.blank?
       uids = pmids.map { |pmid| "MEDLINE:#{pmid}" }
       retrieve_by_id(uids)
     end
@@ -74,6 +79,7 @@ module WebOfScience
     # @param doi [String] a digital object identifier (DOI)
     # @return [WebOfScience::Records]
     def search_by_doi(doi)
+      return empty_records if doi.blank?
       message = params_for_search("DO=#{doi}")
       message[:retrieveParameters][:count] = 10
       response = wos_client.search.call(:search, message: message)
@@ -82,7 +88,7 @@ module WebOfScience
       # on the `DO` field.  When the result set is only one record, it's likely to be a good match; but
       # otherwise the results could be nonsense.
       return records if records.count == 1
-      WebOfScience::Records.new(records: '<records/>')
+      empty_records
     end
 
     # @param name [String] a CSV name pattern: last_name, first_name [middle_name | middle initial]
@@ -141,6 +147,12 @@ module WebOfScience
 
       ###################################################################
       # WoS Query Record Collators
+
+      # An empty set of records
+      # @return [WebOfScience::Records]
+      def empty_records
+        WebOfScience::Records.new(records: '<records/>')
+      end
 
       def retrieve_records(operation, message)
         response = wos_client.search.call(operation, message: message)
