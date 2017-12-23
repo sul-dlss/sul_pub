@@ -10,13 +10,16 @@ module WebOfScience
     # @param [Enumerable<Author>] authors
     # @return [void]
     def harvest(authors)
+      logger.info "#{self.class} - started harvest(authors) - #{authors.count} authors"
+      author_success = 0
       authors.each do |author|
-        begin
-          process_author(author)
-        rescue StandardError => e
-          NotificationManager.error(e, "WebOfScience harvest failed for author: '#{author.id}'", self)
-        end
+        process_author(author)
+        author_success += 1
       end
+      logger.info "#{self.class} - completed harvest(authors) - #{author_success} processed"
+    rescue StandardError => err
+      message = "#{self.class} - harvest(authors) failed - #{author_success} processed"
+      NotificationManager.error(err, message, self)
     end
 
     # Harvest all publications for an author
@@ -24,7 +27,13 @@ module WebOfScience
     # @return [Array<String>] WosUIDs that create Publications
     def process_author(author)
       raise(ArgumentError, 'author must be an Author') unless author.is_a? Author
-      process_records author, records_for_author(author)
+      logger.info "#{self.class} - processing author: #{author.id}"
+      uids = process_records author, records_for_author(author)
+      logger.info "#{self.class} - processed author: #{author.id}"
+      uids
+    rescue StandardError => err
+      message = "#{self.class} - harvest failed for author"
+      NotificationManager.error(err, message, self)
     end
 
     # Harvest DOI publications for an author
