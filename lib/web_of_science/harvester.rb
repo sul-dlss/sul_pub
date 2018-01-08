@@ -140,10 +140,7 @@ module WebOfScience
 
       # @return [WebOfScience::Queries]
       def wos_queries
-        @wos_queries ||= begin
-          wos_client = WebOfScience::Client.new(Settings.WOS.AUTH_CODE)
-          WebOfScience::Queries.new(wos_client)
-        end
+        WebOfScience.queries
       end
   end
 end

@@ -55,7 +55,7 @@ describe WebOfScience::Harvester do
   end
 
   before do
-    allow(described_class).to receive(:wos_queries).and_return(wos_queries)
+    allow(WebOfScience).to receive(:queries).and_return(wos_queries)
   end
 
   shared_examples 'it_can_process_records' do
