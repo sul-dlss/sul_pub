@@ -76,7 +76,8 @@ describe WebOfScience::Queries do
   describe '#search with valid query' do
     let(:title) { 'A research roadmap for next-generation sequencing informatics' }
     let(:query) { "TI=#{title}" }
-    let(:records) { wos_queries.search(query) }
+    let(:params) { wos_queries.params_for_search(query) }
+    let(:records) { wos_queries.search(params) }
 
     before do
       savon.expects(:authenticate).returns(wos_auth_response)
@@ -95,8 +96,9 @@ describe WebOfScience::Queries do
 
   describe '#search with invalid query' do
     let(:title) { 'A messed up query' }
-    let(:invalid_query) { "TI=#{title} & PY=2017" }
-    let(:records) { wos_queries.search(invalid_query) }
+    let(:query) { "TI=#{title} & PY=2017" }
+    let(:params) { wos_queries.params_for_search(query) }
+    let(:records) { wos_queries.search(params) }
 
     before do
       savon.expects(:authenticate).returns(wos_auth_response)
@@ -137,6 +139,37 @@ describe WebOfScience::Queries do
       savon.expects(:retrieve_by_id).with(message: :any).returns(wos_retrieve_by_id_PMID)
       records = wos_queries.retrieve_by_pmid(['26776186'])
       expect(records).to be_an WebOfScience::Records
+    end
+  end
+
+  shared_examples 'search_params' do
+    let(:query) { params[:queryParameters] }
+    let(:retrieve) { params[:retrieveParameters] }
+
+    it 'works' do
+      expect(params).to include(queryParameters: Hash, retrieveParameters: Hash)
+    end
+    it 'has queryParameters' do
+      expect(query).to include(databaseId: String, userQuery: String, timeSpan: Hash, queryLanguage: String)
+    end
+    it 'has retrieveParameters' do
+      expect(retrieve).to include(firstRecord: Integer, count: Integer, option: Array)
+    end
+  end
+
+  describe '#params_for_search' do
+    let(:params) { wos_queries.params_for_search }
+
+    it_behaves_like 'search_params'
+  end
+
+  describe '#params_for_fields' do
+    let(:fields) { [{ collectionName: "WOS", fieldName: [""] }, { collectionName: "MEDLINE", fieldName: [""] }] }
+    let(:params) { wos_queries.params_for_fields(fields) }
+
+    it_behaves_like 'search_params'
+    it 'has retrieveParameters with a viewField' do
+      expect(params[:retrieveParameters]).to include(viewField: Array)
     end
   end
 
