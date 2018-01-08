@@ -414,5 +414,9 @@ describe Publication do
   describe '#rebuild_pub_hash' do
     it 'correctly rebuilds pub_hash from SciencewireSourceRecord'
     it 'correctly rebuilds pub_hash from PubmedSourceRecord'
+    it 'raises for WoS record' do
+      pub = Publication.new(wos_uid: 'WOS:XYZ')
+      expect { pub.rebuild_pub_hash }.to raise_error(RuntimeError)
+    end
   end
 end

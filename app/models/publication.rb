@@ -142,6 +142,7 @@ class Publication < ActiveRecord::Base
 
   # @return [Boolean] true if .save is successful
   def rebuild_pub_hash
+    raise 'rebuilding WOS records is unsupported, unimplemented' if wos_uid
     if sciencewire_id
       sw_source_record = SciencewireSourceRecord.find_by_sciencewire_id(sciencewire_id)
       build_from_sciencewire_hash(sw_source_record.source_as_hash)
