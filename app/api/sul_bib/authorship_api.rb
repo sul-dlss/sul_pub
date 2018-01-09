@@ -87,36 +87,31 @@ module SulBib
 
       # Find an existing SUL publication or, if it doesn't exist, it may be fetched based on ID provided
       # @param [String] sul_pub_id internal ID
-      # @return [Publication]
+      # @return [Publication, nil]
       def get_local_publication!(sul_pub_id)
         Publication.find(sul_pub_id)
-      rescue ActiveRecord::RecordNotFound
-        log_and_error!("The SUL:#{sul_pub_id} publication does not exist.")
       end
 
       # @param [String] pmid PubMed ID
-      # @return [Publication]
+      # @return [Publication, nil]
       def get_publication_via_pubmed!(pmid)
-        Publication.find_or_create_by_pmid(pmid) ||
-          log_and_error!("The PMID:#{pmid} was not found either locally or at PubMed.")
+        Publication.find_or_create_by_pmid(pmid)
       end
 
       # @param [String] sw_id ScienceWire ID
-      # @return [Publication]
+      # @return [Publication, nil]
       def get_publication_via_sciencewire!(sw_id)
-        Publication.find_or_create_by_sciencewire_id(sw_id) ||
-          log_and_error!("The ScienceWire:#{sw_id} publication was not found either locally or at ScienceWire.")
+        Publication.find_or_create_by_sciencewire_id(sw_id)
       end
 
       # @param [Author] author, note this variation from other methods, because harvester requires author
       # @param [String] wos_uid WebOfScience ID
-      # @return [Publication]
+      # @return [Publication, nil]
       def get_publication_via_wos!(author, wos_uid)
         pub = Publication.find_by(wos_uid: wos_uid)
         return pub if pub
         uids = WebOfScience.harvester.process_uids(author, [wos_uid])
-        uids.present? || log_and_error!("The #{wos_uid} publication was not found either locally or at WebOfScience.")
-        Publication.find_by(wos_uid: uids.first)
+        Publication.find_by(wos_uid: uids.first) if uids.present?
       end
 
       # @param [String] msg Message to log and send in response
@@ -176,10 +171,16 @@ module SulBib
 
       # Now find an existing sul publication or, if it doesn't exist, it
       # may be fetched from PubMed (pmid), WebOfScience (wos_uid) or ScienceWire (sw_id).
-      pub = get_local_publication!(ids[:sul_pub_id]) if ids[:sul_pub_id]
-      pub ||= get_publication_via_pubmed!(ids[:pmid]) if ids[:pmid]
-      pub ||= get_publication_via_sciencewire!(ids[:sw_id]) if ids[:sw_id]
-      pub ||= get_publication_via_wos!(author, ids[:wos_uid]) if ids[:wos_uid]
+      begin
+        pub = get_local_publication!(ids[:sul_pub_id]) if ids[:sul_pub_id]
+        pub ||= get_publication_via_pubmed!(ids[:pmid]) if ids[:pmid]
+        pub ||= get_publication_via_sciencewire!(ids[:sw_id]) if ids[:sw_id]
+        pub ||= get_publication_via_wos!(author, ids[:wos_uid]) if ids[:wos_uid]
+        log_and_error!("The publication cannot be retrieved for: #{params}.") if pub.nil?
+      rescue StandardError => err
+        logger.error err.inspect
+        log_and_error!("The publication cannot be retrieved for: #{params}.")
+      end
 
       # We've now got the author and pub, validate the authorship and create or
       # update the contribution.  (When a request only requires an update, it
