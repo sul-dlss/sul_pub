@@ -38,7 +38,7 @@ module WebOfScience
 
     # @return [Array<String>]
     def doctypes
-      @doctypes ||= doc.search('static_data/summary/doctypes/doctype').map(&:text)
+      doc.search('static_data/summary/doctypes/doctype').map(&:text)
     end
 
     # @return [Hash<String => String>]
