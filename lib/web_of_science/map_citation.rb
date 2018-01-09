@@ -3,50 +3,66 @@ module WebOfScience
   # Map WOS record citation data into the SUL PubHash data
   class MapCitation < Mapper
 
+    # publication citation details
+    # @return [Hash]
+    def pub_hash
+      c = {}
+      c[:year] = year
+      c[:date] = date
+      c[:pages] = pages if pages.present?
+      c[:title] = title
+      c[:journal] = journal
+      c
+    end
+
     private
 
-      # publication citation details
-      # @return [Hash]
-      def mapper
-        c = {}
-        c[:year] = rec.pub_info['pubyear']
-        c[:date] = rec.pub_info['sortdate']
-        c[:pages] = pages if pages.present?
-        c[:title] = rec.titles['item'].strip
-        c[:journal] = journal
-        c
-      end
+      attr_reader :date
+      attr_reader :journal
+      attr_reader :pages
+      attr_reader :title
+      attr_reader :year
 
-      # Journal information
-      # @return [Hash]
-      def journal
-        j = {}
-        j[:name] = rec.titles['source'].strip if rec.titles['source'].present?
-        j[:volume] = rec.pub_info['vol'] if rec.pub_info['vol'].present?
-        j[:issue] = rec.pub_info['issue'] if rec.pub_info['issue'].present?
-        j[:pages] = pages if pages.present?
-        issn = journal_identifier
-        j[:identifier] = issn if issn.present?
-        j
+      # Extract content from record, try not to hang onto the entire record
+      # @param rec [WebOfScience::Record]
+      def extract(rec)
+        super(rec)
+        issn = extract_issn(rec)
+        pub_info = rec.pub_info
+        titles = rec.titles
+        @title = titles['item'].strip
+        @year = pub_info['pubyear']
+        @date = pub_info['sortdate']
+        @pages = extract_pages(pub_info['page'])
+        @journal = extract_journal(pub_info, titles['source'], issn, pages)
       end
 
       # Journal EISSN or ISSN
       # @return [Hash]
-      def journal_identifier
-        issn  = rec.identifiers.pub_hash.find { |id| id[:type] == 'issn' }
-        eissn = rec.identifiers.pub_hash.find { |id| id[:type] == 'eissn' }
-        issn || eissn
+      def extract_issn(rec)
+        pub_hash = rec.identifiers.pub_hash
+        pub_hash.find { |id| id[:type] == 'issn' } || pub_hash.find { |id| id[:type] == 'eissn' }
+      end
+
+      # Journal information
+      # @return [Hash]
+      def extract_journal(pub_info, name, issn, pages)
+        j = {}
+        j[:name] = name.strip if name.present?
+        j[:volume] = pub_info['vol'] if pub_info['vol'].present?
+        j[:issue] = pub_info['issue'] if pub_info['issue'].present?
+        j[:pages] = pages if pages.present?
+        j[:identifier] = issn if issn.present?
+        j
       end
 
       # @return [String]
-      def pages
-        @pages ||= begin
-          page = rec.pub_info['page']
-          return if page.blank?
-          fst = page['begin'].to_s.strip
-          lst = page['end'].to_s.strip
-          fst == lst ? fst : [fst, lst].select(&:present?).join('-')
-        end
+      def extract_pages(page)
+        return if page.blank?
+        fst = page['begin'].to_s.strip
+        lst = page['end'].to_s.strip
+        fst == lst ? fst : [fst, lst].select(&:present?).join('-')
       end
+
   end
 end
