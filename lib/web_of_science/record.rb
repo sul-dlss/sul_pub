@@ -11,8 +11,6 @@ module WebOfScience
     delegate %i(database doi eissn issn pmid uid wos_item_id) => :identifiers
     delegate logger: :WebOfScience
 
-    delegate %i(publishers) => :publisher
-
     # @!attribute [r] doc
     #   @return [Nokogiri::XML::Document] WOS record document
     attr_reader :doc
@@ -83,8 +81,8 @@ module WebOfScience
     end
 
     # @return [WebOfScience::MapPublisher]
-    def publisher
-      @publisher ||= WebOfScience::MapPublisher.new(self)
+    def publishers
+      WebOfScience::MapPublisher.new(self).publishers
     end
 
     # Extract the REC summary fields
