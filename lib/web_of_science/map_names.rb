@@ -9,8 +9,8 @@ module WebOfScience
       # @return [Hash]
       def mapper
         # - use names, with role, to include 'author' and other roles, possibly 'editor' also
-        # - the PubHash class has methods to separate them when creating citations
-        @names ||= {
+        # - the Csl::Citation has methods to separate them to create citations
+        {
           author: names,
           authorcount: rec.authors.count
         }
