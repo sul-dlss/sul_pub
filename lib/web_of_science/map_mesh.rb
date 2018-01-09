@@ -5,14 +5,12 @@ module WebOfScience
 
     # @return [Array<String>]
     def mesh
-      @mesh ||= begin
-        mesh_headings.map do |mesh_heading|
-          {
-            'descriptor' => mesh_descriptors(mesh_heading),
-            'qualifier' => mesh_qualifiers(mesh_heading),
-            'treecode' => mesh_treecodes(mesh_heading)
-          }
-        end
+      mesh_headings.map do |mesh_heading|
+        {
+          'descriptor' => mesh_descriptors(mesh_heading),
+          'qualifier' => mesh_qualifiers(mesh_heading),
+          'treecode' => mesh_treecodes(mesh_heading)
+        }
       end
     end
 
@@ -21,7 +19,7 @@ module WebOfScience
       # publication abstract details
       # @return [Hash]
       def mapper
-        @mesh_headings ||= mesh.empty? ? {} : { mesh_headings: mesh.map(&:deep_symbolize_keys) }
+        mesh.empty? ? {} : { mesh_headings: mesh.map(&:deep_symbolize_keys) }
       end
 
       # @return [Nokogiri::XML::NodeSet]
