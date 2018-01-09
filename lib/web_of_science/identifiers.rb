@@ -167,10 +167,18 @@ module WebOfScience
 
       def parse_medline(doc)
         return unless database == 'MEDLINE'
-        ids['pmid'].sub!('MEDLINE:', '') if ids['pmid'].present?
-        ids['pmid'] ||= uid.sub('MEDLINE:', '')
+        parse_medline_issn(doc)
+        parse_medline_pmid
+      end
+
+      def parse_medline_issn(doc)
         issn = doc.xpath('/REC/static_data/item/MedlineJournalInfo/ISSNLinking')
         ids['issn'] ||= issn.text if issn.present?
+      end
+
+      def parse_medline_pmid
+        ids['pmid'].sub!('MEDLINE:', '') if ids['pmid'].present?
+        ids['pmid'] ||= uid.sub('MEDLINE:', '')
       end
 
       def parse_wos
