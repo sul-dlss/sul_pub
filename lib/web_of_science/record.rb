@@ -28,12 +28,12 @@ module WebOfScience
 
     # @return [Array<Hash<String => String>>]
     def authors
-      @authors ||= names.select { |name| name['role'] == 'author' }
+      names.select { |name| name['role'] == 'author' }
     end
 
     # @return [Array<Hash<String => String>>]
     def editors
-      @editors ||= names.select { |name| name['role'] == 'book_editor' }
+      names.select { |name| name['role'] == 'book_editor' }
     end
 
     # @return [Array<String>]
