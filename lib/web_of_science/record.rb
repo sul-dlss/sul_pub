@@ -6,8 +6,6 @@ module WebOfScience
   class Record
     extend Forwardable
 
-    delegate %i(abstracts) => :abstract_mapper
-
     delegate %i(database doi eissn issn pmid uid wos_item_id) => :identifiers
     delegate logger: :WebOfScience
 
@@ -21,9 +19,9 @@ module WebOfScience
       @doc = WebOfScience::XmlParser.parse(record, encoded_record)
     end
 
-    # @return [WebOfScience::MapAbstract]
-    def abstract_mapper
-      @abstract_mapper ||= WebOfScience::MapAbstract.new(self)
+    # @return [Array<String>]
+    def abstracts
+      WebOfScience::MapAbstract.new(self).abstracts
     end
 
     # @return [Array<Hash<String => String>>]
