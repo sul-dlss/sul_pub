@@ -6,7 +6,7 @@ module WebOfScience
     # @return [Array<String>]
     def abstracts
       # Note: rec.doc.xpath(nil).map(&:text) => []
-      @abstracts ||= rec.doc.xpath(path).map(&:text)
+      rec.doc.xpath(path).map(&:text)
     end
 
     private
@@ -15,16 +15,14 @@ module WebOfScience
       # @return [Hash]
       def mapper
         return {} if abstracts.empty?
-        @abstract ||= begin
-          # Often there is only one abstract; if there is more than one,
-          # assume the first abstract is the most useful abstract.
-          abstract = abstracts.first.strip
-          case rec.database
-          when 'MEDLINE'
-            { abstract: abstract }
-          else
-            { abstract_restricted: abstract }
-          end
+        # Often there is only one abstract; if there is more than one,
+        # assume the first abstract is the most useful abstract.
+        abstract = abstracts.first.strip
+        case rec.database
+        when 'MEDLINE'
+          { abstract: abstract }
+        else
+          { abstract_restricted: abstract }
         end
       end
 
