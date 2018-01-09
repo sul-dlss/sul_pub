@@ -30,7 +30,7 @@ module WebOfScience
       # publication agents
       def pub_hash_agents
         pub.update WebOfScience::MapNames.new(rec).pub_hash
-        pub.update rec.publisher.pub_hash
+        pub.update WebOfScience::MapPublisher.new(rec).pub_hash
       end
 
       # publication citation details
