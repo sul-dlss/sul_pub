@@ -17,10 +17,9 @@ module WebOfScience
     # @param rec [WebOfScience::Record]
     def initialize(rec)
       raise(ArgumentError, 'ids must be a WebOfScience::Record') unless rec.is_a? WebOfScience::Record
-      @rec = rec
-      extract_ids
-      extract_uid
-      parse_medline
+      extract_ids rec.doc
+      extract_uid rec.doc
+      parse_medline rec.doc
       parse_wos
       @ids.freeze
     end
@@ -138,19 +137,18 @@ module WebOfScience
     private
 
       attr_reader :ids
-      attr_reader :rec
 
       ALLOWED_TYPES = %w(doi eissn issn pmid).freeze
 
-      def extract_ids
-        ids = rec.doc.xpath('/REC/dynamic_data/cluster_related/identifiers/identifier')
+      def extract_ids(doc)
+        ids = doc.xpath('/REC/dynamic_data/cluster_related/identifiers/identifier')
         ids = ids.map { |id| [id['type'], id['value']] }.to_h
         ids = filter_dois(ids)
         @ids = filter_ids(ids)
       end
 
-      def extract_uid
-        @uid = rec.doc.xpath('/REC/UID').text.freeze
+      def extract_uid(doc)
+        @uid = doc.xpath('/REC/UID').text.freeze
         ids.update('WosUID' => @uid)
       end
 
@@ -167,11 +165,11 @@ module WebOfScience
         ids.select { |type, _v| ALLOWED_TYPES.include? type }
       end
 
-      def parse_medline
+      def parse_medline(doc)
         return unless database == 'MEDLINE'
         ids['pmid'].sub!('MEDLINE:', '') if ids['pmid'].present?
         ids['pmid'] ||= uid.sub('MEDLINE:', '')
-        issn = rec.doc.xpath('/REC/static_data/item/MedlineJournalInfo/ISSNLinking')
+        issn = doc.xpath('/REC/static_data/item/MedlineJournalInfo/ISSNLinking')
         ids['issn'] ||= issn.text if issn.present?
       end
 
