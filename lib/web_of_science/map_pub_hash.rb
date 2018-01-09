@@ -24,7 +24,7 @@ module WebOfScience
 
       # publication abstract
       def pub_hash_abstract
-        pub.update rec.abstract_mapper.pub_hash
+        pub.update WebOfScience::MapAbstract.new(rec).pub_hash
       end
 
       # publication agents
