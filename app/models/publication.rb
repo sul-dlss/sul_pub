@@ -56,10 +56,6 @@ class Publication < ActiveRecord::Base
     find_by_pmid(pmid) || SciencewireSourceRecord.get_pub_by_pmid(pmid) || PubmedSourceRecord.get_pub_by_pmid(pmid)
   end
 
-  def self.find_or_create_by_sciencewire_id(sw_id)
-    find_by_sciencewire_id(sw_id) || SciencewireSourceRecord.get_pub_by_sciencewire_id(sw_id)
-  end
-
   def self.find_by_doi(doi)
     Publication.includes(:publication_identifiers)
                .find_by("publication_identifiers.identifier_type": 'doi', "publication_identifiers.identifier_value": doi)

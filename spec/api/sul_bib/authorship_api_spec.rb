@@ -375,7 +375,8 @@ describe SulBib::API, :vcr do
             expect(result['error']).to include(id, 'was not found')
           end
           it 'sw_id' do
-            expect(Publication).to receive(:find_or_create_by_sciencewire_id)
+            expect(Publication).to receive(:find_by).with(sciencewire_id: id)
+            expect(SciencewireSourceRecord).to receive(:get_pub_by_sciencewire_id)
             request_data = no_pub_params.merge(sw_id: id)
             post '/authorship', request_data.to_json, headers
             expect(result['error']).to include(id, 'was not found')
