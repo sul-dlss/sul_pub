@@ -90,7 +90,7 @@ module WebOfScience
     # Extract the REC summary fields
     # @return [Hash<String => Object>]
     def summary
-      @summary ||= {
+      {
         'abstracts' => abstracts,
         'doctypes' => doctypes,
         'names' => names,
