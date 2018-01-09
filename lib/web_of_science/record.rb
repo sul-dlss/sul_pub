@@ -96,18 +96,18 @@ module WebOfScience
       }
     end
 
-    # An OpenStruct for the summary fields
-    # @return [OpenStruct]
-    def summary_struct
-      to_o(summary)
-    end
-
     # @return [Hash<String => String>]
     def titles
       @titles ||= begin
         titles = doc.search('static_data/summary/titles/title')
         titles.map { |title| [title['type'], title.text] }.to_h
       end
+    end
+
+    # Map WOS record data into the SUL PubHash data
+    # @return [Hash]
+    def pub_hash
+      @pub_hash ||= WebOfScience::MapPubHash.new(self).pub_hash
     end
 
     # Extract the REC fields
@@ -118,16 +118,11 @@ module WebOfScience
       }
     end
 
-    # Map WOS record data into the SUL PubHash data
-    # @return [Hash]
-    def pub_hash
-      @pub_hash ||= WebOfScience::MapPubHash.new(self).pub_hash
-    end
-
     # An OpenStruct for the REC fields
     # @return [OpenStruct]
     def to_struct
-      to_o(to_h)
+      # Convert Hash to OpenStruct with recursive application to nested hashes
+      JSON.parse(to_h.to_json, object_class: OpenStruct)
     end
 
     # @return [String] XML
@@ -135,11 +130,5 @@ module WebOfScience
       doc.to_xml(save_with: WebOfScience::XmlParser::XML_OPTIONS).strip
     end
 
-    private
-
-      # Convert Hash to OpenStruct with recursive application to nested hashes
-      def to_o(hash)
-        JSON.parse(hash.to_json, object_class: OpenStruct)
-      end
   end
 end
