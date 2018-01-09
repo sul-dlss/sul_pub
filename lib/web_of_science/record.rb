@@ -83,19 +83,6 @@ module WebOfScience
       WebOfScience::MapPublisher.new(self).publishers
     end
 
-    # Extract the REC summary fields
-    # @return [Hash<String => Object>]
-    def summary
-      {
-        'abstracts' => abstracts,
-        'doctypes' => doctypes,
-        'names' => names,
-        'pub_info' => pub_info,
-        'publishers' => publishers,
-        'titles' => titles,
-      }
-    end
-
     # @return [Hash<String => String>]
     def titles
       @titles ||= begin
@@ -114,7 +101,12 @@ module WebOfScience
     # @return [Hash<String => Object>]
     def to_h
       {
-        'summary' => summary,
+        'abstracts' => abstracts,
+        'doctypes' => doctypes,
+        'names' => names,
+        'pub_info' => pub_info,
+        'publishers' => publishers,
+        'titles' => titles,
       }
     end
 
