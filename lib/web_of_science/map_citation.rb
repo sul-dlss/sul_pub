@@ -8,15 +8,13 @@ module WebOfScience
       # publication citation details
       # @return [Hash]
       def mapper
-        @citation ||= begin
-          c = {}
-          c[:year] = rec.pub_info['pubyear']
-          c[:date] = rec.pub_info['sortdate']
-          c[:pages] = pages if pages.present?
-          c[:title] = rec.titles['item'].strip
-          c[:journal] = journal
-          c
-        end
+        c = {}
+        c[:year] = rec.pub_info['pubyear']
+        c[:date] = rec.pub_info['sortdate']
+        c[:pages] = pages if pages.present?
+        c[:title] = rec.titles['item'].strip
+        c[:journal] = journal
+        c
       end
 
       # Journal information
