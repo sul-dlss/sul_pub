@@ -3,69 +3,65 @@ module WebOfScience
   # Map WOS record data into the SUL PubHash data
   class MapPubHash < Mapper
 
+    # Map WOS record data into the SUL PubHash data
+    # @return [Hash]
+    def pub_hash
+      pub
+    end
+
     private
 
       attr_reader :pub
 
-      # Map WOS record data into the SUL PubHash data
-      # @return [Hash]
-      def mapper
-        @pub || begin
-          @pub = {}
-          pub_hash_abstract
-          pub_hash_agents
-          pub_hash_citation
-          pub_hash_doctypes
-          pub_hash_identifiers
-          pub_hash_mesh
-          pub
-        end
+      # Extract content from record, try not to hang onto the entire record
+      # @param rec [WebOfScience::Record]
+      def extract(rec)
+        super(rec)
+        extract_pub_hash(rec)
       end
 
-      # publication abstract
-      def pub_hash_abstract
+      # Extract all the pub_hash content from all the mappers; if the ruby GC is any good, it
+      # should be able to discard all the mapper instances after this method is called once.
+      def extract_pub_hash(rec)
+        @pub = {}
         pub.update WebOfScience::MapAbstract.new(rec).pub_hash
-      end
-
-      # publication agents
-      def pub_hash_agents
         pub.update WebOfScience::MapNames.new(rec).pub_hash
         pub.update WebOfScience::MapPublisher.new(rec).pub_hash
-      end
-
-      # publication citation details
-      def pub_hash_citation
         pub.update WebOfScience::MapCitation.new(rec).pub_hash
+        pub.update pub_hash_doctypes(rec)
+        pub.update pub_hash_identifiers(rec)
+        pub.update WebOfScience::MapMesh.new(rec).pub_hash
       end
 
       # publication document types and categories
-      def pub_hash_doctypes
+      def pub_hash_doctypes(rec)
         types = [rec.doctypes, rec.pub_info['pubtype']].flatten.compact
-        pub[:documenttypes_sw] = types
-        pub[:documentcategory_sw] = rec.pub_info['pubtype']
-        pub[:type] = case rec.pub_info['pubtype']
+        doc = {}
+        doc[:documenttypes_sw] = types
+        doc[:documentcategory_sw] = rec.pub_info['pubtype']
+        doc[:type] = case rec.pub_info['pubtype']
                      when /conference/i
                        Settings.sul_doc_types.inproceedings
                      else
                        Settings.sul_doc_types.article
                      end
+        doc
       end
 
       # publication identifiers
-      def pub_hash_identifiers
-        pub[:provenance] = Settings.wos_source
-        pub[:doi] = rec.doi if rec.doi.present?
-        pub[:eissn] = rec.eissn if rec.eissn.present?
-        pub[:issn] = rec.issn if rec.issn.present?
-        pub[:pmid] = rec.pmid if rec.pmid.present?
-        pub[:wos_uid] = rec.uid
-        pub[:wos_item_id] = rec.wos_item_id if rec.wos_item_id.present?
-        pub[:identifier] = rec.identifiers.pub_hash
+      def pub_hash_identifiers(rec)
+        ids = rec.identifiers
+        id = {}
+        id[:provenance] = Settings.wos_source
+        id[:doi] = ids.doi if ids.doi.present?
+        id[:eissn] = ids.eissn if ids.eissn.present?
+        id[:issn] = ids.issn if ids.issn.present?
+        id[:pmid] = ids.pmid if ids.pmid.present?
+        id[:wos_uid] = ids.uid
+        id[:wos_item_id] = ids.wos_item_id if ids.wos_item_id.present?
+        id[:identifier] = ids.pub_hash
+        id
       end
 
-      # publication MESH headings
-      def pub_hash_mesh
-        pub.update WebOfScience::MapMesh.new(rec).pub_hash
-      end
   end
 end
