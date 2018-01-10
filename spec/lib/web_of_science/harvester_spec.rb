@@ -75,6 +75,7 @@ describe WebOfScience::Harvester do
     before do
       savon.expects(:authenticate).returns(wos_auth_response)
       savon.expects(:search).with(message: :any).returns(wos_search_by_name_response)
+      savon.expects(:retrieve_by_id).with(message: :any).returns(wos_retrieve_by_id_response)
     end
 
     let(:harvest_process) { harvester.harvest([author]) }
@@ -93,6 +94,7 @@ describe WebOfScience::Harvester do
     before do
       savon.expects(:authenticate).returns(wos_auth_response)
       savon.expects(:search).with(message: :any).returns(wos_search_by_name_response)
+      savon.expects(:retrieve_by_id).with(message: :any).returns(wos_retrieve_by_id_response)
     end
 
     let(:harvest_process) { harvester.process_author(author) }

@@ -25,9 +25,11 @@ module WebOfScience
     # @param author [Author]
     # @return [Array<String>] WosUIDs that create Publications
     def process_author(author)
+      # TODO: iterate on author identities also, or leave that to the consumer of this class?
       raise(ArgumentError, 'author must be an Author') unless author.is_a? Author
       logger.info "#{self.class} - processing author: #{author.id}"
-      uids = process_records author, records_for_author(author)
+      uids = author_record_uids(author)
+      uids = process_uids(author, uids)
       logger.info "#{self.class} - processed author: #{author.id}"
       uids
     rescue StandardError => err
@@ -65,12 +67,13 @@ module WebOfScience
 
     # Harvest WOS-UID publications for an author
     # @param author [Author]
-    # @param uids [Array<String>] WOS-UID or WOS-ItemId values (not URIs)
+    # @param uids [Array<String>] WOS-UID values (not URIs)
     # @return [Array<String>] WosUIDs that create Publications
     def process_uids(author, uids)
       raise(ArgumentError, 'author must be an Author') unless author.is_a? Author
       raise(ArgumentError, 'uids must be Enumerable') unless uids.is_a? Enumerable
-      uids.reject! { |uid| publication_identifier?('WosItemId', wos_item(uid)) }
+      contributions = author_contributions(author, uids)
+      uids.reject! { |uid| contributions.include? uid }
       return [] if uids.empty?
       process_records author, queries.retrieve_by_id(uids)
     end
@@ -89,17 +92,61 @@ module WebOfScience
       end
 
       # ----
+      # Find or create contributions for WOS Records by Author
+
+      # Find any matching contributions by author and WOS-UID - when a publication exists but
+      # the author is not yet a contributor to it, add the contribution.
+      # @param author [Author]
+      # @param uids [Array<String>]
+      # @return [Array<String>]
+      def author_contributions(author, uids)
+        # TODO: consider any more efficient queries to find/create contributions
+        Publication.where(wos_uid: uids).map do |pub|
+          contrib = pub.contributions.find_or_initialize_by(author_id: author.id)
+          create_author_contribution(author, contrib)
+          contrib.persisted? ? pub.wos_uid : nil
+        end.compact
+      end
+
+      # Save a new contribution to a WOS-UID publication for author.
+      # @param author [Author]
+      # @param contrib [Contribution]
+      # @return [Array<String>]
+      def create_author_contribution(author, contrib)
+        return true if contrib.persisted?
+        contrib.assign_attributes(
+          cap_profile_id: author.cap_profile_id,
+          featured: false, status: 'new', visibility: 'private'
+        )
+        contrib.save!
+        # TODO: check - is the following necessary or does Contribution do this in any callbacks?
+        contrib.publication.pubhash_needs_update!
+        contrib.publication.save! # sync the contribution into the pub.pub_hash[:authorship] array
+      rescue ActiveRecord::ActiveRecordError => err
+        message = "Failed to save contribution for author: #{author.id}, pub: #{pub.id}"
+        NotificationManager.error(err, message, self)
+        false
+      end
+
+      # ----
       # Retrieve WOS Records for Author
 
       # @param author [Author]
-      # @return [WebOfScience::Records]
-      def records_for_author(author)
-        # TODO: iterate on author identities also, or leave that to the consumer of this class?
+      # @return [Array<String>]
+      def author_record_uids(author)
+        records = queries.search(author_query(author))
+        records.uids
+      end
+
+      # @param author [Author]
+      # @return [Hash]
+      def author_query(author)
         names = author_name(author).text_search_query
         institution = author_institution(author).normalize_name
         user_query = "AU=(#{names}) AND AD=(#{institution})"
-        query = queries.params_for_search(user_query)
-        queries.search(query)
+        params = queries.params_for_fields(empty_fields)
+        params[:queryParameters][:userQuery] = user_query
+        params
       end
 
       # @param author [Author]
@@ -132,21 +179,16 @@ module WebOfScience
       # ----
       # Utility methods
 
+      def empty_fields
+        @empty_fields ||= Settings.WOS.ACCEPTED_DBS.map { |db| { collectionName: db, fieldName: [''] } }
+      end
+
       # Is there a PublicationIdentifier matching the type and value?
       # @param type [String]
       # @param value [String]
       def publication_identifier?(type, value)
         return false if value.nil?
         PublicationIdentifier.where(identifier_type: type, identifier_value: value).count > 0
-      end
-
-      # Extract a WOS-ItemId from a WOS-UID or a WosItemId
-      # - a WOS-UID has the form {DB_PREFIX}:{WOS_ITEM_ID}
-      # - a WOS-ItemId has no {DB_PREFIX}:
-      # @param id [String]
-      # @return [String] the {WOS_ITEM_ID}
-      def wos_item(id)
-        id.split(':').last
       end
 
   end
