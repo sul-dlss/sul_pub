@@ -13,6 +13,7 @@ AllCops:
     - 'bin/**/*'
     - 'db/**/*'
     - 'config/**/*'
+    - 'spec/factories/*.local.rb'
     - 'spec/fixtures/**/*'
     - 'spec/spec_helper.rb'
     - 'spec/teaspoon_env.rb'

@@ -104,7 +104,8 @@ module SulBib
       # @param [String] sw_id ScienceWire ID
       # @return [Publication]
       def get_publication_via_sciencewire!(sw_id)
-        Publication.find_or_create_by_sciencewire_id(sw_id) ||
+        Publication.find_by(sciencewire_id: sw_id) ||
+          SciencewireSourceRecord.get_pub_by_sciencewire_id(sw_id) ||
           log_and_error!("The ScienceWire:#{sw_id} publication was not found either locally or at ScienceWire.")
       end
 
