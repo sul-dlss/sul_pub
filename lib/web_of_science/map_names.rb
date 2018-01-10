@@ -3,22 +3,33 @@ module WebOfScience
   # Map WOS record data into the SUL PubHash data
   class MapNames < Mapper
 
+    # publication authors
+    # @return [Hash]
+    def pub_hash
+      # - use names, with role, to include 'author' and other roles, possibly 'editor' also
+      # - the Csl::Citation has methods to separate them to create citations
+      {
+        author: names,
+        authorcount: author_count
+      }
+    end
+
     private
 
-      # publication authors
-      # @return [Hash]
-      def mapper
-        # - use names, with role, to include 'author' and other roles, possibly 'editor' also
-        # - the Csl::Citation has methods to separate them to create citations
-        {
-          author: names,
-          authorcount: rec.authors.count
-        }
+      attr_reader :names
+      attr_reader :author_count
+
+      # Extract content from record, try not to hang onto the entire record
+      # @param rec [WebOfScience::Record]
+      def extract(rec)
+        super(rec)
+        @names = extract_names(rec)
+        @author_count = names.count { |name| name[:role] == 'author' }
       end
 
       # Parse the WOS names and return a Hash compatible with Csl::AuthorName
       # @return [Hash]
-      def names
+      def extract_names(rec)
         rec.names.map do |name|
           name = name.slice('first_name', 'middle_name', 'last_name', 'full_name', 'role').symbolize_keys
           match = name[:first_name].to_s.match(/\A([A-Z])([A-Z])/)
