@@ -30,9 +30,6 @@ describe WebOfScience::MapMesh do
   end
 
   shared_examples 'no_mesh' do
-    it 'works' do
-      expect(mapper.mesh).to be_empty
-    end
     it 'pub_hash has no MESH headings' do
       expect(pub_hash[:mesh_headings]).to be_nil
     end
@@ -48,9 +45,6 @@ describe WebOfScience::MapMesh do
     it_behaves_like 'medline_works'
     it_behaves_like 'pub_hash'
 
-    it 'works' do
-      expect(mapper.mesh).not_to be_empty
-    end
     it 'pub_hash has MESH headings' do
       expect(pub_hash[:mesh_headings]).to be_an Array
     end

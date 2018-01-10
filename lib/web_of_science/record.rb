@@ -6,12 +6,8 @@ module WebOfScience
   class Record
     extend Forwardable
 
-    delegate %i(abstracts) => :abstract_mapper
-
     delegate %i(database doi eissn issn pmid uid wos_item_id) => :identifiers
     delegate logger: :WebOfScience
-
-    delegate %i(publishers) => :publisher
 
     # @!attribute [r] doc
     #   @return [Nokogiri::XML::Document] WOS record document
@@ -23,24 +19,24 @@ module WebOfScience
       @doc = WebOfScience::XmlParser.parse(record, encoded_record)
     end
 
-    # @return [WebOfScience::MapAbstract]
-    def abstract_mapper
-      @abstract_mapper ||= WebOfScience::MapAbstract.new(self)
+    # @return [Array<String>]
+    def abstracts
+      WebOfScience::MapAbstract.new(self).abstracts
     end
 
     # @return [Array<Hash<String => String>>]
     def authors
-      @authors ||= names.select { |name| name['role'] == 'author' }
+      names.select { |name| name['role'] == 'author' }
     end
 
     # @return [Array<Hash<String => String>>]
     def editors
-      @editors ||= names.select { |name| name['role'] == 'book_editor' }
+      names.select { |name| name['role'] == 'book_editor' }
     end
 
     # @return [Array<String>]
     def doctypes
-      @doctypes ||= doc.search('static_data/summary/doctypes/doctype').map(&:text)
+      doc.search('static_data/summary/doctypes/doctype').map(&:text)
     end
 
     # @return [Hash<String => String>]
@@ -83,27 +79,8 @@ module WebOfScience
     end
 
     # @return [WebOfScience::MapPublisher]
-    def publisher
-      @publisher ||= WebOfScience::MapPublisher.new(self)
-    end
-
-    # Extract the REC summary fields
-    # @return [Hash<String => Object>]
-    def summary
-      @summary ||= {
-        'abstracts' => abstracts,
-        'doctypes' => doctypes,
-        'names' => names,
-        'pub_info' => pub_info,
-        'publishers' => publishers,
-        'titles' => titles,
-      }
-    end
-
-    # An OpenStruct for the summary fields
-    # @return [OpenStruct]
-    def summary_struct
-      to_o(summary)
+    def publishers
+      WebOfScience::MapPublisher.new(self).publishers
     end
 
     # @return [Hash<String => String>]
@@ -114,24 +91,30 @@ module WebOfScience
       end
     end
 
-    # Extract the REC fields
-    # @return [Hash<String => Object>]
-    def to_h
-      {
-        'summary' => summary,
-      }
-    end
-
     # Map WOS record data into the SUL PubHash data
     # @return [Hash]
     def pub_hash
       @pub_hash ||= WebOfScience::MapPubHash.new(self).pub_hash
     end
 
+    # Extract the REC fields
+    # @return [Hash<String => Object>]
+    def to_h
+      {
+        'abstracts' => abstracts,
+        'doctypes' => doctypes,
+        'names' => names,
+        'pub_info' => pub_info,
+        'publishers' => publishers,
+        'titles' => titles,
+      }
+    end
+
     # An OpenStruct for the REC fields
     # @return [OpenStruct]
     def to_struct
-      to_o(to_h)
+      # Convert Hash to OpenStruct with recursive application to nested hashes
+      JSON.parse(to_h.to_json, object_class: OpenStruct)
     end
 
     # @return [String] XML
@@ -139,11 +122,5 @@ module WebOfScience
       doc.to_xml(save_with: WebOfScience::XmlParser::XML_OPTIONS).strip
     end
 
-    private
-
-      # Convert Hash to OpenStruct with recursive application to nested hashes
-      def to_o(hash)
-        JSON.parse(hash.to_json, object_class: OpenStruct)
-      end
   end
 end
