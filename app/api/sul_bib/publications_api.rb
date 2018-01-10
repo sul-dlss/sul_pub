@@ -10,13 +10,11 @@ module SulBib
       #         returns an error if the publication is not found or if it has
       #         been deleted (unless the request is a 'DELETE')
       def publication_find(id)
-        begin
-          pub = Publication.find(id)
-        rescue ActiveRecord::RecordNotFound
-          error!({ 'error' => 'No such publication', 'detail' => "You've requested a non-existant publication." }, 404)
-        end
+        pub = Publication.find(id)
         error!('Gone - old resource deleted.', 410) if pub.deleted? && !request.delete?
         pub
+      rescue ActiveRecord::RecordNotFound
+        error!({ 'error' => 'No such publication', 'detail' => "You've requested a non-existant publication." }, 404)
       end
 
       # Check for existing authors.
