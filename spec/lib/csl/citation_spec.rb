@@ -220,18 +220,6 @@ describe Csl::Citation do
     }
   end
 
-  # describe "#sync_publication_hash" do
-  #   context " with multiple contributions " do
-  #
-  #     it " writes the correct authorship field to the pub_hash "
-  #         pending
-  #       end
-  #     it " creates a new contribution for a new authorship entry in the pub_hash "
-  #         pending
-  #       end
-  #   end
-  # end
-
   shared_examples 'it is a CSL report citation' do
     def expect_includes_field(field)
       expect(cite).to include(csl_report[field]) if csl_report[field]
