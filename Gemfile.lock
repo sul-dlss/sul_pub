@@ -337,6 +337,10 @@ GEM
       railties (>= 4.2.0, < 5.3)
     retina_tag (1.4.1)
       rails (>= 3.1)
+    rspec (3.7.0)
+      rspec-core (~> 3.7.0)
+      rspec-expectations (~> 3.7.0)
+      rspec-mocks (~> 3.7.0)
     rspec-core (3.7.0)
       rspec-support (~> 3.7.0)
     rspec-expectations (3.7.0)
@@ -507,6 +511,7 @@ DEPENDENCIES
   rake
   responders (~> 2.4)
   retina_tag
+  rspec
   rspec-rails (~> 3.7)
   sass-rails (~> 5.0)
   savon (~> 2.11)

@@ -59,7 +59,8 @@ gem 'retina_tag'
 group :development, :test do
   gem 'dlss_cops' # includes rubocop
   gem 'rails_db'
-  gem 'rspec-rails', '~> 3.7', require: false
+  gem 'rspec'
+  gem 'rspec-rails', '~> 3.7'
 end
 
 group :development do
