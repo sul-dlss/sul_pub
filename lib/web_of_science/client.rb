@@ -13,8 +13,6 @@ module WebOfScience
     AUTH_WSDL = 'http://search.webofknowledge.com/esti/wokmws/ws/WOKMWSAuthenticate?wsdl'.freeze
     SEARCH_WSDL = 'http://search.webofknowledge.com/esti/wokmws/ws/WokSearch?wsdl'.freeze
 
-    delegate :logger, to: :WebOfScience
-
     def initialize(auth_code, log_level = Settings.WOS.LOG_LEVEL.to_sym)
       @auth_code = auth_code
       @log_level = log_level
@@ -77,6 +75,10 @@ module WebOfScience
       @auth = nil
       @search = nil
       @session_id = nil
+    end
+
+    def logger
+      @logger ||= Logger.new('log/web_of_science_client.log')
     end
   end
 end
