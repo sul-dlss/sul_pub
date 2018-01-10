@@ -35,6 +35,7 @@ module WebOfScience
     # @param uid [String] a WOS UID
     # @return [WebOfScience::Records]
     def cited_references(uid)
+      return empty_records if uid.blank?
       retrieve_options = [ { key: 'Hot', value: 'On' } ]
       message = base_uid_params.merge(uid: uid,
                                       retrieveParameters: retrieve_parameters(options: retrieve_options))
@@ -44,6 +45,7 @@ module WebOfScience
     # @param uid [String] a WOS UID
     # @return [WebOfScience::Records]
     def citing_articles(uid)
+      return empty_records if uid.blank?
       message = base_uid_params.merge(uid: uid, timeSpan: time_span)
       retrieve_records(:citing_articles, message)
     end
@@ -51,6 +53,7 @@ module WebOfScience
     # @param uid [String] a WOS UID
     # @return [WebOfScience::Records]
     def related_records(uid)
+      return empty_records if uid.blank?
       # The 'WOS' database is the only option for this query
       message = base_uid_params.merge(uid: uid, databaseId: 'WOS', timeSpan: time_span)
       retrieve_records(:related_records, message)
@@ -59,6 +62,7 @@ module WebOfScience
     # @param uids [Array<String>] a list of WOS UIDs
     # @return [WebOfScience::Records]
     def retrieve_by_id(uids)
+      return empty_records if uids.blank?
       message = base_uid_params.merge(uid: uids)
       retrieve_records(:retrieve_by_id, message)
     end
@@ -67,22 +71,16 @@ module WebOfScience
     # @param pmids [Array<String>] a list of PMIDs
     # @return [WebOfScience::Records]
     def retrieve_by_pmid(pmids)
+      return empty_records if pmids.blank?
       uids = pmids.map { |pmid| "MEDLINE:#{pmid}" }
       retrieve_by_id(uids)
-    end
-
-    # @param user_query [String] a custom user query
-    # @param message [Hash] optional search params (defaults to search_params)
-    # @return [WebOfScience::Records]
-    def search(user_query, message = search_params)
-      message[:queryParameters][:userQuery] = user_query
-      retrieve_records(:search, message)
     end
 
     # @param doi [String] a digital object identifier (DOI)
     # @return [WebOfScience::Records]
     def search_by_doi(doi)
-      message = search_params("DO=#{doi}")
+      return empty_records if doi.blank?
+      message = params_for_search("DO=#{doi}")
       message[:retrieveParameters][:count] = 10
       response = wos_client.search.call(:search, message: message)
       records = records(response, :search_response)
@@ -90,7 +88,7 @@ module WebOfScience
       # on the `DO` field.  When the result set is only one record, it's likely to be a good match; but
       # otherwise the results could be nonsense.
       return records if records.count == 1
-      WebOfScience::Records.new(records: '<records/>')
+      empty_records
     end
 
     # @param name [String] a CSV name pattern: last_name, first_name [middle_name | middle initial]
@@ -99,8 +97,50 @@ module WebOfScience
     def search_by_name(name, institutions = [])
       user_query = "AU=(#{name_query(name)})"
       user_query += " AND AD=(#{institutions.join(' OR ')})" unless institutions.empty?
-      message = search_params(user_query)
+      message = params_for_search(user_query)
       retrieve_records(:search, message)
+    end
+
+    # @param message [Hash] search params (see WebOfScience::Queries#params_for_search)
+    # @return [WebOfScience::Records]
+    def search(message)
+      retrieve_records(:search, message)
+    end
+
+    # @param user_query [String] (defaults to '')
+    # @return [Hash] search query parameters for full records
+    def params_for_search(user_query = '')
+      {
+        queryParameters: {
+          databaseId: database,
+          userQuery: user_query,
+          timeSpan: time_span,
+          queryLanguage: QUERY_LANGUAGE
+        },
+        retrieveParameters: retrieve_parameters
+      }
+    end
+
+    # Params to retrieve specific fields, not the full records; modify the retrieveParameters.
+    # The `viewField` option can only be used without reference to the `FullRecord` namespace.
+    # Also, the `viewField` must precede the `option` params in retrieveParameters.
+    #
+    # Using a `viewField` with an empty 'fieldName' results in returning only record-UIDs.
+    #
+    # @example
+    # fields = [{ collectionName: "WOS", fieldName: [""] }, { collectionName: "MEDLINE", fieldName: [""] }]
+    #
+    # @param fields [Array<Hash>] as above
+    # @return [Hash] search query parameters for specific fields
+    def params_for_fields(fields)
+      params = params_for_search
+      params[:retrieveParameters] = {
+        firstRecord: 1,
+        count: 100,
+        viewField: fields,
+        option: [{ key: 'RecordIDs', value: 'On' }]
+      }
+      params
     end
 
     private
@@ -108,15 +148,22 @@ module WebOfScience
       ###################################################################
       # WoS Query Record Collators
 
-      def retrieve_records(operation, message)
-        response = wos_client.search.call(operation, message: message)
-        retrieve_additional_records(response, "#{operation}_response".to_sym)
+      # An empty set of records
+      # @return [WebOfScience::Records]
+      def empty_records
+        WebOfScience::Records.new(records: '<records/>')
       end
 
+      def retrieve_records(operation, message)
+        response = wos_client.search.call(operation, message: message)
+        retrieve_additional_records(message, response, "#{operation}_response".to_sym)
+      end
+
+      # @param message [Hash] search params
       # @param response [Savon::Response]
       # @param response_type [Symbol]
       # @return [WebOfScience::Records]
-      def retrieve_additional_records(response, response_type)
+      def retrieve_additional_records(message, response, response_type)
         records = records(response, response_type)
         record_total = records_found(response, response_type)
         if record_total > MAX_RECORDS
@@ -128,11 +175,11 @@ module WebOfScience
           iterations -= 1 if (record_total % MAX_RECORDS).zero?
           [*1..iterations].each do |i|
             first_record = (MAX_RECORDS * i) + 1
-            message = {
+            retrieve_message = {
               queryId: query_id,
-              retrieveParameters: retrieve_parameters(first_record: first_record)
+              retrieveParameters: message[:retrieveParameters].merge(firstRecord: first_record)
             }
-            response_i = wos_client.search.call(retrieve_operation, message: message)
+            response_i = wos_client.search.call(retrieve_operation, message: retrieve_message)
             records_i = records(response_i, "#{retrieve_operation}_response".to_sym)
             records = records.merge_records records_i
           end
@@ -223,20 +270,6 @@ module WebOfScience
             value: 'http://scientific.thomsonreuters.com/schema/wok5.4/public/FullRecord'
           }
         ]
-      end
-
-      # @param user_query [String]
-      # @return [Hash] search query parameters
-      def search_params(user_query = '')
-        {
-          queryParameters: {
-            databaseId: database,
-            userQuery: user_query,
-            timeSpan: time_span,
-            queryLanguage: QUERY_LANGUAGE
-          },
-          retrieveParameters: retrieve_parameters
-        }
       end
 
       # @return [Hash] time span dates

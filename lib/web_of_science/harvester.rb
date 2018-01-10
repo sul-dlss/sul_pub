@@ -88,7 +88,8 @@ module WebOfScience
         names = author_name(author).text_search_query
         institution = author_institution(author).normalize_name
         user_query = "AU=(#{names}) AND AD=(#{institution})"
-        wos_queries.search(user_query)
+        query = wos_queries.params_for_search(user_query)
+        wos_queries.search(query)
       end
 
       # @param author [Author]
