@@ -146,6 +146,11 @@ VCR.configure do |c|
       id_match.captures.first if id_match
     end
   end
+
+  # WOS API filters
+  c.filter_sensitive_data('Settings.WOS.AUTH_CODE') do |interaction|
+    Settings.WOS.AUTH_CODE if interaction.request.uri.include? 'WOKMWSAuthenticate'
+  end
 end
 
 def a_post(path)
