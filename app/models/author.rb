@@ -55,7 +55,6 @@ class Author < ActiveRecord::Base
   has_many :contributions, dependent: :destroy, after_add: :contributions_changed_callback, after_remove: :contributions_changed_callback do
     def build_or_update(publication, contribution_hash = {})
       c = where(publication_id: publication.id).first_or_initialize
-
       c.assign_attributes contribution_hash.merge(publication_id: publication.id)
       if c.persisted?
         c.save
@@ -63,7 +62,6 @@ class Author < ActiveRecord::Base
       else
         self << c
       end
-
       c
     end
   end
@@ -121,9 +119,10 @@ class Author < ActiveRecord::Base
     end
   end
 
+  # @param [Hash<String => [String, Hash]>] auth_hash
+  # @return [Hash<Symbol => String>]
   def self.build_attribute_hash_from_cap_profile(auth_hash)
-    # key/value not present in hash if value is not there
-    # sunetid/ university id/ ca licence ---- at least one will be there
+    # sunetid/ university id/ ca licence ---- at least one is expected
     seed_hash = {
       cap_profile_id: auth_hash['profileId'],
       active_in_cap:  auth_hash['active'],
@@ -161,6 +160,7 @@ class Author < ActiveRecord::Base
     a
   end
 
+  # @return [Boolean]
   def harvestable?
     active_in_cap && cap_import_enabled
   end
