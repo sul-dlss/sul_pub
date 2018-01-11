@@ -5,7 +5,6 @@ module WebOfScience
   # This class is responsible for processing WebOfScience API response data
   # to integrate it into the application data models.
   class Harvester < ::Harvester::Base
-    delegate :logger, to: :WebOfScience
 
     # @param [Enumerable<Author>] authors
     # @return [void]
@@ -46,8 +45,8 @@ module WebOfScience
       # TODO: normalize the dois using altmetrics identifier gem, as in PR #246
       dois.reject! { |doi| publication_identifier?('doi', doi) }
       return [] if dois.empty?
-      records = wos_queries.search_by_doi(dois.shift)
-      dois.each { |doi| records.merge_records wos_queries.search_by_doi(doi) }
+      records = queries.search_by_doi(dois.shift)
+      dois.each { |doi| records.merge_records queries.search_by_doi(doi) }
       process_records author, records
     end
 
@@ -61,7 +60,7 @@ module WebOfScience
       # TODO: normalize the pmids using altmetrics identifier gem, as in PR #246
       pmids.reject! { |pmid| publication_identifier?('pmid', pmid) }
       return [] if pmids.empty?
-      process_records author, wos_queries.retrieve_by_pmid(pmids)
+      process_records author, queries.retrieve_by_pmid(pmids)
     end
 
     # Harvest WOS-UID publications for an author
@@ -73,10 +72,12 @@ module WebOfScience
       raise(ArgumentError, 'uids must be Enumerable') unless uids.is_a? Enumerable
       uids.reject! { |uid| publication_identifier?('WosItemId', wos_item(uid)) }
       return [] if uids.empty?
-      process_records author, wos_queries.retrieve_by_id(uids)
+      process_records author, queries.retrieve_by_id(uids)
     end
 
     private
+
+      delegate :logger, :queries, to: :WebOfScience
 
       # Process records retrieved by any means
       # @param author [Author]
@@ -97,8 +98,8 @@ module WebOfScience
         names = author_name(author).text_search_query
         institution = author_institution(author).normalize_name
         user_query = "AU=(#{names}) AND AD=(#{institution})"
-        query = wos_queries.params_for_search(user_query)
-        wos_queries.search(query)
+        query = queries.params_for_search(user_query)
+        queries.search(query)
       end
 
       # @param author [Author]
@@ -148,9 +149,5 @@ module WebOfScience
         id.split(':').last
       end
 
-      # @return [WebOfScience::Queries]
-      def wos_queries
-        WebOfScience.queries
-      end
   end
 end
