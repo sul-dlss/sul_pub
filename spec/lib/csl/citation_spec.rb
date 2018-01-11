@@ -1,84 +1,12 @@
 
 describe Csl::Citation do
-  include CitationDocumentTypes # spec/fixtures/doc_types/working_paper.rb
-
-  let(:conference_pub_in_journal_hash) do
-    { title: 'My test title',
-      type: 'paper-conference',
-      articlenumber: 33,
-      pages: '33-56',
-      author: [{ name: 'Smith, Jack', role: 'editor' },
-               { name: 'Sprat, Jill', role: 'editor' },
-               { name: 'Jones, P. L.' },
-               { firstname: 'Alan', middlename: 'T', lastname: 'Jackson' }],
-      year: '1987',
-      supplement: '33',
-      publisher: 'Some Publisher',
-      journal: { name: 'Some Journal Name', volume: 33, issue: 32, year: 1999 },
-      conference: { name: 'The Big Conference', year: 2345, number: 33, location: 'Knoxville, TN', city: 'Knoxville', statecountry: 'TN' }
-    }
-  end
-
-  let(:conference_pub_in_book_hash) do
-    conference_pub_in_journal_hash.reject { |k, _v| [:journal, :supplement].include?(k) }.merge(booktitle: 'The Giant Book of Giant Ideas')
-  end
-
-  let(:conference_pub_in_series_hash) do
-    conference_pub_in_book_hash.merge(
-      publisher: 'Smith Books',
-      series: { title: 'The book series for kings and queens', volume: 1, number: 4, year: 1933 }
-    )
-  end
-
-  # let(:conference_pub_in_nothing_hash) do
-  #   { title: 'My test title',
-  #     type: 'speech',
-  #     author: [
-  #       { name: 'Jones, P. L.' },
-  #       { firstname: 'Alan', middlename: 'T', lastname: 'Jackson' }],
-  #     conference: { name: 'The Big Conference', year: '1999', number: 33, location: 'Knoxville, TN', city: 'Knoxville', statecountry: 'TN' }
-  #   }
-  # end
-
-  let(:book_pub_hash) do
-    { title: 'My test title',
-      type: 'book',
-      author: [
-        { name: 'Jones, P. L.' },
-        { firstname: 'Alan', middlename: 'T', lastname: 'Jackson' }],
-      year: '1987',
-      publisher: 'Smith Books',
-      booktitle: 'The Giant Book of Giant Ideas'
-    }
-  end
-
-  let(:book_pub_with_editors_hash) do
-    book_pub_hash.merge(author: [{ name: 'Smith, Jack', role: 'editor' },
-                                 { name: 'Sprat, Jill', role: 'editor' },
-                                 { name: 'Jones, P. L.' },
-                                 { firstname: 'Alan', middlename: 'T', lastname: 'Jackson' }]
-                       )
-  end
-
-  # let(:series_pub_hash) do
-  #   book_pub_with_editors_hash.reject { |k, _v| k == :booktitle }.merge(
-  #     series: { title: 'The book series for Big Ideas', volume: 1, number: 4, year: 1933 }
-  #   )
-  # end
-
-  let(:article_pub_hash) do
-    { title: 'My test title',
-      type: 'article',
-      pages: '3-6',
-      author: [{ name: 'Smith, Jack', role: 'editor' },
-               { name: 'Sprat, Jill', role: 'editor' },
-               { name: 'Jones, P. L.' },
-               { firstname: 'Alan', middlename: 'T', lastname: 'Jackson' }],
-      year: '1987',
-      publisher: 'Some Publisher',
-      journal: { name: 'Some Journal Name', volume: 33, issue: 32, year: 1999 }
-    }
-  end
+  # Fixture data from spec/fixtures/pub_hash/*.rb
+  include PubHash::Article
+  include PubHash::Book
+  include PubHash::CaseStudy
+  include PubHash::Conference
+  include PubHash::TechnicalReport
+  include PubHash::WorkingPaper
 
   let(:pub_hash) do
     { provenance: 'sciencewire',
@@ -136,87 +64,6 @@ describe Csl::Citation do
                            status: 'unknown',
                            visibility: 'private',
                            featured: false }]
-    }
-  end
-
-  let(:technical_report_online_pub_hash) do
-    {
-      title: 'Laws of Attrition: Crackdown on Russia’s Civil Society After Putin’s Return to the Presidency',
-      type: 'technicalReport',
-      provenance: 'CAP',
-      pages: '',
-      author: [
-        {
-          name: 'Gorbunova Yulia',
-          lastname: 'Gorbunova',
-          firstname: 'Yulia',
-          middlename: '',
-          alternate: [],
-          role: 'author',
-          additionalProperties: {}
-        }
-      ],
-      year: '2013',
-      publisher: 'Human Rights Watch',
-      publicationUrl: 'http://www.hrw.org/reports/2013/04/24/laws-attrition',
-      publicationUrlLabel: '',
-      publicationSource: 'New York'
-    }
-  end
-
-  let(:technical_report_print_pub_hash) do
-    h = technical_report_online_pub_hash
-    h[:author] << {
-      name: 'Baranov Konstantin',
-                    lastname: 'Baranov',
-                    firstname: 'Konstantin',
-                    middlename: '',
-                    alternate: [],
-                    role: 'author',
-                    additionalProperties: {}
-    }
-    h[:publicationUrl] = ''
-    h.delete(:pages)
-    h
-  end
-
-  let(:case_study_pub_hash) do
-    {
-      title: 'HCL Technologies',
-      type: 'caseStudy',
-      provenance: 'CAP',
-      author: [
-        {
-          name: 'Hill  Linda',
-          lastname: 'Hill',
-          firstname: 'Linda',
-          middlename: '',
-          alternate: [],
-          role: 'author',
-          additionalProperties: {}
-        },
-        {
-          name: 'Khanna  Tarun',
-          lastname: 'Khanna',
-          firstname: 'Tarun',
-          middlename: '',
-          alternate: [],
-          role: 'author',
-          additionalProperties: {}
-        },
-        {
-          name: 'Stecker A Emily',
-          lastname: 'Stecker',
-          firstname: 'Emily',
-          middlename: 'A',
-          alternate: [],
-          role: 'author',
-          additionalProperties: {}
-        }
-      ],
-      year: '2008',
-      publisher: 'Harvard Business Publishing',
-      publicationSource: 'Boston'
     }
   end
 
@@ -435,11 +282,18 @@ describe Csl::Citation do
       context 'published in journal' do
         let(:hash) { described_class.new(conference_pub_in_journal_hash) }
 
-        it 'includes journal information' do
+        it 'includes article title' do
           expect(chicago_citation).to include(conference_pub_in_journal_hash[:title].titlecase)
-          expect(chicago_citation).to include(conference_pub_in_journal_hash[:pages])
-          expect(chicago_citation).to include(conference_pub_in_journal_hash[:year])
+        end
+        it 'includes journal name' do
           expect(chicago_citation).to include(conference_pub_in_journal_hash[:journal][:name])
+        end
+        it 'includes journal pages' do
+          # the chicago citation translates a hyphen (code 45) into an en-dash (code 226-218-147)
+          expect(chicago_citation).to include(conference_pub_in_journal_hash[:pages].sub('-', '–'))
+        end
+        it 'includes journal year' do
+          expect(chicago_citation).to include(conference_pub_in_journal_hash[:year])
         end
         it 'includes authors of the article' do
           author_last_names = %w(Jones Jackson)
@@ -471,7 +325,7 @@ describe Csl::Citation do
         expect(chicago_citation).to include(book_pub_hash[:year])
       end
       describe 'with editors' do
-        let(:hash) { described_class.new(book_pub_with_editors_hash) }
+        let(:hash) { described_class.new(book_with_editors_pub_hash) }
 
         it 'includes editors' do
           expect(chicago_citation).to include('Jack Smith', 'Jill Sprat')
@@ -494,9 +348,12 @@ describe Csl::Citation do
         expect(chicago_citation).to include(article_pub_hash[:year])
         expect(chicago_citation).to include(article_pub_hash[:journal][:name])
       end
-      it 'includes journal volume issue and pages' do
+      it 'includes journal volume (issue)' do
         expect(chicago_citation).to include("#{article_pub_hash[:journal][:volume]} (#{article_pub_hash[:journal][:issue]})")
-        expect(chicago_citation).to include(article_pub_hash[:pages])
+      end
+      it 'includes journal pages' do
+        # the chicago citation translates a hyphen (code 45) into an en-dash (code 226-218-147)
+        expect(chicago_citation).to include(article_pub_hash[:pages].sub('-', '–'))
       end
       it 'excludes editors' do
         expect(chicago_citation).not_to include('Jack Smith', 'Jill Sprat')
