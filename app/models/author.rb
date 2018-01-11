@@ -150,12 +150,14 @@ class Author < ActiveRecord::Base
     seed_hash
   end
 
-  def self.fetch_from_cap_and_create(profile_id, cap_client = nil)
-    cap_client = Cap::Client.new unless cap_client.present?
+  # @param [String] CAP Profile ID
+  # @param [Cap::Client] cap_client
+  # @return [Author] newly fetched, created and saved Author object
+  def self.fetch_from_cap_and_create(profile_id, cap_client = Cap::Client.new)
     profile_hash = cap_client.get_auth_profile(profile_id)
     a = Author.new
     a.update_from_cap_authorship_profile_hash(profile_hash)
-    a.save! # TODO: does this nullify `new_record?` later on, and why save now?
+    a.save!
     a
   end
 
