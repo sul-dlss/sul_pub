@@ -166,7 +166,7 @@ describe SulBib::API, :vcr do
         allow(processor).to receive(:links_client).and_return(links_client)
         allow(WebOfScience::ProcessRecords).to receive(:new).and_return(processor)
         allow(wos_queries).to receive(:retrieve_by_id).and_return(records)
-        allow(WebOfScience.harvester).to receive(:wos_queries).and_return(wos_queries)
+        allow(WebOfScience).to receive(:queries).and_return(wos_queries)
         http_request
         expect(response.body).to eq(new_pub.pub_hash.to_json)
       end
