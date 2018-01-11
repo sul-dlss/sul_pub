@@ -4,52 +4,30 @@ module SulBib
     default_format :json
 
     helpers do
-      # Used in GET and PUT to return an existing publication record
       # @param id [String] A unique publication ID
       # @return [Publication] If found, returns a Publication record
       #         returns an error if the publication is not found or if it has
       #         been deleted (unless the request is a 'DELETE')
       def publication_find(id)
-        begin
-          pub = Publication.find(id)
-        rescue ActiveRecord::RecordNotFound
-          error!({ 'error' => 'No such publication', 'detail' => "You've requested a non-existant publication." }, 404)
-        end
+        pub = Publication.find(id)
         error!('Gone - old resource deleted.', 410) if pub.deleted? && !request.delete?
         pub
-      end
-
-      # Check for existing authors.
-      # @param authorship_list [Array<Hash>]
-      # @return [boolean] true if any of the authors exist.
-      def existing_authors?(authorship_list)
-        # At least one of the authors in the authorship array must exist.
-        return false if authorship_list.nil?
-        authorship_list.any? { |auth| Contribution.authorship_valid?(auth) }
+      rescue ActiveRecord::RecordNotFound
+        error!({ 'error' => 'No such publication', 'detail' => "You've requested a non-existant publication." }, 404)
       end
 
       # Check for existing authors or create new authors with a CAP profile ID.
+      # At least one of the authors in the authorship array must exist or have
+      # a CAP profile that is used to create a new SULCAP author.
       # @param authorship_list [Array<Hash>]
-      # @return [boolean] true if any authors exist or are created.
+      # @return [Boolean] true if any authors exist or are created.
       def validate_or_create_authors(authorship_list)
-        # At least one of the authors in the authorship array must exist or have
-        # a CAP profile that is used to create a new SULCAP author.
-        return false if authorship_list.nil?
-        status = false
-        authorship_list.each do |authorship|
-          # Contribution.authorship_valid? confirms existing authors;
-          # it does not create new authors.
-          if Contribution.authorship_valid?(authorship)
-            status = true
-          else
-            cap_profile_id = authorship[:cap_profile_id]
-            unless cap_profile_id.blank?
-              Author.fetch_from_cap_and_create(cap_profile_id)
-              status = true
-            end
-          end
-        end
-        status
+        return false if authorship_list.blank?
+        groups = authorship_list.group_by { |auth| Contribution.authorship_valid?(auth) }
+        unknowns = groups[false] || []
+        cap_ids = unknowns.map { |auth| auth[:cap_profile_id] }.compact
+        cap_ids.map { |id| Author.fetch_from_cap_and_create(id) }.any? ||
+          groups[true].any?
       end
 
       def original_source
@@ -122,8 +100,7 @@ module SulBib
       requires :id
     end
     get ':id' do
-      pub = publication_find(params[:id])
-      pub.pub_hash
+      publication_find(params[:id]).pub_hash
     end
 
     desc 'DELETE - MARK A RECORD AS OBSOLETE'
@@ -131,8 +108,7 @@ module SulBib
       requires :id
     end
     delete ':id' do
-      pub = publication_find(params[:id])
-      pub.delete!
+      publication_find(params[:id]).delete!
     end
 
   end

@@ -55,7 +55,6 @@ class Author < ActiveRecord::Base
   has_many :contributions, dependent: :destroy, after_add: :contributions_changed_callback, after_remove: :contributions_changed_callback do
     def build_or_update(publication, contribution_hash = {})
       c = where(publication_id: publication.id).first_or_initialize
-
       c.assign_attributes contribution_hash.merge(publication_id: publication.id)
       if c.persisted?
         c.save
@@ -63,7 +62,6 @@ class Author < ActiveRecord::Base
       else
         self << c
       end
-
       c
     end
   end
@@ -121,9 +119,10 @@ class Author < ActiveRecord::Base
     end
   end
 
+  # @param [Hash<String => [String, Hash]>] auth_hash
+  # @return [Hash<Symbol => String>]
   def self.build_attribute_hash_from_cap_profile(auth_hash)
-    # key/value not present in hash if value is not there
-    # sunetid/ university id/ ca licence ---- at least one will be there
+    # sunetid/ university id/ ca licence ---- at least one is expected
     seed_hash = {
       cap_profile_id: auth_hash['profileId'],
       active_in_cap:  auth_hash['active'],
@@ -150,15 +149,18 @@ class Author < ActiveRecord::Base
     seed_hash
   end
 
-  def self.fetch_from_cap_and_create(profile_id, cap_client = nil)
-    cap_client = Cap::Client.new unless cap_client.present?
+  # @param [String] CAP Profile ID
+  # @param [Cap::Client] cap_client
+  # @return [Author] newly fetched, created and saved Author object
+  def self.fetch_from_cap_and_create(profile_id, cap_client = Cap::Client.new)
     profile_hash = cap_client.get_auth_profile(profile_id)
     a = Author.new
     a.update_from_cap_authorship_profile_hash(profile_hash)
-    a.save! # TODO: does this nullify `new_record?` later on, and why save now?
+    a.save!
     a
   end
 
+  # @return [Boolean]
   def harvestable?
     active_in_cap && cap_import_enabled
   end
