@@ -63,8 +63,7 @@ describe Csl::Citation do
                            sul_author_id: 2579,
                            status: 'unknown',
                            visibility: 'private',
-                           featured: false }]
-    }
+                           featured: false }] }
   end
 
   shared_examples 'it is a CSL report citation' do
@@ -422,8 +421,7 @@ describe Csl::Citation do
                                          sul_author_id: 2579,
                                          status: 'unknown',
                                          visibility: 'private',
-                                         featured: false }]
-                  }
+                                         featured: false }] }
       end
 
       it 'adds et al whenever the flag is true' do
