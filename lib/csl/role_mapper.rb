@@ -76,33 +76,40 @@ module Csl
         # return nil if the the family name is blank.
         # @return [Hash<String => String>|nil]
         def parse_author_name(author)
-          last_name = author[:lastname]
-          rest_of_name = ''
-
-          # Use parsed name parts, if available.  Otherwise use :name, if available.
-          # Add period after single character (initials).
-          if last_name.present?
-            %i(firstname middlename).map { |k| author[k] }.reject(&:blank?).each do |name_part|
-              rest_of_name << ' ' << name_part
-              rest_of_name << '.' if name_part.length == 1
-            end
-          end
-
-          if last_name.blank? && author[:name].present?
-            author[:name].split(',').each_with_index do |name_part, index|
-              if index.zero?
-                last_name = name_part
-              else
-                rest_of_name << ' ' << name_part
-                rest_of_name << '.' if name_part.length == 1
-              end
-            end
-          end
-
-          return nil if last_name.blank?
-          { 'family' => last_name, 'given' => rest_of_name }
+          family_name = parse_family_name(author)
+          return nil if family_name.blank?
+          given_names = parse_given_names(author)
+          { 'family' => family_name, 'given' => given_names }
         end
 
+        # Generic extraction of family name
+        # @return [String, nil]
+        def parse_family_name(author)
+          last_name = author[:lastname]
+          last_name = author[:name].split(',').first.strip if last_name.blank? && author[:name].present?
+          last_name.present? ? last_name : nil
+        end
+
+        # Generic extraction of given name
+        # Use parsed name parts, if available.  Otherwise use :name, if available.
+        # Add period after single character (initials).
+        # @return [String, nil]
+        def parse_given_names(author)
+          given_names = ''
+          %i(firstname middlename).map { |k| author[k] }.reject(&:blank?).each do |name_part|
+            given_names << ' ' << name_part
+            given_names << '.' if name_part =~ /^[[:upper:]]$/
+          end
+          if given_names.blank? && author[:name].present?
+            names = author[:name].split(',').map(&:strip)
+            names.shift # drop the last name
+            names.reject(&:blank?).each do |name_part|
+              given_names << ' ' << name_part
+              given_names << '.' if name_part =~ /^[[:upper:]]$/
+            end
+          end
+          given_names.present? ? given_names.strip : nil
+        end
     end
   end
 end
