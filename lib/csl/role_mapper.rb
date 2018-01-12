@@ -72,9 +72,12 @@ module Csl
           editors.map { |editor| parse_author_name(editor) }.compact
         end
 
+        # Generic author name parsing, used when the source of author name data is unknown;
+        # this is a last resort to guess at how to parse the author names (it's not pretty).
         # Extract { 'family' => last_name, 'given' => rest_of_name } or
         # return nil if the the family name is blank.
-        # @return [Hash<String => String>|nil]
+        # @param [Hash] author various key:value pairs for author names
+        # @return [Hash<String => String>, nil]
         def parse_author_name(author)
           family_name = parse_family_name(author)
           return nil if family_name.blank?
@@ -83,6 +86,7 @@ module Csl
         end
 
         # Generic extraction of family name
+        # @param [Hash] author various key:value pairs for author names
         # @return [String, nil]
         def parse_family_name(author)
           last_name = author[:lastname]
@@ -93,22 +97,28 @@ module Csl
         # Generic extraction of given name
         # Use parsed name parts, if available.  Otherwise use :name, if available.
         # Add period after single character (initials).
+        # @param [Hash] author various key:value pairs for author names
         # @return [String, nil]
         def parse_given_names(author)
-          given_names = ''
-          %i(firstname middlename).map { |k| author[k] }.reject(&:blank?).each do |name_part|
-            given_names << ' ' << name_part
-            given_names << '.' if name_part =~ /^[[:upper:]]$/
-          end
+          names = [:firstname, :middlename].map { |k| author[k] } # the order of given names is important
+          given_names = collect_given_names(names)
           if given_names.blank? && author[:name].present?
             names = author[:name].split(',').map(&:strip)
-            names.shift # drop the last name
-            names.reject(&:blank?).each do |name_part|
-              given_names << ' ' << name_part
-              given_names << '.' if name_part =~ /^[[:upper:]]$/
-            end
+            names.shift # drop the last name (assuming it's always "LastName, <Given Names>")
+            given_names = collect_given_names(names)
           end
           given_names.present? ? given_names.strip : nil
+        end
+
+        # @param [Array<String>] names
+        # @return [String]
+        def collect_given_names(names)
+          given_names = ''
+          names.reject(&:blank?).each do |name|
+            given_names << ' ' << name
+            given_names << '.' if name =~ /^[[:upper:]]$/
+          end
+          given_names
         end
     end
   end
