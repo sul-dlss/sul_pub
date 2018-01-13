@@ -346,8 +346,9 @@ describe Publication do
   end
 
   describe 'update_manual_pub_from_pub_hash' do
+    let(:pub) { Publication.build_new_manual_publication({ a: :b }, 'some string') }
+
     it 'should update the user submitted source record with the new content' do
-      pub = Publication.build_new_manual_publication({ a: :b }, 'some string')
       pub.update_manual_pub_from_pub_hash({ b: :c }, 'some other string')
       pub.save!
       expect(pub.user_submitted_source_records.first[:source_data]).to eq('some other string')
@@ -355,10 +356,15 @@ describe Publication do
     end
 
     it 'should raise an exception if you try to update a record to match an existing source record' do
-      Publication.build_new_manual_publication({ a: :b }, 'some string').save!
-      pub = Publication.build_new_manual_publication({ b: :c }, 'some other string')
-      pub.update_manual_pub_from_pub_hash({ b: :c }, 'some string')
-      expect { pub.save! }.to raise_error(ActiveRecord::RecordNotUnique)
+      pub.save!
+      other = Publication.build_new_manual_publication({ b: :c }, 'some other string')
+      other.update_manual_pub_from_pub_hash({ b: :c }, 'some string')
+      expect { other.save! }.to raise_error(ActiveRecord::RecordNotUnique)
+    end
+
+    it 'does not alter the hash provided' do
+      h = { pub: 'hash' }
+      expect { pub.update_manual_pub_from_pub_hash(h, 'whatev') }.not_to change { h }
     end
   end
 
