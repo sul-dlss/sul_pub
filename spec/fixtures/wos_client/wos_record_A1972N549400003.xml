@@ -1,0 +1,108 @@
+  <REC r_id_disclaimer='ResearcherID data provided by Clarivate Analytics'>
+    <UID>WOS:A1972N549400003</UID>
+    <static_data>
+      <summary>
+        <EWUID>
+          <WUID coll_id='WOS'/>
+          <edition value='WOS.SSCI'/>
+          <edition value='WOS.SCI'/>
+        </EWUID>
+        <pub_info issue='5' pubtype='Journal' sortdate='1972-01-01' has_abstract='N' coverdate='1972' vol='33' pubyear='1972'>
+          <page end='413' page_count='1' begin='413'>413-413</page>
+        </pub_info>
+        <titles count='6'>
+          <title type='source'>COLLEGE &amp; RESEARCH LIBRARIES</title>
+          <title type='source_abbrev'>COLL RES LIBR</title>
+          <title type='abbrev_iso'>Coll. Res. Libr.</title>
+          <title type='abbrev_11'>COLL RES LI</title>
+          <title type='abbrev_29'>COLL RES LIBR</title>
+          <title type='item'>
+            LIBRARY MANAGEMENT - BEHAVIOR-BASED PERSONNEL SYSTEMS (BBPS) -
+            FRAMEWORK FOR ANALYSIS - KEMPER,RE
+          </title>
+        </titles>
+        <names count='1'>
+          <name daisng_id='19669717' seq_no='1' role='author'>
+            <display_name>WEBER, DC</display_name>
+            <full_name>WEBER, DC</full_name>
+            <wos_standard>WEBER, DC</wos_standard>
+            <first_name>DC</first_name>
+            <last_name>WEBER</last_name>
+          </name>
+        </names>
+        <doctypes count='1'>
+          <doctype>Book Review</doctype>
+        </doctypes>
+        <publishers>
+          <publisher>
+            <address_spec addr_no='1'>
+              <full_address>50 E HURON ST, CHICAGO, IL 60611</full_address>
+              <city>CHICAGO</city>
+            </address_spec>
+            <names count='1'>
+              <name addr_no='1' role='publisher' seq_no='1'>
+                <display_name>ASSOC COLL RESEARCH LIBRARIES</display_name>
+                <full_name>ASSOC COLL RESEARCH LIBRARIES</full_name>
+              </name>
+            </names>
+          </publisher>
+        </publishers>
+      </summary>
+      <fullrecord_metadata>
+        <languages count='1'>
+          <language type='primary'>English</language>
+        </languages>
+        <normalized_languages count='1'>
+          <language type='primary'>English</language>
+        </normalized_languages>
+        <normalized_doctypes count='1'>
+          <doctype>Review</doctype>
+        </normalized_doctypes>
+        <refs count='1'/>
+        <addresses count='1'>
+          <address_name>
+            <address_spec addr_no='1'>
+              <full_address>STANFORD UNIV,STANFORD,CA 94305</full_address>
+              <organizations count='2'>
+                <organization>STANFORD UNIV</organization>
+                <organization pref='Y'>Stanford University</organization>
+              </organizations>
+              <city>STANFORD</city>
+              <state>CA</state>
+              <country>USA</country>
+              <zip location='AP'>94305</zip>
+            </address_spec>
+          </address_name>
+        </addresses>
+        <category_info>
+          <headings count='1'>
+            <heading>Science &amp; Technology</heading>
+          </headings>
+          <subheadings count='1'>
+            <subheading>Technology</subheading>
+          </subheadings>
+          <subjects count='3'>
+            <subject ascatype='traditional' code='NU'>Information Science &amp; Library Science</subject>
+            <subject ascatype='extended'>Information Science &amp; Library Science</subject>
+            <subject ascatype='traditional' code='NU'>INFORMATION SCIENCE &amp; LIBRARY SCIENCE</subject>
+          </subjects>
+        </category_info>
+      </fullrecord_metadata>
+      <item xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:type='itemType_wos'>
+        <ids avail='Y'>N5494</ids>
+        <bib_id>33 (5): 413-413 1972</bib_id>
+      </item>
+    </static_data>
+    <dynamic_data>
+      <citation_related>
+        <tc_list>
+          <silo_tc coll_id='WOS' local_count='0'/>
+        </tc_list>
+      </citation_related>
+      <cluster_related>
+        <identifiers>
+          <identifier value='0010-0870' type='issn'/>
+        </identifiers>
+      </cluster_related>
+    </dynamic_data>
+  </REC>

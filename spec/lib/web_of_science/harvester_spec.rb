@@ -17,7 +17,10 @@ describe WebOfScience::Harvester do
     WebOfScience::Queries.new(wos_client)
   end
 
+  # WOS:A1976BW18000001 WOS:A1972N549400003 are in the wos_retrieve_by_id_response.xml
   let(:wos_uids) { %w(WOS:A1976BW18000001 WOS:A1972N549400003) }
+  let(:wos_A1972N549400003) { File.read('spec/fixtures/wos_client/wos_record_A1972N549400003.xml') }
+  let(:wos_A1976BW18000001) { File.read('spec/fixtures/wos_client/wos_record_A1976BW18000001.xml') }
   let(:wos_retrieve_by_id_response) { File.read('spec/fixtures/wos_client/wos_retrieve_by_id_response.xml') }
   let(:wos_search_by_doi_response) { File.read('spec/fixtures/wos_client/wos_search_by_doi_response.xml') }
   let(:wos_search_by_name_response) { File.read('spec/fixtures/wos_client/wos_search_by_name_response.xml') }
