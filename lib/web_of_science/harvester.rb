@@ -72,8 +72,8 @@ module WebOfScience
     def process_uids(author, uids)
       raise(ArgumentError, 'author must be an Author') unless author.is_a? Author
       raise(ArgumentError, 'uids must be Enumerable') unless uids.is_a? Enumerable
-      contributions = author_contributions(author, uids)
-      uids.reject! { |uid| contributions.include? uid }
+      contrib_uids = author_contributions(author, uids)
+      uids -= contrib_uids
       return [] if uids.empty?
       process_records author, queries.retrieve_by_id(uids)
     end
@@ -94,18 +94,21 @@ module WebOfScience
       # ----
       # Find or create contributions for WOS Records by Author
 
-      # Find any matching contributions by author and WOS-UID - when a publication exists but
-      # the author is not yet a contributor to it, add the contribution.
+      # Find any matching contributions by author and WOS-UID; create a contribution for any
+      # existing publication without one for the author in question.
       # @param author [Author]
       # @param uids [Array<String>]
-      # @return [Array<String>]
+      # @return [Array<String>] uids that already have a contribution
       def author_contributions(author, uids)
-        # TODO: consider any more efficient queries to find/create contributions
-        Publication.where(wos_uid: uids).map do |pub|
-          contrib = pub.contributions.find_or_initialize_by(author_id: author.id)
-          create_author_contribution(author, contrib)
-          contrib.persisted? ? pub.wos_uid : nil
-        end.compact
+        contrib_uids = []
+        uids.each_slice(50) do |batch_uids|
+          Publication.where(wos_uid: batch_uids).find_each do |pub|
+            contrib = pub.contributions.find_or_initialize_by(author_id: author.id)
+            create_author_contribution(author, contrib) unless contrib.persisted?
+            contrib_uids << pub.wos_uid if contrib.persisted?
+          end
+        end
+        contrib_uids
       end
 
       # Save a new contribution to a WOS-UID publication for author.
@@ -113,15 +116,14 @@ module WebOfScience
       # @param contrib [Contribution]
       # @return [Array<String>]
       def create_author_contribution(author, contrib)
-        return true if contrib.persisted?
         contrib.assign_attributes(
           cap_profile_id: author.cap_profile_id,
           featured: false, status: 'new', visibility: 'private'
         )
         contrib.save!
-        # TODO: check - is the following necessary or does Contribution do this in any callbacks?
+        # Add the pub_hash[:authorship] data to the publication
         contrib.publication.pubhash_needs_update!
-        contrib.publication.save! # sync the contribution into the pub.pub_hash[:authorship] array
+        contrib.publication.save!
       rescue ActiveRecord::ActiveRecordError => err
         message = "Failed to save contribution for author: #{author.id}, pub: #{pub.id}"
         NotificationManager.error(err, message, self)
