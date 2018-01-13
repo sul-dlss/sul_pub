@@ -86,8 +86,7 @@ class Publication < ActiveRecord::Base
 
   # @return [self]
   def update_manual_pub_from_pub_hash(incoming_pub_hash, original_source_string, provenance = Settings.cap_provenance)
-    incoming_pub_hash[:provenance] = provenance
-    self.pub_hash = incoming_pub_hash.dup
+    self.pub_hash = incoming_pub_hash.merge(provenance: provenance)
     match = UserSubmittedSourceRecord.find_by_source_data(original_source_string)
     match.publication = self if match # we may still throw this out w/o saving
     r = user_submitted_source_records.first || match || user_submitted_source_records.build
