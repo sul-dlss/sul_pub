@@ -218,6 +218,7 @@ RSpec/NamedSubject:
 RSpec/NestedGroups:
   Exclude:
     - 'spec/api/sul_bib/authorship_api_spec.rb'
+    - 'spec/api/sul_bib/publications_api_spec.rb'
     - 'spec/api/sul_bib/sourcelookup_spec.rb'
     - 'spec/lib/cap/authors_poller_spec.rb'
     - 'spec/lib/csl/citation_spec.rb'

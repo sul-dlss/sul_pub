@@ -78,10 +78,9 @@ module SulBib
       # and a `428 Precondition Required` if the if-match header isn't supplied
       new_pub = params[:pub_hash].to_hash.deep_symbolize_keys # Avoid Hashie::Mash!
       old_pub = publication_find(params[:id])
-      case
-      when !old_pub.sciencewire_id.blank? || !old_pub.pmid.blank?
+      if old_pub.sciencewire_id.present? || old_pub.pmid.present? || old_pub.wos_uid.present?
         error!({ 'error' => 'This record may not be modified.  If you had originally entered details for the record, it has been superceded by a central record.', 'detail' => 'missing widget' }, 403)
-      when !validate_or_create_authors(new_pub[:authorship])
+      elsif !validate_or_create_authors(new_pub[:authorship])
         error!('You have not supplied a valid authorship record.', 406)
       end
 
