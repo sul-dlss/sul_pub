@@ -225,20 +225,31 @@ class Publication < ActiveRecord::Base
   end
 
   def sciencewire_pub?
-    pub_hash[:provenance].to_s.downcase.include?('sciencewire')
+    provenance == 'sciencewire'
   end
 
   def pubmed_pub?
-    pub_hash[:provenance].to_s.downcase.include?('pubmed')
+    provenance == 'pubmed'
+  end
+
+  def wos_pub?
+    provenance == 'wos'
   end
 
   def authoritative_pmid_source?
     pubmed_pub? || sciencewire_pub?
   end
 
-  alias authoritative_doi_source? sciencewire_pub?
+  def authoritative_doi_source?
+    sciencewire_pub? || wos_pub?
+  end
 
   private
+
+    # @return [String] might be empty, won't be nil
+    def provenance
+      pub_hash[:provenance].to_s.downcase
+    end
 
     # doesn't actually write the Pub to DB, presumed to be part of before_save callback or explicit save
     def sync_identifiers_in_pub_hash
