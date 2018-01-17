@@ -16,6 +16,8 @@ describe SulBib::API, :vcr do
     JSON.parse(response.body)
   end
 
+  before { allow(Settings.WOS).to receive(:enabled).and_return(false) }
+
   describe 'GET /publications/sourcelookup ' do
     it 'raises an error when title and doi are not sent' do
       expect do
