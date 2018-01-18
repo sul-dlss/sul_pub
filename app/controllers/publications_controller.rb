@@ -133,10 +133,10 @@ class PublicationsController < ApplicationController
     # @param [Author] author
     # @return [String] contains csv report of an author's publications
     def generate_csv_report(author)
-      csv_str = CSV.generate do |csv|
+      CSV.generate do |csv|
         csv << %w(sul_pub_id sciencewire_id pubmed_id doi wos_id title journal year pages issn status_for_this_author created_at updated_at contributor_cap_profile_ids)
         author.publications.find_each do |pub|
-          journ = pub.pub_hash[:journal] ? pub.pub_hash[:journal] : { name: '' }
+          journ = pub.pub_hash[:journal] ? pub.pub_hash[:journal][:name] : ''
           contrib_prof_ids = pub.authors.pluck(:cap_profile_id).join(';')
           wos_id = pub.publication_identifiers.where(identifier_type: 'WoSItemID').pluck(:identifier_value).first
           doi = pub.publication_identifiers.where(identifier_type: 'doi').pluck(:identifier_value).first
@@ -144,9 +144,8 @@ class PublicationsController < ApplicationController
           created_at = pub.created_at.utc.strftime('%m/%d/%Y')
           updated_at = pub.updated_at.utc.strftime('%m/%d/%Y')
 
-          csv << [pub.id, pub.sciencewire_id, pub.pmid, doi, wos_id, pub.title, journ[:name], pub.year, pub.pages, pub.issn, status, created_at, updated_at, contrib_prof_ids]
+          csv << [pub.id, pub.sciencewire_id, pub.pmid, doi, wos_id, pub.title, journ, pub.year, pub.pages, pub.issn, status, created_at, updated_at, contrib_prof_ids]
         end
       end
-      csv_str
     end
 end
