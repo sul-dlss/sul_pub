@@ -63,7 +63,9 @@ class PublicationsController < ApplicationController
       msg << "title '#{params[:title]}'"
       logger.info(msg)
       if Settings.WOS.enabled
-        wos_matches = [] # TODO
+        query = "TI=#{params[:title]}"
+        query += " AND PY=#{params[:year]}" if params[:year]
+        wos_matches = WebOfScience.queries.user_query(query).to_a # TODO: limit
         all_matching_records += wos_matches
         logger.debug(" -- WOS (#{wos_matches.length})")
       end
@@ -72,7 +74,7 @@ class PublicationsController < ApplicationController
         all_matching_records += sw_matches
         logger.debug(" -- sciencewire (#{sw_matches.length})")
       end
-      # lastly, check for manual
+      # lastly, always check for manual
       results = Publication.joins(:user_submitted_source_records)
                            .where(UserSubmittedSourceRecord.arel_table[:title].matches("%#{params[:title]}%"))
       results = results.where(year: params[:year]) if params[:year]

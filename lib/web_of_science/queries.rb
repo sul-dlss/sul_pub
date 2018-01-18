@@ -107,6 +107,13 @@ module WebOfScience
       retrieve_records(:search, message)
     end
 
+    # Convenience method, does the params_for_search expansion
+    # @param message [Hash] Query string like 'TS=particle swarm AND PY=(2007 OR 2008)'
+    # @return [WebOfScience::Records]
+    def user_query(message)
+      search(params_for_search(message))
+    end
+
     # @param user_query [String] (defaults to '')
     # @return [Hash] search query parameters for full records
     def params_for_search(user_query = '')
