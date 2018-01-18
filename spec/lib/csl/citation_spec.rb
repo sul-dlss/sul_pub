@@ -63,8 +63,7 @@ describe Csl::Citation do
                            sul_author_id: 2579,
                            status: 'unknown',
                            visibility: 'private',
-                           featured: false }]
-    }
+                           featured: false }] }
   end
 
   shared_examples 'it is a CSL report citation' do
@@ -260,7 +259,7 @@ describe Csl::Citation do
       it 'includes authors from single name field' do
         expect(chicago_citation).to match(/Jones,\s+P. L./)
       end
-      pending 'builds citations with first author name spacing correct' do
+      it 'builds citations with first author name spacing correct' do
         expect(chicago_citation).to match(/^Jones, P. L./)
       end
       it 'includes authors from compound name field' do
@@ -335,7 +334,7 @@ describe Csl::Citation do
         expect(chicago_citation).to match(/^Jones,\s+P. L./)
         expect(chicago_citation).to include('Alan T. Jackson')
       end
-      pending 'builds citations with first author name spacing correct' do
+      it 'builds citations with first author name spacing correct' do
         expect(chicago_citation).to match(/^Jones, P. L./)
       end
     end
@@ -362,11 +361,11 @@ describe Csl::Citation do
         expect(chicago_citation).to match(/Jones,\s+P. L./)
         expect(chicago_citation).to include('Alan T. Jackson')
       end
-      pending 'builds citations with first author name spacing correct' do
+      it 'builds citations with first author name spacing correct' do
         expect(chicago_citation).to match(/^Jones, P. L./)
       end
       it 'creates a Chicago citation' do
-        expect(chicago_citation).to eq 'Jones,   P. L., and Alan T. Jackson. 1987. “My Test Title.” <i>Some Journal Name</i> 33 (32). Some Publisher: 3–6.'
+        expect(chicago_citation).to eq 'Jones, P. L., and Alan T. Jackson. 1987. “My Test Title.” <i>Some Journal Name</i> 33 (32). Some Publisher: 3–6.'
       end
     end
   end
@@ -422,8 +421,7 @@ describe Csl::Citation do
                                          sul_author_id: 2579,
                                          status: 'unknown',
                                          visibility: 'private',
-                                         featured: false }]
-                  }
+                                         featured: false }] }
       end
 
       it 'adds et al whenever the flag is true' do

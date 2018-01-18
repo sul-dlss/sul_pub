@@ -10,40 +10,7 @@ module Csl
 
     def csl_doc
       @csl_doc ||= begin
-
-        ##
-        # Parse authors for various provenance data:
-        # - batch
-        # - cap
-        # - pubmed
-        # - sciencewire
-        provenance = pub_hash[:provenance].to_s.downcase
-        authors = pub_hash[:author] || []
-        case provenance
-        when 'batch'
-          # This is from BibtexIngester.convert_bibtex_record_to_pub_hash
-          @citeproc_authors ||= Csl::BibtexMapper.authors_to_csl(authors)
-          @citeproc_editors ||= [] # there are no editors
-        when 'cap'
-          # This is a CAP manual submission
-          @citeproc_authors ||= Csl::CapMapper.authors_to_csl(authors)
-          @citeproc_editors ||= Csl::CapMapper.editors_to_csl(authors)
-        when 'pubmed'
-          # This is a PubMed publication and the author is created in
-          # PubmedSourceRecord.convert_pubmed_publication_doc_to_hash
-          @citeproc_authors ||= Csl::PubmedMapper.authors_to_csl(authors)
-          @citeproc_editors ||= [] # there are no editors
-        when 'sciencewire'
-          # This is a ScienceWire publication and the author is created in
-          # SciencewireSourceRecord.convert_sw_publication_doc_to_hash
-          @citeproc_authors ||= Csl::SciencewireMapper.authors_to_csl(authors)
-          @citeproc_editors ||= [] # there are no editors
-        else
-          citeproc_authors # calls parse_authors
-          citeproc_editors # calls parse_authors
-        end
-
-        if provenance == 'cap'
+        if pub_hash[:provenance].to_s.downcase == 'cap'
           case pub_hash[:type].to_s.downcase
           when 'workingpaper', 'technicalreport'
             # Map a CAP 'workingPaper' or 'technicalReport' to a CSL 'report'
@@ -141,68 +108,13 @@ module Csl
     private
 
       def citeproc_authors
-        @citeproc_authors ||= parse_authors[:authors]
+        @citeproc_authors ||= Csl::RoleMapper.authors(pub_hash)
       end
 
       def citeproc_editors
-        @citeproc_editors ||= parse_authors[:editors]
+        @citeproc_editors ||= Csl::RoleMapper.editors(pub_hash)
       end
 
-      def parse_authors
-        # All the pub_hash[:author] data is assumed be an editor or an author and
-        # the only way to tell is when the editor has role=='editor'
-        pub_hash_authors = pub_hash[:author] || []
-        authors = pub_hash_authors.reject { |a| a[:role].to_s.downcase.eql?('editor') }
-        editors = pub_hash_authors.select { |a| a[:role].to_s.downcase.eql?('editor') }
-        if authors.length > 5
-          # we pass the first five  authorsand the very last author because some
-          # formats add the very last name when using et-al. the CSL should drop the sixth name if unused.
-          # We could in fact pass all the author names to the CSL processor and let it
-          # just take the first five, but that seemed to crash the processor for publications
-          # with a lot of authors (e.g, 2000 authors)
-          authors = authors[0..4]
-          authors << pub_hash[:author].last
-          #   authors << { :name => "et al." }
-          # elsif pub_hash[:etal]
-          #   authors = pub_hash[:author].collect { |a| a }
-          #   authors << { :name => "et al." }
-        end
-        {
-          authors: authors.map { |author| parse_author_name(author) }.compact,
-          editors: editors.map { |author| parse_author_name(author) }.compact
-        }
-      end
-
-      # Extract { 'family' => last_name, 'given' => rest_of_name } or
-      # return nil if the the family name is blank.
-      # @return [Hash<String => String>|nil]
-      def parse_author_name(author)
-        last_name = author[:lastname]
-        rest_of_name = ''
-
-        # Use parsed name parts, if available.  Otherwise use :name, if available.
-        # Add period after single character (initials).
-        if last_name.present?
-          %i(firstname middlename).map { |k| author[k] }.reject(&:blank?).each do |name_part|
-            rest_of_name << ' ' << name_part
-            rest_of_name << '.' if name_part.length == 1
-          end
-        end
-
-        if last_name.blank? && author[:name].present?
-          author[:name].split(',').each_with_index do |name_part, index|
-            if index.zero?
-              last_name = name_part
-            else
-              rest_of_name << ' ' << name_part
-              rest_of_name << '.' if name_part.length == 1
-            end
-          end
-        end
-
-        return nil if last_name.blank?
-        { 'family' => last_name, 'given' => rest_of_name }
-      end
   end
 
 end
