@@ -36,7 +36,7 @@ class PublicationsController < ApplicationController
         logger.debug("Limited to only CAP Profile ID #{capProfileId}")
         author = Author.where(cap_profile_id: capProfileId).first
         if author.nil?
-          render status: 404, text: 'No such author'
+          render status: 404, body: "No such author with capProfileId #{capProfileId}"
           return
         else
           description = 'All known publications for CAP profile id ' + capProfileId

@@ -11,7 +11,7 @@ describe PublicationsController do
         expect(controller).to receive(:check_authorization).and_return(true)
         get :index, capProfileId: 'nada'
         expect(response.status).to eq 404
-        expect(response.body).to eq 'No such author'
+        expect(response.body).to include 'No such author'
       end
     end
   end
