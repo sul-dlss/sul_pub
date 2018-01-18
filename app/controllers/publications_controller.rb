@@ -28,26 +28,19 @@ class PublicationsController < ApplicationController
         if author.nil?
           render status: 404, body: "No such author with capProfileId #{capProfileId}"
           return
-        else
-          description = 'All known publications for CAP profile id ' + capProfileId
-          logger.debug("Limited to all publications for author #{author.inspect}")
-
-          if params[:format] =~ /csv/i
-            csv_string = generate_csv_report author
-          else
-            matching_records = author.publications.order('publications.id').page(page).per(per).select('publications.pub_hash')
-          end
+        end
+        unless params[:format] =~ /csv/i
+          matching_records = author.publications.order('publications.id').page(page).per(per).select(:pub_hash)
         end
       end
       logger.debug("Found #{matching_records.length} records")
 
       respond_to do |format|
         format.json do
-          bibjson = wrap_as_bibjson_collection(description, matching_records, page, per)
-          self.response_body = JSON.dump(bibjson)
+          render json: wrap_as_bibjson_collection(description, matching_records, page, per)
         end
         format.csv do
-          render csv: csv_string, filename: 'author_report', chunked: true
+          render csv: generate_csv_report(author), filename: 'author_report', chunked: true
         end
       end
     end
@@ -90,13 +83,14 @@ class PublicationsController < ApplicationController
     matching_records = all_matching_records[0..params[:maxrows].to_i - 1]
     respond_to do |format|
       format.json do
-        self.response_body = JSON.dump(wrap_as_bibjson_collection(msg, matching_records))
+        render json: wrap_as_bibjson_collection(msg, matching_records)
       end
     end
   end
 
   private
 
+    # @return [Hash]
     def wrap_as_bibjson_collection(description, records, page = 1, per_page = 'all')
       metadata = {
         _created: Time.zone.now.iso8601,
