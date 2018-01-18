@@ -11,7 +11,6 @@ class PublicationsController < ApplicationController
     logger.info msg
 
     matching_records = []
-
     capProfileId = params[:capProfileId]
     capActive = params[:capActive]
     page = params.fetch(:page, 1).to_i
@@ -20,21 +19,12 @@ class PublicationsController < ApplicationController
 
     benchmark 'Querying for publications' do
       if capProfileId.blank?
-        logger.debug(" -- CAP Profile ID not provided, returning all records modified after #{last_changed}")
         description = "Records that have changed since #{last_changed}"
-
         query = Publication.updated_after(last_changed).page(page).per(per)
-
-        if !capActive.blank? && capActive.casecmp('true').zero?
-          logger.debug(' -- Limit to only active authors')
-          query = query.with_active_author
-        end
-
+        query = query.with_active_author if !capActive.blank? && capActive.casecmp('true').zero?
         matching_records = query.select(:pub_hash)
-        logger.debug("Found #{matching_records.length} records")
       else
-        logger.debug("Limited to only CAP Profile ID #{capProfileId}")
-        author = Author.where(cap_profile_id: capProfileId).first
+        author = Author.find_by(cap_profile_id: capProfileId)
         if author.nil?
           render status: 404, text: 'No such author'
           return
@@ -49,6 +39,7 @@ class PublicationsController < ApplicationController
           end
         end
       end
+      logger.debug("Found #{matching_records.length} records")
 
       respond_to do |format|
         format.json do
