@@ -12,7 +12,7 @@ module WebOfScience
       raise(ArgumentError, 'records must be an WebOfScience::Records') unless records.is_a? WebOfScience::Records
       raise 'Nothing to do when Settings.WOS.ACCEPTED_DBS is empty' if Settings.WOS.ACCEPTED_DBS.empty?
       @author = author
-      @records = records.to_a
+      @records = records.select { |rec| Settings.WOS.ACCEPTED_DBS.include? rec.database }
     end
 
     # @return [Array<String>] WosUIDs that create a new Publication
@@ -35,7 +35,6 @@ module WebOfScience
 
       # @return [Array<String>] WosUIDs that create a new Publication
       def create_publications
-        filter_databases # cf. Settings.WOS.ACCEPTED_DBS
         select_new_wos_records # cf. WebOfScienceSourceRecord
         save_wos_records # save WebOfScienceSourceRecord
         filter_by_identifiers # cf. PublicationIdentifier
@@ -44,14 +43,6 @@ module WebOfScience
         records.map(&:uid)
       end
 
-      ## 1
-      # Filter and select new WebOfScienceSourceRecords
-      def filter_databases
-        return if records.empty? || Settings.WOS.ACCEPTED_DBS.empty?
-        records.select! { |rec| Settings.WOS.ACCEPTED_DBS.include? rec.database }
-      end
-
-      ## 2
       # Filter and select new WebOfScienceSourceRecords
       def select_new_wos_records
         return if records.empty?
@@ -59,7 +50,6 @@ module WebOfScience
         records.reject! { |rec| matching_uids.include? rec.uid }
       end
 
-      ## 3
       # Save and select new WebOfScienceSourceRecords
       # IMPORTANT: add nothing to PublicationIdentifiers here, or filter_by_identifiers will reject them
       def save_wos_records
@@ -73,7 +63,6 @@ module WebOfScience
         end
       end
 
-      ## 4
       # Select records that have no matching PublicationIdentifiers
       def filter_by_identifiers
         records.reject! do |rec|
@@ -82,7 +71,6 @@ module WebOfScience
         end
       end
 
-      ## 5
       # @param [WebOfScience::Record] record
       # @return [Boolean] WebOfScience::Record created a new Publication?
       def create_publication(record)

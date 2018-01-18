@@ -241,20 +241,19 @@ describe WebOfScience::ProcessRecords, :vcr do
   context 'with records from excluded databases' do
     subject(:processor) { described_class.new(author, records) }
 
-    let(:other_record_xml) do
+    let(:record_xml) do
       xml = File.read('spec/fixtures/wos_client/wos_record_000288663100014.xml')
       xml.gsub('WOS', 'EXCLUDED')
     end
-    let(:other_records_xml) { "<records>#{other_record_xml}</records>" }
-    let(:other_records) { WebOfScience::Records.new(records: other_records_xml) }
-
-    let(:records) { other_records }
+    let(:records_xml) { "<records>#{record_xml}</records>" }
+    let(:records) { WebOfScience::Records.new(records: records_xml) }
 
     it 'does not create new WebOfScienceSourceRecords' do
       expect { processor.execute }.not_to change { WebOfScienceSourceRecord.count }
     end
     it 'filters out excluded records' do
-      expect(processor.send(:filter_databases)).to be_empty
+      expect(processor).not_to receive(:create_publications)
+      expect(processor.execute).to be_empty
     end
   end
 end
