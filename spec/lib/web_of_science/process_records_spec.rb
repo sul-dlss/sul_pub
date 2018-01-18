@@ -32,7 +32,7 @@ describe WebOfScience::ProcessRecords, :vcr do
   before do
     null_logger = Logger.new('/dev/null')
     allow(WebOfScience).to receive(:logger).and_return(null_logger)
-    allow(processor).to receive(:links_client).and_return(links_client)
+    allow(WebOfScience).to receive(:links_client).and_return(links_client)
   end
 
   shared_examples '#execute' do
@@ -214,7 +214,7 @@ describe WebOfScience::ProcessRecords, :vcr do
         expect { processor.execute }.to change { Publication.count }
       end
       it 'logs errors' do
-        expect(NotificationManager).to receive(:error)
+        expect(NotificationManager).to receive(:error).at_least(:once)
         processor.execute
       end
     end
@@ -224,8 +224,8 @@ describe WebOfScience::ProcessRecords, :vcr do
       # any failure to add links data is not catastrophic - just log it
       before do
         identifiers = WebOfScience::Identifiers.new(records.first)
-        allow(identifiers).to receive(:update).and_raise(RuntimeError)
-        allow(WebOfScience::Identifiers).to receive(:new).and_return(identifiers)
+        expect(identifiers).to receive(:update).and_raise(RuntimeError)
+        expect(WebOfScience::Identifiers).to receive(:new).and_return(identifiers).at_least(:once)
       end
 
       it 'continues to create new Publications' do
