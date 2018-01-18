@@ -39,14 +39,13 @@ describe SulBib::API, :vcr do
       end
 
       it 'returns one document ' do
-        expect(result['metadata']['records']).to eq('1')
+        expect(result['metadata']['records']).to eq(1)
         expect(result['records'].first['sw_id']).to eq('60830932')
       end
 
       it 'does not query sciencewire if there is an existing publication with the doi' do
         doi_identifier.publication.save
-        expect(result['metadata']).to include('records')
-        expect(result['metadata']['records']).to eq('1')
+        expect(result['metadata']).to match a_hash_including('records' => 1)
         record = result['records'].first
         expect(record['title']).to match(/Protein kinase C alpha/i)
         expect(record['provenance']).to match(/sciencewire/)
@@ -60,27 +59,20 @@ describe SulBib::API, :vcr do
         get path, params, capkey
         expect(response.status).to eq(200)
         result = JSON.parse(response.body)
-        expect(result['metadata']).to include('records')
-        expect(result['metadata']['records']).to eq('1')
+        expect(result['metadata']).to match a_hash_including('records' => 1)
         record = result['records'].first
-        expect(record).to include('provenance')
+        expect(record).to include('provenance', 'apa_citation', 'mla_citation', 'chicago_citation')
         expect(record['provenance']).to eq 'sciencewire'
-        expect(record).to include('apa_citation')
-        expect(record).to include('mla_citation')
-        expect(record).to include('chicago_citation')
         expect(record['apa_citation']).to match(/^Sittig, D. F./)
       end
     end
 
     describe '?title=' do
       describe 'returns bibjson' do
-        it 'with metadata section' do
-          result = sourcelookup_by_title
+        let(:result) { sourcelookup_by_title }
+        it 'with populated sections' do
           expect(result).to include('metadata')
           expect(result['metadata']).not_to be_empty
-        end
-        it 'with records section' do
-          result = sourcelookup_by_title
           expect(result).to include('records')
           expect(result['records']).not_to be_empty
         end
@@ -95,12 +87,11 @@ describe SulBib::API, :vcr do
       end
 
       it 'does a sciencewire title search' do
-        title = 'lung cancer treatment'
-        params = { format: 'json', title: title }
+        params = { format: 'json', title: 'lung cancer treatment' }
         get sourcelookup_path, params, capkey
         expect(response.status).to eq(200)
         result = JSON.parse(response.body)
-        expect(result['metadata']['records']).to eq('20')
+        expect(result['metadata']['records']).to eq(20)
       end
 
       it 'returns results that match the requested title' do

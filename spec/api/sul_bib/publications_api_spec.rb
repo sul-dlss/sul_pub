@@ -372,18 +372,18 @@ describe SulBib::API, :vcr do
       it 'returns one page with specified number of records' do
         get '/publications?page=1&per=7', { format: 'json' }, headers
         expect(response.headers['Content-Type']).to be =~ %r{application/json}
-        expect(result['metadata']).to include('records' => '7', 'page' => 1)
+        expect(result['metadata']).to include('records' => 7, 'page' => 1)
         expect(result['records'][2]['author']).to be
       end
 
       it 'filters by active authors' do
         get '/publications?page=1&per=1&capActive=true', { format: 'json' }, headers
-        expect(result['metadata']).to include('records' => '1', 'page' => 1)
+        expect(result['metadata']).to include('records' => 1, 'page' => 1)
       end
 
       it 'paginates by active authors' do
         get '/publications?page=2&per=1&capActive=true', { format: 'json' }, headers
-        expect(result['metadata']).to include('records' => '1', 'page' => 2)
+        expect(result['metadata']).to include('records' => 1, 'page' => 2)
       end
     end # end of context
   end # end of the describe

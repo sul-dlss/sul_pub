@@ -113,7 +113,7 @@ class PublicationsController < ApplicationController
         page: page,
         per_page: per_page,
         query: env['ORIGINAL_FULLPATH'].to_s,
-        records:  records.count.to_s
+        records:  records.count
       }
       {
         metadata: metadata,
