@@ -10,6 +10,7 @@ module WebOfScience
     def initialize(author, records)
       raise(ArgumentError, 'author must be an Author') unless author.is_a? Author
       raise(ArgumentError, 'records must be an WebOfScience::Records') unless records.is_a? WebOfScience::Records
+      raise 'Nothing to do when Settings.WOS.ACCEPTED_DBS is empty' if Settings.WOS.ACCEPTED_DBS.empty?
       @author = author
       @records = records.to_a
     end

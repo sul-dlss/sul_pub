@@ -87,6 +87,12 @@ describe WebOfScience::ProcessRecords, :vcr do
     it 'raises ArgumentError for records' do
       expect { described_class.new(author, []) }.to raise_error(ArgumentError)
     end
+    it 'raises RuntimeError when Settings.WOS.ACCEPTED_DBS.empty?' do
+      wos = Settings.WOS
+      allow(wos).to receive(:ACCEPTED_DBS).and_return([])
+      allow(Settings).to receive(:WOS).and_return(wos)
+      expect { described_class.new(author, records) }.to raise_error(RuntimeError)
+    end
 
     context 'save_wos_records fails' do
       before do
