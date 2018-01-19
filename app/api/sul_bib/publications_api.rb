@@ -46,7 +46,7 @@ module SulBib
       logger.info(original_source)
       pub_hash = params[:pub_hash].to_hash.deep_symbolize_keys # Avoid Hashie::Mash!
       fingerprint = Digest::SHA2.hexdigest(original_source)
-      existing_record = UserSubmittedSourceRecord.where(source_fingerprint: fingerprint).first
+      existing_record = UserSubmittedSourceRecord.find_by(source_fingerprint: fingerprint)
       if existing_record
         logger.info("Found existing record for #{fingerprint}: #{existing_record.inspect}; redirecting.")
         # the GRAPE redirect method issues a 303 (when original request is not a get, and a 302 for a get)
