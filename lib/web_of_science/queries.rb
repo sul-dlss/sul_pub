@@ -36,9 +36,9 @@ module WebOfScience
     # @return [WebOfScience::Records]
     def cited_references(uid)
       return empty_records if uid.blank?
-      retrieve_options = [ { key: 'Hot', value: 'On' } ]
+      options = [ { key: 'Hot', value: 'On' } ]
       message = base_uid_params.merge(uid: uid,
-                                      retrieveParameters: retrieve_parameters(options: retrieve_options))
+                                      retrieveParameters: retrieve_parameters(options: options))
       retrieve_records(:cited_references, message)
     end
 
