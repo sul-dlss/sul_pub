@@ -32,7 +32,7 @@ describe WebOfScience::ProcessRecords, :vcr do
   before do
     null_logger = Logger.new('/dev/null')
     allow(WebOfScience).to receive(:logger).and_return(null_logger)
-    allow(processor).to receive(:links_client).and_return(links_client)
+    allow(WebOfScience).to receive(:links_client).and_return(links_client)
   end
 
   shared_examples '#execute' do
@@ -86,6 +86,12 @@ describe WebOfScience::ProcessRecords, :vcr do
     end
     it 'raises ArgumentError for records' do
       expect { described_class.new(author, []) }.to raise_error(ArgumentError)
+    end
+    it 'raises RuntimeError when Settings.WOS.ACCEPTED_DBS.empty?' do
+      wos = Settings.WOS
+      allow(wos).to receive(:ACCEPTED_DBS).and_return([])
+      allow(Settings).to receive(:WOS).and_return(wos)
+      expect { described_class.new(author, records) }.to raise_error(RuntimeError)
     end
 
     context 'save_wos_records fails' do
@@ -208,7 +214,7 @@ describe WebOfScience::ProcessRecords, :vcr do
         expect { processor.execute }.to change { Publication.count }
       end
       it 'logs errors' do
-        expect(NotificationManager).to receive(:error)
+        expect(NotificationManager).to receive(:error).at_least(:once)
         processor.execute
       end
     end
@@ -218,8 +224,8 @@ describe WebOfScience::ProcessRecords, :vcr do
       # any failure to add links data is not catastrophic - just log it
       before do
         identifiers = WebOfScience::Identifiers.new(records.first)
-        allow(identifiers).to receive(:update).and_raise(RuntimeError)
-        allow(WebOfScience::Identifiers).to receive(:new).and_return(identifiers)
+        expect(identifiers).to receive(:update).and_raise(RuntimeError)
+        expect(WebOfScience::Identifiers).to receive(:new).and_return(identifiers).at_least(:once)
       end
 
       it 'continues to create new Publications' do
@@ -235,20 +241,19 @@ describe WebOfScience::ProcessRecords, :vcr do
   context 'with records from excluded databases' do
     subject(:processor) { described_class.new(author, records) }
 
-    let(:other_record_xml) do
+    let(:record_xml) do
       xml = File.read('spec/fixtures/wos_client/wos_record_000288663100014.xml')
       xml.gsub('WOS', 'EXCLUDED')
     end
-    let(:other_records_xml) { "<records>#{other_record_xml}</records>" }
-    let(:other_records) { WebOfScience::Records.new(records: other_records_xml) }
-
-    let(:records) { other_records }
+    let(:records_xml) { "<records>#{record_xml}</records>" }
+    let(:records) { WebOfScience::Records.new(records: records_xml) }
 
     it 'does not create new WebOfScienceSourceRecords' do
       expect { processor.execute }.not_to change { WebOfScienceSourceRecord.count }
     end
     it 'filters out excluded records' do
-      expect(processor.send(:filter_databases)).to be_empty
+      expect(processor).not_to receive(:create_publications)
+      expect(processor.execute).to be_empty
     end
   end
 end
