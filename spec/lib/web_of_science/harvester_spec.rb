@@ -122,9 +122,7 @@ describe WebOfScience::Harvester do
       savon.expects(:retrieve_by_id).with(message: :any).returns(wos_A1976BW18000001_response)
     end
 
-    # TODO: this is pending changes to PublicationIdentifier matching, because
-    # TODO: this fails when the new record matches an existing ISSN identifier - ooops!
-    xit 'processes records that have no publication' do
+    it 'processes records that have no publication' do
       # Use a new record WITHOUT a publication for WOS:A1976BW18000001, from wos_retrieve_by_id_response.xml
       expect { harvest_process }.to change { Publication.find_by(wos_uid: 'WOS:A1976BW18000001') }
     end
