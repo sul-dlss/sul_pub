@@ -5,6 +5,7 @@ module WebOfScience
   # This class is responsible for processing WebOfScience API response data
   # to integrate it into the application data models.
   class Harvester < ::Harvester::Base
+    include WebOfScience::Contributions
 
     # @param [Enumerable<Author>] authors
     # @return [void]
@@ -45,7 +46,7 @@ module WebOfScience
       raise(ArgumentError, 'author must be an Author') unless author.is_a? Author
       raise(ArgumentError, 'dois must be Enumerable') unless dois.is_a? Enumerable
       # TODO: normalize the dois using altmetrics identifier gem, as in PR #246
-      dois.reject! { |doi| publication_identifier?('doi', doi) }
+      dois.reject! { |doi| contribution_by_identifier?(author, 'doi', doi) }
       return [] if dois.empty?
       records = queries.search_by_doi(dois.shift)
       dois.each { |doi| records.merge_records queries.search_by_doi(doi) }
@@ -60,7 +61,7 @@ module WebOfScience
       raise(ArgumentError, 'author must be an Author') unless author.is_a? Author
       raise(ArgumentError, 'pmids must be Enumerable') unless pmids.is_a? Enumerable
       # TODO: normalize the pmids using altmetrics identifier gem, as in PR #246
-      pmids.reject! { |pmid| publication_identifier?('pmid', pmid) }
+      pmids.reject! { |pmid| contribution_by_identifier?(author, 'pmid', pmid) }
       return [] if pmids.empty?
       process_records author, queries.retrieve_by_pmid(pmids)
     end
@@ -72,8 +73,7 @@ module WebOfScience
     def process_uids(author, uids)
       raise(ArgumentError, 'author must be an Author') unless author.is_a? Author
       raise(ArgumentError, 'uids must be Enumerable') unless uids.is_a? Enumerable
-      contrib_uids = author_contributions(author, uids)
-      uids -= contrib_uids
+      uids -= author_contributions(author, uids)
       return [] if uids.empty?
       process_records author, queries.retrieve_by_id(uids)
     end
@@ -89,45 +89,6 @@ module WebOfScience
       def process_records(author, records)
         processor = WebOfScience::ProcessRecords.new(author, records)
         processor.execute
-      end
-
-      # ----
-      # Find or create contributions for WOS Records by Author
-
-      # Find any matching contributions by author and WOS-UID; create a contribution for any
-      # existing publication without one for the author in question.
-      # @param author [Author]
-      # @param uids [Array<String>]
-      # @return [Array<String>] uids that already have a contribution
-      def author_contributions(author, uids)
-        contrib_uids = []
-        uids.each_slice(50) do |batch_uids|
-          Publication.where(wos_uid: batch_uids).find_each do |pub|
-            contrib = pub.contributions.find_or_initialize_by(author_id: author.id)
-            create_author_contribution(author, contrib) unless contrib.persisted?
-            contrib_uids << pub.wos_uid if contrib.persisted?
-          end
-        end
-        contrib_uids
-      end
-
-      # Save a new contribution to a WOS-UID publication for author.
-      # @param author [Author]
-      # @param contrib [Contribution]
-      # @return [Array<String>]
-      def create_author_contribution(author, contrib)
-        contrib.assign_attributes(
-          cap_profile_id: author.cap_profile_id,
-          featured: false, status: 'new', visibility: 'private'
-        )
-        contrib.save!
-        # Add the pub_hash[:authorship] data to the publication
-        contrib.publication.pubhash_needs_update!
-        contrib.publication.save!
-      rescue ActiveRecord::ActiveRecordError => err
-        message = "Failed to save contribution for author: #{author.id}, pub: #{pub.id}"
-        NotificationManager.error(err, message, self)
-        false
       end
 
       # ----
@@ -183,14 +144,6 @@ module WebOfScience
 
       def empty_fields
         @empty_fields ||= Settings.WOS.ACCEPTED_DBS.map { |db| { collectionName: db, fieldName: [''] } }
-      end
-
-      # Is there a PublicationIdentifier matching the type and value?
-      # @param type [String]
-      # @param value [String]
-      def publication_identifier?(type, value)
-        return false if value.nil?
-        PublicationIdentifier.where(identifier_type: type, identifier_value: value).count > 0
       end
 
   end

@@ -122,16 +122,6 @@ describe WebOfScience::Harvester do
       savon.expects(:retrieve_by_id).with(message: :any).returns(wos_A1976BW18000001_response)
     end
 
-    it 'creates a new contribution for an existing publication' do
-      # Use a publication WITHOUT a contribution for WOS:A1972N549400003, from wos_retrieve_by_id_response.xml
-      expect { harvest_process }.to change { pub_A1972N549400003.contributions.count }.by(1)
-    end
-    it 'skips existing publications with an author contribution' do
-      # Create a publication WITH a contribution for WOS:A1972N549400003, from wos_retrieve_by_id_response.xml
-      expect(contrib_A1972N549400003.persisted?).to be true
-      expect { harvest_process }.not_to change { pub_A1972N549400003.contributions.count }
-    end
-
     # TODO: this is pending changes to PublicationIdentifier matching, because
     # TODO: this fails when the new record matches an existing ISSN identifier - ooops!
     xit 'processes records that have no publication' do
