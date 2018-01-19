@@ -5,6 +5,7 @@ module WebOfScience
   # This class is responsible for processing WebOfScience API response data
   # to integrate it into the application data models.
   class Harvester < ::Harvester::Base
+    include WebOfScience::Contributions
 
     # @param [Enumerable<Author>] authors
     # @return [void]
@@ -25,9 +26,11 @@ module WebOfScience
     # @param author [Author]
     # @return [Array<String>] WosUIDs that create Publications
     def process_author(author)
+      # TODO: iterate on author identities also, or leave that to the consumer of this class?
       raise(ArgumentError, 'author must be an Author') unless author.is_a? Author
       logger.info "#{self.class} - processing author: #{author.id}"
-      uids = process_records author, records_for_author(author)
+      uids = author_record_uids(author)
+      uids = process_uids(author, uids)
       logger.info "#{self.class} - processed author: #{author.id}"
       uids
     rescue StandardError => err
@@ -43,7 +46,7 @@ module WebOfScience
       raise(ArgumentError, 'author must be an Author') unless author.is_a? Author
       raise(ArgumentError, 'dois must be Enumerable') unless dois.is_a? Enumerable
       # TODO: normalize the dois using altmetrics identifier gem, as in PR #246
-      dois.reject! { |doi| publication_identifier?('doi', doi) }
+      dois.reject! { |doi| contribution_by_identifier?(author, 'doi', doi) }
       return [] if dois.empty?
       records = queries.search_by_doi(dois.shift)
       dois.each { |doi| records.merge_records queries.search_by_doi(doi) }
@@ -58,19 +61,19 @@ module WebOfScience
       raise(ArgumentError, 'author must be an Author') unless author.is_a? Author
       raise(ArgumentError, 'pmids must be Enumerable') unless pmids.is_a? Enumerable
       # TODO: normalize the pmids using altmetrics identifier gem, as in PR #246
-      pmids.reject! { |pmid| publication_identifier?('pmid', pmid) }
+      pmids.reject! { |pmid| contribution_by_identifier?(author, 'pmid', pmid) }
       return [] if pmids.empty?
       process_records author, queries.retrieve_by_pmid(pmids)
     end
 
     # Harvest WOS-UID publications for an author
     # @param author [Author]
-    # @param uids [Array<String>] WOS-UID or WOS-ItemId values (not URIs)
+    # @param uids [Array<String>] WOS-UID values (not URIs)
     # @return [Array<String>] WosUIDs that create Publications
     def process_uids(author, uids)
       raise(ArgumentError, 'author must be an Author') unless author.is_a? Author
       raise(ArgumentError, 'uids must be Enumerable') unless uids.is_a? Enumerable
-      uids.reject! { |uid| publication_identifier?('WosItemId', wos_item(uid)) }
+      uids -= author_contributions(author, uids)
       return [] if uids.empty?
       process_records author, queries.retrieve_by_id(uids)
     end
@@ -92,14 +95,21 @@ module WebOfScience
       # Retrieve WOS Records for Author
 
       # @param author [Author]
-      # @return [WebOfScience::Records]
-      def records_for_author(author)
-        # TODO: iterate on author identities also, or leave that to the consumer of this class?
+      # @return [Array<String>]
+      def author_record_uids(author)
+        records = queries.search(author_query(author))
+        records.uids
+      end
+
+      # @param author [Author]
+      # @return [Hash]
+      def author_query(author)
         names = author_name(author).text_search_query
         institution = author_institution(author).normalize_name
         user_query = "AU=(#{names}) AND AD=(#{institution})"
-        query = queries.params_for_search(user_query)
-        queries.search(query)
+        params = queries.params_for_fields(empty_fields)
+        params[:queryParameters][:userQuery] = user_query
+        params
       end
 
       # @param author [Author]
@@ -132,21 +142,8 @@ module WebOfScience
       # ----
       # Utility methods
 
-      # Is there a PublicationIdentifier matching the type and value?
-      # @param type [String]
-      # @param value [String]
-      def publication_identifier?(type, value)
-        return false if value.nil?
-        PublicationIdentifier.where(identifier_type: type, identifier_value: value).count > 0
-      end
-
-      # Extract a WOS-ItemId from a WOS-UID or a WosItemId
-      # - a WOS-UID has the form {DB_PREFIX}:{WOS_ITEM_ID}
-      # - a WOS-ItemId has no {DB_PREFIX}:
-      # @param id [String]
-      # @return [String] the {WOS_ITEM_ID}
-      def wos_item(id)
-        id.split(':').last
+      def empty_fields
+        @empty_fields ||= Settings.WOS.ACCEPTED_DBS.map { |db| { collectionName: db, fieldName: [''] } }
       end
 
   end

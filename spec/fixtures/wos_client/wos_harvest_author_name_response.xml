@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap:Body>
+    <ns2:searchResponse xmlns:ns2="http://woksearch.v3.wokmws.thomsonreuters.com">
+      <return>
+        <queryId>1</queryId>
+        <recordsFound>2</recordsFound>
+        <recordsSearched>61323448</recordsSearched>
+        <optionValue>
+          <label>RecordIDs</label>
+          <value>WOS:A1972N549400003</value>
+          <value>WOS:A1976BW18000001</value>
+        </optionValue>
+        <records>&lt;records xmlns="http://scientific.thomsonreuters.com/schema/wok5.4/public/FullRecord"&gt;
+          &lt;REC r_id_disclaimer="ResearcherID data provided by Clarivate Analytics"&gt;&lt;UID&gt;WOS:A1972N549400003&lt;/UID&gt;&lt;static_data&gt;&lt;/static_data&gt;&lt;dynamic_data&gt;&lt;cluster_related&gt;&lt;/cluster_related&gt;&lt;/dynamic_data&gt;&lt;/REC&gt;
+          &lt;REC r_id_disclaimer="ResearcherID data provided by Clarivate Analytics"&gt;&lt;UID&gt;WOS:A1976BW18000001&lt;/UID&gt;&lt;static_data&gt;&lt;/static_data&gt;&lt;dynamic_data&gt;&lt;cluster_related&gt;&lt;/cluster_related&gt;&lt;/dynamic_data&gt;&lt;/REC&gt;
+          &lt;/records&gt;</records>
+      </return>
+    </ns2:searchResponse>
+  </soap:Body>
+</soap:Envelope>

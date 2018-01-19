@@ -4,6 +4,7 @@ module WebOfScience
   # Process records retrieved by any means; this is a progressive filtering of the harvested records to identify
   # those records that should create a new Publication.pub_hash, PublicationIdentifier(s) and Contribution(s).
   class ProcessRecords
+    include WebOfScience::Contributions
 
     # @param author [Author]
     # @param records [WebOfScience::Records]
@@ -34,12 +35,14 @@ module WebOfScience
 
       # ----
       # Record filters and data flow steps
+      # - this is a progressive reduction of the number of records processed, given
+      #   application logic for the de-duplication of new records.
 
       # @return [Array<String>] WosUIDs that create a new Publication
       def create_publications
         select_new_wos_records # cf. WebOfScienceSourceRecord
         save_wos_records # save WebOfScienceSourceRecord
-        filter_by_identifiers # cf. PublicationIdentifier
+        filter_by_contributions # Contributions by PublicationIdentifier
         records.select! { |rec| create_publication(rec) }
         pubmed_additions
         records.map(&:uid)
@@ -53,7 +56,7 @@ module WebOfScience
       end
 
       # Save and select new WebOfScienceSourceRecords
-      # IMPORTANT: add nothing to PublicationIdentifiers here, or filter_by_identifiers will reject them
+      # Note: add nothing to PublicationIdentifiers here, or filter_by_contributions might reject them
       def save_wos_records
         return if records.empty?
         process_links
@@ -65,11 +68,14 @@ module WebOfScience
         end
       end
 
-      # Select records that have no matching PublicationIdentifiers
-      def filter_by_identifiers
+      # Select records that have no contributions, based on matching PublicationIdentifiers
+      # Note: must use unique identifiers, don't use ISSN or similar series level identifiers
+      def filter_by_contributions
         records.reject! do |rec|
-          publication_identifier?('WosUID', rec.uid) ||
-            rec.identifiers.any? { |type, value| publication_identifier?(type, value) }
+          contribution_by_identifier?(author, 'WosUID', rec.uid) ||
+            contribution_by_identifier?(author, 'WosItemID', rec.wos_item_id) ||
+            contribution_by_identifier?(author, 'doi', rec.doi) ||
+            contribution_by_identifier?(author, 'pmid', rec.pmid)
         end
       end
 
@@ -81,28 +87,17 @@ module WebOfScience
           pub_hash: record.pub_hash,
           wos_uid: record.uid
         )
-        create_contribution(pub)
-        pub.sync_publication_hash_and_db # creates new PublicationIdentifiers
         pub.save!
+        contrib = find_or_create_contribution(author, pub)
+        contrib.persisted?
       rescue StandardError => err
         message = "Author: #{author.id}, #{record.uid}; Publication or Contribution failed"
         NotificationManager.error(err, message, self)
         false
       end
 
-      # Create a Contribution to associate Publication with Author
-      # @param [Publication] pub
-      def create_contribution(pub)
-        # Saving a Contribution also saves pub to assign publication_id and it populates pub.pub_hash[:authorship]
-        contrib = pub.contributions.find_or_initialize_by(
-          author_id: author.id,
-          cap_profile_id: author.cap_profile_id,
-          featured: false,
-          status: 'new',
-          visibility: 'private'
-        )
-        contrib.save
-      end
+      # ----
+      # PubMed
 
       # For WOS-records with a PMID, try to enhance them with PubMed data
       def pubmed_additions
@@ -167,15 +162,5 @@ module WebOfScience
         NotificationManager.error(err, message, self)
       end
 
-      # ----
-      # Utility methods
-
-      # Is there a PublicationIdentifier matching the type and value?
-      # @param type [String]
-      # @param value [String]
-      def publication_identifier?(type, value)
-        return false if value.nil?
-        PublicationIdentifier.where(identifier_type: type, identifier_value: value).count > 0
-      end
   end
 end
