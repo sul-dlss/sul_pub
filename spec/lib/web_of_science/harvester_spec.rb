@@ -70,10 +70,11 @@ describe WebOfScience::Harvester do
   end
 
   shared_examples 'it_can_process_records' do
-    it 'creates new WebOfScienceSourceRecord and author.contributions' do
-      expect { harvest_process }.to change {
-        WebOfScienceSourceRecord.count + author.contributions.count
-      }
+    it 'creates new WebOfScienceSourceRecord' do
+      expect { harvest_process }.to change { WebOfScienceSourceRecord.count }
+    end
+    it 'creates new author.contributions' do
+      expect { harvest_process }.to change { author.contributions.count }
     end
   end
 
