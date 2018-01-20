@@ -1,49 +1,80 @@
+require 'identifiers'
+
 module WebOfScience
 
-  # This complements the WebOfScience::Harvester
+  # Used in the Web of Science harvesting process
   module ProcessPubmed
 
     # For WOS-records with a PMID, try to enhance them with PubMed data
+    # @param [Array<WebOfScience::Record>] records
     def pubmed_additions(records)
+      raise(ArgumentError, 'records must be Enumerable') unless records.is_a? Enumerable
+      raise(ArgumentError, 'records must contain WebOfScience::Record') unless records.all? { |rec| rec.is_a? WebOfScience::Record }
       records.select { |record| record.pmid.present? }.each do |record|
         begin
+          pmid = parse_pmid(record.pmid) # validate a PMID before saving it to a Publication
           pub = Publication.find_by(wos_uid: record.uid)
-          pub.pmid = record.pmid
-          pub.save
-          pubmed_addition(record, pub) if record.database != 'MEDLINE'
+          pub.pmid = pmid
+          pub.save!
+          pubmed_addition(pub) if record.database != 'MEDLINE'
         rescue StandardError => err
-          message = "pubmed_additions failed for #{record.uid}"
+          message = "#{record.uid}, pubmed_additions failed"
           NotificationManager.error(err, message, self)
         end
       end
-    end
-
-    # For WOS-record that has a PMID, fetch data from PubMed and enhance the pub.pub_hash with PubMed data
-    # @param [WebOfScience::Record] record
-    # @param [Publication] pub
-    # @return [void]
-    def pubmed_addition(record, pub)
-      pubmed_record = PubmedSourceRecord.for_pmid(record.pmid)
-      if pubmed_record.nil?
-        pubmed_missing(record, pub)
-      else
-        pub.pub_hash.reverse_update(pubmed_record.source_as_hash)
-        pub.save
-      end
     rescue StandardError => err
-      message = "#{record.uid}, PubmedSourceRecord failed, PMID: #{record.pmid}"
+      message = "pubmed_additions failed"
       NotificationManager.error(err, message, self)
     end
 
-    # For WOS-record that has a PMID, cleanup our data when it does not exist on PubMed
-    # @param [WebOfScience::Record] record
-    # @param [Publication] pub
+    # For WOS-record that has a PMID, fetch data from PubMed and enhance the pub.pub_hash with PubMed data
+    # @param [Publication] pub is a Publication with a .pmid value
     # @return [void]
-    def pubmed_missing(record, pub)
-      WebOfScience.logger.warn "#{record.uid}, PubmedSourceRecord missing, PMID: #{record.pmid}"
-      # TODO: find and remove the PublicationIdentifier first
+    def pubmed_addition(pub)
+      raise(ArgumentError, 'pub must be Publication') unless pub.is_a? Publication
+      pmid = parse_pmid(pub.pmid) # ensure the Publication has a valid PMID
+      pubmed_record = PubmedSourceRecord.for_pmid(pmid)
+      if pubmed_record.nil?
+        pubmed_cleanup(pub)
+      else
+        pub.pub_hash.reverse_update(pubmed_record.source_as_hash)
+        pub.pubhash_needs_update!
+        pub.save!
+      end
+    rescue StandardError => err
+      message = "pubmed_addition failed for args: #{pmid}, #{pub}"
+      NotificationManager.error(err, message, self)
+    end
+
+    # For WOS-record that has a PMID, cleanup our data when it does not exist on PubMed;
+    # but don't do anything if the PubmedClient is not working.
+    # @param [Publication] pub is a Publication with a .pmid value
+    # @return [void]
+    def pubmed_cleanup(pub)
+      raise(ArgumentError, 'pub must be Publication') unless pub.is_a? Publication
+      pmid = parse_pmid(pub.pmid) # ensure the Publication has a valid PMID
+      return unless PubmedClient.working?
+      pub_id = pub.publication_identifiers.where(identifier_type: 'PMID', identifier_value: pmid).first
+      if pub_id.present?
+        pub_id.pub_hash_update(delete: true)
+        pub_id.destroy
+      end
       pub.pmid = nil
-      pub.save
+      pub.pubhash_needs_update!
+      pub.save!
+    rescue StandardError => err
+      message = "pubmed_cleanup failed for args: #{pmid}, #{pub}"
+      NotificationManager.error(err, message, self)
+    end
+
+    # @param [String, Integer] pmid
+    # @return [String] pmid
+    # @raise ArgumentError if pmid is not valid
+    def parse_pmid(pmid)
+      # Note: Identifiers::PubmedId.extract(pmid).first returns nil or a String for (String | Integer) arg
+      pmid = ::Identifiers::PubmedId.extract(pmid).first
+      raise(ArgumentError, 'pmid is not valid') unless pmid.is_a? String
+      pmid
     end
 
   end
