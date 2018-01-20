@@ -5,6 +5,7 @@ module WebOfScience
   # those records that should create a new Publication.pub_hash, PublicationIdentifier(s) and Contribution(s).
   class ProcessRecords
     include WebOfScience::Contributions
+    include WebOfScience::ProcessPubmed
 
     # @param author [Author]
     # @param records [WebOfScience::Records]
@@ -44,7 +45,7 @@ module WebOfScience
         save_wos_records # save WebOfScienceSourceRecord
         filter_by_contributions # Contributions by PublicationIdentifier
         records.select! { |rec| create_publication(rec) }
-        pubmed_additions
+        pubmed_additions(records)
         records.map(&:uid)
       end
 
@@ -94,31 +95,6 @@ module WebOfScience
         message = "Author: #{author.id}, #{record.uid}; Publication or Contribution failed"
         NotificationManager.error(err, message, self)
         false
-      end
-
-      # ----
-      # PubMed
-
-      # For WOS-records with a PMID, try to enhance them with PubMed data
-      def pubmed_additions
-        records.each { |rec| pubmed_addition(rec) }
-      end
-
-      # For WOS-record that has a PMID, fetch data from PubMed and enhance the pub.pub_hash with PubMed data
-      # @param [WebOfScience::Record] record
-      # @return [void]
-      def pubmed_addition(record)
-        return if record.pmid.blank?
-        pub = Publication.find_by(wos_uid: record.uid)
-        pub.pmid = record.pmid
-        pub.save
-        return if record.database == 'MEDLINE'
-        pubmed_record = PubmedSourceRecord.for_pmid(record.pmid)
-        pub.pub_hash.reverse_update(pubmed_record.source_as_hash)
-        pub.save
-      rescue StandardError => err
-        message = "Author: #{author.id}, #{record.uid}, PubmedSourceRecord failed, PMID: #{record.pmid}"
-        NotificationManager.error(err, message, self)
       end
 
       # ----
