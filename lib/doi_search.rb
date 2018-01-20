@@ -11,4 +11,5 @@ class DoiSearch
     return false if pub.is_a? Hash # Hashes are returned from the SW only query
     !pub.authoritative_doi_source?
   end
+  private_class_method :non_sw_pub
 end
