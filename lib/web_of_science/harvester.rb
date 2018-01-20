@@ -30,7 +30,9 @@ module WebOfScience
       raise(ArgumentError, 'author must be an Author') unless author.is_a? Author
       logger.info "#{self.class} - processing author: #{author.id}"
       uids = WebOfScience::QueryAuthor.new(author).uids
+      logger.info "#{self.class} - #{uids.count} found by author query"
       uids = process_uids(author, uids)
+      logger.info "#{self.class} - #{uids.count} new publications"
       logger.info "#{self.class} - processed author: #{author.id}"
       uids
     rescue StandardError => err
