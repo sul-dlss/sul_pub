@@ -16,26 +16,6 @@ describe SulBib::API, :vcr do
     JSON.parse(response.body)
   end
 
-  let(:valid_json_for_post) do
-    {
-      title: 'some title',
-      year: 1938,
-      author: [
-        {
-          name: 'jackson joe'
-        }
-      ],
-      authorship: [
-        {
-          sul_author_id: author.id,
-          status: 'denied',
-          visibility: 'public',
-          featured: true
-        }
-      ]
-    }.to_json
-  end
-
   describe 'GET /publications/sourcelookup ' do
     it 'raises an error when title and doi are not sent' do
       expect do
