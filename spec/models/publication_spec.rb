@@ -323,7 +323,7 @@ describe Publication do
 
   describe '.build_new_manual_publication' do
     let(:save_new_publication) do
-      pub = Publication.build_new_manual_publication(pub_hash, 'some string', 'some where')
+      pub = Publication.build_new_manual_publication(pub_hash, 'some string')
       pub.save!
       pub
     end
@@ -336,32 +336,35 @@ describe Publication do
 
     it 'should refuse to add a publication with the same source record' do
       save_new_publication
-      expect do
-        Publication.build_new_manual_publication(pub_hash, 'some string', 'some where')
-      end.to raise_error(ActiveRecord::RecordNotUnique)
+      expect { Publication.build_new_manual_publication(pub_hash, 'some string') }.to raise_error(ActiveRecord::RecordNotUnique)
     end
 
     it "should create a publication if a publication for that source record doesn't exist" do
-      UserSubmittedSourceRecord.create source_data: 'some string'
+      UserSubmittedSourceRecord.create!(source_data: 'some string')
       expect { save_new_publication }.not_to raise_exception
     end
   end
 
-  describe 'update_manual_pub_from_pub_Hash' do
+  describe 'update_manual_pub_from_pub_hash' do
+    let(:pub) { Publication.build_new_manual_publication({ a: :b }, 'some string') }
+
     it 'should update the user submitted source record with the new content' do
-      pub = Publication.build_new_manual_publication({ a: :b }, 'some string', 'some where')
-      pub.update_manual_pub_from_pub_hash({ b: :c }, 'some other string', 'some where')
+      pub.update_manual_pub_from_pub_hash({ b: :c }, 'some other string')
       pub.save!
       expect(pub.user_submitted_source_records.first[:source_data]).to eq('some other string')
       expect(pub.pub_hash).to include(b: :c)
     end
 
-    it 'should raise an exception if you try to update the record to match an existing source record' do
-      pub = Publication.build_new_manual_publication({ a: :b }, 'some string', 'some where')
-      pub.save
-      pub = Publication.build_new_manual_publication({ b: :c }, 'some other string', 'some where')
-      pub.update_manual_pub_from_pub_hash({ b: :c }, 'some string', 'some where')
-      expect { pub.save! }.to raise_error(ActiveRecord::RecordNotUnique)
+    it 'should raise an exception if you try to update a record to match an existing source record' do
+      pub.save!
+      other = Publication.build_new_manual_publication({ b: :c }, 'some other string')
+      other.update_manual_pub_from_pub_hash({ b: :c }, 'some string')
+      expect { other.save! }.to raise_error(ActiveRecord::RecordNotUnique)
+    end
+
+    it 'does not alter the hash provided' do
+      h = { pub: 'hash' }
+      expect { pub.update_manual_pub_from_pub_hash(h, 'whatev') }.not_to change { h }
     end
   end
 
@@ -369,7 +372,7 @@ describe Publication do
     it 'returns one Publication that has this doi' do
       publication.pub_hash = { identifier: [{ type: 'doi', id: '10.1016/j.mcn.2012.03.008', url: 'https://dx.doi.org/10.1016/j.mcn.2012.03.008' }] }
       publication.send(:sync_identifiers_in_pub_hash)
-      publication.save
+      publication.save!
       res = Publication.find_by_doi('10.1016/j.mcn.2012.03.008')
       expect(res.id).to eq(publication.id)
     end
