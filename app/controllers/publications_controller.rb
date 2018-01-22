@@ -26,7 +26,7 @@ class PublicationsController < ApplicationController
       else
         author = Author.find_by(cap_profile_id: capProfileId)
         if author.nil?
-          render status: 404, text: 'No such author'
+          render status: 404, body: "No such author with capProfileId #{capProfileId}"
           return
         else
           description = 'All known publications for CAP profile id ' + capProfileId
