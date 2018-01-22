@@ -18,7 +18,7 @@ module Harvester
     private
 
       def batch_size
-        100
+        50
       end
   end
 end
