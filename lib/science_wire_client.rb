@@ -287,6 +287,7 @@ class ScienceWireClient
         !xml_doc.xpath('//queryResultRows').empty?
     end
 
+    # @return [Array<Hash>]
     def send_query_and_return_pub_hashes(xml_query)
       xml_results = query_sciencewire(xml_query)
       xml_results.xpath('//PublicationItem').map do |sw_xml_doc|
