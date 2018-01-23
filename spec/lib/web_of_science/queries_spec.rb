@@ -27,25 +27,6 @@ describe WebOfScience::Queries do
   let(:ln) { 'Lastname' }
   let(:fn) { 'Firstname' }
 
-  describe '.working?' do
-    before do
-      savon.expects(:authenticate).returns(wos_auth_response)
-      allow(described_class).to receive(:new).and_return(wos_queries)
-    end
-    context 'success' do
-      it 'returns true when it works' do
-        savon.expects(:retrieve_by_id).with(message: :any).returns(wos_retrieve_by_id_response)
-        expect(described_class.working?).to be true
-      end
-    end
-    context 'failure' do
-      it 'raises exceptions when it fails' do
-        savon.expects(:retrieve_by_id).with(message: :any).returns(wos_search_failure_response)
-        expect { described_class.working? }.to raise_error(Savon::SOAPFault)
-      end
-    end
-  end
-
   describe '#new' do
     it 'works' do
       result = described_class.new(wos_client)
