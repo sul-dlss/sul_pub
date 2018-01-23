@@ -1,6 +1,7 @@
+# rubocop:disable Style/ClassVars
+
 # Web of Science (WOS) utilities
 module WebOfScience
-  # rubocop:disable Style/ClassVars
 
   # @return [WebOfScience::Harvester]
   def self.harvester
@@ -25,5 +26,16 @@ module WebOfScience
   def self.logger
     @@logger ||= Logger.new(Settings.WOS.LOG)
   end
-  # rubocop:enable Style/ClassVars
+
+  # Fetch a single publication and parse and ensure we have a correct response.
+  # We check in steps that the response is XML and it includes the correct content.
+  def self.working?
+    uids = %w(WOS:A1976BW18000001 WOS:A1972N549400003)
+    records = queries.retrieve_by_id(uids)
+    raise 'WebOfScience found no records' unless records.is_a?(WebOfScience::Records) && records.count > 0
+    raise 'WebOfScience failed to parse records' unless records.first.is_a?(WebOfScience::Record)
+    true
+  end
+
 end
+# rubocop:enable Style/ClassVars
