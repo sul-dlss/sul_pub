@@ -20,7 +20,7 @@ module WebOfScience
 
   # @return [WebOfScience::Queries]
   def self.queries
-    @@queries ||= WebOfScience::Queries.new(client)
+    @@queries ||= WebOfScience::Queries.new
   end
 
   def self.logger
@@ -31,7 +31,8 @@ module WebOfScience
   # We check in steps that the response is XML and it includes the correct content.
   def self.working?
     uids = %w(WOS:A1976BW18000001 WOS:A1972N549400003)
-    records = queries.retrieve_by_id(uids)
+    retriever = queries.retrieve_by_id(uids)
+    records = retriever.next_batch
     raise 'WebOfScience found no records' unless records.is_a?(WebOfScience::Records) && records.count > 0
     raise 'WebOfScience failed to parse records' unless records.first.is_a?(WebOfScience::Record)
     true
