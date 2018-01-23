@@ -269,49 +269,87 @@ describe SulBib::API, :vcr do
 
   describe 'PUT /publications/:id' do
     let(:result) { JSON.parse(response.body) }
-    after { expect(response.status).to eq(200) }
 
-    it 'does not duplicate SULPubIDs' do
-      json_with_sul_pub_id = {
-        type: 'book',
-        identifier: [{
-          type: 'SULPubId',
-          id: 'n',
-          url: 'm'
-        }],
-        authorship: [{
-          sul_author_id: author.id,
-          status: 'denied',
-          visibility: 'public',
-          featured: true
-        }]
-      }.to_json
-      put "/publications/#{publication.id}", json_with_sul_pub_id, headers
-      expect(result['identifier'].count { |x| x['type'] == 'SULPubId' }).to eq(1)
-      expect(result['identifier'][0]['id']).not_to eq('n')
+    context 'successfully' do
+      after { expect(response.status).to eq(200) }
+
+      it 'does not duplicate SULPubIDs' do
+        json_with_sul_pub_id = {
+          type: 'book',
+          identifier: [{
+            type: 'SULPubId',
+            id: 'n',
+            url: 'm'
+          }],
+          authorship: [{
+            sul_author_id: author.id,
+            status: 'denied',
+            visibility: 'public',
+            featured: true
+          }]
+        }.to_json
+        put "/publications/#{publication.id}", json_with_sul_pub_id, headers
+        expect(result['identifier'].count { |x| x['type'] == 'SULPubId' }).to eq(1)
+        expect(result['identifier'][0]['id']).not_to eq('n')
+      end
+
+      it 'updates existing pub' do
+        post '/publications', with_isbn_hash.to_json, headers
+        id = Publication.last.id
+        put "/publications/#{id}", with_isbn_changed_doi.to_json, headers
+        expect(result['identifier'].size).to eq(3)
+        expect(result['identifier']).to include(
+          a_hash_including('type' => 'isbn', 'id' => '1177188188181'),
+          a_hash_including('type' => 'doi', 'url' => '18819910019-updated'),
+          a_hash_including('type' => 'SULPubId', 'url' => "#{Settings.SULPUB_ID.PUB_URI}/#{id}", 'id' => id.to_s)
+        )
+      end
+
+      it 'deletes an identifier from the db if it is not in the incoming json' do
+        post '/publications', with_isbn_hash.to_json, headers
+        id = Publication.last.id
+        put "/publications/#{id}", with_isbn_deleted_doi.to_json, headers
+        expect(result['identifier'].size).to eq(2)
+        expect(result['identifier']).to include(
+          a_hash_including('type' => 'isbn', 'id' => '1177188188181'),
+          a_hash_including('type' => 'SULPubId', 'url' => "#{Settings.SULPUB_ID.PUB_URI}/#{id}", 'id' => id.to_s)
+        )
+      end
     end
 
-    it 'updates an existing pub' do
-      post '/publications', with_isbn_hash.to_json, headers
-      id = Publication.last.id
-      put "/publications/#{id}", with_isbn_changed_doi.to_json, headers
-      expect(result['identifier'].size).to eq(3)
-      expect(result['identifier']).to include(
-        a_hash_including('type' => 'isbn', 'id' => '1177188188181'),
-        a_hash_including('type' => 'doi', 'url' => '18819910019-updated'),
-        a_hash_including('type' => 'SULPubId', 'id' => id.to_s, 'url' => "#{Settings.SULPUB_ID.PUB_URI}/#{id}")
-      )
-    end
+    context 'fails' do
+      context 'pub not found' do
+        it 'returns 404' do
+          put '/publications/88888888888', with_isbn_hash.to_json, headers
+          expect(response.status).to eq(404)
+        end
+      end
 
-    it 'deletes an identifier from the db if it is not in the incoming json' do
-      post '/publications', with_isbn_hash.to_json, headers
-      id = Publication.last.id
-      put "/publications/#{id}", with_isbn_deleted_doi.to_json, headers
-      expect(result['identifier'].size).to eq(2)
-      expect(result['identifier']).to include(
-        a_hash_including('type' => 'isbn', 'id' => '1177188188181'),
-        a_hash_including('type' => 'SULPubId', 'url' => "#{Settings.SULPUB_ID.PUB_URI}/#{id}", 'id' => id.to_s)
-      )
+      context 'when existing pub already has' do
+        let(:id) { '1' }
+        before { allow(Publication).to receive(:find).with(id).and_return(publication) }
+
+        it 'been deleted' do
+          allow(publication).to receive(:deleted?).and_return(true)
+          put "/publications/#{id}", with_isbn_hash.to_json, headers
+          expect(response.status).to eq(410)
+        end
+        it 'sciencewire_id' do
+          allow(publication).to receive(:sciencewire_id).and_return(2)
+          put "/publications/#{id}", with_isbn_hash.to_json, headers
+          expect(response.status).to eq(403)
+        end
+        it 'pmid' do
+          allow(publication).to receive(:pmid).and_return(3)
+          put "/publications/#{id}", with_isbn_hash.to_json, headers
+          expect(response.status).to eq(403)
+        end
+        it 'wos_uid' do
+          allow(publication).to receive(:wos_uid).and_return(4)
+          put "/publications/#{id}", with_isbn_hash.to_json, headers
+          expect(response.status).to eq(403)
+        end
+      end
     end
   end
 
