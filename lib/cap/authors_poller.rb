@@ -173,16 +173,10 @@ module Cap
 
     def contribution_save(contribution)
       contribution.save
-      contribution_sync_to_pubhash(contribution)
+      contribution.publication.pubhash_needs_update!
+      contribution.publication.save
       logger.info "Updated #{contribution_id(contribution)}"
       @contribs_changed += 1
-    end
-
-    def contribution_sync_to_pubhash(contribution)
-      pub = contribution.publication
-      pub.set_last_updated_value_in_hash
-      pub.add_all_db_contributions_to_my_pub_hash
-      pub.save
     end
 
     private

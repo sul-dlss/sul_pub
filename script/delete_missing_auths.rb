@@ -18,8 +18,7 @@ class DeleteMissingAuths
         pub.destroy
       else
         @logger.info "   Resynching pub #{pub_id}"
-        pub.set_last_updated_value_in_hash
-        pub.add_all_db_contributions_to_my_pub_hash
+        pub.pubhash_needs_update!
         pub.save
       end
     end
