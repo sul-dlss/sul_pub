@@ -1,5 +1,6 @@
 FactoryBot.define do
-  factory :pub_hash do
+  factory :pub_hash, class: Hash do
+    skip_create
     initialize_with do
       new(provenance: 'sciencewire',
           pmid: '15572175',
