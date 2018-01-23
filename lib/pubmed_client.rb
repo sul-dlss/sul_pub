@@ -10,6 +10,8 @@ class PubmedClient
       doc.at_xpath('//LastName[text()="Hardy"]').is_a?(Nokogiri::XML::Element)
   end
 
+  # @param [String, Array<String>] pmids PubMed ID or IDs
+  # @return [String] HTTP response body
   def fetch_records_for_pmid_list(pmids)
     pmid_list = Array(pmids)
     pmidValuesForPost = pmid_list.collect { |pmid| "&id=#{pmid}" }.join
@@ -25,17 +27,13 @@ class PubmedClient
     end
     conn.options.timeout = timeout_period
     conn.options.open_timeout = 10
-
-    response = conn.send(:post) do |req|
+    response = conn.post do |req|
       req.url Settings.PUBMED.FETCH_PATH
       req.body = pmidValuesForPost
     end
-
     response.body
-
   rescue => e
     NotificationManager.error(e, "#{e.class.name} during PubMed Fetch API call", self)
     raise
   end
-
 end
