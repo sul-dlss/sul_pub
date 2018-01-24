@@ -16,7 +16,6 @@ AllCops:
     - 'spec/factories/*.local.rb'
     - 'spec/fixtures/**/*'
     - 'spec/spec_helper.rb'
-    - 'spec/teaspoon_env.rb'
     - 'vendor/**/*'
 
 # https://github.com/bbatsov/rubocop/issues/4222
@@ -29,3 +28,6 @@ Style/VariableName:
 
 Performance/Casecmp:
   Enabled: false
+
+RSpec/NestedGroups:
+  Max: 4
