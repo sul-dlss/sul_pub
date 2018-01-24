@@ -124,17 +124,6 @@ module WebOfScience
       # ----
       # WOS Links API methods
 
-      # Retrieve a batch of publication identifiers for WOS records from the Links-API
-      # @example {"WOS:000288663100014"=>{"pmid"=>"21253920", "doi"=>"10.1007/s12630-011-9462-1"}}
-      # @return [Hash<String => Hash<String => String>>]
-      def retrieve_links
-        uids = records.map { |rec| rec.uid if rec.database == 'WOS' }.compact
-        links_client.links uids
-      rescue StandardError => err
-        message = "Author: #{author.id}, retrieve_links failed"
-        NotificationManager.error(err, message, self)
-      end
-
       # Integrate a batch of publication identifiers from the Links-API
       #
       # IMPORTANT: add nothing to PublicationIdentifiers here, or new_records will reject them
@@ -148,6 +137,17 @@ module WebOfScience
         records.each { |rec| update_links(rec, links[rec.uid]) }
       rescue StandardError => err
         message = "Author: #{author.id}, process_links failed"
+        NotificationManager.error(err, message, self)
+      end
+
+      # Retrieve a batch of publication identifiers for WOS records from the Links-API
+      # @example {"WOS:000288663100014"=>{"pmid"=>"21253920", "doi"=>"10.1007/s12630-011-9462-1"}}
+      # @return [Hash<String => Hash<String => String>>]
+      def retrieve_links
+        uids = records.map { |rec| rec.uid if rec.database == 'WOS' }.compact
+        links_client.links uids
+      rescue StandardError => err
+        message = "Author: #{author.id}, retrieve_links failed"
         NotificationManager.error(err, message, self)
       end
 
