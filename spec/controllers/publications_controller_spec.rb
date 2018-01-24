@@ -1,16 +1,16 @@
 # See also spec/api/sul_bib/sourcelookup_spec.rb
 
 describe PublicationsController do
-  let(:cap_id) { 'whatever' }
+  let(:author) { build :author }
 
-  it 'ensures authorization is checked' do
-    expect(controller).to receive(:check_authorization)
-    get :index, capProfileId: cap_id
-  end
+  before { allow(controller).to receive(:check_authorization).and_return(true) }
 
   describe 'GET index' do
-    let(:author) { build :author }
-    before { allow(controller).to receive(:check_authorization).and_return(true) }
+    let(:cap_id) { 'whatever' }
+    it 'checks authorization' do
+      expect(controller).to receive(:check_authorization)
+      get :index, capProfileId: cap_id, format: 'json'
+    end
 
     context 'with unknown capProfileId' do
       it 'returns a 404' do
@@ -31,6 +31,93 @@ describe PublicationsController do
           'metadata' => a_hash_including('format' => 'BibJSON', 'page' => 1, 'per_page' => 1000, 'records' => '0'),
           'records' => []
         )
+      end
+    end
+  end
+
+  describe 'GET sourcelookup' do
+    it 'checks authorization' do
+      expect(controller).to receive(:check_authorization)
+      allow(DoiSearch).to receive(:search).with('xyz').and_return([])
+      get :sourcelookup, doi: 'xyz', format: 'json'
+    end
+
+    it 'raises exception if no important param received' do
+      expect { get :sourcelookup }.to raise_error(ActionController::ParameterMissing)
+      expect { get :sourcelookup, year: 2001 }.to raise_error(ActionController::ParameterMissing)
+    end
+
+    it 'with doi calls DoiSearch' do # and ignores pmid & title
+      expect(DoiSearch).to receive(:search).with('xyz').and_return([])
+      expect(PubmedHarvester).not_to receive(:search_all_sources_by_pmid)
+      get :sourcelookup, doi: 'xyz', pmid: 'abc', title: 'foo', format: 'json'
+    end
+
+    it 'with pmid calls PubmedHarvester' do
+      expect(PubmedHarvester).to receive(:search_all_sources_by_pmid).with('abc').and_return([])
+      expect(DoiSearch).not_to receive(:search)
+      get :sourcelookup, pmid: 'abc', format: 'json'
+    end
+
+    context 'title search' do
+      let(:json_response) { JSON.parse(response.body) }
+
+      before do
+        allow(Settings.SCIENCEWIRE).to receive(:enabled).and_return(false) # default
+        allow(Settings.WOS).to receive(:enabled).and_return(false) # default
+      end
+
+      context 'SW and WOS both disabled' do
+        let(:ussr) { create :user_submitted_source_record, title: 'Men On Mars', year: 2001, source_data: '{}' }
+        let!(:pub) do
+          pub = build(:publication, title: ussr.title, year: ussr.year, user_submitted_source_records: [ussr])
+          pub.pub_hash[:year] = ussr.year # values will overwrite from pub_hash
+          pub.pub_hash[:title] = ussr.title
+          pub.save!
+          ussr.publication = pub # association does not automatically update ussr
+          ussr.save!
+          pub
+        end
+
+        it 'only searches local/manual pubs' do
+          expect(ScienceWireClient).not_to receive(:new)
+          expect(WebOfScience).not_to receive(:queries)
+          get :sourcelookup, title: 'en On Ma', format: 'json' # Partial title
+          expect(json_response).to match a_hash_including(
+            'metadata' => a_hash_including('format' => 'BibJSON', 'page' => 1, 'per_page' => 'all', 'records' => '1'),
+            'records' => [a_hash_including('title' => pub.title, 'year' => pub.year)]
+          )
+        end
+      end
+
+      context 'SW enabled, WOS disabled' do
+        let(:swc) { instance_double(ScienceWireClient) }
+        before { allow(Settings.SCIENCEWIRE).to receive(:enabled).and_return(true) }
+
+        it 'hits ScienceWire' do
+          allow(ScienceWireClient).to receive(:new).and_return(swc)
+          expect(WebOfScience).not_to receive(:queries)
+          expect(swc).to receive(:query_sciencewire_for_publication).with(nil, nil, nil, 'xyz', any_args).and_return([])
+          get :sourcelookup, title: 'xyz', format: 'json' # Partial title
+        end
+      end
+
+      context 'SW disabled, WOS enabled' do
+        let(:queries) { instance_double(WebOfScience::Queries) }
+        before do
+          allow(Settings.WOS).to receive(:enabled).and_return(true)
+          allow(WebOfScience).to receive(:queries).and_return(queries)
+        end
+
+        it 'hits WOS' do
+          expect(ScienceWireClient).not_to receive(:new)
+          expect(queries).to receive(:user_query).with('TI=xyz').and_return([])
+          get :sourcelookup, title: 'xyz', format: 'json' # Partial title
+        end
+        it 'includes year if provided' do
+          expect(queries).to receive(:user_query).with('TI=xyz AND PY=2001').and_return([])
+          get :sourcelookup, title: 'xyz', year: 2001, format: 'json' # Partial title
+        end
       end
     end
   end

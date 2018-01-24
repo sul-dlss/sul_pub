@@ -219,13 +219,6 @@ RSpec/NamedSubject:
 RSpec/NestedGroups:
   Exclude:
     - 'spec/api/sul_bib/authorship_api_spec.rb'
-    - 'spec/api/sul_bib/publications_api_spec.rb'
-    - 'spec/api/sul_bib/sourcelookup_spec.rb'
-    - 'spec/lib/cap/authors_poller_spec.rb'
-    - 'spec/lib/csl/citation_spec.rb'
-    - 'spec/lib/science_wire/query/suggestion_spec.rb'
-    - 'spec/lib/science_wire_harvester_spec.rb'
-    - 'spec/models/pubmed_source_record_spec.rb'
 
 # Offense count: 10
 # Configuration parameters: EnforcedStyle, SupportedStyles.

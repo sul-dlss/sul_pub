@@ -28,82 +28,71 @@ class PublicationsController < ApplicationController
         if author.nil?
           render status: 404, body: "No such author with capProfileId #{capProfileId}"
           return
-        else
-          description = 'All known publications for CAP profile id ' + capProfileId
-          logger.debug("Limited to all publications for author #{author.inspect}")
-
-          if params[:format] =~ /csv/i
-            csv_string = generate_csv_report author
-          else
-            matching_records = author.publications.order('publications.id').page(page).per(per).select('publications.pub_hash')
-          end
+        end
+        unless params[:format] =~ /csv/i
+          matching_records = author.publications.order('publications.id').page(page).per(per).select(:pub_hash)
         end
       end
       logger.debug("Found #{matching_records.length} records")
 
       respond_to do |format|
         format.json do
-          bibjson = wrap_as_bibjson_collection(description, matching_records, page, per)
-          self.response_body = JSON.dump(bibjson)
+          render json: wrap_as_bibjson_collection(description, matching_records, page, per)
         end
         format.csv do
-          render csv: csv_string, filename: 'author_report', chunked: true
+          render csv: generate_csv_report(author), filename: 'author_report', chunked: true
         end
       end
     end
   end
 
-  # desc "Look up existing records by title, and optionally by author, year and source"
+  # Look up existing records by title, and optionally by author, year and source
   def sourcelookup
     all_matching_records = []
+    msg = 'Sourcelookup of '
     if params[:doi]
-      logger.info("Sourcelookup of doi #{params[:doi]}")
-      sources = [Settings.sciencewire_source]
-      all_matching_records += DoiSearch.search params[:doi]
+      msg << "doi #{params[:doi]}"
+      logger.info(msg)
+      all_matching_records += DoiSearch.search(params[:doi])
     elsif params[:pmid]
-      logger.info("Sourcelookup of pmid #{params[:pmid]}")
-      sources = [Settings.sciencewire_source, Settings.pubmed_source]
-      all_matching_records += PubmedHarvester.search_all_sources_by_pmid params[:pmid]
+      msg << "pmid #{params[:pmid]}"
+      logger.info(msg)
+      all_matching_records += PubmedHarvester.search_all_sources_by_pmid(params[:pmid])
     else
       raise ActionController::ParameterMissing, :title unless params[:title].presence
-
-      source = params.fetch(:source, Settings.manual_source + '+' + Settings.sciencewire_source)
-      logger.info("Executing source lookup for title #{params[:title]} with sources #{source}")
-
-      sources = source.split('+')
-
-      if sources.include?(Settings.sciencewire_source)
-        all_matching_records += ScienceWireClient.new.query_sciencewire_for_publication(params[:firstname], params[:lastname], params[:middlename], params[:title], params[:year], params.fetch(:max_rows, 20).to_i)
-        logger.debug(" -- sciencewire (#{all_matching_records.length})")
+      msg << "title '#{params[:title]}'"
+      logger.info(msg)
+      if Settings.WOS.enabled
+        query = "TI=#{params[:title]}"
+        query += " AND PY=#{params[:year]}" if params[:year]
+        wos_matches = WebOfScience.queries.user_query(query).to_a # TODO: limit
+        all_matching_records += wos_matches
+        logger.debug(" -- WOS (#{wos_matches.length})")
       end
-
-      if sources.include?(Settings.manual_source)
-        user_submitted_source_records = UserSubmittedSourceRecord.arel_table
-
-        results = UserSubmittedSourceRecord.where(user_submitted_source_records[:title].matches("%#{params[:title]}%"))
-
-        results = results.where(user_submitted_source_records[:year].eq(params[:year])) if params[:year]
-        logger.debug(" -- manual source (#{results.length})")
-
-        all_matching_records += results.map(&:publication)
+      if Settings.SCIENCEWIRE.enabled
+        sw_matches = ScienceWireClient.new.query_sciencewire_for_publication(nil, nil, nil, params[:title], params[:year], params.fetch(:max_rows, 20).to_i)
+        all_matching_records += sw_matches
+        logger.debug(" -- sciencewire (#{sw_matches.length})")
       end
+      # lastly, always check for manual
+      results = Publication.joins(:user_submitted_source_records)
+                           .where(UserSubmittedSourceRecord.arel_table[:title].matches("%#{params[:title]}%"))
+      results = results.where(year: params[:year]) if params[:year]
+      logger.debug(" -- manual source (#{results.length})")
+      all_matching_records += results
     end
-    # When params[:maxrows] is nil, rows is -1 and returns everything
-    rows = params[:maxrows].to_i - 1
-    matching_records = all_matching_records[0..rows]
-
-    description = "Search results from requested sources: #{sources.join(', ')}"
-
+    # When params[:maxrows] is nil/zero, -1 returns everything
+    matching_records = all_matching_records[0..params[:maxrows].to_i - 1]
     respond_to do |format|
       format.json do
-        bibjson = wrap_as_bibjson_collection(description, matching_records)
-        self.response_body = JSON.dump(bibjson)
+        render json: wrap_as_bibjson_collection(msg, matching_records)
       end
     end
   end
 
   private
 
+    # @return [Hash]
     def wrap_as_bibjson_collection(description, records, page = 1, per_page = 'all')
       metadata = {
         _created: Time.zone.now.iso8601,
