@@ -11,11 +11,9 @@ module WebOfScience
     # @return [Array<String>] uids that already have a contribution
     def author_contributions(author, uids)
       contrib_uids = []
-      uids.each_slice(50) do |batch_uids|
-        Publication.where(wos_uid: batch_uids).find_each do |pub|
-          contrib = find_or_create_contribution(author, pub)
-          contrib_uids << pub.wos_uid if contrib.persisted?
-        end
+      Publication.where(wos_uid: uids).find_each do |pub|
+        contrib = find_or_create_contribution(author, pub)
+        contrib_uids << pub.wos_uid if contrib.persisted?
       end
       contrib_uids
     end
@@ -66,10 +64,19 @@ module WebOfScience
     # @param value [String]
     # @return [Boolean] contribution exists
     def contribution_by_identifier?(author, type, value)
+      contrib = contribution_by_identifier(author, type, value)
+      contrib.nil? ? false : contrib.persisted?
+    end
+
+    # Find any matching contribution by author and PublicationIdentifier
+    # @param author [Author]
+    # @param type [String]
+    # @param value [String]
+    # @return [Contribution, nil]
+    def contribution_by_identifier(author, type, value)
       pub_id = publication_identifier(type, value)
-      return false if pub_id.nil?
-      contrib = find_or_create_contribution(author, pub_id.publication)
-      contrib.persisted?
+      return if pub_id.nil?
+      find_or_create_contribution(author, pub_id.publication)
     end
 
     # Is there a PublicationIdentifier matching the type and value?
