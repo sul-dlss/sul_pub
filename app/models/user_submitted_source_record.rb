@@ -1,6 +1,6 @@
 class UserSubmittedSourceRecord < ActiveRecord::Base
   validates :source_fingerprint, uniqueness: true
-  belongs_to :publication
+  belongs_to :publication, inverse_of: :user_submitted_source_records
 
   before_save do
     self.source_fingerprint = Digest::SHA2.hexdigest(source_data) if source_data_changed?
