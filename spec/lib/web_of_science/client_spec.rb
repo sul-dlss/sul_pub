@@ -59,10 +59,15 @@ describe WebOfScience::Client do
       savon.expects(:authenticate).returns(auth_xml)
       wos_client.session_id
     end
-    it 'works' do
+    it 'resets the client' do
       savon.expects(:close_session).returns('')
-      expect(wos_client.session_close).to be_nil
+      expect { wos_client.session_close }
+        .to change { wos_client.instance_variable_get('@session_id') }
+      expect(wos_client.instance_variable_get('@auth')).to be_nil
+      expect(wos_client.instance_variable_get('@search')).to be_nil
+      expect(wos_client.instance_variable_get('@session_queries')).to eq 0
     end
+
     context 'when there are no matches returned for SessionID' do
       let(:null_logger) { Logger.new('/dev/null') }
 
@@ -70,7 +75,8 @@ describe WebOfScience::Client do
 
       it 'creates a logger and works' do
         expect(wos_client).to receive(:logger).and_return(null_logger)
-        expect(wos_client.session_close).to be_nil
+        expect { wos_client.session_close }
+          .to change { wos_client.instance_variable_get('@session_id') }
       end
     end
   end
