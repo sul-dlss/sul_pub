@@ -70,7 +70,7 @@ class PublicationsController < ApplicationController
         logger.debug(" -- WOS (#{wos_matches.length})")
       end
       if Settings.SCIENCEWIRE.enabled
-        sw_matches = ScienceWireClient.new.query_sciencewire_for_publication(params[:firstname], params[:lastname], params[:middlename], params[:title], params[:year], params.fetch(:max_rows, 20).to_i)
+        sw_matches = ScienceWireClient.new.query_sciencewire_for_publication(nil, nil, nil, params[:title], params[:year], params.fetch(:max_rows, 20).to_i)
         all_matching_records += sw_matches
         logger.debug(" -- sciencewire (#{sw_matches.length})")
       end
