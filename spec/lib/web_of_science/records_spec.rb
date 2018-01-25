@@ -2,12 +2,8 @@ require 'htmlentities'
 
 describe WebOfScience::Records do
   let(:wos_encoded_records) { File.read('spec/fixtures/wos_client/wos_encoded_records.html') }
-  let(:wos_decoded_records) do
-    coder = HTMLEntities.new
-    coder.decode(wos_encoded_records)
-  end
   let(:wos_records_encoded) { described_class.new(encoded_records: wos_encoded_records) }
-  let(:wos_records_decoded) { described_class.new(records: wos_decoded_records) }
+  let(:wos_records_decoded) { described_class.new(records: HTMLEntities.new.decode(wos_encoded_records)) }
 
   let(:medline_uids) { %w(MEDLINE:21121048 MEDLINE:7584390 MEDLINE:26776202 MEDLINE:24452614 MEDLINE:24303232) }
   let(:medline_encoded_records) { File.read('spec/fixtures/wos_client/medline_encoded_records.html') }
@@ -50,23 +46,19 @@ describe WebOfScience::Records do
 
   describe '#count' do
     it 'returns Integer' do
-      count = wos_records_encoded.count
-      expect(count).to be_an Integer
+      expect(wos_records_encoded.count).to be_an Integer
     end
     it 'delegates to rec_nodes.count' do
-      count = wos_records_encoded.count
-      expect(count).to eq wos_records_encoded.rec_nodes.count
+      expect(wos_records_encoded.count).to eq wos_records_encoded.rec_nodes.count
     end
   end
 
   describe '#doc' do
     it 'works with encoded records' do
-      result = wos_records_encoded.doc
-      expect(result).to be_an Nokogiri::XML::Document
+      expect(wos_records_encoded.doc).to be_a Nokogiri::XML::Document
     end
     it 'works with decoded records' do
-      result = wos_records_decoded.doc
-      expect(result).to be_an Nokogiri::XML::Document
+      expect(wos_records_decoded.doc).to be_a Nokogiri::XML::Document
     end
   end
 
@@ -155,8 +147,7 @@ describe WebOfScience::Records do
       expect(new_records).to be_an Nokogiri::XML::NodeSet
     end
     it 'returns new record nodes' do
-      uid = new_records.search('UID').text
-      expect(uid).to eq 'WOS:B2'
+      expect(new_records.search('UID').text).to eq 'WOS:B2'
     end
     it 'does not modify records' do
       expect { new_records }.not_to change { wos_recordsA.uids }
