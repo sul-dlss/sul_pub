@@ -204,9 +204,6 @@ class Publication < ActiveRecord::Base
   ##
   #  Pubhash accessors
   ##
-  def title
-    pub_hash[:title]
-  end
 
   def issn
     pub_hash[:issn]
@@ -220,6 +217,12 @@ class Publication < ActiveRecord::Base
     pub_hash[:type]
   end
 
+  # @note obscures ActiveRecord field/attribute getter for title
+  def title
+    pub_hash[:title]
+  end
+
+  # @note obscures ActiveRecord field/attribute getter for year
   def year
     pub_hash[:year]
   end
