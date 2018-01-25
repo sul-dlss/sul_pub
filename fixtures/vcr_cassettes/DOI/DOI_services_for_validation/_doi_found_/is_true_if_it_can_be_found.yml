@@ -1,0 +1,38 @@
+---
+http_interactions:
+- request:
+    method: head
+    uri: https://doi.org/10.1109/5.771073
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.14.0
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 303
+      message: See Other
+    headers:
+      Server:
+      - Apache-Coyote/1.1
+      Vary:
+      - Accept
+      Location:
+      - http://ieeexplore.ieee.org/document/771073/
+      Expires:
+      - Sat, 27 Jan 2018 03:07:26 GMT
+      Content-Type:
+      - text/html;charset=utf-8
+      Content-Length:
+      - '171'
+      Date:
+      - Sat, 27 Jan 2018 02:58:03 GMT
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Sat, 27 Jan 2018 02:58:04 GMT
+recorded_with: VCR 4.0.0
