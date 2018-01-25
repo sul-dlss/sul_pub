@@ -66,6 +66,7 @@ end
 group :development do
   gem 'byebug'
   gem 'pry-doc'
+  gem 'ruby-prof'
   gem 'thin' # app server
   gem 'web-console', '~> 3.3'
 end
