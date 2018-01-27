@@ -87,6 +87,7 @@ module WebOfScience
           pub_hash: record.pub_hash,
           wos_uid: record.uid
         )
+        pub.pubhash_needs_update!
         pub.save!
         contrib = find_or_create_contribution(author, pub)
         contrib.persisted?
