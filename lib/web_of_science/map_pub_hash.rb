@@ -51,15 +51,16 @@ module WebOfScience
       # publication identifiers
       def pub_hash_identifiers(rec)
         ids = rec.identifiers
-        id = {}
-        id[:provenance] = Settings.wos_source
+        id = {
+          identifier: ids.pub_hash,
+          provenance: Settings.wos_source,
+          wos_uid: ids.uid
+        }
         id[:doi] = ids.doi if ids.doi.present?
         id[:eissn] = ids.eissn if ids.eissn.present?
         id[:issn] = ids.issn if ids.issn.present?
         id[:pmid] = ids.pmid if ids.pmid.present?
-        id[:wos_uid] = ids.uid
         id[:wos_item_id] = ids.wos_item_id if ids.wos_item_id.present?
-        id[:identifier] = ids.pub_hash
         id
       end
 
