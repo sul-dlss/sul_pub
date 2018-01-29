@@ -53,11 +53,11 @@ class PublicationsController < ApplicationController
     if params[:doi]
       msg << "doi #{params[:doi]}"
       logger.info(msg)
-      all_matching_records += DoiSearch.search(params[:doi])
+      all_matching_records += DoiSearch.search(params[:doi].strip)
     elsif params[:pmid]
       msg << "pmid #{params[:pmid]}"
       logger.info(msg)
-      all_matching_records += PubmedHarvester.search_all_sources_by_pmid(params[:pmid])
+      all_matching_records += PubmedHarvester.search_all_sources_by_pmid(params[:pmid].strip)
     else
       raise ActionController::ParameterMissing, :title unless params[:title].presence
       msg << "title '#{params[:title]}'"
