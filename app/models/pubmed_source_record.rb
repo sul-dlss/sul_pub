@@ -98,9 +98,11 @@ class PubmedSourceRecord < ActiveRecord::Base
     mesh_headings_for_record
   end
 
+  # Convert MEDLINE®PubMed® XML to pub_hash
+  # @param [Nokogiri::XML::Node] publication
+  # @return [Hash<Symbol => Object>] pub_hash
+  # @see https://www.nlm.nih.gov/bsd/licensee/elements_descriptions.html XML Element Descriptions and their Attributes
   def convert_pubmed_publication_doc_to_hash(publication)
-    # MEDLINE®PubMed® XML Element Descriptions and their Attributes, see
-    # https://www.nlm.nih.gov/bsd/licensee/elements_descriptions.html
     record_as_hash = {}
     pmid = publication.xpath('MedlineCitation/PMID').text
 
@@ -146,7 +148,7 @@ class PubmedSourceRecord < ActiveRecord::Base
     journal_hash[:volume] = publication.xpath('MedlineCitation/Article/Journal/JournalIssue/Volume').text unless publication.xpath('MedlineCitation/Article/Journal/JournalIssue/Volume').blank?
     journal_hash[:issue] = publication.xpath('MedlineCitation/Article/Journal/JournalIssue/Issue').text unless publication.xpath('MedlineCitation/Article/Journal/JournalIssue/Issue').blank?
     # journal_hash[:articlenumber] = publication.xpath('ArticleNumber') unless publication.xpath('ArticleNumber').blank?
-    #  journal_hash[:pages] = publication.xpath('Pagination').text unless publication.xpath('Pagination').blank?
+    # journal_hash[:pages] = publication.xpath('Pagination').text unless publication.xpath('Pagination').blank?
     journal_identifiers = []
     issn = publication.xpath('MedlineCitation/Article/Journal/ISSN').text
     record_as_hash[:issn] = issn unless issn.blank?
