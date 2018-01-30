@@ -68,7 +68,7 @@ module WebOfScience
     def search_by_doi(doi)
       raise(ArgumentError, 'doi must be a DOI String') if doi.blank?
       message = params_for_search("DO=#{doi}")
-      message[:retrieveParameters][:count] = 10
+      message[:retrieveParameters][:count] = 50
       WebOfScience::Retriever.new(:search, message)
     end
 
