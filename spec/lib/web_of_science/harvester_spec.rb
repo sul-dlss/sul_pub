@@ -60,13 +60,9 @@ describe WebOfScience::Harvester do
   end
 
   let(:wos_auth_response) { File.read('spec/fixtures/wos_client/authenticate.xml') }
-  let(:wos_queries) do
-    wos_client = WebOfScience::Client.new('secret')
-    WebOfScience::Queries.new(wos_client)
-  end
-
   before do
-    allow(WebOfScience).to receive(:queries).and_return(wos_queries)
+    wos_client = WebOfScience::Client.new('secret')
+    allow(WebOfScience).to receive(:client).and_return(wos_client)
   end
 
   shared_examples 'it_can_process_records' do

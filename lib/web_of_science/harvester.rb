@@ -1,3 +1,5 @@
+require 'identifiers'
+
 module WebOfScience
 
   # Application logic to harvest publications from Web of Science;
@@ -28,12 +30,16 @@ module WebOfScience
     def process_author(author)
       # TODO: iterate on author identities also, or leave that to the consumer of this class?
       raise(ArgumentError, 'author must be an Author') unless author.is_a? Author
-      logger.info "#{self.class} - processing author: #{author.id}"
+      log_info(author, 'processing')
       uids = WebOfScience::QueryAuthor.new(author).uids
-      logger.info "#{self.class} - #{uids.count} found by author query"
+      log_info(author, "#{uids.count} found by author query")
+
+      # TODO: get all the links for the UIDs and modify contribution checks to use all identifiers
+      # if any identifiers allow find/create contribution, don't retrieve those full records
+
       uids = process_uids(author, uids)
-      logger.info "#{self.class} - #{uids.count} new publications"
-      logger.info "#{self.class} - processed author: #{author.id}"
+      log_info(author, "#{uids.count} new publications")
+      log_info(author, "processed")
       uids
     rescue StandardError => err
       message = "#{self.class} - harvest failed for author"
@@ -47,12 +53,27 @@ module WebOfScience
     def process_dois(author, dois)
       raise(ArgumentError, 'author must be an Author') unless author.is_a? Author
       raise(ArgumentError, 'dois must be Enumerable') unless dois.is_a? Enumerable
-      # TODO: normalize the dois using altmetrics identifier gem, as in PR #246
+      dois = dois.map { |doi| ::Identifiers::DOI.extract_one(doi) }.compact
+      log_info(author, "#{dois.count} DOIs for search")
+      # TODO: get links from the links-API to use additional identifiers for de-dup logic?
       dois.reject! { |doi| contribution_by_identifier?(author, 'doi', doi) }
-      return [] if dois.empty?
-      records = queries.search_by_doi(dois.shift)
-      dois.each { |doi| records.merge_records queries.search_by_doi(doi) }
-      process_records author, records
+      log_info(author, "#{dois.count} DOIs without contributions")
+      dois.flat_map { |doi| process_doi(author, doi) }.compact
+    end
+
+    # Harvest a DOI publication for an author
+    # @param author [Author]
+    # @param doi [String] DOI value or URI
+    # @return [Array<String>] WosUIDs that create Publications
+    def process_doi(author, doi)
+      doi = ::Identifiers::DOI.extract_one(doi)
+      raise(ArgumentError, 'author must be an Author') unless author.is_a? Author
+      raise(ArgumentError, 'cannot parse DOI') if doi.blank?
+      retriever = queries.search_by_doi(doi)
+      records = retriever.next_batch
+      record = records.find { |rec| ::Identifiers::DOI.extract_one(rec.doi) == doi }
+      return [] if record.blank?
+      WebOfScience::ProcessRecord.new(author, record).execute
     end
 
     # Harvest PMID publications for an author
@@ -62,8 +83,10 @@ module WebOfScience
     def process_pmids(author, pmids)
       raise(ArgumentError, 'author must be an Author') unless author.is_a? Author
       raise(ArgumentError, 'pmids must be Enumerable') unless pmids.is_a? Enumerable
-      # TODO: normalize the pmids using altmetrics identifier gem, as in PR #246
+      pmids = pmids.map { |pmid| ::Identifiers::PubmedId.extract(pmid).first }.compact
+      log_info(author, "#{pmids.count} PMIDs for search")
       pmids.reject! { |pmid| contribution_by_identifier?(author, 'pmid', pmid) }
+      log_info(author, "#{pmids.count} PMIDs without contributions")
       return [] if pmids.empty?
       process_records author, queries.retrieve_by_pmid(pmids)
     end
@@ -75,7 +98,9 @@ module WebOfScience
     def process_uids(author, uids)
       raise(ArgumentError, 'author must be an Author') unless author.is_a? Author
       raise(ArgumentError, 'uids must be Enumerable') unless uids.is_a? Enumerable
+      log_info(author, "#{uids.count} UIDs for search")
       uids -= author_contributions(author, uids)
+      log_info(author, "#{uids.count} UIDs without contributions")
       return [] if uids.empty?
       process_records author, queries.retrieve_by_id(uids)
     end
@@ -84,13 +109,21 @@ module WebOfScience
 
       delegate :logger, :queries, to: :WebOfScience
 
+      # @param [Author] author
+      # @param [String] info
+      # @return [void]
+      def log_info(author, info)
+        logger.info "#{self.class} - author #{author.id}: #{info}"
+      end
+
       # Process records retrieved by any means
       # @param author [Author]
-      # @param records [WebOfScience::Records]
+      # @param retriever [WebOfScience::Retriever]
       # @return [Array<String>] WosUIDs that create Publications
-      def process_records(author, records)
-        processor = WebOfScience::ProcessRecords.new(author, records)
-        processor.execute
+      def process_records(author, retriever)
+        uids = []
+        uids += WebOfScience::ProcessRecords.new(author, retriever.next_batch).execute while retriever.next_batch?
+        uids.flatten.compact
       end
 
   end

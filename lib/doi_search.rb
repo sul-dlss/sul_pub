@@ -1,3 +1,5 @@
+require 'identifiers'
+
 class DoiSearch
   # The first authoritative result(s) are returned.
   # If an authoritative local match is found, no remote services are hit.
@@ -12,15 +14,28 @@ class DoiSearch
       sw_hits = ScienceWireClient.new.get_pub_by_doi(doi)
       return sw_hits unless sw_hits.empty?
     end
-    results = []
-    if Settings.WOS.enabled
-      results += WebOfScience.queries.search_by_doi(doi).map { |rec| add_citation(rec.pub_hash) }
-      full_match = normalized_dois(results)[normalized_doi(doi)]
-      return [full_match] if full_match
+    results = web_of_science(doi)
+    if results.present?
+      name = doi_name(doi)
+      match = results.find { |pub_hash| doi_name(pub_hash[:doi]) == name }
+      return [match] if match.present?
     end
     # Everything else is non-authoritative
     results.unshift(pub.pub_hash) if pub
     results
+  end
+
+  # Retrieve records from the Web of Science
+  # Web of Science results are based on partial string matching for DOI queries, unfortunately.
+  # @see WebOfScience::Queries#search_by_doi
+  # @param [String] doi
+  # @return [Array<Hash>] matching hashes
+  def self.web_of_science(doi)
+    return [] unless Settings.WOS.enabled
+    doi = doi_name(doi)
+    return [] if doi.blank?
+    retriever = WebOfScience.queries.search_by_doi(doi)
+    retriever.next_batch.map { |record| add_citation(record.pub_hash) }
   end
 
   # @param [Hash] pub_hash modifies passed hash to include citation k/v pairs
@@ -34,20 +49,10 @@ class DoiSearch
   end
   private_class_method :add_citation
 
-  # @param [Array<Hash>] pub_hashes WOS pub_hashes
-  # @return [Hash<String => Hash>] normalized DOI strings mapped to pub_hashes
-  # pub_hash[:identifier].select{|h| h[:type] == 'doi'}}}
-  # [{:type=>"doi", :id=>"10.1172/jci.insight.87623", :url=>"https://dx.doi.org/10.1172/jci.insight.87623"}]
-  def self.normalized_dois(pub_hashes)
-    Hash[pub_hashes.map { |h| normalized_doi(h[:doi]) }.zip(pub_hashes)]
-      .select { |k| k } # exclude nil key(s) (normalization fail)
-  end
-  private_class_method :normalized_dois
-
   # @param [String, nil] doi
-  # @return [String, nil] normalized DOI string
-  def self.normalized_doi(doi)
-    Identifiers::DOI.extract(doi).first
+  # @return [String, nil] DOI name
+  def self.doi_name(doi)
+    ::Identifiers::DOI.extract_one(doi)
   end
-  private_class_method :normalized_doi
+  private_class_method :doi_name
 end

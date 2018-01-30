@@ -1,9 +1,6 @@
 describe DoiSearch do
-  let(:other_doi) { '10.1038/psp.2013.66' }
   let(:doi_value) { '10.1016/j.mcn.2012.03.007' }
   let(:doi_identifier) { create(:doi_pub_id, identifier_value: doi_value) }
-  let(:wos_html) { File.read('spec/fixtures/wos_client/medline_encoded_records.html') }
-  let(:wos_records) { WebOfScience::Records.new(encoded_records: wos_html) }
 
   before(:each) do
     doi_identifier.publication.save
@@ -43,7 +40,7 @@ describe DoiSearch do
       end
     end
 
-    context 'ScienceWire disabled, WOS enabled' do
+    context 'ScienceWire disabled, WOS enabled', :vcr do
       before do
         allow(Settings.WOS).to receive(:enabled).and_return(true)
         expect(ScienceWireClient).not_to receive(:new)
@@ -60,41 +57,34 @@ describe DoiSearch do
         end
         it 'queries WOS, if not authoritative' do
           allow(publication).to receive(:wos_pub?).and_return(false)
-          expect(WebOfScience.queries).to receive(:search_by_doi).with(doi_value).and_return([])
           described_class.search(doi_value)
         end
       end
 
       it 'without a local hit, queries WOS' do
-        expect(WebOfScience.queries).to receive(:search_by_doi).with(other_doi).and_return([])
-        expect(described_class.search(other_doi)).to eq []
+        expect(Publication).to receive(:find_by_doi).with(doi_value).and_return(nil)
+        expect(WebOfScience).to receive(:queries).and_call_original
+        wos_matches = described_class.search(doi_value)
+        wos_pub_hash = wos_matches.first
+        expect(wos_pub_hash[:doi]).to eq doi_value
+        expect(wos_pub_hash[:wos_uid]).to eq 'WOS:000305547700005'
       end
     end
   end
 
   # private methods
 
-  describe '.normalized_doi' do
+  describe '.doi_name' do
     it 'does not alter conventional DOIs' do
-      expect(described_class.send(:normalized_doi, doi_value)).to eq doi_value
+      expect(described_class.send(:doi_name, doi_value)).to eq doi_value
     end
     it 'returns nil for invalid DOIs' do
-      expect(described_class.send(:normalized_doi, '10.1038/')).to be_nil
-      expect(described_class.send(:normalized_doi, '')).to be_nil
-      expect(described_class.send(:normalized_doi, nil)).to be_nil
+      expect(described_class.send(:doi_name, '10.1038/')).to be_nil
+      expect(described_class.send(:doi_name, '')).to be_nil
+      expect(described_class.send(:doi_name, nil)).to be_nil
     end
     it 'returns normalized DOI for full URI' do
-      expect(described_class.send(:normalized_doi, 'http://dx.doi.org/10.1038/ncomms3199')).to eq '10.1038/ncomms3199'
-    end
-  end
-
-  describe '.normalized_dois' do
-    subject(:result) { described_class.send(:normalized_dois, wos_records.map(&:pub_hash)) }
-
-    it 'returns a hash with only authoritative DOI keys mapped to hashes' do
-      expect(wos_records.count).to eq 5 # the fixture has many records
-      expect(result.count).to eq 1
-      expect(result).to match a_hash_including(other_doi => a_hash_including(doi: other_doi))
+      expect(described_class.send(:doi_name, 'http://dx.doi.org/10.1038/ncomms3199')).to eq '10.1038/ncomms3199'
     end
   end
 end

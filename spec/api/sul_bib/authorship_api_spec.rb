@@ -149,24 +149,29 @@ describe SulBib::API, :vcr do
     end # context 'for a new ScienceWire publication'
 
     context 'for a new WoS publication' do
+      # set Savon in and out of mock mode
+      require 'savon/mock/spec_helper'
+      include Savon::SpecHelper
+      before(:all) { savon.mock!   }
+      after(:all)  { savon.unmock! }
+
       let(:request_data) { base_data.merge(wos_uid: wos_record_uid).merge(author_hash) }
-      let(:wos_record_xml) { File.read('spec/fixtures/wos_client/wos_record_000386326200035.xml') }
-      let(:wos_record_uid) { 'WOS:000386326200035' }
-      let(:wos_record_links) { { wos_record_uid => {} } } # it has no DOI or PMID from the links API
-      let(:records) { WebOfScience::Records.new(records: "<records>#{wos_record_xml}</records>") }
-      let(:wos_queries) do
-        wos_client = instance_double(WebOfScience::Client)
-        WebOfScience::Queries.new(wos_client)
-      end
-      let(:links_client) { Clarivate::LinksClient.new }
+
+      let(:wos_record_uid) { 'WOS:A1972N549400003' }
+      let(:wos_retrieve_by_id_response) { File.read('spec/fixtures/wos_client/wos_record_A1972N549400003_response.xml') }
+      let(:wos_auth_response) { File.read('spec/fixtures/wos_client/authenticate.xml') }
 
       before do
+        # Mock a WOS-API and Links-API interaction
+        wos_client = WebOfScience::Client.new('secret')
+        allow(WebOfScience).to receive(:client).and_return(wos_client)
+        links_client = Clarivate::LinksClient.new
+        wos_record_links = { wos_record_uid => { 'doi' => '10.5860/crl_33_05_413' } }
         allow(links_client).to receive(:links).with([wos_record_uid]).and_return(wos_record_links)
-        processor = WebOfScience::ProcessRecords.new(author, records)
-        allow(processor).to receive(:links_client).and_return(links_client)
-        allow(WebOfScience::ProcessRecords).to receive(:new).and_return(processor)
-        allow(wos_queries).to receive(:retrieve_by_id).and_return(records)
-        allow(WebOfScience).to receive(:queries).and_return(wos_queries)
+        allow(WebOfScience).to receive(:links_client).and_return(links_client)
+        savon.expects(:authenticate).returns(wos_auth_response)
+        savon.expects(:retrieve_by_id).with(message: :any).returns(wos_retrieve_by_id_response)
+        # Issue an API call and check the response status
         http_request
         expect(response.body).to eq(new_pub.pub_hash.to_json)
       end
