@@ -6,7 +6,7 @@ module WebOfScience
   class Record
     extend Forwardable
 
-    delegate %i(database doi eissn issn pmid uid wos_item_id) => :identifiers
+    delegate %i[database doi eissn issn pmid uid wos_item_id] => :identifiers
     delegate logger: :WebOfScience
 
     # @!attribute [r] doc
