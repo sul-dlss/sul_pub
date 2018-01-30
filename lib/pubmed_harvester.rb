@@ -25,7 +25,7 @@ class PubmedHarvester
     # Only clean out manual/batch if there's a mix
     if result.size > 1 && result.any? { |p| p.is_a? Hash }
       result.reject! do |pub|
-        pub.is_a?(Publication) && pub.pub_hash[:provanance] =~ /cap|batch/i
+        pub.is_a?(Publication) && !pub.authoritative_pmid_source?
       end
     end
 
