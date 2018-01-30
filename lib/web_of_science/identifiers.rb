@@ -9,7 +9,7 @@ module WebOfScience
 
     # Delegate enumerable methods to the mutable Hash.
     # This is just a convenience.
-    delegate %i(each keys values has_key? has_value? include? reject select to_json) => :to_h
+    delegate %i[each keys values has_key? has_value? include? reject select to_json] => :to_h
 
     # @return [String]
     attr_reader :uid
@@ -138,7 +138,7 @@ module WebOfScience
 
       attr_reader :ids
 
-      ALLOWED_TYPES = %w(doi eissn issn pmid).freeze
+      ALLOWED_TYPES = %w[doi eissn issn pmid].freeze
 
       def extract_ids(doc)
         ids = doc.xpath('/REC/dynamic_data/cluster_related/identifiers/identifier')
