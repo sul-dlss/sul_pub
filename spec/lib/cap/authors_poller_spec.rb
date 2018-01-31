@@ -223,4 +223,21 @@ describe Cap::AuthorsPoller, :vcr do
       expect { subject.process_next_batch_of_authorship_data(bogus: 'data') }.to raise_error(Net::HTTPBadResponse)
     end
   end
+
+  describe '.do_science_wire_harvest' do
+    it 'does nothing if sw client is disabled' do
+      allow(Settings.SCIENCEWIRE).to receive(:enabled).and_return(false)
+      expect(ScienceWireHarvester).not_to receive(:harvest_pubs_for_author_ids)
+      subject.do_science_wire_harvest
+    end
+  end
+
+  describe '.do_wos_harvest' do
+    it 'does nothing if WoS client is disabled' do
+      allow(Settings.WOS).to receive(:enabled).and_return(false)
+      expect(Author).not_to receive(:where)
+      expect(WebOfScience).not_to receive(:harvester)
+      subject.do_wos_harvest
+    end
+  end
 end
