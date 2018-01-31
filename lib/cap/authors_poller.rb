@@ -56,6 +56,7 @@ module Cap
     end
 
     def do_science_wire_harvest
+      return unless Settings.SCIENCEWIRE.enabled
       @sw_harvester.harvest_pubs_for_author_ids(@new_or_changed_authors_to_harvest_queue)
     end
 
