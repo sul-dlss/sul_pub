@@ -45,6 +45,22 @@ describe AuthorHarvestJob, type: :job do
     end
   end
 
+  context 'WebOfScience is disabled' do
+    it 'executes perform without calling sciencewire' do
+      expect(WebOfScience).not_to receive(:harvester)
+      perform_enqueued_jobs { job }
+    end
+  end
+
+  context 'WebOfScience is enabled' do
+    it 'executes perform using sciencewire' do
+      allow(Settings.WOS).to receive(:enabled).and_return(true)
+      harvester = WebOfScience.harvester
+      allow(harvester).to receive(:process_author).with(author)
+      perform_enqueued_jobs { job }
+    end
+  end
+
   # it 'handles no results error' do
   #   allow(MyService).to receive(:call).and_raise(NoResultsError)
   #
