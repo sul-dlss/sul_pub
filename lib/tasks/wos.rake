@@ -1,6 +1,13 @@
 namespace :wos do
-  desc 'Harvest from Web of Science, for all authors'
+  desc 'Harvest from Web of Science, for all authors, for all time'
   task harvest_authors: :environment do
+    Settings.WOS.AUTHOR_UPDATE = 0 # harvest publications from the beginning of time
+    WebOfScience.harvester.harvest_all
+  end
+
+  desc 'Harvest monthly updates from Web of Science, for all authors'
+  task harvest_authors_monthly: :environment do
+    Settings.WOS.AUTHOR_UPDATE = 30 # harvest publications from the past 30 days
     WebOfScience.harvester.harvest_all
   end
 
