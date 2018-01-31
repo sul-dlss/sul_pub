@@ -4,6 +4,13 @@ namespace :wos do
     WebOfScience.harvester.harvest_all
   end
 
+  desc 'Harvest from Web of Science, for one author'
+  task :harvest_author, [:cap_profile_id] => :environment do |_t, args|
+    author = Author.find_by(cap_profile_id: args[:cap_profile_id])
+    raise "Could not find Author by cap_profile_id: #{args[:cap_profile_id]}." if author.nil?
+    WebOfScience.harvester.process_author(author)
+  end
+
   desc 'Retrieve and print links for a publication by WOS-UID or WosItemId'
   task :links, [:wos_id] => :environment do |_t, args|
     raise 'wos_id argument is required.' if args[:wos_id].blank?
