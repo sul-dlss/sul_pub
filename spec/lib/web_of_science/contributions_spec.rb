@@ -3,17 +3,7 @@ describe WebOfScience::Contributions do
 
   let(:test_class) { Class.new { include WebOfScience::Contributions } } # or described_class
 
-  let(:author) do
-    # public data from
-    # - https://stanfordwho.stanford.edu
-    # - https://med.stanford.edu/profiles/russ-altman
-    FactoryBot.create(:author,
-                      preferred_first_name: 'Russ',
-                      preferred_last_name: 'Altman',
-                      preferred_middle_name: 'Biagio',
-                      email: 'Russ.Altman@stanford.edu',
-                      cap_import_enabled: true)
-  end
+  let(:author) { create :russ_altman }
 
   let(:wos_uids) { %w(WOS:A1976BW18000001 WOS:A1972N549400003) }
   let(:wos_A1972N549400003) { File.read('spec/fixtures/wos_client/wos_record_A1972N549400003.xml') }
