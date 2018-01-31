@@ -32,8 +32,24 @@ module WebOfScience
       # @return [Hash]
       def author_query
         params = queries.params_for_fields(empty_fields)
-        params[:queryParameters][:userQuery] = "AU=(#{names}) AND AD=(#{institution})"
+        update_time_span(params)
+        update_user_query(params)
         params
+      end
+
+      # Use Settings to limit the time span for harvesting publications to the past N days
+      # @param [Hash] params from queries.params_for_fields
+      # @return [void]
+      def update_time_span(params)
+        return if Settings.WOS.AUTHOR_UPDATE.blank? || Settings.WOS.AUTHOR_UPDATE <= 0
+        days_ago = (Time.zone.now - Settings.WOS.AUTHOR_UPDATE.days).strftime('%Y-%m-%d')
+        params[:queryParameters][:timeSpan][:begin] = days_ago
+      end
+
+      # @param [Hash] params from queries.params_for_fields
+      # @return [void]
+      def update_user_query(params)
+        params[:queryParameters][:userQuery] = "AU=(#{names}) AND AD=(#{institution})"
       end
 
       def empty_fields
