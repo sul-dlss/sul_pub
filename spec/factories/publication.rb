@@ -4,9 +4,9 @@ FactoryBot.define do
     year '1972'
     pub_hash do
       {
-        title: 'How I learned Rails',
-        type: 'article',
-        year: '1972',
+        title: title,
+        type: publication_type,
+        year: year,
         author: [
           { name: 'Jackson, Joe' }
         ],

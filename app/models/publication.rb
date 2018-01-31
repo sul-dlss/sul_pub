@@ -240,7 +240,7 @@ class Publication < ActiveRecord::Base
   end
 
   def authoritative_pmid_source?
-    pubmed_pub? || sciencewire_pub?
+    pubmed_pub? || sciencewire_pub? || wos_pub?
   end
 
   def authoritative_doi_source?
