@@ -76,3 +76,16 @@ class TablesHaveDataCheck < OkComputer::Check
   end
 end
 OkComputer::Registry.register "feature-tables-have-data", TablesHaveDataCheck.new
+
+class WosHitsRecentlyCheck < OkComputer::Check
+  def clause
+    3.weeks.ago
+  end
+
+  def check
+    count = WebOfScienceSourceRecord.where("updated_at > ?", clause).count
+    mark_message "#{count} WoS records updated since #{clause}.  "
+    mark_failure if count.zero?
+  end
+end
+OkComputer::Registry.register "wos-records-harvested-recently", WosHitsRecentlyCheck.new
