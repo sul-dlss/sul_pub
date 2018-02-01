@@ -49,7 +49,7 @@ module WebOfScience
       # @return [String, nil] WosUID that create a new Publication
       def process_record
         save_record # as WebOfScienceSourceRecord
-        return if found_contribution?
+        return if found_contribution?(author, record)
         contrib_persisted = create_publication
         pubmed_addition
         record.uid if contrib_persisted
@@ -63,15 +63,6 @@ module WebOfScience
         attr[:doi] = record.doi if record.doi.present?
         attr[:pmid] = record.pmid if record.pmid.present?
         WebOfScienceSourceRecord.create!(attr)
-      end
-
-      # Does record have a contribution for this author? (based on matching PublicationIdentifiers)
-      # Note: must use unique identifiers, don't use ISSN or similar series level identifiers
-      def found_contribution?
-        contribution_by_identifier?(author, 'WosUID', record.uid) ||
-          contribution_by_identifier?(author, 'WosItemID', record.wos_item_id) ||
-          contribution_by_identifier?(author, 'doi', record.doi) ||
-          contribution_by_identifier?(author, 'pmid', record.pmid)
       end
 
       # @return [Boolean] WebOfScience::Record created a new Publication?
@@ -104,6 +95,5 @@ module WebOfScience
         message = "Author: #{author.id}, #{record.uid}, PubmedSourceRecord failed, PMID: #{record.pmid}"
         NotificationManager.error(err, message, self)
       end
-
   end
 end
