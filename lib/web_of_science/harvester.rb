@@ -11,11 +11,11 @@ module WebOfScience
 
     # @param [Enumerable<Author>] authors
     # @return [void]
-    def harvest(authors)
+    def harvest(authors, options = {})
       log_info(nil, "started harvest(authors) batch - #{authors.count} authors")
       author_success = 0
       authors.each do |author|
-        process_author(author)
+        process_author(author, options)
         author_success += 1
       end
       log_info(nil, "completed harvest(authors) batch - #{author_success} processed")
@@ -26,10 +26,10 @@ module WebOfScience
     # Harvest all publications for an author
     # @param author [Author]
     # @return [Array<String>] WosUIDs that create Publications
-    def process_author(author)
+    def process_author(author, options = {})
       raise(ArgumentError, 'author must be an Author') unless author.is_a? Author
       log_info(author, 'processing')
-      uids = WebOfScience::QueryAuthor.new(author).uids
+      uids = WebOfScience::QueryAuthor.new(author, options).uids
       log_info(author, "#{uids.count} found by author query")
       uids = process_uids(author, uids)
       log_info(author, "#{uids.count} new publications")

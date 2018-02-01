@@ -3,7 +3,7 @@ module WebOfScience
   # Use author name-institution logic to find WOS publications for an Author
   class QueryAuthor
 
-    def initialize(author)
+    def initialize(author, options = {})
       raise(ArgumentError, 'author must be an Author') unless author.is_a? Author
       @names = Agent::AuthorName.new(
         author.last_name,
@@ -11,6 +11,7 @@ module WebOfScience
         Settings.HARVESTER.USE_MIDDLE_NAME ? author.middle_name : ''
       ).text_search_query
       @institution = Agent::AuthorInstitution.new(author.institution).normalize_name
+      @options = options
     end
 
     # Find all WOS-UIDs for an author
@@ -28,6 +29,7 @@ module WebOfScience
 
       attr_reader :names
       attr_reader :institution
+      attr_reader :options
 
       # @return [Hash]
       def author_query
