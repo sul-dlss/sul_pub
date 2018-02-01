@@ -4,6 +4,11 @@ namespace :wos do
     WebOfScience.harvester.harvest_all
   end
 
+  desc 'Update harvest from Web of Science, for all authors'
+  task harvest_authors_update: :environment do
+    WebOfScience.harvester.harvest_all(update: true)
+  end
+
   desc 'Harvest from Web of Science, for one author'
   task :harvest_author, [:cap_profile_id] => :environment do |_t, args|
     author = Author.find_by(cap_profile_id: args[:cap_profile_id])
