@@ -11,6 +11,8 @@ describe WebOfScience::Harvester do
 
   subject(:harvester) { described_class.new }
 
+  let(:author) { create :russ_altman }
+
   # WOS:A1976BW18000001 WOS:A1972N549400003 are in the wos_retrieve_by_id_response.xml
   let(:wos_uids) { %w(WOS:A1976BW18000001 WOS:A1972N549400003) }
   let(:wos_A1972N549400003) { File.read('spec/fixtures/wos_client/wos_record_A1972N549400003.xml') }
@@ -30,34 +32,6 @@ describe WebOfScience::Harvester do
 
   let(:medline_xml) { File.read('spec/fixtures/wos_client/medline_encoded_records.html') }
   let(:any_records_will_do) { WebOfScience::Records.new(encoded_records: medline_xml) }
-
-  let(:author) do
-    # public data from
-    # - https://stanfordwho.stanford.edu
-    # - https://med.stanford.edu/profiles/russ-altman
-    author = FactoryBot.create(:author,
-                                 preferred_first_name: 'Russ',
-                                 preferred_last_name: 'Altman',
-                                 preferred_middle_name: 'Biagio',
-                                 email: 'Russ.Altman@stanford.edu',
-                                 cap_import_enabled: true)
-    # create some `author.alternative_identities`
-    FactoryBot.create(:author_identity,
-                       author: author,
-                       first_name: 'R',
-                       middle_name: 'B',
-                       last_name: 'Altman',
-                       email: nil,
-                       institution: 'Stanford University')
-    FactoryBot.create(:author_identity,
-                       author: author,
-                       first_name: 'Russ',
-                       middle_name: nil,
-                       last_name: 'Altman',
-                       email: nil,
-                       institution: nil)
-    author
-  end
 
   let(:wos_auth_response) { File.read('spec/fixtures/wos_client/authenticate.xml') }
   before do
