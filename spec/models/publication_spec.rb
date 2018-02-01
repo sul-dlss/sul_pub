@@ -17,23 +17,16 @@ describe Publication do
   let(:pub_hash_cap_authorship) do
     # This input simulates a manual publication submission for an author who is
     # not yet in the SULCAP authors table, so there is no `author.id`.
-    cap_pub_hash = pub_hash.dup
-    cap_pub_hash[:authorship] = [{
+    pub_hash.merge authorship: [{
       cap_profile_id: 29_091,
       status: 'approved',
       visibility: 'public',
       featured: true
     }]
-    cap_pub_hash
   end
 
   describe 'test pub hash syncing for new object' do
-    subject do
-      p = Publication.new
-      p.pub_hash = pub_hash
-      p.save
-      p
-    end
+    subject { Publication.create!(pub_hash: pub_hash) }
 
     it 'should rebuild identifiers' do
       expect(subject.pub_hash[:identifier].length).to be > 0
@@ -50,7 +43,7 @@ describe Publication do
         expect(Author).to receive(:find_by_id).and_return(author)
         publication.pub_hash = pub_hash.dup
         publication.send(:update_any_new_contribution_info_in_pub_hash_to_db)
-        publication.save
+        publication.save!
         publication.reload
       end
 
@@ -78,7 +71,7 @@ describe Publication do
         expect(Author).to receive(:fetch_from_cap_and_create).and_return(author)
         publication.pub_hash = pub_hash_cap_authorship.dup
         publication.send(:update_any_new_contribution_info_in_pub_hash_to_db)
-        publication.save
+        publication.save!
         publication.reload
       end
       it 'should rebuild authors' do
@@ -105,7 +98,7 @@ describe Publication do
     it 'should sync identifiers in the pub hash to the database' do
       publication.pub_hash = { identifier: [{ type: 'x', id: 'y', url: 'z' }] }
       publication.send(:sync_identifiers_in_pub_hash)
-      publication.save
+      publication.save!
       i = PublicationIdentifier.last
       expect(i.identifier_type).to eq('x')
       expect(publication.publication_identifiers.reload).to include(i)
@@ -115,17 +108,17 @@ describe Publication do
       publication.pub_hash = { identifier: [{ type: 'SULPubId', id: 'y', url: 'z' }] }
       expect do
         publication.send(:sync_identifiers_in_pub_hash)
-        publication.save
+        publication.save!
       end.to_not change(publication, :publication_identifiers)
     end
 
     it 'updates existing ids with new values' do
       publication.pub_hash = { identifier: [{ type: 'x', id: 'y', url: 'z' }] }
       publication.send(:sync_identifiers_in_pub_hash)
-      publication.save
+      publication.save!
       publication.pub_hash = { identifier: [{ type: 'x', id: 'y2', url: 'z2' }] }
       publication.send(:sync_identifiers_in_pub_hash)
-      publication.save
+      publication.save!
       ids = PublicationIdentifier.where(publication_id: publication.id).all
       expect(ids).not_to be_empty
       expect(ids.first.identifier_type).to eq('x')
@@ -137,10 +130,10 @@ describe Publication do
     it 'deletes ids from the database that are not longer in the pub_hash' do
       publication.pub_hash = { identifier: [{ type: 'x', id: 'y', url: 'z' }] }
       publication.send(:sync_identifiers_in_pub_hash)
-      publication.save
+      publication.save!
       publication.pub_hash = { identifier: [{ type: 'a', id: 'b', url: 'c' }] }
       publication.send(:sync_identifiers_in_pub_hash)
-      publication.save
+      publication.save!
       expect(PublicationIdentifier.where(publication_id: publication.id, identifier_type: 'x').count).to eq(0)
       expect(PublicationIdentifier.where(publication_id: publication.id, identifier_type: 'a').count).to eq(1)
     end
@@ -148,10 +141,10 @@ describe Publication do
     it 'does not delete legacy_cap_pub_id when missing from the incoming pub_hash' do
       publication.pub_hash = { identifier: [{ type: 'legacy_cap_pub_id', id: '258214' }] }
       publication.send(:sync_identifiers_in_pub_hash)
-      publication.save
+      publication.save!
       publication.pub_hash = { identifier: [{ type: 'another', id: 'id', url: 'with a url' }] }
       publication.send(:sync_identifiers_in_pub_hash)
-      publication.save
+      publication.save!
       expect(PublicationIdentifier.where(publication_id: publication.id, identifier_type: 'legacy_cap_pub_id').count).to eq(1)
       expect(PublicationIdentifier.where(publication_id: publication.id, identifier_type: 'another').count).to eq(1)
     end
@@ -188,11 +181,11 @@ describe Publication do
 
     it 'should look up authors by their cap profile id' do
       author.cap_profile_id = 'abc'
-      author.save
+      author.save!
       publication.pub_hash = { authorship: [{ status: 'new', cap_profile_id: author.cap_profile_id }] }
       publication.send(:update_any_new_contribution_info_in_pub_hash_to_db)
 
-      publication.save
+      publication.save!
       expect(publication.contributions.size).to eq(1)
       c = publication.contributions.last
       expect(c.author).to eq(author)
@@ -202,7 +195,7 @@ describe Publication do
     it 'should ignore unknown authors' do
       publication.pub_hash = { authorship: [{ status: 'ignored', cap_profile_id: 'doesnt_exist' }] }
       publication.send(:update_any_new_contribution_info_in_pub_hash_to_db)
-      publication.save
+      publication.save!
       expect(publication.contributions).to be_empty
     end
   end
