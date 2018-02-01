@@ -25,6 +25,14 @@ describe Publication do
     }]
   end
 
+  describe '.pubhash_needs_update' do
+    subject(:pub) { Publication.new(pubhash_needs_update: true) }
+
+    it 'allows initialization with pubhash_needs_update' do
+      expect(pub.pubhash_needs_update).to be true
+    end
+  end
+
   describe 'test pub hash syncing for new object' do
     subject { Publication.create!(pub_hash: pub_hash) }
 
