@@ -1,4 +1,3 @@
-
 module WebOfScience
 
   # Queries on the Web of Science (or Web of Knowledge)
@@ -7,10 +6,8 @@ module WebOfScience
     # this is the maximum number that can be returned in a single query by WoS
     MAX_RECORDS = 100
 
+    # this is the _only_ value allowed by the WOS-API
     QUERY_LANGUAGE = 'en'.freeze
-
-    # limit the start date when searching for publications, format: YYYY-MM-DD
-    START_DATE = '1970-01-01'.freeze
 
     attr_reader :database
 
@@ -33,7 +30,7 @@ module WebOfScience
     # @return [WebOfScience::Retriever]
     def citing_articles(uid)
       raise(ArgumentError, 'uid must be a WOS-UID String') if uid.blank?
-      message = base_uid_params.merge(uid: uid, timeSpan: time_span)
+      message = base_uid_params.merge(uid: uid)
       WebOfScience::Retriever.new(:citing_articles, message)
     end
 
@@ -42,7 +39,7 @@ module WebOfScience
     def related_records(uid)
       raise(ArgumentError, 'uid must be a WOS-UID String') if uid.blank?
       # The 'WOS' database is the only option for this query
-      message = base_uid_params.merge(uid: uid, databaseId: 'WOS', timeSpan: time_span)
+      message = base_uid_params.merge(uid: uid, databaseId: 'WOS')
       WebOfScience::Retriever.new(:related_records, message)
     end
 
@@ -102,7 +99,6 @@ module WebOfScience
         queryParameters: {
           databaseId: database,
           userQuery: user_query,
-          timeSpan: time_span,
           queryLanguage: QUERY_LANGUAGE
         },
         retrieveParameters: retrieve_parameters
@@ -185,14 +181,6 @@ module WebOfScience
             value: 'http://scientific.thomsonreuters.com/schema/wok5.4/public/FullRecord'
           }
         ]
-      end
-
-      # @return [Hash] time span dates
-      def time_span
-        {
-          begin: START_DATE,
-          end: Time.zone.now.strftime('%Y-%m-%d')
-        }
       end
   end
 end
