@@ -104,6 +104,7 @@ describe PublicationsController do
 
       context 'SW disabled, WOS enabled' do
         let(:queries) { instance_double(WebOfScience::Queries) }
+        let(:retriever) { instance_double(WebOfScience::Retriever, next_batch: WebOfScience::Records.new(records: '<xml/>')) }
         before do
           allow(Settings.WOS).to receive(:enabled).and_return(true)
           allow(WebOfScience).to receive(:queries).and_return(queries)
@@ -111,11 +112,11 @@ describe PublicationsController do
 
         it 'hits WOS' do
           expect(ScienceWireClient).not_to receive(:new)
-          expect(queries).to receive(:user_query).with('TI=xyz').and_return([])
+          expect(queries).to receive(:user_query).with('TI=xyz').and_return(retriever)
           get :sourcelookup, title: 'xyz', format: 'json' # Partial title
         end
         it 'includes year if provided' do
-          expect(queries).to receive(:user_query).with('TI=xyz AND PY=2001').and_return([])
+          expect(queries).to receive(:user_query).with('TI=xyz AND PY=2001').and_return(retriever)
           get :sourcelookup, title: 'xyz', year: 2001, format: 'json' # Partial title
         end
       end
