@@ -12,16 +12,15 @@ module WebOfScience
     # @param [Enumerable<Author>] authors
     # @return [void]
     def harvest(authors)
-      logger.info "#{self.class} - started harvest(authors) - #{authors.count} authors"
+      log_info(nil, "started harvest(authors) batch - #{authors.count} authors")
       author_success = 0
       authors.each do |author|
         process_author(author)
         author_success += 1
       end
-      logger.info "#{self.class} - completed harvest(authors) - #{author_success} processed"
+      log_info(nil, "completed harvest(authors) batch - #{author_success} processed")
     rescue StandardError => err
-      message = "#{self.class} - harvest(authors) failed - #{author_success} processed"
-      NotificationManager.error(err, message, self)
+      NotificationManager.error(err, "harvest(authors) failed - #{author_success} processed", self)
     end
 
     # Harvest all publications for an author
@@ -34,11 +33,10 @@ module WebOfScience
       log_info(author, "#{uids.count} found by author query")
       uids = process_uids(author, uids)
       log_info(author, "#{uids.count} new publications")
-      log_info(author, "processed")
+      log_info(author, 'processed')
       uids
     rescue StandardError => err
-      message = "#{self.class} - harvest failed for author"
-      NotificationManager.error(err, message, self)
+      NotificationManager.error(err, "#{self.class} - harvest failed for author", self)
     end
 
     # Harvest DOI publications for an author
@@ -50,7 +48,7 @@ module WebOfScience
       raise(ArgumentError, 'dois must be Enumerable') unless dois.is_a? Enumerable
       dois = dois.map { |doi| ::Identifiers::DOI.extract_one(doi) }.compact
       log_info(author, "#{dois.count} DOIs for search")
-      # TODO: get links from the links-API to use additional identifiers for de-dup logic?
+      # TODO: get all the links for the DOIs and modify contribution checks to use all identifiers
       dois.reject! { |doi| contribution_by_identifier?(author, 'doi', doi) }
       log_info(author, "#{dois.count} DOIs without contributions")
       dois.flat_map { |doi| process_doi(author, doi) }.compact
@@ -94,6 +92,7 @@ module WebOfScience
       raise(ArgumentError, 'author must be an Author') unless author.is_a? Author
       raise(ArgumentError, 'uids must be Enumerable') unless uids.is_a? Enumerable
       log_info(author, "#{uids.count} UIDs for search")
+      # TODO: get all the links for the UIDs and modify contribution checks to use all identifiers
       uids -= author_contributions(author, uids)
       log_info(author, "#{uids.count} UIDs without contributions")
       return [] if uids.empty?
@@ -104,11 +103,14 @@ module WebOfScience
 
       delegate :logger, :queries, to: :WebOfScience
 
-      # @param [Author] author
-      # @param [String] info
+      # Consistent log prefix for status updates
+      # @param author [Author]
+      # @param [String] message
       # @return [void]
-      def log_info(author, info)
-        logger.info "#{self.class} - author #{author.id}: #{info}"
+      def log_info(author, message)
+        prefix = "#{self.class} - "
+        prefix += "author #{author.id} - " if author.is_a?(Author)
+        logger.info "#{prefix} - #{message}"
       end
 
       # Process records retrieved by any means
