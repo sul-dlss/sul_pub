@@ -35,9 +35,39 @@ module WebOfScience
       def author_query
         params = queries.params_for_fields(empty_fields)
         params[:queryParameters][:userQuery] = "AU=(#{names}) AND AD=(#{institution})"
+        compose_time_span(params)
         params
       end
 
+      # Use options to limit the symbolic time span for harvesting publications; this limit applies
+      # to the dates publications are added or updated in WOS collections, not publication dates. To
+      # quote the API documentation:
+      #
+      #     The symbolicTimeSpan element defines a range of load dates. The load date is the date when a record
+      #     was added to a database. If symbolicTimeSpan is specified, the timeSpan parameter must be omitted.
+      #     If timeSpan and symbolicTimeSpan are both omitted, then the maximum publication date time span
+      #     will be inferred from the editions data.
+      #
+      #     The valid values are strings: '1week', '2week', '4week' (prior to today)
+      #
+      # @param [Hash] params from queries.params_for_fields
+      # @return [void]
+      def compose_time_span(params)
+        return if options[:update].blank?
+        # The Savon gem and WOS SOAP API are _very_ sensitive to the order of the params in the Hash; it must be
+        # reconstructed in the correct order - do not try conventional ruby Hash updates here.  This makes no sense
+        # to me [DLW], but learning from experience indicates the following works OK:
+        query = params[:queryParameters].dup
+        params[:queryParameters] = {
+          databaseId: query[:databaseId],
+          userQuery: query[:userQuery],
+          symbolicTimeSpan: '4week',
+          queryLanguage: query[:queryLanguage]
+        }
+      end
+
+      # Use Settings.WOS.ACCEPTED_DBS to define collections without any fields retrieved
+      # @return [Array<Hash>]
       def empty_fields
         Settings.WOS.ACCEPTED_DBS.map { |db| { collectionName: db, fieldName: [''] } }
       end
