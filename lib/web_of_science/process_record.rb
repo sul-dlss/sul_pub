@@ -62,7 +62,7 @@ module WebOfScience
         attr = { source_data: record.to_xml }
         attr[:doi] = record.doi if record.doi.present?
         attr[:pmid] = record.pmid if record.pmid.present?
-        WebOfScienceSourceRecord.new(attr).save!
+        WebOfScienceSourceRecord.create!(attr)
       end
 
       # Does record have a contribution for this author? (based on matching PublicationIdentifiers)
@@ -76,12 +76,11 @@ module WebOfScience
 
       # @return [Boolean] WebOfScience::Record created a new Publication?
       def create_publication
-        pub = Publication.new(
+        pub = Publication.create!(
           active: true,
           pub_hash: record.pub_hash,
           wos_uid: record.uid
         )
-        pub.save!
         contrib = find_or_create_contribution(author, pub)
         contrib.persisted?
       rescue StandardError => err

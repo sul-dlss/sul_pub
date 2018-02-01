@@ -61,11 +61,11 @@ module WebOfScience
       def save_wos_records
         return if records.empty?
         process_links
-        records.select! do |rec|
+        records.each do |rec|
           attr = { source_data: rec.to_xml }
           attr[:doi] = rec.doi if rec.doi.present?
           attr[:pmid] = rec.pmid if rec.pmid.present?
-          WebOfScienceSourceRecord.new(attr).save!
+          WebOfScienceSourceRecord.create!(attr)
         end
       end
 
