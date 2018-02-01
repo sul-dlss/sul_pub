@@ -65,7 +65,7 @@ class PublicationsController < ApplicationController
       if Settings.WOS.enabled
         query = "TI=#{params[:title]}"
         query += " AND PY=#{params[:year]}" if params[:year]
-        wos_matches = WebOfScience.queries.user_query(query).to_a # TODO: limit
+        wos_matches = WebOfScience.queries.user_query(query).next_batch.to_a # limit: only 1 batch
         all_matching_records += wos_matches
         logger.debug(" -- WOS (#{wos_matches.length})")
       end
