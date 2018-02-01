@@ -28,15 +28,10 @@ module WebOfScience
     # @param author [Author]
     # @return [Array<String>] WosUIDs that create Publications
     def process_author(author)
-      # TODO: iterate on author identities also, or leave that to the consumer of this class?
       raise(ArgumentError, 'author must be an Author') unless author.is_a? Author
       log_info(author, 'processing')
       uids = WebOfScience::QueryAuthor.new(author).uids
       log_info(author, "#{uids.count} found by author query")
-
-      # TODO: get all the links for the UIDs and modify contribution checks to use all identifiers
-      # if any identifiers allow find/create contribution, don't retrieve those full records
-
       uids = process_uids(author, uids)
       log_info(author, "#{uids.count} new publications")
       log_info(author, "processed")
