@@ -39,8 +39,7 @@ module WebOfScience
           cap_profile_id: author.cap_profile_id,
           featured: false, status: 'new', visibility: 'private'
         )
-        # Add the pub_hash[:authorship] data to the publication
-        publication.pubhash_needs_update!
+        publication.pubhash_needs_update! # Add to pub_hash[:authorship]
         publication.save! # contrib.save! not needed
       end
     rescue ActiveRecord::ActiveRecordError => err
@@ -50,14 +49,28 @@ module WebOfScience
 
     # Does record have a contribution for this author? (based on matching PublicationIdentifiers)
     # Note: must use unique identifiers, don't use ISSN or similar series level identifiers
+    # We search for all PubIDs at once instead of serial queries.  No need to hit the same table multiple times.
     # @param [Author] author
     # @param [WebOfScience::Record] record
-    # @return [Boolean]
+    # @return [::Contribution, nil] a matched or newly minted Contribution
     def found_contribution?(author, record)
-      contribution_by_identifier?(author, 'WosUID', record.uid) ||
-        contribution_by_identifier?(author, 'WosItemID', record.wos_item_id) ||
-        contribution_by_identifier?(author, 'doi', record.doi) ||
-        contribution_by_identifier?(author, 'pmid', record.pmid)
+      pub = Publication.joins(:publication_identifiers).where(
+        "publication_identifiers.identifier_value IS NOT NULL AND (
+         (publication_identifiers.identifier_type = 'WosUID' AND publication_identifiers.identifier_value = ?) OR
+         (publication_identifiers.identifier_type = 'WosItemID' AND publication_identifiers.identifier_value = ?) OR
+         (publication_identifiers.identifier_type = 'doi' AND publication_identifiers.identifier_value = ?) OR
+         (publication_identifiers.identifier_type = 'pmid' AND publication_identifiers.identifier_value = ?))",
+         record.uid, record.wos_item_id, record.doi, record.pmid
+      ).order(
+        "CASE
+          WHEN publication_identifiers.identifier_type = 'WosUID' THEN 0
+          WHEN publication_identifiers.identifier_type = 'WosItemID' THEN 1
+          WHEN publication_identifiers.identifier_type = 'doi' THEN 2
+          WHEN publication_identifiers.identifier_type = 'pmid' THEN 3
+         END"
+      ).first
+      return unless pub
+      find_or_create_contribution(author, pub)
     end
 
     # Find any matching contribution by author and PublicationIdentifier
