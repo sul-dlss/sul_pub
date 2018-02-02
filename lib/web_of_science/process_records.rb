@@ -56,28 +56,36 @@ module WebOfScience
       end
 
       # Save and select new WebOfScienceSourceRecords
-      # Note: add nothing to PublicationIdentifiers here, or filter_by_contributions might reject them
       def save_wos_records
         return if records.empty?
         process_links
-        records.each do |rec|
-          attr = { source_data: rec.to_xml }
-          attr[:doi] = rec.doi if rec.doi.present?
-          attr[:pmid] = rec.pmid if rec.pmid.present?
-          WebOfScienceSourceRecord.create!(attr)
-        end
+        records.select! { |record| save_wos_record(record) }
+      end
+
+      # Save a WebOfScienceSourceRecord
+      # Note: add nothing to PublicationIdentifiers here, or filter_by_contributions might reject them
+      # @return [Boolean] WebOfScience::Record created a new WebOfScienceSourceRecord?
+      def save_wos_record(record)
+        attr = { source_data: record.to_xml }
+        attr[:doi] = record.doi if record.doi.present?
+        attr[:pmid] = record.pmid if record.pmid.present?
+        src = WebOfScienceSourceRecord.create!(attr)
+        src.persisted?
+      rescue ActiveRecord::ActiveRecordError
+        message = "Author: #{author.id}, #{record.uid}; WebOfScienceSourceRecord failed"
+        NotificationManager.error(err, message, self)
+        false
       end
 
       # @param [WebOfScience::Record] record
       # @return [Boolean] WebOfScience::Record created a new Publication?
       def create_publication(record)
-        pub = Publication.new(
+        pub = Publication.create!(
           active: true,
           pub_hash: record.pub_hash,
-          wos_uid: record.uid
+          wos_uid: record.uid,
+          pubhash_needs_update: true
         )
-        pub.pubhash_needs_update!
-        pub.save!
         contrib = find_or_create_contribution(author, pub)
         contrib.persisted?
       rescue StandardError => err
