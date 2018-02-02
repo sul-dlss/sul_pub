@@ -71,13 +71,12 @@ module WebOfScience
       # @param [WebOfScience::Record] record
       # @return [Boolean] WebOfScience::Record created a new Publication?
       def create_publication(record)
-        pub = Publication.new(
+        pub = Publication.create!(
           active: true,
           pub_hash: record.pub_hash,
-          wos_uid: record.uid
+          wos_uid: record.uid,
+          pubhash_needs_update: true
         )
-        pub.pubhash_needs_update!
-        pub.save!
         contrib = find_or_create_contribution(author, pub)
         contrib.persisted?
       rescue StandardError => err
