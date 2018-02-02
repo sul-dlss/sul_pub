@@ -2,6 +2,8 @@ class Publication < ActiveRecord::Base
   has_paper_trail on: [:destroy]
   scope :with_active_author, -> { joins(:authors).where('authors.active_in_cap' => true).uniq }
 
+  attr_accessor :pubhash_needs_update
+
   after_create do
     set_sul_pub_id_in_hash
     save
@@ -164,7 +166,7 @@ class Publication < ActiveRecord::Base
   end
 
   def pubhash_needs_update?
-    @pubhash_needs_update || false
+    pubhash_needs_update || false
   end
 
   ###

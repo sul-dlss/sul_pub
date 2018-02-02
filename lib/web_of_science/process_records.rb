@@ -43,8 +43,7 @@ module WebOfScience
       def create_publications
         select_new_wos_records # cf. WebOfScienceSourceRecord
         save_wos_records # save WebOfScienceSourceRecord
-        filter_by_contributions # Contributions by PublicationIdentifier
-        records.select! { |rec| create_publication(rec) }
+        records.select! { |rec| !found_contribution?(author, rec) && create_publication(rec) }
         pubmed_additions(records)
         records.map(&:uid)
       end
@@ -61,22 +60,11 @@ module WebOfScience
       def save_wos_records
         return if records.empty?
         process_links
-        records.select! do |rec|
+        records.each do |rec|
           attr = { source_data: rec.to_xml }
           attr[:doi] = rec.doi if rec.doi.present?
           attr[:pmid] = rec.pmid if rec.pmid.present?
-          WebOfScienceSourceRecord.new(attr).save!
-        end
-      end
-
-      # Select records that have no contributions, based on matching PublicationIdentifiers
-      # Note: must use unique identifiers, don't use ISSN or similar series level identifiers
-      def filter_by_contributions
-        records.reject! do |rec|
-          contribution_by_identifier?(author, 'WosUID', rec.uid) ||
-            contribution_by_identifier?(author, 'WosItemID', rec.wos_item_id) ||
-            contribution_by_identifier?(author, 'doi', rec.doi) ||
-            contribution_by_identifier?(author, 'pmid', rec.pmid)
+          WebOfScienceSourceRecord.create!(attr)
         end
       end
 

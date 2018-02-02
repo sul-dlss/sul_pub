@@ -58,6 +58,18 @@ module WebOfScience
       false
     end
 
+    # Does record have a contribution for this author? (based on matching PublicationIdentifiers)
+    # Note: must use unique identifiers, don't use ISSN or similar series level identifiers
+    # @param [Author] author
+    # @param [WebOfScience::Record] record
+    # @return [Boolean]
+    def found_contribution?(author, record)
+      contribution_by_identifier?(author, 'WosUID', record.uid) ||
+        contribution_by_identifier?(author, 'WosItemID', record.wos_item_id) ||
+        contribution_by_identifier?(author, 'doi', record.doi) ||
+        contribution_by_identifier?(author, 'pmid', record.pmid)
+    end
+
     # Find any matching contribution by author and PublicationIdentifier
     # @param author [Author]
     # @param type [String]
