@@ -50,6 +50,7 @@ WOS:
     - WOS
     - MEDLINE
   AUTH_CODE: secret
+  AUTHOR_UPDATE: 30 # days ago
   LOG: log/web_of_science.log
   LOG_LEVEL: warn
 
