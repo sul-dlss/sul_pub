@@ -34,28 +34,18 @@ module WebOfScience
     # @param [Publication]
     # @return [Contribution]
     def find_or_create_contribution(author, publication)
-      contrib = publication.contributions.find_or_initialize_by(author_id: author.id)
-      create_contribution(author, contrib) unless contrib.persisted?
-      contrib
-    end
-
-    # Save a new contribution to a WOS-UID publication for author.
-    # @param author [Author]
-    # @param contrib [Contribution]
-    # @return [Boolean]
-    def create_contribution(author, contrib)
-      contrib.assign_attributes(
-        cap_profile_id: author.cap_profile_id,
-        featured: false, status: 'new', visibility: 'private'
-      )
-      contrib.save!
-      # Add the pub_hash[:authorship] data to the publication
-      contrib.publication.pubhash_needs_update!
-      contrib.publication.save!
+      publication.contributions.find_or_create_by!(author_id: author.id) do |contrib|
+        contrib.assign_attributes(
+          cap_profile_id: author.cap_profile_id,
+          featured: false, status: 'new', visibility: 'private'
+        )
+        # Add the pub_hash[:authorship] data to the publication
+        publication.pubhash_needs_update!
+        publication.save! # contrib.save! not needed
+      end
     rescue ActiveRecord::ActiveRecordError => err
-      message = "Failed to create contribution for author: #{author.id}, pub: #{contrib.publication.id}"
+      message = "Failed to find/create contribution for author: #{author.id}, pub: #{publication.id}"
       NotificationManager.error(err, message, self)
-      false
     end
 
     # Does record have a contribution for this author? (based on matching PublicationIdentifiers)
@@ -77,10 +67,10 @@ module WebOfScience
     # @return [Boolean] contribution exists
     def contribution_by_identifier?(author, type, value)
       return false if type.blank? || value.blank?
-      pub_id = PublicationIdentifier.find_by(identifier_type: type, identifier_value: value)
-      return false if pub_id.nil?
-      contrib = find_or_create_contribution(author, pub_id.publication)
-      contrib.nil? ? false : contrib.persisted?
+      pub = Publication.includes(:publication_identifiers)
+                       .find_by("publication_identifiers.identifier_type": type, "publication_identifiers.identifier_value": value)
+      return false unless pub
+      find_or_create_contribution(author, pub) ? true : false
     end
   end
 end
