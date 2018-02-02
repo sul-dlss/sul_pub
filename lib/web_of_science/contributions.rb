@@ -76,30 +76,11 @@ module WebOfScience
     # @param value [String]
     # @return [Boolean] contribution exists
     def contribution_by_identifier?(author, type, value)
-      contrib = contribution_by_identifier(author, type, value)
+      return false if type.blank? || value.blank?
+      pub_id = PublicationIdentifier.find_by(identifier_type: type, identifier_value: value)
+      return false if pub_id.nil?
+      contrib = find_or_create_contribution(author, pub_id.publication)
       contrib.nil? ? false : contrib.persisted?
     end
-
-    # Find any matching contribution by author and PublicationIdentifier
-    # @param author [Author]
-    # @param type [String]
-    # @param value [String]
-    # @return [Contribution, nil]
-    def contribution_by_identifier(author, type, value)
-      pub_id = publication_identifier(type, value)
-      return if pub_id.nil?
-      find_or_create_contribution(author, pub_id.publication)
-    end
-
-    # Is there a PublicationIdentifier matching the type and value?
-    # @param type [String]
-    # @param value [String]
-    # @return [PublicationIdentifier, nil]
-    def publication_identifier(type, value)
-      return if type.blank? || value.blank?
-      pub_ids = PublicationIdentifier.where(identifier_type: type, identifier_value: value)
-      pub_ids.empty? ? nil : pub_ids.first
-    end
-
   end
 end
