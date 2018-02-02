@@ -48,7 +48,7 @@ module WebOfScience
       # whether it should create a new Publication.pub_hash, PublicationIdentifier(s) and Contribution(s).
       # @return [String, nil] WosUID that create a new Publication
       def process_record
-        save_record # as WebOfScienceSourceRecord
+        return unless save_record # as WebOfScienceSourceRecord
         return if found_contribution?(author, record)
         contrib_persisted = create_publication
         pubmed_addition
@@ -57,12 +57,18 @@ module WebOfScience
 
       # Save a new WebOfScienceSourceRecord
       # Note: add nothing to PublicationIdentifiers here, or found_contribution? could skip processing this record
+      # @return [Boolean] WebOfScience::Record created a new WebOfScienceSourceRecord?
       def save_record
         return unless WebOfScienceSourceRecord.find_by(uid: record.uid).nil?
         attr = { source_data: record.to_xml }
         attr[:doi] = record.doi if record.doi.present?
         attr[:pmid] = record.pmid if record.pmid.present?
-        WebOfScienceSourceRecord.create!(attr)
+        src = WebOfScienceSourceRecord.create!(attr)
+        src.persisted?
+      rescue ActiveRecord::ActiveRecordError
+        message = "Author: #{author.id}, #{record.uid}; WebOfScienceSourceRecord failed"
+        NotificationManager.error(err, message, self)
+        false
       end
 
       # @return [Boolean] WebOfScience::Record created a new Publication?
@@ -70,7 +76,8 @@ module WebOfScience
         pub = Publication.create!(
           active: true,
           pub_hash: record.pub_hash,
-          wos_uid: record.uid
+          wos_uid: record.uid,
+          pubhash_needs_update: true
         )
         contrib = find_or_create_contribution(author, pub)
         contrib.persisted?
