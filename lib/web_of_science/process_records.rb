@@ -43,7 +43,7 @@ module WebOfScience
       def create_publications
         select_new_wos_records # cf. WebOfScienceSourceRecord
         save_wos_records # save WebOfScienceSourceRecord
-        records.select! { |rec| !found_contribution?(author, rec) && create_publication(rec) }
+        records.select! { |rec| !matching_contribution(author, rec) && create_publication(rec) }
         pubmed_additions(records)
         records.map(&:uid)
       end

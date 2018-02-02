@@ -53,7 +53,7 @@ module WebOfScience
     # @param [Author] author
     # @param [WebOfScience::Record] record
     # @return [::Contribution, nil] a matched or newly minted Contribution
-    def found_contribution?(author, record)
+    def matching_contribution(author, record)
       pub = Publication.joins(:publication_identifiers).where(
         "publication_identifiers.identifier_value IS NOT NULL AND (
          (publication_identifiers.identifier_type = 'WosUID' AND publication_identifiers.identifier_value = ?) OR
