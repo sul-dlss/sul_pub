@@ -90,4 +90,5 @@ group :deployment do
   gem 'capistrano-rails'
   gem 'capistrano-shell'
   gem 'dlss-capistrano'
+  gem 'capistrano3-delayed-job', '~> 1.0'
 end

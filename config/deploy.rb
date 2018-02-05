@@ -29,3 +29,5 @@ set :linked_dirs, fetch(:linked_dirs, []).push(
 )
 
 set :whenever_identifier, ->{ "#{fetch(:application)}_#{fetch(:stage)}" }
+
+set :delayed_job_workers, 2
