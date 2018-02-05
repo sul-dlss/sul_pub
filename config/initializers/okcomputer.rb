@@ -89,3 +89,12 @@ class WosHitsRecentlyCheck < OkComputer::Check
   end
 end
 OkComputer::Registry.register "wos-records-harvested-recently", WosHitsRecentlyCheck.new
+
+class DelayedJobCheck < OkComputer::Check
+  def check
+    status = `RAILS_ENV=#{Rails.env} bundle exec bin/delayed_job status`
+    result = $?.success?
+    mark_failure unless result && status.include?('running')
+  end
+end
+OkComputer::Registry.register 'delayed-job-running', DelayedJobCheck.new
