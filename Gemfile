@@ -27,6 +27,7 @@ gem 'config'
 gem 'csl-styles', '~> 1.0'
 gem 'delayed_job'
 gem 'delayed_job_active_record'
+gem 'daemons'
 gem 'dotiw'
 gem 'faraday'
 gem 'high_voltage'
@@ -89,4 +90,5 @@ group :deployment do
   gem 'capistrano-rails'
   gem 'capistrano-shell'
   gem 'dlss-capistrano'
+  gem 'capistrano3-delayed-job', '~> 1.0'
 end

@@ -20,3 +20,8 @@ end
 every 1.day, at: stagger(4), roles: [:harvester_qa, :harvester_prod] do
   rake 'cap:poll[1]'
 end
+
+# ensure delayed_job is started on a reboot
+every :reboot do
+  command "cd :path && :environment_variable=:environment bundle exec bin/delayed_job start"
+end
