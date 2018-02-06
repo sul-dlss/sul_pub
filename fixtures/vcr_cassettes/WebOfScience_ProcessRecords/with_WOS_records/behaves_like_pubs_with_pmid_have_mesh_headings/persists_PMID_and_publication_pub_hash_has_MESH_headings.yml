@@ -8,13 +8,13 @@ http_interactions:
       string: "&id=&id=21253920"
     headers:
       User-Agent:
-      - Faraday v0.13.1
+      - Faraday v0.14.0
       Accept:
       - "*/*"
       Accept-Encoding:
       - gzip,deflate
       Date:
-      - Thu, 14 Dec 2017 23:25:00 GMT
+      - Tue, 06 Feb 2018 01:23:27 GMT
       Content-Type:
       - application/x-www-form-urlencoded
   response:
@@ -23,7 +23,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 14 Dec 2017 23:25:00 GMT
+      - Tue, 06 Feb 2018 01:23:27 GMT
       Server:
       - Apache
       Strict-Transport-Security:
@@ -35,14 +35,14 @@ http_interactions:
       Cache-Control:
       - private
       Ncbi-Phid:
-      - 990D57EAA3304E510000000002B702B0
+      - 03EEE88CA7902BF10000000001220120
       Ncbi-Sid:
-      - 990D57EAA33084C1_0695SID
+      - 03EEE88CA79038F1_0290SID
       Content-Type:
       - text/xml; charset=UTF-8
       Set-Cookie:
-      - ncbi_sid=990D57EAA33084C1_0695SID; domain=.nih.gov; path=/; expires=Fri, 14
-        Dec 2018 23:25:00 GMT
+      - ncbi_sid=03EEE88CA79038F1_0290SID; domain=.nih.gov; path=/; expires=Wed, 06
+        Feb 2019 01:23:27 GMT
       Vary:
       - Accept-Encoding
       Content-Encoding:
@@ -199,5 +199,5 @@ http_interactions:
 
         </PubmedArticleSet>
     http_version: 
-  recorded_at: Thu, 14 Dec 2017 23:25:01 GMT
+  recorded_at: Tue, 06 Feb 2018 01:23:27 GMT
 recorded_with: VCR 4.0.0
