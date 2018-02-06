@@ -130,7 +130,7 @@ describe WebOfScience::Queries do
       expect(params).to include(queryParameters: Hash, retrieveParameters: Hash)
     end
     it 'has queryParameters' do
-      expect(query).to include(databaseId: String, userQuery: String, timeSpan: Hash, queryLanguage: String)
+      expect(query).to include(databaseId: String, userQuery: String, queryLanguage: String)
     end
     it 'has retrieveParameters' do
       expect(retrieve).to include(firstRecord: Integer, count: Integer, option: Array)
