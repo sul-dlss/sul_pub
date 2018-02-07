@@ -1,6 +1,995 @@
 ---
 http_interactions:
 - request:
+    method: get
+    uri: http://search.webofknowledge.com/esti/wokmws/ws/WOKMWSAuthenticate?wsdl
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      User-Agent:
+      - HTTPClient/1.0 (2.8.3, ruby 2.4.1 (2017-03-22))
+      Accept:
+      - "*/*"
+      Date:
+      - Wed, 07 Feb 2018 22:57:37 GMT
+      Authorization:
+      - Basic Settings.WOS.AUTH_CODE
+      Soapaction:
+      - ''
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - text/xml
+      Date:
+      - Wed, 07 Feb 2018 22:57:37 GMT
+      Server:
+      - Apache-Coyote/1.1
+      Content-Length:
+      - '8705'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://auth.cxf.wokmws.thomsonreuters.com" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="WOKMWSAuthenticateService" targetNamespace="http://auth.cxf.wokmws.thomsonreuters.com">
+          <wsdl:types>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://auth.cxf.wokmws.thomsonreuters.com" targetNamespace="http://auth.cxf.wokmws.thomsonreuters.com" version="1.0">
+        <xs:element name="AuthenticationException" type="tns:AuthenticationException"/>
+        <xs:element name="ESTIWSException" type="tns:ESTIWSException"/>
+        <xs:element name="InternalServerException" type="tns:InternalServerException"/>
+        <xs:element name="InvalidInputException" type="tns:InvalidInputException"/>
+        <xs:element name="QueryException" type="tns:QueryException"/>
+        <xs:element name="SessionException" type="tns:SessionException"/>
+        <xs:element name="authenticate" type="tns:authenticate"/>
+        <xs:element name="authenticateResponse" type="tns:authenticateResponse"/>
+        <xs:element name="closeSession" type="tns:closeSession"/>
+        <xs:element name="closeSessionResponse" type="tns:closeSessionResponse"/>
+        <xs:complexType name="closeSession">
+            <xs:sequence/>
+          </xs:complexType>
+        <xs:complexType name="closeSessionResponse">
+            <xs:sequence/>
+          </xs:complexType>
+        <xs:complexType name="QueryException">
+            <xs:sequence/>
+          </xs:complexType>
+        <xs:complexType name="ESTIWSException">
+            <xs:sequence/>
+          </xs:complexType>
+        <xs:complexType name="InvalidInputException">
+            <xs:sequence/>
+          </xs:complexType>
+        <xs:complexType name="InternalServerException">
+            <xs:sequence/>
+          </xs:complexType>
+        <xs:complexType name="SessionException">
+            <xs:sequence/>
+          </xs:complexType>
+        <xs:complexType name="AuthenticationException">
+            <xs:sequence/>
+          </xs:complexType>
+        <xs:complexType name="authenticate">
+            <xs:sequence/>
+          </xs:complexType>
+        <xs:complexType name="authenticateResponse">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="return" type="xs:string"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:schema>
+          </wsdl:types>
+          <wsdl:message name="closeSession">
+            <wsdl:part element="tns:closeSession" name="parameters">
+            </wsdl:part>
+          </wsdl:message>
+          <wsdl:message name="QueryException_Exception">
+            <wsdl:part element="tns:QueryException" name="QueryException_Exception">
+            </wsdl:part>
+          </wsdl:message>
+          <wsdl:message name="ESTIWSException_Exception">
+            <wsdl:part element="tns:ESTIWSException" name="ESTIWSException_Exception">
+            </wsdl:part>
+          </wsdl:message>
+          <wsdl:message name="InvalidInputException_Exception">
+            <wsdl:part element="tns:InvalidInputException" name="InvalidInputException_Exception">
+            </wsdl:part>
+          </wsdl:message>
+          <wsdl:message name="InternalServerException_Exception">
+            <wsdl:part element="tns:InternalServerException" name="InternalServerException_Exception">
+            </wsdl:part>
+          </wsdl:message>
+          <wsdl:message name="SessionException_Exception">
+            <wsdl:part element="tns:SessionException" name="SessionException_Exception">
+            </wsdl:part>
+          </wsdl:message>
+          <wsdl:message name="authenticate">
+            <wsdl:part element="tns:authenticate" name="parameters">
+            </wsdl:part>
+          </wsdl:message>
+          <wsdl:message name="closeSessionResponse">
+            <wsdl:part element="tns:closeSessionResponse" name="parameters">
+            </wsdl:part>
+          </wsdl:message>
+          <wsdl:message name="authenticateResponse">
+            <wsdl:part element="tns:authenticateResponse" name="parameters">
+            </wsdl:part>
+          </wsdl:message>
+          <wsdl:message name="AuthenticationException_Exception">
+            <wsdl:part element="tns:AuthenticationException" name="AuthenticationException_Exception">
+            </wsdl:part>
+          </wsdl:message>
+          <wsdl:portType name="WOKMWSAuthenticate">
+            <wsdl:operation name="closeSession">
+              <wsdl:input message="tns:closeSession" name="closeSession">
+            </wsdl:input>
+              <wsdl:output message="tns:closeSessionResponse" name="closeSessionResponse">
+            </wsdl:output>
+              <wsdl:fault message="tns:SessionException_Exception" name="SessionException_Exception">
+            </wsdl:fault>
+              <wsdl:fault message="tns:AuthenticationException_Exception" name="AuthenticationException_Exception">
+            </wsdl:fault>
+              <wsdl:fault message="tns:ESTIWSException_Exception" name="ESTIWSException_Exception">
+            </wsdl:fault>
+              <wsdl:fault message="tns:InvalidInputException_Exception" name="InvalidInputException_Exception">
+            </wsdl:fault>
+              <wsdl:fault message="tns:InternalServerException_Exception" name="InternalServerException_Exception">
+            </wsdl:fault>
+              <wsdl:fault message="tns:QueryException_Exception" name="QueryException_Exception">
+            </wsdl:fault>
+            </wsdl:operation>
+            <wsdl:operation name="authenticate">
+              <wsdl:input message="tns:authenticate" name="authenticate">
+            </wsdl:input>
+              <wsdl:output message="tns:authenticateResponse" name="authenticateResponse">
+            </wsdl:output>
+              <wsdl:fault message="tns:SessionException_Exception" name="SessionException_Exception">
+            </wsdl:fault>
+              <wsdl:fault message="tns:AuthenticationException_Exception" name="AuthenticationException_Exception">
+            </wsdl:fault>
+              <wsdl:fault message="tns:ESTIWSException_Exception" name="ESTIWSException_Exception">
+            </wsdl:fault>
+              <wsdl:fault message="tns:InvalidInputException_Exception" name="InvalidInputException_Exception">
+            </wsdl:fault>
+              <wsdl:fault message="tns:InternalServerException_Exception" name="InternalServerException_Exception">
+            </wsdl:fault>
+              <wsdl:fault message="tns:QueryException_Exception" name="QueryException_Exception">
+            </wsdl:fault>
+            </wsdl:operation>
+          </wsdl:portType>
+          <wsdl:binding name="WOKMWSAuthenticateServiceSoapBinding" type="tns:WOKMWSAuthenticate">
+            <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+            <wsdl:operation name="closeSession">
+              <soap:operation soapAction="" style="document"/>
+              <wsdl:input name="closeSession">
+                <soap:body use="literal"/>
+              </wsdl:input>
+              <wsdl:output name="closeSessionResponse">
+                <soap:body use="literal"/>
+              </wsdl:output>
+              <wsdl:fault name="SessionException_Exception">
+                <soap:fault name="SessionException_Exception" use="literal"/>
+              </wsdl:fault>
+              <wsdl:fault name="AuthenticationException_Exception">
+                <soap:fault name="AuthenticationException_Exception" use="literal"/>
+              </wsdl:fault>
+              <wsdl:fault name="ESTIWSException_Exception">
+                <soap:fault name="ESTIWSException_Exception" use="literal"/>
+              </wsdl:fault>
+              <wsdl:fault name="InvalidInputException_Exception">
+                <soap:fault name="InvalidInputException_Exception" use="literal"/>
+              </wsdl:fault>
+              <wsdl:fault name="InternalServerException_Exception">
+                <soap:fault name="InternalServerException_Exception" use="literal"/>
+              </wsdl:fault>
+              <wsdl:fault name="QueryException_Exception">
+                <soap:fault name="QueryException_Exception" use="literal"/>
+              </wsdl:fault>
+            </wsdl:operation>
+            <wsdl:operation name="authenticate">
+              <soap:operation soapAction="" style="document"/>
+              <wsdl:input name="authenticate">
+                <soap:body use="literal"/>
+              </wsdl:input>
+              <wsdl:output name="authenticateResponse">
+                <soap:body use="literal"/>
+              </wsdl:output>
+              <wsdl:fault name="SessionException_Exception">
+                <soap:fault name="SessionException_Exception" use="literal"/>
+              </wsdl:fault>
+              <wsdl:fault name="AuthenticationException_Exception">
+                <soap:fault name="AuthenticationException_Exception" use="literal"/>
+              </wsdl:fault>
+              <wsdl:fault name="ESTIWSException_Exception">
+                <soap:fault name="ESTIWSException_Exception" use="literal"/>
+              </wsdl:fault>
+              <wsdl:fault name="InvalidInputException_Exception">
+                <soap:fault name="InvalidInputException_Exception" use="literal"/>
+              </wsdl:fault>
+              <wsdl:fault name="InternalServerException_Exception">
+                <soap:fault name="InternalServerException_Exception" use="literal"/>
+              </wsdl:fault>
+              <wsdl:fault name="QueryException_Exception">
+                <soap:fault name="QueryException_Exception" use="literal"/>
+              </wsdl:fault>
+            </wsdl:operation>
+          </wsdl:binding>
+          <wsdl:service name="WOKMWSAuthenticateService">
+            <wsdl:port binding="tns:WOKMWSAuthenticateServiceSoapBinding" name="WOKMWSAuthenticatePort">
+              <soap:address location="http://search.webofknowledge.com/esti/wokmws/ws/WOKMWSAuthenticate"/>
+            </wsdl:port>
+          </wsdl:service>
+        </wsdl:definitions>
+    http_version: 
+  recorded_at: Wed, 07 Feb 2018 22:57:37 GMT
+- request:
+    method: post
+    uri: http://search.webofknowledge.com/esti/wokmws/ws/WOKMWSAuthenticate
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8"?><soapenv:Envelope xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tns="http://auth.cxf.wokmws.thomsonreuters.com"
+        xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Body><tns:authenticate></tns:authenticate></soapenv:Body></soapenv:Envelope>
+    headers:
+      User-Agent:
+      - HTTPClient/1.0 (2.8.3, ruby 2.4.1 (2017-03-22))
+      Accept:
+      - "*/*"
+      Date:
+      - Wed, 07 Feb 2018 22:57:37 GMT
+      Authorization:
+      - Basic Settings.WOS.AUTH_CODE
+      Soapaction:
+      - ''
+      Content-Type:
+      - text/xml;charset=UTF-8
+      Content-Length:
+      - '352'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - text/xml;charset=UTF-8
+      Date:
+      - Wed, 07 Feb 2018 22:57:37 GMT
+      Server:
+      - Apache-Coyote/1.1
+      Set-Cookie:
+      - SID=8ETGyzYOSi8Tu99oW5x
+      Content-Length:
+      - '252'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"><soap:Body><ns2:authenticateResponse
+        xmlns:ns2="http://auth.cxf.wokmws.thomsonreuters.com"><return>8ETGyzYOSi8Tu99oW5x</return></ns2:authenticateResponse></soap:Body></soap:Envelope>
+    http_version: 
+  recorded_at: Wed, 07 Feb 2018 22:57:37 GMT
+- request:
+    method: get
+    uri: http://search.webofknowledge.com/esti/wokmws/ws/WokSearch?wsdl
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      User-Agent:
+      - HTTPClient/1.0 (2.8.3, ruby 2.4.1 (2017-03-22))
+      Accept:
+      - "*/*"
+      Date:
+      - Wed, 07 Feb 2018 22:57:37 GMT
+      Cookie:
+      - SID="8ETGyzYOSi8Tu99oW5x"
+      Soapaction:
+      - ''
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - text/xml
+      Date:
+      - Wed, 07 Feb 2018 22:57:37 GMT
+      Server:
+      - Apache-Coyote/1.1
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://woksearch.v3.wokmws.thomsonreuters.com" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="WokSearchService" targetNamespace="http://woksearch.v3.wokmws.thomsonreuters.com">
+          <wsdl:types>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://woksearch.v3.wokmws.thomsonreuters.com" targetNamespace="http://woksearch.v3.wokmws.thomsonreuters.com" version="1.0">
+        <xs:element name="AuthenticationException" type="tns:AuthenticationException"/>
+        <xs:element name="ESTIWSException" type="tns:ESTIWSException"/>
+        <xs:element name="InternalServerException" type="tns:InternalServerException"/>
+        <xs:element name="InvalidInputException" type="tns:InvalidInputException"/>
+        <xs:element name="QueryException" type="tns:QueryException"/>
+        <xs:element name="SessionException" type="tns:SessionException"/>
+        <xs:element name="citedReferences" type="tns:citedReferences"/>
+        <xs:element name="citedReferencesResponse" type="tns:citedReferencesResponse"/>
+        <xs:element name="citedReferencesRetrieve" type="tns:citedReferencesRetrieve"/>
+        <xs:element name="citedReferencesRetrieveResponse" type="tns:citedReferencesRetrieveResponse"/>
+        <xs:element name="citingArticles" type="tns:citingArticles"/>
+        <xs:element name="citingArticlesResponse" type="tns:citingArticlesResponse"/>
+        <xs:element name="relatedRecords" type="tns:relatedRecords"/>
+        <xs:element name="relatedRecordsResponse" type="tns:relatedRecordsResponse"/>
+        <xs:element name="retrieve" type="tns:retrieve"/>
+        <xs:element name="retrieveById" type="tns:retrieveById"/>
+        <xs:element name="retrieveByIdResponse" type="tns:retrieveByIdResponse"/>
+        <xs:element name="retrieveResponse" type="tns:retrieveResponse"/>
+        <xs:element name="search" type="tns:search"/>
+        <xs:element name="searchResponse" type="tns:searchResponse"/>
+        <xs:complexType name="citedReferences">
+            <xs:sequence>
+              <xs:element name="databaseId" type="xs:string"/>
+              <xs:element name="uid" type="xs:string"/>
+              <xs:element name="queryLanguage" type="xs:string"/>
+              <xs:element name="retrieveParameters" type="tns:retrieveParameters"/>
+            </xs:sequence>
+          </xs:complexType>
+        <xs:complexType name="retrieveParameters">
+            <xs:sequence>
+              <xs:element name="firstRecord" type="xs:int"/>
+              <xs:element name="count" type="xs:int"/>
+              <xs:element maxOccurs="unbounded" minOccurs="0" name="sortField" nillable="true" type="tns:sortField"/>
+              <xs:element maxOccurs="unbounded" minOccurs="0" name="viewField" nillable="true" type="tns:viewField"/>
+              <xs:element maxOccurs="unbounded" minOccurs="0" name="option" nillable="true" type="tns:keyValuePair"/>
+            </xs:sequence>
+          </xs:complexType>
+        <xs:complexType name="sortField">
+            <xs:sequence>
+              <xs:element name="name" type="xs:string"/>
+              <xs:element name="sort" type="xs:string"/>
+            </xs:sequence>
+          </xs:complexType>
+        <xs:complexType name="viewField">
+            <xs:sequence>
+              <xs:element name="collectionName" type="xs:string"/>
+              <xs:element maxOccurs="unbounded" minOccurs="0" name="fieldName" nillable="true" type="xs:string"/>
+            </xs:sequence>
+          </xs:complexType>
+        <xs:complexType name="keyValuePair">
+            <xs:sequence>
+              <xs:element name="key" type="xs:string"/>
+              <xs:element name="value" nillable="true" type="xs:string"/>
+            </xs:sequence>
+          </xs:complexType>
+        <xs:complexType name="citedReferencesResponse">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="return" type="tns:citedReferencesSearchResults"/>
+            </xs:sequence>
+          </xs:complexType>
+        <xs:complexType name="citedReferencesSearchResults">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="queryId" type="xs:string"/>
+              <xs:element maxOccurs="unbounded" minOccurs="0" name="references" nillable="true" type="tns:citedReference"/>
+              <xs:element name="recordsFound" type="xs:int"/>
+              <xs:element name="recordsSearched" type="xs:long"/>
+            </xs:sequence>
+          </xs:complexType>
+        <xs:complexType name="citedReference">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="uid" type="xs:string"/>
+              <xs:element minOccurs="0" name="docid" type="xs:string"/>
+              <xs:element minOccurs="0" name="articleId" type="xs:string"/>
+              <xs:element minOccurs="0" name="citedAuthor" type="xs:string"/>
+              <xs:element minOccurs="0" name="timesCited" type="xs:string"/>
+              <xs:element minOccurs="0" name="year" type="xs:string"/>
+              <xs:element minOccurs="0" name="page" type="xs:string"/>
+              <xs:element minOccurs="0" name="volume" type="xs:string"/>
+              <xs:element minOccurs="0" name="citedTitle" type="xs:string"/>
+              <xs:element minOccurs="0" name="citedWork" type="xs:string"/>
+              <xs:element minOccurs="0" name="hot" type="xs:string"/>
+            </xs:sequence>
+          </xs:complexType>
+        <xs:complexType name="QueryException">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="faultInformation" type="tns:FaultInformation"/>
+              <xs:element minOccurs="0" name="rawFaultInformation" type="tns:RawFaultInformation"/>
+            </xs:sequence>
+          </xs:complexType>
+        <xs:complexType name="FaultInformation">
+            <xs:sequence>
+              <xs:element name="code" type="xs:string"/>
+              <xs:element minOccurs="0" name="message" type="xs:string"/>
+              <xs:element minOccurs="0" name="reason" type="xs:string"/>
+              <xs:element minOccurs="0" name="causeType" type="xs:string"/>
+              <xs:element minOccurs="0" name="cause" type="xs:string"/>
+              <xs:element minOccurs="0" name="supportingWebServiceException" type="tns:SupportingWebServiceException"/>
+              <xs:element minOccurs="0" name="remedy" type="xs:string"/>
+            </xs:sequence>
+          </xs:complexType>
+        <xs:complexType name="SupportingWebServiceException">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="remoteNamespace" type="xs:string"/>
+              <xs:element minOccurs="0" name="remoteOperation" type="xs:string"/>
+              <xs:element minOccurs="0" name="remoteCode" type="xs:string"/>
+              <xs:element minOccurs="0" name="remoteReason" type="xs:string"/>
+              <xs:element minOccurs="0" name="handshakeCauseId" type="xs:string"/>
+              <xs:element minOccurs="0" name="handshakeCause" type="xs:string"/>
+            </xs:sequence>
+          </xs:complexType>
+        <xs:complexType name="RawFaultInformation">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="rawFaultstring" type="xs:string"/>
+              <xs:element minOccurs="0" name="rawMessage" type="xs:string"/>
+              <xs:element minOccurs="0" name="rawReason" type="xs:string"/>
+              <xs:element minOccurs="0" name="rawCause" type="xs:string"/>
+              <xs:element minOccurs="0" name="rawRemedy" type="xs:string"/>
+              <xs:element maxOccurs="unbounded" minOccurs="0" name="messageData" nillable="true" type="xs:string"/>
+            </xs:sequence>
+          </xs:complexType>
+        <xs:complexType name="InvalidInputException">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="faultInformation" type="tns:FaultInformation"/>
+              <xs:element minOccurs="0" name="rawFaultInformation" type="tns:RawFaultInformation"/>
+            </xs:sequence>
+          </xs:complexType>
+        <xs:complexType name="ESTIWSException">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="faultInformation" type="tns:FaultInformation"/>
+              <xs:element minOccurs="0" name="rawFaultInformation" type="tns:RawFaultInformation"/>
+            </xs:sequence>
+          </xs:complexType>
+        <xs:complexType name="InternalServerException">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="faultInformation" type="tns:FaultInformation"/>
+              <xs:element minOccurs="0" name="rawFaultInformation" type="tns:RawFaultInformation"/>
+            </xs:sequence>
+          </xs:complexType>
+        <xs:complexType name="AuthenticationException">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="faultInformation" type="tns:FaultInformation"/>
+              <xs:element minOccurs="0" name="rawFaultInformation" type="tns:RawFaultInformation"/>
+            </xs:sequence>
+          </xs:complexType>
+        <xs:complexType name="SessionException">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="faultInformation" type="tns:FaultInformation"/>
+              <xs:element minOccurs="0" name="rawFaultInformation" type="tns:RawFaultInformation"/>
+            </xs:sequence>
+          </xs:complexType>
+        <xs:complexType name="citedReferencesRetrieve">
+            <xs:sequence>
+              <xs:element name="queryId" type="xs:string"/>
+              <xs:element name="retrieveParameters" type="tns:retrieveParameters"/>
+            </xs:sequence>
+          </xs:complexType>
+        <xs:complexType name="citedReferencesRetrieveResponse">
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:citedReference"/>
+            </xs:sequence>
+          </xs:complexType>
+        <xs:complexType name="relatedRecords">
+            <xs:sequence>
+              <xs:element name="databaseId" type="xs:string"/>
+              <xs:element name="uid" type="xs:string"/>
+              <xs:element maxOccurs="unbounded" minOccurs="0" name="editions" nillable="true" type="tns:editionDesc"/>
+              <xs:element minOccurs="0" name="timeSpan" type="tns:timeSpan"/>
+              <xs:element name="queryLanguage" type="xs:string"/>
+              <xs:element name="retrieveParameters" type="tns:retrieveParameters"/>
+            </xs:sequence>
+          </xs:complexType>
+        <xs:complexType name="editionDesc">
+            <xs:sequence>
+              <xs:element name="collection" type="xs:string"/>
+              <xs:element name="edition" type="xs:string"/>
+            </xs:sequence>
+          </xs:complexType>
+        <xs:complexType name="timeSpan">
+            <xs:sequence>
+              <xs:element name="begin" type="xs:string"/>
+              <xs:element name="end" type="xs:string"/>
+            </xs:sequence>
+          </xs:complexType>
+        <xs:complexType name="relatedRecordsResponse">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="return" type="tns:fullRecordSearchResults"/>
+            </xs:sequence>
+          </xs:complexType>
+        <xs:complexType name="fullRecordSearchResults">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="queryId" type="xs:string"/>
+              <xs:element name="recordsFound" type="xs:int"/>
+              <xs:element name="recordsSearched" type="xs:long"/>
+              <xs:element minOccurs="0" name="parent" type="xs:string"/>
+              <xs:element maxOccurs="unbounded" minOccurs="0" name="optionValue" nillable="true" type="tns:labelValuesPair"/>
+              <xs:element minOccurs="0" name="records" type="xs:string"/>
+            </xs:sequence>
+          </xs:complexType>
+        <xs:complexType name="labelValuesPair">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="label" type="xs:string"/>
+              <xs:element maxOccurs="unbounded" minOccurs="0" name="value" nillable="true" type="xs:string"/>
+            </xs:sequence>
+          </xs:complexType>
+        <xs:complexType name="retrieveById">
+            <xs:sequence>
+              <xs:element name="databaseId" type="xs:string"/>
+              <xs:element maxOccurs="unbounded" name="uid" type="xs:string"/>
+              <xs:element name="queryLanguage" type="xs:string"/>
+              <xs:element name="retrieveParameters" type="tns:retrieveParameters"/>
+            </xs:sequence>
+          </xs:complexType>
+        <xs:complexType name="retrieveByIdResponse">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="return" type="tns:fullRecordSearchResults"/>
+            </xs:sequence>
+          </xs:complexType>
+        <xs:complexType name="retrieve">
+            <xs:sequence>
+              <xs:element name="queryId" type="xs:string"/>
+              <xs:element name="retrieveParameters" type="tns:retrieveParameters"/>
+            </xs:sequence>
+          </xs:complexType>
+        <xs:complexType name="retrieveResponse">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="return" type="tns:fullRecordData"/>
+            </xs:sequence>
+          </xs:complexType>
+        <xs:complexType name="fullRecordData">
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" minOccurs="0" name="optionValue" nillable="true" type="tns:labelValuesPair"/>
+              <xs:element minOccurs="0" name="records" type="xs:string"/>
+            </xs:sequence>
+          </xs:complexType>
+        <xs:complexType name="search">
+            <xs:sequence>
+              <xs:element name="queryParameters" type="tns:queryParameters"/>
+              <xs:element name="retrieveParameters" type="tns:retrieveParameters"/>
+            </xs:sequence>
+          </xs:complexType>
+        <xs:complexType name="queryParameters">
+            <xs:sequence>
+              <xs:element name="databaseId" type="xs:string"/>
+              <xs:element name="userQuery" type="xs:string"/>
+              <xs:element maxOccurs="unbounded" minOccurs="0" name="editions" nillable="true" type="tns:editionDesc"/>
+              <xs:element minOccurs="0" name="symbolicTimeSpan" type="xs:string"/>
+              <xs:element minOccurs="0" name="timeSpan" type="tns:timeSpan"/>
+              <xs:element name="queryLanguage" type="xs:string"/>
+            </xs:sequence>
+          </xs:complexType>
+        <xs:complexType name="searchResponse">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="return" type="tns:fullRecordSearchResults"/>
+            </xs:sequence>
+          </xs:complexType>
+        <xs:complexType name="citingArticles">
+            <xs:sequence>
+              <xs:element name="databaseId" type="xs:string"/>
+              <xs:element name="uid" type="xs:string"/>
+              <xs:element maxOccurs="unbounded" minOccurs="0" name="editions" nillable="true" type="tns:editionDesc"/>
+              <xs:element minOccurs="0" name="timeSpan" type="tns:timeSpan"/>
+              <xs:element name="queryLanguage" type="xs:string"/>
+              <xs:element name="retrieveParameters" type="tns:retrieveParameters"/>
+            </xs:sequence>
+          </xs:complexType>
+        <xs:complexType name="citingArticlesResponse">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="return" type="tns:fullRecordSearchResults"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:schema>
+          </wsdl:types>
+          <wsdl:message name="relatedRecordsResponse">
+            <wsdl:part element="tns:relatedRecordsResponse" name="parameters">
+            </wsdl:part>
+          </wsdl:message>
+          <wsdl:message name="relatedRecords">
+            <wsdl:part element="tns:relatedRecords" name="parameters">
+            </wsdl:part>
+          </wsdl:message>
+          <wsdl:message name="retrieveById">
+            <wsdl:part element="tns:retrieveById" name="parameters">
+            </wsdl:part>
+          </wsdl:message>
+          <wsdl:message name="retrieveResponse">
+            <wsdl:part element="tns:retrieveResponse" name="parameters">
+            </wsdl:part>
+          </wsdl:message>
+          <wsdl:message name="ESTIWSException_Exception">
+            <wsdl:part element="tns:ESTIWSException" name="ESTIWSException_Exception">
+            </wsdl:part>
+          </wsdl:message>
+          <wsdl:message name="InternalServerException_Exception">
+            <wsdl:part element="tns:InternalServerException" name="InternalServerException_Exception">
+            </wsdl:part>
+          </wsdl:message>
+          <wsdl:message name="retrieve">
+            <wsdl:part element="tns:retrieve" name="parameters">
+            </wsdl:part>
+          </wsdl:message>
+          <wsdl:message name="searchResponse">
+            <wsdl:part element="tns:searchResponse" name="parameters">
+            </wsdl:part>
+          </wsdl:message>
+          <wsdl:message name="citingArticlesResponse">
+            <wsdl:part element="tns:citingArticlesResponse" name="parameters">
+            </wsdl:part>
+          </wsdl:message>
+          <wsdl:message name="AuthenticationException_Exception">
+            <wsdl:part element="tns:AuthenticationException" name="AuthenticationException_Exception">
+            </wsdl:part>
+          </wsdl:message>
+          <wsdl:message name="retrieveByIdResponse">
+            <wsdl:part element="tns:retrieveByIdResponse" name="parameters">
+            </wsdl:part>
+          </wsdl:message>
+          <wsdl:message name="search">
+            <wsdl:part element="tns:search" name="parameters">
+            </wsdl:part>
+          </wsdl:message>
+          <wsdl:message name="citingArticles">
+            <wsdl:part element="tns:citingArticles" name="parameters">
+            </wsdl:part>
+          </wsdl:message>
+          <wsdl:message name="citedReferences">
+            <wsdl:part element="tns:citedReferences" name="parameters">
+            </wsdl:part>
+          </wsdl:message>
+          <wsdl:message name="citedReferencesRetrieve">
+            <wsdl:part element="tns:citedReferencesRetrieve" name="parameters">
+            </wsdl:part>
+          </wsdl:message>
+          <wsdl:message name="citedReferencesRetrieveResponse">
+            <wsdl:part element="tns:citedReferencesRetrieveResponse" name="parameters">
+            </wsdl:part>
+          </wsdl:message>
+          <wsdl:message name="QueryException_Exception">
+            <wsdl:part element="tns:QueryException" name="QueryException_Exception">
+            </wsdl:part>
+          </wsdl:message>
+          <wsdl:message name="InvalidInputException_Exception">
+            <wsdl:part element="tns:InvalidInputException" name="InvalidInputException_Exception">
+            </wsdl:part>
+          </wsdl:message>
+          <wsdl:message name="citedReferencesResponse">
+            <wsdl:part element="tns:citedReferencesResponse" name="parameters">
+            </wsdl:part>
+          </wsdl:message>
+          <wsdl:message name="SessionException_Exception">
+            <wsdl:part element="tns:SessionException" name="SessionException_Exception">
+            </wsdl:part>
+          </wsdl:message>
+          <wsdl:portType name="WokSearch">
+            <wsdl:operation name="citedReferences">
+              <wsdl:input message="tns:citedReferences" name="citedReferences">
+            </wsdl:input>
+              <wsdl:output message="tns:citedReferencesResponse" name="citedReferencesResponse">
+            </wsdl:output>
+              <wsdl:fault message="tns:SessionException_Exception" name="SessionException_Exception">
+            </wsdl:fault>
+              <wsdl:fault message="tns:AuthenticationException_Exception" name="AuthenticationException_Exception">
+            </wsdl:fault>
+              <wsdl:fault message="tns:InvalidInputException_Exception" name="InvalidInputException_Exception">
+            </wsdl:fault>
+              <wsdl:fault message="tns:ESTIWSException_Exception" name="ESTIWSException_Exception">
+            </wsdl:fault>
+              <wsdl:fault message="tns:InternalServerException_Exception" name="InternalServerException_Exception">
+            </wsdl:fault>
+              <wsdl:fault message="tns:QueryException_Exception" name="QueryException_Exception">
+            </wsdl:fault>
+            </wsdl:operation>
+            <wsdl:operation name="citedReferencesRetrieve">
+              <wsdl:input message="tns:citedReferencesRetrieve" name="citedReferencesRetrieve">
+            </wsdl:input>
+              <wsdl:output message="tns:citedReferencesRetrieveResponse" name="citedReferencesRetrieveResponse">
+            </wsdl:output>
+              <wsdl:fault message="tns:SessionException_Exception" name="SessionException_Exception">
+            </wsdl:fault>
+              <wsdl:fault message="tns:AuthenticationException_Exception" name="AuthenticationException_Exception">
+            </wsdl:fault>
+              <wsdl:fault message="tns:InvalidInputException_Exception" name="InvalidInputException_Exception">
+            </wsdl:fault>
+              <wsdl:fault message="tns:ESTIWSException_Exception" name="ESTIWSException_Exception">
+            </wsdl:fault>
+              <wsdl:fault message="tns:InternalServerException_Exception" name="InternalServerException_Exception">
+            </wsdl:fault>
+              <wsdl:fault message="tns:QueryException_Exception" name="QueryException_Exception">
+            </wsdl:fault>
+            </wsdl:operation>
+            <wsdl:operation name="relatedRecords">
+              <wsdl:input message="tns:relatedRecords" name="relatedRecords">
+            </wsdl:input>
+              <wsdl:output message="tns:relatedRecordsResponse" name="relatedRecordsResponse">
+            </wsdl:output>
+              <wsdl:fault message="tns:SessionException_Exception" name="SessionException_Exception">
+            </wsdl:fault>
+              <wsdl:fault message="tns:AuthenticationException_Exception" name="AuthenticationException_Exception">
+            </wsdl:fault>
+              <wsdl:fault message="tns:InvalidInputException_Exception" name="InvalidInputException_Exception">
+            </wsdl:fault>
+              <wsdl:fault message="tns:ESTIWSException_Exception" name="ESTIWSException_Exception">
+            </wsdl:fault>
+              <wsdl:fault message="tns:InternalServerException_Exception" name="InternalServerException_Exception">
+            </wsdl:fault>
+              <wsdl:fault message="tns:QueryException_Exception" name="QueryException_Exception">
+            </wsdl:fault>
+            </wsdl:operation>
+            <wsdl:operation name="retrieveById">
+              <wsdl:input message="tns:retrieveById" name="retrieveById">
+            </wsdl:input>
+              <wsdl:output message="tns:retrieveByIdResponse" name="retrieveByIdResponse">
+            </wsdl:output>
+              <wsdl:fault message="tns:SessionException_Exception" name="SessionException_Exception">
+            </wsdl:fault>
+              <wsdl:fault message="tns:AuthenticationException_Exception" name="AuthenticationException_Exception">
+            </wsdl:fault>
+              <wsdl:fault message="tns:InvalidInputException_Exception" name="InvalidInputException_Exception">
+            </wsdl:fault>
+              <wsdl:fault message="tns:ESTIWSException_Exception" name="ESTIWSException_Exception">
+            </wsdl:fault>
+              <wsdl:fault message="tns:InternalServerException_Exception" name="InternalServerException_Exception">
+            </wsdl:fault>
+              <wsdl:fault message="tns:QueryException_Exception" name="QueryException_Exception">
+            </wsdl:fault>
+            </wsdl:operation>
+            <wsdl:operation name="retrieve">
+              <wsdl:input message="tns:retrieve" name="retrieve">
+            </wsdl:input>
+              <wsdl:output message="tns:retrieveResponse" name="retrieveResponse">
+            </wsdl:output>
+              <wsdl:fault message="tns:SessionException_Exception" name="SessionException_Exception">
+            </wsdl:fault>
+              <wsdl:fault message="tns:AuthenticationException_Exception" name="AuthenticationException_Exception">
+            </wsdl:fault>
+              <wsdl:fault message="tns:InvalidInputException_Exception" name="InvalidInputException_Exception">
+            </wsdl:fault>
+              <wsdl:fault message="tns:ESTIWSException_Exception" name="ESTIWSException_Exception">
+            </wsdl:fault>
+              <wsdl:fault message="tns:InternalServerException_Exception" name="InternalServerException_Exception">
+            </wsdl:fault>
+              <wsdl:fault message="tns:QueryException_Exception" name="QueryException_Exception">
+            </wsdl:fault>
+            </wsdl:operation>
+            <wsdl:operation name="search">
+              <wsdl:input message="tns:search" name="search">
+            </wsdl:input>
+              <wsdl:output message="tns:searchResponse" name="searchResponse">
+            </wsdl:output>
+              <wsdl:fault message="tns:SessionException_Exception" name="SessionException_Exception">
+            </wsdl:fault>
+              <wsdl:fault message="tns:AuthenticationException_Exception" name="AuthenticationException_Exception">
+            </wsdl:fault>
+              <wsdl:fault message="tns:InvalidInputException_Exception" name="InvalidInputException_Exception">
+            </wsdl:fault>
+              <wsdl:fault message="tns:ESTIWSException_Exception" name="ESTIWSException_Exception">
+            </wsdl:fault>
+              <wsdl:fault message="tns:InternalServerException_Exception" name="InternalServerException_Exception">
+            </wsdl:fault>
+              <wsdl:fault message="tns:QueryException_Exception" name="QueryException_Exception">
+            </wsdl:fault>
+            </wsdl:operation>
+            <wsdl:operation name="citingArticles">
+              <wsdl:input message="tns:citingArticles" name="citingArticles">
+            </wsdl:input>
+              <wsdl:output message="tns:citingArticlesResponse" name="citingArticlesResponse">
+            </wsdl:output>
+              <wsdl:fault message="tns:SessionException_Exception" name="SessionException_Exception">
+            </wsdl:fault>
+              <wsdl:fault message="tns:AuthenticationException_Exception" name="AuthenticationException_Exception">
+            </wsdl:fault>
+              <wsdl:fault message="tns:InvalidInputException_Exception" name="InvalidInputException_Exception">
+            </wsdl:fault>
+              <wsdl:fault message="tns:ESTIWSException_Exception" name="ESTIWSException_Exception">
+            </wsdl:fault>
+              <wsdl:fault message="tns:InternalServerException_Exception" name="InternalServerException_Exception">
+            </wsdl:fault>
+              <wsdl:fault message="tns:QueryException_Exception" name="QueryException_Exception">
+            </wsdl:fault>
+            </wsdl:operation>
+          </wsdl:portType>
+          <wsdl:binding name="WokSearchServiceSoapBinding" type="tns:WokSearch">
+            <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+            <wsdl:operation name="citedReferences">
+              <soap:operation soapAction="" style="document"/>
+              <wsdl:input name="citedReferences">
+                <soap:body use="literal"/>
+              </wsdl:input>
+              <wsdl:output name="citedReferencesResponse">
+                <soap:body use="literal"/>
+              </wsdl:output>
+              <wsdl:fault name="SessionException_Exception">
+                <soap:fault name="SessionException_Exception" use="literal"/>
+              </wsdl:fault>
+              <wsdl:fault name="AuthenticationException_Exception">
+                <soap:fault name="AuthenticationException_Exception" use="literal"/>
+              </wsdl:fault>
+              <wsdl:fault name="InvalidInputException_Exception">
+                <soap:fault name="InvalidInputException_Exception" use="literal"/>
+              </wsdl:fault>
+              <wsdl:fault name="ESTIWSException_Exception">
+                <soap:fault name="ESTIWSException_Exception" use="literal"/>
+              </wsdl:fault>
+              <wsdl:fault name="InternalServerException_Exception">
+                <soap:fault name="InternalServerException_Exception" use="literal"/>
+              </wsdl:fault>
+              <wsdl:fault name="QueryException_Exception">
+                <soap:fault name="QueryException_Exception" use="literal"/>
+              </wsdl:fault>
+            </wsdl:operation>
+            <wsdl:operation name="citedReferencesRetrieve">
+              <soap:operation soapAction="" style="document"/>
+              <wsdl:input name="citedReferencesRetrieve">
+                <soap:body use="literal"/>
+              </wsdl:input>
+              <wsdl:output name="citedReferencesRetrieveResponse">
+                <soap:body use="literal"/>
+              </wsdl:output>
+              <wsdl:fault name="SessionException_Exception">
+                <soap:fault name="SessionException_Exception" use="literal"/>
+              </wsdl:fault>
+              <wsdl:fault name="AuthenticationException_Exception">
+                <soap:fault name="AuthenticationException_Exception" use="literal"/>
+              </wsdl:fault>
+              <wsdl:fault name="InvalidInputException_Exception">
+                <soap:fault name="InvalidInputException_Exception" use="literal"/>
+              </wsdl:fault>
+              <wsdl:fault name="ESTIWSException_Exception">
+                <soap:fault name="ESTIWSException_Exception" use="literal"/>
+              </wsdl:fault>
+              <wsdl:fault name="InternalServerException_Exception">
+                <soap:fault name="InternalServerException_Exception" use="literal"/>
+              </wsdl:fault>
+              <wsdl:fault name="QueryException_Exception">
+                <soap:fault name="QueryException_Exception" use="literal"/>
+              </wsdl:fault>
+            </wsdl:operation>
+            <wsdl:operation name="relatedRecords">
+              <soap:operation soapAction="" style="document"/>
+              <wsdl:input name="relatedRecords">
+                <soap:body use="literal"/>
+              </wsdl:input>
+              <wsdl:output name="relatedRecordsResponse">
+                <soap:body use="literal"/>
+              </wsdl:output>
+              <wsdl:fault name="SessionException_Exception">
+                <soap:fault name="SessionException_Exception" use="literal"/>
+              </wsdl:fault>
+              <wsdl:fault name="AuthenticationException_Exception">
+                <soap:fault name="AuthenticationException_Exception" use="literal"/>
+              </wsdl:fault>
+              <wsdl:fault name="InvalidInputException_Exception">
+                <soap:fault name="InvalidInputException_Exception" use="literal"/>
+              </wsdl:fault>
+              <wsdl:fault name="ESTIWSException_Exception">
+                <soap:fault name="ESTIWSException_Exception" use="literal"/>
+              </wsdl:fault>
+              <wsdl:fault name="InternalServerException_Exception">
+                <soap:fault name="InternalServerException_Exception" use="literal"/>
+              </wsdl:fault>
+              <wsdl:fault name="QueryException_Exception">
+                <soap:fault name="QueryException_Exception" use="literal"/>
+              </wsdl:fault>
+            </wsdl:operation>
+            <wsdl:operation name="retrieveById">
+              <soap:operation soapAction="" style="document"/>
+              <wsdl:input name="retrieveById">
+                <soap:body use="literal"/>
+              </wsdl:input>
+              <wsdl:output name="retrieveByIdResponse">
+                <soap:body use="literal"/>
+              </wsdl:output>
+              <wsdl:fault name="SessionException_Exception">
+                <soap:fault name="SessionException_Exception" use="literal"/>
+              </wsdl:fault>
+              <wsdl:fault name="AuthenticationException_Exception">
+                <soap:fault name="AuthenticationException_Exception" use="literal"/>
+              </wsdl:fault>
+              <wsdl:fault name="InvalidInputException_Exception">
+                <soap:fault name="InvalidInputException_Exception" use="literal"/>
+              </wsdl:fault>
+              <wsdl:fault name="ESTIWSException_Exception">
+                <soap:fault name="ESTIWSException_Exception" use="literal"/>
+              </wsdl:fault>
+              <wsdl:fault name="InternalServerException_Exception">
+                <soap:fault name="InternalServerException_Exception" use="literal"/>
+              </wsdl:fault>
+              <wsdl:fault name="QueryException_Exception">
+                <soap:fault name="QueryException_Exception" use="literal"/>
+              </wsdl:fault>
+            </wsdl:operation>
+            <wsdl:operation name="retrieve">
+              <soap:operation soapAction="" style="document"/>
+              <wsdl:input name="retrieve">
+                <soap:body use="literal"/>
+              </wsdl:input>
+              <wsdl:output name="retrieveResponse">
+                <soap:body use="literal"/>
+              </wsdl:output>
+              <wsdl:fault name="SessionException_Exception">
+                <soap:fault name="SessionException_Exception" use="literal"/>
+              </wsdl:fault>
+              <wsdl:fault name="AuthenticationException_Exception">
+                <soap:fault name="AuthenticationException_Exception" use="literal"/>
+              </wsdl:fault>
+              <wsdl:fault name="InvalidInputException_Exception">
+                <soap:fault name="InvalidInputException_Exception" use="literal"/>
+              </wsdl:fault>
+              <wsdl:fault name="ESTIWSException_Exception">
+                <soap:fault name="ESTIWSException_Exception" use="literal"/>
+              </wsdl:fault>
+              <wsdl:fault name="InternalServerException_Exception">
+                <soap:fault name="InternalServerException_Exception" use="literal"/>
+              </wsdl:fault>
+              <wsdl:fault name="QueryException_Exception">
+                <soap:fault name="QueryException_Exception" use="literal"/>
+              </wsdl:fault>
+            </wsdl:operation>
+            <wsdl:operation name="search">
+              <soap:operation soapAction="" style="document"/>
+              <wsdl:input name="search">
+                <soap:body use="literal"/>
+              </wsdl:input>
+              <wsdl:output name="searchResponse">
+                <soap:body use="literal"/>
+              </wsdl:output>
+              <wsdl:fault name="SessionException_Exception">
+                <soap:fault name="SessionException_Exception" use="literal"/>
+              </wsdl:fault>
+              <wsdl:fault name="AuthenticationException_Exception">
+                <soap:fault name="AuthenticationException_Exception" use="literal"/>
+              </wsdl:fault>
+              <wsdl:fault name="InvalidInputException_Exception">
+                <soap:fault name="InvalidInputException_Exception" use="literal"/>
+              </wsdl:fault>
+              <wsdl:fault name="ESTIWSException_Exception">
+                <soap:fault name="ESTIWSException_Exception" use="literal"/>
+              </wsdl:fault>
+              <wsdl:fault name="InternalServerException_Exception">
+                <soap:fault name="InternalServerException_Exception" use="literal"/>
+              </wsdl:fault>
+              <wsdl:fault name="QueryException_Exception">
+                <soap:fault name="QueryException_Exception" use="literal"/>
+              </wsdl:fault>
+            </wsdl:operation>
+            <wsdl:operation name="citingArticles">
+              <soap:operation soapAction="" style="document"/>
+              <wsdl:input name="citingArticles">
+                <soap:body use="literal"/>
+              </wsdl:input>
+              <wsdl:output name="citingArticlesResponse">
+                <soap:body use="literal"/>
+              </wsdl:output>
+              <wsdl:fault name="SessionException_Exception">
+                <soap:fault name="SessionException_Exception" use="literal"/>
+              </wsdl:fault>
+              <wsdl:fault name="AuthenticationException_Exception">
+                <soap:fault name="AuthenticationException_Exception" use="literal"/>
+              </wsdl:fault>
+              <wsdl:fault name="InvalidInputException_Exception">
+                <soap:fault name="InvalidInputException_Exception" use="literal"/>
+              </wsdl:fault>
+              <wsdl:fault name="ESTIWSException_Exception">
+                <soap:fault name="ESTIWSException_Exception" use="literal"/>
+              </wsdl:fault>
+              <wsdl:fault name="InternalServerException_Exception">
+                <soap:fault name="InternalServerException_Exception" use="literal"/>
+              </wsdl:fault>
+              <wsdl:fault name="QueryException_Exception">
+                <soap:fault name="QueryException_Exception" use="literal"/>
+              </wsdl:fault>
+            </wsdl:operation>
+          </wsdl:binding>
+          <wsdl:service name="WokSearchService">
+            <wsdl:port binding="tns:WokSearchServiceSoapBinding" name="WokSearchPort">
+              <soap:address location="http://search.webofknowledge.com/esti/wokmws/ws/WokSearch"/>
+            </wsdl:port>
+          </wsdl:service>
+        </wsdl:definitions>
+    http_version: 
+  recorded_at: Wed, 07 Feb 2018 22:57:37 GMT
+- request:
     method: post
     uri: http://search.webofknowledge.com/esti/wokmws/ws/WokSearch
     body:
@@ -12,13 +1001,13 @@ http_interactions:
         or &quot;Altman,R,B&quot;) AND AD=(stanford)</userQuery><queryLanguage>en</queryLanguage></queryParameters><retrieveParameters><firstRecord>1</firstRecord><count>100</count><viewField><collectionName>WOS</collectionName><fieldName></fieldName></viewField><viewField><collectionName>MEDLINE</collectionName><fieldName></fieldName></viewField><option><key>RecordIDs</key><value>On</value></option></retrieveParameters></tns:search></soapenv:Body></soapenv:Envelope>
     headers:
       User-Agent:
-      - HTTPClient/1.0 (2.8.3, ruby 2.4.2 (2017-09-14))
+      - HTTPClient/1.0 (2.8.3, ruby 2.4.1 (2017-03-22))
       Accept:
       - "*/*"
       Date:
-      - Wed, 07 Feb 2018 02:19:47 GMT
+      - Wed, 07 Feb 2018 22:57:37 GMT
       Cookie:
-      - SID="6En1ixKOji79nnfV5L6"
+      - SID="8ETGyzYOSi8Tu99oW5x"
       Soapaction:
       - ''
       Content-Type:
@@ -33,17 +1022,17 @@ http_interactions:
       Content-Type:
       - text/xml;charset=UTF-8
       Date:
-      - Wed, 07 Feb 2018 02:19:49 GMT
+      - Wed, 07 Feb 2018 22:57:38 GMT
       Server:
       - Apache-Coyote/1.1
-      Content-Length:
-      - '26894'
+      Transfer-Encoding:
+      - chunked
       Connection:
       - keep-alive
     body:
       encoding: UTF-8
       string: |-
-        <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"><soap:Body><ns2:searchResponse xmlns:ns2="http://woksearch.v3.wokmws.thomsonreuters.com"><return><queryId>2</queryId><recordsFound>471</recordsFound><recordsSearched>75592049</recordsSearched><optionValue><label>RecordIDs</label><value>WOS:000369219800001</value><value>MEDLINE:24551397</value><value>MEDLINE:20161212</value><value>MEDLINE:12647379</value><value>MEDLINE:2611273</value><value>WOS:000179509700007</value><value>WOS:000172527000005</value><value>WOS:A1989CW82100011</value><value>MEDLINE:28975675</value><value>MEDLINE:18819074</value><value>WOS:000251034700001</value><value>WOS:000306925000001</value><value>WOS:000176553400006</value><value>WOS:000240964500001</value><value>WOS:000273866500001</value><value>WOS:000290218300018</value><value>WOS:000259179300003</value><value>WOS:000337000402635</value><value>WOS:000222244300001</value><value>WOS:000245271200003</value><value>WOS:000169404700005</value><value>WOS:000183123802264</value><value>WOS:000399659000008</value><value>WOS:000224023200028</value><value>WOS:000249636500024</value><value>WOS:000242874200010</value><value>WOS:A1993LP80900004</value><value>MEDLINE:16610446</value><value>WOS:000076973800010</value><value>WOS:000279559500695</value><value>WOS:000173252700826</value><value>WOS:000322064400019</value><value>WOS:000364401600008</value><value>WOS:000273849100001</value><value>WOS:000285036700017</value><value>WOS:000321153600012</value><value>WOS:000174038800007</value><value>WOS:000281003900006</value><value>WOS:000257860800004</value><value>WOS:A1986F079500001</value><value>WOS:000386326200035</value><value>WOS:000312618200018</value><value>WOS:000284199500014</value><value>WOS:000304245800017</value><value>WOS:000265602500007</value><value>WOS:000267225200003</value><value>MEDLINE:24297550</value><value>WOS:000287439600011</value><value>WOS:000175155500002</value><value>WOS:000227190000011</value><value>WOS:000271425300004</value><value>WOS:000300768100009</value><value>WOS:000368357800013</value><value>MEDLINE:11928521</value><value>WOS:000336507500015</value><value>WOS:000289592600005</value><value>WOS:000183199900007</value><value>WOS:000272464000008</value><value>WOS:000173064900022</value><value>WOS:000358821300020</value><value>WOS:000348562700003</value><value>WOS:000299167800043</value><value>WOS:000250712600021</value><value>MEDLINE:24452614</value><value>WOS:000403782300001</value><value>WOS:000336415300030</value><value>WOS:000419625900016</value><value>WOS:000298848100012</value><value>WOS:000312901500006</value><value>WOS:000290218700009</value><value>WOS:000260433100007</value><value>MEDLINE:25717414</value><value>WOS:000411479100032</value><value>WOS:000253033000002</value><value>WOS:000260325500002</value><value>MEDLINE:24303232</value><value>MEDLINE:29218869</value><value>WOS:000335405200021</value><value>MEDLINE:29199461</value><value>WOS:000220143500001</value><value>WOS:000296146400010</value><value>WOS:000312901500023</value><value>WOS:000346632900006</value><value>WOS:000272064000111</value><value>WOS:A1990DN23200002</value><value>WOS:000171950200005</value><value>WOS:000276769300010</value><value>MEDLINE:29048458</value><value>WOS:000285036700009</value><value>WOS:000271602800010</value><value>WOS:A1995RN00200014</value><value>WOS:000263639700041</value><value>MEDLINE:11262956</value><value>WOS:A1990EF71200016</value><value>WOS:000072320000002</value><value>WOS:000168716800008</value><value>WOS:000328951000007</value><value>WOS:000172328100058</value><value>WOS:A1991GP84100006</value><value>WOS:A1992JF96900006</value></optionValue><records>&lt;records xmlns="http://scientific.thomsonreuters.com/schema/wok5.4/public/Fields">
+        <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"><soap:Body><ns2:searchResponse xmlns:ns2="http://woksearch.v3.wokmws.thomsonreuters.com"><return><queryId>1</queryId><recordsFound>471</recordsFound><recordsSearched>75592049</recordsSearched><optionValue><label>RecordIDs</label><value>WOS:000369219800001</value><value>MEDLINE:24551397</value><value>MEDLINE:20161212</value><value>MEDLINE:12647379</value><value>MEDLINE:2611273</value><value>WOS:000179509700007</value><value>WOS:000172527000005</value><value>WOS:A1989CW82100011</value><value>MEDLINE:28975675</value><value>MEDLINE:18819074</value><value>WOS:000251034700001</value><value>WOS:000306925000001</value><value>WOS:000176553400006</value><value>WOS:000240964500001</value><value>WOS:000273866500001</value><value>WOS:000290218300018</value><value>WOS:000259179300003</value><value>WOS:000337000402635</value><value>WOS:000222244300001</value><value>WOS:000245271200003</value><value>WOS:000169404700005</value><value>WOS:000183123802264</value><value>WOS:000399659000008</value><value>WOS:000224023200028</value><value>WOS:000249636500024</value><value>WOS:000242874200010</value><value>WOS:A1993LP80900004</value><value>MEDLINE:16610446</value><value>WOS:000076973800010</value><value>WOS:000279559500695</value><value>WOS:000173252700826</value><value>WOS:000322064400019</value><value>WOS:000364401600008</value><value>WOS:000273849100001</value><value>WOS:000285036700017</value><value>WOS:000321153600012</value><value>WOS:000174038800007</value><value>WOS:000281003900006</value><value>WOS:000257860800004</value><value>WOS:A1986F079500001</value><value>WOS:000386326200035</value><value>WOS:000312618200018</value><value>WOS:000284199500014</value><value>WOS:000304245800017</value><value>WOS:000265602500007</value><value>WOS:000267225200003</value><value>MEDLINE:24297550</value><value>WOS:000287439600011</value><value>WOS:000175155500002</value><value>WOS:000227190000011</value><value>WOS:000271425300004</value><value>WOS:000300768100009</value><value>WOS:000368357800013</value><value>MEDLINE:11928521</value><value>WOS:000336507500015</value><value>WOS:000289592600005</value><value>WOS:000183199900007</value><value>WOS:000272464000008</value><value>WOS:000173064900022</value><value>WOS:000358821300020</value><value>WOS:000348562700003</value><value>WOS:000299167800043</value><value>WOS:000250712600021</value><value>MEDLINE:24452614</value><value>WOS:000403782300001</value><value>WOS:000336415300030</value><value>WOS:000419625900016</value><value>WOS:000298848100012</value><value>WOS:000312901500006</value><value>WOS:000290218700009</value><value>WOS:000260433100007</value><value>MEDLINE:25717414</value><value>WOS:000411479100032</value><value>WOS:000253033000002</value><value>WOS:000260325500002</value><value>MEDLINE:24303232</value><value>MEDLINE:29218869</value><value>WOS:000335405200021</value><value>MEDLINE:29199461</value><value>WOS:000220143500001</value><value>WOS:000296146400010</value><value>WOS:000312901500023</value><value>WOS:000346632900006</value><value>WOS:000272064000111</value><value>WOS:A1990DN23200002</value><value>WOS:000171950200005</value><value>WOS:000276769300010</value><value>MEDLINE:29048458</value><value>WOS:000285036700009</value><value>WOS:000271602800010</value><value>WOS:A1995RN00200014</value><value>WOS:000263639700041</value><value>MEDLINE:11262956</value><value>WOS:A1990EF71200016</value><value>WOS:000072320000002</value><value>WOS:000168716800008</value><value>WOS:000328951000007</value><value>WOS:000172328100058</value><value>WOS:A1991GP84100006</value><value>WOS:A1992JF96900006</value></optionValue><records>&lt;records xmlns="http://scientific.thomsonreuters.com/schema/wok5.4/public/Fields">
         &lt;REC r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000369219800001&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>
         &lt;REC r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>MEDLINE:24551397&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>
         &lt;REC r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>MEDLINE:20161212&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>
@@ -146,7 +1135,7 @@ http_interactions:
         &lt;REC r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:A1992JF96900006&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>
         &lt;/records></records></return></ns2:searchResponse></soap:Body></soap:Envelope>
     http_version: 
-  recorded_at: Wed, 07 Feb 2018 02:19:49 GMT
+  recorded_at: Wed, 07 Feb 2018 22:57:38 GMT
 - request:
     method: post
     uri: http://search.webofknowledge.com/esti/wokmws/ws/WokSearch
@@ -154,16 +1143,16 @@ http_interactions:
       encoding: UTF-8
       string: <?xml version="1.0" encoding="UTF-8"?><soapenv:Envelope xmlns:xsd="http://www.w3.org/2001/XMLSchema"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tns="http://woksearch.v3.wokmws.thomsonreuters.com"
-        xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Body><tns:retrieve><queryId>2</queryId><retrieveParameters><firstRecord>101</firstRecord><count>100</count><viewField><collectionName>WOS</collectionName><fieldName></fieldName></viewField><viewField><collectionName>MEDLINE</collectionName><fieldName></fieldName></viewField><option><key>RecordIDs</key><value>On</value></option></retrieveParameters></tns:retrieve></soapenv:Body></soapenv:Envelope>
+        xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Body><tns:retrieve><queryId>1</queryId><retrieveParameters><firstRecord>101</firstRecord><count>100</count><viewField><collectionName>WOS</collectionName><fieldName></fieldName></viewField><viewField><collectionName>MEDLINE</collectionName><fieldName></fieldName></viewField><option><key>RecordIDs</key><value>On</value></option></retrieveParameters></tns:retrieve></soapenv:Body></soapenv:Envelope>
     headers:
       User-Agent:
-      - HTTPClient/1.0 (2.8.3, ruby 2.4.2 (2017-09-14))
+      - HTTPClient/1.0 (2.8.3, ruby 2.4.1 (2017-03-22))
       Accept:
       - "*/*"
       Date:
-      - Wed, 07 Feb 2018 02:19:49 GMT
+      - Wed, 07 Feb 2018 22:57:38 GMT
       Cookie:
-      - SID="6En1ixKOji79nnfV5L6"
+      - SID="8ETGyzYOSi8Tu99oW5x"
       Soapaction:
       - ''
       Content-Type:
@@ -178,7 +1167,7 @@ http_interactions:
       Content-Type:
       - text/xml;charset=UTF-8
       Date:
-      - Wed, 07 Feb 2018 02:19:49 GMT
+      - Wed, 07 Feb 2018 22:57:39 GMT
       Server:
       - Apache-Coyote/1.1
       Content-Length:
@@ -188,7 +1177,7 @@ http_interactions:
     body:
       encoding: UTF-8
       string: |-
-        <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"><soap:Body><ns2:retrieveResponse xmlns:ns2="http://woksearch.v3.wokmws.thomsonreuters.com"><return><optionValue><label>RecordIDs</label><value>MEDLINE:12603029</value><value>WOS:000083035800004</value><value>MEDLINE:20351936</value><value>MEDLINE:12463865</value><value>WOS:000235327300007</value><value>MEDLINE:9929358</value><value>MEDLINE:9929182</value><value>WOS:A1996TW69600005</value><value>WOS:000184532900029</value><value>MEDLINE:9929319</value><value>MEDLINE:10902193</value><value>MEDLINE:10902175</value><value>WOS:000183832900010</value><value>WOS:000304437400001</value><value>WOS:000075921100005</value><value>WOS:000281927200010</value><value>WOS:000292061700004</value><value>WOS:000254263300015</value><value>WOS:000348126800006</value><value>WOS:000082944500017</value><value>WOS:000384536000001</value><value>WOS:000365709900005</value><value>WOS:000418800600012</value><value>WOS:000087898000028</value><value>WOS:000256421800001</value><value>WOS:A1995TR87100009</value><value>WOS:000089431900002</value><value>WOS:000352195700026</value><value>WOS:000183970000023</value><value>WOS:000276769300008</value><value>WOS:000336517800016</value><value>MEDLINE:12169549</value><value>WOS:000407150800040</value><value>WOS:000184532900040</value><value>WOS:000246024700031</value><value>MEDLINE:16100408</value><value>WOS:000291752600050</value><value>WOS:000243216000007</value><value>WOS:000286192100001</value><value>WOS:000303930500003</value><value>WOS:000244446000202</value><value>WOS:000169375000013</value><value>WOS:000277890200036</value><value>WOS:000301538300005</value><value>WOS:000276506900009</value><value>WOS:000251834500007</value><value>WOS:000316833900008</value><value>WOS:000179249800008</value><value>WOS:A1988R230100006</value><value>WOS:000268214500004</value><value>WOS:000181303000011</value><value>WOS:000278125200026</value><value>WOS:000360620100003</value><value>WOS:000185701100022</value><value>WOS:000258773600005</value><value>WOS:000080967100007</value><value>WOS:000332575800021</value><value>WOS:000415583200001</value><value>WOS:000397264100008</value><value>WOS:A1995RL45300002</value><value>WOS:000226723300159</value><value>WOS:000225497400003</value><value>WOS:000360322800016</value><value>WOS:000293691400076</value><value>WOS:000254800400002</value><value>WOS:000180913600011</value><value>WOS:A1996VM02500008</value><value>WOS:000243893500009</value><value>MEDLINE:18229697</value><value>MEDLINE:23824865</value><value>WOS:000274306700011</value><value>WOS:000267619000009</value><value>WOS:000178396400014</value><value>WOS:000079090200006</value><value>MEDLINE:10977090</value><value>WOS:000335765500022</value><value>WOS:000189389100013</value><value>WOS:000328629800009</value><value>WOS:000293620800028</value><value>WOS:000165970200020</value><value>MEDLINE:11262955</value><value>WOS:A1995QU44000004</value><value>WOS:000239308600017</value><value>WOS:000359645700006</value><value>MEDLINE:11928517</value><value>WOS:000266575500001</value><value>WOS:000352371900019</value><value>WOS:A1997XC85400014</value><value>WOS:000176159200048</value><value>WOS:000284148300006</value><value>WOS:000252545400160</value><value>WOS:A1991FJ10000002</value><value>WOS:000207722807509</value><value>WOS:000256961700006</value><value>MEDLINE:11908751</value><value>WOS:000295896300011</value><value>WOS:000189418100092</value><value>WOS:A1996WC40600007</value><value>WOS:000173077100041</value><value>WOS:000326480000024</value></optionValue><records>&lt;records xmlns="http://scientific.thomsonreuters.com/schema/wok5.4/public/Fields">
+        <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"><soap:Body><ns2:retrieveResponse xmlns:ns2="http://woksearch.v3.wokmws.thomsonreuters.com"><return><optionValue><label>RecordIDs</label><value>MEDLINE:12603029</value><value>WOS:000083035800004</value><value>MEDLINE:20351936</value><value>MEDLINE:12463865</value><value>WOS:000235327300007</value><value>MEDLINE:9929358</value><value>MEDLINE:9929182</value><value>WOS:A1996TW69600005</value><value>WOS:000184532900029</value><value>MEDLINE:9929319</value><value>MEDLINE:10902193</value><value>MEDLINE:10902175</value><value>WOS:000183832900010</value><value>WOS:000304437400001</value><value>WOS:000075921100005</value><value>WOS:000281927200010</value><value>WOS:000292061700004</value><value>WOS:000254263300015</value><value>WOS:000348126800006</value><value>WOS:000082944500017</value><value>WOS:000384536000001</value><value>WOS:000365709900005</value><value>WOS:000418800600012</value><value>WOS:000087898000028</value><value>WOS:000256421800001</value><value>WOS:A1995TR87100009</value><value>WOS:000089431900002</value><value>WOS:000352195700026</value><value>WOS:000183970000023</value><value>WOS:000276769300008</value><value>WOS:000336517800016</value><value>MEDLINE:12169549</value><value>WOS:000407150800040</value><value>WOS:000184532900040</value><value>WOS:000246024700031</value><value>MEDLINE:16100408</value><value>WOS:000291752600050</value><value>WOS:000243216000007</value><value>WOS:000286192100001</value><value>WOS:000303930500003</value><value>WOS:000244446000202</value><value>WOS:000169375000013</value><value>WOS:000277890200036</value><value>WOS:000301538300005</value><value>WOS:000276506900009</value><value>WOS:000251834500007</value><value>WOS:000316833900008</value><value>WOS:000179249800008</value><value>WOS:A1988R230100006</value><value>WOS:000268214500004</value><value>WOS:000181303000011</value><value>WOS:000278125200026</value><value>WOS:000360620100003</value><value>WOS:000185701100022</value><value>WOS:000258773600005</value><value>WOS:000080967100007</value><value>WOS:000332575800021</value><value>WOS:000415583200001</value><value>WOS:000397264100008</value><value>WOS:A1995RL45300002</value><value>WOS:000226723300159</value><value>WOS:000225497400003</value><value>WOS:000360322800016</value><value>WOS:000293691400076</value><value>WOS:000254800400002</value><value>WOS:000180913600011</value><value>WOS:A1996VM02500008</value><value>WOS:000243893500009</value><value>MEDLINE:18229697</value><value>MEDLINE:23824865</value><value>WOS:000274306700011</value><value>WOS:000267619000009</value><value>WOS:000178396400014</value><value>WOS:000079090200006</value><value>MEDLINE:10977090</value><value>WOS:000335765500022</value><value>WOS:000328629800009</value><value>WOS:000189389100013</value><value>WOS:000293620800028</value><value>WOS:000165970200020</value><value>MEDLINE:11262955</value><value>WOS:A1995QU44000004</value><value>WOS:000239308600017</value><value>WOS:000359645700006</value><value>MEDLINE:11928517</value><value>WOS:000266575500001</value><value>WOS:000352371900019</value><value>WOS:A1997XC85400014</value><value>WOS:000176159200048</value><value>WOS:000284148300006</value><value>WOS:000252545400160</value><value>WOS:A1991FJ10000002</value><value>WOS:000256961700006</value><value>WOS:000207722807509</value><value>MEDLINE:11908751</value><value>WOS:000295896300011</value><value>WOS:000189418100092</value><value>WOS:A1996WC40600007</value><value>WOS:000173077100041</value><value>WOS:000326480000024</value></optionValue><records>&lt;records xmlns="http://scientific.thomsonreuters.com/schema/wok5.4/public/Fields">
         &lt;REC r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>MEDLINE:12603029&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>
         &lt;REC r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000083035800004&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>
         &lt;REC r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>MEDLINE:20351936&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>
@@ -265,8 +1254,8 @@ http_interactions:
         &lt;REC r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000079090200006&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>
         &lt;REC r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>MEDLINE:10977090&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>
         &lt;REC r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000335765500022&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>
-        &lt;REC r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000189389100013&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>
         &lt;REC r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000328629800009&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>
+        &lt;REC r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000189389100013&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>
         &lt;REC r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000293620800028&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>
         &lt;REC r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000165970200020&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>
         &lt;REC r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>MEDLINE:11262955&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>
@@ -281,8 +1270,8 @@ http_interactions:
         &lt;REC r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000284148300006&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>
         &lt;REC r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000252545400160&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>
         &lt;REC r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:A1991FJ10000002&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>
-        &lt;REC r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000207722807509&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>
         &lt;REC r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000256961700006&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>
+        &lt;REC r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000207722807509&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>
         &lt;REC r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>MEDLINE:11908751&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>
         &lt;REC r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000295896300011&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>
         &lt;REC r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000189418100092&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>
@@ -291,7 +1280,7 @@ http_interactions:
         &lt;REC r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000326480000024&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>
         &lt;/records></records></return></ns2:retrieveResponse></soap:Body></soap:Envelope>
     http_version: 
-  recorded_at: Wed, 07 Feb 2018 02:19:50 GMT
+  recorded_at: Wed, 07 Feb 2018 22:57:39 GMT
 - request:
     method: post
     uri: http://search.webofknowledge.com/esti/wokmws/ws/WokSearch
@@ -299,16 +1288,16 @@ http_interactions:
       encoding: UTF-8
       string: <?xml version="1.0" encoding="UTF-8"?><soapenv:Envelope xmlns:xsd="http://www.w3.org/2001/XMLSchema"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tns="http://woksearch.v3.wokmws.thomsonreuters.com"
-        xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Body><tns:retrieve><queryId>2</queryId><retrieveParameters><firstRecord>201</firstRecord><count>100</count><viewField><collectionName>WOS</collectionName><fieldName></fieldName></viewField><viewField><collectionName>MEDLINE</collectionName><fieldName></fieldName></viewField><option><key>RecordIDs</key><value>On</value></option></retrieveParameters></tns:retrieve></soapenv:Body></soapenv:Envelope>
+        xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Body><tns:retrieve><queryId>1</queryId><retrieveParameters><firstRecord>201</firstRecord><count>100</count><viewField><collectionName>WOS</collectionName><fieldName></fieldName></viewField><viewField><collectionName>MEDLINE</collectionName><fieldName></fieldName></viewField><option><key>RecordIDs</key><value>On</value></option></retrieveParameters></tns:retrieve></soapenv:Body></soapenv:Envelope>
     headers:
       User-Agent:
-      - HTTPClient/1.0 (2.8.3, ruby 2.4.2 (2017-09-14))
+      - HTTPClient/1.0 (2.8.3, ruby 2.4.1 (2017-03-22))
       Accept:
       - "*/*"
       Date:
-      - Wed, 07 Feb 2018 02:19:50 GMT
+      - Wed, 07 Feb 2018 22:57:39 GMT
       Cookie:
-      - SID="6En1ixKOji79nnfV5L6"
+      - SID="8ETGyzYOSi8Tu99oW5x"
       Soapaction:
       - ''
       Content-Type:
@@ -323,7 +1312,7 @@ http_interactions:
       Content-Type:
       - text/xml;charset=UTF-8
       Date:
-      - Wed, 07 Feb 2018 02:19:50 GMT
+      - Wed, 07 Feb 2018 22:57:41 GMT
       Server:
       - Apache-Coyote/1.1
       Content-Length:
@@ -333,7 +1322,7 @@ http_interactions:
     body:
       encoding: UTF-8
       string: |-
-        <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"><soap:Body><ns2:retrieveResponse xmlns:ns2="http://woksearch.v3.wokmws.thomsonreuters.com"><return><optionValue><label>RecordIDs</label><value>WOS:000184222500057</value><value>MEDLINE:8130522</value><value>WOS:A1995RT03000003</value><value>WOS:000411479100050</value><value>WOS:000375514000018</value><value>WOS:000317477500001</value><value>WOS:000182161400002</value><value>WOS:A1994QF21600004</value><value>WOS:000389557000012</value><value>WOS:000285331700007</value><value>WOS:000278879400009</value><value>WOS:000356780900020</value><value>WOS:000262463200001</value><value>WOS:000374412300003</value><value>WOS:000277655100025</value><value>WOS:A1997WD20100027</value><value>WOS:000178914400005</value><value>WOS:000291633300011</value><value>WOS:000085267900007</value><value>WOS:000224303500010</value><value>WOS:000292634200009</value><value>WOS:000224107300002</value><value>WOS:000245882400002</value><value>WOS:000407150800033</value><value>WOS:000281830900010</value><value>WOS:000267619000010</value><value>WOS:000184783000020</value><value>WOS:000180584000002</value><value>WOS:000286971900007</value><value>WOS:000386034800127</value><value>WOS:000187587700002</value><value>WOS:000253779800016</value><value>MEDLINE:26776202</value><value>MEDLINE:25592562</value><value>WOS:000289460200009</value><value>WOS:000293731200012</value><value>MEDLINE:8947767</value><value>WOS:000309977100008</value><value>WOS:000303769700007</value><value>WOS:000298249500009</value><value>WOS:000274097500055</value><value>WOS:000355286600015</value><value>WOS:000306483500009</value><value>WOS:000422723300003</value><value>WOS:000302783800008</value><value>MEDLINE:9390224</value><value>MEDLINE:9697207</value><value>MEDLINE:9390315</value><value>MEDLINE:9322010</value><value>WOS:000227842000003</value><value>WOS:000409183600006</value><value>WOS:000082447300006</value><value>WOS:000359895400001</value><value>WOS:000072320000011</value><value>WOS:000247465400004</value><value>WOS:000188997700026</value><value>WOS:000383781600015</value><value>WOS:000355751600011</value><value>MEDLINE:12831574</value><value>WOS:000225031500008</value><value>WOS:A1994QF21600059</value><value>WOS:A1989AU61400004</value><value>WOS:000386326200019</value><value>WOS:000381691000001</value><value>WOS:000186175900001</value><value>WOS:000291853800023</value><value>WOS:000405616900002</value><value>WOS:000399806500016</value><value>WOS:000279865400007</value><value>WOS:000332021500002</value><value>WOS:000308887200005</value><value>WOS:000183571800002</value><value>WOS:000178338600006</value><value>WOS:000185086100017</value><value>WOS:000281388500002</value><value>WOS:000324133500001</value><value>WOS:000405361900008</value><value>MEDLINE:27199190</value><value>WOS:A1997WR20700003</value><value>WOS:000247557800010</value><value>WOS:000309017000009</value><value>MEDLINE:9783220</value><value>WOS:000268565100019</value><value>WOS:000222501000030</value><value>MEDLINE:16452787</value><value>MEDLINE:7584378</value><value>WOS:000188997700136</value><value>MEDLINE:7584390</value><value>MEDLINE:7584327</value><value>MEDLINE:24516403</value><value>WOS:000408790100013</value><value>WOS:000357993500007</value><value>WOS:000188389700012</value><value>MEDLINE:28458783</value><value>WOS:000288444500010</value><value>WOS:000337000400071</value><value>MEDLINE:9322019</value><value>WOS:000334429300007</value><value>MEDLINE:22867428</value><value>WOS:000356370900005</value></optionValue><records>&lt;records xmlns="http://scientific.thomsonreuters.com/schema/wok5.4/public/Fields">
+        <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"><soap:Body><ns2:retrieveResponse xmlns:ns2="http://woksearch.v3.wokmws.thomsonreuters.com"><return><optionValue><label>RecordIDs</label><value>WOS:000184222500057</value><value>MEDLINE:8130522</value><value>WOS:A1995RT03000003</value><value>WOS:000411479100050</value><value>WOS:000375514000018</value><value>WOS:000317477500001</value><value>WOS:000182161400002</value><value>WOS:A1994QF21600004</value><value>WOS:000389557000012</value><value>WOS:000285331700007</value><value>WOS:000278879400009</value><value>WOS:000356780900020</value><value>WOS:000262463200001</value><value>WOS:000374412300003</value><value>WOS:000277655100025</value><value>WOS:000178914400005</value><value>WOS:A1997WD20100027</value><value>WOS:000291633300011</value><value>WOS:000085267900007</value><value>WOS:000224303500010</value><value>WOS:000292634200009</value><value>WOS:000224107300002</value><value>WOS:000245882400002</value><value>WOS:000407150800033</value><value>WOS:000281830900010</value><value>WOS:000267619000010</value><value>WOS:000184783000020</value><value>WOS:000180584000002</value><value>WOS:000286971900007</value><value>WOS:000386034800127</value><value>WOS:000187587700002</value><value>WOS:000253779800016</value><value>MEDLINE:26776202</value><value>MEDLINE:25592562</value><value>WOS:000289460200009</value><value>WOS:000293731200012</value><value>MEDLINE:8947767</value><value>WOS:000309977100008</value><value>WOS:000303769700007</value><value>WOS:000298249500009</value><value>WOS:000274097500055</value><value>WOS:000355286600015</value><value>WOS:000306483500009</value><value>WOS:000422723300003</value><value>WOS:000302783800008</value><value>MEDLINE:9390224</value><value>MEDLINE:9697207</value><value>MEDLINE:9390315</value><value>MEDLINE:9322010</value><value>WOS:000227842000003</value><value>WOS:000409183600006</value><value>WOS:000082447300006</value><value>WOS:000359895400001</value><value>WOS:000072320000011</value><value>WOS:000247465400004</value><value>WOS:000188997700026</value><value>WOS:000383781600015</value><value>WOS:000355751600011</value><value>MEDLINE:12831574</value><value>WOS:000225031500008</value><value>WOS:A1994QF21600059</value><value>WOS:A1989AU61400004</value><value>WOS:000386326200019</value><value>WOS:000381691000001</value><value>WOS:000186175900001</value><value>WOS:000291853800023</value><value>WOS:000405616900002</value><value>WOS:000399806500016</value><value>WOS:000279865400007</value><value>WOS:000332021500002</value><value>WOS:000308887200005</value><value>WOS:000183571800002</value><value>WOS:000178338600006</value><value>WOS:000185086100017</value><value>WOS:000281388500002</value><value>WOS:000324133500001</value><value>WOS:000405361900008</value><value>MEDLINE:27199190</value><value>WOS:A1997WR20700003</value><value>WOS:000247557800010</value><value>WOS:000309017000009</value><value>MEDLINE:9783220</value><value>WOS:000268565100019</value><value>WOS:000222501000030</value><value>MEDLINE:16452787</value><value>MEDLINE:7584378</value><value>WOS:000188997700136</value><value>MEDLINE:7584390</value><value>MEDLINE:7584327</value><value>MEDLINE:24516403</value><value>WOS:000408790100013</value><value>WOS:000357993500007</value><value>WOS:000188389700012</value><value>MEDLINE:28458783</value><value>WOS:000288444500010</value><value>WOS:000337000400071</value><value>MEDLINE:9322019</value><value>WOS:000334429300007</value><value>MEDLINE:22867428</value><value>WOS:000356370900005</value></optionValue><records>&lt;records xmlns="http://scientific.thomsonreuters.com/schema/wok5.4/public/Fields">
         &lt;REC r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000184222500057&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>
         &lt;REC r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>MEDLINE:8130522&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>
         &lt;REC r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:A1995RT03000003&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>
@@ -349,8 +1338,8 @@ http_interactions:
         &lt;REC r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000262463200001&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>
         &lt;REC r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000374412300003&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>
         &lt;REC r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000277655100025&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>
-        &lt;REC r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:A1997WD20100027&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>
         &lt;REC r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000178914400005&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>
+        &lt;REC r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:A1997WD20100027&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>
         &lt;REC r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000291633300011&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>
         &lt;REC r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000085267900007&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>
         &lt;REC r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000224303500010&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>
@@ -436,7 +1425,7 @@ http_interactions:
         &lt;REC r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000356370900005&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>
         &lt;/records></records></return></ns2:retrieveResponse></soap:Body></soap:Envelope>
     http_version: 
-  recorded_at: Wed, 07 Feb 2018 02:19:51 GMT
+  recorded_at: Wed, 07 Feb 2018 22:57:41 GMT
 - request:
     method: post
     uri: http://search.webofknowledge.com/esti/wokmws/ws/WokSearch
@@ -444,16 +1433,16 @@ http_interactions:
       encoding: UTF-8
       string: <?xml version="1.0" encoding="UTF-8"?><soapenv:Envelope xmlns:xsd="http://www.w3.org/2001/XMLSchema"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tns="http://woksearch.v3.wokmws.thomsonreuters.com"
-        xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Body><tns:retrieve><queryId>2</queryId><retrieveParameters><firstRecord>301</firstRecord><count>100</count><viewField><collectionName>WOS</collectionName><fieldName></fieldName></viewField><viewField><collectionName>MEDLINE</collectionName><fieldName></fieldName></viewField><option><key>RecordIDs</key><value>On</value></option></retrieveParameters></tns:retrieve></soapenv:Body></soapenv:Envelope>
+        xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Body><tns:retrieve><queryId>1</queryId><retrieveParameters><firstRecord>301</firstRecord><count>100</count><viewField><collectionName>WOS</collectionName><fieldName></fieldName></viewField><viewField><collectionName>MEDLINE</collectionName><fieldName></fieldName></viewField><option><key>RecordIDs</key><value>On</value></option></retrieveParameters></tns:retrieve></soapenv:Body></soapenv:Envelope>
     headers:
       User-Agent:
-      - HTTPClient/1.0 (2.8.3, ruby 2.4.2 (2017-09-14))
+      - HTTPClient/1.0 (2.8.3, ruby 2.4.1 (2017-03-22))
       Accept:
       - "*/*"
       Date:
-      - Wed, 07 Feb 2018 02:19:51 GMT
+      - Wed, 07 Feb 2018 22:57:41 GMT
       Cookie:
-      - SID="6En1ixKOji79nnfV5L6"
+      - SID="8ETGyzYOSi8Tu99oW5x"
       Soapaction:
       - ''
       Content-Type:
@@ -468,7 +1457,7 @@ http_interactions:
       Content-Type:
       - text/xml;charset=UTF-8
       Date:
-      - Wed, 07 Feb 2018 02:19:52 GMT
+      - Wed, 07 Feb 2018 22:57:42 GMT
       Server:
       - Apache-Coyote/1.1
       Content-Length:
@@ -478,7 +1467,7 @@ http_interactions:
     body:
       encoding: UTF-8
       string: |-
-        <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"><soap:Body><ns2:retrieveResponse xmlns:ns2="http://woksearch.v3.wokmws.thomsonreuters.com"><return><optionValue><label>RecordIDs</label><value>WOS:000323226500009</value><value>WOS:000225769500002</value><value>WOS:000227842000009</value><value>WOS:A1996VH69500001</value><value>WOS:000266575500002</value><value>WOS:000278879400001</value><value>WOS:000257188700033</value><value>WOS:000376584400019</value><value>WOS:000290431200007</value><value>WOS:000206244200003</value><value>WOS:000392723700004</value><value>WOS:000221171700016</value><value>WOS:000277594800007</value><value>WOS:000413599200022</value><value>MEDLINE:7949944</value><value>WOS:000286096000006</value><value>WOS:000387469100004</value><value>WOS:000347393200006</value><value>WOS:000349450800007</value><value>WOS:000351668600006</value><value>WOS:000273307600008</value><value>WOS:000295419100031</value><value>WOS:000301889500023</value><value>WOS:000336260000006</value><value>WOS:000285410500012</value><value>WOS:000325690200011</value><value>WOS:000298488200009</value><value>WOS:000275061200007</value><value>WOS:000324527600007</value><value>WOS:000316833300001</value><value>WOS:000275410900001</value><value>WOS:000400664400006</value><value>WOS:000340731400006</value><value>WOS:000081953300015</value><value>MEDLINE:26776186</value><value>WOS:000405498300005</value><value>WOS:000311031800008</value><value>WOS:000359428300001</value><value>WOS:000281295500008</value><value>WOS:000276373800008</value><value>WOS:000282965100006</value><value>WOS:000267619000011</value><value>WOS:000267619000007</value><value>WOS:000305429900009</value><value>WOS:000317477500029</value><value>WOS:000258424100003</value><value>WOS:000373526700005</value><value>WOS:000255026100040</value><value>WOS:000398197800006</value><value>WOS:000296799900016</value><value>WOS:000366135900002</value><value>MEDLINE:26306281</value><value>WOS:000328629800008</value><value>WOS:000337727000007</value><value>WOS:000412543100006</value><value>WOS:000364626100006</value><value>WOS:000343666300003</value><value>WOS:000390851300005</value><value>WOS:000380831700005</value><value>WOS:000209001600333</value><value>WOS:000394450500004</value><value>WOS:000348730500184</value><value>WOS:000237567000021</value><value>MEDLINE:7584427</value><value>WOS:000276704800009</value><value>WOS:000267619000008</value><value>MEDLINE:7949915</value><value>MEDLINE:7950031</value><value>WOS:000304924100001</value><value>WOS:000319869500002</value><value>WOS:000233691100005</value><value>WOS:000411479100023</value><value>WOS:000246464800017</value><value>WOS:000325690200010</value><value>WOS:000342763900023</value><value>WOS:000398829200005</value><value>WOS:000292681800008</value><value>WOS:000323220200007</value><value>WOS:000301537400010</value><value>WOS:000307652600006</value><value>WOS:000330879300006</value><value>MEDLINE:7949909</value><value>MEDLINE:8947710</value><value>WOS:000316109700008</value><value>WOS:000416455600001</value><value>WOS:000299310600008</value><value>WOS:000309017000017</value><value>WOS:000233119600015</value><value>WOS:000279019500008</value><value>WOS:000319869500011</value><value>WOS:000407150800044</value><value>WOS:000239480500002</value><value>WOS:000309146200001</value><value>WOS:000339602900018</value><value>WOS:000331209100006</value><value>WOS:000272310800008</value><value>WOS:000319869500006</value><value>WOS:000300409800008</value><value>WOS:000254012100001</value><value>WOS:000359752100030</value></optionValue><records>&lt;records xmlns="http://scientific.thomsonreuters.com/schema/wok5.4/public/Fields">
+        <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"><soap:Body><ns2:retrieveResponse xmlns:ns2="http://woksearch.v3.wokmws.thomsonreuters.com"><return><optionValue><label>RecordIDs</label><value>WOS:000323226500009</value><value>WOS:000225769500002</value><value>WOS:000227842000009</value><value>WOS:A1996VH69500001</value><value>WOS:000266575500002</value><value>WOS:000278879400001</value><value>WOS:000257188700033</value><value>WOS:000376584400019</value><value>WOS:000290431200007</value><value>WOS:000206244200003</value><value>WOS:000392723700004</value><value>WOS:000221171700016</value><value>WOS:000277594800007</value><value>WOS:000413599200022</value><value>MEDLINE:7949944</value><value>WOS:000286096000006</value><value>WOS:000387469100004</value><value>WOS:000347393200006</value><value>WOS:000349450800007</value><value>WOS:000351668600006</value><value>WOS:000273307600008</value><value>WOS:000295419100031</value><value>WOS:000301889500023</value><value>WOS:000336260000006</value><value>WOS:000285410500012</value><value>WOS:000325690200011</value><value>WOS:000298488200009</value><value>WOS:000275061200007</value><value>WOS:000324527600007</value><value>WOS:000316833300001</value><value>WOS:000275410900001</value><value>WOS:000400664400006</value><value>WOS:000340731400006</value><value>WOS:000081953300015</value><value>MEDLINE:26776186</value><value>WOS:000405498300005</value><value>WOS:000311031800008</value><value>WOS:000359428300001</value><value>WOS:000281295500008</value><value>WOS:000276373800008</value><value>WOS:000267619000007</value><value>WOS:000282965100006</value><value>WOS:000267619000011</value><value>WOS:000305429900009</value><value>WOS:000317477500029</value><value>WOS:000258424100003</value><value>WOS:000373526700005</value><value>WOS:000255026100040</value><value>WOS:000398197800006</value><value>WOS:000296799900016</value><value>WOS:000366135900002</value><value>MEDLINE:26306281</value><value>WOS:000328629800008</value><value>WOS:000337727000007</value><value>WOS:000412543100006</value><value>WOS:000364626100006</value><value>WOS:000343666300003</value><value>WOS:000390851300005</value><value>WOS:000380831700005</value><value>WOS:000209001600333</value><value>WOS:000394450500004</value><value>WOS:000348730500184</value><value>WOS:000237567000021</value><value>MEDLINE:7584427</value><value>WOS:000276704800009</value><value>WOS:000267619000008</value><value>MEDLINE:7949915</value><value>MEDLINE:7950031</value><value>WOS:000304924100001</value><value>WOS:000319869500002</value><value>WOS:000233691100005</value><value>WOS:000411479100023</value><value>WOS:000246464800017</value><value>WOS:000325690200010</value><value>WOS:000342763900023</value><value>WOS:000398829200005</value><value>WOS:000292681800008</value><value>WOS:000323220200007</value><value>WOS:000301537400010</value><value>WOS:000307652600006</value><value>WOS:000330879300006</value><value>MEDLINE:7949909</value><value>MEDLINE:8947710</value><value>WOS:000316109700008</value><value>WOS:000416455600001</value><value>WOS:000299310600008</value><value>WOS:000309017000017</value><value>WOS:000233119600015</value><value>WOS:000279019500008</value><value>WOS:000319869500011</value><value>WOS:000407150800044</value><value>WOS:000239480500002</value><value>WOS:000309146200001</value><value>WOS:000339602900018</value><value>WOS:000331209100006</value><value>WOS:000272310800008</value><value>WOS:000319869500006</value><value>WOS:000300409800008</value><value>WOS:000254012100001</value><value>WOS:000359752100030</value></optionValue><records>&lt;records xmlns="http://scientific.thomsonreuters.com/schema/wok5.4/public/Fields">
         &lt;REC r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000323226500009&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>
         &lt;REC r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000225769500002&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>
         &lt;REC r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000227842000009&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>
@@ -519,9 +1508,9 @@ http_interactions:
         &lt;REC r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000359428300001&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>
         &lt;REC r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000281295500008&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>
         &lt;REC r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000276373800008&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>
+        &lt;REC r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000267619000007&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>
         &lt;REC r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000282965100006&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>
         &lt;REC r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000267619000011&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>
-        &lt;REC r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000267619000007&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>
         &lt;REC r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000305429900009&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>
         &lt;REC r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000317477500029&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>
         &lt;REC r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000258424100003&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>
@@ -581,7 +1570,7 @@ http_interactions:
         &lt;REC r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000359752100030&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>
         &lt;/records></records></return></ns2:retrieveResponse></soap:Body></soap:Envelope>
     http_version: 
-  recorded_at: Wed, 07 Feb 2018 02:19:52 GMT
+  recorded_at: Wed, 07 Feb 2018 22:57:42 GMT
 - request:
     method: post
     uri: http://search.webofknowledge.com/esti/wokmws/ws/WokSearch
@@ -589,16 +1578,16 @@ http_interactions:
       encoding: UTF-8
       string: <?xml version="1.0" encoding="UTF-8"?><soapenv:Envelope xmlns:xsd="http://www.w3.org/2001/XMLSchema"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tns="http://woksearch.v3.wokmws.thomsonreuters.com"
-        xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Body><tns:retrieve><queryId>2</queryId><retrieveParameters><firstRecord>401</firstRecord><count>100</count><viewField><collectionName>WOS</collectionName><fieldName></fieldName></viewField><viewField><collectionName>MEDLINE</collectionName><fieldName></fieldName></viewField><option><key>RecordIDs</key><value>On</value></option></retrieveParameters></tns:retrieve></soapenv:Body></soapenv:Envelope>
+        xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Body><tns:retrieve><queryId>1</queryId><retrieveParameters><firstRecord>401</firstRecord><count>100</count><viewField><collectionName>WOS</collectionName><fieldName></fieldName></viewField><viewField><collectionName>MEDLINE</collectionName><fieldName></fieldName></viewField><option><key>RecordIDs</key><value>On</value></option></retrieveParameters></tns:retrieve></soapenv:Body></soapenv:Envelope>
     headers:
       User-Agent:
-      - HTTPClient/1.0 (2.8.3, ruby 2.4.2 (2017-09-14))
+      - HTTPClient/1.0 (2.8.3, ruby 2.4.1 (2017-03-22))
       Accept:
       - "*/*"
       Date:
-      - Wed, 07 Feb 2018 02:19:52 GMT
+      - Wed, 07 Feb 2018 22:57:42 GMT
       Cookie:
-      - SID="6En1ixKOji79nnfV5L6"
+      - SID="8ETGyzYOSi8Tu99oW5x"
       Soapaction:
       - ''
       Content-Type:
@@ -613,7 +1602,7 @@ http_interactions:
       Content-Type:
       - text/xml;charset=UTF-8
       Date:
-      - Wed, 07 Feb 2018 02:19:52 GMT
+      - Wed, 07 Feb 2018 22:57:42 GMT
       Server:
       - Apache-Coyote/1.1
       Content-Length:
@@ -697,5 +1686,5 @@ http_interactions:
         &lt;REC r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000322064400018&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>
         &lt;/records></records></return></ns2:retrieveResponse></soap:Body></soap:Envelope>
     http_version: 
-  recorded_at: Wed, 07 Feb 2018 02:19:53 GMT
+  recorded_at: Wed, 07 Feb 2018 22:57:42 GMT
 recorded_with: VCR 4.0.0
