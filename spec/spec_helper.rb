@@ -168,18 +168,5 @@ def default_institution
   )
 end
 
-
-WOS_AUTH_WSDL = File.read('spec/fixtures/wos_client/authenticate_wsdl.xml')
-def stub_wos_auth_wsdl
-  raise unless WebOfScience::Client::API_VERSION == '3.0'
-  stub_request(:get, WebOfScience::Client::AUTH_WSDL).
-    to_return(status: 200, body: WOS_AUTH_WSDL)
-end
-
-WOS_SEARCH_WSDL = File.read('spec/fixtures/wos_client/search_wsdl.xml')
-def stub_wos_search_wsdl
-  raise unless WebOfScience::Client::API_VERSION == '3.0'
-  stub_request(:get, WebOfScience::Client::SEARCH_WSDL).
-    to_return(status: 200, body: WOS_SEARCH_WSDL)
-end
-
+require_relative 'lib/web_of_science/wsdl'
+WebOfScience::WSDL.fetch
