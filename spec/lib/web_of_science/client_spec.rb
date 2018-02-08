@@ -1,8 +1,9 @@
 # http://savonrb.com/version2/testing.html
 # require the helper module
 require 'savon/mock/spec_helper'
+require_relative 'wsdl'
 
-describe WebOfScience::Client do
+describe WebOfScience::Client, :vcr do
   include Savon::SpecHelper
 
   # set Savon in and out of mock mode
@@ -15,6 +16,8 @@ describe WebOfScience::Client do
   let(:no_session_matches) { File.read('spec/fixtures/wos_client/wos_session_close_fault_response.xml') }
 
   before do
+    WebOfScience::WSDL.stub_auth_wsdl
+    WebOfScience::WSDL.stub_search_wsdl
     null_logger = Logger.new('/dev/null')
     allow(wos_client).to receive(:logger).and_return(null_logger)
   end
