@@ -141,7 +141,7 @@ module WebOfScience
         first_name = first_middle_name.split(' ')[0]
         middle_name = first_middle_name.split(' ')[1]
         name_query = "#{last_name} #{first_name} OR #{last_name} #{first_name[0]}"
-        name_query += " OR #{last_name} #{first_name[0]}#{middle_name[0]} OR #{last_name} #{first_name} #{middle_name[0]}" if middle_name.present?
+        name_query += " OR #{last_name} #{first_name[0]}#{middle_name[0]} OR #{last_name} #{first_name} #{middle_name[0]} OR #{last_name} #{first_name} #{middle_name}" if middle_name.present?
         name_query
       end
 
