@@ -31,16 +31,31 @@ module WebOfScience
       attr_reader :institution
       attr_reader :options
 
+      # Use options to limit the symbolic time span for harvesting publications; this limit applies
+      # to the dates publications are added or updated in WOS collections, not publication dates. To
+      # quote the API documentation:
+      #
+      #     The symbolicTimeSpan element defines a range of load dates. The load date is the date when a record
+      #     was added to a database. If symbolicTimeSpan is specified, the timeSpan parameter must be omitted.
+      #     If timeSpan and symbolicTimeSpan are both omitted, then the maximum publication date time span
+      #     will be inferred from the editions data.
+      #
+      #     The valid values are strings: '1week', '2week', '4week' (prior to today)
       # @return [Hash]
       def author_query
         params = queries.params_for_fields(empty_fields)
         params[:queryParameters][:userQuery] = "AU=(#{names}) AND AD=(#{institution})"
+        if options[:update]
+          params[:queryParameters][:symbolicTimeSpan] = '4week'
+          params[:queryParameters][:order!] = [:databaseId, :userQuery, :symbolicTimeSpan, :queryLanguage] # according to WSDL
+        end
         params
       end
 
+      # Use Settings.WOS.ACCEPTED_DBS to define collections without any fields retrieved
+      # @return [Array<Hash>]
       def empty_fields
         Settings.WOS.ACCEPTED_DBS.map { |db| { collectionName: db, fieldName: [''] } }
       end
-
   end
 end
