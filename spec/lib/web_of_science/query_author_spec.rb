@@ -22,7 +22,7 @@ describe WebOfScience::QueryAuthor, :vcr do
   end
 
   describe '#uids with symbolicTimeSpan' do
-    subject(:query_author) { described_class.new(author, update: true) }
+    subject(:query_author) { described_class.new(author, symbolicTimeSpan: '4week') }
 
     it 'returns a small Array<String> of WOS-UIDs' do
       # The VCR fixture is only 16 records at the time it was recorded;
@@ -52,7 +52,7 @@ describe WebOfScience::QueryAuthor, :vcr do
     end
 
     context 'update' do
-      subject(:query_author) { described_class.new(author, update: true) }
+      subject(:query_author) { described_class.new(author, symbolicTimeSpan: '4week') }
 
       it 'uses options to set a symbolicTimeSpan' do
         # to use symbolicTimeSpan, timeSpan must be omitted

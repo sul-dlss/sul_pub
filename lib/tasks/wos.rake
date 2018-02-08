@@ -5,9 +5,8 @@ namespace :wos do
   end
 
   desc 'Update harvest from Web of Science, for all authors'
-  task :harvest_authors_update, [:symbolicTimeSpan] => :environment do
-    options = {}
-    options[:symbolicTimeSpan] = args[:symbolicTimeSpan] || '4week'
+  task :harvest_authors_update, [:symbolicTimeSpan] => :environment do |_t, args|
+    options = args.with_defaults(symbolicTimeSpan: '4week')
     WebOfScience.harvester.harvest_all(options)
   end
 

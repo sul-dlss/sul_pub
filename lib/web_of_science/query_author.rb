@@ -40,13 +40,17 @@ module WebOfScience
       #     If timeSpan and symbolicTimeSpan are both omitted, then the maximum publication date time span
       #     will be inferred from the editions data.
       #
-      #     The valid values are strings: '1week', '2week', '4week' (prior to today)
+      #     - The documented values are strings: '1week', '2week', '4week' (prior to today)
+      #     - the actual values it accepts are any value of "Nweek" for 1 < N < 53
+      #
       # @return [Hash]
       def author_query
         params = queries.params_for_fields(empty_fields)
         params[:queryParameters][:userQuery] = "AU=(#{names}) AND AD=(#{institution})"
-        if options[:update]
-          params[:queryParameters][:symbolicTimeSpan] = '4week'
+        if options[:symbolicTimeSpan]
+          # to use symbolicTimeSpan, timeSpan must be omitted
+          params[:queryParameters].delete(:timeSpan)
+          params[:queryParameters][:symbolicTimeSpan] = options[:symbolicTimeSpan]
           params[:queryParameters][:order!] = [:databaseId, :userQuery, :symbolicTimeSpan, :queryLanguage] # according to WSDL
         end
         params
