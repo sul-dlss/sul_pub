@@ -28,7 +28,7 @@ namespace :wos do
   task :publication, [:wos_id] => :environment do |_t, args|
     raise 'wos_id argument is required.' if args[:wos_id].blank?
     wos_ids = [args[:wos_id]]
-    records = WebOfScience.queries.retrieve_by_id(wos_ids)
+    records = WebOfScience.queries.retrieve_by_id(wos_ids).next_batch
     records.each(&:print) # XML documents
   end
 end
