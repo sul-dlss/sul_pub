@@ -5,6 +5,9 @@ describe WebOfScience::QueryAuthor, :vcr do
   let(:names) { query_author.send(:names) }
   let(:institution) { query_author.send(:institution) }
 
+  # avoid caching Savon client across examples (affects VCR)
+  before { allow(WebOfScience).to receive(:client).and_return(WebOfScience::Client.new(Settings.WOS.AUTH_CODE)) }
+
   it 'works' do
     expect(query_author).to be_a described_class
   end
