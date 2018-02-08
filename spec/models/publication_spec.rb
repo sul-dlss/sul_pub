@@ -134,6 +134,17 @@ describe Publication do
       expect(ids.first.identifier_uri).to eq('z2')
     end
 
+    it 'avoids writing back empty values' do # stop our bad data from spreading
+      pub_xyz.pub_hash = { identifier: [{ type: 'x', id: nil, url: 'z2' }, { type: 'q', id: nil, url: 'z2' }] }
+      pub_xyz.send(:sync_identifiers_in_pub_hash)
+      pub_xyz.save!
+      ids = PublicationIdentifier.where(publication_id: pub_xyz.id).all
+      expect(ids.size).to eq(1)
+      expect(ids.first.identifier_type).to eq('x')
+      expect(ids.first.identifier_value).to eq('y')
+      expect(ids.first.identifier_uri).to eq('z')
+    end
+
     it 'deletes ids from the database that are not longer in the pub_hash' do
       pub_xyz.pub_hash = { identifier: [{ type: 'a', id: 'b', url: 'c' }] }
       pub_xyz.send(:sync_identifiers_in_pub_hash)

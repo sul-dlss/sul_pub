@@ -256,7 +256,8 @@ class Publication < ActiveRecord::Base
       pub_hash[:provenance].to_s.downcase
     end
 
-    # doesn't actually write the Pub to DB, presumed to be part of before_save callback or explicit save
+    # Doesn't actually write the Pub to DB, presumed to be part of before_save callback or explicit save
+    # Does delete pub_ids!
     def sync_identifiers_in_pub_hash
       incoming_types = Array(pub_hash[:identifier]).map { |id| id[:type] }
       publication_identifiers.each do |id|
@@ -265,7 +266,8 @@ class Publication < ActiveRecord::Base
       end
 
       Array(pub_hash[:identifier]).each do |identifier|
-        next if identifier[:type] =~ /^SULPubId$/i
+        next if identifier[:type].blank? || identifier[:type] =~ /^SULPubId$/i
+        next if identifier[:id].blank? # don't reproduce bad data
         i = publication_identifiers.find { |x| x.identifier_type == identifier[:type] } # find includes not yet saved pub ids
         i ||= publication_identifiers.find_or_initialize_by(identifier_type: identifier[:type])
         i.certainty        = 'confirmed'
