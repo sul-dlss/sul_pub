@@ -73,6 +73,8 @@ module WebOfScience
       links = filter_ids(links)
       @ids = ids.reverse_merge(links).freeze
       self
+    rescue StandardError => err
+      NotificationManager.error(err, "#{uid}, update(links) failed", self)
     end
 
     # @return [String, nil]
@@ -162,6 +164,7 @@ module WebOfScience
 
       # @param ids [Hash]
       def filter_ids(ids)
+        return {} if ids.blank?
         ids.select { |type, _v| ALLOWED_TYPES.include? type }
       end
 
