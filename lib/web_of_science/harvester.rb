@@ -66,7 +66,7 @@ module WebOfScience
       records = retriever.next_batch
       record = records.find { |rec| ::Identifiers::DOI.extract_one(rec.doi) == doi }
       return [] if record.blank?
-      WebOfScience::ProcessRecord.new(author, record).execute
+      WebOfScience::ProcessRecord.new(author, record.source_record_find_or_create).execute
     end
 
     # Harvest PMID publications for an author
