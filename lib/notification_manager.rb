@@ -17,8 +17,9 @@ class NotificationManager
         log_exception(pubmed_logger, log_message, e)
       when Cap::AuthorsPoller, Cap::Client
         log_exception(cap_logger, log_message, e)
-      when WebOfScience::Client, WebOfScience::Contributions,
-        WebOfScience::Harvester, WebOfScience::ProcessRecords, WebOfScience::Record
+      when WebOfScience::Record, WebOfScience::Records, WebOfScience::Identifiers,
+        WebOfScience::ProcessRecords, WebOfScience::ProcessRecord,
+        WebOfScience::Harvester, WebOfScience::Client
         log_exception(WebOfScience.logger, log_message, e)
       else
         log_exception(Rails.logger, log_message, e)
