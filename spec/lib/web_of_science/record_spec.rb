@@ -22,18 +22,18 @@ describe WebOfScience::Record do
   describe '#new' do
     context 'WOS records' do
       it 'works with WOS encoded records' do
-        expect(wos_record_encoded).to be_an described_class
+        expect(wos_record_encoded).to be_a described_class
       end
       it 'works with WOS decoded records' do
-        expect(wos_record_decoded).to be_an described_class
+        expect(wos_record_decoded).to be_a described_class
       end
     end
     context 'MEDLINE records' do
       it 'works with MEDLINE encoded records' do
-        expect(medline_record_encoded).to be_an described_class
+        expect(medline_record_encoded).to be_a described_class
       end
       it 'works with MEDLINE decoded records' do
-        expect(medline_record_decoded).to be_an described_class
+        expect(medline_record_decoded).to be_a described_class
       end
     end
     it 'raises RuntimeError with nil params' do
@@ -43,12 +43,53 @@ describe WebOfScience::Record do
 
   describe '#doc' do
     it 'works with encoded records' do
-      result = wos_record_encoded.doc
-      expect(result).to be_an Nokogiri::XML::Document
+      expect(wos_record_encoded.doc).to be_a Nokogiri::XML::Document
     end
     it 'works with decoded records' do
-      result = wos_record_decoded.doc
-      expect(result).to be_an Nokogiri::XML::Document
+      expect(wos_record_decoded.doc).to be_a Nokogiri::XML::Document
+    end
+  end
+
+  # ---
+  # WebOfScienceSourceRecord utils
+
+  context 'WebOfScienceSourceRecord does not exist' do
+    it '#source_record returns nil' do
+      expect(wos_record_decoded.source_record).to be_nil
+    end
+    it '#source_record_attr returns Hash' do
+      expect(wos_record_decoded.source_record_attr).to be_a Hash
+    end
+    it '#source_record_find_or_create returns WebOfScienceSourceRecord' do
+      expect(wos_record_decoded.source_record_find_or_create).to be_a WebOfScienceSourceRecord
+    end
+    it '#source_record_update returns false' do
+      expect(wos_record_decoded.source_record_update).to be false
+    end
+  end
+
+  context 'WebOfScienceSourceRecord exists' do
+    let(:wos_src_record) { wos_record_decoded.source_record_find_or_create }
+
+    before { expect(wos_src_record.uid).to be_a String }
+    after { wos_src_record.destroy }
+
+    it '#source_record returns nil' do
+      expect(wos_record_decoded.source_record).to eq wos_src_record
+    end
+    it '#source_record_find_or_create returns WebOfScienceSourceRecord' do
+      new_src_record = wos_record_decoded.source_record_find_or_create
+      expect(new_src_record).to be_a WebOfScienceSourceRecord
+      expect(new_src_record.id).to eq wos_record_decoded.source_record_find_or_create.id
+    end
+    it '#source_record_update returns nil when fingerprints match' do
+      expect(wos_record_decoded.source_record_update).to be false
+    end
+    it '#source_record_update returns true when fingerprints differ' do
+      attr = wos_record_decoded.source_record_attr
+      attr[:source_data].gsub!('STANFORD UNIV', 'Stanford University')
+      allow(wos_record_decoded).to receive(:source_record_attr).and_return(attr)
+      expect { wos_record_decoded.source_record_update }.to change { wos_src_record.reload.source_fingerprint }
     end
   end
 
@@ -104,7 +145,7 @@ describe WebOfScience::Record do
   describe '#identifiers' do
     it 'works' do
       result = wos_record_encoded.identifiers
-      expect(result).to be_an WebOfScience::Identifiers
+      expect(result).to be_a WebOfScience::Identifiers
     end
 
     describe '#database' do
@@ -156,7 +197,7 @@ describe WebOfScience::Record do
     end
 
     it 'works' do
-      expect(pub_info).to be_an Hash
+      expect(pub_info).to be_a Hash
     end
     it 'has issue' do
       expect(pub_info['issue']).to eq pub_info_hash['issue']
@@ -182,7 +223,7 @@ describe WebOfScience::Record do
       expect(publishers).to be_an Array
     end
     it 'contains publisher information' do
-      expect(publishers.first).to be_an Hash
+      expect(publishers.first).to be_a Hash
     end
     it 'contains publisher name' do
       expect(publishers.first).to include('full_name' => 'ASSOC COLL RESEARCH LIBRARIES')
@@ -193,7 +234,7 @@ describe WebOfScience::Record do
     let(:pub_hash) { wos_record_encoded.pub_hash }
 
     it 'works' do
-      expect(pub_hash).to be_an Hash
+      expect(pub_hash).to be_a Hash
     end
     it 'has "wos" provenance' do
       expect(pub_hash[:provenance]).to eq 'wos'
@@ -211,7 +252,7 @@ describe WebOfScience::Record do
     let(:hash) { wos_record_encoded.to_h }
 
     it 'works' do
-      expect(hash).to be_an Hash
+      expect(hash).to be_a Hash
     end
     it 'contains doctypes Array' do
       expect(hash['doctypes']).to be_an Array
@@ -220,13 +261,13 @@ describe WebOfScience::Record do
       expect(hash['names']).to be_an Array
     end
     it 'contains pub_info Hash' do
-      expect(hash['pub_info']).to be_an Hash
+      expect(hash['pub_info']).to be_a Hash
     end
     it 'contains publishers Array' do
       expect(hash['publishers']).to be_an Array
     end
     it 'contains titles Hash' do
-      expect(hash['titles']).to be_an Hash
+      expect(hash['titles']).to be_a Hash
     end
   end
 
@@ -260,7 +301,7 @@ describe WebOfScience::Record do
     let(:html_char) { '&lt;' }
 
     it 'returns an XML String' do
-      expect(xml_result).to be_an String
+      expect(xml_result).to be_a String
     end
     it 'returns well formed XML' do
       expect do
