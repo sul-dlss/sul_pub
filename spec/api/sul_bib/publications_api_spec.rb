@@ -22,6 +22,7 @@ describe SulBib::API, :vcr do
     }
   end
   let(:valid_json_for_post) { valid_hash_for_post.to_json }
+  let(:doi_pub_id) { create(:doi_pub_id, identifier_value: '18819910019') }
 
   let(:invalid_json_for_post) do
     valid_hash_for_post.reject { |k, _| k == :authorship }.to_json
@@ -32,9 +33,9 @@ describe SulBib::API, :vcr do
       author: [{ name: 'henry lowe' }],
       authorship: [{
         cap_profile_id: '3810',
-       status: 'denied',
-       visibility: 'public',
-       featured: true
+        status: 'denied',
+        visibility: 'public',
+        featured: true
       }]
     ).to_json
   end
@@ -56,7 +57,7 @@ describe SulBib::API, :vcr do
       etal: true,
       identifier: [
         { type: 'isbn', id: '1177188188181' },
-        { type: 'doi', url: '18819910019' }
+        doi_pub_id.identifier
       ],
       last_updated: '2013-08-10T21:03Z',
       provenance: 'CAP',
@@ -71,7 +72,7 @@ describe SulBib::API, :vcr do
     valid_hash_for_post.merge(
       identifier: [
         { type: 'isbn', id: '1177188188181' },
-        { type: 'doi', url: '18819910019-updated' },
+        { type: 'doi', id: '18819910019-updated', url: '18819910019-updated' },
         { type: 'SULPubId', id: '164', url: Settings.SULPUB_ID.PUB_URI + '/164' }
       ]
     )
@@ -90,7 +91,7 @@ describe SulBib::API, :vcr do
     with_isbn_hash.merge(
       identifier: [
         { type: 'isbn', id: '1177188188181' },
-        { type: 'doi', url: '18819910019' },
+        doi_pub_id.identifier,
         { type: 'pmid', id: '999999999' },
       ]
     ).to_json
@@ -225,7 +226,7 @@ describe SulBib::API, :vcr do
         expect(result['identifier'].size).to eq(3)
         expect(result['identifier']).to include(
           a_hash_including('id' => '1177188188181', 'type' => 'isbn'),
-          a_hash_including('type' => 'doi', 'url' => '18819910019'),
+          a_hash_including('type' => 'doi', 'url' => 'http://dx.doi.org/18819910019'),
           a_hash_including('type' => 'SULPubId', 'url' => "#{Settings.SULPUB_ID.PUB_URI}/#{last_pub.id}", 'id' => last_pub.id.to_s)
         )
         expect(last_pub.publication_identifiers.size).to eq(2)

@@ -103,13 +103,16 @@ describe Publication do
   end
 
   describe 'sync_identifiers_in_pub_hash' do
-    it 'should sync identifiers in the pub hash to the database' do
+    let(:pub_xyz) do
       publication.pub_hash = { identifier: [{ type: 'x', id: 'y', url: 'z' }] }
       publication.send(:sync_identifiers_in_pub_hash)
       publication.save!
-      i = PublicationIdentifier.last
-      expect(i.identifier_type).to eq('x')
-      expect(publication.publication_identifiers.reload).to include(i)
+      publication
+    end
+
+    it 'should sync identifiers in the pub hash to the database' do
+      expect(pub_xyz.publication_identifiers.reload)
+        .to include(PublicationIdentifier.find_by(identifier_type: 'x', identifier_value: 'y'))
     end
 
     it 'should not persist SULPubIds' do
@@ -121,29 +124,33 @@ describe Publication do
     end
 
     it 'updates existing ids with new values' do
-      publication.pub_hash = { identifier: [{ type: 'x', id: 'y', url: 'z' }] }
-      publication.send(:sync_identifiers_in_pub_hash)
-      publication.save!
-      publication.pub_hash = { identifier: [{ type: 'x', id: 'y2', url: 'z2' }] }
-      publication.send(:sync_identifiers_in_pub_hash)
-      publication.save!
-      ids = PublicationIdentifier.where(publication_id: publication.id).all
-      expect(ids).not_to be_empty
+      pub_xyz.pub_hash = { identifier: [{ type: 'x', id: 'y2', url: 'z2' }] }
+      pub_xyz.send(:sync_identifiers_in_pub_hash)
+      pub_xyz.save!
+      ids = PublicationIdentifier.where(publication_id: pub_xyz.id).all
+      expect(ids.size).to eq(1)
       expect(ids.first.identifier_type).to eq('x')
       expect(ids.first.identifier_value).to eq('y2')
       expect(ids.first.identifier_uri).to eq('z2')
+    end
+
+    it 'avoids writing back empty values' do # stop our bad data from spreading
+      pub_xyz.pub_hash = { identifier: [{ type: 'x', id: nil, url: 'z2' }, { type: 'q', id: nil, url: 'z2' }] }
+      pub_xyz.send(:sync_identifiers_in_pub_hash)
+      pub_xyz.save!
+      ids = PublicationIdentifier.where(publication_id: pub_xyz.id).all
       expect(ids.size).to eq(1)
+      expect(ids.first.identifier_type).to eq('x')
+      expect(ids.first.identifier_value).to eq('y')
+      expect(ids.first.identifier_uri).to eq('z')
     end
 
     it 'deletes ids from the database that are not longer in the pub_hash' do
-      publication.pub_hash = { identifier: [{ type: 'x', id: 'y', url: 'z' }] }
-      publication.send(:sync_identifiers_in_pub_hash)
-      publication.save!
-      publication.pub_hash = { identifier: [{ type: 'a', id: 'b', url: 'c' }] }
-      publication.send(:sync_identifiers_in_pub_hash)
-      publication.save!
-      expect(PublicationIdentifier.where(publication_id: publication.id, identifier_type: 'x').count).to eq(0)
-      expect(PublicationIdentifier.where(publication_id: publication.id, identifier_type: 'a').count).to eq(1)
+      pub_xyz.pub_hash = { identifier: [{ type: 'a', id: 'b', url: 'c' }] }
+      pub_xyz.send(:sync_identifiers_in_pub_hash)
+      pub_xyz.save!
+      expect(PublicationIdentifier.where(publication_id: pub_xyz.id, identifier_type: 'x').count).to eq(0)
+      expect(PublicationIdentifier.where(publication_id: pub_xyz.id, identifier_type: 'a').count).to eq(1)
     end
 
     it 'does not delete legacy_cap_pub_id when missing from the incoming pub_hash' do
