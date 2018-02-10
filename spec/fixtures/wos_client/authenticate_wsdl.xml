@@ -1,0 +1,188 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://auth.cxf.wokmws.thomsonreuters.com" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="WOKMWSAuthenticateService" targetNamespace="http://auth.cxf.wokmws.thomsonreuters.com">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://auth.cxf.wokmws.thomsonreuters.com" targetNamespace="http://auth.cxf.wokmws.thomsonreuters.com" version="1.0">
+<xs:element name="AuthenticationException" type="tns:AuthenticationException"/>
+<xs:element name="ESTIWSException" type="tns:ESTIWSException"/>
+<xs:element name="InternalServerException" type="tns:InternalServerException"/>
+<xs:element name="InvalidInputException" type="tns:InvalidInputException"/>
+<xs:element name="QueryException" type="tns:QueryException"/>
+<xs:element name="SessionException" type="tns:SessionException"/>
+<xs:element name="authenticate" type="tns:authenticate"/>
+<xs:element name="authenticateResponse" type="tns:authenticateResponse"/>
+<xs:element name="closeSession" type="tns:closeSession"/>
+<xs:element name="closeSessionResponse" type="tns:closeSessionResponse"/>
+<xs:complexType name="closeSession">
+    <xs:sequence/>
+  </xs:complexType>
+<xs:complexType name="closeSessionResponse">
+    <xs:sequence/>
+  </xs:complexType>
+<xs:complexType name="QueryException">
+    <xs:sequence/>
+  </xs:complexType>
+<xs:complexType name="ESTIWSException">
+    <xs:sequence/>
+  </xs:complexType>
+<xs:complexType name="InvalidInputException">
+    <xs:sequence/>
+  </xs:complexType>
+<xs:complexType name="InternalServerException">
+    <xs:sequence/>
+  </xs:complexType>
+<xs:complexType name="SessionException">
+    <xs:sequence/>
+  </xs:complexType>
+<xs:complexType name="AuthenticationException">
+    <xs:sequence/>
+  </xs:complexType>
+<xs:complexType name="authenticate">
+    <xs:sequence/>
+  </xs:complexType>
+<xs:complexType name="authenticateResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="closeSession">
+    <wsdl:part element="tns:closeSession" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="QueryException_Exception">
+    <wsdl:part element="tns:QueryException" name="QueryException_Exception">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ESTIWSException_Exception">
+    <wsdl:part element="tns:ESTIWSException" name="ESTIWSException_Exception">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="InvalidInputException_Exception">
+    <wsdl:part element="tns:InvalidInputException" name="InvalidInputException_Exception">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="InternalServerException_Exception">
+    <wsdl:part element="tns:InternalServerException" name="InternalServerException_Exception">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="SessionException_Exception">
+    <wsdl:part element="tns:SessionException" name="SessionException_Exception">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="authenticate">
+    <wsdl:part element="tns:authenticate" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="closeSessionResponse">
+    <wsdl:part element="tns:closeSessionResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="authenticateResponse">
+    <wsdl:part element="tns:authenticateResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="AuthenticationException_Exception">
+    <wsdl:part element="tns:AuthenticationException" name="AuthenticationException_Exception">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="WOKMWSAuthenticate">
+    <wsdl:operation name="closeSession">
+      <wsdl:input message="tns:closeSession" name="closeSession">
+    </wsdl:input>
+      <wsdl:output message="tns:closeSessionResponse" name="closeSessionResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:SessionException_Exception" name="SessionException_Exception">
+    </wsdl:fault>
+      <wsdl:fault message="tns:AuthenticationException_Exception" name="AuthenticationException_Exception">
+    </wsdl:fault>
+      <wsdl:fault message="tns:ESTIWSException_Exception" name="ESTIWSException_Exception">
+    </wsdl:fault>
+      <wsdl:fault message="tns:InvalidInputException_Exception" name="InvalidInputException_Exception">
+    </wsdl:fault>
+      <wsdl:fault message="tns:InternalServerException_Exception" name="InternalServerException_Exception">
+    </wsdl:fault>
+      <wsdl:fault message="tns:QueryException_Exception" name="QueryException_Exception">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="authenticate">
+      <wsdl:input message="tns:authenticate" name="authenticate">
+    </wsdl:input>
+      <wsdl:output message="tns:authenticateResponse" name="authenticateResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:SessionException_Exception" name="SessionException_Exception">
+    </wsdl:fault>
+      <wsdl:fault message="tns:AuthenticationException_Exception" name="AuthenticationException_Exception">
+    </wsdl:fault>
+      <wsdl:fault message="tns:ESTIWSException_Exception" name="ESTIWSException_Exception">
+    </wsdl:fault>
+      <wsdl:fault message="tns:InvalidInputException_Exception" name="InvalidInputException_Exception">
+    </wsdl:fault>
+      <wsdl:fault message="tns:InternalServerException_Exception" name="InternalServerException_Exception">
+    </wsdl:fault>
+      <wsdl:fault message="tns:QueryException_Exception" name="QueryException_Exception">
+    </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WOKMWSAuthenticateServiceSoapBinding" type="tns:WOKMWSAuthenticate">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="closeSession">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="closeSession">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="closeSessionResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="SessionException_Exception">
+        <soap:fault name="SessionException_Exception" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="AuthenticationException_Exception">
+        <soap:fault name="AuthenticationException_Exception" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="ESTIWSException_Exception">
+        <soap:fault name="ESTIWSException_Exception" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="InvalidInputException_Exception">
+        <soap:fault name="InvalidInputException_Exception" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="InternalServerException_Exception">
+        <soap:fault name="InternalServerException_Exception" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="QueryException_Exception">
+        <soap:fault name="QueryException_Exception" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="authenticate">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="authenticate">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="authenticateResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="SessionException_Exception">
+        <soap:fault name="SessionException_Exception" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="AuthenticationException_Exception">
+        <soap:fault name="AuthenticationException_Exception" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="ESTIWSException_Exception">
+        <soap:fault name="ESTIWSException_Exception" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="InvalidInputException_Exception">
+        <soap:fault name="InvalidInputException_Exception" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="InternalServerException_Exception">
+        <soap:fault name="InternalServerException_Exception" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="QueryException_Exception">
+        <soap:fault name="QueryException_Exception" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WOKMWSAuthenticateService">
+    <wsdl:port binding="tns:WOKMWSAuthenticateServiceSoapBinding" name="WOKMWSAuthenticatePort">
+      <soap:address location="http://search.webofknowledge.com/esti/wokmws/ws/WOKMWSAuthenticate"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
