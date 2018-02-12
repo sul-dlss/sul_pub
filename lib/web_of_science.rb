@@ -1,4 +1,5 @@
 # rubocop:disable Style/ClassVars
+require 'set'
 
 # Web of Science (WOS) utilities
 module WebOfScience
@@ -31,10 +32,8 @@ module WebOfScience
   # We check in steps that the response is XML and it includes the correct content.
   def self.working?
     uids = %w[WOS:A1976BW18000001 WOS:A1972N549400003]
-    retriever = queries.retrieve_by_id(uids)
-    records = retriever.next_batch
-    raise 'WebOfScience found no records' unless records.is_a?(WebOfScience::Records) && records.count > 0
-    raise 'WebOfScience failed to parse records' unless records.first.is_a?(WebOfScience::Record)
+    uids_retrieved = queries.retrieve_by_id(uids).map(&:uid)
+    raise 'WebOfScience returned the wrong records' unless uids.to_set == uids_retrieved.to_set
     true
   end
 
