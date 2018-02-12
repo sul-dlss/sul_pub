@@ -37,7 +37,10 @@ clients = [
   PubmedClient
 ]
 clients << ScienceWireClient if Settings.SCIENCEWIRE.enabled
-clients << WebOfScience if Settings.WOS.enabled
+if Settings.WOS.enabled
+  clients << WebOfScience
+  clients << Clarivate::LinksClient
+end
 clients.each do |klass|
   OkComputer::Registry.register "external-#{klass.name}", DelegateCheck.new(klass)
 end
