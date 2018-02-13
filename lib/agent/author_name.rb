@@ -85,6 +85,7 @@ module Agent
         [
           "\"#{last_name},#{first_name},#{middle_name}\"",
           "\"#{last_name},#{first_name},#{middle_initial}\"",
+          "\"#{last_name},#{first_initial}#{middle_initial}\"",
           "\"#{last_name},#{first_initial},#{middle_initial}\""
         ]
       end

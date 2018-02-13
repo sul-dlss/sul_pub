@@ -59,7 +59,7 @@ module AuthorNameQueries
           <Criteria>
             <Criterion>
               <TextSearch>
-                <QueryPredicate>(",,Mary" or ",,M") and "stanford"</QueryPredicate>
+                <QueryPredicate>(",,Mary" or ",,M" or ",M") and "stanford"</QueryPredicate>
                 <SearchType>ExactMatch</SearchType>
                 <Columns>AggregateText</Columns>
                 <MaximumRows>200</MaximumRows>
