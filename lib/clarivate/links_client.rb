@@ -12,7 +12,7 @@ module Clarivate
 
     def self.working?
       wos_uids = %w[WOS:A1976BW18000001 WOS:A1972N549400003]
-      links = WebOfScience.links_client.links(wos_uids, fields: Clarivate::LinksClient::ALL_FIELDS)
+      links = new.links(wos_uids)
       raise 'Links AMR client did not return the correct number of records' unless links.is_a?(Hash) && links.keys.count == 2
       true
     end

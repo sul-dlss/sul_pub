@@ -98,4 +98,19 @@ describe Clarivate::LinksClient do
       expect(request_xml).to include fields.first
     end
   end
+
+  describe '.working?' do
+    context 'success', :vcr do
+      it 'returns true when it works (has 2 results)' do
+        expect(described_class.working?).to be true
+      end
+    end
+    context 'failure' do
+      it 'raises exceptions when it fails (no results)' do
+        response_xml = File.read('spec/fixtures/clarivate/links_empty_results.xml')
+        allow(links_client.send(:connection)).to receive(:post).with(any_args).and_return(double(body: response_xml))
+        expect { described_class.working? }.to raise_error(RuntimeError)
+      end
+    end
+  end
 end
