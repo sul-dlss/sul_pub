@@ -198,7 +198,7 @@ describe WebOfScience::ProcessRecords, :vcr do
       # any failure to add links data is not catastrophic - just log it
       before do
         identifiers = WebOfScience::Identifiers.new(records.first)
-        expect(identifiers).to receive(:update).and_raise(RuntimeError)
+        expect(identifiers).to receive(:filter_ids).and_raise(RuntimeError).at_least(:once)
         expect(WebOfScience::Identifiers).to receive(:new).and_return(identifiers).at_least(:once)
       end
 
@@ -206,7 +206,7 @@ describe WebOfScience::ProcessRecords, :vcr do
         expect { processor.execute }.to change { Publication.count }
       end
       it 'logs errors' do
-        expect(NotificationManager).to receive(:error)
+        expect(NotificationManager).to receive(:error).at_least(:once)
         processor.execute
       end
     end

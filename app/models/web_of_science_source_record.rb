@@ -1,5 +1,7 @@
 class WebOfScienceSourceRecord < ActiveRecord::Base
 
+  serialize :identifiers, Hash
+
   validates :active, :database, :source_data, :source_fingerprint, :uid, presence: true
 
   after_initialize :init
@@ -9,7 +11,15 @@ class WebOfScienceSourceRecord < ActiveRecord::Base
 
   # @return [WebOfScience::Record]
   def record
-    @record ||= WebOfScience::Record.new(record: source_data)
+    @record ||= begin
+      rec = WebOfScience::Record.new(record: source_data)
+      rec.identifiers.update identifiers
+      rec
+    end
+  end
+
+  def wos_item_id
+    uid.split(':').last if database == 'WOS'
   end
 
   private
@@ -23,7 +33,7 @@ class WebOfScienceSourceRecord < ActiveRecord::Base
     # Assign default attributes using source_data
     def init_from_source
       raise 'Missing source_data' if source_data.nil?
-      self.source_fingerprint ||= Digest::SHA2.hexdigest(source_data)
+      self.source_fingerprint = Digest::SHA2.hexdigest(source_data)
       self.database ||= record.database
       self.uid ||= record.uid
       init_optional_attributes
