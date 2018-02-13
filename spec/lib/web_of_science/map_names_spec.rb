@@ -1,7 +1,9 @@
 describe WebOfScience::MapNames do
-  let(:wos_encoded_xml) { File.read('spec/fixtures/wos_client/wos_encoded_record.html') }
-  let(:wos_record) { WebOfScience::Record.new(encoded_record: wos_encoded_xml) }
+  # In this WOS-record, Russ Altman is both an "author" and a "book_editor"
+  let(:wos_encoded_xml) { File.read('spec/fixtures/wos_client/wos_record_000386326200035.xml') }
+  let(:wos_record) { WebOfScience::Record.new(record: wos_encoded_xml) }
 
+  # Cannot find any MEDLINE records with an "editor" of any kind
   let(:medline_encoded_xml) { File.read('spec/fixtures/wos_client/medline_encoded_record.html') }
   let(:medline_record) { WebOfScience::Record.new(encoded_record: medline_encoded_xml) }
 
@@ -30,6 +32,18 @@ describe WebOfScience::MapNames do
     end
     it 'has an authorcount' do
       expect(pub_hash[:authorcount]).not_to be_nil
+    end
+    it 'can map authors to CSL format' do
+      csl_authors = described_class.authors_to_csl(pub_hash[:author])
+      expect(csl_authors).to be_an Array
+      expect(csl_authors.count).to eq pub_hash[:authorcount]
+      expect(csl_authors.first).to include('family' => String, 'given' => String)
+    end
+    it 'can map editors to CSL format' do
+      csl_editors = described_class.editors_to_csl(pub_hash[:author])
+      expect(csl_editors).to be_an Array
+      editor = csl_editors.first # need to check for .nil? below because MEDLINE has none
+      expect(editor).to include('family' => String, 'given' => String) unless editor.nil?
     end
   end
 
