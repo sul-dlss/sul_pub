@@ -4,8 +4,8 @@ describe BibtexIngester do
 
   let!(:author_with_bibtex) { create :author, sunetid: 'james', cap_profile_id: 333_333 }
 
-  let(:bibtex_batch_path) { Rails.root.join('fixtures', 'bibtex_for_batch').to_s }
-  let(:bibtex_batch_path2) { Rails.root.join('fixtures', 'bibtex_for_batch_2').to_s }
+  let(:bibtex_batch_path) { Rails.root.join('spec', 'fixtures', 'bibtex', 'batch1').to_s }
+  let(:bibtex_batch_path2) { Rails.root.join('spec', 'fixtures', 'bibtex', 'batch2').to_s }
 
   #	puts author_with_bibtex.to_s
 
@@ -46,7 +46,7 @@ describe BibtexIngester do
     it 'creates new publication identifiers' do
       expect do
         bibtex_ingester.ingest_from_source_directory(bibtex_batch_path)
-      end.to change(PublicationIdentifier, :count).by(2)
+      end.to change(PublicationIdentifier, :count).by(4)
     end
 
     it 'creates new contributions' do
@@ -119,7 +119,26 @@ describe BibtexIngester do
     end
 
     context 'when deduping by issn, year, pages' do
-      let(:existing_matching_pub_issn) { create :publication, pmid: 3_323_434, pub_hash: { title: 'Quelque Titre', type: 'article', pmid: 3_323_434, year: 2002, pages: '295-299', issn: '234234', author: [{ name: 'Jackson, Joe' }], authorship: [{ sul_author_id: 2222, status: 'denied', visibility: 'public', featured: true }] } }
+      let(:issn) { '234234' }
+      let(:pmid) { 3_323_434 }
+      let(:existing_matching_pub_issn) do
+        pub = create(:publication,
+                     pmid: pmid,
+                     issn: issn,
+                     pub_hash: {
+                       title: 'Quelque Titre',
+                       type: 'article',
+                       pmid: pmid,
+                       year: 2002,
+                       pages: '295-299',
+                       issn: issn,
+                       author: [{ name: 'Jackson, Joe' }],
+                       authorship: [{ sul_author_id: 2222, status: 'denied', visibility: 'public', featured: true }],
+                       identifier: [{ type: 'issn', id: issn }, { type: 'pmid', id: pmid }]
+                     })
+        pub.sync_publication_hash_and_db
+        pub
+      end
       let(:contribution) { create :contribution, author: author_with_bibtex, publication: existing_matching_pub_issn }
 
       before do
@@ -127,7 +146,6 @@ describe BibtexIngester do
       end
 
       it "doesn't add duplicate contributions" do
-        # puts existing_matching_pub_issn.to_yaml
         expect do
           bibtex_ingester.ingest_from_source_directory(bibtex_batch_path)
         end.to change(Contribution, :count).by(3)
@@ -147,7 +165,23 @@ describe BibtexIngester do
     end
 
     context 'when deduping by title, year, pages' do
-      let(:pub_with_same_title) { create :publication, pmid: 332_423_434, pub_hash: { title: 'Quality of Life Assessment Designed for Computer Inexperienced Older Adults: Multimedia Utility Elicitation for Activities of Daily Living', pmid: 3_323_434, type: 'article', year: 2002, pages: '295-299', author: [{ name: 'Jackson, Joe' }], authorship: [{ sul_author_id: 2222, status: 'denied', visibility: 'public', featured: true }] } }
+      let(:pmid) { 3_323_434 }
+      let!(:pub_with_same_title) do
+        pub = create(:publication,
+                     pmid: pmid,
+                     pub_hash: {
+                       title: 'Quality of Life Assessment Designed for Computer Inexperienced Older Adults: Multimedia Utility Elicitation for Activities of Daily Living',
+                       pmid: pmid,
+                       type: 'article',
+                       year: 2002,
+                       pages: '295-299',
+                       author: [{ name: 'Jackson, Joe' }],
+                       authorship: [{ sul_author_id: 2222, status: 'denied', visibility: 'public', featured: true }],
+                       identifier: [{ type: 'pmid', id: pmid }]
+                     })
+        pub.sync_publication_hash_and_db
+        pub
+      end
       let(:contribution) { create :contribution, author: author_with_bibtex, publication: pub_with_same_title }
 
       before do
@@ -155,7 +189,6 @@ describe BibtexIngester do
       end
 
       it "doesn't add duplicate contributions" do
-        # puts pub_with_title.to_yaml
         expect do
           bibtex_ingester.ingest_from_source_directory(bibtex_batch_path)
         end.to change(Contribution, :count).by(3)

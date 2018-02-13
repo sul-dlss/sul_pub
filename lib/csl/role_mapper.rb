@@ -10,8 +10,8 @@ module Csl
         authors = pub_hash[:author]
         case pub_hash[:provenance].to_s.downcase
         when 'batch'
-          # This is from BibtexIngester.convert_bibtex_record_to_pub_hash
-          Csl::BibtexMapper.authors_to_csl(authors)
+          # This is related to BibtexMapper.pub_hash
+          BibtexMapper.authors_to_csl(pub_hash)
         when 'cap'
           # This is a CAP manual submission
           Csl::CapMapper.authors_to_csl(authors)
@@ -33,7 +33,10 @@ module Csl
         return [] if pub_hash[:author].blank?
         authors = pub_hash[:author]
         case pub_hash[:provenance].to_s.downcase
-        when 'batch', 'pubmed', 'sciencewire'
+        when 'batch'
+          # This is related to BibtexMapper.pub_hash
+          BibtexMapper.editors_to_csl(pub_hash)
+        when 'pubmed', 'sciencewire'
           # This is from BibtexIngester.convert_bibtex_record_to_pub_hash
           [] # there are no editors
         when 'cap'
