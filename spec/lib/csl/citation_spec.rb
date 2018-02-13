@@ -66,6 +66,16 @@ describe Csl::Citation do
                            featured: false }] }
   end
 
+  describe '#citations' do
+    subject(:citations) { hash.citations }
+
+    let(:hash) { described_class.new(pub_hash) }
+
+    it 'contains all the citation formats' do
+      expect(citations).to include(apa_citation: String, mla_citation: String, chicago_citation: String)
+    end
+  end
+
   shared_examples 'it is a CSL report citation' do
     def expect_includes_field(field)
       expect(cite).to include(csl_report[field]) if csl_report[field]
