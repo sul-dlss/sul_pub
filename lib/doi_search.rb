@@ -34,20 +34,8 @@ class DoiSearch
     return [] unless Settings.WOS.enabled
     doi = doi_name(doi)
     return [] if doi.blank?
-    retriever = WebOfScience.queries.search_by_doi(doi)
-    retriever.next_batch.map { |record| add_citation(record.pub_hash) }
+    WebOfScience.queries.search_by_doi(doi).next_batch.map(&:pub_hash)
   end
-
-  # @param [Hash] pub_hash modifies passed hash to include citation k/v pairs
-  # @return [Hash] the same modified hash
-  def self.add_citation(pub_hash)
-    cite = Csl::Citation.new(pub_hash)
-    pub_hash[:apa_citation] ||= cite.to_apa_citation
-    pub_hash[:mla_citation] ||= cite.to_mla_citation
-    pub_hash[:chicago_citation] ||= cite.to_chicago_citation
-    pub_hash
-  end
-  private_class_method :add_citation
 
   # @param [String, nil] doi
   # @return [String, nil] DOI name
