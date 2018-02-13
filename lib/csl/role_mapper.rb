@@ -23,6 +23,8 @@ module Csl
           # This is a ScienceWire publication and the author is created in
           # SciencewireSourceRecord.convert_sw_publication_doc_to_hash
           Csl::SciencewireMapper.authors_to_csl(authors)
+        when Settings.wos_source
+          WebOfScience::MapNames.authors_to_csl(authors)
         else
           parse_authors(authors)
         end
@@ -38,6 +40,8 @@ module Csl
         when Settings.cap_provenance
           # This is a CAP manual submission
           Csl::CapMapper.editors_to_csl(authors)
+        when Settings.wos_source
+          WebOfScience::MapNames.editors_to_csl(authors)
         else
           parse_editors(authors)
         end
