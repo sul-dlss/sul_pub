@@ -204,6 +204,10 @@ describe Agent::AuthorName do
         name = "\"#{all_names.last_name},#{all_names.first_initial}\""
         expect(mn_query).not_to include name
       end
+      it 'includes name with middle_initial appended to first initial' do
+        name = "\"#{all_names.last_name},#{all_names.first_initial}#{all_names.middle_initial}\""
+        expect(mn_query).to include name
+      end
     end
   end
 
