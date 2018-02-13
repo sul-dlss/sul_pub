@@ -9,17 +9,17 @@ module Csl
         return [] if pub_hash[:author].blank?
         authors = pub_hash[:author]
         case pub_hash[:provenance].to_s.downcase
-        when 'batch'
+        when Settings.batch_source
           # This is from BibtexIngester.convert_bibtex_record_to_pub_hash
           Csl::BibtexMapper.authors_to_csl(authors)
-        when 'cap'
+        when Settings.cap_provenance
           # This is a CAP manual submission
           Csl::CapMapper.authors_to_csl(authors)
-        when 'pubmed'
+        when Settings.pubmed_source
           # This is a PubMed publication and the author is created in
           # PubmedSourceRecord.convert_pubmed_publication_doc_to_hash
           Csl::PubmedMapper.authors_to_csl(authors)
-        when 'sciencewire'
+        when Settings.sciencewire_source
           # This is a ScienceWire publication and the author is created in
           # SciencewireSourceRecord.convert_sw_publication_doc_to_hash
           Csl::SciencewireMapper.authors_to_csl(authors)
@@ -33,10 +33,9 @@ module Csl
         return [] if pub_hash[:author].blank?
         authors = pub_hash[:author]
         case pub_hash[:provenance].to_s.downcase
-        when 'batch', 'pubmed', 'sciencewire'
-          # This is from BibtexIngester.convert_bibtex_record_to_pub_hash
+        when Settings.batch_source, Settings.pubmed_source, Settings.sciencewire_source
           [] # there are no editors
-        when 'cap'
+        when Settings.cap_provenance
           # This is a CAP manual submission
           Csl::CapMapper.editors_to_csl(authors)
         else
