@@ -1,0 +1,97 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://ws.isiknowledge.com/cps/xrpc
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <request xmlns="http://www.isinet.com/xrpc41" src="app.id=API Demo">
+          <fn name="LinksAMR.retrieve">
+            <list>
+              <map>
+                <val name="username">links_username</val>
+                <val name="password">links_password</val>
+              </map>
+              <map>
+                <list name="WOS">
+                    <val>doi</val>
+                    <val>pmid</val>
+                </list>
+              </map>
+              <map>
+                  <map name="cite_WOS:A1976BW18000001">
+                    <val name="ut">WOS:A1976BW18000001</val>
+                  </map>
+                  <map name="cite_WOS:A1972N549400003">
+                    <val name="ut">WOS:A1972N549400003</val>
+                  </map>
+              </map>
+            </list>
+          </fn>
+        </request>
+    headers:
+      User-Agent:
+      - Faraday v0.14.0
+      Accept:
+      - "*/*"
+      Accept-Encoding:
+      - gzip,deflate
+      Date:
+      - Wed, 14 Feb 2018 17:53:46 GMT
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Origin:
+      - "*"
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Content-Type:
+      - text/xml;charset=UTF-8
+      Date:
+      - Wed, 14 Feb 2018 17:53:52 GMT
+      Platform:
+      - CPS 2017.R3.0.9
+      Pragma:
+      - no-cache
+      Server:
+      - Apache/2.4.25 (Unix) ESTI-Router/4.9.0.10
+      Set-Cookie:
+      - PRODUCT=AMR
+      - PRODUCT=AMR
+      - PRODUCT=AMR
+      - SID=A5jRAYRlEmOed1IX9Mh
+      - SID=A5kBnBQpCHK96eQO1wg
+      - SID=A5sKASGsypQHGDg6ePr
+      Content-Length:
+      - '405'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8" ?>
+        <response xmlns="http://www.isinet.com/xrpc41" src="app.id=API Demo">
+        <fn name="LinksAMR.retrieve" rc="OK">
+        <map>
+        <map name="cite_WOS:A1972N549400003">
+        <map name="WOS">
+        <val name="doi">10.5860/crl_33_05_413</val>
+        </map>
+        </map>
+        <map name="cite_WOS:A1976BW18000001">
+        <map name="WOS">
+        <val name="doi">10.5860/crl_37_03_205</val>
+        </map>
+        </map>
+        </map>
+        </fn>
+        </response>
+    http_version: 
+  recorded_at: Wed, 14 Feb 2018 17:53:46 GMT
+recorded_with: VCR 4.0.0
