@@ -31,6 +31,7 @@ module WebOfScience
         pub.update pub_hash_doctypes(rec)
         pub.update pub_hash_identifiers(rec)
         pub.update WebOfScience::MapMesh.new(rec).pub_hash
+        pub.update Csl::Citation.new(pub).citations
       end
 
       # publication document types and categories
@@ -63,6 +64,5 @@ module WebOfScience
         id[:wos_item_id] = ids.wos_item_id if ids.wos_item_id.present?
         id
       end
-
   end
 end

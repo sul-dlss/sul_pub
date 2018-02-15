@@ -27,6 +27,16 @@ module Csl
       @pub_hash = pub_hash
     end
 
+    # Generate all citations
+    # @return [Hash]
+    def citations
+      {
+        apa_citation: to_apa_citation,
+        mla_citation: to_mla_citation,
+        chicago_citation: to_chicago_citation
+      }
+    end
+
     # Generates a new render instance every time, so it has no history of any prior citations.
     # When it has history, it can assume that subsequent citations can refer to earlier citations,
     # which has a different style for the subsequent citations.
@@ -59,8 +69,5 @@ module Csl
     def csl_doc
       @csl_doc ||= Csl::Mapper.new(pub_hash).csl_doc
     end
-
   end
-
 end
-

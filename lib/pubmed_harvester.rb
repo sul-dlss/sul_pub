@@ -39,11 +39,7 @@ class PubmedHarvester
   # @param [Hash] pub_hash modifies passed hash to include citation k/v pairs
   # @return [Hash] the same modified hash
   def self.add_citation(pub_hash)
-    cite = Csl::Citation.new(pub_hash)
-    pub_hash[:apa_citation] ||= cite.to_apa_citation
-    pub_hash[:mla_citation] ||= cite.to_mla_citation
-    pub_hash[:chicago_citation] ||= cite.to_chicago_citation
-    pub_hash
+    pub_hash.update Csl::Citation.new(pub_hash).citations
   end
   private_class_method :add_citation
 end

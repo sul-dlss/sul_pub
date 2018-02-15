@@ -292,11 +292,7 @@ class ScienceWireClient
       xml_results = query_sciencewire(xml_query)
       xml_results.xpath('//PublicationItem').map do |sw_xml_doc|
         pub_hash = SciencewireSourceRecord.convert_sw_publication_doc_to_hash(sw_xml_doc)
-        cite = Csl::Citation.new(pub_hash)
-        pub_hash[:apa_citation] = cite.to_apa_citation
-        pub_hash[:mla_citation] = cite.to_mla_citation
-        pub_hash[:chicago_citation] = cite.to_chicago_citation
-        pub_hash
+        pub_hash.update Csl::Citation.new(pub_hash).citations
       end
     end
 end
