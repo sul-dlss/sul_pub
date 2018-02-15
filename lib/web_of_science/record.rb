@@ -47,10 +47,10 @@ module WebOfScience
     # @return [Array<Hash<String => String>>]
     def names
       @names ||= begin
-        names = doc.search('static_data/summary/names/name').map do |name|
-          WebOfScience::XmlParser.attributes_with_children_hash(name)
+        name_elements = doc.search('static_data/summary/names/name').map do |n|
+          WebOfScience::XmlParser.attributes_with_children_hash(n)
         end
-        names.sort { |name| name['seq_no'].to_i }
+        name_elements.sort_by { |name| name['seq_no'].to_i }
       end
     end
 

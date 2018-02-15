@@ -70,35 +70,38 @@ describe WebOfScience::Record do
     end
   end
 
-  describe '#authors' do
-    let(:agents) { wos_record_encoded.authors }
-    let(:agent) { agents.first }
-
-    it_behaves_like 'it is an array of names'
-    it 'contains author values' do
-      expect(agent).to include('first_name' => 'DC', 'last_name' => 'WEBER', 'role' => 'author')
-    end
-  end
-
-  describe '#editors' do
+  context 'names' do
+    # In this WOS-record, Russ Altman is both an "author" and a "book_editor"
     let(:wos_xml) { File.read('spec/fixtures/wos_client/wos_record_000386326200035.xml') }
     let(:wos_record) { described_class.new(record: wos_xml) }
     let(:wos_uid) { 'WOS:000386326200035' }
 
-    let(:agents) { wos_record.editors }
-    let(:agent) { agents.first }
+    describe '#authors' do
+      let(:agents) { wos_record.authors }
+      let(:agent) { agents.first }
 
-    it_behaves_like 'it is an array of names'
-    it 'contains editor values' do
-      expect(agent).to include('first_name' => 'TE', 'last_name' => 'Klein', 'role' => 'book_editor')
+      it_behaves_like 'it is an array of names'
+      it 'contains author values' do
+        expect(agent).to include('first_name' => 'Yong Fuga', 'last_name' => 'Li', 'role' => 'author')
+      end
     end
-  end
 
-  describe '#names' do
-    let(:agents) { wos_record_encoded.names }
-    let(:agent) { agents.first }
+    describe '#editors' do
+      let(:agents) { wos_record.editors }
+      let(:agent) { agents.first }
 
-    it_behaves_like 'it is an array of names'
+      it_behaves_like 'it is an array of names'
+      it 'contains editor values' do
+        expect(agent).to include('first_name' => 'RB', 'last_name' => 'Altman', 'role' => 'book_editor')
+      end
+    end
+
+    describe '#names' do
+      let(:agents) { wos_record.names }
+      let(:agent) { agents.first }
+
+      it_behaves_like 'it is an array of names'
+    end
   end
 
   describe '#identifiers' do
