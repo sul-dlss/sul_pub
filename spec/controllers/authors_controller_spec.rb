@@ -9,24 +9,42 @@ describe AuthorsController do
     context 'when authorized' do
       before do
         expect(controller).to receive(:check_authorization).and_return(true)
+        allow(Settings.SCIENCEWIRE).to receive(:enabled).and_return(true)
+        allow(Settings.WOS).to receive(:enabled).and_return(true)
       end
       it 'ensures the request is json' do
         post :harvest, cap_profile_id: 123
         expect(response.status).to eq 406
       end
-      it 'enqueues an AuthorHarvestJob with an Author' do
+
+      it 'enqueues a ScienceWire::AuthorHarvestJob with an Author' do
         ActiveJob::Base.queue_adapter = :test
         expect do
           post :harvest, cap_profile_id: author.cap_profile_id, format: :json
           expect(response.status).to eq 202
-        end.to have_enqueued_job(AuthorHarvestJob).with(author.cap_profile_id.to_s, harvest_alternate_names: false)
+        end.to have_enqueued_job(ScienceWire::AuthorHarvestJob).with(author, alternate_names: false)
       end
-      it 'enqueues an AuthorHarvestJob with an Author and altNames parameter' do
+      it 'enqueues a ScienceWire::AuthorHarvestJob with an Author and altNames parameter' do
         ActiveJob::Base.queue_adapter = :test
         expect do
           post :harvest, cap_profile_id: author.cap_profile_id, format: :json, altNames: 'true'
           expect(response.status).to eq 202
-        end.to have_enqueued_job(AuthorHarvestJob).with(author.cap_profile_id.to_s, harvest_alternate_names: true)
+        end.to have_enqueued_job(ScienceWire::AuthorHarvestJob).with(author, alternate_names: true)
+      end
+
+      it 'enqueues a WebOfScience::AuthorHarvestJob with an Author' do
+        ActiveJob::Base.queue_adapter = :test
+        expect do
+          post :harvest, cap_profile_id: author.cap_profile_id, format: :json
+          expect(response.status).to eq 202
+        end.to have_enqueued_job(WebOfScience::AuthorHarvestJob).with(author, alternate_names: false)
+      end
+      it 'enqueues a WebOfScience::AuthorHarvestJob with an Author and altNames parameter' do
+        ActiveJob::Base.queue_adapter = :test
+        expect do
+          post :harvest, cap_profile_id: author.cap_profile_id, format: :json, altNames: 'true'
+          expect(response.status).to eq 202
+        end.to have_enqueued_job(WebOfScience::AuthorHarvestJob).with(author, alternate_names: true)
       end
     end
   end

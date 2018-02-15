@@ -1,9 +1,11 @@
 
 RSpec.describe WebOfScienceSourceRecord, type: :model do
+  subject(:wos_src_rec) { described_class.new(source_data: wos_record.to_xml) }
+
   let(:encoded_records) { File.read('spec/fixtures/wos_client/wos_encoded_records.html') }
   let(:wos_records) { WebOfScience::Records.new(encoded_records: encoded_records) }
   let(:wos_record) { wos_records.first }
-  let(:wos_src_rec) { described_class.new(source_data: wos_record.to_xml) }
+  let(:identifiers) { WebOfScience::Identifiers.new(wos_record) }
 
   context 'initialize a new record' do
     it 'can be created from a WOS source record' do
@@ -15,11 +17,14 @@ RSpec.describe WebOfScienceSourceRecord, type: :model do
     it 'extracts a UID from a WOS source record' do
       expect(wos_src_rec.uid).to be_an String
     end
+    it 'a wos_item_id can be extrated from a UID for a WOS record' do
+      expect(wos_src_rec.wos_item_id).to be_a String
+    end
     it 'extracts a database identifier from a WOS source record' do
-      expect(wos_src_rec.database).to be_an String
+      expect(wos_src_rec.database).to be_a String
     end
     it 'extracts a source_fingerprint from a WOS source record' do
-      expect(wos_src_rec.source_fingerprint).to be_an String
+      expect(wos_src_rec.source_fingerprint).to be_a String
     end
     it 'sets active true' do
       expect(wos_src_rec.active).to be true
@@ -27,11 +32,16 @@ RSpec.describe WebOfScienceSourceRecord, type: :model do
   end
 
   context 'sets identifiers' do
+    subject(:wos_src_rec) { described_class.new(source_data: wos_record.to_xml, identifiers: identifiers.to_h) }
+
     before do
-      identifiers = WebOfScience::Identifiers.new(wos_record)
       allow(identifiers).to receive(:doi).and_return('doi')
       allow(identifiers).to receive(:pmid).and_return('123')
       allow(WebOfScience::Identifiers).to receive(:new).and_return(identifiers)
+    end
+    it 'identifiers returns a Hash' do
+      expect(wos_src_rec.identifiers).to be_a Hash
+      expect(wos_src_rec.identifiers).to eq identifiers.to_h
     end
     it 'sets doi' do
       expect(wos_src_rec.doi).to eq 'doi'
@@ -41,8 +51,8 @@ RSpec.describe WebOfScienceSourceRecord, type: :model do
     end
     it 'allows select' do
       wos_src_rec.save!
-      expect(described_class.select(:doi).first).to be_an described_class
-      expect(described_class.select(:pmid).first).to be_an described_class
+      expect(described_class.select(:doi).first).to be_a described_class
+      expect(described_class.select(:pmid).first).to be_a described_class
     end
   end
 
@@ -52,7 +62,7 @@ RSpec.describe WebOfScienceSourceRecord, type: :model do
     end
     it 'allows select' do
       wos_src_rec.save!
-      expect(described_class.select(:id).first).to be_an described_class
+      expect(described_class.select(:id).first).to be_a described_class
     end
   end
 
@@ -64,7 +74,7 @@ RSpec.describe WebOfScienceSourceRecord, type: :model do
       expect(wos_src_rec.record).to be_a WebOfScience::Record
     end
     it 'has an XML String' do
-      expect(wos_src_rec.to_xml).to be_an String
+      expect(wos_src_rec.to_xml).to be_a String
     end
     it 'an XML String from the doc utility matches the source_data' do
       # TODO: use equivalent_xml
