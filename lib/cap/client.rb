@@ -4,8 +4,8 @@ module Cap
 
     # Fetch a single object from CAP server and test its response
     def self.working?
-      response = new.get_auth_profile(41_135)
-      response.is_a?(Hash) && response['profileId'] == 41_135
+      response = new.get_auth_profile(4176)
+      response.is_a?(Hash) && response['profileId'] == 4176
     end
 
     def get_batch_from_cap_api(page_count = 1, page_size = 1000, since = '')
