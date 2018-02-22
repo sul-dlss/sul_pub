@@ -43,7 +43,7 @@ module WebOfScience
       def create_publications
         select_new_wos_records # cf. WebOfScienceSourceRecord
         save_wos_records # save WebOfScienceSourceRecord
-        records.select! { |rec| !found_contribution?(author, rec) && create_publication(rec) }
+        records.select! { |rec| !matching_contribution(author, rec) && create_publication(rec) }
         pubmed_additions(records)
         records.map(&:uid)
       end
@@ -71,13 +71,12 @@ module WebOfScience
       # @param [WebOfScience::Record] record
       # @return [Boolean] WebOfScience::Record created a new Publication?
       def create_publication(record)
-        pub = Publication.new(
+        pub = Publication.create!(
           active: true,
           pub_hash: record.pub_hash,
-          wos_uid: record.uid
+          wos_uid: record.uid,
+          pubhash_needs_update: true
         )
-        pub.pubhash_needs_update!
-        pub.save!
         contrib = find_or_create_contribution(author, pub)
         contrib.persisted?
       rescue StandardError => err
@@ -99,33 +98,18 @@ module WebOfScience
       # @return [void]
       def process_links
         links = retrieve_links
-        records.each { |rec| update_links(rec, links[rec.uid]) }
+        records.each { |rec| rec.identifiers.update(links[rec.uid]) if rec.database == 'WOS' }
       rescue StandardError => err
-        message = "Author: #{author.id}, process_links failed"
-        NotificationManager.error(err, message, self)
+        NotificationManager.error(err, "Author: #{author.id}, process_links failed", self)
       end
 
       # Retrieve a batch of publication identifiers for WOS records from the Links-API
       # @example {"WOS:000288663100014"=>{"pmid"=>"21253920", "doi"=>"10.1007/s12630-011-9462-1"}}
       # @return [Hash<String => Hash<String => String>>]
       def retrieve_links
-        uids = records.map { |rec| rec.uid if rec.database == 'WOS' }.compact
-        links_client.links uids
+        links_client.links records.map { |rec| rec.uid if rec.database == 'WOS' }.compact
       rescue StandardError => err
-        message = "Author: #{author.id}, retrieve_links failed"
-        NotificationManager.error(err, message, self)
+        NotificationManager.error(err, "Author: #{author.id}, retrieve_links failed", self)
       end
-
-      # @param record [WebOfScience::Record]
-      # @param links [Hash<String => String>] other identifiers (from Links API)
-      # @return [void]
-      def update_links(record, links)
-        return unless record.database == 'WOS'
-        record.identifiers.update links
-      rescue StandardError => err
-        message = "Author: #{author.id}, #{record.uid}, update_links failed"
-        NotificationManager.error(err, message, self)
-      end
-
   end
 end

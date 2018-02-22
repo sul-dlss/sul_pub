@@ -49,14 +49,14 @@ module WebOfScience
       # @return [String, nil] WosUID that create a new Publication
       def process_record
         save_record # as WebOfScienceSourceRecord
-        return if found_contribution?(author, record)
+        return if matching_contribution(author, record)
         contrib_persisted = create_publication
         pubmed_addition
         record.uid if contrib_persisted
       end
 
       # Save a new WebOfScienceSourceRecord
-      # Note: add nothing to PublicationIdentifiers here, or found_contribution? could skip processing this record
+      # Note: add nothing to PublicationIdentifiers here, or matching_contribution could skip processing this record
       def save_record
         return unless WebOfScienceSourceRecord.find_by(uid: record.uid).nil?
         attr = { source_data: record.to_xml }
