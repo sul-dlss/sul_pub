@@ -2,7 +2,6 @@ source 'https://rubygems.org'
 
 gem 'grape', '~> 0.19'
 gem 'rails', '~> 4.2.10'
-gem 'responders', '~> 2.4'
 
 # Use sass-powered bootstrap
 gem 'bootstrap-sass', '~> 3.3.7'
@@ -21,7 +20,6 @@ gem 'activerecord-import'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'bibtex-ruby'
-gem 'bio'
 gem 'citeproc-ruby', '~> 1.1'
 gem 'config'
 gem 'csl-styles', '~> 1.0'
@@ -44,12 +42,10 @@ gem 'okcomputer' # for monitoring
 gem 'paper_trail'
 gem 'parallel'
 gem 'pry-rails'
-gem 'pubmed_search'
 gem 'rake'
 gem 'savon', '~> 2.12'
 gem 'simple_form'
 gem 'StreetAddress', '~> 1.0', '>= 1.0.6'
-gem 'turnout'
 gem 'whenever', require: false
 gem 'yaml_db'
 
@@ -69,7 +65,6 @@ group :development do
   gem 'pry-doc'
   gem 'ruby-prof'
   gem 'thin' # app server
-  gem 'web-console', '~> 3.3'
 end
 
 group :test do
@@ -79,7 +74,6 @@ group :test do
   gem 'equivalent-xml'
   gem 'factory_bot_rails'
   gem 'simplecov', '~> 0.13', require: false
-  gem 'single_cov'
   gem 'vcr'
   gem 'webmock'
 end

@@ -1,4 +1,3 @@
-# This file is copied to spec/ when you run 'rails generate rspec:install'
 ENV['RAILS_ENV'] ||= 'test'
 
 require 'pry'  # for debugging specs
@@ -7,12 +6,6 @@ Dir.glob(File.join(__dir__, 'fixtures', '**', '*.rb'), &method(:require)) # load
 
 require 'rspec/matchers'
 require 'equivalent-xml'
-
-if ENV['SINGLECOV']
-  require 'single_cov'
-  SingleCov.setup :rspec
-end
-
 require 'simplecov'
 require 'coveralls'
 # Coveralls interferes with coverage reports on a laptop, only wear it on CI builds
