@@ -16,11 +16,9 @@ module WebOfScience
 
     # Find all WOS-UIDs for an author
     # @return [Array<String>] WosUIDs
+    # Implementation note: these records have a relatively small memory footprint, just UIDs
     def uids
-      # TODO: iterate on author identities also, or leave that to the consumer of this class?
-      # Implementation note: these records have a relatively small memory footprint, just UIDs
-      retriever = queries.search(author_query)
-      retriever.merged_uids
+      queries.search(author_query).merged_uids
     end
 
     private
