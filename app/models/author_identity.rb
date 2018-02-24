@@ -19,4 +19,9 @@ class AuthorIdentity < ActiveRecord::Base
       end_date
     )
   end
+
+  # Don't search unless valid institution is provided
+  def searchable_institution?
+    institution.present? && institution != 'all' && institution != '*'
+  end
 end
