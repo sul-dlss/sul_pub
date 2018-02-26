@@ -79,7 +79,7 @@ module WebOfScience
       def publisher_address(address)
         return {} if address.blank?
         addr = {}
-        addr[:city] = address['city']
+        addr[:city] = address['city'] || ""
         addr.update publisher_state_country(address['full_address'])
         addr
       end
@@ -94,8 +94,8 @@ module WebOfScience
           addr[:stateprovince] = usa_address.state
           addr[:country] ||= 'USA'
         end
-        addr[:stateprovince] ||= parse_state(full_address)
-        addr[:country] ||= parse_country(full_address)
+        addr[:stateprovince] ||= parse_state(full_address) || ""
+        addr[:country] ||= parse_country(full_address) || ""
         addr
       end
 

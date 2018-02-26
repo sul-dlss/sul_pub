@@ -93,6 +93,7 @@ module WebOfScience
       # @return [Hash]
       def wos_name(name)
         match = name[:first_name].to_s.match(/\A([A-Z])([A-Z])/)
+        name[:name] = name[:display_name]
         if match
           # first_name is the initials, with first and middle initials combined
           name[:first_name] = match[1]
