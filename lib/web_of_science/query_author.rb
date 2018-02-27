@@ -5,12 +5,7 @@ module WebOfScience
 
     def initialize(author, options = {})
       raise(ArgumentError, 'author must be an Author') unless author.is_a? Author
-      @names = Agent::AuthorName.new(
-        author.last_name,
-        author.first_name,
-        Settings.HARVESTER.USE_MIDDLE_NAME ? author.middle_name : ''
-      ).text_search_query
-      @institution = Agent::AuthorInstitution.new(author.institution).normalize_name
+      @identities = [author].concat(author.author_identities.to_a) # query for alternates once, not multiple times
       @options = options
     end
 
@@ -25,9 +20,26 @@ module WebOfScience
 
       delegate :queries, to: :WebOfScience
 
-      attr_reader :names
-      attr_reader :institution
+      attr_reader :identities
       attr_reader :options
+
+      def author
+        identities.first
+      end
+
+      def names
+        identities.map do |ident|
+          Agent::AuthorName.new(
+            ident.last_name,
+            ident.first_name,
+            Settings.HARVESTER.USE_MIDDLE_NAME ? ident.middle_name : ''
+          ).text_search_terms
+        end.flatten.uniq
+      end
+
+      def institutions
+        identities.map { |ident| Agent::AuthorInstitution.new(ident.institution).normalize_name }.uniq
+      end
 
       # Use options to limit the symbolic time span for harvesting publications; this limit applies
       # to the dates publications are added or updated in WOS collections, not publication dates. To
@@ -44,7 +56,7 @@ module WebOfScience
       # @return [Hash]
       def author_query
         params = queries.params_for_fields(empty_fields)
-        params[:queryParameters][:userQuery] = "AU=(#{names}) AND AD=(#{institution})"
+        params[:queryParameters][:userQuery] = "AU=(#{names.join(' OR ')}) AND AD=(#{institutions.join(' OR ')})"
         if options[:symbolicTimeSpan]
           # to use symbolicTimeSpan, timeSpan must be omitted
           params[:queryParameters].delete(:timeSpan)

@@ -3,7 +3,6 @@ describe WebOfScience::QueryAuthor, :vcr do
 
   let(:author) { create :russ_altman }
   let(:names) { query_author.send(:names) }
-  let(:institution) { query_author.send(:institution) }
 
   # avoid caching Savon client across examples (affects VCR)
   before { allow(WebOfScience).to receive(:client).and_return(WebOfScience::Client.new(Settings.WOS.AUTH_CODE)) }
@@ -43,12 +42,11 @@ describe WebOfScience::QueryAuthor, :vcr do
       expect(params).to include(databaseId: String, userQuery: String, queryLanguage: String)
     end
 
-    it 'contains author name' do
-      expect(params[:userQuery]).to include(names)
+    it 'contains author names and institutions' do
+      expect(params[:userQuery]).to include(*names, 'stanford')
     end
 
     it 'contains author institution' do
-      expect(params[:userQuery]).to include(institution)
     end
 
     context 'update' do
@@ -65,15 +63,13 @@ describe WebOfScience::QueryAuthor, :vcr do
   describe '#names' do
     #=> "\"Altman,Russ\" or \"Altman,R\" or \"Altman,Russ,Biagio\" or \"Altman,Russ,B\" or \"Altman,R,B\""
     it 'author name includes the preferred last name' do
-      expect(Agent::AuthorName).to receive(:new).and_call_original
-      expect(names).to include(author.preferred_last_name)
+      expect(names).to include('Altman,Russ')
     end
   end
 
-  describe '#institution' do
-    it 'author institution is a normalized name' do
-      expect(Agent::AuthorInstitution).to receive(:new).and_call_original
-      expect(institution).to eq 'stanford'
+  describe '#institutions' do
+    it 'author institutions includes normalized name' do
+      expect(query_author.send(:institutions)).to include('stanford')
     end
   end
 
