@@ -114,11 +114,10 @@ describe Cap::AuthorsPoller, :vcr do
     end
 
     context 'with an author retrieved from the CAP API' do
+      let(:author) { create :author }
       before do
         expect(Author).to receive(:find_by_cap_profile_id).with(author.cap_profile_id).and_return(nil)
         expect(Author).to receive(:fetch_from_cap_and_create).with(author.cap_profile_id, instance_of(Cap::Client)).and_return(author)
-        expect(author).to receive(:'save!').and_return(true)
-        allow(author).to receive(:new_record?).and_return(true)
       end
 
       it 'creates a new author' do
@@ -128,8 +127,8 @@ describe Cap::AuthorsPoller, :vcr do
 
       it 'harvests for new authors marked harvestable' do
         expect(author).to receive(:harvestable?).and_return(true)
-        queue = subject.instance_variable_get('@new_or_changed_authors_to_harvest_queue')
         subject.process_record(author_record)
+        queue = subject.instance_variable_get('@new_or_changed_authors_to_harvest_queue')
         expect(queue).to include(author.id)
       end
 
