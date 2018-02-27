@@ -13,11 +13,6 @@ module Cap
       init_stats
     end
 
-    def debug=(val)
-      log_stats
-      @sw_harvester.debug = val
-    end
-
     def get_authorship_data(days_ago = 1)
       logger.info "Started CAP authorship import - #{Time.zone.now}"
       @new_or_changed_authors_to_harvest_queue = []
@@ -90,46 +85,6 @@ module Cap
         process_record_for_existing_author(author, record)
       else
         process_record_for_new_author(cap_profile_id, record)
-      end
-    end
-
-    def process_record_for_existing_author(author, record)
-      logger.info "Updating Author.find_by(id: #{author.id}, cap_profile_id: #{author.cap_profile_id})"
-      author.update_from_cap_authorship_profile_hash(record)
-
-      update_existing_contributions author, record['authorship'] if record['authorship'].present?
-
-      queue_author_for_harvest author, "Author marked as not harvestable or did not change. Skipping Author.find_by(cap_profile_id: #{author.cap_profile_id})"
-
-      author.save!
-      @authors_updated_count += 1
-    end
-
-    def process_record_for_new_author(cap_profile_id, record)
-      author = Author.fetch_from_cap_and_create(cap_profile_id, @cap_client)
-      logger.info "Creating Author.find_by(id: #{author.id}, cap_profile_id: #{cap_profile_id})"
-      author.update_from_cap_authorship_profile_hash(record)
-
-      if record['authorship'].present?
-        # TODO: not clear to me *why* or even *if* authorship is ignored for new authors...
-        logger.warn "New author has authorship which will be skipped; Author.find_by(cap_profile_id: #{cap_profile_id})"
-        @new_auth_with_contribs += 1
-      end
-
-      queue_author_for_harvest author, "Author marked as not harvestable. Skipping Author.find_by(cap_profile_id: #{cap_profile_id})"
-
-      author.save!
-      @new_author_count += 1
-    end
-
-    # Add author to job queue if it's harvestable and new/changed
-    # @param [String] `skip_message` logs this message if it skips adding author to queue
-    def queue_author_for_harvest(author, skip_message)
-      if (author.new_record? || author.changed?) && author.harvestable?
-        @new_or_changed_authors_to_harvest_queue << author.id
-      else
-        @no_sw_harvest_count += 1
-        logger.info skip_message
       end
     end
 
@@ -239,6 +194,40 @@ module Cap
         info << "#{@new_auth_with_contribs} new authors had contributions which were ignored"
         info << "#{@contribs_changed} contributions were updated"
         logger.info info.join("\n")
+      end
+
+      def process_record_for_existing_author(author, record)
+        logger.info "Updating Author.find_by(id: #{author.id}, cap_profile_id: #{author.cap_profile_id})"
+        author.update_from_cap_authorship_profile_hash(record)
+        update_existing_contributions author, record['authorship'] if record['authorship'].present?
+        queue_author_for_harvest(author)
+        author.save!
+        @authors_updated_count += 1
+      end
+
+      def process_record_for_new_author(cap_profile_id, record)
+        author = Author.fetch_from_cap_and_create(cap_profile_id, @cap_client)
+        logger.info "Creating Author.find_by(id: #{author.id}, cap_profile_id: #{cap_profile_id})"
+        author.update_from_cap_authorship_profile_hash(record)
+        if record['authorship'].present?
+          # TODO: not clear to me *why* or even *if* authorship is ignored for new authors...
+          logger.warn "New author has authorship which will be skipped; Author.find_by(cap_profile_id: #{cap_profile_id})"
+          @new_auth_with_contribs += 1
+        end
+        queue_author_for_harvest(author)
+        author.save!
+        @new_author_count += 1
+      end
+
+      # Add author to job queue if it's harvestable and new/changed
+      # @param [String] `skip_message` logs this message if it skips adding author to queue
+      def queue_author_for_harvest(author)
+        if (author.new_record? || author.changed?) && author.harvestable?
+          @new_or_changed_authors_to_harvest_queue << author.id
+        else
+          @no_sw_harvest_count += 1
+          logger.info "Author marked as not harvestable or did not change. Skipping Author.find_by(cap_profile_id: #{author.cap_profile_id})"
+        end
       end
   end
 end
