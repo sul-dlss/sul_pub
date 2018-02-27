@@ -39,7 +39,7 @@ class Author < ActiveRecord::Base
                 .uniq
   end
 
-  has_many :contributions, dependent: :destroy, after_add: :contributions_changed_callback, after_remove: :contributions_changed_callback do
+  has_many :contributions, dependent: :destroy do
     def build_or_update(publication, contribution_hash = {})
       c = where(publication_id: publication.id).first_or_initialize
       c.assign_attributes contribution_hash.merge(publication_id: publication.id)
@@ -51,10 +51,6 @@ class Author < ActiveRecord::Base
       end
       c
     end
-  end
-
-  # TODO: update the publication cached pubhash
-  def contributions_changed_callback(*_args)
   end
 
   has_many :publications, through: :contributions
