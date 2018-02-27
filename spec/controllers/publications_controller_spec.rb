@@ -112,11 +112,11 @@ describe PublicationsController do
 
         it 'hits WOS' do
           expect(ScienceWireClient).not_to receive(:new)
-          expect(queries).to receive(:user_query).with('TI=xyz').and_return(retriever)
+          expect(queries).to receive(:user_query).with('TI="xyz"').and_return(retriever)
           get :sourcelookup, title: 'xyz', format: 'json' # Partial title
         end
         it 'includes year if provided' do
-          expect(queries).to receive(:user_query).with('TI=xyz AND PY=2001').and_return(retriever)
+          expect(queries).to receive(:user_query).with('TI="xyz" AND PY=2001').and_return(retriever)
           get :sourcelookup, title: 'xyz', year: 2001, format: 'json' # Partial title
         end
       end
