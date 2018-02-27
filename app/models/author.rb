@@ -2,20 +2,7 @@ class Author < ActiveRecord::Base
   has_paper_trail on: [:destroy]
   validates :cap_profile_id, uniqueness: true, presence: true
 
-  has_many :author_identities, dependent: :destroy
-  #
-  # An Author may have zero or more author identities and this method fetches
-  # any matching AuthorIdentity objects tagged as an "alternate"
-  #
-  # @example
-  #   `Author.find_by(1234).alternative_identities.present?`
-  #   `Author.find_by(1234).alternative_identities => [AuthorIdentity1, ...]`
-  #
-  # @return [Array<AuthorIdentity>]
-  #
-  def alternative_identities
-    author_identities.where('identity_type = ?', AuthorIdentity.identity_types[:alternate])
-  end
+  has_many :author_identities, dependent: :destroy, autosave: true
 
   # Provide consistent API for Author and AuthorIdentity
   alias_attribute :first_name, :preferred_first_name

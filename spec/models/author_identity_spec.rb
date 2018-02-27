@@ -1,4 +1,3 @@
-
 RSpec.describe AuthorIdentity, type: :model do
   subject { FactoryBot.create :author_identity }
 
@@ -8,11 +7,10 @@ RSpec.describe AuthorIdentity, type: :model do
       expect(subject.author).to be_a Author
     end
 
-    it 'has Author#alternative_identities' do
-      ai = subject.author.alternative_identities
+    it 'has Author#author_identities' do
+      ai = subject.author.author_identities
       expect(ai.length).to eq 1
       expect(ai.first).to eq subject
-      expect(ai.first.alternate?).to be_truthy
     end
 
     it 'has timestamps' do
@@ -33,16 +31,6 @@ RSpec.describe AuthorIdentity, type: :model do
     it 'requires last_name' do
       subject.last_name = nil
       expect { subject.save! }.to raise_error ActiveRecord::RecordInvalid
-    end
-    it 'requires identity_type' do
-      subject.identity_type = nil
-      expect { subject.save! }.to raise_error ActiveRecord::RecordInvalid
-    end
-    it 'requires identity_type to be "alternate"' do
-      expect { subject.identity_type = 'foobar' }.to raise_error ArgumentError
-      expect { subject.identity_type = 1 }.to raise_error ArgumentError
-      expect { subject.identity_type = 'alternate' }.not_to raise_error
-      expect { subject.identity_type = :alternate }.not_to raise_error
     end
     it 'does not require middle_name' do
       subject.middle_name = nil
@@ -73,56 +61,54 @@ RSpec.describe AuthorIdentity, type: :model do
   end
 
   context 'relations' do
+    let(:author) { subject.author }
+    let(:incoming) do
+      {
+        'firstName'   => author.preferred_first_name,
+        'middleName'  => author.preferred_middle_name,
+        'lastName'    => author.preferred_last_name,
+        'email'       => author.email,
+        'institution' => 'Stanford University'
+      }
+    end
+
     it 'will mirror identities in importSettings' do
-      subject.author.mirror_author_identities([{ 'firstName' => subject.author.preferred_first_name, 'lastName' => subject.author.preferred_last_name }])
-      expect(subject.author.alternative_identities.length).to be == 1
+      author.mirror_author_identities([incoming.slice('firstName', 'lastName')])
+      expect(author.author_identities.length).to eq 1
     end
 
     it 'will not mirror identical identities in importSettings' do
-      subject.author.mirror_author_identities([{
-                                                'firstName' => subject.author.preferred_first_name,
-        'middleName' => subject.author.preferred_middle_name,
-        'lastName' => subject.author.preferred_last_name,
-        'email' => subject.author.email,
-        'institution' => 'Stanford University'
-                                              }]) # must pass in only a single alternate identity for .length == 0
-      expect(subject.author.alternative_identities.length).to be == 0
+      author.mirror_author_identities([incoming]) # must pass in only a single alternate identity for .length == 0
+      expect(author.author_identities.length).to eq 0
     end
 
     it 'will not mirror identical identities in importSettings, *even if* dates are present' do
-      subject.author.mirror_author_identities([{
-                                                'firstName' => subject.author.preferred_first_name,
-        'middleName' => subject.author.preferred_middle_name,
-        'lastName' => subject.author.preferred_last_name,
-        'email' => subject.author.email,
-        'institution' => 'Stanford University',
-        'startDate' => { 'value' => '2000-01-01' },
-        'endDate' => { 'value' => '2010-12-31' }
-                                              }]) # must pass in only a single alternate identity for .length == 0
-      expect(subject.author.alternative_identities.length).to be == 0
+      author.mirror_author_identities(
+        [incoming.merge('startDate' => { 'value' => '2000-01-01' }, 'endDate' => { 'value' => '2010-12-31' })]
+      ) # must pass in only a single alternate identity for .length == 0
+      expect(author.author_identities.length).to eq 0
     end
 
     it 'will handle blanks in required fields in importSettings' do
-      expect { subject.author.mirror_author_identities([{ 'firstName' => '  ', 'lastName' => '  ' }]) }.to raise_error(ActiveRecord::RecordInvalid)
+      expect { author.mirror_author_identities([{ 'firstName' => '  ', 'lastName' => '  ' }]) }.to raise_error(ActiveRecord::RecordInvalid)
     end
 
     it 'will handle missing required fields (firstName and lastName) in importSettings' do
       # FactoryBot creates (at least) 1 Author Identity, so we check for transactionality
-      prev = subject.author.alternative_identities
-
-      expect { subject.author.mirror_author_identities([{ 'firstName' => subject.author.preferred_first_name }]) }.to raise_error(ActiveRecord::RecordInvalid)
-      expect(subject.author.alternative_identities).to eq prev
-
-      expect { subject.author.mirror_author_identities([{ 'lastName' => subject.author.preferred_last_name }]) }.to raise_error(ActiveRecord::RecordInvalid)
-      expect(subject.author.alternative_identities).to eq prev
+      prev = author.author_identities
+      expect { author.mirror_author_identities([{ 'firstName' => author.preferred_first_name }]) }.to raise_error(ActiveRecord::RecordInvalid)
+      expect(author.author_identities).to eq prev
+      expect { author.mirror_author_identities([{ 'lastName' => author.preferred_last_name }]) }.to raise_error(ActiveRecord::RecordInvalid)
+      expect(author.author_identities).to eq prev
     end
 
-    it 'will not change alternative_identities if data are missing' do
-      subject.author.author_identities.clear # explicitly clear FactoryBot addition(s)
-      expect { subject.author.mirror_author_identities([{ 'firstName' => subject.author.preferred_first_name }]) }.to raise_error(ActiveRecord::RecordInvalid)
-      expect(subject.author.alternative_identities.length).to be == 0
+    it 'will not change author_identities if data are missing' do
+      author.author_identities.clear # explicitly clear FactoryBot addition(s)
+      expect { author.mirror_author_identities([{ 'firstName' => author.preferred_first_name }]) }.to raise_error(ActiveRecord::RecordInvalid)
+      expect(author.author_identities.length).to eq 0
     end
   end
+
   describe '#to_author_attributes' do
     it 'returns an AuthorAttributes object' do
       expect(subject.to_author_attributes).to be_an ScienceWire::AuthorAttributes

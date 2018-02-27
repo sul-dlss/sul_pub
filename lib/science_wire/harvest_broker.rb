@@ -54,7 +54,7 @@ module ScienceWire
       # @return [Array<Integer>]
       def ids_for_alternate_names
         return [] unless alternate_name_query
-        author.alternative_identities.select { |author_identity| required_data_for_alt_names_search?(author_identity) }.map do |author_identity|
+        author.author_identities.select { |author_identity| required_data_for_alt_names_search?(author_identity) }.map do |author_identity|
           ids_from_dumb_query(author_identity.to_author_attributes).flatten
         end.flatten.uniq
       end

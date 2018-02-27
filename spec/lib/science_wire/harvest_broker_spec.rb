@@ -11,26 +11,26 @@ describe ScienceWire::HarvestBroker do
   let(:alt_author) { create(:author_with_alternate_identities, alt_count: 3) }
   let(:alt_author_varying_institution) do
     auth = alt_author
-    alt = auth.alternative_identities.first
+    alt = auth.author_identities.first
     alt.institution = ''
     alt.save
-    alt = auth.alternative_identities.second
+    alt = auth.author_identities.second
     alt.institution = 'all'
     alt.save
-    alt = auth.alternative_identities.last
+    alt = auth.author_identities.last
     alt.institution = '*'
     alt.save
     auth
   end
   let(:alt_author_missing_name_pieces) do
     auth = alt_author
-    alt = auth.alternative_identities.first
+    alt = auth.author_identities.first
     alt.last_name = ''
     alt.save(validate: false)
-    alt = auth.alternative_identities.second
+    alt = auth.author_identities.second
     alt.first_name = ''
     alt.save(validate: false)
-    alt = auth.alternative_identities.last
+    alt = auth.author_identities.last
     alt.first_name = ''
     alt.last_name = ''
     alt.save(validate: false)
