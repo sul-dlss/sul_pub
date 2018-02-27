@@ -64,9 +64,6 @@ class Author < ActiveRecord::Base
                                                                                       class_name: 'Publication',
                                                                                       source: :publication
 
-  # has_many :population_memberships, :dependent => :destroy
-  # has_many :author_identifiers, :dependent => :destroy
-
   # @param [Hash] auth_hash data as-is from CAP API
   def update_from_cap_authorship_profile_hash(auth_hash)
     assign_attributes Author.build_attribute_hash_from_cap_profile(auth_hash)
