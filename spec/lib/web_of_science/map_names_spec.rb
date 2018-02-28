@@ -67,9 +67,8 @@ describe WebOfScience::MapNames do
     let(:pub_hash) { pub_hash_class.pub_hash }
 
     it 'works with WOS records with anonymous names' do
-      expect(pub_hash_class).to be_an described_class
       expect(pub_hash[:author]).not_to be_nil
-      expect(pub_hash[:authorcount]).not_to be_nil
+      expect(pub_hash[:authorcount]).to be 0
       csl_authors = described_class.authors_to_csl(pub_hash[:author])
       expect(csl_authors).to eq []
       expect(csl_authors.count).to eq pub_hash[:authorcount]
