@@ -58,7 +58,7 @@ feature 'Harvest Brokering', 'data-integration': true do
         # broker calls dumb search for an author with < 50 seeds
         expect(seeds.count).to be < 50
         expect(broker).not_to receive(:ids_from_smart_query)
-        # author.alternative_identities.select{|author_identity| required_data_for_alt_names_search(author_identity)}.count == 11
+        # author.author_identities.select{|author_identity| required_data_for_alt_names_search(author_identity)}.count == 11
         valid_alt_name_count = 11
         expected_calls = 1 + valid_alt_name_count
         expect(broker).to receive(:ids_from_dumb_query).exactly(expected_calls).and_call_original

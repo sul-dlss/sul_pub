@@ -68,7 +68,7 @@ FactoryBot.define do
     preferred_middle_name 'Biagio'
     email 'Russ.Altman@stanford.edu'
     emails_for_harvest 'Russ.Altman@stanford.edu'
-    # create some `author.alternative_identities`
+    # create some `author.author_identities`
     after(:create) do |author, _evaluator|
       create(:author_identity,
              author: author,

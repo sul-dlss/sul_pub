@@ -1,4 +1,6 @@
 describe Author do
+  subject { create :author }
+
   let(:auth_hash) do
     JSON.parse(File.open('fixtures/cap_poll_author_3810.json', 'r').read)
   end

@@ -2,20 +2,7 @@ class Author < ActiveRecord::Base
   has_paper_trail on: [:destroy]
   validates :cap_profile_id, uniqueness: true, presence: true
 
-  has_many :author_identities, dependent: :destroy
-  #
-  # An Author may have zero or more author identities and this method fetches
-  # any matching AuthorIdentity objects tagged as an "alternate"
-  #
-  # @example
-  #   `Author.find_by(1234).alternative_identities.present?`
-  #   `Author.find_by(1234).alternative_identities => [AuthorIdentity1, ...]`
-  #
-  # @return [Array<AuthorIdentity>]
-  #
-  def alternative_identities
-    author_identities.where('identity_type = ?', AuthorIdentity.identity_types[:alternate])
-  end
+  has_many :author_identities, dependent: :destroy, autosave: true
 
   # Provide consistent API for Author and AuthorIdentity
   alias_attribute :first_name, :preferred_first_name
@@ -86,8 +73,7 @@ class Author < ActiveRecord::Base
 
   # @param [Hash] auth_hash data as-is from CAP API
   def update_from_cap_authorship_profile_hash(auth_hash)
-    seed_hash = Author.build_attribute_hash_from_cap_profile(auth_hash)
-    assign_attributes seed_hash
+    assign_attributes Author.build_attribute_hash_from_cap_profile(auth_hash)
     mirror_author_identities(auth_hash['importSettings'])
   end
 
@@ -96,25 +82,23 @@ class Author < ActiveRecord::Base
   def mirror_author_identities(import_settings)
     return unless import_settings.present?
     transaction do
-      author_identities.clear unless new_record? # drop all existing identities
-
+      author_identities.clear # drop all existing identities
       import_settings.each do |i|
-        # create record with required attributes
-        ai = AuthorIdentity.new(
-          author:         self,
-          identity_type:  :alternate,
-          first_name:     i['firstName'],
-          last_name:      i['lastName']
-        )
-        # update record with optional attributes
-        ai.middle_name = i['middleName']         if i['middleName'].present?
-        ai.email = i['email']                    if i['email'].present?
-        ai.institution = i['institution']        if i['institution'].present?
-        ai.start_date = i['startDate']['value']  if i['startDate'].present?
-        ai.end_date = i['endDate']['value']      if i['endDate'].present?
-
+        # required attributes
+        attribs = {
+          first_name: i['firstName'],
+          last_name:  i['lastName']
+        }
+        # optional attributes
+        attribs[:middle_name] = i['middleName']         if i['middleName'].present?
+        attribs[:email      ] = i['email']              if i['email'].present?
+        attribs[:institution] = i['institution']        if i['institution'].present?
+        attribs[:start_date ] = i['startDate']['value'] if i['startDate'].present?
+        attribs[:end_date   ] = i['endDate']['value']   if i['endDate'].present?
         # ensure that we have a *new* identity worth saving
-        ai.save! if author_identity_different?(ai)
+        next unless author_identity_different?(attribs)
+        # can't call create! on an unsaved record
+        new_record? ? author_identities.build(attribs) : author_identities.create!(attribs)
       end
     end
   end
@@ -154,10 +138,9 @@ class Author < ActiveRecord::Base
   # @return [Author] newly fetched, created and saved Author object
   def self.fetch_from_cap_and_create(profile_id, cap_client = Cap::Client.new)
     profile_hash = cap_client.get_auth_profile(profile_id)
-    a = Author.new
-    a.update_from_cap_authorship_profile_hash(profile_hash)
-    a.save!
-    a
+    Author.create!(Author.build_attribute_hash_from_cap_profile(profile_hash)) do |a|
+      a.mirror_author_identities(auth_hash['importSettings'])
+    end
   end
 
   # @return [Boolean]
@@ -167,17 +150,17 @@ class Author < ActiveRecord::Base
 
   private
 
-    # @param [AuthorIdentity] author_identity is the candidate versus `self`'s identity
+    # @param [Hash<Symbol => String>] attribs the candidate versus `self`'s identity
     # @return [Boolean] Is this author's identity different than our current identity?
-    def author_identity_different?(author_identity)
+    def author_identity_different?(attribs)
       !(
         # not the identical identity where Author is assumed to be Stanford University
         # checks in order of likelihood of changes
         # note that this code works for nil/empty string comparisons by calling `to_s`
-        first_name.to_s.casecmp(author_identity.first_name.to_s) == 0 &&
-        middle_name.to_s.casecmp(author_identity.middle_name.to_s) == 0 &&
-        last_name.to_s.casecmp(author_identity.last_name.to_s) == 0 &&
-        institution.to_s.casecmp(author_identity.institution.to_s) == 0
+        first_name.to_s.casecmp(attribs[:first_name].to_s) == 0 &&
+        middle_name.to_s.casecmp(attribs[:middle_name].to_s) == 0 &&
+        last_name.to_s.casecmp(attribs[:last_name].to_s) == 0 &&
+        institution.to_s.casecmp(attribs[:institution].to_s) == 0
       )
     end
 end
