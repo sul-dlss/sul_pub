@@ -60,10 +60,11 @@ class PublicationsController < ApplicationController
       all_matching_records += PubmedHarvester.search_all_sources_by_pmid(params[:pmid].strip)
     else
       raise ActionController::ParameterMissing, :title unless params[:title].presence
-      msg << "title '#{params[:title]}'"
+      title = params[:title].delete('"')
+      msg << "title '#{title}'"
       logger.info(msg)
       if Settings.WOS.enabled
-        query = "TI=\"#{params[:title]}\""
+        query = "TI=\"#{title}\""
         query += " AND PY=#{params[:year]}" if params[:year]
         wos_matches = WebOfScience.queries.user_query(query).next_batch.to_a # limit: only 1 batch
         all_matching_records += wos_matches

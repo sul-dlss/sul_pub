@@ -117,7 +117,12 @@ describe PublicationsController do
         end
         it 'includes year if provided' do
           expect(queries).to receive(:user_query).with('TI="xyz" AND PY=2001').and_return(retriever)
-          get :sourcelookup, title: 'xyz', year: 2001, format: 'json' # Partial title
+          get :sourcelookup, title: 'xyz', year: 2001, format: 'json' # Partial title with year
+        end
+        it 'remove quotes from user query to avoid parsing errors' do
+          expect(ScienceWireClient).not_to receive(:new)
+          expect(queries).to receive(:user_query).with('TI="xyz with quoted values in it"').and_return(retriever)
+          get :sourcelookup, title: 'xyz with "quoted values" in it', format: 'json' # title with quotes
         end
       end
     end
