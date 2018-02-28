@@ -46,9 +46,6 @@ describe WebOfScience::QueryAuthor, :vcr do
       expect(params[:userQuery]).to include(*names, 'stanford')
     end
 
-    it 'contains author institution' do
-    end
-
     context 'update' do
       subject(:query_author) { described_class.new(author, symbolicTimeSpan: '4week') }
 
@@ -74,10 +71,17 @@ describe WebOfScience::QueryAuthor, :vcr do
   end
 
   describe '#empty_fields' do
-    let(:fields) { query_author.send(:empty_fields) }
-
     it 'has collections with empty fields' do
-      expect(fields).to include(collectionName: String, fieldName: [''])
+      expect(query_author.send(:empty_fields)).to include(collectionName: String, fieldName: [''])
+    end
+  end
+
+  describe '#quote_wrap' do
+    it 'wraps strings in double quotes' do
+      expect(query_author.send(:quote_wrap, %w[a bc def])).to eq %w["a" "bc" "def"]
+    end
+    it 'deduplicates and removes empties' do
+      expect(query_author.send(:quote_wrap, %w[a bc a bc].concat(['']))).to eq %w["a" "bc"]
     end
   end
 end

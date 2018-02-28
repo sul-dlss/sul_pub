@@ -56,7 +56,7 @@ module WebOfScience
       # @return [Hash]
       def author_query
         params = queries.params_for_fields(empty_fields)
-        params[:queryParameters][:userQuery] = "AU=(#{names.join(' OR ')}) AND AD=(#{institutions.join(' OR ')})"
+        params[:queryParameters][:userQuery] = "AU=(#{quote_wrap(names).join(' OR ')}) AND AD=(#{quote_wrap(institutions).join(' OR ')})"
         if options[:symbolicTimeSpan]
           # to use symbolicTimeSpan, timeSpan must be omitted
           params[:queryParameters].delete(:timeSpan)
@@ -64,6 +64,12 @@ module WebOfScience
           params[:queryParameters][:order!] = [:databaseId, :userQuery, :symbolicTimeSpan, :queryLanguage] # according to WSDL
         end
         params
+      end
+
+      # @param [Array<String>] terms
+      # @param [Array<String>] the same terms, minus any empties or duplicates, wrapped in double quotes
+      def quote_wrap(terms)
+        terms.reject(&:empty?).uniq.map { |x| "\"#{x}\"" }
       end
 
       # Use Settings.WOS.ACCEPTED_DBS to define collections without any fields retrieved
