@@ -89,7 +89,10 @@ module WebOfScience
         pub.save
         return if record.database == 'MEDLINE'
         pubmed_record = PubmedSourceRecord.for_pmid(record.pmid)
-        pub.pub_hash.reverse_update(pubmed_record.source_as_hash)
+        pubmed_hash = pubmed_record.source_as_hash
+        pub.pub_hash.reverse_update(pubmed_hash)
+        pmc_id = pubmed_hash[:identifier].detect { |id| id[:type] == 'pmc' }
+        pub.pub_hash[:identifier] << pmc_id if pmc_id
         pub.save
       rescue StandardError => err
         message = "Author: #{author.id}, #{record.uid}, PubmedSourceRecord failed, PMID: #{record.pmid}"
