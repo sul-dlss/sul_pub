@@ -8,10 +8,10 @@ module WebOfScience
     include WebOfScience::ProcessPubmed
 
     # @param author [Author]
-    # @param records [WebOfScience::Records]
+    # @param records [Enumerable<WebOfScience::Record>]
     def initialize(author, records)
       raise(ArgumentError, 'author must be an Author') unless author.is_a? Author
-      raise(ArgumentError, 'records must be an WebOfScience::Records') unless records.is_a? WebOfScience::Records
+      raise(ArgumentError, 'records must be an Enumerable') unless records.is_a? Enumerable
       raise 'Nothing to do when Settings.WOS.ACCEPTED_DBS is empty' if Settings.WOS.ACCEPTED_DBS.empty?
       @author = author
       @records = records.select { |rec| Settings.WOS.ACCEPTED_DBS.include? rec.database }

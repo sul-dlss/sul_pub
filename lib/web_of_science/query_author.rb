@@ -19,8 +19,7 @@ module WebOfScience
     def uids
       # TODO: iterate on author identities also, or leave that to the consumer of this class?
       # Implementation note: these records have a relatively small memory footprint, just UIDs
-      retriever = queries.search(author_query)
-      retriever.merged_uids
+      queries.search(author_query).map(&:uid)
     end
 
     private

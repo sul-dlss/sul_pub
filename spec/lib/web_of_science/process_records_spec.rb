@@ -13,6 +13,9 @@ describe WebOfScience::ProcessRecords, :vcr do
     # ---
     # Happy paths
 
+    it 'accepts an Enumerable for records' do
+      expect { described_class.new(author, []) }.not_to raise_error
+    end
     it 'returns an Array' do
       expect(processor.execute).to be_an Array
     end
@@ -59,7 +62,7 @@ describe WebOfScience::ProcessRecords, :vcr do
       expect { described_class.new('author', records) }.to raise_error(ArgumentError)
     end
     it 'raises ArgumentError for records' do
-      expect { described_class.new(author, []) }.to raise_error(ArgumentError)
+      expect { described_class.new(author, nil) }.to raise_error(ArgumentError)
     end
     it 'raises RuntimeError when Settings.WOS.ACCEPTED_DBS.empty?' do
       wos = Settings.WOS

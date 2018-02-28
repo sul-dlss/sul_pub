@@ -78,7 +78,9 @@ describe WebOfScience::Queries do
       expect(retriever.next_batch.count >= 1).to be true
     end
     it 'returns a publication matching the query' do
-      expect(retriever.next_batch.doc.search('titles').text).to include title
+      record = retriever.first
+      expect(record).to be_a WebOfScience::Record
+      expect(record.titles['item']).to eq title
     end
   end
 
@@ -108,7 +110,7 @@ describe WebOfScience::Queries do
       savon.expects(:retrieve_by_id).with(message: :any).returns(wos_retrieve_by_id_response)
       retriever = wos_queries.retrieve_by_id(wos_ids)
       expect(retriever).to be_an WebOfScience::Retriever
-      expect(retriever.next_batch.uids).to eq(wos_ids)
+      expect(retriever.next_batch.map(&:uid)).to eq(wos_ids)
     end
   end
 
