@@ -152,6 +152,7 @@ describe WebOfScience::ProcessRecord, :vcr do
       pub = Publication.find_by(wos_uid: record.uid)
       expect(pub).not_to be_nil
       expect(pub.pub_hash[:identifier]).to include(type: 'pmc', id: 'PMC1234567')
+      expect(pub.publication_identifiers.where(identifier_type: 'pmc').count).to eq 1 # we have a row in publication identifier table
     end
 
     context 'PubMed integration fails' do

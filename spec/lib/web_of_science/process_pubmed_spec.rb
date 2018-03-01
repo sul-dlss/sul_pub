@@ -112,9 +112,12 @@ describe WebOfScience::ProcessPubmed, :vcr do
       end
 
       it 'persists PMC in identifier section of hash' do
+        expect(wos_pub.publication_identifiers.where(identifier_type: 'pmc').count).to eq 0 # we not yet have a pmc row in publication identifier table
         expect(wos_pubmed_rec.pmid).to eq(wos_record.pmid.to_i) # ensure a wos_pubmed record exists
         processor.pubmed_addition(wos_pub)
-        expect(wos_pub.reload.pub_hash[:identifier]).to include(type: 'pmc', id: 'PMC1234567')
+        wos_pub.reload
+        expect(wos_pub.pub_hash[:identifier]).to include(type: 'pmc', id: 'PMC1234567')
+        expect(wos_pub.publication_identifiers.where(identifier_type: 'pmc').count).to eq 1 # we now have a pmc row in publication identifier table
       end
 
       it 'cannot retrieve a PMID record, try to delete stuff' do
