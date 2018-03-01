@@ -23,6 +23,10 @@ Lint/AmbiguousBlockAssociation:
   Exclude:
     - "spec/**/*"
 
+Lint/PercentStringArray:
+  Exclude:
+    - "spec/lib/web_of_science/query_author_spec.rb" # specifically testing quoted clauses w/in strings
+
 Style/VariableName:
   Enabled: false
 

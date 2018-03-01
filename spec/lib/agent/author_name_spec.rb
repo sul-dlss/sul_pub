@@ -1,20 +1,15 @@
-
 describe Agent::AuthorName do
   let(:fn) { 'Amasa' }
   let(:mn) { 'Leland' }
   let(:ln) { 'Stanford' }
   let(:all_names) { described_class.new(ln, fn, mn) }
   let(:no_names) { described_class.new(nil, nil, nil) }
+
   describe '#initialize' do
-    it 'casts names to strings' do
-      expect(no_names.last).to be_an String
-      expect(no_names.first).to be_an String
-      expect(no_names.middle).to be_an String
-    end
-    it 'casts names to strings' do
-      expect(all_names.last).to be_an String
-      expect(all_names.first).to be_an String
-      expect(all_names.middle).to be_an String
+    it 'casts empty names to strings' do
+      expect(no_names.last).to be_a String
+      expect(no_names.first).to be_a String
+      expect(no_names.middle).to be_a String
     end
   end
 
@@ -99,129 +94,101 @@ describe Agent::AuthorName do
   end
 
   describe '#full_name' do
-    context 'when no names are present' do
-      it 'returns an empty String' do
-        expect(no_names.full_name).to eq ''
-      end
+    it 'when no names are present returns an empty String' do
+      expect(no_names.full_name).to eq ''
     end
     context 'when all names are present' do
       it 'returns the Lastname,Firstname,Middlename' do
-        name = "#{all_names.last_name},#{all_names.first_name},#{all_names.middle_name}"
-        expect(all_names.full_name).to eq name
+        expect(all_names.full_name).to eq "#{all_names.last_name},#{all_names.first_name},#{all_names.middle_name}"
       end
     end
   end
 
   describe '#text_search_query' do
-    context 'when no names are present' do
-      it 'returns an empty String' do
-        skip 'conflicts with publication_query_by_author_name_spec.rb:37'
-        expect(no_names.text_search_query).to eq ''
-      end
-    end
     context 'when all names are present' do
-      # additional specs are in publication_query_by_author_name_spec.rb
-      it 'is not empty' do
-        expect(all_names.text_search_query).not_to be_empty
-      end
-      it 'includes first_name_query' do
-        names = all_names.send(:first_name_query).join(' or ')
-        expect(all_names.text_search_query).to include names
-      end
-      it 'includes middle_name_query' do
-        names = all_names.send(:middle_name_query).join(' or ')
-        expect(all_names.text_search_query).to include names
+      # additional SW specs are in publication_query_by_author_name_spec.rb
+      it 'includes first_name_query and middle_name_query elements' do
+        allow(all_names).to receive(:first_name_query).and_return(['abc', 'def'])
+        allow(all_names).to receive(:middle_name_query).and_return(['qrs', 'xyz'])
+        expect(all_names.text_search_query).to eq "\"abc\" or \"def\" or \"qrs\" or \"xyz\""
       end
     end
   end
 
+  describe '#text_search_terms' do
+    it 'includes first_name_query and middle_name_query elements' do
+      fnames = all_names.send(:first_name_query)
+      mnames = all_names.send(:middle_name_query)
+      expect(all_names.text_search_terms).to include(*fnames, *mnames)
+    end
+  end
+
   describe '#first_name_query' do
-    context 'when no names are present' do
-      it 'returns an empty String' do
-        expect(no_names.send(:first_name_query)).to eq ''
-      end
+    it 'when no names are present returns an empty String' do
+      expect(no_names.send(:first_name_query)).to eq ''
     end
     context 'when all names are present' do
       let(:fn_query) { all_names.send(:first_name_query) }
-      it 'is not empty' do
-        expect(fn_query).not_to be_empty
-      end
-      it 'is Array<String>' do
+      it 'is Array<String> with non-empty unique values' do
         expect(fn_query).to be_an Array
-        expect(fn_query.first).to be_an String
+        expect(fn_query).to all(be_a(String))
+        expect(fn_query).not_to include(be_empty)
+        expect(fn_query.size).to eq(fn_query.uniq.size)
       end
       it 'includes name with first_name' do
-        name = "\"#{all_names.last_name},#{all_names.first_name}\""
-        expect(fn_query).to include name
+        expect(fn_query).to include "#{all_names.last_name},#{all_names.first_name}"
       end
       it 'includes name with first_initial' do
-        name = "\"#{all_names.last_name},#{all_names.first_initial}\""
-        expect(fn_query).to include name
+        expect(fn_query).to include "#{all_names.last_name},#{all_names.first_initial}"
       end
       it 'does not include name with middle_name' do
-        name = "\"#{all_names.last_name},#{all_names.first_name},#{all_names.middle_name}\""
-        expect(fn_query).not_to include name
-        incl_mn = fn_query.any? { |n| n.include? ",#{all_names.middle_name}" }
-        expect(incl_mn).to be false
+        expect(fn_query).not_to include "#{all_names.last_name},#{all_names.first_name},#{all_names.middle_name}"
+        expect(fn_query).to all(exclude(",#{all_names.middle_name}"))
       end
       it 'does not include name with middle_initial' do
-        name = "\"#{all_names.last_name},#{all_names.first_name},#{all_names.middle_initial}\""
-        expect(fn_query).not_to include name
-        incl_mn = fn_query.any? { |n| n.include? ",#{all_names.middle_initial}" }
-        expect(incl_mn).to be false
+        expect(fn_query).not_to include "#{all_names.last_name},#{all_names.first_name},#{all_names.middle_initial}"
+        expect(fn_query).to all(exclude(",#{all_names.middle_initial}"))
       end
     end
   end
 
   describe '#middle_name_query' do
-    context 'when no names are present' do
-      it 'returns an empty String' do
-        expect(no_names.send(:middle_name_query)).to eq ''
-      end
+    it 'when no names are present returns an empty String' do
+      expect(no_names.send(:middle_name_query)).to eq ''
     end
     context 'when all names are present' do
       let(:mn_query) { all_names.send(:middle_name_query) }
-      it 'is not empty' do
-        expect(mn_query).not_to be_empty
-      end
-      it 'is Array<String>' do
+      it 'is Array<String> with non-empty unique values' do
         expect(mn_query).to be_an Array
-        expect(mn_query.first).to be_an String
+        expect(mn_query).to all(be_a(String))
+        expect(mn_query).not_to include(be_empty)
+        expect(mn_query.size).to eq(mn_query.uniq.size)
       end
       it 'includes name with middle_name' do
-        name = "\"#{all_names.last_name},#{all_names.first_name},#{all_names.middle_name}\""
-        expect(mn_query).to include name
+        expect(mn_query).to include "#{all_names.last_name},#{all_names.first_name},#{all_names.middle_name}"
       end
       it 'includes name with middle_initial' do
-        name = "\"#{all_names.last_name},#{all_names.first_name},#{all_names.middle_initial}\""
-        expect(mn_query).to include name
+        expect(mn_query).to include "#{all_names.last_name},#{all_names.first_name},#{all_names.middle_initial}"
       end
       it 'does not include last_name,first_name' do
-        name = "\"#{all_names.last_name},#{all_names.first_name}\""
-        expect(mn_query).not_to include name
+        expect(mn_query).not_to include "#{all_names.last_name},#{all_names.first_name}"
       end
       it 'does not include last_name,first_initial' do
-        name = "\"#{all_names.last_name},#{all_names.first_initial}\""
-        expect(mn_query).not_to include name
+        expect(mn_query).not_to include "#{all_names.last_name},#{all_names.first_initial}"
       end
       it 'includes name with middle_initial appended to first initial' do
-        name = "\"#{all_names.last_name},#{all_names.first_initial}#{all_names.middle_initial}\""
-        expect(mn_query).to include name
+        expect(mn_query).to include "#{all_names.last_name},#{all_names.first_initial}#{all_names.middle_initial}"
       end
     end
   end
 
   describe '#==' do
     it 'returns false when names are not the same' do
-      expect(no_names == all_names).to be false
+      expect(no_names).not_to eq all_names
     end
     it 'returns true when names are the same' do
-      namesA = described_class.new
-      namesB = described_class.new
-      expect(namesA == namesB).to be true
-      namesA = described_class.new(ln, fn, mn)
-      namesB = described_class.new(ln, fn, mn)
-      expect(namesA == namesB).to be true
+      expect(described_class.new).to eq described_class.new
+      expect(described_class.new(ln, fn, mn)).to eq described_class.new(ln, fn, mn)
     end
   end
 end

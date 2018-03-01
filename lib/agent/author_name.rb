@@ -1,5 +1,4 @@
 module Agent
-  ##
   # Attributes used for creating author search queries
   class AuthorName
     attr_reader :last, :first, :middle
@@ -47,12 +46,14 @@ module Agent
     # match the most publications is likely 'Lastname,FirstInitial' and using
     # an 'or' conjuction is likely to generate results that mostly match this variant,
     # but additional variants might add something when using an 'ExactMatch' search.
+    # @return [String] name(s) to be queried in an OR (disjunction) query
     def text_search_query
-      @text_search_query ||= begin
-        names = [first_name_query, middle_name_query].flatten
-        names.delete_if { |name| name.to_s.empty? }
-        names.uniq.join(' or ')
-      end
+      text_search_terms.map { |x| "\"#{x}\"" }.join(' or ')
+    end
+
+    def text_search_terms
+      @text_search_terms ||=
+        [first_name_query, middle_name_query].flatten.reject(&:empty?).uniq
     end
 
     def ==(other)
@@ -63,19 +64,19 @@ module Agent
 
     private
 
-      # Add the name variants for:
+      # Name variants for:
       # 'Lastname,Firstname' or
       # 'Lastname,FirstInitial'
       # @return [Array<String>|String] names
       def first_name_query
         return '' if last.empty? && first.empty?
         [
-          "\"#{last_name},#{first_name}\"",
-          "\"#{last_name},#{first_initial}\""
+          "#{last_name},#{first_name}",
+          "#{last_name},#{first_initial}"
         ]
       end
 
-      # Add the name variants for:
+      # Name variants for:
       # 'Lastname,Firstname,Middlename' or
       # 'Lastname,Firstname,MiddleInitial' or
       # 'Lastname,FirstInitial,MiddleInitial'
@@ -83,10 +84,10 @@ module Agent
       def middle_name_query
         return '' unless middle =~ /^[[:alpha:]]/
         [
-          "\"#{last_name},#{first_name},#{middle_name}\"",
-          "\"#{last_name},#{first_name},#{middle_initial}\"",
-          "\"#{last_name},#{first_initial}#{middle_initial}\"",
-          "\"#{last_name},#{first_initial},#{middle_initial}\""
+          "#{last_name},#{first_name},#{middle_name}",
+          "#{last_name},#{first_name},#{middle_initial}",
+          "#{last_name},#{first_initial}#{middle_initial}",
+          "#{last_name},#{first_initial},#{middle_initial}"
         ]
       end
 

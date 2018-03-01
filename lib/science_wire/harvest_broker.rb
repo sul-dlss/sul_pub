@@ -54,7 +54,7 @@ module ScienceWire
       # @return [Array<Integer>]
       def ids_for_alternate_names
         return [] unless alternate_name_query
-        author.author_identities.select { |author_identity| required_data_for_alt_names_search?(author_identity) }.map do |author_identity|
+        author.author_identities.select(&:searchable_institution?).map do |author_identity|
           ids_from_dumb_query(author_identity.to_author_attributes).flatten
         end.flatten.uniq
       end
@@ -72,16 +72,6 @@ module ScienceWire
           author_attributes = AuthorAttributes.new(name, author.email, seed_list, institution)
           ids_from_smart_query(author_attributes)
         end
-      end
-
-      # Institution is valid if not "all", blank, null, or *
-      def inst_valid_for_alt_names_search?(inst)
-        inst.present? && inst != 'all' && inst != '*'
-      end
-
-      # Don't search unless first name, last name, and (valid) institution are provided
-      def required_data_for_alt_names_search?(author_identity)
-        author_identity.first_name.present? && author_identity.last_name.present? && inst_valid_for_alt_names_search?(author_identity.institution)
       end
 
       # Accessors for custom Author information. Eventually could migrate to

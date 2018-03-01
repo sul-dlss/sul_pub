@@ -39,7 +39,7 @@ class Author < ActiveRecord::Base
                 .uniq
   end
 
-  has_many :contributions, dependent: :destroy, after_add: :contributions_changed_callback, after_remove: :contributions_changed_callback do
+  has_many :contributions, dependent: :destroy do
     def build_or_update(publication, contribution_hash = {})
       c = where(publication_id: publication.id).first_or_initialize
       c.assign_attributes contribution_hash.merge(publication_id: publication.id)
@@ -53,10 +53,6 @@ class Author < ActiveRecord::Base
     end
   end
 
-  # TODO: update the publication cached pubhash
-  def contributions_changed_callback(*_args)
-  end
-
   has_many :publications, through: :contributions
   has_many :approved_sw_ids, -> { where("contributions.status = 'approved'") }, through: :contributions,
                                                                                 class_name: 'PublicationIdentifier',
@@ -67,9 +63,6 @@ class Author < ActiveRecord::Base
   has_many :approved_publications, -> { where("contributions.status = 'approved'") }, through: :contributions,
                                                                                       class_name: 'Publication',
                                                                                       source: :publication
-
-  # has_many :population_memberships, :dependent => :destroy
-  # has_many :author_identifiers, :dependent => :destroy
 
   # @param [Hash] auth_hash data as-is from CAP API
   def update_from_cap_authorship_profile_hash(auth_hash)

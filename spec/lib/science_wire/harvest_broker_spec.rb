@@ -22,20 +22,6 @@ describe ScienceWire::HarvestBroker do
     alt.save
     auth
   end
-  let(:alt_author_missing_name_pieces) do
-    auth = alt_author
-    alt = auth.author_identities.first
-    alt.last_name = ''
-    alt.save(validate: false)
-    alt = auth.author_identities.second
-    alt.first_name = ''
-    alt.save(validate: false)
-    alt = auth.author_identities.last
-    alt.first_name = ''
-    alt.last_name = ''
-    alt.save(validate: false)
-    auth
-  end
 
   let(:contribution) { create(:contribution, author: author) }
   let(:harvester) { ScienceWireHarvester.new }
@@ -46,14 +32,13 @@ describe ScienceWire::HarvestBroker do
     end
   end
   describe '#generate_ids' do
+    before { allow(subject).to receive(:ids_for_author).and_return([1]) }
     it 'a set of ids generated from an author and alternate names' do
-      expect(subject).to receive(:ids_for_author).and_return([1])
-      expect(subject).to receive(:ids_for_alternate_names).and_return([1, 2])
+      allow(subject).to receive(:ids_for_alternate_names).and_return([1, 2])
       expect(subject.generate_ids).to eq [1, 2]
     end
     it 'removes any ids for existing author publications' do
-      expect(subject).to receive(:ids_for_author).and_return([1])
-      expect(subject).to receive(:ids_for_alternate_names).and_return([1, 2, 3])
+      allow(subject).to receive(:ids_for_alternate_names).and_return([1, 2, 3])
       expect(subject).to receive(:author_pub_swids).and_return([3])
       expect(subject.generate_ids).to eq [1, 2]
     end
@@ -96,13 +81,6 @@ describe ScienceWire::HarvestBroker do
     end
     context 'when "alternate_name_query" is enabled and varying institution (blank, all, *)' do
       subject { described_class.new(alt_author_varying_institution, harvester, alternate_name_query: true) }
-      it 'returns an empty array' do
-        expect(subject).not_to receive(:ids_from_dumb_query)
-        expect(subject.send(:ids_for_alternate_names)).to eq []
-      end
-    end
-    context 'when "alternate_name_query" is enabled and name pieces blank' do
-      subject { described_class.new(alt_author_missing_name_pieces, harvester, alternate_name_query: true) }
       it 'returns an empty array' do
         expect(subject).not_to receive(:ids_from_dumb_query)
         expect(subject.send(:ids_for_alternate_names)).to eq []

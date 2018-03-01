@@ -5,31 +5,41 @@ module WebOfScience
 
     def initialize(author, options = {})
       raise(ArgumentError, 'author must be an Author') unless author.is_a? Author
-      @names = Agent::AuthorName.new(
-        author.last_name,
-        author.first_name,
-        Settings.HARVESTER.USE_MIDDLE_NAME ? author.middle_name : ''
-      ).text_search_query
-      @institution = Agent::AuthorInstitution.new(author.institution).normalize_name
+      @identities = [author].concat(author.author_identities.to_a) # query for alternates once, not multiple times
       @options = options
     end
 
     # Find all WOS-UIDs for an author
     # @return [Array<String>] WosUIDs
+    # Implementation note: these records have a relatively small memory footprint, just UIDs
     def uids
-      # TODO: iterate on author identities also, or leave that to the consumer of this class?
-      # Implementation note: these records have a relatively small memory footprint, just UIDs
-      retriever = queries.search(author_query)
-      retriever.merged_uids
+      queries.search(author_query).merged_uids
     end
 
     private
 
       delegate :queries, to: :WebOfScience
 
-      attr_reader :names
-      attr_reader :institution
+      attr_reader :identities
       attr_reader :options
+
+      def author
+        identities.first
+      end
+
+      def names
+        identities.map do |ident|
+          Agent::AuthorName.new(
+            ident.last_name,
+            ident.first_name,
+            Settings.HARVESTER.USE_MIDDLE_NAME ? ident.middle_name : ''
+          ).text_search_terms
+        end.flatten.uniq
+      end
+
+      def institutions
+        identities.map { |ident| Agent::AuthorInstitution.new(ident.institution).normalize_name }.uniq
+      end
 
       # Use options to limit the symbolic time span for harvesting publications; this limit applies
       # to the dates publications are added or updated in WOS collections, not publication dates. To
@@ -46,7 +56,7 @@ module WebOfScience
       # @return [Hash]
       def author_query
         params = queries.params_for_fields(empty_fields)
-        params[:queryParameters][:userQuery] = "AU=(#{names}) AND AD=(#{institution})"
+        params[:queryParameters][:userQuery] = "AU=(#{quote_wrap(names).join(' OR ')}) AND AD=(#{quote_wrap(institutions).join(' OR ')})"
         if options[:symbolicTimeSpan]
           # to use symbolicTimeSpan, timeSpan must be omitted
           params[:queryParameters].delete(:timeSpan)
@@ -54,6 +64,12 @@ module WebOfScience
           params[:queryParameters][:order!] = [:databaseId, :userQuery, :symbolicTimeSpan, :queryLanguage] # according to WSDL
         end
         params
+      end
+
+      # @param [Array<String>] terms
+      # @param [Array<String>] the same terms, minus any empties or duplicates, wrapped in double quotes
+      def quote_wrap(terms)
+        terms.reject(&:empty?).uniq.map { |x| "\"#{x}\"" }
       end
 
       # Use Settings.WOS.ACCEPTED_DBS to define collections without any fields retrieved

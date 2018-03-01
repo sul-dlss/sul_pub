@@ -3,7 +3,6 @@ describe WebOfScience::QueryAuthor, :vcr do
 
   let(:author) { create :russ_altman }
   let(:names) { query_author.send(:names) }
-  let(:institution) { query_author.send(:institution) }
 
   # avoid caching Savon client across examples (affects VCR)
   before { allow(WebOfScience).to receive(:client).and_return(WebOfScience::Client.new(Settings.WOS.AUTH_CODE)) }
@@ -43,12 +42,8 @@ describe WebOfScience::QueryAuthor, :vcr do
       expect(params).to include(databaseId: String, userQuery: String, queryLanguage: String)
     end
 
-    it 'contains author name' do
-      expect(params[:userQuery]).to include(names)
-    end
-
-    it 'contains author institution' do
-      expect(params[:userQuery]).to include(institution)
+    it 'contains author names and institutions' do
+      expect(params[:userQuery]).to include(*names, 'stanford')
     end
 
     context 'update' do
@@ -65,23 +60,28 @@ describe WebOfScience::QueryAuthor, :vcr do
   describe '#names' do
     #=> "\"Altman,Russ\" or \"Altman,R\" or \"Altman,Russ,Biagio\" or \"Altman,Russ,B\" or \"Altman,R,B\""
     it 'author name includes the preferred last name' do
-      expect(Agent::AuthorName).to receive(:new).and_call_original
-      expect(names).to include(author.preferred_last_name)
+      expect(names).to include('Altman,Russ')
     end
   end
 
-  describe '#institution' do
-    it 'author institution is a normalized name' do
-      expect(Agent::AuthorInstitution).to receive(:new).and_call_original
-      expect(institution).to eq 'stanford'
+  describe '#institutions' do
+    it 'author institutions includes normalized name' do
+      expect(query_author.send(:institutions)).to include('stanford')
     end
   end
 
   describe '#empty_fields' do
-    let(:fields) { query_author.send(:empty_fields) }
-
     it 'has collections with empty fields' do
-      expect(fields).to include(collectionName: String, fieldName: [''])
+      expect(query_author.send(:empty_fields)).to include(collectionName: String, fieldName: [''])
+    end
+  end
+
+  describe '#quote_wrap' do
+    it 'wraps strings in double quotes' do
+      expect(query_author.send(:quote_wrap, %w[a bc def])).to eq %w["a" "bc" "def"]
+    end
+    it 'deduplicates and removes empties' do
+      expect(query_author.send(:quote_wrap, %w[a bc a bc].concat(['']))).to eq %w["a" "bc"]
     end
   end
 end

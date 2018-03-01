@@ -10,21 +10,24 @@ module WebOfScience
     include WebOfScience::Contributions
 
     # @param [Enumerable<Author>] authors
+    # @param [Hash] options
     # @return [void]
     def harvest(authors, options = {})
-      log_info(nil, "started harvest(authors) batch - #{authors.count} authors")
+      count = authors.count
+      logger.info("#{self.class} - started harvest - #{count} authors")
       author_success = 0
       authors.each do |author|
         process_author(author, options)
         author_success += 1
       end
-      log_info(nil, "completed harvest(authors) batch - #{author_success} processed")
+      logger.info("#{self.class} - completed harvest - #{author_success} of #{count} processed")
     rescue StandardError => err
-      NotificationManager.error(err, "harvest(authors) failed - #{author_success} processed", self)
+      NotificationManager.error(err, "harvest(authors) failed - #{author_success} of #{count} processed", self)
     end
 
     # Harvest all publications for an author
-    # @param author [Author]
+    # @param [Author] author
+    # @param [Hash] options
     # @return [Array<String>] WosUIDs that create Publications
     def process_author(author, options = {})
       raise(ArgumentError, 'author must be an Author') unless author.is_a? Author
@@ -32,11 +35,10 @@ module WebOfScience
       uids = WebOfScience::QueryAuthor.new(author, options).uids
       log_info(author, "#{uids.count} found by author query")
       uids = process_uids(author, uids)
-      log_info(author, "#{uids.count} new publications")
-      log_info(author, 'processed')
+      log_info(author, "processed #{uids.count} new publications")
       uids
     rescue StandardError => err
-      NotificationManager.error(err, "#{self.class} - harvest failed for author", self)
+      NotificationManager.error(err, "#{self.class} - harvest failed for author #{author.id}", self)
     end
 
     # Harvest DOI publications for an author
@@ -122,6 +124,5 @@ module WebOfScience
         uids += WebOfScience::ProcessRecords.new(author, retriever.next_batch).execute while retriever.next_batch?
         uids.flatten.compact
       end
-
   end
 end

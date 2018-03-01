@@ -19,24 +19,20 @@ describe WebOfScience::Harvester do
   let(:wos_A1976BW18000001) { File.read('spec/fixtures/wos_client/wos_record_A1976BW18000001.xml') }
   let(:rec_A1972N549400003) { WebOfScience::Record.new(record: wos_A1972N549400003) }
   let(:rec_A1976BW18000001) { WebOfScience::Record.new(record: wos_A1976BW18000001) }
-  let(:wos_A1972N549400003_response) { File.read('spec/fixtures/wos_client/wos_record_A1972N549400003_response.xml') }
   let(:wos_A1976BW18000001_response) { File.read('spec/fixtures/wos_client/wos_record_A1976BW18000001_response.xml') }
+  let(:wos_harvest_author_name_response) { File.read('spec/fixtures/wos_client/wos_harvest_author_name_response.xml') }
   let(:wos_retrieve_by_id_response) { File.read('spec/fixtures/wos_client/wos_retrieve_by_id_response.xml') }
   let(:wos_retrieve_by_id_records) do
     WebOfScience::Records.new(records: "<records>#{rec_A1972N549400003.to_xml}#{rec_A1976BW18000001.to_xml}</records>")
   end
-  let(:wos_harvest_author_name_response) { File.read('spec/fixtures/wos_client/wos_harvest_author_name_response.xml') }
+  let(:any_records_will_do) do
+    WebOfScience::Records.new(encoded_records: File.read('spec/fixtures/wos_client/medline_encoded_records.html'))
+  end
 
-  let(:wos_search_by_doi_response) { File.read('spec/fixtures/wos_client/wos_search_by_doi_response.xml') }
-  let(:wos_retrieve_by_id_PMID) { File.read('spec/fixtures/wos_client/wos_retrieve_by_id_response_MEDLINE26776186.xml') }
-
-  let(:medline_xml) { File.read('spec/fixtures/wos_client/medline_encoded_records.html') }
-  let(:any_records_will_do) { WebOfScience::Records.new(encoded_records: medline_xml) }
-
-  let(:wos_auth_response) { File.read('spec/fixtures/wos_client/authenticate.xml') }
   before do
     wos_client = WebOfScience::Client.new('secret')
     allow(WebOfScience).to receive(:client).and_return(wos_client)
+    savon.expects(:authenticate).returns(File.read('spec/fixtures/wos_client/authenticate.xml'))
   end
 
   shared_examples 'it_can_process_records' do
@@ -50,7 +46,6 @@ describe WebOfScience::Harvester do
 
   describe '#harvest' do
     before do
-      savon.expects(:authenticate).returns(wos_auth_response)
       savon.expects(:search).with(message: :any).returns(wos_harvest_author_name_response)
       savon.expects(:retrieve_by_id).with(message: :any).returns(wos_retrieve_by_id_response)
     end
@@ -70,12 +65,10 @@ describe WebOfScience::Harvester do
 
   describe '#harvest with existing publication and/or contribution data' do
     let(:contrib_A1972N549400003) do
-      contrib = pub_A1972N549400003.contributions.find_or_initialize_by(
+      pub_A1972N549400003.contributions.find_or_create_by!(
         author_id: author.id, cap_profile_id: author.cap_profile_id,
         featured: false, status: 'new', visibility: 'private'
       )
-      contrib.save
-      contrib
     end
     let(:pub_A1972N549400003) do
       pub = Publication.new(active: true, pub_hash: rec_A1972N549400003.pub_hash, wos_uid: rec_A1972N549400003.uid)
@@ -88,7 +81,6 @@ describe WebOfScience::Harvester do
     before do
       # create one of the publications, without any contributions
       expect(pub_A1972N549400003.persisted?).to be true
-      savon.expects(:authenticate).returns(wos_auth_response)
       savon.expects(:search).with(message: :any).returns(wos_harvest_author_name_response)
       savon.expects(:retrieve_by_id).with(message: :any).returns(wos_A1976BW18000001_response)
     end
@@ -99,50 +91,37 @@ describe WebOfScience::Harvester do
     end
   end
 
-  describe '#process_author' do
-    before do
-      savon.expects(:authenticate).returns(wos_auth_response)
-      savon.expects(:search).with(message: :any).returns(wos_harvest_author_name_response)
-      savon.expects(:retrieve_by_id).with(message: :any).returns(wos_retrieve_by_id_response)
+  describe 'searching methods' do
+    before { savon.expects(:search).with(message: :any).returns(search_response) }
+
+    describe '#process_author' do
+      before { savon.expects(:retrieve_by_id).with(message: :any).returns(wos_retrieve_by_id_response) }
+      let(:search_response) { wos_harvest_author_name_response }
+      let(:harvest_process) { harvester.process_author(author) }
+      it_behaves_like 'it_can_process_records'
     end
 
-    let(:harvest_process) { harvester.process_author(author) }
-
-    it_behaves_like 'it_can_process_records'
+    describe '#process_dois' do
+      let(:search_response) { File.read('spec/fixtures/wos_client/wos_search_by_doi_response.xml') }
+      # don't care if this actually belongs to the author or not
+      let(:harvest_process) { harvester.process_dois(author, ['10.1007/s12630-011-9462-1']) }
+      it_behaves_like 'it_can_process_records'
+    end
   end
 
-  describe '#process_dois' do
-    before do
-      savon.expects(:authenticate).returns(wos_auth_response)
-      savon.expects(:search).with(message: :any).returns(wos_search_by_doi_response)
+  describe 'retrieving methods' do
+    before { savon.expects(:retrieve_by_id).with(message: :any).returns(retrieve_response) }
+
+    describe '#process_pmids' do
+      let(:retrieve_response) { File.read('spec/fixtures/wos_client/wos_retrieve_by_id_response_MEDLINE26776186.xml') }
+      let(:harvest_process) { harvester.process_pmids(author, ['26776186']) }
+      it_behaves_like 'it_can_process_records'
     end
 
-    let(:doi) { '10.1007/s12630-011-9462-1' } # don't care if this actually belongs to the author or not
-    let(:harvest_process) { harvester.process_dois(author, [doi]) }
-
-    it_behaves_like 'it_can_process_records'
-  end
-
-  describe '#process_pmids' do
-    before do
-      savon.expects(:authenticate).returns(wos_auth_response)
-      savon.expects(:retrieve_by_id).with(message: :any).returns(wos_retrieve_by_id_PMID)
+    describe '#process_uids' do
+      let(:retrieve_response) { wos_retrieve_by_id_response }
+      let(:harvest_process) { harvester.process_uids(author, wos_uids) }
+      it_behaves_like 'it_can_process_records'
     end
-
-    let(:pmid) { '26776186' } # don't care if this actually belongs to the author or not
-    let(:harvest_process) { harvester.process_pmids(author, [pmid]) }
-
-    it_behaves_like 'it_can_process_records'
-  end
-
-  describe '#process_uids' do
-    before do
-      savon.expects(:authenticate).returns(wos_auth_response)
-      savon.expects(:retrieve_by_id).with(message: :any).returns(wos_retrieve_by_id_response)
-    end
-
-    let(:harvest_process) { harvester.process_uids(author, wos_uids) }
-
-    it_behaves_like 'it_can_process_records'
   end
 end

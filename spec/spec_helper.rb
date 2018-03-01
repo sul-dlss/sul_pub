@@ -83,6 +83,8 @@ RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
 end
 
+RSpec::Matchers.define_negated_matcher :exclude, :include
+
 require 'vcr'
 VCR.configure do |c|
   c.cassette_library_dir = 'fixtures/vcr_cassettes'
