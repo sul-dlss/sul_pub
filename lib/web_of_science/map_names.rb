@@ -80,11 +80,13 @@ module WebOfScience
         # full_name has the form "LastName, GivenName" where GivenName is space delimited
         # display_name and full_name are often, if not always, the same
         # initials is a smashed set of initial letters, with no delimiters
-        last, given = name[:full_name].split(',').map(&:strip)
-        first, middle = given.strip.split(/\s+/)
+        return name if name[:full_name].blank? && name[:display_name].blank? # if both full name and display name are empty, do not process further
+        name_to_process = name[:full_name] || name[:display_name] # prefer full_name but accept display_name if full_name is missing
+        last, given = name_to_process.split(',').map(&:strip)
+        first, middle = given.strip.split(/\s+/) if given.present?
         name[:last_name] = last
         name[:given_name] = given
-        name[:first_name] = first
+        name[:first_name] = first if first.present?
         name[:middle_name] = middle if middle.present?
         name
       end

@@ -3,6 +3,10 @@ describe WebOfScience::MapNames do
   let(:wos_encoded_xml) { File.read('spec/fixtures/wos_client/wos_record_000386326200035.xml') }
   let(:wos_record) { WebOfScience::Record.new(record: wos_encoded_xml) }
 
+  # anonymous display_name MEDLINE record
+  let(:medline_encoded_anon_xml) { File.read('spec/fixtures/wos_client/medline_encoded_record_anon.html') }
+  let(:medline_record_anon) { WebOfScience::Record.new(encoded_record: medline_encoded_anon_xml) }
+
   # Cannot find any MEDLINE records with an "editor" of any kind
   let(:medline_encoded_xml) { File.read('spec/fixtures/wos_client/medline_encoded_record.html') }
   let(:medline_record) { WebOfScience::Record.new(encoded_record: medline_encoded_xml) }
@@ -56,6 +60,20 @@ describe WebOfScience::MapNames do
     end
     it_behaves_like 'pub_hash'
     it_behaves_like 'contains_author_data'
+  end
+
+  context 'MEDLINE records with anonymous names' do
+    let(:pub_hash_class) { described_class.new(medline_record_anon) }
+    let(:pub_hash) { pub_hash_class.pub_hash }
+
+    it 'works with WOS records with anonymous names' do
+      expect(pub_hash[:author]).not_to be_nil
+      expect(pub_hash[:authorcount]).to be 0
+      csl_authors = described_class.authors_to_csl(pub_hash[:author])
+      expect(csl_authors).to eq []
+      expect(csl_authors.count).to eq pub_hash[:authorcount]
+    end
+    it_behaves_like 'pub_hash'
   end
 
   context 'MEDLINE records' do
