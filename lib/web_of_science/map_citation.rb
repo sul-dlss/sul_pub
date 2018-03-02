@@ -1,18 +1,23 @@
 module WebOfScience
-
   # Map WOS record citation data into the SUL PubHash data
-  class MapCitation < Mapper
+  class MapCitation
+    # @param rec [WebOfScience::Record]
+    def initialize(rec)
+      raise(ArgumentError, 'rec must be a WebOfScience::Record') unless rec.is_a? WebOfScience::Record
+      extract(rec)
+    end
 
     # publication citation details
     # @return [Hash]
     def pub_hash
       c = {}
-      c[:year] = year
-      c[:date] = date
       c[:pages] = pages if pages.present?
-      c[:title] = title
-      c[:journal] = journal
-      c
+      c.merge(
+        year: year,
+        date: date,
+        title: title,
+        journal: journal
+      )
     end
 
     private
@@ -26,7 +31,6 @@ module WebOfScience
       # Extract content from record, try not to hang onto the entire record
       # @param rec [WebOfScience::Record]
       def extract(rec)
-        super(rec)
         issn = extract_issn(rec)
         pub_info = rec.pub_info
         titles = rec.titles
@@ -63,6 +67,5 @@ module WebOfScience
         lst = page['end'].to_s.strip
         fst == lst ? fst : [fst, lst].select(&:present?).join('-')
       end
-
   end
 end
