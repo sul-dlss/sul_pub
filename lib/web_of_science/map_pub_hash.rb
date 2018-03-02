@@ -1,30 +1,21 @@
 module WebOfScience
-
   # Map WOS record data into the SUL PubHash data
-  class MapPubHash < Mapper
+  class MapPubHash
+    attr_reader :pub
+    alias pub_hash pub
 
-    # Map WOS record data into the SUL PubHash data
-    # @return [Hash]
-    def pub_hash
-      pub
+    # @param rec [WebOfScience::Record]
+    def initialize(rec)
+      raise(ArgumentError, 'rec must be a WebOfScience::Record') unless rec.is_a? WebOfScience::Record
+      extract(rec)
     end
 
     private
 
-      attr_reader :pub
-
       # Extract content from record, try not to hang onto the entire record
       # @param rec [WebOfScience::Record]
       def extract(rec)
-        super(rec)
-        extract_pub_hash(rec)
-      end
-
-      # Extract all the pub_hash content from all the mappers; if the ruby GC is any good, it
-      # should be able to discard all the mapper instances after this method is called once.
-      def extract_pub_hash(rec)
-        @pub = {}
-        pub.update WebOfScience::MapAbstract.new(rec).pub_hash
+        @pub = WebOfScience::MapAbstract.new(rec).pub_hash
         pub.update WebOfScience::MapNames.new(rec).pub_hash
         pub.update WebOfScience::MapPublisher.new(rec).pub_hash
         pub.update WebOfScience::MapCitation.new(rec).pub_hash
@@ -37,11 +28,11 @@ module WebOfScience
       # publication document types and categories
       def pub_hash_doctypes(rec)
         types = [rec.doctypes, rec.pub_info['pubtype']].flatten.compact
-        doc = {}
-        doc[:documenttypes_sw] = types
-        doc[:documentcategory_sw] = rec.pub_info['pubtype']
-        doc[:type] = case rec.pub_info['pubtype']
-                     when /conference/i
+        doc = {
+          documenttypes_sw: types,
+          documentcategory_sw: rec.pub_info['pubtype']
+        }
+        doc[:type] = if types.any? { |t| t =~ /\b(Meeting|Conference|Congresses|Overall|Proceeding)/i }
                        Settings.sul_doc_types.inproceedings
                      else
                        Settings.sul_doc_types.article
