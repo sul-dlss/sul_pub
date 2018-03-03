@@ -88,18 +88,28 @@ module WebOfScience
         name[:given_name] = given
         name[:first_name] = first if first.present?
         name[:middle_name] = middle if middle.present?
+        name[:name] = "#{name[:last_name]},#{name[:first_name]},#{name[:middle_name]}" # full name in the older style format used by Profiles/CAP
         name
       end
 
       # Parse the WOS names and return a Hash compatible with Csl::AuthorName
       # @return [Hash]
       def wos_name(name)
+        # look for the case where the first_name is the initials, with first and middle initials combined
+        # e.g. first_name = "RB", should be first_name = "R", middle_name = "B"
         match = name[:first_name].to_s.match(/\A([A-Z])([A-Z])/)
         if match
-          # first_name is the initials, with first and middle initials combined
           name[:first_name] = match[1]
           name[:middle_name] ||= match[2]
         end
+        # look for the case where the first name includes the middle initial optionally followed by a period
+        # e.g. first_name = "Russel B.", should be first_name = "Russel", middle_name = "B"
+        match = name[:first_name].to_s.match(/[\s][A-Z][.]?\z/)
+        if match
+          name[:first_name].delete!(match[0])
+          name[:middle_name] = match[0].strip[0]
+        end
+        name[:name] = "#{name[:last_name]},#{name[:first_name]},#{name[:middle_name]}" # full name in the older style format used by Profiles/CAP
         name
       end
   end

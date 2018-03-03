@@ -31,8 +31,9 @@ describe WebOfScience::MapNames do
   end
 
   shared_examples 'contains_author_data' do
-    it 'has an authors' do
-      expect(pub_hash[:author]).not_to be_nil
+    it 'has authors with a name key in hash' do
+      expect(pub_hash[:author].size).to be > 0
+      pub_hash[:author].each { |author_name| expect(author_name[:name]).not_to be_nil }
     end
     it 'has an authorcount' do
       expect(pub_hash[:authorcount]).not_to be_nil
@@ -57,6 +58,7 @@ describe WebOfScience::MapNames do
 
     it 'works with WOS records' do
       expect(pub_hash_class).to be_an described_class
+      expect(pub_hash[:author].size).to eq 9
     end
     it_behaves_like 'pub_hash'
     it_behaves_like 'contains_author_data'
