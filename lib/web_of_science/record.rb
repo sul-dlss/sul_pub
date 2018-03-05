@@ -66,13 +66,13 @@ module WebOfScience
       nil
     end
 
-    # @return [Hash<String => String>]
+    # @return [Hash<String => [String, Hash<String => String>]>]
     def pub_info
       @pub_info ||= begin
         info = doc.at('static_data/summary/pub_info')
         fields = WebOfScience::XmlParser.attributes_map(info)
         fields += info.children.map do |child|
-          [child.name, WebOfScience::XmlParser.attributes_map(child).to_h ]
+          [child.name, WebOfScience::XmlParser.attributes_map(child).to_h]
         end
         fields.to_h
       end
@@ -121,6 +121,5 @@ module WebOfScience
     def to_xml
       doc.to_xml(save_with: WebOfScience::XmlParser::XML_OPTIONS).strip
     end
-
   end
 end

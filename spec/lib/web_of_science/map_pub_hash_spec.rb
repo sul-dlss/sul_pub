@@ -5,15 +5,16 @@ describe WebOfScience::MapPubHash do
   let(:medline_xml) { File.read('spec/fixtures/wos_client/medline_record_26776186.xml') }
   let(:medline_record) { WebOfScience::Record.new(record: medline_xml) }
 
+  let(:mapper) { described_class.new(record) }
+  let(:pub_hash) { mapper.pub_hash }
+  let(:record) { wos_record } # default
+
   describe '#new' do
     it 'works with WOS records' do
-      result = described_class.new(wos_record)
-      expect(result).to be_an described_class
+      expect { described_class.new(wos_record) }.not_to raise_error
     end
-    it 'raises ArgumentError with nil params' do
+    it 'raises ArgumentError with bad params' do
       expect { described_class.new }.to raise_error(ArgumentError)
-    end
-    it 'raises ArgumentError with anything other than WebOfScience::Record' do
       expect { described_class.new('could be xml') }.to raise_error(ArgumentError)
     end
   end
@@ -73,12 +74,6 @@ describe WebOfScience::MapPubHash do
   end
 
   context 'WOS records' do
-    let(:pub_hash_class) { described_class.new(wos_record) }
-    let(:pub_hash) { pub_hash_class.pub_hash }
-
-    it 'works with WOS records' do
-      expect(pub_hash_class).to be_an described_class
-    end
     it_behaves_like 'pub_hash'
     it_behaves_like 'common_citation_data'
     it_behaves_like 'contains_publisher_data'
@@ -86,18 +81,31 @@ describe WebOfScience::MapPubHash do
   end
 
   context 'MEDLINE records' do
-    let(:pub_hash_class) { described_class.new(medline_record) }
-    let(:pub_hash) { pub_hash_class.pub_hash }
+    let(:record) { medline_record }
 
-    it 'works with MEDLINE records' do
-      expect(pub_hash_class).to be_an described_class
-    end
     it_behaves_like 'pub_hash'
     it_behaves_like 'common_citation_data'
     # it_behaves_like 'contains_publisher_data' # No, it does not.
     it_behaves_like 'contains_summary_data'
     it 'contains MESH headings' do
       expect(pub_hash[:mesh_headings]).to be_an Array
+    end
+  end
+
+  # private
+
+  describe '#pub_hash_doctypes' do
+    let(:doctypes) { mapper.send(:pub_hash_doctypes, record) }
+    it 'parses out salient fields' do
+      expect(doctypes).to match a_hash_including(
+        documenttypes_sw: ['Book Review', 'Journal'],
+        documentcategory_sw: 'Journal',
+        type: 'article'
+      )
+    end
+    it 'detects conference doctypes' do
+      allow(record).to receive(:doctypes).and_return ['Meeting Abstract']
+      expect(doctypes).to match a_hash_including(type: 'inproceedings')
     end
   end
 end
