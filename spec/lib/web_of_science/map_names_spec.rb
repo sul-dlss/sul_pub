@@ -33,7 +33,7 @@ describe WebOfScience::MapNames do
   shared_examples 'contains_author_data' do
     it 'has authors with a name key in hash' do
       expect(pub_hash[:author].size).to be > 0
-      pub_hash[:author].each { |author_name| expect(author_name[:name]).not_to be_nil }
+      expect(pub_hash[:author]).to all(match a_hash_including(name: be_present))
     end
     it 'has an authorcount' do
       expect(pub_hash[:authorcount]).not_to be_nil
@@ -60,6 +60,18 @@ describe WebOfScience::MapNames do
       expect(pub_hash_class).to be_an described_class
       expect(pub_hash[:author].size).to eq 9
     end
+    it 'parses wos names where the first and middle initial are in the first name field and adds the :name variant' do
+      name = { first_name: 'John Q.', middle_name: '', last_name: 'Public' }
+      expect(pub_hash_class.send(:wos_name, name)).to eq(first_name: 'John', middle_name: 'Q', last_name: 'Public', name: 'Public,John,Q')
+    end
+    it 'parses wos names where the first and middle initial without a period are in the first name field and adds the :name variant' do
+      name = { first_name: 'John Q', middle_name: '', last_name: 'Public' }
+      expect(pub_hash_class.send(:wos_name, name)).to eq(first_name: 'John', middle_name: 'Q', last_name: 'Public', name: 'Public,John,Q')
+    end
+    it 'parses wos names where the first name has more than word and adds the :name variant' do
+      name = { first_name: 'John Quincy', middle_name: '', last_name: 'Public' }
+      expect(pub_hash_class.send(:wos_name, name)).to eq(first_name: 'John Quincy', middle_name: '', last_name: 'Public', name: 'Public,John Quincy,')
+    end
     it_behaves_like 'pub_hash'
     it_behaves_like 'contains_author_data'
   end
@@ -74,6 +86,7 @@ describe WebOfScience::MapNames do
       csl_authors = described_class.authors_to_csl(pub_hash[:author])
       expect(csl_authors).to eq []
       expect(csl_authors.count).to eq pub_hash[:authorcount]
+      expect(pub_hash_class.send(:extract_names, medline_record_anon)).to eq([{ display_name: '[Anonymous]', role: 'anon', last_name: '[Anonymous]', given_name: nil, name: '[Anonymous],,' }])
     end
     it_behaves_like 'pub_hash'
   end
@@ -84,6 +97,22 @@ describe WebOfScience::MapNames do
 
     it 'works with MEDLINE records' do
       expect(pub_hash_class).to be_an described_class
+    end
+    it 'returns itself if missing the display_name or full_name variants' do
+      name = { first_name: 'John', middle_name: 'Q', last_name: 'Public' }
+      expect(pub_hash_class.send(:medline_name, name)).to eq name
+    end
+    it 'parses full_name if display_name missing and adds the :name variant' do
+      name = { full_name: 'Public, John Q' }
+      expect(pub_hash_class.send(:medline_name, name)).to eq(first_name: 'John', middle_name: 'Q', last_name: 'Public', name: 'Public,John,Q', full_name: 'Public, John Q', given_name: 'John Q')
+    end
+    it 'parses display_name if full_name missing and adds the :name variant' do
+      name = { display_name: 'Public, John Q' }
+      expect(pub_hash_class.send(:medline_name, name)).to eq(first_name: 'John', middle_name: 'Q', last_name: 'Public', name: 'Public,John,Q', display_name: 'Public, John Q', given_name: 'John Q')
+    end
+    it 'parses full_name with just two initials and adds the :name variant' do
+      name = { full_name: 'Public, J Q' }
+      expect(pub_hash_class.send(:medline_name, name)).to eq(first_name: 'J', middle_name: 'Q', last_name: 'Public', name: 'Public,J,Q', full_name: 'Public, J Q', given_name: 'J Q')
     end
     it_behaves_like 'pub_hash'
     it_behaves_like 'contains_author_data'
