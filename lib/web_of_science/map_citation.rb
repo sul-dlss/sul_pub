@@ -1,51 +1,37 @@
 module WebOfScience
   # Map WOS record citation data into the SUL PubHash data
   class MapCitation
+    attr_reader :pub_hash # [Hash<Symbol => [String, Hash]>]
+
     # @param rec [WebOfScience::Record]
     def initialize(rec)
       raise(ArgumentError, 'rec must be a WebOfScience::Record') unless rec.is_a? WebOfScience::Record
+      @pub_hash = {}
       extract(rec)
-    end
-
-    # publication citation details
-    # @return [Hash]
-    def pub_hash
-      c = {}
-      c[:pages] = pages if pages.present?
-      c.merge(
-        year: year,
-        date: date,
-        title: title,
-        journal: journal
-      )
     end
 
     private
 
-      attr_reader :date
-      attr_reader :journal
-      attr_reader :pages
-      attr_reader :title
-      attr_reader :year
-
       # Extract content from record, try not to hang onto the entire record
+      # Builds the pub_hash
       # @param rec [WebOfScience::Record]
       def extract(rec)
-        issn = extract_issn(rec)
         pub_info = rec.pub_info
         titles = rec.titles
-        @title = titles['item'].strip
-        @year = pub_info['pubyear']
-        @date = pub_info['sortdate']
-        @pages = extract_pages(pub_info['page'])
-        @journal = extract_journal(pub_info, titles['source'], issn, pages)
+        pages = extract_pages(pub_info['page'])
+        pub_hash[:pages] = pages if pages.present?
+        pub_hash.merge!(
+          year: pub_info['pubyear'],
+          date: pub_info['sortdate'],
+          title: titles['item'].strip,
+          journal: extract_journal(pub_info, titles['source'], extract_issns(rec), pages)
+        )
       end
 
-      # Journal EISSN or ISSN
-      # @return [Hash]
-      def extract_issn(rec)
-        pub_hash = rec.identifiers.pub_hash
-        pub_hash.find { |id| id[:type] == 'issn' } || pub_hash.find { |id| id[:type] == 'eissn' }
+      # Journal EISSN and/or ISSN
+      # @return [Array<Hash<Symbol => String>>]
+      def extract_issns(rec)
+        rec.identifiers.pub_hash.select { |id| id[:type] == 'issn' || id[:type] == 'eissn' }
       end
 
       # Journal information
