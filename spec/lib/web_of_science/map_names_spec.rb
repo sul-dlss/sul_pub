@@ -68,6 +68,14 @@ describe WebOfScience::MapNames do
       name = { first_name: 'John Q', middle_name: '', last_name: 'Public' }
       expect(pub_hash_class.send(:wos_name, name)).to eq(first_name: 'John', middle_name: 'Q', last_name: 'Public', name: 'Public,John,Q')
     end
+    it 'parses wos names where the first name has multiple words including the middle initial and adds the :name variant' do
+      name = { first_name: 'John Quimby Q', middle_name: '', last_name: 'Public' }
+      expect(pub_hash_class.send(:wos_name, name)).to eq(first_name: 'John Quimby', middle_name: 'Q', last_name: 'Public', name: 'Public,John Quimby,Q')
+    end
+    it 'parses wos names where the initial is also in the first name adds the :name variant' do
+      name = { first_name: 'Russel R. R.', middle_name: '', last_name: 'Public' }
+      expect(pub_hash_class.send(:wos_name, name)).to eq(first_name: 'Russel R.', middle_name: 'R', last_name: 'Public', name: 'Public,Russel R.,R')
+    end
     it 'parses wos names where the first name has more than word and adds the :name variant' do
       name = { first_name: 'John Quincy', middle_name: '', last_name: 'Public' }
       expect(pub_hash_class.send(:wos_name, name)).to eq(first_name: 'John Quincy', middle_name: '', last_name: 'Public', name: 'Public,John Quincy,')

@@ -104,11 +104,10 @@ module WebOfScience
         end
         # look for the case where the first name includes the middle initial optionally followed by a period
         # e.g. first_name = "Russel B.", should be first_name = "Russel", middle_name = "B"
-        match = name[:first_name].to_s.match(/[\s][A-Z][.]?\z/)
-        if match
-          name[:first_name].delete!(match[0])
-          name[:middle_name] = match[0].strip[0]
-        end
+        name[:first_name].gsub!(/\s[[:upper:]]\.?\z/) do |s|
+          name[:middle_name] = s.strip.chomp('.') # remove trailing spaces and periods
+          ''
+        end # block returns empty, removing match
         name[:name] = "#{name[:last_name]},#{name[:first_name]},#{name[:middle_name]}" # full name in the older style format used by Profiles/CAP
         name
       end
