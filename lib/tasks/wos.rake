@@ -4,6 +4,9 @@ namespace :wos do
     WebOfScience.harvester.harvest_all
   end
 
+  # Note, possible values for symbolicTimeSpan (not well documented in WoS API documentation)
+  # "xweek" where x > 1 and < 53
+  # "xyear" where x => 1 and < ?
   desc 'Update harvest from Web of Science, for all authors'
   task :harvest_authors_update, [:symbolicTimeSpan] => :environment do |_t, args|
     options = args.with_defaults(symbolicTimeSpan: '4week')
