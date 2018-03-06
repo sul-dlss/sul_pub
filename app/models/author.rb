@@ -3,32 +3,18 @@ class Author < ActiveRecord::Base
   validates :cap_profile_id, uniqueness: true, presence: true
 
   has_many :author_identities, dependent: :destroy, autosave: true
+  has_many :contributions, dependent: :destroy
+  has_many :publications, through: :contributions
 
   # Provide consistent API for Author and AuthorIdentity
   alias_attribute :first_name, :preferred_first_name
   alias_attribute :middle_name, :preferred_middle_name
   alias_attribute :last_name, :preferred_last_name
 
-  # Provide consistent API for Author and AuthorIdentity
-  # The default institution is set in
-  # Settings.HARVESTER.INSTITUTION.name
+  # The default institution is set in Settings.HARVESTER.INSTITUTION.name
   # @return [String] institution
   def institution
     Settings.HARVESTER.INSTITUTION.name
-  end
-
-  # TODO: CAP could provide dates for Stanford affiliation
-  # Provide consistent API for Author and AuthorIdentity
-  # @return [nil]
-  def start_date
-    nil
-  end
-
-  # TODO: CAP could provide dates for Stanford affiliation
-  # Provide consistent API for Author and AuthorIdentity
-  # @return [nil]
-  def end_date
-    nil
   end
 
   # @return [Array<Integer>] ScienceWireIds for approved publications
@@ -38,31 +24,6 @@ class Author < ActiveRecord::Base
                 .pluck(:sciencewire_id)
                 .uniq
   end
-
-  has_many :contributions, dependent: :destroy do
-    def build_or_update(publication, contribution_hash = {})
-      c = where(publication_id: publication.id).first_or_initialize
-      c.assign_attributes contribution_hash.merge(publication_id: publication.id)
-      if c.persisted?
-        c.save
-        publication.pubhash_needs_update!
-      else
-        self << c
-      end
-      c
-    end
-  end
-
-  has_many :publications, through: :contributions
-  has_many :approved_sw_ids, -> { where("contributions.status = 'approved'") }, through: :contributions,
-                                                                                class_name: 'PublicationIdentifier',
-                                                                                source: :publication_identifier,
-                                                                                foreign_key: 'publication_id',
-                                                                                primary_key: 'publication_id'
-
-  has_many :approved_publications, -> { where("contributions.status = 'approved'") }, through: :contributions,
-                                                                                      class_name: 'Publication',
-                                                                                      source: :publication
 
   # @param [Hash] auth_hash data as-is from CAP API
   def update_from_cap_authorship_profile_hash(auth_hash)
