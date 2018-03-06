@@ -80,6 +80,14 @@ describe WebOfScience::MapNames do
       name = { first_name: 'John Quincy', middle_name: '', last_name: 'Public' }
       expect(pub_hash_class.send(:wos_name, name)).to eq(first_name: 'John Quincy', middle_name: '', last_name: 'Public', name: 'Public,John Quincy,')
     end
+    it 'works when the first_name is missing' do
+      name = { last_name: 'Public' }
+      expect(pub_hash_class.send(:wos_name, name)).to eq(last_name: 'Public', name: 'Public,,')
+    end
+    it 'parses and returns the correct name for anonymous records' do
+      name = { display_name: '[Anonymous]', full_name: '[Anonymous]' }
+      expect(pub_hash_class.send(:wos_name, name)).to eq(name: '[Anonymous],,', full_name: '[Anonymous]', display_name: '[Anonymous]')
+    end
     it_behaves_like 'pub_hash'
     it_behaves_like 'contains_author_data'
   end
@@ -121,6 +129,10 @@ describe WebOfScience::MapNames do
     it 'parses full_name with just two initials and adds the :name variant' do
       name = { full_name: 'Public, J Q' }
       expect(pub_hash_class.send(:medline_name, name)).to eq(first_name: 'J', middle_name: 'Q', last_name: 'Public', name: 'Public,J,Q', full_name: 'Public, J Q', given_name: 'J Q')
+    end
+    it 'parses and returns the correct name for anonymous records' do
+      name = { display_name: '[Anonymous]', full_name: '[Anonymous]' }
+      expect(pub_hash_class.send(:medline_name, name)).to eq(last_name: '[Anonymous]', name: '[Anonymous],,', full_name: '[Anonymous]', display_name: '[Anonymous]', given_name: nil)
     end
     it_behaves_like 'pub_hash'
     it_behaves_like 'contains_author_data'
