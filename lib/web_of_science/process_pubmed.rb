@@ -37,7 +37,10 @@ module WebOfScience
       if pubmed_record.nil?
         pubmed_cleanup(pub)
       else
-        pub.pub_hash.reverse_update(pubmed_record.source_as_hash)
+        pubmed_hash = pubmed_record.source_as_hash
+        pub.pub_hash.reverse_update(pubmed_hash)
+        pmc_id = pubmed_hash[:identifier].detect { |id| id[:type] == 'pmc' }
+        pub.pub_hash[:identifier] << pmc_id if pmc_id
         pub.pubhash_needs_update!
         pub.save!
       end

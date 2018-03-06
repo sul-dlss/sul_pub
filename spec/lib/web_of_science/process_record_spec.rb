@@ -147,6 +147,14 @@ describe WebOfScience::ProcessRecord, :vcr do
     it_behaves_like '#execute'
     it_behaves_like 'pubs_with_pmid_have_mesh_headings'
 
+    it 'persists PMC in identifier section of hash' do
+      processor.execute
+      pub = Publication.find_by(wos_uid: record.uid)
+      expect(pub).not_to be_nil
+      expect(pub.pub_hash[:identifier]).to include(type: 'pmc', id: 'PMC1234567')
+      expect(pub.publication_identifiers.where(identifier_type: 'pmc').count).to eq 1 # we have a row in publication identifier table
+    end
+
     context 'PubMed integration fails' do
       # only WOS records can be supplemented by PubMed data
       # any failure is not catastrophic - just log it

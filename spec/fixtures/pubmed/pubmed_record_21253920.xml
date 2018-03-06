@@ -132,6 +132,7 @@
         <ArticleIdList>
             <ArticleId IdType="pubmed">21253920</ArticleId>
             <ArticleId IdType="doi">10.1007/s12630-011-9462-1</ArticleId>
+            <ArticleId IdType="pmc">PMC1234567</ArticleId>
         </ArticleIdList>
     </PubmedData>
 </PubmedArticle>
