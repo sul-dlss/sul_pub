@@ -30,6 +30,8 @@ class Publication < ActiveRecord::Base
 
   has_many :user_submitted_source_records
 
+  has_one :web_of_science_source_record, foreign_key: :uid, primary_key: :wos_uid
+
   has_many :publication_identifiers,
     autosave: true,
     dependent: :destroy,

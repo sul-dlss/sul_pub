@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180224013914) do
+ActiveRecord::Schema.define(version: 20180307233527) do
 
   create_table "author_identities", force: :cascade do |t|
     t.integer  "author_id",   limit: 4,   null: false
@@ -224,4 +224,5 @@ ActiveRecord::Schema.define(version: 20180224013914) do
   add_index "web_of_science_source_records", ["uid"], name: "web_of_science_uid_index", using: :btree
 
   add_foreign_key "author_identities", "authors"
+  add_foreign_key "publications", "web_of_science_source_records", column: "wos_uid", primary_key: "uid"
 end

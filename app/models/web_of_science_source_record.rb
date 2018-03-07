@@ -2,6 +2,8 @@ class WebOfScienceSourceRecord < ActiveRecord::Base
 
   validates :active, :database, :source_data, :source_fingerprint, :uid, presence: true
 
+  has_one :publication, foreign_key: :wos_uid, primary_key: :uid
+
   after_initialize :init
 
   delegate :doc, to: :record
