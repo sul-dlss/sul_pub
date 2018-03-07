@@ -1,7 +1,6 @@
 require 'identifiers'
 
 module WebOfScience
-
   # Used in the Web of Science harvesting process
   module ProcessPubmed
 
@@ -18,13 +17,12 @@ module WebOfScience
           pub.save!
           pubmed_addition(pub) if record.database != 'MEDLINE'
         rescue StandardError => err
-          message = "#{record.uid}, pubmed_additions failed"
+          message = "#{record.uid}, pubmed_additions for pmid '#{record.pmid}' failed"
           NotificationManager.error(err, message, self)
         end
       end
     rescue StandardError => err
-      message = "pubmed_additions failed"
-      NotificationManager.error(err, message, self)
+      NotificationManager.error(err, 'pubmed_additions failed', self)
     end
 
     # For WOS-record that has a PMID, fetch data from PubMed and enhance the pub.pub_hash with PubMed data
@@ -45,8 +43,7 @@ module WebOfScience
         pub.save!
       end
     rescue StandardError => err
-      message = "pubmed_addition failed for args: #{pmid}, #{pub}"
-      NotificationManager.error(err, message, self)
+      NotificationManager.error(err, "pubmed_addition failed for args: #{pmid}, #{pub}", self)
     end
 
     # For WOS-record that has a PMID, cleanup our data when it does not exist on PubMed;
@@ -66,8 +63,7 @@ module WebOfScience
       pub.pubhash_needs_update!
       pub.save!
     rescue StandardError => err
-      message = "pubmed_cleanup failed for args: #{pmid}, #{pub}"
-      NotificationManager.error(err, message, self)
+      NotificationManager.error(err, "pubmed_cleanup failed for args: #{pmid}, #{pub}", self)
     end
 
     # @param [String, Integer] pmid
@@ -79,6 +75,5 @@ module WebOfScience
       raise(ArgumentError, 'pmid is not valid') unless pmid.is_a? String
       pmid
     end
-
   end
 end
