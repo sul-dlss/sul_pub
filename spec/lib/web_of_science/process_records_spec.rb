@@ -1,114 +1,74 @@
 describe WebOfScience::ProcessRecords, :vcr do
-  let(:author) { create :russ_altman }
+  subject(:processor) { instance }
 
+  let(:instance) { described_class.new(author, records) } # rubocop lets us stub this, not the subject directly
+  let(:author) { create :russ_altman }
+  let(:records) { WebOfScience::Records.new(records: "<records>#{record_xml}</records>") }
   let(:links_client) { Clarivate::LinksClient.new }
+  let(:uids) { records.uids }
+  let(:new_pubs) { Publication.where(wos_uid: uids) }
+  let(:new_pub) { new_pubs.first }
 
   before do
-    null_logger = Logger.new('/dev/null')
-    allow(WebOfScience).to receive(:logger).and_return(null_logger)
+    allow(WebOfScience).to receive(:logger).and_return(Logger.new('/dev/null'))
     allow(WebOfScience).to receive(:links_client).and_return(links_client)
   end
 
   shared_examples '#execute' do
-    # ---
     # Happy paths
-
-    it 'returns an Array' do
-      expect(processor.execute).to be_an Array
-    end
     it 'returns Array<String> with WosUIDs on success' do
       result = processor.execute
-      uid_success = result & records.uids
-      expect(uid_success).not_to be_empty
-    end
-    it 'creates new WebOfScienceSourceRecords' do
-      expect { processor.execute }.to change { WebOfScienceSourceRecord.count }
+      expect(result).to all(be_a(String))
+      expect(result & records.uids).not_to be_empty
     end
 
-    it 'creates new Publications' do
-      expect { processor.execute }.to change { Publication.count }
+    it 'creates new WebOfScienceSourceRecords, Publications, PublicationIdentifiers, Contributions' do
+      expect { processor.execute }
+        .to change { [WebOfScienceSourceRecord.count, Publication.count, PublicationIdentifier.count, Contribution.count] }
     end
+
     it 'creates Publications with WOS attributes' do
       processor.execute
-      records.uids.each do |uid|
-        pub = Publication.find_by(wos_uid: uid)
-        expect(pub).not_to be_nil
-        expect(pub.pub_hash[:provenance]).to eq Settings.wos_source
-      end
+      expect(new_pubs.size).to eq uids.size # i.e., 1
+      expect(new_pub).not_to be_nil
+      expect(new_pub.pub_hash).to include(provenance: Settings.wos_source, authorship: Array)
     end
 
-    it 'creates new PublicationIdentifiers' do
-      expect { processor.execute }.to change { PublicationIdentifier.count }
-    end
-
-    it 'creates new Contributions' do
-      expect { processor.execute }.to change { Contribution.count }
-    end
-    it 'creates new contribution in the pub_hash[:authorship]' do
-      processor.execute
-      records.each do |rec|
-        pub = Publication.find_by(wos_uid: rec.uid)
-        expect(pub.pub_hash).to include(:authorship)
-      end
-    end
-
-    # ---
     # Unhappy paths
-
-    it 'raises ArgumentError for author' do
+    it 'raises ArgumentError for bad params' do
       expect { described_class.new('author', records) }.to raise_error(ArgumentError)
-    end
-    it 'raises ArgumentError for records' do
       expect { described_class.new(author, []) }.to raise_error(ArgumentError)
     end
     it 'raises RuntimeError when Settings.WOS.ACCEPTED_DBS.empty?' do
-      wos = Settings.WOS
-      allow(wos).to receive(:ACCEPTED_DBS).and_return([])
-      allow(Settings).to receive(:WOS).and_return(wos)
+      allow(Settings.WOS).to receive(:ACCEPTED_DBS).and_return([])
       expect { described_class.new(author, records) }.to raise_error(RuntimeError)
     end
 
     context 'save_wos_records fails' do
-      before do
-        allow(processor).to receive(:save_wos_records).and_raise(RuntimeError)
-      end
+      before { expect(instance).to receive(:save_wos_records).and_raise(RuntimeError) }
 
       it 'does not create new WebOfScienceSourceRecords' do
         expect { processor.execute }.not_to change { WebOfScienceSourceRecord.count }
       end
-      it 'logs errors' do
-        expect(NotificationManager).to receive(:error)
-        processor.execute
-      end
       it 'returns empty Array' do
-        expect(processor.execute).to be_an Array
-        expect(processor.execute).to be_empty
+        expect(processor.execute).to eq []
       end
+      it_behaves_like 'error_logger'
     end
 
     context 'create_publication fails' do
-      before do
-        allow(Publication).to receive(:new).and_raise(ActiveRecord::RecordInvalid)
-      end
+      before { allow(Publication).to receive(:new).and_raise(ActiveRecord::RecordInvalid) }
 
-      it 'does not create new Publications' do
-        expect { processor.execute }.not_to change { Publication.count }
-      end
-      it 'does not create new Contributions' do
-        expect { processor.execute }.not_to change { Contribution.count }
-      end
-      it 'logs errors' do
-        expect(NotificationManager).to receive(:error)
-        processor.execute
+      it 'does not create new Publications, Contributions' do
+        expect { processor.execute }.not_to change { [Publication.count, Contribution.count] }
       end
       it 'returns empty Array' do
-        expect(processor.execute).to be_an Array
-        expect(processor.execute).to be_empty
+        expect(processor.execute).to eq []
       end
+      it_behaves_like 'error_logger'
     end
   end
 
-  # ---
   # MESH headings - integration specs
   # Note: not all PubMed/MEDLINE records contain MESH headings, so the
   # spec example records were chosen to contain or fetch MESH headings
@@ -119,108 +79,80 @@ describe WebOfScience::ProcessRecords, :vcr do
     # - for WOS records, they may not have PMID, but they could get one from the links service in the processing
     it 'persists PMID and publication.pub_hash has MESH headings' do
       processor.execute
-      records.each do |rec|
-        pub = Publication.find_by(wos_uid: rec.uid)
-        expect(pub.pmid).to be_an Integer
-        expect(pub.pub_hash).to include(:mesh_headings)
+      expect(new_pubs.size).to eq uids.size # i.e., 1
+      expect(new_pub.pmid).to be_an Integer
+      expect(new_pub.pub_hash).to include(mesh_headings: Array)
+    end
+  end
+
+  shared_examples 'error_logger' do
+    describe 'upon exception' do
+      it 'logs errors' do
+        expect(NotificationManager).to receive(:error).at_least(:once)
+        processor.execute
       end
     end
   end
 
+  shared_examples 'fail_forward' do
+    describe 'continues' do
+      it 'creates new Publications' do
+        expect { processor.execute }.to change { Publication.count }
+      end
+      it_behaves_like 'error_logger'
+    end
+  end
+
   context 'with MEDLINE records' do
-    subject(:processor) { described_class.new(author, records) }
-
     # Note: "MEDLINE:26776186" has a PMID and MESH headings
-    let(:medline_xml) { File.read('spec/fixtures/wos_client/medline_record_26776186.xml') }
-    let(:records_xml) { "<records>#{medline_xml}</records>" }
-    let(:records) { WebOfScience::Records.new(records: records_xml) }
-
     # Note: medline records are not submitted to the links-API
+    let(:record_xml) { File.read('spec/fixtures/wos_client/medline_record_26776186.xml') }
 
     it_behaves_like '#execute'
     it_behaves_like 'pubs_with_pmid_have_mesh_headings'
   end
 
   context 'with WOS records' do
-    subject(:processor) { described_class.new(author, records) }
-
-    # Note: "WOS:000288663100014" has a PMID and it gets MESH headings from PubMed
-    let(:wos_record_uid) { 'WOS:000288663100014' }
-    let(:wos_record_xml) { File.read('spec/fixtures/wos_client/wos_record_000288663100014.xml') }
-    let(:wos_records_xml) { "<records>#{wos_record_xml}</records>" }
+    let(:record_xml) { File.read('spec/fixtures/wos_client/wos_record_000288663100014.xml') }
     let(:wos_records_links) do
       { 'WOS:000288663100014' => { 'pmid' => '21253920', 'doi' => '10.1007/s12630-011-9462-1' } }
     end
 
-    let(:records) { WebOfScience::Records.new(records: wos_records_xml) }
-
+    # Note: "WOS:000288663100014" has a PMID and it gets MESH headings from PubMed
     before do
-      allow(links_client).to receive(:links).with([wos_record_uid]).and_return(wos_records_links)
+      allow(links_client).to receive(:links).with(['WOS:000288663100014']).and_return(wos_records_links)
     end
 
     it_behaves_like '#execute'
     it_behaves_like 'pubs_with_pmid_have_mesh_headings'
 
+    # only WOS records can be supplemented by PubMed data or links service
+    # these failures are not catastrophic - just log it
     context 'PubMed integration fails' do
-      # only WOS records can be supplemented by PubMed data
-      # any failure is not catastrophic - just log it
-      before do
-        allow(PubmedSourceRecord).to receive(:for_pmid).and_raise(RuntimeError)
-      end
-
-      it 'continues to create new Publications' do
-        expect { processor.execute }.to change { Publication.count }
-      end
-      it 'logs errors' do
-        expect(NotificationManager).to receive(:error)
-        processor.execute
-      end
+      before { allow(PubmedSourceRecord).to receive(:for_pmid).and_raise(RuntimeError) }
+      it_behaves_like 'fail_forward'
     end
 
     context 'WOS links fail' do
-      # only WOS records use the links service
-      # any failure to add links data is not catastrophic - just log it
-      before do
-        allow(links_client).to receive(:links).and_raise(RuntimeError)
-      end
-
-      it 'continues to create new Publications' do
-        expect { processor.execute }.to change { Publication.count }
-      end
-      it 'logs errors' do
-        expect(NotificationManager).to receive(:error).at_least(:once)
-        processor.execute
-      end
+      before { allow(links_client).to receive(:links).and_raise(RuntimeError) }
+      it_behaves_like 'fail_forward'
     end
 
     context 'WOS links - identifier update fails' do
-      # only WOS records use the links service
-      # any failure to add links data is not catastrophic - just log it
       before do
         identifiers = WebOfScience::Identifiers.new(records.first)
         expect(identifiers).to receive(:update).and_raise(RuntimeError)
         expect(WebOfScience::Identifiers).to receive(:new).and_return(identifiers).at_least(:once)
       end
-
-      it 'continues to create new Publications' do
-        expect { processor.execute }.to change { Publication.count }
-      end
-      it 'logs errors' do
-        expect(NotificationManager).to receive(:error)
-        processor.execute
-      end
+      it_behaves_like 'fail_forward'
     end
   end
 
   context 'with records from excluded databases' do
-    subject(:processor) { described_class.new(author, records) }
-
     let(:record_xml) do
-      xml = File.read('spec/fixtures/wos_client/wos_record_000288663100014.xml')
-      xml.gsub('WOS', 'EXCLUDED')
+      File.read('spec/fixtures/wos_client/wos_record_000288663100014.xml')
+          .gsub('WOS', 'EXCLUDED')
     end
-    let(:records_xml) { "<records>#{record_xml}</records>" }
-    let(:records) { WebOfScience::Records.new(records: records_xml) }
 
     it 'does not create new WebOfScienceSourceRecords' do
       expect { processor.execute }.not_to change { WebOfScienceSourceRecord.count }
