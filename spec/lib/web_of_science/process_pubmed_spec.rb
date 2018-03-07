@@ -1,4 +1,3 @@
-#
 # NOTES
 #
 # Only WOS records can be supplemented by PubMed data.
@@ -51,16 +50,12 @@ describe WebOfScience::ProcessPubmed, :vcr do
     pub
   end
 
-  let(:null_logger) { Logger.new('/dev/null') }
-
-  before do
-    allow(WebOfScience).to receive(:logger).and_return(null_logger)
-  end
+  before { allow(WebOfScience).to receive(:logger).and_return(Logger.new('/dev/null')) }
 
   describe '#pubmed_additions' do
-    it 'raises and logs ArgumentError for records' do
+    it 'catches and logs ArgumentError for records' do
       expect(NotificationManager).to receive(:error)
-      processor.pubmed_additions(['not wos-record'])
+      expect { processor.pubmed_additions(['not wos-record']) }.not_to raise_error
     end
 
     it 'logs an error when a record publication cannot be found' do

@@ -31,7 +31,7 @@ class PubmedHarvester
     # PubMed, oddly enough, the last resort
     pm_xml = PubmedClient.new.fetch_records_for_pmid_list(pmid)
     Nokogiri::XML(pm_xml).xpath('//PubmedArticle').map do |doc|
-      add_citation(PubmedSourceRecord.new.convert_pubmed_publication_doc_to_hash(doc))
+      add_citation(PubmedSourceRecord.new.source_as_hash(doc))
     end
   end
   private_class_method :fetch_remote_pubmed
