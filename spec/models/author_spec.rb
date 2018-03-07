@@ -47,18 +47,6 @@ describe Author do
     end
   end
 
-  describe '#start_date' do
-    it 'is nil (until CAP provides data)' do
-      expect(subject.start_date).to be_nil
-    end
-  end
-
-  describe '#end_date' do
-    it 'is nil (until CAP provides data)' do
-      expect(subject.end_date).to be_nil
-    end
-  end
-
   describe '#approved_sciencewire_ids' do
     let(:pub_without_swid) do
       # The publication is defined in /spec/factories/publication.rb
