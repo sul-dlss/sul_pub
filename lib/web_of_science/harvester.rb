@@ -110,8 +110,8 @@ module WebOfScience
       # @param [String] message
       # @return [void]
       def log_info(author, message)
-        prefix = "#{self.class} - "
-        prefix += "author #{author.id} - " if author.is_a?(Author)
+        prefix = self.class.to_s
+        prefix += " - author #{author.id}" if author.is_a?(Author)
         logger.info "#{prefix} - #{message}"
       end
 
