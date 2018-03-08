@@ -59,7 +59,7 @@ describe WebOfScience::ProcessPubmed, :vcr do
     end
 
     it 'logs an error when a record publication cannot be found' do
-      expect(Publication).to receive(:find_by).with(wos_uid: record.uid).and_return(nil)
+      expect(Publication).to receive(:where).with(wos_uid: include(record.uid)).and_return(nil)
       expect(NotificationManager).to receive(:error)
       processor.pubmed_additions(records)
     end

@@ -9,10 +9,12 @@ module WebOfScience
     def pubmed_additions(records)
       raise(ArgumentError, 'records must be Enumerable') unless records.is_a? Enumerable
       raise(ArgumentError, 'records must contain WebOfScience::Record') unless records.all? { |rec| rec.is_a? WebOfScience::Record }
-      records.select { |record| record.pmid.present? }.each do |record|
+      present_recs = records.select { |record| record.pmid.present? }
+      uid_to_pub = Publication.where(wos_uid: present_recs.map(&:uid)).group_by(&:wos_uid)
+      present_recs.each do |record|
         begin
+          pub = uid_to_pub[record.uid].first || raise("No Publication matches UID #{record.uid}")
           pmid = parse_pmid(record.pmid) # validate a PMID before saving it to a Publication
-          pub = Publication.find_by!(wos_uid: record.uid)
           pub.pmid.nil? || next # first PMID is enough
           pub.pmid = pmid
           pub.save!
