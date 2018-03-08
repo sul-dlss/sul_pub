@@ -12,7 +12,8 @@ module WebOfScience
       records.select { |record| record.pmid.present? }.each do |record|
         begin
           pmid = parse_pmid(record.pmid) # validate a PMID before saving it to a Publication
-          pub = Publication.find_by(wos_uid: record.uid)
+          pub = Publication.find_by!(wos_uid: record.uid)
+          pub.pmid.nil? || next # first PMID is enough
           pub.pmid = pmid
           pub.save!
           pubmed_addition(pub) if record.database != 'MEDLINE'
@@ -33,15 +34,15 @@ module WebOfScience
       pmid = parse_pmid(pub.pmid) # ensure the Publication has a valid PMID
       pubmed_record = PubmedSourceRecord.for_pmid(pmid)
       if pubmed_record.nil?
-        pubmed_cleanup(pub)
-      else
-        pubmed_hash = pubmed_record.source_as_hash
-        pub.pub_hash.reverse_update(pubmed_hash)
-        pmc_id = pubmed_hash[:identifier].detect { |id| id[:type] == 'pmc' }
-        pub.pub_hash[:identifier] << pmc_id if pmc_id
-        pub.pubhash_needs_update!
-        pub.save!
+        pubmed_cleanup(pub, pmid)
+        return
       end
+      pubmed_hash = pubmed_record.source_as_hash
+      pmc_id = pubmed_hash[:identifier].detect { |id| id[:type] == 'pmc' }
+      pub.pub_hash.reverse_update(pubmed_hash)
+      pub.pub_hash[:identifier] << pmc_id if pmc_id
+      pub.pubhash_needs_update!
+      pub.save!
     rescue StandardError => err
       NotificationManager.error(err, "pubmed_addition failed for args: #{pmid}, #{pub}", self)
     end
@@ -49,12 +50,13 @@ module WebOfScience
     # For WOS-record that has a PMID, cleanup our data when it does not exist on PubMed;
     # but don't do anything if the PubmedClient is not working.
     # @param [Publication] pub is a Publication with a .pmid value
+    # @param [Sring] pmid already parsed pmid, if available
     # @return [void]
-    def pubmed_cleanup(pub)
+    def pubmed_cleanup(pub, pmid = nil)
       raise(ArgumentError, 'pub must be Publication') unless pub.is_a? Publication
-      pmid = parse_pmid(pub.pmid) # ensure the Publication has a valid PMID
+      pmid ||= parse_pmid(pub.pmid)
       return unless PubmedClient.working?
-      pub_id = pub.publication_identifiers.where(identifier_type: 'PMID', identifier_value: pmid).first
+      pub_id = pub.publication_identifiers.find_by(identifier_type: 'PMID', identifier_value: pmid)
       if pub_id.present?
         pub_id.pub_hash_update(delete: true)
         pub_id.destroy
