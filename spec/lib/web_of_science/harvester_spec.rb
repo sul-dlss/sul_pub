@@ -15,32 +15,22 @@ describe WebOfScience::Harvester do
 
   # WOS:A1976BW18000001 WOS:A1972N549400003 are in the wos_retrieve_by_id_response.xml
   let(:wos_uids) { %w(WOS:A1976BW18000001 WOS:A1972N549400003) }
-  let(:wos_A1972N549400003) { File.read('spec/fixtures/wos_client/wos_record_A1972N549400003.xml') }
-  let(:wos_A1976BW18000001) { File.read('spec/fixtures/wos_client/wos_record_A1976BW18000001.xml') }
-  let(:rec_A1972N549400003) { WebOfScience::Record.new(record: wos_A1972N549400003) }
-  let(:rec_A1976BW18000001) { WebOfScience::Record.new(record: wos_A1976BW18000001) }
-  let(:wos_A1976BW18000001_response) { File.read('spec/fixtures/wos_client/wos_record_A1976BW18000001_response.xml') }
+  # let(:wos_rec) { WebOfScience::Record.new(record: File.read('spec/fixtures/wos_client/wos_record_A1976BW18000001.xml')) }
   let(:wos_harvest_author_name_response) { File.read('spec/fixtures/wos_client/wos_harvest_author_name_response.xml') }
   let(:wos_retrieve_by_id_response) { File.read('spec/fixtures/wos_client/wos_retrieve_by_id_response.xml') }
-  let(:wos_retrieve_by_id_records) do
-    WebOfScience::Records.new(records: "<records>#{rec_A1972N549400003.to_xml}#{rec_A1976BW18000001.to_xml}</records>")
-  end
   let(:any_records_will_do) do
     WebOfScience::Records.new(encoded_records: File.read('spec/fixtures/wos_client/medline_encoded_records.html'))
   end
+  let(:wos_client) { WebOfScience::Client.new('secret') }
 
   before do
-    wos_client = WebOfScience::Client.new('secret')
     allow(WebOfScience).to receive(:client).and_return(wos_client)
     savon.expects(:authenticate).returns(File.read('spec/fixtures/wos_client/authenticate.xml'))
   end
 
   shared_examples 'it_can_process_records' do
-    it 'creates new WebOfScienceSourceRecord' do
-      expect { harvest_process }.to change { WebOfScienceSourceRecord.count }
-    end
-    it 'creates new author.contributions' do
-      expect { harvest_process }.to change { author.contributions.count }
+    it 'creates new WebOfScienceSourceRecord and author.contributions' do
+      expect { harvest_process }.to change { [WebOfScienceSourceRecord.count, author.contributions.count] }
     end
   end
 
@@ -64,25 +54,24 @@ describe WebOfScience::Harvester do
   end
 
   describe '#harvest with existing publication and/or contribution data' do
-    let(:contrib_A1972N549400003) do
-      pub_A1972N549400003.contributions.find_or_create_by!(
-        author_id: author.id, cap_profile_id: author.cap_profile_id,
-        featured: false, status: 'new', visibility: 'private'
-      )
-    end
+    let(:wos_rec) { WebOfScience::Record.new(record: File.read('spec/fixtures/wos_client/wos_record_A1972N549400003.xml')) }
     let(:pub_A1972N549400003) do
-      pub = Publication.new(active: true, pub_hash: rec_A1972N549400003.pub_hash, wos_uid: rec_A1972N549400003.uid)
-      pub.sync_publication_hash_and_db # callbacks create PublicationIdentifiers etc.
-      pub.save!
-      pub
+      Publication.new(active: true, pub_hash: wos_rec.pub_hash, wos_uid: wos_rec.uid) do |pub|
+        pub.sync_publication_hash_and_db # callbacks create PublicationIdentifiers etc.
+        pub.save!
+        pub.contributions.find_or_create_by!(
+          author_id: author.id, cap_profile_id: author.cap_profile_id,
+          featured: false, status: 'new', visibility: 'private'
+        )
+      end
     end
     let(:harvest_process) { harvester.harvest([author]) }
 
     before do
       # create one of the publications, without any contributions
-      expect(pub_A1972N549400003.persisted?).to be true
+      expect(pub_A1972N549400003).to be_persisted
       savon.expects(:search).with(message: :any).returns(wos_harvest_author_name_response)
-      savon.expects(:retrieve_by_id).with(message: :any).returns(wos_A1976BW18000001_response)
+      savon.expects(:retrieve_by_id).with(message: :any).returns(File.read('spec/fixtures/wos_client/wos_record_A1976BW18000001_response.xml'))
     end
 
     it 'processes records that have no publication' do
