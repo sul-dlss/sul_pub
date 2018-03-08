@@ -21,10 +21,9 @@ describe WebOfScience::Harvester do
   let(:any_records_will_do) do
     WebOfScience::Records.new(encoded_records: File.read('spec/fixtures/wos_client/medline_encoded_records.html'))
   end
-  let(:wos_client) { WebOfScience::Client.new('secret') }
 
   before do
-    allow(WebOfScience).to receive(:client).and_return(wos_client)
+    allow(WebOfScience).to receive(:client).and_return(WebOfScience::Client.new('secret'))
     savon.expects(:authenticate).returns(File.read('spec/fixtures/wos_client/authenticate.xml'))
   end
 
@@ -51,32 +50,27 @@ describe WebOfScience::Harvester do
       expect(NotificationManager).to receive(:error)
       harvest_process
     end
-  end
 
-  describe '#harvest with existing publication and/or contribution data' do
-    let(:wos_rec) { WebOfScience::Record.new(record: File.read('spec/fixtures/wos_client/wos_record_A1972N549400003.xml')) }
-    let(:pub_A1972N549400003) do
-      Publication.new(active: true, pub_hash: wos_rec.pub_hash, wos_uid: wos_rec.uid) do |pub|
-        pub.sync_publication_hash_and_db # callbacks create PublicationIdentifiers etc.
-        pub.save!
-        pub.contributions.find_or_create_by!(
-          author_id: author.id, cap_profile_id: author.cap_profile_id,
-          featured: false, status: 'new', visibility: 'private'
-        )
+    context 'with existing publication and/or contribution data' do
+      let(:wos_rec) { WebOfScience::Record.new(record: File.read('spec/fixtures/wos_client/wos_record_A1972N549400003.xml')) }
+      let(:wos_retrieve_by_id_response) { File.read('spec/fixtures/wos_client/wos_record_A1976BW18000001_response.xml') }
+      let(:harvest_process) { harvester.harvest([author]) }
+
+      before do
+        Publication.new(active: true, pub_hash: wos_rec.pub_hash, wos_uid: wos_rec.uid) do |pub|
+          pub.sync_publication_hash_and_db # callbacks create PublicationIdentifiers etc.
+          pub.save!
+          pub.contributions.find_or_create_by!(
+            author_id: author.id, cap_profile_id: author.cap_profile_id,
+            featured: false, status: 'new', visibility: 'private'
+          )
+        end
       end
-    end
-    let(:harvest_process) { harvester.harvest([author]) }
 
-    before do
-      # create one of the publications, without any contributions
-      expect(pub_A1972N549400003).to be_persisted
-      savon.expects(:search).with(message: :any).returns(wos_harvest_author_name_response)
-      savon.expects(:retrieve_by_id).with(message: :any).returns(File.read('spec/fixtures/wos_client/wos_record_A1976BW18000001_response.xml'))
-    end
-
-    it 'processes records that have no publication' do
       # Use a new record WITHOUT a publication for WOS:A1976BW18000001, from wos_retrieve_by_id_response.xml
-      expect { harvest_process }.to change { Publication.find_by(wos_uid: 'WOS:A1976BW18000001') }
+      it 'processes records that have no publication' do
+        expect { harvest_process }.to change { Publication.find_by(wos_uid: 'WOS:A1976BW18000001') }.from(nil).to(Publication)
+      end
     end
   end
 
@@ -89,23 +83,10 @@ describe WebOfScience::Harvester do
       let(:harvest_process) { harvester.process_author(author) }
       it_behaves_like 'it_can_process_records'
     end
-
-    describe '#process_dois' do
-      let(:search_response) { File.read('spec/fixtures/wos_client/wos_search_by_doi_response.xml') }
-      # don't care if this actually belongs to the author or not
-      let(:harvest_process) { harvester.process_dois(author, ['10.1007/s12630-011-9462-1']) }
-      it_behaves_like 'it_can_process_records'
-    end
   end
 
   describe 'retrieving methods' do
     before { savon.expects(:retrieve_by_id).with(message: :any).returns(retrieve_response) }
-
-    describe '#process_pmids' do
-      let(:retrieve_response) { File.read('spec/fixtures/wos_client/wos_retrieve_by_id_response_MEDLINE26776186.xml') }
-      let(:harvest_process) { harvester.process_pmids(author, ['26776186']) }
-      it_behaves_like 'it_can_process_records'
-    end
 
     describe '#process_uids' do
       let(:retrieve_response) { wos_retrieve_by_id_response }
