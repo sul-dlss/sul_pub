@@ -56,7 +56,7 @@ describe WebOfScience::ProcessRecords, :vcr do
     end
 
     context 'create_publication fails' do
-      before { allow(Publication).to receive(:new).and_raise(ActiveRecord::RecordInvalid) }
+      before { allow(Publication).to receive(:create!).and_raise(ActiveRecord::RecordInvalid) }
 
       it 'does not create new Publications, Contributions' do
         expect { processor.execute }.not_to change { [Publication.count, Contribution.count] }
@@ -157,7 +157,7 @@ describe WebOfScience::ProcessRecords, :vcr do
       expect { processor.execute }.not_to change { WebOfScienceSourceRecord.count }
     end
     it 'filters out excluded records' do
-      expect(processor).not_to receive(:create_publications)
+      expect(processor).not_to receive(:save_wos_records)
       expect(processor.execute).to be_empty
     end
   end

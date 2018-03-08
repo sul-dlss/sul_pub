@@ -22,8 +22,7 @@ module WebOfScience
       return [] if records.empty?
       create_publications
     rescue StandardError => err
-      message = "Author: #{author.id}, ProcessRecords failed"
-      NotificationManager.error(err, message, self)
+      NotificationManager.error(err, "Author: #{author.id}, ProcessRecords failed", self)
       []
     end
 
@@ -34,38 +33,32 @@ module WebOfScience
 
       delegate :links_client, to: :WebOfScience
 
-      # ----
-      # Record filters and data flow steps
-      # - this is a progressive reduction of the number of records processed, given
-      #   application logic for the de-duplication of new records.
-
-      # @return [Array<String>] WosUIDs that create a new Publication
+      # @return [Array<String>] WosUIDs that successfully create a new Publication or Contribution
       def create_publications
-        select_new_wos_records # cf. WebOfScienceSourceRecord
-        save_wos_records # save WebOfScienceSourceRecord
-        records.select! { |rec| !matching_contribution(author, rec) && create_publication(rec) }
+        return [] if records.empty?
+        matching_uids = Publication.where(wos_uid: records.map(&:uid)).pluck(:wos_uid)
+        save_wos_records(records.reject { |rec| matching_uids.include? rec.uid })
+        records.select { |rec| !matching_contribution(author, rec) && create_publication(rec) }
+               .map(&:uid)
+               .uniq
+      ensure
         pubmed_additions(records)
-        records.map(&:uid)
-      end
-
-      # Filter and select new WebOfScienceSourceRecords
-      def select_new_wos_records
-        return if records.empty?
-        matching_uids = WebOfScienceSourceRecord.where(uid: records.map(&:uid)).pluck(:uid)
-        records.reject! { |rec| matching_uids.include? rec.uid }
       end
 
       # Save and select new WebOfScienceSourceRecords
       # Note: add nothing to PublicationIdentifiers here, or filter_by_contributions might reject them
-      def save_wos_records
-        return if records.empty?
+      # @param [Array<WebOfScience::Record>] recs
+      # @return [Array<WebOfScienceSourceRecord>] created records
+      def save_wos_records(recs)
+        return if recs.empty?
         process_links
-        records.each do |rec|
-          attr = { source_data: rec.to_xml }
-          attr[:doi] = rec.doi if rec.doi.present?
-          attr[:pmid] = rec.pmid if rec.pmid.present?
-          WebOfScienceSourceRecord.create!(attr)
+        batch = recs.map do |rec|
+          attribs = { source_data: rec.to_xml }
+          attribs[:doi] = rec.doi if rec.doi.present?
+          attribs[:pmid] = rec.pmid if rec.pmid.present?
+          attribs
         end
+        WebOfScienceSourceRecord.create!(batch)
       end
 
       # @param [WebOfScience::Record] record
@@ -85,16 +78,13 @@ module WebOfScience
         false
       end
 
-      # ----
       # WOS Links API methods
-
       # Integrate a batch of publication identifiers from the Links-API
       #
       # IMPORTANT: add nothing to PublicationIdentifiers here, or new_records will reject them
       # Note: the WebOfScienceSourceRecord is already saved, it could be updated with
       #       additional identifiers if there are fields defined for it.  Otherwise, these
       #       identifiers will get added to PublicationIdentifier after a Publication is created.
-      #
       # @return [void]
       def process_links
         links = retrieve_links
