@@ -31,11 +31,9 @@ module WebOfScience
     # @return [Array<String>] WosUIDs that create Publications
     def process_author(author, options = {})
       raise(ArgumentError, 'author must be an Author') unless author.is_a? Author
-      log_info(author, 'processing')
-      uids = WebOfScience::QueryAuthor.new(author, options).uids
-      log_info(author, "#{uids.count} found by author query")
-      uids = process_uids(author, uids)
-      log_info(author, "processed #{uids.count} new publications")
+      log_info(author, "processing author #{author.id}")
+      uids = process_uids(author, WebOfScience::QueryAuthor.new(author, options).uids)
+      log_info(author, "processed author #{author.id}: #{uids.count} new publications")
       uids
     rescue StandardError => err
       NotificationManager.error(err, "#{self.class} - harvest failed for author #{author.id}", self)
