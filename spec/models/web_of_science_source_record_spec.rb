@@ -1,28 +1,18 @@
-
 RSpec.describe WebOfScienceSourceRecord, type: :model do
+  subject(:wos_src_rec) { described_class.new(source_data: wos_record.to_xml) }
+
   let(:encoded_records) { File.read('spec/fixtures/wos_client/wos_encoded_records.html') }
-  let(:wos_records) { WebOfScience::Records.new(encoded_records: encoded_records) }
-  let(:wos_record) { wos_records.first }
-  let(:wos_src_rec) { described_class.new(source_data: wos_record.to_xml) }
+  let(:wos_record) { WebOfScience::Records.new(encoded_records: encoded_records).first }
 
   context 'initialize a new record' do
-    it 'can be created from a WOS source record' do
-      expect(wos_src_rec).to be_an described_class
-    end
     it 'cannot be created without a WOS source record' do
       expect { described_class.new }.to raise_error(RuntimeError)
     end
-    it 'extracts a UID from a WOS source record' do
-      expect(wos_src_rec.uid).to be_an String
-    end
-    it 'extracts a database identifier from a WOS source record' do
-      expect(wos_src_rec.database).to be_an String
-    end
-    it 'extracts a source_fingerprint from a WOS source record' do
-      expect(wos_src_rec.source_fingerprint).to be_an String
-    end
-    it 'sets active true' do
-      expect(wos_src_rec.active).to be true
+    it 'extracts attributes' do
+      expect(wos_src_rec.uid).to eq 'WOS:A1972N549400003'
+      expect(wos_src_rec.database).to eq 'WOS'
+      expect(wos_src_rec.source_fingerprint).to eq 'e5088910f3e61f73eebaa4c8938c742989259f3821f2a050de57475e7f385445'
+      expect(wos_src_rec).to be_active
     end
   end
 
@@ -33,38 +23,34 @@ RSpec.describe WebOfScienceSourceRecord, type: :model do
       allow(identifiers).to receive(:pmid).and_return('123')
       allow(WebOfScience::Identifiers).to receive(:new).and_return(identifiers)
     end
-    it 'sets doi' do
+    it 'sets attributes' do
       expect(wos_src_rec.doi).to eq 'doi'
-    end
-    it 'sets pmid' do
       expect(wos_src_rec.pmid).to eq 123
     end
     it 'allows select' do
       wos_src_rec.save!
-      expect(described_class.select(:doi).first).to be_an described_class
-      expect(described_class.select(:pmid).first).to be_an described_class
+      expect(described_class.select(:doi).first).to be_a described_class
+      expect(described_class.select(:pmid).first).to be_a described_class
+      expect(described_class.select(:id).first).to be_a described_class
     end
   end
 
   context 'source record validation' do
     it 'works' do
-      expect(wos_src_rec.valid?).to be true
-    end
-    it 'allows select' do
-      wos_src_rec.save!
-      expect(described_class.select(:id).first).to be_an described_class
+      expect(wos_src_rec).to be_valid
+      expect { wos_src_rec.save! }.not_to raise_error
     end
   end
 
   context 'utility methods' do
     it 'has a Nokogiri::XML::Document' do
-      expect(wos_src_rec.doc).to be_an Nokogiri::XML::Document
+      expect(wos_src_rec.doc).to be_a Nokogiri::XML::Document
     end
     it 'has a WebOfScience::Record' do
       expect(wos_src_rec.record).to be_a WebOfScience::Record
     end
     it 'has an XML String' do
-      expect(wos_src_rec.to_xml).to be_an String
+      expect(wos_src_rec.to_xml).to be_a String
     end
     it 'an XML String from the doc utility matches the source_data' do
       # TODO: use equivalent_xml
