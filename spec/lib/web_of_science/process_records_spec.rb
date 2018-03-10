@@ -1,7 +1,6 @@
 describe WebOfScience::ProcessRecords, :vcr do
-  subject(:processor) { instance }
+  subject(:processor) { described_class.new(author, records) }
 
-  let(:instance) { described_class.new(author, records) } # rubocop lets us stub this, not the subject directly
   let(:author) { create :russ_altman }
   let(:records) { WebOfScience::Records.new(records: "<records>#{record_xml}</records>") }
   let(:links_client) { Clarivate::LinksClient.new }
@@ -45,7 +44,7 @@ describe WebOfScience::ProcessRecords, :vcr do
     end
 
     context 'save_wos_records fails' do
-      before { expect(instance).to receive(:save_wos_records).and_raise(RuntimeError) }
+      before { expect(WebOfScienceSourceRecord).to receive(:create!).with(Array).and_raise(ActiveRecord::RecordInvalid) }
 
       it 'does not create new WebOfScienceSourceRecords' do
         expect { processor.execute }.not_to change { WebOfScienceSourceRecord.count }
@@ -57,7 +56,7 @@ describe WebOfScience::ProcessRecords, :vcr do
     end
 
     context 'create_publication fails' do
-      before { allow(Publication).to receive(:new).and_raise(ActiveRecord::RecordInvalid) }
+      before { allow(Publication).to receive(:create!).and_raise(ActiveRecord::RecordInvalid) }
 
       it 'does not create new Publications, Contributions' do
         expect { processor.execute }.not_to change { [Publication.count, Contribution.count] }
@@ -158,7 +157,7 @@ describe WebOfScience::ProcessRecords, :vcr do
       expect { processor.execute }.not_to change { WebOfScienceSourceRecord.count }
     end
     it 'filters out excluded records' do
-      expect(processor).not_to receive(:create_publications)
+      expect(processor).not_to receive(:save_wos_records)
       expect(processor.execute).to be_empty
     end
   end

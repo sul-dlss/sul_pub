@@ -31,59 +31,12 @@ module WebOfScience
     # @return [Array<String>] WosUIDs that create Publications
     def process_author(author, options = {})
       raise(ArgumentError, 'author must be an Author') unless author.is_a? Author
-      log_info(author, 'processing')
-      uids = WebOfScience::QueryAuthor.new(author, options).uids
-      log_info(author, "#{uids.count} found by author query")
-      uids = process_uids(author, uids)
-      log_info(author, "processed #{uids.count} new publications")
+      log_info(author, "processing author #{author.id}")
+      uids = process_uids(author, WebOfScience::QueryAuthor.new(author, options).uids)
+      log_info(author, "processed author #{author.id}: #{uids.count} new publications")
       uids
     rescue StandardError => err
       NotificationManager.error(err, "#{self.class} - harvest failed for author #{author.id}", self)
-    end
-
-    # Harvest DOI publications for an author
-    # @param author [Author]
-    # @param dois [Array<String>] DOI values (not URIs)
-    # @return [Array<String>] WosUIDs that create Publications
-    def process_dois(author, dois)
-      raise(ArgumentError, 'author must be an Author') unless author.is_a? Author
-      raise(ArgumentError, 'dois must be Enumerable') unless dois.is_a? Enumerable
-      dois = dois.map { |doi| ::Identifiers::DOI.extract_one(doi) }.compact
-      log_info(author, "#{dois.count} DOIs for search")
-      # TODO: get all the links for the DOIs and modify contribution checks to use all identifiers
-      dois.reject! { |doi| contribution_by_identifier?(author, 'doi', doi) }
-      log_info(author, "#{dois.count} DOIs without contributions")
-      dois.flat_map { |doi| process_doi(author, doi) }.compact
-    end
-
-    # Harvest a DOI publication for an author
-    # @param author [Author]
-    # @param doi [String] DOI value or URI
-    # @return [Array<String>] WosUIDs that create Publications
-    def process_doi(author, doi)
-      doi = ::Identifiers::DOI.extract_one(doi)
-      raise(ArgumentError, 'author must be an Author') unless author.is_a? Author
-      raise(ArgumentError, 'cannot parse DOI') if doi.blank?
-      retriever = queries.search_by_doi(doi)
-      records = retriever.next_batch
-      record = records.find { |rec| ::Identifiers::DOI.extract_one(rec.doi) == doi }
-      return [] if record.blank?
-      WebOfScience::ProcessRecord.new(author, record).execute
-    end
-
-    # Harvest PMID publications for an author
-    # @param author [Author]
-    # @param pmids [Array<String>] PMID values (not URIs)
-    # @return [Array<String>] WosUIDs that create Publications
-    def process_pmids(author, pmids)
-      raise(ArgumentError, 'author must be an Author') unless author.is_a? Author
-      raise(ArgumentError, 'pmids must be Enumerable') unless pmids.is_a? Enumerable
-      pmids = pmids.map { |pmid| ::Identifiers::PubmedId.extract(pmid).first }.compact
-      log_info(author, "#{pmids.count} PMIDs for search")
-      pmids.reject! { |pmid| contribution_by_identifier?(author, 'pmid', pmid) }
-      log_info(author, "#{pmids.count} PMIDs without contributions")
-      return [] if pmids.empty?
-      process_records author, queries.retrieve_by_pmid(pmids)
     end
 
     # Harvest WOS-UID publications for an author

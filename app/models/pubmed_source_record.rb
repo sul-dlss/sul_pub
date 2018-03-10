@@ -4,10 +4,6 @@ class PubmedSourceRecord < ActiveRecord::Base
   # validates_uniqueness_of :pmid
   # validates_presence_of :source_data
 
-  def source_as_hash
-    convert_pubmed_publication_doc_to_hash(Nokogiri::XML(source_data).xpath('//PubmedArticle'))
-  end
-
   def self.get_pub_by_pmid(pmid)
     pubmed_record = PubmedSourceRecord.for_pmid(pmid)
     return if pubmed_record.nil?
@@ -41,26 +37,21 @@ class PubmedSourceRecord < ActiveRecord::Base
   end
 
   def self.get_and_store_records_from_pubmed(pmids)
-    pmidValuesForPost = pmids.collect { |pmid| "&id=#{pmid}" }.join
+    pmidValuesForPost = pmids.uniq.collect { |pmid| "&id=#{pmid}" }.join
     the_incoming_xml = PubmedClient.new.fetch_records_for_pmid_list pmidValuesForPost
-
-    count = 0
-    source_records = []
-    Nokogiri::XML(the_incoming_xml).xpath('//PubmedArticle').each do |pub_doc|
+    source_records = Nokogiri::XML(the_incoming_xml).xpath('//PubmedArticle').map do |pub_doc|
       pmid = pub_doc.xpath('MedlineCitation/PMID').text
       begin
-        count += 1
-        source_records << PubmedSourceRecord.new(
+        PubmedSourceRecord.new(
           pmid: pmid,
           source_data: pub_doc.to_xml,
           is_active: true,
           source_fingerprint: Digest::SHA2.hexdigest(pub_doc))
-        pmids.delete(pmid)
       rescue => e
         NotificationManager.error(e, "Cannot create PubmedSourceRecord with pmid: #{pmid}", self)
       end
     end
-    import source_records
+    import source_records.compact
   end
   private_class_method :get_and_store_records_from_pubmed
 
@@ -102,7 +93,7 @@ class PubmedSourceRecord < ActiveRecord::Base
   # @param [Nokogiri::XML::Node] publication
   # @return [Hash<Symbol => Object>] pub_hash
   # @see https://www.nlm.nih.gov/bsd/licensee/elements_descriptions.html XML Element Descriptions and their Attributes
-  def convert_pubmed_publication_doc_to_hash(publication)
+  def source_as_hash(publication = Nokogiri::XML(source_data).xpath('//PubmedArticle'))
     record_as_hash = {}
     pmid = publication.xpath('MedlineCitation/PMID').text
 
@@ -230,10 +221,8 @@ class PubmedSourceRecord < ActiveRecord::Base
       if initials.length >= 1
         # If there is no data from <Forename>, use this first initial
         fn = initials[0] if fn.blank?
-      end
-      if initials.length > 1
         # If there is no data from <Forename>, use this middle initial
-        mn = initials[1] if mn.blank?
+        mn = initials[1] if mn.blank? && initials.length > 1
       end
       # Currently ignoring <Suffix> data
       author_hash = {
