@@ -24,9 +24,11 @@ class Publication < ActiveRecord::Base
     self.pages = pub_hash[:pages] if pub_hash[:pages].present?
     self.publication_type = pub_hash[:type] if pub_hash[:type].present?
     self.year = pub_hash[:year] if pub_hash[:year].present?
+    self.wos_uid ||= web_of_science_source_record.uid if web_of_science_source_record.present?
   end
 
   has_one :batch_uploaded_source_record
+  has_one :web_of_science_source_record, autosave: false
 
   has_many :user_submitted_source_records
 
