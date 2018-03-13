@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180224013914) do
+ActiveRecord::Schema.define(version: 20180309235252) do
 
   create_table "author_identities", force: :cascade do |t|
     t.integer  "author_id",   limit: 4,   null: false
@@ -151,7 +151,7 @@ ActiveRecord::Schema.define(version: 20180224013914) do
   add_index "publications", ["sciencewire_id"], name: "index_publications_on_sciencewire_id", using: :btree
   add_index "publications", ["title"], name: "index_publications_on_title", length: {"title"=>255}, using: :btree
   add_index "publications", ["updated_at"], name: "index_publications_on_updated_at", using: :btree
-  add_index "publications", ["wos_uid"], name: "index_publications_on_wos_uid", using: :btree
+  add_index "publications", ["wos_uid"], name: "index_publications_on_wos_uid", unique: true, using: :btree
   add_index "publications", ["year"], name: "index_publications_on_year", using: :btree
 
   create_table "pubmed_source_records", force: :cascade do |t|
@@ -217,11 +217,15 @@ ActiveRecord::Schema.define(version: 20180224013914) do
     t.datetime "updated_at",                          null: false
     t.string   "doi",                limit: 255
     t.integer  "pmid",               limit: 4
+    t.integer  "publication_id",     limit: 4
   end
 
   add_index "web_of_science_source_records", ["doi"], name: "web_of_science_doi_index", using: :btree
   add_index "web_of_science_source_records", ["pmid"], name: "web_of_science_pmid_index", using: :btree
-  add_index "web_of_science_source_records", ["uid"], name: "web_of_science_uid_index", using: :btree
+  add_index "web_of_science_source_records", ["publication_id"], name: "index_web_of_science_source_records_on_publication_id", unique: true, using: :btree
+  add_index "web_of_science_source_records", ["source_fingerprint"], name: "index_web_of_science_source_records_on_source_fingerprint", unique: true, using: :btree
+  add_index "web_of_science_source_records", ["uid"], name: "index_web_of_science_source_records_on_uid", unique: true, using: :btree
 
   add_foreign_key "author_identities", "authors"
+  add_foreign_key "web_of_science_source_records", "publications"
 end
