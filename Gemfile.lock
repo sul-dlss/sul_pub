@@ -421,6 +421,7 @@ GEM
       thread_safe (~> 0.1)
     uglifier (4.1.7)
       execjs (>= 0.3.0, < 3)
+    unicode (0.4.4.4)
     unicode-display_width (1.3.0)
     urn (2.0.2)
     vcr (4.0.0)
@@ -504,6 +505,7 @@ DEPENDENCIES
   therubyracer
   thin
   uglifier (~> 4.1)
+  unicode
   vcr
   webmock
   whenever

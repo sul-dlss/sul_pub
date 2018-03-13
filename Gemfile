@@ -17,10 +17,9 @@ gem 'mysql2', '~> 0.4.10'
 gem 'nokogiri', '>= 1.7.1'
 
 gem 'activerecord-import'
-# To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'bibtex-ruby'
 gem 'citeproc-ruby', '~> 1.1'
+gem 'unicode' # CiteProc requires the `unicode_utils` or `unicode` Gem on Ruby 2.3
 gem 'config'
 gem 'csl-styles', '~> 1.0'
 gem 'delayed_job'
