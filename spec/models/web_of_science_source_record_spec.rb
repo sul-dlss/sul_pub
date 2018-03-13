@@ -40,6 +40,28 @@ RSpec.describe WebOfScienceSourceRecord, type: :model do
       expect(wos_src_rec).to be_valid
       expect { wos_src_rec.save! }.not_to raise_error
     end
+    describe 'unique constraints' do
+      let(:dup) { wos_src_rec.dup }
+      before { wos_src_rec.save! }
+      it 'prevents duplicate uid' do
+        dup.source_fingerprint = '123'
+        expect { dup.save! }.to raise_error(ActiveRecord::RecordNotUnique)
+      end
+      it 'prevents duplicate source_fingerprint' do
+        dup.uid = '123'
+        expect { dup.save! }.to raise_error(ActiveRecord::RecordNotUnique)
+      end
+    end
+  end
+
+  describe '#publication' do
+    let(:pub) { create :publication, wos_uid: wos_src_rec.uid }
+    it 'assignment works' do
+      wos_src_rec.publication = pub
+      expect { wos_src_rec.save! }.not_to raise_error
+      expect(wos_src_rec.publication).to eq pub
+      expect(wos_src_rec.publication.wos_uid).to eq wos_src_rec.uid
+    end
   end
 
   context 'utility methods' do

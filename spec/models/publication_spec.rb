@@ -430,4 +430,27 @@ describe Publication do
       expect { pub.rebuild_pub_hash }.to raise_error(RuntimeError)
     end
   end
+
+  describe 'unique constraints' do
+    let(:publication) { create :publication, wos_uid: '123' }
+    let(:dup) { publication.dup }
+    it 'blocks duplication of wos_uid' do
+      expect { dup.save! }.to raise_error(ActiveRecord::RecordNotUnique)
+    end
+    it 'allows novel wos_uid' do
+      dup.wos_uid = '456'
+      expect { dup.save! }.not_to raise_error
+    end
+  end
+
+  describe '#wos_uid' do
+    let(:wos_src_rec) { WebOfScienceSourceRecord.new(source_data: wos_record.to_xml) }
+    let(:wos_record) { WebOfScience::Records.new(encoded_records: encoded_records).first }
+    let(:encoded_records) { File.read('spec/fixtures/wos_client/wos_encoded_records.html') }
+
+    it 'is set automatically during save if web_of_science_source_record is present' do
+      publication.web_of_science_source_record = wos_src_rec
+      expect { publication.save! }.to change { publication.wos_uid }.from(nil).to(wos_src_rec.uid)
+    end
+  end
 end
