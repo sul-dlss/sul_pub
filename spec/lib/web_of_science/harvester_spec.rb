@@ -89,27 +89,32 @@ describe WebOfScience::Harvester do
   end
 
   context 'non savon' do
-    describe '#process_uids' do
-      context 'when matching Publication is unpaired with author' do
-        let(:wos_rec_01) { WebOfScience::Record.new(record: File.read('spec/fixtures/wos_client/wos_record_A1976BW18000001.xml')) }
-        before do
-          Publication.new(active: true, pub_hash: wos_rec.pub_hash, wos_uid: wos_rec.uid, pubhash_needs_update: true) do |pub|
-            pub.save!
-            pub.contributions.find_or_create_by!(
-              author_id: author.id, cap_profile_id: author.cap_profile_id,
-              featured: false, status: 'new', visibility: 'private'
-            )
-          end
-          Publication.new(active: true, pub_hash: wos_rec_01.pub_hash, wos_uid: wos_rec_01.uid) do |pub|
-            pub.sync_publication_hash_and_db
-            pub.save! # no contributions
-          end
-        end
+    context 'when matching Publication is unpaired with author' do
+      let(:wos_rec_01) { WebOfScience::Record.new(record: File.read('spec/fixtures/wos_client/wos_record_A1976BW18000001.xml')) }
+      let(:contrib) do
+        Contribution.new(
+          author_id: author.id, cap_profile_id: author.cap_profile_id,
+          featured: false, status: 'new', visibility: 'private'
+        )
+      end
+      let(:pub_1) { Publication.new(active: true, pub_hash: wos_rec_01.pub_hash, wos_uid: wos_rec_01.uid, pubhash_needs_update: true) }
+      let(:pub_2) { Publication.new(active: true, pub_hash: wos_rec.pub_hash, wos_uid: wos_rec.uid, pubhash_needs_update: true, contributions: [contrib]) }
+      before do
+        pub_1.save!
+        pub_2.save!
+      end
 
+      describe '#author_contributions' do
+        it 'returns WOS-UIDs only for existing publications' do
+          expect(harvester.send(:author_contributions, author, wos_uids + ['WOS:123'])).to eq wos_uids
+        end
         it 'creates new Contribution' do
           # note: new source record not added when matching pub already found
           expect(author.publications.map(&:wos_uid)).not_to include(wos_uids.first)
-          expect { harvester.process_uids(author, wos_uids) }.to change { author.contributions.count }.from(1).to(2)
+          expect { harvester.send(:author_contributions, author, wos_uids) }
+            .to change { author.contributions.count }.from(1).to(2)
+            .and change { pub_1.contributions.count }.from(0).to(1)
+            .and not_change { pub_2.contributions.count }
           expect(author.publications.reload.map(&:wos_uid)).to include(*wos_uids)
         end
       end
