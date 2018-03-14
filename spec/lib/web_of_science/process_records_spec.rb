@@ -23,7 +23,10 @@ describe WebOfScience::ProcessRecords, :vcr do
 
     it 'creates new WebOfScienceSourceRecords, Publications, PublicationIdentifiers, Contributions' do
       expect { processor.execute }
-        .to change { [WebOfScienceSourceRecord.count, Publication.count, PublicationIdentifier.count, Contribution.count] }
+        .to change { WebOfScienceSourceRecord.count }
+        .and change { Publication.count }
+        .and change { PublicationIdentifier.count }
+        .and change { author.contributions.count }
     end
 
     it 'creates Publications with WOS attributes' do

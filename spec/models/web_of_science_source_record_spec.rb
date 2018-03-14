@@ -1,12 +1,13 @@
 RSpec.describe WebOfScienceSourceRecord, type: :model do
-  subject(:wos_src_rec) { described_class.new(source_data: wos_record.to_xml) }
+  subject(:wos_src_rec) { described_class.create(source_data: wos_record.to_xml) }
 
   let(:encoded_records) { File.read('spec/fixtures/wos_client/wos_encoded_records.html') }
   let(:wos_record) { WebOfScience::Records.new(encoded_records: encoded_records).first }
 
   context 'initialize a new record' do
-    it 'cannot be created without a WOS source record' do
-      expect { described_class.new }.to raise_error(RuntimeError)
+    it 'can be created without a WOS source record but is invalid' do
+      expect { described_class.new }.not_to raise_error
+      expect(described_class.new).not_to be_valid
     end
     it 'extracts attributes' do
       expect(wos_src_rec.uid).to eq 'WOS:A1972N549400003'

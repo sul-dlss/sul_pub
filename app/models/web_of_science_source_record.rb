@@ -7,7 +7,7 @@ class WebOfScienceSourceRecord < ActiveRecord::Base
 
   belongs_to :publication, inverse_of: :web_of_science_source_record
 
-  after_initialize :init
+  before_validation :extract
   delegate :doc, :to_xml, to: :record
 
   # @return [WebOfScience::Record]
@@ -17,11 +17,11 @@ class WebOfScienceSourceRecord < ActiveRecord::Base
 
   private
 
-    def init
+    def extract
       # assume records are active until we discover a deprecation attribute
       self.active = true if attributes.key?('active') && attributes['active'].nil?
       return unless attributes.key?('source_data') # support .select(...)
-      raise 'Missing source_data' if source_data.nil? # otherwise require data
+      return unless source_data.present? # nothing to extract
       self.source_fingerprint ||= Digest::SHA2.hexdigest(source_data)
       self.database ||= record.database
       self.uid ||= record.uid
