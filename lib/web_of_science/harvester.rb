@@ -49,6 +49,18 @@ module WebOfScience
       process_records author, queries.retrieve_by_id(uids)
     end
 
+    # For authorship_api, pair author to pub/contrib, fetching WOS record if necessary
+    # @param author [Author]
+    # @param uid [String] WOS-UID value (not URI)
+    # @return [Publication, nil] Publication created or associated with the Author
+    def author_uid(author, uid)
+      raise(ArgumentError, 'author must be an Author') unless author.is_a? Author
+      found_uid = author_contributions(author, [uid]).first ||
+                  process_records(author, queries.retrieve_by_id([uid])).first
+      return unless found_uid.present?
+      Publication.find_by(wos_uid: found_uid)
+    end
+
     private
 
       delegate :logger, :queries, to: :WebOfScience
