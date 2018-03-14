@@ -164,4 +164,21 @@ describe WebOfScience::ProcessRecords, :vcr do
       expect(processor.execute).to be_empty
     end
   end
+
+  # This scenario includes when the 2nd author wants to approve the same Pub already fetched for another author
+  context 'WebOfScienceSourceRecord exists, Publication does not' do
+    let(:author) { create :author }
+    let(:wos_src_rec) { WebOfScienceSourceRecord.create!(source_data: wos_record.to_xml) }
+    let(:encoded_records) { File.read('spec/fixtures/wos_client/wos_encoded_records.html') }
+    let(:records) { WebOfScience::Records.new(encoded_records: encoded_records) }
+    let(:wos_record) { records.first }
+
+    describe 'backfills' do
+      it 'new Publications and Contributions' do
+        expect { processor.execute }.to change { author.contributions.count }.from(0).to(2)
+      end
+    end
+  end
+
+
 end
