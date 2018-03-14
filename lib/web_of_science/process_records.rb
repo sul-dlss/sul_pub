@@ -60,17 +60,22 @@ module WebOfScience
         WebOfScienceSourceRecord.create!(batch)
       end
 
+      # Also creates Contribution
       # @param [WebOfScience::Record] record
       # @return [Boolean] WebOfScience::Record created a new Publication?
       def create_publication(record)
-        pub = Publication.create!(
+        contrib = Contribution.new(
+          author_id: author.id,
+          cap_profile_id: author.cap_profile_id,
+          featured: false, status: 'new', visibility: 'private'
+        )
+        Publication.create!( # autosaves contrib
           active: true,
           pub_hash: record.pub_hash,
           wos_uid: record.uid,
-          pubhash_needs_update: true
+          pubhash_needs_update: true,
+          contributions: [contrib]
         )
-        contrib = find_or_create_contribution(author, pub)
-        contrib.persisted?
       rescue StandardError => err
         message = "Author: #{author.id}, #{record.uid}; Publication or Contribution failed"
         NotificationManager.error(err, message, self)
