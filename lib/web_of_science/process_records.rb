@@ -32,6 +32,11 @@ module WebOfScience
 
       delegate :links_client, to: :WebOfScience
 
+      # from the incoming (db-filtered) records
+      def uids
+        @uids ||= records.map(&:uid)
+      end
+
       # @return [Array<String>] WosUIDs that successfully create a new Publication or Contribution
       def create_publications
         return [] if records.empty?
@@ -44,14 +49,14 @@ module WebOfScience
         pubmed_additions(records)
       end
 
-      # Save and select new WebOfScienceSourceRecords
-      # Note: add nothing to PublicationIdentifiers here, or filter_by_contributions might reject them
-      # @param [Array<WebOfScience::Record>] recs
+      # Save new WebOfScienceSourceRecords.  This method guarantees to all subsequent proecessing
+      # that each record in @records now has a WebOfScienceSourceRecord.
       # @return [Array<WebOfScienceSourceRecord>] created records
-      def save_wos_records(recs)
-        return if recs.empty?
-        process_links
-        batch = recs.map do |rec|
+      def save_wos_records
+        return [] if records.empty?
+        already_fetched_uids = WebOfScienceSourceRecord.where(uid: uids).pluck(:uid)
+        status_to_recs = records.group_by { |rec| already_fetched_uids.include? rec.uid }
+        batch = process_links(status_to_recs[false] || []).map do |rec|
           attribs = { source_data: rec.to_xml }
           attribs[:doi] = rec.doi if rec.doi.present?
           attribs[:pmid] = rec.pmid if rec.pmid.present?
@@ -89,10 +94,11 @@ module WebOfScience
       # Note: the WebOfScienceSourceRecord is already saved, it could be updated with
       #       additional identifiers if there are fields defined for it.  Otherwise, these
       #       identifiers will get added to PublicationIdentifier after a Publication is created.
-      # @return [void]
-      def process_links
+      # @param [Array<WebOfScience::Record>] recs
+      # @return [Array<WebOfScience::Record>] the same recs
+      def process_links(recs)
         links = retrieve_links
-        records.each { |rec| rec.identifiers.update(links[rec.uid]) if rec.database == 'WOS' }
+        recs.each { |rec| rec.identifiers.update(links[rec.uid]) if rec.database == 'WOS' }
       rescue StandardError => err
         NotificationManager.error(err, "Author: #{author.id}, process_links failed", self)
       end
