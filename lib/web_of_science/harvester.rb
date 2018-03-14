@@ -1,5 +1,3 @@
-require 'identifiers'
-
 module WebOfScience
 
   # Application logic to harvest publications from Web of Science;
