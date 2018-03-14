@@ -1,6 +1,9 @@
 ENV['RAILS_ENV'] ||= 'test'
 
-require 'pry'  # for debugging specs
+unless ENV['CI']
+  require 'pry' # for debugging specs
+  require 'byebug'
+end
 
 Dir.glob(File.join(__dir__, 'fixtures', '**', '*.rb'), &method(:require)) # load all fixture files
 
