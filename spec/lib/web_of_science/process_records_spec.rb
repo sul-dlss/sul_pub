@@ -3,6 +3,7 @@ describe WebOfScience::ProcessRecords, :vcr do
 
   let(:author) { create :russ_altman }
   let(:records) { WebOfScience::Records.new(records: "<records>#{record_xml}</records>") }
+  let(:record_xml) { File.read('spec/fixtures/wos_client/wos_record_000288663100014.xml') }
   let(:links_client) { Clarivate::LinksClient.new }
   let(:uids) { records.uids }
   let(:new_pubs) { Publication.where(wos_uid: uids) }
@@ -47,7 +48,7 @@ describe WebOfScience::ProcessRecords, :vcr do
     end
 
     context 'save_wos_records fails' do
-      before { expect(WebOfScienceSourceRecord).to receive(:create!).with(Array).and_raise(ActiveRecord::RecordInvalid) }
+      before { expect(WebOfScienceSourceRecord).to receive(:create!).and_raise(ActiveRecord::RecordInvalid) }
 
       it 'does not create new WebOfScienceSourceRecords' do
         expect { processor.execute }.not_to change { WebOfScienceSourceRecord.count }
@@ -115,7 +116,6 @@ describe WebOfScience::ProcessRecords, :vcr do
   end
 
   context 'with WOS records' do
-    let(:record_xml) { File.read('spec/fixtures/wos_client/wos_record_000288663100014.xml') }
     let(:wos_records_links) do
       { 'WOS:000288663100014' => { 'pmid' => '21253920', 'doi' => '10.1007/s12630-011-9462-1' } }
     end
@@ -169,7 +169,7 @@ describe WebOfScience::ProcessRecords, :vcr do
   context 'WebOfScienceSourceRecord exists, Publication does not' do
     let(:author) { create :author }
     let(:wos_src_rec) { create :web_of_science_source_record }
-    before { allow(links_client).to receive(:links).with(wos_src_rec.uid).and_return({}) }
+    before { allow(links_client).to receive(:links).with([wos_src_rec.uid]).and_return({}) }
 
     describe 'backfills' do
       it 'new Publications and Contributions' do
