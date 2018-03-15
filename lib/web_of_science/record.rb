@@ -6,6 +6,8 @@ module WebOfScience
   class Record
     extend Forwardable
 
+    XML_OPTIONS = Nokogiri::XML::Node::SaveOptions::AS_XML | Nokogiri::XML::Node::SaveOptions::NO_DECLARATION
+
     delegate %i[database doi eissn issn pmid uid wos_item_id] => :identifiers
     delegate logger: :WebOfScience
 
@@ -112,7 +114,7 @@ module WebOfScience
 
     # @return [String] XML
     def to_xml
-      doc.to_xml(save_with: WebOfScience::XmlParser::XML_OPTIONS).strip
+      doc.to_xml(save_with: XML_OPTIONS).strip
     end
   end
 end
