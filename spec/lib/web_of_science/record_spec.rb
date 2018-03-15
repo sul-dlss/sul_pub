@@ -233,30 +233,6 @@ describe WebOfScience::Record do
     end
   end
 
-  describe '#to_struct' do
-    let(:struct) { wos_record_encoded.to_struct }
-
-    it 'works' do
-      expect(struct).to be_an OpenStruct
-    end
-    it 'contains doctypes Array' do
-      expect(struct.doctypes).to be_an Array
-    end
-    it 'contains names Array' do
-      expect(struct.names).to be_an Array
-    end
-    it 'contains pub_info OpenStruct' do
-      expect(struct.pub_info).to be_an OpenStruct
-    end
-    it 'contains publishers Array' do
-      expect(struct.publishers).to be_an Array
-    end
-    it 'contains titles OpenStruct' do
-      expect(struct.titles).to be_an OpenStruct
-    end
-  end
-
-  # ---
   # XML specs
 
   shared_examples 'it has well formed XML' do
