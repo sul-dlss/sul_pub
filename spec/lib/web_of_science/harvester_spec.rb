@@ -48,25 +48,6 @@ describe WebOfScience::Harvester do
         expect(NotificationManager).to receive(:error)
         harvest_process
       end
-
-      context 'with existing publication and/or contribution data' do
-        let(:retrieve_by_id_response) { File.read('spec/fixtures/wos_client/wos_record_A1976BW18000001_response.xml') }
-        before do
-          Publication.new(active: true, pub_hash: wos_rec.pub_hash, wos_uid: wos_rec.uid) do |pub|
-            pub.sync_publication_hash_and_db # callbacks create PublicationIdentifiers etc.
-            pub.save!
-            pub.contributions.find_or_create_by!(
-              author_id: author.id, cap_profile_id: author.cap_profile_id,
-              featured: false, status: 'new', visibility: 'private'
-            )
-          end
-        end
-
-        # Use a new record WITHOUT a publication for WOS:A1976BW18000001, from wos_retrieve_by_id_response.xml
-        it 'processes records that have no publication' do
-          expect { harvest_process }.to change { Publication.find_by(wos_uid: 'WOS:A1976BW18000001') }.from(nil).to(Publication)
-        end
-      end
     end
 
     describe '#process_author' do
@@ -77,6 +58,23 @@ describe WebOfScience::Harvester do
       end
 
       it_behaves_like 'it_can_process_records'
+
+      context 'with existing publication and/or contribution data' do
+        let(:retrieve_by_id_response) { File.read('spec/fixtures/wos_client/wos_record_A1976BW18000001_response.xml') }
+        before do
+          contrib = Contribution.new(
+            author_id: author.id, cap_profile_id: author.cap_profile_id,
+            featured: false, status: 'new', visibility: 'private'
+          )
+          Publication.create!(active: true, pub_hash: wos_rec.pub_hash, wos_uid: wos_rec.uid, pubhash_needs_update: true, contributions: [contrib])
+        end
+
+        # Use a new record WITHOUT a publication for WOS:A1976BW18000001, from wos_retrieve_by_id_response.xml
+        it 'processes records that have no publication' do
+          expect(Publication.find_by(wos_uid: 'WOS:A1976BW18000001')).to be_nil
+          expect { harvest_process }.to change { Publication.find_by(wos_uid: 'WOS:A1976BW18000001') }.from(nil).to(Publication)
+        end
+      end
     end
 
     describe '#process_uids' do
