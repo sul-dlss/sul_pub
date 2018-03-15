@@ -72,14 +72,7 @@ module WebOfScience
       # @return [Array<String>] uids guaranteed to have matching Publication and Contribution
       def author_contributions(author, uids)
         Publication.where(wos_uid: uids).find_each.map do |pub|
-          pub.contributions.find_or_create_by!(author_id: author.id) do |contrib|
-            contrib.assign_attributes(
-              cap_profile_id: author.cap_profile_id,
-              featured: false, status: 'new', visibility: 'private'
-            )
-            pub.pubhash_needs_update! # Add to pub_hash[:authorship]
-            pub.save! # contrib.save! not needed
-          end
+          author.assign_pub(pub)
           pub.wos_uid
         end
       end
