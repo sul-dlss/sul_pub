@@ -18,6 +18,10 @@ AllCops:
     - 'spec/spec_helper.rb'
     - 'vendor/**/*'
 
+Layout/MultilineMethodCallIndentation:
+  Exclude:
+    - "spec/lib/web_of_science/harvester_spec.rb" # cop doesn't get compound matchers have semantic grouping
+
 # https://github.com/bbatsov/rubocop/issues/4222
 Lint/AmbiguousBlockAssociation:
   Exclude:
@@ -26,6 +30,10 @@ Lint/AmbiguousBlockAssociation:
 Lint/PercentStringArray:
   Exclude:
     - "spec/lib/web_of_science/query_author_spec.rb" # specifically testing quoted clauses w/in strings
+
+Metrics/LineLength:
+  Exclude:
+    - "spec/factories/**/*" # factories contain long string literals
 
 Style/VariableName:
   Enabled: false

@@ -57,7 +57,7 @@ module WebOfScience
         already_fetched_uids = WebOfScienceSourceRecord.where(uid: uids).pluck(:uid)
         status_to_recs = records.group_by { |rec| already_fetched_uids.include? rec.uid }
         unmatched_recs = status_to_recs[false]
-        return [] unless unmatched_recs.present?
+        return [] if unmatched_recs.blank?
         process_links(unmatched_recs)
         batch = unmatched_recs.map do |rec|
           attribs = { source_data: rec.to_xml }

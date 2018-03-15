@@ -57,7 +57,7 @@ module WebOfScience
       raise(ArgumentError, 'author must be an Author') unless author.is_a? Author
       found_uid = author_contributions(author, [uid]).first ||
                   process_records(author, queries.retrieve_by_id([uid])).first
-      return unless found_uid.present?
+      return if found_uid.blank?
       Publication.find_by(wos_uid: found_uid)
     end
 

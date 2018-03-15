@@ -75,7 +75,7 @@ describe ScienceWire::HarvestBroker do
       subject { described_class.new(alt_author, harvester, alternate_name_query: true) }
       it 'returns an array of unique alternate name query ids' do
         expect(subject).to receive(:ids_from_dumb_query).exactly(3).times
-          .and_return([1, 2], [2, 3], [3, 4])
+                                                        .and_return([1, 2], [2, 3], [3, 4])
         expect(subject.send(:ids_for_alternate_names)).to eq [1, 2, 3, 4]
       end
     end

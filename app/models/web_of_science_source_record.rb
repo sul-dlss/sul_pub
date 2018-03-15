@@ -21,7 +21,7 @@ class WebOfScienceSourceRecord < ActiveRecord::Base
       # assume records are active until we discover a deprecation attribute
       self.active = true if attributes.key?('active') && attributes['active'].nil?
       return unless attributes.key?('source_data') # support .select(...)
-      return unless source_data.present? # nothing to extract
+      return if source_data.blank? # nothing to extract
       self.source_fingerprint ||= Digest::SHA2.hexdigest(source_data)
       self.database ||= record.database
       self.uid ||= record.uid
