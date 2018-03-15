@@ -40,9 +40,9 @@ module WebOfScience
       # @return [Array<String>] WosUIDs that successfully create a new Publication or Contribution
       def create_publications
         return [] if records.empty?
-        matching_uids = Publication.where(wos_uid: records.map(&:uid)).pluck(:wos_uid)
-        save_wos_records(records.reject { |rec| matching_uids.include? rec.uid })
-        records.select { |rec| !matching_contribution(author, rec) && create_publication(rec) }
+        new_wssrs = save_wos_records
+        new_wssrs_hash = new_wssrs.map(&:uid).zip(new_wssrs)
+        records.select { |rec| !matching_publication(rec) && create_publication(rec) }
                .map(&:uid)
                .uniq
       ensure
@@ -56,7 +56,10 @@ module WebOfScience
         return [] if records.empty?
         already_fetched_uids = WebOfScienceSourceRecord.where(uid: uids).pluck(:uid)
         status_to_recs = records.group_by { |rec| already_fetched_uids.include? rec.uid }
-        batch = process_links(status_to_recs[false] || []).map do |rec|
+        unmatched_recs = status_to_recs[false]
+        return [] unless unmatched_recs.present?
+        process_links(unmatched_recs)
+        batch = unmatched_recs.map do |rec|
           attribs = { source_data: rec.to_xml }
           attribs[:doi] = rec.doi if rec.doi.present?
           attribs[:pmid] = rec.pmid if rec.pmid.present?
