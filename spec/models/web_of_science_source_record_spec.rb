@@ -1,17 +1,28 @@
 RSpec.describe WebOfScienceSourceRecord, type: :model do
   subject(:wos_src_rec) { build :web_of_science_source_record }
 
+  let(:records) { WebOfScience::Records.new(records: "<records>#{record_xml}</records>") }
+  let(:record_xml) { File.read('spec/fixtures/wos_client/wos_record_000288663100014.xml') }
+
   context 'initialize a new record' do
     it 'can be created without a WOS source record but is invalid' do
       expect { described_class.new }.not_to raise_error
       expect(described_class.new).not_to be_valid
     end
-    it 'extracts attributes' do
-      wos_src_rec.valid? # trigger extractions
+    it 'extracts attributes from source_data' do
+      expect(wos_src_rec).to be_valid # trigger extractions
       expect(wos_src_rec.uid).to eq 'WOS:A1972N549400003'
       expect(wos_src_rec.database).to eq 'WOS'
       expect(wos_src_rec.source_fingerprint).to eq 'e5088910f3e61f73eebaa4c8938c742989259f3821f2a050de57475e7f385445'
       expect(wos_src_rec).to be_active
+    end
+    it 'extracts attributes from WebOfScience::Record' do
+      other = described_class.new(record: records.first)
+      expect(other).to be_valid # trigger extractions
+      expect(other.uid).to eq 'WOS:000288663100014'
+      expect(other.database).to eq 'WOS'
+      expect(other.source_data).not_to be_empty
+      expect(other.source_fingerprint).to eq '8f801264c356bc7005013e270568e87365591e8c3286e74f5bb865aec4cedd8a'
     end
   end
 

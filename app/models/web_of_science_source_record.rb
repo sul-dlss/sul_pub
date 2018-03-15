@@ -10,6 +10,8 @@ class WebOfScienceSourceRecord < ActiveRecord::Base
   before_validation :extract
   delegate :doc, :to_xml, to: :record
 
+  attr_writer :record
+
   # @return [WebOfScience::Record]
   def record
     @record ||= WebOfScience::Record.new(record: source_data)
@@ -17,11 +19,14 @@ class WebOfScienceSourceRecord < ActiveRecord::Base
 
   private
 
+    # Can initialize with either source_data String or record (WebOfScience::Record)
     def extract
       # assume records are active until we discover a deprecation attribute
       self.active = true if attributes.key?('active') && attributes['active'].nil?
-      return unless attributes.key?('source_data') # support .select(...)
-      return if source_data.blank? # nothing to extract
+      if source_data.blank?
+        return if @record.blank? # nothing to extract
+        self.source_data = @record.to_xml
+      end
       self.source_fingerprint ||= Digest::SHA2.hexdigest(source_data)
       self.database ||= record.database
       self.uid ||= record.uid
