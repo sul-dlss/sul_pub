@@ -93,7 +93,7 @@ class Author < ActiveRecord::Base
   def self.fetch_from_cap_and_create(profile_id, cap_client = Cap::Client.new)
     profile_hash = cap_client.get_auth_profile(profile_id)
     Author.create!(Author.build_attribute_hash_from_cap_profile(profile_hash)) do |a|
-      a.mirror_author_identities(auth_hash['importSettings'])
+      a.mirror_author_identities(profile_hash['importSettings'])
     end
   end
 
