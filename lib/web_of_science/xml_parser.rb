@@ -22,7 +22,7 @@ module WebOfScience
     # @raise RuntimeError when arguments are all nil
     def self.parse(xml, encoded_xml)
       xml ||= begin
-        raise 'encoded_xml is nil' if encoded_xml.nil?
+        raise 'xml and encoded_xml are both nil' if encoded_xml.nil?
         HTMLEntities.new.decode(encoded_xml)
       end
       Nokogiri::XML(xml) { |config| config.strict.noblanks }
