@@ -28,7 +28,7 @@ class Publication < ActiveRecord::Base
   end
 
   has_one :batch_uploaded_source_record
-  has_one :web_of_science_source_record, autosave: false
+  has_one :web_of_science_source_record, autosave: true
 
   has_many :user_submitted_source_records
 

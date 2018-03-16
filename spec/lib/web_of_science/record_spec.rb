@@ -1,38 +1,25 @@
 require 'htmlentities'
 
 describe WebOfScience::Record do
-  let(:wos_encoded_record) { File.read('spec/fixtures/wos_client/wos_encoded_record.html') }
-  let(:wos_decoded_record) do
-    coder = HTMLEntities.new
-    coder.decode(wos_encoded_record)
-  end
-  let(:wos_record_encoded) { described_class.new(encoded_record: wos_encoded_record) }
-  let(:wos_record_decoded) { described_class.new(record: wos_decoded_record) }
-  let(:wos_uid) { 'WOS:A1972N549400003' }
+  let(:encoded_html) { File.read('spec/fixtures/wos_client/wos_encoded_record.html') }
+  let(:wos_record_encoded) { described_class.new(encoded_record: encoded_html) }
+  let(:wos_record_decoded) { described_class.new(record: HTMLEntities.new.decode(encoded_html)) }
+  let(:uid) { 'WOS:A1972N549400003' }
 
-  let(:medline_encoded_record) { File.read('spec/fixtures/wos_client/medline_encoded_record.html') }
-  let(:medline_decoded_record) do
-    coder = HTMLEntities.new
-    coder.decode(medline_encoded_record)
-  end
-  let(:medline_record_encoded) { described_class.new(encoded_record: medline_encoded_record) }
-  let(:medline_record_decoded) { described_class.new(record: medline_decoded_record) }
-  let(:medline_uid) { 'MEDLINE:24452614' }
+  let(:medline_html) { File.read('spec/fixtures/wos_client/medline_encoded_record.html') }
+  let(:medline_record_encoded) { described_class.new(encoded_record: medline_html) }
+  let(:medline_record_decoded) { described_class.new(record: HTMLEntities.new.decode(medline_html)) }
 
   describe '#new' do
     context 'WOS records' do
-      it 'works with WOS encoded records' do
+      it 'works with encoded and decoded records' do
         expect(wos_record_encoded).to be_an described_class
-      end
-      it 'works with WOS decoded records' do
         expect(wos_record_decoded).to be_an described_class
       end
     end
     context 'MEDLINE records' do
-      it 'works with MEDLINE encoded records' do
+      it 'works with encoded and decoded records' do
         expect(medline_record_encoded).to be_an described_class
-      end
-      it 'works with MEDLINE decoded records' do
         expect(medline_record_decoded).to be_an described_class
       end
     end
@@ -42,43 +29,33 @@ describe WebOfScience::Record do
   end
 
   describe '#doc' do
-    it 'works with encoded records' do
-      result = wos_record_encoded.doc
-      expect(result).to be_an Nokogiri::XML::Document
-    end
-    it 'works with decoded records' do
-      result = wos_record_decoded.doc
-      expect(result).to be_an Nokogiri::XML::Document
+    it 'works with encoded and decoded records' do
+      expect(wos_record_encoded.doc).to be_an Nokogiri::XML::Document
+      expect(wos_record_decoded.doc).to be_an Nokogiri::XML::Document
     end
   end
 
-  # ---
   # Data accessors
 
   shared_examples 'it is an array of names' do
-    it 'is an Array' do
+    it 'is an populated Array' do
       expect(agents).to be_an Array
-    end
-    it 'contains name data' do
       expect(agents).not_to be_empty
     end
     it 'conforms to expected key-value pairs' do
       expect(agent).to include('first_name' => String, 'last_name' => String, 'role' => String)
-    end
-    it 'missing attribute data is nil' do
       expect(agent).not_to include('reprint')
     end
   end
 
   context 'names' do
     # In this WOS-record, Russ Altman is both an "author" and a "book_editor"
-    let(:wos_xml) { File.read('spec/fixtures/wos_client/wos_record_000386326200035.xml') }
-    let(:wos_record) { described_class.new(record: wos_xml) }
-    let(:wos_uid) { 'WOS:000386326200035' }
+    let(:wos_record) { described_class.new(record: File.read('spec/fixtures/wos_client/wos_record_000386326200035.xml')) }
+    let(:uid) { 'WOS:000386326200035' }
+    let(:agent) { agents.first }
 
     describe '#authors' do
       let(:agents) { wos_record.authors }
-      let(:agent) { agents.first }
 
       it_behaves_like 'it is an array of names'
       it 'contains author values' do
@@ -88,8 +65,6 @@ describe WebOfScience::Record do
 
     describe '#editors' do
       let(:agents) { wos_record.editors }
-      let(:agent) { agents.first }
-
       it_behaves_like 'it is an array of names'
       it 'contains editor values' do
         expect(agent).to include('first_name' => 'RB', 'last_name' => 'Altman', 'role' => 'book_editor')
@@ -98,55 +73,36 @@ describe WebOfScience::Record do
 
     describe '#names' do
       let(:agents) { wos_record.names }
-      let(:agent) { agents.first }
-
       it_behaves_like 'it is an array of names'
     end
   end
 
-  describe '#identifiers' do
-    it 'works' do
-      result = wos_record_encoded.identifiers
-      expect(result).to be_an WebOfScience::Identifiers
-    end
+  # check that it is delegated successfully to identifiers
+  it '#database works' do
+    expect(wos_record_encoded.database).to eq uid.split(':').first
+  end
+  it '#identifiers works' do
+    expect(wos_record_encoded.identifiers).to be_an WebOfScience::Identifiers
+  end
 
-    describe '#database' do
-      # check that it is delegated successfully to identifiers
-      it 'works' do
-        expect(wos_record_encoded.database).to eq wos_uid.split(':').first
-      end
+  describe '#uid' do
+    # check that it is delegated successfully to identifiers
+    it 'WOS records have a WOS-UID' do
+      expect(wos_record_encoded.uid).to eq uid
     end
-
-    describe '#uid' do
-      # check that it is delegated successfully to identifiers
-      it 'WOS records have a WOS-UID' do
-        expect(wos_record_encoded.uid).to eq wos_uid
-      end
-      it 'MEDLINE records have a MEDLINE-UID (PMID)' do
-        expect(medline_record_encoded.uid).to eq medline_uid
-      end
+    it 'MEDLINE records have a MEDLINE-UID (PMID)' do
+      expect(medline_record_encoded.uid).to eq 'MEDLINE:24452614'
     end
   end
 
-  describe '#doctypes' do
-    let(:doctypes) { wos_record_encoded.doctypes }
-
-    it 'works' do
-      expect(doctypes).to be_an Array
-    end
-    it 'includes a doctype' do
-      expect(doctypes).to include 'Book Review'
-    end
+  it '#doctypes works' do
+    expect(wos_record_encoded.doctypes).to include('Book Review')
   end
-
-  describe '#print' do
-    it 'works' do
-      expect { wos_record_encoded.print }.to output.to_stdout
-    end
+  it '#print works' do
+    expect { wos_record_encoded.print }.to output.to_stdout
   end
 
   describe '#pub_info' do
-    let(:pub_info) { wos_record_encoded.pub_info }
     let(:pub_info_hash) do
       { 'issue'        => '5',
         'pubtype'      => 'Journal',
@@ -157,127 +113,53 @@ describe WebOfScience::Record do
         'pubyear'      => '1972',
         'page'         => { 'end' => '413', 'page_count' => '1', 'begin' => '413' } }
     end
-
     it 'works' do
-      expect(pub_info).to be_an Hash
-    end
-    it 'has issue' do
-      expect(pub_info['issue']).to eq pub_info_hash['issue']
-    end
-    it 'has page' do
-      expect(pub_info['page']).to eq pub_info_hash['page']
-    end
-    it 'has pubtype' do
-      expect(pub_info['pubtype']).to eq pub_info_hash['pubtype']
-    end
-    it 'has pubyear' do
-      expect(pub_info['pubyear']).to eq pub_info_hash['pubyear']
-    end
-    it 'has vol' do
-      expect(pub_info['vol']).to eq pub_info_hash['vol']
+      expect(wos_record_encoded.pub_info).to match a_hash_including(pub_info_hash)
     end
   end
 
-  describe '#publishers' do
-    let(:publishers) { wos_record_encoded.publishers }
-
-    it 'works' do
-      expect(publishers).to be_an Array
-    end
-    it 'contains publisher information' do
-      expect(publishers.first).to be_an Hash
-    end
-    it 'contains publisher name' do
-      expect(publishers.first).to include('full_name' => 'ASSOC COLL RESEARCH LIBRARIES')
-    end
+  it '#publishers works' do
+    expect(wos_record_encoded.publishers).to include(a_hash_including('full_name' => 'ASSOC COLL RESEARCH LIBRARIES'))
+  end
+  it '#pub_hash works' do
+    expect(wos_record_encoded.pub_hash).to match a_hash_including(provenance: 'wos')
+  end
+  it '#titles works' do
+    expect(wos_record_encoded.titles).to include('source' => 'COLLEGE & RESEARCH LIBRARIES')
+  end
+  it '#to_h works' do
+    expect(wos_record_encoded.to_h).to match a_hash_including(
+      'doctypes'   => Array,
+      'names'      => Array,
+      'pub_info'   => Hash,
+      'publishers' => Array,
+      'titles'     => Hash
+    )
   end
 
-  describe '#pub_hash' do
-    let(:pub_hash) { wos_record_encoded.pub_hash }
-
-    it 'works' do
-      expect(pub_hash).to be_an Hash
-    end
-    it 'has "wos" provenance' do
-      expect(pub_hash[:provenance]).to eq 'wos'
-    end
-  end
-
-  describe '#titles' do
-    it 'works' do
-      result = wos_record_encoded.titles
-      expect(result).to include('source' => 'COLLEGE & RESEARCH LIBRARIES')
-    end
-  end
-
-  describe '#to_h' do
-    let(:hash) { wos_record_encoded.to_h }
-
-    it 'works' do
-      expect(hash).to be_an Hash
-    end
-    it 'contains doctypes Array' do
-      expect(hash['doctypes']).to be_an Array
-    end
-    it 'contains names Array' do
-      expect(hash['names']).to be_an Array
-    end
-    it 'contains pub_info Hash' do
-      expect(hash['pub_info']).to be_an Hash
-    end
-    it 'contains publishers Array' do
-      expect(hash['publishers']).to be_an Array
-    end
-    it 'contains titles Hash' do
-      expect(hash['titles']).to be_an Hash
-    end
-  end
-
-  describe '#to_struct' do
-    let(:struct) { wos_record_encoded.to_struct }
-
-    it 'works' do
-      expect(struct).to be_an OpenStruct
-    end
-    it 'contains doctypes Array' do
-      expect(struct.doctypes).to be_an Array
-    end
-    it 'contains names Array' do
-      expect(struct.names).to be_an Array
-    end
-    it 'contains pub_info OpenStruct' do
-      expect(struct.pub_info).to be_an OpenStruct
-    end
-    it 'contains publishers Array' do
-      expect(struct.publishers).to be_an Array
-    end
-    it 'contains titles OpenStruct' do
-      expect(struct.titles).to be_an OpenStruct
-    end
-  end
-
-  # ---
   # XML specs
-
-  shared_examples 'it has well formed XML' do
+  describe '#to_xml' do
+    let(:xml_result) { wos_record_encoded.to_xml }
     let(:html_char) { '&lt;' }
 
     it 'returns an XML String' do
-      expect(xml_result).to be_an String
+      expect(xml_result).to be_a String
     end
-    it 'returns well formed XML' do
-      expect do
-        Nokogiri::XML(xml_result) { |config| config.strict.noblanks }
-      end.not_to raise_error
+    it 'parses' do
+      expect { Nokogiri::XML(xml_result) { |config| config.strict.noblanks } }.not_to raise_error
     end
     it 'contains no HTML encoding' do
       expect(xml_result).not_to include html_char
     end
   end
 
-  describe '#to_xml' do
-    let(:xml_result) { wos_record_encoded.to_xml }
-
-    it_behaves_like 'it has well formed XML'
+  describe '#find_or_create_model' do
+    it 'persists WebOfScienceSourceRecord as needed' do
+      expect(WebOfScienceSourceRecord.find_by(uid: wos_record_encoded.uid)).to be_nil
+      wssr = wos_record_encoded.find_or_create_model
+      expect(wssr).to be_a(WebOfScienceSourceRecord)
+      expect(wssr.uid).to eq(wos_record_encoded.uid)
+      expect(WebOfScienceSourceRecord.find_by(uid: wos_record_encoded.uid)).to eq(wssr)
+    end
   end
 end

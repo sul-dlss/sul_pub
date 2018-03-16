@@ -3,6 +3,7 @@ describe WebOfScience::ProcessRecords, :vcr do
 
   let(:author) { create :russ_altman }
   let(:records) { WebOfScience::Records.new(records: "<records>#{record_xml}</records>") }
+  let(:record_xml) { File.read('spec/fixtures/wos_client/wos_record_000288663100014.xml') }
   let(:links_client) { Clarivate::LinksClient.new }
   let(:uids) { records.uids }
   let(:new_pubs) { Publication.where(wos_uid: uids) }
@@ -23,7 +24,10 @@ describe WebOfScience::ProcessRecords, :vcr do
 
     it 'creates new WebOfScienceSourceRecords, Publications, PublicationIdentifiers, Contributions' do
       expect { processor.execute }
-        .to change { [WebOfScienceSourceRecord.count, Publication.count, PublicationIdentifier.count, Contribution.count] }
+        .to change { WebOfScienceSourceRecord.count }
+        .and change { Publication.count }
+        .and change { PublicationIdentifier.count }
+        .and change { author.contributions.count }
     end
 
     it 'creates Publications with WOS attributes' do
@@ -44,7 +48,7 @@ describe WebOfScience::ProcessRecords, :vcr do
     end
 
     context 'save_wos_records fails' do
-      before { expect(WebOfScienceSourceRecord).to receive(:create!).with(Array).and_raise(ActiveRecord::RecordInvalid) }
+      before { expect(WebOfScienceSourceRecord).to receive(:create!).and_raise(ActiveRecord::RecordInvalid) }
 
       it 'does not create new WebOfScienceSourceRecords' do
         expect { processor.execute }.not_to change { WebOfScienceSourceRecord.count }
@@ -112,7 +116,6 @@ describe WebOfScience::ProcessRecords, :vcr do
   end
 
   context 'with WOS records' do
-    let(:record_xml) { File.read('spec/fixtures/wos_client/wos_record_000288663100014.xml') }
     let(:wos_records_links) do
       { 'WOS:000288663100014' => { 'pmid' => '21253920', 'doi' => '10.1007/s12630-011-9462-1' } }
     end
@@ -136,15 +139,6 @@ describe WebOfScience::ProcessRecords, :vcr do
       before { allow(links_client).to receive(:links).and_raise(RuntimeError) }
       it_behaves_like 'fail_forward'
     end
-
-    context 'WOS links - identifier update fails' do
-      before do
-        identifiers = WebOfScience::Identifiers.new(records.first)
-        expect(identifiers).to receive(:update).and_raise(RuntimeError)
-        expect(WebOfScience::Identifiers).to receive(:new).and_return(identifiers).at_least(:once)
-      end
-      it_behaves_like 'fail_forward'
-    end
   end
 
   context 'with records from excluded databases' do
@@ -159,6 +153,29 @@ describe WebOfScience::ProcessRecords, :vcr do
     it 'filters out excluded records' do
       expect(processor).not_to receive(:save_wos_records)
       expect(processor.execute).to be_empty
+    end
+  end
+
+  # This scenario includes when 2nd author is associated w/ a Pub that was already fetched for another author
+  context 'WebOfScienceSourceRecord exists, Publication does not' do
+    let(:author) { create :author }
+    let(:wssr) { records.first.find_or_create_model }
+    before do
+      allow(links_client).to receive(:links).and_return({})
+      records.first.find_or_create_model
+    end
+
+    describe 'backfills' do
+      it 'does not duplicate WebOfScienceSourceRecord' do
+        expect { processor.execute }.not_to change { WebOfScienceSourceRecord.count }
+      end
+      it 'adds new Publications and Contributions' do
+        expect { processor.execute }.to change { author.contributions.count }.from(0).to(1)
+        expect(Publication.find_by(wos_uid: records.first.uid)).not_to be_nil
+      end
+      it 'associates the existing source record' do
+        expect { processor.execute }.to change { wssr.reload.publication }.from(nil).to(Publication)
+      end
     end
   end
 end

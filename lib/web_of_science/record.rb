@@ -6,6 +6,8 @@ module WebOfScience
   class Record
     extend Forwardable
 
+    XML_OPTIONS = Nokogiri::XML::Node::SaveOptions::AS_XML | Nokogiri::XML::Node::SaveOptions::NO_DECLARATION
+
     delegate %i[database doi eissn issn pmid uid wos_item_id] => :identifiers
     delegate logger: :WebOfScience
 
@@ -110,16 +112,17 @@ module WebOfScience
       }
     end
 
-    # An OpenStruct for the REC fields
-    # @return [OpenStruct]
-    def to_struct
-      # Convert Hash to OpenStruct with recursive application to nested hashes
-      JSON.parse(to_h.to_json, object_class: OpenStruct)
-    end
-
     # @return [String] XML
     def to_xml
-      doc.to_xml(save_with: WebOfScience::XmlParser::XML_OPTIONS).strip
+      doc.to_xml(save_with: XML_OPTIONS).strip
+    end
+
+    # @return [WebOfScienceSourceRecord] pre-extracted and persisted ActiveRecord instance
+    def find_or_create_model
+      WebOfScienceSourceRecord.find_or_create_by(uid: uid) do |rec|
+        rec.record = self
+        rec.database = database
+      end
     end
   end
 end

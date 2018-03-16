@@ -38,12 +38,13 @@ module SulBib
 
       # Find an existing Author by 'cap_profile_id' or 'sul_author_id'.  This
       # helper can retrieve a CAP profile if an author does not exist yet.
-      def get_author(cap_profile_id, sul_author_id)
+      def get_author!(cap_profile_id, sul_author_id)
         if cap_profile_id.blank? && sul_author_id.blank?
           log_and_error!("The request is missing 'sul_author_id' and 'cap_profile_id'.", 400)
         end
-        return get_cap_author(cap_profile_id) if cap_profile_id
-        get_sul_author(sul_author_id)
+        author = cap_profile_id ? get_cap_author(cap_profile_id) : get_sul_author(sul_author_id)
+        check_author_ids!(author, cap_profile_id)
+        author
       end
 
       def get_cap_author(cap_profile_id)
@@ -113,11 +114,8 @@ module SulBib
       # @param [String] wos_uid WebOfScience ID
       # @return [Publication]
       def get_publication_via_wos!(author, wos_uid)
-        pub = Publication.find_by(wos_uid: wos_uid)
-        return pub if pub
-        uids = WebOfScience.harvester.process_uids(author, [wos_uid])
-        uids.present? || log_and_error!("The #{wos_uid} publication was not found either locally or at WebOfScience.")
-        Publication.find_by(wos_uid: uids.first)
+        WebOfScience.harvester.author_uid(author, wos_uid) ||
+          log_and_error!("The #{wos_uid} publication was not found either locally or at WebOfScience.")
       end
 
       # @param [String] msg Message to log and send in response
@@ -163,11 +161,10 @@ module SulBib
       logger.info(env['api.request.input'].to_s)
 
       # Find or create an author
-      author = get_author(
+      author = get_author!(
         params[:cap_profile_id],
         params[:sul_author_id]
       )
-      check_author_ids!(author, params[:cap_profile_id])
 
       ids = params.slice(:sul_pub_id, :pmid, :sw_id, :wos_uid).to_h.symbolize_keys
       ids.reject! { |_, v| v.blank? }
@@ -227,11 +224,10 @@ module SulBib
       logger.info(env['api.request.input'].to_s)
 
       # Find an existing author
-      author = get_author(
+      author = get_author!(
         params[:cap_profile_id],
         params[:sul_author_id]
       )
-      check_author_ids!(author, params[:cap_profile_id])
 
       # Find an existing contribution by author/publication
       pub = get_contribution(author, params[:sul_pub_id]).publication

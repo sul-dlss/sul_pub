@@ -3,9 +3,6 @@ require 'htmlentities'
 module WebOfScience
   # Utilities for working with a Web of Knowledge (WOK) record
   module XmlParser
-
-    XML_OPTIONS = Nokogiri::XML::Node::SaveOptions::AS_XML | Nokogiri::XML::Node::SaveOptions::NO_DECLARATION
-
     # @param element [Nokogiri::XML::Element]
     # @return [Array<Array[String]>] Pairs of strings, attribute name and value, suitable for .to_h
     def self.attributes_map(element)
@@ -25,7 +22,7 @@ module WebOfScience
     # @raise RuntimeError when arguments are all nil
     def self.parse(xml, encoded_xml)
       xml ||= begin
-        raise 'encoded_xml is nil' if encoded_xml.nil?
+        raise 'xml and encoded_xml are both nil' if encoded_xml.nil?
         HTMLEntities.new.decode(encoded_xml)
       end
       Nokogiri::XML(xml) { |config| config.strict.noblanks }

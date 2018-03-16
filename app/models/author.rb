@@ -102,6 +102,20 @@ class Author < ActiveRecord::Base
     active_in_cap && cap_import_enabled
   end
 
+  # @param [Publication]
+  # @return [Contribution]
+  def assign_pub(pub)
+    raise 'Author must be saved before association' unless persisted?
+    pub.contributions.find_or_create_by!(author_id: id) do |contrib|
+      contrib.assign_attributes(
+        cap_profile_id: cap_profile_id,
+        featured: false, status: 'new', visibility: 'private'
+      )
+      pub.pubhash_needs_update! # Add to pub_hash[:authorship]
+      pub.save! # contrib.save! not needed
+    end
+  end
+
   private
 
     # @param [Hash<Symbol => String>] attribs the candidate versus `self`'s identity

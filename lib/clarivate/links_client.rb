@@ -5,7 +5,6 @@ module Clarivate
 
     LINKS_HOST = 'https://ws.isiknowledge.com'.freeze
     LINKS_PATH = '/cps/xrpc'.freeze
-
     ALL_FIELDS = %w(ut doi pmid title isbn issn issue vol year tpages sourceURL timesCited citingArticlesURL relatedRecordsURL).freeze
 
     attr_reader :username, :password, :host
@@ -34,18 +33,12 @@ module Clarivate
     def links(ids, fields: %w(doi pmid))
       raise ArgumentError, 'ids must be Enumerable' unless ids.is_a? Enumerable
       raise ArgumentError, 'fields cannot be empty' if fields.blank?
-      collect_links(ids, fields)
+      ids.each_slice(50).inject({}) do |links, slice_ids|
+        links.merge request_batch(slice_ids, fields)
+      end
     end
 
     private
-
-      # @param [Array<String>] ids
-      # @param [Array<String>] fields
-      def collect_links(ids, fields)
-        ids.each_slice(50).inject({}) do |links, slice_ids|
-          links.merge request_batch(slice_ids, fields)
-        end
-      end
 
       # @return [Faraday::Connection]
       def connection

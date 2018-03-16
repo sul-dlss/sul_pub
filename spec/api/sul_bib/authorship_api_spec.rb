@@ -369,27 +369,23 @@ describe SulBib::API, :vcr do
         context 'returns 404 with error message for invalid' do
           after { expect(response.status).to eq 404 }
           it 'sul_pub_id' do
-            request_data = no_pub_params.merge(sul_pub_id: id)
-            post '/authorship', request_data.to_json, headers
+            post '/authorship', no_pub_params.merge(sul_pub_id: id).to_json, headers
             expect(result['error']).to include(id, 'does not exist')
           end
           it 'pmid' do
             expect(Publication).to receive(:find_or_create_by_pmid)
-            request_data = no_pub_params.merge(pmid: id)
-            post '/authorship', request_data.to_json, headers
+            post '/authorship', no_pub_params.merge(pmid: id).to_json, headers
             expect(result['error']).to include(id, 'was not found')
           end
           it 'sw_id' do
             expect(Publication).to receive(:find_by).with(sciencewire_id: id)
             expect(SciencewireSourceRecord).to receive(:get_pub_by_sciencewire_id)
-            request_data = no_pub_params.merge(sw_id: id)
-            post '/authorship', request_data.to_json, headers
+            post '/authorship', no_pub_params.merge(sw_id: id).to_json, headers
             expect(result['error']).to include(id, 'was not found')
           end
           it 'wos_uid' do
-            expect(WebOfScience.harvester).to receive(:process_uids).with(Author, [id])
-            request_data = no_pub_params.merge(wos_uid: id)
-            post '/authorship', request_data.to_json, headers
+            expect(WebOfScience.harvester).to receive(:author_uid).with(Author, id)
+            post '/authorship', no_pub_params.merge(wos_uid: id).to_json, headers
             expect(result['error']).to include(id, 'was not found')
           end
         end

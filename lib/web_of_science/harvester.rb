@@ -1,14 +1,9 @@
-require 'identifiers'
-
 module WebOfScience
-
   # Application logic to harvest publications from Web of Science;
   # This is the bridge between the WebOfScience API and the SUL-PUB application.
   # This class is responsible for processing WebOfScience API response data
   # to integrate it into the application data models.
   class Harvester < ::Harvester::Base
-    include WebOfScience::Contributions
-
     # @param [Enumerable<Author>] authors
     # @param [Hash] options
     # @return [void]
@@ -54,9 +49,33 @@ module WebOfScience
       process_records author, queries.retrieve_by_id(uids)
     end
 
+    # For authorship_api, pair author to pub/contrib, fetching WOS record if necessary
+    # @param author [Author]
+    # @param uid [String] WOS-UID value (not URI)
+    # @return [Publication, nil] Publication created or associated with the Author
+    def author_uid(author, uid)
+      raise(ArgumentError, 'author must be an Author') unless author.is_a? Author
+      found_uid = author_contributions(author, [uid]).first ||
+                  process_records(author, queries.retrieve_by_id([uid])).first
+      return if found_uid.blank?
+      Publication.find_by(wos_uid: found_uid)
+    end
+
     private
 
       delegate :logger, :queries, to: :WebOfScience
+
+      # Find any matching contributions by author and WOS-UID; create a contribution for any
+      # existing publication without one for the author in question.
+      # @param author [Author]
+      # @param uids [Array<String>]
+      # @return [Array<String>] uids guaranteed to have matching Publication and Contribution
+      def author_contributions(author, uids)
+        Publication.where(wos_uid: uids).find_each.map do |pub|
+          author.assign_pub(pub)
+          pub.wos_uid
+        end
+      end
 
       # Consistent log prefix for status updates
       # @param author [Author]
