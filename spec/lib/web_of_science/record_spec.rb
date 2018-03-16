@@ -152,4 +152,14 @@ describe WebOfScience::Record do
       expect(xml_result).not_to include html_char
     end
   end
+
+  describe '#find_or_create_model' do
+    it 'persists WebOfScienceSourceRecord as needed' do
+      expect(WebOfScienceSourceRecord.find_by(uid: wos_record_encoded.uid)).to be_nil
+      wssr = wos_record_encoded.find_or_create_model
+      expect(wssr).to be_a(WebOfScienceSourceRecord)
+      expect(wssr.uid).to eq(wos_record_encoded.uid)
+      expect(WebOfScienceSourceRecord.find_by(uid: wos_record_encoded.uid)).to eq(wssr)
+    end
+  end
 end

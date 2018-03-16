@@ -139,15 +139,6 @@ describe WebOfScience::ProcessRecords, :vcr do
       before { allow(links_client).to receive(:links).and_raise(RuntimeError) }
       it_behaves_like 'fail_forward'
     end
-
-    context 'WOS links - identifier update fails' do
-      before do
-        identifiers = WebOfScience::Identifiers.new(records.first)
-        expect(identifiers).to receive(:update).and_raise(RuntimeError)
-        expect(WebOfScience::Identifiers).to receive(:new).and_return(identifiers).at_least(:once)
-      end
-      it_behaves_like 'fail_forward'
-    end
   end
 
   context 'with records from excluded databases' do
@@ -165,15 +156,25 @@ describe WebOfScience::ProcessRecords, :vcr do
     end
   end
 
-  # This scenario includes when the 2nd author wants to approve the same Pub already fetched for another author
+  # This scenario includes when 2nd author is associated w/ a Pub that was already fetched for another author
   context 'WebOfScienceSourceRecord exists, Publication does not' do
     let(:author) { create :author }
-    let(:wos_src_rec) { create :web_of_science_source_record }
-    before { allow(links_client).to receive(:links).with([wos_src_rec.uid]).and_return({}) }
+    let(:wssr) { records.first.find_or_create_model }
+    before do
+      allow(links_client).to receive(:links).and_return({})
+      records.first.find_or_create_model
+    end
 
     describe 'backfills' do
-      it 'new Publications and Contributions' do
-        expect { processor.execute }.to change { author.contributions.count }.from(0).to(2)
+      it 'does not duplicate WebOfScienceSourceRecord' do
+        expect { processor.execute }.not_to change { WebOfScienceSourceRecord.count }
+      end
+      it 'adds new Publications and Contributions' do
+        expect { processor.execute }.to change { author.contributions.count }.from(0).to(1)
+        expect(Publication.find_by(wos_uid: records.first.uid)).not_to be_nil
+      end
+      it 'associates the existing source record' do
+        expect { processor.execute }.to change { wssr.reload.publication }.from(nil).to(Publication)
       end
     end
   end

@@ -116,5 +116,13 @@ module WebOfScience
     def to_xml
       doc.to_xml(save_with: XML_OPTIONS).strip
     end
+
+    # @return [WebOfScienceSourceRecord] pre-extracted and persisted ActiveRecord instance
+    def find_or_create_model
+      WebOfScienceSourceRecord.find_or_create_by(uid: uid) do |rec|
+        rec.record = self
+        rec.database = database
+      end
+    end
   end
 end
