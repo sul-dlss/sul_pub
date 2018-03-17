@@ -8,6 +8,9 @@ describe WebOfScience::ProcessRecords, :vcr do
   let(:uids) { records.uids }
   let(:new_pubs) { Publication.where(wos_uid: uids) }
   let(:new_pub) { new_pubs.first }
+  let(:wos_records_links) do
+    { 'WOS:000288663100014' => { 'pmid' => '21253920', 'doi' => '10.1007/s12630-011-9462-1' } }
+  end
 
   before do
     allow(WebOfScience).to receive(:logger).and_return(Logger.new('/dev/null'))
@@ -116,10 +119,6 @@ describe WebOfScience::ProcessRecords, :vcr do
   end
 
   context 'with WOS records' do
-    let(:wos_records_links) do
-      { 'WOS:000288663100014' => { 'pmid' => '21253920', 'doi' => '10.1007/s12630-011-9462-1' } }
-    end
-
     # Note: "WOS:000288663100014" has a PMID and it gets MESH headings from PubMed
     before do
       allow(links_client).to receive(:links).with(['WOS:000288663100014']).and_return(wos_records_links)
@@ -157,24 +156,75 @@ describe WebOfScience::ProcessRecords, :vcr do
   end
 
   # This scenario includes when 2nd author is associated w/ a Pub that was already fetched for another author
-  context 'WebOfScienceSourceRecord exists, Publication does not' do
+  context 'WebOfScienceSourceRecord exists' do
     let(:author) { create :author }
     let(:wssr) { records.first.find_or_create_model }
-    before do
-      allow(links_client).to receive(:links).and_return({})
-      records.first.find_or_create_model
+    before { records.first.find_or_create_model }
+
+    context 'Publication does not' do
+      before { allow(links_client).to receive(:links).and_return({}) }
+
+      describe 'backfills' do
+        it 'does not duplicate WebOfScienceSourceRecord' do
+          expect { processor.execute }.not_to change { WebOfScienceSourceRecord.count }
+        end
+        it 'adds new Publications and Contributions' do
+          expect { processor.execute }.to change { author.contributions.count }.from(0).to(1)
+          expect(Publication.find_by(wos_uid: records.first.uid)).not_to be_nil
+        end
+        it 'associates the existing source record' do
+          expect { processor.execute }.to change { wssr.reload.publication }.from(nil).to(Publication)
+        end
+      end
     end
 
-    describe 'backfills' do
-      it 'does not duplicate WebOfScienceSourceRecord' do
-        expect { processor.execute }.not_to change { WebOfScienceSourceRecord.count }
+    context 'matching non-WOS Publication also exists' do
+      # this is a pain to setup.  kludge in the pmid to the fixture XML literal
+      let(:wos_rec) { WebOfScience::Record.new(record: record_xml.gsub(/<identifiers>/, %[<identifiers><identifier type='pmid' value='21253920'/>])) }
+      let(:records) { WebOfScience::Records.new(records: "<records>#{wos_rec.to_xml}</records>") }
+      let(:pub) do
+        build :publication, sciencewire_id: 123, pmid: '21253920', pubhash_needs_update: true,
+          pub_hash: { identifier: [{ type: 'pmid', id: '21253920', url: 'whatever' }, { type: 'doi', id: 'ABCXYZ', url: 'theother' }] }
       end
-      it 'adds new Publications and Contributions' do
-        expect { processor.execute }.to change { author.contributions.count }.from(0).to(1)
-        expect(Publication.find_by(wos_uid: records.first.uid)).not_to be_nil
+      let(:uid) { records.first.uid }
+
+      before do
+        allow(links_client).to receive(:links).and_return(wos_records_links)
+        wos_rec.identifiers.update('pmid' => '21253920')
+        pub.save!
       end
-      it 'associates the existing source record' do
-        expect { processor.execute }.to change { wssr.reload.publication }.from(nil).to(Publication)
+
+      describe '#matching_publication' do
+        let(:match) { PublicationIdentifier.find_by(identifier_type: 'pmid', identifier_value: '21253920') }
+        let(:other_id) { create :doi_pub_id, identifier_value: '10.1007/s12630-011-9462-1' }
+        it 'finds the Publication by non-WOS IDs' do
+          expect(PublicationIdentifier.where(identifier_type: 'WosUID').count).to eq 0
+          expect(match).not_to be_nil
+          expect(match.publication.wos_uid).to be_nil
+          expect(processor.send(:matching_publication, wos_rec)).not_to be_nil
+        end
+        it 'adheres to a priority on matching' do
+          expect(wos_rec.doi).to eq(other_id.identifier_value)
+          expect(PublicationIdentifier.where(identifier_type: 'doi').count).to eq 2
+          expect(processor.send(:matching_publication, wos_rec)).to eq(other_id.publication) # match on DOI before PMID
+          expect(pub).not_to eq(other_id.publication)
+        end
+      end
+
+      describe 'backfills' do
+        it 'does not duplicate WebOfScienceSourceRecord' do
+          expect { processor.execute }.not_to change { WebOfScienceSourceRecord.count }
+        end
+        it 'adds new Contribution' do
+          expect { processor.execute }.to change { author.contributions.count }.from(0).to(1)
+          expect(Publication.find_by(wos_uid: records.first.uid)).not_to be_nil
+        end
+        it 'sets wos_uid on the Pub' do
+          expect { processor.execute }.to change { pub.reload.wos_uid }.from(nil).to(uid)
+        end
+        it 'associates source record to existing Pub' do
+          expect { processor.execute }.to change { WebOfScienceSourceRecord.find_by(uid: uid).publication }.from(nil).to(pub)
+        end
       end
     end
   end

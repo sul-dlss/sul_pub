@@ -54,10 +54,12 @@ module WebOfScience
         new_uids = []
         records.each do |rec|
           pub = matching_publication(rec)
+          wssr = wssrs_hash[rec.uid]
           if pub
             author.assign_pub(pub)
+            wssr.link_publication(pub) if pub.wos_uid.nil? || wssr.publication.blank?
           else
-            create_publication(rec, wssrs_hash[rec.uid]) && new_uids << rec.uid
+            create_publication(rec, wssr) && new_uids << rec.uid
           end
         end
         new_uids.uniq
