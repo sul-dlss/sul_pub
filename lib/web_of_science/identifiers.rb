@@ -16,7 +16,7 @@ module WebOfScience
 
     # @param rec [WebOfScience::Record]
     def initialize(rec)
-      raise(ArgumentError, 'ids must be a WebOfScience::Record') unless rec.is_a? WebOfScience::Record
+      raise(ArgumentError, 'rec must be a WebOfScience::Record') unless rec.is_a? WebOfScience::Record
       extract_ids rec.doc
       extract_uid rec.doc
       parse_medline rec.doc

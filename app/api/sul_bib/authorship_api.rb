@@ -114,7 +114,8 @@ module SulBib
       # @param [String] wos_uid WebOfScience ID
       # @return [Publication]
       def get_publication_via_wos!(author, wos_uid)
-        WebOfScience.harvester.author_uid(author, wos_uid) ||
+        WebOfScience.harvester.author_uid(author, wos_uid)
+        Publication.find_by(wos_uid: wos_uid) ||
           log_and_error!("The #{wos_uid} publication was not found either locally or at WebOfScience.")
       end
 

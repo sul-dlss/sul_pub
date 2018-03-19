@@ -17,6 +17,15 @@ class WebOfScienceSourceRecord < ActiveRecord::Base
     @record ||= WebOfScience::Record.new(record: source_data)
   end
 
+  # @param [Publication] pub must already be persisted, like any association.create
+  def link_publication(pub)
+    transaction do
+      self.publication = pub
+      save!
+      pub.update(wos_uid: uid)
+    end
+  end
+
   private
 
     # Can initialize with either source_data String or record (WebOfScience::Record)
