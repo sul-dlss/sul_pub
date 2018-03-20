@@ -2,7 +2,7 @@ module ScienceWire
   ##
   # Brokers queries for an author
   class HarvestBroker
-    attr_reader :author, :sciencewire_harvester, :seed_list, :alternate_name_query
+    attr_reader :author, :sciencewire_harvester, :alternate_name_query
     delegate :use_middle_name, :sciencewire_client, to: :sciencewire_harvester
 
     ##

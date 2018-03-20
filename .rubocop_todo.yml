@@ -74,12 +74,6 @@ Layout/SpaceInsideArrayLiteralBrackets:
     - 'lib/web_of_science/queries.rb'
     - 'spec/integration/smart_query_spec.rb'
 
-# Offense count: 2
-Lint/DuplicateMethods:
-  Exclude:
-    - 'lib/science_wire/harvest_broker.rb'
-    - 'lib/science_wire/request.rb'
-
 # Offense count: 3
 Lint/InterpolationCheck:
   Exclude:
