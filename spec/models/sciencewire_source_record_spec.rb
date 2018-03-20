@@ -146,7 +146,7 @@ describe SciencewireSourceRecord, :vcr do
                                    pages: '910-922')
       end
       it 'extracts keywords' do
-        expect(subject[:keywords_sw]).to include(*%w(ECOSYSTEMS FISHERIES aquaculture seafood status FAO mariculture assessment fisheries indicator))
+        expect(subject[:keywords_sw]).to include('ECOSYSTEMS', 'FISHERIES', 'aquaculture', 'seafood', 'status', 'FAO', 'mariculture', 'assessment', 'fisheries', 'indicator')
       end
       it 'extracts ScienceWire statistics' do
         expect(subject).to include(numberofreferences_sw: '27',
