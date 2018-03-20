@@ -54,9 +54,7 @@ module SulBib
         # So, this next line returns a 303 with Location equal to the pub's URI
         redirect env['REQUEST_URI'] + '/' + existing_record.publication_id.to_s
       else
-        if !validate_or_create_authors(pub_hash[:authorship])
-          error!('You have not supplied a valid authorship record.', 406)
-        end
+        error!('You have not supplied a valid authorship record.', 406) if !validate_or_create_authors(pub_hash[:authorship])
         pub = Publication.build_new_manual_publication(pub_hash, original_source)
         pub.save!
         pub.reload

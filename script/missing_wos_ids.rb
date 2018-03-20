@@ -23,9 +23,7 @@ class MissingWosId
         logger.warn "Publication #{pub[:id]} has a WoSItemID identity"
       else
         src = SciencewireSourceRecord.find_by_sciencewire_id(pub.sciencewire_id)
-        if src.publication.wos_item_id.blank?
-          logger.warn "Publication #{pub[:id]} has no WoSItemID in SciencewireSourceRecord"
-        end
+        logger.warn "Publication #{pub[:id]} has no WoSItemID in SciencewireSourceRecord" if src.publication.wos_item_id.blank?
       end
       return true
     end
@@ -57,9 +55,7 @@ class MissingWosId
         src.sciencewire_update
         src.reload
         if src.source_fingerprint != fingerprint_before
-          if src.publication.wos_item_id.present?
-            logger.warn "Publication #{pub[:id]} has a new WoSItemID in SciencewireSourceRecord"
-          end
+          logger.warn "Publication #{pub[:id]} has a new WoSItemID in SciencewireSourceRecord" if src.publication.wos_item_id.present?
           pub.rebuild_pub_hash || raise("Error(s) saving Publication: #{pub.errors}")
           logger.warn "Updated Publication #{pub[:id]} with an updated SciencewireSourceRecord"
         end

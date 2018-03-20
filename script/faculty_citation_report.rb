@@ -20,9 +20,7 @@
 ##"LastName,FirstName Middle Initial",
 ##"AnotherLast,Another First",sunetIDhere_if_available
 
-if Settings.WOS.enabled
-  puts "******* WARNING!  WoS API is enabled, which makes this report unreliable for the number of times cited.  Publication counts will still be correct. ******"
-end
+puts "******* WARNING!  WoS API is enabled, which makes this report unreliable for the number of times cited.  Publication counts will still be correct. ******" if Settings.WOS.enabled
 
 def get_contributions_for_sunet(sunetid)
   a = Author.where(sunetid: sunetid)
@@ -61,9 +59,7 @@ def citation_search(input_file, output_file)
 
       if sunet.blank? # no sunet provided in the input
         authors = Author.where(official_last_name: last_name, official_first_name: first_name, official_middle_name: middle_name, active_in_cap: true).where('sunetid is not null AND sunetid != ""')
-        if authors.empty? # if none found with middle name, drop the middle name
-          authors = Author.where(official_last_name: last_name, official_first_name: first_name, active_in_cap: true).where('sunetid is not null AND sunetid != ""')
-        end
+        authors = Author.where(official_last_name: last_name, official_first_name: first_name, active_in_cap: true).where('sunetid is not null AND sunetid != ""') if authors.empty? # if none found with middle name, drop the middle name
       else
         authors = Author.where(sunetid: sunet.strip)
       end
