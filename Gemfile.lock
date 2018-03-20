@@ -480,7 +480,7 @@ DEPENDENCIES
   honeybadger (~> 3.3)
   htmlentities (~> 4.3)
   httpclient (~> 2.8)
-  identifiers (~> 0.10)
+  identifiers (~> 0.11)
   jbuilder
   jquery-rails
   kaminari
