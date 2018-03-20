@@ -34,9 +34,9 @@ module ScienceWire
         def text_search_query_predicate
           if institution.present? && author_attributes.email.present?
             "(#{name.text_search_query} or \"#{author_attributes.email}\") and \"#{institution}\""
-          elsif institution.present? && !author_attributes.email.present?
+          elsif institution.present? && author_attributes.email.blank?
             "(#{name.text_search_query}) and \"#{institution}\""
-          elsif !institution.present? && author_attributes.email.present?
+          elsif institution.blank? && author_attributes.email.present?
             "#{name.text_search_query} or \"#{author_attributes.email}\""
           else
             name.text_search_query.to_s

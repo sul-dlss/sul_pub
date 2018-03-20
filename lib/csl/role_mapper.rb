@@ -94,7 +94,7 @@ module Csl
         def parse_family_name(author)
           last_name = author[:lastname]
           last_name = author[:name].split(',').first.strip if last_name.blank? && author[:name].present?
-          last_name.present? ? last_name : nil
+          last_name.presence
         end
 
         # Generic extraction of given name

@@ -20,7 +20,7 @@ module WebOfScience
     # @return [WebOfScience::Retriever]
     def cited_references(uid)
       raise(ArgumentError, 'uid must be a WOS-UID String') if uid.blank?
-      options = [ { key: 'Hot', value: 'On' } ]
+      options = [{ key: 'Hot', value: 'On' }]
       message = base_uid_params.merge(uid: uid,
                                       retrieveParameters: retrieve_parameters(options: options))
       WebOfScience::Retriever.new(:cited_references, message)

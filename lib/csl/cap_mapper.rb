@@ -52,7 +52,7 @@ module Csl
           map = {}
           map['title'] = pub_hash[:title] if pub_hash[:title].present?
           map['abstract'] = pub_hash[:abstract] if pub_hash[:abstract].present?
-          map['issued'] = { 'date-parts' => [[ pub_hash[:year] ]] } if pub_hash[:year].present?
+          map['issued'] = { 'date-parts' => [[pub_hash[:year]]] } if pub_hash[:year].present?
           map['URL'] = pub_hash[:publicationUrl] if pub_hash[:publicationUrl].present?
           map['page'] = pub_hash[:pages] if pub_hash[:pages].present?
           map

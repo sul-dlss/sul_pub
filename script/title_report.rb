@@ -70,7 +70,6 @@ class TitleReport
     @lines.each do |line|
       @count += 1
       begin
-
         parse_line line
 
       rescue => e
