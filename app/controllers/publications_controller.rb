@@ -29,9 +29,7 @@ class PublicationsController < ApplicationController
           render status: 404, body: "No such author with capProfileId #{capProfileId}"
           return
         end
-        unless params[:format] =~ /csv/i
-          matching_records = author.publications.order('publications.id').page(page).per(per).select(:pub_hash)
-        end
+        matching_records = author.publications.order('publications.id').page(page).per(per).select(:pub_hash) unless params[:format] =~ /csv/i
       end
       logger.debug("Found #{matching_records.length} records")
 

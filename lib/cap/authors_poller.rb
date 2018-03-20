@@ -63,9 +63,7 @@ module Cap
     end
 
     def process_next_batch_of_authorship_data(json_response)
-      if json_response['count'].blank? || json_response['lastPage'].nil?
-        raise Net::HTTPBadResponse, "Missing JSON data in response: first 500 chars: #{json_response[0..500]}"
-      end
+      raise Net::HTTPBadResponse, "Missing JSON data in response: first 500 chars: #{json_response[0..500]}" if json_response['count'].blank? || json_response['lastPage'].nil?
       return unless json_response['values']
       json_response['values'].each do |record|
         begin

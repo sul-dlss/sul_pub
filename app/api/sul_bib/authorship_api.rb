@@ -39,9 +39,7 @@ module SulBib
       # Find an existing Author by 'cap_profile_id' or 'sul_author_id'.  This
       # helper can retrieve a CAP profile if an author does not exist yet.
       def get_author!(cap_profile_id, sul_author_id)
-        if cap_profile_id.blank? && sul_author_id.blank?
-          log_and_error!("The request is missing 'sul_author_id' and 'cap_profile_id'.", 400)
-        end
+        log_and_error!("The request is missing 'sul_author_id' and 'cap_profile_id'.", 400) if cap_profile_id.blank? && sul_author_id.blank?
         author = cap_profile_id ? get_cap_author(cap_profile_id) : get_sul_author(sul_author_id)
         check_author_ids!(author, cap_profile_id)
         author
@@ -169,9 +167,7 @@ module SulBib
 
       ids = params.slice(:sul_pub_id, :pmid, :sw_id, :wos_uid).to_h.symbolize_keys
       ids.reject! { |_, v| v.blank? }
-      unless ids.any?
-        log_and_error!('There is no valid publication identifier: sul_pub_id || pmid || sw_id || wos_uid.', 400)
-      end
+      log_and_error!('There is no valid publication identifier: sul_pub_id || pmid || sw_id || wos_uid.', 400) unless ids.any?
 
       # Now find an existing sul publication or, if it doesn't exist, it
       # may be fetched from PubMed (pmid), WebOfScience (wos_uid) or ScienceWire (sw_id).

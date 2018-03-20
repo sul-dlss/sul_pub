@@ -53,9 +53,7 @@ namespace :cap_cutover do
         california_physician_license: (row[:ca_license_number])
       )
       # if total_running_count%5000 == 0  then GC.start end
-      if total_running_count % 5000 == 0
-        Rails.logger.debug "#{total_running_count} in #{distance_of_time_in_words_to_now(start_time, true)}"
-      end
+      Rails.logger.debug "#{total_running_count} in #{distance_of_time_in_words_to_now(start_time, true)}" if total_running_count % 5000 == 0
     end
     Rails.logger.info total_running_count.to_s + ' in ' + distance_of_time_in_words_to_now(start_time)
   end
