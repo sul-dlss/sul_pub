@@ -41,5 +41,11 @@ Naming/VariableName:
 Performance/Casecmp:
   Enabled: false
 
+Rails/Blank:
+  UnlessPresent: false
+
+Style/NumericPredicate:
+  Enabled: false
+
 RSpec/NestedGroups:
   Max: 4

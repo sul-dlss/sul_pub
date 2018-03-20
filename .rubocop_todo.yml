@@ -15,14 +15,7 @@ Capybara/FeatureMethods:
 # Offense count: 2
 FactoryBot/DynamicAttributeDefinedStatically:
   Exclude:
-    - 'spec/factories/pubmed_source_records.rb'
     - 'spec/factories/web_of_science_source_record.rb'
-
-# Offense count: 1
-# Cop supports --auto-correct.
-Layout/EmptyLinesAroundBeginBody:
-  Exclude:
-    - 'script/title_report.rb'
 
 # Offense count: 9
 # Cop supports --auto-correct.
@@ -63,39 +56,10 @@ Layout/MultilineMethodCallBraceLayout:
     - 'spec/lib/identifier_parser_spec.rb'
     - 'spec/support/identifier_parser_shared_examples.rb'
 
-# Offense count: 18
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, EnforcedStyleForEmptyBrackets.
-# SupportedStyles: space, no_space, compact
-# SupportedStylesForEmptyBrackets: space, no_space
-Layout/SpaceInsideArrayLiteralBrackets:
-  Exclude:
-    - 'lib/csl/cap_mapper.rb'
-    - 'lib/web_of_science/queries.rb'
-    - 'spec/integration/smart_query_spec.rb'
-
-# Offense count: 2
-Lint/DuplicateMethods:
-  Exclude:
-    - 'lib/science_wire/harvest_broker.rb'
-    - 'lib/science_wire/request.rb'
-
 # Offense count: 3
 Lint/InterpolationCheck:
   Exclude:
     - 'spec/controllers/pages_controller_spec.rb'
-
-# Offense count: 1
-# Cop supports --auto-correct.
-Lint/ScriptPermission:
-  Exclude:
-    - 'Rakefile'
-
-# Offense count: 1
-# Cop supports --auto-correct.
-Lint/UnneededSplatExpansion:
-  Exclude:
-    - 'spec/models/sciencewire_source_record_spec.rb'
 
 # Offense count: 64
 Metrics/AbcSize:
@@ -383,18 +347,6 @@ Rails/ApplicationRecord:
     - 'app/models/user_submitted_source_record.rb'
     - 'app/models/web_of_science_source_record.rb'
 
-# Offense count: 16
-# Cop supports --auto-correct.
-# Configuration parameters: NilOrEmpty, NotPresent, UnlessPresent.
-Rails/Blank:
-  Exclude:
-    - 'app/models/author.rb'
-    - 'lib/science_wire/query/publication_query_by_author_name.rb'
-    - 'lib/science_wire/query/suggestion.rb'
-    - 'lib/tasks/cap.rake'
-    - 'lib/tasks/pubmed.rake'
-    - 'lib/tasks/sw.rake'
-
 # Offense count: 20
 # Cop supports --auto-correct.
 # Configuration parameters: Whitelist.
@@ -410,12 +362,6 @@ Rails/DynamicFindBy:
     - 'script/missing_wos_ids.rb'
     - 'script/refresh_existing_authors.rb'
     - 'spec/models/publication_spec.rb'
-
-# Offense count: 1
-# Cop supports --auto-correct.
-Rails/EnvironmentComparison:
-  Exclude:
-    - 'lib/tasks/cap_cutover.rake'
 
 # Offense count: 3
 # Configuration parameters: Include.
@@ -445,12 +391,6 @@ Rails/HttpPositionalArguments:
 Rails/InverseOf:
   Exclude:
     - 'app/models/contribution.rb'
-
-# Offense count: 1
-# Cop supports --auto-correct.
-Rails/Presence:
-  Exclude:
-    - 'lib/csl/role_mapper.rb'
 
 # Offense count: 69
 # Cop supports --auto-correct.

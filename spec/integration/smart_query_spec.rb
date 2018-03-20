@@ -76,7 +76,7 @@ describe 'Smart query', 'data-integration': true do
     let(:mn) { 'Lee' }
     let(:ln) { 'Weber' }
     let(:known_publications) do
-      Set.new([ 9_739_185, 7_341_163, 43_179_644, 2_130_286 ])
+      Set.new([9_739_185, 7_341_163, 43_179_644, 2_130_286])
     end
     let(:known_keywords) do
       [
@@ -93,7 +93,7 @@ describe 'Smart query', 'data-integration': true do
       ].map(&:downcase).to_set
     end
     let(:known_doi) do
-      Set.new([ '10.1016/j.pscychresns.2005.07.003' ])
+      Set.new(['10.1016/j.pscychresns.2005.07.003'])
     end
 
     context 'Flinders' do
@@ -113,7 +113,7 @@ describe 'Smart query', 'data-integration': true do
   context 'with email address only' do
     context 'using Darren Hardy' do
       it 'returns suggestions' do
-        known_confirmed_publications = [ 64_367_696 ]
+        known_confirmed_publications = [64_367_696]
         suggestions = client.id_suggestions(
           ScienceWire::AuthorAttributes.new(
             Agent::AuthorName.new(
@@ -125,7 +125,7 @@ describe 'Smart query', 'data-integration': true do
         expect(suggestions).to include(*known_confirmed_publications)
       end
       it 'returns suggestions' do
-        known_confirmed_publications = [ 64_367_696 ]
+        known_confirmed_publications = [64_367_696]
         suggestions = client.id_suggestions(
           ScienceWire::AuthorAttributes.new(
             Agent::AuthorName.new(
@@ -137,7 +137,7 @@ describe 'Smart query', 'data-integration': true do
         expect(suggestions).to include(*known_confirmed_publications)
       end
       it 'returns suggestions' do
-        known_confirmed_publications = [ 61_063_453, 64_367_696, 67_380_595 ]
+        known_confirmed_publications = [61_063_453, 64_367_696, 67_380_595]
         suggestions = client.id_suggestions(
           ScienceWire::AuthorAttributes.new(
             Agent::AuthorName.new(
@@ -151,7 +151,7 @@ describe 'Smart query', 'data-integration': true do
     end
     context 'using Jack Reed' do
       it 'returns suggestions' do
-        known_confirmed_publications = [ 60_931_052 ]
+        known_confirmed_publications = [60_931_052]
         suggestions = client.id_suggestions(
           ScienceWire::AuthorAttributes.new(
             Agent::AuthorName.new(
@@ -163,7 +163,7 @@ describe 'Smart query', 'data-integration': true do
         expect(suggestions).to include(*known_confirmed_publications)
       end
       it 'returns suggestions' do
-        known_confirmed_publications = [ 69_178_421 ]
+        known_confirmed_publications = [69_178_421]
         suggestions = client.id_suggestions(
           ScienceWire::AuthorAttributes.new(
             Agent::AuthorName.new(

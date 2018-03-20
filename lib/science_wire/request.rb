@@ -4,7 +4,7 @@ module ScienceWire
   # response
   class Request
     attr_accessor :client
-    attr_reader :timeout_period, :body, :path, :response, :request_method
+    attr_reader :timeout_period, :body, :path, :request_method
     ##
     # @param [ScienceWire::Client] client
     # @param [Symbol] request_method
