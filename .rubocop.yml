@@ -35,7 +35,7 @@ Metrics/LineLength:
   Exclude:
     - "spec/factories/**/*" # factories contain long string literals
 
-Style/VariableName:
+Naming/VariableName:
   Enabled: false
 
 Performance/Casecmp:
