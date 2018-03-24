@@ -4,7 +4,7 @@ class Author < ActiveRecord::Base
   has_paper_trail on: [:destroy]
   validates :cap_profile_id, uniqueness: true, presence: true
 
-  has_many :author_identities, dependent: :destroy, autosave: true
+  has_many :author_identities, dependent: :destroy, autosave: true, after_add: :make_dirty
   has_many :contributions, dependent: :destroy
   has_many :publications, through: :contributions
 
@@ -13,7 +13,7 @@ class Author < ActiveRecord::Base
   alias_attribute :middle_name, :preferred_middle_name
   alias_attribute :last_name, :preferred_last_name
 
-  attr_accessor :alt_identities_changed, :harvested
+  attr_accessor :alt_identities_changed, :harvested, :dirty
 
   # these methods allow us to consider any changes to the number of alternative identities
   #   as a change to the author, which is useful to ensure harvesting is triggered when an author identity is updated
@@ -31,6 +31,18 @@ class Author < ActiveRecord::Base
     super
     self.alt_identities_changed = false
   end
+
+  # these methods, along with the after_add callback on the author_identities assocation,
+  #  allow us to consider any changes to alternative identities as a change to the author, which is
+  #  useful to ensure harvesting is triggered when an author identity is changed
+  def make_dirty(_record)
+    self.dirty = true
+  end
+
+  def changed?
+    dirty || super
+  end
+  ##
 
   # The default institution is set in Settings.HARVESTER.INSTITUTION.name
   # @return [String] institution

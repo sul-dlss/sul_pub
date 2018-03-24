@@ -1,6 +1,6 @@
 class AuthorIdentity < ActiveRecord::Base
   has_paper_trail on: [:destroy]
-  belongs_to :author, inverse_of: :author_identities
+  belongs_to :author, touch: true, inverse_of: :author_identities
 
   # required attributes will raise exceptions if nil
   validates :author, :first_name, :last_name, presence: true
