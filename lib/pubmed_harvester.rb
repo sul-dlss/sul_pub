@@ -8,7 +8,7 @@ class PubmedHarvester
     return [pub.pub_hash] if pub && pub.authoritative_pmid_source?
     result = fetch_remote_pubmed(pmid)
     return result unless result.empty?
-    [pub.pub_hash] # non-authoritative local hit
+    pub.blank? ? [] : [pub.pub_hash] # non-authoritative local hit if found
   end
 
   # @param [String] pmid Pubmed ID
