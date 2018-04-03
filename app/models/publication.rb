@@ -62,12 +62,14 @@ class Publication < ActiveRecord::Base
 
   def self.find_by_doi(doi)
     Publication.includes(:publication_identifiers)
-               .find_by("publication_identifiers.identifier_type": 'doi', "publication_identifiers.identifier_value": doi)
+               .where("publication_identifiers.identifier_type": 'doi', "publication_identifiers.identifier_value": doi)
+               .find_by('wos_uid IS NOT null OR sciencewire_id IS NOT NULL')
   end
 
   def self.find_by_pmid_pub_id(pmid)
     Publication.includes(:publication_identifiers)
-               .find_by("publication_identifiers.identifier_type": 'pmid', "publication_identifiers.identifier_value": pmid)
+               .where("publication_identifiers.identifier_type": 'pmid', "publication_identifiers.identifier_value": pmid)
+               .find_by('wos_uid IS NOT null OR sciencewire_id IS NOT NULL OR pmid IS NOT null')
   end
 
   # Queries publication_identifiers (like the poorly-named find_by_xxx methods above)
