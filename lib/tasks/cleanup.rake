@@ -9,7 +9,7 @@ namespace :cleanup do
   # This rake task takes in two cap_profile_ids and will merge all of the publications *from* DUPE_CAP_PROFILED_ID's profile *into* PRIMARY_CAP_PROFILE_ID's profile.
   # It will then deactivate DUPE_CAP_PROFILED_ID's profile (which should now have no publications associated with it) to prevent harvesting into it.
 
-  # bundle exec RAILS_ENV=production rake cleanup:merge_profiles [123,456] # will merge all publications from cap_profile_id 456 into 123, without duplication
+  # RAILS_ENV=production bundle exec rake cleanup:merge_profiles[123,456] # will merge all publications from cap_profile_id 456 into 123, without duplication
   task :merge_profiles, [:primary_cap_profile_id, :duped_cap_profile_id] => :environment do |_t, args|
     primary_cap_profile_id = args[:primary_cap_profile_id] # the profile you will be merging publications into
     duped_cap_profile_id = args[:duped_cap_profile_id] # the profile you will be merging publications out of and will be disabled
