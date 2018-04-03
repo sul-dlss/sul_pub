@@ -3,6 +3,7 @@ describe DoiSearch do
   let(:doi_identifier) { create(:doi_pub_id, identifier_value: doi_value) }
 
   before(:each) do
+    doi_identifier.publication.wos_uid = '12345'
     doi_identifier.publication.save
     allow(Settings.SCIENCEWIRE).to receive(:enabled).and_return(false) # default
     allow(Settings.WOS).to receive(:enabled).and_return(false) # default
