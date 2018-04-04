@@ -6,12 +6,12 @@ end
 
 set :output, 'log/cron.log'
 
-# fortnightly sciencewire harvest at 5pm in qa, on the 5th and 20th of the month
+# fortnightly harvest at 5pm in qa, on the 5th and 20th of the month
 every "0 17 8,23 * *", roles: [:harvester_qa] do
   rake 'wos:harvest_authors_update'
 end
 
-# fortnightly sciencewire harvest at 5pm in prod, on the 1st and 15th of the month
+# fortnightly harvest at 5pm in prod, on the 1st and 15th of the month
 every "0 17 1,15 * *", roles: [:harvester_prod] do
   rake 'wos:harvest_authors_update'
 end
