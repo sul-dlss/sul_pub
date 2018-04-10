@@ -58,6 +58,11 @@ describe PubmedHarvester, :vcr do
         expect(h.size).to eq 1
       end
 
+      it 'returns an empty array when no pubs found anywhere' do
+        h = PubmedHarvester.search_all_sources_by_pmid('crap')
+        expect(h.size).to eq 0
+      end
+
       context 'duplicate PMIDs' do
         before do
           publication.pmid = 99_999_999 # Pubmed ID that does not exist
