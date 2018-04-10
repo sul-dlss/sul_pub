@@ -12,7 +12,7 @@ gem 'uglifier', '~> 4.1'
 # JS Runtime. See https://github.com/rails/execjs#readme for more supported runtimes
 gem 'therubyracer'
 
-gem 'mysql2', '~> 0.4.10'
+gem 'mysql2', '~> 0.5.0'
 
 gem 'nokogiri', '>= 1.7.1'
 
