@@ -466,6 +466,7 @@ DEPENDENCIES
   config
   coveralls (~> 0.8)
   csl-styles (~> 1.0)
+  daemons
   database_cleaner
   delayed_job
   delayed_job_active_record
