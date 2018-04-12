@@ -6,9 +6,7 @@ describe PubmedSourceRecord, :vcr do
   end
 
   describe 'parses valid <Author> examples' do
-    ##
-    # Example <Author> records from No. 20 at
-    # https://www.nlm.nih.gov/bsd/licensee/elements_descriptions.html
+    # Example <Author> records from No. 20 at https://www.nlm.nih.gov/bsd/licensee/elements_descriptions.html
     let(:author_valid) do
       {
         Abrams: {
@@ -55,8 +53,7 @@ describe PubmedSourceRecord, :vcr do
     end
 
     def check_author_hash(author)
-      author_xml = author_valid[author][:xml]
-      author_hash = subject.send(:author_to_hash, author_xml)
+      author_hash = subject.send(:author_to_hash, author_valid[author][:xml])
       expect(author_hash).to eq author_valid[author][:hash]
     end
     it 'extracts names for Amara example' do
@@ -89,41 +86,21 @@ describe PubmedSourceRecord, :vcr do
     it 'parses <Author> without <ForeName> element' do
       check_author_hash(:Johnson)
     end
+    it 'extracts names when ValidYN attribute is missing' do
+      author = author_doc(' <Author> <LastName>Whitely</LastName> <ForeName>R J</ForeName> <Initials>RJ</Initials> </Author>')
+      expect(subject.send(:author_to_hash, author)).to eq(firstname: 'R', middlename: 'J', lastname: 'Whitely')
+    end
   end
 
   describe 'parses invalid <Author> examples' do
-    let(:author_invalid) do
-      {
-        # When an author name is corrected, it is still in the AuthorList, but
-        # it is flagged with `ValidYN="N"`.
-        Whitely: {
-          xml: author_doc(' <Author ValidYN="N"> <LastName>Whitely</LastName> <ForeName>R J</ForeName> <Initials>RJ</Initials> </Author>'),
-          hash: nil
-        },
-        Whitely_Malformed: { # missing ValidYN attribute
-          xml: author_doc(' <Author> <LastName>Whitely</LastName> <ForeName>R J</ForeName> <Initials>RJ</Initials> </Author>'),
-          hash: nil
-        },
-        Collective: {
-          xml: author_doc(' <Author ValidYN="Y"> <CollectiveName>SBU-group. Swedish Council of Technology Assessment in Health Care</CollectiveName> </Author>'),
-          hash: nil
-        }
-      }
+    # When an author name is corrected, the uncorrected form is still in the AuthorList, but flagged with ValidYN="N"
+    it 'extracts nothing when ValidYN="N"' do
+      author = author_doc(' <Author ValidYN="N"> <LastName>Whitely</LastName> <ForeName>R J</ForeName> <Initials>RJ</Initials> </Author>')
+      expect(subject.send(:author_to_hash, author)).to be_nil
     end
-
-    def check_author_hash(author)
-      author_xml = author_invalid[author][:xml]
-      author_hash = subject.send(:author_to_hash, author_xml)
-      expect(author_hash).to eq author_invalid[author][:hash]
-    end
-    it 'extracts nothing for Whitely example' do
-      check_author_hash(:Whitely)
-    end
-    it 'extracts nothing for malformed Whitely example' do
-      check_author_hash(:Whitely_Malformed)
-    end
-    it 'extracts nothing for Collective example' do
-      check_author_hash(:Collective)
+    it 'extracts nothing for CollectiveName' do
+      author = author_doc(' <Author ValidYN="Y"> <CollectiveName>SBU-group. Swedish Council of Technology Assessment in Health Care</CollectiveName> </Author>')
+      expect(subject.send(:author_to_hash, author)).to be_nil
     end
   end
 

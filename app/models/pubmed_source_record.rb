@@ -185,10 +185,10 @@ class PubmedSourceRecord < ActiveRecord::Base
       ##
       # Ignore an empty <Author/> element
       return if author.children.empty?
-      # Ignore an <Author> that contains only <CollectiveName>
+      # Ignore an <Author> that contains <CollectiveName>
       return if author.xpath('CollectiveName').present?
       # Ignore an <Author ValidYN="N"> or missing ValidYN attribute
-      return if author.attributes['ValidYN'].blank? || author.attributes['ValidYN'].value == 'N'
+      return if author.attributes['ValidYN'].present? && author.attributes['ValidYN'].value == 'N'
       # Extract name elements
       lastname = author.xpath('LastName').text
       forename = author.xpath('ForeName').text
