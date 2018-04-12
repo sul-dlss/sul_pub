@@ -95,7 +95,7 @@ OkComputer::Registry.register "wos-records-harvested-recently", WosHitsRecentlyC
 
 class DelayedJobCheck < OkComputer::Check
   def check
-    status = `RAILS_ENV=#{Rails.env} bundle exec bin/delayed_job status`
+    status = `RAILS_ENV=#{Rails.env} bundle exec bin/delayed_job status -n2` # be sure to sync with :delayed_job_workers specified in config/deploy.rb
     result = $?.success?
     mark_failure unless result && status.include?('running')
   end
