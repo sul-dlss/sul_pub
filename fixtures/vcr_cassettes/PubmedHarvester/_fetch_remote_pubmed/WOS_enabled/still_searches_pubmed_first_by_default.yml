@@ -8,13 +8,13 @@ http_interactions:
       string: "&id=24930130"
     headers:
       User-Agent:
-      - Faraday v0.14.0
+      - stanford-library-sul-pub
       Accept:
       - "*/*"
       Accept-Encoding:
       - gzip,deflate
       Date:
-      - Tue, 30 Jan 2018 22:37:06 GMT
+      - Tue, 19 Mar 2019 21:06:16 GMT
       Content-Type:
       - application/x-www-form-urlencoded
   response:
@@ -23,30 +23,34 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 30 Jan 2018 22:37:07 GMT
+      - Tue, 19 Mar 2019 21:06:17 GMT
       Server:
-      - Apache
+      - Finatra
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains; preload
       Content-Security-Policy:
       - upgrade-insecure-requests
-      Access-Control-Allow-Origin:
-      - "*"
+      X-Ratelimit-Remaining:
+      - '9'
+      Ncbi-Phid:
+      - 939B06706F9C03E50000281493D48FA0.1.1.m_3
       Cache-Control:
       - private
-      Ncbi-Phid:
-      - 990C9355A70F16710000000001350134
+      L5d-Success-Class:
+      - '1.0'
       Ncbi-Sid:
-      - 990C9355A70F3931_0309SID
+      - 8DC2497E06B7889F_652CSID
+      Content-Encoding:
+      - gzip
+      X-Ratelimit-Limit:
+      - '10'
+      Access-Control-Allow-Origin:
+      - "*"
       Content-Type:
       - text/xml; charset=UTF-8
       Set-Cookie:
-      - ncbi_sid=990C9355A70F3931_0309SID; domain=.nih.gov; path=/; expires=Wed, 30
-        Jan 2019 22:37:07 GMT
-      Vary:
-      - Accept-Encoding
-      Content-Encoding:
-      - gzip
+      - ncbi_sid=8DC2497E06B7889F_652CSID; domain=.nih.gov; path=/; expires=Thu, 19
+        Mar 2020 21:06:18 GMT
       X-Ua-Compatible:
       - IE=Edge
       X-Xss-Protection:
@@ -57,7 +61,7 @@ http_interactions:
       encoding: UTF-8
       string: |-
         <?xml version="1.0" ?>
-        <!DOCTYPE PubmedArticleSet PUBLIC "-//NLM//DTD PubMedArticle, 1st January 2018//EN" "https://dtd.nlm.nih.gov/ncbi/pubmed/out/pubmed_180101.dtd">
+        <!DOCTYPE PubmedArticleSet PUBLIC "-//NLM//DTD PubMedArticle, 1st January 2019//EN" "https://dtd.nlm.nih.gov/ncbi/pubmed/out/pubmed_190101.dtd">
         <PubmedArticleSet>
         <PubmedArticle>
             <MedlineCitation Status="MEDLINE" Owner="NLM">
@@ -68,9 +72,9 @@ http_interactions:
                     <Day>29</Day>
                 </DateCompleted>
                 <DateRevised>
-                    <Year>2017</Year>
-                    <Month>02</Month>
-                    <Day>20</Day>
+                    <Year>2018</Year>
+                    <Month>12</Month>
+                    <Day>18</Day>
                 </DateRevised>
                 <Article PubModel="Print-Electronic">
                     <Journal>
@@ -92,7 +96,7 @@ http_interactions:
                     </Pagination>
                     <ELocationID EIdType="doi" ValidYN="Y">10.1038/nmeth.2999</ELocationID>
                     <Abstract>
-                        <AbstractText>Existing methods for human induced pluripotent stem cell (hiPSC) cardiac differentiation are efficient but require complex, undefined medium constituents that hinder further elucidation of the molecular mechanisms of cardiomyogenesis. Using hiPSCs derived under chemically defined conditions on synthetic matrices, we systematically developed an optimized cardiac differentiation strategy, using a chemically defined medium consisting of just three components: the basal medium RPMI 1640, L-ascorbic acid 2-phosphate and rice-derived recombinant human albumin. Along with small molecule-based induction of differentiation, this protocol produced contractile sheets of up to 95% TNNT2(+) cardiomyocytes at a yield of up to 100 cardiomyocytes for every input pluripotent cell and was effective in 11 hiPSC lines tested. This chemically defined platform for cardiac specification of hiPSCs will allow the elucidation of cardiomyocyte macromolecular and metabolic requirements and will provide a minimal system for the study of maturation and subtype specification.</AbstractText>
+                        <AbstractText>Existing methods for human induced pluripotent stem cell (hiPSC) cardiac differentiation are efficient but require complex, undefined medium constituents that hinder further elucidation of the molecular mechanisms of cardiomyogenesis. Using hiPSCs derived under chemically defined conditions on synthetic matrices, we systematically developed an optimized cardiac differentiation strategy, using a chemically defined medium consisting of just three components: the basal medium RPMI 1640, L-ascorbic acid 2-phosphate and rice-derived recombinant human albumin. Along with small molecule-based induction of differentiation, this protocol produced contractile sheets of up to 95% TNNT2(+) cardiomyocytes at a yield of up to 100 cardiomyocytes for every input pluripotent cell and was effective in 11 hiPSC lines tested. This chemically defined platform for cardiac specification of hiPSCs will allow the elucidation of cardiomyocyte macromolecular and metabolic requirements and will provide a minimal system for the study of maturation and subtype specification. </AbstractText>
                     </Abstract>
                     <AuthorList CompleteYN="Y">
                         <Author ValidYN="Y">
@@ -244,6 +248,12 @@ http_interactions:
                             <Country>United States</Country>
                         </Grant>
                         <Grant>
+                            <GrantID>T32 HL098049</GrantID>
+                            <Acronym>HL</Acronym>
+                            <Agency>NHLBI NIH HHS</Agency>
+                            <Country>United States</Country>
+                        </Grant>
+                        <Grant>
                             <GrantID>K99 HL121177</GrantID>
                             <Acronym>HL</Acronym>
                             <Agency>NHLBI NIH HHS</Agency>
@@ -280,204 +290,6 @@ http_interactions:
                     </Chemical>
                 </ChemicalList>
                 <CitationSubset>IM</CitationSubset>
-                <CommentsCorrectionsList>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>Nature. 2013 Aug 8;500(7461):222-6</RefSource>
-                        <PMID Version="1">23812591</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>Cell Res. 2011 Mar;21(3):518-29</RefSource>
-                        <PMID Version="1">21243013</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>Cell Stem Cell. 2012 Jan 6;10(1):16-28</RefSource>
-                        <PMID Version="1">22226352</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>Cell Stem Cell. 2011 Feb 4;8(2):228-40</RefSource>
-                        <PMID Version="1">21295278</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>Nat Protoc. 2008;3(5):768-76</RefSource>
-                        <PMID Version="1">18451785</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>BMC Dev Biol. 2010;10:60</RefSource>
-                        <PMID Version="1">20525219</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>Nat Methods. 2011 May;8(5):409-12</RefSource>
-                        <PMID Version="1">21460823</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>Nat Biotechnol. 2007 Sep;25(9):1015-24</RefSource>
-                        <PMID Version="1">17721512</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>PLoS One. 2011;6(8):e23657</RefSource>
-                        <PMID Version="1">21876760</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>Cytotechnology. 2010 Jan;62(1):1-16</RefSource>
-                        <PMID Version="1">20373019</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>Tissue Eng Part C Methods. 2011 Feb;17(2):193-207</RefSource>
-                        <PMID Version="1">20726687</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>Nature. 2008 May 22;453(7194):524-8</RefSource>
-                        <PMID Version="1">18432194</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>Cell Stem Cell. 2013 Jan 3;12(1):127-37</RefSource>
-                        <PMID Version="1">23168164</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>Science. 1998 Nov 6;282(5391):1145-7</RefSource>
-                        <PMID Version="1">9804556</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>PLoS One. 2011;6(4):e18293</RefSource>
-                        <PMID Version="1">21494607</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>Cell Res. 2011 Apr;21(4):579-87</RefSource>
-                        <PMID Version="1">21102549</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>JAMA. 1967 Feb 20;199(8):519-24</RefSource>
-                        <PMID Version="1">4960081</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>Cell Rep. 2012 Nov 29;2(5):1448-60</RefSource>
-                        <PMID Version="1">23103164</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>Stem Cells. 2007 Apr;25(4):929-38</RefSource>
-                        <PMID Version="1">17185609</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>Dev Dyn. 2006 Jul;235(7):1994-2002</RefSource>
-                        <PMID Version="1">16649168</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>Cell Stem Cell. 2012 Aug 3;11(2):242-52</RefSource>
-                        <PMID Version="1">22862949</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>J Biol Chem. 1981 Jan 25;256(2):964-8</RefSource>
-                        <PMID Version="1">7451483</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>PLoS One. 2012;7(12):e52405</RefSource>
-                        <PMID Version="1">23300662</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>PLoS One. 2010;5(6):e11134</RefSource>
-                        <PMID Version="1">20559569</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>Am J Physiol Cell Physiol. 2010 Dec;299(6):C1234-49</RefSource>
-                        <PMID Version="1">20844252</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>Nat Biotechnol. 2010 Jun;28(6):606-10</RefSource>
-                        <PMID Version="1">20512120</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>Proc Jpn Acad Ser B Phys Biol Sci. 2009;85(8):348-62</RefSource>
-                        <PMID Version="1">19838014</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>Stem Cells Dev. 2012 Apr 10;21(6):977-86</RefSource>
-                        <PMID Version="1">22182484</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>Brain Res. 1989 Aug 7;494(1):65-74</RefSource>
-                        <PMID Version="1">2765923</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>Stem Cells. 2010 Apr;28(4):713-20</RefSource>
-                        <PMID Version="1">20201064</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>Cardiovasc Res. 2003 May 1;58(2):423-34</RefSource>
-                        <PMID Version="1">12757876</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>Differentiation. 2008 Apr;76(4):357-70</RefSource>
-                        <PMID Version="1">18021257</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>Nat Commun. 2012;3:1236</RefSource>
-                        <PMID Version="1">23212365</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>J Mol Histol. 2004 Jun;35(5):463-70</RefSource>
-                        <PMID Version="1">15571324</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>Cell Res. 2012 Jan;22(1):219-36</RefSource>
-                        <PMID Version="1">22143566</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>Nature. 2011 May 19;473(7347):326-35</RefSource>
-                        <PMID Version="1">21593865</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>Stem Cells. 2008 Sep;26(9):2257-65</RefSource>
-                        <PMID Version="1">18599809</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>Annu Rev Cell Dev Biol. 2012;28:523-53</RefSource>
-                        <PMID Version="1">23057746</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>Nat Methods. 2011 May;8(5):424-9</RefSource>
-                        <PMID Version="1">21478862</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>Proc Natl Acad Sci U S A. 2012 Jul 3;109(27):E1848-57</RefSource>
-                        <PMID Version="1">22645348</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>Circulation. 2003 Apr 15;107(14):1912-6</RefSource>
-                        <PMID Version="1">12668514</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>Nat Commun. 2014;5:3195</RefSource>
-                        <PMID Version="1">24463987</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>Nat Methods. 2011 Dec;8(12):1037-40</RefSource>
-                        <PMID Version="1">22020065</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>Can J Physiol Pharmacol. 2006 Aug-Sep;84(8-9):935-41</RefSource>
-                        <PMID Version="1">17111039</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>Circ Res. 2012 Oct 12;111(9):1125-36</RefSource>
-                        <PMID Version="1">22912385</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>Nat Nanotechnol. 2012 Mar;7(3):185-90</RefSource>
-                        <PMID Version="1">22327876</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>Nat Commun. 2014;5:3206</RefSource>
-                        <PMID Version="1">24487777</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>Nat Biotechnol. 2010 Jun;28(6):611-5</RefSource>
-                        <PMID Version="1">20512123</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>Stem Cells Dev. 2013 Aug 15;22(16):2315-25</RefSource>
-                        <PMID Version="1">23517131</PMID>
-                    </CommentsCorrections>
-                </CommentsCorrectionsList>
                 <MeshHeadingList>
                     <MeshHeading>
                         <DescriptorName UI="D002454" MajorTopicYN="N">Cell Differentiation</DescriptorName>
@@ -497,8 +309,6 @@ http_interactions:
                         <QualifierName UI="Q000166" MajorTopicYN="Y">cytology</QualifierName>
                     </MeshHeading>
                 </MeshHeadingList>
-                <OtherID Source="NLM">NIHMS599769</OtherID>
-                <OtherID Source="NLM">PMC4169698</OtherID>
             </MedlineCitation>
             <PubmedData>
                 <History>
@@ -542,10 +352,306 @@ http_interactions:
                     <ArticleId IdType="pmc">PMC4169698</ArticleId>
                     <ArticleId IdType="mid">NIHMS599769</ArticleId>
                 </ArticleIdList>
+                <ReferenceList>
+                    <Reference>
+                        <Citation>Nature. 2013 Aug 8;500(7461):222-6</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">23812591</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Cell Res. 2011 Mar;21(3):518-29</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">21243013</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Cell Stem Cell. 2012 Jan 6;10(1):16-28</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">22226352</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Cell Stem Cell. 2011 Feb 4;8(2):228-40</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">21295278</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Nat Protoc. 2008;3(5):768-76</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">18451785</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>BMC Dev Biol. 2010;10:60</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">20525219</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Nat Methods. 2011 May;8(5):409-12</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">21460823</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Nat Biotechnol. 2007 Sep;25(9):1015-24</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">17721512</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>PLoS One. 2011;6(8):e23657</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">21876760</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Cytotechnology. 2010 Jan;62(1):1-16</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">20373019</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Tissue Eng Part C Methods. 2011 Feb;17(2):193-207</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">20726687</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Nature. 2008 May 22;453(7194):524-8</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">18432194</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Cell Stem Cell. 2013 Jan 3;12(1):127-37</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">23168164</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Science. 1998 Nov 6;282(5391):1145-7</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">9804556</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>PLoS One. 2011;6(4):e18293</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">21494607</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Cell Res. 2011 Apr;21(4):579-87</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">21102549</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>JAMA. 1967 Feb 20;199(8):519-24</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">4960081</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Cell Rep. 2012 Nov 29;2(5):1448-60</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">23103164</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Stem Cells. 2007 Apr;25(4):929-38</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">17185609</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Dev Dyn. 2006 Jul;235(7):1994-2002</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">16649168</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Cell Stem Cell. 2012 Aug 3;11(2):242-52</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">22862949</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>J Biol Chem. 1981 Jan 25;256(2):964-8</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">7451483</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>PLoS One. 2012;7(12):e52405</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">23300662</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>PLoS One. 2010;5(6):e11134</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">20559569</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Am J Physiol Cell Physiol. 2010 Dec;299(6):C1234-49</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">20844252</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Nat Biotechnol. 2010 Jun;28(6):606-10</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">20512120</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Proc Jpn Acad Ser B Phys Biol Sci. 2009;85(8):348-62</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">19838014</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Stem Cells Dev. 2012 Apr 10;21(6):977-86</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">22182484</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Brain Res. 1989 Aug 7;494(1):65-74</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">2765923</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Stem Cells. 2010 Apr;28(4):713-20</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">20201064</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Cardiovasc Res. 2003 May 1;58(2):423-34</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">12757876</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Differentiation. 2008 Apr;76(4):357-70</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">18021257</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Nat Commun. 2012;3:1236</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">23212365</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>J Mol Histol. 2004 Jun;35(5):463-70</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">15571324</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Cell Res. 2012 Jan;22(1):219-36</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">22143566</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Nature. 2011 May 19;473(7347):326-35</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">21593865</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Stem Cells. 2008 Sep;26(9):2257-65</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">18599809</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Annu Rev Cell Dev Biol. 2012;28:523-53</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">23057746</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Nat Methods. 2011 May;8(5):424-9</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">21478862</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Proc Natl Acad Sci U S A. 2012 Jul 3;109(27):E1848-57</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">22645348</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Circulation. 2003 Apr 15;107(14):1912-6</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">12668514</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Nat Commun. 2014;5:3195</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">24463987</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Nat Methods. 2011 Dec;8(12):1037-40</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">22020065</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Can J Physiol Pharmacol. 2006 Aug-Sep;84(8-9):935-41</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">17111039</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Circ Res. 2012 Oct 12;111(9):1125-36</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">22912385</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Nat Nanotechnol. 2012 Mar;7(3):185-90</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">22327876</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Nat Commun. 2014;5:3206</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">24487777</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Nat Biotechnol. 2010 Jun;28(6):611-5</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">20512123</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Stem Cells Dev. 2013 Aug 15;22(16):2315-25</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">23517131</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                </ReferenceList>
             </PubmedData>
         </PubmedArticle>
 
         </PubmedArticleSet>
-    http_version: 
-  recorded_at: Tue, 30 Jan 2018 22:37:07 GMT
+    http_version:
+  recorded_at: Tue, 19 Mar 2019 21:06:17 GMT
 recorded_with: VCR 4.0.0

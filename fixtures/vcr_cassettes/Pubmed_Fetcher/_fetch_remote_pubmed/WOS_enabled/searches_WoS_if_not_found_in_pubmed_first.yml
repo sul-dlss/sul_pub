@@ -8,11 +8,11 @@ http_interactions:
       string: ''
     headers:
       User-Agent:
-      - HTTPClient/1.0 (2.8.3, ruby 2.4.1 (2017-03-22))
+      - HTTPClient/1.0 (2.8.3, ruby 2.5.1 (2018-03-29))
       Accept:
       - "*/*"
       Date:
-      - Tue, 30 Jan 2018 23:30:03 GMT
+      - Thu, 04 Apr 2019 21:48:33 GMT
       Authorization:
       - Basic Settings.WOS.AUTH_CODE
       Soapaction:
@@ -25,7 +25,7 @@ http_interactions:
       Content-Type:
       - text/xml
       Date:
-      - Tue, 30 Jan 2018 23:30:03 GMT
+      - Thu, 04 Apr 2019 21:48:34 GMT
       Server:
       - Apache-Coyote/1.1
       Content-Length:
@@ -224,7 +224,7 @@ http_interactions:
           </wsdl:service>
         </wsdl:definitions>
     http_version: 
-  recorded_at: Tue, 30 Jan 2018 23:30:03 GMT
+  recorded_at: Thu, 04 Apr 2019 21:48:33 GMT
 - request:
     method: post
     uri: http://search.webofknowledge.com/esti/wokmws/ws/WOKMWSAuthenticate
@@ -235,11 +235,11 @@ http_interactions:
         xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Body><tns:authenticate></tns:authenticate></soapenv:Body></soapenv:Envelope>
     headers:
       User-Agent:
-      - HTTPClient/1.0 (2.8.3, ruby 2.4.1 (2017-03-22))
+      - HTTPClient/1.0 (2.8.3, ruby 2.5.1 (2018-03-29))
       Accept:
       - "*/*"
       Date:
-      - Tue, 30 Jan 2018 23:30:03 GMT
+      - Thu, 04 Apr 2019 21:48:33 GMT
       Authorization:
       - Basic Settings.WOS.AUTH_CODE
       Soapaction:
@@ -256,11 +256,11 @@ http_interactions:
       Content-Type:
       - text/xml;charset=UTF-8
       Date:
-      - Tue, 30 Jan 2018 23:30:03 GMT
+      - Thu, 04 Apr 2019 21:48:33 GMT
       Server:
       - Apache-Coyote/1.1
       Set-Cookie:
-      - SID=5A7GtrdfrfFgPd11f55
+      - SID=8FCIV1g2UET7mzLzrUj
       Content-Length:
       - '252'
       Connection:
@@ -268,9 +268,9 @@ http_interactions:
     body:
       encoding: UTF-8
       string: <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"><soap:Body><ns2:authenticateResponse
-        xmlns:ns2="http://auth.cxf.wokmws.thomsonreuters.com"><return>5A7GtrdfrfFgPd11f55</return></ns2:authenticateResponse></soap:Body></soap:Envelope>
+        xmlns:ns2="http://auth.cxf.wokmws.thomsonreuters.com"><return>8FCIV1g2UET7mzLzrUj</return></ns2:authenticateResponse></soap:Body></soap:Envelope>
     http_version: 
-  recorded_at: Tue, 30 Jan 2018 23:30:03 GMT
+  recorded_at: Thu, 04 Apr 2019 21:48:34 GMT
 - request:
     method: get
     uri: http://search.webofknowledge.com/esti/wokmws/ws/WokSearch?wsdl
@@ -279,13 +279,13 @@ http_interactions:
       string: ''
     headers:
       User-Agent:
-      - HTTPClient/1.0 (2.8.3, ruby 2.4.1 (2017-03-22))
+      - HTTPClient/1.0 (2.8.3, ruby 2.5.1 (2018-03-29))
       Accept:
       - "*/*"
       Date:
-      - Tue, 30 Jan 2018 23:30:03 GMT
+      - Thu, 04 Apr 2019 21:48:34 GMT
       Cookie:
-      - SID="5A7GtrdfrfFgPd11f55"
+      - SID="8FCIV1g2UET7mzLzrUj"
       Soapaction:
       - ''
   response:
@@ -296,11 +296,11 @@ http_interactions:
       Content-Type:
       - text/xml
       Date:
-      - Tue, 30 Jan 2018 23:30:03 GMT
+      - Thu, 04 Apr 2019 21:48:34 GMT
       Server:
       - Apache-Coyote/1.1
-      Transfer-Encoding:
-      - chunked
+      Content-Length:
+      - '32204'
       Connection:
       - keep-alive
     body:
@@ -988,7 +988,7 @@ http_interactions:
           </wsdl:service>
         </wsdl:definitions>
     http_version: 
-  recorded_at: Tue, 30 Jan 2018 23:30:04 GMT
+  recorded_at: Thu, 04 Apr 2019 21:48:34 GMT
 - request:
     method: post
     uri: http://search.webofknowledge.com/esti/wokmws/ws/WokSearch
@@ -999,13 +999,13 @@ http_interactions:
         xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Body><tns:retrieveById><databaseId>WOK</databaseId><uid>MEDLINE:24930130</uid><queryLanguage>en</queryLanguage><retrieveParameters><firstRecord>1</firstRecord><count>100</count><option><key>RecordIDs</key><value>On</value></option><option><key>targetNamespace</key><value>http://scientific.thomsonreuters.com/schema/wok5.4/public/FullRecord</value></option></retrieveParameters></tns:retrieveById></soapenv:Body></soapenv:Envelope>
     headers:
       User-Agent:
-      - HTTPClient/1.0 (2.8.3, ruby 2.4.1 (2017-03-22))
+      - HTTPClient/1.0 (2.8.3, ruby 2.5.1 (2018-03-29))
       Accept:
       - "*/*"
       Date:
-      - Tue, 30 Jan 2018 23:30:04 GMT
+      - Thu, 04 Apr 2019 21:48:34 GMT
       Cookie:
-      - SID="5A7GtrdfrfFgPd11f55"
+      - SID="8FCIV1g2UET7mzLzrUj"
       Soapaction:
       - ''
       Content-Type:
@@ -1020,19 +1020,142 @@ http_interactions:
       Content-Type:
       - text/xml;charset=UTF-8
       Date:
-      - Tue, 30 Jan 2018 23:30:04 GMT
+      - Thu, 04 Apr 2019 21:48:34 GMT
       Server:
       - Apache-Coyote/1.1
       Content-Length:
-      - '20254'
+      - '13130'
       Connection:
       - keep-alive
     body:
       encoding: UTF-8
-      string: |-
-        <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"><soap:Body><ns2:retrieveByIdResponse xmlns:ns2="http://woksearch.v3.wokmws.thomsonreuters.com"><return><queryId>1</queryId><recordsFound>1</recordsFound><recordsSearched>75592049</recordsSearched><optionValue><label>RecordIDs</label><value>MEDLINE:24930130</value></optionValue><records>&lt;records xmlns="http://scientific.thomsonreuters.com/schema/wok5.4/public/FullRecord">
-        &lt;REC r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>MEDLINE:24930130&lt;/UID>&lt;static_data>&lt;summary>&lt;EWUID>&lt;WUID coll_id="MEDLINE">&lt;/WUID>&lt;edition value="MEDLINE.MEDLINE">&lt;/edition>&lt;/EWUID>&lt;pub_info sortdate="2014-08-01" pubyear="2014" pubmonth="Aug" coverdate="2014-Aug" edate="2014-06-15" vol="11" issue="8" pubtype="Journal" medium="Internet" model="Print-Electronic" has_abstract="Y">&lt;page begin="855" end="60">855-60&lt;/page>&lt;/pub_info>&lt;titles count="4">&lt;title type="item">Chemically defined generation of human cardiomyocytes.&lt;/title>&lt;title type="source">Nature methods&lt;/title>&lt;title type="abbrev_iso">Nat. Methods&lt;/title>&lt;title type="source_abbrev">Nat Methods&lt;/title>&lt;/titles>&lt;names count="15">&lt;name seq_no="1" role="author" display="Y">&lt;display_name>Burridge, Paul W&lt;/display_name>&lt;full_name>Burridge, Paul W&lt;/full_name>&lt;initials>PW&lt;/initials>&lt;/name>&lt;name seq_no="2" role="author" display="Y">&lt;display_name>Matsa, Elena&lt;/display_name>&lt;full_name>Matsa, Elena&lt;/full_name>&lt;initials>E&lt;/initials>&lt;/name>&lt;name seq_no="3" role="author" display="Y">&lt;display_name>Shukla, Praveen&lt;/display_name>&lt;full_name>Shukla, Praveen&lt;/full_name>&lt;initials>P&lt;/initials>&lt;/name>&lt;name seq_no="4" role="author" display="Y">&lt;display_name>Lin, Ziliang C&lt;/display_name>&lt;full_name>Lin, Ziliang C&lt;/full_name>&lt;initials>ZC&lt;/initials>&lt;/name>&lt;name seq_no="5" role="author" display="Y">&lt;display_name>Churko, Jared M&lt;/display_name>&lt;full_name>Churko, Jared M&lt;/full_name>&lt;initials>JM&lt;/initials>&lt;/name>&lt;name seq_no="6" role="author" display="Y">&lt;display_name>Ebert, Antje D&lt;/display_name>&lt;full_name>Ebert, Antje D&lt;/full_name>&lt;initials>AD&lt;/initials>&lt;/name>&lt;name seq_no="7" role="author" display="Y">&lt;display_name>Lan, Feng&lt;/display_name>&lt;full_name>Lan, Feng&lt;/full_name>&lt;initials>F&lt;/initials>&lt;/name>&lt;name seq_no="8" role="author" display="Y">&lt;display_name>Diecke, Sebastian&lt;/display_name>&lt;full_name>Diecke, Sebastian&lt;/full_name>&lt;initials>S&lt;/initials>&lt;/name>&lt;name seq_no="9" role="author" display="Y">&lt;display_name>Huber, Bruno&lt;/display_name>&lt;full_name>Huber, Bruno&lt;/full_name>&lt;initials>B&lt;/initials>&lt;/name>&lt;name seq_no="10" role="author" display="Y">&lt;display_name>Mordwinkin, Nicholas M&lt;/display_name>&lt;full_name>Mordwinkin, Nicholas M&lt;/full_name>&lt;initials>NM&lt;/initials>&lt;/name>&lt;name seq_no="11" role="author" display="Y">&lt;display_name>Plews, Jordan R&lt;/display_name>&lt;full_name>Plews, Jordan R&lt;/full_name>&lt;initials>JR&lt;/initials>&lt;/name>&lt;name seq_no="12" role="author" display="Y">&lt;display_name&gt;Abilez, Oscar J&lt;/display_name>&lt;full_name>Abilez, Oscar J&lt;/full_name>&lt;initials>OJ&lt;/initials>&lt;/name>&lt;name seq_no="13" role="author" display="Y">&lt;display_name>Cui, Bianxiao&lt;/display_name>&lt;full_name>Cui, Bianxiao&lt;/full_name>&lt;initials>B&lt;/initials>&lt;/name>&lt;name seq_no="14" role="author" display="Y">&lt;display_name>Gold, Joseph D&lt;/display_name>&lt;full_name>Gold, Joseph D&lt;/full_name>&lt;initials>JD&lt;/initials>&lt;/name>&lt;name seq_no="15" role="author" display="Y">&lt;display_name>Wu, Joseph C&lt;/display_name>&lt;full_name>Wu, Joseph C&lt;/full_name>&lt;initials>JC&lt;/initials>&lt;/name>&lt;/names>&lt;doctypes count="3">&lt;doctype>Journal Article&lt;/doctype>&lt;doctype>Research Support, N.I.H., Extramural&lt;/doctype>&lt;doctype>Research Support, Non-U.S. Gov&amp;apos;t&lt;/doctype>&lt;/doctypes>&lt;/summary>&lt;fullrecord_metadata>&lt;languages count="1">&lt;language type="primary">English&lt;/language>&lt;/languages>&lt;normalized_languages count="1">&lt;language type="primary">English&lt;/language>&lt;/normalized_languages>&lt;normalized_doctypes count="2">&lt;doctype>Article&lt;/doctype>&lt;doctype>Other&lt;/doctype>&lt;/normalized_doctypes>&lt;addresses count="1">&lt;address_name>&lt;address_spec addr_no="1">&lt;full_address>1] Stanford Cardiovascular Institute, Stanford University School of Medicine, Stanford, California, USA. [2] Institute for Stem Cell Biology and Regenerative Medicine, Stanford University School of Medicine, Stanford, California, USA. [3] Department of Medicine, Division of Cardiology, Stanford University School of Medicine, Stanford, California, USA.&lt;/full_address>&lt;/address_spec>&lt;/address_name>&lt;/addresses>&lt;category_info>&lt;headings count="1">&lt;heading>Science &amp;amp; Technology&lt;/heading>&lt;/headings>&lt;subheadings count="1">&lt;subheading>Life Sciences &amp;amp; Biomedicine&lt;/subheading>&lt;/subheadings>&lt;subjects count="2">&lt;subject ascatype="traditional" code="DR">CELL BIOLOGY&lt;/subject>&lt;subject ascatype="extended">Cell Biology&lt;/subject>&lt;/subjects>&lt;/category_info>&lt;fund_ack>&lt;grants count="6" complete="Y">&lt;grant>&lt;grant_agency>NHLBI NIH HHS&lt;/grant_agency>&lt;grant_ids count="1">&lt;grant_id>R01 HL113006&lt;/grant_id>&lt;/grant_ids>&lt;country>United States&lt;/country>&lt;acronym>HL&lt;/acronym>&lt;/grant>&lt;grant>&lt;grant_agency>NIBIB NIH HHS&lt;/grant_agency>&lt;grant_ids count="1">&lt;grant_id>T32 EB009035&lt;/grant_id>&lt;/grant_ids>&lt;country>United States&lt;/country>&lt;acronym>EB&lt;/acronym>&lt;/grant>&lt;grant>&lt;grant_agency>NHLBI NIH HHS&lt;/grant_agency>&lt;grant_ids count="1">&lt;grant_id>U01 HL099776&lt;/grant_id>&lt;/grant_ids>&lt;country>United States&lt;/country>&lt;acronym>HL&lt;/acronym>&lt;/grant>&lt;grant>&lt;grant_agency>NHLBI NIH HHS&lt;/grant_agency>&lt;grant_ids count="1">&lt;grant_id>R24 HL117756&lt;/grant_id>&lt;/grant_ids>&lt;country>United States&lt;/country>&lt;acronym>HL&lt;/acronym>&lt;/grant>&lt;grant>&lt;grant_agency>NHLBI NIH HHS&lt;/grant_agency>&lt;grant_ids count="1">&lt;grant_id>K99 HL121177&lt;/grant_id>&lt;/grant_ids>&lt;country>United States&lt;/country>&lt;acronym>HL&lt;/acronym>&lt;/grant>&lt;grant>&lt;grant_agency>NHLBI NIH HHS&lt;/grant_agency>&lt;grant_ids count="1">&lt;grant_id>R00 HL121177&lt;/grant_id>&lt;/grant_ids>&lt;country>United States&lt;/country>&lt;acronym>HL&lt;/acronym>&lt;/grant>&lt;/grants>&lt;/fund_ack>&lt;abstracts count="1">&lt;abstract>&lt;abstract_text>&lt;p>Existing methods for human induced pluripotent stem cell (hiPSC) cardiac differentiation are efficient but require complex, undefined medium constituents that hinder further elucidation of the molecular mechanisms of cardiomyogenesis. Using hiPSCs derived under chemically defined conditions on synthetic matrices, we systematically developed an optimized cardiac differentiation strategy, using a chemically defined medium consisting of just three components: the basal medium RPMI 1640, L-ascorbic acid 2-phosphate and rice-derived recombinant human albumin. Along with small molecule-based induction of differentiation, this protocol produced contractile sheets of up to 95% TNNT2(+) cardiomyocytes at a yield of up to 100 cardiomyocytes for every input pluripotent cell and was effective in 11 hiPSC lines tested. This chemically defined platform for cardiac specification of hiPSCs will allow the elucidation of cardiomyocyte macromolecular and metabolic requirements and will provide a minimal system for the study of maturation and subtype specification. &lt;/p>&lt;/abstract_text>&lt;/abstract>&lt;/abstracts>&lt;/fullrecord_metadata>&lt;item xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Owner="NLM" Status="MEDLINE" xsi:type="itemType_medline" coll_id="MEDLINE">&lt;MedlineJournalInfo>&lt;Country>United States&lt;/Country>&lt;NlmUniqueID>101215604&lt;/NlmUniqueID>&lt;ISSNLinking>1548-7091&lt;/ISSNLinking>&lt;/MedlineJournalInfo>&lt;DateCreated>2014-07-31&lt;/DateCreated>&lt;DateCompleted>2014-09-29&lt;/DateCompleted>&lt;DateRevised>2016-11-14&lt;/DateRevised>&lt;Affiliation>1] Stanford Cardiovascular Institute, Stanford University School of Medicine, Stanford, California, USA. [2] Institute for Stem Cell Biology and Regenerative Medicine, Stanford University School of Medicine, Stanford, California, USA. [3] Department of Medicine, Division of Cardiology, Stanford University School of Medicine, Stanford, California, USA.&lt;/Affiliation>&lt;ChemicalList>&lt;Chemical>&lt;RegistryNumber>0&lt;/RegistryNumber>&lt;NameOfSubstance UI="D003470">Culture Media&lt;/NameOfSubstance>&lt;/Chemical>&lt;/ChemicalList>&lt;CitationSubset>IM&lt;/CitationSubset>&lt;CommentsCorrectionsList>&lt;CommentsCorrections RefType="Cites">&lt;RefSource>PLoS One. 2011;6(4):e18293&lt;/RefSource>&lt;PMID Version="1">21494607&lt;/PMID>&lt;/CommentsCorrections>&lt;CommentsCorrections RefType="Cites">&lt;RefSource>Nat Methods. 2011 May;8(5):409-12&lt;/RefSource>&lt;PMID Version="1">21460823&lt;/PMID>&lt;/CommentsCorrections>&lt;CommentsCorrections RefType="Cites">&lt;RefSource>Nat Methods. 2011 May;8(5):424-9&lt;/RefSource>&lt;PMID Version="1">21478862&lt;/PMID>&lt;/CommentsCorrections>&lt;CommentsCorrections RefType="Cites">&lt;RefSource>Nature. 2011 May 19;473(7347):326-35&lt;/RefSource>&lt;PMID Version="1">21593865&lt;/PMID>&lt;/CommentsCorrections>&lt;CommentsCorrections RefType="Cites">&lt;RefSource>PLoS One. 2011;6(8):e23657&lt;/RefSource>&lt;PMID Version="1">21876760&lt;/PMID>&lt;/CommentsCorrections>&lt;CommentsCorrections RefType="Cites">&lt;RefSource>Nat Methods. 2011 Dec;8(12):1037-40&lt;/RefSource>&lt;PMID Version="1">22020065&lt;/PMID>&lt;/CommentsCorrections>&lt;CommentsCorrections RefType="Cites">&lt;RefSource>Cell Res. 2012 Jan;22(1):219-36&lt;/RefSource>&lt;PMID Version="1">22143566&lt;/PMID>&lt;/CommentsCorrections>&lt;CommentsCorrections RefType="Cites">&lt;RefSource>Cell Stem Cell. 2012 Jan 6;10(1):16-28&lt;/RefSource>&lt;PMID Version="1">22226352&lt;/PMID>&lt;/CommentsCorrections>&lt;CommentsCorrections RefType="Cites">&lt;RefSource>Nat Nanotechnol. 2012 Mar;7(3):185-90&lt;/RefSource>&lt;PMID Version="1">22327876&lt;/PMID>&lt;/CommentsCorrections>&lt;CommentsCorrections RefType="Cites">&lt;RefSource>Stem Cells Dev. 2012 Apr 10;21(6):977-86&lt;/RefSource>&lt;PMID Version="1">22182484&lt;/PMID>&lt;/CommentsCorrections>&lt;CommentsCorrections RefType="Cites">&lt;RefSource>Proc Natl Acad Sci U S A. 2012 Jul 3;109(27):E1848-57&lt;/RefSource>&lt;PMID Version="1">22645348&lt;/PMID>&lt;/CommentsCorrections>&lt;CommentsCorrections RefType="Cites">&lt;RefSource>Cell Stem Cell. 2012 Aug 3;11(2):242-52&lt;/RefSource>&lt;PMID Version="1">22862949&lt;/PMID>&lt;/CommentsCorrections>&lt;CommentsCorrections RefType="Cites">&lt;RefSource>Annu Rev Cell Dev Biol. 2012;28:523-53&lt;/RefSource>&lt;PMID Version="1">23057746&lt;/PMID>&lt;/CommentsCorrections>&lt;CommentsCorrections RefType="Cites">&lt;RefSource>Brain Res. 1989 Aug 7;494(1):65-74&lt;/RefSource>&lt;PMID Version="1">2765923&lt;/PMID>&lt;/CommentsCorrections>&lt;CommentsCorrections RefType="Cites">&lt;RefSource>Science. 1998 Nov 6;282(5391):1145-7&lt;/RefSource>&lt;PMID Version="1">9804556&lt;/PMID>&lt;/CommentsCorrections>&lt;CommentsCorrections RefType="Cites">&lt;RefSource>J Mol Histol. 2004 Jun;35(5):463-70&lt;/RefSource>&lt;PMID Version="1">15571324&lt;/PMID>&lt;/CommentsCorrections>&lt;CommentsCorrections RefType="Cites">&lt;RefSource>Dev Dyn. 2006 Jul;235(7):1994-2002&lt;/RefSource>&lt;PMID Version="1">16649168&lt;/PMID>&lt;/CommentsCorrections>&lt;CommentsCorrections RefType="Cites">&lt;RefSource>Can J Physiol Pharmacol. 2006 Aug-Sep;84(8-9):935-41&lt;/RefSource>&lt;PMID Version="1">17111039&lt;/PMID>&lt;/CommentsCorrections>&lt;CommentsCorrections RefType="Cites">&lt;RefSource>Cell Res. 2011 Apr;21(4):579-87&lt;/RefSource>&lt;PMID Version="1">21102549&lt;/PMID>&lt;/CommentsCorrections>&lt;CommentsCorrections RefType="Cites">&lt;RefSource>Stem Cells. 2007 Apr;25(4):929-38&lt;/RefSource>&lt;PMID Version="1">17185609&lt;/PMID>&lt;/CommentsCorrections>&lt;CommentsCorrections RefType="Cites">&lt;RefSource>Nat Biotechnol. 2007 Sep;25(9):1015-24&lt;/RefSource>&lt;PMID Version="1">17721512&lt;/PMID>&lt;/CommentsCorrections>&lt;CommentsCorrections RefType="Cites">&lt;RefSource>Differentiation. 2008 Apr;76(4):357-70&lt;/RefSource>&lt;PMID Version="1">18021257&lt;/PMID>&lt;/CommentsCorrections>&lt;CommentsCorrections RefType="Cites">&lt;RefSource>Nat Protoc. 2008;3(5):768-76&lt;/RefSource>&lt;PMID Version="1">18451785&lt;/PMID>&lt;/CommentsCorrections>&lt;CommentsCorrections RefType="Cites">&lt;RefSource>Stem Cells. 2008 Sep;26(9):2257-65&lt;/RefSource>&lt;PMID Version="1">18599809&lt;/PMID>&lt;/CommentsCorrections>&lt;CommentsCorrections RefType="Cites">&lt;RefSource>Proc Jpn Acad Ser B Phys Biol Sci. 2009;85(8):348-62&lt;/RefSource>&lt;PMID Version="1">19838014&lt;/PMID>&lt;/CommentsCorrections>&lt;CommentsCorrections RefType="Cites">&lt;RefSource>Stem Cells. 2010 Apr;28(4):713-20&lt;/RefSource>&lt;PMID Version="1">20201064&lt;/PMID>&lt;/CommentsCorrections>&lt;CommentsCorrections RefType="Cites">&lt;RefSource>Nat Biotechnol. 2010 Jun;28(6):606-10&lt;/RefSource>&lt;PMID Version="1">20512120&lt;/PMID>&lt;/CommentsCorrections>&lt;CommentsCorrections RefType="Cites">&lt;RefSource>Nat Biotechnol. 2010 Jun;28(6):611-5&lt;/RefSource>&lt;PMID Version="1">20512123&lt;/PMID>&lt;/CommentsCorrections>&lt;CommentsCorrections RefType="Cites">&lt;RefSource>PLoS One. 2010;5(6):e11134&lt;/RefSource>&lt;PMID Version="1">20559569&lt;/PMID>&lt;/CommentsCorrections>&lt;CommentsCorrections RefType="Cites">&lt;RefSource>BMC Dev Biol. 2010;10:60&lt;/RefSource>&lt;PMID Version="1">20525219&lt;/PMID>&lt;/CommentsCorrections>&lt;CommentsCorrections RefType="Cites">&lt;RefSource>Am J Physiol Cell Physiol. 2010 Dec;299(6):C1234-49&lt;/RefSource>&lt;PMID Version="1">20844252&lt;/PMID>&lt;/CommentsCorrections>&lt;CommentsCorrections RefType="Cites">&lt;RefSource>Tissue Eng Part C Methods. 2011 Feb;17(2):193-207&lt;/RefSource>&lt;PMID Version="1">20726687&lt;/PMID>&lt;/CommentsCorrections>&lt;CommentsCorrections RefType="Cites">&lt;RefSource>Cell Stem Cell. 2011 Feb 4;8(2):228-40&lt;/RefSource>&lt;PMID Version="1">21295278&lt;/PMID>&lt;/CommentsCorrections>&lt;CommentsCorrections RefType="Cites">&lt;RefSource>Circ Res. 2012 Oct 12;111(9):1125-36&lt;/RefSource>&lt;PMID Version="1">22912385&lt;/PMID>&lt;/CommentsCorrections>&lt;CommentsCorrections RefType="Cites">&lt;RefSource>Cell Rep. 2012 Nov 29;2(5):1448-60&lt;/RefSource>&lt;PMID Version="1">23103164&lt;/PMID>&lt;/CommentsCorrections>&lt;CommentsCorrections RefType="Cites">&lt;RefSource>Nat Commun. 2012;3:1236&lt;/RefSource>&lt;PMID Version="1">23212365&lt;/PMID>&lt;/CommentsCorrections>&lt;CommentsCorrections RefType="Cites">&lt;RefSource>Cell Stem Cell. 2013 Jan 3;12(1):127-37&lt;/RefSource>&lt;PMID Version="1">23168164&lt;/PMID>&lt;/CommentsCorrections>&lt;CommentsCorrections RefType="Cites">&lt;RefSource>PLoS One. 2012;7(12):e52405&lt;/RefSource>&lt;PMID Version="1">23300662&lt;/PMID>&lt;/CommentsCorrections>&lt;CommentsCorrections RefType="Cites">&lt;RefSource>Stem Cells Dev. 2013 Aug 15;22(16):2315-25&lt;/RefSource>&lt;PMID Version="1">23517131&lt;/PMID>&lt;/CommentsCorrections>&lt;CommentsCorrections RefType="Cites">&lt;RefSource>Nature. 2013 Aug 8;500(7461):222-6&lt;/RefSource>&lt;PMID Version="1">23812591&lt;/PMID>&lt;/CommentsCorrections>&lt;CommentsCorrections RefType="Cites">&lt;RefSource>Nat Commun. 2014;5:3195&lt;/RefSource>&lt;PMID Version="1">24463987&lt;/PMID>&lt;/CommentsCorrections>&lt;CommentsCorrections RefType="Cites">&lt;RefSource>Nat Commun. 2014;5:3206&lt;/RefSource>&lt;PMID Version="1">24487777&lt;/PMID>&lt;/CommentsCorrections>&lt;CommentsCorrections RefType="Cites">&lt;RefSource>Nature. 2008 May 22;453(7194):524-8&lt;/RefSource>&lt;PMID Version="1">18432194&lt;/PMID>&lt;/CommentsCorrections>&lt;CommentsCorrections RefType="Cites">&lt;RefSource>Circulation. 2003 Apr 15;107(14):1912-6&lt;/RefSource>&lt;PMID Version="1">12668514&lt;/PMID>&lt;/CommentsCorrections>&lt;CommentsCorrections RefType="Cites">&lt;RefSource>Cardiovasc Res. 2003 May 1;58(2):423-34&lt;/RefSource>&lt;PMID Version="1">12757876&lt;/PMID>&lt;/CommentsCorrections>&lt;CommentsCorrections RefType="Cites">&lt;RefSource>JAMA. 1967 Feb 20;199(8):519-24&lt;/RefSource>&lt;PMID Version="1">4960081&lt;/PMID>&lt;/CommentsCorrections>&lt;CommentsCorrections RefType="Cites">&lt;RefSource>J Biol Chem. 1981 Jan 25;256(2):964-8&lt;/RefSource>&lt;PMID Version="1">7451483&lt;/PMID>&lt;/CommentsCorrections>&lt;CommentsCorrections RefType="Cites">&lt;RefSource>Cell Res. 2011 Mar;21(3):518-29&lt;/RefSource>&lt;PMID Version="1">21243013&lt;/PMID>&lt;/CommentsCorrections>&lt;/CommentsCorrectionsList>&lt;MeshHeadingList>&lt;MeshHeading>&lt;DescriptorName MajorTopicYN="N" UI="D002454">Cell Differentiation&lt;/DescriptorName>&lt;TreeCodeList>&lt;TreeCode MajorTopicYN="N">G04.299.151&lt;/TreeCode>&lt;/TreeCodeList>&lt;/MeshHeading>&lt;MeshHeading>&lt;DescriptorName MajorTopicYN="N" UI="D003470">Culture Media&lt;/DescriptorName>&lt;TreeCodeList>&lt;TreeCode MajorTopicYN="N">D27.720.470.305&lt;/TreeCode>&lt;TreeCode MajorTopicYN="N">E07.206&lt;/TreeCode>&lt;/TreeCodeList>&lt;/MeshHeading>&lt;MeshHeading>&lt;DescriptorName MajorTopicYN="N" UI="D006801">Humans&lt;/DescriptorName>&lt;TreeCodeList>&lt;TreeCode MajorTopicYN="N">B01.050.150.900.649.801.400.112.400.400&lt;/TreeCode>&lt;/TreeCodeList>&lt;/MeshHeading>&lt;MeshHeading>&lt;DescriptorName MajorTopicYN="N" UI="D057026">Induced Pluripotent Stem Cells&lt;/DescriptorName>&lt;QualifierName MajorTopicYN="N" UI="Q000166">cytology&lt;/QualifierName>&lt;TreeCodeList>&lt;TreeCode MajorTopicYN="N">A11.872.040.500&lt;/TreeCode>&lt;TreeCode MajorTopicYN="N">A11.872.700.500&lt;/TreeCode>&lt;TreeCode MajorTopicYN="N">Y02.020&lt;/TreeCode>&lt;/TreeCodeList>&lt;/MeshHeading>&lt;MeshHeading>&lt;DescriptorName MajorTopicYN="N" UI="D032383">Myocytes, Cardiac&lt;/DescriptorName>&lt;QualifierName MajorTopicYN="Y" UI="Q000166">cytology&lt;/QualifierName>&lt;TreeCodeList>&lt;TreeCode MajorTopicYN="N">A07.541.704.570&lt;/TreeCode>&lt;TreeCode MajorTopicYN="N">A10.690.552.750.570&lt;/TreeCode>&lt;TreeCode MajorTopicYN="N">A11.620.500&lt;/TreeCode>&lt;TreeCode MajorTopicYN="Y">Y02.020&lt;/TreeCode>&lt;/TreeCodeList>&lt;/MeshHeading>&lt;/MeshHeadingList>&lt;OtherID Source="NLM">NIHMS599769&lt;/OtherID>&lt;OtherID Source="NLM">PMC4169698&lt;/OtherID>&lt;/item>&lt;contributors count="3">&lt;contributor>&lt;name seq_no="1" role="researcher_id" r_id="D-2336-2015">&lt;display_name>Matsa, Elena&lt;/display_name>&lt;full_name>Matsa, Elena&lt;/full_name>&lt;first_name>Elena&lt;/first_name>&lt;last_name>Matsa&lt;/last_name>&lt;/name>&lt;/contributor>&lt;contributor>&lt;name seq_no="2" role="researcher_id" orcid_id="0000-0002-3019-0170">&lt;display_name>Mordwinkin, Nicholas&lt;/display_name>&lt;full_name>Mordwinkin, Nicholas&lt;/full_name>&lt;first_name>Nicholas&lt;/first_name>&lt;last_name>Mordwinkin&lt;/last_name>&lt;/name>&lt;/contributor>&lt;contributor>&lt;name seq_no="3" role="researcher_id" orcid_id="0000-0002-9991-400X">&lt;display_name>Abilez, Oscar&lt;/display_name>&lt;full_name>Abilez, Oscar&lt;/full_name>&lt;first_name>Oscar&lt;/first_name>&lt;last_name>Abilez&lt;/last_name>&lt;/name>&lt;/contributor>&lt;/contributors>&lt;/static_data>&lt;dynamic_data>&lt;citation_related>&lt;tc_list>&lt;silo_tc coll_id="MEDLINE" local_count="0">&lt;/silo_tc>&lt;/tc_list>&lt;/citation_related>&lt;cluster_related>&lt;identifiers>&lt;identifier type="doi" value="10.1038/nmeth.2999">&lt;/identifier>&lt;identifier type="eissn" value="1548-7105">&lt;/identifier>&lt;identifier type="pmid" value="MEDLINE:24930130">&lt;/identifier>&lt;/identifiers>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>
-        &lt;/records></records></return></ns2:retrieveByIdResponse></soap:Body></soap:Envelope>
+      string: '<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"><soap:Body><ns2:retrieveByIdResponse
+        xmlns:ns2="http://woksearch.v3.wokmws.thomsonreuters.com"><return><queryId>1</queryId><recordsFound>1</recordsFound><recordsSearched>81070508</recordsSearched><optionValue><label>RecordIDs</label><value>MEDLINE:24930130</value></optionValue><records>&lt;records
+        xmlns="http://scientific.thomsonreuters.com/schema/wok5.4/public/FullRecord">&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>MEDLINE:24930130&lt;/UID>&lt;static_data>&lt;summary>&lt;EWUID>&lt;WUID
+        coll_id="MEDLINE">&lt;/WUID>&lt;edition value="MEDLINE.MEDLINE">&lt;/edition>&lt;/EWUID>&lt;pub_info
+        sortdate="2014-08-01" pubyear="2014" pubmonth="Aug" coverdate="2014-Aug" edate="2014-06-15"
+        vol="11" issue="8" pubtype="Journal" medium="Internet" model="Print-Electronic"
+        has_abstract="Y">&lt;page begin="855" end="60">855-60&lt;/page>&lt;/pub_info>&lt;titles
+        count="4">&lt;title type="item">Chemically defined generation of human cardiomyocytes.&lt;/title>&lt;title
+        type="source">Nature methods&lt;/title>&lt;title type="abbrev_iso">Nat. Methods&lt;/title>&lt;title
+        type="source_abbrev">Nat Methods&lt;/title>&lt;/titles>&lt;names count="15">&lt;name
+        seq_no="1" role="author" display="Y">&lt;display_name>Burridge, Paul W&lt;/display_name>&lt;full_name>Burridge,
+        Paul W&lt;/full_name>&lt;initials>PW&lt;/initials>&lt;/name>&lt;name seq_no="2"
+        role="author" display="Y">&lt;display_name>Matsa, Elena&lt;/display_name>&lt;full_name>Matsa,
+        Elena&lt;/full_name>&lt;initials>E&lt;/initials>&lt;/name>&lt;name seq_no="3"
+        role="author" display="Y">&lt;display_name>Shukla, Praveen&lt;/display_name>&lt;full_name>Shukla,
+        Praveen&lt;/full_name>&lt;initials>P&lt;/initials>&lt;/name>&lt;name seq_no="4"
+        role="author" display="Y">&lt;display_name>Lin, Ziliang C&lt;/display_name>&lt;full_name>Lin,
+        Ziliang C&lt;/full_name>&lt;initials>ZC&lt;/initials>&lt;/name>&lt;name seq_no="5"
+        role="author" display="Y">&lt;display_name>Churko, Jared M&lt;/display_name>&lt;full_name>Churko,
+        Jared M&lt;/full_name>&lt;initials>JM&lt;/initials>&lt;/name>&lt;name seq_no="6"
+        role="author" display="Y">&lt;display_name>Ebert, Antje D&lt;/display_name>&lt;full_name>Ebert,
+        Antje D&lt;/full_name>&lt;initials>AD&lt;/initials>&lt;/name>&lt;name seq_no="7"
+        role="author" display="Y">&lt;display_name>Lan, Feng&lt;/display_name>&lt;full_name>Lan,
+        Feng&lt;/full_name>&lt;initials>F&lt;/initials>&lt;/name>&lt;name seq_no="8"
+        role="author" display="Y">&lt;display_name>Diecke, Sebastian&lt;/display_name>&lt;full_name>Diecke,
+        Sebastian&lt;/full_name>&lt;initials>S&lt;/initials>&lt;/name>&lt;name seq_no="9"
+        role="author" display="Y">&lt;display_name>Huber, Bruno&lt;/display_name>&lt;full_name>Huber,
+        Bruno&lt;/full_name>&lt;initials>B&lt;/initials>&lt;/name>&lt;name seq_no="10"
+        role="author" display="Y">&lt;display_name>Mordwinkin, Nicholas M&lt;/display_name>&lt;full_name>Mordwinkin,
+        Nicholas M&lt;/full_name>&lt;initials>NM&lt;/initials>&lt;/name>&lt;name seq_no="11"
+        role="author" display="Y">&lt;display_name>Plews, Jordan R&lt;/display_name>&lt;full_name>Plews,
+        Jordan R&lt;/full_name>&lt;initials>JR&lt;/initials>&lt;/name>&lt;name seq_no="12"
+        role="author" display="Y">&lt;display_name>Abilez, Oscar J&lt;/display_name>&lt;full_name>Abilez,
+        Oscar J&lt;/full_name>&lt;initials>OJ&lt;/initials>&lt;/name>&lt;name seq_no="13"
+        role="author" display="Y">&lt;display_name>Cui, Bianxiao&lt;/display_name>&lt;full_name>Cui,
+        Bianxiao&lt;/full_name>&lt;initials>B&lt;/initials>&lt;/name>&lt;name seq_no="14"
+        role="author" display="Y">&lt;display_name>Gold, Joseph D&lt;/display_name>&lt;full_name>Gold,
+        Joseph D&lt;/full_name>&lt;initials>JD&lt;/initials>&lt;/name>&lt;name seq_no="15"
+        role="author" display="Y">&lt;display_name>Wu, Joseph C&lt;/display_name>&lt;full_name>Wu,
+        Joseph C&lt;/full_name>&lt;initials>JC&lt;/initials>&lt;/name>&lt;/names>&lt;doctypes
+        count="3">&lt;doctype>Journal Article&lt;/doctype>&lt;doctype>Research Support,
+        N.I.H., Extramural&lt;/doctype>&lt;doctype>Research Support, Non-U.S. Gov&amp;apos;t&lt;/doctype>&lt;/doctypes>&lt;/summary>&lt;fullrecord_metadata>&lt;languages
+        count="1">&lt;language type="primary">English&lt;/language>&lt;/languages>&lt;normalized_languages
+        count="1">&lt;language type="primary">English&lt;/language>&lt;/normalized_languages>&lt;normalized_doctypes
+        count="2">&lt;doctype>Article&lt;/doctype>&lt;doctype>Other&lt;/doctype>&lt;/normalized_doctypes>&lt;addresses
+        count="4">&lt;address_name>&lt;address_spec addr_no="1">&lt;full_address>1]
+        Stanford Cardiovascular Institute, Stanford University School of Medicine,
+        Stanford, California, USA. [2] Institute for Stem Cell Biology and Regenerative
+        Medicine, Stanford University School of Medicine, Stanford, California, USA.
+        [3] Department of Medicine, Division of Cardiology, Stanford University School
+        of Medicine, Stanford, California, USA.&lt;/full_address>&lt;/address_spec>&lt;/address_name>&lt;address_name>&lt;address_spec
+        addr_no="2">&lt;full_address>Department of Applied Physics, Stanford University
+        School of Medicine, Stanford, California, USA.&lt;/full_address>&lt;/address_spec>&lt;/address_name>&lt;address_name>&lt;address_spec
+        addr_no="3">&lt;full_address>Department of Chemistry, Stanford University
+        School of Medicine, Stanford, California, USA.&lt;/full_address>&lt;/address_spec>&lt;/address_name>&lt;address_name>&lt;address_spec
+        addr_no="4">&lt;full_address>Stanford Cardiovascular Institute, Stanford University
+        School of Medicine, Stanford, California, USA.&lt;/full_address>&lt;/address_spec>&lt;/address_name>&lt;/addresses>&lt;category_info>&lt;headings
+        count="1">&lt;heading>Science &amp;amp; Technology&lt;/heading>&lt;/headings>&lt;subheadings
+        count="1">&lt;subheading>Life Sciences &amp;amp; Biomedicine&lt;/subheading>&lt;/subheadings>&lt;subjects
+        count="2">&lt;subject ascatype="traditional" code="DR">CELL BIOLOGY&lt;/subject>&lt;subject
+        ascatype="extended">Cell Biology&lt;/subject>&lt;/subjects>&lt;/category_info>&lt;fund_ack>&lt;grants
+        count="7" complete="Y">&lt;grant>&lt;grant_agency>NHLBI NIH HHS&lt;/grant_agency>&lt;grant_ids
+        count="1">&lt;grant_id>R01 HL113006&lt;/grant_id>&lt;/grant_ids>&lt;country>United
+        States&lt;/country>&lt;acronym>HL&lt;/acronym>&lt;/grant>&lt;grant>&lt;grant_agency>NIBIB
+        NIH HHS&lt;/grant_agency>&lt;grant_ids count="1">&lt;grant_id>T32 EB009035&lt;/grant_id>&lt;/grant_ids>&lt;country>United
+        States&lt;/country>&lt;acronym>EB&lt;/acronym>&lt;/grant>&lt;grant>&lt;grant_agency>NHLBI
+        NIH HHS&lt;/grant_agency>&lt;grant_ids count="1">&lt;grant_id>U01 HL099776&lt;/grant_id>&lt;/grant_ids>&lt;country>United
+        States&lt;/country>&lt;acronym>HL&lt;/acronym>&lt;/grant>&lt;grant>&lt;grant_agency>NHLBI
+        NIH HHS&lt;/grant_agency>&lt;grant_ids count="1">&lt;grant_id>R24 HL117756&lt;/grant_id>&lt;/grant_ids>&lt;country>United
+        States&lt;/country>&lt;acronym>HL&lt;/acronym>&lt;/grant>&lt;grant>&lt;grant_agency>NHLBI
+        NIH HHS&lt;/grant_agency>&lt;grant_ids count="1">&lt;grant_id>T32 HL098049&lt;/grant_id>&lt;/grant_ids>&lt;country>United
+        States&lt;/country>&lt;acronym>HL&lt;/acronym>&lt;/grant>&lt;grant>&lt;grant_agency>NHLBI
+        NIH HHS&lt;/grant_agency>&lt;grant_ids count="1">&lt;grant_id>K99 HL121177&lt;/grant_id>&lt;/grant_ids>&lt;country>United
+        States&lt;/country>&lt;acronym>HL&lt;/acronym>&lt;/grant>&lt;grant>&lt;grant_agency>NHLBI
+        NIH HHS&lt;/grant_agency>&lt;grant_ids count="1">&lt;grant_id>R00 HL121177&lt;/grant_id>&lt;/grant_ids>&lt;country>United
+        States&lt;/country>&lt;acronym>HL&lt;/acronym>&lt;/grant>&lt;/grants>&lt;/fund_ack>&lt;abstracts
+        count="1">&lt;abstract>&lt;abstract_text>&lt;p>Existing methods for human
+        induced pluripotent stem cell (hiPSC) cardiac differentiation are efficient
+        but require complex, undefined medium constituents that hinder further elucidation
+        of the molecular mechanisms of cardiomyogenesis. Using hiPSCs derived under
+        chemically defined conditions on synthetic matrices, we systematically developed
+        an optimized cardiac differentiation strategy, using a chemically defined
+        medium consisting of just three components: the basal medium RPMI 1640, L-ascorbic
+        acid 2-phosphate and rice-derived recombinant human albumin. Along with small
+        molecule-based induction of differentiation, this protocol produced contractile
+        sheets of up to 95% TNNT2(+) cardiomyocytes at a yield of up to 100 cardiomyocytes
+        for every input pluripotent cell and was effective in 11 hiPSC lines tested.
+        This chemically defined platform for cardiac specification of hiPSCs will
+        allow the elucidation of cardiomyocyte macromolecular and metabolic requirements
+        and will provide a minimal system for the study of maturation and subtype
+        specification. &lt;/p>&lt;/abstract_text>&lt;/abstract>&lt;/abstracts>&lt;/fullrecord_metadata>&lt;item
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Owner="NLM" Status="MEDLINE"
+        xsi:type="itemType_medline" coll_id="MEDLINE">&lt;MedlineJournalInfo>&lt;Country>United
+        States&lt;/Country>&lt;NlmUniqueID>101215604&lt;/NlmUniqueID>&lt;ISSNLinking>1548-7091&lt;/ISSNLinking>&lt;/MedlineJournalInfo>&lt;DateCompleted>2014-09-29&lt;/DateCompleted>&lt;DateRevised>2018-12-18&lt;/DateRevised>&lt;Affiliation>1]
+        Stanford Cardiovascular Institute, Stanford University School of Medicine,
+        Stanford, California, USA. [2] Institute for Stem Cell Biology and Regenerative
+        Medicine, Stanford University School of Medicine, Stanford, California, USA.
+        [3] Department of Medicine, Division of Cardiology, Stanford University School
+        of Medicine, Stanford, California, USA.&lt;/Affiliation>&lt;ChemicalList>&lt;Chemical>&lt;RegistryNumber>0&lt;/RegistryNumber>&lt;NameOfSubstance
+        UI="D003470">Culture Media&lt;/NameOfSubstance>&lt;/Chemical>&lt;/ChemicalList>&lt;CitationSubset>IM&lt;/CitationSubset>&lt;MeshHeadingList>&lt;MeshHeading>&lt;DescriptorName
+        MajorTopicYN="N" UI="D002454">Cell Differentiation&lt;/DescriptorName>&lt;TreeCodeList>&lt;TreeCode
+        MajorTopicYN="N">G04.299.151&lt;/TreeCode>&lt;/TreeCodeList>&lt;/MeshHeading>&lt;MeshHeading>&lt;DescriptorName
+        MajorTopicYN="N" UI="D003470">Culture Media&lt;/DescriptorName>&lt;TreeCodeList>&lt;TreeCode
+        MajorTopicYN="N">D27.720.470.305&lt;/TreeCode>&lt;TreeCode MajorTopicYN="N">E07.206&lt;/TreeCode>&lt;/TreeCodeList>&lt;/MeshHeading>&lt;MeshHeading>&lt;DescriptorName
+        MajorTopicYN="N" UI="D006801">Humans&lt;/DescriptorName>&lt;TreeCodeList>&lt;TreeCode
+        MajorTopicYN="N">B01.050.150.900.649.801.400.112.400.400&lt;/TreeCode>&lt;/TreeCodeList>&lt;/MeshHeading>&lt;MeshHeading>&lt;DescriptorName
+        MajorTopicYN="N" UI="D057026">Induced Pluripotent Stem Cells&lt;/DescriptorName>&lt;QualifierName
+        MajorTopicYN="N" UI="Q000166">cytology&lt;/QualifierName>&lt;TreeCodeList>&lt;TreeCode
+        MajorTopicYN="N">A11.872.040.500&lt;/TreeCode>&lt;TreeCode MajorTopicYN="N">A11.872.700.500&lt;/TreeCode>&lt;TreeCode
+        MajorTopicYN="N">Y02.020&lt;/TreeCode>&lt;/TreeCodeList>&lt;/MeshHeading>&lt;MeshHeading>&lt;DescriptorName
+        MajorTopicYN="N" UI="D032383">Myocytes, Cardiac&lt;/DescriptorName>&lt;QualifierName
+        MajorTopicYN="Y" UI="Q000166">cytology&lt;/QualifierName>&lt;TreeCodeList>&lt;TreeCode
+        MajorTopicYN="N">A07.541.704.570&lt;/TreeCode>&lt;TreeCode MajorTopicYN="N">A10.690.552.750.570&lt;/TreeCode>&lt;TreeCode
+        MajorTopicYN="N">A11.620.500&lt;/TreeCode>&lt;TreeCode MajorTopicYN="Y">Y02.020&lt;/TreeCode>&lt;/TreeCodeList>&lt;/MeshHeading>&lt;/MeshHeadingList>&lt;/item>&lt;contributors
+        count="4">&lt;contributor>&lt;name seq_no="1" role="researcher_id" r_id="I-2023-2012"
+        orcid_id="0000-0002-9038-4014">&lt;display_name>Lan, Feng&lt;/display_name>&lt;full_name>Lan,
+        Feng&lt;/full_name>&lt;first_name>Feng&lt;/first_name>&lt;last_name>Lan&lt;/last_name>&lt;/name>&lt;/contributor>&lt;contributor>&lt;name
+        seq_no="2" role="researcher_id" r_id="B-5014-2012" orcid_id="0000-0002-9991-400X">&lt;display_name>Abilez,
+        Oscar&lt;/display_name>&lt;full_name>Abilez, Oscar&lt;/full_name>&lt;first_name>Oscar&lt;/first_name>&lt;last_name>Abilez&lt;/last_name>&lt;/name>&lt;/contributor>&lt;contributor>&lt;name
+        seq_no="3" role="researcher_id" r_id="D-2336-2015">&lt;display_name>Matsa,
+        Elena&lt;/display_name>&lt;full_name>Matsa, Elena&lt;/full_name>&lt;first_name>Elena&lt;/first_name>&lt;last_name>Matsa&lt;/last_name>&lt;/name>&lt;/contributor>&lt;contributor>&lt;name
+        seq_no="4" role="researcher_id" orcid_id="0000-0002-3019-0170">&lt;display_name>Mordwinkin,
+        Nicholas&lt;/display_name>&lt;full_name>Mordwinkin, Nicholas&lt;/full_name>&lt;first_name>Nicholas&lt;/first_name>&lt;last_name>Mordwinkin&lt;/last_name>&lt;/name>&lt;/contributor>&lt;/contributors>&lt;/static_data>&lt;dynamic_data>&lt;citation_related>&lt;tc_list>&lt;silo_tc
+        coll_id="MEDLINE" local_count="0">&lt;/silo_tc>&lt;/tc_list>&lt;/citation_related>&lt;cluster_related>&lt;identifiers>&lt;identifier
+        type="doi" value="10.1038/nmeth.2999">&lt;/identifier>&lt;identifier type="eissn"
+        value="1548-7105">&lt;/identifier>&lt;identifier type="pmid" value="MEDLINE:24930130">&lt;/identifier>&lt;/identifiers>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;/records></records></return></ns2:retrieveByIdResponse></soap:Body></soap:Envelope>'
     http_version: 
-  recorded_at: Tue, 30 Jan 2018 23:30:04 GMT
+  recorded_at: Thu, 04 Apr 2019 21:48:34 GMT
 recorded_with: VCR 4.0.0
