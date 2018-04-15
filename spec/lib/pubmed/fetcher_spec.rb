@@ -13,14 +13,12 @@ describe Pubmed::Fetcher, :vcr do
     }
   end
 
-  before do
-    allow(Settings.WOS).to receive(:enabled).and_return(false) # but not WOS
-  end
+  before { allow(Settings.WOS).to receive(:enabled).and_return(false) }
 
   describe '.search_all_sources_by_pmid' do
     let!(:publication) { create(:publication, pmid: 10_048_354, pub_hash: pub_hash) }
 
-    it 'searches for a local Publication by pmid and returns a pubhash' do
+    it 'searches for a local Publication first by pmid and returns a pubhash' do
       expect(Pubmed::Client).not_to receive(:new)
       h = described_class.search_all_sources_by_pmid(10_048_354)
       expect(h.size).to eq 1
@@ -30,16 +28,9 @@ describe Pubmed::Fetcher, :vcr do
     it 'searches by pmid when not found locally and returns a pubhash' do
       h = described_class.search_all_sources_by_pmid(10_487_815)
       expect(h.size).to eq 1
+      expect(h.first[:provenance]).to eq('pubmed')
       expect(h.first[:chicago_citation]).to match(/Convergence and Correlations/)
       expect(h.first).to include(pmid: '10487815')
-    end
-
-    it 'searches Pubmed by pmid if not found, returning a pubhash' do
-      skip 'find an example pubmid not yet in sw'
-      h = described_class.search_all_sources_by_pmid(24_930_130).first
-      expect(h[:provenance]).to eq('pubmed')
-      expect(h[:identifier]).to include(type: 'doi', id: '10.1038/nmeth.2999', url: 'https://doi.org/10.1038/nmeth.2999')
-      expect(h[:chicago_citation]).to match(/Chemically Defined Generation/)
     end
 
     context 'local hits of varied provenance' do
@@ -82,9 +73,7 @@ describe Pubmed::Fetcher, :vcr do
   describe '.fetch_remote_pubmed' do
     subject(:hits) { described_class.send(:fetch_remote_pubmed, 24_930_130) } # backed by VCR cassettes for each provider
 
-    before do
-      allow(Settings.WOS).to receive(:enabled).and_return(false) # default
-    end
+    before { allow(Settings.WOS).to receive(:enabled).and_return(false) }
 
     context 'WOS disabled' do
       it 'searches only pubmed' do
@@ -92,20 +81,33 @@ describe Pubmed::Fetcher, :vcr do
         expect(hits.size).to eq(1)
         expect(hits.first[:title]).to eq('Chemically defined generation of human cardiomyocytes.')
         expect(hits.first[:chicago_citation]).to match(/Chemically Defined Generation/)
+        expect(hits.first[:provenance]).to eq 'pubmed'
       end
     end
 
     context 'WOS enabled' do
       before { allow(Settings.WOS).to receive(:enabled).and_return(true) }
 
-      it 'searches only WOS' do
-        expect(Pubmed.client).not_to receive(:new)
+      it 'still searches pubmed first by default' do
+        expect(WebOfScience).not_to receive(:queries)
         expect(hits.size).to eq(1)
         expect(hits.first[:title]).to eq('Chemically defined generation of human cardiomyocytes.')
         expect(hits.first[:chicago_citation]).to match(/Chemically Defined Generation/)
+        expect(hits.first[:provenance]).to eq 'pubmed'
+      end
+
+      it 'searches WoS if not found in pubmed first' do
+        allow(Pubmed.client).to receive(:fetch_records_for_pmid_list)
+          .and_return([]) # mock pubmed to simulate no results
+        expect(hits.size).to eq(1)
+        expect(hits.first[:title]).to eq('Chemically defined generation of human cardiomyocytes.')
+        expect(hits.first[:chicago_citation]).to match(/Chemically Defined Generation/)
+        expect(hits.first[:provenance]).to eq 'wos'
       end
 
       it 'without hits, fails over across services' do
+        allow(Pubmed.client).to receive(:fetch_records_for_pmid_list)
+          .and_return([]) # mock pubmed to simulate no results
         expect(WebOfScience.queries).to receive(:retrieve_by_pmid)
           .with([24_930_130])
           .and_return(instance_double(WebOfScience::Retriever, next_batch: WebOfScience::Records.new(records: '<xml/>')))

@@ -16,18 +16,20 @@ module Pubmed
     # @param [String] pmid Pubmed ID
     # @return [Array<Hash>] pub_hashes or an empty Array
     def self.fetch_remote_pubmed(pmid)
-      # note: only works because all results expected to fit inside one "batch"
-      if Settings.WOS.enabled
-        result = WebOfScience.queries.retrieve_by_pmid([pmid]).next_batch.map { |rec| add_citation(rec.pub_hash) }
-        return result unless result.empty?
-      end
-
-      # PubMed, oddly enough, the last resort
+      # first search Pubmed
       pm_xml = Pubmed.client.fetch_records_for_pmid_list(pmid)
-      Nokogiri::XML(pm_xml).xpath('//PubmedArticle').map do |doc|
+      result = Nokogiri::XML(pm_xml).xpath('//PubmedArticle').map do |doc|
         add_citation(PubmedSourceRecord.new.source_as_hash(doc))
       end
+      return result unless result.empty?
+
+      # if no results at Pubmed, try WoS
+      # note: only works because all results expected to fit inside one "batch"
+      result = WebOfScience.queries.retrieve_by_pmid([pmid]).next_batch.map { |rec| add_citation(rec.pub_hash) } if Settings.WOS.enabled
+
+      result
     end
+
     private_class_method :fetch_remote_pubmed
 
     # @param [Hash] pub_hash modifies passed hash to include citation k/v pairs

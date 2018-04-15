@@ -1,0 +1,657 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?api_key=Settings.PUBMED.API_KEY&db=pubmed&retmode=xml
+    body:
+      encoding: UTF-8
+      string: "&id=24930130"
+    headers:
+      User-Agent:
+      - stanford-library-sul-pub
+      Accept:
+      - "*/*"
+      Accept-Encoding:
+      - gzip,deflate
+      Date:
+      - Thu, 04 Apr 2019 21:45:31 GMT
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 04 Apr 2019 21:45:31 GMT
+      Server:
+      - Finatra
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Content-Security-Policy:
+      - upgrade-insecure-requests
+      X-Ratelimit-Remaining:
+      - '9'
+      Ncbi-Phid:
+      - 939B43EE8516427500002804753FCFD0.1.1.m_3
+      Cache-Control:
+      - private
+      L5d-Success-Class:
+      - '1.0'
+      Ncbi-Sid:
+      - B31D59A64B6037C5_8E6FSID
+      Content-Encoding:
+      - gzip
+      X-Ratelimit-Limit:
+      - '10'
+      Access-Control-Allow-Origin:
+      - "*"
+      Content-Type:
+      - text/xml; charset=UTF-8
+      Set-Cookie:
+      - ncbi_sid=B31D59A64B6037C5_8E6FSID; domain=.nih.gov; path=/; expires=Sat, 04
+        Apr 2020 21:45:32 GMT
+      X-Ua-Compatible:
+      - IE=Edge
+      X-Xss-Protection:
+      - 1; mode=block
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0" ?>
+        <!DOCTYPE PubmedArticleSet PUBLIC "-//NLM//DTD PubMedArticle, 1st January 2019//EN" "https://dtd.nlm.nih.gov/ncbi/pubmed/out/pubmed_190101.dtd">
+        <PubmedArticleSet>
+        <PubmedArticle>
+            <MedlineCitation Status="MEDLINE" Owner="NLM">
+                <PMID Version="1">24930130</PMID>
+                <DateCompleted>
+                    <Year>2014</Year>
+                    <Month>09</Month>
+                    <Day>29</Day>
+                </DateCompleted>
+                <DateRevised>
+                    <Year>2018</Year>
+                    <Month>12</Month>
+                    <Day>18</Day>
+                </DateRevised>
+                <Article PubModel="Print-Electronic">
+                    <Journal>
+                        <ISSN IssnType="Electronic">1548-7105</ISSN>
+                        <JournalIssue CitedMedium="Internet">
+                            <Volume>11</Volume>
+                            <Issue>8</Issue>
+                            <PubDate>
+                                <Year>2014</Year>
+                                <Month>Aug</Month>
+                            </PubDate>
+                        </JournalIssue>
+                        <Title>Nature methods</Title>
+                        <ISOAbbreviation>Nat. Methods</ISOAbbreviation>
+                    </Journal>
+                    <ArticleTitle>Chemically defined generation of human cardiomyocytes.</ArticleTitle>
+                    <Pagination>
+                        <MedlinePgn>855-60</MedlinePgn>
+                    </Pagination>
+                    <ELocationID EIdType="doi" ValidYN="Y">10.1038/nmeth.2999</ELocationID>
+                    <Abstract>
+                        <AbstractText>Existing methods for human induced pluripotent stem cell (hiPSC) cardiac differentiation are efficient but require complex, undefined medium constituents that hinder further elucidation of the molecular mechanisms of cardiomyogenesis. Using hiPSCs derived under chemically defined conditions on synthetic matrices, we systematically developed an optimized cardiac differentiation strategy, using a chemically defined medium consisting of just three components: the basal medium RPMI 1640, L-ascorbic acid 2-phosphate and rice-derived recombinant human albumin. Along with small molecule-based induction of differentiation, this protocol produced contractile sheets of up to 95% TNNT2(+) cardiomyocytes at a yield of up to 100 cardiomyocytes for every input pluripotent cell and was effective in 11 hiPSC lines tested. This chemically defined platform for cardiac specification of hiPSCs will allow the elucidation of cardiomyocyte macromolecular and metabolic requirements and will provide a minimal system for the study of maturation and subtype specification. </AbstractText>
+                    </Abstract>
+                    <AuthorList CompleteYN="Y">
+                        <Author ValidYN="Y">
+                            <LastName>Burridge</LastName>
+                            <ForeName>Paul W</ForeName>
+                            <Initials>PW</Initials>
+                            <AffiliationInfo>
+                                <Affiliation>1] Stanford Cardiovascular Institute, Stanford University School of Medicine, Stanford, California, USA. [2] Institute for Stem Cell Biology and Regenerative Medicine, Stanford University School of Medicine, Stanford, California, USA. [3] Department of Medicine, Division of Cardiology, Stanford University School of Medicine, Stanford, California, USA.</Affiliation>
+                            </AffiliationInfo>
+                        </Author>
+                        <Author ValidYN="Y">
+                            <LastName>Matsa</LastName>
+                            <ForeName>Elena</ForeName>
+                            <Initials>E</Initials>
+                            <AffiliationInfo>
+                                <Affiliation>1] Stanford Cardiovascular Institute, Stanford University School of Medicine, Stanford, California, USA. [2] Institute for Stem Cell Biology and Regenerative Medicine, Stanford University School of Medicine, Stanford, California, USA. [3] Department of Medicine, Division of Cardiology, Stanford University School of Medicine, Stanford, California, USA.</Affiliation>
+                            </AffiliationInfo>
+                        </Author>
+                        <Author ValidYN="Y">
+                            <LastName>Shukla</LastName>
+                            <ForeName>Praveen</ForeName>
+                            <Initials>P</Initials>
+                            <AffiliationInfo>
+                                <Affiliation>1] Stanford Cardiovascular Institute, Stanford University School of Medicine, Stanford, California, USA. [2] Institute for Stem Cell Biology and Regenerative Medicine, Stanford University School of Medicine, Stanford, California, USA. [3] Department of Medicine, Division of Cardiology, Stanford University School of Medicine, Stanford, California, USA.</Affiliation>
+                            </AffiliationInfo>
+                        </Author>
+                        <Author ValidYN="Y">
+                            <LastName>Lin</LastName>
+                            <ForeName>Ziliang C</ForeName>
+                            <Initials>ZC</Initials>
+                            <AffiliationInfo>
+                                <Affiliation>Department of Applied Physics, Stanford University School of Medicine, Stanford, California, USA.</Affiliation>
+                            </AffiliationInfo>
+                        </Author>
+                        <Author ValidYN="Y">
+                            <LastName>Churko</LastName>
+                            <ForeName>Jared M</ForeName>
+                            <Initials>JM</Initials>
+                            <AffiliationInfo>
+                                <Affiliation>1] Stanford Cardiovascular Institute, Stanford University School of Medicine, Stanford, California, USA. [2] Institute for Stem Cell Biology and Regenerative Medicine, Stanford University School of Medicine, Stanford, California, USA. [3] Department of Medicine, Division of Cardiology, Stanford University School of Medicine, Stanford, California, USA.</Affiliation>
+                            </AffiliationInfo>
+                        </Author>
+                        <Author ValidYN="Y">
+                            <LastName>Ebert</LastName>
+                            <ForeName>Antje D</ForeName>
+                            <Initials>AD</Initials>
+                            <AffiliationInfo>
+                                <Affiliation>1] Stanford Cardiovascular Institute, Stanford University School of Medicine, Stanford, California, USA. [2] Institute for Stem Cell Biology and Regenerative Medicine, Stanford University School of Medicine, Stanford, California, USA. [3] Department of Medicine, Division of Cardiology, Stanford University School of Medicine, Stanford, California, USA.</Affiliation>
+                            </AffiliationInfo>
+                        </Author>
+                        <Author ValidYN="Y">
+                            <LastName>Lan</LastName>
+                            <ForeName>Feng</ForeName>
+                            <Initials>F</Initials>
+                            <AffiliationInfo>
+                                <Affiliation>1] Stanford Cardiovascular Institute, Stanford University School of Medicine, Stanford, California, USA. [2] Institute for Stem Cell Biology and Regenerative Medicine, Stanford University School of Medicine, Stanford, California, USA. [3] Department of Medicine, Division of Cardiology, Stanford University School of Medicine, Stanford, California, USA.</Affiliation>
+                            </AffiliationInfo>
+                        </Author>
+                        <Author ValidYN="Y">
+                            <LastName>Diecke</LastName>
+                            <ForeName>Sebastian</ForeName>
+                            <Initials>S</Initials>
+                            <AffiliationInfo>
+                                <Affiliation>1] Stanford Cardiovascular Institute, Stanford University School of Medicine, Stanford, California, USA. [2] Institute for Stem Cell Biology and Regenerative Medicine, Stanford University School of Medicine, Stanford, California, USA. [3] Department of Medicine, Division of Cardiology, Stanford University School of Medicine, Stanford, California, USA.</Affiliation>
+                            </AffiliationInfo>
+                        </Author>
+                        <Author ValidYN="Y">
+                            <LastName>Huber</LastName>
+                            <ForeName>Bruno</ForeName>
+                            <Initials>B</Initials>
+                            <AffiliationInfo>
+                                <Affiliation>1] Stanford Cardiovascular Institute, Stanford University School of Medicine, Stanford, California, USA. [2] Institute for Stem Cell Biology and Regenerative Medicine, Stanford University School of Medicine, Stanford, California, USA. [3] Department of Medicine, Division of Cardiology, Stanford University School of Medicine, Stanford, California, USA.</Affiliation>
+                            </AffiliationInfo>
+                        </Author>
+                        <Author ValidYN="Y">
+                            <LastName>Mordwinkin</LastName>
+                            <ForeName>Nicholas M</ForeName>
+                            <Initials>NM</Initials>
+                            <AffiliationInfo>
+                                <Affiliation>1] Stanford Cardiovascular Institute, Stanford University School of Medicine, Stanford, California, USA. [2] Institute for Stem Cell Biology and Regenerative Medicine, Stanford University School of Medicine, Stanford, California, USA. [3] Department of Medicine, Division of Cardiology, Stanford University School of Medicine, Stanford, California, USA.</Affiliation>
+                            </AffiliationInfo>
+                        </Author>
+                        <Author ValidYN="Y">
+                            <LastName>Plews</LastName>
+                            <ForeName>Jordan R</ForeName>
+                            <Initials>JR</Initials>
+                            <AffiliationInfo>
+                                <Affiliation>1] Stanford Cardiovascular Institute, Stanford University School of Medicine, Stanford, California, USA. [2] Institute for Stem Cell Biology and Regenerative Medicine, Stanford University School of Medicine, Stanford, California, USA. [3] Department of Medicine, Division of Cardiology, Stanford University School of Medicine, Stanford, California, USA.</Affiliation>
+                            </AffiliationInfo>
+                        </Author>
+                        <Author ValidYN="Y">
+                            <LastName>Abilez</LastName>
+                            <ForeName>Oscar J</ForeName>
+                            <Initials>OJ</Initials>
+                            <Identifier Source="ORCID">000000029991400X</Identifier>
+                            <AffiliationInfo>
+                                <Affiliation>1] Stanford Cardiovascular Institute, Stanford University School of Medicine, Stanford, California, USA. [2] Institute for Stem Cell Biology and Regenerative Medicine, Stanford University School of Medicine, Stanford, California, USA. [3] Department of Medicine, Division of Cardiology, Stanford University School of Medicine, Stanford, California, USA.</Affiliation>
+                            </AffiliationInfo>
+                        </Author>
+                        <Author ValidYN="Y">
+                            <LastName>Cui</LastName>
+                            <ForeName>Bianxiao</ForeName>
+                            <Initials>B</Initials>
+                            <AffiliationInfo>
+                                <Affiliation>Department of Chemistry, Stanford University School of Medicine, Stanford, California, USA.</Affiliation>
+                            </AffiliationInfo>
+                        </Author>
+                        <Author ValidYN="Y">
+                            <LastName>Gold</LastName>
+                            <ForeName>Joseph D</ForeName>
+                            <Initials>JD</Initials>
+                            <AffiliationInfo>
+                                <Affiliation>Stanford Cardiovascular Institute, Stanford University School of Medicine, Stanford, California, USA.</Affiliation>
+                            </AffiliationInfo>
+                        </Author>
+                        <Author ValidYN="Y">
+                            <LastName>Wu</LastName>
+                            <ForeName>Joseph C</ForeName>
+                            <Initials>JC</Initials>
+                            <AffiliationInfo>
+                                <Affiliation>1] Stanford Cardiovascular Institute, Stanford University School of Medicine, Stanford, California, USA. [2] Institute for Stem Cell Biology and Regenerative Medicine, Stanford University School of Medicine, Stanford, California, USA. [3] Department of Medicine, Division of Cardiology, Stanford University School of Medicine, Stanford, California, USA.</Affiliation>
+                            </AffiliationInfo>
+                        </Author>
+                    </AuthorList>
+                    <Language>eng</Language>
+                    <GrantList CompleteYN="Y">
+                        <Grant>
+                            <GrantID>R01 HL113006</GrantID>
+                            <Acronym>HL</Acronym>
+                            <Agency>NHLBI NIH HHS</Agency>
+                            <Country>United States</Country>
+                        </Grant>
+                        <Grant>
+                            <GrantID>T32 EB009035</GrantID>
+                            <Acronym>EB</Acronym>
+                            <Agency>NIBIB NIH HHS</Agency>
+                            <Country>United States</Country>
+                        </Grant>
+                        <Grant>
+                            <GrantID>U01 HL099776</GrantID>
+                            <Acronym>HL</Acronym>
+                            <Agency>NHLBI NIH HHS</Agency>
+                            <Country>United States</Country>
+                        </Grant>
+                        <Grant>
+                            <GrantID>R24 HL117756</GrantID>
+                            <Acronym>HL</Acronym>
+                            <Agency>NHLBI NIH HHS</Agency>
+                            <Country>United States</Country>
+                        </Grant>
+                        <Grant>
+                            <GrantID>T32 HL098049</GrantID>
+                            <Acronym>HL</Acronym>
+                            <Agency>NHLBI NIH HHS</Agency>
+                            <Country>United States</Country>
+                        </Grant>
+                        <Grant>
+                            <GrantID>K99 HL121177</GrantID>
+                            <Acronym>HL</Acronym>
+                            <Agency>NHLBI NIH HHS</Agency>
+                            <Country>United States</Country>
+                        </Grant>
+                        <Grant>
+                            <GrantID>R00 HL121177</GrantID>
+                            <Acronym>HL</Acronym>
+                            <Agency>NHLBI NIH HHS</Agency>
+                            <Country>United States</Country>
+                        </Grant>
+                    </GrantList>
+                    <PublicationTypeList>
+                        <PublicationType UI="D016428">Journal Article</PublicationType>
+                        <PublicationType UI="D052061">Research Support, N.I.H., Extramural</PublicationType>
+                        <PublicationType UI="D013485">Research Support, Non-U.S. Gov't</PublicationType>
+                    </PublicationTypeList>
+                    <ArticleDate DateType="Electronic">
+                        <Year>2014</Year>
+                        <Month>06</Month>
+                        <Day>15</Day>
+                    </ArticleDate>
+                </Article>
+                <MedlineJournalInfo>
+                    <Country>United States</Country>
+                    <MedlineTA>Nat Methods</MedlineTA>
+                    <NlmUniqueID>101215604</NlmUniqueID>
+                    <ISSNLinking>1548-7091</ISSNLinking>
+                </MedlineJournalInfo>
+                <ChemicalList>
+                    <Chemical>
+                        <RegistryNumber>0</RegistryNumber>
+                        <NameOfSubstance UI="D003470">Culture Media</NameOfSubstance>
+                    </Chemical>
+                </ChemicalList>
+                <CitationSubset>IM</CitationSubset>
+                <MeshHeadingList>
+                    <MeshHeading>
+                        <DescriptorName UI="D002454" MajorTopicYN="N">Cell Differentiation</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName UI="D003470" MajorTopicYN="N">Culture Media</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName UI="D006801" MajorTopicYN="N">Humans</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName UI="D057026" MajorTopicYN="N">Induced Pluripotent Stem Cells</DescriptorName>
+                        <QualifierName UI="Q000166" MajorTopicYN="N">cytology</QualifierName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName UI="D032383" MajorTopicYN="N">Myocytes, Cardiac</DescriptorName>
+                        <QualifierName UI="Q000166" MajorTopicYN="Y">cytology</QualifierName>
+                    </MeshHeading>
+                </MeshHeadingList>
+            </MedlineCitation>
+            <PubmedData>
+                <History>
+                    <PubMedPubDate PubStatus="received">
+                        <Year>2013</Year>
+                        <Month>10</Month>
+                        <Day>15</Day>
+                    </PubMedPubDate>
+                    <PubMedPubDate PubStatus="accepted">
+                        <Year>2014</Year>
+                        <Month>05</Month>
+                        <Day>06</Day>
+                    </PubMedPubDate>
+                    <PubMedPubDate PubStatus="entrez">
+                        <Year>2014</Year>
+                        <Month>6</Month>
+                        <Day>16</Day>
+                        <Hour>6</Hour>
+                        <Minute>0</Minute>
+                    </PubMedPubDate>
+                    <PubMedPubDate PubStatus="pubmed">
+                        <Year>2014</Year>
+                        <Month>6</Month>
+                        <Day>16</Day>
+                        <Hour>6</Hour>
+                        <Minute>0</Minute>
+                    </PubMedPubDate>
+                    <PubMedPubDate PubStatus="medline">
+                        <Year>2014</Year>
+                        <Month>9</Month>
+                        <Day>30</Day>
+                        <Hour>6</Hour>
+                        <Minute>0</Minute>
+                    </PubMedPubDate>
+                </History>
+                <PublicationStatus>ppublish</PublicationStatus>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">24930130</ArticleId>
+                    <ArticleId IdType="pii">nmeth.2999</ArticleId>
+                    <ArticleId IdType="doi">10.1038/nmeth.2999</ArticleId>
+                    <ArticleId IdType="pmc">PMC4169698</ArticleId>
+                    <ArticleId IdType="mid">NIHMS599769</ArticleId>
+                </ArticleIdList>
+                <ReferenceList>
+                    <Reference>
+                        <Citation>Nature. 2013 Aug 8;500(7461):222-6</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">23812591</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Cell Res. 2011 Mar;21(3):518-29</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">21243013</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Cell Stem Cell. 2012 Jan 6;10(1):16-28</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">22226352</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Cell Stem Cell. 2011 Feb 4;8(2):228-40</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">21295278</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Nat Protoc. 2008;3(5):768-76</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">18451785</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>BMC Dev Biol. 2010;10:60</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">20525219</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Nat Methods. 2011 May;8(5):409-12</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">21460823</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Nat Biotechnol. 2007 Sep;25(9):1015-24</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">17721512</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>PLoS One. 2011;6(8):e23657</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">21876760</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Cytotechnology. 2010 Jan;62(1):1-16</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">20373019</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Tissue Eng Part C Methods. 2011 Feb;17(2):193-207</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">20726687</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Nature. 2008 May 22;453(7194):524-8</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">18432194</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Cell Stem Cell. 2013 Jan 3;12(1):127-37</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">23168164</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Science. 1998 Nov 6;282(5391):1145-7</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">9804556</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>PLoS One. 2011;6(4):e18293</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">21494607</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Cell Res. 2011 Apr;21(4):579-87</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">21102549</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>JAMA. 1967 Feb 20;199(8):519-24</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">4960081</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Cell Rep. 2012 Nov 29;2(5):1448-60</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">23103164</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Stem Cells. 2007 Apr;25(4):929-38</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">17185609</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Dev Dyn. 2006 Jul;235(7):1994-2002</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">16649168</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Cell Stem Cell. 2012 Aug 3;11(2):242-52</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">22862949</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>J Biol Chem. 1981 Jan 25;256(2):964-8</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">7451483</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>PLoS One. 2012;7(12):e52405</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">23300662</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>PLoS One. 2010;5(6):e11134</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">20559569</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Am J Physiol Cell Physiol. 2010 Dec;299(6):C1234-49</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">20844252</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Nat Biotechnol. 2010 Jun;28(6):606-10</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">20512120</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Proc Jpn Acad Ser B Phys Biol Sci. 2009;85(8):348-62</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">19838014</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Stem Cells Dev. 2012 Apr 10;21(6):977-86</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">22182484</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Brain Res. 1989 Aug 7;494(1):65-74</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">2765923</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Stem Cells. 2010 Apr;28(4):713-20</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">20201064</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Cardiovasc Res. 2003 May 1;58(2):423-34</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">12757876</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Differentiation. 2008 Apr;76(4):357-70</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">18021257</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Nat Commun. 2012;3:1236</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">23212365</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>J Mol Histol. 2004 Jun;35(5):463-70</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">15571324</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Cell Res. 2012 Jan;22(1):219-36</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">22143566</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Nature. 2011 May 19;473(7347):326-35</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">21593865</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Stem Cells. 2008 Sep;26(9):2257-65</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">18599809</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Annu Rev Cell Dev Biol. 2012;28:523-53</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">23057746</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Nat Methods. 2011 May;8(5):424-9</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">21478862</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Proc Natl Acad Sci U S A. 2012 Jul 3;109(27):E1848-57</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">22645348</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Circulation. 2003 Apr 15;107(14):1912-6</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">12668514</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Nat Commun. 2014;5:3195</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">24463987</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Nat Methods. 2011 Dec;8(12):1037-40</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">22020065</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Can J Physiol Pharmacol. 2006 Aug-Sep;84(8-9):935-41</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">17111039</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Circ Res. 2012 Oct 12;111(9):1125-36</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">22912385</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Nat Nanotechnol. 2012 Mar;7(3):185-90</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">22327876</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Nat Commun. 2014;5:3206</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">24487777</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Nat Biotechnol. 2010 Jun;28(6):611-5</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">20512123</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Stem Cells Dev. 2013 Aug 15;22(16):2315-25</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">23517131</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                </ReferenceList>
+            </PubmedData>
+        </PubmedArticle>
+
+        </PubmedArticleSet>
+    http_version: 
+  recorded_at: Thu, 04 Apr 2019 21:45:32 GMT
+recorded_with: VCR 4.0.0
