@@ -213,7 +213,7 @@ GEM
     i18n (0.9.5)
       concurrent-ruby (~> 1.0)
     ice_nine (0.11.2)
-    identifiers (0.11.0)
+    identifiers (0.12.1)
       urn (~> 2.0)
     inflecto (0.0.2)
     jbuilder (2.7.0)
@@ -481,7 +481,7 @@ DEPENDENCIES
   honeybadger (~> 3.3)
   htmlentities (~> 4.3)
   httpclient (~> 2.8)
-  identifiers (~> 0.10)
+  identifiers (~> 0.12)
   jbuilder
   jquery-rails
   kaminari
