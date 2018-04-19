@@ -40,7 +40,7 @@ class DoiSearch
   # @param [String, nil] doi
   # @return [String, nil] DOI name
   def self.doi_name(doi)
-    ::Identifiers::DOI.extract_one(doi)
+    ::Identifiers::DOI.extract(doi).first
   end
   private_class_method :doi_name
 end
