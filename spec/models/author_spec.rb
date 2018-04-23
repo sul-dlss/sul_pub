@@ -66,6 +66,32 @@ describe Author do
     end
   end
 
+  describe '#unique_first_initial?' do
+    it 'confirms unique first initial within stanford with no alternate identities' do
+      odd_name = create :odd_name
+      expect(odd_name.author_identities.size).to eq(0) # has no alternate identities
+      expect(odd_name.unique_first_initial?).to eq(true) # and no other odd names likes this at stanford, so ok to search with first initial
+    end
+    it 'confirms unique first initial within stanford with stanford only alternate identities' do
+      subject.update_from_cap_authorship_profile_hash(auth_hash)
+      expect(subject.author_identities.size).to eq(2) # has alternate identities
+      expect(subject.unique_first_initial?).to eq(true) # ok, because all identities are stanford or no institution, and no other first name ambiguity
+    end
+    it 'confirms ambiguous first initial within stanford with no alternate identities' do
+      create :author_duped_last_name
+      expect(subject.author_identities.size).to eq(0) # no alternate identities
+      expect(subject.unique_first_initial?).to eq(false) # not unique, because we now have another stanford author with same last name and first initial
+    end
+    it 'confirms ambiguous first initial even when non ambiguous within Stanford due to a non-Stanford alternate identity existing' do
+      author_with_alternate_identities = create :author_with_alternate_identities
+      expect(author_with_alternate_identities.author_identities.size).to eq(1) # alternate identities for primary author
+      expect(author_with_alternate_identities.author_identities.first.institution).not_to be blank? # alternate institution is not empty
+      expect(author_with_alternate_identities.author_identities.first.institution.include?('Stanford')).to be false # alternate institution is not Stanford
+      # not unique, because even though there are no other stanford authors with similar names, they have a non-Stanford alternate identity
+      expect(author_with_alternate_identities.unique_first_initial?).to eq(false)
+    end
+  end
+
   describe '#first_name' do
     it 'is the preferred_first_name' do
       subject.update_from_cap_authorship_profile_hash(auth_hash)
