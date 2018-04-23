@@ -48,6 +48,25 @@ class Author < ApplicationRecord
     Settings.HARVESTER.INSTITUTION.name
   end
 
+  # rubocop:disable Metrics/AbcSize
+  # indicates if the LastName, FirstInitial form for this user is unique within our author database
+  #  (including any alternate identities that include Stanford as an institution)
+  #  also checks to see if there are alternate identities with institutions other than Stanford, which is problematic, and should be considered ambiguous
+  def unique_first_initial?
+    return false unless first_name && last_name # this method only works if you have a complete first and last name
+
+    first_initial_not_unique = self.class.where('preferred_first_name like ? and preferred_last_name = ?', "#{first_name[0]}%", last_name).size > 1
+    author_identities_not_unique = author_identities.map do |author_identity|
+      (author_identity.institution.present? && author_identity.institution.exclude?('Stanford')) ||
+        self.class.where(
+          'preferred_first_name like ? and preferred_last_name = ? and id != ?',
+          "#{author_identity.first_name[0]}%", author_identity.last_name, author_identity.author_id
+        ).size > 1
+    end
+    !(first_initial_not_unique || author_identities_not_unique.include?(true))
+  end
+  # rubocop:enable Metrics/AbcSize
+
   # @param [Hash] auth_hash data as-is from CAP API
   def update_from_cap_authorship_profile_hash(auth_hash)
     assign_attributes Author.build_attribute_hash_from_cap_profile(auth_hash)
