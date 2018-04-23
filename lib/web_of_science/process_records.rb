@@ -57,7 +57,8 @@ module WebOfScience
           wssr = wssrs_hash[rec.uid]
           if pub
             author.assign_pub(pub)
-            wssr.link_publication(pub) if pub.wos_uid.nil? || wssr.publication.blank?
+            next if pub.wos_uid && pub.wos_uid != wssr.uid # pub matches other WSSR (e.g. WOS vs. MEDLINE)
+            wssr.link_publication(pub) if wssr.publication.blank?
           else
             create_publication(rec, wssr) && new_uids << rec.uid
           end
@@ -67,7 +68,7 @@ module WebOfScience
         pubmed_additions(records)
       end
 
-      # Save new WebOfScienceSourceRecords.  This method guarantees to all subsequent proecessing
+      # Save new WebOfScienceSourceRecords.  This method guarantees to all subsequent processing
       # that each WOS uid in @records now has a WebOfScienceSourceRecord.
       # @return [Array<WebOfScienceSourceRecord>] all matching or created records
       def save_wos_records
