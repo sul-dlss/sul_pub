@@ -7,10 +7,11 @@ module Harvester
     def harvest_all(options = {})
       total = authors_query.count
       count = 0
+      logger.info "Started a complete harvest for #{total} authors at #{Time.zone.now}"
       authors_query.find_in_batches(batch_size: batch_size).each do |batch|
         harvest(batch, options)
         count += batch_size
-        logger.info "completed #{count} of #{total} authors for harvest"
+        logger.info "completed #{count} of #{total} authors for harvest at #{Time.zone.now}"
       end
     end
 
@@ -29,6 +30,7 @@ module Harvester
       end
 
       # @return [Author::ActiveRecord_Relation]
+      # NOTE AR find_in_batches ignores order and limit on the query scope, and this method is used later with find_in_batches
       def authors_query
         @authors_query ||= Author.where(active_in_cap: true, cap_import_enabled: true).order(:id)
       end
