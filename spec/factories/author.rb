@@ -56,6 +56,26 @@ FactoryBot.define do
     end
   end
 
+  factory :author_duped_last_name, parent: :author do
+    sunetid { FactoryBot.generate(:random_id) }
+    cap_profile_id { FactoryBot.generate(:random_id) }
+    university_id { FactoryBot.generate(:random_id) }
+    california_physician_license { FactoryBot.generate(:random_string) }
+    active_in_cap { true }
+    email { 'alice.edler@stanford.edu' }
+    official_first_name { 'Albert' }
+    official_last_name { 'Edler' }
+    official_middle_name { '' }
+    preferred_first_name { 'Albert' }
+    preferred_last_name { 'Edler' }
+    preferred_middle_name { '' }
+    emails_for_harvest { 'albert.edler@stanford.edu' }
+  end
+
+  factory :inactive_author, parent: :author do
+    active_in_cap { false }
+  end
+
   factory :author_with_alternate_identities, parent: :author do
     transient do
       alt_count { 1 } # default number of alternate identities to create
@@ -65,6 +85,19 @@ FactoryBot.define do
         create(:author_identity, author: author)
       end
     end
+  end
+
+  factory :odd_name, parent: :author do
+    active_in_cap { true }
+    cap_import_enabled { true }
+    official_first_name { 'Somebody' }
+    official_last_name { 'WithReallyUnusualName' }
+    official_middle_name { '' }
+    preferred_first_name { 'Somebody' }
+    preferred_last_name { 'WithReallyUnusualName' }
+    preferred_middle_name { '' }
+    email { 'Somebody.WithReallyUnusualName@stanford.edu' }
+    emails_for_harvest { 'Somebody.WithReallyUnusualName@stanford.edu' }
   end
 
   # Public data from
