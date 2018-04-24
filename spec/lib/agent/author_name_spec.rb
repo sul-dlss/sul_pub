@@ -129,6 +129,9 @@ describe Agent::AuthorName do
     end
     context 'when all names are present' do
       let(:fn_query) { all_names.send(:first_name_query) }
+      before do
+        allow(Settings.HARVESTER).to receive(:USE_FIRST_INITIAL).and_return(false)
+      end
       it 'is Array<String> with non-empty unique values' do
         expect(fn_query).to be_an Array
         expect(fn_query).to all(be_a(String))
@@ -138,8 +141,8 @@ describe Agent::AuthorName do
       it 'includes name with first_name' do
         expect(fn_query).to include "#{all_names.last_name},#{all_names.first_name}"
       end
-      it 'includes name with first_initial' do
-        expect(fn_query).to include "#{all_names.last_name},#{all_names.first_initial}"
+      it 'excludes name with first_initial when settings do not allow for it' do
+        expect(fn_query).not_to include "#{all_names.last_name},#{all_names.first_initial}"
       end
       it 'does not include name with middle_name' do
         expect(fn_query).not_to include "#{all_names.last_name},#{all_names.first_name},#{all_names.middle_name}"
@@ -150,6 +153,15 @@ describe Agent::AuthorName do
         expect(fn_query).to all(exclude(",#{all_names.middle_initial}"))
       end
     end
+    context 'when all names are present and settings allow for first initial' do
+      before do
+        allow(Settings.HARVESTER).to receive(:USE_FIRST_INITIAL).and_return(true)
+      end
+      let(:fn_query) { all_names.send(:first_name_query) }
+      it 'includes name with first_initial when settings allow for it' do
+        expect(fn_query).to include "#{all_names.last_name},#{all_names.first_initial}"
+      end
+    end
   end
 
   describe '#middle_name_query' do
@@ -158,6 +170,9 @@ describe Agent::AuthorName do
     end
     context 'when all names are present' do
       let(:mn_query) { all_names.send(:middle_name_query) }
+      before do
+        allow(Settings.HARVESTER).to receive(:USE_FIRST_INITIAL).and_return(false)
+      end
       it 'is Array<String> with non-empty unique values' do
         expect(mn_query).to be_an Array
         expect(mn_query).to all(be_a(String))
@@ -176,7 +191,16 @@ describe Agent::AuthorName do
       it 'does not include last_name,first_initial' do
         expect(mn_query).not_to include "#{all_names.last_name},#{all_names.first_initial}"
       end
-      it 'includes name with middle_initial appended to first initial' do
+      it 'excludes name with middle_initial appended to first initial when settings do not allow for it' do
+        expect(mn_query).not_to include "#{all_names.last_name},#{all_names.first_initial}#{all_names.middle_initial}"
+      end
+    end
+    context 'when all names are present and settings allow for first initial' do
+      let(:mn_query) { all_names.send(:middle_name_query) }
+      before do
+        allow(Settings.HARVESTER).to receive(:USE_FIRST_INITIAL).and_return(true)
+      end
+      it 'includes name with middle_initial appended to first initial when settings allow for it' do
         expect(mn_query).to include "#{all_names.last_name},#{all_names.first_initial}#{all_names.middle_initial}"
       end
     end

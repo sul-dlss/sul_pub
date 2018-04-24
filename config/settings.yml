@@ -58,6 +58,7 @@ DOI:
 
 HARVESTER:
   USE_MIDDLE_NAME: true
+  USE_FIRST_INITIAL: false
   USE_AUTHOR_IDENTITIES: false
   INSTITUTION:
     name: Stanford University
