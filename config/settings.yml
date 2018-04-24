@@ -24,6 +24,7 @@ CAP:
   AUTHORSHIP_API_PATH: /cap-api/api/cap/v1/authors
   AUTHORSHIP_API_PORT: 443
   AUTHORSHIP_API_URI: https://cap-uat.stanford.edu
+  HARVEST_ON_CHANGE: true
 
 ## PubMed Auth Config
 PUBMED:

@@ -75,7 +75,9 @@ describe Cap::AuthorsPoller, :vcr do
   describe '#process_record' do
     before do
       # Set an instance variable that is normally set by the parent method calling #process_record
-      subject.instance_variable_set('@new_or_changed_authors_to_harvest_queue', [])
+      subject.instance_variable_set('@new_authors_to_harvest_queue', [])
+      subject.instance_variable_set('@changed_authors_to_harvest_queue', [])
+      allow(Settings.CAP).to receive(:HARVEST_ON_CHANGE).and_return(true)
     end
 
     context 'with an existing author' do
@@ -92,7 +94,7 @@ describe Cap::AuthorsPoller, :vcr do
 
       it 'adds author.id to the harvest queue when harvesting is enabled' do
         expect(author).to receive(:harvestable?).and_return(true)
-        queue = subject.instance_variable_get('@new_or_changed_authors_to_harvest_queue')
+        queue = subject.instance_variable_get('@changed_authors_to_harvest_queue')
         expect(queue).to be_empty
         subject.process_record(author_record)
         expect(queue).to include(author.id)
@@ -102,7 +104,7 @@ describe Cap::AuthorsPoller, :vcr do
         allow(author).to receive(:changed?).and_return(true)
         expect(author).to receive(:harvestable?).and_return(false)
         expect { subject.process_record(author_record) }
-          .to change { subject.instance_variable_get('@no_sw_harvest_count') }.by(1)
+          .to change { subject.instance_variable_get('@no_harvest_count') }.by(1)
       end
 
       context 'with an authorship record' do
@@ -113,7 +115,7 @@ describe Cap::AuthorsPoller, :vcr do
       end
     end
 
-    context 'with an author retrieved from the CAP API' do
+    context 'with a new author retrieved from the CAP API' do
       let(:author) { create :author }
       before do
         expect(Author).to receive(:find_by_cap_profile_id).with(author.cap_profile_id).and_return(nil)
@@ -128,14 +130,14 @@ describe Cap::AuthorsPoller, :vcr do
       it 'harvests for new authors marked harvestable' do
         expect(author).to receive(:harvestable?).and_return(true)
         subject.process_record(author_record)
-        queue = subject.instance_variable_get('@new_or_changed_authors_to_harvest_queue')
+        queue = subject.instance_variable_get('@new_authors_to_harvest_queue')
         expect(queue).to include(author.id)
       end
 
       it 'skips harvests for new authors not marked harvestable' do
         expect(author).to receive(:harvestable?).and_return(false)
         expect { subject.process_record(author_record) }
-          .to change { subject.instance_variable_get('@no_sw_harvest_count') }.by(1)
+          .to change { subject.instance_variable_get('@no_harvest_count') }.by(1)
       end
 
       context 'with an authorship record' do

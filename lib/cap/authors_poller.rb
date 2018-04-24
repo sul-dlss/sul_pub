@@ -15,7 +15,8 @@ module Cap
 
     def get_authorship_data(days_ago = 1)
       logger.info "Started CAP authorship import - #{Time.zone.now}"
-      @new_or_changed_authors_to_harvest_queue = []
+      @new_authors_to_harvest_queue = []
+      @changed_authors_to_harvest_queue = []
       page_count = 0
       page_size = 1000
       loop do
@@ -32,7 +33,8 @@ module Cap
       end
 
       log_stats
-      logger.info 'authors to harvest: ' + @new_or_changed_authors_to_harvest_queue.to_s
+      logger.info 'new authors to harvest: ' + @new_authors_to_harvest_queue.to_s
+      logger.info 'changed authors to harvest: ' + @changed_authors_to_harvest_queue.to_s if Settings.CAP.HARVEST_ON_CHANGE
       do_science_wire_harvest
       do_wos_harvest
 
@@ -52,12 +54,12 @@ module Cap
 
     def do_science_wire_harvest
       return unless Settings.SCIENCEWIRE.enabled
-      @sw_harvester.harvest_pubs_for_author_ids(@new_or_changed_authors_to_harvest_queue)
+      @sw_harvester.harvest_pubs_for_author_ids(@new_authors_to_harvest_queue + @changed_authors_to_harvest_queue)
     end
 
     def do_wos_harvest
       return unless Settings.WOS.enabled
-      Author.where(id: @new_or_changed_authors_to_harvest_queue).find_in_batches(batch_size: 250) do |authors|
+      Author.where(id: @new_authors_to_harvest_queue + @changed_authors_to_harvest_queue).find_in_batches(batch_size: 250) do |authors|
         WebOfScience.harvester.harvest(authors)
       end
     end
@@ -156,13 +158,7 @@ module Cap
         @total_running_count = 0
         @new_author_count = 0
         @authors_updated_count = 0
-        @no_sw_harvest_count = 0
-        @no_email_in_import_settings = 0
-        @active_true_count = 0
-        @active_false_count = 0
-        @no_active_count = 0
-        @import_enabled_count = 0
-        @import_disabled_count = 0
+        @no_harvest_count = 0
         @contribs_changed = 0
         @contrib_does_not_exist = 0
         @invalid_contribs = 0
@@ -178,14 +174,10 @@ module Cap
         info = []
         info << "#{@total_running_count} records were processed in #{log_process_time}"
         info << "#{@new_author_count} authors were created."
-        info << "#{@no_sw_harvest_count} authors were not harvested because of no import settings or they did not change"
-        info << "#{@no_email_in_import_settings} records with no email in import settings."
-        info << "#{@active_true_count} records with 'active' true."
-        info << "#{@active_false_count} records with 'active' false."
-        info << "#{@no_active_count} records with no 'active' field in profile."
+        info << "#{@new_authors_to_harvest_queue.size} new authors were queued for harvesting."
+        info << "#{@changed_authors_to_harvest_queue.size} changed authors were queued for harvesting." if Settings.CAP.HARVEST_ON_CHANGE
+        info << "#{@no_harvest_count} authors were marked as not harvestable because of import settings."
         info << "#{@authors_updated_count} authors were updated."
-        info << "#{@import_enabled_count} authors had import enabled."
-        info << "#{@import_disabled_count} authors had import disabled."
         info << "#{@contrib_does_not_exist} contributions did not exist for update"
         info << "#{@invalid_contribs} contributions were invalid authorship data"
         info << "#{@too_many_contribs} contributions had more than one instance for an author"
@@ -198,7 +190,7 @@ module Cap
         logger.info "Updating Author.find_by(id: #{author.id}, cap_profile_id: #{author.cap_profile_id})"
         author.update_from_cap_authorship_profile_hash(record)
         update_existing_contributions author, record['authorship'] if record['authorship'].present?
-        queue_author_for_harvest(author)
+        queue_author_for_harvest(author, new_record: false)
         author.save!
         @authors_updated_count += 1
       end
@@ -212,19 +204,20 @@ module Cap
           logger.warn "New author has authorship which will be skipped; Author.find_by(cap_profile_id: #{cap_profile_id})"
           @new_auth_with_contribs += 1
         end
-        queue_author_for_harvest(author)
+        queue_author_for_harvest(author, new_record: true)
         author.save!
         @new_author_count += 1
       end
 
       # Add author to job queue if it's harvestable and new/changed
       # @param [String] `skip_message` logs this message if it skips adding author to queue
-      def queue_author_for_harvest(author)
-        if (author.new_record? || author.changed?) && author.harvestable?
-          @new_or_changed_authors_to_harvest_queue << author.id
+      def queue_author_for_harvest(author, options)
+        if author.harvestable?
+          @new_authors_to_harvest_queue << author.id if options[:new_record]
+          @changed_authors_to_harvest_queue << author.id if Settings.CAP.HARVEST_ON_CHANGE && !options[:new_record] && author.changed?
         else
-          @no_sw_harvest_count += 1
-          logger.info "Author marked as not harvestable or did not change. Skipping Author.find_by(cap_profile_id: #{author.cap_profile_id})"
+          @no_harvest_count += 1
+          logger.info "Author marked as not harvestable. Skipping Author.find_by(cap_profile_id: #{author.cap_profile_id})"
         end
       end
   end
