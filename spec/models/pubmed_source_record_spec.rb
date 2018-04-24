@@ -119,6 +119,15 @@ describe PubmedSourceRecord, :vcr do
     end
   end
 
+  describe '.source_as_hash' do
+    it 'parses the year correctly' do
+      record = create :pubmed_source_record_10000166 # year in first location
+      expect(record.source_as_hash[:year]).to eq "1992"
+      record = create :pubmed_source_record_29279863 # year in alternate location
+      expect(record.source_as_hash[:year]).to eq "2017"
+    end
+  end
+
   describe '.pubmed_update' do
     it 'updates the :source_data field' do
       source_data = '<PubmedArticle><MedlineCitation Status="Publisher" Owner="NLM"><PMID Version="1">1</PMID><OriginalData/></PubmedArticle>'
