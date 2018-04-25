@@ -70,10 +70,9 @@ module Agent
       # @return [Array<String>|String] names
       def first_name_query
         return '' if last.empty? && first.empty?
-        [
-          "#{last_name},#{first_name}",
-          "#{last_name},#{first_initial}"
-        ]
+        query =  ["#{last_name},#{first_name}"]
+        query += ["#{last_name},#{first_initial}"] if Settings.HARVESTER.USE_FIRST_INITIAL
+        query
       end
 
       # Name variants for:
@@ -83,12 +82,9 @@ module Agent
       # @return [Array<String>|String] names
       def middle_name_query
         return '' unless middle =~ /^[[:alpha:]]/
-        [
-          "#{last_name},#{first_name},#{middle_name}",
-          "#{last_name},#{first_name},#{middle_initial}",
-          "#{last_name},#{first_initial}#{middle_initial}",
-          "#{last_name},#{first_initial},#{middle_initial}"
-        ]
+        query =  ["#{last_name},#{first_name},#{middle_name}", "#{last_name},#{first_name},#{middle_initial}"]
+        query += ["#{last_name},#{first_initial}#{middle_initial}", "#{last_name},#{first_initial},#{middle_initial}"] if Settings.HARVESTER.USE_FIRST_INITIAL
+        query
       end
 
       # Some names may contain particles, e.g. the

@@ -22,6 +22,9 @@ describe ScienceWire::Query::PublicationQueryByAuthorName do
   end
 
   describe '#generate' do
+    before do
+      allow(Settings.HARVESTER).to receive(:USE_FIRST_INITIAL).and_return(true)
+    end
     subject { described_class.new(author_attributes, max_rows) }
     context 'common first and last name' do
       let(:author_name) { Agent::AuthorName.new('smith', 'james', '') }
