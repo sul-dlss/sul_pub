@@ -229,6 +229,8 @@ describe Cap::AuthorsPoller, :vcr do
     it 'does nothing if sw client is disabled' do
       allow(Settings.SCIENCEWIRE).to receive(:enabled).and_return(false)
       expect(ScienceWireHarvester).not_to receive(:harvest_pubs_for_author_ids)
+      subject.instance_variable_set('@new_authors_to_harvest_queue', [123,456])
+      subject.instance_variable_set('@changed_authors_to_harvest_queue', [789,101212])
       subject.do_science_wire_harvest
     end
   end
@@ -236,8 +238,17 @@ describe Cap::AuthorsPoller, :vcr do
   describe '.do_wos_harvest' do
     it 'does nothing if WoS client is disabled' do
       allow(Settings.WOS).to receive(:enabled).and_return(false)
+      subject.instance_variable_set('@new_authors_to_harvest_queue', [author.id])
+      subject.instance_variable_set('@changed_authors_to_harvest_queue', [author.id])
       expect(Author).not_to receive(:where)
       expect(WebOfScience).not_to receive(:harvester)
+      subject.do_wos_harvest
+    end
+    it 'adds timeframes for harvests for new and updated authors' do
+      allow(Settings.WOS).to receive(:enabled).and_return(true)
+      subject.instance_variable_set('@new_authors_to_harvest_queue', [author.id])
+      subject.instance_variable_set('@changed_authors_to_harvest_queue', [author.id])
+      expect(WebOfScience).to receive(:harvester)
       subject.do_wos_harvest
     end
   end
