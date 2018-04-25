@@ -13,7 +13,8 @@ module WebOfScience
       uid_to_pub = Publication.where(wos_uid: present_recs.map(&:uid)).group_by(&:wos_uid)
       present_recs.each do |record|
         begin
-          pub = uid_to_pub[record.uid].first || raise("No Publication matches UID #{record.uid}")
+          next if uid_to_pub[record.uid].blank?
+          pub = uid_to_pub[record.uid].first
           pmid = parse_pmid(record.pmid) # validate a PMID before saving it to a Publication
           pub.pmid.nil? || next # first PMID is enough
           pub.pmid = pmid
