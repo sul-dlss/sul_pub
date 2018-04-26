@@ -229,8 +229,8 @@ describe Cap::AuthorsPoller, :vcr do
     it 'does nothing if sw client is disabled' do
       allow(Settings.SCIENCEWIRE).to receive(:enabled).and_return(false)
       expect(ScienceWireHarvester).not_to receive(:harvest_pubs_for_author_ids)
-      subject.instance_variable_set('@new_authors_to_harvest_queue', [123,456])
-      subject.instance_variable_set('@changed_authors_to_harvest_queue', [789,101212])
+      subject.instance_variable_set('@new_authors_to_harvest_queue', [123, 456])
+      subject.instance_variable_set('@changed_authors_to_harvest_queue', [789, 112])
       subject.do_science_wire_harvest
     end
   end
