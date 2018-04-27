@@ -16,7 +16,7 @@ describe SulBib::API, :vcr do
     JSON.parse(response.body)
   end
 
-  before { allow(Settings.WOS).to receive(:enabled).and_return(false) }
+  before { allow(Settings.WOS).to receive(:enabled).and_return(true) }
 
   describe 'GET /publications/sourcelookup ' do
     it 'raises an error when title and doi are not sent' do
@@ -42,48 +42,39 @@ describe SulBib::API, :vcr do
 
       it 'returns one document ' do
         expect(result['metadata']['records']).to eq('1')
-        expect(result['records'].first['sw_id']).to eq('60830932')
+        expect(result['records'].first['wos_uid']).to eq('WOS:000305547700008')
       end
 
-      it 'does not query sciencewire if there is an existing publication with the doi' do
+      it 'does not query provider if there is an existing publication with the doi' do
         doi_identifier.publication.save
-        expect(result['metadata']).to include('records')
-        expect(result['metadata']['records']).to eq('1')
+        expect(result['metadata']).to include('records' => '1')
         record = result['records'].first
         expect(record['title']).to match(/Protein kinase C alpha/i)
-        expect(record['provenance']).to match(/sciencewire/)
+        expect(record['provenance']).to eq 'wos'
       end
     end
 
     describe '?pmid' do
       it 'returns one document' do
-        path = '/publications/sourcelookup'
+        allow(Settings.WOS).to receive(:enabled).and_return(false)
         params = { format: 'json', pmid: '24196758' }
-        get path, params, capkey
+        get '/publications/sourcelookup', params, capkey
         expect(response.status).to eq(200)
         result = JSON.parse(response.body)
-        expect(result['metadata']).to include('records')
-        expect(result['metadata']['records']).to eq('1')
+        expect(result['metadata']).to include('records' => '1')
         record = result['records'].first
-        expect(record).to include('provenance')
-        expect(record['provenance']).to eq 'sciencewire'
-        expect(record).to include('apa_citation')
-        expect(record).to include('mla_citation')
-        expect(record).to include('chicago_citation')
-        expect(record['apa_citation']).to match(/^Sittig, D. F./)
+        expect(record).to include('mla_citation', 'chicago_citation')
+        expect(record).to include('apa_citation' => /^Sittig, D. F./)
+        expect(record['provenance']).to eq('pubmed')
       end
     end
 
     describe '?title=' do
       describe 'returns bibjson' do
-        it 'with metadata section' do
+        it 'with expected sections' do
           result = sourcelookup_by_title
-          expect(result).to include('metadata')
+          expect(result).to include('metadata', 'records')
           expect(result['metadata']).not_to be_empty
-        end
-        it 'with records section' do
-          result = sourcelookup_by_title
-          expect(result).to include('records')
           expect(result['records']).not_to be_empty
         end
       end
@@ -96,9 +87,11 @@ describe SulBib::API, :vcr do
         expect(result['records'].length).to eq(5)
       end
 
-      it 'does a sciencewire title search' do
-        title = 'lung cancer treatment'
-        params = { format: 'json', title: title }
+      it 'does a title search' do
+        expect(WebOfScience.queries).to receive(:user_query)
+          .with('TI="lung cancer treatment"')
+          .and_return(instance_double(WebOfScience::Retriever, next_batch: Array.new(20) { {} }))
+        params = { format: 'json', title: 'lung cancer treatment' }
         get sourcelookup_path, params, capkey
         expect(response.status).to eq(200)
         result = JSON.parse(response.body)
@@ -116,15 +109,16 @@ describe SulBib::API, :vcr do
 
       it 'returns results that match the requested year' do
         year = 2015.to_s
+        expect(WebOfScience.queries).to receive(:user_query)
+          .with("TI=\"#{test_title}\" AND PY=2015")
+          .and_return(instance_double(WebOfScience::Retriever, next_batch: ['year' => year]))
         params = { format: 'json', title: test_title, year: year }
         get sourcelookup_path, params, capkey
         expect(response.status).to eq(200)
         result = JSON.parse(response.body)
         expect(result).to include('records')
         expect(result['records']).not_to be_empty
-        records = result['records']
-        matches = records.count { |r| r['year'] == year }
-        expect(matches).to eq(records.count) # ALL records match
+        expect(result['records'].map { |r| r['year'] }).to all eq(year) # ALL records match
       end
     end
 

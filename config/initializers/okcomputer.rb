@@ -36,7 +36,6 @@ clients = [
   Cap::Client,
   PubmedClient
 ]
-clients << ScienceWireClient if Settings.SCIENCEWIRE.enabled
 if Settings.WOS.enabled
   clients << WebOfScience
   clients << Clarivate::LinksClient

@@ -7,7 +7,6 @@ module Cap
     include ActionView::Helpers::DateHelper
 
     def initialize
-      @sw_harvester = ScienceWireHarvester.new
       @cap_client = Cap::Client.new
       @logger = NotificationManager.cap_logger
       init_stats
@@ -37,7 +36,6 @@ module Cap
 
       logger.info 'new authors to harvest: ' + @new_authors_to_harvest_queue.to_s
       logger.info 'changed authors to harvest: ' + @changed_authors_to_harvest_queue.to_s if Settings.CAP.HARVEST_ON_CHANGE
-      do_science_wire_harvest
       do_wos_harvest
       log_stats
       logger.info 'Finished authorship import'
@@ -48,11 +46,6 @@ module Cap
     def cap_authors_count(days_ago = 1)
       json_response = get_recent_cap_authorship(1, 10, days_ago)
       json_response['totalCount']
-    end
-
-    def do_science_wire_harvest
-      return unless Settings.SCIENCEWIRE.enabled
-      @sw_harvester.harvest_pubs_for_author_ids(@new_authors_to_harvest_queue + @changed_authors_to_harvest_queue)
     end
 
     def do_wos_harvest

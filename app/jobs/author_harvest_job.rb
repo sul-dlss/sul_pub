@@ -9,7 +9,6 @@ class AuthorHarvestJob < ActiveJob::Base
     author = Author.find_by(cap_profile_id: cap_profile_id)
     author ||= Author.fetch_from_cap_and_create(cap_profile_id)
     raise "Could not find or fetch author: #{cap_profile_id}" unless author.is_a?(Author)
-    sciencewire(author, harvest_alternate_names)
     web_of_science(author, harvest_alternate_names)
   rescue => e
     msg = "AuthorHarvestJob.perform(#{cap_profile_id}, harvest_alternate_names: #{harvest_alternate_names})"
@@ -27,17 +26,6 @@ class AuthorHarvestJob < ActiveJob::Base
         logger.info "publication #{p.id}: #{p.pub_hash[:apa_citation]}"
       end
       logger.info "Number of publications #{pubs.count}"
-    end
-
-    # @param [Author] author
-    # @param [Boolean] harvest_alternate_names
-    # @return [void]
-    def sciencewire(author, harvest_alternate_names)
-      return unless Settings.SCIENCEWIRE.enabled
-      harvester = ScienceWireHarvester.new
-      harvester.use_author_identities = harvest_alternate_names
-      harvester.harvest_pubs_for_author_ids author.id
-      log_pubs(author)
     end
 
     # @param [Author] author

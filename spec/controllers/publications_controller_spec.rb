@@ -63,11 +63,10 @@ describe PublicationsController do
       let(:json_response) { JSON.parse(response.body) }
 
       before do
-        allow(Settings.SCIENCEWIRE).to receive(:enabled).and_return(false) # default
         allow(Settings.WOS).to receive(:enabled).and_return(false) # default
       end
 
-      context 'SW and WOS both disabled' do
+      context 'WOS disabled' do
         let(:ussr) { create :user_submitted_source_record, title: 'Men On Mars', year: 2001, source_data: '{}' }
         let!(:pub) do
           pub = build(:publication, title: ussr.title, year: ussr.year, user_submitted_source_records: [ussr])
@@ -80,7 +79,6 @@ describe PublicationsController do
         end
 
         it 'only searches local/manual pubs' do
-          expect(ScienceWireClient).not_to receive(:new)
           expect(WebOfScience).not_to receive(:queries)
           get :sourcelookup, title: 'en On Ma', format: 'json' # Partial title
           expect(json_response).to match a_hash_including(
@@ -90,19 +88,7 @@ describe PublicationsController do
         end
       end
 
-      context 'SW enabled, WOS disabled' do
-        let(:swc) { instance_double(ScienceWireClient) }
-        before { allow(Settings.SCIENCEWIRE).to receive(:enabled).and_return(true) }
-
-        it 'hits ScienceWire' do
-          allow(ScienceWireClient).to receive(:new).and_return(swc)
-          expect(WebOfScience).not_to receive(:queries)
-          expect(swc).to receive(:query_sciencewire_for_publication).with(nil, nil, nil, 'xyz', any_args).and_return([])
-          get :sourcelookup, title: 'xyz', format: 'json' # Partial title
-        end
-      end
-
-      context 'SW disabled, WOS enabled' do
+      context 'WOS enabled' do
         let(:queries) { instance_double(WebOfScience::Queries) }
         let(:retriever) { instance_double(WebOfScience::Retriever, next_batch: WebOfScience::Records.new(records: '<xml/>')) }
         before do
@@ -111,7 +97,6 @@ describe PublicationsController do
         end
 
         it 'hits WOS' do
-          expect(ScienceWireClient).not_to receive(:new)
           expect(queries).to receive(:user_query).with('TI="xyz"').and_return(retriever)
           get :sourcelookup, title: 'xyz', format: 'json' # Partial title
         end
@@ -120,7 +105,6 @@ describe PublicationsController do
           get :sourcelookup, title: 'xyz', year: 2001, format: 'json' # Partial title with year
         end
         it 'remove quotes from user query to avoid parsing errors' do
-          expect(ScienceWireClient).not_to receive(:new)
           expect(queries).to receive(:user_query).with('TI="xyz with quoted values in it"').and_return(retriever)
           get :sourcelookup, title: 'xyz with "quoted values" in it', format: 'json' # title with quotes
         end

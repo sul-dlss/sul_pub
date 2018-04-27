@@ -11,7 +11,7 @@ class NotificationManager
       log_message = callee.class.name + ': ' + message
 
       case callee
-      when ScienceWireHarvester, ScienceWireClient, SciencewireSourceRecord
+      when SciencewireSourceRecord
         log_exception(sciencewire_logger, log_message, e)
       when PubmedHarvester, PubmedClient, PubmedSourceRecord
         log_exception(pubmed_logger, log_message, e)
