@@ -60,10 +60,10 @@ module Cap
     def do_wos_harvest
       return unless Settings.WOS.enabled
       Author.where(id: @new_authors_to_harvest_queue).find_in_batches(batch_size: 250) do |authors|
-        WebOfScience.harvester.harvest(authors, symbolicTimeSpan: Settings.HARVESTER.NEW_AUTHOR_TIMEFRAME)
+        WebOfScience.harvester.harvest(authors, symbolicTimeSpan: Settings.WOS.new_author_timeframe)
       end
       Author.where(id: @changed_authors_to_harvest_queue).find_in_batches(batch_size: 250) do |authors|
-        WebOfScience.harvester.harvest(authors, symbolicTimeSpan: Settings.HARVESTER.UPDATE_TIMEFRAME)
+        WebOfScience.harvester.harvest(authors, symbolicTimeSpan: Settings.WOS.update_timeframe)
       end
     end
 

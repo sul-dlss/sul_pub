@@ -236,19 +236,30 @@ describe Cap::AuthorsPoller, :vcr do
   end
 
   describe '.do_wos_harvest' do
+    let(:other_author) { create :author }
+
+    before do
+      subject.instance_variable_set('@new_authors_to_harvest_queue', [author.id])
+      subject.instance_variable_set('@changed_authors_to_harvest_queue', [other_author.id])
+    end
+
     it 'does nothing if WoS client is disabled' do
       allow(Settings.WOS).to receive(:enabled).and_return(false)
-      subject.instance_variable_set('@new_authors_to_harvest_queue', [author.id])
-      subject.instance_variable_set('@changed_authors_to_harvest_queue', [author.id])
       expect(Author).not_to receive(:where)
       expect(WebOfScience).not_to receive(:harvester)
       subject.do_wos_harvest
     end
-    it 'adds timeframes for harvests for new and updated authors' do
+
+    it 'adds separate timeframes for harvests for new and updated authors' do
       allow(Settings.WOS).to receive(:enabled).and_return(true)
-      subject.instance_variable_set('@new_authors_to_harvest_queue', [author.id])
-      subject.instance_variable_set('@changed_authors_to_harvest_queue', [author.id])
-      expect(WebOfScience).to receive(:harvester)
+      expect(WebOfScience.harvester).to receive(:harvest).with(Enumerable, symbolicTimeSpan: Settings.WOS.new_author_timeframe) do |authors, _|
+        expect(authors.size).to eq 1
+        expect(authors.first.id).to eq author.id
+      end
+      expect(WebOfScience.harvester).to receive(:harvest).with(Enumerable, symbolicTimeSpan: Settings.WOS.update_timeframe) do |authors, _|
+        expect(authors.size).to eq 1
+        expect(authors.first.id).to eq other_author.id
+      end
       subject.do_wos_harvest
     end
   end

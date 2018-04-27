@@ -53,6 +53,8 @@ WOS:
   AUTH_CODE: secret
   LOG: log/web_of_science.log
   LOG_LEVEL: warn
+  update_timeframe: 4week # default WoS symbolicTimeSpan for updated authors/biweekly harvests
+  new_author_timeframe: 52week # default WoS symbolicTimeSpan for new authors
 
 DOI:
   BASE_URI: https://dx.doi.org/
@@ -60,8 +62,6 @@ DOI:
 HARVESTER:
   USE_MIDDLE_NAME: true
   USE_AUTHOR_IDENTITIES: false
-  UPDATE_TIMEFRAME: 4week # default WoS symbolicTimeSpan for updated authors/biweekly harvests
-  NEW_AUTHOR_TIMEFRAME: 52week # default WoS symbolicTimeSpan for new authors
   INSTITUTION:
     name: Stanford University
     address:
