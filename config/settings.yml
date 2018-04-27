@@ -24,6 +24,7 @@ CAP:
   AUTHORSHIP_API_PATH: /cap-api/api/cap/v1/authors
   AUTHORSHIP_API_PORT: 443
   AUTHORSHIP_API_URI: https://cap-uat.stanford.edu
+  HARVEST_ON_CHANGE: true
 
 ## PubMed Auth Config
 PUBMED:
@@ -52,6 +53,8 @@ WOS:
   AUTH_CODE: secret
   LOG: log/web_of_science.log
   LOG_LEVEL: warn
+  update_timeframe: 4week # default WoS symbolicTimeSpan for updated authors/biweekly harvests
+  new_author_timeframe: 52week # default WoS symbolicTimeSpan for new authors
 
 DOI:
   BASE_URI: https://dx.doi.org/
