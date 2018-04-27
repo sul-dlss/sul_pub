@@ -22,7 +22,7 @@ namespace :wos do
   # "xyear" where x => 1 and < ?
   desc 'Update harvest from Web of Science, for all authors'
   task :harvest_authors_update, [:symbolicTimeSpan] => :environment do |_t, args|
-    options = args.with_defaults(symbolicTimeSpan: Settings.HARVESTER.UPDATE_TIMEFRAME)
+    options = args.with_defaults(symbolicTimeSpan: Settings.WOS.update_timeframe)
     WebOfScience.harvester.harvest_all(options)
   end
 
