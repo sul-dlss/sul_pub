@@ -123,7 +123,19 @@ class PubmedSourceRecord < ActiveRecord::Base
     record_as_hash[:author] = author_list.map { |a| author_to_hash(a) }.compact
 
     record_as_hash[:mesh_headings] = mesh_headings unless mesh_headings.blank?
-    record_as_hash[:year] = publication.xpath('MedlineCitation/Article/Journal/JournalIssue/PubDate/Year').text unless publication.xpath('MedlineCitation/Article/Journal/JournalIssue/PubDate/Year').blank?
+    year_xpaths = [
+      'MedlineCitation/Article/Journal/JournalIssue/PubDate/Year',
+      'MedlineCitation/Article/ArticleDate/Year',
+      'PubmedData/History/PubMedPubDate[@PubStatus="accepted"]/Year'
+    ]
+    # look for a year in all of the xpath locations above in order
+    #  stop after the first produces something that looks like a year
+    year_xpaths.each do |path|
+      match = publication.xpath(path).text.match(/[12][0-9]{3}/)
+      next unless match
+      record_as_hash[:year] = match.to_s
+      break
+    end
 
     record_as_hash[:type] = Settings.sul_doc_types.article
 
