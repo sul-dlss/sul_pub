@@ -101,15 +101,19 @@ module WebOfScience
       # @return [WebOfScience::Records]
       def retrieve_batch
         @batch_iteration += 1
-        offset = (@batch_iteration * batch_size) + 1
-        retrieve_message = {
-          queryId: query_id,
-          retrieveParameters: query[:retrieveParameters].merge(firstRecord: offset)
-        }
         response = client.search.call(retrieve_operation, message: retrieve_message)
         records = response_records(response, "#{retrieve_operation}_response".to_sym)
         @records_retrieved += records.count
         records
+      end
+
+      # @return [Hash]
+      def retrieve_message
+        offset = (@batch_iteration * batch_size) + 1
+        {
+          queryId: query_id,
+          retrieveParameters: query[:retrieveParameters].merge(firstRecord: offset)
+        }
       end
 
       # The retrieve operation is `:retrieve`, except for a :cited_references query
