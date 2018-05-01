@@ -14,17 +14,20 @@ module Cap
     end
 
     def get_authorship_data(days_ago = 1)
-      logger.info "Started CAP authorship import - #{Time.zone.now}"
+      @start_time = Time.zone.now
+      logger.info "Started CAP authorship import - #{@start_time}"
       @new_authors_to_harvest_queue = []
       @changed_authors_to_harvest_queue = []
       page_count = 0
       page_size = 1000
+      @total_records = cap_authors_count(days_ago)
+      logger.info "#{@total_records} authors to process"
       loop do
         begin
           page_count += 1
           json_response = get_recent_cap_authorship(page_count, page_size, days_ago)
           process_next_batch_of_authorship_data(json_response)
-          logger.info "#{@total_running_count} records were processed in #{log_process_time}"
+          logger.info "*** #{@total_running_count} records were processed in #{log_process_time}"
           break if json_response['lastPage']
         rescue => e
           NotificationManager.error(e, 'get_authorship_data iteration failed', self)
@@ -32,17 +35,12 @@ module Cap
         end
       end
 
-      log_stats
       logger.info 'new authors to harvest: ' + @new_authors_to_harvest_queue.to_s
       logger.info 'changed authors to harvest: ' + @changed_authors_to_harvest_queue.to_s if Settings.CAP.HARVEST_ON_CHANGE
       do_science_wire_harvest
       do_wos_harvest
-
-      info = []
-      info << "#{page_count} pages with #{page_size} records were processed in #{log_process_time}"
-      info << "#{@new_author_count} authors were created."
-      info << 'Finished authorship import'
-      logger.info info.join("\n")
+      log_stats
+      logger.info 'Finished authorship import'
     rescue => e
       NotificationManager.error(e, 'Authorship import failed', self)
     end
@@ -74,7 +72,7 @@ module Cap
         begin
           @total_running_count += 1
           process_record(record)
-          log_stats if @total_running_count % 10 == 0
+          logger.info "*** [processing #{@total_running_count} of #{@total_records}]" if @total_running_count % 10 == 0
         rescue => e
           NotificationManager.error(e, "Authorship import failed for record: '#{record}'", self)
         end
@@ -175,10 +173,12 @@ module Cap
 
       def log_stats
         info = []
+        info << 'FINAL TOTAL STATS:'
+        info << "#{@total_records} records were returned"
         info << "#{@total_running_count} records were processed in #{log_process_time}"
         info << "#{@new_author_count} authors were created."
-        info << "#{@new_authors_to_harvest_queue.size} new authors were queued for harvesting."
-        info << "#{@changed_authors_to_harvest_queue.size} changed authors were queued for harvesting." if Settings.CAP.HARVEST_ON_CHANGE
+        info << "#{@new_authors_to_harvest_queue.size} new authors were harvested."
+        info << "#{@changed_authors_to_harvest_queue.size} changed authors were harvested." if Settings.CAP.HARVEST_ON_CHANGE
         info << "#{@no_harvest_count} authors were marked as not harvestable because of import settings."
         info << "#{@authors_updated_count} authors were updated."
         info << "#{@contrib_does_not_exist} contributions did not exist for update"
@@ -186,6 +186,8 @@ module Cap
         info << "#{@too_many_contribs} contributions had more than one instance for an author"
         info << "#{@new_auth_with_contribs} new authors had contributions which were ignored"
         info << "#{@contribs_changed} contributions were updated"
+        info << "~#{Publication.where('created_at >= ?', @start_time).count} publications were created."
+        info << "~#{Contribution.where('created_at >= ?', @start_time).count} contributions were created."
         logger.info info.join("\n")
       end
 
