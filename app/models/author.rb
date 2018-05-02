@@ -11,6 +11,18 @@ class Author < ActiveRecord::Base
   alias_attribute :middle_name, :preferred_middle_name
   alias_attribute :last_name, :preferred_last_name
 
+  attr_accessor :number_of_identities_changed
+
+  # these methods allow us to consider any changes to the number of alternative identities
+  #   as a change to the author, which is useful to ensure harvesting is triggered when an author identity is updated
+  def make_harvestable
+    self.number_of_identities_changed = true
+  end
+
+  def should_harvest?
+    number_of_identities_changed || changed?
+  end
+
   # The default institution is set in Settings.HARVESTER.INSTITUTION.name
   # @return [String] institution
   def institution
@@ -35,6 +47,7 @@ class Author < ActiveRecord::Base
   # @param [Array<Hash>] import_settings are as-is data from the CAP API
   def mirror_author_identities(import_settings)
     return unless import_settings.present?
+    starting_identities_count = author_identities.size
     transaction do
       author_identities.clear # drop all existing identities
       import_settings.each do |i|
@@ -55,6 +68,7 @@ class Author < ActiveRecord::Base
         new_record? ? author_identities.build(attribs) : author_identities.create!(attribs)
       end
     end
+    make_harvestable if author_identities.size != starting_identities_count # if we have a different number than we started with, something changed!
   end
 
   # @param [Hash<String => [String, Hash]>] auth_hash

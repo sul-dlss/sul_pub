@@ -19,6 +19,15 @@ describe Author do
     end
   end
 
+  describe '#should_harvest?' do
+    it 'indicates if the primary author information changes but not the number of identities' do
+      expect(subject.should_harvest?).to be false
+      subject.preferred_first_name = subject.first_name + "XXX"
+      expect(subject.number_of_identities_changed).to be nil
+      expect(subject.should_harvest?).to be true
+    end
+  end
+
   describe '#first_name' do
     it 'is the preferred_first_name' do
       subject.update_from_cap_authorship_profile_hash(auth_hash)

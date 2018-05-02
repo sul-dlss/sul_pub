@@ -219,7 +219,7 @@ module Cap
       def queue_author_for_harvest(author, options)
         if author.harvestable?
           @new_authors_to_harvest_queue << author.id if options[:new_record]
-          @changed_authors_to_harvest_queue << author.id if Settings.CAP.HARVEST_ON_CHANGE && !options[:new_record] && author.changed?
+          @changed_authors_to_harvest_queue << author.id if Settings.CAP.HARVEST_ON_CHANGE && !options[:new_record] && author.should_harvest?
         else
           @no_harvest_count += 1
           logger.info "Author marked as not harvestable. Skipping Author.find_by(cap_profile_id: #{author.cap_profile_id})"
