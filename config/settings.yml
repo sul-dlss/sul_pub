@@ -53,8 +53,10 @@ WOS:
   AUTH_CODE: secret
   LOG: log/web_of_science.log
   LOG_LEVEL: warn
-  update_timeframe: 4week # default WoS symbolicTimeSpan for updated authors/biweekly harvests
-  new_author_timeframe: 52week # default WoS symbolicTimeSpan for new authors
+  update_timeframe: 10year # default WoS symbolicTimeSpan for updated authors/biweekly harvests
+  new_author_timeframe: nil # default WoS symbolicTimeSpan for new authors (nil == for all time)
+  # note, see lib/web_of_science/query_author.rb#author_query
+  #   or https://github.com/sul-dlss/sul_pub/wiki/Clarivate-APIs for allowed values of symbolicTimeSpan
 
 DOI:
   BASE_URI: https://dx.doi.org/
