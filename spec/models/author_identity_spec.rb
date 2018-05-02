@@ -24,9 +24,10 @@ RSpec.describe AuthorIdentity, type: :model do
       subject.author = nil
       expect { subject.save! }.to raise_error ActiveRecord::RecordInvalid
     end
-    it 'requires first_name' do
+    it 'sets default first_name' do
       subject.first_name = nil
-      expect { subject.save! }.to raise_error ActiveRecord::RecordInvalid
+      expect { subject.save! }.not_to raise_error ActiveRecord::RecordInvalid
+      expect(subject.first_name).to eq subject.author.first_name
     end
     it 'requires last_name' do
       subject.last_name = nil
@@ -89,16 +90,16 @@ RSpec.describe AuthorIdentity, type: :model do
       expect(author.author_identities.length).to eq 0
     end
 
-    it 'will handle blanks in required fields in importSettings' do
-      expect { author.mirror_author_identities([{ 'firstName' => '  ', 'lastName' => '  ' }]) }.to raise_error(ActiveRecord::RecordInvalid)
+    it 'will handle blanks in required last name field in importSettings' do
+      expect { author.mirror_author_identities([{ 'lastName' => '  ' }]) }.to raise_error(ActiveRecord::RecordInvalid)
     end
 
-    it 'will handle missing required fields (firstName and lastName) in importSettings' do
+    it 'will handle missing required fields (lastName) in importSettings' do
       # FactoryBot creates (at least) 1 Author Identity, so we check for transactionality
       prev = author.author_identities
-      expect { author.mirror_author_identities([{ 'firstName' => author.preferred_first_name }]) }.to raise_error(ActiveRecord::RecordInvalid)
+      expect { author.mirror_author_identities([{ 'lastName' => '' }]) }.to raise_error(ActiveRecord::RecordInvalid)
       expect(author.author_identities).to eq prev
-      expect { author.mirror_author_identities([{ 'lastName' => author.preferred_last_name }]) }.to raise_error(ActiveRecord::RecordInvalid)
+      expect { author.mirror_author_identities([{ 'lastName' => author.preferred_last_name }]) }.not_to raise_error(ActiveRecord::RecordInvalid)
       expect(author.author_identities).to eq prev
     end
 
