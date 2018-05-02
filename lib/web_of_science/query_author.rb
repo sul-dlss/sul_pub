@@ -51,7 +51,7 @@ module WebOfScience
       #     will be inferred from the editions data.
       #
       #     - The documented values are strings: '1week', '2week', '4week' (prior to today)
-      #     - the actual values it accepts are any value of "Nweek" for 1 < N < 53, or "Nyear" for 1 <= N < ?
+      #     - the actual values it accepts are any value of "Nweek" for 1 <= N <= 52, or "Nyear" for 1 <= N <= 10
       #
       # @return [Hash]
       def author_query
