@@ -63,7 +63,7 @@ RSpec.describe AuthorIdentity, type: :model do
 
   context 'relations' do
     let(:author) { subject.author }
-    let(:incoming) do
+    let(:identity_same_as_primary) do
       {
         'firstName'   => author.preferred_first_name,
         'middleName'  => author.preferred_middle_name,
@@ -72,25 +72,56 @@ RSpec.describe AuthorIdentity, type: :model do
         'institution' => 'Stanford University'
       }
     end
-
-    it 'will mirror identities in importSettings' do
-      author.mirror_author_identities([incoming.slice('firstName', 'lastName')])
-      expect(author.author_identities.length).to eq 1
+    let(:new_identity1) do
+      {
+        'firstName'   => 'identity1',
+        'lastName'    => 'lastname1',
+        'institution' => 'Stanford University'
+      }
+    end
+    let(:new_identity2) do
+      {
+        'firstName'   => 'identity2',
+        'lastName'    => 'lastname2',
+        'institution' => 'Stanford University'
+      }
     end
 
-    it 'will not mirror identical identities in importSettings' do
-      author.mirror_author_identities([incoming]) # must pass in only a single alternate identity for .length == 0
+    it 'will indicate if author is harvestable when number of identities has changed' do
+      expect(author.author_identities.length).to eq 1
+      author.mirror_author_identities([new_identity1, new_identity2])
+      expect(author.author_identities.length).to eq 2
+      expect(author.changed?).to be false
+      expect(author.harvested).to be false
+      expect(author.should_harvest?).to be true
+    end
+
+    it 'will mirror identities in importSettings but will not detect changes to data if we end up with the same number' do
+      expect(author.author_identities.length).to eq 1
+      author.mirror_author_identities([new_identity1])
+      expect(author.author_identities.length).to eq 1
+      expect(author.harvested).to be nil
+      expect(author.changed?).to be false
+      expect(author.should_harvest?).to be false
+    end
+
+    it 'will not mirror identities in importSettings idential to primary author info, but will drop the one that is there and count this as a change' do
+      expect(author.author_identities.length).to eq 1
+      author.mirror_author_identities([identity_same_as_primary]) # must pass in only a single alternate identity for .length == 0
       expect(author.author_identities.length).to eq 0
+      expect(author.harvested).to be false
+      expect(author.changed?).to be false
+      expect(author.should_harvest?).to be true
     end
 
     it 'will not mirror identical identities in importSettings, *even if* dates are present' do
       author.mirror_author_identities(
-        [incoming.merge('startDate' => { 'value' => '2000-01-01' }, 'endDate' => { 'value' => '2010-12-31' })]
+        [identity_same_as_primary.merge('startDate' => { 'value' => '2000-01-01' }, 'endDate' => { 'value' => '2010-12-31' })]
       ) # must pass in only a single alternate identity for .length == 0
       expect(author.author_identities.length).to eq 0
     end
 
-    it 'will handle blanks in required last name field in importSettings' do
+    it 'will raise an exception for blanks spaces only in required last name field in importSettings' do
       expect { author.mirror_author_identities([{ 'lastName' => '  ' }]) }.to raise_error(ActiveRecord::RecordInvalid)
     end
 
@@ -98,6 +129,8 @@ RSpec.describe AuthorIdentity, type: :model do
       # FactoryBot creates (at least) 1 Author Identity, so we check for transactionality
       prev = author.author_identities
       expect { author.mirror_author_identities([{ 'lastName' => '' }]) }.to raise_error(ActiveRecord::RecordInvalid)
+      expect(author.author_identities).to eq prev
+      expect { author.mirror_author_identities([{ 'lastName' => nil }]) }.to raise_error(ActiveRecord::RecordInvalid)
       expect(author.author_identities).to eq prev
       expect { author.mirror_author_identities([{ 'lastName' => author.preferred_last_name }]) }.not_to raise_error(ActiveRecord::RecordInvalid)
       expect(author.author_identities).to eq prev
