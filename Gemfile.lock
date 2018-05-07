@@ -203,7 +203,7 @@ GEM
       builder (>= 2.1.2)
     hashdiff (0.3.7)
     hashie (3.5.7)
-    high_voltage (3.0.0)
+    high_voltage (3.1.0)
     honeybadger (3.3.0)
     htmlentities (4.3.4)
     httpclient (2.8.3)
