@@ -13,6 +13,7 @@ module WebOfScience
       author_success = 0
       authors.each do |author|
         process_author(author, options)
+        author.harvested = true
         author_success += 1
       end
       logger.info("#{self.class} - completed harvest - #{author_success} of #{count} processed")

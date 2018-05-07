@@ -24,6 +24,7 @@ describe Author do
       expect(subject.should_harvest?).to be false
       subject.preferred_first_name = subject.first_name + "XXX"
       expect(subject.number_of_identities_changed).to be nil
+      expect(subject.harvested).to be nil
       expect(subject.should_harvest?).to be true
     end
   end

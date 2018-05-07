@@ -92,6 +92,7 @@ RSpec.describe AuthorIdentity, type: :model do
       author.mirror_author_identities([new_identity1, new_identity2])
       expect(author.author_identities.length).to eq 2
       expect(author.changed?).to be false
+      expect(author.harvested).to be false
       expect(author.should_harvest?).to be true
     end
 
@@ -99,6 +100,7 @@ RSpec.describe AuthorIdentity, type: :model do
       expect(author.author_identities.length).to eq 1
       author.mirror_author_identities([new_identity1])
       expect(author.author_identities.length).to eq 1
+      expect(author.harvested).to be nil
       expect(author.changed?).to be false
       expect(author.should_harvest?).to be false
     end
@@ -107,6 +109,7 @@ RSpec.describe AuthorIdentity, type: :model do
       expect(author.author_identities.length).to eq 1
       author.mirror_author_identities([identity_same_as_primary]) # must pass in only a single alternate identity for .length == 0
       expect(author.author_identities.length).to eq 0
+      expect(author.harvested).to be false
       expect(author.changed?).to be false
       expect(author.should_harvest?).to be true
     end
