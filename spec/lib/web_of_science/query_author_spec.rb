@@ -83,5 +83,8 @@ describe WebOfScience::QueryAuthor, :vcr do
     it 'deduplicates and removes empties' do
       expect(query_author.send(:quote_wrap, %w[a bc a bc].concat(['']))).to eq %w["a" "bc"]
     end
+    it 'removes quotes in a name' do
+      expect(query_author.send(:quote_wrap, ['peter', 'peter paul', 'peter "paul" mary'])).to eq ['"peter"', '"peter paul"', '"peter paul mary"']
+    end
   end
 end

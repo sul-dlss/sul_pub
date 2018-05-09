@@ -69,7 +69,7 @@ module WebOfScience
       # @param [Array<String>] terms
       # @param [Array<String>] the same terms, minus any empties or duplicates, wrapped in double quotes
       def quote_wrap(terms)
-        terms.reject(&:empty?).uniq.map { |x| "\"#{x}\"" }
+        terms.reject(&:empty?).uniq.map { |x| "\"#{x.delete('"')}\"" }
       end
 
       # Use Settings.WOS.ACCEPTED_DBS to define collections without any fields retrieved
