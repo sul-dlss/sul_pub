@@ -20,9 +20,11 @@ class WebOfScienceSourceRecord < ActiveRecord::Base
   # @param [Publication] pub must already be persisted, like any association.create
   def link_publication(pub)
     transaction do
-      self.publication = pub
-      save!
-      pub.update(wos_uid: uid)
+      if publication != pub
+        self.publication = pub
+        save!
+      end
+      pub.update(wos_uid: uid) if pub.wos_uid != uid
     end
   end
 
