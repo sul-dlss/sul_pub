@@ -181,7 +181,7 @@ class Publication < ActiveRecord::Base
   end
 
   def set_last_updated_value_in_hash
-    pub_hash[:last_updated] = Time.zone.now.to_s
+    pub_hash[:last_updated] = Time.zone.now.to_s # TODO: this really shouldn't update if nothing changed (or make pub_hash dynamic and use model's updated_at column)
   end
 
   def set_sul_pub_id_in_hash
@@ -276,6 +276,9 @@ class Publication < ActiveRecord::Base
       pub_hash[:identifier] = publication_identifiers.map(&:identifier)
     end
 
+    # NOTE: This method is only ever called from 'build_from_sciencewire_hash'
+    #  It is preserved here for historical reasons but can be considered for possible removal when we remove Sciencewire harvesting
+    #  It is duplicated by and used instead of in all other cases by lib/web_of_science/process_pubmed.rb#pubmed_addition
     def add_any_pubmed_data_to_hash
       return if pmid.blank?
       pubmed_record = PubmedSourceRecord.for_pmid(pmid)
