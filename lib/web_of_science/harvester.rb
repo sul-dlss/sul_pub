@@ -9,7 +9,7 @@ module WebOfScience
     # @return [void]
     def harvest(authors, options = {})
       count = authors.count
-      logger.info("#{self.class} - started harvest - #{count} authors")
+      logger.info("#{self.class} - started harvest - #{count} authors - #{options}")
       author_success = 0
       authors.each do |author|
         process_author(author, options)
