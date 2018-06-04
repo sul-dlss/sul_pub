@@ -1,5 +1,4 @@
 [![Build Status](https://travis-ci.org/sul-dlss/sul_pub.svg?branch=master)](https://travis-ci.org/sul-dlss/sul_pub) | [![Coverage Status](https://coveralls.io/repos/github/sul-dlss/sul_pub/badge.svg?branch=master)](https://coveralls.io/github/sul-dlss/sul_pub?branch=master)
- | [![Dependency Status](https://gemnasium.com/badges/e7990e3b975aad55829f0dbf913695d0.svg)](https://gemnasium.com/github.com/sul-dlss/sul_pub)
 
 # SUL Bibliographic Management System
 
