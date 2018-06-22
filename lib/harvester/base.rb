@@ -7,12 +7,16 @@ module Harvester
     def harvest_all(options = {})
       total = authors_query.count
       count = 0
-      logger.info "Started a complete harvest for #{total} authors at #{Time.zone.now}"
-      authors_query.find_in_batches(batch_size: batch_size).each do |batch|
+      start_time = Time.zone.now
+      logger.info "***** Started a complete harvest for #{total} authors at #{start_time}"
+      authors_query.find_in_batches(batch_size: batch_size).each_with_index do |batch, n|
         harvest(batch, options)
-        count += batch_size
-        logger.info "completed #{count} of #{total} authors for harvest at #{Time.zone.now}"
+        count += batch.size
+        logger.info "*** Completed batch #{n} with #{batch.size} authors.  On #{count} of #{total} authors for harvest at #{Time.zone.now}.  Start time was #{start_time}."
       end
+      end_time = Time.zone.now
+      time_taken = Time.at(end_time - start_time).utc.strftime "%e days, %H hours, %M minutes"
+      logger.info "***** Ended a complete harvest for #{total} authors at #{end_time}.  Time taken: #{time_taken}"
     end
 
     # @param [Enumerable<Author>] _authors

@@ -6,13 +6,13 @@ end
 
 set :output, 'log/cron.log'
 
-# fortnightly harvest at 5pm in qa, on the 5th and 20th of the month
-every "0 17 8,23 * *", roles: [:harvester_qa] do
+# bi-weekly harvest at 5pm in qa, on the 8th and 23rd of the month
+every "0 17 7,23 * *", roles: [:harvester_qa] do
   rake 'wos:harvest_authors_update'
 end
 
-# fortnightly harvest at 5pm in prod, on the 1st and 15th of the month
-every "0 17 1,15 * *", roles: [:harvester_prod] do
+# every three day harvest at 5pm in prod, don't overlap with qa
+every "0 17 1,5,9,13,17,21,25,29 * *", roles: [:harvester_prod] do
   rake 'wos:harvest_authors_update'
 end
 
