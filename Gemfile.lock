@@ -143,7 +143,7 @@ GEM
       rubocop (~> 0.52.0)
       rubocop-rspec (~> 1.23.0)
     docile (1.1.5)
-    dotiw (4.0.0)
+    dotiw (4.0.1)
       actionpack (>= 4)
       i18n
     dry-configurable (0.7.0)
