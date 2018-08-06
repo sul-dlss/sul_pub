@@ -56,7 +56,7 @@ group :development, :test do
   gem 'dlss_cops' # includes rubocop
   gem 'rails_db'
   gem 'rspec'
-  gem 'rspec-rails', '~> 3.7'
+  gem 'rspec-rails', '~> 3.8'
 end
 
 group :development do
