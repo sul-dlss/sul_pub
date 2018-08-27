@@ -49,7 +49,7 @@ gem 'whenever', require: false
 gem 'yaml_db'
 
 # -------------------
-gem 'honeybadger', '~> 3.3'
+gem 'honeybadger', '~> 4.0'
 gem 'retina_tag'
 
 group :development, :test do
