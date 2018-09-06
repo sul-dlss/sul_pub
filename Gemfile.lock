@@ -318,7 +318,6 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
-    ref (2.0.0)
     request_store (1.4.1)
       rack (>= 1.4)
     retina_tag (1.4.1)
@@ -398,9 +397,6 @@ GEM
       tins (~> 1.0)
     terminal-table (1.8.0)
       unicode-display_width (~> 1.1, >= 1.1.1)
-    therubyracer (0.12.3)
-      libv8 (~> 3.16.14.15)
-      ref
     thin (1.7.2)
       daemons (~> 1.0, >= 1.0.9)
       eventmachine (~> 1.0, >= 1.0.4)
@@ -495,7 +491,6 @@ DEPENDENCIES
   savon (~> 2.12)
   simple_form
   simplecov (~> 0.13)
-  therubyracer
   thin
   uglifier (~> 4.1)
   unicode
@@ -505,4 +500,4 @@ DEPENDENCIES
   yaml_db
 
 BUNDLED WITH
-   1.16.3
+   1.16.4
