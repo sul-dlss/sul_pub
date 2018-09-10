@@ -44,6 +44,7 @@ gem 'simple_form'
 gem 'StreetAddress', '~> 1.0', '>= 1.0.6'
 gem 'whenever', require: false
 gem 'yaml_db'
+gem 'hashie' # this used to be part of grape, but we still need it since we believe pub_hashes may still be seralized in the database this way 9/10/2018
 
 # -------------------
 gem 'honeybadger', '~> 4.0'
