@@ -34,7 +34,6 @@ gem 'identifiers', '~> 0.12'
 gem 'jbuilder'
 gem 'jquery-rails'
 gem 'kaminari'
-gem 'libv8'
 gem 'okcomputer' # for monitoring
 gem 'paper_trail'
 gem 'parallel'
