@@ -1,4 +1,5 @@
 # Learn more: http://github.com/javan/whenever
+job_type :envcommand, 'cd :path && RAILS_ENV=:environment :bundle_command :task :output'
 
 def stagger(hour)
   ('%02d' % hour) + (':%02d' % rand(60)) # some minute between 00 and 59
@@ -23,5 +24,5 @@ end
 
 # ensure delayed_job is started on a reboot
 every :reboot do
-  command "cd :path && :environment_variable=:environment bundle exec bin/delayed_job start"
+  envcommand 'bin/delayed_job -n 2 start'
 end
