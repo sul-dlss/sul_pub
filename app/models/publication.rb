@@ -57,7 +57,7 @@ class Publication < ActiveRecord::Base
   end
 
   def self.find_or_create_by_pmid(pmid)
-    find_by_pmid(pmid) || SciencewireSourceRecord.get_pub_by_pmid(pmid) || PubmedSourceRecord.get_pub_by_pmid(pmid)
+    find_by_pmid(pmid) || PubmedSourceRecord.get_pub_by_pmid(pmid)
   end
 
   def self.find_by_doi(doi)
