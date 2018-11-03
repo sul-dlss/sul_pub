@@ -3,7 +3,7 @@ require_relative 'identifier_parser'
 # Parse the DOI identifiers in a PublicationIdentifier
 class IdentifierParserDOI < IdentifierParser
 
-  URI_PREFIX = 'http://dx.doi.org/'.freeze
+  URI_PREFIX = 'https://doi.org/'.freeze
 
   # Does the data validate?
   def valid?

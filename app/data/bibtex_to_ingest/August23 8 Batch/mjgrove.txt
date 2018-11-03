@@ -46,7 +46,7 @@ author = {J. C. Fosdick and M. Grove and J. K. Hourigan and M. Calderón},
 journal = {Earth and Planetary Science Letters},
 title = {Retroarc deformation and exhumation near the end of the Andes, southern Patagonia},
 year = {2013},
-url = {https://dx.doi.org/10.1016/j.epsl.2012.12.007},
+url = {https://doi.org/10.1016/j.epsl.2012.12.007},
 }
 
 @article{yfiwwlg13,
@@ -56,7 +56,7 @@ pages = {268-282},
 title = {Is Myanmar jadeitite of Jurassic age? A result from incompletely recrystallized inherited zircon},
 volume = {160-161},
 year = {2013},
-url = {https://dx.doi.org/10.1016/j.lithos.2012.12.011},
+url = {https://doi.org/10.1016/j.lithos.2012.12.011},
 }
 
 @article{zlcgoit13,
@@ -75,7 +75,7 @@ pages = {TC6006},
 title = {Paleozoic-to-early Cenozoic cooling and exhumation of the basement underlying the eastern Puna plateau margin},
 volume = {31},
 year = {2013},
-url = {https://dx.doi.org/10.1029/2012TC003168},
+url = {https://doi.org/10.1029/2012TC003168},
 }
 
 @article{fgsbi12,
@@ -156,7 +156,7 @@ pages = {75-87},
 title = {Calibration of Nu-Instruments Noblesse multicollector mass spectrometers for argon isotopic measurements using a newly developed reference gas},
 volume = {290},
 year = {2011},
-url = {https://dx.doi.org/10.1016/j.chemgeo.2011.09.003},
+url = {https://doi.org/10.1016/j.chemgeo.2011.09.003},
 }
 
 @article{gtiwgsm11,
@@ -247,7 +247,7 @@ number = {20-30},
 title = {Decoupling of U-Pb dates from chemical and crystallographic domains in granulite facies zircon},
 volume = {270},
 year = {2010},
-url = {https://dx.doi.org/10.1016/j.chemgeo.2009.11.002},
+url = {https://doi.org/10.1016/j.chemgeo.2009.11.002},
 }
 
 @article{kelwg10,
@@ -257,7 +257,7 @@ pages = {22-32},
 title = {First Paleoproterozoic ophiolite from Gondwana: Geochronologic-geochemical documentation of ancient oceanic crust from Kandra, SE India},
 volume = {487},
 year = {2010},
-url = {https://dx.doi.org/10.1016/j.tecto.2010.03.005},
+url = {https://doi.org/10.1016/j.tecto.2010.03.005},
 }
 
 @article{cygdslkgf09,

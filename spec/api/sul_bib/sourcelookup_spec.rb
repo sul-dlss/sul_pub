@@ -31,7 +31,7 @@ describe SulBib::API, :vcr do
         FactoryBot.create(:publication_identifier,
                            identifier_type: 'doi',
                            identifier_value: doi_value,
-                           identifier_uri: "http://dx.doi.org/#{doi_value}")
+                           identifier_uri: "https://doi.org/#{doi_value}")
       end
       let(:result) do
         params = { format: 'json', doi: doi_value }

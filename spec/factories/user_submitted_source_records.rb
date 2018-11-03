@@ -15,7 +15,7 @@ FactoryBot.define do
         {
           "id": "10.1016/j.petrol.2016.02.026",
           "type": "doi",
-          "url": "https://dx.doi.org/10.1016/j.petrol.2016.02.026",
+          "url": "https://doi.org/10.1016/j.petrol.2016.02.026",
           "additionalProperties": {}
         }
       ],

@@ -60,7 +60,7 @@ WOS:
   #   or https://github.com/sul-dlss/sul_pub/wiki/Clarivate-APIs for allowed values of symbolicTimeSpan
 
 DOI:
-  BASE_URI: https://dx.doi.org/
+  BASE_URI: https://doi.org/
 
 HARVESTER:
   USE_MIDDLE_NAME: true

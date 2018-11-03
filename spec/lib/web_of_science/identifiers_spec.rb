@@ -81,7 +81,7 @@ describe WebOfScience::Identifiers do
     let(:ids) do
       {
         'doi'        => doi,
-        'doi_uri'    => "https://dx.doi.org/#{doi}",
+        'doi_uri'    => "https://doi.org/#{doi}",
         'xref_doi'   => doi,
         # eissn is missing
         'issn'       => '0832-610X',
@@ -128,7 +128,7 @@ describe WebOfScience::Identifiers do
     let(:ids) do
       {
         'doi'        => '10.1038/psp.2013.66',
-        'doi_uri'    => 'https://dx.doi.org/10.1038/psp.2013.66',
+        'doi_uri'    => 'https://doi.org/10.1038/psp.2013.66',
         # eissn is missing
         'issn'       => '2163-8306',
         'issn_uri'   => 'http://searchworks.stanford.edu/?search_field=advanced&number=2163-8306',

@@ -85,7 +85,7 @@ describe DoiSearch do
       expect(described_class.send(:doi_name, nil)).to be_nil
     end
     it 'returns normalized DOI for full URI' do
-      expect(described_class.send(:doi_name, 'http://dx.doi.org/10.1038/ncomms3199')).to eq '10.1038/ncomms3199'
+      expect(described_class.send(:doi_name, 'https://doi.org/10.1038/ncomms3199')).to eq '10.1038/ncomms3199'
     end
   end
 end

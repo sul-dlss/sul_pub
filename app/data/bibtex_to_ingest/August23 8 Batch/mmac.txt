@@ -64,7 +64,7 @@ title = {Provenance of north Gondwana Cambrian-Ordovician sandstone: U-Pb SHRIMP
 volume = {143},
 year = {2006},
 doi = {10.1017/S0016756805001640},
-url = {https://dx.doi.org/10.1017/S0016756805001640},
+url = {https://doi.org/10.1017/S0016756805001640},
 }
 
 @article{vmdgm05,
