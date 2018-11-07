@@ -1,5 +1,26 @@
 
 namespace :sul do
+  desc 'Export publications as csv'
+  # bundle exec rake sul:export_pubs_csv['/tmp/output_file.csv','01/01/2013'] # parameters are output csv file, and date to go back to in format of mm/dd/yyyy
+  task :export_pubs_csv, [:output_file, :date_since] => :environment do |_t, args|
+    output_file = args[:output_file]
+    date_since = args[:date_since]
+    raise unless output_file && date_since
+    total_pubs = Contribution.where('created_at > ?', Date.strptime(date_since, '%m/%d/%Y')).count
+    puts "Exporting all pubs to #{output_file} since date #{date_since}, found #{total_pubs} contributions to export"
+    header_row = %w(pub_title pub_associated_author_last_name pub_associated_author_first_name pub_associated_author_sunet pub_associated_author_employee_id pub_added_date apa_citation)
+    CSV.open(output_file, "wb") do |csv|
+      csv << header_row
+      Contribution.where('created_at > ?', Date.strptime(date_since, '%m/%d/%Y')).find_each do |contribution|
+        pub = contribution.publication
+        author = contribution.author
+        csv << [pub.title, author.last_name, author.first_name, author.sunetid, author.university_id, contribution.created_at, pub.pub_hash[:apa_citation]]
+      end
+    end
+    end_time = Time.zone.now
+    puts "Total: #{total_pubs}. Output file: #{output_file}. Ended at #{end_time}."
+  end
+
   desc 'Update pub_hash or authorship for all pubs'
   # bundle exec rake sul:update_pubs['rebuild_pub_hash'] # for pub hash rebuild
   # bundle exec rake sul:update_pubs['rebuild_authorship'] # for authorship rebuild
