@@ -54,7 +54,7 @@ WOS:
   LOG: log/web_of_science.log
   LOG_LEVEL: warn
   regular_harvest_timeframe: 3week # default WoS symbolicTimeSpan for regular harvests
-  update_timeframe: 10year # default WoS symbolicTimeSpan for updated authors resulting from nightly cap polling
+  update_timeframe: null # default WoS symbolicTimeSpan for updated authors resulting from nightly cap polling
   new_author_timeframe: null # default WoS symbolicTimeSpan for new authors resulting from nightly cap polling (null == for all time)
   # note, see lib/web_of_science/query_author.rb#author_query
   #   or https://github.com/sul-dlss/sul_pub/wiki/Clarivate-APIs for allowed values of symbolicTimeSpan
