@@ -226,7 +226,7 @@ describe SulBib::API, :vcr do
         expect(result['identifier'].size).to eq(3)
         expect(result['identifier']).to include(
           a_hash_including('id' => '1177188188181', 'type' => 'isbn'),
-          a_hash_including('type' => 'doi', 'url' => 'http://dx.doi.org/18819910019'),
+          a_hash_including('type' => 'doi', 'url' => 'https://doi.org/18819910019'),
           a_hash_including('type' => 'SULPubId', 'url' => "#{Settings.SULPUB_ID.PUB_URI}/#{last_pub.id}", 'id' => last_pub.id.to_s)
         )
         expect(last_pub.publication_identifiers.size).to eq(2)

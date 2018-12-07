@@ -4,7 +4,7 @@ require Rails.root.join('spec', 'support', 'identifier_parser_shared_examples.rb
 describe IdentifierParserDOI do
   let(:identifier_type) { 'doi' }
   let(:identifier_value) { '10.1038/ncomms3199' }
-  let(:identifier_uri) { "http://dx.doi.org/#{identifier_value}" }
+  let(:identifier_uri) { "https://doi.org/#{identifier_value}" }
   let(:identifier) do
     FactoryBot.create(:publication_identifier,
                        identifier_type: identifier_type,

@@ -378,7 +378,7 @@ describe Publication do
 
   describe '.find_by_doi' do
     it 'returns one Publication that has this doi' do
-      publication.pub_hash = { identifier: [{ type: 'doi', id: '10.1016/j.mcn.2012.03.008', url: 'https://dx.doi.org/10.1016/j.mcn.2012.03.008' }] }
+      publication.pub_hash = { identifier: [{ type: 'doi', id: '10.1016/j.mcn.2012.03.008', url: 'https://doi.org/10.1016/j.mcn.2012.03.008' }] }
       publication.wos_uid = 'somevalue'
       publication.send(:sync_identifiers_in_pub_hash)
       publication.save!

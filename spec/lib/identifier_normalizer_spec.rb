@@ -123,7 +123,7 @@ describe IdentifierNormalizer do
     end
 
     context 'valid URI, empty value' do
-      let(:doi_identifier) { create(:doi_pub_id, identifier_value: nil, identifier_uri: 'http://dx.doi.org/10.1038/ncomms3199') }
+      let(:doi_identifier) { create(:doi_pub_id, identifier_value: nil, identifier_uri: 'https://doi.org/10.1038/ncomms3199') }
 
       it_behaves_like 'updates_value'
       it_behaves_like 'preserves_uri'
@@ -136,9 +136,9 @@ describe IdentifierNormalizer do
 
     context 'valid denormalized value, empty URI' do
       # Altmetrics identifiers gem normalizes this value to:
-      # > Identifiers::DOI.extract 'http://dx.doi.org/10.1038/ncomms3199'
+      # > Identifiers::DOI.extract 'https://doi.org/10.1038/ncomms3199'
       # => ["10.1038/ncomms3199"]
-      let(:doi_identifier) { create(:doi_pub_id, identifier_uri: nil, identifier_value: 'http://dx.doi.org/10.1038/ncomms3199') }
+      let(:doi_identifier) { create(:doi_pub_id, identifier_uri: nil, identifier_value: 'https://doi.org/10.1038/ncomms3199') }
 
       it_behaves_like 'updates_value'
       it_behaves_like 'updates_uri'

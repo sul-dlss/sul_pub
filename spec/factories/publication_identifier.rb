@@ -16,7 +16,7 @@ FactoryBot.define do
   factory :doi_pub_id, aliases: [:doi_publication_identifier], parent: :publication_identifier do
     identifier_type 'doi'
     identifier_value '10.1038/ncomms3199'
-    identifier_uri { identifier_value ? "http://dx.doi.org/#{identifier_value}" : nil }
+    identifier_uri { identifier_value ? "https://doi.org/#{identifier_value}" : nil }
   end
 
   factory :isbn_publication_identifier, parent: :publication_identifier do

@@ -78,7 +78,7 @@ describe BibtexIdentifiers do
     let(:ids) do
       {
         'doi'        => doi,
-        'doi_uri'    => "https://dx.doi.org/#{doi}",
+        'doi_uri'    => "https://doi.org/#{doi}",
         'isbn'       => isbn,
         'isbn_uri'   => "http://searchworks.stanford.edu/?search_field=advanced&number=#{isbn}",
         'issn'       => issn,
