@@ -190,7 +190,7 @@ GEM
     ffi (1.9.25)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
-    grape (1.1.0)
+    grape (1.2.1)
       activesupport
       builder
       mustermann-grape (~> 1.0.0)
@@ -465,7 +465,7 @@ DEPENDENCIES
   equivalent-xml
   factory_bot_rails
   faraday
-  grape (~> 1.1)
+  grape (~> 1.2)
   hashie
   high_voltage
   honeybadger (~> 4.1)
