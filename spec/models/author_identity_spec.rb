@@ -102,7 +102,7 @@ RSpec.describe AuthorIdentity, type: :model do
       expect(author.author_identities.length).to eq 1
       expect(author.mirror_author_identities([existing_alt_identity, new_identity1])).to be true
       expect(author.author_identities.length).to eq 2
-      expect(author.changed?).to be false
+      expect(author.changed?).to be true
       expect(author.harvested).to be false
       expect(author.should_harvest?).to be true
     end
