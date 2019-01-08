@@ -42,6 +42,8 @@ class PubmedClient
         end
         conn.options.timeout = timeout_period
         conn.options.open_timeout = 10
+        # need to set the user agent specifically since NIH is blocking the default Faraday user agent as of 1/8/2019 - Peter Mangiafico
+        conn.headers[:user_agent] = 'stanford-library-sul-pub'
         conn
       end
     end
