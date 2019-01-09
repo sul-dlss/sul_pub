@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: post
-    uri: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml
+    uri: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?api_key=a_fake_pubmed_key&db=pubmed&retmode=xml
     body:
       encoding: UTF-8
       string: "&id=24930130"

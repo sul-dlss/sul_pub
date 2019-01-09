@@ -16,7 +16,7 @@ class PubmedClient
     pmid_list = Array(pmids)
     pmidValuesForPost = pmid_list.collect { |pmid| "&id=#{pmid}" }.join
     response = conn.post do |req|
-      req.url Settings.PUBMED.FETCH_PATH
+      req.url "#{Settings.PUBMED.FETCH_PATH}&api_key=#{Settings.PUBMED.API_KEY}"
       req.body = pmidValuesForPost
     end
     response.body
