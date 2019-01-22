@@ -190,7 +190,7 @@ GEM
     ffi (1.9.25)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
-    grape (1.2.2)
+    grape (1.2.3)
       activesupport
       builder
       mustermann-grape (~> 1.0.0)
