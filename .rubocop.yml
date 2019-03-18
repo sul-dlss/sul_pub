@@ -4,8 +4,6 @@ require: rubocop-rspec
 
 AllCops:
   TargetRubyVersion: 2.2
-  Include:
-    - 'lib/tasks/*.rake'
   Exclude:
     - 'Gemfile'
     - 'bin/**/*'
@@ -46,4 +44,4 @@ Style/NumericPredicate:
   Enabled: false
 
 RSpec/NestedGroups:
-  Max: 4
+  Max: 5
