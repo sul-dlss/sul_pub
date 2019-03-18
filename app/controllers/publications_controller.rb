@@ -68,11 +68,6 @@ class PublicationsController < ApplicationController
         all_matching_records += wos_matches
         logger.debug(" -- WOS (#{wos_matches.length})")
       end
-      if Settings.SCIENCEWIRE.enabled
-        sw_matches = ScienceWireClient.new.query_sciencewire_for_publication(nil, nil, nil, params[:title], params[:year], params.fetch(:max_rows, 20).to_i)
-        all_matching_records += sw_matches
-        logger.debug(" -- sciencewire (#{sw_matches.length})")
-      end
       # lastly, always check for manual
       results = Publication.joins(:user_submitted_source_records)
                            .where(UserSubmittedSourceRecord.arel_table[:title].matches("%#{params[:title]}%"))

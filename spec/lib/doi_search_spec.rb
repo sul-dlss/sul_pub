@@ -5,7 +5,6 @@ describe DoiSearch do
   before(:each) do
     doi_identifier.publication.wos_uid = '12345'
     doi_identifier.publication.save
-    allow(Settings.SCIENCEWIRE).to receive(:enabled).and_return(false) # default
     allow(Settings.WOS).to receive(:enabled).and_return(false) # default
   end
 
@@ -18,34 +17,15 @@ describe DoiSearch do
       end
     end
 
-    context 'ScienceWire and WOS both disabled' do
+    context 'WOS disabled' do
       it 'only searches locally, returning Array of one Publication' do
-        expect(ScienceWireClient).not_to receive(:new)
         expect(WebOfScience).not_to receive(:queries)
         expect(described_class.search(doi_value)).to eq([doi_identifier.publication.pub_hash])
       end
     end
 
-    context 'ScienceWire enabled, WOS disabled', :vcr do
-      before { allow(Settings.SCIENCEWIRE).to receive(:enabled).and_return(true) }
-
-      VCR.use_cassette('doi_search_spec_one_doc') do
-        it_behaves_like 'sciencewire one hit'
-        it 'queries sciencewire if the local pub match is not DOI-reliable' do
-          doi_identifier.publication.pub_hash[:provenance] = 'cap'
-          doi_identifier.publication.save!
-          expect(ScienceWireClient).to receive(:new).and_call_original
-          expect(result.size).to eq 1
-          expect(result.first[:provenance]).to eq 'sciencewire'
-        end
-      end
-    end
-
-    context 'ScienceWire disabled, WOS enabled', :vcr do
-      before do
-        allow(Settings.WOS).to receive(:enabled).and_return(true)
-        expect(ScienceWireClient).not_to receive(:new)
-      end
+    context 'WOS enabled', :vcr do
+      before { allow(Settings.WOS).to receive(:enabled).and_return(true) }
 
       context 'local hit found' do
         let(:publication) { doi_identifier.publication }

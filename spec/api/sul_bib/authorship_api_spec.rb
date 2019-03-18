@@ -121,33 +121,6 @@ describe SulBib::API, :vcr do
       end
     end # context 'for a new PubMed publication'
 
-    context 'for a new ScienceWire publication' do
-      let(:request_data) { base_data.merge(sw_id: '10379039').merge(author_hash) }
-      before do
-        http_request
-        expect(response.body).to eq(new_pub.pub_hash.to_json)
-      end
-
-      it 'adds new ScienceWire publication' do
-        expect(result['sw_id']).to eq(request_data[:sw_id])
-        expect(result['authorship'].length).to eq 1
-        expect(result['authorship'][0]['sul_author_id']).to eq(author.id)
-        contribution = Contribution.find_by(
-          publication_id: new_pub.id,
-          author_id: author.id)
-        expect(contribution.featured).to eq(request_data[:featured])
-        expect(contribution.status).to eq(request_data[:status])
-        expect(contribution.visibility).to eq(request_data[:visibility])
-      end
-
-      it 'adds new ScienceWire publication with proper identifiers section' do
-        expect(result['identifier']).to include(
-          a_hash_including('type' => 'PublicationItemID', 'id' => request_data[:sw_id]),
-          a_hash_including('type' => 'SULPubId', 'id' => new_pub.id.to_s, 'url' => "#{Settings.SULPUB_ID.PUB_URI}/#{new_pub.id}")
-        )
-      end
-    end # context 'for a new ScienceWire publication'
-
     context 'for a new WoS publication' do
       # set Savon in and out of mock mode
       require 'savon/mock/spec_helper'

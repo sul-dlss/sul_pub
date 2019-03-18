@@ -368,12 +368,12 @@ describe SulBib::API, :vcr do
     end
 
     it 'returns a pub with valid bibjson for sw harvested records' do
-      author.contributions.destroy_all # wipe the slate clean
-      ScienceWireHarvester.new.harvest_pubs_for_author_ids([author.id])
-      new_pub = Publication.last
-      get "/publications/#{new_pub.id}", { format: 'json' }, headers
+      allow(Publication)
+        .to receive(:find)
+        .with('123')
+        .and_return(instance_double(Publication, pub_hash: { 'provenance' => 'sciencewire', 'type' => 'article' }, deleted?: false))
+      get "/publications/123", { format: 'json' }, headers
       expect(response.status).to eq(200)
-      expect(response.body).to eq(new_pub.pub_hash.to_json)
       expect(JSON.parse(response.body)).to include('provenance' => 'sciencewire', 'type' => 'article')
     end
 

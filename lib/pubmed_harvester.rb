@@ -14,14 +14,6 @@ class PubmedHarvester
   # @param [String] pmid Pubmed ID
   # @return [Array<Hash>] pub_hashes or an empty Array
   def self.fetch_remote_pubmed(pmid)
-    if Settings.SCIENCEWIRE.enabled
-      sw_records_doc = ScienceWireClient.new.pull_records_from_sciencewire_for_pmids(pmid)
-      result = sw_records_doc.xpath('//PublicationItem').map do |sw_doc|
-        add_citation(SciencewireSourceRecord.convert_sw_publication_doc_to_hash(sw_doc))
-      end
-      return result unless result.empty?
-    end
-
     # note: only works because all results expected to fit inside one "batch"
     if Settings.WOS.enabled
       result = WebOfScience.queries.retrieve_by_pmid([pmid]).next_batch.map { |rec| add_citation(rec.pub_hash) }

@@ -57,13 +57,13 @@ describe NotificationManager do
     end
     it 'creates a single logger' do
       expect(Logger).to receive(:new).with(Settings.SCIENCEWIRE.LOG).once
-      described_class.error(exception, message, ScienceWireHarvester.new)
-      described_class.error(exception, message, ScienceWireClient.new)
+      described_class.error(exception, message, SciencewireSourceRecord.new)
+      described_class.error(exception, message, SciencewireSourceRecord.new)
     end
     it 'logs errors' do
       expect(null_logger).to receive(:error).exactly(6)
-      described_class.error(exception, message, ScienceWireHarvester.new)
-      described_class.error(exception, message, ScienceWireClient.new)
+      described_class.error(exception, message, SciencewireSourceRecord.new)
+      described_class.error(exception, message, SciencewireSourceRecord.new)
     end
   end
   context 'WebOfScience.logger' do

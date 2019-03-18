@@ -10,10 +10,6 @@ class DoiSearch
   def self.search(doi)
     pub = Publication.find_by_doi(doi)
     return [pub.pub_hash] if pub && pub.authoritative_doi_source?
-    if Settings.SCIENCEWIRE.enabled
-      sw_hits = ScienceWireClient.new.get_pub_by_doi(doi)
-      return sw_hits unless sw_hits.empty?
-    end
     results = web_of_science(doi)
     if results.present?
       name = doi_name(doi)

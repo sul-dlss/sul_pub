@@ -28,23 +28,6 @@ describe AuthorHarvestJob, type: :job do
     expect(described_class.new.queue_name).to eq(queue)
   end
 
-  context 'ScienceWire is disabled' do
-    it 'executes perform without calling sciencewire' do
-      expect(ScienceWireHarvester).not_to receive(:new)
-      perform_enqueued_jobs { job }
-    end
-  end
-
-  context 'ScienceWire is enabled' do
-    it 'executes perform using sciencewire' do
-      allow(Settings.SCIENCEWIRE).to receive(:enabled).and_return(true)
-      harvester = ScienceWireHarvester.new
-      allow(harvester).to receive(:harvest_pubs_for_author_ids).with(author.id)
-      expect(ScienceWireHarvester).to receive(:new).and_return(harvester)
-      perform_enqueued_jobs { job }
-    end
-  end
-
   context 'WebOfScience is disabled' do
     it 'executes perform without calling sciencewire' do
       expect(WebOfScience).not_to receive(:harvester)

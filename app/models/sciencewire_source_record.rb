@@ -35,14 +35,7 @@ class SciencewireSourceRecord < ActiveRecord::Base
   # is_active, source_data and the source_fingerprint fields.
   # @return [Boolean] the return value from update_attributes!
   def sciencewire_update
-    sw_record_doc = ScienceWireClient.new.get_sw_xml_source_for_sw_id(sciencewire_id)
-    sw_pub = ScienceWirePublication.new sw_record_doc
-    attrs = {}
-    attrs[:pmid] = sw_pub.pmid unless sw_pub.pmid.blank?
-    attrs[:is_active] = !sw_pub.obsolete?
-    attrs[:source_data] = sw_pub.to_xml
-    attrs[:source_fingerprint] = Digest::SHA2.hexdigest(sw_record_doc)
-    update_attributes! attrs
+    raise 'ScienceWire has been decommissioned!'
   end
 
   ##
@@ -75,68 +68,14 @@ class SciencewireSourceRecord < ActiveRecord::Base
   end
 
   def self.get_sciencewire_hash_for_sw_id(sciencewire_id)
-    sciencewire_source_record = get_sciencewire_source_record_for_sw_id(sciencewire_id)
+    sciencewire_source_record = find_by(sciencewire_id: sciencewire_id)
     sciencewire_source_record.source_as_hash unless sciencewire_source_record.nil?
   end
 
   def self.get_sciencewire_hash_for_pmid(pmid)
-    sciencewire_source_record = get_sciencewire_source_record_for_pmid(pmid)
+    sciencewire_source_record = find_by(pmid: pmid)
     sciencewire_source_record.source_as_hash unless sciencewire_source_record.nil?
   end
-
-  def self.get_sciencewire_source_record_for_sw_id(sw_id)
-    find_by(sciencewire_id: sw_id) || get_sciencewire_source_record_from_sciencewire_by_sw_id(sw_id)
-  end
-
-  def self.get_sciencewire_source_record_for_pmid(pmid)
-    find_by(pmid: pmid) || get_sciencewire_source_record_from_sciencewire(pmid)
-  end
-
-  def self.get_sciencewire_source_record_from_sciencewire(pmid)
-    get_and_store_sw_source_records([pmid])
-    find_by(pmid: pmid)
-  end
-
-  def self.get_sciencewire_source_record_from_sciencewire_by_sw_id(sciencewire_id)
-    get_and_store_sw_source_record_for_sw_id(sciencewire_id)
-    find_by(sciencewire_id: sciencewire_id)
-  end
-
-  def self.get_and_store_sw_source_record_for_sw_id(sciencewire_id)
-    sw_record_doc = ScienceWireClient.new.get_sw_xml_source_for_sw_id(sciencewire_id)
-    pmid = extract_pmid(sw_record_doc)
-    where(sciencewire_id: sciencewire_id).first_or_create(
-      source_data: sw_record_doc.to_xml,
-      is_active: true,
-      pmid: pmid,
-      source_fingerprint: Digest::SHA2.hexdigest(sw_record_doc))
-  end
-  private_class_method :get_and_store_sw_source_record_for_sw_id
-
-  # get and store sciencewire source records for pmid list
-  def self.get_and_store_sw_source_records(pmids)
-    sw_records_doc = ScienceWireClient.new.pull_records_from_sciencewire_for_pmids(pmids)
-    count = 0
-    source_records = []
-    sw_records_doc.xpath('//PublicationItem').each do |sw_record_doc|
-      pmid = extract_pmid(sw_record_doc)
-      sciencewire_id = extract_swid(sw_record_doc)
-      begin
-        count += 1
-        pmids.delete(pmid)
-        source_records << SciencewireSourceRecord.new(
-          sciencewire_id: sciencewire_id,
-          source_data: sw_record_doc.to_xml,
-          is_active: true,
-          pmid: pmid,
-          source_fingerprint: Digest::SHA2.hexdigest(sw_record_doc))
-      rescue => e
-        NotificationManager.error(e, "Cannot create SciencewireSourceRecord: sciencewire_id: #{sciencewire_id}, pmid: #{pmid}", self)
-      end
-    end
-    import source_records
-  end
-  private_class_method :get_and_store_sw_source_records
 
   def self.save_sw_source_record(sciencewire_id, pmid, incoming_sw_xml_as_string)
     existing_sw_source_record = find_by(
