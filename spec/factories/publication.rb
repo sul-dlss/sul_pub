@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :publication do
-    title 'How I learned Rails'
-    year '1972'
+    title { 'How I learned Rails' }
+    year { '1972' }
     pub_hash do
       {
         title: title,
@@ -21,14 +21,14 @@ FactoryBot.define do
         ]
       }
     end
-    active true
-    deleted false
-    publication_type 'article'
+    active { true }
+    deleted { false }
+    publication_type { 'article' }
   end
 
   factory :publication_with_contributions, parent: :publication do
     transient do
-      contributions_count 15
+      contributions_count { 15 }
     end
     after(:create) do |publication, evaluator|
       FactoryBot.create_list(:contribution, evaluator.contributions_count, publication: publication)
@@ -36,10 +36,10 @@ FactoryBot.define do
   end
 
   factory :pub_with_sw_id, parent: :publication do
-    sciencewire_id 42_711_845
+    sciencewire_id { 42_711_845 }
   end
 
   factory :pub_with_sw_id_and_pmid, parent: :pub_with_sw_id do
-    pmid 10_048_354
+    pmid { 10_048_354 }
   end
 end

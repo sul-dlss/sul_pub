@@ -10,18 +10,18 @@ FactoryBot.define do
   end
 
   factory :blank_publication_identifier, parent: :publication_identifier do
-    identifier_type 'blank'
+    identifier_type { 'blank' }
   end
 
   factory :doi_pub_id, aliases: [:doi_publication_identifier], parent: :publication_identifier do
-    identifier_type 'doi'
-    identifier_value '10.1038/ncomms3199'
+    identifier_type { 'doi' }
+    identifier_value { '10.1038/ncomms3199' }
     identifier_uri { identifier_value ? "https://doi.org/#{identifier_value}" : nil }
   end
 
   factory :isbn_publication_identifier, parent: :publication_identifier do
-    identifier_type 'isbn'
-    identifier_value '9781931368223'
+    identifier_type { 'isbn' }
+    identifier_value { '9781931368223' }
   end
 
   # Altmetrics identifiers gem normalizes this value to:
@@ -39,19 +39,19 @@ FactoryBot.define do
   # end
 
   factory :sul_publication_identifier, parent: :publication_identifier do
-    identifier_type 'SULPubId'
-    identifier_value '170485'
+    identifier_type { 'SULPubId' }
+    identifier_value { '170485' }
     identifier_uri { identifier_value ? "http://sulcap.stanford.edu/publications/#{identifier_value}" : nil }
   end
 
   factory :pmid_publication_identifier, parent: :publication_identifier do
-    identifier_type 'PMID'
-    identifier_value '10002407'
+    identifier_type { 'PMID' }
+    identifier_value { '10002407' }
     identifier_uri { identifier_value ? "https://www.ncbi.nlm.nih.gov/pubmed/#{identifier_value}" : nil }
   end
 
   factory :publicationItemID_publication_identifier, parent: :publication_identifier do
-    identifier_type 'PublicationItemID'
-    identifier_value '10000593'
+    identifier_type { 'PublicationItemID' }
+    identifier_value { '10000593' }
   end
 end

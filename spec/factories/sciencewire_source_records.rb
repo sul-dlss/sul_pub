@@ -2,12 +2,12 @@
 
 FactoryBot.define do
   factory :sciencewire_source_record do
-    sciencewire_id      1
-    source_data         'MyText'
-    pmid                1
-    lock_version        1 # XXX: unknown how this is actually used or what it means
-    source_fingerprint  'MyString'
-    is_active           true # XXX: model always has this as true
+    sciencewire_id      { 1 }
+    source_data         { 'MyText' }
+    pmid                { 1 }
+    lock_version        { 1 } # XXX: unknown how this is actually used or what it means
+    source_fingerprint  { 'MyString' }
+    is_active           { true } # XXX: model always has this as true
     created_at          { DateTime.current }
     updated_at          { DateTime.current }
   end

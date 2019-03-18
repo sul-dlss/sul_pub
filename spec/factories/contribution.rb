@@ -1,8 +1,8 @@
 FactoryBot.define do
   factory :contribution do
-    status 'approved'
-    visibility 'public'
-    featured true
+    status { 'approved' }
+    visibility { 'public' }
+    featured { true }
     author
     publication
   end
