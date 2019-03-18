@@ -257,7 +257,7 @@ GEM
       mini_portile2 (~> 2.4.0)
     nori (2.6.0)
     okcomputer (1.17.3)
-    paper_trail (10.2.0)
+    paper_trail (10.2.1)
       activerecord (>= 4.2, < 6.1)
       request_store (~> 1.1)
     parallel (1.14.0)
