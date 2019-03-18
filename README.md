@@ -40,6 +40,16 @@ bundle exec rake db:create
 bundle exec rake db:migrate
 ```
 
+Alternatively, you can use Docker:
+```
+docker run --rm -e MYSQL_ALLOW_EMPTY_PASSWORD=true -p 3306:3306 -d mysql:8
+```
+and then:
+```
+RAILS_ENV=test bundle exec rake db:create
+RAILS_ENV=test bundle exec rake db:migrate
+```
+
 ## Running the Test Suite
 
 The test suite uses the VCR gem to manage HTTP request and response data.  The configuration for VCR does not and should not allow new HTTP requests that are not managed by VCR.  When any new specs require retrieval of data from subscription services, the private configuration files must be used (see below).  Otherwise, the existing VCR cassettes should suffice.
