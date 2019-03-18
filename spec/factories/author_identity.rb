@@ -5,7 +5,7 @@ FactoryBot.define do
     sequence(:middle_name)  { |n| "Jim#{n}" }
     sequence(:last_name)    { |n| "Edler#{n}" }
     sequence(:email)        { |n| "alice.edler#{n}@stanford.edu" }
-    institution             'Example University'
+    institution             { 'Example University' }
     start_date              { DateTime.current - 30.years }
     end_date                { DateTime.current }
     author

@@ -28,24 +28,24 @@ FactoryBot.define do
     cap_profile_id { FactoryBot.generate(:random_id) }
     university_id { FactoryBot.generate(:random_id) }
     california_physician_license { FactoryBot.generate(:random_string) }
-    active_in_cap true
-    email 'alice.edler@stanford.edu'
-    official_first_name 'Alice'
-    official_last_name 'Edler'
-    official_middle_name 'Jim'
-    preferred_first_name 'Alice'
-    preferred_last_name 'Edler'
-    preferred_middle_name 'Jim'
-    emails_for_harvest 'alice.edler@stanford.edu'
+    active_in_cap { true }
+    email { 'alice.edler@stanford.edu' }
+    official_first_name { 'Alice' }
+    official_last_name { 'Edler' }
+    official_middle_name { 'Jim' }
+    preferred_first_name { 'Alice' }
+    preferred_last_name { 'Edler' }
+    preferred_middle_name { 'Jim' }
+    emails_for_harvest { 'alice.edler@stanford.edu' }
   end
 
   factory :inactive_author, parent: :author do
-    active_in_cap false
+    active_in_cap { false }
   end
 
   factory :author_with_alternate_identities, parent: :author do
     transient do
-      alt_count 1 # default number of alternate identities to create
+      alt_count { 1 } # default number of alternate identities to create
     end
     after(:create) do |author, evaluator|
       evaluator.alt_count.times do
@@ -58,16 +58,16 @@ FactoryBot.define do
   # - https://stanfordwho.stanford.edu
   # - https://med.stanford.edu/profiles/russ-altman
   factory :russ_altman, parent: :author do
-    active_in_cap true
-    cap_import_enabled true
-    official_first_name 'Russ'
-    official_last_name 'Altman'
-    official_middle_name 'Biagio'
-    preferred_first_name 'Russ'
-    preferred_last_name 'Altman'
-    preferred_middle_name 'Biagio'
-    email 'Russ.Altman@stanford.edu'
-    emails_for_harvest 'Russ.Altman@stanford.edu'
+    active_in_cap { true }
+    cap_import_enabled { true }
+    official_first_name { 'Russ' }
+    official_last_name { 'Altman' }
+    official_middle_name { 'Biagio' }
+    preferred_first_name { 'Russ' }
+    preferred_last_name { 'Altman' }
+    preferred_middle_name { 'Biagio' }
+    email { 'Russ.Altman@stanford.edu' }
+    emails_for_harvest { 'Russ.Altman@stanford.edu' }
     # create some `author.author_identities`
     after(:create) do |author, _evaluator|
       create(:author_identity,
