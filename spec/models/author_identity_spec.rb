@@ -87,7 +87,7 @@ RSpec.describe AuthorIdentity, type: :model do
       }
     end
 
-    it 'will indicate if author is harvestable when number of identities has changed' do
+    it 'will indicate author is harvestable when number of identities has changed' do
       expect(author.author_identities.length).to eq 1
       author.mirror_author_identities([new_identity1, new_identity2])
       expect(author.author_identities.length).to eq 2
@@ -96,16 +96,17 @@ RSpec.describe AuthorIdentity, type: :model do
       expect(author.should_harvest?).to be true
     end
 
-    it 'will mirror identities in importSettings but will not detect changes to data if we end up with the same number' do
+    it 'will indicate author is harvestable if an author identity has changed' do
       expect(author.author_identities.length).to eq 1
       author.mirror_author_identities([new_identity1])
       expect(author.author_identities.length).to eq 1
-      expect(author.harvested).to be nil
+      expect(author.harvested).to be false
       expect(author.changed?).to be false
-      expect(author.should_harvest?).to be false
+      expect(author.should_harvest?).to be true
     end
 
-    it 'will not mirror identities in importSettings idential to primary author info, but will drop the one that is there and count this as a change' do
+    it 'will not mirror identities in importSettings identical to primary author info, but will drop the one that is ' \
+       'there and count this as a change' do
       expect(author.author_identities.length).to eq 1
       author.mirror_author_identities([identity_same_as_primary]) # must pass in only a single alternate identity for .length == 0
       expect(author.author_identities.length).to eq 0
