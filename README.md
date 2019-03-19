@@ -83,11 +83,12 @@ bundle exec rake spec:data-integration
 ### Private Configuration Files
 
 There are private configuration data for this application, manged in a
-[private github repository](https://github.com/sul-dlss/shared_configs). These configuration files contain private credentials for access to subscription resources and for client access to the application API.
+[private github repository](https://github.com/sul-dlss/shared_configs/tree/sul-pub-laptop).
+Use the sul-pub-laptop `config/settings.yml.local` file for local development.  These configuration files contain private credentials for access to subscription resources and for client access to the application API.
 
 ### Updating the VCR Cassettes Using Private Configuration Files
 
-First, follow the instructions above for using private configuration files.  Then run the test suite and commit any changes to the VCR cassettes.
+First, follow the instructions above for obtaining the private configuration files.  Then run the test suite and commit any changes to the VCR cassettes.
 
 ```sh
 # See commands above for using private configuration files.
@@ -100,8 +101,11 @@ git reset --hard  # cleanup the private configuration files
 
 ## Deployment
 
-The application is deployed using capistrano (see `cap -T` for a list of available tasks).  A developer can deploy the application when they have Kerberos authentication enabled for the remote user@host definition of the deployment target.  The `config/deploy` path in the private configuration files (see above) contains all the deployment target definitions, see:
-- https://github.com/sul-dlss/shared_configs/tree/sul-pub-laptop/config/deploy
+The application is deployed using capistrano (see `cap -T` for a list of available tasks).  A developer can deploy the application when they have Kerberos authentication enabled for the remote user@host definition of the deployment target. The defined deployment environments are here: https://github.com/sul-dlss/sul_pub/wiki/Servers-Deployment-environment
+
+```sh
+bundle exec cap [ENVIRONMENT] deploy
+```
 
 ### To update shared configs on the server, use:
 
