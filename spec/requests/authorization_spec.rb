@@ -13,7 +13,7 @@ describe 'Authorization checks' do
       end
     end
   end
-  context 'for Grape API' do
+  context 'for authorship API' do
     context 'when no CAPKEY provided' do
       it 'returns a 401' do
         post '/authorship'

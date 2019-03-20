@@ -107,6 +107,7 @@ VCR.configure do |c|
   end
   c.filter_sensitive_data('Settings.SCIENCEWIRE.HOST') { Settings.SCIENCEWIRE.HOST }
   c.filter_sensitive_data('Settings.SCIENCEWIRE.LICENSE_ID') { Settings.SCIENCEWIRE.LICENSE_ID }
+  c.filter_sensitive_data('Settings.PUBMED.API_KEY') { Settings.PUBMED.API_KEY }
 
   # WOS Links-AMR filters
   (links_username, links_password) = Base64.decode64(Settings.WOS.AUTH_CODE).split(':', 2)

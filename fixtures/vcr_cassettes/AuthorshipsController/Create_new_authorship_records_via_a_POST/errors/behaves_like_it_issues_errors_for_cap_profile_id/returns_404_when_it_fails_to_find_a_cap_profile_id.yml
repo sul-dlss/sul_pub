@@ -1,0 +1,100 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://authz.stanford.edu/oauth/token?grant_type=client_credentials
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.15.4
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip,deflate
+      Date:
+      - Fri, 22 Mar 2019 23:30:28 GMT
+      Content-Type:
+      - application/json
+      Authorization:
+      - Basic Settings.CAP.TOKEN_USER:Settings.CAP.TOKEN_PASS
+  response:
+    status:
+      code: 200
+      message: '200'
+    headers:
+      Date:
+      - Fri, 22 Mar 2019 23:30:27 GMT
+      Server:
+      - Apache
+      Cache-Control:
+      - no-store
+      Pragma:
+      - no-cache
+      Content-Type:
+      - application/json;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '{"access_token":"private_access_token","token_type":"bearer","expires_in":86399,"scope":"profiles.read_all","jti":"bfa75db7-b961-4c7e-9ab3-62258f9e779e"}'
+    http_version: 
+  recorded_at: Fri, 22 Mar 2019 23:30:28 GMT
+- request:
+    method: get
+    uri: https://cap-dev.stanford.edu/cap-api/api/cap/v1/authors/999999
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.15.4
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip,deflate
+      Date:
+      - Fri, 22 Mar 2019 23:30:28 GMT
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer private_bearer_token
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Date:
+      - Fri, 22 Mar 2019 23:30:28 GMT
+      Server:
+      - Apache/2.4.27 (Oracle) OpenSSL/1.0.1e-fips mod_jk/1.2.42
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - '0'
+      Strict-Transport-Security:
+      - max-age=31536000 ; includeSubDomains
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - DENY
+      X-Content-Type-Options:
+      - nosniff
+      Connection:
+      - close
+      Transfer-Encoding:
+      - chunked
+      Content-Type:
+      - application/json
+    body:
+      encoding: UTF-8
+      string: '{"meta":{"message":"Object of class [edu.stanford.irt.cap.api.domain.AuthorEntity]
+        with identifier [999999]: not found","status":"404 NOT_FOUND"}}
+
+'
+    http_version: 
+  recorded_at: Fri, 22 Mar 2019 23:30:28 GMT
+recorded_with: VCR 4.0.0

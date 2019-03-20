@@ -1,4 +1,3 @@
-
 describe AuthorsController do
   let(:author) { create(:author) }
   describe 'POST harvest' do

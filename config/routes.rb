@@ -1,16 +1,19 @@
-require 'sul_bib/api'
-
 Rails.application.routes.draw do
   if Rails.env.development?
     mount RailsDb::Engine => '/rails/db', :as => 'rails_db'
   end
 
-  get '/publications' => 'publications#index'
-  get '/publications/sourcelookup' => 'publications#sourcelookup'
+  # Publication API (for retrieving publications, searching and creating/updating manually entered publications)
+  resources :publications, defaults: { format: :json } do
+    collection do
+      get 'sourcelookup', to: 'publications#sourcelookup'
+    end
+  end
 
-  ##
-  # Endpoint for Author harvester
+  # Authorship API (for approving/denying/status updates to any publication)
+  resource :authorship, only: [:update, :create], defaults: { format: :json }
+
+  # Harvester API (for triggering manual harvests)
   post '/authors/:cap_profile_id/harvest', to: 'authors#harvest', defaults: { format: :json }
 
-  mount SulBib::API, at: '', as: 'api'
 end
