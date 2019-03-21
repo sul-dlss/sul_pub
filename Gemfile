@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'grape', '~> 1.2'
-gem 'rails', '~> 5.2'
+gem 'rails', '~> 5.2.2'
 
 # Use sass-powered bootstrap
 gem 'bootstrap-sass', '~> 3.4.1'
@@ -74,6 +74,7 @@ group :test do
   gem 'database_cleaner'
   gem 'equivalent-xml'
   gem 'factory_bot_rails'
+  gem 'rails-controller-testing'
   gem 'simplecov', '~> 0.13', require: false
   gem 'vcr'
   gem 'webmock'

@@ -38,17 +38,19 @@ class Publication < ActiveRecord::Base
     after_add: :pubhash_needs_update!,
     after_remove: :pubhash_needs_update!
 
-  has_many :authors,
-    autosave: true,
-    through: :contributions,
-    after_add: :pubhash_needs_update!,
-    after_remove: :pubhash_needs_update!
 
   has_many :contributions,
     autosave: true,
     dependent: :destroy,
     after_add: :pubhash_needs_update!,
     after_remove: :pubhash_needs_update!
+
+  has_many :authors,
+    autosave: true,
+    through: :contributions,
+    after_add: :pubhash_needs_update!,
+    after_remove: :pubhash_needs_update!
+
 
   serialize :pub_hash, Hash
 

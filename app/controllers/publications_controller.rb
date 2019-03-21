@@ -20,9 +20,8 @@ class PublicationsController < ApplicationController
     benchmark 'Querying for publications' do
       if capProfileId.blank?
         description = "Records that have changed since #{last_changed}"
-        query = Publication.updated_after(last_changed).page(page).per(per)
-        query = query.with_active_author if !capActive.blank? && capActive.casecmp('true').zero?
-        matching_records = query.select(:pub_hash)
+        matching_records = Publication.select(:pub_hash).updated_after(last_changed).page(page).per(per)
+        matching_records = matching_records.with_active_author if !capActive.blank? && capActive.casecmp('true').zero?
       else
         author = Author.find_by(cap_profile_id: capProfileId)
         if author.nil?
@@ -95,7 +94,7 @@ class PublicationsController < ApplicationController
         license: 'some licence',
         page: page,
         per_page: per_page,
-        query: env['ORIGINAL_FULLPATH'].to_s,
+        query: request.env['ORIGINAL_FULLPATH'].to_s,
         records:  records.count.to_s
       }
       {
