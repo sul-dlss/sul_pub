@@ -1,4 +1,4 @@
-class CreatePublicationIdentifiers < ActiveRecord::Migration
+class CreatePublicationIdentifiers < ActiveRecord::Migration[4.2]
   def change
     create_table :publication_identifiers do |t|
       t.integer :publication_id

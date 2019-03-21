@@ -1,4 +1,4 @@
-class CreateBatchUploadedSourceRecords < ActiveRecord::Migration
+class CreateBatchUploadedSourceRecords < ActiveRecord::Migration[4.2]
   def change
     create_table :batch_uploaded_source_records do |t|
       t.string :sunet_id

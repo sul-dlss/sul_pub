@@ -1,4 +1,4 @@
-class AddIndexesToPublications < ActiveRecord::Migration
+class AddIndexesToPublications < ActiveRecord::Migration[4.2]
   def change
     add_index :publications, :issn
     add_index :publications, :title

@@ -1,4 +1,4 @@
-class CreateUserSubmittedSourceRecords < ActiveRecord::Migration
+class CreateUserSubmittedSourceRecords < ActiveRecord::Migration[4.2]
   def change
     create_table :user_submitted_source_records do |t|
       t.text :source_data

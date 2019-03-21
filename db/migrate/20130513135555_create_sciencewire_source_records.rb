@@ -1,4 +1,4 @@
-class CreateSciencewireSourceRecords < ActiveRecord::Migration
+class CreateSciencewireSourceRecords < ActiveRecord::Migration[4.2]
   def change
     create_table :sciencewire_source_records do |t|
       t.text :source_data

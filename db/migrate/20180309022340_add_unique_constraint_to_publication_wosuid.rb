@@ -1,4 +1,4 @@
-class AddUniqueConstraintToPublicationWosuid < ActiveRecord::Migration
+class AddUniqueConstraintToPublicationWosuid < ActiveRecord::Migration[4.2]
   def down
     remove_index :web_of_science_source_records, :source_fingerprint if index_exists?(:web_of_science_source_records, :source_fingerprint)
     remove_index :web_of_science_source_records, :uid if index_exists?(:web_of_science_source_records, :uid)

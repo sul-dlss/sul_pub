@@ -1,4 +1,4 @@
-class ChangePubTitleToText < ActiveRecord::Migration
+class ChangePubTitleToText < ActiveRecord::Migration[4.2]
   def change
     remove_index :publications, :title
     change_column :publications, :title, :text, limit: 65535
