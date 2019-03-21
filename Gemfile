@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'grape', '~> 1.2'
-gem 'rails', '~> 4.2.11.1'
+gem 'rails', '~> 5.2'
 
 # Use sass-powered bootstrap
 gem 'bootstrap-sass', '~> 3.4.1'
