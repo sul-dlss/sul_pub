@@ -8,10 +8,10 @@ describe NotificationManager do
   end
   context '.error' do
     it 'notifies on internal exception during logging' do
-      expect(described_class).to receive(:log_exception).with(duck_type(:error), /PubmedHarvester/, duck_type(:message)).and_raise(RuntimeError.new)
+      expect(described_class).to receive(:log_exception).with(duck_type(:error), /Pubmed::Fetcher/, duck_type(:message)).and_raise(RuntimeError.new)
       expect(described_class).to receive(:log_exception).with(duck_type(:error), 'RuntimeError', duck_type(:message)).and_call_original
       expect(Honeybadger).to receive(:notify)
-      described_class.error(exception, message, PubmedHarvester.new)
+      described_class.error(exception, message, Pubmed::Fetcher.new)
     end
 
     context 'logger' do
@@ -42,13 +42,13 @@ describe NotificationManager do
     end
     it 'creates a single logger' do
       expect(Logger).to receive(:new).with(Settings.PUBMED.LOG).once
-      described_class.error(exception, message, PubmedHarvester.new)
-      described_class.error(exception, message, PubmedClient.new)
+      described_class.error(exception, message, Pubmed::Fetcher.new)
+      described_class.error(exception, message, Pubmed::Client.new)
     end
     it 'logs errors' do
       expect(null_logger).to receive(:error).exactly(6)
-      described_class.error(exception, message, PubmedHarvester.new)
-      described_class.error(exception, message, PubmedClient.new)
+      described_class.error(exception, message, Pubmed::Fetcher.new)
+      described_class.error(exception, message, Pubmed::Client.new)
     end
   end
   context '.sciencewire_logger' do

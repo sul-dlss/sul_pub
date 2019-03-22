@@ -37,6 +37,7 @@ module Cap
       logger.info 'new authors to harvest: ' + @new_authors_to_harvest_queue.to_s
       logger.info 'changed authors to harvest: ' + @changed_authors_to_harvest_queue.to_s if Settings.CAP.HARVEST_ON_CHANGE
       do_wos_harvest
+      do_pubmed_harvest
       log_stats
       logger.info 'Finished authorship import'
     rescue => e
@@ -55,6 +56,15 @@ module Cap
       end
       Author.where(id: @changed_authors_to_harvest_queue).find_in_batches(batch_size: 250) do |authors|
         WebOfScience.harvester.harvest(authors, symbolicTimeSpan: Settings.WOS.update_timeframe)
+      end
+    end
+
+    def do_pubmed_harvest
+      Author.where(id: @new_authors_to_harvest_queue).find_in_batches(batch_size: 250) do |authors|
+        Pubmed.harvester.harvest(authors, reldate: Settings.PUBMED.new_author_timeframe)
+      end
+      Author.where(id: @changed_authors_to_harvest_queue).find_in_batches(batch_size: 250) do |authors|
+        Pubmed.harvester.harvest(authors, reldate: Settings.PUBMED.update_timeframe)
       end
     end
 

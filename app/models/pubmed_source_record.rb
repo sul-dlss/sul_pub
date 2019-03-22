@@ -38,7 +38,7 @@ class PubmedSourceRecord < ActiveRecord::Base
 
   def self.get_and_store_records_from_pubmed(pmids)
     pmidValuesForPost = pmids.uniq.collect { |pmid| "&id=#{pmid}" }.join
-    the_incoming_xml = PubmedClient.new.fetch_records_for_pmid_list pmidValuesForPost
+    the_incoming_xml = Pubmed.client.fetch_records_for_pmid_list pmidValuesForPost
     source_records = Nokogiri::XML(the_incoming_xml).xpath('//PubmedArticle').map do |pub_doc|
       pmid = pub_doc.xpath('MedlineCitation/PMID').text
       begin
@@ -60,7 +60,7 @@ class PubmedSourceRecord < ActiveRecord::Base
   # Used to update the pubmed source record on our end (similar to .sciencewire_update)
   # @return [Boolean] the return value from update_attributes!
   def pubmed_update
-    pubmed_source_xml = PubmedClient.new.fetch_records_for_pmid_list pmid
+    pubmed_source_xml = Pubmed.client.fetch_records_for_pmid_list pmid
     pub_doc = Nokogiri::XML(pubmed_source_xml).xpath('//PubmedArticle')[0]
     return false unless pub_doc
     attrs = {}

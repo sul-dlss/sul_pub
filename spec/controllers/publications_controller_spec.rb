@@ -199,12 +199,12 @@ describe PublicationsController, :vcr do
 
     it 'with doi calls DoiSearch' do # and ignores pmid & title
       expect(DoiSearch).to receive(:search).with('xyz').and_return([])
-      expect(PubmedHarvester).not_to receive(:search_all_sources_by_pmid)
+      expect(Pubmed::Fetcher).not_to receive(:search_all_sources_by_pmid)
       get :sourcelookup, params: { doi: 'xyz', pmid: 'abc', title: 'foo', format: 'json' }
     end
 
-    it 'with pmid calls PubmedHarvester' do
-      expect(PubmedHarvester).to receive(:search_all_sources_by_pmid).with('abc').and_return([])
+    it 'with pmid calls Pubmed::Harvester' do
+      expect(Pubmed::Fetcher).to receive(:search_all_sources_by_pmid).with('abc').and_return([])
       expect(DoiSearch).not_to receive(:search)
       get :sourcelookup, params: { pmid: 'abc', format: 'json' }
     end

@@ -19,11 +19,29 @@ module Harvester
       logger.info "***** Ended a complete harvest for #{total} authors at #{end_time}.  Time taken: #{time_taken}"
     end
 
-    # @param [Enumerable<Author>] _authors
-    # @param [Hash] _options
+    # @param [Enumerable<Author>] authors
+    # @param [Hash] options
     # @return [void]
-    def harvest(_authors, _options = {})
-      raise "harvest must be implemented in subclass"
+    def harvest(authors, options = {})
+      count = authors.count
+      logger.info("#{self.class} - started harvest - #{count} authors - #{options}")
+      author_success = 0
+      authors.each do |author|
+        process_author(author, options)
+        author.harvested = true
+        author_success += 1
+      end
+      logger.info("#{self.class} - completed harvest - #{author_success} of #{count} processed")
+    rescue StandardError => err
+      NotificationManager.error(err, "harvest(authors) failed - #{author_success} of #{count} processed", self)
+    end
+
+    # Harvest all publications for an author
+    # @param [Author] _author
+    # @param [Hash] _options
+    # @return [Array<String>] ids that create Publications
+    def process_author(_author, _options = {})
+      raise "process_author must be implemented in subclass"
     end
 
     private

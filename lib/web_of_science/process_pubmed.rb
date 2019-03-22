@@ -52,14 +52,14 @@ module WebOfScience
     end
 
     # For WOS-record that has a PMID, cleanup our data when it does not exist on PubMed;
-    # but don't do anything if the PubmedClient is not working.
+    # but don't do anything if the Pubmed::Client is not working.
     # @param [Publication] pub is a Publication with a .pmid value
     # @param [Sring] pmid already parsed pmid, if available
     # @return [void]
     def pubmed_cleanup(pub, pmid = nil)
       raise(ArgumentError, 'pub must be Publication') unless pub.is_a? Publication
       pmid ||= parse_pmid(pub.pmid)
-      return unless PubmedClient.working?
+      return unless Pubmed.working?
       pub_id = pub.publication_identifiers.find_by(identifier_type: 'PMID', identifier_value: pmid)
       if pub_id.present?
         pub_id.pub_hash_update(delete: true)

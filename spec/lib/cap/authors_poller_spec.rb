@@ -253,4 +253,25 @@ describe Cap::AuthorsPoller, :vcr do
       subject.do_wos_harvest
     end
   end
+
+  describe '.do_pubmed_harvest' do
+    let(:other_author) { create :author }
+
+    before do
+      subject.instance_variable_set('@new_authors_to_harvest_queue', [author.id])
+      subject.instance_variable_set('@changed_authors_to_harvest_queue', [other_author.id])
+    end
+
+    it 'adds separate timeframes for harvests for new and updated authors' do
+      expect(Pubmed.harvester).to receive(:harvest).with(Enumerable, reldate: Settings.PUBMED.new_author_timeframe) do |authors, _|
+        expect(authors.size).to eq 1
+        expect(authors.first.id).to eq author.id
+      end
+      expect(Pubmed.harvester).to receive(:harvest).with(Enumerable, reldate: Settings.PUBMED.update_timeframe) do |authors, _|
+        expect(authors.size).to eq 1
+        expect(authors.first.id).to eq other_author.id
+      end
+      subject.do_pubmed_harvest
+    end
+  end
 end
