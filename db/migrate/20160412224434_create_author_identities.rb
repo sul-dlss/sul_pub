@@ -1,4 +1,4 @@
-class CreateAuthorIdentities < ActiveRecord::Migration
+class CreateAuthorIdentities < ActiveRecord::Migration[4.2]
   def change
     # On MySQL, foreign keys require the InnoDB storage engine, and we need to ensure UTF8 charsets for strings
     opts = {}

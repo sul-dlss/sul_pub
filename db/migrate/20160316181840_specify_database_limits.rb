@@ -1,4 +1,4 @@
-class SpecifyDatabaseLimits < ActiveRecord::Migration
+class SpecifyDatabaseLimits < ActiveRecord::Migration[4.2]
   ##
   # This migration enforces previously inferred limits automatically selected
   # based on the implemented database. If these limits or indexes are needed,

@@ -5,7 +5,7 @@ class WebOfScienceSourceRecord < ActiveRecord::Base
   #   1. WebOfScienceSourceRecord created
   #   2. Publication created, source record updated
 
-  belongs_to :publication, inverse_of: :web_of_science_source_record
+  belongs_to :publication, inverse_of: :web_of_science_source_record, optional: true
 
   before_validation :extract
   delegate :doc, :to_xml, to: :record

@@ -38,15 +38,15 @@ class Publication < ActiveRecord::Base
     after_add: :pubhash_needs_update!,
     after_remove: :pubhash_needs_update!
 
-  has_many :authors,
-    autosave: true,
-    through: :contributions,
-    after_add: :pubhash_needs_update!,
-    after_remove: :pubhash_needs_update!
-
   has_many :contributions,
     autosave: true,
     dependent: :destroy,
+    after_add: :pubhash_needs_update!,
+    after_remove: :pubhash_needs_update!
+
+  has_many :authors,
+    autosave: true,
+    through: :contributions,
     after_add: :pubhash_needs_update!,
     after_remove: :pubhash_needs_update!
 
@@ -83,7 +83,7 @@ class Publication < ActiveRecord::Base
   # @return [Publication] new object, unsaved
   def self.build_new_manual_publication(pub_hash, original_source_string)
     existingRecord = UserSubmittedSourceRecord.find_or_initialize_by_source_data(original_source_string)
-    raise ActiveRecord::RecordNotUnique.new('Publication for user submitted source record already exists', nil) if existingRecord && existingRecord.publication
+    raise ActiveRecord::RecordNotUnique, 'Publication for user submitted source record already exists' if existingRecord && existingRecord.publication
     Publication.new(active: true, pub_hash: pub_hash)
                .update_manual_pub_from_pub_hash(pub_hash, original_source_string)
   end

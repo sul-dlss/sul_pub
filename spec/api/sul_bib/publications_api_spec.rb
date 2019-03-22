@@ -1,4 +1,4 @@
-describe SulBib::API, :vcr do
+describe SulBib::API, :vcr, type: :request do
   let(:publication) { FactoryBot.create :publication }
   let(:author) { FactoryBot.create :author }
   let(:headers) { { 'HTTP_CAPKEY' => Settings.API_KEY, 'CONTENT_TYPE' => 'application/json' } }
@@ -122,7 +122,7 @@ describe SulBib::API, :vcr do
   # POST
 
   def post_valid_json
-    post '/publications', valid_json_for_post, headers
+    post '/publications', params: valid_json_for_post, headers: headers
     expect(response.status).to eq(201)
   end
 
@@ -194,7 +194,7 @@ describe SulBib::API, :vcr do
       end
 
       it 'handles missing author using authorship from the posted bibjson' do
-        post '/publications', article_with_authorship_without_authors, headers
+        post '/publications', params: article_with_authorship_without_authors, headers: headers
         expect(response.status).to eq(201)
         validate_authorship(last_pub.pub_hash, JSON.parse(article_with_authorship_without_authors))
       end
@@ -212,14 +212,14 @@ describe SulBib::API, :vcr do
 
       it 'does not duplicate SULPubIds' do
         json_with_sul_pub_id = { type: 'book', identifier: [{ type: 'SULPubId', id: 'n', url: 'm' }], authorship: [{ sul_author_id: author.id, status: 'denied', visibility: 'public', featured: true }] }.to_json
-        post '/publications', json_with_sul_pub_id, headers
+        post '/publications', params: json_with_sul_pub_id, headers: headers
         expect(response.status).to eq(201)
         expect(result['identifier'].count { |x| x['type'] == 'SULPubId' }).to eq(1)
         expect(result['identifier'][0]['id']).not_to eq('n')
       end
 
       it 'creates a pub with with isbn' do
-        post '/publications', with_isbn_hash.to_json, headers
+        post '/publications', params: with_isbn_hash.to_json, headers: headers
         expect(response.status).to eq(201)
         # TODO: use the submission data to validate some of the identifier fields
         # submission = JSON.parse(json_with_isbn)
@@ -235,7 +235,7 @@ describe SulBib::API, :vcr do
       end
 
       it 'creates a pub with with pmid' do
-        post '/publications', json_with_pubmedid, headers
+        post '/publications', params: json_with_pubmedid, headers: headers
         expect(response.status).to eq(201)
         expect(result['identifier']).to include('id' => '999999999', 'type' => 'pmid')
         expect(last_pub.publication_identifiers.map(&:identifier_type)).to include('pmid')
@@ -245,20 +245,20 @@ describe SulBib::API, :vcr do
 
     context 'when valid post' do
       it 'returns 302 for duplicate pub' do
-        post '/publications', valid_json_for_post, headers
+        post '/publications', params: valid_json_for_post, headers: headers
         expect(response.status).to eq(201)
-        post '/publications', valid_json_for_post, headers
+        post '/publications', params: valid_json_for_post, headers: headers
         expect(response.status).to eq(302)
       end
 
       it 'returns 406 - Not Acceptable for bibjson without an authorship entry' do
-        post '/publications', invalid_json_for_post, headers
+        post '/publications', params: invalid_json_for_post, headers: headers
         expect(response.status).to eq(406)
       end
 
       it 'creates an Author when a new cap_profile_id is passed in' do
         skip 'Administrative Systems firewall only allows IP-based requests'
-        post '/publications', json_with_new_author, headers
+        post '/publications', params: json_with_new_author, headers: headers
         expect(response.status).to eq(201)
         expect(Author.find_by(cap_profile_id: '3810').cap_last_name).to eq('Lowe')
       end
@@ -289,15 +289,15 @@ describe SulBib::API, :vcr do
             featured: true
           }]
         }.to_json
-        put "/publications/#{publication.id}", json_with_sul_pub_id, headers
+        put "/publications/#{publication.id}", params: json_with_sul_pub_id, headers: headers
         expect(result['identifier'].count { |x| x['type'] == 'SULPubId' }).to eq(1)
         expect(result['identifier'][0]['id']).not_to eq('n')
       end
 
       it 'updates existing pub' do
-        post '/publications', with_isbn_hash.to_json, headers
+        post '/publications', params: with_isbn_hash.to_json, headers: headers
         id = Publication.last.id
-        put "/publications/#{id}", with_isbn_changed_doi.to_json, headers
+        put "/publications/#{id}", params: with_isbn_changed_doi.to_json, headers: headers
         expect(result['identifier'].size).to eq(3)
         expect(result['identifier']).to include(
           a_hash_including('type' => 'isbn', 'id' => '1177188188181'),
@@ -307,9 +307,9 @@ describe SulBib::API, :vcr do
       end
 
       it 'deletes an identifier from the db if it is not in the incoming json' do
-        post '/publications', with_isbn_hash.to_json, headers
+        post '/publications', params: with_isbn_hash.to_json, headers: headers
         id = Publication.last.id
-        put "/publications/#{id}", with_isbn_deleted_doi.to_json, headers
+        put "/publications/#{id}", params: with_isbn_deleted_doi.to_json, headers: headers
         expect(result['identifier'].size).to eq(2)
         expect(result['identifier']).to include(
           a_hash_including('type' => 'isbn', 'id' => '1177188188181'),
@@ -321,7 +321,7 @@ describe SulBib::API, :vcr do
     context 'fails' do
       context 'pub not found' do
         it 'returns 404' do
-          put '/publications/88888888888', with_isbn_hash.to_json, headers
+          put '/publications/88888888888', params: with_isbn_hash.to_json, headers: headers
           expect(response.status).to eq(404)
         end
       end
@@ -332,22 +332,22 @@ describe SulBib::API, :vcr do
 
         it 'been deleted' do
           allow(publication).to receive(:deleted?).and_return(true)
-          put "/publications/#{id}", with_isbn_hash.to_json, headers
+          put "/publications/#{id}", params: with_isbn_hash.to_json, headers: headers
           expect(response.status).to eq(410)
         end
         it 'sciencewire_id' do
           allow(publication).to receive(:sciencewire_id).and_return(2)
-          put "/publications/#{id}", with_isbn_hash.to_json, headers
+          put "/publications/#{id}", params: with_isbn_hash.to_json, headers: headers
           expect(response.status).to eq(403)
         end
         it 'pmid' do
           allow(publication).to receive(:pmid).and_return(3)
-          put "/publications/#{id}", with_isbn_hash.to_json, headers
+          put "/publications/#{id}", params: with_isbn_hash.to_json, headers: headers
           expect(response.status).to eq(403)
         end
         it 'wos_uid' do
           allow(publication).to receive(:wos_uid).and_return(4)
-          put "/publications/#{id}", with_isbn_hash.to_json, headers
+          put "/publications/#{id}", params: with_isbn_hash.to_json, headers: headers
           expect(response.status).to eq(403)
         end
       end
@@ -359,11 +359,11 @@ describe SulBib::API, :vcr do
 
   describe 'GET /publications/:id' do
     it 'returns 200 for valid call' do
-      get "/publications/#{publication.id}", { format: 'json' }, headers
+      get "/publications/#{publication.id}", params: { format: 'json' }, headers: headers
       expect(response.status).to eq(200)
     end
     it 'returns a publication bibjson doc by id' do
-      get "/publications/#{publication.id}", { format: 'json' }, headers
+      get "/publications/#{publication.id}", params: { format: 'json' }, headers: headers
       expect(response.body).to eq(publication.pub_hash.to_json)
     end
 
@@ -372,7 +372,7 @@ describe SulBib::API, :vcr do
         .to receive(:find)
         .with('123')
         .and_return(instance_double(Publication, pub_hash: { 'provenance' => 'sciencewire', 'type' => 'article' }, deleted?: false))
-      get "/publications/123", { format: 'json' }, headers
+      get "/publications/123", params: { format: 'json' }, headers: headers
       expect(response.status).to eq(200)
       expect(JSON.parse(response.body)).to include('provenance' => 'sciencewire', 'type' => 'article')
     end
@@ -383,7 +383,7 @@ describe SulBib::API, :vcr do
 
     context "when pub id doesn't exist" do
       it 'returns not found code' do
-        get '/publications/88888888888', { format: 'json' }, headers
+        get '/publications/88888888888', params: { format: 'json' }, headers: headers
         expect(response.status).to eq(404)
       end
     end
@@ -394,13 +394,13 @@ describe SulBib::API, :vcr do
 
     context 'with no params specified' do
       it 'returns first page' do
-        get '/publications/', { format: 'json' }, headers
+        get '/publications/', params: { format: 'json' }, headers: headers
         expect(result['records']).to be
       end
     end
 
     it "raises an error if a capkey isn't provided" do
-      get '/publications?page=1&per=7', format: 'json' # no headers
+      get '/publications?page=1&per=7', params: { format: 'json' } # no headers
       expect(response.status).to eq(401)
     end
 
@@ -409,19 +409,19 @@ describe SulBib::API, :vcr do
       after { expect(response.status).to eq(200) }
 
       it 'returns one page with specified number of records' do
-        get '/publications?page=1&per=7', { format: 'json' }, headers
+        get '/publications?page=1&per=7', params: { format: 'json' }, headers: headers
         expect(response.headers['Content-Type']).to be =~ %r{application/json}
         expect(result['metadata']).to include('records' => '7', 'page' => 1)
         expect(result['records'][2]['author']).to be
       end
 
       it 'filters by active authors' do
-        get '/publications?page=1&per=1&capActive=true', { format: 'json' }, headers
+        get '/publications?page=1&per=1&capActive=true', params: { format: 'json' }, headers: headers
         expect(result['metadata']).to include('records' => '1', 'page' => 1)
       end
 
       it 'paginates by active authors' do
-        get '/publications?page=2&per=1&capActive=true', { format: 'json' }, headers
+        get '/publications?page=2&per=1&capActive=true', params: { format: 'json' }, headers: headers
         expect(result['metadata']).to include('records' => '1', 'page' => 2)
       end
     end # end of context

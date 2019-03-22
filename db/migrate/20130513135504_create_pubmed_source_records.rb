@@ -1,4 +1,4 @@
-class CreatePubmedSourceRecords < ActiveRecord::Migration
+class CreatePubmedSourceRecords < ActiveRecord::Migration[4.2]
   def change
     create_table :pubmed_source_records do |t|
       t.text :source_data

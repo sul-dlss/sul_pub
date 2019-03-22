@@ -30,6 +30,6 @@ class AuthorsController < ApplicationController
 
     def ensure_json_request
       return if request.format == :json
-      render nothing: true, status: :not_acceptable
+      head :not_acceptable
     end
 end

@@ -1,4 +1,4 @@
-class AddCaliforniaPhysicianLicenceToAuthors < ActiveRecord::Migration
+class AddCaliforniaPhysicianLicenceToAuthors < ActiveRecord::Migration[4.2]
   def change
     add_column :authors, :california_physician_license, :string
     add_index :authors, :california_physician_license

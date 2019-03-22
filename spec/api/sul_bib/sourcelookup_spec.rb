@@ -11,7 +11,7 @@ describe SulBib::API, :vcr do
   let(:sourcelookup_by_title) do
     publication_with_test_title
     params = { format: 'json', title: test_title, maxrows: 2 }
-    get sourcelookup_path, params, capkey
+    get sourcelookup_path, params: params, headers: capkey
     expect(response.status).to eq(200)
     JSON.parse(response.body)
   end
@@ -21,7 +21,7 @@ describe SulBib::API, :vcr do
   describe 'GET /publications/sourcelookup ' do
     it 'raises an error when title and doi are not sent' do
       expect do
-        get sourcelookup_path, {}, capkey
+        get sourcelookup_path, headers: capkey
       end.to raise_error ActionController::ParameterMissing
     end
 
@@ -35,7 +35,7 @@ describe SulBib::API, :vcr do
       end
       let(:result) do
         params = { format: 'json', doi: doi_value }
-        get sourcelookup_path, params, capkey
+        get sourcelookup_path, params: params, headers: capkey
         expect(response.status).to eq(200)
         JSON.parse(response.body)
       end
@@ -58,7 +58,7 @@ describe SulBib::API, :vcr do
       it 'returns one document' do
         allow(Settings.WOS).to receive(:enabled).and_return(false)
         params = { format: 'json', pmid: '24196758' }
-        get '/publications/sourcelookup', params, capkey
+        get '/publications/sourcelookup', params: params, headers: capkey
         expect(response.status).to eq(200)
         result = JSON.parse(response.body)
         expect(result['metadata']).to include('records' => '1')
@@ -81,7 +81,7 @@ describe SulBib::API, :vcr do
 
       it 'with maxrows number of records' do
         params = { format: 'json', title: test_title, maxrows: 5 }
-        get sourcelookup_path, params, capkey
+        get sourcelookup_path, params: params, headers: capkey
         expect(response.status).to eq(200)
         result = JSON.parse(response.body)
         expect(result['records'].length).to eq(5)
@@ -92,7 +92,7 @@ describe SulBib::API, :vcr do
           .with('TI="lung cancer treatment"')
           .and_return(instance_double(WebOfScience::Retriever, next_batch: Array.new(20) { {} }))
         params = { format: 'json', title: 'lung cancer treatment' }
-        get sourcelookup_path, params, capkey
+        get sourcelookup_path, params: params, headers: capkey
         expect(response.status).to eq(200)
         result = JSON.parse(response.body)
         expect(result['metadata']['records']).to eq('20')
@@ -113,7 +113,7 @@ describe SulBib::API, :vcr do
           .with("TI=\"#{test_title}\" AND PY=2015")
           .and_return(instance_double(WebOfScience::Retriever, next_batch: ['year' => year]))
         params = { format: 'json', title: test_title, year: year }
-        get sourcelookup_path, params, capkey
+        get sourcelookup_path, params: params, headers: capkey
         expect(response.status).to eq(200)
         result = JSON.parse(response.body)
         expect(result).to include('records')

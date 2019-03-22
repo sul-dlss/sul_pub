@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'grape', '~> 1.2'
-gem 'rails', '~> 4.2.11.1'
+gem 'rails', '~> 5.2.2'
 
 # Use sass-powered bootstrap
 gem 'bootstrap-sass', '~> 3.4.1'
@@ -16,6 +16,7 @@ gem 'nokogiri', '>= 1.7.1'
 
 gem 'activerecord-import'
 gem 'bibtex-ruby'
+gem 'bootsnap', '>= 1.1.0', require: false
 gem 'citeproc-ruby', '~> 1.1'
 gem 'unicode' # CiteProc requires the `unicode_utils` or `unicode` Gem on Ruby 2.3
 gem 'config'
@@ -62,9 +63,12 @@ end
 
 group :development do
   gem 'byebug'
+  gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'pry-doc'
   gem 'ruby-prof'
   gem 'thin' # app server
+  gem 'spring'
+  gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
 group :test do
@@ -73,6 +77,7 @@ group :test do
   gem 'database_cleaner'
   gem 'equivalent-xml'
   gem 'factory_bot_rails'
+  gem 'rails-controller-testing'
   gem 'simplecov', '~> 0.13', require: false
   gem 'vcr'
   gem 'webmock'

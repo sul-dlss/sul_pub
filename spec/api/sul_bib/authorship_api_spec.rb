@@ -285,7 +285,7 @@ describe SulBib::API, :vcr do
   # POST
 
   context 'POST /authorship' do
-    let(:http_request) { post '/authorship', request_data.to_json, headers }
+    let(:http_request) { post '/authorship', params: request_data.to_json, headers: headers }
     let(:result) { JSON.parse(response.body) } # invoke after http_request
 
     context 'success' do
@@ -326,7 +326,7 @@ describe SulBib::API, :vcr do
         pub = Publication.find(request_data[:sul_pub_id])
         expect(pub).to receive(:save!).and_raise(ActiveRecord::RecordNotSaved.new(pub))
         expect(Publication).to receive(:find).with(pub.id.to_s).and_return(pub)
-        post '/authorship', request_data.to_json, headers
+        post '/authorship', params: request_data.to_json, headers: headers
         expect(response.status).to eq 500
       end
 
@@ -335,30 +335,30 @@ describe SulBib::API, :vcr do
         let(:id) { '0' }
 
         it 'returns 400 when publication parameters are missing' do
-          post '/authorship', no_pub_params.to_json, headers
+          post '/authorship', params: no_pub_params.to_json, headers: headers
           expect(response.status).to eq 400
           expect(result['error']).to include('no valid publication identifier', 'sul_pub_id', 'pmid', 'sw_id', 'wos_uid')
         end
         context 'returns 404 with error message for invalid' do
           after { expect(response.status).to eq 404 }
           it 'sul_pub_id' do
-            post '/authorship', no_pub_params.merge(sul_pub_id: id).to_json, headers
+            post '/authorship', params: no_pub_params.merge(sul_pub_id: id).to_json, headers: headers
             expect(result['error']).to include(id, 'does not exist')
           end
           it 'pmid' do
             expect(Publication).to receive(:find_or_create_by_pmid)
-            post '/authorship', no_pub_params.merge(pmid: id).to_json, headers
+            post '/authorship', params: no_pub_params.merge(pmid: id).to_json, headers: headers
             expect(result['error']).to include(id, 'was not found')
           end
           it 'sw_id' do
             expect(Publication).to receive(:find_by).with(sciencewire_id: id)
             expect(SciencewireSourceRecord).to receive(:get_pub_by_sciencewire_id)
-            post '/authorship', no_pub_params.merge(sw_id: id).to_json, headers
+            post '/authorship', params: no_pub_params.merge(sw_id: id).to_json, headers: headers
             expect(result['error']).to include(id, 'was not found')
           end
           it 'wos_uid' do
             expect(WebOfScience.harvester).to receive(:author_uid).with(Author, id)
-            post '/authorship', no_pub_params.merge(wos_uid: id).to_json, headers
+            post '/authorship', params: no_pub_params.merge(wos_uid: id).to_json, headers: headers
             expect(result['error']).to include(id, 'was not found')
           end
         end
@@ -370,7 +370,7 @@ describe SulBib::API, :vcr do
   # PATCH
 
   context 'PATCH /authorship' do
-    let(:http_request) { patch '/authorship', request_data.to_json, headers }
+    let(:http_request) { patch '/authorship', params: request_data.to_json, headers: headers }
     let(:result) { JSON.parse(response.body) } # invoke after http_request
 
     context 'success' do

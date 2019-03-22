@@ -8,7 +8,7 @@ describe 'Authorization checks' do
     end
     context 'when incorrect CAPKEY provided' do
       it 'returns a 403' do
-        get '/publications', {}, 'CAPKEY' => 'not correct'
+        get '/publications', headers: { 'CAPKEY' => 'not correct' }
         expect(response.status).to eq 403
       end
     end
@@ -22,7 +22,7 @@ describe 'Authorization checks' do
     end
     context 'when incorrect CAPKEY provided' do
       it 'returns a 403' do
-        post '/authorship', {}, 'CAPKEY' => 'not correct'
+        post '/authorship', headers: { 'CAPKEY' => 'not correct' }
         expect(response.status).to eq 403
       end
     end

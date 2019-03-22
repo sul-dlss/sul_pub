@@ -1,4 +1,4 @@
-class CreateAuthors < ActiveRecord::Migration
+class CreateAuthors < ActiveRecord::Migration[4.2]
   def change
     create_table :authors do |t|
       t.integer :cap_profile_id

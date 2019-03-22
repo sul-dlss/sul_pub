@@ -1,6 +1,6 @@
 require 'sul_bib/api'
 
-Sulbib::Application.routes.draw do
+Rails.application.routes.draw do
   if Rails.env.development?
     mount RailsDb::Engine => '/rails/db', :as => 'rails_db'
   end

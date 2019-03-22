@@ -1,7 +1,7 @@
 #
 # Switch our data-oriented `:text` columns to 16MBs (MySQL's MEDIUMTEXT)
 #
-class SwitchToMediumText < ActiveRecord::Migration
+class SwitchToMediumText < ActiveRecord::Migration[4.2]
   def change
     # changing batch_uploaded_source_records
     change_column :batch_uploaded_source_records, :bibtex_source_data, :text, limit: 16_777_215
