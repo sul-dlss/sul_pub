@@ -148,12 +148,12 @@ module WebOfScience
            (publication_identifiers.identifier_type = 'pmid' AND publication_identifiers.identifier_value = ?))",
            record.uid, record.wos_item_id, record.doi, record.pmid
         ).order(
-          "CASE
+          Arel.sql("CASE
             WHEN publication_identifiers.identifier_type = 'WosUID' THEN 0
             WHEN publication_identifiers.identifier_type = 'WosItemID' THEN 1
             WHEN publication_identifiers.identifier_type = 'doi' THEN 2
             WHEN publication_identifiers.identifier_type = 'pmid' THEN 3
-           END"
+           END")
         ).first
       end
   end
