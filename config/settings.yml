@@ -33,6 +33,10 @@ PUBMED:
   API_KEY: a_fake_pubmed_key
   BASE_URI: https://eutils.ncbi.nlm.nih.gov
   ARTICLE_BASE_URI: https://www.ncbi.nlm.nih.gov/pubmed/
+  # In number of days
+  regular_harvest_timeframe: 21
+  update_timeframe: null # default pubmed reldate for updated authors resulting from nightly cap polling
+  new_author_timeframe: null # default pubmed reldate for new authors resulting from nightly cap polling (null == for all time)
 
 ## Sciencewire Auth Config
 SCIENCEWIRE:
