@@ -1,0 +1,314 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?api_key=Settings.PUBMED.API_KEY&db=pubmed&retmode=xml
+    body:
+      encoding: UTF-8
+      string: "&id=&id=23684686"
+    headers:
+      User-Agent:
+      - stanford-library-sul-pub
+      Accept:
+      - "*/*"
+      Accept-Encoding:
+      - gzip,deflate
+      Date:
+      - Fri, 22 Mar 2019 23:27:23 GMT
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 22 Mar 2019 23:27:23 GMT
+      Server:
+      - Finatra
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Content-Security-Policy:
+      - upgrade-insecure-requests
+      X-Ratelimit-Remaining:
+      - '8'
+      Ncbi-Phid:
+      - 322C1335D2DEB7E500001338764C30B6.1.1.m_3
+      Cache-Control:
+      - private
+      L5d-Success-Class:
+      - '1.0'
+      Ncbi-Sid:
+      - 3A8BB6AA78882832_AE54SID
+      Content-Encoding:
+      - gzip
+      X-Ratelimit-Limit:
+      - '10'
+      Access-Control-Allow-Origin:
+      - "*"
+      Content-Type:
+      - text/xml; charset=UTF-8
+      Set-Cookie:
+      - ncbi_sid=3A8BB6AA78882832_AE54SID; domain=.nih.gov; path=/; expires=Sun, 22
+        Mar 2020 23:27:23 GMT
+      X-Ua-Compatible:
+      - IE=Edge
+      X-Xss-Protection:
+      - 1; mode=block
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0" ?>
+        <!DOCTYPE PubmedArticleSet PUBLIC "-//NLM//DTD PubMedArticle, 1st January 2019//EN" "https://dtd.nlm.nih.gov/ncbi/pubmed/out/pubmed_190101.dtd">
+        <PubmedArticleSet>
+        <PubmedArticle>
+            <MedlineCitation Status="MEDLINE" Owner="NLM">
+                <PMID Version="1">23684686</PMID>
+                <DateCompleted>
+                    <Year>2013</Year>
+                    <Month>10</Month>
+                    <Day>31</Day>
+                </DateCompleted>
+                <DateRevised>
+                    <Year>2013</Year>
+                    <Month>08</Month>
+                    <Day>02</Day>
+                </DateRevised>
+                <Article PubModel="Print-Electronic">
+                    <Journal>
+                        <ISSN IssnType="Electronic">1558-3597</ISSN>
+                        <JournalIssue CitedMedium="Internet">
+                            <Volume>62</Volume>
+                            <Issue>6</Issue>
+                            <PubDate>
+                                <Year>2013</Year>
+                                <Month>Aug</Month>
+                                <Day>06</Day>
+                            </PubDate>
+                        </JournalIssue>
+                        <Title>Journal of the American College of Cardiology</Title>
+                        <ISOAbbreviation>J. Am. Coll. Cardiol.</ISOAbbreviation>
+                    </Journal>
+                    <ArticleTitle>Subtle post-procedural cognitive dysfunction after atrial fibrillation ablation.</ArticleTitle>
+                    <Pagination>
+                        <MedlinePgn>531-9</MedlinePgn>
+                    </Pagination>
+                    <ELocationID EIdType="doi" ValidYN="Y">10.1016/j.jacc.2013.03.073</ELocationID>
+                    <ELocationID EIdType="pii" ValidYN="Y">S0735-1097(13)01882-2</ELocationID>
+                    <Abstract>
+                        <AbstractText Label="OBJECTIVES" NlmCategory="OBJECTIVE">This study sought to determine whether post-operative neurocognitive dysfunction (POCD) occurs after ablation for atrial fibrillation (AF).</AbstractText>
+                        <AbstractText Label="BACKGROUND" NlmCategory="BACKGROUND">Ablation for AF is a highly effective strategy; however, the risk of transient ischemic attack and stroke is approximately 0.5% to 1%. In addition, magnetic resonance imaging studies report a 7% to 14% prevalence of silent cerebral infarction. Whether cerebral ischemia results in POCD after ablation for AF is not well established.</AbstractText>
+                        <AbstractText Label="METHODS" NlmCategory="METHODS">The study included 150 patients; 60 patients undergoing ablation for paroxysmal atrial fibrillation (PAF), 30 patients undergoing ablation for persistent atrial fibrillation (PeAF), and 30 patients undergoing ablation for supraventricular tachycardia (SVT) were compared with a matched nonoperative control group of patients with AF awaiting radiofrequency ablation (n = 30). Eight neuropsychological tests were administered at baseline and at 2 days and 90 days post-operatively. The tests were administered at the same time points to the nonoperative control group. The reliable change index was used to calculate POCD.</AbstractText>
+                        <AbstractText Label="RESULTS" NlmCategory="RESULTS">The prevalences of POCD at day 2 post-procedure were 28% in patients with PAF, 27% in patients with PeAF, 13% in patients with SVT, and 0% in control patients with AF (p = 0.007). At day 90, the prevalences of POCD were 13% in patients with PAF, 20% in patients with PeAF, 3% in patients with SVT, and 0% in control patients with AF (p = 0.03). When analyzing the 3 procedural groups together, 29 of 120 patients (24%) manifested POCD at day 2 and 15 of 120 patients (13%) at day 90 post-procedure (p = 0.029). On univariate analysis, increasing left atrial access time was associated with POCD at day 2 (p = 0.04) and day 90 (p = 0.03).</AbstractText>
+                        <AbstractText Label="CONCLUSIONS" NlmCategory="CONCLUSIONS">Ablation for AF is associated with a 13% to 20% prevalence of POCD in patients with AF at long-term follow-up. These results were seen in a patient population with predominant CHADS2 (Congestive heart failure, Hypertension, Age ≥75 years, Diabetes mellitus, previous Stroke/transient ischemic attack) scores of 0 to 1, representing the majority of patients undergoing ablation for AF. The long-term implications of these subtle changes require further study.</AbstractText>
+                        <CopyrightInformation>Copyright © 2013 American College of Cardiology Foundation. Published by Elsevier Inc. All rights reserved.</CopyrightInformation>
+                    </Abstract>
+                    <AuthorList CompleteYN="Y">
+                        <Author ValidYN="Y">
+                            <LastName>Medi</LastName>
+                            <ForeName>Caroline</ForeName>
+                            <Initials>C</Initials>
+                            <AffiliationInfo>
+                                <Affiliation>Department of Cardiology, The Royal Melbourne Hospital, Melbourne, Australia.</Affiliation>
+                            </AffiliationInfo>
+                        </Author>
+                        <Author ValidYN="Y">
+                            <LastName>Evered</LastName>
+                            <ForeName>Lisbeth</ForeName>
+                            <Initials>L</Initials>
+                        </Author>
+                        <Author ValidYN="Y">
+                            <LastName>Silbert</LastName>
+                            <ForeName>Brendan</ForeName>
+                            <Initials>B</Initials>
+                        </Author>
+                        <Author ValidYN="Y">
+                            <LastName>Teh</LastName>
+                            <ForeName>Andrew</ForeName>
+                            <Initials>A</Initials>
+                        </Author>
+                        <Author ValidYN="Y">
+                            <LastName>Halloran</LastName>
+                            <ForeName>Karen</ForeName>
+                            <Initials>K</Initials>
+                        </Author>
+                        <Author ValidYN="Y">
+                            <LastName>Morton</LastName>
+                            <ForeName>Joseph</ForeName>
+                            <Initials>J</Initials>
+                        </Author>
+                        <Author ValidYN="Y">
+                            <LastName>Kistler</LastName>
+                            <ForeName>Peter</ForeName>
+                            <Initials>P</Initials>
+                        </Author>
+                        <Author ValidYN="Y">
+                            <LastName>Kalman</LastName>
+                            <ForeName>Jonathan</ForeName>
+                            <Initials>J</Initials>
+                        </Author>
+                    </AuthorList>
+                    <Language>eng</Language>
+                    <PublicationTypeList>
+                        <PublicationType UI="D016428">Journal Article</PublicationType>
+                    </PublicationTypeList>
+                    <ArticleDate DateType="Electronic">
+                        <Year>2013</Year>
+                        <Month>05</Month>
+                        <Day>15</Day>
+                    </ArticleDate>
+                </Article>
+                <MedlineJournalInfo>
+                    <Country>United States</Country>
+                    <MedlineTA>J Am Coll Cardiol</MedlineTA>
+                    <NlmUniqueID>8301365</NlmUniqueID>
+                    <ISSNLinking>0735-1097</ISSNLinking>
+                </MedlineJournalInfo>
+                <CitationSubset>AIM</CitationSubset>
+                <CitationSubset>IM</CitationSubset>
+                <CommentsCorrectionsList>
+                    <CommentsCorrections RefType="CommentIn">
+                        <RefSource>J Am Coll Cardiol. 2013 Aug 6;62(6):540-2</RefSource>
+                        <PMID Version="1">23684681</PMID>
+                    </CommentsCorrections>
+                </CommentsCorrectionsList>
+                <MeshHeadingList>
+                    <MeshHeading>
+                        <DescriptorName UI="D000328" MajorTopicYN="N">Adult</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName UI="D000368" MajorTopicYN="N">Aged</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName UI="D001281" MajorTopicYN="N">Atrial Fibrillation</DescriptorName>
+                        <QualifierName UI="Q000145" MajorTopicYN="N">classification</QualifierName>
+                        <QualifierName UI="Q000601" MajorTopicYN="Y">surgery</QualifierName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName UI="D016022" MajorTopicYN="N">Case-Control Studies</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName UI="D017115" MajorTopicYN="Y">Catheter Ablation</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName UI="D003072" MajorTopicYN="N">Cognition Disorders</DescriptorName>
+                        <QualifierName UI="Q000453" MajorTopicYN="N">epidemiology</QualifierName>
+                        <QualifierName UI="Q000209" MajorTopicYN="Y">etiology</QualifierName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName UI="D005260" MajorTopicYN="N">Female</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName UI="D005500" MajorTopicYN="N">Follow-Up Studies</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName UI="D006801" MajorTopicYN="N">Humans</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName UI="D008297" MajorTopicYN="N">Male</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName UI="D008875" MajorTopicYN="N">Middle Aged</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName UI="D009483" MajorTopicYN="N">Neuropsychological Tests</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName UI="D011183" MajorTopicYN="Y">Postoperative Complications</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName UI="D015995" MajorTopicYN="N">Prevalence</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName UI="D013617" MajorTopicYN="N">Tachycardia, Supraventricular</DescriptorName>
+                        <QualifierName UI="Q000601" MajorTopicYN="N">surgery</QualifierName>
+                    </MeshHeading>
+                </MeshHeadingList>
+                <KeywordList Owner="NOTNLM">
+                    <Keyword MajorTopicYN="N">ACT</Keyword>
+                    <Keyword MajorTopicYN="N">AF</Keyword>
+                    <Keyword MajorTopicYN="N">CERAD</Keyword>
+                    <Keyword MajorTopicYN="N">CHADS(2)</Keyword>
+                    <Keyword MajorTopicYN="N">CI</Keyword>
+                    <Keyword MajorTopicYN="N">Congestive heart failure, Hypertension, Age ≥75 years, Diabetes mellitus, previous Stroke/transient ischemic attack</Keyword>
+                    <Keyword MajorTopicYN="N">Consortium to Establish a Registry for Alzheimer's Disease</Keyword>
+                    <Keyword MajorTopicYN="N">IQ</Keyword>
+                    <Keyword MajorTopicYN="N">MRI</Keyword>
+                    <Keyword MajorTopicYN="N">OR</Keyword>
+                    <Keyword MajorTopicYN="N">PAF</Keyword>
+                    <Keyword MajorTopicYN="N">POCD</Keyword>
+                    <Keyword MajorTopicYN="N">PeAF</Keyword>
+                    <Keyword MajorTopicYN="N">RCI</Keyword>
+                    <Keyword MajorTopicYN="N">RFA</Keyword>
+                    <Keyword MajorTopicYN="N">SVT</Keyword>
+                    <Keyword MajorTopicYN="N">ablation</Keyword>
+                    <Keyword MajorTopicYN="N">activated clotting time</Keyword>
+                    <Keyword MajorTopicYN="N">atrial fibrillation</Keyword>
+                    <Keyword MajorTopicYN="N">confidence interval</Keyword>
+                    <Keyword MajorTopicYN="N">intelligence quotient</Keyword>
+                    <Keyword MajorTopicYN="N">magnetic resonance imaging</Keyword>
+                    <Keyword MajorTopicYN="N">neurocognitive dysfunction</Keyword>
+                    <Keyword MajorTopicYN="N">odds ratio</Keyword>
+                    <Keyword MajorTopicYN="N">outcomes</Keyword>
+                    <Keyword MajorTopicYN="N">paroxysmal atrial fibrillation</Keyword>
+                    <Keyword MajorTopicYN="N">persistent atrial fibrillation</Keyword>
+                    <Keyword MajorTopicYN="N">post-operative cognitive dysfunction</Keyword>
+                    <Keyword MajorTopicYN="N">radiofrequency ablation</Keyword>
+                    <Keyword MajorTopicYN="N">reliable change index</Keyword>
+                    <Keyword MajorTopicYN="N">supraventricular tachycardia</Keyword>
+                </KeywordList>
+            </MedlineCitation>
+            <PubmedData>
+                <History>
+                    <PubMedPubDate PubStatus="received">
+                        <Year>2012</Year>
+                        <Month>11</Month>
+                        <Day>01</Day>
+                    </PubMedPubDate>
+                    <PubMedPubDate PubStatus="revised">
+                        <Year>2013</Year>
+                        <Month>03</Month>
+                        <Day>12</Day>
+                    </PubMedPubDate>
+                    <PubMedPubDate PubStatus="accepted">
+                        <Year>2013</Year>
+                        <Month>03</Month>
+                        <Day>19</Day>
+                    </PubMedPubDate>
+                    <PubMedPubDate PubStatus="entrez">
+                        <Year>2013</Year>
+                        <Month>5</Month>
+                        <Day>21</Day>
+                        <Hour>6</Hour>
+                        <Minute>0</Minute>
+                    </PubMedPubDate>
+                    <PubMedPubDate PubStatus="pubmed">
+                        <Year>2013</Year>
+                        <Month>5</Month>
+                        <Day>21</Day>
+                        <Hour>6</Hour>
+                        <Minute>0</Minute>
+                    </PubMedPubDate>
+                    <PubMedPubDate PubStatus="medline">
+                        <Year>2013</Year>
+                        <Month>11</Month>
+                        <Day>1</Day>
+                        <Hour>6</Hour>
+                        <Minute>0</Minute>
+                    </PubMedPubDate>
+                </History>
+                <PublicationStatus>ppublish</PublicationStatus>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">23684686</ArticleId>
+                    <ArticleId IdType="pii">S0735-1097(13)01882-2</ArticleId>
+                    <ArticleId IdType="doi">10.1016/j.jacc.2013.03.073</ArticleId>
+                </ArticleIdList>
+            </PubmedData>
+        </PubmedArticle>
+
+        </PubmedArticleSet>
+    http_version: 
+  recorded_at: Fri, 22 Mar 2019 23:27:24 GMT
+recorded_with: VCR 4.0.0

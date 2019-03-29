@@ -1,0 +1,187 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?api_key=Settings.PUBMED.API_KEY&db=pubmed&retmode=xml
+    body:
+      encoding: UTF-8
+      string: "&id=24196758"
+    headers:
+      User-Agent:
+      - stanford-library-sul-pub
+      Accept:
+      - "*/*"
+      Accept-Encoding:
+      - gzip,deflate
+      Date:
+      - Thu, 21 Mar 2019 20:38:51 GMT
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 21 Mar 2019 20:38:51 GMT
+      Server:
+      - Finatra
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Content-Security-Policy:
+      - upgrade-insecure-requests
+      X-Ratelimit-Remaining:
+      - '9'
+      Ncbi-Phid:
+      - D0BDBC827630B7E5000027D76E75D178.1.1.m_3
+      Cache-Control:
+      - private
+      L5d-Success-Class:
+      - '1.0'
+      Ncbi-Sid:
+      - 2EBB2A6515E74CAB_29D9SID
+      Content-Encoding:
+      - gzip
+      X-Ratelimit-Limit:
+      - '10'
+      Access-Control-Allow-Origin:
+      - "*"
+      Content-Type:
+      - text/xml; charset=UTF-8
+      Set-Cookie:
+      - ncbi_sid=2EBB2A6515E74CAB_29D9SID; domain=.nih.gov; path=/; expires=Sat, 21
+        Mar 2020 20:38:51 GMT
+      X-Ua-Compatible:
+      - IE=Edge
+      X-Xss-Protection:
+      - 1; mode=block
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0" ?>
+        <!DOCTYPE PubmedArticleSet PUBLIC "-//NLM//DTD PubMedArticle, 1st January 2019//EN" "https://dtd.nlm.nih.gov/ncbi/pubmed/out/pubmed_190101.dtd">
+        <PubmedArticleSet>
+        <PubmedArticle>
+            <MedlineCitation Status="MEDLINE" Owner="NLM">
+                <PMID Version="1">24196758</PMID>
+                <DateCompleted>
+                    <Year>2014</Year>
+                    <Month>10</Month>
+                    <Day>31</Day>
+                </DateCompleted>
+                <DateRevised>
+                    <Year>2013</Year>
+                    <Month>11</Month>
+                    <Day>07</Day>
+                </DateRevised>
+                <Article PubModel="Print">
+                    <Journal>
+                        <ISSN IssnType="Electronic">1668-3501</ISSN>
+                        <JournalIssue CitedMedium="Internet">
+                            <Volume>111</Volume>
+                            <Issue>6</Issue>
+                            <PubDate>
+                                <Year>2013</Year>
+                                <Month>Dec</Month>
+                            </PubDate>
+                        </JournalIssue>
+                        <Title>Archivos argentinos de pediatria</Title>
+                        <ISOAbbreviation>Arch Argent Pediatr</ISOAbbreviation>
+                    </Journal>
+                    <ArticleTitle>Rights and responsibilities of electronic health records (EHR) users caring for children.</ArticleTitle>
+                    <Pagination>
+                        <MedlinePgn>468-71</MedlinePgn>
+                    </Pagination>
+                    <ELocationID EIdType="doi" ValidYN="Y">10.1590/S0325-00752013000600003</ELocationID>
+                    <ELocationID EIdType="pii" ValidYN="Y">S0325-00752013000600003</ELocationID>
+                    <AuthorList CompleteYN="Y">
+                        <Author ValidYN="Y">
+                            <LastName>Sittig</LastName>
+                            <ForeName>Dean F</ForeName>
+                            <Initials>DF</Initials>
+                        </Author>
+                        <Author ValidYN="Y">
+                            <LastName>Singh</LastName>
+                            <ForeName>Hardeep</ForeName>
+                            <Initials>H</Initials>
+                        </Author>
+                        <Author ValidYN="Y">
+                            <LastName>Longhurst</LastName>
+                            <ForeName>Christopher A</ForeName>
+                            <Initials>CA</Initials>
+                        </Author>
+                    </AuthorList>
+                    <Language>eng</Language>
+                    <Language>spa</Language>
+                    <PublicationTypeList>
+                        <PublicationType UI="D016428">Journal Article</PublicationType>
+                    </PublicationTypeList>
+                </Article>
+                <MedlineJournalInfo>
+                    <Country>Argentina</Country>
+                    <MedlineTA>Arch Argent Pediatr</MedlineTA>
+                    <NlmUniqueID>0372460</NlmUniqueID>
+                    <ISSNLinking>0325-0075</ISSNLinking>
+                </MedlineJournalInfo>
+                <CitationSubset>IM</CitationSubset>
+                <MeshHeadingList>
+                    <MeshHeading>
+                        <DescriptorName UI="D002648" MajorTopicYN="N">Child</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName UI="D057286" MajorTopicYN="N">Electronic Health Records</DescriptorName>
+                        <QualifierName UI="Q000592" MajorTopicYN="Y">standards</QualifierName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName UI="D006801" MajorTopicYN="N">Humans</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName UI="D028701" MajorTopicYN="Y">Patient Rights</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName UI="D010372" MajorTopicYN="Y">Pediatrics</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName UI="D012941" MajorTopicYN="Y">Social Responsibility</DescriptorName>
+                    </MeshHeading>
+                </MeshHeadingList>
+            </MedlineCitation>
+            <PubmedData>
+                <History>
+                    <PubMedPubDate PubStatus="entrez">
+                        <Year>2013</Year>
+                        <Month>11</Month>
+                        <Day>8</Day>
+                        <Hour>6</Hour>
+                        <Minute>0</Minute>
+                    </PubMedPubDate>
+                    <PubMedPubDate PubStatus="pubmed">
+                        <Year>2013</Year>
+                        <Month>11</Month>
+                        <Day>8</Day>
+                        <Hour>6</Hour>
+                        <Minute>0</Minute>
+                    </PubMedPubDate>
+                    <PubMedPubDate PubStatus="medline">
+                        <Year>2014</Year>
+                        <Month>11</Month>
+                        <Day>2</Day>
+                        <Hour>6</Hour>
+                        <Minute>0</Minute>
+                    </PubMedPubDate>
+                </History>
+                <PublicationStatus>ppublish</PublicationStatus>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">24196758</ArticleId>
+                    <ArticleId IdType="pii">S0325-00752013000600003</ArticleId>
+                    <ArticleId IdType="doi">10.5546/aap.2013.468</ArticleId>
+                </ArticleIdList>
+            </PubmedData>
+        </PubmedArticle>
+
+        </PubmedArticleSet>
+    http_version:
+  recorded_at: Thu, 21 Mar 2019 20:38:51 GMT
+recorded_with: VCR 4.0.0

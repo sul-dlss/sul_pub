@@ -26,7 +26,7 @@ RSpec.describe AuthorIdentity, type: :model do
     end
     it 'sets default first_name' do
       subject.first_name = nil
-      expect { subject.save! }.not_to raise_error ActiveRecord::RecordInvalid
+      expect(subject.save).to be true
       expect(subject.first_name).to eq subject.author.first_name
     end
     it 'requires last_name' do
@@ -132,7 +132,7 @@ RSpec.describe AuthorIdentity, type: :model do
       expect(author.author_identities).to eq prev
       expect { author.mirror_author_identities([{ 'lastName' => nil }]) }.to raise_error(ActiveRecord::RecordInvalid)
       expect(author.author_identities).to eq prev
-      expect { author.mirror_author_identities([{ 'lastName' => author.preferred_last_name }]) }.not_to raise_error(ActiveRecord::RecordInvalid)
+      expect(author.mirror_author_identities([{ 'lastName' => author.preferred_last_name }])).to be false # no change, so no update
       expect(author.author_identities).to eq prev
     end
 

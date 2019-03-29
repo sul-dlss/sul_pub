@@ -2,6 +2,7 @@ class AuthorsController < ApplicationController
   before_action :check_authorization
   before_action :ensure_json_request
 
+  # request an immediate harvest of this user's profile
   # POST /authors/:cap_profile_id/harvest.json
   def harvest
     if AuthorHarvestJob.perform_later(author_params[:cap_profile_id], harvest_alternate_names: alt_names)
@@ -28,8 +29,4 @@ class AuthorsController < ApplicationController
       author_params[:altNames] == 'true'
     end
 
-    def ensure_json_request
-      return if request.format == :json
-      head :not_acceptable
-    end
 end
