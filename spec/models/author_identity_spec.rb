@@ -72,6 +72,24 @@ RSpec.describe AuthorIdentity, type: :model do
         'institution' => 'Stanford University'
       }
     end
+    let(:existing_alt_identity) do
+      {
+        'firstName'   => author.author_identities.first.first_name,
+        'middleName'  => author.author_identities.first.middle_name,
+        'lastName'    => author.author_identities.first.last_name,
+        'email'       => author.author_identities.first.email,
+        'institution' => author.author_identities.first.institution
+      }
+    end
+    let(:changed_middle_name) do
+      {
+        'firstName'   => author.author_identities.first.first_name,
+        'middleName'  => "#{author.author_identities.first.middle_name}-changed",
+        'lastName'    => author.author_identities.first.last_name,
+        'email'       => author.author_identities.first.email,
+        'institution' => author.author_identities.first.institution
+      }
+    end
     let(:new_identity1) do
       {
         'firstName'   => 'identity1',
@@ -79,17 +97,10 @@ RSpec.describe AuthorIdentity, type: :model do
         'institution' => 'Stanford University'
       }
     end
-    let(:new_identity2) do
-      {
-        'firstName'   => 'identity2',
-        'lastName'    => 'lastname2',
-        'institution' => 'Stanford University'
-      }
-    end
 
-    it 'will indicate author is harvestable when number of identities has changed' do
+    it 'will indicate author is harvestable if a new author identity is added' do
       expect(author.author_identities.length).to eq 1
-      author.mirror_author_identities([new_identity1, new_identity2])
+      expect(author.mirror_author_identities([existing_alt_identity, new_identity1])).to be true
       expect(author.author_identities.length).to eq 2
       expect(author.changed?).to be false
       expect(author.harvested).to be false
@@ -105,14 +116,42 @@ RSpec.describe AuthorIdentity, type: :model do
       expect(author.should_harvest?).to be true
     end
 
+    it 'will indicate author is harvestable if only an author identity middle name has changed' do
+      expect(author.author_identities.length).to eq 1
+      expect(author.mirror_author_identities([changed_middle_name])).to be true
+      expect(author.author_identities.length).to eq 1
+      expect(author.harvested).to be false
+      expect(author.changed?).to be false
+      expect(author.should_harvest?).to be true
+    end
+
+    it 'will not consider as harvestable when no identities are changed' do
+      expect(author.author_identities.length).to eq 1
+      expect(author.mirror_author_identities([existing_alt_identity])).to be false
+      expect(author.author_identities.length).to eq 1
+      expect(author.harvested).to be nil
+      expect(author.changed?).to be false
+      expect(author.should_harvest?).to be false # no changes
+    end
+
     it 'will not mirror identities in importSettings identical to primary author info, but will drop the one that is ' \
        'there and count this as a change' do
       expect(author.author_identities.length).to eq 1
-      author.mirror_author_identities([identity_same_as_primary]) # must pass in only a single alternate identity for .length == 0
+      author.mirror_author_identities([identity_same_as_primary])
       expect(author.author_identities.length).to eq 0
       expect(author.harvested).to be false
       expect(author.changed?).to be false
       expect(author.should_harvest?).to be true
+    end
+
+    it 'will not mirror identities in importSettings identical to primary author info, and consider no changes even ' \
+      'when this duped primary identity is dropped' do
+      expect(author.author_identities.length).to eq 1
+      expect(author.mirror_author_identities([existing_alt_identity, identity_same_as_primary])).to be false
+      expect(author.author_identities.length).to eq 1
+      expect(author.harvested).to be nil
+      expect(author.changed?).to be false
+      expect(author.should_harvest?).to be false
     end
 
     it 'will not mirror identical identities in importSettings, *even if* dates are present' do
@@ -128,13 +167,14 @@ RSpec.describe AuthorIdentity, type: :model do
 
     it 'will handle missing required fields (lastName) in importSettings' do
       # FactoryBot creates (at least) 1 Author Identity, so we check for transactionality
-      prev = author.author_identities
       expect { author.mirror_author_identities([{ 'lastName' => '' }]) }.to raise_error(ActiveRecord::RecordInvalid)
-      expect(author.author_identities).to eq prev
+      author.reload
+      expect(author.author_identities.length).to eq 1
+      expect(author.should_harvest?).to be false
       expect { author.mirror_author_identities([{ 'lastName' => nil }]) }.to raise_error(ActiveRecord::RecordInvalid)
-      expect(author.author_identities).to eq prev
-      expect(author.mirror_author_identities([{ 'lastName' => author.preferred_last_name }])).to be false # no change, so no update
-      expect(author.author_identities).to eq prev
+      author.reload
+      expect(author.author_identities.length).to eq 1
+      expect(author.should_harvest?).to be false
     end
 
     it 'will not change author_identities if data are missing' do
