@@ -51,7 +51,7 @@ class Author < ActiveRecord::Base
   def mirror_author_identities(import_settings)
     return unless import_settings.present?
     # Return if no changes in author identifies.
-    return if author_identities_set == import_author_identites_set(import_settings)
+    return if author_identities_set == import_author_identities_set(import_settings)
 
     transaction do
       author_identities.clear # drop all existing identities
@@ -102,7 +102,7 @@ class Author < ActiveRecord::Base
 
   # Returns author identity from import setting as set of normalized strings.
   # @param [Hash] import_setting from the CAP API
-  def import_author_identites_set(import_settings)
+  def import_author_identities_set(import_settings)
     import_settings.map do |import_setting|
       # ensure that we have a *new* identity worth saving
       next unless author_identity_different?(import_setting_to_attribs(import_setting))
