@@ -13,17 +13,17 @@ class Author < ActiveRecord::Base
   alias_attribute :middle_name, :preferred_middle_name
   alias_attribute :last_name, :preferred_last_name
 
-  attr_accessor :number_of_identities_changed, :harvested
+  attr_accessor :alt_identities_changed, :harvested
 
   # these methods allow us to consider any changes to the number of alternative identities
   #   as a change to the author, which is useful to ensure harvesting is triggered when an author identity is updated
   def make_harvestable
-    self.number_of_identities_changed = true
+    self.alt_identities_changed = true
     self.harvested = false
   end
 
   def should_harvest?
-    (number_of_identities_changed || changed?) && !harvested
+    (alt_identities_changed || changed?) && !harvested
   end
 
   # The default institution is set in Settings.HARVESTER.INSTITUTION.name
