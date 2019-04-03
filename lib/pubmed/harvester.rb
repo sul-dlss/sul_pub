@@ -4,19 +4,18 @@ module Pubmed
   # This class is responsible for processing Pubmed API response data
   # to integrate it into the application data models.
   class Harvester < ::Harvester::Base
-    # Harvest all publications for an author
+    # Harvest all publications for an author from Pubmed
     # @param [Author] author
     # @param [Hash] _options
     # @return [Array<String>] pmids that create Publications
     def process_author(author, options = {})
       raise(ArgumentError, 'author must be an Author') unless author.is_a? Author
       log_info(author, "processing author #{author.id}")
-
       pmids = process_pmids(author, Pubmed::QueryAuthor.new(author, options).pmids)
       log_info(author, "processed author #{author.id}: #{pmids.count} new publications")
       pmids
     rescue StandardError => err
-      NotificationManager.error(err, "#{self.class} - harvest failed for author #{author.id}", self)
+      NotificationManager.error(err, "#{self.class} - Pubmed harvest failed for author #{author.id}", self)
     end
 
     private

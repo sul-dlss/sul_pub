@@ -9,12 +9,12 @@ set :output, 'log/cron.log'
 
 # bi-weekly harvest at 5pm in qa, on the 8th and 23rd of the month
 every "0 17 7,23 * *", roles: [:harvester_qa] do
-  rake 'wos:harvest_authors_update'
+  rake 'harvester:all_authors_update'
 end
 
 # every three day harvest at 5pm in prod, don't overlap with qa
 every "0 17 1,5,9,13,17,21,25,29 * *", roles: [:harvester_prod] do
-  rake 'wos:harvest_authors_update'
+  rake 'harvester:all_authors_update'
 end
 
 # poll cap for new authorship information nightly at 4am-ish in both prod and qa

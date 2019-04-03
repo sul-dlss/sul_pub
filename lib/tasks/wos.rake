@@ -12,7 +12,7 @@ namespace :wos do
     puts "#{new_uids.count} newly associated Contributions"
   end
 
-  desc 'Harvest from Web of Science, for all authors'
+  desc 'Harvest from Web of Science, for all authors, for all time'
   task harvest_authors: :environment do
     WebOfScience.harvester.harvest_all
   end
