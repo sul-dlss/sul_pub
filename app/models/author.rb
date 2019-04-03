@@ -26,6 +26,12 @@ class Author < ActiveRecord::Base
     (alt_identities_changed || changed?) && !harvested
   end
 
+  # if we reload the author, reset the alt_identities_changed setting, so it can be recomputed if needed
+  def reload
+    super
+    self.alt_identities_changed = false
+  end
+
   # The default institution is set in Settings.HARVESTER.INSTITUTION.name
   # @return [String] institution
   def institution
@@ -51,8 +57,7 @@ class Author < ActiveRecord::Base
   def mirror_author_identities(import_settings)
     return unless import_settings.present?
     # Return if no changes in author identifies.
-    return if author_identities_set == import_author_identites_set(import_settings)
-
+    return false if author_identities_set == import_author_identities_set(import_settings)
     transaction do
       author_identities.clear # drop all existing identities
       import_settings.each do |i|
@@ -64,6 +69,7 @@ class Author < ActiveRecord::Base
       end
     end
     make_harvestable
+    true
   end
 
   # Transforms an import setting to attributes.
@@ -102,13 +108,13 @@ class Author < ActiveRecord::Base
 
   # Returns author identity from import setting as set of normalized strings.
   # @param [Hash] import_setting from the CAP API
-  def import_author_identites_set(import_settings)
+  def import_author_identities_set(import_settings)
     import_settings.map do |import_setting|
       # ensure that we have a *new* identity worth saving
       next unless author_identity_different?(import_setting_to_attribs(import_setting))
-      normalize_author_identity(import_setting['firstName'], import_setting.fetch('middle_name', 'None'),
+      normalize_author_identity(import_setting['firstName'], import_setting.fetch('middleName', 'None'),
                                 import_setting['lastName'], import_setting.fetch('institution', 'None'))
-    end.to_s
+    end.compact.to_s # we need to compact to reject the nils we get from skipping identities that are identical to the primary
   end
 
   # @param [Hash<String => [String, Hash]>] auth_hash
