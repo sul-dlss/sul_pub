@@ -122,7 +122,7 @@ namespace :pubmed do
   #   puts "errors: #{failed}"
   # end
 
-  desc 'Harvest from Pubmed, for all authors'
+  desc 'Harvest from Pubmed, for all authors, for all time'
   task harvest_authors: :environment do
     Pubmed.harvester.harvest_all
   end

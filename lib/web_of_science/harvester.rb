@@ -4,7 +4,7 @@ module WebOfScience
   # This class is responsible for processing WebOfScience API response data
   # to integrate it into the application data models.
   class Harvester < ::Harvester::Base
-    # Harvest all publications for an author
+    # Harvest all publications for an author from Web of Science
     # @param [Author] author
     # @param [Hash] options
     # @return [Array<String>] WosUIDs that create Publications
@@ -15,7 +15,7 @@ module WebOfScience
       log_info(author, "processed author #{author.id}: #{uids.count} new publications")
       uids
     rescue StandardError => err
-      NotificationManager.error(err, "#{self.class} - harvest failed for author #{author.id}", self)
+      NotificationManager.error(err, "#{self.class} - WoS harvest failed for author #{author.id}", self)
     end
 
     # Harvest WOS-UID publications for an author

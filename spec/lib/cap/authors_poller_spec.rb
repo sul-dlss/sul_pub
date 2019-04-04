@@ -225,53 +225,42 @@ describe Cap::AuthorsPoller, :vcr do
     end
   end
 
-  describe '.do_wos_harvest' do
+  describe '.do_harvest' do
     let(:other_author) { create :author }
+
+    let(:new_author_options) do
+      {
+        symbolicTimeSpan: Settings.WOS.new_author_timeframe,
+        relDate: Settings.PUBMED.new_author_timeframe
+      }
+    end
+
+    let(:update_author_options) do
+      {
+        symbolicTimeSpan: Settings.WOS.update_timeframe,
+        relDate: Settings.PUBMED.update_timeframe
+      }
+    end
 
     before do
       subject.instance_variable_set('@new_authors_to_harvest_queue', [author.id])
       subject.instance_variable_set('@changed_authors_to_harvest_queue', [other_author.id])
     end
 
-    it 'does nothing if WoS client is disabled' do
+    it 'does not harvest from WoS if WoS client is disabled, but still harvests from Pubmed' do
       allow(Settings.WOS).to receive(:enabled).and_return(false)
-      expect(Author).not_to receive(:where)
-      expect(WebOfScience).not_to receive(:harvester)
-      subject.do_wos_harvest
+      expect(WebOfScience.harvester).not_to receive(:process_author)
+      expect(Pubmed.harvester).to receive(:process_author).twice
+      subject.do_harvest
     end
 
     it 'adds separate timeframes for harvests for new and updated authors' do
       allow(Settings.WOS).to receive(:enabled).and_return(true)
-      expect(WebOfScience.harvester).to receive(:harvest).with(Enumerable, symbolicTimeSpan: Settings.WOS.new_author_timeframe) do |authors, _|
-        expect(authors.size).to eq 1
-        expect(authors.first.id).to eq author.id
-      end
-      expect(WebOfScience.harvester).to receive(:harvest).with(Enumerable, symbolicTimeSpan: Settings.WOS.update_timeframe) do |authors, _|
-        expect(authors.size).to eq 1
-        expect(authors.first.id).to eq other_author.id
-      end
-      subject.do_wos_harvest
-    end
-  end
-
-  describe '.do_pubmed_harvest' do
-    let(:other_author) { create :author }
-
-    before do
-      subject.instance_variable_set('@new_authors_to_harvest_queue', [author.id])
-      subject.instance_variable_set('@changed_authors_to_harvest_queue', [other_author.id])
-    end
-
-    it 'adds separate timeframes for harvests for new and updated authors' do
-      expect(Pubmed.harvester).to receive(:harvest).with(Enumerable, reldate: Settings.PUBMED.new_author_timeframe) do |authors, _|
-        expect(authors.size).to eq 1
-        expect(authors.first.id).to eq author.id
-      end
-      expect(Pubmed.harvester).to receive(:harvest).with(Enumerable, reldate: Settings.PUBMED.update_timeframe) do |authors, _|
-        expect(authors.size).to eq 1
-        expect(authors.first.id).to eq other_author.id
-      end
-      subject.do_pubmed_harvest
+      expect(WebOfScience.harvester).to receive(:process_author).with(author, new_author_options)
+      expect(WebOfScience.harvester).to receive(:process_author).with(other_author, update_author_options)
+      expect(Pubmed.harvester).to receive(:process_author).with(author, new_author_options)
+      expect(Pubmed.harvester).to receive(:process_author).with(other_author, update_author_options)
+      subject.do_harvest
     end
   end
 end

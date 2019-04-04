@@ -7,11 +7,6 @@ describe AuthorHarvestJob, type: :job do
 
   let(:author) { create :russ_altman }
 
-  before do
-    allow(Settings.SCIENCEWIRE).to receive(:enabled).and_return(false) # default
-    allow(Settings.WOS).to receive(:enabled).and_return(false) # default
-  end
-
   after do
     clear_enqueued_jobs
     clear_performed_jobs
@@ -29,17 +24,19 @@ describe AuthorHarvestJob, type: :job do
   end
 
   context 'WebOfScience is disabled' do
-    it 'executes perform without calling sciencewire' do
-      expect(WebOfScience).not_to receive(:harvester)
+    it 'executes perform without calling WoS but still calls Pubmed' do
+      allow(Settings.WOS).to receive(:enabled).and_return(false)
+      expect(WebOfScience.harvester).not_to receive(:process_author).with(author, {})
+      expect(Pubmed.harvester).to receive(:process_author).with(author, {})
       perform_enqueued_jobs { job }
     end
   end
 
   context 'WebOfScience is enabled' do
-    it 'executes perform using sciencewire' do
+    it 'executes perform calling WoS and Pubmed' do
       allow(Settings.WOS).to receive(:enabled).and_return(true)
-      harvester = WebOfScience.harvester
-      allow(harvester).to receive(:process_author).with(author)
+      expect(WebOfScience.harvester).to receive(:process_author).with(author, {})
+      expect(Pubmed.harvester).to receive(:process_author).with(author, {})
       perform_enqueued_jobs { job }
     end
   end
