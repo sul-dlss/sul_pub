@@ -18,14 +18,7 @@ describe AuthorsController do
         expect do
           post :harvest, params: { cap_profile_id: author.cap_profile_id, format: :json }
           expect(response.status).to eq 202
-        end.to have_enqueued_job(AuthorHarvestJob).with(author.cap_profile_id.to_s, harvest_alternate_names: false)
-      end
-      it 'enqueues an AuthorHarvestJob with an Author and altNames parameter' do
-        ActiveJob::Base.queue_adapter = :test
-        expect do
-          post :harvest, params: { cap_profile_id: author.cap_profile_id, format: :json, altNames: 'true' }
-          expect(response.status).to eq 202
-        end.to have_enqueued_job(AuthorHarvestJob).with(author.cap_profile_id.to_s, harvest_alternate_names: true)
+        end.to have_enqueued_job(AuthorHarvestJob).with(author.cap_profile_id.to_s)
       end
     end
   end

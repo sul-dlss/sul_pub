@@ -5,13 +5,14 @@ class AuthorHarvestJob < ActiveJob::Base
   # @param [String] cap_profile_id
   # @param [Boolean] harvest_alternate_names
   # @return [void]
-  def perform(cap_profile_id, harvest_alternate_names: false)
+  def perform(cap_profile_id)
     author = Author.find_by(cap_profile_id: cap_profile_id)
     author ||= Author.fetch_from_cap_and_create(cap_profile_id)
     raise "Could not find or fetch author: #{cap_profile_id}" unless author.is_a?(Author)
-    web_of_science(author, harvest_alternate_names)
+    AllSources::Harvester.new.process_author(author)
+    log_pubs(author)
   rescue => e
-    msg = "AuthorHarvestJob.perform(#{cap_profile_id}, harvest_alternate_names: #{harvest_alternate_names})"
+    msg = "AuthorHarvestJob.perform(#{cap_profile_id})"
     NotificationManager.log_exception(logger, msg, e)
     Honeybadger.notify(e, context: { message: msg })
     raise
@@ -28,13 +29,4 @@ class AuthorHarvestJob < ActiveJob::Base
       logger.info "Number of publications #{pubs.count}"
     end
 
-    # @param [Author] author
-    # @param [Boolean] _harvest_alternate_names
-    # @return [void]
-    def web_of_science(author, _harvest_alternate_names)
-      return unless Settings.WOS.enabled
-      # TODO: enable alternate names
-      WebOfScience.harvester.process_author(author)
-      log_pubs(author)
-    end
 end

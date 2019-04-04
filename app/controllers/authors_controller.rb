@@ -5,7 +5,7 @@ class AuthorsController < ApplicationController
   # request an immediate harvest of this user's profile
   # POST /authors/:cap_profile_id/harvest.json
   def harvest
-    if AuthorHarvestJob.perform_later(author_params[:cap_profile_id], harvest_alternate_names: alt_names)
+    if AuthorHarvestJob.perform_later(author_params[:cap_profile_id])
       render json: {
         response: "Harvest for author #{params[:cap_profile_id]} was successfully created."
       }, status: :accepted
@@ -20,12 +20,7 @@ class AuthorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def author_params
-      params.permit(:cap_profile_id, :altNames, :format)
+      params.permit(:cap_profile_id, :format)
     end
 
-    ##
-    # @return [Boolean]
-    def alt_names
-      author_params[:altNames] == 'true'
-    end
 end
