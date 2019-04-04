@@ -4,7 +4,7 @@ class Author < ActiveRecord::Base
   has_paper_trail on: [:destroy]
   validates :cap_profile_id, uniqueness: true, presence: true
 
-  has_many :author_identities, dependent: :destroy, autosave: true, after_add: :make_dirty
+  has_many :author_identities, dependent: :destroy, autosave: true, after_add: :make_dirty, after_remove: :make_dirty
   has_many :contributions, dependent: :destroy
   has_many :publications, through: :contributions
 
@@ -13,23 +13,10 @@ class Author < ActiveRecord::Base
   alias_attribute :middle_name, :preferred_middle_name
   alias_attribute :last_name, :preferred_last_name
 
-  attr_accessor :alt_identities_changed, :harvested, :dirty
-
-  # these methods allow us to consider any changes to the number of alternative identities
-  #   as a change to the author, which is useful to ensure harvesting is triggered when an author identity is updated
-  def make_harvestable
-    self.alt_identities_changed = true
-    self.harvested = false
-  end
+  attr_accessor :harvested, :dirty
 
   def should_harvest?
-    (alt_identities_changed || changed?) && !harvested
-  end
-
-  # if we reload the author, reset the alt_identities_changed setting, so it can be recomputed if needed
-  def reload
-    super
-    self.alt_identities_changed = false
+    changed? && !harvested
   end
 
   # these methods, along with the after_add callback on the author_identities assocation,
@@ -80,7 +67,8 @@ class Author < ActiveRecord::Base
         new_record? ? author_identities.build(attribs) : author_identities.create!(attribs)
       end
     end
-    make_harvestable
+    make_dirty(self)
+    self.harvested = false
     true
   end
 

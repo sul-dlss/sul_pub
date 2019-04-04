@@ -112,7 +112,7 @@ RSpec.describe AuthorIdentity, type: :model do
       author.mirror_author_identities([new_identity1])
       expect(author.author_identities.length).to eq 1
       expect(author.harvested).to be false
-      expect(author.changed?).to be false
+      expect(author.changed?).to be true
       expect(author.should_harvest?).to be true
     end
 
@@ -121,7 +121,7 @@ RSpec.describe AuthorIdentity, type: :model do
       expect(author.mirror_author_identities([changed_middle_name])).to be true
       expect(author.author_identities.length).to eq 1
       expect(author.harvested).to be false
-      expect(author.changed?).to be false
+      expect(author.changed?).to be true
       expect(author.should_harvest?).to be true
     end
 
@@ -140,7 +140,7 @@ RSpec.describe AuthorIdentity, type: :model do
       author.mirror_author_identities([identity_same_as_primary])
       expect(author.author_identities.length).to eq 0
       expect(author.harvested).to be false
-      expect(author.changed?).to be false
+      expect(author.changed?).to be true
       expect(author.should_harvest?).to be true
     end
 
