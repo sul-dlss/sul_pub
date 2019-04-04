@@ -1,4 +1,4 @@
-describe PubmedHarvester, :vcr do
+describe Pubmed::Fetcher, :vcr do
   let(:author) { create :author }
   let(:pub_hash) do
     {
@@ -13,7 +13,7 @@ describe PubmedHarvester, :vcr do
     }
   end
 
-  before(:each) do
+  before do
     allow(Settings.WOS).to receive(:enabled).and_return(false) # but not WOS
   end
 
@@ -21,14 +21,14 @@ describe PubmedHarvester, :vcr do
     let!(:publication) { create(:publication, pmid: 10_048_354, pub_hash: pub_hash) }
 
     it 'searches for a local Publication by pmid and returns a pubhash' do
-      expect(PubmedClient).not_to receive(:new)
-      h = PubmedHarvester.search_all_sources_by_pmid(10_048_354)
+      expect(Pubmed::Client).not_to receive(:new)
+      h = Pubmed::Fetcher.search_all_sources_by_pmid(10_048_354)
       expect(h.size).to eq 1
       expect(h.first[:issn]).to eq '32242424'
     end
 
     it 'searches by pmid when not found locally and returns a pubhash' do
-      h = PubmedHarvester.search_all_sources_by_pmid(10_487_815)
+      h = Pubmed::Fetcher.search_all_sources_by_pmid(10_487_815)
       expect(h.size).to eq 1
       expect(h.first[:chicago_citation]).to match(/Convergence and Correlations/)
       expect(h.first).to include(pmid: '10487815')
@@ -36,26 +36,26 @@ describe PubmedHarvester, :vcr do
 
     it 'searches Pubmed by pmid if not found, returning a pubhash' do
       skip 'find an example pubmid not yet in sw'
-      h = PubmedHarvester.search_all_sources_by_pmid(24_930_130).first
+      h = Pubmed::Fetcher.search_all_sources_by_pmid(24_930_130).first
       expect(h[:provenance]).to eq('pubmed')
       expect(h[:identifier]).to include(type: 'doi', id: '10.1038/nmeth.2999', url: 'https://doi.org/10.1038/nmeth.2999')
       expect(h[:chicago_citation]).to match(/Chemically Defined Generation/)
     end
 
     context 'local hits of varied provenance' do
-      before { allow(PubmedHarvester).to receive(:fetch_remote_pubmed).and_return([]) }
+      before { allow(Pubmed::Fetcher).to receive(:fetch_remote_pubmed).and_return([]) }
 
       it 'filters out batch/manual pubs from the resultset if previous SW/pubmed records were found' do
         Publication.create!(
           pub_hash: pub_hash.merge(provenance: 'batch'),
           pmid: 10_487_815
         )
-        h = PubmedHarvester.search_all_sources_by_pmid(10_487_815)
+        h = Pubmed::Fetcher.search_all_sources_by_pmid(10_487_815)
         expect(h.size).to eq 1
       end
 
       it 'returns an empty array when no pubs found anywhere' do
-        h = PubmedHarvester.search_all_sources_by_pmid('crap')
+        h = Pubmed::Fetcher.search_all_sources_by_pmid('crap')
         expect(h.size).to eq 0
       end
 
@@ -71,7 +71,7 @@ describe PubmedHarvester, :vcr do
         end
 
         it 'returns first of local matches' do
-          h = PubmedHarvester.search_all_sources_by_pmid(99_999_999)
+          h = Pubmed::Fetcher.search_all_sources_by_pmid(99_999_999)
           expect(h.size).to eq 1
         end
       end
@@ -82,7 +82,7 @@ describe PubmedHarvester, :vcr do
   describe '.fetch_remote_pubmed' do
     subject(:hits) { described_class.send(:fetch_remote_pubmed, 24_930_130) } # backed by VCR cassettes for each provider
 
-    before(:each) do
+    before do
       allow(Settings.WOS).to receive(:enabled).and_return(false) # default
     end
 
@@ -99,7 +99,7 @@ describe PubmedHarvester, :vcr do
       before { allow(Settings.WOS).to receive(:enabled).and_return(true) }
 
       it 'searches only WOS' do
-        expect(PubmedClient).not_to receive(:new)
+        expect(Pubmed.client).not_to receive(:new)
         expect(hits.size).to eq(1)
         expect(hits.first[:title]).to eq('Chemically defined generation of human cardiomyocytes.')
         expect(hits.first[:chicago_citation]).to match(/Chemically Defined Generation/)
@@ -109,8 +109,8 @@ describe PubmedHarvester, :vcr do
         expect(WebOfScience.queries).to receive(:retrieve_by_pmid)
           .with([24_930_130])
           .and_return(instance_double(WebOfScience::Retriever, next_batch: WebOfScience::Records.new(records: '<xml/>')))
-        expect(PubmedClient).to receive(:new)
-          .and_return(instance_double(PubmedClient, fetch_records_for_pmid_list: []))
+        expect(Pubmed.client).to receive(:fetch_records_for_pmid_list)
+          .and_return([])
         expect(hits).to eq([])
       end
     end

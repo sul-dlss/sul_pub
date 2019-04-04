@@ -145,7 +145,7 @@ class PublicationsController < ApplicationController
     elsif params[:pmid]
       msg << "pmid #{params[:pmid]}"
       logger.info(msg)
-      all_matching_records += PubmedHarvester.search_all_sources_by_pmid(params[:pmid].strip)
+      all_matching_records += Pubmed::Fetcher.search_all_sources_by_pmid(params[:pmid].strip)
     elsif params[:title].presence
       title = params[:title].delete('"')
       msg << "title '#{title}'"

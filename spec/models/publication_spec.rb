@@ -286,7 +286,7 @@ describe Publication do
       pubmed_record = PubmedSourceRecord.create(pmid: pmid, source_data: source_data)
       allow(PubmedSourceRecord).to receive(:find_by_pmid).with(pmid).and_return(pubmed_record)
       expect(pubmed_record.source_data).to be_equivalent_to source_data
-      allow_any_instance_of(PubmedClient).to receive(:fetch_records_for_pmid_list).with(pmid).and_return(new_source_data)
+      allow_any_instance_of(Pubmed::Client).to receive(:fetch_records_for_pmid_list).with(pmid).and_return(new_source_data)
       expect(publication.pub_hash[:title]).to eq 'How I learned Rails'
       expect(publication.pub_hash[:identifier]).to eq(
         [

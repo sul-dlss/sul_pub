@@ -13,7 +13,7 @@ class NotificationManager
       case callee
       when SciencewireSourceRecord
         log_exception(sciencewire_logger, log_message, e)
-      when PubmedHarvester, PubmedClient, PubmedSourceRecord
+      when Pubmed::Fetcher, Pubmed::Client, PubmedSourceRecord
         log_exception(pubmed_logger, log_message, e)
       when Cap::AuthorsPoller, Cap::Client
         log_exception(cap_logger, log_message, e)

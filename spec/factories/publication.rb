@@ -42,4 +42,14 @@ FactoryBot.define do
   factory :pub_with_sw_id_and_pmid, parent: :pub_with_sw_id do
     pmid { 10_048_354 }
   end
+
+  factory :pub_with_pmid_and_pub_identifier, parent: :publication do
+    pmid { 10_048_354 }
+    after(:create) do |publication, _evaluator|
+      create(:publication_identifier,
+             publication: publication,
+             identifier_type: 'PMID',
+             identifier_value: '10048354')
+    end
+  end
 end

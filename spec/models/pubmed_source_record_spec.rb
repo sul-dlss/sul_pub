@@ -135,7 +135,7 @@ describe PubmedSourceRecord, :vcr do
       pubmed_record = described_class.create(pmid: pmid_created_1999, source_data: source_data)
       allow(described_class).to receive(:find_by_pmid).with(pmid_created_1999).and_return(pubmed_record)
       expect(pubmed_record.source_data).to be_equivalent_to source_data
-      allow_any_instance_of(PubmedClient).to receive(:fetch_records_for_pmid_list).with(pmid_created_1999).and_return(new_source_data)
+      allow_any_instance_of(Pubmed::Client).to receive(:fetch_records_for_pmid_list).with(pmid_created_1999).and_return(new_source_data)
       expect(pubmed_record.pubmed_update).to be true
       expect(pubmed_record.source_data).to be_equivalent_to new_source_data
     end
@@ -145,7 +145,7 @@ describe PubmedSourceRecord, :vcr do
       pubmed_record = described_class.create(pmid: pmid_created_1999, source_data: source_data)
       allow(described_class).to receive(:find_by_pmid).with(pmid_created_1999).and_return(pubmed_record)
       expect(pubmed_record.source_data).to be_equivalent_to source_data
-      allow_any_instance_of(PubmedClient).to receive(:fetch_records_for_pmid_list).with(pmid_created_1999).and_return(new_source_data)
+      allow_any_instance_of(Pubmed::Client).to receive(:fetch_records_for_pmid_list).with(pmid_created_1999).and_return(new_source_data)
       expect(pubmed_record.pubmed_update).to be false
       expect(pubmed_record.source_data).to be_equivalent_to source_data
     end

@@ -45,7 +45,7 @@ end
 # delegate to the clients to see if they are working
 clients = [
   Cap::Client,
-  PubmedClient
+  Pubmed
 ]
 if Settings.WOS.enabled
   clients << WebOfScience

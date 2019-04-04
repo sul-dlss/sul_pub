@@ -33,7 +33,7 @@ class UpdateMeshHeadings
   end
 
   def process(pmid)
-    pm_xml = PubmedClient.new.fetch_records_for_pmid_list pmid
+    pm_xml = Pubmed::Client.new.fetch_records_for_pmid_list pmid
     doc = Nokogiri::XML(pm_xml)
     articles = doc.xpath('//PubmedArticle')
     if articles.size != 1

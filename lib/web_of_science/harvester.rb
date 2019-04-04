@@ -4,23 +4,6 @@ module WebOfScience
   # This class is responsible for processing WebOfScience API response data
   # to integrate it into the application data models.
   class Harvester < ::Harvester::Base
-    # @param [Enumerable<Author>] authors
-    # @param [Hash] options
-    # @return [void]
-    def harvest(authors, options = {})
-      count = authors.count
-      logger.info("#{self.class} - started harvest - #{count} authors - #{options}")
-      author_success = 0
-      authors.each do |author|
-        process_author(author, options)
-        author.harvested = true
-        author_success += 1
-      end
-      logger.info("#{self.class} - completed harvest - #{author_success} of #{count} processed")
-    rescue StandardError => err
-      NotificationManager.error(err, "harvest(authors) failed - #{author_success} of #{count} processed", self)
-    end
-
     # Harvest all publications for an author
     # @param [Author] author
     # @param [Hash] options

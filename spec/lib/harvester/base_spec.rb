@@ -16,7 +16,14 @@ describe Harvester::Base do
 
   describe '#harvest' do
     it 'throws exception from base class' do
-      expect { instance.harvest([]) }.to raise_error(RuntimeError)
+      expect(instance).to receive(:process_author).exactly(5).times
+      instance.harvest(authors)
+    end
+  end
+
+  describe '#process_author' do
+    it 'throws exception from base class' do
+      expect { instance.process_author(authors[0]) }.to raise_error(RuntimeError)
     end
   end
 end

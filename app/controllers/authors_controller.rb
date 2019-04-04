@@ -28,5 +28,4 @@ class AuthorsController < ApplicationController
     def alt_names
       author_params[:altNames] == 'true'
     end
-
 end

@@ -121,4 +121,25 @@ namespace :pubmed do
   #   puts "success: #{success}"
   #   puts "errors: #{failed}"
   # end
+
+  desc 'Harvest from Pubmed, for all authors'
+  task harvest_authors: :environment do
+    Pubmed.harvester.harvest_all
+  end
+
+  # See https://www.ncbi.nlm.nih.gov/books/NBK25499/#chapter4.ESearch for explanation of dates
+  desc 'Update harvest from Pubmed, for all authors'
+  task :harvest_authors_update, [:reldate] => :environment do |_t, args|
+    options = args.with_defaults(reldate: Settings.PUBMED.regular_harvest_timeframe)
+    Pubmed.harvester.harvest_all(options)
+  end
+
+  desc 'Harvest from Pubmed, for one author'
+  task :harvest_author, [:cap_profile_id, :reldate] => :environment do |_t, args|
+    author = Author.find_by(cap_profile_id: args[:cap_profile_id])
+    raise "Could not find Author by cap_profile_id: #{args[:cap_profile_id]}." if author.nil?
+    options = {}
+    options[:reldate] = args[:reldate] if args[:reldate].present?
+    Pubmed.harvester.process_author(author, options)
+  end
 end

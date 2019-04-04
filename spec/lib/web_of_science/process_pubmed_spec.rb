@@ -117,7 +117,7 @@ describe WebOfScience::ProcessPubmed, :vcr do
 
       it 'cannot retrieve a PMID record, try to delete stuff' do
         expect(PubmedSourceRecord).to receive(:for_pmid).and_return(nil)
-        expect(PubmedClient).to receive(:working?).and_return(false)
+        expect(Pubmed).to receive(:working?).and_return(false)
         processor.pubmed_addition(wos_pub)
       end
 
@@ -148,22 +148,22 @@ describe WebOfScience::ProcessPubmed, :vcr do
       end
 
       it 'do not remove PublicationIdentifier when Pubmed API is down' do
-        expect(PubmedClient).to receive(:working?).and_return(false)
+        expect(Pubmed).to receive(:working?).and_return(false)
         expect { processor.pubmed_cleanup(wos_pub) }.not_to change { wos_pub.reload.publication_identifiers.count }
       end
 
       it 'do not remove Publication.pmid when Pubmed API is down' do
-        expect(PubmedClient).to receive(:working?).and_return(false)
+        expect(Pubmed).to receive(:working?).and_return(false)
         expect { processor.pubmed_cleanup(wos_pub) }.not_to change { wos_pub.reload.pmid }
       end
 
       it 'remove PublicationIdentifier when Pubmed API is down' do
-        expect(PubmedClient).to receive(:working?).and_return(true)
+        expect(Pubmed).to receive(:working?).and_return(true)
         expect { processor.pubmed_cleanup(wos_pub) }.to change { wos_pub.reload.publication_identifiers.count }.by(-1)
       end
 
       it 'remove Publication.pmid when Pubmed API is down' do
-        expect(PubmedClient).to receive(:working?).and_return(true)
+        expect(Pubmed).to receive(:working?).and_return(true)
         expect { processor.pubmed_cleanup(wos_pub) }.to change { wos_pub.reload.pmid }
       end
     end
