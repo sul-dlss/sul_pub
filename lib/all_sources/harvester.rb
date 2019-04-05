@@ -12,5 +12,8 @@ module AllSources
     rescue StandardError => err
       NotificationManager.error(err, "#{self.class} - harvest all sources failed for author #{author.id}", self)
     end
+
+    delegate :logger, to: :AllSources
+
   end
 end

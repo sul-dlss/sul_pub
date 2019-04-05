@@ -9,7 +9,7 @@ class AuthorHarvestJob < ActiveJob::Base
     author = Author.find_by(cap_profile_id: cap_profile_id)
     author ||= Author.fetch_from_cap_and_create(cap_profile_id)
     raise "Could not find or fetch author: #{cap_profile_id}" unless author.is_a?(Author)
-    AllSources::Harvester.new.process_author(author)
+    AllSources.harvester.process_author(author)
     log_pubs(author)
   rescue => e
     msg = "AuthorHarvestJob.perform(#{cap_profile_id})"
