@@ -2,51 +2,57 @@
 http_interactions:
 - request:
     method: post
-    uri: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?api_key=a_fake_pubmed_key&db=pubmed&retmode=xml
+    uri: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?api_key=Settings.PUBMED.API_KEY&db=pubmed&retmode=xml
     body:
       encoding: UTF-8
       string: "&id=&id=26858277"
     headers:
       User-Agent:
-      - Faraday v0.13.1
+      - stanford-library-sul-pub
       Accept:
       - "*/*"
       Accept-Encoding:
       - gzip,deflate
       Date:
-      - Mon, 13 Nov 2017 20:57:51 GMT
+      - Fri, 05 Apr 2019 18:08:32 GMT
       Content-Type:
       - application/x-www-form-urlencoded
+      Cookie:
+      - ncbi_sid=F7C3135D969607BB_0CA6SID
   response:
     status:
       code: 200
       message: OK
     headers:
       Date:
-      - Mon, 13 Nov 2017 20:58:45 GMT
+      - Fri, 05 Apr 2019 18:08:32 GMT
       Server:
-      - Apache
+      - Finatra
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains; preload
       Content-Security-Policy:
       - upgrade-insecure-requests
-      Access-Control-Allow-Origin:
-      - "*"
+      X-Ratelimit-Remaining:
+      - '8'
+      Ncbi-Phid:
+      - 322C43FE71CC15450000131D300AA6D6.1.1.m_3
       Cache-Control:
       - private
-      Ncbi-Phid:
-      - 990D7B18A09FD0310000000003C303B4
+      L5d-Success-Class:
+      - '1.0'
       Ncbi-Sid:
-      - 990D7B18A0A07851_0963SID
+      - F7C3135D969607BB_0CA6SID
+      Content-Encoding:
+      - gzip
+      X-Ratelimit-Limit:
+      - '10'
+      Access-Control-Allow-Origin:
+      - "*"
       Content-Type:
       - text/xml; charset=UTF-8
       Set-Cookie:
-      - ncbi_sid=990D7B18A0A07851_0963SID; domain=.nih.gov; path=/; expires=Tue, 13
-        Nov 2018 20:58:45 GMT
-      Vary:
-      - Accept-Encoding
-      Content-Encoding:
-      - gzip
+      - ncbi_sid=F7C3135D969607BB_0CA6SID; domain=.nih.gov; path=/; expires=Sun, 05
+        Apr 2020 18:08:33 GMT
       X-Ua-Compatible:
       - IE=Edge
       X-Xss-Protection:
@@ -57,25 +63,20 @@ http_interactions:
       encoding: UTF-8
       string: |-
         <?xml version="1.0" ?>
-        <!DOCTYPE PubmedArticleSet PUBLIC "-//NLM//DTD PubMedArticle, 1st January 2017//EN" "https://dtd.nlm.nih.gov/ncbi/pubmed/out/pubmed_170101.dtd">
+        <!DOCTYPE PubmedArticleSet PUBLIC "-//NLM//DTD PubMedArticle, 1st January 2019//EN" "https://dtd.nlm.nih.gov/ncbi/pubmed/out/pubmed_190101.dtd">
         <PubmedArticleSet>
         <PubmedArticle>
             <MedlineCitation Status="MEDLINE" Owner="NLM">
                 <PMID Version="1">26858277</PMID>
-                <DateCreated>
-                    <Year>2016</Year>
-                    <Month>02</Month>
-                    <Day>09</Day>
-                </DateCreated>
                 <DateCompleted>
                     <Year>2016</Year>
                     <Month>06</Month>
                     <Day>15</Day>
                 </DateCompleted>
                 <DateRevised>
-                    <Year>2017</Year>
+                    <Year>2018</Year>
                     <Month>11</Month>
-                    <Day>01</Day>
+                    <Day>13</Day>
                 </DateRevised>
                 <Article PubModel="Electronic">
                     <Journal>
@@ -146,287 +147,11 @@ http_interactions:
                     <Country>England</Country>
                     <MedlineTA>BMJ</MedlineTA>
                     <NlmUniqueID>8900488</NlmUniqueID>
-                    <ISSNLinking>0959-535X</ISSNLinking>
+                    <ISSNLinking>0959-8138</ISSNLinking>
                 </MedlineJournalInfo>
                 <CitationSubset>AIM</CitationSubset>
                 <CitationSubset>IM</CitationSubset>
                 <CommentsCorrectionsList>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>J Thorac Cardiovasc Surg. 2009 Mar;137(3):650-6; discussion 656-7</RefSource>
-                        <PMID Version="1">19258083</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>Eur Heart J. 2009 Apr;30(8):1005-11</RefSource>
-                        <PMID Version="1">19270315</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>Am Heart J. 2009 May;157(5):899-907</RefSource>
-                        <PMID Version="1">19376319</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>Ann Surg. 2009 Jun;249(6):921-6</RefSource>
-                        <PMID Version="1">19474688</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>JAMA. 2009 Sep 2;302(9):947-54</RefSource>
-                        <PMID Version="1">19724041</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>N Engl J Med. 2009 Sep 3;361(10):980-9</RefSource>
-                        <PMID Version="1">19726772</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>Eur Heart J. 2009 Sep;30(18):2186-92</RefSource>
-                        <PMID Version="1">19717851</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>J Thorac Cardiovasc Surg. 2009 Dec;138(6):1377-84</RefSource>
-                        <PMID Version="1">19931667</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>Circulation. 2010 Jun 22;121(24):2645-53</RefSource>
-                        <PMID Version="1">20530001</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>Value Health. 2009 Nov-Dec;12(8):1062-73</RefSource>
-                        <PMID Version="1">19793071</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>Circ J. 2010 Nov;74(11):2314-21</RefSource>
-                        <PMID Version="1">20938098</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>J Am Coll Cardiol. 2010 Nov 9;56(20):1639-43</RefSource>
-                        <PMID Version="1">21050973</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>Am Heart J. 2010 Dec;160(6):1178-84</RefSource>
-                        <PMID Version="1">21146675</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>Circulation. 2010 Dec 21;122(25):2680-7</RefSource>
-                        <PMID Version="1">21135365</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>J Am Coll Cardiol. 2011 Feb 1;57(5):538-45</RefSource>
-                        <PMID Version="1">21272743</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>Coll Antropol. 2010 Apr;34 Suppl 2:213-5</RefSource>
-                        <PMID Version="1">21302724</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>N Engl J Med. 2011 May 5;364(18):1718-27</RefSource>
-                        <PMID Version="1">21463149</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>J Clin Epidemiol. 2011 Oct;64(10):1060-9</RefSource>
-                        <PMID Version="1">21454050</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>J Clin Epidemiol. 2011 Oct;64(10):1076-84</RefSource>
-                        <PMID Version="1">21482068</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>Circulation. 2012 Jan 24;125(3):505-13</RefSource>
-                        <PMID Version="1">22179532</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>Annu Rev Public Health. 2012 Apr;33:425-45</RefSource>
-                        <PMID Version="1">22224891</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>N Engl J Med. 2012 Jun 28;366(26):2466-73</RefSource>
-                        <PMID Version="1">22738096</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>J Cardiothorac Vasc Anesth. 2012 Aug;26(4):596-603</RefSource>
-                        <PMID Version="1">22051419</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>Eur Heart J. 2012 Aug;33(15):1893-901</RefSource>
-                        <PMID Version="1">22711757</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>Eur Heart J. 2012 Aug;33(16):2035-43</RefSource>
-                        <PMID Version="1">22108830</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>J Am Coll Cardiol. 2012 Oct 9;60(15):1340-8</RefSource>
-                        <PMID Version="1">22999717</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>JAMA. 2012 Oct 24;308(16):1676-84</RefSource>
-                        <PMID Version="1">23093165</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>Heart. 2012 Dec;98(23):1710-5</RefSource>
-                        <PMID Version="1">22942294</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>Heart Fail Clin. 2013 Jan;9(1):29-36</RefSource>
-                        <PMID Version="1">23168315</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>JAMA. 2013 Jan 16;309(3):239-40</RefSource>
-                        <PMID Version="1">23321760</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>Eur Heart J. 2013 Mar;34(12):909-19</RefSource>
-                        <PMID Version="1">23315904</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>EuroIntervention. 2013 May 20;9(1):54-61</RefSource>
-                        <PMID Version="1">23685295</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>Crit Care Med. 2013 Nov;41(11):2476-83</RefSource>
-                        <PMID Version="1">23921278</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>CMAJ. 2013 Dec 10;185(18):E827-37</RefSource>
-                        <PMID Version="1">24144601</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>Ann Surg. 2014 Jan;259(1):18-25</RefSource>
-                        <PMID Version="1">24096758</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>JAMA. 2013 Dec 18;310(23):2510-22</RefSource>
-                        <PMID Version="1">24177257</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>N Engl J Med. 2014 Jan 2;370(1):23-32</RefSource>
-                        <PMID Version="1">24245543</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>Cochrane Database Syst Rev. 2014;(4):MR000034</RefSource>
-                        <PMID Version="1">24782322</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>Am J Cardiol. 2014 May 15;113(10):1660-7</RefSource>
-                        <PMID Version="1">24666617</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>J Am Coll Cardiol. 2014 Nov 18-25;64(20):2086-97</RefSource>
-                        <PMID Version="1">25236346</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>CMAJ. 2016 May 17;188(8):E158-64</RefSource>
-                        <PMID Version="1">26883316</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>J Thorac Cardiovasc Surg. 2000 Dec;120(6):1112-9</RefSource>
-                        <PMID Version="1">11088035</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>BMJ. 2001 Apr 14;322(7291):879-80</RefSource>
-                        <PMID Version="1">11302887</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>JAMA. 2001 Aug 15;286(7):821-30</RefSource>
-                        <PMID Version="1">11497536</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>Am Heart J. 2002 Mar;143(3):488-96</RefSource>
-                        <PMID Version="1">11868056</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>J Am Soc Nephrol. 2002 Sep;13(9):2353-62</RefSource>
-                        <PMID Version="1">12191980</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>Eur J Cardiothorac Surg. 2003 Jul;24(1):66-71</RefSource>
-                        <PMID Version="1">12853047</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>Ann Thorac Surg. 2003 Sep;76(3):778-82; discussion 783</RefSource>
-                        <PMID Version="1">12963199</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>Ann Thorac Surg. 2003 Sep;76(3):793-9</RefSource>
-                        <PMID Version="1">12963202</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>Circulation. 2003 Sep 9;108 Suppl 1:II90-7</RefSource>
-                        <PMID Version="1">12970215</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>JAMA. 2003 Sep 24;290(12):1593-9</RefSource>
-                        <PMID Version="1">14506118</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>Kidney Int. 2003 Dec;64(6):2222-8</RefSource>
-                        <PMID Version="1">14633146</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>J Am Soc Nephrol. 2004 Feb;15(2):477-86</RefSource>
-                        <PMID Version="1">14747396</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>J Vasc Surg. 2004 May;39(5):967-75; discussion 975-6</RefSource>
-                        <PMID Version="1">15111846</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>JAMA. 2004 May 5;291(17):2092-9</RefSource>
-                        <PMID Version="1">15126437</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>Stat Med. 1984 Oct-Dec;3(4):409-22</RefSource>
-                        <PMID Version="1">6528136</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>Stat Med. 1991 Apr;10(4):559-64</RefSource>
-                        <PMID Version="1">1905417</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>ACP J Club. 1995 Nov-Dec;123(3):A12-3</RefSource>
-                        <PMID Version="1">7582737</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>Ann Intern Med. 1997 Nov 1;127(9):820-6</RefSource>
-                        <PMID Version="1">9382404</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>J Vasc Surg. 2005 Sep;42(3):481-6; discussions 487</RefSource>
-                        <PMID Version="1">16171591</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>Am Heart J. 2005 Nov;150(5):1092-8</RefSource>
-                        <PMID Version="1">16291004</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>J Thorac Cardiovasc Surg. 2006 May;131(5):1021-8</RefSource>
-                        <PMID Version="1">16678585</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>Afr J Med Med Sci. 2005 Sep;34(3):227-33</RefSource>
-                        <PMID Version="1">16749353</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>Stat Med. 2007 Jan 15;26(1):53-77</RefSource>
-                        <PMID Version="1">16596572</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>Ann Surg Oncol. 2007 Aug;14(8):2187-94</RefSource>
-                        <PMID Version="1">17522944</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>Asian Cardiovasc Thorac Ann. 2008 Jan;16(1):16-20</RefSource>
-                        <PMID Version="1">18245699</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>J Vasc Surg. 2008 Feb;47(2):395-401</RefSource>
-                        <PMID Version="1">18155872</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>J Am Coll Cardiol. 2008 Jul 15;52(3):190-9</RefSource>
-                        <PMID Version="1">18617067</PMID>
-                    </CommentsCorrections>
-                    <CommentsCorrections RefType="Cites">
-                        <RefSource>Ann Thorac Surg. 2008 Oct;86(4):1153-9</RefSource>
-                        <PMID Version="1">18805151</PMID>
-                    </CommentsCorrections>
                     <CommentsCorrections RefType="CommentIn">
                         <RefSource>BMJ. 2016 Dec 16;355:i6745</RefSource>
                         <PMID Version="1">27986716</PMID>
@@ -434,6 +159,10 @@ http_interactions:
                     <CommentsCorrections RefType="CommentIn">
                         <RefSource>BMJ. 2016 Dec 16;355:i6747</RefSource>
                         <PMID Version="1">27986652</PMID>
+                    </CommentsCorrections>
+                    <CommentsCorrections RefType="ErratumIn">
+                        <RefSource>BMJ. 2018 Aug 17;362:k3210</RefSource>
+                        <PMID Version="1">30120145</PMID>
                     </CommentsCorrections>
                 </CommentsCorrectionsList>
                 <MeshHeadingList>
@@ -457,7 +186,6 @@ http_interactions:
                         <DescriptorName UI="D016032" MajorTopicYN="Y">Randomized Controlled Trials as Topic</DescriptorName>
                     </MeshHeading>
                 </MeshHeadingList>
-                <OtherID Source="NLM">PMC4772787</OtherID>
             </MedlineCitation>
             <PubmedData>
                 <History>
@@ -487,11 +215,428 @@ http_interactions:
                 <ArticleIdList>
                     <ArticleId IdType="pubmed">26858277</ArticleId>
                     <ArticleId IdType="pmc">PMC4772787</ArticleId>
+                    <ArticleId IdType="doi">10.1136/bmj.i493</ArticleId>
                 </ArticleIdList>
+                <ReferenceList>
+                    <Reference>
+                        <Citation>J Thorac Cardiovasc Surg. 2009 Mar;137(3):650-6; discussion 656-7</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">19258083</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Eur Heart J. 2009 Apr;30(8):1005-11</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">19270315</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Am Heart J. 2009 May;157(5):899-907</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">19376319</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Ann Surg. 2009 Jun;249(6):921-6</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">19474688</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>JAMA. 2009 Sep 2;302(9):947-54</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">19724041</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>N Engl J Med. 2009 Sep 3;361(10):980-9</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">19726772</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Eur Heart J. 2009 Sep;30(18):2186-92</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">19717851</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>J Thorac Cardiovasc Surg. 2009 Dec;138(6):1377-84</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">19931667</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Circulation. 2010 Jun 22;121(24):2645-53</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">20530001</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Value Health. 2009 Nov-Dec;12(8):1062-73</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">19793071</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Circ J. 2010 Nov;74(11):2314-21</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">20938098</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>J Am Coll Cardiol. 2010 Nov 9;56(20):1639-43</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">21050973</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Am Heart J. 2010 Dec;160(6):1178-84</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">21146675</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Circulation. 2010 Dec 21;122(25):2680-7</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">21135365</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>J Am Coll Cardiol. 2011 Feb 1;57(5):538-45</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">21272743</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Coll Antropol. 2010 Apr;34 Suppl 2:213-5</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">21302724</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>N Engl J Med. 2011 May 5;364(18):1718-27</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">21463149</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>J Clin Epidemiol. 2011 Oct;64(10):1060-9</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">21454050</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>J Clin Epidemiol. 2011 Oct;64(10):1076-84</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">21482068</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Circulation. 2012 Jan 24;125(3):505-13</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">22179532</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Annu Rev Public Health. 2012 Apr;33:425-45</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">22224891</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>N Engl J Med. 2012 Jun 28;366(26):2466-73</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">22738096</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>J Cardiothorac Vasc Anesth. 2012 Aug;26(4):596-603</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">22051419</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Eur Heart J. 2012 Aug;33(15):1893-901</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">22711757</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Eur Heart J. 2012 Aug;33(16):2035-43</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">22108830</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>J Am Coll Cardiol. 2012 Oct 9;60(15):1340-8</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">22999717</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>JAMA. 2012 Oct 24;308(16):1676-84</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">23093165</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Heart. 2012 Dec;98(23):1710-5</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">22942294</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Heart Fail Clin. 2013 Jan;9(1):29-36</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">23168315</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>JAMA. 2013 Jan 16;309(3):239-40</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">23321760</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Eur Heart J. 2013 Mar;34(12):909-19</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">23315904</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>EuroIntervention. 2013 May 20;9(1):54-61</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">23685295</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Crit Care Med. 2013 Nov;41(11):2476-83</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">23921278</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>CMAJ. 2013 Dec 10;185(18):E827-37</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">24144601</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Ann Surg. 2014 Jan;259(1):18-25</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">24096758</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>JAMA. 2013 Dec 18;310(23):2510-22</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">24177257</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>N Engl J Med. 2014 Jan 2;370(1):23-32</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">24245543</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Cochrane Database Syst Rev. 2014;(4):MR000034</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">24782322</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Am J Cardiol. 2014 May 15;113(10):1660-7</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">24666617</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>J Am Coll Cardiol. 2014 Nov 18-25;64(20):2086-97</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">25236346</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>CMAJ. 2016 May 17;188(8):E158-64</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">26883316</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>J Thorac Cardiovasc Surg. 2000 Dec;120(6):1112-9</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">11088035</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>BMJ. 2001 Apr 14;322(7291):879-80</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">11302887</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>JAMA. 2001 Aug 15;286(7):821-30</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">11497536</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Am Heart J. 2002 Mar;143(3):488-96</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">11868056</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>J Am Soc Nephrol. 2002 Sep;13(9):2353-62</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">12191980</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Eur J Cardiothorac Surg. 2003 Jul;24(1):66-71</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">12853047</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Ann Thorac Surg. 2003 Sep;76(3):778-82; discussion 783</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">12963199</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Ann Thorac Surg. 2003 Sep;76(3):793-9</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">12963202</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Circulation. 2003 Sep 9;108 Suppl 1:II90-7</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">12970215</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>JAMA. 2003 Sep 24;290(12):1593-9</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">14506118</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Kidney Int. 2003 Dec;64(6):2222-8</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">14633146</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>J Am Soc Nephrol. 2004 Feb;15(2):477-86</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">14747396</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>J Vasc Surg. 2004 May;39(5):967-75; discussion 975-6</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">15111846</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>JAMA. 2004 May 5;291(17):2092-9</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">15126437</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Stat Med. 1984 Oct-Dec;3(4):409-22</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">6528136</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Stat Med. 1991 Apr;10(4):559-64</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">1905417</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>ACP J Club. 1995 Nov-Dec;123(3):A12-3</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">7582737</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Ann Intern Med. 1997 Nov 1;127(9):820-6</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">9382404</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>J Vasc Surg. 2005 Sep;42(3):481-6; discussions 487</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">16171591</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Am Heart J. 2005 Nov;150(5):1092-8</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">16291004</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>J Thorac Cardiovasc Surg. 2006 May;131(5):1021-8</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">16678585</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Afr J Med Med Sci. 2005 Sep;34(3):227-33</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">16749353</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Stat Med. 2007 Jan 15;26(1):53-77</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">16596572</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Ann Surg Oncol. 2007 Aug;14(8):2187-94</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">17522944</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Asian Cardiovasc Thorac Ann. 2008 Jan;16(1):16-20</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">18245699</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>J Vasc Surg. 2008 Feb;47(2):395-401</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">18155872</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>J Am Coll Cardiol. 2008 Jul 15;52(3):190-9</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">18617067</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Ann Thorac Surg. 2008 Oct;86(4):1153-9</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">18805151</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                </ReferenceList>
             </PubmedData>
         </PubmedArticle>
 
         </PubmedArticleSet>
     http_version: 
-  recorded_at: Mon, 13 Nov 2017 20:57:52 GMT
-recorded_with: VCR 3.0.1
+  recorded_at: Fri, 05 Apr 2019 18:08:33 GMT
+recorded_with: VCR 4.0.0

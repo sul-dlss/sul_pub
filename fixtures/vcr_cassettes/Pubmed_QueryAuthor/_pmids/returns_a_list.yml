@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: post
-    uri: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?api_key=a_fake_pubmed_key&db=pubmed&retmax=100000&retmode=xml
+    uri: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?api_key=Settings.PUBMED.API_KEY&db=pubmed&retmax=100000&retmode=xml
     body:
       encoding: UTF-8
       string: term=((Altman Russ[Author]) OR (Altman R[Author])) AND (Stanford University[Affiliation])
@@ -14,94 +14,18 @@ http_interactions:
       Accept-Encoding:
       - gzip,deflate
       Date:
-      - Thu, 21 Mar 2019 22:52:10 GMT
-      Content-Type:
-      - application/x-www-form-urlencoded
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Thu, 21 Mar 2019 22:52:10 GMT
-      Server:
-      - Finatra
-      Strict-Transport-Security:
-      - max-age=31536000; includeSubDomains; preload
-      Content-Security-Policy:
-      - upgrade-insecure-requests
-      X-Ratelimit-Remaining:
-      - '9'
-      Ncbi-Phid:
-      - 322C1335D2DEB7E500001AFD74A99A99.1.1.m_1
-      Cache-Control:
-      - private
-      L5d-Success-Class:
-      - '1.0'
-      Ncbi-Sid:
-      - 4C058121A092E2F9_82DFSID
-      Content-Encoding:
-      - gzip
-      X-Ratelimit-Limit:
-      - '10'
-      Access-Control-Allow-Origin:
-      - "*"
-      Content-Type:
-      - text/xml; charset=UTF-8
-      Set-Cookie:
-      - ncbi_sid=4C058121A092E2F9_82DFSID; domain=.nih.gov; path=/; expires=Sat, 21
-        Mar 2020 22:52:11 GMT
-      X-Ua-Compatible:
-      - IE=Edge
-      X-Xss-Protection:
-      - 1; mode=block
-      Transfer-Encoding:
-      - chunked
-    body:
-      encoding: UTF-8
-      string: "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<!DOCTYPE eSearchResult
-        PUBLIC \"-//NLM//DTD esearch 20060628//EN\" \"https://eutils.ncbi.nlm.nih.gov/eutils/dtd/20060628/esearch.dtd\">\n<eSearchResult>\n<Count>334</Count><RetMax>334</RetMax><RetStart>0</RetStart>\n<IdList>\n\t<Id>30833575</Id>\n\t<Id>30773618</Id>\n\t<Id>30672837</Id>\n\t<Id>30610379</Id>\n\t<Id>30532240</Id>\n\t<Id>30506689</Id>\n\t<Id>30506572</Id>\n\t<Id>30406943</Id>\n\t<Id>30337873</Id>\n\t<Id>30223787</Id>\n\t<Id>30222708</Id>\n\t<Id>30134346</Id>\n\t<Id>29985971</Id>\n\t<Id>29750902</Id>\n\t<Id>29653637</Id>\n\t<Id>29635477</Id>\n\t<Id>29559929</Id>\n\t<Id>29517622</Id>\n\t<Id>29517518</Id>\n\t<Id>29490008</Id>\n\t<Id>29489814</Id>\n\t<Id>29474005</Id>\n\t<Id>29462399</Id>\n\t<Id>29329435</Id>\n\t<Id>29325558</Id>\n\t<Id>29271559</Id>\n\t<Id>29269942</Id>\n\t<Id>29218869</Id>\n\t<Id>29199461</Id>\n\t<Id>29178968</Id>\n\t<Id>29153840</Id>\n\t<Id>29134624</Id>\n\t<Id>29048458</Id>\n\t<Id>28975675</Id>\n\t<Id>28858993</Id>\n\t<Id>28727421</Id>\n\t<Id>28678138</Id>\n\t<Id>28615003</Id>\n\t<Id>28495350</Id>\n\t<Id>28458783</Id>\n\t<Id>28412959</Id>\n\t<Id>28398598</Id>\n\t<Id>28371826</Id>\n\t<Id>28362716</Id>\n\t<Id>28277330</Id>\n\t<Id>28182259</Id>\n\t<Id>28146011</Id>\n\t<Id>28090649</Id>\n\t<Id>27797771</Id>\n\t<Id>27654872</Id>\n\t<Id>27498067</Id>\n\t<Id>27736015</Id>\n\t<Id>27655861</Id>\n\t<Id>27653416</Id>\n\t<Id>27652279</Id>\n\t<Id>27636560</Id>\n\t<Id>27542772</Id>\n\t<Id>27527408</Id>\n\t<Id>27232112</Id>\n\t<Id>27199190</Id>\n\t<Id>27115429</Id>\n\t<Id>27099173</Id>\n\t<Id>27089514</Id>\n\t<Id>26776202</Id>\n\t<Id>26776186</Id>\n\t<Id>26709912</Id>\n\t<Id>26641076</Id>\n\t<Id>26632357</Id>\n\t<Id>26606966</Id>\n\t<Id>26536942</Id>\n\t<Id>26472898</Id>\n\t<Id>26448358</Id>\n\t<Id>26398623</Id>\n\t<Id>26338771</Id>\n\t<Id>26306281</Id>\n\t<Id>26269718</Id>\n\t<Id>26226489</Id>\n\t<Id>26219079</Id>\n\t<Id>26219066</Id>\n\t<Id>26210695</Id>\n\t<Id>26198303</Id>\n\t<Id>26151311</Id>\n\t<Id>26121262</Id>\n\t<Id>26111151</Id>\n\t<Id>26049587</Id>\n\t<Id>26046407</Id>\n\t<Id>29771644</Id>\n\t<Id>25966836</Id>\n\t<Id>25952343</Id>\n\t<Id>25898045</Id>\n\t<Id>25897834</Id>\n\t<Id>25811761</Id>\n\t<Id>25800813</Id>\n\t<Id>25717414</Id>\n\t<Id>25670512</Id>\n\t<Id>25647431</Id>\n\t<Id>25623160</Id>\n\t<Id>25601948</Id>\n\t<Id>25592562</Id>\n\t<Id>25514096</Id>\n\t<Id>25502615</Id>\n\t<Id>25370453</Id>\n\t<Id>25162786</Id>\n\t<Id>25079360</Id>\n\t<Id>25056393</Id>\n\t<Id>24915143</Id>\n\t<Id>24892773</Id>\n\t<Id>24849324</Id>\n\t<Id>24768691</Id>\n\t<Id>24762971</Id>\n\t<Id>24759409</Id>\n\t<Id>24681965</Id>\n\t<Id>24657571</Id>\n\t<Id>24632601</Id>\n\t<Id>24625521</Id>\n\t<Id>24625462</Id>\n\t<Id>24618965</Id>\n\t<Id>24577151</Id>\n\t<Id>24551397</Id>\n\t<Id>24516805</Id>\n\t<Id>24516403</Id>\n\t<Id>24492252</Id>\n\t<Id>24452614</Id>\n\t<Id>24401834</Id>\n\t<Id>24345941</Id>\n\t<Id>24303232</Id>\n\t<Id>24297550</Id>\n\t<Id>24220207</Id>\n\t<Id>24128936</Id>\n\t<Id>24060820</Id>\n\t<Id>24010729</Id>\n\t<Id>24004670</Id>\n\t<Id>23962911</Id>\n\t<Id>23962910</Id>\n\t<Id>23962908</Id>\n\t<Id>23956017</Id>\n\t<Id>23922006</Id>\n\t<Id>23913015</Id>\n\t<Id>23819817</Id>\n\t<Id>23824865</Id>\n\t<Id>23788015</Id>\n\t<Id>23708745</Id>\n\t<Id>23414686</Id>\n\t<Id>23300409</Id>\n\t<Id>23300404</Id>\n\t<Id>23241835</Id>\n\t<Id>22992668</Id>\n\t<Id>22867428</Id>\n\t<Id>22722338</Id>\n\t<Id>22643671</Id>\n\t<Id>22569204</Id>\n\t<Id>22552919</Id>\n\t<Id>22549287</Id>\n\t<Id>22547082</Id>\n\t<Id>22424236</Id>\n\t<Id>22422992</Id>\n\t<Id>22336956</Id>\n\t<Id>22293536</Id>\n\t<Id>22237549</Id>\n\t<Id>22219723</Id>\n\t<Id>22174296</Id>\n\t<Id>22174289</Id>\n\t<Id>22103613</Id>\n\t<Id>22081222</Id>\n\t<Id>21992054</Id>\n\t<Id>21989077</Id>\n\t<Id>21935354</Id>\n\t<Id>21828005</Id>\n\t<Id>21763417</Id>\n\t<Id>21738081</Id>\n\t<Id>21712246</Id>\n\t<Id>21676938</Id>\n\t<Id>21672905</Id>\n\t<Id>21613990</Id>\n\t<Id>21596790</Id>\n\t<Id>21546862</Id>\n\t<Id>21481770</Id>\n\t<Id>21326263</Id>\n\t<Id>21172034</Id>\n\t<Id>21121048</Id>\n\t<Id>21116304</Id>\n\t<Id>21063235</Id>\n\t<Id>21044367</Id>\n\t<Id>21048526</Id>\n\t<Id>21047206</Id>\n\t<Id>20938371</Id>\n\t<Id>20739908</Id>\n\t<Id>20723615</Id>\n\t<Id>20651028</Id>\n\t<Id>20648701</Id>\n\t<Id>20619355</Id>\n\t<Id>20601926</Id>\n\t<Id>20442691</Id>\n\t<Id>20440227</Id>\n\t<Id>20435227</Id>\n\t<Id>20434765</Id>\n\t<Id>20363365</Id>\n\t<Id>20361040</Id>\n\t<Id>20350130</Id>\n\t<Id>20305671</Id>\n\t<Id>20216335</Id>\n\t<Id>20161212</Id>\n\t<Id>20150828</Id>\n\t<Id>20023594</Id>\n\t<Id>20003365</Id>\n\t<Id>19952871</Id>\n\t<Id>19940803</Id>\n\t<Id>19924131</Id>\n\t<Id>19908383</Id>\n\t<Id>19908374</Id>\n\t<Id>19904832</Id>\n\t<Id>19898265</Id>\n\t<Id>19812110</Id>\n\t<Id>19741567</Id>\n\t<Id>19723347</Id>\n\t<Id>19604472</Id>\n\t<Id>19536117</Id>\n\t<Id>19512959</Id>\n\t<Id>19512957</Id>\n\t<Id>19451861</Id>\n\t<Id>19208194</Id>\n\t<Id>19209721</Id>\n\t<Id>19144906</Id>\n\t<Id>20351936</Id>\n\t<Id>18989041</Id>\n\t<Id>18949600</Id>\n\t<Id>18834498</Id>\n\t<Id>18819074</Id>\n\t<Id>18690363</Id>\n\t<Id>20107615</Id>\n\t<Id>18439292</Id>\n\t<Id>18420932</Id>\n\t<Id>18330919</Id>\n\t<Id>18322008</Id>\n\t<Id>18229697</Id>\n\t<Id>18197987</Id>\n\t<Id>18042678</Id>\n\t<Id>18032438</Id>\n\t<Id>17994540</Id>\n\t<Id>17911777</Id>\n\t<Id>17900617</Id>\n\t<Id>17713470</Id>\n\t<Id>17570144</Id>\n\t<Id>17586766</Id>\n\t<Id>17465717</Id>\n\t<Id>17438287</Id>\n\t<Id>17339576</Id>\n\t<Id>17233563</Id>\n\t<Id>17185992</Id>\n\t<Id>16765717</Id>\n\t<Id>16574145</Id>\n\t<Id>16564233</Id>\n\t<Id>16472186</Id>\n\t<Id>16245324</Id>\n\t<Id>16100408</Id>\n\t<Id>15701734</Id>\n\t<Id>15471541</Id>\n\t<Id>15389393</Id>\n\t<Id>15360921</Id>\n\t<Id>15247459</Id>\n\t<Id>15078855</Id>\n\t<Id>14993210</Id>\n\t<Id>14691217</Id>\n\t<Id>14561879</Id>\n\t<Id>14512363</Id>\n\t<Id>12947397</Id>\n\t<Id>12888516</Id>\n\t<Id>12888505</Id>\n\t<Id>12831574</Id>\n\t<Id>12826619</Id>\n\t<Id>12824318</Id>\n\t<Id>12805274</Id>\n\t<Id>12682377</Id>\n\t<Id>12647379</Id>\n\t<Id>12603029</Id>\n\t<Id>12584126</Id>\n\t<Id>12544507</Id>\n\t<Id>12538245</Id>\n\t<Id>12463865</Id>\n\t<Id>12424116</Id>\n\t<Id>12088144</Id>\n\t<Id>12075018</Id>\n\t<Id>12037086</Id>\n\t<Id>12003488</Id>\n\t<Id>11928517</Id>\n\t<Id>11779846</Id>\n\t<Id>11707590</Id>\n\t<Id>11694181</Id>\n\t<Id>11395428</Id>\n\t<Id>11301132</Id>\n\t<Id>11262956</Id>\n\t<Id>11189759</Id>\n\t<Id>10984462</Id>\n\t<Id>10977090</Id>\n\t<Id>10902193</Id>\n\t<Id>10902175</Id>\n\t<Id>10829296</Id>\n\t<Id>10495098</Id>\n\t<Id>10404593</Id>\n\t<Id>10068692</Id>\n\t<Id>9929358</Id>\n\t<Id>9929319</Id>\n\t<Id>9929182</Id>\n\t<Id>9783220</Id>\n\t<Id>9773341</Id>\n\t<Id>9697207</Id>\n\t<Id>9197551</Id>\n\t<Id>9109328</Id>\n\t<Id>9390315</Id>\n\t<Id>9322019</Id>\n\t<Id>9007997</Id>\n\t<Id>8809013</Id>\n\t<Id>8902359</Id>\n\t<Id>8569825</Id>\n\t<Id>9080183</Id>\n\t<Id>8947767</Id>\n\t<Id>8947710</Id>\n\t<Id>8808580</Id>\n\t<Id>7643385</Id>\n\t<Id>7577841</Id>\n\t<Id>7613462</Id>\n\t<Id>7584427</Id>\n\t<Id>7950031</Id>\n\t<Id>7949944</Id>\n\t<Id>7949915</Id>\n\t<Id>7949909</Id>\n\t<Id>7584390</Id>\n\t<Id>7584378</Id>\n\t<Id>8130522</Id>\n\t<Id>7584327</Id>\n\t<Id>1511237</Id>\n\t<Id>1935980</Id>\n\t<Id>2207078</Id>\n\t<Id>3235473</Id>\n</IdList>\n<TranslationSet><Translation>
-        \    <From>Altman Russ[Author]</From>     <To>Altman, Russ[Full Author Name]</To>
-        \   </Translation></TranslationSet><TranslationStack>   <TermSet>    <Term>Altman,
-        Russ[Full Author Name]</Term>    <Field>Full Author Name</Field>    <Count>339</Count>
-        \   <Explode>N</Explode>   </TermSet>   <TermSet>    <Term>Altman R[Author]</Term>
-        \   <Field>Author</Field>    <Count>1140</Count>    <Explode>N</Explode>   </TermSet>
-        \  <OP>OR</OP>   <OP>GROUP</OP>   <TermSet>    <Term>Stanford University[Affiliation]</Term>
-        \   <Field>Affiliation</Field>    <Count>84990</Count>    <Explode>N</Explode>
-        \  </TermSet>   <OP>AND</OP>  </TranslationStack><QueryTranslation>(Altman,
-        Russ[Full Author Name] OR Altman R[Author]) AND Stanford University[Affiliation]</QueryTranslation>\n\n</eSearchResult>\n"
-    http_version: 
-  recorded_at: Thu, 21 Mar 2019 22:52:11 GMT
-- request:
-    method: post
-    uri: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?api_key=aa7564b9158885601ebfd96ba829fb6e5a08&db=pubmed&retmax=100000&retmode=xml
-    body:
-      encoding: UTF-8
-      string: term=((Altman Russ[Author]) OR (Altman R[Author])) AND (Stanford University[Affiliation])
-    headers:
-      User-Agent:
-      - stanford-library-sul-pub
-      Accept:
-      - "*/*"
-      Accept-Encoding:
-      - gzip,deflate
-      Date:
-      - Fri, 22 Mar 2019 17:11:59 GMT
+      - Fri, 05 Apr 2019 18:08:35 GMT
       Content-Type:
       - application/x-www-form-urlencoded
       Cookie:
-      - ncbi_sid=5A820EABEC84BE73_4521SID
-      Content-Length:
-      - '89'
-      Host:
-      - eutils.ncbi.nlm.nih.gov
+      - ncbi_sid=F7C3135D969607BB_0CA6SID
   response:
     status:
       code: 200
       message: OK
     headers:
       Date:
-      - Fri, 22 Mar 2019 17:12:00 GMT
+      - Fri, 05 Apr 2019 18:08:34 GMT
       Server:
       - Finatra
       Strict-Transport-Security:
@@ -109,15 +33,15 @@ http_interactions:
       Content-Security-Policy:
       - upgrade-insecure-requests
       X-Ratelimit-Remaining:
-      - '9'
+      - '6'
       Ncbi-Phid:
-      - D0BDBC827630B7E5000028E873ABD1CA.1.1.m_1
+      - 322C43FE71CC15450000131D3228614D.1.1.m_1
       Cache-Control:
       - private
       L5d-Success-Class:
       - '1.0'
       Ncbi-Sid:
-      - 5A820EABEC84BE73_4521SID
+      - F7C3135D969607BB_0CA6SID
       Content-Encoding:
       - gzip
       X-Ratelimit-Limit:
@@ -127,8 +51,8 @@ http_interactions:
       Content-Type:
       - text/xml; charset=UTF-8
       Set-Cookie:
-      - ncbi_sid=5A820EABEC84BE73_4521SID; domain=.nih.gov; path=/; expires=Sun, 22
-        Mar 2020 17:12:00 GMT
+      - ncbi_sid=F7C3135D969607BB_0CA6SID; domain=.nih.gov; path=/; expires=Sun, 05
+        Apr 2020 18:08:35 GMT
       X-Ua-Compatible:
       - IE=Edge
       X-Xss-Protection:
@@ -143,11 +67,11 @@ http_interactions:
         \   </Translation></TranslationSet><TranslationStack>   <TermSet>    <Term>Altman,
         Russ[Full Author Name]</Term>    <Field>Full Author Name</Field>    <Count>339</Count>
         \   <Explode>N</Explode>   </TermSet>   <TermSet>    <Term>Altman R[Author]</Term>
-        \   <Field>Author</Field>    <Count>1140</Count>    <Explode>N</Explode>   </TermSet>
+        \   <Field>Author</Field>    <Count>1141</Count>    <Explode>N</Explode>   </TermSet>
         \  <OP>OR</OP>   <OP>GROUP</OP>   <TermSet>    <Term>Stanford University[Affiliation]</Term>
-        \   <Field>Affiliation</Field>    <Count>85016</Count>    <Explode>N</Explode>
+        \   <Field>Affiliation</Field>    <Count>85343</Count>    <Explode>N</Explode>
         \  </TermSet>   <OP>AND</OP>  </TranslationStack><QueryTranslation>(Altman,
         Russ[Full Author Name] OR Altman R[Author]) AND Stanford University[Affiliation]</QueryTranslation>\n\n</eSearchResult>\n"
     http_version: 
-  recorded_at: Fri, 22 Mar 2019 17:12:00 GMT
+  recorded_at: Fri, 05 Apr 2019 18:08:35 GMT
 recorded_with: VCR 4.0.0

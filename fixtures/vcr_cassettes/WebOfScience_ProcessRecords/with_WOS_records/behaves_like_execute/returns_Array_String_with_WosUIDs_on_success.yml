@@ -2,62 +2,68 @@
 http_interactions:
 - request:
     method: post
-    uri: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?api_key=a_fake_pubmed_key&db=pubmed&retmode=xml
+    uri: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?api_key=Settings.PUBMED.API_KEY&db=pubmed&retmode=xml
     body:
       encoding: UTF-8
       string: "&id=&id=21253920"
     headers:
       User-Agent:
-      - Faraday v0.14.0
+      - stanford-library-sul-pub
       Accept:
       - "*/*"
       Accept-Encoding:
       - gzip,deflate
       Date:
-      - Tue, 06 Feb 2018 01:23:31 GMT
+      - Fri, 05 Apr 2019 18:07:58 GMT
       Content-Type:
       - application/x-www-form-urlencoded
+      Cookie:
+      - ncbi_sid=F7C3135D969607BB_0CA6SID
   response:
     status:
       code: 200
       message: OK
     headers:
       Date:
-      - Tue, 06 Feb 2018 01:23:31 GMT
+      - Fri, 05 Apr 2019 18:07:58 GMT
       Server:
-      - Apache
+      - Finatra
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains; preload
       Content-Security-Policy:
       - upgrade-insecure-requests
-      Access-Control-Allow-Origin:
-      - "*"
+      X-Ratelimit-Remaining:
+      - '9'
+      Ncbi-Phid:
+      - 322C43FE71CC15450000281D04AC110E.1.1.m_3
       Cache-Control:
       - private
-      Ncbi-Phid:
-      - 990DA92FA79028E100000000015C015B
+      L5d-Success-Class:
+      - '1.0'
       Ncbi-Sid:
-      - 990DA92FA7903931_0348SID
+      - F7C3135D969607BB_0CA6SID
+      Content-Encoding:
+      - gzip
+      X-Ratelimit-Limit:
+      - '10'
+      Access-Control-Allow-Origin:
+      - "*"
       Content-Type:
       - text/xml; charset=UTF-8
       Set-Cookie:
-      - ncbi_sid=990DA92FA7903931_0348SID; domain=.nih.gov; path=/; expires=Wed, 06
-        Feb 2019 01:23:31 GMT
-      Vary:
-      - Accept-Encoding
-      Content-Encoding:
-      - gzip
+      - ncbi_sid=F7C3135D969607BB_0CA6SID; domain=.nih.gov; path=/; expires=Sun, 05
+        Apr 2020 18:07:59 GMT
       X-Ua-Compatible:
       - IE=Edge
       X-Xss-Protection:
       - 1; mode=block
-      Content-Length:
-      - '1372'
+      Transfer-Encoding:
+      - chunked
     body:
       encoding: UTF-8
       string: |-
         <?xml version="1.0" ?>
-        <!DOCTYPE PubmedArticleSet PUBLIC "-//NLM//DTD PubMedArticle, 1st January 2018//EN" "https://dtd.nlm.nih.gov/ncbi/pubmed/out/pubmed_180101.dtd">
+        <!DOCTYPE PubmedArticleSet PUBLIC "-//NLM//DTD PubMedArticle, 1st January 2019//EN" "https://dtd.nlm.nih.gov/ncbi/pubmed/out/pubmed_190101.dtd">
         <PubmedArticleSet>
         <PubmedArticle>
             <MedlineCitation Status="MEDLINE" Owner="NLM">
@@ -199,5 +205,5 @@ http_interactions:
 
         </PubmedArticleSet>
     http_version: 
-  recorded_at: Tue, 06 Feb 2018 01:23:32 GMT
+  recorded_at: Fri, 05 Apr 2019 18:07:59 GMT
 recorded_with: VCR 4.0.0

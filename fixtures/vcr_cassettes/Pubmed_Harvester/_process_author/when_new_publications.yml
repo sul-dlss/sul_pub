@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: post
-    uri: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?api_key=a_fake_pubmed_key&db=pubmed&retmode=xml
+    uri: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?api_key=Settings.PUBMED.API_KEY&db=pubmed&retmode=xml
     body:
       encoding: UTF-8
       string: "&id=&id=30833575"
@@ -14,16 +14,22 @@ http_interactions:
       Accept-Encoding:
       - gzip,deflate
       Date:
-      - Fri, 22 Mar 2019 16:41:09 GMT
+      - Fri, 05 Apr 2019 18:08:04 GMT
       Content-Type:
       - application/x-www-form-urlencoded
+      Cookie:
+      - ncbi_sid=F7C3135D969607BB_0CA6SID
+      Content-Length:
+      - '16'
+      Host:
+      - eutils.ncbi.nlm.nih.gov
   response:
     status:
       code: 200
       message: OK
     headers:
       Date:
-      - Fri, 22 Mar 2019 16:41:10 GMT
+      - Fri, 05 Apr 2019 18:08:04 GMT
       Server:
       - Finatra
       Strict-Transport-Security:
@@ -33,13 +39,13 @@ http_interactions:
       X-Ratelimit-Remaining:
       - '9'
       Ncbi-Phid:
-      - 939B06706F9C03E5000027E5EEB6A904.1.1.m_3
+      - D0BD443F3E9AC6F50000230FFC3B07B7.1.1.m_3
       Cache-Control:
       - private
       L5d-Success-Class:
       - '1.0'
       Ncbi-Sid:
-      - B70C2D725EA90A62_A307SID
+      - F7C3135D969607BB_0CA6SID
       Content-Encoding:
       - gzip
       X-Ratelimit-Limit:
@@ -49,8 +55,8 @@ http_interactions:
       Content-Type:
       - text/xml; charset=UTF-8
       Set-Cookie:
-      - ncbi_sid=B70C2D725EA90A62_A307SID; domain=.nih.gov; path=/; expires=Sun, 22
-        Mar 2020 16:41:10 GMT
+      - ncbi_sid=F7C3135D969607BB_0CA6SID; domain=.nih.gov; path=/; expires=Sun, 05
+        Apr 2020 18:08:04 GMT
       X-Ua-Compatible:
       - IE=Edge
       X-Xss-Protection:
@@ -64,12 +70,12 @@ http_interactions:
         <!DOCTYPE PubmedArticleSet PUBLIC "-//NLM//DTD PubMedArticle, 1st January 2019//EN" "https://dtd.nlm.nih.gov/ncbi/pubmed/out/pubmed_190101.dtd">
         <PubmedArticleSet>
         <PubmedArticle>
-            <MedlineCitation Status="In-Data-Review" Owner="NLM">
+            <MedlineCitation Status="In-Process" Owner="NLM">
                 <PMID Version="1">30833575</PMID>
                 <DateRevised>
                     <Year>2019</Year>
                     <Month>03</Month>
-                    <Day>08</Day>
+                    <Day>23</Day>
                 </DateRevised>
                 <Article PubModel="Electronic">
                     <Journal>
@@ -79,7 +85,7 @@ http_interactions:
                             <Issue>1</Issue>
                             <PubDate>
                                 <Year>2019</Year>
-                                <Month>Mar</Month>
+                                <Month>03</Month>
                                 <Day>04</Day>
                             </PubDate>
                         </JournalIssue>
@@ -202,6 +208,8 @@ http_interactions:
                     </GrantList>
                     <PublicationTypeList>
                         <PublicationType UI="D016428">Journal Article</PublicationType>
+                        <PublicationType UI="D052061">Research Support, N.I.H., Extramural</PublicationType>
+                        <PublicationType UI="D013485">Research Support, Non-U.S. Gov't</PublicationType>
                     </PublicationTypeList>
                     <ArticleDate DateType="Electronic">
                         <Year>2019</Year>
@@ -262,5 +270,5 @@ http_interactions:
 
         </PubmedArticleSet>
     http_version: 
-  recorded_at: Fri, 22 Mar 2019 16:41:10 GMT
+  recorded_at: Fri, 05 Apr 2019 18:08:04 GMT
 recorded_with: VCR 4.0.0

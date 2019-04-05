@@ -2,51 +2,61 @@
 http_interactions:
 - request:
     method: post
-    uri: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?api_key=a_fake_pubmed_key&db=pubmed&retmode=xml
+    uri: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?api_key=Settings.PUBMED.API_KEY&db=pubmed&retmode=xml
     body:
       encoding: UTF-8
       string: "&id=&id=26430984"
     headers:
       User-Agent:
-      - Faraday v0.13.1
+      - stanford-library-sul-pub
       Accept:
       - "*/*"
       Accept-Encoding:
       - gzip,deflate
       Date:
-      - Mon, 13 Nov 2017 20:57:50 GMT
+      - Fri, 05 Apr 2019 18:08:33 GMT
       Content-Type:
       - application/x-www-form-urlencoded
+      Cookie:
+      - ncbi_sid=F7C3135D969607BB_0CA6SID
+      Content-Length:
+      - '16'
+      Host:
+      - eutils.ncbi.nlm.nih.gov
   response:
     status:
       code: 200
       message: OK
     headers:
       Date:
-      - Mon, 13 Nov 2017 20:58:44 GMT
+      - Fri, 05 Apr 2019 18:08:33 GMT
       Server:
-      - Apache
+      - Finatra
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains; preload
       Content-Security-Policy:
       - upgrade-insecure-requests
-      Access-Control-Allow-Origin:
-      - "*"
+      X-Ratelimit-Remaining:
+      - '7'
+      Ncbi-Phid:
+      - 322C43FE71CC15450000251D30AF8E29.1.1.m_3
       Cache-Control:
       - private
-      Ncbi-Phid:
-      - 03EDDE78A0A042A10000000000E100DD
+      L5d-Success-Class:
+      - '1.0'
       Ncbi-Sid:
-      - 03EDDE78A0A07841_0225SID
+      - F7C3135D969607BB_0CA6SID
+      Content-Encoding:
+      - gzip
+      X-Ratelimit-Limit:
+      - '10'
+      Access-Control-Allow-Origin:
+      - "*"
       Content-Type:
       - text/xml; charset=UTF-8
       Set-Cookie:
-      - ncbi_sid=03EDDE78A0A07841_0225SID; domain=.nih.gov; path=/; expires=Tue, 13
-        Nov 2018 20:58:44 GMT
-      Vary:
-      - Accept-Encoding
-      Content-Encoding:
-      - gzip
+      - ncbi_sid=F7C3135D969607BB_0CA6SID; domain=.nih.gov; path=/; expires=Sun, 05
+        Apr 2020 18:08:33 GMT
       X-Ua-Compatible:
       - IE=Edge
       X-Xss-Protection:
@@ -57,16 +67,11 @@ http_interactions:
       encoding: UTF-8
       string: |-
         <?xml version="1.0" ?>
-        <!DOCTYPE PubmedArticleSet PUBLIC "-//NLM//DTD PubMedArticle, 1st January 2017//EN" "https://dtd.nlm.nih.gov/ncbi/pubmed/out/pubmed_170101.dtd">
+        <!DOCTYPE PubmedArticleSet PUBLIC "-//NLM//DTD PubMedArticle, 1st January 2019//EN" "https://dtd.nlm.nih.gov/ncbi/pubmed/out/pubmed_190101.dtd">
         <PubmedArticleSet>
         <PubmedArticle>
             <MedlineCitation Status="PubMed-not-MEDLINE" Owner="NLM">
                 <PMID Version="1">26430984</PMID>
-                <DateCreated>
-                    <Year>2015</Year>
-                    <Month>10</Month>
-                    <Day>03</Day>
-                </DateCreated>
                 <DateCompleted>
                     <Year>2015</Year>
                     <Month>12</Month>
@@ -98,7 +103,7 @@ http_interactions:
                     </Pagination>
                     <ELocationID EIdType="doi" ValidYN="Y">10.1103/PhysRevLett.115.121604</ELocationID>
                     <Abstract>
-                        <AbstractText>We report a measurement of the time-dependent CP asymmetry of B[over ¯]^{0}→D_{CP}^{(*)}h^{0} decays, where the light neutral hadron h^{0} is a π^{0}, η, or ω meson, and the neutral D meson is reconstructed in the CP eigenstates K^{+}K^{-}, K_{S}^{0}π^{0}, or K_{S}^{0}ω. The measurement is performed combining the final data samples collected at the ϒ(4S) resonance by the BABAR and Belle experiments at the asymmetric-energy B factories PEP-II at SLAC and KEKB at KEK, respectively. The data samples contain (471±3)×10^{6} BB[over ¯] pairs recorded by the BABAR detector and (772±11)×10^{6} BB[over ¯] pairs recorded by the Belle detector. We measure the CP asymmetry parameters -η_{f}S=+0.66±0.10(stat)±0.06(syst) and C=-0.02±0.07(stat)±0.03(syst). These results correspond to the first observation of CP violation in B[over ¯]^{0}→D_{CP}^{(*)}h^{0} decays. The hypothesis of no mixing-induced CP violation is excluded in these decays at the level of 5.4 standard deviations.</AbstractText>
+                        <AbstractText>We report a measurement of the time-dependent CP asymmetry of B[over ¯]^{0}→D_{CP}^{(*)}h^{0} decays, where the light neutral hadron h^{0} is a π^{0}, η, or ω meson, and the neutral D meson is reconstructed in the CP eigenstates K^{+}K^{-}, K_{S}^{0}π^{0}, or K_{S}^{0}ω. The measurement is performed combining the final data samples collected at the ϒ(4S) resonance by the BABAR and Belle experiments at the asymmetric-energy B factories PEP-II at SLAC and KEKB at KEK, respectively. The data samples contain (471±3)×10^{6} BB[over ¯] pairs recorded by the BABAR detector and (772±11)×10^{6} BB[over ¯] pairs recorded by the Belle detector. We measure the CP asymmetry parameters -η_{f}S=+0.66±0.10(stat)±0.06(syst) and C=-0.02±0.07(stat)±0.03(syst). These results correspond to the first observation of CP violation in B[over ¯]^{0}→D_{CP}^{(*)}h^{0} decays. The hypothesis of no mixing-induced CP violation is excluded in these decays at the level of 5.4 standard deviations. </AbstractText>
                     </Abstract>
                     <AuthorList CompleteYN="Y">
                         <Author ValidYN="Y">
@@ -4231,5 +4236,5 @@ http_interactions:
 
         </PubmedArticleSet>
     http_version: 
-  recorded_at: Mon, 13 Nov 2017 20:57:51 GMT
-recorded_with: VCR 3.0.1
+  recorded_at: Fri, 05 Apr 2019 18:08:33 GMT
+recorded_with: VCR 4.0.0
