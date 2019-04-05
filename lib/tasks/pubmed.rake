@@ -1,6 +1,6 @@
 namespace :pubmed do
   def client
-    @client ||= PubmedClient.new
+    @client ||= Pubmed.client
   end
 
   desc 'update pubmed source records and rebuild pub_hashes for publications for a given list of cap_profile_ids passed in a text file'
