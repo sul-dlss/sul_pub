@@ -2,157 +2,6 @@
 http_interactions:
 - request:
     method: post
-    uri: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?api_key=a_fake_pubmed_key&db=pubmed&retmode=xml
-    body:
-      encoding: UTF-8
-      string: "&id=&id=10000166"
-    headers:
-      User-Agent:
-      - Faraday v0.13.1
-      Accept:
-      - "*/*"
-      Accept-Encoding:
-      - gzip,deflate
-      Date:
-      - Mon, 13 Nov 2017 20:57:52 GMT
-      Content-Type:
-      - application/x-www-form-urlencoded
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Mon, 13 Nov 2017 20:58:46 GMT
-      Server:
-      - Apache
-      Strict-Transport-Security:
-      - max-age=31536000; includeSubDomains; preload
-      Content-Security-Policy:
-      - upgrade-insecure-requests
-      Access-Control-Allow-Origin:
-      - "*"
-      Cache-Control:
-      - private
-      Ncbi-Phid:
-      - 990D6DCCA0A030E1000000000194018F
-      Ncbi-Sid:
-      - 990D6DCCA0A07861_0404SID
-      Content-Type:
-      - text/xml; charset=UTF-8
-      Set-Cookie:
-      - ncbi_sid=990D6DCCA0A07861_0404SID; domain=.nih.gov; path=/; expires=Tue, 13
-        Nov 2018 20:58:46 GMT
-      Vary:
-      - Accept-Encoding
-      Content-Encoding:
-      - gzip
-      X-Ua-Compatible:
-      - IE=Edge
-      X-Xss-Protection:
-      - 1; mode=block
-      Content-Length:
-      - '993'
-    body:
-      encoding: UTF-8
-      string: |-
-        <?xml version="1.0" ?>
-        <!DOCTYPE PubmedArticleSet PUBLIC "-//NLM//DTD PubMedArticle, 1st January 2017//EN" "https://dtd.nlm.nih.gov/ncbi/pubmed/out/pubmed_170101.dtd">
-        <PubmedArticleSet>
-        <PubmedArticle>
-            <MedlineCitation Status="Publisher" Owner="NLM">
-                <PMID Version="1">10000166</PMID>
-                <DateCreated>
-                    <Year>1999</Year>
-                    <Month>02</Month>
-                    <Day>17</Day>
-                </DateCreated>
-                <DateRevised>
-                    <Year>1999</Year>
-                    <Month>02</Month>
-                    <Day>17</Day>
-                </DateRevised>
-                <Article PubModel="Print">
-                    <Journal>
-                        <ISSN IssnType="Print">0163-1829</ISSN>
-                        <JournalIssue CitedMedium="Print">
-                            <Volume>45</Volume>
-                            <Issue>1</Issue>
-                            <PubDate>
-                                <Year>1992</Year>
-                                <Month>Jan</Month>
-                                <Day>01</Day>
-                            </PubDate>
-                        </JournalIssue>
-                        <Title>Physical review. B, Condensed matter</Title>
-                        <ISOAbbreviation>Phys. Rev., B Condens. Matter</ISOAbbreviation>
-                    </Journal>
-                    <ArticleTitle>Fluid permeability in porous media: Comparison of electrical estimates with hydrodynamical calculations.</ArticleTitle>
-                    <Pagination>
-                        <MedlinePgn>186-195</MedlinePgn>
-                    </Pagination>
-                    <AuthorList CompleteYN="Y">
-                        <Author ValidYN="Y">
-                            <LastName>Kostek</LastName>
-                            <Initials>S</Initials>
-                        </Author>
-                        <Author ValidYN="Y">
-                            <LastName>Schwartz</LastName>
-                            <Initials>LM</Initials>
-                        </Author>
-                        <Author ValidYN="Y">
-                            <LastName>Johnson</LastName>
-                            <Initials>DL</Initials>
-                        </Author>
-                    </AuthorList>
-                    <Language>eng</Language>
-                    <PublicationTypeList>
-                        <PublicationType UI="D016428">Journal Article</PublicationType>
-                    </PublicationTypeList>
-                </Article>
-                <MedlineJournalInfo>
-                    <Country>United States</Country>
-                    <MedlineTA>Phys Rev B Condens Matter</MedlineTA>
-                    <NlmUniqueID>9878217</NlmUniqueID>
-                    <ISSNLinking>0163-1829</ISSNLinking>
-                </MedlineJournalInfo>
-            </MedlineCitation>
-            <PubmedData>
-                <History>
-                    <PubMedPubDate PubStatus="pubmed">
-                        <Year>1992</Year>
-                        <Month>1</Month>
-                        <Day>1</Day>
-                        <Hour>0</Hour>
-                        <Minute>0</Minute>
-                    </PubMedPubDate>
-                    <PubMedPubDate PubStatus="medline">
-                        <Year>1999</Year>
-                        <Month>2</Month>
-                        <Day>19</Day>
-                        <Hour>0</Hour>
-                        <Minute>0</Minute>
-                    </PubMedPubDate>
-                    <PubMedPubDate PubStatus="entrez">
-                        <Year>1992</Year>
-                        <Month>1</Month>
-                        <Day>1</Day>
-                        <Hour>0</Hour>
-                        <Minute>0</Minute>
-                    </PubMedPubDate>
-                </History>
-                <PublicationStatus>ppublish</PublicationStatus>
-                <ArticleIdList>
-                    <ArticleId IdType="pubmed">10000166</ArticleId>
-                </ArticleIdList>
-            </PubmedData>
-        </PubmedArticle>
-
-        </PubmedArticleSet>
-    http_version: 
-  recorded_at: Mon, 13 Nov 2017 20:57:52 GMT
-- request:
-    method: post
     uri: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?api_key=Settings.PUBMED.API_KEY&db=pubmed&retmode=xml
     body:
       encoding: UTF-8
@@ -165,18 +14,18 @@ http_interactions:
       Accept-Encoding:
       - gzip,deflate
       Date:
-      - Fri, 05 Apr 2019 17:28:25 GMT
+      - Fri, 05 Apr 2019 18:08:34 GMT
       Content-Type:
       - application/x-www-form-urlencoded
       Cookie:
-      - ncbi_sid=3555940AC9A60B13_ADA5SID
+      - ncbi_sid=F7C3135D969607BB_0CA6SID
   response:
     status:
       code: 200
       message: OK
     headers:
       Date:
-      - Fri, 05 Apr 2019 17:28:25 GMT
+      - Fri, 05 Apr 2019 18:08:34 GMT
       Server:
       - Finatra
       Strict-Transport-Security:
@@ -184,15 +33,15 @@ http_interactions:
       Content-Security-Policy:
       - upgrade-insecure-requests
       X-Ratelimit-Remaining:
-      - '7'
+      - '6'
       Ncbi-Phid:
-      - 322C43FE71CC154500002813B4EE494D.1.1.m_3
+      - 322C43FE71CC15450000221D31F68ADD.1.1.m_3
       Cache-Control:
       - private
       L5d-Success-Class:
       - '1.0'
       Ncbi-Sid:
-      - 3555940AC9A60B13_ADA5SID
+      - F7C3135D969607BB_0CA6SID
       Content-Encoding:
       - gzip
       X-Ratelimit-Limit:
@@ -202,8 +51,8 @@ http_interactions:
       Content-Type:
       - text/xml; charset=UTF-8
       Set-Cookie:
-      - ncbi_sid=3555940AC9A60B13_ADA5SID; domain=.nih.gov; path=/; expires=Sun, 05
-        Apr 2020 17:28:25 GMT
+      - ncbi_sid=F7C3135D969607BB_0CA6SID; domain=.nih.gov; path=/; expires=Sun, 05
+        Apr 2020 18:08:35 GMT
       X-Ua-Compatible:
       - IE=Edge
       X-Xss-Protection:
@@ -302,5 +151,5 @@ http_interactions:
 
         </PubmedArticleSet>
     http_version: 
-  recorded_at: Fri, 05 Apr 2019 17:28:25 GMT
+  recorded_at: Fri, 05 Apr 2019 18:08:35 GMT
 recorded_with: VCR 4.0.0

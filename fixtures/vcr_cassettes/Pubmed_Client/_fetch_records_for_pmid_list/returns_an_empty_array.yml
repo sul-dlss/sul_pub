@@ -2,70 +2,7 @@
 http_interactions:
 - request:
     method: post
-    uri: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?api_key=a_fake_pubmed_key&db=pubmed&retmode=xml
-    body:
-      encoding: UTF-8
-      string: "&id=233333333333333&id=45555666666666"
-    headers:
-      User-Agent:
-      - Faraday v0.13.1
-      Accept:
-      - "*/*"
-      Accept-Encoding:
-      - gzip,deflate
-      Date:
-      - Mon, 13 Nov 2017 20:57:38 GMT
-      Content-Type:
-      - application/x-www-form-urlencoded
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Mon, 13 Nov 2017 20:58:32 GMT
-      Server:
-      - Apache
-      Strict-Transport-Security:
-      - max-age=31536000; includeSubDomains; preload
-      Content-Security-Policy:
-      - upgrade-insecure-requests
-      Access-Control-Allow-Origin:
-      - "*"
-      Cache-Control:
-      - private
-      Ncbi-Phid:
-      - 03EDCE32A0A03C61000000000144013F
-      Ncbi-Sid:
-      - 03EDCE32A0A07781_0324SID
-      Content-Type:
-      - text/xml; charset=UTF-8
-      Set-Cookie:
-      - ncbi_sid=03EDCE32A0A07781_0324SID; domain=.nih.gov; path=/; expires=Tue, 13
-        Nov 2018 20:58:32 GMT
-      Vary:
-      - Accept-Encoding
-      Content-Encoding:
-      - gzip
-      X-Ua-Compatible:
-      - IE=Edge
-      X-Xss-Protection:
-      - 1; mode=block
-      Content-Length:
-      - '177'
-    body:
-      encoding: UTF-8
-      string: |-
-        <?xml version="1.0" ?>
-        <!DOCTYPE PubmedArticleSet PUBLIC "-//NLM//DTD PubMedArticle, 1st January 2017//EN" "https://dtd.nlm.nih.gov/ncbi/pubmed/out/pubmed_170101.dtd">
-        <PubmedArticleSet>
-
-        </PubmedArticleSet>
-    http_version: 
-  recorded_at: Mon, 13 Nov 2017 20:57:38 GMT
-- request:
-    method: post
-    uri: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?api_key=aa7564b9158885601ebfd96ba829fb6e5a08&db=pubmed&retmode=xml
+    uri: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?api_key=Settings.PUBMED.API_KEY&db=pubmed&retmode=xml
     body:
       encoding: UTF-8
       string: "&id=233333333333333&id=45555666666666"
@@ -77,7 +14,7 @@ http_interactions:
       Accept-Encoding:
       - gzip,deflate
       Date:
-      - Thu, 21 Mar 2019 20:28:17 GMT
+      - Fri, 05 Apr 2019 18:08:01 GMT
       Content-Type:
       - application/x-www-form-urlencoded
   response:
@@ -86,7 +23,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 21 Mar 2019 20:28:17 GMT
+      - Fri, 05 Apr 2019 18:08:01 GMT
       Server:
       - Finatra
       Strict-Transport-Security:
@@ -94,15 +31,15 @@ http_interactions:
       Content-Security-Policy:
       - upgrade-insecure-requests
       X-Ratelimit-Remaining:
-      - '8'
+      - '9'
       Ncbi-Phid:
-      - 322C1335D2DEB7E5000023E042FFEBE7.1.1.m_3
+      - 322C43FE71CC154500001B1D068D1D75.1.1.m_3
       Cache-Control:
       - private
       L5d-Success-Class:
       - '1.0'
       Ncbi-Sid:
-      - 7C34E6EC79CE07B9_00B7SID
+      - 853E1B8FACC973CF_E664SID
       Content-Encoding:
       - gzip
       X-Ratelimit-Limit:
@@ -112,8 +49,8 @@ http_interactions:
       Content-Type:
       - text/xml; charset=UTF-8
       Set-Cookie:
-      - ncbi_sid=7C34E6EC79CE07B9_00B7SID; domain=.nih.gov; path=/; expires=Sat, 21
-        Mar 2020 20:28:18 GMT
+      - ncbi_sid=853E1B8FACC973CF_E664SID; domain=.nih.gov; path=/; expires=Sun, 05
+        Apr 2020 18:08:02 GMT
       X-Ua-Compatible:
       - IE=Edge
       X-Xss-Protection:
@@ -129,5 +66,5 @@ http_interactions:
 
         </PubmedArticleSet>
     http_version: 
-  recorded_at: Thu, 21 Mar 2019 20:28:18 GMT
+  recorded_at: Fri, 05 Apr 2019 18:08:02 GMT
 recorded_with: VCR 4.0.0

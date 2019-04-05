@@ -26,7 +26,7 @@ describe Pubmed::Client do
     context 'without additional arguments' do
       it 'returns a list of pubmed records' do
         VCR.use_cassette('Pubmed_Client/_search/returns_a_list') do
-          expect(Nokogiri::XML(pubmed_client.search(term)).xpath('//IdList/Id').size).to eq(1140)
+          expect(Nokogiri::XML(pubmed_client.search(term)).xpath('//IdList/Id').size).to eq(1141)
         end
       end
     end
