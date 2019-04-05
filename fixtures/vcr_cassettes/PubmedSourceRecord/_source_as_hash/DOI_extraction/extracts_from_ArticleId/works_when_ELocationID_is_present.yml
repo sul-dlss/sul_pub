@@ -207,4 +207,210 @@ http_interactions:
         </PubmedArticleSet>
     http_version: 
   recorded_at: Mon, 13 Nov 2017 20:57:50 GMT
-recorded_with: VCR 3.0.1
+- request:
+    method: post
+    uri: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?api_key=Settings.PUBMED.API_KEY&db=pubmed&retmode=xml
+    body:
+      encoding: UTF-8
+      string: "&id=&id=23453302"
+    headers:
+      User-Agent:
+      - stanford-library-sul-pub
+      Accept:
+      - "*/*"
+      Accept-Encoding:
+      - gzip,deflate
+      Date:
+      - Fri, 05 Apr 2019 17:28:24 GMT
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 05 Apr 2019 17:28:24 GMT
+      Server:
+      - Finatra
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Content-Security-Policy:
+      - upgrade-insecure-requests
+      X-Ratelimit-Remaining:
+      - '9'
+      Ncbi-Phid:
+      - 322C43FE71CC154500002413B4097426.1.1.m_3
+      Cache-Control:
+      - private
+      L5d-Success-Class:
+      - '1.0'
+      Ncbi-Sid:
+      - 3555940AC9A60B13_ADA5SID
+      Content-Encoding:
+      - gzip
+      X-Ratelimit-Limit:
+      - '10'
+      Access-Control-Allow-Origin:
+      - "*"
+      Content-Type:
+      - text/xml; charset=UTF-8
+      Set-Cookie:
+      - ncbi_sid=3555940AC9A60B13_ADA5SID; domain=.nih.gov; path=/; expires=Sun, 05
+        Apr 2020 17:28:24 GMT
+      X-Ua-Compatible:
+      - IE=Edge
+      X-Xss-Protection:
+      - 1; mode=block
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0" ?>
+        <!DOCTYPE PubmedArticleSet PUBLIC "-//NLM//DTD PubMedArticle, 1st January 2019//EN" "https://dtd.nlm.nih.gov/ncbi/pubmed/out/pubmed_190101.dtd">
+        <PubmedArticleSet>
+        <PubmedArticle>
+            <MedlineCitation Status="MEDLINE" Owner="NLM">
+                <PMID Version="1">23453302</PMID>
+                <DateCompleted>
+                    <Year>2013</Year>
+                    <Month>09</Month>
+                    <Day>30</Day>
+                </DateCompleted>
+                <DateRevised>
+                    <Year>2013</Year>
+                    <Month>04</Month>
+                    <Day>09</Day>
+                </DateRevised>
+                <Article PubModel="Print-Electronic">
+                    <Journal>
+                        <ISSN IssnType="Electronic">1879-2782</ISSN>
+                        <JournalIssue CitedMedium="Internet">
+                            <Volume>41</Volume>
+                            <PubDate>
+                                <Year>2013</Year>
+                                <Month>May</Month>
+                            </PubDate>
+                        </JournalIssue>
+                        <Title>Neural networks : the official journal of the International Neural Network Society</Title>
+                        <ISOAbbreviation>Neural Netw</ISOAbbreviation>
+                    </Journal>
+                    <ArticleTitle>Cognitive memory.</ArticleTitle>
+                    <Pagination>
+                        <MedlinePgn>3-14</MedlinePgn>
+                    </Pagination>
+                    <ELocationID EIdType="doi" ValidYN="Y">10.1016/j.neunet.2013.01.016</ELocationID>
+                    <ELocationID EIdType="pii" ValidYN="Y">S0893-6080(13)00031-2</ELocationID>
+                    <Abstract>
+                        <AbstractText>Regarding the workings of the human mind, memory and pattern recognition seem to be intertwined. You generally do not have one without the other. Taking inspiration from life experience, a new form of computer memory has been devised. Certain conjectures about human memory are keys to the central idea. The design of a practical and useful &quot;cognitive&quot; memory system is contemplated, a memory system that may also serve as a model for many aspects of human memory. The new memory does not function like a computer memory where specific data is stored in specific numbered registers and retrieval is done by reading the contents of the specified memory register, or done by matching key words as with a document search. Incoming sensory data would be stored at the next available empty memory location, and indeed could be stored redundantly at several empty locations. The stored sensory data would neither have key words nor would it be located in known or specified memory locations. Sensory inputs concerning a single object or subject are stored together as patterns in a single &quot;file folder&quot; or &quot;memory folder&quot;. When the contents of the folder are retrieved, sights, sounds, tactile feel, smell, etc., are obtained all at the same time. Retrieval would be initiated by a query or a prompt signal from a current set of sensory inputs or patterns. A search through the memory would be made to locate stored data that correlates with or relates to the prompt input. The search would be done by a retrieval system whose first stage makes use of autoassociative artificial neural networks and whose second stage relies on exhaustive search. Applications of cognitive memory systems have been made to visual aircraft identification, aircraft navigation, and human facial recognition. Concerning human memory, reasons are given why it is unlikely that long-term memory is stored in the synapses of the brain's neural networks. Reasons are given suggesting that long-term memory is stored in DNA or RNA. Neural networks are an important component of the human memory system, and their purpose is for information retrieval, not for information storage. The brain's neural networks are analog devices, subject to drift and unplanned change. Only with constant training is reliable action possible. Good training time is during sleep and while awake and making use of one's memory. A cognitive memory is a learning system. Learning involves storage of patterns or data in a cognitive memory. The learning process for cognitive memory is unsupervised, i.e. autonomous.</AbstractText>
+                        <CopyrightInformation>Copyright © 2013 Elsevier Ltd. All rights reserved.</CopyrightInformation>
+                    </Abstract>
+                    <AuthorList CompleteYN="Y">
+                        <Author ValidYN="Y">
+                            <LastName>Widrow</LastName>
+                            <ForeName>Bernard</ForeName>
+                            <Initials>B</Initials>
+                            <AffiliationInfo>
+                                <Affiliation>ISL, Department of Electrical Engineering, Stanford University, CA, USA. widrow@stanford.edu</Affiliation>
+                            </AffiliationInfo>
+                        </Author>
+                        <Author ValidYN="Y">
+                            <LastName>Aragon</LastName>
+                            <ForeName>Juan Carlos</ForeName>
+                            <Initials>JC</Initials>
+                        </Author>
+                    </AuthorList>
+                    <Language>eng</Language>
+                    <PublicationTypeList>
+                        <PublicationType UI="D016428">Journal Article</PublicationType>
+                    </PublicationTypeList>
+                    <ArticleDate DateType="Electronic">
+                        <Year>2013</Year>
+                        <Month>02</Month>
+                        <Day>04</Day>
+                    </ArticleDate>
+                </Article>
+                <MedlineJournalInfo>
+                    <Country>United States</Country>
+                    <MedlineTA>Neural Netw</MedlineTA>
+                    <NlmUniqueID>8805018</NlmUniqueID>
+                    <ISSNLinking>0893-6080</ISSNLinking>
+                </MedlineJournalInfo>
+                <CitationSubset>IM</CitationSubset>
+                <MeshHeadingList>
+                    <MeshHeading>
+                        <DescriptorName UI="D000465" MajorTopicYN="Y">Algorithms</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName UI="D001245" MajorTopicYN="N">Association Learning</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName UI="D003071" MajorTopicYN="Y">Cognition</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName UI="D006801" MajorTopicYN="N">Humans</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName UI="D057567" MajorTopicYN="Y">Memory, Long-Term</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName UI="D016571" MajorTopicYN="Y">Neural Networks (Computer)</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName UI="D010364" MajorTopicYN="Y">Pattern Recognition, Visual</DescriptorName>
+                    </MeshHeading>
+                </MeshHeadingList>
+            </MedlineCitation>
+            <PubmedData>
+                <History>
+                    <PubMedPubDate PubStatus="received">
+                        <Year>2012</Year>
+                        <Month>01</Month>
+                        <Day>20</Day>
+                    </PubMedPubDate>
+                    <PubMedPubDate PubStatus="revised">
+                        <Year>2012</Year>
+                        <Month>11</Month>
+                        <Day>02</Day>
+                    </PubMedPubDate>
+                    <PubMedPubDate PubStatus="accepted">
+                        <Year>2013</Year>
+                        <Month>01</Month>
+                        <Day>28</Day>
+                    </PubMedPubDate>
+                    <PubMedPubDate PubStatus="entrez">
+                        <Year>2013</Year>
+                        <Month>3</Month>
+                        <Day>5</Day>
+                        <Hour>6</Hour>
+                        <Minute>0</Minute>
+                    </PubMedPubDate>
+                    <PubMedPubDate PubStatus="pubmed">
+                        <Year>2013</Year>
+                        <Month>3</Month>
+                        <Day>5</Day>
+                        <Hour>6</Hour>
+                        <Minute>0</Minute>
+                    </PubMedPubDate>
+                    <PubMedPubDate PubStatus="medline">
+                        <Year>2013</Year>
+                        <Month>10</Month>
+                        <Day>1</Day>
+                        <Hour>6</Hour>
+                        <Minute>0</Minute>
+                    </PubMedPubDate>
+                </History>
+                <PublicationStatus>ppublish</PublicationStatus>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">23453302</ArticleId>
+                    <ArticleId IdType="pii">S0893-6080(13)00031-2</ArticleId>
+                    <ArticleId IdType="doi">10.1016/j.neunet.2013.01.016</ArticleId>
+                </ArticleIdList>
+            </PubmedData>
+        </PubmedArticle>
+
+        </PubmedArticleSet>
+    http_version: 
+  recorded_at: Fri, 05 Apr 2019 17:28:24 GMT
+recorded_with: VCR 4.0.0

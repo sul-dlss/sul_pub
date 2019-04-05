@@ -97,4 +97,63 @@ http_interactions:
 '
     http_version: 
   recorded_at: Fri, 22 Mar 2019 23:31:22 GMT
+- request:
+    method: get
+    uri: https://cap-uat.stanford.edu/cap-api/api/cap/v1/authors/999999
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.15.4
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip,deflate
+      Date:
+      - Fri, 05 Apr 2019 17:29:38 GMT
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer private_bearer_token
+  response:
+    status:
+      code: 401
+      message: Unauthorized
+    headers:
+      Date:
+      - Fri, 05 Apr 2019 17:29:38 GMT
+      Server:
+      - Apache/2.4.27 (Oracle) OpenSSL/1.0.1e-fips mod_jk/1.2.42
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      - no-store
+      Pragma:
+      - no-cache
+      - no-cache
+      Expires:
+      - '0'
+      Strict-Transport-Security:
+      - max-age=31536000 ; includeSubDomains
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - DENY
+      X-Content-Type-Options:
+      - nosniff
+      Www-Authenticate:
+      - 'Bearer realm="oauth", error="invalid_token", error_description="Invalid access
+        token. Unable to decode or verify JWT: private_bearer_token"'
+      Connection:
+      - close
+      Transfer-Encoding:
+      - chunked
+      Content-Type:
+      - application/json;charset=UTF-8
+    body:
+      encoding: UTF-8
+      string: '{"error":"invalid_token","error_description":"Invalid access token.
+        Unable to decode or verify JWT: private_bearer_token"}'
+    http_version: 
+  recorded_at: Fri, 05 Apr 2019 17:29:38 GMT
 recorded_with: VCR 4.0.0
