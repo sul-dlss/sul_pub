@@ -11,15 +11,6 @@ task default: [:ci]
 desc 'Continuous integration task run on travis'
 task ci: [:rubocop, :spec]
 
-begin
-  require 'rspec/core/rake_task'
-
-  desc 'Run only data-integration tests against live ScienceWire (excluded by default)'
-  RSpec::Core::RakeTask.new('spec_with_data_integration') { |t| t.rspec_opts = '--tag data-integration' }
-rescue LoadError
-  puts 'Unable to load RSpec.'
-end
-
 desc 'Run rubocop on ruby files in a patch on master'
 task :rubocop do
   begin
