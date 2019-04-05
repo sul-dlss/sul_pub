@@ -415,4 +415,499 @@ http_interactions:
         </PubmedArticleSet>
     http_version: 
   recorded_at: Mon, 13 Nov 2017 20:57:50 GMT
-recorded_with: VCR 3.0.1
+- request:
+    method: post
+    uri: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?api_key=Settings.PUBMED.API_KEY&db=pubmed&retmode=xml
+    body:
+      encoding: UTF-8
+      string: "&id=&id=12529422"
+    headers:
+      User-Agent:
+      - stanford-library-sul-pub
+      Accept:
+      - "*/*"
+      Accept-Encoding:
+      - gzip,deflate
+      Date:
+      - Fri, 05 Apr 2019 17:22:31 GMT
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 05 Apr 2019 17:22:30 GMT
+      Server:
+      - Finatra
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Content-Security-Policy:
+      - upgrade-insecure-requests
+      X-Ratelimit-Remaining:
+      - '9'
+      Ncbi-Phid:
+      - 939B43EE851642750000200DD5790203.1.1.m_3
+      Cache-Control:
+      - private
+      L5d-Success-Class:
+      - '1.0'
+      Ncbi-Sid:
+      - 240DCEA4D226D1D5_53A5SID
+      Content-Encoding:
+      - gzip
+      X-Ratelimit-Limit:
+      - '10'
+      Access-Control-Allow-Origin:
+      - "*"
+      Content-Type:
+      - text/xml; charset=UTF-8
+      Set-Cookie:
+      - ncbi_sid=240DCEA4D226D1D5_53A5SID; domain=.nih.gov; path=/; expires=Sun, 05
+        Apr 2020 17:22:31 GMT
+      X-Ua-Compatible:
+      - IE=Edge
+      X-Xss-Protection:
+      - 1; mode=block
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0" ?>
+        <!DOCTYPE PubmedArticleSet PUBLIC "-//NLM//DTD PubMedArticle, 1st January 2019//EN" "https://dtd.nlm.nih.gov/ncbi/pubmed/out/pubmed_190101.dtd">
+        <PubmedArticleSet>
+        <PubmedArticle>
+            <MedlineCitation Status="MEDLINE" Owner="NLM">
+                <PMID Version="1">12529422</PMID>
+                <DateCompleted>
+                    <Year>2003</Year>
+                    <Month>07</Month>
+                    <Day>28</Day>
+                </DateCompleted>
+                <DateRevised>
+                    <Year>2018</Year>
+                    <Month>11</Month>
+                    <Day>13</Day>
+                </DateRevised>
+                <Article PubModel="Print">
+                    <Journal>
+                        <ISSN IssnType="Print">1059-1524</ISSN>
+                        <JournalIssue CitedMedium="Print">
+                            <Volume>14</Volume>
+                            <Issue>1</Issue>
+                            <PubDate>
+                                <Year>2003</Year>
+                                <Month>Jan</Month>
+                            </PubDate>
+                        </JournalIssue>
+                        <Title>Molecular biology of the cell</Title>
+                        <ISOAbbreviation>Mol. Biol. Cell</ISOAbbreviation>
+                    </Journal>
+                    <ArticleTitle>N-terminal domain of yeast telomerase reverse transcriptase: recruitment of Est3p to the telomerase complex.</ArticleTitle>
+                    <Pagination>
+                        <MedlinePgn>1-13</MedlinePgn>
+                    </Pagination>
+                    <Abstract>
+                        <AbstractText>Telomerase is a reverse transcriptase that maintains chromosome ends. The N-terminal half of the catalytic protein subunit (TERT) contains three functional domains (I, II, and III) that are conserved among TERTs but not found in other reverse transcriptases. Guided by an amino acid sequence alignment of nine TERT proteins, mutations were introduced into yeast TERT (Est2p). In support of the proposed alignment, mutation of virtually all conserved residues resulted in loss-of-function or temperature sensitivity, accompanied by telomere shortening. Overexpression of telomerase component Est3p led to allele-specific suppression of the temperature-sensitive mutations in region I, suggesting that Est3p interacts with this protein domain. As predicted by the genetic results, a lethal mutation in region I resulted in loss of Est3p from the telomerase complex. We conclude that Est2p region I is required for the recruitment of Est3p to yeast telomerase. Given the phylogenetic conservation of region I of TERT, this protein domain may provide the equivalent function in all telomerases.</AbstractText>
+                    </Abstract>
+                    <AuthorList CompleteYN="Y">
+                        <Author ValidYN="Y">
+                            <LastName>Friedman</LastName>
+                            <ForeName>Katherine L</ForeName>
+                            <Initials>KL</Initials>
+                            <AffiliationInfo>
+                                <Affiliation>Vanderbilt University, Department of Biological Sciences, Nashville, Tennessee 37235, USA. katherine.friedman@vanderbilt.edu</Affiliation>
+                            </AffiliationInfo>
+                        </Author>
+                        <Author ValidYN="Y">
+                            <LastName>Heit</LastName>
+                            <ForeName>Jeremy J</ForeName>
+                            <Initials>JJ</Initials>
+                        </Author>
+                        <Author ValidYN="Y">
+                            <LastName>Long</LastName>
+                            <ForeName>David M</ForeName>
+                            <Initials>DM</Initials>
+                        </Author>
+                        <Author ValidYN="Y">
+                            <LastName>Cech</LastName>
+                            <ForeName>Thomas R</ForeName>
+                            <Initials>TR</Initials>
+                        </Author>
+                    </AuthorList>
+                    <Language>eng</Language>
+                    <PublicationTypeList>
+                        <PublicationType UI="D016428">Journal Article</PublicationType>
+                    </PublicationTypeList>
+                </Article>
+                <MedlineJournalInfo>
+                    <Country>United States</Country>
+                    <MedlineTA>Mol Biol Cell</MedlineTA>
+                    <NlmUniqueID>9201390</NlmUniqueID>
+                    <ISSNLinking>1059-1524</ISSNLinking>
+                </MedlineJournalInfo>
+                <ChemicalList>
+                    <Chemical>
+                        <RegistryNumber>0</RegistryNumber>
+                        <NameOfSubstance UI="D004268">DNA-Binding Proteins</NameOfSubstance>
+                    </Chemical>
+                    <Chemical>
+                        <RegistryNumber>0</RegistryNumber>
+                        <NameOfSubstance UI="D005656">Fungal Proteins</NameOfSubstance>
+                    </Chemical>
+                    <Chemical>
+                        <RegistryNumber>0</RegistryNumber>
+                        <NameOfSubstance UI="D011506">Proteins</NameOfSubstance>
+                    </Chemical>
+                    <Chemical>
+                        <RegistryNumber>0</RegistryNumber>
+                        <NameOfSubstance UI="D029701">Saccharomyces cerevisiae Proteins</NameOfSubstance>
+                    </Chemical>
+                    <Chemical>
+                        <RegistryNumber>EC 2.7.7.49</RegistryNumber>
+                        <NameOfSubstance UI="C099024">EST1 protein, S cerevisiae</NameOfSubstance>
+                    </Chemical>
+                    <Chemical>
+                        <RegistryNumber>EC 2.7.7.49</RegistryNumber>
+                        <NameOfSubstance UI="C491580">EST3 protein, S cerevisiae</NameOfSubstance>
+                    </Chemical>
+                    <Chemical>
+                        <RegistryNumber>EC 2.7.7.49</RegistryNumber>
+                        <NameOfSubstance UI="D019098">Telomerase</NameOfSubstance>
+                    </Chemical>
+                </ChemicalList>
+                <CitationSubset>IM</CitationSubset>
+                <MeshHeadingList>
+                    <MeshHeading>
+                        <DescriptorName UI="D000595" MajorTopicYN="N">Amino Acid Sequence</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName UI="D017124" MajorTopicYN="N">Conserved Sequence</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName UI="D004268" MajorTopicYN="N">DNA-Binding Proteins</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName UI="D005656" MajorTopicYN="Y">Fungal Proteins</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName UI="D006358" MajorTopicYN="N">Hot Temperature</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName UI="D008969" MajorTopicYN="N">Molecular Sequence Data</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName UI="D011233" MajorTopicYN="N">Precipitin Tests</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName UI="D017434" MajorTopicYN="N">Protein Structure, Tertiary</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName UI="D011506" MajorTopicYN="N">Proteins</DescriptorName>
+                        <QualifierName UI="Q000378" MajorTopicYN="Y">metabolism</QualifierName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName UI="D029701" MajorTopicYN="N">Saccharomyces cerevisiae Proteins</DescriptorName>
+                        <QualifierName UI="Q000378" MajorTopicYN="N">metabolism</QualifierName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName UI="D020539" MajorTopicYN="N">Sequence Analysis, Protein</DescriptorName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName UI="D019098" MajorTopicYN="N">Telomerase</DescriptorName>
+                        <QualifierName UI="Q000378" MajorTopicYN="Y">metabolism</QualifierName>
+                    </MeshHeading>
+                    <MeshHeading>
+                        <DescriptorName UI="D015003" MajorTopicYN="N">Yeasts</DescriptorName>
+                        <QualifierName UI="Q000201" MajorTopicYN="Y">enzymology</QualifierName>
+                        <QualifierName UI="Q000378" MajorTopicYN="N">metabolism</QualifierName>
+                    </MeshHeading>
+                </MeshHeadingList>
+            </MedlineCitation>
+            <PubmedData>
+                <History>
+                    <PubMedPubDate PubStatus="pubmed">
+                        <Year>2003</Year>
+                        <Month>1</Month>
+                        <Day>17</Day>
+                        <Hour>4</Hour>
+                        <Minute>0</Minute>
+                    </PubMedPubDate>
+                    <PubMedPubDate PubStatus="medline">
+                        <Year>2003</Year>
+                        <Month>7</Month>
+                        <Day>29</Day>
+                        <Hour>5</Hour>
+                        <Minute>0</Minute>
+                    </PubMedPubDate>
+                    <PubMedPubDate PubStatus="entrez">
+                        <Year>2003</Year>
+                        <Month>1</Month>
+                        <Day>17</Day>
+                        <Hour>4</Hour>
+                        <Minute>0</Minute>
+                    </PubMedPubDate>
+                </History>
+                <PublicationStatus>ppublish</PublicationStatus>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">12529422</ArticleId>
+                    <ArticleId IdType="doi">10.1091/mbc.e02-06-0327</ArticleId>
+                    <ArticleId IdType="pmc">PMC140223</ArticleId>
+                </ArticleIdList>
+                <ReferenceList>
+                    <Reference>
+                        <Citation>Anal Biochem. 1992 Jan;200(1):81-8</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">1595905</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Science. 1999 Oct 1;286(5437):117-20</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">10506558</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Science. 1994 Oct 21;266(5184):404-9</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">7545955</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Science. 1995 Jul 21;269(5222):396-400</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">7618104</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Genetics. 1995 Dec;141(4):1263-74</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">8601472</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Genetics. 1996 Dec;144(4):1399-412</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">8978029</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Science. 1997 Apr 25;276(5312):561-7</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">9110970</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Science. 1997 Aug 15;277(5328):955-9</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">9252327</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Cell. 1997 Aug 22;90(4):785-95</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">9288757</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Proc Natl Acad Sci U S A. 1997 Oct 14;94(21):11190-5</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">9326584</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Hum Mol Genet. 1997 Nov;6(12):2011-9</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">9328464</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Genes Dev. 1997 Nov 1;11(21):2790-800</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">9353249</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Genes Dev. 1997 Dec 1;11(23):3109-15</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">9389643</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Genes Dev. 1998 Apr 15;12(8):1073-85</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">9553037</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Oncogene. 1998 Apr 2;16(13):1723-30</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">9582020</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Proc Natl Acad Sci U S A. 1998 Jul 21;95(15):8479-84</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">9671703</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Genes Dev. 1999 Nov 1;13(21):2863-74</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">10557213</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Mol Cell Biol. 1999 Dec;19(12):8083-93</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">10567534</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Proc Natl Acad Sci U S A. 1999 Dec 21;96(26):14813-8</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">10611295</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Mol Cell Biol. 2000 Mar;20(6):1947-55</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">10688642</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Mol Cell Biol. 2000 Jul;20(14):5196-207</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">10866675</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Gene. 2000 Jun 27;251(2):101-8</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">10876087</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Genes Dev. 2000 Jul 15;14(14):1777-88</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">10898792</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Curr Biol. 2000 Jun 29;10(13):809-12</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">10898986</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>EMBO J. 2000 Aug 15;19(16):4412-22</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">10944124</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Mol Cell. 2000 Aug;6(2):493-9</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">10983995</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Mol Biol Cell. 2000 Oct;11(10):3329-40</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">11029039</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Mol Cell Biol. 2001 Feb;21(4):990-1000</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">11158287</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Cell. 2001 Feb 9;104(3):387-96</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">11239396</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Mol Cell Biol. 2001 Nov;21(22):7775-86</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">11604512</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Mol Cell Biol. 2002 Apr;22(7):2366-74</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">11884619</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Science. 2002 Aug 9;297(5583):1023-6</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">12169735</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Cell. 1987 Dec 24;51(6):887-98</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">3319189</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Nature. 1989 Jan 26;337(6205):331-7</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">2463488</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Cell. 1989 May 19;57(4):633-43</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">2655926</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Genetics. 1989 May;122(1):19-27</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">2659436</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Gene. 1992 Jan 2;110(1):119-22</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">1544568</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Proc Natl Acad Sci U S A. 1998 Jul 21;95(15):8485-90</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">9671704</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>FEBS Lett. 1999 Sep 3;457(3):465-9</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">10471830</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Nature. 1999 Sep 9;401(6749):177-80</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">10490028</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                    <Reference>
+                        <Citation>Cell. 1993 Apr 23;73(2):347-60</Citation>
+                        <ArticleIdList>
+                            <ArticleId IdType="pubmed">8477448</ArticleId>
+                        </ArticleIdList>
+                    </Reference>
+                </ReferenceList>
+            </PubmedData>
+        </PubmedArticle>
+
+        </PubmedArticleSet>
+    http_version: 
+  recorded_at: Fri, 05 Apr 2019 17:22:31 GMT
+recorded_with: VCR 4.0.0
