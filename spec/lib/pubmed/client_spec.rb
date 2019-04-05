@@ -35,7 +35,7 @@ describe Pubmed::Client do
       let(:addl_args) { 'reldate=90&datetype=edat' }
       it 'returns a list of pubmed records' do
         VCR.use_cassette('Pubmed_Client/_search/returns_a_smaller_list') do
-          expect(Nokogiri::XML(pubmed_client.search(term, addl_args)).xpath('//IdList/Id').size).to eq(7)
+          expect(Nokogiri::XML(pubmed_client.search(term, addl_args)).xpath('//IdList/Id').size).to eq(8)
         end
       end
     end
