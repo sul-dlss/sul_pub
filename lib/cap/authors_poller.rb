@@ -58,10 +58,10 @@ module Cap
         relDate: Settings.PUBMED.update_timeframe
       }
       Author.where(id: @new_authors_to_harvest_queue).find_in_batches(batch_size: 250) do |authors|
-        AllSources::Harvester.new.harvest(authors, new_author_options)
+        AllSources.harvester.harvest(authors, new_author_options)
       end
       Author.where(id: @changed_authors_to_harvest_queue).find_in_batches(batch_size: 250) do |authors|
-        AllSources::Harvester.new.harvest(authors, update_author_options)
+        AllSources.harvester.harvest(authors, update_author_options)
       end
     end
 

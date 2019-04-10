@@ -54,16 +54,6 @@ module Pubmed
         matched
       end
 
-      # Consistent log prefix for status updates
-      # @param author [Author]
-      # @param [String] message
-      # @return [void]
-      def log_info(author, message)
-        prefix = self.class.to_s
-        prefix += " - author #{author.id}" if author.is_a?(Author)
-        logger.info "#{prefix} - #{message}"
-      end
-
       # Process a pubmed records
       # @param author [Author]
       # @param pmid [String]
