@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  protect_from_forgery
+  protect_from_forgery # skipped in API only controllers (which happens to be all as of April 2019)
 
   def check_authorization
     return head :unauthorized if request.env['HTTP_CAPKEY'].nil?
