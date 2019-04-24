@@ -4,6 +4,7 @@ class PublicationsController < ApplicationController
   before_action :check_authorization
   before_action :ensure_json_request, except: [:index]
   before_action :ensure_request_body_exists, only: [:create, :update]
+  skip_forgery_protection # this controller only has API calls from profiles
 
   # Retreive publications for a specific profile ID, optionally in a given time period
   # GET /publications.json                                        # all publications

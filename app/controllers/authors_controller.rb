@@ -1,6 +1,7 @@
 class AuthorsController < ApplicationController
   before_action :check_authorization
   before_action :ensure_json_request
+  skip_forgery_protection # this controller only has API calls from profiles
 
   # request an immediate harvest of this user's profile
   # POST /authors/:cap_profile_id/harvest.json
