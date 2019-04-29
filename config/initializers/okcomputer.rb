@@ -13,10 +13,11 @@ class VersionCheck < OkComputer::AppVersionCheck
 end
 OkComputer::Registry.register 'version', VersionCheck.new
 
-# Simple echo of the REVISION file
+# Simple echo of the REVISION file and last modified time
 class RevisionCheck < OkComputer::Check
   def check
-    mark_message File.read(Rails.root.join('REVISION')).chomp
+    revision_filename = Rails.root.join('REVISION')
+    mark_message "#{File.read(revision_filename).chomp} : last deployed @ #{File.mtime(revision_filename)}"
   rescue => e
     mark_failure
     mark_message "#{e.class.name} received: #{e.message}"
