@@ -171,9 +171,9 @@ class Author < ActiveRecord::Base
         cap_profile_id: cap_profile_id,
         featured: false, status: 'new', visibility: 'private'
       )
-      pub.pubhash_needs_update! # Add to pub_hash[:authorship]
-      pub.save! # contrib.save! not needed
     end
+    pub.pubhash_needs_update! # Add to pub_hash[:authorship]
+    pub.save! # contrib.save! not needed
   end
 
   private

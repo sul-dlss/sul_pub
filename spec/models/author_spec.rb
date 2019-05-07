@@ -177,4 +177,22 @@ describe Author do
       expect(subject).not_to be_harvestable
     end
   end
+
+  describe '#assign_pub' do
+    let(:pub) { create :publication_without_author }
+
+    it 'creates contrib and updates pubhash' do
+      expect(subject.publications.count).to eq(0)
+      expect(subject.contributions.count).to eq(0)
+      expect(Publication.find(pub.id).pub_hash[:authorship].length).to eq(0)
+
+      subject.assign_pub(pub)
+      expect(subject.publications.count).to eq(1)
+      expect(subject.contributions.count).to eq(1)
+
+      # Verify that author added to publication
+      # See https://github.com/sul-dlss/sul_pub/issues/1052
+      expect(Publication.find(pub.id).pub_hash[:authorship].length).to eq(1)
+    end
+  end
 end
