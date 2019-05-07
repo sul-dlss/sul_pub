@@ -52,4 +52,16 @@ FactoryBot.define do
              identifier_value: '10048354')
     end
   end
+
+  factory :publication_without_author, parent: :publication do
+    pub_hash do
+      {
+        title: title,
+        type: publication_type,
+        year: year,
+        author: [],
+        authorship: []
+      }
+    end
+  end
 end
