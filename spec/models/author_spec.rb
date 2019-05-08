@@ -194,5 +194,15 @@ describe Author do
       # See https://github.com/sul-dlss/sul_pub/issues/1052
       expect(Publication.find(pub.id).pub_hash[:authorship].length).to eq(1)
     end
+
+    it 'does not attempt to assign a blank publication and does not throw an exception' do
+      expect(subject.publications.count).to eq(0)
+      expect(subject.contributions.count).to eq(0)
+
+      subject.assign_pub(nil)
+
+      expect(subject.publications.count).to eq(0)
+      expect(subject.contributions.count).to eq(0)
+    end
   end
 end
