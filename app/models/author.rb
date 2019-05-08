@@ -165,6 +165,10 @@ class Author < ActiveRecord::Base
   # @param [Publication]
   # @return [Contribution]
   def assign_pub(pub)
+    unless pub # do not attempt to assign if no pub provided
+        logger.warn "nil publication assignment for author id #{id}"
+        return
+    end
     raise 'Author must be saved before association' unless persisted?
     pub.contributions.find_or_create_by!(author_id: id) do |contrib|
       contrib.assign_attributes(
