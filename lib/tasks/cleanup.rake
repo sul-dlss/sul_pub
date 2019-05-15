@@ -1,3 +1,5 @@
+require 'csv'
+
 namespace :cleanup do
   desc 'Merge contributions FROM duped_cap_profile_id INTO primary_cap_profile_id'
   # Use case: a single author has two author rows with publications associated with each.
@@ -73,55 +75,75 @@ namespace :cleanup do
   # Use case: a researchers has many many new publications due to name ambiguities, because a harvest
   #  was run using last name, first initial and this user was determined to have many publications that
   #  do not actually belong to them.  This task will remove any publications associated with their profile
-  #  in the 'new' state, and then remove the publications too if they are no longer connected to any one else's
-  #  profile.  Should be rare in usage and then followed up with another harvest for this profile using:
-  #  RAILS_ENV=production bundle exec rake wos:harvest_author[123]
+  #  in the 'new' state with visibility 'private' between the dates specified, and then remove the publications
+  #  too if they are no longer connected to any one else's profile and match the specified provenance.
+  #  Should be rare in usage and then followed up with another harvest for this profile using:
+  #  RAILS_ENV=production bundle exec rake harvest:author[123]
 
-  # RAILS_ENV=production bundle exec rake cleanup:remove_new_contributions[123] # will remove all contributions in the 'new' state for the given cap_profile_id, then remove any publications that have no contributions anymore
-  task :remove_new_contributions, [:cap_profile_id] => :environment do |_t, args|
+  # RAILS_ENV=production bundle exec rake cleanup:remove_new_contributions[123,'April 25 2018','May 1 2018','pubmed'] # will remove all contributions in the 'new' state for the given cap_profile_id, then remove any publications that have no contributions anymore
+  task :remove_new_contributions, [:cap_profile_id, :start_timeframe, :end_timeframe, :provenance] => :environment do |_t, args|
+    PaperTrail.enabled = false
+    log_file = 'log/cleanup_remove_new_contributions.log'
+
     cap_profile_id = args[:cap_profile_id]
+    start_timeframe = args[:start_timeframe]
+    end_timeframe = args[:end_timeframe]
+    provenance = args[:provenance]
+
     raise 'Missing cap_profile_id' unless cap_profile_id
+    raise 'Missing start_timeframe' unless start_timeframe
+    raise 'Missing end_timeframe' unless end_timeframe
+    raise 'Missing provenance' unless provenance
 
     author = Author.find_by_cap_profile_id(cap_profile_id)
     raise 'Author not found' unless author
 
-    start_timeframe = Time.parse('April 11, 2018') # start date to go back to look for new contributions (when we started WoS harvesting)
-    end_timeframe = Time.parse('May 1, 2018') # end date to go back to look for new contributions (when we stopped harvesting with first initial)
+    start_date = Time.parse(start_timeframe) # start date to go back to look for new contributions (when we started WoS harvesting)
+    end_date = Time.parse(end_timeframe) # end date to go back to look for new contributions (when we stopped harvesting with first initial)
 
-    contributions = author.contributions.where(status: 'new').where('created_at > ?', start_timeframe).where('created_at < ?', end_timeframe)
-    pub_ids = contributions.map(&:publication_id) # cache the ids of the contributions we are going to remove, so we can update them later
+    contributions = author.contributions.where('status = ? and visibility = ? and created_at > ? and created_at < ?', 'new', 'private', start_date, end_date)
 
     total = contributions.size
-    deleted = 0
+    deleted_pubs = 0
+    deleted_contrib = 0
     updated = 0
+    pub_ids = []
 
-    puts "Author cap_profile_id: #{cap_profile_id}; name: #{author.first_name} #{author.last_name}"
-    puts "This task will remove all #{total} of their new contributions. Are you sure you want to proceed? (y/n)"
+    puts "Author cap_profile_id: #{cap_profile_id}; name: #{author.first_name} #{author.last_name}; dates: #{start_date} to #{end_date}; provenance: #{provenance}"
+    puts "This task will remove any of the #{total} contributions with provenance #{provenance}. Are you sure you want to proceed? (y/n)"
     input = STDIN.gets.strip.downcase
     raise 'aborting' unless input == 'y'
 
-    puts 'removing contributions...'
-    contributions.each do |contribution|
-      puts "...Deleted contribution id #{contribution.id}"
-      contribution.destroy
-    end
+    CSV.open(log_file, "a") do |csv|
+      puts "removing contributions with publication provenance #{provenance}..."
+      contributions.each_with_index do |contribution, i|
+        next unless contribution.publication.pub_hash[:provenance] == provenance
+        puts "#{i + 1} of #{total}: Deleted contribution id #{contribution.id}"
+        deleted_contrib += 1
+        pub_ids << contribution.publication_id
+        contribution.destroy
+      end
 
-    puts 'updating publications...'
-    # either rebuild the publications that were removed from the profile, or delete them if they have no contributions left
-    pub_ids.each do |id|
-      pub = Publication.find(id)
-      if pub.contributions.empty? # no contributions left, delete this publication
-        puts "...Deleted publication id #{id}"
-        deleted += 1
-        pub.delete!
-      else # still has contributions, let's rebuid the pub hash to update the authorship to relfect this author being removed
-        puts "...Updated authorship for publication id #{id}"
-        updated += 1
-        pub.sync_publication_hash_and_db
-        pub.save
+      total_pub_ids = pub_ids.count
+      puts 'updating publications...'
+      # either rebuild the publications that were removed from the profile, or delete them if they have no contributions left
+      pub_ids.each_with_index do |pub_id, i|
+        pub = Publication.find(pub_id)
+        if pub.contributions.empty? # no contributions left, destroy this publication and associated source record if they exist
+          puts "#{i + 1} of #{total_pub_ids}: Deleted publication id #{pub_id}"
+          deleted_pubs += 1
+          csv << [pub_id]
+          pub.destroy!
+        else # still has contributions, let's rebuid the pub hash to update the authorship to reflect this author being removed
+          puts "#{i + 1} of #{total_pub_ids}: Updated authorship for publication #{pub_id}"
+          updated += 1
+          pub.rebuild_authorship
+          pub.save
+        end
       end
     end
-
-    puts "Removed #{total} contributions; deleted #{deleted} publications, updated #{updated} publications."
+    # close csv
+    puts ''
+    puts "Considered #{total} contributions; deleted #{deleted_contrib} contributions; deleted #{deleted_pubs} publications, updated #{updated} publications."
   end
 end
