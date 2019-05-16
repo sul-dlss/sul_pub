@@ -101,6 +101,8 @@ namespace :cleanup do
     start_date = Time.parse(start_timeframe) # start date to go back to look for new contributions (when we started WoS harvesting)
     end_date = Time.parse(end_timeframe) # end date to go back to look for new contributions (when we stopped harvesting with first initial)
 
+    pub_ids_worked_on_dump_file = "log/pubids_for_#{cap_profile_id}_#{provenance}.dump"
+
     contributions = author.contributions.where('status = ? and visibility = ? and created_at > ? and created_at < ?', 'new', 'private', start_date, end_date)
 
     total = contributions.size
@@ -124,6 +126,7 @@ namespace :cleanup do
         contribution.destroy
       end
 
+      File.open(pub_ids_worked_on_dump_file, 'w') { |f| f.write(YAML.dump(pub_ids)) }
       total_pub_ids = pub_ids.count
       puts 'updating publications...'
       # either rebuild the publications that were removed from the profile, or delete them if they have no contributions left

@@ -9,6 +9,7 @@ module Pubmed
     # @param [Hash] _options
     # @return [Array<String>] pmids that create Publications
     def process_author(author, options = {})
+      return unless Settings.PUBMED.harvest_enabled
       raise(ArgumentError, 'author must be an Author') unless author.is_a? Author
       log_info(author, "processing author #{author.id}")
       pmids = process_pmids(author, Pubmed::QueryAuthor.new(author, options).pmids)

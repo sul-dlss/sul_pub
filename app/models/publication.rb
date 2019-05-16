@@ -67,9 +67,10 @@ class Publication < ActiveRecord::Base
   end
 
   def self.find_by_pmid_pub_id(pmid)
-    Publication.includes(:publication_identifiers)
-               .where("publication_identifiers.identifier_type": 'pmid', "publication_identifiers.identifier_value": pmid)
-               .find_by('wos_uid IS NOT null OR sciencewire_id IS NOT NULL OR pmid IS NOT null')
+    find_by_pmid(pmid) ||
+      Publication.includes(:publication_identifiers)
+                 .where("publication_identifiers.identifier_type": 'pmid', "publication_identifiers.identifier_value": pmid)
+                 .find_by('wos_uid IS NOT null OR sciencewire_id IS NOT NULL OR pmid IS NOT null')
   end
 
   # Queries publication_identifiers (like the poorly-named find_by_xxx methods above)
