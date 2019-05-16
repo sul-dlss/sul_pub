@@ -20,24 +20,36 @@ module Pubmed
     delegate :client, to: :Pubmed
 
     attr_reader :author, :options
-      def addl_args
-        return unless options[:reldate]
 
-        "reldate=#{options[:reldate]}&datetype=edat"
-      end
+    def addl_args
+      return unless options[:reldate]
 
-      def term
-        author_identities = [author].concat(author.author_identities.to_a)
-        name_term = author_identities.collect { |identity| "(#{identity.last_name} #{identity.first_name}[Author])" }
-                                     .uniq.join(' OR ')
-        affiliation_term = author_identities.collect { |identity| "#{identity.institution}[Affiliation]" if identity.institution }
-                                            .compact.uniq.join(' OR ')
-        "(#{name_term}) AND (#{affiliation_term})"
-      end
+      "reldate=#{options[:reldate]}&datetype=edat"
+    end
 
-      def parse_response(response)
-        Nokogiri::XML(response).xpath('//IdList/Id/text()').map(&:text)
+    def term
+      author_identities = [author].concat(author.author_identities.to_a)
+      name_term = author_identities.collect { |identity| "(#{identity.last_name} #{identity.first_name}[Author])" }
+                                   .uniq.join(' OR ')
+      affiliation_term = author_identities.collect { |identity| affiliation_terms(identity.institution) if identity.institution }
+                                          .compact.uniq.join(' OR ')
+      "(#{name_term}) AND (#{affiliation_term})"
+    end
+
+    def affiliation_terms(institution)
+      terms = []
+      if institution.include?('&')
+        terms << "#{institution.gsub('& ', '')}[Affiliation]"
+        terms << "#{institution.gsub('&', 'and')}[Affiliation]"
+      else
+        terms << "#{institution}[Affiliation]"
       end
+      terms
+    end
+
+    def parse_response(response)
+      Nokogiri::XML(response).xpath('//IdList/Id/text()').map(&:text)
+    end
 
   end
 end

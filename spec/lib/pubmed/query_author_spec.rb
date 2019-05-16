@@ -37,5 +37,37 @@ describe Pubmed::QueryAuthor do
         expect(query_author.send(:term)).to eq('((Altman Russ[Author]) OR (Altman R[Author])) AND (Stanford University[Affiliation])')
       end
     end
+
+    context 'with a user with alternate identities with different institutions' do
+      before do
+        AuthorIdentity.create(
+          author: author,
+          first_name: 'R',
+          middle_name: 'B',
+          last_name: 'Altman',
+          institution: 'Amherst College'
+        )
+      end
+
+      it 'generates the correct term string' do
+        expect(query_author.send(:term)).to eq('((Altman Russ[Author]) OR (Altman R[Author])) AND (Stanford University[Affiliation] OR Amherst College[Affiliation])')
+      end
+    end
+
+    context 'with a user with alternate identities with different institutions with an &' do
+      before do
+        AuthorIdentity.create(
+          author: author,
+          first_name: 'R',
+          middle_name: 'B',
+          last_name: 'Altman',
+          institution: 'William & Mary'
+        )
+      end
+
+      it 'generates the correct term string' do
+        expect(query_author.send(:term)).to eq('((Altman Russ[Author]) OR (Altman R[Author])) AND (Stanford University[Affiliation] OR William Mary[Affiliation] OR William and Mary[Affiliation])')
+      end
+    end
   end
 end
