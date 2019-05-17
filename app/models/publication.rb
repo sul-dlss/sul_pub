@@ -27,10 +27,10 @@ class Publication < ActiveRecord::Base
     self.wos_uid ||= web_of_science_source_record.uid if web_of_science_source_record.present?
   end
 
-  has_one :batch_uploaded_source_record
-  has_one :web_of_science_source_record, autosave: true
+  has_one :batch_uploaded_source_record, dependent: :destroy
+  has_one :web_of_science_source_record, dependent: :destroy, autosave: true
 
-  has_many :user_submitted_source_records
+  has_many :user_submitted_source_records, dependent: :destroy
 
   has_many :publication_identifiers,
     autosave: true,
