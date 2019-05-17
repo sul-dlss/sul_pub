@@ -118,7 +118,7 @@ namespace :cleanup do
       puts "removing contributions with publication provenance #{provenance}..."
       contributions.each_with_index do |contribution, i|
         next unless contribution.publication.pub_hash[:provenance] == provenance
-        puts "#{i + 1} of #{total}: Deleted contribution id #{contribution.id}"
+        puts "#{i + 1} of #{total}: Deleted contribution id #{contribution.id} for publication id #{contribution.publication_id}"
         deleted_contrib += 1
         pub_ids << contribution.publication_id
         contribution.destroy
