@@ -30,10 +30,12 @@ CAP:
 PUBMED:
   LOG: log/pubmed.log
   FETCH_PATH: /entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml
-  SEARCH_PATH: /entrez/eutils/esearch.fcgi?db=pubmed&retmode=xml&retmax=3000
+  SEARCH_PATH: /entrez/eutils/esearch.fcgi?db=pubmed&retmode=xml
   API_KEY: a_fake_pubmed_key
   BASE_URI: https://eutils.ncbi.nlm.nih.gov
   ARTICLE_BASE_URI: https://www.ncbi.nlm.nih.gov/pubmed/
+  max_publications_per_author: 3000 # if more than this number of publications are returned for a single author, the author harvest will be aborted
+                                    #  and a HB alert will be sent
   # In number of days
   regular_harvest_timeframe: 21
   update_timeframe: null # default pubmed reldate for updated authors resulting from nightly cap polling

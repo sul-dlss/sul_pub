@@ -30,5 +30,17 @@ describe Pubmed::Harvester do
         expect(Publication.find_by_pmid_pub_id(pmid).authors).to include(author)
       end
     end
+
+    context 'when author query has too many publications' do
+      let(:lotsa_pmids) { Array(1..Settings.PUBMED.max_publications_per_author) }
+      before do
+        allow(Pubmed::QueryAuthor).to receive_message_chain(:new, :pmids).and_return(lotsa_pmids)
+      end
+
+      it 'aborts the harvest and returns no pmids' do
+        expect(harvester.process_author(author)).to eq([])
+        expect(author.contributions.size).to eq 0
+      end
+    end
   end
 end

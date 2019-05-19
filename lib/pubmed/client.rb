@@ -31,7 +31,7 @@ module Pubmed
     private
 
       def url(addl_args)
-        url = "#{Settings.PUBMED.SEARCH_PATH}&api_key=#{Settings.PUBMED.API_KEY}"
+        url = "#{Settings.PUBMED.SEARCH_PATH}&retmax=#{Settings.PUBMED.max_publications_per_author}&api_key=#{Settings.PUBMED.API_KEY}"
         if addl_args
           url << '&' unless addl_args[0] == '&'
           url << addl_args
