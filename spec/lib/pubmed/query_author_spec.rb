@@ -54,7 +54,7 @@ describe Pubmed::QueryAuthor do
       end
     end
 
-    context 'with a user with alternate identities with different institutions with an &' do
+    context 'with a user with alternate identities with different institutions with an & with a trailing and a leading space' do
       before do
         AuthorIdentity.create(
           author: author,
@@ -66,7 +66,55 @@ describe Pubmed::QueryAuthor do
       end
 
       it 'generates the correct term string' do
-        expect(query_author.send(:term)).to eq('((Altman Russ[Author]) OR (Altman R[Author])) AND (Stanford University[Affiliation] OR William Mary[Affiliation] OR William and Mary[Affiliation])')
+        expect(query_author.send(:term)).to eq('((Altman Russ[Author]) OR (Altman R[Author])) AND (Stanford University[Affiliation] OR William and Mary[Affiliation])')
+      end
+    end
+
+    context 'with a user with alternate identities with different institutions with an & without any surrounding spaces' do
+      before do
+        AuthorIdentity.create(
+          author: author,
+          first_name: 'R',
+          middle_name: 'B',
+          last_name: 'Altman',
+          institution: 'Texas A&M'
+        )
+      end
+
+      it 'generates the correct term string' do
+        expect(query_author.send(:term)).to eq('((Altman Russ[Author]) OR (Altman R[Author])) AND (Stanford University[Affiliation] OR Texas AandM[Affiliation])')
+      end
+    end
+
+    context 'with a user with alternate identities with different institutions with an & with just a trailing space' do
+      before do
+        AuthorIdentity.create(
+          author: author,
+          first_name: 'R',
+          middle_name: 'B',
+          last_name: 'Altman',
+          institution: 'Texas A& M'
+        )
+      end
+
+      it 'generates the correct term string' do
+        expect(query_author.send(:term)).to eq('((Altman Russ[Author]) OR (Altman R[Author])) AND (Stanford University[Affiliation] OR Texas Aand M[Affiliation])')
+      end
+    end
+
+    context 'with a user with alternate identities with different institutions with an & with just a leading space' do
+      before do
+        AuthorIdentity.create(
+          author: author,
+          first_name: 'R',
+          middle_name: 'B',
+          last_name: 'Altman',
+          institution: 'Texas A &M'
+        )
+      end
+
+      it 'generates the correct term string' do
+        expect(query_author.send(:term)).to eq('((Altman Russ[Author]) OR (Altman R[Author])) AND (Stanford University[Affiliation] OR Texas A andM[Affiliation])')
       end
     end
   end
