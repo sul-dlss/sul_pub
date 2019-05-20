@@ -11,9 +11,15 @@ module Pubmed
     def process_author(author, options = {})
       raise(ArgumentError, 'author must be an Author') unless author.is_a? Author
       log_info(author, "processing author #{author.id}")
-      pmids = process_pmids(author, Pubmed::QueryAuthor.new(author, options).pmids)
-      log_info(author, "processed author #{author.id}: #{pmids.count} new publications")
-      pmids
+      pmids_from_query = Pubmed::QueryAuthor.new(author, options).pmids
+      if pmids_from_query.size >= Settings.PUBMED.max_publications_per_author
+        NotificationManager.error(StandardError, "#{self.class} - Pubmed harvest returned more than #{Settings.PUBMED.max_publications_per_author} for author #{author.id} and was aborted", self)
+        []
+      else
+        pmids = process_pmids(author, pmids_from_query)
+        log_info(author, "processed author #{author.id}: #{pmids.count} new publications")
+        pmids
+      end
     rescue StandardError => err
       NotificationManager.error(err, "#{self.class} - Pubmed harvest failed for author #{author.id}", self)
     end

@@ -78,4 +78,82 @@ http_interactions:
         AND 2019/01/05[EDAT] : 2019/04/05[EDAT]</QueryTranslation>\n\n</eSearchResult>\n"
     http_version: 
   recorded_at: Fri, 05 Apr 2019 18:08:35 GMT
+- request:
+    method: post
+    uri: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?api_key=Settings.PUBMED.API_KEY&datetype=edat&db=pubmed&reldate=90&retmax=3000&retmode=xml
+    body:
+      encoding: UTF-8
+      string: term=((Altman Russ[Author]) OR (Altman R[Author])) AND (Stanford University[Affiliation])
+    headers:
+      User-Agent:
+      - stanford-library-sul-pub
+      Accept:
+      - "*/*"
+      Accept-Encoding:
+      - gzip,deflate
+      Date:
+      - Sun, 19 May 2019 23:33:57 GMT
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Cookie:
+      - ncbi_sid=70B4833A3F719E16_7421SID
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sun, 19 May 2019 23:33:56 GMT
+      Server:
+      - Finatra
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Content-Security-Policy:
+      - upgrade-insecure-requests
+      X-Ratelimit-Remaining:
+      - '8'
+      Ncbi-Phid:
+      - D0BD42B76849BF35000024500C6D03B6.1.1.m_1
+      Cache-Control:
+      - private
+      L5d-Success-Class:
+      - '1.0'
+      Ncbi-Sid:
+      - 70B4833A3F719E16_7421SID
+      Content-Encoding:
+      - gzip
+      X-Ratelimit-Limit:
+      - '10'
+      Access-Control-Allow-Origin:
+      - "*"
+      Content-Type:
+      - text/xml; charset=UTF-8
+      Set-Cookie:
+      - ncbi_sid=70B4833A3F719E16_7421SID; domain=.nih.gov; path=/; expires=Tue, 19
+        May 2020 23:33:57 GMT
+      X-Ua-Compatible:
+      - IE=Edge
+      X-Xss-Protection:
+      - 1; mode=block
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<!DOCTYPE eSearchResult
+        PUBLIC \"-//NLM//DTD esearch 20060628//EN\" \"https://eutils.ncbi.nlm.nih.gov/eutils/dtd/20060628/esearch.dtd\">\n<eSearchResult>\n<Count>4</Count><RetMax>4</RetMax><RetStart>0</RetStart>\n<IdList>\n\t<Id>31051039</Id>\n\t<Id>30950912</Id>\n\t<Id>30833575</Id>\n\t<Id>30773618</Id>\n</IdList>\n<TranslationSet><Translation>
+        \    <From>Altman Russ[Author]</From>     <To>Altman, Russ[Full Author Name]</To>
+        \   </Translation></TranslationSet><TranslationStack>   <TermSet>    <Term>Altman,
+        Russ[Full Author Name]</Term>    <Field>Full Author Name</Field>    <Count>342</Count>
+        \   <Explode>N</Explode>   </TermSet>   <TermSet>    <Term>Altman R[Author]</Term>
+        \   <Field>Author</Field>    <Count>1148</Count>    <Explode>N</Explode>   </TermSet>
+        \  <OP>OR</OP>   <OP>GROUP</OP>   <TermSet>    <Term>Stanford University[Affiliation]</Term>
+        \   <Field>Affiliation</Field>    <Count>86406</Count>    <Explode>N</Explode>
+        \  </TermSet>   <OP>AND</OP>   <TermSet>    <Term>2019/02/18[EDAT]</Term>
+        \   <Field>EDAT</Field>    <Count>0</Count>    <Explode>N</Explode>   </TermSet>
+        \  <TermSet>    <Term>2019/05/19[EDAT]</Term>    <Field>EDAT</Field>    <Count>0</Count>
+        \   <Explode>N</Explode>   </TermSet>   <OP>RANGE</OP>   <OP>AND</OP>  </TranslationStack><QueryTranslation>(Altman,
+        Russ[Full Author Name] OR Altman R[Author]) AND Stanford University[Affiliation]
+        AND 2019/02/18[EDAT] : 2019/05/19[EDAT]</QueryTranslation>\n\n</eSearchResult>\n"
+    http_version: 
+  recorded_at: Sun, 19 May 2019 23:33:57 GMT
 recorded_with: VCR 4.0.0
