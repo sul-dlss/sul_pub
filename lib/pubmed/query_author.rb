@@ -37,14 +37,11 @@ module Pubmed
     end
 
     def affiliation_terms(institution)
-      terms = []
       if institution.include?('&')
-        terms << "#{institution.gsub('& ', '')}[Affiliation]"
-        terms << "#{institution.gsub('&', 'and')}[Affiliation]"
+        "#{institution.gsub('&', 'and')}[Affiliation]"
       else
-        terms << "#{institution}[Affiliation]"
+        "#{institution}[Affiliation]"
       end
-      terms
     end
 
     def parse_response(response)
