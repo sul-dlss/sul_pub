@@ -29,6 +29,7 @@ CAP:
 ## PubMed Auth Config
 PUBMED:
   LOG: log/pubmed.log
+  harvest_enabled: true # this only enables/disables regular harvests, it will still allow manual entries via pubmed and record augmentation
   FETCH_PATH: /entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml
   SEARCH_PATH: /entrez/eutils/esearch.fcgi?db=pubmed&retmode=xml
   API_KEY: a_fake_pubmed_key
@@ -43,7 +44,6 @@ PUBMED:
 
 ## Sciencewire Auth Config
 SCIENCEWIRE:
-  enabled: false
   LOG: log/sciencewire.log
   BASE_URI: https://sciencewirerest.discoverylogic.com
   HOST: stg.sciencewirerest.discoverylogic.com
@@ -53,7 +53,7 @@ SCIENCEWIRE:
 
 ## Web Of Science Auth Config
 WOS:
-  enabled: true
+  enabled: true # this enables/disables the entire client (harvesting and record fetching)
   ACCEPTED_DBS:
     - WOS
     - MEDLINE

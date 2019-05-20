@@ -26,6 +26,7 @@ describe AuthorHarvestJob, type: :job do
   context 'WebOfScience is disabled' do
     it 'executes perform without calling WoS but still calls Pubmed' do
       allow(Settings.WOS).to receive(:enabled).and_return(false)
+      allow(Settings.PUBMED).to receive(:harvest_enabled).and_return(true)
       expect(WebOfScience.harvester).not_to receive(:process_author).with(author, {})
       expect(Pubmed.harvester).to receive(:process_author).with(author, {})
       perform_enqueued_jobs { job }
@@ -35,8 +36,19 @@ describe AuthorHarvestJob, type: :job do
   context 'WebOfScience is enabled' do
     it 'executes perform calling WoS and Pubmed' do
       allow(Settings.WOS).to receive(:enabled).and_return(true)
+      allow(Settings.PUBMED).to receive(:harvest_enabled).and_return(true)
       expect(WebOfScience.harvester).to receive(:process_author).with(author, {})
       expect(Pubmed.harvester).to receive(:process_author).with(author, {})
+      perform_enqueued_jobs { job }
+    end
+  end
+
+  context 'Pubmed is disabled' do
+    it 'executes perform calling only WoS' do
+      allow(Settings.WOS).to receive(:enabled).and_return(true)
+      allow(Settings.PUBMED).to receive(:harvest_enabled).and_return(false)
+      expect(WebOfScience.harvester).to receive(:process_author).with(author, {})
+      expect(Pubmed.harvester).not_to receive(:process_author).with(author, {})
       perform_enqueued_jobs { job }
     end
   end

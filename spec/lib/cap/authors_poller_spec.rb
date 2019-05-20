@@ -249,13 +249,23 @@ describe Cap::AuthorsPoller, :vcr do
 
     it 'does not harvest from WoS if WoS client is disabled, but still harvests from Pubmed' do
       allow(Settings.WOS).to receive(:enabled).and_return(false)
+      allow(Settings.PUBMED).to receive(:harvest_enabled).and_return(true)
       expect(WebOfScience.harvester).not_to receive(:process_author)
       expect(Pubmed.harvester).to receive(:process_author).twice
       subject.do_harvest
     end
 
+    it 'does not harvest from Pubmed if Pubmed is disabled, but still harvests from WoS' do
+      allow(Settings.WOS).to receive(:enabled).and_return(true)
+      allow(Settings.PUBMED).to receive(:harvest_enabled).and_return(false)
+      expect(WebOfScience.harvester).to receive(:process_author).twice
+      expect(Pubmed.harvester).not_to receive(:process_author)
+      subject.do_harvest
+    end
+
     it 'adds separate timeframes for harvests for new and updated authors' do
       allow(Settings.WOS).to receive(:enabled).and_return(true)
+      allow(Settings.PUBMED).to receive(:harvest_enabled).and_return(true)
       expect(WebOfScience.harvester).to receive(:process_author).with(author, new_author_options)
       expect(WebOfScience.harvester).to receive(:process_author).with(other_author, update_author_options)
       expect(Pubmed.harvester).to receive(:process_author).with(author, new_author_options)
