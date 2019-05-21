@@ -18,7 +18,7 @@ module Cap
       @new_authors_to_harvest_queue = []
       @changed_authors_to_harvest_queue = []
       page_count = 0
-      page_size = 1000
+      page_size = 100 # 100 seems to be the maximum page size supported by the CAP API
       @total_records = cap_authors_count(days_ago)
       logger.info "#{@total_records} authors to process"
       loop do
