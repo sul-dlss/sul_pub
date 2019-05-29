@@ -170,14 +170,17 @@ class Author < ActiveRecord::Base
         return
     end
     raise 'Author must be saved before association' unless persisted?
-    pub.contributions.find_or_create_by!(author_id: id) do |contrib|
+
+    contribution = pub.contributions.find_or_initialize_by(author_id: id) do |contrib|
       contrib.assign_attributes(
         cap_profile_id: cap_profile_id,
         featured: false, status: 'new', visibility: 'private'
       )
     end
-    pub.pubhash_needs_update! # Add to pub_hash[:authorship]
-    pub.save! # contrib.save! not needed
+    return true unless contribution.new_record?
+    contribution.save!
+    pub.pubhash_needs_update!
+    pub.save!
   end
 
   private

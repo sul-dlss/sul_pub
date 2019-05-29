@@ -195,6 +195,16 @@ describe Author do
       expect(Publication.find(pub.id).pub_hash[:authorship].length).to eq(1)
     end
 
+    it 'does not create contrib or save publication when not needed' do
+      # assign a pub
+      subject.assign_pub(pub)
+      expect(subject.contributions.count).to eq(1)
+      # assign it again, pub should not change!
+      subject.assign_pub(pub)
+      expect(subject.contributions.count).to eq(1)
+      expect(pub).not_to be_changed
+    end
+
     it 'does not attempt to assign a blank publication and does not throw an exception' do
       expect(subject.publications.count).to eq(0)
       expect(subject.contributions.count).to eq(0)
