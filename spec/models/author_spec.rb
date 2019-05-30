@@ -196,13 +196,14 @@ describe Author do
     end
 
     it 'does not create contrib or save publication when not needed' do
-      # assign a pub
+      # assign a pub, expect the pub to save as it updates
+      expect(pub).to receive(:save!)
       subject.assign_pub(pub)
       expect(subject.contributions.count).to eq(1)
-      # assign it again, pub should not change!
+      # assign the pub again, but this time the pub should not save/change!
+      expect(pub).not_to receive(:save!)
       subject.assign_pub(pub)
       expect(subject.contributions.count).to eq(1)
-      expect(pub).not_to be_changed
     end
 
     it 'does not attempt to assign a blank publication and does not throw an exception' do

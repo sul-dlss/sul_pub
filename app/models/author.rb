@@ -177,10 +177,11 @@ class Author < ActiveRecord::Base
         featured: false, status: 'new', visibility: 'private'
       )
     end
-    return true unless contribution.new_record?
+    return contribution unless contribution.new_record?
     contribution.save!
     pub.pubhash_needs_update!
     pub.save!
+    contribution
   end
 
   private
