@@ -454,4 +454,20 @@ describe Publication do
       expect { publication.save! }.to change { publication.wos_uid }.from(nil).to(wos_src_rec.uid)
     end
   end
+
+  describe '#with_active_author' do
+    context 'when there is a publication with multiple active authors'
+    before do
+      FactoryBot.create :publication_with_contributions
+      pub = FactoryBot.create :publication_with_contributions
+      pub.authors.each do |author|
+        author.active_in_cap = false
+        author.save
+      end
+    end
+
+    it 'returns single publication with active authors' do
+      expect(Publication.with_active_author.count).to eq(1)
+    end
+  end
 end
