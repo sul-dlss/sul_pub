@@ -149,4 +149,35 @@ namespace :cleanup do
     puts ''
     puts "Considered #{total} contributions; deleted #{deleted_contrib} contributions; deleted #{deleted_pubs} publications, updated #{updated} publications."
   end
+
+  desc 'Reset updated_at timestamp for publications based on last contribution change'
+  # Use case: bad code resulted in unncessarily saving publications when no contributions actually changed.
+  #  This results in the updated_at timestamp on the publication being set and lots of results being returned
+  #  in the API.  We can adjust the updated_at timestamp by looking at the last associated contribution timestamp.
+  #  Should be rare in usage and is really meant to remedy bad data from this issue: https://github.com/sul-dlss/sul_pub/issues/1071
+  # RAILS_ENV=production bundle exec rake cleanup:fix_publication_timestamp['April 25 2019'] # will adjust any publication updated_timestamps after this date to the last contribution timestamp for that publication
+  task :fix_publication_timestamp, [:start_timeframe] => :environment do |_t, args|
+    PaperTrail.enabled = false
+    start_timeframe = args[:start_timeframe]
+    raise 'Missing start_timeframe' unless start_timeframe
+    start_date = Time.parse(start_timeframe) # start date to go back to look
+    total = Publication.where('updated_at > ?', start_date).count
+    updated_pubs = 0
+    i = 0
+    puts "This task will update any of the updated_at timestamps for the #{total} publications after #{start_date} to match the last timestamp for any associated contributions for those publications.  Are you sure you want to proceed? (y/n)"
+    input = STDIN.gets.strip.downcase
+    raise 'aborting' unless input == 'y'
+    Publication.select(:id, :updated_at).where('updated_at > ?', start_date).find_each do |pub|
+      i += 1
+      next if pub.contributions.empty? # skip any publications without contributions
+      last_contribution_date = pub.contributions.order('updated_at desc').first.updated_at
+      puts "#{i} of #{total} : pub.id #{pub.id} : pub.updated_at #{pub.updated_at} : lastest_contribution_updated_at #{last_contribution_date}"
+      if last_contribution_date < pub.updated_at
+        updated_pubs += 1
+        pub.update_column(:updated_at, last_contribution_date)
+      end
+    end
+    puts ''
+    puts "Considered #{total} publications; updated #{updated_pubs} publication timestamps."
+  end
 end
