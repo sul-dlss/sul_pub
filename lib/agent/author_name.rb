@@ -53,7 +53,7 @@ module Agent
 
     def text_search_terms
       @text_search_terms ||=
-        [first_name_query, middle_name_query].flatten.reject(&:empty?).uniq
+        [name_query].flatten.reject(&:empty?).uniq
     end
 
     def ==(other)
@@ -64,26 +64,18 @@ module Agent
 
     private
 
-      # Name variants for:
-      # 'Lastname,Firstname' or
-      # 'Lastname,FirstInitial'
-      # @return [Array<String>|String] names
-      def first_name_query
+      # Name variants that include only last,first if there is no middle name entered
+      #  or includes the middle name and middle initial variants if a middle name exists (has at least one alpha character starting)
+      #  also add first initial variant if we allow this in the settings
+      def name_query
         return '' if last.empty? && first.empty?
-        query =  ["#{last_name},#{first_name}"]
+        if middle =~ /^[[:alpha:]]/
+          query =  ["#{last_name},#{first_name},#{middle_name}", "#{last_name},#{first_name},#{middle_initial}"]
+        else
+          query =  ["#{last_name},#{first_name}"]
+          query += ["#{last_name},#{first_initial}#{middle_initial}", "#{last_name},#{first_initial},#{middle_initial}"] if Settings.HARVESTER.USE_FIRST_INITIAL
+        end
         query += ["#{last_name},#{first_initial}"] if Settings.HARVESTER.USE_FIRST_INITIAL
-        query
-      end
-
-      # Name variants for:
-      # 'Lastname,Firstname,Middlename' or
-      # 'Lastname,Firstname,MiddleInitial' or
-      # 'Lastname,FirstInitial,MiddleInitial'
-      # @return [Array<String>|String] names
-      def middle_name_query
-        return '' unless middle =~ /^[[:alpha:]]/
-        query =  ["#{last_name},#{first_name},#{middle_name}", "#{last_name},#{first_name},#{middle_initial}"]
-        query += ["#{last_name},#{first_initial}#{middle_initial}", "#{last_name},#{first_initial},#{middle_initial}"] if Settings.HARVESTER.USE_FIRST_INITIAL
         query
       end
 

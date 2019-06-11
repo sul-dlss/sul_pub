@@ -124,8 +124,8 @@ describe WebOfScience::QueryAuthor, :vcr do
 
       it 'ignores the bad alternate identity data' do
         expect(author_one_identity.author_identities.first.first_name).to eq '.' # bad first name
-        # we get three name variants out (we would have more if we allowed the bad name variant)
-        expect(described_class.new(author_one_identity).send(:names)).to eq %w[Edler,Alice Edler,Alice,Jim Edler,Alice,J]
+        # we get two name variants out (we would have more if we allowed the bad name variant)
+        expect(described_class.new(author_one_identity).send(:names)).to eq %w[Edler,Alice,Jim Edler,Alice,J]
       end
     end
   end

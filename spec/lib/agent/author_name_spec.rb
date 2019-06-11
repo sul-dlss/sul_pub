@@ -4,6 +4,7 @@ describe Agent::AuthorName do
   let(:ln) { 'Stanford' }
   let(:all_names) { described_class.new(ln, fn, mn) }
   let(:no_names) { described_class.new(nil, nil, nil) }
+  let(:no_middle_name) { described_class.new(ln, fn, '') }
 
   describe '#initialize' do
     it 'casts empty names to strings' do
@@ -107,28 +108,25 @@ describe Agent::AuthorName do
   describe '#text_search_query' do
     context 'when all names are present' do
       # additional SW specs are in publication_query_by_author_name_spec.rb
-      it 'includes first_name_query and middle_name_query elements' do
-        allow(all_names).to receive(:first_name_query).and_return(['abc', 'def'])
-        allow(all_names).to receive(:middle_name_query).and_return(['qrs', 'xyz'])
-        expect(all_names.text_search_query).to eq "\"abc\" or \"def\" or \"qrs\" or \"xyz\""
+      it 'includes appropriate name elements' do
+        expect(all_names.text_search_query).to eq "\"Stanford,Amasa,Leland\" or \"Stanford,Amasa,L\""
       end
     end
   end
 
   describe '#text_search_terms' do
-    it 'includes first_name_query and middle_name_query elements' do
-      fnames = all_names.send(:first_name_query)
-      mnames = all_names.send(:middle_name_query)
-      expect(all_names.text_search_terms).to include(*fnames, *mnames)
+    it 'includes name_query elements' do
+      fnames = all_names.send(:name_query)
+      expect(all_names.text_search_terms).to include(*fnames)
     end
   end
 
-  describe '#first_name_query' do
+  describe '#name_query' do
     it 'when no names are present returns an empty String' do
-      expect(no_names.send(:first_name_query)).to eq ''
+      expect(no_names.send(:name_query)).to eq ''
     end
     context 'when all names are present' do
-      let(:fn_query) { all_names.send(:first_name_query) }
+      let(:fn_query) { all_names.send(:name_query) }
       before do
         allow(Settings.HARVESTER).to receive(:USE_FIRST_INITIAL).and_return(false)
       end
@@ -138,70 +136,58 @@ describe Agent::AuthorName do
         expect(fn_query).not_to include(be_empty)
         expect(fn_query.size).to eq(fn_query.uniq.size)
       end
+      it 'does not include only first_name variant (since middle name exists)' do
+        expect(fn_query).not_to include "#{all_names.last_name},#{all_names.first_name}"
+      end
+      it 'excludes name with first_initial when settings do not allow for it' do
+        expect(fn_query).not_to include "#{all_names.last_name},#{all_names.first_initial}"
+      end
+      it 'includes name with middle_name' do
+        expect(fn_query).to include "#{all_names.last_name},#{all_names.first_name},#{all_names.middle_name}"
+      end
+      it 'includes name with middle_initial variant' do
+        expect(fn_query).to include "#{all_names.last_name},#{all_names.first_name},#{all_names.middle_initial}"
+      end
+    end
+    context 'when all names are present and settings allow for first initial' do
+      before do
+        allow(Settings.HARVESTER).to receive(:USE_FIRST_INITIAL).and_return(true)
+      end
+      let(:fn_query) { all_names.send(:name_query) }
+      it 'includes name with first_initial when settings allow for it' do
+        expect(fn_query).to include "#{all_names.last_name},#{all_names.first_initial}"
+      end
+    end
+
+    context 'when middle name not present' do
+      let(:fn_query) { no_middle_name.send(:name_query) }
+      before do
+        allow(Settings.HARVESTER).to receive(:USE_FIRST_INITIAL).and_return(false)
+      end
       it 'includes name with first_name' do
         expect(fn_query).to include "#{all_names.last_name},#{all_names.first_name}"
       end
       it 'excludes name with first_initial when settings do not allow for it' do
         expect(fn_query).not_to include "#{all_names.last_name},#{all_names.first_initial}"
       end
-      it 'does not include name with middle_name' do
+      it 'does not include middle_name variants' do
         expect(fn_query).not_to include "#{all_names.last_name},#{all_names.first_name},#{all_names.middle_name}"
+        expect(fn_query).not_to include "#{all_names.last_name},#{all_names.first_name},"
         expect(fn_query).to all(exclude(",#{all_names.middle_name}"))
       end
-      it 'does not include name with middle_initial' do
+      it 'does not include middle_initial variants' do
         expect(fn_query).not_to include "#{all_names.last_name},#{all_names.first_name},#{all_names.middle_initial}"
+        expect(fn_query).not_to include "#{all_names.last_name},#{all_names.first_name},"
         expect(fn_query).to all(exclude(",#{all_names.middle_initial}"))
       end
     end
-    context 'when all names are present and settings allow for first initial' do
+    context 'when middle names not present and settings allow for first initial' do
       before do
         allow(Settings.HARVESTER).to receive(:USE_FIRST_INITIAL).and_return(true)
       end
-      let(:fn_query) { all_names.send(:first_name_query) }
+      let(:fn_query) { no_middle_name.send(:name_query) }
       it 'includes name with first_initial when settings allow for it' do
         expect(fn_query).to include "#{all_names.last_name},#{all_names.first_initial}"
-      end
-    end
-  end
-
-  describe '#middle_name_query' do
-    it 'when no names are present returns an empty String' do
-      expect(no_names.send(:middle_name_query)).to eq ''
-    end
-    context 'when all names are present' do
-      let(:mn_query) { all_names.send(:middle_name_query) }
-      before do
-        allow(Settings.HARVESTER).to receive(:USE_FIRST_INITIAL).and_return(false)
-      end
-      it 'is Array<String> with non-empty unique values' do
-        expect(mn_query).to be_an Array
-        expect(mn_query).to all(be_a(String))
-        expect(mn_query).not_to include(be_empty)
-        expect(mn_query.size).to eq(mn_query.uniq.size)
-      end
-      it 'includes name with middle_name' do
-        expect(mn_query).to include "#{all_names.last_name},#{all_names.first_name},#{all_names.middle_name}"
-      end
-      it 'includes name with middle_initial' do
-        expect(mn_query).to include "#{all_names.last_name},#{all_names.first_name},#{all_names.middle_initial}"
-      end
-      it 'does not include last_name,first_name' do
-        expect(mn_query).not_to include "#{all_names.last_name},#{all_names.first_name}"
-      end
-      it 'does not include last_name,first_initial' do
-        expect(mn_query).not_to include "#{all_names.last_name},#{all_names.first_initial}"
-      end
-      it 'excludes name with middle_initial appended to first initial when settings do not allow for it' do
-        expect(mn_query).not_to include "#{all_names.last_name},#{all_names.first_initial}#{all_names.middle_initial}"
-      end
-    end
-    context 'when all names are present and settings allow for first initial' do
-      let(:mn_query) { all_names.send(:middle_name_query) }
-      before do
-        allow(Settings.HARVESTER).to receive(:USE_FIRST_INITIAL).and_return(true)
-      end
-      it 'includes name with middle_initial appended to first initial when settings allow for it' do
-        expect(mn_query).to include "#{all_names.last_name},#{all_names.first_initial}#{all_names.middle_initial}"
       end
     end
   end
