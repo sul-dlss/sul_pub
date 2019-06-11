@@ -47,7 +47,7 @@ class NotificationManager
     def log_exception(logger, message, e)
       logger.error message
       logger.error e.inspect
-      logger.error e.backtrace.join("\n") if e.backtrace.present?
+      logger.error e.backtrace.join("\n") if e.respond_to?(:backtrace) && e.backtrace.present?
     end
   end
 end
