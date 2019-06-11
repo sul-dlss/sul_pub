@@ -117,5 +117,53 @@ describe Pubmed::QueryAuthor do
         expect(query_author.send(:term)).to eq('((Altman Russ[Author]) OR (Altman R[Author])) AND (Stanford University[Affiliation] OR Texas A andM[Affiliation])')
       end
     end
+
+    context 'with a user with just a period for first name' do
+      before do
+        AuthorIdentity.create(
+          author: author,
+          first_name: '.',
+          middle_name: 'B',
+          last_name: 'Altman',
+          institution: 'Texas A &M'
+        )
+      end
+
+      it 'generates the correct term string' do
+        expect(query_author.send(:term)).to eq('((Altman Russ[Author]) OR (Altman R[Author])) AND (Stanford University[Affiliation] OR Texas A andM[Affiliation])')
+      end
+    end
+
+    context 'with a user with no first name' do
+      before do
+        AuthorIdentity.create(
+          author: author,
+          first_name: '',
+          middle_name: 'B',
+          last_name: 'Altman',
+          institution: 'Texas A &M'
+        )
+      end
+
+      it 'generates the correct term string' do
+        expect(query_author.send(:term)).to eq('((Altman Russ[Author]) OR (Altman R[Author])) AND (Stanford University[Affiliation] OR Texas A andM[Affiliation])')
+      end
+    end
+
+    context 'with a nil first name' do
+      before do
+        AuthorIdentity.create(
+          author: author,
+          first_name: nil,
+          middle_name: 'B',
+          last_name: 'Altman',
+          institution: 'Texas A &M'
+        )
+      end
+
+      it 'generates the correct term string' do
+        expect(query_author.send(:term)).to eq('((Altman Russ[Author]) OR (Altman R[Author])) AND (Stanford University[Affiliation] OR Texas A andM[Affiliation])')
+      end
+    end
   end
 end
