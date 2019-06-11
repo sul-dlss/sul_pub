@@ -29,12 +29,14 @@ module WebOfScience
 
       def names
         identities.map do |ident|
-          Agent::AuthorName.new(
-            ident.last_name,
-            ident.first_name,
-            Settings.HARVESTER.USE_MIDDLE_NAME ? ident.middle_name : ''
-          ).text_search_terms
-        end.flatten.uniq
+          if ident.first_name =~ /[a-zA-Z]+/
+            Agent::AuthorName.new(
+              ident.last_name,
+              ident.first_name,
+              Settings.HARVESTER.USE_MIDDLE_NAME ? ident.middle_name : ''
+            )
+          end.text_search_terms
+        end.flatten.compact.uniq
       end
 
       def institutions
