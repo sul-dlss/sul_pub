@@ -254,6 +254,7 @@ describe PublicationsController, :vcr do
     end
 
      describe 'search by title' do
+       let(:queries) { instance_double(WebOfScience::Queries) }
        let(:test_title) { 'pathological' }
        let(:publication_with_test_title) { create :publication, title: test_title }
        let(:sourcelookup_by_title) do
@@ -280,7 +281,8 @@ describe PublicationsController, :vcr do
        end
 
        it 'does a title search' do
-         expect(WebOfScience.queries).to receive(:user_query)
+         allow(WebOfScience::Queries).to receive(:new).with('WOS').and_return(queries)
+         expect(queries).to receive(:user_query)
            .with('TI="lung cancer treatment"')
            .and_return(instance_double(WebOfScience::Retriever, next_batch: Array.new(20) { {} }))
          params = { format: 'json', title: 'lung cancer treatment' }
@@ -301,7 +303,8 @@ describe PublicationsController, :vcr do
 
        it 'returns results that match the requested year' do
          year = 2015.to_s
-         expect(WebOfScience.queries).to receive(:user_query)
+         allow(WebOfScience::Queries).to receive(:new).with('WOS').and_return(queries)
+         expect(queries).to receive(:user_query)
            .with("TI=\"#{test_title}\" AND PY=2015")
            .and_return(instance_double(WebOfScience::Retriever, next_batch: ['year' => year]))
          params = { format: 'json', title: test_title, year: year }
@@ -346,7 +349,7 @@ describe PublicationsController, :vcr do
         let(:retriever) { instance_double(WebOfScience::Retriever, next_batch: WebOfScience::Records.new(records: '<xml/>')) }
         before do
           allow(Settings.WOS).to receive(:enabled).and_return(true)
-          allow(WebOfScience).to receive(:queries).and_return(queries)
+          allow(WebOfScience::Queries).to receive(:new).with('WOS').and_return(queries)
         end
 
         it 'hits WOS' do
