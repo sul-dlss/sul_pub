@@ -34,7 +34,7 @@ describe Pubmed::QueryAuthor do
   describe '#term_for_author' do
     context 'with a user with alternate identities' do
       it 'generates the correct term string' do
-        expect(query_author.send(:term)).to eq('((Altman Russ[Author]) OR (Altman R[Author])) AND (Stanford University[Affiliation])')
+        expect(query_author.send(:term)).to eq('((Altman, Russ[Author]) OR (Altman, R[Author])) AND (Stanford University[Affiliation])')
       end
     end
 
@@ -50,7 +50,7 @@ describe Pubmed::QueryAuthor do
       end
 
       it 'generates the correct term string' do
-        expect(query_author.send(:term)).to eq('((Altman Russ[Author]) OR (Altman R[Author])) AND (Stanford University[Affiliation] OR Amherst College[Affiliation])')
+        expect(query_author.send(:term)).to eq('((Altman, Russ[Author]) OR (Altman, R[Author])) AND (Stanford University[Affiliation] OR Amherst College[Affiliation])')
       end
     end
 
@@ -66,7 +66,7 @@ describe Pubmed::QueryAuthor do
       end
 
       it 'generates the correct term string' do
-        expect(query_author.send(:term)).to eq('((Altman Russ[Author]) OR (Altman R[Author])) AND (Stanford University[Affiliation] OR William and Mary[Affiliation])')
+        expect(query_author.send(:term)).to eq('((Altman, Russ[Author]) OR (Altman, R[Author])) AND (Stanford University[Affiliation] OR William and Mary[Affiliation])')
       end
     end
 
@@ -82,7 +82,7 @@ describe Pubmed::QueryAuthor do
       end
 
       it 'generates the correct term string' do
-        expect(query_author.send(:term)).to eq('((Altman Russ[Author]) OR (Altman R[Author])) AND (Stanford University[Affiliation] OR Texas AandM[Affiliation])')
+        expect(query_author.send(:term)).to eq('((Altman, Russ[Author]) OR (Altman, R[Author])) AND (Stanford University[Affiliation] OR Texas AandM[Affiliation])')
       end
     end
 
@@ -98,7 +98,7 @@ describe Pubmed::QueryAuthor do
       end
 
       it 'generates the correct term string' do
-        expect(query_author.send(:term)).to eq('((Altman Russ[Author]) OR (Altman R[Author])) AND (Stanford University[Affiliation] OR Texas Aand M[Affiliation])')
+        expect(query_author.send(:term)).to eq('((Altman, Russ[Author]) OR (Altman, R[Author])) AND (Stanford University[Affiliation] OR Texas Aand M[Affiliation])')
       end
     end
 
@@ -114,7 +114,7 @@ describe Pubmed::QueryAuthor do
       end
 
       it 'generates the correct term string' do
-        expect(query_author.send(:term)).to eq('((Altman Russ[Author]) OR (Altman R[Author])) AND (Stanford University[Affiliation] OR Texas A andM[Affiliation])')
+        expect(query_author.send(:term)).to eq('((Altman, Russ[Author]) OR (Altman, R[Author])) AND (Stanford University[Affiliation] OR Texas A andM[Affiliation])')
       end
     end
 
@@ -130,7 +130,7 @@ describe Pubmed::QueryAuthor do
       end
 
       it 'generates the correct term string' do
-        expect(query_author.send(:term)).to eq('((Altman Russ[Author]) OR (Altman R[Author])) AND (Stanford University[Affiliation] OR Texas A andM[Affiliation])')
+        expect(query_author.send(:term)).to eq('((Altman, Russ[Author]) OR (Altman, R[Author])) AND (Stanford University[Affiliation] OR Texas A andM[Affiliation])')
       end
     end
 
@@ -146,7 +146,7 @@ describe Pubmed::QueryAuthor do
       end
 
       it 'generates the correct term string' do
-        expect(query_author.send(:term)).to eq('((Altman Russ[Author]) OR (Altman R[Author])) AND (Stanford University[Affiliation] OR Texas A andM[Affiliation])')
+        expect(query_author.send(:term)).to eq('((Altman, Russ[Author]) OR (Altman, R[Author])) AND (Stanford University[Affiliation] OR Texas A andM[Affiliation])')
       end
     end
 
@@ -162,7 +162,7 @@ describe Pubmed::QueryAuthor do
       end
 
       it 'generates the correct term string' do
-        expect(query_author.send(:term)).to eq('((Altman Russ[Author]) OR (Altman R[Author])) AND (Stanford University[Affiliation] OR Texas A andM[Affiliation])')
+        expect(query_author.send(:term)).to eq('((Altman, Russ[Author]) OR (Altman, R[Author])) AND (Stanford University[Affiliation] OR Texas A andM[Affiliation])')
       end
     end
   end

@@ -29,7 +29,7 @@ module Pubmed
 
     def term
       author_identities = [author].concat(author.author_identities.to_a)
-      name_term = author_identities.collect { |identity| "(#{identity.last_name} #{identity.first_name}[Author])" if identity.first_name =~ /[a-zA-Z]+/ }
+      name_term = author_identities.collect { |identity| "(#{identity.last_name}, #{identity.first_name}[Author])" if identity.first_name =~ /[a-zA-Z]+/ }
                                    .compact.uniq.join(' OR ')
       affiliation_term = author_identities.collect { |identity| affiliation_terms(identity.institution) if identity.institution }
                                           .compact.uniq.join(' OR ')
