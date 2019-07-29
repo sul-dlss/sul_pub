@@ -22,13 +22,13 @@ describe Pubmed::Fetcher, :vcr do
 
     it 'searches for a local Publication by pmid and returns a pubhash' do
       expect(Pubmed::Client).not_to receive(:new)
-      h = Pubmed::Fetcher.search_all_sources_by_pmid(10_048_354)
+      h = described_class.search_all_sources_by_pmid(10_048_354)
       expect(h.size).to eq 1
       expect(h.first[:issn]).to eq '32242424'
     end
 
     it 'searches by pmid when not found locally and returns a pubhash' do
-      h = Pubmed::Fetcher.search_all_sources_by_pmid(10_487_815)
+      h = described_class.search_all_sources_by_pmid(10_487_815)
       expect(h.size).to eq 1
       expect(h.first[:chicago_citation]).to match(/Convergence and Correlations/)
       expect(h.first).to include(pmid: '10487815')
@@ -36,26 +36,26 @@ describe Pubmed::Fetcher, :vcr do
 
     it 'searches Pubmed by pmid if not found, returning a pubhash' do
       skip 'find an example pubmid not yet in sw'
-      h = Pubmed::Fetcher.search_all_sources_by_pmid(24_930_130).first
+      h = described_class.search_all_sources_by_pmid(24_930_130).first
       expect(h[:provenance]).to eq('pubmed')
       expect(h[:identifier]).to include(type: 'doi', id: '10.1038/nmeth.2999', url: 'https://doi.org/10.1038/nmeth.2999')
       expect(h[:chicago_citation]).to match(/Chemically Defined Generation/)
     end
 
     context 'local hits of varied provenance' do
-      before { allow(Pubmed::Fetcher).to receive(:fetch_remote_pubmed).and_return([]) }
+      before { allow(described_class).to receive(:fetch_remote_pubmed).and_return([]) }
 
       it 'filters out batch/manual pubs from the resultset if previous SW/pubmed records were found' do
         Publication.create!(
           pub_hash: pub_hash.merge(provenance: 'batch'),
           pmid: 10_487_815
         )
-        h = Pubmed::Fetcher.search_all_sources_by_pmid(10_487_815)
+        h = described_class.search_all_sources_by_pmid(10_487_815)
         expect(h.size).to eq 1
       end
 
       it 'returns an empty array when no pubs found anywhere' do
-        h = Pubmed::Fetcher.search_all_sources_by_pmid('crap')
+        h = described_class.search_all_sources_by_pmid('crap')
         expect(h.size).to eq 0
       end
 
@@ -71,7 +71,7 @@ describe Pubmed::Fetcher, :vcr do
         end
 
         it 'returns first of local matches' do
-          h = Pubmed::Fetcher.search_all_sources_by_pmid(99_999_999)
+          h = described_class.search_all_sources_by_pmid(99_999_999)
           expect(h.size).to eq 1
         end
       end
