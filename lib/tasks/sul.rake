@@ -37,7 +37,7 @@ namespace :sul do
     total_pubs = 0
     start_time = Time.zone.now
     puts "Exporting all pubs for #{total_authors} authors to #{output_file} since date #{date_since}.  Started at #{start_time}."
-    header_row = %w(pub_title pmid doi publisher journal mesh pub_year pub_associated_author_last_name pub_associated_author_first_name pub_associated_author_sunet pub_associated_author_employee_id author_list pub_harvested_date apa_citation)
+    header_row = %w(pub_title pmid doi publisher journal mesh pub_year provenance pub_associated_author_last_name pub_associated_author_first_name pub_associated_author_sunet pub_associated_author_employee_id author_list sunet_list pub_harvested_date apa_citation)
     CSV.open(output_file, "wb") do |csv|
       csv << header_row
       rows.each_with_index do |row, i|
@@ -51,11 +51,12 @@ namespace :sul do
             pub = contribution.publication
             total_pubs += 1
             author_list = pub.pub_hash[:author] ? Csl::RoleMapper.send(:parse_authors, pub.pub_hash[:author]).map { |a| "#{a['family']}, #{a['given']}" }.join('; ') : ''
+            sunet_list = pub.contributions.where("status in ('new','approved') and created_at > ?", Time.parse(date_since)).map { |c| c.author.sunetid }.compact.reject(&:empty?).join('; ')
             doi = pub.pub_hash[:identifier].map { |ident| ident[:id] if ident[:type].downcase == 'doi' }.compact.join('')
             pmid = pub.pub_hash[:identifier].map { |ident| ident[:id] if ident[:type].downcase == 'pmid' }.compact.join('')
             journal = pub.pub_hash[:journal] ? pub.pub_hash[:journal][:name] : ''
-            mesh = pub.pub_hash[:mesh_headings] ? pub.pub_hash[:mesh_headings].map { |h| h[:descriptor][0][:name] }.compact.join('; ') : ''
-            csv << [pub.title, pmid, doi, pub.pub_hash[:publisher], journal, mesh, pub.pub_hash[:year], author.last_name, author.first_name, author.sunetid, author.university_id, author_list, contribution.created_at, pub.pub_hash[:apa_citation]]
+            mesh = pub.pub_hash[:mesh_headings] ? pub.pub_hash[:mesh_headings].map { |h| h[:descriptor][0][:name] }.compact.reject(&:empty?).join('; ') : ''
+            csv << [pub.title, pmid, doi, pub.pub_hash[:publisher], journal, mesh, pub.pub_hash[:year], pub.pub_hash[:provenance], author.last_name, author.first_name, author.sunetid, author.university_id, author_list, sunet_list, contribution.created_at, pub.pub_hash[:apa_citation]]
           end
         else
           puts "#{message} : ERROR - not found in database"
