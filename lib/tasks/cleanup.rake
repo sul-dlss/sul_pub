@@ -103,7 +103,7 @@ namespace :cleanup do
 
     pub_ids_worked_on_dump_file = "log/pubids_for_#{cap_profile_id}_#{provenance}.dump"
 
-    contributions = author.contributions.where('status = ? and visibility = ? and created_at > ? and created_at < ?', 'new', 'private', start_date, end_date)
+    contributions = author.contributions.where('status = ? and created_at > ? and created_at < ?', 'new', start_date, end_date)
 
     total = contributions.size
     deleted_pubs = 0
