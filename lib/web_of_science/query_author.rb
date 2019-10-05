@@ -35,7 +35,7 @@ module WebOfScience
               ident.first_name,
               Settings.HARVESTER.USE_MIDDLE_NAME ? ident.middle_name : ''
             )
-          end.text_search_terms
+          end&.text_search_terms
         end.flatten.compact.uniq
       end
 
