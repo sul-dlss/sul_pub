@@ -75,7 +75,7 @@ namespace :cleanup do
   # Use case: a researchers has many many new publications due to name ambiguities, because a harvest
   #  was run using last name, first initial and this user was determined to have many publications that
   #  do not actually belong to them.  This task will remove any publications associated with their profile
-  #  in the 'new' state with visibility 'private' between the dates specified, and then remove the publications
+  #  in the 'new' state between the dates specified, and then remove the publications
   #  too if they are no longer connected to any one else's profile and match the specified provenance.
   #  Should be rare in usage and then followed up with another harvest for this profile using:
   #  RAILS_ENV=production bundle exec rake harvest:author[123]
