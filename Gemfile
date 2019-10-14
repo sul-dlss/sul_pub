@@ -62,7 +62,7 @@ end
 
 group :development do
   gem 'byebug'
-  gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'listen', '>= 3.0.5', '< 3.3'
   gem 'pry-doc'
   gem 'ruby-prof'
   gem 'thin' # app server
