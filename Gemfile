@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 5.2.2'
+gem 'rails', '~> 6.0.0'
 
 # Use sass-powered bootstrap
 gem 'bootstrap-sass', '~> 3.4.1'
