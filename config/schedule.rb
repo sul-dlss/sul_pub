@@ -17,8 +17,8 @@ every "0 17 1,5,9,13,17,21,25,29 * *", roles: [:harvester_prod] do
   rake 'harvest:all_authors_update'
 end
 
-# poll cap for new authorship information nightly at 4am-ish in both prod and qa
-every 1.day, at: stagger(4), roles: [:harvester_qa, :harvester_prod, :harvester_dev] do
+# poll cap for new authorship information nightly at 4am-ish in prod, qa and dev
+every 1.day, at: stagger(4), roles: [:harvester_qa, :harvester_prod, :harvester_dev_a] do
   rake 'cap:poll[1]'
 end
 

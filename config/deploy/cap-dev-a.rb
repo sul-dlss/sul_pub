@@ -2,7 +2,7 @@
 #   team for testing their Oracle upgrade against.  Later we will remove the `cap-dev` host and deploy target and keep this in its place.
 #   We should then rename it back to `cap-dev` to match what it used to be.
 # Oct 30 2019, P Mangiafico
-server 'sul-pub-cap-dev-a.stanford.edu', user: 'pub', roles: %w(web db app)
+server 'sul-pub-cap-dev-a.stanford.edu', user: 'pub', roles: %w(web db harvester_dev_a app)
 
 Capistrano::OneTimeKey.generate_one_time_key!
 
