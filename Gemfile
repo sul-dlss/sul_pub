@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'rack', '~> 2.0.8' # pending https://github.com/sportngin/okcomputer/pull/161
 gem 'rails', '~> 5.2.2'
 
 # Use sass-powered bootstrap
