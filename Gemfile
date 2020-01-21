@@ -56,7 +56,6 @@ gem 'retina_tag'
 group :development, :test do
   gem 'rubocop', '~> 0.66.0'
   gem 'rubocop-rspec'
-  gem 'rails_db'
   gem 'rspec'
   gem 'rspec-rails', '~> 3.8'
 end
