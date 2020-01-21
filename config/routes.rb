@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  if Rails.env.development?
-    mount RailsDb::Engine => '/rails/db', :as => 'rails_db'
-  end
 
   # Publication API (for retrieving publications, searching and creating/updating manually entered publications)
   resources :publications, defaults: { format: :json } do
