@@ -13,9 +13,15 @@ module Cap
   class ProfileIdRewriter
     include ActionView::Helpers::DateHelper
 
+    # NOTE (Dec 2017):
     # We intentionally deferred adapting this class to tolerate or workaround cap_profile_id
     # uniqueness, since it is unclear when, if ever, we would be using this again.
+    # Note that cap_profile_id not only needs to be unique as per model validation, there is also now a SQL index constraint enforcement
+    # This process if run will currently very likely raise exceptions as it updates cap_profile_ids and violates the contraint/fails validation
     # If it becomes needed, development will need to solve the problem
+    #  e.g. switch to using `update_columns` and possibly catch and log errors
+    #  in the `process_next_batch_of_authorship_data` method below and also remove the SQL unique constraint on `author.cap_profile_id`
+    #  in db/migrate/20171208233331_author_cap_profile_id_uniqueness.rb
     def initialize
       raise 'Cap::ProfileIdRewriter disabled'
     end
@@ -84,7 +90,14 @@ module Cap
           author = good_keys.inject(nil) { |memo, key| memo || Author.find_by(key => attrs[key]) } # first hit wins
 
           if author
-            author.update_attributes!(attrs) # update_attributes! does validations, but update_attribute skips them
+            # NOTE (Oct 2019):
+            # update_attributes! runs validations and raises an exception with a validation failure
+            # update_attribute runs validations and returns false with a validation failure
+            # update_columns does a direct SQL update, and thus skips model validations and callbacks
+            # cap_profile_id currently must be unique and exist per author and will fail validation if duped,
+            #  however, even if you skip validations and use `update_columns`, there is a database index constraint
+            #  which will throw a SQL error if you attempt to set a duplicate cap_profile_id
+            author.update_attributes!(attrs)
             author.contributions.each { |contrib| contrib.update_attribute(:cap_profile_id, author.cap_profile_id) }
             counts[:authors_updated_count] += 1
           else # SKIP new authors?
