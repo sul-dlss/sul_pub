@@ -15,15 +15,15 @@ module Pubmed
       parse_response(resp)
     end
 
+    def valid?
+      !name_term.blank?
+    end
+
     private
 
     delegate :client, to: :Pubmed
 
     attr_reader :author, :options
-
-    def valid?
-      !name_term.blank?
-    end
 
     def addl_args
       return unless options[:reldate]
@@ -37,12 +37,12 @@ module Pubmed
 
     def name_term
       author_identities.collect { |identity| "(#{identity.last_name}, #{identity.first_name}[Author])" if identity.first_name =~ /[a-zA-Z]+/ }
-                                   .compact.uniq.join(' OR ')
+                       .compact.uniq.join(' OR ')
     end
 
     def affiliation_term
       author_identities.collect { |identity| affiliation_terms(identity.institution) if identity.institution }
-                                          .compact.uniq.join(' OR ')
+                       .compact.uniq.join(' OR ')
     end
 
     def affiliation_terms(institution)

@@ -1,5 +1,6 @@
 describe WebOfScience::QueryAuthor, :vcr do
   subject(:query_author) { described_class.new(author) }
+
   let(:query_period_author) { described_class.new(period_author) }
   let(:query_space_author) { described_class.new(space_author) }
 
@@ -94,16 +95,16 @@ describe WebOfScience::QueryAuthor, :vcr do
 
   context 'with a user with valid first names' do
     it 'indicates it is a valid query' do
-      expect(query_author.send(:'valid?')).to be_truthy
+      expect(query_author).to be_valid
     end
   end
 
   context 'with a user with no valid first names' do
     it 'indicates that name with a period for a first name is not a valid query' do
-      expect(query_period_author.send(:'valid?')).to be_falsey
+      expect(query_period_author).not_to be_valid
     end
     it 'indicates that a name with a space for a first name is not a valid query' do
-      expect(query_space_author.send(:'valid?')).to be_falsey
+      expect(query_space_author).not_to be_valid
     end
   end
 

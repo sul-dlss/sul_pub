@@ -11,9 +11,20 @@ module WebOfScience
     def process_author(author, options = {})
       raise(ArgumentError, 'author must be an Author') unless author.is_a? Author
       log_info(author, "processing author #{author.id}")
-      uids = process_uids(author, WebOfScience::QueryAuthor.new(author, options).uids)
-      log_info(author, "processed author #{author.id}: #{uids.count} new publications")
-      uids
+      query_author = WebOfScience::QueryAuthor.new(author, options)
+      if query_author.valid?
+        uids_from_query = query_author.uids
+        if uids_from_query.size >= Settings.WOS.max_publications_per_author
+          NotificationManager.error(StandardError, "#{self.class} - WoS harvest returned more than #{Settings.WOS.max_publications_per_author} for author id #{author.id} and was aborted", self)
+          []
+        else
+          uids = process_uids(author, uids_from_query)
+          log_info(author, "processed author #{author.id}: #{uids.count} new publications")
+          uids
+        end
+      else
+        []
+      end
     rescue StandardError => err
       NotificationManager.error(err, "#{self.class} - WoS harvest failed for author #{author.id}", self)
     end
