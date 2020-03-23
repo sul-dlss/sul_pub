@@ -23,6 +23,7 @@ module WebOfScience
           uids
         end
       else
+        NotificationManager.error(StandardError, "#{self.class} - An invalid author query was detected for author id #{author.id} and was aborted", self)
         []
       end
     rescue StandardError => err

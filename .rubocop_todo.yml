@@ -425,7 +425,6 @@ RSpec/LetBeforeExamples:
 RSpec/MessageChain:
   Exclude:
     - 'spec/lib/pubmed/harvester_spec.rb'
-    - 'spec/lib/web_of_science/harvester_spec.rb'
 
 # Offense count: 140
 # Configuration parameters: .

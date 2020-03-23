@@ -35,9 +35,12 @@ describe Pubmed::Harvester do
 
     context 'when author query has too many publications' do
       let(:lotsa_pmids) { Array(1..Settings.PUBMED.max_publications_per_author) }
+      let(:query_author) { instance_double(Pubmed::QueryAuthor) }
+
       before do
-        allow(Pubmed::QueryAuthor).to receive_message_chain(:new, :pmids).and_return(lotsa_pmids)
-        allow(Pubmed::QueryAuthor).to receive_message_chain(:new, :'valid?').and_return(true)
+        allow(Pubmed::QueryAuthor).to receive(:new).with(author, {}).and_return(query_author)
+        allow(query_author).to receive(:pmids).and_return(lotsa_pmids)
+        allow(query_author).to receive('valid?').and_return(true)
       end
 
       it 'aborts the harvest and returns no pmids' do
@@ -47,8 +50,11 @@ describe Pubmed::Harvester do
     end
 
     context 'when author query is invalid' do
+      let(:query_author) { instance_double(Pubmed::QueryAuthor) }
+
       before do
-        allow(Pubmed::QueryAuthor).to receive_message_chain(:new, :'valid?').and_return(false)
+        allow(Pubmed::QueryAuthor).to receive(:new).with(author, {}).and_return(query_author)
+        allow(query_author).to receive('valid?').and_return(false)
       end
 
       it 'aborts the harvest and returns no pmids' do
