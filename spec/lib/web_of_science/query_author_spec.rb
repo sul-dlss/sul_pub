@@ -1,7 +1,11 @@
 describe WebOfScience::QueryAuthor, :vcr do
   subject(:query_author) { described_class.new(author) }
+  let(:query_period_author) { described_class.new(period_author) }
+  let(:query_space_author) { described_class.new(space_author) }
 
   let(:author) { create :russ_altman }
+  let(:space_author) { create :blank_first_name_author }
+  let(:period_author) { create :period_first_name_author }
   let(:names) { query_author.send(:names) }
 
   # avoid caching Savon client across examples (affects VCR)
@@ -85,6 +89,21 @@ describe WebOfScience::QueryAuthor, :vcr do
     end
     it 'removes quotes in a name' do
       expect(query_author.send(:quote_wrap, ['peter', 'peter paul', 'peter "paul" mary'])).to eq ['"peter"', '"peter paul"', '"peter paul mary"']
+    end
+  end
+
+  context 'with a user with valid first names' do
+    it 'indicates it is a valid query' do
+      expect(query_author.send(:'valid?')).to be_truthy
+    end
+  end
+
+  context 'with a user with no valid first names' do
+    it 'indicates that name with a period for a first name is not a valid query' do
+      expect(query_period_author.send(:'valid?')).to be_falsey
+    end
+    it 'indicates that a name with a space for a first name is not a valid query' do
+      expect(query_space_author.send(:'valid?')).to be_falsey
     end
   end
 

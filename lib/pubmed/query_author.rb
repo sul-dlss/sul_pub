@@ -21,19 +21,28 @@ module Pubmed
 
     attr_reader :author, :options
 
+    def valid?
+      !name_term.blank?
+    end
+
     def addl_args
       return unless options[:reldate]
 
       "reldate=#{options[:reldate]}&datetype=edat"
     end
 
-    def term
-      author_identities = [author].concat(author.author_identities.to_a)
-      name_term = author_identities.collect { |identity| "(#{identity.last_name}, #{identity.first_name}[Author])" if identity.first_name =~ /[a-zA-Z]+/ }
+    def author_identities
+      @author_identities ||= [author].concat(author.author_identities.to_a)
+    end
+
+    def name_term
+      author_identities.collect { |identity| "(#{identity.last_name}, #{identity.first_name}[Author])" if identity.first_name =~ /[a-zA-Z]+/ }
                                    .compact.uniq.join(' OR ')
-      affiliation_term = author_identities.collect { |identity| affiliation_terms(identity.institution) if identity.institution }
+    end
+
+    def affiliation_term
+      author_identities.collect { |identity| affiliation_terms(identity.institution) if identity.institution }
                                           .compact.uniq.join(' OR ')
-      "(#{name_term}) AND (#{affiliation_term})"
     end
 
     def affiliation_terms(institution)
@@ -42,6 +51,10 @@ module Pubmed
       else
         "#{institution}[Affiliation]"
       end
+    end
+
+    def term
+      "(#{name_term}) AND (#{affiliation_term})"
     end
 
     def parse_response(response)

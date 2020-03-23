@@ -1,7 +1,11 @@
 describe Pubmed::QueryAuthor do
   let(:query_author) { described_class.new(author, options) }
+  let(:query_period_author) { described_class.new(period_author, options) }
+  let(:query_space_author) { described_class.new(space_author, options) }
 
   let(:author) { create :russ_altman }
+  let(:space_author) { create :blank_first_name_author }
+  let(:period_author) { create :period_first_name_author }
 
   let(:options) { {} }
 
@@ -83,6 +87,21 @@ describe Pubmed::QueryAuthor do
 
       it 'generates the correct term string' do
         expect(query_author.send(:term)).to eq('((Altman, Russ[Author]) OR (Altman, R[Author])) AND (Stanford University[Affiliation] OR Texas AandM[Affiliation])')
+      end
+    end
+
+    context 'with a user with valid first names' do
+      it 'indicates it is a valid query' do
+        expect(query_author.send(:'valid?')).to be_truthy
+      end
+    end
+
+    context 'with a user with no valid first names' do
+      it 'indicates that name with a period for a first name is not a valid query' do
+        expect(query_period_author.send(:'valid?')).to be_falsey
+      end
+      it 'indicates that a name with a space for a first name is not a valid query' do
+        expect(query_space_author.send(:'valid?')).to be_falsey
       end
     end
 

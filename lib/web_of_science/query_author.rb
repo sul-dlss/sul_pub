@@ -27,6 +27,10 @@ module WebOfScience
         identities.first
       end
 
+      def valid?
+        !names.blank?
+      end
+
       def names
         identities.map do |ident|
           if ident.first_name =~ /[a-zA-Z]+/

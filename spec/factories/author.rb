@@ -54,6 +54,32 @@ FactoryBot.define do
     end
   end
 
+  factory :period_first_name_author, parent: :author do
+    active_in_cap { true }
+    cap_import_enabled { true }
+    official_first_name { '.' }
+    official_last_name { 'Dude' }
+    official_middle_name { '' }
+    preferred_first_name { '.' }
+    preferred_last_name { 'Dude' }
+    preferred_middle_name { '' }
+    email { 'bad.dude@stanford.edu' }
+    emails_for_harvest { 'bad.dude@stanford.edu' }
+  end
+
+  factory :blank_first_name_author, parent: :author do
+    active_in_cap { true }
+    cap_import_enabled { true }
+    official_first_name { '' }
+    official_last_name { 'Dude' }
+    official_middle_name { '' }
+    preferred_first_name { '' }
+    preferred_last_name { 'Dude' }
+    preferred_middle_name { '' }
+    email { 'dude@stanford.edu' }
+    emails_for_harvest { 'dude@stanford.edu' }
+  end
+
   # Public data from
   # - https://stanfordwho.stanford.edu
   # - https://med.stanford.edu/profiles/russ-altman
