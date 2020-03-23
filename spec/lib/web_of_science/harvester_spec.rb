@@ -136,4 +136,28 @@ describe WebOfScience::Harvester do
       end
     end
   end
+
+  context 'when author query has too many publications' do
+    let(:lotsa_uids) { Array(1..Settings.WOS.max_publications_per_author) }
+    before do
+      allow(WebOfScience::QueryAuthor).to receive_message_chain(:new, :uids).and_return(lotsa_uids)
+      allow(WebOfScience::QueryAuthor).to receive_message_chain(:new, :'valid?').and_return(true)
+    end
+
+    it 'aborts the harvest and returns no uids' do
+      expect(harvester.process_author(author)).to eq([])
+      expect(author.contributions.size).to eq 0
+    end
+  end
+
+  context 'when author query is invalid' do
+    before do
+      allow(WebOfScience::QueryAuthor).to receive_message_chain(:new, :'valid?').and_return(false)
+    end
+
+    it 'aborts the harvest and returns no uids' do
+      expect(harvester.process_author(author)).to eq([])
+      expect(author.contributions.size).to eq 0
+    end
+  end
 end

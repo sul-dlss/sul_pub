@@ -9,6 +9,7 @@ describe Pubmed::Harvester do
     context 'when author has existing publications' do
       before do
         allow(Pubmed::QueryAuthor).to receive_message_chain(:new, :pmids).and_return([existing_pub.pmid.to_s])
+        allow(Pubmed::QueryAuthor).to receive_message_chain(:new, :'valid?').and_return(true)
       end
 
       it 'removes publications that exists and assigns the author' do
@@ -21,6 +22,7 @@ describe Pubmed::Harvester do
       let(:pmid) { '30833575' }
       before do
         allow(Pubmed::QueryAuthor).to receive_message_chain(:new, :pmids).and_return([pmid])
+        allow(Pubmed::QueryAuthor).to receive_message_chain(:new, :'valid?').and_return(true)
       end
 
       it 'removes publications that exists and assigns the author' do
@@ -35,6 +37,18 @@ describe Pubmed::Harvester do
       let(:lotsa_pmids) { Array(1..Settings.PUBMED.max_publications_per_author) }
       before do
         allow(Pubmed::QueryAuthor).to receive_message_chain(:new, :pmids).and_return(lotsa_pmids)
+        allow(Pubmed::QueryAuthor).to receive_message_chain(:new, :'valid?').and_return(true)
+      end
+
+      it 'aborts the harvest and returns no pmids' do
+        expect(harvester.process_author(author)).to eq([])
+        expect(author.contributions.size).to eq 0
+      end
+    end
+
+    context 'when author query is invalid' do
+      before do
+        allow(Pubmed::QueryAuthor).to receive_message_chain(:new, :'valid?').and_return(false)
       end
 
       it 'aborts the harvest and returns no pmids' do
