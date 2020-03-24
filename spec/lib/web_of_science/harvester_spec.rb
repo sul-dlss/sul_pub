@@ -136,4 +136,42 @@ describe WebOfScience::Harvester do
       end
     end
   end
+
+  context 'when author query has too many publications' do
+    let(:lotsa_uids) { Array(1..Settings.WOS.max_publications_per_author) }
+    let(:query_author) { instance_double(WebOfScience::QueryAuthor, uids: lotsa_uids, 'valid?': true) }
+
+    before do
+      allow(WebOfScience::QueryAuthor).to receive(:new).with(author, {}).and_return(query_author)
+    end
+
+    it 'aborts the harvest and returns no uids' do
+      expect(NotificationManager).to receive(:error).with(
+        ::Harvester::Error,
+        "WebOfScience::Harvester - WoS harvest returned more than #{Settings.WOS.max_publications_per_author} publications for author id #{author.id} and was aborted",
+        harvester
+      )
+      expect(harvester.process_author(author)).to eq([])
+      expect(author.contributions.size).to eq 0
+    end
+  end
+
+  context 'when author query is invalid' do
+    let(:query_author) { instance_double(WebOfScience::QueryAuthor) }
+
+    before do
+      allow(WebOfScience::QueryAuthor).to receive(:new).with(author, {}).and_return(query_author)
+      allow(query_author).to receive('valid?').and_return(false)
+    end
+
+    it 'aborts the harvest and returns no uids' do
+      expect(NotificationManager).to receive(:error).with(
+        ::Harvester::Error,
+        "WebOfScience::Harvester - An invalid author query was detected for author id #{author.id} and was aborted",
+        harvester
+      )
+      expect(harvester.process_author(author)).to eq([])
+      expect(author.contributions.size).to eq 0
+    end
+  end
 end

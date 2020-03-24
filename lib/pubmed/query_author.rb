@@ -15,6 +15,10 @@ module Pubmed
       parse_response(resp)
     end
 
+    def valid?
+      !name_term.blank?
+    end
+
     private
 
     delegate :client, to: :Pubmed
@@ -27,13 +31,18 @@ module Pubmed
       "reldate=#{options[:reldate]}&datetype=edat"
     end
 
-    def term
-      author_identities = [author].concat(author.author_identities.to_a)
-      name_term = author_identities.collect { |identity| "(#{identity.last_name}, #{identity.first_name}[Author])" if identity.first_name =~ /[a-zA-Z]+/ }
-                                   .compact.uniq.join(' OR ')
-      affiliation_term = author_identities.collect { |identity| affiliation_terms(identity.institution) if identity.institution }
-                                          .compact.uniq.join(' OR ')
-      "(#{name_term}) AND (#{affiliation_term})"
+    def author_identities
+      @author_identities ||= [author].concat(author.author_identities.to_a)
+    end
+
+    def name_term
+      author_identities.collect { |identity| "(#{identity.last_name}, #{identity.first_name}[Author])" if identity.first_name =~ /[a-zA-Z]+/ }
+                       .compact.uniq.join(' OR ')
+    end
+
+    def affiliation_term
+      author_identities.collect { |identity| affiliation_terms(identity.institution) if identity.institution }
+                       .compact.uniq.join(' OR ')
     end
 
     def affiliation_terms(institution)
@@ -42,6 +51,10 @@ module Pubmed
       else
         "#{institution}[Affiliation]"
       end
+    end
+
+    def term
+      "(#{name_term}) AND (#{affiliation_term})"
     end
 
     def parse_response(response)

@@ -16,6 +16,10 @@ module WebOfScience
       queries.search(author_query).merged_uids
     end
 
+    def valid?
+      !names.blank?
+    end
+
     private
 
       delegate :queries, to: :WebOfScience

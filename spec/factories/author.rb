@@ -37,10 +37,21 @@ FactoryBot.define do
     preferred_last_name { 'Edler' }
     preferred_middle_name { 'Jim' }
     emails_for_harvest { 'alice.edler@stanford.edu' }
-  end
 
-  factory :inactive_author, parent: :author do
-    active_in_cap { false }
+    trait :blank_first_name do
+      official_first_name { '' }
+      preferred_first_name { '' }
+    end
+
+    trait :space_first_name do
+      official_first_name { ' ' }
+      preferred_first_name { ' ' }
+    end
+
+    trait :period_first_name do
+      official_first_name { '.' }
+      preferred_first_name { '.' }
+    end
   end
 
   factory :author_with_alternate_identities, parent: :author do
