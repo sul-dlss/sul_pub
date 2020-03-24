@@ -15,7 +15,7 @@ module WebOfScience
       if query_author.valid?
         uids_from_query = query_author.uids
         if uids_from_query.size >= Settings.WOS.max_publications_per_author
-          NotificationManager.error(StandardError, "#{self.class} - WoS harvest returned more than #{Settings.WOS.max_publications_per_author} for author id #{author.id} and was aborted", self)
+          NotificationManager.error(::Harvester::Error, "#{self.class} - WoS harvest returned more than #{Settings.WOS.max_publications_per_author} for author id #{author.id} and was aborted", self)
           []
         else
           uids = process_uids(author, uids_from_query)
@@ -23,7 +23,7 @@ module WebOfScience
           uids
         end
       else
-        NotificationManager.error(StandardError, "#{self.class} - An invalid author query was detected for author id #{author.id} and was aborted", self)
+        NotificationManager.error(::Harvester::Error, "#{self.class} - An invalid author query was detected for author id #{author.id} and was aborted", self)
         []
       end
     rescue StandardError => err

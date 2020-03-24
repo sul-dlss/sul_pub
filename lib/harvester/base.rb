@@ -1,6 +1,10 @@
 module Harvester
   # An iota of abstraction for things a harvester must do.
   # The starting point is always one or more Authors.
+
+  # Exception for reporting issues that occur during harvesting
+  class Error < StandardError; end
+
   class Base
     # @param [Hash] options
     # @return [void]
