@@ -3,10 +3,12 @@ describe WebOfScience::QueryAuthor, :vcr do
 
   let(:query_period_author) { described_class.new(period_author) }
   let(:query_space_author) { described_class.new(space_author) }
+  let(:query_blank_author) { described_class.new(blank_author) }
 
   let(:author) { create :russ_altman }
-  let(:space_author) { create :blank_first_name_author }
-  let(:period_author) { create :period_first_name_author }
+  let(:space_author) { create :author, :space_first_name }
+  let(:period_author) { create :author, :period_first_name }
+  let(:blank_author) { create :author, :blank_first_name }
   let(:names) { query_author.send(:names) }
 
   # avoid caching Savon client across examples (affects VCR)
@@ -105,6 +107,9 @@ describe WebOfScience::QueryAuthor, :vcr do
     end
     it 'indicates that a name with a space for a first name is not a valid query' do
       expect(query_space_author).not_to be_valid
+    end
+    it 'indicates that a name with a blank for a first name is not a valid query' do
+      expect(query_blank_author).not_to be_valid
     end
   end
 
