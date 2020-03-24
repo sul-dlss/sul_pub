@@ -146,6 +146,11 @@ describe WebOfScience::Harvester do
     end
 
     it 'aborts the harvest and returns no uids' do
+      expect(NotificationManager).to receive(:error).with(
+        ::Harvester::Error,
+        "WebOfScience::Harvester - WoS harvest returned more than #{Settings.WOS.max_publications_per_author} publications for author id #{author.id} and was aborted",
+        harvester
+      )
       expect(harvester.process_author(author)).to eq([])
       expect(author.contributions.size).to eq 0
     end
@@ -160,6 +165,11 @@ describe WebOfScience::Harvester do
     end
 
     it 'aborts the harvest and returns no uids' do
+      expect(NotificationManager).to receive(:error).with(
+        ::Harvester::Error,
+        "WebOfScience::Harvester - An invalid author query was detected for author id #{author.id} and was aborted",
+        harvester
+      )
       expect(harvester.process_author(author)).to eq([])
       expect(author.contributions.size).to eq 0
     end

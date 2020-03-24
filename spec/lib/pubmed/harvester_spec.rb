@@ -49,6 +49,11 @@ describe Pubmed::Harvester do
       let(:query_author) { instance_double(Pubmed::QueryAuthor, 'valid?': false) }
 
       it 'aborts the harvest and returns no pmids' do
+        expect(NotificationManager).to receive(:error).with(
+          ::Harvester::Error,
+          "Pubmed::Harvester - An invalid author query was detected for author id #{author.id} and was aborted",
+          harvester
+        )
         expect(harvester.process_author(author)).to eq([])
         expect(author.contributions.size).to eq 0
       end
