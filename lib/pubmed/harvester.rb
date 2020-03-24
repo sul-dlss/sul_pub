@@ -16,7 +16,7 @@ module Pubmed
       if query_author.valid?
         pmids_from_query = query_author.pmids
         if pmids_from_query.size >= Settings.PUBMED.max_publications_per_author
-          NotificationManager.error(::Harvester::Error, "#{self.class} - Pubmed harvest returned more than #{Settings.PUBMED.max_publications_per_author} for author id #{author.id} and was aborted", self)
+          NotificationManager.error(::Harvester::Error, "#{self.class} - Pubmed harvest returned more than #{Settings.PUBMED.max_publications_per_author} publications for author id #{author.id} and was aborted", self)
           []
         else
           pmids = process_pmids(author, pmids_from_query)

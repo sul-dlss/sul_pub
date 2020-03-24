@@ -35,6 +35,11 @@ describe Pubmed::Harvester do
       let(:query_author) { instance_double(Pubmed::QueryAuthor, 'valid?': true, pmids: lotsa_pmids) }
 
       it 'aborts the harvest and returns no pmids' do
+        expect(NotificationManager).to receive(:error).with(
+          ::Harvester::Error,
+          "Pubmed::Harvester - Pubmed harvest returned more than #{Settings.PUBMED.max_publications_per_author} publications for author id #{author.id} and was aborted",
+          harvester
+        )
         expect(harvester.process_author(author)).to eq([])
         expect(author.contributions.size).to eq 0
       end
