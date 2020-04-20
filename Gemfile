@@ -10,7 +10,8 @@ gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '~> 4.1'
 
-gem 'mysql2', '~> 0.5'
+# pinning myql2 since 0.5.3 is currently not compatible with our version of CentOS and Ruby (as of Apr 2020)
+gem 'mysql2', '~> 0.5', '< 0.5.3'
 
 gem 'nokogiri', '>= 1.7.1'
 
