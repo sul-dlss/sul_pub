@@ -6,9 +6,8 @@ set :ssh_options,   keys: [Capistrano::OneTimeKey.temporary_ssh_private_key_path
 
 set :deploy_to, "/opt/app/pub/#{fetch(:application)}"
 
-last_tag = `git describe --abbrev=0 --tags`.strip
-default_tag='master'
-set :branch, ask("tag or branch to deploy: [default: #{default_tag}, last tag: #{last_tag}] ", default_tag)
+# Default branch is :master
+ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
 
 # Default value for :linked_files is []
 set :linked_files, fetch(:linked_files, []).push(
