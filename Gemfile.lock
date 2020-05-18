@@ -275,7 +275,7 @@ GEM
       pry (>= 0.10.4)
     psych (3.1.0)
     public_suffix (4.0.5)
-    rack (2.0.9)
+    rack (2.2.2)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     rails (5.2.4.2)
@@ -480,7 +480,6 @@ DEPENDENCIES
   parallel
   pry-doc
   pry-rails
-  rack (~> 2.0.8)
   rails (~> 5.2.2)
   rails-controller-testing
   rake
