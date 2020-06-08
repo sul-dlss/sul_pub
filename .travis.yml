@@ -2,8 +2,7 @@ sudo: false
 language: ruby
 cache: bundler
 rvm:
-  - 2.5.3 # deployed to current servers
-  - 2.7.1 # proposed on new servers
+  - 2.7.1 # deployed
 services: mysql
 before_install:
   - gem update --system
