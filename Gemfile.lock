@@ -34,7 +34,7 @@ GEM
       activemodel (= 5.2.4.3)
       activesupport (= 5.2.4.3)
       arel (>= 9.0)
-    activerecord-import (1.0.5)
+    activerecord-import (1.0.6)
       activerecord (>= 3.2)
     activestorage (5.2.4.3)
       actionpack (= 5.2.4.3)
@@ -54,7 +54,7 @@ GEM
       nokogiri
     arel (9.0.0)
     ast (2.4.1)
-    autoprefixer-rails (9.8.5)
+    autoprefixer-rails (9.8.6.1)
       execjs
     bibtex-ruby (5.1.4)
       latex-decode (~> 0.0)
@@ -173,7 +173,7 @@ GEM
       dry-equalizer (~> 0.3)
       dry-inflector (~> 0.1, >= 0.1.2)
       dry-logic (~> 1.0, >= 1.0.2)
-    dry-validation (1.5.2)
+    dry-validation (1.5.3)
       concurrent-ruby (~> 1.0)
       dry-container (~> 0.7, >= 0.7.1)
       dry-core (~> 0.4)
