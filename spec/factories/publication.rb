@@ -26,6 +26,26 @@ FactoryBot.define do
     publication_type { 'article' }
   end
 
+  factory :manual_publication, parent: :publication do
+    pub_hash do
+      {
+        provenance: 'cap',
+        identifier: [
+          { type: 'isbn', id: '1177188188181' },
+          { type: 'doi', id: '18819910019', url: 'http://doi:18819910019' }
+        ]
+      }
+    end
+  end
+
+  factory :wos_publication, parent: :publication do
+    pub_hash do
+      {
+        provenance: 'wos'
+      }
+    end
+  end
+
   factory :publication_with_contributions, parent: :publication do
     transient do
       contributions_count { 15 }

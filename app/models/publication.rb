@@ -230,15 +230,19 @@ class Publication < ActiveRecord::Base
   end
 
   def sciencewire_pub?
-    provenance == 'sciencewire'
+    provenance == Settings.sciencewire_source
   end
 
   def pubmed_pub?
-    provenance == 'pubmed'
+    provenance == Settings.pubmed_source
   end
 
   def wos_pub?
-    provenance == 'wos'
+    provenance == Settings.wos_source
+  end
+
+  def harvested_pub?
+    provenance != Settings.cap_provenance
   end
 
   def authoritative_pmid_source?
