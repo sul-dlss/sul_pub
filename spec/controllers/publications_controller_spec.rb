@@ -5,6 +5,9 @@ describe PublicationsController, :vcr do
   end
 
   let(:publication) { FactoryBot.create :publication }
+  let(:manual_publication) { FactoryBot.create :manual_publication }
+  let(:wos_publication) { FactoryBot.create :wos_publication }
+
   let(:author) { FactoryBot.create :author }
   let(:valid_hash_for_post) do
     {
@@ -505,35 +508,58 @@ describe PublicationsController, :vcr do
             featured: true
           }]
         }.to_json
-        put :update, params: { id: publication.id, format: 'json' }, body: json_with_sul_pub_id
+        put :update, params: { id: manual_publication.id, format: 'json' }, body: json_with_sul_pub_id
         expect(result['identifier'].count { |x| x['type'] == 'SULPubId' }).to eq(1)
         expect(result['identifier'][0]['id']).not_to eq('n')
         expect(response.status).to eq(202)
       end
 
-      it 'updates existing pub' do
-        post :create, body: with_isbn_hash.to_json
-        id = Publication.last.id
-        put :update, params: { id: id, format: 'json' }, body: with_isbn_changed_doi.to_json
-        expect(result['identifier'].size).to eq(3)
-        expect(result['identifier']).to include(
-          a_hash_including('type' => 'isbn', 'id' => '1177188188181'),
-          a_hash_including('type' => 'doi', 'url' => '18819910019-updated'),
-          a_hash_including('type' => 'SULPubId', 'url' => "#{Settings.SULPUB_ID.PUB_URI}/#{id}", 'id' => id.to_s)
+      it 'updates existing manual pub' do
+        id = manual_publication.id
+        expect(manual_publication).not_to be_harvested_pub
+        expect(manual_publication.pub_hash[:identifier].size).to eq(3) # database has three identifiers
+        expect(manual_publication.pub_hash[:identifier]).to include(
+          a_hash_including(type: 'isbn', id: '1177188188181'),
+          a_hash_including(type: 'doi', id: '18819910019', url: 'http://doi:18819910019'),
+          a_hash_including(type: 'SULPubId', url: "#{Settings.SULPUB_ID.PUB_URI}/#{id}", id: id.to_s)
         )
-        expect(response.status).to eq(202)
+        put :update, params: { id: id, format: 'json' }, body: with_isbn_changed_doi.to_json
+        manual_publication.reload
+        expect(manual_publication.pub_hash[:identifier].size).to eq(3) # database still has three identifiers
+        expect(result['identifier'].size).to eq(3) # response also has three identifiers
+        expect(manual_publication.pub_hash[:identifier]).to include(
+          a_hash_including(type: 'isbn', id: '1177188188181'),
+          a_hash_including(type: 'doi', id: '18819910019-updated', url: '18819910019-updated'), # doi is changed in the database
+          a_hash_including(type: 'SULPubId', url: "#{Settings.SULPUB_ID.PUB_URI}/#{id}", id: id.to_s)
+        )
+        expect(response.status).to eq(202) # updated
       end
 
-      it 'deletes an identifier from the db if it is not in the incoming json' do
-        post :create, body: with_isbn_hash.to_json
-        id = Publication.last.id
-        put :update, params: { id: id, format: 'json' }, body: with_isbn_deleted_doi.to_json
-        expect(result['identifier'].size).to eq(2)
-        expect(result['identifier']).to include(
-          a_hash_including('type' => 'isbn', 'id' => '1177188188181'),
-          a_hash_including('type' => 'SULPubId', 'url' => "#{Settings.SULPUB_ID.PUB_URI}/#{id}", 'id' => id.to_s)
+      it 'deletes an identifier from the db if it is not in the incoming json for a manual publication' do
+        id = manual_publication.id
+        expect(manual_publication).not_to be_harvested_pub
+        expect(manual_publication.pub_hash[:identifier].size).to eq(3) # database has three identifiers
+        expect(manual_publication.pub_hash[:identifier]).to include(
+          a_hash_including(type: 'isbn', id: '1177188188181'),
+          a_hash_including(type: 'doi', id: '18819910019', url: 'http://doi:18819910019'),
+          a_hash_including(type: 'SULPubId', url: "#{Settings.SULPUB_ID.PUB_URI}/#{id}", id: id.to_s)
         )
-        expect(response.status).to eq(202)
+        put :update, params: { id: id, format: 'json' }, body: with_isbn_deleted_doi.to_json
+        manual_publication.reload
+        expect(manual_publication.pub_hash[:identifier].size).to eq(2) # database has only two identifiers now
+        expect(result['identifier'].size).to eq(2) # response also only has two identifiers
+        expect(manual_publication.pub_hash[:identifier]).to include( # doi is now gone from the database
+          a_hash_including(type: 'isbn', id: '1177188188181'),
+          a_hash_including(type: 'SULPubId', url: "#{Settings.SULPUB_ID.PUB_URI}/#{id}", id: id.to_s)
+        )
+        expect(response.status).to eq(202) # updated
+      end
+
+      it 'refuses to update a wos pub' do
+        id = wos_publication.id
+        expect(wos_publication).to be_harvested_pub
+        put :update, params: { id: id, format: 'json' }, body: with_isbn_changed_doi.to_json
+        expect(response.status).to eq(403) # forbidden
       end
     end
 

@@ -40,7 +40,7 @@ describe Publication do
       expect(subject.pub_hash[:identifier].length).to be > 0
       expect(subject.pub_hash[:sulpubid]).to eq(subject.id.to_s)
       expect(subject.pub_hash[:identifier]).to include(type: 'SULPubId', id: subject.id.to_s, url: "#{Settings.SULPUB_ID.PUB_URI}/#{subject.id}")
-      expect(subject.pub_hash[:identifier]).to_not include(type: 'SULPubId', url: "#{Settings.SULPUB_ID.PUB_URI}/")
+      expect(subject.pub_hash[:identifier]).not_to include(type: 'SULPubId', url: "#{Settings.SULPUB_ID.PUB_URI}/")
       expect(subject.pub_hash[:identifier]).to include(type: 'x', id: 'y', url: 'z')
     end
   end
@@ -120,7 +120,7 @@ describe Publication do
       expect do
         publication.send(:sync_identifiers_in_pub_hash)
         publication.save!
-      end.to_not change(publication, :publication_identifiers)
+      end.not_to change(publication, :publication_identifiers)
     end
 
     it 'updates existing ids with new values' do
@@ -293,7 +293,7 @@ describe Publication do
           { type: 'SULPubId', id: publication.id.to_s, url: "http://sulcap.stanford.edu/publications/#{publication.id}" }
         ]
       )
-      expect(publication.pmid).to_not be_nil
+      expect(publication.pmid).not_to be_nil
       expect(publication.update_from_pubmed).to be true
       expect(publication.pub_hash[:title]).to eq 'How I learned Rails'
       expect(publication.pub_hash[:identifier]).to eq(
@@ -410,16 +410,21 @@ describe Publication do
     it "returns true if the pub has a provenance of 'pubmed'" do
       pub.pub_hash = { provenance: 'pubmed' }
       expect(pub).to be_authoritative_pmid_source
+      expect(pub).to be_pubmed_pub
+      expect(pub).to be_harvested_pub
     end
 
     it "returns true if the pub has a provenance of 'sciencewire'" do
       pub.pub_hash = { provenance: 'sciencewire' }
       expect(pub).to be_authoritative_pmid_source
+      expect(pub).to be_sciencewire_pub
+      expect(pub).to be_harvested_pub
     end
 
     it "returns false if the pub does not have a provanance of 'pubmed' or 'sciencewire'" do
       pub.pub_hash = { provenance: 'cap' }
-      expect(pub).to_not be_authoritative_pmid_source
+      expect(pub).not_to be_authoritative_pmid_source
+      expect(pub).not_to be_harvested_pub
     end
   end
 
