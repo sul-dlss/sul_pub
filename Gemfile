@@ -49,11 +49,7 @@ gem 'whenever', require: false
 gem 'yaml_db'
 gem 'hashie' # this used to be part of grape, but we still need it since we believe pub_hashes may still be seralized in the database this way 9/10/2018
 
-# -------------------
-# gem 'honeybadger', '~> 4.2'
-# See https://github.com/honeybadger-io/honeybadger-ruby/issues/369
-gem 'honeybadger', github: 'honeybadger-io/honeybadger-ruby', branch: 'avoid-ar-connections'
-
+gem 'honeybadger', '~> 4.2'
 gem 'retina_tag'
 
 group :development, :test do
