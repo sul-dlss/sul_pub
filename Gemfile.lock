@@ -54,7 +54,7 @@ GEM
       nokogiri
     arel (9.0.0)
     ast (2.4.1)
-    autoprefixer-rails (9.8.6.2)
+    autoprefixer-rails (9.8.6.3)
       execjs
     bibtex-ruby (5.1.4)
       latex-decode (~> 0.0)
@@ -235,7 +235,7 @@ GEM
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
       ruby_dep (~> 1.2)
-    loofah (2.6.0)
+    loofah (2.7.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mail (2.7.1)
@@ -381,7 +381,7 @@ GEM
       simplecov-html (~> 0.10.0)
     simplecov-html (0.10.2)
     socksify (1.7.1)
-    spring (2.1.0)
+    spring (2.1.1)
     spring-watcher-listen (2.0.1)
       listen (>= 2.7, < 4.0)
       spring (>= 1.2, < 3.0)
@@ -415,7 +415,8 @@ GEM
     unicode-display_width (1.5.0)
     urn (2.0.2)
     vcr (6.0.0)
-    wasabi (3.5.0)
+    wasabi (3.6.1)
+      addressable
       httpi (~> 2.0)
       nokogiri (>= 1.4.2)
     webmock (3.8.3)
