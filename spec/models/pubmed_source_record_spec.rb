@@ -109,6 +109,11 @@ describe PubmedSourceRecord, :vcr do
       record = described_class.send(:get_pubmed_record_from_pubmed, pmid_created_1999)
       expect(record).to be_an described_class
     end
+    it 'returns nil if pubmed lookup is disabled' do
+      allow(Settings.PUBMED).to receive(:lookup_enabled).and_return(false)
+      record = described_class.send(:get_pubmed_record_from_pubmed, pmid_created_1999)
+      expect(record).to be_nil
+    end
     it 'calls PubmedSourceRecord.get_and_store_records_from_pubmed' do
       expect(described_class).to receive(:get_and_store_records_from_pubmed)
       described_class.send(:get_pubmed_record_from_pubmed, pmid_created_1999)

@@ -80,6 +80,14 @@ describe WebOfScience::ProcessPubmed, :vcr do
       expect(PubmedSourceRecord).to receive(:for_pmid).with(wos_record.pmid).and_return(wos_pubmed_rec)
       processor.pubmed_additions([wos_record])
     end
+
+    it 'does not try #pubmed_addition for any WOS records if pubmed lookups are disabled' do
+      allow(Settings.PUBMED).to receive(:lookup_enabled).and_return(false)
+      expect(wos_pub.wos_uid).to eq(wos_record.uid) # ensure a wos_pub record exists
+      expect(wos_pubmed_rec.pmid).to eq(wos_record.pmid.to_i) # ensure a wos_pubmed record exists
+      expect(PubmedSourceRecord).not_to receive(:for_pmid).with(wos_record.pmid)
+      processor.pubmed_additions([wos_record])
+    end
   end
 
   describe '#pubmed_addition' do

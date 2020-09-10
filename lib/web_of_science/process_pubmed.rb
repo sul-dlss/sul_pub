@@ -30,10 +30,12 @@ module WebOfScience
     end
 
     # For WOS-record that has a PMID, fetch data from PubMed and enhance the pub.pub_hash with PubMed data
+    # but don't do anything if pubmed looksups are disabled.
     # @param [Publication] pub is a Publication with a .pmid value
     # @return [void]
     def pubmed_addition(pub)
       raise(ArgumentError, 'pub must be Publication') unless pub.is_a? Publication
+      return unless Settings.PUBMED.lookup_enabled
       pmid = parse_pmid(pub.pmid) # ensure the Publication has a valid PMID
       pubmed_record = PubmedSourceRecord.for_pmid(pmid)
       if pubmed_record.nil?

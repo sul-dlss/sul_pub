@@ -22,6 +22,7 @@ module Pubmed
         return result unless result.empty?
       end
 
+      return [] unless Settings.PUBMED.lookup_enabled
       # PubMed, oddly enough, the last resort
       pm_xml = Pubmed.client.fetch_records_for_pmid_list(pmid)
       Nokogiri::XML(pm_xml).xpath('//PubmedArticle').map do |doc|

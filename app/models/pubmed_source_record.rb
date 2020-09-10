@@ -23,6 +23,7 @@ class PubmedSourceRecord < ActiveRecord::Base
 
   # @return [PubmedSourceRecord] the recently downloaded pubmed_source_records data
   def self.get_pubmed_record_from_pubmed(pmid)
+    return unless Settings.PUBMED.lookup_enabled
     get_and_store_records_from_pubmed([pmid])
     find_by(pmid: pmid)
   end
@@ -57,9 +58,10 @@ class PubmedSourceRecord < ActiveRecord::Base
 
   # Retrieve this pubmed record from PubMed and update
   # is_active, source_data and the source_fingerprint fields.
-  # Used to update the pubmed source record on our end (similar to .sciencewire_update)
+  # Used to update the pubmed source record on our end
   # @return [Boolean] the return value from update_attributes!
   def pubmed_update
+    return false unless Settings.PUBMED.lookup_enabled
     pubmed_source_xml = Pubmed.client.fetch_records_for_pmid_list pmid
     pub_doc = Nokogiri::XML(pubmed_source_xml).xpath('//PubmedArticle')[0]
     return false unless pub_doc
