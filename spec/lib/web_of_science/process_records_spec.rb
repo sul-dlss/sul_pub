@@ -194,19 +194,19 @@ describe WebOfScience::ProcessRecords, :vcr do
         pub.save!
       end
 
-      describe '#matching_publication' do
+      describe 'record.matching_publication' do
         let(:match) { PublicationIdentifier.find_by(identifier_type: 'pmid', identifier_value: '21253920') }
         let(:other_id) { create :doi_pub_id, identifier_value: '10.1007/s12630-011-9462-1' }
         it 'finds the Publication by non-WOS IDs' do
           expect(PublicationIdentifier.where(identifier_type: 'WosUID').count).to eq 0
           expect(match).not_to be_nil
           expect(match.publication.wos_uid).to be_nil
-          expect(processor.send(:matching_publication, wos_rec)).not_to be_nil
+          expect(wos_rec.matching_publication).not_to be_nil
         end
         it 'adheres to a priority on matching' do
           expect(wos_rec.doi).to eq(other_id.identifier_value)
           expect(PublicationIdentifier.where(identifier_type: 'doi').count).to eq 2
-          expect(processor.send(:matching_publication, wos_rec)).to eq(other_id.publication) # match on DOI before PMID
+          expect(wos_rec.matching_publication).to eq(other_id.publication) # match on DOI before PMID
           expect(pub).not_to eq(other_id.publication)
         end
       end

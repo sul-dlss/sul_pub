@@ -221,7 +221,8 @@ class AuthorshipsController < ApplicationController
   # @return [Publication]
   def get_publication_via_wos!(author, wos_uid)
     WebOfScience.harvester.author_uid(author, wos_uid)
-    pub = Publication.find_by(wos_uid: wos_uid)
+    # we find the publication by looking for any matching publication for this WOS record (could be MEDLINE or WOS ID)
+    pub = WebOfScienceSourceRecord.find_by(uid: wos_uid)&.record&.matching_publication
     unless pub
       log_and_error!("The publication with WOS_UID:#{wos_uid} was not found either locally or at WebOfScience.")
       false
