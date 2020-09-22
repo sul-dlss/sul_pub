@@ -125,11 +125,11 @@ module WebOfScience
       end
     end
 
-    # Does record have a contribution for this author? (based on matching PublicationIdentifiers)
+    # Does record have an associated publication? (based on matching PublicationIdentifiers)
     # Note: must use unique identifiers, don't use ISSN or similar series level identifiers
     # We search for all PubIDs at once instead of serial queries.  No need to hit the same table multiple times.
     # @param [WebOfScience::Record] record
-    # @return [::Publication, nil] a matched or newly minted Contribution
+    # @return [::Publication, nil] a matched or newly minted publication
     def matching_publication
       Publication.joins(:publication_identifiers).where(
         "publication_identifiers.identifier_value IS NOT NULL AND (
