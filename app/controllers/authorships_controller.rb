@@ -229,12 +229,10 @@ class AuthorshipsController < ApplicationController
 
     # we find the publication by looking for any matching publication for this WOS source record (could be MEDLINE or WOS ID, use all valid identifiers)
     pub = wossr.record.matching_publication
+    return pub if pub
 
-    unless pub
-      log_and_error!("A matching publication record for WOS_UID:#{wos_uid} was not found in the publication table.")
-      false
-    end
-    pub
+    log_and_error!("A matching publication record for WOS_UID:#{wos_uid} was not found in the publication table.")
+    false
   end
 
 end
