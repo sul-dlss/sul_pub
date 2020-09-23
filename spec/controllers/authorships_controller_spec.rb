@@ -296,6 +296,19 @@ describe AuthorshipsController, :vcr do
           result = JSON.parse(response.body)
           expect(result['error']).to include('You have not supplied any publication identifier', 'sul_pub_id', 'pmid', 'sw_id', 'wos_uid')
         end
+
+        context 'matching WoS publication is not found for provided WoS UID' do
+          it 'returns 404 with error message' do
+            expect(WebOfScience.harvester).to receive(:author_uid).with(Author, id)
+            allow(WebOfScienceSourceRecord).to receive(:find_by).with(uid: id).and_return(build(:web_of_science_source_record))
+            # in this case we have a WoS Source Record for id = 0, but there is no matching publication in the database
+            post :create, body: no_pub_params.merge(wos_uid: id).to_json, params: { format: 'json' }
+            result = JSON.parse(response.body)
+            expect(result['error']).to eq("A matching publication record for WOS_UID:#{id} was not found in the publication table.")
+            expect(response.status).to eq 404
+          end
+        end
+
         context 'returns 404 with error message for invalid' do
           it 'sul_pub_id' do
             post :create, body: no_pub_params.merge(sul_pub_id: id).to_json, params: { format: 'json' }
@@ -320,9 +333,10 @@ describe AuthorshipsController, :vcr do
           end
           it 'wos_uid' do
             expect(WebOfScience.harvester).to receive(:author_uid).with(Author, id)
+            # in this case we have no WoS Source Record for id = 0
             post :create, body: no_pub_params.merge(wos_uid: id).to_json, params: { format: 'json' }
             result = JSON.parse(response.body)
-            expect(result['error']).to include(id, 'was not found')
+            expect(result['error']).to include(id, 'A WebOfScienceSourceRecord was not found')
             expect(response.status).to eq 404
           end
         end

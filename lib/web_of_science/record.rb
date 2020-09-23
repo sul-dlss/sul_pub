@@ -124,5 +124,28 @@ module WebOfScience
         rec.database = database
       end
     end
+
+    # Does record have an associated publication? (based on matching PublicationIdentifiers)
+    # Note: must use unique identifiers, don't use ISSN or similar series level identifiers
+    # We search for all PubIDs at once instead of serial queries.  No need to hit the same table multiple times.
+    # @return [::Publication, nil] a matched or newly minted publication
+    def matching_publication
+      Publication.joins(:publication_identifiers).where(
+        "publication_identifiers.identifier_value IS NOT NULL AND (
+         (publication_identifiers.identifier_type = 'WosUID' AND publication_identifiers.identifier_value = ?) OR
+         (publication_identifiers.identifier_type = 'WosItemID' AND publication_identifiers.identifier_value = ?) OR
+         (publication_identifiers.identifier_type = 'doi' AND publication_identifiers.identifier_value = ?) OR
+         (publication_identifiers.identifier_type = 'pmid' AND publication_identifiers.identifier_value = ?))",
+        uid, wos_item_id, doi, pmid
+      ).order(
+        Arel.sql("CASE
+          WHEN publication_identifiers.identifier_type = 'WosUID' THEN 0
+          WHEN publication_identifiers.identifier_type = 'WosItemID' THEN 1
+          WHEN publication_identifiers.identifier_type = 'doi' THEN 2
+          WHEN publication_identifiers.identifier_type = 'pmid' THEN 3
+         END")
+      ).first
+    end
+
   end
 end
