@@ -118,7 +118,7 @@ namespace :sul do
   end
 
   desc 'Fetch times-cited numbers given a list of DOIs'
-  # bundle exec rake sul:times_cited['/tmp/list_of_dois.csv', '/tmp/results.csv'] # pass in a CSV file with a list of DOIs with a column of "doi"
+  # bundle exec rake sul:times_cited['/tmp/list_of_dois.csv','/tmp/results.csv'] # pass in a CSV file with a list of DOIs with a column of "doi"
   task :times_cited, [:input_file, :output_file] => :environment do |_t, args|
     output_file = args[:output_file]
     input_file = args[:input_file]
@@ -165,5 +165,18 @@ namespace :sul do
     end
     end_time = Time.zone.now
     puts "Total: #{total_pubs}. Output file: #{output_file}. Ended at #{end_time}.  #{doi_count} had valid DOIs.  #{error_count} errors occurred. Total time: #{((end_time - start_time) / 60.0).round(1)} minutes."
+  end
+
+  desc 'Custom SMCI export of profile and non-profile authors report'
+  # bundle exec rake sul:smci_export['tmp/authors.csv','tmp/results.csv','1/1/2000','10year']
+  # bundle exec rake sul:smci_export['tmp/authors.csv','tmp/results.csv',,] # for all time
+  # see lib/smci_report.rb for full details of parameters and usage
+  task :smci_export, [:input_file, :output_file, :date_since, :time_span] => :environment do |_t, args|
+    output_file = args[:output_file]
+    input_file = args[:input_file]
+    date_since = args[:date_since]
+    time_span = args[:time_span]
+    smci = SMCIReport.new(input_file: input_file, output_file: output_file, date_since: date_since, time_span: time_span)
+    smci.run
   end
 end
