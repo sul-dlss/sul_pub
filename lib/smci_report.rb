@@ -168,11 +168,11 @@ class SMCIReport
     author_list = pub_hash[:author] ? Csl::RoleMapper.send(:parse_authors, pub_hash[:author]).map { |a| "#{a['family']}, #{a['given']}" }.join('; ') : ''
     pmid = pub_hash[:identifier].map { |ident| ident[:id] if ident[:type].downcase == 'pmid' }.compact.join('')
     doi = pub_hash[:identifier].map { |ident| ident[:id] if ident[:type].downcase == 'doi' }.compact.join('')
-    wos_uid = pub_hash[:identifier].map { |ident| ident[:id] if ident[:type].downcase == 'WosUID' }.compact.join('')
-    sul_pub_id = pub_hash[:identifier].map { |ident| ident[:id] if ident[:type].downcase == 'SULPubId' }.compact.join('')
+    wos_uid = pub_hash[:identifier].map { |ident| ident[:id] if ident[:type].downcase == 'wosuid' }.compact.join('')
+    sul_pub_id = pub_hash[:identifier].map { |ident| ident[:id] if ident[:type].downcase == 'sulpubId' }.compact.join('')
     doi_url = pub_hash[:identifier].map { |ident| ident[:url] if ident[:type].downcase == 'doi' }.compact.join('')
     journal = pub_hash[:journal] ? pub_hash[:journal][:name] : ''
-    issue = pub_hash[:issue] ? pub_hash[:journal][:issue] : ''
+    issue = pub_hash[:journal] ? pub_hash[:journal][:issue] : ''
     volume = pub_hash[:journal] ? pub_hash[:journal][:volume] : ''
     article_number = pub_hash[:journal] ? pub_hash[:journal][:articlenumber] : ''
     mesh = pub_hash[:mesh_headings] ? pub_hash[:mesh_headings].map { |h| h[:descriptor][0][:name] }.compact.reject(&:empty?).join('; ') : ''
