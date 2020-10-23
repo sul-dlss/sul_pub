@@ -69,6 +69,7 @@ FactoryBot.define do
   # - https://stanfordwho.stanford.edu
   # - https://med.stanford.edu/profiles/russ-altman
   factory :russ_altman, parent: :author do
+    sunetid { 'altman' }
     active_in_cap { true }
     cap_import_enabled { true }
     official_first_name { 'Russ' }
