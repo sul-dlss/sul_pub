@@ -6,11 +6,13 @@
 # October 2020
 
 # You must have an input csv file with the following columns (including a header row):
-#   sunetid,cap_profile_id,first_name,middle_name,last_name,institutions
+#   sunetid,cap_profile_id,first_name,middle_name,last_name,institutions,orcid,time_span
 #
 #  For authors that exist in profiles, you can specify either a sunet or cap_profile_id (sunet preferred if both specified)
 #  For authors that do NOT exist in profiles, you MUST leave the cap_profile_id and sunet field columns blank, and then you must specify first name and last name
 #    and optionally middle name a comma delimited list of institutions (defaults to 'stanford' if no institutions provided)
+#    Optionally, you can include an ORCID, which will take precedence over a name search for non-Profiles authors
+#    Optionally, you can include a symbolicTimeSpan, which will override the default symbolicTimeSpan passed in (if any) for all non-Profiles author searches
 
 # You can run it on the Rails console with:
 #
@@ -67,6 +69,7 @@ class SMCIReport
     @logger ||= Logger.new('log/smci_export.log')
   end
 
+  # rubocop:disable Metrics/MethodLength
   def run
     rows = CSV.parse(File.read(@input_file), headers: true)
     total_authors = rows.size
@@ -87,6 +90,8 @@ class SMCIReport
         middle_name = row['middle_name']
         last_name = row['last_name']
         institutions = row['institutions']
+        orcid = row['orcid']
+        time_span = row['time_span']
 
         # check to see if we have either a sunet or cap_profile_id value for this row
         #  this would indicate this is an author in profiles
@@ -118,16 +123,32 @@ class SMCIReport
 
         else # this is NOT a profiles author, so we need to harvest this author directly from WoS using the name provided
 
-          logger.info "harvesting author by name from WoS: '#{first_name} #{middle_name} #{last_name}', institutions: '#{institutions}'"
-          # create a temporary author model object so we can generate the correct query
-          author = Author.new(preferred_first_name: first_name, preferred_last_name: last_name, preferred_middle_name: middle_name)
-          # if institutions were provided in the row, add the author identities to our temporary author model object
-          institutions&.split(',')&.each do |institution|
-            author.author_identities << AuthorIdentity.new(first_name: first_name, last_name: last_name, middle_name: middle_name, institution: institution.strip)
+          symbolicTimeSpan = time_span || @time_span
+          if orcid.blank?
+            # no orcid, search by name
+            logger.info "harvesting author by name from WoS: '#{first_name} #{middle_name} #{last_name}', institutions: '#{institutions}'"
+            # create a temporary author model object so we can generate the correct query
+            author = Author.new(preferred_first_name: first_name, preferred_last_name: last_name, preferred_middle_name: middle_name)
+            # if institutions were provided in the row, add the author identities to our temporary author model object
+            institutions&.split(',')&.each do |institution|
+              author.author_identities << AuthorIdentity.new(first_name: first_name, last_name: last_name, middle_name: middle_name, institution: institution.strip)
+            end
+            # end check for institutions for this author
+            author_query = WebOfScience::QueryAuthor.new(author, symbolicTimeSpan: symbolicTimeSpan) # setup the WOS name query
+            uids = author_query.uids # now fetch all of the WOS_UIDs for the publications for this author by running the name search
+            logger.info(author_query.send(:author_query)) # log the name query being sent to WoS
+          else
+            # we have an orcid, search by orcid
+            logger.info "harvesting author by orcid from WoS: '#{orcid}'"
+            params = WebOfScience.queries.params_for_search("RID=(\"#{orcid.gsub('orcid.org/', '')}\")")
+            unless symbolicTimeSpan.blank?
+              params[:queryParameters][:symbolicTimeSpan] = symbolicTimeSpan
+              params[:queryParameters].delete(:timeSpan)
+              params[:queryParameters][:order!] = [:databaseId, :userQuery, :symbolicTimeSpan, :queryLanguage] # according to WSDL
+            end
+            retriever = WebOfScience.queries.search(params)
+            uids = retriever.merged_uids # now fetch all of the WOS_UIDs for the publications for this author by running the orcid search
           end
-          # end check for institutions for this author
-          author_query = WebOfScience::QueryAuthor.new(author, symbolicTimeSpan: @time_span) # setup the WOS name query
-          uids = author_query.uids # now fetch all of the WOS_UIDs for the publications for this author by running the name search
           num_pubs_returned = uids.size
           if num_pubs_returned < Settings.WOS.max_publications_per_author # verify that we don't have too many publications (usually caused by a bad name query)
             total_pubs += num_pubs_returned
@@ -140,8 +161,7 @@ class SMCIReport
             # end check for any publications to fetch for this author
             logger.info "found #{num_pubs_returned} publications from WoS"
           else # too many publications were found for this author, do not export
-            logger.error "too many publications found for this author in WoS, query shown below.  Pubs found: #{num_pubs_returned} > #{Settings.WOS.max_publications_per_author}"
-            logger.info author_query.send(:author_query) # log the query being sent to WoS for debugging
+            logger.error "too many publications found for this author in WoS - Pubs found: #{num_pubs_returned} > #{Settings.WOS.max_publications_per_author}"
           end
           # end check for too many publications for this author
         end
@@ -157,6 +177,7 @@ class SMCIReport
     logger.info 'Completed export.'
     logger.info '*****************'
   end
+  # rubocop:enable Metrics/MethodLength
 
   private
 

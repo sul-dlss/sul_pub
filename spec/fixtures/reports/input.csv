@@ -1,6 +1,7 @@
-sunetid,cap_profile_id,first_name,middle_name,last_name,institutions
+sunetid,cap_profile_id,first_name,middle_name,last_name,institutions,orcid
 altman,
 bogus,
 ,92885
 ,,bill,a,clinton,"stanford,princeton"
 ,,d,,duck,
+,,,,,,0000-0002-1859-6354
