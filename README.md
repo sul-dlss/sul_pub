@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/sul-dlss/sul_pub.svg?branch=master)](https://travis-ci.org/sul-dlss/sul_pub) | [![Coverage Status](https://coveralls.io/repos/github/sul-dlss/sul_pub/badge.svg?branch=master)](https://coveralls.io/github/sul-dlss/sul_pub?branch=master)
+[![Build Status](https://travis-ci.com/sul-dlss/sul_pub.svg?branch=master)](https://travis-ci.com/sul-dlss/sul_pub) | [![Coverage Status](https://coveralls.io/repos/github/sul-dlss/sul_pub/badge.svg?branch=master)](https://coveralls.io/github/sul-dlss/sul_pub?branch=master)
 
 # SUL Bibliographic Management System
 
