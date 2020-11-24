@@ -82,11 +82,12 @@ describe Pubmed::Fetcher, :vcr do
   describe '.fetch_remote_pubmed' do
     subject(:hits) { described_class.send(:fetch_remote_pubmed, 24_930_130) } # backed by VCR cassettes for each provider
 
-    before do
-      allow(Settings.WOS).to receive(:enabled).and_return(false) # default
-    end
+    context 'Pubmed enabled and WOS disabled' do
+      before do
+        allow(Settings.WOS).to receive(:enabled).and_return(false)
+        allow(Settings.PUBMED).to receive(:lookup_enabled).and_return(true)
+      end
 
-    context 'WOS disabled' do
       it 'searches only pubmed' do
         expect(WebOfScience).not_to receive(:queries)
         expect(hits.size).to eq(1)
@@ -95,23 +96,39 @@ describe Pubmed::Fetcher, :vcr do
       end
     end
 
-    context 'WOS enabled' do
-      before { allow(Settings.WOS).to receive(:enabled).and_return(true) }
+    context 'Pubmed and WOS both enabled' do
+      before do
+        allow(Settings.WOS).to receive(:enabled).and_return(true)
+        allow(Settings.PUBMED).to receive(:lookup_enabled).and_return(true)
+      end
 
-      it 'searches only WOS' do
+      it 'searches only WOS if a result is found there (and stops before hitting pubmed service)' do
         expect(Pubmed.client).not_to receive(:new)
         expect(hits.size).to eq(1)
         expect(hits.first[:title]).to eq('Chemically defined generation of human cardiomyocytes.')
         expect(hits.first[:chicago_citation]).to match(/Chemically Defined Generation/)
       end
 
-      it 'without hits, fails over across services' do
+      it 'searches Pubmed next if no results found at WoS' do
         expect(WebOfScience.queries).to receive(:retrieve_by_pmid)
           .with([24_930_130])
           .and_return(instance_double(WebOfScience::Retriever, next_batch: WebOfScience::Records.new(records: '<xml/>')))
         expect(Pubmed.client).to receive(:fetch_records_for_pmid_list)
           .and_return([])
         expect(hits).to eq([])
+      end
+    end
+
+    context 'Pubmed and WOS both disabled' do
+      before do
+        allow(Settings.WOS).to receive(:enabled).and_return(false)
+        allow(Settings.PUBMED).to receive(:lookup_enabled).and_return(false)
+      end
+
+      it 'searches nothing' do
+        expect(WebOfScience).not_to receive(:queries)
+        expect(Pubmed.client).not_to receive(:new)
+        expect(hits.size).to eq(0)
       end
     end
   end

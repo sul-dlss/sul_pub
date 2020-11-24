@@ -206,7 +206,7 @@ describe PublicationsController, :vcr do
       get :sourcelookup, params: { doi: 'xyz', pmid: 'abc', title: 'foo', format: 'json' }
     end
 
-    it 'with pmid calls Pubmed::Harvester' do
+    it 'with pmid calls Pubmed::Fetcher' do
       expect(Pubmed::Fetcher).to receive(:search_all_sources_by_pmid).with('abc').and_return([])
       expect(DoiSearch).not_to receive(:search)
       get :sourcelookup, params: { pmid: 'abc', format: 'json' }
@@ -242,8 +242,9 @@ describe PublicationsController, :vcr do
     end
 
     describe 'search by pmid' do
-       it 'returns one document' do
+       it 'returns one document if pubmed lookup is enabled' do
          allow(Settings.WOS).to receive(:enabled).and_return(false)
+         allow(Settings.PUBMED).to receive(:lookup_enabled).and_return(true)
          params = { format: 'json', pmid: '24196758' }
          get :sourcelookup, params: params
          expect(response.status).to eq(200)
@@ -253,6 +254,16 @@ describe PublicationsController, :vcr do
          expect(record).to include('mla_citation', 'chicago_citation')
          expect(record).to include('apa_citation' => /^Sittig, D. F./)
          expect(record['provenance']).to eq('pubmed')
+       end
+
+       it 'returns nothing if both pubmed and wos lookup is disabled' do
+         allow(Settings.WOS).to receive(:enabled).and_return(false)
+         allow(Settings.PUBMED).to receive(:lookup_enabled).and_return(false)
+         params = { format: 'json', pmid: '24196758' }
+         get :sourcelookup, params: params
+         expect(response.status).to eq(200)
+         result = JSON.parse(response.body)
+         expect(result['metadata']).to include('records' => '0')
        end
     end
 

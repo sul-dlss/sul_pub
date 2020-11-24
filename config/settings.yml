@@ -29,7 +29,8 @@ CAP:
 ## PubMed Auth Config
 PUBMED:
   LOG: log/pubmed.log
-  harvest_enabled: true # this only enables/disables regular harvests, it will still allow manual entries via pubmed and record augmentation
+  lookup_enabled: true # this only enables/disables manual pubmed lookups via the publication search and record augmentation; harvests are set below
+  harvest_enabled: true # this only enables/disables regular harvests, it will still allow manual entries via pubmed and record augmentation if set above
   FETCH_PATH: /entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml
   SEARCH_PATH: /entrez/eutils/esearch.fcgi?db=pubmed&retmode=xml
   API_KEY: a_fake_pubmed_key
