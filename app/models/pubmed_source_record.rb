@@ -59,7 +59,7 @@ class PubmedSourceRecord < ActiveRecord::Base
   # Retrieve this pubmed record from PubMed and update
   # is_active, source_data and the source_fingerprint fields.
   # Used to update the pubmed source record on our end
-  # @return [Boolean] the return value from update_attributes!
+  # @return [Boolean] the return value from update!
   def pubmed_update
     return false unless Settings.PUBMED.lookup_enabled
     pubmed_source_xml = Pubmed.client.fetch_records_for_pmid_list pmid
@@ -68,7 +68,7 @@ class PubmedSourceRecord < ActiveRecord::Base
     attrs = {}
     attrs[:source_data] = pub_doc.to_xml
     attrs[:source_fingerprint] = Digest::SHA2.hexdigest(pub_doc)
-    update_attributes! attrs
+    update! attrs
   end
 
   def extract_abstract_from_pubmed_record(pubmed_record)
