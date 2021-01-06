@@ -118,7 +118,7 @@ describe WebOfScience::QueryAuthor, :vcr do
       let(:author_one_identity) { create :author }
       let(:bad_alternate_identity) { create :author_identity }
       before do
-         bad_alternate_identity.update_attribute(:first_name, '.')
+         bad_alternate_identity.update(first_name: '.')
          author_one_identity.author_identities << bad_alternate_identity
       end
 

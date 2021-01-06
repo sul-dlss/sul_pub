@@ -33,7 +33,7 @@ class SciencewireSourceRecord < ActiveRecord::Base
 
   # Retrieve this PublicationItem from ScienceWire and update the pmid,
   # is_active, source_data and the source_fingerprint fields.
-  # @return [Boolean] the return value from update_attributes!
+  # @return [Boolean] the return value from update!
   def sciencewire_update
     raise 'ScienceWire has been decommissioned!'
   end
@@ -95,7 +95,7 @@ class SciencewireSourceRecord < ActiveRecord::Base
     was_record_created = existing_sw_source_record.nil?
     was_record_created
     # elsif existing_sw_source_record.source_fingerprint != new_source_fingerprint
-    #   existing_sw_source_record.update_attributes(
+    #   existing_sw_source_record.update(
     #     pmid: pmid,
     #     source_data: incoming_sw_xml_as_string,
     #     is_active: true,

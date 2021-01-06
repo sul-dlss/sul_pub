@@ -135,8 +135,8 @@ class BibtexIngester
       @total_duplicates += 1
       # if the publication has been updated with a sw or pubmed record since it was first submitted, then do nothing
       if pub.sciencewire_id.blank? && pub.pmid.blank?
-        pub.update_attributes(active: true, pub_hash: convert_bibtex_record_to_pub_hash(record, author))
-        existing_source_record.update_attributes(source_attrib_hash)
+        pub.update(active: true, pub_hash: convert_bibtex_record_to_pub_hash(record, author))
+        existing_source_record.update(source_attrib_hash)
         existing_source_record.save
       end
     elsif !determine_sul_pub_type(record.type.to_s.strip).nil?
@@ -146,7 +146,7 @@ class BibtexIngester
         pub = Publication.create(active: true, pub_hash: convert_bibtex_record_to_pub_hash(record, author))
         @total_new_pubs += 1
       end
-      BatchUploadedSourceRecord.create(publication_id: pub.id).update_attributes(source_attrib_hash)
+      BatchUploadedSourceRecord.create(publication_id: pub.id).update(source_attrib_hash)
       @batch_source_records_created_count += 1
       # create the contribution regardless of whether we created a new pub or are using an existing pub
       Contribution.where(

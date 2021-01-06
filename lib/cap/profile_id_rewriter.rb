@@ -91,14 +91,14 @@ module Cap
 
           if author
             # NOTE (Oct 2019):
-            # update_attributes! runs validations and raises an exception with a validation failure
-            # update_attribute runs validations and returns false with a validation failure
+            # update! runs validations and raises an exception with a validation failure
+            # update runs validations and returns false with a validation failure
             # update_columns does a direct SQL update, and thus skips model validations and callbacks
             # cap_profile_id currently must be unique and exist per author and will fail validation if duped,
             #  however, even if you skip validations and use `update_columns`, there is a database index constraint
             #  which will throw a SQL error if you attempt to set a duplicate cap_profile_id
-            author.update_attributes!(attrs)
-            author.contributions.each { |contrib| contrib.update_attribute(:cap_profile_id, author.cap_profile_id) }
+            author.update!(attrs)
+            author.contributions.each { |contrib| contrib.update(cap_profile_id: author.cap_profile_id) }
             counts[:authors_updated_count] += 1
           else # SKIP new authors?
             Author.create!(attrs)

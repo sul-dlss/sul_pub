@@ -48,7 +48,7 @@ namespace :cap_cutover do
     CSV.foreach(args.file_location, headers: true, header_converters: :symbol) do |row|
       total_running_count += 1
       cap_profile_id = row[:profile_id]
-      Author.where(cap_profile_id: cap_profile_id).first.update_attributes(
+      Author.where(cap_profile_id: cap_profile_id).first.update(
         # active_in_cap: (row[:active_profile] == 'active'),
         california_physician_license: (row[:ca_license_number])
       )
