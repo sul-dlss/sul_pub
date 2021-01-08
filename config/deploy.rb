@@ -6,7 +6,7 @@ set :ssh_options,   keys: [Capistrano::OneTimeKey.temporary_ssh_private_key_path
 
 set :deploy_to, "/opt/app/pub/#{fetch(:application)}"
 
-# Default branch is :master
+# Default branch is :main
 ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
 
 # Default value for :linked_files is []

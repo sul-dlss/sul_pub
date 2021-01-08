@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/sul-dlss/sul_pub.svg?branch=master)](https://travis-ci.com/sul-dlss/sul_pub) | [![Coverage Status](https://coveralls.io/repos/github/sul-dlss/sul_pub/badge.svg?branch=master)](https://coveralls.io/github/sul-dlss/sul_pub?branch=master)
+[![Build Status](https://travis-ci.com/sul-dlss/sul_pub.svg?branch=main)](https://travis-ci.com/sul-dlss/sul_pub) | [![Coverage Status](https://coveralls.io/repos/github/sul-dlss/sul_pub/badge.svg?branch=main)](https://coveralls.io/github/sul-dlss/sul_pub?branch=main)
 
 # SUL Bibliographic Management System
 
@@ -7,17 +7,17 @@ by [Stanford University Libraries](https://library.stanford.edu).
 
 ## Configuration
 
-Configurations are currently being managed in multiple ways. The goal is to [consolidate](https://github.com/sul-dlss/sul-pub/issues/99) the approach. New configurations should be added in [`settings.yml`](https://github.com/sul-dlss/sul_pub/blob/master/config/application.yml). _Never check in private settings._ This project uses the [config gem](https://github.com/railsconfig/config) for managing settings. Private settings can be added locally in a *.local.yml file. See [Developer specific config files](https://github.com/railsconfig/config#developer-specific-config-files).
+Configurations are currently being managed in multiple ways. The goal is to [consolidate](https://github.com/sul-dlss/sul-pub/issues/99) the approach. New configurations should be added in [`settings.yml`](https://github.com/sul-dlss/sul_pub/blob/main/config/application.yml). _Never check in private settings._ This project uses the [config gem](https://github.com/railsconfig/config) for managing settings. Private settings can be added locally in a *.local.yml file. See [Developer specific config files](https://github.com/railsconfig/config#developer-specific-config-files).
 
 Legacy configuration files to review are:
-- https://github.com/sul-dlss/sul_pub/blob/master/config/application.yml
+- https://github.com/sul-dlss/sul_pub/blob/main/config/application.yml
   - Application configuration parameters (may not require any changes)
-- https://github.com/sul-dlss/sul_pub/blob/master/config/database.yml
+- https://github.com/sul-dlss/sul_pub/blob/main/config/database.yml
   - MySQL connection parameters
 
 # Developer Setup
 
-This is a ruby on rails application with an rspec test suite.  The ruby version currently used could be any version used in the [.travis.yml](https://github.com/sul-dlss/sul_pub/blob/master/.travis.yml) configuration file (preferably the latest stable version).  The application gems are managed by bundler, so the gem versions are all defined in the Gemfile (and Gemfile.lock).
+This is a ruby on rails application with an rspec test suite.  The ruby version currently used could be any version used in the [.travis.yml](https://github.com/sul-dlss/sul_pub/blob/main/.travis.yml) configuration file (preferably the latest stable version).  The application gems are managed by bundler, so the gem versions are all defined in the Gemfile (and Gemfile.lock).
 
 ### Code Conventions
 
