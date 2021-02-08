@@ -67,11 +67,11 @@ GEM
       gyoku (>= 0.4.0)
       nokogiri
     ast (2.4.2)
-    autoprefixer-rails (10.2.0.0)
+    autoprefixer-rails (10.2.4.0)
       execjs
     bibtex-ruby (6.0.0)
       latex-decode (~> 0.0)
-    bootsnap (1.6.0)
+    bootsnap (1.7.2)
       msgpack (~> 1.0)
     bootstrap-sass (3.4.1)
       autoprefixer-rails (>= 5.2.1)
@@ -138,12 +138,12 @@ GEM
     csl-styles (1.0.1.8)
       csl (~> 1.0)
     daemons (1.3.1)
-    database_cleaner (2.0.0)
+    database_cleaner (2.0.1)
       database_cleaner-active_record (~> 2.0.0)
     database_cleaner-active_record (2.0.0)
       activerecord (>= 5.a)
       database_cleaner-core (~> 2.0.0)
-    database_cleaner-core (2.0.0)
+    database_cleaner-core (2.0.1)
     deep_merge (1.2.1)
     delayed_job (4.1.9)
       activesupport (>= 3.0, < 6.2)
@@ -174,7 +174,7 @@ GEM
     dry-logic (1.1.0)
       concurrent-ruby (~> 1.0)
       dry-core (~> 0.5, >= 0.5)
-    dry-schema (1.6.0)
+    dry-schema (1.6.1)
       concurrent-ruby (~> 1.0)
       dry-configurable (~> 0.8, >= 0.8.3)
       dry-core (~> 0.5, >= 0.5)
@@ -223,7 +223,7 @@ GEM
     httpi (2.4.5)
       rack
       socksify
-    i18n (1.8.7)
+    i18n (1.8.8)
       concurrent-ruby (~> 1.0)
     identifiers (0.13.0)
       urn (~> 2.0)
@@ -271,7 +271,7 @@ GEM
     net-scp (3.0.0)
       net-ssh (>= 2.6.5, < 7.0.0)
     net-ssh (6.1.0)
-    nio4r (2.5.4)
+    nio4r (2.5.5)
     nokogiri (1.11.1)
       mini_portile2 (~> 2.5.0)
       racc (~> 1.4)
@@ -280,7 +280,7 @@ GEM
     nokogiri (1.11.1-x86_64-linux)
       racc (~> 1.4)
     nori (2.6.0)
-    okcomputer (1.18.2)
+    okcomputer (1.18.4)
     paper_trail (11.1.0)
       activerecord (>= 5.2)
       request_store (~> 1.1)
@@ -534,4 +534,4 @@ DEPENDENCIES
   yaml_db
 
 BUNDLED WITH
-   2.2.7
+   2.2.8
