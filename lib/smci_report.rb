@@ -109,13 +109,13 @@ class SMCIReport
 
           if author # we found the author in our database, now get their publications
             contributions = Contribution.select('*')
-            contributions = contributions.where("author_id = ? and status in ('approved')", author.id)
+            contributions = contributions.where(author: author).where(status: %w[new approved])
             contributions = contributions.where("created_at > ?", Time.parse(@date_since)) if @date_since
             num_pubs_found = contributions.size
             logger.info "found #{author.first_name} #{author.last_name} with #{num_pubs_found} approved publications"
             total_pubs += num_pubs_found
             # loop over all of their approved publications and output the results
-            contributions.each { |contribution| csv << output_row(contribution.publication.pub_hash, author, contribution.created_at.to_s(:db)) }
+            contributions.each { |contribution| csv << output_row(pub_hash: contribution.publication.pub_hash, author: author, harvested_at: contribution.created_at.to_s(:db), publication_status: contribution.status) }
           else # we could not find this author in the database
             logger.error 'author not found in database'
           end
@@ -155,7 +155,7 @@ class SMCIReport
             unless uids.empty? # check to see if there are any results
               results = WebOfScience.queries.retrieve_by_id(uids) # now fetch the publication details for these WOS_UIDs
               while results.next_batch? # as long as we have another page of results, retrieve them
-                results.next_batch.to_a.each { |pub| csv << output_row(pub.pub_hash, nil, Time.now.utc.to_s(:db)) } # output all publications in this batch
+                results.next_batch.to_a.each { |pub| csv << output_row(pub_hash: pub.pub_hash) } # output all publications in this batch
               end
             end
             # end check for any publications to fetch for this author
@@ -182,10 +182,10 @@ class SMCIReport
   private
 
   def header_row
-    %w(title author_list pmid wos_uid sul_pub_id doi doi_url publisher journal volume articlenumber supplement issue pages mesh pub_year pub_date provenance profiles_author_last_name profiles_author_first_name profiles_author_sunet profiles_author_cap_profile_id profiles_author_employee_id profiles_author_email pub_harvested_date apa_citation mla_citation chicago_citation)
+    %w(title author_list pmid wos_uid sul_pub_id doi doi_url publisher journal volume articlenumber supplement issue pages mesh pub_year pub_date provenance profiles_author_last_name profiles_author_first_name profiles_author_sunet profiles_author_cap_profile_id profiles_author_employee_id profiles_author_email publication_status pub_harvested_date apa_citation mla_citation chicago_citation)
   end
 
-  def output_row(pub_hash, author, harvested_at)
+  def output_row(pub_hash:, harvested_at: Time.now.utc.to_s(:db), author: nil, publication_status: 'unknown')
     author_list = pub_hash[:author] ? Csl::RoleMapper.send(:parse_authors, pub_hash[:author]).map { |a| "#{a['family']}, #{a['given']}" }.join('; ') : ''
     pmid = pub_hash[:identifier].map { |ident| ident[:id] if ident[:type].downcase == 'pmid' }.compact.join('')
     doi = pub_hash[:identifier].map { |ident| ident[:id] if ident[:type].downcase == 'doi' }.compact.join('')
@@ -232,6 +232,7 @@ class SMCIReport
      author_cap_profile_id,
      author_univ_id,
      author_email,
+     publication_status,
      harvested_at,
      pub_hash[:apa_citation],
      pub_hash[:mla_citation],
