@@ -1,3 +1,4 @@
+# see https://github.com/sul-dlss/sul_pub/wiki/Servers-Deployment-environment
 set :application, 'sul-pub'
 set :repo_url, "git@github.com:sul-dlss/sul_pub.git"
 set :ssh_options,   keys: [Capistrano::OneTimeKey.temporary_ssh_private_key_path],
