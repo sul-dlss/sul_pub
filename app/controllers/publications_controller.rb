@@ -44,7 +44,7 @@ class PublicationsController < ApplicationController
         render json: wrap_as_bibjson_collection(description, matching_records, page, per)
       end
       format.csv do
-        render csv: generate_csv_report(author), filename: 'author_report', chunked: true
+        send_data(generate_csv_report(author), filename: 'author_report.csv')
       end
     end
   end

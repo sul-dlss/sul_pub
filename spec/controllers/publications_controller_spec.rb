@@ -1,3 +1,4 @@
+# rubocop:disable Metrics/BlockLength
 describe PublicationsController, :vcr do
   before do
     headers = { 'HTTP_CAPKEY' => Settings.API_KEY, 'CONTENT_TYPE' => 'application/json' }
@@ -166,7 +167,7 @@ describe PublicationsController, :vcr do
       end
     end
 
-    context 'with known capProfileId' do
+    context 'with known capProfileId in json format' do
       let(:json_response) { JSON.parse(response.body) }
       before { allow(Author).to receive(:find_by).with(cap_profile_id: cap_id).and_return(author) }
 
@@ -177,6 +178,16 @@ describe PublicationsController, :vcr do
           'metadata' => a_hash_including('format' => 'BibJSON', 'page' => 1, 'per_page' => 1000, 'records' => '0'),
           'records' => []
         )
+      end
+    end
+
+    context 'with known capProfileId in csv format' do
+      before { allow(Author).to receive(:find_by).with(cap_profile_id: cap_id).and_return(author) }
+
+      it 'returns a structured response' do
+        get :index, params: { capProfileId: cap_id, format: 'csv' }
+        expect(response.status).to eq 200
+        expect(response.body).to eq "sul_pub_id,sciencewire_id,pubmed_id,doi,wos_id,title,journal,year,pages,issn,status_for_this_author,created_at,updated_at,contributor_cap_profile_ids\n"
       end
     end
   end
@@ -684,3 +695,4 @@ describe PublicationsController, :vcr do
     end
   end
 end
+# rubocop:enable Metrics/BlockLength
