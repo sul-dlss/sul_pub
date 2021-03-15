@@ -155,7 +155,7 @@ class SMCIReport
             unless uids.empty? # check to see if there are any results
               results = WebOfScience.queries.retrieve_by_id(uids) # now fetch the publication details for these WOS_UIDs
               while results.next_batch? # as long as we have another page of results, retrieve them
-                results.next_batch.to_a.each { |pub| csv << output_row(pub_hash: pub.pub_hash) } # output all publications in this batch
+                results.next_batch.to_a.each { |pub| csv << output_row(pub_hash: pub.pub_hash, orcid: orcid) } # output all publications in this batch
               end
             end
             # end check for any publications to fetch for this author
@@ -182,10 +182,10 @@ class SMCIReport
   private
 
   def header_row
-    %w(title author_list pmid wos_uid sul_pub_id doi doi_url publisher journal volume articlenumber supplement issue pages mesh pub_year pub_date provenance profiles_author_last_name profiles_author_first_name profiles_author_sunet profiles_author_cap_profile_id profiles_author_employee_id profiles_author_email publication_status pub_harvested_date apa_citation mla_citation chicago_citation)
+    %w(title author_list pmid wos_uid sul_pub_id doi doi_url publisher journal volume articlenumber supplement issue pages mesh pub_year pub_date provenance orcid profiles_author_last_name profiles_author_first_name profiles_author_sunet profiles_author_cap_profile_id profiles_author_employee_id profiles_author_email publication_status pub_harvested_date apa_citation mla_citation chicago_citation)
   end
 
-  def output_row(pub_hash:, harvested_at: Time.now.utc.to_s(:db), author: nil, publication_status: 'unknown')
+  def output_row(pub_hash:, harvested_at: Time.now.utc.to_s(:db), author: nil, orcid: nil, publication_status: 'unknown')
     author_list = pub_hash[:author] ? Csl::RoleMapper.send(:parse_authors, pub_hash[:author]).map { |a| "#{a['family']}, #{a['given']}" }.join('; ') : ''
     pmid = pub_hash[:identifier].map { |ident| ident[:id] if ident[:type].downcase == 'pmid' }.compact.join('')
     doi = pub_hash[:identifier].map { |ident| ident[:id] if ident[:type].downcase == 'doi' }.compact.join('')
@@ -226,6 +226,7 @@ class SMCIReport
      pub_hash[:year],
      pub_hash[:date],
      pub_hash[:provenance],
+     orcid,
      author_last_name,
      author_first_name,
      author_sunet,
