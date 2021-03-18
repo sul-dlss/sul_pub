@@ -1,4 +1,5 @@
 require 'csv'
+require 'json'
 
 namespace :sul do
   desc 'Export publications as csv'
@@ -165,6 +166,40 @@ namespace :sul do
     end
     end_time = Time.zone.now
     puts "Total: #{total_pubs}. Output file: #{output_file}. Ended at #{end_time}.  #{doi_count} had valid DOIs.  #{error_count} errors occurred. Total time: #{((end_time - start_time) / 60.0).round(1)} minutes."
+  end
+
+  desc 'Export author data as json'
+  # bundle exec rake sul:author_export['tmp/authors.csv','tmp/results.json']
+  # export all authors metadata given a list of sunets or cap_profile_ids, including the alternate identity data
+  # input csv file should have a column with a header of 'sunetid' or 'cap_profile_id' containing the sunetid or cap_profile_id of interest
+  #  if both are supplied, sunetid is used
+  task :author_export, [:input_file, :output_file] => :environment do |_t, args|
+    output_file = args[:output_file]
+    input_file = args[:input_file]
+    raise "missing required params" unless output_file && input_file
+    raise "missing input csv" unless File.file? input_file
+    rows = CSV.parse(File.read(input_file), headers: true)
+    total_authors = rows.size
+    output_data = []
+    puts "Exporting all author information for #{total_authors} authors to #{output_file}"
+    rows.each_with_index do |row, i|
+      sunet = row['sunetid']
+      cap_profile_id = row['cap_profile_id']
+      puts "#{i + 1} of #{total_authors} : sunet: #{sunet} / cap_profile_id: #{cap_profile_id}"
+      author = if sunet
+                 Author.find_by(sunetid: sunet)
+               else
+                 Author.find_by(cap_profile_id: cap_profile_id)
+               end
+      if author
+        author_info = { first_name: author.first_name, middle_name: author.middle_name, last_name: author.last_name, email: author.emails_for_harvest, sunet: author.sunetid, cap_profile_id: author.cap_profile_id }
+        author_info[:identities] = author.author_identities.map { |ai| { first_name: ai.first_name, middle_name: ai.middle_name, last_name: ai.last_name, email: ai.email, institution: ai.institution } }
+        output_data << author_info
+      else
+        puts "***** ERROR: Sunet: #{sunet}, cap_profile_id: #{cap_profile_id} not found, skipping"
+      end
+    end
+    File.open(output_file, 'w') { |f| f.write(JSON.pretty_generate(output_data)) }
   end
 
   desc 'Custom SMCI export of profile and non-profile authors report'
