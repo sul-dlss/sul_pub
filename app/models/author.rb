@@ -38,14 +38,6 @@ class Author < ActiveRecord::Base
     Settings.HARVESTER.INSTITUTION.name
   end
 
-  # @return [Array<Integer>] ScienceWireIds for approved publications
-  def approved_sciencewire_ids
-    publications.where("contributions.status = 'approved'")
-                .where.not(sciencewire_id: nil)
-                .pluck(:sciencewire_id)
-                .uniq
-  end
-
   # @param [Hash] auth_hash data as-is from CAP API
   def update_from_cap_authorship_profile_hash(auth_hash)
     assign_attributes Author.build_attribute_hash_from_cap_profile(auth_hash)
