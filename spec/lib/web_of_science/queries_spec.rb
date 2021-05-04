@@ -16,7 +16,6 @@ describe WebOfScience::Queries do
   let(:wos_retrieve_by_id_PMID) { File.read('spec/fixtures/wos_client/wos_retrieve_by_id_response_MEDLINE26776186.xml') }
   let(:wos_search_by_doi_response) { File.read('spec/fixtures/wos_client/wos_search_by_doi_response.xml') }
   let(:wos_search_by_doi_mismatch_response) { File.read('spec/fixtures/wos_client/wos_search_by_doi_mismatch_response.xml') }
-  let(:wos_search_by_name_response) { File.read('spec/fixtures/wos_client/wos_search_by_name_response.xml') }
   let(:wos_search_custom_response) { File.read('spec/fixtures/wos_client/wos_search_custom_response.xml') }
   let(:wos_search_failure_response) { File.read('spec/fixtures/wos_client/wos_search_failure_response.xml') }
 
@@ -92,16 +91,6 @@ describe WebOfScience::Queries do
     end
   end
 
-  describe '#search_by_name' do
-    it 'returns many results' do
-      savon.expects(:authenticate).returns(wos_auth_response)
-      savon.expects(:search).with(message: :any).returns(wos_search_by_name_response)
-      retriever = wos_queries.search_by_name(name)
-      expect(retriever).to be_an WebOfScience::Retriever
-      expect(retriever.next_batch.count > 1).to be true
-    end
-  end
-
   describe '#retrieve_by_id' do
     it 'works' do
       savon.expects(:authenticate).returns(wos_auth_response)
@@ -150,22 +139,6 @@ describe WebOfScience::Queries do
     it_behaves_like 'search_params'
     it 'has retrieveParameters with a viewField' do
       expect(params[:retrieveParameters]).to include(viewField: Array)
-    end
-  end
-
-  # PRIVATE
-
-  describe '#name_query' do
-    let(:name_query) { wos_queries.send(:name_query, name) }
-
-    it 'works' do
-      expect(name_query).to be_an String
-    end
-    it 'includes first name' do
-      expect(name_query).to include fn
-    end
-    it 'includes last name' do
-      expect(name_query).to include ln
     end
   end
 end
