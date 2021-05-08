@@ -69,18 +69,6 @@ module WebOfScience
       WebOfScience::Retriever.new(:search, message)
     end
 
-    # @param name [String] a CSV name pattern: last_name, first_name [middle_name | middle initial]
-    # @param institutions [Array<String>] a set of institutions the author belongs to
-    # @return [WebOfScience::Retriever]
-    # TODO NOTE: This method is not used by the harvester and should probably be removed and any references/tests removed or alterted to use
-    #        the methods defined in WebOfScience::QueryAuthor, which is used by the harvester.
-    def search_by_name(name, institutions = [])
-      user_query = "AU=(#{name_query(name)})"
-      user_query += " AND AD=(#{institutions.join(' OR ')})" unless institutions.empty?
-      message = params_for_search(user_query)
-      WebOfScience::Retriever.new(:search, message)
-    end
-
     # @param message [Hash] search params (see WebOfScience::Queries#params_for_search)
     # @return [WebOfScience::Retriever]
     def search(message)
@@ -130,25 +118,6 @@ module WebOfScience
     end
 
     private
-
-      ###################################################################
-      # Search User Query Helpers
-
-      # Constructs a WoS name query
-      # @param name [String] a CSV name pattern: {last name}, {first_name} [{middle_name} | {middle initial}]
-      # TODO NOTE: This method should really be derived by using the :names method of the WebOfScience::QueryAuthor class, which is what is actually used in harvesting.
-      #       This method duplicates that logic but is never hit in harvesting calls and is instead only used by the :search_by_name method above
-      #        which is also not used in harvesting.
-      def name_query(name)
-        split_name = name.split(',')
-        last_name = split_name[0]
-        first_middle_name = split_name[1]
-        first_name = first_middle_name.split(' ')[0]
-        middle_name = first_middle_name.split(' ')[1]
-        name_query = "#{last_name} #{first_name} OR #{last_name} #{first_name[0]}"
-        name_query += " OR #{last_name} #{first_name[0]}#{middle_name[0]} OR #{last_name} #{first_name} #{middle_name[0]} OR #{last_name} #{first_name} #{middle_name}" if middle_name.present?
-        name_query
-      end
 
       ###################################################################
       # WoS Query Parameters

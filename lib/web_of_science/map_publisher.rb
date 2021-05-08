@@ -69,12 +69,6 @@ module WebOfScience
         data
       end
 
-      # Useful snippet to see a bunch of addresses
-      # altman_records = WOS.queries.search_by_name('Altman, Russ, B', ['Stanford University']);
-      # addresses = altman_records.map {|rec| rec.publishers.blank? ? {} : rec.publishers.first['address'] }
-      # To see non-USA addresses
-      # addresses.reject {|add| add['full_address'] =~ /USA/ }
-
       # @param address [Hash]
       def publisher_address(address)
         return {} if address.blank?
