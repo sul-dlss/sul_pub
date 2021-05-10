@@ -2,17 +2,17 @@
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
 #
-# Note that this schema.rb definition is the authoritative source for your
-# database schema. If you need to create the application database on another
-# system, you should be using db:schema:load, not running all the migrations
-# from scratch. The latter is a flawed and unsustainable approach (the more migrations
-# you'll amass, the slower it'll run and the greater likelihood for issues).
+# This file is the source Rails uses to define your schema when running `rails
+# db:schema:load`. When creating a new database, `rails db:schema:load` tends to
+# be faster and is potentially less error prone than running all of your
+# migrations from scratch. Old migrations may fail to apply correctly if those
+# migrations use external dependencies or application code.
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_03_09_235252) do
+ActiveRecord::Schema.define(version: 2021_05_10_164019) do
 
-  create_table "author_identities", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "author_identities", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.integer "author_id", null: false
     t.string "first_name", null: false
     t.string "middle_name"
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 2018_03_09_235252) do
     t.index ["author_id"], name: "index_author_identities_on_author_id"
   end
 
-  create_table "authors", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "authors", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.integer "cap_profile_id"
     t.boolean "active_in_cap"
     t.string "sunetid"
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 2018_03_09_235252) do
     t.string "california_physician_license"
     t.boolean "cap_import_enabled"
     t.string "emails_for_harvest"
+    t.string "orcidid"
     t.index ["active_in_cap"], name: "index_authors_on_active_in_cap"
     t.index ["california_physician_license"], name: "index_authors_on_california_physician_license"
     t.index ["cap_profile_id"], name: "index_authors_on_cap_profile_id", unique: true
@@ -53,18 +54,18 @@ ActiveRecord::Schema.define(version: 2018_03_09_235252) do
     t.index ["university_id"], name: "index_authors_on_university_id"
   end
 
-  create_table "batch_uploaded_source_records", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "batch_uploaded_source_records", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.string "sunet_id"
     t.integer "author_id"
     t.integer "cap_profile_id"
     t.boolean "successful_import"
-    t.text "bibtex_source_data", limit: 16777215
+    t.text "bibtex_source_data", size: :medium
     t.string "source_fingerprint"
     t.boolean "is_active"
     t.text "title"
     t.integer "year"
     t.string "batch_name"
-    t.text "error_message", limit: 16777215
+    t.text "error_message", size: :medium
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer "publication_id"
@@ -75,7 +76,7 @@ ActiveRecord::Schema.define(version: 2018_03_09_235252) do
     t.index ["title"], name: "index_batch_uploaded_source_records_on_title", length: 255
   end
 
-  create_table "contributions", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "contributions", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.integer "author_id"
     t.integer "cap_profile_id"
     t.integer "publication_id"
@@ -90,7 +91,7 @@ ActiveRecord::Schema.define(version: 2018_03_09_235252) do
     t.index ["publication_id"], name: "index_contributions_on_publication_id"
   end
 
-  create_table "delayed_jobs", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "delayed_jobs", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.integer "priority", default: 0, null: false
     t.integer "attempts", default: 0, null: false
     t.text "handler", null: false
@@ -105,7 +106,7 @@ ActiveRecord::Schema.define(version: 2018_03_09_235252) do
     t.index ["priority", "run_at"], name: "delayed_jobs_priority"
   end
 
-  create_table "publication_identifiers", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "publication_identifiers", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.integer "publication_id"
     t.string "identifier_type"
     t.string "identifier_value"
@@ -120,14 +121,14 @@ ActiveRecord::Schema.define(version: 2018_03_09_235252) do
     t.index ["publication_id"], name: "index_publication_identifiers_on_publication_id"
   end
 
-  create_table "publications", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "publications", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.integer "same_as_publications_id"
     t.boolean "active"
     t.boolean "deleted"
     t.text "title"
     t.integer "year"
     t.integer "lock_version"
-    t.text "pub_hash", limit: 16777215
+    t.text "pub_hash", size: :medium
     t.integer "pmid"
     t.integer "sciencewire_id"
     t.datetime "created_at"
@@ -146,8 +147,8 @@ ActiveRecord::Schema.define(version: 2018_03_09_235252) do
     t.index ["year"], name: "index_publications_on_year"
   end
 
-  create_table "pubmed_source_records", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.text "source_data", limit: 16777215
+  create_table "pubmed_source_records", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
+    t.text "source_data", size: :medium
     t.integer "pmid"
     t.integer "lock_version"
     t.string "source_fingerprint"
@@ -157,8 +158,8 @@ ActiveRecord::Schema.define(version: 2018_03_09_235252) do
     t.index ["pmid"], name: "index_pubmed_source_records_on_pmid"
   end
 
-  create_table "sciencewire_source_records", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.text "source_data", limit: 16777215
+  create_table "sciencewire_source_records", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
+    t.text "source_data", size: :medium
     t.integer "pmid"
     t.integer "sciencewire_id"
     t.integer "lock_version"
@@ -170,8 +171,8 @@ ActiveRecord::Schema.define(version: 2018_03_09_235252) do
     t.index ["sciencewire_id"], name: "index_sciencewire_source_records_on_sciencewire_id"
   end
 
-  create_table "user_submitted_source_records", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.text "source_data", limit: 16777215
+  create_table "user_submitted_source_records", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
+    t.text "source_data", size: :medium
     t.integer "pmid"
     t.integer "lock_version"
     t.string "source_fingerprint"
@@ -185,20 +186,20 @@ ActiveRecord::Schema.define(version: 2018_03_09_235252) do
     t.index ["source_fingerprint"], name: "index_user_submitted_source_records_on_source_fingerprint", unique: true
   end
 
-  create_table "versions", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "versions", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.string "item_type", null: false
     t.integer "item_id", null: false
     t.string "event", null: false
     t.string "whodunnit"
-    t.text "object", limit: 16777215
+    t.text "object", size: :medium
     t.datetime "created_at"
     t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
   end
 
-  create_table "web_of_science_source_records", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "web_of_science_source_records", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.boolean "active"
     t.string "database"
-    t.text "source_data", limit: 16777215
+    t.text "source_data", size: :medium
     t.string "source_fingerprint"
     t.string "uid"
     t.datetime "created_at", null: false

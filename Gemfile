@@ -40,6 +40,7 @@ gem 'jbuilder'
 gem 'jquery-rails'
 gem 'kaminari'
 gem 'okcomputer' # for monitoring
+gem 'oauth2'
 gem 'paper_trail'
 gem 'parallel'
 gem 'pry-rails'
