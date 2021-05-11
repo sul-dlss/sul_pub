@@ -82,11 +82,11 @@ describe Contribution do
     end
     it 'returns false for an authorship hash with an invalid author' do
       # author factory creates random ids starting at 10,000
-      authorship.merge!('cap_profile_id': 99, 'sul_author_id': 99)
+      authorship.merge!(cap_profile_id: 99, sul_author_id: 99)
       expect(described_class.author_valid?(authorship)).to be false
     end
     it 'returns false for an authorship hash without an author_id' do
-      authorship.merge!('cap_profile_id': nil, 'sul_author_id': nil)
+      authorship.merge!(cap_profile_id: nil, sul_author_id: nil)
       expect(described_class.author_valid?(authorship)).to be false
     end
   end

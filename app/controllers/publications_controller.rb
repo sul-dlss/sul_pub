@@ -32,7 +32,7 @@ class PublicationsController < ApplicationController
     else
       author = Author.find_by(cap_profile_id: capProfileId)
       if author.nil?
-        render json: { "error": "No such author with capProfileId #{capProfileId}" }, status: :not_found, format: 'json'
+        render json: { error: "No such author with capProfileId #{capProfileId}" }, status: :not_found, format: 'json'
         return
       end
       matching_records = author.publications.order('publications.id').page(page).per(per).select(:pub_hash) unless params[:format] =~ /csv/i
@@ -76,7 +76,7 @@ class PublicationsController < ApplicationController
       redirect_to publication_path(existing_record.publication_id), status: :see_other
     else
       unless validate_or_create_authors(pub_hash[:authorship])
-        render json: { "error": 'You have not supplied a valid authorship record.' }, status: :not_acceptable, format: 'json'
+        render json: { error: 'You have not supplied a valid authorship record.' }, status: :not_acceptable, format: 'json'
         return
       end
       pub = Publication.build_new_manual_publication(pub_hash, request_body)
@@ -102,10 +102,10 @@ class PublicationsController < ApplicationController
       return
     end
     if old_pub.harvested_pub? # only manually entered (i.e. non-harvested) publications may be updated with this method
-      render json: { "error": "This record SulPubID #{old_pub.id} may not be modified.  If you had originally entered details for the record, it has been superceded by a central record." }, status: :forbidden, format: 'json'
+      render json: { error: "This record SulPubID #{old_pub.id} may not be modified.  If you had originally entered details for the record, it has been superceded by a central record." }, status: :forbidden, format: 'json'
       return
     elsif !validate_or_create_authors(new_pub[:authorship])
-      render json: { "error": 'You have not supplied a valid authorship record.' }, status: :not_acceptable, format: 'json'
+      render json: { error: 'You have not supplied a valid authorship record.' }, status: :not_acceptable, format: 'json'
       return
     end
     logger.info("Update manual publication #{old_pub.inspect} with BibJSON:")

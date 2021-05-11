@@ -53,8 +53,8 @@ namespace :sul do
             total_pubs += 1
             author_list = pub.pub_hash[:author] ? Csl::RoleMapper.send(:parse_authors, pub.pub_hash[:author]).map { |a| "#{a['family']}, #{a['given']}" }.join('; ') : ''
             sunet_list = pub.contributions.where("status in ('new','approved') and created_at > ?", Time.parse(date_since)).map { |c| c.author.sunetid }.compact.reject(&:empty?).join('; ')
-            doi = pub.pub_hash[:identifier].map { |ident| ident[:id] if ident[:type].downcase == 'doi' }.compact.join('')
-            pmid = pub.pub_hash[:identifier].map { |ident| ident[:id] if ident[:type].downcase == 'pmid' }.compact.join('')
+            doi = pub.pub_hash[:identifier].map { |ident| ident[:id] if ident[:type].downcase == 'doi' }.compact.join
+            pmid = pub.pub_hash[:identifier].map { |ident| ident[:id] if ident[:type].downcase == 'pmid' }.compact.join
             journal = pub.pub_hash[:journal] ? pub.pub_hash[:journal][:name] : ''
             mesh = pub.pub_hash[:mesh_headings] ? pub.pub_hash[:mesh_headings].map { |h| h[:descriptor][0][:name] }.compact.reject(&:empty?).join('; ') : ''
             csv << [pub.title, pmid, doi, pub.pub_hash[:publisher], journal, mesh, pub.pub_hash[:year], pub.pub_hash[:provenance], author.last_name, author.first_name, author.sunetid, author.university_id, author_list, sunet_list, contribution.status, contribution.created_at, pub.pub_hash[:apa_citation]]

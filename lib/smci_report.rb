@@ -187,11 +187,11 @@ class SMCIReport
 
   def output_row(pub_hash:, harvested_at: Time.now.utc.to_s(:db), author: nil, orcid: nil, publication_status: 'unknown')
     author_list = pub_hash[:author] ? Csl::RoleMapper.send(:parse_authors, pub_hash[:author]).map { |a| "#{a['family']}, #{a['given']}" }.join('; ') : ''
-    pmid = pub_hash[:identifier].map { |ident| ident[:id] if ident[:type].downcase == 'pmid' }.compact.join('')
-    doi = pub_hash[:identifier].map { |ident| ident[:id] if ident[:type].downcase == 'doi' }.compact.join('')
-    wos_uid = pub_hash[:identifier].map { |ident| ident[:id] if ident[:type].downcase == 'wosuid' }.compact.join('')
-    sul_pub_id = pub_hash[:identifier].map { |ident| ident[:id] if ident[:type].downcase == 'sulpubId' }.compact.join('')
-    doi_url = pub_hash[:identifier].map { |ident| ident[:url] if ident[:type].downcase == 'doi' }.compact.join('')
+    pmid = pub_hash[:identifier].map { |ident| ident[:id] if ident[:type].downcase == 'pmid' }.compact.join
+    doi = pub_hash[:identifier].map { |ident| ident[:id] if ident[:type].downcase == 'doi' }.compact.join
+    wos_uid = pub_hash[:identifier].map { |ident| ident[:id] if ident[:type].downcase == 'wosuid' }.compact.join
+    sul_pub_id = pub_hash[:identifier].map { |ident| ident[:id] if ident[:type].downcase == 'sulpubId' }.compact.join
+    doi_url = pub_hash[:identifier].map { |ident| ident[:url] if ident[:type].downcase == 'doi' }.compact.join
     journal = pub_hash[:journal] ? pub_hash[:journal][:name] : ''
     issue = pub_hash[:journal] ? pub_hash[:journal][:issue] : ''
     volume = pub_hash[:journal] ? pub_hash[:journal][:volume] : ''

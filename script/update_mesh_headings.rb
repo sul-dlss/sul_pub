@@ -59,15 +59,15 @@ class UpdateMeshHeadings
     pub = pubs.first
     pub_hash = pub.pub_hash
     old_mesh = pub_hash[:mesh_headings]
-    if pm_mesh != old_mesh
+    if pm_mesh == old_mesh
+      @skipped += 1
+    else
       pub_hash[:mesh_headings] = pm_mesh
       pub.pub_hash = pub_hash
       pub.sync_publication_hash_and_db
       pub.save
       @logger.info "Updated mesh for pub: #{pub.id} pmid: #{pmid}"
       @updated += 1
-    else
-      @skipped += 1
     end
   end
 end

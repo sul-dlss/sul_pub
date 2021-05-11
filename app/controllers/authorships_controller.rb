@@ -29,7 +29,7 @@ class AuthorshipsController < ApplicationController
     ids = params.slice(:sul_pub_id, :pmid, :sw_id, :wos_uid).to_h.symbolize_keys
     ids.reject! { |_, v| v.blank? }
     unless ids.any?
-      render json: { "error": 'You have not supplied any publication identifier: sul_pub_id || pmid || sw_id || wos_uid' }, status: :bad_request, format: :json
+      render json: { error: 'You have not supplied any publication identifier: sul_pub_id || pmid || sw_id || wos_uid' }, status: :bad_request, format: :json
       return
     end
 
@@ -77,7 +77,7 @@ class AuthorshipsController < ApplicationController
     return unless author_id_consistent?(author, params[:cap_profile_id]) # ids aren't consistent
 
     if params[:sul_pub_id].blank?
-      render json: { "error": 'You have not supplied the publication identifier sul_pub_id' }, status: :bad_request, format: :json
+      render json: { error: 'You have not supplied the publication identifier sul_pub_id' }, status: :bad_request, format: :json
       return
     end
 
@@ -107,7 +107,7 @@ class AuthorshipsController < ApplicationController
     # fields provided.  When check for 'featured', use .nil? because it
     # is allowed to have a `false` value.
     unless !contrib_attr[:featured].nil? || contrib_attr[:status].present? || contrib_attr[:visibility].present?
-      render json: { "error": "At least one authorship attribute is required: 'featured', 'status', 'visibility'." }, status: :not_acceptable, format: :json
+      render json: { error: "At least one authorship attribute is required: 'featured', 'status', 'visibility'." }, status: :not_acceptable, format: :json
       return
     end
 
@@ -140,7 +140,7 @@ class AuthorshipsController < ApplicationController
     contrib = pub.contributions.find_or_initialize_by(author_id: author.id)
     contrib.assign_attributes(authorship.merge(cap_profile_id: author.cap_profile_id, author_id: author.id))
     unless contrib.valid?
-      render json: { "error": 'You have not supplied a valid authorship record.' }, status: :not_acceptable, format: :json
+      render json: { error: 'You have not supplied a valid authorship record.' }, status: :not_acceptable, format: :json
       return false
     end
     pub.pubhash_needs_update! if contrib.persisted? && contrib.changed?

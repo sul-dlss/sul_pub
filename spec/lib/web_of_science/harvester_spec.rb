@@ -139,7 +139,7 @@ describe WebOfScience::Harvester do
 
   context 'when author query has too many publications' do
     let(:lotsa_uids) { Array(1..Settings.WOS.max_publications_per_author) }
-    let(:query_author) { instance_double(WebOfScience::QueryAuthor, uids: lotsa_uids, 'valid?': true) }
+    let(:query_author) { instance_double(WebOfScience::QueryAuthor, uids: lotsa_uids, valid?: true) }
 
     before do
       allow(WebOfScience::QueryAuthor).to receive(:new).with(author, {}).and_return(query_author)

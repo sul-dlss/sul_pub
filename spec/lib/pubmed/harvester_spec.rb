@@ -10,7 +10,7 @@ describe Pubmed::Harvester do
     let(:existing_pub) { create :pub_with_pmid_and_pub_identifier }
 
     context 'when author has existing publications' do
-      let(:query_author) { instance_double(Pubmed::QueryAuthor, 'valid?': true, pmids: [existing_pub.pmid.to_s]) }
+      let(:query_author) { instance_double(Pubmed::QueryAuthor, valid?: true, pmids: [existing_pub.pmid.to_s]) }
 
       it 'removes publications that exists and assigns the author' do
         expect(harvester.process_author(author)).to be_empty
@@ -20,7 +20,7 @@ describe Pubmed::Harvester do
 
     context 'when author has new publications' do
       let(:pmid) { '30833575' }
-      let(:query_author) { instance_double(Pubmed::QueryAuthor, 'valid?': true, pmids: [pmid]) }
+      let(:query_author) { instance_double(Pubmed::QueryAuthor, valid?: true, pmids: [pmid]) }
 
       it 'removes publications that exists and assigns the author' do
         VCR.use_cassette('Pubmed_Harvester/_process_author/when_new_publications') do
@@ -32,7 +32,7 @@ describe Pubmed::Harvester do
 
     context 'when author query has too many publications' do
       let(:lotsa_pmids) { Array(1..Settings.PUBMED.max_publications_per_author) }
-      let(:query_author) { instance_double(Pubmed::QueryAuthor, 'valid?': true, pmids: lotsa_pmids) }
+      let(:query_author) { instance_double(Pubmed::QueryAuthor, valid?: true, pmids: lotsa_pmids) }
 
       it 'aborts the harvest and returns no pmids' do
         expect(NotificationManager).to receive(:error).with(
@@ -46,7 +46,7 @@ describe Pubmed::Harvester do
     end
 
     context 'when author query is invalid' do
-      let(:query_author) { instance_double(Pubmed::QueryAuthor, 'valid?': false) }
+      let(:query_author) { instance_double(Pubmed::QueryAuthor, valid?: false) }
 
       it 'aborts the harvest and returns no pmids' do
         expect(NotificationManager).to receive(:error).with(

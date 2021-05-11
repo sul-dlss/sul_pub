@@ -83,7 +83,7 @@ describe Cap::AuthorsPoller, :vcr do
     context 'with an existing author' do
       before do
         expect(Author).to receive(:find_by_cap_profile_id).with(author.cap_profile_id).and_return(author)
-        expect(author).to receive(:'save!').and_call_original
+        expect(author).to receive(:save!).and_call_original
       end
 
       it 'updates an existing author' do

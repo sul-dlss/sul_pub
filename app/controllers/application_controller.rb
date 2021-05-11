@@ -29,7 +29,7 @@ class ApplicationController < ActionController::Base
   # @param [Symbol] code HTTP status code
   def log_and_error!(msg, code = :not_found)
     logger.error msg
-    render json: { "error": msg }.to_json, status: code, format: 'json'
+    render json: { error: msg }.to_json, status: code, format: 'json'
   end
 
 end

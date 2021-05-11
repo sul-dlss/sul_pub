@@ -6,8 +6,8 @@ describe AuthorshipsController, :vcr do
 
   let(:publication) { create :publication }
   let(:author) { create :author }
-  let(:sul_author_hash) { Hash[sul_author_id: author.id] }
-  let(:author_hash) { Hash[cap_profile_id: author.cap_profile_id] }
+  let(:sul_author_hash) { { sul_author_id: author.id } }
+  let(:author_hash) { { cap_profile_id: author.cap_profile_id } }
 
   let(:contribution_count) { 2 }
   # let is lazy-evaluated: it is evaluated the first time it's method is invoked.

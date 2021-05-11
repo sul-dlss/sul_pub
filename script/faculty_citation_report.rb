@@ -53,7 +53,7 @@ def citation_search(input_file, output_file)
       sunet = user[:sunet]
 
       last_name = name[0]
-      first_middle = name[1].split(' ')
+      first_middle = name[1].split
       first_name = first_middle[0].tr('_', ' ').strip
       middle_name = first_middle.size > 1 ? first_middle[1].strip : ''
 

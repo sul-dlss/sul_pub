@@ -46,7 +46,7 @@ describe BibtexIdentifiers do
       expect(hash).to be_an Hash
     end
     it 'contains identifiers' do
-      expect(hash).to eq ids.reject { |_type, val| val.nil? }
+      expect(hash).to eq ids.compact
     end
     it 'is mutable and accepts anything' do
       hash.update(a: 1)
