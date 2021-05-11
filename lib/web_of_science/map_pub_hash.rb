@@ -17,6 +17,7 @@ module WebOfScience
 
     # Extract content from record, try not to hang onto the entire record
     # @param rec [WebOfScience::Record]
+    # rubocop:disable Metrics/AbcSize
     def extract(rec)
       @pub = WebOfScience::MapAbstract.new(rec).pub_hash
       pub.update WebOfScience::MapNames.new(rec).pub_hash
@@ -27,6 +28,7 @@ module WebOfScience
       pub.update WebOfScience::MapMesh.new(rec).pub_hash
       pub.update Csl::Citation.new(pub).citations
     end
+    # rubocop:enable Metrics/AbcSize
 
     # publication document types and categories
     def pub_hash_doctypes(rec)
@@ -44,6 +46,7 @@ module WebOfScience
     end
 
     # publication identifiers
+    # rubocop:disable Metrics/AbcSize
     def pub_hash_identifiers(rec)
       ids = rec.identifiers
       id = {
@@ -58,5 +61,6 @@ module WebOfScience
       id[:wos_item_id] = ids.wos_item_id if ids.wos_item_id.present?
       id
     end
+    # rubocop:enable Metrics/AbcSize
   end
 end

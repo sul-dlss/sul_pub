@@ -42,6 +42,7 @@ class PubmedSourceRecord < ActiveRecord::Base
     )
   end
 
+  # rubocop:disable Metrics/AbcSize
   def self.get_and_store_records_from_pubmed(pmids)
     pmidValuesForPost = pmids.uniq.collect { |pmid| "&id=#{pmid}" }.join
     the_incoming_xml = Pubmed.client.fetch_records_for_pmid_list pmidValuesForPost
@@ -60,6 +61,7 @@ class PubmedSourceRecord < ActiveRecord::Base
     end
     import source_records.compact
   end
+  # rubocop:enable Metrics/AbcSize
   private_class_method :get_and_store_records_from_pubmed
 
   # Retrieve this pubmed record from PubMed and update
@@ -103,6 +105,9 @@ class PubmedSourceRecord < ActiveRecord::Base
   # @param [Nokogiri::XML::Node] publication
   # @return [Hash<Symbol => Object>] pub_hash
   # @see https://www.nlm.nih.gov/bsd/licensee/elements_descriptions.html XML Element Descriptions and their Attributes
+  # rubocop:disable Metrics/AbcSize
+  # rubocop:disable Metrics/CyclomaticComplexity
+  # rubocop:disable Metrics/PerceivedComplexity
   def source_as_hash(publication = Nokogiri::XML(source_data).xpath('//PubmedArticle'))
     record_as_hash = {}
     pmid = publication.xpath('MedlineCitation/PMID').text
@@ -200,6 +205,9 @@ class PubmedSourceRecord < ActiveRecord::Base
     record_as_hash[:identifier] << { type: 'pmc', id: pmc.text } if pmc.present? && pmc.text.present?
     record_as_hash
   end
+  # rubocop:enable Metrics/AbcSize
+  # rubocop:enable Metrics/CyclomaticComplexity
+  # rubocop:enable Metrics/PerceivedComplexity
 
   protected
 
@@ -223,6 +231,9 @@ class PubmedSourceRecord < ActiveRecord::Base
   #
   # @param author [Nokogiri::XML::Element] an <Author> element
   # @return [Hash<Symbol => String>] with keys :firstname, :middlename and :lastname
+  # rubocop:disable Metrics/AbcSize
+  # rubocop:disable Metrics/CyclomaticComplexity
+  # rubocop:disable Metrics/PerceivedComplexity
   def author_to_hash(author)
     # <Author> examples provide many variations at No. 20 from
     # https://www.nlm.nih.gov/bsd/licensee/elements_descriptions.html
@@ -283,4 +294,7 @@ class PubmedSourceRecord < ActiveRecord::Base
     # <AffiliationInfo> was added to <AuthorList> with the 2015 DTD.
     # The <AffiliationInfo> envelope element includes <Affliliation> and <Identifier>.
   end
+  # rubocop:enable Metrics/AbcSize
+  # rubocop:enable Metrics/CyclomaticComplexity
+  # rubocop:enable Metrics/PerceivedComplexity
 end

@@ -20,6 +20,7 @@ module Agent
       @country = options[:country].to_s.strip
     end
 
+    # rubocop:disable Metrics/AbcSize
     def to_xml
       @xml ||= begin
         xml = ''
@@ -31,6 +32,7 @@ module Agent
         xml
       end
     end
+    # rubocop:enable Metrics/AbcSize
 
     def ==(other)
       line1 == other.line1 &&

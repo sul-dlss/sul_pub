@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# rubocop:disable Metrics/BlockLength
 describe PublicationsController, :vcr do
   before do
     headers = { 'HTTP_CAPKEY' => Settings.API_KEY, 'CONTENT_TYPE' => 'application/json' }
@@ -707,4 +706,3 @@ describe PublicationsController, :vcr do
     end
   end
 end
-# rubocop:enable Metrics/BlockLength

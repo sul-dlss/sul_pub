@@ -60,6 +60,7 @@ module WebOfScience
     #     - the actual values it accepts are any value of "Nweek" for 1 <= N <= 52, or "Nyear" for 1 <= N <= 10
     #
     # @return [Hash]
+    # rubocop:disable Metrics/AbcSize
     def author_query
       params = queries.params_for_fields(empty_fields)
       params[:queryParameters][:userQuery] =
@@ -72,6 +73,7 @@ module WebOfScience
       end
       params
     end
+    # rubocop:enable Metrics/AbcSize
 
     # @param [Array<String>] terms
     # @param [Array<String>] the same terms, minus any empties or duplicates, wrapped in double quotes

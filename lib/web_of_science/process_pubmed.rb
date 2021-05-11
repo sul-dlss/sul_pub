@@ -7,6 +7,9 @@ module WebOfScience
   module ProcessPubmed
     # For WOS-records with a PMID, try to enhance them with PubMed data
     # @param [Array<WebOfScience::Record>] records
+    # rubocop:disable Metrics/AbcSize
+    # rubocop:disable Metrics/CyclomaticComplexity
+    # rubocop:disable Metrics/PerceivedComplexity
     def pubmed_additions(records)
       raise(ArgumentError, 'records must be Enumerable') unless records.is_a? Enumerable
       raise(ArgumentError, 'records must contain WebOfScience::Record') unless records.all? do |rec|
@@ -31,11 +34,17 @@ module WebOfScience
     rescue StandardError => e
       NotificationManager.error(e, 'pubmed_additions failed', self)
     end
+    # rubocop:enable Metrics/AbcSize
+    # rubocop:enable Metrics/CyclomaticComplexity
+    # rubocop:enable Metrics/PerceivedComplexity
 
     # For WOS-record that has a PMID, fetch data from PubMed and enhance the pub.pub_hash with PubMed data
     # but don't do anything if pubmed looksups are disabled.
     # @param [Publication] pub is a Publication with a .pmid value
     # @return [void]
+    # rubocop:disable Metrics/AbcSize
+    # rubocop:disable Metrics/CyclomaticComplexity
+    # rubocop:disable Metrics/PerceivedComplexity
     def pubmed_addition(pub)
       raise(ArgumentError, 'pub must be Publication') unless pub.is_a? Publication
       return unless Settings.PUBMED.lookup_enabled
@@ -57,6 +66,9 @@ module WebOfScience
     rescue StandardError => e
       NotificationManager.error(e, "pubmed_addition failed for args: #{pmid}, #{pub}", self)
     end
+    # rubocop:enable Metrics/AbcSize
+    # rubocop:enable Metrics/CyclomaticComplexity
+    # rubocop:enable Metrics/PerceivedComplexity
 
     # For WOS-record that has a PMID, cleanup our data when it does not exist on PubMed;
     # but don't do anything if the Pubmed::Client is not working.

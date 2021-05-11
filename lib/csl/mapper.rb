@@ -10,6 +10,8 @@ module Csl
     end
 
     # rubocop:disable Metrics/AbcSize
+    # rubocop:disable Metrics/CyclomaticComplexity
+    # rubocop:disable Metrics/PerceivedComplexity
     def csl_doc
       @csl_doc ||= begin
         if pub_hash[:provenance].to_s.downcase == 'cap'
@@ -116,6 +118,8 @@ module Csl
       end
     end
     # rubocop:enable Metrics/AbcSize
+    # rubocop:enable Metrics/CyclomaticComplexity
+    # rubocop:enable Metrics/PerceivedComplexity
 
     private
 

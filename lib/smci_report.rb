@@ -54,6 +54,7 @@
 require 'csv'
 
 class SMCIReport
+  # rubocop:disable Metrics/CyclomaticComplexity
   def initialize(args)
     @input_file = args[:input_file]
     @output_file = args[:output_file]
@@ -71,7 +72,8 @@ class SMCIReport
     @logger ||= Logger.new('log/smci_export.log')
   end
 
-  # rubocop:disable Metrics/MethodLength
+  # rubocop:disable Metrics/AbcSize
+  # rubocop:disable Metrics/PerceivedComplexity
   def run
     rows = CSV.parse(File.read(@input_file), headers: true)
     total_authors = rows.size
@@ -187,7 +189,9 @@ class SMCIReport
     logger.info 'Completed export.'
     logger.info '*****************'
   end
-  # rubocop:enable Metrics/MethodLength
+  # rubocop:enable Metrics/AbcSize
+  # rubocop:enable Metrics/CyclomaticComplexity
+  # rubocop:enable Metrics/PerceivedComplexity
 
   private
 
@@ -198,6 +202,9 @@ class SMCIReport
        pub_harvested_date apa_citation mla_citation chicago_citation]
   end
 
+  # rubocop:disable Metrics/AbcSize
+  # rubocop:disable Metrics/CyclomaticComplexity
+  # rubocop:disable Metrics/PerceivedComplexity
   def output_row(pub_hash:, harvested_at: Time.now.utc.to_s(:db), author: nil, orcid: nil, publication_status: 'unknown')
     author_list = if pub_hash[:author]
                     Csl::RoleMapper.send(:parse_authors, pub_hash[:author]).map do |a|
@@ -264,4 +271,7 @@ class SMCIReport
      pub_hash[:mla_citation],
      pub_hash[:chicago_citation]]
   end
+  # rubocop:enable Metrics/AbcSize
+  # rubocop:enable Metrics/CyclomaticComplexity
+  # rubocop:enable Metrics/PerceivedComplexity
 end

@@ -15,6 +15,9 @@ class AuthorshipsController < ApplicationController
   #  Publications can be identified using "sul_pub_id" (primary key on our publications table), "pmid", "sw_id", or "wos_uid"
   #  At least one author identifier and one publication identifier are required
   # POST /authorship.json
+  # rubocop:disable Metrics/AbcSize
+  # rubocop:disable Metrics/CyclomaticComplexity
+  # rubocop:disable Metrics/PerceivedComplexity
   def create
     logger.info('POST Contribution JSON: ')
     logger.info(request_body)
@@ -54,6 +57,9 @@ class AuthorshipsController < ApplicationController
 
     render json: pub_hash.to_json, format: :json, status: :created
   end
+  # rubocop:enable Metrics/AbcSize
+  # rubocop:enable Metrics/CyclomaticComplexity
+  # rubocop:enable Metrics/PerceivedComplexity
 
   # The PATCH request option allows partial (or full) attribute updates on an
   # existing contribution (association between a publication and an author).
@@ -67,6 +73,9 @@ class AuthorshipsController < ApplicationController
   # payload.  Any attributes that are not given should not be changed.
   # It thus allows partial updating for an existing contribution record
   # PATCH /authorship.json
+  # rubocop:disable Metrics/AbcSize
+  # rubocop:disable Metrics/CyclomaticComplexity
+  # rubocop:disable Metrics/PerceivedComplexity
   def update
     logger.info('PATCH Contribution JSON: ')
     logger.info(request_body)
@@ -124,6 +133,9 @@ class AuthorshipsController < ApplicationController
 
     render json: pub_hash.to_json, format: :json, status: :accepted
   end
+  # rubocop:enable Metrics/AbcSize
+  # rubocop:enable Metrics/CyclomaticComplexity
+  # rubocop:enable Metrics/PerceivedComplexity
 
   private
 
@@ -145,6 +157,7 @@ class AuthorshipsController < ApplicationController
   # Publication.pub_hash field, breaking the elegant design of a RDBMS.
   # @return [Hash] the entire pub_hash, not just the contribution
   # @note contribution should be in the pub_hash[:authorship] array
+  # rubocop:disable Metrics/AbcSize
   def create_or_update_and_return_pub_hash(pub, author, authorship)
     contrib = pub.contributions.find_or_initialize_by(author_id: author.id)
     contrib.assign_attributes(authorship.merge(cap_profile_id: author.cap_profile_id, author_id: author.id))
@@ -163,6 +176,7 @@ class AuthorshipsController < ApplicationController
     end
     pub.pub_hash
   end
+  # rubocop:enable Metrics/AbcSize
 
   def get_cap_author!(cap_profile_id)
     author = Author.find_by(cap_profile_id: cap_profile_id) || Author.fetch_from_cap_and_create(cap_profile_id)

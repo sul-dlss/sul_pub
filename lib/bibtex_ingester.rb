@@ -8,6 +8,9 @@ class BibtexIngester
   ARTICLE_TYPE_MAPPING = %w[article misc unpublished].freeze
   INPROCEEDINGS_TYPE_MAPPING = %w[conference proceedings inproceedings].freeze
 
+  # rubocop:disable Metrics/AbcSize
+  # rubocop:disable Metrics/CyclomaticComplexity
+  # rubocop:disable Metrics/PerceivedComplexity
   def ingest_from_source_directory(directory)
     @batch_dir = directory || Settings.BIBTEX.IMPORT.DIR
     @bibtex_import_logger = Logger.new(Settings.BIBTEX.IMPORT.LOG)
@@ -75,7 +78,11 @@ class BibtexIngester
     @bibtex_import_logger.info "#{@total_deduped_count} total records were deduplicated against sw or pubmed pubs."
     @bibtex_import_logger.info "#{@total_new_pubs} new publication records were created."
   end
+  # rubocop:enable Metrics/AbcSize
+  # rubocop:enable Metrics/CyclomaticComplexity
+  # rubocop:enable Metrics/PerceivedComplexity
 
+  # rubocop:disable Metrics/AbcSize
   def process_bibtex_file(file_full_path, _batch_name, bibtex_file_name)
     sunet_id = File.basename(bibtex_file_name, '.*')
 
@@ -118,6 +125,10 @@ class BibtexIngester
     end
   end
 
+  # rubocop:enable Metrics/AbcSize
+  # rubocop:disable Metrics/AbcSize
+  # rubocop:disable Metrics/CyclomaticComplexity
+  # rubocop:disable Metrics/PerceivedComplexity
   def process_record(record, author)
     pub = nil
 
@@ -179,7 +190,13 @@ class BibtexIngester
     @bibtex_import_logger.info "Error: #{e.message}"
     @total_faulty_record_count += 1
   end
+  # rubocop:enable Metrics/AbcSize
+  # rubocop:enable Metrics/CyclomaticComplexity
+  # rubocop:enable Metrics/PerceivedComplexity
 
+  # rubocop:disable Metrics/AbcSize
+  # rubocop:disable Metrics/CyclomaticComplexity
+  # rubocop:disable Metrics/PerceivedComplexity
   def find_existing_pub(record)
     pub = nil
     issn = record['issn'].to_s || record['ISSN'].to_s
@@ -211,7 +228,13 @@ class BibtexIngester
     @total_deduped_count += 1 if pub
     pub
   end
+  # rubocop:enable Metrics/AbcSize
+  # rubocop:enable Metrics/CyclomaticComplexity
+  # rubocop:enable Metrics/PerceivedComplexity
 
+  # rubocop:disable Metrics/AbcSize
+  # rubocop:disable Metrics/CyclomaticComplexity
+  # rubocop:disable Metrics/PerceivedComplexity
   def convert_bibtex_record_to_pub_hash(record, author)
     sul_document_type = determine_sul_pub_type(record.type.to_s.strip)
 
@@ -301,6 +324,9 @@ class BibtexIngester
     record_as_hash[:identifier] = identifiers
     record_as_hash
   end
+  # rubocop:enable Metrics/AbcSize
+  # rubocop:enable Metrics/CyclomaticComplexity
+  # rubocop:enable Metrics/PerceivedComplexity
 
   def determine_sul_pub_type(bibtex_type)
     if BOOK_TYPE_MAPPING.include?(bibtex_type)

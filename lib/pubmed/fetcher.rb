@@ -19,6 +19,7 @@ module Pubmed
 
     # @param [String] pmid Pubmed ID
     # @return [Array<Hash>] pub_hashes or an empty Array
+    # rubocop:disable Metrics/AbcSize
     def self.fetch_remote_pubmed(pmid)
       # NOTE: only works because all results expected to fit inside one "batch"
       if Settings.WOS.enabled
@@ -34,6 +35,7 @@ module Pubmed
         add_citation(PubmedSourceRecord.new.source_as_hash(doc))
       end
     end
+    # rubocop:enable Metrics/AbcSize
     private_class_method :fetch_remote_pubmed
 
     # @param [Hash] pub_hash modifies passed hash to include citation k/v pairs

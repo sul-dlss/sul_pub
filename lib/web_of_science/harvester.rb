@@ -10,6 +10,7 @@ module WebOfScience
     # @param [Author] author
     # @param [Hash] options
     # @return [Array<String>] WosUIDs that create Publications
+    # rubocop:disable Metrics/AbcSize
     def process_author(author, options = {})
       raise(ArgumentError, 'author must be an Author') unless author.is_a? Author
 
@@ -36,6 +37,7 @@ module WebOfScience
     rescue StandardError => e
       NotificationManager.error(e, "#{self.class} - WoS harvest failed for author #{author.id}", self)
     end
+    # rubocop:enable Metrics/AbcSize
 
     # Harvest WOS-UID publications for an author
     # @param author [Author]

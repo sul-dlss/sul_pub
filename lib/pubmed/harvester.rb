@@ -10,6 +10,7 @@ module Pubmed
     # @param [Author] author
     # @param [Hash] _options
     # @return [Array<String>] pmids that create Publications
+    # rubocop:disable Metrics/AbcSize
     def process_author(author, options = {})
       return unless Settings.PUBMED.harvest_enabled
       raise(ArgumentError, 'author must be an Author') unless author.is_a? Author
@@ -37,6 +38,7 @@ module Pubmed
     rescue StandardError => e
       NotificationManager.error(e, "#{self.class} - Pubmed harvest failed for author #{author.id}", self)
     end
+    # rubocop:enable Metrics/AbcSize
 
     private
 

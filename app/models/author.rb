@@ -70,6 +70,7 @@ class Author < ActiveRecord::Base
 
   # Transforms an import setting to attributes.
   # @param [Hash] import_setting from the CAP API
+  # rubocop:disable Metrics/AbcSize
   def import_setting_to_attribs(import_setting)
     # required attributes
     attribs = {
@@ -84,6 +85,7 @@ class Author < ActiveRecord::Base
     attribs[:end_date] = import_setting['endDate']['value'] if import_setting['endDate'].present?
     attribs
   end
+  # rubocop:enable Metrics/AbcSize
 
   # Returns a string representing an author identity that can be compared another author identity.
   # @param [String] first_name First name of the author.
@@ -116,6 +118,9 @@ class Author < ActiveRecord::Base
 
   # @param [Hash<String => [String, Hash]>] auth_hash
   # @return [Hash<Symbol => String>]
+  # rubocop:disable Metrics/AbcSize
+  # rubocop:disable Metrics/CyclomaticComplexity
+  # rubocop:disable Metrics/PerceivedComplexity
   def self.build_attribute_hash_from_cap_profile(auth_hash)
     # sunetid/ university id/ ca licence ---- at least one is expected
     seed_hash = {
@@ -143,6 +148,9 @@ class Author < ActiveRecord::Base
     seed_hash[:preferred_last_name] = seed_hash[:cap_last_name]
     seed_hash
   end
+  # rubocop:enable Metrics/AbcSize
+  # rubocop:enable Metrics/CyclomaticComplexity
+  # rubocop:enable Metrics/PerceivedComplexity
 
   # @param [String] CAP Profile ID
   # @param [Cap::Client] cap_client
@@ -188,6 +196,7 @@ class Author < ActiveRecord::Base
   # do not match the provided attributes from an import setting.
   # @param [Hash<Symbol => String>] attribs the candidate versus `self`'s identity
   # @return [Boolean] Is this author's identity different than our current identity?
+  # rubocop:disable Metrics/AbcSize
   def author_identity_different?(attribs)
     !(
       # not the identical identity where Author is assumed to be Stanford University
@@ -199,4 +208,5 @@ class Author < ActiveRecord::Base
       institution.to_s.casecmp(attribs[:institution].to_s) == 0
     )
   end
+  # rubocop:enable Metrics/AbcSize
 end

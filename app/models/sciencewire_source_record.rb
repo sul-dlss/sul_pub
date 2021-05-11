@@ -121,7 +121,6 @@ class SciencewireSourceRecord < ActiveRecord::Base
   # rubocop:disable Metrics/CyclomaticComplexity
   # rubocop:disable Metrics/AbcSize
   # rubocop:disable Metrics/PerceivedComplexity
-  # rubocop:disable Metrics/MethodLength
   def self.convert_sw_publication_doc_to_hash(publication)
     doi = extract_doi(publication)
     issn = extract_issn(publication)
@@ -287,11 +286,10 @@ class SciencewireSourceRecord < ActiveRecord::Base
     # end
     record_as_hash
   end
+
   # rubocop:enable Metrics/CyclomaticComplexity
   # rubocop:enable Metrics/AbcSize
   # rubocop:enable Metrics/PerceivedComplexity
-  # rubocop:enable Metrics/MethodLength
-
   def self.lookup_sw_doc_type(doc_type_list)
     doc_types = Array(doc_type_list)
     if doc_types.any? { |t| t =~ /^(#{@@sw_conference_proceedings_types})$/i }

@@ -80,6 +80,7 @@ module WebOfScience
     # Fetch the first batch of results.  The first query-response is special; it's the only
     # response that contains the entire query response metadata, with query_id and records_found.
     # @return [WebOfScience::Records]
+    # rubocop:disable Metrics/AbcSize
     def batch_one
       @batch_one ||= begin
         response = client.search.call(operation, message: query)
@@ -90,6 +91,7 @@ module WebOfScience
         records
       end
     end
+    # rubocop:enable Metrics/AbcSize
 
     # The retrieve operation is different from the first query, because it uses
     # a query_id and a :retrieve operation to retrieve additional records

@@ -4,6 +4,7 @@ module Pubmed
   class Client
     # @param [String, Array<String>] pmids PubMed ID or IDs
     # @return [String] HTTP response body
+    # rubocop:disable Metrics/AbcSize
     def fetch_records_for_pmid_list(pmids)
       pmid_list = Array(pmids)
       pmidValuesForPost = pmid_list.collect { |pmid| "&id=#{pmid}" }.join
@@ -16,6 +17,7 @@ module Pubmed
       NotificationManager.error(e, "#{e.class.name} during PubMed Fetch API call", self)
       raise
     end
+    # rubocop:enable Metrics/AbcSize
 
     # @param [String] term to search on, excluding term=
     # @return [String] HTTP response body
