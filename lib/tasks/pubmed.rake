@@ -1,10 +1,6 @@
 # frozen_string_literal: true
 
 namespace :pubmed do
-  def client
-    @client ||= Pubmed.client
-  end
-
   desc 'update pubmed source records and rebuild pub_hashes for publications for a given list of cap_profile_ids passed in a text file'
   # filename should be a list of cap_profile_id, one per line with no header
   # call with RAILS_ENV=production bundle exec rake pubmed:update_pubmed_source_records_for_cap_profile_ids['filename.txt']
@@ -80,7 +76,7 @@ namespace :pubmed do
     raise 'pmid argument is required.' unless args[:pmid].present?
 
     pmids = [args[:pmid]]
-    doc = client.fetch_records_for_pmid_list(pmids)
+    doc = Pubmed.client.fetch_records_for_pmid_list(pmids)
     puts doc # XML document
   end
 

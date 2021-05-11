@@ -57,6 +57,7 @@ gem 'retina_tag'
 group :development, :test do
   gem 'rubocop'
   gem 'rubocop-rspec'
+  gem 'rubocop-rake'
   gem 'rspec'
   gem 'rspec-rails'
 end
