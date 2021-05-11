@@ -5,8 +5,8 @@ describe BibtexIngester do
 
   let!(:author_with_bibtex) { create :author, sunetid: 'james', cap_profile_id: 333_333 }
 
-  let(:bibtex_batch_path) { Rails.root.join('fixtures', 'bibtex_for_batch').to_s }
-  let(:bibtex_batch_path2) { Rails.root.join('fixtures', 'bibtex_for_batch_2').to_s }
+  let(:bibtex_batch_path) { Rails.root.join('fixtures/bibtex_for_batch').to_s }
+  let(:bibtex_batch_path2) { Rails.root.join('fixtures/bibtex_for_batch_2').to_s }
 
   #	puts author_with_bibtex.to_s
 

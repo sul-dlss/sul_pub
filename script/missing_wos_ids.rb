@@ -4,7 +4,7 @@ class MissingWosId
   attr_reader :logger
 
   def initialize
-    @logger = Logger.new(Rails.root.join('log', 'missing_wos_id_record.log'))
+    @logger = Logger.new(Rails.root.join('log/missing_wos_id_record.log'))
   end
 
   # Identify publications without a WosID

@@ -28,7 +28,7 @@ class IdentifierParserISBN < IdentifierParser
   end
 
   def logger
-    @logger ||= Logger.new(Rails.root.join('log', 'identifier_parser_isbn.log'))
+    @logger ||= Logger.new(Rails.root.join('log/identifier_parser_isbn.log'))
   end
 
   def match_type

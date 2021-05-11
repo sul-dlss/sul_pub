@@ -4,7 +4,7 @@ require 'csv'
 
 class DeleteMissingAuths
   def initialize
-    @logger = Logger.new(Rails.root.join('log', 'delete_missing_auths.log'))
+    @logger = Logger.new(Rails.root.join('log/delete_missing_auths.log'))
   end
 
   def fix(auth_id)

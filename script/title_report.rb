@@ -37,7 +37,7 @@ class TitleReport
     @book_ids = []
     @all_depts = []
     @current_dept = Dept.new 'dummy'
-    @logger = Logger.new(Rails.root.join('log', 'title_report.log'))
+    @logger = Logger.new(Rails.root.join('log/title_report.log'))
     @logger.formatter = proc { |severity, datetime, _progname, msg|
       "#{severity} #{datetime}[#{Process.pid}]: #{msg}\n"
     }

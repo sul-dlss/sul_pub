@@ -2,7 +2,7 @@
 
 class UpdateMeshHeadings
   def initialize
-    @logger = Logger.new(Rails.root.join('log', 'update_mesh_headings.log'))
+    @logger = Logger.new(Rails.root.join('log/update_mesh_headings.log'))
     @logger.formatter = proc { |severity, datetime, _progname, msg|
       "#{severity} #{datetime}: #{msg}\n"
     }

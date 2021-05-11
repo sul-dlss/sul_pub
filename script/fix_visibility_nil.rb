@@ -4,7 +4,7 @@ require 'json'
 
 class FixVisibilityNil
   def initialize
-    @logger = Logger.new(Rails.root.join('log', 'script_fix_visibility_nil.log'))
+    @logger = Logger.new(Rails.root.join('log/script_fix_visibility_nil.log'))
     @author_ids = [
       113, 447, 988, 1239, 1791, 1941, 2263, 2345, 2484, 3288, 3868,
       3948, 4222, 5231, 5393, 5604, 5779, 6142, 6659, 6945, 7369, 7930,

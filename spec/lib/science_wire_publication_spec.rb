@@ -12,7 +12,7 @@ describe ScienceWirePublication do
   end
 
   let(:publication_item_xml) do
-    File.read Rails.root.join('spec', 'fixtures', 'sciencewire_source_record', 'publication_item.xml')
+    File.read Rails.root.join('spec/fixtures/sciencewire_source_record/publication_item.xml')
   end
   let(:publication_item_doc) { Nokogiri::XML publication_item_xml }
   let(:publication_item_element) { publication_item_doc.xpath('PublicationItem').first }

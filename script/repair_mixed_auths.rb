@@ -4,7 +4,7 @@ require 'csv'
 
 class RepairMixedAuths
   def initialize
-    @logger = Logger.new(Rails.root.join('log', 'repair_mixed_auths.log'))
+    @logger = Logger.new(Rails.root.join('log/repair_mixed_auths.log'))
     @auths_fixed = 0
     @contribs_fixed = 0
   end

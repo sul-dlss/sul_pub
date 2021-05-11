@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Load Shared Examples
-require Rails.root.join('spec', 'support', 'identifier_parser_shared_examples.rb')
+require Rails.root.join('spec/support/identifier_parser_shared_examples.rb')
 
 describe IdentifierParser do
   let(:identifier_type) { 'other' }

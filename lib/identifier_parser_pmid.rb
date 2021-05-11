@@ -39,7 +39,7 @@ class IdentifierParserPMID < IdentifierParser
   end
 
   def logger
-    @logger ||= Logger.new(Rails.root.join('log', 'identifier_parser_pmid.log'))
+    @logger ||= Logger.new(Rails.root.join('log/identifier_parser_pmid.log'))
   end
 
   def match_type

@@ -2,7 +2,7 @@
 
 class RebuildConferencePapers
   def work
-    logger = Logger.new(Rails.root.join('log', 'script_rebuild_conference_papers.log'))
+    logger = Logger.new(Rails.root.join('log/script_rebuild_conference_papers.log'))
     logger.info 'Starting'
     found = 0
     count = 0

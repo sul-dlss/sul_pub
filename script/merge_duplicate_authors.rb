@@ -6,7 +6,7 @@ class MergeDuplicateAuths
   CONTRIB_CHECK = true
 
   def initialize
-    @logger = Logger.new(Rails.root.join('log', 'merge_duplicate_auths.log'))
+    @logger = Logger.new(Rails.root.join('log/merge_duplicate_auths.log'))
     @clones_removed = 0
     @contribs_fixed = 0
   end

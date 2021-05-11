@@ -72,7 +72,7 @@ module Clarivate
     # @return [String]
     def request_body(ids, fields)
       renderer.render(
-        file: Rails.root.join('lib', 'clarivate', 'links_request.xml'),
+        file: Rails.root.join('lib/clarivate/links_request.xml'),
         layout: false,
         locals: {
           client: self,

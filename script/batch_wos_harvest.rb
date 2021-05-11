@@ -11,7 +11,7 @@ options = { symbolicTimeSpan: '12week' } # go back 12 weeks in time
 offset = 0
 sort_order = 'updated_at desc' # do the people most recently updated
 start_time = Time.zone.now
-CSV.open(Rails.root.join('log', 'batch_wos_harvest.csv'), 'wb') do |csv|
+CSV.open(Rails.root.join('log/batch_wos_harvest.csv'), 'wb') do |csv|
   csv << %w[cap_profile_id name new_publications]
   harvester = WebOfScience.harvester
   authors = Author.where(active_in_cap: true, cap_import_enabled: true).order(sort_order).limit(limit).offset(offset)

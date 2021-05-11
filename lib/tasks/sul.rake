@@ -99,7 +99,7 @@ namespace :sul do
   # bundle exec rake sul:update_pubs['rebuild_pub_hash'] # for pub hash rebuild
   # bundle exec rake sul:update_pubs['rebuild_authorship'] # for authorship rebuild
   task :update_pubs, [:method] => :environment do |_t, args|
-    logger = Logger.new(Rails.root.join('log', 'update_pubs.log'))
+    logger = Logger.new(Rails.root.join('log/update_pubs.log'))
     method = args[:method] || 'rebuild_pub_hash' # default to rebuilding pub_hash, could also rebuild_authorship
     raise "Method #{method} not defined" unless Publication.new.respond_to? method
 

@@ -32,7 +32,7 @@ class IdentifierParserDOI < IdentifierParser
   end
 
   def logger
-    @logger ||= Logger.new(Rails.root.join('log', 'identifier_parser_doi.log'))
+    @logger ||= Logger.new(Rails.root.join('log/identifier_parser_doi.log'))
   end
 
   def match_type

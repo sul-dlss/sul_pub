@@ -52,7 +52,7 @@ class IdentifierNormalizer
   end
 
   def logger
-    @logger ||= Logger.new(Rails.root.join('log', 'identifier_normalizer.log'))
+    @logger ||= Logger.new(Rails.root.join('log/identifier_normalizer.log'))
   end
 
   # @param pub_id [PublicationIdentifier]
