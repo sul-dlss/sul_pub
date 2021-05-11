@@ -47,7 +47,7 @@ module WebOfScience
             address = addresses.find { |addr| addr['addr_no'] == name['addr_no'] }
             name['address'] = address
           end
-          names.sort { |name| name['seq_no'].to_i }
+          names.sort { |name, other_name| name['seq_no'].to_i <=> other_name['seq_no'].to_i }
         end
         publishers.flatten
       end
