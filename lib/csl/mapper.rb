@@ -8,6 +8,7 @@ module Csl
       @pub_hash = pub_hash
     end
 
+    # rubocop:disable Metrics/AbcSize
     def csl_doc
       @csl_doc ||= begin
         if pub_hash[:provenance].to_s.downcase == 'cap'
@@ -104,6 +105,7 @@ module Csl
         cit_data_hash
       end
     end
+    # rubocop:enable Metrics/AbcSize
 
     private
 

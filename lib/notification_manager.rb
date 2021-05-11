@@ -29,10 +29,9 @@ class NotificationManager
       Honeybadger.notify(e, context: { message: log_message })
     end
 
-    # rubocop:disable Style/ClassVars
-    def pubmed_logger
+        def pubmed_logger
       @@pubmed_logger ||= Logger.new(Settings.PUBMED.LOG)
-    end
+        end
 
     def cap_logger
       @@cap_logger ||= Logger.new(Settings.CAP.LOG)
@@ -41,7 +40,6 @@ class NotificationManager
     def sciencewire_logger
       @@sciencewire_logger ||= Logger.new(Settings.SCIENCEWIRE.LOG)
     end
-    # rubocop:enable Style/ClassVars
 
     # Helper method to log exceptions in a consistent way
     def log_exception(logger, message, e)

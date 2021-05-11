@@ -39,15 +39,23 @@ Layout/LineLength:
 Naming/VariableName:
   Enabled: false
 
+Naming/VariableNumber:
+  Exclude:
+    - "spec/**/*"
+    - "script/**/*"
+
 #Rails/Blank:
 #  UnlessPresent: false
-
-Style/NumericPredicate:
-  Enabled: false
 
 RSpec/NestedGroups:
   Max: 5
 
 # When enabled, produces errors.
 RSpec/FactoryBot:
+  Enabled: false
+
+Style/ClassVars:
+  Enabled: false
+
+Style/NumericPredicate:
   Enabled: false

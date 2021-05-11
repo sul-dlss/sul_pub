@@ -1,5 +1,3 @@
-# rubocop:disable Style/ClassVars
-
 # Pubmed utilities
 module Pubmed
 
@@ -28,4 +26,3 @@ module Pubmed
       doc.at_xpath('//LastName[text()="Hardy"]').is_a?(Nokogiri::XML::Element)
   end
 end
-# rubocop:enable Style/ClassVars

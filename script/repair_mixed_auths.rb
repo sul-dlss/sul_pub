@@ -7,6 +7,7 @@ class RepairMixedAuths
     @contribs_fixed = 0
   end
 
+  # rubocop:disable Style/CombinableLoops
   def fix(row)
     return if row[:cap_profile_id] == row[:sul_profile_id]
 
@@ -29,6 +30,7 @@ class RepairMixedAuths
       @logger.info "   Synching pub #{pub.id}"
       @contribs_fixed += 1
     end
+    # rubocop:enable Style/CombinableLoops
 
   rescue ActiveRecord::RecordNotFound
     @logger.warn "Author id not found #{auth_id}"

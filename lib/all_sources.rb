@@ -1,5 +1,3 @@
-# rubocop:disable Style/ClassVars
-
 # All Sources harvesting utilities
 module AllSources
 
@@ -13,4 +11,3 @@ module AllSources
   end
 
 end
-# rubocop:enable Style/ClassVars

@@ -1,4 +1,3 @@
-# rubocop:disable Style/ClassVars
 require 'faraday'
 require 'webmock'
 
@@ -38,4 +37,3 @@ module WebOfScience
     end
   end
 end
-# rubocop:enable Style/ClassVars

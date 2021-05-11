@@ -1,5 +1,3 @@
-# rubocop:disable Style/ClassVars
-
 # Web of Science (WOS) utilities
 module WebOfScience
 
@@ -39,4 +37,3 @@ module WebOfScience
   end
 
 end
-# rubocop:enable Style/ClassVars

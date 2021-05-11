@@ -111,6 +111,9 @@ class SciencewireSourceRecord < ActiveRecord::Base
     existing_sw_source_record.source_fingerprint != get_source_fingerprint(incoming_sw_source_doc)
   end
 
+  # rubocop:disable Metrics/CyclomaticComplexity
+  # rubocop:disable Metrics/AbcSize
+  # rubocop:disable Metrics/PerceivedComplexity
   def self.convert_sw_publication_doc_to_hash(publication)
     doi = extract_doi(publication)
     issn = extract_issn(publication)
@@ -204,6 +207,9 @@ class SciencewireSourceRecord < ActiveRecord::Base
     # end
     record_as_hash
   end
+  # rubocop:enable Metrics/CyclomaticComplexity
+  # rubocop:enable Metrics/AbcSize
+  # rubocop:enable Metrics/PerceivedComplexity
 
   def self.lookup_sw_doc_type(doc_type_list)
     doc_types = Array(doc_type_list)
