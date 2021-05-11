@@ -3,6 +3,7 @@ inherit_from:
 require:
   - rubocop-rspec
   - rubocop-rake
+  - rubocop-rails
 
 AllCops:
   TargetRubyVersion: 2.7
@@ -15,6 +16,9 @@ AllCops:
     - 'spec/fixtures/**/*'
     - 'spec/spec_helper.rb'
     - 'vendor/**/*'
+
+Rails/DynamicFindBy:
+  Enabled: false
 
 # there are useful expectations of methods being called on the subject in tests
 RSpec/SubjectStub:

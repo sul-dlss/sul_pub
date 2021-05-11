@@ -33,7 +33,7 @@ class PublicationsController < ApplicationController
     if capProfileId.blank?
       description = "Records that have changed since #{last_changed}"
       matching_records = Publication.select(:pub_hash).updated_after(last_changed).page(page).per(per)
-      matching_records = matching_records.with_active_author if !capActive.blank? && (capActive || capActive.casecmp('true').zero?)
+      matching_records = matching_records.with_active_author if capActive.present? && (capActive || capActive.casecmp('true').zero?)
     else
       author = Author.find_by(cap_profile_id: capProfileId)
       if author.nil?
@@ -222,9 +222,9 @@ class PublicationsController < ApplicationController
       author.publications.find_each do |pub|
         journ = pub.pub_hash[:journal] ? pub.pub_hash[:journal][:name] : ''
         contrib_prof_ids = pub.authors.pluck(:cap_profile_id).join(';')
-        wos_id = pub.publication_identifiers.where(identifier_type: 'WoSItemID').pluck(:identifier_value).first
-        doi = pub.publication_identifiers.where(identifier_type: 'doi').pluck(:identifier_value).first
-        status = pub.contributions.where(author_id: author.id).pluck(:status).first
+        wos_id = pub.publication_identifiers.where(identifier_type: 'WoSItemID').pick(:identifier_value)
+        doi = pub.publication_identifiers.where(identifier_type: 'doi').pick(:identifier_value)
+        status = pub.contributions.where(author_id: author.id).pick(:status)
         created_at = pub.created_at.utc.strftime('%m/%d/%Y')
         updated_at = pub.updated_at.utc.strftime('%m/%d/%Y')
 

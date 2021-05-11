@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class AuthorIdentity < ActiveRecord::Base
+class AuthorIdentity < ApplicationRecord
   has_paper_trail on: [:destroy]
   belongs_to :author, inverse_of: :author_identities
 

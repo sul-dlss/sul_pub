@@ -3,7 +3,7 @@
 require 'nokogiri'
 require 'activerecord-import'
 
-class SciencewireSourceRecord < ActiveRecord::Base
+class SciencewireSourceRecord < ApplicationRecord
   # validates_uniqueness_of :sciencewire_id
 
   @@sw_conference_proceedings_types ||= Settings.sw_doc_type_mappings.conference.join('|')
@@ -95,7 +95,7 @@ class SciencewireSourceRecord < ActiveRecord::Base
         is_active: true,
         source_fingerprint: new_source_fingerprint
       }
-      attrs[:pmid] = pmid unless pmid.blank?
+      attrs[:pmid] = pmid if pmid.present?
       create(attrs)
     end
     # return true or false to indicate if new record was created or one already existed.
@@ -128,151 +128,151 @@ class SciencewireSourceRecord < ActiveRecord::Base
     swid = extract_swid(publication)
     wosid = extract_wosid(publication)
 
-    doi_identifier = { type: 'doi', id: doi, url: "#{Settings.DOI.BASE_URI}#{doi}" } unless doi.blank?
-    issn_identifier = { type: 'issn', id: issn, url: Settings.SULPUB_ID.SEARCHWORKS_URI + issn } unless issn.blank?
+    doi_identifier = { type: 'doi', id: doi, url: "#{Settings.DOI.BASE_URI}#{doi}" } if doi.present?
+    issn_identifier = { type: 'issn', id: issn, url: Settings.SULPUB_ID.SEARCHWORKS_URI + issn } if issn.present?
 
     identifiers = []
-    identifiers << { type: 'PMID', id: pmid, url: "#{Settings.PUBMED.ARTICLE_BASE_URI}#{pmid}" } unless pmid.blank?
-    unless wosid.blank?
+    identifiers << { type: 'PMID', id: pmid, url: "#{Settings.PUBMED.ARTICLE_BASE_URI}#{pmid}" } if pmid.present?
+    if wosid.present?
       identifiers << { type: 'WoSItemID', id: wosid,
                        url: "#{Settings.SCIENCEWIRE.ARTICLE_BASE_URI}#{wosid}" }
     end
-    identifiers << { type: 'PublicationItemID', id: swid } unless swid.blank?
-    identifiers << doi_identifier unless doi.blank?
+    identifiers << { type: 'PublicationItemID', id: swid } if swid.present?
+    identifiers << doi_identifier if doi.present?
 
     record_as_hash = {}
     record_as_hash[:provenance] = Settings.sciencewire_source
     record_as_hash[:sw_id] = swid
-    record_as_hash[:pmid] = pmid unless pmid.blank?
-    record_as_hash[:issn] = issn unless issn.blank?
+    record_as_hash[:pmid] = pmid if pmid.present?
+    record_as_hash[:issn] = issn if issn.present?
     record_as_hash[:identifier] = identifiers
 
-    record_as_hash[:title] = publication.xpath('Title').text unless publication.xpath('Title').blank?
-    unless publication.xpath('Abstract').blank?
+    record_as_hash[:title] = publication.xpath('Title').text if publication.xpath('Title').present?
+    if publication.xpath('Abstract').present?
       record_as_hash[:abstract_restricted] =
         publication.xpath('Abstract').text
     end
     record_as_hash[:author] = publication.xpath('AuthorList').text.split('|').collect { |author| { name: author } }
 
-    record_as_hash[:year] = publication.xpath('PublicationYear').text unless publication.xpath('PublicationYear').blank?
-    record_as_hash[:date] = publication.xpath('PublicationDate').text unless publication.xpath('PublicationDate').blank?
+    record_as_hash[:year] = publication.xpath('PublicationYear').text if publication.xpath('PublicationYear').present?
+    record_as_hash[:date] = publication.xpath('PublicationDate').text if publication.xpath('PublicationDate').present?
 
-    record_as_hash[:authorcount] = publication.xpath('AuthorCount').text unless publication.xpath('AuthorCount').blank?
+    record_as_hash[:authorcount] = publication.xpath('AuthorCount').text if publication.xpath('AuthorCount').present?
 
-    unless publication.xpath('KeywordList').blank?
+    if publication.xpath('KeywordList').present?
       record_as_hash[:keywords_sw] =
         publication.xpath('KeywordList').text.split('|')
     end
     record_as_hash[:documenttypes_sw] = publication.xpath('DocumentTypeList').text.split('|')
 
-    unless publication.xpath('DocumentCategory').blank?
+    if publication.xpath('DocumentCategory').present?
       record_as_hash[:documentcategory_sw] =
         publication.xpath('DocumentCategory').text
     end
     sul_document_type = lookup_cap_doc_type_by_sw_doc_category(record_as_hash[:documentcategory_sw])
     record_as_hash[:type] = sul_document_type
 
-    unless publication.xpath('PublicationImpactFactorList').blank?
+    if publication.xpath('PublicationImpactFactorList').present?
       record_as_hash[:publicationimpactfactorlist_sw] =
         publication.xpath('PublicationImpactFactorList').text.split('|')
     end
-    unless publication.xpath('PublicationCategoryRankingList').blank?
+    if publication.xpath('PublicationCategoryRankingList').present?
       record_as_hash[:publicationcategoryrankinglist_sw] =
         publication.xpath('PublicationCategoryRankingList').text.split('|')
     end
-    unless publication.xpath('NumberOfReferences').blank?
+    if publication.xpath('NumberOfReferences').present?
       record_as_hash[:numberofreferences_sw] =
         publication.xpath('NumberOfReferences').text
     end
-    unless publication.xpath('TimesCited').blank?
+    if publication.xpath('TimesCited').present?
       record_as_hash[:timescited_sw_retricted] =
         publication.xpath('TimesCited').text
     end
-    unless publication.xpath('TimesNotSelfCited').blank?
+    if publication.xpath('TimesNotSelfCited').present?
       record_as_hash[:timenotselfcited_sw] =
         publication.xpath('TimesNotSelfCited').text
     end
-    unless publication.xpath('AuthorCitationCountList').blank?
+    if publication.xpath('AuthorCitationCountList').present?
       record_as_hash[:authorcitationcountlist_sw] =
         publication.xpath('AuthorCitationCountList').text
     end
-    record_as_hash[:rank_sw] = publication.xpath('Rank').text unless publication.xpath('Rank').blank?
-    unless publication.xpath('OrdinalRank').blank?
+    record_as_hash[:rank_sw] = publication.xpath('Rank').text if publication.xpath('Rank').present?
+    if publication.xpath('OrdinalRank').present?
       record_as_hash[:ordinalrank_sw] =
         publication.xpath('OrdinalRank').text
     end
-    unless publication.xpath('NormalizedRank').blank?
+    if publication.xpath('NormalizedRank').present?
       record_as_hash[:normalizedrank_sw] =
         publication.xpath('NormalizedRank').text
     end
-    unless publication.xpath('NewPublicationItemID').blank?
+    if publication.xpath('NewPublicationItemID').present?
       record_as_hash[:newpublicationid_sw] =
         publication.xpath('NewPublicationItemID').text
     end
-    record_as_hash[:isobsolete_sw] = publication.xpath('IsObsolete').text unless publication.xpath('IsObsolete').blank?
+    record_as_hash[:isobsolete_sw] = publication.xpath('IsObsolete').text if publication.xpath('IsObsolete').present?
 
-    unless publication.xpath('CopyrightPublisher').blank?
+    if publication.xpath('CopyrightPublisher').present?
       record_as_hash[:publisher] =
         publication.xpath('CopyrightPublisher').text
     end
-    record_as_hash[:city] = publication.xpath('CopyrightCity').text unless publication.xpath('CopyrightCity').blank?
-    unless publication.xpath('CopyrightStateProvince').blank?
+    record_as_hash[:city] = publication.xpath('CopyrightCity').text if publication.xpath('CopyrightCity').present?
+    if publication.xpath('CopyrightStateProvince').present?
       record_as_hash[:stateprovince] =
         publication.xpath('CopyrightStateProvince').text
     end
-    unless publication.xpath('CopyrightCountry').blank?
+    if publication.xpath('CopyrightCountry').present?
       record_as_hash[:country] =
         publication.xpath('CopyrightCountry').text
     end
-    record_as_hash[:pages] = publication.xpath('Pagination').text unless publication.xpath('Pagination').blank?
+    record_as_hash[:pages] = publication.xpath('Pagination').text if publication.xpath('Pagination').present?
 
     if sul_document_type == Settings.sul_doc_types.inproceedings
       conference_hash = {}
-      unless publication.xpath('ConferenceTitle').blank?
+      if publication.xpath('ConferenceTitle').present?
         conference_hash[:name] =
           publication.xpath('ConferenceTitle').text
       end
-      unless publication.xpath('ConferenceStartDate').blank?
+      if publication.xpath('ConferenceStartDate').present?
         conference_hash[:startdate] =
           publication.xpath('ConferenceStartDate').text
       end
-      unless publication.xpath('ConferenceEndDate').blank?
+      if publication.xpath('ConferenceEndDate').present?
         conference_hash[:enddate] =
           publication.xpath('ConferenceEndDate').text
       end
-      unless publication.xpath('ConferenceCity').blank?
+      if publication.xpath('ConferenceCity').present?
         conference_hash[:city] =
           publication.xpath('ConferenceCity').text
       end
-      unless publication.xpath('ConferenceStateCountry').blank?
+      if publication.xpath('ConferenceStateCountry').present?
         conference_hash[:statecountry] =
           publication.xpath('ConferenceStateCountry').text
       end
       record_as_hash[:conference] = conference_hash unless conference_hash.empty?
     elsif sul_document_type == Settings.sul_doc_types.book
-      unless publication.xpath('PublicationSourceTitle').blank?
+      if publication.xpath('PublicationSourceTitle').present?
         record_as_hash[:booktitle] =
           publication.xpath('PublicationSourceTitle').text
       end
-      record_as_hash[:pages] = publication.xpath('Pagination').text unless publication.xpath('Pagination').blank?
+      record_as_hash[:pages] = publication.xpath('Pagination').text if publication.xpath('Pagination').present?
     end
 
-    if sul_document_type == Settings.sul_doc_types.article || (sul_document_type == Settings.sul_doc_types.inproceedings && !publication.xpath('Issue').blank?)
+    if sul_document_type == Settings.sul_doc_types.article || (sul_document_type == Settings.sul_doc_types.inproceedings && publication.xpath('Issue').present?)
       journal_hash = {}
-      unless publication.xpath('PublicationSourceTitle').blank?
+      if publication.xpath('PublicationSourceTitle').present?
         journal_hash[:name] =
           publication.xpath('PublicationSourceTitle').text
       end
-      journal_hash[:volume] = publication.xpath('Volume').text unless publication.xpath('Volume').blank?
-      journal_hash[:issue] = publication.xpath('Issue').text unless publication.xpath('Issue').blank?
-      unless publication.xpath('ArticleNumber').blank?
+      journal_hash[:volume] = publication.xpath('Volume').text if publication.xpath('Volume').present?
+      journal_hash[:issue] = publication.xpath('Issue').text if publication.xpath('Issue').present?
+      if publication.xpath('ArticleNumber').present?
         journal_hash[:articlenumber] =
           publication.xpath('ArticleNumber').text
       end
-      journal_hash[:pages] = publication.xpath('Pagination').text unless publication.xpath('Pagination').blank?
+      journal_hash[:pages] = publication.xpath('Pagination').text if publication.xpath('Pagination').present?
       journal_identifiers = []
-      journal_identifiers << issn_identifier unless issn.blank?
-      journal_identifiers << doi_identifier unless doi.blank?
+      journal_identifiers << issn_identifier if issn.present?
+      journal_identifiers << doi_identifier if doi.present?
       journal_hash[:identifier] = journal_identifiers
       record_as_hash[:journal] = journal_hash
     end

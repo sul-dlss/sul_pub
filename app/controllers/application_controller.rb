@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   end
 
   def ensure_request_body_exists
-    return unless request_body.blank?
+    return if request_body.present?
 
     head :bad_request
   end

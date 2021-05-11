@@ -94,7 +94,7 @@ describe SMCIReport do
     let(:author) { create :russ_altman }
     let(:report) { described_class.new(input_file: input_csv, output_file: output_csv) }
     let(:pub_hash) { { publisher: 'some publisher', title: 'some title', identifier: [] } }
-    let(:date) { Time.now }
+    let(:date) { Time.zone.now }
 
     it 'creates an output for a profile author' do
       result = report.send(:output_row, pub_hash: pub_hash, author: author, harvested_at: date,

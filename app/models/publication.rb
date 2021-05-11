@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Publication < ActiveRecord::Base
+class Publication < ApplicationRecord
   has_paper_trail on: [:destroy]
   scope :with_active_author, -> { joins(:authors).where('authors.active_in_cap' => true).distinct }
 

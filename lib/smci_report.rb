@@ -65,7 +65,7 @@ class SMCIReport
 
     raise 'missing required params' unless @output_file && @input_file
     raise 'missing input csv' unless File.file? @input_file
-    raise 'supplied date_since is not valid' if @date_since && !Time.parse(@date_since)
+    raise ArgumentError, 'supplied date_since is not valid' if @date_since && !Time.zone.parse(@date_since)
   end
 
   def logger
@@ -115,7 +115,7 @@ class SMCIReport
           if author # we found the author in our database, now get their publications
             contributions = Contribution.select('*')
             contributions = contributions.where(author: author).where(status: %w[new approved])
-            contributions = contributions.where('created_at > ?', Time.parse(@date_since)) if @date_since
+            contributions = contributions.where('created_at > ?', Time.zone.parse(@date_since)) if @date_since
             num_pubs_found = contributions.size
             logger.info "found #{author.first_name} #{author.last_name} with #{num_pubs_found} approved publications"
             total_pubs += num_pubs_found
@@ -151,7 +151,7 @@ class SMCIReport
             # we have an orcid, search by orcid
             logger.info "harvesting author by orcid from WoS: '#{orcid}'"
             params = WebOfScience.queries.params_for_search("RID=(\"#{orcid.gsub('orcid.org/', '')}\")")
-            unless symbolicTimeSpan.blank?
+            if symbolicTimeSpan.present?
               params[:queryParameters][:symbolicTimeSpan] = symbolicTimeSpan
               params[:queryParameters].delete(:timeSpan)
               params[:queryParameters][:order!] = %i[databaseId userQuery symbolicTimeSpan queryLanguage] # according to WSDL

@@ -18,7 +18,7 @@ module WebOfScience
     end
 
     def valid?
-      !names.blank?
+      names.present?
     end
 
     private

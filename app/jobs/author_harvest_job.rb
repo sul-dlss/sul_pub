@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class AuthorHarvestJob < ActiveJob::Base
+class AuthorHarvestJob < ApplicationJob
   queue_as :default
 
   # Performs an asynchronous harvest and save for a given Author

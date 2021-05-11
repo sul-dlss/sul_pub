@@ -6,7 +6,7 @@ namespace :pubmed do
   # call with RAILS_ENV=production bundle exec rake pubmed:update_pubmed_source_records_for_cap_profile_ids['filename.txt']
   task :update_pubmed_source_records_for_cap_profile_ids, [:filename] => :environment do |_t, args|
     filename = args[:filename]
-    raise 'filename is required.' unless filename.present?
+    raise 'filename is required.' if filename.blank?
 
     cap_profile_ids = File.readlines(filename)
     logger = Logger.new(Rails.root.join('log', 'update_pubmed_source_records_for_cap_profile_ids.log'))
@@ -73,7 +73,7 @@ namespace :pubmed do
 
   desc 'Retrieve and print a single publication by PubMed-ID'
   task :publication, [:pmid] => :environment do |_t, args|
-    raise 'pmid argument is required.' unless args[:pmid].present?
+    raise 'pmid argument is required.' if args[:pmid].blank?
 
     pmids = [args[:pmid]]
     doc = Pubmed.client.fetch_records_for_pmid_list(pmids)

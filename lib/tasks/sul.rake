@@ -37,7 +37,7 @@ namespace :sul do
     output_file = args[:output_file]
     input_file = args[:input_file]
     date_since = args[:date_since]
-    raise 'missing required params' unless output_file && input_file && Time.parse(date_since)
+    raise 'missing required params' unless output_file && input_file && Time.zone.parse(date_since)
     raise 'missing input csv' unless File.file? input_file
 
     rows = CSV.parse(File.read(input_file), headers: true)
@@ -56,7 +56,7 @@ namespace :sul do
         author = Author.find_by(sunetid: sunet)
         if author
           contributions = Contribution.where("author_id = ? and status in ('new','approved') and created_at > ?",
-                                             author.id, Time.parse(date_since))
+                                             author.id, Time.zone.parse(date_since))
           puts "#{message} : #{contributions.size} publications"
           contributions.each do |contribution|
             pub = contribution.publication
@@ -69,7 +69,7 @@ namespace :sul do
                             ''
                           end
             sunet_list = pub.contributions.where("status in ('new','approved') and created_at > ?",
-                                                 Time.parse(date_since)).map do |c|
+                                                 Time.zone.parse(date_since)).map do |c|
               c.author.sunetid
             end.compact.reject(&:empty?).join('; ')
             doi = pub.pub_hash[:identifier].map { |ident| ident[:id] if ident[:type].downcase == 'doi' }.compact.join

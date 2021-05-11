@@ -2,7 +2,7 @@
 
 require 'nokogiri'
 
-class PubmedSourceRecord < ActiveRecord::Base
+class PubmedSourceRecord < ApplicationRecord
   # validates_uniqueness_of :pmid
   # validates_presence_of :source_data
 
@@ -118,11 +118,11 @@ class PubmedSourceRecord < ActiveRecord::Base
     record_as_hash[:provenance] = Settings.pubmed_source
     record_as_hash[:pmid] = pmid
 
-    unless publication.xpath('MedlineCitation/Article/ArticleTitle').blank?
+    if publication.xpath('MedlineCitation/Article/ArticleTitle').present?
       record_as_hash[:title] =
         publication.xpath('MedlineCitation/Article/ArticleTitle').text
     end
-    record_as_hash[:abstract] = abstract unless abstract.blank?
+    record_as_hash[:abstract] = abstract if abstract.present?
 
     # See No. 20 at https://www.nlm.nih.gov/bsd/licensee/elements_descriptions.html
     #
@@ -140,7 +140,7 @@ class PubmedSourceRecord < ActiveRecord::Base
     author_list = publication.xpath('MedlineCitation/Article/AuthorList/Author')
     record_as_hash[:author] = author_list.map { |a| author_to_hash(a) }.compact
 
-    record_as_hash[:mesh_headings] = mesh_headings unless mesh_headings.blank?
+    record_as_hash[:mesh_headings] = mesh_headings if mesh_headings.present?
     year_xpaths = [
       'MedlineCitation/Article/Journal/JournalIssue/PubDate/Year',
       'MedlineCitation/Article/ArticleDate/Year',
@@ -161,26 +161,26 @@ class PubmedSourceRecord < ActiveRecord::Base
     # record_as_hash[:publisher] =  publication.xpath('MedlineCitation/Article/').text unless publication.xpath("MedlineCitation/Article/").blank?
     # record_as_hash[:city] = publication.xpath('MedlineCitation/Article/').text unless publication.xpath("MedlineCitation/Article/").blank?
     # record_as_hash[:stateprovince] = publication.xpath('MedlineCitation/Article/').text unless publication.xpath("MedlineCitation/Article/").blank?
-    unless publication.xpath('MedlineCitation/MedlineJournalInfo/Country').blank?
+    if publication.xpath('MedlineCitation/MedlineJournalInfo/Country').present?
       record_as_hash[:country] =
         publication.xpath('MedlineCitation/MedlineJournalInfo/Country').text
     end
 
-    unless publication.xpath('MedlineCitation/Article/Pagination/MedlinePgn').blank?
+    if publication.xpath('MedlineCitation/Article/Pagination/MedlinePgn').present?
       record_as_hash[:pages] =
         publication.xpath('MedlineCitation/Article/Pagination/MedlinePgn').text
     end
 
     journal_hash = {}
-    unless publication.xpath('MedlineCitation/Article/Journal/Title').blank?
+    if publication.xpath('MedlineCitation/Article/Journal/Title').present?
       journal_hash[:name] =
         publication.xpath('MedlineCitation/Article/Journal/Title').text
     end
-    unless publication.xpath('MedlineCitation/Article/Journal/JournalIssue/Volume').blank?
+    if publication.xpath('MedlineCitation/Article/Journal/JournalIssue/Volume').present?
       journal_hash[:volume] =
         publication.xpath('MedlineCitation/Article/Journal/JournalIssue/Volume').text
     end
-    unless publication.xpath('MedlineCitation/Article/Journal/JournalIssue/Issue').blank?
+    if publication.xpath('MedlineCitation/Article/Journal/JournalIssue/Issue').present?
       journal_hash[:issue] =
         publication.xpath('MedlineCitation/Article/Journal/JournalIssue/Issue').text
     end
@@ -188,8 +188,8 @@ class PubmedSourceRecord < ActiveRecord::Base
     # journal_hash[:pages] = publication.xpath('Pagination').text unless publication.xpath('Pagination').blank?
     journal_identifiers = []
     issn = publication.xpath('MedlineCitation/Article/Journal/ISSN').text
-    record_as_hash[:issn] = issn unless issn.blank?
-    journal_identifiers << { type: 'issn', id: issn, url: Settings.SULPUB_ID.SEARCHWORKS_URI + issn } unless issn.blank?
+    record_as_hash[:issn] = issn if issn.present?
+    journal_identifiers << { type: 'issn', id: issn, url: Settings.SULPUB_ID.SEARCHWORKS_URI + issn } if issn.present?
     journal_hash[:identifier] = journal_identifiers
     record_as_hash[:journal] = journal_hash
 

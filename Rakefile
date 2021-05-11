@@ -14,7 +14,7 @@ desc 'Continuous integration task run on travis'
 task ci: %i[rubocop spec]
 
 desc 'Run rubocop on ruby files in a patch on master'
-task :rubocop do
+task rubocop: :environment do
   begin
     require 'rubocop/rake_task'
     RuboCop::RakeTask.new

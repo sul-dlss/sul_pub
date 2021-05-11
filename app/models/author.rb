@@ -2,7 +2,7 @@
 
 require 'set'
 
-class Author < ActiveRecord::Base
+class Author < ApplicationRecord
   has_paper_trail on: [:destroy]
   validates :cap_profile_id, uniqueness: true, presence: true
 
@@ -49,7 +49,7 @@ class Author < ActiveRecord::Base
   # Drops and replaces all author identities and re-imports them from the given data if there is a change.
   # @param [Array<Hash>] import_settings are as-is data from the CAP API
   def mirror_author_identities(import_settings)
-    return unless import_settings.present?
+    return if import_settings.blank?
     # Return if no changes in author identifies.
     return false if author_identities_set == import_author_identities_set(import_settings)
 

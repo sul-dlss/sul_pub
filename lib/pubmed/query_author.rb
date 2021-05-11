@@ -18,7 +18,7 @@ module Pubmed
     end
 
     def valid?
-      !name_term.blank?
+      name_term.present?
     end
 
     private

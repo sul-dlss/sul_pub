@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-class Contribution < ActiveRecord::Base
+class Contribution < ApplicationRecord
   # Allowed values for visibility
   VISIBILITY_VALUES = %w[public private].freeze
   # Allowed values for status
   STATUS_VALUES = %w[approved denied new unknown].freeze
 
-  belongs_to :publication, required: true, inverse_of: :contributions
-  belongs_to :author, required: true, inverse_of: :contributions
+  belongs_to :publication, optional: false, inverse_of: :contributions
+  belongs_to :author, optional: false, inverse_of: :contributions
 
   has_one :publication_identifier, -> { where("publication_identifiers.identifier_type = 'PublicationItemId'") },
           class_name: 'PublicationIdentifier',
@@ -37,9 +37,9 @@ class Contribution < ActiveRecord::Base
 
   def self.author_valid?(contrib)
     contrib = contrib.with_indifferent_access
-    if !contrib[:sul_author_id].blank?
+    if contrib[:sul_author_id].present?
       Author.exists?(contrib[:sul_author_id])
-    elsif !contrib[:cap_profile_id].blank?
+    elsif contrib[:cap_profile_id].present?
       Author.exists?(cap_profile_id: contrib[:cap_profile_id])
     else
       # there must be at least one valid author id

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-class PublicationIdentifier < ActiveRecord::Base
-  belongs_to :publication, required: true, inverse_of: :publication_identifiers
+class PublicationIdentifier < ApplicationRecord
+  belongs_to :publication, optional: false, inverse_of: :publication_identifiers
   validates :identifier_type, presence: true
 
   # @return [Hash<Symbol => String>] an entry for pub_hash[:identifier]

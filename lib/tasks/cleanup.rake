@@ -106,8 +106,8 @@ namespace :cleanup do
     author = Author.find_by_cap_profile_id(cap_profile_id)
     raise 'Author not found' unless author
 
-    start_date = Time.parse(start_timeframe) # start date to go back to look for new contributions (when we started WoS harvesting)
-    end_date = Time.parse(end_timeframe) # end date to go back to look for new contributions (when we stopped harvesting with first initial)
+    start_date = Time.zone.parse(start_timeframe) # start date to go back to look for new contributions (when we started WoS harvesting)
+    end_date = Time.zone.parse(end_timeframe) # end date to go back to look for new contributions (when we stopped harvesting with first initial)
 
     pub_ids_worked_on_dump_file = "log/pubids_for_#{cap_profile_id}_#{provenance}.dump"
 

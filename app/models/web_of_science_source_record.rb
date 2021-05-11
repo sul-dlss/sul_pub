@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class WebOfScienceSourceRecord < ActiveRecord::Base
+class WebOfScienceSourceRecord < ApplicationRecord
   validates :active, :database, :source_data, :source_fingerprint, :uid, presence: true
 
   # Because of harvest code, the order of events is:
