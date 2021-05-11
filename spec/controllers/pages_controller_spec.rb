@@ -6,7 +6,7 @@ describe HighVoltage::PagesController, '#show' do
       end
 
       it { expect(response.status).to eq(200) }
-      it { expect(response).to render_template('pages/' + page) }
+      it { expect(response).to render_template("pages/#{page}") }
     end
   end
 
@@ -17,7 +17,7 @@ describe HighVoltage::PagesController, '#show' do
       end
 
       it { expect(response.status).to eq(200) }
-      it { is_expected.to render_template('pages/' + page) }
+      it { is_expected.to render_template("pages/#{page}") }
     end
   end
 
@@ -28,7 +28,7 @@ describe HighVoltage::PagesController, '#show' do
       end
 
       it { expect(response.status).to eq(200) }
-      it { is_expected.to render_template('pages/' + page) }
+      it { is_expected.to render_template("pages/#{page}") }
     end
   end
 end

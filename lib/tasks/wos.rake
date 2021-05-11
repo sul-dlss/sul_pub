@@ -5,7 +5,7 @@ namespace :wos do
     author = Author.find_by(cap_profile_id: args[:cap_profile_id])
     raise "Could not find Author by cap_profile_id: #{args[:cap_profile_id]}." if author.nil?
     puts "Reading WosUIDs from STDIN..."
-    uids = STDIN.read.split("\n").each(&:strip!).select(&:present?)
+    uids = $stdin.read.split("\n").each(&:strip!).select(&:present?)
     abort 'No records read from STDIN' if uids.blank?
     puts "#{uids.count} UIDs to assign to Author #{author.id} (cap_profile_id: #{author.cap_profile_id})"
     new_uids = WebOfScience.harvester.process_uids(author, uids)

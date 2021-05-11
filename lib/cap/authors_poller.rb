@@ -34,8 +34,8 @@ module Cap
         end
       end
 
-      logger.info 'new authors to harvest: ' + @new_authors_to_harvest_queue.to_s
-      logger.info 'changed authors to harvest: ' + @changed_authors_to_harvest_queue.to_s if Settings.CAP.HARVEST_ON_CHANGE
+      logger.info "new authors to harvest: #{@new_authors_to_harvest_queue}"
+      logger.info "changed authors to harvest: #{@changed_authors_to_harvest_queue}" if Settings.CAP.HARVEST_ON_CHANGE
       do_harvest
       log_stats
       logger.info 'Finished authorship import'

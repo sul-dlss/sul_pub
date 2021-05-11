@@ -8,7 +8,7 @@ class NotificationManager
     # @param [String] message -- human-readable message
     # @param [Class] callee -- the callee object
     def error(e, message, callee = nil)
-      log_message = callee.class.name + ': ' + message
+      log_message = "#{callee.class.name}: #{message}"
 
       case callee
       when SciencewireSourceRecord

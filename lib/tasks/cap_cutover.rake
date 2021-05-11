@@ -55,15 +55,15 @@ namespace :cap_cutover do
       # if total_running_count%5000 == 0  then GC.start end
       Rails.logger.debug "#{total_running_count} in #{distance_of_time_in_words_to_now(start_time, true)}" if total_running_count % 5000 == 0
     end
-    Rails.logger.info total_running_count.to_s + ' in ' + distance_of_time_in_words_to_now(start_time)
+    Rails.logger.info "#{total_running_count} in #{distance_of_time_in_words_to_now(start_time)}"
   end
 
   desc 'overwrite cap profile ids from CAP authorship feed - this is meant to be a very temporary, dangerous, and invasive procedure for creating qa machines for the School of Medicine testers.'
   task overwrite_profile_ids: :environment do
     if Rails.env.production?
       puts 'This is a PRODUCTION system - are you sure? (Y/N)'
-      STDOUT.flush
-      input = STDIN.gets.chomp
+      $stdout.flush
+      input = $stdin.gets.chomp
       return unless input.upcase == 'Y'
     end
     Cap::ProfileIdRewriter.new.rewrite_cap_profile_ids_from_feed

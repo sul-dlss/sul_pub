@@ -109,10 +109,11 @@ class TitleReport
     pubs = auth.publications
     pubs.each do |pub|
       pub_hash = pub.pub_hash
-      if pub_hash[:type] == 'book'
+      case pub_hash[:type]
+      when 'book'
         @book_ids << pub.id
         process_book pub_hash, auth.cap_profile_id
-      elsif pub_hash[:type] == 'inbook'
+      when 'inbook'
         process_inbook pub_hash, auth.cap_profile_id
       else
         process_journ pub_hash, auth.cap_profile_id

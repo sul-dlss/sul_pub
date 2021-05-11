@@ -53,7 +53,7 @@ describe Csl::Citation do
                        pages: '245-259',
                        identifier:         [{ type: 'issn',
                                               id: '0165-0173',
-                                              url: Settings.SULPUB_ID.SEARCHWORKS_URI + '0165-0173' },
+                                              url: "#{Settings.SULPUB_ID.SEARCHWORKS_URI}0165-0173" },
                                             { type: 'doi',
                                               id: '10.1016/j.brainresrev.2004.05.006',
                                               url: 'https://doi.org/10.1016/j.brainresrev.2004.05.006' }] },
@@ -137,7 +137,7 @@ describe Csl::Citation do
 
       it 'includes authors' do
         csl_report['author'].each do |a|
-          given = a['given'].split.map { |i| i[0] + '.' }.join(' ')
+          given = a['given'].split.map { |i| "#{i[0]}." }.join(' ')
           name = "#{a['family']}, #{given}"
           expect(cite).to include(name)
         end
@@ -421,7 +421,7 @@ describe Csl::Citation do
                                pages: '245-259',
                                identifier:             [{ type: 'issn',
                                                           id: '0165-0173',
-                                                          url: Settings.SULPUB_ID.SEARCHWORKS_URI + '0165-0173' },
+                                                          url: "#{Settings.SULPUB_ID.SEARCHWORKS_URI}0165-0173" },
                                                         { type: 'doi',
                                                           id: '10.1016/j.brainresrev.2004.05.006',
                                                           url: 'https://doi.org/10.1016/j.brainresrev.2004.05.006' }] },

@@ -113,7 +113,7 @@ namespace :cleanup do
 
     puts "Author cap_profile_id: #{cap_profile_id}; name: #{author.first_name} #{author.last_name}; dates: #{start_date} to #{end_date}; provenance: #{provenance}"
     puts "This task will remove any of the #{total} contributions with provenance #{provenance}. Are you sure you want to proceed? (y/n)"
-    input = STDIN.gets.strip.downcase
+    input = $stdin.gets.strip.downcase
     raise 'aborting' unless input == 'y'
 
     CSV.open(log_file, "a") do |csv|

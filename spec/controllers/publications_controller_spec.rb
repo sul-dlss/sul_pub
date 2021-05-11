@@ -81,7 +81,7 @@ describe PublicationsController, :vcr do
       identifier: [
         { type: 'isbn', id: '1177188188181' },
         { type: 'doi', id: '18819910019-updated', url: '18819910019-updated' },
-        { type: 'SULPubId', id: '164', url: Settings.SULPUB_ID.PUB_URI + '/164' }
+        { type: 'SULPubId', id: '164', url: "#{Settings.SULPUB_ID.PUB_URI}/164" }
       ]
     )
   end
@@ -90,7 +90,7 @@ describe PublicationsController, :vcr do
     with_isbn_changed_doi.merge(
       identifier: [
         { type: 'isbn', id: '1177188188181' },
-        { type: 'SULPubId', id: '164', url: Settings.SULPUB_ID.PUB_URI + '/164' }
+        { type: 'SULPubId', id: '164', url: "#{Settings.SULPUB_ID.PUB_URI}/164" }
       ]
     )
   end
