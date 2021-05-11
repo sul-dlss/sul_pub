@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe WebOfScience::MapPubHash do
   let(:wos_encoded_xml) { File.read('spec/fixtures/wos_client/wos_encoded_record.html') }
   let(:wos_record) { WebOfScience::Record.new(encoded_record: wos_encoded_xml) }
@@ -96,6 +98,7 @@ describe WebOfScience::MapPubHash do
 
   describe '#pub_hash_doctypes' do
     let(:doctypes) { mapper.send(:pub_hash_doctypes, record) }
+
     it 'parses out salient fields' do
       expect(doctypes).to match a_hash_including(
         documenttypes_sw: ['Book Review', 'Journal'],

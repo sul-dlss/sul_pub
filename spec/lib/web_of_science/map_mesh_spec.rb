@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe WebOfScience::MapMesh do
   subject(:mapper) { described_class.new(record) }
 

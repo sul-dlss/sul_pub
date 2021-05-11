@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 namespace :cap do
   desc 'poll cap for new authorship information'
   task :poll, [:days_ago] => :environment do |_t, args|
@@ -10,7 +12,7 @@ namespace :cap do
 
   desc 'poll cap for an author (print data only)'
   task :poll_data_for_cap_profile_id, [:cap_profile_id] => :environment do |_t, args|
-    raise "cap_profile_id argument is required." unless args[:cap_profile_id].present?
+    raise 'cap_profile_id argument is required.' unless args[:cap_profile_id].present?
 
     cap_http_client = Cap::Client.new
     record = cap_http_client.get_auth_profile(args[:cap_profile_id])
@@ -19,7 +21,7 @@ namespace :cap do
 
   desc 'poll cap for an author (process data)'
   task :poll_for_cap_profile_id, [:cap_profile_id] => :environment do |_t, args|
-    raise "cap_profile_id argument is required." unless args[:cap_profile_id].present?
+    raise 'cap_profile_id argument is required.' unless args[:cap_profile_id].present?
 
     cap_http_client = Cap::Client.new
     record = cap_http_client.get_auth_profile(args[:cap_profile_id])

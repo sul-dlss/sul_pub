@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe UserSubmittedSourceRecord, type: :model do
   let(:user_submitted_source_record) { create :user_submitted_source_record }
   let(:working_paper) { create :working_paper }

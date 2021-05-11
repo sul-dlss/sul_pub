@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe AllSources::Harvester do
   let(:harvester) { described_class.new }
 

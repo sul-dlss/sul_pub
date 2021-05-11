@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module WebOfScience
   # Use author name-institution logic to find WOS publications for an Author
   class QueryAuthor
@@ -60,12 +62,13 @@ module WebOfScience
     # @return [Hash]
     def author_query
       params = queries.params_for_fields(empty_fields)
-      params[:queryParameters][:userQuery] = "AU=(#{quote_wrap(names).join(' OR ')}) AND AD=(#{quote_wrap(institutions).join(' OR ')})"
+      params[:queryParameters][:userQuery] =
+        "AU=(#{quote_wrap(names).join(' OR ')}) AND AD=(#{quote_wrap(institutions).join(' OR ')})"
       if options[:symbolicTimeSpan]
         # to use symbolicTimeSpan, timeSpan must be omitted
         params[:queryParameters].delete(:timeSpan)
         params[:queryParameters][:symbolicTimeSpan] = options[:symbolicTimeSpan]
-        params[:queryParameters][:order!] = [:databaseId, :userQuery, :symbolicTimeSpan, :queryLanguage] # according to WSDL
+        params[:queryParameters][:order!] = %i[databaseId userQuery symbolicTimeSpan queryLanguage] # according to WSDL
       end
       params
     end

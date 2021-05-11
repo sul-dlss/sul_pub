@@ -1,14 +1,18 @@
+# frozen_string_literal: true
+
 # simple script to batch harvest the most recently updated specified number of authors
 # run with (probably in a screen)
 # bundle exec rails runner -e production script/batch_wos_harvest.rb
 
 limit = 1000 # limit to 1000 authors
 options = { symbolicTimeSpan: '12week' } # go back 12 weeks in time
-offset = 0 # increment offset to do a different batch (note that this will have overlaps if run far apart in time if you use updated_at as a sort order, as updated at times will change)
+# increment offset to do a different batch (note that this will have overlaps if run far apart in time
+# if you use updated_at as a sort order, as updated at times will change)
+offset = 0
 sort_order = 'updated_at desc' # do the people most recently updated
 start_time = Time.zone.now
 CSV.open(Rails.root.join('log', 'batch_wos_harvest.csv'), 'wb') do |csv|
-  csv << ['cap_profile_id', 'name', 'new_publications']
+  csv << %w[cap_profile_id name new_publications]
   harvester = WebOfScience.harvester
   authors = Author.where(active_in_cap: true, cap_import_enabled: true).order(sort_order).limit(limit).offset(offset)
   total = authors.count

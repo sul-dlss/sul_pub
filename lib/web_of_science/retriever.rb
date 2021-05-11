@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module WebOfScience
   # Retrieve records from the Web of Science (or Web of Knowledge)
   # - expose retrieval API to fetch records in batches

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ApplicationController < ActionController::Base
   protect_from_forgery # skipped in API only controllers (which happens to be all as of April 2019)
 

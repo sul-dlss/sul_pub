@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Pubmed
   # Application logic to harvest publications from Pubmed;
   # This is the bridge between the Pubmed API and the SUL-PUB application.
@@ -17,7 +19,10 @@ module Pubmed
       if query_author.valid?
         pmids_from_query = query_author.pmids
         if pmids_from_query.size >= Settings.PUBMED.max_publications_per_author
-          NotificationManager.error(::Harvester::Error, "#{self.class} - Pubmed harvest returned more than #{Settings.PUBMED.max_publications_per_author} publications for author id #{author.id} and was aborted", self)
+          NotificationManager.error(::Harvester::Error,
+                                    "#{self.class} - Pubmed harvest returned more than #{Settings.PUBMED.max_publications_per_author} " \
+                                              "publications for author id #{author.id} and was aborted",
+                                    self)
           []
         else
           pmids = process_pmids(author, pmids_from_query)
@@ -25,7 +30,8 @@ module Pubmed
           pmids
         end
       else
-        NotificationManager.error(::Harvester::Error, "#{self.class} - An invalid author query was detected for author id #{author.id} and was aborted", self)
+        NotificationManager.error(::Harvester::Error,
+                                  "#{self.class} - An invalid author query was detected for author id #{author.id} and was aborted", self)
         []
       end
     rescue StandardError => e

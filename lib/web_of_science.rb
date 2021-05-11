@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Web of Science (WOS) utilities
 module WebOfScience
   # @return [WebOfScience::Harvester]

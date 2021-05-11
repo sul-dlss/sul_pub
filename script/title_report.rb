@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'set'
 require 'csv'
 require 'pathname'
@@ -56,7 +58,7 @@ class TitleReport
     end
 
     CSV.open('/tmp/report/all_official_first_last_names.csv', 'w') do |csv|
-      csv << %w(cap_profile_id official_first_last_name)
+      csv << %w[cap_profile_id official_first_last_name]
       @processed_ids.each do |id|
         auth = Author.where(cap_profile_id: id).first
         csv << [id, "#{auth.official_first_name} #{auth.official_last_name}"]
@@ -71,7 +73,7 @@ class TitleReport
       @count += 1
       begin
         parse_line line
-      rescue => e
+      rescue StandardError => e
         @logger.error "Skipping line: #{line}\n#{e.inspect}\n#{e.backtrace.join("\n")}"
       end
       @logger.info "Processed #{@count}" if @count % 1000 == 0
@@ -178,7 +180,7 @@ class TitleReport
     end
 
     CSV.open(@report_root + "#{dept.name.snakecase}_unique_journals.csv", 'w') do |csv|
-      csv << %w(journal_title count)
+      csv << %w[journal_title count]
       title_counter.sort_by { |_k, v| v }.reverse!.each do |k, v|
         csv << [k, v]
       end
@@ -186,7 +188,7 @@ class TitleReport
 
     dept.pubs.sort! { |a, b| a.profile_id <=> b.profile_id }
     CSV.open(@report_root + "#{dept.name.snakecase}_all_journals.csv", 'w') do |csv|
-      csv << [:type, :title, :journal_title, :pub_date, :provenance, :profile_id]
+      csv << %i[type title journal_title pub_date provenance profile_id]
       dept.pubs.each do |p|
         csv << [p.type, p.title, p.journal_title, p.pub_date, p.provenance, p.profile_id]
       end
@@ -196,7 +198,7 @@ class TitleReport
   def process_books(dept)
     dept.books.sort! { |a, b| a.profile_id <=> b.profile_id }
     CSV.open(@report_root + "#{dept.name.snakecase}_all_books.csv", 'w') do |csv|
-      csv << [:type, :title, :chapt_title, :pub_date, :provenance, :profile_id]
+      csv << %i[type title chapt_title pub_date provenance profile_id]
       dept.books.each do |p|
         csv << [p.type, p.title, p.chapt_title, p.pub_date, p.provenance, p.profile_id]
       end

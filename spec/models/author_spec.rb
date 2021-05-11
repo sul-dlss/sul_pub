@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe Author do
   subject { create :author }
 

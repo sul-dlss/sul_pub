@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Csl
   # Convert PubMed content into a CSL format
   class PubmedMapper

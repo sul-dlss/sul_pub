@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module WebOfScience
   # This class complements the WebOfScience::Harvester
   # Process records retrieved by any means.

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe Agent::AuthorName do
   let(:fn) { 'Amasa' }
   let(:mn) { 'Leland' }
@@ -20,6 +22,7 @@ describe Agent::AuthorName do
         expect(no_names.middle_initial).to eq ''
       end
     end
+
     context 'when present' do
       it 'returns the first capital letter' do
         expect(all_names.first_initial).to eq fn.scan(/[[:upper:]]/).first
@@ -28,9 +31,11 @@ describe Agent::AuthorName do
         expect(all_names.middle_initial).to eq 'L'
       end
     end
+
     context 'when it contains particles' do
       let(:fn) { 'de-Maria' }
       let(:mn) { 'del-Solano' }
+
       it 'returns the first capital letter' do
         expect(all_names.first_initial).to eq fn.scan(/[[:upper:]]/).first
         expect(all_names.first_initial).to eq 'M'
@@ -48,6 +53,7 @@ describe Agent::AuthorName do
         expect(no_names.middle_name).to eq ''
       end
     end
+
     context 'when name is present' do
       it 'returns the name, capitalized' do
         expect(all_names).to receive(:proper_name).twice.and_call_original
@@ -55,36 +61,44 @@ describe Agent::AuthorName do
         expect(all_names.middle_name).to eq 'Leland'
       end
     end
+
     context 'when it contains particles and capital letters' do
       let(:fn) { 'de-Maria' }
       let(:mn) { 'Da salvador' }
+
       it 'returns the name, as is' do
         expect(all_names).to receive(:proper_name).twice.and_call_original
         expect(all_names.first_name).to eq fn
         expect(all_names.middle_name).to eq mn
       end
     end
+
     context 'when it contains particles and no capital letters' do
       let(:fn) { 'del maria' }
       let(:mn) { 'da salvador' }
+
       it 'returns the name, in a capitalized form' do
         expect(all_names).to receive(:proper_name).twice.and_call_original
         expect(all_names.first_name).to eq 'del Maria'
         expect(all_names.middle_name).to eq 'da Salvador'
       end
     end
+
     context 'when it contains hyphenated particles and no capital letters' do
       let(:fn) { 'de-maria' }
       let(:mn) { 'el-segundo' }
+
       it 'returns the name, in a capitalized form' do
         expect(all_names).to receive(:proper_name).twice.and_call_original
         expect(all_names.first_name).to eq 'de-Maria'
         expect(all_names.middle_name).to eq 'el-Segundo'
       end
     end
+
     context 'when it contains hyphenated names and no capital letters' do
       let(:fn) { 'fred-maguire' }
       let(:mn) { 'john-frederick' }
+
       it 'returns the name, in a capitalized form' do
         expect(all_names).to receive(:proper_name).twice.and_call_original
         expect(all_names.first_name).to eq 'Fred-Maguire'
@@ -108,9 +122,9 @@ describe Agent::AuthorName do
     context 'when all names are present' do
       # additional SW specs are in publication_query_by_author_name_spec.rb
       it 'includes first_name_query and middle_name_query elements' do
-        allow(all_names).to receive(:first_name_query).and_return(['abc', 'def'])
-        allow(all_names).to receive(:middle_name_query).and_return(['qrs', 'xyz'])
-        expect(all_names.text_search_query).to eq "\"abc\" or \"def\" or \"qrs\" or \"xyz\""
+        allow(all_names).to receive(:first_name_query).and_return(%w[abc def])
+        allow(all_names).to receive(:middle_name_query).and_return(%w[qrs xyz])
+        expect(all_names.text_search_query).to eq '"abc" or "def" or "qrs" or "xyz"'
       end
     end
   end
@@ -129,9 +143,11 @@ describe Agent::AuthorName do
     end
     context 'when all names are present' do
       let(:fn_query) { all_names.send(:first_name_query) }
+
       before do
         allow(Settings.HARVESTER).to receive(:USE_FIRST_INITIAL).and_return(false)
       end
+
       it 'is Array<String> with non-empty unique values' do
         expect(fn_query).to be_an Array
         expect(fn_query).to all(be_a(String))
@@ -153,11 +169,14 @@ describe Agent::AuthorName do
         expect(fn_query).to all(exclude(",#{all_names.middle_initial}"))
       end
     end
+
     context 'when all names are present and settings allow for first initial' do
       before do
         allow(Settings.HARVESTER).to receive(:USE_FIRST_INITIAL).and_return(true)
       end
+
       let(:fn_query) { all_names.send(:first_name_query) }
+
       it 'includes name with first_initial when settings allow for it' do
         expect(fn_query).to include "#{all_names.last_name},#{all_names.first_initial}"
       end
@@ -170,9 +189,11 @@ describe Agent::AuthorName do
     end
     context 'when all names are present' do
       let(:mn_query) { all_names.send(:middle_name_query) }
+
       before do
         allow(Settings.HARVESTER).to receive(:USE_FIRST_INITIAL).and_return(false)
       end
+
       it 'is Array<String> with non-empty unique values' do
         expect(mn_query).to be_an Array
         expect(mn_query).to all(be_a(String))
@@ -195,11 +216,14 @@ describe Agent::AuthorName do
         expect(mn_query).not_to include "#{all_names.last_name},#{all_names.first_initial}#{all_names.middle_initial}"
       end
     end
+
     context 'when all names are present and settings allow for first initial' do
       let(:mn_query) { all_names.send(:middle_name_query) }
+
       before do
         allow(Settings.HARVESTER).to receive(:USE_FIRST_INITIAL).and_return(true)
       end
+
       it 'includes name with middle_initial appended to first initial when settings allow for it' do
         expect(mn_query).to include "#{all_names.last_name},#{all_names.first_initial}#{all_names.middle_initial}"
       end

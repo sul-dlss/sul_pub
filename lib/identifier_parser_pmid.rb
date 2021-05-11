@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 require_relative 'identifier_parser'
 
 # Parse the PMID identifiers in a PublicationIdentifier
 class IdentifierParserPMID < IdentifierParser
-  URI_PREFIX = 'https://www.ncbi.nlm.nih.gov/pubmed/'.freeze
+  URI_PREFIX = 'https://www.ncbi.nlm.nih.gov/pubmed/'
 
   # Does the data validate?
   def valid?

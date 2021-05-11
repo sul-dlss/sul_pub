@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 namespace :wos do
   # @example rake wos:assign_uids[98765] < input.txt
   desc 'Assign WoS records (via UIDs on STDIN) to a cap_profile_id'
@@ -5,7 +7,7 @@ namespace :wos do
     author = Author.find_by(cap_profile_id: args[:cap_profile_id])
     raise "Could not find Author by cap_profile_id: #{args[:cap_profile_id]}." if author.nil?
 
-    puts "Reading WosUIDs from STDIN..."
+    puts 'Reading WosUIDs from STDIN...'
     uids = $stdin.read.split("\n").each(&:strip!).select(&:present?)
     abort 'No records read from STDIN' if uids.blank?
     puts "#{uids.count} UIDs to assign to Author #{author.id} (cap_profile_id: #{author.cap_profile_id})"
@@ -28,7 +30,7 @@ namespace :wos do
   end
 
   desc 'Harvest from Web of Science, for one author'
-  task :harvest_author, [:cap_profile_id, :symbolicTimeSpan] => :environment do |_t, args|
+  task :harvest_author, %i[cap_profile_id symbolicTimeSpan] => :environment do |_t, args|
     author = Author.find_by(cap_profile_id: args[:cap_profile_id])
     raise "Could not find Author by cap_profile_id: #{args[:cap_profile_id]}." if author.nil?
 

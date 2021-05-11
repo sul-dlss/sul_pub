@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module WebOfScience
   # Map WOS record data into the SUL PubHash data
   class MapNames < Mapper
@@ -77,7 +79,7 @@ module WebOfScience
       # full_name has the form "LastName, GivenName" where GivenName is space delimited
       # display_name and full_name are often, if not always, the same
       # initials is a smashed set of initial letters, with no delimiters
-      return name if name[:full_name].blank? && name[:display_name].blank? # if both full name and display name are empty, do not process further
+      return name if name[:full_name].blank? && name[:display_name].blank?
 
       name_to_process = name[:full_name] || name[:display_name] # prefer full_name but accept display_name if full_name is missing
       last, given = name_to_process.split(',').map(&:strip)
@@ -103,12 +105,13 @@ module WebOfScience
       # look for the case where the first name includes the middle initial optionally followed by a period
       # e.g. first_name = "Russel B.", should be first_name = "Russel", middle_name = "B"
       if name[:first_name].present?
-        name[:first_name].gsub!(/\s[[:upper:]]\.?\z/) do |s|
+        name[:first_name] = name[:first_name].gsub(/\s[[:upper:]]\.?\z/) do |s|
           name[:middle_name] = s.strip.chomp('.') # remove trailing spaces and periods
           ''
-        end # block returns empty, removing match
+        end
       end
-      name[:name] = "#{name[:last_name] || name[:display_name] || name[:full_name]},#{name[:first_name]},#{name[:middle_name]}" # full name in the older style format used by Profiles/CAP
+      # full name in the older style format used by Profiles/CAP
+      name[:name] = "#{name[:last_name] || name[:display_name] || name[:full_name]},#{name[:first_name]},#{name[:middle_name]}"
       name
     end
   end

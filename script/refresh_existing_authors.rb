@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # Execute using `bundle exec rails runner script/refresh_existing_authors.rb`
 #
@@ -14,7 +16,7 @@ class RefreshExistingAuthors
     logger.info "Started CAP author refreshing - #{@start_time}"
     fetch_cap_authors
     logger.info "Finished CAP author refreshing - #{log_process_time}"
-  rescue => e
+  rescue StandardError => e
     msg = "#{e.inspect}\n"
     msg += e.backtrace.join("\n")
     logger.error msg
@@ -39,7 +41,7 @@ class RefreshExistingAuthors
         end
         logger.info "#{page_count * page_size} (#{json_data['count']}) records processed in #{log_process_time}"
         break if json_data['lastPage'].present? || json_data['count'].to_i < 1 || json_data['values'].blank?
-      rescue => e
+      rescue StandardError => e
         logger.error e.inspect
         raise # this is a catastrophic failure and should halt processing
       end
@@ -66,7 +68,7 @@ class RefreshExistingAuthors
   end
 
   def log_process_time
-    format("%6.2f min", (Time.zone.now - @start_time) / 60.0)
+    format('%6.2f min', (Time.zone.now - @start_time) / 60.0)
   end
 end
 

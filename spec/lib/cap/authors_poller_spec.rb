@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe Cap::AuthorsPoller, :vcr do
   # The author is defined in /spec/factories/author.rb
   let(:author) { create :author }
@@ -18,14 +20,14 @@ describe Cap::AuthorsPoller, :vcr do
           'middleName' => author.official_middle_name,
           'lastName' => author.official_last_name,
           'email' => author.email,
-          'institution' => 'Stanford University',
+          'institution' => 'Stanford University'
         },
         {
           'firstName' => author.official_first_name,
           'middleName' => author.official_middle_name,
           'lastName' => author.official_last_name,
           'email' => author.email,
-          'institution' => 'Some Other University',
+          'institution' => 'Some Other University'
         }
       ],
       'lastModified' => '2016-03-31T14:43:34.613-07:00',
@@ -37,16 +39,16 @@ describe Cap::AuthorsPoller, :vcr do
           'legal' => {
             'firstName' => author.official_first_name,
             'middleName' => author.official_middle_name,
-            'lastName' => author.official_last_name,
+            'lastName' => author.official_last_name
           },
           'preferred' => {
             'firstName' => author.official_first_name,
             'middleName' => author.official_middle_name,
-            'lastName' => author.official_last_name,
+            'lastName' => author.official_last_name
           }
         },
         'profileId' => author.cap_profile_id,
-        'uid' => author.sunetid,
+        'uid' => author.sunetid
       },
       'profileId' => author.cap_profile_id
     }
@@ -117,9 +119,11 @@ describe Cap::AuthorsPoller, :vcr do
 
     context 'with a new author retrieved from the CAP API' do
       let(:author) { create :author }
+
       before do
         expect(Author).to receive(:find_by_cap_profile_id).with(author.cap_profile_id).and_return(nil)
-        expect(Author).to receive(:fetch_from_cap_and_create).with(author.cap_profile_id, instance_of(Cap::Client)).and_return(author)
+        expect(Author).to receive(:fetch_from_cap_and_create).with(author.cap_profile_id,
+                                                                   instance_of(Cap::Client)).and_return(author)
       end
 
       it 'creates a new author' do

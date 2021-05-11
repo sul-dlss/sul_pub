@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe Pubmed::QueryAuthor do
   let(:query_author) { described_class.new(author, options) }
   let(:query_period_author) { described_class.new(period_author, options) }

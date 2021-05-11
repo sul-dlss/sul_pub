@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class WebOfScienceSourceRecord < ActiveRecord::Base
   validates :active, :database, :source_data, :source_fingerprint, :uid, presence: true
 

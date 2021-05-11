@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 ## March 2017
 ## This is a custom report produced for the Department of Pyschiatry admin.  It takes in a CSV list of faculty names
 ##   in a single column (labled "author"), and sunet if available in a second column.  Example data is shown below.
@@ -20,7 +22,10 @@
 # #"LastName,FirstName Middle Initial",
 # #"AnotherLast,Another First",sunetIDhere_if_available
 
-puts "******* WARNING!  WoS API is enabled, which makes this report unreliable for the number of times cited.  Publication counts will still be correct. ******" if Settings.WOS.enabled
+if Settings.WOS.enabled
+  puts '******* WARNING!  WoS API is enabled, which makes this report unreliable for the number of times cited.  ' \
+       'Publication counts will still be correct. ******'
+end
 
 def get_contributions_for_sunet(sunetid)
   a = Author.where(sunetid: sunetid)
@@ -44,10 +49,11 @@ def only_one_sunet?(authors)
 end
 
 def citation_search(input_file, output_file)
-  users = CSV.new(File.new(input_file), headers: true, header_converters: :symbol, converters: [:all]).to_a.map(&:to_hash)
+  users = CSV.new(File.new(input_file), headers: true, header_converters: :symbol,
+                                        converters: [:all]).to_a.map(&:to_hash)
 
-  CSV.open(output_file, "wb") do |csv|
-    csv << ["Author", "All Publications", "Approved Publications", "Times Cited", "Times Cited (exclude self)"]
+  CSV.open(output_file, 'wb') do |csv|
+    csv << ['Author', 'All Publications', 'Approved Publications', 'Times Cited', 'Times Cited (exclude self)']
     users.each do |user|
       name = user[:author].split(',')
       sunet = user[:sunet]
@@ -58,13 +64,17 @@ def citation_search(input_file, output_file)
       middle_name = first_middle.size > 1 ? first_middle[1].strip : ''
 
       if sunet.blank? # no sunet provided in the input
-        authors = Author.where(official_last_name: last_name, official_first_name: first_name, official_middle_name: middle_name, active_in_cap: true).where('sunetid is not null AND sunetid != ""')
-        authors = Author.where(official_last_name: last_name, official_first_name: first_name, active_in_cap: true).where('sunetid is not null AND sunetid != ""') if authors.empty? # if none found with middle name, drop the middle name
+        authors = Author.where(official_last_name: last_name, official_first_name: first_name,
+                               official_middle_name: middle_name, active_in_cap: true).where('sunetid is not null AND sunetid != ""')
+        if authors.empty?
+          authors = Author.where(official_last_name: last_name, official_first_name: first_name,
+                                 active_in_cap: true).where('sunetid is not null AND sunetid != ""')
+        end
       else
         authors = Author.where(sunetid: sunet.strip)
       end
       if authors.empty? # still no authors found
-        error = "**************** NOT FOUND ******************"
+        error = '**************** NOT FOUND ******************'
         puts "\"#{user[:author]}\",#{error}"
         csv << [user[:author], error]
       elsif authors.size == 1 || only_one_sunet?(authors) # only one author found or more than one with same sunet, run co

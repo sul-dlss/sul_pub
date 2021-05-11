@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe WebOfScience::MapPublisher do
   let(:wos_encoded_xml) { File.read('spec/fixtures/wos_client/wos_encoded_record.html') }
   let(:wos_record) { WebOfScience::Record.new(encoded_record: wos_encoded_xml) }

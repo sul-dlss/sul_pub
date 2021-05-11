@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # http://savonrb.com/version2/testing.html
 # require the helper module
 require 'savon/mock/spec_helper'
@@ -9,13 +11,18 @@ describe WebOfScience::Queries do
 
   # set Savon in and out of mock mode
   before(:all) { savon.mock!   }
+
   after(:all)  { savon.unmock! }
 
-  let(:wos_ids) { %w(WOS:A1976BW18000001 WOS:A1972N549400003) }
+  let(:wos_ids) { %w[WOS:A1976BW18000001 WOS:A1972N549400003] }
   let(:wos_retrieve_by_id_response) { File.read('spec/fixtures/wos_client/wos_retrieve_by_id_response.xml') }
-  let(:wos_retrieve_by_id_PMID) { File.read('spec/fixtures/wos_client/wos_retrieve_by_id_response_MEDLINE26776186.xml') }
+  let(:wos_retrieve_by_id_PMID) do
+    File.read('spec/fixtures/wos_client/wos_retrieve_by_id_response_MEDLINE26776186.xml')
+  end
   let(:wos_search_by_doi_response) { File.read('spec/fixtures/wos_client/wos_search_by_doi_response.xml') }
-  let(:wos_search_by_doi_mismatch_response) { File.read('spec/fixtures/wos_client/wos_search_by_doi_mismatch_response.xml') }
+  let(:wos_search_by_doi_mismatch_response) do
+    File.read('spec/fixtures/wos_client/wos_search_by_doi_mismatch_response.xml')
+  end
   let(:wos_search_custom_response) { File.read('spec/fixtures/wos_client/wos_search_custom_response.xml') }
   let(:wos_search_failure_response) { File.read('spec/fixtures/wos_client/wos_search_failure_response.xml') }
 
@@ -24,6 +31,7 @@ describe WebOfScience::Queries do
   let(:fn) { 'Firstname' }
 
   let(:wos_auth_response) { File.read('spec/fixtures/wos_client/authenticate.xml') }
+
   before do
     wos_client = WebOfScience::Client.new('secret')
     allow(WebOfScience).to receive(:client).and_return(wos_client)
@@ -35,7 +43,7 @@ describe WebOfScience::Queries do
       expect(instance).to be_an described_class
     end
     it 'returns a WebOfScience::Retriever' do
-      params = wos_queries.params_for_search("TI=This wonderful life")
+      params = wos_queries.params_for_search('TI=This wonderful life')
       retriever = wos_queries.search(params)
       expect(retriever).to be_an WebOfScience::Retriever
     end
@@ -73,6 +81,7 @@ describe WebOfScience::Queries do
       savon.expects(:authenticate).returns(wos_auth_response)
       savon.expects(:search).with(message: :any).returns(wos_search_custom_response)
     end
+
     it 'returns publication(s)' do
       expect(retriever.next_batch.count >= 1).to be true
     end
@@ -85,7 +94,7 @@ describe WebOfScience::Queries do
     it 'raises Savon::SOAPFault' do
       savon.expects(:authenticate).returns(wos_auth_response)
       savon.expects(:search).with(message: :any).returns(wos_search_failure_response)
-      params = wos_queries.params_for_search("TI=A messed up query & PY=2017")
+      params = wos_queries.params_for_search('TI=A messed up query & PY=2017')
       retriever = wos_queries.search(params)
       expect { retriever.next_batch }.to raise_error Savon::SOAPFault
     end
@@ -133,7 +142,7 @@ describe WebOfScience::Queries do
   end
 
   describe '#params_for_fields' do
-    let(:fields) { [{ collectionName: "WOS", fieldName: [""] }, { collectionName: "MEDLINE", fieldName: [""] }] }
+    let(:fields) { [{ collectionName: 'WOS', fieldName: [''] }, { collectionName: 'MEDLINE', fieldName: [''] }] }
     let(:params) { wos_queries.params_for_fields(fields) }
 
     it_behaves_like 'search_params'

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe WebOfScience::MapCitation do
   let(:wos_encoded_xml) { File.read('spec/fixtures/wos_client/wos_encoded_record.html') }
   let(:wos_record) { WebOfScience::Record.new(encoded_record: wos_encoded_xml) }
@@ -37,15 +39,18 @@ describe WebOfScience::MapCitation do
   context 'WOS records' do
     it_behaves_like 'common_citation_data'
     it 'trims the whitespace from the title' do
-      expect(pub_hash[:title]).to eq 'LIBRARY MANAGEMENT - BEHAVIOR-BASED PERSONNEL SYSTEMS (BBPS) - FRAMEWORK FOR ANALYSIS - KEMPER,RE' # whitespace trimmed
+      # whitespace trimmed
+      expect(pub_hash[:title]).to eq 'LIBRARY MANAGEMENT - BEHAVIOR-BASED PERSONNEL SYSTEMS (BBPS) - FRAMEWORK FOR ANALYSIS - KEMPER,RE'
     end
   end
 
   context 'MEDLINE records' do
     let(:mapper) { described_class.new(medline_record) }
+
     it_behaves_like 'common_citation_data'
     it 'trims the whitespace from the title' do
-      expect(pub_hash[:title]).to eq 'Identifying druggable targets by protein microenvironments matching: application to transcription factors.' # whitespace trimmed
+      # whitespace trimmed
+      expect(pub_hash[:title]).to eq 'Identifying druggable targets by protein microenvironments matching: application to transcription factors.'
     end
   end
 end

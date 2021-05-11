@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe PublicationIdentifier do
   subject(:pub_id) { FactoryBot.create(:doi_publication_identifier) }
 
@@ -70,6 +72,7 @@ describe PublicationIdentifier do
       it_behaves_like 'deletes_pub_hash'
       it_behaves_like 'updates_pub_hash'
     end
+
     context 'when pub_hash[:identifier] contains identifier' do
       before do
         pub_id.publication.pub_hash = { identifier: [{ type: 'doi' }] }

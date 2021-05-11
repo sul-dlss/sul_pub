@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'htmlentities'
 
 describe WebOfScience::Records do
@@ -5,7 +7,7 @@ describe WebOfScience::Records do
   let(:wos_records_encoded) { described_class.new(encoded_records: wos_encoded_records) }
   let(:wos_records_decoded) { described_class.new(records: HTMLEntities.new.decode(wos_encoded_records)) }
 
-  let(:medline_uids) { %w(MEDLINE:21121048 MEDLINE:7584390 MEDLINE:26776202 MEDLINE:24452614 MEDLINE:24303232) }
+  let(:medline_uids) { %w[MEDLINE:21121048 MEDLINE:7584390 MEDLINE:26776202 MEDLINE:24452614 MEDLINE:24303232] }
   let(:medline_encoded_records) { File.read('spec/fixtures/wos_client/medline_encoded_records.html') }
   let(:medline_records_encoded) { described_class.new(encoded_records: medline_encoded_records) }
 
@@ -37,6 +39,7 @@ describe WebOfScience::Records do
         expect(wos_records_decoded).to be_an described_class
       end
     end
+
     context 'MEDLINE records' do
       it 'works with encoded records' do
         expect(medline_records_encoded).to be_an described_class
@@ -115,10 +118,10 @@ describe WebOfScience::Records do
       expect(dup_uids.to_a).to eq ['WOS:A2']
     end
     it 'does not modify records' do
-      expect { dup_uids }.not_to change { wos_recordsA.uids }
+      expect { dup_uids }.not_to change(wos_recordsA, :uids)
     end
     it 'does not modify input records' do
-      expect { dup_uids }.not_to change { wos_recordsB.uids }
+      expect { dup_uids }.not_to change(wos_recordsB, :uids)
     end
   end
 
@@ -133,10 +136,10 @@ describe WebOfScience::Records do
       expect(uid).to eq 'WOS:A2'
     end
     it 'does not modify records' do
-      expect { dup_records }.not_to change { wos_recordsA.uids }
+      expect { dup_records }.not_to change(wos_recordsA, :uids)
     end
     it 'does not modify input records' do
-      expect { dup_records }.not_to change { wos_recordsB.uids }
+      expect { dup_records }.not_to change(wos_recordsB, :uids)
     end
   end
 
@@ -150,10 +153,10 @@ describe WebOfScience::Records do
       expect(new_records.search('UID').text).to eq 'WOS:B2'
     end
     it 'does not modify records' do
-      expect { new_records }.not_to change { wos_recordsA.uids }
+      expect { new_records }.not_to change(wos_recordsA, :uids)
     end
     it 'does not modify input records' do
-      expect { new_records }.not_to change { wos_recordsB.uids }
+      expect { new_records }.not_to change(wos_recordsB, :uids)
     end
   end
 
@@ -164,14 +167,14 @@ describe WebOfScience::Records do
       expect(merge_records).to be_an described_class
     end
     it 'has merged records' do
-      expect(merge_records.uids).to eq %w(WOS:A1 WOS:A2 WOS:B2)
+      expect(merge_records.uids).to eq %w[WOS:A1 WOS:A2 WOS:B2]
     end
     # Immutability specs
     it 'does not modify records' do
-      expect { merge_records }.not_to change { wos_recordsA.uids }
+      expect { merge_records }.not_to change(wos_recordsA, :uids)
     end
     it 'does not modify input records' do
-      expect { merge_records }.not_to change { wos_recordsB.uids }
+      expect { merge_records }.not_to change(wos_recordsB, :uids)
     end
   end
 

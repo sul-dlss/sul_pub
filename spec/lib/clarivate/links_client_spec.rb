@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 describe Clarivate::LinksClient do
   subject(:links_client) { described_class.new }
 
-  let(:ids) { %w(000081515000015 000346594100007) }
-  let(:fields) { %w(doi pmid) }
+  let(:ids) { %w[000081515000015 000346594100007] }
+  let(:fields) { %w[doi pmid] }
 
   before do
     allow(Settings.WOS).to receive(:AUTH_CODE).and_return("YXR6OmZvb2Jhcg==\n") # atz:foobar
@@ -16,8 +18,10 @@ describe Clarivate::LinksClient do
         expect(links_client.password).to eq 'foobar'
       end
     end
+
     context 'with params' do
       subject(:links_client) { described_class.new(username: 'leland', password: 'sunflower', host: 'http://proxy.us') }
+
       it 'accepts overrides' do
         expect(links_client.host).to eq 'http://proxy.us'
         expect(links_client.username).to eq 'leland'
@@ -54,6 +58,7 @@ describe Clarivate::LinksClient do
       before do
         allow(links_client.send(:connection)).to receive(:post).with(any_args).and_return(double(body: response_xml))
       end
+
       it 'returns a Hash with id-keys' do
         expect(links.keys).to eq ids
       end
@@ -67,12 +72,13 @@ describe Clarivate::LinksClient do
 
     context 'empty results' do
       let(:response_xml) { File.read('spec/fixtures/clarivate/links_empty_results.xml') }
-      let(:ids) { %w(A1972N549400003 A1976BW18000001) }
+      let(:ids) { %w[A1972N549400003 A1976BW18000001] }
       let(:links) { links_client.links(ids) }
 
       before do
         allow(links_client.send(:connection)).to receive(:post).with(any_args).and_return(double(body: response_xml))
       end
+
       it 'returns a Hash with id-keys' do
         expect(links.keys).to eq ids
       end
@@ -105,6 +111,7 @@ describe Clarivate::LinksClient do
         expect(described_class.working?).to be true
       end
     end
+
     context 'failure' do
       it 'raises exceptions when it fails (no results)' do
         response_xml = File.read('spec/fixtures/clarivate/links_empty_results.xml')

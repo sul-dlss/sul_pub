@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module WebOfScience
   # Application logic to harvest publications from Web of Science;
   # This is the bridge between the WebOfScience API and the SUL-PUB application.
@@ -16,7 +18,10 @@ module WebOfScience
       if query_author.valid?
         uids_from_query = query_author.uids
         if uids_from_query.size >= Settings.WOS.max_publications_per_author
-          NotificationManager.error(::Harvester::Error, "#{self.class} - WoS harvest returned more than #{Settings.WOS.max_publications_per_author} publications for author id #{author.id} and was aborted", self)
+          NotificationManager.error(::Harvester::Error,
+                                    "#{self.class} - WoS harvest returned more than #{Settings.WOS.max_publications_per_author} " \
+                                      "publications for author id #{author.id} and was aborted",
+                                    self)
           []
         else
           uids = process_uids(author, uids_from_query)
@@ -24,7 +29,8 @@ module WebOfScience
           uids
         end
       else
-        NotificationManager.error(::Harvester::Error, "#{self.class} - An invalid author query was detected for author id #{author.id} and was aborted", self)
+        NotificationManager.error(::Harvester::Error,
+                                  "#{self.class} - An invalid author query was detected for author id #{author.id} and was aborted", self)
         []
       end
     rescue StandardError => e

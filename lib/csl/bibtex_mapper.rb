@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Csl
   # Convert BibTexIngester content into a CSL format
   class BibtexMapper

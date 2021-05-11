@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe Csl::Citation do
   # Fixture data from spec/fixtures/pub_hash/*.rb
   include PubHash::Article
@@ -147,10 +149,13 @@ describe Csl::Citation do
         # The CSL tools will not allow custom modifications.
         sul_title = "Katrina's children: evidence on the structure of peer effects from hurricane evacuees"
         expect(cite).to match(/#{sul_title}/i) # case insenstive match
-        expect(cite).to include('Imberman, S., Kugler, A. D., &amp; Sacerdote, B. (2009).', '(NBER Working Paper Series No. 15291)')
-        expect(cite).to include('(pp. 1–55).', 'National Bureau of Economic Research.', 'Cambridge, MA', 'Retrieved from http://www.nber.org/papers/w15291')
+        expect(cite).to include('Imberman, S., Kugler, A. D., &amp; Sacerdote, B. (2009).',
+                                '(NBER Working Paper Series No. 15291)')
+        expect(cite).to include('(pp. 1–55).', 'National Bureau of Economic Research.', 'Cambridge, MA',
+                                'Retrieved from http://www.nber.org/papers/w15291')
         # NOTE: 'Working Paper' is not in APA standard
-        expect(cite).not_to include('(Working Paper No. 15291)', 'Retrieved from National Bureau of Economic Research website: http://www.nber.org/papers/w15291')
+        expect(cite).not_to include('(Working Paper No. 15291)',
+                                    'Retrieved from National Bureau of Economic Research website: http://www.nber.org/papers/w15291')
         # Expect a complete citation
         expect(cite).to eq "Imberman, S., Kugler, A. D., &amp; Sacerdote, B. (2009). <i>Katrina's Children: Evidence on the Structure of Peer Effects from Hurricane Evacuees</i> (NBER Working Paper Series No. 15291) (pp. 1–55). Cambridge, MA: National Bureau of Economic Research. Retrieved from http://www.nber.org/papers/w15291"
       end
@@ -207,6 +212,7 @@ describe Csl::Citation do
           expect_field_match('URL')
         end
       end
+
       it 'creates an APA citation' do
         expect(pub_hash.to_apa_citation)
           .to eq "Imberman, S., Kugler, A. D., &amp; Sacerdote, B. (2009). <i>Katrina's Children: Evidence on the Structure of Peer Effects from Hurricane Evacuees</i> (NBER Working Paper Series No. 15291) (pp. 1–55). Cambridge, MA: National Bureau of Economic Research. Retrieved from http://www.nber.org/papers/w15291"
@@ -304,11 +310,11 @@ describe Csl::Citation do
           expect(chicago_citation).to include(conference_pub_in_journal_hash[:year])
         end
         it 'includes authors of the article' do
-          author_last_names = %w(Jones Jackson)
+          author_last_names = %w[Jones Jackson]
           author_last_names.each { |ln| expect(chicago_citation).to include(ln) }
         end
         it 'excludes editors of the journal' do
-          editor_last_names = %w(Smith Sprat)
+          editor_last_names = %w[Smith Sprat]
           editor_last_names.each { |ln| expect(chicago_citation).not_to include(ln) }
         end
       end
@@ -339,6 +345,7 @@ describe Csl::Citation do
           expect(chicago_citation).to include('Jack Smith', 'Jill Sprat')
         end
       end
+
       it 'includes authors' do
         expect(chicago_citation).to match(/^Jones,\s+P. L./)
         expect(chicago_citation).to include('Alan T. Jackson')
@@ -492,7 +499,7 @@ describe Csl::Citation do
         # Differences: using the Sul-Pub preferred Chicago author-date format
         it 'creates a Chicago citation' do
           expect(pub_hash.to_chicago_citation)
-            .to eq "Gorbunova, Yulia. 2013. “Laws of Attrition: Crackdown on Russia’s Civil Society After Putin’s Return to the Presidency.” New York: Human Rights Watch. http://www.hrw.org/reports/2013/04/24/laws-attrition."
+            .to eq 'Gorbunova, Yulia. 2013. “Laws of Attrition: Crackdown on Russia’s Civil Society After Putin’s Return to the Presidency.” New York: Human Rights Watch. http://www.hrw.org/reports/2013/04/24/laws-attrition.'
         end
 
         # Example taken from: http://www.easybib.com/guides/citation-guides/apa-format/how-to-cite-a-report-apa/
@@ -505,7 +512,7 @@ describe Csl::Citation do
         # http://www.easybib.com/guides/citation-guides/mla-format/how-to-cite-a-report-mla/
         it 'creates a MLA citation' do
           expect(pub_hash.to_mla_citation)
-            .to eq "Gorbunova, Yulia. <i>Laws of Attrition: Crackdown on Russia’s Civil Society After Putin’s Return to the Presidency</i>. New York: Human Rights Watch, 2013. Web."
+            .to eq 'Gorbunova, Yulia. <i>Laws of Attrition: Crackdown on Russia’s Civil Society After Putin’s Return to the Presidency</i>. New York: Human Rights Watch, 2013. Web.'
         end
       end
 
@@ -516,7 +523,7 @@ describe Csl::Citation do
 
         it 'creates a MLA citation' do
           expect(pub_hash.to_mla_citation)
-            .to eq "Gorbunova, Yulia, and Konstantin Baranov. <i>Laws of Attrition: Crackdown on Russia’s Civil Society After Putin’s Return to the Presidency</i>. New York: Human Rights Watch, 2013. Print."
+            .to eq 'Gorbunova, Yulia, and Konstantin Baranov. <i>Laws of Attrition: Crackdown on Russia’s Civil Society After Putin’s Return to the Presidency</i>. New York: Human Rights Watch, 2013. Print.'
         end
       end
     end
@@ -548,7 +555,7 @@ describe Csl::Citation do
       # Difference from our spec here is we don't add the optional "[Case study]." clarification string.
       # http://www.easybib.com/guides/citation-guides/how-do-i-cite-a/case-study/
       it 'creates a APA citation' do
-        expect(pub_hash.to_apa_citation).to eq "Hill, L., Khanna, T., &amp; Stecker, E. A. (2008). <i>HCL Technologies</i>. Boston: Harvard Business Publishing."
+        expect(pub_hash.to_apa_citation).to eq 'Hill, L., Khanna, T., &amp; Stecker, E. A. (2008). <i>HCL Technologies</i>. Boston: Harvard Business Publishing.'
       end
 
       # Difference from our spec here is we don't add the optional "Case study." clarification string.
@@ -582,6 +589,7 @@ describe Csl::Citation do
         expect(pub_hash.to_apa_citation).to eq 'Reed, P. J., &amp; Stanford, J. (2015). <i>This is a book title</i> (Vol. 3). Stanford University Press.'
       end
     end
+
     context 'book chapter' do
       let(:source_data_key) { :book_chapter }
 
@@ -589,12 +597,13 @@ describe Csl::Citation do
         expect(pub_hash.to_chicago_citation).to eq "Hardy, Darren, Jack Reed, and Bess Sadler. 2016. <i>Geospatial Resource Discovery</i>. <i>Exploring Discovery: The Front Door to Your Library's Licensed and Digitized Content</i>. American Library Association Editions."
       end
       it 'creates a MLA citation' do
-        expect(pub_hash.to_mla_citation).to eq "Hardy, Darren, Jack Reed, and Bess Sadler. <i>Geospatial Resource Discovery</i>. American Library Association Editions, 2016. Print."
+        expect(pub_hash.to_mla_citation).to eq 'Hardy, Darren, Jack Reed, and Bess Sadler. <i>Geospatial Resource Discovery</i>. American Library Association Editions, 2016. Print.'
       end
       it 'creates a APA citation' do
         expect(pub_hash.to_apa_citation).to eq "Hardy, D., Reed, J., &amp; Sadler, B. (2016). <i>Geospatial Resource Discovery</i>. <i>Exploring Discovery: The Front Door to Your Library's Licensed and Digitized Content</i> (pp. 47–62). American Library Association Editions."
       end
     end
+
     context 'conference proceeding' do
       let(:source_data_key) { :conference_proceeding }
 
@@ -608,6 +617,7 @@ describe Csl::Citation do
         expect(pub_hash.to_apa_citation).to eq 'Reed, J. (2015). Preservation and discovery for GIS data. Presented at the Esri User Conference, San Diego, California: Esri.'
       end
     end
+
     context 'conference proceeding without city' do
       let(:source_data) do
         h = JSON.parse(create(:conference_proceeding).source_data, symbolize_names: true)
@@ -624,6 +634,7 @@ describe Csl::Citation do
         expect(pub_hash.to_apa_citation).to eq 'Reed, J. (2015). Preservation and discovery for GIS data. Presented at the Esri User Conference, California: Esri.'
       end
     end
+
     context 'conference proceeding with city but no state' do
       let(:source_data) do
         h = JSON.parse(create(:conference_proceeding).source_data, symbolize_names: true)
@@ -640,6 +651,7 @@ describe Csl::Citation do
         expect(pub_hash.to_apa_citation).to eq 'Reed, J. (2015). Preservation and discovery for GIS data. Presented at the Esri User Conference, San Diego: Esri.'
       end
     end
+
     context 'conference proceeding with city and state' do
       let(:source_data) do
         h = conference_pub_in_journal_hash
@@ -652,6 +664,7 @@ describe Csl::Citation do
                                             'event-place' => 'Knoxville,TN') # TODO: comma has no space after it
       end
     end
+
     context 'conference proceeding published in a journal and location' do
       let(:source_data) do
         h = conference_pub_in_journal_hash
@@ -668,6 +681,7 @@ describe Csl::Citation do
                                             'event-place' => 'Knoxville, TN')
       end
     end
+
     context 'journal article' do
       let(:source_data_key) { :journal_article }
 

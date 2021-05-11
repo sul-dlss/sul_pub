@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UserSubmittedSourceRecord < ActiveRecord::Base
   validates :source_fingerprint, uniqueness: { case_sensitive: true }
   belongs_to :publication, inverse_of: :user_submitted_source_records, optional: true

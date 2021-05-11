@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module WebOfScience
   # Queries on the Web of Science (or Web of Knowledge)
   class Queries
@@ -5,7 +7,7 @@ module WebOfScience
     MAX_RECORDS = 100
 
     # this is the _only_ value allowed by the WOS-API
-    QUERY_LANGUAGE = 'en'.freeze
+    QUERY_LANGUAGE = 'en'
 
     attr_reader :database
 

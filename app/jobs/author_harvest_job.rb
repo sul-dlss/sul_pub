@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AuthorHarvestJob < ActiveJob::Base
   queue_as :default
 
@@ -12,7 +14,7 @@ class AuthorHarvestJob < ActiveJob::Base
 
     AllSources.harvester.process_author(author)
     log_pubs(author)
-  rescue => e
+  rescue StandardError => e
     msg = "AuthorHarvestJob.perform(#{cap_profile_id})"
     NotificationManager.log_exception(logger, msg, e)
     Honeybadger.notify(e, context: { message: msg })

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'citeproc/ruby'
 # You can install more recent styles using the 'csl-styles' gem or you can just
 # download the styles you need (just point CSL::Style.root to the directory and
@@ -43,7 +45,7 @@ module Csl
     # @return [String] a bibliographic citation
     def generate_csl_citation(csl_citation_data, csl_style)
       item = CiteProc::CitationItem.new(id: 'sulpub')
-      item.data = CiteProc::Item.new(csl_citation_data)
+      item.data = CiteProc::Item.new(csl_citation_data.deep_dup)
       csl_renderer = CiteProc::Ruby::Renderer.new(format: 'html')
       csl_renderer.render item, csl_style.bibliography
     end

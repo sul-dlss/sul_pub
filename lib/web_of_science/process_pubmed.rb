@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'identifiers'
 
 module WebOfScience
@@ -7,24 +9,24 @@ module WebOfScience
     # @param [Array<WebOfScience::Record>] records
     def pubmed_additions(records)
       raise(ArgumentError, 'records must be Enumerable') unless records.is_a? Enumerable
-      raise(ArgumentError, 'records must contain WebOfScience::Record') unless records.all? { |rec| rec.is_a? WebOfScience::Record }
+      raise(ArgumentError, 'records must contain WebOfScience::Record') unless records.all? do |rec|
+                                                                                 rec.is_a? WebOfScience::Record
+                                                                               end
 
       present_recs = records.select { |record| record.pmid.present? }
       uid_to_pub = Publication.where(wos_uid: present_recs.map(&:uid)).group_by(&:wos_uid)
       present_recs.each do |record|
-        begin
-          next if uid_to_pub[record.uid].blank?
+        next if uid_to_pub[record.uid].blank?
 
-          pub = uid_to_pub[record.uid].first
-          pmid = parse_pmid(record.pmid) # validate a PMID before saving it to a Publication
-          pub.pmid.nil? || next # first PMID is enough
-          pub.pmid = pmid
-          pub.save!
-          pubmed_addition(pub) if record.database != 'MEDLINE'
-        rescue StandardError => e
-          message = "#{record.uid}, pubmed_additions for pmid '#{record.pmid}' failed"
-          NotificationManager.error(e, message, self)
-        end
+        pub = uid_to_pub[record.uid].first
+        pmid = parse_pmid(record.pmid) # validate a PMID before saving it to a Publication
+        pub.pmid.nil? || next # first PMID is enough
+        pub.pmid = pmid
+        pub.save!
+        pubmed_addition(pub) if record.database != 'MEDLINE'
+      rescue StandardError => e
+        message = "#{record.uid}, pubmed_additions for pmid '#{record.pmid}' failed"
+        NotificationManager.error(e, message, self)
       end
     rescue StandardError => e
       NotificationManager.error(e, 'pubmed_additions failed', self)

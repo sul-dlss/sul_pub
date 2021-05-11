@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Usage
 # RAILS_ENV=production bundle exec rails runner ./script/wos_harvest_profiling.rb > log/wos_harvest_profiling.txt
 

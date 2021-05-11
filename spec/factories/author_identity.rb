@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # we use sequences so that we can get a variety of alternate identities
 FactoryBot.define do
   factory :author_identity do

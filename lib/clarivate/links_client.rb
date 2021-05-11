@@ -1,10 +1,13 @@
+# frozen_string_literal: true
+
 module Clarivate
   # Links AMR (Article Match Retrieval) Service
   # @see http://ipscience-help.thomsonreuters.com/LAMRService/WebServicesOverviewGroup/overview.html Service documentation
   class LinksClient
-    LINKS_HOST = 'https://ws.isiknowledge.com'.freeze
-    LINKS_PATH = '/cps/xrpc'.freeze
-    ALL_FIELDS = %w(ut doi pmid title isbn issn issue vol year tpages sourceURL timesCited citingArticlesURL relatedRecordsURL).freeze
+    LINKS_HOST = 'https://ws.isiknowledge.com'
+    LINKS_PATH = '/cps/xrpc'
+    ALL_FIELDS = %w[ut doi pmid title isbn issn issue vol year tpages sourceURL timesCited citingArticlesURL
+                    relatedRecordsURL].freeze
 
     attr_reader :username, :password, :host
 
@@ -30,7 +33,7 @@ module Clarivate
     # @param [Array<String>] ids
     # @param [Array<String>] fields (defaults to ['doi', 'pmid'])
     # @return [Hash<String => Hash>]
-    def links(ids, fields: %w(doi pmid))
+    def links(ids, fields: %w[doi pmid])
       raise ArgumentError, 'ids must be Enumerable' unless ids.is_a? Enumerable
       raise ArgumentError, 'fields cannot be empty' if fields.blank?
 

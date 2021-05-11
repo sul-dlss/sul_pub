@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Csl
   class RoleMapper
     class << self
@@ -103,7 +105,7 @@ module Csl
       # @param [Hash] author various key:value pairs for author names
       # @return [String, nil]
       def parse_given_names(author)
-        names = [:firstname, :middlename].map { |k| author[k] } # the order of given names is important
+        names = %i[firstname middlename].map { |k| author[k] } # the order of given names is important
         given_names = collect_given_names(names)
         if given_names.blank? && author[:name].present?
           names = author[:name].split(',').map(&:strip)
@@ -118,8 +120,8 @@ module Csl
       def collect_given_names(names)
         given_names = ''
         names.reject(&:blank?).each do |name|
-          given_names << ' ' << name
-          given_names << '.' if name =~ /^[[:upper:]]$/
+          given_names = "#{given_names} #{name}"
+          given_names = "#{given_names}." if name =~ /^[[:upper:]]$/
         end
         given_names
       end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Agent
   ##
   # Attributes used for creating author search queries
@@ -18,8 +20,8 @@ module Agent
       @normalize_name ||= begin
         return '' if name.empty?
 
-        exclude = %w(corporation institute organization university
-                     all and of the).join('|')
+        exclude = %w[corporation institute organization university
+                     all and of the].join('|')
         tmp = name.dup
         tmp.gsub!(/#{exclude}/i, '')
         tmp.gsub!(/\s+/, ' ')

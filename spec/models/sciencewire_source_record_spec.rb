@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe SciencewireSourceRecord, :vcr do
   describe '.lookup_sw_doc_type' do
     it 'maps document types to CAP inproceedings' do
@@ -76,6 +78,7 @@ describe SciencewireSourceRecord, :vcr do
   describe '.source_as_hash' do
     describe 'parses one publication' do
       subject { build_sciencewire_source_record_from_fixture(64_367_696).source_as_hash }
+
       it 'extracts ids' do
         expect(subject).to include(sw_id: '64367696', pmid: '24213991')
       end
@@ -97,7 +100,8 @@ describe SciencewireSourceRecord, :vcr do
                                    pages: '910-922')
       end
       it 'extracts keywords' do
-        expect(subject[:keywords_sw]).to include('ECOSYSTEMS', 'FISHERIES', 'aquaculture', 'seafood', 'status', 'FAO', 'mariculture', 'assessment', 'fisheries', 'indicator')
+        expect(subject[:keywords_sw]).to include('ECOSYSTEMS', 'FISHERIES', 'aquaculture', 'seafood', 'status', 'FAO',
+                                                 'mariculture', 'assessment', 'fisheries', 'indicator')
       end
       it 'extracts ScienceWire statistics' do
         expect(subject).to include(numberofreferences_sw: '27',
@@ -115,6 +119,7 @@ describe SciencewireSourceRecord, :vcr do
 
     describe 'parses one journal article publication' do
       subject { build_sciencewire_source_record_from_fixture(64_367_696).source_as_hash }
+
       it 'extracts type' do
         expect(subject).to include(type: 'article', documentcategory_sw: 'Journal Document')
         expect(subject[:documenttypes_sw]).to include('Article')
@@ -132,6 +137,7 @@ describe SciencewireSourceRecord, :vcr do
 
     describe 'parses one "other" article publication' do
       subject { build_sciencewire_source_record_from_fixture(42_711_944).source_as_hash }
+
       it 'extracts type' do
         expect(subject).to include(type: 'article', documentcategory_sw: 'Other')
         expect(subject[:documenttypes_sw]).to include('Congresses', 'Journal Article')
@@ -149,8 +155,10 @@ describe SciencewireSourceRecord, :vcr do
       it 'extracts type'
       it 'extracts metadata for a book'
     end
+
     describe 'parses one inproceedings publication' do
       subject { build_sciencewire_source_record_from_fixture(9_538_214).source_as_hash }
+
       it 'extracts type' do
         expect(subject).to include(type: 'inproceedings',
                                    documentcategory_sw: 'Conference Proceeding Document')

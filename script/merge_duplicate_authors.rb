@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'csv'
 
 class MergeDuplicateAuths
@@ -55,7 +57,7 @@ class MergeDuplicateAuths
         @logger.info "Processed #{count}" if count % 100 == 0
 
         merge cap_id
-      rescue => e
+      rescue StandardError => e
         @logger.error "Problem with cap_id #{cap_id} #{e.inspect}"
         @logger.error e.backtrace.join "\n"
       end
@@ -63,7 +65,7 @@ class MergeDuplicateAuths
 
     @logger.info "Contributions fixed: #{@contribs_fixed}"
     @logger.info "Clones removed: #{@clones_removed}"
-  rescue => e
+  rescue StandardError => e
     @logger.error e.inspect.to_s
     @logger.error e.backtrace.join "\n"
   end

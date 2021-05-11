@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # NOTE: there is no 'Bibtex' module in sul_pub to avoid any conflicts with other gems
 require 'bibtex'
 require 'forwardable'
@@ -9,7 +11,7 @@ class BibtexIdentifiers
 
   # Delegate enumerable methods to the Hash.
   # This is just a convenience.
-  delegate %i(each keys values has_key? has_value? include? reject select to_json) => :to_h
+  delegate %i[each keys values has_key? has_value? include? reject select to_json] => :to_h
 
   # @param [BibTeX::Entry] record
   def initialize(record)

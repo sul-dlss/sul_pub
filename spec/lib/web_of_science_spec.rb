@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # http://savonrb.com/version2/testing.html
 # require the helper module
 require 'savon/mock/spec_helper'
@@ -7,6 +9,7 @@ describe WebOfScience do
 
   # set Savon in and out of mock mode
   before(:all) { savon.mock! }
+
   after(:all)  { savon.unmock! }
 
   describe '#harvester' do
@@ -41,6 +44,7 @@ describe WebOfScience do
     before do
       described_class.class_variable_set('@@logger', nil)
     end
+
     it 'works' do
       null_logger = Logger.new('/dev/null')
       expect(Logger).to receive(:new).with(Settings.WOS.LOG).once.and_return(null_logger)
@@ -68,6 +72,7 @@ describe WebOfScience do
         expect(described_class.working?).to be true
       end
     end
+
     context 'failure' do
       it 'raises exceptions when it fails' do
         savon.expects(:retrieve_by_id).with(message: :any).returns(wos_search_failure_response)

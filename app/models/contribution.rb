@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 class Contribution < ActiveRecord::Base
   # Allowed values for visibility
-  VISIBILITY_VALUES = %w(public private).freeze
+  VISIBILITY_VALUES = %w[public private].freeze
   # Allowed values for status
-  STATUS_VALUES = %w(approved denied new unknown).freeze
+  STATUS_VALUES = %w[approved denied new unknown].freeze
 
   belongs_to :publication, required: true, inverse_of: :contributions
   belongs_to :author, required: true, inverse_of: :contributions
@@ -26,7 +28,7 @@ class Contribution < ActiveRecord::Base
   end
 
   def cap_profile_id
-    (author.cap_profile_id if author) || self[:cap_profile_id]
+    author&.cap_profile_id || self[:cap_profile_id]
   end
 
   def self.authorship_valid?(authorship)

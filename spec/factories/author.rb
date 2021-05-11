@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   sequence(:random_id) do |n|
     @random_ids ||= {}

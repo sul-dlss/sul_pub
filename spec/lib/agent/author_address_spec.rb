@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe Agent::AuthorAddress do
   let(:line1) { 'Stanford University' }
   let(:line2) { '' }
@@ -43,6 +45,7 @@ describe Agent::AuthorAddress do
         expect(empty_address.line1).to eq ''
       end
     end
+
     context 'when present' do
       it 'returns a String value' do
         expect(full_address.line1).to eq line1
@@ -56,6 +59,7 @@ describe Agent::AuthorAddress do
         expect(empty_address.line2).to eq ''
       end
     end
+
     context 'when present' do
       it 'returns a String value' do
         expect(full_address.line2).to eq line2
@@ -69,6 +73,7 @@ describe Agent::AuthorAddress do
         expect(empty_address.city).to eq ''
       end
     end
+
     context 'when present' do
       it 'returns a String value' do
         expect(full_address.city).to eq city
@@ -82,6 +87,7 @@ describe Agent::AuthorAddress do
         expect(empty_address.state).to eq ''
       end
     end
+
     context 'when present' do
       it 'returns a String value' do
         expect(full_address.state).to eq state
@@ -95,6 +101,7 @@ describe Agent::AuthorAddress do
         expect(empty_address.country).to eq ''
       end
     end
+
     context 'when present' do
       it 'returns a String value' do
         expect(full_address.country).to eq country

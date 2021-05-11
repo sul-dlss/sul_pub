@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 require_relative 'identifier_parser'
 
 # Parse the DOI identifiers in a PublicationIdentifier
 class IdentifierParserDOI < IdentifierParser
-  URI_PREFIX = 'https://doi.org/'.freeze
+  URI_PREFIX = 'https://doi.org/'
 
   # Does the data validate?
   def valid?

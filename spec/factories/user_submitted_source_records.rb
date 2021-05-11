@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
 FactoryBot.define do
@@ -10,7 +12,7 @@ FactoryBot.define do
     is_active { true }
     title { 'An improved TSVD-based Levenberg-Marquardt algorithm for history matching and comparison with Gauss-Newton' }
     year { 2016 }
-    source_data {
+    source_data do
       '{
       "identifier": [
         {
@@ -74,7 +76,7 @@ FactoryBot.define do
       "publisher": "",
       "additionalProperties": {}
     }'
-    }
+    end
   end
 
   factory :working_paper, parent: :user_submitted_source_record do
@@ -83,7 +85,7 @@ FactoryBot.define do
     source_fingerprint { 'c5af65af03161abf42b1c5ac0fbb7c9301a7ff44f06883340a7e732da2f3585b' }
     year { 2016 }
     is_active { true }
-    source_data {
+    source_data do
       '{
       "identifier": [],
       "title": "This is Peter\'s Working Paper on the Revs Digital Library",
@@ -132,7 +134,7 @@ FactoryBot.define do
       "last_updated": "2016-05-09T14:57Z",
       "abstract": "This is the abstract."
     }'
-    }
+    end
   end
 
   factory :case_study, parent: :user_submitted_source_record do
@@ -141,7 +143,7 @@ FactoryBot.define do
     source_fingerprint { 'a1a086ffb168f962cb64e9fb44fe579abae97a4d2ca0cfe70151f411d1d0d707' }
     year { 2016 }
     is_active { true }
-    source_data {
+    source_data do
       '{
       "identifier": [],
       "title": "This is Peter\'s Case Study on the Revs Digital Library",
@@ -191,7 +193,7 @@ FactoryBot.define do
       "abstract": "This is the abstract."
     }
 '
-    }
+    end
   end
 
   factory :technical_report, parent: :user_submitted_source_record do
@@ -200,7 +202,7 @@ FactoryBot.define do
     source_fingerprint { 'e07b9d34334e46de5ea8bfd5ab5c9e5786285316937c090b8b06c50962329b5f' }
     year { 2016 }
     is_active { true }
-    source_data {
+    source_data do
       '{
       "identifier": [],
       "title": "This is Peter\'s Technical Report on the Revs Digital Library",
@@ -249,7 +251,7 @@ FactoryBot.define do
       "last_updated": "2016-05-17T11:42Z",
       "abstract": "This is the abstract for Peter\'s Technical Report on the Revs Digital Library"
     }'
-    }
+    end
   end
 
   factory :other_paper, parent: :user_submitted_source_record do
@@ -258,7 +260,7 @@ FactoryBot.define do
     source_fingerprint { '31e19a12ddcbfe7f844b683170cba2e9bccb20be7dc7a606585670fa93f8412b' }
     year { 2016 }
     is_active { true }
-    source_data {
+    source_data do
       '{
       "identifier": [],
       "title": "This is Peter\'s Other Paper on the Revs Digital Library",
@@ -307,7 +309,7 @@ FactoryBot.define do
       "last_updated": "2016-05-17T11:44Z",
       "abstract": "This is the abstract."
     }'
-    }
+    end
   end
   factory :book, parent: :user_submitted_source_record do
     pmid { nil }
@@ -316,7 +318,7 @@ FactoryBot.define do
     source_fingerprint { 'dc3f425b85d483182e8b9f40c48a93b83cf6c065dc058ab4cd6b3787a9f017ff' }
     year { 2015 }
     is_active { true }
-    source_data {
+    source_data do
       '{
       "identifier": [
         {
@@ -378,7 +380,7 @@ FactoryBot.define do
       "additionalProperties": {},
       "last_updated": "2016-05-23T11:47Z"
     }'
-    }
+    end
   end
   factory :book_chapter, parent: :user_submitted_source_record do
     pmid { nil }
@@ -387,7 +389,7 @@ FactoryBot.define do
     title { 'Geospatial Resource Discovery' }
     year { 2016 }
     is_active { true }
-    source_data {
+    source_data do
       '{
       "identifier": [
         {
@@ -460,7 +462,7 @@ FactoryBot.define do
       "additionalProperties": {},
       "last_updated": "2016-05-23T12:01Z"
     }'
-    }
+    end
   end
   factory :conference_proceeding, parent: :user_submitted_source_record do
     pmid { nil }
@@ -469,7 +471,7 @@ FactoryBot.define do
     title { 'Preservation and discovery for GIS data' }
     year { 2015 }
     is_active { true }
-    source_data {
+    source_data do
       '{
       "identifier": [],
       "title": "Preservation and discovery for GIS data",
@@ -517,7 +519,7 @@ FactoryBot.define do
       },
       "additionalProperties": {}
     }'
-    }
+    end
   end
   factory :journal_article, parent: :user_submitted_source_record do
     pmid { nil }
@@ -526,7 +528,7 @@ FactoryBot.define do
     title { 'The Flat Rock Cemetery Mapping Project:  A Case Study in Community Archaeology' }
     year { 2012 }
     is_active { true }
-    source_data {
+    source_data do
       '{
       "identifier": [],
       "title": "The Flat Rock Cemetery Mapping Project:  A Case Study in Community Archaeology",
@@ -602,6 +604,6 @@ FactoryBot.define do
       "publisher": "The Society for Georgia Archaeology",
       "additionalProperties": {}
     }'
-    }
+    end
   end
 end

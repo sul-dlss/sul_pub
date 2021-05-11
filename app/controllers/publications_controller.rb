@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 require 'csv'
 
 class PublicationsController < ApplicationController
   before_action :check_authorization
   before_action :ensure_json_request, except: [:index]
-  before_action :ensure_request_body_exists, only: [:create, :update]
+  before_action :ensure_request_body_exists, only: %i[create update]
   skip_forgery_protection # this controller only has API calls from profiles
 
   # Retreive publications for a specific profile ID, optionally in a given time period
@@ -12,7 +14,7 @@ class PublicationsController < ApplicationController
   # GET /publications.json?capProfileId=1&changedSince=2018-01-01 # publications on this profile since that date
   # GET /publications.json?capActive=true                         # all publicatins for users active in cap
   def index
-    msg = "Getting publications"
+    msg = 'Getting publications'
     msg += " for profile #{params[:capProfileId]}" if params[:capProfileId]
     msg += " where capActive = #{params[:capActive]}" if params[:capActive]
     msg += " where updated_at > #{params[:changedSince]}" if params[:changedSince]
@@ -76,7 +78,8 @@ class PublicationsController < ApplicationController
       redirect_to publication_path(existing_record.publication_id), status: :see_other
     else
       unless validate_or_create_authors(pub_hash[:authorship])
-        render json: { error: 'You have not supplied a valid authorship record.' }, status: :not_acceptable, format: 'json'
+        render json: { error: 'You have not supplied a valid authorship record.' }, status: :not_acceptable,
+               format: 'json'
         return
       end
       pub = Publication.build_new_manual_publication(pub_hash, request_body)
@@ -102,10 +105,15 @@ class PublicationsController < ApplicationController
       return
     end
     if old_pub.harvested_pub? # only manually entered (i.e. non-harvested) publications may be updated with this method
-      render json: { error: "This record SulPubID #{old_pub.id} may not be modified.  If you had originally entered details for the record, it has been superceded by a central record." }, status: :forbidden, format: 'json'
+      render json: {
+        error: "This record SulPubID #{old_pub.id} may not be modified.  If you had originally entered details for the record, " \
+          'it has been superceded by a central record.'
+      },
+             status: :forbidden, format: 'json'
       return
     elsif !validate_or_create_authors(new_pub[:authorship])
-      render json: { error: 'You have not supplied a valid authorship record.' }, status: :not_acceptable, format: 'json'
+      render json: { error: 'You have not supplied a valid authorship record.' }, status: :not_acceptable,
+             format: 'json'
       return
     end
     logger.info("Update manual publication #{old_pub.inspect} with BibJSON:")
@@ -138,18 +146,17 @@ class PublicationsController < ApplicationController
   # GET /publications/sourcelookup.json?pmid=12345                   # search by PMID
   def sourcelookup
     all_matching_records = []
-    msg = 'Sourcelookup of '
     if params[:doi]
-      msg << "doi #{params[:doi]}"
+      msg = "Sourcelookup of doi #{params[:doi]}"
       logger.info(msg)
       all_matching_records += DoiSearch.search(params[:doi].strip)
     elsif params[:pmid]
-      msg << "pmid #{params[:pmid]}"
+      msg = "Sourcelookup of pmid #{params[:pmid]}"
       logger.info(msg)
       all_matching_records += Pubmed::Fetcher.search_all_sources_by_pmid(params[:pmid].strip)
     elsif params[:title].presence
       title = params[:title].delete('"')
-      msg << "title '#{title}'"
+      msg = "Sourcelookup of title '#{title}'"
       logger.info(msg)
       if Settings.WOS.enabled
         query = "TI=\"#{title}\""
@@ -197,7 +204,8 @@ class PublicationsController < ApplicationController
   # @return [String] contains csv report of an author's publications
   def generate_csv_report(author)
     CSV.generate do |csv|
-      csv << %w(sul_pub_id sciencewire_id pubmed_id doi wos_id title journal year pages issn status_for_this_author created_at updated_at contributor_cap_profile_ids)
+      csv << %w[sul_pub_id sciencewire_id pubmed_id doi wos_id title journal year pages issn status_for_this_author
+                created_at updated_at contributor_cap_profile_ids]
       author.publications.find_each do |pub|
         journ = pub.pub_hash[:journal] ? pub.pub_hash[:journal][:name] : ''
         contrib_prof_ids = pub.authors.pluck(:cap_profile_id).join(';')
@@ -207,7 +215,8 @@ class PublicationsController < ApplicationController
         created_at = pub.created_at.utc.strftime('%m/%d/%Y')
         updated_at = pub.updated_at.utc.strftime('%m/%d/%Y')
 
-        csv << [pub.id, pub.sciencewire_id, pub.pmid, doi, wos_id, pub.title, journ, pub.year, pub.pages, pub.issn, status, created_at, updated_at, contrib_prof_ids]
+        csv << [pub.id, pub.sciencewire_id, pub.pmid, doi, wos_id, pub.title, journ, pub.year, pub.pages, pub.issn,
+                status, created_at, updated_at, contrib_prof_ids]
       end
     end
   end

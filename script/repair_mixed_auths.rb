@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'csv'
 
 class RepairMixedAuths
@@ -44,7 +46,7 @@ class RepairMixedAuths
         @logger.info "Processed #{count}" if count % 100 == 0
 
         fix row
-      rescue => e
+      rescue StandardError => e
         @logger.error "Problem author #{row[:sul_author_id]} #{e.inspect}"
         @logger.error e.backtrace.join "\n"
       end
@@ -52,7 +54,7 @@ class RepairMixedAuths
 
     @logger.info "Authors fixed: #{@auths_fixed}"
     @logger.info "Contributions fixed: #{@contribs_fixed}"
-  rescue => e
+  rescue StandardError => e
     @logger.error e.inspect.to_s
     @logger.error e.backtrace.join "\n"
   end

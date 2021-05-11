@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe AuthorIdentity, type: :model do
   subject { FactoryBot.create :author_identity }
 
@@ -156,7 +158,8 @@ RSpec.describe AuthorIdentity, type: :model do
 
     it 'will not mirror identical identities in importSettings, *even if* dates are present' do
       author.mirror_author_identities(
-        [identity_same_as_primary.merge('startDate' => { 'value' => '2000-01-01' }, 'endDate' => { 'value' => '2010-12-31' })]
+        [identity_same_as_primary.merge('startDate' => { 'value' => '2000-01-01' },
+                                        'endDate' => { 'value' => '2010-12-31' })]
       ) # must pass in only a single alternate identity for .length == 0
       expect(author.author_identities.length).to eq 0
     end
@@ -179,7 +182,9 @@ RSpec.describe AuthorIdentity, type: :model do
 
     it 'will not change author_identities if data are missing' do
       author.author_identities.clear # explicitly clear FactoryBot addition(s)
-      expect { author.mirror_author_identities([{ 'firstName' => author.preferred_first_name }]) }.to raise_error(ActiveRecord::RecordInvalid)
+      expect do
+        author.mirror_author_identities([{ 'firstName' => author.preferred_first_name }])
+      end.to raise_error(ActiveRecord::RecordInvalid)
       expect(author.author_identities.length).to eq 0
     end
   end

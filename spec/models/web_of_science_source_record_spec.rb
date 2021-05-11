@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe WebOfScienceSourceRecord, type: :model do
   subject(:wos_src_rec) { build :web_of_science_source_record }
 
@@ -34,6 +36,7 @@ RSpec.describe WebOfScienceSourceRecord, type: :model do
       allow(WebOfScience::Identifiers).to receive(:new).and_return(identifiers)
       wos_src_rec.save!
     end
+
     it 'sets attributes' do
       expect(wos_src_rec.doi).to eq 'doi'
       expect(wos_src_rec.pmid).to eq 123
@@ -50,7 +53,9 @@ RSpec.describe WebOfScienceSourceRecord, type: :model do
     end
     describe 'unique constraints' do
       let(:dup) { wos_src_rec.dup }
+
       before { wos_src_rec.save! }
+
       it 'prevents duplicate uid' do
         dup.source_fingerprint = '123'
         expect { dup.save! }.to raise_error(ActiveRecord::RecordNotUnique)
@@ -64,6 +69,7 @@ RSpec.describe WebOfScienceSourceRecord, type: :model do
 
   describe '#publication' do
     let(:pub) { create :publication, wos_uid: 'WOS:A1972N549400003' }
+
     it 'assignment works' do
       wos_src_rec.publication = pub
       expect { wos_src_rec.save! }.not_to raise_error

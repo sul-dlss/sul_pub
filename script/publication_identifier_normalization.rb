@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 ## Notes on PublicationIdentifierNormalization
 # - it uses lib/parse_identifier* to normalize data
 # - it is not yet equipped to normalize all the identifier_type data

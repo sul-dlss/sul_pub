@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe Cap::Client, :vcr do
   subject(:cap_client) { described_class.new }
 

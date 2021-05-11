@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class MissingWosId
   attr_reader :logger
 
@@ -28,7 +30,7 @@ class MissingWosId
       return true
     end
     false
-  rescue => e
+  rescue StandardError => e
     msg = "Problem with publication: #{pub[:id]}\n"
     msg += "#{e.inspect}\n"
     msg += e.backtrace.join("\n")
@@ -40,7 +42,7 @@ class MissingWosId
     Publication.find_each(batch_size: 500) do |pub|
       missing_wos_id? pub
     end
-  rescue => e
+  rescue StandardError => e
     msg = "#{e.inspect}\n"
     msg += e.backtrace.join("\n")
     logger.error msg
@@ -61,7 +63,7 @@ class MissingWosId
         end
       end
     end
-  rescue => e
+  rescue StandardError => e
     msg = "#{e.inspect}\n"
     msg += e.backtrace.join("\n")
     logger.error msg

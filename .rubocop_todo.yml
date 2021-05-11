@@ -247,53 +247,53 @@ RSpec/DescribedClass:
 
 # Offense count: 52
 # Cop supports --auto-correct.
-RSpec/EmptyLineAfterExampleGroup:
-  Exclude:
-    - 'spec/lib/agent/author_address_spec.rb'
-    - 'spec/lib/agent/author_institution_spec.rb'
-    - 'spec/lib/agent/author_name_spec.rb'
-    - 'spec/lib/clarivate/links_client_spec.rb'
-    - 'spec/lib/csl/author_name_spec.rb'
-    - 'spec/lib/csl/citation_spec.rb'
-    - 'spec/lib/notification_manager_spec.rb'
-    - 'spec/lib/web_of_science/record_spec.rb'
-    - 'spec/lib/web_of_science/records_spec.rb'
-    - 'spec/lib/web_of_science_spec.rb'
-    - 'spec/models/publication_identifier_spec.rb'
-    - 'spec/models/pubmed_source_record_spec.rb'
-    - 'spec/models/sciencewire_source_record_spec.rb'
-    - 'spec/requests/authorization_spec.rb'
+#RSpec/EmptyLineAfterExampleGroup:
+#  Exclude:
+#    - 'spec/lib/agent/author_address_spec.rb'
+#    - 'spec/lib/agent/author_institution_spec.rb'
+#    - 'spec/lib/agent/author_name_spec.rb'
+#    - 'spec/lib/clarivate/links_client_spec.rb'
+#    - 'spec/lib/csl/author_name_spec.rb'
+#    - 'spec/lib/csl/citation_spec.rb'
+#    - 'spec/lib/notification_manager_spec.rb'
+#    - 'spec/lib/web_of_science/record_spec.rb'
+#    - 'spec/lib/web_of_science/records_spec.rb'
+#    - 'spec/lib/web_of_science_spec.rb'
+#    - 'spec/models/publication_identifier_spec.rb'
+#    - 'spec/models/pubmed_source_record_spec.rb'
+#    - 'spec/models/sciencewire_source_record_spec.rb'
+#    - 'spec/requests/authorization_spec.rb'
 
 # Offense count: 51
 # Cop supports --auto-correct.
-RSpec/EmptyLineAfterFinalLet:
-  Enabled: false
+#RSpec/EmptyLineAfterFinalLet:
+#  Enabled: false
 
 # Offense count: 25
 # Cop supports --auto-correct.
-RSpec/EmptyLineAfterHook:
-  Exclude:
-    - 'spec/controllers/authors_controller_spec.rb'
-    - 'spec/lib/agent/author_name_spec.rb'
-    - 'spec/lib/clarivate/links_client_spec.rb'
-    - 'spec/lib/identifier_normalizer_spec.rb'
-    - 'spec/lib/notification_manager_spec.rb'
-    - 'spec/lib/web_of_science/client_spec.rb'
-    - 'spec/lib/web_of_science/harvester_spec.rb'
-    - 'spec/lib/web_of_science/process_records_spec.rb'
-    - 'spec/lib/web_of_science/queries_spec.rb'
-    - 'spec/lib/web_of_science_spec.rb'
-    - 'spec/models/web_of_science_source_record_spec.rb'
-    - 'spec/tasks/cleanup_rake_spec.rb'
+#RSpec/EmptyLineAfterHook:
+#  Exclude:
+#    - 'spec/controllers/authors_controller_spec.rb'
+#    - 'spec/lib/agent/author_name_spec.rb'
+#    - 'spec/lib/clarivate/links_client_spec.rb'
+#    - 'spec/lib/identifier_normalizer_spec.rb'
+#    - 'spec/lib/notification_manager_spec.rb'
+#    - 'spec/lib/web_of_science/client_spec.rb'
+#    - 'spec/lib/web_of_science/harvester_spec.rb'
+#    - 'spec/lib/web_of_science/process_records_spec.rb'
+#    - 'spec/lib/web_of_science/queries_spec.rb'
+#    - 'spec/lib/web_of_science_spec.rb'
+#    - 'spec/models/web_of_science_source_record_spec.rb'
+#    - 'spec/tasks/cleanup_rake_spec.rb'
 
 # Offense count: 10
 # Cop supports --auto-correct.
-RSpec/EmptyLineAfterSubject:
-  Exclude:
-    - 'spec/lib/agent/author_institution_spec.rb'
-    - 'spec/lib/clarivate/links_client_spec.rb'
-    - 'spec/models/publication_spec.rb'
-    - 'spec/models/sciencewire_source_record_spec.rb'
+#RSpec/EmptyLineAfterSubject:
+#  Exclude:
+#    - 'spec/lib/agent/author_institution_spec.rb'
+#    - 'spec/lib/clarivate/links_client_spec.rb'
+#    - 'spec/models/publication_spec.rb'
+#    - 'spec/models/sciencewire_source_record_spec.rb'
 
 # Offense count: 73
 # Configuration parameters: Max.
@@ -303,23 +303,23 @@ RSpec/ExampleLength:
 # Offense count: 26
 # Cop supports --auto-correct.
 # Configuration parameters: CustomTransform, IgnoredWords.
-RSpec/ExampleWording:
-  Exclude:
-    - 'spec/models/publication_spec.rb'
+#RSpec/ExampleWording:
+#  Exclude:
+#    - 'spec/models/publication_spec.rb'
 
 # Offense count: 21
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle.
 # SupportedStyles: method_call, block
-RSpec/ExpectChange:
-  Exclude:
-    - 'spec/lib/harvester/base_spec.rb'
-    - 'spec/lib/identifier_normalizer_spec.rb'
-    - 'spec/lib/web_of_science/harvester_spec.rb'
-    - 'spec/lib/web_of_science/process_records_spec.rb'
-    - 'spec/lib/web_of_science/records_spec.rb'
-    - 'spec/models/publication_spec.rb'
-    - 'spec/support/identifier_parser_shared_examples.rb'
+#RSpec/ExpectChange:
+#  Exclude:
+#    - 'spec/lib/harvester/base_spec.rb'
+#    - 'spec/lib/identifier_normalizer_spec.rb'
+#    - 'spec/lib/web_of_science/harvester_spec.rb'
+#    - 'spec/lib/web_of_science/process_records_spec.rb'
+#    - 'spec/lib/web_of_science/records_spec.rb'
+#    - 'spec/models/publication_spec.rb'
+#    - 'spec/support/identifier_parser_shared_examples.rb'
 
 # Offense count: 7
 RSpec/ExpectInHook:
@@ -339,10 +339,10 @@ RSpec/FilePath:
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle.
 # SupportedStyles: implicit, each, example
-RSpec/HookArgument:
-  Exclude:
-    - 'spec/lib/doi_search_spec.rb'
-    - 'spec/tasks/cleanup_rake_spec.rb'
+#RSpec/HookArgument:
+#  Exclude:
+#    - 'spec/lib/doi_search_spec.rb'
+#    - 'spec/tasks/cleanup_rake_spec.rb'
 
 # Offense count: 1
 RSpec/IteratedExpectation:
@@ -351,18 +351,18 @@ RSpec/IteratedExpectation:
 
 # Offense count: 2
 # Cop supports --auto-correct.
-RSpec/LeadingSubject:
-  Exclude:
-    - 'spec/lib/web_of_science/harvester_spec.rb'
-    - 'spec/models/contribution_spec.rb'
+#RSpec/LeadingSubject:
+#  Exclude:
+#    - 'spec/lib/web_of_science/harvester_spec.rb'
+#    - 'spec/models/contribution_spec.rb'
 
 # Offense count: 3
 # Cop supports --auto-correct.
-RSpec/LetBeforeExamples:
-  Exclude:
-    - 'spec/lib/identifier_parser_doi_spec.rb'
-    - 'spec/lib/identifier_parser_isbn_spec.rb'
-    - 'spec/lib/identifier_parser_pmid_spec.rb'
+#RSpec/LetBeforeExamples:
+#  Exclude:
+#    - 'spec/lib/identifier_parser_doi_spec.rb'
+#    - 'spec/lib/identifier_parser_isbn_spec.rb'
+#    - 'spec/lib/identifier_parser_pmid_spec.rb'
 
 # Offense count: 150
 # Configuration parameters: .
@@ -393,15 +393,15 @@ RSpec/NamedSubject:
 # Cop supports --auto-correct.
 # Configuration parameters: Strict, EnforcedStyle.
 # SupportedStyles: inflected, explicit
-RSpec/PredicateMatcher:
-  Exclude:
-    - 'spec/lib/bibtex_ingester_spec.rb'
+#RSpec/PredicateMatcher:
+#  Exclude:
+#    - 'spec/lib/bibtex_ingester_spec.rb'
 
 # Offense count: 1
 # Cop supports --auto-correct.
-RSpec/ReceiveCounts:
-  Exclude:
-    - 'spec/lib/harvester/base_spec.rb'
+#RSpec/ReceiveCounts:
+#  Exclude:
+#    - 'spec/lib/harvester/base_spec.rb'
 
 # Offense count: 2
 RSpec/RepeatedDescription:
@@ -443,16 +443,16 @@ Style/AsciiComments:
 # ProceduralMethods: benchmark, bm, bmbm, create, each_with_object, measure, new, realtime, tap, with_object
 # FunctionalMethods: let, let!, subject, watch
 # IgnoredMethods: lambda, proc, it
-Style/BlockDelimiters:
-  Exclude:
-    - 'spec/factories/user_submitted_source_records.rb'
-    - 'spec/factories/web_of_science_source_record.rb'
+#Style/BlockDelimiters:
+#  Exclude:
+#    - 'spec/factories/user_submitted_source_records.rb'
+#    - 'spec/factories/web_of_science_source_record.rb'
 
 # Offense count: 1
 # Cop supports --auto-correct.
-Style/CommentedKeyword:
-  Exclude:
-    - 'lib/web_of_science/map_names.rb'
+#Style/CommentedKeyword:
+#  Exclude:
+#    - 'lib/web_of_science/map_names.rb'
 
 # Offense count: 44
 # Configuration parameters: AllowedConstants.
@@ -470,39 +470,39 @@ Style/ExpandPathArguments:
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle.
 # SupportedStyles: always, always_true, never
-Style/FrozenStringLiteralComment:
-  Enabled: false
+#Style/FrozenStringLiteralComment:
+#  Enabled: false
 
 # Offense count: 1
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle.
 # SupportedStyles: literals, strict
-Style/MutableConstant:
-  Exclude:
-    - 'lib/agent/author_name.rb'
+#Style/MutableConstant:
+#  Exclude:
+#    - 'lib/agent/author_name.rb'
 
 # Offense count: 1
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle.
 # SupportedStyles: both, prefix, postfix
-Style/NegatedIf:
-  Exclude:
-    - 'lib/cap/authors_poller.rb'
+#Style/NegatedIf:
+#  Exclude:
+#    - 'lib/cap/authors_poller.rb'
 
 # Offense count: 35
 # Cop supports --auto-correct.
 # Configuration parameters: PreferredDelimiters.
-Style/PercentLiteralDelimiters:
-  Enabled: false
+#Style/PercentLiteralDelimiters:
+#  Enabled: false
 
 # Offense count: 11
 # Cop supports --auto-correct.
 Style/RedundantBegin:
   Exclude:
     - 'Rakefile'
-    - 'lib/cap/authors_poller.rb'
-    - 'lib/tasks/pubmed.rake'
-    - 'lib/web_of_science/process_pubmed.rb'
+#    - 'lib/cap/authors_poller.rb'
+#    - 'lib/tasks/pubmed.rake'
+#    - 'lib/web_of_science/process_pubmed.rb'
     - 'script/delete_missing_auths.rb'
     - 'script/fix_visibility_nil.rb'
     - 'script/merge_duplicate_authors.rb'
@@ -514,67 +514,67 @@ Style/RedundantBegin:
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle.
 # SupportedStyles: implicit, explicit
-Style/RescueStandardError:
-  Enabled: false
+#Style/RescueStandardError:
+#  Enabled: false
 
 # Offense count: 6
 # Cop supports --auto-correct.
 # Configuration parameters: ConvertCodeThatCanStartToReturnNil, AllowedMethods.
 # AllowedMethods: present?, blank?, presence, try, try!
-Style/SafeNavigation:
-  Exclude:
-    - 'app/models/contribution.rb'
-    - 'app/models/publication.rb'
-    - 'app/models/sciencewire_source_record.rb'
-    - 'lib/doi_search.rb'
-    - 'lib/pubmed/fetcher.rb'
+#Style/SafeNavigation:
+#  Exclude:
+#    - 'app/models/contribution.rb'
+#    - 'app/models/publication.rb'
+#    - 'app/models/sciencewire_source_record.rb'
+#    - 'lib/doi_search.rb'
+#    - 'lib/pubmed/fetcher.rb'
 
 # Offense count: 59
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, ConsistentQuotesInMultiline.
 # SupportedStyles: single_quotes, double_quotes
-Style/StringLiterals:
-  Enabled: false
+#Style/StringLiterals:
+#  Enabled: false
 
 # Offense count: 19
 # Cop supports --auto-correct.
 # Configuration parameters: .
 # SupportedStyles: percent, brackets
-Style/SymbolArray:
-  EnforcedStyle: percent
-  MinSize: 7
+#Style/SymbolArray:
+#  EnforcedStyle: percent
+#  MinSize: 7
 
 # Offense count: 4
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyleForMultiline.
 # SupportedStylesForMultiline: comma, consistent_comma, no_comma
-Style/TrailingCommaInArrayLiteral:
-  Exclude:
-    - 'spec/lib/bibtex/bibtex_identifiers_spec.rb'
-    - 'spec/lib/web_of_science/identifiers_spec.rb'
+#Style/TrailingCommaInArrayLiteral:
+#  Exclude:
+#    - 'spec/lib/bibtex/bibtex_identifiers_spec.rb'
+#    - 'spec/lib/web_of_science/identifiers_spec.rb'
 
 # Offense count: 9
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyleForMultiline.
 # SupportedStylesForMultiline: comma, consistent_comma, no_comma
-Style/TrailingCommaInHashLiteral:
-  Exclude:
-    - 'lib/web_of_science/record.rb'
-    - 'spec/lib/bibtex/bibtex_identifiers_spec.rb'
-    - 'spec/lib/cap/authors_poller_spec.rb'
-    - 'spec/lib/web_of_science/identifiers_spec.rb'
+#Style/TrailingCommaInHashLiteral:
+#  Exclude:
+#    - 'lib/web_of_science/record.rb'
+#    - 'spec/lib/bibtex/bibtex_identifiers_spec.rb'
+#    - 'spec/lib/cap/authors_poller_spec.rb'
+#    - 'spec/lib/web_of_science/identifiers_spec.rb'
 
 # Offense count: 3
 # Cop supports --auto-correct.
 # Configuration parameters: WordRegex.
 # SupportedStyles: percent, brackets
-Style/WordArray:
-  EnforcedStyle: percent
-  MinSize: 4
+#Style/WordArray:
+#  EnforcedStyle: percent
+#  MinSize: 4
 
 # Offense count: 388
 # Cop supports --auto-correct.
 # Configuration parameters: AutoCorrect, AllowHeredoc, AllowURI, URISchemes, IgnoreCopDirectives, IgnoredPatterns.
 # URISchemes: http, https
-Layout/LineLength:
-  Max: 432
+#Layout/LineLength:
+#  Max: 432

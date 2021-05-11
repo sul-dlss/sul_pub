@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Pubmed
   # Use author name-institution logic to find Pubmed publications for an Author
   class QueryAuthor
@@ -36,7 +38,9 @@ module Pubmed
     end
 
     def name_term
-      author_identities.collect { |identity| "(#{identity.last_name}, #{identity.first_name}[Author])" if identity.first_name =~ /[a-zA-Z]+/ }
+      author_identities.collect do |identity|
+        "(#{identity.last_name}, #{identity.first_name}[Author])" if identity.first_name =~ /[a-zA-Z]+/
+      end
                        .compact.uniq.join(' OR ')
     end
 

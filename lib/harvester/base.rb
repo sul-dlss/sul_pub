@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Harvester
   # An iota of abstraction for things a harvester must do.
   # The starting point is always one or more Authors.
@@ -16,10 +18,11 @@ module Harvester
       authors_query.find_in_batches(batch_size: batch_size).each_with_index do |batch, n|
         harvest(batch, options)
         count += batch.size
-        logger.info "*** Completed batch #{n} with #{batch.size} authors.  On #{count} of #{total} authors for harvest at #{Time.zone.now}.  Start time was #{start_time}."
+        logger.info "*** Completed batch #{n} with #{batch.size} authors.  On #{count} of #{total} authors for " \
+          "harvest at #{Time.zone.now}.  Start time was #{start_time}."
       end
       end_time = Time.zone.now
-      time_taken = Time.at(end_time - start_time).utc.strftime "%e days, %H hours, %M minutes"
+      time_taken = Time.at(end_time - start_time).utc.strftime '%e days, %H hours, %M minutes'
       logger.info "***** Ended a complete harvest for #{total} authors at #{end_time}.  Time taken: #{time_taken}"
     end
 
@@ -45,7 +48,7 @@ module Harvester
     # @param [Hash] _options
     # @return [Array<String>] ids that create Publications
     def process_author(_author, _options = {})
-      raise "process_author must be implemented in subclass"
+      raise 'process_author must be implemented in subclass'
     end
 
     private

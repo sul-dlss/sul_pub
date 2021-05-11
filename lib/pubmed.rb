@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Pubmed utilities
 module Pubmed
   # @return [Pubmed::Harvester]

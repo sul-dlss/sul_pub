@@ -1,9 +1,12 @@
+# frozen_string_literal: true
+
 describe Csl::AuthorName do
   let(:fn) { 'Amasa' }
   let(:mn) { 'Leland' }
   let(:ln) { 'Stanford' }
   let(:all_names) { described_class.new(firstname: fn, middlename: mn, lastname: ln) }
   let(:no_names) { described_class.new({}) }
+
   describe '#initialize' do
     it 'casts names to strings' do
       expect(no_names.last).to be_an String
@@ -23,6 +26,7 @@ describe Csl::AuthorName do
         expect(no_names.first_initial).to eq ''
       end
     end
+
     context 'when present' do
       it 'returns the first initial' do
         expect(all_names.first_initial).to eq fn[0].upcase
@@ -36,13 +40,16 @@ describe Csl::AuthorName do
         expect(no_names.first_name).to eq ''
       end
     end
+
     context 'when present' do
       it 'returns the first name' do
         expect(all_names.first_name).to eq fn
       end
     end
+
     context 'when first is an initial' do
       let(:fn) { 'A' }
+
       it 'returns the first initial plus period' do
         expect(all_names.first_name).to eq "#{all_names.first_initial}."
       end
@@ -55,6 +62,7 @@ describe Csl::AuthorName do
         expect(no_names.middle_initial).to eq ''
       end
     end
+
     context 'when present' do
       it 'returns the middle initial' do
         expect(all_names.middle_initial).to eq mn[0].upcase
@@ -68,13 +76,16 @@ describe Csl::AuthorName do
         expect(no_names.middle_name).to eq ''
       end
     end
+
     context 'when present' do
       it 'returns the middle name' do
         expect(all_names.middle_name).to eq mn
       end
     end
+
     context 'when middle is an initial' do
       let(:mn) { 'L' }
+
       it 'returns the middle initial plus period' do
         expect(all_names.middle_name).to eq "#{all_names.middle_initial}."
       end
@@ -87,6 +98,7 @@ describe Csl::AuthorName do
         expect(no_names.family_name).to eq ''
       end
     end
+
     context 'when all names are present' do
       it 'returns the last name' do
         expect(all_names.family_name).to eq ln
@@ -100,6 +112,7 @@ describe Csl::AuthorName do
         expect(no_names.given_name).to eq ''
       end
     end
+
     context 'when all names are present' do
       it 'returns a combination of the first and middle name' do
         expect(all_names.given_name).to include fn
@@ -117,6 +130,7 @@ describe Csl::AuthorName do
         expect(no_names.to_csl_author).to eq csl_author
       end
     end
+
     context 'when all names are present' do
       # additional specs are in publication_query_by_author_name_spec.rb
       it 'returns a Hash with family and given names' do
@@ -140,6 +154,7 @@ describe Csl::AuthorName do
         expect(no_names == other_names).to be false
       end
     end
+
     context 'when all names are present' do
       it 'returns true when compared with the same names' do
         other_names = all_names.dup

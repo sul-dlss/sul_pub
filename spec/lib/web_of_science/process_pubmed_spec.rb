@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # NOTES
 #
 # Only WOS records can be supplemented by PubMed data.

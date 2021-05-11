@@ -33,12 +33,22 @@ Lint/PercentStringArray:
     - "spec/lib/web_of_science/query_author_spec.rb" # specifically testing quoted clauses w/in strings
 
 Layout/LineLength:
+  Max: 160 # Intentionally liberal because many existing long lines.
   Exclude:
     - "spec/factories/**/*" # factories contain long string literals
+    - "spec/lib/csl/citation_spec.rb"
+    - "spec/models/publication_spec.rb"
+    - "spec/lib/pubmed/query_author_spec.rb"
+    - "spec/lib/bibtex_ingester_spec.rb"
 
 Metrics/BlockLength:
   Exclude:
     - "spec/factories/user_submitted_source_records.rb"
+    - "spec/lib/csl/citation_spec.rb"
+
+Metrics/ClassLength:
+  Exclude:
+    - "lib/bibtex_ingester.rb"
 
 Naming/VariableName:
   Enabled: false

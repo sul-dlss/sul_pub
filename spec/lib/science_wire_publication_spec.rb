@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe ScienceWirePublication do
   let(:wrong_element) do
     xml_doc = Nokogiri::XML '<NotPublicationItem/>'
@@ -9,7 +11,9 @@ describe ScienceWirePublication do
     xml_doc.xpath('PublicationItem').first
   end
 
-  let(:publication_item_xml) { File.read Rails.root.join('spec', 'fixtures', 'sciencewire_source_record', 'publication_item.xml') }
+  let(:publication_item_xml) do
+    File.read Rails.root.join('spec', 'fixtures', 'sciencewire_source_record', 'publication_item.xml')
+  end
   let(:publication_item_doc) { Nokogiri::XML publication_item_xml }
   let(:publication_item_element) { publication_item_doc.xpath('PublicationItem').first }
 

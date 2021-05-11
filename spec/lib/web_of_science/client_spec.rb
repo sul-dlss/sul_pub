@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # http://savonrb.com/version2/testing.html
 # require the helper module
 require 'savon/mock/spec_helper'
@@ -8,6 +10,7 @@ describe WebOfScience::Client, :vcr do
 
   # set Savon in and out of mock mode
   before(:all) { savon.mock!   }
+
   after(:all)  { savon.unmock! }
 
   let(:wos_auth) { 'secret' }
@@ -62,6 +65,7 @@ describe WebOfScience::Client, :vcr do
       savon.expects(:authenticate).returns(auth_xml)
       wos_client.session_id
     end
+
     it 'resets the client' do
       savon.expects(:close_session).returns('')
       expect { wos_client.session_close }

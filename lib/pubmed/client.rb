@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Pubmed
   class Client
     # @param [String, Array<String>] pmids PubMed ID or IDs
@@ -33,8 +35,8 @@ module Pubmed
     def url(addl_args)
       url = "#{Settings.PUBMED.SEARCH_PATH}&retmax=#{Settings.PUBMED.max_publications_per_author}&api_key=#{Settings.PUBMED.API_KEY}"
       if addl_args
-        url << '&' unless addl_args[0] == '&'
-        url << addl_args
+        url = "#{url}&" unless addl_args[0] == '&'
+        url = "#{url}#{addl_args}"
       end
       url
     end

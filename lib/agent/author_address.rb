@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Agent
   ##
   # Author/Institution address details used for creating search queries

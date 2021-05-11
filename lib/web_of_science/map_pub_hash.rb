@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module WebOfScience
   # Map WOS record data into the SUL PubHash data
   class MapPubHash

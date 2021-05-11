@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe WebOfScience::QueryAuthor, :vcr do
   subject(:query_author) { described_class.new(author) }
 
@@ -91,7 +93,9 @@ describe WebOfScience::QueryAuthor, :vcr do
       expect(query_author.send(:quote_wrap, %w[a bc a bc].concat(['']))).to eq %w["a" "bc"]
     end
     it 'removes quotes in a name' do
-      expect(query_author.send(:quote_wrap, ['peter', 'peter paul', 'peter "paul" mary'])).to eq ['"peter"', '"peter paul"', '"peter paul mary"']
+      expect(query_author.send(:quote_wrap,
+                               ['peter', 'peter paul',
+                                'peter "paul" mary'])).to eq ['"peter"', '"peter paul"', '"peter paul mary"']
     end
   end
 
@@ -117,6 +121,7 @@ describe WebOfScience::QueryAuthor, :vcr do
     describe '#names' do
       let(:author_one_identity) { create :author }
       let(:bad_alternate_identity) { create :author_identity }
+
       before do
         bad_alternate_identity.update(first_name: '.')
         author_one_identity.author_identities << bad_alternate_identity
@@ -125,7 +130,8 @@ describe WebOfScience::QueryAuthor, :vcr do
       it 'ignores the bad alternate identity data' do
         expect(author_one_identity.author_identities.first.first_name).to eq '.' # bad first name
         # we get three name variants out (we would have more if we allowed the bad name variant)
-        expect(described_class.new(author_one_identity).send(:names)).to eq %w[Edler,Alice Edler,Alice,Jim Edler,Alice,J]
+        expect(described_class.new(author_one_identity).send(:names)).to eq %w[Edler,Alice Edler,Alice,Jim
+                                                                               Edler,Alice,J]
       end
     end
   end

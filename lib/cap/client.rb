@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Cap
   class Client
     # Fetch a single object from CAP server and test its response
@@ -8,7 +10,7 @@ module Cap
 
     def get_batch_from_cap_api(page_count = 1, page_size = 1000, since = '')
       params = "?p=#{page_count}&ps=#{page_size}"
-      params << "&since=#{since}" if since.present?
+      params = "#{params}&since=#{since}" if since.present?
       api_request(params)
     end
 
@@ -56,13 +58,13 @@ module Cap
     # CAP client connection settings
     #
 
-    API_URI = "#{Settings.CAP.AUTHORSHIP_API_URI}:#{Settings.CAP.AUTHORSHIP_API_PORT}".freeze
+    API_URI = "#{Settings.CAP.AUTHORSHIP_API_URI}:#{Settings.CAP.AUTHORSHIP_API_PORT}"
     API_PATH = Settings.CAP.AUTHORSHIP_API_PATH.freeze
     API_TIMEOUT_PERIOD = 500
     API_TIMEOUT_OPEN = 10
     API_TIMEOUT_RETRIES = 3
 
-    AUTH_URI = "#{Settings.CAP.TOKEN_URI}#{Settings.CAP.TOKEN_PATH}".freeze
+    AUTH_URI = "#{Settings.CAP.TOKEN_URI}#{Settings.CAP.TOKEN_PATH}"
     AUTH_CODE = Base64.strict_encode64("#{Settings.CAP.TOKEN_USER}:#{Settings.CAP.TOKEN_PASS}").freeze
 
     # CAP authentication client
@@ -70,7 +72,7 @@ module Cap
     def auth_client
       @auth_client ||= begin
         conn = connection(AUTH_URI)
-        conn.headers[:Authorization] = "Basic #{AUTH_CODE}".freeze
+        conn.headers[:Authorization] = "Basic #{AUTH_CODE}"
         conn
       end
     end

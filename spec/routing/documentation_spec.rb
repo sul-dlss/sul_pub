@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe 'Documentation routing' do
   it 'routes root path to api' do
     expect(get: '/').to route_to(

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # IdentifierNormalizer
 # - normalize PublicationIdentifier data
 # - uses lib/identifier_parser_[type] to normalize that type of identifier
@@ -26,7 +28,7 @@ class IdentifierNormalizer
     pub_id_destroy(pub_id) if delete_blanks
   rescue IdentifierParserInvalidError
     pub_id_destroy(pub_id) if delete_invalid
-  rescue => e
+  rescue StandardError => e
     logger.error e.inspect
   end
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe SMCIReport do
   before { allow(Logger).to receive(:new).and_return(null_logger) }
 
@@ -13,7 +15,10 @@ describe SMCIReport do
       expect { described_class.new(input_file: input_csv) }.to raise_error(RuntimeError)
     end
     it 'raises an exception with a bogus date_since' do
-      expect { described_class.new(input_file: input_csv, output_file: output_csv, date_since: 'bogus') }.to raise_error(ArgumentError)
+      expect do
+        described_class.new(input_file: input_csv, output_file: output_csv,
+                            date_since: 'bogus')
+      end.to raise_error(ArgumentError)
     end
   end
 
@@ -21,7 +26,9 @@ describe SMCIReport do
     let(:author) { create :russ_altman }
     let(:publication) { create :publication }
     let(:contribution) { create :contribution }
-    let(:wos_retriever) { instance_double(WebOfScience::Retriever, next_batch: WebOfScience::Records.new(records: '<xml/>')) }
+    let(:wos_retriever) do
+      instance_double(WebOfScience::Retriever, next_batch: WebOfScience::Records.new(records: '<xml/>'))
+    end
 
     before do
       allow(WebOfScience::QueryAuthor).to receive(:new).and_return(query_author)
@@ -50,7 +57,8 @@ describe SMCIReport do
 
       it 'runs with dates specified' do
         expect(File.exist?(output_csv)).to be false
-        report = described_class.new(input_file: input_csv, output_file: output_csv, date_since: '1/1/2020', time_span: '1year')
+        report = described_class.new(input_file: input_csv, output_file: output_csv, date_since: '1/1/2020',
+                                     time_span: '1year')
         result = report.run
         expect(WebOfScience.queries).not_to receive(:retrieve_by_id) # lots of pubs means no need to fetch them
         expect(File.exist?(output_csv)).to be true
@@ -89,13 +97,17 @@ describe SMCIReport do
     let(:date) { Time.now }
 
     it 'creates an output for a profile author' do
-      result = report.send(:output_row, pub_hash: pub_hash, author: author, harvested_at: date, publication_status: 'new')
-      expect(result).to eq(['some title', '', '', '', '', '', '', 'some publisher', '', '', '', '', nil, nil, '', nil, nil, nil, nil, author.last_name, author.first_name, author.sunetid, author.cap_profile_id, author.university_id, author.email, 'new', date, nil, nil, nil])
+      result = report.send(:output_row, pub_hash: pub_hash, author: author, harvested_at: date,
+                                        publication_status: 'new')
+      expect(result).to eq(['some title', '', '', '', '', '', '', 'some publisher', '', '', '', '', nil, nil, '', nil,
+                            nil, nil, nil, author.last_name, author.first_name, author.sunetid, author.cap_profile_id,
+                            author.university_id, author.email, 'new', date, nil, nil, nil])
     end
 
     it 'creates an output row for a non-profile author' do
       result = report.send(:output_row, orcid: '1234', pub_hash: pub_hash)
-      expect(result).to eq(['some title', '', '', '', '', '', '', 'some publisher', '', '', '', '', nil, nil, '', nil, nil, nil, '1234', '', '', '', '', '', '', 'unknown', Time.now.utc.to_s(:db), nil, nil, nil])
+      expect(result).to eq(['some title', '', '', '', '', '', '', 'some publisher', '', '', '', '', nil, nil, '', nil,
+                            nil, nil, '1234', '', '', '', '', '', '', 'unknown', Time.now.utc.to_s(:db), nil, nil, nil])
     end
   end
 end

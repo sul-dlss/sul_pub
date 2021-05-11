@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 namespace :batch_import do
   desc 'ingest publications from bibtex files '
   task bibtex: :environment do

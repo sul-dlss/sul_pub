@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Agent
   # Attributes used for creating author search queries
   class AuthorName
@@ -85,8 +87,11 @@ module Agent
     def middle_name_query
       return '' unless middle =~ /^[[:alpha:]]/
 
-      query =  ["#{last_name},#{first_name},#{middle_name}", "#{last_name},#{first_name},#{middle_initial}"]
-      query += ["#{last_name},#{first_initial}#{middle_initial}", "#{last_name},#{first_initial},#{middle_initial}"] if Settings.HARVESTER.USE_FIRST_INITIAL
+      query = ["#{last_name},#{first_name},#{middle_name}", "#{last_name},#{first_name},#{middle_initial}"]
+      if Settings.HARVESTER.USE_FIRST_INITIAL
+        query += ["#{last_name},#{first_initial}#{middle_initial}",
+                  "#{last_name},#{first_initial},#{middle_initial}"]
+      end
       query
     end
 
@@ -102,7 +107,7 @@ module Agent
       name.scan(/[[:upper:]]/).first.to_s
     end
 
-    PARTICLE_REGEX = /^el$|^da$|^de$|^del$|^do$|^dos$|^du$|^le$/
+    PARTICLE_REGEX = /^el$|^da$|^de$|^del$|^do$|^dos$|^du$|^le$/.freeze
 
     # If a name contains any capital letters, return it as is; otherwise
     # return a capitalized form of the name, taking into account some

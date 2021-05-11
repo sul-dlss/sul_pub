@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe Pubmed::Harvester do
   let(:harvester) { described_class.new }
   let(:author) { create :russ_altman }
@@ -37,7 +39,8 @@ describe Pubmed::Harvester do
       it 'aborts the harvest and returns no pmids' do
         expect(NotificationManager).to receive(:error).with(
           ::Harvester::Error,
-          "Pubmed::Harvester - Pubmed harvest returned more than #{Settings.PUBMED.max_publications_per_author} publications for author id #{author.id} and was aborted",
+          "Pubmed::Harvester - Pubmed harvest returned more than #{Settings.PUBMED.max_publications_per_author} " \
+            "publications for author id #{author.id} and was aborted",
           harvester
         )
         expect(harvester.process_author(author)).to eq([])

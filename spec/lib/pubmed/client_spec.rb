@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe Pubmed::Client do
   let(:pubmed_client) { described_class.new }
 
@@ -23,6 +25,7 @@ describe Pubmed::Client do
 
   describe '#search' do
     let(:term) { 'Altman R[author]' }
+
     context 'without additional arguments' do
       it 'returns a list of pubmed records' do
         VCR.use_cassette('Pubmed_Client/_search/returns_a_list') do
@@ -33,6 +36,7 @@ describe Pubmed::Client do
 
     context 'with additional arguments' do
       let(:addl_args) { 'reldate=90&datetype=edat' }
+
       it 'returns a list of pubmed records' do
         VCR.use_cassette('Pubmed_Client/_search/returns_a_smaller_list') do
           expect(Nokogiri::XML(pubmed_client.search(term, addl_args)).xpath('//IdList/Id').size).to eq(12)

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'nokogiri'
 
 class PubmedSourceRecord < ActiveRecord::Base
@@ -52,7 +54,7 @@ class PubmedSourceRecord < ActiveRecord::Base
           is_active: true,
           source_fingerprint: Digest::SHA2.hexdigest(pub_doc)
         )
-      rescue => e
+      rescue StandardError => e
         NotificationManager.error(e, "Cannot create PubmedSourceRecord with pmid: #{pmid}", self)
       end
     end
@@ -111,7 +113,10 @@ class PubmedSourceRecord < ActiveRecord::Base
     record_as_hash[:provenance] = Settings.pubmed_source
     record_as_hash[:pmid] = pmid
 
-    record_as_hash[:title] = publication.xpath('MedlineCitation/Article/ArticleTitle').text unless publication.xpath('MedlineCitation/Article/ArticleTitle').blank?
+    unless publication.xpath('MedlineCitation/Article/ArticleTitle').blank?
+      record_as_hash[:title] =
+        publication.xpath('MedlineCitation/Article/ArticleTitle').text
+    end
     record_as_hash[:abstract] = abstract unless abstract.blank?
 
     # See No. 20 at https://www.nlm.nih.gov/bsd/licensee/elements_descriptions.html
@@ -151,14 +156,29 @@ class PubmedSourceRecord < ActiveRecord::Base
     # record_as_hash[:publisher] =  publication.xpath('MedlineCitation/Article/').text unless publication.xpath("MedlineCitation/Article/").blank?
     # record_as_hash[:city] = publication.xpath('MedlineCitation/Article/').text unless publication.xpath("MedlineCitation/Article/").blank?
     # record_as_hash[:stateprovince] = publication.xpath('MedlineCitation/Article/').text unless publication.xpath("MedlineCitation/Article/").blank?
-    record_as_hash[:country] = publication.xpath('MedlineCitation/MedlineJournalInfo/Country').text unless publication.xpath('MedlineCitation/MedlineJournalInfo/Country').blank?
+    unless publication.xpath('MedlineCitation/MedlineJournalInfo/Country').blank?
+      record_as_hash[:country] =
+        publication.xpath('MedlineCitation/MedlineJournalInfo/Country').text
+    end
 
-    record_as_hash[:pages] = publication.xpath('MedlineCitation/Article/Pagination/MedlinePgn').text unless publication.xpath('MedlineCitation/Article/Pagination/MedlinePgn').blank?
+    unless publication.xpath('MedlineCitation/Article/Pagination/MedlinePgn').blank?
+      record_as_hash[:pages] =
+        publication.xpath('MedlineCitation/Article/Pagination/MedlinePgn').text
+    end
 
     journal_hash = {}
-    journal_hash[:name] = publication.xpath('MedlineCitation/Article/Journal/Title').text unless publication.xpath('MedlineCitation/Article/Journal/Title').blank?
-    journal_hash[:volume] = publication.xpath('MedlineCitation/Article/Journal/JournalIssue/Volume').text unless publication.xpath('MedlineCitation/Article/Journal/JournalIssue/Volume').blank?
-    journal_hash[:issue] = publication.xpath('MedlineCitation/Article/Journal/JournalIssue/Issue').text unless publication.xpath('MedlineCitation/Article/Journal/JournalIssue/Issue').blank?
+    unless publication.xpath('MedlineCitation/Article/Journal/Title').blank?
+      journal_hash[:name] =
+        publication.xpath('MedlineCitation/Article/Journal/Title').text
+    end
+    unless publication.xpath('MedlineCitation/Article/Journal/JournalIssue/Volume').blank?
+      journal_hash[:volume] =
+        publication.xpath('MedlineCitation/Article/Journal/JournalIssue/Volume').text
+    end
+    unless publication.xpath('MedlineCitation/Article/Journal/JournalIssue/Issue').blank?
+      journal_hash[:issue] =
+        publication.xpath('MedlineCitation/Article/Journal/JournalIssue/Issue').text
+    end
     # journal_hash[:articlenumber] = publication.xpath('ArticleNumber') unless publication.xpath('ArticleNumber').blank?
     # journal_hash[:pages] = publication.xpath('Pagination').text unless publication.xpath('Pagination').blank?
     journal_identifiers = []
@@ -172,7 +192,10 @@ class PubmedSourceRecord < ActiveRecord::Base
     # the DOI can be in one of two places: ArticleId or ELocationID
     doi = publication.at_xpath('//ArticleId[@IdType="doi"]')
     doi = publication.at_xpath('//ELocationID[@EIdType="doi"]') unless doi.present? && doi.text.present?
-    record_as_hash[:identifier] << { type: 'doi', id: doi.text, url: "#{Settings.DOI.BASE_URI}#{doi.text}" } if doi.present? && doi.text.present?
+    if doi.present? && doi.text.present?
+      record_as_hash[:identifier] << { type: 'doi', id: doi.text,
+                                       url: "#{Settings.DOI.BASE_URI}#{doi.text}" }
+    end
     pmc = publication.at_xpath('//ArticleId[@IdType="pmc"]')
     record_as_hash[:identifier] << { type: 'pmc', id: pmc.text } if pmc.present? && pmc.text.present?
     record_as_hash

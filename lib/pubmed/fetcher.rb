@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Pubmed
   # For fetching single publications by pmid.
   class Fetcher
@@ -7,7 +9,7 @@ module Pubmed
     # @return [Array<Hash>] publications in BibJson format or, if none found, an empty Array
     def self.search_all_sources_by_pmid(pmid)
       pub = Publication.find_by(pmid: pmid) || Publication.find_by_pmid_pub_id(pmid)
-      return [pub.pub_hash] if pub && pub.authoritative_pmid_source?
+      return [pub.pub_hash] if pub&.authoritative_pmid_source?
 
       result = fetch_remote_pubmed(pmid)
       return result unless result.empty?

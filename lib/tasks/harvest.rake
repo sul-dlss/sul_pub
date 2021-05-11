@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 namespace :harvest do
   desc 'Harvest from all sources, for all authors, for all time'
   task all_authors: :environment do

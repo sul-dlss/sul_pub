@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AuthorsController < ApplicationController
   before_action :check_authorization
   before_action :ensure_json_request

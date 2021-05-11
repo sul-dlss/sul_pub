@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Publication < ActiveRecord::Base
   has_paper_trail on: [:destroy]
   scope :with_active_author, -> { joins(:authors).where('authors.active_in_cap' => true).distinct }
@@ -84,7 +86,10 @@ class Publication < ActiveRecord::Base
   # @return [Publication] new object, unsaved
   def self.build_new_manual_publication(pub_hash, original_source_string)
     existingRecord = UserSubmittedSourceRecord.find_or_initialize_by_source_data(original_source_string)
-    raise ActiveRecord::RecordNotUnique, 'Publication for user submitted source record already exists' if existingRecord && existingRecord.publication
+    if existingRecord&.publication
+      raise ActiveRecord::RecordNotUnique,
+            'Publication for user submitted source record already exists'
+    end
 
     Publication.new(active: true, pub_hash: pub_hash)
                .update_manual_pub_from_pub_hash(pub_hash, original_source_string)
@@ -186,7 +191,8 @@ class Publication < ActiveRecord::Base
   end
 
   def set_last_updated_value_in_hash
-    pub_hash[:last_updated] = Time.zone.now.to_s # TODO: this really shouldn't update if nothing changed (or make pub_hash dynamic and use model's updated_at column)
+    # TODO: this really shouldn't update if nothing changed (or make pub_hash dynamic and use model's updated_at column)
+    pub_hash[:last_updated] = Time.zone.now.to_s
   end
 
   def set_sul_pub_id_in_hash
@@ -198,7 +204,7 @@ class Publication < ActiveRecord::Base
 
   def add_all_db_contributions_to_my_pub_hash
     pub_hash[:authorship] = contributions.map(&:to_pub_hash) if pub_hash
-  rescue => e
+  rescue StandardError => e
     message = "some problem with adding contributions to the hash for publications.id=#{id}: pub_hash=#{pub_hash}"
     NotificationManager.log_exception(logger, message, e)
   end
@@ -278,7 +284,9 @@ class Publication < ActiveRecord::Base
       next if identifier[:type].blank? || identifier[:type] =~ /^SULPubId$/i
       next if identifier[:id].blank? # don't reproduce bad data
 
-      i = publication_identifiers.find { |x| x.identifier_type == identifier[:type] } # find includes not yet saved pub ids
+      i = publication_identifiers.find do |x|
+        x.identifier_type == identifier[:type]
+      end
       i ||= publication_identifiers.find_or_initialize_by(identifier_type: identifier[:type])
       i.certainty        = 'confirmed'
       i.identifier_value = identifier[:id]
@@ -305,7 +313,9 @@ class Publication < ActiveRecord::Base
 
   def update_any_new_contribution_info_in_pub_hash_to_db
     Array(pub_hash[:authorship]).each do |contrib|
-      hash_for_update = contrib.slice(:status, :visibility, :featured).each { |_k, v| v.downcase! if v.respond_to?(:downcase!) }
+      hash_for_update = contrib.slice(:status, :visibility, :featured).each do |_k, v|
+        v.downcase! if v.respond_to?(:downcase!)
+      end
       # Find or create an Author of the contribution
       cap_profile_id = contrib[:cap_profile_id]
       author = Author.find_by_id(contrib[:sul_author_id])
@@ -313,7 +323,7 @@ class Publication < ActiveRecord::Base
         author ||= Author.find_by_cap_profile_id(cap_profile_id)
         author ||= begin
           Author.fetch_from_cap_and_create(cap_profile_id)
-        rescue => e
+        rescue StandardError => e
           msg = "error retrieving CAP profile #{cap_profile_id} for contribution: #{contrib}"
           NotificationManager.log_exception(NotificationManager.cap_logger, msg, e)
           nil

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Load Shared Examples
 require Rails.root.join('spec', 'support', 'identifier_parser_shared_examples.rb')
 
@@ -20,13 +22,15 @@ describe IdentifierParserISBN do
   end
 
   # Happy paths
+  let(:invalid_value) { '978' }
+
   it_behaves_like 'parser_new_works'
   it_behaves_like 'valid_identifier'
 
   # Un-happy paths
   it_behaves_like 'blank_identifiers_raise_exception'
   it_behaves_like 'other_identifiers_raise_exception'
-  let(:invalid_value) { '978' }
+
   it_behaves_like 'invalid_value'
 
   # ---

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe Pubmed::Fetcher, :vcr do
   let(:author) { create :author }
   let(:pub_hash) do
@@ -80,7 +82,9 @@ describe Pubmed::Fetcher, :vcr do
 
   # private
   describe '.fetch_remote_pubmed' do
-    subject(:hits) { described_class.send(:fetch_remote_pubmed, 24_930_130) } # backed by VCR cassettes for each provider
+    subject(:hits) do
+      described_class.send(:fetch_remote_pubmed, 24_930_130)
+    end
 
     context 'Pubmed enabled and WOS disabled' do
       before do
@@ -112,7 +116,8 @@ describe Pubmed::Fetcher, :vcr do
       it 'searches Pubmed next if no results found at WoS' do
         expect(WebOfScience.queries).to receive(:retrieve_by_pmid)
           .with([24_930_130])
-          .and_return(instance_double(WebOfScience::Retriever, next_batch: WebOfScience::Records.new(records: '<xml/>')))
+          .and_return(instance_double(WebOfScience::Retriever,
+                                      next_batch: WebOfScience::Records.new(records: '<xml/>')))
         expect(Pubmed.client).to receive(:fetch_records_for_pmid_list)
           .and_return([])
         expect(hits).to eq([])

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module MyAppUtf8
   class SetNamesUtf8
     def self.filter(_controller)

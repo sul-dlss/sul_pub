@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UpdateMeshHeadings
   def initialize
     @logger = Logger.new(Rails.root.join('log', 'update_mesh_headings.log'))
@@ -19,7 +21,7 @@ class UpdateMeshHeadings
         count += 1
         process pmid
         @logger.info "Processed #{count}" if count % 500 == 0
-      rescue => e
+      rescue StandardError => e
         @errors += 1
         @logger.error "Unable to process #{pmid}: #{e.inspect}"
         @logger.error e.backtrace.join("\n")

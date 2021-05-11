@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe AuthorHarvestJob, type: :job do
   include ActiveJob::TestHelper
 

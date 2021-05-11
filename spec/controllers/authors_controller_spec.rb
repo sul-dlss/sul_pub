@@ -1,5 +1,8 @@
+# frozen_string_literal: true
+
 describe AuthorsController do
   let(:author) { create(:author) }
+
   describe 'POST harvest' do
     it 'ensures authorization header is present' do
       post :harvest, params: { cap_profile_id: 123 }
@@ -9,6 +12,7 @@ describe AuthorsController do
       before do
         expect(controller).to receive(:check_authorization).and_return(true)
       end
+
       it 'ensures the request is json' do
         post :harvest, params: { cap_profile_id: 123 }
         expect(response.status).to eq 406

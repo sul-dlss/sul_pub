@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe 'Authorization checks' do
   context 'for Rails controllers' do
     context 'when no CAPKEY provided' do
@@ -6,6 +8,7 @@ describe 'Authorization checks' do
         expect(response.status).to eq 401
       end
     end
+
     context 'when incorrect CAPKEY provided' do
       it 'returns a 403' do
         get '/publications', headers: { 'CAPKEY' => 'not correct' }
@@ -13,6 +16,7 @@ describe 'Authorization checks' do
       end
     end
   end
+
   context 'for authorship API' do
     context 'when no CAPKEY provided' do
       it 'returns a 401' do
@@ -20,6 +24,7 @@ describe 'Authorization checks' do
         expect(response.status).to eq 401
       end
     end
+
     context 'when incorrect CAPKEY provided' do
       it 'returns a 403' do
         post '/authorship', headers: { 'CAPKEY' => 'not correct' }

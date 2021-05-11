@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # rubocop:disable Metrics/BlockLength
 describe PublicationsController, :vcr do
   before do
@@ -137,7 +139,7 @@ describe PublicationsController, :vcr do
     pub_hash = pub_hash.with_indifferent_access
     expect(pub_hash[:author]).to eq(submission['author'])
     expect(pub_hash[:authorship].length).to eq(submission['authorship'].length)
-    matching_fields = %w(visibility status featured cap_profile_id)
+    matching_fields = %w[visibility status featured cap_profile_id]
     pub_hash[:authorship].each_with_index do |pub_authorship, index|
       sub_authorship = submission['authorship'][index]
       expect(sub_authorship).not_to be_empty
@@ -154,6 +156,7 @@ describe PublicationsController, :vcr do
 
   describe 'list publications' do
     let(:cap_id) { 'whatever' }
+
     it 'checks authorization' do
       expect(controller).to receive(:check_authorization)
       get :index, params: { capProfileId: cap_id, format: 'json' }
@@ -169,6 +172,7 @@ describe PublicationsController, :vcr do
 
     context 'with known capProfileId in json format' do
       let(:json_response) { JSON.parse(response.body) }
+
       before { allow(Author).to receive(:find_by).with(cap_profile_id: cap_id).and_return(author) }
 
       it 'returns a structured response' do
@@ -187,7 +191,8 @@ describe PublicationsController, :vcr do
       it 'returns a structured response' do
         get :index, params: { capProfileId: cap_id, format: 'csv' }
         expect(response.status).to eq 200
-        expect(response.body).to eq "sul_pub_id,sciencewire_id,pubmed_id,doi,wos_id,title,journal,year,pages,issn,status_for_this_author,created_at,updated_at,contributor_cap_profile_ids\n"
+        expect(response.body).to eq 'sul_pub_id,sciencewire_id,pubmed_id,doi,wos_id,title,journal,year,pages,issn,' \
+                                    "status_for_this_author,created_at,updated_at,contributor_cap_profile_ids\n"
       end
     end
   end
@@ -371,7 +376,10 @@ describe PublicationsController, :vcr do
 
       context 'WOS enabled' do
         let(:queries) { instance_double(WebOfScience::Queries) }
-        let(:retriever) { instance_double(WebOfScience::Retriever, next_batch: WebOfScience::Records.new(records: '<xml/>')) }
+        let(:retriever) do
+          instance_double(WebOfScience::Retriever, next_batch: WebOfScience::Records.new(records: '<xml/>'))
+        end
+
         before do
           allow(Settings.WOS).to receive(:enabled).and_return(true)
           allow(WebOfScience::Queries).to receive(:new).with('WOS').and_return(queries)
@@ -430,7 +438,7 @@ describe PublicationsController, :vcr do
         post_valid_json
         expect(last_pub.title).to eq(submission['title'])
         expect(last_pub.year).to eq(submission['year'])
-        expect(last_pub.pages).to eq(submission['pages'].sub('-', '–')) # em-dash
+        expect(last_pub.pages).to eq(submission['pages'])
         expect(last_pub.issn).to eq(submission['issn'])
       end
 
@@ -457,7 +465,8 @@ describe PublicationsController, :vcr do
       end
 
       it 'does not duplicate SULPubIds' do
-        json_with_sul_pub_id = { type: 'book', identifier: [{ type: 'SULPubId', id: 'n', url: 'm' }], authorship: [{ sul_author_id: author.id, status: 'denied', visibility: 'public', featured: true }] }.to_json
+        json_with_sul_pub_id = { type: 'book', identifier: [{ type: 'SULPubId', id: 'n', url: 'm' }],
+                                 authorship: [{ sul_author_id: author.id, status: 'denied', visibility: 'public', featured: true }] }.to_json
         post :create, body: json_with_sul_pub_id, params: { format: 'json' }
         expect(response.status).to eq(201)
         expect(result['identifier'].count { |x| x['type'] == 'SULPubId' }).to eq(1)
@@ -473,7 +482,8 @@ describe PublicationsController, :vcr do
         expect(result['identifier']).to include(
           a_hash_including('id' => '1177188188181', 'type' => 'isbn'),
           a_hash_including('type' => 'doi', 'url' => 'https://doi.org/18819910019'),
-          a_hash_including('type' => 'SULPubId', 'url' => "#{Settings.SULPUB_ID.PUB_URI}/#{last_pub.id}", 'id' => last_pub.id.to_s)
+          a_hash_including('type' => 'SULPubId', 'url' => "#{Settings.SULPUB_ID.PUB_URI}/#{last_pub.id}",
+                           'id' => last_pub.id.to_s)
         )
         expect(last_pub.publication_identifiers.size).to eq(2)
         expect(last_pub.publication_identifiers.map(&:identifier_type)).to include('doi', 'isbn')
@@ -595,6 +605,7 @@ describe PublicationsController, :vcr do
 
       context 'when existing pub already has' do
         let(:id) { '1' }
+
         before { allow(Publication).to receive(:find_by).with(id: id).and_return(publication) }
 
         it 'been deleted' do
@@ -635,7 +646,8 @@ describe PublicationsController, :vcr do
       allow(Publication)
         .to receive(:find_by)
         .with(id: '123')
-        .and_return(instance_double(Publication, pub_hash: { 'provenance' => 'sciencewire', 'type' => 'article' }, deleted?: false))
+        .and_return(instance_double(Publication, pub_hash: { 'provenance' => 'sciencewire', 'type' => 'article' },
+                                                 deleted?: false))
       get :show, params: { id: '123', format: 'json' }
       expect(response.status).to eq(200)
       expect(JSON.parse(response.body)).to include('provenance' => 'sciencewire', 'type' => 'article')
@@ -677,7 +689,7 @@ describe PublicationsController, :vcr do
         get :index, params: { page: 1, per: 7, format: 'json' }
         expect(response.headers['Content-Type']).to be =~ %r{application/json}
         expect(result['metadata']).to include('records' => '7', 'page' => 1)
-        expect(result['records'][2]['author']).to eq ["name" => "Jackson, Joe"]
+        expect(result['records'][2]['author']).to eq ['name' => 'Jackson, Joe']
         expect(response.status).to eq(200)
       end
 

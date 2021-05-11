@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe WebOfScience::MapAbstract do
   subject(:mapper) { described_class.new(wos_record) }
 
@@ -87,8 +89,10 @@ describe WebOfScience::MapAbstract do
     end
 
     it 'confirms title and abstract have leading/trailing whitespace removed' do
-      expect(pub_hash[:abstract_restricted][0, 10]).to eq 'A critical' # whitespace trimmed from the front so the first characters of the abstract are not whitespace
-      expect(pub_hash[:abstract_restricted][-12, 12]).to eq 'predictions.' # whitespace trimmed from the front so the last characters of the abstract are not whitespace
+      # whitespace trimmed from the front so the first characters of the abstract are not whitespace
+      expect(pub_hash[:abstract_restricted][0, 10]).to eq 'A critical'
+      # whitespace trimmed from the front so the last characters of the abstract are not whitespace
+      expect(pub_hash[:abstract_restricted][-12, 12]).to eq 'predictions.'
     end
 
     it_behaves_like 'pub_hash'

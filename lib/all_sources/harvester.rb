@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # a class that will harvest from all sources, useful for the regular cron jobs
 module AllSources
   class Harvester < ::Harvester::Base

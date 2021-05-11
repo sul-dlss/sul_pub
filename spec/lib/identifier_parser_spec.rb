@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Load Shared Examples
 require Rails.root.join('spec', 'support', 'identifier_parser_shared_examples.rb')
 

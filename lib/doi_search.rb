@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'identifiers'
 
 class DoiSearch
@@ -9,7 +11,7 @@ class DoiSearch
   # @return [Array<Hash>] matching hashes
   def self.search(doi)
     pub = Publication.find_by_doi(doi)
-    return [pub.pub_hash] if pub && pub.authoritative_doi_source?
+    return [pub.pub_hash] if pub&.authoritative_doi_source?
 
     results = web_of_science(doi)
     if results.present?

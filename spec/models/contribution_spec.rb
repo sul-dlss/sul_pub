@@ -1,4 +1,8 @@
+# frozen_string_literal: true
+
 describe Contribution do
+  subject { pub_with_contrib.contributions.first }
+
   let(:pub_with_contrib) do
     # The publication is defined in /spec/factories/publication.rb
     # The contributions are are defined in /spec/factories/contribution.rb
@@ -13,8 +17,6 @@ describe Contribution do
   # return JSON because this is what the sul-pub API receives
   let(:authorship_json) { pub_with_contrib.pub_hash[:authorship].first.to_json }
   let(:authorship) { JSON.parse(authorship_json) } # parse authorship_json like sul-pub API
-
-  subject { pub_with_contrib.contributions.first }
 
   # used by OK Computer checks, once broken by after_initialize/#init method
   describe '#select' do
@@ -54,7 +56,10 @@ describe Contribution do
   end
 
   context 'ActiveRecord validation' do
-    let(:params) { { publication_id: pub_with_contrib.id, author_id: subject.author.id, visibility: 'private', status: 'approved' } }
+    let(:params) do
+      { publication_id: pub_with_contrib.id, author_id: subject.author.id, visibility: 'private', status: 'approved' }
+    end
+
     it 'constrains field values' do
       expect { described_class.create!(params) }.not_to raise_error
       expect { described_class.create! }.to raise_error ActiveRecord::RecordInvalid

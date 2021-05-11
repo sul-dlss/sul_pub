@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'parallel'
 
 class Finder
@@ -11,7 +13,7 @@ class Finder
       @logger.info "Fixing #{pub.id}"
       pub.rebuild_pub_hash
     end
-  rescue => e
+  rescue StandardError => e
     @logger.error "Problem with pub #{pub.id}: #{e.inspect}"
     @logger.error e.backtrace.join "\n"
   end

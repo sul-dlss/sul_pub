@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class MergeDuplicateAuthorship
   def initialize
     @log_merge = logger 'duplicate_authorship_merge.log'
@@ -56,7 +58,7 @@ class MergeDuplicateAuthorship
       end
     end
     false
-  rescue => e
+  rescue StandardError => e
     msg = "Problem with publication: #{pub[:id]}\n"
     msg += "#{e.inspect}\n"
     msg += e.backtrace.join("\n")
@@ -76,7 +78,7 @@ class MergeDuplicateAuthorship
         @logger.info "Publication #{pub[:id]} modified and saved at #{pub[:updated_at]}"
       end
     end
-  rescue => e
+  rescue StandardError => e
     msg = "Problem with publication: #{pub[:id]}\n"
     msg += "#{e.inspect}\n"
     msg += e.backtrace.join("\n")
@@ -89,7 +91,7 @@ class MergeDuplicateAuthorship
     Publication.find_each(batch_size: 500) do |pub|
       duplicate_authorship? pub
     end
-  rescue => e
+  rescue StandardError => e
     msg = "#{e.inspect}\n"
     msg += e.backtrace.join("\n")
     @logger.error msg
@@ -102,7 +104,7 @@ class MergeDuplicateAuthorship
       merge_authorship pub
     end
     @logger.info "Records modified: #{@records_modified}"
-  rescue => e
+  rescue StandardError => e
     msg = "#{e.inspect}\n"
     msg += e.backtrace.join("\n")
     @logger.error msg

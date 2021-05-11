@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'htmlentities'
 
 describe WebOfScience::Record do
@@ -17,12 +19,14 @@ describe WebOfScience::Record do
         expect(wos_record_decoded).to be_an described_class
       end
     end
+
     context 'MEDLINE records' do
       it 'works with encoded and decoded records' do
         expect(medline_record_encoded).to be_an described_class
         expect(medline_record_decoded).to be_an described_class
       end
     end
+
     it 'raises RuntimeError with nil params' do
       expect { described_class.new }.to raise_error(RuntimeError)
     end
@@ -50,7 +54,9 @@ describe WebOfScience::Record do
 
   context 'names' do
     # In this WOS-record, Russ Altman is both an "author" and a "book_editor"
-    let(:wos_record) { described_class.new(record: File.read('spec/fixtures/wos_client/wos_record_000386326200035.xml')) }
+    let(:wos_record) do
+      described_class.new(record: File.read('spec/fixtures/wos_client/wos_record_000386326200035.xml'))
+    end
     let(:uid) { 'WOS:000386326200035' }
     let(:agent) { agents.first }
 
@@ -65,6 +71,7 @@ describe WebOfScience::Record do
 
     describe '#editors' do
       let(:agents) { wos_record.editors }
+
       it_behaves_like 'it is an array of names'
       it 'contains editor values' do
         expect(agent).to include('first_name' => 'RB', 'last_name' => 'Altman', 'role' => 'book_editor')
@@ -73,6 +80,7 @@ describe WebOfScience::Record do
 
     describe '#names' do
       let(:agents) { wos_record.names }
+
       it_behaves_like 'it is an array of names'
     end
   end
@@ -113,6 +121,7 @@ describe WebOfScience::Record do
         'pubyear' => '1972',
         'page' => { 'end' => '413', 'page_count' => '1', 'begin' => '413' } }
     end
+
     it 'works' do
       expect(wos_record_encoded.pub_info).to match a_hash_including(pub_info_hash)
     end

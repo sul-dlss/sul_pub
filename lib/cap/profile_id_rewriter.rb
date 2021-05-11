@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # @deprecated
 # This class was only ever used on Stage/Cap-QA servers.  It exists because our non-production
 # servers connect to non-production CAP Profile servers to retrieve authors, and those servers
@@ -35,10 +37,12 @@ module Cap
       counts[:page_count] = starting
       until process_next_batch_of_authorship_data(counts[:page_count], 1000)
         counts[:page_count] += 1
-        logger.info "#{counts[:total_running_count]} records processed in #{distance_of_time_in_words_to_now(start_time, true)}"
+        logger.info "#{counts[:total_running_count]} records processed in #{distance_of_time_in_words_to_now(
+          start_time, true
+        )}"
       end
-    rescue => e
-      NotificationManager.log_exception(logger, "cap profile id rewrite import failed", e)
+    rescue StandardError => e
+      NotificationManager.log_exception(logger, 'cap profile id rewrite import failed', e)
     ensure
       write_counts_to_log
     end
@@ -86,7 +90,7 @@ module Cap
       json_response['values'].each do |record|
         counts[:total_running_count] += 1
         attrs = Author.build_attribute_hash_from_cap_profile(record)
-        good_keys = [:sunetid, :university_id, :california_physician_license].select { |key| attrs[key].present? }
+        good_keys = %i[sunetid university_id california_physician_license].select { |key| attrs[key].present? }
         author = good_keys.inject(nil) { |memo, key| memo || Author.find_by(key => attrs[key]) } # first hit wins
 
         if author

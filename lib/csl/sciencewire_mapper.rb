@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Csl
   # Convert ScienceWire content into a CSL format
   class SciencewireMapper

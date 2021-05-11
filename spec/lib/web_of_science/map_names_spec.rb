@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe WebOfScience::MapNames do
   # In this WOS-record, Russ Altman is both an "author" and a "book_editor"
   let(:wos_encoded_xml) { File.read('spec/fixtures/wos_client/wos_record_000386326200035.xml') }
@@ -62,23 +64,33 @@ describe WebOfScience::MapNames do
     end
     it 'parses wos names where the first and middle initial are in the first name field and adds the :name variant' do
       name = { first_name: 'John Q.', middle_name: '', last_name: 'Public' }
-      expect(pub_hash_class.send(:wos_name, name)).to eq(first_name: 'John', middle_name: 'Q', last_name: 'Public', name: 'Public,John,Q')
+      expect(pub_hash_class.send(:wos_name,
+                                 name)).to eq(first_name: 'John', middle_name: 'Q', last_name: 'Public',
+                                              name: 'Public,John,Q')
     end
     it 'parses wos names where the first and middle initial without a period are in the first name field and adds the :name variant' do
       name = { first_name: 'John Q', middle_name: '', last_name: 'Public' }
-      expect(pub_hash_class.send(:wos_name, name)).to eq(first_name: 'John', middle_name: 'Q', last_name: 'Public', name: 'Public,John,Q')
+      expect(pub_hash_class.send(:wos_name,
+                                 name)).to eq(first_name: 'John', middle_name: 'Q', last_name: 'Public',
+                                              name: 'Public,John,Q')
     end
     it 'parses wos names where the first name has multiple words including the middle initial and adds the :name variant' do
       name = { first_name: 'John Quimby Q', middle_name: '', last_name: 'Public' }
-      expect(pub_hash_class.send(:wos_name, name)).to eq(first_name: 'John Quimby', middle_name: 'Q', last_name: 'Public', name: 'Public,John Quimby,Q')
+      expect(pub_hash_class.send(:wos_name,
+                                 name)).to eq(first_name: 'John Quimby', middle_name: 'Q', last_name: 'Public',
+                                              name: 'Public,John Quimby,Q')
     end
     it 'parses wos names where the initial is also in the first name adds the :name variant' do
       name = { first_name: 'Russel R. R.', middle_name: '', last_name: 'Public' }
-      expect(pub_hash_class.send(:wos_name, name)).to eq(first_name: 'Russel R.', middle_name: 'R', last_name: 'Public', name: 'Public,Russel R.,R')
+      expect(pub_hash_class.send(:wos_name,
+                                 name)).to eq(first_name: 'Russel R.', middle_name: 'R', last_name: 'Public',
+                                              name: 'Public,Russel R.,R')
     end
     it 'parses wos names where the first name has more than word and adds the :name variant' do
       name = { first_name: 'John Quincy', middle_name: '', last_name: 'Public' }
-      expect(pub_hash_class.send(:wos_name, name)).to eq(first_name: 'John Quincy', middle_name: '', last_name: 'Public', name: 'Public,John Quincy,')
+      expect(pub_hash_class.send(:wos_name,
+                                 name)).to eq(first_name: 'John Quincy', middle_name: '', last_name: 'Public',
+                                              name: 'Public,John Quincy,')
     end
     it 'works when the first_name is missing' do
       name = { last_name: 'Public' }
@@ -86,7 +98,9 @@ describe WebOfScience::MapNames do
     end
     it 'parses and returns the correct name for anonymous records' do
       name = { display_name: '[Anonymous]', full_name: '[Anonymous]' }
-      expect(pub_hash_class.send(:wos_name, name)).to eq(name: '[Anonymous],,', full_name: '[Anonymous]', display_name: '[Anonymous]')
+      expect(pub_hash_class.send(:wos_name,
+                                 name)).to eq(name: '[Anonymous],,', full_name: '[Anonymous]',
+                                              display_name: '[Anonymous]')
     end
     it_behaves_like 'pub_hash'
     it_behaves_like 'contains_author_data'
@@ -102,7 +116,9 @@ describe WebOfScience::MapNames do
       csl_authors = described_class.authors_to_csl(pub_hash[:author])
       expect(csl_authors).to eq []
       expect(csl_authors.count).to eq pub_hash[:authorcount]
-      expect(pub_hash_class.send(:extract_names, medline_record_anon)).to eq([{ display_name: '[Anonymous]', role: 'anon', last_name: '[Anonymous]', given_name: nil, name: '[Anonymous],,' }])
+      expect(pub_hash_class.send(:extract_names,
+                                 medline_record_anon)).to eq([{ display_name: '[Anonymous]', role: 'anon', last_name: '[Anonymous]', given_name: nil,
+                                                                name: '[Anonymous],,' }])
     end
     it_behaves_like 'pub_hash'
   end
@@ -120,19 +136,27 @@ describe WebOfScience::MapNames do
     end
     it 'parses full_name if display_name missing and adds the :name variant' do
       name = { full_name: 'Public, John Q' }
-      expect(pub_hash_class.send(:medline_name, name)).to eq(first_name: 'John', middle_name: 'Q', last_name: 'Public', name: 'Public,John,Q', full_name: 'Public, John Q', given_name: 'John Q')
+      expect(pub_hash_class.send(:medline_name,
+                                 name)).to eq(first_name: 'John', middle_name: 'Q', last_name: 'Public', name: 'Public,John,Q',
+                                              full_name: 'Public, John Q', given_name: 'John Q')
     end
     it 'parses display_name if full_name missing and adds the :name variant' do
       name = { display_name: 'Public, John Q' }
-      expect(pub_hash_class.send(:medline_name, name)).to eq(first_name: 'John', middle_name: 'Q', last_name: 'Public', name: 'Public,John,Q', display_name: 'Public, John Q', given_name: 'John Q')
+      expect(pub_hash_class.send(:medline_name,
+                                 name)).to eq(first_name: 'John', middle_name: 'Q', last_name: 'Public', name: 'Public,John,Q',
+                                              display_name: 'Public, John Q', given_name: 'John Q')
     end
     it 'parses full_name with just two initials and adds the :name variant' do
       name = { full_name: 'Public, J Q' }
-      expect(pub_hash_class.send(:medline_name, name)).to eq(first_name: 'J', middle_name: 'Q', last_name: 'Public', name: 'Public,J,Q', full_name: 'Public, J Q', given_name: 'J Q')
+      expect(pub_hash_class.send(:medline_name,
+                                 name)).to eq(first_name: 'J', middle_name: 'Q', last_name: 'Public', name: 'Public,J,Q', full_name: 'Public, J Q',
+                                              given_name: 'J Q')
     end
     it 'parses and returns the correct name for anonymous records' do
       name = { display_name: '[Anonymous]', full_name: '[Anonymous]' }
-      expect(pub_hash_class.send(:medline_name, name)).to eq(last_name: '[Anonymous]', name: '[Anonymous],,', full_name: '[Anonymous]', display_name: '[Anonymous]', given_name: nil)
+      expect(pub_hash_class.send(:medline_name,
+                                 name)).to eq(last_name: '[Anonymous]', name: '[Anonymous],,', full_name: '[Anonymous]', display_name: '[Anonymous]',
+                                              given_name: nil)
     end
     it_behaves_like 'pub_hash'
     it_behaves_like 'contains_author_data'

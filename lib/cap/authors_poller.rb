@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'dotiw'
 require 'time'
 
@@ -21,16 +23,14 @@ module Cap
       @total_records = cap_authors_count(days_ago)
       logger.info "#{@total_records} authors to process"
       loop do
-        begin
-          page_count += 1
-          json_response = get_recent_cap_authorship(page_count, page_size, days_ago)
-          process_next_batch_of_authorship_data(json_response)
-          logger.info "*** #{@total_running_count} records were processed in #{log_process_time}"
-          break if json_response['lastPage']
-        rescue => e
-          NotificationManager.error(e, 'get_authorship_data iteration failed', self)
-          raise
-        end
+        page_count += 1
+        json_response = get_recent_cap_authorship(page_count, page_size, days_ago)
+        process_next_batch_of_authorship_data(json_response)
+        logger.info "*** #{@total_running_count} records were processed in #{log_process_time}"
+        break if json_response['lastPage']
+      rescue StandardError => e
+        NotificationManager.error(e, 'get_authorship_data iteration failed', self)
+        raise
       end
 
       logger.info "new authors to harvest: #{@new_authors_to_harvest_queue}"
@@ -38,7 +38,7 @@ module Cap
       do_harvest
       log_stats
       logger.info 'Finished authorship import'
-    rescue => e
+    rescue StandardError => e
       NotificationManager.error(e, 'Authorship import failed', self)
     end
 
@@ -65,17 +65,18 @@ module Cap
     end
 
     def process_next_batch_of_authorship_data(json_response)
-      raise Net::HTTPBadResponse, "Missing JSON data in response: first 500 chars: #{json_response[0..500]}" if json_response['count'].blank? || json_response['lastPage'].nil?
+      if json_response['count'].blank? || json_response['lastPage'].nil?
+        raise Net::HTTPBadResponse,
+              "Missing JSON data in response: first 500 chars: #{json_response[0..500]}"
+      end
       return unless json_response['values']
 
       json_response['values'].each do |record|
-        begin
-          @total_running_count += 1
-          process_record(record)
-          logger.info "*** [processing #{@total_running_count} of #{@total_records}]" if @total_running_count % 10 == 0
-        rescue => e
-          NotificationManager.error(e, "Authorship import failed for record: '#{record}'", self)
-        end
+        @total_running_count += 1
+        process_record(record)
+        logger.info "*** [processing #{@total_running_count} of #{@total_records}]" if @total_running_count % 10 == 0
+      rescue StandardError => e
+        NotificationManager.error(e, "Authorship import failed for record: '#{record}'", self)
       end
     end
 
@@ -91,7 +92,7 @@ module Cap
 
     def update_existing_contributions(author, incoming_authorships)
       incoming_authorships.each do |authorship|
-        if !Contribution.valid_fields? authorship
+        unless Contribution.valid_fields? authorship
           msg = "Invalid fields in authorship: Author.find_by(cap_profile_id: #{author.cap_profile_id}); #{authorship.inspect}"
           NotificationManager.error(ArgumentError.new(msg), msg, self)
           @invalid_contribs += 1
@@ -100,11 +101,13 @@ module Cap
         pub_id = authorship['sulPublicationId']
         contribs = author.contributions.where(publication_id: pub_id)
         if contribs.count == 0
-          logger.warn "Contribution does not exist for Contribution.find_by(author_id: #{author.id}, cap_profile_id: #{author.cap_profile_id}, publication_id: #{pub_id})"
+          logger.warn "Contribution does not exist for Contribution.find_by(author_id: #{author.id}, " \
+            "cap_profile_id: #{author.cap_profile_id}, publication_id: #{pub_id})"
           @contrib_does_not_exist += 1
           next
         elsif contribs.count > 1
-          logger.warn "More than one contribution for Contribution.where(author_id: #{author.id}, cap_profile_id: #{author.cap_profile_id}, publication_id: #{pub_id})"
+          logger.warn "More than one contribution for Contribution.where(author_id: #{author.id}, " \
+            "cap_profile_id: #{author.cap_profile_id}, publication_id: #{pub_id})"
           @too_many_contribs += 1
           next
         end

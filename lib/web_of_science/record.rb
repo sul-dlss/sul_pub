@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'forwardable'
 
 module WebOfScience
@@ -107,7 +109,7 @@ module WebOfScience
         'names' => names,
         'pub_info' => pub_info,
         'publishers' => publishers,
-        'titles' => titles,
+        'titles' => titles
       }
     end
 

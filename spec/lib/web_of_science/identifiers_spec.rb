@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe WebOfScience::Identifiers do
   subject(:identifiers) { described_class.new wos_record }
 
@@ -98,7 +100,7 @@ describe WebOfScience::Identifiers do
         { type: 'doi', id: ids['doi'], url: ids['doi_uri'] },
         { type: 'issn', id: ids['issn'], url: ids['issn_uri'] },
         { type: 'WosItemID', id: ids['WosItemID'], url: ids['WosItemURI'] },
-        { type: 'WosUID', id: ids['WosUID'] },
+        { type: 'WosUID', id: ids['WosUID'] }
       ]
     end
 
@@ -134,7 +136,7 @@ describe WebOfScience::Identifiers do
         'issn_uri' => 'http://searchworks.stanford.edu/?search_field=advanced&number=2163-8306',
         'pmid' => '24452614',
         'pmid_uri' => 'https://www.ncbi.nlm.nih.gov/pubmed/24452614',
-        'WosUID' => 'MEDLINE:24452614',
+        'WosUID' => 'MEDLINE:24452614'
         # 'WosItemID'  is missing
         # 'WosItemURI' is missing
       }
@@ -145,7 +147,7 @@ describe WebOfScience::Identifiers do
         { type: 'doi', id: ids['doi'], url: ids['doi_uri'] },
         { type: 'issn', id: ids['issn'], url: ids['issn_uri'] },
         { type: 'pmid', id: ids['pmid'], url: ids['pmid_uri'] },
-        { type: 'WosUID', id: ids['WosUID'] },
+        { type: 'WosUID', id: ids['WosUID'] }
       ]
     end
 

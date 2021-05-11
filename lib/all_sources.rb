@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # All Sources harvesting utilities
 module AllSources
   # @return [AllSources::Harvester]

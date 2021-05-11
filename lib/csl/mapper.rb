@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Csl
   class Mapper
     attr_reader :pub_hash
@@ -46,7 +48,10 @@ module Csl
           end
           cit_data_hash['volume'] = pub_hash[:series][:volume] if pub_hash[:series][:volume].present?
           cit_data_hash['number'] = pub_hash[:series][:number] if pub_hash[:series][:number].present?
-          cit_data_hash['issued'] = { 'date-parts' => [[pub_hash[:series][:year]]] } if pub_hash[:series][:year].present?
+          if pub_hash[:series][:year].present?
+            cit_data_hash['issued'] =
+              { 'date-parts' => [[pub_hash[:series][:year]]] }
+          end
         end
 
         # Add journal information if it exists.
@@ -57,7 +62,10 @@ module Csl
           end
           cit_data_hash['volume'] = pub_hash[:journal][:volume] if pub_hash[:journal][:volume].present?
           cit_data_hash['issue'] = pub_hash[:journal][:issue] if pub_hash[:journal][:issue].present?
-          cit_data_hash['issued'] = { 'date-parts' => [[pub_hash[:journal][:year]]] } if pub_hash[:journal][:year].present?
+          if pub_hash[:journal][:year].present?
+            cit_data_hash['issued'] =
+              { 'date-parts' => [[pub_hash[:journal][:year]]] }
+          end
           cit_data_hash['number'] = pub_hash[:supplement] if pub_hash[:supplement].present?
         end
 
@@ -67,14 +75,17 @@ module Csl
           cit_data_hash['event'] = pub_hash[:conference][:name] if pub_hash[:conference][:name].present?
           cit_data_hash['event-date'] = pub_hash[:conference][:startdate] if pub_hash[:conference][:startdate].present?
           # override the startdate if there is a year:
-          cit_data_hash['event-date'] = { 'date-parts' => [[pub_hash[:conference][:year]]] } if pub_hash[:conference][:year].present?
+          if pub_hash[:conference][:year].present?
+            cit_data_hash['event-date'] =
+              { 'date-parts' => [[pub_hash[:conference][:year]]] }
+          end
           cit_data_hash['number'] = pub_hash[:conference][:number] if pub_hash[:conference][:number].present?
           # favors city/state over location
           if pub_hash[:conference][:city].present? || pub_hash[:conference][:statecountry].present?
             cit_data_hash['event-place'] = pub_hash[:conference][:city] || ''
             if pub_hash[:conference][:statecountry].present?
-              cit_data_hash['event-place'] << ',' if cit_data_hash['event-place'].present?
-              cit_data_hash['event-place'] << pub_hash[:conference][:statecountry]
+              cit_data_hash['event-place'] = "#{cit_data_hash['event-place']}," if cit_data_hash['event-place'].present?
+              cit_data_hash['event-place'] = "#{cit_data_hash['event-place']}#{pub_hash[:conference][:statecountry]}"
             end
           elsif pub_hash[:conference][:location].present?
             cit_data_hash['event-place'] = pub_hash[:conference][:location]

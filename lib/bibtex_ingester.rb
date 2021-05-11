@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 require 'bibtex'
 require 'citeproc'
 
 class BibtexIngester
-  BOOK_TYPE_MAPPING = %w(book booklet inbook incollection manual techreport).freeze
-  ARTICLE_TYPE_MAPPING = %w(article misc unpublished).freeze
-  INPROCEEDINGS_TYPE_MAPPING = %w(conference proceedings inproceedings).freeze
+  BOOK_TYPE_MAPPING = %w[book booklet inbook incollection manual techreport].freeze
+  ARTICLE_TYPE_MAPPING = %w[article misc unpublished].freeze
+  INPROCEEDINGS_TYPE_MAPPING = %w[conference proceedings inproceedings].freeze
 
   def ingest_from_source_directory(directory)
     @batch_dir = directory || Settings.BIBTEX.IMPORT.DIR
@@ -24,7 +26,7 @@ class BibtexIngester
     @total_new_pubs = 0
     @batch_source_records_created_count = 0
     @unidentified_pub_type_count = 0
-    skip_dirs = %w(. ..)
+    skip_dirs = %w[. ..]
     Dir.open(@batch_dir).each do |batch_dir_name|
       next if skip_dirs.include? batch_dir_name
 
@@ -57,7 +59,8 @@ class BibtexIngester
     @bibtex_import_logger.info "Finished bibtex import #{Time.zone.now}"
     @bibtex_import_logger.info "#{@bad_file_error_count} files couldn't be parsed at all."
     @bibtex_import_logger.info "#{@good_file_count} files were parsed."
-    @bibtex_import_logger.info "#{@missing_sunet_id_count} files containing #{@records_without_sunet_id} records weren't parsed because the sunet id wasn't found in the db."
+    @bibtex_import_logger.info "#{@missing_sunet_id_count} files containing #{@records_without_sunet_id} records weren't parsed " \
+      "because the sunet id wasn't found in the db."
 
     @bibtex_import_logger.info "#{@total_records_processed} records processed for import."
     @bibtex_import_logger.info "#{@total_successfully_ingested} records were ingested or were duplicates."
@@ -83,7 +86,7 @@ class BibtexIngester
       @bibtex_file_logger.info "Couldn't find an author for sunetid: #{sunet_id}"
       begin
         @records_without_sunet_id += BibTeX.open(file_full_path).count
-      rescue => e
+      rescue StandardError => e
         @bad_file_error_count += 1
         @bibtex_import_logger.error "Couldn't open the bibtex file anyhow, #{bibtex_file_name}, at all: "
         @bibtex_import_logger.error e.message
@@ -93,7 +96,7 @@ class BibtexIngester
     else
       begin
         records = BibTeX.open(file_full_path)
-      rescue => e
+      rescue StandardError => e
         @bibtex_import_logger.error "Couldn't open the bibtex file, #{bibtex_file_name}, at all: "
         @bibtex_import_logger.error "See the log file for #{sunet_id} for details."
         @bibtex_import_logger.error e.message
@@ -129,7 +132,7 @@ class BibtexIngester
 
     begin
       existing_source_record = BatchUploadedSourceRecord.where(sunet_id: author.sunetid, title: record.title.to_s).first
-    rescue => e
+    rescue StandardError => e
       @bibtex_import_logger.info "Search for existing batch upload for : #{record} failed probably because of unicode issue."
       @bibtex_import_logger.info "Error: #{e.message}"
     end
@@ -171,7 +174,7 @@ class BibtexIngester
     end
     @ingested_for_file += 1
     @total_successfully_ingested += 1
-  rescue => e
+  rescue StandardError => e
     @bibtex_import_logger.info "Record not ingested: #{record}"
     @bibtex_import_logger.info "Error: #{e.message}"
     @total_faulty_record_count += 1
@@ -188,7 +191,7 @@ class BibtexIngester
       begin
         pub = Publication.where("(sciencewire_id is not null OR pmid is not null)
               AND issn =? AND pages=? AND year=? ", issn, pages, year).first
-      rescue => e
+      rescue StandardError => e
         @bibtex_import_logger.info "Search for existing sw or pubmed pub for : #{record} failed probably because of unicode issue."
         @bibtex_import_logger.info "Error: #{e.message}"
       end
@@ -198,7 +201,7 @@ class BibtexIngester
       begin
         pub = Publication.where("(sciencewire_id is not null OR pmid is not null)
               AND title= ? AND year= ? AND pages= ? ", title, year, pages).first
-      rescue => e
+      rescue StandardError => e
         @bibtex_import_logger.info "Search for existing sw or pubmed pub for : #{record} failed probably because of unicode issue."
         @bibtex_import_logger.info "Error: #{e.message}"
       end

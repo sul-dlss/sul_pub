@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe WebOfScience::ProcessRecords, :vcr do
   subject(:processor) { described_class.new(author, records) }
 
@@ -27,9 +29,9 @@ describe WebOfScience::ProcessRecords, :vcr do
 
     it 'creates new WebOfScienceSourceRecords, Publications, PublicationIdentifiers, Contributions' do
       expect { processor.execute }
-        .to change { WebOfScienceSourceRecord.count }
-        .and change { Publication.count }
-        .and change { PublicationIdentifier.count }
+        .to change(WebOfScienceSourceRecord, :count)
+        .and change(Publication, :count)
+        .and change(PublicationIdentifier, :count)
         .and change { author.contributions.count }
     end
 
@@ -54,7 +56,7 @@ describe WebOfScience::ProcessRecords, :vcr do
       before { expect(WebOfScienceSourceRecord).to receive(:create!).and_raise(ActiveRecord::RecordInvalid) }
 
       it 'does not create new WebOfScienceSourceRecords' do
-        expect { processor.execute }.not_to change { WebOfScienceSourceRecord.count }
+        expect { processor.execute }.not_to change(WebOfScienceSourceRecord, :count)
       end
       it 'returns empty Array' do
         expect(processor.execute).to eq []
@@ -103,7 +105,7 @@ describe WebOfScience::ProcessRecords, :vcr do
   shared_examples 'fail_forward' do
     describe 'continues' do
       it 'creates new Publications' do
-        expect { processor.execute }.to change { Publication.count }
+        expect { processor.execute }.to change(Publication, :count)
       end
       it_behaves_like 'error_logger'
     end
@@ -131,11 +133,13 @@ describe WebOfScience::ProcessRecords, :vcr do
     # these failures are not catastrophic - just log it
     context 'PubMed integration fails' do
       before { allow(PubmedSourceRecord).to receive(:for_pmid).and_raise(RuntimeError) }
+
       it_behaves_like 'fail_forward'
     end
 
     context 'WOS links fail' do
       before { allow(links_client).to receive(:links).and_raise(RuntimeError) }
+
       it_behaves_like 'fail_forward'
     end
   end
@@ -147,7 +151,7 @@ describe WebOfScience::ProcessRecords, :vcr do
     end
 
     it 'does not create new WebOfScienceSourceRecords' do
-      expect { processor.execute }.not_to change { WebOfScienceSourceRecord.count }
+      expect { processor.execute }.not_to change(WebOfScienceSourceRecord, :count)
     end
     it 'filters out excluded records' do
       expect(processor).not_to receive(:save_wos_records)
@@ -159,6 +163,7 @@ describe WebOfScience::ProcessRecords, :vcr do
   context 'WebOfScienceSourceRecord exists' do
     let(:author) { create :author }
     let(:wssr) { records.first.find_or_create_model }
+
     before { records.first.find_or_create_model }
 
     context 'Publication does not' do
@@ -166,7 +171,7 @@ describe WebOfScience::ProcessRecords, :vcr do
 
       describe 'backfills' do
         it 'does not duplicate WebOfScienceSourceRecord' do
-          expect { processor.execute }.not_to change { WebOfScienceSourceRecord.count }
+          expect { processor.execute }.not_to change(WebOfScienceSourceRecord, :count)
         end
         it 'adds new Publications and Contributions' do
           expect { processor.execute }.to change { author.contributions.count }.from(0).to(1)
@@ -180,7 +185,10 @@ describe WebOfScience::ProcessRecords, :vcr do
 
     context 'matching non-WOS Publication also exists' do
       # this is a pain to setup.  kludge in the pmid to the fixture XML literal
-      let(:wos_rec) { WebOfScience::Record.new(record: record_xml.gsub(/<identifiers>/, %[<identifiers><identifier type='pmid' value='21253920'/>])) }
+      let(:wos_rec) do
+        WebOfScience::Record.new(record: record_xml.gsub(/<identifiers>/,
+                                                         %(<identifiers><identifier type='pmid' value='21253920'/>)))
+      end
       let(:records) { WebOfScience::Records.new(records: "<records>#{wos_rec.to_xml}</records>") }
       let(:pub) do
         build :publication, sciencewire_id: 123, pmid: '21253920', pubhash_needs_update: true,
@@ -197,6 +205,7 @@ describe WebOfScience::ProcessRecords, :vcr do
       describe 'record.matching_publication' do
         let(:match) { PublicationIdentifier.find_by(identifier_type: 'pmid', identifier_value: '21253920') }
         let(:other_id) { create :doi_pub_id, identifier_value: '10.1007/s12630-011-9462-1' }
+
         it 'finds the Publication by non-WOS IDs' do
           expect(PublicationIdentifier.where(identifier_type: 'WosUID').count).to eq 0
           expect(match).not_to be_nil
@@ -213,7 +222,7 @@ describe WebOfScience::ProcessRecords, :vcr do
 
       describe 'backfills' do
         it 'does not duplicate WebOfScienceSourceRecord' do
-          expect { processor.execute }.not_to change { WebOfScienceSourceRecord.count }
+          expect { processor.execute }.not_to change(WebOfScienceSourceRecord, :count)
         end
         it 'adds new Contribution' do
           expect { processor.execute }.to change { author.contributions.count }.from(0).to(1)
@@ -223,7 +232,9 @@ describe WebOfScience::ProcessRecords, :vcr do
           expect { processor.execute }.to change { pub.reload.wos_uid }.from(nil).to(uid)
         end
         it 'associates source record to existing Pub' do
-          expect { processor.execute }.to change { WebOfScienceSourceRecord.find_by(uid: uid).publication }.from(nil).to(pub)
+          expect { processor.execute }.to change {
+                                            WebOfScienceSourceRecord.find_by(uid: uid).publication
+                                          }.from(nil).to(pub)
         end
       end
     end

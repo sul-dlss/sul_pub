@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ScienceWirePublication
   attr_reader :xml_doc
 

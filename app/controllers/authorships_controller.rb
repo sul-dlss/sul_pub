@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AuthorshipsController < ApplicationController
   before_action :check_authorization
   before_action :ensure_json_request
@@ -29,7 +31,8 @@ class AuthorshipsController < ApplicationController
     ids = params.slice(:sul_pub_id, :pmid, :sw_id, :wos_uid).to_h.symbolize_keys
     ids.reject! { |_, v| v.blank? }
     unless ids.any?
-      render json: { error: 'You have not supplied any publication identifier: sul_pub_id || pmid || sw_id || wos_uid' }, status: :bad_request, format: :json
+      render json: { error: 'You have not supplied any publication identifier: sul_pub_id || pmid || sw_id || wos_uid' },
+             status: :bad_request, format: :json
       return
     end
 
@@ -78,7 +81,8 @@ class AuthorshipsController < ApplicationController
     return unless author_id_consistent?(author, params[:cap_profile_id]) # ids aren't consistent
 
     if params[:sul_pub_id].blank?
-      render json: { error: 'You have not supplied the publication identifier sul_pub_id' }, status: :bad_request, format: :json
+      render json: { error: 'You have not supplied the publication identifier sul_pub_id' }, status: :bad_request,
+             format: :json
       return
     end
 
@@ -92,14 +96,16 @@ class AuthorshipsController < ApplicationController
       return
     elsif contributions.length > 1
       # Hitting this block of code should be a cause for concern, bad internal data
-      log_and_error!("SULCAP has multiple contributions by the author:#{author.id} for the publication:#{params[:sul_pub_id]}", :internal_server_error)
+      log_and_error!(
+        "SULCAP has multiple contributions by the author:#{author.id} for the publication:#{params[:sul_pub_id]}", :internal_server_error
+      )
       return
     end
     pub = contributions.first.publication
 
     unless pub
       # Also a cause for concern, bad internal data
-      log_and_error!("No publication found", :internal_server_error)
+      log_and_error!('No publication found', :internal_server_error)
       return
     end
 
@@ -108,7 +114,8 @@ class AuthorshipsController < ApplicationController
     # fields provided.  When check for 'featured', use .nil? because it
     # is allowed to have a `false` value.
     unless !contrib_attr[:featured].nil? || contrib_attr[:status].present? || contrib_attr[:visibility].present?
-      render json: { error: "At least one authorship attribute is required: 'featured', 'status', 'visibility'." }, status: :not_acceptable, format: :json
+      render json: { error: "At least one authorship attribute is required: 'featured', 'status', 'visibility'." },
+             status: :not_acceptable, format: :json
       return
     end
 
@@ -125,7 +132,7 @@ class AuthorshipsController < ApplicationController
   # @return [Hash<Symbol => [String, Boolean]>] May contain any of :features, :status and :visibility
   def contrib_attr
     contrib_attr = {}
-    [:featured, :status, :visibility].each do |field|
+    %i[featured status visibility].each do |field|
       # check params[field].nil? not .blank? because featured can be `false`.
       contrib_attr[field] = params[field].to_s.downcase unless params[field].nil?
     end
@@ -149,8 +156,9 @@ class AuthorshipsController < ApplicationController
     begin
       contrib.save!
       pub.save! # sync the contribution into the pub.pub_hash[:authorship] array
-    rescue => e
-      log_and_error!("Could not save contribution #{contrib.id} or publication #{pub.id}\n#{e.message}", :internal_server_error)
+    rescue StandardError => e
+      log_and_error!("Could not save contribution #{contrib.id} or publication #{pub.id}\n#{e.message}",
+                     :internal_server_error)
       return false
     end
     pub.pub_hash
@@ -163,7 +171,7 @@ class AuthorshipsController < ApplicationController
       false
     end
     author
-  rescue => e
+  rescue StandardError => e
     log_and_error!("SULCAP cannot retrieve cap_profile_id: #{cap_profile_id}\n#{e.message}")
     false
   end

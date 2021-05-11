@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'faraday'
 require 'webmock'
 
@@ -7,8 +9,8 @@ module WebOfScience
     WSDL_AUTH_FILE = Rails.root.join('spec', 'fixtures', 'wos_client', 'authenticate_wsdl.xml').freeze
     WSDL_SEARCH_FILE = Rails.root.join('spec', 'fixtures', 'wos_client', 'search_wsdl.xml').freeze
 
-    WSDL_AUTH = 'http://search.webofknowledge.com/esti/wokmws/ws/WOKMWSAuthenticate?wsdl'.freeze
-    WSDL_SEARCH = 'http://search.webofknowledge.com/esti/wokmws/ws/WokSearch?wsdl'.freeze
+    WSDL_AUTH = 'http://search.webofknowledge.com/esti/wokmws/ws/WOKMWSAuthenticate?wsdl'
+    WSDL_SEARCH = 'http://search.webofknowledge.com/esti/wokmws/ws/WokSearch?wsdl'
 
     class << self
       @@fetched = false

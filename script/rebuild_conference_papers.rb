@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 class RebuildConferencePapers
   def work
     logger = Logger.new(Rails.root.join('log', 'script_rebuild_conference_papers.log'))
-    logger.info "Starting"
+    logger.info 'Starting'
     found = 0
     count = 0
     Publication.where.not(sciencewire_id: nil).find_each do |pub|
@@ -12,7 +14,7 @@ class RebuildConferencePapers
           logger.debug "Rebuilding pub_hash for Publication.find(#{pub.id})"
           pub.rebuild_pub_hash # from SciencewireSourceRecord
         end
-      rescue => e
+      rescue StandardError => e
         logger.error "Problem with Publication.find(#{pub.id}): #{e.inspect}"
         logger.error e.backtrace.join "\n"
       end

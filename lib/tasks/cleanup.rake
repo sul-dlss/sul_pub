@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'csv'
 
 namespace :cleanup do
@@ -8,23 +10,25 @@ namespace :cleanup do
   # to the faculty information until after two profiles were created.  They "merged" them on the CAP side, but the
   # publications were not merged on the SUL-PUB side.  This manifests itself as unexpected behavior (missing pubs, etc.).
   #
-  # This rake task takes in two cap_profile_ids and will merge all of the publications *from* DUPE_CAP_PROFILED_ID's profile *into* PRIMARY_CAP_PROFILE_ID's profile.
+  # This rake task takes in two cap_profile_ids and will merge all of the publications *from* DUPE_CAP_PROFILED_ID's profile *into*
+  # PRIMARY_CAP_PROFILE_ID's profile.
   # It will then deactivate DUPE_CAP_PROFILED_ID's profile (which should now have no publications associated with it) to prevent harvesting into it.
 
   # RAILS_ENV=production bundle exec rake cleanup:merge_profiles[123,456] # will merge all publications from cap_profile_id 456 into 123, without duplication
-  task :merge_profiles, [:primary_cap_profile_id, :duped_cap_profile_id] => :environment do |_t, args|
+  task :merge_profiles, %i[primary_cap_profile_id duped_cap_profile_id] => :environment do |_t, args|
     primary_cap_profile_id = args[:primary_cap_profile_id] # the profile you will be merging publications into
     duped_cap_profile_id = args[:duped_cap_profile_id] # the profile you will be merging publications out of and will be disabled
 
-    raise "Missing primary_cap_profile_id" unless primary_cap_profile_id
-    raise "Missing duped_cap_profile_id" unless duped_cap_profile_id
+    raise 'Missing primary_cap_profile_id' unless primary_cap_profile_id
+    raise 'Missing duped_cap_profile_id' unless duped_cap_profile_id
 
     primary_author = Author.find_by_cap_profile_id(primary_cap_profile_id)
     duped_author = Author.find_by_cap_profile_id(duped_cap_profile_id)
 
     puts "Primary Author cap_profile_id: #{primary_cap_profile_id}; name: #{primary_author.first_name} #{primary_author.last_name}"
     puts "Duplicate Author cap_profile_id: #{duped_cap_profile_id}; name: #{duped_author.first_name} #{duped_author.last_name}"
-    puts "Merging duped author #{duped_author.cap_profile_id}'s #{duped_author.contributions.size} publications INTO primary author #{primary_author.cap_profile_id}'s #{primary_author.contributions.size} publications"
+    puts "Merging duped author #{duped_author.cap_profile_id}'s #{duped_author.contributions.size} publications INTO primary " \
+      "author #{primary_author.cap_profile_id}'s #{primary_author.contributions.size} publications"
     puts
 
     primary_pub_ids = primary_author.publications.map(&:id)
@@ -33,7 +37,8 @@ namespace :cleanup do
     removed = 0
 
     puts "There are currently #{(primary_pub_ids - dupes_pub_ids).size} publications in the primary profile that are not in the duped profile"
-    puts "There are currently #{(dupes_pub_ids - primary_pub_ids).size} publications in the duped profile that are not in the primary profile --- these will be moved"
+    puts "There are currently #{(dupes_pub_ids - primary_pub_ids).size} publications in the duped profile that are not in the primary profile" \
+      ' --- these will be moved'
 
     duped_author.contributions.each do |contribution|
       if primary_pub_ids.include? contribution.publication_id # this publication already exists in the primary profile; remove it from the duped profile
@@ -61,14 +66,15 @@ namespace :cleanup do
       pub.save
     end
 
-    puts "Authorship rebuilt in all publications associated with the primary profile"
+    puts 'Authorship rebuilt in all publications associated with the primary profile'
 
     duped_author.cap_import_enabled = false
     duped_author.active_in_cap = false
     duped_author.save
 
     puts "Duped author set to inactive in cap\n"
-    puts "Duped author #{duped_author.cap_profile_id} now has #{duped_author.contributions.size} publications (should be 0) and primary author #{primary_author.cap_profile_id} has #{primary_author.contributions.size} publications"
+    puts "Duped author #{duped_author.cap_profile_id} now has #{duped_author.contributions.size} publications (should be 0) " \
+      "and primary author #{primary_author.cap_profile_id} has #{primary_author.contributions.size} publications"
   end
 
   desc 'Remove all new contributions for a given cap_profile_id, and cleanup disconnected publications'
@@ -80,8 +86,10 @@ namespace :cleanup do
   #  Should be rare in usage and then followed up with another harvest for this profile using:
   #  RAILS_ENV=production bundle exec rake harvest:author[123]
 
-  # RAILS_ENV=production bundle exec rake cleanup:remove_new_contributions[123,'April 25 2018','May 1 2018','pubmed'] # will remove all contributions in the 'new' state for the given cap_profile_id, then remove any publications that have no contributions anymore
-  task :remove_new_contributions, [:cap_profile_id, :start_timeframe, :end_timeframe, :provenance] => :environment do |_t, args|
+  # RAILS_ENV=production bundle exec rake cleanup:remove_new_contributions[123,'April 25 2018','May 1 2018','pubmed']
+  # will remove all contributions in the 'new' state for the given cap_profile_id, then remove any publications that have no contributions anymore
+  task :remove_new_contributions,
+       %i[cap_profile_id start_timeframe end_timeframe provenance] => :environment do |_t, args|
     PaperTrail.enabled = false
     log_file = 'log/cleanup_remove_new_contributions.log'
 
@@ -103,7 +111,8 @@ namespace :cleanup do
 
     pub_ids_worked_on_dump_file = "log/pubids_for_#{cap_profile_id}_#{provenance}.dump"
 
-    contributions = author.contributions.where('status = ? and created_at > ? and created_at < ?', 'new', start_date, end_date)
+    contributions = author.contributions.where('status = ? and created_at > ? and created_at < ?', 'new', start_date,
+                                               end_date)
 
     total = contributions.size
     deleted_pubs = 0
@@ -111,12 +120,13 @@ namespace :cleanup do
     updated = 0
     pub_ids = []
 
-    puts "Author cap_profile_id: #{cap_profile_id}; name: #{author.first_name} #{author.last_name}; dates: #{start_date} to #{end_date}; provenance: #{provenance}"
+    puts "Author cap_profile_id: #{cap_profile_id}; name: #{author.first_name} #{author.last_name}; dates: #{start_date} " \
+      "to #{end_date}; provenance: #{provenance}"
     puts "This task will remove any of the #{total} contributions with provenance #{provenance}. Are you sure you want to proceed? (y/n)"
     input = $stdin.gets.strip.downcase
     raise 'aborting' unless input == 'y'
 
-    CSV.open(log_file, "a") do |csv|
+    CSV.open(log_file, 'a') do |csv|
       puts "removing contributions with publication provenance #{provenance}..."
       contributions.each_with_index do |contribution, i|
         next unless contribution.publication.pub_hash[:provenance] == provenance

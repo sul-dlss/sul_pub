@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # ---
 # Shared Examples for IdentifierParser* specs
 
@@ -52,7 +54,7 @@ shared_examples 'it_is_impervious_to_outside_changes' do
     parser.value # initialize it with valid data
     expect do
       identifier.identifier_value = 'ha ha, now here is something different'
-    end.not_to change { parser.value }
+    end.not_to change(parser, :value)
   end
   it 'cannot change value after init' do
     expect { parser.value = 'try me' }.to raise_error(NoMethodError)

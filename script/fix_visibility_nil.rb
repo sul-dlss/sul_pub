@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'json'
 
 class FixVisibilityNil
@@ -28,7 +30,7 @@ class FixVisibilityNil
         process id
         @updated += 1
         @logger.info "Processed #{count}" if count % 500 == 0
-      rescue => e
+      rescue StandardError => e
         @errors += 1
         @logger.error "Unable to process #{id}: #{e.inspect}"
         @logger.error e.backtrace.join("\n")

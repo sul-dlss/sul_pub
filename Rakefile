@@ -1,4 +1,6 @@
 #!/usr/bin/env rake
+# frozen_string_literal: true
+
 # If the config/database.yml file does not exist, use the example file so that the config/application can load.
 File.exist?('config/database.yml') || FileUtils.copy('config/database.yml.example', 'config/database.yml')
 
@@ -9,7 +11,7 @@ Sulbib::Application.load_tasks
 task default: [:ci]
 
 desc 'Continuous integration task run on travis'
-task ci: [:rubocop, :spec]
+task ci: %i[rubocop spec]
 
 desc 'Run rubocop on ruby files in a patch on master'
 task :rubocop do

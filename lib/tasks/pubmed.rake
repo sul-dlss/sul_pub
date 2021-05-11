@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 namespace :pubmed do
   def client
     @client ||= Pubmed.client
@@ -8,7 +10,7 @@ namespace :pubmed do
   # call with RAILS_ENV=production bundle exec rake pubmed:update_pubmed_source_records_for_cap_profile_ids['filename.txt']
   task :update_pubmed_source_records_for_cap_profile_ids, [:filename] => :environment do |_t, args|
     filename = args[:filename]
-    raise "filename is required." unless filename.present?
+    raise 'filename is required.' unless filename.present?
 
     cap_profile_ids = File.readlines(filename)
     logger = Logger.new(Rails.root.join('log', 'update_pubmed_source_records_for_cap_profile_ids.log'))
@@ -31,7 +33,9 @@ namespace :pubmed do
       elapsed_time = current_time - start_time
       avg_time_per_author = elapsed_time / (index + 1)
       total_time_remaining = (avg_time_per_author * (total_authors - index)).floor
-      message = "...#{current_time}: on cap_profile_id #{id} : #{index + 1} of #{total_authors} : ~ #{distance_of_time_in_words(start_time, start_time + total_time_remaining.seconds)} left"
+      message = "...#{current_time}: on cap_profile_id #{id} : #{index + 1} of #{total_authors} : ~ #{distance_of_time_in_words(
+        start_time, start_time + total_time_remaining.seconds
+      )} left"
       puts message
       logger.info message
       author = Author.find_by_cap_profile_id(id)
@@ -47,15 +51,13 @@ namespace :pubmed do
         logger.info message
         total_pubs += pubs.count
         pubs.each do |pub|
-          begin
-            result = pub.update_from_pubmed
-            pubs_updated_count += 1 if result
-          rescue => e
-            message = "*****ERROR on cap_profile_id #{id} for publication_id #{pub.id}: #{e.message}"
-            puts message
-            logger.error message
-            error_count += 1
-          end
+          result = pub.update_from_pubmed
+          pubs_updated_count += 1 if result
+        rescue StandardError => e
+          message = "*****ERROR on cap_profile_id #{id} for publication_id #{pub.id}: #{e.message}"
+          puts message
+          logger.error message
+          error_count += 1
         end
         authors_found += 1
       end
@@ -66,14 +68,16 @@ namespace :pubmed do
       raise message
     end
     end_time = Time.zone.now
-    message = "Total: #{total_authors}. Authors found: #{authors_found}. Authors not found: #{authors_not_found}.  Total publications: #{total_pubs}.  Publications updated: #{pubs_updated_count}.  Errored publications: #{error_count}.  Ended at #{end_time}.  Total time: #{distance_of_time_in_words(end_time, start_time)}"
+    message = "Total: #{total_authors}. Authors found: #{authors_found}. Authors not found: #{authors_not_found}.  " \
+      "Total publications: #{total_pubs}.  Publications updated: #{pubs_updated_count}.  Errored publications: #{error_count}.  " \
+      "Ended at #{end_time}.  Total time: #{distance_of_time_in_words(end_time, start_time)}"
     puts message
     logger.info message
   end
 
   desc 'Retrieve and print a single publication by PubMed-ID'
   task :publication, [:pmid] => :environment do |_t, args|
-    raise "pmid argument is required." unless args[:pmid].present?
+    raise 'pmid argument is required.' unless args[:pmid].present?
 
     pmids = [args[:pmid]]
     doc = client.fetch_records_for_pmid_list(pmids)
@@ -138,7 +142,7 @@ namespace :pubmed do
   end
 
   desc 'Harvest from Pubmed, for one author'
-  task :harvest_author, [:cap_profile_id, :reldate] => :environment do |_t, args|
+  task :harvest_author, %i[cap_profile_id reldate] => :environment do |_t, args|
     author = Author.find_by(cap_profile_id: args[:cap_profile_id])
     raise "Could not find Author by cap_profile_id: #{args[:cap_profile_id]}." if author.nil?
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PublicationIdentifier < ActiveRecord::Base
   belongs_to :publication, required: true, inverse_of: :publication_identifiers
   validates :identifier_type, presence: true

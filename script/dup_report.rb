@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'set'
 require 'csv'
 
@@ -49,21 +51,22 @@ class Reporter
     end
 
     CSV.open('sw_pub_ids.csv', 'w') do |csv|
-      csv << %w(sciencewire_id sulpubid)
+      csv << %w[sciencewire_id sulpubid]
       @sw_pub_ids.each { |a| csv << a }
     end
 
     CSV.open('pmid_sw_pub_ids.csv', 'w') do |csv|
-      csv << %w(pubmedid sciencewire_id sulpubid)
+      csv << %w[pubmedid sciencewire_id sulpubid]
       @pmid_sw_pub_ids.each { |a| csv << a }
     end
 
     CSV.open('wos_pub_ids.csv', 'w') do |csv|
-      csv << %w(wosid sulpubid)
+      csv << %w[wosid sulpubid]
       @wos_pub_ids.each { |a| csv << a }
     end
   end
 end
 
-r = Reporter.new('/Users/wmene/dev/cap/dup_sw_ids.txt', '/Users/wmene/dev/cap/dup_pmids.txt', '/Users/wmene/dev/cap/dup_wos.txt')
+r = Reporter.new('/Users/wmene/dev/cap/dup_sw_ids.txt', '/Users/wmene/dev/cap/dup_pmids.txt',
+                 '/Users/wmene/dev/cap/dup_wos.txt')
 r.work

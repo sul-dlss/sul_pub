@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe PubmedSourceRecord, :vcr do
   let(:pmid_created_1999) { 10_000_166 }
 
@@ -127,9 +129,9 @@ describe PubmedSourceRecord, :vcr do
   describe '.source_as_hash' do
     it 'parses the year correctly' do
       record = create :pubmed_source_record_10000166 # year in first location
-      expect(record.source_as_hash[:year]).to eq "1992"
+      expect(record.source_as_hash[:year]).to eq '1992'
       record = create :pubmed_source_record_29279863 # year in alternate location
-      expect(record.source_as_hash[:year]).to eq "2017"
+      expect(record.source_as_hash[:year]).to eq '2017'
     end
   end
 
@@ -178,6 +180,7 @@ describe PubmedSourceRecord, :vcr do
           expect(doi(26_430_984)).to include(id: '10.1103/PhysRevLett.115.121604')
         end
       end
+
       context 'extracts from ELocationID' do
         it 'works when ArticleId is missing' do
           expect(doi(26_858_277)).to include(id: '10.1136/bmj.i493')

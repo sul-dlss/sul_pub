@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'identifier_parser'
 
 # Parse the ISBN identifiers in a PublicationIdentifier

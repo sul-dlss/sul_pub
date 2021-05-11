@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe IdentifierNormalizer do
   subject(:normalizer) { described_class.new }
 
@@ -57,9 +59,7 @@ describe IdentifierNormalizer do
 
   shared_examples 'deletes_pub_id' do
     it 'decreases PublicationIdentifier.count' do
-      expect { normalizer.normalize_record(doi_identifier) }.to change {
-        PublicationIdentifier.count
-      }
+      expect { normalizer.normalize_record(doi_identifier) }.to change(PublicationIdentifier, :count)
     end
   end
 
@@ -94,6 +94,7 @@ describe IdentifierNormalizer do
   describe '#normalize_record with valid data' do
     # normalizer preserves valid data, even with save_changes == true
     before { normalizer.save_changes = true }
+
     it_behaves_like 'preserves_value'
     it_behaves_like 'preserves_uri'
     it_behaves_like 'preserves_pub_hash'
@@ -102,6 +103,7 @@ describe IdentifierNormalizer do
   describe '#normalize_record with empty data' do
     # normalizer can delete blank data
     let(:doi_identifier) { create(:doi_pub_id, identifier_value: nil) }
+
     before do
       normalizer.delete_blanks = true
       doi_identifier.save
@@ -123,7 +125,9 @@ describe IdentifierNormalizer do
     end
 
     context 'valid URI, empty value' do
-      let(:doi_identifier) { create(:doi_pub_id, identifier_value: nil, identifier_uri: 'https://doi.org/10.1038/ncomms3199') }
+      let(:doi_identifier) do
+        create(:doi_pub_id, identifier_value: nil, identifier_uri: 'https://doi.org/10.1038/ncomms3199')
+      end
 
       it_behaves_like 'updates_value'
       it_behaves_like 'preserves_uri'
@@ -138,7 +142,9 @@ describe IdentifierNormalizer do
       # Altmetrics identifiers gem normalizes this value to:
       # > Identifiers::DOI.extract 'https://doi.org/10.1038/ncomms3199'
       # => ["10.1038/ncomms3199"]
-      let(:doi_identifier) { create(:doi_pub_id, identifier_uri: nil, identifier_value: 'https://doi.org/10.1038/ncomms3199') }
+      let(:doi_identifier) do
+        create(:doi_pub_id, identifier_uri: nil, identifier_value: 'https://doi.org/10.1038/ncomms3199')
+      end
 
       it_behaves_like 'updates_value'
       it_behaves_like 'updates_uri'

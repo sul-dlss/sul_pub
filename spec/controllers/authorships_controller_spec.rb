@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe AuthorshipsController, :vcr do
   before do
     headers = { 'HTTP_CAPKEY' => Settings.API_KEY, 'CONTENT_TYPE' => 'application/json' }
@@ -100,6 +102,7 @@ describe AuthorshipsController, :vcr do
 
     context 'with no contributions' do
       let(:request_data) { valid_data_for_post.merge(sul_author_hash) }
+
       it 'successfully creates one new contribution' do
         expect { http_request }.to change(Contribution, :count).by(1)
         expect(response.status).to eq 201
@@ -107,7 +110,11 @@ describe AuthorshipsController, :vcr do
     end
 
     context 'with allcaps or mixed case strings' do
-      let(:request_data) { sul_author_hash.merge(sul_pub_id: publication_with_contributions.id, visibility: 'PRIVATE', status: 'New', featured: true) }
+      let(:request_data) do
+        sul_author_hash.merge(sul_pub_id: publication_with_contributions.id, visibility: 'PRIVATE', status: 'New',
+                              featured: true)
+      end
+
       it 'downcases appropriately' do
         expect { http_request }.not_to change { existing_contrib }
         contrib = publication_with_contributions.contributions.reload.last
@@ -154,12 +161,14 @@ describe AuthorshipsController, :vcr do
           a['sul_author_id'] == author.id
         end
         expect(authorship_matches.length).to eq 1
-        expect(authorship_matches.first).to include('status' => 'denied', 'featured' => false, 'visibility' => 'private')
+        expect(authorship_matches.first).to include('status' => 'denied', 'featured' => false,
+                                                    'visibility' => 'private')
       end
     end
 
     context 'for a new PubMed publication' do
       let(:request_data) { base_data.merge(pmid: '23684686').merge(author_hash) }
+
       before { http_request }
 
       it 'adds new publication' do
@@ -180,7 +189,8 @@ describe AuthorshipsController, :vcr do
         result = JSON.parse(response.body)
         expect(result['identifier']).to include(
           a_hash_including('type' => 'PMID', 'id' => request_data[:pmid], 'url' => "https://www.ncbi.nlm.nih.gov/pubmed/#{request_data[:pmid]}"),
-          a_hash_including('type' => 'SULPubId', 'id' => new_pub.id.to_s, 'url' => "#{Settings.SULPUB_ID.PUB_URI}/#{new_pub.id}")
+          a_hash_including('type' => 'SULPubId', 'id' => new_pub.id.to_s,
+                           'url' => "#{Settings.SULPUB_ID.PUB_URI}/#{new_pub.id}")
         )
         expect(response.body).to eq(new_pub.pub_hash.to_json)
       end
@@ -196,7 +206,9 @@ describe AuthorshipsController, :vcr do
       let(:request_data) { base_data.merge(wos_uid: wos_record_uid).merge(author_hash) }
 
       let(:wos_record_uid) { 'WOS:A1972N549400003' }
-      let(:wos_retrieve_by_id_response) { File.read('spec/fixtures/wos_client/wos_record_A1972N549400003_response.xml') }
+      let(:wos_retrieve_by_id_response) do
+        File.read('spec/fixtures/wos_client/wos_record_A1972N549400003_response.xml')
+      end
       let(:wos_auth_response) { File.read('spec/fixtures/wos_client/authenticate.xml') }
 
       before do
@@ -233,7 +245,8 @@ describe AuthorshipsController, :vcr do
         result = JSON.parse(response.body)
         expect(result['identifier']).to include(
           a_hash_including('type' => 'WosUID', 'id' => request_data[:wos_uid]),
-          a_hash_including('type' => 'SULPubId', 'id' => new_pub.id.to_s, 'url' => "#{Settings.SULPUB_ID.PUB_URI}/#{new_pub.id}")
+          a_hash_including('type' => 'SULPubId', 'id' => new_pub.id.to_s,
+                           'url' => "#{Settings.SULPUB_ID.PUB_URI}/#{new_pub.id}")
         )
         expect(response.body).to eq(new_pub.pub_hash.to_json)
       end
@@ -270,7 +283,8 @@ describe AuthorshipsController, :vcr do
           http_request
           expect(response.status).to eq 404
           result = JSON.parse(response.body)
-          expect(result['error']).to include('no contributions', existing_contrib.author.id.to_s, existing_contrib.publication.id.to_s)
+          expect(result['error']).to include('no contributions', existing_contrib.author.id.to_s,
+                                             existing_contrib.publication.id.to_s)
         end
 
         it 'returns 500 with error message for duplicate contributions' do
@@ -282,7 +296,8 @@ describe AuthorshipsController, :vcr do
           http_request
           result = JSON.parse(response.body)
           expect(response.status).to eq 500
-          expect(result['error']).to include('multiple contributions', existing_contrib.author.id.to_s, existing_contrib.publication.id.to_s)
+          expect(result['error']).to include('multiple contributions', existing_contrib.author.id.to_s,
+                                             existing_contrib.publication.id.to_s)
         end
       end
 
@@ -294,7 +309,8 @@ describe AuthorshipsController, :vcr do
           post :create, body: no_pub_params.to_json, params: { format: 'json' }
           expect(response.status).to eq 400
           result = JSON.parse(response.body)
-          expect(result['error']).to include('You have not supplied any publication identifier', 'sul_pub_id', 'pmid', 'sw_id', 'wos_uid')
+          expect(result['error']).to include('You have not supplied any publication identifier', 'sul_pub_id', 'pmid',
+                                             'sw_id', 'wos_uid')
         end
 
         context 'matching WoS publication is not found for provided WoS UID' do
@@ -397,12 +413,14 @@ describe AuthorshipsController, :vcr do
         authorship = authorship_matches.first
         expect(authorship).not_to eq(authorship_before)
         expect(request_data).to include(featured: !be_nil, status: be_present, visibility: be_present)
-        expect(authorship).to include('featured' => request_data[:featured], 'status' => request_data[:status], 'visibility' => request_data[:visibility])
+        expect(authorship).to include('featured' => request_data[:featured], 'status' => request_data[:status],
+                                      'visibility' => request_data[:visibility])
       end
     end
 
     context 'to update featured contribution attribute' do
       let(:request_data) { existing_contrib_ids.merge(featured: false) }
+
       it 'sets the featured flag only, leaving others fields alone' do
         expect(request_data).not_to include(:status, :visibility)
         http_request
@@ -414,6 +432,7 @@ describe AuthorshipsController, :vcr do
 
     context 'to update status contribution attribute' do
       let(:request_data) { existing_contrib_ids.merge(status: 'denied') }
+
       it 'sets status only, leaving other fields alone' do
         expect(request_data).not_to include(:featured, :visibility)
         http_request
@@ -425,6 +444,7 @@ describe AuthorshipsController, :vcr do
 
     context 'to update visibility contribution attribute' do
       let(:request_data) { existing_contrib_ids.merge(visibility: 'private') }
+
       it 'sets visibility only, leaving other fields alone' do
         expect(request_data).not_to include(:featured, :status)
         http_request
@@ -436,6 +456,7 @@ describe AuthorshipsController, :vcr do
 
     context 'with allcaps or mixed case strings' do
       let(:request_data) { existing_contrib_ids.merge(visibility: 'PUBLIC', status: 'New') }
+
       it 'downcases authorship hash appropriately' do
         http_request
         expect { existing_contrib.reload }.not_to change { [existing_contrib.featured] }

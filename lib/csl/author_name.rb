@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 ##
 # Citation Style Language
 module Csl
