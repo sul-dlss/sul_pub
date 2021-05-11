@@ -3,12 +3,19 @@
 require 'set'
 
 class Author < ApplicationRecord
+  # Allowed values for visibility
+  VISIBILITY_VALUES = %w[public private stanford].freeze
+
   has_paper_trail on: [:destroy]
   validates :cap_profile_id, uniqueness: true, presence: true
 
   has_many :author_identities, dependent: :destroy, autosave: true
   has_many :contributions, dependent: :destroy
   has_many :publications, through: :contributions
+
+  # nil values allowed because we have historical records without visibility info, for which cap API
+  # will no longer have updated author info (e.g. for authors who are no longer at Stanford)
+  validates :cap_visibility, inclusion: { in: VISIBILITY_VALUES }, allow_nil: true
 
   # Provide consistent API for Author and AuthorIdentity
   alias_attribute :first_name, :preferred_first_name
@@ -122,7 +129,8 @@ class Author < ApplicationRecord
     seed_hash = {
       cap_profile_id: auth_hash['profileId'],
       active_in_cap: auth_hash['active'],
-      cap_import_enabled: auth_hash['importEnabled']
+      cap_import_enabled: auth_hash['importEnabled'],
+      cap_visibility: auth_hash['visibility']
     }
     profile = auth_hash['profile']
     seed_hash[:sunetid] = profile['uid'] || ''

@@ -65,6 +65,7 @@ describe Author do
       expect(subject.cap_profile_id).to eq(auth_hash['profileId'])
       expect(subject.cap_last_name).to eq(auth_hash['profile']['names']['preferred']['lastName'])
       expect(subject.sunetid).to eq(auth_hash['profile']['uid'])
+      expect(subject.cap_visibility).to eq(auth_hash['visibility'])
       # ...
     end
 
@@ -145,6 +146,16 @@ describe Author do
 
       expect(subject.publications.count).to eq(0)
       expect(subject.contributions.count).to eq(0)
+    end
+  end
+
+  describe '#cap_visibility=' do
+    before { auth_hash['visibility'] = 'translucent' }
+
+    it 'validates that cap_visibility is set to a valid value' do
+      subject.update_from_cap_authorship_profile_hash(auth_hash)
+      expect(subject).to be_invalid
+      expect(subject.errors[:cap_visibility]).to eq ['is not included in the list']
     end
   end
 end
