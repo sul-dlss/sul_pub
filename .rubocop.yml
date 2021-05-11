@@ -3,7 +3,7 @@ inherit_from:
 require: rubocop-rspec
 
 AllCops:
-  TargetRubyVersion: 2.5
+  TargetRubyVersion: 2.7
   Exclude:
     - 'Gemfile'
     - 'bin/**/*'
@@ -32,21 +32,22 @@ Lint/PercentStringArray:
   Exclude:
     - "spec/lib/web_of_science/query_author_spec.rb" # specifically testing quoted clauses w/in strings
 
-Metrics/LineLength:
+Layout/LineLength:
   Exclude:
     - "spec/factories/**/*" # factories contain long string literals
 
 Naming/VariableName:
   Enabled: false
 
-Performance/Casecmp:
-  Enabled: false
-
-Rails/Blank:
-  UnlessPresent: false
+#Rails/Blank:
+#  UnlessPresent: false
 
 Style/NumericPredicate:
   Enabled: false
 
 RSpec/NestedGroups:
   Max: 5
+
+# When enabled, produces errors.
+RSpec/FactoryBot:
+  Enabled: false

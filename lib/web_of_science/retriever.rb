@@ -7,8 +7,7 @@ module WebOfScience
   # - the "next_batch" is like "next"
   class Retriever
 
-    attr_reader :records_found
-    attr_reader :records_retrieved
+    attr_reader :records_found, :records_retrieved
 
     # @param [Symbol] operation SOAP operation like :search, :retrieve_by_id etc.
     # @param [Hash] message SOAP query message
@@ -74,11 +73,7 @@ module WebOfScience
       # this is the maximum number that can be returned in a single query by WoS
       MAX_RECORDS = 100
 
-      attr_reader :batch_size
-      attr_reader :operation # SOAP operations, like :search, :retrieve_by_id etc.
-      attr_reader :query
-      attr_reader :query_id
-      attr_reader :response_type
+      attr_reader :batch_size, :operation, :query, :query_id, :response_type # SOAP operations, like :search, :retrieve_by_id etc.
 
       delegate :client, to: WebOfScience
 

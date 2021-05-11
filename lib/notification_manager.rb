@@ -23,8 +23,8 @@ class NotificationManager
       else
         log_exception(Rails.logger, log_message, e)
       end
-    rescue StandardError => e2
-      log_exception(Rails.logger, e2.message, e2)
+    rescue StandardError => e
+      log_exception(Rails.logger, e.message, e)
     ensure
       Honeybadger.notify(e, context: { message: log_message })
     end

@@ -36,8 +36,8 @@ module Harvester
         author_success += 1
       end
       logger.info("#{self.class} - completed harvest - #{author_success} of #{count} processed")
-    rescue StandardError => err
-      NotificationManager.error(err, "harvest(authors) failed - #{author_success} of #{count} processed", self)
+    rescue StandardError => e
+      NotificationManager.error(e, "harvest(authors) failed - #{author_success} of #{count} processed", self)
     end
 
     # Harvest all publications for an author

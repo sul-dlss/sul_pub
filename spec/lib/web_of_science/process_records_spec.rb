@@ -110,7 +110,7 @@ describe WebOfScience::ProcessRecords, :vcr do
   end
 
   context 'with MEDLINE records' do
-    # Note: "MEDLINE:26776186" has a PMID and MESH headings
+    # NOTE: "MEDLINE:26776186" has a PMID and MESH headings
     # Note: medline records are not submitted to the links-API
     let(:record_xml) { File.read('spec/fixtures/wos_client/medline_record_26776186.xml') }
 
@@ -119,7 +119,7 @@ describe WebOfScience::ProcessRecords, :vcr do
   end
 
   context 'with WOS records' do
-    # Note: "WOS:000288663100014" has a PMID and it gets MESH headings from PubMed
+    # NOTE: "WOS:000288663100014" has a PMID and it gets MESH headings from PubMed
     before do
       allow(links_client).to receive(:links).with(['WOS:000288663100014']).and_return(wos_records_links)
     end

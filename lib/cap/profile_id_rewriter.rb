@@ -13,7 +13,7 @@ module Cap
   class ProfileIdRewriter
     include ActionView::Helpers::DateHelper
 
-    # NOTE (Dec 2017):
+    # NOTE: (Dec 2017):
     # We intentionally deferred adapting this class to tolerate or workaround cap_profile_id
     # uniqueness, since it is unclear when, if ever, we would be using this again.
     # Note that cap_profile_id not only needs to be unique as per model validation, there is also now a SQL index constraint enforcement
@@ -90,7 +90,7 @@ module Cap
           author = good_keys.inject(nil) { |memo, key| memo || Author.find_by(key => attrs[key]) } # first hit wins
 
           if author
-            # NOTE (Oct 2019):
+            # NOTE: (Oct 2019):
             # update! runs validations and raises an exception with a validation failure
             # update runs validations and returns false with a validation failure
             # update_columns does a direct SQL update, and thus skips model validations and callbacks

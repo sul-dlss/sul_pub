@@ -150,7 +150,7 @@ describe Csl::Citation do
         expect(cite).to match(/#{sul_title}/i) # case insenstive match
         expect(cite).to include('Imberman, S., Kugler, A. D., &amp; Sacerdote, B. (2009).', '(NBER Working Paper Series No. 15291)')
         expect(cite).to include('(pp. 1–55).', 'National Bureau of Economic Research.', 'Cambridge, MA', 'Retrieved from http://www.nber.org/papers/w15291')
-        # note: 'Working Paper' is not in APA standard
+        # NOTE: 'Working Paper' is not in APA standard
         expect(cite).not_to include('(Working Paper No. 15291)', 'Retrieved from National Bureau of Economic Research website: http://www.nber.org/papers/w15291')
         # Expect a complete citation
         expect(cite).to eq "Imberman, S., Kugler, A. D., &amp; Sacerdote, B. (2009). <i>Katrina's Children: Evidence on the Structure of Peer Effects from Hurricane Evacuees</i> (NBER Working Paper Series No. 15291) (pp. 1–55). Cambridge, MA: National Bureau of Economic Research. Retrieved from http://www.nber.org/papers/w15291"

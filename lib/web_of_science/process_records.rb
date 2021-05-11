@@ -29,15 +29,14 @@ module WebOfScience
     def execute
       return [] if records.empty?
       create_publications
-    rescue StandardError => err
-      NotificationManager.error(err, "Author: #{author.id}, ProcessRecords failed", self)
+    rescue StandardError => e
+      NotificationManager.error(e, "Author: #{author.id}, ProcessRecords failed", self)
       []
     end
 
     private
 
-      attr_reader :author
-      attr_reader :records
+      attr_reader :author, :records
 
       delegate :links_client, to: :WebOfScience
 
@@ -119,8 +118,8 @@ module WebOfScience
         links = retrieve_links(recs)
         return [] if links.blank?
         recs.each { |rec| rec.identifiers.update(links[rec.uid]) if rec.database == 'WOS' }
-      rescue StandardError => err
-        NotificationManager.error(err, "Author: #{author.id}, process_links failed", self)
+      rescue StandardError => e
+        NotificationManager.error(e, "Author: #{author.id}, process_links failed", self)
       end
 
       # Retrieve a batch of publication identifiers for WOS records from the Links-API
@@ -130,8 +129,8 @@ module WebOfScience
         link_uids = recs.map { |rec| rec.uid if rec.database == 'WOS' }.compact
         return {} if link_uids.blank?
         links_client.links(link_uids)
-      rescue StandardError => err
-        NotificationManager.error(err, "Author: #{author.id}, retrieve_links failed", self)
+      rescue StandardError => e
+        NotificationManager.error(e, "Author: #{author.id}, retrieve_links failed", self)
       end
 
   end

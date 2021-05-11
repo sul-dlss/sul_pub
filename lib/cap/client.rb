@@ -27,8 +27,8 @@ module Cap
         authenticate
         response = cap_client.get "#{API_PATH}#{params}"
         JSON.parse(response.body)
-      rescue Faraday::TimeoutError => te
-        NotificationManager.error(te, 'Timeout error during CAP-API request', self)
+      rescue Faraday::TimeoutError => e
+        NotificationManager.error(e, 'Timeout error during CAP-API request', self)
         raise
       rescue StandardError => e
         NotificationManager.error(e, "#{e.class.name} during CAP-API request", self)

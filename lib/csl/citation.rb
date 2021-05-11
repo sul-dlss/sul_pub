@@ -7,8 +7,7 @@ require 'csl/styles'
 module Csl
 
   class Citation
-    attr_reader :csl_renderer
-    attr_reader :pub_hash
+    attr_reader :csl_renderer, :pub_hash
 
     CSL_STYLE_APA = CSL::Style.load('apa')
     CSL_STYLE_MLA = CSL::Style.load('modern-language-association')

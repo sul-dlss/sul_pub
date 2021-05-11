@@ -72,9 +72,9 @@ module WebOfScience
       begin
         auth.globals[:headers]['Cookie'] = "SID=\"#{session_id}\""
         auth.call(:close_session)
-      rescue Savon::SOAPFault => fault
+      rescue Savon::SOAPFault => e
         # Savon::SOAPFault: (soap:Server) No matches returned for SessionID
-        logger.warn(fault.inspect)
+        logger.warn(e.inspect)
       end
       session_reset
     end

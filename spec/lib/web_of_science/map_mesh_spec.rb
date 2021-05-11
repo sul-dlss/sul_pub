@@ -77,7 +77,7 @@ describe WebOfScience::MapMesh do
     it_behaves_like 'no_mesh'
   end
 
-  # Note: cannot find any WOS-db records with MESH headings (as expected)
+  # NOTE: cannot find any WOS-db records with MESH headings (as expected)
   # Note: WOS-db records have relate content that is not extracted here:
   # /REC/static_data/fullrecord_metadata/category_info/headings/heading
   # /REC/static_data/fullrecord_metadata/category_info/subjects/subject

@@ -20,13 +20,13 @@ module WebOfScience
           pub.pmid = pmid
           pub.save!
           pubmed_addition(pub) if record.database != 'MEDLINE'
-        rescue StandardError => err
+        rescue StandardError => e
           message = "#{record.uid}, pubmed_additions for pmid '#{record.pmid}' failed"
-          NotificationManager.error(err, message, self)
+          NotificationManager.error(e, message, self)
         end
       end
-    rescue StandardError => err
-      NotificationManager.error(err, 'pubmed_additions failed', self)
+    rescue StandardError => e
+      NotificationManager.error(e, 'pubmed_additions failed', self)
     end
 
     # For WOS-record that has a PMID, fetch data from PubMed and enhance the pub.pub_hash with PubMed data
@@ -49,8 +49,8 @@ module WebOfScience
       return unless pub.changed?
       pub.pubhash_needs_update!
       pub.save!
-    rescue StandardError => err
-      NotificationManager.error(err, "pubmed_addition failed for args: #{pmid}, #{pub}", self)
+    rescue StandardError => e
+      NotificationManager.error(e, "pubmed_addition failed for args: #{pmid}, #{pub}", self)
     end
 
     # For WOS-record that has a PMID, cleanup our data when it does not exist on PubMed;
@@ -70,15 +70,15 @@ module WebOfScience
       pub.pmid = nil
       pub.pubhash_needs_update!
       pub.save!
-    rescue StandardError => err
-      NotificationManager.error(err, "pubmed_cleanup failed for args: #{pmid}, #{pub}", self)
+    rescue StandardError => e
+      NotificationManager.error(e, "pubmed_cleanup failed for args: #{pmid}, #{pub}", self)
     end
 
     # @param [String, Integer] pmid
     # @return [String] pmid
     # @raise ArgumentError if pmid is not valid
     def parse_pmid(pmid)
-      # Note: Identifiers::PubmedId.extract(pmid).first returns nil or a String for (String | Integer) arg
+      # NOTE: Identifiers::PubmedId.extract(pmid).first returns nil or a String for (String | Integer) arg
       pmid = ::Identifiers::PubmedId.extract(pmid).first
       raise(ArgumentError, 'pmid is not valid') unless pmid.is_a? String
       pmid

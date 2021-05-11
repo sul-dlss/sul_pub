@@ -26,6 +26,7 @@ end
 class IdentifierParserEmptyError < StandardError
 
 end
+
 # Exception for invalid data
 class IdentifierParserInvalidError < StandardError
 
@@ -42,8 +43,7 @@ end
 # @see script/publication_identifier_normalization.rb
 class IdentifierParser
 
-  attr_reader :pub_id
-  attr_reader :type
+  attr_reader :pub_id, :type
 
   # @param pub_id [PublicationIdentifier]
   def initialize(pub_id)

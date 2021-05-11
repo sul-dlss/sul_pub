@@ -92,8 +92,8 @@ class SciencewireSourceRecord < ActiveRecord::Base
       create(attrs)
     end
     # return true or false to indicate if new record was created or one already existed.
-    was_record_created = existing_sw_source_record.nil?
-    was_record_created
+    existing_sw_source_record.nil?
+
     # elsif existing_sw_source_record.source_fingerprint != new_source_fingerprint
     #   existing_sw_source_record.update(
     #     pmid: pmid,
@@ -207,14 +207,13 @@ class SciencewireSourceRecord < ActiveRecord::Base
 
   def self.lookup_sw_doc_type(doc_type_list)
     doc_types = Array(doc_type_list)
-    type = if doc_types.any? { |t| t =~ /^(#{@@sw_conference_proceedings_types})$/i }
+    if doc_types.any? { |t| t =~ /^(#{@@sw_conference_proceedings_types})$/i }
              Settings.sul_doc_types.inproceedings
-           elsif doc_types.any? { |t| t =~ /^(#{@@sw_book_types})$/i }
+    elsif doc_types.any? { |t| t =~ /^(#{@@sw_book_types})$/i }
              Settings.sul_doc_types.book
-           else
+    else
              Settings.sul_doc_types.article
-           end
-    type
+    end
   end
 
   # Maps a ScienceWire `DocumentCategory` to a corresponding value in `Settings.sul_doc_types`.

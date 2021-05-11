@@ -27,8 +27,8 @@ module Pubmed
         NotificationManager.error(::Harvester::Error, "#{self.class} - An invalid author query was detected for author id #{author.id} and was aborted", self)
         []
       end
-    rescue StandardError => err
-      NotificationManager.error(err, "#{self.class} - Pubmed harvest failed for author #{author.id}", self)
+    rescue StandardError => e
+      NotificationManager.error(e, "#{self.class} - Pubmed harvest failed for author #{author.id}", self)
     end
 
     private

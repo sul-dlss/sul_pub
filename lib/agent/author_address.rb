@@ -3,6 +3,7 @@ module Agent
   # Author/Institution address details used for creating search queries
   class AuthorAddress
     attr_reader :line1, :line2, :city, :state, :country
+
     # @param [Hash] options query options
     # @option options [String] :line1 AddressLine1
     # @option options [String] :line2 AddressLine2

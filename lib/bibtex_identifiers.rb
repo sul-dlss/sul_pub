@@ -1,4 +1,4 @@
-# Note: there is no 'Bibtex' module in sul_pub to avoid any conflicts with other gems
+# NOTE: there is no 'Bibtex' module in sul_pub to avoid any conflicts with other gems
 require 'bibtex'
 require 'forwardable'
 

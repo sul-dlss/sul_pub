@@ -22,7 +22,7 @@ describe WebOfScience::ProcessPubmed, :vcr do
     PubmedSourceRecord.create_pubmed_source_record(wos_pmid, wos_pubmed_doc)
   end
 
-  # Note: "WOS:000288663100014" has a PMID and it gets MESH headings from PubMed
+  # NOTE: "WOS:000288663100014" has a PMID and it gets MESH headings from PubMed
   let(:wos_record_xml) { File.read('spec/fixtures/wos_client/wos_record_000288663100014.xml') }
   let(:wos_record_links) { { 'pmid' => '21253920', 'doi' => '10.1007/s12630-011-9462-1' } }
   let(:wos_record) do

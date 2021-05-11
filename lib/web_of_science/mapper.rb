@@ -20,8 +20,7 @@ module WebOfScience
 
     private
 
-      attr_reader :uid
-      attr_reader :database
+      attr_reader :uid, :database
 
       # Extract content from record, try not to hang onto the entire record
       # @param rec [WebOfScience::Record]

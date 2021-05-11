@@ -239,7 +239,7 @@ class PubmedSourceRecord < ActiveRecord::Base
         mn = initials[1] if mn.blank? && initials.length > 1
       end
       # Currently ignoring <Suffix> data
-      author_hash = {
+      {
         firstname: fn,
         middlename: mn,
         lastname: lastname
@@ -251,6 +251,5 @@ class PubmedSourceRecord < ActiveRecord::Base
       # TODO: extract Affiliation
       # <AffiliationInfo> was added to <AuthorList> with the 2015 DTD.
       # The <AffiliationInfo> envelope element includes <Affliliation> and <Identifier>.
-      author_hash
     end
 end

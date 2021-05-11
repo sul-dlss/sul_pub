@@ -24,8 +24,7 @@ module WebOfScience
 
       delegate :queries, to: :WebOfScience
 
-      attr_reader :identities
-      attr_reader :options
+      attr_reader :identities, :options
 
       def author
         identities.first

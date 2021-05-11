@@ -26,8 +26,8 @@ module WebOfScience
         NotificationManager.error(::Harvester::Error, "#{self.class} - An invalid author query was detected for author id #{author.id} and was aborted", self)
         []
       end
-    rescue StandardError => err
-      NotificationManager.error(err, "#{self.class} - WoS harvest failed for author #{author.id}", self)
+    rescue StandardError => e
+      NotificationManager.error(e, "#{self.class} - WoS harvest failed for author #{author.id}", self)
     end
 
     # Harvest WOS-UID publications for an author

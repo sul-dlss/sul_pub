@@ -55,7 +55,7 @@ gem 'honeybadger', '~> 4.2'
 gem 'retina_tag'
 
 group :development, :test do
-  gem 'rubocop', '~> 0.66.0'
+  gem 'rubocop'
   gem 'rubocop-rspec'
   gem 'rspec'
   gem 'rspec-rails'

@@ -33,22 +33,22 @@ class Publication < ActiveRecord::Base
   has_many :user_submitted_source_records, dependent: :destroy
 
   has_many :publication_identifiers,
-    autosave: true,
-    dependent: :destroy,
-    after_add: :pubhash_needs_update!,
-    after_remove: :pubhash_needs_update!
+           autosave: true,
+           dependent: :destroy,
+           after_add: :pubhash_needs_update!,
+           after_remove: :pubhash_needs_update!
 
   has_many :contributions,
-    autosave: true,
-    dependent: :destroy,
-    after_add: :pubhash_needs_update!,
-    after_remove: :pubhash_needs_update!
+           autosave: true,
+           dependent: :destroy,
+           after_add: :pubhash_needs_update!,
+           after_remove: :pubhash_needs_update!
 
   has_many :authors,
-    autosave: true,
-    through: :contributions,
-    after_add: :pubhash_needs_update!,
-    after_remove: :pubhash_needs_update!
+           autosave: true,
+           through: :contributions,
+           after_add: :pubhash_needs_update!,
+           after_remove: :pubhash_needs_update!
 
   serialize :pub_hash, Hash
 

@@ -7,9 +7,9 @@ describe IdentifierParserISBN do
   let(:identifier_uri) { nil }
   let(:identifier) do
     FactoryBot.create(:publication_identifier,
-                       identifier_type: identifier_type,
-                       identifier_value: identifier_value,
-                       identifier_uri: identifier_uri
+                      identifier_type: identifier_type,
+                      identifier_value: identifier_value,
+                      identifier_uri: identifier_uri
                      )
   end
   let(:parser) { described_class.new(identifier) }
@@ -37,8 +37,8 @@ describe IdentifierParserISBN do
   context '#update using only a valid value' do
     let(:identifier) do
       FactoryBot.create(:publication_identifier,
-                         identifier_type: identifier_type,
-                         identifier_value: identifier_value
+                        identifier_type: identifier_type,
+                        identifier_value: identifier_value
                        )
     end
 
@@ -51,8 +51,8 @@ describe IdentifierParserISBN do
   context '#update using a valid value, but in the URI' do
     let(:identifier) do
       FactoryBot.create(:publication_identifier,
-                         identifier_type: identifier_type,
-                         identifier_uri: identifier_value
+                        identifier_type: identifier_type,
+                        identifier_uri: identifier_value
                        )
     end
     let(:parser) { described_class.new(identifier) }

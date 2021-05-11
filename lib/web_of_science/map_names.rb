@@ -46,8 +46,7 @@ module WebOfScience
 
     private
 
-      attr_reader :names
-      attr_reader :author_count
+      attr_reader :names, :author_count
 
       # Extract content from record, try not to hang onto the entire record
       # @param rec [WebOfScience::Record]

@@ -14,8 +14,7 @@ module WebOfScience
 
     private
 
-      attr_reader :pub
-      attr_reader :medline_country
+      attr_reader :pub, :medline_country
 
       # Extract content from record, try not to hang onto the entire record
       # @param rec [WebOfScience::Record]
