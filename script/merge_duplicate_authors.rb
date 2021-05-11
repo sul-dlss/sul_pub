@@ -22,7 +22,7 @@ class MergeDuplicateAuths
     auths.each do |clone|
       if CONTRIB_CHECK
         clone.contributions.each do |contrib|
-          next if master.contributions.where(publication_id: contrib.publication_id).exists?
+          next if master.contributions.exists?(publication_id: contrib.publication_id)
 
           new_contrib = contrib.dup
           new_contrib.author_id = master.id

@@ -278,7 +278,7 @@ class Publication < ApplicationRecord
   # rubocop:disable Metrics/CyclomaticComplexity
   # rubocop:disable Metrics/PerceivedComplexity
   def sync_identifiers_in_pub_hash
-    incoming_types = Array(pub_hash[:identifier]).map { |id| id[:type] }
+    incoming_types = Array(pub_hash[:identifier]).pluck(:type)
     publication_identifiers.each do |id|
       next if id.identifier_type =~ /^legacy_cap_pub_id$/i # Do not delete legacy_cap_pub_id
 

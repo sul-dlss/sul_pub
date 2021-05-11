@@ -245,7 +245,7 @@ class PublicationsController < ApplicationController
 
     groups = authorship_list.group_by { |auth| Contribution.authorship_valid?(auth) }
     unknowns = groups[false] || []
-    cap_ids = unknowns.map { |auth| auth[:cap_profile_id] }.compact
+    cap_ids = unknowns.pluck(:cap_profile_id).compact
     cap_ids.map { |id| Author.fetch_from_cap_and_create(id) }.any? ||
       groups[true].any?
   end

@@ -43,7 +43,7 @@ class MergeDuplicateAuthorship
   def duplicate_authorship?(pub)
     authorship = pub.pub_hash[:authorship]
     if authorship.length > 1
-      authorship_ids = authorship.map { |p| p[:cap_profile_id] }
+      authorship_ids = authorship.pluck(:cap_profile_id)
       authorship_set = authorship_ids.to_set
       if authorship_set.length != authorship_ids.length
         @logger.warn "Publication #{pub[:id]} should be modified"

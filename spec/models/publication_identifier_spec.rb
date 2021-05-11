@@ -53,7 +53,7 @@ describe PublicationIdentifier do
   shared_examples 'deletes_pub_hash' do
     it 'deletes the identifier data in the pubhash' do
       pub_id.pub_hash_update(delete: true)
-      types = pub_id.publication.pub_hash[:identifier].map { |id| id[:type] }
+      types = pub_id.publication.pub_hash[:identifier].pluck(:type)
       expect(types).not_to include(doi_type)
     end
   end

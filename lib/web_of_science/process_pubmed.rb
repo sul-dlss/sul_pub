@@ -58,7 +58,7 @@ module WebOfScience
       pubmed_hash = pubmed_record.source_as_hash
       pmc_id = pubmed_hash[:identifier].detect { |id| id[:type] == 'pmc' }
       pub.pub_hash.reverse_update(pubmed_hash)
-      pub.pub_hash[:identifier] << pmc_id if pmc_id && !pub.pub_hash[:identifier].include?(pmc_id)
+      pub.pub_hash[:identifier] << pmc_id if pmc_id && pub.pub_hash[:identifier].exclude?(pmc_id)
       return unless pub.changed?
 
       pub.pubhash_needs_update!
