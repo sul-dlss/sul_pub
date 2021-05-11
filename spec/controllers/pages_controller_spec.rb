@@ -1,6 +1,6 @@
 describe HighVoltage::PagesController, '#show' do
   %w(home authorshipapi bibtex pollapi pubapi pubsapi queryapi).each do |page|
-    context 'on GET to /#{page}' do
+    context "on GET to /#{page}" do
       before do
         get :show, params: { id: page }
       end
@@ -11,7 +11,7 @@ describe HighVoltage::PagesController, '#show' do
   end
 
   %w(schemas/article.json schemas/book.json schemas/inproceedings.json api_samples/get_pub_out.json api_samples/get_pubs_out.json api_samples/post_pub_in.json).each do |page|
-    context 'on GET to /#{page}' do
+    context "on GET to /#{page}" do
       before do
         get :show, params: { id: page }
       end
@@ -22,7 +22,7 @@ describe HighVoltage::PagesController, '#show' do
   end
 
   %w(api_samples/post_pub_in.bibtex).each do |page|
-    context 'on GET to /#{page}' do
+    context "on GET to /#{page}" do
       before do
         get :show, params: { id: page }
       end

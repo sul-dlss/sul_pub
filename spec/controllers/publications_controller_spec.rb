@@ -253,94 +253,94 @@ describe PublicationsController, :vcr do
     end
 
     describe 'search by pmid' do
-       it 'returns one document if pubmed lookup is enabled' do
-         allow(Settings.WOS).to receive(:enabled).and_return(false)
-         allow(Settings.PUBMED).to receive(:lookup_enabled).and_return(true)
-         params = { format: 'json', pmid: '24196758' }
-         get :sourcelookup, params: params
-         expect(response.status).to eq(200)
-         result = JSON.parse(response.body)
-         expect(result['metadata']).to include('records' => '1')
-         record = result['records'].first
-         expect(record).to include('mla_citation', 'chicago_citation')
-         expect(record).to include('apa_citation' => /^Sittig, D. F./)
-         expect(record['provenance']).to eq('pubmed')
-       end
+      it 'returns one document if pubmed lookup is enabled' do
+        allow(Settings.WOS).to receive(:enabled).and_return(false)
+        allow(Settings.PUBMED).to receive(:lookup_enabled).and_return(true)
+        params = { format: 'json', pmid: '24196758' }
+        get :sourcelookup, params: params
+        expect(response.status).to eq(200)
+        result = JSON.parse(response.body)
+        expect(result['metadata']).to include('records' => '1')
+        record = result['records'].first
+        expect(record).to include('mla_citation', 'chicago_citation')
+        expect(record).to include('apa_citation' => /^Sittig, D. F./)
+        expect(record['provenance']).to eq('pubmed')
+      end
 
-       it 'returns nothing if both pubmed and wos lookup is disabled' do
-         allow(Settings.WOS).to receive(:enabled).and_return(false)
-         allow(Settings.PUBMED).to receive(:lookup_enabled).and_return(false)
-         params = { format: 'json', pmid: '24196758' }
-         get :sourcelookup, params: params
-         expect(response.status).to eq(200)
-         result = JSON.parse(response.body)
-         expect(result['metadata']).to include('records' => '0')
-       end
+      it 'returns nothing if both pubmed and wos lookup is disabled' do
+        allow(Settings.WOS).to receive(:enabled).and_return(false)
+        allow(Settings.PUBMED).to receive(:lookup_enabled).and_return(false)
+        params = { format: 'json', pmid: '24196758' }
+        get :sourcelookup, params: params
+        expect(response.status).to eq(200)
+        result = JSON.parse(response.body)
+        expect(result['metadata']).to include('records' => '0')
+      end
     end
 
-     describe 'search by title' do
-       let(:queries) { instance_double(WebOfScience::Queries) }
-       let(:test_title) { 'pathological' }
-       let(:publication_with_test_title) { create :publication, title: test_title }
-       let(:sourcelookup_by_title) do
-          publication_with_test_title
-          params = { format: 'json', title: test_title, maxrows: 2 }
-          get :sourcelookup, params: params
-          expect(response.status).to eq(200)
-          JSON.parse(response.body)
-       end
+    describe 'search by title' do
+      let(:queries) { instance_double(WebOfScience::Queries) }
+      let(:test_title) { 'pathological' }
+      let(:publication_with_test_title) { create :publication, title: test_title }
+      let(:sourcelookup_by_title) do
+        publication_with_test_title
+        params = { format: 'json', title: test_title, maxrows: 2 }
+        get :sourcelookup, params: params
+        expect(response.status).to eq(200)
+        JSON.parse(response.body)
+      end
 
-       it 'returns bibjson with expected sections' do
-         result = sourcelookup_by_title
-         expect(result).to include('metadata', 'records')
-         expect(result['metadata']).not_to be_empty
-         expect(result['records']).not_to be_empty
-       end
+      it 'returns bibjson with expected sections' do
+        result = sourcelookup_by_title
+        expect(result).to include('metadata', 'records')
+        expect(result['metadata']).not_to be_empty
+        expect(result['records']).not_to be_empty
+      end
 
-       it 'with maxrows number of records' do
-         params = { format: 'json', title: test_title, maxrows: 5 }
-         get :sourcelookup, params: params
-         expect(response.status).to eq(200)
-         result = JSON.parse(response.body)
-         expect(result['records'].length).to eq(5)
-       end
+      it 'with maxrows number of records' do
+        params = { format: 'json', title: test_title, maxrows: 5 }
+        get :sourcelookup, params: params
+        expect(response.status).to eq(200)
+        result = JSON.parse(response.body)
+        expect(result['records'].length).to eq(5)
+      end
 
-       it 'does a title search' do
-         allow(WebOfScience::Queries).to receive(:new).with('WOS').and_return(queries)
-         expect(queries).to receive(:user_query)
-           .with('TI="lung cancer treatment"')
-           .and_return(instance_double(WebOfScience::Retriever, next_batch: Array.new(20) { {} }))
-         params = { format: 'json', title: 'lung cancer treatment' }
-         get :sourcelookup, params: params
-         expect(response.status).to eq(200)
-         result = JSON.parse(response.body)
-         expect(result['metadata']['records']).to eq('20')
-       end
+      it 'does a title search' do
+        allow(WebOfScience::Queries).to receive(:new).with('WOS').and_return(queries)
+        expect(queries).to receive(:user_query)
+          .with('TI="lung cancer treatment"')
+          .and_return(instance_double(WebOfScience::Retriever, next_batch: Array.new(20) { {} }))
+        params = { format: 'json', title: 'lung cancer treatment' }
+        get :sourcelookup, params: params
+        expect(response.status).to eq(200)
+        result = JSON.parse(response.body)
+        expect(result['metadata']['records']).to eq('20')
+      end
 
-       it 'returns results that match the requested title' do
-         result = sourcelookup_by_title
-         expect(result).to include('records')
-         expect(result['records']).not_to be_empty
-         records = result['records']
-         matches = records.count { |r| r['title'] =~ /#{test_title}/i }
-         expect(matches).to eq(records.count) # ALL records match
-       end
+      it 'returns results that match the requested title' do
+        result = sourcelookup_by_title
+        expect(result).to include('records')
+        expect(result['records']).not_to be_empty
+        records = result['records']
+        matches = records.count { |r| r['title'] =~ /#{test_title}/i }
+        expect(matches).to eq(records.count) # ALL records match
+      end
 
-       it 'returns results that match the requested year' do
-         year = 2015.to_s
-         allow(WebOfScience::Queries).to receive(:new).with('WOS').and_return(queries)
-         expect(queries).to receive(:user_query)
-           .with("TI=\"#{test_title}\" AND PY=2015")
-           .and_return(instance_double(WebOfScience::Retriever, next_batch: ['year' => year]))
-         params = { format: 'json', title: test_title, year: year }
-         get :sourcelookup, params: params
-         expect(response.status).to eq(200)
-         result = JSON.parse(response.body)
-         expect(result).to include('records')
-         expect(result['records']).not_to be_empty
-         expect(result['records'].map { |r| r['year'] }).to all eq(year) # ALL records match
-       end
-     end
+      it 'returns results that match the requested year' do
+        year = 2015.to_s
+        allow(WebOfScience::Queries).to receive(:new).with('WOS').and_return(queries)
+        expect(queries).to receive(:user_query)
+          .with("TI=\"#{test_title}\" AND PY=2015")
+          .and_return(instance_double(WebOfScience::Retriever, next_batch: ['year' => year]))
+        params = { format: 'json', title: test_title, year: year }
+        get :sourcelookup, params: params
+        expect(response.status).to eq(200)
+        result = JSON.parse(response.body)
+        expect(result).to include('records')
+        expect(result['records']).not_to be_empty
+        expect(result['records'].map { |r| r['year'] }).to all eq(year) # ALL records match
+      end
+    end
 
     context 'WOS disabled/enabled' do
       let(:json_response) { JSON.parse(response.body) }

@@ -7,6 +7,7 @@ class PubmedSourceRecord < ActiveRecord::Base
   def self.get_pub_by_pmid(pmid)
     pubmed_record = PubmedSourceRecord.for_pmid(pmid)
     return if pubmed_record.nil?
+
     pub = Publication.new(
       active: true,
       pmid: pmid,
@@ -24,6 +25,7 @@ class PubmedSourceRecord < ActiveRecord::Base
   # @return [PubmedSourceRecord] the recently downloaded pubmed_source_records data
   def self.get_pubmed_record_from_pubmed(pmid)
     return unless Settings.PUBMED.lookup_enabled
+
     get_and_store_records_from_pubmed([pmid])
     find_by(pmid: pmid)
   end
@@ -34,7 +36,8 @@ class PubmedSourceRecord < ActiveRecord::Base
       pmid: pmid,
       source_data: pub_doc.to_xml,
       is_active: true,
-      source_fingerprint: Digest::SHA2.hexdigest(pub_doc))
+      source_fingerprint: Digest::SHA2.hexdigest(pub_doc)
+    )
   end
 
   def self.get_and_store_records_from_pubmed(pmids)
@@ -47,7 +50,8 @@ class PubmedSourceRecord < ActiveRecord::Base
           pmid: pmid,
           source_data: pub_doc.to_xml,
           is_active: true,
-          source_fingerprint: Digest::SHA2.hexdigest(pub_doc))
+          source_fingerprint: Digest::SHA2.hexdigest(pub_doc)
+        )
       rescue => e
         NotificationManager.error(e, "Cannot create PubmedSourceRecord with pmid: #{pmid}", self)
       end
@@ -62,9 +66,11 @@ class PubmedSourceRecord < ActiveRecord::Base
   # @return [Boolean] the return value from update!
   def pubmed_update
     return false unless Settings.PUBMED.lookup_enabled
+
     pubmed_source_xml = Pubmed.client.fetch_records_for_pmid_list pmid
     pub_doc = Nokogiri::XML(pubmed_source_xml).xpath('//PubmedArticle')[0]
     return false unless pub_doc
+
     attrs = {}
     attrs[:source_data] = pub_doc.to_xml
     attrs[:source_fingerprint] = Digest::SHA2.hexdigest(pub_doc)
@@ -135,6 +141,7 @@ class PubmedSourceRecord < ActiveRecord::Base
     year_xpaths.each do |path|
       match = publication.xpath(path).text.match(/[12][0-9]{3}/)
       next unless match
+
       record_as_hash[:year] = match.to_s
       break
     end
@@ -173,83 +180,84 @@ class PubmedSourceRecord < ActiveRecord::Base
 
   protected
 
-    # Parse <Author>
-    # See No. 20 at https://www.nlm.nih.gov/bsd/licensee/elements_descriptions.html
-    #
-    # Personal name <Author> data resides in the following elements:
-    # <LastName> contains the surname
-    # <ForeName> contains the remainder of name except for suffix
-    # <Suffix> contains a valid MEDLINE suffix (e.g., 2nd, or 3rd, etc., Jr or Sr).
-    #          Honorifics (e.g., PhD, MD, etc.) are not carried in the data.
-    # <Initials> contains up to two initials
-    # <Identifier> was added to <AuthorList> with the 2010 DTD, but was not used
-    #              until 2013. It is defined to contain a unique identifier associated
-    #              with the name. The value in the Identifier attribute Source designates
-    #              the organizational authority that established the unique identifier.
-    #              Identifier was renamed from NameID with the 2013 DTD. For example,
-    #              <Identifier Source="ORCID">0000000179841889</Identifier>.
-    # <AffiliationInfo> was added to <AuthorList> with the 2015 DTD. The <AffiliationInfo>
-    #                   envelope element includes <Affliliation> and <Identifier>.
-    #
-    # @param author [Nokogiri::XML::Element] an <Author> element
-    # @return [Hash<Symbol => String>] with keys :firstname, :middlename and :lastname
-    def author_to_hash(author)
-      # <Author> examples provide many variations at No. 20 from
-      # https://www.nlm.nih.gov/bsd/licensee/elements_descriptions.html
-      ##
-      # Ignore an empty <Author/> element
-      return if author.children.empty?
-      # Ignore an <Author> that contains <CollectiveName>
-      return if author.xpath('CollectiveName').present?
-      # Ignore an <Author ValidYN="N"> or missing ValidYN attribute
-      return if author.attributes['ValidYN'].present? && author.attributes['ValidYN'].value == 'N'
-      # Extract name elements
-      lastname = author.xpath('LastName').text
-      forename = author.xpath('ForeName').text
-      initials = author.xpath('Initials').text
-      # Parse <Forename>
-      # Forename is everything after the last name and it can be mostly parsed
-      # by splitting it on whitespace.  Even when ForeName is only initials,
-      # there will be spaces between initials.
-      fn, mn = forename.split
-      # If ForeName includes particles, the first name is
-      # likely to be OK, but the middle name needs to be fixed.
-      if forename =~ / el-| el | da | de | del | do | dos | du | le /
-        # Try to scan this to keep the particles with the following name.
-        # Assume the first name begins with an upper case letter, so this
-        # scan pattern will skip over it.
-        mn = forename.scan(/[[:lower:]]+[ -][[:upper:]][[:lower:]]*/).first
-      end
-      ##
-      # Parse <Initials>
-      # Scan the initials to split it, allowing lower-case particles, dashes and
-      # spaces prior to a single upper case initial, e.g
-      # 'AB'.scan(/[[:lower:] -]*[[:upper:]]/) => ["A", "B"]
-      # 'Mdel R'.scan(/[[:lower:] -]*[[:upper:]]/) => ["M", "del R"]
-      # <ForeName>Mohamed el-Walid</ForeName>
-      # <Initials>Mel- W</Initials>
-      # 'Mel- W'.scan(/[[:lower:] -]*[[:upper:]]/) => ["M", "el- W"]
-      initials = initials.scan(/[[:lower:] -]*[[:upper:]]/)
-      # Remove an additional space added for hyphenated particles.
-      initials = initials.map { |initial| initial.sub('- ', '-') }
-      if initials.length >= 1
-        # If there is no data from <Forename>, use this first initial
-        fn = initials[0] if fn.blank?
-        # If there is no data from <Forename>, use this middle initial
-        mn = initials[1] if mn.blank? && initials.length > 1
-      end
-      # Currently ignoring <Suffix> data
-      {
-        firstname: fn,
-        middlename: mn,
-        lastname: lastname
-      }
-      # TODO: extract Identifier
-      # <Identifier> was added to <AuthorList> with the 2010 DTD, but was not used until 2013.
-      # <Identifier Source="ORCID">0000000179841889</Identifier>
-      ##
-      # TODO: extract Affiliation
-      # <AffiliationInfo> was added to <AuthorList> with the 2015 DTD.
-      # The <AffiliationInfo> envelope element includes <Affliliation> and <Identifier>.
+  # Parse <Author>
+  # See No. 20 at https://www.nlm.nih.gov/bsd/licensee/elements_descriptions.html
+  #
+  # Personal name <Author> data resides in the following elements:
+  # <LastName> contains the surname
+  # <ForeName> contains the remainder of name except for suffix
+  # <Suffix> contains a valid MEDLINE suffix (e.g., 2nd, or 3rd, etc., Jr or Sr).
+  #          Honorifics (e.g., PhD, MD, etc.) are not carried in the data.
+  # <Initials> contains up to two initials
+  # <Identifier> was added to <AuthorList> with the 2010 DTD, but was not used
+  #              until 2013. It is defined to contain a unique identifier associated
+  #              with the name. The value in the Identifier attribute Source designates
+  #              the organizational authority that established the unique identifier.
+  #              Identifier was renamed from NameID with the 2013 DTD. For example,
+  #              <Identifier Source="ORCID">0000000179841889</Identifier>.
+  # <AffiliationInfo> was added to <AuthorList> with the 2015 DTD. The <AffiliationInfo>
+  #                   envelope element includes <Affliliation> and <Identifier>.
+  #
+  # @param author [Nokogiri::XML::Element] an <Author> element
+  # @return [Hash<Symbol => String>] with keys :firstname, :middlename and :lastname
+  def author_to_hash(author)
+    # <Author> examples provide many variations at No. 20 from
+    # https://www.nlm.nih.gov/bsd/licensee/elements_descriptions.html
+    ##
+    # Ignore an empty <Author/> element
+    return if author.children.empty?
+    # Ignore an <Author> that contains <CollectiveName>
+    return if author.xpath('CollectiveName').present?
+    # Ignore an <Author ValidYN="N"> or missing ValidYN attribute
+    return if author.attributes['ValidYN'].present? && author.attributes['ValidYN'].value == 'N'
+
+    # Extract name elements
+    lastname = author.xpath('LastName').text
+    forename = author.xpath('ForeName').text
+    initials = author.xpath('Initials').text
+    # Parse <Forename>
+    # Forename is everything after the last name and it can be mostly parsed
+    # by splitting it on whitespace.  Even when ForeName is only initials,
+    # there will be spaces between initials.
+    fn, mn = forename.split
+    # If ForeName includes particles, the first name is
+    # likely to be OK, but the middle name needs to be fixed.
+    if forename =~ / el-| el | da | de | del | do | dos | du | le /
+      # Try to scan this to keep the particles with the following name.
+      # Assume the first name begins with an upper case letter, so this
+      # scan pattern will skip over it.
+      mn = forename.scan(/[[:lower:]]+[ -][[:upper:]][[:lower:]]*/).first
     end
+    ##
+    # Parse <Initials>
+    # Scan the initials to split it, allowing lower-case particles, dashes and
+    # spaces prior to a single upper case initial, e.g
+    # 'AB'.scan(/[[:lower:] -]*[[:upper:]]/) => ["A", "B"]
+    # 'Mdel R'.scan(/[[:lower:] -]*[[:upper:]]/) => ["M", "del R"]
+    # <ForeName>Mohamed el-Walid</ForeName>
+    # <Initials>Mel- W</Initials>
+    # 'Mel- W'.scan(/[[:lower:] -]*[[:upper:]]/) => ["M", "el- W"]
+    initials = initials.scan(/[[:lower:] -]*[[:upper:]]/)
+    # Remove an additional space added for hyphenated particles.
+    initials = initials.map { |initial| initial.sub('- ', '-') }
+    if initials.length >= 1
+      # If there is no data from <Forename>, use this first initial
+      fn = initials[0] if fn.blank?
+      # If there is no data from <Forename>, use this middle initial
+      mn = initials[1] if mn.blank? && initials.length > 1
+    end
+    # Currently ignoring <Suffix> data
+    {
+      firstname: fn,
+      middlename: mn,
+      lastname: lastname
+    }
+    # TODO: extract Identifier
+    # <Identifier> was added to <AuthorList> with the 2010 DTD, but was not used until 2013.
+    # <Identifier Source="ORCID">0000000179841889</Identifier>
+    ##
+    # TODO: extract Affiliation
+    # <AffiliationInfo> was added to <AuthorList> with the 2015 DTD.
+    # The <AffiliationInfo> envelope element includes <Affliliation> and <Identifier>.
+  end
 end

@@ -310,18 +310,19 @@ class ScienceWirePublication
   def valid?
     return false unless xml_doc.is_a? Nokogiri::XML::Element
     return false unless xml_doc.name == 'PublicationItem'
+
     true
   end
 
   # ------------------------------------------------------------
   private
 
-    def element_integer(path)
-      element_text(path).to_i
-    end
+  def element_integer(path)
+    element_text(path).to_i
+  end
 
-    def element_text(path)
-      element = xml_doc.at_xpath(path)
-      element.nil? ? '' : element.text
-    end
+  def element_text(path)
+    element = xml_doc.at_xpath(path)
+    element.nil? ? '' : element.text
+  end
 end

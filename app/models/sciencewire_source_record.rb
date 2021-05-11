@@ -44,10 +44,12 @@ class SciencewireSourceRecord < ActiveRecord::Base
   def self.get_pub_by_pmid(pmid)
     sw_pub_hash = get_sciencewire_hash_for_pmid(pmid)
     return if sw_pub_hash.nil?
+
     pub = Publication.new(
       active: true,
       sciencewire_id: sw_pub_hash[:sw_id],
-      pmid: pmid)
+      pmid: pmid
+    )
     pub.build_from_sciencewire_hash(sw_pub_hash)
     pub.sync_publication_hash_and_db
     pub.save
@@ -57,10 +59,12 @@ class SciencewireSourceRecord < ActiveRecord::Base
   def self.get_pub_by_sciencewire_id(sciencewire_id)
     sw_pub_hash = get_sciencewire_hash_for_sw_id(sciencewire_id)
     return if sw_pub_hash.nil?
+
     pub = Publication.new(
       active: true,
       sciencewire_id: sciencewire_id,
-      pmid: sw_pub_hash[:pmid])
+      pmid: sw_pub_hash[:pmid]
+    )
     pub.build_from_sciencewire_hash(sw_pub_hash)
     pub.sync_publication_hash_and_db
     pub.save
@@ -79,7 +83,8 @@ class SciencewireSourceRecord < ActiveRecord::Base
 
   def self.save_sw_source_record(sciencewire_id, pmid, incoming_sw_xml_as_string)
     existing_sw_source_record = find_by(
-      sciencewire_id: sciencewire_id)
+      sciencewire_id: sciencewire_id
+    )
     if existing_sw_source_record.nil?
       new_source_fingerprint = get_source_fingerprint(incoming_sw_xml_as_string)
       attrs = {
@@ -214,11 +219,11 @@ class SciencewireSourceRecord < ActiveRecord::Base
   def self.lookup_sw_doc_type(doc_type_list)
     doc_types = Array(doc_type_list)
     if doc_types.any? { |t| t =~ /^(#{@@sw_conference_proceedings_types})$/i }
-             Settings.sul_doc_types.inproceedings
+      Settings.sul_doc_types.inproceedings
     elsif doc_types.any? { |t| t =~ /^(#{@@sw_book_types})$/i }
-             Settings.sul_doc_types.book
+      Settings.sul_doc_types.book
     else
-             Settings.sul_doc_types.article
+      Settings.sul_doc_types.article
     end
   end
 
@@ -232,6 +237,7 @@ class SciencewireSourceRecord < ActiveRecord::Base
   # @return [String] One of the `Settings.sul_doc_types`
   def self.lookup_cap_doc_type_by_sw_doc_category(sw_doc_category)
     return Settings.sul_doc_types.inproceedings if sw_doc_category == 'Conference Proceeding Document'
+
     Settings.sul_doc_types.article
   end
 

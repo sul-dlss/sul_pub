@@ -1,6 +1,5 @@
 # Web of Science (WOS) utilities
 module WebOfScience
-
   # @return [WebOfScience::Harvester]
   def self.harvester
     @@harvester ||= WebOfScience::Harvester.new
@@ -33,7 +32,7 @@ module WebOfScience
     records = retriever.next_batch
     raise 'WebOfScience found no records' unless records.is_a?(WebOfScience::Records) && records.count > 0
     raise 'WebOfScience failed to parse records' unless records.first.is_a?(WebOfScience::Record)
+
     true
   end
-
 end

@@ -1,5 +1,4 @@
 class NotificationManager
-
   class << self
     ##
     # Handles notification of errors with behavior based on the callee
@@ -29,9 +28,9 @@ class NotificationManager
       Honeybadger.notify(e, context: { message: log_message })
     end
 
-        def pubmed_logger
+    def pubmed_logger
       @@pubmed_logger ||= Logger.new(Settings.PUBMED.LOG)
-        end
+    end
 
     def cap_logger
       @@cap_logger ||= Logger.new(Settings.CAP.LOG)

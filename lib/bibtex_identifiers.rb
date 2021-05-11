@@ -14,6 +14,7 @@ class BibtexIdentifiers
   # @param [BibTeX::Entry] record
   def initialize(record)
     raise(ArgumentError, 'ids must be a BibTex::Entry') unless record.is_a? BibTeX::Entry
+
     extract_ids(record)
   end
 
@@ -92,27 +93,27 @@ class BibtexIdentifiers
 
   private
 
-    attr_reader :ids
+  attr_reader :ids
 
-    # @param [BibTeX::Entry] record
-    # @return [void]
-    def extract_ids(record)
-      @ids = {}
-      doi = extract_id(record, 'doi')
-      isbn = extract_id(record, 'isbn')
-      issn = extract_id(record, 'issn')
-      pmid = extract_id(record, 'pmid')
-      ids['doi'] = doi if doi.present?
-      ids['isbn'] = isbn if isbn.present?
-      ids['issn'] = issn if issn.present?
-      ids['pmid'] = pmid if pmid.present?
-      ids.freeze
-    end
+  # @param [BibTeX::Entry] record
+  # @return [void]
+  def extract_ids(record)
+    @ids = {}
+    doi = extract_id(record, 'doi')
+    isbn = extract_id(record, 'isbn')
+    issn = extract_id(record, 'issn')
+    pmid = extract_id(record, 'pmid')
+    ids['doi'] = doi if doi.present?
+    ids['isbn'] = isbn if isbn.present?
+    ids['issn'] = issn if issn.present?
+    ids['pmid'] = pmid if pmid.present?
+    ids.freeze
+  end
 
-    # @param [BibTeX::Entry] record
-    # @param [String] type
-    # @return [String]
-    def extract_id(record, type)
-      record[type.downcase].to_s || record[type.upcase].to_s
-    end
+  # @param [BibTeX::Entry] record
+  # @param [String] type
+  # @return [String]
+  def extract_id(record, type)
+    record[type.downcase].to_s || record[type.upcase].to_s
+  end
 end

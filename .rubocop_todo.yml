@@ -8,39 +8,39 @@
 
 # Offense count: 10
 # Cop supports --auto-correct.
-Layout/BlockEndNewline:
-  Exclude:
-    - 'spec/factories/user_submitted_source_records.rb'
-    - 'spec/factories/web_of_science_source_record.rb'
+#Layout/BlockEndNewline:
+#  Exclude:
+#    - 'spec/factories/user_submitted_source_records.rb'
+#    - 'spec/factories/web_of_science_source_record.rb'
 
 # Offense count: 134
 # Cop supports --auto-correct.
-Layout/EmptyLineAfterGuardClause:
-  Enabled: false
+#Layout/EmptyLineAfterGuardClause:
+#  Enabled: false
 
 # Offense count: 54
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle.
 # SupportedStyles: empty_lines, empty_lines_except_namespace, empty_lines_special, no_empty_lines, beginning_only, ending_only
-Layout/EmptyLinesAroundClassBody:
-  Enabled: false
+#Layout/EmptyLinesAroundClassBody:
+#  Enabled: false
 
 # Offense count: 8
 # Cop supports --auto-correct.
-Layout/EmptyLinesAroundExceptionHandlingKeywords:
-  Exclude:
-    - 'script/delete_missing_auths.rb'
-    - 'script/fix_sw_procs_marked_as_article.rb'
-    - 'script/merge_duplicate_authors.rb'
-    - 'script/repair_mixed_auths.rb'
-    - 'script/title_report.rb'
+#Layout/EmptyLinesAroundExceptionHandlingKeywords:
+#  Exclude:
+#    - 'script/delete_missing_auths.rb'
+#    - 'script/fix_sw_procs_marked_as_article.rb'
+#    - 'script/merge_duplicate_authors.rb'
+#    - 'script/repair_mixed_auths.rb'
+#    - 'script/title_report.rb'
 
 # Offense count: 30
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle.
 # SupportedStyles: empty_lines, empty_lines_except_namespace, empty_lines_special, no_empty_lines
-Layout/EmptyLinesAroundModuleBody:
-  Enabled: false
+#Layout/EmptyLinesAroundModuleBody:
+#  Enabled: false
 
 # Offense count: 90
 # Cop supports --auto-correct.
@@ -48,102 +48,102 @@ Layout/EmptyLinesAroundModuleBody:
 # SupportedHashRocketStyles: key, separator, table
 # SupportedColonStyles: key, separator, table
 # SupportedLastArgumentHashStyles: always_inspect, always_ignore, ignore_implicit, ignore_explicit
-Layout/HashAlignment:
-  Exclude:
-    - 'app/controllers/publications_controller.rb'
-    - 'app/models/author.rb'
-    - 'spec/factories/pub_hash.rb'
-    - 'spec/lib/bibtex/bibtex_identifiers_spec.rb'
-    - 'spec/lib/cap/authors_poller_spec.rb'
-    - 'spec/lib/csl/citation_spec.rb'
-    - 'spec/lib/identifier_parser_spec.rb'
-    - 'spec/lib/web_of_science/identifiers_spec.rb'
-    - 'spec/lib/web_of_science/process_records_spec.rb'
-    - 'spec/lib/web_of_science/record_spec.rb'
-    - 'spec/models/author_identity_spec.rb'
-    - 'spec/support/identifier_parser_shared_examples.rb'
+#Layout/HashAlignment:
+#  Exclude:
+#    - 'app/controllers/publications_controller.rb'
+#    - 'app/models/author.rb'
+#    - 'spec/factories/pub_hash.rb'
+#    - 'spec/lib/bibtex/bibtex_identifiers_spec.rb'
+#    - 'spec/lib/cap/authors_poller_spec.rb'
+#    - 'spec/lib/csl/citation_spec.rb'
+#    - 'spec/lib/identifier_parser_spec.rb'
+#    - 'spec/lib/web_of_science/identifiers_spec.rb'
+#    - 'spec/lib/web_of_science/process_records_spec.rb'
+#    - 'spec/lib/web_of_science/record_spec.rb'
+#    - 'spec/models/author_identity_spec.rb'
+#    - 'spec/support/identifier_parser_shared_examples.rb'
 
 # Offense count: 197
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle.
 # SupportedStyles: normal, indented_internal_methods
-Layout/IndentationConsistency:
-  Enabled: false
+#Layout/IndentationConsistency:
+#  Enabled: false
 
 # Offense count: 201
 # Cop supports --auto-correct.
 # Configuration parameters: Width, IgnoredPatterns.
-Layout/IndentationWidth:
-  Enabled: false
+#Layout/IndentationWidth:
+#  Enabled: false
 
 # Offense count: 3
 # Cop supports --auto-correct.
 # Configuration parameters: AllowDoxygenCommentStyle, AllowGemfileRubyComment.
-Layout/LeadingCommentSpace:
-  Exclude:
-    - 'script/faculty_citation_report.rb'
+#Layout/LeadingCommentSpace:
+#  Exclude:
+#    - 'script/faculty_citation_report.rb'
 
 # Offense count: 17
 # Cop supports --auto-correct.
-Layout/LeadingEmptyLines:
-  Enabled: false
+#Layout/LeadingEmptyLines:
+#  Enabled: false
 
 # Offense count: 4
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle.
 # SupportedStyles: symmetrical, new_line, same_line
-Layout/MultilineArrayBraceLayout:
-  Exclude:
-    - 'lib/agent/author_institution.rb'
-    - 'script/fix_visibility_nil.rb'
-    - 'spec/factories/pub_hash.rb'
+#Layout/MultilineArrayBraceLayout:
+#  Exclude:
+#    - 'lib/agent/author_institution.rb'
+#    - 'script/fix_visibility_nil.rb'
+#    - 'spec/factories/pub_hash.rb'
 
 # Offense count: 10
 # Cop supports --auto-correct.
-Layout/MultilineBlockLayout:
-  Exclude:
-    - 'spec/factories/user_submitted_source_records.rb'
-    - 'spec/factories/web_of_science_source_record.rb'
+#Layout/MultilineBlockLayout:
+#  Exclude:
+#    - 'spec/factories/user_submitted_source_records.rb'
+#    - 'spec/factories/web_of_science_source_record.rb'
 
 # Offense count: 22
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle.
 # SupportedStyles: symmetrical, new_line, same_line
-Layout/MultilineMethodCallBraceLayout:
-  Exclude:
-    - 'app/models/pubmed_source_record.rb'
-    - 'app/models/sciencewire_source_record.rb'
-    - 'spec/factories/pub_hash.rb'
-    - 'spec/factories/sciencewire_source_records.rb'
-    - 'spec/lib/identifier_parser_doi_spec.rb'
-    - 'spec/lib/identifier_parser_isbn_spec.rb'
-    - 'spec/lib/identifier_parser_pmid_spec.rb'
-    - 'spec/lib/identifier_parser_spec.rb'
-    - 'spec/support/identifier_parser_shared_examples.rb'
+#Layout/MultilineMethodCallBraceLayout:
+#  Exclude:
+#    - 'app/models/pubmed_source_record.rb'
+#    - 'app/models/sciencewire_source_record.rb'
+#    - 'spec/factories/pub_hash.rb'
+#    - 'spec/factories/sciencewire_source_records.rb'
+#    - 'spec/lib/identifier_parser_doi_spec.rb'
+#    - 'spec/lib/identifier_parser_isbn_spec.rb'
+#    - 'spec/lib/identifier_parser_pmid_spec.rb'
+#    - 'spec/lib/identifier_parser_spec.rb'
+#    - 'spec/support/identifier_parser_shared_examples.rb'
 
 # Offense count: 2
 # Cop supports --auto-correct.
-Layout/SpaceAfterNot:
-  Exclude:
-    - 'app/models/contribution.rb'
+#Layout/SpaceAfterNot:
+#  Exclude:
+#    - 'app/models/contribution.rb'
 
 # Offense count: 5
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle.
 # SupportedStyles: final_newline, final_blank_line
-Layout/TrailingEmptyLines:
-  Exclude:
-    - 'lib/csl/bibtex_mapper.rb'
-    - 'lib/csl/mapper.rb'
-    - 'lib/csl/role_mapper.rb'
-    - 'lib/identifier_normalizer.rb'
-    - 'spec/support/identifier_parser_shared_examples.rb'
+#Layout/TrailingEmptyLines:
+#  Exclude:
+#    - 'lib/csl/bibtex_mapper.rb'
+#    - 'lib/csl/mapper.rb'
+#    - 'lib/csl/role_mapper.rb'
+#    - 'lib/identifier_normalizer.rb'
+#    - 'spec/support/identifier_parser_shared_examples.rb'
 
 # Offense count: 3
 # Cop supports --auto-correct.
-Lint/InterpolationCheck:
-  Exclude:
-    - 'spec/controllers/pages_controller_spec.rb'
+#Lint/InterpolationCheck:
+#  Exclude:
+#    - 'spec/controllers/pages_controller_spec.rb'
 
 # Offense count: 3
 Lint/NoReturnInBeginEndBlocks:

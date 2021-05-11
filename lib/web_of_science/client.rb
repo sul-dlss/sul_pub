@@ -1,7 +1,6 @@
 require 'savon'
 
 module WebOfScience
-
   # A Web of Science (or Web of Knowledge) client
   # It uses the WSDL service definitions from WOS
   # See also:
@@ -85,19 +84,18 @@ module WebOfScience
 
     private
 
-      attr_reader :session_queries
+    attr_reader :session_queries
 
-      def check_throttle_limits
-        @session_queries += 1
-        session_close if session_queries > API_SESSION_QUERY_LIMIT
-      end
+    def check_throttle_limits
+      @session_queries += 1
+      session_close if session_queries > API_SESSION_QUERY_LIMIT
+    end
 
-      def session_reset
-        @auth = nil
-        @search = nil
-        @session_id = nil
-        @session_queries = 0
-      end
-
+    def session_reset
+      @auth = nil
+      @search = nil
+      @session_id = nil
+      @session_queries = 0
+    end
   end
 end

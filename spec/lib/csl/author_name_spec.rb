@@ -1,4 +1,3 @@
-
 describe Csl::AuthorName do
   let(:fn) { 'Amasa' }
   let(:mn) { 'Leland' }

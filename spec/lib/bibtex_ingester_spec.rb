@@ -1,4 +1,3 @@
-
 describe BibtexIngester do
   subject(:bibtex_ingester) { described_class.new }
 

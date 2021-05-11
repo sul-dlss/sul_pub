@@ -1,4 +1,3 @@
-
 describe Agent::AuthorAddress do
   let(:line1) { 'Stanford University' }
   let(:line2) { '' }

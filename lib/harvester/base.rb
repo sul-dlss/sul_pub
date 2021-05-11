@@ -50,31 +50,31 @@ module Harvester
 
     private
 
-      # @return [Integer]
-      def batch_size
-        50
-      end
+    # @return [Integer]
+    def batch_size
+      50
+    end
 
-      # @return [Author::ActiveRecord_Relation]
-      # NOTE AR find_in_batches ignores order and limit on the query scope, and this method is used later with find_in_batches
-      def authors_query
-        @authors_query ||= Author.where(active_in_cap: true, cap_import_enabled: true).order(:id)
-      end
+    # @return [Author::ActiveRecord_Relation]
+    # NOTE AR find_in_batches ignores order and limit on the query scope, and this method is used later with find_in_batches
+    def authors_query
+      @authors_query ||= Author.where(active_in_cap: true, cap_import_enabled: true).order(:id)
+    end
 
-      # A default logger - a subclass can override the default
-      # @return [Logger]
-      def logger
-        @logger ||= Rails.logger
-      end
+    # A default logger - a subclass can override the default
+    # @return [Logger]
+    def logger
+      @logger ||= Rails.logger
+    end
 
-      # Consistent log prefix for status updates
-      # @param author [Author]
-      # @param [String] message
-      # @return [void]
-      def log_info(author, message)
-        prefix = self.class.to_s
-        prefix += " - author #{author.id}" if author.is_a?(Author)
-        logger.info "#{prefix} - #{message}"
-      end
+    # Consistent log prefix for status updates
+    # @param author [Author]
+    # @param [String] message
+    # @return [void]
+    def log_info(author, message)
+      prefix = self.class.to_s
+      prefix += " - author #{author.id}" if author.is_a?(Author)
+      logger.info "#{prefix} - #{message}"
+    end
   end
 end

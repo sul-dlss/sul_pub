@@ -8,8 +8,10 @@ module Pubmed
     def self.search_all_sources_by_pmid(pmid)
       pub = Publication.find_by(pmid: pmid) || Publication.find_by_pmid_pub_id(pmid)
       return [pub.pub_hash] if pub && pub.authoritative_pmid_source?
+
       result = fetch_remote_pubmed(pmid)
       return result unless result.empty?
+
       pub.blank? ? [] : [pub.pub_hash] # non-authoritative local hit if found
     end
 
@@ -23,6 +25,7 @@ module Pubmed
       end
 
       return [] unless Settings.PUBMED.lookup_enabled
+
       # PubMed, oddly enough, the last resort
       pm_xml = Pubmed.client.fetch_records_for_pmid_list(pmid)
       Nokogiri::XML(pm_xml).xpath('//PubmedArticle').map do |doc|

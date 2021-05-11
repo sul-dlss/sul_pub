@@ -5,7 +5,6 @@ require 'citeproc/ruby'
 require 'csl/styles'
 
 module Csl
-
   class Citation
     attr_reader :csl_renderer, :pub_hash
 

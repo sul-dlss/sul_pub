@@ -30,34 +30,34 @@ module Pubmed
 
     private
 
-      def url(addl_args)
-        url = "#{Settings.PUBMED.SEARCH_PATH}&retmax=#{Settings.PUBMED.max_publications_per_author}&api_key=#{Settings.PUBMED.API_KEY}"
-        if addl_args
-          url << '&' unless addl_args[0] == '&'
-          url << addl_args
-        end
-        url
+    def url(addl_args)
+      url = "#{Settings.PUBMED.SEARCH_PATH}&retmax=#{Settings.PUBMED.max_publications_per_author}&api_key=#{Settings.PUBMED.API_KEY}"
+      if addl_args
+        url << '&' unless addl_args[0] == '&'
+        url << addl_args
       end
+      url
+    end
 
-      # Use Settings.PUBMED.BASE_URI for connecting to the Pubmed API
-      # @return [Faraday::Connection]
-      def conn
-        @conn ||= begin
-          timeout_retries = 3
-          timeout_period = 500
-          conn = Faraday.new(url: Settings.PUBMED.BASE_URI) do |faraday|
-            faraday.request :retry, max: timeout_retries,
-                                    interval: 0.5,
-                                    interval_randomness: 0.5,
-                                    backoff_factor: 2
-            faraday.adapter :httpclient
-          end
-          conn.options.timeout = timeout_period
-          conn.options.open_timeout = 10
-          # need to set the user agent specifically since NIH is blocking the default Faraday user agent as of 1/8/2019 - Peter Mangiafico
-          conn.headers[:user_agent] = 'stanford-library-sul-pub'
-          conn
+    # Use Settings.PUBMED.BASE_URI for connecting to the Pubmed API
+    # @return [Faraday::Connection]
+    def conn
+      @conn ||= begin
+        timeout_retries = 3
+        timeout_period = 500
+        conn = Faraday.new(url: Settings.PUBMED.BASE_URI) do |faraday|
+          faraday.request :retry, max: timeout_retries,
+                                  interval: 0.5,
+                                  interval_randomness: 0.5,
+                                  backoff_factor: 2
+          faraday.adapter :httpclient
         end
+        conn.options.timeout = timeout_period
+        conn.options.open_timeout = 10
+        # need to set the user agent specifically since NIH is blocking the default Faraday user agent as of 1/8/2019 - Peter Mangiafico
+        conn.headers[:user_agent] = 'stanford-library-sul-pub'
+        conn
       end
+    end
   end
 end

@@ -10,6 +10,7 @@ module WebOfScience
     # @return [Array<String>] WosUIDs that create Publications
     def process_author(author, options = {})
       raise(ArgumentError, 'author must be an Author') unless author.is_a? Author
+
       log_info(author, "processing author #{author.id}")
       query_author = WebOfScience::QueryAuthor.new(author, options)
       if query_author.valid?
@@ -37,11 +38,13 @@ module WebOfScience
     def process_uids(author, uids)
       raise(ArgumentError, 'author must be an Author') unless author.is_a? Author
       raise(ArgumentError, 'uids must be Enumerable') unless uids.is_a? Enumerable
+
       log_info(author, "#{uids.count} UIDs for search")
       # TODO: get all the links for the UIDs and modify contribution checks to use all identifiers
       uids -= author_contributions(author, uids)
       log_info(author, "#{uids.count} UIDs without contributions")
       return [] if uids.empty?
+
       process_records author, queries.retrieve_by_id(uids)
     end
 
@@ -51,36 +54,38 @@ module WebOfScience
     # @return [Publication, nil] Publication created or associated with the Author
     def author_uid(author, uid)
       raise(ArgumentError, 'author must be an Author') unless author.is_a? Author
+
       found_uid = author_contributions(author, [uid]).first ||
                   process_records(author, queries.retrieve_by_id([uid])).first
       return if found_uid.blank?
+
       Publication.find_by(wos_uid: found_uid)
     end
 
     private
 
-      delegate :logger, :queries, to: :WebOfScience
+    delegate :logger, :queries, to: :WebOfScience
 
-      # Find any matching contributions by author and WOS-UID; create a contribution for any
-      # existing publication without one for the author in question.
-      # @param author [Author]
-      # @param uids [Array<String>]
-      # @return [Array<String>] uids guaranteed to have matching Publication and Contribution
-      def author_contributions(author, uids)
-        Publication.where(wos_uid: uids).find_each.map do |pub|
-          author.assign_pub(pub)
-          pub.wos_uid
-        end
+    # Find any matching contributions by author and WOS-UID; create a contribution for any
+    # existing publication without one for the author in question.
+    # @param author [Author]
+    # @param uids [Array<String>]
+    # @return [Array<String>] uids guaranteed to have matching Publication and Contribution
+    def author_contributions(author, uids)
+      Publication.where(wos_uid: uids).find_each.map do |pub|
+        author.assign_pub(pub)
+        pub.wos_uid
       end
+    end
 
-      # Process records retrieved by any means
-      # @param author [Author]
-      # @param retriever [WebOfScience::Retriever]
-      # @return [Array<String>] WosUIDs that create Publications
-      def process_records(author, retriever)
-        uids = []
-        uids += WebOfScience::ProcessRecords.new(author, retriever.next_batch).execute while retriever.next_batch?
-        uids.flatten.compact
-      end
+    # Process records retrieved by any means
+    # @param author [Author]
+    # @param retriever [WebOfScience::Retriever]
+    # @return [Array<String>] WosUIDs that create Publications
+    def process_records(author, retriever)
+      uids = []
+      uids += WebOfScience::ProcessRecords.new(author, retriever.next_batch).execute while retriever.next_batch?
+      uids.flatten.compact
+    end
   end
 end

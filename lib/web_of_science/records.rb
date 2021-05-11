@@ -1,7 +1,6 @@
 require 'forwardable'
 
 module WebOfScience
-
   # Utilities for working with Web of Science records
   class Records
     extend Forwardable
@@ -129,12 +128,11 @@ module WebOfScience
 
     private
 
-      # The UID for a WoS REC
-      # @param rec [Nokogiri::XML::Element] a Wos 'REC' element
-      # @return [String] a Wos 'UID' value
-      def record_uid(rec)
-        rec.search('UID').text
-      end
-
+    # The UID for a WoS REC
+    # @param rec [Nokogiri::XML::Element] a Wos 'REC' element
+    # @return [String] a Wos 'UID' value
+    def record_uid(rec)
+      rec.search('UID').text
+    end
   end
 end

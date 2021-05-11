@@ -10,7 +10,8 @@ FactoryBot.define do
     is_active { true }
     title { 'An improved TSVD-based Levenberg-Marquardt algorithm for history matching and comparison with Gauss-Newton' }
     year { 2016 }
-    source_data { '{
+    source_data {
+      '{
       "identifier": [
         {
           "id": "10.1016/j.petrol.2016.02.026",
@@ -72,7 +73,8 @@ FactoryBot.define do
       "last_updated": "2016-03-02T12:59Z",
       "publisher": "",
       "additionalProperties": {}
-    }' }
+    }'
+    }
   end
 
   factory :working_paper, parent: :user_submitted_source_record do
@@ -81,7 +83,8 @@ FactoryBot.define do
     source_fingerprint { 'c5af65af03161abf42b1c5ac0fbb7c9301a7ff44f06883340a7e732da2f3585b' }
     year { 2016 }
     is_active { true }
-    source_data { '{
+    source_data {
+      '{
       "identifier": [],
       "title": "This is Peter\'s Working Paper on the Revs Digital Library",
       "authorship": [
@@ -128,7 +131,8 @@ FactoryBot.define do
       "additionalProperties": {},
       "last_updated": "2016-05-09T14:57Z",
       "abstract": "This is the abstract."
-    }' }
+    }'
+    }
   end
 
   factory :case_study, parent: :user_submitted_source_record do
@@ -137,7 +141,8 @@ FactoryBot.define do
     source_fingerprint { 'a1a086ffb168f962cb64e9fb44fe579abae97a4d2ca0cfe70151f411d1d0d707' }
     year { 2016 }
     is_active { true }
-    source_data { '{
+    source_data {
+      '{
       "identifier": [],
       "title": "This is Peter\'s Case Study on the Revs Digital Library",
       "authorship": [
@@ -185,7 +190,8 @@ FactoryBot.define do
       "last_updated": "2016-05-17T11:47Z",
       "abstract": "This is the abstract."
     }
-' }
+'
+    }
   end
 
   factory :technical_report, parent: :user_submitted_source_record do
@@ -194,7 +200,8 @@ FactoryBot.define do
     source_fingerprint { 'e07b9d34334e46de5ea8bfd5ab5c9e5786285316937c090b8b06c50962329b5f' }
     year { 2016 }
     is_active { true }
-    source_data { '{
+    source_data {
+      '{
       "identifier": [],
       "title": "This is Peter\'s Technical Report on the Revs Digital Library",
       "authorship": [
@@ -241,7 +248,8 @@ FactoryBot.define do
       "additionalProperties": {},
       "last_updated": "2016-05-17T11:42Z",
       "abstract": "This is the abstract for Peter\'s Technical Report on the Revs Digital Library"
-    }' }
+    }'
+    }
   end
 
   factory :other_paper, parent: :user_submitted_source_record do
@@ -250,7 +258,8 @@ FactoryBot.define do
     source_fingerprint { '31e19a12ddcbfe7f844b683170cba2e9bccb20be7dc7a606585670fa93f8412b' }
     year { 2016 }
     is_active { true }
-    source_data { '{
+    source_data {
+      '{
       "identifier": [],
       "title": "This is Peter\'s Other Paper on the Revs Digital Library",
       "authorship": [
@@ -297,7 +306,8 @@ FactoryBot.define do
       "additionalProperties": {},
       "last_updated": "2016-05-17T11:44Z",
       "abstract": "This is the abstract."
-    }' }
+    }'
+    }
   end
   factory :book, parent: :user_submitted_source_record do
     pmid { nil }
@@ -306,7 +316,8 @@ FactoryBot.define do
     source_fingerprint { 'dc3f425b85d483182e8b9f40c48a93b83cf6c065dc058ab4cd6b3787a9f017ff' }
     year { 2015 }
     is_active { true }
-    source_data { '{
+    source_data {
+      '{
       "identifier": [
         {
           "id": "123456789",
@@ -366,7 +377,8 @@ FactoryBot.define do
       },
       "additionalProperties": {},
       "last_updated": "2016-05-23T11:47Z"
-    }' }
+    }'
+    }
   end
   factory :book_chapter, parent: :user_submitted_source_record do
     pmid { nil }
@@ -375,7 +387,8 @@ FactoryBot.define do
     title { 'Geospatial Resource Discovery' }
     year { 2016 }
     is_active { true }
-    source_data { '{
+    source_data {
+      '{
       "identifier": [
         {
           "id": "978-0-8389-1414-4",
@@ -446,7 +459,8 @@ FactoryBot.define do
       },
       "additionalProperties": {},
       "last_updated": "2016-05-23T12:01Z"
-    }' }
+    }'
+    }
   end
   factory :conference_proceeding, parent: :user_submitted_source_record do
     pmid { nil }
@@ -455,7 +469,8 @@ FactoryBot.define do
     title { 'Preservation and discovery for GIS data' }
     year { 2015 }
     is_active { true }
-    source_data { '{
+    source_data {
+      '{
       "identifier": [],
       "title": "Preservation and discovery for GIS data",
       "authorship": [
@@ -501,7 +516,8 @@ FactoryBot.define do
         "additionalProperties": {}
       },
       "additionalProperties": {}
-    }' }
+    }'
+    }
   end
   factory :journal_article, parent: :user_submitted_source_record do
     pmid { nil }
@@ -510,7 +526,8 @@ FactoryBot.define do
     title { 'The Flat Rock Cemetery Mapping Project:  A Case Study in Community Archaeology' }
     year { 2012 }
     is_active { true }
-    source_data { '{
+    source_data {
+      '{
       "identifier": [],
       "title": "The Flat Rock Cemetery Mapping Project:  A Case Study in Community Archaeology",
       "authorship": [
@@ -584,6 +601,7 @@ FactoryBot.define do
       "last_updated": "2016-05-23T14:03Z",
       "publisher": "The Society for Georgia Archaeology",
       "additionalProperties": {}
-    }' }
+    }'
+    }
   end
 end

@@ -184,7 +184,7 @@ describe WebOfScience::ProcessRecords, :vcr do
       let(:records) { WebOfScience::Records.new(records: "<records>#{wos_rec.to_xml}</records>") }
       let(:pub) do
         build :publication, sciencewire_id: 123, pmid: '21253920', pubhash_needs_update: true,
-          pub_hash: { identifier: [{ type: 'pmid', id: '21253920', url: 'whatever' }, { type: 'doi', id: 'ABCXYZ', url: 'theother' }] }
+                            pub_hash: { identifier: [{ type: 'pmid', id: '21253920', url: 'whatever' }, { type: 'doi', id: 'ABCXYZ', url: 'theother' }] }
       end
       let(:uid) { records.first.uid }
 

@@ -51,18 +51,17 @@
 require 'csv'
 
 class SMCIReport
-
   def initialize(args)
     @input_file = args[:input_file]
     @output_file = args[:output_file]
     @date_since = args[:date_since] || nil # the created_date to look back to for authors with profiles publications
     @time_span = args[:time_span] || nil # the symbolicTimeSpan parameter for WoS queries for authors NOT in profiles (e.g. 1year)
-   # allowed values here: https://github.com/sul-dlss/sul_pub/wiki/Clarivate-APIs
-   # in either case, NIL will fetch both types of publications for all time
+    # allowed values here: https://github.com/sul-dlss/sul_pub/wiki/Clarivate-APIs
+    # in either case, NIL will fetch both types of publications for all time
 
-   raise 'missing required params' unless @output_file && @input_file
-   raise 'missing input csv' unless File.file? @input_file
-   raise 'supplied date_since is not valid' if @date_since && !Time.parse(@date_since)
+    raise 'missing required params' unless @output_file && @input_file
+    raise 'missing input csv' unless File.file? @input_file
+    raise 'supplied date_since is not valid' if @date_since && !Time.parse(@date_since)
   end
 
   def logger
@@ -239,5 +238,4 @@ class SMCIReport
      pub_hash[:mla_citation],
      pub_hash[:chicago_citation]]
   end
-
 end

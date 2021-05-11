@@ -11,7 +11,6 @@ module WebOfScience
     WSDL_SEARCH = 'http://search.webofknowledge.com/esti/wokmws/ws/WokSearch?wsdl'.freeze
 
     class << self
-
       @@fetched = false
 
       def stub_auth_wsdl
@@ -28,6 +27,7 @@ module WebOfScience
 
       def fetch
         return if @@fetched
+
         response = Faraday.get(WSDL_AUTH)
         File.open(WSDL_AUTH_FILE, 'w') { |f| f.write(response.body) } if response.success?
         response = Faraday.get(WSDL_SEARCH)

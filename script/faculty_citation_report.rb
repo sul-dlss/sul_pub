@@ -16,9 +16,9 @@
 
 ## Example CSV input file:
 ## author,sunet
-##"LastName,FirstName",
-##"LastName,FirstName Middle Initial",
-##"AnotherLast,Another First",sunetIDhere_if_available
+# #"LastName,FirstName",
+# #"LastName,FirstName Middle Initial",
+# #"AnotherLast,Another First",sunetIDhere_if_available
 
 puts "******* WARNING!  WoS API is enabled, which makes this report unreliable for the number of times cited.  Publication counts will still be correct. ******" if Settings.WOS.enabled
 

@@ -22,11 +22,11 @@ class PublicationIdentifier < ActiveRecord::Base
 
   private
 
-    # Reject all pub_id.identifier_type entries from pub_id.publication.pub_hash[:identifier]
-    # - the pub_hash[:identifier] is not modified by this method
-    # @return [Hash]
-    def pub_hash_reject
-      pub_ids = publication.pub_hash[:identifier] || []
-      pub_ids.reject { |id| id[:type] == identifier_type }
-    end
+  # Reject all pub_id.identifier_type entries from pub_id.publication.pub_hash[:identifier]
+  # - the pub_hash[:identifier] is not modified by this method
+  # @return [Hash]
+  def pub_hash_reject
+    pub_ids = publication.pub_hash[:identifier] || []
+    pub_ids.reject { |id| id[:type] == identifier_type }
+  end
 end

@@ -30,7 +30,7 @@ describe Cap::AuthorsPoller, :vcr do
       ],
       'lastModified' => '2016-03-31T14:43:34.613-07:00',
       'populations' => ['stanford'],
-      'profile' =>  {
+      'profile' => {
         'displayName' => "#{author.official_first_name} #{author.official_last_name}",
         'email' => author.email,
         'names' => {

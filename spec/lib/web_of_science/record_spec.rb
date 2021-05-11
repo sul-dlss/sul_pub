@@ -104,14 +104,14 @@ describe WebOfScience::Record do
 
   describe '#pub_info' do
     let(:pub_info_hash) do
-      { 'issue'        => '5',
-        'pubtype'      => 'Journal',
-        'sortdate'     => '1972-01-01',
+      { 'issue' => '5',
+        'pubtype' => 'Journal',
+        'sortdate' => '1972-01-01',
         'has_abstract' => 'N',
-        'coverdate'    => '1972',
-        'vol'          => '33',
-        'pubyear'      => '1972',
-        'page'         => { 'end' => '413', 'page_count' => '1', 'begin' => '413' } }
+        'coverdate' => '1972',
+        'vol' => '33',
+        'pubyear' => '1972',
+        'page' => { 'end' => '413', 'page_count' => '1', 'begin' => '413' } }
     end
     it 'works' do
       expect(wos_record_encoded.pub_info).to match a_hash_including(pub_info_hash)
@@ -129,11 +129,11 @@ describe WebOfScience::Record do
   end
   it '#to_h works' do
     expect(wos_record_encoded.to_h).to match a_hash_including(
-      'doctypes'   => Array,
-      'names'      => Array,
-      'pub_info'   => Hash,
+      'doctypes' => Array,
+      'names' => Array,
+      'pub_info' => Hash,
       'publishers' => Array,
-      'titles'     => Hash
+      'titles' => Hash
     )
   end
 

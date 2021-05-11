@@ -1,5 +1,4 @@
 class MergeDuplicateAuthorship
-
   def initialize
     @log_merge = logger 'duplicate_authorship_merge.log'
     @log_record = logger 'duplicate_authorship_record.log'
@@ -23,9 +22,11 @@ class MergeDuplicateAuthorship
       src_authorship = src_hash['authorship']
       @logger.info "Publication #{pub[:id]}: src_authorship: #{JSON.dump(src_authorship)}"
       next unless src_authorship.length > 1
+
       src_authorship_ids = src_authorship.map { |p| p['cap_profile_id'] }
       src_authorship_set = src_authorship_ids.to_set
       next unless src_authorship_set.length != src_authorship_ids.length
+
       @logger.error "Publication #{pub[:id]}: src_authorship duplicate"
       status = true
       # require 'pry'; binding.pry

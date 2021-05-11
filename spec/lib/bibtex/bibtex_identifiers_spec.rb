@@ -77,12 +77,12 @@ describe BibtexIdentifiers do
 
     let(:ids) do
       {
-        'doi'        => doi,
-        'doi_uri'    => "https://doi.org/#{doi}",
-        'isbn'       => isbn,
-        'isbn_uri'   => "http://searchworks.stanford.edu/?search_field=advanced&number=#{isbn}",
-        'issn'       => issn,
-        'issn_uri'   => "http://searchworks.stanford.edu/?search_field=advanced&number=#{issn}",
+        'doi' => doi,
+        'doi_uri' => "https://doi.org/#{doi}",
+        'isbn' => isbn,
+        'isbn_uri' => "http://searchworks.stanford.edu/?search_field=advanced&number=#{isbn}",
+        'issn' => issn,
+        'issn_uri' => "http://searchworks.stanford.edu/?search_field=advanced&number=#{issn}",
         # pmid is missing
       }
     end
@@ -109,8 +109,8 @@ describe BibtexIdentifiers do
 
     let(:ids) do
       {
-        'pmid'        => pmid,
-        'pmid_uri'    => "https://www.ncbi.nlm.nih.gov/pubmed/#{pmid}",
+        'pmid' => pmid,
+        'pmid_uri' => "https://www.ncbi.nlm.nih.gov/pubmed/#{pmid}",
       }
     end
 

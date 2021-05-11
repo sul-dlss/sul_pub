@@ -1,8 +1,6 @@
 module Csl
-
   # Convert PubMed content into a CSL format
   class PubmedMapper
-
     # Convert PubMed authors into CSL authors, see also
     # PubmedSourceRecord.convert_pubmed_publication_doc_to_hash
     # @param [Array<Hash>] authors array of hash data
@@ -13,6 +11,5 @@ module Csl
         Csl::AuthorName.new(author).to_csl_author
       end.compact
     end
-
   end
 end

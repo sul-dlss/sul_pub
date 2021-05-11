@@ -1,4 +1,3 @@
-
 class UpdateMeshHeadings
   def initialize
     @logger = Logger.new(Rails.root.join('log', 'update_mesh_headings.log'))

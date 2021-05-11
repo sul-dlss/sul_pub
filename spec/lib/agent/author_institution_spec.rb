@@ -1,4 +1,3 @@
-
 describe Agent::AuthorInstitution do
   describe '#initialize' do
     subject { described_class.new(nil, nil) }

@@ -22,7 +22,6 @@ class DeleteMissingAuths
         pub.save
       end
     end
-
   rescue ActiveRecord::RecordNotFound
     @logger.warn "Author id not found #{auth_id}"
   end
@@ -40,7 +39,6 @@ class DeleteMissingAuths
         @logger.error e.backtrace.join "\n"
       end
     end
-
   rescue => e
     @logger.error e.inspect.to_s
     @logger.error e.backtrace.join "\n"

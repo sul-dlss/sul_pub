@@ -3,17 +3,18 @@ require 'identifiers'
 module WebOfScience
   # Used in the Web of Science harvesting process
   module ProcessPubmed
-
     # For WOS-records with a PMID, try to enhance them with PubMed data
     # @param [Array<WebOfScience::Record>] records
     def pubmed_additions(records)
       raise(ArgumentError, 'records must be Enumerable') unless records.is_a? Enumerable
       raise(ArgumentError, 'records must contain WebOfScience::Record') unless records.all? { |rec| rec.is_a? WebOfScience::Record }
+
       present_recs = records.select { |record| record.pmid.present? }
       uid_to_pub = Publication.where(wos_uid: present_recs.map(&:uid)).group_by(&:wos_uid)
       present_recs.each do |record|
         begin
           next if uid_to_pub[record.uid].blank?
+
           pub = uid_to_pub[record.uid].first
           pmid = parse_pmid(record.pmid) # validate a PMID before saving it to a Publication
           pub.pmid.nil? || next # first PMID is enough
@@ -36,6 +37,7 @@ module WebOfScience
     def pubmed_addition(pub)
       raise(ArgumentError, 'pub must be Publication') unless pub.is_a? Publication
       return unless Settings.PUBMED.lookup_enabled
+
       pmid = parse_pmid(pub.pmid) # ensure the Publication has a valid PMID
       pubmed_record = PubmedSourceRecord.for_pmid(pmid)
       if pubmed_record.nil?
@@ -47,6 +49,7 @@ module WebOfScience
       pub.pub_hash.reverse_update(pubmed_hash)
       pub.pub_hash[:identifier] << pmc_id if pmc_id && !pub.pub_hash[:identifier].include?(pmc_id)
       return unless pub.changed?
+
       pub.pubhash_needs_update!
       pub.save!
     rescue StandardError => e
@@ -60,8 +63,10 @@ module WebOfScience
     # @return [void]
     def pubmed_cleanup(pub, pmid = nil)
       raise(ArgumentError, 'pub must be Publication') unless pub.is_a? Publication
+
       pmid ||= parse_pmid(pub.pmid)
       return unless Pubmed.working?
+
       pub_id = pub.publication_identifiers.find_by(identifier_type: 'PMID', identifier_value: pmid)
       if pub_id.present?
         pub_id.pub_hash_update(delete: true)
@@ -81,6 +86,7 @@ module WebOfScience
       # NOTE: Identifiers::PubmedId.extract(pmid).first returns nil or a String for (String | Integer) arg
       pmid = ::Identifiers::PubmedId.extract(pmid).first
       raise(ArgumentError, 'pmid is not valid') unless pmid.is_a? String
+
       pmid
     end
   end

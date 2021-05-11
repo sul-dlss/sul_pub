@@ -1,4 +1,3 @@
-
 describe ScienceWirePublication do
   let(:wrong_element) do
     xml_doc = Nokogiri::XML '<NotPublicationItem/>'

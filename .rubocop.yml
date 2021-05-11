@@ -36,6 +36,10 @@ Layout/LineLength:
   Exclude:
     - "spec/factories/**/*" # factories contain long string literals
 
+Metrics/BlockLength:
+  Exclude:
+    - "spec/factories/user_submitted_source_records.rb"
+
 Naming/VariableName:
   Enabled: false
 

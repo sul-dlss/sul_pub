@@ -9,6 +9,7 @@ class AuthorHarvestJob < ActiveJob::Base
     author = Author.find_by(cap_profile_id: cap_profile_id)
     author ||= Author.fetch_from_cap_and_create(cap_profile_id)
     raise "Could not find or fetch author: #{cap_profile_id}" unless author.is_a?(Author)
+
     AllSources.harvester.process_author(author)
     log_pubs(author)
   rescue => e
@@ -20,13 +21,12 @@ class AuthorHarvestJob < ActiveJob::Base
 
   private
 
-    # @param [Author] author
-    # @return [void]
-    def log_pubs(author)
-      pubs = Contribution.where(author_id: author.id).map(&:publication).each do |p|
-        logger.info "publication #{p.id}: #{p.pub_hash[:apa_citation]}"
-      end
-      logger.info "Number of publications #{pubs.count}"
+  # @param [Author] author
+  # @return [void]
+  def log_pubs(author)
+    pubs = Contribution.where(author_id: author.id).map(&:publication).each do |p|
+      logger.info "publication #{p.id}: #{p.pub_hash[:apa_citation]}"
     end
-
+    logger.info "Number of publications #{pubs.count}"
+  end
 end

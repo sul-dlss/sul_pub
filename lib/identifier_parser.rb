@@ -19,17 +19,14 @@ require 'identifiers'
 
 # Exception for incorrect instantiation of a parser (not necessarily bad data)
 class IdentifierParserTypeError < StandardError
-
 end
 
 # Exception for blank data
 class IdentifierParserEmptyError < StandardError
-
 end
 
 # Exception for invalid data
 class IdentifierParserInvalidError < StandardError
-
 end
 
 # Parse the identifiers in a PublicationIdentifier
@@ -42,12 +39,12 @@ end
 # that persistence action to the consumer; see the runner script in
 # @see script/publication_identifier_normalization.rb
 class IdentifierParser
-
   attr_reader :pub_id, :type
 
   # @param pub_id [PublicationIdentifier]
   def initialize(pub_id)
     raise(ArgumentError, 'pub_id must be an PublicationIdentifier') unless pub_id.is_a? PublicationIdentifier
+
     @pub_id = pub_id
     @type = pub_id[:identifier_type].to_s
     validate_data
@@ -97,43 +94,42 @@ class IdentifierParser
 
   private
 
-    # Compose a URI
-    # @return [String, nil]
-    def compose_uri
-      pub_id[:identifier_uri]
-    end
+  # Compose a URI
+  # @return [String, nil]
+  def compose_uri
+    pub_id[:identifier_uri]
+  end
 
-    def extractor
-      # subclasses can normalize data, otherwise this method should never get called
-      raise(NotImplementedError, "There is no IdentifierParser for a #{type}")
-    end
+  def extractor
+    # subclasses can normalize data, otherwise this method should never get called
+    raise(NotImplementedError, "There is no IdentifierParser for a #{type}")
+  end
 
-    def extract_value
-      # the value should only ever be one identifier, so we can extract the .first
-      # and when it fails to extract an identifier, the .first call returns nil
-      extract = extractor.extract(pub_id[:identifier_value]).first
-      extract = extract_value_from_uri if extract.blank?
-      msg = "'#{extract}' extracted from '#{pub_id.inspect}'"
-      extract.blank? ? logger.error(msg) : logger.info(msg)
-      extract
-    end
+  def extract_value
+    # the value should only ever be one identifier, so we can extract the .first
+    # and when it fails to extract an identifier, the .first call returns nil
+    extract = extractor.extract(pub_id[:identifier_value]).first
+    extract = extract_value_from_uri if extract.blank?
+    msg = "'#{extract}' extracted from '#{pub_id.inspect}'"
+    extract.blank? ? logger.error(msg) : logger.info(msg)
+    extract
+  end
 
-    def extract_value_from_uri
-      extractor.extract(pub_id[:identifier_uri]).first
-    end
+  def extract_value_from_uri
+    extractor.extract(pub_id[:identifier_uri]).first
+  end
 
-    def logger
-      @logger ||= Logger.new(Rails.root.join('log', 'identifier_parser.log'))
-    end
+  def logger
+    @logger ||= Logger.new(Rails.root.join('log', 'identifier_parser.log'))
+  end
 
-    def match_type
-      true # base class can match anything to detect blanks
-    end
+  def match_type
+    true # base class can match anything to detect blanks
+  end
 
-    def validate_data
-      raise(IdentifierParserTypeError, "INVALID TYPE #{pub_id.inspect}") unless match_type
-      raise(IdentifierParserEmptyError, "EMPTY DATA #{pub_id.inspect}") if empty?
-      raise(IdentifierParserInvalidError, "INVALID DATA #{pub_id.inspect}") unless valid?
-    end
-
+  def validate_data
+    raise(IdentifierParserTypeError, "INVALID TYPE #{pub_id.inspect}") unless match_type
+    raise(IdentifierParserEmptyError, "EMPTY DATA #{pub_id.inspect}") if empty?
+    raise(IdentifierParserInvalidError, "INVALID DATA #{pub_id.inspect}") unless valid?
+  end
 end

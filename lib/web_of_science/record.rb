@@ -1,7 +1,6 @@
 require 'forwardable'
 
 module WebOfScience
-
   # Utilities for working with a Web of Knowledge (WOK) record
   class Record
     extend Forwardable
@@ -146,6 +145,5 @@ module WebOfScience
          END")
       ).first
     end
-
   end
 end

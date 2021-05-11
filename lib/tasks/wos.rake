@@ -4,6 +4,7 @@ namespace :wos do
   task :assign_uids, [:cap_profile_id] => :environment do |_t, args|
     author = Author.find_by(cap_profile_id: args[:cap_profile_id])
     raise "Could not find Author by cap_profile_id: #{args[:cap_profile_id]}." if author.nil?
+
     puts "Reading WosUIDs from STDIN..."
     uids = $stdin.read.split("\n").each(&:strip!).select(&:present?)
     abort 'No records read from STDIN' if uids.blank?
@@ -30,6 +31,7 @@ namespace :wos do
   task :harvest_author, [:cap_profile_id, :symbolicTimeSpan] => :environment do |_t, args|
     author = Author.find_by(cap_profile_id: args[:cap_profile_id])
     raise "Could not find Author by cap_profile_id: #{args[:cap_profile_id]}." if author.nil?
+
     options = {}
     options[:symbolicTimeSpan] = args[:symbolicTimeSpan] if args[:symbolicTimeSpan].present?
     WebOfScience.harvester.process_author(author, options)
@@ -38,6 +40,7 @@ namespace :wos do
   desc 'Retrieve and print links for a publication by WOS-UID or WosItemId'
   task :links, [:wos_id] => :environment do |_t, args|
     raise 'wos_id argument is required.' if args[:wos_id].blank?
+
     links = WebOfScience.links_client.links([args[:wos_id]], fields: Clarivate::LinksClient::ALL_FIELDS)
     puts JSON.pretty_generate(links)
   end
@@ -45,6 +48,7 @@ namespace :wos do
   desc 'Retrieve and print a single publication by WOS-UID or WosItemId'
   task :publication, [:wos_id] => :environment do |_t, args|
     raise 'wos_id argument is required.' if args[:wos_id].blank?
+
     records = WebOfScience.queries.retrieve_by_id([args[:wos_id]]).next_batch
     records.each(&:print) # XML documents
   end

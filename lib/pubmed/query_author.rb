@@ -1,9 +1,9 @@
 module Pubmed
-
   # Use author name-institution logic to find Pubmed publications for an Author
   class QueryAuthor
     def initialize(author, options = {})
       raise(ArgumentError, 'author must be an Author') unless author.is_a? Author
+
       @options = options
       @author = author
     end
@@ -60,6 +60,5 @@ module Pubmed
     def parse_response(response)
       Nokogiri::XML(response).xpath('//IdList/Id/text()').map(&:text)
     end
-
   end
 end

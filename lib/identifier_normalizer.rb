@@ -8,7 +8,6 @@
 #   - PublicationIdentifier record
 #   - PublicationIdentifier.Publication.pub_hash[:identifier]
 class IdentifierNormalizer
-
   attr_accessor :delete_blanks, :delete_invalid, :save_changes
 
   # @param save_changes [Boolean] save changes (default: false)
@@ -33,44 +32,43 @@ class IdentifierNormalizer
 
   private
 
-    # Choose a parser that can handle the PublicationIdentifier.identifier_type
-    # @param pub_id [PublicationIdentifier]
-    # @return [IdentifierParser] a kind of IdentifierParser to handle the pub_id
-    def identifier_parser(pub_id)
-      case pub_id[:identifier_type].to_s.downcase
-      when 'doi'
-        IdentifierParserDOI.new(pub_id)
-      when 'isbn'
-        IdentifierParserISBN.new(pub_id)
-      when 'pmid'
-        IdentifierParserPMID.new(pub_id)
-      else
-        # this default parser will not normalize any data, but it can detect blank data
-        IdentifierParser.new(pub_id)
-      end
+  # Choose a parser that can handle the PublicationIdentifier.identifier_type
+  # @param pub_id [PublicationIdentifier]
+  # @return [IdentifierParser] a kind of IdentifierParser to handle the pub_id
+  def identifier_parser(pub_id)
+    case pub_id[:identifier_type].to_s.downcase
+    when 'doi'
+      IdentifierParserDOI.new(pub_id)
+    when 'isbn'
+      IdentifierParserISBN.new(pub_id)
+    when 'pmid'
+      IdentifierParserPMID.new(pub_id)
+    else
+      # this default parser will not normalize any data, but it can detect blank data
+      IdentifierParser.new(pub_id)
     end
+  end
 
-    def logger
-      @logger ||= Logger.new(Rails.root.join('log', 'identifier_normalizer.log'))
-    end
+  def logger
+    @logger ||= Logger.new(Rails.root.join('log', 'identifier_normalizer.log'))
+  end
 
-    # @param pub_id [PublicationIdentifier]
-    def pub_id_destroy(pub_id)
-      pub_id.destroy!
-      pub_id.pub_hash_update(delete: true)
-      pub_id.publication.save!
-    end
+  # @param pub_id [PublicationIdentifier]
+  def pub_id_destroy(pub_id)
+    pub_id.destroy!
+    pub_id.pub_hash_update(delete: true)
+    pub_id.publication.save!
+  end
 
-    # @param pub_id [PublicationIdentifier]
-    def pub_id_update(pub_id)
-      parser = identifier_parser(pub_id)
-      pub_id = parser.update if save_changes
-      return unless pub_id.changed?
-      pub_id.save!
-      pub_id.publication.publication_identifiers.reload
-      pub_id.pub_hash_update
-      pub_id.publication.save!
-    end
+  # @param pub_id [PublicationIdentifier]
+  def pub_id_update(pub_id)
+    parser = identifier_parser(pub_id)
+    pub_id = parser.update if save_changes
+    return unless pub_id.changed?
 
+    pub_id.save!
+    pub_id.publication.publication_identifiers.reload
+    pub_id.pub_hash_update
+    pub_id.publication.save!
+  end
 end
-

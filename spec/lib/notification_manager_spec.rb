@@ -1,4 +1,3 @@
-
 describe NotificationManager do
   let(:message) { 'this is an error message' }
   let(:exception) { double(Exception, message: message, backtrace: ['backtrace data']) }

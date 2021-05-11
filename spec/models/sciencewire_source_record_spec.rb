@@ -1,4 +1,3 @@
-
 describe SciencewireSourceRecord, :vcr do
   describe '.lookup_sw_doc_type' do
     it 'maps document types to CAP inproceedings' do

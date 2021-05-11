@@ -23,6 +23,7 @@ module WebOfScience
     def self.parse(xml, encoded_xml)
       xml ||= begin
         raise 'xml and encoded_xml are both nil' if encoded_xml.nil?
+
         HTMLEntities.new.decode(encoded_xml)
       end
       Nokogiri::XML(xml) { |config| config.strict.noblanks }

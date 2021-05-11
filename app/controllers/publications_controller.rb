@@ -175,55 +175,55 @@ class PublicationsController < ApplicationController
 
   private
 
-    # @return [Hash]
-    def wrap_as_bibjson_collection(description, records, page = 1, per_page = 'all')
-      metadata = {
-        _created: Time.zone.now.iso8601,
-        description: description,
-        format: 'BibJSON',
-        license: 'some licence',
-        page: page,
-        per_page: per_page,
-        query: request.env['ORIGINAL_FULLPATH'].to_s,
-        records:  records.count.to_s
-      }
-      {
-        metadata: metadata,
-        records: records.map { |x| (x.pub_hash if x.respond_to? :pub_hash) || x }
-      }
-    end
+  # @return [Hash]
+  def wrap_as_bibjson_collection(description, records, page = 1, per_page = 'all')
+    metadata = {
+      _created: Time.zone.now.iso8601,
+      description: description,
+      format: 'BibJSON',
+      license: 'some licence',
+      page: page,
+      per_page: per_page,
+      query: request.env['ORIGINAL_FULLPATH'].to_s,
+      records: records.count.to_s
+    }
+    {
+      metadata: metadata,
+      records: records.map { |x| (x.pub_hash if x.respond_to? :pub_hash) || x }
+    }
+  end
 
-    # @param [Author] author
-    # @return [String] contains csv report of an author's publications
-    def generate_csv_report(author)
-      CSV.generate do |csv|
-        csv << %w(sul_pub_id sciencewire_id pubmed_id doi wos_id title journal year pages issn status_for_this_author created_at updated_at contributor_cap_profile_ids)
-        author.publications.find_each do |pub|
-          journ = pub.pub_hash[:journal] ? pub.pub_hash[:journal][:name] : ''
-          contrib_prof_ids = pub.authors.pluck(:cap_profile_id).join(';')
-          wos_id = pub.publication_identifiers.where(identifier_type: 'WoSItemID').pluck(:identifier_value).first
-          doi = pub.publication_identifiers.where(identifier_type: 'doi').pluck(:identifier_value).first
-          status = pub.contributions.where(author_id: author.id).pluck(:status).first
-          created_at = pub.created_at.utc.strftime('%m/%d/%Y')
-          updated_at = pub.updated_at.utc.strftime('%m/%d/%Y')
+  # @param [Author] author
+  # @return [String] contains csv report of an author's publications
+  def generate_csv_report(author)
+    CSV.generate do |csv|
+      csv << %w(sul_pub_id sciencewire_id pubmed_id doi wos_id title journal year pages issn status_for_this_author created_at updated_at contributor_cap_profile_ids)
+      author.publications.find_each do |pub|
+        journ = pub.pub_hash[:journal] ? pub.pub_hash[:journal][:name] : ''
+        contrib_prof_ids = pub.authors.pluck(:cap_profile_id).join(';')
+        wos_id = pub.publication_identifiers.where(identifier_type: 'WoSItemID').pluck(:identifier_value).first
+        doi = pub.publication_identifiers.where(identifier_type: 'doi').pluck(:identifier_value).first
+        status = pub.contributions.where(author_id: author.id).pluck(:status).first
+        created_at = pub.created_at.utc.strftime('%m/%d/%Y')
+        updated_at = pub.updated_at.utc.strftime('%m/%d/%Y')
 
-          csv << [pub.id, pub.sciencewire_id, pub.pmid, doi, wos_id, pub.title, journ, pub.year, pub.pages, pub.issn, status, created_at, updated_at, contrib_prof_ids]
-        end
+        csv << [pub.id, pub.sciencewire_id, pub.pmid, doi, wos_id, pub.title, journ, pub.year, pub.pages, pub.issn, status, created_at, updated_at, contrib_prof_ids]
       end
     end
+  end
 
-    # Check for existing authors or create new authors with a CAP profile ID.
-    # At least one of the authors in the authorship array must exist or have
-    # a CAP profile that is used to create a new SULCAP author.
-    # @param authorship_list [Array<Hash>]
-    # @return [Boolean] true if any authors exist or are created.
-    def validate_or_create_authors(authorship_list)
-      return false if authorship_list.blank?
-      groups = authorship_list.group_by { |auth| Contribution.authorship_valid?(auth) }
-      unknowns = groups[false] || []
-      cap_ids = unknowns.map { |auth| auth[:cap_profile_id] }.compact
-      cap_ids.map { |id| Author.fetch_from_cap_and_create(id) }.any? ||
-        groups[true].any?
-    end
+  # Check for existing authors or create new authors with a CAP profile ID.
+  # At least one of the authors in the authorship array must exist or have
+  # a CAP profile that is used to create a new SULCAP author.
+  # @param authorship_list [Array<Hash>]
+  # @return [Boolean] true if any authors exist or are created.
+  def validate_or_create_authors(authorship_list)
+    return false if authorship_list.blank?
 
+    groups = authorship_list.group_by { |auth| Contribution.authorship_valid?(auth) }
+    unknowns = groups[false] || []
+    cap_ids = unknowns.map { |auth| auth[:cap_profile_id] }.compact
+    cap_ids.map { |id| Author.fetch_from_cap_and_create(id) }.any? ||
+      groups[true].any?
+  end
 end

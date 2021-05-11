@@ -8,6 +8,7 @@ namespace :sul do
     output_file = args[:output_file]
     date_since = args[:date_since]
     raise unless output_file && date_since
+
     total_pubs = Contribution.where('created_at > ?', Date.strptime(date_since, '%m/%d/%Y')).count
     puts "Exporting all pubs to #{output_file} since date #{date_since}, found #{total_pubs} contributions to export"
     header_row = %w(pub_title pub_associated_author_last_name pub_associated_author_first_name pub_associated_author_sunet pub_associated_author_employee_id pub_added_date apa_citation)
@@ -33,6 +34,7 @@ namespace :sul do
     date_since = args[:date_since]
     raise "missing required params" unless output_file && input_file && Time.parse(date_since)
     raise "missing input csv" unless File.file? input_file
+
     rows = CSV.parse(File.read(input_file), headers: true)
     total_authors = rows.size
     total_pubs = 0
@@ -75,6 +77,7 @@ namespace :sul do
     logger = Logger.new(Rails.root.join('log', 'update_pubs.log'))
     method = args[:method] || "rebuild_pub_hash" # default to rebuilding pub_hash, could also rebuild_authorship
     raise "Method #{method} not defined" unless Publication.new.respond_to? method
+
     $stdout.sync = true # flush output immediately
     include ActionView::Helpers::NumberHelper # for nice display output and time computations in output
     include ActionView::Helpers::DateHelper
@@ -125,6 +128,7 @@ namespace :sul do
     input_file = args[:input_file]
     raise "missing required params" unless output_file && input_file
     raise "missing input csv" unless File.file? input_file
+
     rows = CSV.parse(File.read(input_file), headers: true)
     total_pubs = rows.size
     start_time = Time.zone.now
@@ -178,6 +182,7 @@ namespace :sul do
     input_file = args[:input_file]
     raise "missing required params" unless output_file && input_file
     raise "missing input csv" unless File.file? input_file
+
     rows = CSV.parse(File.read(input_file), headers: true)
     total_authors = rows.size
     output_data = []

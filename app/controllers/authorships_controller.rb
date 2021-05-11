@@ -48,6 +48,7 @@ class AuthorshipsController < ApplicationController
 
     pub_hash = create_or_update_and_return_pub_hash(pub, author, contrib_attr)
     return unless pub_hash
+
     render json: pub_hash.to_json, format: :json, status: :created
   end
 
@@ -113,6 +114,7 @@ class AuthorshipsController < ApplicationController
 
     pub_hash = create_or_update_and_return_pub_hash(pub, author, contrib_attr)
     return unless pub_hash
+
     render json: pub_hash.to_json, format: :json, status: :accepted
   end
 
@@ -176,6 +178,7 @@ class AuthorshipsController < ApplicationController
   # Double check that the retrieved author matches the cap_profile_id sent
   def author_id_consistent?(author, cap_profile_id)
     return true if cap_profile_id.blank? || author.cap_profile_id == cap_profile_id.to_i
+
     # Author found by 'sul_author_id' has a different 'cap_profile_id' assigned, barf!
     msg = "SULCAP has an author record with a different cap_profile_id\n"
     msg += "Found     cap_profile_id: #{author.cap_profile_id} in sul_author_id: #{author.id}\n"
@@ -234,5 +237,4 @@ class AuthorshipsController < ApplicationController
     log_and_error!("A matching publication record for WOS_UID:#{wos_uid} was not found in the publication table.")
     false
   end
-
 end

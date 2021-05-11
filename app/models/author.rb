@@ -50,12 +50,14 @@ class Author < ActiveRecord::Base
     return unless import_settings.present?
     # Return if no changes in author identifies.
     return false if author_identities_set == import_author_identities_set(import_settings)
+
     transaction do
       author_identities.clear # drop all existing identities
       import_settings.each do |i|
         attribs = import_setting_to_attribs(i)
         # ensure that we have a *new* identity worth saving
         next unless author_identity_different?(attribs)
+
         # can't call create! on an unsaved record
         new_record? ? author_identities.build(attribs) : author_identities.create!(attribs)
       end
@@ -70,7 +72,7 @@ class Author < ActiveRecord::Base
     # required attributes
     attribs = {
       first_name: import_setting['firstName'],
-      last_name:  import_setting['lastName']
+      last_name: import_setting['lastName']
     }
     # optional attributes
     attribs[:middle_name] = import_setting['middleName'] if import_setting['middleName'].present?
@@ -104,6 +106,7 @@ class Author < ActiveRecord::Base
     import_settings.map do |import_setting|
       # ensure that we have a *new* identity worth saving
       next unless author_identity_different?(import_setting_to_attribs(import_setting))
+
       normalize_author_identity(import_setting['firstName'], import_setting.fetch('middleName', 'None'),
                                 import_setting['lastName'], import_setting.fetch('institution', 'None'))
     end.compact.to_s # we need to compact to reject the nils we get from skipping identities that are identical to the primary
@@ -115,7 +118,7 @@ class Author < ActiveRecord::Base
     # sunetid/ university id/ ca licence ---- at least one is expected
     seed_hash = {
       cap_profile_id: auth_hash['profileId'],
-      active_in_cap:  auth_hash['active'],
+      active_in_cap: auth_hash['active'],
       cap_import_enabled: auth_hash['importEnabled']
     }
     profile = auth_hash['profile']
@@ -158,8 +161,8 @@ class Author < ActiveRecord::Base
   # @return [Contribution]
   def assign_pub(pub)
     unless pub # do not attempt to assign if no pub provided
-        logger.warn "nil publication assignment for author id #{id}"
-        return
+      logger.warn "nil publication assignment for author id #{id}"
+      return
     end
     raise 'Author must be saved before association' unless persisted?
 
@@ -170,6 +173,7 @@ class Author < ActiveRecord::Base
       )
     end
     return contribution unless contribution.new_record?
+
     contribution.save!
     pub.pubhash_needs_update!
     pub.save!
@@ -178,19 +182,19 @@ class Author < ActiveRecord::Base
 
   private
 
-    # Returns true if identity of this author (i.e., primary author represented by this model)
-    # do not match the provided attributes from an import setting.
-    # @param [Hash<Symbol => String>] attribs the candidate versus `self`'s identity
-    # @return [Boolean] Is this author's identity different than our current identity?
-    def author_identity_different?(attribs)
-      !(
-        # not the identical identity where Author is assumed to be Stanford University
-        # checks in order of likelihood of changes
-        # note that this code works for nil/empty string comparisons by calling `to_s`
-        first_name.to_s.casecmp(attribs[:first_name].to_s) == 0 &&
-        middle_name.to_s.casecmp(attribs[:middle_name].to_s) == 0 &&
-        last_name.to_s.casecmp(attribs[:last_name].to_s) == 0 &&
-        institution.to_s.casecmp(attribs[:institution].to_s) == 0
-      )
-    end
+  # Returns true if identity of this author (i.e., primary author represented by this model)
+  # do not match the provided attributes from an import setting.
+  # @param [Hash<Symbol => String>] attribs the candidate versus `self`'s identity
+  # @return [Boolean] Is this author's identity different than our current identity?
+  def author_identity_different?(attribs)
+    !(
+      # not the identical identity where Author is assumed to be Stanford University
+      # checks in order of likelihood of changes
+      # note that this code works for nil/empty string comparisons by calling `to_s`
+      first_name.to_s.casecmp(attribs[:first_name].to_s) == 0 &&
+      middle_name.to_s.casecmp(attribs[:middle_name].to_s) == 0 &&
+      last_name.to_s.casecmp(attribs[:last_name].to_s) == 0 &&
+      institution.to_s.casecmp(attribs[:institution].to_s) == 0
+    )
+  end
 end

@@ -1,9 +1,6 @@
 module Csl
-
   class CapMapper
-
     class << self
-
       # Convert CAP authors into CSL authors
       # @param [Array<Hash>] authors array of hash data
       # @return [Array<Hash>] CSL authors array of hash data
@@ -47,45 +44,45 @@ module Csl
 
       private
 
-        # @return [Hash] CSL publication title, abstract, date, pages, etc.
-        def extract_pub_info(pub_hash)
-          map = {}
-          map['title'] = pub_hash[:title] if pub_hash[:title].present?
-          map['abstract'] = pub_hash[:abstract] if pub_hash[:abstract].present?
-          map['issued'] = { 'date-parts' => [[pub_hash[:year]]] } if pub_hash[:year].present?
-          map['URL'] = pub_hash[:publicationUrl] if pub_hash[:publicationUrl].present?
-          map['page'] = pub_hash[:pages] if pub_hash[:pages].present?
-          map
-        end
+      # @return [Hash] CSL publication title, abstract, date, pages, etc.
+      def extract_pub_info(pub_hash)
+        map = {}
+        map['title'] = pub_hash[:title] if pub_hash[:title].present?
+        map['abstract'] = pub_hash[:abstract] if pub_hash[:abstract].present?
+        map['issued'] = { 'date-parts' => [[pub_hash[:year]]] } if pub_hash[:year].present?
+        map['URL'] = pub_hash[:publicationUrl] if pub_hash[:publicationUrl].present?
+        map['page'] = pub_hash[:pages] if pub_hash[:pages].present?
+        map
+      end
 
-        # @return [Hash] CSL author, editor, and publisher data
-        def extract_agents(pub_hash, authors, editors)
-          map = {}
-          map['author'] = authors if authors.present?
-          map['editor'] = editors if editors.present?
-          map.update extract_publisher(pub_hash)
-          map
-        end
+      # @return [Hash] CSL author, editor, and publisher data
+      def extract_agents(pub_hash, authors, editors)
+        map = {}
+        map['author'] = authors if authors.present?
+        map['editor'] = editors if editors.present?
+        map.update extract_publisher(pub_hash)
+        map
+      end
 
-        # @return [Hash] CSL publisher data
-        def extract_publisher(pub_hash)
-          map = {}
-          map['publisher'] = pub_hash[:publisher] if pub_hash[:publisher].present?
-          map['publisher-place'] = pub_hash[:publicationSource] if pub_hash[:publicationSource].present?
-          map
-        end
+      # @return [Hash] CSL publisher data
+      def extract_publisher(pub_hash)
+        map = {}
+        map['publisher'] = pub_hash[:publisher] if pub_hash[:publisher].present?
+        map['publisher-place'] = pub_hash[:publicationSource] if pub_hash[:publicationSource].present?
+        map
+      end
 
-        # @return [Hash] CSL series data
-        def extract_series(pub_hash)
-          map = {}
-          return map if pub_hash[:series].blank?
-          series = pub_hash[:series]
-          map['collection-title'] = series[:title] if series[:title].present?
-          map['volume'] = series[:volume] if series[:volume].present?
-          map['number'] = series[:number] if series[:number].present?
-          map
-        end
+      # @return [Hash] CSL series data
+      def extract_series(pub_hash)
+        map = {}
+        return map if pub_hash[:series].blank?
 
+        series = pub_hash[:series]
+        map['collection-title'] = series[:title] if series[:title].present?
+        map['volume'] = series[:volume] if series[:volume].present?
+        map['number'] = series[:number] if series[:number].present?
+        map
+      end
     end
   end
 end

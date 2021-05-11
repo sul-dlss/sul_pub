@@ -1,7 +1,6 @@
 require 'forwardable'
 
 module WebOfScience
-
   # Immutable Web of Knowledge (WOK) identifiers
   class Identifiers
     extend Forwardable
@@ -17,6 +16,7 @@ module WebOfScience
     # @param rec [WebOfScience::Record]
     def initialize(rec)
       raise(ArgumentError, 'rec must be a WebOfScience::Record') unless rec.is_a? WebOfScience::Record
+
       extract_ids rec.doc
       extract_uid rec.doc
       parse_medline rec.doc
@@ -70,6 +70,7 @@ module WebOfScience
     # @return [WebOfScience::Identifiers]
     def update(links)
       return self if links.blank?
+
       links = filter_ids(links)
       @ids = ids.reverse_merge(links).freeze
       self
@@ -136,54 +137,56 @@ module WebOfScience
 
     private
 
-      attr_reader :ids
+    attr_reader :ids
 
-      ALLOWED_TYPES = %w[doi eissn issn pmid].freeze
+    ALLOWED_TYPES = %w[doi eissn issn pmid].freeze
 
-      def extract_ids(doc)
-        ids = doc.xpath('/REC/dynamic_data/cluster_related/identifiers/identifier')
-        ids = ids.map { |id| [id['type'], id['value']] }.to_h
-        ids = filter_dois(ids)
-        @ids = filter_ids(ids)
-      end
+    def extract_ids(doc)
+      ids = doc.xpath('/REC/dynamic_data/cluster_related/identifiers/identifier')
+      ids = ids.map { |id| [id['type'], id['value']] }.to_h
+      ids = filter_dois(ids)
+      @ids = filter_ids(ids)
+    end
 
-      def extract_uid(doc)
-        @uid = doc.xpath('/REC/UID').text.freeze
-        ids.update('WosUID' => @uid)
-      end
+    def extract_uid(doc)
+      @uid = doc.xpath('/REC/UID').text.freeze
+      ids.update('WosUID' => @uid)
+    end
 
-      # Extract an xref_doi as the doi, if the doi is not available and xref_doi is available
-      # @param ids [Hash]
-      def filter_dois(ids)
-        xref_doi = ids['xref_doi']
-        ids['doi'] ||= xref_doi if xref_doi.present?
-        ids
-      end
+    # Extract an xref_doi as the doi, if the doi is not available and xref_doi is available
+    # @param ids [Hash]
+    def filter_dois(ids)
+      xref_doi = ids['xref_doi']
+      ids['doi'] ||= xref_doi if xref_doi.present?
+      ids
+    end
 
-      # @param ids [Hash]
-      def filter_ids(ids)
-        ids.select { |type, _v| ALLOWED_TYPES.include? type }
-      end
+    # @param ids [Hash]
+    def filter_ids(ids)
+      ids.select { |type, _v| ALLOWED_TYPES.include? type }
+    end
 
-      def parse_medline(doc)
-        return unless database == 'MEDLINE'
-        parse_medline_issn(doc)
-        parse_medline_pmid
-      end
+    def parse_medline(doc)
+      return unless database == 'MEDLINE'
 
-      def parse_medline_issn(doc)
-        issn = doc.xpath('/REC/static_data/item/MedlineJournalInfo/ISSNLinking')
-        ids['issn'] ||= issn.text if issn.present?
-      end
+      parse_medline_issn(doc)
+      parse_medline_pmid
+    end
 
-      def parse_medline_pmid
-        ids['pmid'].sub!('MEDLINE:', '') if ids['pmid'].present?
-        ids['pmid'] ||= uid.sub('MEDLINE:', '')
-      end
+    def parse_medline_issn(doc)
+      issn = doc.xpath('/REC/static_data/item/MedlineJournalInfo/ISSNLinking')
+      ids['issn'] ||= issn.text if issn.present?
+    end
 
-      def parse_wos
-        return unless database == 'WOS'
-        ids.update('WosItemID' => uid.split(':').last)
-      end
+    def parse_medline_pmid
+      ids['pmid'].sub!('MEDLINE:', '') if ids['pmid'].present?
+      ids['pmid'] ||= uid.sub('MEDLINE:', '')
+    end
+
+    def parse_wos
+      return unless database == 'WOS'
+
+      ids.update('WosItemID' => uid.split(':').last)
+    end
   end
 end

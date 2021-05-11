@@ -35,9 +35,9 @@ class Contribution < ActiveRecord::Base
 
   def self.author_valid?(contrib)
     contrib = contrib.with_indifferent_access
-    if ! contrib[:sul_author_id].blank?
+    if !contrib[:sul_author_id].blank?
       Author.exists?(contrib[:sul_author_id])
-    elsif ! contrib[:cap_profile_id].blank?
+    elsif !contrib[:cap_profile_id].blank?
       Author.exists?(cap_profile_id: contrib[:cap_profile_id])
     else
       # there must be at least one valid author id
@@ -51,6 +51,7 @@ class Contribution < ActiveRecord::Base
     segment = contrib.with_indifferent_access.slice(:featured, :status, :visibility)
     return false unless segment.size == 3
     return false if segment.values.any?(&:nil?)
+
     prototype = Contribution.new(segment)
     prototype.validate # we KNOW it won't validate (w/o author and publication), but we check for the other fields
     prototype.errors.messages.slice(:featured, :status, :visibility).empty?

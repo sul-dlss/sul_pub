@@ -27,8 +27,10 @@ class BibtexIngester
     skip_dirs = %w(. ..)
     Dir.open(@batch_dir).each do |batch_dir_name|
       next if skip_dirs.include? batch_dir_name
+
       batch_dir_full_path = "#{@batch_dir}/#{batch_dir_name}"
       next unless File.directory? batch_dir_full_path
+
       Dir.open(batch_dir_full_path).each do |bibtex_file_name|
         # sunet_id = File.basename(bibtex_file_name, '.*')
         next if skip_dirs.include? batch_dir_name
@@ -36,6 +38,7 @@ class BibtexIngester
         file_full_path = "#{batch_dir_full_path}/#{bibtex_file_name}"
         log_file_full_path = "#{batch_dir_full_path}/#{bibtex_file_name}_import.log"
         next if File.directory?(file_full_path) || bibtex_file_name == '.DS_Store' || bibtex_file_name.end_with?('.log')
+
         @record_count_for_file = 0
         @errors_for_file = 0
         @ingested_for_file = 0

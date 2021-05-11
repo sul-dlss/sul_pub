@@ -10,6 +10,7 @@ class DoiSearch
   def self.search(doi)
     pub = Publication.find_by_doi(doi)
     return [pub.pub_hash] if pub && pub.authoritative_doi_source?
+
     results = web_of_science(doi)
     if results.present?
       name = doi_name(doi)
@@ -28,8 +29,10 @@ class DoiSearch
   # @return [Array<Hash>] matching hashes
   def self.web_of_science(doi)
     return [] unless Settings.WOS.enabled
+
     doi = doi_name(doi)
     return [] if doi.blank?
+
     WebOfScience.queries.search_by_doi(doi).next_batch.map(&:pub_hash)
   end
 

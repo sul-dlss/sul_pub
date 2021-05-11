@@ -1,6 +1,5 @@
 # Pubmed utilities
 module Pubmed
-
   # @return [Pubmed::Harvester]
   def self.harvester
     @@harvester ||= Pubmed::Harvester.new

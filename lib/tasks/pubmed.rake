@@ -9,6 +9,7 @@ namespace :pubmed do
   task :update_pubmed_source_records_for_cap_profile_ids, [:filename] => :environment do |_t, args|
     filename = args[:filename]
     raise "filename is required." unless filename.present?
+
     cap_profile_ids = File.readlines(filename)
     logger = Logger.new(Rails.root.join('log', 'update_pubmed_source_records_for_cap_profile_ids.log'))
     include ActionView::Helpers::DateHelper
@@ -59,6 +60,7 @@ namespace :pubmed do
         authors_found += 1
       end
       next unless error_count > max_errors
+
       message = "Halting: Maximum number of errors #{max_errors} reached"
       logger.error message
       raise message
@@ -72,6 +74,7 @@ namespace :pubmed do
   desc 'Retrieve and print a single publication by PubMed-ID'
   task :publication, [:pmid] => :environment do |_t, args|
     raise "pmid argument is required." unless args[:pmid].present?
+
     pmids = [args[:pmid]]
     doc = client.fetch_records_for_pmid_list(pmids)
     puts doc # XML document
@@ -138,6 +141,7 @@ namespace :pubmed do
   task :harvest_author, [:cap_profile_id, :reldate] => :environment do |_t, args|
     author = Author.find_by(cap_profile_id: args[:cap_profile_id])
     raise "Could not find Author by cap_profile_id: #{args[:cap_profile_id]}." if author.nil?
+
     options = {}
     options[:reldate] = args[:reldate] if args[:reldate].present?
     Pubmed.harvester.process_author(author, options)

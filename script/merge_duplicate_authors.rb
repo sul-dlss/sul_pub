@@ -21,6 +21,7 @@ class MergeDuplicateAuths
       if CONTRIB_CHECK
         clone.contributions.each do |contrib|
           next if master.contributions.where(publication_id: contrib.publication_id).exists?
+
           new_contrib = contrib.dup
           new_contrib.author_id = master.id
           new_contrib.save
@@ -40,7 +41,6 @@ class MergeDuplicateAuths
       pub.sync_publication_hash_and_db
       pub.save
     end
-
   rescue ActiveRecord::RecordNotFound
     @logger.warn "Author id not found #{auth_id}"
   end
@@ -63,7 +63,6 @@ class MergeDuplicateAuths
 
     @logger.info "Contributions fixed: #{@contribs_fixed}"
     @logger.info "Clones removed: #{@clones_removed}"
-
   rescue => e
     @logger.error e.inspect.to_s
     @logger.error e.backtrace.join "\n"

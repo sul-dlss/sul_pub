@@ -49,12 +49,12 @@ module Csl
 
     protected
 
-      def as_string(param)
-        param.to_s.strip
-      end
+    def as_string(param)
+      param.to_s.strip
+    end
 
-      def initial(name)
-        name[0].to_s.upcase
-      end
+    def initial(name)
+      name[0].to_s.upcase
+    end
   end
 end

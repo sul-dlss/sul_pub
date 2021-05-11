@@ -3,16 +3,19 @@ class ApplicationController < ActionController::Base
 
   def check_authorization
     return head :unauthorized if request.env['HTTP_CAPKEY'].nil?
+
     head :forbidden unless request.env['HTTP_CAPKEY'] == Settings.API_KEY
   end
 
   def ensure_request_body_exists
     return unless request_body.blank?
+
     head :bad_request
   end
 
   def ensure_json_request
     return if request.format == :json
+
     head :not_acceptable
   end
 
@@ -31,5 +34,4 @@ class ApplicationController < ActionController::Base
     logger.error msg
     render json: { error: msg }.to_json, status: code, format: 'json'
   end
-
 end

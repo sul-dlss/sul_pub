@@ -31,7 +31,6 @@ class RepairMixedAuths
       @contribs_fixed += 1
     end
     # rubocop:enable Style/CombinableLoops
-
   rescue ActiveRecord::RecordNotFound
     @logger.warn "Author id not found #{auth_id}"
   end
@@ -53,7 +52,6 @@ class RepairMixedAuths
 
     @logger.info "Authors fixed: #{@auths_fixed}"
     @logger.info "Contributions fixed: #{@contribs_fixed}"
-
   rescue => e
     @logger.error e.inspect.to_s
     @logger.error e.backtrace.join "\n"

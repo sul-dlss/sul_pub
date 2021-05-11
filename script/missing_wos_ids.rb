@@ -1,5 +1,4 @@
 class MissingWosId
-
   attr_reader :logger
 
   def initialize
@@ -12,6 +11,7 @@ class MissingWosId
     ids = pub.pub_hash[:identifier]
     if prov =~ /sciencewire/i
       return false if ids.any? { |id| id[:type] =~ /WoS/i }
+
       authorship = pub.pub_hash[:authorship]
       logger.warn "Publication #{pub.id} should be modified"
       logger.warn "Publication #{pub.id} created_at: #{pub.created_at}"

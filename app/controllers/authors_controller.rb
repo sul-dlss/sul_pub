@@ -19,9 +19,8 @@ class AuthorsController < ApplicationController
 
   private
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def author_params
-      params.permit(:cap_profile_id, :format)
-    end
-
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def author_params
+    params.permit(:cap_profile_id, :format)
+  end
 end

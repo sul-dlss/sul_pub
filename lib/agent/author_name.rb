@@ -35,6 +35,7 @@ module Agent
     def full_name
       @full_name ||= begin
         return '' if last.empty? && first.empty?
+
         name = "#{last_name},#{first_name}"
         name += ",#{middle_name}" unless middle.empty?
         name
@@ -64,51 +65,54 @@ module Agent
 
     private
 
-      # Name variants for:
-      # 'Lastname,Firstname' or
-      # 'Lastname,FirstInitial'
-      # @return [Array<String>|String] names
-      def first_name_query
-        return '' if last.empty? && first.empty?
-        query =  ["#{last_name},#{first_name}"]
-        query += ["#{last_name},#{first_initial}"] if Settings.HARVESTER.USE_FIRST_INITIAL
-        query
-      end
+    # Name variants for:
+    # 'Lastname,Firstname' or
+    # 'Lastname,FirstInitial'
+    # @return [Array<String>|String] names
+    def first_name_query
+      return '' if last.empty? && first.empty?
 
-      # Name variants for:
-      # 'Lastname,Firstname,Middlename' or
-      # 'Lastname,Firstname,MiddleInitial' or
-      # 'Lastname,FirstInitial,MiddleInitial'
-      # @return [Array<String>|String] names
-      def middle_name_query
-        return '' unless middle =~ /^[[:alpha:]]/
-        query =  ["#{last_name},#{first_name},#{middle_name}", "#{last_name},#{first_name},#{middle_initial}"]
-        query += ["#{last_name},#{first_initial}#{middle_initial}", "#{last_name},#{first_initial},#{middle_initial}"] if Settings.HARVESTER.USE_FIRST_INITIAL
-        query
-      end
+      query =  ["#{last_name},#{first_name}"]
+      query += ["#{last_name},#{first_initial}"] if Settings.HARVESTER.USE_FIRST_INITIAL
+      query
+    end
 
-      # Some names may contain particles, e.g. the
-      # PubmedSourceRecord#author_to_hash checks for particles like:
-      # /el-|el |da |de |del |do |dos |du |le /
-      # This method will skip particles to extract the first upper
-      # case letter or return '', e.g.
-      # initial('dos Santos') => "S"
-      # initial('del Ray') => "R"
-      # initial('del ray') => ""
-      def initial(name)
-        name.scan(/[[:upper:]]/).first.to_s
-      end
+    # Name variants for:
+    # 'Lastname,Firstname,Middlename' or
+    # 'Lastname,Firstname,MiddleInitial' or
+    # 'Lastname,FirstInitial,MiddleInitial'
+    # @return [Array<String>|String] names
+    def middle_name_query
+      return '' unless middle =~ /^[[:alpha:]]/
 
-      PARTICLE_REGEX = /^el$|^da$|^de$|^del$|^do$|^dos$|^du$|^le$/
+      query =  ["#{last_name},#{first_name},#{middle_name}", "#{last_name},#{first_name},#{middle_initial}"]
+      query += ["#{last_name},#{first_initial}#{middle_initial}", "#{last_name},#{first_initial},#{middle_initial}"] if Settings.HARVESTER.USE_FIRST_INITIAL
+      query
+    end
 
-      # If a name contains any capital letters, return it as is; otherwise
-      # return a capitalized form of the name, taking into account some
-      # particles that should not be capitalized.  For example,
-      # proper_name('Maria el-Solano'.downcase) => "Maria el-Solano"
-      # proper_name('Berners-Lee'.downcase) => "Berners-Lee"
-      def proper_name(name)
-        return name if name =~ /[[:upper:]]/
-        name.gsub(/\b[[:alpha:]]+/) { |w| w =~ PARTICLE_REGEX ? w : w.capitalize }
-      end
+    # Some names may contain particles, e.g. the
+    # PubmedSourceRecord#author_to_hash checks for particles like:
+    # /el-|el |da |de |del |do |dos |du |le /
+    # This method will skip particles to extract the first upper
+    # case letter or return '', e.g.
+    # initial('dos Santos') => "S"
+    # initial('del Ray') => "R"
+    # initial('del ray') => ""
+    def initial(name)
+      name.scan(/[[:upper:]]/).first.to_s
+    end
+
+    PARTICLE_REGEX = /^el$|^da$|^de$|^del$|^do$|^dos$|^du$|^le$/
+
+    # If a name contains any capital letters, return it as is; otherwise
+    # return a capitalized form of the name, taking into account some
+    # particles that should not be capitalized.  For example,
+    # proper_name('Maria el-Solano'.downcase) => "Maria el-Solano"
+    # proper_name('Berners-Lee'.downcase) => "Berners-Lee"
+    def proper_name(name)
+      return name if name =~ /[[:upper:]]/
+
+      name.gsub(/\b[[:alpha:]]+/) { |w| w =~ PARTICLE_REGEX ? w : w.capitalize }
+    end
   end
 end

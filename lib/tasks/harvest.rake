@@ -17,6 +17,7 @@ namespace :harvest do
   task :author, [:cap_profile_id] => :environment do |_t, args|
     author = Author.find_by(cap_profile_id: args[:cap_profile_id])
     raise "Could not find Author by cap_profile_id: #{args[:cap_profile_id]}." if author.nil?
+
     AllSources.harvester.process_author(author)
   end
 
@@ -24,6 +25,7 @@ namespace :harvest do
   task :author_update, [:cap_profile_id] => :environment do |_t, args|
     author = Author.find_by(cap_profile_id: args[:cap_profile_id])
     raise "Could not find Author by cap_profile_id: #{args[:cap_profile_id]}." if author.nil?
+
     options = {
       symbolicTimeSpan: Settings.WOS.regular_harvest_timeframe,
       relDate: Settings.PUBMED.regular_harvest_timeframe

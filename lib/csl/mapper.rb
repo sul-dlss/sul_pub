@@ -1,5 +1,4 @@
 module Csl
-
   class Mapper
     attr_reader :pub_hash
 
@@ -109,15 +108,12 @@ module Csl
 
     private
 
-      def citeproc_authors
-        @citeproc_authors ||= Csl::RoleMapper.authors(pub_hash)
-      end
+    def citeproc_authors
+      @citeproc_authors ||= Csl::RoleMapper.authors(pub_hash)
+    end
 
-      def citeproc_editors
-        @citeproc_editors ||= Csl::RoleMapper.editors(pub_hash)
-      end
-
+    def citeproc_editors
+      @citeproc_editors ||= Csl::RoleMapper.editors(pub_hash)
+    end
   end
-
 end
-

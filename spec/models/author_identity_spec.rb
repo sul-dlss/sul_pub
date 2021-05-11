@@ -65,35 +65,35 @@ RSpec.describe AuthorIdentity, type: :model do
     let(:author) { subject.author }
     let(:identity_same_as_primary) do
       {
-        'firstName'   => author.preferred_first_name,
-        'middleName'  => author.preferred_middle_name,
-        'lastName'    => author.preferred_last_name,
-        'email'       => author.email,
+        'firstName' => author.preferred_first_name,
+        'middleName' => author.preferred_middle_name,
+        'lastName' => author.preferred_last_name,
+        'email' => author.email,
         'institution' => 'Stanford University'
       }
     end
     let(:existing_alt_identity) do
       {
-        'firstName'   => author.author_identities.first.first_name,
-        'middleName'  => author.author_identities.first.middle_name,
-        'lastName'    => author.author_identities.first.last_name,
-        'email'       => author.author_identities.first.email,
+        'firstName' => author.author_identities.first.first_name,
+        'middleName' => author.author_identities.first.middle_name,
+        'lastName' => author.author_identities.first.last_name,
+        'email' => author.author_identities.first.email,
         'institution' => author.author_identities.first.institution
       }
     end
     let(:changed_middle_name) do
       {
-        'firstName'   => author.author_identities.first.first_name,
-        'middleName'  => "#{author.author_identities.first.middle_name}-changed",
-        'lastName'    => author.author_identities.first.last_name,
-        'email'       => author.author_identities.first.email,
+        'firstName' => author.author_identities.first.first_name,
+        'middleName' => "#{author.author_identities.first.middle_name}-changed",
+        'lastName' => author.author_identities.first.last_name,
+        'email' => author.author_identities.first.email,
         'institution' => author.author_identities.first.institution
       }
     end
     let(:new_identity1) do
       {
-        'firstName'   => 'identity1',
-        'lastName'    => 'lastname1',
+        'firstName' => 'identity1',
+        'lastName' => 'lastname1',
         'institution' => 'Stanford University'
       }
     end

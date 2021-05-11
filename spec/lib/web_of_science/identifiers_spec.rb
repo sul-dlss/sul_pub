@@ -80,15 +80,15 @@ describe WebOfScience::Identifiers do
 
     let(:ids) do
       {
-        'doi'        => doi,
-        'doi_uri'    => "https://doi.org/#{doi}",
-        'xref_doi'   => doi,
+        'doi' => doi,
+        'doi_uri' => "https://doi.org/#{doi}",
+        'xref_doi' => doi,
         # eissn is missing
-        'issn'       => '0832-610X',
-        'issn_uri'   => 'http://searchworks.stanford.edu/?search_field=advanced&number=0832-610X',
+        'issn' => '0832-610X',
+        'issn_uri' => 'http://searchworks.stanford.edu/?search_field=advanced&number=0832-610X',
         # pmid is missing
-        'WosUID'     => 'WOS:000288663100014',
-        'WosItemID'  => '000288663100014',
+        'WosUID' => 'WOS:000288663100014',
+        'WosItemID' => '000288663100014',
         'WosItemURI' => 'https://ws.isiknowledge.com/cps/openurl/service?url_ver=Z39.88-2004&rft_id=info:ut/000288663100014'
       }
     end
@@ -127,14 +127,14 @@ describe WebOfScience::Identifiers do
 
     let(:ids) do
       {
-        'doi'        => '10.1038/psp.2013.66',
-        'doi_uri'    => 'https://doi.org/10.1038/psp.2013.66',
+        'doi' => '10.1038/psp.2013.66',
+        'doi_uri' => 'https://doi.org/10.1038/psp.2013.66',
         # eissn is missing
-        'issn'       => '2163-8306',
-        'issn_uri'   => 'http://searchworks.stanford.edu/?search_field=advanced&number=2163-8306',
-        'pmid'       => '24452614',
-        'pmid_uri'   => 'https://www.ncbi.nlm.nih.gov/pubmed/24452614',
-        'WosUID'     => 'MEDLINE:24452614',
+        'issn' => '2163-8306',
+        'issn_uri' => 'http://searchworks.stanford.edu/?search_field=advanced&number=2163-8306',
+        'pmid' => '24452614',
+        'pmid_uri' => 'https://www.ncbi.nlm.nih.gov/pubmed/24452614',
+        'WosUID' => 'MEDLINE:24452614',
         # 'WosItemID'  is missing
         # 'WosItemURI' is missing
       }

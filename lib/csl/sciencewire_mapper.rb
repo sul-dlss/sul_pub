@@ -1,8 +1,6 @@
 module Csl
-
   # Convert ScienceWire content into a CSL format
   class SciencewireMapper
-
     # Convert ScienceWire authors into CSL authors, see also
     # SciencewireSourceRecord.convert_sw_publication_doc_to_hash
     # @param [Array<Hash>] authors array of hash data
@@ -19,6 +17,5 @@ module Csl
         ).to_csl_author
       end.compact
     end
-
   end
 end

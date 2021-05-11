@@ -161,6 +161,7 @@ describe PubmedSourceRecord, :vcr do
       def doi(pmid)
         record = described_class.send(:get_pubmed_record_from_pubmed, pmid)
         return nil if record.nil?
+
         record.source_as_hash[:identifier].find { |id| id[:type] == 'doi' }
       end
       it 'constructs a URL based on the DOI' do

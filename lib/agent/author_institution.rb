@@ -17,9 +17,9 @@ module Agent
     def normalize_name
       @normalize_name ||= begin
         return '' if name.empty?
+
         exclude = %w(corporation institute organization university
-                     all and of the
-                    ).join('|')
+                     all and of the).join('|')
         tmp = name.dup
         tmp.gsub!(/#{exclude}/i, '')
         tmp.gsub!(/\s+/, ' ')
@@ -35,10 +35,11 @@ module Agent
 
     private
 
-      def init_address(address)
-        return address if address.is_a?(Agent::AuthorAddress)
-        # set the address line 1, or an empty (default)
-        Agent::AuthorAddress.new(address.is_a?(String) ? { line1: address } : {})
-      end
+    def init_address(address)
+      return address if address.is_a?(Agent::AuthorAddress)
+
+      # set the address line 1, or an empty (default)
+      Agent::AuthorAddress.new(address.is_a?(String) ? { line1: address } : {})
+    end
   end
 end
