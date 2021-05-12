@@ -82,9 +82,14 @@ bundle exec rake spec:data-integration
 
 ### Private Configuration Files
 
-There are private configuration data for this application, manged in a
-[private github repository](https://github.com/sul-dlss/shared_configs/tree/sul-pub-laptop).
-Use the sul-pub-laptop `config/settings.yml.local` file for local development.  These configuration files contain private credentials for access to subscription resources and for client access to the application API.
+There are private configuration data for this application, managed in a
+[private github repository](https://github.com/sul-dlss/shared_configs/branches/all?query=sul-pub).
+It can be useful to access the external APIs from your laptop for testing or to
+create new VCR cassettes in testing.  You can use the `sul-pub-cap-dev-a` branch
+for this purpose since it has the private API keys.  To do this, grab the
+`config/settings/production.yml` file and save it as a `config/settings.local.yml`
+file for local development.  This file is gitignored so you don't commit by mistake
+and you can override other setting as needed.
 
 ### Updating the VCR Cassettes Using Private Configuration Files
 
@@ -99,9 +104,11 @@ git commit -m "Update VCR cassettes"
 git reset --hard  # cleanup the private configuration files
 ```
 
-## Deployment
+## Deployment and Integration Testing
 
-The application is deployed using capistrano (see `cap -T` for a list of available tasks).  A developer can deploy the application when they have Kerberos authentication enabled for the remote user@host definition of the deployment target. The defined deployment environments are here: https://github.com/sul-dlss/sul_pub/wiki/Servers-Deployment-environment
+The application is deployed using capistrano (see `cap -T` for a list of available tasks).  A developer can deploy the application when they have Kerberos authentication enabled for the remote user@host definition of the deployment target. The defined deployment environments and their intended uses are here: https://github.com/sul-dlss/sul_pub/wiki/Servers-Deployment-environment
+
+The wiki page above also describes which environments can be useful for testing against live data.
 
 ```sh
 bundle exec cap [ENVIRONMENT] deploy
