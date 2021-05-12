@@ -22,6 +22,12 @@ every 1.day, at: stagger(4), roles: [:harvester_dev, :harvester_qa, :harvester_p
   rake 'cap:poll[1]'
 end
 
+# poll mais for new ORCID information nightly at 5am-ish in qa and dev
+# TODO: Add prod when MAIS API available in prod.
+every 1.day, at: stagger(5), roles: [:harvester_dev, :harvester_qa] do
+  rake 'mais:update_authors'
+end
+
 # ensure delayed_job is started on a reboot
 every :reboot do
   envcommand 'bin/delayed_job -n 2 start'
