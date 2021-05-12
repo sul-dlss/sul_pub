@@ -4,16 +4,18 @@
 module Mais
   # @return [Mais::Client]
   def self.client
-    @client ||= Mais::Client.new
+    Mais::Client.new
   end
 
   def self.logger
-    @logger ||= Logger.new(Settings.MAIS.LOG)
+    Logger.new(Settings.MAIS.LOG)
   end
 
   # Retrieve a single ORCID user record.
   def self.working?
     orcid_users = client.fetch_orcid_users(limit: 1)
     orcid_users.size == 1
+  rescue StandardError
+    false
   end
 end
