@@ -14,8 +14,6 @@ class PublicationsController < ApplicationController
   # GET /publications.json?capProfileId=1&changedSince=2018-01-01 # publications on this profile since that date
   # GET /publications.json?capActive=true                         # all publicatins for users active in cap
   # rubocop:disable Metrics/AbcSize
-  # rubocop:disable Metrics/CyclomaticComplexity
-  # rubocop:disable Metrics/PerceivedComplexity
   def index
     msg = 'Getting publications'
     msg += " for profile #{params[:capProfileId]}" if params[:capProfileId]
@@ -53,10 +51,8 @@ class PublicationsController < ApplicationController
       end
     end
   end
-  # rubocop:enable Metrics/AbcSize
-  # rubocop:enable Metrics/CyclomaticComplexity
-  # rubocop:enable Metrics/PerceivedComplexity
 
+  # rubocop:enable Metrics/AbcSize
   # return a specific publication
   # GET /publications/399607
   def show
@@ -73,7 +69,6 @@ class PublicationsController < ApplicationController
 
   # create a new manual publication by posting BibJSON (in body)
   # POST /publications
-  # rubocop:disable Metrics/AbcSize
   def create
     logger.info('POST Create:')
     logger.info(request_body)
@@ -96,7 +91,6 @@ class PublicationsController < ApplicationController
       render json: pub.pub_hash, status: :created
     end
   end
-  # rubocop:enable Metrics/AbcSize
 
   # update a publication by putting BibJSON (in body)
   # PUT /publications/1234

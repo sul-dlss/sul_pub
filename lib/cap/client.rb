@@ -41,7 +41,6 @@ module Cap
     end
 
     # @return [String] bearer access token
-    # rubocop:disable Metrics/AbcSize
     def access_token
       @access_token = nil if @access_expiry.to_i < Time.zone.now.to_i
       @access_token ||= begin
@@ -54,8 +53,6 @@ module Cap
         "Bearer #{token}"
       end
     end
-    # rubocop:enable Metrics/AbcSize
-
     ####################################################################################
     # CAP client connection settings
     #

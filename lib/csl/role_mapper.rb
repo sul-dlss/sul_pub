@@ -4,7 +4,6 @@ module Csl
   class RoleMapper
     class << self
       # Parse authors
-      # rubocop:disable Metrics/AbcSize
       def authors(pub_hash)
         return [] if pub_hash[:author].blank?
 
@@ -30,7 +29,6 @@ module Csl
           parse_authors(authors)
         end
       end
-      # rubocop:enable Metrics/AbcSize
 
       # Parse editors for various provenance data:
       def editors(pub_hash)

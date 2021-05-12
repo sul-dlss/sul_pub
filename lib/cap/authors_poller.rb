@@ -13,7 +13,6 @@ module Cap
       init_stats
     end
 
-    # rubocop:disable Metrics/AbcSize
     def get_authorship_data(days_ago = 1)
       @start_time = Time.zone.now
       logger.info "Started CAP authorship import - #{@start_time}"
@@ -42,7 +41,6 @@ module Cap
     rescue StandardError => e
       NotificationManager.error(e, 'Authorship import failed', self)
     end
-    # rubocop:enable Metrics/AbcSize
 
     def cap_authors_count(days_ago = 1)
       json_response = get_recent_cap_authorship(1, 10, days_ago)
@@ -92,7 +90,6 @@ module Cap
       end
     end
 
-    # rubocop:disable Metrics/AbcSize
     def update_existing_contributions(author, incoming_authorships)
       incoming_authorships.each do |authorship|
         unless Contribution.valid_fields? authorship
@@ -117,7 +114,6 @@ module Cap
         update_existing_contribution(contribs.first, authorship)
       end
     end
-    # rubocop:enable Metrics/AbcSize
 
     def update_existing_contribution(contribution, authorship)
       hash_for_update = {
@@ -178,7 +174,6 @@ module Cap
       distance_of_time_in_words(@start_time, Time.zone.now)
     end
 
-    # rubocop:disable Metrics/AbcSize
     def log_stats
       info = []
       info << 'FINAL TOTAL STATS:'
@@ -198,7 +193,6 @@ module Cap
       info << "~#{Contribution.where('created_at >= ?', @start_time).count} contributions were created."
       logger.info info.join("\n")
     end
-    # rubocop:enable Metrics/AbcSize
 
     def process_record_for_existing_author(author, record)
       logger.info "Updating Author.find_by(id: #{author.id}, cap_profile_id: #{author.cap_profile_id})"

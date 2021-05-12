@@ -49,9 +49,6 @@ module WebOfScience
     end
 
     # @return [Array<String>] WosUIDs that successfully create a new Publication
-    # rubocop:disable Metrics/AbcSize
-    # rubocop:disable Metrics/CyclomaticComplexity
-    # rubocop:disable Metrics/PerceivedComplexity
     def create_publications
       return [] if records.empty?
 
@@ -74,14 +71,10 @@ module WebOfScience
     ensure
       pubmed_additions(records)
     end
-    # rubocop:enable Metrics/AbcSize
-    # rubocop:enable Metrics/CyclomaticComplexity
-    # rubocop:enable Metrics/PerceivedComplexity
 
     # Save new WebOfScienceSourceRecords.  This method guarantees to all subsequent processing
     # that each WOS uid in @records now has a WebOfScienceSourceRecord.
     # @return [Array<WebOfScienceSourceRecord>] all matching or created records
-    # rubocop:disable Metrics/AbcSize
     def save_wos_records
       return [] if records.empty?
 
@@ -97,7 +90,6 @@ module WebOfScience
       end
       already_fetched_recs + WebOfScienceSourceRecord.create!(batch)
     end
-    # rubocop:enable Metrics/AbcSize
 
     # Also creates Contribution and links WebOfScienceSourceRecord
     # @param [WebOfScience::Record] record

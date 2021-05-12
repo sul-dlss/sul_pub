@@ -90,7 +90,6 @@ module WebOfScience
 
     # A mutable Hash of the identifiers
     # @return [Hash<String => String>]
-    # rubocop:disable Metrics/AbcSize
     def to_h
       hash = { 'WosUID' => uid }
       if doi.present?
@@ -127,7 +126,6 @@ module WebOfScience
       ids << { type: 'WosUID', id: uid }
       ids
     end
-    # rubocop:enable Metrics/AbcSize
 
     # @return [String, nil]
     def wos_item_id

@@ -62,7 +62,6 @@ class BibtexIdentifiers
 
   # A mutable Hash of the identifiers
   # @return [Hash<String => String>]
-  # rubocop:disable Metrics/AbcSize
   def to_h
     hash = {}
     if doi.present?
@@ -83,10 +82,8 @@ class BibtexIdentifiers
     end
     hash
   end
-  # rubocop:enable Metrics/AbcSize
 
   # @return [Array<Hash>]
-  # rubocop:disable Metrics/AbcSize
   def pub_hash
     ids = []
     ids << { type: 'doi',  id: doi,  url: doi_uri  } if doi.present?
@@ -95,7 +92,6 @@ class BibtexIdentifiers
     ids << { type: 'pmid', id: pmid, url: pmid_uri } if pmid.present?
     ids
   end
-  # rubocop:enable Metrics/AbcSize
 
   private
 
@@ -103,7 +99,6 @@ class BibtexIdentifiers
 
   # @param [BibTeX::Entry] record
   # @return [void]
-  # rubocop:disable Metrics/AbcSize
   def extract_ids(record)
     @ids = {}
     doi = extract_id(record, 'doi')
@@ -116,7 +111,6 @@ class BibtexIdentifiers
     ids['pmid'] = pmid if pmid.present?
     ids.freeze
   end
-  # rubocop:enable Metrics/AbcSize
 
   # @param [BibTeX::Entry] record
   # @param [String] type

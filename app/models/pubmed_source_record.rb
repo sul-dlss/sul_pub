@@ -42,7 +42,6 @@ class PubmedSourceRecord < ApplicationRecord
     )
   end
 
-  # rubocop:disable Metrics/AbcSize
   def self.get_and_store_records_from_pubmed(pmids)
     pmidValuesForPost = pmids.uniq.collect { |pmid| "&id=#{pmid}" }.join
     the_incoming_xml = Pubmed.client.fetch_records_for_pmid_list pmidValuesForPost
@@ -61,7 +60,6 @@ class PubmedSourceRecord < ApplicationRecord
     end
     import source_records.compact
   end
-  # rubocop:enable Metrics/AbcSize
   private_class_method :get_and_store_records_from_pubmed
 
   # Retrieve this pubmed record from PubMed and update
@@ -231,9 +229,6 @@ class PubmedSourceRecord < ApplicationRecord
   #
   # @param author [Nokogiri::XML::Element] an <Author> element
   # @return [Hash<Symbol => String>] with keys :firstname, :middlename and :lastname
-  # rubocop:disable Metrics/AbcSize
-  # rubocop:disable Metrics/CyclomaticComplexity
-  # rubocop:disable Metrics/PerceivedComplexity
   def author_to_hash(author)
     # <Author> examples provide many variations at No. 20 from
     # https://www.nlm.nih.gov/bsd/licensee/elements_descriptions.html
@@ -294,7 +289,4 @@ class PubmedSourceRecord < ApplicationRecord
     # <AffiliationInfo> was added to <AuthorList> with the 2015 DTD.
     # The <AffiliationInfo> envelope element includes <Affliliation> and <Identifier>.
   end
-  # rubocop:enable Metrics/AbcSize
-  # rubocop:enable Metrics/CyclomaticComplexity
-  # rubocop:enable Metrics/PerceivedComplexity
 end
