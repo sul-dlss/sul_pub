@@ -50,12 +50,7 @@ module Agent
     # an 'or' conjuction is likely to generate results that mostly match this variant,
     # but additional variants might add something when using an 'ExactMatch' search.
     # @return [String] name(s) to be queried in an OR (disjunction) query
-    def text_search_query
-      text_search_terms.map { |x| "\"#{x}\"" }.join(' or ')
-    end
-
-    def text_search_terms(options = {})
-      use_first_initial = options[:use_first_initial] || true
+    def text_search_terms(use_first_initial: true)
       @text_search_terms ||=
         [first_name_query(use_first_initial), middle_name_query(use_first_initial)].flatten.compact_blank.uniq
     end
