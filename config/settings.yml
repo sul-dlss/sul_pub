@@ -68,6 +68,13 @@ WOS:
   #   or https://github.com/sul-dlss/sul_pub/wiki/Clarivate-APIs for allowed values of symbolicTimeSpan
   max_publications_per_author: 3000 # if more than this number of publications are returned for a single author, the author harvest will be aborted
                                     #  and a HB alert will be sent
+
+ORCID:
+  BASE_URL: https://api.sandbox.orcid.org
+  BASE_AUTH_URL: https://sandbox.orcid.org
+  CLIENT_ID: APP-FAKEJMB7RBQVFQ0D
+  CLIENT_SECRET: FAKE6bb5-dba1-445d-ba10-c14745383ba0
+
 DOI:
   BASE_URI: https://doi.org/
 
