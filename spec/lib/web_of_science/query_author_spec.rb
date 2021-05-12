@@ -8,6 +8,9 @@ describe WebOfScience::QueryAuthor, :vcr do
   let(:author_blank_name) { create(:author, :blank_first_name, :valid_orcid) }
   let(:author_blank_name_and_orcid) { create(:author, :blank_first_name, :blank_orcid) }
 
+  let(:alternate_identity) { create :author_identity } # this creates the associated author as well
+  let(:alternate_author_identity) { alternate_identity.author }
+
   it 'works' do
     expect(query_author).to be_a described_class
   end
