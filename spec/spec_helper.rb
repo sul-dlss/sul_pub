@@ -10,9 +10,6 @@ Dir.glob(File.join(__dir__, 'fixtures', '**', '*.rb'), &method(:require)) # load
 require 'rspec/matchers'
 require 'equivalent-xml'
 require 'simplecov'
-require 'coveralls'
-# Coveralls interferes with coverage reports on a laptop, only wear it on CI builds
-Coveralls.wear!('rails') if ENV['TRAVIS']
 
 require 'webmock/rspec'
 WebMock.enable!
@@ -34,12 +31,6 @@ SimpleCov.profiles.define 'sul_pub' do
   # dataset for comparison, so it can't fail a travis build.
   maximum_coverage_drop 1
 end
-SimpleCov::Formatter::MultiFormatter.new(
-  [
-    SimpleCov::Formatter::HTMLFormatter,
-    Coveralls::SimpleCov::Formatter
-  ]
-)
 SimpleCov.start 'sul_pub'
 
 require File.expand_path('../../config/environment', __FILE__)
