@@ -118,17 +118,6 @@ describe Agent::AuthorName do
     end
   end
 
-  describe '#text_search_query' do
-    context 'when all names are present' do
-      # additional SW specs are in publication_query_by_author_name_spec.rb
-      it 'includes first_name_query and middle_name_query elements' do
-        allow(all_names).to receive(:first_name_query).and_return(%w[abc def])
-        allow(all_names).to receive(:middle_name_query).and_return(%w[qrs xyz])
-        expect(all_names.text_search_query).to eq '"abc" or "def" or "qrs" or "xyz"'
-      end
-    end
-  end
-
   describe '#text_search_terms' do
     it 'includes first_name_query and middle_name_query elements' do
       fnames = all_names.send(:first_name_query)
