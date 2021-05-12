@@ -75,7 +75,6 @@ end
 
 group :test do
   gem 'capybara'
-  gem 'coveralls', '~> 0.8', require: false
   gem 'database_cleaner'
   gem 'equivalent-xml'
   gem 'factory_bot_rails'
