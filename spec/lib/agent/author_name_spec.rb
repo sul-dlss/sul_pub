@@ -120,10 +120,21 @@ describe Agent::AuthorName do
   end
 
   describe '#text_search_terms' do
-    it 'includes first_name_query and middle_name_query elements' do
+    it 'includes first_name_query and middle_name_query elements when first initial is unique' do
       fnames = all_names.send(:first_name_query, true)
       mnames = all_names.send(:middle_name_query, true)
-      expect(all_names.text_search_terms).to include(*fnames, *mnames)
+      expect(fnames.size).to eq 2 # two name variants, full first name plus first initial
+      expect(mnames.size).to eq 4 # four name variants, which include middle name and middle initial variants
+      expect(all_names.text_search_terms).to include(*fnames, *mnames) # default is to use first initial, this verifies
+      expect(all_names.text_search_terms(use_first_initial: true)).to include(*fnames, *mnames)
+    end
+
+    it 'includes first_name_query and middle_name_query elements when first initial is not unique' do
+      fnames = all_names.send(:first_name_query, false)
+      mnames = all_names.send(:middle_name_query, false)
+      expect(fnames.size).to eq 1 # only one name variant with only full first name (i.e. no first initial)
+      expect(mnames.size).to eq 2 # two name variants, includes full middle name and middle initial
+      expect(all_names.text_search_terms(use_first_initial: false)).to include(*fnames, *mnames)
     end
   end
 

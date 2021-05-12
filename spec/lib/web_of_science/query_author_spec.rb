@@ -13,6 +13,9 @@ describe WebOfScience::QueryAuthor, :vcr do
   let(:blank_author) { create :author, :blank_first_name }
   let(:names) { query_author.send(:names) }
 
+  let(:alternate_identity) { create :author_identity } # this creates the associated author as well
+  let(:alternate_author_identity) { alternate_identity.author }
+
   # avoid caching Savon client across examples (affects VCR)
   before { allow(WebOfScience).to receive(:client).and_return(WebOfScience::Client.new(Settings.WOS.AUTH_CODE)) }
 
@@ -121,21 +124,75 @@ describe WebOfScience::QueryAuthor, :vcr do
     end
   end
 
-  context 'for a single alternate identity with invalid data' do
-    describe '#names' do
-      let(:author_one_identity) { create :author }
-      let(:bad_alternate_identity) { create :author_identity }
+  context 'for a single alternate identity' do
+    let(:alt_last_name) { alternate_identity.last_name }
+    let(:alt_first_name) { alternate_identity.first_name }
+    let(:alt_middle_name) { alternate_identity.middle_name }
 
-      before do
-        bad_alternate_identity.update(first_name: '.')
-        author_one_identity.author_identities << bad_alternate_identity
+    describe '#names' do
+      context 'with invalid data and ambiguous first name' do
+        it 'ignores the bad alternate identity data and first initial variants' do
+          alternate_identity.update(first_name: '.', institution: 'Example')
+          expect(alternate_author_identity.unique_first_initial?).to be false # because of a non-Stanford alternate identity
+          expect(alternate_author_identity.author_identities.first.first_name).to eq '.' # bad first name
+          # we do not get the name variant with the period for a first name (i.e. the alternate identity)
+          #  nor do we get first initial variants because of the ambiguous first initial
+          #  (we would have more if we allowed the bad name variant and the ambiguous first initial)
+          expect(described_class.new(alternate_author_identity).send(:names)).to match_array %w[Edler,Alice
+                                                                                                Edler,Alice,Jim
+                                                                                                Edler,Alice,J]
+        end
       end
 
-      it 'ignores the bad alternate identity data' do
-        expect(author_one_identity.author_identities.first.first_name).to eq '.' # bad first name
-        # we do not get the name variant with the period for a first name (we would have more if we allowed the bad name variant)
-        expect(described_class.new(author_one_identity).send(:names)).to eq %w[Edler,Alice Edler,A Edler,Alice,Jim
-                                                                               Edler,Alice,J Edler,AJ Edler,A,J]
+      context 'with invalid data and non-ambiguous first name' do
+        it 'ignores the bad alternate identity data but includes first initial variants' do
+          alternate_identity.update(first_name: '.', institution: 'Stanford')
+          expect(alternate_author_identity.unique_first_initial?).to be true # because alternate identity is Stanford and unique
+          expect(alternate_author_identity.author_identities.first.first_name).to eq '.' # bad first name
+          # we do not get the name variant with the period for a first name (i.e. no alternate identity)
+          expect(described_class.new(alternate_author_identity).send(:names)).to match_array %w[Edler,Alice
+                                                                                                Edler,A
+                                                                                                Edler,Alice,Jim
+                                                                                                Edler,Alice,J
+                                                                                                Edler,AJ
+                                                                                                Edler,A,J]
+        end
+      end
+
+      context 'with valid data and ambiguous first name' do
+        it 'ignores the first initial variants' do
+          alternate_identity.update(first_name: 'Sam', institution: 'Example')
+          expect(alternate_author_identity.unique_first_initial?).to be false # because of a non-Stanford alternate identity
+          #  we do not get first initial variants because of the ambiguous first initial
+          #  but we do get the other variants with the alternate identity
+          #  (we would have more if we allowed the bad name variant and the ambiguous first initial)
+          expect(described_class.new(alternate_author_identity).send(:names)).to match_array ['Edler,Alice',
+                                                                                              'Edler,Alice,Jim',
+                                                                                              'Edler,Alice,J',
+                                                                                              "#{alt_last_name},#{alt_first_name}",
+                                                                                              "#{alt_last_name},#{alt_first_name},#{alt_middle_name}",
+                                                                                              "#{alt_last_name},#{alt_first_name},#{alt_middle_name[0]}"]
+        end
+      end
+
+      context 'with valid data and non-ambiguous first name' do
+        it 'includes all name variants' do
+          alternate_identity.update(first_name: 'Alice2', institution: 'Stanford')
+          expect(alternate_author_identity.unique_first_initial?).to be true # because alternate identity is Stanford and unique
+          # we get all variants with first initials and also the alternate identity
+          expect(described_class.new(alternate_author_identity).send(:names)).to match_array ['Edler,Alice',
+                                                                                              'Edler,A',
+                                                                                              'Edler,Alice,Jim',
+                                                                                              'Edler,Alice,J',
+                                                                                              'Edler,AJ',
+                                                                                              'Edler,A,J',
+                                                                                              "#{alt_last_name},#{alt_first_name}",
+                                                                                              "#{alt_last_name},#{alt_first_name[0]}",
+                                                                                              "#{alt_last_name},#{alt_first_name},#{alt_middle_name}",
+                                                                                              "#{alt_last_name},#{alt_first_name},#{alt_middle_name[0]}",
+                                                                                              "#{alt_last_name},#{alt_first_name[0]}#{alt_middle_name[0]}",
+                                                                                              "#{alt_last_name},#{alt_first_name[0]},#{alt_middle_name[0]}"]
+        end
       end
     end
   end
