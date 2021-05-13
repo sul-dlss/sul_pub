@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/sul-dlss/sul_pub.svg?branch=main)](https://travis-ci.com/sul-dlss/sul_pub) | [![Test Coverage](https://api.codeclimate.com/v1/badges/e274f1b1219abbf53bf8/test_coverage)](https://codeclimate.com/github/sul-dlss/sul_pub/test_coverage)
+[![Build Status](https://circleci.com/gh/sul-dlss/sul_pub.svg?style=svg)](https://circleci.com/gh/sul-dlss/sul_pub) | [![Test Coverage](https://api.codeclimate.com/v1/badges/e274f1b1219abbf53bf8/test_coverage)](https://codeclimate.com/github/sul-dlss/sul_pub/test_coverage)
 
 # SUL Bibliographic Management System
 
