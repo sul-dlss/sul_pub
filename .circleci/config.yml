@@ -1,0 +1,63 @@
+version: 2.1
+jobs:
+  test:
+    docker:
+    - image: circleci/ruby:2.7.1-node
+      environment:
+        BUNDLE_JOBS: 3
+        BUNDLE_RETRY: 3
+        BUNDLE_PATH: vendor/bundle
+        MYSQL_DATABASE: circle_test
+        RAILS_ENV: test
+        NOKOGIRI_USE_SYSTEM_LIBRARIES: true
+    - image: circleci/mysql:8
+      # https://discuss.circleci.com/t/solved-mysql-8-0-without-mysql2-authentication-plugin-caching-sha2-password-cannot-be-loaded/25791
+      command: [--default-authentication-plugin=mysql_native_password]
+      environment:
+        MYSQL_DATABASE: sulbib_test
+    steps:
+    - checkout
+    - run:
+        name: Install/Upgrade Bundler
+        command: gem install bundler
+    - run:
+        name: Which bundler?
+        command: bundle -v
+    - restore_cache:
+        keys:
+        - sul_pub-bundle-v2-{{ checksum "Gemfile.lock" }}
+        - sul_pub-bundle-v2-
+    - run:
+        name: Bundle Install
+        command: bundle check || bundle install
+    - save_cache:
+        key: sul_pub-bundle-v2-{{ checksum "Gemfile.lock" }}
+        paths:
+        - vendor/bundle
+    - run:
+        name: Check styles using rubocop
+        command: bundle exec rubocop
+    - run:
+        name: Wait for DB
+        command: dockerize -wait tcp://localhost:3306 -timeout 1m
+    - run:
+        name: Prepare DB for tests
+        command: bin/rails db:reset
+    - run:
+        name: Setup Code Climate test-reporter
+        command: |
+          curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+          chmod +x ./cc-test-reporter
+          ./cc-test-reporter before-build
+    - run:
+        name: Run rspec
+        command: bundle exec rspec
+    - run:
+        name: upload test coverage report to Code Climate
+        command: ./cc-test-reporter after-build --coverage-input-type simplecov --exit-code $?
+
+workflows:
+  version: 2
+  test:
+    jobs:
+    - test
