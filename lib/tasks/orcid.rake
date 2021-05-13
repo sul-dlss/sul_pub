@@ -19,4 +19,18 @@ namespace :orcid do
     count = Orcid::AddWorks.new(logger: logger).add_for_orcid_user(orcid_user)
     puts "Added #{count} works."
   end
+
+  desc 'Harvest from ORCID.org for all authors'
+  task harvest_authors: :environment do
+    Orcid.harvester.harvest_all
+  end
+
+  desc 'Harvest from ORCID.org for a single author'
+  task :harvest_author, [:sunetid] => :environment do |_t, args|
+    author = Author.find_by(sunetid: args[:sunetid])
+    raise "Could not find Author by sunetid: #{args[:sunetid]}." if author.nil?
+
+    put_codes = Orcid.harvester.process_author(author)
+    puts "Harvested #{put_codes.size} works/publications."
+  end
 end

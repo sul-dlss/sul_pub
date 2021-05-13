@@ -11,6 +11,10 @@ module Orcid
     @@logger ||= Logger.new(Settings.ORCID.LOG)
   end
 
+  def self.harvester
+    @@harvester ||= Orcid::Harvester.new
+  end
+
   # Extract the ID part from an ORCID ID.
   # For example, 0000-0003-3437-349X from https://sandbox.orcid.org/0000-0003-3437-349X.
   # @param [string] orcidid
