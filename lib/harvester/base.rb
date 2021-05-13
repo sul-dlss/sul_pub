@@ -10,7 +10,6 @@ module Harvester
   class Base
     # @param [Hash] options
     # @return [void]
-    # rubocop:disable Metrics/AbcSize
     def harvest_all(options = {})
       total = authors_query.count
       count = 0
@@ -26,7 +25,6 @@ module Harvester
       time_taken = Time.at(end_time - start_time).utc.strftime '%e days, %H hours, %M minutes'
       logger.info "***** Ended a complete harvest for #{total} authors at #{end_time}.  Time taken: #{time_taken}"
     end
-    # rubocop:enable Metrics/AbcSize
 
     # @param [Enumerable<Author>] authors
     # @param [Hash] options

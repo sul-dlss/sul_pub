@@ -96,7 +96,6 @@ class Publication < ApplicationRecord
   end
 
   # @return [self]
-  # rubocop:disable Metrics/AbcSize
   def update_manual_pub_from_pub_hash(incoming_pub_hash, original_source_string)
     self.pub_hash = incoming_pub_hash.merge(provenance: Settings.cap_provenance)
     match = UserSubmittedSourceRecord.find_by_source_data(original_source_string)
@@ -113,7 +112,6 @@ class Publication < ApplicationRecord
     pubhash_needs_update! if persisted?
     self
   end
-  # rubocop:enable Metrics/AbcSize
 
   # @return [self]
   # @deprecated
@@ -275,8 +273,6 @@ class Publication < ApplicationRecord
   # Doesn't actually write the Pub to DB, presumed to be part of before_save callback or explicit save
   # Does delete pub_ids!
   # rubocop:disable Metrics/AbcSize
-  # rubocop:disable Metrics/CyclomaticComplexity
-  # rubocop:disable Metrics/PerceivedComplexity
   def sync_identifiers_in_pub_hash
     incoming_types = Array(pub_hash[:identifier]).pluck(:type)
     publication_identifiers.each do |id|
@@ -299,14 +295,11 @@ class Publication < ApplicationRecord
     end
     pub_hash[:identifier] = publication_identifiers.map(&:identifier)
   end
-  # rubocop:enable Metrics/AbcSize
-  # rubocop:enable Metrics/CyclomaticComplexity
-  # rubocop:enable Metrics/PerceivedComplexity
 
+  # rubocop:enable Metrics/AbcSize
   # NOTE: This method is only ever called from 'build_from_sciencewire_hash'
   #  It is preserved here for historical reasons but can be considered for possible removal when we remove Sciencewire harvesting
   #  It is duplicated by and used instead of in all other cases by lib/web_of_science/process_pubmed.rb#pubmed_addition
-  # rubocop:disable Metrics/AbcSize
   def add_any_pubmed_data_to_hash
     return if pmid.blank?
 
@@ -319,11 +312,7 @@ class Publication < ApplicationRecord
     pmc_id = pubmed_hash[:identifier].detect { |id| id[:type] == 'pmc' }
     pub_hash[:identifier] << pmc_id if pmc_id
   end
-  # rubocop:enable Metrics/AbcSize
 
-  # rubocop:disable Metrics/AbcSize
-  # rubocop:disable Metrics/CyclomaticComplexity
-  # rubocop:disable Metrics/PerceivedComplexity
   def update_any_new_contribution_info_in_pub_hash_to_db
     Array(pub_hash[:authorship]).each do |contrib|
       hash_for_update = contrib.slice(:status, :visibility, :featured).each do |_k, v|
@@ -352,7 +341,4 @@ class Publication < ApplicationRecord
     end
     true
   end
-  # rubocop:enable Metrics/AbcSize
-  # rubocop:enable Metrics/CyclomaticComplexity
-  # rubocop:enable Metrics/PerceivedComplexity
 end

@@ -75,8 +75,6 @@ module WebOfScience
 
     # Parse the MEDLINE names and return a Hash compatible with Csl::AuthorName
     # @return [Hash]
-    # rubocop:disable Metrics/AbcSize
-    # rubocop:disable Metrics/CyclomaticComplexity
     def medline_name(name)
       # full_name has the form "LastName, GivenName" where GivenName is space delimited
       # display_name and full_name are often, if not always, the same
@@ -94,11 +92,8 @@ module WebOfScience
       name
     end
 
-    # rubocop:enable Metrics/AbcSize
-    # rubocop:enable Metrics/CyclomaticComplexity
     # Parse the WOS names and return a Hash compatible with Csl::AuthorName
     # @return [Hash]
-    # rubocop:disable Metrics/AbcSize
     def wos_name(name)
       # look for the case where the first_name is the initials, with first and middle initials combined
       # e.g. first_name = "RB", should be first_name = "R", middle_name = "B"
@@ -119,6 +114,5 @@ module WebOfScience
       name[:name] = "#{name[:last_name] || name[:display_name] || name[:full_name]},#{name[:first_name]},#{name[:middle_name]}"
       name
     end
-    # rubocop:enable Metrics/AbcSize
   end
 end

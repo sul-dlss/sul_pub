@@ -47,7 +47,6 @@ module Csl
       private
 
       # @return [Hash] CSL publication title, abstract, date, pages, etc.
-      # rubocop:disable Metrics/AbcSize
       def extract_pub_info(pub_hash)
         map = {}
         map['title'] = pub_hash[:title] if pub_hash[:title].present?
@@ -57,7 +56,6 @@ module Csl
         map['page'] = pub_hash[:pages] if pub_hash[:pages].present?
         map
       end
-      # rubocop:enable Metrics/AbcSize
 
       # @return [Hash] CSL author, editor, and publisher data
       def extract_agents(pub_hash, authors, editors)

@@ -30,7 +30,6 @@ module Cap
 
     # @param [Integer] starting the "page" of results to start from
     # @return [void]
-    # rubocop:disable Metrics/AbcSize
     def rewrite_cap_profile_ids_from_feed(starting = 0)
       logger.info "Started cap profile id rewrite at #{start_time}"
       logger.info 'CAP API client config: '
@@ -47,7 +46,6 @@ module Cap
     ensure
       write_counts_to_log
     end
-    # rubocop:enable Metrics/AbcSize
 
     private
 
@@ -83,9 +81,6 @@ module Cap
     # @param [Integer] page
     # @param [Integer] page_size
     # @return [Boolean] true when JSON response indicates 'lastPage'
-    # rubocop:disable Metrics/AbcSize
-    # rubocop:disable Metrics/CyclomaticComplexity
-    # rubocop:disable Metrics/PerceivedComplexity
     def process_next_batch_of_authorship_data(page, page_size)
       json_response = client.get_batch_from_cap_api(page, page_size, nil)
       if json_response['values'].blank?
@@ -116,8 +111,5 @@ module Cap
       end
       json_response['lastPage']
     end
-    # rubocop:enable Metrics/AbcSize
-    # rubocop:enable Metrics/CyclomaticComplexity
-    # rubocop:enable Metrics/PerceivedComplexity
   end
 end

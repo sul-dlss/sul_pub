@@ -34,8 +34,6 @@ class WebOfScienceSourceRecord < ApplicationRecord
 
   # Can initialize with either source_data String or record (WebOfScience::Record)
   # rubocop:disable Metrics/AbcSize
-  # rubocop:disable Metrics/CyclomaticComplexity
-  # rubocop:disable Metrics/PerceivedComplexity
   def extract
     # assume records are active until we discover a deprecation attribute
     self.active = true if attributes.key?('active') && attributes['active'].nil?
@@ -51,6 +49,4 @@ class WebOfScienceSourceRecord < ApplicationRecord
     self.pmid ||= record.pmid if record.pmid.present?
   end
   # rubocop:enable Metrics/AbcSize
-  # rubocop:enable Metrics/CyclomaticComplexity
-  # rubocop:enable Metrics/PerceivedComplexity
 end

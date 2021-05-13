@@ -48,6 +48,7 @@ Layout/LineLength:
     - "spec/lib/bibtex_ingester_spec.rb"
 
 Metrics/AbcSize:
+  Max: 35
   Exclude:
     - "spec/controllers/publications_controller_spec.rb"
     - "script/*"
@@ -62,18 +63,20 @@ Metrics/BlockLength:
     - "spec/**/*"
 
 Metrics/CyclomaticComplexity:
+  Max: 12
   Exclude:
     - "script/*"
 
 Metrics/ClassLength:
+  Max: 120
   Exclude:
-    - "lib/bibtex_ingester.rb"
     - "app/controllers/authorships_controller.rb"
     - "app/controllers/publications_controller.rb"
     - "app/models/author.rb"
     - "app/models/publication.rb"
     - "app/models/pubmed_source_record.rb"
     - "app/models/sciencewire_source_record.rb"
+    - "lib/bibtex_ingester.rb"
     - "lib/cap/authors_poller.rb"
     - "lib/science_wire_publication.rb"
     - "lib/smci_report.rb"
@@ -81,37 +84,18 @@ Metrics/ClassLength:
     - "script/*"
 
 Metrics/MethodLength:
+  Max: 45
   Exclude:
-    - "app/controllers/authorships_controller.rb"
-    - "app/controllers/publications_controller.rb"
-    - "app/models/author.rb"
-    - "app/models/publication.rb"
     - "app/models/pubmed_source_record.rb"
     - "app/models/sciencewire_source_record.rb"
-    - "lib/bibtex_identifiers.rb"
     - "lib/bibtex_ingester.rb"
-    - "lib/cap/authors_poller.rb"
-    - "lib/cap/profile_id_rewriter.rb"
-    - "lib/cap/client.rb"
     - "lib/csl/mapper.rb"
-    - "lib/csl/role_mapper.rb"
-    - "lib/harvester/base.rb"
-    - "lib/notification_manager.rb"
-    - "lib/pubmed/client.rb"
-    - "lib/pubmed/harvester.rb"
     - "lib/smci_report.rb"
-    - "lib/web_of_science/harvester.rb"
-    - "lib/web_of_science/identifiers.rb"
-    - "lib/web_of_science/map_names.rb"
-    - "lib/web_of_science/map_pub_hash.rb"
-    - "lib/web_of_science/map_publisher.rb"
-    - "lib/web_of_science/process_pubmed.rb"
-    - "lib/web_of_science/process_records.rb"
-    - "lib/web_of_science/record.rb"
     - "script/*"
     - "spec/**/*"
 
 Metrics/PerceivedComplexity:
+  Max: 13
   Exclude:
     - "script/*"
 
@@ -122,9 +106,6 @@ Naming/VariableNumber:
   Exclude:
     - "spec/**/*"
     - "script/**/*"
-
-#Rails/Blank:
-#  UnlessPresent: false
 
 RSpec/NestedGroups:
   Max: 5

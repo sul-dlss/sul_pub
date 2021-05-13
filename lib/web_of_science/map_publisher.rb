@@ -32,8 +32,6 @@ module WebOfScience
       country.present? ? country.text : ''
     end
 
-    # rubocop:disable Metrics/AbcSize
-    # rubocop:disable Metrics/CyclomaticComplexity
     def extract_publishers(rec)
       publishers = rec.doc.search('static_data/summary/publishers/publisher').map do |publisher|
         # parse the publisher address(es)
@@ -55,8 +53,6 @@ module WebOfScience
       publishers.flatten
     end
 
-    # rubocop:enable Metrics/AbcSize
-    # rubocop:enable Metrics/CyclomaticComplexity
     # Extract publisher information into these fields:
     # :publisher=>"OXFORD UNIV PRESS"
     # :city=>"OXFORD"
