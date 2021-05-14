@@ -28,6 +28,30 @@ namespace :sul do
     puts "Total: #{total_pubs}. Output file: #{output_file}. Ended at #{end_time}."
   end
 
+  desc 'Export publications pub_hashes as json'
+  # bundle exec rake sul:export_pubs_json['/tmp/output_folder','01/01/2013',1000]
+  # parameters are output folder, date to go back to in format of mm/dd/yyyy, and limit (defaults to 1000)
+  # This task will output pub_hashes for publications into json files (one per pub) into the folder specified
+  # Use a different date and limit to fetch different samples
+  task :export_pubs_json, %i[output_folder date_since limit] => :environment do |_t, args|
+    output_folder = args[:output_folder]
+    date_since = args[:date_since]
+    limit = args[:limit].to_i || 1000
+    raise 'missing require params' unless output_folder && date_since
+
+    publications = Publication.select(:id, :pub_hash).where('updated_at > ?', Date.strptime(date_since, '%m/%d/%Y')).limit(limit)
+    puts "Exporting limit of #{limit} pubs to #{output_folder} since date #{date_since}"
+    total_pubs = 0
+
+    FileUtils.mkdir_p(output_folder)
+    publications.each do |pub|
+      File.open(File.join(output_folder, "publication-#{pub.id}.json"), 'w') { |f| f.write(pub.pub_hash.to_json) }
+      total_pubs += 1
+    end
+    end_time = Time.zone.now
+    puts "Total: #{total_pubs}. Output folder: #{output_folder}. Ended at #{end_time}."
+  end
+
   desc 'Export publications for specific authors as csv'
   # exports all publications for the given sunets in a 'new' or 'approved' state after the date specified
   # input csv file should have a column with a header of 'SUNetID' containing the sunetid of interest
