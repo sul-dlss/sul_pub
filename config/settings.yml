@@ -26,6 +26,12 @@ CAP:
   AUTHORSHIP_API_URI: https://cap-uat.stanford.edu
   HARVEST_ON_CHANGE: true
 
+MAIS:
+  LOG: log/mais.log
+  BASE_URL: https://aswstest.stanford.edu
+  CLIENT_ID: 5d127563-6cbf-4275-98eb-FAKE
+  CLIENT_SECRET: 19ad9c72-80dd-46d9-b7eb-FAKE
+
 ## PubMed Auth Config
 PUBMED:
   LOG: log/pubmed.log

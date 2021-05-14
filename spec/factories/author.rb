@@ -39,6 +39,7 @@ FactoryBot.define do
     preferred_last_name { 'Edler' }
     preferred_middle_name { 'Jim' }
     emails_for_harvest { 'alice.edler@stanford.edu' }
+    sequence(:orcidid, 1000) { |n| "https://orcid.org/0000-0000-0000-#{n}" }
 
     trait :blank_first_name do
       official_first_name { '' }
