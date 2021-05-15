@@ -64,7 +64,7 @@ describe PublicationIdentifier do
   describe '#pub_hash_update' do
     context 'when pub_hash[:identifier] does not contain identifier' do
       before do
-        pub_id.publication.pub_hash = { identifier: [] }
+        pub_id.publication.pub_hash = pub_id.publication.pub_hash.merge(identifier: [])
         pub_id.publication.save!
       end
 
@@ -79,13 +79,13 @@ describe PublicationIdentifier do
 
     context 'when pub_hash[:identifier] contains identifier' do
       before do
-        pub_id.publication.pub_hash = { identifier: [{ type: 'doi' }] }
+        pub_id.publication.pub_hash = pub_id.publication.pub_hash.merge(identifier: [{ type: 'doi', id: 'abc123' }])
         pub_id.publication.save!
       end
 
       it 'pub_hash has a DOI identifier' do
         # double check that the publication.save! callbacks did not mess up the mock
-        expect(pub_id.publication.pub_hash[:identifier]).to include(type: 'doi')
+        expect(pub_id.publication.pub_hash[:identifier]).to include({ type: 'doi', id: 'abc123' })
       end
 
       it_behaves_like 'deletes_pub_hash'

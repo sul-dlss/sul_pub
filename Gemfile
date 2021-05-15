@@ -37,6 +37,7 @@ gem 'identifiers', '~> 0.12'
 # To use Jbuilder templates for JSON
 gem 'jbuilder'
 gem 'jquery-rails'
+gem 'json_schemer'
 gem 'kaminari'
 gem 'okcomputer' # for monitoring
 gem 'oauth2'

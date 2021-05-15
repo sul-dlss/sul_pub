@@ -1,0 +1,450 @@
+title: pub_hash
+description: Metadata for a SUL-PUB publication
+type: object
+properties:
+  abstract:
+    type: string
+  abstract_restricted:
+    type: string
+  additionalProperties: # Legacy. Not in current code.
+    type: object
+  apa_citation: # Automatically added.
+    type: string
+  articlenumber: # Legacy. Not in current code.
+    type:
+      - string
+      - "null"
+  author:
+    type: array
+    items:
+      $ref: '#/$defs/Author'
+  authorcount:
+    type:
+      - string
+      - integer
+  authorship: # Automatically added.
+    type: array
+    items:
+      $ref: '#/$defs/Authorship'
+  booktitle:
+    type: string
+  city:
+    type: string
+  chicago_citation: # Automatically added.
+    type: string
+  conference:
+    $ref: '#/$defs/Conference'
+  country:
+    type:
+      - string
+      - "null"
+  date:
+    type: string
+  documentcategory_sw: # From sciencewire, wos
+    type: string
+  documenttypes_sw: # From sciencewire, wos
+    type: array
+    items:
+      type: string
+  doi:
+    type: string
+  eissn:
+    type: string
+  etal: # Legacy. Not in current code.
+    type: boolean
+  identifier:
+    type: array
+    items:
+      $ref: '#/$defs/Identifier'
+  isbn:
+    type: string
+  issn:
+    type: string
+  journal:
+    $ref: '#/$defs/Journal'
+  last_updated: # Automatically added.
+    type: string
+  mesh_headings:
+    type: array
+    items:
+      $ref: '#/$defs/MeshHeading'
+  mla_citation: # Automatically added
+    type: string
+  pages:
+    type: string
+  pmid:
+    description: PubMed identifier
+    type: string
+  provenance:
+    description: Source of the record that the pub_hash was generated from.
+    type: string
+    enum:
+      - batch
+      - cap
+      - pubmed
+      - sciencewire
+      - wos
+  publicationSource: # Legacy. Not in current code.
+    type:
+      - string
+      - "null"
+  publicationUrl: # Legacy. Not in current code.
+    type:
+      - string
+      - "null"
+  publicationUrlLabel: # Legacy. Not in current code.
+    type:
+      - string
+      - "null"
+  publisher:
+    type: string
+  stateprovince:
+    type:
+      - string
+      - "null"
+  sulpubid:
+    description: Identifier for the publication in the SUL system.
+    type: string
+  sw_id:
+    description: ScienceWire identifier
+    type: string
+  title:
+    type: string
+  type: # Required, but missing in existing data.
+    description: Type of publication
+    type:
+      - string
+      - "null"
+    enum:
+      - article
+      - book
+      - caseStudy # Legacy. Not in current code.
+      - inproceedings
+      - inbook # Legacy. Not in current code.
+      - otherpaper # Legacy. Not in current code.
+      - otherPaper # Legacy. Not in current code.
+      - technicalReport # Legacy. Not in current code.
+      - workingPaper # Legacy. Not in current code.
+      - null # Legacy. Not in current code.
+  wos_item_id:
+    type: string
+  wos_uid:
+    type: string
+  year:
+    type: string
+  # Sciencewire-specific
+  authorcitationcountlist_sw:
+    type: string
+  keywords_sw:
+    type: array
+    items:
+      type: string
+  isobsolete_sw:
+    type: string
+  newpublicationid_sw:
+    type: string
+  normalizedrank_sw:
+    type: string
+  numberofreferences_sw:
+    type: string
+  ordinalrank_sw:
+    type: string
+  publicationimpactfactorlist_sw:
+    type: array
+    items:
+      type: string
+  publicationcategoryrankinglist_sw:
+    type: array
+    items:
+      type: string
+  rank_sw:
+    type: string
+  timenotselfcited_sw:
+    type: string
+  timescited_sw_retricted:
+    type: string
+  # Bibtex ingester specific
+  address:
+    type: string
+  allAuthors:
+    type: string
+  bibtex_type:
+    type: string
+  chapter:
+    type: string
+  edition:
+    type: string
+  editor:
+    type: string
+  howpublished:
+    type: string
+  series:
+    $ref: '#/$defs/Series'
+additionalProperties: false
+$defs:
+  Author:
+    type: object
+    properties:
+      additionalProperties: # Legacy. Not in current code.
+        type: object
+      alternate: # Legacy. Not in current code.
+        type: array
+      display_name: # From wos
+        type: string
+      first_name: # From wos
+        type: string
+      firstname: # From pubmed
+        type:
+          - string
+          - "null" # Existing data has null values.
+      full_name: # From wos
+        type:
+          - string
+          - "null" # Existing data has null values.
+      given_name: # From wos
+        type:
+          - string
+          - "null"
+      initials: # From wos
+        type: string
+      middle_name: # From wos
+        type: string
+      middlename: # From pubmed
+        type:
+          - string
+          - "null" # Existing data has null values.
+      last_name: # From wos
+        type: string
+      lastname: # From pubmed
+        type:
+          - string
+          - "null" # Existing data has null values.
+      name: # From sciencewire, wos
+        type: string
+      role: # From wos
+        type:
+          - string
+          - "null"
+    additionalProperties: false
+  Authorship:
+    description: Stanford affiliated author.
+    type: object
+    properties:
+      cap_profile_id:
+        description: Identifier for the author in the CAP system.
+        type: integer
+      sul_author_id:
+        description: Identifier for the author in the SUL system.
+        type: integer
+      featured:
+        description: Marks the publication for featured presentation.
+        type: boolean
+      status:
+        description: Marks the status of the publication. UNKNOWN indicates legacy data.
+        type:
+          - string
+          - "null"
+        enum:
+          - new
+          - approved
+          - denied
+          - unknown
+          - APPROVED # Bad value in existing data
+          - null # Bad value in existing data
+      visibility:
+        description: Indicates whether this author would like to freely display the publication, only show it at Stanford, or hide it.
+        type:
+          - string
+          - "null"
+        enum:
+          - private
+          - stanford
+          - public
+          - PRIVATE # Bad value in existing data
+          - PUBLIC # Bad value in existing data
+          - null # Bad value in existing data
+    required:
+      - featured
+      - status
+      - visibility
+    additionalProperties: false
+  Conference:
+    type: object
+    properties:
+      additionalProperties: # Legacy. Not in current code.
+        type: object
+      city:
+        type:
+          - string
+          - "null"
+      doi: # Legacy. Not in current code.
+        type:
+          - string
+          - "null"
+      enddate:
+        type:
+          - string
+          - "null"
+      location: # Legacy. Not in current code.
+        type:
+          - string
+          - "null"
+      name:
+        type:
+          - string
+          - "null"
+      number: # Legacy. Not in current code.
+        type:
+          - string
+          - "null"
+      organization: # From bibtex indexer
+        type:
+          - string
+          - "null"
+      startdate:
+        type:
+          - string
+          - "null"
+      statecountry:
+        type:
+          - string
+          - "null"
+      year:
+        type:
+          - string
+          - "null"
+    additionalProperties: false
+  Identifier:
+    type: object
+    properties:
+      id:
+        type: string
+      type:
+        type: string
+      url:
+        type: string
+    required:
+      - type
+    additionalProperties: false
+  Journal:
+    type: object
+    properties:
+      additionalProperties: # Legacy. Not in current code.
+        type: object
+      articlenumber:
+        type:
+          - string
+          - "null"
+      articleNumber: # Legacy. Not in current code.
+        type:
+          - string
+          - "null"
+          - integer
+      issue:
+        type:
+          - string
+          - "null"
+      identifier:
+        type: array
+        items:
+          $ref: '#/$defs/Identifier'
+      month: # From bibtex indexer
+        type: string
+      name:
+        type:
+          - string
+          - "null"
+      number: # Legacy. Not in current code.
+        type:
+          - string
+          - "null"
+      pages:
+        type:
+          - string
+          - "null"
+          - number # Legacy. Not in current code.
+      specialissue: # Legacy. Not in current code.
+        type:
+          - string
+          - "null"
+          - boolean
+      supplement: # Legacy. Not in current code.
+        type:
+          - string
+          - "null"
+      volume:
+        type:
+          - string
+          - "null"
+          - number # Existing bad data.
+      year: # Legacy. Not in current code.
+        type:
+          - string
+          - "null"
+    additionalProperties: false
+  MeshHeading:
+    type: object
+    properties:
+      descriptor:
+        type: array
+        items:
+          type: object
+          properties:
+            major:
+              type: string
+            name:
+              type: string
+            id:
+              type: string
+          additionalProperties: false
+      qualifier:
+        type: array
+        items:
+          type: object
+          properties:
+            major:
+              type: string
+            name:
+              type: string
+            id:
+              type: string
+          additionalProperties: false
+      treecode:
+        type: array
+        items:
+          type: object
+          properties:
+            code:
+              type: string
+            major:
+              type: string
+          additionalProperties: false
+    additionalProperties: false
+  Series:
+    type: object
+    properties:
+      identifier:
+        type: array
+        oneOf:
+          - type: array
+            items:
+              $ref: '#/$defs/Identifier'
+            minItems: 1
+          - type: array # Existing bad data.
+            items:
+              type: "null"
+            minItems: 1
+          - type: array # Existing bad data.
+            maxItems: 0
+      title:
+        type:
+          - string
+          - "null"
+      month:
+        type:
+          - string
+          - "null"
+      volume:
+        type:
+          - string
+          - "null"

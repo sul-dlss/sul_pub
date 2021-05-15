@@ -15,7 +15,7 @@ describe PublicationsController, :vcr do
     {
       type: 'book',
       title: 'some title',
-      year: 1938,
+      year: '1938',
       issn: '32242424',
       pages: '34-56',
       author: [{
@@ -63,7 +63,6 @@ describe PublicationsController, :vcr do
       ],
       booktitle: 'TEST Book I',
       edition: '2',
-      etal: true,
       identifier: [
         { type: 'isbn', id: '1177188188181' },
         doi_pub_id.identifier
@@ -116,7 +115,6 @@ describe PublicationsController, :vcr do
         status: 'approved',
         visibility: 'public'
       }],
-      etal: false,
       journal: {},
       last_updated: '2015-11-23T15:15Z',
       provenance: 'CAP',
@@ -352,10 +350,10 @@ describe PublicationsController, :vcr do
       context 'WOS disabled' do
         before { allow(Settings.WOS).to receive(:enabled).and_return(false) }
 
-        let(:ussr) { create :user_submitted_source_record, title: 'Men On Mars', year: 2001, source_data: '{}' }
+        let(:ussr) { create :user_submitted_source_record, title: 'Men On Mars', year: '2001', source_data: '{}' }
         let!(:pub) do
           pub = build(:publication, title: ussr.title, year: ussr.year, user_submitted_source_records: [ussr])
-          pub.pub_hash[:year] = ussr.year # values will overwrite from pub_hash
+          pub.pub_hash[:year] = ussr.year.to_s # values will overwrite from pub_hash
           pub.pub_hash[:title] = ussr.title
           pub.save!
           ussr.publication = pub # association does not automatically update ussr
