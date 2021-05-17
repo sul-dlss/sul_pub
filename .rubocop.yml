@@ -188,6 +188,8 @@ Rails/AfterCommitOverride: # (new in 2.8)
   Enabled: true
 Rails/AttributeDefaultBlockValue: # (new in 2.9)
   Enabled: true
+Rails/EnvironmentVariableAccess: # (new in 2.10)
+  Enabled: true
 Rails/FindById: # (new in 2.7)
   Enabled: true
 Rails/Inquiry: # (new in 2.7)
@@ -209,6 +211,8 @@ Rails/RenderPlainText: # (new in 2.7)
 Rails/ShortI18n: # (new in 2.7)
   Enabled: true
 Rails/SquishedSQLHeredocs: # (new in 2.8)
+  Enabled: true
+Rails/TimeZoneAssignment: # (new in 2.10)
   Enabled: true
 Rails/WhereEquals: # (new in 2.9)
   Enabled: true
