@@ -8,6 +8,7 @@ describe 'Documentation routing' do
       action: 'show'
     )
   end
+
   it 'routes /home to home' do
     expect(get: '/home').to route_to(
       id: 'home',
@@ -15,6 +16,7 @@ describe 'Documentation routing' do
       action: 'show'
     )
   end
+
   it 'routes /pubapi to pubapi' do
     expect(get: '/pubapi').to route_to(
       id: 'pubapi',
@@ -22,6 +24,7 @@ describe 'Documentation routing' do
       action: 'show'
     )
   end
+
   it 'routes /pubsapi to pubsapi' do
     expect(get: '/pubsapi').to route_to(
       id: 'pubsapi',
@@ -29,6 +32,7 @@ describe 'Documentation routing' do
       action: 'show'
     )
   end
+
   it 'routes /pollapi to pollapi' do
     expect(get: '/pollapi').to route_to(
       id: 'pollapi',
@@ -36,6 +40,7 @@ describe 'Documentation routing' do
       action: 'show'
     )
   end
+
   it 'routes /authorshipapi to authorshipapi' do
     expect(get: '/authorshipapi').to route_to(
       id: 'authorshipapi',
@@ -43,6 +48,7 @@ describe 'Documentation routing' do
       action: 'show'
     )
   end
+
   it 'routes /queryapi to queryapi' do
     expect(get: '/queryapi').to route_to(
       id: 'queryapi',

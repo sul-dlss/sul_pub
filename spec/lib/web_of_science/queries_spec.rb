@@ -42,6 +42,7 @@ describe WebOfScience::Queries do
       instance = described_class.new
       expect(instance).to be_an described_class
     end
+
     it 'returns a WebOfScience::Retriever' do
       params = wos_queries.params_for_search('TI=This wonderful life')
       retriever = wos_queries.search(params)
@@ -63,6 +64,7 @@ describe WebOfScience::Queries do
       expect(retriever).to be_an WebOfScience::Retriever
       expect(retriever.next_batch.count).to eq 1
     end
+
     it 'returns nothing for partial matches' do
       savon.expects(:search).with(message: :any).returns(wos_search_by_doi_mismatch_response)
       retriever = wos_queries.search_by_doi(doi_mismatch)
@@ -85,6 +87,7 @@ describe WebOfScience::Queries do
     it 'returns publication(s)' do
       expect(retriever.next_batch.count >= 1).to be true
     end
+
     it 'returns a publication matching the query' do
       expect(retriever.next_batch.doc.search('titles').text).to include title
     end
@@ -127,9 +130,11 @@ describe WebOfScience::Queries do
     it 'works' do
       expect(params).to include(queryParameters: Hash, retrieveParameters: Hash)
     end
+
     it 'has queryParameters' do
       expect(query).to include(databaseId: String, userQuery: String, queryLanguage: String)
     end
+
     it 'has retrieveParameters' do
       expect(retrieve).to include(firstRecord: Integer, count: Integer, option: Array)
     end

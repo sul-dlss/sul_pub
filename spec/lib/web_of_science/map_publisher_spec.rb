@@ -12,9 +12,11 @@ describe WebOfScience::MapPublisher do
       result = described_class.new(wos_record)
       expect(result).to be_an described_class
     end
+
     it 'raises ArgumentError with nil params' do
       expect { described_class.new }.to raise_error(ArgumentError)
     end
+
     it 'raises ArgumentError with anything other than WebOfScience::Record' do
       expect { described_class.new('could be xml') }.to raise_error(ArgumentError)
     end
@@ -27,9 +29,11 @@ describe WebOfScience::MapPublisher do
       it 'works' do
         expect(publishers).to be_an Array
       end
+
       it 'contains publisher information' do
         expect(publishers.first).to be_an Hash
       end
+
       it 'contains publisher name' do
         expect(publishers.first).to include('full_name' => 'ASSOC COLL RESEARCH LIBRARIES')
       end
@@ -46,9 +50,11 @@ describe WebOfScience::MapPublisher do
     it 'has a publisher' do
       expect(pub_hash[:publisher]).not_to be_nil
     end
+
     it 'has a city' do
       expect(pub_hash[:city]).not_to be_nil
     end
+
     it 'has a country' do
       expect(pub_hash[:country]).not_to be_nil
     end
@@ -61,6 +67,7 @@ describe WebOfScience::MapPublisher do
     it 'works with WOS records' do
       expect(publisher).to be_an described_class
     end
+
     it_behaves_like 'it_extracts_publishers'
     it_behaves_like 'pub_hash'
     it_behaves_like 'pub_hash_contains_publisher_data'
@@ -73,6 +80,7 @@ describe WebOfScience::MapPublisher do
     it 'works with MEDLINE records' do
       expect(publisher).to be_an described_class
     end
+
     it_behaves_like 'pub_hash'
     it 'has no publishers' do
       expect(publisher.publishers).to be_empty

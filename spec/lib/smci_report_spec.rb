@@ -11,9 +11,11 @@ describe SMCIReport do
     it 'raises an exception with a missing input file' do
       expect { described_class.new(input_file: 'tmp/bogus.csv', output_file: output_csv) }.to raise_error(RuntimeError)
     end
+
     it 'raises an exception with an unspecified output file' do
       expect { described_class.new(input_file: input_csv) }.to raise_error(RuntimeError)
     end
+
     it 'raises an exception with a bogus date_since' do
       expect do
         described_class.new(input_file: input_csv, output_file: output_csv,

@@ -11,6 +11,7 @@ RSpec.describe WebOfScienceSourceRecord, type: :model do
       expect { described_class.new }.not_to raise_error
       expect(described_class.new).not_to be_valid
     end
+
     it 'extracts attributes from source_data' do
       expect(wos_src_rec).to be_valid # trigger extractions
       expect(wos_src_rec.uid).to eq 'WOS:A1972N549400003'
@@ -18,6 +19,7 @@ RSpec.describe WebOfScienceSourceRecord, type: :model do
       expect(wos_src_rec.source_fingerprint).to eq 'e5088910f3e61f73eebaa4c8938c742989259f3821f2a050de57475e7f385445'
       expect(wos_src_rec).to be_active
     end
+
     it 'extracts attributes from WebOfScience::Record' do
       other = described_class.new(record: records.first)
       expect(other).to be_valid # trigger extractions
@@ -41,6 +43,7 @@ RSpec.describe WebOfScienceSourceRecord, type: :model do
       expect(wos_src_rec.doi).to eq 'doi'
       expect(wos_src_rec.pmid).to eq 123
     end
+
     it 'allows select' do
       expect(described_class.select(:id).first).to be_a described_class
     end
@@ -51,6 +54,7 @@ RSpec.describe WebOfScienceSourceRecord, type: :model do
       expect(wos_src_rec).to be_valid
       expect { wos_src_rec.save! }.not_to raise_error
     end
+
     describe 'unique constraints' do
       let(:dup) { wos_src_rec.dup }
 
@@ -60,6 +64,7 @@ RSpec.describe WebOfScienceSourceRecord, type: :model do
         dup.source_fingerprint = '123'
         expect { dup.save! }.to raise_error(ActiveRecord::RecordNotUnique)
       end
+
       it 'prevents duplicate source_fingerprint' do
         dup.uid = '123'
         expect { dup.save! }.to raise_error(ActiveRecord::RecordNotUnique)
@@ -82,12 +87,15 @@ RSpec.describe WebOfScienceSourceRecord, type: :model do
     it 'has a Nokogiri::XML::Document' do
       expect(wos_src_rec.doc).to be_a Nokogiri::XML::Document
     end
+
     it 'has a WebOfScience::Record' do
       expect(wos_src_rec.record).to be_a WebOfScience::Record
     end
+
     it 'has an XML String' do
       expect(wos_src_rec.to_xml).to be_a String
     end
+
     it 'an XML String from the doc utility matches the source_data' do
       # TODO: use equivalent_xml
       expect(wos_src_rec.to_xml).to eq wos_src_rec.source_data

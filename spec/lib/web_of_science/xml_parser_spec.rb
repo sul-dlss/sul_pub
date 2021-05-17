@@ -10,11 +10,13 @@ describe WebOfScience::XmlParser do
     it 'returns an XML String' do
       expect(xml_result).to be_an String
     end
+
     it 'returns well formed XML' do
       expect do
         Nokogiri::XML(xml_result) { |config| config.strict.noblanks }
       end.not_to raise_error
     end
+
     it 'contains no HTML encoding' do
       expect(xml_result).not_to include '&lt;'
     end

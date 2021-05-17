@@ -10,9 +10,11 @@ describe WebOfScience::Mapper do
     it 'works with WOS records' do
       expect(mapper).to be_an described_class
     end
+
     it 'raises ArgumentError with nil params' do
       expect { described_class.new }.to raise_error(ArgumentError)
     end
+
     it 'raises ArgumentError with anything other than WebOfScience::Record' do
       expect { described_class.new('could be xml') }.to raise_error(ArgumentError)
     end

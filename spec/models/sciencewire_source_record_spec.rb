@@ -44,6 +44,7 @@ describe SciencewireSourceRecord, :vcr do
       it 'returns a ScienceWirePublication' do
         expect(subject.publication).to be_an ScienceWirePublication
       end
+
       it 'parses the ScienceWire source XML' do
         expect(subject).to receive(:source_data).and_call_original
         subject.publication
@@ -54,6 +55,7 @@ describe SciencewireSourceRecord, :vcr do
       it 'returns a Nokogiri::XML::Element' do
         expect(subject.publication_item).to be_an Nokogiri::XML::Element
       end
+
       it 'parses the ScienceWire source XML' do
         expect(subject).to receive(:source_data).and_call_original
         subject.publication_item
@@ -64,6 +66,7 @@ describe SciencewireSourceRecord, :vcr do
       it 'returns a Nokogiri::XML::Document' do
         expect(subject.publication_xml).to be_an Nokogiri::XML::Document
       end
+
       it 'parses the ScienceWire source XML' do
         expect(subject).to receive(:source_data).and_call_original
         subject.publication_xml
@@ -82,16 +85,20 @@ describe SciencewireSourceRecord, :vcr do
       it 'extracts ids' do
         expect(subject).to include(sw_id: '64367696', pmid: '24213991')
       end
+
       it 'extracts title' do
         expect(subject[:title]).to eq 'Exploring Patterns of Seafood Provision Revealed in the Global Ocean Health Index'
       end
+
       it 'extracts author(s)' do
         expect(subject[:author].length).to eq 14
         expect(subject[:author][4]).to include(name: 'Hardy,Darren,')
       end
+
       it 'extracts abstract' do
         expect(subject[:abstract_restricted]).to start_with 'Sustainable provision of seafood'
       end
+
       it 'extracts publication' do
         expect(subject).to include(year: '2013',
                                    issn: '0044-7447',
@@ -99,16 +106,19 @@ describe SciencewireSourceRecord, :vcr do
                                    city: 'DORDRECHT',
                                    pages: '910-922')
       end
+
       it 'extracts keywords' do
         expect(subject[:keywords_sw]).to include('ECOSYSTEMS', 'FISHERIES', 'aquaculture', 'seafood', 'status', 'FAO',
                                                  'mariculture', 'assessment', 'fisheries', 'indicator')
       end
+
       it 'extracts ScienceWire statistics' do
         expect(subject).to include(numberofreferences_sw: '27',
                                    timescited_sw_retricted: '6',
                                    timenotselfcited_sw: '1',
                                    ordinalrank_sw: '1')
       end
+
       it 'extracts identifiers' do
         expect(subject[:identifier][0]).to include(type: 'PMID', id: '24213991')
         expect(subject[:identifier][1]).to include(type: 'WoSItemID', id: '000326892600002')
@@ -124,6 +134,7 @@ describe SciencewireSourceRecord, :vcr do
         expect(subject).to include(type: 'article', documentcategory_sw: 'Journal Document')
         expect(subject[:documenttypes_sw]).to include('Article')
       end
+
       it 'extracts metadata for an article' do
         expect(subject[:journal]).to include(name: 'AMBIO',
                                              volume: '42',
@@ -142,6 +153,7 @@ describe SciencewireSourceRecord, :vcr do
         expect(subject).to include(type: 'article', documentcategory_sw: 'Other')
         expect(subject[:documenttypes_sw]).to include('Congresses', 'Journal Article')
       end
+
       it 'extracts metadata for an article' do
         expect(subject[:journal]).to include(name: 'Nature structural biology',
                                              volume: '6',
@@ -164,12 +176,14 @@ describe SciencewireSourceRecord, :vcr do
                                    documentcategory_sw: 'Conference Proceeding Document')
         expect(subject[:documenttypes_sw]).to include('Article')
       end
+
       it 'extracts publication source' do # called because Issue is not blank
         expect(subject[:journal]).to include(name: 'INTERNATIONAL JOURNAL OF MEDICAL INFORMATICS',
                                              volume: '51',
                                              issue: '2-3',
                                              pages: '107-116')
       end
+
       it 'extracts metadata for a paper in proceedings' do
         expect(subject[:conference]).to include(name: '3rd Annual General Meeting of HEALNet',
                                                 startdate: '1997-11-01T00:00:00',

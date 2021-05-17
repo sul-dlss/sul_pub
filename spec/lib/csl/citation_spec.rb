@@ -86,9 +86,11 @@ describe Csl::Citation do
       # and the CSL style is likely the authority on how to do it anyway.
       expect(cite).to match(/#{csl_report['title']}/i)
     end
+
     it 'does not include an abstract' do
       expect(cite).not_to include(csl_report['abstract']) if csl_report['abstract']
     end
+
     it 'includes author family names' do
       # Given variations in citation styles, it's not easy to check for all
       # citation details on names, so just check the last names here.  Specs
@@ -97,24 +99,31 @@ describe Csl::Citation do
         expect(cite).to include(author['family'])
       end
     end
+
     it 'includes collection-title' do
       expect_includes_field('collection-title')
     end
+
     it 'includes number' do
       expect_includes_field('number')
     end
+
     it 'includes page' do
       expect_includes_field('page')
     end
+
     it 'includes publisher' do
       expect_includes_field('publisher')
     end
+
     it 'includes publisher-place' do
       expect_includes_field('publisher-place')
     end
+
     it 'includes URL' do
       expect_includes_field('URL')
     end
+
     it 'includes year' do
       year = csl_report['issued']['date-parts'].first.first
       expect(cite).to include(year)
@@ -143,6 +152,7 @@ describe Csl::Citation do
           expect(cite).to include(name)
         end
       end
+
       it_behaves_like 'it is a CSL report citation'
       it 'closely matches sul-pub requirements' do
         # The CSL citation does not exactly match the citation details initially defined, which included some variations from APA standards.
@@ -181,33 +191,43 @@ describe Csl::Citation do
         it 'matches "abstract"' do
           expect_field_match('abstract')
         end
+
         it 'matches "author"' do
           expect_field_match('author')
         end
+
         it 'matches "collection-title"' do
           expect_field_match('collection-title')
         end
+
         it 'matches "id"' do
           expect_field_match('id')
         end
+
         it 'matches "issued"' do
           expect_field_match('issued')
         end
+
         it 'matches "number"' do
           expect_field_match('number')
         end
+
         it 'matches "page"' do
           expect_field_match('page')
         end
+
         it 'matches "publisher"' do
           expect_field_match('publisher')
         end
+
         it 'matches "title"' do
           expect_field_match('title')
         end
+
         it 'matches "type"' do
           expect_field_match('type')
         end
+
         it 'matches "URL"' do
           expect_field_match('URL')
         end
@@ -217,10 +237,12 @@ describe Csl::Citation do
         expect(pub_hash.to_apa_citation)
           .to eq "Imberman, S., Kugler, A. D., &amp; Sacerdote, B. (2009). <i>Katrina's Children: Evidence on the Structure of Peer Effects from Hurricane Evacuees</i> (NBER Working Paper Series No. 15291) (pp. 1–55). Cambridge, MA: National Bureau of Economic Research. Retrieved from http://www.nber.org/papers/w15291"
       end
+
       it 'creates a Chicago citation' do
         expect(pub_hash.to_chicago_citation)
           .to eq "Imberman, Scott, Adriana D. Kugler, and Bruce Sacerdote. 2009. “Katrina's Children: Evidence on the Structure of Peer Effects from Hurricane Evacuees.” 15291. NBER Working Paper Series. Cambridge, MA: National Bureau of Economic Research. http://www.nber.org/papers/w15291."
       end
+
       it 'creates an MLA citation' do
         expect(pub_hash.to_mla_citation)
           .to eq "Imberman, Scott, Adriana D. Kugler, and Bruce Sacerdote. <i>Katrina's Children: Evidence on the Structure of Peer Effects from Hurricane Evacuees</i>. Cambridge, MA: National Bureau of Economic Research, 2009. Web. NBER Working Paper Series."
@@ -236,10 +258,12 @@ describe Csl::Citation do
         expect(pub_hash.to_apa_citation)
           .to eq "Mangiafico, P. A. (2016). <i>This is Peter's Working Paper on the Revs Digital Library</i> (Series Name No. Series Number) (p. 5). Stanford, CA: Stanford University. Retrieved from http://revslib.stanford.edu"
       end
+
       it 'creates a Chicago citation' do
         expect(pub_hash.to_chicago_citation)
           .to eq "Mangiafico, Peter A. 2016. “This Is Peter's Working Paper on the Revs Digital Library.” Series Number. Series Name. Stanford, CA: Stanford University. http://revslib.stanford.edu."
       end
+
       it 'creates an MLA citation' do
         expect(pub_hash.to_mla_citation)
           .to eq "Mangiafico, Peter A. <i>This Is Peter's Working Paper on the Revs Digital Library</i>. Stanford, CA: Stanford University, 2016. Web. Series Name."
@@ -259,6 +283,7 @@ describe Csl::Citation do
         expect(chicago_citation).not_to include(', and', 'SecondLast', 'Last')
         expect(hash.pub_hash[:author]).not_to include(name: 'et al.')
       end
+
       it 'creates a Chicago citation' do
         expect(chicago_citation).to eq 'Sohl, G., B. Odermatt, S. Maxeiner, J. Degen, K. Willecke, et al. 2004. “New Insights into the Expression and Function of Neural Connexins with Transgenic Mouse Mutants.” <i>BRAIN RESEARCH REVIEWS</i> 47 (1-3). ELSEVIER SCIENCE BV: 245–59.'
       end
@@ -274,9 +299,11 @@ describe Csl::Citation do
       it 'includes authors from single name field' do
         expect(chicago_citation).to match(/Jones,\s+P. L./)
       end
+
       it 'builds citations with first author name spacing correct' do
         expect(chicago_citation).to match(/^Jones, P. L./)
       end
+
       it 'includes authors from compound name field' do
         expect(chicago_citation).to include('Alan T. Jackson')
       end
@@ -299,20 +326,25 @@ describe Csl::Citation do
         it 'includes article title' do
           expect(chicago_citation).to include(conference_pub_in_journal_hash[:title].titlecase)
         end
+
         it 'includes journal name' do
           expect(chicago_citation).to include(conference_pub_in_journal_hash[:journal][:name])
         end
+
         it 'includes journal pages' do
           # the chicago citation translates a hyphen (code 45) into an en-dash (code 226-218-147)
           expect(chicago_citation).to include(conference_pub_in_journal_hash[:pages].sub('-', '–'))
         end
+
         it 'includes journal year' do
           expect(chicago_citation).to include(conference_pub_in_journal_hash[:year])
         end
+
         it 'includes authors of the article' do
           author_last_names = %w[Jones Jackson]
           author_last_names.each { |ln| expect(chicago_citation).to include(ln) }
         end
+
         it 'excludes editors of the journal' do
           editor_last_names = %w[Smith Sprat]
           editor_last_names.each { |ln| expect(chicago_citation).not_to include(ln) }
@@ -338,6 +370,7 @@ describe Csl::Citation do
         expect(chicago_citation).to include(book_pub_hash[:publisher])
         expect(chicago_citation).to include(book_pub_hash[:year])
       end
+
       describe 'with editors' do
         let(:hash) { described_class.new(book_with_editors_pub_hash) }
 
@@ -350,6 +383,7 @@ describe Csl::Citation do
         expect(chicago_citation).to match(/^Jones,\s+P. L./)
         expect(chicago_citation).to include('Alan T. Jackson')
       end
+
       it 'builds citations with first author name spacing correct' do
         expect(chicago_citation).to match(/^Jones, P. L./)
       end
@@ -363,23 +397,29 @@ describe Csl::Citation do
         expect(chicago_citation).to include(article_pub_hash[:year])
         expect(chicago_citation).to include(article_pub_hash[:journal][:name])
       end
+
       it 'includes journal volume (issue)' do
         expect(chicago_citation).to include("#{article_pub_hash[:journal][:volume]} (#{article_pub_hash[:journal][:issue]})")
       end
+
       it 'includes journal pages' do
         # the chicago citation translates a hyphen (code 45) into an en-dash (code 226-218-147)
         expect(chicago_citation).to include(article_pub_hash[:pages].sub('-', '–'))
       end
+
       it 'excludes editors' do
         expect(chicago_citation).not_to include('Jack Smith', 'Jill Sprat')
       end
+
       it 'includes authors' do
         expect(chicago_citation).to match(/Jones,\s+P. L./)
         expect(chicago_citation).to include('Alan T. Jackson')
       end
+
       it 'builds citations with first author name spacing correct' do
         expect(chicago_citation).to match(/^Jones, P. L./)
       end
+
       it 'creates a Chicago citation' do
         expect(chicago_citation).to eq 'Jones, P. L., and Alan T. Jackson. 1987. “My Test Title.” <i>Some Journal Name</i> 33 (32). Some Publisher: 3–6.'
       end
@@ -459,10 +499,12 @@ describe Csl::Citation do
         expect(pub_hash.to_chicago_citation)
           .to eq "Mangiafico, Peter A. 2016. <i>This Is Peter's Other Paper on the Revs Digital Library</i>. Series Name. Stanford, CA: Stanford University. http://revslib.stanford.edu."
       end
+
       it 'creates a MLA citation' do
         expect(pub_hash.to_mla_citation)
           .to eq "Mangiafico, Peter A. <i>This Is Peter's Other Paper on the Revs Digital Library</i>. Stanford, CA: Stanford University, 2016. Web. Series Name."
       end
+
       it 'creates an APA citation' do
         expect(pub_hash.to_apa_citation)
           .to eq "Mangiafico, P. A. (2016). <i>This is Peter's Other Paper on the Revs Digital Library</i> (pp. 1–5). Stanford, CA: Stanford University. Retrieved from http://revslib.stanford.edu"
@@ -481,10 +523,12 @@ describe Csl::Citation do
         expect(pub_hash.to_apa_citation)
           .to eq "Mangiafico, P. A. (2016). <i>This is Peter's Technical Report on the Revs Digital Library</i> (Series Name No. 5) (pp. 1–5). Stanford, CA : Stanford University. Retrieved from http://revslib.stanford.edu"
       end
+
       it 'creates a Chicago citation' do
         expect(pub_hash.to_chicago_citation)
           .to eq "Mangiafico, Peter A. 2016. “This Is Peter's Technical Report on the Revs Digital Library.” 5. Series Name. Stanford, CA : Stanford University. http://revslib.stanford.edu."
       end
+
       it 'creates an MLA citation' do
         expect(pub_hash.to_mla_citation)
           .to eq "Mangiafico, Peter A. <i>This Is Peter's Technical Report on the Revs Digital Library</i>. Stanford, CA : Stanford University, 2016. Web. Series Name."
@@ -539,10 +583,12 @@ describe Csl::Citation do
         expect(pub_hash.to_chicago_citation)
           .to eq "Mangiafico, Peter A. 2016. <i>This Is Peter's Case Study on the Revs Digital Library</i>. Series Name. Stanford, CA: Stanford University. http://revslib.stanford.edu."
       end
+
       it 'creates a MLA citation' do
         expect(pub_hash.to_mla_citation)
           .to eq "Mangiafico, Peter A. <i>This Is Peter's Case Study on the Revs Digital Library</i>. Stanford, CA: Stanford University, 2016. Web. Series Name."
       end
+
       it 'creates a APA citation' do
         expect(pub_hash.to_apa_citation)
           .to eq "Mangiafico, P. A. (2016). <i>This is Peter's Case Study on the Revs Digital Library</i> (pp. 1–5). Stanford, CA: Stanford University. Retrieved from http://revslib.stanford.edu"
@@ -582,9 +628,11 @@ describe Csl::Citation do
       it 'creates a Chicago citation' do
         expect(pub_hash.to_chicago_citation).to eq 'Reed, Phillip J., and Jane Stanford. 2015. <i>This Is a Book Title</i>. Vol. 3. The Series Title. Stanford University Press.'
       end
+
       it 'creates a MLA citation' do
         expect(pub_hash.to_mla_citation).to eq 'Reed, Phillip J., and Jane Stanford. <i>This Is a Book Title</i>. vol. 3. Stanford University Press, 2015. Print. The Series Title.'
       end
+
       it 'creates a APA citation' do
         expect(pub_hash.to_apa_citation).to eq 'Reed, P. J., &amp; Stanford, J. (2015). <i>This is a book title</i> (Vol. 3). Stanford University Press.'
       end
@@ -596,9 +644,11 @@ describe Csl::Citation do
       it 'creates a Chicago citation' do
         expect(pub_hash.to_chicago_citation).to eq "Hardy, Darren, Jack Reed, and Bess Sadler. 2016. <i>Geospatial Resource Discovery</i>. <i>Exploring Discovery: The Front Door to Your Library's Licensed and Digitized Content</i>. American Library Association Editions."
       end
+
       it 'creates a MLA citation' do
         expect(pub_hash.to_mla_citation).to eq 'Hardy, Darren, Jack Reed, and Bess Sadler. <i>Geospatial Resource Discovery</i>. American Library Association Editions, 2016. Print.'
       end
+
       it 'creates a APA citation' do
         expect(pub_hash.to_apa_citation).to eq "Hardy, D., Reed, J., &amp; Sadler, B. (2016). <i>Geospatial Resource Discovery</i>. <i>Exploring Discovery: The Front Door to Your Library's Licensed and Digitized Content</i> (pp. 47–62). American Library Association Editions."
       end
@@ -610,9 +660,11 @@ describe Csl::Citation do
       it 'creates a Chicago citation' do
         expect(pub_hash.to_chicago_citation).to eq 'Reed, Jack. 2015. “Preservation and Discovery for GIS Data.” Esri.'
       end
+
       it 'creates a MLA citation' do
         expect(pub_hash.to_mla_citation).to eq 'Reed, Jack. “Preservation and Discovery for GIS Data.” 2015: n. pag. Print.'
       end
+
       it 'creates a APA citation' do
         expect(pub_hash.to_apa_citation).to eq 'Reed, J. (2015). Preservation and discovery for GIS data. Presented at the Esri User Conference, San Diego, California: Esri.'
       end
@@ -630,6 +682,7 @@ describe Csl::Citation do
       it 'creates citation data for event-place' do
         expect(pub_hash.csl_doc).to include('event-place' => 'California')
       end
+
       it 'creates a APA citation' do
         expect(pub_hash.to_apa_citation).to eq 'Reed, J. (2015). Preservation and discovery for GIS data. Presented at the Esri User Conference, California: Esri.'
       end
@@ -647,6 +700,7 @@ describe Csl::Citation do
       it 'creates citation data for event-place' do
         expect(pub_hash.csl_doc).to include('event-place' => 'San Diego')
       end
+
       it 'creates a APA citation' do
         expect(pub_hash.to_apa_citation).to eq 'Reed, J. (2015). Preservation and discovery for GIS data. Presented at the Esri User Conference, San Diego: Esri.'
       end
@@ -676,6 +730,7 @@ describe Csl::Citation do
       it 'has a journal' do
         expect(pub_hash.csl_doc).to include('container-title' => 'Some Journal Name')
       end
+
       it 'has an event with location' do
         expect(pub_hash.csl_doc).to include('event' => 'The Big Conference',
                                             'event-place' => 'Knoxville, TN')
@@ -688,9 +743,11 @@ describe Csl::Citation do
       it 'creates a Chicago citation' do
         expect(pub_hash.to_chicago_citation).to eq 'Glover, Jeffrey B., Kelly Woodard, P. Jack Reed, and Johnny Waits. 2012. “The Flat Rock Cemetery Mapping Project:  A Case Study in Community Archaeology.” <i>Early Georgia</i> 40 (1). The Society for Georgia Archaeology.'
       end
+
       it 'creates a MLA citation' do
         expect(pub_hash.to_mla_citation).to eq 'Glover, Jeffrey B. et al. “The Flat Rock Cemetery Mapping Project:  A Case Study in Community Archaeology.” <i>Early Georgia</i> 40.1 (2012): n. pag. Print.'
       end
+
       it 'creates a APA citation' do
         expect(pub_hash.to_apa_citation).to eq 'Glover, J. B., Woodard, K., Reed, P. J., &amp; Waits, J. (2012). The Flat Rock Cemetery Mapping Project:  A Case Study in Community Archaeology. <i>Early Georgia</i>, <i>40</i>(1).'
       end

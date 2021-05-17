@@ -39,6 +39,7 @@ describe DoiSearch do
           expect(WebOfScience).not_to receive(:queries)
           described_class.search(doi_value)
         end
+
         it 'queries WOS, if not authoritative' do
           allow(publication).to receive(:wos_pub?).and_return(false)
           described_class.search(doi_value)
@@ -62,11 +63,13 @@ describe DoiSearch do
     it 'does not alter conventional DOIs' do
       expect(described_class.send(:doi_name, doi_value)).to eq doi_value
     end
+
     it 'returns nil for invalid DOIs' do
       expect(described_class.send(:doi_name, '10.1038/')).to be_nil
       expect(described_class.send(:doi_name, '')).to be_nil
       expect(described_class.send(:doi_name, nil)).to be_nil
     end
+
     it 'returns normalized DOI for full URI' do
       expect(described_class.send(:doi_name, 'https://doi.org/10.1038/ncomms3199')).to eq '10.1038/ncomms3199'
     end

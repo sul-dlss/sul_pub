@@ -61,33 +61,43 @@ describe PubmedSourceRecord, :vcr do
     it 'extracts names for Amara example' do
       check_author_hash(:Amara)
     end
+
     it 'extracts names for Abrams example' do
       check_author_hash(:Abrams)
     end
+
     it 'extracts names for Brown example' do
       check_author_hash(:Brown)
     end
+
     it 'extracts names for Buncke example' do
       check_author_hash(:Buncke)
     end
+
     it 'extracts names for Gonzales example' do
       check_author_hash(:Gonzales)
     end
+
     it 'extracts names for Hauser example' do
       check_author_hash(:Hauser)
     end
+
     it 'extracts names for Krylov example' do
       check_author_hash(:Krylov)
     end
+
     it 'extracts names for Melosh example' do
       check_author_hash(:Melosh)
     end
+
     it 'extracts names for Todoroki example' do
       check_author_hash(:Todoroki)
     end
+
     it 'parses <Author> without <ForeName> element' do
       check_author_hash(:Johnson)
     end
+
     it 'extracts names when ValidYN attribute is missing' do
       author = author_doc(' <Author> <LastName>Whitely</LastName> <ForeName>R J</ForeName> <Initials>RJ</Initials> </Author>')
       expect(subject.send(:author_to_hash, author)).to eq(firstname: 'R', middlename: 'J', lastname: 'Whitely')
@@ -100,6 +110,7 @@ describe PubmedSourceRecord, :vcr do
       author = author_doc(' <Author ValidYN="N"> <LastName>Whitely</LastName> <ForeName>R J</ForeName> <Initials>RJ</Initials> </Author>')
       expect(subject.send(:author_to_hash, author)).to be_nil
     end
+
     it 'extracts nothing for CollectiveName' do
       author = author_doc(' <Author ValidYN="Y"> <CollectiveName>SBU-group. Swedish Council of Technology Assessment in Health Care</CollectiveName> </Author>')
       expect(subject.send(:author_to_hash, author)).to be_nil
@@ -111,15 +122,18 @@ describe PubmedSourceRecord, :vcr do
       record = described_class.send(:get_pubmed_record_from_pubmed, pmid_created_1999)
       expect(record).to be_an described_class
     end
+
     it 'returns nil if pubmed lookup is disabled' do
       allow(Settings.PUBMED).to receive(:lookup_enabled).and_return(false)
       record = described_class.send(:get_pubmed_record_from_pubmed, pmid_created_1999)
       expect(record).to be_nil
     end
+
     it 'calls PubmedSourceRecord.get_and_store_records_from_pubmed' do
       expect(described_class).to receive(:get_and_store_records_from_pubmed)
       described_class.send(:get_pubmed_record_from_pubmed, pmid_created_1999)
     end
+
     it 'extracts fields - pmid' do
       record = described_class.send(:get_pubmed_record_from_pubmed, pmid_created_1999)
       expect(record.pmid).to eq pmid_created_1999
@@ -146,6 +160,7 @@ describe PubmedSourceRecord, :vcr do
       expect(pubmed_record.pubmed_update).to be true
       expect(pubmed_record.source_data).to be_equivalent_to new_source_data
     end
+
     it 'does not update the :source_data field if no pubmed record is found' do
       source_data = '<PubmedArticle><MedlineCitation Status="Publisher" Owner="NLM"><PMID Version="1">1</PMID><OriginalData/></PubmedArticle>'
       new_source_data = '<?xml version="1.0" ?><!DOCTYPE PubmedArticleSet PUBLIC "-//NLM//DTD PubMedArticle, 1st January 2017//EN" "https://dtd.nlm.nih.gov/ncbi/pubmed/out/pubmed_170101.dtd"><PubmedArticleSet></PubmedArticleSet>'
@@ -158,7 +173,7 @@ describe PubmedSourceRecord, :vcr do
     end
   end
 
-  context '.source_as_hash' do
+  describe '.source_as_hash' do
     context 'DOI extraction' do
       def doi(pmid)
         record = described_class.send(:get_pubmed_record_from_pubmed, pmid)
@@ -169,13 +184,16 @@ describe PubmedSourceRecord, :vcr do
       it 'constructs a URL based on the DOI' do
         expect(doi(12_529_422)).to include(url: 'https://doi.org/10.1091/mbc.e02-06-0327')
       end
+
       context 'extracts from ArticleId' do
         it 'works when ELocationID is missing' do
           expect(doi(12_529_422)).to include(id: '10.1091/mbc.e02-06-0327')
         end
+
         it 'works when ELocationID is present' do
           expect(doi(23_453_302)).to include(id: '10.1016/j.neunet.2013.01.016')
         end
+
         it 'works when record is longer than 64kb' do
           expect(doi(26_430_984)).to include(id: '10.1103/PhysRevLett.115.121604')
         end

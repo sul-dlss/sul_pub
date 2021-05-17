@@ -8,6 +8,7 @@ describe AuthorsController do
       post :harvest, params: { cap_profile_id: 123 }
       expect(response.status).to eq 401
     end
+
     context 'when authorized' do
       before do
         expect(controller).to receive(:check_authorization).and_return(true)
@@ -17,6 +18,7 @@ describe AuthorsController do
         post :harvest, params: { cap_profile_id: 123 }
         expect(response.status).to eq 406
       end
+
       it 'enqueues an AuthorHarvestJob with an Author' do
         ActiveJob::Base.queue_adapter = :test
         expect do

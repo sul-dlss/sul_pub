@@ -174,18 +174,22 @@ describe IdentifierNormalizer do
       result = normalizer.send(:identifier_parser, doi_identifier)
       expect(result).to be_an IdentifierParserDOI
     end
+
     it 'works for isbn' do
       result = normalizer.send(:identifier_parser, create(:isbn_publication_identifier))
       expect(result).to be_an IdentifierParserISBN
     end
+
     it 'works for pmid' do
       result = normalizer.send(:identifier_parser, create(:pmid_publication_identifier))
       expect(result).to be_an IdentifierParserPMID
     end
+
     it 'works for SulPubId' do
       result = normalizer.send(:identifier_parser, create(:sul_publication_identifier))
       expect(result).to be_an IdentifierParser
     end
+
     it 'works for PublicationItemID' do
       result = normalizer.send(:identifier_parser, create(:publicationItemID_publication_identifier))
       expect(result).to be_an IdentifierParser

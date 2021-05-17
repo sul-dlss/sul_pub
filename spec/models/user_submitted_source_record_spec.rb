@@ -11,6 +11,7 @@ describe UserSubmittedSourceRecord, type: :model do
     it 'has factory' do
       expect(user_submitted_source_record).to be_a described_class
     end
+
     it 'is BibJSON' do
       json = { pub_hash: JSON.parse(user_submitted_source_record.source_data) }
       expect(json).to be_a Hash

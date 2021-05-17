@@ -13,6 +13,7 @@ describe Csl::AuthorName do
       expect(no_names.first).to be_an String
       expect(no_names.middle).to be_an String
     end
+
     it 'casts names to strings' do
       expect(all_names.last).to be_an String
       expect(all_names.first).to be_an String
@@ -149,6 +150,7 @@ describe Csl::AuthorName do
         other_names = no_names.dup
         expect(no_names == other_names).to be true
       end
+
       it 'returns false when compared with different names' do
         other_names = described_class.new(lastname: 'Bloggs')
         expect(no_names == other_names).to be false
@@ -160,6 +162,7 @@ describe Csl::AuthorName do
         other_names = all_names.dup
         expect(all_names == other_names).to be true
       end
+
       it 'returns false when compared with different names' do
         other_names = described_class.new(lastname: 'Bloggs')
         expect(all_names == other_names).to be false

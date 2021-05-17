@@ -14,9 +14,11 @@ describe WebOfScience::MapCitation do
     it 'works with WOS records' do
       expect { described_class.new(wos_record) }.not_to raise_error
     end
+
     it 'works with MEDLINE records' do
       expect { described_class.new(medline_record) }.not_to raise_error
     end
+
     it 'raises ArgumentError with bad params' do
       expect { described_class.new }.to raise_error(ArgumentError)
       expect { described_class.new('could be xml') }.to raise_error(ArgumentError)

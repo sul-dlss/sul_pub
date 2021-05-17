@@ -388,10 +388,12 @@ describe PublicationsController, :vcr do
           expect(queries).to receive(:user_query).with('TI="xyz"').and_return(retriever)
           get :sourcelookup, params: { title: 'xyz', format: 'json' } # Partial title
         end
+
         it 'includes year if provided' do
           expect(queries).to receive(:user_query).with('TI="xyz" AND PY=2001').and_return(retriever)
           get :sourcelookup, params: { title: 'xyz', year: 2001, format: 'json' } # Partial title with year
         end
+
         it 'remove quotes from user query to avoid parsing errors' do
           expect(queries).to receive(:user_query).with('TI="xyz with quoted values in it"').and_return(retriever)
           get :sourcelookup, params: { title: 'xyz with "quoted values" in it', format: 'json' } # title with quotes
@@ -612,16 +614,19 @@ describe PublicationsController, :vcr do
           put :update, params: { id: id, format: 'json' }, body: with_isbn_hash.to_json
           expect(response.status).to eq(410)
         end
+
         it 'sciencewire_id' do
           allow(publication).to receive(:sciencewire_id).and_return(2)
           put :update, params: { id: id, format: 'json' }, body: with_isbn_hash.to_json
           expect(response.status).to eq(403)
         end
+
         it 'pmid' do
           allow(publication).to receive(:pmid).and_return(3)
           put :update, params: { id: id, format: 'json' }, body: with_isbn_hash.to_json
           expect(response.status).to eq(403)
         end
+
         it 'wos_uid' do
           allow(publication).to receive(:wos_uid).and_return(4)
           put :update, params: { id: id, format: 'json' }, body: with_isbn_hash.to_json
@@ -636,6 +641,7 @@ describe PublicationsController, :vcr do
       get :show, params: { id: publication.id, format: 'json' }
       expect(response.status).to eq(200)
     end
+
     it 'returns a publication bibjson doc by id' do
       get :show, params: { id: publication.id, format: 'json' }
       expect(response.body).to eq(publication.pub_hash.to_json)

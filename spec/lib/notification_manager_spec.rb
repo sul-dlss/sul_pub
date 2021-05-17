@@ -9,7 +9,7 @@ describe NotificationManager do
     allow(Logger).to receive(:new).and_return(null_logger)
   end
 
-  context '.error' do
+  describe '.error' do
     it 'notifies on internal exception during logging' do
       expect(described_class).to receive(:log_exception).with(duck_type(:error), /Pubmed::Fetcher/,
                                                               duck_type(:message)).and_raise(RuntimeError.new)
@@ -27,7 +27,7 @@ describe NotificationManager do
     end
   end
 
-  context '.cap_logger' do
+  describe '.cap_logger' do
     before do
       described_class.class_variable_set(:@@cap_logger, nil)
     end
@@ -37,6 +37,7 @@ describe NotificationManager do
       described_class.error(exception, message, Cap::AuthorsPoller.new)
       described_class.error(exception, message, Cap::Client.new)
     end
+
     it 'logs errors' do
       expect(null_logger).to receive(:error).exactly(6)
       described_class.error(exception, message, Cap::AuthorsPoller.new)
@@ -44,7 +45,7 @@ describe NotificationManager do
     end
   end
 
-  context '.pubmed_logger' do
+  describe '.pubmed_logger' do
     before do
       described_class.class_variable_set(:@@pubmed_logger, nil)
     end
@@ -54,6 +55,7 @@ describe NotificationManager do
       described_class.error(exception, message, Pubmed::Fetcher.new)
       described_class.error(exception, message, Pubmed::Client.new)
     end
+
     it 'logs errors' do
       expect(null_logger).to receive(:error).exactly(6)
       described_class.error(exception, message, Pubmed::Fetcher.new)
@@ -61,7 +63,7 @@ describe NotificationManager do
     end
   end
 
-  context '.sciencewire_logger' do
+  describe '.sciencewire_logger' do
     before do
       described_class.class_variable_set(:@@sciencewire_logger, nil)
     end
@@ -71,6 +73,7 @@ describe NotificationManager do
       described_class.error(exception, message, SciencewireSourceRecord.new)
       described_class.error(exception, message, SciencewireSourceRecord.new)
     end
+
     it 'logs errors' do
       expect(null_logger).to receive(:error).exactly(6)
       described_class.error(exception, message, SciencewireSourceRecord.new)

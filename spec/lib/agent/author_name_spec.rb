@@ -111,6 +111,7 @@ describe Agent::AuthorName do
     it 'when no names are present returns an empty String' do
       expect(no_names.full_name).to eq ''
     end
+
     context 'when all names are present' do
       it 'returns the Lastname,Firstname,Middlename' do
         expect(all_names.full_name).to eq "#{all_names.last_name},#{all_names.first_name},#{all_names.middle_name}"
@@ -130,6 +131,7 @@ describe Agent::AuthorName do
     it 'when no names are present returns an empty String' do
       expect(no_names.send(:first_name_query)).to eq ''
     end
+
     context 'when all names are present' do
       let(:fn_query) { all_names.send(:first_name_query) }
 
@@ -143,16 +145,20 @@ describe Agent::AuthorName do
         expect(fn_query).not_to include(be_empty)
         expect(fn_query.size).to eq(fn_query.uniq.size)
       end
+
       it 'includes name with first_name' do
         expect(fn_query).to include "#{all_names.last_name},#{all_names.first_name}"
       end
+
       it 'excludes name with first_initial when settings do not allow for it' do
         expect(fn_query).not_to include "#{all_names.last_name},#{all_names.first_initial}"
       end
+
       it 'does not include name with middle_name' do
         expect(fn_query).not_to include "#{all_names.last_name},#{all_names.first_name},#{all_names.middle_name}"
         expect(fn_query).to all(exclude(",#{all_names.middle_name}"))
       end
+
       it 'does not include name with middle_initial' do
         expect(fn_query).not_to include "#{all_names.last_name},#{all_names.first_name},#{all_names.middle_initial}"
         expect(fn_query).to all(exclude(",#{all_names.middle_initial}"))
@@ -176,6 +182,7 @@ describe Agent::AuthorName do
     it 'when no names are present returns an empty String' do
       expect(no_names.send(:middle_name_query)).to eq ''
     end
+
     context 'when all names are present' do
       let(:mn_query) { all_names.send(:middle_name_query) }
 
@@ -189,18 +196,23 @@ describe Agent::AuthorName do
         expect(mn_query).not_to include(be_empty)
         expect(mn_query.size).to eq(mn_query.uniq.size)
       end
+
       it 'includes name with middle_name' do
         expect(mn_query).to include "#{all_names.last_name},#{all_names.first_name},#{all_names.middle_name}"
       end
+
       it 'includes name with middle_initial' do
         expect(mn_query).to include "#{all_names.last_name},#{all_names.first_name},#{all_names.middle_initial}"
       end
+
       it 'does not include last_name,first_name' do
         expect(mn_query).not_to include "#{all_names.last_name},#{all_names.first_name}"
       end
+
       it 'does not include last_name,first_initial' do
         expect(mn_query).not_to include "#{all_names.last_name},#{all_names.first_initial}"
       end
+
       it 'excludes name with middle_initial appended to first initial when settings do not allow for it' do
         expect(mn_query).not_to include "#{all_names.last_name},#{all_names.first_initial}#{all_names.middle_initial}"
       end
@@ -223,6 +235,7 @@ describe Agent::AuthorName do
     it 'returns false when names are not the same' do
       expect(no_names).not_to eq all_names
     end
+
     it 'returns true when names are the same' do
       expect(described_class.new).to eq described_class.new
       expect(described_class.new(ln, fn, mn)).to eq described_class.new(ln, fn, mn)

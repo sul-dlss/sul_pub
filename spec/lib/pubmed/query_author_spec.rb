@@ -104,9 +104,11 @@ describe Pubmed::QueryAuthor do
       it 'indicates that name with a period for a first name is not a valid query' do
         expect(query_period_author).not_to be_valid
       end
+
       it 'indicates that a name with a space for a first name is not a valid query' do
         expect(query_space_author).not_to be_valid
       end
+
       it 'indicates that a name with a blank for a first name is not a valid query' do
         expect(query_blank_author).not_to be_valid
       end
