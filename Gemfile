@@ -30,7 +30,6 @@ gem 'delayed_job_active_record'
 gem 'daemons'
 gem 'dotiw'
 gem 'faraday'
-gem 'high_voltage'
 gem 'htmlentities', '~> 4.3'
 gem 'httpclient', '~> 2.8'
 # Altmetric utilities related to the extraction, validation and normalization of various scholarly identifiers
