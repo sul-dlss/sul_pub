@@ -13,9 +13,11 @@ describe WebOfScience::MapAbstract do
     it 'works with WOS records' do
       expect(mapper).to be_an described_class
     end
+
     it 'raises ArgumentError with nil params' do
       expect { described_class.new }.to raise_error(ArgumentError)
     end
+
     it 'raises ArgumentError with anything other than WebOfScience::Record' do
       expect { described_class.new('could be xml') }.to raise_error(ArgumentError)
     end
@@ -71,6 +73,7 @@ describe WebOfScience::MapAbstract do
     it 'works with WOS records' do
       expect(mapper).to be_an described_class
     end
+
     it_behaves_like 'pub_hash'
     it_behaves_like 'no_abstracts'
     it_behaves_like 'no_abstract'
@@ -109,6 +112,7 @@ describe WebOfScience::MapAbstract do
     it 'works with MEDLINE records' do
       expect(mapper).to be_an described_class
     end
+
     it_behaves_like 'pub_hash'
     it_behaves_like 'abstracts'
     it_behaves_like 'abstract'

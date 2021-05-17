@@ -76,6 +76,7 @@ describe Contribution do
       expect(described_class).to receive(:valid_fields?)
       described_class.authorship_valid?(authorship)
     end
+
     it 'returns true for a valid authorship hash' do
       expect(described_class.authorship_valid?(authorship)).to be true
     end
@@ -85,11 +86,13 @@ describe Contribution do
     it 'returns true for a valid authorship hash' do
       expect(described_class.author_valid?(authorship)).to be true
     end
+
     it 'returns false for an authorship hash with an invalid author' do
       # author factory creates random ids starting at 10,000
       authorship.merge!(cap_profile_id: 99, sul_author_id: 99)
       expect(described_class.author_valid?(authorship)).to be false
     end
+
     it 'returns false for an authorship hash without an author_id' do
       authorship.merge!(cap_profile_id: nil, sul_author_id: nil)
       expect(described_class.author_valid?(authorship)).to be false
@@ -100,19 +103,23 @@ describe Contribution do
     it 'returns true for a valid authorship hash' do
       expect(described_class.valid_fields?(authorship)).to be true
     end
+
     context 'for invalid authorship hashes' do
       it 'returns false for bad values' do
         expect(described_class.valid_fields?(authorship.merge(status: 'XYZ'))).to be false
         expect(described_class.valid_fields?(authorship.merge(visibility: 'transparent'))).to be false
       end
+
       it 'returns false without "featured"' do
         authorship['featured'] = nil
         expect(described_class.valid_fields?(authorship)).to be false
       end
+
       it 'returns false without "status"' do
         authorship['status'] = nil
         expect(described_class.valid_fields?(authorship)).to be false
       end
+
       it 'returns false without "visibility"' do
         authorship['visibility'] = nil
         expect(described_class.valid_fields?(authorship)).to be false

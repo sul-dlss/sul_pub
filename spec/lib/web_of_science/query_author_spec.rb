@@ -89,9 +89,11 @@ describe WebOfScience::QueryAuthor, :vcr do
     it 'wraps strings in double quotes' do
       expect(query_author.send(:quote_wrap, %w[a bc def])).to eq %w["a" "bc" "def"]
     end
+
     it 'deduplicates and removes empties' do
       expect(query_author.send(:quote_wrap, %w[a bc a bc].concat(['']))).to eq %w["a" "bc"]
     end
+
     it 'removes quotes in a name' do
       expect(query_author.send(:quote_wrap,
                                ['peter', 'peter paul',
@@ -109,9 +111,11 @@ describe WebOfScience::QueryAuthor, :vcr do
     it 'indicates that name with a period for a first name is not a valid query' do
       expect(query_period_author).not_to be_valid
     end
+
     it 'indicates that a name with a space for a first name is not a valid query' do
       expect(query_space_author).not_to be_valid
     end
+
     it 'indicates that a name with a blank for a first name is not a valid query' do
       expect(query_blank_author).not_to be_valid
     end

@@ -26,37 +26,45 @@ RSpec.describe AuthorIdentity, type: :model do
       subject.author = nil
       expect { subject.save! }.to raise_error ActiveRecord::RecordInvalid
     end
+
     it 'sets default first_name' do
       subject.first_name = nil
       expect(subject.save).to be true
       expect(subject.first_name).to eq subject.author.first_name
     end
+
     it 'requires last_name' do
       subject.last_name = nil
       expect { subject.save! }.to raise_error ActiveRecord::RecordInvalid
     end
+
     it 'does not require middle_name' do
       subject.middle_name = nil
       expect { subject.save! }.not_to raise_error
     end
+
     it 'does not require email' do
       subject.email = nil
       expect { subject.save! }.not_to raise_error
     end
+
     it 'does not require email to match regex' do
       subject.email = 'foobar@example.com'
       expect { subject.save! }.not_to raise_error
       subject.email = 'foobar@example'
       expect { subject.save! }.not_to raise_error
     end
+
     it 'does not require institution' do
       subject.institution = nil
       expect { subject.save! }.not_to raise_error
     end
+
     it 'does not require start_date' do
       subject.start_date = nil
       expect { subject.save! }.not_to raise_error
     end
+
     it 'does not require end_date' do
       subject.end_date = nil
       expect { subject.save! }.not_to raise_error

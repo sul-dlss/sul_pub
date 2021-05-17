@@ -62,9 +62,11 @@ describe Clarivate::LinksClient do
       it 'returns a Hash with id-keys' do
         expect(links.keys).to eq ids
       end
+
       it 'returns a Hash with Hash values' do
         expect(links.values.first).to be_an Hash
       end
+
       it 'Hash values are empty' do
         expect(links.values.first).to be_empty
       end
@@ -82,9 +84,11 @@ describe Clarivate::LinksClient do
       it 'returns a Hash with id-keys' do
         expect(links.keys).to eq ids
       end
+
       it 'returns a Hash with Hash values' do
         expect(links.values.first).to be_an Hash
       end
+
       it 'Hash values are empty' do
         expect(links.values.first).to be_empty
       end
@@ -97,9 +101,11 @@ describe Clarivate::LinksClient do
     it 'returns well formed XML' do
       expect { Nokogiri::XML(request_xml) { |config| config.strict.noblanks } }.not_to raise_error
     end
+
     it 'contains the ids' do
       expect(request_xml).to include ids.first
     end
+
     it 'contains the fields' do
       expect(request_xml).to include fields.first
     end

@@ -35,6 +35,7 @@ describe WebOfScience::Records do
       it 'works with encoded records' do
         expect(wos_records_encoded).to be_an described_class
       end
+
       it 'works with decoded records' do
         expect(wos_records_decoded).to be_an described_class
       end
@@ -51,6 +52,7 @@ describe WebOfScience::Records do
     it 'returns Integer' do
       expect(wos_records_encoded.count).to be_an Integer
     end
+
     it 'delegates to rec_nodes.count' do
       expect(wos_records_encoded.count).to eq wos_records_encoded.rec_nodes.count
     end
@@ -60,6 +62,7 @@ describe WebOfScience::Records do
     it 'works with encoded records' do
       expect(wos_records_encoded.doc).to be_a Nokogiri::XML::Document
     end
+
     it 'works with decoded records' do
       expect(wos_records_decoded.doc).to be_a Nokogiri::XML::Document
     end
@@ -75,9 +78,11 @@ describe WebOfScience::Records do
     it 'delegates to rec_nodes.empty?' do
       expect(wos_records_encoded.empty?).to eq wos_records_encoded.rec_nodes.empty?
     end
+
     it 'returns false when records exist' do
       expect(wos_records_encoded.empty?).to be false
     end
+
     it 'returns true when records are missing' do
       wos_records = described_class.new(records: '<records/>')
       expect(wos_records.empty?).to be true
@@ -96,11 +101,13 @@ describe WebOfScience::Records do
       expect(result).to be_an Array
       expect(result.first).to be_an String
     end
+
     it 'works with decoded records' do
       result = wos_records_decoded.uids
       expect(result).to be_an Array
       expect(result.first).to be_an String
     end
+
     context 'MEDLINE records' do
       it 'works with encoded records' do
         expect(medline_records_encoded.uids).to include medline_uids.sample
@@ -114,12 +121,15 @@ describe WebOfScience::Records do
     it 'works' do
       expect(dup_uids).to be_an Array
     end
+
     it 'returns duplicate UIDs' do
       expect(dup_uids.to_a).to eq ['WOS:A2']
     end
+
     it 'does not modify records' do
       expect { dup_uids }.not_to change(wos_recordsA, :uids)
     end
+
     it 'does not modify input records' do
       expect { dup_uids }.not_to change(wos_recordsB, :uids)
     end
@@ -131,13 +141,16 @@ describe WebOfScience::Records do
     it 'works' do
       expect(dup_records).to be_an Nokogiri::XML::NodeSet
     end
+
     it 'returns duplicate record nodes' do
       uid = dup_records.search('UID').text
       expect(uid).to eq 'WOS:A2'
     end
+
     it 'does not modify records' do
       expect { dup_records }.not_to change(wos_recordsA, :uids)
     end
+
     it 'does not modify input records' do
       expect { dup_records }.not_to change(wos_recordsB, :uids)
     end
@@ -149,12 +162,15 @@ describe WebOfScience::Records do
     it 'works' do
       expect(new_records).to be_an Nokogiri::XML::NodeSet
     end
+
     it 'returns new record nodes' do
       expect(new_records.search('UID').text).to eq 'WOS:B2'
     end
+
     it 'does not modify records' do
       expect { new_records }.not_to change(wos_recordsA, :uids)
     end
+
     it 'does not modify input records' do
       expect { new_records }.not_to change(wos_recordsB, :uids)
     end
@@ -166,13 +182,16 @@ describe WebOfScience::Records do
     it 'works' do
       expect(merge_records).to be_an described_class
     end
+
     it 'has merged records' do
       expect(merge_records.uids).to eq %w[WOS:A1 WOS:A2 WOS:B2]
     end
     # Immutability specs
+
     it 'does not modify records' do
       expect { merge_records }.not_to change(wos_recordsA, :uids)
     end
+
     it 'does not modify input records' do
       expect { merge_records }.not_to change(wos_recordsB, :uids)
     end
@@ -182,6 +201,7 @@ describe WebOfScience::Records do
     it 'works with encoded records' do
       expect { wos_records_encoded.print }.to output.to_stdout
     end
+
     it 'works with decoded records' do
       expect { wos_records_decoded.print }.to output.to_stdout
     end
@@ -221,15 +241,19 @@ describe WebOfScience::Records do
       expect(by_db.keys.first).to be_an String
       expect(by_db['WOS']).to be_an described_class
     end
+
     it 'extracts WOS records' do
       expect(nodes_wos.count).to eq 2
     end
+
     it 'extracts MEDLINE records' do
       expect(nodes_medline.count).to eq 2
     end
+
     it 'returns MISSING_DB for records without a database prefix in the UID' do
       expect(nodes_missing_db.count).to eq 2
     end
+
     it 'returns nil when no matching database exists' do
       expect(nodes_none).to be_nil
     end
@@ -244,11 +268,13 @@ describe WebOfScience::Records do
     it 'returns an XML String' do
       expect(xml_result).to be_an String
     end
+
     it 'returns well formed XML' do
       expect do
         Nokogiri::XML(xml_result) { |config| config.strict.noblanks }
       end.not_to raise_error
     end
+
     it 'contains no HTML encoding' do
       expect(xml_result).not_to include html_char
     end

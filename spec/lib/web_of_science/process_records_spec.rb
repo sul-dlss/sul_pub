@@ -47,6 +47,7 @@ describe WebOfScience::ProcessRecords, :vcr do
       expect { described_class.new('author', records) }.to raise_error(ArgumentError)
       expect { described_class.new(author, []) }.to raise_error(ArgumentError)
     end
+
     it 'raises RuntimeError when Settings.WOS.ACCEPTED_DBS.empty?' do
       allow(Settings.WOS).to receive(:ACCEPTED_DBS).and_return([])
       expect { described_class.new(author, records) }.to raise_error(RuntimeError)
@@ -58,9 +59,11 @@ describe WebOfScience::ProcessRecords, :vcr do
       it 'does not create new WebOfScienceSourceRecords' do
         expect { processor.execute }.not_to change(WebOfScienceSourceRecord, :count)
       end
+
       it 'returns empty Array' do
         expect(processor.execute).to eq []
       end
+
       it_behaves_like 'error_logger'
     end
 
@@ -70,9 +73,11 @@ describe WebOfScience::ProcessRecords, :vcr do
       it 'does not create new Publications, Contributions' do
         expect { processor.execute }.not_to change { [Publication.count, Contribution.count] }
       end
+
       it 'returns empty Array' do
         expect(processor.execute).to eq []
       end
+
       it_behaves_like 'error_logger'
     end
   end
@@ -107,6 +112,7 @@ describe WebOfScience::ProcessRecords, :vcr do
       it 'creates new Publications' do
         expect { processor.execute }.to change(Publication, :count)
       end
+
       it_behaves_like 'error_logger'
     end
   end
@@ -153,6 +159,7 @@ describe WebOfScience::ProcessRecords, :vcr do
     it 'does not create new WebOfScienceSourceRecords' do
       expect { processor.execute }.not_to change(WebOfScienceSourceRecord, :count)
     end
+
     it 'filters out excluded records' do
       expect(processor).not_to receive(:save_wos_records)
       expect(processor.execute).to be_empty
@@ -173,10 +180,12 @@ describe WebOfScience::ProcessRecords, :vcr do
         it 'does not duplicate WebOfScienceSourceRecord' do
           expect { processor.execute }.not_to change(WebOfScienceSourceRecord, :count)
         end
+
         it 'adds new Publications and Contributions' do
           expect { processor.execute }.to change { author.contributions.count }.from(0).to(1)
           expect(Publication.find_by(wos_uid: records.first.uid)).not_to be_nil
         end
+
         it 'associates the existing source record' do
           expect { processor.execute }.to change { wssr.reload.publication }.from(nil).to(Publication)
         end
@@ -212,6 +221,7 @@ describe WebOfScience::ProcessRecords, :vcr do
           expect(match.publication.wos_uid).to be_nil
           expect(wos_rec.matching_publication).not_to be_nil
         end
+
         it 'adheres to a priority on matching' do
           expect(wos_rec.doi).to eq(other_id.identifier_value)
           expect(PublicationIdentifier.where(identifier_type: 'doi').count).to eq 2
@@ -224,13 +234,16 @@ describe WebOfScience::ProcessRecords, :vcr do
         it 'does not duplicate WebOfScienceSourceRecord' do
           expect { processor.execute }.not_to change(WebOfScienceSourceRecord, :count)
         end
+
         it 'adds new Contribution' do
           expect { processor.execute }.to change { author.contributions.count }.from(0).to(1)
           expect(Publication.find_by(wos_uid: records.first.uid)).not_to be_nil
         end
+
         it 'sets wos_uid on the Pub' do
           expect { processor.execute }.to change { pub.reload.wos_uid }.from(nil).to(uid)
         end
+
         it 'associates source record to existing Pub' do
           expect { processor.execute }.to change {
                                             WebOfScienceSourceRecord.find_by(uid: uid).publication

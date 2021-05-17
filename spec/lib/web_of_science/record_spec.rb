@@ -46,6 +46,7 @@ describe WebOfScience::Record do
       expect(agents).to be_an Array
       expect(agents).not_to be_empty
     end
+
     it 'conforms to expected key-value pairs' do
       expect(agent).to include('first_name' => String, 'last_name' => String, 'role' => String)
       expect(agent).not_to include('reprint')
@@ -89,6 +90,7 @@ describe WebOfScience::Record do
   it '#database works' do
     expect(wos_record_encoded.database).to eq uid.split(':').first
   end
+
   it '#identifiers works' do
     expect(wos_record_encoded.identifiers).to be_an WebOfScience::Identifiers
   end
@@ -98,6 +100,7 @@ describe WebOfScience::Record do
     it 'WOS records have a WOS-UID' do
       expect(wos_record_encoded.uid).to eq uid
     end
+
     it 'MEDLINE records have a MEDLINE-UID (PMID)' do
       expect(medline_record_encoded.uid).to eq 'MEDLINE:24452614'
     end
@@ -106,6 +109,7 @@ describe WebOfScience::Record do
   it '#doctypes works' do
     expect(wos_record_encoded.doctypes).to include('Book Review')
   end
+
   it '#print works' do
     expect { wos_record_encoded.print }.to output.to_stdout
   end
@@ -130,12 +134,15 @@ describe WebOfScience::Record do
   it '#publishers works' do
     expect(wos_record_encoded.publishers).to include(a_hash_including('full_name' => 'ASSOC COLL RESEARCH LIBRARIES'))
   end
+
   it '#pub_hash works' do
     expect(wos_record_encoded.pub_hash).to match a_hash_including(provenance: 'wos')
   end
+
   it '#titles works' do
     expect(wos_record_encoded.titles).to include('source' => 'COLLEGE & RESEARCH LIBRARIES')
   end
+
   it '#to_h works' do
     expect(wos_record_encoded.to_h).to match a_hash_including(
       'doctypes' => Array,
@@ -154,9 +161,11 @@ describe WebOfScience::Record do
     it 'returns an XML String' do
       expect(xml_result).to be_a String
     end
+
     it 'parses' do
       expect { Nokogiri::XML(xml_result) { |config| config.strict.noblanks } }.not_to raise_error
     end
+
     it 'contains no HTML encoding' do
       expect(xml_result).not_to include html_char
     end

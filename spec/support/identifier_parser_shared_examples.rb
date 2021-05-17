@@ -8,6 +8,7 @@ shared_examples 'parser_new_works' do
     it 'works' do
       expect(parser).to be_an described_class
     end
+
     it 'raises ArgumentError' do
       expect { described_class.new('Darth Maul') }.to raise_error(ArgumentError)
     end
@@ -18,25 +19,32 @@ shared_examples 'parser_works' do
   it '#value works' do
     expect(parser.value).to eq identifier_value
   end
+
   it '#uri works' do
     expect(parser.uri).to eq identifier_uri
   end
+
   it '#validates OK' do
     expect(parser.valid?).to be true
   end
+
   it '#update works' do
     expect(parser.update).to be_an PublicationIdentifier
   end
+
   describe '#identifier' do
     it 'works' do
       expect(parser.identifier).to be_an Hash
     end
+
     it 'has :type String' do
       expect(parser.identifier[:type]).to be_an String
     end
+
     it 'has :id String' do
       expect(parser.identifier[:id]).to be_an String
     end
+
     it 'might have :url String' do
       expect(parser.identifier[:url]).to be_an String if parser.uri
     end
@@ -56,6 +64,7 @@ shared_examples 'it_is_impervious_to_outside_changes' do
       identifier.identifier_value = 'ha ha, now here is something different'
     end.not_to change(parser, :value)
   end
+
   it 'cannot change value after init' do
     expect { parser.value = 'try me' }.to raise_error(NoMethodError)
   end
@@ -127,7 +136,7 @@ shared_examples 'blank_identifiers_raise_exception' do
 end
 
 shared_examples 'other_identifiers_raise_exception' do
-  context '#update using an identifier it does not handle' do
+  describe '#update using an identifier it does not handle' do
     let(:identifier) do
       FactoryBot.create(:publication_identifier,
                         identifier_type: 'Huh?',
@@ -138,7 +147,7 @@ shared_examples 'other_identifiers_raise_exception' do
     it_behaves_like 'invalid_type'
   end
 
-  context '#update using a WoSItemID' do
+  describe '#update using a WoSItemID' do
     let(:identifier) do
       FactoryBot.create(:publication_identifier,
                         identifier_type: 'WoSItemID',
@@ -149,7 +158,7 @@ shared_examples 'other_identifiers_raise_exception' do
     it_behaves_like 'invalid_type'
   end
 
-  context '#update using a PublicationItemID' do
+  describe '#update using a PublicationItemID' do
     let(:identifier) do
       FactoryBot.create(:publication_identifier,
                         identifier_type: 'PublicationItemID',
@@ -162,7 +171,7 @@ shared_examples 'other_identifiers_raise_exception' do
 end
 
 shared_examples 'update_works_with_only_valid_uri' do
-  context '#update using only a valid URI' do
+  describe '#update using only a valid URI' do
     let(:identifier) do
       FactoryBot.create(:publication_identifier,
                         identifier_type: identifier_type,
@@ -177,7 +186,7 @@ shared_examples 'update_works_with_only_valid_uri' do
 end
 
 shared_examples 'update_works_with_only_valid_value' do
-  context '#update using only a valid value' do
+  describe '#update using only a valid value' do
     let(:identifier) do
       FactoryBot.create(:publication_identifier,
                         identifier_type: identifier_type,
@@ -192,7 +201,7 @@ shared_examples 'update_works_with_only_valid_value' do
 end
 
 shared_examples 'update_works_with_only_valid_value_in_uri' do
-  context '#update using a valid value, but in the URI' do
+  describe '#update using a valid value, but in the URI' do
     let(:identifier) do
       FactoryBot.create(:publication_identifier,
                         identifier_type: identifier_type,

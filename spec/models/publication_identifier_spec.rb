@@ -31,12 +31,15 @@ describe PublicationIdentifier do
     it 'works' do
       expect(pub_id.identifier).to be_an Hash
     end
+
     it 'might have :type String' do
       expect(pub_id.identifier[:type]).to be_an String
     end
+
     it 'might have :id String' do
       expect(pub_id.identifier[:id]).to be_an String
     end
+
     it 'might have :url String' do
       expect(pub_id.identifier[:url]).to be_an String
     end
@@ -69,6 +72,7 @@ describe PublicationIdentifier do
         # double check that the publication.save! callbacks did not mess up the mock
         expect(pub_id.publication.pub_hash[:identifier]).to be_empty
       end
+
       it_behaves_like 'deletes_pub_hash'
       it_behaves_like 'updates_pub_hash'
     end
@@ -83,6 +87,7 @@ describe PublicationIdentifier do
         # double check that the publication.save! callbacks did not mess up the mock
         expect(pub_id.publication.pub_hash[:identifier]).to include(type: 'doi')
       end
+
       it_behaves_like 'deletes_pub_hash'
       it_behaves_like 'updates_pub_hash'
     end

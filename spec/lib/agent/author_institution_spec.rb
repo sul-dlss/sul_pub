@@ -7,14 +7,17 @@ describe Agent::AuthorInstitution do
     it 'casts name to String' do
       expect(subject.name).to be_an String
     end
+
     it 'strips whitespace from name' do
       name = described_class.new('  name  ').name
       expect(name).to be_an String
       expect(name).to eq('name')
     end
+
     it 'address is optional' do
       expect { described_class.new('name') }.not_to raise_error
     end
+
     it 'address defaults to an empty Agent::AuthorAddress' do
       address = described_class.new('name').address
       expect(address).to be_an Agent::AuthorAddress

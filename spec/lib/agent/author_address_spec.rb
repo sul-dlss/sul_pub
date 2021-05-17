@@ -33,6 +33,7 @@ describe Agent::AuthorAddress do
       expect(empty_address).to receive(:to_xml).and_call_original
       expect(empty_address).to be_empty
     end
+
     it 'returns false for an address' do
       expect(full_address).to receive(:to_xml).and_call_original
       expect(full_address).not_to be_empty
@@ -113,6 +114,7 @@ describe Agent::AuthorAddress do
     it 'returns false when addresses differ' do
       expect(full_address == empty_address).to be false
     end
+
     it 'returns true when addresses are the same' do
       other_address = full_address.dup
       expect(full_address == other_address).to be true
@@ -123,18 +125,23 @@ describe Agent::AuthorAddress do
     it 'returns a String' do
       expect(full_address.to_xml).to be_an String
     end
+
     it 'contains a <AddressLine1> when line1 is defined' do
       expect(full_address.to_xml).to include("<AddressLine1>#{line1}</AddressLine1>")
     end
+
     it 'ommits an <AddressLine2> when line2 is empty' do
       expect(full_address.to_xml).not_to include("<AddressLine2>#{line2}</AddressLine2>")
     end
+
     it 'contains a <City> when city is defined' do
       expect(full_address.to_xml).to include("<City>#{city}</City>")
     end
+
     it 'contains a <State> when state is defined' do
       expect(full_address.to_xml).to include("<State>#{state}</State>")
     end
+
     it 'contains a <Country> when country is defined' do
       expect(full_address.to_xml).to include("<Country>#{country}</Country>")
     end

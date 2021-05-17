@@ -11,9 +11,11 @@ describe WebOfScience::MapMesh do
     it 'works with WOS records' do
       expect(mapper).to be_an described_class
     end
+
     it 'raises ArgumentError with nil params' do
       expect { described_class.new }.to raise_error(ArgumentError)
     end
+
     it 'raises ArgumentError with anything other than WebOfScience::Record' do
       expect { described_class.new('could be xml') }.to raise_error(ArgumentError)
     end
@@ -50,21 +52,27 @@ describe WebOfScience::MapMesh do
     it 'pub_hash has MESH headings' do
       expect(pub_hash[:mesh_headings]).to be_an Array
     end
+
     it 'a MESH heading has descriptor' do
       expect(descriptors).to be_an Array
     end
+
     it 'a MESH descriptor has key:value pattern' do
       expect(descriptors.first).to include(name: 'Computational Biology', major: 'N', id: 'D019295')
     end
+
     it 'a MESH heading has qualifier' do
       expect(qualifiers).to be_an Array
     end
+
     it 'a MESH qualifier has key:value pattern' do
       expect(qualifiers.first).to include(name: 'methods', major: 'N', id: 'Q000379')
     end
+
     it 'a MESH heading has tree codes' do
       expect(tree_codes).to be_an Array
     end
+
     it 'a MESH tree code has key:value pattern' do
       expect(tree_codes.first).to include(code: 'H01.158.273.180', major: 'N')
     end
@@ -90,6 +98,7 @@ describe WebOfScience::MapMesh do
     it 'works with WOS records' do
       expect(mapper).to be_an described_class
     end
+
     it_behaves_like 'pub_hash'
     it_behaves_like 'no_mesh'
   end

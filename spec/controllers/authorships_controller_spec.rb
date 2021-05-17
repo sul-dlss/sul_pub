@@ -72,6 +72,7 @@ describe AuthorshipsController, :vcr do
       result = JSON.parse(response.body)
       expect(result['error']).to include('cap_profile_id', cap_profile_id)
     end
+
     it 'returns 404 when it cannot retrieve a cap_profile_id' do
       expect(Author).to receive(:fetch_from_cap_and_create).with(cap_profile_id)
       http_request
@@ -132,6 +133,7 @@ describe AuthorshipsController, :vcr do
         expect(response.status).to eq 201
         expect(publication_with_contributions.contributions.count).to eq(contribution_count + 1)
       end
+
       it 'creates one contribution record with matching attributes' do
         http_request
         query = Contribution.where(
@@ -145,11 +147,13 @@ describe AuthorshipsController, :vcr do
         expect(contribution.visibility).to eq('private')
         expect(response.status).to eq 201
       end
+
       it 'adds the authorship entry to the pub_hash for the publication' do
         http_request
         authorship = publication_with_contributions.reload.pub_hash[:authorship]
         expect(authorship.any? { |a| a[:sul_author_id] == author.id }).to be true
       end
+
       it 'adds one authorship entry to response pub_hash' do
         # This specifically checks response data, whereas the prior spec checks data model.
         # Expect a change in the number of contributions
@@ -332,6 +336,7 @@ describe AuthorshipsController, :vcr do
             expect(result['error']).to include(id, 'does not exist')
             expect(response.status).to eq 404
           end
+
           it 'pmid' do
             expect(Publication).to receive(:find_or_create_by_pmid)
             post :create, body: no_pub_params.merge(pmid: id).to_json, params: { format: 'json' }
@@ -339,6 +344,7 @@ describe AuthorshipsController, :vcr do
             expect(result['error']).to include(id, 'was not found')
             expect(response.status).to eq 404
           end
+
           it 'sw_id' do
             expect(Publication).to receive(:find_by).with(sciencewire_id: id)
             expect(SciencewireSourceRecord).to receive(:get_pub_by_sciencewire_id)
@@ -347,6 +353,7 @@ describe AuthorshipsController, :vcr do
             expect(result['error']).to include(id, 'was not found')
             expect(response.status).to eq 404
           end
+
           it 'wos_uid' do
             expect(WebOfScience.harvester).to receive(:author_uid).with(Author, id)
             # in this case we have no WoS Source Record for id = 0

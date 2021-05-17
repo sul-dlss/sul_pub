@@ -34,11 +34,11 @@ describe IdentifierParser do
   # ---
   # Identifiers that are not changed in any way
 
-  context '#update using an identifier it does not handle' do
+  describe '#update using an identifier it does not handle' do
     it_behaves_like 'it_changes_nothing'
   end
 
-  context '#update using a WoSItemID' do
+  describe '#update using a WoSItemID' do
     let(:identifier) do
       FactoryBot.create(:publication_identifier,
                         identifier_type: 'WoSItemID',
@@ -49,7 +49,7 @@ describe IdentifierParser do
     it_behaves_like 'it_changes_nothing'
   end
 
-  context '#update using a PublicationItemID' do
+  describe '#update using a PublicationItemID' do
     let(:identifier) do
       FactoryBot.create(:publication_identifier,
                         identifier_type: 'PublicationItemID',
@@ -63,11 +63,12 @@ describe IdentifierParser do
   # ---
   # Base class behavior
 
-  context '#extractor' do
+  describe '#extractor' do
     it 'is not called' do
       expect(parser).not_to receive(:extractor)
       parser.update
     end
+
     it 'if called - it raises NotImplementedError' do
       expect { parser.send(:extractor) }.to raise_error(NotImplementedError)
     end

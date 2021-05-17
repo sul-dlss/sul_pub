@@ -132,6 +132,7 @@ describe WebOfScience::Harvester do
         it 'returns WOS-UIDs only for existing publications' do
           expect(harvester.send(:author_contributions, author, wos_uids + ['WOS:123'])).to eq wos_uids
         end
+
         it 'creates new Contribution' do
           # NOTE: new source record not added when matching pub already found
           expect(author.publications.map(&:wos_uid)).not_to include(wos_uids.first)
@@ -148,6 +149,7 @@ describe WebOfScience::Harvester do
           expect(harvester.author_uid(author, wos_uids.first)).to eq pub_1
           expect(harvester.author_uid(author, wos_uids.second)).to eq pub_2
         end
+
         it 'creates new Contribution' do
           # NOTE: new source record not added when matching pub already found
           expect { harvester.author_uid(author, wos_uids.first) }

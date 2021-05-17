@@ -37,7 +37,7 @@ describe IdentifierParserISBN do
   # ISBN Identifiers on the happy path
   # - this differs from DOI & PMID because it has no URI
 
-  context '#update using only a valid value' do
+  describe '#update using only a valid value' do
     let(:identifier) do
       FactoryBot.create(:publication_identifier,
                         identifier_type: identifier_type,
@@ -50,7 +50,7 @@ describe IdentifierParserISBN do
     it_behaves_like 'it_does_not_change_uri'
   end
 
-  context '#update using a valid value, but in the URI' do
+  describe '#update using a valid value, but in the URI' do
     let(:identifier) do
       FactoryBot.create(:publication_identifier,
                         identifier_type: identifier_type,

@@ -15,6 +15,7 @@ describe WebOfScience::MapPubHash do
     it 'works with WOS records' do
       expect { described_class.new(wos_record) }.not_to raise_error
     end
+
     it 'raises ArgumentError with bad params' do
       expect { described_class.new }.to raise_error(ArgumentError)
       expect { described_class.new('could be xml') }.to raise_error(ArgumentError)
@@ -25,6 +26,7 @@ describe WebOfScience::MapPubHash do
     it 'works' do
       expect(pub_hash).to be_an Hash
     end
+
     it 'has "wos" provenance' do
       expect(pub_hash[:provenance]).to eq 'wos'
     end
@@ -34,12 +36,15 @@ describe WebOfScience::MapPubHash do
     it 'has an authors' do
       expect(pub_hash[:author]).not_to be_nil
     end
+
     it 'has an authorcount' do
       expect(pub_hash[:authorcount]).not_to be_nil
     end
+
     it 'has an doc type' do
       expect(pub_hash[:type]).not_to be_nil
     end
+
     it 'has an identifiers' do
       expect(pub_hash[:identifier]).not_to be_nil
     end
@@ -49,9 +54,11 @@ describe WebOfScience::MapPubHash do
     it 'has a publisher' do
       expect(pub_hash[:publisher]).not_to be_nil
     end
+
     it 'has a city' do
       expect(pub_hash[:city]).not_to be_nil
     end
+
     it 'has a country' do
       expect(pub_hash[:country]).not_to be_nil
     end
@@ -61,15 +68,19 @@ describe WebOfScience::MapPubHash do
     it 'has an year' do
       expect(pub_hash[:year]).not_to be_nil
     end
+
     it 'has an date' do
       expect(pub_hash[:date]).not_to be_nil
     end
+
     it 'has an pages' do
       expect(pub_hash[:pages]).not_to be_nil
     end
+
     it 'has an title' do
       expect(pub_hash[:title]).not_to be_nil
     end
+
     it 'has an journal' do
       expect(pub_hash[:journal]).not_to be_nil
     end
@@ -106,6 +117,7 @@ describe WebOfScience::MapPubHash do
         type: 'article'
       )
     end
+
     it 'detects conference doctypes' do
       allow(record).to receive(:doctypes).and_return ['Meeting Abstract']
       expect(doctypes).to match a_hash_including(type: 'inproceedings')

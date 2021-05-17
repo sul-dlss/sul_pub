@@ -288,6 +288,7 @@ describe Publication do
       expect(publication.pmid).to be_nil
       expect(publication.update_from_pubmed).to be false
     end
+
     it 'updates from pubmed source if there is a pmid' do
       pmid = 1
       publication.pmid = pmid
@@ -331,10 +332,12 @@ describe Publication do
       publication.pub_hash[:apa_citation] = 'before'
       expect { publication.update_formatted_citations }.to change { publication.pub_hash[:apa_citation] }
     end
+
     it 'update the MLA citation' do
       publication.pub_hash[:mla_citation] = 'before'
       expect { publication.update_formatted_citations }.to change { publication.pub_hash[:mla_citation] }
     end
+
     it 'update the Chicago citation' do
       publication.pub_hash[:chicago_citation] = 'before'
       expect { publication.update_formatted_citations }.to change { publication.pub_hash[:chicago_citation] }
@@ -459,6 +462,7 @@ describe Publication do
     it 'blocks duplication of wos_uid' do
       expect { dup.save! }.to raise_error(ActiveRecord::RecordNotUnique)
     end
+
     it 'allows novel wos_uid' do
       dup.wos_uid = '456'
       expect { dup.save! }.not_to raise_error
