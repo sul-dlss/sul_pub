@@ -79,12 +79,6 @@ describe WebOfScience::QueryAuthor, :vcr do
     end
   end
 
-  describe '#empty_fields' do
-    it 'has collections with empty fields' do
-      expect(query_author.send(:empty_fields)).to include(collectionName: String, fieldName: [''])
-    end
-  end
-
   describe '#quote_wrap' do
     it 'wraps strings in double quotes' do
       expect(query_author.send(:quote_wrap, %w[a bc def])).to eq %w["a" "bc" "def"]

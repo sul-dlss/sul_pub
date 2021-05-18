@@ -140,6 +140,25 @@ describe WebOfScience::Queries do
     end
   end
 
+  describe '#empty_fields' do
+    it 'has collections with empty fields' do
+      expect(wos_queries.send(:empty_fields)).to include(collectionName: String, fieldName: [''])
+    end
+  end
+
+  describe '#construct_query' do
+    it 'constructs a full query to send to WoS' do
+      query = wos_queries.construct_uid_query('AU=somebody')
+      expect(query).to include(queryParameters: { databaseId: 'WOK', userQuery: 'AU=somebody', queryLanguage: 'en' })
+    end
+
+    it 'constructs a full query to send to WoS with provided options' do
+      query = wos_queries.construct_uid_query('AU=somebody', { symbolicTimeSpan: '2week' })
+      expect(query).to include(queryParameters: { databaseId: 'WOK', order!: %i[databaseId userQuery symbolicTimeSpan queryLanguage],
+                                                  queryLanguage: 'en', symbolicTimeSpan: '2week', userQuery: 'AU=somebody' })
+    end
+  end
+
   describe '#params_for_search' do
     let(:params) { wos_queries.params_for_search }
 
