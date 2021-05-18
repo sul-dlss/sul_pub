@@ -10,10 +10,12 @@ module Orcid
     # @param [string] ORCID ID for the researcher
     # @return [Hash]
     def fetch_works(orcidid)
-      response = conn.get("/v3.0/#{base_orcidid(orcidid)}/works")
-      raise "ORCID.org API returned #{response.status}" if response.status != 200
+      get("/v3.0/#{Orcid.base_orcidid(orcidid)}/works")
+    end
 
-      JSON.parse(response.body).with_indifferent_access
+    # Fetch the details for a work
+    def fetch_work(orcidid, put_code)
+      get("/v3.0/#{Orcid.base_orcidid(orcidid)}/work/#{put_code}")
     end
 
     # Add a new work for a researcher.
@@ -22,7 +24,7 @@ module Orcid
     # @param [string] access token
     # @return [string] put-code
     def add_work(orcidid, work, token)
-      response = conn_with_token(token).post("/v3.0/#{base_orcidid(orcidid)}/work",
+      response = conn_with_token(token).post("/v3.0/#{Orcid.base_orcidid(orcidid)}/work",
                                              work.to_json,
                                              'Content-Type' => 'application/json')
 
@@ -41,8 +43,11 @@ module Orcid
 
     private
 
-    def base_orcidid(orcidid)
-      orcidid[-19, 19]
+    def get(url)
+      response = conn.get(url)
+      raise "ORCID.org API returned #{response.status}" if response.status != 200
+
+      JSON.parse(response.body).with_indifferent_access
     end
 
     def client_token

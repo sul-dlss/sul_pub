@@ -131,4 +131,14 @@ describe Orcid::Client do
       end
     end
   end
+
+  describe '#fetch_work' do
+    let(:work_response) { subject.fetch_work('https://orcid.org/0000-0003-1527-0030', '15473562') }
+
+    it 'retrieves work' do
+      VCR.use_cassette('Orcid_Client/_fetch_work/retrieves work') do
+        expect(work_response[:title][:title][:value]).to eq('Actualized preservation threats: Practical lessons from chronicling America')
+      end
+    end
+  end
 end

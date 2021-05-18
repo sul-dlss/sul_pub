@@ -18,4 +18,10 @@ describe Orcid do
       end
     end
   end
+
+  describe '#base_orcidid' do
+    it 'extract base' do
+      expect(described_class.base_orcidid('https://sandbox.orcid.org/0000-0003-3437-349X')).to eq('0000-0003-3437-349X')
+    end
+  end
 end
