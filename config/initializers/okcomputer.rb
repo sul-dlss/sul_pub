@@ -47,7 +47,8 @@ end
 clients = [
   Cap::Client,
   Pubmed,
-  Mais
+  Mais,
+  Orcid
 ]
 if Settings.WOS.enabled
   clients << WebOfScience

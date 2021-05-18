@@ -80,6 +80,7 @@ ORCID:
   BASE_AUTH_URL: https://sandbox.orcid.org
   CLIENT_ID: APP-FAKEJMB7RBQVFQ0D
   CLIENT_SECRET: FAKE6bb5-dba1-445d-ba10-c14745383ba0
+  orcidid_for_check: https://orcid.org/0000-0003-1527-0030
 
 DOI:
   BASE_URI: https://doi.org/
