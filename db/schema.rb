@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_10_164019) do
+ActiveRecord::Schema.define(version: 2021_05_12_190856) do
 
   create_table "author_identities", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.integer "author_id", null: false
@@ -47,9 +47,11 @@ ActiveRecord::Schema.define(version: 2021_05_10_164019) do
     t.boolean "cap_import_enabled"
     t.string "emails_for_harvest"
     t.string "orcidid"
+    t.string "cap_visibility"
     t.index ["active_in_cap"], name: "index_authors_on_active_in_cap"
     t.index ["california_physician_license"], name: "index_authors_on_california_physician_license"
     t.index ["cap_profile_id"], name: "index_authors_on_cap_profile_id", unique: true
+    t.index ["cap_visibility"], name: "index_authors_on_cap_visibility"
     t.index ["sunetid"], name: "index_authors_on_sunetid"
     t.index ["university_id"], name: "index_authors_on_university_id"
   end
