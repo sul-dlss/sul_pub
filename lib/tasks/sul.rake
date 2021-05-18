@@ -29,23 +29,23 @@ namespace :sul do
   end
 
   desc 'Export publications pub_hashes as json'
-  # bundle exec rake sul:export_pubs_json['/tmp/output_folder','01/01/2013',1000]
-  # parameters are output folder, date to go back to in format of mm/dd/yyyy, and limit (defaults to 1000)
+  # bundle exec rake sul:export_pubs_json['/tmp/output_folder',1000]
+  # parameters are output folder and limit (defaults to 1000)
   # This task will output pub_hashes for publications into json files (one per pub) into the folder specified
-  # Use a different date and limit to fetch different samples
-  task :export_pubs_json, %i[output_folder date_since limit] => :environment do |_t, args|
+  # Random sampling is used to select the publications.
+  task :export_pubs_json, %i[output_folder limit] => :environment do |_t, args|
     output_folder = args[:output_folder]
-    date_since = args[:date_since]
     limit = args[:limit].to_i || 1000
-    raise 'missing require params' unless output_folder && date_since
+    raise 'missing require params' unless output_folder
 
-    publications = Publication.select(:id, :pub_hash).where('updated_at > ?', Date.strptime(date_since, '%m/%d/%Y')).limit(limit)
-    puts "Exporting limit of #{limit} pubs to #{output_folder} since date #{date_since}"
+    publication_ids = Publication.ids.shuffle.take(limit)
+    puts "Exporting limit of #{limit} pubs to #{output_folder}"
     total_pubs = 0
 
     FileUtils.mkdir_p(output_folder)
-    publications.each do |pub|
-      File.open(File.join(output_folder, "publication-#{pub.id}.json"), 'w') { |f| f.write(pub.pub_hash.to_json) }
+    publication_ids.each do |pub_id|
+      pub = Publication.select(:id, :pub_hash).find(pub_id)
+      File.open(File.join(output_folder, "publication-#{pub.id}.json"), 'w') { |f| f.write(JSON.pretty_generate(pub.pub_hash)) }
       total_pubs += 1
     end
     end_time = Time.zone.now
