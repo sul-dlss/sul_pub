@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  root to: 'default#index'
+
   # Publication API (for retrieving publications, searching and creating/updating manually entered publications)
   resources :publications, defaults: { format: :json } do
     collection do

@@ -214,7 +214,6 @@ GEM
       builder (>= 2.1.2)
     hashdiff (1.0.1)
     hashie (4.1.0)
-    high_voltage (3.1.2)
     honeybadger (4.8.0)
     htmlentities (4.3.4)
     httpclient (2.8.3)
@@ -501,7 +500,6 @@ DEPENDENCIES
   factory_bot_rails
   faraday
   hashie
-  high_voltage
   honeybadger (~> 4.2)
   htmlentities (~> 4.3)
   httpclient (~> 2.8)
