@@ -50,6 +50,10 @@ FactoryBot.define do
       orcidid { nil }
     end
 
+    trait :valid_orcid do
+      orcidid { 'https://orcid.org/0000-0003-3859-2905' }
+    end
+
     trait :space_first_name do
       official_first_name { ' ' }
       preferred_first_name { ' ' }

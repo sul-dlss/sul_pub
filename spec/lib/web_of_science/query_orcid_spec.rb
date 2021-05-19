@@ -19,7 +19,7 @@ describe WebOfScience::QueryOrcid, :vcr do
     end
 
     it 'returns some Array<String> of WOS-UIDs' do
-      # The VCR fixture is 150 records at the time it was recorded;
+      # The VCR fixture is ~150 records at the time it was recorded;
       # if the VCR cassette is updated, this value could change
       # and this spec assumes it's only going to get larger
       expect(query_orcid.uids.count).to be > 140
@@ -29,8 +29,12 @@ describe WebOfScience::QueryOrcid, :vcr do
   describe '#uids with symbolicTimeSpan' do
     subject(:query_orcid) { described_class.new(author, symbolicTimeSpan: '4week') }
 
+    it 'indicates the query is valid' do
+      expect(query_orcid).to be_valid
+    end
+
     it 'returns less Array<String> of WOS-UIDs' do
-      # The VCR fixture is only 2 records at the time it was recorded;
+      # The VCR fixture is only a few records at the time it was recorded;
       # if the VCR cassette is updated, this value could change anywhere
       # from zero records to ? and this assumes it's not going to be > 100
       expect(query_orcid.uids.count).to be < 100
