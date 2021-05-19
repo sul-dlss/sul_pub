@@ -13,6 +13,8 @@ module Pubmed
     # Find all pmids for an author
     # @return [Array<String>] pmids
     def pmids
+      return [] unless valid?
+
       resp = client.search(term, addl_args)
       parse_response(resp)
     end

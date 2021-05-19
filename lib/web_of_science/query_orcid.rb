@@ -16,11 +16,13 @@ module WebOfScience
     # @return [Array<String>] WosUIDs
     # Implementation note: these records have a relatively small memory footprint, just UIDs
     def uids
+      return [] unless valid?
+
       queries.search(orcid_query).merged_uids
     end
 
     def valid?
-      orcidid.present?
+      orcid.present?
     end
 
     private
@@ -30,7 +32,7 @@ module WebOfScience
     attr_reader :orcid, :options
 
     def orcid_query
-      queries.construct_uid_query("RID=(\"#{orcid.gsub('orcid.org/', '')}\")", options)
+      queries.construct_uid_query("RID=(\"#{Orcid.base_orcidid(orcid)}\")", options)
     end
   end
 end

@@ -109,8 +109,9 @@ describe Pubmed::QueryAuthor do
         expect(query_space_author).not_to be_valid
       end
 
-      it 'indicates that a name with a blank for a first name is not a valid query' do
+      it 'indicates that a name with a blank for a first name is not a valid query and returns no pmids' do
         expect(query_blank_author).not_to be_valid
+        expect(query_blank_author.pmids).to be_empty
       end
     end
 

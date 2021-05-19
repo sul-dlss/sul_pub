@@ -14,6 +14,12 @@ Lint/NoReturnInBeginEndBlocks:
     - 'lib/csl/mapper.rb'
 
 # Offense count: 2
+# Cop supports --auto-correct.
+Lint/PercentStringArray:
+  Exclude:
+    - 'spec/lib/web_of_science/query_name_spec.rb'
+
+# Offense count: 2
 # Configuration parameters: CountBlocks.
 Metrics/BlockNesting:
   Max: 4
@@ -96,7 +102,11 @@ RSpec/IteratedExpectation:
 RSpec/MessageSpies:
   EnforcedStyle: receive
 
-# Offense count: 280
+# Offense count: 282
+RSpec/MultipleExpectations:
+  Max: 12
+
+# Offense count: 272
 # Configuration parameters: AllowSubject.
 RSpec/MultipleMemoizedHelpers:
   Max: 19

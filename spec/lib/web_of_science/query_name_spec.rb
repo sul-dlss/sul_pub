@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-describe WebOfScience::QueryAuthor, :vcr do
-  subject(:query_author) { described_class.new(author) }
+describe WebOfScience::QueryName, :vcr do
+  subject(:query_name) { described_class.new(author) }
 
   let(:query_period_author) { described_class.new(period_author) }
   let(:query_space_author) { described_class.new(space_author) }
@@ -11,39 +11,43 @@ describe WebOfScience::QueryAuthor, :vcr do
   let(:space_author) { create :author, :space_first_name }
   let(:period_author) { create :author, :period_first_name }
   let(:blank_author) { create :author, :blank_first_name }
-  let(:names) { query_author.send(:names) }
+  let(:names) { query_name.send(:names) }
 
   # avoid caching Savon client across examples (affects VCR)
   before { allow(WebOfScience).to receive(:client).and_return(WebOfScience::Client.new(Settings.WOS.AUTH_CODE)) }
 
   it 'works' do
-    expect(query_author).to be_a described_class
+    expect(query_name).to be_a described_class
   end
 
   describe '#uids without symbolicTimeSpan' do
+    it 'indicates the query is valid' do
+      expect(query_name).to be_valid
+    end
+
     it 'returns a large Array<String> of WOS-UIDs' do
       # The VCR fixture is 471 records at the time it was recorded;
       # if the VCR cassette is updated, this value could change
       # and this spec assumes it's only going to get larger
-      expect(query_author.uids.count).to be > 400
+      expect(query_name.uids.count).to be > 400
     end
   end
 
   describe '#uids with symbolicTimeSpan' do
-    subject(:query_author) { described_class.new(author, symbolicTimeSpan: '4week') }
+    subject(:query_name) { described_class.new(author, symbolicTimeSpan: '4week') }
 
     it 'returns a small Array<String> of WOS-UIDs' do
       # The VCR fixture is only 16 records at the time it was recorded;
       # if the VCR cassette is updated, this value could change anywhere
       # from zero records to ? and this assumes it's not going to be > 100
-      expect(query_author.uids.count).to be < 100
+      expect(query_name.uids.count).to be < 100
     end
   end
 
   # PRIVATE
 
-  describe '#author_query' do
-    let(:query) { query_author.send(:author_query) }
+  describe '#name_query' do
+    let(:query) { query_name.send(:name_query) }
     let(:params) { query[:queryParameters] }
 
     it 'contains query parameters' do
@@ -56,7 +60,7 @@ describe WebOfScience::QueryAuthor, :vcr do
     end
 
     context 'update' do
-      subject(:query_author) { described_class.new(author, symbolicTimeSpan: '4week') }
+      subject(:query_name) { described_class.new(author, symbolicTimeSpan: '4week') }
 
       it 'uses options to set a symbolicTimeSpan' do
         # to use symbolicTimeSpan, timeSpan must be omitted
@@ -75,29 +79,29 @@ describe WebOfScience::QueryAuthor, :vcr do
 
   describe '#institutions' do
     it 'author institutions includes normalized name' do
-      expect(query_author.send(:institutions)).to include('stanford')
+      expect(query_name.send(:institutions)).to include('stanford')
     end
   end
 
   describe '#quote_wrap' do
     it 'wraps strings in double quotes' do
-      expect(query_author.send(:quote_wrap, %w[a bc def])).to eq %w["a" "bc" "def"]
+      expect(query_name.send(:quote_wrap, %w[a bc def])).to eq ['"a"', '"bc"', '"def"']
     end
 
     it 'deduplicates and removes empties' do
-      expect(query_author.send(:quote_wrap, %w[a bc a bc].concat(['']))).to eq %w["a" "bc"]
+      expect(query_name.send(:quote_wrap, %w[a bc a bc].concat(['']))).to eq ['"a"', '"bc"']
     end
 
     it 'removes quotes in a name' do
-      expect(query_author.send(:quote_wrap,
-                               ['peter', 'peter paul',
-                                'peter "paul" mary'])).to eq ['"peter"', '"peter paul"', '"peter paul mary"']
+      expect(query_name.send(:quote_wrap,
+                             ['peter', 'peter paul',
+                              'peter "paul" mary'])).to eq ['"peter"', '"peter paul"', '"peter paul mary"']
     end
   end
 
   context 'with a user with valid first names' do
     it 'indicates it is a valid query' do
-      expect(query_author).to be_valid
+      expect(query_name).to be_valid
     end
   end
 
@@ -110,8 +114,9 @@ describe WebOfScience::QueryAuthor, :vcr do
       expect(query_space_author).not_to be_valid
     end
 
-    it 'indicates that a name with a blank for a first name is not a valid query' do
+    it 'indicates that a name with a blank for a first name is not a valid query and returns no uids' do
       expect(query_blank_author).not_to be_valid
+      expect(query_blank_author.uids).to be_empty
     end
   end
 

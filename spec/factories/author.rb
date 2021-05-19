@@ -46,6 +46,10 @@ FactoryBot.define do
       preferred_first_name { '' }
     end
 
+    trait :blank_orcid do
+      orcidid { nil }
+    end
+
     trait :space_first_name do
       official_first_name { ' ' }
       preferred_first_name { ' ' }
@@ -70,7 +74,7 @@ FactoryBot.define do
 
   # Public data from
   # - https://stanfordwho.stanford.edu
-  # - https://med.stanford.edu/profiles/russ-altman
+  # - https://profiles.med.stanford.edu/russ-altman
   factory :russ_altman, parent: :author do
     sunetid { 'altman' }
     active_in_cap { true }
@@ -83,6 +87,7 @@ FactoryBot.define do
     preferred_middle_name { 'Biagio' }
     email { 'Russ.Altman@stanford.edu' }
     emails_for_harvest { 'Russ.Altman@stanford.edu' }
+    orcidid { 'https://orcid.org/0000-0003-3859-2905' }
     # create some `author.author_identities`
     after(:create) do |author, _evaluator|
       create(:author_identity,

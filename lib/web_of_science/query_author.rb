@@ -1,62 +1,29 @@
 # frozen_string_literal: true
 
 module WebOfScience
-  # Use author name-institution logic to find WOS publications for an Author
+  # Search WoS for all publications for a given author, using both the name and ORCID queries, and then de-duping the UIDs
   # fetch the wos uids for the given author
   # e.g. WebOfScience::QueryAuthor.new(author).uids
   class QueryAuthor
+    attr_reader :orcid_query, :name_query
+
     def initialize(author, options = {})
       raise(ArgumentError, 'author must be an Author') unless author.is_a? Author
 
-      @identities = [author].concat(author.author_identities.to_a) # query for alternates once, not multiple times
-      @options = options
+      @orcid_query = QueryOrcid.new(author, options)
+      @name_query = QueryName.new(author, options)
     end
 
-    # Find all WOS-UIDs for an author
+    # Find all WOS-UIDs for an author using both ORCID and Name queries, and then de-dupe
     # @return [Array<String>] WosUIDs
     # Implementation note: these records have a relatively small memory footprint, just UIDs
     def uids
-      queries.search(author_query).merged_uids
+      (orcid_query.uids + name_query.uids).uniq
     end
 
+    # Indictes if we have a valid query for this author, only one needs to be ok to harvest
     def valid?
-      names.present?
-    end
-
-    private
-
-    delegate :queries, to: :WebOfScience
-
-    attr_reader :identities, :options
-
-    def author
-      identities.first
-    end
-
-    def names
-      identities.map do |ident|
-        if ident.first_name =~ /[a-zA-Z]+/
-          Agent::AuthorName.new(
-            ident.last_name,
-            ident.first_name,
-            Settings.HARVESTER.USE_MIDDLE_NAME ? ident.middle_name : ''
-          )
-        end&.text_search_terms
-      end.flatten.compact.uniq
-    end
-
-    def institutions
-      identities.map { |ident| Agent::AuthorInstitution.new(ident.institution).normalize_name }.uniq
-    end
-
-    def author_query
-      queries.construct_uid_query("AU=(#{quote_wrap(names).join(' OR ')}) AND AD=(#{quote_wrap(institutions).join(' OR ')})", options)
-    end
-
-    # @param [Array<String>] terms
-    # @param [Array<String>] the same terms, minus any empties or duplicates, wrapped in double quotes
-    def quote_wrap(terms)
-      terms.reject(&:empty?).uniq.map { |x| "\"#{x.delete('"')}\"" }
+      orcid_query.valid? || name_query.valid?
     end
   end
 end
