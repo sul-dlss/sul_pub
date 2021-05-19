@@ -89,11 +89,26 @@ create new VCR cassettes in testing.  You can use the `sul-pub-cap-dev-a` branch
 for this purpose since it has the private API keys.  To do this, grab the
 `config/settings/production.yml` file and save it as a `config/settings.local.yml`
 file for local development.  This file is gitignored so you don't commit by mistake
-and you can override other setting as needed.
+and you can override other setting as needed.  If you are going to regenerate VCR cassettes
+during tests, you will also need the private API keys in the test environment.  You can
+use the same config file to run in your local test environment as shown below.
+This will also be gitignored so you won't check it in.
+
+```sh
+mkdir config/settings
+cp config/settings.local.yml config/settings/test.local.yml
+```
 
 ### Updating the VCR Cassettes Using Private Configuration Files
 
-First, follow the instructions above for obtaining the private configuration files.  Then run the test suite and commit any changes to the VCR cassettes.
+First, follow the instructions above for obtaining the private configuration files.
+Be sure you have the `config/settings/test.local.yml`.
+Then remove the relevant VCR cassettes if needed, run the test suite and commit any changes to the VCR cassettes.
+
+Note: Since the VCR cassettes include the full request and response in plain text, it is important not to include any
+private information in these requests, such as API keys or non-public personal information.  In order to ensure
+this information is not checked in, there is configuration in `spec/spec_helper.rb` to look for private information and scrub it
+from cassettes automatically as they are generated.  Look under the `VCR.configure` heading in that file for the correct format if you need to add new filters for data that should not be checked into Github (e.g. private identifiers and API keys).
 
 ```sh
 # See commands above for using private configuration files.
@@ -115,6 +130,8 @@ bundle exec cap [ENVIRONMENT] deploy
 ```
 
 ### To update shared configs on the server, use:
+
+Note: this is automatically run on each deploy.
 
 ```sh
 bundle exec cap [ENVIRONMENT] shared_configs:update
