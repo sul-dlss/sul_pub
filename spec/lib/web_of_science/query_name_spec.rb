@@ -76,13 +76,20 @@ describe WebOfScience::QueryName, :vcr do
 
   describe '#names' do
     #=> "\"Altman,Russ\" or \"Altman,R\" or \"Altman,Russ,Biagio\" or \"Altman,Russ,B\" or \"Altman,R,B\""
-    it 'author name includes the preferred last name' do
+    it 'includes all of the name variations, including the preferred last name' do
+      expect(names.size).to eq 5
       expect(names).to include('Altman,Russ')
     end
   end
 
+  describe '#author' do
+    it 'returns the primary author record' do
+      expect(query_name.send(:author)).to eq author
+    end
+  end
+
   describe '#institutions' do
-    it 'author institutions includes normalized name' do
+    it 'includes normalized name' do
       expect(query_name.send(:institutions)).to include('stanford')
     end
   end
