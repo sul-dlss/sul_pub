@@ -11,6 +11,7 @@ module Csl
         case pub_hash[:provenance].to_s.downcase
         when Settings.batch_source
           # This is from BibtexIngester.convert_bibtex_record_to_pub_hash
+          # NOTE: BibtexIngester was removed by https://github.com/sul-dlss/sul_pub/pull/1317 (commit fb4b3fc9a74a6f188673ac171dc0b72c1cc0fc93)
           Csl::BibtexMapper.authors_to_csl(authors)
         when Settings.cap_provenance
           # This is a CAP manual submission
