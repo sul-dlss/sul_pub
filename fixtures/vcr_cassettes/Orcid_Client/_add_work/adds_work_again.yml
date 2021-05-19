@@ -1,0 +1,79 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.sandbox.orcid.org/v3.0/0000-0003-3437-349X/work
+    body:
+      encoding: UTF-8
+      string: '{"title":{"title":{"value":"Twitter Makes It Worse: Political Journalists,
+        Gendered Echo Chambers, and the Amplification of Gender Bias"},"subtitle":null,"translated-title":null},"journal-title":{"value":"The
+        International Journal of Press/Politics"},"short-description":null,"citation":{"citation-type":"bibtex","citation-value":"@article{Usher_2018,\n\tdoi
+        = {10.1177/1940161218781254},\n\turl = {https://doi.org/10.1177%2F1940161218781254},\n\tyear
+        = 2018,\n\tmonth = {jun},\n\tpublisher = {{SAGE} Publications},\n\tvolume
+        = {23},\n\tnumber = {3},\n\tpages = {324--344},\n\tauthor = {Nikki Usher and
+        Jesse Holcomb and Justin Littman},\n\ttitle = {Twitter Makes It Worse: Political
+        Journalists, Gendered Echo Chambers, and the Amplification of Gender Bias},\n\tjournal
+        = {The International Journal of Press/Politics}\n}"},"type":"journal-article","publication-date":{"year":{"value":"2018"},"month":{"value":"07"},"day":{"value":"24"}},"external-ids":{"external-id":[{"external-id-type":"doi","external-id-value":"10.1177/1940161218781254","external-id-normalized":{"value":"10.1177/1940161218781254","transient":true},"external-id-normalized-error":null,"external-id-url":{"value":"https://doi.org/10.1177/1940161218781254"},"external-id-relationship":"self"}]},"url":{"value":"https://doi.org/10.1177/1940161218781254"},"contributors":{"contributor":[{"contributor-orcid":null,"credit-name":{"value":"Nikki
+        Usher"},"contributor-email":null,"contributor-attributes":{"contributor-sequence":null,"contributor-role":"author"}},{"contributor-orcid":null,"credit-name":{"value":"Jesse
+        Holcomb"},"contributor-email":null,"contributor-attributes":{"contributor-sequence":null,"contributor-role":"author"}},{"contributor-orcid":null,"credit-name":{"value":"Justin
+        Littman"},"contributor-email":null,"contributor-attributes":{"contributor-sequence":null,"contributor-role":"author"}}]},"language-code":null,"country":null}'
+    headers:
+      User-Agent:
+      - stanford-library-sul-pub
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip,deflate
+      Date:
+      - Tue, 18 May 2021 20:32:00 GMT
+      Authorization:
+      - Bearer private_bearer_token
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 409
+      message: Conflict
+    headers:
+      Date:
+      - Tue, 18 May 2021 20:32:00 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Origin:
+      - "*"
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - DENY
+      X-Content-Type-Options:
+      - nosniff
+      Cf-Cache-Status:
+      - DYNAMIC
+      Cf-Request-Id:
+      - 0a22c6b42600000ca78723f000000001
+      Expect-Ct:
+      - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 6517da336ded0ca7-LAX
+    body:
+      encoding: UTF-8
+      string: '{"response-code":409,"developer-message":"409 Conflict: You have already
+        added this activity (matched by external identifiers), please see element
+        with put-code 1250170. If you are trying to edit the item, please use PUT
+        instead of POST.","user-message":"There was an error when updating the record.
+        Please try again. If the error persists, please contact Stanford University
+        for assistance.","error-code":9021,"more-info":"https://members.orcid.org/api/resources/troubleshooting"}'
+  recorded_at: Tue, 18 May 2021 20:32:00 GMT
+recorded_with: VCR 6.0.0
