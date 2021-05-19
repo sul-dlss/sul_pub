@@ -45,7 +45,6 @@ Layout/LineLength:
     - "spec/lib/csl/citation_spec.rb"
     - "spec/models/publication_spec.rb"
     - "spec/lib/pubmed/query_author_spec.rb"
-    - "spec/lib/bibtex_ingester_spec.rb"
     - "spec/lib/orcid/client_spec.rb"
 
 Metrics/AbcSize:
@@ -77,7 +76,6 @@ Metrics/ClassLength:
     - "app/models/publication.rb"
     - "app/models/pubmed_source_record.rb"
     - "app/models/sciencewire_source_record.rb"
-    - "lib/bibtex_ingester.rb"
     - "lib/cap/authors_poller.rb"
     - "lib/science_wire_publication.rb"
     - "lib/smci_report.rb"
@@ -89,7 +87,6 @@ Metrics/MethodLength:
   Exclude:
     - "app/models/pubmed_source_record.rb"
     - "app/models/sciencewire_source_record.rb"
-    - "lib/bibtex_ingester.rb"
     - "lib/csl/mapper.rb"
     - "lib/smci_report.rb"
     - "script/*"
