@@ -22,7 +22,7 @@ describe Mais do
         allow(client).to receive(:fetch_orcid_users).and_raise(StandardError, 'Fail!')
       end
 
-      it 'returns true' do
+      it 'returns false' do
         expect(described_class.working?).to be(false)
       end
     end
