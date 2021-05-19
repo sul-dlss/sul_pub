@@ -303,7 +303,8 @@ class BibtexIngester
 
     if record['series']
       book_series_hash = {}
-      book_series_hash[:identifier] = [issn_for_id_array]
+      book_series_identifiers = [issn_for_id_array].compact
+      book_series_hash[:identifier] = book_series_identifiers if book_series_identifiers.present?
       book_series_hash[:title] = record.series.to_s.strip  if record['series'].present?
       book_series_hash[:volume] = record.volume.to_s.strip if record['volume'].present?
       book_series_hash[:month] = record.month.to_s.strip if record['month'].present?

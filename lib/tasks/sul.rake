@@ -52,6 +52,36 @@ namespace :sul do
     puts "Total: #{total_pubs}. Output folder: #{output_folder}. Ended at #{end_time}."
   end
 
+  desc 'Validate publications pub_hashes'
+  # bundle exec rake sul:validate_pub_hash['/tmp/output_folder',1000]
+  # parameters are output folder and limit (defaults to 1000)
+  # This task will validate pub_hashes for publications. Publications with errors will be written to files (one per pub) into the folder specified
+  # Use a different date and limit to fetch different samples
+  task :validate_pub_hash, %i[output_folder limit] => :environment do |_t, args|
+    output_folder = args[:output_folder]
+    limit = args[:limit].to_i || 1_000_000
+    raise 'missing require params' unless output_folder
+
+    publications = Publication.select(:id, :pub_hash).limit(limit)
+    puts "Exporting limit of #{limit} pubs to #{output_folder}"
+    total_pubs = 0
+
+    FileUtils.mkdir_p(output_folder)
+    publications.find_each do |pub|
+      errors = PubHashValidator.validate(pub.pub_hash)
+      next if errors.empty?
+
+      File.open(File.join(output_folder, "publication-#{pub.id}.json"), 'w') do |f|
+        errors.each { |error| f.write("Error: #{error}\n") }
+        f.write("\n\n")
+        f.write(JSON.pretty_generate(pub.pub_hash))
+      end
+      total_pubs += 1
+    end
+    end_time = Time.zone.now
+    puts "Total: #{total_pubs}. Output folder: #{output_folder}. Ended at #{end_time}."
+  end
+
   desc 'Export publications for specific authors as csv'
   # exports all publications for the given sunets in a 'new' or 'approved' state after the date specified
   # input csv file should have a column with a header of 'SUNetID' containing the sunetid of interest

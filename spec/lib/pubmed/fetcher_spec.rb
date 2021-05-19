@@ -5,13 +5,14 @@ describe Pubmed::Fetcher, :vcr do
   let(:pub_hash) do
     {
       title: 'some title',
-      year: 1938,
+      year: '1938',
       issn: '32242424',
       pages: '34-56',
       author: [{ name: 'jackson joe' }],
       authorship: [{ sul_author_id: author.id, status: 'denied', visibility: 'public', featured: true }],
       identifier: [{ type: 'x', id: 'y', url: 'z' }],
-      provenance: 'pubmed'
+      provenance: 'pubmed',
+      type: 'article'
     }
   end
 

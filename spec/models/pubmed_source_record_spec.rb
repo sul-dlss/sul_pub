@@ -13,7 +13,7 @@ describe PubmedSourceRecord, :vcr do
       {
         Abrams: {
           xml: author_doc(' <Author ValidYN="Y"> <LastName>Abrams</LastName> <ForeName>Judith</ForeName> <Initials>J</Initials> </Author>'),
-          hash: { firstname: 'Judith', middlename: nil, lastname: 'Abrams' }
+          hash: { firstname: 'Judith', lastname: 'Abrams' }
         },
         Amara: {
           xml: author_doc(' <Author ValidYN="Y"> <LastName>Amara</LastName> <ForeName>Mohamed el-Walid</ForeName> <Initials>Mel- W</Initials> </Author>'),
@@ -49,7 +49,7 @@ describe PubmedSourceRecord, :vcr do
         },
         Todoroki: {
           xml: author_doc(' <Author ValidYN="Y"> <LastName>Todoroki</LastName> <ForeName>Shin-ichi</ForeName> <Initials>S</Initials> </Author>'),
-          hash: { firstname: 'Shin-ichi', middlename: nil, lastname: 'Todoroki' }
+          hash: { firstname: 'Shin-ichi', lastname: 'Todoroki' }
         }
       }
     end

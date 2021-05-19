@@ -35,7 +35,8 @@ FactoryBot.define do
         identifier: [
           { type: 'isbn', id: '1177188188181' },
           { type: 'doi', id: '18819910019', url: 'http://doi:18819910019' }
-        ]
+        ],
+        type: publication_type
       }
     end
   end
@@ -43,7 +44,8 @@ FactoryBot.define do
   factory :wos_publication, parent: :publication do
     pub_hash do
       {
-        provenance: 'wos'
+        provenance: 'wos',
+        type: publication_type
       }
     end
   end

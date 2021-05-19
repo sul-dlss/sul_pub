@@ -7,12 +7,13 @@ describe Publication do
   let(:pub_hash) do
     {
       title: 'some title',
-      year: 1938,
+      year: '1938',
       issn: '32242424',
       pages: '34-56',
       author: [{ name: 'jackson joe' }],
       authorship: [{ sul_author_id: author.id, status: 'denied', visibility: 'public', featured: true }],
-      identifier: [{ type: 'x', id: 'y', url: 'z' }]
+      identifier: [{ type: 'x', id: 'y', url: 'z' }],
+      type: 'article'
     }
   end
 
@@ -110,7 +111,7 @@ describe Publication do
 
   describe 'sync_identifiers_in_pub_hash' do
     let(:pub_xyz) do
-      publication.pub_hash = { identifier: [{ type: 'x', id: 'y', url: 'z' }] }
+      publication.pub_hash = pub_hash.merge(identifier: [{ type: 'x', id: 'y', url: 'z' }])
       publication.send(:sync_identifiers_in_pub_hash)
       publication.save!
       publication
@@ -122,7 +123,7 @@ describe Publication do
     end
 
     it 'does not persist SULPubIds' do
-      publication.pub_hash = { identifier: [{ type: 'SULPubId', id: 'y', url: 'z' }] }
+      publication.pub_hash = pub_hash.merge(identifier: [{ type: 'SULPubId', id: 'y', url: 'z' }])
       expect do
         publication.send(:sync_identifiers_in_pub_hash)
         publication.save!
@@ -130,7 +131,7 @@ describe Publication do
     end
 
     it 'updates existing ids with new values' do
-      pub_xyz.pub_hash = { identifier: [{ type: 'x', id: 'y2', url: 'z2' }] }
+      pub_xyz.pub_hash = pub_hash.merge(identifier: [{ type: 'x', id: 'y2', url: 'z2' }])
       pub_xyz.send(:sync_identifiers_in_pub_hash)
       pub_xyz.save!
       ids = PublicationIdentifier.where(publication_id: pub_xyz.id).all
@@ -141,7 +142,7 @@ describe Publication do
     end
 
     it 'avoids writing back empty values' do # stop our bad data from spreading
-      pub_xyz.pub_hash = { identifier: [{ type: 'x', id: nil, url: 'z2' }, { type: 'q', id: nil, url: 'z2' }] }
+      pub_xyz.pub_hash = pub_hash.merge(identifier: [{ type: 'x', id: nil, url: 'z2' }, { type: 'q', id: nil, url: 'z2' }])
       pub_xyz.send(:sync_identifiers_in_pub_hash)
       pub_xyz.save!
       ids = PublicationIdentifier.where(publication_id: pub_xyz.id).all
@@ -152,7 +153,7 @@ describe Publication do
     end
 
     it 'deletes ids from the database that are not longer in the pub_hash' do
-      pub_xyz.pub_hash = { identifier: [{ type: 'a', id: 'b', url: 'c' }] }
+      pub_xyz.pub_hash = pub_hash.merge(identifier: [{ type: 'a', id: 'b', url: 'c' }])
       pub_xyz.send(:sync_identifiers_in_pub_hash)
       pub_xyz.save!
       expect(PublicationIdentifier.where(publication_id: pub_xyz.id, identifier_type: 'x').count).to eq(0)
@@ -160,10 +161,10 @@ describe Publication do
     end
 
     it 'does not delete legacy_cap_pub_id when missing from the incoming pub_hash' do
-      publication.pub_hash = { identifier: [{ type: 'legacy_cap_pub_id', id: '258214' }] }
+      publication.pub_hash = pub_hash.merge(identifier: [{ type: 'legacy_cap_pub_id', id: '258214' }])
       publication.send(:sync_identifiers_in_pub_hash)
       publication.save!
-      publication.pub_hash = { identifier: [{ type: 'another', id: 'id', url: 'with a url' }] }
+      publication.pub_hash = pub_hash.merge(identifier: [{ type: 'another', id: 'id', url: 'with a url' }])
       publication.send(:sync_identifiers_in_pub_hash)
       publication.save!
       expect(PublicationIdentifier.where(publication_id: publication.id,
@@ -174,7 +175,7 @@ describe Publication do
 
   describe 'update_any_new_contribution_info_in_pub_hash_to_db' do
     it 'syncs existing authors in the pub hash to contributions in the db' do
-      publication.pub_hash = { authorship: [{ status: 'new', sul_author_id: author.id }] }
+      publication.pub_hash = pub_hash.merge(authorship: [{ status: 'new', sul_author_id: author.id }])
       publication.send(:update_any_new_contribution_info_in_pub_hash_to_db)
       expect(publication.contributions.size).to eq(1)
       c = publication.contributions.last
@@ -183,7 +184,7 @@ describe Publication do
     end
 
     it 'downcases status and visibility values' do
-      publication.pub_hash = { authorship: [{ status: 'NEW', sul_author_id: author.id, visibility: 'PUBLIC' }] }
+      publication.pub_hash = pub_hash.merge(authorship: [{ status: 'NEW', sul_author_id: author.id, visibility: 'PUBLIC' }])
       publication.send(:update_any_new_contribution_info_in_pub_hash_to_db)
       c = publication.contributions.last
       expect(c.status).to eq('new')
@@ -193,7 +194,7 @@ describe Publication do
     it 'updates attributions of existing contributions to the database' do
       expect(publication.contributions.size).to eq(0)
       publication.contributions.create(author: author, cap_profile_id: author.cap_profile_id, status: 'unknown')
-      publication.pub_hash = { authorship: [{ status: 'new', sul_author_id: author.id }] }
+      publication.pub_hash = pub_hash.merge(authorship: [{ status: 'new', sul_author_id: author.id }])
       publication.send(:update_any_new_contribution_info_in_pub_hash_to_db)
       expect(publication.contributions.size).to eq(1)
       c = publication.contributions.reload.last
@@ -204,7 +205,7 @@ describe Publication do
     it 'looks up authors by their cap profile id' do
       author.cap_profile_id = 'abc'
       author.save!
-      publication.pub_hash = { authorship: [{ status: 'new', cap_profile_id: author.cap_profile_id }] }
+      publication.pub_hash = pub_hash.merge(authorship: [{ status: 'new', cap_profile_id: author.cap_profile_id, featured: false, visibility: 'private' }])
       publication.send(:update_any_new_contribution_info_in_pub_hash_to_db)
 
       publication.save!
@@ -215,7 +216,7 @@ describe Publication do
     end
 
     it 'ignores unknown authors' do
-      publication.pub_hash = { authorship: [{ status: 'ignored', cap_profile_id: 'doesnt_exist' }] }
+      publication.pub_hash = pub_hash.merge(authorship: [{ status: 'unknown', cap_profile_id: 0, featured: false, visibility: 'private' }])
       publication.send(:update_any_new_contribution_info_in_pub_hash_to_db)
       publication.save!
       expect(publication.contributions).to be_empty
@@ -371,19 +372,19 @@ describe Publication do
   end
 
   describe 'update_manual_pub_from_pub_hash' do
-    let(:pub) { Publication.build_new_manual_publication({ a: :b }, 'some string') }
+    let(:pub) { Publication.build_new_manual_publication({ title: 'b', type: 'article' }, 'some string') }
 
     it 'updates the user submitted source record with the new content' do
-      pub.update_manual_pub_from_pub_hash({ b: :c }, 'some other string')
+      pub.update_manual_pub_from_pub_hash({ date: '2020', type: 'article' }, 'some other string')
       pub.save!
       expect(pub.user_submitted_source_records.first[:source_data]).to eq('some other string')
-      expect(pub.pub_hash).to include(b: :c)
+      expect(pub.pub_hash).to include(date: '2020')
     end
 
     it 'raises an exception if you try to update a record to match an existing source record' do
       pub.save!
-      other = Publication.build_new_manual_publication({ b: :c }, 'some other string')
-      other.update_manual_pub_from_pub_hash({ b: :c }, 'some string')
+      other = Publication.build_new_manual_publication({ title: 'c', type: 'article' }, 'some other string')
+      other.update_manual_pub_from_pub_hash({ title: 'c', type: 'article' }, 'some string')
       expect { other.save! }.to raise_error(ActiveRecord::RecordNotUnique)
     end
 
@@ -395,8 +396,8 @@ describe Publication do
 
   describe '.find_by_doi' do
     it 'returns one Publication that has this doi' do
-      publication.pub_hash = { identifier: [{ type: 'doi', id: '10.1016/j.mcn.2012.03.008',
-                                              url: 'https://doi.org/10.1016/j.mcn.2012.03.008' }] }
+      publication.pub_hash = pub_hash.merge(identifier: [{ type: 'doi', id: '10.1016/j.mcn.2012.03.008',
+                                                           url: 'https://doi.org/10.1016/j.mcn.2012.03.008' }])
       publication.wos_uid = 'somevalue'
       publication.send(:sync_identifiers_in_pub_hash)
       publication.save!
@@ -411,7 +412,7 @@ describe Publication do
 
   describe '.for_uid' do
     it 'returns one Publication that has this uid' do
-      publication.pub_hash = { identifier: [{ type: 'WosUID', id: 'ABC123' }] }
+      publication.pub_hash = pub_hash.merge(identifier: [{ type: 'WosUID', id: 'ABC123' }])
       publication.send(:sync_identifiers_in_pub_hash)
       publication.save!
       expect(Publication.for_uid('ABC123').id).to eq(publication.id)

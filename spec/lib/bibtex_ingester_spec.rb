@@ -81,12 +81,12 @@ describe BibtexIngester do
 
     it 'adds publication_identifier for isbn' do
       bibtex_ingester.ingest_from_source_directory(bibtex_batch_path)
-      expect(PublicationIdentifier).to exist(identifier_type: 'isbn', identifier_value: 3_233_333)
+      expect(PublicationIdentifier).to exist(identifier_type: 'isbn', identifier_value: '3233333')
     end
 
     it 'adds publication_identifier for DOI' do
       bibtex_ingester.ingest_from_source_directory(bibtex_batch_path)
-      expect(PublicationIdentifier).to exist(identifier_type: 'doi', identifier_value: 8_484_848_484)
+      expect(PublicationIdentifier).to exist(identifier_type: 'doi', identifier_value: '8484848484')
     end
 
     it "doesn't add publication_identifier for sulpubid" do
@@ -122,7 +122,7 @@ describe BibtexIngester do
     context 'when deduping by issn, year, pages' do
       let(:existing_matching_pub_issn) do
         create :publication, pmid: 3_323_434,
-                             pub_hash: { title: 'Quelque Titre', type: 'article', pmid: 3_323_434, year: 2002, pages: '295-299', issn: '234234', author: [{ name: 'Jackson, Joe' }], authorship: [{ sul_author_id: 2222, status: 'denied', visibility: 'public', featured: true }] }
+                             pub_hash: { title: 'Quelque Titre', type: 'article', pmid: '3323434', year: '2002', pages: '295-299', issn: '234234', author: [{ name: 'Jackson, Joe' }], authorship: [{ sul_author_id: 2222, status: 'denied', visibility: 'public', featured: true }] }
       end
       let(:contribution) { create :contribution, author: author_with_bibtex, publication: existing_matching_pub_issn }
 
@@ -153,7 +153,7 @@ describe BibtexIngester do
     context 'when deduping by title, year, pages' do
       let(:pub_with_same_title) do
         create :publication, pmid: 332_423_434,
-                             pub_hash: { title: 'Quality of Life Assessment Designed for Computer Inexperienced Older Adults: Multimedia Utility Elicitation for Activities of Daily Living', pmid: 3_323_434, type: 'article', year: 2002, pages: '295-299', author: [{ name: 'Jackson, Joe' }], authorship: [{ sul_author_id: 2222, status: 'denied', visibility: 'public', featured: true }] }
+                             pub_hash: { title: 'Quality of Life Assessment Designed for Computer Inexperienced Older Adults: Multimedia Utility Elicitation for Activities of Daily Living', pmid: '3323434', type: 'article', year: '2002', pages: '295-299', author: [{ name: 'Jackson, Joe' }], authorship: [{ sul_author_id: 2222, status: 'denied', visibility: 'public', featured: true }] }
       end
       let(:contribution) { create :contribution, author: author_with_bibtex, publication: pub_with_same_title }
 

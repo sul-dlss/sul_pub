@@ -280,7 +280,7 @@ class PubmedSourceRecord < ApplicationRecord
       firstname: fn,
       middlename: mn,
       lastname: lastname
-    }
+    }.compact
     # TODO: extract Identifier
     # <Identifier> was added to <AuthorList> with the 2010 DTD, but was not used until 2013.
     # <Identifier Source="ORCID">0000000179841889</Identifier>
