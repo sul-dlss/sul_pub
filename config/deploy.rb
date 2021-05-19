@@ -35,3 +35,5 @@ set :delayed_job_workers, 2
 # honeybadger_env otherwise defaults to rails_env
 # we want prod rather than production
 set :honeybadger_env, fetch(:stage)
+
+before 'deploy:restart', 'shared_configs:update'
