@@ -7,11 +7,6 @@ SULPUB_ID:
   AUTHORSHIP_URI: http://sulcap.stanford.edu/authorship
   SEARCHWORKS_URI: http://searchworks.stanford.edu/?search_field=advanced&number=
 
-BIBTEX:
-  IMPORT:
-    DIR: data/bibtex_import_files
-    LOG: log/bibtext_import.log
-
 ## Cap Auth Config
 CAP:
   LOG: log/cap.log
