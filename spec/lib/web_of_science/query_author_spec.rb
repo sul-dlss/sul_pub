@@ -16,12 +16,15 @@ describe WebOfScience::QueryAuthor, :vcr do
   end
 
   describe '#uids without symbolicTimeSpan' do
-    it 'indicates the query is valid' do
+    it 'indicates the query is valid, with both name and orcid being valid' do
       expect(query_author).to be_valid
+      expect(query_author.orcid_query).to be_valid
+      expect(query_author.name_query).to be_valid
     end
 
     it 'returns some Array<String> of WOS-UIDs' do
       # The VCR fixture is > 500 records at the time it was recorded;
+      # with a combination of both ORCID and name results
       # if the VCR cassette is updated, this value could change
       # and this spec assumes it's only going to get larger
       expect(query_author.uids.count).to be > 480
@@ -31,8 +34,10 @@ describe WebOfScience::QueryAuthor, :vcr do
   describe '#uids with symbolicTimeSpan' do
     subject(:query_author) { described_class.new(author, symbolicTimeSpan: '4week') }
 
-    it 'indicates the query is valid' do
+    it 'indicates the query is valid, with both name and orcid being valid' do
       expect(query_author).to be_valid
+      expect(query_author.orcid_query).to be_valid
+      expect(query_author.name_query).to be_valid
     end
 
     it 'returns less Array<String> of WOS-UIDs' do
@@ -49,10 +54,13 @@ describe WebOfScience::QueryAuthor, :vcr do
     # The VCR fixture is > 470 records at the time it was recorded;
     # if the VCR cassette is updated, this value could change
     # and this spec assumes it's only going to get larger
-    it 'returns some uids' do
+    it 'returns uids from the name query only' do
       expect(query_blank_orcid).to be_valid
       expect(query_blank_orcid.orcid_query).not_to be_valid
       expect(query_blank_orcid.name_query).to be_valid
+      num_uids_total = query_blank_orcid.uids.size
+      num_uids_name = query_blank_orcid.name_query.uids.size
+      expect(num_uids_total).to eq num_uids_name # the only uids are from the name query
       expect(query_blank_orcid.uids.size).to be > 450
     end
   end
@@ -63,18 +71,21 @@ describe WebOfScience::QueryAuthor, :vcr do
     # The VCR fixture is ~ 150 records at the time it was recorded;
     # if the VCR cassette is updated, this value could change
     # and this spec assumes it's only going to get larger
-    it 'returns some uids' do
+    it 'returns uids from the orcid query only' do
       expect(query_blank_author).to be_valid
       expect(query_blank_author.orcid_query).to be_valid
       expect(query_blank_author.name_query).not_to be_valid
-      expect(query_blank_author.uids.size).to be > 140
+      num_uids_total = query_blank_author.uids.size
+      num_uids_orcid = query_blank_author.orcid_query.uids.size
+      expect(num_uids_total).to eq num_uids_orcid  # the only uids are from the orcid query
+      expect(num_uids_total).to be > 140
     end
   end
 
   describe '#uids with both the orcid and name queries invalid' do
     subject(:query_blank_author_and_orcid) { described_class.new(author_blank_name_and_orcid) }
 
-    it 'returns an empty array' do
+    it 'returns no uids' do
       expect(query_blank_author_and_orcid).not_to be_valid
       expect(query_blank_author_and_orcid.uids).to be_empty
     end

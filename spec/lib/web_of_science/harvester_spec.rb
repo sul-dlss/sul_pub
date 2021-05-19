@@ -13,7 +13,7 @@ describe WebOfScience::Harvester do
 
   after(:all)  { savon.unmock! }
 
-  let(:author) { create :russ_altman }
+  let(:author) { create :russ_altman, :blank_orcid } # use a blank orcid, because these mocks work with the name query
   let(:wos_uids) { %w[WOS:A1976BW18000001 WOS:A1972N549400003] } # from wos_retrieve_by_id_response.xml
   let(:author_name_response) { File.read('spec/fixtures/wos_client/wos_harvest_author_name_response.xml') }
   let(:retrieve_by_id_response) { File.read('spec/fixtures/wos_client/wos_retrieve_by_id_response.xml') }

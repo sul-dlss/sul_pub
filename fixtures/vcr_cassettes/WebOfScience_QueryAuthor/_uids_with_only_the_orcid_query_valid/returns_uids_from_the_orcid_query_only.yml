@@ -12,7 +12,7 @@ http_interactions:
       Accept:
       - "*/*"
       Date:
-      - Wed, 19 May 2021 21:37:33 GMT
+      - Wed, 19 May 2021 22:24:59 GMT
       Authorization:
       - Basic Settings.WOS.AUTH_CODE
       Soapaction:
@@ -25,7 +25,7 @@ http_interactions:
       Content-Type:
       - text/xml
       Date:
-      - Wed, 19 May 2021 21:37:33 GMT
+      - Wed, 19 May 2021 22:24:59 GMT
       Server:
       - Apache-Coyote/1.1
       Content-Length:
@@ -223,7 +223,7 @@ http_interactions:
             </wsdl:port>
           </wsdl:service>
         </wsdl:definitions>
-  recorded_at: Wed, 19 May 2021 21:37:33 GMT
+  recorded_at: Wed, 19 May 2021 22:24:59 GMT
 - request:
     method: post
     uri: http://search.webofknowledge.com/esti/wokmws/ws/WOKMWSAuthenticate
@@ -238,7 +238,7 @@ http_interactions:
       Accept:
       - "*/*"
       Date:
-      - Wed, 19 May 2021 21:37:33 GMT
+      - Wed, 19 May 2021 22:24:59 GMT
       Authorization:
       - Basic Settings.WOS.AUTH_CODE
       Soapaction:
@@ -255,11 +255,11 @@ http_interactions:
       Content-Type:
       - text/xml;charset=UTF-8
       Date:
-      - Wed, 19 May 2021 21:37:33 GMT
+      - Wed, 19 May 2021 22:24:59 GMT
       Server:
       - Apache-Coyote/1.1
       Set-Cookie:
-      - SID=7CJSchcwxyQMil1FYK1
+      - SID=7ByXmWdNk3CO2B1cvyA
       Content-Length:
       - '252'
       Connection:
@@ -267,8 +267,8 @@ http_interactions:
     body:
       encoding: UTF-8
       string: <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"><soap:Body><ns2:authenticateResponse
-        xmlns:ns2="http://auth.cxf.wokmws.thomsonreuters.com"><return>7CJSchcwxyQMil1FYK1</return></ns2:authenticateResponse></soap:Body></soap:Envelope>
-  recorded_at: Wed, 19 May 2021 21:37:33 GMT
+        xmlns:ns2="http://auth.cxf.wokmws.thomsonreuters.com"><return>7ByXmWdNk3CO2B1cvyA</return></ns2:authenticateResponse></soap:Body></soap:Envelope>
+  recorded_at: Wed, 19 May 2021 22:25:00 GMT
 - request:
     method: get
     uri: http://search.webofknowledge.com/esti/wokmws/ws/WokSearch?wsdl
@@ -281,9 +281,9 @@ http_interactions:
       Accept:
       - "*/*"
       Date:
-      - Wed, 19 May 2021 21:37:33 GMT
+      - Wed, 19 May 2021 22:25:00 GMT
       Cookie:
-      - SID="7CJSchcwxyQMil1FYK1"
+      - SID="7ByXmWdNk3CO2B1cvyA"
       Soapaction:
       - ''
   response:
@@ -294,11 +294,11 @@ http_interactions:
       Content-Type:
       - text/xml
       Date:
-      - Wed, 19 May 2021 21:37:32 GMT
+      - Wed, 19 May 2021 22:24:59 GMT
       Server:
       - Apache-Coyote/1.1
-      Content-Length:
-      - '32204'
+      Transfer-Encoding:
+      - chunked
       Connection:
       - keep-alive
     body:
@@ -985,7 +985,7 @@ http_interactions:
             </wsdl:port>
           </wsdl:service>
         </wsdl:definitions>
-  recorded_at: Wed, 19 May 2021 21:37:33 GMT
+  recorded_at: Wed, 19 May 2021 22:25:00 GMT
 - request:
     method: post
     uri: http://search.webofknowledge.com/esti/wokmws/ws/WokSearch
@@ -1000,9 +1000,9 @@ http_interactions:
       Accept:
       - "*/*"
       Date:
-      - Wed, 19 May 2021 21:37:33 GMT
+      - Wed, 19 May 2021 22:25:00 GMT
       Cookie:
-      - SID="7CJSchcwxyQMil1FYK1"
+      - SID="7ByXmWdNk3CO2B1cvyA"
       Soapaction:
       - ''
       Content-Type:
@@ -1017,7 +1017,7 @@ http_interactions:
       Content-Type:
       - text/xml;charset=UTF-8
       Date:
-      - Wed, 19 May 2021 21:37:33 GMT
+      - Wed, 19 May 2021 22:25:01 GMT
       Server:
       - Apache-Coyote/1.1
       Content-Length:
@@ -1027,7 +1027,7 @@ http_interactions:
     body:
       encoding: UTF-8
       string: <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"><soap:Body><ns2:searchResponse
-        xmlns:ns2="http://woksearch.v3.wokmws.thomsonreuters.com"><return><queryId>1</queryId><recordsFound>150</recordsFound><recordsSearched>88932048</recordsSearched><optionValue><label>RecordIDs</label><value>WOS:000427887200012</value><value>WOS:000405616900002</value><value>WOS:000440967900012</value><value>WOS:000424402500017</value><value>WOS:000459314900007</value><value>WOS:000386326200019</value><value>WOS:000383781600015</value><value>WOS:000337727000007</value><value>WOS:000351668600006</value><value>WOS:000426276000005</value><value>WOS:000405361900008</value><value>WOS:000387469100004</value><value>WOS:000474099000003</value><value>WOS:000567371800007</value><value>WOS:000358581700030</value><value>WOS:000339602900018</value><value>WOS:000336260000006</value><value>WOS:000466783000004</value><value>WOS:000399659000008</value><value>WOS:000398829200005</value><value>WOS:000446339600001</value><value>MEDLINE:33398279</value><value>WOS:000461831500054</value><value>WOS:000400664400006</value><value>WOS:000386326200035</value><value>WOS:000403782300001</value><value>WOS:000419625900016</value><value>WOS:000360620100003</value><value>WOS:000434113600009</value><value>WOS:000425900600019</value><value>WOS:000398197800006</value><value>WOS:000352371900019</value><value>WOS:000412543100006</value><value>WOS:000389557000012</value><value>MEDLINE:26306281</value><value>WOS:000334429300007</value><value>WOS:000538558900001</value><value>WOS:000443787600011</value><value>WOS:000445753100002</value><value>WOS:000409183600006</value><value>MEDLINE:27199190</value><value>WOS:000366135900002</value><value>WOS:000358821300020</value><value>WOS:000495364500004</value><value>WOS:000469491000009</value><value>WOS:000428317700011</value><value>WOS:000427537700003</value><value>WOS:000461831500006</value><value>WOS:000352195700026</value><value>WOS:000336507500015</value><value>WOS:000335405200021</value><value>WOS:000332858400048</value><value>WOS:000435287900002</value><value>WOS:000373526700005</value><value>WOS:000359645700006</value><value>WOS:000428180700004</value><value>WOS:000422723300003</value><value>WOS:000362838700024</value><value>WOS:000353198700012</value><value>WOS:000348126800006</value><value>WOS:000617972500001</value><value>WOS:000444941300001</value><value>WOS:000365709900005</value><value>WOS:000349450800007</value><value>WOS:000415583200001</value><value>WOS:000397264100008</value><value>WOS:000384536000001</value><value>WOS:000408790100013</value><value>WOS:000390851300005</value><value>WOS:000460125400015</value><value>WOS:000431884200012</value><value>WOS:000466750900030</value><value>WOS:000355557900008</value><value>WOS:000376584400019</value><value>WOS:000424386600014</value><value>WOS:000360322800016</value><value>WOS:000461888300013</value><value>WOS:000343666300003</value><value>MEDLINE:32634869</value><value>WOS:000499323900063</value><value>WOS:000368357800013</value><value>WOS:000405498300005</value><value>WOS:000364626100006</value><value>WOS:000346632900006</value><value>WOS:000357993500007</value><value>WOS:000461835500001</value><value>WOS:000503918200011</value><value>WOS:000486860200001</value><value>WOS:000356370900005</value><value>WOS:000636223400002</value><value>WOS:000380224500063</value><value>WOS:000380831700005</value><value>WOS:000418800600012</value><value>WOS:000347393200006</value><value>WOS:000340731400006</value><value>WOS:000392723700004</value><value>WOS:000355751600011</value><value>WOS:000399806500016</value><value>WOS:000359752100030</value><value>WOS:000348562700003</value></optionValue><records>&lt;records
+        xmlns:ns2="http://woksearch.v3.wokmws.thomsonreuters.com"><return><queryId>1</queryId><recordsFound>150</recordsFound><recordsSearched>88948818</recordsSearched><optionValue><label>RecordIDs</label><value>WOS:000427887200012</value><value>WOS:000405616900002</value><value>WOS:000440967900012</value><value>WOS:000424402500017</value><value>WOS:000459314900007</value><value>WOS:000386326200019</value><value>WOS:000383781600015</value><value>WOS:000337727000007</value><value>WOS:000351668600006</value><value>WOS:000426276000005</value><value>WOS:000405361900008</value><value>WOS:000387469100004</value><value>WOS:000474099000003</value><value>WOS:000567371800007</value><value>WOS:000358581700030</value><value>WOS:000339602900018</value><value>WOS:000336260000006</value><value>WOS:000466783000004</value><value>WOS:000399659000008</value><value>WOS:000398829200005</value><value>WOS:000446339600001</value><value>MEDLINE:33398279</value><value>WOS:000461831500054</value><value>WOS:000400664400006</value><value>WOS:000386326200035</value><value>WOS:000403782300001</value><value>WOS:000419625900016</value><value>WOS:000360620100003</value><value>WOS:000434113600009</value><value>WOS:000425900600019</value><value>WOS:000398197800006</value><value>WOS:000352371900019</value><value>WOS:000412543100006</value><value>WOS:000389557000012</value><value>MEDLINE:26306281</value><value>WOS:000334429300007</value><value>WOS:000538558900001</value><value>WOS:000443787600011</value><value>WOS:000445753100002</value><value>WOS:000409183600006</value><value>MEDLINE:27199190</value><value>WOS:000366135900002</value><value>WOS:000358821300020</value><value>WOS:000495364500004</value><value>WOS:000469491000009</value><value>WOS:000428317700011</value><value>WOS:000427537700003</value><value>WOS:000461831500006</value><value>WOS:000352195700026</value><value>WOS:000336507500015</value><value>WOS:000335405200021</value><value>WOS:000332858400048</value><value>WOS:000435287900002</value><value>WOS:000373526700005</value><value>WOS:000359645700006</value><value>WOS:000428180700004</value><value>WOS:000422723300003</value><value>WOS:000362838700024</value><value>WOS:000353198700012</value><value>WOS:000348126800006</value><value>WOS:000617972500001</value><value>WOS:000444941300001</value><value>WOS:000365709900005</value><value>WOS:000349450800007</value><value>WOS:000415583200001</value><value>WOS:000397264100008</value><value>WOS:000384536000001</value><value>WOS:000408790100013</value><value>WOS:000390851300005</value><value>WOS:000460125400015</value><value>WOS:000431884200012</value><value>WOS:000466750900030</value><value>WOS:000355557900008</value><value>WOS:000376584400019</value><value>WOS:000424386600014</value><value>WOS:000360322800016</value><value>WOS:000461888300013</value><value>WOS:000343666300003</value><value>MEDLINE:32634869</value><value>WOS:000499323900063</value><value>WOS:000368357800013</value><value>WOS:000405498300005</value><value>WOS:000364626100006</value><value>WOS:000346632900006</value><value>WOS:000357993500007</value><value>WOS:000461835500001</value><value>WOS:000503918200011</value><value>WOS:000486860200001</value><value>WOS:000356370900005</value><value>WOS:000636223400002</value><value>WOS:000380224500063</value><value>WOS:000380831700005</value><value>WOS:000418800600012</value><value>WOS:000347393200006</value><value>WOS:000340731400006</value><value>WOS:000392723700004</value><value>WOS:000355751600011</value><value>WOS:000399806500016</value><value>WOS:000359752100030</value><value>WOS:000348562700003</value></optionValue><records>&lt;records
         xmlns="http://scientific.thomsonreuters.com/schema/wok5.4/public/Fields">&lt;REC
         r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000427887200012&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
         r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000405616900002&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
@@ -1129,7 +1129,7 @@ http_interactions:
         r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000399806500016&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
         r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000359752100030&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
         r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000348562700003&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;/records></records></return></ns2:searchResponse></soap:Body></soap:Envelope>
-  recorded_at: Wed, 19 May 2021 21:37:34 GMT
+  recorded_at: Wed, 19 May 2021 22:25:01 GMT
 - request:
     method: post
     uri: http://search.webofknowledge.com/esti/wokmws/ws/WokSearch
@@ -1144,9 +1144,9 @@ http_interactions:
       Accept:
       - "*/*"
       Date:
-      - Wed, 19 May 2021 21:37:34 GMT
+      - Wed, 19 May 2021 22:25:01 GMT
       Cookie:
-      - SID="7CJSchcwxyQMil1FYK1"
+      - SID="7ByXmWdNk3CO2B1cvyA"
       Soapaction:
       - ''
       Content-Type:
@@ -1161,7 +1161,7 @@ http_interactions:
       Content-Type:
       - text/xml;charset=UTF-8
       Date:
-      - Wed, 19 May 2021 21:37:35 GMT
+      - Wed, 19 May 2021 22:25:01 GMT
       Server:
       - Apache-Coyote/1.1
       Content-Length:
@@ -1223,5 +1223,243 @@ http_interactions:
         r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000407861100014&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
         r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000346156800023&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
         r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000346156800022&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;/records></records></return></ns2:retrieveResponse></soap:Body></soap:Envelope>
-  recorded_at: Wed, 19 May 2021 21:37:35 GMT
+  recorded_at: Wed, 19 May 2021 22:25:01 GMT
+- request:
+    method: post
+    uri: http://search.webofknowledge.com/esti/wokmws/ws/WokSearch
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8"?><soapenv:Envelope xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tns="http://woksearch.v3.wokmws.thomsonreuters.com"
+        xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Body><tns:search><queryParameters><databaseId>WOK</databaseId><userQuery>RID=(&quot;0000-0003-3859-2905&quot;)</userQuery><queryLanguage>en</queryLanguage></queryParameters><retrieveParameters><firstRecord>1</firstRecord><count>100</count><viewField><collectionName>WOS</collectionName><fieldName></fieldName></viewField><viewField><collectionName>MEDLINE</collectionName><fieldName></fieldName></viewField><option><key>RecordIDs</key><value>On</value></option></retrieveParameters></tns:search></soapenv:Body></soapenv:Envelope>
+    headers:
+      User-Agent:
+      - HTTPClient/1.0 (2.8.3, ruby 2.7.1 (2020-03-31))
+      Accept:
+      - "*/*"
+      Date:
+      - Wed, 19 May 2021 22:25:01 GMT
+      Cookie:
+      - SID="7ByXmWdNk3CO2B1cvyA"
+      Soapaction:
+      - ''
+      Content-Type:
+      - text/xml;charset=UTF-8
+      Content-Length:
+      - '809'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - text/xml;charset=UTF-8
+      Date:
+      - Wed, 19 May 2021 22:25:02 GMT
+      Server:
+      - Apache-Coyote/1.1
+      Content-Length:
+      - '26873'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"><soap:Body><ns2:searchResponse
+        xmlns:ns2="http://woksearch.v3.wokmws.thomsonreuters.com"><return><queryId>2</queryId><recordsFound>150</recordsFound><recordsSearched>88948818</recordsSearched><optionValue><label>RecordIDs</label><value>WOS:000427887200012</value><value>WOS:000405616900002</value><value>WOS:000440967900012</value><value>WOS:000424402500017</value><value>WOS:000459314900007</value><value>WOS:000386326200019</value><value>WOS:000383781600015</value><value>WOS:000337727000007</value><value>WOS:000351668600006</value><value>WOS:000426276000005</value><value>WOS:000405361900008</value><value>WOS:000387469100004</value><value>WOS:000474099000003</value><value>WOS:000567371800007</value><value>WOS:000358581700030</value><value>WOS:000339602900018</value><value>WOS:000336260000006</value><value>WOS:000466783000004</value><value>WOS:000399659000008</value><value>WOS:000398829200005</value><value>WOS:000446339600001</value><value>MEDLINE:33398279</value><value>WOS:000461831500054</value><value>WOS:000400664400006</value><value>WOS:000386326200035</value><value>WOS:000403782300001</value><value>WOS:000419625900016</value><value>WOS:000360620100003</value><value>WOS:000434113600009</value><value>WOS:000425900600019</value><value>WOS:000398197800006</value><value>WOS:000352371900019</value><value>WOS:000412543100006</value><value>WOS:000389557000012</value><value>MEDLINE:26306281</value><value>WOS:000334429300007</value><value>WOS:000538558900001</value><value>WOS:000443787600011</value><value>WOS:000445753100002</value><value>WOS:000409183600006</value><value>MEDLINE:27199190</value><value>WOS:000366135900002</value><value>WOS:000358821300020</value><value>WOS:000495364500004</value><value>WOS:000469491000009</value><value>WOS:000428317700011</value><value>WOS:000427537700003</value><value>WOS:000461831500006</value><value>WOS:000352195700026</value><value>WOS:000336507500015</value><value>WOS:000335405200021</value><value>WOS:000332858400048</value><value>WOS:000435287900002</value><value>WOS:000373526700005</value><value>WOS:000359645700006</value><value>WOS:000428180700004</value><value>WOS:000422723300003</value><value>WOS:000362838700024</value><value>WOS:000353198700012</value><value>WOS:000348126800006</value><value>WOS:000617972500001</value><value>WOS:000444941300001</value><value>WOS:000365709900005</value><value>WOS:000349450800007</value><value>WOS:000415583200001</value><value>WOS:000397264100008</value><value>WOS:000384536000001</value><value>WOS:000408790100013</value><value>WOS:000390851300005</value><value>WOS:000460125400015</value><value>WOS:000431884200012</value><value>WOS:000466750900030</value><value>WOS:000355557900008</value><value>WOS:000376584400019</value><value>WOS:000424386600014</value><value>WOS:000360322800016</value><value>WOS:000461888300013</value><value>WOS:000343666300003</value><value>MEDLINE:32634869</value><value>WOS:000499323900063</value><value>WOS:000368357800013</value><value>WOS:000405498300005</value><value>WOS:000364626100006</value><value>WOS:000346632900006</value><value>WOS:000357993500007</value><value>WOS:000461835500001</value><value>WOS:000503918200011</value><value>WOS:000486860200001</value><value>WOS:000356370900005</value><value>WOS:000636223400002</value><value>WOS:000380224500063</value><value>WOS:000380831700005</value><value>WOS:000418800600012</value><value>WOS:000347393200006</value><value>WOS:000340731400006</value><value>WOS:000392723700004</value><value>WOS:000355751600011</value><value>WOS:000399806500016</value><value>WOS:000359752100030</value><value>WOS:000348562700003</value></optionValue><records>&lt;records
+        xmlns="http://scientific.thomsonreuters.com/schema/wok5.4/public/Fields">&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000427887200012&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000405616900002&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000440967900012&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000424402500017&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000459314900007&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000386326200019&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000383781600015&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000337727000007&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000351668600006&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000426276000005&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000405361900008&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000387469100004&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000474099000003&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000567371800007&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000358581700030&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000339602900018&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000336260000006&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000466783000004&lt;/UID&gt;&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000399659000008&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000398829200005&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000446339600001&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>MEDLINE:33398279&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000461831500054&lt;/UID>&lt;static_data>&lt;/static_data&gt;&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000400664400006&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000386326200035&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000403782300001&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000419625900016&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000360620100003&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000434113600009&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000425900600019&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000398197800006&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000352371900019&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000412543100006&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000389557000012&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>MEDLINE:26306281&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000334429300007&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000538558900001&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000443787600011&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000445753100002&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000409183600006&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>MEDLINE:27199190&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000366135900002&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000358821300020&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000495364500004&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000469491000009&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000428317700011&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data&gt;&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000427537700003&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000461831500006&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000352195700026&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000336507500015&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000335405200021&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000332858400048&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000435287900002&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000373526700005&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000359645700006&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000428180700004&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000422723300003&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000362838700024&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000353198700012&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000348126800006&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000617972500001&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000444941300001&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000365709900005&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000349450800007&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000415583200001&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000397264100008&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000384536000001&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000408790100013&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000390851300005&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000460125400015&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000431884200012&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000466750900030&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000355557900008&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000376584400019&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000424386600014&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000360322800016&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000461888300013&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000343666300003&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>MEDLINE:32634869&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000499323900063&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000368357800013&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000405498300005&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000364626100006&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000346632900006&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000357993500007&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000461835500001&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000503918200011&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000486860200001&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000356370900005&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000636223400002&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000380224500063&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000380831700005&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000418800600012&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000347393200006&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000340731400006&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000392723700004&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000355751600011&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000399806500016&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000359752100030&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000348562700003&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;/records></records></return></ns2:searchResponse></soap:Body></soap:Envelope>
+  recorded_at: Wed, 19 May 2021 22:25:02 GMT
+- request:
+    method: post
+    uri: http://search.webofknowledge.com/esti/wokmws/ws/WokSearch
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8"?><soapenv:Envelope xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tns="http://woksearch.v3.wokmws.thomsonreuters.com"
+        xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Body><tns:retrieve><queryId>2</queryId><retrieveParameters><firstRecord>101</firstRecord><count>100</count><viewField><collectionName>WOS</collectionName><fieldName></fieldName></viewField><viewField><collectionName>MEDLINE</collectionName><fieldName></fieldName></viewField><option><key>RecordIDs</key><value>On</value></option></retrieveParameters></tns:retrieve></soapenv:Body></soapenv:Envelope>
+    headers:
+      User-Agent:
+      - HTTPClient/1.0 (2.8.3, ruby 2.7.1 (2020-03-31))
+      Accept:
+      - "*/*"
+      Date:
+      - Wed, 19 May 2021 22:25:02 GMT
+      Cookie:
+      - SID="7ByXmWdNk3CO2B1cvyA"
+      Soapaction:
+      - ''
+      Content-Type:
+      - text/xml;charset=UTF-8
+      Content-Length:
+      - '679'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - text/xml;charset=UTF-8
+      Date:
+      - Wed, 19 May 2021 22:25:03 GMT
+      Server:
+      - Apache-Coyote/1.1
+      Content-Length:
+      - '13600'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"><soap:Body><ns2:retrieveResponse
+        xmlns:ns2="http://woksearch.v3.wokmws.thomsonreuters.com"><return><optionValue><label>RecordIDs</label><value>WOS:000360191800016</value><value>WOS:000341505000057</value><value>WOS:000356780900020</value><value>WOS:000467960500002</value><value>WOS:000404090100028</value><value>WOS:000352317000013</value><value>WOS:000496299100001</value><value>WOS:000381691000001</value><value>WOS:000446102400021</value><value>WOS:000461835500048</value><value>WOS:000446528600003</value><value>WOS:000373658300011</value><value>WOS:000430475300003</value><value>WOS:000359895400001</value><value>WOS:000454618200017</value><value>WOS:000370421800005</value><value>WOS:000412731000028</value><value>WOS:000336509000034</value><value>WOS:000375514000018</value><value>WOS:000416455600001</value><value>WOS:000374412300003</value><value>WOS:000374084800022</value><value>WOS:000339166700007</value><value>WOS:000588364200001</value><value>WOS:000418321600009</value><value>WOS:000347500100015</value><value>WOS:000407082400024</value><value>WOS:000394450500004</value><value>WOS:000429402800001</value><value>WOS:000368286000016</value><value>WOS:000392132200006</value><value>WOS:000364401600008</value><value>WOS:000391454500093</value><value>WOS:000358862400002</value><value>WOS:000345153300029</value><value>WOS:000342763900023</value><value>WOS:000367655600002</value><value>WOS:000458148200005</value><value>WOS:000425523000032</value><value>WOS:000384036900025</value><value>WOS:000332575800021</value><value>WOS:000349098000032</value><value>WOS:000415365500035</value><value>WOS:000426706600001</value><value>WOS:000355939300014</value><value>WOS:000334741600026</value><value>WOS:000430004300020</value><value>WOS:000407861100014</value><value>WOS:000346156800023</value><value>WOS:000346156800022</value></optionValue><records>&lt;records
+        xmlns="http://scientific.thomsonreuters.com/schema/wok5.4/public/Fields">&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000360191800016&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000341505000057&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000356780900020&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000467960500002&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000404090100028&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000352317000013&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000496299100001&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000381691000001&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000446102400021&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000461835500048&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000446528600003&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000373658300011&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000430475300003&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000359895400001&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000454618200017&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000370421800005&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000412731000028&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000336509000034&lt;/UID&gt;&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000375514000018&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000416455600001&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000374412300003&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000374084800022&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000339166700007&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000588364200001&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000418321600009&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000347500100015&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000407082400024&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000394450500004&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000429402800001&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000368286000016&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000392132200006&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000364401600008&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000391454500093&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000358862400002&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000345153300029&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000342763900023&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000367655600002&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000458148200005&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000425523000032&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000384036900025&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000332575800021&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000349098000032&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000415365500035&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000426706600001&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000355939300014&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000334741600026&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000430004300020&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000407861100014&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000346156800023&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;REC
+        r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000346156800022&lt;/UID>&lt;static_data>&lt;/static_data>&lt;dynamic_data>&lt;cluster_related>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;/records></records></return></ns2:retrieveResponse></soap:Body></soap:Envelope>
+  recorded_at: Wed, 19 May 2021 22:25:03 GMT
 recorded_with: VCR 6.0.0
