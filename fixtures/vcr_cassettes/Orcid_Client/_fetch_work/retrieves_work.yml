@@ -1,0 +1,128 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://sandbox.orcid.org/oauth/token
+    body:
+      encoding: UTF-8
+      string: client_id=APP-FAKEJMB7RBQVFQ0D&client_secret=FAKE6bb5-dba1-445d-ba10-c14745383ba0&grant_type=client_credentials&scope=%2Fread-public
+    headers:
+      User-Agent:
+      - Faraday v1.4.1
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 18 May 2021 19:07:58 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Expires:
+      - '0'
+      Pragma:
+      - no-cache
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Set-Cookie:
+      - X-Mapping-fjhppofk=624CC0FFE4E934826B05D7A96E0B3CAE; path=/
+      X-Frame-Options:
+      - DENY
+      Cf-Cache-Status:
+      - DYNAMIC
+      Cf-Request-Id:
+      - 0a2279c2ea00003637468a8000000001
+      Expect-Ct:
+      - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 65175f17d88f3637-LAX
+    body:
+      encoding: ASCII-8BIT
+      string: '{"access_token":"private_access_token","token_type":"bearer","refresh_token":"4b36827b-1234-4985-80c9-7f783983d28a","expires_in":631138518,"scope":"/read-public","orcid":null}'
+  recorded_at: Tue, 18 May 2021 19:07:58 GMT
+- request:
+    method: get
+    uri: https://api.sandbox.orcid.org/v3.0/0000-0003-1527-0030/work/15473562
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      User-Agent:
+      - stanford-library-sul-pub
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip,deflate
+      Date:
+      - Tue, 18 May 2021 19:07:58 GMT
+      Authorization:
+      - Bearer private_bearer_token
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 18 May 2021 19:07:58 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Content-Encoding:
+      - gzip
+      Expires:
+      - '0'
+      Pragma:
+      - no-cache
+      X-Xss-Protection:
+      - 1; mode=block
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Content-Type-Options:
+      - nosniff
+      Set-Cookie:
+      - X-Mapping-fjhppofk=814C785051499CB634650A2359C0B50C; path=/
+      X-Frame-Options:
+      - DENY
+      Cf-Cache-Status:
+      - DYNAMIC
+      Cf-Request-Id:
+      - 0a2279c47e0000362416bc2000000001
+      Expect-Ct:
+      - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 65175f1a6f013624-LAX
+    body:
+      encoding: UTF-8
+      string: '{"created-date":{"value":1424367298781},"last-modified-date":{"value":1437746074546},"source":{"source-orcid":null,"source-client-id":{"uri":"https://orcid.org/client/0000-0002-5982-8983","path":"0000-0002-5982-8983","host":"orcid.org"},"source-name":{"value":"Scopus
+        - Elsevier"},"assertion-origin-orcid":{"uri":"https://orcid.org/0000-0003-1527-0030","path":"0000-0003-1527-0030","host":"orcid.org"},"assertion-origin-client-id":null,"assertion-origin-name":{"value":"Justin
+        Littman"}},"put-code":15473562,"path":"/0000-0003-1527-0030/work/15473562","title":{"title":{"value":"Actualized
+        preservation threats: Practical lessons from chronicling America"},"subtitle":null,"translated-title":null},"journal-title":null,"short-description":null,"citation":{"citation-type":"bibtex","citation-value":"@article
+        { littman2007,title = {Actualized preservation threats: Practical lessons
+        from chronicling America},journal = {D-Lib Magazine},year = {2007},volume
+        = {13},number = {7-8},author = {Littman, J.}}"},"type":"journal-article","publication-date":{"year":{"value":"2007"},"month":null,"day":null},"external-ids":{"external-id":[{"external-id-type":"doi","external-id-value":"10.1045/july2007-littman","external-id-normalized":{"value":"10.1045/july2007-littman","transient":true},"external-id-normalized-error":null,"external-id-url":{"value":""},"external-id-relationship":"self"},{"external-id-type":"eid","external-id-value":"2-s2.0-34548293277","external-id-normalized":{"value":"2-s2.0-34548293277","transient":true},"external-id-normalized-error":null,"external-id-url":{"value":""},"external-id-relationship":"self"}]},"url":{"value":"http://www.scopus.com/inward/record.url?eid=2-s2.0-34548293277&partnerID=MN8TOARS"},"contributors":{"contributor":[{"contributor-orcid":null,"credit-name":{"value":"Littman,
+        J."},"contributor-email":null,"contributor-attributes":null}]},"language-code":null,"country":null,"visibility":"public"}'
+  recorded_at: Tue, 18 May 2021 19:07:58 GMT
+recorded_with: VCR 6.0.0
