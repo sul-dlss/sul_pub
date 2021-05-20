@@ -2,10 +2,10 @@
 http_interactions:
 - request:
     method: post
-    uri: https://aswstest.stanford.edu/api/oauth/token
+    uri: Settings.MAIS.BASE_URL/api/oauth/token
     body:
       encoding: UTF-8
-      string: client_id=5d127563-6cbf-4275-98eb-FAKE&client_secret=19ad9c72-80dd-46d9-b7eb-FAKE&grant_type=client_credentials
+      string: client_id=Settings.MAIS.CLIENT_ID&client_secret=Settings.MAIS.CLIENT_SECRET&grant_type=client_credentials
     headers:
       User-Agent:
       - Faraday v1.4.1
@@ -21,17 +21,17 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 11 May 2021 20:18:17 GMT
+      - Mon, 24 May 2021 15:50:12 GMT
       Server:
       - ''
       Connection:
       - close
       X-Correlationid:
-      - Id-89e69a607f1cf57992c53bdd 0
+      - Id-34cbab601d069591910c5109 0
       Accept:
       - "*/*"
       Host:
-      - aswstest.stanford.edu
+      - aswsuat.stanford.edu
       User-Agent:
       - Faraday v1.4.1
       Cache-Control:
@@ -42,11 +42,11 @@ http_interactions:
       - no-cache
     body:
       encoding: UTF-8
-      string: '{"access_token":"private_access_token","token_type":"Bearer","expires_in":3600,"scope":"orcid"}'
-  recorded_at: Tue, 11 May 2021 20:18:17 GMT
+      string: '{"access_token":"private_access_token","token_type":"Bearer","expires_in":3599,"scope":"orcid"}'
+  recorded_at: Mon, 24 May 2021 15:50:12 GMT
 - request:
     method: get
-    uri: https://aswstest.stanford.edu/mais/orcid/v1/users?page_size=2&scope=ANY
+    uri: Settings.MAIS.BASE_URL/mais/orcid/v1/users?page_size=2&scope=ANY
     body:
       encoding: UTF-8
       string: ''
@@ -58,7 +58,7 @@ http_interactions:
       Accept-Encoding:
       - gzip,deflate
       Date:
-      - Tue, 11 May 2021 20:18:17 GMT
+      - Mon, 24 May 2021 15:50:12 GMT
       Authorization:
       - Bearer private_bearer_token
   response:
@@ -75,9 +75,9 @@ http_interactions:
       Connection:
       - close
       X-Correlationid:
-      - Id-89e69a609c1c4e34a7db972c 0
+      - Id-34cbab60070657b197b80bb8 0
       Date:
-      - Tue, 11 May 2021 20:18:17 GMT
+      - Mon, 24 May 2021 15:50:12 GMT
       Status:
       - '200'
       X-Sl-Assetpath:
@@ -94,11 +94,11 @@ http_interactions:
       - application/json
     body:
       encoding: UTF-8
-      string: '{"meta":{"current_page":1,"total_records":144,"page_size":2,"total_pages":72},"results":[{"sunet_id":"nataliex","orcid_id":"https://sandbox.orcid.org/0000-0001-7161-0000","access_token":"145d175c-1ac5-4ea7-935d-fg6d61ffb9a3","scope":["/read-limited"],"last_updated":"2020-01-23T17:06:21.000"},{"sunet_id":"techandx","orcid_id":"https://sandbox.orcid.org/0000-0003-2402-0000","access_token":"d123389b-222b-4123-9900-4b8da6392d2c","scope":["/read-limited"],"last_updated":"2020-01-23T17:13:58.000"}],"links":{"self":"/users?scope=any&page_number=1&page_size=2","first":"/users?scope=any&page_number=1&page_size=2","prev":"/users?scope=any&page_number=1&page_size=2","next":"/users?scope=any&page_number=2&page_size=2","last":"/users?scope=any&page_number=72&page_size=2"}}'
-  recorded_at: Tue, 11 May 2021 20:18:17 GMT
+      string: '{"meta":{"current_page":1,"total_records":146,"page_size":2,"total_pages":73},"results":[{"sunet_id":"nataliex","orcid_id":"https://sandbox.orcid.org/0000-0001-7161-1827","access_token":"XXXXXXXX-1ac5-4ea7-835d-bc6d61ffb9a8","scope":["/read-limited"],"last_updated":"2020-01-23T17:06:21.000"},{"sunet_id":"zechandl","orcid_id":"https://sandbox.orcid.org/0000-0003-2402-9839","access_token":"XXXXXXXX-222b-4123-9900-9b8da6392d3b","scope":["/read-limited"],"last_updated":"2020-01-23T17:13:58.000"}],"links":{"self":"/users?scope=any&page_number=1&page_size=2","first":"/users?scope=any&page_number=1&page_size=2","prev":"","next":"/users?scope=any&page_number=2&page_size=2","last":"/users?scope=any&page_number=73&page_size=2"}}'
+  recorded_at: Mon, 24 May 2021 15:50:13 GMT
 - request:
     method: get
-    uri: https://aswstest.stanford.edu/mais/orcid/v1/users?page_number=2&page_size=2&scope=any
+    uri: Settings.MAIS.BASE_URL/mais/orcid/v1/users?page_number=2&page_size=2&scope=any
     body:
       encoding: UTF-8
       string: ''
@@ -110,7 +110,7 @@ http_interactions:
       Accept-Encoding:
       - gzip,deflate
       Date:
-      - Tue, 11 May 2021 20:18:17 GMT
+      - Mon, 24 May 2021 15:50:13 GMT
       Authorization:
       - Bearer private_bearer_token
   response:
@@ -127,9 +127,9 @@ http_interactions:
       Connection:
       - close
       X-Correlationid:
-      - Id-8ae69a60801c20d0722365fb 0
+      - Id-35cbab601e060c02868ca641 0
       Date:
-      - Tue, 11 May 2021 20:18:18 GMT
+      - Mon, 24 May 2021 15:50:13 GMT
       Status:
       - '200'
       X-Sl-Assetpath:
@@ -146,11 +146,11 @@ http_interactions:
       - application/json
     body:
       encoding: UTF-8
-      string: '{"meta":{"current_page":2,"total_records":144,"page_size":2,"total_pages":72},"results":[{"sunet_id":"xconner","orcid_id":"https://sandbox.orcid.org/0000-0003-1523-0000","access_token":"q9e4562f-d714-4fdc-8a73-5b22b689cc11","scope":["/read-limited"],"last_updated":"2020-01-23T19:03:33.000"},{"sunet_id":"rborghx","orcid_id":"https://sandbox.orcid.org/0000-0001-9570-0000","access_token":"dd456fc1-8a69-415e-9cd5-69115df98fg6","scope":["/read-limited"],"last_updated":"2020-01-23T19:33:48.000"}],"links":{"self":"/users?scope=any&page_number=2&page_size=2","first":"/users?scope=any&page_number=1&page_size=2","prev":"/users?scope=any&page_number=1&page_size=2","next":"/users?scope=any&page_number=3&page_size=2","last":"/users?scope=any&page_number=72&page_size=2"}}'
-  recorded_at: Tue, 11 May 2021 20:18:18 GMT
+      string: '{"meta":{"current_page":2,"total_records":146,"page_size":2,"total_pages":73},"results":[{"sunet_id":"aconner","orcid_id":"https://sandbox.orcid.org/0000-0003-1523-913X","access_token":"XXXXXXXX-d714-4fdc-8a73-5b22b689bb00","scope":["/read-limited"],"last_updated":"2020-01-23T19:03:33.000"},{"sunet_id":"jborghi","orcid_id":"https://sandbox.orcid.org/0000-0001-9570-4163","access_token":"XXXXXXXX-8a69-415e-8cd5-69115df98ea1","scope":["/read-limited"],"last_updated":"2020-01-23T19:33:48.000"}],"links":{"self":"/users?scope=any&page_number=2&page_size=2","first":"/users?scope=any&page_number=1&page_size=2","prev":"/users?scope=any&page_number=1&page_size=2","next":"/users?scope=any&page_number=3&page_size=2","last":"/users?scope=any&page_number=73&page_size=2"}}'
+  recorded_at: Mon, 24 May 2021 15:50:13 GMT
 - request:
     method: get
-    uri: https://aswstest.stanford.edu/mais/orcid/v1/users?page_number=3&page_size=2&scope=any
+    uri: Settings.MAIS.BASE_URL/mais/orcid/v1/users?page_number=3&page_size=2&scope=any
     body:
       encoding: UTF-8
       string: ''
@@ -162,7 +162,7 @@ http_interactions:
       Accept-Encoding:
       - gzip,deflate
       Date:
-      - Tue, 11 May 2021 20:18:18 GMT
+      - Mon, 24 May 2021 15:50:13 GMT
       Authorization:
       - Bearer private_bearer_token
   response:
@@ -179,9 +179,9 @@ http_interactions:
       Connection:
       - close
       X-Correlationid:
-      - Id-8ae69a609d1c25c4527b2ec4 0
+      - Id-35cbab60080667c58e8ef370 0
       Date:
-      - Tue, 11 May 2021 20:18:18 GMT
+      - Mon, 24 May 2021 15:50:13 GMT
       Status:
       - '200'
       X-Sl-Assetpath:
@@ -198,6 +198,6 @@ http_interactions:
       - application/json
     body:
       encoding: UTF-8
-      string: '{"meta":{"current_page":3,"total_records":144,"page_size":2,"total_pages":72},"results":[{"sunet_id":"pxtucket","orcid_id":"https://sandbox.orcid.org/0000-0002-1859-0000","access_token":"1rc2341ad-cfdd-4f48-9c13-886e07750123","scope":["/read-limited"],"last_updated":"2020-01-24T14:59:12.000"},{"sunet_id":"ccuddy","orcid_id":"https://sandbox.orcid.org/0000-0003-2460-7096","access_token":"701bdfe8-8363-4523-bd27-7c2028abf3c9","scope":["/read-limited"],"last_updated":"2020-01-24T15:04:58.000"}],"links":{"self":"/users?scope=any&page_number=3&page_size=2","first":"/users?scope=any&page_number=1&page_size=2","prev":"/users?scope=any&page_number=2&page_size=2","next":"/users?scope=any&page_number=4&page_size=2","last":"/users?scope=any&page_number=72&page_size=2"}}'
-  recorded_at: Tue, 11 May 2021 20:18:18 GMT
+      string: '{"meta":{"current_page":3,"total_records":146,"page_size":2,"total_pages":73},"results":[{"sunet_id":"ccuddy","orcid_id":"https://sandbox.orcid.org/0000-0003-2460-7096","access_token":"XXXXXXXX-8363-4523-bd27-7c2028abf3c9","scope":["/read-limited"],"last_updated":"2020-01-24T15:04:58.000"},{"sunet_id":"graceb","orcid_id":"https://sandbox.orcid.org/0000-0003-2570-9123","access_token":"XXXXXXXX-bd36-4ea3-9fe2-a762431e3b38","scope":["/read-limited"],"last_updated":"2020-01-24T15:38:02.000"}],"links":{"self":"/users?scope=any&page_number=3&page_size=2","first":"/users?scope=any&page_number=1&page_size=2","prev":"/users?scope=any&page_number=2&page_size=2","next":"/users?scope=any&page_number=4&page_size=2","last":"/users?scope=any&page_number=73&page_size=2"}}'
+  recorded_at: Mon, 24 May 2021 15:50:13 GMT
 recorded_with: VCR 6.0.0

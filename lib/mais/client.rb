@@ -19,7 +19,7 @@ module Mais
       orcid_users = []
       next_page = first_page(page_size)
       loop do
-        response = get_next_page(next_page)
+        response = get_response(next_page)
         response[:results].each do |result|
           orcid_users << OrcidUser.new(result[:sunet_id], result[:orcid_id], result[:scope], result[:access_token])
           return orcid_users if limit && limit == orcid_users.size
@@ -30,6 +30,16 @@ module Mais
       end
     rescue StandardError => e
       NotificationManager.error(e, "#{e.class.name} during UIT MAIS ORCID User API call", self)
+      raise
+    end
+
+    # @param [string] sunet to fetch
+    # @return [<OrcidUser>] orcid user
+    def fetch_orcid_user(sunet:)
+      result = get_response("/users/#{sunet}")
+      OrcidUser.new(result[:sunet_id], result[:orcid_id], result[:scope], result[:access_token])
+    rescue StandardError => e
+      NotificationManager.error(e, "#{e.class.name} during UIT MAIS ORCID Single Fetch User API call", self)
       raise
     end
 
@@ -45,8 +55,8 @@ module Mais
       links[:self] == links[:last]
     end
 
-    def get_next_page(next_page)
-      response = conn.get("/mais/orcid/v1#{next_page}")
+    def get_response(path)
+      response = conn.get("/mais/orcid/v1#{path}")
       raise "UIT MAIS ORCID User API returned #{response.status}" if response.status != 200
 
       body = JSON.parse(response.body).with_indifferent_access

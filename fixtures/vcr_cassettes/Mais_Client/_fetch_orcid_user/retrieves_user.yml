@@ -5,7 +5,7 @@ http_interactions:
     uri: Settings.MAIS.BASE_URL/api/oauth/token
     body:
       encoding: UTF-8
-      string: client_id=5g123456-6cbf-4272-91eb-659948ce441a&client_secret=12ad9c34-80dr-46h9-b7eb-6543108a0c71&grant_type=client_credentials
+      string: client_id=Settings.MAIS.CLIENT_ID&client_secret=Settings.MAIS.CLIENT_SECRET&grant_type=client_credentials
     headers:
       User-Agent:
       - Faraday v1.4.1
@@ -21,17 +21,17 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 11 May 2021 22:33:00 GMT
+      - Mon, 24 May 2021 15:50:13 GMT
       Server:
       - ''
       Connection:
       - close
       X-Correlationid:
-      - Id-1c069b60e22742b7a7cfc7ce 0
+      - Id-35cbab60210674c1c53bd811 0
       Accept:
       - "*/*"
       Host:
-      - aswstest.stanford.edu
+      - aswsuat.stanford.edu
       User-Agent:
       - Faraday v1.4.1
       Cache-Control:
@@ -43,10 +43,10 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"access_token":"private_access_token","token_type":"Bearer","expires_in":3600,"scope":"orcid"}'
-  recorded_at: Tue, 11 May 2021 22:33:00 GMT
+  recorded_at: Mon, 24 May 2021 15:50:13 GMT
 - request:
     method: get
-    uri: Settings.MAIS.BASE_URL/mais/orcid/v1/users?page_size=2&scope=ANY
+    uri: Settings.MAIS.BASE_URL/mais/orcid/v1/users/nataliex
     body:
       encoding: UTF-8
       string: ''
@@ -58,36 +58,42 @@ http_interactions:
       Accept-Encoding:
       - gzip,deflate
       Date:
-      - Tue, 11 May 2021 22:33:00 GMT
+      - Mon, 24 May 2021 15:50:13 GMT
       Authorization:
       - Bearer private_bearer_token
   response:
     status:
-      code: 500
-      message: Internal Server Error
+      code: 200
+      message: OK
     headers:
       Allow:
       - GET, HEAD, OPTIONS
-      Server:
-      - ''
-      Content-Length:
-      - '0'
+      Max-Forwards:
+      - '20'
+      Via:
+      - 1.0 ofapapiuat02.stanford.edu ()
       Connection:
       - close
       X-Correlationid:
-      - Id-1c069b60c827515dde98b1b3 0
-      Accept:
-      - "*/*"
-      Authorization:
-      - Bearer private_bearer_token
+      - Id-35cbab600b06d6a41155d6d9 0
       Date:
-      - Tue, 11 May 2021 22:33:00 GMT
-      Host:
-      - aswstest.stanford.edu
-      User-Agent:
-      - stanford-library-sul-pub
+      - Mon, 24 May 2021 15:50:13 GMT
+      Status:
+      - '200'
+      X-Sl-Assetpath:
+      - "/StanfordUAT/Mais/Orcid/users"
+      X-Sl-Asseturipath:
+      - "/api/1/rest/feed-master/queue/StanfordUAT/Mais/Orcid/users"
+      X-Sl-Authorized:
+      - 'true'
+      X-Sl-Clientip:
+      - 172.20.21.210
+      X-Sl-Pathinfo:
+      - nataliex
+      Content-Type:
+      - application/json
     body:
       encoding: UTF-8
-      string: ''
-  recorded_at: Tue, 11 May 2021 22:33:00 GMT
+      string: '{"sunet_id":"nataliex","orcid_id":"https://sandbox.orcid.org/0000-0001-7161-1827","access_token":"XXXXXXXX-1ac5-4ea7-835d-bc6d61ffb9a8","scope":["/read-limited"],"last_updated":"2020-01-23T17:06:21.000"}'
+  recorded_at: Mon, 24 May 2021 15:50:14 GMT
 recorded_with: VCR 6.0.0
