@@ -79,7 +79,7 @@ http_interactions:
       Accept:
       - "*/*"
       Authorization:
-      - Bearer oSgcXgEhRY4KjnHbRvaai4YLgce76sG2
+      - Bearer private_bearer_token
       Date:
       - Tue, 11 May 2021 22:33:00 GMT
       Host:
