@@ -22,6 +22,32 @@ describe Author do
     end
   end
 
+  describe '#orcidid' do
+    it 'indicates if orcidid is valid' do
+      # missing url
+      expect { Author.create!(cap_profile_id: '5555', orcidid: '0000-1234-5678-9012') }.to raise_error ActiveRecord::RecordInvalid
+      # bad url protocol
+      expect { Author.create!(cap_profile_id: '5555', orcidid: 'http://orcid.org/0000-1234-5678-9012') }.to raise_error ActiveRecord::RecordInvalid
+      # invalid url
+      expect { Author.create!(cap_profile_id: '5555', orcidid: 'https://test.orcid.org/0000-1234-5678-9012') }.to raise_error ActiveRecord::RecordInvalid
+      # wrong length
+      expect { Author.create!(cap_profile_id: '5555', orcidid: 'https://orcid.org/0000-1234-5678-9012-1234') }.to raise_error ActiveRecord::RecordInvalid
+      # invalid last digit
+      expect { Author.create!(cap_profile_id: '5555', orcidid: 'https://orcid.org/0000-1234-5678-901A') }.to raise_error ActiveRecord::RecordInvalid
+      # missing dashes
+      expect { Author.create!(cap_profile_id: '5555', orcidid: 'https://orcid.org/000012345678901A') }.to raise_error ActiveRecord::RecordInvalid
+    end
+
+    it 'saves a valid orcidid' do
+      expect { Author.create!(cap_profile_id: '5555', orcidid: 'https://orcid.org/0000-1234-5678-901X') }.not_to raise_error ActiveRecord::RecordInvalid
+      expect { Author.create!(cap_profile_id: '5556', orcidid: 'https://sandbox.orcid.org/0000-1234-5678-9011') }.not_to raise_error ActiveRecord::RecordInvalid
+    end
+
+    it 'allows nil orcidid' do
+      expect { Author.create!(cap_profile_id: '5555', orcidid: nil) }.not_to raise_error ActiveRecord::RecordInvalid
+    end
+  end
+
   describe '#should_harvest?' do
     it 'indicates if the primary author information changes but not the number of identities' do
       expect(subject.should_harvest?).to be false

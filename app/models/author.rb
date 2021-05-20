@@ -8,6 +8,7 @@ class Author < ApplicationRecord
 
   has_paper_trail on: [:destroy]
   validates :cap_profile_id, uniqueness: true, presence: true
+  validates :orcidid, format: { with: %r{https://(sandbox.)*orcid.org/\d{4}-\d{4}-\d{4}-\d{3}(\d|[xX])\z} }, allow_blank: true
 
   has_many :author_identities, dependent: :destroy, autosave: true
   has_many :contributions, dependent: :destroy
