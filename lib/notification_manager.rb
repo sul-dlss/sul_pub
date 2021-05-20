@@ -21,6 +21,8 @@ class NotificationManager
       when WebOfScience::Client,
         WebOfScience::Harvester, WebOfScience::ProcessRecords, WebOfScience::Record
         log_exception(WebOfScience.logger, log_message, e)
+      when Orcid::AddWorks
+        log_exception(Orcid.logger, log_message, e)
       else
         log_exception(Rails.logger, log_message, e)
       end

@@ -4,7 +4,11 @@
 module Orcid
   # @return [Orcid::Client]
   def self.client
-    Orcid::Client.new
+    @@client ||= Orcid::Client.new
+  end
+
+  def self.logger
+    @@logger ||= Logger.new(Settings.ORCID.LOG)
   end
 
   # Extract the ID part from an ORCID ID.
