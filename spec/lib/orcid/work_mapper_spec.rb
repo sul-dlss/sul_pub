@@ -38,6 +38,10 @@ describe Orcid::WorkMapper do
       expect(pub_hash[:type]).to eq('article')
     end
 
+    it 'maps provenance' do
+      expect(pub_hash[:provenance]).to eq('orcid')
+    end
+
     it 'maps title' do
       expect(pub_hash[:title]).to eq('Elephants Don\'t Play Chess')
     end

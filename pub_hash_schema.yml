@@ -81,6 +81,7 @@ properties:
     enum:
       - batch
       - cap
+      - orcid
       - pubmed
       - sciencewire
       - wos
