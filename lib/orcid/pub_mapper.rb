@@ -17,7 +17,7 @@ module Orcid
     def map
       # TODO: Build complete work
       {
-        type: 'journal-article',
+        type: map_type,
         visibility: 'public',
         title: map_title,
         'external-ids' => map_ids
@@ -27,6 +27,13 @@ module Orcid
     private
 
     attr_reader :pub_hash
+
+    def map_type
+      work_type = PublicationTypeMapper.to_work_type(pub_hash[:type])
+      raise 'Unmapped publication type' unless work_type
+
+      work_type
+    end
 
     def map_title
       raise 'Title is required' if pub_hash[:title].blank?

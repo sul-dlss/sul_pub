@@ -17,7 +17,7 @@ module Orcid
     def map
       # TODO: Build complete pub_hash
       {
-        type: Settings.sul_doc_types.article,
+        type: PublicationTypeMapper.to_pub_type(work.work_type),
         title: work.title,
         identifier: map_identifiers
       }

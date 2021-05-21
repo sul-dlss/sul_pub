@@ -8,6 +8,7 @@ describe Orcid::WorkMapper do
 
     let(:base_work_response) do
       {
+        type: 'journal-article',
         title: {
           title: {
             value: 'Elephants Don\'t Play Chess'

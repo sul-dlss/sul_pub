@@ -5,6 +5,7 @@ describe Orcid::PubMapper do
 
   let(:base_pub_hash) do
     {
+      type: 'article',
       title: 'Computing Machinery and Intelligence',
       identifier: [
         {
@@ -38,6 +39,16 @@ describe Orcid::PubMapper do
                                                               'external-id-url' => 'https://doi.org/10.1093%2Fmind%2FLIX.236.433',
                                                               'external-id-relationship' => 'self'
                                                             })
+  end
+
+  context 'when unmappable type' do
+    let(:pub_hash) do
+      base_pub_hash.dup.tap { |pub_hash| pub_hash[:type] = 'workingPaper' }
+    end
+
+    it 'raises' do
+      expect { work }.to raise_error('Unmapped publication type')
+    end
   end
 
   context 'when missing title' do
@@ -86,7 +97,7 @@ describe Orcid::PubMapper do
     end
   end
 
-  context 'when unmappable type' do
+  context 'when unmappable identifier type' do
     let(:pub_hash) do
       pub_hash = base_pub_hash.dup
       pub_hash[:identifier] << {

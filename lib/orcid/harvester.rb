@@ -49,8 +49,7 @@ module Orcid
     end
 
     def check_work_type?(author, work)
-      # Only considering the first work summary.
-      return true if ['journal-article'].include?(work.work_type)
+      return true if PublicationTypeMapper.work_type?(work.work_type)
 
       log_info(author, "skipping work #{work.put_code} since work type #{work.work_type} not supported.")
       false
