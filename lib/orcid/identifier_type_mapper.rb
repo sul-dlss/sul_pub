@@ -8,6 +8,12 @@ module Orcid
       'wosuid' => 'WosUID'
     }.freeze
 
+    SUL_PUB_ID_TYPE_TO_ORCID_ID_TYPE = {
+      'eissn' => 'issn',
+      'PMID' => 'pmid',
+      'WosUID' => 'wosuid'
+    }.freeze
+
     # From https://pub.orcid.org/v3.0/identifiers
     ORCID_ID_TYPES = %w[
       agr
@@ -59,7 +65,7 @@ module Orcid
 
     # @return [String] ORCID id type or nil if no matching
     def self.to_orcid_id_type(sul_pub_id_type)
-      id_type = ORCID_ID_TYPE_TO_SUL_PUB_ID_TYPE.invert.fetch(sul_pub_id_type, sul_pub_id_type)
+      id_type = SUL_PUB_ID_TYPE_TO_ORCID_ID_TYPE.fetch(sul_pub_id_type, sul_pub_id_type)
 
       return nil unless ORCID_ID_TYPES.include?(id_type)
 
