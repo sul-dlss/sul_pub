@@ -10,7 +10,7 @@ describe Orcid::PubMapper do
       identifier: [
         {
           type: 'doi',
-          id: 'doi:10.1093/mind/LIX.236.433',
+          id: '10.1093/mind/LIX.236.433',
           url: 'https://doi.org/10.1093%2Fmind%2FLIX.236.433'
         }
       ],
@@ -36,7 +36,7 @@ describe Orcid::PubMapper do
     expect(work['external-ids']['external-id'].size).to eq(1)
     expect(work['external-ids']['external-id'].first).to eq({
                                                               'external-id-type' => 'doi',
-                                                              'external-id-value' => 'doi:10.1093/mind/LIX.236.433',
+                                                              'external-id-value' => '10.1093/mind/LIX.236.433',
                                                               'external-id-url' => 'https://doi.org/10.1093%2Fmind%2FLIX.236.433',
                                                               'external-id-relationship' => 'self'
                                                             })

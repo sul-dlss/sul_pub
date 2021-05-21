@@ -53,6 +53,7 @@ describe Orcid::WorkMapper do
                                                   id: '10.1016/S0921-8890(05)80025-9',
                                                   url: 'https://doi.org/10.1016/S0921-8890(05)80025-9'
                                                 })
+      expect(pub_hash[:doi]).to eq('10.1016/S0921-8890(05)80025-9')
     end
 
     it 'maps abstract' do

@@ -21,7 +21,12 @@ module Orcid
         title: work.title,
         identifier: map_identifiers,
         abstract: work.short_description,
-        provenance: 'orcid'
+        provenance: 'orcid',
+        doi: work.external_id_value('doi'),
+        isbn: work.external_id_value('isbn'),
+        issn: work.external_id_value('issn'),
+        wos_uid: work.external_id_value('wosuid'),
+        pmid: work.external_id_value('pmid')
       }.compact
     end
 

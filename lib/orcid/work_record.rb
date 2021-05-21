@@ -26,6 +26,10 @@ module Orcid
       end.compact
     end
 
+    def external_id_value(external_id_type)
+      external_ids.find { |external_id| external_id.type == external_id_type }&.value
+    end
+
     def title
       @title ||= work_response.dig('title', 'title', 'value')
     end
