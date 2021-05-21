@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_12_190856) do
+ActiveRecord::Schema.define(version: 2021_05_19_134457) do
 
   create_table "author_identities", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.integer "author_id", null: false
@@ -87,8 +87,10 @@ ActiveRecord::Schema.define(version: 2021_05_12_190856) do
     t.string "visibility"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string "orcid_put_code"
     t.index ["author_id"], name: "index_contributions_on_author_id"
     t.index ["cap_profile_id"], name: "index_contributions_on_cap_profile_id"
+    t.index ["orcid_put_code"], name: "index_contributions_on_orcid_put_code"
     t.index ["publication_id", "author_id"], name: "index_contributions_on_publication_id_and_author_id"
     t.index ["publication_id"], name: "index_contributions_on_publication_id"
   end
