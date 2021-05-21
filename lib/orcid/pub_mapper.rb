@@ -21,7 +21,8 @@ module Orcid
         visibility: 'public',
         title: map_title,
         'external-ids': map_ids,
-        'short-description': pub_hash[:abstract]
+        'short-description': pub_hash[:abstract],
+        'publication-date': map_pub_date
       }.compact
     end
 
@@ -66,6 +67,32 @@ module Orcid
 
       {
         'external-id' => ids
+      }
+    end
+
+    def map_pub_date
+      map_pub_date_from_date || map_pub_date_from_year
+    end
+
+    def map_pub_date_from_date
+      date = DateTime.parse(pub_hash[:date])
+
+      {
+        year: { value: date.strftime('%Y') },
+        month: { value: date.strftime('%m') },
+        day: { value: date.strftime('%d') }
+      }
+    rescue StandardError
+      nil
+    end
+
+    def map_pub_date_from_year
+      return nil unless pub_hash[:year]&.match(/\d\d\d\d/)
+
+      {
+        year: { value: pub_hash[:year] },
+        month: nil,
+        day: nil
       }
     end
   end

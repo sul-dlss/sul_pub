@@ -14,7 +14,8 @@ describe Orcid::PubMapper do
           url: 'https://doi.org/10.1093%2Fmind%2FLIX.236.433'
         }
       ],
-      abstract: 'Can machines think?'
+      abstract: 'Can machines think?',
+      date: '1950-10-01T00:00:00'
     }
   end
 
@@ -44,6 +45,14 @@ describe Orcid::PubMapper do
 
   it 'maps abstract' do
     expect(work['short-description']).to eq('Can machines think?')
+  end
+
+  it 'maps date' do
+    expect(work['publication-date']).to eq({
+      year: { value: '1950' },
+      month: { value: '10' },
+      day: { value: '01' }
+    }.with_indifferent_access)
   end
 
   context 'when unmappable type' do
@@ -104,16 +113,58 @@ describe Orcid::PubMapper do
 
   context 'when unmappable identifier type' do
     let(:pub_hash) do
-      pub_hash = base_pub_hash.dup
-      pub_hash[:identifier] << {
-        type: 'SULPubId',
-        id: '123'
-      }
-      pub_hash
+      base_pub_hash.dup.tap do |pub_hash|
+        pub_hash[:identifier] << {
+          type: 'SULPubId',
+          id: '123'
+        }
+      end
     end
 
     it 'skips' do
       expect(work['external-ids']['external-id'].size).to eq(1)
+    end
+  end
+
+  context 'when year but no date' do
+    let(:pub_hash) do
+      base_pub_hash.dup.tap do |pub_hash|
+        pub_hash.delete(:date)
+        pub_hash[:year] = '1950'
+      end
+    end
+
+    it 'maps year' do
+      expect(work['publication-date']).to eq({
+        year: { value: '1950' },
+        month: nil,
+        day: nil
+      }.with_indifferent_access)
+    end
+  end
+
+  context 'when date is unparseable' do
+    let(:pub_hash) do
+      base_pub_hash.dup.tap do |pub_hash|
+        pub_hash[:date] = '1950-xx-xx'
+      end
+    end
+
+    it 'does not map' do
+      expect(work['publication-date']).to be_nil
+    end
+  end
+
+  context 'when year is unparseable' do
+    let(:pub_hash) do
+      base_pub_hash.dup.tap do |pub_hash|
+        pub_hash.delete(:date)
+        pub_hash[:year] = '195?'
+      end
+    end
+
+    it 'does not map' do
+      expect(work['publication-date']).to be_nil
     end
   end
 end

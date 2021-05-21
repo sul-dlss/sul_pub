@@ -38,6 +38,18 @@ module Orcid
       @short_description ||= work_response['short-description']
     end
 
+    def pub_year
+      @pub_year ||= work_response.dig('publication-date', 'year', 'value')
+    end
+
+    def pub_month
+      @pub_month ||= work_response.dig('publication-date', 'month', 'value')
+    end
+
+    def pub_day
+      @pub_day ||= work_response.dig('publication-date', 'day', 'value')
+    end
+
     private
 
     attr_reader :work_response

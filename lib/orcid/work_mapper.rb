@@ -26,7 +26,9 @@ module Orcid
         isbn: work.external_id_value('isbn'),
         issn: work.external_id_value('issn'),
         wos_uid: work.external_id_value('wosuid'),
-        pmid: work.external_id_value('pmid')
+        pmid: work.external_id_value('pmid'),
+        year: work.pub_year,
+        date: map_pub_date
       }.compact
     end
 
@@ -38,6 +40,12 @@ module Orcid
       work.external_ids.map do |external_id|
         { type: IdentifierTypeMapper.to_sul_pub_id_type(external_id.type), id: external_id.value, url: external_id.url }.compact
       end
+    end
+
+    def map_pub_date
+      return nil unless work.pub_year && work.pub_month && work.pub_day
+
+      "#{work.pub_year}-#{work.pub_month}-#{work.pub_day}T00:00:00"
     end
   end
 end

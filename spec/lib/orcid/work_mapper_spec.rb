@@ -24,7 +24,12 @@ describe Orcid::WorkMapper do
             }
           ]
         },
-        'short-description': 'In this paper we argue that classical AI is fundamentally flawed.'
+        'short-description': 'In this paper we argue that classical AI is fundamentally flawed.',
+        'publication-date': {
+          year: { value: '1990' },
+          month: { value: '03' },
+          day: { value: '15' }
+        }
       }
     end
 
@@ -60,6 +65,11 @@ describe Orcid::WorkMapper do
       expect(pub_hash[:abstract]).to eq('In this paper we argue that classical AI is fundamentally flawed.')
     end
 
+    it 'maps year and date' do
+      expect(pub_hash[:year]).to eq('1990')
+      expect(pub_hash[:date]).to eq('1990-03-15T00:00:00')
+    end
+
     context 'when id relationship is not self' do
       let(:work_response) do
         base_work_response.dup.tap do |work_response|
@@ -69,6 +79,19 @@ describe Orcid::WorkMapper do
 
       it 'ignores identifier' do
         expect(pub_hash[:identifier].size).to eq(0)
+      end
+    end
+
+    context 'when incomplete publication date' do
+      let(:work_response) do
+        base_work_response.dup.tap do |work_response|
+          work_response[:'publication-date'][:day] = nil
+        end
+      end
+
+      it 'only maps years' do
+        expect(pub_hash[:year]).to eq('1990')
+        expect(pub_hash[:date]).to be_nil
       end
     end
   end
