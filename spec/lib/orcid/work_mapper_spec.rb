@@ -23,7 +23,8 @@ describe Orcid::WorkMapper do
               'external-id-url': 'https://doi.org/10.1016/S0921-8890(05)80025-9'
             }
           ]
-        }
+        },
+        'short-description': 'In this paper we argue that classical AI is fundamentally flawed.'
       }
     end
 
@@ -48,6 +49,10 @@ describe Orcid::WorkMapper do
                                                   id: '10.1016/S0921-8890(05)80025-9',
                                                   url: 'https://doi.org/10.1016/S0921-8890(05)80025-9'
                                                 })
+    end
+
+    it 'maps abstract' do
+      expect(pub_hash[:abstract]).to eq('In this paper we argue that classical AI is fundamentally flawed.')
     end
 
     context 'when id relationship is not self' do

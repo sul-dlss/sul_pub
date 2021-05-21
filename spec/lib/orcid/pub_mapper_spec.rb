@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 describe Orcid::PubMapper do
-  let(:work) { described_class.map(pub_hash) }
+  let(:work) { described_class.map(pub_hash).with_indifferent_access }
 
   let(:base_pub_hash) do
     {
@@ -13,7 +13,8 @@ describe Orcid::PubMapper do
           id: 'doi:10.1093/mind/LIX.236.433',
           url: 'https://doi.org/10.1093%2Fmind%2FLIX.236.433'
         }
-      ]
+      ],
+      abstract: 'Can machines think?'
     }
   end
 
@@ -39,6 +40,10 @@ describe Orcid::PubMapper do
                                                               'external-id-url' => 'https://doi.org/10.1093%2Fmind%2FLIX.236.433',
                                                               'external-id-relationship' => 'self'
                                                             })
+  end
+
+  it 'maps abstract' do
+    expect(work['short-description']).to eq('Can machines think?')
   end
 
   context 'when unmappable type' do

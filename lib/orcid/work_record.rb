@@ -30,6 +30,10 @@ module Orcid
       @title ||= work_response.dig('title', 'title', 'value')
     end
 
+    def short_description
+      @short_description ||= work_response['short-description']
+    end
+
     private
 
     attr_reader :work_response

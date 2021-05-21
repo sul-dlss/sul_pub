@@ -19,8 +19,9 @@ module Orcid
       {
         type: PublicationTypeMapper.to_pub_type(work.work_type),
         title: work.title,
-        identifier: map_identifiers
-      }
+        identifier: map_identifiers,
+        abstract: work.short_description
+      }.compact
     end
 
     private

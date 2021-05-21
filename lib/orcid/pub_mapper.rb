@@ -20,8 +20,9 @@ module Orcid
         type: map_type,
         visibility: 'public',
         title: map_title,
-        'external-ids' => map_ids
-      }
+        'external-ids': map_ids,
+        'short-description': pub_hash[:abstract]
+      }.compact
     end
 
     private
