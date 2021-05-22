@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+require 'citeproc'
+require 'csl/styles'
+
 module Orcid
   # Maps from pub_hash to Orcid Work.
   class PubMapper
@@ -22,7 +25,8 @@ module Orcid
         title: map_title,
         'external-ids': map_ids,
         'short-description': pub_hash[:abstract],
-        'publication-date': map_pub_date
+        'publication-date': map_pub_date,
+        citation: map_citation
       }.compact
     end
 
@@ -93,6 +97,13 @@ module Orcid
         year: { value: pub_hash[:year] },
         month: nil,
         day: nil
+      }
+    end
+
+    def map_citation
+      {
+        "citation-type": 'bibtex',
+        "citation-value": Csl::Citation.new(pub_hash).to_bibtex.strip
       }
     end
   end

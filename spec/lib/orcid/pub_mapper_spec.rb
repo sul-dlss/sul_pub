@@ -49,10 +49,17 @@ describe Orcid::PubMapper do
 
   it 'maps date' do
     expect(work['publication-date']).to eq({
-      year: { value: '1950' },
-      month: { value: '10' },
-      day: { value: '01' }
-    }.with_indifferent_access)
+                                             'year' => { 'value' => '1950' },
+                                             'month' => { 'value' => '10' },
+                                             'day' => { 'value' => '01' }
+                                           })
+  end
+
+  it 'maps bibtex' do
+    expect(work['citation']).to eq({
+                                     'citation-type' => 'bibtex',
+                                     'citation-value' => '@article{computing machinery and intelligence}'
+                                   })
   end
 
   context 'when unmappable type' do

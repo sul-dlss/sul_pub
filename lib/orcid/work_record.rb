@@ -50,6 +50,10 @@ module Orcid
       @pub_day ||= work_response.dig('publication-date', 'day', 'value')
     end
 
+    def bibtex
+      @bibtex ||= work_response.dig('citation', 'citation-type') == 'bibtex' ? work_response.dig('citation', 'citation-value') : nil
+    end
+
     private
 
     attr_reader :work_response

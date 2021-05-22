@@ -28,7 +28,10 @@ module Orcid
         wos_uid: work.external_id_value('wosuid'),
         pmid: work.external_id_value('pmid'),
         year: work.pub_year,
-        date: map_pub_date
+        date: map_pub_date,
+        apa_citation: map_apa_citation,
+        mla_citation: map_mla_citation,
+        chicago_citation: map_chicago_citation
       }.compact
     end
 
@@ -46,6 +49,33 @@ module Orcid
       return nil unless work.pub_year && work.pub_month && work.pub_day
 
       "#{work.pub_year}-#{work.pub_month}-#{work.pub_day}T00:00:00"
+    end
+
+    def map_apa_citation
+      return nil unless work.bibtex
+
+      renderer.to_apa_citation
+    end
+
+    def map_mla_citation
+      return nil unless work.bibtex
+
+      renderer.to_mla_citation
+    end
+
+    def map_chicago_citation
+      return nil unless work.bibtex
+
+      renderer.to_chicago_citation
+    end
+
+    def renderer
+      @renderer ||= begin
+        citeproc = BibTeX.parse(work.bibtex).to_citeproc.first
+        item = CiteProc::CitationItem.new(id: 'sulpub')
+        item.data = CiteProc::Item.new(citeproc)
+        Csl::CitationRenderer.new(item)
+      end
     end
   end
 end
