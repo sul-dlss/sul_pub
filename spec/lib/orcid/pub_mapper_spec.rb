@@ -15,7 +15,12 @@ describe Orcid::PubMapper do
         }
       ],
       abstract: 'Can machines think?',
-      date: '1950-10-01T00:00:00'
+      date: '1950-10-01T00:00:00',
+      author: [
+        {
+          name: 'Alan Turing'
+        }
+      ]
     }
   end
 
@@ -58,8 +63,25 @@ describe Orcid::PubMapper do
   it 'maps bibtex' do
     expect(work['citation']).to eq({
                                      'citation-type' => 'bibtex',
-                                     'citation-value' => '@article{computing machinery and intelligence}'
+                                     'citation-value' => '@article{alan turing, title={Computing Machinery and Intelligence}, author={Alan Turing}}'
                                    })
+  end
+
+  it 'maps author' do
+    expect(work['contributors']['contributor'].size).to eq(1)
+    expect(work['contributors']['contributor'].first).to eq(
+      {
+        'contributor-orcid' => nil,
+        'credit-name' => {
+          'value' => 'Alan Turing'
+        },
+        'contributor-email' => nil,
+        'contributor-attributes' => {
+          'contributor-sequence' => nil,
+          'contributor-role' => 'author'
+        }
+      }
+    )
   end
 
   context 'when unmappable type' do

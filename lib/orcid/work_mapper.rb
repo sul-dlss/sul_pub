@@ -31,7 +31,8 @@ module Orcid
         date: map_pub_date,
         apa_citation: map_apa_citation,
         mla_citation: map_mla_citation,
-        chicago_citation: map_chicago_citation
+        chicago_citation: map_chicago_citation,
+        author: map_authors
       }.compact
     end
 
@@ -67,6 +68,12 @@ module Orcid
       return nil unless work.bibtex
 
       renderer.to_chicago_citation
+    end
+
+    def map_authors
+      work.contributors.map do |contributor|
+        { name: contributor.name, role: contributor.role }.compact
+      end
     end
 
     def renderer

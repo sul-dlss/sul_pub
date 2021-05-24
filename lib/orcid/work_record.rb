@@ -2,6 +2,7 @@
 
 module Orcid
   ExternalIdentifier = Struct.new(:type, :value, :url)
+  Contributor = Struct.new(:name, :role)
 
   # Wrapper for the ORCID.org API work response.
   class WorkRecord
@@ -52,6 +53,12 @@ module Orcid
 
     def bibtex
       @bibtex ||= work_response.dig('citation', 'citation-type') == 'bibtex' ? work_response.dig('citation', 'citation-value') : nil
+    end
+
+    def contributors
+      @contributors ||= Array(work_response.dig('contributors', 'contributor')).map do |contributor|
+        Contributor.new(contributor.dig('credit-name', 'value'), contributor.dig('contributor-attributes', 'contributor-role'))
+      end
     end
 
     private

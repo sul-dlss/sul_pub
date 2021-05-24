@@ -45,7 +45,23 @@ doi = {https://doi.org/10.1016/S0921-8890(05)80025-9},
 url = {https://www.sciencedirect.com/science/article/pii/S0921889005800259},
 author = {Rodney A. Brooks}
 }}
+        },
+        contributors: {
+          contributor: [
+            {
+              "contributor-orcid": nil,
+              "credit-name": {
+                value: 'Rodney A. Brooks'
+              },
+              "contributor-email": nil,
+              "contributor-attributes": {
+                "contributor-sequence": nil,
+                "contributor-role": 'author'
+              }
+            }
+          ]
         }
+
       }
     end
 
@@ -90,6 +106,14 @@ author = {Rodney A. Brooks}
       expect(pub_hash[:mla_citation]).to eq('Brooks, Rodney A. “Elephants Don\'t Play Chess.” <i>Robotics and Autonomous Systems</i> 6.1 (1990): 3–15. Web.')
       expect(pub_hash[:apa_citation]).to eq('Brooks, R. A. (1990). Elephants don\'t play chess. <i>Robotics and Autonomous Systems</i>, <i>6</i>(1), 3–15. https://doi.org/https://doi.org/10.1016/S0921-8890(05)80025-9')
       expect(pub_hash[:chicago_citation]).to eq('Brooks, Rodney A. 1990. “Elephants Don\'t Play Chess.” <i>Robotics and Autonomous Systems</i> 6 (1): 3–15. doi:https://doi.org/10.1016/S0921-8890(05)80025-9.')
+    end
+
+    it 'maps authors' do
+      expect(pub_hash[:author].size).to eq(1)
+      expect(pub_hash[:author].first).to eq({
+                                              name: 'Rodney A. Brooks',
+                                              role: 'author'
+                                            })
     end
 
     context 'when id relationship is not self' do
