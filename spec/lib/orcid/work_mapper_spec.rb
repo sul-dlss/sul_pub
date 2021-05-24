@@ -191,5 +191,35 @@ author = {Rodney A. Brooks}
         expect(pub_hash[:title]).to eq('What Computers Can\'t Do')
       end
     end
+
+    context 'when a conference paper' do
+      let(:work_response) do
+        {
+          type: 'conference-paper',
+          title: {
+            title: {
+              value: 'Turing test considered harmful'
+            }
+          },
+          'external-ids': {
+            'external-id': [
+              {
+                'external-id-value': '679-0-06-011082-6',
+                'external-id-type': 'isbn',
+                'external-id-relationship': 'self',
+                'external-id-url': nil
+              }
+            ]
+          },
+          'journal-title': {
+            value: 'Fourteenth International Joint Conference on Artificial Intelligence'
+          }
+        }
+      end
+
+      it 'maps conference name' do
+        expect(pub_hash[:conference][:name]).to eq('Fourteenth International Joint Conference on Artificial Intelligence')
+      end
+    end
   end
 end

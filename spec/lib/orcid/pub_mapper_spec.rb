@@ -227,4 +227,26 @@ describe Orcid::PubMapper do
       expect(work[:title][:title][:value]).to eq('Concepts: Where Cognitive Science Went Wrong')
     end
   end
+
+  context 'when a conference paper' do
+    let(:pub_hash) do
+      {
+        type: 'inproceedings',
+        title: 'Turing\'s Test Revisited',
+        identifier: [
+          {
+            type: 'doi',
+            id: '10.1109/ICSMC.1988.754236'
+          }
+        ],
+        conference: {
+          name: 'IEEE International Conference on Systems, Man, and Cybernetics'
+        }
+      }
+    end
+
+    it 'maps conference name' do
+      expect(work[:'journal-title'][:value]).to eq('IEEE International Conference on Systems, Man, and Cybernetics')
+    end
+  end
 end

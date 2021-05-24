@@ -124,7 +124,12 @@ module Orcid
     end
 
     def map_journal
-      journal_title = pub_hash.dig(:journal, :name)
+      journal_title = case pub_hash[:type]
+                      when 'article'
+                        pub_hash.dig(:journal, :name)
+                      when 'inproceedings'
+                        pub_hash.dig(:conference, :name)
+                      end
       return nil if journal_title.blank?
 
       { value: journal_title }

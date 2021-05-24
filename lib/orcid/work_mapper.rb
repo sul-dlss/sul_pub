@@ -34,7 +34,8 @@ module Orcid
         chicago_citation: map_chicago_citation,
         author: map_authors,
         journal: map_journal,
-        booktitle: map_booktitle
+        booktitle: map_booktitle,
+        conference: map_conference
       }.compact
     end
 
@@ -90,6 +91,14 @@ module Orcid
       return nil unless work.work_type == 'book'
 
       work.title
+    end
+
+    def map_conference
+      return nil unless work.work_type == 'conference-paper'
+
+      {
+        name: work.journal_title
+      }
     end
 
     def renderer
