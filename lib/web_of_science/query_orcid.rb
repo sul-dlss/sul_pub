@@ -6,9 +6,7 @@ module WebOfScience
   # e.g. WebOfScience::QueryOrcid.new(author).uids
   class QueryOrcid
     def initialize(author, options = {})
-      raise(ArgumentError, 'author must be an Author') unless author.is_a? Author
-
-      @orcid = author.orcidid
+      @orcidid = author.orcidid
       @options = options
     end
 
@@ -22,17 +20,17 @@ module WebOfScience
     end
 
     def valid?
-      orcid.present?
+      orcidid.present?
     end
 
     private
 
     delegate :queries, to: :WebOfScience
 
-    attr_reader :orcid, :options
+    attr_reader :orcidid, :options
 
     def orcid_query
-      queries.construct_uid_query("RID=(\"#{Orcid.base_orcidid(orcid)}\")", options)
+      queries.construct_uid_query("RID=(\"#{Orcid.base_orcidid(orcidid)}\")", options)
     end
   end
 end

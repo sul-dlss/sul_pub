@@ -6,8 +6,6 @@ module WebOfScience
   # e.g. WebOfScience::QueryName.new(author).uids
   class QueryName
     def initialize(author, options = {})
-      raise(ArgumentError, 'author must be an Author') unless author.is_a? Author
-
       @identities = [author].concat(author.author_identities.to_a) # query for alternates once, not multiple times
       @options = options
     end
