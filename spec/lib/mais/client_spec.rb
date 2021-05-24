@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 describe Mais::Client do
+# Note: this spec uses vcr cassettes from the MAIS API that were edited to obscure access tokens.
+# The 500 test is also hard to replicate since the API does not return 500s typically.
+# If the cassettes are re-created, you need to edit the access tokens in the cassette files and in the expectations below.
+
   let(:subject) { described_class.new }
 
   describe '#fetch_orcid_users' do
