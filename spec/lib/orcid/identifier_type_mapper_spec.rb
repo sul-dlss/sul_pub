@@ -9,6 +9,7 @@ describe Orcid::IdentifierTypeMapper do
     it 'maps mismatched id types' do
       expect(described_class.to_orcid_id_type('PMID')).to eq('pmid')
       expect(described_class.to_orcid_id_type('WosUID')).to eq('wosuid')
+      expect(described_class.to_orcid_id_type('eissn')).to eq('issn')
     end
 
     it 'maps missing id types' do
