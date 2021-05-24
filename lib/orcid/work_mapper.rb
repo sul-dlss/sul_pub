@@ -33,7 +33,8 @@ module Orcid
         mla_citation: map_mla_citation,
         chicago_citation: map_chicago_citation,
         author: map_authors,
-        journal: map_journal
+        journal: map_journal,
+        booktitle: map_booktitle
       }.compact
     end
 
@@ -83,6 +84,12 @@ module Orcid
       {
         name: work.journal_title
       }
+    end
+
+    def map_booktitle
+      return nil unless work.work_type == 'book'
+
+      work.title
     end
 
     def renderer

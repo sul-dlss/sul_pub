@@ -148,5 +148,48 @@ author = {Rodney A. Brooks}
         expect(pub_hash[:date]).to be_nil
       end
     end
+
+    context 'when a book' do
+      let(:work_response) do
+        {
+          type: 'book',
+          title: {
+            title: {
+              value: 'What Computers Can\'t Do'
+            }
+          },
+          'external-ids': {
+            'external-id': [
+              {
+                'external-id-value': '978-0-06-011082-6',
+                'external-id-type': 'isbn',
+                'external-id-relationship': 'self',
+                'external-id-url': nil
+              }
+            ]
+          },
+          contributors: {
+            contributor: [
+              {
+                "contributor-orcid": nil,
+                "credit-name": {
+                  value: 'Hubert Dreyfus'
+                },
+                "contributor-email": nil,
+                "contributor-attributes": {
+                  "contributor-sequence": nil,
+                  "contributor-role": 'author'
+                }
+              }
+            ]
+          }
+        }
+      end
+
+      it 'maps booktitle' do
+        expect(pub_hash[:booktitle]).to eq('What Computers Can\'t Do')
+        expect(pub_hash[:title]).to eq('What Computers Can\'t Do')
+      end
+    end
   end
 end

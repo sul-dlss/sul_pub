@@ -36,19 +36,27 @@ module Orcid
 
     attr_reader :pub_hash
 
+    def work_type
+      @work_type ||= PublicationTypeMapper.to_work_type(pub_hash[:type])
+    end
+
     def map_type
-      work_type = PublicationTypeMapper.to_work_type(pub_hash[:type])
       raise 'Unmapped publication type' unless work_type
 
       work_type
     end
 
     def map_title
-      raise 'Title is required' if pub_hash[:title].blank?
+      title = if work_type == 'book'
+                pub_hash[:booktitle].presence || pub_hash[:title].presence
+              else
+                pub_hash[:title].presence
+              end
+      raise 'Title is required' unless title
 
       {
         title: {
-          value: pub_hash[:title]
+          value: title
         }
       }
     end
@@ -111,7 +119,7 @@ module Orcid
 
     def map_contributors
       {
-        contributor: pub_hash[:author].map { |author| PubAuthorMapper.map(author) }
+        contributor: Array(pub_hash[:author]).map { |author| PubAuthorMapper.map(author) }
       }
     end
 

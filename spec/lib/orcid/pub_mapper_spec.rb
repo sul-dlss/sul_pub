@@ -203,4 +203,28 @@ describe Orcid::PubMapper do
       expect(work['publication-date']).to be_nil
     end
   end
+
+  context 'when a book' do
+    let(:pub_hash) do
+      {
+        type: 'book',
+        booktitle: 'Concepts: Where Cognitive Science Went Wrong',
+        identifier: [
+          {
+            type: 'isbn',
+            id: '0-19-823636-0'
+          }
+        ],
+        author: [
+          {
+            name: 'Jerry A. Fodor'
+          }
+        ]
+      }
+    end
+
+    it 'maps title' do
+      expect(work[:title][:title][:value]).to eq('Concepts: Where Cognitive Science Went Wrong')
+    end
+  end
 end
