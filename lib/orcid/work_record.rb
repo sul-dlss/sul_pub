@@ -61,6 +61,10 @@ module Orcid
       end
     end
 
+    def journal_title
+      @journal_title ||= work_response.dig('journal-title', 'value')
+    end
+
     private
 
     attr_reader :work_response

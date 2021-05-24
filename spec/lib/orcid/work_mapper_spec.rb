@@ -60,8 +60,10 @@ author = {Rodney A. Brooks}
               }
             }
           ]
+        },
+        "journal-title": {
+          value: 'Robotics and Autonomous Systems'
         }
-
       }
     end
 
@@ -114,6 +116,12 @@ author = {Rodney A. Brooks}
                                               name: 'Rodney A. Brooks',
                                               role: 'author'
                                             })
+    end
+
+    it 'maps journal title' do
+      expect(pub_hash[:journal]).to eq({
+                                         name: 'Robotics and Autonomous Systems'
+                                       })
     end
 
     context 'when id relationship is not self' do

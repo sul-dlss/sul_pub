@@ -47,6 +47,7 @@ Layout/LineLength:
     - "spec/lib/pubmed/query_author_spec.rb"
     - "spec/lib/orcid/client_spec.rb"
     - "spec/lib/orcid/work_mapper_spec.rb"
+    - "spec/lib/orcid/pub_mapper_spec.rb"
 
 Metrics/AbcSize:
   Max: 35

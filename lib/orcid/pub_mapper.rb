@@ -27,8 +27,8 @@ module Orcid
         'short-description': pub_hash[:abstract],
         'publication-date': map_pub_date,
         citation: map_citation,
-        contributors: map_contributors
-
+        contributors: map_contributors,
+        'journal-title': map_journal
       }.compact
     end
 
@@ -113,6 +113,13 @@ module Orcid
       {
         contributor: pub_hash[:author].map { |author| PubAuthorMapper.map(author) }
       }
+    end
+
+    def map_journal
+      journal_title = pub_hash.dig(:journal, :name)
+      return nil if journal_title.blank?
+
+      { value: journal_title }
     end
   end
 end

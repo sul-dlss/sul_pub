@@ -20,7 +20,10 @@ describe Orcid::PubMapper do
         {
           name: 'Alan Turing'
         }
-      ]
+      ],
+      journal: {
+        name: 'Mind'
+      }
     }
   end
 
@@ -63,7 +66,7 @@ describe Orcid::PubMapper do
   it 'maps bibtex' do
     expect(work['citation']).to eq({
                                      'citation-type' => 'bibtex',
-                                     'citation-value' => '@article{alan turing, title={Computing Machinery and Intelligence}, author={Alan Turing}}'
+                                     'citation-value' => '@article{alan turing, title={Computing Machinery and Intelligence}, journal={Mind}, author={Alan Turing}}'
                                    })
   end
 
@@ -82,6 +85,10 @@ describe Orcid::PubMapper do
         }
       }
     )
+  end
+
+  it 'maps journal title' do
+    expect(work['journal-title']['value']).to eq('Mind')
   end
 
   context 'when unmappable type' do

@@ -32,7 +32,8 @@ module Orcid
         apa_citation: map_apa_citation,
         mla_citation: map_mla_citation,
         chicago_citation: map_chicago_citation,
-        author: map_authors
+        author: map_authors,
+        journal: map_journal
       }.compact
     end
 
@@ -74,6 +75,14 @@ module Orcid
       work.contributors.map do |contributor|
         { name: contributor.name, role: contributor.role }.compact
       end
+    end
+
+    def map_journal
+      return nil unless work.journal_title && work.work_type == 'journal-article'
+
+      {
+        name: work.journal_title
+      }
     end
 
     def renderer
