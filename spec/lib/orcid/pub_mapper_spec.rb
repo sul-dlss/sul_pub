@@ -97,7 +97,7 @@ describe Orcid::PubMapper do
     end
 
     it 'raises' do
-      expect { work }.to raise_error('Unmapped publication type')
+      expect { work }.to raise_error(Orcid::PubMapper::PubMapperError, 'Unmapped publication type')
     end
   end
 
@@ -105,7 +105,7 @@ describe Orcid::PubMapper do
     let(:pub_hash) { base_pub_hash.except(:title) }
 
     it 'raises' do
-      expect { work }.to raise_error('Title is required')
+      expect { work }.to raise_error(Orcid::PubMapper::PubMapperError, 'Title is required')
     end
   end
 

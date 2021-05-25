@@ -6,6 +6,9 @@ require 'csl/styles'
 module Orcid
   # Maps from pub_hash to Orcid Work.
   class PubMapper
+    # Error raised by PubMapper
+    class PubMapperError < StandardError; end
+
     # Maps to Orcid Work.
     # @param [Hash] pub_hash
     # @return [Hash] work
@@ -40,7 +43,7 @@ module Orcid
     end
 
     def map_type
-      raise 'Unmapped publication type' unless work_type
+      raise PubMapperError, 'Unmapped publication type' unless work_type
 
       work_type
     end
@@ -51,7 +54,7 @@ module Orcid
               else
                 pub_hash[:title].presence
               end
-      raise 'Title is required' unless title
+      raise PubMapperError, 'Title is required' unless title
 
       {
         title: {

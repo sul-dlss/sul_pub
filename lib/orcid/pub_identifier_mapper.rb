@@ -20,7 +20,7 @@ module Orcid
             map_identifiers(pub_hash.dig(:conference, :identifier), 'part-of') +
             map_identifiers(pub_hash.dig(:series, :identifier), 'part-of')
 
-      raise 'An identifier is required' if ids.empty?
+      raise PubMapper::PubMapperError, 'An identifier is required' if ids.empty?
 
       {
         'external-id' => ids
