@@ -23,7 +23,7 @@ module Orcid
         external_id_value = external_id_response.dig('external-id-normalized', 'value') || external_id_response['external-id-value']
         ExternalIdentifier.new(external_id_response['external-id-type'],
                                external_id_value,
-                               external_id_response['external-id-url'],
+                               external_id_response.dig('external-id-url', 'value').presence,
                                external_id_response['external-id-relationship'])
       end.compact
     end

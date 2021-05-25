@@ -20,7 +20,9 @@ describe Orcid::WorkMapper do
               'external-id-value': '10.1016/S0921-8890(05)80025-9',
               'external-id-type': 'doi',
               'external-id-relationship': 'self',
-              'external-id-url': 'https://doi.org/10.1016/S0921-8890(05)80025-9'
+              'external-id-url': {
+                value: 'https://doi.org/10.1016/S0921-8890(05)80025-9'
+              }
             },
             {
               'external-id-value': '0921-8890',

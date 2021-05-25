@@ -43,6 +43,7 @@ describe Orcid::PubIdentifierMapper do
                                            {
                                              'external-id-type' => 'doi',
                                              'external-id-value' => '10.1093/mind/LIX.236.433',
+                                             'external-id-url' => nil,
                                              'external-id-relationship' => 'part-of'
                                            }
                                          ])
@@ -63,6 +64,7 @@ describe Orcid::PubIdentifierMapper do
                                            {
                                              'external-id-type' => 'doi',
                                              'external-id-value' => '10.1093/mind/LIX.236.433',
+                                             'external-id-url' => nil,
                                              'external-id-relationship' => 'part-of'
                                            }
                                          ])
@@ -83,6 +85,7 @@ describe Orcid::PubIdentifierMapper do
                                            {
                                              'external-id-type' => 'doi',
                                              'external-id-value' => '10.1093/mind/LIX.236.433',
+                                             'external-id-url' => nil,
                                              'external-id-relationship' => 'part-of'
                                            }
                                          ])
@@ -157,6 +160,31 @@ describe Orcid::PubIdentifierMapper do
 
       it 'skips' do
         expect(ids['external-id'].size).to eq(1)
+      end
+    end
+
+    context 'when searchworks url' do
+      let(:pub_hash) do
+        {
+          identifier: [
+            {
+              type: 'issn',
+              id: '0009-2541',
+              url: 'http://searchworks.stanford.edu/?search_field=advanced&number=0009-2541'
+            }
+          ]
+        }
+      end
+
+      it 'ignores url' do
+        expect(ids['external-id']).to eq([
+                                           {
+                                             'external-id-type' => 'issn',
+                                             'external-id-value' => '0009-2541',
+                                             'external-id-url' => nil,
+                                             'external-id-relationship' => 'self'
+                                           }
+                                         ])
       end
     end
   end

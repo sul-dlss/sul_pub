@@ -43,10 +43,16 @@ module Orcid
         {
           'external-id-type' => id_type,
           'external-id-value' => identifier[:id],
-          'external-id-url' => identifier[:url].presence,
+          'external-id-url' => map_url(identifier),
           'external-id-relationship' => relationship
-        }.compact
+        }
       end.compact
+    end
+
+    def map_url(identifier)
+      return nil if identifier[:url].blank? || identifier[:url].include?('searchworks.stanford.edu')
+
+      identifier[:url]
     end
   end
 end
