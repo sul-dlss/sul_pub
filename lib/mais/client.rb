@@ -35,8 +35,8 @@ module Mais
 
     # @param [string] sunet to fetch
     # @return [<OrcidUser>] orcid user
-    def fetch_orcid_user(sunet:)
-      result = get_response("/users/#{sunet}")
+    def fetch_orcid_user(sunetid:)
+      result = get_response("/users/#{sunetid}")
       OrcidUser.new(result[:sunet_id], result[:orcid_id], result[:scope], result[:access_token])
     rescue StandardError => e
       NotificationManager.error(e, "#{e.class.name} during UIT MAIS ORCID Single Fetch User API call", self)

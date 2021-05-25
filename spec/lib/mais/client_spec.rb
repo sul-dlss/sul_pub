@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 describe Mais::Client do
-# Note: this spec uses vcr cassettes from the MAIS API that were edited to obscure access tokens.
-# The 500 test is also hard to replicate since the API does not return 500s typically.
-# If the cassettes are re-created, you need to edit the access tokens in the cassette files and in the expectations below.
+  # NOTE: This spec uses vcr cassettes from the MAIS API that were edited to obscure access tokens.
+  #   The 500 test is also hard to replicate since the API does not return 500s typically.
+  #   If the cassettes are re-created, you need to edit the access tokens in the cassette files and in the expectations below.
 
   let(:subject) { described_class.new }
 
@@ -28,8 +28,8 @@ describe Mais::Client do
   end
 
   describe '#fetch_orcid_user' do
-    let(:orcid_user) { subject.fetch_orcid_user(sunet: 'nataliex') }
-    let(:bad_orcid_user) { subject.fetch_orcid_user(sunet: 'totally-bogus') }
+    let(:orcid_user) { subject.fetch_orcid_user(sunetid: 'nataliex') }
+    let(:bad_orcid_user) { subject.fetch_orcid_user(sunetid: 'totally-bogus') }
 
     it 'retrieves a single user' do
       VCR.use_cassette('Mais_Client/_fetch_orcid_user/retrieves user') do
