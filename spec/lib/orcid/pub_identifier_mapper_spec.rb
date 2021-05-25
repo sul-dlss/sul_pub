@@ -187,5 +187,73 @@ describe Orcid::PubIdentifierMapper do
                                          ])
       end
     end
+
+    context 'when dupe for self and part-of' do
+      let(:pub_hash) do
+        {
+          type: 'journal',
+          identifier: [
+            {
+              type: 'doi',
+              id: '10.1093/mind/LIX.236.433',
+              url: 'https://doi.org/10.1093%2Fmind%2FLIX.236.433'
+            }
+          ],
+          journal: {
+            identifier: [
+              {
+                type: 'doi',
+                id: '10.1093/mind/LIX.236.433',
+                url: 'https://doi.org/10.1093%2Fmind%2FLIX.236.433'
+              }
+            ]
+          }
+        }
+      end
+
+      it 'ignores part-of identifier' do
+        expect(ids['external-id']).to eq([
+                                           {
+                                             'external-id-type' => 'doi',
+                                             'external-id-value' => '10.1093/mind/LIX.236.433',
+                                             'external-id-url' => 'https://doi.org/10.1093%2Fmind%2FLIX.236.433',
+                                             'external-id-relationship' => 'self'
+                                           }
+                                         ])
+      end
+    end
+
+    context 'when ISSN dupe for self and part-of' do
+      let(:pub_hash) do
+        {
+          type: 'journal',
+          identifier: [
+            {
+              type: 'issn',
+              id: '0009-2541'
+            }
+          ],
+          journal: {
+            identifier: [
+              {
+                type: 'issn',
+                id: '0009-2541'
+              }
+            ]
+          }
+        }
+      end
+
+      it 'ignores self identifier' do
+        expect(ids['external-id']).to eq([
+                                           {
+                                             'external-id-type' => 'issn',
+                                             'external-id-value' => '0009-2541',
+                                             'external-id-url' => nil,
+                                             'external-id-relationship' => 'part-of'
+                                           }
+                                         ])
+      end
+    end
   end
 end

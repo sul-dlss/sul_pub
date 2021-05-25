@@ -22,6 +22,9 @@ module Orcid
 
       raise PubMapper::PubMapperError, 'An identifier is required' if ids.empty?
 
+      clean_issns(ids)
+      clean_part_of(ids)
+
       {
         'external-id' => ids
       }.with_indifferent_access
@@ -53,6 +56,29 @@ module Orcid
       return nil if identifier[:url].blank? || identifier[:url].include?('searchworks.stanford.edu')
 
       identifier[:url]
+    end
+
+    def clean_issns(ids)
+      # Remove ISSN from self if matches ISSN for part-of
+      to_delete_ids = ids.select do |id|
+        id['external-id-relationship'] == 'self' &&
+          id['external-id-type'] == 'issn' &&
+          id?(ids, 'issn', id['external-id-value'], 'part-of')
+      end
+      to_delete_ids.each { |id| ids.delete(id) }
+    end
+
+    def clean_part_of(ids)
+      # Remove ids if part-of id matches self id
+      to_delete_ids = ids.select do |id|
+        id['external-id-relationship'] == 'part-of' &&
+          id?(ids, id['external-id-type'], id['external-id-value'], 'self')
+      end
+      to_delete_ids.each { |id| ids.delete(id) }
+    end
+
+    def id?(ids, type, value, relationship)
+      ids.any? { |id| id['external-id-type'] == type && id['external-id-value'] == value && id['external-id-relationship'] == relationship }
     end
   end
 end
