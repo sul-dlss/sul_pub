@@ -64,6 +64,22 @@ module Orcid
       @bibtex ||= work_response.dig('citation', 'citation-type') == 'bibtex' ? work_response.dig('citation', 'citation-value') : nil
     end
 
+    def citeproc
+      @citeproc ||= begin
+        bibtex ? BibTeX.parse(bibtex).to_citeproc.first : {}
+      rescue BibTeX::ParseError
+        {}
+      end
+    end
+
+    def pages
+      citeproc['page']
+    end
+
+    def publisher
+      citeproc['publisher']
+    end
+
     def contributors
       @contributors ||= Array(work_response.dig('contributors', 'contributor')).map do |contributor|
         Contributor.new(contributor.dig('credit-name', 'value'), contributor.dig('contributor-attributes', 'contributor-role'))
@@ -72,6 +88,14 @@ module Orcid
 
     def journal_title
       @journal_title ||= work_response.dig('journal-title', 'value')
+    end
+
+    def volume
+      citeproc['volume']
+    end
+
+    def issue
+      citeproc['issue']
     end
 
     private

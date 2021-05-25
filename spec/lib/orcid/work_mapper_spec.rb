@@ -41,14 +41,15 @@ describe Orcid::WorkMapper do
 title = {Elephants don't play chess},
 journal = {Robotics and Autonomous Systems},
 volume = {6},
-number = {1},
+issue = {1},
 pages = {3-15},
 year = {1990},
 note = {Designing Autonomous Agents},
 issn = {0921-8890},
 doi = {https://doi.org/10.1016/S0921-8890(05)80025-9},
 url = {https://www.sciencedirect.com/science/article/pii/S0921889005800259},
-author = {Rodney A. Brooks}
+author = {Rodney A. Brooks},
+publisher = {Elsevier}
 }}
         },
         contributors: {
@@ -112,7 +113,7 @@ author = {Rodney A. Brooks}
     it 'maps citations' do
       expect(pub_hash[:mla_citation]).to eq('Brooks, Rodney A. “Elephants Don\'t Play Chess.” <i>Robotics and Autonomous Systems</i> 6.1 (1990): 3–15. Web.')
       expect(pub_hash[:apa_citation]).to eq('Brooks, R. A. (1990). Elephants don\'t play chess. <i>Robotics and Autonomous Systems</i>, <i>6</i>(1), 3–15. https://doi.org/https://doi.org/10.1016/S0921-8890(05)80025-9')
-      expect(pub_hash[:chicago_citation]).to eq('Brooks, Rodney A. 1990. “Elephants Don\'t Play Chess.” <i>Robotics and Autonomous Systems</i> 6 (1): 3–15. doi:https://doi.org/10.1016/S0921-8890(05)80025-9.')
+      expect(pub_hash[:chicago_citation]).to eq('Brooks, Rodney A. 1990. “Elephants Don\'t Play Chess.” <i>Robotics and Autonomous Systems</i> 6 (1). Elsevier: 3–15. doi:https://doi.org/10.1016/S0921-8890(05)80025-9.')
     end
 
     it 'maps authors' do
@@ -131,8 +132,18 @@ author = {Rodney A. Brooks}
                                              id: '0921-8890',
                                              type: 'issn'
                                            }
-                                         ]
+                                         ],
+                                         volume: '6',
+                                         issue: '1'
                                        })
+    end
+
+    it 'maps pages' do
+      expect(pub_hash[:pages]).to eq('3–15')
+    end
+
+    it 'maps publisher' do
+      expect(pub_hash[:publisher]).to eq('Elsevier')
     end
 
     context 'when incomplete publication date' do
@@ -190,6 +201,14 @@ author = {Rodney A. Brooks}
           },
           "journal-title": {
             value: 'Topics in AI'
+          },
+          citation: {
+            "citation-type": 'bibtex',
+            "citation-value": %(@book{DREYFUS19903,
+title = {What computers can't do},
+volume = {6},
+author = {Hubert Dreyfus},
+})
           }
         }
       end
@@ -202,6 +221,7 @@ author = {Rodney A. Brooks}
       it 'maps series' do
         expect(pub_hash[:series][:name]).to eq('Topics in AI')
         expect(pub_hash[:series][:identifier]).to eq([{ type: 'isbn', id: '978-1-55860-363-9' }])
+        expect(pub_hash[:series][:volume]).to eq('6')
       end
     end
 

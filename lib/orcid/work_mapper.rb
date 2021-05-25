@@ -14,6 +14,7 @@ module Orcid
       @work = work
     end
 
+    # rubocop:disable Metrics/AbcSize
     def map
       {
         type: PublicationTypeMapper.to_pub_type(work.work_type),
@@ -35,9 +36,12 @@ module Orcid
         journal: map_journal,
         booktitle: map_booktitle,
         conference: map_conference,
-        series: map_series
+        series: map_series,
+        pages: work.pages,
+        publisher: work.publisher
       }.compact
     end
+    # rubocop:enable Metrics/AbcSize
 
     private
 
@@ -86,7 +90,9 @@ module Orcid
 
       {
         name: work.journal_title,
-        identifier: map_identifiers(work.part_of_external_ids)
+        identifier: map_identifiers(work.part_of_external_ids),
+        volume: work.volume,
+        issue: work.issue
       }.compact.presence
     end
 
@@ -110,15 +116,15 @@ module Orcid
 
       {
         name: work.journal_title,
-        identifier: map_identifiers(work.part_of_external_ids)
+        identifier: map_identifiers(work.part_of_external_ids),
+        volume: work.volume
       }.compact.presence
     end
 
     def renderer
       @renderer ||= begin
-        citeproc = BibTeX.parse(work.bibtex).to_citeproc.first
         item = CiteProc::CitationItem.new(id: 'sulpub')
-        item.data = CiteProc::Item.new(citeproc)
+        item.data = CiteProc::Item.new(work.citeproc)
         Csl::CitationRenderer.new(item)
       end
     end
