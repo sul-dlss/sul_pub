@@ -15,11 +15,10 @@ module Orcid
     end
 
     def map
-      # TODO: Build complete pub_hash
       {
         type: PublicationTypeMapper.to_pub_type(work.work_type),
         title: work.title,
-        identifier: map_identifiers,
+        identifier: map_identifiers(work.self_external_ids),
         abstract: work.short_description,
         provenance: 'orcid',
         doi: work.external_id_value('doi'),
@@ -35,7 +34,8 @@ module Orcid
         author: map_authors,
         journal: map_journal,
         booktitle: map_booktitle,
-        conference: map_conference
+        conference: map_conference,
+        series: map_series
       }.compact
     end
 
@@ -43,8 +43,10 @@ module Orcid
 
     attr_reader :work
 
-    def map_identifiers
-      work.external_ids.map do |external_id|
+    def map_identifiers(external_ids)
+      return nil if external_ids.blank?
+
+      external_ids.map do |external_id|
         { type: IdentifierTypeMapper.to_sul_pub_id_type(external_id.type), id: external_id.value, url: external_id.url }.compact
       end
     end
@@ -80,11 +82,12 @@ module Orcid
     end
 
     def map_journal
-      return nil unless work.journal_title && work.work_type == 'journal-article'
+      return nil unless work.work_type == 'journal-article'
 
       {
-        name: work.journal_title
-      }
+        name: work.journal_title,
+        identifier: map_identifiers(work.part_of_external_ids)
+      }.compact.presence
     end
 
     def map_booktitle
@@ -97,8 +100,18 @@ module Orcid
       return nil unless work.work_type == 'conference-paper'
 
       {
-        name: work.journal_title
-      }
+        name: work.journal_title,
+        identifier: map_identifiers(work.part_of_external_ids)
+      }.compact.presence
+    end
+
+    def map_series
+      return nil unless %w[book book-chapter].include?(work.work_type)
+
+      {
+        name: work.journal_title,
+        identifier: map_identifiers(work.part_of_external_ids)
+      }.compact.presence
     end
 
     def renderer

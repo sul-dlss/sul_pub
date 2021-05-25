@@ -103,7 +103,7 @@ describe Orcid::Harvester do
     context 'when no self external identifiers' do
       let(:works_response) do
         base_works_response.dup.tap do |works_response|
-          works_response[:group].first[:'work-summary'].first[:'external-ids'][:'external-id'].first[:'external-id-relationship'] = 'part-of'
+          works_response[:group].first[:'work-summary'].first[:'external-ids'][:'external-id'].first[:'external-id-relationship'] = 'version-of'
         end
       end
 

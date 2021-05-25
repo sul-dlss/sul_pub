@@ -18,12 +18,11 @@ module Orcid
     end
 
     def map
-      # TODO: Build complete work
       {
         type: map_type,
         visibility: 'public',
         title: map_title,
-        'external-ids': map_ids,
+        'external-ids': PubIdentifierMapper.map(pub_hash),
         'short-description': pub_hash[:abstract],
         'publication-date': map_pub_date,
         citation: map_citation,
@@ -58,29 +57,6 @@ module Orcid
         title: {
           value: title
         }
-      }
-    end
-
-    def map_ids
-      ids = Array(pub_hash[:identifier]).map do |identifier|
-        # Need a type and id
-        next if identifier[:type].blank? || identifier[:id].blank?
-
-        # Only mappable types.
-        id_type = IdentifierTypeMapper.to_orcid_id_type(identifier[:type])
-        next if id_type.nil?
-
-        {
-          'external-id-type' => id_type,
-          'external-id-value' => identifier[:id],
-          'external-id-url' => identifier[:url].presence,
-          'external-id-relationship' => 'self'
-        }.compact
-      end.compact
-      raise 'An identifier is required' if ids.empty?
-
-      {
-        'external-id' => ids
       }
     end
 

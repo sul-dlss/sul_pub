@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Orcid
-  ExternalIdentifier = Struct.new(:type, :value, :url)
+  ExternalIdentifier = Struct.new(:type, :value, :url, :relationship)
   Contributor = Struct.new(:name, :role)
 
   # Wrapper for the ORCID.org API work response.
@@ -20,11 +20,20 @@ module Orcid
 
     def external_ids
       @external_ids ||= work_response['external-ids']['external-id'].map do |external_id_response|
-        next if external_id_response['external-id-relationship'] != 'self'
-
         external_id_value = external_id_response.dig('external-id-normalized', 'value') || external_id_response['external-id-value']
-        ExternalIdentifier.new(external_id_response['external-id-type'], external_id_value, external_id_response['external-id-url'])
+        ExternalIdentifier.new(external_id_response['external-id-type'],
+                               external_id_value,
+                               external_id_response['external-id-url'],
+                               external_id_response['external-id-relationship'])
       end.compact
+    end
+
+    def self_external_ids
+      @self_external_ids ||= external_ids.select { |external_id| external_id.relationship == 'self' }
+    end
+
+    def part_of_external_ids
+      @part_of_external_ids ||= external_ids.select { |external_id| external_id.relationship == 'part-of' }
     end
 
     def external_id_value(external_id_type)

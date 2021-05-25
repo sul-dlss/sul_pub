@@ -109,59 +109,6 @@ describe Orcid::PubMapper do
     end
   end
 
-  context 'when missing identifier' do
-    let(:pub_hash) { base_pub_hash.except(:identifier) }
-
-    it 'raises' do
-      expect { work }.to raise_error('An identifier is required')
-    end
-  end
-
-  context 'when missing identifier type' do
-    let(:pub_hash) do
-      pub_hash = base_pub_hash.dup
-      pub_hash[:identifier] << {
-        type: '',
-        id: '000324929800081'
-      }
-      pub_hash
-    end
-
-    it 'skips' do
-      expect(work['external-ids']['external-id'].size).to eq(1)
-    end
-  end
-
-  context 'when missing identifier value' do
-    let(:pub_hash) do
-      pub_hash = base_pub_hash.dup
-      pub_hash[:identifier] << {
-        type: 'WosUID',
-        id: ''
-      }
-      pub_hash
-    end
-
-    it 'skips' do
-      expect(work['external-ids']['external-id'].size).to eq(1)
-    end
-  end
-
-  context 'when unmappable identifier type' do
-    let(:pub_hash) do
-      base_pub_hash.dup.tap do |pub_hash|
-        pub_hash[:identifier] << {
-          type: 'SULPubId',
-          id: '123'
-        }
-      end
-    end
-
-    it 'skips' do
-      expect(work['external-ids']['external-id'].size).to eq(1)
-    end
-  end
-
   context 'when year but no date' do
     let(:pub_hash) do
       base_pub_hash.dup.tap do |pub_hash|

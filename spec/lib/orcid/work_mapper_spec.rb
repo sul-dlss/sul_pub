@@ -21,6 +21,11 @@ describe Orcid::WorkMapper do
               'external-id-type': 'doi',
               'external-id-relationship': 'self',
               'external-id-url': 'https://doi.org/10.1016/S0921-8890(05)80025-9'
+            },
+            {
+              'external-id-value': '0921-8890',
+              'external-id-type': 'issn',
+              'external-id-relationship': 'part-of'
             }
           ]
         },
@@ -118,22 +123,16 @@ author = {Rodney A. Brooks}
                                             })
     end
 
-    it 'maps journal title' do
+    it 'maps journal' do
       expect(pub_hash[:journal]).to eq({
-                                         name: 'Robotics and Autonomous Systems'
+                                         name: 'Robotics and Autonomous Systems',
+                                         identifier: [
+                                           {
+                                             id: '0921-8890',
+                                             type: 'issn'
+                                           }
+                                         ]
                                        })
-    end
-
-    context 'when id relationship is not self' do
-      let(:work_response) do
-        base_work_response.dup.tap do |work_response|
-          work_response[:'external-ids'][:'external-id'].first[:'external-id-relationship'] = 'part-of'
-        end
-      end
-
-      it 'ignores identifier' do
-        expect(pub_hash[:identifier].size).to eq(0)
-      end
     end
 
     context 'when incomplete publication date' do
@@ -165,6 +164,12 @@ author = {Rodney A. Brooks}
                 'external-id-type': 'isbn',
                 'external-id-relationship': 'self',
                 'external-id-url': nil
+              },
+              {
+                'external-id-value': '978-1-55860-363-9',
+                'external-id-type': 'isbn',
+                'external-id-relationship': 'part-of',
+                'external-id-url': nil
               }
             ]
           },
@@ -182,6 +187,9 @@ author = {Rodney A. Brooks}
                 }
               }
             ]
+          },
+          "journal-title": {
+            value: 'Topics in AI'
           }
         }
       end
@@ -189,6 +197,11 @@ author = {Rodney A. Brooks}
       it 'maps booktitle' do
         expect(pub_hash[:booktitle]).to eq('What Computers Can\'t Do')
         expect(pub_hash[:title]).to eq('What Computers Can\'t Do')
+      end
+
+      it 'maps series' do
+        expect(pub_hash[:series][:name]).to eq('Topics in AI')
+        expect(pub_hash[:series][:identifier]).to eq([{ type: 'isbn', id: '978-1-55860-363-9' }])
       end
     end
 
@@ -208,6 +221,12 @@ author = {Rodney A. Brooks}
                 'external-id-type': 'isbn',
                 'external-id-relationship': 'self',
                 'external-id-url': nil
+              },
+              {
+                'external-id-value': '978-1-55860-363-9',
+                'external-id-type': 'isbn',
+                'external-id-relationship': 'part-of',
+                'external-id-url': nil
               }
             ]
           },
@@ -219,6 +238,7 @@ author = {Rodney A. Brooks}
 
       it 'maps conference name' do
         expect(pub_hash[:conference][:name]).to eq('Fourteenth International Joint Conference on Artificial Intelligence')
+        expect(pub_hash[:conference][:identifier]).to eq([{ type: 'isbn', id: '978-1-55860-363-9' }])
       end
     end
   end
