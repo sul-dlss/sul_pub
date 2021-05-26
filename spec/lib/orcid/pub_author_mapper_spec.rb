@@ -53,6 +53,78 @@ describe Orcid::PubAuthorMapper do
       end
     end
 
+    context 'when dirty name provided - A' do
+      let(:name) { 'Clemens,Samuel,' }
+
+      it 'cleans name' do
+        expect(contributor).to eq({
+                                    "contributor-orcid": nil,
+                                    "credit-name": {
+                                      value: 'Clemens, Samuel'
+                                    },
+                                    "contributor-email": nil,
+                                    "contributor-attributes": {
+                                      "contributor-sequence": nil,
+                                      "contributor-role": 'author'
+                                    }
+                                  })
+      end
+    end
+
+    context 'when dirty name provided - B' do
+      let(:name) { 'Clemens,Samuel,L' }
+
+      it 'cleans name' do
+        expect(contributor).to eq({
+                                    "contributor-orcid": nil,
+                                    "credit-name": {
+                                      value: 'Clemens, Samuel L.'
+                                    },
+                                    "contributor-email": nil,
+                                    "contributor-attributes": {
+                                      "contributor-sequence": nil,
+                                      "contributor-role": 'author'
+                                    }
+                                  })
+      end
+    end
+
+    context 'when dirty name provided - C' do
+      let(:name) { 'Clemens,Samuel M.,L' }
+
+      it 'cleans name' do
+        expect(contributor).to eq({
+                                    "contributor-orcid": nil,
+                                    "credit-name": {
+                                      value: 'Clemens, Samuel M. L.'
+                                    },
+                                    "contributor-email": nil,
+                                    "contributor-attributes": {
+                                      "contributor-sequence": nil,
+                                      "contributor-role": 'author'
+                                    }
+                                  })
+      end
+    end
+
+    context 'when dirty name provided - D' do
+      let(:name) { 'Clemens,S,L' }
+
+      it 'cleans name' do
+        expect(contributor).to eq({
+                                    "contributor-orcid": nil,
+                                    "credit-name": {
+                                      value: 'Clemens, S. L.'
+                                    },
+                                    "contributor-email": nil,
+                                    "contributor-attributes": {
+                                      "contributor-sequence": nil,
+                                      "contributor-role": 'author'
+                                    }
+                                  })
+      end
+    end
+
     context 'when full_name provided' do
       let(:full_name) { 'Samuel Langhorne Clemens' }
       let(:display_name) { 'Samuel Clemens' }

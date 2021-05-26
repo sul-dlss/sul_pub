@@ -33,10 +33,34 @@ module Orcid
     attr_reader :author_hash
 
     def map_credit_name
-      author_hash[:name].presence ||
+      clean_name(author_hash[:name].presence) ||
         author_hash[:full_name].presence ||
         author_hash[:display_name].presence ||
         joined_name
+    end
+
+    def clean_name(name)
+      # Some legacy names are misformatted, e.g., Clemens,Samuel,L
+      return nil unless name
+      return name unless name.match(/\S,\S/) && name.count(',') == 2
+
+      parts = name.split(',')
+      last_name = parts[0]
+      first_name = clean_name_part(parts[1])
+      middle_name = clean_name_part(parts[2])
+
+      clean_name = last_name
+      clean_name += ", #{first_name}" if first_name
+      clean_name += " #{middle_name}" if middle_name
+      clean_name
+    end
+
+    def clean_name_part(name_part)
+      return nil if name_part.blank?
+
+      return name_part if name_part.length != 1 || name_part.match(/ \S$/)
+
+      "#{name_part}."
     end
 
     def joined_name
