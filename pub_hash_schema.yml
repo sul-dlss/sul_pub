@@ -6,7 +6,7 @@ properties:
     type: string
   abstract_restricted:
     type: string
-  additionalProperties: # Legacy. Not in current code.
+  additionalProperties: # Submitted by CAP
     type: object
   apa_citation: # Automatically added.
     type: string
@@ -185,7 +185,7 @@ $defs:
   Author:
     type: object
     properties:
-      additionalProperties: # Legacy. Not in current code.
+      additionalProperties: # Submitted by CAP
         type: object
       alternate: # Legacy. Not in current code.
         type: array
@@ -230,12 +230,16 @@ $defs:
     description: Stanford affiliated author.
     type: object
     properties:
+      additionalProperties: # Submitted by CAP
+        type: object
       cap_profile_id:
         description: Identifier for the author in the CAP system.
         type: integer
       sul_author_id:
         description: Identifier for the author in the SUL system.
-        type: integer
+        type:
+          - integer
+          - "null" # CAP submits authorships with null
       featured:
         description: Marks the publication for featured presentation.
         type: boolean
@@ -271,7 +275,7 @@ $defs:
   Conference:
     type: object
     properties:
-      additionalProperties: # Legacy. Not in current code.
+      additionalProperties: # Submitted by CAP
         type: object
       city:
         type:
@@ -317,6 +321,8 @@ $defs:
   Identifier:
     type: object
     properties:
+      additionalProperties: # Submitted by CAP
+        type: object
       id:
         type: string
       type:
@@ -329,7 +335,7 @@ $defs:
   Journal:
     type: object
     properties:
-      additionalProperties: # Legacy. Not in current code.
+      additionalProperties: # Submitted by CAP
         type: object
       articlenumber:
         type:

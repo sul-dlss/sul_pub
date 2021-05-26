@@ -99,7 +99,7 @@ RSpec/MessageSpies:
 # Offense count: 280
 # Configuration parameters: AllowSubject.
 RSpec/MultipleMemoizedHelpers:
-  Max: 18
+  Max: 19
 
 # Offense count: 292
 # Configuration parameters: IgnoreSharedExamples.
