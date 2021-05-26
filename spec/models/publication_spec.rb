@@ -36,6 +36,25 @@ describe Publication do
     end
   end
 
+  describe 'pub_hash validation' do
+    subject { Publication.create!(pub_hash: pub_hash) }
+
+    it 'notifies HB but does not fail validation on invalid pub_hash' do
+      expect(Honeybadger).to receive(:notify).with(
+        '[PUB_HASH VALIDATION ERROR]',
+        { context: { message: ['/title with value  is invalid for schema: /properties/title'],
+                     publication_id: subject.id } }
+      )
+      subject.pub_hash[:title] = nil
+      expect(subject.save).to be true
+    end
+
+    it 'does not notify HB on valid pub_hash' do
+      expect(Honeybadger).not_to receive(:notify)
+      expect(subject.save).to be true
+    end
+  end
+
   describe 'test pub hash syncing for new object' do
     subject { Publication.create!(pub_hash: pub_hash) }
 
