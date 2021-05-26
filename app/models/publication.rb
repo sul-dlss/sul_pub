@@ -35,6 +35,7 @@ class Publication < ApplicationRecord
 
   has_one :batch_uploaded_source_record, dependent: :destroy
   has_one :web_of_science_source_record, dependent: :destroy, autosave: true
+  has_one :orcid_source_record, dependent: :destroy, autosave: true
 
   has_many :user_submitted_source_records, dependent: :destroy
 

@@ -171,8 +171,9 @@ class Author < ApplicationRecord
   end
 
   # @param [Publication]
+  # @param [String] ORCID put-code
   # @return [Contribution]
-  def assign_pub(pub)
+  def assign_pub(pub, orcid_put_code: nil)
     unless pub # do not attempt to assign if no pub provided
       logger.warn "nil publication assignment for author id #{id}"
       return
@@ -182,7 +183,8 @@ class Author < ApplicationRecord
     contribution = pub.contributions.find_or_initialize_by(author_id: id) do |contrib|
       contrib.assign_attributes(
         cap_profile_id: cap_profile_id,
-        featured: false, status: 'new', visibility: 'private'
+        featured: false, status: 'new', visibility: 'private',
+        orcid_put_code: orcid_put_code
       )
     end
     return contribution unless contribution.new_record?

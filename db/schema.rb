@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_19_134457) do
+ActiveRecord::Schema.define(version: 2021_05_20_185112) do
 
   create_table "author_identities", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.integer "author_id", null: false
@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 2021_05_19_134457) do
     t.string "emails_for_harvest"
     t.string "orcidid"
     t.string "cap_visibility"
+    t.bigint "orcid_last_modified"
     t.index ["active_in_cap"], name: "index_authors_on_active_in_cap"
     t.index ["california_physician_license"], name: "index_authors_on_california_physician_license"
     t.index ["cap_profile_id"], name: "index_authors_on_cap_profile_id", unique: true
@@ -108,6 +109,19 @@ ActiveRecord::Schema.define(version: 2021_05_19_134457) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["priority", "run_at"], name: "delayed_jobs_priority"
+  end
+
+  create_table "orcid_source_records", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
+    t.text "source_data", size: :medium
+    t.bigint "last_modified_date"
+    t.string "orcidid"
+    t.string "put_code"
+    t.string "source_fingerprint"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "publication_id"
+    t.index ["orcidid", "put_code"], name: "index_orcid_source_records_on_orcidid_and_put_code", unique: true
+    t.index ["publication_id"], name: "index_orcid_source_records_on_publication_id", unique: true
   end
 
   create_table "publication_identifiers", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
@@ -219,5 +233,6 @@ ActiveRecord::Schema.define(version: 2021_05_19_134457) do
   end
 
   add_foreign_key "author_identities", "authors"
+  add_foreign_key "orcid_source_records", "publications"
   add_foreign_key "web_of_science_source_records", "publications"
 end
