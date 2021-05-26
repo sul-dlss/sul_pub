@@ -328,7 +328,9 @@ $defs:
       type:
         type: string
       url:
-        type: string
+        type:
+          - string
+          - "null" # Submitted by CAP
     required:
       - type
     additionalProperties: false
