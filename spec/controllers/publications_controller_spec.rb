@@ -26,7 +26,28 @@ describe PublicationsController, :vcr do
         sul_author_id: author.id,
         status: 'denied',
         visibility: 'public',
-        featured: true
+        featured: true,
+        additionalProperties: {}
+      }]
+    }
+  end
+  let(:valid_hash_for_post_with_nul_sul_author_and_uppercase_states) do
+    {
+      type: 'book',
+      title: 'some title',
+      year: '1938',
+      issn: '32242424',
+      pages: '34-56',
+      author: [{
+        name: 'jackson joe'
+      }],
+      authorship: [{
+        cap_profile_id: author.cap_profile_id,
+        sul_author_id: nil,
+        status: 'DENIED',
+        visibility: 'PUBLIC',
+        featured: true,
+        additionalProperties: {}
       }]
     }
   end
@@ -472,7 +493,13 @@ describe PublicationsController, :vcr do
         expect(result['identifier'][0]['id']).not_to eq('n')
       end
 
-      it 'creates a pub with with isbn' do
+      it 'creates a pub with a null sul_author_id' do
+        post :create, body: valid_hash_for_post_with_nul_sul_author_and_uppercase_states.to_json, params: { format: 'json' }
+        expect(response.status).to eq(201)
+        expect(response.body).to eq(last_pub.pub_hash.to_json)
+      end
+
+      it 'creates a pub with isbn' do
         post :create, body: with_isbn_hash.to_json, params: { format: 'json' }
         expect(response.status).to eq(201)
         # TODO: use the submission data to validate some of the identifier fields
@@ -489,7 +516,7 @@ describe PublicationsController, :vcr do
         expect(response.body).to eq(last_pub.pub_hash.to_json)
       end
 
-      it 'creates a pub with with pmid' do
+      it 'creates a pub with pmid' do
         post :create, body: json_with_pubmedid, params: { format: 'json' }
         expect(response.status).to eq(201)
         expect(result['identifier']).to include('id' => '999999999', 'type' => 'pmid')
