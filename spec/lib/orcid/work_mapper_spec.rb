@@ -148,6 +148,26 @@ publisher = {Elsevier}
       expect(pub_hash[:publisher]).to eq('Elsevier')
     end
 
+    context 'when no contributors' do
+      let(:work_response) do
+        base_work_response.dup.tap do |work_response|
+          work_response[:contributors][:contributor] = []
+          work_response[:citation][:'citation-value'] = %(@article{BROOKS19903,
+title = {Fast, Cheap and Out of Control: A Robot Invasion of the Solar System},
+author = {Rodney Allen Brooks and A. M. Flynn},
+})
+        end
+      end
+
+      it 'uses authors from BibTex' do
+        expect(pub_hash[:author].size).to eq(2)
+        expect(pub_hash[:author][1]).to eq({
+                                             name: 'A. M. Flynn',
+                                             role: 'author'
+                                           })
+      end
+    end
+
     context 'when incomplete publication date' do
       let(:work_response) do
         base_work_response.dup.tap do |work_response|

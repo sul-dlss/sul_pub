@@ -81,9 +81,7 @@ module Orcid
     end
 
     def contributors
-      @contributors ||= Array(work_response.dig('contributors', 'contributor')).map do |contributor|
-        Contributor.new(contributor.dig('credit-name', 'value'), contributor.dig('contributor-attributes', 'contributor-role'))
-      end
+      @contributors ||= work_response_contributors.presence || citeproc_contributors
     end
 
     def journal_title
@@ -101,5 +99,19 @@ module Orcid
     private
 
     attr_reader :work_response
+
+    def work_response_contributors
+      Array(work_response.dig('contributors', 'contributor')).map do |contributor|
+        Contributor.new(contributor.dig('credit-name', 'value'), contributor.dig('contributor-attributes', 'contributor-role'))
+      end
+    end
+
+    def citeproc_contributors
+      return [] unless bibtex
+
+      Array(citeproc['author']).map do |author|
+        Contributor.new([author['given'], author['family']].compact.join(' '), 'author')
+      end
+    end
   end
 end
