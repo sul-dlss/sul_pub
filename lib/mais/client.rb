@@ -34,9 +34,12 @@ module Mais
     end
 
     # @param [string] sunet to fetch
-    # @return [<OrcidUser>] orcid user
+    # @return [<OrcidUser>, nil] orcid user or nil if not found
     def fetch_orcid_user(sunetid:)
-      result = get_response("/users/#{sunetid}")
+      result = get_response("/users/#{sunetid}", allow404: true)
+
+      return nil if result.nil?
+
       OrcidUser.new(result[:sunet_id], result[:orcid_id], result[:scope], result[:access_token])
     rescue StandardError => e
       NotificationManager.error(e, "#{e.class.name} during UIT MAIS ORCID Single Fetch User API call", self)
@@ -55,8 +58,11 @@ module Mais
       links[:self] == links[:last]
     end
 
-    def get_response(path)
+    def get_response(path, allow404: false)
       response = conn.get("/mais/orcid/v1#{path}")
+
+      return nil if allow404 && response.status == 404
+
       raise "UIT MAIS ORCID User API returned #{response.status}" if response.status != 200
 
       body = JSON.parse(response.body).with_indifferent_access
