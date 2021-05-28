@@ -248,7 +248,7 @@ describe Orcid::PubAuthorMapper do
 
     context 'when role provided' do
       let(:name) { 'Mark Twain' }
-      let(:role) { 'pen name' }
+      let(:role) { 'support-staff' }
 
       it 'sets role' do
         expect(contributor).to eq({
@@ -259,9 +259,56 @@ describe Orcid::PubAuthorMapper do
                                     "contributor-email": nil,
                                     "contributor-attributes": {
                                       "contributor-sequence": nil,
-                                      "contributor-role": 'pen name'
+                                      "contributor-role": 'support-staff'
                                     }
                                   })
+      end
+    end
+
+    context 'when mapped role provided' do
+      let(:name) { 'Mark Twain' }
+      let(:role) { 'book_editor' }
+
+      it 'sets role' do
+        expect(contributor).to eq({
+                                    "contributor-orcid": nil,
+                                    "credit-name": {
+                                      value: 'Mark Twain'
+                                    },
+                                    "contributor-email": nil,
+                                    "contributor-attributes": {
+                                      "contributor-sequence": nil,
+                                      "contributor-role": 'editor'
+                                    }
+                                  })
+      end
+    end
+
+    context 'when unknown role provided' do
+      let(:name) { 'Mark Twain' }
+      let(:role) { 'pen name' }
+
+      it 'sets role to null' do
+        expect(contributor).to eq({
+                                    "contributor-orcid": nil,
+                                    "credit-name": {
+                                      value: 'Mark Twain'
+                                    },
+                                    "contributor-email": nil,
+                                    "contributor-attributes": {
+                                      "contributor-sequence": nil,
+                                      "contributor-role": nil
+                                    }
+                                  })
+      end
+    end
+
+    context 'when filtered role provided' do
+      let(:name) { 'IEEE' }
+      let(:role) { 'corp' }
+
+      it 'skips' do
+        expect(contributor).to be_nil
       end
     end
   end

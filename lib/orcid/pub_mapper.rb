@@ -98,7 +98,7 @@ module Orcid
 
     def map_contributors
       {
-        contributor: Array(pub_hash[:author]).map { |author| PubAuthorMapper.map(author) }
+        contributor: Array(pub_hash[:author]).map { |author| PubAuthorMapper.map(author) }.compact
       }
     end
 

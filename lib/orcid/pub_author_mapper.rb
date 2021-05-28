@@ -3,9 +3,33 @@
 module Orcid
   # Maps from pub_hash author to Orcid Contributor.
   class PubAuthorMapper
+    SUL_PUB_ROLE_TO_ORCID_ROLE = {
+      'book_editor' => 'editor',
+      'investigator' => 'principal-investigator'
+    }.freeze
+
+    IGNORED_SUL_PUB_ROLES = %w[
+      book_corp
+      corp
+    ].freeze
+
+    ORCID_ROLES = %w[
+      author
+      assignee
+      editor
+      chair-or-translator
+      co-investigator
+      co-inventor
+      graduate-student
+      other-inventor
+      principal-investigator
+      postdoctoral-researcher
+      support-staff
+    ].freeze
+
     # Maps to Orcid Contributor.
     # @param [Hash] author_hash author
-    # @return [Hash] contributor
+    # @return [Hash|nil] contributor
     def self.map(author_hash)
       new(author_hash).map
     end
@@ -15,6 +39,8 @@ module Orcid
     end
 
     def map
+      return nil if IGNORED_SUL_PUB_ROLES.include?(author_hash[:role])
+
       {
         "contributor-orcid": nil,
         "credit-name": {
@@ -23,7 +49,7 @@ module Orcid
         "contributor-email": nil,
         "contributor-attributes": {
           "contributor-sequence": nil,
-          "contributor-role": author_hash[:role].presence || 'author'
+          "contributor-role": map_role
         }
       }
     end
@@ -80,6 +106,15 @@ module Orcid
 
     def last_name
       author_hash[:last_name].presence || author_hash[:lastname].presence
+    end
+
+    def map_role
+      role = author_hash[:role].presence
+      orcid_role = SUL_PUB_ROLE_TO_ORCID_ROLE.fetch(role, role || 'author')
+
+      return nil unless ORCID_ROLES.include?(orcid_role)
+
+      orcid_role
     end
   end
 end
