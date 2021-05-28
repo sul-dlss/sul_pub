@@ -20,10 +20,10 @@ module Orcid
             map_identifiers(pub_hash.dig(:conference, :identifier), 'part-of') +
             map_identifiers(pub_hash.dig(:series, :identifier), 'part-of')
 
-      raise PubMapper::PubMapperError, 'An identifier is required' if ids.empty?
-
       clean_issns(ids)
       clean_part_of(ids)
+
+      raise PubMapper::PubMapperError, 'A self identifier is required' unless self_identifier?(ids)
 
       {
         'external-id' => ids
@@ -79,6 +79,10 @@ module Orcid
 
     def id?(ids, type, value, relationship)
       ids.any? { |id| id['external-id-type'] == type && id['external-id-value'] == value && id['external-id-relationship'] == relationship }
+    end
+
+    def self_identifier?(ids)
+      ids.any? { |id| id['external-id-relationship'] == 'self' }
     end
   end
 end
