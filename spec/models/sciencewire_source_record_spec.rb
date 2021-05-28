@@ -142,7 +142,6 @@ describe SciencewireSourceRecord, :vcr do
                                              pages: '910-922')
         expect(subject[:journal][:articlenumber]).to be_nil
         expect(subject[:journal][:identifier][0]).to include(type: 'issn', id: '0044-7447')
-        expect(subject[:journal][:identifier][1]).to include(type: 'doi', id: '10.1007/s13280-013-0447-x')
       end
     end
 

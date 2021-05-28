@@ -272,7 +272,6 @@ class SciencewireSourceRecord < ApplicationRecord
       journal_hash[:pages] = publication.xpath('Pagination').text if publication.xpath('Pagination').present?
       journal_identifiers = []
       journal_identifiers << issn_identifier if issn.present?
-      journal_identifiers << doi_identifier if doi.present?
       journal_hash[:identifier] = journal_identifiers
       record_as_hash[:journal] = journal_hash
     end
