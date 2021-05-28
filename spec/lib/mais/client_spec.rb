@@ -39,9 +39,9 @@ describe Mais::Client do
     end
 
     context 'when a user is not found' do
-      it 'raises' do
+      it 'returns nil' do
         VCR.use_cassette('Mais_Client/_fetch_orcid_user/raises') do
-          expect { bad_orcid_user }.to raise_error('UIT MAIS ORCID User API returned 404')
+          expect(bad_orcid_user).to be_nil
         end
       end
     end
