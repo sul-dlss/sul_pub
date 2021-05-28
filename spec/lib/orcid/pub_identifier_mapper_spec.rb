@@ -273,5 +273,32 @@ describe Orcid::PubIdentifierMapper do
                                          ])
       end
     end
+
+    context 'sciencewire DOI' do
+      let(:pub_hash) do
+        {
+          provenance: 'sciencewire',
+          journal: {
+            identifier: [
+              {
+                type: 'doi',
+                id: '10.1093/mind/LIX.236.433'
+              }
+            ]
+          }
+        }
+      end
+
+      it 'moves DOI to self' do
+        expect(ids['external-id']).to eq([
+                                           {
+                                             'external-id-type' => 'doi',
+                                             'external-id-value' => '10.1093/mind/LIX.236.433',
+                                             'external-id-url' => nil,
+                                             'external-id-relationship' => 'self'
+                                           }
+                                         ])
+      end
+    end
   end
 end

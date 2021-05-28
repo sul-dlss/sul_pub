@@ -22,6 +22,7 @@ module Orcid
 
       clean_issns(ids)
       clean_part_of(ids)
+      clean_sciencewire_dois(ids)
 
       raise PubMapper::PubMapperError, 'A self identifier is required' unless self_identifier?(ids)
 
@@ -75,6 +76,14 @@ module Orcid
           id?(ids, id['external-id-type'], id['external-id-value'], 'self')
       end
       to_delete_ids.each { |id| ids.delete(id) }
+    end
+
+    def clean_sciencewire_dois(ids)
+      # Sciencewire DOIs were mistakingly mapped to journal rather than publication.
+      return unless pub_hash[:provenance] == 'sciencewire'
+
+      ids.select { |id| id['external-id-type'] == 'doi' && id['external-id-relationship'] == 'part-of' }
+         .each { |id| id['external-id-relationship'] = 'self' }
     end
 
     def id?(ids, type, value, relationship)
