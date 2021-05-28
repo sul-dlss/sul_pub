@@ -3,7 +3,7 @@
 describe Orcid::AddWorks do
   let(:add_works) { described_class.new(logger: logger) }
 
-  let(:logger) { instance_double(Logger, info: nil) }
+  let(:logger) { instance_double(Logger, info: nil, error: nil) }
 
   let(:orcid_user) do
     Mais::Client::OrcidUser.new(author.sunetid, author.orcidid, ['/read-limited', '/activities/update', '/person/update'],

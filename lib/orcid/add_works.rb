@@ -35,6 +35,7 @@ module Orcid
     attr_reader :logger
 
     # @return [Boolean] true if work added.
+    # rubocop:disable Metrics/AbcSize
     def add_work(author, contribution, orcid_user)
       work = Orcid::PubMapper.map(contribution.publication.pub_hash)
       contribution.orcid_put_code = Orcid.client.add_work(orcid_user.orcidid, work, orcid_user.access_token)
@@ -45,8 +46,10 @@ module Orcid
       logger&.info("#{self.class} - author #{author.id} - did not add publication #{contribution.publication.id}: #{e.message}")
       false
     rescue StandardError => e
+      logger&.error("#{self.class} - author #{author.id} - error publication #{contribution.publication.id}: #{e.message}")
       NotificationManager.error(e, "#{self.class} - author #{author.id} - error publication #{contribution.publication.id}: #{e.message}", self)
       false
     end
   end
+  # rubocop:enable Metrics/AbcSize
 end
