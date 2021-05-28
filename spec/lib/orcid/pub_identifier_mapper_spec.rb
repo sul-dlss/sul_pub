@@ -256,7 +256,7 @@ describe Orcid::PubIdentifierMapper do
         }
       end
 
-      it 'ignores self identifier' do
+      it 'ignores self ISSN identifier' do
         expect(ids['external-id']).to eq([
                                            {
                                              'external-id-type' => 'doi',
@@ -295,6 +295,35 @@ describe Orcid::PubIdentifierMapper do
                                              'external-id-type' => 'doi',
                                              'external-id-value' => '10.1093/mind/LIX.236.433',
                                              'external-id-url' => nil,
+                                             'external-id-relationship' => 'self'
+                                           }
+                                         ])
+      end
+    end
+
+    context 'when dupe' do
+      let(:pub_hash) do
+        {
+          identifier: [
+            {
+              type: 'issn',
+              id: '0009-2541',
+              url: 'https://portal.issn.org/resource/ISSN/0018-9448'
+            },
+            {
+              type: 'eissn',
+              id: '0009-2541'
+            }
+          ]
+        }
+      end
+
+      it 'dedupes' do
+        expect(ids['external-id']).to eq([
+                                           {
+                                             'external-id-type' => 'issn',
+                                             'external-id-value' => '0009-2541',
+                                             'external-id-url' => 'https://portal.issn.org/resource/ISSN/0018-9448',
                                              'external-id-relationship' => 'self'
                                            }
                                          ])

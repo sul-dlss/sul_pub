@@ -68,7 +68,8 @@ describe Orcid::AddWorks do
       # Default factory pub_hash is missing an identifier so allowing factory to create publication.
       let!(:contribution) { create :contribution, author: author } # rubocop:disable RSpec/LetSetup
 
-      it 'notifies' do
+      it 'ignores' do
+        expect(NotificationManager).not_to receive(:error)
         expect(contribution_count).to be_zero
       end
     end

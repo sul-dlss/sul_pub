@@ -24,6 +24,8 @@ module Orcid
       clean_part_of(ids)
       clean_sciencewire_dois(ids)
 
+      ids.uniq! { |id| id.except('external-id-url') }
+
       raise PubMapper::PubMapperError, 'A self identifier is required' unless self_identifier?(ids)
 
       {
