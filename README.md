@@ -139,3 +139,11 @@ Note: this is automatically run on each deploy.
 ```sh
 bundle exec cap [ENVIRONMENT] shared_configs:update
 ```
+
+## Additional information
+
+Additional information about this project is contained in the [wiki](https://github.com/sul-dlss/sul_pub/wiki).
+
+### Publication metadata isssues
+
+See https://github.com/sul-dlss/sul_pub/wiki/Publication-metadata-issues.
