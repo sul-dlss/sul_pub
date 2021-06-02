@@ -11,7 +11,6 @@ namespace :orcid do
 
   desc 'Add works/publications to ORCID.org for a single researchers/authors'
   task :add_author_works, [:sunetid] => :environment do |_t, args|
-    # This approach for finding orcid_user can be replaced with https://github.com/sul-dlss/sul_pub/issues/1322
     orcid_user = Mais.client.fetch_orcid_user(sunetid: args[:sunetid])
     raise "Could not get ORCID.org access token for #{args[:sunetid]}" unless orcid_user
 
@@ -32,5 +31,30 @@ namespace :orcid do
 
     put_codes = Orcid.harvester.process_author(author)
     puts "Harvested #{put_codes.size} works/publications."
+  end
+
+  desc 'Deletes works/publications from ORCID.org for a single researchers/authors'
+  task :delete_author_works, [:sunetid] => :environment do |_t, args|
+    orcid_user = Mais.client.fetch_orcid_user(sunetid: args[:sunetid])
+    raise "Could not get ORCID.org access token for #{args[:sunetid]}" unless orcid_user
+
+    logger = Logger.new(Rails.root.join('log/orcid_delete_works.log'))
+    count = Orcid::DeleteWorks.new(logger: logger).delete_for_orcid_user(orcid_user)
+    puts "Deleted #{count} works."
+  end
+
+  desc 'Deletes single work/publication from ORCID.org'
+  task :delete_work, %i[sunetid contribution_id] => :environment do |_t, args|
+    orcid_user = Mais.client.fetch_orcid_user(sunetid: args[:sunetid])
+    raise "Could not get ORCID.org access token for #{args[:sunetid]}" unless orcid_user
+
+    contribution = Contribution.find(args[:contribution_id].to_i)
+
+    logger = Logger.new(Rails.root.join('log/orcid_delete_work.log'))
+    if Orcid::DeleteWorks.new(logger: logger).delete_work(contribution, orcid_user)
+      puts 'Deleted work.'
+    else
+      puts 'Did not delete work.'
+    end
   end
 end

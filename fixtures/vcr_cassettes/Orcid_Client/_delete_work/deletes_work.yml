@@ -1,0 +1,59 @@
+---
+http_interactions:
+- request:
+    method: delete
+    uri: https://api.sandbox.orcid.org/v3.0/0000-0002-2230-4756/work/1253255
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      User-Agent:
+      - stanford-library-sul-pub
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip,deflate
+      Date:
+      - Wed, 02 Jun 2021 14:49:34 GMT
+      Authorization:
+      - Bearer private_bearer_token
+  response:
+    status:
+      code: 204
+      message: null
+    headers:
+      Date:
+      - Wed, 02 Jun 2021 14:49:35 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Origin:
+      - "*"
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - DENY
+      X-Content-Type-Options:
+      - nosniff
+      Cf-Cache-Status:
+      - DYNAMIC
+      Cf-Request-Id:
+      - 0a6ecc964a0000ed37bf8bb000000001
+      Expect-Ct:
+      - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 65917d36de1bed37-SJC
+    body:
+      encoding: UTF-8
+      string: ''
+  recorded_at: Wed, 02 Jun 2021 14:49:35 GMT
+recorded_with: VCR 6.0.0
