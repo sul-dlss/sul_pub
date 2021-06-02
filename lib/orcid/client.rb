@@ -37,7 +37,7 @@ module Orcid
 
         match[1]
       else
-        raise "ORCID.org API returned #{response.status}"
+        raise "ORCID.org API returned #{response.status} (#{response.body}) for: #{work.to_json}"
       end
     end
 

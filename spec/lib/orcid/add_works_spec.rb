@@ -3,7 +3,7 @@
 describe Orcid::AddWorks do
   let(:add_works) { described_class.new(logger: logger) }
 
-  let(:logger) { instance_double(Logger, info: nil) }
+  let(:logger) { instance_double(Logger, info: nil, error: nil) }
 
   let(:orcid_user) do
     Mais::Client::OrcidUser.new(author.sunetid, author.orcidid, ['/read-limited', '/activities/update', '/person/update'],
@@ -68,12 +68,8 @@ describe Orcid::AddWorks do
       # Default factory pub_hash is missing an identifier so allowing factory to create publication.
       let!(:contribution) { create :contribution, author: author } # rubocop:disable RSpec/LetSetup
 
-      before do
-        allow(NotificationManager).to receive(:error)
-      end
-
-      it 'notifies' do
-        expect(NotificationManager).to receive(:error).with(RuntimeError, /An identifier is required/, add_works)
+      it 'ignores' do
+        expect(NotificationManager).not_to receive(:error)
         expect(contribution_count).to be_zero
       end
     end

@@ -657,6 +657,10 @@ describe Csl::Citation do
     context 'conference proceeding' do
       let(:source_data_key) { :conference_proceeding }
 
+      it 'keeps inproceedings type' do
+        expect(pub_hash.csl_doc).to include('type' => 'inproceedings')
+      end
+
       it 'creates a Chicago citation' do
         expect(pub_hash.to_chicago_citation).to eq 'Reed, Jack. 2015. “Preservation and Discovery for GIS Data.” Esri.'
       end

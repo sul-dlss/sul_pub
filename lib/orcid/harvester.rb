@@ -49,8 +49,7 @@ module Orcid
     end
 
     def check_work_type?(author, work)
-      # Only considering the first work summary.
-      return true if ['journal-article'].include?(work.work_type)
+      return true if PublicationTypeMapper.work_type?(work.work_type)
 
       log_info(author, "skipping work #{work.put_code} since work type #{work.work_type} not supported.")
       false
@@ -124,7 +123,7 @@ module Orcid
 
     def filtered_external_ids(work_summary)
       # Filtering ISSNs, since they are for the journal/serial not the publication.
-      work_summary.external_ids.reject { |external_id| external_id.type == 'issn' }
+      work_summary.self_external_ids.reject { |external_id| external_id.type == 'issn' }
     end
   end
 end

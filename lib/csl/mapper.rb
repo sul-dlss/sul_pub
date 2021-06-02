@@ -59,7 +59,7 @@ module Csl
         # Add journal information if it exists.
         if pub_hash.key?(:journal)
           if pub_hash[:journal][:name].present?
-            cit_data_hash['type'] = 'article-journal'
+            cit_data_hash['type'] = 'article-journal' unless cit_data_hash['type'] == 'inproceedings'
             cit_data_hash['container-title'] = pub_hash[:journal][:name]
           end
           cit_data_hash['volume'] = pub_hash[:journal][:volume] if pub_hash[:journal][:volume].present?

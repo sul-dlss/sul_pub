@@ -44,7 +44,9 @@ describe Orcid::Harvester do
             'external-id-value': '10.1017/S0140525X00005756',
             'external-id-type': 'doi',
             'external-id-relationship': 'self',
-            'external-id-url': 'https://doi.org/10.1017/S0140525X00005756'
+            'external-id-url': {
+              value: 'https://doi.org/10.1017/S0140525X00005756'
+            }
           }
         ]
       },
@@ -103,7 +105,7 @@ describe Orcid::Harvester do
     context 'when no self external identifiers' do
       let(:works_response) do
         base_works_response.dup.tap do |works_response|
-          works_response[:group].first[:'work-summary'].first[:'external-ids'][:'external-id'].first[:'external-id-relationship'] = 'part-of'
+          works_response[:group].first[:'work-summary'].first[:'external-ids'][:'external-id'].first[:'external-id-relationship'] = 'version-of'
         end
       end
 
@@ -197,7 +199,7 @@ describe Orcid::Harvester do
         # Creates OrcidSourceRecord
         source_record = OrcidSourceRecord.find_by(put_code: put_code, orcidid: orcid_id)
         expect(source_record.last_modified_date).to eq(1_607_403_656_707)
-        expect(source_record.source_fingerprint).to start_with('392909bbb07')
+        expect(source_record.source_fingerprint).to start_with('9bcb9f6fec39')
         expect(source_record.source_data.with_indifferent_access).to match(work_response)
 
         # Creates Publication
