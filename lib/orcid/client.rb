@@ -41,6 +41,24 @@ module Orcid
       end
     end
 
+    # Delete a work
+    # @param [string] ORCID ID for the researcher
+    # @param [string] put-code
+    # @param [string] access token
+    # @return [boolean] true if delete succeeded
+    def delete_work(orcidid, put_code, token)
+      response = conn_with_token(token).delete("/v3.0/#{Orcid.base_orcidid(orcidid)}/work/#{put_code}")
+
+      case response.status
+      when 204
+        true
+      when 404
+        false
+      else
+        raise "ORCID.org API returned #{response.status} when deleting #{put_code} for #{orcidid}"
+      end
+    end
+
     private
 
     def get(url)
