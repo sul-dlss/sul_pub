@@ -102,6 +102,8 @@ VCR.configure do |c|
   c.filter_sensitive_data('Settings.MAIS.BASE_URL') { Settings.MAIS.BASE_URL }
   c.filter_sensitive_data('Settings.MAIS.CLIENT_ID') { Settings.MAIS.CLIENT_ID }
   c.filter_sensitive_data('Settings.MAIS.CLIENT_SECRET') { Settings.MAIS.CLIENT_SECRET }
+  c.filter_sensitive_data('Settings.ORCID.CLIENT_ID') { Settings.ORCID.CLIENT_ID }
+  c.filter_sensitive_data('Settings.ORCID.CLIENT_SECRET') { Settings.ORCID.CLIENT_SECRET }
 
   # WOS Links-AMR filters
   (links_username, links_password) = Base64.decode64(Settings.WOS.AUTH_CODE).split(':', 2)

@@ -4,11 +4,11 @@ describe Orcid::Client do
   let(:subject) { described_class.new }
 
   describe '#fetch_works' do
-    let(:works_response) { subject.fetch_works('https://orcid.org/0000-0003-1527-0030') }
+    let(:works_response) { subject.fetch_works(Settings.ORCID.orcidid_for_check) }
 
     it 'retrieves works summary' do
       VCR.use_cassette('Orcid_Client/_fetch_works/retrieves works summary') do
-        expect(works_response[:group].size).to eq(36)
+        expect(works_response[:group].size).to eq(157)
       end
     end
 
