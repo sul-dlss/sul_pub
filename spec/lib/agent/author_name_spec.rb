@@ -181,16 +181,20 @@ describe Agent::AuthorName do
         expect(fn_query).not_to include(be_empty)
         expect(fn_query.size).to eq(fn_query.uniq.size)
       end
+
       it 'includes name with first_name' do
         expect(fn_query).to include "#{all_names.last_name},#{all_names.first_name}"
       end
+
       it 'does not include name with first_initial' do
         expect(fn_query).not_to include "#{all_names.last_name},#{all_names.first_initial}"
       end
+
       it 'does not include name with middle_name' do
         expect(fn_query).not_to include "#{all_names.last_name},#{all_names.first_name},#{all_names.middle_name}"
         expect(fn_query).to all(exclude(",#{all_names.middle_name}"))
       end
+
       it 'does not include name with middle_initial' do
         expect(fn_query).not_to include "#{all_names.last_name},#{all_names.first_name},#{all_names.middle_initial}"
         expect(fn_query).to all(exclude(",#{all_names.middle_initial}"))
