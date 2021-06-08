@@ -102,6 +102,8 @@ VCR.configure do |c|
   c.filter_sensitive_data('Settings.MAIS.BASE_URL') { Settings.MAIS.BASE_URL }
   c.filter_sensitive_data('Settings.MAIS.CLIENT_ID') { Settings.MAIS.CLIENT_ID }
   c.filter_sensitive_data('Settings.MAIS.CLIENT_SECRET') { Settings.MAIS.CLIENT_SECRET }
+  c.filter_sensitive_data('Settings.ORCID.CLIENT_ID') { Settings.ORCID.CLIENT_ID }
+  c.filter_sensitive_data('Settings.ORCID.CLIENT_SECRET') { Settings.ORCID.CLIENT_SECRET }
 
   # WOS Links-AMR filters
   (links_username, links_password) = Base64.decode64(Settings.WOS.AUTH_CODE).split(':', 2)
@@ -110,6 +112,14 @@ VCR.configure do |c|
   end
   c.filter_sensitive_data('links_password') do |interaction|
     links_password if interaction.request.uri.include? Clarivate::LinksClient::LINKS_HOST
+  end
+
+  # ORCID API filters
+  c.filter_sensitive_data('refresh_token') do |interaction|
+    if interaction.request.uri.include? Settings.ORCID.BASE_AUTH_URL
+      token_match = interaction.response.body.match(/"refresh_token":"(.*?)"/)
+      token_match.captures.first if token_match
+    end
   end
 
   # CAP API filters

@@ -58,7 +58,7 @@ http_interactions:
   recorded_at: Wed, 12 May 2021 18:35:32 GMT
 - request:
     method: get
-    uri: https://api.sandbox.orcid.org/v3.0/0000-0003-1527-0030/works
+    uri: https://api.sandbox.orcid.org/v3.0/00000-0002-7262-6251/works
     body:
       encoding: UTF-8
       string: ''
@@ -117,4 +117,75 @@ http_interactions:
         The full stack trace of the root cause is available in the server logs.</p><hr
         class=\"line\" /><h3>Apache Tomcat/8.5.50</h3></body></html>"
   recorded_at: Wed, 12 May 2021 18:35:32 GMT
+- request:
+    method: get
+    uri: https://api.sandbox.orcid.org/v3.0/0000-0002-7262-6251/works
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      User-Agent:
+      - stanford-library-sul-pub
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip,deflate
+      Date:
+      - Tue, 08 Jun 2021 18:31:10 GMT
+      Authorization:
+      - Bearer private_bearer_token
+  response:
+    status:
+      code: 500
+      message:
+    headers:
+      Date:
+      - Tue, 08 Jun 2021 18:31:11 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Origin:
+      - "*"
+      Cache-Control:
+      - no-store
+      Pragma:
+      - no-cache
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - DENY
+      X-Content-Type-Options:
+      - nosniff
+      Vary:
+      - accept-encoding
+      Content-Encoding:
+      - gzip
+      Cf-Cache-Status:
+      - DYNAMIC
+      Cf-Request-Id:
+      - 0a8e7da0370000213f2c344000000001
+      Expect-Ct:
+      - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 65c432138848213f-SJC
+    body:
+      encoding: UTF-8
+      string: "<!doctype html><html lang=\"en\"><head><title>HTTP Status 500 – Internal
+        Server Error</title><style type=\"text/css\">body {font-family:Tahoma,Arial,sans-serif;}
+        h1, h2, h3, b {color:white;background-color:#525D76;} h1 {font-size:22px;}
+        h2 {font-size:16px;} h3 {font-size:14px;} p {font-size:12px;} a {color:black;}
+        .line {height:1px;background-color:#525D76;border:none;}</style></head><body><h1>HTTP
+        Status 500 – Internal Server Error</h1><hr class=\"line\" /><p><b>Type</b>
+        Exception Report</p><p><b>Message</b> The request was rejected because the
+        URL was not normalized.</p><p><b>Description</b> The server encountered an
+        unexpected condition that prevented it from fulfilling the request.</p><p><b>Exception</b></p><pre>org.springframework.security.web.firewall.RequestRejectedException:
+        The request was rejected because the URL was not normalized.\n\torg.springframework.security.web.firewall.StrictHttpFirewall.getFirewalledRequest(StrictHttpFirewall.java:248)\n\torg.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:193)\n\torg.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:177)\n\torg.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:347)\n\torg.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:263)\n\torg.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:197)\n\torg.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)\n\torg.orcid.core.web.filters.CorsFilter.doFilterInternal(CorsFilter.java:37)\n\torg.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)\n\torg.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:347)\n\torg.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:263)\n\torg.orcid.core.web.filters.ApiVersionFilter.doFilterInternal(ApiVersionFilter.java:38)\n\torg.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)\n\torg.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:347)\n\torg.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:263)\n\torg.orcid.api.common.filter.DefaultApiVersionFilter.doFilterInternal(DefaultApiVersionFilter.java:71)\n\torg.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)\n\torg.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:347)\n\torg.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:263)\n\torg.orcid.core.web.filters.JsonpCallbackFilter.doFilterInternal(JsonpCallbackFilter.java:58)\n\torg.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)\n\torg.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:347)\n\torg.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:263)\n\torg.orcid.core.web.filters.SanitizeAuthenticationFilter.doFilterInternal(SanitizeAuthenticationFilter.java:29)\n\torg.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)\n\torg.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:347)\n\torg.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:263)\n\torg.orcid.core.web.filters.AcceptFilter.doFilterInternal(AcceptFilter.java:53)\n\torg.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)\n\torg.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:347)\n\torg.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:263)\n</pre><p><b>Note</b>
+        The full stack trace of the root cause is available in the server logs.</p><hr
+        class=\"line\" /><h3>Apache Tomcat/8.5.50</h3></body></html>"
+  recorded_at: Tue, 08 Jun 2021 18:31:11 GMT
 recorded_with: VCR 6.0.0
