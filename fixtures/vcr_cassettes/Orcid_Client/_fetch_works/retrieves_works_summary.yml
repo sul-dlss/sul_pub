@@ -5,7 +5,7 @@ http_interactions:
     uri: https://sandbox.orcid.org/oauth/token
     body:
       encoding: UTF-8
-      string: client_id=FAKE&client_secret=FAKE&grant_type=client_credentials&scope=%2Fread-public
+      string: client_id=Settings.ORCID.CLIENT_ID&client_secret=Settings.ORCID.CLIENT_SECRET&grant_type=client_credentials&scope=%2Fread-public
     headers:
       User-Agent:
       - Faraday v1.4.2
@@ -21,7 +21,7 @@ http_interactions:
       message: ''
     headers:
       Date:
-      - Tue, 08 Jun 2021 17:48:14 GMT
+      - Tue, 08 Jun 2021 22:09:34 GMT
       Content-Type:
       - application/json;charset=UTF-8
       Transfer-Encoding:
@@ -47,17 +47,17 @@ http_interactions:
       Cf-Cache-Status:
       - DYNAMIC
       Cf-Request-Id:
-      - 0a8e564d600000ed8ffc1c0000000001
+      - 0a8f45920f00002145ff80f000000001
       Expect-Ct:
       - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
       Server:
       - cloudflare
       Cf-Ray:
-      - 65c3f32899dfed8f-SJC
+      - 65c571fcefa52145-SJC
     body:
       encoding: ASCII-8BIT
-      string: '{"access_token":"private_access_token","token_type":"bearer","refresh_token":"FAKE","expires_in":631138518,"scope":"/read-public","orcid":null}'
-  recorded_at: Tue, 08 Jun 2021 17:48:14 GMT
+      string: '{"access_token":"private_access_token","token_type":"bearer","refresh_token":"refresh_token","expires_in":631138518,"scope":"/read-public","orcid":null}'
+  recorded_at: Tue, 08 Jun 2021 22:09:34 GMT
 - request:
     method: get
     uri: https://api.sandbox.orcid.org/v3.0/0000-0002-7262-6251/works
@@ -72,7 +72,7 @@ http_interactions:
       Accept-Encoding:
       - gzip,deflate
       Date:
-      - Tue, 08 Jun 2021 17:48:14 GMT
+      - Tue, 08 Jun 2021 22:09:34 GMT
       Authorization:
       - Bearer private_bearer_token
   response:
@@ -81,7 +81,7 @@ http_interactions:
       message:
     headers:
       Date:
-      - Tue, 08 Jun 2021 17:48:19 GMT
+      - Tue, 08 Jun 2021 22:09:38 GMT
       Content-Type:
       - application/json;charset=UTF-8
       Transfer-Encoding:
@@ -109,13 +109,13 @@ http_interactions:
       Cf-Cache-Status:
       - DYNAMIC
       Cf-Request-Id:
-      - 0a8e565274000024dc2533f000000001
+      - 0a8f4593c300002500bebaf000000001
       Expect-Ct:
       - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
       Server:
       - cloudflare
       Cf-Ray:
-      - 65c3f330be1424dc-SJC
+      - 65c571ff9e452500-SJC
     body:
       encoding: UTF-8
       string: '{"last-modified-date":{"value":1622221135739},"group":[{"last-modified-date":{"value":1622221132244},"external-ids":{"external-id":[{"external-id-type":"doi","external-id-value":"10.1007/s10957-021-01823-0","external-id-normalized":{"value":"10.1007/s10957-021-01823-0","transient":true},"external-id-normalized-error":null,"external-id-url":{"value":"https://doi.org/10.1007/s10957-021-01823-0"},"external-id-relationship":"self"},{"external-id-type":"wosuid","external-id-value":"WOS:000621695700002","external-id-normalized":{"value":"wos:000621695700002","transient":true},"external-id-normalized-error":null,"external-id-url":null,"external-id-relationship":"self"}]},"work-summary":[{"put-code":1253927,"created-date":{"value":1622221132244},"last-modified-date":{"value":1622221132244},"source":{"source-orcid":null,"source-client-id":{"uri":"https://sandbox.orcid.org/client/APP-DEACJ2TLSDYY7P6Z","path":"APP-DEACJ2TLSDYY7P6Z","host":"sandbox.orcid.org"},"source-name":{"value":"Stanford
@@ -591,5 +591,5 @@ http_interactions:
         University"},"assertion-origin-orcid":null,"assertion-origin-client-id":null,"assertion-origin-name":null},"title":{"title":{"value":"Analytical
         Foundations of Volterra Series"},"subtitle":null,"translated-title":null},"external-ids":{"external-id":[{"external-id-type":"doi","external-id-value":"10.1093/imamci/1.3.243","external-id-normalized":{"value":"10.1093/imamci/1.3.243","transient":true},"external-id-normalized-error":null,"external-id-url":{"value":"https://dx.doi.org/10.1093/imamci/1.3.243"},"external-id-relationship":"self"},{"external-id-type":"issn","external-id-value":"0265-0754","external-id-normalized":{"value":"0265-0754","transient":true},"external-id-normalized-error":null,"external-id-url":null,"external-id-relationship":"part-of"}]},"url":null,"type":"journal-article","publication-date":{"year":{"value":"1984"},"month":{"value":"01"},"day":{"value":"01"}},"journal-title":{"value":"IMA
         JOURNAL OF MATHEMATICAL CONTROL AND INFORMATION"},"visibility":"public","path":"/0000-0002-7262-6251/work/1253854","display-index":"0"}]}],"path":"/0000-0002-7262-6251/works"}'
-  recorded_at: Tue, 08 Jun 2021 17:48:19 GMT
+  recorded_at: Tue, 08 Jun 2021 22:09:38 GMT
 recorded_with: VCR 6.0.0

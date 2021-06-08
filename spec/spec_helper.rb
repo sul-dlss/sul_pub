@@ -114,6 +114,14 @@ VCR.configure do |c|
     links_password if interaction.request.uri.include? Clarivate::LinksClient::LINKS_HOST
   end
 
+  # ORCID API filters
+  c.filter_sensitive_data('refresh_token') do |interaction|
+    if interaction.request.uri.include? Settings.ORCID.BASE_AUTH_URL
+      token_match = interaction.response.body.match(/"refresh_token":"(.*?)"/)
+      token_match.captures.first if token_match
+    end
+  end
+
   # CAP API filters
   c.filter_sensitive_data('Settings.CAP.TOKEN_USER:Settings.CAP.TOKEN_PASS') do
     Base64.strict_encode64("#{Settings.CAP.TOKEN_USER}:#{Settings.CAP.TOKEN_PASS}")
