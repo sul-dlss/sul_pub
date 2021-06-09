@@ -27,8 +27,8 @@ module Orcid
       return false unless orcid_user.update?
       return false unless contribution.orcid_put_code
 
-      response = Orcid.client.delete_work(orcid_user.orcidid, contribution.orcid_put_code, orcid_user.access_token)
-      if response
+      work_deleted = Orcid.client.delete_work(orcid_user.orcidid, contribution.orcid_put_code, orcid_user.access_token)
+      if work_deleted
         logger&.info("#{self.class} - author #{contribution.author.id} - deleted work for publication #{contribution.publication.id} " \
           "with put-code #{contribution.orcid_put_code}")
       else
@@ -37,7 +37,7 @@ module Orcid
       end
       contribution.orcid_put_code = nil
       contribution.save!
-      response
+      work_deleted
     rescue StandardError => e
       NotificationManager.error(e, "#{self.class} - author #{contribution.author.id} - error deleting " \
                                    "publication #{contribution.publication.id}: #{e.message}", self)

@@ -11,7 +11,7 @@ describe Orcid::DeleteWorks do
   end
 
   describe '#delete_work' do
-    let(:response) { delete_works.delete_work(contribution, orcid_user) }
+    let(:work_deleted) { delete_works.delete_work(contribution, orcid_user) }
 
     let(:author) { create :author }
 
@@ -25,7 +25,7 @@ describe Orcid::DeleteWorks do
       let(:orcid_user) { Mais::Client::OrcidUser.new(author.sunetid, author.orcidid, ['/read-limited'], '91gd29cb-124e-5bf8-1ard-90315b03ae12') }
 
       it 'skips' do
-        expect(response).to be false
+        expect(work_deleted).to be false
       end
     end
 
@@ -36,7 +36,7 @@ describe Orcid::DeleteWorks do
       end
 
       it 'skips' do
-        expect(response).to be false
+        expect(work_deleted).to be false
       end
     end
 
@@ -50,7 +50,7 @@ describe Orcid::DeleteWorks do
 
       it 'deletes work and nils put-code' do
         expect(client).to receive(:delete_work).with(author.orcidid, put_code, '91gd29cb-124e-5bf8-1ard-90315b03ae12')
-        expect(response).to be true
+        expect(work_deleted).to be true
 
         contribution.reload
         expect(contribution.orcid_put_code).to be_nil
@@ -67,7 +67,7 @@ describe Orcid::DeleteWorks do
 
       it 'handles the 404 without raising and nils put-code' do
         expect(client).to receive(:delete_work).with(author.orcidid, put_code, '91gd29cb-124e-5bf8-1ard-90315b03ae12')
-        expect(response).to be false
+        expect(work_deleted).to be false
 
         contribution.reload
         expect(contribution.orcid_put_code).to be_nil
@@ -86,7 +86,7 @@ describe Orcid::DeleteWorks do
 
       it 'notifies' do
         expect(NotificationManager).to receive(:error).with(RuntimeError, /Nope!/, delete_works)
-        expect(response).to be false
+        expect(work_deleted).to be false
       end
     end
 
@@ -96,7 +96,7 @@ describe Orcid::DeleteWorks do
       end
 
       it 'skips' do
-        expect(response).to be false
+        expect(work_deleted).to be false
       end
     end
   end

@@ -143,18 +143,18 @@ describe Orcid::Client do
   end
 
   describe '#delete_work' do
-    let(:delete_response) { subject.delete_work('https://sandbox.orcid.org/0000-0002-2230-4756', '1253255', 'c4a9b3a4-f868-4cd1-8d7f-1d5rfd9f4bdb') }
+    let(:work_deleted) { subject.delete_work('https://sandbox.orcid.org/0000-0002-2230-4756', '1253255', 'c4a9b3a4-f868-4cd1-8d7f-1d5rfd9f4bdb') }
 
     it 'deletes works and returns true' do
       VCR.use_cassette('Orcid_Client/_delete_work/deletes work') do
-        expect(delete_response).to be true
+        expect(work_deleted).to be true
       end
     end
 
     context 'when server returns 404' do
       it 'returns false' do
         VCR.use_cassette('Orcid_Client/_delete_work/returns true') do
-          expect(delete_response).to be false
+          expect(work_deleted).to be false
         end
       end
     end
