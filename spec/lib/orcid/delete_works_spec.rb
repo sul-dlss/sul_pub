@@ -57,7 +57,7 @@ describe Orcid::DeleteWorks do
       end
     end
 
-    context 'when Contribution does not exist' do
+    context 'when Orcid work does not exist' do
       let(:client) { instance_double(Orcid::Client) }
 
       before do
@@ -65,7 +65,7 @@ describe Orcid::DeleteWorks do
         allow(client).to receive(:delete_work).and_return(false)
       end
 
-      it 'deletes work and nils put-code' do
+      it 'handles the 404 without raising and nils put-code' do
         expect(client).to receive(:delete_work).with(author.orcidid, put_code, '91gd29cb-124e-5bf8-1ard-90315b03ae12')
         expect(response).to be false
 
