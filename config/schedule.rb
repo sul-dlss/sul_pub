@@ -27,9 +27,9 @@ every 1.day, at: stagger(5), roles: [:harvester_dev, :harvester_qa, :harvester_p
   rake 'mais:update_authors'
 end
 
-# send publications to ORCID profiles for all authorized users at 6am-ish every 3 days in qa and dev
-# when validation is complete, we will add the :harvester_prod role and remove this comment
-every 3.days, at: stagger(6), roles: [:harvester_dev, :harvester_qa] do
+# send publications to ORCID profiles for all authorized users at 6am-ish every 3 days in qa
+# when validation is complete, we will add the :harvester_prod role and remove this comment (and update comment above)
+every 3.days, at: stagger(6), roles: [:harvester_qa] do
   rake 'orcid:add_all_works'
 end
 
