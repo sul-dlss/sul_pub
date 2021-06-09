@@ -39,7 +39,8 @@ module Orcid
       contribution.save!
       response
     rescue StandardError => e
-      NotificationManager.error(e, "#{self.class} - author #{contribution.author.id} - error publication #{contribution.publication.id}: #{e.message}", self)
+      NotificationManager.error(e, "#{self.class} - author #{contribution.author.id} - error deleting " \
+                                   "publication #{contribution.publication.id}: #{e.message}", self)
       false
     end
 

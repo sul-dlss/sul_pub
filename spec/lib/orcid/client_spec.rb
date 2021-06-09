@@ -152,7 +152,7 @@ describe Orcid::Client do
     end
 
     context 'when server returns 404' do
-      it 'returns true' do
+      it 'returns false' do
         VCR.use_cassette('Orcid_Client/_delete_work/returns true') do
           expect(delete_response).to be false
         end

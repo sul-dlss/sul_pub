@@ -33,7 +33,7 @@ namespace :orcid do
     puts "Harvested #{put_codes.size} works/publications."
   end
 
-  desc 'Deletes works/publications from ORCID.org for a single researchers/authors'
+  desc 'Deletes works/publications from ORCID.org for a single researcher/author'
   task :delete_author_works, [:sunetid] => :environment do |_t, args|
     orcid_user = Mais.client.fetch_orcid_user(sunetid: args[:sunetid])
     raise "Could not get ORCID.org access token for #{args[:sunetid]}" unless orcid_user
