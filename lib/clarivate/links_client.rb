@@ -44,6 +44,19 @@ module Clarivate
       end
     end
 
+    # Retrieve identifier 'fields' for the record 'ids'
+    # @param [Array<String>] ids
+    # @param [Array<String>] fields (defaults to ['doi', 'pmid'])
+    # @return [Hash<String => Hash>]
+    def links_doi(ids, fields: %w[issn isbn ut pmid])
+      raise ArgumentError, 'ids must be Enumerable' unless ids.is_a? Enumerable
+      raise ArgumentError, 'fields cannot be empty' if fields.blank?
+
+      ids.each_slice(50).inject({}) do |links, slice_ids|
+        links.merge request_batch_doi(slice_ids, fields)
+      end
+    end
+
     private
 
     # @return [Faraday::Connection]
@@ -66,11 +79,36 @@ module Clarivate
 
     # @param [Array<String>] ids
     # @param [Array<String>] fields
+    def request_batch_doi(ids, fields)
+      response = connection.post do |req|
+        req.path = LINKS_PATH
+        req.body = request_body_doi(ids, fields)
+      end
+      response_parse(response)
+    end
+
+    # @param [Array<String>] ids
+    # @param [Array<String>] fields
     # @return [String]
     def request_body(ids, fields)
       ApplicationController.render(
         formats: [:xml],
         template: 'requests/clarivate_links',
+        layout: false,
+        locals: {
+          client: self,
+          return_fields: fields,
+          cites: ids
+        }
+      )
+    end
+
+    # @param [Array<String>] ids
+    # @param [Array<String>] fields
+    # @return [String]
+    def request_body_doi(ids, fields)
+      renderer.render(
+        file: Rails.root.join('lib/clarivate/links_request_doi.xml'),
         layout: false,
         locals: {
           client: self,
