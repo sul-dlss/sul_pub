@@ -123,6 +123,39 @@ module WebOfScience
       params
     end
 
+    # Use options to limit the symbolic time span for harvesting publications; this limit applies
+    # to the dates publications are added or updated in WOS collections, not publication dates. To
+    # quote the API documentation:
+    #
+    #     The symbolicTimeSpan element defines a range of load dates. The load date is the date when a record
+    #     was added to a database. If symbolicTimeSpan is specified, the timeSpan parameter must be omitted.
+    #     If timeSpan and symbolicTimeSpan are both omitted, then the maximum publication date time span
+    #     will be inferred from the editions data.
+    #
+    #     - The documented values are strings: '1week', '2week', '4week' (prior to today)
+    #     - the actual values it accepts are any value of "Nweek" for 1 <= N <= 52, or "Nyear" for 1 <= N <= 10
+    #
+    # @param query [String] a query that will be sent to WoS
+    # @param options [Hash] optional WoS query options to use with query
+    # @return [Hash]
+    def construct_uid_query(query_params, options = {})
+      params = params_for_fields(empty_fields)
+      params[:queryParameters][:userQuery] = query_params
+      if options[:symbolicTimeSpan]
+        # to use symbolicTimeSpan, timeSpan must be omitted
+        params[:queryParameters].delete(:timeSpan)
+        params[:queryParameters][:symbolicTimeSpan] = options[:symbolicTimeSpan]
+        params[:queryParameters][:order!] = %i[databaseId userQuery symbolicTimeSpan queryLanguage] # according to WSDL
+      end
+      params
+    end
+
+    # Use Settings.WOS.ACCEPTED_DBS to define collections without any fields retrieved
+    # @return [Array<Hash>]
+    def empty_fields
+      Settings.WOS.ACCEPTED_DBS.map { |db| { collectionName: db, fieldName: [''] } }
+    end
+
     private
 
     ###################################################################

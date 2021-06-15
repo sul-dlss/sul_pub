@@ -144,20 +144,16 @@ class SMCIReport
                                                              middle_name: middle_name, institution: institution.strip)
             end
             # end check for institutions for this author
-            author_query = WebOfScience::QueryAuthor.new(author, symbolicTimeSpan: symbolicTimeSpan) # setup the WOS name query
-            uids = author_query.uids # now fetch all of the WOS_UIDs for the publications for this author by running the name search
-            logger.info(author_query.send(:author_query)) # log the name query being sent to WoS
+            name_query = WebOfScience::QueryName.new(author, symbolicTimeSpan: symbolicTimeSpan) # setup the WOS name query
+            uids = name_query.uids # now fetch all of the WOS_UIDs for the publications for this author by running the name search
+            logger.info(name_query.send(:name_query)) # log the name query being sent to WoS
           else
             # we have an orcid, search by orcid
             logger.info "harvesting author by orcid from WoS: '#{orcid}'"
-            params = WebOfScience.queries.params_for_search("RID=(\"#{orcid.gsub('orcid.org/', '')}\")")
-            if symbolicTimeSpan.present?
-              params[:queryParameters][:symbolicTimeSpan] = symbolicTimeSpan
-              params[:queryParameters].delete(:timeSpan)
-              params[:queryParameters][:order!] = %i[databaseId userQuery symbolicTimeSpan queryLanguage] # according to WSDL
-            end
-            retriever = WebOfScience.queries.search(params)
-            uids = retriever.merged_uids # now fetch all of the WOS_UIDs for the publications for this author by running the orcid search
+            author = Author.new(orcidid: orcid)
+            orcid_query = WebOfScience::QueryOrcid.new(author, symbolicTimeSpan: symbolicTimeSpan) # setup the WOS orcid query
+            uids = orcid_query.uids # now fetch all of the WOS_UIDs for the publications for this author by running the orcid search
+            logger.info(orcid_query.send(:orcid_query)) # log the orcid query being sent to WoS
           end
           num_pubs_returned = uids.size
           if num_pubs_returned < Settings.WOS.max_publications_per_author # verify that we don't have too many publications (usually caused by a bad name query)

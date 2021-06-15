@@ -33,9 +33,10 @@ describe SMCIReport do
     end
 
     before do
-      allow(WebOfScience::QueryAuthor).to receive(:new).and_return(query_author)
-      allow(WebOfScience.queries).to receive(:search).and_return(wos_orcid_retriever)
-      allow(query_author).to receive(:author_query).and_return('the query')
+      allow(WebOfScience::QueryName).to receive(:new).and_return(query_name)
+      allow(WebOfScience::QueryOrcid).to receive(:new).and_return(query_orcid)
+      allow(query_name).to receive(:name_query).and_return('the query')
+      allow(query_orcid).to receive(:orcid_query).and_return('the query')
       allow(wos_retriever).to receive(:next_batch?).and_return(false)
     end
 
@@ -43,8 +44,8 @@ describe SMCIReport do
 
     context 'when wos returns more than the max number of publications for an author' do
       let(:lotsa_uids) { Array(1..Settings.WOS.max_publications_per_author) }
-      let(:query_author) { instance_double(WebOfScience::QueryAuthor, uids: lotsa_uids, valid?: true) }
-      let(:wos_orcid_retriever) { instance_double(WebOfScience::Retriever, merged_uids: lotsa_uids) }
+      let(:query_name) { instance_double(WebOfScience::QueryName, uids: lotsa_uids, valid?: true) }
+      let(:query_orcid) { instance_double(WebOfScience::QueryOrcid, uids: [], valid?: true) }
 
       it 'runs with no dates specified' do
         author.contributions << contribution
@@ -69,18 +70,24 @@ describe SMCIReport do
       end
     end
 
-    context 'when wos returns less than the max number of publications for an author' do
+    context 'when wos returns less than the max number of publications for an author with an orcid' do
       let(:uids) { [1, 2] }
-      let(:query_author) { instance_double(WebOfScience::QueryAuthor, uids: uids, valid?: true) }
-      let(:wos_orcid_retriever) { instance_double(WebOfScience::Retriever, merged_uids: uids) }
+      let(:orcid_uids) { [2, 3] }
+      let(:query_name) { instance_double(WebOfScience::QueryName, uids: uids, valid?: true) }
+      let(:query_orcid) { instance_double(WebOfScience::QueryOrcid, uids: orcid_uids, valid?: true) }
 
       before do
         allow(WebOfScience.queries).to receive(:retrieve_by_id)
           .with(uids)
           .and_return(wos_retriever)
+        allow(WebOfScience.queries).to receive(:retrieve_by_id)
+          .with(orcid_uids)
+          .and_return(wos_retriever)
       end
 
       it 'runs' do
+        expect(WebOfScience.queries).to receive(:retrieve_by_id).with(uids)
+        expect(WebOfScience.queries).to receive(:retrieve_by_id).with(orcid_uids)
         author.contributions << contribution
         expect(File.exist?(output_csv)).to be false
         report = described_class.new(input_file: input_csv, output_file: output_csv)
