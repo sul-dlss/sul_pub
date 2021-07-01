@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'uri'
+
 module Orcid
   # Maps from pub_hash author to Orcid External-Identifier.
   class PubIdentifierMapper
@@ -56,7 +58,7 @@ module Orcid
     end
 
     def map_url(identifier)
-      return nil if identifier[:url].blank? || identifier[:url].include?('searchworks.stanford.edu')
+      return nil if identifier[:url].blank? || identifier[:url].include?('searchworks.stanford.edu') || !valid_uri?(identifier[:url])
 
       identifier[:url]
     end
@@ -94,6 +96,13 @@ module Orcid
 
     def self_identifier?(ids)
       ids.any? { |id| id['external-id-relationship'] == 'self' }
+    end
+
+    def valid_uri?(id)
+      URI(id)
+      true
+    rescue URI::InvalidURIError
+      false
     end
   end
 end
