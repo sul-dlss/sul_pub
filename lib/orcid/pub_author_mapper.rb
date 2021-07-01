@@ -42,14 +42,14 @@ module Orcid
       return nil if IGNORED_SUL_PUB_ROLES.include?(author_hash[:role])
 
       {
-        "contributor-orcid": nil,
-        "credit-name": {
+        'contributor-orcid': nil,
+        'credit-name': {
           value: map_credit_name
         },
-        "contributor-email": nil,
-        "contributor-attributes": {
-          "contributor-sequence": nil,
-          "contributor-role": map_role
+        'contributor-email': nil,
+        'contributor-attributes': {
+          'contributor-sequence': nil,
+          'contributor-role': map_role
         }
       }
     end

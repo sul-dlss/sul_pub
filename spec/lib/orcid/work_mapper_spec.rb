@@ -38,8 +38,8 @@ describe Orcid::WorkMapper do
           day: { value: '15' }
         },
         citation: {
-          "citation-type": 'bibtex',
-          "citation-value": %{@article{BROOKS19903,
+          'citation-type': 'bibtex',
+          'citation-value': %{@article{BROOKS19903,
 title = {Elephants don't play chess},
 journal = {Robotics and Autonomous Systems},
 volume = {6},
@@ -57,19 +57,19 @@ publisher = {Elsevier}
         contributors: {
           contributor: [
             {
-              "contributor-orcid": nil,
-              "credit-name": {
+              'contributor-orcid': nil,
+              'credit-name': {
                 value: 'Rodney A. Brooks'
               },
-              "contributor-email": nil,
-              "contributor-attributes": {
-                "contributor-sequence": nil,
-                "contributor-role": 'author'
+              'contributor-email': nil,
+              'contributor-attributes': {
+                'contributor-sequence': nil,
+                'contributor-role': 'author'
               }
             }
           ]
         },
-        "journal-title": {
+        'journal-title': {
           value: 'Robotics and Autonomous Systems'
         }
       }
@@ -209,24 +209,24 @@ author = {Rodney Allen Brooks and A. M. Flynn},
           contributors: {
             contributor: [
               {
-                "contributor-orcid": nil,
-                "credit-name": {
+                'contributor-orcid': nil,
+                'credit-name': {
                   value: 'Hubert Dreyfus'
                 },
-                "contributor-email": nil,
-                "contributor-attributes": {
-                  "contributor-sequence": nil,
-                  "contributor-role": 'author'
+                'contributor-email': nil,
+                'contributor-attributes': {
+                  'contributor-sequence': nil,
+                  'contributor-role': 'author'
                 }
               }
             ]
           },
-          "journal-title": {
+          'journal-title': {
             value: 'Topics in AI'
           },
           citation: {
-            "citation-type": 'bibtex',
-            "citation-value": %(@book{DREYFUS19903,
+            'citation-type': 'bibtex',
+            'citation-value': %(@book{DREYFUS19903,
 title = {What computers can't do},
 volume = {6},
 author = {Hubert Dreyfus},

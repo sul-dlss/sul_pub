@@ -236,9 +236,11 @@ describe Agent::AuthorName do
       expect(no_names).not_to eq all_names
     end
 
+    # rubocop:disable RSpec/IdenticalEqualityAssertion
     it 'returns true when names are the same' do
       expect(described_class.new).to eq described_class.new
       expect(described_class.new(ln, fn, mn)).to eq described_class.new(ln, fn, mn)
     end
+    # rubocop:enable RSpec/IdenticalEqualityAssertion
   end
 end

@@ -29,18 +29,18 @@ describe Orcid::Client do
             value: 'Twitter Makes It Worse: Political Journalists, Gendered Echo Chambers, and the Amplification of Gender Bias'
           },
           subtitle: nil,
-          "translated-title": nil
+          'translated-title': nil
         },
-        "journal-title": {
+        'journal-title': {
           value: 'The International Journal of Press/Politics'
         },
-        "short-description": nil,
+        'short-description': nil,
         citation: {
-          "citation-type": 'bibtex',
-          "citation-value": "@article{Usher_2018,\n\tdoi = {10.1177/1940161218781254},\n\turl = {https://doi.org/10.1177%2F1940161218781254},\n\tyear = 2018,\n\tmonth = {jun},\n\tpublisher = {{SAGE} Publications},\n\tvolume = {23},\n\tnumber = {3},\n\tpages = {324--344},\n\tauthor = {Nikki Usher and Jesse Holcomb and Justin Littman},\n\ttitle = {Twitter Makes It Worse: Political Journalists, Gendered Echo Chambers, and the Amplification of Gender Bias},\n\tjournal = {The International Journal of Press/Politics}\n}"
+          'citation-type': 'bibtex',
+          'citation-value': "@article{Usher_2018,\n\tdoi = {10.1177/1940161218781254},\n\turl = {https://doi.org/10.1177%2F1940161218781254},\n\tyear = 2018,\n\tmonth = {jun},\n\tpublisher = {{SAGE} Publications},\n\tvolume = {23},\n\tnumber = {3},\n\tpages = {324--344},\n\tauthor = {Nikki Usher and Jesse Holcomb and Justin Littman},\n\ttitle = {Twitter Makes It Worse: Political Journalists, Gendered Echo Chambers, and the Amplification of Gender Bias},\n\tjournal = {The International Journal of Press/Politics}\n}"
         },
         type: 'journal-article',
-        "publication-date": {
+        'publication-date': {
           year: {
             value: '2018'
           },
@@ -51,20 +51,20 @@ describe Orcid::Client do
             value: '24'
           }
         },
-        "external-ids": {
-          "external-id": [
+        'external-ids': {
+          'external-id': [
             {
-              "external-id-type": 'doi',
-              "external-id-value": '10.1177/1940161218781254',
-              "external-id-normalized": {
+              'external-id-type': 'doi',
+              'external-id-value': '10.1177/1940161218781254',
+              'external-id-normalized': {
                 value: '10.1177/1940161218781254',
                 transient: true
               },
-              "external-id-normalized-error": nil,
-              "external-id-url": {
+              'external-id-normalized-error': nil,
+              'external-id-url': {
                 value: 'https://doi.org/10.1177/1940161218781254'
               },
-              "external-id-relationship": 'self'
+              'external-id-relationship': 'self'
             }
           ]
         },
@@ -74,41 +74,41 @@ describe Orcid::Client do
         contributors: {
           contributor: [
             {
-              "contributor-orcid": nil,
-              "credit-name": {
+              'contributor-orcid': nil,
+              'credit-name': {
                 value: 'Nikki Usher'
               },
-              "contributor-email": nil,
-              "contributor-attributes": {
-                "contributor-sequence": nil,
-                "contributor-role": 'author'
+              'contributor-email': nil,
+              'contributor-attributes': {
+                'contributor-sequence': nil,
+                'contributor-role': 'author'
               }
             },
             {
-              "contributor-orcid": nil,
-              "credit-name": {
+              'contributor-orcid': nil,
+              'credit-name': {
                 value: 'Jesse Holcomb'
               },
-              "contributor-email": nil,
-              "contributor-attributes": {
-                "contributor-sequence": nil,
-                "contributor-role": 'author'
+              'contributor-email': nil,
+              'contributor-attributes': {
+                'contributor-sequence': nil,
+                'contributor-role': 'author'
               }
             },
             {
-              "contributor-orcid": nil,
-              "credit-name": {
+              'contributor-orcid': nil,
+              'credit-name': {
                 value: 'Justin Littman'
               },
-              "contributor-email": nil,
-              "contributor-attributes": {
-                "contributor-sequence": nil,
-                "contributor-role": 'author'
+              'contributor-email': nil,
+              'contributor-attributes': {
+                'contributor-sequence': nil,
+                'contributor-role': 'author'
               }
             }
           ]
         },
-        "language-code": nil,
+        'language-code': nil,
         country: nil
       }
     end

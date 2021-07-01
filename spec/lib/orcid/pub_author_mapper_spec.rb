@@ -40,14 +40,14 @@ describe Orcid::PubAuthorMapper do
 
       it 'prefers name' do
         expect(contributor).to eq({
-                                    "contributor-orcid": nil,
-                                    "credit-name": {
+                                    'contributor-orcid': nil,
+                                    'credit-name': {
                                       value: 'Samuel Clemens'
                                     },
-                                    "contributor-email": nil,
-                                    "contributor-attributes": {
-                                      "contributor-sequence": nil,
-                                      "contributor-role": 'author'
+                                    'contributor-email': nil,
+                                    'contributor-attributes': {
+                                      'contributor-sequence': nil,
+                                      'contributor-role': 'author'
                                     }
                                   })
       end
@@ -58,14 +58,14 @@ describe Orcid::PubAuthorMapper do
 
       it 'cleans name' do
         expect(contributor).to eq({
-                                    "contributor-orcid": nil,
-                                    "credit-name": {
+                                    'contributor-orcid': nil,
+                                    'credit-name': {
                                       value: 'Clemens, Samuel'
                                     },
-                                    "contributor-email": nil,
-                                    "contributor-attributes": {
-                                      "contributor-sequence": nil,
-                                      "contributor-role": 'author'
+                                    'contributor-email': nil,
+                                    'contributor-attributes': {
+                                      'contributor-sequence': nil,
+                                      'contributor-role': 'author'
                                     }
                                   })
       end
@@ -76,14 +76,14 @@ describe Orcid::PubAuthorMapper do
 
       it 'cleans name' do
         expect(contributor).to eq({
-                                    "contributor-orcid": nil,
-                                    "credit-name": {
+                                    'contributor-orcid': nil,
+                                    'credit-name': {
                                       value: 'Clemens, Samuel L.'
                                     },
-                                    "contributor-email": nil,
-                                    "contributor-attributes": {
-                                      "contributor-sequence": nil,
-                                      "contributor-role": 'author'
+                                    'contributor-email': nil,
+                                    'contributor-attributes': {
+                                      'contributor-sequence': nil,
+                                      'contributor-role': 'author'
                                     }
                                   })
       end
@@ -94,14 +94,14 @@ describe Orcid::PubAuthorMapper do
 
       it 'cleans name' do
         expect(contributor).to eq({
-                                    "contributor-orcid": nil,
-                                    "credit-name": {
+                                    'contributor-orcid': nil,
+                                    'credit-name': {
                                       value: 'Clemens, Samuel M. L.'
                                     },
-                                    "contributor-email": nil,
-                                    "contributor-attributes": {
-                                      "contributor-sequence": nil,
-                                      "contributor-role": 'author'
+                                    'contributor-email': nil,
+                                    'contributor-attributes': {
+                                      'contributor-sequence': nil,
+                                      'contributor-role': 'author'
                                     }
                                   })
       end
@@ -112,14 +112,14 @@ describe Orcid::PubAuthorMapper do
 
       it 'cleans name' do
         expect(contributor).to eq({
-                                    "contributor-orcid": nil,
-                                    "credit-name": {
+                                    'contributor-orcid': nil,
+                                    'credit-name': {
                                       value: 'Clemens, S. L.'
                                     },
-                                    "contributor-email": nil,
-                                    "contributor-attributes": {
-                                      "contributor-sequence": nil,
-                                      "contributor-role": 'author'
+                                    'contributor-email': nil,
+                                    'contributor-attributes': {
+                                      'contributor-sequence': nil,
+                                      'contributor-role': 'author'
                                     }
                                   })
       end
@@ -131,14 +131,14 @@ describe Orcid::PubAuthorMapper do
 
       it 'prefers full_name' do
         expect(contributor).to eq({
-                                    "contributor-orcid": nil,
-                                    "credit-name": {
+                                    'contributor-orcid': nil,
+                                    'credit-name': {
                                       value: 'Samuel Langhorne Clemens'
                                     },
-                                    "contributor-email": nil,
-                                    "contributor-attributes": {
-                                      "contributor-sequence": nil,
-                                      "contributor-role": 'author'
+                                    'contributor-email': nil,
+                                    'contributor-attributes': {
+                                      'contributor-sequence': nil,
+                                      'contributor-role': 'author'
                                     }
                                   })
       end
@@ -151,14 +151,14 @@ describe Orcid::PubAuthorMapper do
 
       it 'prefers full_name' do
         expect(contributor).to eq({
-                                    "contributor-orcid": nil,
-                                    "credit-name": {
+                                    'contributor-orcid': nil,
+                                    'credit-name': {
                                       value: 'Samuel Clemens'
                                     },
-                                    "contributor-email": nil,
-                                    "contributor-attributes": {
-                                      "contributor-sequence": nil,
-                                      "contributor-role": 'author'
+                                    'contributor-email': nil,
+                                    'contributor-attributes': {
+                                      'contributor-sequence': nil,
+                                      'contributor-role': 'author'
                                     }
                                   })
       end
@@ -174,14 +174,14 @@ describe Orcid::PubAuthorMapper do
 
       it 'prefers underscore name parts' do
         expect(contributor).to eq({
-                                    "contributor-orcid": nil,
-                                    "credit-name": {
+                                    'contributor-orcid': nil,
+                                    'credit-name': {
                                       value: 'Samuel Langhorne Clemens'
                                     },
-                                    "contributor-email": nil,
-                                    "contributor-attributes": {
-                                      "contributor-sequence": nil,
-                                      "contributor-role": 'author'
+                                    'contributor-email': nil,
+                                    'contributor-attributes': {
+                                      'contributor-sequence': nil,
+                                      'contributor-role': 'author'
                                     }
                                   })
       end
@@ -194,14 +194,14 @@ describe Orcid::PubAuthorMapper do
 
       it 'builds name' do
         expect(contributor).to eq({
-                                    "contributor-orcid": nil,
-                                    "credit-name": {
+                                    'contributor-orcid': nil,
+                                    'credit-name': {
                                       value: 'Samuel Langhorne Clemens'
                                     },
-                                    "contributor-email": nil,
-                                    "contributor-attributes": {
-                                      "contributor-sequence": nil,
-                                      "contributor-role": 'author'
+                                    'contributor-email': nil,
+                                    'contributor-attributes': {
+                                      'contributor-sequence': nil,
+                                      'contributor-role': 'author'
                                     }
                                   })
       end
@@ -214,14 +214,14 @@ describe Orcid::PubAuthorMapper do
 
       it 'builds name' do
         expect(contributor).to eq({
-                                    "contributor-orcid": nil,
-                                    "credit-name": {
+                                    'contributor-orcid': nil,
+                                    'credit-name': {
                                       value: 'Samuel Langhorne Clemens'
                                     },
-                                    "contributor-email": nil,
-                                    "contributor-attributes": {
-                                      "contributor-sequence": nil,
-                                      "contributor-role": 'author'
+                                    'contributor-email': nil,
+                                    'contributor-attributes': {
+                                      'contributor-sequence': nil,
+                                      'contributor-role': 'author'
                                     }
                                   })
       end
@@ -233,14 +233,14 @@ describe Orcid::PubAuthorMapper do
 
       it 'builds name' do
         expect(contributor).to eq({
-                                    "contributor-orcid": nil,
-                                    "credit-name": {
+                                    'contributor-orcid': nil,
+                                    'credit-name': {
                                       value: 'S.L. Clemens'
                                     },
-                                    "contributor-email": nil,
-                                    "contributor-attributes": {
-                                      "contributor-sequence": nil,
-                                      "contributor-role": 'author'
+                                    'contributor-email': nil,
+                                    'contributor-attributes': {
+                                      'contributor-sequence': nil,
+                                      'contributor-role': 'author'
                                     }
                                   })
       end
@@ -252,14 +252,14 @@ describe Orcid::PubAuthorMapper do
 
       it 'sets role' do
         expect(contributor).to eq({
-                                    "contributor-orcid": nil,
-                                    "credit-name": {
+                                    'contributor-orcid': nil,
+                                    'credit-name': {
                                       value: 'Mark Twain'
                                     },
-                                    "contributor-email": nil,
-                                    "contributor-attributes": {
-                                      "contributor-sequence": nil,
-                                      "contributor-role": 'support-staff'
+                                    'contributor-email': nil,
+                                    'contributor-attributes': {
+                                      'contributor-sequence': nil,
+                                      'contributor-role': 'support-staff'
                                     }
                                   })
       end
@@ -271,14 +271,14 @@ describe Orcid::PubAuthorMapper do
 
       it 'sets role' do
         expect(contributor).to eq({
-                                    "contributor-orcid": nil,
-                                    "credit-name": {
+                                    'contributor-orcid': nil,
+                                    'credit-name': {
                                       value: 'Mark Twain'
                                     },
-                                    "contributor-email": nil,
-                                    "contributor-attributes": {
-                                      "contributor-sequence": nil,
-                                      "contributor-role": 'editor'
+                                    'contributor-email': nil,
+                                    'contributor-attributes': {
+                                      'contributor-sequence': nil,
+                                      'contributor-role': 'editor'
                                     }
                                   })
       end
@@ -290,14 +290,14 @@ describe Orcid::PubAuthorMapper do
 
       it 'sets role to null' do
         expect(contributor).to eq({
-                                    "contributor-orcid": nil,
-                                    "credit-name": {
+                                    'contributor-orcid': nil,
+                                    'credit-name': {
                                       value: 'Mark Twain'
                                     },
-                                    "contributor-email": nil,
-                                    "contributor-attributes": {
-                                      "contributor-sequence": nil,
-                                      "contributor-role": nil
+                                    'contributor-email': nil,
+                                    'contributor-attributes': {
+                                      'contributor-sequence': nil,
+                                      'contributor-role': nil
                                     }
                                   })
       end
