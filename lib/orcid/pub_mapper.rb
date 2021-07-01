@@ -91,8 +91,8 @@ module Orcid
 
     def map_citation
       {
-        "citation-type": 'bibtex',
-        "citation-value": Csl::Citation.new(pub_hash).to_bibtex.strip
+        'citation-type': 'bibtex',
+        'citation-value': Csl::Citation.new(pub_hash).to_bibtex.strip
       }
     end
 
