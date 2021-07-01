@@ -196,6 +196,31 @@ describe Orcid::PubIdentifierMapper do
       end
     end
 
+    context 'when invalid url' do
+      let(:pub_hash) do
+        {
+          identifier: [
+            {
+              type: 'doi',
+              id: '10.2216/0031-8884(2005)',
+              url: 'https://dx.doi.org/10.2216/0031-8884(2005)44[453:ACAOTN]2.0.CO;2'
+            }
+          ]
+        }
+      end
+
+      it 'ignores url' do
+        expect(ids['external-id']).to eq([
+                                           {
+                                             'external-id-type' => 'doi',
+                                             'external-id-value' => '10.2216/0031-8884(2005)',
+                                             'external-id-url' => nil,
+                                             'external-id-relationship' => 'self'
+                                           }
+                                         ])
+      end
+    end
+
     context 'when dupe for self and part-of' do
       let(:pub_hash) do
         {
