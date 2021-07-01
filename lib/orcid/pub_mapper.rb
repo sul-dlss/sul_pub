@@ -80,10 +80,11 @@ module Orcid
     end
 
     def map_pub_date_from_year
-      return nil unless pub_hash[:year]&.match(/\d\d\d\d/)
+      year = pub_hash[:year]&.strip
+      return nil unless year&.match(/^\d\d\d\d$/)
 
       {
-        year: { value: pub_hash[:year] },
+        year: { value: year },
         month: nil,
         day: nil
       }
