@@ -151,6 +151,23 @@ describe Orcid::PubMapper do
     end
   end
 
+  context 'when year has whitespace' do
+    let(:pub_hash) do
+      base_pub_hash.dup.tap do |pub_hash|
+        pub_hash.delete(:date)
+        pub_hash[:year] = ' 1950'
+      end
+    end
+
+    it 'maps without whitespace' do
+      expect(work['publication-date']).to eq({
+        year: { value: '1950' },
+        month: nil,
+        day: nil
+      }.with_indifferent_access)
+    end
+  end
+
   context 'when a book' do
     let(:pub_hash) do
       {
