@@ -146,6 +146,8 @@ describe PubmedSourceRecord, :vcr do
       expect(record.source_as_hash[:year]).to eq '1992'
       record = create :pubmed_source_record_29279863 # year in alternate location
       expect(record.source_as_hash[:year]).to eq '2017'
+      record = create :pubmed_source_record_23388678 # year in another alternate location
+      expect(record.source_as_hash[:year]).to eq '2013'
     end
   end
 
