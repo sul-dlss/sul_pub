@@ -1,0 +1,368 @@
+<PubmedArticle>
+  <MedlineCitation Status="MEDLINE" Owner="NLM">
+    <PMID Version="1">23388678</PMID>
+    <DateCompleted>
+      <Year>2013</Year>
+      <Month>07</Month>
+      <Day>09</Day>
+    </DateCompleted>
+    <DateRevised>
+      <Year>2018</Year>
+      <Month>11</Month>
+      <Day>13</Day>
+    </DateRevised>
+    <Article PubModel="Print">
+      <Journal>
+        <ISSN IssnType="Print">1932-0620</ISSN>
+        <JournalIssue CitedMedium="Print">
+          <Volume>7</Volume>
+          <Issue>2</Issue>
+          <PubDate>
+            <MedlineDate>2013 Mar-Apr</MedlineDate>
+          </PubDate>
+        </JournalIssue>
+        <Title>Journal of addiction medicine</Title>
+        <ISOAbbreviation>J Addict Med</ISOAbbreviation>
+      </Journal>
+      <ArticleTitle>Association between risk behaviors and antiretroviral resistance in HIV-infected patients receiving opioid agonist treatment.</ArticleTitle>
+      <Pagination>
+        <MedlinePgn>102-7</MedlinePgn>
+      </Pagination>
+      <ELocationID EIdType="doi" ValidYN="Y">10.1097/ADM.0b013e31827f9bdf</ELocationID>
+      <Abstract>
+        <AbstractText Label="OBJECTIVES" NlmCategory="OBJECTIVE">Antiretroviral (ARV) resistance is of concern. Opioid agonist treatment (ie, methadone or buprenorphine) is effective and decreases HIV transmission risk behaviors and HIV seroconversion. Despite prevention efforts, injection drug use (IDU) and risky sexual behaviors remain prevalent in patients receiving opioid agonist treatment. The purpose of this study is to determine in HIV-infected patients receiving opioid agonist treatment, the prevalence of HIV transmission risk behaviors, the prevalence of ARV resistance, and the prevalence of ARV resistance among those with risk behaviors.</AbstractText>
+        <AbstractText Label="METHODS" NlmCategory="METHODS">The design was a cross-sectional study of patients recruited from opioid treatment programs and outpatient practices. We measured demographic, drug treatment, and HIV clinical information (including ARV adherence), self-reported HIV risk behaviors and drug use, urine toxicologies, and genotype testing for ARV resistance (with both standard assays and ultradeep sequencing). Data analysis included descriptive statistics.</AbstractText>
+        <AbstractText Label="RESULTS" NlmCategory="RESULTS">Fifty-nine subjects were enrolled, 64% were male, 24% were white, and mean age was 46 years. Fifty-three percent were receiving methadone, 47% were receiving buprenorphine, and 80% were receiving opioid agonist treatment for 12 weeks or more. Fourteen percent reported unprotected sex, 7% reported sharing needles or works, and 60% had positive urine toxicology for illicit drug use. Fifteen percent had evidence of HIV resistance by standard genotyping; 7% with single class resistance, 3% with double class resistance, and 5% with triple class resistance. Ultradeep sequencing found additional class resistance in 5 subjects. Twenty-two percent of subjects with evidence of transmission risk behaviors versus 14% of subjects without risk behaviors had evidence of ARV resistance.</AbstractText>
+        <AbstractText Label="CONCLUSIONS" NlmCategory="CONCLUSIONS">Improved prevention and treatment efforts may be needed for HIV-infected, opioid dependent individuals receiving opioid agonist treatment to decrease transmission of ARV resistant virus, especially in resource limited settings.</AbstractText>
+      </Abstract>
+      <AuthorList CompleteYN="Y">
+        <Author ValidYN="Y">
+          <LastName>Tetrault</LastName>
+          <ForeName>Jeanette M</ForeName>
+          <Initials>JM</Initials>
+          <AffiliationInfo>
+            <Affiliation>Section of General Internal Medicine, Department of Internal Medicine, Yale University School of Medicine, New Haven, CT, USA. jeanette.tetrault@yale.edu</Affiliation>
+          </AffiliationInfo>
+        </Author>
+        <Author ValidYN="Y">
+          <LastName>Kozal</LastName>
+          <ForeName>Michael J</ForeName>
+          <Initials>MJ</Initials>
+        </Author>
+        <Author ValidYN="Y">
+          <LastName>Chiarella</LastName>
+          <ForeName>Jennifer</ForeName>
+          <Initials>J</Initials>
+        </Author>
+        <Author ValidYN="Y">
+          <LastName>Sullivan</LastName>
+          <ForeName>Lynn E</ForeName>
+          <Initials>LE</Initials>
+        </Author>
+        <Author ValidYN="Y">
+          <LastName>Dinh</LastName>
+          <ForeName>An T</ForeName>
+          <Initials>AT</Initials>
+        </Author>
+        <Author ValidYN="Y">
+          <LastName>Fiellin</LastName>
+          <ForeName>David A</ForeName>
+          <Initials>DA</Initials>
+        </Author>
+      </AuthorList>
+      <Language>eng</Language>
+      <GrantList CompleteYN="Y">
+        <Grant>
+          <GrantID>P30 MH062294</GrantID>
+          <Acronym>MH</Acronym>
+          <Agency>NIMH NIH HHS</Agency>
+          <Country>United States</Country>
+        </Grant>
+        <Grant>
+          <GrantID>P30 MH62294</GrantID>
+          <Acronym>MH</Acronym>
+          <Agency>NIMH NIH HHS</Agency>
+          <Country>United States</Country>
+        </Grant>
+      </GrantList>
+      <PublicationTypeList>
+        <PublicationType UI="D016428">Journal Article</PublicationType>
+        <PublicationType UI="D052061">Research Support, N.I.H., Extramural</PublicationType>
+        <PublicationType UI="D013485">Research Support, Non-U.S. Gov't</PublicationType>
+      </PublicationTypeList>
+    </Article>
+    <MedlineJournalInfo>
+      <Country>United States</Country>
+      <MedlineTA>J Addict Med</MedlineTA>
+      <NlmUniqueID>101306759</NlmUniqueID>
+      <ISSNLinking>1932-0620</ISSNLinking>
+    </MedlineJournalInfo>
+    <ChemicalList>
+      <Chemical>
+        <RegistryNumber>0</RegistryNumber>
+        <NameOfSubstance UI="D000701">Analgesics, Opioid</NameOfSubstance>
+      </Chemical>
+      <Chemical>
+        <RegistryNumber>0</RegistryNumber>
+        <NameOfSubstance UI="D019380">Anti-HIV Agents</NameOfSubstance>
+      </Chemical>
+      <Chemical>
+        <RegistryNumber>40D3SCR4GZ</RegistryNumber>
+        <NameOfSubstance UI="D002047">Buprenorphine</NameOfSubstance>
+      </Chemical>
+      <Chemical>
+        <RegistryNumber>UC6VBE7V1Z</RegistryNumber>
+        <NameOfSubstance UI="D008691">Methadone</NameOfSubstance>
+      </Chemical>
+    </ChemicalList>
+    <CitationSubset>IM</CitationSubset>
+    <MeshHeadingList>
+      <MeshHeading>
+        <DescriptorName UI="D000701" MajorTopicYN="N">Analgesics, Opioid</DescriptorName>
+        <QualifierName UI="Q000627" MajorTopicYN="Y">therapeutic use</QualifierName>
+      </MeshHeading>
+      <MeshHeading>
+        <DescriptorName UI="D019380" MajorTopicYN="N">Anti-HIV Agents</DescriptorName>
+        <QualifierName UI="Q000627" MajorTopicYN="Y">therapeutic use</QualifierName>
+      </MeshHeading>
+      <MeshHeading>
+        <DescriptorName UI="D023241" MajorTopicYN="N">Antiretroviral Therapy, Highly Active</DescriptorName>
+        <QualifierName UI="Q000379" MajorTopicYN="Y">methods</QualifierName>
+      </MeshHeading>
+      <MeshHeading>
+        <DescriptorName UI="D002047" MajorTopicYN="N">Buprenorphine</DescriptorName>
+        <QualifierName UI="Q000627" MajorTopicYN="N">therapeutic use</QualifierName>
+      </MeshHeading>
+      <MeshHeading>
+        <DescriptorName UI="D003430" MajorTopicYN="N">Cross-Sectional Studies</DescriptorName>
+      </MeshHeading>
+      <MeshHeading>
+        <DescriptorName UI="D024882" MajorTopicYN="Y">Drug Resistance, Viral</DescriptorName>
+      </MeshHeading>
+      <MeshHeading>
+        <DescriptorName UI="D005260" MajorTopicYN="N">Female</DescriptorName>
+      </MeshHeading>
+      <MeshHeading>
+        <DescriptorName UI="D015658" MajorTopicYN="N">HIV Infections</DescriptorName>
+        <QualifierName UI="Q000188" MajorTopicYN="Y">drug therapy</QualifierName>
+      </MeshHeading>
+      <MeshHeading>
+        <DescriptorName UI="D006801" MajorTopicYN="N">Humans</DescriptorName>
+      </MeshHeading>
+      <MeshHeading>
+        <DescriptorName UI="D008297" MajorTopicYN="N">Male</DescriptorName>
+      </MeshHeading>
+      <MeshHeading>
+        <DescriptorName UI="D008691" MajorTopicYN="N">Methadone</DescriptorName>
+        <QualifierName UI="Q000627" MajorTopicYN="N">therapeutic use</QualifierName>
+      </MeshHeading>
+      <MeshHeading>
+        <DescriptorName UI="D008875" MajorTopicYN="N">Middle Aged</DescriptorName>
+      </MeshHeading>
+      <MeshHeading>
+        <DescriptorName UI="D015995" MajorTopicYN="N">Prevalence</DescriptorName>
+      </MeshHeading>
+      <MeshHeading>
+        <DescriptorName UI="D012309" MajorTopicYN="Y">Risk-Taking</DescriptorName>
+      </MeshHeading>
+      <MeshHeading>
+        <DescriptorName UI="D012725" MajorTopicYN="N">Sexual Behavior</DescriptorName>
+        <QualifierName UI="Q000706" MajorTopicYN="N">statistics &amp; numerical data</QualifierName>
+      </MeshHeading>
+      <MeshHeading>
+        <DescriptorName UI="D015819" MajorTopicYN="N">Substance Abuse, Intravenous</DescriptorName>
+        <QualifierName UI="Q000453" MajorTopicYN="N">epidemiology</QualifierName>
+      </MeshHeading>
+    </MeshHeadingList>
+  </MedlineCitation>
+  <PubmedData>
+    <History>
+      <PubMedPubDate PubStatus="entrez">
+        <Year>2013</Year>
+        <Month>2</Month>
+        <Day>8</Day>
+        <Hour>6</Hour>
+        <Minute>0</Minute>
+      </PubMedPubDate>
+      <PubMedPubDate PubStatus="pubmed">
+        <Year>2013</Year>
+        <Month>2</Month>
+        <Day>8</Day>
+        <Hour>6</Hour>
+        <Minute>0</Minute>
+      </PubMedPubDate>
+      <PubMedPubDate PubStatus="medline">
+        <Year>2013</Year>
+        <Month>7</Month>
+        <Day>10</Day>
+        <Hour>6</Hour>
+        <Minute>0</Minute>
+      </PubMedPubDate>
+    </History>
+    <PublicationStatus>ppublish</PublicationStatus>
+    <ArticleIdList>
+      <ArticleId IdType="pubmed">23388678</ArticleId>
+      <ArticleId IdType="doi">10.1097/ADM.0b013e31827f9bdf</ArticleId>
+      <ArticleId IdType="pmc">PMC3618545</ArticleId>
+      <ArticleId IdType="mid">NIHMS431360</ArticleId>
+    </ArticleIdList>
+    <ReferenceList>
+      <Reference>
+        <Citation>J Acquir Immune Defic Syndr. 2010 Dec;55 Suppl 1:S32-6</Citation>
+        <ArticleIdList>
+          <ArticleId IdType="pubmed">21045597</ArticleId>
+        </ArticleIdList>
+      </Reference>
+      <Reference>
+        <Citation>Am J Addict. 2010 Jan-Feb;19(1):53-8</Citation>
+        <ArticleIdList>
+          <ArticleId IdType="pubmed">20132122</ArticleId>
+        </ArticleIdList>
+      </Reference>
+      <Reference>
+        <Citation>JAMA. 2011 Apr 6;305(13):1327-35</Citation>
+        <ArticleIdList>
+          <ArticleId IdType="pubmed">21467286</ArticleId>
+        </ArticleIdList>
+      </Reference>
+      <Reference>
+        <Citation>Cochrane Database Syst Rev. 2011;(8):CD004145</Citation>
+        <ArticleIdList>
+          <ArticleId IdType="pubmed">21833948</ArticleId>
+        </ArticleIdList>
+      </Reference>
+      <Reference>
+        <Citation>Antivir Ther. 2011;16(6):925-9</Citation>
+        <ArticleIdList>
+          <ArticleId IdType="pubmed">21900725</ArticleId>
+        </ArticleIdList>
+      </Reference>
+      <Reference>
+        <Citation>PLoS One. 2010;5(6):e10952</Citation>
+        <ArticleIdList>
+          <ArticleId IdType="pubmed">20532178</ArticleId>
+        </ArticleIdList>
+      </Reference>
+      <Reference>
+        <Citation>AIDS. 2000 Jan 28;14(2):151-5</Citation>
+        <ArticleIdList>
+          <ArticleId IdType="pubmed">10708285</ArticleId>
+        </ArticleIdList>
+      </Reference>
+      <Reference>
+        <Citation>J Nerv Ment Dis. 1980 Jan;168(1):26-33</Citation>
+        <ArticleIdList>
+          <ArticleId IdType="pubmed">7351540</ArticleId>
+        </ArticleIdList>
+      </Reference>
+      <Reference>
+        <Citation>J Acquir Immune Defic Syndr. 1993 Sep;6(9):1049-56</Citation>
+        <ArticleIdList>
+          <ArticleId IdType="pubmed">8340896</ArticleId>
+        </ArticleIdList>
+      </Reference>
+      <Reference>
+        <Citation>Nat Med. 1996 Jul;2(7):753-9</Citation>
+        <ArticleIdList>
+          <ArticleId IdType="pubmed">8673920</ArticleId>
+        </ArticleIdList>
+      </Reference>
+      <Reference>
+        <Citation>AIDS. 2004 Nov 5;18(16):2185-9</Citation>
+        <ArticleIdList>
+          <ArticleId IdType="pubmed">15577652</ArticleId>
+        </ArticleIdList>
+      </Reference>
+      <Reference>
+        <Citation>Clin Infect Dis. 2005 Feb 1;40(3):468-74</Citation>
+        <ArticleIdList>
+          <ArticleId IdType="pubmed">15668873</ArticleId>
+        </ArticleIdList>
+      </Reference>
+      <Reference>
+        <Citation>Addiction. 2005 Feb;100(2):150-8</Citation>
+        <ArticleIdList>
+          <ArticleId IdType="pubmed">15679744</ArticleId>
+        </ArticleIdList>
+      </Reference>
+      <Reference>
+        <Citation>J Acquir Immune Defic Syndr. 2005 Sep 1;40(1):106-9</Citation>
+        <ArticleIdList>
+          <ArticleId IdType="pubmed">16123691</ArticleId>
+        </ArticleIdList>
+      </Reference>
+      <Reference>
+        <Citation>J Acquir Immune Defic Syndr. 2006 Jan 1;41(1):44-52</Citation>
+        <ArticleIdList>
+          <ArticleId IdType="pubmed">16340472</ArticleId>
+        </ArticleIdList>
+      </Reference>
+      <Reference>
+        <Citation>MedGenMed. 2006;8(2):72</Citation>
+        <ArticleIdList>
+          <ArticleId IdType="pubmed">16926811</ArticleId>
+        </ArticleIdList>
+      </Reference>
+      <Reference>
+        <Citation>Clin Infect Dis. 2006 Dec 15;43 Suppl 4:S184-90</Citation>
+        <ArticleIdList>
+          <ArticleId IdType="pubmed">17109305</ArticleId>
+        </ArticleIdList>
+      </Reference>
+      <Reference>
+        <Citation>J Acquir Immune Defic Syndr. 2006 Dec 1;43 Suppl 1:S10-7</Citation>
+        <ArticleIdList>
+          <ArticleId IdType="pubmed">17133191</ArticleId>
+        </ArticleIdList>
+      </Reference>
+      <Reference>
+        <Citation>HIV Clin Trials. 2007 Nov-Dec;8(6):357-70</Citation>
+        <ArticleIdList>
+          <ArticleId IdType="pubmed">18042501</ArticleId>
+        </ArticleIdList>
+      </Reference>
+      <Reference>
+        <Citation>J Acquir Immune Defic Syndr. 2007 Dec 15;46(5):555-63</Citation>
+        <ArticleIdList>
+          <ArticleId IdType="pubmed">18193497</ArticleId>
+        </ArticleIdList>
+      </Reference>
+      <Reference>
+        <Citation>J Subst Abuse Treat. 2008 Jul;35(1):87-92</Citation>
+        <ArticleIdList>
+          <ArticleId IdType="pubmed">17933486</ArticleId>
+        </ArticleIdList>
+      </Reference>
+      <Reference>
+        <Citation>J Infect Dis. 2009 Mar 1;199(5):693-701</Citation>
+        <ArticleIdList>
+          <ArticleId IdType="pubmed">19210162</ArticleId>
+        </ArticleIdList>
+      </Reference>
+      <Reference>
+        <Citation>Clin Microbiol Infect. 2009 Jan;15 Suppl 1:69-73</Citation>
+        <ArticleIdList>
+          <ArticleId IdType="pubmed">19220361</ArticleId>
+        </ArticleIdList>
+      </Reference>
+      <Reference>
+        <Citation>PLoS One. 2009;4(6):e6079</Citation>
+        <ArticleIdList>
+          <ArticleId IdType="pubmed">19562031</ArticleId>
+        </ArticleIdList>
+      </Reference>
+      <Reference>
+        <Citation>J Infect Dis. 2009 Aug 1;200(3):453-63</Citation>
+        <ArticleIdList>
+          <ArticleId IdType="pubmed">19552527</ArticleId>
+        </ArticleIdList>
+      </Reference>
+      <Reference>
+        <Citation>J Acquir Immune Defic Syndr. 2011 Mar 1;56 Suppl 1:S39-45</Citation>
+        <ArticleIdList>
+          <ArticleId IdType="pubmed">21317593</ArticleId>
+        </ArticleIdList>
+      </Reference>
+    </ReferenceList>
+  </PubmedData>
+</PubmedArticle>

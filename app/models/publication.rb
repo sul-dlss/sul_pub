@@ -155,7 +155,7 @@ class Publication < ApplicationRecord
 
   # @return [Boolean] true if .save is successful
   def rebuild_pub_hash
-    raise 'rebuilding WOS records is unsupported, unimplemented' if wos_uid
+    raise 'rebuilding WOS records is unsupported, unimplemented' if wos_pub?
 
     if sciencewire_id
       sw_source_record = SciencewireSourceRecord.find_by_sciencewire_id(sciencewire_id)

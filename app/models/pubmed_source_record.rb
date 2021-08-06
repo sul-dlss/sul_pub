@@ -142,7 +142,10 @@ class PubmedSourceRecord < ApplicationRecord
     year_xpaths = [
       'MedlineCitation/Article/Journal/JournalIssue/PubDate/Year',
       'MedlineCitation/Article/ArticleDate/Year',
-      'PubmedData/History/PubMedPubDate[@PubStatus="accepted"]/Year'
+      'PubmedData/History/PubMedPubDate[@PubStatus="accepted"]/Year',
+      'PubmedData/History/PubMedPubDate[@PubStatus="pubmed"]/Year',
+      'PubmedData/History/PubMedPubDate[@PubStatus="medline"]/Year',
+      'PubmedData/History/PubMedPubDate[@PubStatus="entrez"]/Year'
     ]
     # look for a year in all of the xpath locations above in order
     #  stop after the first produces something that looks like a year
