@@ -18,6 +18,18 @@ module Orcid
       get("/v3.0/#{Orcid.base_orcidid(orcidid)}/work/#{put_code}")
     end
 
+    def fetch_name(orcidid)
+      response = public_conn.get("/v3.0/#{clean_orcid_result(orcidid)}/personal-details")
+      case response.status
+      when 200
+        resp_json = JSON.parse(response.body)
+        [resp_json.dig('name', 'given-names', 'value'),
+         resp_json.dig('name', 'family-name', 'value')]
+      else
+        raise "ORCID.org API returned #{response.status} (#{response.body}) for: #{orcidid}"
+      end
+    end
+
     # Run a generalized search query against ORCID
     # see https://info.orcid.org/documentation/api-tutorials/api-tutorial-searching-the-orcid-registry/#Search_result_pagination
     def search(query)
@@ -83,6 +95,11 @@ module Orcid
 
     private
 
+    def clean_orcid_result(orcid)
+      match = /[0-9xX]{4}-[0-9xX]{4}-[0-9xX]{4}-[0-9xX]{4}/.match(orcid)
+      match[0]&.upcase if match
+    end
+
     def get(url)
       response = conn.get(url)
       raise "ORCID.org API returned #{response.status}" if response.status != 200
@@ -102,6 +119,21 @@ module Orcid
     end
 
     # @return [Faraday::Connection]
+    def public_conn
+      conn = Faraday.new(url: Settings.ORCID.BASE_PUBLIC_URL) do |faraday|
+        faraday.request :retry, max: 3,
+                                interval: 0.5,
+                                interval_randomness: 0.5,
+                                backoff_factor: 2
+        faraday.adapter :httpclient
+      end
+      conn.options.timeout = 500
+      conn.options.open_timeout = 10
+      conn.headers = headers
+      conn
+    end
+
+    # @return [Faraday::Connection]
     def conn_with_token(token)
       conn = Faraday.new(url: Settings.ORCID.BASE_URL) do |faraday|
         faraday.request :retry, max: 3,
@@ -112,10 +144,16 @@ module Orcid
       end
       conn.options.timeout = 500
       conn.options.open_timeout = 10
-      conn.headers[:user_agent] = 'stanford-library-sul-pub'
-      conn.headers[:accept] = 'application/json'
+      conn.headers = headers
       conn.headers[:authorization] = "Bearer #{token}"
       conn
+    end
+
+    def headers
+      {
+        'Accept' => 'application/json',
+        'User-Agent' => 'stanford-library-sul-pub'
+      }
     end
   end
 end
