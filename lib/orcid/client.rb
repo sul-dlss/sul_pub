@@ -18,6 +18,28 @@ module Orcid
       get("/v3.0/#{Orcid.base_orcidid(orcidid)}/work/#{put_code}")
     end
 
+    # Run a generalized search query against ORCID
+    # see https://info.orcid.org/documentation/api-tutorials/api-tutorial-searching-the-orcid-registry/#Search_result_pagination
+    def search(query)
+      # this is the maximum number of rows ORCID allows in their response currently
+      max_num_returned = 1000.0
+
+      total_response = get("#{query}&start=1&rows=#{max_num_returned.to_i}")
+      num_results = total_response['num-found']
+
+      return total_response if num_results <= max_num_returned
+
+      num_pages = (num_results / max_num_returned).ceil
+
+      # we already have page 1 of the results
+      (1..num_pages - 1).each do |page_num|
+        response = get("#{query}&start=#{(page_num * max_num_returned.to_i) + 1}&rows=#{max_num_returned.to_i}")
+        total_response['result'] += response['result']
+      end
+
+      total_response
+    end
+
     # Add a new work for a researcher.
     # @param [string] ORCID ID for the researcher
     # @param [Hash] work in correct data structure for ORCID work
