@@ -18,8 +18,12 @@ module Orcid
       get("/v3.0/#{Orcid.base_orcidid(orcidid)}/work/#{put_code}")
     end
 
+    # Fetches the name for a user given an orcidid
     def fetch_name(orcidid)
-      response = public_conn.get("/v3.0/#{clean_orcid_result(orcidid)}/personal-details")
+      match = /[0-9xX]{4}-[0-9xX]{4}-[0-9xX]{4}-[0-9xX]{4}/.match(orcidid)
+      raise 'invalid orcidid provided' unless match
+
+      response = public_conn.get("/v3.0/#{match[0]&.upcase}/personal-details")
       case response.status
       when 200
         resp_json = JSON.parse(response.body)
@@ -31,21 +35,20 @@ module Orcid
     end
 
     # Run a generalized search query against ORCID
-    # see https://info.orcid.org/documentation/api-tutorials/api-tutorial-searching-the-orcid-registry/#Search_result_pagination
+    # see https://info.orcid.org/documentation/api-tutorials/api-tutorial-searching-the-orcid-registry
     def search(query)
       # this is the maximum number of rows ORCID allows in their response currently
-      max_num_returned = 1000.0
-
-      total_response = get("#{query}&start=1&rows=#{max_num_returned.to_i}")
+      max_num_returned = 1000
+      total_response = get("/v3.0/search/?q=#{query}&rows=#{max_num_returned}")
       num_results = total_response['num-found']
 
       return total_response if num_results <= max_num_returned
 
-      num_pages = (num_results / max_num_returned).ceil
+      num_pages = (num_results / max_num_returned.to_f).ceil
 
       # we already have page 1 of the results
       (1..num_pages - 1).each do |page_num|
-        response = get("#{query}&start=#{(page_num * max_num_returned.to_i) + 1}&rows=#{max_num_returned.to_i}")
+        response = get("/v3.0/search/?q=#{query}&start=#{(page_num * max_num_returned) + 1}&rows=#{max_num_returned}")
         total_response['result'] += response['result']
       end
 
@@ -94,11 +97,6 @@ module Orcid
     end
 
     private
-
-    def clean_orcid_result(orcid)
-      match = /[0-9xX]{4}-[0-9xX]{4}-[0-9xX]{4}-[0-9xX]{4}/.match(orcid)
-      match[0]&.upcase if match
-    end
 
     def get(url)
       response = conn.get(url)
