@@ -3,6 +3,42 @@
 describe Orcid::Client do
   let(:subject) { described_class.new }
 
+  describe '#fetch_name' do
+    let(:fetch_name_response) { subject.fetch_name('https://sandbox.orcid.org/0000-0002-2230-4756') }
+    let(:bogus_fetch_name_response) { subject.fetch_name('bogus') }
+
+    it 'retrieves a name given an orcid' do
+      VCR.use_cassette('Orcid_Client/_fetch_name/retrieve name') do
+        expect(fetch_name_response).to eq %w[Peter Test]
+      end
+    end
+
+    it 'raises an exception for an invalid orcidid' do
+      expect { bogus_fetch_name_response }.to raise_error('invalid orcidid provided')
+    end
+  end
+
+  describe '#search' do
+    let(:search_response) { subject.search('(ringgold-org-id:6429)') }
+    let(:big_search_response) { subject.search('test') }
+
+    it 'runs a search with one page of results' do
+      VCR.use_cassette('Orcid_Client/_search/search') do
+        expect(search_response['num-found']).to be > 1
+        expect(search_response['num-found']).to be < 1000
+        expect(search_response['result'].size).to eq search_response['num-found']
+        expect(search_response['result'][0]['orcid-identifier']).to include('uri')
+      end
+    end
+
+    it 'runs a search with many pages of results' do
+      VCR.use_cassette('Orcid_Client/_search/big_search') do
+        expect(big_search_response['result'].size).to be > 1000
+        expect(big_search_response['result'][0]['orcid-identifier']).to include('uri')
+      end
+    end
+  end
+
   describe '#fetch_works' do
     let(:works_response) { subject.fetch_works(Settings.ORCID.orcidid_for_check) }
 

@@ -73,6 +73,7 @@ WOS:
 ORCID:
   BASE_URL: https://api.sandbox.orcid.org
   BASE_AUTH_URL: https://sandbox.orcid.org
+  BASE_PUBLIC_URL: https://pub.sandbox.orcid.org
   CLIENT_ID: APP-FAKEJMB7RBQVFQ0D
   CLIENT_SECRET: FAKE6bb5-dba1-445d-ba10-c14745383ba0
   LOG: log/orcid.log

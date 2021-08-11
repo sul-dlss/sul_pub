@@ -306,4 +306,30 @@ namespace :sul do
                           time_span: time_span)
     smci.run
   end
+
+  desc 'Run ORCID query and export results with names'
+  # bundle exec rake sul:orcid_query['(ringgold-org-id:6429)OR(orgname="Stanford%20University")','tmp/results.csv']
+  # Run a query against the ORCID API, then export ORCIDs and Names into CSV
+  task :orcid_query, %i[query output_file] => :environment do |_t, args|
+    query = args[:query]
+    output_file = args[:output_file]
+    orcid_client = Orcid::Client.new
+    response = orcid_client.search(query)
+    total = response['num-found']
+    puts "Query: #{query}"
+    puts "Num results: #{total}"
+    puts
+    header_row = %w[orcidid name]
+    CSV.open(output_file, 'wb') do |csv|
+      csv << header_row
+      response['result'].each_with_index do |result, i|
+        orcidid = result['orcid-identifier']['uri']
+        puts "#{i + 1} of #{total}: #{orcidid}"
+        name = orcid_client.fetch_name(orcidid).join(' ')
+        csv << [orcidid, name]
+      end
+    end
+    puts
+    puts "Written to #{output_file}"
+  end
 end

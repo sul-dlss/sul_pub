@@ -1,0 +1,119 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://sandbox.orcid.org/oauth/token
+    body:
+      encoding: UTF-8
+      string: client_id=Settings.ORCID.CLIENT_ID&client_secret=Settings.ORCID.CLIENT_SECRET&grant_type=client_credentials&scope=%2Fread-public
+    headers:
+      User-Agent:
+      - Faraday v1.6.0
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Date:
+      - Tue, 10 Aug 2021 21:20:44 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - accept-encoding
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Expires:
+      - '0'
+      Pragma:
+      - no-cache
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Set-Cookie:
+      - X-Mapping-fjhppofk=282AC18D168617C65A7368B9E87CE3C7; path=/
+      X-Frame-Options:
+      - DENY
+      Cf-Cache-Status:
+      - DYNAMIC
+      Expect-Ct:
+      - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 67cc45163a6f6cd4-SJC
+    body:
+      encoding: ASCII-8BIT
+      string: '{"access_token":"private_access_token","token_type":"bearer","refresh_token":"refresh_token","expires_in":631138518,"scope":"/read-public","orcid":null}'
+  recorded_at: Tue, 10 Aug 2021 21:20:45 GMT
+- request:
+    method: get
+    uri: https://api.sandbox.orcid.org/v3.0/search/?q=(ringgold-org-id:6429)&rows=1000
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      User-Agent:
+      - stanford-library-sul-pub
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip,deflate
+      Date:
+      - Tue, 10 Aug 2021 21:20:45 GMT
+      Authorization:
+      - Bearer private_bearer_token
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      Date:
+      - Tue, 10 Aug 2021 21:20:45 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Origin:
+      - "*"
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - DENY
+      X-Content-Type-Options:
+      - nosniff
+      Vary:
+      - accept-encoding
+      Content-Encoding:
+      - gzip
+      Cf-Cache-Status:
+      - DYNAMIC
+      Expect-Ct:
+      - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 67cc4519baf02584-SJC
+    body:
+      encoding: UTF-8
+      string: '{"result":[{"orcid-identifier":{"uri":"https://sandbox.orcid.org/0000-0002-6079-7715","path":"0000-0002-6079-7715","host":"sandbox.orcid.org"}},{"orcid-identifier":{"uri":"https://sandbox.orcid.org/0000-0002-6203-8413","path":"0000-0002-6203-8413","host":"sandbox.orcid.org"}},{"orcid-identifier":{"uri":"https://sandbox.orcid.org/0000-0002-0418-4885","path":"0000-0002-0418-4885","host":"sandbox.orcid.org"}},{"orcid-identifier":{"uri":"https://sandbox.orcid.org/0000-0003-4722-8312","path":"0000-0003-4722-8312","host":"sandbox.orcid.org"}},{"orcid-identifier":{"uri":"https://sandbox.orcid.org/0000-0003-4566-7821","path":"0000-0003-4566-7821","host":"sandbox.orcid.org"}},{"orcid-identifier":{"uri":"https://sandbox.orcid.org/0000-0003-0525-7799","path":"0000-0003-0525-7799","host":"sandbox.orcid.org"}}],"num-found":6}'
+  recorded_at: Tue, 10 Aug 2021 21:20:45 GMT
+recorded_with: VCR 6.0.0

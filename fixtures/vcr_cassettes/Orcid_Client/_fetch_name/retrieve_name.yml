@@ -1,0 +1,119 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://pub.sandbox.orcid.org/v3.0/0000-0002-2230-4756/personal-details
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      User-Agent:
+      - stanford-library-sul-pub
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip,deflate
+      Date:
+      - Tue, 10 Aug 2021 20:45:47 GMT
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      Date:
+      - Tue, 10 Aug 2021 20:45:47 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Origin:
+      - "*"
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - DENY
+      X-Content-Type-Options:
+      - nosniff
+      Vary:
+      - accept-encoding
+      Content-Encoding:
+      - gzip
+      Cf-Cache-Status:
+      - DYNAMIC
+      Expect-Ct:
+      - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 67cc11e41d676d82-SJC
+    body:
+      encoding: UTF-8
+      string: '{"last-modified-date":{"value":1628628312408},"name":{"created-date":{"value":1619628457183},"last-modified-date":{"value":1628628312408},"given-names":{"value":"Peter"},"family-name":{"value":"Test"},"credit-name":null,"source":null,"visibility":"public","path":"0000-0002-2230-4756"},"other-names":{"last-modified-date":null,"other-name":[],"path":"/0000-0002-2230-4756/other-names"},"biography":null,"path":"/0000-0002-2230-4756/personal-details"}'
+  recorded_at: Tue, 10 Aug 2021 20:45:47 GMT
+- request:
+    method: get
+    uri: https://pub.sandbox.orcid.org/v3.0/0000-0002-2230-4756/personal-details
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      User-Agent:
+      - stanford-library-sul-pub
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip,deflate
+      Date:
+      - Tue, 10 Aug 2021 20:46:35 GMT
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      Date:
+      - Tue, 10 Aug 2021 20:46:36 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Origin:
+      - "*"
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - DENY
+      X-Content-Type-Options:
+      - nosniff
+      Vary:
+      - accept-encoding
+      Content-Encoding:
+      - gzip
+      Cf-Cache-Status:
+      - DYNAMIC
+      Expect-Ct:
+      - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 67cc13126be8961d-SJC
+    body:
+      encoding: UTF-8
+      string: '{"last-modified-date":{"value":1628628312408},"name":{"created-date":{"value":1619628457183},"last-modified-date":{"value":1628628312408},"given-names":{"value":"Peter"},"family-name":{"value":"Test"},"credit-name":null,"source":null,"visibility":"public","path":"0000-0002-2230-4756"},"other-names":{"last-modified-date":null,"other-name":[],"path":"/0000-0002-2230-4756/other-names"},"biography":null,"path":"/0000-0002-2230-4756/personal-details"}'
+  recorded_at: Tue, 10 Aug 2021 20:46:36 GMT
+recorded_with: VCR 6.0.0
