@@ -23,11 +23,7 @@ default: &default
 
 development:
   <<: *default
-  username: sulbib
-  password: sulbib
   database: sulbib_development
-  host: 127.0.0.1
-  port: 3306
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".

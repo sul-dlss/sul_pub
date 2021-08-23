@@ -7,10 +7,8 @@ services:
    ports:
      - 3306:3306
    environment:
-     MYSQL_ROOT_PASSWORD: root
      MYSQL_DATABASE: sulbib_development
-     MYSQL_USER: sulbib
-     MYSQL_PASSWORD: sulbib
+     MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
    volumes:
      - mysql:/var/lib/mysql
      - mysql_config:/etc/mysql
