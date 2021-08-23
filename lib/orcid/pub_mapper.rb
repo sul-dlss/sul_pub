@@ -26,7 +26,7 @@ module Orcid
         visibility: 'public',
         title: map_title,
         'external-ids': PubIdentifierMapper.map(pub_hash),
-        'short-description': pub_hash[:abstract],
+        'short-description': pub_hash[:abstract]&.truncate(5000), # ORCID has a max length of 5000 for this field
         'publication-date': map_pub_date,
         citation: map_citation,
         contributors: map_contributors,
