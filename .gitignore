@@ -9,6 +9,8 @@
 .binstubs/
 vendor/
 
+spec/examples.txt
+
 # Ignore gems
 .gems/
 
