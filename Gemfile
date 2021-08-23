@@ -1,8 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 6.0', '< 6.1'
-# pinning to 6.0.x as the paper_trail gem is not currently compatible with activerecord 6.1 as of Jan 5 2021
-# an update appears to be in the works...see https://github.com/paper-trail-gem/paper_trail
+gem 'rails', '~> 6.1.4'
 
 # Use sass-powered bootstrap
 gem 'bootstrap-sass', '~> 3.4.1'
