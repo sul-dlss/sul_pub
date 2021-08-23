@@ -52,11 +52,6 @@ module Clarivate
       end
     end
 
-    # @return [ActionView::Base] used to render as though in an rails controller
-    def renderer
-      @renderer ||= ActionView::Base.new
-    end
-
     # @param [Array<String>] ids
     # @param [Array<String>] fields
     def request_batch(ids, fields)
@@ -71,8 +66,9 @@ module Clarivate
     # @param [Array<String>] fields
     # @return [String]
     def request_body(ids, fields)
-      renderer.render(
-        file: Rails.root.join('lib/clarivate/links_request.xml'),
+      ApplicationController.render(
+        formats: [:xml],
+        template: 'requests/clarivate_links',
         layout: false,
         locals: {
           client: self,
