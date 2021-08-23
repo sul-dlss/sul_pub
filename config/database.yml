@@ -17,11 +17,17 @@ default: &default
   pool: 5
   username: root
   password:
-  host: 127.0.0.1
+  host: "<%= ENV.fetch('DATABASE_HOSTNAME', '127.0.0.1') %>"
+  port: "<%= ENV.fetch('DATABASE_PORT', 3306) %>"
+  # socket: /var/run/mysqld/mysqlx.sock
 
 development:
   <<: *default
+  username: sulbib
+  password: sulbib
   database: sulbib_development
+  host: 127.0.0.1
+  port: 3306
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
