@@ -168,6 +168,25 @@ describe Orcid::PubMapper do
     end
   end
 
+  context 'with abstract greater than 5000 characters' do
+    let(:big_abstract) { SecureRandom.random_number(36**6000).to_s(36) } # generates 6000 character random string
+    let(:pub_hash) { base_pub_hash.merge(abstract: big_abstract) }
+
+    it 'truncates abstract to 5000 characters' do
+      expect(big_abstract.length).to eq 6000
+      expect(work['short-description'].length).to eq 5000
+      expect(work['short-description']).to eq(big_abstract.truncate(5000))
+    end
+  end
+
+  context 'with nil abstract' do
+    let(:pub_hash) { base_pub_hash.merge(abstract: nil) }
+
+    it 'does not add a short-description' do
+      expect(work['short-description']).to eq(nil)
+    end
+  end
+
   context 'when a book' do
     let(:pub_hash) do
       {
