@@ -119,7 +119,7 @@ module Orcid
     # @return [Faraday::Connection]
     def public_conn
       conn = Faraday.new(url: Settings.ORCID.BASE_PUBLIC_URL) do |faraday|
-        faraday.request :retry, max: 3,
+        faraday.request :retry, max: 5,
                                 interval: 0.5,
                                 interval_randomness: 0.5,
                                 backoff_factor: 2
