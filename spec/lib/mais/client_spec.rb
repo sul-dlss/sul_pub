@@ -14,7 +14,7 @@ describe Mais::Client do
       VCR.use_cassette('Mais_Client/_fetch_orcid_users/retrieves users') do
         expect(orcid_users.size).to eq(5)
         expect(orcid_users.first).to eq(Mais::Client::OrcidUser.new('nataliex', 'https://sandbox.orcid.org/0000-0001-7161-1827', ['/read-limited'],
-                                                                    'XXXXXXXX-1ac5-4ea7-835d-bc6d61ffb9a8'))
+                                                                    'XXXXXXXX-1ac5-4ea7-835d-bc6d61ffb9a8', '2020-01-23T17:06:21.000'))
       end
     end
 
@@ -34,7 +34,7 @@ describe Mais::Client do
     it 'retrieves a single user' do
       VCR.use_cassette('Mais_Client/_fetch_orcid_user/retrieves user') do
         expect(orcid_user).to eq(Mais::Client::OrcidUser.new('nataliex', 'https://sandbox.orcid.org/0000-0001-7161-1827', ['/read-limited'],
-                                                             'XXXXXXXX-1ac5-4ea7-835d-bc6d61ffb9a8'))
+                                                             'XXXXXXXX-1ac5-4ea7-835d-bc6d61ffb9a8', '2020-01-23T17:06:21.000'))
       end
     end
 

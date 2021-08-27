@@ -337,21 +337,22 @@ namespace :sul do
     total_diff = orcidids_diff.size
     puts "Number of users returned from the ORCID API - known Stanford ORCID users: #{total_diff}"
 
-    header_row = %w[orcidid name sunet cap_profile_id scope works_pushed]
+    header_row = %w[orcidid name sunet cap_profile_id scope num_works_pushed integration_last_updated]
     CSV.open(output_file, 'wb') do |csv|
       csv << header_row
       # first write out all of the known stanford users
       puts 'writing Stanford integration users'
       users.each_with_index do |user, i|
         puts "#{i + 1} of #{total_stanford}: #{user.sunetid} | #{user.orcidid}"
-        scope = if Mais::Client.new.fetch_orcid_user(sunetid: user.sunetid).update?
+        mais_user = Mais::Client.new.fetch_orcid_user(sunetid: user.sunetid)
+        scope = if mais_user.update?
                   'update'
                 else
                   'read'
                 end
         num_works_pushed = user.contributions.where.not(orcid_put_code: nil).size
         csv << [user.orcidid, "#{user.cap_first_name} #{user.cap_last_name}",
-                user.sunetid, user.cap_profile_id, scope, num_works_pushed]
+                user.sunetid, user.cap_profile_id, scope, num_works_pushed, mais_user.last_updated.to_date]
       end
 
       # next write out all of the ORCID API users that were not already in the Stanford list
@@ -359,7 +360,7 @@ namespace :sul do
       orcidids_diff.each_with_index do |orcidid, i|
         puts "#{i + 1} of #{total_diff}: #{orcidid}"
         name = orcid_client.fetch_name(orcidid).join(' ')
-        csv << [orcidid, name, '', '', '', '']
+        csv << [orcidid, name, '', '', '', '', '']
       end
     end
     puts

@@ -6,7 +6,7 @@ module Mais
   # Client for UIT MAIS ORCID User API.
   class Client
     # Struct for ORCID-relating data returned from API.
-    OrcidUser = Struct.new(:sunetid, :orcidid, :scope, :access_token) do
+    OrcidUser = Struct.new(:sunetid, :orcidid, :scope, :access_token, :last_updated) do
       def update?
         scope.include?('/activities/update')
       end
@@ -21,7 +21,7 @@ module Mais
       loop do
         response = get_response(next_page)
         response[:results].each do |result|
-          orcid_users << OrcidUser.new(result[:sunet_id], result[:orcid_id], result[:scope], result[:access_token])
+          orcid_users << OrcidUser.new(result[:sunet_id], result[:orcid_id], result[:scope], result[:access_token], result[:last_updated])
           return orcid_users if limit && limit == orcid_users.size
         end
         # Currently next is always present, even on last page. (This may be changed in future.)
@@ -40,7 +40,7 @@ module Mais
 
       return nil if result.nil?
 
-      OrcidUser.new(result[:sunet_id], result[:orcid_id], result[:scope], result[:access_token])
+      OrcidUser.new(result[:sunet_id], result[:orcid_id], result[:scope], result[:access_token], result[:last_updated])
     rescue StandardError => e
       NotificationManager.error(e, "#{e.class.name} during UIT MAIS ORCID Single Fetch User API call", self)
       raise
