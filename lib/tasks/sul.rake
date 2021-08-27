@@ -307,6 +307,66 @@ namespace :sul do
     smci.run
   end
 
+  # bundle exec rake sul:stanford_orcid_users['tmp/results.csv']
+  # Query the sul_pub database for all people with an ORCIDID (i.e. that have
+  # gone through the Stanford integration and were returned via the MaIS API)
+  # and also query for potential Stanford people with ORCIDIDs via the ORCID API.
+  # Get the difference between these two sets which represents people with ORCIDs
+  # that are not in our system.
+  desc 'Export all Stanford users with ORCIDs'
+  task :stanford_orcid_users, %i[output_file] => :environment do |_t, args|
+    output_file = args[:output_file]
+
+    # active stanford users who have gone through the Stanford ORCID integration
+    users = Author.where.not(orcidid: nil).where(active_in_cap: true)
+    total_stanford = users.size
+    orcidids_stanford = users.map(&:orcidid)
+    puts "Number of active Stanford users who have gone through integration: #{total_stanford}"
+
+    # an ORCID API query that searches for Stanford people
+    query = '(ringgold-org-id:6429)OR(orgname="Stanford%20University")OR("grid.168010.e")OR(email=*.stanford.edu)'
+    orcid_client = Orcid::Client.new
+    response = orcid_client.search(query)
+    total_orcid = response['num-found']
+    orcidids_api = response['result'].map { |result| result['orcid-identifier']['uri'] }
+    puts "ORCID API Query: #{query}"
+    puts "Number of ORCIDs returned from ORCID API: #{total_orcid}"
+
+    # users returned from the ORCID API - users who have gone through ORCID integration
+    orcidids_diff = orcidids_api - orcidids_stanford
+    total_diff = orcidids_diff.size
+    puts "Number of users returned from the ORCID API - known Stanford ORCID users: #{total_diff}"
+
+    header_row = %w[orcidid name sunet cap_profile_id scope num_works_pushed integration_last_updated]
+    CSV.open(output_file, 'wb') do |csv|
+      csv << header_row
+      # first write out all of the known stanford users
+      puts 'writing Stanford integration users'
+      users.each_with_index do |user, i|
+        puts "#{i + 1} of #{total_stanford}: #{user.sunetid} | #{user.orcidid}"
+        mais_user = Mais::Client.new.fetch_orcid_user(sunetid: user.sunetid)
+        scope = if mais_user.update?
+                  'update'
+                else
+                  'read'
+                end
+        num_works_pushed = user.contributions.where.not(orcid_put_code: nil).size
+        csv << [user.orcidid, "#{user.cap_first_name} #{user.cap_last_name}",
+                user.sunetid, user.cap_profile_id, scope, num_works_pushed, mais_user.last_updated.to_date]
+      end
+
+      # next write out all of the ORCID API users that were not already in the Stanford list
+      puts 'writing ORCID API users'
+      orcidids_diff.each_with_index do |orcidid, i|
+        puts "#{i + 1} of #{total_diff}: #{orcidid}"
+        name = orcid_client.fetch_name(orcidid).join(' ')
+        csv << [orcidid, name, '', '', '', '', '']
+      end
+    end
+    puts
+    puts "Written to #{output_file}"
+  end
+
   desc 'Run ORCID query and export results with names'
   # bundle exec rake sul:orcid_query['(ringgold-org-id:6429)OR(orgname="Stanford%20University")','tmp/results.csv']
   # Run a query against the ORCID API, then export ORCIDs and Names into CSV
