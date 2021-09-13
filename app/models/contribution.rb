@@ -12,7 +12,8 @@ class Contribution < ApplicationRecord
   has_one :publication_identifier, -> { where("publication_identifiers.identifier_type = 'PublicationItemId'") },
           class_name: 'PublicationIdentifier',
           foreign_key: 'publication_id',
-          primary_key: 'publication_id'
+          primary_key: 'publication_id',
+          dependent: nil
 
   validates :visibility, inclusion: { in: VISIBILITY_VALUES }, allow_nil: true # TODO: disallow nil
   validates :status, inclusion: { in: STATUS_VALUES }, allow_nil: true         # TODO: disallow nil
