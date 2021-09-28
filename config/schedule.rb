@@ -27,8 +27,13 @@ every 1.day, at: stagger(5), roles: [:harvester_dev, :harvester_qa, :harvester_p
   rake 'mais:update_authors'
 end
 
-# send publications to ORCID profiles for all authorized users at 6am-ish every 3 days in qa and prod
-every 3.days, at: stagger(6), roles: [:harvester_qa, :harvester_prod] do
+# send publications to ORCID profiles for all authorized users at 8am-ish every 7 days in qa
+every 7.days, at: stagger(8), roles: [:harvester_qa] do
+  rake 'orcid:add_all_works'
+end
+
+# send publications to ORCID profiles for all authorized users at 6am-ish every 2 days in prod
+every 2.days, at: stagger(6), roles: [:harvester_prod] do
   rake 'orcid:add_all_works'
 end
 
