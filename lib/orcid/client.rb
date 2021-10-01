@@ -5,6 +5,8 @@ require 'oauth2'
 module Orcid
   # Client for ORCID.org API.
   class Client
+    class InvalidTokenError < StandardError; end
+
     # Fetch the works for a researcher.
     # Model for the response: https://pub.orcid.org/v3.0/#!/Development_Public_API_v3.0/viewWorksv3
     # @param [string] ORCID ID for the researcher
@@ -68,6 +70,8 @@ module Orcid
       case response.status
       when 201
         response['Location'].match(%r{work/(\d+)})[1]
+      when 401
+        raise InvalidTokenError, "Invalid token for #{orcidid} - ORCID.org API returned #{response.status} (#{response.body})"
       when 409
         match = response.body.match(/put-code (\d+)\./)
         raise 'ORCID.org API returned a 409, but could not find put-code' unless match
