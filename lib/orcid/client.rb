@@ -71,7 +71,7 @@ module Orcid
       when 201
         response['Location'].match(%r{work/(\d+)})[1]
       when 401
-        raise InvalidTokenError, "Invalid token for #{orcidid} - ORCID.org API returned #{response.status} (#{response.body}) for: #{work.to_json}"
+        raise InvalidTokenError, "Invalid token for #{orcidid} - ORCID.org API returned #{response.status} (#{response.body})"
       when 409
         match = response.body.match(/put-code (\d+)\./)
         raise 'ORCID.org API returned a 409, but could not find put-code' unless match
