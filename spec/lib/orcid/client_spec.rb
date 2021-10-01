@@ -166,6 +166,15 @@ describe Orcid::Client do
         end
       end
     end
+
+    context 'when user token is invalid' do
+      xit 'logs but does not alert HB' do
+        # TODO: Make this work
+        # VCR.use_cassette('Orcid_Client/_add_work/adds work again') do
+        #   expect(put_code).to eq('1250170')
+        # end
+      end
+    end
   end
 
   describe '#fetch_work' do

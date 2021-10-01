@@ -42,8 +42,8 @@ module Orcid
       contribution.save!
       logger&.info("#{self.class} - author #{author.id} - added publication #{contribution.publication.id} with put-code #{contribution.orcid_put_code}")
       true
-    rescue Orcid::PubMapper::PubMapperError => e
-      logger&.info("#{self.class} - author #{author.id} - did not add publication #{contribution.publication.id}: #{e.message}")
+    rescue Orcid::PubMapper::PubMapperError, Orcid::Client::InvalidTokenError => e
+      logger&.warn("#{self.class} - author #{author.id} - did not add publication #{contribution.publication.id}: #{e.message}")
       false
     rescue StandardError => e
       logger&.error("#{self.class} - author #{author.id} - error publication #{contribution.publication.id}: #{e.message}")
