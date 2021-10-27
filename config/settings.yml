@@ -123,26 +123,3 @@ cap_provenance: cap
 pubmed_source: pubmed
 sciencewire_source: sciencewire
 wos_source: wos
-
-sw_doc_types_to_skip:
-  - Book Review
-  - Comment
-  - Film Review
-  - Hardware Review
-  - Legal Cases
-  - Letter
-  - Meeting Abstract
-  - Meeting Summary
-  - Meeting-Abstract
-  - Music Performance Review
-  - Music Score
-  - Music Score Review
-  - News
-  - Note
-  - Patient Education Handout
-  - Poetry
-  - Record Review
-  - Software Review
-  - TV Review Radio Review Video
-  - Technical Report
-  - Theater Review
