@@ -30,7 +30,6 @@ describe WebOfScience::MapCitation do
       expect(pub_hash).to match a_hash_including(
         year: String,
         date: String,
-        pages: String,
         title: String,
         journal: a_hash_including(:name, :identifier)
       )
@@ -40,9 +39,10 @@ describe WebOfScience::MapCitation do
 
   context 'WOS records' do
     it_behaves_like 'common_citation_data'
-    it 'trims the whitespace from the title' do
+    it 'trims the whitespace from the title and maps the numeric page number' do
       # whitespace trimmed
       expect(pub_hash[:title]).to eq 'LIBRARY MANAGEMENT - BEHAVIOR-BASED PERSONNEL SYSTEMS (BBPS) - FRAMEWORK FOR ANALYSIS - KEMPER,RE'
+      expect(pub_hash[:pages]).to eq '413'
     end
   end
 
@@ -50,9 +50,10 @@ describe WebOfScience::MapCitation do
     let(:mapper) { described_class.new(medline_record) }
 
     it_behaves_like 'common_citation_data'
-    it 'trims the whitespace from the title' do
+    it 'trims the whitespace from the title and ignores the non-numeric page number' do
       # whitespace trimmed
       expect(pub_hash[:title]).to eq 'Identifying druggable targets by protein microenvironments matching: application to transcription factors.'
+      expect(pub_hash[:pages]).to be nil # this record has a non numeric page number of "e93", which will be ignored
     end
   end
 end

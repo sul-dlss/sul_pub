@@ -55,6 +55,11 @@ module WebOfScience
 
       fst = page['begin'].to_s.strip
       lst = page['end'].to_s.strip
+
+      # ignore anything that doesn't look like a number
+      fst = '' unless fst.to_i.to_s == fst
+      lst = '' unless lst.to_i.to_s == lst
+
       fst == lst ? fst : [fst, lst].select(&:present?).join('-')
     end
   end
