@@ -337,7 +337,7 @@ namespace :sul do
     total_diff = orcidids_diff.size
     puts "Number of users returned from the ORCID API - known Stanford ORCID users: #{total_diff}"
 
-    header_row = %w[orcidid name sunet cap_profile_id scope num_works_pushed integration_last_updated]
+    header_row = %w[orcidid name last_name first_name sunet cap_profile_id scope num_works_pushed integration_last_updated]
     CSV.open(output_file, 'wb') do |csv|
       csv << header_row
       # first write out all of the known stanford users
@@ -351,7 +351,7 @@ namespace :sul do
                   'read'
                 end
         num_works_pushed = user.contributions.where.not(orcid_put_code: nil).size
-        csv << [user.orcidid, "#{user.cap_first_name} #{user.cap_last_name}",
+        csv << [user.orcidid, "#{user.cap_first_name} #{user.cap_last_name}", user.cap_last_name, user.cap_first_name,
                 user.sunetid, user.cap_profile_id, scope, num_works_pushed, mais_user.last_updated.to_date]
       end
 
@@ -359,8 +359,8 @@ namespace :sul do
       puts 'writing ORCID API users'
       orcidids_diff.each_with_index do |orcidid, i|
         puts "#{i + 1} of #{total_diff}: #{orcidid}"
-        name = orcid_client.fetch_name(orcidid).join(' ')
-        csv << [orcidid, name, '', '', '', '', '']
+        name = orcid_client.fetch_name(orcidid)
+        csv << [orcidid, name.join(' '), name[1], name[0], '', '', '', '', '']
       end
     end
     puts
@@ -368,7 +368,8 @@ namespace :sul do
   end
 
   desc 'Run ORCID query and export results with names'
-  # bundle exec rake sul:orcid_query['(ringgold-org-id:6429)OR(orgname="Stanford%20University")','tmp/results.csv']
+  # query = '(ringgold-org-id:6429)OR(orgname="Stanford%20University")OR("grid.168010.e")OR(email=*.stanford.edu)'
+  # bundle exec rake sul:orcid_query[query,'tmp/results.csv']
   # Run a query against the ORCID API, then export ORCIDs and Names into CSV
   task :orcid_query, %i[query output_file] => :environment do |_t, args|
     query = args[:query]
@@ -379,14 +380,14 @@ namespace :sul do
     puts "Query: #{query}"
     puts "Num results: #{total}"
     puts
-    header_row = %w[orcidid name]
+    header_row = %w[orcidid full_name last_name first_name]
     CSV.open(output_file, 'wb') do |csv|
       csv << header_row
       response['result'].each_with_index do |result, i|
         orcidid = result['orcid-identifier']['uri']
         puts "#{i + 1} of #{total}: #{orcidid}"
-        name = orcid_client.fetch_name(orcidid).join(' ')
-        csv << [orcidid, name]
+        name = orcid_client.fetch_name(orcidid)
+        csv << [orcidid, name.join(' '), name[1], name[0]]
       end
     end
     puts
