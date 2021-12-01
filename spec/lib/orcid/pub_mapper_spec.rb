@@ -87,6 +87,21 @@ describe Orcid::PubMapper do
     )
   end
 
+  context 'with author name greater than 150 characters' do
+    let(:long_author) { SecureRandom.random_number(36**160).to_s(36) } # generates 160 character random string
+    let(:pub_hash) do
+      base_pub_hash.dup.tap { |pub_hash| pub_hash[:author] = [{ name: long_author }] }
+    end
+
+    it 'truncates the name to 150 characters' do
+      expect(long_author.length).to eq(160)
+      expect(work['contributors']['contributor'].size).to eq(1)
+      mapped_name = work['contributors']['contributor'].first['credit-name']['value']
+      expect(mapped_name.length).to eq(150)
+      expect(mapped_name).to eq(long_author.truncate(150))
+    end
+  end
+
   it 'maps journal title' do
     expect(work['journal-title']['value']).to eq('Mind')
   end

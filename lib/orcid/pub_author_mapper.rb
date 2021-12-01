@@ -44,7 +44,7 @@ module Orcid
       {
         'contributor-orcid': nil,
         'credit-name': {
-          value: map_credit_name
+          value: map_credit_name.truncate(150) # ORCID has a max length of 150 for this field
         },
         'contributor-email': nil,
         'contributor-attributes': {
