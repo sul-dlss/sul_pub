@@ -326,6 +326,118 @@ describe Orcid::PubIdentifierMapper do
       end
     end
 
+    context 'sciencewire provenance with a WosItemID' do
+      let(:pub_hash) do
+        {
+          provenance: 'sciencewire',
+          identifier: [
+            {
+              type: 'WoSItemID',
+              id: 'A1976BT25700002'
+            }
+          ]
+        }
+      end
+
+      it 'converts to a WoSUID' do
+        expect(ids['external-id']).to eq([
+                                           {
+                                             'external-id-type' => 'wosuid',
+                                             'external-id-value' => 'WOS:A1976BT25700002',
+                                             'external-id-url' => nil,
+                                             'external-id-relationship' => 'self'
+                                           }
+                                         ])
+      end
+    end
+
+    context 'sciencewire provenance with a both a WosItemID and a WosUID' do
+      let(:pub_hash) do
+        {
+          provenance: 'sciencewire',
+          identifier: [
+            {
+              type: 'WoSItemID',
+              id: 'A1976BT25700002'
+            },
+            {
+              type: 'WoSUID',
+              id: 'WOS:A1976BT25700002'
+            }
+          ]
+        }
+      end
+
+      it 'does not duplicate the wosuid' do
+        expect(ids['external-id']).to eq([
+                                           {
+                                             'external-id-type' => 'wosuid',
+                                             'external-id-value' => 'WOS:A1976BT25700002',
+                                             'external-id-url' => nil,
+                                             'external-id-relationship' => 'self'
+                                           }
+                                         ])
+      end
+    end
+
+    context 'wos provenance with a MEDLINE WosItemID' do
+      let(:pub_hash) do
+        {
+          provenance: 'wos',
+          identifier: [
+            {
+              type: 'WoSItemID',
+              id: '123456'
+            },
+            {
+              type: 'WosUID',
+              id: 'MEDLINE:123456'
+            }
+          ]
+        }
+      end
+
+      it 'ignores the WoSItemID and uses the existing WoSUID' do
+        expect(ids['external-id']).to eq([
+                                           {
+                                             'external-id-type' => 'wosuid',
+                                             'external-id-value' => 'MEDLINE:123456',
+                                             'external-id-url' => nil,
+                                             'external-id-relationship' => 'self'
+                                           }
+                                         ])
+      end
+    end
+
+    context 'wos provenance with a WOS WosItemID' do
+      let(:pub_hash) do
+        {
+          provenance: 'wos',
+          identifier: [
+            {
+              type: 'WoSItemID',
+              id: '123456'
+            },
+            {
+              type: 'WosUID',
+              id: 'WOS:123456'
+            }
+          ]
+        }
+      end
+
+      it 'does not duplicate the wosuid' do
+        expect(ids['external-id']).to eq([
+                                           {
+                                             'external-id-type' => 'wosuid',
+                                             'external-id-value' => 'WOS:123456',
+                                             'external-id-url' => nil,
+                                             'external-id-relationship' => 'self'
+                                           }
+                                         ])
+      end
+    end
+
     context 'when dupe' do
       let(:pub_hash) do
         {
