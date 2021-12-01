@@ -46,11 +46,21 @@ module Orcid
 
         # Only mappable types.
         id_type = IdentifierTypeMapper.to_orcid_id_type(identifier[:type])
+        id_value = identifier[:id]
+
+        # Sciencewire has WoSItemIDs, but not WosUIDs.  We need a WosUID to push to ORCID, and for sciencewire records they are
+        # the same, so we can set to this to WosUID and add the "WOS:" prefix.  See https://github.com/sul-dlss/sul_pub/issues/1418
+        if pub_hash[:provenance] == 'sciencewire' && identifier[:type] == 'WoSItemID'
+          id_type = 'wosuid'
+          id_value = "WOS:#{identifier[:id]}"
+        end
+
+        # Skip if this is not a mappable identifier type
         next if id_type.nil?
 
         {
           'external-id-type' => id_type,
-          'external-id-value' => identifier[:id],
+          'external-id-value' => id_value,
           'external-id-url' => map_url(identifier),
           'external-id-relationship' => relationship
         }

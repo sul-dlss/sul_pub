@@ -3,11 +3,13 @@
 module Orcid
   # Maps identifier types between ORCID and SUL-PUB.
   class IdentifierTypeMapper
+    # These map what ORCID calls an identifier to what we call the same identifier
     ORCID_ID_TYPE_TO_SUL_PUB_ID_TYPE = {
       'pmid' => 'PMID',
       'wosuid' => 'WosUID'
     }.freeze
 
+    # These map what we call an identifier to what ORCID calls the same identifier
     SUL_PUB_ID_TYPE_TO_ORCID_ID_TYPE = {
       'eissn' => 'issn',
       'PMID' => 'pmid',
@@ -15,6 +17,8 @@ module Orcid
     }.freeze
 
     # From https://pub.orcid.org/v3.0/identifiers
+    # These are the known ID types that we can push to ORCID
+    # Our publications need to have one of these known identifiers in order to push to ORCID
     ORCID_ID_TYPES = %w[
       agr
       ark
