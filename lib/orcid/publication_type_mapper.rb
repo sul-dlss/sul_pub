@@ -22,7 +22,7 @@ module Orcid
       PUB_TYPE_TO_WORK_TYPE.invert[work_type]
     end
 
-    # @return [String] true if a valid mapped work type.
+    # @return [String] true if valid mapped work type (from ORCID to sul-pub).
     def self.work_type?(work_type)
       PUB_TYPE_TO_WORK_TYPE.value?(work_type)
     end
