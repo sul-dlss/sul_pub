@@ -121,7 +121,7 @@ describe Orcid::PubMapper do
 
   context 'when unmappable type' do
     let(:pub_hash) do
-      base_pub_hash.dup.tap { |pub_hash| pub_hash[:type] = 'workingPaper' }
+      base_pub_hash.dup.tap { |pub_hash| pub_hash[:type] = nil }
     end
 
     it 'raises' do

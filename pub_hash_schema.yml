@@ -119,13 +119,13 @@ properties:
     enum:
       - article
       - book
-      - caseStudy # Legacy. Not in current code.
+      - caseStudy # Potential legacy.  Only set via manual pub submission (provenance = CAP)
       - inproceedings
-      - inbook # Legacy. Not in current code.
-      - otherpaper # Legacy. Not in current code.
-      - otherPaper # Legacy. Not in current code.
-      - technicalReport # Legacy. Not in current code.
-      - workingPaper # Legacy. Not in current code.
+      - inbook # Potential legacy.  Only set via manual pub submission (provenance = CAP)
+      - otherpaper # Legacy. Likely bad data.
+      - otherPaper # Potential legacy.  Only set via manual pub submission (provenance = CAP)
+      - technicalReport # Potential legacy.  Only set via manual pub submission (provenance = CAP)
+      - workingPaper # Potential legacy.  Only set via manual pub submission (provenance = CAP)
       - null # Legacy. Not in current code.
   wos_item_id:
     type: string
