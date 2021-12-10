@@ -393,4 +393,34 @@ namespace :sul do
     puts
     puts "Written to #{output_file}"
   end
+
+  desc 'Find sunets given first and last names'
+  # bundle exec rake sul:lookup_sunet['tmp/names.csv', 'tmp/sunets.csv']
+  # Given a list of names in CSV, split into first and last names and try to find matching SUNETs in the database, output to new csv file
+  # input format is a CSV with a column called "full_name" which includes names in "FIRST LAST" format (no middle initials or other data)
+  task :lookup_sunet, %i[input_file output_file] => :environment do |_t, args|
+    input_file = args[:input_file]
+    output_file = args[:output_file]
+    puts "Input file: #{input_file}"
+    puts
+    header_row = %w[full_name SUNetID]
+    CSV.open(output_file, 'wb') do |csv|
+      csv << header_row
+      rows = CSV.parse(File.read(input_file), headers: true)
+      num_rows = rows.size
+      puts "Found #{num_rows} rows of names"
+      rows.each_with_index do |row, i|
+        name = row['full_name']
+        split_name = name.split
+        first_name = split_name[0] # assume part of string before first space is first name
+        last_name = split_name[1..].join(' ') # everything else is the last name (e.g. to deal with a case like "Peter de La Rossa")
+        author = Author.find_by(cap_last_name: last_name, cap_first_name: first_name)
+        sunetid = author ? author.sunetid : '*** NOT FOUND ***'
+        csv << [name, sunetid]
+        puts "#{i + 1} of #{num_rows} : #{name} : #{sunetid}"
+      end
+    end
+    puts
+    puts "Written to #{output_file}"
+  end
 end
