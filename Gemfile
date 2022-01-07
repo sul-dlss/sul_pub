@@ -9,8 +9,8 @@ gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '~> 4.1'
 
-# pinning myql2 since 0.5.3 is currently not compatible with our version of CentOS and Ruby (as of Apr 2020)
-gem 'mysql2', '~> 0.5', '< 0.5.3'
+# mysql 0.5.3 is required for ruby 3 and is supported on latest OS in use: Oracle Linux (as of Jan 2022)
+gem 'mysql2', '>= 0.5.3'
 
 gem 'nokogiri', '>= 1.7.1'
 
@@ -64,7 +64,7 @@ end
 
 group :development do
   gem 'byebug'
-  gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'listen', '~> 3.7'
   gem 'pry-doc'
   gem 'ruby-prof'
   gem 'thin' # app server
