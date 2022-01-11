@@ -23,8 +23,6 @@ gem 'config'
 
 # See https://github.com/sul-dlss/sul_pub/issues/1019 before updating:
 gem 'csl-styles', '1.0.1.8'
-gem 'delayed_job'
-gem 'delayed_job_active_record'
 gem 'daemons'
 gem 'dotiw'
 gem 'faraday'
@@ -68,8 +66,6 @@ group :development do
   gem 'pry-doc'
   gem 'ruby-prof'
   gem 'thin' # app server
-  gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
 group :test do
@@ -89,5 +85,4 @@ group :deployment do
   gem 'capistrano-rails'
   gem 'capistrano-shell'
   gem 'dlss-capistrano'
-  gem 'capistrano3-delayed-job', '~> 1.0'
 end

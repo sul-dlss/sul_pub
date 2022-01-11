@@ -1,4 +1,10 @@
 require 'okcomputer'
+require 'cap/client'
+require 'pubmed'
+require 'mais'
+require 'orcid'
+require 'web_of_science'
+require 'clarivate/links_client'
 
 OkComputer.mount_at = 'status' # use /status or /status/all or /status/<name-of-check>
 OkComputer.check_in_parallel = true
@@ -105,12 +111,3 @@ class WosHitsRecentlyCheck < OkComputer::Check
   end
 end
 OkComputer::Registry.register "wos-records-harvested-recently", WosHitsRecentlyCheck.new
-
-class DelayedJobCheck < OkComputer::Check
-  def check
-    status = `RAILS_ENV=#{Rails.env} bundle exec bin/delayed_job status -n2` # be sure to sync with :delayed_job_workers specified in config/deploy.rb
-    result = $?.success?
-    mark_failure unless result && status.include?('running')
-  end
-end
-OkComputer::Registry.register 'delayed-job-running', DelayedJobCheck.new

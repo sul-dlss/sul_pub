@@ -36,8 +36,3 @@ end
 every 2.days, at: stagger(6), roles: [:harvester_prod] do
   rake 'orcid:add_all_works'
 end
-
-# ensure delayed_job is started on a reboot
-every :reboot do
-  envcommand 'bin/delayed_job -n 2 start'
-end
