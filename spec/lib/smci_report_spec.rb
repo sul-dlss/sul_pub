@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-describe SMCIReport do
+describe SmciReport do
   before { allow(Logger).to receive(:new).and_return(null_logger) }
 
   let(:null_logger) { Logger.new('/dev/null') }

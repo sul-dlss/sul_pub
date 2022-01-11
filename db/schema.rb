@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_20_185112) do
+ActiveRecord::Schema.define(version: 2022_01_11_185021) do
 
-  create_table "author_identities", id: :integer, charset: "utf8mb3", force: :cascade do |t|
+  create_table "author_identities", id: :integer, charset: "utf8", collation: "utf8_unicode_ci", force: :cascade do |t|
     t.integer "author_id", null: false
     t.string "first_name", null: false
     t.string "middle_name"
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 2021_05_20_185112) do
     t.index ["author_id"], name: "index_author_identities_on_author_id"
   end
 
-  create_table "authors", id: :integer, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "authors", id: :integer, charset: "utf8", collation: "utf8_unicode_ci", force: :cascade do |t|
     t.integer "cap_profile_id"
     t.boolean "active_in_cap"
     t.string "sunetid"
@@ -57,7 +57,7 @@ ActiveRecord::Schema.define(version: 2021_05_20_185112) do
     t.index ["university_id"], name: "index_authors_on_university_id"
   end
 
-  create_table "batch_uploaded_source_records", id: :integer, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "batch_uploaded_source_records", id: :integer, charset: "utf8", collation: "utf8_unicode_ci", force: :cascade do |t|
     t.string "sunet_id"
     t.integer "author_id"
     t.integer "cap_profile_id"
@@ -79,7 +79,7 @@ ActiveRecord::Schema.define(version: 2021_05_20_185112) do
     t.index ["title"], name: "index_batch_uploaded_source_records_on_title", length: 255
   end
 
-  create_table "contributions", id: :integer, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "contributions", id: :integer, charset: "utf8", collation: "utf8_unicode_ci", force: :cascade do |t|
     t.integer "author_id"
     t.integer "cap_profile_id"
     t.integer "publication_id"
@@ -96,22 +96,7 @@ ActiveRecord::Schema.define(version: 2021_05_20_185112) do
     t.index ["publication_id"], name: "index_contributions_on_publication_id"
   end
 
-  create_table "delayed_jobs", id: :integer, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.integer "priority", default: 0, null: false
-    t.integer "attempts", default: 0, null: false
-    t.text "handler", null: false
-    t.text "last_error"
-    t.datetime "run_at"
-    t.datetime "locked_at"
-    t.datetime "failed_at"
-    t.string "locked_by"
-    t.string "queue"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.index ["priority", "run_at"], name: "delayed_jobs_priority"
-  end
-
-  create_table "orcid_source_records", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "orcid_source_records", charset: "utf8", collation: "utf8_unicode_ci", force: :cascade do |t|
     t.text "source_data", size: :medium
     t.bigint "last_modified_date"
     t.string "orcidid"
@@ -124,7 +109,7 @@ ActiveRecord::Schema.define(version: 2021_05_20_185112) do
     t.index ["publication_id"], name: "index_orcid_source_records_on_publication_id", unique: true
   end
 
-  create_table "publication_identifiers", id: :integer, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "publication_identifiers", id: :integer, charset: "utf8", collation: "utf8_unicode_ci", force: :cascade do |t|
     t.integer "publication_id"
     t.string "identifier_type"
     t.string "identifier_value"
@@ -139,7 +124,7 @@ ActiveRecord::Schema.define(version: 2021_05_20_185112) do
     t.index ["publication_id"], name: "index_publication_identifiers_on_publication_id"
   end
 
-  create_table "publications", id: :integer, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "publications", id: :integer, charset: "utf8", collation: "utf8_unicode_ci", force: :cascade do |t|
     t.integer "same_as_publications_id"
     t.boolean "active"
     t.boolean "deleted"
@@ -165,7 +150,7 @@ ActiveRecord::Schema.define(version: 2021_05_20_185112) do
     t.index ["year"], name: "index_publications_on_year"
   end
 
-  create_table "pubmed_source_records", id: :integer, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "pubmed_source_records", id: :integer, charset: "utf8", collation: "utf8_unicode_ci", force: :cascade do |t|
     t.text "source_data", size: :medium
     t.integer "pmid"
     t.integer "lock_version"
@@ -176,7 +161,7 @@ ActiveRecord::Schema.define(version: 2021_05_20_185112) do
     t.index ["pmid"], name: "index_pubmed_source_records_on_pmid"
   end
 
-  create_table "sciencewire_source_records", id: :integer, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "sciencewire_source_records", id: :integer, charset: "utf8", collation: "utf8_unicode_ci", force: :cascade do |t|
     t.text "source_data", size: :medium
     t.integer "pmid"
     t.integer "sciencewire_id"
@@ -189,7 +174,7 @@ ActiveRecord::Schema.define(version: 2021_05_20_185112) do
     t.index ["sciencewire_id"], name: "index_sciencewire_source_records_on_sciencewire_id"
   end
 
-  create_table "user_submitted_source_records", id: :integer, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "user_submitted_source_records", id: :integer, charset: "utf8", collation: "utf8_unicode_ci", force: :cascade do |t|
     t.text "source_data", size: :medium
     t.integer "pmid"
     t.integer "lock_version"
@@ -204,7 +189,7 @@ ActiveRecord::Schema.define(version: 2021_05_20_185112) do
     t.index ["source_fingerprint"], name: "index_user_submitted_source_records_on_source_fingerprint", unique: true
   end
 
-  create_table "versions", id: :integer, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "versions", id: :integer, charset: "utf8", collation: "utf8_unicode_ci", force: :cascade do |t|
     t.string "item_type", null: false
     t.integer "item_id", null: false
     t.string "event", null: false
@@ -214,7 +199,7 @@ ActiveRecord::Schema.define(version: 2021_05_20_185112) do
     t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
   end
 
-  create_table "web_of_science_source_records", id: :integer, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "web_of_science_source_records", id: :integer, charset: "utf8", collation: "utf8_unicode_ci", force: :cascade do |t|
     t.boolean "active"
     t.string "database"
     t.text "source_data", size: :medium

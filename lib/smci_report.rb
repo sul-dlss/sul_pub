@@ -19,7 +19,7 @@
 
 # You can run it on the Rails console with:
 #
-# smci = SMCIReport.new(input_file: 'tmp/input.csv', output_file: 'tmp/output_file.csv', date_since: '1/1/2000', time_span: '1year')
+# smci = SmciReport.new(input_file: 'tmp/input.csv', output_file: 'tmp/output_file.csv', date_since: '1/1/2000', time_span: '1year')
 # smci.run
 
 # You can also run as a rake task to avoid having to drop into the rails console:
@@ -53,7 +53,7 @@
 
 require 'csv'
 
-class SMCIReport
+class SmciReport
   # rubocop:disable Metrics/CyclomaticComplexity
   def initialize(args)
     @input_file = args[:input_file]

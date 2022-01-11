@@ -302,7 +302,7 @@ namespace :sul do
     input_file = args[:input_file]
     date_since = args[:date_since]
     time_span = args[:time_span]
-    smci = SMCIReport.new(input_file: input_file, output_file: output_file, date_since: date_since,
+    smci = SmciReport.new(input_file: input_file, output_file: output_file, date_since: date_since,
                           time_span: time_span)
     smci.run
   end
