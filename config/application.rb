@@ -12,6 +12,7 @@ module Sulbib
     config.load_defaults 5.0
     config.autoloader = :zeitwerk
     config.eager_load_paths << Rails.root.join('lib')
+    config.active_record.legacy_connection_handling = false
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
