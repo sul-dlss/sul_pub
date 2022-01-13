@@ -255,20 +255,26 @@ namespace :sul do
       "#{error_count} errors occurred. Total time: #{((end_time - start_time) / 60.0).round(1)} minutes."
   end
 
-  desc 'Export author data as json'
-  # bundle exec rake sul:author_export['tmp/authors.csv','tmp/results.json']
-  # export all authors metadata given a list of sunets or cap_profile_ids, including the alternate identity data
+  desc 'Export author data'
+  # bundle exec rake sul:author_export['tmp/authors.csv','tmp/results.json','json']
+  # export all authors metadata given a list of sunets or cap_profile_ids, in either json or csv format
+  # (including the alternate identity data if the format is json)
   # input csv file should have a column with a header of 'sunetid' or 'cap_profile_id' containing the sunetid or cap_profile_id of interest
   #  if both are supplied, sunetid is used
-  task :author_export, %i[input_file output_file] => :environment do |_t, args|
+  #  output is either a csv file or a json file, depending on the format selected
+  task :author_export, %i[input_file output_file file_format] => :environment do |_t, args|
     output_file = args[:output_file]
     input_file = args[:input_file]
-    raise 'missing required params' unless output_file && input_file
+    file_format = args[:file_format]
+    raise 'missing required params' unless output_file && input_file && file_format
     raise 'missing input csv' unless File.file? input_file
+    raise 'invalid file format, must be json or csv' unless %w[json csv].include? file_format
 
     rows = CSV.parse(File.read(input_file), headers: true)
     total_authors = rows.size
-    output_data = []
+    output_json_data = []
+    header_row = %w[first_name middle_name last_name email sunetid cap_profile_id]
+    CSV.open(output_file, 'wb') { |csv| csv << header_row } if file_format == 'csv'
     puts "Exporting all author information for #{total_authors} authors to #{output_file}"
     rows.each_with_index do |row, i|
       sunet = row['sunetid']
@@ -280,17 +286,25 @@ namespace :sul do
                  Author.find_by(cap_profile_id: cap_profile_id)
                end
       if author
-        author_info = { first_name: author.first_name, middle_name: author.middle_name, last_name: author.last_name,
-                        email: author.emails_for_harvest, sunet: author.sunetid, cap_profile_id: author.cap_profile_id }
-        author_info[:identities] = author.author_identities.map do |ai|
-          { first_name: ai.first_name, middle_name: ai.middle_name, last_name: ai.last_name, email: ai.email, institution: ai.institution }
+        if file_format == 'json'
+          author_info = { first_name: author.first_name, middle_name: author.middle_name, last_name: author.last_name,
+                          email: author.emails_for_harvest, sunet: author.sunetid, cap_profile_id: author.cap_profile_id }
+          author_info[:identities] = author.author_identities.map do |ai|
+            { first_name: ai.first_name, middle_name: ai.middle_name, last_name: ai.last_name, email: ai.email, institution: ai.institution }
+          end
+          output_json_data << author_info
+        else
+          CSV.open(output_file, 'a') do |csv|
+            csv << [author.first_name, author.middle_name, author.last_name,
+                    author.emails_for_harvest, author.sunetid, author.cap_profile_id]
+          end
         end
-        output_data << author_info
       else
         puts "***** ERROR: Sunet: #{sunet}, cap_profile_id: #{cap_profile_id} not found, skipping"
+        CSV.open(output_file, 'a') { |csv| csv << ['', '', '', '', sunet, cap_profile_id] } if file_format == 'csv'
       end
     end
-    File.open(output_file, 'w') { |f| f.write(JSON.pretty_generate(output_data)) }
+    File.open(output_file, 'w') { |f| f.write(JSON.pretty_generate(output_json_data)) } if file_format == 'json'
   end
 
   desc 'Custom SMCI export of profile and non-profile authors report'
@@ -388,6 +402,36 @@ namespace :sul do
         puts "#{i + 1} of #{total}: #{orcidid}"
         name = orcid_client.fetch_name(orcidid)
         csv << [orcidid, name.join(' '), name[1], name[0]]
+      end
+    end
+    puts
+    puts "Written to #{output_file}"
+  end
+
+  desc 'Find sunets given first and last names'
+  # bundle exec rake sul:lookup_sunet['tmp/names.csv', 'tmp/sunets.csv']
+  # Given a list of names in CSV, split into first and last names and try to find matching SUNETs in the database, output to new csv file
+  # input format is a CSV with a column called "full_name" which includes names in "FIRST LAST" format (no middle initials or other data)
+  task :lookup_sunet, %i[input_file output_file] => :environment do |_t, args|
+    input_file = args[:input_file]
+    output_file = args[:output_file]
+    puts "Input file: #{input_file}"
+    puts
+    header_row = %w[full_name SUNetID]
+    CSV.open(output_file, 'wb') do |csv|
+      csv << header_row
+      rows = CSV.parse(File.read(input_file), headers: true)
+      num_rows = rows.size
+      puts "Found #{num_rows} rows of names"
+      rows.each_with_index do |row, i|
+        name = row['full_name']
+        split_name = name.split
+        first_name = split_name[0] # assume part of string before first space is first name
+        last_name = split_name[1..].join(' ') # everything else is the last name (e.g. to deal with a case like "Peter de La Rossa")
+        author = Author.find_by(cap_last_name: last_name, cap_first_name: first_name)
+        sunetid = author ? author.sunetid : '*** NOT FOUND ***'
+        csv << [name, sunetid]
+        puts "#{i + 1} of #{num_rows} : #{name} : #{sunetid}"
       end
     end
     puts
