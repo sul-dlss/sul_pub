@@ -539,7 +539,7 @@ DEPENDENCIES
   parallel
   pry-doc
   pry-rails
-  rails (~> 7)
+  rails (~> 7.0.1)
   rails-controller-testing
   rake
   retina_tag
@@ -563,4 +563,4 @@ DEPENDENCIES
   yaml_db
 
 BUNDLED WITH
-   2.2.32
+   2.3.4
