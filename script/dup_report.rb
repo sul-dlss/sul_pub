@@ -16,7 +16,7 @@ class Reporter
   end
 
   def build_id_set(filename)
-    lines = IO.readlines(filename).map(&:strip).reject(&:empty?)
+    lines = File.readlines(filename).map(&:strip).compact_blank
     Set.new(lines)
   end
 

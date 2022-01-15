@@ -28,7 +28,7 @@ namespace :cleanup do
     puts "Primary Author cap_profile_id: #{primary_cap_profile_id}; name: #{primary_author.first_name} #{primary_author.last_name}"
     puts "Duplicate Author cap_profile_id: #{duped_cap_profile_id}; name: #{duped_author.first_name} #{duped_author.last_name}"
     puts "Merging duped author #{duped_author.cap_profile_id}'s #{duped_author.contributions.size} publications INTO primary " \
-      "author #{primary_author.cap_profile_id}'s #{primary_author.contributions.size} publications"
+         "author #{primary_author.cap_profile_id}'s #{primary_author.contributions.size} publications"
     puts
 
     primary_pub_ids = primary_author.publications.map(&:id)
@@ -38,7 +38,7 @@ namespace :cleanup do
 
     puts "There are currently #{(primary_pub_ids - dupes_pub_ids).size} publications in the primary profile that are not in the duped profile"
     puts "There are currently #{(dupes_pub_ids - primary_pub_ids).size} publications in the duped profile that are not in the primary profile" \
-      ' --- these will be moved'
+         ' --- these will be moved'
 
     duped_author.contributions.each do |contribution|
       if primary_pub_ids.include? contribution.publication_id # this publication already exists in the primary profile; remove it from the duped profile
@@ -74,7 +74,7 @@ namespace :cleanup do
 
     puts "Duped author set to inactive in cap\n"
     puts "Duped author #{duped_author.cap_profile_id} now has #{duped_author.contributions.size} publications (should be 0) " \
-      "and primary author #{primary_author.cap_profile_id} has #{primary_author.contributions.size} publications"
+         "and primary author #{primary_author.cap_profile_id} has #{primary_author.contributions.size} publications"
   end
 
   desc 'Remove all new contributions for a given cap_profile_id, and cleanup disconnected publications'
@@ -121,7 +121,7 @@ namespace :cleanup do
     pub_ids = []
 
     puts "Author cap_profile_id: #{cap_profile_id}; name: #{author.first_name} #{author.last_name}; dates: #{start_date} " \
-      "to #{end_date}; provenance: #{provenance}"
+         "to #{end_date}; provenance: #{provenance}"
     puts "This task will remove any of the #{total} contributions with provenance #{provenance}. Are you sure you want to proceed? (y/n)"
     input = $stdin.gets.strip.downcase
     raise 'aborting' unless input == 'y'
@@ -137,7 +137,7 @@ namespace :cleanup do
         contribution.destroy
       end
 
-      File.open(pub_ids_worked_on_dump_file, 'w') { |f| f.write(YAML.dump(pub_ids)) }
+      File.write(pub_ids_worked_on_dump_file, YAML.dump(pub_ids))
       total_pub_ids = pub_ids.count
       puts 'updating publications...'
       # either rebuild the publications that were removed from the profile, or delete them if they have no contributions left

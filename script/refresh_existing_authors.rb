@@ -33,18 +33,16 @@ class RefreshExistingAuthors
     page_count = 0
     page_size = 50 # this is the maximum page size observed in QA environment on 4/20/16
     loop do
-      begin
-        page_count += 1
-        json_data = cap_client.get_batch_from_cap_api(page_count, page_size)
-        json_data['values'].each do |author_hash|
-          process_author(author_hash)
-        end
-        logger.info "#{page_count * page_size} (#{json_data['count']}) records processed in #{log_process_time}"
-        break if json_data['lastPage'].present? || json_data['count'].to_i < 1 || json_data['values'].blank?
-      rescue StandardError => e
-        logger.error e.inspect
-        raise # this is a catastrophic failure and should halt processing
+      page_count += 1
+      json_data = cap_client.get_batch_from_cap_api(page_count, page_size)
+      json_data['values'].each do |author_hash|
+        process_author(author_hash)
       end
+      logger.info "#{page_count * page_size} (#{json_data['count']}) records processed in #{log_process_time}"
+      break if json_data['lastPage'].present? || json_data['count'].to_i < 1 || json_data['values'].blank?
+    rescue StandardError => e
+      logger.error e.inspect
+      raise # this is a catastrophic failure and should halt processing
     end
   end
 

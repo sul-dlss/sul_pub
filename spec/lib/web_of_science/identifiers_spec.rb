@@ -200,7 +200,10 @@ describe WebOfScience::Identifiers do
     end
 
     it 'can be filtered with reject' do
+      # rubocop:disable Style/HashExcept
+      # also works as identifiers.to_h.except('doi'), but we're not testing that
       result = identifiers.reject { |k, _v| k == 'doi' }
+      # rubocop:enable Style/HashExcept
       expect(result).to be_an Hash
       expect(result.keys).not_to include('doi') # it does exist in identifiers
     end

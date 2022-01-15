@@ -45,7 +45,7 @@ namespace :sul do
     FileUtils.mkdir_p(output_folder)
     publication_ids.each do |pub_id|
       pub = Publication.select(:id, :pub_hash).find(pub_id)
-      File.open(File.join(output_folder, "publication-#{pub.id}.json"), 'w') { |f| f.write(JSON.pretty_generate(pub.pub_hash)) }
+      File.write(File.join(output_folder, "publication-#{pub.id}.json"), JSON.pretty_generate(pub.pub_hash))
       total_pubs += 1
     end
     end_time = Time.zone.now
@@ -125,14 +125,14 @@ namespace :sul do
             sunet_list = pub.contributions.where("status in ('new','approved') and created_at > ?",
                                                  Time.zone.parse(date_since)).map do |c|
               c.author.sunetid
-            end.compact.reject(&:empty?).join('; ')
+            end.compact.compact_blank.join('; ')
             doi = pub.pub_hash[:identifier].map { |ident| ident[:id] if ident[:type].downcase == 'doi' }.compact.join
             pmid = pub.pub_hash[:identifier].map { |ident| ident[:id] if ident[:type].downcase == 'pmid' }.compact.join
             journal = pub.pub_hash[:journal] ? pub.pub_hash[:journal][:name] : ''
             mesh = if pub.pub_hash[:mesh_headings]
                      pub.pub_hash[:mesh_headings].map do |h|
                        h[:descriptor][0][:name]
-                     end.compact.reject(&:empty?).join('; ')
+                     end.compact.compact_blank.join('; ')
                    else
                      ''
                    end
@@ -167,7 +167,7 @@ namespace :sul do
     output_each = 500
     max_errors = 500
     message = "Calling #{method} for #{number_with_delimiter(total_pubs)} publications.  Started at #{start_time}.  " \
-      "Status update shown each #{output_each} publications."
+              "Status update shown each #{output_each} publications."
     puts message
     logger.info message
     Publication.find_each.with_index do |pub, index|
@@ -177,7 +177,7 @@ namespace :sul do
       total_time_remaining = (avg_time_per_pub * (total_pubs - index)).floor
       if index % output_each == 0 # provide some feedback every X pubs
         message = "...#{current_time}: on publication #{number_with_delimiter(index + 1)} of #{number_with_delimiter(total_pubs)} : " \
-          "~ #{distance_of_time_in_words(start_time, start_time + total_time_remaining.seconds)} left"
+                  "~ #{distance_of_time_in_words(start_time, start_time + total_time_remaining.seconds)} left"
         logger.info message
       end
       begin
@@ -198,7 +198,7 @@ namespace :sul do
     end
     end_time = Time.zone.now
     message = "Total: #{number_with_delimiter(total_pubs)}.  Successful: #{success_count}.  Error: #{error_count}.  " \
-      "Ended at #{end_time}. Total time: #{distance_of_time_in_words(end_time, start_time)}"
+              "Ended at #{end_time}. Total time: #{distance_of_time_in_words(end_time, start_time)}"
     puts message
     logger.info message
   end
@@ -252,7 +252,7 @@ namespace :sul do
     end
     end_time = Time.zone.now
     puts "Total: #{total_pubs}. Output file: #{output_file}. Ended at #{end_time}.  #{doi_count} had valid DOIs.  " \
-      "#{error_count} errors occurred. Total time: #{((end_time - start_time) / 60.0).round(1)} minutes."
+         "#{error_count} errors occurred. Total time: #{((end_time - start_time) / 60.0).round(1)} minutes."
   end
 
   desc 'Export author data'
@@ -304,7 +304,7 @@ namespace :sul do
         CSV.open(output_file, 'a') { |csv| csv << ['', '', '', '', sunet, cap_profile_id] } if file_format == 'csv'
       end
     end
-    File.open(output_file, 'w') { |f| f.write(JSON.pretty_generate(output_json_data)) } if file_format == 'json'
+    File.write(output_file, JSON.pretty_generate(output_json_data)) if file_format == 'json'
   end
 
   desc 'Custom SMCI export of profile and non-profile authors report'

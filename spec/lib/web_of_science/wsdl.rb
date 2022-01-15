@@ -31,9 +31,9 @@ module WebOfScience
         return if @@fetched
 
         response = Faraday.get(WSDL_AUTH)
-        File.open(WSDL_AUTH_FILE, 'w') { |f| f.write(response.body) } if response.success?
+        File.write(WSDL_AUTH_FILE, response.body) if response.success?
         response = Faraday.get(WSDL_SEARCH)
-        File.open(WSDL_SEARCH_FILE, 'w') { |f| f.write(response.body) } if response.success?
+        File.write(WSDL_SEARCH_FILE, response.body) if response.success?
         @@fetched = true
       end
     end

@@ -55,7 +55,7 @@ describe PublicationsController, :vcr do
   let(:doi_pub_id) { create(:doi_pub_id, identifier_value: '18819910019') }
 
   let(:invalid_json_for_post) do
-    valid_hash_for_post.reject { |k, _| k == :authorship }.to_json
+    valid_hash_for_post.except(:authorship).to_json
   end
 
   let(:json_with_new_author) do

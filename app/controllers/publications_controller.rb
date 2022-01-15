@@ -110,7 +110,7 @@ class PublicationsController < ApplicationController
     if old_pub.harvested_pub? # only manually entered (i.e. non-harvested) publications may be updated with this method
       render json: {
         error: "This record SulPubID #{old_pub.id} may not be modified.  If you had originally entered details for the record, " \
-          'it has been superceded by a central record.'
+               'it has been superceded by a central record.'
       },
              status: :forbidden, format: 'json'
       return

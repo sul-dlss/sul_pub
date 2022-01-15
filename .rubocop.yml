@@ -1,12 +1,13 @@
 inherit_from:
   - .rubocop_todo.yml
+
 require:
   - rubocop-rspec
   - rubocop-rake
   - rubocop-rails
 
 AllCops:
-  TargetRubyVersion: 2.7
+  TargetRubyVersion: 3.0
   Exclude:
     - 'Gemfile'
     - 'bin/**/*'
@@ -19,6 +20,12 @@ AllCops:
 
 Rails/DynamicFindBy:
   Enabled: false
+
+# had to include these manually here as autogen rubocop_todo.yml just ... didn't get 'em
+RSpec/DescribeClass:
+  Exclude:
+    - 'spec/tasks/cleanup_rake_spec.rb'
+    - 'spec/requests/authorization_spec.rb'
 
 # there are useful expectations of methods being called on the subject in tests
 RSpec/SubjectStub:
@@ -241,4 +248,53 @@ Rails/WhereEquals: # (new in 2.9)
 Rails/WhereExists: # (new in 2.7)
   Enabled: true
 Rails/WhereNot: # (new in 2.8)
+  Enabled: true
+
+Gemspec/RequireMFA: # new in 1.23
+  Enabled: true
+Layout/LineEndStringConcatenationIndentation: # new in 1.18
+  Enabled: true
+Lint/AmbiguousOperatorPrecedence: # new in 1.21
+  Enabled: true
+Lint/AmbiguousRange: # new in 1.19
+  Enabled: true
+Lint/IncompatibleIoSelectWithFiberScheduler: # new in 1.21
+  Enabled: true
+Lint/RequireRelativeSelfPath: # new in 1.22
+  Enabled: true
+Lint/UselessRuby2Keywords: # new in 1.23
+  Enabled: true
+Naming/BlockForwarding: # new in 1.24
+  Enabled: true
+Security/IoMethods: # new in 1.22
+  Enabled: true
+Style/FileRead: # new in 1.24
+  Enabled: true
+Style/FileWrite: # new in 1.24
+  Enabled: true
+Style/MapToHash: # new in 1.24
+  Enabled: true
+Style/NumberedParameters: # new in 1.22
+  Enabled: true
+Style/NumberedParametersLimit: # new in 1.22
+  Enabled: true
+Style/OpenStructUse: # new in 1.23
+  Enabled: true
+Style/RedundantSelfAssignmentBranch: # new in 1.19
+  Enabled: true
+Style/SelectByRegexp: # new in 1.22
+  Enabled: true
+RSpec/ExcessiveDocstringSpacing: # new in 2.5
+  Enabled: true
+RSpec/SubjectDeclaration: # new in 2.5
+  Enabled: true
+Rails/CompactBlank: # new in 2.13
+  Enabled: true
+Rails/DurationArithmetic: # new in 2.13
+  Enabled: true
+Rails/RedundantPresenceValidationOnBelongsTo: # new in 2.13
+  Enabled: true
+Rails/RedundantTravelBack: # new in 2.12
+  Enabled: true
+Rails/RootJoinChain: # new in 2.13
   Enabled: true

@@ -21,7 +21,7 @@ module Pubmed
         if pmids_from_query.size >= Settings.PUBMED.max_publications_per_author
           NotificationManager.error(::Harvester::Error,
                                     "#{self.class} - Pubmed harvest returned more than #{Settings.PUBMED.max_publications_per_author} " \
-                                              "publications for author id #{author.id} and was aborted",
+                                    "publications for author id #{author.id} and was aborted",
                                     self)
           []
         else

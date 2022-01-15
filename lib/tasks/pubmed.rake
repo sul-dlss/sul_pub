@@ -65,8 +65,8 @@ namespace :pubmed do
     end
     end_time = Time.zone.now
     message = "Total: #{total_authors}. Authors found: #{authors_found}. Authors not found: #{authors_not_found}.  " \
-      "Total publications: #{total_pubs}.  Publications updated: #{pubs_updated_count}.  Errored publications: #{error_count}.  " \
-      "Ended at #{end_time}.  Total time: #{distance_of_time_in_words(end_time, start_time)}"
+              "Total publications: #{total_pubs}.  Publications updated: #{pubs_updated_count}.  Errored publications: #{error_count}.  " \
+              "Ended at #{end_time}.  Total time: #{distance_of_time_in_words(end_time, start_time)}"
     puts message
     logger.info message
   end

@@ -90,7 +90,7 @@ module WebOfScience
     def titles
       @titles ||= begin
         titles = doc.search('static_data/summary/titles/title')
-        titles.map { |title| [title['type'], title.text] }.to_h
+        titles.to_h { |title| [title['type'], title.text] }
       end
     end
 

@@ -19,7 +19,7 @@ module Harvester
         harvest(batch, options)
         count += batch.size
         logger.info "*** Completed batch #{n} with #{batch.size} authors.  On #{count} of #{total} authors for " \
-          "harvest at #{Time.zone.now}.  Start time was #{start_time}."
+                    "harvest at #{Time.zone.now}.  Start time was #{start_time}."
       end
       end_time = Time.zone.now
       time_taken = Time.at(end_time - start_time).utc.strftime '%e days, %H hours, %M minutes'

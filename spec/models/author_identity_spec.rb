@@ -155,7 +155,7 @@ RSpec.describe AuthorIdentity, type: :model do
     end
 
     it 'will not mirror identities in importSettings identical to primary author info, and consider no changes even ' \
-      'when this duped primary identity is dropped' do
+       'when this duped primary identity is dropped' do
       expect(author.author_identities.length).to eq 1
       expect(author.mirror_author_identities([existing_alt_identity, identity_same_as_primary])).to be false
       expect(author.author_identities.length).to eq 1

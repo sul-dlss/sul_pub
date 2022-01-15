@@ -20,7 +20,7 @@ module WebOfScience
         if uids_from_query.size >= Settings.WOS.max_publications_per_author
           NotificationManager.error(::Harvester::Error,
                                     "#{self.class} - WoS harvest returned more than #{Settings.WOS.max_publications_per_author} " \
-                                      "publications for author id #{author.id} and was aborted",
+                                    "publications for author id #{author.id} and was aborted",
                                     self)
           []
         else
