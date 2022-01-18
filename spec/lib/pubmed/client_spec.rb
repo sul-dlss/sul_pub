@@ -5,7 +5,7 @@ describe Pubmed::Client do
 
   describe '#fetch_records_for_pmid_list' do
     context 'with valid pmid list of 4' do
-      it 'returns a list of 4 pubmed records ' do
+      it 'returns a list of 4 pubmed records' do
         VCR.use_cassette('Pubmed_Client/_fetch_records_for_pmid_list/returns_a_list') do
           expect(Nokogiri::XML(pubmed_client.fetch_records_for_pmid_list([211, 589, 591, 960]))
                    .xpath('//PubmedArticle').size).to eq(4)

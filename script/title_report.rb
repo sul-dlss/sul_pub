@@ -44,7 +44,7 @@ class TitleReport
   end
 
   def parse_lines(file)
-    raw = IO.read file
+    raw = File.read file
     @lines = raw.split("\r")
   end
 

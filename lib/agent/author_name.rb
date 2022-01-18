@@ -52,7 +52,7 @@ module Agent
     # @return [String] name(s) to be queried in an OR (disjunction) query
     def text_search_terms
       @text_search_terms ||=
-        [first_name_query, middle_name_query].flatten.reject(&:empty?).uniq
+        [first_name_query, middle_name_query].flatten.compact_blank.uniq
     end
 
     def ==(other)
@@ -103,7 +103,7 @@ module Agent
       name.scan(/[[:upper:]]/).first.to_s
     end
 
-    PARTICLE_REGEX = /^el$|^da$|^de$|^del$|^do$|^dos$|^du$|^le$/.freeze
+    PARTICLE_REGEX = /^el$|^da$|^de$|^del$|^do$|^dos$|^du$|^le$/
 
     # If a name contains any capital letters, return it as is; otherwise
     # return a capitalized form of the name, taking into account some

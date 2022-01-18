@@ -32,7 +32,7 @@ class AuthorshipsController < ApplicationController
     return unless author_id_consistent?(author, params[:cap_profile_id]) # ids aren't consistent
 
     ids = params.slice(:sul_pub_id, :pmid, :sw_id, :wos_uid).to_h.symbolize_keys
-    ids.reject! { |_, v| v.blank? }
+    ids.compact_blank!
     unless ids.any?
       render json: { error: 'You have not supplied any publication identifier: sul_pub_id || pmid || sw_id || wos_uid' },
              status: :bad_request, format: :json

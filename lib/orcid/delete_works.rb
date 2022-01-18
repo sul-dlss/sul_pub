@@ -30,10 +30,10 @@ module Orcid
       work_deleted = Orcid.client.delete_work(orcid_user.orcidid, contribution.orcid_put_code, orcid_user.access_token)
       if work_deleted
         logger&.info("#{self.class} - author #{contribution.author.id} - deleted work for publication #{contribution.publication.id} " \
-          "with put-code #{contribution.orcid_put_code}")
+                     "with put-code #{contribution.orcid_put_code}")
       else
         logger&.info("#{self.class} - author #{contribution.author.id} - work for publication #{contribution.publication.id} " \
-          "with put-code #{contribution.orcid_put_code} already deleted")
+                     "with put-code #{contribution.orcid_put_code} already deleted")
       end
       contribution.orcid_put_code = nil
       contribution.save!

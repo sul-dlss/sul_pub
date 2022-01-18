@@ -29,7 +29,7 @@ describe Publication do
   end
 
   describe '.pubhash_needs_update' do
-    subject(:pub) { Publication.new(pubhash_needs_update: true) }
+    subject(:pub) { described_class.new(pubhash_needs_update: true) }
 
     it 'allows initialization with pubhash_needs_update' do
       expect(pub.pubhash_needs_update).to be true
@@ -37,7 +37,7 @@ describe Publication do
   end
 
   describe 'pub_hash validation' do
-    subject { Publication.create!(pub_hash: pub_hash) }
+    subject { described_class.create!(pub_hash: pub_hash) }
 
     it 'notifies HB but does not fail validation on invalid pub_hash' do
       expect(Honeybadger).to receive(:notify).with(
@@ -56,7 +56,7 @@ describe Publication do
   end
 
   describe 'test pub hash syncing for new object' do
-    subject { Publication.create!(pub_hash: pub_hash) }
+    subject { described_class.create!(pub_hash: pub_hash) }
 
     it 'rebuilds identifiers' do
       expect(subject.pub_hash[:identifier].length).to be > 0
@@ -366,7 +366,7 @@ describe Publication do
 
   describe '.build_new_manual_publication' do
     let(:save_new_publication) do
-      pub = Publication.build_new_manual_publication(pub_hash, 'some string')
+      pub = described_class.build_new_manual_publication(pub_hash, 'some string')
       pub.save!
       pub
     end
@@ -380,7 +380,7 @@ describe Publication do
     it 'refuses to add a publication with the same source record' do
       save_new_publication
       expect do
-        Publication.build_new_manual_publication(pub_hash, 'some string')
+        described_class.build_new_manual_publication(pub_hash, 'some string')
       end.to raise_error(ActiveRecord::RecordNotUnique)
     end
 
@@ -391,7 +391,7 @@ describe Publication do
   end
 
   describe 'update_manual_pub_from_pub_hash' do
-    let(:pub) { Publication.build_new_manual_publication({ title: 'b', type: 'article' }, 'some string') }
+    let(:pub) { described_class.build_new_manual_publication({ title: 'b', type: 'article' }, 'some string') }
 
     it 'updates the user submitted source record with the new content' do
       pub.update_manual_pub_from_pub_hash({ date: '2020', type: 'article' }, 'some other string')
@@ -402,7 +402,7 @@ describe Publication do
 
     it 'raises an exception if you try to update a record to match an existing source record' do
       pub.save!
-      other = Publication.build_new_manual_publication({ title: 'c', type: 'article' }, 'some other string')
+      other = described_class.build_new_manual_publication({ title: 'c', type: 'article' }, 'some other string')
       other.update_manual_pub_from_pub_hash({ title: 'c', type: 'article' }, 'some string')
       expect { other.save! }.to raise_error(ActiveRecord::RecordNotUnique)
     end
@@ -420,12 +420,12 @@ describe Publication do
       publication.wos_uid = 'somevalue'
       publication.send(:sync_identifiers_in_pub_hash)
       publication.save!
-      res = Publication.find_by_doi('10.1016/j.mcn.2012.03.008')
+      res = described_class.find_by_doi('10.1016/j.mcn.2012.03.008')
       expect(res.id).to eq(publication.id)
     end
 
     it "returns nil if the doi isn't found" do
-      expect(Publication.find_by_doi('does not exist')).to be_nil
+      expect(described_class.find_by_doi('does not exist')).to be_nil
     end
   end
 
@@ -434,16 +434,16 @@ describe Publication do
       publication.pub_hash = pub_hash.merge(identifier: [{ type: 'WosUID', id: 'ABC123' }])
       publication.send(:sync_identifiers_in_pub_hash)
       publication.save!
-      expect(Publication.for_uid('ABC123').id).to eq(publication.id)
+      expect(described_class.for_uid('ABC123').id).to eq(publication.id)
     end
 
     it 'returns nil if not found' do
-      expect(Publication.for_uid('does not exist')).to be_nil
+      expect(described_class.for_uid('does not exist')).to be_nil
     end
   end
 
   describe '#authoritative_pmid_source?' do
-    let(:pub) { Publication.new }
+    let(:pub) { described_class.new }
 
     it "returns true if the pub has a provenance of 'pubmed'" do
       pub.pub_hash = { provenance: 'pubmed' }
@@ -470,7 +470,7 @@ describe Publication do
     it 'correctly rebuilds pub_hash from SciencewireSourceRecord'
     it 'correctly rebuilds pub_hash from PubmedSourceRecord'
     it 'raises for WoS record' do
-      pub = Publication.new(pub_hash: { provenance: 'wos' })
+      pub = described_class.new(pub_hash: { provenance: 'wos' })
       expect { pub.rebuild_pub_hash }.to raise_error(RuntimeError)
     end
   end
@@ -512,7 +512,7 @@ describe Publication do
     end
 
     it 'returns single publication with active authors' do
-      expect(Publication.with_active_author.count).to eq(1)
+      expect(described_class.with_active_author.count).to eq(1)
     end
   end
 end

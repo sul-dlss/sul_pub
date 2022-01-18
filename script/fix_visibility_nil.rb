@@ -25,16 +25,14 @@ class FixVisibilityNil
   def work
     count = 0
     @author_ids.each do |id|
-      begin
-        count += 1
-        process id
-        @updated += 1
-        @logger.info "Processed #{count}" if count % 500 == 0
-      rescue StandardError => e
-        @errors += 1
-        @logger.error "Unable to process #{id}: #{e.inspect}"
-        @logger.error e.backtrace.join("\n")
-      end
+      count += 1
+      process id
+      @updated += 1
+      @logger.info "Processed #{count}" if count % 500 == 0
+    rescue StandardError => e
+      @errors += 1
+      @logger.error "Unable to process #{id}: #{e.inspect}"
+      @logger.error e.backtrace.join("\n")
     end
 
     @logger.info "Updated #{@updated}"

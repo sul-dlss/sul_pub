@@ -56,7 +56,7 @@ module WebOfScience
     # @param [Array<String>] terms
     # @param [Array<String>] the same terms, minus any empties or duplicates, wrapped in double quotes
     def quote_wrap(terms)
-      terms.reject(&:empty?).uniq.map { |x| "\"#{x.delete('"')}\"" }
+      terms.compact_blank.uniq.map { |x| "\"#{x.delete('"')}\"" }
     end
   end
 end

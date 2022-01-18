@@ -64,7 +64,7 @@ module WebOfScience
 
           wssr.link_publication(pub) if wssr.publication.blank?
         else
-          create_publication(rec, wssr) && new_uids << rec.uid
+          create_publication(rec, wssr) && (new_uids << rec.uid)
         end
       end
       new_uids.uniq

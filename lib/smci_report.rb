@@ -82,7 +82,7 @@ class SmciReport
     logger.info '*****************'
     logger.info 'Starting export.'
     logger.info "Exporting all publications for #{total_authors} authors to #{@output_file}. Since date: '#{@date_since}'.  " \
-      "WoS SymbolicTimeSpan: '#{@time_span}'"
+                "WoS SymbolicTimeSpan: '#{@time_span}'"
     logger.info ''
 
     CSV.open(@output_file, 'wb') do |csv|
@@ -221,7 +221,7 @@ class SmciReport
     mesh = if pub_hash[:mesh_headings]
              pub_hash[:mesh_headings].map do |h|
                h[:descriptor][0][:name]
-             end.compact.reject(&:empty?).join('; ')
+             end.compact.compact_blank.join('; ')
            else
              ''
            end

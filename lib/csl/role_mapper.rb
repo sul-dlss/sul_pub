@@ -120,7 +120,7 @@ module Csl
       # @return [String]
       def collect_given_names(names)
         given_names = ''
-        names.reject(&:blank?).each do |name|
+        names.compact_blank.each do |name|
           given_names = "#{given_names} #{name}"
           given_names = "#{given_names}." if name =~ /^[[:upper:]]$/
         end

@@ -50,17 +50,15 @@ class MergeDuplicateAuths
   def work
     ActiveRecord::Base.logger.level = 1
     count = 0
-    dup_cap_ids = JSON.parse(IO.read(Rails.root.join('all_clones_cap_ids.json')))
+    dup_cap_ids = JSON.parse(File.read(Rails.root.join('all_clones_cap_ids.json')))
     dup_cap_ids.each do |cap_id|
-      begin
-        count += 1
-        @logger.info "Processed #{count}" if count % 100 == 0
+      count += 1
+      @logger.info "Processed #{count}" if count % 100 == 0
 
-        merge cap_id
-      rescue StandardError => e
-        @logger.error "Problem with cap_id #{cap_id} #{e.inspect}"
-        @logger.error e.backtrace.join "\n"
-      end
+      merge cap_id
+    rescue StandardError => e
+      @logger.error "Problem with cap_id #{cap_id} #{e.inspect}"
+      @logger.error e.backtrace.join "\n"
     end
 
     @logger.info "Contributions fixed: #{@contribs_fixed}"

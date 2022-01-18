@@ -4,47 +4,55 @@ describe Author do
   subject { create :author }
 
   let(:auth_hash) do
-    JSON.parse(File.open('fixtures/cap_poll_author_3810.json', 'r').read)
+    JSON.parse(File.read('fixtures/cap_poll_author_3810.json'))
   end
 
   let(:missing_fields) do
-    JSON.parse(File.open('fixtures/cap_poll_author_3810_missing.json', 'r').read)
+    JSON.parse(File.read('fixtures/cap_poll_author_3810_missing.json'))
   end
 
   describe '#cap_profile_id' do
     it 'validates uniqueness' do
-      Author.find_or_create_by!(cap_profile_id: 1)
-      expect { Author.create!(cap_profile_id: 1) }.to raise_error ActiveRecord::RecordInvalid
+      described_class.find_or_create_by!(cap_profile_id: 1)
+      expect { described_class.create!(cap_profile_id: 1) }.to raise_error ActiveRecord::RecordInvalid
     end
 
     it 'validates presence' do
-      expect { Author.create!(cap_profile_id: '') }.to raise_error ActiveRecord::RecordInvalid
+      expect { described_class.create!(cap_profile_id: '') }.to raise_error ActiveRecord::RecordInvalid
     end
   end
 
   describe '#orcidid' do
     it 'indicates if orcidid is valid' do
       # missing url
-      expect { Author.create!(cap_profile_id: '5555', orcidid: '0000-1234-5678-9012') }.to raise_error ActiveRecord::RecordInvalid
+      expect { described_class.create!(cap_profile_id: '5555', orcidid: '0000-1234-5678-9012') }.to raise_error ActiveRecord::RecordInvalid
       # bad url protocol
-      expect { Author.create!(cap_profile_id: '5555', orcidid: 'http://orcid.org/0000-1234-5678-9012') }.to raise_error ActiveRecord::RecordInvalid
+      expect { described_class.create!(cap_profile_id: '5555', orcidid: 'http://orcid.org/0000-1234-5678-9012') }.to raise_error ActiveRecord::RecordInvalid
       # invalid url
-      expect { Author.create!(cap_profile_id: '5555', orcidid: 'https://test.orcid.org/0000-1234-5678-9012') }.to raise_error ActiveRecord::RecordInvalid
+      expect do
+        described_class.create!(cap_profile_id: '5555', orcidid: 'https://test.orcid.org/0000-1234-5678-9012')
+      end.to raise_error ActiveRecord::RecordInvalid
       # wrong length
-      expect { Author.create!(cap_profile_id: '5555', orcidid: 'https://orcid.org/0000-1234-5678-9012-1234') }.to raise_error ActiveRecord::RecordInvalid
+      expect do
+        described_class.create!(cap_profile_id: '5555', orcidid: 'https://orcid.org/0000-1234-5678-9012-1234')
+      end.to raise_error ActiveRecord::RecordInvalid
       # invalid last digit
-      expect { Author.create!(cap_profile_id: '5555', orcidid: 'https://orcid.org/0000-1234-5678-901A') }.to raise_error ActiveRecord::RecordInvalid
+      expect { described_class.create!(cap_profile_id: '5555', orcidid: 'https://orcid.org/0000-1234-5678-901A') }.to raise_error ActiveRecord::RecordInvalid
       # missing dashes
-      expect { Author.create!(cap_profile_id: '5555', orcidid: 'https://orcid.org/000012345678901A') }.to raise_error ActiveRecord::RecordInvalid
+      expect { described_class.create!(cap_profile_id: '5555', orcidid: 'https://orcid.org/000012345678901A') }.to raise_error ActiveRecord::RecordInvalid
     end
 
     it 'saves a valid orcidid' do
-      expect { Author.create!(cap_profile_id: '5555', orcidid: 'https://orcid.org/0000-1234-5678-901X') }.not_to raise_error ActiveRecord::RecordInvalid
-      expect { Author.create!(cap_profile_id: '5556', orcidid: 'https://sandbox.orcid.org/0000-1234-5678-9011') }.not_to raise_error ActiveRecord::RecordInvalid
+      expect do
+        described_class.create!(cap_profile_id: '5555', orcidid: 'https://orcid.org/0000-1234-5678-901X')
+      end.not_to raise_error ActiveRecord::RecordInvalid
+      expect do
+        described_class.create!(cap_profile_id: '5556', orcidid: 'https://sandbox.orcid.org/0000-1234-5678-9011')
+      end.not_to raise_error ActiveRecord::RecordInvalid
     end
 
     it 'allows nil orcidid' do
-      expect { Author.create!(cap_profile_id: '5555', orcidid: nil) }.not_to raise_error ActiveRecord::RecordInvalid
+      expect { described_class.create!(cap_profile_id: '5555', orcidid: nil) }.not_to raise_error ActiveRecord::RecordInvalid
     end
   end
 
@@ -116,7 +124,7 @@ describe Author do
     it 'creates an author from the passed in cap profile id' do
       skip 'Administrative Systems firewall rules only allow IP-based requests'
       VCR.use_cassette('author_spec_fetch_from_cap_and_create') do
-        author = Author.fetch_from_cap_and_create 3871
+        author = described_class.fetch_from_cap_and_create 3871
         expect(author.cap_last_name).to eq('Kwon')
       end
     end

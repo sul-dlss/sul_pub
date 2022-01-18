@@ -33,7 +33,7 @@ class Finder
     batch_size = (last_id / batch_count).to_i
     batch_1 = [] << 1 << batch_size
     batch_2 = [] << (batch_size + 1) << (2 * batch_size)
-    batch_3 = [] << (2 * batch_size + 1) << last_id
+    batch_3 = [] << ((2 * batch_size) + 1) << last_id
     sacks = [] << batch_1 << batch_2 << batch_3
     Parallel.each(sacks, in_processes: 3) do |sack|
       @found = 0

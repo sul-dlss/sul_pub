@@ -82,7 +82,7 @@ module Clarivate
     # @return [Hash<String => Hash>]
     def response_parse(response)
       ng = Nokogiri::XML(response.body) { |config| config.strict.noblanks }.remove_namespaces!
-      ng.xpath('response/fn/map/map').map { |node| response_map_parse(node) }.to_h
+      ng.xpath('response/fn/map/map').to_h { |node| response_map_parse(node) }
     end
 
     # @param node [Nokogiri::XML::Node] map node
@@ -105,7 +105,7 @@ module Clarivate
     def response_vals_to_hash(vals)
       return {} if vals.empty? || vals.first.text == 'No Result Found'
 
-      vals.map { |val| [val.attr('name'), val.text] }.to_h
+      vals.to_h { |val| [val.attr('name'), val.text] }
     end
   end
 end

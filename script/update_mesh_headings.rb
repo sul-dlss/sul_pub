@@ -17,15 +17,13 @@ class UpdateMeshHeadings
   def update
     count = 0
     @pmids.each do |pmid|
-      begin
-        count += 1
-        process pmid
-        @logger.info "Processed #{count}" if count % 500 == 0
-      rescue StandardError => e
-        @errors += 1
-        @logger.error "Unable to process #{pmid}: #{e.inspect}"
-        @logger.error e.backtrace.join("\n")
-      end
+      count += 1
+      process pmid
+      @logger.info "Processed #{count}" if count % 500 == 0
+    rescue StandardError => e
+      @errors += 1
+      @logger.error "Unable to process #{pmid}: #{e.inspect}"
+      @logger.error e.backtrace.join("\n")
     end
 
     @logger.info "Updated #{@updated}"

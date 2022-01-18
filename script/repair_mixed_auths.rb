@@ -41,15 +41,13 @@ class RepairMixedAuths
     ActiveRecord::Base.logger.level = 1
     count = 0
     CSV.foreach(Rails.root.join('authors_with_profiles_utf8.csv'), headers: true, header_converters: :symbol) do |row|
-      begin
-        count += 1
-        @logger.info "Processed #{count}" if count % 100 == 0
+      count += 1
+      @logger.info "Processed #{count}" if count % 100 == 0
 
-        fix row
-      rescue StandardError => e
-        @logger.error "Problem author #{row[:sul_author_id]} #{e.inspect}"
-        @logger.error e.backtrace.join "\n"
-      end
+      fix row
+    rescue StandardError => e
+      @logger.error "Problem author #{row[:sul_author_id]} #{e.inspect}"
+      @logger.error e.backtrace.join "\n"
     end
 
     @logger.info "Authors fixed: #{@auths_fixed}"

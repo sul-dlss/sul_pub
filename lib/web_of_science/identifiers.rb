@@ -145,7 +145,7 @@ module WebOfScience
 
     def extract_ids(doc)
       ids = doc.xpath('/REC/dynamic_data/cluster_related/identifiers/identifier')
-      ids = ids.map { |id| [id['type'], id['value']] }.to_h
+      ids = ids.to_h { |id| [id['type'], id['value']] }
       ids = filter_dois(ids)
       @ids = filter_ids(ids)
     end

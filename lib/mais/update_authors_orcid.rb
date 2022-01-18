@@ -51,7 +51,7 @@ module Mais
     end
 
     def sunetid_to_orcidid
-      @sunetid_to_orcidid ||= orcid_users.map { |orcid_user| [orcid_user.sunetid, orcid_user.orcidid] }.to_h
+      @sunetid_to_orcidid ||= orcid_users.to_h { |orcid_user| [orcid_user.sunetid, orcid_user.orcidid] }
     end
   end
 end

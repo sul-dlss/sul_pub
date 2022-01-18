@@ -40,7 +40,7 @@ describe Pubmed::Harvester do
         expect(NotificationManager).to receive(:error).with(
           ::Harvester::Error,
           "Pubmed::Harvester - Pubmed harvest returned more than #{Settings.PUBMED.max_publications_per_author} " \
-            "publications for author id #{author.id} and was aborted",
+          "publications for author id #{author.id} and was aborted",
           harvester
         )
         expect(harvester.process_author(author)).to eq([])
