@@ -79,7 +79,7 @@ describe Publication do
       end
 
       it 'sets the last updated value to match the database row' do
-        expect(Time.zone.parse(subject.pub_hash[:last_updated])).to be >= (Time.zone.now - 1.minute)
+        expect(Time.zone.parse(subject.pub_hash[:last_updated])).to be >= 1.minute.ago
       end
 
       it 'rebuilds authors' do

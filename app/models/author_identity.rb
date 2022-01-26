@@ -5,7 +5,7 @@ class AuthorIdentity < ApplicationRecord
   belongs_to :author, inverse_of: :author_identities
 
   # required attributes will raise exceptions if nil
-  validates :author, :first_name, :last_name, presence: true
+  validates :first_name, :last_name, presence: true
   before_validation :set_first_name_if_missing
 
   # if the first name is missing, default to the preferred first name from the main author record to allow
