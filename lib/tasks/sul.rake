@@ -4,6 +4,32 @@ require 'csv'
 require 'json'
 
 namespace :sul do
+  desc 'Run publication import stats'
+  # Produce statistics about the number of publications imported, number of unique authors, and numbers in each state
+  #  in the specified time period
+  # bundle exec rake sul:publication_import_stats['1/1/2022','1/31/2022']
+  task :publication_import_stats, %i[date1 date2] => :environment do |_t, args|
+    start_date = Date.strptime(args[:date1], '%m/%d/%Y')
+    end_date = Date.strptime(args[:date2], '%m/%d/%Y')
+    new_author_count = Author.where('created_at > ? and created_at < ?', start_date, end_date).where(active_in_cap: true, cap_import_enabled: true).count
+    total_publication_count = Contribution.where('created_at > ? and created_at < ?', start_date, end_date).count
+    total_unique_publication_count = Contribution.select(:author_id).where('created_at > ? and created_at < ?', start_date, end_date).distinct.count
+    denied_publications = Contribution.where('created_at > ? and created_at < ? and status = ?', start_date, end_date, 'denied').count
+    approved_publications = Contribution.where('created_at > ? and created_at < ? and status = ?', start_date, end_date, 'approved').count
+    new_publications = Contribution.where('created_at > ? and created_at < ? and status = ?', start_date, end_date, 'new').count
+    puts 'new_authors,total_pubs,total_unique_pubs,total_inbox,total_approved,total_denied,new_percent,approved_percent,denied_percent'
+    output = "#{new_author_count}, #{total_publication_count}, #{total_unique_publication_count}, "
+    output += "#{new_publications}, #{approved_publications}, #{denied_publications}, "
+    if total_publication_count > 0
+      output += "#{((new_publications.to_f / total_publication_count) * 100.0).round(1)}%, "
+      output += "#{((approved_publications.to_f / total_publication_count) * 100.0).round(1)}%, "
+      output += "#{((denied_publications.to_f / total_publication_count) * 100.0).round(1)}%"
+    else
+      output += '0%, 0%, 0%'
+    end
+    puts output
+  end
+
   desc 'Export publications as csv'
   # bundle exec rake sul:export_pubs_csv['/tmp/output_file.csv','01/01/2013'] # parameters are output csv file, and date to go back to in format of mm/dd/yyyy
   task :export_pubs_csv, %i[output_file date_since] => :environment do |_t, args|
