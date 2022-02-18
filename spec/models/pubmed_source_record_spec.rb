@@ -149,6 +149,15 @@ describe PubmedSourceRecord, :vcr do
       record = create :pubmed_source_record_23388678 # year in another alternate location
       expect(record.source_as_hash[:year]).to eq '2013'
     end
+
+    it 'parses the date correctly' do
+      record = create :pubmed_source_record_10000166 # date
+      expect(record.source_as_hash[:date]).to eq '1992-02-05'
+      record = create :pubmed_source_record_29279863 # another date
+      expect(record.source_as_hash[:date]).to eq '2017-12-22'
+      record = create :pubmed_source_record_23388678 # another date
+      expect(record.source_as_hash[:date]).to eq '2013-02-08'
+    end
   end
 
   describe '.pubmed_update' do
