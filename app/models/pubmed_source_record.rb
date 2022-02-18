@@ -99,6 +99,7 @@ class PubmedSourceRecord < ApplicationRecord
     mesh_headings_for_record
   end
 
+  # see https://dtd.nlm.nih.gov/ncbi/pubmed/doc/out/180101/el-Year.html
   def extract_year_from_pubmed_record(publication)
     year = nil
 
@@ -115,6 +116,7 @@ class PubmedSourceRecord < ApplicationRecord
     year
   end
 
+  # see https://dtd.nlm.nih.gov/ncbi/pubmed/doc/out/180101/el-Month.html
   def extract_month_from_pubmed_record(publication)
     month = nil
 
@@ -134,6 +136,7 @@ class PubmedSourceRecord < ApplicationRecord
     month
   end
 
+  # see https://dtd.nlm.nih.gov/ncbi/pubmed/doc/out/180101/el-Day.html
   def extract_day_from_pubmed_record(publication)
     day = nil
 
@@ -339,6 +342,7 @@ class PubmedSourceRecord < ApplicationRecord
     # The <AffiliationInfo> envelope element includes <Affliliation> and <Identifier>.
   end
 
+  # see https://dtd.nlm.nih.gov/ncbi/pubmed/doc/out/180101/el-PubDate.html
   def pubmed_date_xpaths(date_part)
     [
       "MedlineCitation/Article/Journal/JournalIssue/PubDate/#{date_part}",

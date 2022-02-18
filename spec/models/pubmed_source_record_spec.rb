@@ -142,6 +142,7 @@ describe PubmedSourceRecord, :vcr do
 
   describe '.source_as_hash' do
     it 'parses the year correctly' do
+      # fixture records
       record = create :pubmed_source_record_10000166 # year in first location
       expect(record.source_as_hash[:year]).to eq '1992'
       record = create :pubmed_source_record_29279863 # year in alternate location
@@ -150,13 +151,92 @@ describe PubmedSourceRecord, :vcr do
       expect(record.source_as_hash[:year]).to eq '2013'
     end
 
+    it 'sets the year to nil when not found' do
+      # manual test data
+      source_data = '<PubmedArticle><MedlineCitation Status="Publisher" Owner="NLM"><PMID Version="1">1</PMID><OriginalData/></PubmedArticle>'
+      record = described_class.create(pmid: pmid_created_1999, source_data: source_data)
+      expect(record.source_as_hash[:year]).to eq nil # no year
+    end
+
+    it 'ignores an invalid year' do
+      source_data =
+        <<-XML
+          <PubmedArticle>
+          <PubmedData>
+          <History>
+            <PubMedPubDate PubStatus="received">
+              <Year>2017</Year>
+              <Month>11</Month>
+              <Day>16</Day>
+            </PubMedPubDate>
+            <PubMedPubDate PubStatus="accepted">
+                <Year>Bogus</Year>
+                <Month>12</Month>
+            </PubMedPubDate>
+          </PubmedArticle>
+        XML
+      record = described_class.create(pmid: pmid_created_1999, source_data: source_data)
+      expect(record.source_as_hash[:year]).to eq nil # bogus is not a valid year
+    end
+
     it 'parses the date correctly' do
+      # fixture records
       record = create :pubmed_source_record_10000166 # date
       expect(record.source_as_hash[:date]).to eq '1992-02-05'
       record = create :pubmed_source_record_29279863 # another date
       expect(record.source_as_hash[:date]).to eq '2017-12-22'
       record = create :pubmed_source_record_23388678 # another date
       expect(record.source_as_hash[:date]).to eq '2013-02-08'
+    end
+
+    it 'sets the date to nil when not found' do
+      # manual test data
+      source_data = '<PubmedArticle><MedlineCitation Status="Publisher" Owner="NLM"><PMID Version="1">1</PMID><OriginalData/></PubmedArticle>'
+      record = described_class.create(pmid: pmid_created_1999, source_data: source_data)
+      expect(record.source_as_hash[:date]).to eq nil # no date
+    end
+
+    it 'ignores the day when not found' do
+      source_data =
+        <<-XML
+          <PubmedArticle>
+          <PubmedData>
+          <History>
+            <PubMedPubDate PubStatus="received">
+              <Year>2017</Year>
+              <Month>11</Month>
+              <Day>16</Day>
+            </PubMedPubDate>
+            <PubMedPubDate PubStatus="accepted">
+                <Year>2017</Year>
+                <Month>5</Month>
+            </PubMedPubDate>
+          </PubmedArticle>
+        XML
+      record = described_class.create(pmid: pmid_created_1999, source_data: source_data)
+      expect(record.source_as_hash[:date]).to eq '2017-05' # no day in one of the acceptable date paths, it zero pads the month
+    end
+
+    it 'handles a month as an abbreviation' do
+      source_data =
+        <<-XML
+          <PubmedArticle>
+          <PubmedData>
+          <History>
+            <PubMedPubDate PubStatus="received">
+              <Year>2017</Year>
+              <Month>11</Month>
+              <Day>16</Day>
+            </PubMedPubDate>
+            <PubMedPubDate PubStatus="accepted">
+                <Year>2017</Year>
+                <Month>Mar</Month>
+                <Day>5</Day>
+            </PubMedPubDate>
+          </PubmedArticle>
+        XML
+      record = described_class.create(pmid: pmid_created_1999, source_data: source_data)
+      expect(record.source_as_hash[:date]).to eq '2017-03-05' # convert Mar to 03 and zero pads the day
     end
   end
 
