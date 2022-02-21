@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+require 'faraday/httpclient'
+require 'faraday/retry'
+
 module Cap
   class Client
     # Fetch a single object from CAP server and test its response

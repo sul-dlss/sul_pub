@@ -199,7 +199,10 @@ GEM
     faraday (2.2.0)
       faraday-net_http (~> 2.0)
       ruby2_keywords (>= 0.0.4)
+    faraday-httpclient (2.0.1)
+      httpclient (>= 2.2)
     faraday-net_http (2.0.1)
+    faraday-retry (1.0.3)
     ffi (1.15.5)
     globalid (1.0.0)
       activesupport (>= 5.0)
@@ -491,6 +494,8 @@ DEPENDENCIES
   equivalent-xml
   factory_bot_rails
   faraday
+  faraday-httpclient
+  faraday-retry
   hashie
   honeybadger (~> 4.2)
   htmlentities (~> 4.3)

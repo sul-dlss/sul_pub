@@ -26,6 +26,8 @@ gem 'csl-styles', '1.0.1.8'
 gem 'daemons'
 gem 'dotiw'
 gem 'faraday'
+gem 'faraday-httpclient'
+gem 'faraday-retry'
 gem 'htmlentities', '~> 4.3'
 gem 'httpclient', '~> 2.8'
 # Altmetric utilities related to the extraction, validation and normalization of various scholarly identifiers
