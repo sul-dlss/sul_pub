@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-require 'faraday'
-require 'webmock'
-
 module WebOfScience
   # WebOfScience WSDL files
   class WSDL
