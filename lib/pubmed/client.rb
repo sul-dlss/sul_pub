@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+require 'faraday/httpclient'
+require 'faraday/retry'
+
 module Pubmed
   class Client
     # @param [String, Array<String>] pmids PubMed ID or IDs

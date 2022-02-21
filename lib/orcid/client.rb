@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'faraday/httpclient'
+require 'faraday/retry'
 require 'oauth2'
 
 module Orcid
