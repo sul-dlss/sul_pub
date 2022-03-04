@@ -21,7 +21,7 @@ This is a ruby on rails application with an rspec test suite.  The ruby version 
 
 ### Code Conventions
 
-The conventions to follow are noted in the [DLSS developer playbook](https://github.com/sul-dlss/DeveloperPlaybook).  The code style conventions are checked by rubocop, using the [DLSS cops](https://github.com/sul-dlss/dlss_cops).
+The conventions to follow are noted in the [DLSS developer playbook](https://github.com/sul-dlss/DeveloperPlaybook).  The code style conventions are checked by rubocop.
 
 ## Initial Setup
 
