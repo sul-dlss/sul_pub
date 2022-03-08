@@ -23,9 +23,9 @@ every 1.day, at: stagger(4), roles: [:harvester_dev, :harvester_qa, :harvester_p
 end
 
 # poll mais for new ORCID information nightly at 5am-ish in prod, qa and dev
-every 1.day, at: stagger(5), roles: [:harvester_dev, :harvester_qa, :harvester_prod] do
-  rake 'mais:update_authors'
-end
+# every 1.day, at: stagger(5), roles: [:harvester_dev, :harvester_qa, :harvester_prod] do
+#   rake 'mais:update_authors'
+# end
 
 # send publications to ORCID profiles for all authorized users at 8am-ish every 7 days in qa
 every 7.days, at: stagger(8), roles: [:harvester_qa] do
