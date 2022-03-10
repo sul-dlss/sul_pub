@@ -49,7 +49,7 @@ describe WebOfScience::Harvester do
       it_behaves_like 'it_can_process_records'
 
       it 'logs exceptions for processing an author' do
-        expect(author.harvested).to be nil
+        expect(author.harvested).to be_nil
         processor = WebOfScience::ProcessRecords.new(author, any_records_will_do)
         allow(processor).to receive(:execute).and_raise(RuntimeError)
         allow(WebOfScience::ProcessRecords).to receive(:new).and_return(processor)

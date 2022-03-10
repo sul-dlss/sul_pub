@@ -38,10 +38,10 @@ describe Mais::UpdateAuthorsOrcid do
       expect(update_authors_orcid.update).to eq(1)
 
       author_with_existing_orcid.reload
-      expect(author_with_existing_orcid.orcidid).to eq(nil)
+      expect(author_with_existing_orcid.orcidid).to be_nil
 
       author_with_no_orcid.reload
-      expect(author_with_no_orcid.orcidid).to eq(nil)
+      expect(author_with_no_orcid.orcidid).to be_nil
     end
   end
 end

@@ -67,8 +67,8 @@ describe 'cleanup rake tasks' do
 
       # the duped author is set to inactive
       duped_author.reload
-      expect(duped_author.cap_import_enabled).to eq(false)
-      expect(duped_author.active_in_cap).to eq(false)
+      expect(duped_author.cap_import_enabled).to be(false)
+      expect(duped_author.active_in_cap).to be(false)
     end
   end
 end

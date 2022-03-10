@@ -198,7 +198,7 @@ describe Orcid::PubMapper do
     let(:pub_hash) { base_pub_hash.merge(abstract: nil) }
 
     it 'does not add a short-description' do
-      expect(work['short-description']).to eq(nil)
+      expect(work['short-description']).to be_nil
     end
   end
 
