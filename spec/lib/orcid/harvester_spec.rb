@@ -205,7 +205,7 @@ describe Orcid::Harvester do
         # Creates Publication
         publication = source_record.publication
         expect(publication.title).to eq('Minds, Brains and Programs')
-        expect(publication.active).to eq(true)
+        expect(publication.active).to be(true)
         expect(publication.pub_hash).to be_present
 
         # With Identifiers

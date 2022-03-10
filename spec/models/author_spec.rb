@@ -60,8 +60,8 @@ describe Author do
     it 'indicates if the primary author information changes but not the number of identities' do
       expect(subject.should_harvest?).to be false
       subject.preferred_first_name = "#{subject.first_name}XXX"
-      expect(subject.alt_identities_changed).to be nil
-      expect(subject.harvested).to be nil
+      expect(subject.alt_identities_changed).to be_nil
+      expect(subject.harvested).to be_nil
       expect(subject.should_harvest?).to be true
     end
   end
