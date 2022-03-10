@@ -37,13 +37,14 @@ namespace :sul do
     denied_publications = Contribution.where('created_at > ? and created_at < ? and status = ?', start_date, end_date, 'denied').count
     approved_publications = Contribution.where('created_at > ? and created_at < ? and status = ?', start_date, end_date, 'approved').count
     new_publications = Contribution.where('created_at > ? and created_at < ? and status = ?', start_date, end_date, 'new').count
-    puts 'new_authors,total_pubs,total_unique_pubs,total_inbox,total_approved,total_denied,new_percent,approved_percent,denied_percent'
+    puts 'new_authors,total_pubs,total_unique_pubs,total_waiting,total_approved,total_denied,waiting_percent,precision_approved,precision_denied'
     output = "#{new_author_count}, #{total_publication_count}, #{total_unique_publication_count}, "
     output += "#{new_publications}, #{approved_publications}, #{denied_publications}, "
     if total_publication_count > 0
+      reviewed_pubs_count = total_publication_count - new_publications
       output += "#{((new_publications.to_f / total_publication_count) * 100.0).round(1)}%, "
-      output += "#{((approved_publications.to_f / total_publication_count) * 100.0).round(1)}%, "
-      output += "#{((denied_publications.to_f / total_publication_count) * 100.0).round(1)}%"
+      output += "#{((approved_publications.to_f / reviewed_pubs_count) * 100.0).round(1)}%, "
+      output += "#{((denied_publications.to_f / reviewed_pubs_count) * 100.0).round(1)}%"
     else
       output += '0%, 0%, 0%'
     end
