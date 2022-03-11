@@ -155,7 +155,7 @@ describe PubmedSourceRecord, :vcr do
       # manual test data
       source_data = '<PubmedArticle><MedlineCitation Status="Publisher" Owner="NLM"><PMID Version="1">1</PMID><OriginalData/></PubmedArticle>'
       record = described_class.create(pmid: pmid_created_1999, source_data: source_data)
-      expect(record.source_as_hash[:year]).to eq nil # no year
+      expect(record.source_as_hash[:year]).to be_nil # no year
     end
 
     it 'ignores an invalid year' do
@@ -176,7 +176,7 @@ describe PubmedSourceRecord, :vcr do
           </PubmedArticle>
         XML
       record = described_class.create(pmid: pmid_created_1999, source_data: source_data)
-      expect(record.source_as_hash[:year]).to eq nil # bogus is not a valid year
+      expect(record.source_as_hash[:year]).to be_nil # bogus is not a valid year
     end
 
     it 'parses the date correctly' do
@@ -193,7 +193,7 @@ describe PubmedSourceRecord, :vcr do
       # manual test data
       source_data = '<PubmedArticle><MedlineCitation Status="Publisher" Owner="NLM"><PMID Version="1">1</PMID><OriginalData/></PubmedArticle>'
       record = described_class.create(pmid: pmid_created_1999, source_data: source_data)
-      expect(record.source_as_hash[:date]).to eq nil # no date
+      expect(record.source_as_hash[:date]).to be_nil # no date
     end
 
     it 'ignores the day when not found' do
