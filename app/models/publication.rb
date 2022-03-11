@@ -31,6 +31,7 @@ class Publication < ApplicationRecord
     self.publication_type = pub_hash[:type] if pub_hash[:type].present?
     self.year = pub_hash[:year] if pub_hash[:year].present?
     self.wos_uid ||= web_of_science_source_record.uid if web_of_science_source_record.present?
+    self.provenance = pub_hash[:provenance] # NOTE: we validate the presence and value of provenance with the PubHashValidator
   end
 
   has_one :batch_uploaded_source_record, dependent: :destroy
@@ -270,7 +271,8 @@ class Publication < ApplicationRecord
 
   private
 
-  # @return [String] might be empty, won't be nil
+  # @return [String] might be empty, won't be nil, normalize since we have some older data in varying cases
+  # @note obscures ActiveRecord field/attribute getter for provenance
   def provenance
     pub_hash[:provenance].to_s.downcase
   end

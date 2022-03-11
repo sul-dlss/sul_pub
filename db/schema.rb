@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_11_185021) do
+ActiveRecord::Schema.define(version: 2022_03_11_182838) do
 
   create_table "author_identities", id: :integer, charset: "utf8", collation: "utf8_unicode_ci", force: :cascade do |t|
     t.integer "author_id", null: false
@@ -140,9 +140,11 @@ ActiveRecord::Schema.define(version: 2022_01_11_185021) do
     t.string "issn"
     t.string "publication_type"
     t.string "wos_uid"
+    t.string "provenance"
     t.index ["issn"], name: "index_publications_on_issn"
     t.index ["pages"], name: "index_publications_on_pages"
     t.index ["pmid"], name: "index_publications_on_pmid"
+    t.index ["provenance"], name: "index_publications_on_provenance"
     t.index ["sciencewire_id"], name: "index_publications_on_sciencewire_id"
     t.index ["title"], name: "index_publications_on_title", length: 255
     t.index ["updated_at"], name: "index_publications_on_updated_at"
