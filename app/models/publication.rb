@@ -31,6 +31,8 @@ class Publication < ApplicationRecord
     self.publication_type = pub_hash[:type] if pub_hash[:type].present?
     self.year = pub_hash[:year] if pub_hash[:year].present?
     self.wos_uid ||= web_of_science_source_record.uid if web_of_science_source_record.present?
+    # NOTE: we already validate the presence and value of newly generated provenance with the PubHashValidator, though it is possible for old bad data to exist
+    self.provenance = pub_hash[:provenance].to_s.downcase # could be nil or CAPS in old bad data
   end
 
   has_one :batch_uploaded_source_record, dependent: :destroy
@@ -285,7 +287,9 @@ class Publication < ApplicationRecord
 
   private
 
-  # @return [String] might be empty, won't be nil
+  # @return [String] might be empty, won't be nil, normalize since we have some older data in varying cases
+  # @note obscures ActiveRecord field/attribute getter for provenance, once we are sure we have backfilled all previous
+  #  records with the rake data:add_provenance rake task, we can get rid of this method
   def provenance
     pub_hash[:provenance].to_s.downcase
   end
