@@ -119,14 +119,14 @@ properties:
     enum:
       - article
       - book
-      - caseStudy # Potential legacy.  Only set via manual pub submission (provenance = CAP)
+      - caseStudy # Only set via manual pub submission (provenance = cap)
       - inproceedings
-      - inbook # Potential legacy.  Only set via manual pub submission (provenance = CAP)
-      - otherpaper # Legacy. Likely bad data.
-      - otherPaper # Potential legacy.  Only set via manual pub submission (provenance = CAP)
-      - technicalReport # Potential legacy.  Only set via manual pub submission (provenance = CAP)
-      - workingPaper # Potential legacy.  Only set via manual pub submission (provenance = CAP)
-      - null # Legacy. Not in current code.
+      - inbook # Only set via manual pub submission (provenance = cap)
+      - otherpaper # Legacy. Not in current code, likely bad data.
+      - otherPaper # Only set via manual pub submission (provenance = cap) or via ORCID harvest (provenance = orcid)
+      - technicalReport # Only set via manual pub submission (provenance = cap) or via ORCID harvest (provenance = orcid)
+      - workingPaper # Only set via manual pub submission (provenance = cap) or via ORCID harvest (provenance = orcid)
+      - null # Legacy. Not in current code, likely bad data.
   wos_item_id:
     type: string
   wos_uid:
