@@ -121,11 +121,21 @@ describe Orcid::PubMapper do
 
   context 'when unmappable type' do
     let(:pub_hash) do
-      base_pub_hash.dup.tap { |pub_hash| pub_hash[:type] = nil }
+      base_pub_hash.dup.tap { |pub_hash| pub_hash[:type] = 'unknownType' }
     end
 
     it 'raises' do
       expect { work }.to raise_error(Orcid::PubMapper::PubMapperError, 'Unmapped publication type')
+    end
+  end
+
+  context 'when mappable type' do
+    let(:pub_hash) do
+      base_pub_hash.dup.tap { |pub_hash| pub_hash[:type] = 'workingPaper' }
+    end
+
+    it 'maps correctly' do
+      expect(work['type']).to eq('working-paper')
     end
   end
 

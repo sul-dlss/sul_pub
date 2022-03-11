@@ -258,6 +258,10 @@ class Publication < ApplicationRecord
     provenance == Settings.pubmed_source
   end
 
+  def orcid_pub?
+    provenance == Settings.orcid_source
+  end
+
   def wos_pub?
     provenance == Settings.wos_source
   end
