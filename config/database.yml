@@ -12,22 +12,17 @@
 #   http://dev.mysql.com/doc/refman/5.0/en/old-client.html
 #
 default: &default
-  adapter: mysql2
-  encoding: utf8
+  adapter: sqlite3
   pool: 5
-  username: root
-  password:
-  host: "<%= ENV.fetch('DATABASE_HOSTNAME', '127.0.0.1') %>"
-  port: "<%= ENV.fetch('DATABASE_PORT', 3306) %>"
-  # socket: /var/run/mysqld/mysqlx.sock
+  timeout: 5000
 
 development:
   <<: *default
-  database: sulbib_development
+  database: db/development.sqlite3
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: sulbib_test
+  database: db/test.sqlite3

@@ -9,9 +9,6 @@ gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '~> 4.1'
 
-# mysql 0.5.3 is required for ruby 3 and is supported on latest OS in use: Oracle Linux (as of Jan 2022)
-gem 'mysql2', '>= 0.5.3'
-
 gem 'nokogiri', '>= 1.7.1'
 
 gem 'activerecord-import'
@@ -60,6 +57,7 @@ group :development, :test do
   gem 'rubocop-rake'
   gem 'rspec'
   gem 'rspec-rails'
+  gem 'sqlite3'
 end
 
 group :development do
@@ -79,6 +77,11 @@ group :test do
   gem 'simplecov', '~> 0.13', require: false
   gem 'vcr'
   gem 'webmock'
+end
+
+group :production do
+  # mysql 0.5.3 is required for ruby 3 and is supported on latest OS in use: Oracle Linux (as of Jan 2022)
+  gem 'mysql2', '>= 0.5.3'
 end
 
 group :deployment do
