@@ -33,14 +33,19 @@ bundle install
 
 ## Database Setup
 
-The application uses MySQL.  Install MySQL, review `config/database.yml`, and run some rake tasks to confirm everything is working, e.g.:
+The application uses MySQL in production only, it uses Sqlite3 in development and test.  To create the initial databases:
 
 ```sh
 bundle exec rake db:create
 bundle exec rake db:migrate
 ```
 
-Alternatively, you can use Docker:
+There are some small differences between sqlite3 and mysql, notably mysql uses case insensitive string queries and sqlite3 does not.
+However, for development purposes, sqlite3 should be fine and the differences should not matter.
+
+If you'd like to use mysql locally too, you can, but you'll need to install the mysql2 gem and update the database.yml file.  You can use Docker or a local mysql install.
+
+For docker:
 ```
 docker run --rm -e MYSQL_ALLOW_EMPTY_PASSWORD=true -p 3306:3306 -d mysql:8
 ```
