@@ -71,7 +71,7 @@ module WebOfScience
       pmid ||= parse_pmid(pub.pmid)
       return unless Pubmed.working?
 
-      pub_id = pub.publication_identifiers.find_by(identifier_type: 'PMID', identifier_value: pmid)
+      pub_id = pub.publication_identifiers.find_by('identifier_type = ? OR identifier_type = ? AND identifier_value = ?', 'pmid', 'PMID', pmid)
       if pub_id.present?
         pub_id.pub_hash_update(delete: true)
         pub_id.destroy
