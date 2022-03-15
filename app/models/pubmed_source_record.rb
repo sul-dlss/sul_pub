@@ -13,7 +13,7 @@ class PubmedSourceRecord < ApplicationRecord
     pub = Publication.new(
       active: true,
       pmid: pmid,
-      pub_hash: Pubmed::MapPubHash.map(source_data)
+      pub_hash: pubmed_record.source_as_hash
     )
     pub.sync_publication_hash_and_db
     pub.save
@@ -77,5 +77,9 @@ class PubmedSourceRecord < ApplicationRecord
     attrs[:source_data] = pub_doc.to_xml
     attrs[:source_fingerprint] = Digest::SHA2.hexdigest(pub_doc)
     update! attrs
+  end
+
+  def source_as_hash
+    Pubmed::MapPubHash.map(source_data)
   end
 end

@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# rubocop:disable Metrics/ClassLength
 module Pubmed
   # Map Pubmed source record data into the SUL PubHash data
   class MapPubHash
@@ -11,16 +12,17 @@ module Pubmed
     end
 
     def self.map(source_data)
-      new(source_data).source_as_hash
+      new(source_data).pub_hash
     end
 
     # Convert MEDLINE®PubMed® XML to pub_hash
     # @return [Hash<Symbol => Object>] pub_hash
     # @see https://www.nlm.nih.gov/bsd/licensee/elements_descriptions.html XML Element Descriptions and their Attributes
     # rubocop:disable Metrics/AbcSize
+    # rubocop:disable Metrics/MethodLength
     # rubocop:disable Metrics/CyclomaticComplexity
     # rubocop:disable Metrics/PerceivedComplexity
-    def source_as_hash
+    def pub_hash
       pub_hash = {}
 
       pmid = pubmed_article.xpath('MedlineCitation/PMID').text
@@ -69,26 +71,26 @@ module Pubmed
 
       if pubmed_article.xpath('MedlineCitation/MedlineJournalInfo/Country').present?
         pub_hash[:country] =
-        pubmed_article.xpath('MedlineCitation/MedlineJournalInfo/Country').text
+          pubmed_article.xpath('MedlineCitation/MedlineJournalInfo/Country').text
       end
 
       if pubmed_article.xpath('MedlineCitation/Article/Pagination/MedlinePgn').present?
         pub_hash[:pages] =
-        pubmed_article.xpath('MedlineCitation/Article/Pagination/MedlinePgn').text
+          pubmed_article.xpath('MedlineCitation/Article/Pagination/MedlinePgn').text
       end
 
       journal_hash = {}
       if pubmed_article.xpath('MedlineCitation/Article/Journal/Title').present?
         journal_hash[:name] =
-        pubmed_article.xpath('MedlineCitation/Article/Journal/Title').text
+          pubmed_article.xpath('MedlineCitation/Article/Journal/Title').text
       end
       if pubmed_article.xpath('MedlineCitation/Article/Journal/JournalIssue/Volume').present?
         journal_hash[:volume] =
-        pubmed_article.xpath('MedlineCitation/Article/Journal/JournalIssue/Volume').text
+          pubmed_article.xpath('MedlineCitation/Article/Journal/JournalIssue/Volume').text
       end
       if pubmed_article.xpath('MedlineCitation/Article/Journal/JournalIssue/Issue').present?
         journal_hash[:issue] =
-        pubmed_article.xpath('MedlineCitation/Article/Journal/JournalIssue/Issue').text
+          pubmed_article.xpath('MedlineCitation/Article/Journal/JournalIssue/Issue').text
       end
       journal_identifiers = []
       issn = pubmed_article.xpath('MedlineCitation/Article/Journal/ISSN').text
@@ -103,13 +105,14 @@ module Pubmed
       doi = pubmed_article.at_xpath('//ELocationID[@EIdType="doi"]') unless doi.present? && doi.text.present?
       if doi.present? && doi.text.present?
         pub_hash[:identifier] << { type: 'doi', id: doi.text,
-                                         url: "#{Settings.DOI.BASE_URI}#{doi.text}" }
+                                   url: "#{Settings.DOI.BASE_URI}#{doi.text}" }
       end
       pmc = pubmed_article.at_xpath('//ArticleId[@IdType="pmc"]')
       pub_hash[:identifier] << { type: 'pmc', id: pmc.text } if pmc.present? && pmc.text.present?
       pub_hash
     end
     # rubocop:enable Metrics/AbcSize
+    # rubocop:enable Metrics/MethodLength
     # rubocop:enable Metrics/CyclomaticComplexity
     # rubocop:enable Metrics/PerceivedComplexity
 
@@ -264,3 +267,4 @@ module Pubmed
     end
   end
 end
+# rubocop:enable Metrics/ClassLength
