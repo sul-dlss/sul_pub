@@ -16,9 +16,19 @@ default: &default
   pool: 5
   timeout: 5000
 
+  # If you want to use mysql, e.g. with docker, use this instead of the adapter above
+  #  and change database names below for development and test:
+  # adapter: mysql2
+  # encoding: utf8
+  # username: root
+  # password:
+  # host: "<%= ENV.fetch('DATABASE_HOSTNAME', '127.0.0.1') %>"
+  # port: "<%= ENV.fetch('DATABASE_PORT', 3306) %>"
+
 development:
   <<: *default
   database: db/development.sqlite3
+  # database: sulbib_development
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -26,3 +36,4 @@ development:
 test:
   <<: *default
   database: db/test.sqlite3
+  # database: sulbib_test
