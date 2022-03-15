@@ -99,6 +99,38 @@ class PubmedSourceRecord < ApplicationRecord
     mesh_headings_for_record
   end
 
+  # see https://dtd.nlm.nih.gov/ncbi/pubmed/doc/out/180101/el-Year.html
+  def extract_year_from_pubmed_record(publication)
+    # look for a year in all of the xpath locations in order, pick the first that produces something that looks like a four digit year
+    pubmed_date_xpaths('Year')
+      .map { |path| publication.xpath(path).text.match(/[12][0-9]{3}/).to_s }
+      .compact_blank.first
+  end
+
+  # see https://dtd.nlm.nih.gov/ncbi/pubmed/doc/out/180101/el-Month.html
+  def extract_month_from_pubmed_record(publication)
+    # look for a month in all of the xpath locations in order
+    #  pick the first that produces something that looks like a month (12 or Aug)
+    pubmed_date_xpaths('Month').map do |path|
+      month_value = publication.xpath(path).text
+      match = month_value.match(/\A[012]?[0-9]{1}\z/) # e.g. 01, 11, 06, 6, 12
+      name_match = month_value.match(/\A[a-zA-Z]{3}\z/) # e.g. Aug, aug, Oct
+      match = Date::ABBR_MONTHNAMES.index(name_match.to_s) if name_match # convert month name to number
+      match.to_s
+    end.compact_blank.first
+  end
+
+  # see https://dtd.nlm.nih.gov/ncbi/pubmed/doc/out/180101/el-Day.html
+  def extract_day_from_pubmed_record(publication)
+    # look for a day in all of the xpath locations in order
+    #  pick the first that produces something that looks like a day
+    pubmed_date_xpaths('Day').map do |path|
+      day_value = publication.xpath(path).text
+      match = day_value.match(/\A[0123]?[0-9]{1}\z/) # e.g. 01, 11, 06, 6, 12, 23, 30
+      match.to_s
+    end.compact_blank.first
+  end
+
   # Convert MEDLINE®PubMed® XML to pub_hash
   # @param [Nokogiri::XML::Node] publication
   # @return [Hash<Symbol => Object>] pub_hash
@@ -139,22 +171,16 @@ class PubmedSourceRecord < ApplicationRecord
     record_as_hash[:author] = author_list.map { |a| author_to_hash(a) }.compact
 
     record_as_hash[:mesh_headings] = mesh_headings if mesh_headings.present?
-    year_xpaths = [
-      'MedlineCitation/Article/Journal/JournalIssue/PubDate/Year',
-      'MedlineCitation/Article/ArticleDate/Year',
-      'PubmedData/History/PubMedPubDate[@PubStatus="accepted"]/Year',
-      'PubmedData/History/PubMedPubDate[@PubStatus="pubmed"]/Year',
-      'PubmedData/History/PubMedPubDate[@PubStatus="medline"]/Year',
-      'PubmedData/History/PubMedPubDate[@PubStatus="entrez"]/Year'
-    ]
-    # look for a year in all of the xpath locations above in order
-    #  stop after the first produces something that looks like a year
-    year_xpaths.each do |path|
-      match = publication.xpath(path).text.match(/[12][0-9]{3}/)
-      next unless match
 
-      record_as_hash[:year] = match.to_s
-      break
+    year = extract_year_from_pubmed_record(publication)
+    record_as_hash[:year] = year if year
+
+    month = extract_month_from_pubmed_record(publication)
+    day = extract_day_from_pubmed_record(publication)
+    if year && month && day
+      record_as_hash[:date] =  "#{year}-#{month.rjust(2, '0')}-#{day.rjust(2, '0')}"
+    elsif year && month
+      record_as_hash[:date] =  "#{year}-#{month.rjust(2, '0')}"
     end
 
     record_as_hash[:type] = Settings.sul_doc_types.article
@@ -291,5 +317,20 @@ class PubmedSourceRecord < ApplicationRecord
     # TODO: extract Affiliation
     # <AffiliationInfo> was added to <AuthorList> with the 2015 DTD.
     # The <AffiliationInfo> envelope element includes <Affliliation> and <Identifier>.
+  end
+
+  # see https://dtd.nlm.nih.gov/ncbi/pubmed/doc/out/180101/el-PubDate.html for PubDate definition
+  # and https://dtd.nlm.nih.gov/ncbi/pubmed/doc/out/180101/att-PubStatus.html for PubStatus type definitions
+  # and https://dtd.nlm.nih.gov/ncbi/pubmed/doc/out/180101/el-JournalIssue.html for the JournalIssue definition
+  # and https://dtd.nlm.nih.gov/ncbi/pubmed/doc/out/180101/el-ArticleDate.html for the ArticleDate definition
+  def pubmed_date_xpaths(date_part)
+    [
+      "MedlineCitation/Article/Journal/JournalIssue/PubDate/#{date_part}",
+      "MedlineCitation/Article/ArticleDate/#{date_part}",
+      "PubmedData/History/PubMedPubDate[@PubStatus='accepted']/#{date_part}",
+      "PubmedData/History/PubMedPubDate[@PubStatus='pubmed']/#{date_part}",
+      "PubmedData/History/PubMedPubDate[@PubStatus='medline']/#{date_part}",
+      "PubmedData/History/PubMedPubDate[@PubStatus='entrez']/#{date_part}"
+    ]
   end
 end
