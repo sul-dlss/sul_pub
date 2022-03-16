@@ -2,6 +2,7 @@
 
 require 'csv'
 require 'json'
+require 'fileutils'
 
 namespace :sul do
   desc 'ORCID integration stats'
@@ -483,5 +484,63 @@ namespace :sul do
     end
     puts
     puts "Written to #{output_file}"
+  end
+
+  desc 'Output publication stats for active authors, then output all publications for each author'
+  # Write out a CSV file with user_ids, cap_profile_ids, names, sunets, and queries.
+  # Next make a directory for the author publication outputs in tmp and export their publications.
+  # Only exports author who are active and have harvesting enabled.
+  # Specify maximum number of authors to return and the minimum number of publications each must have to be returned.
+  # Note that all publications for authors are exported, not just approved.
+  # You will get a random subset of these authors up the maximum specified
+  # Parameters that can be specified are maximum number of authors, minimum number of publications for each, and output file
+  # Defaults are 100 authors, minimum of 5 publications, and output file = 'tmp/random_authors.csv'
+  # Note that since only WoS publications are output, you may get less publications output than the min specified.
+  # bundle exec rake sul:author_publications_report[100,5,'tmp/random_authors.csv']
+  task :author_publications_report, %i[n min_pubs output_file] => :environment do |_t, args|
+    n = args[:n].to_i || 100
+    min_pubs =  args[:min_pubs].to_i || 5
+    output_file = args[:output_file] || 'tmp/random_authors.csv'
+    output_directory = 'tmp/author_reports'
+
+    puts "Number of authors: #{n}"
+    puts "Minimum number of pubs per author: #{min_pubs}"
+    puts "Output file: #{output_file}"
+    puts
+
+    FileUtils.mkdir_p output_directory
+
+    puts "... fetching random #{n} authors"
+    user_ids = []
+    max_id = Author.last.id
+    while user_ids.size < n
+      user = Author.find_by(id: rand(max_id))
+      user_ids << user.id if user && user.active_in_cap == true && user.cap_import_enabled == true && user.contributions.size >= min_pubs
+    end
+
+    header_row = %w[author_id orcid cap_profile_id sunetid name num_publications query]
+    CSV.open(output_file, 'wb') do |csv|
+      csv << header_row
+      user_ids.each_with_index do |user_id, i|
+        puts "... exporting #{i + 1} of #{n}"
+        author = Author.find(user_id)
+        author_query = WebOfScience::QueryAuthor.new(author)
+        query = author_query.name_query.send(:name_query)[:queryParameters][:userQuery]
+        csv << [user_id, author.orcidid, author.cap_profile_id, author.sunetid, "#{author.first_name} #{author.last_name}", author.contributions.size, query]
+        CSV.open("#{output_directory}/author_#{user_id}.csv", 'wb') do |csv_pubs|
+          csv_pubs << %w[id doi wos_uid citation provenance status]
+          author.contributions.each do |contrib|
+            next unless contrib.publication.wos_pub? # only consider Web of Science publications
+
+            doi = contrib.publication.publication_identifiers.where(identifier_type: 'doi')&.first&.identifier_value
+            csv_pubs << [contrib.publication_id, doi, contrib.publication.wos_uid, contrib.publication.pub_hash[:apa_citation],
+                         contrib.publication.pub_hash[:provenance], contrib.status]
+          end
+        end
+      end
+    end
+    puts
+    puts "Written to #{output_file}"
+    puts "Publications per author exported to #{output_directory}"
   end
 end
