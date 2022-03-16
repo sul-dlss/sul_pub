@@ -31,7 +31,7 @@ module Pubmed
       # PubMed, oddly enough, the last resort
       pm_xml = Pubmed.client.fetch_records_for_pmid_list(pmid)
       Nokogiri::XML(pm_xml).xpath('//PubmedArticle').map do |doc|
-        add_citation(Pubmed::MapPubHash.map(doc))
+        add_citation(Pubmed::MapPubHash.map(doc.to_xml))
       end
     end
     private_class_method :fetch_remote_pubmed
