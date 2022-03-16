@@ -518,7 +518,7 @@ namespace :sul do
       user_ids << user.id if user && user.active_in_cap == true && user.cap_import_enabled == true && user.contributions.size >= min_pubs
     end
 
-    header_row = %w[author_id cap_profile_id sunetid name num_publications query]
+    header_row = %w[author_id orcid cap_profile_id sunetid name num_publications query]
     CSV.open(output_file, 'wb') do |csv|
       csv << header_row
       user_ids.each_with_index do |user_id, i|
@@ -526,7 +526,7 @@ namespace :sul do
         author = Author.find(user_id)
         author_query = WebOfScience::QueryAuthor.new(author)
         query = author_query.name_query.send(:name_query)[:queryParameters][:userQuery]
-        csv << [user_id, author.cap_profile_id, author.sunetid, "#{author.first_name} #{author.last_name}", author.contributions.size, query]
+        csv << [user_id, author.orcidid, author.cap_profile_id, author.sunetid, "#{author.first_name} #{author.last_name}", author.contributions.size, query]
         CSV.open("#{output_directory}/author_#{user_id}.csv", 'wb') do |csv_pubs|
           csv_pubs << %w[id doi wos_uid citation provenance status]
           author.contributions.each do |contrib|
