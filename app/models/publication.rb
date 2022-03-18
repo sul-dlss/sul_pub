@@ -288,8 +288,9 @@ class Publication < ApplicationRecord
   private
 
   # @return [String] might be empty, won't be nil, normalize since we have some older data in varying cases
-  # @note obscures ActiveRecord field/attribute getter for provenance, once we are sure we have backfilled all previous
+  # TODO: obscures ActiveRecord field/attribute getter for provenance, once we are sure we have backfilled all previous
   #  records with the rake data:add_provenance rake task, we can get rid of this method
+  #  see https://github.com/sul-dlss/sul_pub/issues/1467
   def provenance
     pub_hash[:provenance].to_s.downcase
   end
