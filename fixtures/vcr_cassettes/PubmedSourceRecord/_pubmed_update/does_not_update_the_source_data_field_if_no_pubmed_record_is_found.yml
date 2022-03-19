@@ -1,0 +1,73 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?api_key=Settings.PUBMED.API_KEY&db=pubmed&retmode=xml
+    body:
+      encoding: UTF-8
+      string: "&id=10000166"
+    headers:
+      User-Agent:
+      - stanford-library-sul-pub
+      Accept:
+      - "*/*"
+      Accept-Encoding:
+      - gzip,deflate
+      Date:
+      - Sat, 19 Mar 2022 01:03:18 GMT
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Cookie:
+      - ncbi_sid=0259A21CB7D50F92_F884SID
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sat, 19 Mar 2022 01:03:19 GMT
+      Server:
+      - Finatra
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Content-Security-Policy:
+      - upgrade-insecure-requests
+      Referrer-Policy:
+      - origin-when-cross-origin
+      X-Test-Test:
+      - test42
+      Ncbi-Sid:
+      - '0259A21CB7D50F92_F884SID'
+      Ncbi-Phid:
+      - D0BD0D4D367A16C5000040E706BA0889.1.1.m_3
+      Content-Type:
+      - text/xml; charset=UTF-8
+      Cache-Control:
+      - private
+      Content-Encoding:
+      - gzip
+      X-Ratelimit-Limit:
+      - '10'
+      X-Ratelimit-Remaining:
+      - '9'
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - X-RateLimit-Limit,X-RateLimit-Remaining
+      Set-Cookie:
+      - ncbi_sid=0259A21CB7D50F92_F884SID; domain=.nih.gov; path=/; expires=Sun, 19
+        Mar 2023 01:03:20 GMT
+      X-Ua-Compatible:
+      - IE=Edge
+      X-Xss-Protection:
+      - 1; mode=block
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0" ?>
+        <!DOCTYPE PubmedArticleSet PUBLIC "-//NLM//DTD PubMedArticle, 1st January 2019//EN" "https://dtd.nlm.nih.gov/ncbi/pubmed/out/pubmed_190101.dtd">
+        <PubmedArticleSet><PubmedArticle><MedlineCitation Status="PubMed-not-MEDLINE" Owner="NLM"><PMID Version="1">10000166</PMID><DateRevised><Year>2019</Year><Month>11</Month><Day>20</Day></DateRevised><Article PubModel="Print"><Journal><ISSN IssnType="Print">0163-1829</ISSN><JournalIssue CitedMedium="Print"><Volume>45</Volume><Issue>1</Issue><PubDate><Year>1992</Year><Month>Jan</Month><Day>01</Day></PubDate></JournalIssue><Title>Physical review. B, Condensed matter</Title><ISOAbbreviation>Phys Rev B Condens Matter</ISOAbbreviation></Journal><ArticleTitle>Fluid permeability in porous media: Comparison of electrical estimates with hydrodynamical calculations.</ArticleTitle><Pagination><MedlinePgn>186-195</MedlinePgn></Pagination><AuthorList CompleteYN="Y"><Author ValidYN="Y"><LastName>Kostek</LastName><Initials>S</Initials></Author><Author ValidYN="Y"><LastName>Schwartz</LastName><Initials>LM</Initials></Author><Author ValidYN="Y"><LastName>Johnson</LastName><Initials>DL</Initials></Author></AuthorList><Language>eng</Language><PublicationTypeList><PublicationType UI="D016428">Journal Article</PublicationType></PublicationTypeList></Article><MedlineJournalInfo><Country>United States</Country><MedlineTA>Phys Rev B Condens Matter</MedlineTA><NlmUniqueID>9878217</NlmUniqueID><ISSNLinking>0163-1829</ISSNLinking></MedlineJournalInfo></MedlineCitation><PubmedData><History><PubMedPubDate PubStatus="pubmed"><Year>1992</Year><Month>1</Month><Day>1</Day><Hour>0</Hour><Minute>0</Minute></PubMedPubDate><PubMedPubDate PubStatus="medline"><Year>1999</Year><Month>2</Month><Day>19</Day><Hour>0</Hour><Minute>0</Minute></PubMedPubDate><PubMedPubDate PubStatus="entrez"><Year>1992</Year><Month>1</Month><Day>1</Day><Hour>0</Hour><Minute>0</Minute></PubMedPubDate></History><PublicationStatus>ppublish</PublicationStatus><ArticleIdList><ArticleId IdType="pubmed">10000166</ArticleId><ArticleId IdType="doi">10.1103/physrevb.45.186</ArticleId></ArticleIdList></PubmedData></PubmedArticle></PubmedArticleSet>
+  recorded_at: Sat, 19 Mar 2022 01:03:20 GMT
+recorded_with: VCR 6.1.0
