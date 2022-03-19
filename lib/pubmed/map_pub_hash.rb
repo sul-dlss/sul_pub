@@ -59,13 +59,8 @@ module Pubmed
       year = extract_year_from_pubmed_record
       pub_hash[:year] = year if year
 
-      month = extract_month_from_pubmed_record
-      day = extract_day_from_pubmed_record
-      if year && month && day
-        pub_hash[:date] =  "#{year}-#{month.rjust(2, '0')}-#{day.rjust(2, '0')}"
-      elsif year && month
-        pub_hash[:date] =  "#{year}-#{month.rjust(2, '0')}"
-      end
+      month_day = extract_month_day_from_pubmed_record
+      pub_hash[:date] = "#{year}-#{month_day}" if year && month_day
 
       pub_hash[:type] = Settings.sul_doc_types.article
 
@@ -141,33 +136,34 @@ module Pubmed
     # see https://dtd.nlm.nih.gov/ncbi/pubmed/doc/out/180101/el-Year.html
     def extract_year_from_pubmed_record
       # look for a year in all of the xpath locations in order, pick the first that produces something that looks like a four digit year
-      pubmed_date_xpaths('Year')
-        .map { |path| pubmed_article.xpath(path).text.match(/[12][0-9]{3}/).to_s }
+      pubmed_date_xpaths
+        .map { |path| pubmed_article.xpath("#{path}/Year").text.match(/[12][0-9]{3}/).to_s }
         .compact_blank.first
     end
 
     # see https://dtd.nlm.nih.gov/ncbi/pubmed/doc/out/180101/el-Month.html
-    def extract_month_from_pubmed_record
+    # see https://dtd.nlm.nih.gov/ncbi/pubmed/doc/out/180101/el-Day.html
+    def extract_month_day_from_pubmed_record
       # look for a month in all of the xpath locations in order
       #  pick the first that produces something that looks like a month (12 or Aug)
-      pubmed_date_xpaths('Month').map do |path|
-        month_value = pubmed_article.xpath(path).text
-        match = month_value.match(/\A[012]?[0-9]{1}\z/) # e.g. 01, 11, 06, 6, 12
+      # then look for a day in the same place as the month ... since they must go together
+      #  we will return just a month or a month and a day, going in the order set in the xpaths
+      result = pubmed_date_xpaths.map do |path|
+        month_value = pubmed_article.xpath("#{path}/Month").text
+        month_match = month_value.match(/\A[012]?[0-9]{1}\z/) # e.g. 01, 11, 06, 6, 12
         name_match = month_value.match(/\A[a-zA-Z]{3}\z/) # e.g. Aug, aug, Oct
-        match = Date::ABBR_MONTHNAMES.index(name_match.to_s) if name_match # convert month name to number
-        match.to_s
-      end.compact_blank.first
-    end
+        month_match = Date::ABBR_MONTHNAMES.index(name_match.to_s) if name_match # convert month name to number if it's a name
 
-    # see https://dtd.nlm.nih.gov/ncbi/pubmed/doc/out/180101/el-Day.html
-    def extract_day_from_pubmed_record
-      # look for a day in all of the xpath locations in order
-      #  pick the first that produces something that looks like a day
-      pubmed_date_xpaths('Day').map do |path|
-        day_value = pubmed_article.xpath(path).text
-        match = day_value.match(/\A[0123]?[0-9]{1}\z/) # e.g. 01, 11, 06, 6, 12, 23, 30
-        match.to_s
-      end.compact_blank.first
+        day_value = pubmed_article.xpath("#{path}/Day").text
+        day_match = day_value.match(/\A[0123]?[0-9]{1}\z/) # e.g. 01, 11, 06, 6, 12, 23, 30
+
+        if month_match && day_match # add both 0 padded month and day if both exist in same spot
+          "#{month_match.to_s.rjust(2, '0')}-#{day_match.to_s.rjust(2, '0')}"
+        elsif month_match # only add the month if day not found
+          month_match.to_s.rjust(2, '0').to_s
+        end
+      end
+      result.compact_blank.first # return the first entry that has either a month or a month and a day
     end
 
     # Parse <Author>
@@ -255,14 +251,14 @@ module Pubmed
     # and https://dtd.nlm.nih.gov/ncbi/pubmed/doc/out/180101/att-PubStatus.html for PubStatus type definitions
     # and https://dtd.nlm.nih.gov/ncbi/pubmed/doc/out/180101/el-JournalIssue.html for the JournalIssue definition
     # and https://dtd.nlm.nih.gov/ncbi/pubmed/doc/out/180101/el-ArticleDate.html for the ArticleDate definition
-    def pubmed_date_xpaths(date_part)
+    def pubmed_date_xpaths
       [
-        "MedlineCitation/Article/Journal/JournalIssue/PubDate/#{date_part}",
-        "MedlineCitation/Article/ArticleDate/#{date_part}",
-        "PubmedData/History/PubMedPubDate[@PubStatus='accepted']/#{date_part}",
-        "PubmedData/History/PubMedPubDate[@PubStatus='pubmed']/#{date_part}",
-        "PubmedData/History/PubMedPubDate[@PubStatus='medline']/#{date_part}",
-        "PubmedData/History/PubMedPubDate[@PubStatus='entrez']/#{date_part}"
+        'MedlineCitation/Article/Journal/JournalIssue/PubDate',
+        'MedlineCitation/Article/ArticleDate',
+        "PubmedData/History/PubMedPubDate[@PubStatus='accepted']",
+        "PubmedData/History/PubMedPubDate[@PubStatus='pubmed']",
+        "PubmedData/History/PubMedPubDate[@PubStatus='medline']",
+        "PubmedData/History/PubMedPubDate[@PubStatus='entrez']"
       ]
     end
   end

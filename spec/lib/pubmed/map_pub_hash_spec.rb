@@ -142,6 +142,66 @@ describe Pubmed::MapPubHash, :vcr do
         expect(described_class.new(record.source_data).pub_hash[:date]).to eq '2013-02-08'
       end
 
+      # rubocop:disable RSpec/ExampleLength
+      it 'parses the date correctly when day is not provided in preferred location but is later' do
+        # manual test data
+        source_data = <<-XML
+            <PubmedArticle>
+              <MedlineCitation Status="Publisher" Owner="NLM">
+                  <PMID Version="1">11096574</PMID>
+                  <DateCreated>
+                      <Year>2000</Year>
+                      <Month>11</Month>
+                      <Day>29</Day>
+                  </DateCreated>
+                  <Article PubModel="Print">
+                      <Journal>
+                          <ISSN IssnType="Print">1092-8472</ISSN>
+                          <JournalIssue CitedMedium="Print">
+                              <Volume>2</Volume>
+                              <Issue>1</Issue>
+                              <PubDate>
+                                  <Year>1999</Year>
+                                  <Month>Feb</Month>
+                              </PubDate>
+                          </JournalIssue>
+                          <Title>Current treatment options in gastroenterology</Title>
+                          <ISOAbbreviation>Curr Treat Options Gastroenterol</ISOAbbreviation>
+                      </Journal>
+                      <ArticleTitle>Variceal Bleeding.</ArticleTitle>
+                      <Pagination>
+                          <MedlinePgn>61-67</MedlinePgn>
+                      </Pagination>
+                  </Article>
+              </MedlineCitation>
+              <PubmedData>
+                  <History>
+                      <PubMedPubDate PubStatus="pubmed">
+                          <Year>2000</Year>
+                          <Month>11</Month>
+                          <Day>30</Day>
+                      </PubMedPubDate>
+                      <PubMedPubDate PubStatus="medline">
+                          <Year>2000</Year>
+                          <Month>11</Month>
+                          <Day>30</Day>
+                      </PubMedPubDate>
+                      <PubMedPubDate PubStatus="entrez">
+                          <Year>2000</Year>
+                          <Month>11</Month>
+                          <Day>30</Day>
+                          <Hour>0</Hour>
+                          <Minute>0</Minute>
+                      </PubMedPubDate>
+                  </History>
+                  <PublicationStatus>ppublish</PublicationStatus>
+              </PubmedData>
+          </PubmedArticle>
+        XML
+        expect(described_class.new(source_data).pub_hash[:date]).to eq '1999-02' # no day
+      end
+      # rubocop:enable RSpec/ExampleLength
+
       it 'sets the date to nil when not found' do
         # manual test data
         source_data = '<PubmedArticle><MedlineCitation Status="Publisher" Owner="NLM"><PMID Version="1">1</PMID><OriginalData/></PubmedArticle>'
