@@ -179,7 +179,7 @@ describe PubmedSourceRecord, :vcr do
       expect(record.source_as_hash[:year]).to be_nil # bogus is not a valid year
     end
 
-    it 'parses the date correctly' do
+    xit 'parses the date correctly' do
       # fixture records
       record = create :pubmed_source_record_10000166 # date
       expect(record.source_as_hash[:date]).to eq '1992-02-05'
@@ -189,14 +189,14 @@ describe PubmedSourceRecord, :vcr do
       expect(record.source_as_hash[:date]).to eq '2013-02-08'
     end
 
-    it 'sets the date to nil when not found' do
+    xit 'sets the date to nil when not found' do
       # manual test data
       source_data = '<PubmedArticle><MedlineCitation Status="Publisher" Owner="NLM"><PMID Version="1">1</PMID><OriginalData/></PubmedArticle>'
       record = described_class.create(pmid: pmid_created_1999, source_data: source_data)
       expect(record.source_as_hash[:date]).to be_nil # no date
     end
 
-    it 'ignores the day when not found' do
+    xit 'ignores the day when not found' do
       source_data =
         <<-XML
           <PubmedArticle>
@@ -217,7 +217,7 @@ describe PubmedSourceRecord, :vcr do
       expect(record.source_as_hash[:date]).to eq '2017-05' # no day in one of the acceptable date paths, it zero pads the month
     end
 
-    it 'handles a month as an abbreviation' do
+    xit 'handles a month as an abbreviation' do
       source_data =
         <<-XML
           <PubmedArticle>
