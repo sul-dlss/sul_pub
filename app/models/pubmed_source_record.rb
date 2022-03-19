@@ -175,13 +175,15 @@ class PubmedSourceRecord < ApplicationRecord
     year = extract_year_from_pubmed_record(publication)
     record_as_hash[:year] = year if year
 
-    month = extract_month_from_pubmed_record(publication)
-    day = extract_day_from_pubmed_record(publication)
-    if year && month && day
-      record_as_hash[:date] =  "#{year}-#{month.rjust(2, '0')}-#{day.rjust(2, '0')}"
-    elsif year && month
-      record_as_hash[:date] =  "#{year}-#{month.rjust(2, '0')}"
-    end
+    # NOTE: Temporarily disable date extraction from Pubmed until we can troubleshoot with Profiles
+    # When renabled, also un 'xit' the tests in pumbed_source_record_spec
+    # month = extract_month_from_pubmed_record(publication)
+    # day = extract_day_from_pubmed_record(publication)
+    # if year && month && day
+    #   record_as_hash[:date] =  "#{year}-#{month.rjust(2, '0')}-#{day.rjust(2, '0')}"
+    # elsif year && month
+    #   record_as_hash[:date] =  "#{year}-#{month.rjust(2, '0')}"
+    # end
 
     record_as_hash[:type] = Settings.sul_doc_types.article
 
