@@ -514,7 +514,10 @@ namespace :sul do
     user_ids = []
     max_id = Author.last.id
     while user_ids.size < n
-      user = Author.find_by(id: rand(max_id))
+      random_user_id = rand(max_id)
+      next if user_ids.include? random_user_id # skip if we've already randomly selected this author before
+
+      user = Author.find_by(id: random_user_id)
       user_ids << user.id if user && user.active_in_cap == true && user.cap_import_enabled == true && user.contributions.size >= min_pubs
     end
 
