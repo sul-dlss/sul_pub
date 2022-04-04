@@ -40,7 +40,7 @@ module Mais
     def fetch_orcid_user(sunetid:)
       result = get_response("/users/#{sunetid}", allow404: true)
 
-      return nil if result.nil?
+      return if result.nil?
 
       OrcidUser.new(result[:sunet_id], result[:orcid_id], result[:scope], result[:access_token], result[:last_updated])
     rescue StandardError => e
@@ -63,7 +63,7 @@ module Mais
     def get_response(path, allow404: false)
       response = conn.get("/mais/orcid/v1#{path}")
 
-      return nil if allow404 && response.status == 404
+      return if allow404 && response.status == 404
 
       raise "UIT MAIS ORCID User API returned #{response.status}" if response.status != 200
 

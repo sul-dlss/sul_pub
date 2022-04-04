@@ -48,7 +48,7 @@ module Orcid
     attr_reader :work
 
     def map_identifiers(external_ids)
-      return nil if external_ids.blank?
+      return if external_ids.blank?
 
       external_ids.map do |external_id|
         { type: IdentifierTypeMapper.to_sul_pub_id_type(external_id.type), id: external_id.value, url: external_id.url }.compact
@@ -56,25 +56,25 @@ module Orcid
     end
 
     def map_pub_date
-      return nil unless work.pub_year && work.pub_month && work.pub_day
+      return unless work.pub_year && work.pub_month && work.pub_day
 
       "#{work.pub_year}-#{work.pub_month}-#{work.pub_day}T00:00:00"
     end
 
     def map_apa_citation
-      return nil unless work.bibtex
+      return unless work.bibtex
 
       renderer.to_apa_citation
     end
 
     def map_mla_citation
-      return nil unless work.bibtex
+      return unless work.bibtex
 
       renderer.to_mla_citation
     end
 
     def map_chicago_citation
-      return nil unless work.bibtex
+      return unless work.bibtex
 
       renderer.to_chicago_citation
     end
@@ -86,7 +86,7 @@ module Orcid
     end
 
     def map_journal
-      return nil unless work.work_type == 'journal-article'
+      return unless work.work_type == 'journal-article'
 
       {
         name: work.journal_title,
@@ -97,13 +97,13 @@ module Orcid
     end
 
     def map_booktitle
-      return nil unless work.work_type == 'book'
+      return unless work.work_type == 'book'
 
       work.title
     end
 
     def map_conference
-      return nil unless work.work_type == 'conference-paper'
+      return unless work.work_type == 'conference-paper'
 
       {
         name: work.journal_title,
@@ -112,7 +112,7 @@ module Orcid
     end
 
     def map_series
-      return nil unless %w[book book-chapter].include?(work.work_type)
+      return unless %w[book book-chapter].include?(work.work_type)
 
       {
         name: work.journal_title,

@@ -85,7 +85,7 @@ module Csl
       # @return [Hash<String => String>, nil]
       def parse_author_name(author)
         family_name = parse_family_name(author)
-        return nil if family_name.blank?
+        return if family_name.blank?
 
         given_names = parse_given_names(author)
         { 'family' => family_name, 'given' => given_names }

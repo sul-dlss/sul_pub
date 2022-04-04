@@ -329,7 +329,7 @@ describe PubmedSourceRecord, :vcr do
     context 'DOI extraction' do
       def doi(pmid)
         record = described_class.send(:get_pubmed_record_from_pubmed, pmid)
-        return nil if record.nil?
+        return if record.nil?
 
         record.source_as_hash[:identifier].find { |id| id[:type] == 'doi' }
       end

@@ -68,7 +68,7 @@ module Orcid
     end
 
     def map_url(identifier)
-      return nil if identifier[:url].blank? || identifier[:url].include?('searchworks.stanford.edu') || !valid_uri?(identifier[:url])
+      return if identifier[:url].blank? || identifier[:url].include?('searchworks.stanford.edu') || !valid_uri?(identifier[:url])
 
       identifier[:url]
     end
