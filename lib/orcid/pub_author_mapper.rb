@@ -39,7 +39,7 @@ module Orcid
     end
 
     def map
-      return nil if IGNORED_SUL_PUB_ROLES.include?(author_hash[:role])
+      return if IGNORED_SUL_PUB_ROLES.include?(author_hash[:role])
 
       {
         'contributor-orcid': nil,
@@ -67,7 +67,7 @@ module Orcid
 
     def clean_name(name)
       # Some legacy names are misformatted, e.g., Clemens,Samuel,L
-      return nil unless name
+      return unless name
       return name unless name.match(/\S,\S/) && name.count(',') == 2
 
       parts = name.split(',')
@@ -82,7 +82,7 @@ module Orcid
     end
 
     def clean_name_part(name_part)
-      return nil if name_part.blank?
+      return if name_part.blank?
 
       return name_part if name_part.length != 1 || name_part.match(/ \S$/)
 
@@ -112,7 +112,7 @@ module Orcid
       role = author_hash[:role].presence
       orcid_role = SUL_PUB_ROLE_TO_ORCID_ROLE.fetch(role, role || 'author')
 
-      return nil unless ORCID_ROLES.include?(orcid_role)
+      return unless ORCID_ROLES.include?(orcid_role)
 
       orcid_role
     end

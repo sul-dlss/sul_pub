@@ -81,7 +81,7 @@ module Orcid
 
     def map_pub_date_from_year
       year = pub_hash[:year]&.strip
-      return nil unless year&.match(/^\d\d\d\d$/)
+      return unless year&.match(/^\d\d\d\d$/)
 
       {
         year: { value: year },
@@ -110,7 +110,7 @@ module Orcid
                       when 'inproceedings'
                         pub_hash.dig(:conference, :name)
                       end
-      return nil if journal_title.blank?
+      return if journal_title.blank?
 
       { value: journal_title }
     end

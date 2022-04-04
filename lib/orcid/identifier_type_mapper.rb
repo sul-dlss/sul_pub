@@ -71,7 +71,7 @@ module Orcid
     def self.to_orcid_id_type(sul_pub_id_type)
       id_type = SUL_PUB_ID_TYPE_TO_ORCID_ID_TYPE.fetch(sul_pub_id_type, sul_pub_id_type)
 
-      return nil unless ORCID_ID_TYPES.include?(id_type)
+      return unless ORCID_ID_TYPES.include?(id_type)
 
       id_type
     end
