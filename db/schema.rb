@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_11_185021) do
+ActiveRecord::Schema.define(version: 2022_04_05_041748) do
 
   create_table "author_identities", id: :integer, charset: "utf8", collation: "utf8_unicode_ci", force: :cascade do |t|
     t.integer "author_id", null: false
@@ -80,9 +80,9 @@ ActiveRecord::Schema.define(version: 2022_01_11_185021) do
   end
 
   create_table "contributions", id: :integer, charset: "utf8", collation: "utf8_unicode_ci", force: :cascade do |t|
-    t.integer "author_id"
+    t.integer "author_id", null: false
     t.integer "cap_profile_id"
-    t.integer "publication_id"
+    t.integer "publication_id", null: false
     t.string "status"
     t.boolean "featured"
     t.string "visibility"
