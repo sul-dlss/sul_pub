@@ -10,15 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_11_185021) do
+ActiveRecord::Schema.define(version: 2022_04_05_041748) do
 
-  create_table "author_identities", id: :integer, charset: "utf8", collation: "utf8_unicode_ci", force: :cascade do |t|
+  create_table "author_identities", force: :cascade do |t|
     t.integer "author_id", null: false
-    t.string "first_name", null: false
-    t.string "middle_name"
-    t.string "last_name", null: false
-    t.string "email"
-    t.string "institution"
+    t.string "first_name", limit: 255, null: false
+    t.string "middle_name", limit: 255
+    t.string "last_name", limit: 255, null: false
+    t.string "email", limit: 255
+    t.string "institution", limit: 255
     t.date "start_date"
     t.date "end_date"
     t.datetime "created_at", null: false
@@ -26,26 +26,26 @@ ActiveRecord::Schema.define(version: 2022_01_11_185021) do
     t.index ["author_id"], name: "index_author_identities_on_author_id"
   end
 
-  create_table "authors", id: :integer, charset: "utf8", collation: "utf8_unicode_ci", force: :cascade do |t|
-    t.integer "cap_profile_id"
+  create_table "authors", force: :cascade do |t|
+    t.integer "cap_profile_id", limit: 4
     t.boolean "active_in_cap"
-    t.string "sunetid"
-    t.integer "university_id"
-    t.string "email"
-    t.string "cap_first_name"
-    t.string "cap_last_name"
-    t.string "cap_middle_name"
-    t.string "official_first_name"
-    t.string "official_last_name"
-    t.string "official_middle_name"
-    t.string "preferred_first_name"
-    t.string "preferred_last_name"
-    t.string "preferred_middle_name"
+    t.string "sunetid", limit: 255
+    t.integer "university_id", limit: 4
+    t.string "email", limit: 255
+    t.string "cap_first_name", limit: 255
+    t.string "cap_last_name", limit: 255
+    t.string "cap_middle_name", limit: 255
+    t.string "official_first_name", limit: 255
+    t.string "official_last_name", limit: 255
+    t.string "official_middle_name", limit: 255
+    t.string "preferred_first_name", limit: 255
+    t.string "preferred_last_name", limit: 255
+    t.string "preferred_middle_name", limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string "california_physician_license"
+    t.string "california_physician_license", limit: 255
     t.boolean "cap_import_enabled"
-    t.string "emails_for_harvest"
+    t.string "emails_for_harvest", limit: 255
     t.string "orcidid"
     t.string "cap_visibility"
     t.bigint "orcid_last_modified"
@@ -57,35 +57,35 @@ ActiveRecord::Schema.define(version: 2022_01_11_185021) do
     t.index ["university_id"], name: "index_authors_on_university_id"
   end
 
-  create_table "batch_uploaded_source_records", id: :integer, charset: "utf8", collation: "utf8_unicode_ci", force: :cascade do |t|
-    t.string "sunet_id"
-    t.integer "author_id"
-    t.integer "cap_profile_id"
+  create_table "batch_uploaded_source_records", force: :cascade do |t|
+    t.string "sunet_id", limit: 255
+    t.integer "author_id", limit: 4
+    t.integer "cap_profile_id", limit: 4
     t.boolean "successful_import"
-    t.text "bibtex_source_data", size: :medium
-    t.string "source_fingerprint"
+    t.text "bibtex_source_data", limit: 16777215
+    t.string "source_fingerprint", limit: 255
     t.boolean "is_active"
-    t.text "title"
-    t.integer "year"
-    t.string "batch_name"
-    t.text "error_message", size: :medium
+    t.text "title", limit: 65535
+    t.integer "year", limit: 4
+    t.string "batch_name", limit: 255
+    t.text "error_message", limit: 16777215
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer "publication_id"
+    t.integer "publication_id", limit: 4
     t.index ["author_id"], name: "index_batch_uploaded_source_records_on_author_id"
     t.index ["batch_name"], name: "index_batch_uploaded_source_records_on_batch_name"
     t.index ["cap_profile_id"], name: "index_batch_uploaded_source_records_on_cap_profile_id"
     t.index ["sunet_id"], name: "index_batch_uploaded_source_records_on_sunet_id"
-    t.index ["title"], name: "index_batch_uploaded_source_records_on_title", length: 255
+    t.index ["title"], name: "index_batch_uploaded_source_records_on_title"
   end
 
-  create_table "contributions", id: :integer, charset: "utf8", collation: "utf8_unicode_ci", force: :cascade do |t|
-    t.integer "author_id"
-    t.integer "cap_profile_id"
-    t.integer "publication_id"
-    t.string "status"
+  create_table "contributions", force: :cascade do |t|
+    t.integer "author_id", limit: 4, null: false
+    t.integer "cap_profile_id", limit: 4, null: false
+    t.integer "publication_id", limit: 4, null: false
+    t.string "status", limit: 255
     t.boolean "featured"
-    t.string "visibility"
+    t.string "visibility", limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string "orcid_put_code"
@@ -96,9 +96,9 @@ ActiveRecord::Schema.define(version: 2022_01_11_185021) do
     t.index ["publication_id"], name: "index_contributions_on_publication_id"
   end
 
-  create_table "orcid_source_records", charset: "utf8", collation: "utf8_unicode_ci", force: :cascade do |t|
-    t.text "source_data", size: :medium
-    t.bigint "last_modified_date"
+  create_table "orcid_source_records", force: :cascade do |t|
+    t.text "source_data", limit: 16777215
+    t.integer "last_modified_date"
     t.string "orcidid"
     t.string "put_code"
     t.string "source_fingerprint"
@@ -109,12 +109,12 @@ ActiveRecord::Schema.define(version: 2022_01_11_185021) do
     t.index ["publication_id"], name: "index_orcid_source_records_on_publication_id", unique: true
   end
 
-  create_table "publication_identifiers", id: :integer, charset: "utf8", collation: "utf8_unicode_ci", force: :cascade do |t|
-    t.integer "publication_id"
-    t.string "identifier_type"
-    t.string "identifier_value"
-    t.string "identifier_uri"
-    t.string "certainty"
+  create_table "publication_identifiers", force: :cascade do |t|
+    t.integer "publication_id", limit: 4
+    t.string "identifier_type", limit: 255
+    t.string "identifier_value", limit: 255
+    t.string "identifier_uri", limit: 255
+    t.string "certainty", limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["identifier_type", "identifier_value"], name: "pub_identifier_index_by_type_and_value"
@@ -124,49 +124,49 @@ ActiveRecord::Schema.define(version: 2022_01_11_185021) do
     t.index ["publication_id"], name: "index_publication_identifiers_on_publication_id"
   end
 
-  create_table "publications", id: :integer, charset: "utf8", collation: "utf8_unicode_ci", force: :cascade do |t|
-    t.integer "same_as_publications_id"
+  create_table "publications", force: :cascade do |t|
+    t.integer "same_as_publications_id", limit: 4
     t.boolean "active"
     t.boolean "deleted"
-    t.text "title"
-    t.integer "year"
-    t.integer "lock_version"
-    t.text "pub_hash", size: :medium
-    t.integer "pmid"
-    t.integer "sciencewire_id"
+    t.text "title", limit: 65535
+    t.integer "year", limit: 4
+    t.integer "lock_version", limit: 4
+    t.text "pub_hash", limit: 16777215
+    t.integer "pmid", limit: 4
+    t.integer "sciencewire_id", limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string "pages"
-    t.string "issn"
-    t.string "publication_type"
+    t.string "pages", limit: 255
+    t.string "issn", limit: 255
+    t.string "publication_type", limit: 255
     t.string "wos_uid"
     t.index ["issn"], name: "index_publications_on_issn"
     t.index ["pages"], name: "index_publications_on_pages"
     t.index ["pmid"], name: "index_publications_on_pmid"
     t.index ["sciencewire_id"], name: "index_publications_on_sciencewire_id"
-    t.index ["title"], name: "index_publications_on_title", length: 255
+    t.index ["title"], name: "index_publications_on_title"
     t.index ["updated_at"], name: "index_publications_on_updated_at"
     t.index ["wos_uid"], name: "index_publications_on_wos_uid", unique: true
     t.index ["year"], name: "index_publications_on_year"
   end
 
-  create_table "pubmed_source_records", id: :integer, charset: "utf8", collation: "utf8_unicode_ci", force: :cascade do |t|
-    t.text "source_data", size: :medium
-    t.integer "pmid"
-    t.integer "lock_version"
-    t.string "source_fingerprint"
+  create_table "pubmed_source_records", force: :cascade do |t|
+    t.text "source_data", limit: 16777215
+    t.integer "pmid", limit: 4
+    t.integer "lock_version", limit: 4
+    t.string "source_fingerprint", limit: 255
     t.boolean "is_active"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["pmid"], name: "index_pubmed_source_records_on_pmid"
   end
 
-  create_table "sciencewire_source_records", id: :integer, charset: "utf8", collation: "utf8_unicode_ci", force: :cascade do |t|
-    t.text "source_data", size: :medium
-    t.integer "pmid"
-    t.integer "sciencewire_id"
-    t.integer "lock_version"
-    t.string "source_fingerprint"
+  create_table "sciencewire_source_records", force: :cascade do |t|
+    t.text "source_data", limit: 16777215
+    t.integer "pmid", limit: 4
+    t.integer "sciencewire_id", limit: 4
+    t.integer "lock_version", limit: 4
+    t.string "source_fingerprint", limit: 255
     t.boolean "is_active"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -174,35 +174,35 @@ ActiveRecord::Schema.define(version: 2022_01_11_185021) do
     t.index ["sciencewire_id"], name: "index_sciencewire_source_records_on_sciencewire_id"
   end
 
-  create_table "user_submitted_source_records", id: :integer, charset: "utf8", collation: "utf8_unicode_ci", force: :cascade do |t|
-    t.text "source_data", size: :medium
-    t.integer "pmid"
-    t.integer "lock_version"
-    t.string "source_fingerprint"
-    t.text "title"
-    t.integer "year"
+  create_table "user_submitted_source_records", force: :cascade do |t|
+    t.text "source_data", limit: 16777215
+    t.integer "pmid", limit: 4
+    t.integer "lock_version", limit: 4
+    t.string "source_fingerprint", limit: 255
+    t.text "title", limit: 65535
+    t.integer "year", limit: 4
     t.boolean "is_active"
-    t.integer "publication_id"
-    t.integer "author_id"
+    t.integer "publication_id", limit: 4
+    t.integer "author_id", limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["source_fingerprint"], name: "index_user_submitted_source_records_on_source_fingerprint", unique: true
   end
 
-  create_table "versions", id: :integer, charset: "utf8", collation: "utf8_unicode_ci", force: :cascade do |t|
-    t.string "item_type", null: false
-    t.integer "item_id", null: false
-    t.string "event", null: false
-    t.string "whodunnit"
-    t.text "object", size: :medium
+  create_table "versions", force: :cascade do |t|
+    t.string "item_type", limit: 255, null: false
+    t.integer "item_id", limit: 4, null: false
+    t.string "event", limit: 255, null: false
+    t.string "whodunnit", limit: 255
+    t.text "object", limit: 16777215
     t.datetime "created_at"
     t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
   end
 
-  create_table "web_of_science_source_records", id: :integer, charset: "utf8", collation: "utf8_unicode_ci", force: :cascade do |t|
+  create_table "web_of_science_source_records", force: :cascade do |t|
     t.boolean "active"
     t.string "database"
-    t.text "source_data", size: :medium
+    t.text "source_data"
     t.string "source_fingerprint"
     t.string "uid"
     t.datetime "created_at", null: false
