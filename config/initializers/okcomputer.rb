@@ -9,6 +9,13 @@ require 'clarivate/links_client'
 OkComputer.mount_at = 'status' # use /status or /status/all or /status/<name-of-check>
 OkComputer.check_in_parallel = true
 
+# Place critical checks in their own collection so they may be checked together without the external/optional checks below
+critical_checks = OkComputer::CheckCollection.new('Critical Checks')
+
+# Mark the automatically registered checks as critical ones
+critical_checks.register 'default', OkComputer::Registry.fetch('default')
+critical_checks.register 'database', OkComputer::Registry.fetch('database')
+
 # Simple echo of the VERSION file
 class VersionCheck < OkComputer::AppVersionCheck
   def version
@@ -17,7 +24,7 @@ class VersionCheck < OkComputer::AppVersionCheck
     raise UnknownRevision
   end
 end
-OkComputer::Registry.register 'version', VersionCheck.new
+critical_checks.register 'version', VersionCheck.new
 
 # Simple echo of the REVISION file and last modified time
 class RevisionCheck < OkComputer::Check
@@ -29,7 +36,7 @@ class RevisionCheck < OkComputer::Check
     mark_message "#{e.class.name} received: #{e.message}"
   end
 end
-OkComputer::Registry.register 'revision', RevisionCheck.new
+critical_checks.register 'revision', RevisionCheck.new
 
 class DelegateCheck < OkComputer::Check
   attr_reader :delegate
@@ -97,7 +104,7 @@ class TablesHaveDataCheck < OkComputer::Check
     mark_message msg
   end
 end
-OkComputer::Registry.register "feature-tables-have-data", TablesHaveDataCheck.new
+critical_checks.register "feature-tables-have-data", TablesHaveDataCheck.new
 
 class WosHitsRecentlyCheck < OkComputer::Check
   def clause
@@ -111,3 +118,5 @@ class WosHitsRecentlyCheck < OkComputer::Check
   end
 end
 OkComputer::Registry.register "wos-records-harvested-recently", WosHitsRecentlyCheck.new
+
+OkComputer::Registry.register 'critical', critical_checks
