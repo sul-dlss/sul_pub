@@ -11,7 +11,8 @@ describe Orcid::PubIdentifierMapper do
             type: 'doi',
             id: '10.1093/mind/LIX.236.433',
             url: 'https://doi.org/10.1093%2Fmind%2FLIX.236.433'
-          }
+          },
+          nil
         ]
       }
     end
