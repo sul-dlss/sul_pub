@@ -42,7 +42,7 @@ module Orcid
     def map_identifiers(pub_hash_identifiers, relationship)
       Array(pub_hash_identifiers).map do |identifier|
         # Need a type and id
-        next if identifier[:type].blank? || identifier[:id].blank?
+        next if identifier.blank? || identifier[:type].blank? || identifier[:id].blank?
 
         # Only mappable types.
         id_type = IdentifierTypeMapper.to_orcid_id_type(identifier[:type])
