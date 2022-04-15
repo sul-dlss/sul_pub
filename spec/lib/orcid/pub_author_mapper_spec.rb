@@ -311,5 +311,14 @@ describe Orcid::PubAuthorMapper do
         expect(contributor).to be_nil
       end
     end
+
+    context 'when blank name provided' do
+      let(:name) { '' }
+      let(:role) { 'book_editor' }
+
+      it 'skips' do
+        expect(contributor).to be_nil
+      end
+    end
   end
 end

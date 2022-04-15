@@ -102,6 +102,19 @@ describe Orcid::PubMapper do
     end
   end
 
+  context 'with blank author name' do
+    let(:pub_hash) do
+      base_pub_hash.dup.tap { |pub_hash| pub_hash[:author] << { name: '' } }
+    end
+
+    it 'skips the blank author' do
+      expect(pub_hash[:author].size).to eq(2) # two authors in pub_hash (second is blank)
+      expect(work['contributors']['contributor'].size).to eq(1) # but just one author gets mapped
+      mapped_name = work['contributors']['contributor'].first['credit-name']['value']
+      expect(mapped_name).to eq('Alan Turing')
+    end
+  end
+
   it 'maps journal title' do
     expect(work['journal-title']['value']).to eq('Mind')
   end
