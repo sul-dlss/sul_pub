@@ -14,13 +14,19 @@ namespace :sul do
     # NOTE: that the `fetch_orcid_users` command will returned some duplicated sunets, because it returns a recent history
     # of all changes for that sunet, with the last entry being the current scope (i.e. if they change scope, they may be returned twice)
     sunets = orcid_users.map(&:sunetid).uniq
+    num_sunets = sunets.size
+    puts "Found #{num_sunets} users"
+    puts
 
     # determine how many have authorized write vs read
     # note that the `fetch_orcid_user` for a single user will return the latest scope for that user (no dupes)
     scopes = { read: 0, write: 0 }
-    sunets.each { |sunetid| Mais::Client.new.fetch_orcid_user(sunetid: sunetid).update? ? scopes[:write] += 1 : scopes[:read] += 1 }
+    sunets.each_with_index do |sunetid, i|
+      puts "#{i + 1} of #{num_sunets}"
+      Mais::Client.new.fetch_orcid_user(sunetid: sunetid).update? ? scopes[:write] += 1 : scopes[:read] += 1
+    end
     puts "Report run: #{Time.zone.now}"
-    puts "Total users: #{sunets.size}"
+    puts "Total users: #{num_sunets}"
     puts "Total users with read only scope: #{scopes[:read]}"
     puts "Total users with read/write scope: #{scopes[:write]}"
   end
