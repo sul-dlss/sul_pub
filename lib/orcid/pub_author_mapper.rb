@@ -41,7 +41,7 @@ module Orcid
     def map
       return if IGNORED_SUL_PUB_ROLES.include?(author_hash[:role])
 
-      return nil if map_credit_name.blank?
+      return if map_credit_name.blank?
 
       {
         'contributor-orcid': nil,
