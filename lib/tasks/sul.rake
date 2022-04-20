@@ -324,10 +324,13 @@ namespace :sul do
     raise 'missing input csv' unless File.file? input_file
     raise 'invalid file format, must be json or csv' unless %w[json csv].include? file_format
 
-    rows = CSV.parse(File.read(input_file), headers: true)
+    rows = CSV.open(input_file, 'rb:bom|utf-8', headers: true).read
     total_authors = rows.size
+    found = 0
+    skipped = 0
     output_json_data = []
-    header_row = %w[first_name middle_name last_name email sunetid cap_profile_id]
+    header_row = %w[first_name middle_name last_name email sunetid cap_profile_id orcidid alternate_first alternate_middle alternate_last alternate_email
+                    alternate_institution]
     CSV.open(output_file, 'wb') { |csv| csv << header_row } if file_format == 'csv'
     puts "Exporting all author information for #{total_authors} authors to #{output_file}"
     rows.each_with_index do |row, i|
@@ -335,30 +338,35 @@ namespace :sul do
       cap_profile_id = row['cap_profile_id']
       puts "#{i + 1} of #{total_authors} : sunet: #{sunet} / cap_profile_id: #{cap_profile_id}"
       author = if sunet
-                 Author.find_by(sunetid: sunet)
+                 Author.find_by(sunetid: sunet.strip)
                else
-                 Author.find_by(cap_profile_id: cap_profile_id)
+                 Author.find_by(cap_profile_id: cap_profile_id.strip)
                end
       if author
         if file_format == 'json'
           author_info = { first_name: author.first_name, middle_name: author.middle_name, last_name: author.last_name,
-                          email: author.emails_for_harvest, sunet: author.sunetid, cap_profile_id: author.cap_profile_id }
-          author_info[:identities] = author.author_identities.map do |ai|
+                          email: author.emails_for_harvest, sunet: author.sunetid, cap_profile_id: author.cap_profile_id, orcid: author.orcidid }
+          author_identities = author.author_identities.map do |ai|
             { first_name: ai.first_name, middle_name: ai.middle_name, last_name: ai.last_name, email: ai.email, institution: ai.institution }
-          end
+          end.compact
+          author_info[:identities] = author_identities unless author_identities.empty?
           output_json_data << author_info
         else
           CSV.open(output_file, 'a') do |csv|
+            author_identities = author.author_identities.map { |ai| [ai.first_name, ai.middle_name, ai.last_name, ai.email, ai.institution] }.flatten
             csv << [author.first_name, author.middle_name, author.last_name,
-                    author.emails_for_harvest, author.sunetid, author.cap_profile_id]
+                    author.emails_for_harvest, author.sunetid, author.cap_profile_id, author.orcidid, author_identities].flatten
           end
         end
+        found += 1
       else
         puts "***** ERROR: Sunet: #{sunet}, cap_profile_id: #{cap_profile_id} not found, skipping"
+        skipped += 1
         CSV.open(output_file, 'a') { |csv| csv << ['', '', '', '', sunet, cap_profile_id] } if file_format == 'csv'
       end
     end
     File.write(output_file, JSON.pretty_generate(output_json_data)) if file_format == 'json'
+    puts "Input rows: #{total_authors}, found: #{found}, not found: #{skipped}.  Results written to #{output_file}."
   end
 
   desc 'Custom SMCI export of profile and non-profile authors report'
