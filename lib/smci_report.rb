@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Exports all publications for the given sunets or cap_profile_ids in an 'approved' state
+# Exports all publications for the given sunets or cap_profile_ids with any status
 #  and it also harvests publications by name for authors who do not have a sunet or cap_profile_id
 # This is a custom report for Stanford Medicine Center for Improvement (SMCI)
 #   specified in https://github.com/sul-dlss/sul_pub/issues/1201
@@ -114,12 +114,12 @@ class SmciReport
 
           if author # we found the author in our database, now get their publications
             contributions = Contribution.select('*')
-            contributions = contributions.where(author: author).where(status: %w[new approved])
+            contributions = contributions.where(author: author)
             contributions = contributions.where('created_at > ?', Time.zone.parse(@date_since)) if @date_since
             num_pubs_found = contributions.size
-            logger.info "found #{author.first_name} #{author.last_name} with #{num_pubs_found} approved publications"
+            logger.info "found #{author.first_name} #{author.last_name} with #{num_pubs_found} publications"
             total_pubs += num_pubs_found
-            # loop over all of their approved publications and output the results
+            # loop over all of their publications and output the results
             contributions.each do |contribution|
               csv << output_row(pub_hash: contribution.publication.pub_hash, author: author,
                                 harvested_at: contribution.created_at.to_s(:db), publication_status: contribution.status)
