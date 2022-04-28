@@ -540,30 +540,53 @@ namespace :sul do
   # You will get a random subset of these authors up the maximum specified
   # Parameters that can be specified are maximum number of authors, minimum number of publications for each, and output file
   # Defaults are 100 authors, minimum of 5 publications, and output file = 'tmp/random_authors.csv'
+  # If you want specific authors (i.e. to rerun a report), you can specify an input file which is the previous output report
+  #  and it will use this to load the same authors and re-run the report.
   # Note that since only WoS publications are output, you may get less publications output than the min specified.
-  # bundle exec rake sul:author_publications_report[100,5,'tmp/random_authors.csv']
-  task :author_publications_report, %i[n min_pubs output_file] => :environment do |_t, args|
-    n = args[:n].to_i || 100
-    min_pubs =  args[:min_pubs].to_i || 5
-    output_file = args[:output_file] || 'tmp/random_authors.csv'
+  #
+  # For random authors:
+  # bundle exec rake sul:author_publications_report n=100 min_pubs=5 output_file='tmp/random_authors.csv'
+  # For specific authors:
+  # bundle exec rake sul:author_publications_report input_file='tmp/author_ids.csv' min_pubs=5 output_file='tmp/random_authors.csv'
+
+  task author_publications_report: :environment do
+    n = ENV['n'].to_i || 100
+    min_pubs =  ENV['min_pubs'].to_i || 5
+    output_file = ENV['output_file'] || 'tmp/random_authors.csv'
+    input_file = ENV['input_file']
     output_directory = 'tmp/author_reports'
 
-    puts "Number of authors: #{n}"
+    if input_file
+      raise 'input file not found' unless File.exist? input_file
+
+      puts "Input file of authors: #{input_file}"
+    else
+      raise 'More authors requested than available' if n >= Author.all.size
+
+      puts "Number of authors: #{n}"
+    end
     puts "Minimum number of pubs per author: #{min_pubs}"
     puts "Output file: #{output_file}"
     puts
 
     FileUtils.mkdir_p output_directory
 
-    puts "... fetching random #{n} authors"
-    user_ids = []
-    max_id = Author.last.id
-    while user_ids.size < n
-      random_user_id = rand(max_id)
-      next if user_ids.include? random_user_id # skip if we've already randomly selected this author before
+    if input_file
+      puts "... loading #{input_file}"
+      rows = CSV.parse(File.read(input_file), headers: true)
+      user_ids = rows.map { |row| row['author_id'] }
+      n = user_ids.size
+    else
+      puts "... fetching random #{n} authors"
+      user_ids = []
+      max_id = Author.last.id
+      while user_ids.size < n
+        random_user_id = rand(max_id)
+        next if user_ids.include? random_user_id # skip if we've already randomly selected this author before
 
-      user = Author.find_by(id: random_user_id)
-      user_ids << user.id if user && user.active_in_cap == true && user.cap_import_enabled == true && user.contributions.size >= min_pubs
+        user = Author.find_by(id: random_user_id)
+        user_ids << user.id if user && user.active_in_cap == true && user.cap_import_enabled == true && user.contributions.size >= min_pubs
+      end
     end
 
     header_row = %w[author_id orcid cap_profile_id sunetid name num_publications query]
