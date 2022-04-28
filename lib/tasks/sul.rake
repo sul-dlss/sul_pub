@@ -405,7 +405,7 @@ namespace :sul do
     total_diff = orcidids_diff.size
     puts "Number of users returned from the ORCID API - known Stanford ORCID users: #{total_diff}"
 
-    header_row = %w[orcidid name last_name first_name sunet cap_profile_id scope num_works_pushed integration_last_updated]
+    header_row = %w[orcidid name last_name first_name sunet cap_profile_id scope num_works_pushed total_new_approved_publications integration_last_updated]
     CSV.open(output_file, 'wb') do |csv|
       csv << header_row
       # first write out all of the known stanford users
@@ -419,8 +419,9 @@ namespace :sul do
                   'read'
                 end
         num_works_pushed = user.contributions.where.not(orcid_put_code: nil).size
+        total_publications = user.contributions.where(status: %w[new approved]).size
         csv << [user.orcidid, "#{user.cap_first_name} #{user.cap_last_name}", user.cap_last_name, user.cap_first_name,
-                user.sunetid, user.cap_profile_id, scope, num_works_pushed, mais_user.last_updated.to_date]
+                user.sunetid, user.cap_profile_id, scope, num_works_pushed, total_publications, mais_user.last_updated.to_date]
       end
 
       # next write out all of the ORCID API users that were not already in the Stanford list
@@ -429,6 +430,36 @@ namespace :sul do
         puts "#{i + 1} of #{total_diff}: #{orcidid}"
         name = orcid_client.fetch_name(orcidid)
         csv << [orcidid, name.join(' '), name[1], name[0], '', '', '', '', '']
+      end
+    end
+    puts
+    puts "Written to #{output_file}"
+  end
+
+  # bundle exec rake sul:active_users['tmp/results.csv']
+  # Query the sul_pub database for all people with an active account and havesting
+  # enabled, then export the total number of approved/new publications.
+  desc 'Export all active users with total approved/new publication counts'
+  task :active_users, %i[output_file] => :environment do |_t, args|
+    output_file = args[:output_file]
+
+    # active stanford users who have havesting enabled
+    users = Author.where(cap_import_enabled: true, active_in_cap: true)
+    total_users = users.size
+    puts "Number of active users with harvesting enabled: #{total_users}"
+
+    header_row = %w[orcidid name last_name first_name sunet cap_profile_id total_publications total_approved_publications total_new_publications
+                    total_denied_publications]
+    CSV.open(output_file, 'wb') do |csv|
+      csv << header_row
+      users.each_with_index do |user, i|
+        puts "#{i + 1} of #{total_users}: #{user.sunetid}"
+        total_approved = user.contributions.where(status: 'approved').size
+        total_new = user.contributions.where(status: 'new').size
+        total_denied = user.contributions.where(status: 'denied').size
+        total_publications = total_approved + total_new + total_denied
+        csv << [user.orcidid, "#{user.cap_first_name} #{user.cap_last_name}", user.cap_last_name, user.cap_first_name,
+                user.sunetid, user.cap_profile_id, total_publications, total_approved, total_new, total_denied]
       end
     end
     puts
