@@ -552,8 +552,8 @@ namespace :sul do
   task author_publications_report: :environment do
     n = ENV['n'].to_i || 100
     min_pubs =  ENV['min_pubs'].to_i || 5
-    output_file = ENV['output_file'] || 'tmp/random_authors.csv'
-    input_file = ENV['input_file']
+    output_file = ENV.fetch('output_file', nil) || 'tmp/random_authors.csv'
+    input_file = ENV.fetch('input_file', nil)
     output_directory = 'tmp/author_reports'
 
     if input_file
