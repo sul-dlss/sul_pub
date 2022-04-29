@@ -137,6 +137,17 @@ describe Orcid::PubMapper do
     end
   end
 
+  context 'when title greater than 500 characters' do
+    let(:big_title) { SecureRandom.random_number(36**600).to_s(36) } # generates 600 character random string
+    let(:pub_hash) { base_pub_hash.merge(title: big_title) }
+
+    it 'truncates title to 500 characters' do
+      expect(big_title.length).to eq 600
+      expect(work[:title][:title][:value].length).to eq 500
+      expect(work[:title][:title][:value]).to eq(big_title.truncate(500))
+    end
+  end
+
   context 'when year but no date' do
     let(:pub_hash) do
       base_pub_hash.dup.tap do |pub_hash|
