@@ -3,6 +3,7 @@
 require 'citeproc'
 require 'csl/styles'
 
+# ORCID API Documentation: https://info.orcid.org/documentation/
 module Orcid
   # Maps from pub_hash to Orcid Work.
   class PubMapper
@@ -58,7 +59,7 @@ module Orcid
 
       {
         title: {
-          value: title
+          value: title.truncate(500) # ORCID has a max length for this field
         }
       }
     end
