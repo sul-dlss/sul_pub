@@ -55,6 +55,15 @@ module WebOfScience
         log_level: @log_level,
         pretty_print_xml: true
       )
+    rescue Savon::SOAPFault => e
+      # this may occur if the session identifier timed out and we didn't catch it, this allows us to request
+      # a new session identifier and try the API call again
+      # see https://github.com/sul-dlss/sul_pub/wiki/Web-of-Sciences-Expanded-API-Throttle-Limits for known API limits
+      # the number of queries per session should already be accounted for, but not the time out limit
+      raise e unless e.message.include? 'There is a problem with your session identifier (SID)'
+
+      session_close
+      retry
     end
 
     # Authenticates the session and returns the SID value
