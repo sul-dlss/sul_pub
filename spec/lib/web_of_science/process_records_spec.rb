@@ -147,6 +147,10 @@ describe WebOfScience::ProcessRecords, :vcr do
       before { allow(links_client).to receive(:links).and_raise(RuntimeError) }
 
       it_behaves_like 'fail_forward'
+
+      it 'returns an empty hash from retrieve_links' do
+        expect(processor.send(:retrieve_links, records)).to eq({})
+      end
     end
   end
 
