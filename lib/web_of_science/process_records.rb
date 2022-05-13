@@ -139,6 +139,7 @@ module WebOfScience
       links_client.links(link_uids)
     rescue StandardError => e
       NotificationManager.error(e, "Author: #{author.id}, retrieve_links failed", self)
+      {} # return an empty set after reporting the error
     end
   end
 end
