@@ -137,22 +137,24 @@ namespace :sul do
   end
 
   desc 'Export publications for specific authors as csv'
-  # exports all publications for the given sunets in a 'new' or 'approved' state after the date specified
+  # exports all publications for the given sunets in a 'new' or 'approved' state harvested
+  # between the two dates specified
   # input csv file should have a column with a header of 'SUNetID' containing the sunetid of interest
-  # bundle exec rake sul:export_pubs_for_authors_csv['/tmp/input_file.csv','/tmp/output_file.csv','01/01/2013']
-  # parameters are input csv file with sunets, output csv file, and date to go back to in format of mm/dd/yyyy
-  task :export_pubs_for_authors_csv, %i[input_file output_file date_since] => :environment do |_t, args|
+  # bundle exec rake sul:export_pubs_for_authors_csv['/tmp/input_file.csv','/tmp/output_file.csv','01/01/2013','01/01/2015']
+  # parameters are input csv file with sunets, output csv file, and start and end date in format of mm/dd/yyyy
+  task :export_pubs_for_authors_csv, %i[input_file output_file start_date end_date] => :environment do |_t, args|
     output_file = args[:output_file]
     input_file = args[:input_file]
-    date_since = args[:date_since]
-    raise 'missing required params' unless output_file && input_file && Time.zone.parse(date_since)
+    start_date = args[:start_date]
+    end_date = args[:end_date]
+    raise 'missing required params' unless output_file && input_file && Time.zone.parse(start_date) && Time.zone.parse(end_date)
     raise 'missing input csv' unless File.file? input_file
 
     rows = CSV.parse(File.read(input_file), headers: true)
     total_authors = rows.size
     total_pubs = 0
     start_time = Time.zone.now
-    puts "Exporting all pubs for #{total_authors} authors to #{output_file} since date #{date_since}.  Started at #{start_time}."
+    puts "Exporting all pubs for #{total_authors} authors to #{output_file} from #{start_date} to #{end_date}.  Started at #{start_time}."
     header_row = %w[pub_title pmid doi publisher journal mesh pub_year provenance pub_associated_author_last_name
                     pub_associated_author_first_name pub_associated_author_sunet pub_associated_author_employee_id
                     author_list sunet_list publication_status pub_harvested_date apa_citation]
@@ -163,8 +165,8 @@ namespace :sul do
         message = "#{i + 1} of #{total_authors} : #{sunet}"
         author = Author.find_by(sunetid: sunet)
         if author
-          contributions = Contribution.where("author_id = ? and status in ('new','approved') and created_at > ?",
-                                             author.id, Time.zone.parse(date_since))
+          contributions = Contribution.where("author_id = ? and status in ('new','approved') and created_at > ? and created_at < ?",
+                                             author.id, Time.zone.parse(start_date), Time.zone.parse(end_date))
           puts "#{message} : #{contributions.size} publications"
           contributions.each do |contribution|
             pub = contribution.publication
@@ -176,8 +178,8 @@ namespace :sul do
                           else
                             ''
                           end
-            sunet_list = pub.contributions.where("status in ('new','approved') and created_at > ?",
-                                                 Time.zone.parse(date_since)).map do |c|
+            sunet_list = pub.contributions.where("status in ('new','approved') and created_at > ? and created_at < ?",
+                                                 Time.zone.parse(start_date), Time.zone.parse(end_date)).map do |c|
               c.author.sunetid
             end.compact.compact_blank.join('; ')
             doi = pub.pub_hash[:identifier].map { |ident| ident[:id] if ident[:type].downcase == 'doi' }.compact.join
@@ -548,7 +550,6 @@ namespace :sul do
   # bundle exec rake sul:author_publications_report n=100 min_pubs=5 output_file='tmp/random_authors.csv'
   # For specific authors:
   # bundle exec rake sul:author_publications_report input_file='tmp/author_ids.csv' min_pubs=5 output_file='tmp/random_authors.csv'
-
   task author_publications_report: :environment do
     n = ENV['n'].to_i || 100
     min_pubs =  ENV['min_pubs'].to_i || 5
