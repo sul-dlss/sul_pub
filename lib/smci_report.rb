@@ -220,7 +220,7 @@ class SmciReport
     article_number = pub_hash[:journal] ? pub_hash[:journal][:articlenumber] : ''
     mesh = if pub_hash[:mesh_headings]
              pub_hash[:mesh_headings].map do |h|
-               h[:descriptor][0][:name]
+               h.dig(:descriptor, 0, :name)
              end.compact.compact_blank.join('; ')
            else
              ''
