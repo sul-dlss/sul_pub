@@ -94,7 +94,7 @@ describe Orcid::PubMapper do
     end
 
     it 'truncates the name to 150 characters' do
-      expect(long_author.length).to eq(160)
+      expect(long_author.length).to be > 151
       expect(work['contributors']['contributor'].size).to eq(1)
       mapped_name = work['contributors']['contributor'].first['credit-name']['value']
       expect(mapped_name.length).to eq(150)
