@@ -11,7 +11,6 @@ SULPUB_ID:
 CAP:
   LOG: log/cap.log
   PROFILE_ID_REWRITE_LOG: log/cap_profile_id_rewrite.log
-  PORT: 443
   TOKEN_PATH: /oauth/token
   TOKEN_URI: https://authz.stanford.edu
   TOKEN_USER: sul
