@@ -10,12 +10,12 @@ class AuthorsController < ApplicationController
   def harvest
     if AuthorHarvestJob.perform_later(author_params[:cap_profile_id])
       render json: {
-        response: "Harvest for author #{params[:cap_profile_id]} was successfully created."
-      }, status: :accepted
+               response: "Harvest for author #{params[:cap_profile_id]} was successfully created."
+             }, status: :accepted
     else
       render json: {
-        error: "Harvest for author #{params[:cap_profile_id]} failed."
-      }, status: :error
+               error: "Harvest for author #{params[:cap_profile_id]} failed."
+             }, status: :error
     end
   end
 
