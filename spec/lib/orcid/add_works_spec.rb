@@ -76,9 +76,9 @@ describe Orcid::AddWorks do
       it 'logs a warning, does not push, and does not HB' do
         create :contribution, author: author, publication: publication, status: 'approved'
         expect(NotificationManager).not_to receive(:error)
-        error_message = "Orcid::AddWorks - author #{author.id}"\
-                        " - did not add publication #{publication.id}: Invalid token for #{author.orcidid}"\
-                        ' - ORCID.org API returned 401 '\
+        error_message = "Orcid::AddWorks - author #{author.id} " \
+                        "- did not add publication #{publication.id}: Invalid token for #{author.orcidid} " \
+                        '- ORCID.org API returned 401 ' \
                         "({\n  \"error\" : \"invalid_token\",\n  \"error_description\" : \"Invalid access token: 91gd29cb-124e-5bf8-1ard-90315b03ae12\"\n})"
         expect(logger).to receive(:warn).with(error_message)
         expect(contribution_count).to be_zero
