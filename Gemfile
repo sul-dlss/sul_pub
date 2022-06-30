@@ -35,7 +35,7 @@ gem 'jquery-rails'
 gem 'json_schemer'
 gem 'kaminari'
 gem 'okcomputer' # for monitoring
-gem 'oauth2', '~> 1.0' # pinning to v1, since v2 breaks authentication with MaIS ORCID API, June 29, 2022
+gem 'oauth2'
 gem 'paper_trail'
 gem 'parallel'
 gem 'pry-rails'

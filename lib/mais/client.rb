@@ -93,7 +93,8 @@ module Mais
 
     def token
       client = OAuth2::Client.new(Settings.MAIS.CLIENT_ID, Settings.MAIS.CLIENT_SECRET, site: Settings.MAIS.BASE_URL,
-                                                                                        token_url: '/api/oauth/token', authorize_url: '/api/oauth/authorize')
+                                                                                        token_url: '/api/oauth/token', authorize_url: '/api/oauth/authorize',
+                                                                                        auth_scheme: :request_body)
       token = client.client_credentials.get_token
       "Bearer #{token.token}"
     end
