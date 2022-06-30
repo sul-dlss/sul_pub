@@ -144,7 +144,7 @@ class Publication < ApplicationRecord
   end
 
   def update_from_pubmed
-    return false if pmid.blank?
+    return false if pmid.blank? || !pubmed_pub?
 
     pm_source_record = PubmedSourceRecord.find_by_pmid(pmid)
     return false unless pm_source_record
@@ -155,14 +155,18 @@ class Publication < ApplicationRecord
 
   # @return [Boolean] true if .save is successful
   def rebuild_pub_hash
-    raise 'rebuilding WOS records is unsupported, unimplemented' if wos_pub?
+    raise 'rebuilding non-harvested records is unsupported, unimplemented' unless harvested_pub?
 
-    if sciencewire_id
+    if sciencewire_pub?
       sw_source_record = SciencewireSourceRecord.find_by_sciencewire_id(sciencewire_id)
       build_from_sciencewire_hash(sw_source_record.source_as_hash)
-    elsif pmid
+    elsif pubmed_pub?
       pubmed_source_record = PubmedSourceRecord.find_by_pmid(pmid)
       self.pub_hash = pubmed_source_record.source_as_hash
+    elsif wos_pub?
+      record = WebOfScienceSourceRecord.find_by_uid(wos_uid)
+      wos_record = WebOfScience::Record.new(record: record.source_data, encoded_record: false)
+      self.pub_hash = wos_record.pub_hash
     end
     sync_publication_hash_and_db
     save
