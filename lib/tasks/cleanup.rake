@@ -37,8 +37,8 @@ namespace :cleanup do
     removed = 0
 
     puts "There are currently #{(primary_pub_ids - dupes_pub_ids).size} publications in the primary profile that are not in the duped profile"
-    puts "There are currently #{(dupes_pub_ids - primary_pub_ids).size} publications in the duped profile that are not in the primary profile" \
-         ' --- these will be moved'
+    puts "There are currently #{(dupes_pub_ids - primary_pub_ids).size} publications in the duped profile that are not in the primary profile " \
+         '--- these will be moved'
 
     duped_author.contributions.each do |contribution|
       if primary_pub_ids.include? contribution.publication_id # this publication already exists in the primary profile; remove it from the duped profile
