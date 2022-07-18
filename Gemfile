@@ -2,13 +2,6 @@ source 'https://rubygems.org'
 
 gem 'rails', '~> 6.1.4'
 
-# Use sass-powered bootstrap
-gem 'bootstrap-sass', '~> 3.4.1'
-# Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
-# Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '~> 4.1'
-
 gem 'nokogiri', '>= 1.7.1'
 
 gem 'activerecord-import'
@@ -31,7 +24,6 @@ gem 'httpclient', '~> 2.8'
 gem 'identifiers', '~> 0.12'
 # To use Jbuilder templates for JSON
 gem 'jbuilder'
-gem 'jquery-rails'
 gem 'json_schemer'
 gem 'kaminari'
 gem 'okcomputer' # for monitoring
@@ -41,7 +33,6 @@ gem 'parallel'
 gem 'pry-rails'
 gem 'rake'
 gem 'savon', '~> 2.12'
-gem 'simple_form'
 gem 'StreetAddress', '~> 1.0', '>= 1.0.6'
 gem 'whenever', require: false
 gem 'yaml_db'
