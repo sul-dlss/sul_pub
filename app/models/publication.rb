@@ -167,8 +167,10 @@ class Publication < ApplicationRecord
       record = WebOfScienceSourceRecord.find_by_uid(wos_uid)
       wos_record = WebOfScience::Record.new(record: record.source_data, encoded_record: false)
       self.pub_hash = wos_record.pub_hash
+    else
+      raise "unable to rebuild_pub_hash for publication of provenance #{provenance}"
     end
-    sync_publication_hash_and_db
+    pubhash_needs_update!
     save
   end
 

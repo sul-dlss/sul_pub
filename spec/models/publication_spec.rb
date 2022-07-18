@@ -316,7 +316,13 @@ describe Publication do
       expect(publication.update_from_pubmed).to be false
     end
 
-    it 'updates from pubmed source for a pubmed source record with a pmid' do
+    it 'does not update from pubmed source if it is not pubmed provenance' do
+      expect(publication.pmid).to be_nil
+      expect(publication.pub_hash[:provenance]).not_to be 'pubmed'
+      expect(publication.update_from_pubmed).to be false
+    end
+
+    it 'updates from pubmed source if there is a pmid and it is pubmed provenance' do
       publication.pmid = pmid
       publication.pub_hash[:provenance] = 'pubmed'
       source_data = '<PubmedArticle><MedlineCitation Status="Publisher" Owner="NLM"><OriginalData/><Article><ArticleTitle>How I learned Rails</ArticleTitle></Article></PubmedArticle>'
@@ -477,8 +483,13 @@ describe Publication do
     it 'correctly rebuilds pub_hash from SciencewireSourceRecord'
     it 'correctly rebuilds pub_hash from PubmedSourceRecord'
     it 'correctly rebuilds pub_hash from WebofScienceRecord'
-    it 'raises for non-harvested records record' do
+    it 'raises for non-harvested record (manual publication entry)' do
       pub = described_class.new(pub_hash: { provenance: 'cap' })
+      expect { pub.rebuild_pub_hash }.to raise_error(RuntimeError)
+    end
+
+    it 'raises for unsupported provenance record' do
+      pub = described_class.new(pub_hash: { provenance: 'other' })
       expect { pub.rebuild_pub_hash }.to raise_error(RuntimeError)
     end
   end
