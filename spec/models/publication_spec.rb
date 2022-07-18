@@ -304,14 +304,21 @@ describe Publication do
   end
 
   describe 'update_from_pubmed' do
+    let(:pmid) { 1 }
+
     it 'does not update from pubmed source if there is no pmid' do
       expect(publication.pmid).to be_nil
       expect(publication.update_from_pubmed).to be false
     end
 
-    it 'updates from pubmed source if there is a pmid' do
-      pmid = 1
+    it 'does not update from pubmed source if not a pubmed source record' do
+      publication.pub_hash[:provenance] = 'cap'
+      expect(publication.update_from_pubmed).to be false
+    end
+
+    it 'updates from pubmed source for a pubmed source record with a pmid' do
       publication.pmid = pmid
+      publication.pub_hash[:provenance] = 'pubmed'
       source_data = '<PubmedArticle><MedlineCitation Status="Publisher" Owner="NLM"><OriginalData/><Article><ArticleTitle>How I learned Rails</ArticleTitle></Article></PubmedArticle>'
       new_source_data = '<PubmedArticle><MedlineCitation Status="Publisher" Owner="NLM"><Article><ArticleTitle>How I learned Rails</ArticleTitle></Article><PMID Version="1">123</PMID><SomeNewData/></PubmedArticle>'
       pubmed_record = PubmedSourceRecord.create(pmid: pmid, source_data: source_data)
@@ -469,8 +476,9 @@ describe Publication do
   describe '#rebuild_pub_hash' do
     it 'correctly rebuilds pub_hash from SciencewireSourceRecord'
     it 'correctly rebuilds pub_hash from PubmedSourceRecord'
-    it 'raises for WoS record' do
-      pub = described_class.new(pub_hash: { provenance: 'wos' })
+    it 'correctly rebuilds pub_hash from WebofScienceRecord'
+    it 'raises for non-harvested records record' do
+      pub = described_class.new(pub_hash: { provenance: 'cap' })
       expect { pub.rebuild_pub_hash }.to raise_error(RuntimeError)
     end
   end
