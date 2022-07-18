@@ -9,7 +9,7 @@ Bundler.require(*Rails.groups)
 module Sulbib
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 5.0
+    config.load_defaults 6.0
     config.autoloader = :zeitwerk
     config.eager_load_paths << Rails.root.join('lib')
 
