@@ -18,19 +18,10 @@ install_plugin Capistrano::SCM::Git
 #   https://github.com/capistrano/chruby
 #   https://github.com/capistrano/bundler
 #   https://github.com/capistrano/rails
-#
-# require 'capistrano/rvm'
-# require 'capistrano/rbenv'
-# require 'capistrano/chruby'
-# require 'capistrano/bundler'
-# require 'capistrano/rails/assets'
-# require 'capistrano/rails/migrations'
 
 require 'capistrano/bundler'
-require 'capistrano/rails'
+require 'capistrano/rails/migrations'
 require 'capistrano/passenger'
-require 'capistrano/shared_configs'
-require 'capistrano/shell'
 require 'dlss/capistrano'
 require 'whenever/capistrano'
 
