@@ -77,6 +77,8 @@ GEM
       gyoku (>= 0.4.0)
       nokogiri
     ast (2.4.2)
+    awesome_nested_set (3.5.0)
+      activerecord (>= 4.0.0, < 7.1)
     bibtex-ruby (6.0.0)
       latex-decode (~> 0.0)
     bootsnap (1.16.0)
@@ -469,6 +471,7 @@ PLATFORMS
 DEPENDENCIES
   StreetAddress (~> 1.0, >= 1.0.6)
   activerecord-import
+  awesome_nested_set
   bibtex-ruby
   bootsnap (>= 1.1.0)
   byebug

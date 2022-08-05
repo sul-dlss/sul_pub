@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_18_164661) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_01_232858) do
   create_table "author_identities", force: :cascade do |t|
     t.integer "author_id", null: false
     t.string "first_name", limit: 255, null: false
@@ -23,6 +23,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_18_164661) do
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
     t.index ["author_id"], name: "index_author_identities_on_author_id"
+  end
+
+  create_table "author_organizations", force: :cascade do |t|
+    t.integer "author_id"
+    t.integer "organization_id"
+    t.string "affiliation"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "authors", force: :cascade do |t|
@@ -106,6 +114,24 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_18_164661) do
     t.integer "publication_id"
     t.index ["orcidid", "put_code"], name: "index_orcid_source_records_on_orcidid_and_put_code", unique: true
     t.index ["publication_id"], name: "index_orcid_source_records_on_publication_id", unique: true
+  end
+
+  create_table "organizations", force: :cascade do |t|
+    t.string "name"
+    t.string "code", null: false
+    t.string "org_type"
+    t.string "alias"
+    t.integer "group_id"
+    t.integer "lft", null: false
+    t.integer "rgt", null: false
+    t.integer "depth", default: 0, null: false
+    t.integer "children_count", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["code"], name: "index_organizations_on_code", unique: true
+    t.index ["group_id"], name: "index_organizations_on_group_id"
+    t.index ["lft"], name: "index_organizations_on_lft"
+    t.index ["rgt"], name: "index_organizations_on_rgt"
   end
 
   create_table "publication_identifiers", force: :cascade do |t|

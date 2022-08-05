@@ -14,6 +14,9 @@ class Author < ApplicationRecord
   has_many :contributions, dependent: :destroy
   has_many :publications, through: :contributions
 
+  has_many :author_organizations, dependent: :destroy
+  has_many :organizations, through: :author_organizations
+
   # nil values allowed because we have historical records without visibility info, for which cap API
   # will no longer have updated author info (e.g. for authors who are no longer at Stanford)
   validates :cap_visibility, inclusion: { in: VISIBILITY_VALUES }, allow_nil: true
