@@ -36,6 +36,8 @@ doc/
 .byebug_history
 coverage
 README_configs.txt
+/*.json
+/*.ndj
 
 ## Ignore ruby version pins
 .ruby-*
