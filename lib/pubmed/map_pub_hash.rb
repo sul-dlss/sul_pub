@@ -247,10 +247,11 @@ module Pubmed
       # The <AffiliationInfo> envelope element includes <Affliliation> and <Identifier>.
     end
 
-    # see https://dtd.nlm.nih.gov/ncbi/pubmed/doc/out/180101/el-PubDate.html for PubDate definition
-    # and https://dtd.nlm.nih.gov/ncbi/pubmed/doc/out/180101/att-PubStatus.html for PubStatus type definitions
-    # and https://dtd.nlm.nih.gov/ncbi/pubmed/doc/out/180101/el-JournalIssue.html for the JournalIssue definition
-    # and https://dtd.nlm.nih.gov/ncbi/pubmed/doc/out/180101/el-ArticleDate.html for the ArticleDate definition
+    # Order in which to search for article publication dates in a Pubmed record
+    # 1. https://dtd.nlm.nih.gov/ncbi/pubmed/doc/out/180101/el-PubDate.html for PubDate definition
+    # 2. https://dtd.nlm.nih.gov/ncbi/pubmed/doc/out/180101/el-ArticleDate.html for the ArticleDate definition
+    # 3. https://dtd.nlm.nih.gov/ncbi/pubmed/doc/out/180101/el-PubMedPubDate.html for PubmedData defintion
+    # along with https://dtd.nlm.nih.gov/ncbi/pubmed/doc/out/180101/att-PubStatus.html for the PubStatus type definitions
     def pubmed_date_xpaths
       [
         'MedlineCitation/Article/Journal/JournalIssue/PubDate',
