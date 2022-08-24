@@ -370,15 +370,16 @@ namespace :sul do
   end
 
   desc 'Custom SMCI export of profile and non-profile authors report'
-  # bundle exec rake sul:smci_export['tmp/authors.csv','tmp/results.csv','1/1/2000','10year']
+  # bundle exec rake sul:smci_export['tmp/authors.csv','tmp/results.csv','1/1/2000',nil, '10year']
   # bundle exec rake sul:smci_export['tmp/authors.csv','tmp/results.csv',,] # for all time
   # see lib/smci_report.rb for full details of parameters and usage
-  task :smci_export, %i[input_file output_file date_since time_span] => :environment do |_t, args|
+  task :smci_export, %i[input_file output_file date_since date_to time_span] => :environment do |_t, args|
     output_file = args[:output_file]
     input_file = args[:input_file]
     date_since = args[:date_since]
+    date_to = args[:date_to]
     time_span = args[:time_span]
-    smci = SmciReport.new(input_file: input_file, output_file: output_file, date_since: date_since,
+    smci = SmciReport.new(input_file: input_file, output_file: output_file, date_since: date_since, date_to: date_to,
                           time_span: time_span)
     smci.run
   end

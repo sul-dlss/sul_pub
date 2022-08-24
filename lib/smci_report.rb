@@ -37,6 +37,9 @@
 # The 'date_since' parameter is optional and specifies the date after which publications for profiles authors will be exported
 #  The format for 'date_since'  is DD/MM/YYYY.
 
+# The 'date_to' parameter is optional and specifies the date up to which publications for profiles authors will be exported
+#  The format for 'date_to'  is DD/MM/YYYY.
+
 # The 'time_span' parameter is optional and specifies the WoS symbolic timespan lookup window for non-profiles authors
 #   The allowed values for time_span are here: https://github.com/sul-dlss/sul_pub/wiki/Clarivate-APIs and are typically like '1year'
 
@@ -59,6 +62,7 @@ class SmciReport
     @input_file = args[:input_file]
     @output_file = args[:output_file]
     @date_since = args[:date_since] || nil # the created_date to look back to for authors with profiles publications
+    @date_to = args[:date_to] || nil # the created_date to look up to for authors with profiles publications
     @time_span = args[:time_span] || nil # the symbolicTimeSpan parameter for WoS queries for authors NOT in profiles (e.g. 1year)
     # allowed values here: https://github.com/sul-dlss/sul_pub/wiki/Clarivate-APIs
     # in either case, NIL will fetch both types of publications for all time
@@ -66,6 +70,7 @@ class SmciReport
     raise 'missing required params' unless @output_file && @input_file
     raise 'missing input csv' unless File.file? @input_file
     raise ArgumentError, 'supplied date_since is not valid' if @date_since && !Time.zone.parse(@date_since)
+    raise ArgumentError, 'supplied date_to is not valid' if @date_to && !Time.zone.parse(@date_to)
   end
 
   def logger
@@ -81,7 +86,7 @@ class SmciReport
     start_time = Time.zone.now
     logger.info '*****************'
     logger.info 'Starting export.'
-    logger.info "Exporting all publications for #{total_authors} authors to #{@output_file}. Since date: '#{@date_since}'.  " \
+    logger.info "Exporting all publications for #{total_authors} authors to #{@output_file}. Date range: '#{@date_since}' to '#{@date_to}'.  " \
                 "WoS SymbolicTimeSpan: '#{@time_span}'"
     logger.info ''
 
@@ -116,6 +121,7 @@ class SmciReport
             contributions = Contribution.select('*')
             contributions = contributions.where(author: author)
             contributions = contributions.where('created_at > ?', Time.zone.parse(@date_since)) if @date_since
+            contributions = contributions.where('created_at < ?', Time.zone.parse(@date_to)) if @date_to
             num_pubs_found = contributions.size
             logger.info "found #{author.first_name} #{author.last_name} with #{num_pubs_found} publications"
             total_pubs += num_pubs_found
