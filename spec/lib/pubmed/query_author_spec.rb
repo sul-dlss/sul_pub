@@ -196,7 +196,7 @@ describe Pubmed::QueryAuthor do
     context 'with a user with one invalid name and a second valid name' do
       it 'indicates it is a valid query, ignoring the bad name in the query' do
         expect(query_author_only_one_bad_name).to be_valid
-        expect(query_author_only_one_bad_name.send(:term)).to eq('((Edler1, Alice1[Author])) AND (Stanford University[Affiliation] OR Example University[Affiliation])')
+        expect(query_author_only_one_bad_name.send(:term)).to eq("((#{author_one_bad_name.author_identities.first.last_name}, #{author_one_bad_name.author_identities.first.first_name}[Author])) AND (Stanford University[Affiliation] OR Example University[Affiliation])")
       end
     end
 
