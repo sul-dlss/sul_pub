@@ -63,6 +63,26 @@ FactoryBot.define do
       official_first_name { '.' }
       preferred_first_name { '.' }
     end
+
+    trait :or_first_name do
+      official_first_name { 'Or' }
+      preferred_first_name { 'Or' }
+    end
+
+    trait :not_last_name do
+      official_first_name { 'Not' }
+      preferred_first_name { 'Not' }
+    end
+
+    trait :nil_first_name do
+      official_first_name { nil }
+      preferred_first_name { nil }
+    end
+
+    trait :nil_last_name do
+      official_last_name { nil }
+      preferred_last_name { nil }
+    end
   end
 
   factory :author_with_alternate_identities, parent: :author do
@@ -73,6 +93,11 @@ FactoryBot.define do
       evaluator.alt_count.times do
         create(:author_identity, author: author)
       end
+    end
+
+    trait :or_first_name do
+      official_first_name { 'Or' }
+      preferred_first_name { 'Or' }
     end
   end
 
