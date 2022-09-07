@@ -11,8 +11,7 @@ gem 'citeproc-ruby', '~> 1.1'
 gem 'unicode' # CiteProc requires the `unicode_utils` or `unicode` Gem on Ruby 2.3
 gem 'config'
 
-# See https://github.com/sul-dlss/sul_pub/issues/1019 before updating:
-gem 'csl-styles', '1.0.1.8'
+gem 'csl-styles', '1.0.1.8' # See https://github.com/sul-dlss/sul_pub/issues/1019 before updating
 gem 'daemons'
 gem 'dotiw'
 gem 'faraday'
@@ -20,17 +19,15 @@ gem 'faraday-httpclient'
 gem 'faraday-retry'
 gem 'htmlentities', '~> 4.3'
 gem 'httpclient', '~> 2.8'
-# Altmetric utilities related to the extraction, validation and normalization of various scholarly identifiers
-gem 'identifiers', '~> 0.12'
-# To use Jbuilder templates for JSON
-gem 'jbuilder'
+gem 'identifiers', '~> 0.12' # Altmetric utilities related to the extraction, validation and normalization of various scholarly identifiers
+gem 'jbuilder' # To use Jbuilder templates for JSON
 gem 'json_schemer'
 gem 'kaminari'
 gem 'okcomputer' # for monitoring
 gem 'oauth2'
 gem 'paper_trail'
 gem 'parallel'
-gem 'pry-rails'
+gem 'pry' # make it possible to use pry for IRB
 gem 'rake'
 gem 'savon', '~> 2.12'
 gem 'StreetAddress', '~> 1.0', '>= 1.0.6'
