@@ -50,7 +50,7 @@ class MergeDuplicateAuths
   def work
     ActiveRecord::Base.logger.level = 1
     count = 0
-    dup_cap_ids = JSON.parse(File.read(Rails.root.join('all_clones_cap_ids.json')))
+    dup_cap_ids = JSON.parse(Rails.root.join('all_clones_cap_ids.json').read)
     dup_cap_ids.each do |cap_id|
       count += 1
       @logger.info "Processed #{count}" if count % 100 == 0

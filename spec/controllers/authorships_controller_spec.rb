@@ -44,7 +44,7 @@ describe AuthorshipsController, :vcr do
     let(:request_data) { valid_data_for_post }
     it 'returns 400 with an error message' do
       http_request
-      expect(response.status).to eq 400
+      expect(response).to have_http_status :bad_request
       result = JSON.parse(response.body)
       expect(result['error']).to include('sul_author_id', 'cap_profile_id')
     end
@@ -56,7 +56,7 @@ describe AuthorshipsController, :vcr do
 
     it 'returns 404 when it fails to find a sul_author_id' do
       http_request
-      expect(response.status).to eq 404
+      expect(response).to have_http_status :not_found
       result = JSON.parse(response.body)
       expect(result['error']).to include('sul_author_id', sul_author_id)
     end
@@ -68,7 +68,7 @@ describe AuthorshipsController, :vcr do
 
     it 'returns 404 when it fails to find a cap_profile_id' do
       http_request
-      expect(response.status).to eq 404
+      expect(response).to have_http_status :not_found
       result = JSON.parse(response.body)
       expect(result['error']).to include('cap_profile_id', cap_profile_id)
     end
@@ -76,7 +76,7 @@ describe AuthorshipsController, :vcr do
     it 'returns 404 when it cannot retrieve a cap_profile_id' do
       expect(Author).to receive(:fetch_from_cap_and_create).with(cap_profile_id)
       http_request
-      expect(response.status).to eq 404
+      expect(response).to have_http_status :not_found
     end
   end
 
@@ -86,7 +86,7 @@ describe AuthorshipsController, :vcr do
       http_request
       result = JSON.parse(response.body)
       expect(result['error']).to include('You have not supplied a valid authorship record')
-      expect(response.status).to eq 406
+      expect(response).to have_http_status :not_acceptable
     end
   end
 
@@ -106,7 +106,7 @@ describe AuthorshipsController, :vcr do
 
       it 'successfully creates one new contribution' do
         expect { http_request }.to change(Contribution, :count).by(1)
-        expect(response.status).to eq 201
+        expect(response).to have_http_status :created
       end
     end
 
@@ -121,7 +121,7 @@ describe AuthorshipsController, :vcr do
         contrib = publication_with_contributions.contributions.reload.last
         expect(contrib.status).to eq 'new'
         expect(contrib.visibility).to eq 'private'
-        expect(response.status).to eq 201
+        expect(response).to have_http_status :created
       end
     end
 
@@ -130,7 +130,7 @@ describe AuthorshipsController, :vcr do
 
       it "successfully increases the publication's contribution records by one" do
         expect { http_request }.to change(publication_with_contributions.contributions, :count).by(1)
-        expect(response.status).to eq 201
+        expect(response).to have_http_status :created
         expect(publication_with_contributions.contributions.count).to eq(contribution_count + 1)
       end
 
@@ -145,7 +145,7 @@ describe AuthorshipsController, :vcr do
         expect(contribution.featured).to be false
         expect(contribution.status).to eq('denied')
         expect(contribution.visibility).to eq('private')
-        expect(response.status).to eq 201
+        expect(response).to have_http_status :created
       end
 
       it 'adds the authorship entry to the pub_hash for the publication' do
@@ -274,7 +274,7 @@ describe AuthorshipsController, :vcr do
         expect(pub).to receive(:save!).and_raise(ActiveRecord::RecordNotSaved.new(pub))
         expect(Publication).to receive(:find).with(pub.id).and_return(pub)
         post :create, body: request_data.to_json, params: { format: 'json' }
-        expect(response.status).to eq 500
+        expect(response).to have_http_status :internal_server_error
       end
 
       context 'if there are contribution record errors' do
@@ -285,7 +285,7 @@ describe AuthorshipsController, :vcr do
           # contribution, mock the response to ensure it's empty:
           expect(Contribution).to receive(:where).and_return([])
           http_request
-          expect(response.status).to eq 404
+          expect(response).to have_http_status :not_found
           result = JSON.parse(response.body)
           expect(result['error']).to include('no contributions', existing_contrib.author.id.to_s,
                                              existing_contrib.publication.id.to_s)
@@ -299,7 +299,7 @@ describe AuthorshipsController, :vcr do
           )
           http_request
           result = JSON.parse(response.body)
-          expect(response.status).to eq 500
+          expect(response).to have_http_status :internal_server_error
           expect(result['error']).to include('multiple contributions', existing_contrib.author.id.to_s,
                                              existing_contrib.publication.id.to_s)
         end
@@ -311,7 +311,7 @@ describe AuthorshipsController, :vcr do
 
         it 'returns 400 when publication parameters are missing' do
           post :create, body: no_pub_params.to_json, params: { format: 'json' }
-          expect(response.status).to eq 400
+          expect(response).to have_http_status :bad_request
           result = JSON.parse(response.body)
           expect(result['error']).to include('You have not supplied any publication identifier', 'sul_pub_id', 'pmid',
                                              'sw_id', 'wos_uid')
@@ -325,7 +325,7 @@ describe AuthorshipsController, :vcr do
             post :create, body: no_pub_params.merge(wos_uid: id).to_json, params: { format: 'json' }
             result = JSON.parse(response.body)
             expect(result['error']).to eq("A matching publication record for WOS_UID:#{id} was not found in the publication table.")
-            expect(response.status).to eq 404
+            expect(response).to have_http_status :not_found
           end
         end
 
@@ -334,7 +334,7 @@ describe AuthorshipsController, :vcr do
             post :create, body: no_pub_params.merge(sul_pub_id: id).to_json, params: { format: 'json' }
             result = JSON.parse(response.body)
             expect(result['error']).to include(id, 'does not exist')
-            expect(response.status).to eq 404
+            expect(response).to have_http_status :not_found
           end
 
           it 'pmid' do
@@ -342,7 +342,7 @@ describe AuthorshipsController, :vcr do
             post :create, body: no_pub_params.merge(pmid: id).to_json, params: { format: 'json' }
             result = JSON.parse(response.body)
             expect(result['error']).to include(id, 'was not found')
-            expect(response.status).to eq 404
+            expect(response).to have_http_status :not_found
           end
 
           it 'sw_id' do
@@ -351,7 +351,7 @@ describe AuthorshipsController, :vcr do
             post :create, body: no_pub_params.merge(sw_id: id).to_json, params: { format: 'json' }
             result = JSON.parse(response.body)
             expect(result['error']).to include(id, 'was not found')
-            expect(response.status).to eq 404
+            expect(response).to have_http_status :not_found
           end
 
           it 'wos_uid' do
@@ -360,7 +360,7 @@ describe AuthorshipsController, :vcr do
             post :create, body: no_pub_params.merge(wos_uid: id).to_json, params: { format: 'json' }
             result = JSON.parse(response.body)
             expect(result['error']).to include(id, 'A WebOfScienceSourceRecord was not found')
-            expect(response.status).to eq 404
+            expect(response).to have_http_status :not_found
           end
         end
       end
@@ -392,7 +392,7 @@ describe AuthorshipsController, :vcr do
 
       it 'does not create a new contribution' do
         expect { http_request }.not_to change(Contribution, :count)
-        expect(response.status).to eq 202
+        expect(response).to have_http_status :accepted
       end
 
       it 'updates all contribution attributes' do
@@ -433,7 +433,7 @@ describe AuthorshipsController, :vcr do
         http_request
         expect { existing_contrib.reload }.not_to change { [existing_contrib.visibility, existing_contrib.status] }
         expect(existing_contrib.featured).to be false
-        expect(response.status).to eq 202
+        expect(response).to have_http_status :accepted
       end
     end
 
@@ -445,7 +445,7 @@ describe AuthorshipsController, :vcr do
         http_request
         expect { existing_contrib.reload }.not_to change { [existing_contrib.visibility, existing_contrib.featured] }
         expect(existing_contrib.status).to eq 'denied'
-        expect(response.status).to eq 202
+        expect(response).to have_http_status :accepted
       end
     end
 
@@ -457,7 +457,7 @@ describe AuthorshipsController, :vcr do
         http_request
         expect { existing_contrib.reload }.not_to change { [existing_contrib.status, existing_contrib.featured] }
         expect(existing_contrib.visibility).to eq 'private'
-        expect(response.status).to eq 202
+        expect(response).to have_http_status :accepted
       end
     end
 
@@ -469,7 +469,7 @@ describe AuthorshipsController, :vcr do
         expect { existing_contrib.reload }.not_to change { [existing_contrib.featured] }
         expect(existing_contrib.status).to eq 'new'
         expect(existing_contrib.visibility).to eq 'public'
-        expect(response.status).to eq 202
+        expect(response).to have_http_status :accepted
       end
     end
   end

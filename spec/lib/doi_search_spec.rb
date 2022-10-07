@@ -42,6 +42,7 @@ describe DoiSearch do
 
         it 'queries WOS, if not authoritative' do
           allow(publication).to receive(:wos_pub?).and_return(false)
+          expect(publication).to receive(:wos_pub?)
           described_class.search(doi_value)
         end
       end

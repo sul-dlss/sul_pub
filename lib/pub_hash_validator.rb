@@ -5,7 +5,7 @@ require 'yaml'
 
 # Validates a pub_hash against JSON schema.
 class PubHashValidator
-  @@schemer = JSONSchemer.schema(YAML.safe_load(File.read(Rails.root.join('pub_hash_schema.yml'))))
+  @@schemer = JSONSchemer.schema(YAML.safe_load(Rails.root.join('pub_hash_schema.yml').read))
 
   # @param [Hash] pub_hash
   # @return [Boolean] true if valid

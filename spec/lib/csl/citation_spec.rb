@@ -77,10 +77,13 @@ describe Csl::Citation do
     end
   end
 
-  shared_examples 'it is a CSL report citation' do
-    def expect_includes_field(field)
-      expect(cite).to include(csl_report[field]) if csl_report[field]
+  shared_examples 'includes field' do |field_name|
+    it "includes #{field_name}" do
+      expect(cite).to include(csl_report[field_name]) if csl_report[field_name]
     end
+  end
+
+  shared_examples 'it is a CSL report citation' do
     it 'includes title' do
       # Check title without case sensitivity because this is very hard to do
       # and the CSL style is likely the authority on how to do it anyway.
@@ -100,29 +103,12 @@ describe Csl::Citation do
       end
     end
 
-    it 'includes collection-title' do
-      expect_includes_field('collection-title')
-    end
-
-    it 'includes number' do
-      expect_includes_field('number')
-    end
-
-    it 'includes page' do
-      expect_includes_field('page')
-    end
-
-    it 'includes publisher' do
-      expect_includes_field('publisher')
-    end
-
-    it 'includes publisher-place' do
-      expect_includes_field('publisher-place')
-    end
-
-    it 'includes URL' do
-      expect_includes_field('URL')
-    end
+    it_behaves_like 'includes field', 'collection-title'
+    it_behaves_like 'includes field', 'number'
+    it_behaves_like 'includes field', 'page'
+    it_behaves_like 'includes field', 'publisher'
+    it_behaves_like 'includes field', 'publisher-place'
+    it_behaves_like 'includes field', 'URL'
 
     it 'includes year' do
       year = csl_report['issued']['date-parts'].first.first
@@ -185,52 +171,23 @@ describe Csl::Citation do
       it_behaves_like 'it is a CSL report citation'
 
       context 'translates to a CSL report document' do
-        def expect_field_match(field)
-          expect(csl_report[field]).to eq target_csl_report[field]
-        end
-        it 'matches "abstract"' do
-          expect_field_match('abstract')
-        end
-
-        it 'matches "author"' do
-          expect_field_match('author')
+        shared_examples 'expected value for' do |field_name|
+          it "#{field_name} matches" do
+            expect(csl_report[field_name]).to eq target_csl_report[field_name]
+          end
         end
 
-        it 'matches "collection-title"' do
-          expect_field_match('collection-title')
-        end
-
-        it 'matches "id"' do
-          expect_field_match('id')
-        end
-
-        it 'matches "issued"' do
-          expect_field_match('issued')
-        end
-
-        it 'matches "number"' do
-          expect_field_match('number')
-        end
-
-        it 'matches "page"' do
-          expect_field_match('page')
-        end
-
-        it 'matches "publisher"' do
-          expect_field_match('publisher')
-        end
-
-        it 'matches "title"' do
-          expect_field_match('title')
-        end
-
-        it 'matches "type"' do
-          expect_field_match('type')
-        end
-
-        it 'matches "URL"' do
-          expect_field_match('URL')
-        end
+        it_behaves_like 'expected value for', 'abstract'
+        it_behaves_like 'expected value for', 'author'
+        it_behaves_like 'expected value for', 'collection-title'
+        it_behaves_like 'expected value for', 'id'
+        it_behaves_like 'expected value for', 'issued'
+        it_behaves_like 'expected value for', 'number'
+        it_behaves_like 'expected value for', 'page'
+        it_behaves_like 'expected value for', 'publisher'
+        it_behaves_like 'expected value for', 'title'
+        it_behaves_like 'expected value for', 'type'
+        it_behaves_like 'expected value for', 'URL'
       end
 
       it 'creates an APA citation' do

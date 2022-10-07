@@ -116,7 +116,7 @@ describe SmciReport do
     it 'creates an output row for a non-profile author' do
       result = report.send(:output_row, orcid: '1234', pub_hash: pub_hash)
       expect(result).to eq(['some title', '', '', '', '', '', '', 'some publisher', '', '', '', '', nil, nil, '', nil,
-                            nil, nil, '1234', '', '', '', '', '', '', 'unknown', Time.now.utc.to_s(:db), nil, nil, nil])
+                            nil, nil, '1234', '', '', '', '', '', '', 'unknown', Time.now.utc.to_fs(:db), nil, nil, nil])
     end
   end
 end

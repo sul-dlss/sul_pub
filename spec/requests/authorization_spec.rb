@@ -5,14 +5,14 @@ describe 'Authorization checks' do
     context 'when no CAPKEY provided' do
       it 'returns a 401' do
         get '/publications'
-        expect(response.status).to eq 401
+        expect(response).to have_http_status :unauthorized
       end
     end
 
     context 'when incorrect CAPKEY provided' do
       it 'returns a 403' do
         get '/publications', headers: { 'CAPKEY' => 'not correct' }
-        expect(response.status).to eq 403
+        expect(response).to have_http_status :forbidden
       end
     end
   end
@@ -21,14 +21,14 @@ describe 'Authorization checks' do
     context 'when no CAPKEY provided' do
       it 'returns a 401' do
         post '/authorship'
-        expect(response.status).to eq 401
+        expect(response).to have_http_status :unauthorized
       end
     end
 
     context 'when incorrect CAPKEY provided' do
       it 'returns a 403' do
         post '/authorship', headers: { 'CAPKEY' => 'not correct' }
-        expect(response.status).to eq 403
+        expect(response).to have_http_status :forbidden
       end
     end
   end

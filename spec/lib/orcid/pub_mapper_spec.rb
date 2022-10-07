@@ -88,7 +88,7 @@ describe Orcid::PubMapper do
   end
 
   context 'with author name greater than 150 characters' do
-    let(:long_author) { SecureRandom.random_number(36**160).to_s(36) } # generates 160 character random string
+    let(:long_author) { SecureRandom.random_number(36**160).to_fs(36) } # generates 160 character random string
     let(:pub_hash) do
       base_pub_hash.dup.tap { |pub_hash| pub_hash[:author] = [{ name: long_author }] }
     end
@@ -138,7 +138,7 @@ describe Orcid::PubMapper do
   end
 
   context 'when title greater than 500 characters' do
-    let(:big_title) { SecureRandom.random_number(36**600).to_s(36) } # generates 600 character random string
+    let(:big_title) { SecureRandom.random_number(36**600).to_fs(36) } # generates 600 character random string
     let(:pub_hash) { base_pub_hash.merge(title: big_title) }
 
     it 'truncates title to 500 characters' do
@@ -208,7 +208,7 @@ describe Orcid::PubMapper do
   end
 
   context 'with abstract greater than 5000 characters' do
-    let(:big_abstract) { SecureRandom.random_number(36**6000).to_s(36) } # generates 6000 character random string
+    let(:big_abstract) { SecureRandom.random_number(36**6000).to_fs(36) } # generates 6000 character random string
     let(:pub_hash) { base_pub_hash.merge(abstract: big_abstract) }
 
     it 'truncates abstract to 5000 characters' do

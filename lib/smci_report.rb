@@ -128,7 +128,7 @@ class SmciReport
             # loop over all of their publications and output the results
             contributions.each do |contribution|
               csv << output_row(pub_hash: contribution.publication.pub_hash, author: author,
-                                harvested_at: contribution.created_at.to_s(:db), publication_status: contribution.status)
+                                harvested_at: contribution.created_at.to_fs(:db), publication_status: contribution.status)
             end
           else # we could not find this author in the database
             logger.error 'author not found in database'
@@ -207,7 +207,7 @@ class SmciReport
   # rubocop:disable Metrics/AbcSize
   # rubocop:disable Metrics/CyclomaticComplexity
   # rubocop:disable Metrics/PerceivedComplexity
-  def output_row(pub_hash:, harvested_at: Time.now.utc.to_s(:db), author: nil, orcid: nil, publication_status: 'unknown')
+  def output_row(pub_hash:, harvested_at: Time.now.utc.to_fs(:db), author: nil, orcid: nil, publication_status: 'unknown')
     author_list = if pub_hash[:author]
                     Csl::RoleMapper.send(:parse_authors, pub_hash[:author]).map do |a|
                       "#{a['family']}, #{a['given']}"

@@ -260,6 +260,7 @@ describe Publication do
       end
 
       it 'ignores records without a pmid' do
+        expect(PubmedSourceRecord).not_to receive(:for_pmid)
         publication.send(:add_any_pubmed_data_to_hash)
       end
 
@@ -284,6 +285,7 @@ describe Publication do
     it 'ignores records with an empty pubmed record' do
       publication.pmid = 1
       allow(PubmedSourceRecord).to receive(:for_pmid).with(1).and_return nil
+      expect(PubmedSourceRecord).to receive(:for_pmid).with(1)
       publication.send(:add_any_pubmed_data_to_hash)
     end
   end

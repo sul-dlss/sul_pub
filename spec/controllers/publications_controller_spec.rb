@@ -148,7 +148,6 @@ describe PublicationsController, :vcr do
 
   def post_valid_json
     post :create, body: valid_json_for_post, params: { format: 'json' }
-    expect(response.status).to eq 201
   end
 
   # @param [Hash<Symbol => Object>] pub_hash
@@ -183,7 +182,7 @@ describe PublicationsController, :vcr do
     context 'with unknown capProfileId' do
       it 'returns a 404' do
         get :index, params: { capProfileId: cap_id, format: 'json' }
-        expect(response.status).to eq 404
+        expect(response).to have_http_status :not_found
         expect(response.body).to include 'No such author'
       end
     end
@@ -195,7 +194,7 @@ describe PublicationsController, :vcr do
 
       it 'returns a structured response' do
         get :index, params: { capProfileId: cap_id, format: 'json' }
-        expect(response.status).to eq 200
+        expect(response).to have_http_status :ok
         expect(json_response).to match a_hash_including(
           'metadata' => a_hash_including('format' => 'BibJSON', 'page' => 1, 'per_page' => 1000, 'records' => '0'),
           'records' => []
@@ -208,7 +207,7 @@ describe PublicationsController, :vcr do
 
       it 'returns a structured response' do
         get :index, params: { capProfileId: cap_id, format: 'csv' }
-        expect(response.status).to eq 200
+        expect(response).to have_http_status :ok
         expect(response.body).to eq 'sul_pub_id,sciencewire_id,pubmed_id,doi,wos_id,title,journal,year,pages,issn,' \
                                     "status_for_this_author,created_at,updated_at,contributor_cap_profile_ids\n"
       end
@@ -224,14 +223,14 @@ describe PublicationsController, :vcr do
 
     it 'returns bad request if no important params received' do
       get :sourcelookup, params: { format: 'json' }
-      expect(response.status).to eq 400
+      expect(response).to have_http_status :bad_request
       get :sourcelookup, params: { year: 2001, format: 'json' }
-      expect(response.status).to eq 400
+      expect(response).to have_http_status :bad_request
     end
 
     it 'returns not_acceptable if wrong format' do
       get :sourcelookup, params: { title: 'something cool', format: 'xml' }
-      expect(response.status).to eq 406
+      expect(response).to have_http_status :not_acceptable
     end
 
     it 'with doi calls DoiSearch' do # and ignores pmid & title
@@ -257,7 +256,7 @@ describe PublicationsController, :vcr do
       let(:result) do
         params = { format: 'json', doi: doi_value }
         get :sourcelookup, params: params
-        expect(response.status).to eq(200)
+        expect(response).to have_http_status(:ok)
         JSON.parse(response.body)
       end
 
@@ -281,7 +280,7 @@ describe PublicationsController, :vcr do
         allow(Settings.PUBMED).to receive(:lookup_enabled).and_return(true)
         params = { format: 'json', pmid: '24196758' }
         get :sourcelookup, params: params
-        expect(response.status).to eq(200)
+        expect(response).to have_http_status(:ok)
         result = JSON.parse(response.body)
         expect(result['metadata']).to include('records' => '1')
         record = result['records'].first
@@ -295,7 +294,7 @@ describe PublicationsController, :vcr do
         allow(Settings.PUBMED).to receive(:lookup_enabled).and_return(false)
         params = { format: 'json', pmid: '24196758' }
         get :sourcelookup, params: params
-        expect(response.status).to eq(200)
+        expect(response).to have_http_status(:ok)
         result = JSON.parse(response.body)
         expect(result['metadata']).to include('records' => '0')
       end
@@ -309,7 +308,7 @@ describe PublicationsController, :vcr do
         publication_with_test_title
         params = { format: 'json', title: test_title, maxrows: 2 }
         get :sourcelookup, params: params
-        expect(response.status).to eq(200)
+        expect(response).to have_http_status(:ok)
         JSON.parse(response.body)
       end
 
@@ -323,7 +322,7 @@ describe PublicationsController, :vcr do
       it 'with maxrows number of records' do
         params = { format: 'json', title: test_title, maxrows: 5 }
         get :sourcelookup, params: params
-        expect(response.status).to eq(200)
+        expect(response).to have_http_status(:ok)
         result = JSON.parse(response.body)
         expect(result['records'].length).to eq(5)
       end
@@ -335,7 +334,7 @@ describe PublicationsController, :vcr do
           .and_return(instance_double(WebOfScience::Retriever, next_batch: Array.new(20) { {} }))
         params = { format: 'json', title: 'lung cancer treatment' }
         get :sourcelookup, params: params
-        expect(response.status).to eq(200)
+        expect(response).to have_http_status(:ok)
         result = JSON.parse(response.body)
         expect(result['metadata']['records']).to eq('20')
       end
@@ -357,7 +356,7 @@ describe PublicationsController, :vcr do
           .and_return(instance_double(WebOfScience::Retriever, next_batch: ['year' => year]))
         params = { format: 'json', title: test_title, year: year }
         get :sourcelookup, params: params
-        expect(response.status).to eq(200)
+        expect(response).to have_http_status(:ok)
         result = JSON.parse(response.body)
         expect(result).to include('records')
         expect(result['records']).not_to be_empty
@@ -430,6 +429,7 @@ describe PublicationsController, :vcr do
 
       it 'responds with 201' do
         post_valid_json
+        expect(response).to have_http_status :created
       end
 
       it 'returns bibjson from the pub_hash for the new publication' do
@@ -462,14 +462,16 @@ describe PublicationsController, :vcr do
         expect(last_pub.issn).to eq(submission['issn'])
       end
 
+      # rubocop:disable RSpec/NoExpectationExample - expectations in validate_authorship
       it 'creates a matching pub_hash in the publication record from the posted bibjson' do
         post_valid_json
         validate_authorship(last_pub.pub_hash, submission)
       end
+      # rubocop:enable RSpec/NoExpectationExample
 
       it 'handles missing author using authorship from the posted bibjson' do
         post :create, body: article_with_authorship_without_authors, params: { format: 'json' }
-        expect(response.status).to eq(201)
+        expect(response).to have_http_status(:created)
         validate_authorship(last_pub.pub_hash, JSON.parse(article_with_authorship_without_authors))
       end
 
@@ -488,20 +490,20 @@ describe PublicationsController, :vcr do
         json_with_sul_pub_id = { type: 'book', identifier: [{ type: 'SULPubId', id: 'n', url: 'm' }],
                                  authorship: [{ sul_author_id: author.id, status: 'denied', visibility: 'public', featured: true }] }.to_json
         post :create, body: json_with_sul_pub_id, params: { format: 'json' }
-        expect(response.status).to eq(201)
+        expect(response).to have_http_status(:created)
         expect(result['identifier'].count { |x| x['type'] == 'SULPubId' }).to eq(1)
         expect(result['identifier'][0]['id']).not_to eq('n')
       end
 
       it 'creates a pub with a null sul_author_id' do
         post :create, body: valid_hash_for_post_with_nul_sul_author_and_uppercase_states.to_json, params: { format: 'json' }
-        expect(response.status).to eq(201)
+        expect(response).to have_http_status(:created)
         expect(response.body).to eq(last_pub.pub_hash.to_json)
       end
 
       it 'creates a pub with isbn' do
         post :create, body: with_isbn_hash.to_json, params: { format: 'json' }
-        expect(response.status).to eq(201)
+        expect(response).to have_http_status(:created)
         # TODO: use the submission data to validate some of the identifier fields
         # submission = JSON.parse(json_with_isbn)
         expect(result['identifier'].size).to eq(3)
@@ -518,7 +520,7 @@ describe PublicationsController, :vcr do
 
       it 'creates a pub with pmid' do
         post :create, body: json_with_pubmedid, params: { format: 'json' }
-        expect(response.status).to eq(201)
+        expect(response).to have_http_status(:created)
         expect(result['identifier']).to include('id' => '999999999', 'type' => 'pmid')
         expect(last_pub.publication_identifiers.map(&:identifier_type)).to include('pmid')
         expect(response.body).to eq(last_pub.pub_hash.to_json)
@@ -528,20 +530,20 @@ describe PublicationsController, :vcr do
     context 'when valid post' do
       it 'returns 303 (see other) for duplicate pub' do
         post :create, body: valid_json_for_post, params: { format: 'json' }
-        expect(response.status).to eq(201)
+        expect(response).to have_http_status(:created)
         post :create, body: valid_json_for_post, params: { format: 'json' }
-        expect(response.status).to eq(303)
+        expect(response).to have_http_status(:see_other)
       end
 
       it 'returns 406 - Not Acceptable for bibjson without an authorship entry' do
         post :create, body: invalid_json_for_post, params: { format: 'json' }
-        expect(response.status).to eq(406)
+        expect(response).to have_http_status(:not_acceptable)
       end
 
       it 'creates an Author when a new cap_profile_id is passed in' do
         skip 'Administrative Systems firewall only allows IP-based requests'
         post :create, body: json_with_new_author, params: { format: 'json' }
-        expect(response.status).to eq(201)
+        expect(response).to have_http_status(:created)
         expect(Author.find_by(cap_profile_id: '3810').cap_last_name).to eq('Lowe')
       end
     end
@@ -569,7 +571,7 @@ describe PublicationsController, :vcr do
         put :update, params: { id: manual_publication.id, format: 'json' }, body: json_with_sul_pub_id
         expect(result['identifier'].count { |x| x['type'] == 'SULPubId' }).to eq(1)
         expect(result['identifier'][0]['id']).not_to eq('n')
-        expect(response.status).to eq(202)
+        expect(response).to have_http_status(:accepted)
       end
 
       it 'updates existing manual pub' do
@@ -590,7 +592,7 @@ describe PublicationsController, :vcr do
           a_hash_including(type: 'doi', id: '18819910019-updated', url: '18819910019-updated'), # doi is changed in the database
           a_hash_including(type: 'SULPubId', url: "#{Settings.SULPUB_ID.PUB_URI}/#{id}", id: id.to_s)
         )
-        expect(response.status).to eq(202) # updated
+        expect(response).to have_http_status(:accepted) # updated
       end
 
       it 'deletes an identifier from the db if it is not in the incoming json for a manual publication' do
@@ -610,14 +612,14 @@ describe PublicationsController, :vcr do
           a_hash_including(type: 'isbn', id: '1177188188181'),
           a_hash_including(type: 'SULPubId', url: "#{Settings.SULPUB_ID.PUB_URI}/#{id}", id: id.to_s)
         )
-        expect(response.status).to eq(202) # updated
+        expect(response).to have_http_status(:accepted) # updated
       end
 
       it 'refuses to update a wos pub' do
         id = wos_publication.id
         expect(wos_publication).to be_harvested_pub
         put :update, params: { id: id, format: 'json' }, body: with_isbn_changed_doi.to_json
-        expect(response.status).to eq(403) # forbidden
+        expect(response).to have_http_status(:forbidden) # forbidden
       end
     end
 
@@ -625,7 +627,7 @@ describe PublicationsController, :vcr do
       context 'pub not found' do
         it 'returns 404' do
           put :update, params: { id: '8888888', format: 'json' }, body: with_isbn_hash.to_json
-          expect(response.status).to eq(404)
+          expect(response).to have_http_status(:not_found)
         end
       end
 
@@ -637,25 +639,25 @@ describe PublicationsController, :vcr do
         it 'been deleted' do
           allow(publication).to receive(:deleted?).and_return(true)
           put :update, params: { id: id, format: 'json' }, body: with_isbn_hash.to_json
-          expect(response.status).to eq(410)
+          expect(response).to have_http_status(:gone)
         end
 
         it 'sciencewire_id' do
           allow(publication).to receive(:sciencewire_id).and_return(2)
           put :update, params: { id: id, format: 'json' }, body: with_isbn_hash.to_json
-          expect(response.status).to eq(403)
+          expect(response).to have_http_status(:forbidden)
         end
 
         it 'pmid' do
           allow(publication).to receive(:pmid).and_return(3)
           put :update, params: { id: id, format: 'json' }, body: with_isbn_hash.to_json
-          expect(response.status).to eq(403)
+          expect(response).to have_http_status(:forbidden)
         end
 
         it 'wos_uid' do
           allow(publication).to receive(:wos_uid).and_return(4)
           put :update, params: { id: id, format: 'json' }, body: with_isbn_hash.to_json
-          expect(response.status).to eq(403)
+          expect(response).to have_http_status(:forbidden)
         end
       end
     end
@@ -664,7 +666,7 @@ describe PublicationsController, :vcr do
   describe 'show publication' do
     it 'returns 200 for valid call' do
       get :show, params: { id: publication.id, format: 'json' }
-      expect(response.status).to eq(200)
+      expect(response).to have_http_status(:ok)
     end
 
     it 'returns a publication bibjson doc by id' do
@@ -679,7 +681,7 @@ describe PublicationsController, :vcr do
         .and_return(instance_double(Publication, pub_hash: { 'provenance' => 'sciencewire', 'type' => 'article' },
                                                  deleted?: false))
       get :show, params: { id: '123', format: 'json' }
-      expect(response.status).to eq(200)
+      expect(response).to have_http_status(:ok)
       expect(JSON.parse(response.body)).to include('provenance' => 'sciencewire', 'type' => 'article')
     end
 
@@ -690,7 +692,7 @@ describe PublicationsController, :vcr do
     context "when pub id doesn't exist" do
       it 'returns not found code' do
         get :show, params: { id: '88888888', format: 'json' }
-        expect(response.status).to eq(404)
+        expect(response).to have_http_status(:not_found)
       end
     end
   end
@@ -702,14 +704,14 @@ describe PublicationsController, :vcr do
       it 'returns first page' do
         get :index, params: { format: 'json' }
         expect(result['records']).to eq []
-        expect(response.status).to eq(200)
+        expect(response).to have_http_status(:ok)
       end
     end
 
     it "raises an error if a capkey isn't provided" do
       request.headers['HTTP_CAPKEY'] = nil # no key provided
       get :index, params: { page: 1, per: 7, format: 'json' }
-      expect(response.status).to eq(401)
+      expect(response).to have_http_status(:unauthorized)
     end
 
     context 'when there are many records' do
@@ -720,19 +722,19 @@ describe PublicationsController, :vcr do
         expect(response.headers['Content-Type']).to be =~ %r{application/json}
         expect(result['metadata']).to include('records' => '7', 'page' => 1)
         expect(result['records'][2]['author']).to eq ['name' => 'Jackson, Joe']
-        expect(response.status).to eq(200)
+        expect(response).to have_http_status(:ok)
       end
 
       it 'filters by active authors' do
         get :index, params: { page: 1, per: 7, capActive: true, format: 'json' }
         expect(result['metadata']).to include('records' => '7', 'page' => 1)
-        expect(response.status).to eq(200)
+        expect(response).to have_http_status(:ok)
       end
 
       it 'paginates by active authors' do
         get :index, params: { page: 2, per: 1, capActive: true, format: 'json' }
         expect(result['metadata']).to include('records' => '1', 'page' => 2)
-        expect(response.status).to eq(200)
+        expect(response).to have_http_status(:ok)
       end
     end
   end

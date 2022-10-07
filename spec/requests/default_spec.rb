@@ -4,7 +4,7 @@ describe 'Defaults' do
   describe 'GET home page for external API user health checks' do
     it 'returns a 200' do
       get '/'
-      expect(response.status).to eq 200
+      expect(response).to have_http_status :ok
     end
   end
 end

@@ -9,14 +9,14 @@ require:
 AllCops:
   TargetRubyVersion: 3.0
   Exclude:
-    - 'Gemfile'
-    - 'bin/**/*'
-    - 'db/**/*'
-    - 'config/**/*'
-    - 'spec/factories/*.local.rb'
-    - 'spec/fixtures/**/*'
-    - 'spec/spec_helper.rb'
-    - 'vendor/**/*'
+    - Gemfile
+    - bin/**/*
+    - db/**/*
+    - config/**/*
+    - spec/factories/*.local.rb
+    - spec/fixtures/**/*
+    - spec/spec_helper.rb
+    - vendor/**/*
 
 Rails/DynamicFindBy:
   Enabled: false
@@ -24,95 +24,95 @@ Rails/DynamicFindBy:
 # had to include these manually here as autogen rubocop_todo.yml just ... didn't get 'em
 RSpec/DescribeClass:
   Exclude:
-    - 'spec/tasks/cleanup_rake_spec.rb'
-    - 'spec/requests/authorization_spec.rb'
+    - spec/tasks/cleanup_rake_spec.rb
+    - spec/requests/authorization_spec.rb
 
 # there are useful expectations of methods being called on the subject in tests
 RSpec/SubjectStub:
   Exclude:
-    - "spec/**/*"
+    - spec/**/*
 
 Layout/MultilineMethodCallIndentation:
   Exclude:
-    - "spec/lib/web_of_science/harvester_spec.rb" # cop doesn't get compound matchers have semantic grouping
+    - spec/lib/web_of_science/harvester_spec.rb # cop doesn't get compound matchers have semantic grouping
 
 # https://github.com/bbatsov/rubocop/issues/4222
 Lint/AmbiguousBlockAssociation:
   Exclude:
-    - "spec/**/*"
+    - spec/**/*
 
 Lint/PercentStringArray:
   Exclude:
-    - "spec/lib/web_of_science/query_author_spec.rb" # specifically testing quoted clauses w/in strings
+    - spec/lib/web_of_science/query_author_spec.rb # specifically testing quoted clauses w/in strings
 
 Layout/LineLength:
   Max: 160 # Intentionally liberal because many existing long lines.
   Exclude:
-    - "spec/factories/**/*" # factories contain long string literals
-    - "spec/lib/csl/citation_spec.rb"
-    - "spec/models/publication_spec.rb"
-    - "spec/lib/pubmed/query_author_spec.rb"
-    - "spec/lib/orcid/client_spec.rb"
-    - "spec/lib/orcid/work_mapper_spec.rb"
-    - "spec/lib/orcid/pub_mapper_spec.rb"
+    - spec/factories/**/* # factories contain long string literals
+    - spec/lib/csl/citation_spec.rb
+    - spec/models/publication_spec.rb
+    - spec/lib/pubmed/query_author_spec.rb
+    - spec/lib/orcid/client_spec.rb
+    - spec/lib/orcid/work_mapper_spec.rb
+    - spec/lib/orcid/pub_mapper_spec.rb
 
 Metrics/AbcSize:
   Max: 35
   Exclude:
-    - "spec/controllers/publications_controller_spec.rb"
-    - "script/*"
+    - spec/controllers/publications_controller_spec.rb
+    - script/*
 
 Metrics/BlockLength:
   Exclude:
-    - "spec/factories/user_submitted_source_records.rb"
-    - "spec/lib/csl/citation_spec.rb"
-    - "lib/smci_report.rb"
-    - "lib/tasks/*.rake"
-    - "script/*"
-    - "spec/**/*"
+    - spec/factories/user_submitted_source_records.rb
+    - spec/lib/csl/citation_spec.rb
+    - lib/smci_report.rb
+    - lib/tasks/*.rake
+    - script/*
+    - spec/**/*
 
 Metrics/CyclomaticComplexity:
   Max: 12
   Exclude:
-    - "script/*"
+    - script/*
 
 Metrics/ClassLength:
   Max: 120
   Exclude:
-    - "app/controllers/authorships_controller.rb"
-    - "app/controllers/publications_controller.rb"
-    - "app/models/author.rb"
-    - "app/models/publication.rb"
-    - "app/models/pubmed_source_record.rb"
-    - "app/models/sciencewire_source_record.rb"
-    - "lib/cap/authors_poller.rb"
-    - "lib/science_wire_publication.rb"
-    - "lib/smci_report.rb"
-    - "lib/web_of_science/identifiers.rb"
-    - "script/*"
+    - app/controllers/authorships_controller.rb
+    - app/controllers/publications_controller.rb
+    - app/models/author.rb
+    - app/models/publication.rb
+    - app/models/pubmed_source_record.rb
+    - app/models/sciencewire_source_record.rb
+    - lib/cap/authors_poller.rb
+    - lib/science_wire_publication.rb
+    - lib/smci_report.rb
+    - lib/web_of_science/identifiers.rb
+    - script/*
 
 Metrics/MethodLength:
   Max: 45
   Exclude:
-    - "app/models/pubmed_source_record.rb"
-    - "app/models/sciencewire_source_record.rb"
-    - "lib/csl/mapper.rb"
-    - "lib/smci_report.rb"
-    - "script/*"
-    - "spec/**/*"
+    - app/models/pubmed_source_record.rb
+    - app/models/sciencewire_source_record.rb
+    - lib/csl/mapper.rb
+    - lib/smci_report.rb
+    - script/*
+    - spec/**/*
 
 Metrics/PerceivedComplexity:
   Max: 13
   Exclude:
-    - "script/*"
+    - script/*
 
 Naming/VariableName:
   Enabled: false
 
 Naming/VariableNumber:
   Exclude:
-    - "spec/**/*"
-    - "script/**/*"
+    - spec/**/*
+    - script/**/*
 
 RSpec/MultipleExpectations:
   Enabled: false
@@ -363,4 +363,35 @@ Rails/RootPublicPath: # new in 2.15
 Rails/StripHeredoc: # new in 2.15
   Enabled: true
 Rails/ToFormattedS: # new in 2.15
+  Enabled: true
+
+Lint/RequireRangeParentheses: # new in 1.32
+  Enabled: true
+Style/EmptyHeredoc: # new in 1.32
+  Enabled: true
+Style/MagicCommentFormat: # new in 1.35
+  Enabled: true
+RSpec/ClassCheck: # new in 2.13
+  Enabled: true
+RSpec/NoExpectationExample: # new in 2.13
+  Enabled: true
+RSpec/Capybara/SpecificFinders: # new in 2.13
+  Enabled: true
+RSpec/Capybara/SpecificMatcher: # new in 2.12
+  Enabled: true
+RSpec/Rails/HaveHttpStatus: # new in 2.12
+  Enabled: true
+Rails/ActionControllerFlashBeforeRender: # new in 2.16
+  Enabled: true
+Rails/ActiveSupportOnLoad: # new in 2.16
+  Enabled: true
+Rails/FreezeTime: # new in 2.16
+  Enabled: true
+Rails/RootPathnameMethods: # new in 2.16
+  Enabled: true
+Rails/ToSWithArgument: # new in 2.16
+  Enabled: true
+Rails/TopLevelHashWithIndifferentAccess: # new in 2.16
+  Enabled: true
+Rails/WhereMissing: # new in 2.16
   Enabled: true
