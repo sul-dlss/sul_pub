@@ -138,7 +138,7 @@ namespace :sul do
 
   desc 'Export publications for specific authors as csv'
   # exports all publications for the given sunets in a 'new' or 'approved' state after the date specified
-  # input csv file should have a column with a header of 'SUNetID' containing the sunetid of interest
+  # input csv file should have a column with a header of 'sunetid' containing the sunetid of interest
   # bundle exec rake sul:export_pubs_for_authors_csv['/tmp/input_file.csv','/tmp/output_file.csv','01/01/2013']
   # parameters are input csv file with sunets, output csv file, and date to go back to in format of mm/dd/yyyy
   task :export_pubs_for_authors_csv, %i[input_file output_file date_since] => :environment do |_t, args|
@@ -159,7 +159,7 @@ namespace :sul do
     CSV.open(output_file, 'wb') do |csv|
       csv << header_row
       rows.each_with_index do |row, i|
-        sunet = row['SUNetID']
+        sunet = row['sunetid']
         message = "#{i + 1} of #{total_authors} : #{sunet}"
         author = Author.find_by(sunetid: sunet)
         if author
@@ -185,7 +185,7 @@ namespace :sul do
             journal = pub.pub_hash[:journal] ? pub.pub_hash[:journal][:name] : ''
             mesh = if pub.pub_hash[:mesh_headings]
                      pub.pub_hash[:mesh_headings].map do |h|
-                       h[:descriptor][0][:name]
+                       h[:descriptor][0]&.fetch(:name)
                      end.compact.compact_blank.join('; ')
                    else
                      ''
