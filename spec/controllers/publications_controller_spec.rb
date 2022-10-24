@@ -360,7 +360,7 @@ describe PublicationsController, :vcr do
         result = JSON.parse(response.body)
         expect(result).to include('records')
         expect(result['records']).not_to be_empty
-        expect(result['records'].map { |r| r['year'] }).to all eq(year) # ALL records match
+        expect(result['records'].pluck('year')).to all eq(year) # ALL records match
       end
     end
 

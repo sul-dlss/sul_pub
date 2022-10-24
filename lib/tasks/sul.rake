@@ -286,7 +286,7 @@ namespace :sul do
               wos_uid = results[0].uid
               title = results[0].titles['item']
               journal = results[0].titles['source']
-              authors = results[0].authors.map { |a| a['full_name'] }.join('; ')
+              authors = results[0].authors.pluck('full_name').join('; ')
               times_results = WebOfScience.links_client.links([wos_uid], fields: %w[timesCited])
               times_cited = times_results[wos_uid]['timesCited']
             else
@@ -575,7 +575,7 @@ namespace :sul do
     if input_file
       puts "... loading #{input_file}"
       rows = CSV.parse(File.read(input_file), headers: true)
-      user_ids = rows.map { |row| row['author_id'] }
+      user_ids = rows.pluck('author_id')
       n = user_ids.size
     else
       puts "... fetching random #{n} authors"

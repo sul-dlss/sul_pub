@@ -69,6 +69,10 @@ RSpec/ExpectInHook:
     - 'spec/lib/doi_search_spec.rb'
     - 'spec/lib/web_of_science/process_records_spec.rb'
 
+# Offense count: 39
+RSpec/ExampleWording:
+  Enabled: false
+
 # Offense count: 1
 RSpec/IteratedExpectation:
   Exclude:
