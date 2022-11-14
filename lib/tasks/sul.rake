@@ -59,27 +59,39 @@ namespace :sul do
   end
 
   desc 'Export publications as csv'
-  # bundle exec rake sul:export_pubs_csv['/tmp/output_file.csv','01/01/2013'] # parameters are output csv file, and date to go back to in format of mm/dd/yyyy
-  task :export_pubs_csv, %i[output_file date_since] => :environment do |_t, args|
+  # bundle exec rake sul:export_pubs_csv['/tmp/output_file.csv','01/01/2013','01/01/2014']
+  # parameters are output csv file, start date and end date in format of mm/dd/yyyy
+  task :export_pubs_csv, %i[output_file date1 date2] => :environment do |_t, args|
     output_file = args[:output_file]
-    date_since = args[:date_since]
-    raise unless output_file && date_since
+    start_date = Date.strptime(args[:date1], '%m/%d/%Y')
+    end_date = Date.strptime(args[:date2], '%m/%d/%Y')
+    raise 'missing required params' unless output_file && start_date && end_date
 
-    total_pubs = Contribution.where('created_at > ?', Date.strptime(date_since, '%m/%d/%Y')).count
-    puts "Exporting all pubs to #{output_file} since date #{date_since}, found #{total_pubs} contributions to export"
-    header_row = %w[pub_title pub_associated_author_last_name pub_associated_author_first_name
-                    pub_associated_author_sunet pub_associated_author_employee_id pub_added_date apa_citation]
+    total_pubs = Contribution.where('created_at > ? and created_at < ?', start_date, end_date).count
+    start_time = Time.zone.now
+    n = 1
+    puts "Exporting all pubs to #{output_file} from #{start_date} to #{end_date}, found #{total_pubs} contributions to export. Started at #{start_time}."
+    header_row = %w[pub_title pmid doi publisher journal pub_year provenance
+                    pub_associated_author_last_name pub_associated_author_first_name
+                    pub_associated_author_sunet pub_associated_author_employee_id publication_status
+                    pub_harvested_date apa_citation]
     CSV.open(output_file, 'wb') do |csv|
       csv << header_row
-      Contribution.where('created_at > ?', Date.strptime(date_since, '%m/%d/%Y')).find_each do |contribution|
+      Contribution.where('created_at > ? and created_at < ?', start_date, end_date).find_each do |contribution|
+        puts "#{n} of #{total_pubs} : pub_id #{contribution.publication_id}, author_id #{contribution.author_id}"
         pub = contribution.publication
         author = contribution.author
-        csv << [pub.title, author.last_name, author.first_name, author.sunetid, author.university_id,
-                contribution.created_at, pub.pub_hash[:apa_citation]]
+        doi = pub.pub_hash[:identifier].map { |ident| ident[:id] if ident[:type].downcase == 'doi' }.compact.join
+        pmid = pub.pub_hash[:identifier].map { |ident| ident[:id] if ident[:type].downcase == 'pmid' }.compact.join
+        journal = pub.pub_hash[:journal] ? pub.pub_hash[:journal][:name] : ''
+        csv << [pub.title, pmid, doi, pub.pub_hash[:publisher], journal, pub.pub_hash[:year],
+                pub.pub_hash[:provenance], author.last_name, author.first_name, author.sunetid,
+                author.university_id, contribution.status, contribution.created_at, pub.pub_hash[:apa_citation]]
+        n += 1
       end
     end
     end_time = Time.zone.now
-    puts "Total: #{total_pubs}. Output file: #{output_file}. Ended at #{end_time}."
+    puts "Total: #{total_pubs}. Output file: #{output_file}. Ended at #{end_time}.  Total time: #{((end_time - start_time) / 60.0).round(1)} minutes."
   end
 
   desc 'Export publications pub_hashes as json'
@@ -139,20 +151,21 @@ namespace :sul do
   desc 'Export publications for specific authors as csv'
   # exports all publications for the given sunets in a 'new' or 'approved' state after the date specified
   # input csv file should have a column with a header of 'sunetid' containing the sunetid of interest
-  # bundle exec rake sul:export_pubs_for_authors_csv['/tmp/input_file.csv','/tmp/output_file.csv','01/01/2013']
-  # parameters are input csv file with sunets, output csv file, and date to go back to in format of mm/dd/yyyy
-  task :export_pubs_for_authors_csv, %i[input_file output_file date_since] => :environment do |_t, args|
+  # bundle exec rake sul:export_pubs_for_authors_csv['/tmp/input_file.csv','/tmp/output_file.csv','01/01/2013','01/01/2014']
+  # parameters are input csv file with sunets, output csv file, start date and end datein format of mm/dd/yyyy
+  task :export_pubs_for_authors_csv, %i[input_file output_file date1 date2] => :environment do |_t, args|
     output_file = args[:output_file]
     input_file = args[:input_file]
-    date_since = args[:date_since]
-    raise 'missing required params' unless output_file && input_file && Time.zone.parse(date_since)
+    start_date = Date.strptime(args[:date1], '%m/%d/%Y')
+    end_date = Date.strptime(args[:date2], '%m/%d/%Y')
+    raise 'missing required params' unless output_file && input_file && start_date && end_date
     raise 'missing input csv' unless File.file? input_file
 
     rows = CSV.parse(File.read(input_file), headers: true)
     total_authors = rows.size
     total_pubs = 0
     start_time = Time.zone.now
-    puts "Exporting all pubs for #{total_authors} authors to #{output_file} since date #{date_since}.  Started at #{start_time}."
+    puts "Exporting all pubs for #{total_authors} authors to #{output_file} from #{start_date} to #{end_date}.  Started at #{start_time}."
     header_row = %w[pub_title pmid doi publisher journal mesh pub_year provenance pub_associated_author_last_name
                     pub_associated_author_first_name pub_associated_author_sunet pub_associated_author_employee_id
                     author_list sunet_list publication_status pub_harvested_date apa_citation]
@@ -163,8 +176,8 @@ namespace :sul do
         message = "#{i + 1} of #{total_authors} : #{sunet}"
         author = Author.find_by(sunetid: sunet)
         if author
-          contributions = Contribution.where("author_id = ? and status in ('new','approved') and created_at > ?",
-                                             author.id, Time.zone.parse(date_since))
+          contributions = Contribution.where("author_id = ? and status in ('new','approved') and created_at > ? and created_at < ?",
+                                             author.id, start_date, end_date)
           puts "#{message} : #{contributions.size} publications"
           contributions.each do |contribution|
             pub = contribution.publication
@@ -176,8 +189,8 @@ namespace :sul do
                           else
                             ''
                           end
-            sunet_list = pub.contributions.where("status in ('new','approved') and created_at > ?",
-                                                 Time.zone.parse(date_since)).map do |c|
+            sunet_list = pub.contributions.where("status in ('new','approved') and created_at > ? and created_at < ?",
+                                                 start_date, end_date).map do |c|
               c.author.sunetid
             end.compact.compact_blank.join('; ')
             doi = pub.pub_hash[:identifier].map { |ident| ident[:id] if ident[:type].downcase == 'doi' }.compact.join
