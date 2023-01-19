@@ -206,7 +206,7 @@ GEM
     faraday-retry (2.0.0)
       faraday (~> 2.0)
     ffi (1.15.5)
-    globalid (1.0.0)
+    globalid (1.0.1)
       activesupport (>= 5.0)
     gyoku (1.4.0)
       builder (>= 2.1.2)
