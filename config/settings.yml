@@ -122,3 +122,11 @@ cap_provenance: cap
 pubmed_source: pubmed
 sciencewire_source: sciencewire
 wos_source: wos
+
+# checkin keys for honeybadger (actual keys are in shared_configs per environment as needed)
+# see https://app.honeybadger.io/projects/50046/check_ins
+honeybadger_checkins:
+  harvest_all_authors: null
+  cap_poll: null
+  mais_update_authors: null
+  orcid_all_all_works: null
