@@ -1,4 +1,5 @@
 # Learn more: http://github.com/javan/whenever
+require_relative 'environment'
 
 # These define jobs that checkin with Honeybadger.
 # If changing the schedule of one of these jobs, also update at https://app.honeybadger.io/projects/77112/check_ins
