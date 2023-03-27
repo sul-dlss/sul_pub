@@ -175,6 +175,8 @@ namespace :sul do
     rows = CSV.parse(File.read(input_file), headers: true)
     total_authors = rows.size
     total_pubs = 0
+    num_not_found = 0
+    users_not_found = []
     start_time = Time.zone.now
     puts "Exporting all pubs for #{total_authors} authors to #{output_file} from #{start_date} to #{end_date}.  Started at #{start_time}."
     header_row = %w[pub_title pub_id pmid doi publisher journal mesh pub_year provenance pub_associated_author_last_name
@@ -223,12 +225,16 @@ namespace :sul do
                     author_list, sunet_list, contribution.status, contribution.created_at, pub.pub_hash[:apa_citation]]
           end
         else
+          num_not_found += 1
+          users_not_found << sunet
           puts "#{message} : ERROR - not found in database"
         end
       end
     end
     end_time = Time.zone.now
     puts "Total: #{total_pubs}. Output file: #{output_file}. Ended at #{end_time}.  Total time: #{((end_time - start_time) / 60.0).round(1)} minutes."
+    puts "Num users not found: #{num_not_found}"
+    puts "Users not found: #{users_not_found.join(',')}"
   end
 
   desc 'Update pub_hash or authorship for all pubs'
