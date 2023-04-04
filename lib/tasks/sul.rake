@@ -153,20 +153,33 @@ namespace :sul do
   # input csv file should have a column with a header of 'sunetid' containing the sunetid of interest
   # bundle exec rake sul:export_pubs_for_authors_csv['/tmp/input_file.csv','/tmp/output_file.csv','01/01/2013','01/01/2014']
   # parameters are input csv file with sunets, output csv file, start date and end date in format of mm/dd/yyyy
+  # Note: the start and end date parameters refer to the dates when the publication was harvested and added to the system
+  # and the optional PUB_YEARS environment param refers to the publication year from the provided publication metadata (if it's available)
+  # These can be different since not all publications provide a publication year in the metadata, and the year we harvest a publication
+  # is not always the same as the year it was published.
+  # OPTIONAL environmental params:
+  # PUB_YEARS - comma delimited list of years which will restrict output to just publications with that publication year (defaults to all years)
+  # STATUS - comma delimited list of publication statuses to restrict output to (defaults to 'new,approved')
+  # PUB_YEARS=2015,2016 STATUS=approved bundle exec rake sul:export_pubs_for_authors_csv['/tmp/input_file.csv','/tmp/output_file.csv','01/01/2013','01/01/2014']
   task :export_pubs_for_authors_csv, %i[input_file output_file start_date end_date] => :environment do |_t, args|
     output_file = args[:output_file]
     input_file = args[:input_file]
     start_date = Date.strptime(args[:start_date], '%m/%d/%Y')
     end_date = Date.strptime(args[:end_date], '%m/%d/%Y')
+    pub_years = ENV.fetch('PUB_YEARS', '').split(',') # default to all years included (empty array)
+    status = ENV.fetch('STATUS', 'new,approved').split(',') # default publiction status to include as 'new,approved'
+
     raise 'missing required params' unless output_file && input_file && start_date && end_date
     raise 'missing input csv' unless File.file? input_file
 
     rows = CSV.parse(File.read(input_file), headers: true)
     total_authors = rows.size
     total_pubs = 0
+    num_not_found = 0
+    users_not_found = []
     start_time = Time.zone.now
     puts "Exporting all pubs for #{total_authors} authors to #{output_file} from #{start_date} to #{end_date}.  Started at #{start_time}."
-    header_row = %w[pub_title pmid doi publisher journal mesh pub_year provenance pub_associated_author_last_name
+    header_row = %w[pub_title pub_id pmid doi publisher journal mesh pub_year provenance pub_associated_author_last_name
                     pub_associated_author_first_name pub_associated_author_sunet pub_associated_author_employee_id
                     author_list sunet_list publication_status pub_harvested_date apa_citation]
     CSV.open(output_file, 'wb') do |csv|
@@ -174,13 +187,17 @@ namespace :sul do
       rows.each_with_index do |row, i|
         sunet = row['sunetid']
         message = "#{i + 1} of #{total_authors} : #{sunet}"
+        next if sunet.blank?
+
         author = Author.find_by(sunetid: sunet)
         if author
-          contributions = Contribution.where("author_id = ? and status in ('new','approved') and created_at > ? and created_at < ?",
-                                             author.id, start_date, end_date)
+          contributions = Contribution.where('author_id = ? and status in (?) and created_at > ? and created_at < ?',
+                                             author.id, status, start_date, end_date)
           puts "#{message} : #{contributions.size} publications"
           contributions.each do |contribution|
             pub = contribution.publication
+            next unless !pub_years.empty? && pub_years.include?(pub.year)
+
             total_pubs += 1
             author_list = if pub.pub_hash[:author]
                             Csl::RoleMapper.send(:parse_authors, pub.pub_hash[:author]).map do |a|
@@ -189,8 +206,8 @@ namespace :sul do
                           else
                             ''
                           end
-            sunet_list = pub.contributions.where("status in ('new','approved') and created_at > ? and created_at < ?",
-                                                 start_date, end_date).map do |c|
+            sunet_list = pub.contributions.where('status in (?) and created_at > ? and created_at < ?',
+                                                 status, start_date, end_date).map do |c|
               c.author.sunetid
             end.compact.compact_blank.join('; ')
             doi = pub.pub_hash[:identifier].filter_map { |ident| ident[:id] if ident[:type].downcase == 'doi' }.join
@@ -203,17 +220,21 @@ namespace :sul do
                    else
                      ''
                    end
-            csv << [pub.title, pmid, doi, pub.pub_hash[:publisher], journal, mesh, pub.pub_hash[:year],
+            csv << [pub.title, pub.id, pmid, doi, pub.pub_hash[:publisher], journal, mesh, pub.pub_hash[:year],
                     pub.pub_hash[:provenance], author.last_name, author.first_name, author.sunetid, author.university_id,
                     author_list, sunet_list, contribution.status, contribution.created_at, pub.pub_hash[:apa_citation]]
           end
         else
+          num_not_found += 1
+          users_not_found << sunet
           puts "#{message} : ERROR - not found in database"
         end
       end
     end
     end_time = Time.zone.now
     puts "Total: #{total_pubs}. Output file: #{output_file}. Ended at #{end_time}.  Total time: #{((end_time - start_time) / 60.0).round(1)} minutes."
+    puts "Num users not found: #{num_not_found}"
+    puts "Users not found: #{users_not_found.join(',')}"
   end
 
   desc 'Update pub_hash or authorship for all pubs'
@@ -470,12 +491,41 @@ namespace :sul do
     total_users = users.size
     puts "Number of active users with harvesting enabled: #{total_users}"
 
-    header_row = %w[orcidid name last_name first_name sunet cap_profile_id total_publications total_approved_publications total_new_publications
+    header_row = %w[orcidid name last_name first_name sunetid cap_profile_id total_publications total_approved_publications total_new_publications
                     total_denied_publications]
     CSV.open(output_file, 'wb') do |csv|
       csv << header_row
       users.each_with_index do |user, i|
         puts "#{i + 1} of #{total_users}: #{user.sunetid}"
+        total_approved = user.contributions.where(status: 'approved').size
+        total_new = user.contributions.where(status: 'new').size
+        total_denied = user.contributions.where(status: 'denied').size
+        total_publications = total_approved + total_new + total_denied
+        csv << [user.orcidid, "#{user.cap_first_name} #{user.cap_last_name}", user.cap_last_name, user.cap_first_name,
+                user.sunetid, user.cap_profile_id, total_publications, total_approved, total_new, total_denied]
+      end
+    end
+    puts
+    puts "Written to #{output_file}"
+  end
+
+  # bundle exec rake sul:all_users['tmp/results.csv']
+  # Query the sul_pub database for all people then export the total number of approved/new publications.
+  desc 'Export all users with total approved/new publication counts'
+  task :all_users, %i[output_file] => :environment do |_t, args|
+    output_file = args[:output_file]
+
+    total_users = Author.count
+    i = 0
+    puts "Number of users: #{total_users}"
+
+    header_row = %w[orcidid name last_name first_name sunetid cap_profile_id total_publications total_approved_publications total_new_publications
+                    total_denied_publications]
+    CSV.open(output_file, 'wb') do |csv|
+      csv << header_row
+      Author.all.find_each do |user|
+        i += 1
+        puts "#{i} of #{total_users}: #{user.sunetid}"
         total_approved = user.contributions.where(status: 'approved').size
         total_new = user.contributions.where(status: 'new').size
         total_denied = user.contributions.where(status: 'denied').size
