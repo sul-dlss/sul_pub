@@ -429,7 +429,7 @@ namespace :sul do
     output_file = args[:output_file]
 
     # active stanford users who have gone through the Stanford ORCID integration
-    users = Author.where.not(orcidid: nil).where(active_in_cap: true)
+    users = Author.where.not(orcidid: nil).where.not(sunetid: ['', nil]).where(active_in_cap: true)
     total_stanford = users.size
     orcidids_stanford = users.map(&:orcidid)
     puts "Number of active Stanford users who have gone through integration: #{total_stanford}"
