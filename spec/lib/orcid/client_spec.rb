@@ -19,22 +19,47 @@ describe Orcid::Client do
   end
 
   describe '#search' do
-    let(:search_response) { subject.search('(ringgold-org-id:6429)') }
-    let(:big_search_response) { subject.search('test') }
+    context 'regular search' do
+      let(:search_response) { subject.search('(ringgold-org-id:6429)') }
+      let(:big_search_response) { subject.search('test') }
 
-    it 'runs a search with one page of results' do
-      VCR.use_cassette('Orcid_Client/_search/search') do
-        expect(search_response['num-found']).to be > 1
-        expect(search_response['num-found']).to be < 1000
-        expect(search_response['result'].size).to eq search_response['num-found']
-        expect(search_response['result'][0]['orcid-identifier']).to include('uri')
+      it 'runs a search with one page of results' do
+        VCR.use_cassette('Orcid_Client/_search/search') do
+          expect(search_response['num-found']).to be > 1
+          expect(search_response['num-found']).to be < 1000
+          expect(search_response['result'].size).to eq search_response['num-found']
+          expect(search_response['result'][0]['orcid-identifier']).to include('uri')
+        end
+      end
+
+      it 'runs a search with many pages of results' do
+        VCR.use_cassette('Orcid_Client/_search/big_search') do
+          expect(big_search_response['result'].size).to be > 1000
+          expect(big_search_response['result'][0]['orcid-identifier']).to include('uri')
+        end
       end
     end
 
-    it 'runs a search with many pages of results' do
-      VCR.use_cassette('Orcid_Client/_search/big_search') do
-        expect(big_search_response['result'].size).to be > 1000
-        expect(big_search_response['result'][0]['orcid-identifier']).to include('uri')
+    context 'expanded search' do
+      let(:search_response) { subject.search('(ringgold-org-id:6429)', expanded: true) }
+      let(:big_search_response) { subject.search('test', expanded: true) }
+
+      it 'runs a search with one page of results using the expanded search that includes name' do
+        VCR.use_cassette('Orcid_Client/_search/expanded-search') do
+          expect(search_response['num-found']).to be > 1
+          expect(search_response['num-found']).to be < 1000
+          expect(search_response['expanded-result'].size).to eq search_response['num-found']
+          expect(search_response['expanded-result'][0]['orcid-id']).to include('0000-0003-4722-8312')
+          expect(search_response['expanded-result'][0]['family-names']).to include('Chan')
+        end
+      end
+
+      it 'runs a search with many pages of results' do
+        VCR.use_cassette('Orcid_Client/_search/expended-big_search') do
+          expect(big_search_response['expanded-result'].size).to be > 1000
+          expect(big_search_response['expanded-result'][0]['orcid-id']).to include('0000-0001-6458-199X')
+          expect(big_search_response['expanded-result'][0]['family-names']).to include('Smith')
+        end
       end
     end
   end
