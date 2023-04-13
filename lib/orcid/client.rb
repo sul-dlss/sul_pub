@@ -40,10 +40,20 @@ module Orcid
 
     # Run a generalized search query against ORCID
     # see https://info.orcid.org/documentation/api-tutorials/api-tutorial-searching-the-orcid-registry
-    def search(query)
+    # @param [query] query to pass to ORCID
+    # @param [expanded] set to true or false (defaults to false) to indicate an expanded query results (see ORCID docs)
+    def search(query, expanded: false)
+      if expanded
+        search_method = 'expanded-search'
+        response_name = 'expanded-result'
+      else
+        search_method = 'search'
+        response_name = 'result'
+      end
+
       # this is the maximum number of rows ORCID allows in their response currently
       max_num_returned = 1000
-      total_response = get("/v3.0/search/?q=#{query}&rows=#{max_num_returned}")
+      total_response = get("/v3.0/#{search_method}/?q=#{query}&rows=#{max_num_returned}")
       num_results = total_response['num-found']
 
       return total_response if num_results <= max_num_returned
@@ -52,8 +62,8 @@ module Orcid
 
       # we already have page 1 of the results
       (1..num_pages - 1).each do |page_num|
-        response = get("/v3.0/search/?q=#{query}&start=#{(page_num * max_num_returned) + 1}&rows=#{max_num_returned}")
-        total_response['result'] += response['result']
+        response = get("/v3.0/#{search_method}/?q=#{query}&start=#{(page_num * max_num_returned) + 1}&rows=#{max_num_returned}")
+        total_response[response_name] += response[response_name]
       end
 
       total_response
