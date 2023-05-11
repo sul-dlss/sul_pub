@@ -15,7 +15,7 @@ module WebOfScience
       abstract = abstracts.first.strip
       case database
       when 'MEDLINE'
-        { abstract: abstract }
+        { abstract: }
       else
         { abstract_restricted: abstract }
       end

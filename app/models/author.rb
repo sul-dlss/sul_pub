@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'set'
-
 class Author < ApplicationRecord
   # Allowed values for visibility
   VISIBILITY_VALUES = %w[public private stanford].freeze
@@ -182,9 +180,9 @@ class Author < ApplicationRecord
 
     contribution = pub.contributions.find_or_initialize_by(author_id: id) do |contrib|
       contrib.assign_attributes(
-        cap_profile_id: cap_profile_id,
+        cap_profile_id:,
         featured: false, status: 'new', visibility: 'private',
-        orcid_put_code: orcid_put_code
+        orcid_put_code:
       )
     end
     return contribution unless contribution.new_record?

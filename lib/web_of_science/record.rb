@@ -120,7 +120,7 @@ module WebOfScience
 
     # @return [WebOfScienceSourceRecord] pre-extracted and persisted ActiveRecord instance
     def find_or_create_model
-      WebOfScienceSourceRecord.find_or_create_by(uid: uid) do |rec|
+      WebOfScienceSourceRecord.find_or_create_by(uid:) do |rec|
         rec.record = self
         rec.database = database
       end

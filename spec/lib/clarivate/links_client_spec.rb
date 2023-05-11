@@ -37,7 +37,7 @@ describe Clarivate::LinksClient do
 
     context 'with param' do
       let(:response_xml) { File.read('spec/fixtures/clarivate/links_response.xml') }
-      let(:links) { links_client.links(ids, fields: fields) }
+      let(:links) { links_client.links(ids, fields:) }
 
       before do
         allow(links_client.send(:connection)).to receive(:post).with(any_args).and_return(double(body: response_xml))

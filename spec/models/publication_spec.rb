@@ -37,7 +37,7 @@ describe Publication do
   end
 
   describe 'pub_hash validation' do
-    subject { described_class.create!(pub_hash: pub_hash) }
+    subject { described_class.create!(pub_hash:) }
 
     it 'notifies HB but does not fail validation on invalid pub_hash' do
       expect(Honeybadger).to receive(:notify).with(
@@ -56,7 +56,7 @@ describe Publication do
   end
 
   describe 'test pub hash syncing for new object' do
-    subject { described_class.create!(pub_hash: pub_hash) }
+    subject { described_class.create!(pub_hash:) }
 
     it 'rebuilds identifiers' do
       expect(subject.pub_hash[:identifier].length).to be > 0
@@ -212,7 +212,7 @@ describe Publication do
 
     it 'updates attributions of existing contributions to the database' do
       expect(publication.contributions.size).to eq(0)
-      publication.contributions.create(author: author, cap_profile_id: author.cap_profile_id, status: 'unknown')
+      publication.contributions.create(author:, cap_profile_id: author.cap_profile_id, status: 'unknown')
       publication.pub_hash = pub_hash.merge(authorship: [{ status: 'new', sul_author_id: author.id }])
       publication.send(:update_any_new_contribution_info_in_pub_hash_to_db)
       expect(publication.contributions.size).to eq(1)
@@ -329,7 +329,7 @@ describe Publication do
       publication.pub_hash[:provenance] = 'pubmed'
       source_data = '<PubmedArticle><MedlineCitation Status="Publisher" Owner="NLM"><OriginalData/><Article><ArticleTitle>How I learned Rails</ArticleTitle></Article></PubmedArticle>'
       new_source_data = '<PubmedArticle><MedlineCitation Status="Publisher" Owner="NLM"><Article><ArticleTitle>How I learned Rails</ArticleTitle></Article><PMID Version="1">123</PMID><SomeNewData/></PubmedArticle>'
-      pubmed_record = PubmedSourceRecord.create(pmid: pmid, source_data: source_data)
+      pubmed_record = PubmedSourceRecord.create(pmid:, source_data:)
       allow(PubmedSourceRecord).to receive(:find_by_pmid).with(pmid).and_return(pubmed_record)
       expect(pubmed_record.source_data).to be_equivalent_to source_data
       allow_any_instance_of(Pubmed::Client).to receive(:fetch_records_for_pmid_list).with(pmid).and_return(new_source_data)
@@ -512,7 +512,7 @@ describe Publication do
 
   describe '#wos_uid' do
     let(:wos_src_rec) { WebOfScienceSourceRecord.new(source_data: wos_record.to_xml) }
-    let(:wos_record) { WebOfScience::Records.new(encoded_records: encoded_records).first }
+    let(:wos_record) { WebOfScience::Records.new(encoded_records:).first }
     let(:encoded_records) { File.read('spec/fixtures/wos_client/wos_encoded_records.html') }
 
     it 'is set automatically during save if web_of_science_source_record is present' do

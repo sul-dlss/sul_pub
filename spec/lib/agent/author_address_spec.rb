@@ -8,11 +8,11 @@ describe Agent::AuthorAddress do
   let(:country) { 'USA' }
   let(:full_address) do
     described_class.new(
-      line1: line1,
-      line2: line2,
-      city: city,
-      state: state,
-      country: country
+      line1:,
+      line2:,
+      city:,
+      state:,
+      country:
     )
   end
   let(:empty_address) { described_class.new }

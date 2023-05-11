@@ -211,7 +211,7 @@ describe WebOfScience::ProcessRecords, :vcr do
       end
       let(:pub) do
         build :publication, sciencewire_id: 123, pmid: '21253920', pubhash_needs_update: true,
-                            pub_hash: pub_hash
+                            pub_hash:
       end
       let(:uid) { records.first.uid }
 
@@ -256,7 +256,7 @@ describe WebOfScience::ProcessRecords, :vcr do
 
         it 'associates source record to existing Pub' do
           expect { processor.execute }.to change {
-                                            WebOfScienceSourceRecord.find_by(uid: uid).publication
+                                            WebOfScienceSourceRecord.find_by(uid:).publication
                                           }.from(nil).to(pub)
         end
       end

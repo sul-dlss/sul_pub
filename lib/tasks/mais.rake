@@ -12,7 +12,7 @@ namespace :mais do
   task update_authors: :environment do
     orcid_users = Mais.client.fetch_orcid_users
     logger = Logger.new(Rails.root.join('log/mais_update_authors.log'))
-    count = Mais::UpdateAuthorsOrcid.new(orcid_users, logger: logger).update
+    count = Mais::UpdateAuthorsOrcid.new(orcid_users, logger:).update
     puts "Updated #{count} author records from #{orcid_users.size} ORCID users."
   end
 end

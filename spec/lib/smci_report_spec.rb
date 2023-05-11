@@ -73,7 +73,7 @@ describe SmciReport do
     context 'when wos returns less than the max number of publications for an author with an orcid' do
       let(:uids) { [1, 2] }
       let(:orcid_uids) { [2, 3] }
-      let(:query_name) { instance_double(WebOfScience::QueryName, uids: uids, valid?: true) }
+      let(:query_name) { instance_double(WebOfScience::QueryName, uids:, valid?: true) }
       let(:query_orcid) { instance_double(WebOfScience::QueryOrcid, uids: orcid_uids, valid?: true) }
 
       before do
@@ -106,7 +106,7 @@ describe SmciReport do
     let(:date) { Time.zone.now }
 
     it 'creates an output for a profile author' do
-      result = report.send(:output_row, pub_hash: pub_hash, author: author, harvested_at: date,
+      result = report.send(:output_row, pub_hash:, author:, harvested_at: date,
                                         publication_status: 'new')
       expect(result).to eq(['some title', '', '', '', '', '', '', 'some publisher', '', '', '', '', nil, nil, '', nil,
                             nil, nil, nil, author.last_name, author.first_name, author.sunetid, author.cap_profile_id,
@@ -114,7 +114,7 @@ describe SmciReport do
     end
 
     it 'creates an output row for a non-profile author' do
-      result = report.send(:output_row, orcid: '1234', pub_hash: pub_hash)
+      result = report.send(:output_row, orcid: '1234', pub_hash:)
       expect(result).to eq(['some title', '', '', '', '', '', '', 'some publisher', '', '', '', '', nil, nil, '', nil,
                             nil, nil, '1234', '', '', '', '', '', '', 'unknown', Time.now.utc.to_fs(:db), nil, nil, nil])
     end

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 describe Orcid::DeleteWorks do
-  let(:delete_works) { described_class.new(logger: logger) }
+  let(:delete_works) { described_class.new(logger:) }
 
   let(:logger) { instance_double(Logger, info: nil) }
 
@@ -19,7 +19,7 @@ describe Orcid::DeleteWorks do
 
     let(:put_code) { '1253255' }
 
-    let(:contribution) { create :contribution, author: author, publication: publication, orcid_put_code: put_code }
+    let(:contribution) { create :contribution, author:, publication:, orcid_put_code: put_code }
 
     context 'when a user without update grant' do
       let(:orcid_user) { Mais::Client::OrcidUser.new(author.sunetid, author.orcidid, ['/read-limited'], '91gd29cb-124e-5bf8-1ard-90315b03ae12') }
@@ -78,7 +78,7 @@ describe Orcid::DeleteWorks do
       let(:client) { instance_double(Orcid::Client) }
 
       before do
-        create :contribution, author: author, publication: publication, orcid_put_code: put_code
+        create :contribution, author:, publication:, orcid_put_code: put_code
         allow(Orcid).to receive(:client).and_return(client)
         allow(client).to receive(:delete_work).and_raise('Nope!')
         allow(NotificationManager).to receive(:error)
@@ -97,9 +97,9 @@ describe Orcid::DeleteWorks do
     let(:author) { create :author }
 
     before do
-      create :contribution, author: author, orcid_put_code: '1250172'
-      create :contribution, author: author, orcid_put_code: '1250173'
-      create :contribution, author: author, orcid_put_code: '1250174'
+      create :contribution, author:, orcid_put_code: '1250172'
+      create :contribution, author:, orcid_put_code: '1250173'
+      create :contribution, author:, orcid_put_code: '1250174'
       allow(delete_works).to receive(:delete_work).and_return(true, false, true)
     end
 

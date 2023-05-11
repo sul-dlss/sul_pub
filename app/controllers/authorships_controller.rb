@@ -177,7 +177,7 @@ class AuthorshipsController < ApplicationController
   end
 
   def get_cap_author!(cap_profile_id)
-    author = Author.find_by(cap_profile_id: cap_profile_id) || Author.fetch_from_cap_and_create(cap_profile_id)
+    author = Author.find_by(cap_profile_id:) || Author.fetch_from_cap_and_create(cap_profile_id)
     unless author
       log_and_error!("SULCAP has no record for cap_profile_id: #{cap_profile_id}")
       false

@@ -91,7 +91,7 @@ FactoryBot.define do
     end
     after(:create) do |author, evaluator|
       evaluator.alt_count.times do
-        create(:author_identity, author: author)
+        create(:author_identity, author:)
       end
     end
 
@@ -120,14 +120,14 @@ FactoryBot.define do
     # create some `author.author_identities`
     after(:create) do |author, _evaluator|
       create(:author_identity,
-             author: author,
+             author:,
              first_name: 'R',
              middle_name: 'B',
              last_name: 'Altman',
              email: nil,
              institution: 'Stanford University')
       create(:author_identity,
-             author: author,
+             author:,
              first_name: 'Russ',
              middle_name: nil,
              last_name: 'Altman',

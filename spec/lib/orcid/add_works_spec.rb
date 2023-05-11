@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 describe Orcid::AddWorks do
-  let(:add_works) { described_class.new(logger: logger) }
+  let(:add_works) { described_class.new(logger:) }
 
   let(:logger) { instance_double(Logger, info: nil, error: nil, warn: nil) }
 
@@ -20,14 +20,14 @@ describe Orcid::AddWorks do
     let(:contribution_count) { add_works.add_for_orcid_user(orcid_user) }
     let(:contribution_count_no_orcid_approved_contributions) { add_works.add_for_orcid_user(orcid_user_no_orcid_approved_contributions) }
 
-    let(:author) { create :author, cap_visibility: cap_visibility }
-    let(:author_no_orcid_approved_contributions) { create :author, cap_visibility: cap_visibility }
+    let(:author) { create :author, cap_visibility: }
+    let(:author_no_orcid_approved_contributions) { create :author, cap_visibility: }
 
     let(:cap_visibility) { 'public' }
 
     let(:publication) { create :pub_with_pmid_and_pub_identifier }
 
-    let!(:contribution) { create :contribution, author: author, publication: publication }
+    let!(:contribution) { create :contribution, author:, publication: }
 
     context 'when a user without update grant' do
       let(:orcid_user) { Mais::Client::OrcidUser.new(author.sunetid, author.orcidid, ['/read-limited'], '91gd29cb-124e-5bf8-1ard-90315b03ae12') }
@@ -74,7 +74,7 @@ describe Orcid::AddWorks do
 
     context 'when ORCID token is invalid' do
       it 'logs a warning, does not push, and does not HB' do
-        create :contribution, author: author, publication: publication, status: 'approved'
+        create :contribution, author:, publication:, status: 'approved'
         expect(NotificationManager).not_to receive(:error)
         error_message = "Orcid::AddWorks - author #{author.id} " \
                         "- did not add publication #{publication.id}: Invalid token for #{author.orcidid} " \
@@ -87,7 +87,7 @@ describe Orcid::AddWorks do
 
     context 'when pub_hash cannot be mapped to work' do
       # Default factory pub_hash is missing an identifier so allowing factory to create publication.
-      let!(:contribution) { create :contribution, author: author } # rubocop:disable RSpec/LetSetup
+      let!(:contribution) { create :contribution, author: } # rubocop:disable RSpec/LetSetup
 
       it 'ignores' do
         expect(NotificationManager).not_to receive(:error)
@@ -100,7 +100,7 @@ describe Orcid::AddWorks do
       let(:client) { instance_double(Orcid::Client) }
 
       before do
-        create :contribution, author: author, publication: publication
+        create(:contribution, author:, publication:)
         allow(Orcid).to receive(:client).and_return(client)
         allow(client).to receive(:add_work).and_raise('Nope!')
         allow(NotificationManager).to receive(:error)
@@ -114,7 +114,7 @@ describe Orcid::AddWorks do
 
     context 'when Contribution is not approved' do
       it 'skips' do
-        create :contribution, author: author_no_orcid_approved_contributions, publication: publication, status: 'new'
+        create :contribution, author: author_no_orcid_approved_contributions, publication:, status: 'new'
         expect(logger).not_to receive(:warn)
         expect(contribution_count_no_orcid_approved_contributions).to be_zero
       end
@@ -122,7 +122,7 @@ describe Orcid::AddWorks do
 
     context 'when Contribution is not public' do
       before do
-        create :contribution, author: author_no_orcid_approved_contributions, publication: publication, visibility: 'private'
+        create :contribution, author: author_no_orcid_approved_contributions, publication:, visibility: 'private'
       end
 
       it 'skips' do
@@ -133,7 +133,7 @@ describe Orcid::AddWorks do
 
     context 'when Contribution already has put-code' do
       before do
-        create :contribution, author: author_no_orcid_approved_contributions, publication: publication, orcid_put_code: '1250170'
+        create :contribution, author: author_no_orcid_approved_contributions, publication:, orcid_put_code: '1250170'
       end
 
       it 'skips' do

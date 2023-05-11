@@ -236,7 +236,7 @@ module Pubmed
       {
         firstname: fn,
         middlename: mn,
-        lastname: lastname
+        lastname:
       }.compact
       # TODO: extract Identifier
       # <Identifier> was added to <AuthorList> with the 2010 DTD, but was not used until 2013.

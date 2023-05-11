@@ -5,7 +5,7 @@ namespace :orcid do
   task add_all_works: :environment do
     orcid_users = Mais.client.fetch_orcid_users
     logger = Logger.new(Rails.root.join('log/orcid_add_works.log'))
-    count = Orcid::AddWorks.new(logger: logger).add_all(orcid_users)
+    count = Orcid::AddWorks.new(logger:).add_all(orcid_users)
     puts "Added #{count} works from #{orcid_users.size} ORCID users."
   end
 
@@ -15,7 +15,7 @@ namespace :orcid do
     raise "Could not get ORCID.org access token for #{args[:sunetid]}" unless orcid_user
 
     logger = Logger.new(Rails.root.join('log/orcid_add_work.log'))
-    count = Orcid::AddWorks.new(logger: logger).add_for_orcid_user(orcid_user)
+    count = Orcid::AddWorks.new(logger:).add_for_orcid_user(orcid_user)
     puts "Added #{count} works."
   end
 
@@ -39,7 +39,7 @@ namespace :orcid do
     raise "Could not get ORCID.org access token for #{args[:sunetid]}" unless orcid_user
 
     logger = Logger.new(Rails.root.join('log/orcid_delete_works.log'))
-    count = Orcid::DeleteWorks.new(logger: logger).delete_for_orcid_user(orcid_user)
+    count = Orcid::DeleteWorks.new(logger:).delete_for_orcid_user(orcid_user)
     puts "Deleted #{count} works."
   end
 
@@ -51,7 +51,7 @@ namespace :orcid do
     contribution = Contribution.find(args[:contribution_id].to_i)
 
     logger = Logger.new(Rails.root.join('log/orcid_delete_work.log'))
-    if Orcid::DeleteWorks.new(logger: logger).delete_work(contribution, orcid_user)
+    if Orcid::DeleteWorks.new(logger:).delete_work(contribution, orcid_user)
       puts 'Deleted work.'
     else
       puts 'Did not delete work.'

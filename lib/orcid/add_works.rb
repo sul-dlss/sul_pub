@@ -26,7 +26,7 @@ module Orcid
 
       logger&.info("#{self.class} - author #{author.id} - adding publications to #{orcid_user.orcidid}")
 
-      contributions = Contribution.where(author: author, status: 'approved', visibility: 'public', orcid_put_code: nil)
+      contributions = Contribution.where(author:, status: 'approved', visibility: 'public', orcid_put_code: nil)
       contributions.map { |contribution| add_work(author, contribution, orcid_user) ? 1 : 0 }.sum
     end
 

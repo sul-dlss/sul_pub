@@ -28,7 +28,7 @@ if Settings.WOS.enabled
 end
 
 def get_contributions_for_sunet(sunetid)
-  a = Author.where(sunetid: sunetid)
+  a = Author.where(sunetid:)
   all_contributions = 0
   approved_contributions = 0
   citations = 0

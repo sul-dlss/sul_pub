@@ -98,8 +98,8 @@ module Orcid
 
     def new_orcid_source_record(orcidid, put_code, work_response)
       OrcidSourceRecord.new(
-        put_code: put_code,
-        orcidid: orcidid,
+        put_code:,
+        orcidid:,
         last_modified_date: work_response['last-modified-date']['value'],
         source_data: work_response,
         source_fingerprint: Digest::SHA2.hexdigest(JSON.generate(work_response))

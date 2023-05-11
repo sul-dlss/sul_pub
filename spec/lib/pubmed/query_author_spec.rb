@@ -42,7 +42,7 @@ describe Pubmed::QueryAuthor do
     context 'with a user with alternate identities with different institutions' do
       before do
         AuthorIdentity.create(
-          author: author,
+          author:,
           first_name: 'R',
           middle_name: 'B',
           last_name: 'Altman',
@@ -58,7 +58,7 @@ describe Pubmed::QueryAuthor do
     context 'with a user with alternate identities with different institutions with an & with a trailing and a leading space' do
       before do
         AuthorIdentity.create(
-          author: author,
+          author:,
           first_name: 'R',
           middle_name: 'B',
           last_name: 'Altman',
@@ -74,7 +74,7 @@ describe Pubmed::QueryAuthor do
     context 'with a user with alternate identities with different institutions with an & without any surrounding spaces' do
       before do
         AuthorIdentity.create(
-          author: author,
+          author:,
           first_name: 'R',
           middle_name: 'B',
           last_name: 'Altman',
@@ -90,7 +90,7 @@ describe Pubmed::QueryAuthor do
     context 'with a user with alternate identities with different institutions with an & with just a trailing space' do
       before do
         AuthorIdentity.create(
-          author: author,
+          author:,
           first_name: 'R',
           middle_name: 'B',
           last_name: 'Altman',
@@ -106,7 +106,7 @@ describe Pubmed::QueryAuthor do
     context 'with a user with alternate identities with different institutions with an & with just a leading space' do
       before do
         AuthorIdentity.create(
-          author: author,
+          author:,
           first_name: 'R',
           middle_name: 'B',
           last_name: 'Altman',
@@ -122,7 +122,7 @@ describe Pubmed::QueryAuthor do
     context 'with a user with just a period for first name' do
       before do
         AuthorIdentity.create(
-          author: author,
+          author:,
           first_name: '.',
           middle_name: 'B',
           last_name: 'Altman',
@@ -138,7 +138,7 @@ describe Pubmed::QueryAuthor do
     context 'with a user with no first name' do
       before do
         AuthorIdentity.create(
-          author: author,
+          author:,
           first_name: '',
           middle_name: 'B',
           last_name: 'Altman',
@@ -154,7 +154,7 @@ describe Pubmed::QueryAuthor do
     context 'with a nil first name' do
       before do
         AuthorIdentity.create(
-          author: author,
+          author:,
           first_name: nil,
           middle_name: 'B',
           last_name: 'Altman',

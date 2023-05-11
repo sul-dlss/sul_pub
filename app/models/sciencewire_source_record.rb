@@ -50,7 +50,7 @@ class SciencewireSourceRecord < ApplicationRecord
     pub = Publication.new(
       active: true,
       sciencewire_id: sw_pub_hash[:sw_id],
-      pmid: pmid
+      pmid:
     )
     pub.build_from_sciencewire_hash(sw_pub_hash)
     pub.sync_publication_hash_and_db
@@ -64,7 +64,7 @@ class SciencewireSourceRecord < ApplicationRecord
 
     pub = Publication.new(
       active: true,
-      sciencewire_id: sciencewire_id,
+      sciencewire_id:,
       pmid: sw_pub_hash[:pmid]
     )
     pub.build_from_sciencewire_hash(sw_pub_hash)
@@ -74,23 +74,23 @@ class SciencewireSourceRecord < ApplicationRecord
   end
 
   def self.get_sciencewire_hash_for_sw_id(sciencewire_id)
-    sciencewire_source_record = find_by(sciencewire_id: sciencewire_id)
+    sciencewire_source_record = find_by(sciencewire_id:)
     sciencewire_source_record&.source_as_hash
   end
 
   def self.get_sciencewire_hash_for_pmid(pmid)
-    sciencewire_source_record = find_by(pmid: pmid)
+    sciencewire_source_record = find_by(pmid:)
     sciencewire_source_record&.source_as_hash
   end
 
   def self.save_sw_source_record(sciencewire_id, pmid, incoming_sw_xml_as_string)
     existing_sw_source_record = find_by(
-      sciencewire_id: sciencewire_id
+      sciencewire_id:
     )
     if existing_sw_source_record.nil?
       new_source_fingerprint = get_source_fingerprint(incoming_sw_xml_as_string)
       attrs = {
-        sciencewire_id: sciencewire_id,
+        sciencewire_id:,
         source_data: incoming_sw_xml_as_string,
         is_active: true,
         source_fingerprint: new_source_fingerprint

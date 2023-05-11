@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require 'set'
 require 'csv'
 
 class Reporter
@@ -30,7 +29,7 @@ class Reporter
     end
 
     @pmids.each do |pmid|
-      Publication.where(pmid: pmid).each do |pub|
+      Publication.where(pmid:).each do |pub|
         if @all_pub_ids.add? pub.id
           @pmid_sw_pub_ids << [pmid, pub.sciencewire_id, pub.id]
         else

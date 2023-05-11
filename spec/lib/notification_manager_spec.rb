@@ -2,7 +2,7 @@
 
 describe NotificationManager do
   let(:message) { 'this is an error message' }
-  let(:exception) { double(Exception, message: message, backtrace: ['backtrace data']) }
+  let(:exception) { double(Exception, message:, backtrace: ['backtrace data']) }
   let(:null_logger) { Logger.new('/dev/null') }
 
   before do
