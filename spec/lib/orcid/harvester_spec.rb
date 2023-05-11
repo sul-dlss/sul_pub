@@ -141,7 +141,7 @@ describe Orcid::Harvester do
       let!(:publication) do
         pub = Publication.create
         PublicationIdentifier.create(publication: pub, identifier_type: 'doi', identifier_value: '10.1017/S0140525X00005756')
-        Contribution.create(publication: pub, author: author)
+        Contribution.create(publication: pub, author:)
         pub
       end
 
@@ -152,7 +152,7 @@ describe Orcid::Harvester do
         expect(put_codes).to eq([put_code])
 
         # No OrcidSourceRecord
-        expect(OrcidSourceRecord.find_by(put_code: put_code, orcidid: orcid_id)).to be_nil
+        expect(OrcidSourceRecord.find_by(put_code:, orcidid: orcid_id)).to be_nil
 
         # And contribution
         publication.reload
@@ -177,7 +177,7 @@ describe Orcid::Harvester do
         expect(put_codes).to eq([put_code])
 
         # No OrcidSourceRecord
-        expect(OrcidSourceRecord.find_by(put_code: put_code, orcidid: orcid_id)).to be_nil
+        expect(OrcidSourceRecord.find_by(put_code:, orcidid: orcid_id)).to be_nil
 
         # And contribution
         publication.reload
@@ -197,7 +197,7 @@ describe Orcid::Harvester do
         expect(put_codes).to eq([put_code])
 
         # Creates OrcidSourceRecord
-        source_record = OrcidSourceRecord.find_by(put_code: put_code, orcidid: orcid_id)
+        source_record = OrcidSourceRecord.find_by(put_code:, orcidid: orcid_id)
         expect(source_record.last_modified_date).to eq(1_607_403_656_707)
         expect(source_record.source_fingerprint).to start_with('9bcb9f6fec39')
         expect(source_record.source_data.with_indifferent_access).to match(work_response)
@@ -249,7 +249,7 @@ describe Orcid::Harvester do
         expect(put_codes).to eq([put_code])
 
         # Creates OrcidSourceRecord
-        source_record = OrcidSourceRecord.find_by(put_code: put_code, orcidid: orcid_id)
+        source_record = OrcidSourceRecord.find_by(put_code:, orcidid: orcid_id)
 
         # Creates Publication
         publication = source_record.publication

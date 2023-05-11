@@ -255,7 +255,7 @@ describe PublicationsController, :vcr do
       end
       let(:result) do
         params = { format: 'json', doi: doi_value }
-        get :sourcelookup, params: params
+        get(:sourcelookup, params:)
         expect(response).to have_http_status(:ok)
         JSON.parse(response.body)
       end
@@ -279,7 +279,7 @@ describe PublicationsController, :vcr do
         allow(Settings.WOS).to receive(:enabled).and_return(false)
         allow(Settings.PUBMED).to receive(:lookup_enabled).and_return(true)
         params = { format: 'json', pmid: '24196758' }
-        get :sourcelookup, params: params
+        get(:sourcelookup, params:)
         expect(response).to have_http_status(:ok)
         result = JSON.parse(response.body)
         expect(result['metadata']).to include('records' => '1')
@@ -293,7 +293,7 @@ describe PublicationsController, :vcr do
         allow(Settings.WOS).to receive(:enabled).and_return(false)
         allow(Settings.PUBMED).to receive(:lookup_enabled).and_return(false)
         params = { format: 'json', pmid: '24196758' }
-        get :sourcelookup, params: params
+        get(:sourcelookup, params:)
         expect(response).to have_http_status(:ok)
         result = JSON.parse(response.body)
         expect(result['metadata']).to include('records' => '0')
@@ -307,7 +307,7 @@ describe PublicationsController, :vcr do
       let(:sourcelookup_by_title) do
         publication_with_test_title
         params = { format: 'json', title: test_title, maxrows: 2 }
-        get :sourcelookup, params: params
+        get(:sourcelookup, params:)
         expect(response).to have_http_status(:ok)
         JSON.parse(response.body)
       end
@@ -321,7 +321,7 @@ describe PublicationsController, :vcr do
 
       it 'with maxrows number of records' do
         params = { format: 'json', title: test_title, maxrows: 5 }
-        get :sourcelookup, params: params
+        get(:sourcelookup, params:)
         expect(response).to have_http_status(:ok)
         result = JSON.parse(response.body)
         expect(result['records'].length).to eq(5)
@@ -333,7 +333,7 @@ describe PublicationsController, :vcr do
           .with('TI="lung cancer treatment"')
           .and_return(instance_double(WebOfScience::Retriever, next_batch: Array.new(20) { {} }))
         params = { format: 'json', title: 'lung cancer treatment' }
-        get :sourcelookup, params: params
+        get(:sourcelookup, params:)
         expect(response).to have_http_status(:ok)
         result = JSON.parse(response.body)
         expect(result['metadata']['records']).to eq('20')
@@ -354,8 +354,8 @@ describe PublicationsController, :vcr do
         expect(queries).to receive(:user_query)
           .with("TI=\"#{test_title}\" AND PY=2015")
           .and_return(instance_double(WebOfScience::Retriever, next_batch: ['year' => year]))
-        params = { format: 'json', title: test_title, year: year }
-        get :sourcelookup, params: params
+        params = { format: 'json', title: test_title, year: }
+        get(:sourcelookup, params:)
         expect(response).to have_http_status(:ok)
         result = JSON.parse(response.body)
         expect(result).to include('records')
@@ -583,7 +583,7 @@ describe PublicationsController, :vcr do
           a_hash_including(type: 'doi', id: '18819910019', url: 'http://doi:18819910019'),
           a_hash_including(type: 'SULPubId', url: "#{Settings.SULPUB_ID.PUB_URI}/#{id}", id: id.to_s)
         )
-        put :update, params: { id: id, format: 'json' }, body: with_isbn_changed_doi.to_json
+        put :update, params: { id:, format: 'json' }, body: with_isbn_changed_doi.to_json
         manual_publication.reload
         expect(manual_publication.pub_hash[:identifier].size).to eq(3) # database still has three identifiers
         expect(result['identifier'].size).to eq(3) # response also has three identifiers
@@ -604,7 +604,7 @@ describe PublicationsController, :vcr do
           a_hash_including(type: 'doi', id: '18819910019', url: 'http://doi:18819910019'),
           a_hash_including(type: 'SULPubId', url: "#{Settings.SULPUB_ID.PUB_URI}/#{id}", id: id.to_s)
         )
-        put :update, params: { id: id, format: 'json' }, body: with_isbn_deleted_doi.to_json
+        put :update, params: { id:, format: 'json' }, body: with_isbn_deleted_doi.to_json
         manual_publication.reload
         expect(manual_publication.pub_hash[:identifier].size).to eq(2) # database has only two identifiers now
         expect(result['identifier'].size).to eq(2) # response also only has two identifiers
@@ -618,7 +618,7 @@ describe PublicationsController, :vcr do
       it 'refuses to update a wos pub' do
         id = wos_publication.id
         expect(wos_publication).to be_harvested_pub
-        put :update, params: { id: id, format: 'json' }, body: with_isbn_changed_doi.to_json
+        put :update, params: { id:, format: 'json' }, body: with_isbn_changed_doi.to_json
         expect(response).to have_http_status(:forbidden) # forbidden
       end
     end
@@ -634,29 +634,29 @@ describe PublicationsController, :vcr do
       context 'when existing pub already has' do
         let(:id) { '1' }
 
-        before { allow(Publication).to receive(:find_by).with(id: id).and_return(publication) }
+        before { allow(Publication).to receive(:find_by).with(id:).and_return(publication) }
 
         it 'been deleted' do
           allow(publication).to receive(:deleted?).and_return(true)
-          put :update, params: { id: id, format: 'json' }, body: with_isbn_hash.to_json
+          put :update, params: { id:, format: 'json' }, body: with_isbn_hash.to_json
           expect(response).to have_http_status(:gone)
         end
 
         it 'sciencewire_id' do
           allow(publication).to receive(:sciencewire_id).and_return(2)
-          put :update, params: { id: id, format: 'json' }, body: with_isbn_hash.to_json
+          put :update, params: { id:, format: 'json' }, body: with_isbn_hash.to_json
           expect(response).to have_http_status(:forbidden)
         end
 
         it 'pmid' do
           allow(publication).to receive(:pmid).and_return(3)
-          put :update, params: { id: id, format: 'json' }, body: with_isbn_hash.to_json
+          put :update, params: { id:, format: 'json' }, body: with_isbn_hash.to_json
           expect(response).to have_http_status(:forbidden)
         end
 
         it 'wos_uid' do
           allow(publication).to receive(:wos_uid).and_return(4)
-          put :update, params: { id: id, format: 'json' }, body: with_isbn_hash.to_json
+          put :update, params: { id:, format: 'json' }, body: with_isbn_hash.to_json
           expect(response).to have_http_status(:forbidden)
         end
       end

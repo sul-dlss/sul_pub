@@ -12,7 +12,7 @@ class PubmedSourceRecord < ApplicationRecord
 
     pub = Publication.new(
       active: true,
-      pmid: pmid,
+      pmid:,
       pub_hash: pubmed_record.source_as_hash
     )
     pub.sync_publication_hash_and_db
@@ -21,7 +21,7 @@ class PubmedSourceRecord < ApplicationRecord
   end
 
   def self.for_pmid(pmid)
-    find_by(pmid: pmid) || get_pubmed_record_from_pubmed(pmid)
+    find_by(pmid:) || get_pubmed_record_from_pubmed(pmid)
   end
 
   # @return [PubmedSourceRecord] the recently downloaded pubmed_source_records data
@@ -29,13 +29,13 @@ class PubmedSourceRecord < ApplicationRecord
     return unless Settings.PUBMED.lookup_enabled
 
     get_and_store_records_from_pubmed([pmid])
-    find_by(pmid: pmid)
+    find_by(pmid:)
   end
   private_class_method :get_pubmed_record_from_pubmed
 
   def self.create_pubmed_source_record(pmid, pub_doc)
-    where(pmid: pmid).first_or_create(
-      pmid: pmid,
+    where(pmid:).first_or_create(
+      pmid:,
       source_data: pub_doc.to_xml,
       is_active: true,
       source_fingerprint: Digest::SHA2.hexdigest(pub_doc)
@@ -49,7 +49,7 @@ class PubmedSourceRecord < ApplicationRecord
       pmid = pub_doc.xpath('MedlineCitation/PMID').text
       begin
         PubmedSourceRecord.new(
-          pmid: pmid,
+          pmid:,
           source_data: pub_doc.to_xml,
           is_active: true,
           source_fingerprint: Digest::SHA2.hexdigest(pub_doc)

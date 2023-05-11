@@ -21,7 +21,7 @@ describe Pubmed::Fetcher, :vcr do
   end
 
   describe '.search_all_sources_by_pmid' do
-    let!(:publication) { create(:publication, pmid: 10_048_354, pub_hash: pub_hash) }
+    let!(:publication) { create(:publication, pmid: 10_048_354, pub_hash:) }
 
     it 'searches for a local Publication by pmid and returns a pubhash' do
       expect(Pubmed::Client).not_to receive(:new)

@@ -16,7 +16,7 @@ module Orcid
 
       logger&.info("#{self.class} - author #{author.id} - deleting publications from #{orcid_user.orcidid}")
 
-      contributions = Contribution.where(author: author).where.not(orcid_put_code: nil)
+      contributions = Contribution.where(author:).where.not(orcid_put_code: nil)
       contributions.map { |contribution| delete_work(contribution, orcid_user) ? 1 : 0 }.sum
     end
 

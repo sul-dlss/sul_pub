@@ -192,16 +192,16 @@ class PublicationsController < ApplicationController
   def wrap_as_bibjson_collection(description, records, page = 1, per_page = 'all')
     metadata = {
       _created: Time.zone.now.iso8601,
-      description: description,
+      description:,
       format: 'BibJSON',
       license: 'some licence',
-      page: page,
-      per_page: per_page,
+      page:,
+      per_page:,
       query: request.env['ORIGINAL_FULLPATH'].to_s,
       records: records.count.to_s
     }
     {
-      metadata: metadata,
+      metadata:,
       records: records.map { |x| (x.pub_hash if x.respond_to? :pub_hash) || x }
     }
   end

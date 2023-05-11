@@ -62,11 +62,11 @@ class Contribution < ApplicationRecord
 
   def to_pub_hash
     {
-      cap_profile_id: cap_profile_id,
+      cap_profile_id:,
       sul_author_id: author_id,
-      status: status,
-      visibility: visibility,
-      featured: featured
+      status:,
+      visibility:,
+      featured:
     }
   end
 end

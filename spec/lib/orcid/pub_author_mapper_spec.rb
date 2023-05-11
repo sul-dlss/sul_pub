@@ -5,18 +5,18 @@ describe Orcid::PubAuthorMapper do
 
   let(:author_hash) do
     {
-      display_name: display_name,
-      first_name: first_name,
-      firstname: firstname,
-      full_name: full_name,
-      given_name: given_name,
-      initials: initials,
-      middle_name: middle_name,
-      middlename: middlename,
-      last_name: last_name,
-      lastname: lastname,
-      name: name,
-      role: role
+      display_name:,
+      first_name:,
+      firstname:,
+      full_name:,
+      given_name:,
+      initials:,
+      middle_name:,
+      middlename:,
+      last_name:,
+      lastname:,
+      name:,
+      role:
     }
   end
 

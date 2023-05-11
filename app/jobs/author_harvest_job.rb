@@ -8,7 +8,7 @@ class AuthorHarvestJob < ApplicationJob
   # @param [Boolean] harvest_alternate_names
   # @return [void]
   def perform(cap_profile_id)
-    author = Author.find_by(cap_profile_id: cap_profile_id)
+    author = Author.find_by(cap_profile_id:)
     author ||= Author.fetch_from_cap_and_create(cap_profile_id)
     raise "Could not find or fetch author: #{cap_profile_id}" unless author.is_a?(Author)
 

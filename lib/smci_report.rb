@@ -112,14 +112,14 @@ class SmciReport
             author = Author.find_by(sunetid: sunet)
             logger.info "searching for author by sunet '#{sunet}'"
           elsif cap_profile_id
-            author = Author.find_by(cap_profile_id: cap_profile_id)
+            author = Author.find_by(cap_profile_id:)
             logger.info "searching for author by cap_profile_id '#{cap_profile_id}'"
           end
           # end check for either sunet or cap_profile_id
 
           if author # we found the author in our database, now get their publications
             contributions = Contribution.select('*')
-            contributions = contributions.where(author: author)
+            contributions = contributions.where(author:)
             contributions = contributions.where('created_at > ?', Time.zone.parse(@date_since)) if @date_since
             contributions = contributions.where('created_at < ?', Time.zone.parse(@date_to)) if @date_to
             num_pubs_found = contributions.size
@@ -127,7 +127,7 @@ class SmciReport
             total_pubs += num_pubs_found
             # loop over all of their publications and output the results
             contributions.each do |contribution|
-              csv << output_row(pub_hash: contribution.publication.pub_hash, author: author,
+              csv << output_row(pub_hash: contribution.publication.pub_hash, author:,
                                 harvested_at: contribution.created_at.to_fs(:db), publication_status: contribution.status)
             end
           else # we could not find this author in the database
@@ -146,18 +146,18 @@ class SmciReport
                                 preferred_middle_name: middle_name)
             # if institutions were provided in the row, add the author identities to our temporary author model object
             institutions&.split(',')&.each do |institution|
-              author.author_identities << AuthorIdentity.new(first_name: first_name, last_name: last_name,
-                                                             middle_name: middle_name, institution: institution.strip)
+              author.author_identities << AuthorIdentity.new(first_name:, last_name:,
+                                                             middle_name:, institution: institution.strip)
             end
             # end check for institutions for this author
-            name_query = WebOfScience::QueryName.new(author, symbolicTimeSpan: symbolicTimeSpan) # setup the WOS name query
+            name_query = WebOfScience::QueryName.new(author, symbolicTimeSpan:) # setup the WOS name query
             uids = name_query.uids # now fetch all of the WOS_UIDs for the publications for this author by running the name search
             logger.info(name_query.send(:name_query)) # log the name query being sent to WoS
           else
             # we have an orcid, search by orcid
             logger.info "harvesting author by orcid from WoS: '#{orcid}'"
             author = Author.new(orcidid: orcid)
-            orcid_query = WebOfScience::QueryOrcid.new(author, symbolicTimeSpan: symbolicTimeSpan) # setup the WOS orcid query
+            orcid_query = WebOfScience::QueryOrcid.new(author, symbolicTimeSpan:) # setup the WOS orcid query
             uids = orcid_query.uids # now fetch all of the WOS_UIDs for the publications for this author by running the orcid search
             logger.info(orcid_query.send(:orcid_query)) # log the orcid query being sent to WoS
           end
@@ -168,7 +168,7 @@ class SmciReport
               results = WebOfScience.queries.retrieve_by_id(uids) # now fetch the publication details for these WOS_UIDs
               while results.next_batch? # as long as we have another page of results, retrieve them
                 results.next_batch.to_a.each do |pub|
-                  csv << output_row(pub_hash: pub.pub_hash, orcid: orcid)
+                  csv << output_row(pub_hash: pub.pub_hash, orcid:)
                 end
               end
             end

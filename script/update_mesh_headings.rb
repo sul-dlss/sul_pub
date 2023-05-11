@@ -48,7 +48,7 @@ class UpdateMeshHeadings
       return
     end
 
-    pubs = Publication.where pmid: pmid
+    pubs = Publication.where(pmid:)
     if pubs.size != 1
       @logger.warn "Found #{pubs.size} Publications for #{pmid}. Skipping"
       @skipped += 1

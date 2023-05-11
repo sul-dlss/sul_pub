@@ -6,9 +6,9 @@ FactoryBot.define do
     year { '1972' }
     pub_hash do
       {
-        title: title,
+        title:,
         type: publication_type,
-        year: year,
+        year:,
         author: [
           { name: 'Jackson, Joe' }
         ],
@@ -55,7 +55,7 @@ FactoryBot.define do
       contributions_count { 15 }
     end
     after(:create) do |publication, evaluator|
-      FactoryBot.create_list(:contribution, evaluator.contributions_count, publication: publication)
+      FactoryBot.create_list(:contribution, evaluator.contributions_count, publication:)
     end
   end
 
@@ -71,7 +71,7 @@ FactoryBot.define do
     pmid { 10_048_354 }
     after(:create) do |publication, _evaluator|
       create(:publication_identifier,
-             publication: publication,
+             publication:,
              identifier_type: 'PMID',
              identifier_value: '10048354')
     end
@@ -80,9 +80,9 @@ FactoryBot.define do
   factory :publication_without_author, parent: :publication do
     pub_hash do
       {
-        title: title,
+        title:,
         type: publication_type,
-        year: year,
+        year:,
         author: [],
         authorship: []
       }

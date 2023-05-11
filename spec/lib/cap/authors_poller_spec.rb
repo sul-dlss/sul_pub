@@ -207,7 +207,7 @@ describe Cap::AuthorsPoller, :vcr do
       author = contribution.author
       publication = contribution.publication
       contA = contribution
-      contB = create :contribution, author: author, publication: publication
+      contB = create(:contribution, author:, publication:)
       expect(author.contributions.count).to eq 2
       expect(contA.author).to eq(contB.author)
       expect(contA.publication).to eq(contB.publication)

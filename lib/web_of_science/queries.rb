@@ -22,8 +22,8 @@ module WebOfScience
       raise(ArgumentError, 'uid must be a WOS-UID String') if uid.blank?
 
       options = [{ key: 'Hot', value: 'On' }]
-      message = base_uid_params.merge(uid: uid,
-                                      retrieveParameters: retrieve_parameters(options: options))
+      message = base_uid_params.merge(uid:,
+                                      retrieveParameters: retrieve_parameters(options:))
       WebOfScience::Retriever.new(:cited_references, message)
     end
 
@@ -32,7 +32,7 @@ module WebOfScience
     def citing_articles(uid)
       raise(ArgumentError, 'uid must be a WOS-UID String') if uid.blank?
 
-      message = base_uid_params.merge(uid: uid)
+      message = base_uid_params.merge(uid:)
       WebOfScience::Retriever.new(:citing_articles, message)
     end
 
@@ -42,7 +42,7 @@ module WebOfScience
       raise(ArgumentError, 'uid must be a WOS-UID String') if uid.blank?
 
       # The 'WOS' database is the only option for this query
-      message = base_uid_params.merge(uid: uid, databaseId: 'WOS')
+      message = base_uid_params.merge(uid:, databaseId: 'WOS')
       WebOfScience::Retriever.new(:related_records, message)
     end
 
@@ -177,7 +177,7 @@ module WebOfScience
     def retrieve_parameters(count: MAX_RECORDS, first_record: 1, options: retrieve_options)
       {
         firstRecord: first_record,
-        count: count,
+        count:,
         option: options
       }
     end

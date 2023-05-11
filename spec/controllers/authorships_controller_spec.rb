@@ -52,7 +52,7 @@ describe AuthorshipsController, :vcr do
 
   shared_examples 'it issues errors when sul_author_id does not exist' do
     let(:sul_author_id) { '999999' }
-    let(:request_data) { valid_data_for_post.merge(sul_author_id: sul_author_id) }
+    let(:request_data) { valid_data_for_post.merge(sul_author_id:) }
 
     it 'returns 404 when it fails to find a sul_author_id' do
       http_request
@@ -64,7 +64,7 @@ describe AuthorshipsController, :vcr do
 
   shared_examples 'it issues errors for cap_profile_id' do
     let(:cap_profile_id) { '999999' }
-    let(:request_data) { valid_data_for_post.merge(cap_profile_id: cap_profile_id) }
+    let(:request_data) { valid_data_for_post.merge(cap_profile_id:) }
 
     it 'returns 404 when it fails to find a cap_profile_id' do
       http_request

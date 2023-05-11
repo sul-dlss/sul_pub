@@ -8,7 +8,7 @@ module Pubmed
     # @param [String] pmid Pubmed ID
     # @return [Array<Hash>] publications in BibJson format or, if none found, an empty Array
     def self.search_all_sources_by_pmid(pmid)
-      pub = Publication.find_by(pmid: pmid) || Publication.find_by_pmid_pub_id(pmid)
+      pub = Publication.find_by(pmid:) || Publication.find_by_pmid_pub_id(pmid)
       return [pub.pub_hash] if pub&.authoritative_pmid_source?
 
       result = fetch_remote_pubmed(pmid)

@@ -96,7 +96,7 @@ class Publication < ApplicationRecord
             'Publication for user submitted source record already exists'
     end
 
-    Publication.new(active: true, pub_hash: pub_hash)
+    Publication.new(active: true, pub_hash:)
                .update_manual_pub_from_pub_hash(pub_hash, original_source_string)
   end
 
@@ -109,8 +109,8 @@ class Publication < ApplicationRecord
     r.assign_attributes(
       is_active: true,
       source_data: original_source_string,
-      title: title,
-      year: year
+      title:,
+      year:
     )
     self.user_submitted_source_records = [r] if match # match is the only USSR not found/built via association
     update_any_new_contribution_info_in_pub_hash_to_db

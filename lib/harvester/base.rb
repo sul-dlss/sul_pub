@@ -15,7 +15,7 @@ module Harvester
       count = 0
       start_time = Time.zone.now
       logger.info "***** Started a complete harvest for #{total} authors at #{start_time}"
-      authors_query.find_in_batches(batch_size: batch_size).each_with_index do |batch, n|
+      authors_query.find_in_batches(batch_size:).each_with_index do |batch, n|
         harvest(batch, options)
         count += batch.size
         logger.info "*** Completed batch #{n} with #{batch.size} authors.  On #{count} of #{total} authors for " \

@@ -23,7 +23,7 @@ namespace :sul do
     scopes = { read: 0, write: 0 }
     sunets.each_with_index do |sunetid, i|
       puts "#{i + 1} of #{num_sunets}"
-      Mais::Client.new.fetch_orcid_user(sunetid: sunetid).update? ? scopes[:write] += 1 : scopes[:read] += 1
+      Mais::Client.new.fetch_orcid_user(sunetid:).update? ? scopes[:write] += 1 : scopes[:read] += 1
     end
     puts "Report run: #{Time.zone.now}"
     puts "Total users: #{num_sunets}"
@@ -413,8 +413,8 @@ namespace :sul do
     start_date = args[:start_date]
     end_date = args[:end_date]
     time_span = args[:time_span]
-    smci = SmciReport.new(input_file: input_file, output_file: output_file, date_since: start_date, date_to: end_date,
-                          time_span: time_span)
+    smci = SmciReport.new(input_file:, output_file:, date_since: start_date, date_to: end_date,
+                          time_span:)
     smci.run
   end
 
