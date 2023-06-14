@@ -19,6 +19,8 @@ CAP:
   AUTHORSHIP_API_PORT: 443
   AUTHORSHIP_API_URI: https://cap-uat.stanford.edu
   HARVEST_ON_CHANGE: true
+  cap_profile_id_for_check: 45761 # (kcasciotti) used by CAP health check,
+                                  # if person leaves Stanford, will get 404 for check, then change this
 
 MAIS:
   LOG: log/mais.log
@@ -76,7 +78,7 @@ ORCID:
   CLIENT_ID: APP-FAKEJMB7RBQVFQ0D
   CLIENT_SECRET: FAKE6bb5-dba1-445d-ba10-c14745383ba0
   LOG: log/orcid.log
-  orcidid_for_check: https://sandbox.orcid.org/0000-0002-7262-6251 # jtim
+  orcidid_for_check: https://sandbox.orcid.org/0000-0002-7262-6251 # (jtim) used by ORCID health check
 
 DOI:
   BASE_URI: https://doi.org/

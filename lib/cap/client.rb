@@ -7,8 +7,8 @@ module Cap
   class Client
     # Fetch a single object from CAP server and test its response
     def self.working?
-      response = new.get_auth_profile(4176)
-      response.is_a?(Hash) && response['profileId'] == 4176
+      response = new.get_auth_profile(Settings.CAP.cap_profile_id_for_check)
+      response.is_a?(Hash) && response['profileId'] == Settings.CAP.cap_profile_id_for_check
     end
 
     def get_batch_from_cap_api(page_count = 1, page_size = 1000, since = '')
