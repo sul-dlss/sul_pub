@@ -395,3 +395,6 @@ Rails/TopLevelHashWithIndifferentAccess: # new in 2.16
   Enabled: true
 Rails/WhereMissing: # new in 2.16
   Enabled: true
+
+Rails/UniqueValidationWithoutIndex:
+  Enabled: false # it's buggy in 2.20.1
