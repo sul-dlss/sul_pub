@@ -2,14 +2,14 @@
 
 describe Pubmed::Harvester do
   let(:harvester) { described_class.new }
-  let(:author) { create :russ_altman }
+  let(:author) { create(:russ_altman) }
 
   before do
     allow(Pubmed::QueryAuthor).to receive(:new).with(author, {}).and_return(query_author)
   end
 
   describe '#process_author' do
-    let(:existing_pub) { create :pub_with_pmid_and_pub_identifier }
+    let(:existing_pub) { create(:pub_with_pmid_and_pub_identifier) }
 
     context 'when author has existing publications' do
       let(:query_author) { instance_double(Pubmed::QueryAuthor, valid?: true, pmids: [existing_pub.pmid.to_s]) }
@@ -38,7 +38,7 @@ describe Pubmed::Harvester do
 
       it 'aborts the harvest and returns no pmids' do
         expect(NotificationManager).to receive(:error).with(
-          ::Harvester::Error,
+          Harvester::Error,
           "Pubmed::Harvester - Pubmed harvest returned more than #{Settings.PUBMED.max_publications_per_author} " \
           "publications for author id #{author.id} and was aborted",
           harvester
@@ -53,7 +53,7 @@ describe Pubmed::Harvester do
 
       it 'aborts the harvest and returns no pmids' do
         expect(NotificationManager).to receive(:error).with(
-          ::Harvester::Error,
+          Harvester::Error,
           "Pubmed::Harvester - An invalid author query was detected for author id #{author.id} and was aborted",
           harvester
         )

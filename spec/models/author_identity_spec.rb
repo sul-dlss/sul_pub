@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe AuthorIdentity, type: :model do
-  subject { FactoryBot.create :author_identity }
+RSpec.describe AuthorIdentity do
+  subject { create(:author_identity) }
 
   context 'basics' do
     it 'has working factories' do

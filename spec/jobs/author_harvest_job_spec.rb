@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-describe AuthorHarvestJob, type: :job do
+describe AuthorHarvestJob do
   include ActiveJob::TestHelper
 
   subject(:job) { described_class.perform_later(author.cap_profile_id) }
 
   let(:queue) { 'default' }
 
-  let(:author) { create :russ_altman }
+  let(:author) { create(:russ_altman) }
 
   after do
     clear_enqueued_jobs

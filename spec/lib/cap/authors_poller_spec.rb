@@ -2,11 +2,11 @@
 
 describe Cap::AuthorsPoller, :vcr do
   # The author is defined in /spec/factories/author.rb
-  let(:author) { create :author }
+  let(:author) { create(:author) }
   # The publication is defined in /spec/factories/publication.rb
-  let(:publication) { create :publication }
+  let(:publication) { create(:publication) }
   # The contribution is defined in /spec/factories/contribution.rb
-  let(:contribution) { create :contribution }
+  let(:contribution) { create(:contribution) }
 
   let(:author_record) do # JSON is as defined in CAP API
     {
@@ -118,7 +118,7 @@ describe Cap::AuthorsPoller, :vcr do
     end
 
     context 'with a new author retrieved from the CAP API' do
-      let(:author) { create :author }
+      let(:author) { create(:author) }
 
       before do
         expect(Author).to receive(:find_by_cap_profile_id).with(author.cap_profile_id).and_return(nil)
@@ -230,7 +230,7 @@ describe Cap::AuthorsPoller, :vcr do
   end
 
   describe '.do_harvest' do
-    let(:other_author) { create :author }
+    let(:other_author) { create(:author) }
 
     let(:new_author_options) do
       {

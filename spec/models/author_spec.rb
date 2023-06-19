@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 describe Author do
-  subject { create :author }
+  subject { create(:author) }
 
   let(:auth_hash) do
     JSON.parse(File.read('fixtures/cap_poll_author_3810.json'))
@@ -146,7 +146,7 @@ describe Author do
   end
 
   describe '#assign_pub' do
-    let(:pub) { create :publication_without_author }
+    let(:pub) { create(:publication_without_author) }
 
     it 'creates contrib and updates pubhash' do
       expect(subject.publications.count).to eq(0)

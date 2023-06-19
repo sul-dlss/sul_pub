@@ -6,11 +6,11 @@ describe PublicationsController, :vcr do
     request.headers.merge! headers
   end
 
-  let(:publication) { FactoryBot.create :publication }
-  let(:manual_publication) { FactoryBot.create :manual_publication }
-  let(:wos_publication) { FactoryBot.create :wos_publication }
+  let(:publication) { create(:publication) }
+  let(:manual_publication) { create(:manual_publication) }
+  let(:wos_publication) { create(:wos_publication) }
 
-  let(:author) { FactoryBot.create :author }
+  let(:author) { create(:author) }
   let(:valid_hash_for_post) do
     {
       type: 'book',
@@ -188,7 +188,7 @@ describe PublicationsController, :vcr do
     end
 
     context 'with known capProfileId in json format' do
-      let(:json_response) { JSON.parse(response.body) }
+      let(:json_response) { response.parsed_body }
 
       before { allow(Author).to receive(:find_by).with(cap_profile_id: cap_id).and_return(author) }
 
@@ -248,16 +248,16 @@ describe PublicationsController, :vcr do
     describe 'search by doi' do
       let(:doi_value) { '10.1016/j.mcn.2012.03.008' }
       let(:doi_identifier) do
-        FactoryBot.create(:publication_identifier,
-                          identifier_type: 'doi',
-                          identifier_value: doi_value,
-                          identifier_uri: "https://doi.org/#{doi_value}")
+        create(:publication_identifier,
+               identifier_type: 'doi',
+               identifier_value: doi_value,
+               identifier_uri: "https://doi.org/#{doi_value}")
       end
       let(:result) do
         params = { format: 'json', doi: doi_value }
         get(:sourcelookup, params:)
         expect(response).to have_http_status(:ok)
-        JSON.parse(response.body)
+        response.parsed_body
       end
 
       it 'calls WoS to search by doi' do
@@ -281,7 +281,7 @@ describe PublicationsController, :vcr do
         params = { format: 'json', pmid: '24196758' }
         get(:sourcelookup, params:)
         expect(response).to have_http_status(:ok)
-        result = JSON.parse(response.body)
+        result = response.parsed_body
         expect(result['metadata']).to include('records' => '1')
         record = result['records'].first
         expect(record).to include('mla_citation', 'chicago_citation')
@@ -295,7 +295,7 @@ describe PublicationsController, :vcr do
         params = { format: 'json', pmid: '24196758' }
         get(:sourcelookup, params:)
         expect(response).to have_http_status(:ok)
-        result = JSON.parse(response.body)
+        result = response.parsed_body
         expect(result['metadata']).to include('records' => '0')
       end
     end
@@ -303,13 +303,13 @@ describe PublicationsController, :vcr do
     describe 'search by title' do
       let(:queries) { instance_double(WebOfScience::Queries) }
       let(:test_title) { 'pathological' }
-      let(:publication_with_test_title) { create :publication, title: test_title }
+      let(:publication_with_test_title) { create(:publication, title: test_title) }
       let(:sourcelookup_by_title) do
         publication_with_test_title
         params = { format: 'json', title: test_title, maxrows: 2 }
         get(:sourcelookup, params:)
         expect(response).to have_http_status(:ok)
-        JSON.parse(response.body)
+        response.parsed_body
       end
 
       it 'returns bibjson with expected sections' do
@@ -323,7 +323,7 @@ describe PublicationsController, :vcr do
         params = { format: 'json', title: test_title, maxrows: 5 }
         get(:sourcelookup, params:)
         expect(response).to have_http_status(:ok)
-        result = JSON.parse(response.body)
+        result = response.parsed_body
         expect(result['records'].length).to eq(5)
       end
 
@@ -335,7 +335,7 @@ describe PublicationsController, :vcr do
         params = { format: 'json', title: 'lung cancer treatment' }
         get(:sourcelookup, params:)
         expect(response).to have_http_status(:ok)
-        result = JSON.parse(response.body)
+        result = response.parsed_body
         expect(result['metadata']['records']).to eq('20')
       end
 
@@ -357,7 +357,7 @@ describe PublicationsController, :vcr do
         params = { format: 'json', title: test_title, year: }
         get(:sourcelookup, params:)
         expect(response).to have_http_status(:ok)
-        result = JSON.parse(response.body)
+        result = response.parsed_body
         expect(result).to include('records')
         expect(result['records']).not_to be_empty
         expect(result['records'].pluck('year')).to all eq(year) # ALL records match
@@ -365,12 +365,12 @@ describe PublicationsController, :vcr do
     end
 
     context 'WOS disabled/enabled' do
-      let(:json_response) { JSON.parse(response.body) }
+      let(:json_response) { response.parsed_body }
 
       context 'WOS disabled' do
         before { allow(Settings.WOS).to receive(:enabled).and_return(false) }
 
-        let(:ussr) { create :user_submitted_source_record, title: 'Men On Mars', year: '2001', source_data: '{}' }
+        let(:ussr) { create(:user_submitted_source_record, title: 'Men On Mars', year: '2001', source_data: '{}') }
         let!(:pub) do
           pub = build(:publication, title: ussr.title, year: ussr.year, user_submitted_source_records: [ussr])
           pub.pub_hash[:year] = ussr.year.to_s # values will overwrite from pub_hash
@@ -421,7 +421,7 @@ describe PublicationsController, :vcr do
   end
 
   describe 'create manual publication' do
-    let(:result) { JSON.parse(response.body) }
+    let(:result) { response.parsed_body }
     let(:last_pub) { Publication.last }
 
     context 'when valid post' do
@@ -550,7 +550,7 @@ describe PublicationsController, :vcr do
   end
 
   describe 'update manual publication' do
-    let(:result) { JSON.parse(response.body) }
+    let(:result) { response.parsed_body }
 
     context 'successfully' do
       it 'does not duplicate SULPubIDs' do
@@ -682,7 +682,7 @@ describe PublicationsController, :vcr do
                                                  deleted?: false))
       get :show, params: { id: '123', format: 'json' }
       expect(response).to have_http_status(:ok)
-      expect(JSON.parse(response.body)).to include('provenance' => 'sciencewire', 'type' => 'article')
+      expect(response.parsed_body).to include('provenance' => 'sciencewire', 'type' => 'article')
     end
 
     it 'returns only those pubs changed since specified date'
@@ -698,7 +698,7 @@ describe PublicationsController, :vcr do
   end
 
   describe 'list publications' do
-    let(:result) { JSON.parse(response.body) }
+    let(:result) { response.parsed_body }
 
     context 'with no params specified, returns successfully with no results' do
       it 'returns first page' do

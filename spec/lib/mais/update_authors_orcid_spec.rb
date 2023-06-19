@@ -3,8 +3,8 @@
 describe Mais::UpdateAuthorsOrcid do
   let(:update_authors_orcid) { described_class.new(orcid_users, logger:) }
 
-  let!(:author_with_existing_orcid) { create :author }
-  let!(:author_with_no_orcid) { create :author, orcidid: nil }
+  let!(:author_with_existing_orcid) { create(:author) }
+  let!(:author_with_no_orcid) { create(:author, orcidid: nil) }
   let(:logger) { instance_double(Logger, info: nil) }
 
   describe '#update' do

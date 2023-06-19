@@ -284,7 +284,7 @@ describe WebOfScience::Identifiers do
     # TODO: it should validate the data for known identifiers
     # TODO: this can use altmetrics identifier gem to validate identifier values
 
-    xit 'cannot be updated with any invalid identifier values' do
+    it 'cannot be updated with any invalid identifier values', skip: 'not sure why this is skipped' do
       identifiers.update('pmid' => 1)
       expect(identifiers.to_h).not_to include('pmid' => 1)
     end

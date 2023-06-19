@@ -7,10 +7,10 @@ describe WebOfScience::QueryName, :vcr do
   let(:query_space_author) { described_class.new(space_author) }
   let(:query_blank_author) { described_class.new(blank_author) }
 
-  let(:author) { create :russ_altman }
-  let(:space_author) { create :author, :space_first_name }
-  let(:period_author) { create :author, :period_first_name }
-  let(:blank_author) { create :author, :blank_first_name }
+  let(:author) { create(:russ_altman) }
+  let(:space_author) { create(:author, :space_first_name) }
+  let(:period_author) { create(:author, :period_first_name) }
+  let(:blank_author) { create(:author, :blank_first_name) }
   let(:names) { query_name.send(:names) }
 
   # avoid caching Savon client across examples (affects VCR)
@@ -100,7 +100,7 @@ describe WebOfScience::QueryName, :vcr do
     end
 
     it 'deduplicates and removes empties' do
-      expect(query_name.send(:quote_wrap, %w[a bc a bc].concat(['']))).to eq ['"a"', '"bc"']
+      expect(query_name.send(:quote_wrap, %w[a bc a bc].push(''))).to eq ['"a"', '"bc"']
     end
 
     it 'removes quotes in a name' do
@@ -133,8 +133,8 @@ describe WebOfScience::QueryName, :vcr do
 
   context 'for a single alternate identity with invalid data' do
     describe '#names' do
-      let(:author_one_identity) { create :author }
-      let(:bad_alternate_identity) { create :author_identity }
+      let(:author_one_identity) { create(:author) }
+      let(:bad_alternate_identity) { create(:author_identity) }
 
       before do
         bad_alternate_identity.update(first_name: '.')

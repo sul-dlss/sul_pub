@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-describe UserSubmittedSourceRecord, type: :model do
-  let(:user_submitted_source_record) { create :user_submitted_source_record }
-  let(:working_paper) { create :working_paper }
-  let(:case_study) { create :case_study }
-  let(:technical_report) { create :technical_report }
-  let(:other_paper) { create :other_paper }
+describe UserSubmittedSourceRecord do
+  let(:user_submitted_source_record) { create(:user_submitted_source_record) }
+  let(:working_paper) { create(:working_paper) }
+  let(:case_study) { create(:case_study) }
+  let(:technical_report) { create(:technical_report) }
+  let(:other_paper) { create(:other_paper) }
 
   context 'default' do
     it 'has factory' do

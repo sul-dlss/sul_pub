@@ -2,7 +2,7 @@
 
 describe Pubmed::QueryAuthor do
   let(:query_author) { described_class.new(author, options) }
-  let(:author) { create :russ_altman }
+  let(:author) { create(:russ_altman) }
 
   let(:options) { {} }
 
@@ -178,14 +178,14 @@ describe Pubmed::QueryAuthor do
     let(:query_nil_author_last_name) { described_class.new(nil_author_last_name, options) }
     let(:query_author_only_one_bad_name) { described_class.new(author_one_bad_name, options) }
 
-    let(:space_author) { create :author, :space_first_name }
-    let(:period_author) { create :author, :period_first_name }
-    let(:blank_author) { create :author, :blank_first_name }
-    let(:or_author) { create :author, :or_first_name }
-    let(:not_author) { create :author, :not_last_name }
-    let(:nil_author_first_name) { create :author, :nil_first_name }
-    let(:nil_author_last_name) { create :author, :nil_last_name }
-    let(:author_one_bad_name) { create :author_with_alternate_identities, :or_first_name }
+    let(:space_author) { create(:author, :space_first_name) }
+    let(:period_author) { create(:author, :period_first_name) }
+    let(:blank_author) { create(:author, :blank_first_name) }
+    let(:or_author) { create(:author, :or_first_name) }
+    let(:not_author) { create(:author, :not_last_name) }
+    let(:nil_author_first_name) { create(:author, :nil_first_name) }
+    let(:nil_author_last_name) { create(:author, :nil_last_name) }
+    let(:author_one_bad_name) { create(:author_with_alternate_identities, :or_first_name) }
 
     context 'with a user with valid first names' do
       it 'indicates it is a valid query' do

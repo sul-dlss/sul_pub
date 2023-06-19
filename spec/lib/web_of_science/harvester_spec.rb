@@ -13,7 +13,7 @@ describe WebOfScience::Harvester do
 
   after(:all)  { savon.unmock! }
 
-  let(:author) { create :russ_altman, :blank_orcid } # use a blank orcid, because these mocks work with the name query
+  let(:author) { create(:russ_altman, :blank_orcid) } # use a blank orcid, because these mocks work with the name query
   let(:wos_uids) { %w[WOS:A1976BW18000001 WOS:A1972N549400003] } # from wos_retrieve_by_id_response.xml
   let(:author_name_response) { File.read('spec/fixtures/wos_client/wos_harvest_author_name_response.xml') }
   let(:retrieve_by_id_response) { File.read('spec/fixtures/wos_client/wos_retrieve_by_id_response.xml') }
@@ -114,11 +114,11 @@ describe WebOfScience::Harvester do
           featured: false, status: 'new', visibility: 'private'
         )
       end
-      let(:pub_1) do
+      let(:pub_1) do # rubocop:disable RSpec/IndexedLet
         Publication.new(active: true, pub_hash: wos_rec_01.pub_hash, wos_uid: wos_rec_01.uid,
                         pubhash_needs_update: true)
       end
-      let(:pub_2) do
+      let(:pub_2) do # rubocop:disable RSpec/IndexedLet
         Publication.new(active: true, pub_hash: wos_rec.pub_hash, wos_uid: wos_rec.uid, pubhash_needs_update: true,
                         contributions: [contrib])
       end
@@ -172,7 +172,7 @@ describe WebOfScience::Harvester do
 
     it 'aborts the harvest and returns no uids' do
       expect(NotificationManager).to receive(:error).with(
-        ::Harvester::Error,
+        Harvester::Error,
         "WebOfScience::Harvester - WoS harvest returned more than #{Settings.WOS.max_publications_per_author} " \
         "publications for author id #{author.id} and was aborted",
         harvester
@@ -192,7 +192,7 @@ describe WebOfScience::Harvester do
 
     it 'aborts the harvest and returns no uids' do
       expect(NotificationManager).to receive(:error).with(
-        ::Harvester::Error,
+        Harvester::Error,
         "WebOfScience::Harvester - An invalid author query was detected for author id #{author.id} and was aborted",
         harvester
       )
