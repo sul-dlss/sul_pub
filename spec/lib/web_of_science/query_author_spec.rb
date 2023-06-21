@@ -3,10 +3,10 @@
 describe WebOfScience::QueryAuthor, :vcr do
   subject(:query_author) { described_class.new(author) }
 
-  let(:author) { create :russ_altman }
-  let(:author_blank_orcid) { create :russ_altman, :blank_orcid }
-  let(:author_blank_name) { create :author, :blank_first_name, :valid_orcid }
-  let(:author_blank_name_and_orcid) { create :author, :blank_first_name, :blank_orcid }
+  let(:author) { create(:russ_altman) }
+  let(:author_blank_orcid) { create(:russ_altman, :blank_orcid) }
+  let(:author_blank_name) { create(:author, :blank_first_name, :valid_orcid) }
+  let(:author_blank_name_and_orcid) { create(:author, :blank_first_name, :blank_orcid) }
 
   # avoid caching Savon client across examples (affects VCR)
   before { allow(WebOfScience).to receive(:client).and_return(WebOfScience::Client.new(Settings.WOS.AUTH_CODE)) }

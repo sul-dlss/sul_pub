@@ -6,8 +6,8 @@ describe AuthorshipsController, :vcr do
     request.headers.merge! headers
   end
 
-  let(:publication) { create :publication }
-  let(:author) { create :author }
+  let(:publication) { create(:publication) }
+  let(:author) { create(:author) }
   let(:sul_author_hash) { { sul_author_id: author.id } }
   let(:author_hash) { { cap_profile_id: author.cap_profile_id } }
 
@@ -15,7 +15,7 @@ describe AuthorshipsController, :vcr do
   # let is lazy-evaluated: it is evaluated the first time it's method is invoked.
   # Use let! to force the method's invocation before each example.
   let!(:publication_with_contributions) do
-    pub = create :publication_with_contributions, contributions_count: contribution_count
+    pub = create(:publication_with_contributions, contributions_count: contribution_count)
     # FactoryBot knows nothing about the Publication.pub_hash sync issue, so
     # it must be forced to update that data with the contributions.
     pub.pubhash_needs_update!
@@ -45,7 +45,7 @@ describe AuthorshipsController, :vcr do
     it 'returns 400 with an error message' do
       http_request
       expect(response).to have_http_status :bad_request
-      result = JSON.parse(response.body)
+      result = response.parsed_body
       expect(result['error']).to include('sul_author_id', 'cap_profile_id')
     end
   end
@@ -57,7 +57,7 @@ describe AuthorshipsController, :vcr do
     it 'returns 404 when it fails to find a sul_author_id' do
       http_request
       expect(response).to have_http_status :not_found
-      result = JSON.parse(response.body)
+      result = response.parsed_body
       expect(result['error']).to include('sul_author_id', sul_author_id)
     end
   end
@@ -69,7 +69,7 @@ describe AuthorshipsController, :vcr do
     it 'returns 404 when it fails to find a cap_profile_id' do
       http_request
       expect(response).to have_http_status :not_found
-      result = JSON.parse(response.body)
+      result = response.parsed_body
       expect(result['error']).to include('cap_profile_id', cap_profile_id)
     end
 
@@ -84,7 +84,7 @@ describe AuthorshipsController, :vcr do
     let(:request_data) { update_authorship_for_pub_with_contributions.merge(visibility: 'invalid value') }
     it 'returns 406' do
       http_request
-      result = JSON.parse(response.body)
+      result = response.parsed_body
       expect(result['error']).to include('You have not supplied a valid authorship record')
       expect(response).to have_http_status :not_acceptable
     end
@@ -158,7 +158,7 @@ describe AuthorshipsController, :vcr do
         # This specifically checks response data, whereas the prior spec checks data model.
         # Expect a change in the number of contributions
         http_request
-        result = JSON.parse(response.body)
+        result = response.parsed_body
         result_authorship = result['authorship']
         expect(result_authorship.length).to eq(contribution_count + 1)
         authorship_matches = result_authorship.select do |a|
@@ -176,7 +176,7 @@ describe AuthorshipsController, :vcr do
       before { http_request }
 
       it 'adds new publication' do
-        result = JSON.parse(response.body)
+        result = response.parsed_body
         expect(result['pmid']).to eq(request_data[:pmid])
         expect(result['authorship'].length).to eq 1
         contribution = Contribution.find_by(
@@ -190,7 +190,7 @@ describe AuthorshipsController, :vcr do
       end
 
       it 'adds proper identifiers section' do
-        result = JSON.parse(response.body)
+        result = response.parsed_body
         expect(result['identifier']).to include(
           a_hash_including('type' => 'PMID', 'id' => request_data[:pmid], 'url' => "https://www.ncbi.nlm.nih.gov/pubmed/#{request_data[:pmid]}"),
           a_hash_including('type' => 'SULPubId', 'id' => new_pub.id.to_s,
@@ -231,7 +231,7 @@ describe AuthorshipsController, :vcr do
       end
 
       it 'adds new WoS publication' do
-        result = JSON.parse(response.body)
+        result = response.parsed_body
         expect(result['wos_uid']).to eq(request_data[:wos_uid])
         expect(result['authorship'].length).to eq 1
         expect(result['authorship'][0]['sul_author_id']).to eq(author.id)
@@ -246,7 +246,7 @@ describe AuthorshipsController, :vcr do
       end
 
       it 'adds new WoS publication with proper identifiers section' do
-        result = JSON.parse(response.body)
+        result = response.parsed_body
         expect(result['identifier']).to include(
           a_hash_including('type' => 'WosUID', 'id' => request_data[:wos_uid]),
           a_hash_including('type' => 'SULPubId', 'id' => new_pub.id.to_s,
@@ -286,7 +286,7 @@ describe AuthorshipsController, :vcr do
           expect(Contribution).to receive(:where).and_return([])
           http_request
           expect(response).to have_http_status :not_found
-          result = JSON.parse(response.body)
+          result = response.parsed_body
           expect(result['error']).to include('no contributions', existing_contrib.author.id.to_s,
                                              existing_contrib.publication.id.to_s)
         end
@@ -298,7 +298,7 @@ describe AuthorshipsController, :vcr do
             [existing_contrib, existing_contrib]
           )
           http_request
-          result = JSON.parse(response.body)
+          result = response.parsed_body
           expect(response).to have_http_status :internal_server_error
           expect(result['error']).to include('multiple contributions', existing_contrib.author.id.to_s,
                                              existing_contrib.publication.id.to_s)
@@ -312,7 +312,7 @@ describe AuthorshipsController, :vcr do
         it 'returns 400 when publication parameters are missing' do
           post :create, body: no_pub_params.to_json, params: { format: 'json' }
           expect(response).to have_http_status :bad_request
-          result = JSON.parse(response.body)
+          result = response.parsed_body
           expect(result['error']).to include('You have not supplied any publication identifier', 'sul_pub_id', 'pmid',
                                              'sw_id', 'wos_uid')
         end
@@ -323,7 +323,7 @@ describe AuthorshipsController, :vcr do
             allow(WebOfScienceSourceRecord).to receive(:find_by).with(uid: id).and_return(build(:web_of_science_source_record))
             # in this case we have a WoS Source Record for id = 0, but there is no matching publication in the database
             post :create, body: no_pub_params.merge(wos_uid: id).to_json, params: { format: 'json' }
-            result = JSON.parse(response.body)
+            result = response.parsed_body
             expect(result['error']).to eq("A matching publication record for WOS_UID:#{id} was not found in the publication table.")
             expect(response).to have_http_status :not_found
           end
@@ -332,7 +332,7 @@ describe AuthorshipsController, :vcr do
         context 'returns 404 with error message for invalid' do
           it 'sul_pub_id' do
             post :create, body: no_pub_params.merge(sul_pub_id: id).to_json, params: { format: 'json' }
-            result = JSON.parse(response.body)
+            result = response.parsed_body
             expect(result['error']).to include(id, 'does not exist')
             expect(response).to have_http_status :not_found
           end
@@ -340,7 +340,7 @@ describe AuthorshipsController, :vcr do
           it 'pmid' do
             expect(Publication).to receive(:find_or_create_by_pmid)
             post :create, body: no_pub_params.merge(pmid: id).to_json, params: { format: 'json' }
-            result = JSON.parse(response.body)
+            result = response.parsed_body
             expect(result['error']).to include(id, 'was not found')
             expect(response).to have_http_status :not_found
           end
@@ -349,7 +349,7 @@ describe AuthorshipsController, :vcr do
             expect(Publication).to receive(:find_by).with(sciencewire_id: id)
             expect(SciencewireSourceRecord).to receive(:get_pub_by_sciencewire_id)
             post :create, body: no_pub_params.merge(sw_id: id).to_json, params: { format: 'json' }
-            result = JSON.parse(response.body)
+            result = response.parsed_body
             expect(result['error']).to include(id, 'was not found')
             expect(response).to have_http_status :not_found
           end
@@ -358,7 +358,7 @@ describe AuthorshipsController, :vcr do
             expect(WebOfScience.harvester).to receive(:author_uid).with(Author, id)
             # in this case we have no WoS Source Record for id = 0
             post :create, body: no_pub_params.merge(wos_uid: id).to_json, params: { format: 'json' }
-            result = JSON.parse(response.body)
+            result = response.parsed_body
             expect(result['error']).to include(id, 'A WebOfScienceSourceRecord was not found')
             expect(response).to have_http_status :not_found
           end
@@ -409,7 +409,7 @@ describe AuthorshipsController, :vcr do
         # Expect no change in the number of contributions, only a
         # change in the attributes of the contribution updated.  In this
         # spec, the attributes must be checked in the response.
-        result = JSON.parse(response.body)
+        result = response.parsed_body
         result_authorship = result['authorship']
         expect(result_authorship.length).to eq(authorship_array.length)
         authorship_matches = result_authorship.select do |a|

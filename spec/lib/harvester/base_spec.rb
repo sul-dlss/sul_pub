@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 describe Harvester::Base do
-  let(:authors) { FactoryBot.create_list(:author, 5, cap_import_enabled: true) }
+  let(:authors) { create_list(:author, 5, cap_import_enabled: true) }
   let(:subclass) { Class.new(described_class) }
   let(:instance) { subclass.new }
   let(:null_logger) { Logger.new('/dev/null') }

@@ -6,7 +6,7 @@ describe Contribution do
   let(:pub_with_contrib) do
     # The publication is defined in /spec/factories/publication.rb
     # The contributions are are defined in /spec/factories/contribution.rb
-    pub = create :publication_with_contributions, contributions_count: 1
+    pub = create(:publication_with_contributions, contributions_count: 1)
     # FactoryBot knows nothing about the Publication.pub_hash sync issue, so
     # it must be forced to update that data with the contributions.
     pub.pubhash_needs_update!

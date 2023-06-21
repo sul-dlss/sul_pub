@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 describe Publication do
-  let(:publication) { FactoryBot.create :publication }
-  let(:author) { FactoryBot.create :author }
+  let(:publication) { create(:publication) }
+  let(:author) { create(:author) }
 
   let(:pub_hash) do
     {
@@ -497,7 +497,7 @@ describe Publication do
   end
 
   describe 'unique constraints' do
-    let(:publication) { create :publication, wos_uid: '123' }
+    let(:publication) { create(:publication, wos_uid: '123') }
     let(:dup) { publication.dup }
 
     it 'blocks duplication of wos_uid' do
@@ -524,8 +524,8 @@ describe Publication do
   describe '#with_active_author' do
     context 'when there is a publication with multiple active authors'
     before do
-      FactoryBot.create :publication_with_contributions
-      pub = FactoryBot.create :publication_with_contributions
+      create(:publication_with_contributions)
+      pub = create(:publication_with_contributions)
       pub.authors.each do |author|
         author.active_in_cap = false
         author.save

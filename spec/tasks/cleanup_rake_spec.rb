@@ -15,14 +15,14 @@ describe 'cleanup rake tasks' do
 
   describe 'merge profiles task' do
     let(:primary_author) do
-      auth = create :author, id: 1, cap_profile_id: 123
+      auth = create(:author, id: 1, cap_profile_id: 123)
       allow(auth).to receive(:publications).and_return [build(:publication, id: 1), build(:publication, id: 2)]
       allow(auth).to receive(:contributions).and_return [Contribution.new(id: 1, publication_id: 1),
                                                          Contribution.new(publication_id: 2, author_id: 1)]
       auth
     end
     let(:duped_author) do
-      auth = create :author, id: 2, cap_profile_id: 456, cap_import_enabled: true, active_in_cap: true
+      auth = create(:author, id: 2, cap_profile_id: 456, cap_import_enabled: true, active_in_cap: true)
       # the dup calls are because we set mutually exclusive expectations on the in-memory object
       allow(auth).to receive(:publications).and_return [primary_author.publications.last.dup,
                                                         build(:publication, id: 3)]

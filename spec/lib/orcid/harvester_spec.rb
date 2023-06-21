@@ -2,7 +2,7 @@
 
 describe Orcid::Harvester do
   let(:logger) { instance_double(Logger, info: nil) }
-  let(:author) { create :author, orcidid: orcid_id, orcid_last_modified: 1_607_403_656_707 }
+  let(:author) { create(:author, orcidid: orcid_id, orcid_last_modified: 1_607_403_656_707) }
   let(:orcid_id) { 'https://sandbox.orcid.org/0000-0003-3437-349X' }
   let(:put_code) { '73980892' }
   let(:base_works_response) do

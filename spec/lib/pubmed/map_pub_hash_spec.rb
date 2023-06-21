@@ -98,11 +98,11 @@ describe Pubmed::MapPubHash, :vcr do
     context 'when year and date extraction' do
       it 'parses the year correctly' do
         # fixture records
-        record = create :pubmed_source_record_10000166 # year in first location
+        record = create(:pubmed_source_record_10000166) # year in first location
         expect(described_class.new(record.source_data).pub_hash[:year]).to eq '1992'
-        record = create :pubmed_source_record_29279863 # year in alternate location
+        record = create(:pubmed_source_record_29279863) # year in alternate location
         expect(described_class.new(record.source_data).pub_hash[:year]).to eq '2017'
-        record = create :pubmed_source_record_23388678 # year in another alternate location
+        record = create(:pubmed_source_record_23388678) # year in another alternate location
         expect(described_class.new(record.source_data).pub_hash[:year]).to eq '2013'
       end
 
@@ -134,11 +134,11 @@ describe Pubmed::MapPubHash, :vcr do
 
       it 'parses the date correctly' do
         # fixture records
-        record = create :pubmed_source_record_10000166 # date
+        record = create(:pubmed_source_record_10000166) # date
         expect(described_class.new(record.source_data).pub_hash[:date]).to eq '1992-02-05'
-        record = create :pubmed_source_record_29279863 # another date
+        record = create(:pubmed_source_record_29279863) # another date
         expect(described_class.new(record.source_data).pub_hash[:date]).to eq '2017-12-22'
-        record = create :pubmed_source_record_23388678 # another date
+        record = create(:pubmed_source_record_23388678) # another date
         expect(described_class.new(record.source_data).pub_hash[:date]).to eq '2013-02-08'
       end
 

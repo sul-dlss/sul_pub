@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 describe Pubmed::Fetcher, :vcr do
-  let(:author) { create :author }
+  let(:author) { create(:author) }
   let(:pub_hash) do
     {
       title: 'some title',

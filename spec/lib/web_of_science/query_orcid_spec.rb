@@ -3,8 +3,8 @@
 describe WebOfScience::QueryOrcid, :vcr do
   subject(:query_orcid) { described_class.new(author) }
 
-  let(:author) { create :russ_altman }
-  let(:author_blank_orcid) { create :author, :blank_orcid }
+  let(:author) { create(:russ_altman) }
+  let(:author_blank_orcid) { create(:author, :blank_orcid) }
 
   # avoid caching Savon client across examples (affects VCR)
   before { allow(WebOfScience).to receive(:client).and_return(WebOfScience::Client.new(Settings.WOS.AUTH_CODE)) }

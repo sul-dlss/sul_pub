@@ -5,7 +5,7 @@ describe AllSources::Harvester do
 
   describe '#process_author' do
     let(:options) { { some_options: 'here' } }
-    let(:author) { create :author }
+    let(:author) { create(:author) }
 
     context 'wos and pubmed enabled' do
       it 'calls both pubmed and wos harvester for the author' do

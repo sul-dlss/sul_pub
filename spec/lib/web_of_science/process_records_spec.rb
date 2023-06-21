@@ -3,7 +3,7 @@
 describe WebOfScience::ProcessRecords, :vcr do
   subject(:processor) { described_class.new(author, records) }
 
-  let(:author) { create :russ_altman }
+  let(:author) { create(:russ_altman) }
   let(:records) { WebOfScience::Records.new(records: "<records>#{record_xml}</records>") }
   let(:record_xml) { File.read('spec/fixtures/wos_client/wos_record_000288663100014.xml') }
   let(:links_client) { Clarivate::LinksClient.new }
@@ -172,7 +172,7 @@ describe WebOfScience::ProcessRecords, :vcr do
 
   # This scenario includes when 2nd author is associated w/ a Pub that was already fetched for another author
   context 'WebOfScienceSourceRecord exists' do
-    let(:author) { create :author }
+    let(:author) { create(:author) }
     let(:wssr) { records.first.find_or_create_model }
 
     before { records.first.find_or_create_model }
@@ -210,8 +210,8 @@ describe WebOfScience::ProcessRecords, :vcr do
         }
       end
       let(:pub) do
-        build :publication, sciencewire_id: 123, pmid: '21253920', pubhash_needs_update: true,
-                            pub_hash:
+        build(:publication, sciencewire_id: 123, pmid: '21253920', pubhash_needs_update: true,
+                            pub_hash:)
       end
       let(:uid) { records.first.uid }
 
@@ -223,7 +223,7 @@ describe WebOfScience::ProcessRecords, :vcr do
 
       describe 'record.matching_publication' do
         let(:match) { PublicationIdentifier.find_by(identifier_type: 'pmid', identifier_value: '21253920') }
-        let(:other_id) { create :doi_pub_id, identifier_value: '10.1007/s12630-011-9462-1' }
+        let(:other_id) { create(:doi_pub_id, identifier_value: '10.1007/s12630-011-9462-1') }
 
         it 'finds the Publication by non-WOS IDs' do
           expect(PublicationIdentifier.where(identifier_type: 'WosUID').count).to eq 0

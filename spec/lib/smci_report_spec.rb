@@ -25,9 +25,9 @@ describe SmciReport do
   end
 
   describe '#run' do
-    let(:author) { create :russ_altman }
-    let(:publication) { create :publication }
-    let(:contribution) { create :contribution }
+    let(:author) { create(:russ_altman) }
+    let(:publication) { create(:publication) }
+    let(:contribution) { create(:contribution) }
     let(:wos_retriever) do
       instance_double(WebOfScience::Retriever, next_batch: WebOfScience::Records.new(records: '<xml/>'))
     end
@@ -100,7 +100,7 @@ describe SmciReport do
   end
 
   describe '#output_row' do
-    let(:author) { create :russ_altman }
+    let(:author) { create(:russ_altman) }
     let(:report) { described_class.new(input_file: input_csv, output_file: output_csv) }
     let(:pub_hash) { { publisher: 'some publisher', title: 'some title', identifier: [] } }
     let(:date) { Time.zone.now }

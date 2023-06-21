@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe WebOfScienceSourceRecord, type: :model do
-  subject(:wos_src_rec) { build :web_of_science_source_record }
+RSpec.describe WebOfScienceSourceRecord do
+  subject(:wos_src_rec) { build(:web_of_science_source_record) }
 
   let(:records) { WebOfScience::Records.new(records: "<records>#{record_xml}</records>") }
   let(:record_xml) { File.read('spec/fixtures/wos_client/wos_record_000288663100014.xml') }
@@ -73,7 +73,7 @@ RSpec.describe WebOfScienceSourceRecord, type: :model do
   end
 
   describe '#publication' do
-    let(:pub) { create :publication, wos_uid: 'WOS:A1972N549400003' }
+    let(:pub) { create(:publication, wos_uid: 'WOS:A1972N549400003') }
 
     it 'assignment works' do
       wos_src_rec.publication = pub
