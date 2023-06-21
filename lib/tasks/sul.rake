@@ -419,14 +419,22 @@ namespace :sul do
   end
 
   # bundle exec rake sul:stanford_orcid_users['tmp/results.csv']
+  # QUERY_ORCID=true SCOPE=true bundle exec rake sul:stanford_orcid_users['tmp/results.csv']
   # Query the sul_pub database for all people with an ORCIDID (i.e. that have
   # gone through the Stanford integration and were returned via the MaIS API)
-  # and also query for potential Stanford people with ORCIDIDs via the ORCID API.
-  # Get the difference between these two sets which represents people with ORCIDs
-  # that are not in our system.
+  # Optionally also query for potential Stanford people with ORCIDIDs via the ORCID API.
+  # Get the difference between these two sets which represents people with ORCIDs that are not in our system.
+  # OPTIONAL environmental params:
+  # QUERY_ORCID - true or false (defaults to false) ... if true, we will query the ORCID for other potential
+  #  Stanford researchers.  This is time consuming (> 1 hour)
+  # FIND_SCOPE - true or false (defaults to false) ... if true, query the MaIS API for each Stanford integration user
+  #  to determine if they have write scope or read scope.  This is time consuming (~30 mins)
   desc 'Export all Stanford users with ORCIDs'
   task :stanford_orcid_users, %i[output_file] => :environment do |_t, args|
     output_file = args[:output_file]
+
+    query_orcid = ENV.fetch('QUERY_ORCID', false) # if true, we will also query the ORCID API
+    find_scope = ENV.fetch('FIND_SCOPE', false) # if set to true, find scopes for all Stanford-SUNET integration users
 
     # active stanford users who have gone through the Stanford ORCID integration
     users = Author.where.not(orcidid: nil).where.not(sunetid: ['', nil]).where(active_in_cap: true)
@@ -434,19 +442,21 @@ namespace :sul do
     orcidids_stanford = users.map(&:orcidid)
     puts "Number of active Stanford users who have gone through integration: #{total_stanford}"
 
-    # an ORCID API query that searches for Stanford people
-    query = '(ringgold-org-id:6429)OR(orgname="Stanford%20University")OR("grid.168010.e")OR(email=*.stanford.edu)'
-    orcid_client = Orcid::Client.new
-    response = orcid_client.search(query)
-    total_orcid = response['num-found']
-    orcidids_api = response['result'].map { |result| result['orcid-identifier']['uri'] }
-    puts "ORCID API Query: #{query}"
-    puts "Number of ORCIDs returned from ORCID API: #{total_orcid}"
+    if query_orcid
+      # an ORCID API query that searches for Stanford people
+      query = '(ringgold-org-id:6429)OR(orgname="Stanford%20University")OR("grid.168010.e")OR(email=*.stanford.edu)'
+      orcid_client = Orcid::Client.new
+      response = orcid_client.search(query)
+      total_orcid = response['num-found']
+      orcidids_api = response['result'].map { |result| result['orcid-identifier']['uri'] }
+      puts "ORCID API Query: #{query}"
+      puts "Number of ORCIDs returned from ORCID API: #{total_orcid}"
 
-    # users returned from the ORCID API - users who have gone through ORCID integration
-    orcidids_diff = orcidids_api - orcidids_stanford
-    total_diff = orcidids_diff.size
-    puts "Number of users returned from the ORCID API - known Stanford ORCID users: #{total_diff}"
+      # users returned from the ORCID API - users who have gone through ORCID integration
+      orcidids_diff = orcidids_api - orcidids_stanford
+      total_diff = orcidids_diff.size
+      puts "Number of users returned from the ORCID API - known Stanford ORCID users: #{total_diff}"
+    end
 
     header_row = %w[orcidid name last_name first_name sunet cap_profile_id scope num_works_pushed total_new_approved_publications integration_last_updated]
     CSV.open(output_file, 'wb') do |csv|
@@ -455,24 +465,32 @@ namespace :sul do
       puts 'writing Stanford integration users'
       users.each_with_index do |user, i|
         puts "#{i + 1} of #{total_stanford}: #{user.sunetid} | #{user.orcidid}"
-        mais_user = Mais::Client.new.fetch_orcid_user(sunetid: user.sunetid)
-        scope = if mais_user.update?
-                  'update'
-                else
-                  'read'
-                end
+        if find_scope
+          mais_user = Mais::Client.new.fetch_orcid_user(sunetid: user.sunetid)
+          last_updated = mais_user.last_updated.to_date
+          scope = if mais_user.update?
+                    'update'
+                  else
+                    'read'
+                  end
+        else
+          last_updated = user.updated_at
+          scope = 'unknown'
+        end
         num_works_pushed = user.contributions.where.not(orcid_put_code: nil).size
         total_publications = user.contributions.where(status: %w[new approved]).size
         csv << [user.orcidid, "#{user.cap_first_name} #{user.cap_last_name}", user.cap_last_name, user.cap_first_name,
-                user.sunetid, user.cap_profile_id, scope, num_works_pushed, total_publications, mais_user.last_updated.to_date]
+                user.sunetid, user.cap_profile_id, scope, num_works_pushed, total_publications, last_updated.to_date]
       end
 
-      # next write out all of the ORCID API users that were not already in the Stanford list
-      puts 'writing ORCID API users'
-      orcidids_diff.each_with_index do |orcidid, i|
-        puts "#{i + 1} of #{total_diff}: #{orcidid}"
-        name = orcid_client.fetch_name(orcidid)
-        csv << [orcidid, name.join(' '), name[1], name[0], '', '', '', '', '']
+      if query_orcid
+        # next write out all of the ORCID API users that were not already in the Stanford list
+        puts 'writing ORCID API users'
+        orcidids_diff.each_with_index do |orcidid, i|
+          puts "#{i + 1} of #{total_diff}: #{orcidid}"
+          name = orcid_client.fetch_name(orcidid)
+          csv << [orcidid, name.join(' '), name[1], name[0], '', '', '', '', '']
+        end
       end
     end
     puts
