@@ -9,7 +9,7 @@ namespace :harvest do
   desc 'Update harvest from all sources, for all authors, using default update timeframes'
   task all_authors_update: :environment do
     options = {
-      symbolicTimeSpan: Settings.WOS.regular_harvest_timeframe,
+      load_time_span: Settings.WOS.regular_harvest_timeframe,
       relDate: Settings.PUBMED.regular_harvest_timeframe
     }
     AllSources.harvester.harvest_all(options)
@@ -29,7 +29,7 @@ namespace :harvest do
     raise "Could not find Author by cap_profile_id: #{args[:cap_profile_id]}." if author.nil?
 
     options = {
-      symbolicTimeSpan: Settings.WOS.regular_harvest_timeframe,
+      load_time_span: Settings.WOS.regular_harvest_timeframe,
       relDate: Settings.PUBMED.regular_harvest_timeframe
     }
     AllSources.harvester.process_author(author, options)

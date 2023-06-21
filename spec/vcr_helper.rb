@@ -25,15 +25,6 @@ VCR.configure do |c|
   c.filter_sensitive_data('Settings.ORCID.CLIENT_ID') { Settings.ORCID.CLIENT_ID }
   c.filter_sensitive_data('Settings.ORCID.CLIENT_SECRET') { Settings.ORCID.CLIENT_SECRET }
 
-  # WOS Links-AMR filters
-  (links_username, links_password) = Base64.decode64(Settings.WOS.AUTH_CODE).split(':', 2)
-  c.filter_sensitive_data('links_username') do |interaction|
-    links_username if interaction.request.uri.include? Clarivate::LinksClient::LINKS_HOST
-  end
-  c.filter_sensitive_data('links_password') do |interaction|
-    links_password if interaction.request.uri.include? Clarivate::LinksClient::LINKS_HOST
-  end
-
   # ORCID API filters
   c.filter_sensitive_data('refresh_token') do |interaction|
     if interaction.request.uri.include? Settings.ORCID.BASE_AUTH_URL
@@ -74,5 +65,9 @@ VCR.configure do |c|
   # WOS API filters
   c.filter_sensitive_data('Settings.WOS.AUTH_CODE') do |interaction|
     Settings.WOS.AUTH_CODE if interaction.request.uri.include? 'WOKMWSAuthenticate'
+  end
+
+  c.filter_sensitive_data('Settings.WOS.API_KEY') do |interaction|
+    Settings.WOS.API_KEY if interaction.request.uri.starts_with? Clarivate::RestClient::URL
   end
 end

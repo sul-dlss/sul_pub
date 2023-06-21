@@ -88,7 +88,7 @@ module WebOfScience
     # @raise ArgumentError if pmid is not valid
     def parse_pmid(pmid)
       # NOTE: Identifiers::PubmedId.extract(pmid).first returns nil or a String for (String | Integer) arg
-      pmid = ::Identifiers::PubmedId.extract(pmid).first
+      pmid = ::Identifiers::PubmedId.extract(pmid&.to_s&.delete_prefix('MEDLINE:')).first
       raise(ArgumentError, 'pmid is not valid') unless pmid.is_a? String
 
       pmid

@@ -29,6 +29,10 @@ RSpec/DescribeClass:
     - spec/tasks/cleanup_rake_spec.rb
     - spec/requests/authorization_spec.rb
 
+RSpec/MultipleMemoizedHelpers:
+  Exclude:
+    - spec/controllers/publications_controller_spec.rb
+
 # there are useful expectations of methods being called on the subject in tests
 RSpec/SubjectStub:
   Exclude:
@@ -474,7 +478,7 @@ RSpec/ContainExactly: # new in 2.19
 RSpec/DuplicatedMetadata: # new in 2.16
   Enabled: true
 RSpec/IndexedLet: # new in 2.20
-  Enabled: true
+  Enabled: false
 RSpec/MatchArray: # new in 2.19
   Enabled: true
 RSpec/PendingWithoutReason: # new in 2.16

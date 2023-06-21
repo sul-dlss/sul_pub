@@ -40,7 +40,7 @@ module Csl
     end
 
     def to_csl_author
-      @csl_author ||= { 'family' => family_name, 'given' => given_name }
+      @to_csl_author ||= { 'family' => family_name, 'given' => given_name }
     end
 
     def ==(other)

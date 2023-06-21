@@ -162,7 +162,6 @@ http_interactions:
         coll_id="WOS" local_count="16">&lt;/silo_tc>&lt;/tc_list>&lt;/citation_related>&lt;cluster_related>&lt;identifiers>&lt;identifier
         type="issn" value="1044-7431">&lt;/identifier>&lt;identifier type="eissn"
         value="1095-9327">&lt;/identifier>&lt;identifier type="doi" value="10.1016/j.mcn.2012.03.008">&lt;/identifier>&lt;/identifiers>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>&lt;/records></records></return></ns2:searchResponse></soap:Body></soap:Envelope>'
-    http_version: 
   recorded_at: Thu, 21 Mar 2019 20:34:53 GMT
 - request:
     method: get
@@ -387,7 +386,6 @@ http_interactions:
             </wsdl:port>
           </wsdl:service>
         </wsdl:definitions>
-    http_version: 
   recorded_at: Thu, 21 Mar 2019 20:38:52 GMT
 - request:
     method: post
@@ -433,7 +431,6 @@ http_interactions:
       encoding: UTF-8
       string: <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"><soap:Body><ns2:authenticateResponse
         xmlns:ns2="http://auth.cxf.wokmws.thomsonreuters.com"><return>6Ed4DOIkCxgJVcOtwC8</return></ns2:authenticateResponse></soap:Body></soap:Envelope>
-    http_version: 
   recorded_at: Thu, 21 Mar 2019 20:38:52 GMT
 - request:
     method: get
@@ -1151,6 +1148,197 @@ http_interactions:
             </wsdl:port>
           </wsdl:service>
         </wsdl:definitions>
-    http_version: 
   recorded_at: Thu, 21 Mar 2019 20:38:52 GMT
-recorded_with: VCR 4.0.0
+- request:
+    method: get
+    uri: https://wos-api.clarivate.com/api/wos/?count=100&databaseId=WOK&firstRecord=1&usrQuery=DO=10.1016/j.mcn.2012.03.008
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.7.6
+      Accept:
+      - application/xml
+      X-Apikey:
+      - Settings.WOS.API_KEY
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 21 Jun 2023 20:07:30 GMT
+      Content-Type:
+      - application/xml
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      X-Rec-Amtperyear-Remaining:
+      - '47644'
+      X-Req-Reqpersec-Remaining:
+      - '1'
+      Vary:
+      - Origin
+      Correlation-Id:
+      - c4e81a6d-3f2b-4fc5-b654-9718ec565f16#19832230
+      X-Kong-Upstream-Latency:
+      - '140'
+      X-Kong-Proxy-Latency:
+      - '2'
+      Via:
+      - kong/2.8.1
+    body:
+      encoding: UTF-8
+      string: "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<response
+        xmlns=\"http://www.isinet.com/xrpc42\">\n    <map>\n        <map name=\"Data\">\n
+        \           <val name=\"Records\"><![CDATA[<records><REC r_id_disclaimer=\"ResearcherID
+        data provided by Clarivate Analytics\"><UID>WOS:000305547700008</UID><static_data><summary><EWUID><WUID
+        coll_id=\"WOS\" /><edition value=\"WOS.SCI\" /></EWUID><pub_info sortdate=\"2012-05-01\"
+        pubyear=\"2012\" has_abstract=\"Y\" coverdate=\"MAY 2012\" pubmonth=\"MAY\"
+        vol=\"50\" issue=\"1\" pubtype=\"Journal\" journal_oas_gold=\"N\"><page begin=\"82\"
+        end=\"92\" page_count=\"11\">82-92</page></pub_info><titles count=\"6\"><title
+        type=\"source\">MOLECULAR AND CELLULAR NEUROSCIENCE</title><title type=\"source_abbrev\">MOL
+        CELL NEUROSCI</title><title type=\"abbrev_iso\">Mol. Cell. Neurosci.</title><title
+        type=\"abbrev_11\">MOL CELL NE</title><title type=\"abbrev_29\">MOL CELL NEUROSCI</title><title
+        type=\"item\">Protein kinase C alpha and integrin-linked kinase mediate the
+        negative axon guidance effects of Sonic hedgehog</title></titles><names count=\"5\"><name
+        seq_no=\"1\" role=\"author\" reprint=\"Y\" addr_no=\"1\" r_id=\"EYM-4675-2022\"
+        daisng_id=\"22395069\" claim_status=\"false\"><display_name>Guo, Daorong</display_name><preferred_name><full_name>Guo,
+        D.</full_name><first_name>D.</first_name><last_name>Guo</last_name></preferred_name><full_name>Guo,
+        Daorong</full_name><wos_standard>Guo, DR</wos_standard><first_name>Daorong</first_name><last_name>Guo</last_name><data-item-ids><data-item-id
+        id-type=\"PreferredRID\" type=\"person\">EYM-4675-2022</data-item-id></data-item-ids></name><name
+        seq_no=\"2\" role=\"author\" addr_no=\"2\" r_id=\"DYK-0147-2022\" daisng_id=\"16040550\"
+        claim_status=\"false\"><display_name>Standley, Clive</display_name><preferred_name><full_name>Standley,
+        Clive</full_name><first_name>Clive</first_name><last_name>Standley</last_name></preferred_name><full_name>Standley,
+        Clive</full_name><wos_standard>Standley, C</wos_standard><first_name>Clive</first_name><last_name>Standley</last_name><data-item-ids><data-item-id
+        id-type=\"PreferredRID\" type=\"person\">DYK-0147-2022</data-item-id></data-item-ids></name><name
+        seq_no=\"3\" role=\"author\" addr_no=\"2\" r_id=\"CFU-6406-2022\" daisng_id=\"5256812\"
+        claim_status=\"false\"><display_name>Bellve, Karl</display_name><preferred_name><full_name>Bellve,
+        Karl</full_name><first_name>Karl</first_name><last_name>Bellve</last_name></preferred_name><full_name>Bellve,
+        Karl</full_name><wos_standard>Bellve, K</wos_standard><first_name>Karl</first_name><last_name>Bellve</last_name><data-item-ids><data-item-id
+        id-type=\"PreferredRID\" type=\"person\">CFU-6406-2022</data-item-id></data-item-ids></name><name
+        seq_no=\"4\" role=\"author\" addr_no=\"2\" r_id=\"ILS-1084-2023\" daisng_id=\"44480828\"
+        claim_status=\"false\"><display_name>Fogarty, Kevin</display_name><preferred_name><full_name>Fogarty,
+        Kevin</full_name><first_name>Kevin</first_name><last_name>Fogarty</last_name></preferred_name><full_name>Fogarty,
+        Kevin</full_name><wos_standard>Fogarty, K</wos_standard><first_name>Kevin</first_name><last_name>Fogarty</last_name><data-item-ids><data-item-id
+        id-type=\"PreferredRID\" type=\"person\">ILS-1084-2023</data-item-id></data-item-ids></name><name
+        seq_no=\"5\" role=\"author\" addr_no=\"1\" r_id=\"CFJ-4585-2022\" daisng_id=\"5144992\"
+        claim_status=\"false\"><display_name>Bao, Zheng-Zheng</display_name><preferred_name><full_name>Bao,
+        Zhengzheng</full_name><first_name>Zhengzheng</first_name><last_name>Bao</last_name></preferred_name><full_name>Bao,
+        Zheng-Zheng</full_name><wos_standard>Bao, ZZ</wos_standard><first_name>Zheng-Zheng</first_name><last_name>Bao</last_name><data-item-ids><data-item-id
+        id-type=\"PreferredRID\" type=\"person\">CFJ-4585-2022</data-item-id></data-item-ids></name></names><doctypes
+        count=\"1\"><doctype>Article</doctype></doctypes><publishers><publisher><address_spec
+        addr_no=\"1\"><full_address>525 B ST, STE 1900, SAN DIEGO, CA 92101-4495 USA</full_address><city>SAN
+        DIEGO</city></address_spec><names count=\"1\"><name role=\"publisher\" seq_no=\"1\"
+        addr_no=\"1\"><display_name>ACADEMIC PRESS INC ELSEVIER SCIENCE</display_name><full_name>ACADEMIC
+        PRESS INC ELSEVIER SCIENCE</full_name><unified_name>Elsevier</unified_name></name></names></publisher></publishers></summary><fullrecord_metadata><languages
+        count=\"1\"><language type=\"primary\">English</language></languages><normalized_languages
+        count=\"1\"><language type=\"primary\">English</language></normalized_languages><normalized_doctypes
+        count=\"1\"><doctype>Article</doctype></normalized_doctypes><refs count=\"63\"
+        /><addresses count=\"2\"><address_name><address_spec addr_no=\"1\"><full_address>Univ
+        Massachusetts, Sch Med, Dept Med &amp; Cell Biol, Program Neurosci, Worcester,
+        MA 01605 USA</full_address><organizations count=\"3\"><organization pref=\"null\">Univ
+        Massachusetts</organization><organization pref=\"Y\">University of Massachusetts
+        System</organization><organization pref=\"Y\">University of Massachusetts
+        Worcester</organization></organizations><suborganizations count=\"3\"><suborganization>Sch
+        Med</suborganization><suborganization>Dept Med &amp; Cell Biol</suborganization><suborganization>Program
+        Neurosci</suborganization></suborganizations><city>Worcester</city><state>MA</state><country>USA</country><zip
+        location=\"AP\">01605</zip></address_spec><names count=\"2\"><name seq_no=\"1\"
+        role=\"author\" reprint=\"Y\" addr_no=\"1\" daisng_id=\"22395069\" claim_status=\"false\"><display_name>Guo,
+        Daorong</display_name><preferred_name><full_name>Guo, D.</full_name><first_name>D.</first_name><last_name>Guo</last_name></preferred_name><full_name>Guo,
+        Daorong</full_name><wos_standard>Guo, DR</wos_standard><first_name>Daorong</first_name><last_name>Guo</last_name><data-item-ids><data-item-id
+        id-type=\"PreferredRID\" type=\"person\">EYM-4675-2022</data-item-id></data-item-ids></name><name
+        seq_no=\"5\" role=\"author\" addr_no=\"1\" daisng_id=\"5144992\" claim_status=\"false\"><display_name>Bao,
+        Zheng-Zheng</display_name><preferred_name><full_name>Bao, Zhengzheng</full_name><first_name>Zhengzheng</first_name><last_name>Bao</last_name></preferred_name><full_name>Bao,
+        Zheng-Zheng</full_name><wos_standard>Bao, ZZ</wos_standard><first_name>Zheng-Zheng</first_name><last_name>Bao</last_name><data-item-ids><data-item-id
+        id-type=\"PreferredRID\" type=\"person\">CFJ-4585-2022</data-item-id></data-item-ids></name></names></address_name><address_name><address_spec
+        addr_no=\"2\"><full_address>Univ Massachusetts, Sch Med, Program Mol Med,
+        Biomed Imaging Grp, Worcester, MA 01605 USA</full_address><organizations count=\"3\"><organization
+        pref=\"null\">Univ Massachusetts</organization><organization pref=\"Y\">University
+        of Massachusetts System</organization><organization pref=\"Y\">University
+        of Massachusetts Worcester</organization></organizations><suborganizations
+        count=\"3\"><suborganization>Sch Med</suborganization><suborganization>Program
+        Mol Med</suborganization><suborganization>Biomed Imaging Grp</suborganization></suborganizations><city>Worcester</city><state>MA</state><country>USA</country><zip
+        location=\"AP\">01605</zip></address_spec><names count=\"3\"><name seq_no=\"2\"
+        role=\"author\" addr_no=\"2\" daisng_id=\"16040550\" claim_status=\"false\"><display_name>Standley,
+        Clive</display_name><preferred_name><full_name>Standley, Clive</full_name><first_name>Clive</first_name><last_name>Standley</last_name></preferred_name><full_name>Standley,
+        Clive</full_name><wos_standard>Standley, C</wos_standard><first_name>Clive</first_name><last_name>Standley</last_name><data-item-ids><data-item-id
+        id-type=\"PreferredRID\" type=\"person\">DYK-0147-2022</data-item-id></data-item-ids></name><name
+        seq_no=\"3\" role=\"author\" addr_no=\"2\" daisng_id=\"5256812\" claim_status=\"false\"><display_name>Bellve,
+        Karl</display_name><preferred_name><full_name>Bellve, Karl</full_name><first_name>Karl</first_name><last_name>Bellve</last_name></preferred_name><full_name>Bellve,
+        Karl</full_name><wos_standard>Bellve, K</wos_standard><first_name>Karl</first_name><last_name>Bellve</last_name><data-item-ids><data-item-id
+        id-type=\"PreferredRID\" type=\"person\">CFU-6406-2022</data-item-id></data-item-ids></name><name
+        seq_no=\"4\" role=\"author\" addr_no=\"2\" daisng_id=\"44480828\" claim_status=\"false\"><display_name>Fogarty,
+        Kevin</display_name><preferred_name><full_name>Fogarty, Kevin</full_name><first_name>Kevin</first_name><last_name>Fogarty</last_name></preferred_name><full_name>Fogarty,
+        Kevin</full_name><wos_standard>Fogarty, K</wos_standard><first_name>Kevin</first_name><last_name>Fogarty</last_name><data-item-ids><data-item-id
+        id-type=\"PreferredRID\" type=\"person\">ILS-1084-2023</data-item-id></data-item-ids></name></names></address_name></addresses><reprint_addresses
+        count=\"1\"><address_name><address_spec addr_no=\"1\"><full_address>Univ Massachusetts,
+        Sch Med, Dept Med &amp; Cell Biol, Program Neurosci, Worcester, MA 01605 USA</full_address><organizations
+        count=\"3\"><organization pref=\"null\">Univ Massachusetts</organization><organization
+        pref=\"Y\">University of Massachusetts System</organization><organization
+        pref=\"Y\">University of Massachusetts Worcester</organization></organizations><suborganizations
+        count=\"3\"><suborganization>Sch Med</suborganization><suborganization>Dept
+        Med &amp; Cell Biol</suborganization><suborganization>Program Neurosci</suborganization></suborganizations><city>Worcester</city><state>MA</state><country>USA</country><zip
+        location=\"AP\">01605</zip></address_spec><names count=\"1\"><name seq_no=\"1\"
+        role=\"author\" reprint=\"Y\" addr_no=\"1\"><display_name>Guo, Daorong</display_name><full_name>Guo,
+        Daorong</full_name><wos_standard>Guo, DR</wos_standard><first_name>Daorong</first_name><last_name>Guo</last_name></name></names></address_name></reprint_addresses><category_info><headings
+        count=\"1\"><heading>Science &amp; Technology</heading></headings><subheadings
+        count=\"1\"><subheading>Life Sciences &amp; Biomedicine</subheading></subheadings><subjects
+        count=\"2\"><subject ascatype=\"traditional\" code=\"RU\">Neurosciences</subject><subject
+        ascatype=\"extended\">Neurosciences &amp; Neurology</subject></subjects></category_info><fund_ack><fund_text><p>This
+        work was supported by National Institutes of Health Grant EY014980 (Z.-Z.B.).
+        We thank Dr. E. Campeau and P. Kaufman (UMass Med. Sch.) for providing pENTR
+        vectors, Dr. Chuanyue Wu (Univ. of Pittsburgh) for providing pGEX-ILK-WT construct,
+        Dr. Yi Rao (Beijing University) and Dr. Jane Wu (Northwestern University)
+        for providing Slit2 construct, Dr. Stephen Doxsey (UMass Med. Sch.) for anti-Na&lt;SUP&gt;+&lt;/SUP&gt;/K&lt;SUP&gt;+&lt;/SUP&gt;
+        ATPase antibody, Dong Han and Chenjian Li for technical help on in vitro kinase
+        assay, and Adrianne Kolpak for critical reading of the manuscript.</p></fund_text><grants
+        count=\"1\"><grant><grant_agency>National Institutes of Health Grant</grant_agency><grant_ids
+        count=\"1\"><grant_id>EY014980</grant_id></grant_ids><grant_agency_names pref=\"Y\"
+        content=\"United States Department of Health &amp; Human Services\" /><grant_agency_names
+        pref=\"Y\" content=\"National Institutes of Health (NIH) - USA\" /><grant_agency_names
+        pref=\"N\" content=\"National Institutes of Health Grant\" /></grant></grants></fund_ack><keywords
+        count=\"4\"><keyword>Shh</keyword><keyword>PKC alpha</keyword><keyword>ILK</keyword><keyword>Axon
+        guidance</keyword></keywords><abstracts count=\"1\"><abstract><abstract_text
+        count=\"1\"><p>In addition to its role as a morphogen, Sonic hedgehog (Shh)
+        has also been shown to function as a guidance factor that directly acts on
+        the growth cones of various types of axons. However, the noncanonical signaling
+        pathways that mediate the guidance effects of Shh protein remain poorly understood.
+        We demonstrate that a novel signaling pathway consisting of protein kinase
+        C alpha (PKC alpha) and integrin-linked kinase (ILK) mediates the negative
+        guidance effects of high concentration of Shh on retinal ganglion cell (RGC)
+        axons. Shh rapidly increased Ca2+ level and activated PKC alpha and ILK in
+        the growth cones of RGC axons. By in vitro kinase assay, PKC alpha was found
+        to directly phosphorylate ILK on threonine-173 and -181. Inhibition of PKC
+        alpha or expression of a mutant ILK with the PKC alpha phosphorylation sites
+        mutated (ILK-DM), abolished the Shh-induced macropinocytosis, growth cone
+        collapse and repulsive axon turning. In vivo, expression of a dominant negative
+        PKC alpha or ILK-DM disrupted RGC axon pathfinding at the optic chiasm but
+        not the projection toward the optic disk, supporting that this signaling pathway
+        plays a specific role in Shh-mediated negative guidance effects. (c) 2012
+        Elsevier Inc. All rights reserved.</p></abstract_text></abstract></abstracts></fullrecord_metadata><item
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:type=\"itemType_wos\"
+        coll_id=\"WOS\"><ids avail=\"N\">962LX</ids><bib_id>50 (1): 82-92 MAY 2012</bib_id><bib_pagecount
+        type=\"Journal\">132</bib_pagecount><keywords_plus count=\"10\"><keyword>GANGLION-CELL
+        AXONS</keyword><keyword>MOUSE OPTIC CHIASM</keyword><keyword>STRUCTURAL BASIS</keyword><keyword>NERVE
+        GROWTH</keyword><keyword>SELECTIVE-INHIBITION</keyword><keyword>PKC-DELTA</keyword><keyword>ACTIVATION</keyword><keyword>MACROPINOCYTOSIS</keyword><keyword>PHOSPHORYLATION</keyword><keyword>ISOZYMES</keyword></keywords_plus></item></static_data><dynamic_data><citation_related><tc_list><silo_tc
+        coll_id=\"WOS\" local_count=\"19\" /></tc_list><citation_topics><subj-group><subject
+        content-id=\"1\" content-type=\"macro\">Clinical &amp; Life Sciences</subject><subject
+        content-id=\"1.5\" content-type=\"meso\">Neuroscience</subject><subject content-id=\"1.5.826\"
+        content-type=\"micro\">Axon Guidance</subject></subj-group></citation_topics><SDG
+        code=\"826\"><sdg_category status=\"Active\">03 Good Health and Well-being</sdg_category></SDG></citation_related><cluster_related><identifiers><identifier
+        type=\"issn\" value=\"1044-7431\" /><identifier type=\"eissn\" value=\"1095-9327\"
+        /><identifier type=\"doi\" value=\"10.1016/j.mcn.2012.03.008\" /><identifier
+        type=\"pmid\" value=\"MEDLINE:22521536\" /></identifiers></cluster_related><wos_usage
+        last180days=\"1\" alltime=\"16\" /></dynamic_data><dates date_modified=\"2019-03-28T16:28:34.804462\"
+        date_created=\"2012-12-25T12:25:20.684325\" /></REC>\r\n</records>]]></val>\n
+        \       </map>\n        <map name=\"QueryResult\">\n            <map>\n                <val
+        name=\"QueryID\">34</val>\n                <val name=\"RecordsSearched\">177881258</val>\n
+        \               <val name=\"RecordsFound\">1</val>\n            </map>\n        </map>\n
+        \   </map>\n</response>\n"
+  recorded_at: Wed, 21 Jun 2023 20:07:30 GMT
+recorded_with: VCR 6.1.0

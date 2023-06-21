@@ -105,6 +105,3 @@ def default_institution
     Agent::AuthorAddress.new(Settings.HARVESTER.INSTITUTION.address.to_hash)
   )
 end
-
-require_relative 'lib/web_of_science/wsdl'
-WebOfScience::WSDL.fetch

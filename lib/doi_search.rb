@@ -35,7 +35,7 @@ class DoiSearch
     doi = doi_name(doi)
     return [] if doi.blank?
 
-    WebOfScience.queries.search_by_doi(doi).next_batch.map(&:pub_hash)
+    WebOfScience.queries.user_query("DO=#{doi}").next_batch.map(&:pub_hash)
   end
 
   # @param [String, nil] doi

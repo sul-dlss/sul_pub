@@ -7,14 +7,14 @@ module WebOfScience
     @@harvester ||= WebOfScience::Harvester.new
   end
 
-  # @return [Clarivate::LinksClient]
+  # @return [Clarivate::RestLinksClient]
   def self.links_client
-    @@links_client ||= Clarivate::LinksClient.new
+    @@links_client ||= Clarivate::RestLinksClient.new
   end
 
-  # @return [WebOfScience::Client]
+  # @return [WebOfScience::RestClient]
   def self.client
-    @@client ||= WebOfScience::Client.new(Settings.WOS.AUTH_CODE)
+    @@client ||= Clarivate::RestClient.new
   end
 
   # @return [WebOfScience::Queries]

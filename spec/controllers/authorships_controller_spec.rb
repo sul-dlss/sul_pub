@@ -201,30 +201,15 @@ describe AuthorshipsController, :vcr do
     end
 
     context 'for a new WoS publication' do
-      # set Savon in and out of mock mode
-      require 'savon/mock/spec_helper'
-      include Savon::SpecHelper
-
-      after { savon.unmock! }
-
       let(:request_data) { base_data.merge(wos_uid: wos_record_uid).merge(author_hash) }
 
       let(:wos_record_uid) { 'WOS:A1972N549400003' }
-      let(:wos_retrieve_by_id_response) do
-        File.read('spec/fixtures/wos_client/wos_record_A1972N549400003_response.xml')
-      end
-      let(:wos_auth_response) { File.read('spec/fixtures/wos_client/authenticate.xml') }
 
       before do
-        savon.mock!
-        # Mock a WOS-API and Links-API interaction
-        wos_client = WebOfScience::Client.new('secret')
-        links_client = Clarivate::LinksClient.new
-        allow(WebOfScience).to receive_messages(client: wos_client, links_client:)
+        links_client = Clarivate::RestLinksClient.new
         wos_record_links = { wos_record_uid => { 'doi' => '10.5860/crl_33_05_413' } }
-        allow(links_client).to receive(:links).with([wos_record_uid]).and_return(wos_record_links)
-        savon.expects(:authenticate).returns(wos_auth_response)
-        savon.expects(:retrieve_by_id).with(message: :any).returns(wos_retrieve_by_id_response)
+        allow(links_client).to receive_messages(:links).with([wos_record_uid]).and_return(wos_record_links)
+        allow(WebOfScience).to receive_messages(:links_client).and_return(links_client)
         # Issue an API call and check the response status
         http_request
       end

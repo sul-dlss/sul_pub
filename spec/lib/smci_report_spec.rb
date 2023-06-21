@@ -29,7 +29,7 @@ describe SmciReport do
     let(:publication) { create(:publication) }
     let(:contribution) { create(:contribution) }
     let(:wos_retriever) do
-      instance_double(WebOfScience::Retriever, next_batch: WebOfScience::Records.new(records: '<xml/>'))
+      instance_double(WebOfScience::UserQueryRestRetriever, next_batch: WebOfScience::Records.new(records: '<xml/>'))
     end
 
     before do

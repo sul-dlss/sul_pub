@@ -1,0 +1,436 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://wos-api.clarivate.com/api/wos/?count=100&databaseId=WOK&firstRecord=1&loadTimeSpan=4W&usrQuery=RID=(%220000-0003-3859-2905%22)
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.7.6
+      Accept:
+      - application/xml
+      X-Apikey:
+      - Settings.WOS.API_KEY
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 21 Jun 2023 19:46:54 GMT
+      Content-Type:
+      - application/xml
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      X-Rec-Amtperyear-Remaining:
+      - '47949'
+      X-Req-Reqpersec-Remaining:
+      - '1'
+      Vary:
+      - Origin
+      Correlation-Id:
+      - d7dccf5d-57d7-4e68-8c33-5f19d1b38f26#59190141
+      X-Kong-Upstream-Latency:
+      - '33'
+      X-Kong-Proxy-Latency:
+      - '2'
+      Via:
+      - kong/2.8.1
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <response xmlns="http://www.isinet.com/xrpc42">
+            <map>
+                <map name="Data">
+                    <val name="Records"><![CDATA[<records></records>]]></val>
+                </map>
+                <map name="QueryResult">
+                    <map>
+                        <val name="QueryID">26</val>
+                        <val name="RecordsSearched">919348</val>
+                        <val name="RecordsFound">0</val>
+                    </map>
+                </map>
+            </map>
+        </response>
+  recorded_at: Wed, 21 Jun 2023 19:46:54 GMT
+- request:
+    method: get
+    uri: https://wos-api.clarivate.com/api/wos/?count=100&databaseId=WOK&firstRecord=1&loadTimeSpan=4W&usrQuery=AU=(%22Altman,Russ%22%20OR%20%22Altman,Russ,Biagio%22%20OR%20%22Altman,Russ,B%22%20OR%20%22Altman,R%22%20OR%20%22Altman,R,B%22)%20AND%20AD=(%22stanford%22)
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.7.6
+      Accept:
+      - application/xml
+      X-Apikey:
+      - Settings.WOS.API_KEY
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 21 Jun 2023 19:46:54 GMT
+      Content-Type:
+      - application/xml
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      X-Rec-Amtperyear-Remaining:
+      - '47948'
+      X-Req-Reqpersec-Remaining:
+      - '0'
+      Vary:
+      - Origin
+      Correlation-Id:
+      - 73c0b0c7-bef8-453e-9745-04d5bb96ed60#19954763
+      X-Kong-Upstream-Latency:
+      - '53'
+      X-Kong-Proxy-Latency:
+      - '2'
+      Via:
+      - kong/2.8.1
+    body:
+      encoding: UTF-8
+      string: "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<response
+        xmlns=\"http://www.isinet.com/xrpc42\">\n    <map>\n        <map name=\"Data\">\n
+        \           <val name=\"Records\"><![CDATA[<records><REC r_id_disclaimer=\"ResearcherID
+        data provided by Clarivate Analytics\"><UID>WOS:000995351200003</UID><static_data><summary><EWUID><WUID
+        coll_id=\"WOS\" /><edition value=\"WOS.SCI\" /></EWUID><pub_info sortdate=\"2022-11-15\"
+        pubyear=\"2022\" has_abstract=\"Y\" coverdate=\"NOV 15 2022\" pubmonth=\"NOV
+        15\" vol=\"119\" issue=\"46\" pubtype=\"Journal\" journal_oas_gold=\"N\"><page
+        page_count=\"11\" /></pub_info><titles count=\"6\"><title type=\"source\">PROCEEDINGS
+        OF THE NATIONAL ACADEMY OF SCIENCES OF THE UNITED STATES OF AMERICA</title><title
+        type=\"source_abbrev\">P NATL ACAD SCI USA</title><title type=\"abbrev_iso\">Proc.
+        Natl. Acad. Sci. U. S. A.</title><title type=\"abbrev_11\">P NAS US</title><title
+        type=\"abbrev_29\">PROC NAT ACAD SCI USA</title><title type=\"item\">Functional
+        genomics of OCTN2 variants informs protein-specific variant effect predictor
+        for Carnitine Transporter Deficiency</title></titles><names count=\"13\"><name
+        seq_no=\"1\" role=\"author\" addr_no=\"1\"><display_name>Koleske, Megan L.</display_name><full_name>Koleske,
+        Megan L.</full_name><wos_standard>Koleske, ML</wos_standard><first_name>Megan
+        L.</first_name><last_name>Koleske</last_name></name><name seq_no=\"2\" role=\"author\"
+        addr_no=\"2 3\"><display_name>McInnes, Gregory</display_name><full_name>McInnes,
+        Gregory</full_name><wos_standard>McInnes, G</wos_standard><first_name>Gregory</first_name><last_name>McInnes</last_name></name><name
+        seq_no=\"3\" role=\"author\" addr_no=\"4 5\"><display_name>Brown, Julia E.
+        H.</display_name><full_name>Brown, Julia E. H.</full_name><wos_standard>Brown,
+        JEH</wos_standard><first_name>Julia E. H.</first_name><last_name>Brown</last_name></name><name
+        seq_no=\"4\" role=\"author\" addr_no=\"6\"><display_name>Thomas, Neil</display_name><full_name>Thomas,
+        Neil</full_name><wos_standard>Thomas, N</wos_standard><first_name>Neil</first_name><last_name>Thomas</last_name></name><name
+        seq_no=\"5\" role=\"author\" addr_no=\"7\"><display_name>Hutchinson, Keino</display_name><full_name>Hutchinson,
+        Keino</full_name><wos_standard>Hutchinson, K</wos_standard><first_name>Keino</first_name><last_name>Hutchinson</last_name></name><name
+        seq_no=\"6\" role=\"author\" addr_no=\"8\"><display_name>Chin, Marcus Y.</display_name><full_name>Chin,
+        Marcus Y.</full_name><wos_standard>Chin, MY</wos_standard><first_name>Marcus
+        Y.</first_name><last_name>Chin</last_name></name><name seq_no=\"7\" role=\"author\"
+        addr_no=\"9\"><display_name>Koehl, Antoine</display_name><full_name>Koehl,
+        Antoine</full_name><wos_standard>Koehl, A</wos_standard><first_name>Antoine</first_name><last_name>Koehl</last_name></name><name
+        seq_no=\"8\" role=\"author\" addr_no=\"8\"><display_name>Arkin, Michelle R.</display_name><full_name>Arkin,
+        Michelle R.</full_name><wos_standard>Arkin, MR</wos_standard><first_name>Michelle
+        R.</first_name><last_name>Arkin</last_name></name><name seq_no=\"9\" role=\"author\"
+        addr_no=\"7\"><display_name>Schlessinger, Avner</display_name><full_name>Schlessinger,
+        Avner</full_name><wos_standard>Schlessinger, A</wos_standard><first_name>Avner</first_name><last_name>Schlessinger</last_name></name><name
+        seq_no=\"10\" role=\"author\" addr_no=\"10 11\"><display_name>Gallagher, Renata
+        C.</display_name><full_name>Gallagher, Renata C.</full_name><wos_standard>Gallagher,
+        RC</wos_standard><first_name>Renata C.</first_name><last_name>Gallagher</last_name></name><name
+        seq_no=\"11\" role=\"author\" addr_no=\"9\"><display_name>Song, Yun S.</display_name><full_name>Song,
+        Yun S.</full_name><wos_standard>Song, YS</wos_standard><first_name>Yun S.</first_name><last_name>Song</last_name></name><name
+        seq_no=\"12\" role=\"author\" addr_no=\"12 13\"><display_name>Altman, Russ
+        B.</display_name><full_name>Altman, Russ B.</full_name><wos_standard>Altman,
+        RB</wos_standard><first_name>Russ B.</first_name><last_name>Altman</last_name></name><name
+        seq_no=\"13\" role=\"author\" reprint=\"Y\" addr_no=\"1\"><display_name>Giacomini,
+        Kathleen M.</display_name><full_name>Giacomini, Kathleen M.</full_name><wos_standard>Giacomini,
+        KM</wos_standard><first_name>Kathleen M.</first_name><last_name>Giacomini</last_name></name></names><doctypes
+        count=\"1\"><doctype>Article</doctype></doctypes><publishers><publisher><address_spec
+        addr_no=\"1\"><full_address>2101 CONSTITUTION AVE NW, WASHINGTON, DC 20418
+        USA</full_address><city>WASHINGTON</city></address_spec><names count=\"1\"><name
+        role=\"publisher\" seq_no=\"1\" addr_no=\"1\"><display_name>NATL ACAD SCIENCES</display_name><full_name>NATL
+        ACAD SCIENCES</full_name><unified_name>Natl Acad Sciences</unified_name></name></names></publisher></publishers></summary><fullrecord_metadata><languages
+        count=\"1\"><language type=\"primary\">English</language></languages><normalized_languages
+        count=\"1\"><language type=\"primary\">English</language></normalized_languages><normalized_doctypes
+        count=\"1\"><doctype>Article</doctype></normalized_doctypes><refs count=\"67\"
+        /><addresses count=\"13\"><address_name><address_spec addr_no=\"1\"><full_address>Univ
+        Calif San Francisco, Dept Bioengn &amp; Therapeut Sci, San Francisco, CA 94143
+        USA</full_address><organizations count=\"3\"><organization pref=\"null\">Univ
+        Calif San Francisco</organization><organization pref=\"Y\">University of California
+        System</organization><organization pref=\"Y\">University of California San
+        Francisco</organization></organizations><suborganizations count=\"1\"><suborganization>Dept
+        Bioengn &amp; Therapeut Sci</suborganization></suborganizations><city>San
+        Francisco</city><state>CA</state><country>USA</country><zip location=\"AP\">94143</zip></address_spec><names
+        count=\"2\"><name seq_no=\"1\" role=\"author\" addr_no=\"1\"><display_name>Koleske,
+        Megan L.</display_name><full_name>Koleske, Megan L.</full_name><wos_standard>Koleske,
+        ML</wos_standard><first_name>Megan L.</first_name><last_name>Koleske</last_name></name><name
+        seq_no=\"13\" role=\"author\" reprint=\"Y\" addr_no=\"1\"><display_name>Giacomini,
+        Kathleen M.</display_name><full_name>Giacomini, Kathleen M.</full_name><wos_standard>Giacomini,
+        KM</wos_standard><first_name>Kathleen M.</first_name><last_name>Giacomini</last_name></name></names></address_name><address_name><address_spec
+        addr_no=\"2\"><full_address>Stanford Univ, Biomed Informat Training Program,
+        Stanford, CA 94305 USA</full_address><organizations count=\"2\"><organization
+        pref=\"null\">Stanford Univ</organization><organization pref=\"Y\">Stanford
+        University</organization></organizations><suborganizations count=\"1\"><suborganization>Biomed
+        Informat Training Program</suborganization></suborganizations><city>Stanford</city><state>CA</state><country>USA</country><zip
+        location=\"AP\">94305</zip></address_spec><names count=\"1\"><name seq_no=\"2\"
+        role=\"author\" addr_no=\"2\"><display_name>McInnes, Gregory</display_name><full_name>McInnes,
+        Gregory</full_name><wos_standard>McInnes, G</wos_standard><first_name>Gregory</first_name><last_name>McInnes</last_name></name></names></address_name><address_name><address_spec
+        addr_no=\"3\"><full_address>Empirico Inc, San Diego, CA 92122 USA</full_address><organizations
+        count=\"1\"><organization pref=\"null\">Empirico Inc</organization></organizations><city>San
+        Diego</city><state>CA</state><country>USA</country><zip location=\"AP\">92122</zip></address_spec><names
+        count=\"1\"><name seq_no=\"2\" role=\"author\" addr_no=\"3\"><display_name>McInnes,
+        Gregory</display_name><full_name>McInnes, Gregory</full_name><wos_standard>McInnes,
+        G</wos_standard><first_name>Gregory</first_name><last_name>McInnes</last_name></name></names></address_name><address_name><address_spec
+        addr_no=\"4\"><full_address>Univ Calif San Francisco, Program Bioeth, San
+        Francisco, CA 94143 USA</full_address><organizations count=\"3\"><organization
+        pref=\"null\">Univ Calif San Francisco</organization><organization pref=\"Y\">University
+        of California System</organization><organization pref=\"Y\">University of
+        California San Francisco</organization></organizations><suborganizations count=\"1\"><suborganization>Program
+        Bioeth</suborganization></suborganizations><city>San Francisco</city><state>CA</state><country>USA</country><zip
+        location=\"AP\">94143</zip></address_spec><names count=\"1\"><name seq_no=\"3\"
+        role=\"author\" addr_no=\"4\"><display_name>Brown, Julia E. H.</display_name><full_name>Brown,
+        Julia E. H.</full_name><wos_standard>Brown, JEH</wos_standard><first_name>Julia
+        E. H.</first_name><last_name>Brown</last_name></name></names></address_name><address_name><address_spec
+        addr_no=\"5\"><full_address>Univ Calif San Francisco, Inst Hlth &amp; Aging,
+        San Francisco, CA 94143 USA</full_address><organizations count=\"3\"><organization
+        pref=\"null\">Univ Calif San Francisco</organization><organization pref=\"Y\">University
+        of California System</organization><organization pref=\"Y\">University of
+        California San Francisco</organization></organizations><suborganizations count=\"1\"><suborganization>Inst
+        Hlth &amp; Aging</suborganization></suborganizations><city>San Francisco</city><state>CA</state><country>USA</country><zip
+        location=\"AP\">94143</zip></address_spec><names count=\"1\"><name seq_no=\"3\"
+        role=\"author\" addr_no=\"5\"><display_name>Brown, Julia E. H.</display_name><full_name>Brown,
+        Julia E. H.</full_name><wos_standard>Brown, JEH</wos_standard><first_name>Julia
+        E. H.</first_name><last_name>Brown</last_name></name></names></address_name><address_name><address_spec
+        addr_no=\"6\"><full_address>Univ Calif Berkeley, Div Comp Sci, Berkeley, CA
+        94720 USA</full_address><organizations count=\"3\"><organization pref=\"null\">Univ
+        Calif Berkeley</organization><organization pref=\"Y\">University of California
+        System</organization><organization pref=\"Y\">University of California Berkeley</organization></organizations><suborganizations
+        count=\"1\"><suborganization>Div Comp Sci</suborganization></suborganizations><city>Berkeley</city><state>CA</state><country>USA</country><zip
+        location=\"AP\">94720</zip></address_spec><names count=\"1\"><name seq_no=\"4\"
+        role=\"author\" addr_no=\"6\"><display_name>Thomas, Neil</display_name><full_name>Thomas,
+        Neil</full_name><wos_standard>Thomas, N</wos_standard><first_name>Neil</first_name><last_name>Thomas</last_name></name></names></address_name><address_name><address_spec
+        addr_no=\"7\"><full_address>Icahn Sch Med Mt Sinai, Dept Pharmacol Sci, New
+        York, NY 10029 USA</full_address><organizations count=\"2\"><organization
+        pref=\"null\">Icahn Sch Med Mt Sinai</organization><organization pref=\"Y\">Icahn
+        School of Medicine at Mount Sinai</organization></organizations><suborganizations
+        count=\"1\"><suborganization>Dept Pharmacol Sci</suborganization></suborganizations><city>New
+        York</city><state>NY</state><country>USA</country><zip location=\"AP\">10029</zip></address_spec><names
+        count=\"2\"><name seq_no=\"5\" role=\"author\" addr_no=\"7\"><display_name>Hutchinson,
+        Keino</display_name><full_name>Hutchinson, Keino</full_name><wos_standard>Hutchinson,
+        K</wos_standard><first_name>Keino</first_name><last_name>Hutchinson</last_name></name><name
+        seq_no=\"9\" role=\"author\" addr_no=\"7\"><display_name>Schlessinger, Avner</display_name><full_name>Schlessinger,
+        Avner</full_name><wos_standard>Schlessinger, A</wos_standard><first_name>Avner</first_name><last_name>Schlessinger</last_name></name></names></address_name><address_name><address_spec
+        addr_no=\"8\"><full_address>Univ Calif San Francisco, Small Mol Discovery
+        Ctr, Dept Pharmaceut Chem, San Francisco, CA 94143 USA</full_address><organizations
+        count=\"3\"><organization pref=\"null\">Univ Calif San Francisco</organization><organization
+        pref=\"Y\">University of California System</organization><organization pref=\"Y\">University
+        of California San Francisco</organization></organizations><suborganizations
+        count=\"2\"><suborganization>Small Mol Discovery Ctr</suborganization><suborganization>Dept
+        Pharmaceut Chem</suborganization></suborganizations><city>San Francisco</city><state>CA</state><country>USA</country><zip
+        location=\"AP\">94143</zip></address_spec><names count=\"2\"><name seq_no=\"6\"
+        role=\"author\" addr_no=\"8\"><display_name>Chin, Marcus Y.</display_name><full_name>Chin,
+        Marcus Y.</full_name><wos_standard>Chin, MY</wos_standard><first_name>Marcus
+        Y.</first_name><last_name>Chin</last_name></name><name seq_no=\"8\" role=\"author\"
+        addr_no=\"8\"><display_name>Arkin, Michelle R.</display_name><full_name>Arkin,
+        Michelle R.</full_name><wos_standard>Arkin, MR</wos_standard><first_name>Michelle
+        R.</first_name><last_name>Arkin</last_name></name></names></address_name><address_name><address_spec
+        addr_no=\"9\"><full_address>Univ Calif Berkeley, Dept Stat, Berkeley, CA 94720
+        USA</full_address><organizations count=\"3\"><organization pref=\"null\">Univ
+        Calif Berkeley</organization><organization pref=\"Y\">University of California
+        System</organization><organization pref=\"Y\">University of California Berkeley</organization></organizations><suborganizations
+        count=\"1\"><suborganization>Dept Stat</suborganization></suborganizations><city>Berkeley</city><state>CA</state><country>USA</country><zip
+        location=\"AP\">94720</zip></address_spec><names count=\"2\"><name seq_no=\"7\"
+        role=\"author\" addr_no=\"9\"><display_name>Koehl, Antoine</display_name><full_name>Koehl,
+        Antoine</full_name><wos_standard>Koehl, A</wos_standard><first_name>Antoine</first_name><last_name>Koehl</last_name></name><name
+        seq_no=\"11\" role=\"author\" addr_no=\"9\"><display_name>Song, Yun S.</display_name><full_name>Song,
+        Yun S.</full_name><wos_standard>Song, YS</wos_standard><first_name>Yun S.</first_name><last_name>Song</last_name></name></names></address_name><address_name><address_spec
+        addr_no=\"10\"><full_address>Univ Calif San Francisco, Inst Human Genet, San
+        Francisco, CA 94143 USA</full_address><organizations count=\"3\"><organization
+        pref=\"null\">Univ Calif San Francisco</organization><organization pref=\"Y\">University
+        of California System</organization><organization pref=\"Y\">University of
+        California San Francisco</organization></organizations><suborganizations count=\"1\"><suborganization>Inst
+        Human Genet</suborganization></suborganizations><city>San Francisco</city><state>CA</state><country>USA</country><zip
+        location=\"AP\">94143</zip></address_spec><names count=\"1\"><name seq_no=\"10\"
+        role=\"author\" addr_no=\"10\"><display_name>Gallagher, Renata C.</display_name><full_name>Gallagher,
+        Renata C.</full_name><wos_standard>Gallagher, RC</wos_standard><first_name>Renata
+        C.</first_name><last_name>Gallagher</last_name></name></names></address_name><address_name><address_spec
+        addr_no=\"11\"><full_address>Univ Calif San Francisco, Dept Pediat, San Francisco,
+        CA 94143 USA</full_address><organizations count=\"3\"><organization pref=\"null\">Univ
+        Calif San Francisco</organization><organization pref=\"Y\">University of California
+        System</organization><organization pref=\"Y\">University of California San
+        Francisco</organization></organizations><suborganizations count=\"1\"><suborganization>Dept
+        Pediat</suborganization></suborganizations><city>San Francisco</city><state>CA</state><country>USA</country><zip
+        location=\"AP\">94143</zip></address_spec><names count=\"1\"><name seq_no=\"10\"
+        role=\"author\" addr_no=\"11\"><display_name>Gallagher, Renata C.</display_name><full_name>Gallagher,
+        Renata C.</full_name><wos_standard>Gallagher, RC</wos_standard><first_name>Renata
+        C.</first_name><last_name>Gallagher</last_name></name></names></address_name><address_name><address_spec
+        addr_no=\"12\"><full_address>Stanford Univ, Dept Bioengn, Stanford, CA 94305
+        USA</full_address><organizations count=\"2\"><organization pref=\"null\">Stanford
+        Univ</organization><organization pref=\"Y\">Stanford University</organization></organizations><suborganizations
+        count=\"1\"><suborganization>Dept Bioengn</suborganization></suborganizations><city>Stanford</city><state>CA</state><country>USA</country><zip
+        location=\"AP\">94305</zip></address_spec><names count=\"1\"><name seq_no=\"12\"
+        role=\"author\" addr_no=\"12\"><display_name>Altman, Russ B.</display_name><full_name>Altman,
+        Russ B.</full_name><wos_standard>Altman, RB</wos_standard><first_name>Russ
+        B.</first_name><last_name>Altman</last_name></name></names></address_name><address_name><address_spec
+        addr_no=\"13\"><full_address>Stanford Univ, Dept Genet, Stanford, CA 94305
+        USA</full_address><organizations count=\"2\"><organization pref=\"null\">Stanford
+        Univ</organization><organization pref=\"Y\">Stanford University</organization></organizations><suborganizations
+        count=\"1\"><suborganization>Dept Genet</suborganization></suborganizations><city>Stanford</city><state>CA</state><country>USA</country><zip
+        location=\"AP\">94305</zip></address_spec><names count=\"1\"><name seq_no=\"12\"
+        role=\"author\" addr_no=\"13\"><display_name>Altman, Russ B.</display_name><full_name>Altman,
+        Russ B.</full_name><wos_standard>Altman, RB</wos_standard><first_name>Russ
+        B.</first_name><last_name>Altman</last_name></name></names></address_name></addresses><reprint_addresses
+        count=\"1\"><address_name><address_spec addr_no=\"1\"><full_address>Univ Calif
+        San Francisco, Dept Bioengn &amp; Therapeut Sci, San Francisco, CA 94143 USA</full_address><organizations
+        count=\"3\"><organization pref=\"null\">Univ Calif San Francisco</organization><organization
+        pref=\"Y\">University of California System</organization><organization pref=\"Y\">University
+        of California San Francisco</organization></organizations><suborganizations
+        count=\"1\"><suborganization>Dept Bioengn &amp; Therapeut Sci</suborganization></suborganizations><city>San
+        Francisco</city><state>CA</state><country>USA</country><zip location=\"AP\">94143</zip></address_spec><names
+        count=\"1\"><name seq_no=\"1\" role=\"author\" reprint=\"Y\" addr_no=\"1\"><display_name>Giacomini,
+        Kathleen M.</display_name><full_name>Giacomini, Kathleen M.</full_name><wos_standard>Giacomini,
+        KM</wos_standard><first_name>Kathleen M.</first_name><last_name>Giacomini</last_name></name></names></address_name></reprint_addresses><category_info><headings
+        count=\"1\"><heading>Science &amp; Technology</heading></headings><subjects
+        count=\"2\"><subject ascatype=\"traditional\" code=\"RO\">Multidisciplinary
+        Sciences</subject><subject ascatype=\"extended\">Science &amp; Technology
+        - Other Topics</subject></subjects></category_info><fund_ack><fund_text><p>We
+        thank Joao Fonseca and Alain Bonny of the Hana El-Samad Lab at UCSF for generous
+        consultation and reagents in construct design and assembly. We thank Dina
+        Buitrago for serving as an additional image reviewer. This work was funded
+        in part by the Chan Zuckerberg Biohub, NIH Grant No. R35-GM134922, and a postdoctoral
+        fellowship from the Miller Institute for Basic Research in Science.</p></fund_text><grants
+        count=\"3\"><grant><grant_agency>Miller Institute for Basic Research in Science</grant_agency><grant_agency_names
+        pref=\"N\" content=\"Miller Institute for Basic Research in Science\" /></grant><grant><grant_agency>NIH</grant_agency><grant_ids
+        count=\"1\"><grant_id>R35-GM134922</grant_id></grant_ids><grant_agency_names
+        pref=\"Y\" content=\"United States Department of Health &amp; Human Services\"
+        /><grant_agency_names pref=\"Y\" content=\"National Institutes of Health (NIH)
+        - USA\" /><grant_agency_names pref=\"N\" content=\"NIH\" /></grant><grant><grant_agency>Chan
+        Zuckerberg Biohub</grant_agency><grant_agency_names pref=\"Y\" content=\"Chan
+        Zuckerberg Initiative (CZI)\" /><grant_agency_names pref=\"N\" content=\"Chan
+        Zuckerberg Biohub\" /></grant></grants></fund_ack><keywords count=\"4\"><keyword>transporter</keyword><keyword>variant
+        interpretation</keyword><keyword>machine learning</keyword><keyword>rare disease</keyword></keywords><abstracts
+        count=\"1\"><abstract><abstract_text count=\"1\"><p>Genetic variants in SLC22A5,
+        encoding the membrane carnitine transporter OCTN2, cause the rare metabolic
+        disorder Carnitine Transporter Deficiency (CTD). CTD is potentially lethal
+        but actionable if detected early, with confirmatory diagnosis involving sequencing
+        of SLC22A5. Interpretation of missense variants of uncertain significance
+        (VUSs) is a major challenge. In this study, we sought to characterize the
+        largest set to date (n = 150) of OCTN2 variants identified in diverse ancestral
+        populations, with the goals of furthering our understanding of the mechanisms
+        leading to OCTN2 loss-of-function (LOF) and creating a protein-specific variant
+        effect prediction model for OCTN2 function. Uptake assays with 14C-carnitine
+        revealed that 105 variants (70%) significantly reduced transport of carnitine
+        compared to wild-type OCTN2, and 37 variants (25%) severely reduced function
+        to less than 20%. All ancestral populations harbored LOF variants; 62% of
+        green fluorescent protein (GFP)-tagged variants impaired OCTN2 localization
+        to the plasma membrane of human embryonic kidney (HEK293T) cells, and subcellular
+        localization significantly associated with function, revealing a major LOF
+        mechanism of interest for CTD. With these data, we trained a model to classify
+        variants as functional (&gt;20% function) or LOF (&lt;20% function). Our model
+        outperformed existing state-of-the-art methods as evaluated by multiple performance
+        metrics, with mean area under the receiver operating characteristic curve
+        (AUROC) of 0.895 +/- 0.025. In summary, in this study we generated a rich
+        dataset of OCTN2 variant function and localization, revealed important disease-causing
+        mechanisms, and improved upon machine learning-based prediction of OCTN2 variant
+        function to aid in variant interpretation in the diagnosis and treatment of
+        CTD.</p></abstract_text></abstract></abstracts></fullrecord_metadata><item
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:type=\"itemType_wos\"
+        coll_id=\"WOS\"><ids avail=\"N\">H3YI2</ids><bib_id>119 (46): - NOV 15 2022</bib_id><bib_pagecount
+        type=\"Journal\">126</bib_pagecount><keywords_plus count=\"7\"><keyword>MEDICAL
+        GENETICS</keyword><keyword>AMERICAN-COLLEGE</keyword><keyword>PHENOTYPE</keyword><keyword>MUTATION</keyword><keyword>NEWBORNS</keyword><keyword>HEALTH</keyword><keyword>IMPACT</keyword></keywords_plus></item><contributors
+        count=\"6\"><contributor><name seq_no=\"1\" role=\"researcher_id\" orcid_id=\"0000-0002-8724-693X\"><display_name>Brown,
+        Julia</display_name><full_name>Brown, Julia</full_name><first_name>Julia</first_name><last_name>Brown</last_name></name></contributor><contributor><name
+        seq_no=\"2\" role=\"researcher_id\" orcid_id=\"0000-0002-9089-1921\"><display_name>Thomas,
+        Neil</display_name><full_name>Thomas, Neil</full_name><first_name>Neil</first_name><last_name>Thomas</last_name></name></contributor><contributor><name
+        seq_no=\"3\" role=\"researcher_id\" orcid_id=\"0000-0002-9366-6770\"><display_name>arkin,
+        michelle</display_name><full_name>arkin, michelle</full_name><first_name>michelle</first_name><last_name>arkin</last_name></name></contributor><contributor><name
+        seq_no=\"4\" role=\"researcher_id\" orcid_id=\"0000-0002-9826-6442\"><display_name>Koleske,
+        Megan</display_name><full_name>Koleske, Megan</full_name><first_name>Megan</first_name><last_name>Koleske</last_name></name></contributor><contributor><name
+        seq_no=\"5\" role=\"researcher_id\" orcid_id=\"0000-0002-8033-2499\"><display_name>McInnes,
+        Gregory</display_name><full_name>McInnes, Gregory</full_name><first_name>Gregory</first_name><last_name>McInnes</last_name></name></contributor><contributor><name
+        seq_no=\"6\" role=\"researcher_id\" orcid_id=\"0000-0001-7492-6365\"><display_name>Hutchinson,
+        Keino</display_name><full_name>Hutchinson, Keino</full_name><first_name>Keino</first_name><last_name>Hutchinson</last_name></name></contributor></contributors></static_data><dynamic_data><citation_related><tc_list><silo_tc
+        coll_id=\"WOS\" local_count=\"1\" /></tc_list><tc_list_cc dedup_total_count=\"1\"><function_tc
+        func_class=\"basis\" local_count=\"0\" /><function_tc func_class=\"background\"
+        local_count=\"0\" /><function_tc func_class=\"support\" local_count=\"0\"
+        /><function_tc func_class=\"differ\" local_count=\"0\" /><function_tc func_class=\"discuss\"
+        local_count=\"1\" /></tc_list_cc></citation_related><cluster_related><identifiers><identifier
+        type=\"issn\" value=\"0027-8424\" /><identifier type=\"eissn\" value=\"1091-6490\"
+        /><identifier type=\"art_no\" value=\"ARTN e2210247119\" /><identifier type=\"doi\"
+        value=\"10.1073/pnas.2210247119\" /><identifier type=\"pmid\" value=\"MEDLINE:36343260\"
+        /></identifiers></cluster_related><wos_usage last180days=\"1\" alltime=\"1\"
+        /></dynamic_data><dates date_modified=\"2023-06-18T04:32:27.917713\" date_created=\"2023-06-18T04:32:27.917713\"
+        /></REC>\r\n</records>]]></val>\n        </map>\n        <map name=\"QueryResult\">\n
+        \           <map>\n                <val name=\"QueryID\">27</val>\n                <val
+        name=\"RecordsSearched\">919348</val>\n                <val name=\"RecordsFound\">1</val>\n
+        \           </map>\n        </map>\n    </map>\n</response>\n"
+  recorded_at: Wed, 21 Jun 2023 19:46:54 GMT
+- request:
+    method: get
+    uri: https://wos-api.clarivate.com/api/wos/?count=100&databaseId=WOK&firstRecord=1&loadTimeSpan=4W&usrQuery=AI=(%220000-0003-3859-2905%22)
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.7.6
+      Accept:
+      - application/xml
+      X-Apikey:
+      - Settings.WOS.API_KEY
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 22 Jun 2023 19:37:51 GMT
+      Content-Type:
+      - application/xml
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      X-Rec-Amtperyear-Remaining:
+      - '46794'
+      X-Req-Reqpersec-Remaining:
+      - '1'
+      Vary:
+      - Origin
+      Correlation-Id:
+      - 834b18c7-3165-4202-95d2-13eb23519c65#956485
+      X-Kong-Upstream-Latency:
+      - '85'
+      X-Kong-Proxy-Latency:
+      - '2'
+      Via:
+      - kong/2.8.1
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <response xmlns="http://www.isinet.com/xrpc42">
+            <map>
+                <map name="Data">
+                    <val name="Records"><![CDATA[<records></records>]]></val>
+                </map>
+                <map name="QueryResult">
+                    <map>
+                        <val name="QueryID">18</val>
+                        <val name="RecordsSearched">910776</val>
+                        <val name="RecordsFound">0</val>
+                    </map>
+                </map>
+            </map>
+        </response>
+  recorded_at: Thu, 22 Jun 2023 19:37:51 GMT
+recorded_with: VCR 6.1.0

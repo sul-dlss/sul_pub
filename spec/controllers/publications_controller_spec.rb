@@ -146,6 +146,10 @@ describe PublicationsController, :vcr do
     }.to_json
   end
 
+  let(:query_params) do
+    WebOfScience::UserQueryRestRetriever::Query.new(database: 'WOS')
+  end
+
   def post_valid_json
     post :create, body: valid_json_for_post, params: { format: 'json' }
   end
@@ -328,10 +332,10 @@ describe PublicationsController, :vcr do
       end
 
       it 'does a title search' do
-        allow(WebOfScience::Queries).to receive(:new).with('WOS').and_return(queries)
+        allow(WebOfScience::Queries).to receive(:new).and_return(queries)
         expect(queries).to receive(:user_query)
-          .with('TI="lung cancer treatment"')
-          .and_return(instance_double(WebOfScience::Retriever, next_batch: Array.new(20) { {} }))
+          .with('TI="lung cancer treatment"', query_params:)
+          .and_return(instance_double(WebOfScience::UserQueryRestRetriever, next_batch: Array.new(20) { {} }))
         params = { format: 'json', title: 'lung cancer treatment' }
         get(:sourcelookup, params:)
         expect(response).to have_http_status(:ok)
@@ -350,10 +354,10 @@ describe PublicationsController, :vcr do
 
       it 'returns results that match the requested year' do
         year = 2015.to_s
-        allow(WebOfScience::Queries).to receive(:new).with('WOS').and_return(queries)
+        allow(WebOfScience::Queries).to receive(:new).and_return(queries)
         expect(queries).to receive(:user_query)
-          .with("TI=\"#{test_title}\" AND PY=2015")
-          .and_return(instance_double(WebOfScience::Retriever, next_batch: ['year' => year]))
+          .with("TI=\"#{test_title}\" AND PY=2015", query_params:)
+          .and_return(instance_double(WebOfScience::UserQueryRestRetriever, next_batch: ['year' => year]))
         params = { format: 'json', title: test_title, year: }
         get(:sourcelookup, params:)
         expect(response).to have_http_status(:ok)
@@ -394,26 +398,26 @@ describe PublicationsController, :vcr do
       context 'WOS enabled' do
         let(:queries) { instance_double(WebOfScience::Queries) }
         let(:retriever) do
-          instance_double(WebOfScience::Retriever, next_batch: WebOfScience::Records.new(records: '<xml/>'))
+          instance_double(WebOfScience::UserQueryRestRetriever, next_batch: WebOfScience::Records.new(records: '<xml/>'))
         end
 
         before do
           allow(Settings.WOS).to receive(:enabled).and_return(true)
-          allow(WebOfScience::Queries).to receive(:new).with('WOS').and_return(queries)
+          allow(WebOfScience::Queries).to receive(:new).and_return(queries)
         end
 
         it 'hits WOS' do
-          expect(queries).to receive(:user_query).with('TI="xyz"').and_return(retriever)
+          expect(queries).to receive(:user_query).with('TI="xyz"', query_params:).and_return(retriever)
           get :sourcelookup, params: { title: 'xyz', format: 'json' } # Partial title
         end
 
         it 'includes year if provided' do
-          expect(queries).to receive(:user_query).with('TI="xyz" AND PY=2001').and_return(retriever)
+          expect(queries).to receive(:user_query).with('TI="xyz" AND PY=2001', query_params:).and_return(retriever)
           get :sourcelookup, params: { title: 'xyz', year: 2001, format: 'json' } # Partial title with year
         end
 
         it 'remove quotes from user query to avoid parsing errors' do
-          expect(queries).to receive(:user_query).with('TI="xyz with quoted values in it"').and_return(retriever)
+          expect(queries).to receive(:user_query).with('TI="xyz with quoted values in it"', query_params:).and_return(retriever)
           get :sourcelookup, params: { title: 'xyz with "quoted values" in it', format: 'json' } # title with quotes
         end
       end

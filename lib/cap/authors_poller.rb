@@ -49,11 +49,11 @@ module Cap
 
     def do_harvest
       new_author_options = {
-        symbolicTimeSpan: Settings.WOS.new_author_timeframe,
+        load_time_span: Settings.WOS.new_author_timeframe,
         relDate: Settings.PUBMED.new_author_timeframe
       }
       update_author_options = {
-        symbolicTimeSpan: Settings.WOS.update_timeframe,
+        load_time_span: Settings.WOS.update_timeframe,
         relDate: Settings.PUBMED.update_timeframe
       }
       Author.where(id: @new_authors_to_harvest_queue).find_in_batches(batch_size: 250) do |authors|

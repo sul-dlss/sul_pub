@@ -292,58 +292,6 @@ namespace :sul do
     logger.info message
   end
 
-  desc 'Fetch times-cited numbers given a list of DOIs'
-  # bundle exec rake sul:times_cited['/tmp/list_of_dois.csv','/tmp/results.csv'] # pass in a CSV file with a list of DOIs with a column of "doi"
-  task :times_cited, %i[input_file output_file] => :environment do |_t, args|
-    output_file = args[:output_file]
-    input_file = args[:input_file]
-    raise 'missing required params' unless output_file && input_file
-    raise 'missing input csv' unless File.file? input_file
-
-    rows = CSV.parse(File.read(input_file), headers: true)
-    total_pubs = rows.size
-    start_time = Time.zone.now
-    error_count = 0
-    doi_count = 0
-    puts "Exporting times cited for all #{total_pubs} pubs.  Started at #{start_time}."
-    header_row = %w[doi wos_uid title journal year authors times_cited]
-    CSV.open(output_file, 'wb') do |csv|
-      csv << header_row
-      rows.each_with_index do |row, i|
-        doi = Identifiers::DOI.extract(row['doi']).first
-        year = row['year']
-        message = "#{i + 1} of #{total_pubs} : #{doi}"
-        if doi # valid doi found
-          doi_count += 1
-          begin
-            results = WebOfScience.queries.search_by_doi(doi).next_batch.to_a
-            if results.size == 1
-              wos_uid = results[0].uid
-              title = results[0].titles['item']
-              journal = results[0].titles['source']
-              authors = results[0].authors.pluck('full_name').join('; ')
-              times_results = WebOfScience.links_client.links([wos_uid], fields: %w[timesCited])
-              times_cited = times_results[wos_uid]['timesCited']
-            else
-              wos_uid = 'wos_uid not found'
-              times_cited = title = journal = authors = ''
-            end
-            csv << [doi, wos_uid, title, journal, year, authors, times_cited]
-          rescue StandardError => e # some exception occurred
-            error_count += 1
-            message = "*****ERROR on #{doi}: #{e.message}"
-          end
-        else # no valid DOI found
-          csv << [row['doi'], 'doi not valid', '', '', '', '', '']
-        end
-        puts message
-      end
-    end
-    end_time = Time.zone.now
-    puts "Total: #{total_pubs}. Output file: #{output_file}. Ended at #{end_time}.  #{doi_count} had valid DOIs.  " \
-         "#{error_count} errors occurred. Total time: #{((end_time - start_time) / 60.0).round(1)} minutes."
-  end
-
   desc 'Export author data'
   # bundle exec rake sul:author_export['tmp/authors.csv','tmp/results.json','json']
   # export all authors metadata given a list of sunets or cap_profile_ids, in either json or csv format

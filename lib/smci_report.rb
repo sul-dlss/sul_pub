@@ -15,7 +15,7 @@
 #    you must specify first name and last name
 #    and optionally middle name a comma delimited list of institutions (defaults to 'stanford' if no institutions provided)
 #    Optionally, you can include an ORCID, which will take precedence over a name search for non-Profiles authors
-#    Optionally, you can include a symbolicTimeSpan, which will override the default symbolicTimeSpan passed in (if any) for all non-Profiles author searches
+#    Optionally, you can include a loadTimeSpan, which will override the default loadTimeSpan passed in (if any) for all non-Profiles author searches
 
 # You can run it on the Rails console with:
 #
@@ -63,7 +63,7 @@ class SmciReport
     @output_file = args[:output_file]
     @date_since = args[:date_since] || nil # the created_date to look back to for authors with profiles publications
     @date_to = args[:date_to] || nil # the created_date to look up to for authors with profiles publications
-    @time_span = args[:time_span] || nil # the symbolicTimeSpan parameter for WoS queries for authors NOT in profiles (e.g. 1year)
+    @time_span = args[:time_span] || nil # the loadTimeSpan parameter for WoS queries for authors NOT in profiles (e.g. 1year)
     # allowed values here: https://github.com/sul-dlss/sul_pub/wiki/Clarivate-APIs
     # in either case, NIL will fetch both types of publications for all time
 
@@ -87,7 +87,7 @@ class SmciReport
     logger.info '*****************'
     logger.info 'Starting export.'
     logger.info "Exporting all publications for #{total_authors} authors to #{@output_file}. Date range: '#{@date_since}' to '#{@date_to}'.  " \
-                "WoS SymbolicTimeSpan: '#{@time_span}'"
+                "WoS loadTimeSpan: '#{@time_span}'"
     logger.info ''
 
     CSV.open(@output_file, 'wb') do |csv|
@@ -137,7 +137,7 @@ class SmciReport
 
         else # this is NOT a profiles author, so we need to harvest this author directly from WoS using the name provided
 
-          symbolicTimeSpan = time_span || @time_span
+          load_time_span = time_span || @time_span
           if orcid.blank?
             # no orcid, search by name
             logger.info "harvesting author by name from WoS: '#{first_name} #{middle_name} #{last_name}', institutions: '#{institutions}'"
@@ -150,14 +150,14 @@ class SmciReport
                                                              middle_name:, institution: institution.strip)
             end
             # end check for institutions for this author
-            name_query = WebOfScience::QueryName.new(author, symbolicTimeSpan:) # setup the WOS name query
+            name_query = WebOfScience::QueryName.new(author, load_time_span:) # setup the WOS name query
             uids = name_query.uids # now fetch all of the WOS_UIDs for the publications for this author by running the name search
             logger.info(name_query.send(:name_query)) # log the name query being sent to WoS
           else
             # we have an orcid, search by orcid
             logger.info "harvesting author by orcid from WoS: '#{orcid}'"
             author = Author.new(orcidid: orcid)
-            orcid_query = WebOfScience::QueryOrcid.new(author, symbolicTimeSpan:) # setup the WOS orcid query
+            orcid_query = WebOfScience::QueryOrcid.new(author, load_time_span:) # setup the WOS orcid query
             uids = orcid_query.uids # now fetch all of the WOS_UIDs for the publications for this author by running the orcid search
             logger.info(orcid_query.send(:orcid_query)) # log the orcid query being sent to WoS
           end

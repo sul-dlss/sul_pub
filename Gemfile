@@ -30,7 +30,6 @@ gem 'paper_trail'
 gem 'parallel'
 gem 'pry' # make it possible to use pry for IRB
 gem 'rake'
-gem 'savon', '~> 2.12'
 gem 'StreetAddress', '~> 1.0', '>= 1.0.6'
 gem 'sul_orcid_client'
 gem 'whenever', require: false

@@ -234,14 +234,14 @@ describe Cap::AuthorsPoller, :vcr do
 
     let(:new_author_options) do
       {
-        symbolicTimeSpan: Settings.WOS.new_author_timeframe,
+        load_time_span: Settings.WOS.new_author_timeframe,
         relDate: Settings.PUBMED.new_author_timeframe
       }
     end
 
     let(:update_author_options) do
       {
-        symbolicTimeSpan: Settings.WOS.update_timeframe,
+        load_time_span: Settings.WOS.update_timeframe,
         relDate: Settings.PUBMED.update_timeframe
       }
     end

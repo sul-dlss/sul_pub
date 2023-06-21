@@ -1,0 +1,51 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://wos-api.clarivate.com/api/wos/id/WOS:1,WOS:2,WOS:3,WOS:4,WOS:5,WOS:6,WOS:7,WOS:8,WOS:9,WOS:10,WOS:11,WOS:12,WOS:13,WOS:14,WOS:15,WOS:16,WOS:17,WOS:18,WOS:19,WOS:20,WOS:21,WOS:22,WOS:23,WOS:24,WOS:25,WOS:26,WOS:27,WOS:28,WOS:29,WOS:30,WOS:31,WOS:32,WOS:33,WOS:34,WOS:35,WOS:36,WOS:37,WOS:38,WOS:39,WOS:40,WOS:41,WOS:42,WOS:43,WOS:44,WOS:45,WOS:46,WOS:47,WOS:48,WOS:49,WOS:50,WOS:51,WOS:52,WOS:53,WOS:54,WOS:55,WOS:56,WOS:57,WOS:58,WOS:59,WOS:60,WOS:61,WOS:62,WOS:63,WOS:64,WOS:65,WOS:66,WOS:67,WOS:68,WOS:69,WOS:70,WOS:71,WOS:72,WOS:73,WOS:74,WOS:75,WOS:76,WOS:77,WOS:78,WOS:79,WOS:80,WOS:81,WOS:82,WOS:83,WOS:84,WOS:85,WOS:86,WOS:87,WOS:88,WOS:89,WOS:90,WOS:91,WOS:92,WOS:93,WOS:94,WOS:95,WOS:96,WOS:97,WOS:98,WOS:99,WOS:100?count=100&databaseId=WOS&firstRecord=1
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      X-Apikey:
+      - Settings.WOS.API_KEY
+      User-Agent:
+      - Faraday v2.7.6
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 20 Jun 2023 17:01:06 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      X-Rec-Amtperyear-Remaining:
+      - '49974'
+      X-Req-Reqpersec-Remaining:
+      - '1'
+      Vary:
+      - Origin
+      Correlation-Id:
+      - 9f86b6f7-87bd-4457-a30c-2b890464b7d4#55632861
+      X-Kong-Upstream-Latency:
+      - '34'
+      X-Kong-Proxy-Latency:
+      - '2'
+      Via:
+      - kong/2.8.1
+    body:
+      encoding: UTF-8
+      string: |-
+        {"Data":{"Records":<records>
+        </records>},"QueryResult":{"QueryID":15,"RecordsSearched":89388415,"RecordsFound":0}}
+  recorded_at: Tue, 20 Jun 2023 17:01:06 GMT
+recorded_with: VCR 6.1.0
