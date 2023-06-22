@@ -419,7 +419,7 @@ namespace :sul do
   end
 
   # bundle exec rake sul:stanford_orcid_users['tmp/results.csv']
-  # QUERY_ORCID=true SCOPE=true bundle exec rake sul:stanford_orcid_users['tmp/results.csv']
+  # QUERY_ORCID=true FIND_SCOPE=true bundle exec rake sul:stanford_orcid_users['tmp/results.csv']
   # Query the sul_pub database for all people with an ORCIDID (i.e. that have
   # gone through the Stanford integration and were returned via the MaIS API)
   # Optionally also query for potential Stanford people with ORCIDIDs via the ORCID API.
