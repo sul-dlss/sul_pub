@@ -73,8 +73,8 @@ namespace :sul do
     puts "Exporting all pubs to #{output_file} from #{start_date} to #{end_date}, found #{total_pubs} contributions to export. Started at #{start_time}."
     header_row = %w[pub_title pmid doi publisher journal pub_year provenance
                     pub_associated_author_last_name pub_associated_author_first_name
-                    pub_associated_author_sunet pub_associated_author_employee_id publication_status
-                    pub_harvested_date apa_citation]
+                    pub_associated_author_sunet pub_associated_author_employee_id pub_associated_author_orcid
+                    publication_status pub_harvested_date apa_citation]
     CSV.open(output_file, 'wb') do |csv|
       csv << header_row
       Contribution.where('created_at > ? and created_at < ?', start_date, end_date).find_each do |contribution|
@@ -86,7 +86,8 @@ namespace :sul do
         journal = pub.pub_hash[:journal] ? pub.pub_hash[:journal][:name] : ''
         csv << [pub.title, pmid, doi, pub.pub_hash[:publisher], journal, pub.pub_hash[:year],
                 pub.pub_hash[:provenance], author.last_name, author.first_name, author.sunetid,
-                author.university_id, contribution.status, contribution.created_at, pub.pub_hash[:apa_citation]]
+                author.university_id, author.orcidid, contribution.status, contribution.created_at,
+                pub.pub_hash[:apa_citation]]
         n += 1
       end
     end
@@ -181,7 +182,7 @@ namespace :sul do
     puts "Exporting all pubs for #{total_authors} authors to #{output_file} from #{start_date} to #{end_date}.  Started at #{start_time}."
     header_row = %w[pub_title pub_id pmid doi publisher journal mesh pub_year provenance pub_associated_author_last_name
                     pub_associated_author_first_name pub_associated_author_sunet pub_associated_author_employee_id
-                    author_list sunet_list publication_status pub_harvested_date apa_citation]
+                    pub_associated_author_orcid author_list sunet_list publication_status pub_harvested_date apa_citation]
     CSV.open(output_file, 'wb') do |csv|
       csv << header_row
       rows.each_with_index do |row, i|
@@ -222,7 +223,7 @@ namespace :sul do
                    end
             csv << [pub.title, pub.id, pmid, doi, pub.pub_hash[:publisher], journal, mesh, pub.pub_hash[:year],
                     pub.pub_hash[:provenance], author.last_name, author.first_name, author.sunetid, author.university_id,
-                    author_list, sunet_list, contribution.status, contribution.created_at, pub.pub_hash[:apa_citation]]
+                    author.orcidid, author_list, sunet_list, contribution.status, contribution.created_at, pub.pub_hash[:apa_citation]]
           end
         else
           num_not_found += 1
