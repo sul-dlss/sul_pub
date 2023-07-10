@@ -6,8 +6,8 @@ describe Orcid::DeleteWorks do
   let(:logger) { instance_double(Logger, info: nil) }
 
   let(:orcid_user) do
-    Mais::Client::OrcidUser.new(author.sunetid, author.orcidid, ['/read-limited', '/activities/update', '/person/update'],
-                                '91gd29cb-124e-5bf8-1ard-90315b03ae12')
+    MaisOrcidClient::OrcidUser.new(author.sunetid, author.orcidid, ['/read-limited', '/activities/update', '/person/update'],
+                                   '91gd29cb-124e-5bf8-1ard-90315b03ae12')
   end
 
   describe '#delete_work' do
@@ -22,7 +22,7 @@ describe Orcid::DeleteWorks do
     let(:contribution) { create(:contribution, author:, publication:, orcid_put_code: put_code) }
 
     context 'when a user without update grant' do
-      let(:orcid_user) { Mais::Client::OrcidUser.new(author.sunetid, author.orcidid, ['/read-limited'], '91gd29cb-124e-5bf8-1ard-90315b03ae12') }
+      let(:orcid_user) { MaisOrcidClient::OrcidUser.new(author.sunetid, author.orcidid, ['/read-limited'], '91gd29cb-124e-5bf8-1ard-90315b03ae12') }
 
       it 'skips' do
         expect(work_deleted).to be false
@@ -31,8 +31,9 @@ describe Orcid::DeleteWorks do
 
     context 'when Author does not exist' do
       let(:orcid_user) do
-        Mais::Client::OrcidUser.new('lwittgenstein', 'https://sandbox.orcid.org/0000-0003-3437-1234', ['/read-limited', '/activities/update', '/person/update'],
-                                    '91gd29cb-124e-5bf8-1ard-90315b03ae12')
+        MaisOrcidClient::OrcidUser.new('lwittgenstein', 'https://sandbox.orcid.org/0000-0003-3437-1234',
+                                       ['/read-limited', '/activities/update', '/person/update'],
+                                       '91gd29cb-124e-5bf8-1ard-90315b03ae12')
       end
 
       it 'skips' do

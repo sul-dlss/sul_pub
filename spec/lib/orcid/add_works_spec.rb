@@ -6,14 +6,14 @@ describe Orcid::AddWorks do
   let(:logger) { instance_double(Logger, info: nil, error: nil, warn: nil) }
 
   let(:orcid_user) do
-    Mais::Client::OrcidUser.new(author.sunetid, author.orcidid, ['/read-limited', '/activities/update', '/person/update'],
-                                '91gd29cb-124e-5bf8-1ard-90315b03ae12')
+    MaisOrcidClient::OrcidUser.new(author.sunetid, author.orcidid, ['/read-limited', '/activities/update', '/person/update'],
+                                   '91gd29cb-124e-5bf8-1ard-90315b03ae12')
   end
 
   # This is an author that has no currently valid publications that can be pushed to ORCID
   let(:orcid_user_no_orcid_approved_contributions) do
-    Mais::Client::OrcidUser.new(author_no_orcid_approved_contributions.sunetid, author_no_orcid_approved_contributions.orcidid,
-                                ['/read-limited', '/activities/update', '/person/update'], '91gd29cb-124e-5bf8-1ard-90315b03ae12')
+    MaisOrcidClient::OrcidUser.new(author_no_orcid_approved_contributions.sunetid, author_no_orcid_approved_contributions.orcidid,
+                                   ['/read-limited', '/activities/update', '/person/update'], '91gd29cb-124e-5bf8-1ard-90315b03ae12')
   end
 
   describe '#add_for_orcid_user' do
@@ -30,7 +30,7 @@ describe Orcid::AddWorks do
     let!(:contribution) { create(:contribution, author:, publication:) }
 
     context 'when a user without update grant' do
-      let(:orcid_user) { Mais::Client::OrcidUser.new(author.sunetid, author.orcidid, ['/read-limited'], '91gd29cb-124e-5bf8-1ard-90315b03ae12') }
+      let(:orcid_user) { MaisOrcidClient::OrcidUser.new(author.sunetid, author.orcidid, ['/read-limited'], '91gd29cb-124e-5bf8-1ard-90315b03ae12') }
 
       it 'skips' do
         expect(contribution_count).to be_zero
@@ -39,8 +39,9 @@ describe Orcid::AddWorks do
 
     context 'when Author does not exist' do
       let(:orcid_user) do
-        Mais::Client::OrcidUser.new('lwittgenstein', 'https://sandbox.orcid.org/0000-0003-3437-1234', ['/read-limited', '/activities/update', '/person/update'],
-                                    '91gd29cb-124e-5bf8-1ard-90315b03ae12')
+        MaisOrcidClient::OrcidUser.new('lwittgenstein', 'https://sandbox.orcid.org/0000-0003-3437-1234',
+                                       ['/read-limited', '/activities/update', '/person/update'],
+                                       '91gd29cb-124e-5bf8-1ard-90315b03ae12')
       end
 
       it 'skips' do
@@ -148,10 +149,10 @@ describe Orcid::AddWorks do
 
     let(:orcid_users) do
       [
-        Mais::Client::OrcidUser.new('dkahneman', 'https://sandbox.orcid.org/0000-0003-3437-1234', ['/read-limited', '/activities/update', '/person/update'],
-                                    '91gd29cb-124e-5bf8-1ard-90315b03ae12'),
-        Mais::Client::OrcidUser.new('atversky', 'https://sandbox.orcid.org/0000-0003-3437-5678', ['/read-limited', '/activities/update', '/person/update'],
-                                    '91gd29cb-124e-5bf8-1ard-90315b03ae13')
+        MaisOrcidClient::OrcidUser.new('dkahneman', 'https://sandbox.orcid.org/0000-0003-3437-1234', ['/read-limited', '/activities/update', '/person/update'],
+                                       '91gd29cb-124e-5bf8-1ard-90315b03ae12'),
+        MaisOrcidClient::OrcidUser.new('atversky', 'https://sandbox.orcid.org/0000-0003-3437-5678', ['/read-limited', '/activities/update', '/person/update'],
+                                       '91gd29cb-124e-5bf8-1ard-90315b03ae13')
       ]
     end
 

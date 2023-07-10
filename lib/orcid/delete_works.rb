@@ -8,7 +8,7 @@ module Orcid
       @logger = logger
     end
 
-    # @param [Mais::Client::OrcidUser] orcid_user to delete for
+    # @param [MaisOrcidClient::OrcidUser] orcid_user to delete for
     # @return [Integer] count of works deleted.
     def delete_for_orcid_user(orcid_user)
       author = Author.find_by(sunetid: orcid_user.sunetid)
@@ -21,7 +21,7 @@ module Orcid
     end
 
     # @param [Contribution] contribution
-    # @param [Mais::Client::OrcidUser] orcid_user to delete for
+    # @param [MaisOrcidClient::OrcidUser] orcid_user to delete for
     # @return [Boolean] true if work deleted.
     def delete_work(contribution, orcid_user)
       return false unless orcid_user.update?

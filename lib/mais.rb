@@ -2,9 +2,9 @@
 
 # UIT MAIS ORCID User API utilities
 module Mais
-  # @return [Mais::Client]
+  # @return [MaisOrcidClient]
   def self.client
-    Mais::Client.new
+    MaisOrcidClient
   end
 
   def self.logger
