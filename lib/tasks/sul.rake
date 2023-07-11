@@ -23,7 +23,7 @@ namespace :sul do
     scopes = { read: 0, write: 0 }
     sunets.each_with_index do |sunetid, i|
       puts "#{i + 1} of #{num_sunets}"
-      Mais::Client.new.fetch_orcid_user(sunetid:).update? ? scopes[:write] += 1 : scopes[:read] += 1
+      MaisOrcidClient.fetch_orcid_user(sunetid:).update? ? scopes[:write] += 1 : scopes[:read] += 1
     end
     puts "Report run: #{Time.zone.now}"
     puts "Total users: #{num_sunets}"
@@ -467,7 +467,7 @@ namespace :sul do
       users.each_with_index do |user, i|
         puts "#{i + 1} of #{total_stanford}: #{user.sunetid} | #{user.orcidid}"
         if find_scope
-          mais_user = Mais::Client.new.fetch_orcid_user(sunetid: user.sunetid)
+          mais_user = MaisOrcidClient.fetch_orcid_user(sunetid: user.sunetid)
           last_updated = mais_user.last_updated.to_date
           scope = if mais_user.update?
                     'update'

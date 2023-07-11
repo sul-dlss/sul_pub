@@ -3,10 +3,8 @@
 describe Mais do
   describe '#working' do
     context 'when working' do
-      let(:client) { instance_double(Mais::Client, fetch_orcid_users: ['FAKE_ORCID_USER']) }
-
       before do
-        allow(Mais::Client).to receive(:new).and_return(client)
+        allow(MaisOrcidClient).to receive(:fetch_orcid_users).and_return(['FAKE_ORCID_USER'])
       end
 
       it 'returns true' do
@@ -15,11 +13,8 @@ describe Mais do
     end
 
     context 'when not working' do
-      let(:client) { instance_double(Mais::Client) }
-
       before do
-        allow(Mais::Client).to receive(:new).and_return(client)
-        allow(client).to receive(:fetch_orcid_users).and_raise(StandardError, 'Fail!')
+        allow(MaisOrcidClient).to receive(:fetch_orcid_users).and_raise(StandardError, 'Fail!')
       end
 
       it 'returns false' do

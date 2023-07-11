@@ -23,6 +23,7 @@ gem 'identifiers', '~> 0.12' # Altmetric utilities related to the extraction, va
 gem 'jbuilder' # To use Jbuilder templates for JSON
 gem 'json_schemer'
 gem 'kaminari'
+gem 'mais_orcid_client'
 gem 'okcomputer' # for monitoring
 gem 'oauth2'
 gem 'paper_trail'

@@ -11,9 +11,9 @@ describe Mais::UpdateAuthorsOrcid do
     context 'when updating or adding to existing' do
       let(:orcid_users) do
         [
-          Mais::Client::OrcidUser.new(author_with_existing_orcid.sunetid, 'https://orcid.org/0000-0000-0000-0000'),
-          Mais::Client::OrcidUser.new(author_with_no_orcid.sunetid, 'https://orcid.org/0000-0000-0000-0001'),
-          Mais::Client::OrcidUser.new('DOES NOT EXIST', 'https://orcid.org/0000-0000-0000-0001')
+          MaisOrcidClient::OrcidUser.new(author_with_existing_orcid.sunetid, 'https://orcid.org/0000-0000-0000-0000'),
+          MaisOrcidClient::OrcidUser.new(author_with_no_orcid.sunetid, 'https://orcid.org/0000-0000-0000-0001'),
+          MaisOrcidClient::OrcidUser.new('DOES NOT EXIST', 'https://orcid.org/0000-0000-0000-0001')
         ]
       end
 
