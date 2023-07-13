@@ -42,15 +42,12 @@ describe Orcid::DeleteWorks do
     end
 
     context 'when Contribution has a put-code' do
-      let(:client) { instance_double(Orcid::Client) }
-
       before do
-        allow(Orcid).to receive(:client).and_return(client)
-        allow(client).to receive(:delete_work).and_return(true)
+        allow(SulOrcidClient).to receive(:delete_work).and_return(true)
       end
 
       it 'deletes work and nils put-code' do
-        expect(client).to receive(:delete_work).with(author.orcidid, put_code, '91gd29cb-124e-5bf8-1ard-90315b03ae12')
+        expect(SulOrcidClient).to receive(:delete_work).with(orcidid: author.orcidid, put_code:, token: '91gd29cb-124e-5bf8-1ard-90315b03ae12')
         expect(work_deleted).to be true
 
         contribution.reload
@@ -59,15 +56,12 @@ describe Orcid::DeleteWorks do
     end
 
     context 'when Orcid work does not exist' do
-      let(:client) { instance_double(Orcid::Client) }
-
       before do
-        allow(Orcid).to receive(:client).and_return(client)
-        allow(client).to receive(:delete_work).and_return(false)
+        allow(SulOrcidClient).to receive(:delete_work).and_return(false)
       end
 
       it 'handles the 404 without raising and nils put-code' do
-        expect(client).to receive(:delete_work).with(author.orcidid, put_code, '91gd29cb-124e-5bf8-1ard-90315b03ae12')
+        expect(SulOrcidClient).to receive(:delete_work).with(orcidid: author.orcidid, put_code:, token: '91gd29cb-124e-5bf8-1ard-90315b03ae12')
         expect(work_deleted).to be false
 
         contribution.reload
@@ -76,12 +70,9 @@ describe Orcid::DeleteWorks do
     end
 
     context 'when Orcid client raises error' do
-      let(:client) { instance_double(Orcid::Client) }
-
       before do
         create(:contribution, author:, publication:, orcid_put_code: put_code)
-        allow(Orcid).to receive(:client).and_return(client)
-        allow(client).to receive(:delete_work).and_raise('Nope!')
+        allow(SulOrcidClient).to receive(:delete_work).and_raise('Nope!')
         allow(NotificationManager).to receive(:error)
       end
 

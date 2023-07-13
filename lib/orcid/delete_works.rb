@@ -27,7 +27,7 @@ module Orcid
       return false unless orcid_user.update?
       return false unless contribution.orcid_put_code
 
-      work_deleted = Orcid.client.delete_work(orcid_user.orcidid, contribution.orcid_put_code, orcid_user.access_token)
+      work_deleted = Orcid.client.delete_work(orcidid: orcid_user.orcidid, put_code: contribution.orcid_put_code, token: orcid_user.access_token)
       if work_deleted
         logger&.info("#{self.class} - author #{contribution.author.id} - deleted work for publication #{contribution.publication.id} " \
                      "with put-code #{contribution.orcid_put_code}")
