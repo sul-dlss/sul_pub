@@ -12,6 +12,11 @@ end
 
 set :output, 'log/cron.log'
 
+# weekly orcid integration stats in prod output to time stamped log file
+every :monday, at: '1am', roles: [:harvester_prod] do
+  rake 'sul:orcid_integration_stats > log/orcid_stats_`date +\%Y\%m\%d`.log'
+end
+
 # bi-weekly harvest at 5pm in UAT, on the 8th and 23rd of the month
 every "0 17 7,23 * *", roles: [:harvester_uat] do
   set :check_in, Settings.honeybadger_checkins.harvest_all_authors
