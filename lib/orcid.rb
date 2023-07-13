@@ -2,9 +2,9 @@
 
 # ORCID.org utilities
 module Orcid
-  # @return [Orcid::Client]
+  # @return [SulOrcidClient]
   def self.client
-    @@client ||= Orcid::Client.new
+    SulOrcidClient
   end
 
   def self.logger
@@ -25,7 +25,7 @@ module Orcid
 
   # Fetch works for a known ID for which we expect to get back publications
   def self.working?
-    response = client.fetch_works(Settings.ORCID.orcidid_for_check)
+    response = client.fetch_works(orcidid: Settings.ORCID.orcidid_for_check)
     response[:group].size.positive?
   rescue StandardError
     false

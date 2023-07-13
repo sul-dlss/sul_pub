@@ -8,7 +8,7 @@ module Orcid
       @logger = logger
     end
 
-    # @param [Array<Mais::Client::OrcidUser>] orcid_users to add works for
+    # @param [Array<MaisOrcidClient::OrcidUser>] orcid_users to add works for
     # @return [Integer] count of works added.
     def add_all(orcid_users)
       count = orcid_users.map { |orcid_user| add_for_orcid_user(orcid_user) }.sum
@@ -16,7 +16,7 @@ module Orcid
       count
     end
 
-    # @param [Mais::Client::OrcidUser] orcid_user to add works for
+    # @param [MaisOrcidClient::OrcidUser] orcid_user to add works for
     # @return [Integer] count of works added.
     def add_for_orcid_user(orcid_user)
       return 0 unless orcid_user.update?
@@ -38,11 +38,11 @@ module Orcid
     # rubocop:disable Metrics/AbcSize
     def add_work(author, contribution, orcid_user)
       work = Orcid::PubMapper.map(contribution.publication.pub_hash)
-      contribution.orcid_put_code = Orcid.client.add_work(orcid_user.orcidid, work, orcid_user.access_token)
+      contribution.orcid_put_code = Orcid.client.add_work(orcidid: orcid_user.orcidid, work:, token: orcid_user.access_token)
       contribution.save!
       logger&.info("#{self.class} - author #{author.id} - added publication #{contribution.publication.id} with put-code #{contribution.orcid_put_code}")
       true
-    rescue Orcid::PubMapper::PubMapperError, Orcid::Client::InvalidTokenError => e
+    rescue Orcid::PubMapper::PubMapperError, SulOrcidClient::InvalidTokenError => e
       logger&.warn("#{self.class} - author #{author.id} - did not add publication #{contribution.publication.id}: #{e.message}")
       false
     rescue StandardError => e

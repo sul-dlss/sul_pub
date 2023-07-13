@@ -32,6 +32,7 @@ gem 'pry' # make it possible to use pry for IRB
 gem 'rake'
 gem 'savon', '~> 2.12'
 gem 'StreetAddress', '~> 1.0', '>= 1.0.6'
+gem 'sul_orcid_client'
 gem 'whenever', require: false
 gem 'yaml_db'
 gem 'hashie' # this used to be part of grape, but we still need it since we believe pub_hashes may still be seralized in the database this way 9/10/2018

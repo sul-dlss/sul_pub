@@ -13,7 +13,7 @@ module Orcid
 
       log_info(author, "processing author #{author.id} - #{author.orcidid}")
 
-      works_response = client.fetch_works(author.orcidid)
+      works_response = client.fetch_works(orcidid: author.orcidid)
 
       return [] unless check_last_modified?(author, works_response)
 
@@ -86,7 +86,7 @@ module Orcid
 
     def create_publication(orcidid, put_code)
       # Fetch complete Work record.
-      work_response = client.fetch_work(orcidid, put_code)
+      work_response = client.fetch_work(orcidid:, put_code:)
       work = WorkRecord.new(work_response)
 
       source = new_orcid_source_record(orcidid, put_code, work_response)

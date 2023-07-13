@@ -58,11 +58,8 @@ describe Orcid::AddWorks do
     end
 
     context 'when Contribution is approved, visible, and does not have a put-code' do
-      let(:client) { instance_double(Orcid::Client) }
-
       before do
-        allow(Orcid).to receive(:client).and_return(client)
-        allow(client).to receive(:add_work).and_return('1250170')
+        allow(SulOrcidClient).to receive(:add_work).and_return('1250170')
       end
 
       it 'adds to ORCID and updates put-code' do
@@ -98,12 +95,9 @@ describe Orcid::AddWorks do
     end
 
     context 'when Orcid client raises error' do
-      let(:client) { instance_double(Orcid::Client) }
-
       before do
         create(:contribution, author:, publication:)
-        allow(Orcid).to receive(:client).and_return(client)
-        allow(client).to receive(:add_work).and_raise('Nope!')
+        allow(SulOrcidClient).to receive(:add_work).and_raise('Nope!')
         allow(NotificationManager).to receive(:error)
       end
 

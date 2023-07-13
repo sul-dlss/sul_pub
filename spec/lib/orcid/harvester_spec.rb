@@ -55,13 +55,11 @@ describe Orcid::Harvester do
   end
   let(:work_response) { base_work_response }
   let(:work_type) { 'journal-article' }
-  let(:client) { instance_double(Orcid::Client) }
 
   before do
     allow(Orcid).to receive(:logger).and_return(logger)
-    allow(Orcid).to receive(:client).and_return(client)
-    allow(client).to receive(:fetch_works).and_return(works_response.with_indifferent_access)
-    allow(client).to receive(:fetch_work).and_return(work_response.with_indifferent_access)
+    allow(SulOrcidClient).to receive(:fetch_works).and_return(works_response.with_indifferent_access)
+    allow(SulOrcidClient).to receive(:fetch_work).and_return(work_response.with_indifferent_access)
   end
 
   describe '#process_author' do
@@ -72,7 +70,7 @@ describe Orcid::Harvester do
       let(:orcid_id) { nil }
 
       it 'skips' do
-        expect(client).not_to receive(:fetch_works)
+        expect(SulOrcidClient).not_to receive(:fetch_works)
 
         expect(put_codes).to be_empty
       end
@@ -88,7 +86,7 @@ describe Orcid::Harvester do
       end
 
       it 'skips' do
-        expect(client).to receive(:fetch_works).with(orcid_id)
+        expect(SulOrcidClient).to receive(:fetch_works).with(orcidid: orcid_id)
 
         expect(put_codes).to be_empty
       end
@@ -128,7 +126,7 @@ describe Orcid::Harvester do
 
     context 'when harvesting fails' do
       before do
-        allow(client).to receive(:fetch_works).and_raise('Wrong!')
+        allow(SulOrcidClient).to receive(:fetch_works).and_raise('Wrong!')
       end
 
       it 'notifies' do
@@ -146,7 +144,7 @@ describe Orcid::Harvester do
       end
 
       it 'Updates author' do
-        expect(client).not_to receive(:fetch_work)
+        expect(SulOrcidClient).not_to receive(:fetch_work)
         expect(publication.contributions.size).to eq(1)
 
         expect(put_codes).to eq([put_code])
@@ -171,7 +169,7 @@ describe Orcid::Harvester do
       end
 
       it 'Creates Contribution and updates Author' do
-        expect(client).not_to receive(:fetch_work)
+        expect(SulOrcidClient).not_to receive(:fetch_work)
         expect(publication.contributions.size).to eq(0)
 
         expect(put_codes).to eq([put_code])
@@ -192,7 +190,7 @@ describe Orcid::Harvester do
 
     context 'when Publication does not exist' do
       it 'creates and updates entities and returns put-codes' do
-        expect(client).to receive(:fetch_work).with(orcid_id, put_code)
+        expect(SulOrcidClient).to receive(:fetch_work).with(orcidid: orcid_id, put_code:)
 
         expect(put_codes).to eq([put_code])
 
@@ -244,7 +242,7 @@ describe Orcid::Harvester do
       end
 
       it 'does not match existing publication' do
-        expect(client).to receive(:fetch_work).with(orcid_id, put_code)
+        expect(SulOrcidClient).to receive(:fetch_work).with(orcidid: orcid_id, put_code:)
 
         expect(put_codes).to eq([put_code])
 

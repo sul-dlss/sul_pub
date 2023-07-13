@@ -439,6 +439,12 @@ GEM
     sshkit (1.21.5)
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
+    sul_orcid_client (0.1.0)
+      activesupport (>= 4.2, < 8)
+      faraday
+      faraday-retry
+      oauth2
+      zeitwerk
     thin (1.8.2)
       daemons (~> 1.0, >= 1.0.9)
       eventmachine (~> 1.0, >= 1.0.4)
@@ -536,6 +542,7 @@ DEPENDENCIES
   savon (~> 2.12)
   simplecov (~> 0.13)
   sqlite3
+  sul_orcid_client
   thin
   unicode
   vcr
