@@ -357,9 +357,7 @@ describe Publication do
   describe 'update_formatted_citations' do
     before do
       cite = Csl::Citation.new({})
-      allow(cite).to receive(:to_apa_citation).and_return('apa')
-      allow(cite).to receive(:to_mla_citation).and_return('mla')
-      allow(cite).to receive(:to_chicago_citation).and_return('chicago')
+      allow(cite).to receive_messages(to_apa_citation: 'apa', to_mla_citation: 'mla', to_chicago_citation: 'chicago')
       allow(Csl::Citation).to receive(:new).and_return(cite)
     end
 

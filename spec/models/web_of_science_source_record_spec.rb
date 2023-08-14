@@ -33,8 +33,7 @@ RSpec.describe WebOfScienceSourceRecord do
   context 'sets identifiers' do
     before do
       identifiers = WebOfScience::Identifiers.new(build(:web_of_science_source_record).record)
-      allow(identifiers).to receive(:doi).and_return('doi')
-      allow(identifiers).to receive(:pmid).and_return('123')
+      allow(identifiers).to receive_messages(doi: 'doi', pmid: '123')
       allow(WebOfScience::Identifiers).to receive(:new).and_return(identifiers)
       wos_src_rec.save!
     end

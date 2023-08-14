@@ -58,8 +58,7 @@ describe Orcid::Harvester do
 
   before do
     allow(Orcid).to receive(:logger).and_return(logger)
-    allow(SulOrcidClient).to receive(:fetch_works).and_return(works_response.with_indifferent_access)
-    allow(SulOrcidClient).to receive(:fetch_work).and_return(work_response.with_indifferent_access)
+    allow(SulOrcidClient).to receive_messages(fetch_works: works_response.with_indifferent_access, fetch_work: work_response.with_indifferent_access)
   end
 
   describe '#process_author' do
