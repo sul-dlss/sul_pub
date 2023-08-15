@@ -189,7 +189,7 @@ describe Author do
 
     it 'validates that cap_visibility is set to a valid value' do
       subject.update_from_cap_authorship_profile_hash(auth_hash)
-      expect(subject).to be_invalid
+      expect(subject).not_to be_valid
       expect(subject.errors[:cap_visibility]).to eq ['is not included in the list']
     end
   end

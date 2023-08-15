@@ -219,11 +219,10 @@ describe AuthorshipsController, :vcr do
         savon.mock!
         # Mock a WOS-API and Links-API interaction
         wos_client = WebOfScience::Client.new('secret')
-        allow(WebOfScience).to receive(:client).and_return(wos_client)
         links_client = Clarivate::LinksClient.new
+        allow(WebOfScience).to receive_messages(client: wos_client, links_client:)
         wos_record_links = { wos_record_uid => { 'doi' => '10.5860/crl_33_05_413' } }
         allow(links_client).to receive(:links).with([wos_record_uid]).and_return(wos_record_links)
-        allow(WebOfScience).to receive(:links_client).and_return(links_client)
         savon.expects(:authenticate).returns(wos_auth_response)
         savon.expects(:retrieve_by_id).with(message: :any).returns(wos_retrieve_by_id_response)
         # Issue an API call and check the response status

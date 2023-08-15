@@ -15,8 +15,7 @@ describe WebOfScience::ProcessRecords, :vcr do
   end
 
   before do
-    allow(WebOfScience).to receive(:logger).and_return(Logger.new('/dev/null'))
-    allow(WebOfScience).to receive(:links_client).and_return(links_client)
+    allow(WebOfScience).to receive_messages(logger: Logger.new('/dev/null'), links_client:)
   end
 
   shared_examples '#execute' do
@@ -199,7 +198,7 @@ describe WebOfScience::ProcessRecords, :vcr do
     context 'matching non-WOS Publication also exists' do
       # this is a pain to setup.  kludge in the pmid to the fixture XML literal
       let(:wos_rec) do
-        WebOfScience::Record.new(record: record_xml.gsub(/<identifiers>/,
+        WebOfScience::Record.new(record: record_xml.gsub('<identifiers>',
                                                          %(<identifiers><identifier type='pmid' value='21253920'/>)))
       end
       let(:records) { WebOfScience::Records.new(records: "<records>#{wos_rec.to_xml}</records>") }
