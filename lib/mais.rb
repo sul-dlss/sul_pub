@@ -15,7 +15,8 @@ module Mais
   def self.working?
     orcid_users = client.fetch_orcid_users(limit: 1)
     orcid_users.size == 1
-  rescue StandardError
+  rescue StandardError => e
+    Honeybadger.notify(e, context: { message: 'OK Computer debug: Mais client check failed' })
     false
   end
 end
