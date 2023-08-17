@@ -208,8 +208,8 @@ describe AuthorshipsController, :vcr do
       before do
         links_client = Clarivate::RestLinksClient.new
         wos_record_links = { wos_record_uid => { 'doi' => '10.5860/crl_33_05_413' } }
-        allow(links_client).to receive_messages(:links).with([wos_record_uid]).and_return(wos_record_links)
-        allow(WebOfScience).to receive_messages(:links_client).and_return(links_client)
+        allow(links_client).to receive(:links).with([wos_record_uid]).and_return(wos_record_links)
+        allow(WebOfScience).to receive(:links_client).and_return(links_client)
         # Issue an API call and check the response status
         http_request
       end
