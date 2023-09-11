@@ -542,7 +542,7 @@ namespace :sul do
                     total_denied_publications]
     CSV.open(output_file, 'wb') do |csv|
       csv << header_row
-      Author.all.find_each do |user|
+      Author.find_each do |user|
         i += 1
         puts "#{i} of #{total_users}: #{user.sunetid}"
         total_approved = user.contributions.where(status: 'approved').size

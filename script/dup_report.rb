@@ -21,7 +21,7 @@ class Reporter
 
   def work
     @swids.each do |swid|
-      Publication.where(sciencewire_id: swid).each do |pub|
+      Publication.where(sciencewire_id: swid).find_each do |pub|
         @log.info "Removing pmid #{pub.pmid} from #{pub.id} with swid #{swid}" if @pmids.delete? pub.pmid
         @sw_pub_ids << [swid, pub.id]
         @all_pub_ids.add pub.id
@@ -29,7 +29,7 @@ class Reporter
     end
 
     @pmids.each do |pmid|
-      Publication.where(pmid:).each do |pub|
+      Publication.where(pmid:).find_each do |pub|
         if @all_pub_ids.add? pub.id
           @pmid_sw_pub_ids << [pmid, pub.sciencewire_id, pub.id]
         else
