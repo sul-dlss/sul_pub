@@ -2,17 +2,17 @@
 http_interactions:
 - request:
     method: get
-    uri: https://wos-api.clarivate.com/api/wos/id/WOS:000081515000015,WOS:000346594100007,WOS:000000000000000?count=100&databaseId=WOS&firstRecord=1
+    uri: https://wos-api.clarivate.com/api/wos/id/WOS:000081515000015,WOS:000346594100007,WOS:001061548400001,WOS:000000000000000?count=100&databaseId=WOS&firstRecord=1
     body:
       encoding: US-ASCII
       string: ''
     headers:
+      User-Agent:
+      - Faraday v2.7.11
       Accept:
       - application/json
       X-Apikey:
       - Settings.WOS.API_KEY
-      User-Agent:
-      - Faraday v2.7.6
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
   response:
@@ -21,7 +21,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 20 Jun 2023 13:54:30 GMT
+      - Tue, 19 Sep 2023 20:41:59 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -29,22 +29,126 @@ http_interactions:
       Connection:
       - keep-alive
       X-Rec-Amtperyear-Remaining:
-      - '49988'
+      - '2655358'
       X-Req-Reqpersec-Remaining:
-      - '1'
+      - '24'
       Vary:
       - Origin
       Correlation-Id:
-      - 73c0b0c7-bef8-453e-9745-04d5bb96ed60#16086960
+      - dee62dc3-8365-46de-8b72-b0696afc012c#180260139
       X-Kong-Upstream-Latency:
-      - '40'
+      - '36'
       X-Kong-Proxy-Latency:
-      - '2'
+      - '95'
       Via:
       - kong/2.8.1
     body:
       encoding: UTF-8
-      string: '{"Data":{"Records":{"records":{"REC":[{"UID":"WOS:000346594100007","static_data":{"summary":{"pub_info":{"coverdate":"NOV
+      string: '{"Data":{"Records":{"records":{"REC":[{"UID":"WOS:001061548400001","static_data":{"summary":{"pub_info":{"coverdate":"SEP
+        9 2023","vol":13,"journal_oas_gold":"N","has_citation_context":"Y","pubyear":2023,"issue":1,"sortdate":"2023-09-09","has_abstract":"Y","pubmonth":"SEP
+        9","pubtype":"Journal","page":{"page_count":8}},"names":{"count":6,"name":[{"seq_no":1,"role":"author","full_name":"Ghaddar,
+        Reem","addr_no":1,"last_name":"Ghaddar","display_name":"Ghaddar, Reem","wos_standard":"Ghaddar,
+        R","first_name":"Reem"},{"seq_no":2,"role":"author","full_name":"Hudson, Erin
+        A.","addr_no":1,"last_name":"Hudson","display_name":"Hudson, Erin A.","wos_standard":"Hudson,
+        EA","first_name":"Erin A."},{"seq_no":3,"role":"author","full_name":"Jeans,
+        Matthew R.","addr_no":1,"last_name":"Jeans","display_name":"Jeans, Matthew
+        R.","wos_standard":"Jeans, MR","first_name":"Matthew R."},{"seq_no":4,"role":"author","full_name":"Vandyousefi,
+        Sarvenaz","addr_no":2,"last_name":"Vandyousefi","display_name":"Vandyousefi,
+        Sarvenaz","wos_standard":"Vandyousefi, S","first_name":"Sarvenaz"},{"seq_no":5,"role":"author","full_name":"Landry,
+        Matthew J.","addr_no":3,"last_name":"Landry","display_name":"Landry, Matthew
+        J.","wos_standard":"Landry, MJ","first_name":"Matthew J."},{"seq_no":6,"role":"author","full_name":"Davis,
+        Jaimie N.","reprint":"Y","addr_no":1,"last_name":"Davis","display_name":"Davis,
+        Jaimie N.","wos_standard":"Davis, JN","first_name":"Jaimie N."}]},"doctypes":{"doctype":"Article","count":1},"publishers":{"publisher":{"names":{"count":1,"name":{"seq_no":1,"role":"publisher","full_name":"SPRINGERNATURE","unified_name":"Springer
+        Nature","addr_no":1,"display_name":"SPRINGERNATURE"}},"address_spec":{"city":"LONDON","addr_no":1,"full_address":"CAMPUS,
+        4 CRINAN ST, LONDON, N1 9XW, ENGLAND"}}},"EWUID":{"WUID":{"coll_id":"WOS"},"edition":{"value":"WOS.SCI"}},"titles":{"count":6,"title":[{"type":"source","content":"NUTRITION
+        & DIABETES"},{"type":"source_abbrev","content":"NUTR DIABETES"},{"type":"abbrev_iso","content":"Nutr.
+        Diabetes"},{"type":"abbrev_11","content":"NUTR DIABET"},{"type":"abbrev_29","content":"NUTR
+        DIABETES"},{"type":"item","content":"Ethnicity/race, parent educational attainment,
+        and obesity associated with prediabetes in children"}]}},"item":{"xsi:type":"itemType_wos","coll_id":"WOS","ids":{"avail":"Y","content":"R0TH5"},"xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","bib_pagecount":{"type":"Journal","content":8},"keywords_plus":{"count":10,"keyword":["OVERWEIGHT
+        HISPANIC CHILDREN","BETA-CELL FUNCTION","UNITED-STATES","INSULIN SENSITIVITY","WHITE
+        ADULTS","DISPARITIES","PREVALENCE","RESISTANCE","SECRETION","AMERICAN"]},"bib_id":"13
+        (1): - SEP 9 2023"},"fullrecord_metadata":{"addresses":{"count":3,"address_name":[{"names":{"count":4,"name":[{"seq_no":1,"role":"author","full_name":"Ghaddar,
+        Reem","addr_no":1,"last_name":"Ghaddar","display_name":"Ghaddar, Reem","wos_standard":"Ghaddar,
+        R","first_name":"Reem"},{"seq_no":2,"role":"author","full_name":"Hudson, Erin
+        A.","addr_no":1,"last_name":"Hudson","display_name":"Hudson, Erin A.","wos_standard":"Hudson,
+        EA","first_name":"Erin A."},{"seq_no":3,"role":"author","full_name":"Jeans,
+        Matthew R.","addr_no":1,"last_name":"Jeans","display_name":"Jeans, Matthew
+        R.","wos_standard":"Jeans, MR","first_name":"Matthew R."},{"seq_no":6,"role":"author","full_name":"Davis,
+        Jaimie N.","reprint":"Y","addr_no":1,"last_name":"Davis","display_name":"Davis,
+        Jaimie N.","wos_standard":"Davis, JN","first_name":"Jaimie N."}]},"address_spec":{"zip":{"location":"AP","content":78712},"country":"USA","city":"Austin","addr_no":1,"organizations":{"organization":[{"pref":null,"content":"Univ
+        Texas Austin"},{"pref":"Y","content":"University of Texas System"},{"pref":"Y","content":"University
+        of Texas Austin"}],"count":3},"full_address":"Univ Texas Austin, Coll Nat
+        Sci, Dept Nutr Sci, Austin, TX 78712 USA","state":"TX","suborganizations":{"count":2,"suborganization":["Coll
+        Nat Sci","Dept Nutr Sci"]}}},{"names":{"count":1,"name":{"seq_no":4,"role":"author","full_name":"Vandyousefi,
+        Sarvenaz","addr_no":2,"last_name":"Vandyousefi","display_name":"Vandyousefi,
+        Sarvenaz","wos_standard":"Vandyousefi, S","first_name":"Sarvenaz"}},"address_spec":{"country":"USA","city":"New
+        York","addr_no":2,"organizations":{"organization":[{"pref":null,"content":"NYU"},{"pref":"Y","content":"New
+        York University"}],"count":2},"full_address":"NYU, Grossman Sch Med, Dept
+        Med, New York, NY USA","state":"NY","suborganizations":{"count":2,"suborganization":["Grossman
+        Sch Med","Dept Med"]}}},{"names":{"count":1,"name":{"seq_no":5,"role":"author","full_name":"Landry,
+        Matthew J.","addr_no":3,"last_name":"Landry","display_name":"Landry, Matthew
+        J.","wos_standard":"Landry, MJ","first_name":"Matthew J."}},"address_spec":{"country":"USA","city":"Palo
+        Alto","addr_no":3,"organizations":{"organization":[{"pref":null,"content":"Stanford
+        Univ"},{"pref":"Y","content":"Stanford University"}],"count":2},"full_address":"Stanford
+        Univ, Stanford Prevent Res Ctr, Sch Med, Palo Alto, CA USA","state":"CA","suborganizations":{"count":2,"suborganization":["Stanford
+        Prevent Res Ctr","Sch Med"]}}}]},"category_info":{"subheadings":{"count":1,"subheading":"Life
+        Sciences & Biomedicine"},"subjects":{"subject":[{"ascatype":"traditional","code":"IA","content":"Endocrinology
+        & Metabolism"},{"ascatype":"traditional","code":"SA","content":"Nutrition
+        & Dietetics"},{"ascatype":"extended","content":"Endocrinology & Metabolism"},{"ascatype":"extended","content":"Nutrition
+        & Dietetics"}],"count":4},"headings":{"heading":"Science & Technology","count":1}},"normalized_languages":{"count":1,"language":{"type":"primary","content":"English"}},"languages":{"count":1,"language":{"type":"primary","content":"English"}},"refs":{"count":41},"reprint_addresses":{"count":1,"address_name":{"names":{"count":1,"name":{"seq_no":1,"role":"author","full_name":"Davis,
+        Jaimie N.","reprint":"Y","addr_no":1,"last_name":"Davis","display_name":"Davis,
+        Jaimie N.","wos_standard":"Davis, JN","first_name":"Jaimie N."}},"address_spec":{"zip":{"location":"AP","content":78712},"country":"USA","city":"Austin","addr_no":1,"organizations":{"organization":[{"pref":null,"content":"Univ
+        Texas Austin"},{"pref":"Y","content":"University of Texas System"},{"pref":"Y","content":"University
+        of Texas Austin"}],"count":3},"full_address":"Univ Texas Austin, Coll Nat
+        Sci, Dept Nutr Sci, Austin, TX 78712 USA","state":"TX","suborganizations":{"count":2,"suborganization":["Coll
+        Nat Sci","Dept Nutr Sci"]}}}},"abstracts":{"count":1,"abstract":{"abstract_text":{"p":"Background/objectivesObesity
+        and other predictors of type 2 diabetes disproportionally affect Hispanic
+        and Black children in the US compared to non-Hispanic White (NHW) children.
+        Yet, the prevalence of prediabetes in children remains unestablished, and
+        guidelines for screening young children are lacking. This study examined the
+        relationships between demographic factors and prediabetes in vulnerable youth
+        in central Texas.Subjects/methodsThis is a cross-sectional analysis of baseline
+        data from 976 3rd-5th graders (7-12 years) who participated in TX Sprouts,
+        a school-based gardening, nutrition, and cooking trial in 16 elementary schools
+        serving mainly children from minority backgrounds and lower-income households.
+        Measures collected included age, sex, ethnicity, free/reduced-priced school
+        lunch (FRL) status, parent educational attainment (questionnaires), BMI from
+        height (stadiometer) and weight (TANITA scale), and prediabetes status from
+        fasting plasma glucose (FPG) and HbA1c. Regressions examined cross-sectional
+        associations between demographics and FPG, HbA1c, and prediabetes.ResultsChildren
+        were 47% male, 67% Hispanic, and 10% Black, with a mean age of 9.3 years;
+        71% received FRL, 50% had overweight/obesity, and 26% had prediabetes. Prediabetes
+        rates were 2.8 and 4.8 times higher in Hispanic and Black children compared
+        to NHW children, respectively (p & LE; 0.001), and 1.5 times higher in children
+        with obesity versus normal BMI (p = 0.02). Children of parents with only an
+        8th-grade education, some high school education, or a high school degree had
+        3.1, 2.7, and 2.2 times higher odds of having prediabetes compared to children
+        of college graduates, respectively (p & LE; 0.004). Analyses with FPG and
+        HbA1c yielded similar results.ConclusionThese findings suggest a potential
+        need for earlier screening, more comprehensive testing guidelines, and prevention
+        programs tailored toward minority children, children with obesity, and children
+        of parents with low educational attainment. Future research should explore
+        this finding in a larger, nationally representative sample.","count":1}}},"fund_ack":{"grants":{"count":1,"grant":{"grant_agency_names":{"pref":"N","content":"We
+        would like to thank all the children and their families for participating
+        in this study; the school stakeholders (i.e., administrators, teachers, and
+        staff) for allowing us to teach this program in the schools; staff that was
+        instrumental in the success"},"grant_agency":"We would like to thank all the
+        children and their families for participating in this study; the school stakeholders
+        (i.e., administrators, teachers, and staff) for allowing us to teach this
+        program in the schools; staff that was instrumental in the success"}},"fund_text":{"p":"We
+        would like to thank all the children and their families for participating
+        in this study; the school stakeholders (i.e., administrators, teachers, and
+        staff) for allowing us to teach this program in the schools; staff that was
+        instrumental in the success of this project; Bianca Bidiuc Peterson and Sari
+        Albornoz from the Sustainable Food Center for collaborating with us on this
+        project; Home Depot for their garden supply donations and attendance at all
+        school garden builds; Lyndsey Waugh and Brandon Lombardi from Sprouts Healthy
+        Communities Foundation for continuing to support our garden-based studies;
+        and all the University of Texas at Austin undergraduate students for all their
+        hard work helping us collect data, build the gardens, and teach the classes."}},"normalized_doctypes":{"doctype":"Article","count":1}},"contributors":{"contributor":{"name":{"seq_no":1,"orcid_id":"0000-0003-2285-7702","role":"researcher_id","full_name":"Landry,
+        Matthew","last_name":"Landry","display_name":"Landry, Matthew","r_id":"W-6534-2018","first_name":"Matthew"}},"count":1}},"dates":{"date_loaded":"2023-09-18T23:59:59.00000","date_modified":"2023-09-18T01:51:12.759084","date_created":"2023-09-18T01:51:12.759084"},"r_id_disclaimer":"ResearcherID
+        data provided by Clarivate Analytics","dynamic_data":{"citation_related":{"tc_list":{"silo_tc":{"coll_id":"WOS","local_count":0}}},"cluster_related":{"identifiers":{"identifier":[{"type":"issn","value":"2044-4052"},{"type":"art_no","value":"ARTN
+        15"},{"type":"doi","value":"10.1038/s41387-023-00244-4"},{"type":"pmid","value":"MEDLINE:37689792"}]}},"wos_usage":{"last180days":0,"alltime":0}}},{"UID":"WOS:000346594100007","static_data":{"summary":{"pub_info":{"coverdate":"NOV
         2014","vol":28,"journal_oas_gold":"N","pubyear":2014,"issue":11,"sortdate":"2014-11-01","has_abstract":"Y","pubmonth":"NOV","pubtype":"Journal","page":{"end":1278,"begin":1262,"page_count":17,"content":"1262-1278"}},"names":{"count":4,"name":[{"seq_no":1,"role":"author","claim_status":false,"reprint":"Y","last_name":"Frame","display_name":"Frame,
         Caitlin H.","daisng_id":21912644,"full_name":"Frame, Caitlin H.","addr_no":1,"data-item-ids":{"data-item-id":{"type":"person","content":"EWP-2248-2022","id-type":"PreferredRID"}},"wos_standard":"Frame,
         CH","r_id":"EWP-2248-2022","first_name":"Caitlin H.","preferred_name":{"full_name":"Frame,
@@ -56,7 +160,7 @@ http_interactions:
         Cynthia D.","daisng_id":16403437,"orcid_id":"0000-0002-7157-092X","full_name":"Nevison,
         Cynthia D.","addr_no":3,"data-item-ids":{"data-item-id":{"type":"person","content":"DZU-3035-2022","id-type":"PreferredRID"}},"wos_standard":"Nevison,
         CD","r_id":"DZU-3035-2022","first_name":"Cynthia D.","preferred_name":{"full_name":"Nevison,
-        Cynthia D.","last_name":"Nevison","first_name":"Cynthia D."}},{"seq_no":4,"role":"author","claim_status":false,"last_name":"Casciotti","display_name":"Casciotti,
+        Cynthia","last_name":"Nevison","first_name":"Cynthia"}},{"seq_no":4,"role":"author","claim_status":false,"last_name":"Casciotti","display_name":"Casciotti,
         Karen L.","daisng_id":28795139,"orcid_id":"0000-0002-5286-7795","full_name":"Casciotti,
         Karen L.","addr_no":4,"data-item-ids":{"data-item-id":{"type":"person","content":"FZC-4745-2022","id-type":"PreferredRID"}},"wos_standard":"Casciotti,
         KL","r_id":"FZC-4745-2022","first_name":"Karen L.","preferred_name":{"full_name":"Casciotti,
@@ -75,8 +179,10 @@ http_interactions:
         Caitlin H.","daisng_id":21912644,"full_name":"Frame, Caitlin H.","addr_no":1,"data-item-ids":{"data-item-id":{"type":"person","content":"EWP-2248-2022","id-type":"PreferredRID"}},"wos_standard":"Frame,
         CH","first_name":"Caitlin H.","preferred_name":{"full_name":"Frame, Caitlin
         H.","last_name":"Frame","first_name":"Caitlin H."}}},"address_spec":{"country":"Switzerland","city":"Basel","addr_no":1,"organizations":{"organization":[{"pref":null,"content":"Univ
-        Basel"},{"pref":"Y","content":"University of Basel"}],"count":2},"full_address":"Univ
-        Basel, Dept Environm Sci, Basel, Switzerland","suborganizations":{"count":1,"suborganization":"Dept
+        Basel"},{"pref":"Y","content":"University of Basel"},{"pref":"N","content":"University
+        of Basel Faculty of Science"},{"pref":"N","content":"University of Basel Department
+        of Environmental Sciences"}],"count":4},"full_address":"Univ Basel, Dept Environm
+        Sci, Basel, Switzerland","suborganizations":{"count":1,"suborganization":"Dept
         Environm Sci"}}},{"names":{"count":1,"name":{"seq_no":2,"role":"author","claim_status":false,"last_name":"Deal","display_name":"Deal,
         Eric","daisng_id":15456544,"orcid_id":"0000-0003-0945-9160","full_name":"Deal,
         Eric","addr_no":2,"data-item-ids":{"data-item-id":{"type":"person","content":"DWC-6140-2022","id-type":"PreferredRID"}},"wos_standard":"Deal,
@@ -90,11 +196,12 @@ http_interactions:
         France","suborganizations":{"count":1,"suborganization":"Inst Sci Terre"}}},{"names":{"count":1,"name":{"seq_no":3,"role":"author","claim_status":false,"last_name":"Nevison","display_name":"Nevison,
         Cynthia D.","daisng_id":16403437,"orcid_id":"0000-0002-7157-092X","full_name":"Nevison,
         Cynthia D.","addr_no":3,"data-item-ids":{"data-item-id":{"type":"person","content":"DZU-3035-2022","id-type":"PreferredRID"}},"wos_standard":"Nevison,
-        CD","first_name":"Cynthia D.","preferred_name":{"full_name":"Nevison, Cynthia
-        D.","last_name":"Nevison","first_name":"Cynthia D."}}},"address_spec":{"zip":{"location":"AP","content":80309},"country":"USA","city":"Boulder","addr_no":3,"organizations":{"organization":[{"pref":null,"content":"Univ
+        CD","first_name":"Cynthia D.","preferred_name":{"full_name":"Nevison, Cynthia","last_name":"Nevison","first_name":"Cynthia"}}},"address_spec":{"zip":{"location":"AP","content":80309},"country":"USA","city":"Boulder","addr_no":3,"organizations":{"organization":[{"pref":null,"content":"Univ
         Colorado"},{"pref":"Y","content":"University of Colorado System"},{"pref":"Y","content":"University
-        of Colorado Boulder"}],"count":3},"full_address":"Univ Colorado, Inst Arctic
-        & Alpine Res, Boulder, CO 80309 USA","state":"CO","suborganizations":{"count":1,"suborganization":"Inst
+        of Colorado Boulder"},{"pref":"N","content":"University of Colorado Boulder
+        Graduate School"},{"pref":"N","content":"University of Colorado Boulder Institute
+        of Arctic and Alpine Research"}],"count":5},"full_address":"Univ Colorado,
+        Inst Arctic & Alpine Res, Boulder, CO 80309 USA","state":"CO","suborganizations":{"count":1,"suborganization":"Inst
         Arctic & Alpine Res"}}},{"names":{"count":1,"name":{"seq_no":4,"role":"author","claim_status":false,"last_name":"Casciotti","display_name":"Casciotti,
         Karen L.","daisng_id":28795139,"orcid_id":"0000-0002-5286-7795","full_name":"Casciotti,
         Karen L.","addr_no":4,"data-item-ids":{"data-item-id":{"type":"person","content":"FZC-4745-2022","id-type":"PreferredRID"}},"wos_standard":"Casciotti,
@@ -113,8 +220,10 @@ http_interactions:
         upwelling"]},"refs":{"count":106},"reprint_addresses":{"count":1,"address_name":{"names":{"count":1,"name":{"seq_no":1,"role":"author","full_name":"Frame,
         Caitlin H.","reprint":"Y","addr_no":1,"last_name":"Frame","display_name":"Frame,
         Caitlin H.","wos_standard":"Frame, CH","first_name":"Caitlin H."}},"address_spec":{"country":"Switzerland","city":"Basel","addr_no":1,"organizations":{"organization":[{"pref":null,"content":"Univ
-        Basel"},{"pref":"Y","content":"University of Basel"}],"count":2},"full_address":"Univ
-        Basel, Dept Environm Sci, Basel, Switzerland","suborganizations":{"count":1,"suborganization":"Dept
+        Basel"},{"pref":"Y","content":"University of Basel"},{"pref":"N","content":"University
+        of Basel Faculty of Science"},{"pref":"N","content":"University of Basel Department
+        of Environmental Sciences"}],"count":4},"full_address":"Univ Basel, Dept Environm
+        Sci, Basel, Switzerland","suborganizations":{"count":1,"suborganization":"Dept
         Environm Sci"}}}},"abstracts":{"count":1,"abstract":{"abstract_text":{"p":"The
         stable isotopic composition of dissolved nitrous oxide (N2O) is a tracer for
         the production, transport, and consumption of this greenhouse gas in the ocean.
@@ -157,11 +266,11 @@ http_interactions:
         from the MIT EAPS Houghton Fund to C.H.F."}},"normalized_doctypes":{"doctype":"Article","count":1}},"contributors":{"contributor":[{"name":{"seq_no":1,"orcid_id":"0000-0002-5286-7795","role":"researcher_id","full_name":"Casciotti,
         Karen","last_name":"Casciotti","display_name":"Casciotti, Karen","first_name":"Karen"}},{"name":{"seq_no":2,"orcid_id":"0000-0002-7157-092X","role":"researcher_id","full_name":"NEVISON,
         CYNTHIA","last_name":"NEVISON","display_name":"NEVISON, CYNTHIA","first_name":"CYNTHIA"}},{"name":{"seq_no":3,"orcid_id":"0000-0003-0945-9160","role":"researcher_id","full_name":"Deal,
-        Eric","last_name":"Deal","display_name":"Deal, Eric","first_name":"Eric"}}],"count":3}},"dates":{"date_modified":"2020-08-21T14:35:08.550061","date_created":"2014-12-25T12:25:20.684325"},"r_id_disclaimer":"ResearcherID
-        data provided by Clarivate Analytics","dynamic_data":{"citation_related":{"tc_list_cc":{"dedup_total_count":4,"function_tc":[{"local_count":0,"func_class":"basis"},{"local_count":1,"func_class":"background"},{"local_count":0,"func_class":"support"},{"local_count":0,"func_class":"differ"},{"local_count":4,"func_class":"discuss"}]},"SDG":{"sdg_category":[{"content":"14
+        Eric","last_name":"Deal","display_name":"Deal, Eric","first_name":"Eric"}}],"count":3}},"dates":{"date_loaded":"2015-01-14T23:59:59.00000","date_modified":"2020-08-21T14:35:08.550061","date_created":"2014-12-25T12:25:20.684325"},"r_id_disclaimer":"ResearcherID
+        data provided by Clarivate Analytics","dynamic_data":{"citation_related":{"tc_list_cc":{"dedup_total_count":6,"function_tc":[{"local_count":0,"func_class":"basis"},{"local_count":1,"func_class":"background"},{"local_count":1,"func_class":"support"},{"local_count":0,"func_class":"differ"},{"local_count":5,"func_class":"discuss"}]},"SDG":{"sdg_category":[{"content":"14
         Life Below Water","status":"Active"},{"content":"13 Climate Action","status":"Active"}],"code":154},"citation_topics":{"subj-group":{"subject":[{"content-type":"macro","content-id":"3","content":"Agriculture,
         Environment & Ecology"},{"content-type":"meso","content-id":"3.2","content":"Marine
-        Biology"},{"content-type":"micro","content-id":"3.2.154","content":"Phytoplankton"}]}},"tc_list":{"silo_tc":{"coll_id":"WOS","local_count":32}}},"cluster_related":{"identifiers":{"identifier":[{"type":"issn","value":"0886-6236"},{"type":"eissn","value":"1944-9224"},{"type":"doi","value":"10.1002/2013GB004790"}]}},"wos_usage":{"last180days":4,"alltime":97}}},{"UID":"WOS:000081515000015","static_data":{"summary":{"pub_info":{"coverdate":"JUL
+        Biology"},{"content-type":"micro","content-id":"3.2.154","content":"Phytoplankton"}]}},"tc_list":{"silo_tc":{"coll_id":"WOS","local_count":34}}},"cluster_related":{"identifiers":{"identifier":[{"type":"issn","value":"0886-6236"},{"type":"eissn","value":"1944-9224"},{"type":"doi","value":"10.1002/2013GB004790"}]}},"wos_usage":{"last180days":2,"alltime":97}}},{"UID":"WOS:000081515000015","static_data":{"summary":{"pub_info":{"coverdate":"JUL
         1999","vol":26,"journal_oas_gold":"N","pubyear":1999,"issue":7,"sortdate":"1999-07-01","has_abstract":"Y","pubmonth":"JUL","pubtype":"Journal","page":{"end":1293,"begin":1279,"page_count":15,"content":"1279-1293"}},"names":{"count":3,"name":[{"seq_no":1,"role":"author","claim_status":false,"reprint":"Y","last_name":"Williams","display_name":"Williams,
         MB","daisng_id":17820946,"full_name":"Williams, MB","data-item-ids":{"data-item-id":{"type":"person","content":"EFV-0543-2022","id-type":"PreferredRID"}},"wos_standard":"Williams,
         MB","r_id":"EFV-0543-2022","first_name":"MB","preferred_name":{"full_name":"Williams,
@@ -228,11 +337,11 @@ http_interactions:
         Institutes of Health (NIH) - USA"},{"pref":"Y","content":"NIH National Cancer
         Institute (NCI)"},{"pref":"N","content":"NCI NIH HHS"}],"grant_ids":{"grant_id":"R01
         CA69252","count":1},"grant_source":"Medline","grant_agency":"NCI NIH HHS"}}},"normalized_doctypes":{"doctype":"Article","count":1}},"contributors":{"contributor":{"name":{"seq_no":1,"orcid_id":"0000-0002-1859-6354","role":"researcher_id","full_name":"Mangiafico,
-        Peter","last_name":"Mangiafico","display_name":"Mangiafico, Peter","first_name":"Peter"}},"count":1}},"dates":{"date_modified":"2017-06-20T12:25:20.684325","date_created":"1999-12-25T12:25:20.684325"},"r_id_disclaimer":"ResearcherID
+        Peter","last_name":"Mangiafico","display_name":"Mangiafico, Peter","first_name":"Peter"}},"count":1}},"dates":{"date_loaded":"1999-07-01T23:59:59.00000","date_modified":"2017-06-20T12:25:20.684325","date_created":"1999-12-25T12:25:20.684325"},"r_id_disclaimer":"ResearcherID
         data provided by Clarivate Analytics","dynamic_data":{"citation_related":{"tc_list_cc":{"dedup_total_count":2,"function_tc":[{"local_count":0,"func_class":"basis"},{"local_count":2,"func_class":"background"},{"local_count":0,"func_class":"support"},{"local_count":0,"func_class":"differ"},{"local_count":0,"func_class":"discuss"}]},"SDG":{"sdg_category":{"content":"03
         Good Health and Well-being","status":"Active"},"code":1425},"citation_topics":{"subj-group":{"subject":[{"content-type":"macro","content-id":"1","content":"Clinical
         & Life Sciences"},{"content-type":"meso","content-id":"1.71","content":"Cardiology
         - Circulation"},{"content-type":"micro","content-id":"1.71.1425","content":"Coronary
-        CT Angiography"}]}},"tc_list":{"silo_tc":{"coll_id":"WOS","local_count":99}}},"cluster_related":{"identifiers":{"identifier":[{"type":"issn","value":"0094-2405"},{"type":"xref_doi","value":"10.1118/1.598623"},{"type":"pmid","value":"MEDLINE:10435530"}]}},"wos_usage":{"last180days":0,"alltime":9}}}]}}},"QueryResult":{"QueryID":6,"RecordsSearched":89388415,"RecordsFound":2}}'
-  recorded_at: Tue, 20 Jun 2023 13:54:26 GMT
-recorded_with: VCR 6.1.0
+        CT Angiography"}]}},"tc_list":{"silo_tc":{"coll_id":"WOS","local_count":99}}},"cluster_related":{"identifiers":{"identifier":[{"type":"issn","value":"0094-2405"},{"type":"xref_doi","value":"10.1118/1.598623"},{"type":"pmid","value":"MEDLINE:10435530"}]}},"wos_usage":{"last180days":0,"alltime":9}}}]}}},"QueryResult":{"QueryID":1937,"RecordsSearched":90341069,"RecordsFound":3}}'
+  recorded_at: Tue, 19 Sep 2023 20:41:58 GMT
+recorded_with: VCR 6.2.0

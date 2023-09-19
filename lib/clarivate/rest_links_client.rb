@@ -74,7 +74,12 @@ module Clarivate
       def identifiers_from(record)
         record.dig('dynamic_data', 'cluster_related', 'identifiers', 'identifier')
               .select { |identifier| fields.include?(identifier['type']) }
-              .to_h { |identifier| [identifier['type'], identifier['value']] }
+              .to_h { |identifier| [identifier['type'], normalized_id(identifier['value'])] }
+      end
+
+      # remove unncessary PMID prefix from identifiers returned by the Links client
+      def normalized_id(val)
+        val.delete_prefix('MEDLINE:')
       end
     end
   end

@@ -3,7 +3,7 @@
 describe Clarivate::RestLinksClient, :vcr do
   subject(:links_client) { described_class.new }
 
-  let(:ids) { %w[WOS:000081515000015 WOS:000346594100007 WOS:000000000000000] }
+  let(:ids) { %w[WOS:000081515000015 WOS:000346594100007 WOS:001061548400001 WOS:000000000000000] }
   let(:fields) { %w[doi pmid] }
 
   describe '#links' do
@@ -17,7 +17,12 @@ describe Clarivate::RestLinksClient, :vcr do
           },
           'WOS:000081515000015' =>
             {
-              'pmid' => 'MEDLINE:10435530'
+              'pmid' => '10435530'
+            },
+          'WOS:001061548400001' =>
+            {
+              'doi' => '10.1038/s41387-023-00244-4',
+              'pmid' => '37689792'
             },
           'WOS:000000000000000' => {}
         }
