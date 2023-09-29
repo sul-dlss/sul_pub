@@ -21,8 +21,8 @@ module Orcid
     def add_for_orcid_user(orcid_user)
       return 0 unless orcid_user.update?
 
-      author = Author.find_by(sunetid: orcid_user.sunetid)
-      return 0 if author.nil? || author.cap_visibility != 'public'
+      author = Author.find_by(sunetid: orcid_user.sunetid, active_in_cap: true, cap_visibility: 'public')
+      return 0 if author.nil?
 
       logger&.info("#{self.class} - author #{author.id} - adding publications to #{orcid_user.orcidid}")
 
