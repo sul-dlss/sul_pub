@@ -68,7 +68,7 @@ namespace :cleanup do
 
     puts 'Authorship rebuilt in all publications associated with the primary profile'
 
-    primary_author.update(orcidid: duped_author.orcidid)
+    primary_author.update(orcidid: duped_author.orcidid) if primary_author.orcidid.blank?
     duped_author.cap_import_enabled = false
     duped_author.active_in_cap = false
     duped_author.save
