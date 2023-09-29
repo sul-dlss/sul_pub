@@ -13,7 +13,7 @@ module Mais
     def update
       count = 0
       sunetids.each do |sunetid|
-        author = Author.find_by(sunetid:)
+        author = Author.find_by(sunetid:, active_in_cap: true)
         next if author.nil?
 
         logger&.info("#{self.class} - author #{author.id} - updating orcid id to #{sunetid_to_orcidid[sunetid]}")
