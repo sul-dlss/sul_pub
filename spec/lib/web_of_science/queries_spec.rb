@@ -31,9 +31,18 @@ describe WebOfScience::Queries do
       allow(WebOfScience::UserQueryRestRetriever).to receive(:new).and_return(retriever)
     end
 
-    it 'returns a retriever' do
-      expect(wos_queries.user_query(user_query, query_params:)).to eq retriever
-      expect(WebOfScience::UserQueryRestRetriever).to have_received(:new).with(query, query_params:)
+    context 'with no batch_size passed in' do
+      it 'returns a retriever with default batch_size' do
+        expect(wos_queries.user_query(user_query, query_params:)).to eq retriever
+        expect(WebOfScience::UserQueryRestRetriever).to have_received(:new).with(query, query_params:, batch_size: WebOfScience::BaseRestRetriever::MAX_RECORDS)
+      end
+    end
+
+    context 'with a specific batch_size passed in' do
+      it 'returns a retriever with user supplied batch_size' do
+        expect(wos_queries.user_query(user_query, query_params:, batch_size: 0)).to eq retriever
+        expect(WebOfScience::UserQueryRestRetriever).to have_received(:new).with(query, query_params:, batch_size: 0)
+      end
     end
   end
 
