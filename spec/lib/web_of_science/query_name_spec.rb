@@ -54,7 +54,7 @@ describe WebOfScience::QueryName, :vcr do
     let(:query) { query_name.send(:name_query) }
 
     it 'contains author names and institutions' do
-      expect(query).to eq('AU=("Altman,Russ" OR "Altman,Russ,Biagio" OR "Altman,Russ,B" OR "Altman,R" OR "Altman,R,B") AND AD=("stanford")')
+      expect(query).to eq('AU=("Altman,Russ" OR "Altman,R" OR "Altman,Russ,Biagio" OR "Altman,Russ,B" OR "Altman,RB" OR "Altman,R,B") AND AD=("stanford")')
     end
   end
 
