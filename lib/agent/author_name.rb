@@ -50,9 +50,9 @@ module Agent
     # an 'or' conjuction is likely to generate results that mostly match this variant,
     # but additional variants might add something when using an 'ExactMatch' search.
     # @return [String] name(s) to be queried in an OR (disjunction) query
-    def text_search_terms
+    def text_search_terms(use_first_initial: true)
       @text_search_terms ||=
-        [first_name_query, middle_name_query].flatten.compact_blank.uniq
+        [first_name_query(use_first_initial), middle_name_query(use_first_initial)].flatten.compact_blank.uniq
     end
 
     def ==(other)
@@ -67,11 +67,11 @@ module Agent
     # 'Lastname,Firstname' or
     # 'Lastname,FirstInitial'
     # @return [Array<String>|String] names
-    def first_name_query
+    def first_name_query(use_first_initial)
       return '' if last.empty? && first.empty?
 
-      query =  ["#{last_name},#{first_name}"]
-      query += ["#{last_name},#{first_initial}"] if Settings.HARVESTER.USE_FIRST_INITIAL
+      query = ["#{last_name},#{first_name}"]
+      query += ["#{last_name},#{first_initial}"] if use_first_initial
       query
     end
 
@@ -80,14 +80,11 @@ module Agent
     # 'Lastname,Firstname,MiddleInitial' or
     # 'Lastname,FirstInitial,MiddleInitial'
     # @return [Array<String>|String] names
-    def middle_name_query
+    def middle_name_query(use_first_initial)
       return '' unless middle =~ /^[[:alpha:]]/
 
-      query = ["#{last_name},#{first_name},#{middle_name}", "#{last_name},#{first_name},#{middle_initial}"]
-      if Settings.HARVESTER.USE_FIRST_INITIAL
-        query += ["#{last_name},#{first_initial}#{middle_initial}",
-                  "#{last_name},#{first_initial},#{middle_initial}"]
-      end
+      query =  ["#{last_name},#{first_name},#{middle_name}", "#{last_name},#{first_name},#{middle_initial}"]
+      query += ["#{last_name},#{first_initial}#{middle_initial}", "#{last_name},#{first_initial},#{middle_initial}"] if use_first_initial
       query
     end
 
