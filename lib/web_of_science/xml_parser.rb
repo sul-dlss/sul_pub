@@ -28,7 +28,12 @@ module WebOfScience
 
         HTMLEntities.new.decode(encoded_xml)
       end
-      Nokogiri::XML(xml) { |config| config.strict.noblanks }
+      begin
+        Nokogiri::XML(xml) { |config| config.strict.noblanks }
+      rescue StandardError => e
+        Honeybadger.notify(e, context: { message: 'Error processing XML record from WoS', xml:, encoded_xml: })
+        raise e
+      end
     end
   end
 end
