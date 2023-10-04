@@ -82,7 +82,7 @@ describe NotificationManager do
   end
 
   context 'WebOfScience.logger' do
-    let(:wos_client) { WebOfScience::Client.new(Settings.WOS.AUTH_CODE) }
+    let(:wos_client) { Clarivate::RestClient.new }
 
     before { WebOfScience.class_variable_set(:@@logger, nil) }
 

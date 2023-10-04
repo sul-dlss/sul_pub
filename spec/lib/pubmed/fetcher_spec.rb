@@ -115,9 +115,9 @@ describe Pubmed::Fetcher, :vcr do
       end
 
       it 'searches Pubmed next if no results found at WoS' do
-        expect(WebOfScience.queries).to receive(:retrieve_by_pmid)
-          .with([24_930_130])
-          .and_return(instance_double(WebOfScience::Retriever,
+        expect(WebOfScience.queries).to receive(:retrieve_by_id)
+          .with(['MEDLINE:24930130'])
+          .and_return(instance_double(WebOfScience::IdQueryRestRetriever,
                                       next_batch: WebOfScience::Records.new(records: '<xml/>')))
         expect(Pubmed.client).to receive(:fetch_records_for_pmid_list)
           .and_return([])

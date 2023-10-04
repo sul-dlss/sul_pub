@@ -18,7 +18,7 @@ class NotificationManager
         log_exception(pubmed_logger, log_message, e)
       when Cap::AuthorsPoller, Cap::Client
         log_exception(cap_logger, log_message, e)
-      when WebOfScience::Client,
+      when Clarivate::RestClient,
         WebOfScience::Harvester, WebOfScience::ProcessRecords, WebOfScience::Record
         log_exception(WebOfScience.logger, log_message, e)
       when Orcid::AddWorks

@@ -16,7 +16,7 @@ module WebOfScience
     def uids
       return [] unless valid?
 
-      queries.search(name_query).merged_uids
+      queries.user_query(name_query, query_params:).merged_uids
     end
 
     def valid?
@@ -28,6 +28,10 @@ module WebOfScience
     delegate :queries, to: :WebOfScience
 
     attr_reader :identities, :options
+
+    def query_params
+      queries.user_query_options_to_params(options)
+    end
 
     def author
       identities.first
@@ -50,7 +54,7 @@ module WebOfScience
     end
 
     def name_query
-      queries.construct_uid_query("AU=(#{quote_wrap(names).join(' OR ')}) AND AD=(#{quote_wrap(institutions).join(' OR ')})", options)
+      "AU=(#{quote_wrap(names).join(' OR ')}) AND AD=(#{quote_wrap(institutions).join(' OR ')})"
     end
 
     # @param [Array<String>] terms

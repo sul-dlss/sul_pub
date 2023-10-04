@@ -6,7 +6,7 @@ describe WebOfScience::ProcessRecords, :vcr do
   let(:author) { create(:russ_altman) }
   let(:records) { WebOfScience::Records.new(records: "<records>#{record_xml}</records>") }
   let(:record_xml) { File.read('spec/fixtures/wos_client/wos_record_000288663100014.xml') }
-  let(:links_client) { Clarivate::LinksClient.new }
+  let(:links_client) { Clarivate::RestLinksClient.new }
   let(:uids) { records.uids }
   let(:new_pubs) { Publication.where(wos_uid: uids) }
   let(:new_pub) { new_pubs.first }

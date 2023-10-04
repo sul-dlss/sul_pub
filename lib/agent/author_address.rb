@@ -21,7 +21,7 @@ module Agent
     end
 
     def to_xml
-      @xml ||= begin
+      @to_xml ||= begin
         xml = ''
         xml += "<AddressLine1>#{line1}</AddressLine1>" unless line1.empty?
         xml += "<AddressLine2>#{line2}</AddressLine2>" unless line2.empty?

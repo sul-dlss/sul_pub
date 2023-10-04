@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 describe Agent::AuthorAddress do
-  let(:line1) { 'Stanford University' } # rubocop:disable RSpec/IndexedLet
-  let(:line2) { '' } # rubocop:disable RSpec/IndexedLet
+  let(:line1) { 'Stanford University' }
+  let(:line2) { '' }
   let(:city) { 'Stanford' }
   let(:state) { 'CA' }
   let(:country) { 'USA' }

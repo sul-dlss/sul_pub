@@ -4,7 +4,7 @@ require 'pubmed'
 require 'mais'
 require 'orcid'
 require 'web_of_science'
-require 'clarivate/links_client'
+require 'clarivate/rest_links_client'
 
 OkComputer.mount_at = 'status' # use /status or /status/all or /status/<name-of-check>
 OkComputer.check_in_parallel = true
@@ -65,7 +65,7 @@ clients = [
 ]
 if Settings.WOS.enabled
   clients << WebOfScience
-  clients << Clarivate::LinksClient
+  clients << Clarivate::RestLinksClient
 end
 clients.each do |klass|
   OkComputer::Registry.register "external-#{klass.name}", DelegateCheck.new(klass)

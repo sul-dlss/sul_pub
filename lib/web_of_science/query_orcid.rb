@@ -16,7 +16,7 @@ module WebOfScience
     def uids
       return [] unless valid?
 
-      queries.search(orcid_query).merged_uids
+      queries.user_query(orcid_query, query_params:).merged_uids
     end
 
     def valid?
@@ -29,8 +29,12 @@ module WebOfScience
 
     attr_reader :orcidid, :options
 
+    def query_params
+      queries.user_query_options_to_params(options)
+    end
+
     def orcid_query
-      queries.construct_uid_query("RID=(\"#{Orcid.base_orcidid(orcidid)}\")", options)
+      "AI=(\"#{Orcid.base_orcidid(orcidid)}\")"
     end
   end
 end

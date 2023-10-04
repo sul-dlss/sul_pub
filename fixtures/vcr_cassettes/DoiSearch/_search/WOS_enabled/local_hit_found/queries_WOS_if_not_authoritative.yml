@@ -44,6 +44,174 @@ http_interactions:
         <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"><soap:Body><ns2:searchResponse xmlns:ns2="http://woksearch.v3.wokmws.thomsonreuters.com"><return><queryId>2</queryId><recordsFound>1</recordsFound><recordsSearched>76312650</recordsSearched><optionValue><label>RecordIDs</label><value>WOS:000305547700005</value></optionValue><records>&lt;records xmlns="http://scientific.thomsonreuters.com/schema/wok5.4/public/FullRecord">
         &lt;REC r_id_disclaimer="ResearcherID data provided by Clarivate Analytics">&lt;UID>WOS:000305547700005&lt;/UID>&lt;static_data>&lt;summary>&lt;EWUID>&lt;WUID coll_id="WOS">&lt;/WUID>&lt;edition value="WOS.SCI">&lt;/edition>&lt;/EWUID>&lt;pub_info sortdate="2012-05-01" pubyear="2012" has_abstract="Y" coverdate="MAY 2012" pubmonth="MAY" vol="50" issue="1" pubtype="Journal">&lt;page begin="45" end="57" page_count="13">45-57&lt;/page>&lt;/pub_info>&lt;titles count="6">&lt;title type="source">MOLECULAR AND CELLULAR NEUROSCIENCE&lt;/title>&lt;title type="source_abbrev">MOL CELL NEUROSCI&lt;/title>&lt;title type="abbrev_iso">Mol. Cell. Neurosci.&lt;/title>&lt;title type="abbrev_11">MOL CELL NE&lt;/title>&lt;title type="abbrev_29">MOL CELL NEUROSCI&lt;/title>&lt;title type="item">The T3-induced gene KLF9 regulates oligodendrocyte differentiation and myelin regeneration&lt;/title>&lt;/titles>&lt;names count="3">&lt;name seq_no="1" role="author" reprint="Y" addr_no="1" daisng_id="2245244">&lt;display_name>Dugas, Jason C.&lt;/display_name>&lt;full_name>Dugas, Jason C.&lt;/full_name>&lt;wos_standard>Dugas, JC&lt;/wos_standard>&lt;first_name>Jason C.&lt;/first_name>&lt;last_name>Dugas&lt;/last_name>&lt;email_addr>jcdugas@alum.mit.edu&lt;/email_addr>&lt;/name>&lt;name seq_no="2" role="author" addr_no="1" daisng_id="4537311">&lt;display_name>Ibrahim, Adiljan&lt;/display_name>&lt;full_name>Ibrahim, Adiljan&lt;/full_name>&lt;wos_standard>Ibrahim, A&lt;/wos_standard>&lt;first_name>Adiljan&lt;/first_name>&lt;last_name>Ibrahim&lt;/last_name>&lt;/name>&lt;name seq_no="3" role="author" addr_no="1" daisng_id="102622">&lt;display_name>Barres, Ben A.&lt;/display_name>&lt;full_name>Barres, Ben A.&lt;/full_name>&lt;wos_standard>Barres, BA&lt;/wos_standard>&lt;first_name>Ben A.&lt;/first_name>&lt;last_name>Barres&lt;/last_name>&lt;/name>&lt;/names>&lt;doctypes count="1">&lt;doctype>Article&lt;/doctype>&lt;/doctypes>&lt;publishers>&lt;publisher>&lt;address_spec addr_no="1">&lt;full_address>525 B ST, STE 1900, SAN DIEGO, CA 92101-4495 USA&lt;/full_address>&lt;city>SAN DIEGO&lt;/city>&lt;/address_spec>&lt;names count="1">&lt;name role="publisher" seq_no="1" addr_no="1">&lt;display_name>ACADEMIC PRESS INC ELSEVIER SCIENCE&lt;/display_name>&lt;full_name>ACADEMIC PRESS INC ELSEVIER SCIENCE&lt;/full_name>&lt;/name>&lt;/names>&lt;/publisher>&lt;/publishers>&lt;/summary>&lt;fullrecord_metadata>&lt;languages count="1">&lt;language type="primary">English&lt;/language>&lt;/languages>&lt;normalized_languages count="1">&lt;language type="primary">English&lt;/language>&lt;/normalized_languages>&lt;normalized_doctypes count="1">&lt;doctype>Article&lt;/doctype>&lt;/normalized_doctypes>&lt;refs count="61">&lt;/refs>&lt;addresses count="1">&lt;address_name>&lt;address_spec addr_no="1">&lt;full_address&gt;Stanford Univ, Sch Med, Dept Neurobiol, Stanford, CA 94305 USA&lt;/full_address>&lt;organizations count="2">&lt;organization>Stanford Univ&lt;/organization>&lt;organization pref="Y">Stanford University&lt;/organization>&lt;/organizations>&lt;suborganizations count="2">&lt;suborganization>Sch Med&lt;/suborganization>&lt;suborganization>Dept Neurobiol&lt;/suborganization>&lt;/suborganizations>&lt;city>Stanford&lt;/city>&lt;state>CA&lt;/state>&lt;country>USA&lt;/country>&lt;zip location="AP">94305&lt;/zip>&lt;/address_spec>&lt;names count="3">&lt;name seq_no="1" role="author" reprint="Y" addr_no="1" daisng_id="2245244">&lt;display_name>Dugas, Jason C.&lt;/display_name>&lt;full_name>Dugas, Jason C.&lt;/full_name>&lt;wos_standard>Dugas, JC&lt;/wos_standard>&lt;first_name>Jason C.&lt;/first_name>&lt;last_name>Dugas&lt;/last_name>&lt;email_addr>jcdugas@alum.mit.edu&lt;/email_addr>&lt;/name>&lt;name seq_no="2" role="author" addr_no="1" daisng_id="4537311">&lt;display_name>Ibrahim, Adiljan&lt;/display_name>&lt;full_name>Ibrahim, Adiljan&lt;/full_name>&lt;wos_standard>Ibrahim, A&lt;/wos_standard>&lt;first_name>Adiljan&lt;/first_name>&lt;last_name>Ibrahim&lt;/last_name>&lt;/name>&lt;name seq_no="3" role="author" addr_no="1" daisng_id="102622">&lt;display_name>Barres, Ben A.&lt;/display_name>&lt;full_name>Barres, Ben A.&lt;/full_name>&lt;wos_standard>Barres, BA&lt;/wos_standard>&lt;first_name>Ben A.&lt;/first_name>&lt;last_name>Barres&lt;/last_name>&lt;/name>&lt;/names>&lt;/address_name>&lt;/addresses>&lt;reprint_addresses count="1">&lt;address_name>&lt;address_spec addr_no="1">&lt;full_address>Myelin Repair Fdn, 18809 Cox Ave 190, Saratoga, CA 95070 USA&lt;/full_address>&lt;organizations count="1">&lt;organization>Myelin Repair Fdn&lt;/organization>&lt;/organizations>&lt;street>18809 Cox Ave 190&lt;/street>&lt;city>Saratoga&lt;/city>&lt;state>CA&lt;/state>&lt;country>USA&lt;/country>&lt;zip location="AP">95070&lt;/zip>&lt;/address_spec>&lt;names count="1">&lt;name seq_no="1" role="author" reprint="Y" addr_no="1">&lt;display_name>Dugas, Jason C.&lt;/display_name>&lt;full_name>Dugas, Jason C.&lt;/full_name>&lt;wos_standard>Dugas, JC&lt;/wos_standard>&lt;first_name>Jason C.&lt;/first_name>&lt;last_name>Dugas&lt;/last_name>&lt;email_addr>jcdugas@alum.mit.edu&lt;/email_addr>&lt;/name>&lt;/names>&lt;/address_name>&lt;/reprint_addresses>&lt;category_info>&lt;headings count="1">&lt;heading>Science &amp;amp; Technology&lt;/heading>&lt;/headings>&lt;subheadings count="1">&lt;subheading>Life Sciences &amp;amp; Biomedicine&lt;/subheading>&lt;/subheadings>&lt;subjects count="2">&lt;subject ascatype="traditional" code="RU">Neurosciences&lt;/subject>&lt;subject ascatype="extended">Neurosciences &amp;amp; Neurology&lt;/subject>&lt;/subjects>&lt;/category_info>&lt;fund_ack>&lt;fund_text>&lt;p>We would like to thank Dr. Rosalia Simmen for generously providing the KLF9&amp;lt;SUP&amp;gt;LacZ/+&amp;lt;/SUP&amp;gt; mice. This work was supported by the Myelin Repair Foundation and the National Multiple Sclerosis Society (RG4059A8).&lt;/p>&lt;/fund_text>&lt;grants count="2">&lt;grant>&lt;grant_agency>Myelin Repair Foundation&lt;/grant_agency>&lt;/grant>&lt;grant>&lt;grant_agency>National Multiple Sclerosis Society&lt;/grant_agency>&lt;grant_ids count="1">&lt;grant_id>RG4059A8&lt;/grant_id>&lt;/grant_ids>&lt;/grant>&lt;/grants>&lt;/fund_ack>&lt;keywords count="6">&lt;keyword>Oligodendrocyte&lt;/keyword>&lt;keyword>Thyroid hormone&lt;/keyword>&lt;keyword>KLF9&lt;/keyword>&lt;keyword>BTEB1&lt;/keyword>&lt;keyword>Myelin&lt;/keyword>&lt;keyword>Cuprizone&lt;/keyword>&lt;/keywords>&lt;abstracts count="1">&lt;abstract>&lt;abstract_text count="1">&lt;p>Hypothyroidism is a well-described cause of hypomyelination. In addition, thyroid hormone (T3) has recently been shown to enhance remyelination in various animal models of CNS demyelination. What are the ways in which T3 promotes the development and regeneration of healthy myelin? To begin to understand the mechanisms by which 13 drives myelination, we have identified genes regulated specifically by T3 in purified oligodendrocyte precursor cells (OPCs). Among the genes identified by genomic expression analyses were four transcription factors, Kruppel-like factor 9 (KLF9), basic helix-loop-helix family member e22 (BHLHe22), Hairless (Hr), and Albumin D box-binding protein (DBP), all of which were induced in OPCs by both brief and long term exposure to T3. To begin to investigate the role of these genes in myelination, we focused on the most rapidly and robustly induced of these, KLF9, and found it is both necessary and sufficient to promote oligodendrocyte differentiation in vitro. Surprisingly, we found that loss of KLF9 in vivo negligibly affects the formation of CNS myelin during development, but does significantly delay remyelination in cuprizone-induced demyelinated lesions. These experiments indicate that KLF9 is likely a novel integral component of the T3-driven signaling cascade that promotes the regeneration of lost myelin. Future analyses of the roles of KLF9 and other identified T3-induced genes in myelination may lead to novel insights into how to enhance the regeneration of myelin in demyelinating diseases such as multiple sclerosis. (c) 2012 Elsevier Inc. All rights reserved.&lt;/p>&lt;/abstract_text>&lt;/abstract>&lt;/abstracts>&lt;/fullrecord_metadata>&lt;item xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="itemType_wos" coll_id="WOS">&lt;ids avail="N">962LX&lt;/ids>&lt;bib_id>50 (1): 45-57 MAY 2012&lt;/bib_id>&lt;bib_pagecount type="Journal">132&lt;/bib_pagecount>&lt;keywords_plus count="10">&lt;keyword>CENTRAL-NERVOUS-SYSTEM&lt;/keyword>&lt;keyword>ELEMENT-BINDING PROTEIN-1&lt;/keyword>&lt;keyword>MAGNETIC-RESONANCE SPECTROSCOPY&lt;/keyword>&lt;keyword>SPINAL-CORD DEMYELINATION&lt;/keyword>&lt;keyword>THYROID-HORMONE ACTION&lt;/keyword>&lt;keyword>KRUPPEL-LIKE FACTOR-9&lt;/keyword>&lt;keyword>RAT-BRAIN&lt;/keyword>&lt;keyword>IN-VIVO&lt;/keyword>&lt;keyword>EXPERIMENTAL HYPOTHYROIDISM&lt;/keyword>&lt;keyword>CONGENITAL HYPOTHYROIDISM&lt;/keyword>&lt;/keywords_plus>&lt;/item>&lt;/static_data>&lt;dynamic_data>&lt;citation_related>&lt;tc_list>&lt;silo_tc coll_id="WOS" local_count="52">&lt;/silo_tc>&lt;/tc_list>&lt;/citation_related>&lt;cluster_related>&lt;identifiers>&lt;identifier type="issn" value="1044-7431">&lt;/identifier>&lt;identifier type="doi" value="10.1016/j.mcn.2012.03.007">&lt;/identifier>&lt;/identifiers>&lt;/cluster_related>&lt;/dynamic_data>&lt;/REC>
         &lt;/records></records></return></ns2:searchResponse></soap:Body></soap:Envelope>
-    http_version: 
   recorded_at: Fri, 27 Apr 2018 01:44:02 GMT
-recorded_with: VCR 4.0.0
+- request:
+    method: get
+    uri: https://wos-api.clarivate.com/api/wos/?count=100&databaseId=WOK&firstRecord=1&usrQuery=DO=10.1016/j.mcn.2012.03.007
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.7.6
+      Accept:
+      - application/xml
+      X-Apikey:
+      - Settings.WOS.API_KEY
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 21 Jun 2023 19:38:37 GMT
+      Content-Type:
+      - application/xml
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      X-Rec-Amtperyear-Remaining:
+      - '48652'
+      X-Req-Reqpersec-Remaining:
+      - '1'
+      Vary:
+      - Origin
+      Correlation-Id:
+      - 73c0b0c7-bef8-453e-9745-04d5bb96ed60#19946497
+      X-Kong-Upstream-Latency:
+      - '71'
+      X-Kong-Proxy-Latency:
+      - '2'
+      Via:
+      - kong/2.8.1
+    body:
+      encoding: UTF-8
+      string: "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<response
+        xmlns=\"http://www.isinet.com/xrpc42\">\n    <map>\n        <map name=\"Data\">\n
+        \           <val name=\"Records\"><![CDATA[<records><REC r_id_disclaimer=\"ResearcherID
+        data provided by Clarivate Analytics\"><UID>WOS:000305547700005</UID><static_data><summary><EWUID><WUID
+        coll_id=\"WOS\" /><edition value=\"WOS.SCI\" /></EWUID><pub_info sortdate=\"2012-05-01\"
+        pubyear=\"2012\" has_abstract=\"Y\" coverdate=\"MAY 2012\" pubmonth=\"MAY\"
+        vol=\"50\" issue=\"1\" pubtype=\"Journal\" journal_oas_gold=\"N\"><page begin=\"45\"
+        end=\"57\" page_count=\"13\">45-57</page></pub_info><titles count=\"6\"><title
+        type=\"source\">MOLECULAR AND CELLULAR NEUROSCIENCE</title><title type=\"source_abbrev\">MOL
+        CELL NEUROSCI</title><title type=\"abbrev_iso\">Mol. Cell. Neurosci.</title><title
+        type=\"abbrev_11\">MOL CELL NE</title><title type=\"abbrev_29\">MOL CELL NEUROSCI</title><title
+        type=\"item\">The T3-induced gene KLF9 regulates oligodendrocyte differentiation
+        and myelin regeneration</title></titles><names count=\"3\"><name seq_no=\"1\"
+        role=\"author\" reprint=\"Y\" addr_no=\"1\" r_id=\"CNH-5803-2022\" daisng_id=\"7176209\"
+        claim_status=\"false\"><display_name>Dugas, Jason C.</display_name><preferred_name><full_name>Dugas,
+        Jason C.</full_name><first_name>Jason C.</first_name><last_name>Dugas</last_name></preferred_name><full_name>Dugas,
+        Jason C.</full_name><wos_standard>Dugas, JC</wos_standard><first_name>Jason
+        C.</first_name><last_name>Dugas</last_name><data-item-ids><data-item-id id-type=\"PreferredRID\"
+        type=\"person\">CNH-5803-2022</data-item-id></data-item-ids></name><name seq_no=\"2\"
+        role=\"author\" addr_no=\"1\" r_id=\"CUK-8556-2022\" daisng_id=\"8828963\"
+        claim_status=\"false\"><display_name>Ibrahim, Adiljan</display_name><preferred_name><full_name>Ibrahim,
+        Adiljan</full_name><first_name>Adiljan</first_name><last_name>Ibrahim</last_name></preferred_name><full_name>Ibrahim,
+        Adiljan</full_name><wos_standard>Ibrahim, A</wos_standard><first_name>Adiljan</first_name><last_name>Ibrahim</last_name><data-item-ids><data-item-id
+        id-type=\"PreferredRID\" type=\"person\">CUK-8556-2022</data-item-id></data-item-ids></name><name
+        seq_no=\"3\" role=\"author\" addr_no=\"1\" r_id=\"CDG-0168-2022\" daisng_id=\"4620573\"
+        claim_status=\"false\"><display_name>Barres, Ben A.</display_name><preferred_name><full_name>Barres,
+        Ben A.</full_name><first_name>Ben A.</first_name><last_name>Barres</last_name></preferred_name><full_name>Barres,
+        Ben A.</full_name><wos_standard>Barres, BA</wos_standard><first_name>Ben A.</first_name><last_name>Barres</last_name><data-item-ids><data-item-id
+        id-type=\"PreferredRID\" type=\"person\">CDG-0168-2022</data-item-id></data-item-ids></name></names><doctypes
+        count=\"1\"><doctype>Article</doctype></doctypes><publishers><publisher><address_spec
+        addr_no=\"1\"><full_address>525 B ST, STE 1900, SAN DIEGO, CA 92101-4495 USA</full_address><city>SAN
+        DIEGO</city></address_spec><names count=\"1\"><name role=\"publisher\" seq_no=\"1\"
+        addr_no=\"1\"><display_name>ACADEMIC PRESS INC ELSEVIER SCIENCE</display_name><full_name>ACADEMIC
+        PRESS INC ELSEVIER SCIENCE</full_name><unified_name>Elsevier</unified_name></name></names></publisher></publishers></summary><fullrecord_metadata><languages
+        count=\"1\"><language type=\"primary\">English</language></languages><normalized_languages
+        count=\"1\"><language type=\"primary\">English</language></normalized_languages><normalized_doctypes
+        count=\"1\"><doctype>Article</doctype></normalized_doctypes><refs count=\"61\"
+        /><addresses count=\"1\"><address_name><address_spec addr_no=\"1\"><full_address>Stanford
+        Univ, Sch Med, Dept Neurobiol, Stanford, CA 94305 USA</full_address><organizations
+        count=\"2\"><organization pref=\"null\">Stanford Univ</organization><organization
+        pref=\"Y\">Stanford University</organization></organizations><suborganizations
+        count=\"2\"><suborganization>Sch Med</suborganization><suborganization>Dept
+        Neurobiol</suborganization></suborganizations><city>Stanford</city><state>CA</state><country>USA</country><zip
+        location=\"AP\">94305</zip></address_spec><names count=\"3\"><name seq_no=\"1\"
+        role=\"author\" reprint=\"Y\" addr_no=\"1\" daisng_id=\"7176209\" claim_status=\"false\"><display_name>Dugas,
+        Jason C.</display_name><preferred_name><full_name>Dugas, Jason C.</full_name><first_name>Jason
+        C.</first_name><last_name>Dugas</last_name></preferred_name><full_name>Dugas,
+        Jason C.</full_name><wos_standard>Dugas, JC</wos_standard><first_name>Jason
+        C.</first_name><last_name>Dugas</last_name><data-item-ids><data-item-id id-type=\"PreferredRID\"
+        type=\"person\">CNH-5803-2022</data-item-id></data-item-ids></name><name seq_no=\"2\"
+        role=\"author\" addr_no=\"1\" daisng_id=\"8828963\" claim_status=\"false\"><display_name>Ibrahim,
+        Adiljan</display_name><preferred_name><full_name>Ibrahim, Adiljan</full_name><first_name>Adiljan</first_name><last_name>Ibrahim</last_name></preferred_name><full_name>Ibrahim,
+        Adiljan</full_name><wos_standard>Ibrahim, A</wos_standard><first_name>Adiljan</first_name><last_name>Ibrahim</last_name><data-item-ids><data-item-id
+        id-type=\"PreferredRID\" type=\"person\">CUK-8556-2022</data-item-id></data-item-ids></name><name
+        seq_no=\"3\" role=\"author\" addr_no=\"1\" daisng_id=\"4620573\" claim_status=\"false\"><display_name>Barres,
+        Ben A.</display_name><preferred_name><full_name>Barres, Ben A.</full_name><first_name>Ben
+        A.</first_name><last_name>Barres</last_name></preferred_name><full_name>Barres,
+        Ben A.</full_name><wos_standard>Barres, BA</wos_standard><first_name>Ben A.</first_name><last_name>Barres</last_name><data-item-ids><data-item-id
+        id-type=\"PreferredRID\" type=\"person\">CDG-0168-2022</data-item-id></data-item-ids></name></names></address_name></addresses><reprint_addresses
+        count=\"1\"><address_name><address_spec addr_no=\"1\"><full_address>Myelin
+        Repair Fdn, 18809 Cox Ave 190, Saratoga, CA 95070 USA</full_address><organizations
+        count=\"1\"><organization pref=\"null\">Myelin Repair Fdn</organization></organizations><street>18809
+        Cox Ave 190</street><city>Saratoga</city><state>CA</state><country>USA</country><zip
+        location=\"AP\">95070</zip></address_spec><names count=\"1\"><name seq_no=\"1\"
+        role=\"author\" reprint=\"Y\" addr_no=\"1\"><display_name>Dugas, Jason C.</display_name><full_name>Dugas,
+        Jason C.</full_name><wos_standard>Dugas, JC</wos_standard><first_name>Jason
+        C.</first_name><last_name>Dugas</last_name></name></names></address_name></reprint_addresses><category_info><headings
+        count=\"1\"><heading>Science &amp; Technology</heading></headings><subheadings
+        count=\"1\"><subheading>Life Sciences &amp; Biomedicine</subheading></subheadings><subjects
+        count=\"2\"><subject ascatype=\"traditional\" code=\"RU\">Neurosciences</subject><subject
+        ascatype=\"extended\">Neurosciences &amp; Neurology</subject></subjects></category_info><fund_ack><fund_text><p>We
+        would like to thank Dr. Rosalia Simmen for generously providing the KLF9&lt;SUP&gt;LacZ/+&lt;/SUP&gt;
+        mice. This work was supported by the Myelin Repair Foundation and the National
+        Multiple Sclerosis Society (RG4059A8).</p></fund_text><grants count=\"2\"><grant><grant_agency>Myelin
+        Repair Foundation</grant_agency><grant_agency_names pref=\"N\" content=\"Myelin
+        Repair Foundation\" /></grant><grant><grant_agency>National Multiple Sclerosis
+        Society</grant_agency><grant_ids count=\"1\"><grant_id>RG4059A8</grant_id></grant_ids><grant_agency_names
+        pref=\"Y\" content=\"National Multiple Sclerosis Society\" /><grant_agency_names
+        pref=\"N\" content=\"National Multiple Sclerosis Society\" /></grant></grants></fund_ack><keywords
+        count=\"6\"><keyword>Oligodendrocyte</keyword><keyword>Thyroid hormone</keyword><keyword>KLF9</keyword><keyword>BTEB1</keyword><keyword>Myelin</keyword><keyword>Cuprizone</keyword></keywords><abstracts
+        count=\"1\"><abstract><abstract_text count=\"1\"><p>Hypothyroidism is a well-described
+        cause of hypomyelination. In addition, thyroid hormone (T3) has recently been
+        shown to enhance remyelination in various animal models of CNS demyelination.
+        What are the ways in which T3 promotes the development and regeneration of
+        healthy myelin? To begin to understand the mechanisms by which 13 drives myelination,
+        we have identified genes regulated specifically by T3 in purified oligodendrocyte
+        precursor cells (OPCs). Among the genes identified by genomic expression analyses
+        were four transcription factors, Kruppel-like factor 9 (KLF9), basic helix-loop-helix
+        family member e22 (BHLHe22), Hairless (Hr), and Albumin D box-binding protein
+        (DBP), all of which were induced in OPCs by both brief and long term exposure
+        to T3. To begin to investigate the role of these genes in myelination, we
+        focused on the most rapidly and robustly induced of these, KLF9, and found
+        it is both necessary and sufficient to promote oligodendrocyte differentiation
+        in vitro. Surprisingly, we found that loss of KLF9 in vivo negligibly affects
+        the formation of CNS myelin during development, but does significantly delay
+        remyelination in cuprizone-induced demyelinated lesions. These experiments
+        indicate that KLF9 is likely a novel integral component of the T3-driven signaling
+        cascade that promotes the regeneration of lost myelin. Future analyses of
+        the roles of KLF9 and other identified T3-induced genes in myelination may
+        lead to novel insights into how to enhance the regeneration of myelin in demyelinating
+        diseases such as multiple sclerosis. (c) 2012 Elsevier Inc. All rights reserved.</p></abstract_text></abstract></abstracts></fullrecord_metadata><item
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:type=\"itemType_wos\"
+        coll_id=\"WOS\"><ids avail=\"N\">962LX</ids><bib_id>50 (1): 45-57 MAY 2012</bib_id><bib_pagecount
+        type=\"Journal\">132</bib_pagecount><keywords_plus count=\"10\"><keyword>ELEMENT-BINDING
+        PROTEIN-1</keyword><keyword>MAGNETIC-RESONANCE SPECTROSCOPY</keyword><keyword>CENTRAL-NERVOUS-SYSTEM</keyword><keyword>THYROID-HORMONE</keyword><keyword>EXPERIMENTAL
+        HYPOTHYROIDISM</keyword><keyword>MICE LACKING</keyword><keyword>PDGF-A</keyword><keyword>EXPRESSION</keyword><keyword>REMYELINATION</keyword><keyword>DEMYELINATION</keyword></keywords_plus></item></static_data><dynamic_data><citation_related><tc_list><silo_tc
+        coll_id=\"WOS\" local_count=\"108\" /></tc_list><tc_list_cc dedup_total_count=\"8\"><function_tc
+        func_class=\"basis\" local_count=\"1\" /><function_tc func_class=\"background\"
+        local_count=\"3\" /><function_tc func_class=\"support\" local_count=\"1\"
+        /><function_tc func_class=\"differ\" local_count=\"0\" /><function_tc func_class=\"discuss\"
+        local_count=\"6\" /></tc_list_cc><citation_topics><subj-group><subject content-id=\"1\"
+        content-type=\"macro\">Clinical &amp; Life Sciences</subject><subject content-id=\"1.203\"
+        content-type=\"meso\">Neuromuscular Disorders</subject><subject content-id=\"1.203.1430\"
+        content-type=\"micro\">Oligodendrocyte</subject></subj-group></citation_topics><SDG
+        code=\"1430\"><sdg_category status=\"Active\">03 Good Health and Well-being</sdg_category></SDG></citation_related><cluster_related><identifiers><identifier
+        type=\"issn\" value=\"1044-7431\" /><identifier type=\"eissn\" value=\"1095-9327\"
+        /><identifier type=\"doi\" value=\"10.1016/j.mcn.2012.03.007\" /><identifier
+        type=\"pmid\" value=\"MEDLINE:22472204\" /></identifiers></cluster_related><wos_usage
+        last180days=\"0\" alltime=\"24\" /></dynamic_data><dates date_modified=\"2019-03-28T16:28:34.804462\"
+        date_created=\"2012-12-25T12:25:20.684325\" /></REC>\r\n</records>]]></val>\n
+        \       </map>\n        <map name=\"QueryResult\">\n            <map>\n                <val
+        name=\"QueryID\">14</val>\n                <val name=\"RecordsSearched\">177881258</val>\n
+        \               <val name=\"RecordsFound\">1</val>\n            </map>\n        </map>\n
+        \   </map>\n</response>\n"
+  recorded_at: Wed, 21 Jun 2023 19:38:37 GMT
+recorded_with: VCR 6.1.0

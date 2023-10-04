@@ -5,7 +5,7 @@
 # bundle exec rails runner -e production script/batch_wos_harvest.rb
 
 limit = 1000 # limit to 1000 authors
-options = { symbolicTimeSpan: '12week' } # go back 12 weeks in time
+options = { load_time_span: '12W' } # go back 12 weeks in time
 # increment offset to do a different batch (note that this will have overlaps if run far apart in time
 # if you use updated_at as a sort order, as updated at times will change)
 offset = 0

@@ -73,9 +73,6 @@ GEM
       public_suffix (>= 2.0.2, < 6.0)
     airbrussh (1.5.0)
       sshkit (>= 1.6.1, != 1.7.0)
-    akami (1.3.1)
-      gyoku (>= 0.4.0)
-      nokogiri
     ast (2.4.2)
     attr_extras (7.1.0)
     base64 (0.1.1)
@@ -234,17 +231,12 @@ GEM
     ffi (1.16.2)
     globalid (1.2.1)
       activesupport (>= 6.1)
-    gyoku (1.4.0)
-      builder (>= 2.1.2)
-      rexml (~> 3.0)
     hana (1.3.7)
     hashdiff (1.0.1)
     hashie (5.0.0)
     honeybadger (4.12.2)
     htmlentities (4.3.4)
     httpclient (2.8.3)
-    httpi (3.0.1)
-      rack
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     ice_nine (0.11.2)
@@ -323,7 +315,6 @@ GEM
       racc (~> 1.4)
     nokogiri (1.15.4-x86_64-linux)
       racc (~> 1.4)
-    nori (2.6.0)
     oauth2 (2.0.9)
       faraday (>= 0.17.3, < 3.0)
       jwt (>= 1.0, < 3.0)
@@ -453,15 +444,6 @@ GEM
     ruby-prof (1.6.3)
     ruby-progressbar (1.13.0)
     ruby2_keywords (0.0.5)
-    savon (2.14.0)
-      akami (~> 1.2)
-      builder (>= 2.1.2)
-      gyoku (~> 1.2)
-      httpi (>= 2.4.5)
-      mail (~> 2.5)
-      nokogiri (>= 1.8.1)
-      nori (~> 2.4)
-      wasabi (~> 3.4)
     simplecov (0.22.0)
       docile (~> 1.1)
       simplecov-html (~> 0.11)
@@ -507,10 +489,6 @@ GEM
     urn (2.0.2)
     vcr (6.2.0)
     version_gem (1.1.3)
-    wasabi (3.8.0)
-      addressable
-      httpi (~> 3.0)
-      nokogiri (>= 1.4.2)
     webmock (3.19.1)
       addressable (>= 2.8.0)
       crack (>= 0.3.2)
@@ -585,7 +563,6 @@ DEPENDENCIES
   rubocop-rake
   rubocop-rspec
   ruby-prof
-  savon (~> 2.12)
   simplecov (~> 0.13)
   sqlite3
   sul_orcid_client

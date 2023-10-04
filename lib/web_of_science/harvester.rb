@@ -86,7 +86,7 @@ module WebOfScience
 
     # Process records retrieved by any means
     # @param author [Author]
-    # @param retriever [WebOfScience::Retriever]
+    # @param retriever [WebOfScience::RestRetriever]
     # @return [Array<String>] WosUIDs that create Publications
     def process_records(author, retriever)
       uids = []

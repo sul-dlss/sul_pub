@@ -8,14 +8,11 @@ describe WebOfScience::QueryAuthor, :vcr do
   let(:author_blank_name) { create(:author, :blank_first_name, :valid_orcid) }
   let(:author_blank_name_and_orcid) { create(:author, :blank_first_name, :blank_orcid) }
 
-  # avoid caching Savon client across examples (affects VCR)
-  before { allow(WebOfScience).to receive(:client).and_return(WebOfScience::Client.new(Settings.WOS.AUTH_CODE)) }
-
   it 'works' do
     expect(query_author).to be_a described_class
   end
 
-  describe '#uids without symbolicTimeSpan' do
+  describe '#uids without loadTimeSpan' do
     it 'indicates the query is valid, with both name and orcid being valid' do
       expect(query_author).to be_valid
       expect(query_author.orcid_query).to be_valid
@@ -31,8 +28,8 @@ describe WebOfScience::QueryAuthor, :vcr do
     end
   end
 
-  describe '#uids with symbolicTimeSpan' do
-    subject(:query_author) { described_class.new(author, symbolicTimeSpan: '4week') }
+  describe '#uids with loadTimeSpan' do
+    subject(:query_author) { described_class.new(author, load_time_span: '4W') }
 
     it 'indicates the query is valid, with both name and orcid being valid' do
       expect(query_author).to be_valid

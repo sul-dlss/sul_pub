@@ -230,8 +230,6 @@ describe WebOfScience::Identifiers do
     let(:record4links) { File.read('spec/fixtures/wos_client/wos_record4links.html') }
     let(:wos_record4links) { WebOfScience::Record.new(encoded_record: record4links) }
 
-    # links_client = Clarivate::LinksClient.new
-    # links = links_client.links([wos_id], fields: ['doi', 'pmid'])
     let(:links) { { '000346594100007' => { 'doi' => '10.1002/2013GB004790' } } }
 
     it 'has compatible keys in the Hash value' do

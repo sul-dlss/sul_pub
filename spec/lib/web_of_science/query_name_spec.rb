@@ -13,14 +13,11 @@ describe WebOfScience::QueryName, :vcr do
   let(:blank_author) { create(:author, :blank_first_name) }
   let(:names) { query_name.send(:names) }
 
-  # avoid caching Savon client across examples (affects VCR)
-  before { allow(WebOfScience).to receive(:client).and_return(WebOfScience::Client.new(Settings.WOS.AUTH_CODE)) }
-
   it 'works' do
     expect(query_name).to be_a described_class
   end
 
-  describe '#uids without symbolicTimeSpan' do
+  describe '#uids without loadTimeSpan' do
     it 'indicates the query is valid' do
       expect(query_name).to be_valid
     end
@@ -33,8 +30,8 @@ describe WebOfScience::QueryName, :vcr do
     end
   end
 
-  describe '#uids with symbolicTimeSpan' do
-    subject(:query_name) { described_class.new(author, symbolicTimeSpan: '4week') }
+  describe '#uids with loadTimeSpan' do
+    subject(:query_name) { described_class.new(author, load_time_span: '4W') }
 
     it 'indicates the query is valid' do
       expect(query_name).to be_valid
@@ -52,25 +49,9 @@ describe WebOfScience::QueryName, :vcr do
 
   describe '#name_query' do
     let(:query) { query_name.send(:name_query) }
-    let(:params) { query[:queryParameters] }
-
-    it 'contains query parameters' do
-      expect(query).to include(queryParameters: Hash)
-      expect(params).to include(databaseId: String, userQuery: String, queryLanguage: String)
-    end
 
     it 'contains author names and institutions' do
-      expect(params[:userQuery]).to include(*names, 'stanford')
-    end
-
-    context 'update' do
-      subject(:query_name) { described_class.new(author, symbolicTimeSpan: '4week') }
-
-      it 'uses options to set a symbolicTimeSpan' do
-        # to use symbolicTimeSpan, timeSpan must be omitted
-        expect(params[:timeSpan]).to be_nil
-        expect(params).to include(symbolicTimeSpan: '4week')
-      end
+      expect(query).to eq('AU=("Altman,Russ" OR "Altman,Russ,Biagio" OR "Altman,Russ,B" OR "Altman,R" OR "Altman,R,B") AND AD=("stanford")')
     end
   end
 

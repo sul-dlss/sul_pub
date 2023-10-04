@@ -22,7 +22,7 @@ module Pubmed
     def self.fetch_remote_pubmed(pmid)
       # NOTE: only works because all results expected to fit inside one "batch"
       if Settings.WOS.enabled
-        result = WebOfScience.queries.retrieve_by_pmid([pmid]).next_batch.map { |rec| add_citation(rec.pub_hash) }
+        result = WebOfScience.queries.retrieve_by_id(["MEDLINE:#{pmid}"]).next_batch.map { |rec| add_citation(rec.pub_hash) }
         return result unless result.empty?
       end
 

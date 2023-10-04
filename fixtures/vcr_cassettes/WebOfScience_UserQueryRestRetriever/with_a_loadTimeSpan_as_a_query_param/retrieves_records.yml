@@ -1,0 +1,1203 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://wos-api.clarivate.com/api/wos/?count=100&databaseId=WOK&firstRecord=1&loadTimeSpan=1Y&usrQuery=AI=(%220000-0003-3859-2905%22)
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.7.6
+      Accept:
+      - application/xml
+      X-Apikey:
+      - Settings.WOS.API_KEY
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 21 Jun 2023 16:48:28 GMT
+      Content-Type:
+      - application/xml
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      X-Rec-Amtperyear-Remaining:
+      - '48858'
+      X-Req-Reqpersec-Remaining:
+      - '1'
+      Vary:
+      - Origin
+      Correlation-Id:
+      - 68fb13cc-8032-433e-ae35-72ca9bbca051#58866695
+      X-Kong-Upstream-Latency:
+      - '113'
+      X-Kong-Proxy-Latency:
+      - '11'
+      Via:
+      - kong/2.8.1
+    body:
+      encoding: UTF-8
+      string: "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<response
+        xmlns=\"http://www.isinet.com/xrpc42\">\n    <map>\n        <map name=\"Data\">\n
+        \           <val name=\"Records\"><![CDATA[<records><REC r_id_disclaimer=\"ResearcherID
+        data provided by Clarivate Analytics\"><UID>WOS:000938931000001</UID><static_data><summary><EWUID><WUID
+        coll_id=\"WOS\" /><edition value=\"WOS.SCI\" /></EWUID><pub_info sortdate=\"2023-02-01\"
+        pubyear=\"2023\" has_abstract=\"Y\" has_citation_context=\"Y\" coverdate=\"FEB
+        2023\" pubmonth=\"FEB\" vol=\"13\" issue=\"2\" pubtype=\"Journal\" journal_oas_gold=\"Y\"><page
+        page_count=\"23\" /></pub_info><titles count=\"6\"><title type=\"source\">BIOMOLECULES</title><title
+        type=\"source_abbrev\">BIOMOLECULES</title><title type=\"abbrev_iso\">Biomolecules</title><title
+        type=\"abbrev_11\">BIOMOLECULE</title><title type=\"abbrev_29\">BIOMOLECULES</title><title
+        type=\"item\">Using GPT-3 to Build a Lexicon of Drugs of Abuse Synonyms for
+        Social Media Pharmacovigilance</title></titles><names count=\"2\"><name seq_no=\"1\"
+        role=\"author\" addr_no=\"1\" r_id=\"DUU-7799-2022\" orcid_id=\"0000-0003-4570-5170\"
+        daisng_id=\"15118200\" claim_status=\"false\"><display_name>Carpenter, Kristy
+        A.</display_name><preferred_name><full_name>Carpenter, Kristy A.</full_name><first_name>Kristy
+        A.</first_name><last_name>Carpenter</last_name></preferred_name><full_name>Carpenter,
+        Kristy A.</full_name><wos_standard>Carpenter, KA</wos_standard><first_name>Kristy
+        A.</first_name><last_name>Carpenter</last_name><data-item-ids><data-item-id
+        id-type=\"PreferredRID\" type=\"person\">DUU-7799-2022</data-item-id></data-item-ids></name><name
+        seq_no=\"2\" role=\"author\" reprint=\"Y\" addr_no=\"1 2 3 4\" r_id=\"DTU-4952-2022\"
+        orcid_id=\"0000-0003-3859-2905\" daisng_id=\"14945356\" claim_status=\"false\"><display_name>Altman,
+        Russ B.</display_name><preferred_name><full_name>Altman, Russ B</full_name><first_name>Russ
+        B</first_name><last_name>Altman</last_name></preferred_name><full_name>Altman,
+        Russ B.</full_name><wos_standard>Altman, RB</wos_standard><first_name>Russ
+        B.</first_name><last_name>Altman</last_name><data-item-ids><data-item-id id-type=\"PreferredRID\"
+        type=\"person\">DTU-4952-2022</data-item-id></data-item-ids></name></names><doctypes
+        count=\"1\"><doctype>Article</doctype></doctypes><publishers><publisher><address_spec
+        addr_no=\"1\"><full_address>ST ALBAN-ANLAGE 66, CH-4052 BASEL, SWITZERLAND</full_address><city>BASEL</city></address_spec><names
+        count=\"1\"><name role=\"publisher\" seq_no=\"1\" addr_no=\"1\"><display_name>MDPI</display_name><full_name>MDPI</full_name><unified_name>Mdpi</unified_name></name></names></publisher></publishers></summary><fullrecord_metadata><languages
+        count=\"1\"><language type=\"primary\">English</language></languages><normalized_languages
+        count=\"1\"><language type=\"primary\">English</language></normalized_languages><normalized_doctypes
+        count=\"1\"><doctype>Article</doctype></normalized_doctypes><refs count=\"53\"
+        /><addresses count=\"4\"><address_name><address_spec addr_no=\"1\"><full_address>Stanford
+        Univ, Dept Biomed Data Sci, Stanford, CA 94305 USA</full_address><organizations
+        count=\"2\"><organization pref=\"null\">Stanford Univ</organization><organization
+        pref=\"Y\">Stanford University</organization></organizations><suborganizations
+        count=\"1\"><suborganization>Dept Biomed Data Sci</suborganization></suborganizations><city>Stanford</city><state>CA</state><country>USA</country><zip
+        location=\"AP\">94305</zip></address_spec><names count=\"2\"><name seq_no=\"1\"
+        role=\"author\" addr_no=\"1\" orcid_id=\"0000-0003-4570-5170\" daisng_id=\"15118200\"
+        claim_status=\"false\"><display_name>Carpenter, Kristy A.</display_name><preferred_name><full_name>Carpenter,
+        Kristy A.</full_name><first_name>Kristy A.</first_name><last_name>Carpenter</last_name></preferred_name><full_name>Carpenter,
+        Kristy A.</full_name><wos_standard>Carpenter, KA</wos_standard><first_name>Kristy
+        A.</first_name><last_name>Carpenter</last_name><data-item-ids><data-item-id
+        id-type=\"PreferredRID\" type=\"person\">DUU-7799-2022</data-item-id></data-item-ids></name><name
+        seq_no=\"2\" role=\"author\" reprint=\"Y\" addr_no=\"1\" orcid_id=\"0000-0003-3859-2905\"
+        daisng_id=\"14945356\" claim_status=\"false\"><display_name>Altman, Russ B.</display_name><preferred_name><full_name>Altman,
+        Russ B</full_name><first_name>Russ B</first_name><last_name>Altman</last_name></preferred_name><full_name>Altman,
+        Russ B.</full_name><wos_standard>Altman, RB</wos_standard><first_name>Russ
+        B.</first_name><last_name>Altman</last_name><data-item-ids><data-item-id id-type=\"PreferredRID\"
+        type=\"person\">DTU-4952-2022</data-item-id></data-item-ids></name></names></address_name><address_name><address_spec
+        addr_no=\"2\"><full_address>Stanford Univ, Dept Bioengn, Stanford, CA 94305
+        USA</full_address><organizations count=\"2\"><organization pref=\"null\">Stanford
+        Univ</organization><organization pref=\"Y\">Stanford University</organization></organizations><suborganizations
+        count=\"1\"><suborganization>Dept Bioengn</suborganization></suborganizations><city>Stanford</city><state>CA</state><country>USA</country><zip
+        location=\"AP\">94305</zip></address_spec><names count=\"1\"><name seq_no=\"2\"
+        role=\"author\" reprint=\"Y\" addr_no=\"2\" orcid_id=\"0000-0003-3859-2905\"
+        daisng_id=\"14945356\" claim_status=\"false\"><display_name>Altman, Russ B.</display_name><preferred_name><full_name>Altman,
+        Russ B</full_name><first_name>Russ B</first_name><last_name>Altman</last_name></preferred_name><full_name>Altman,
+        Russ B.</full_name><wos_standard>Altman, RB</wos_standard><first_name>Russ
+        B.</first_name><last_name>Altman</last_name><data-item-ids><data-item-id id-type=\"PreferredRID\"
+        type=\"person\">DTU-4952-2022</data-item-id></data-item-ids></name></names></address_name><address_name><address_spec
+        addr_no=\"3\"><full_address>Stanford Univ, Dept Genet, Stanford, CA 94305
+        USA</full_address><organizations count=\"2\"><organization pref=\"null\">Stanford
+        Univ</organization><organization pref=\"Y\">Stanford University</organization></organizations><suborganizations
+        count=\"1\"><suborganization>Dept Genet</suborganization></suborganizations><city>Stanford</city><state>CA</state><country>USA</country><zip
+        location=\"AP\">94305</zip></address_spec><names count=\"1\"><name seq_no=\"2\"
+        role=\"author\" reprint=\"Y\" addr_no=\"3\" orcid_id=\"0000-0003-3859-2905\"
+        daisng_id=\"14945356\" claim_status=\"false\"><display_name>Altman, Russ B.</display_name><preferred_name><full_name>Altman,
+        Russ B</full_name><first_name>Russ B</first_name><last_name>Altman</last_name></preferred_name><full_name>Altman,
+        Russ B.</full_name><wos_standard>Altman, RB</wos_standard><first_name>Russ
+        B.</first_name><last_name>Altman</last_name><data-item-ids><data-item-id id-type=\"PreferredRID\"
+        type=\"person\">DTU-4952-2022</data-item-id></data-item-ids></name></names></address_name><address_name><address_spec
+        addr_no=\"4\"><full_address>Stanford Univ, Dept Med, Stanford, CA 94305 USA</full_address><organizations
+        count=\"2\"><organization pref=\"null\">Stanford Univ</organization><organization
+        pref=\"Y\">Stanford University</organization></organizations><suborganizations
+        count=\"1\"><suborganization>Dept Med</suborganization></suborganizations><city>Stanford</city><state>CA</state><country>USA</country><zip
+        location=\"AP\">94305</zip></address_spec><names count=\"1\"><name seq_no=\"2\"
+        role=\"author\" reprint=\"Y\" addr_no=\"4\" orcid_id=\"0000-0003-3859-2905\"
+        daisng_id=\"14945356\" claim_status=\"false\"><display_name>Altman, Russ B.</display_name><preferred_name><full_name>Altman,
+        Russ B</full_name><first_name>Russ B</first_name><last_name>Altman</last_name></preferred_name><full_name>Altman,
+        Russ B.</full_name><wos_standard>Altman, RB</wos_standard><first_name>Russ
+        B.</first_name><last_name>Altman</last_name><data-item-ids><data-item-id id-type=\"PreferredRID\"
+        type=\"person\">DTU-4952-2022</data-item-id></data-item-ids></name></names></address_name></addresses><reprint_addresses
+        count=\"4\"><address_name><address_spec addr_no=\"1\"><full_address>Stanford
+        Univ, Dept Biomed Data Sci, Stanford, CA 94305 USA</full_address><organizations
+        count=\"2\"><organization pref=\"null\">Stanford Univ</organization><organization
+        pref=\"Y\">Stanford University</organization></organizations><suborganizations
+        count=\"1\"><suborganization>Dept Biomed Data Sci</suborganization></suborganizations><city>Stanford</city><state>CA</state><country>USA</country><zip
+        location=\"AP\">94305</zip></address_spec><names count=\"1\"><name seq_no=\"1\"
+        role=\"author\" reprint=\"Y\" addr_no=\"1\"><display_name>Altman, Russ B.</display_name><full_name>Altman,
+        Russ B.</full_name><wos_standard>Altman, RB</wos_standard><first_name>Russ
+        B.</first_name><last_name>Altman</last_name></name></names></address_name><address_name><address_spec
+        addr_no=\"2\"><full_address>Stanford Univ, Dept Bioengn, Stanford, CA 94305
+        USA</full_address><organizations count=\"2\"><organization pref=\"null\">Stanford
+        Univ</organization><organization pref=\"Y\">Stanford University</organization></organizations><suborganizations
+        count=\"1\"><suborganization>Dept Bioengn</suborganization></suborganizations><city>Stanford</city><state>CA</state><country>USA</country><zip
+        location=\"AP\">94305</zip></address_spec><names count=\"1\"><name seq_no=\"1\"
+        role=\"author\" reprint=\"Y\" addr_no=\"2\"><display_name>Altman, Russ B.</display_name><full_name>Altman,
+        Russ B.</full_name><wos_standard>Altman, RB</wos_standard><first_name>Russ
+        B.</first_name><last_name>Altman</last_name></name></names></address_name><address_name><address_spec
+        addr_no=\"3\"><full_address>Stanford Univ, Dept Genet, Stanford, CA 94305
+        USA</full_address><organizations count=\"2\"><organization pref=\"null\">Stanford
+        Univ</organization><organization pref=\"Y\">Stanford University</organization></organizations><suborganizations
+        count=\"1\"><suborganization>Dept Genet</suborganization></suborganizations><city>Stanford</city><state>CA</state><country>USA</country><zip
+        location=\"AP\">94305</zip></address_spec><names count=\"1\"><name seq_no=\"1\"
+        role=\"author\" reprint=\"Y\" addr_no=\"3\"><display_name>Altman, Russ B.</display_name><full_name>Altman,
+        Russ B.</full_name><wos_standard>Altman, RB</wos_standard><first_name>Russ
+        B.</first_name><last_name>Altman</last_name></name></names></address_name><address_name><address_spec
+        addr_no=\"4\"><full_address>Stanford Univ, Dept Med, Stanford, CA 94305 USA</full_address><organizations
+        count=\"2\"><organization pref=\"null\">Stanford Univ</organization><organization
+        pref=\"Y\">Stanford University</organization></organizations><suborganizations
+        count=\"1\"><suborganization>Dept Med</suborganization></suborganizations><city>Stanford</city><state>CA</state><country>USA</country><zip
+        location=\"AP\">94305</zip></address_spec><names count=\"1\"><name seq_no=\"1\"
+        role=\"author\" reprint=\"Y\" addr_no=\"4\"><display_name>Altman, Russ B.</display_name><full_name>Altman,
+        Russ B.</full_name><wos_standard>Altman, RB</wos_standard><first_name>Russ
+        B.</first_name><last_name>Altman</last_name></name></names></address_name></reprint_addresses><category_info><headings
+        count=\"1\"><heading>Science &amp; Technology</heading></headings><subheadings
+        count=\"1\"><subheading>Life Sciences &amp; Biomedicine</subheading></subheadings><subjects
+        count=\"2\"><subject ascatype=\"traditional\" code=\"CQ\">Biochemistry &amp;
+        Molecular Biology</subject><subject ascatype=\"extended\">Biochemistry &amp;
+        Molecular Biology</subject></subjects></category_info><fund_ack><fund_text><p>K.A.C.
+        is supported by the National Science Foundation Graduate Research Fellowship
+        Program under Grant No. DGE-1656518. R.B.A. is supported by NIH GM102365 and
+        Chan Zuckerberg Biohub.</p></fund_text><grants count=\"3\"><grant><grant_agency>National
+        Science Foundation Graduate Research Fellowship</grant_agency><grant_ids count=\"1\"><grant_id>DGE-1656518</grant_id></grant_ids><grant_agency_names
+        pref=\"Y\" content=\"National Science Foundation (NSF)\" /><grant_agency_names
+        pref=\"N\" content=\"National Science Foundation Graduate Research Fellowship\"
+        /></grant><grant><grant_agency>NIH</grant_agency><grant_ids count=\"1\"><grant_id>GM102365</grant_id></grant_ids><grant_agency_names
+        pref=\"Y\" content=\"United States Department of Health &amp; Human Services\"
+        /><grant_agency_names pref=\"Y\" content=\"National Institutes of Health (NIH)
+        - USA\" /><grant_agency_names pref=\"N\" content=\"NIH\" /></grant><grant><grant_agency>Chan
+        Zuckerberg Biohub</grant_agency><grant_agency_names pref=\"Y\" content=\"Chan
+        Zuckerberg Initiative (CZI)\" /><grant_agency_names pref=\"N\" content=\"Chan
+        Zuckerberg Biohub\" /></grant></grants></fund_ack><keywords count=\"4\"><keyword>large
+        language models</keyword><keyword>pharmacovigilance</keyword><keyword>social
+        media</keyword><keyword>drugs of abuse</keyword></keywords><abstracts count=\"1\"><abstract><abstract_text
+        count=\"1\"><p>Drug abuse is a serious problem in the United States, with
+        over 90,000 drug overdose deaths nationally in 2020. A key step in combating
+        drug abuse is detecting, monitoring, and characterizing its trends over time
+        and location, also known as pharmacovigilance. While federal reporting systems
+        accomplish this to a degree, they often have high latency and incomplete coverage.
+        Social-media-based pharmacovigilance has zero latency, is easily accessible
+        and unfiltered, and benefits from drug users being willing to share their
+        experiences online pseudo-anonymously. However, unlike highly structured official
+        data sources, social media text is rife with misspellings and slang, making
+        automated analysis difficult. Generative Pretrained Transformer 3 (GPT-3)
+        is a large autoregressive language model specialized for few-shot learning
+        that was trained on text from the entire internet. We demonstrate that GPT-3
+        can be used to generate slang and common misspellings of terms for drugs of
+        abuse. We repeatedly queried GPT-3 for synonyms of drugs of abuse and filtered
+        the generated terms using automated Google searches and cross-references to
+        known drug names. When generated terms for alprazolam were manually labeled,
+        we found that our method produced 269 synonyms for alprazolam, 221 of which
+        were new discoveries not included in an existing drug lexicon for social media.
+        We repeated this process for 98 drugs of abuse, of which 22 are widely-discussed
+        drugs of abuse, building a lexicon of colloquial drug synonyms that can be
+        used for pharmacovigilance on social media.</p></abstract_text></abstract></abstracts></fullrecord_metadata><item
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:type=\"itemType_wos\"
+        coll_id=\"WOS\"><ids avail=\"Y\">9H6HE</ids><bib_id>13 (2): - FEB 2023</bib_id><bib_pagecount
+        type=\"Journal\">23</bib_pagecount><keywords_plus count=\"1\"><keyword>CHALLENGES</keyword></keywords_plus></item><contributors
+        count=\"1\"><contributor><name seq_no=\"1\" role=\"researcher_id\" orcid_id=\"0000-0003-3859-2905\"><display_name>Altman,
+        Russ</display_name><full_name>Altman, Russ</full_name><first_name>Russ</first_name><last_name>Altman</last_name></name></contributor></contributors></static_data><dynamic_data><citation_related><tc_list><silo_tc
+        coll_id=\"WOS\" local_count=\"0\" /></tc_list><citation_topics><subj-group><subject
+        content-id=\"1\" content-type=\"macro\">Clinical &amp; Life Sciences</subject><subject
+        content-id=\"1.155\" content-type=\"meso\">Medical Ethics</subject><subject
+        content-id=\"1.155.2316\" content-type=\"micro\">Pharmacovigilance</subject></subj-group></citation_topics><SDG
+        code=\"2316\"><sdg_category status=\"Active\">03 Good Health and Well-being</sdg_category></SDG></citation_related><cluster_related><identifiers><identifier
+        type=\"eissn\" value=\"2218-273X\" /><identifier type=\"art_no\" value=\"ARTN
+        387\" /><identifier type=\"doi\" value=\"10.3390/biom13020387\" /><identifier
+        type=\"pmid\" value=\"MEDLINE:36830756\" /></identifiers></cluster_related><wos_usage
+        last180days=\"4\" alltime=\"4\" /></dynamic_data><dates date_modified=\"2023-03-21T09:22:34.002541\"
+        date_created=\"2023-03-21T09:22:34.002541\" /></REC>\r\n<REC r_id_disclaimer=\"ResearcherID
+        data provided by Clarivate Analytics\"><UID>WOS:000892597100001</UID><static_data><summary><EWUID><WUID
+        coll_id=\"WOS\" /><edition value=\"WOS.SCI\" /></EWUID><pub_info sortdate=\"2022-11-17\"
+        pubyear=\"2023\" early_access_month=\"11\" early_access_year=\"2022\" early_access_date=\"NOV
+        2022\" has_abstract=\"Y\" has_citation_context=\"Y\" coverdate=\"JAN 1 2023\"
+        pubmonth=\"JAN 1\" vol=\"39\" issue=\"1\" pubtype=\"Journal\" journal_oas_gold=\"N\"><page
+        page_count=\"8\" /></pub_info><titles count=\"6\"><title type=\"source\">BIOINFORMATICS</title><title
+        type=\"source_abbrev\">BIOINFORMATICS</title><title type=\"abbrev_iso\">Bioinformatics</title><title
+        type=\"abbrev_11\">BIOINFORMAT</title><title type=\"abbrev_29\">BIOINFORMATICS</title><title
+        type=\"item\">Gene set proximity analysis: expanding gene set enrichment analysis
+        through learned geometric embeddings, with drug-repurposing applications in
+        COVID-19</title></titles><names count=\"7\"><name seq_no=\"1\" role=\"author\"
+        reprint=\"Y\" addr_no=\"1\" r_id=\"DWG-7117-2022\" orcid_id=\"0000-0002-8694-0604\"
+        daisng_id=\"15497520\" claim_status=\"false\"><display_name>Cousins, Henry</display_name><preferred_name><full_name>Cousins,
+        Henry</full_name><first_name>Henry</first_name><last_name>Cousins</last_name></preferred_name><full_name>Cousins,
+        Henry</full_name><wos_standard>Cousins, H</wos_standard><first_name>Henry</first_name><last_name>Cousins</last_name><data-item-ids><data-item-id
+        id-type=\"PreferredRID\" type=\"person\">DWG-7117-2022</data-item-id></data-item-ids></name><name
+        seq_no=\"2\" role=\"author\" addr_no=\"2\" r_id=\"EWC-0530-2022\" daisng_id=\"21790924\"
+        claim_status=\"false\"><display_name>Hall, Taryn</display_name><preferred_name><full_name>Hall,
+        Taryn</full_name><first_name>Taryn</first_name><last_name>Hall</last_name></preferred_name><full_name>Hall,
+        Taryn</full_name><wos_standard>Hall, T</wos_standard><first_name>Taryn</first_name><last_name>Hall</last_name><data-item-ids><data-item-id
+        id-type=\"PreferredRID\" type=\"person\">EWC-0530-2022</data-item-id></data-item-ids></name><name
+        seq_no=\"3\" role=\"author\" addr_no=\"2\" r_id=\"CRQ-5437-2022\" daisng_id=\"8155850\"
+        claim_status=\"false\"><display_name>Guo, Yinglong</display_name><preferred_name><full_name>Guo,
+        Ying</full_name><first_name>Ying</first_name><last_name>Guo</last_name></preferred_name><full_name>Guo,
+        Yinglong</full_name><wos_standard>Guo, YL</wos_standard><first_name>Yinglong</first_name><last_name>Guo</last_name><data-item-ids><data-item-id
+        id-type=\"PreferredRID\" type=\"person\">CRQ-5437-2022</data-item-id></data-item-ids></name><name
+        seq_no=\"4\" role=\"author\" addr_no=\"2\" r_id=\"EBW-0209-2022\" daisng_id=\"16870610\"
+        claim_status=\"false\"><display_name>Tso, Luke</display_name><preferred_name><full_name>Tso,
+        Luke</full_name><first_name>Luke</first_name><last_name>Tso</last_name></preferred_name><full_name>Tso,
+        Luke</full_name><wos_standard>Tso, L</wos_standard><first_name>Luke</first_name><last_name>Tso</last_name><data-item-ids><data-item-id
+        id-type=\"PreferredRID\" type=\"person\">EBW-0209-2022</data-item-id></data-item-ids></name><name
+        seq_no=\"5\" role=\"author\" addr_no=\"2\" r_id=\"IPR-1139-2023\" daisng_id=\"45460793\"
+        claim_status=\"false\"><display_name>Tzeng, Kathy T. H.</display_name><preferred_name><full_name>Tzeng,
+        Kathy Tzy-Hwa</full_name><first_name>Kathy Tzy-Hwa</first_name><last_name>Tzeng</last_name></preferred_name><full_name>Tzeng,
+        Kathy T. H.</full_name><wos_standard>Tzeng, KTH</wos_standard><first_name>Kathy
+        T. H.</first_name><last_name>Tzeng</last_name><data-item-ids><data-item-id
+        id-type=\"PreferredRID\" type=\"person\">IPR-1139-2023</data-item-id></data-item-ids></name><name
+        seq_no=\"6\" role=\"author\" addr_no=\"3 4\" r_id=\"M-9981-2013\" orcid_id=\"0000-0003-4725-8714\"
+        daisng_id=\"630359\" claim_status=\"true\"><display_name>Cong, Le</display_name><preferred_name><full_name>Cong,
+        Le</full_name><first_name>Le</first_name><last_name>Cong</last_name></preferred_name><noncore_startyear>2013</noncore_startyear><noncore_endyear>2021</noncore_endyear><full_name>Cong,
+        Le</full_name><wos_standard>Cong, L</wos_standard><first_name>Le</first_name><last_name>Cong</last_name><data-item-ids><data-item-id
+        id-type=\"PreferredRID\" type=\"person\">M-9981-2013</data-item-id></data-item-ids></name><name
+        seq_no=\"7\" role=\"author\" reprint=\"Y\" addr_no=\"1 3 5 6\" r_id=\"DTU-4952-2022\"
+        orcid_id=\"0000-0003-3859-2905\" daisng_id=\"14945356\" claim_status=\"false\"><display_name>Altman,
+        Russ B.</display_name><preferred_name><full_name>Altman, Russ B</full_name><first_name>Russ
+        B</first_name><last_name>Altman</last_name></preferred_name><full_name>Altman,
+        Russ B.</full_name><wos_standard>Altman, RB</wos_standard><first_name>Russ
+        B.</first_name><last_name>Altman</last_name><data-item-ids><data-item-id id-type=\"PreferredRID\"
+        type=\"person\">DTU-4952-2022</data-item-id></data-item-ids></name></names><doctypes
+        count=\"1\"><doctype>Article</doctype></doctypes><publishers><publisher><address_spec
+        addr_no=\"1\"><full_address>GREAT CLARENDON ST, OXFORD OX2 6DP, ENGLAND</full_address><city>OXFORD</city></address_spec><names
+        count=\"1\"><name role=\"publisher\" seq_no=\"1\" addr_no=\"1\"><display_name>OXFORD
+        UNIV PRESS</display_name><full_name>OXFORD UNIV PRESS</full_name><unified_name>Oxford
+        Univ Press</unified_name></name></names></publisher></publishers></summary><fullrecord_metadata><languages
+        count=\"1\"><language type=\"primary\">English</language></languages><normalized_languages
+        count=\"1\"><language type=\"primary\">English</language></normalized_languages><normalized_doctypes
+        count=\"1\"><doctype>Article</doctype></normalized_doctypes><refs count=\"44\"
+        /><addresses count=\"6\"><address_name><address_spec addr_no=\"1\"><full_address>Stanford
+        Univ, Sch Med, Dept Biomed Data Sci, Stanford, CA 94305 USA</full_address><organizations
+        count=\"2\"><organization pref=\"null\">Stanford Univ</organization><organization
+        pref=\"Y\">Stanford University</organization></organizations><suborganizations
+        count=\"2\"><suborganization>Sch Med</suborganization><suborganization>Dept
+        Biomed Data Sci</suborganization></suborganizations><city>Stanford</city><state>CA</state><country>USA</country><zip
+        location=\"AP\">94305</zip></address_spec><names count=\"2\"><name seq_no=\"1\"
+        role=\"author\" reprint=\"Y\" addr_no=\"1\" orcid_id=\"0000-0002-8694-0604\"
+        daisng_id=\"15497520\" claim_status=\"false\"><display_name>Cousins, Henry</display_name><preferred_name><full_name>Cousins,
+        Henry</full_name><first_name>Henry</first_name><last_name>Cousins</last_name></preferred_name><full_name>Cousins,
+        Henry</full_name><wos_standard>Cousins, H</wos_standard><first_name>Henry</first_name><last_name>Cousins</last_name><data-item-ids><data-item-id
+        id-type=\"PreferredRID\" type=\"person\">DWG-7117-2022</data-item-id></data-item-ids></name><name
+        seq_no=\"7\" role=\"author\" reprint=\"Y\" addr_no=\"1\" orcid_id=\"0000-0003-3859-2905\"
+        daisng_id=\"14945356\" claim_status=\"false\"><display_name>Altman, Russ B.</display_name><preferred_name><full_name>Altman,
+        Russ B</full_name><first_name>Russ B</first_name><last_name>Altman</last_name></preferred_name><full_name>Altman,
+        Russ B.</full_name><wos_standard>Altman, RB</wos_standard><first_name>Russ
+        B.</first_name><last_name>Altman</last_name><data-item-ids><data-item-id id-type=\"PreferredRID\"
+        type=\"person\">DTU-4952-2022</data-item-id></data-item-ids></name></names></address_name><address_name><address_spec
+        addr_no=\"2\"><full_address>UnitedHlth Grp, Optum Labs, Minneapolis, MN 55343
+        USA</full_address><organizations count=\"2\"><organization pref=\"null\">UnitedHlth
+        Grp</organization><organization pref=\"Y\">Optum</organization></organizations><suborganizations
+        count=\"1\"><suborganization>Optum Labs</suborganization></suborganizations><city>Minneapolis</city><state>MN</state><country>USA</country><zip
+        location=\"AP\">55343</zip></address_spec><names count=\"4\"><name seq_no=\"2\"
+        role=\"author\" addr_no=\"2\" daisng_id=\"21790924\" claim_status=\"false\"><display_name>Hall,
+        Taryn</display_name><preferred_name><full_name>Hall, Taryn</full_name><first_name>Taryn</first_name><last_name>Hall</last_name></preferred_name><full_name>Hall,
+        Taryn</full_name><wos_standard>Hall, T</wos_standard><first_name>Taryn</first_name><last_name>Hall</last_name><data-item-ids><data-item-id
+        id-type=\"PreferredRID\" type=\"person\">EWC-0530-2022</data-item-id></data-item-ids></name><name
+        seq_no=\"3\" role=\"author\" addr_no=\"2\" daisng_id=\"8155850\" claim_status=\"false\"><display_name>Guo,
+        Yinglong</display_name><preferred_name><full_name>Guo, Ying</full_name><first_name>Ying</first_name><last_name>Guo</last_name></preferred_name><full_name>Guo,
+        Yinglong</full_name><wos_standard>Guo, YL</wos_standard><first_name>Yinglong</first_name><last_name>Guo</last_name><data-item-ids><data-item-id
+        id-type=\"PreferredRID\" type=\"person\">CRQ-5437-2022</data-item-id></data-item-ids></name><name
+        seq_no=\"4\" role=\"author\" addr_no=\"2\" daisng_id=\"16870610\" claim_status=\"false\"><display_name>Tso,
+        Luke</display_name><preferred_name><full_name>Tso, Luke</full_name><first_name>Luke</first_name><last_name>Tso</last_name></preferred_name><full_name>Tso,
+        Luke</full_name><wos_standard>Tso, L</wos_standard><first_name>Luke</first_name><last_name>Tso</last_name><data-item-ids><data-item-id
+        id-type=\"PreferredRID\" type=\"person\">EBW-0209-2022</data-item-id></data-item-ids></name><name
+        seq_no=\"5\" role=\"author\" addr_no=\"2\" daisng_id=\"45460793\" claim_status=\"false\"><display_name>Tzeng,
+        Kathy T. H.</display_name><preferred_name><full_name>Tzeng, Kathy Tzy-Hwa</full_name><first_name>Kathy
+        Tzy-Hwa</first_name><last_name>Tzeng</last_name></preferred_name><full_name>Tzeng,
+        Kathy T. H.</full_name><wos_standard>Tzeng, KTH</wos_standard><first_name>Kathy
+        T. H.</first_name><last_name>Tzeng</last_name><data-item-ids><data-item-id
+        id-type=\"PreferredRID\" type=\"person\">IPR-1139-2023</data-item-id></data-item-ids></name></names></address_name><address_name><address_spec
+        addr_no=\"3\"><full_address>Stanford Univ, Sch Med, Dept Genet, Stanford,
+        CA 94305 USA</full_address><organizations count=\"2\"><organization pref=\"null\">Stanford
+        Univ</organization><organization pref=\"Y\">Stanford University</organization></organizations><suborganizations
+        count=\"2\"><suborganization>Sch Med</suborganization><suborganization>Dept
+        Genet</suborganization></suborganizations><city>Stanford</city><state>CA</state><country>USA</country><zip
+        location=\"AP\">94305</zip></address_spec><names count=\"2\"><name seq_no=\"6\"
+        role=\"author\" addr_no=\"3\" orcid_id=\"0000-0003-4725-8714\" daisng_id=\"630359\"
+        claim_status=\"true\"><display_name>Cong, Le</display_name><preferred_name><full_name>Cong,
+        Le</full_name><first_name>Le</first_name><last_name>Cong</last_name></preferred_name><noncore_startyear>2013</noncore_startyear><noncore_endyear>2021</noncore_endyear><full_name>Cong,
+        Le</full_name><wos_standard>Cong, L</wos_standard><first_name>Le</first_name><last_name>Cong</last_name><data-item-ids><data-item-id
+        id-type=\"PreferredRID\" type=\"person\">M-9981-2013</data-item-id></data-item-ids></name><name
+        seq_no=\"7\" role=\"author\" reprint=\"Y\" addr_no=\"3\" orcid_id=\"0000-0003-3859-2905\"
+        daisng_id=\"14945356\" claim_status=\"false\"><display_name>Altman, Russ B.</display_name><preferred_name><full_name>Altman,
+        Russ B</full_name><first_name>Russ B</first_name><last_name>Altman</last_name></preferred_name><full_name>Altman,
+        Russ B.</full_name><wos_standard>Altman, RB</wos_standard><first_name>Russ
+        B.</first_name><last_name>Altman</last_name><data-item-ids><data-item-id id-type=\"PreferredRID\"
+        type=\"person\">DTU-4952-2022</data-item-id></data-item-ids></name></names></address_name><address_name><address_spec
+        addr_no=\"4\"><full_address>Stanford Univ, Sch Med, Dept Pathol, Stanford,
+        CA 94305 USA</full_address><organizations count=\"2\"><organization pref=\"null\">Stanford
+        Univ</organization><organization pref=\"Y\">Stanford University</organization></organizations><suborganizations
+        count=\"2\"><suborganization>Sch Med</suborganization><suborganization>Dept
+        Pathol</suborganization></suborganizations><city>Stanford</city><state>CA</state><country>USA</country><zip
+        location=\"AP\">94305</zip></address_spec><names count=\"1\"><name seq_no=\"6\"
+        role=\"author\" addr_no=\"4\" orcid_id=\"0000-0003-4725-8714\" daisng_id=\"630359\"
+        claim_status=\"true\"><display_name>Cong, Le</display_name><preferred_name><full_name>Cong,
+        Le</full_name><first_name>Le</first_name><last_name>Cong</last_name></preferred_name><noncore_startyear>2013</noncore_startyear><noncore_endyear>2021</noncore_endyear><full_name>Cong,
+        Le</full_name><wos_standard>Cong, L</wos_standard><first_name>Le</first_name><last_name>Cong</last_name><data-item-ids><data-item-id
+        id-type=\"PreferredRID\" type=\"person\">M-9981-2013</data-item-id></data-item-ids></name></names></address_name><address_name><address_spec
+        addr_no=\"5\"><full_address>Stanford Univ, Sch Med, Dept Med, Stanford, CA
+        94305 USA</full_address><organizations count=\"2\"><organization pref=\"null\">Stanford
+        Univ</organization><organization pref=\"Y\">Stanford University</organization></organizations><suborganizations
+        count=\"2\"><suborganization>Sch Med</suborganization><suborganization>Dept
+        Med</suborganization></suborganizations><city>Stanford</city><state>CA</state><country>USA</country><zip
+        location=\"AP\">94305</zip></address_spec><names count=\"1\"><name seq_no=\"7\"
+        role=\"author\" reprint=\"Y\" addr_no=\"5\" orcid_id=\"0000-0003-3859-2905\"
+        daisng_id=\"14945356\" claim_status=\"false\"><display_name>Altman, Russ B.</display_name><preferred_name><full_name>Altman,
+        Russ B</full_name><first_name>Russ B</first_name><last_name>Altman</last_name></preferred_name><full_name>Altman,
+        Russ B.</full_name><wos_standard>Altman, RB</wos_standard><first_name>Russ
+        B.</first_name><last_name>Altman</last_name><data-item-ids><data-item-id id-type=\"PreferredRID\"
+        type=\"person\">DTU-4952-2022</data-item-id></data-item-ids></name></names></address_name><address_name><address_spec
+        addr_no=\"6\"><full_address>Stanford Univ, Dept Bioengn, Stanford, CA 94305
+        USA</full_address><organizations count=\"2\"><organization pref=\"null\">Stanford
+        Univ</organization><organization pref=\"Y\">Stanford University</organization></organizations><suborganizations
+        count=\"1\"><suborganization>Dept Bioengn</suborganization></suborganizations><city>Stanford</city><state>CA</state><country>USA</country><zip
+        location=\"AP\">94305</zip></address_spec><names count=\"1\"><name seq_no=\"7\"
+        role=\"author\" reprint=\"Y\" addr_no=\"6\" orcid_id=\"0000-0003-3859-2905\"
+        daisng_id=\"14945356\" claim_status=\"false\"><display_name>Altman, Russ B.</display_name><preferred_name><full_name>Altman,
+        Russ B</full_name><first_name>Russ B</first_name><last_name>Altman</last_name></preferred_name><full_name>Altman,
+        Russ B.</full_name><wos_standard>Altman, RB</wos_standard><first_name>Russ
+        B.</first_name><last_name>Altman</last_name><data-item-ids><data-item-id id-type=\"PreferredRID\"
+        type=\"person\">DTU-4952-2022</data-item-id></data-item-ids></name></names></address_name></addresses><reprint_addresses
+        count=\"4\"><address_name><address_spec addr_no=\"1\"><full_address>Stanford
+        Univ, Sch Med, Dept Biomed Data Sci, Stanford, CA 94305 USA</full_address><organizations
+        count=\"2\"><organization pref=\"null\">Stanford Univ</organization><organization
+        pref=\"Y\">Stanford University</organization></organizations><suborganizations
+        count=\"2\"><suborganization>Sch Med</suborganization><suborganization>Dept
+        Biomed Data Sci</suborganization></suborganizations><city>Stanford</city><state>CA</state><country>USA</country><zip
+        location=\"AP\">94305</zip></address_spec><names count=\"2\"><name seq_no=\"1\"
+        role=\"author\" reprint=\"Y\" addr_no=\"1\"><display_name>Cousins, Henry</display_name><full_name>Cousins,
+        Henry</full_name><wos_standard>Cousins, H</wos_standard><first_name>Henry</first_name><last_name>Cousins</last_name></name><name
+        seq_no=\"2\" role=\"author\" reprint=\"Y\" addr_no=\"1\"><display_name>Altman,
+        Russ B.</display_name><full_name>Altman, Russ B.</full_name><wos_standard>Altman,
+        RB</wos_standard><first_name>Russ B.</first_name><last_name>Altman</last_name></name></names></address_name><address_name><address_spec
+        addr_no=\"2\"><full_address>Stanford Univ, Sch Med, Dept Genet, Stanford,
+        CA 94305 USA</full_address><organizations count=\"2\"><organization pref=\"null\">Stanford
+        Univ</organization><organization pref=\"Y\">Stanford University</organization></organizations><suborganizations
+        count=\"2\"><suborganization>Sch Med</suborganization><suborganization>Dept
+        Genet</suborganization></suborganizations><city>Stanford</city><state>CA</state><country>USA</country><zip
+        location=\"AP\">94305</zip></address_spec><names count=\"1\"><name seq_no=\"2\"
+        role=\"author\" reprint=\"Y\" addr_no=\"2\"><display_name>Altman, Russ B.</display_name><full_name>Altman,
+        Russ B.</full_name><wos_standard>Altman, RB</wos_standard><first_name>Russ
+        B.</first_name><last_name>Altman</last_name></name></names></address_name><address_name><address_spec
+        addr_no=\"3\"><full_address>Stanford Univ, Sch Med, Dept Med, Stanford, CA
+        94305 USA</full_address><organizations count=\"2\"><organization pref=\"null\">Stanford
+        Univ</organization><organization pref=\"Y\">Stanford University</organization></organizations><suborganizations
+        count=\"2\"><suborganization>Sch Med</suborganization><suborganization>Dept
+        Med</suborganization></suborganizations><city>Stanford</city><state>CA</state><country>USA</country><zip
+        location=\"AP\">94305</zip></address_spec><names count=\"1\"><name seq_no=\"2\"
+        role=\"author\" reprint=\"Y\" addr_no=\"3\"><display_name>Altman, Russ B.</display_name><full_name>Altman,
+        Russ B.</full_name><wos_standard>Altman, RB</wos_standard><first_name>Russ
+        B.</first_name><last_name>Altman</last_name></name></names></address_name><address_name><address_spec
+        addr_no=\"4\"><full_address>Stanford Univ, Dept Bioengn, Stanford, CA 94305
+        USA</full_address><organizations count=\"2\"><organization pref=\"null\">Stanford
+        Univ</organization><organization pref=\"Y\">Stanford University</organization></organizations><suborganizations
+        count=\"1\"><suborganization>Dept Bioengn</suborganization></suborganizations><city>Stanford</city><state>CA</state><country>USA</country><zip
+        location=\"AP\">94305</zip></address_spec><names count=\"1\"><name seq_no=\"2\"
+        role=\"author\" reprint=\"Y\" addr_no=\"4\"><display_name>Altman, Russ B.</display_name><full_name>Altman,
+        Russ B.</full_name><wos_standard>Altman, RB</wos_standard><first_name>Russ
+        B.</first_name><last_name>Altman</last_name></name></names></address_name></reprint_addresses><category_info><headings
+        count=\"1\"><heading>Science &amp; Technology</heading></headings><subheadings
+        count=\"3\"><subheading>Life Sciences &amp; Biomedicine</subheading><subheading>Technology</subheading><subheading>Physical
+        Sciences</subheading></subheadings><subjects count=\"10\"><subject ascatype=\"traditional\"
+        code=\"CO\">Biochemical Research Methods</subject><subject ascatype=\"traditional\"
+        code=\"DB\">Biotechnology &amp; Applied Microbiology</subject><subject ascatype=\"traditional\"
+        code=\"EV\">Computer Science, Interdisciplinary Applications</subject><subject
+        ascatype=\"traditional\" code=\"MC\">Mathematical &amp; Computational Biology</subject><subject
+        ascatype=\"traditional\" code=\"XY\">Statistics &amp; Probability</subject><subject
+        ascatype=\"extended\">Biochemistry &amp; Molecular Biology</subject><subject
+        ascatype=\"extended\">Biotechnology &amp; Applied Microbiology</subject><subject
+        ascatype=\"extended\">Computer Science</subject><subject ascatype=\"extended\">Mathematical
+        &amp; Computational Biology</subject><subject ascatype=\"extended\">Mathematics</subject></subjects></category_info><fund_ack><fund_text><p>This
+        work was supported by the National Institutes of Health [GM007365 toH.C.,
+        GM102365 to R.B.A.], the Knight-Hennessy Scholarships [to H.C.],and UnitedHealth
+        Group Research and Development [to T.H., Y.G., L.T.,K.T.H.T.].</p></fund_text><grants
+        count=\"3\"><grant><grant_agency>National Institutes of Health</grant_agency><grant_ids
+        count=\"2\"><grant_id>GM007365</grant_id><grant_id>GM102365</grant_id></grant_ids><grant_agency_names
+        pref=\"Y\" content=\"United States Department of Health &amp; Human Services\"
+        /><grant_agency_names pref=\"Y\" content=\"National Institutes of Health (NIH)
+        - USA\" /><grant_agency_names pref=\"N\" content=\"National Institutes of
+        Health\" /></grant><grant><grant_agency>Knight-Hennessy Scholarships</grant_agency><grant_agency_names
+        pref=\"N\" content=\"Knight-Hennessy Scholarships\" /></grant><grant><grant_agency>UnitedHealth
+        Group Research and Development</grant_agency><grant_agency_names pref=\"N\"
+        content=\"UnitedHealth Group Research and Development\" /></grant></grants></fund_ack><abstracts
+        count=\"1\"><abstract><abstract_text count=\"1\"><p>Motivation: Gene set analysis
+        methods rely on knowledge-based representations of genetic interactions in
+        the form of both gene set collections and protein-protein interaction (PPI)
+        networks. However, explicit representations of genetic interactions often
+        fail to capture complex interdependencies among genes, limiting the analytic
+        power of such methods. Results: We propose an extension of gene set enrichment
+        analysis to a latent embedding space reflecting PPI network topology, called
+        gene set proximity analysis (GSPA). Compared with existing methods, GSPA provides
+        improved ability to identify disease-associated pathways in disease-matched
+        gene expression datasets, while improving reproducibility of enrichment statistics
+        for similar gene sets. GSPA is statistically straightforward, reducing to
+        a version of traditional gene set enrichment analysis through a single user-defined
+        parameter. We apply our method to identify novel drug associations with SARS-CoV-2
+        viral entry. Finally, we validate our drug association predictions through
+        retrospective clinical analysis of claims data from 8 million patients, supporting
+        a role for gabapentin as a risk factor and metformin as a protective factor
+        for severe COVID-19. Availability and implementation: GSPA is available for
+        download as a command-line Python package at .Supplementary informationare
+        available at Bioinformatics online.</p></abstract_text></abstract></abstracts></fullrecord_metadata><item
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:type=\"itemType_wos\"
+        coll_id=\"WOS\"><ids avail=\"N\">7M0FN</ids><bib_id>39 (1): - JAN 1 2023</bib_id><bib_pagecount
+        type=\"Journal\">244</bib_pagecount><keywords_plus count=\"4\"><keyword>ASSOCIATION</keyword><keyword>ONTOLOGY</keyword><keyword>DATABASE</keyword><keyword>TERMS</keyword></keywords_plus></item><contributors
+        count=\"3\"><contributor><name seq_no=\"1\" role=\"researcher_id\" orcid_id=\"0000-0003-3859-2905\"><display_name>Altman,
+        Russ</display_name><full_name>Altman, Russ</full_name><first_name>Russ</first_name><last_name>Altman</last_name></name></contributor><contributor><name
+        seq_no=\"2\" role=\"researcher_id\" orcid_id=\"0000-0002-8694-0604\"><display_name>Cousins,
+        Henry</display_name><full_name>Cousins, Henry</full_name><first_name>Henry</first_name><last_name>Cousins</last_name></name></contributor><contributor><name
+        seq_no=\"3\" role=\"researcher_id\" r_id=\"M-9981-2013\" orcid_id=\"0000-0003-4725-8714\"><display_name>Cong,
+        Le</display_name><full_name>Cong, Le</full_name><first_name>Le</first_name><last_name>Cong</last_name></name></contributor></contributors></static_data><dynamic_data><citation_related><tc_list><silo_tc
+        coll_id=\"WOS\" local_count=\"0\" /></tc_list><citation_topics><subj-group><subject
+        content-id=\"1\" content-type=\"macro\">Clinical &amp; Life Sciences</subject><subject
+        content-id=\"1.54\" content-type=\"meso\">Molecular &amp; Cell Biology - Genetics</subject><subject
+        content-id=\"1.54.79\" content-type=\"micro\">Gene Expression Data</subject></subj-group></citation_topics><SDG
+        code=\"79\"><sdg_category status=\"Active\">03 Good Health and Well-being</sdg_category></SDG></citation_related><cluster_related><identifiers><identifier
+        type=\"issn\" value=\"1367-4803\" /><identifier type=\"eissn\" value=\"1367-4811\"
+        /><identifier type=\"doi\" value=\"10.1093/bioinformatics/btac735\" /><identifier
+        type=\"pmid\" value=\"MEDLINE:36394254\" /></identifiers></cluster_related><wos_usage
+        last180days=\"1\" alltime=\"1\" /></dynamic_data><dates date_modified=\"2023-02-10T07:28:04.49171\"
+        date_created=\"2022-12-16T07:36:15.947175\" /></REC>\r\n<REC r_id_disclaimer=\"ResearcherID
+        data provided by Clarivate Analytics\"><UID>WOS:000864514800001</UID><static_data><summary><EWUID><WUID
+        coll_id=\"WOS\" /><edition value=\"WOS.SCI\" /></EWUID><pub_info sortdate=\"2022-10-06\"
+        pubyear=\"2022\" early_access_month=\"10\" early_access_year=\"2022\" early_access_date=\"OCT
+        2022\" has_abstract=\"Y\" coverdate=\"NOV 2022\" pubmonth=\"NOV\" vol=\"11\"
+        issue=\"11\" pubtype=\"Journal\" journal_oas_gold=\"Y\"><page begin=\"1527\"
+        end=\"1538\" page_count=\"12\">1527-1538</page></pub_info><titles count=\"6\"><title
+        type=\"source\">CPT-PHARMACOMETRICS &amp; SYSTEMS PHARMACOLOGY</title><title
+        type=\"source_abbrev\">CPT-PHARMACOMET SYST</title><title type=\"abbrev_iso\">CPT-PHARMACOMET.
+        SYST. PHARMACOL.</title><title type=\"abbrev_11\">CPT-PHA SYS</title><title
+        type=\"abbrev_29\">CPT-PHARMACOMET SYST PHARMACO</title><title type=\"item\">A
+        network paradigm predicts drug synergistic effects using downstream protein-protein
+        interactions</title></titles><names count=\"6\"><name seq_no=\"1\" role=\"author\"
+        reprint=\"Y\" addr_no=\"1\" r_id=\"FYA-7507-2022\" orcid_id=\"0000-0002-2328-2018\"
+        daisng_id=\"28517901\" claim_status=\"false\"><display_name>Wilson, Jennifer
+        L.</display_name><preferred_name><full_name>Wilson, Jennifer L.</full_name><first_name>Jennifer
+        L.</first_name><last_name>Wilson</last_name></preferred_name><full_name>Wilson,
+        Jennifer L.</full_name><wos_standard>Wilson, JL</wos_standard><first_name>Jennifer
+        L.</first_name><last_name>Wilson</last_name><data-item-ids><data-item-id id-type=\"PreferredRID\"
+        type=\"person\">FYA-7507-2022</data-item-id></data-item-ids></name><name seq_no=\"2\"
+        role=\"author\" addr_no=\"2\" r_id=\"GFC-9795-2022\" daisng_id=\"30170180\"
+        claim_status=\"false\"><display_name>Steinberg, Ethan</display_name><preferred_name><full_name>Steinberg,
+        Ethan</full_name><first_name>Ethan</first_name><last_name>Steinberg</last_name></preferred_name><full_name>Steinberg,
+        Ethan</full_name><wos_standard>Steinberg, E</wos_standard><first_name>Ethan</first_name><last_name>Steinberg</last_name><data-item-ids><data-item-id
+        id-type=\"PreferredRID\" type=\"person\">GFC-9795-2022</data-item-id></data-item-ids></name><name
+        seq_no=\"3\" role=\"author\" addr_no=\"3\" r_id=\"DYU-7282-2022\" orcid_id=\"0000-0002-5487-5692\"
+        daisng_id=\"16147685\" claim_status=\"false\"><display_name>Racz, Rebecca</display_name><preferred_name><full_name>Racz,
+        Rebecca</full_name><first_name>Rebecca</first_name><last_name>Racz</last_name></preferred_name><full_name>Racz,
+        Rebecca</full_name><wos_standard>Racz, R</wos_standard><first_name>Rebecca</first_name><last_name>Racz</last_name><data-item-ids><data-item-id
+        id-type=\"PreferredRID\" type=\"person\">DYU-7282-2022</data-item-id></data-item-ids></name><name
+        seq_no=\"4\" role=\"author\" addr_no=\"4 5\" r_id=\"DTU-4952-2022\" orcid_id=\"0000-0003-3859-2905\"
+        daisng_id=\"14945356\" claim_status=\"false\"><display_name>Altman, Russ B.</display_name><preferred_name><full_name>Altman,
+        Russ B</full_name><first_name>Russ B</first_name><last_name>Altman</last_name></preferred_name><full_name>Altman,
+        Russ B.</full_name><wos_standard>Altman, RB</wos_standard><first_name>Russ
+        B.</first_name><last_name>Altman</last_name><data-item-ids><data-item-id id-type=\"PreferredRID\"
+        type=\"person\">DTU-4952-2022</data-item-id></data-item-ids></name><name seq_no=\"5\"
+        role=\"author\" addr_no=\"2\" r_id=\"FWE-4710-2022\" daisng_id=\"28035104\"
+        claim_status=\"false\"><display_name>Shah, Nigam</display_name><preferred_name><full_name>Shah,
+        Nigam</full_name><first_name>Nigam</first_name><last_name>Shah</last_name></preferred_name><full_name>Shah,
+        Nigam</full_name><wos_standard>Shah, N</wos_standard><first_name>Nigam</first_name><last_name>Shah</last_name><data-item-ids><data-item-id
+        id-type=\"PreferredRID\" type=\"person\">FWE-4710-2022</data-item-id></data-item-ids></name><name
+        seq_no=\"6\" role=\"author\" addr_no=\"6\" r_id=\"GFZ-1681-2022\" orcid_id=\"0000-0003-2469-2366\"
+        daisng_id=\"30392066\" claim_status=\"false\"><display_name>Grimes, Kevin</display_name><preferred_name><full_name>Grimes,
+        Kevin</full_name><first_name>Kevin</first_name><last_name>Grimes</last_name></preferred_name><full_name>Grimes,
+        Kevin</full_name><wos_standard>Grimes, K</wos_standard><first_name>Kevin</first_name><last_name>Grimes</last_name><data-item-ids><data-item-id
+        id-type=\"PreferredRID\" type=\"person\">GFZ-1681-2022</data-item-id></data-item-ids></name></names><doctypes
+        count=\"1\"><doctype>Article</doctype></doctypes><publishers><publisher><address_spec
+        addr_no=\"1\"><full_address>111 RIVER ST, HOBOKEN 07030-5774, NJ USA</full_address><city>HOBOKEN</city></address_spec><names
+        count=\"1\"><name role=\"publisher\" seq_no=\"1\" addr_no=\"1\"><display_name>WILEY</display_name><full_name>WILEY</full_name><unified_name>Wiley</unified_name></name></names></publisher></publishers></summary><fullrecord_metadata><languages
+        count=\"1\"><language type=\"primary\">English</language></languages><normalized_languages
+        count=\"1\"><language type=\"primary\">English</language></normalized_languages><normalized_doctypes
+        count=\"1\"><doctype>Article</doctype></normalized_doctypes><refs count=\"39\"
+        /><addresses count=\"6\"><address_name><address_spec addr_no=\"1\"><full_address>Univ
+        Calif Los Angeles, Dept Bioengn, Los Angeles, CA USA</full_address><organizations
+        count=\"3\"><organization pref=\"null\">Univ Calif Los Angeles</organization><organization
+        pref=\"Y\">University of California System</organization><organization pref=\"Y\">University
+        of California Los Angeles</organization></organizations><suborganizations
+        count=\"1\"><suborganization>Dept Bioengn</suborganization></suborganizations><city>Los
+        Angeles</city><state>CA</state><country>USA</country></address_spec><names
+        count=\"1\"><name seq_no=\"1\" role=\"author\" reprint=\"Y\" addr_no=\"1\"
+        orcid_id=\"0000-0002-2328-2018\" daisng_id=\"28517901\" claim_status=\"false\"><display_name>Wilson,
+        Jennifer L.</display_name><preferred_name><full_name>Wilson, Jennifer L.</full_name><first_name>Jennifer
+        L.</first_name><last_name>Wilson</last_name></preferred_name><full_name>Wilson,
+        Jennifer L.</full_name><wos_standard>Wilson, JL</wos_standard><first_name>Jennifer
+        L.</first_name><last_name>Wilson</last_name><data-item-ids><data-item-id id-type=\"PreferredRID\"
+        type=\"person\">FYA-7507-2022</data-item-id></data-item-ids></name></names></address_name><address_name><address_spec
+        addr_no=\"2\"><full_address>Stanford Univ, Ctr Biomed Informat Res, Palo Alto,
+        CA 94304 USA</full_address><organizations count=\"2\"><organization pref=\"null\">Stanford
+        Univ</organization><organization pref=\"Y\">Stanford University</organization></organizations><suborganizations
+        count=\"1\"><suborganization>Ctr Biomed Informat Res</suborganization></suborganizations><city>Palo
+        Alto</city><state>CA</state><country>USA</country><zip location=\"AP\">94304</zip></address_spec><names
+        count=\"2\"><name seq_no=\"2\" role=\"author\" addr_no=\"2\" daisng_id=\"30170180\"
+        claim_status=\"false\"><display_name>Steinberg, Ethan</display_name><preferred_name><full_name>Steinberg,
+        Ethan</full_name><first_name>Ethan</first_name><last_name>Steinberg</last_name></preferred_name><full_name>Steinberg,
+        Ethan</full_name><wos_standard>Steinberg, E</wos_standard><first_name>Ethan</first_name><last_name>Steinberg</last_name><data-item-ids><data-item-id
+        id-type=\"PreferredRID\" type=\"person\">GFC-9795-2022</data-item-id></data-item-ids></name><name
+        seq_no=\"5\" role=\"author\" addr_no=\"2\" daisng_id=\"28035104\" claim_status=\"false\"><display_name>Shah,
+        Nigam</display_name><preferred_name><full_name>Shah, Nigam</full_name><first_name>Nigam</first_name><last_name>Shah</last_name></preferred_name><full_name>Shah,
+        Nigam</full_name><wos_standard>Shah, N</wos_standard><first_name>Nigam</first_name><last_name>Shah</last_name><data-item-ids><data-item-id
+        id-type=\"PreferredRID\" type=\"person\">FWE-4710-2022</data-item-id></data-item-ids></name></names></address_name><address_name><address_spec
+        addr_no=\"3\"><full_address>US FDA, Div Appl Regulatory Sci, Silver Spring,
+        MD USA</full_address><organizations count=\"2\"><organization pref=\"null\">US
+        FDA</organization><organization pref=\"Y\">US Food &amp; Drug Administration
+        (FDA)</organization></organizations><suborganizations count=\"1\"><suborganization>Div
+        Appl Regulatory Sci</suborganization></suborganizations><city>Silver Spring</city><state>MD</state><country>USA</country></address_spec><names
+        count=\"1\"><name seq_no=\"3\" role=\"author\" addr_no=\"3\" orcid_id=\"0000-0002-5487-5692\"
+        daisng_id=\"16147685\" claim_status=\"false\"><display_name>Racz, Rebecca</display_name><preferred_name><full_name>Racz,
+        Rebecca</full_name><first_name>Rebecca</first_name><last_name>Racz</last_name></preferred_name><full_name>Racz,
+        Rebecca</full_name><wos_standard>Racz, R</wos_standard><first_name>Rebecca</first_name><last_name>Racz</last_name><data-item-ids><data-item-id
+        id-type=\"PreferredRID\" type=\"person\">DYU-7282-2022</data-item-id></data-item-ids></name></names></address_name><address_name><address_spec
+        addr_no=\"4\"><full_address>Stanford Univ, Dept Bioengn, Palo Alto, CA 94304
+        USA</full_address><organizations count=\"2\"><organization pref=\"null\">Stanford
+        Univ</organization><organization pref=\"Y\">Stanford University</organization></organizations><suborganizations
+        count=\"1\"><suborganization>Dept Bioengn</suborganization></suborganizations><city>Palo
+        Alto</city><state>CA</state><country>USA</country><zip location=\"AP\">94304</zip></address_spec><names
+        count=\"1\"><name seq_no=\"4\" role=\"author\" addr_no=\"4\" orcid_id=\"0000-0003-3859-2905\"
+        daisng_id=\"14945356\" claim_status=\"false\"><display_name>Altman, Russ B.</display_name><preferred_name><full_name>Altman,
+        Russ B</full_name><first_name>Russ B</first_name><last_name>Altman</last_name></preferred_name><full_name>Altman,
+        Russ B.</full_name><wos_standard>Altman, RB</wos_standard><first_name>Russ
+        B.</first_name><last_name>Altman</last_name><data-item-ids><data-item-id id-type=\"PreferredRID\"
+        type=\"person\">DTU-4952-2022</data-item-id></data-item-ids></name></names></address_name><address_name><address_spec
+        addr_no=\"5\"><full_address>Stanford Univ, Dept Genet, Palo Alto, CA 94304
+        USA</full_address><organizations count=\"2\"><organization pref=\"null\">Stanford
+        Univ</organization><organization pref=\"Y\">Stanford University</organization></organizations><suborganizations
+        count=\"1\"><suborganization>Dept Genet</suborganization></suborganizations><city>Palo
+        Alto</city><state>CA</state><country>USA</country><zip location=\"AP\">94304</zip></address_spec><names
+        count=\"1\"><name seq_no=\"4\" role=\"author\" addr_no=\"5\" orcid_id=\"0000-0003-3859-2905\"
+        daisng_id=\"14945356\" claim_status=\"false\"><display_name>Altman, Russ B.</display_name><preferred_name><full_name>Altman,
+        Russ B</full_name><first_name>Russ B</first_name><last_name>Altman</last_name></preferred_name><full_name>Altman,
+        Russ B.</full_name><wos_standard>Altman, RB</wos_standard><first_name>Russ
+        B.</first_name><last_name>Altman</last_name><data-item-ids><data-item-id id-type=\"PreferredRID\"
+        type=\"person\">DTU-4952-2022</data-item-id></data-item-ids></name></names></address_name><address_name><address_spec
+        addr_no=\"6\"><full_address>Stanford Univ, Dept Chem &amp; Syst Biol, Palo
+        Alto, CA 94304 USA</full_address><organizations count=\"2\"><organization
+        pref=\"null\">Stanford Univ</organization><organization pref=\"Y\">Stanford
+        University</organization></organizations><suborganizations count=\"1\"><suborganization>Dept
+        Chem &amp; Syst Biol</suborganization></suborganizations><city>Palo Alto</city><state>CA</state><country>USA</country><zip
+        location=\"AP\">94304</zip></address_spec><names count=\"1\"><name seq_no=\"6\"
+        role=\"author\" addr_no=\"6\" orcid_id=\"0000-0003-2469-2366\" daisng_id=\"30392066\"
+        claim_status=\"false\"><display_name>Grimes, Kevin</display_name><preferred_name><full_name>Grimes,
+        Kevin</full_name><first_name>Kevin</first_name><last_name>Grimes</last_name></preferred_name><full_name>Grimes,
+        Kevin</full_name><wos_standard>Grimes, K</wos_standard><first_name>Kevin</first_name><last_name>Grimes</last_name><data-item-ids><data-item-id
+        id-type=\"PreferredRID\" type=\"person\">GFZ-1681-2022</data-item-id></data-item-ids></name></names></address_name></addresses><reprint_addresses
+        count=\"1\"><address_name><address_spec addr_no=\"1\"><full_address>420 Westwood
+        Plaza,5121 Engn V,Rm 4121D, Los Angeles, CA 90095 USA</full_address><street>420
+        Westwood Plaza,5121 Engn V,Rm 4121D</street><city>Los Angeles</city><state>CA</state><country>USA</country><zip
+        location=\"AP\">90095</zip></address_spec><names count=\"1\"><name seq_no=\"1\"
+        role=\"author\" reprint=\"Y\" addr_no=\"1\"><display_name>Wilson, Jennifer
+        L.</display_name><full_name>Wilson, Jennifer L.</full_name><wos_standard>Wilson,
+        JL</wos_standard><first_name>Jennifer L.</first_name><last_name>Wilson</last_name></name></names></address_name></reprint_addresses><category_info><headings
+        count=\"1\"><heading>Science &amp; Technology</heading></headings><subheadings
+        count=\"1\"><subheading>Life Sciences &amp; Biomedicine</subheading></subheadings><subjects
+        count=\"2\"><subject ascatype=\"traditional\" code=\"TU\">Pharmacology &amp;
+        Pharmacy</subject><subject ascatype=\"extended\">Pharmacology &amp; Pharmacy</subject></subjects></category_info><fund_ack><fund_text><p>J.L.W.
+        and K.G. were supported by SPARK. J.L.W. was supported by a Sanofi iDEA Award
+        and Grant Number U01FD004979 from the FDA.</p></fund_text><grants count=\"3\"><grant><grant_agency>SPARK</grant_agency><grant_agency_names
+        pref=\"N\" content=\"SPARK\" /></grant><grant><grant_agency>Sanofi iDEA Award</grant_agency><grant_agency_names
+        pref=\"N\" content=\"Sanofi iDEA Award\" /></grant><grant><grant_agency>FDA</grant_agency><grant_ids
+        count=\"1\"><grant_id>U01FD004979</grant_id></grant_ids><grant_agency_names
+        pref=\"Y\" content=\"United States Department of Health &amp; Human Services\"
+        /><grant_agency_names pref=\"Y\" content=\"US Food &amp; Drug Administration
+        (FDA)\" /><grant_agency_names pref=\"N\" content=\"FDA\" /></grant></grants></fund_ack><abstracts
+        count=\"1\"><abstract><abstract_text count=\"1\"><p>In some cases, drug combinations
+        affect adverse outcome phenotypes by binding the same protein; however, drug-binding
+        proteins are associated through protein-protein interaction (PPI) networks
+        within the cell, suggesting that drug phenotypes may result from long-range
+        network effects. We first used PPI network analysis to classify drugs based
+        on proteins downstream of their targets and next predicted drug combination
+        effects where drugs shared network proteins but had distinct binding proteins
+        (e.g., targets, enzymes, or transporters). By classifying drugs using their
+        downstream proteins, we had an 80.7% sensitivity for predicting rare drug
+        combination effects documented in gold-standard datasets. We further measured
+        the effect of predicted drug combinations on adverse outcome phenotypes using
+        novel observational studies in the electronic health record. We tested predictions
+        for 60 network-drug classes on seven adverse outcomes and measured changes
+        in clinical outcomes for predicted combinations. These results demonstrate
+        a novel paradigm for anticipating drug synergistic effects using proteins
+        downstream of drug targets.</p></abstract_text></abstract></abstracts></fullrecord_metadata><item
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:type=\"itemType_wos\"
+        coll_id=\"WOS\"><ids avail=\"Y\">6D9TD</ids><bib_id>11 (11): 1527-1538 NOV
+        2022</bib_id><bib_pagecount type=\"Journal\">144</bib_pagecount></item><contributors
+        count=\"4\"><contributor><name seq_no=\"1\" role=\"researcher_id\" orcid_id=\"0000-0003-3859-2905\"><display_name>Altman,
+        Russ</display_name><full_name>Altman, Russ</full_name><first_name>Russ</first_name><last_name>Altman</last_name></name></contributor><contributor><name
+        seq_no=\"2\" role=\"researcher_id\" orcid_id=\"0000-0003-2469-2366\"><display_name>Grimes,
+        Kevin</display_name><full_name>Grimes, Kevin</full_name><first_name>Kevin</first_name><last_name>Grimes</last_name></name></contributor><contributor><name
+        seq_no=\"3\" role=\"researcher_id\" orcid_id=\"0000-0002-2328-2018\"><display_name>Wilson,
+        Jennifer</display_name><full_name>Wilson, Jennifer</full_name><first_name>Jennifer</first_name><last_name>Wilson</last_name></name></contributor><contributor><name
+        seq_no=\"4\" role=\"researcher_id\" orcid_id=\"0000-0002-5487-5692\"><display_name>Racz,
+        Rebecca</display_name><full_name>Racz, Rebecca</full_name><first_name>Rebecca</first_name><last_name>Racz</last_name></name></contributor></contributors></static_data><dynamic_data><citation_related><tc_list><silo_tc
+        coll_id=\"WOS\" local_count=\"0\" /></tc_list><citation_topics><subj-group><subject
+        content-id=\"1\" content-type=\"macro\">Clinical &amp; Life Sciences</subject><subject
+        content-id=\"1.54\" content-type=\"meso\">Molecular &amp; Cell Biology - Genetics</subject><subject
+        content-id=\"1.54.79\" content-type=\"micro\">Gene Expression Data</subject></subj-group></citation_topics><SDG
+        code=\"79\"><sdg_category status=\"Active\">03 Good Health and Well-being</sdg_category></SDG></citation_related><cluster_related><identifiers><identifier
+        type=\"issn\" value=\"2163-8306\" /><identifier type=\"doi\" value=\"10.1002/psp4.12861\"
+        /><identifier type=\"pmid\" value=\"MEDLINE:36204824\" /></identifiers></cluster_related><wos_usage
+        last180days=\"3\" alltime=\"6\" /></dynamic_data><dates date_modified=\"2023-05-21T03:35:01.798991\"
+        date_created=\"2022-10-16T05:32:18.491899\" /></REC>\r\n<REC r_id_disclaimer=\"ResearcherID
+        data provided by Clarivate Analytics\"><UID>WOS:000860838000002</UID><static_data><summary><EWUID><WUID
+        coll_id=\"WOS\" /><edition value=\"WOS.SCI\" /></EWUID><pub_info sortdate=\"2022-04-01\"
+        pubyear=\"2022\" has_abstract=\"Y\" has_citation_context=\"Y\" coverdate=\"APR
+        2022\" pubmonth=\"APR\" vol=\"18\" issue=\"4\" pubtype=\"Journal\" journal_oas_gold=\"Y\"><page
+        page_count=\"23\" /></pub_info><titles count=\"6\"><title type=\"source\">PLOS
+        COMPUTATIONAL BIOLOGY</title><title type=\"source_abbrev\">PLOS COMPUT BIOL</title><title
+        type=\"abbrev_iso\">PLoS Comput. Biol.</title><title type=\"abbrev_11\">PLOS
+        COMPUT</title><title type=\"abbrev_29\">PLOS COMPUT BIOL</title><title type=\"item\">Construction
+        of disease-specific cytokine profiles by associating disease genes with immune
+        responses</title></titles><names count=\"4\"><name seq_no=\"1\" role=\"author\"
+        addr_no=\"1\" r_id=\"FYF-7526-2022\" orcid_id=\"0000-0003-0056-3447\" daisng_id=\"28567918\"
+        claim_status=\"false\"><display_name>Liu, Tianyun</display_name><preferred_name><full_name>Liu,
+        Tianyun</full_name><first_name>Tianyun</first_name><last_name>Liu</last_name></preferred_name><full_name>Liu,
+        Tianyun</full_name><wos_standard>Liu, TY</wos_standard><first_name>Tianyun</first_name><last_name>Liu</last_name><data-item-ids><data-item-id
+        id-type=\"PreferredRID\" type=\"person\">FYF-7526-2022</data-item-id></data-item-ids></name><name
+        seq_no=\"2\" role=\"author\" addr_no=\"2\" r_id=\"GGX-6029-2022\" daisng_id=\"30636413\"
+        claim_status=\"false\"><display_name>Wang, Shiyin</display_name><preferred_name><full_name>Wang,
+        Shiyin</full_name><first_name>Shiyin</first_name><last_name>Wang</last_name></preferred_name><full_name>Wang,
+        Shiyin</full_name><wos_standard>Wang, SY</wos_standard><first_name>Shiyin</first_name><last_name>Wang</last_name><data-item-ids><data-item-id
+        id-type=\"PreferredRID\" type=\"person\">GGX-6029-2022</data-item-id></data-item-ids></name><name
+        seq_no=\"3\" role=\"author\" addr_no=\"3\" r_id=\"DYN-4020-2022\" orcid_id=\"0000-0003-2215-6527\"
+        daisng_id=\"16074424\" claim_status=\"false\"><display_name>Wornow, Michael</display_name><preferred_name><full_name>Wornow,
+        Michael</full_name><first_name>Michael</first_name><last_name>Wornow</last_name></preferred_name><full_name>Wornow,
+        Michael</full_name><wos_standard>Wornow, M</wos_standard><first_name>Michael</first_name><last_name>Wornow</last_name><data-item-ids><data-item-id
+        id-type=\"PreferredRID\" type=\"person\">DYN-4020-2022</data-item-id></data-item-ids></name><name
+        seq_no=\"4\" role=\"author\" reprint=\"Y\" addr_no=\"1 4 5\" r_id=\"DTU-4952-2022\"
+        orcid_id=\"0000-0003-3859-2905\" daisng_id=\"14945356\" claim_status=\"false\"><display_name>Altman,
+        Russ B.</display_name><preferred_name><full_name>Altman, Russ B</full_name><first_name>Russ
+        B</first_name><last_name>Altman</last_name></preferred_name><full_name>Altman,
+        Russ B.</full_name><wos_standard>Altman, RB</wos_standard><first_name>Russ
+        B.</first_name><last_name>Altman</last_name><data-item-ids><data-item-id id-type=\"PreferredRID\"
+        type=\"person\">DTU-4952-2022</data-item-id></data-item-ids></name></names><doctypes
+        count=\"1\"><doctype>Article</doctype></doctypes><publishers><publisher><address_spec
+        addr_no=\"1\"><full_address>1160 BATTERY STREET, STE 100, SAN FRANCISCO, CA
+        94111 USA</full_address><city>SAN FRANCISCO</city></address_spec><names count=\"1\"><name
+        role=\"publisher\" seq_no=\"1\" addr_no=\"1\"><display_name>PUBLIC LIBRARY
+        SCIENCE</display_name><full_name>PUBLIC LIBRARY SCIENCE</full_name><unified_name>Public
+        Library Science</unified_name></name></names></publisher></publishers></summary><fullrecord_metadata><languages
+        count=\"1\"><language type=\"primary\">English</language></languages><normalized_languages
+        count=\"1\"><language type=\"primary\">English</language></normalized_languages><normalized_doctypes
+        count=\"1\"><doctype>Article</doctype></normalized_doctypes><refs count=\"36\"
+        /><addresses count=\"5\"><address_name><address_spec addr_no=\"1\"><full_address>Stanford
+        Univ, Dept Bioengn, Stanford, CA 94305 USA</full_address><organizations count=\"2\"><organization
+        pref=\"null\">Stanford Univ</organization><organization pref=\"Y\">Stanford
+        University</organization></organizations><suborganizations count=\"1\"><suborganization>Dept
+        Bioengn</suborganization></suborganizations><city>Stanford</city><state>CA</state><country>USA</country><zip
+        location=\"AP\">94305</zip></address_spec><names count=\"2\"><name seq_no=\"1\"
+        role=\"author\" addr_no=\"1\" orcid_id=\"0000-0003-0056-3447\" daisng_id=\"28567918\"
+        claim_status=\"false\"><display_name>Liu, Tianyun</display_name><preferred_name><full_name>Liu,
+        Tianyun</full_name><first_name>Tianyun</first_name><last_name>Liu</last_name></preferred_name><full_name>Liu,
+        Tianyun</full_name><wos_standard>Liu, TY</wos_standard><first_name>Tianyun</first_name><last_name>Liu</last_name><data-item-ids><data-item-id
+        id-type=\"PreferredRID\" type=\"person\">FYF-7526-2022</data-item-id></data-item-ids></name><name
+        seq_no=\"4\" role=\"author\" reprint=\"Y\" addr_no=\"1\" orcid_id=\"0000-0003-3859-2905\"
+        daisng_id=\"14945356\" claim_status=\"false\"><display_name>Altman, Russ B.</display_name><preferred_name><full_name>Altman,
+        Russ B</full_name><first_name>Russ B</first_name><last_name>Altman</last_name></preferred_name><full_name>Altman,
+        Russ B.</full_name><wos_standard>Altman, RB</wos_standard><first_name>Russ
+        B.</first_name><last_name>Altman</last_name><data-item-ids><data-item-id id-type=\"PreferredRID\"
+        type=\"person\">DTU-4952-2022</data-item-id></data-item-ids></name></names></address_name><address_name><address_spec
+        addr_no=\"2\"><full_address>Stanford Univ, Chinese Undergrad Visiting Res
+        Program, Stanford, CA USA</full_address><organizations count=\"2\"><organization
+        pref=\"null\">Stanford Univ</organization><organization pref=\"Y\">Stanford
+        University</organization></organizations><suborganizations count=\"1\"><suborganization>Chinese
+        Undergrad Visiting Res Program</suborganization></suborganizations><city>Stanford</city><state>CA</state><country>USA</country></address_spec><names
+        count=\"1\"><name seq_no=\"2\" role=\"author\" addr_no=\"2\" daisng_id=\"30636413\"
+        claim_status=\"false\"><display_name>Wang, Shiyin</display_name><preferred_name><full_name>Wang,
+        Shiyin</full_name><first_name>Shiyin</first_name><last_name>Wang</last_name></preferred_name><full_name>Wang,
+        Shiyin</full_name><wos_standard>Wang, SY</wos_standard><first_name>Shiyin</first_name><last_name>Wang</last_name><data-item-ids><data-item-id
+        id-type=\"PreferredRID\" type=\"person\">GGX-6029-2022</data-item-id></data-item-ids></name></names></address_name><address_name><address_spec
+        addr_no=\"3\"><full_address>Stanford Univ, Dept Comp Sci, Stanford, CA 94305
+        USA</full_address><organizations count=\"2\"><organization pref=\"null\">Stanford
+        Univ</organization><organization pref=\"Y\">Stanford University</organization></organizations><suborganizations
+        count=\"1\"><suborganization>Dept Comp Sci</suborganization></suborganizations><city>Stanford</city><state>CA</state><country>USA</country><zip
+        location=\"AP\">94305</zip></address_spec><names count=\"1\"><name seq_no=\"3\"
+        role=\"author\" addr_no=\"3\" orcid_id=\"0000-0003-2215-6527\" daisng_id=\"16074424\"
+        claim_status=\"false\"><display_name>Wornow, Michael</display_name><preferred_name><full_name>Wornow,
+        Michael</full_name><first_name>Michael</first_name><last_name>Wornow</last_name></preferred_name><full_name>Wornow,
+        Michael</full_name><wos_standard>Wornow, M</wos_standard><first_name>Michael</first_name><last_name>Wornow</last_name><data-item-ids><data-item-id
+        id-type=\"PreferredRID\" type=\"person\">DYN-4020-2022</data-item-id></data-item-ids></name></names></address_name><address_name><address_spec
+        addr_no=\"4\"><full_address>Stanford Univ, Dept Genet, Stanford, CA 94305
+        USA</full_address><organizations count=\"2\"><organization pref=\"null\">Stanford
+        Univ</organization><organization pref=\"Y\">Stanford University</organization></organizations><suborganizations
+        count=\"1\"><suborganization>Dept Genet</suborganization></suborganizations><city>Stanford</city><state>CA</state><country>USA</country><zip
+        location=\"AP\">94305</zip></address_spec><names count=\"1\"><name seq_no=\"4\"
+        role=\"author\" reprint=\"Y\" addr_no=\"4\" orcid_id=\"0000-0003-3859-2905\"
+        daisng_id=\"14945356\" claim_status=\"false\"><display_name>Altman, Russ B.</display_name><preferred_name><full_name>Altman,
+        Russ B</full_name><first_name>Russ B</first_name><last_name>Altman</last_name></preferred_name><full_name>Altman,
+        Russ B.</full_name><wos_standard>Altman, RB</wos_standard><first_name>Russ
+        B.</first_name><last_name>Altman</last_name><data-item-ids><data-item-id id-type=\"PreferredRID\"
+        type=\"person\">DTU-4952-2022</data-item-id></data-item-ids></name></names></address_name><address_name><address_spec
+        addr_no=\"5\"><full_address>Stanford Univ, Dept Med, Stanford, CA 94305 USA</full_address><organizations
+        count=\"2\"><organization pref=\"null\">Stanford Univ</organization><organization
+        pref=\"Y\">Stanford University</organization></organizations><suborganizations
+        count=\"1\"><suborganization>Dept Med</suborganization></suborganizations><city>Stanford</city><state>CA</state><country>USA</country><zip
+        location=\"AP\">94305</zip></address_spec><names count=\"1\"><name seq_no=\"4\"
+        role=\"author\" reprint=\"Y\" addr_no=\"5\" orcid_id=\"0000-0003-3859-2905\"
+        daisng_id=\"14945356\" claim_status=\"false\"><display_name>Altman, Russ B.</display_name><preferred_name><full_name>Altman,
+        Russ B</full_name><first_name>Russ B</first_name><last_name>Altman</last_name></preferred_name><full_name>Altman,
+        Russ B.</full_name><wos_standard>Altman, RB</wos_standard><first_name>Russ
+        B.</first_name><last_name>Altman</last_name><data-item-ids><data-item-id id-type=\"PreferredRID\"
+        type=\"person\">DTU-4952-2022</data-item-id></data-item-ids></name></names></address_name></addresses><reprint_addresses
+        count=\"3\"><address_name><address_spec addr_no=\"1\"><full_address>Stanford
+        Univ, Dept Bioengn, Stanford, CA 94305 USA</full_address><organizations count=\"2\"><organization
+        pref=\"null\">Stanford Univ</organization><organization pref=\"Y\">Stanford
+        University</organization></organizations><suborganizations count=\"1\"><suborganization>Dept
+        Bioengn</suborganization></suborganizations><city>Stanford</city><state>CA</state><country>USA</country><zip
+        location=\"AP\">94305</zip></address_spec><names count=\"1\"><name seq_no=\"1\"
+        role=\"author\" reprint=\"Y\" addr_no=\"1\"><display_name>Altman, Russ B.</display_name><full_name>Altman,
+        Russ B.</full_name><wos_standard>Altman, RB</wos_standard><first_name>Russ
+        B.</first_name><last_name>Altman</last_name></name></names></address_name><address_name><address_spec
+        addr_no=\"2\"><full_address>Stanford Univ, Dept Genet, Stanford, CA 94305
+        USA</full_address><organizations count=\"2\"><organization pref=\"null\">Stanford
+        Univ</organization><organization pref=\"Y\">Stanford University</organization></organizations><suborganizations
+        count=\"1\"><suborganization>Dept Genet</suborganization></suborganizations><city>Stanford</city><state>CA</state><country>USA</country><zip
+        location=\"AP\">94305</zip></address_spec><names count=\"1\"><name seq_no=\"1\"
+        role=\"author\" reprint=\"Y\" addr_no=\"2\"><display_name>Altman, Russ B.</display_name><full_name>Altman,
+        Russ B.</full_name><wos_standard>Altman, RB</wos_standard><first_name>Russ
+        B.</first_name><last_name>Altman</last_name></name></names></address_name><address_name><address_spec
+        addr_no=\"3\"><full_address>Stanford Univ, Dept Med, Stanford, CA 94305 USA</full_address><organizations
+        count=\"2\"><organization pref=\"null\">Stanford Univ</organization><organization
+        pref=\"Y\">Stanford University</organization></organizations><suborganizations
+        count=\"1\"><suborganization>Dept Med</suborganization></suborganizations><city>Stanford</city><state>CA</state><country>USA</country><zip
+        location=\"AP\">94305</zip></address_spec><names count=\"1\"><name seq_no=\"1\"
+        role=\"author\" reprint=\"Y\" addr_no=\"3\"><display_name>Altman, Russ B.</display_name><full_name>Altman,
+        Russ B.</full_name><wos_standard>Altman, RB</wos_standard><first_name>Russ
+        B.</first_name><last_name>Altman</last_name></name></names></address_name></reprint_addresses><category_info><headings
+        count=\"1\"><heading>Science &amp; Technology</heading></headings><subheadings
+        count=\"1\"><subheading>Life Sciences &amp; Biomedicine</subheading></subheadings><subjects
+        count=\"4\"><subject ascatype=\"traditional\" code=\"CO\">Biochemical Research
+        Methods</subject><subject ascatype=\"traditional\" code=\"MC\">Mathematical
+        &amp; Computational Biology</subject><subject ascatype=\"extended\">Biochemistry
+        &amp; Molecular Biology</subject><subject ascatype=\"extended\">Mathematical
+        &amp; Computational Biology</subject></subjects></category_info><fund_ack><fund_text><p>RBA
+        received support from NIH GM102365. The funders had no role in study design,
+        data collection and analysis, decision to publish, or preparation of the manuscript.</p></fund_text><grants
+        count=\"1\"><grant><grant_agency>NIH</grant_agency><grant_ids count=\"1\"><grant_id>GM102365</grant_id></grant_ids><grant_agency_names
+        pref=\"Y\" content=\"United States Department of Health &amp; Human Services\"
+        /><grant_agency_names pref=\"Y\" content=\"National Institutes of Health (NIH)
+        - USA\" /><grant_agency_names pref=\"N\" content=\"NIH\" /></grant></grants></fund_ack><abstracts
+        count=\"1\"><abstract><abstract_text count=\"1\"><p>The pathogenesis of many
+        inflammatory diseases is a coordinated process involving metabolic dysfunctions
+        and immune response-usually modulated by the production of cytokines and associated
+        inflammatory molecules. In this work, we seek to understand how genes involved
+        in pathogenesis which are often not associated with the immune system in an
+        obvious way communicate with the immune system. We have embedded a network
+        of human protein-protein interactions (PPI) from the STRING database with
+        14,707 human genes using feature learning that captures high confidence edges.
+        We have found that our predicted Association Scores derived from the features
+        extracted from STRING's high confidence edges are useful for predicting novel
+        connections between genes, thus enabling the construction of a full map of
+        predicted associations for all possible pairs between 14,707 human genes.
+        In particular, we analyzed the pattern of associations for 126 cytokines and
+        found that the six patterns of cytokine interaction with human genes are consistent
+        with their functional classifications. To define the disease-specific roles
+        of cytokines we have collected gene sets for 11,944 diseases from DisGeNET.
+        We used these gene sets to predict disease-specific gene associations with
+        cytokines by calculating the normalized average Association Scores between
+        disease-associated gene sets and the 126 cytokines; this creates a unique
+        profile of inflammatory genes (both known and predicted) for each disease.
+        We validated our predicted cytokine associations by comparing them to known
+        associations for 171 diseases. The predicted cytokine profiles correlate (p-value&lt;0.0003)
+        with the known ones in 95 diseases. We further characterized the profiles
+        of each disease by calculating an \"Inflammation Score\" that summarizes different
+        modes of immune responses. Finally, by analyzing subnetworks formed between
+        disease-specific pathogenesis genes, hormones, receptors, and cytokines, we
+        identified the key genes responsible for interactions between pathogenesis
+        and inflammatory responses. These genes and the corresponding cytokines used
+        by different immune disorders suggest unique targets for drug discovery.</p></abstract_text></abstract></abstracts><related_records><record
+        uid=\"PPRN:14390202\" type=\"WosLinktoPreprint\"><titles><title type=\"item\">Construction
+        of disease-specific cytokine profiles by associating disease genes with immune
+        responses</title></titles></record></related_records></fullrecord_metadata><item
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:type=\"itemType_wos\"
+        coll_id=\"WOS\"><ids avail=\"Y\">4X4UA</ids><bib_id>18 (4): - APR 2022</bib_id><bib_pagecount
+        type=\"Journal\">220</bib_pagecount><keywords_plus count=\"2\"><keyword>INSIGHTS</keyword><keyword>COMPLEX</keyword></keywords_plus></item><contributors
+        count=\"3\"><contributor><name seq_no=\"1\" role=\"researcher_id\" orcid_id=\"0000-0003-2215-6527\"><display_name>Wornow,
+        Michael</display_name><full_name>Wornow, Michael</full_name><first_name>Michael</first_name><last_name>Wornow</last_name></name></contributor><contributor><name
+        seq_no=\"2\" role=\"researcher_id\" orcid_id=\"0000-0003-1156-8681\"><display_name>Wang,
+        Shiyin</display_name><full_name>Wang, Shiyin</full_name><first_name>Shiyin</first_name><last_name>Wang</last_name></name></contributor><contributor><name
+        seq_no=\"3\" role=\"researcher_id\" orcid_id=\"0000-0003-3859-2905\"><display_name>Altman,
+        Russ</display_name><full_name>Altman, Russ</full_name><first_name>Russ</first_name><last_name>Altman</last_name></name></contributor></contributors></static_data><dynamic_data><citation_related><tc_list><silo_tc
+        coll_id=\"WOS\" local_count=\"1\" /></tc_list><citation_topics><subj-group><subject
+        content-id=\"1\" content-type=\"macro\">Clinical &amp; Life Sciences</subject><subject
+        content-id=\"1.54\" content-type=\"meso\">Molecular &amp; Cell Biology - Genetics</subject><subject
+        content-id=\"1.54.79\" content-type=\"micro\">Gene Expression Data</subject></subj-group></citation_topics><SDG
+        code=\"79\"><sdg_category status=\"Active\">03 Good Health and Well-being</sdg_category></SDG></citation_related><cluster_related><identifiers><identifier
+        type=\"issn\" value=\"1553-734X\" /><identifier type=\"eissn\" value=\"1553-7358\"
+        /><identifier type=\"art_no\" value=\"ARTN e1009497\" /><identifier type=\"doi\"
+        value=\"10.1371/journal.pcbi.1009497\" /><identifier type=\"pmid\" value=\"MEDLINE:35404985\"
+        /></identifiers></cluster_related><wos_usage last180days=\"0\" alltime=\"0\"
+        /></dynamic_data><dates date_modified=\"2023-01-20T18:29:04.163237\" date_created=\"2022-10-09T02:51:18.425019\"
+        /></REC>\r\n<REC r_id_disclaimer=\"ResearcherID data provided by Clarivate
+        Analytics\"><UID>WOS:000698490300007</UID><static_data><summary><EWUID><WUID
+        coll_id=\"WOS\" /><edition value=\"WOS.SCI\" /></EWUID><pub_info sortdate=\"2021-09-21\"
+        pubyear=\"2021\" has_abstract=\"Y\" coverdate=\"SEP 21 2021\" pubmonth=\"SEP
+        21\" vol=\"12\" issue=\"1\" pubtype=\"Journal\" journal_oas_gold=\"Y\"><page
+        page_count=\"11\" /></pub_info><titles count=\"6\"><title type=\"source\">NATURE
+        COMMUNICATIONS</title><title type=\"source_abbrev\">NAT COMMUN</title><title
+        type=\"abbrev_iso\">Nat. Commun.</title><title type=\"abbrev_11\">NAT COMMUN</title><title
+        type=\"abbrev_29\">NAT COMMUN</title><title type=\"item\">Leveraging the Cell
+        Ontology to classify unseen cell types</title></titles><names count=\"9\"><name
+        seq_no=\"1\" role=\"author\" addr_no=\"1 2\" r_id=\"ECK-0933-2022\" orcid_id=\"0000-0002-5718-7529\"
+        daisng_id=\"17011336\" claim_status=\"false\"><display_name>Wang, Sheng</display_name><preferred_name><full_name>Wang,
+        Sheng</full_name><first_name>Sheng</first_name><last_name>Wang</last_name></preferred_name><full_name>Wang,
+        Sheng</full_name><wos_standard>Wang, S</wos_standard><first_name>Sheng</first_name><last_name>Wang</last_name><data-item-ids><data-item-id
+        id-type=\"PreferredRID\" type=\"person\">ECK-0933-2022</data-item-id></data-item-ids></name><name
+        seq_no=\"2\" role=\"author\" reprint=\"Y\" addr_no=\"3\" r_id=\"K-4563-2012\"
+        orcid_id=\"0000-0003-0142-2355\" daisng_id=\"21692\" claim_status=\"true\"><display_name>Pisco,
+        Angela Oliveira</display_name><preferred_name><full_name>Pisco, Angela Oliveira</full_name><first_name>Angela</first_name><middle_name>Oliveira</middle_name><last_name>Pisco</last_name></preferred_name><noncore_startyear>2016</noncore_startyear><noncore_endyear>2022</noncore_endyear><full_name>Pisco,
+        Angela Oliveira</full_name><wos_standard>Pisco, AO</wos_standard><first_name>Angela
+        Oliveira</first_name><last_name>Pisco</last_name><data-item-ids><data-item-id
+        id-type=\"PreferredRID\" type=\"person\">K-4563-2012</data-item-id></data-item-ids></name><name
+        seq_no=\"3\" role=\"author\" addr_no=\"3\" r_id=\"GCE-9648-2022\" orcid_id=\"0000-0003-1596-207X\"
+        daisng_id=\"29480032\" claim_status=\"false\"><display_name>McGeever, Aaron</display_name><preferred_name><full_name>McGeever,
+        Aaron</full_name><first_name>Aaron</first_name><last_name>McGeever</last_name></preferred_name><full_name>McGeever,
+        Aaron</full_name><wos_standard>McGeever, A</wos_standard><first_name>Aaron</first_name><last_name>McGeever</last_name><data-item-ids><data-item-id
+        id-type=\"PreferredRID\" type=\"person\">GCE-9648-2022</data-item-id></data-item-ids></name><name
+        seq_no=\"4\" role=\"author\" addr_no=\"4\" r_id=\"DWF-2304-2022\" orcid_id=\"0000-0002-1120-1778\"
+        daisng_id=\"15482707\" claim_status=\"false\"><display_name>Brbic, Maria</display_name><preferred_name><full_name>Brbic,
+        Maria</full_name><first_name>Maria</first_name><last_name>Brbic</last_name></preferred_name><full_name>Brbic,
+        Maria</full_name><wos_standard>Brbic, M</wos_standard><first_name>Maria</first_name><last_name>Brbic</last_name><data-item-ids><data-item-id
+        id-type=\"PreferredRID\" type=\"person\">DWF-2304-2022</data-item-id></data-item-ids></name><name
+        seq_no=\"5\" role=\"author\" addr_no=\"4\" r_id=\"EIA-9697-2022\" daisng_id=\"18380100\"
+        claim_status=\"false\"><display_name>Zitnik, Marinka</display_name><preferred_name><full_name>Zitnik,
+        Marinka</full_name><first_name>Marinka</first_name><last_name>Zitnik</last_name></preferred_name><full_name>Zitnik,
+        Marinka</full_name><wos_standard>Zitnik, M</wos_standard><first_name>Marinka</first_name><last_name>Zitnik</last_name><data-item-ids><data-item-id
+        id-type=\"PreferredRID\" type=\"person\">EIA-9697-2022</data-item-id></data-item-ids></name><name
+        seq_no=\"6\" role=\"author\" addr_no=\"3\" r_id=\"GCW-5016-2022\" orcid_id=\"0000-0003-4002-8158\"
+        daisng_id=\"29655401\" claim_status=\"false\"><display_name>Darmanis, Spyros</display_name><preferred_name><full_name>Darmanis,
+        Spyros</full_name><first_name>Spyros</first_name><last_name>Darmanis</last_name></preferred_name><full_name>Darmanis,
+        Spyros</full_name><wos_standard>Darmanis, S</wos_standard><first_name>Spyros</first_name><last_name>Darmanis</last_name><data-item-ids><data-item-id
+        id-type=\"PreferredRID\" type=\"person\">GCW-5016-2022</data-item-id></data-item-ids></name><name
+        seq_no=\"7\" role=\"author\" addr_no=\"3 4\" r_id=\"DWN-7265-2022\" orcid_id=\"0000-0002-5411-923X\"
+        daisng_id=\"15567668\" claim_status=\"false\"><display_name>Leskovec, Jure</display_name><preferred_name><full_name>Leskovec,
+        Jure</full_name><first_name>Jure</first_name><last_name>Leskovec</last_name></preferred_name><full_name>Leskovec,
+        Jure</full_name><wos_standard>Leskovec, J</wos_standard><first_name>Jure</first_name><last_name>Leskovec</last_name><data-item-ids><data-item-id
+        id-type=\"PreferredRID\" type=\"person\">DWN-7265-2022</data-item-id></data-item-ids></name><name
+        seq_no=\"8\" role=\"author\" addr_no=\"3\" r_id=\"CZB-2652-2022\" daisng_id=\"9983056\"
+        claim_status=\"false\"><display_name>Karkanias, Jim</display_name><preferred_name><full_name>Karkanias,
+        J.</full_name><first_name>J.</first_name><last_name>Karkanias</last_name></preferred_name><full_name>Karkanias,
+        Jim</full_name><wos_standard>Karkanias, J</wos_standard><first_name>Jim</first_name><last_name>Karkanias</last_name><data-item-ids><data-item-id
+        id-type=\"PreferredRID\" type=\"person\">CZB-2652-2022</data-item-id></data-item-ids></name><name
+        seq_no=\"9\" role=\"author\" reprint=\"Y\" addr_no=\"1 2 3\" r_id=\"DTU-4952-2022\"
+        orcid_id=\"0000-0003-3859-2905\" daisng_id=\"14945356\" claim_status=\"false\"><display_name>Altman,
+        Russ B.</display_name><preferred_name><full_name>Altman, Russ B</full_name><first_name>Russ
+        B</first_name><last_name>Altman</last_name></preferred_name><full_name>Altman,
+        Russ B.</full_name><wos_standard>Altman, RB</wos_standard><first_name>Russ
+        B.</first_name><last_name>Altman</last_name><data-item-ids><data-item-id id-type=\"PreferredRID\"
+        type=\"person\">DTU-4952-2022</data-item-id></data-item-ids></name></names><doctypes
+        count=\"1\"><doctype>Article</doctype></doctypes><publishers><publisher><address_spec
+        addr_no=\"1\"><full_address>HEIDELBERGER PLATZ 3, BERLIN, 14197, GERMANY</full_address><city>BERLIN</city></address_spec><names
+        count=\"1\"><name role=\"publisher\" seq_no=\"1\" addr_no=\"1\"><display_name>NATURE
+        PORTFOLIO</display_name><full_name>NATURE PORTFOLIO</full_name></name></names></publisher></publishers></summary><fullrecord_metadata><languages
+        count=\"1\"><language type=\"primary\">English</language></languages><normalized_languages
+        count=\"1\"><language type=\"primary\">English</language></normalized_languages><normalized_doctypes
+        count=\"1\"><doctype>Article</doctype></normalized_doctypes><refs count=\"58\"
+        /><addresses count=\"4\"><address_name><address_spec addr_no=\"1\"><full_address>Stanford
+        Univ, Dept Bioengn, Stanford, CA 94305 USA</full_address><organizations count=\"2\"><organization
+        pref=\"null\">Stanford Univ</organization><organization pref=\"Y\">Stanford
+        University</organization></organizations><suborganizations count=\"1\"><suborganization>Dept
+        Bioengn</suborganization></suborganizations><city>Stanford</city><state>CA</state><country>USA</country><zip
+        location=\"AP\">94305</zip></address_spec><names count=\"2\"><name seq_no=\"1\"
+        role=\"author\" addr_no=\"1\" orcid_id=\"0000-0002-5718-7529\" daisng_id=\"17011336\"
+        claim_status=\"false\"><display_name>Wang, Sheng</display_name><preferred_name><full_name>Wang,
+        Sheng</full_name><first_name>Sheng</first_name><last_name>Wang</last_name></preferred_name><full_name>Wang,
+        Sheng</full_name><wos_standard>Wang, S</wos_standard><first_name>Sheng</first_name><last_name>Wang</last_name><data-item-ids><data-item-id
+        id-type=\"PreferredRID\" type=\"person\">ECK-0933-2022</data-item-id></data-item-ids></name><name
+        seq_no=\"9\" role=\"author\" reprint=\"Y\" addr_no=\"1\" orcid_id=\"0000-0003-3859-2905\"
+        daisng_id=\"14945356\" claim_status=\"false\"><display_name>Altman, Russ B.</display_name><preferred_name><full_name>Altman,
+        Russ B</full_name><first_name>Russ B</first_name><last_name>Altman</last_name></preferred_name><full_name>Altman,
+        Russ B.</full_name><wos_standard>Altman, RB</wos_standard><first_name>Russ
+        B.</first_name><last_name>Altman</last_name><data-item-ids><data-item-id id-type=\"PreferredRID\"
+        type=\"person\">DTU-4952-2022</data-item-id></data-item-ids></name></names></address_name><address_name><address_spec
+        addr_no=\"2\"><full_address>Stanford Univ, Dept Genet, Stanford, CA 94305
+        USA</full_address><organizations count=\"2\"><organization pref=\"null\">Stanford
+        Univ</organization><organization pref=\"Y\">Stanford University</organization></organizations><suborganizations
+        count=\"1\"><suborganization>Dept Genet</suborganization></suborganizations><city>Stanford</city><state>CA</state><country>USA</country><zip
+        location=\"AP\">94305</zip></address_spec><names count=\"2\"><name seq_no=\"1\"
+        role=\"author\" addr_no=\"2\" orcid_id=\"0000-0002-5718-7529\" daisng_id=\"17011336\"
+        claim_status=\"false\"><display_name>Wang, Sheng</display_name><preferred_name><full_name>Wang,
+        Sheng</full_name><first_name>Sheng</first_name><last_name>Wang</last_name></preferred_name><full_name>Wang,
+        Sheng</full_name><wos_standard>Wang, S</wos_standard><first_name>Sheng</first_name><last_name>Wang</last_name><data-item-ids><data-item-id
+        id-type=\"PreferredRID\" type=\"person\">ECK-0933-2022</data-item-id></data-item-ids></name><name
+        seq_no=\"9\" role=\"author\" reprint=\"Y\" addr_no=\"2\" orcid_id=\"0000-0003-3859-2905\"
+        daisng_id=\"14945356\" claim_status=\"false\"><display_name>Altman, Russ B.</display_name><preferred_name><full_name>Altman,
+        Russ B</full_name><first_name>Russ B</first_name><last_name>Altman</last_name></preferred_name><full_name>Altman,
+        Russ B.</full_name><wos_standard>Altman, RB</wos_standard><first_name>Russ
+        B.</first_name><last_name>Altman</last_name><data-item-ids><data-item-id id-type=\"PreferredRID\"
+        type=\"person\">DTU-4952-2022</data-item-id></data-item-ids></name></names></address_name><address_name><address_spec
+        addr_no=\"3\"><full_address>Chan Zuckerberg Biohub, San Francisco, CA 94158
+        USA</full_address><organizations count=\"1\"><organization pref=\"null\">Chan
+        Zuckerberg Biohub</organization></organizations><city>San Francisco</city><state>CA</state><country>USA</country><zip
+        location=\"AP\">94158</zip></address_spec><names count=\"6\"><name seq_no=\"2\"
+        role=\"author\" reprint=\"Y\" addr_no=\"3\" orcid_id=\"0000-0003-0142-2355\"
+        daisng_id=\"21692\" claim_status=\"true\"><display_name>Pisco, Angela Oliveira</display_name><preferred_name><full_name>Pisco,
+        Angela Oliveira</full_name><first_name>Angela</first_name><middle_name>Oliveira</middle_name><last_name>Pisco</last_name></preferred_name><noncore_startyear>2016</noncore_startyear><noncore_endyear>2022</noncore_endyear><full_name>Pisco,
+        Angela Oliveira</full_name><wos_standard>Pisco, AO</wos_standard><first_name>Angela
+        Oliveira</first_name><last_name>Pisco</last_name><data-item-ids><data-item-id
+        id-type=\"PreferredRID\" type=\"person\">K-4563-2012</data-item-id></data-item-ids></name><name
+        seq_no=\"3\" role=\"author\" addr_no=\"3\" orcid_id=\"0000-0003-1596-207X\"
+        daisng_id=\"29480032\" claim_status=\"false\"><display_name>McGeever, Aaron</display_name><preferred_name><full_name>McGeever,
+        Aaron</full_name><first_name>Aaron</first_name><last_name>McGeever</last_name></preferred_name><full_name>McGeever,
+        Aaron</full_name><wos_standard>McGeever, A</wos_standard><first_name>Aaron</first_name><last_name>McGeever</last_name><data-item-ids><data-item-id
+        id-type=\"PreferredRID\" type=\"person\">GCE-9648-2022</data-item-id></data-item-ids></name><name
+        seq_no=\"6\" role=\"author\" addr_no=\"3\" orcid_id=\"0000-0003-4002-8158\"
+        daisng_id=\"29655401\" claim_status=\"false\"><display_name>Darmanis, Spyros</display_name><preferred_name><full_name>Darmanis,
+        Spyros</full_name><first_name>Spyros</first_name><last_name>Darmanis</last_name></preferred_name><full_name>Darmanis,
+        Spyros</full_name><wos_standard>Darmanis, S</wos_standard><first_name>Spyros</first_name><last_name>Darmanis</last_name><data-item-ids><data-item-id
+        id-type=\"PreferredRID\" type=\"person\">GCW-5016-2022</data-item-id></data-item-ids></name><name
+        seq_no=\"7\" role=\"author\" addr_no=\"3\" orcid_id=\"0000-0002-5411-923X\"
+        daisng_id=\"15567668\" claim_status=\"false\"><display_name>Leskovec, Jure</display_name><preferred_name><full_name>Leskovec,
+        Jure</full_name><first_name>Jure</first_name><last_name>Leskovec</last_name></preferred_name><full_name>Leskovec,
+        Jure</full_name><wos_standard>Leskovec, J</wos_standard><first_name>Jure</first_name><last_name>Leskovec</last_name><data-item-ids><data-item-id
+        id-type=\"PreferredRID\" type=\"person\">DWN-7265-2022</data-item-id></data-item-ids></name><name
+        seq_no=\"8\" role=\"author\" addr_no=\"3\" daisng_id=\"9983056\" claim_status=\"false\"><display_name>Karkanias,
+        Jim</display_name><preferred_name><full_name>Karkanias, J.</full_name><first_name>J.</first_name><last_name>Karkanias</last_name></preferred_name><full_name>Karkanias,
+        Jim</full_name><wos_standard>Karkanias, J</wos_standard><first_name>Jim</first_name><last_name>Karkanias</last_name><data-item-ids><data-item-id
+        id-type=\"PreferredRID\" type=\"person\">CZB-2652-2022</data-item-id></data-item-ids></name><name
+        seq_no=\"9\" role=\"author\" reprint=\"Y\" addr_no=\"3\" orcid_id=\"0000-0003-3859-2905\"
+        daisng_id=\"14945356\" claim_status=\"false\"><display_name>Altman, Russ B.</display_name><preferred_name><full_name>Altman,
+        Russ B</full_name><first_name>Russ B</first_name><last_name>Altman</last_name></preferred_name><full_name>Altman,
+        Russ B.</full_name><wos_standard>Altman, RB</wos_standard><first_name>Russ
+        B.</first_name><last_name>Altman</last_name><data-item-ids><data-item-id id-type=\"PreferredRID\"
+        type=\"person\">DTU-4952-2022</data-item-id></data-item-ids></name></names></address_name><address_name><address_spec
+        addr_no=\"4\"><full_address>Stanford Univ, Dept Comp Sci, Stanford, CA 94305
+        USA</full_address><organizations count=\"2\"><organization pref=\"null\">Stanford
+        Univ</organization><organization pref=\"Y\">Stanford University</organization></organizations><suborganizations
+        count=\"1\"><suborganization>Dept Comp Sci</suborganization></suborganizations><city>Stanford</city><state>CA</state><country>USA</country><zip
+        location=\"AP\">94305</zip></address_spec><names count=\"3\"><name seq_no=\"4\"
+        role=\"author\" addr_no=\"4\" orcid_id=\"0000-0002-1120-1778\" daisng_id=\"15482707\"
+        claim_status=\"false\"><display_name>Brbic, Maria</display_name><preferred_name><full_name>Brbic,
+        Maria</full_name><first_name>Maria</first_name><last_name>Brbic</last_name></preferred_name><full_name>Brbic,
+        Maria</full_name><wos_standard>Brbic, M</wos_standard><first_name>Maria</first_name><last_name>Brbic</last_name><data-item-ids><data-item-id
+        id-type=\"PreferredRID\" type=\"person\">DWF-2304-2022</data-item-id></data-item-ids></name><name
+        seq_no=\"5\" role=\"author\" addr_no=\"4\" daisng_id=\"18380100\" claim_status=\"false\"><display_name>Zitnik,
+        Marinka</display_name><preferred_name><full_name>Zitnik, Marinka</full_name><first_name>Marinka</first_name><last_name>Zitnik</last_name></preferred_name><full_name>Zitnik,
+        Marinka</full_name><wos_standard>Zitnik, M</wos_standard><first_name>Marinka</first_name><last_name>Zitnik</last_name><data-item-ids><data-item-id
+        id-type=\"PreferredRID\" type=\"person\">EIA-9697-2022</data-item-id></data-item-ids></name><name
+        seq_no=\"7\" role=\"author\" addr_no=\"4\" orcid_id=\"0000-0002-5411-923X\"
+        daisng_id=\"15567668\" claim_status=\"false\"><display_name>Leskovec, Jure</display_name><preferred_name><full_name>Leskovec,
+        Jure</full_name><first_name>Jure</first_name><last_name>Leskovec</last_name></preferred_name><full_name>Leskovec,
+        Jure</full_name><wos_standard>Leskovec, J</wos_standard><first_name>Jure</first_name><last_name>Leskovec</last_name><data-item-ids><data-item-id
+        id-type=\"PreferredRID\" type=\"person\">DWN-7265-2022</data-item-id></data-item-ids></name></names></address_name></addresses><reprint_addresses
+        count=\"3\"><address_name><address_spec addr_no=\"1\"><full_address>Stanford
+        Univ, Dept Bioengn, Stanford, CA 94305 USA</full_address><organizations count=\"2\"><organization
+        pref=\"null\">Stanford Univ</organization><organization pref=\"Y\">Stanford
+        University</organization></organizations><suborganizations count=\"1\"><suborganization>Dept
+        Bioengn</suborganization></suborganizations><city>Stanford</city><state>CA</state><country>USA</country><zip
+        location=\"AP\">94305</zip></address_spec><names count=\"1\"><name seq_no=\"2\"
+        role=\"author\" reprint=\"Y\" addr_no=\"1\"><display_name>Altman, Russ B.</display_name><full_name>Altman,
+        Russ B.</full_name><wos_standard>Altman, RB</wos_standard><first_name>Russ
+        B.</first_name><last_name>Altman</last_name></name></names></address_name><address_name><address_spec
+        addr_no=\"2\"><full_address>Stanford Univ, Dept Genet, Stanford, CA 94305
+        USA</full_address><organizations count=\"2\"><organization pref=\"null\">Stanford
+        Univ</organization><organization pref=\"Y\">Stanford University</organization></organizations><suborganizations
+        count=\"1\"><suborganization>Dept Genet</suborganization></suborganizations><city>Stanford</city><state>CA</state><country>USA</country><zip
+        location=\"AP\">94305</zip></address_spec><names count=\"1\"><name seq_no=\"2\"
+        role=\"author\" reprint=\"Y\" addr_no=\"2\"><display_name>Altman, Russ B.</display_name><full_name>Altman,
+        Russ B.</full_name><wos_standard>Altman, RB</wos_standard><first_name>Russ
+        B.</first_name><last_name>Altman</last_name></name></names></address_name><address_name><address_spec
+        addr_no=\"3\"><full_address>Chan Zuckerberg Biohub, San Francisco, CA 94158
+        USA</full_address><organizations count=\"1\"><organization pref=\"null\">Chan
+        Zuckerberg Biohub</organization></organizations><city>San Francisco</city><state>CA</state><country>USA</country><zip
+        location=\"AP\">94158</zip></address_spec><names count=\"2\"><name seq_no=\"1\"
+        role=\"author\" reprint=\"Y\" addr_no=\"3\"><display_name>Pisco, Angela Oliveira</display_name><full_name>Pisco,
+        Angela Oliveira</full_name><wos_standard>Pisco, AO</wos_standard><first_name>Angela
+        Oliveira</first_name><last_name>Pisco</last_name></name><name seq_no=\"2\"
+        role=\"author\" reprint=\"Y\" addr_no=\"3\"><display_name>Altman, Russ B.</display_name><full_name>Altman,
+        Russ B.</full_name><wos_standard>Altman, RB</wos_standard><first_name>Russ
+        B.</first_name><last_name>Altman</last_name></name></names></address_name></reprint_addresses><category_info><headings
+        count=\"1\"><heading>Science &amp; Technology</heading></headings><subjects
+        count=\"2\"><subject ascatype=\"traditional\" code=\"RO\">Multidisciplinary
+        Sciences</subject><subject ascatype=\"extended\">Science &amp; Technology
+        - Other Topics</subject></subjects></category_info><fund_ack><fund_text><p>The
+        authors would like to thank the developers and maintainers of the Cell Ontology
+        for insightful discussions. This work is supported by the Chan-Zuckerberg
+        Biohub and NIH GM102365.</p></fund_text><grants count=\"2\"><grant><grant_agency>Chan-Zuckerberg
+        Biohub</grant_agency><grant_agency_names pref=\"N\" content=\"Chan-Zuckerberg
+        Biohub\" /></grant><grant><grant_agency>NIH</grant_agency><grant_ids count=\"1\"><grant_id>GM102365</grant_id></grant_ids><grant_agency_names
+        pref=\"Y\" content=\"United States Department of Health &amp; Human Services\"
+        /><grant_agency_names pref=\"Y\" content=\"National Institutes of Health (NIH)
+        - USA\" /><grant_agency_names pref=\"N\" content=\"NIH\" /></grant></grants></fund_ack><abstracts
+        count=\"1\"><abstract><abstract_text count=\"2\"><p>Classifying cells into
+        unseen cell types remains challenging in scRNA-seq analysis. Here we show
+        that Cell Ontology enables an accurate classification of unseen cell types
+        through considering the cell type relationships in the Cell Ontology graph.</p><p>Single
+        cell technologies are rapidly generating large amounts of data that enables
+        us to understand biological systems at single-cell resolution. However, joint
+        analysis of datasets generated by independent labs remains challenging due
+        to a lack of consistent terminology to describe cell types. Here, we present
+        OnClass, an algorithm and accompanying software for automatically classifying
+        cells into cell types that are part of the controlled vocabulary that forms
+        the Cell Ontology. A key advantage of OnClass is its capability to classify
+        cells into cell types not present in the training data because it uses the
+        Cell Ontology graph to infer cell type relationships. Furthermore, OnClass
+        can be used to identify marker genes for all the cell ontology categories,
+        regardless of whether the cell types are present or absent in the training
+        data, suggesting that OnClass goes beyond a simple annotation tool for single
+        cell datasets, being the first algorithm capable to identify marker genes
+        specific to all terms of the Cell Ontology and offering the possibility of
+        refining the Cell Ontology using a data-centric approach.</p></abstract_text></abstract></abstracts></fullrecord_metadata><item
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:type=\"itemType_wos\"
+        coll_id=\"WOS\"><ids avail=\"N\">UU0IX</ids><bib_id>12 (1): - SEP 21 2021</bib_id><bib_pagecount
+        type=\"Journal\">171</bib_pagecount></item><contributors count=\"5\"><contributor><name
+        seq_no=\"1\" role=\"researcher_id\" orcid_id=\"0000-0002-1120-1778\"><display_name>Brbic,
+        Maria</display_name><full_name>Brbic, Maria</full_name><first_name>Maria</first_name><last_name>Brbic</last_name></name></contributor><contributor><name
+        seq_no=\"2\" role=\"researcher_id\" orcid_id=\"0000-0002-5411-923X\"><display_name>Leskovec,
+        Jure</display_name><full_name>Leskovec, Jure</full_name><first_name>Jure</first_name><last_name>Leskovec</last_name></name></contributor><contributor><name
+        seq_no=\"3\" role=\"researcher_id\" r_id=\"K-4563-2012\" orcid_id=\"0000-0003-0142-2355\"><display_name>Oliveira
+        Pisco, Angela</display_name><full_name>Oliveira Pisco, Angela</full_name><first_name>Angela</first_name><last_name>Oliveira
+        Pisco</last_name></name></contributor><contributor><name seq_no=\"4\" role=\"researcher_id\"
+        orcid_id=\"0000-0002-5718-7529\"><display_name>wang, sheng</display_name><full_name>wang,
+        sheng</full_name><first_name>sheng</first_name><last_name>wang</last_name></name></contributor><contributor><name
+        seq_no=\"5\" role=\"researcher_id\" orcid_id=\"0000-0003-3859-2905\"><display_name>Altman,
+        Russ</display_name><full_name>Altman, Russ</full_name><first_name>Russ</first_name><last_name>Altman</last_name></name></contributor></contributors></static_data><dynamic_data><citation_related><tc_list><silo_tc
+        coll_id=\"WOS\" local_count=\"7\" /></tc_list><tc_list_cc dedup_total_count=\"3\"><function_tc
+        func_class=\"basis\" local_count=\"1\" /><function_tc func_class=\"background\"
+        local_count=\"2\" /><function_tc func_class=\"support\" local_count=\"0\"
+        /><function_tc func_class=\"differ\" local_count=\"0\" /><function_tc func_class=\"discuss\"
+        local_count=\"0\" /></tc_list_cc><citation_topics><subj-group><subject content-id=\"1\"
+        content-type=\"macro\">Clinical &amp; Life Sciences</subject><subject content-id=\"1.54\"
+        content-type=\"meso\">Molecular &amp; Cell Biology - Genetics</subject><subject
+        content-id=\"1.54.1543\" content-type=\"micro\">RNA-Seq</subject></subj-group></citation_topics><SDG
+        code=\"1543\"><sdg_category status=\"Active\">03 Good Health and Well-being</sdg_category></SDG></citation_related><cluster_related><identifiers><identifier
+        type=\"eissn\" value=\"2041-1723\" /><identifier type=\"art_no\" value=\"ARTN
+        5556\" /><identifier type=\"doi\" value=\"10.1038/s41467-021-25725-x\" /><identifier
+        type=\"pmid\" value=\"MEDLINE:34548483\" /></identifiers></cluster_related><wos_usage
+        last180days=\"3\" alltime=\"9\" /></dynamic_data><dates date_modified=\"2022-06-12T01:40:34.916065\"
+        date_created=\"2021-10-02T10:54:55.696494\" /></REC>\r\n<REC r_id_disclaimer=\"ResearcherID
+        data provided by Clarivate Analytics\"><UID>WOS:000763000800082</UID><static_data><summary><EWUID><WUID
+        coll_id=\"WOS\" /><edition value=\"WOS.SCI\" /></EWUID><pub_info sortdate=\"2022-01-17\"
+        pubyear=\"2022\" has_abstract=\"Y\" coverdate=\"JAN 17 2022\" pubmonth=\"JAN
+        17\" vol=\"23\" issue=\"1\" pubtype=\"Journal\" journal_oas_gold=\"N\"><page
+        page_count=\"4\" /></pub_info><titles count=\"6\"><title type=\"source\">BRIEFINGS
+        IN BIOINFORMATICS</title><title type=\"source_abbrev\">BRIEF BIOINFORM</title><title
+        type=\"abbrev_iso\">Brief. Bioinform.</title><title type=\"abbrev_11\">BRIEF
+        BIOIN</title><title type=\"abbrev_29\">BRIEF BIOINFORM</title><title type=\"item\">Challenges
+        and opportunities in network-based solutions for biological questions</title></titles><names
+        count=\"3\"><name seq_no=\"1\" role=\"author\" addr_no=\"1\" r_id=\"GDC-1678-2022\"
+        orcid_id=\"0000-0001-7713-3846\" daisng_id=\"29712063\" claim_status=\"false\"><display_name>Guo,
+        Margaret G.</display_name><preferred_name><full_name>Guo, Margaret</full_name><first_name>Margaret</first_name><last_name>Guo</last_name></preferred_name><full_name>Guo,
+        Margaret G.</full_name><wos_standard>Guo, MG</wos_standard><first_name>Margaret
+        G.</first_name><last_name>Guo</last_name><data-item-ids><data-item-id id-type=\"PreferredRID\"
+        type=\"person\">GDC-1678-2022</data-item-id></data-item-ids></name><name seq_no=\"2\"
+        role=\"author\" addr_no=\"1\" r_id=\"DVX-1512-2022\" orcid_id=\"0000-0001-7184-8736\"
+        daisng_id=\"15401915\" claim_status=\"false\"><display_name>Sosa, Daniel N.</display_name><preferred_name><full_name>Sosa,
+        D. N.</full_name><first_name>D. N.</first_name><last_name>Sosa</last_name></preferred_name><full_name>Sosa,
+        Daniel N.</full_name><wos_standard>Sosa, DN</wos_standard><first_name>Daniel
+        N.</first_name><last_name>Sosa</last_name><data-item-ids><data-item-id id-type=\"PreferredRID\"
+        type=\"person\">DVX-1512-2022</data-item-id></data-item-ids></name><name seq_no=\"3\"
+        role=\"author\" reprint=\"Y\" addr_no=\"2\" r_id=\"DTU-4952-2022\" orcid_id=\"0000-0003-3859-2905\"
+        daisng_id=\"14945356\" claim_status=\"false\"><display_name>Altman, Russ B.</display_name><preferred_name><full_name>Altman,
+        Russ B</full_name><first_name>Russ B</first_name><last_name>Altman</last_name></preferred_name><full_name>Altman,
+        Russ B.</full_name><wos_standard>Altman, RB</wos_standard><first_name>Russ
+        B.</first_name><last_name>Altman</last_name><data-item-ids><data-item-id id-type=\"PreferredRID\"
+        type=\"person\">DTU-4952-2022</data-item-id></data-item-ids></name></names><doctypes
+        count=\"1\"><doctype>Article</doctype></doctypes><publishers><publisher><address_spec
+        addr_no=\"1\"><full_address>GREAT CLARENDON ST, OXFORD OX2 6DP, ENGLAND</full_address><city>OXFORD</city></address_spec><names
+        count=\"1\"><name role=\"publisher\" seq_no=\"1\" addr_no=\"1\"><display_name>OXFORD
+        UNIV PRESS</display_name><full_name>OXFORD UNIV PRESS</full_name><unified_name>Oxford
+        Univ Press</unified_name></name></names></publisher></publishers></summary><fullrecord_metadata><languages
+        count=\"1\"><language type=\"primary\">English</language></languages><normalized_languages
+        count=\"1\"><language type=\"primary\">English</language></normalized_languages><normalized_doctypes
+        count=\"1\"><doctype>Article</doctype></normalized_doctypes><refs count=\"65\"
+        /><addresses count=\"2\"><address_name><address_spec addr_no=\"1\"><full_address>Stanford
+        Univ, Biomed Informat, Stanford, CA 94305 USA</full_address><organizations
+        count=\"2\"><organization pref=\"null\">Stanford Univ</organization><organization
+        pref=\"Y\">Stanford University</organization></organizations><suborganizations
+        count=\"1\"><suborganization>Biomed Informat</suborganization></suborganizations><city>Stanford</city><state>CA</state><country>USA</country><zip
+        location=\"AP\">94305</zip></address_spec><names count=\"2\"><name seq_no=\"1\"
+        role=\"author\" addr_no=\"1\" orcid_id=\"0000-0001-7713-3846\" daisng_id=\"29712063\"
+        claim_status=\"false\"><display_name>Guo, Margaret G.</display_name><preferred_name><full_name>Guo,
+        Margaret</full_name><first_name>Margaret</first_name><last_name>Guo</last_name></preferred_name><full_name>Guo,
+        Margaret G.</full_name><wos_standard>Guo, MG</wos_standard><first_name>Margaret
+        G.</first_name><last_name>Guo</last_name><data-item-ids><data-item-id id-type=\"PreferredRID\"
+        type=\"person\">GDC-1678-2022</data-item-id></data-item-ids></name><name seq_no=\"2\"
+        role=\"author\" addr_no=\"1\" orcid_id=\"0000-0001-7184-8736\" daisng_id=\"15401915\"
+        claim_status=\"false\"><display_name>Sosa, Daniel N.</display_name><preferred_name><full_name>Sosa,
+        D. N.</full_name><first_name>D. N.</first_name><last_name>Sosa</last_name></preferred_name><full_name>Sosa,
+        Daniel N.</full_name><wos_standard>Sosa, DN</wos_standard><first_name>Daniel
+        N.</first_name><last_name>Sosa</last_name><data-item-ids><data-item-id id-type=\"PreferredRID\"
+        type=\"person\">DVX-1512-2022</data-item-id></data-item-ids></name></names></address_name><address_name><address_spec
+        addr_no=\"2\"><full_address>Stanford Univ, Bioengn Genet Med Biomed Data Sci
+        &amp; Courtesy Comp, Stanford, CA 94305 USA</full_address><organizations count=\"2\"><organization
+        pref=\"null\">Stanford Univ</organization><organization pref=\"Y\">Stanford
+        University</organization></organizations><suborganizations count=\"1\"><suborganization>Bioengn
+        Genet Med Biomed Data Sci &amp; Courtesy Comp</suborganization></suborganizations><city>Stanford</city><state>CA</state><country>USA</country><zip
+        location=\"AP\">94305</zip></address_spec><names count=\"1\"><name seq_no=\"3\"
+        role=\"author\" reprint=\"Y\" addr_no=\"2\" orcid_id=\"0000-0003-3859-2905\"
+        daisng_id=\"14945356\" claim_status=\"false\"><display_name>Altman, Russ B.</display_name><preferred_name><full_name>Altman,
+        Russ B</full_name><first_name>Russ B</first_name><last_name>Altman</last_name></preferred_name><full_name>Altman,
+        Russ B.</full_name><wos_standard>Altman, RB</wos_standard><first_name>Russ
+        B.</first_name><last_name>Altman</last_name><data-item-ids><data-item-id id-type=\"PreferredRID\"
+        type=\"person\">DTU-4952-2022</data-item-id></data-item-ids></name></names></address_name></addresses><reprint_addresses
+        count=\"2\"><address_name><address_spec addr_no=\"1\"><full_address>Stanford
+        Univ, Dept Bioengn, Stanford, CA 94305 USA</full_address><organizations count=\"2\"><organization
+        pref=\"null\">Stanford Univ</organization><organization pref=\"Y\">Stanford
+        University</organization></organizations><suborganizations count=\"1\"><suborganization>Dept
+        Bioengn</suborganization></suborganizations><city>Stanford</city><state>CA</state><country>USA</country><zip
+        location=\"AP\">94305</zip></address_spec><names count=\"1\"><name seq_no=\"1\"
+        role=\"author\" reprint=\"Y\" addr_no=\"1\"><display_name>Altman, Russ B.</display_name><full_name>Altman,
+        Russ B.</full_name><wos_standard>Altman, RB</wos_standard><first_name>Russ
+        B.</first_name><last_name>Altman</last_name></name></names></address_name><address_name><address_spec
+        addr_no=\"2\"><full_address>Stanford Univ, Dept Genet, Stanford, CA 94305
+        USA</full_address><organizations count=\"2\"><organization pref=\"null\">Stanford
+        Univ</organization><organization pref=\"Y\">Stanford University</organization></organizations><suborganizations
+        count=\"1\"><suborganization>Dept Genet</suborganization></suborganizations><city>Stanford</city><state>CA</state><country>USA</country><zip
+        location=\"AP\">94305</zip></address_spec><names count=\"1\"><name seq_no=\"1\"
+        role=\"author\" reprint=\"Y\" addr_no=\"2\"><display_name>Altman, Russ B.</display_name><full_name>Altman,
+        Russ B.</full_name><wos_standard>Altman, RB</wos_standard><first_name>Russ
+        B.</first_name><last_name>Altman</last_name></name></names></address_name></reprint_addresses><category_info><headings
+        count=\"1\"><heading>Science &amp; Technology</heading></headings><subheadings
+        count=\"1\"><subheading>Life Sciences &amp; Biomedicine</subheading></subheadings><subjects
+        count=\"4\"><subject ascatype=\"traditional\" code=\"CO\">Biochemical Research
+        Methods</subject><subject ascatype=\"traditional\" code=\"MC\">Mathematical
+        &amp; Computational Biology</subject><subject ascatype=\"extended\">Biochemistry
+        &amp; Molecular Biology</subject><subject ascatype=\"extended\">Mathematical
+        &amp; Computational Biology</subject></subjects></category_info><fund_ack><fund_text><p>This
+        work was supported by the National Institutes of Health (grant numbers GM102365,
+        LM007033 and GM007365).</p></fund_text><grants count=\"1\"><grant><grant_agency>National
+        Institutes of Health</grant_agency><grant_ids count=\"3\"><grant_id>GM102365</grant_id><grant_id>LM007033</grant_id><grant_id>GM007365</grant_id></grant_ids><grant_agency_names
+        pref=\"Y\" content=\"United States Department of Health &amp; Human Services\"
+        /><grant_agency_names pref=\"Y\" content=\"National Institutes of Health (NIH)
+        - USA\" /><grant_agency_names pref=\"N\" content=\"National Institutes of
+        Health\" /></grant></grants></fund_ack><keywords count=\"5\"><keyword>networks</keyword><keyword>knowledge
+        graphs</keyword><keyword>embeddings</keyword><keyword>interpretability</keyword><keyword>biological
+        validation</keyword></keywords><abstracts count=\"1\"><abstract><abstract_text
+        count=\"1\"><p>Network biology is useful for modeling complex biological phenomena;
+        it has attracted attention with the advent of novel graph-based machine learning
+        methods. However, biological applications of network methods often suffer
+        from inadequate follow-up. In this perspective, we discuss obstacles for contemporary
+        network approaches-particularly focusing on challenges representing biological
+        concepts, applying machine learning methods, and interpreting and validating
+        computational findings about biology-in an effort to catalyze actionable biological
+        discovery.</p></abstract_text></abstract></abstracts></fullrecord_metadata><item
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:type=\"itemType_wos\"
+        coll_id=\"WOS\"><ids avail=\"N\">ZK5AS</ids><bib_id>23 (1): - JAN 17 2022</bib_id><bib_pagecount
+        type=\"Journal\">2517</bib_pagecount><keywords_plus count=\"5\"><keyword>REGULATORY
+        NETWORKS</keyword><keyword>INFERENCE</keyword><keyword>MODEL</keyword><keyword>INTERACTOME</keyword><keyword>DISEASE</keyword></keywords_plus></item><contributors
+        count=\"3\"><contributor><name seq_no=\"1\" role=\"researcher_id\" orcid_id=\"0000-0003-3859-2905\"><display_name>Altman,
+        Russ</display_name><full_name>Altman, Russ</full_name><first_name>Russ</first_name><last_name>Altman</last_name></name></contributor><contributor><name
+        seq_no=\"2\" role=\"researcher_id\" orcid_id=\"0000-0001-7184-8736\"><display_name>Sosa,
+        Daniel</display_name><full_name>Sosa, Daniel</full_name><first_name>Daniel</first_name><last_name>Sosa</last_name></name></contributor><contributor><name
+        seq_no=\"3\" role=\"researcher_id\" orcid_id=\"0000-0001-7713-3846\"><display_name>Guo,
+        Margaret</display_name><full_name>Guo, Margaret</full_name><first_name>Margaret</first_name><last_name>Guo</last_name></name></contributor></contributors></static_data><dynamic_data><citation_related><tc_list><silo_tc
+        coll_id=\"WOS\" local_count=\"3\" /></tc_list><citation_topics><subj-group><subject
+        content-id=\"1\" content-type=\"macro\">Clinical &amp; Life Sciences</subject><subject
+        content-id=\"1.54\" content-type=\"meso\">Molecular &amp; Cell Biology - Genetics</subject><subject
+        content-id=\"1.54.79\" content-type=\"micro\">Gene Expression Data</subject></subj-group></citation_topics><SDG
+        code=\"79\"><sdg_category status=\"Active\">03 Good Health and Well-being</sdg_category></SDG></citation_related><cluster_related><identifiers><identifier
+        type=\"issn\" value=\"1467-5463\" /><identifier type=\"eissn\" value=\"1477-4054\"
+        /><identifier type=\"art_no\" value=\"ARTN bbab437\" /><identifier type=\"doi\"
+        value=\"10.1093/bib/bbab437\" /><identifier type=\"pmid\" value=\"MEDLINE:34849568\"
+        /></identifiers></cluster_related><wos_usage last180days=\"9\" alltime=\"15\"
+        /></dynamic_data><dates date_modified=\"2022-04-21T01:13:20.697043\" date_created=\"2022-04-21T01:13:20.697043\"
+        /></REC>\r\n</records>]]></val>\n        </map>\n        <map name=\"QueryResult\">\n
+        \           <map>\n                <val name=\"QueryID\">7</val>\n                <val
+        name=\"RecordsSearched\">18755074</val>\n                <val name=\"RecordsFound\">6</val>\n
+        \           </map>\n        </map>\n    </map>\n</response>\n"
+  recorded_at: Wed, 21 Jun 2023 16:48:28 GMT
+recorded_with: VCR 6.1.0

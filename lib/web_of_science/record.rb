@@ -65,7 +65,7 @@ module WebOfScience
       formatter = REXML::Formatters::Pretty.new
       formatter.compact = true
       formatter.write(rexml_doc, $stdout)
-      $stdout.write("\n")
+      Rails.logger.debug("\n")
       nil
     end
 

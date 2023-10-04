@@ -6,14 +6,7 @@ describe WebOfScience::QueryOrcid, :vcr do
   let(:author) { create(:russ_altman) }
   let(:author_blank_orcid) { create(:author, :blank_orcid) }
 
-  # avoid caching Savon client across examples (affects VCR)
-  before { allow(WebOfScience).to receive(:client).and_return(WebOfScience::Client.new(Settings.WOS.AUTH_CODE)) }
-
-  it 'works' do
-    expect(query_orcid).to be_a described_class
-  end
-
-  describe '#uids without symbolicTimeSpan' do
+  describe '#uids without loadTimeSpan' do
     it 'indicates the query is valid' do
       expect(query_orcid).to be_valid
     end
@@ -26,8 +19,8 @@ describe WebOfScience::QueryOrcid, :vcr do
     end
   end
 
-  describe '#uids with symbolicTimeSpan' do
-    subject(:query_orcid) { described_class.new(author, symbolicTimeSpan: '4week') }
+  describe '#uids with loadTimeSpan' do
+    subject(:query_orcid) { described_class.new(author, load_time_span: '4W') }
 
     it 'indicates the query is valid' do
       expect(query_orcid).to be_valid
