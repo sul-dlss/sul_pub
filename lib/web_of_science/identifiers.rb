@@ -80,7 +80,7 @@ module WebOfScience
 
     # @return [String, nil]
     def pmid
-      ids['pmid']
+      ids['pmid']&.delete_prefix('MEDLINE:')
     end
 
     # @return [String, nil]
