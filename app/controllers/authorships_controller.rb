@@ -220,7 +220,7 @@ class AuthorshipsController < ApplicationController
   # @param [String] pmid PubMed ID
   # @return [Publication]
   def get_publication_via_pubmed!(pmid)
-    pub = Publication.find_or_create_by_pmid(pmid)
+    pub = Publication.find_or_create_by_pmid(pmid.delete_prefix('MEDLINE:'))
     unless pub
       log_and_error!("The PMID:#{pmid} was not found either locally or at PubMed.")
       false

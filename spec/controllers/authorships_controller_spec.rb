@@ -200,6 +200,37 @@ describe AuthorshipsController, :vcr do
       end
     end
 
+    context 'for a new PubMed publication with the WoS MEDLINE: prefix' do
+      let(:request_data) { base_data.merge(pmid: "MEDLINE:#{pmid}").merge(author_hash) }
+      let(:pmid) { '23684686' }
+
+      before { http_request }
+
+      it 'adds new publication' do
+        result = response.parsed_body
+        expect(result['pmid']).to eq(pmid)
+        expect(result['authorship'].length).to eq 1
+        contribution = Contribution.find_by(
+          publication_id: new_pub.id,
+          author_id: author.id
+        )
+        expect(contribution.featured).to eq(request_data[:featured])
+        expect(contribution.status).to eq(request_data[:status])
+        expect(contribution.visibility).to eq(request_data[:visibility])
+        expect(response.body).to eq(new_pub.pub_hash.to_json)
+      end
+
+      it 'adds proper identifiers section' do
+        result = response.parsed_body
+        expect(result['identifier']).to include(
+          a_hash_including('type' => 'PMID', 'id' => pmid, 'url' => "https://www.ncbi.nlm.nih.gov/pubmed/#{pmid}"),
+          a_hash_including('type' => 'SULPubId', 'id' => new_pub.id.to_s,
+                           'url' => "#{Settings.SULPUB_ID.PUB_URI}/#{new_pub.id}")
+        )
+        expect(response.body).to eq(new_pub.pub_hash.to_json)
+      end
+    end
+
     context 'for a new WoS publication' do
       let(:request_data) { base_data.merge(wos_uid: wos_record_uid).merge(author_hash) }
 
