@@ -176,6 +176,44 @@ describe WebOfScience::Identifiers do
     end
   end
 
+  context 'WOS record with PMID' do
+    subject(:identifiers) { described_class.new wos_pubmed_record }
+
+    let(:wos_pubmed_record_xml) { File.read('spec/fixtures/wos_client/wos_record_000782396300001.xml') }
+    let(:wos_pubmed_record) { WebOfScience::Record.new(record: wos_pubmed_record_xml) }
+
+    let(:ids) do
+      {
+        'doi' => '10.1177/01455613221088697',
+        'doi_uri' => 'https://doi.org/10.1177/01455613221088697',
+        'eissn' => '1942-7522',
+        'eissn_uri' => 'http://searchworks.stanford.edu/?search_field=advanced&number=1942-7522',
+        'issn' => '0145-5613',
+        'issn_uri' => 'http://searchworks.stanford.edu/?search_field=advanced&number=0145-5613',
+        'pmid' => '35414268',
+        'pmid_uri' => 'https://www.ncbi.nlm.nih.gov/pubmed/35414268',
+        'WosUID' => 'WOS:000782396300001',
+        'WosItemID' => '000782396300001',
+        'WosItemURI' => 'https://ws.isiknowledge.com/cps/openurl/service?url_ver=Z39.88-2004&rft_id=info:ut/000782396300001'
+      }
+    end
+
+    let(:pub_hash_data) do
+      [
+        { type: 'doi', id: ids['doi'], url: ids['doi_uri'] },
+        { type: 'eissn', id: ids['eissn'], url: ids['eissn_uri'] },
+        { type: 'issn', id: ids['issn'], url: ids['issn_uri'] },
+        { type: 'pmid', id: ids['pmid'], url: ids['pmid_uri'] },
+        { type: 'WosItemID', id: ids['WosItemID'], url: ids['WosItemURI'] },
+        { type: 'WosUID', id: ids['WosUID'] }
+      ]
+    end
+
+    it_behaves_like 'identifier_accessors'
+    it_behaves_like 'to_h'
+    it_behaves_like 'pub_hash'
+  end
+
   describe 'Enumerable/Hash behavior' do
     # These convenience methods work by calling select methods on the Hash from to_h
     it 'works' do
