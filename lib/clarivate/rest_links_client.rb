@@ -72,9 +72,12 @@ module Clarivate
       end
 
       def identifiers_from(record)
-        record.dig('dynamic_data', 'cluster_related', 'identifiers', 'identifier')
-              .select { |identifier| fields.include?(identifier['type']) }
-              .to_h { |identifier| [identifier['type'], normalized_id(identifier['value'])] }
+        identifiers = record.dig('dynamic_data', 'cluster_related', 'identifiers')
+        return {} if identifiers.blank?
+
+        identifiers['identifier']
+          .select { |identifier| fields.include?(identifier['type']) }
+          .to_h { |identifier| [identifier['type'], normalized_id(identifier['value'])] }
       end
 
       # remove unncessary PMID prefix from identifiers returned by the Links client

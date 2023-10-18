@@ -344,4 +344,387 @@ http_interactions:
         - Circulation"},{"content-type":"micro","content-id":"1.71.1425","content":"Coronary
         CT Angiography"}]}},"tc_list":{"silo_tc":{"coll_id":"WOS","local_count":99}}},"cluster_related":{"identifiers":{"identifier":[{"type":"issn","value":"0094-2405"},{"type":"xref_doi","value":"10.1118/1.598623"},{"type":"pmid","value":"MEDLINE:10435530"}]}},"wos_usage":{"last180days":0,"alltime":9}}}]}}},"QueryResult":{"QueryID":1937,"RecordsSearched":90341069,"RecordsFound":3}}'
   recorded_at: Tue, 19 Sep 2023 20:41:58 GMT
+- request:
+    method: get
+    uri: https://wos-api.clarivate.com/api/wos/id/WOS:000081515000015,WOS:000346594100007,WOS:001061548400001,WOS:000000000000000,WOS:A1975W192600011?count=100&databaseId=WOS&firstRecord=1
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.7.11
+      Accept:
+      - application/json
+      X-Apikey:
+      - Settings.WOS.API_KEY
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 18 Oct 2023 20:01:27 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      X-Rec-Amtperyear-Remaining:
+      - '2112864'
+      X-Req-Reqpersec-Remaining:
+      - '24'
+      Vary:
+      - Origin
+      Correlation-Id:
+      - 52e6745a-df54-4065-bb17-6516d4b67fa6#4897187
+      X-Kong-Upstream-Latency:
+      - '47'
+      X-Kong-Proxy-Latency:
+      - '91'
+      Via:
+      - kong/2.8.1
+    body:
+      encoding: UTF-8
+      string: '{"Data":{"Records":{"records":{"REC":[{"UID":"WOS:001061548400001","static_data":{"summary":{"pub_info":{"coverdate":"SEP
+        9 2023","vol":13,"journal_oas_gold":"N","has_citation_context":"Y","pubyear":2023,"issue":1,"sortdate":"2023-09-09","has_abstract":"Y","pubmonth":"SEP
+        9","pubtype":"Journal","page":{"page_count":8}},"names":{"count":6,"name":[{"seq_no":1,"role":"author","claim_status":false,"last_name":"Ghaddar","display_name":"Ghaddar,
+        Reem","daisng_id":14977178,"orcid_id":"0000-0002-4167-7101","full_name":"Ghaddar,
+        Reem","addr_no":1,"data-item-ids":{"data-item-id":{"type":"person","content":"DTX-6775-2022","id-type":"PreferredRID"}},"wos_standard":"Ghaddar,
+        R","r_id":"DTX-6775-2022","first_name":"Reem","preferred_name":{"full_name":"Ghaddar,
+        Reem","last_name":"Ghaddar","first_name":"Reem"}},{"seq_no":2,"role":"author","claim_status":false,"last_name":"Hudson","display_name":"Hudson,
+        Erin A.","daisng_id":44290563,"full_name":"Hudson, Erin A.","addr_no":1,"data-item-ids":{"data-item-id":{"type":"person","content":"IKX-0788-2023","id-type":"PreferredRID"}},"wos_standard":"Hudson,
+        EA","r_id":"IKX-0788-2023","first_name":"Erin A.","preferred_name":{"full_name":"Hudson,
+        Erin A.","last_name":"Hudson","first_name":"Erin A."}},{"seq_no":3,"role":"author","claim_status":false,"last_name":"Jeans","display_name":"Jeans,
+        Matthew R.","daisng_id":48156663,"full_name":"Jeans, Matthew R.","addr_no":1,"data-item-ids":{"data-item-id":{"type":"person","content":"JAH-7077-2023","id-type":"PreferredRID"}},"wos_standard":"Jeans,
+        MR","r_id":"JAH-7077-2023","first_name":"Matthew R.","preferred_name":{"full_name":"Jeans,
+        Matthew R.","last_name":"Jeans","first_name":"Matthew R."}},{"seq_no":4,"role":"author","claim_status":true,"noncore_endyear":2023,"last_name":"Vandyousefi","display_name":"Vandyousefi,
+        Sarvenaz","daisng_id":1373732,"orcid_id":"0000-0002-1006-4054","full_name":"Vandyousefi,
+        Sarvenaz","addr_no":2,"data-item-ids":{"data-item-id":{"type":"person","content":"AAG-5315-2019","id-type":"PreferredRID"}},"noncore_startyear":2020,"wos_standard":"Vandyousefi,
+        S","r_id":"AAG-5315-2019","first_name":"Sarvenaz","preferred_name":{"full_name":"Vandyousefi,
+        Sarvenaz","last_name":"Vandyousefi","first_name":"Sarvenaz"}},{"seq_no":5,"role":"author","claim_status":true,"noncore_endyear":2023,"last_name":"Landry","display_name":"Landry,
+        Matthew J.","daisng_id":504295,"orcid_id":"0000-0003-2285-7702","full_name":"Landry,
+        Matthew J.","addr_no":3,"data-item-ids":{"data-item-id":{"type":"person","content":"W-6534-2018","id-type":"PreferredRID"}},"noncore_startyear":2018,"wos_standard":"Landry,
+        MJ","r_id":"W-6534-2018","first_name":"Matthew J.","preferred_name":{"full_name":"Landry,
+        Matthew J","last_name":"Landry","middle_name":"J","first_name":"Matthew"}},{"seq_no":6,"role":"author","claim_status":false,"reprint":"Y","last_name":"Davis","display_name":"Davis,
+        Jaimie N.","daisng_id":20841397,"full_name":"Davis, Jaimie N.","addr_no":1,"data-item-ids":{"data-item-id":{"type":"person","content":"ESH-1004-2022","id-type":"PreferredRID"}},"wos_standard":"Davis,
+        JN","r_id":"ESH-1004-2022","first_name":"Jaimie N.","preferred_name":{"full_name":"Davis,
+        Jaimie N.","last_name":"Davis","first_name":"Jaimie N."}}]},"doctypes":{"doctype":"Article","count":1},"publishers":{"publisher":{"names":{"count":1,"name":{"seq_no":1,"role":"publisher","full_name":"SPRINGERNATURE","unified_name":"Springer
+        Nature","addr_no":1,"display_name":"SPRINGERNATURE"}},"address_spec":{"city":"LONDON","addr_no":1,"full_address":"CAMPUS,
+        4 CRINAN ST, LONDON, N1 9XW, ENGLAND"}}},"EWUID":{"WUID":{"coll_id":"WOS"},"edition":{"value":"WOS.SCI"}},"titles":{"count":6,"title":[{"type":"source","content":"NUTRITION
+        & DIABETES"},{"type":"source_abbrev","content":"NUTR DIABETES"},{"type":"abbrev_iso","content":"Nutr.
+        Diabetes"},{"type":"abbrev_11","content":"NUTR DIABET"},{"type":"abbrev_29","content":"NUTR
+        DIABETES"},{"type":"item","content":"Ethnicity/race, parent educational attainment,
+        and obesity associated with prediabetes in children"}]}},"item":{"xsi:type":"itemType_wos","coll_id":"WOS","ids":{"avail":"Y","content":"R0TH5"},"xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","bib_pagecount":{"type":"Journal","content":8},"keywords_plus":{"count":10,"keyword":["OVERWEIGHT
+        HISPANIC CHILDREN","BETA-CELL FUNCTION","UNITED-STATES","INSULIN SENSITIVITY","WHITE
+        ADULTS","DISPARITIES","PREVALENCE","RESISTANCE","SECRETION","AMERICAN"]},"bib_id":"13
+        (1): - SEP 9 2023"},"fullrecord_metadata":{"addresses":{"count":3,"address_name":[{"names":{"count":4,"name":[{"seq_no":1,"role":"author","claim_status":false,"last_name":"Ghaddar","display_name":"Ghaddar,
+        Reem","daisng_id":14977178,"orcid_id":"0000-0002-4167-7101","full_name":"Ghaddar,
+        Reem","addr_no":1,"data-item-ids":{"data-item-id":{"type":"person","content":"DTX-6775-2022","id-type":"PreferredRID"}},"wos_standard":"Ghaddar,
+        R","first_name":"Reem","preferred_name":{"full_name":"Ghaddar, Reem","last_name":"Ghaddar","first_name":"Reem"}},{"seq_no":2,"role":"author","full_name":"Hudson,
+        Erin A.","claim_status":false,"addr_no":1,"last_name":"Hudson","data-item-ids":{"data-item-id":{"type":"person","content":"IKX-0788-2023","id-type":"PreferredRID"}},"display_name":"Hudson,
+        Erin A.","wos_standard":"Hudson, EA","daisng_id":44290563,"first_name":"Erin
+        A.","preferred_name":{"full_name":"Hudson, Erin A.","last_name":"Hudson","first_name":"Erin
+        A."}},{"seq_no":3,"role":"author","full_name":"Jeans, Matthew R.","claim_status":false,"addr_no":1,"last_name":"Jeans","data-item-ids":{"data-item-id":{"type":"person","content":"JAH-7077-2023","id-type":"PreferredRID"}},"display_name":"Jeans,
+        Matthew R.","wos_standard":"Jeans, MR","daisng_id":48156663,"first_name":"Matthew
+        R.","preferred_name":{"full_name":"Jeans, Matthew R.","last_name":"Jeans","first_name":"Matthew
+        R."}},{"seq_no":6,"role":"author","claim_status":false,"reprint":"Y","last_name":"Davis","display_name":"Davis,
+        Jaimie N.","daisng_id":20841397,"full_name":"Davis, Jaimie N.","addr_no":1,"data-item-ids":{"data-item-id":{"type":"person","content":"ESH-1004-2022","id-type":"PreferredRID"}},"wos_standard":"Davis,
+        JN","first_name":"Jaimie N.","preferred_name":{"full_name":"Davis, Jaimie
+        N.","last_name":"Davis","first_name":"Jaimie N."}}]},"address_spec":{"zip":{"location":"AP","content":78712},"country":"USA","city":"Austin","addr_no":1,"organizations":{"organization":[{"pref":null,"content":"Univ
+        Texas Austin"},{"pref":"Y","content":"University of Texas System"},{"pref":"Y","content":"University
+        of Texas Austin"}],"count":3},"full_address":"Univ Texas Austin, Coll Nat
+        Sci, Dept Nutr Sci, Austin, TX 78712 USA","state":"TX","suborganizations":{"count":2,"suborganization":["Coll
+        Nat Sci","Dept Nutr Sci"]}}},{"names":{"count":1,"name":{"seq_no":4,"role":"author","claim_status":true,"noncore_endyear":2023,"last_name":"Vandyousefi","display_name":"Vandyousefi,
+        Sarvenaz","daisng_id":1373732,"orcid_id":"0000-0002-1006-4054","full_name":"Vandyousefi,
+        Sarvenaz","addr_no":2,"data-item-ids":{"data-item-id":{"type":"person","content":"AAG-5315-2019","id-type":"PreferredRID"}},"noncore_startyear":2020,"wos_standard":"Vandyousefi,
+        S","first_name":"Sarvenaz","preferred_name":{"full_name":"Vandyousefi, Sarvenaz","last_name":"Vandyousefi","first_name":"Sarvenaz"}}},"address_spec":{"country":"USA","city":"New
+        York","addr_no":2,"organizations":{"organization":[{"pref":null,"content":"NYU"},{"pref":"Y","content":"New
+        York University"}],"count":2},"full_address":"NYU, Grossman Sch Med, Dept
+        Med, New York, NY USA","state":"NY","suborganizations":{"count":2,"suborganization":["Grossman
+        Sch Med","Dept Med"]}}},{"names":{"count":1,"name":{"seq_no":5,"role":"author","claim_status":true,"noncore_endyear":2023,"last_name":"Landry","display_name":"Landry,
+        Matthew J.","daisng_id":504295,"orcid_id":"0000-0003-2285-7702","full_name":"Landry,
+        Matthew J.","addr_no":3,"data-item-ids":{"data-item-id":{"type":"person","content":"W-6534-2018","id-type":"PreferredRID"}},"noncore_startyear":2018,"wos_standard":"Landry,
+        MJ","first_name":"Matthew J.","preferred_name":{"full_name":"Landry, Matthew
+        J","last_name":"Landry","middle_name":"J","first_name":"Matthew"}}},"address_spec":{"country":"USA","city":"Palo
+        Alto","addr_no":3,"organizations":{"organization":[{"pref":null,"content":"Stanford
+        Univ"},{"pref":"Y","content":"Stanford University"}],"count":2},"full_address":"Stanford
+        Univ, Stanford Prevent Res Ctr, Sch Med, Palo Alto, CA USA","state":"CA","suborganizations":{"count":2,"suborganization":["Stanford
+        Prevent Res Ctr","Sch Med"]}}}]},"category_info":{"subheadings":{"count":1,"subheading":"Life
+        Sciences & Biomedicine"},"subjects":{"subject":[{"ascatype":"traditional","code":"IA","content":"Endocrinology
+        & Metabolism"},{"ascatype":"traditional","code":"SA","content":"Nutrition
+        & Dietetics"},{"ascatype":"extended","content":"Endocrinology & Metabolism"},{"ascatype":"extended","content":"Nutrition
+        & Dietetics"}],"count":4},"headings":{"heading":"Science & Technology","count":1}},"normalized_languages":{"count":1,"language":{"type":"primary","content":"English"}},"languages":{"count":1,"language":{"type":"primary","content":"English"}},"refs":{"count":41},"reprint_addresses":{"count":1,"address_name":{"names":{"count":1,"name":{"seq_no":1,"role":"author","full_name":"Davis,
+        Jaimie N.","reprint":"Y","addr_no":1,"last_name":"Davis","display_name":"Davis,
+        Jaimie N.","wos_standard":"Davis, JN","first_name":"Jaimie N."}},"address_spec":{"zip":{"location":"AP","content":78712},"country":"USA","city":"Austin","addr_no":1,"organizations":{"organization":[{"pref":null,"content":"Univ
+        Texas Austin"},{"pref":"Y","content":"University of Texas System"},{"pref":"Y","content":"University
+        of Texas Austin"}],"count":3},"full_address":"Univ Texas Austin, Coll Nat
+        Sci, Dept Nutr Sci, Austin, TX 78712 USA","state":"TX","suborganizations":{"count":2,"suborganization":["Coll
+        Nat Sci","Dept Nutr Sci"]}}}},"abstracts":{"count":1,"abstract":{"abstract_text":{"p":"Background/objectivesObesity
+        and other predictors of type 2 diabetes disproportionally affect Hispanic
+        and Black children in the US compared to non-Hispanic White (NHW) children.
+        Yet, the prevalence of prediabetes in children remains unestablished, and
+        guidelines for screening young children are lacking. This study examined the
+        relationships between demographic factors and prediabetes in vulnerable youth
+        in central Texas.Subjects/methodsThis is a cross-sectional analysis of baseline
+        data from 976 3rd-5th graders (7-12 years) who participated in TX Sprouts,
+        a school-based gardening, nutrition, and cooking trial in 16 elementary schools
+        serving mainly children from minority backgrounds and lower-income households.
+        Measures collected included age, sex, ethnicity, free/reduced-priced school
+        lunch (FRL) status, parent educational attainment (questionnaires), BMI from
+        height (stadiometer) and weight (TANITA scale), and prediabetes status from
+        fasting plasma glucose (FPG) and HbA1c. Regressions examined cross-sectional
+        associations between demographics and FPG, HbA1c, and prediabetes.ResultsChildren
+        were 47% male, 67% Hispanic, and 10% Black, with a mean age of 9.3 years;
+        71% received FRL, 50% had overweight/obesity, and 26% had prediabetes. Prediabetes
+        rates were 2.8 and 4.8 times higher in Hispanic and Black children compared
+        to NHW children, respectively (p & LE; 0.001), and 1.5 times higher in children
+        with obesity versus normal BMI (p = 0.02). Children of parents with only an
+        8th-grade education, some high school education, or a high school degree had
+        3.1, 2.7, and 2.2 times higher odds of having prediabetes compared to children
+        of college graduates, respectively (p & LE; 0.004). Analyses with FPG and
+        HbA1c yielded similar results.ConclusionThese findings suggest a potential
+        need for earlier screening, more comprehensive testing guidelines, and prevention
+        programs tailored toward minority children, children with obesity, and children
+        of parents with low educational attainment. Future research should explore
+        this finding in a larger, nationally representative sample.","count":1}}},"fund_ack":{"grants":{"count":1,"grant":{"grant_agency_names":{"pref":"N","content":"We
+        would like to thank all the children and their families for participating
+        in this study; the school stakeholders (i.e., administrators, teachers, and
+        staff) for allowing us to teach this program in the schools; staff that was
+        instrumental in the success"},"grant_agency":"We would like to thank all the
+        children and their families for participating in this study; the school stakeholders
+        (i.e., administrators, teachers, and staff) for allowing us to teach this
+        program in the schools; staff that was instrumental in the success"}},"fund_text":{"p":"We
+        would like to thank all the children and their families for participating
+        in this study; the school stakeholders (i.e., administrators, teachers, and
+        staff) for allowing us to teach this program in the schools; staff that was
+        instrumental in the success of this project; Bianca Bidiuc Peterson and Sari
+        Albornoz from the Sustainable Food Center for collaborating with us on this
+        project; Home Depot for their garden supply donations and attendance at all
+        school garden builds; Lyndsey Waugh and Brandon Lombardi from Sprouts Healthy
+        Communities Foundation for continuing to support our garden-based studies;
+        and all the University of Texas at Austin undergraduate students for all their
+        hard work helping us collect data, build the gardens, and teach the classes."}},"normalized_doctypes":{"doctype":"Article","count":1}},"contributors":{"contributor":[{"name":{"seq_no":1,"orcid_id":"0000-0002-1006-4054","role":"researcher_id","full_name":"Vandyousefi,
+        Sarvenaz","last_name":"Vandyousefi","display_name":"Vandyousefi, Sarvenaz","r_id":"AAG-5315-2019","first_name":"Sarvenaz"}},{"name":{"seq_no":2,"orcid_id":"0000-0003-2285-7702","role":"researcher_id","full_name":"Landry,
+        Matthew","last_name":"Landry","display_name":"Landry, Matthew","r_id":"W-6534-2018","first_name":"Matthew"}}],"count":2}},"dates":{"date_loaded":"2023-09-19T23:59:59.00000","date_modified":"2023-09-20T18:13:33.80018","date_created":"2023-09-20T18:13:33.80018"},"r_id_disclaimer":"ResearcherID
+        data provided by Clarivate Analytics","dynamic_data":{"citation_related":{"tc_list":{"silo_tc":{"coll_id":"WOS","local_count":0}}},"cluster_related":{"identifiers":{"identifier":[{"type":"issn","value":"2044-4052"},{"type":"art_no","value":"ARTN
+        15"},{"type":"doi","value":"10.1038/s41387-023-00244-4"},{"type":"pmid","value":"MEDLINE:37689792"}]}},"wos_usage":{"last180days":1,"alltime":1}}},{"UID":"WOS:000346594100007","static_data":{"summary":{"pub_info":{"coverdate":"NOV
+        2014","vol":28,"journal_oas_gold":"N","pubyear":2014,"issue":11,"sortdate":"2014-11-01","has_abstract":"Y","pubmonth":"NOV","pubtype":"Journal","page":{"end":1278,"begin":1262,"page_count":17,"content":"1262-1278"}},"names":{"count":4,"name":[{"seq_no":1,"role":"author","claim_status":false,"reprint":"Y","last_name":"Frame","display_name":"Frame,
+        Caitlin H.","daisng_id":21912644,"full_name":"Frame, Caitlin H.","addr_no":1,"data-item-ids":{"data-item-id":{"type":"person","content":"EWP-2248-2022","id-type":"PreferredRID"}},"wos_standard":"Frame,
+        CH","r_id":"EWP-2248-2022","first_name":"Caitlin H.","preferred_name":{"full_name":"Frame,
+        Caitlin H.","last_name":"Frame","first_name":"Caitlin H."}},{"seq_no":2,"role":"author","claim_status":false,"last_name":"Deal","display_name":"Deal,
+        Eric","daisng_id":15456544,"orcid_id":"0000-0003-0945-9160","full_name":"Deal,
+        Eric","addr_no":2,"data-item-ids":{"data-item-id":{"type":"person","content":"DWC-6140-2022","id-type":"PreferredRID"}},"wos_standard":"Deal,
+        E","r_id":"DWC-6140-2022","first_name":"Eric","preferred_name":{"full_name":"Deal,
+        Eric","last_name":"Deal","first_name":"Eric"}},{"seq_no":3,"role":"author","claim_status":false,"last_name":"Nevison","display_name":"Nevison,
+        Cynthia D.","daisng_id":16403437,"orcid_id":"0000-0002-7157-092X","full_name":"Nevison,
+        Cynthia D.","addr_no":3,"data-item-ids":{"data-item-id":{"type":"person","content":"DZU-3035-2022","id-type":"PreferredRID"}},"wos_standard":"Nevison,
+        CD","r_id":"DZU-3035-2022","first_name":"Cynthia D.","preferred_name":{"full_name":"Nevison,
+        Cynthia","last_name":"Nevison","first_name":"Cynthia"}},{"seq_no":4,"role":"author","claim_status":false,"last_name":"Casciotti","display_name":"Casciotti,
+        Karen L.","daisng_id":28795139,"orcid_id":"0000-0002-5286-7795","full_name":"Casciotti,
+        Karen L.","addr_no":4,"data-item-ids":{"data-item-id":{"type":"person","content":"FZC-4745-2022","id-type":"PreferredRID"}},"wos_standard":"Casciotti,
+        KL","r_id":"FZC-4745-2022","first_name":"Karen L.","preferred_name":{"full_name":"Casciotti,
+        Karen L.","last_name":"Casciotti","first_name":"Karen L."}}]},"doctypes":{"doctype":"Article","count":1},"publishers":{"publisher":{"names":{"count":1,"name":{"seq_no":1,"role":"publisher","full_name":"AMER
+        GEOPHYSICAL UNION","unified_name":"Amer Geophysical Union","addr_no":1,"display_name":"AMER
+        GEOPHYSICAL UNION"}},"address_spec":{"city":"WASHINGTON","addr_no":1,"full_address":"2000
+        FLORIDA AVE NW, WASHINGTON, DC 20009 USA"}}},"EWUID":{"WUID":{"coll_id":"WOS"},"edition":{"value":"WOS.SCI"}},"titles":{"count":6,"title":[{"type":"source","content":"GLOBAL
+        BIOGEOCHEMICAL CYCLES"},{"type":"source_abbrev","content":"GLOBAL BIOGEOCHEM
+        CY"},{"type":"abbrev_iso","content":"Glob. Biogeochem. Cycle"},{"type":"abbrev_11","content":"GLOBAL
+        BIOG"},{"type":"abbrev_29","content":"GLOBAL BIOGEOCHEM CYCLE"},{"type":"item","content":"N<sub>2<\/sub>O
+        production in the eastern South Atlantic: Analysis of N<sub>2<\/sub>O stable
+        isotopic and concentration data"}]}},"item":{"xsi:type":"itemType_wos","coll_id":"WOS","ids":{"avail":"N","content":"AW9RE"},"xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","bib_pagecount":{"type":"Journal","content":230},"keywords_plus":{"count":10,"keyword":["ATMOSPHERIC
+        NITROUS-OXIDE","TROPICAL NORTH PACIFIC","OXYGEN-MINIMUM","CARBON-DIOXIDE","NITRIC-OXIDE","EXPERIMENTAL
+        DROUGHT","NITRIFICATION RATES","GLOBAL DISTRIBUTION","SOIL EMISSIONS","DENITRIFICATION"]},"bib_id":"28
+        (11): 1262-1278 NOV 2014"},"fullrecord_metadata":{"addresses":{"count":4,"address_name":[{"names":{"count":1,"name":{"seq_no":1,"role":"author","claim_status":false,"reprint":"Y","last_name":"Frame","display_name":"Frame,
+        Caitlin H.","daisng_id":21912644,"full_name":"Frame, Caitlin H.","addr_no":1,"data-item-ids":{"data-item-id":{"type":"person","content":"EWP-2248-2022","id-type":"PreferredRID"}},"wos_standard":"Frame,
+        CH","first_name":"Caitlin H.","preferred_name":{"full_name":"Frame, Caitlin
+        H.","last_name":"Frame","first_name":"Caitlin H."}}},"address_spec":{"country":"Switzerland","city":"Basel","addr_no":1,"organizations":{"organization":[{"pref":null,"content":"Univ
+        Basel"},{"pref":"Y","content":"University of Basel"},{"pref":"N","content":"University
+        of Basel Faculty of Science"},{"pref":"N","content":"University of Basel Department
+        of Environmental Sciences"}],"count":4},"full_address":"Univ Basel, Dept Environm
+        Sci, Basel, Switzerland","suborganizations":{"count":1,"suborganization":"Dept
+        Environm Sci"}}},{"names":{"count":1,"name":{"seq_no":2,"role":"author","claim_status":false,"last_name":"Deal","display_name":"Deal,
+        Eric","daisng_id":15456544,"orcid_id":"0000-0003-0945-9160","full_name":"Deal,
+        Eric","addr_no":2,"data-item-ids":{"data-item-id":{"type":"person","content":"DWC-6140-2022","id-type":"PreferredRID"}},"wos_standard":"Deal,
+        E","first_name":"Eric","preferred_name":{"full_name":"Deal, Eric","last_name":"Deal","first_name":"Eric"}}},"address_spec":{"country":"France","city":"Grenoble","addr_no":2,"organizations":{"organization":[{"pref":null,"content":"Univ
+        Grenoble 1"},{"pref":"Y","content":"UDICE-French Research Universities"},{"pref":"Y","content":"Communaute
+        Universite Grenoble Alpes"},{"pref":"Y","content":"Universite Grenoble Alpes
+        (UGA)"},{"pref":"Y","content":"Centre National de la Recherche Scientifique
+        (CNRS)"},{"pref":"Y","content":"Institut de Recherche pour le Developpement
+        (IRD)"},{"pref":"Y","content":"Universite Gustave-Eiffel"},{"pref":"Y","content":"Universite
+        de Savoie"},{"pref":"N","content":"UMS832"},{"pref":"N","content":"Institut
+        des Sciences de la Terre"}],"count":10},"full_address":"Univ Grenoble 1, Inst
+        Sci Terre, Grenoble, France","suborganizations":{"count":1,"suborganization":"Inst
+        Sci Terre"}}},{"names":{"count":1,"name":{"seq_no":3,"role":"author","claim_status":false,"last_name":"Nevison","display_name":"Nevison,
+        Cynthia D.","daisng_id":16403437,"orcid_id":"0000-0002-7157-092X","full_name":"Nevison,
+        Cynthia D.","addr_no":3,"data-item-ids":{"data-item-id":{"type":"person","content":"DZU-3035-2022","id-type":"PreferredRID"}},"wos_standard":"Nevison,
+        CD","first_name":"Cynthia D.","preferred_name":{"full_name":"Nevison, Cynthia","last_name":"Nevison","first_name":"Cynthia"}}},"address_spec":{"zip":{"location":"AP","content":80309},"country":"USA","city":"Boulder","addr_no":3,"organizations":{"organization":[{"pref":null,"content":"Univ
+        Colorado"},{"pref":"Y","content":"University of Colorado System"},{"pref":"Y","content":"University
+        of Colorado Boulder"},{"pref":"N","content":"University of Colorado Boulder
+        Graduate School"},{"pref":"N","content":"University of Colorado Boulder Institute
+        of Arctic and Alpine Research"}],"count":5},"full_address":"Univ Colorado,
+        Inst Arctic & Alpine Res, Boulder, CO 80309 USA","state":"CO","suborganizations":{"count":1,"suborganization":"Inst
+        Arctic & Alpine Res"}}},{"names":{"count":1,"name":{"seq_no":4,"role":"author","claim_status":false,"last_name":"Casciotti","display_name":"Casciotti,
+        Karen L.","daisng_id":28795139,"orcid_id":"0000-0002-5286-7795","full_name":"Casciotti,
+        Karen L.","addr_no":4,"data-item-ids":{"data-item-id":{"type":"person","content":"FZC-4745-2022","id-type":"PreferredRID"}},"wos_standard":"Casciotti,
+        KL","first_name":"Karen L.","preferred_name":{"full_name":"Casciotti, Karen
+        L.","last_name":"Casciotti","first_name":"Karen L."}}},"address_spec":{"zip":{"location":"AP","content":94304},"country":"USA","city":"Palo
+        Alto","addr_no":4,"organizations":{"organization":[{"pref":null,"content":"Stanford
+        Univ"},{"pref":"Y","content":"Stanford University"}],"count":2},"full_address":"Stanford
+        Univ, Dept Environm Earth Syst Sci, Palo Alto, CA 94304 USA","state":"CA","suborganizations":{"count":1,"suborganization":"Dept
+        Environm Earth Syst Sci"}}}]},"category_info":{"subheadings":{"count":2,"subheading":["Life
+        Sciences & Biomedicine","Physical Sciences"]},"subjects":{"subject":[{"ascatype":"traditional","code":"JA","content":"Environmental
+        Sciences"},{"ascatype":"traditional","code":"LE","content":"Geosciences, Multidisciplinary"},{"ascatype":"traditional","code":"QQ","content":"Meteorology
+        & Atmospheric Sciences"},{"ascatype":"extended","content":"Environmental Sciences
+        & Ecology"},{"ascatype":"extended","content":"Geology"},{"ascatype":"extended","content":"Meteorology
+        & Atmospheric Sciences"}],"count":6},"headings":{"heading":"Science & Technology","count":1}},"normalized_languages":{"count":1,"language":{"type":"primary","content":"English"}},"languages":{"count":1,"language":{"type":"primary","content":"English"}},"keywords":{"count":6,"keyword":["nitrous
+        oxide (N2O)","isotopomer","nitrification","denitrification","nitrifier denitrification","coastal
+        upwelling"]},"refs":{"count":106},"reprint_addresses":{"count":1,"address_name":{"names":{"count":1,"name":{"seq_no":1,"role":"author","full_name":"Frame,
+        Caitlin H.","reprint":"Y","addr_no":1,"last_name":"Frame","display_name":"Frame,
+        Caitlin H.","wos_standard":"Frame, CH","first_name":"Caitlin H."}},"address_spec":{"country":"Switzerland","city":"Basel","addr_no":1,"organizations":{"organization":[{"pref":null,"content":"Univ
+        Basel"},{"pref":"Y","content":"University of Basel"},{"pref":"N","content":"University
+        of Basel Faculty of Science"},{"pref":"N","content":"University of Basel Department
+        of Environmental Sciences"}],"count":4},"full_address":"Univ Basel, Dept Environm
+        Sci, Basel, Switzerland","suborganizations":{"count":1,"suborganization":"Dept
+        Environm Sci"}}}},"abstracts":{"count":1,"abstract":{"abstract_text":{"p":"The
+        stable isotopic composition of dissolved nitrous oxide (N2O) is a tracer for
+        the production, transport, and consumption of this greenhouse gas in the ocean.
+        Here we present dissolved N2O concentration and isotope data from the South
+        Atlantic Ocean, spanning from the western side of the mid-Atlantic Ridge to
+        the upwelling zone off the southern African coast. In the eastern South Atlantic,
+        shallow N2O production by nitrifier denitrification contributed a flux of
+        isotopically depleted N2O to the atmosphere. Along the African coast, N2O
+        fluxes to the atmosphere of up to 46 mu mol/m(2)/d were calculated using satellite-derived
+        QuikSCAT wind speed data, while fluxes at the offshore stations averaged 0.04
+        mu mol/m(2)/d. Comparison of the isotopic composition of the deeper N2O in
+        the South Atlantic (800m to 1000m) to measurements made in other regions suggests
+        that water advected from one or more of the major oxygen deficient zones contributed
+        N2O to the mesopelagic South Atlantic via the Southern Ocean. This deeper
+        N2O was isotopically and isotopomerically enriched (N-15(bulk) - N2O = 8.70.1,
+        O-18 - N2O = 46.50.2, and Site Preference = 18.7 +/- 0.6 parts per thousand)
+        relative to the shallow N2O source, indicating that N2O consumption by denitrification
+        influenced its isotopic composition. The N2O concentration maximum was observed
+        between 200m and 400m and reached 49 nM near the Angolan coast. The depths
+        of the N2O concentration maximum coincided with those of sedimentary particle
+        resuspension along the coast. The isotopic composition of this N2O (N-15(bulk)
+        - N2O = 5.8 +/- 0.1 parts per thousand, O-18 - N2O = 39.7 +/- 0.1 parts per
+        thousand, and Site Preference = 9.8 +/- 1.0 parts per thousand) was consistent
+        with production by diffusion-limited nitrate (NO3-) reduction to nitrite (NO2-),
+        followed by NO2- reduction to N2O by denitrification and/or nitrifier denitrification,
+        with additional N2O production by NH2OH decomposition during NH3 oxidation.
+        The sediment surface, benthic boundary layer, or particles resuspended from
+        the sediments are likely to have provided the physical and chemical conditions
+        necessary to produce this N2O.","count":1}}},"fund_ack":{"grants":{"count":2,"grant":[{"grant_agency_names":[{"pref":"Y","content":"National
+        Science Foundation (NSF)"},{"pref":"N","content":"NSF/OCE"}],"grant_ids":{"grant_id":"05-26277","count":1},"grant_agency":"NSF/OCE"},{"grant_agency_names":{"pref":"N","content":"MIT
+        EAPS Houghton Fund"},"grant_agency":"MIT EAPS Houghton Fund"}]},"fund_text":{"p":"The
+        data for this paper are available under the CoFeMUG program at http://www.bco-dmo.org.
+        We thank the captain and crew of the R/V Knorr and chief scientist Mak Saito
+        as well as Abigail Noble, Alysia Cox, Tyler Goepfert, and Chad Hammerschmidt
+        for assistance during the cruise. We also thank Matt McIlvin for expert assistance
+        analyzing samples and Rachel Stanley for generously providing the MATLAB code
+        for calculating gas transfer velocities from QuikSCAT wind data. Reviews from
+        Marian Westley and Nathaniel Ostrom greatly improved the quality of the manuscript.
+        Support for this work came from NSF/OCE grant 05-26277 to K.L.C. and a grant
+        from the MIT EAPS Houghton Fund to C.H.F."}},"normalized_doctypes":{"doctype":"Article","count":1}},"contributors":{"contributor":[{"name":{"seq_no":1,"orcid_id":"0000-0002-7157-092X","role":"researcher_id","full_name":"NEVISON,
+        CYNTHIA","last_name":"NEVISON","display_name":"NEVISON, CYNTHIA","first_name":"CYNTHIA"}},{"name":{"seq_no":2,"orcid_id":"0000-0002-5286-7795","role":"researcher_id","full_name":"Casciotti,
+        Karen","last_name":"Casciotti","display_name":"Casciotti, Karen","first_name":"Karen"}},{"name":{"seq_no":3,"orcid_id":"0000-0003-0945-9160","role":"researcher_id","full_name":"Deal,
+        Eric","last_name":"Deal","display_name":"Deal, Eric","first_name":"Eric"}}],"count":3}},"dates":{"date_loaded":"2015-01-14T23:59:59.00000","date_modified":"2020-08-21T14:35:08.550061","date_created":"2014-12-25T12:25:20.684325"},"r_id_disclaimer":"ResearcherID
+        data provided by Clarivate Analytics","dynamic_data":{"citation_related":{"tc_list_cc":{"dedup_total_count":6,"function_tc":[{"local_count":0,"func_class":"basis"},{"local_count":1,"func_class":"background"},{"local_count":1,"func_class":"support"},{"local_count":0,"func_class":"differ"},{"local_count":5,"func_class":"discuss"}]},"SDG":{"sdg_category":[{"content":"14
+        Life Below Water","status":"Active"},{"content":"13 Climate Action","status":"Active"}],"code":154},"citation_topics":{"subj-group":{"subject":[{"content-type":"macro","content-id":"3","content":"Agriculture,
+        Environment & Ecology"},{"content-type":"meso","content-id":"3.2","content":"Marine
+        Biology"},{"content-type":"micro","content-id":"3.2.154","content":"Phytoplankton"}]}},"tc_list":{"tc_mod_date":"2023-09-20","silo_tc":{"coll_id":"WOS","local_count":35}}},"cluster_related":{"identifiers":{"identifier":[{"type":"issn","value":"0886-6236"},{"type":"eissn","value":"1944-9224"},{"type":"doi","value":"10.1002/2013GB004790"}]}},"wos_usage":{"last180days":3,"alltime":98}}},{"UID":"WOS:000081515000015","static_data":{"summary":{"pub_info":{"coverdate":"JUL
+        1999","vol":26,"journal_oas_gold":"N","pubyear":1999,"issue":7,"sortdate":"1999-07-01","has_abstract":"Y","pubmonth":"JUL","pubtype":"Journal","page":{"end":1293,"begin":1279,"page_count":15,"content":"1279-1293"}},"names":{"count":3,"name":[{"seq_no":1,"role":"author","claim_status":false,"reprint":"Y","last_name":"Williams","display_name":"Williams,
+        MB","daisng_id":17820946,"full_name":"Williams, MB","data-item-ids":{"data-item-id":{"type":"person","content":"EFV-0543-2022","id-type":"PreferredRID"}},"wos_standard":"Williams,
+        MB","r_id":"EFV-0543-2022","first_name":"MB","preferred_name":{"full_name":"Williams,
+        M. B.","last_name":"Williams","first_name":"M. B."}},{"seq_no":2,"role":"author","claim_status":false,"last_name":"Mangiafico","display_name":"Mangiafico,
+        PA","daisng_id":28755023,"orcid_id":"0000-0002-1859-6354","full_name":"Mangiafico,
+        PA","data-item-ids":{"data-item-id":{"type":"person","content":"FYY-4629-2022","id-type":"PreferredRID"}},"wos_standard":"Mangiafico,
+        PA","r_id":"FYY-4629-2022","first_name":"PA","preferred_name":{"full_name":"Mangiafico,
+        PA","last_name":"Mangiafico","first_name":"PA"}},{"seq_no":3,"role":"author","full_name":"Simoni,
+        PU","claim_status":false,"last_name":"Simoni","data-item-ids":{"data-item-id":{"type":"person","content":"IGF-6886-2023","id-type":"PreferredRID"}},"display_name":"Simoni,
+        PU","wos_standard":"Simoni, PU","r_id":"IGF-6886-2023","daisng_id":43086867,"first_name":"PU","preferred_name":{"full_name":"Simoni,
+        PU","last_name":"Simoni","first_name":"PU"}}]},"doctypes":{"doctype":"Article","count":1},"publishers":{"publisher":{"names":{"count":1,"name":{"seq_no":1,"role":"publisher","full_name":"AMER
+        INST PHYSICS","unified_name":"Amer Inst Physics","addr_no":1,"display_name":"AMER
+        INST PHYSICS"}},"address_spec":{"city":"WOODBURY","addr_no":1,"full_address":"CIRCULATION
+        FULFILLMENT DIV, 500 SUNNYSIDE BLVD, WOODBURY, NY 11797-2999 USA"}}},"EWUID":{"WUID":{"coll_id":"WOS"},"edition":{"value":"WOS.SCI"}},"titles":{"count":6,"title":[{"type":"source","content":"MEDICAL
+        PHYSICS"},{"type":"source_abbrev","content":"MED PHYS"},{"type":"abbrev_iso","content":"Med.
+        Phys."},{"type":"abbrev_11","content":"MED PHYS"},{"type":"abbrev_29","content":"MED
+        PHYS"},{"type":"item","content":"Noise power spectra of images from digital
+        mammography detectors"}]}},"item":{"xsi:type":"itemType_wos","coll_id":"WOS","ids":{"avail":"Y","content":"217TL"},"xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","keywords_plus":{"count":6,"keyword":["MODULATION
+        TRANSFER-FUNCTION","QUANTUM EFFICIENCY","IMAGING-SYSTEMS","RADIOGRAPHY","SIGNAL","SLIT"]},"bib_id":"26
+        (7): 1279-1293 JUL 1999"},"fullrecord_metadata":{"addresses":{"count":1,"address_name":{"address_spec":{"zip":{"location":"AP","content":22908},"country":"USA","city":"Charlottesville","addr_no":1,"organizations":{"organization":[{"pref":null,"content":"Univ
+        Virginia"},{"pref":"Y","content":"University of Virginia"}],"count":2},"full_address":"Univ
+        Virginia, Dept Radiol, Charlottesville, VA 22908 USA","state":"VA","suborganizations":{"count":1,"suborganization":"Dept
+        Radiol"}}}},"category_info":{"subheadings":{"count":1,"subheading":"Life Sciences
+        & Biomedicine"},"subjects":{"subject":[{"ascatype":"traditional","code":"VY","content":"Radiology,
+        Nuclear Medicine & Medical Imaging"},{"ascatype":"extended","content":"Radiology,
+        Nuclear Medicine & Medical Imaging"}],"count":2},"headings":{"heading":"Science
+        & Technology","count":1}},"normalized_languages":{"count":1,"language":{"type":"primary","content":"English"}},"languages":{"count":1,"language":{"type":"primary","content":"English"}},"keywords":{"count":4,"keyword":["noise
+        power spectrum","digital mammography","detector","image analysis"]},"refs":{"count":33},"reprint_addresses":{"count":1,"address_name":{"names":{"count":1,"name":{"seq_no":1,"role":"author","full_name":"Williams,
+        MB","reprint":"Y","display":"N","addr_no":1,"last_name":"Williams","display_name":"Williams,
+        MB","wos_standard":"Williams, MB","first_name":"MB"}},"address_spec":{"zip":{"location":"AP","content":22908},"country":"USA","city":"Charlottesville","addr_no":1,"organizations":{"organization":[{"pref":null,"content":"Univ
+        Virginia"},{"pref":"Y","content":"University of Virginia"}],"count":2},"full_address":"Univ
+        Virginia, Dept Radiol, Charlottesville, VA 22908 USA","state":"VA","suborganizations":{"count":1,"suborganization":"Dept
+        Radiol"}}}},"abstracts":{"count":1,"abstract":{"abstract_text":{"p":"Noise
+        characterization through estimation of the noise power spectrum (NPS) is a
+        central component of the evaluation of digital x-ray systems. We begin with
+        a brief review of the fundamentals of NPS theory and measurement, derive explicit
+        expressions for calculation of the one- and two-dimensional (1D and 2D) NPS,
+        and discuss some of the considerations and tradeoffs when these concepts are
+        applied to digital systems. Measurements of the NPS of two detectors for digital
+        mammography are presented to illustrate some of the implications of the choices
+        available. For both systems, two-dimensional noise power spectra obtained
+        over a range of input fluence exhibit pronounced asymmetry between the orthogonal
+        frequency dimensions. The 2D spectra of both systems also demonstrate dominant
+        structures both on and off the primary frequency axes indicative of periodic
+        noise components. Although the two systems share many common noise characteristics,
+        there are significant differences, including markedly different dark-noise
+        magnitudes, differences in NPS shape as a function of both spatial frequency
+        and exposure, and differences in the natures of the residual fixed pattern
+        noise following flat fielding corrections. For low x-ray exposures, quantum
+        noise-limited operation may be possible only at low spatial frequency. Depending
+        on the method of obtaining the 1D NPS (i.e., synthetic slit scanning or slice
+        extraction from the 2D NPS), on-axis periodic structures can be misleadingly
+        smoothed or missed entirely. Our measurements indicate that for these systems,
+        1D spectra useful for the purpose of detective quantum efficiency calculation
+        may be obtained from thin cuts through the central portion of the calculated
+        2D NPS. On the other hand, low-frequency spectral;values do not converge to
+        an asymptotic value with increasing slit length when 1D spectra are generated
+        using the scanned synthetic slit method. Aliasing can contribute significantly
+        to the digital NPS, especially near the Nyquist frequency. Calculation of
+        the theoretical presampling NPS and explicit inclusion of aliased noise power
+        shows good agreement with measured values. (C) 1999 American Association of
+        Physicists in Medicine. [S0094-2405(99)00707-5].","count":1}}},"fund_ack":{"grants":{"count":1,"grant":{"grant_agency_names":[{"pref":"Y","content":"United
+        States Department of Health & Human Services"},{"pref":"Y","content":"National
+        Institutes of Health (NIH) - USA"},{"pref":"Y","content":"NIH National Cancer
+        Institute (NCI)"},{"pref":"N","content":"NCI NIH HHS"}],"grant_ids":{"grant_id":"R01
+        CA69252","count":1},"grant_source":"Medline","grant_agency":"NCI NIH HHS"}}},"normalized_doctypes":{"doctype":"Article","count":1}},"contributors":{"contributor":{"name":{"seq_no":1,"orcid_id":"0000-0002-1859-6354","role":"researcher_id","full_name":"Mangiafico,
+        Peter","last_name":"Mangiafico","display_name":"Mangiafico, Peter","first_name":"Peter"}},"count":1}},"dates":{"date_loaded":"1999-07-01T23:59:59.00000","date_modified":"2017-06-20T12:25:20.684325","date_created":"1999-12-25T12:25:20.684325"},"r_id_disclaimer":"ResearcherID
+        data provided by Clarivate Analytics","dynamic_data":{"citation_related":{"tc_list_cc":{"dedup_total_count":2,"function_tc":[{"local_count":0,"func_class":"basis"},{"local_count":2,"func_class":"background"},{"local_count":0,"func_class":"support"},{"local_count":0,"func_class":"differ"},{"local_count":0,"func_class":"discuss"}]},"SDG":{"sdg_category":{"content":"03
+        Good Health and Well-being","status":"Active"},"code":1425},"citation_topics":{"subj-group":{"subject":[{"content-type":"macro","content-id":"1","content":"Clinical
+        & Life Sciences"},{"content-type":"meso","content-id":"1.71","content":"Cardiology
+        - Circulation"},{"content-type":"micro","content-id":"1.71.1425","content":"Coronary
+        CT Angiography"}]}},"tc_list":{"silo_tc":{"coll_id":"WOS","local_count":99}}},"cluster_related":{"identifiers":{"identifier":[{"type":"issn","value":"0094-2405"},{"type":"xref_doi","value":"10.1118/1.598623"},{"type":"pmid","value":"MEDLINE:10435530"}]}},"wos_usage":{"last180days":0,"alltime":9}}},{"UID":"WOS:A1975W192600011","static_data":{"summary":{"pub_info":{"coverdate":1975,"vol":280,"journal_oas_gold":"N","pubyear":1975,"issue":11,"sortdate":"1975-01-01","has_abstract":"N","pubtype":"Journal","page":{"end":736,"begin":733,"page_count":4,"content":"733-736"}},"names":{"count":2,"name":[{"seq_no":1,"role":"author","full_name":"BAXTER,
+        JR","claim_status":false,"last_name":"BAXTER","data-item-ids":{"data-item-id":{"type":"person","content":"CFK-9479-2022","id-type":"PreferredRID"}},"display_name":"BAXTER,
+        JR","wos_standard":"BAXTER, JR","suffix":"JR","r_id":"CFK-9479-2022","daisng_id":5159885,"preferred_name":{"full_name":"Baxter,
+        James R.","last_name":"Baxter","first_name":"James R."}},{"seq_no":2,"role":"author","full_name":"BROSAMLER,
+        GA","claim_status":false,"last_name":"BROSAMLER","data-item-ids":{"data-item-id":{"type":"person","content":"EOF-5252-2022","id-type":"PreferredRID"}},"display_name":"BROSAMLER,
+        GA","wos_standard":"BROSAMLER, GA","r_id":"EOF-5252-2022","daisng_id":19855646,"first_name":"GA","preferred_name":{"full_name":"BROSAMLER,
+        GA","last_name":"BROSAMLER","first_name":"GA"}}]},"doctypes":{"doctype":"Article","count":1},"publishers":{"publisher":{"names":{"count":1,"name":{"seq_no":1,"role":"publisher","full_name":"GAUTHIER-VILLARS","addr_no":1,"display_name":"GAUTHIER-VILLARS"}},"address_spec":{"city":"PARIS","addr_no":1,"full_address":"120
+        BLVD SAINT-GERMAIN, 75280 PARIS, FRANCE"}}},"EWUID":{"WUID":{"coll_id":"WOS"},"edition":{"value":"WOS.SCI"}},"titles":{"count":5,"title":[{"type":"source","content":"COMPTES
+        RENDUS HEBDOMADAIRES DES SEANCES DE L ACADEMIE DES SCIENCES SERIE A"},{"type":"source_abbrev","content":"CR
+        ACAD SCI A MATH"},{"type":"abbrev_11","content":"CR AC SCI A"},{"type":"abbrev_29","content":"C
+        R ACAD SCI SER A"},{"type":"item","content":"STRONG MIXING AND ENERGY FOR
+        DIFFUSIONS"}]}},"item":{"xsi:type":"itemType_wos","coll_id":"WOS","ids":{"avail":"Y","content":"W1926"},"xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","bib_id":"280
+        (11): 733-736 1975"},"fullrecord_metadata":{"addresses":{"count":1,"address_name":{"address_spec":{"country":"CANADA","city":"VANCOUVER","street":"DEPT
+        MATH","addr_no":1,"organizations":{"organization":[{"pref":null,"content":"UNIV
+        BRITISH COLUMBIA"},{"pref":"Y","content":"University of British Columbia"}],"count":2},"full_address":"UNIV
+        BRITISH COLUMBIA,DEPT MATH,VANCOUVER,BRITISH COLUMBI,CANADA","state":"BRITISH
+        COLUMBI"}}},"category_info":{"subjects":{"subject":[{"ascatype":"traditional","code":"RO","content":"Multidisciplinary
+        Sciences"},{"ascatype":"extended","content":"Science & Technology - Other
+        Topics"}],"count":2},"headings":{"heading":"Science & Technology","count":1}},"normalized_languages":{"count":1,"language":{"type":"primary","content":"French"}},"languages":{"count":1,"language":{"type":"primary","content":"French"}},"refs":{"count":4},"normalized_doctypes":{"doctype":"Article","count":1}}},"dates":{"date_loaded":"1975-01-01T23:59:59.00000","date_modified":"2017-06-20T12:25:20.684325","date_created":"1975-12-25T12:25:20.684325"},"r_id_disclaimer":"ResearcherID
+        data provided by Clarivate Analytics","dynamic_data":{"citation_related":{"tc_list":{"silo_tc":{"coll_id":"WOS","local_count":1}}},"cluster_related":{"identifiers":""},"wos_usage":{"last180days":0,"alltime":1}}}]}}},"QueryResult":{"QueryID":690,"RecordsSearched":90598143,"RecordsFound":4}}'
+  recorded_at: Wed, 18 Oct 2023 20:01:27 GMT
 recorded_with: VCR 6.2.0
