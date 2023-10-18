@@ -631,6 +631,26 @@ describe Csl::Citation do
       end
     end
 
+    context 'conference proceeding without a year but with an start date' do
+      let(:source_data_key) { :conference_proceeding_without_event_year }
+
+      it 'keeps inproceedings type' do
+        expect(pub_hash.csl_doc).to include('type' => 'inproceedings')
+      end
+
+      it 'creates a Chicago citation' do
+        expect(pub_hash.to_chicago_citation).to eq 'Reed, Jack. 1997. “Preservation and Discovery for GIS Data.” Esri.'
+      end
+
+      it 'creates a MLA citation' do
+        expect(pub_hash.to_mla_citation).to eq 'Reed, Jack. “Preservation and Discovery for GIS Data.” 1997: n. pag. Print.'
+      end
+
+      it 'creates a APA citation' do
+        expect(pub_hash.to_apa_citation).to eq 'Reed, J. (1997). Preservation and discovery for GIS data. Presented at the Esri User Conference, San Diego, California: Esri.'
+      end
+    end
+
     context 'conference proceeding without city' do
       let(:source_data) do
         h = JSON.parse(create(:conference_proceeding).source_data, symbolize_names: true)
