@@ -535,7 +535,7 @@ DEPENDENCIES
   faraday-httpclient
   faraday-retry
   hashie
-  honeybadger (~> 4.2)
+  honeybadger
   htmlentities (~> 4.3)
   httpclient (~> 2.8)
   identifiers (~> 0.12)
