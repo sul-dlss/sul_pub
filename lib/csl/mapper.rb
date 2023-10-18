@@ -75,7 +75,7 @@ module Csl
         # this overrides the sciencewire fields above if both exist, which they shouldn't.
         if pub_hash.key?(:conference)
           cit_data_hash['event'] = pub_hash[:conference][:name] if pub_hash[:conference][:name].present?
-          cit_data_hash['event-date'] = pub_hash[:conference][:startdate] if pub_hash[:conference][:startdate].present?
+          cit_data_hash['event-date'] = { 'date-parts' => [[pub_hash[:conference][:startdate]]] } if pub_hash[:conference][:startdate].present?
           # override the startdate if there is a year:
           if pub_hash[:conference][:year].present?
             cit_data_hash['event-date'] =
