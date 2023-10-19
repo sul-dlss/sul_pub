@@ -122,4 +122,252 @@ http_interactions:
             </map>
         </response>
   recorded_at: Thu, 22 Jun 2023 19:38:09 GMT
-recorded_with: VCR 6.1.0
+- request:
+    method: get
+    uri: https://wos-api.clarivate.com/api/wos/?count=0&databaseId=WOK&firstRecord=1&usrQuery=AI=(%220000-0003-3859-2905%22)
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.7.11
+      Accept:
+      - application/xml
+      X-Apikey:
+      - Settings.WOS.API_KEY
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 19 Oct 2023 22:24:52 GMT
+      Content-Type:
+      - application/xml
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      X-Rec-Amtperyear-Remaining:
+      - '2095835'
+      X-Req-Reqpersec-Remaining:
+      - '24'
+      Vary:
+      - Origin
+      Correlation-Id:
+      - 8cd5e0b0-d74e-4d39-945c-153bb8611ed1#8962329
+      X-Kong-Upstream-Latency:
+      - '19'
+      X-Kong-Proxy-Latency:
+      - '2'
+      Via:
+      - kong/2.8.1
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <response xmlns="http://www.isinet.com/xrpc42">
+            <map>
+                <map name="Data">
+                    <val name="Records"><![CDATA[<records></records>]]></val>
+                </map>
+                <map name="QueryResult">
+                    <map>
+                        <val name="QueryID">1519</val>
+                        <val name="RecordsSearched">100852250</val>
+                        <val name="RecordsFound">168</val>
+                    </map>
+                </map>
+            </map>
+        </response>
+  recorded_at: Thu, 19 Oct 2023 22:24:52 GMT
+- request:
+    method: get
+    uri: https://wos-api.clarivate.com/api/wos/recordids/1519?count=100&databaseId=WOK&firstRecord=1&loadTimeSpan=4W&usrQuery=AI=(%220000-0003-3859-2905%22)
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.7.11
+      Accept:
+      - application/json
+      X-Apikey:
+      - Settings.WOS.API_KEY
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 19 Oct 2023 22:24:53 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Origin
+      Correlation-Id:
+      - dd6cee7a-60c3-4cee-b6b8-c975976a062d#8872234
+      X-Kong-Upstream-Latency:
+      - '38'
+      X-Kong-Proxy-Latency:
+      - '2'
+      Via:
+      - kong/2.8.1
+    body:
+      encoding: UTF-8
+      string: '["WOS:001068887100001","WOS:001064713900001","MEDLINE:37703349","MEDLINE:37560024","WOS:000892597100001","MEDLINE:36759510","WOS:000938931000001","MEDLINE:36909470","MEDLINE:36712099","WOS:000864514800001","WOS:000860838000002","WOS:000698490300007","WOS:001023081100019","WOS:000763000800082","WOS:000715042600002","WOS:000636223400002","WOS:000684996500011","WOS:000617972500001","MEDLINE:33398279","WOS:000588364200001","WOS:000567371800007","MEDLINE:32634869","WOS:000538558900001","WOS:000446102400021","WOS:000525701400011","WOS:000496299100001","WOS:000486860200001","WOS:000503918200011","WOS:000499323900063","WOS:000495364500004","WOS:000458148200005","WOS:000474099000003","WOS:000440967900012","WOS:000424402500017","WOS:000469491000009","WOS:000467960500002","WOS:000466783000004","WOS:000466750900030","WOS:000461888300013","WOS:000346156800022","WOS:000461831500054","WOS:000460125400015","WOS:000459314900007","WOS:000427887200012","WOS:000444941300001","WOS:000445753100002","WOS:000454618200017","WOS:000430004300020","WOS:000375514000018","WOS:000443787600011","WOS:000446339600001","WOS:000446528600003","WOS:000418321600009","WOS:000435287900002","WOS:000430475300003","WOS:000429402800001","WOS:000434113600009","WOS:000431884200012","WOS:000428180700004","WOS:000426276000005","WOS:000428317700011","WOS:000426706600001","WOS:000427537700003","WOS:000425523000032","WOS:000419625900016","WOS:000424386600014","WOS:000425900600019","WOS:000422723300003","WOS:000418800600012","WOS:000415365500035","WOS:000397264100008","WOS:000398829200005","WOS:000398197800006","WOS:000409183600006","WOS:000412543100006","WOS:000405498300005","WOS:000405616900002","WOS:000400664400006","WOS:000461831500006","WOS:000390851300005","WOS:000416455600001","WOS:000407082400024","WOS:000412731000028","WOS:000415583200001","WOS:000407861100014","WOS:000408790100013","WOS:000405361900008","WOS:000403782300001","WOS:000404090100028","WOS:000399659000008","WOS:000399806500016","WOS:000386326200019","WOS:000386326200035","WOS:000391454500093","WOS:000392723700004","WOS:000389557000012","WOS:000360620100003","WOS:000352195700026","WOS:000358862400002","WOS:000392132200006"]'
+  recorded_at: Thu, 19 Oct 2023 22:24:52 GMT
+- request:
+    method: get
+    uri: https://wos-api.clarivate.com/api/wos/recordids/1519?count=100&databaseId=WOK&firstRecord=101&loadTimeSpan=4W&usrQuery=AI=(%220000-0003-3859-2905%22)
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.7.11
+      Accept:
+      - application/json
+      X-Apikey:
+      - Settings.WOS.API_KEY
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 19 Oct 2023 22:24:53 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Origin
+      Correlation-Id:
+      - 3552fe85-7449-45d3-9998-fd40d6906031#8940045
+      X-Kong-Upstream-Latency:
+      - '28'
+      X-Kong-Proxy-Latency:
+      - '2'
+      Via:
+      - kong/2.8.1
+    body:
+      encoding: UTF-8
+      string: '["WOS:000387469100004","WOS:000352317000013","WOS:000345153300029","WOS:000355939300014","WOS:000384036900025","WOS:000384536000001","WOS:000383781600015","WOS:000381691000001","WOS:000380831700005","WOS:000394450500004","WOS:000380224500063","MEDLINE:27199190","WOS:000376584400019","WOS:000373526700005","WOS:000373658300011","WOS:000374084800022","WOS:000336509000034","WOS:000374412300003","WOS:000332858400048","WOS:000364401600008","WOS:000368357800013","WOS:000370421800005","WOS:000366135900002","WOS:000368286000016","WOS:000367655600002","WOS:000365709900005","WOS:000364626100006","WOS:000359752100030","WOS:000362838700024","WOS:000360191800016","WOS:000360322800016","WOS:000359645700006","WOS:000359895400001","MEDLINE:26306281","WOS:000358821300020","WOS:000358581700030","WOS:000357993500007","WOS:000356370900005","WOS:000356780900020","WOS:000355557900008","WOS:000355751600011","WOS:000352371900019","WOS:000351668600006","WOS:000353198700012","WOS:000349450800007","WOS:000461835500001","WOS:000348562700003","WOS:000349098000032","WOS:000347393200006","WOS:000347500100015","WOS:000346632900006","WOS:000348126800006","WOS:000346156800023","WOS:000336507500015","WOS:000461835500048","WOS:000343666300003","WOS:000342763900023","WOS:000341505000057","WOS:000340731400006","WOS:000339602900018","WOS:000339166700007","WOS:000337727000007","WOS:000336260000006","WOS:000335405200021","WOS:000334429300007","WOS:000334741600026","WOS:000332575800021","MEDLINE:25717414"]'
+  recorded_at: Thu, 19 Oct 2023 22:24:53 GMT
+- request:
+    method: get
+    uri: https://wos-api.clarivate.com/api/wos/?count=0&databaseId=WOK&firstRecord=1&loadTimeSpan=4W&usrQuery=AI=(%220000-0003-3859-2905%22)
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.7.11
+      Accept:
+      - application/xml
+      X-Apikey:
+      - Settings.WOS.API_KEY
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 19 Oct 2023 23:12:00 GMT
+      Content-Type:
+      - application/xml
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      X-Rec-Amtperyear-Remaining:
+      - '2095831'
+      X-Req-Reqpersec-Remaining:
+      - '24'
+      Vary:
+      - Origin
+      Correlation-Id:
+      - 52e6745a-df54-4065-bb17-6516d4b67fa6#8956539
+      X-Kong-Upstream-Latency:
+      - '31'
+      X-Kong-Proxy-Latency:
+      - '2'
+      Via:
+      - kong/2.8.1
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <response xmlns="http://www.isinet.com/xrpc42">
+            <map>
+                <map name="Data">
+                    <val name="Records"><![CDATA[<records></records>]]></val>
+                </map>
+                <map name="QueryResult">
+                    <map>
+                        <val name="QueryID">1542</val>
+                        <val name="RecordsSearched">584838</val>
+                        <val name="RecordsFound">2</val>
+                    </map>
+                </map>
+            </map>
+        </response>
+  recorded_at: Thu, 19 Oct 2023 23:12:00 GMT
+- request:
+    method: get
+    uri: https://wos-api.clarivate.com/api/wos/recordids/1542?count=100&databaseId=WOK&firstRecord=1&loadTimeSpan=4W&usrQuery=AI=(%220000-0003-3859-2905%22)
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.7.11
+      Accept:
+      - application/json
+      X-Apikey:
+      - Settings.WOS.API_KEY
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 19 Oct 2023 23:12:00 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Origin
+      Correlation-Id:
+      - 9fe11142-6133-4f29-82cc-3a9932f07ab3#8992683
+      X-Kong-Upstream-Latency:
+      - '13'
+      X-Kong-Proxy-Latency:
+      - '11'
+      Via:
+      - kong/2.8.1
+    body:
+      encoding: UTF-8
+      string: '["WOS:001068887100001","WOS:001064713900001"]'
+  recorded_at: Thu, 19 Oct 2023 23:12:00 GMT
+recorded_with: VCR 6.2.0

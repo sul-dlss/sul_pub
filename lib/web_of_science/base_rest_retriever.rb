@@ -6,7 +6,7 @@ module WebOfScience
   # - the "next_batch?" is like "next?"
   # - the "next_batch" is like "next"
   class BaseRestRetriever
-    attr_reader :records_found, :records_retrieved
+    attr_reader :records_found, :records_retrieved, :query_id
 
     # @param [String] path of REST endpoint
     # @param [Hash] query parameters
@@ -18,23 +18,15 @@ module WebOfScience
       @batch_size = batch_size
     end
 
-    # Retrieve and collect all record UIDs
-    # @return [Array<String>] WosUIDs
-    def merged_uids
-      uids = batch_one.uids
-      uids += next_batch.uids while next_batch?
-      uids
-    end
-
     # @return [Boolean] are more records available?
     def next_batch?
-      @batch_one.nil? || records_retrieved < records_found
+      @batch_one.blank? || records_retrieved < records_found
     end
 
     # Retrieve the next batch of records (without merging).
     # @return [WebOfScience::Records, nil]
     def next_batch
-      return batch_one if @batch_one.nil?
+      return batch_one if @batch_one.blank?
       return if records_retrieved?
 
       retrieve_batch
@@ -45,13 +37,13 @@ module WebOfScience
     # this is the maximum number that can be returned in a single query by WoS
     MAX_RECORDS = 100
 
-    attr_reader :batch_size, :query, :query_id, :path, :params
+    attr_reader :batch_size, :query, :path, :params
 
     delegate :client, to: WebOfScience
 
     # @return [Boolean] all records retrieved?
     def records_retrieved?
-      @batch_one.nil? ? false : records_retrieved == records_found
+      @batch_one.blank? ? false : records_retrieved == records_found
     end
 
     # Retrieve and merge all records
