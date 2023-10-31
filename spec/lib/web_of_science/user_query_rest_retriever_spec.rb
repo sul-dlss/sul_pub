@@ -14,7 +14,7 @@ describe WebOfScience::UserQueryRestRetriever, :vcr do
     expect(records.first).to be_a WebOfScience::Record
     expect(retriever.next_batch?).to be true
     records = retriever.next_batch
-    expect(records.count).to eq 56
+    expect(records.count).to eq 68
     expect(retriever.next_batch?).to be false
   end
 
@@ -26,7 +26,7 @@ describe WebOfScience::UserQueryRestRetriever, :vcr do
     it 'retrieves records' do
       expect(retriever.next_batch?).to be true
       records = retriever.next_batch
-      expect(records.count).to eq 6
+      expect(records.count).to eq 14
     end
   end
 
@@ -38,7 +38,7 @@ describe WebOfScience::UserQueryRestRetriever, :vcr do
     it 'retrieves records' do
       expect(retriever.next_batch?).to be true
       records = retriever.next_batch
-      expect(records.count).to eq 6
+      expect(records.count).to eq 14
     end
   end
 end

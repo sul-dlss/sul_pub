@@ -8,7 +8,7 @@ http_interactions:
       string: ''
     headers:
       User-Agent:
-      - Faraday v2.7.6
+      - Faraday v2.7.11
       Accept:
       - application/xml
       X-Apikey:
@@ -21,7 +21,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Wed, 21 Jun 2023 13:42:47 GMT
+      - Tue, 31 Oct 2023 18:01:56 GMT
       Content-Type:
       - application/xml
       Transfer-Encoding:
@@ -29,15 +29,15 @@ http_interactions:
       Connection:
       - keep-alive
       X-Rec-Amtperyear-Remaining:
-      - '48872'
+      - '1952240'
       X-Req-Reqpersec-Remaining:
-      - '1'
+      - '24'
       Vary:
       - Origin
       Correlation-Id:
-      - f55c5fb3-e10f-4270-9f08-3212ca75634f#58555241
+      - 52e6745a-df54-4065-bb17-6516d4b67fa6#50056220
       X-Kong-Upstream-Latency:
-      - '103'
+      - '41'
       X-Kong-Proxy-Latency:
       - '2'
       Via:
@@ -55,12 +55,12 @@ http_interactions:
         type=\"source\">GLOBAL BIOGEOCHEMICAL CYCLES</title><title type=\"source_abbrev\">GLOBAL
         BIOGEOCHEM CY</title><title type=\"abbrev_iso\">Glob. Biogeochem. Cycle</title><title
         type=\"abbrev_11\">GLOBAL BIOG</title><title type=\"abbrev_29\">GLOBAL BIOGEOCHEM
-        CYCLE</title><title type=\"item\">N2O production in the eastern South Atlantic:
-        Analysis of N2O stable isotopic and concentration data</title></titles><names
-        count=\"4\"><name seq_no=\"1\" role=\"author\" reprint=\"Y\" addr_no=\"1\"
-        r_id=\"EWP-2248-2022\" daisng_id=\"21912644\" claim_status=\"false\"><display_name>Frame,
-        Caitlin H.</display_name><preferred_name><full_name>Frame, Caitlin H.</full_name><first_name>Caitlin
-        H.</first_name><last_name>Frame</last_name></preferred_name><full_name>Frame,
+        CYCLE</title><title type=\"item\">N&lt;sub&gt;2&lt;/sub&gt;O production in
+        the eastern South Atlantic: Analysis of N&lt;sub&gt;2&lt;/sub&gt;O stable
+        isotopic and concentration data</title></titles><names count=\"4\"><name seq_no=\"1\"
+        role=\"author\" reprint=\"Y\" addr_no=\"1\" r_id=\"EWP-2248-2022\" daisng_id=\"21912644\"
+        claim_status=\"false\"><display_name>Frame, Caitlin H.</display_name><preferred_name><full_name>Frame,
+        Caitlin H.</full_name><first_name>Caitlin H.</first_name><last_name>Frame</last_name></preferred_name><full_name>Frame,
         Caitlin H.</full_name><wos_standard>Frame, CH</wos_standard><first_name>Caitlin
         H.</first_name><last_name>Frame</last_name><data-item-ids><data-item-id id-type=\"PreferredRID\"
         type=\"person\">EWP-2248-2022</data-item-id></data-item-ids></name><name seq_no=\"2\"
@@ -71,8 +71,7 @@ http_interactions:
         id-type=\"PreferredRID\" type=\"person\">DWC-6140-2022</data-item-id></data-item-ids></name><name
         seq_no=\"3\" role=\"author\" addr_no=\"3\" r_id=\"DZU-3035-2022\" orcid_id=\"0000-0002-7157-092X\"
         daisng_id=\"16403437\" claim_status=\"false\"><display_name>Nevison, Cynthia
-        D.</display_name><preferred_name><full_name>Nevison, Cynthia D.</full_name><first_name>Cynthia
-        D.</first_name><last_name>Nevison</last_name></preferred_name><full_name>Nevison,
+        D.</display_name><preferred_name><full_name>Nevison, Cynthia</full_name><first_name>Cynthia</first_name><last_name>Nevison</last_name></preferred_name><full_name>Nevison,
         Cynthia D.</full_name><wos_standard>Nevison, CD</wos_standard><first_name>Cynthia
         D.</first_name><last_name>Nevison</last_name><data-item-ids><data-item-id
         id-type=\"PreferredRID\" type=\"person\">DZU-3035-2022</data-item-id></data-item-ids></name><name
@@ -93,8 +92,10 @@ http_interactions:
         count=\"1\"><doctype>Article</doctype></normalized_doctypes><refs count=\"106\"
         /><addresses count=\"4\"><address_name><address_spec addr_no=\"1\"><full_address>Univ
         Basel, Dept Environm Sci, Basel, Switzerland</full_address><organizations
-        count=\"2\"><organization pref=\"null\">Univ Basel</organization><organization
-        pref=\"Y\">University of Basel</organization></organizations><suborganizations
+        count=\"4\"><organization pref=\"null\">Univ Basel</organization><organization
+        pref=\"Y\">University of Basel</organization><organization pref=\"N\">University
+        of Basel Faculty of Science</organization><organization pref=\"N\">University
+        of Basel Department of Environmental Sciences</organization></organizations><suborganizations
         count=\"1\"><suborganization>Dept Environm Sci</suborganization></suborganizations><city>Basel</city><country>Switzerland</country></address_spec><names
         count=\"1\"><name seq_no=\"1\" role=\"author\" reprint=\"Y\" addr_no=\"1\"
         daisng_id=\"21912644\" claim_status=\"false\"><display_name>Frame, Caitlin
@@ -118,14 +119,16 @@ http_interactions:
         Eric</full_name><wos_standard>Deal, E</wos_standard><first_name>Eric</first_name><last_name>Deal</last_name><data-item-ids><data-item-id
         id-type=\"PreferredRID\" type=\"person\">DWC-6140-2022</data-item-id></data-item-ids></name></names></address_name><address_name><address_spec
         addr_no=\"3\"><full_address>Univ Colorado, Inst Arctic &amp; Alpine Res, Boulder,
-        CO 80309 USA</full_address><organizations count=\"3\"><organization pref=\"null\">Univ
+        CO 80309 USA</full_address><organizations count=\"5\"><organization pref=\"null\">Univ
         Colorado</organization><organization pref=\"Y\">University of Colorado System</organization><organization
-        pref=\"Y\">University of Colorado Boulder</organization></organizations><suborganizations
+        pref=\"Y\">University of Colorado Boulder</organization><organization pref=\"N\">University
+        of Colorado Boulder Graduate School</organization><organization pref=\"N\">University
+        of Colorado Boulder Institute of Arctic and Alpine Research</organization></organizations><suborganizations
         count=\"1\"><suborganization>Inst Arctic &amp; Alpine Res</suborganization></suborganizations><city>Boulder</city><state>CO</state><country>USA</country><zip
         location=\"AP\">80309</zip></address_spec><names count=\"1\"><name seq_no=\"3\"
         role=\"author\" addr_no=\"3\" orcid_id=\"0000-0002-7157-092X\" daisng_id=\"16403437\"
         claim_status=\"false\"><display_name>Nevison, Cynthia D.</display_name><preferred_name><full_name>Nevison,
-        Cynthia D.</full_name><first_name>Cynthia D.</first_name><last_name>Nevison</last_name></preferred_name><full_name>Nevison,
+        Cynthia</full_name><first_name>Cynthia</first_name><last_name>Nevison</last_name></preferred_name><full_name>Nevison,
         Cynthia D.</full_name><wos_standard>Nevison, CD</wos_standard><first_name>Cynthia
         D.</first_name><last_name>Nevison</last_name><data-item-ids><data-item-id
         id-type=\"PreferredRID\" type=\"person\">DZU-3035-2022</data-item-id></data-item-ids></name></names></address_name><address_name><address_spec
@@ -142,10 +145,12 @@ http_interactions:
         L.</first_name><last_name>Casciotti</last_name><data-item-ids><data-item-id
         id-type=\"PreferredRID\" type=\"person\">FZC-4745-2022</data-item-id></data-item-ids></name></names></address_name></addresses><reprint_addresses
         count=\"1\"><address_name><address_spec addr_no=\"1\"><full_address>Univ Basel,
-        Dept Environm Sci, Basel, Switzerland</full_address><organizations count=\"2\"><organization
+        Dept Environm Sci, Basel, Switzerland</full_address><organizations count=\"4\"><organization
         pref=\"null\">Univ Basel</organization><organization pref=\"Y\">University
-        of Basel</organization></organizations><suborganizations count=\"1\"><suborganization>Dept
-        Environm Sci</suborganization></suborganizations><city>Basel</city><country>Switzerland</country></address_spec><names
+        of Basel</organization><organization pref=\"N\">University of Basel Faculty
+        of Science</organization><organization pref=\"N\">University of Basel Department
+        of Environmental Sciences</organization></organizations><suborganizations
+        count=\"1\"><suborganization>Dept Environm Sci</suborganization></suborganizations><city>Basel</city><country>Switzerland</country></address_spec><names
         count=\"1\"><name seq_no=\"1\" role=\"author\" reprint=\"Y\" addr_no=\"1\"><display_name>Frame,
         Caitlin H.</display_name><full_name>Frame, Caitlin H.</full_name><wos_standard>Frame,
         CH</wos_standard><first_name>Caitlin H.</first_name><last_name>Frame</last_name></name></names></address_name></reprint_addresses><category_info><headings
@@ -208,27 +213,28 @@ http_interactions:
         NORTH PACIFIC</keyword><keyword>OXYGEN-MINIMUM</keyword><keyword>CARBON-DIOXIDE</keyword><keyword>NITRIC-OXIDE</keyword><keyword>EXPERIMENTAL
         DROUGHT</keyword><keyword>NITRIFICATION RATES</keyword><keyword>GLOBAL DISTRIBUTION</keyword><keyword>SOIL
         EMISSIONS</keyword><keyword>DENITRIFICATION</keyword></keywords_plus></item><contributors
-        count=\"3\"><contributor><name seq_no=\"1\" role=\"researcher_id\" orcid_id=\"0000-0002-7157-092X\"><display_name>NEVISON,
-        CYNTHIA</display_name><full_name>NEVISON, CYNTHIA</full_name><first_name>CYNTHIA</first_name><last_name>NEVISON</last_name></name></contributor><contributor><name
-        seq_no=\"2\" role=\"researcher_id\" orcid_id=\"0000-0003-0945-9160\"><display_name>Deal,
+        count=\"3\"><contributor><name seq_no=\"1\" role=\"researcher_id\" orcid_id=\"0000-0003-0945-9160\"><display_name>Deal,
         Eric</display_name><full_name>Deal, Eric</full_name><first_name>Eric</first_name><last_name>Deal</last_name></name></contributor><contributor><name
-        seq_no=\"3\" role=\"researcher_id\" orcid_id=\"0000-0002-5286-7795\"><display_name>Casciotti,
-        Karen</display_name><full_name>Casciotti, Karen</full_name><first_name>Karen</first_name><last_name>Casciotti</last_name></name></contributor></contributors></static_data><dynamic_data><citation_related><tc_list><silo_tc
-        coll_id=\"WOS\" local_count=\"33\" /></tc_list><tc_list_cc dedup_total_count=\"5\"><function_tc
-        func_class=\"basis\" local_count=\"0\" /><function_tc func_class=\"background\"
-        local_count=\"1\" /><function_tc func_class=\"support\" local_count=\"0\"
-        /><function_tc func_class=\"differ\" local_count=\"0\" /><function_tc func_class=\"discuss\"
-        local_count=\"5\" /></tc_list_cc><citation_topics><subj-group><subject content-id=\"3\"
-        content-type=\"macro\">Agriculture, Environment &amp; Ecology</subject><subject
-        content-id=\"3.2\" content-type=\"meso\">Marine Biology</subject><subject
-        content-id=\"3.2.154\" content-type=\"micro\">Phytoplankton</subject></subj-group></citation_topics><SDG
+        seq_no=\"2\" role=\"researcher_id\" orcid_id=\"0000-0002-5286-7795\"><display_name>Casciotti,
+        Karen</display_name><full_name>Casciotti, Karen</full_name><first_name>Karen</first_name><last_name>Casciotti</last_name></name></contributor><contributor><name
+        seq_no=\"3\" role=\"researcher_id\" orcid_id=\"0000-0002-7157-092X\"><display_name>NEVISON,
+        CYNTHIA</display_name><full_name>NEVISON, CYNTHIA</full_name><first_name>CYNTHIA</first_name><last_name>NEVISON</last_name></name></contributor></contributors></static_data><dynamic_data><citation_related><tc_list
+        tc_mod_date=\"2023-09-20\"><silo_tc coll_id=\"WOS\" local_count=\"35\" /></tc_list><tc_list_cc
+        dedup_total_count=\"6\"><function_tc func_class=\"basis\" local_count=\"0\"
+        /><function_tc func_class=\"background\" local_count=\"1\" /><function_tc
+        func_class=\"support\" local_count=\"1\" /><function_tc func_class=\"differ\"
+        local_count=\"0\" /><function_tc func_class=\"discuss\" local_count=\"5\"
+        /></tc_list_cc><citation_topics><subj-group><subject content-id=\"3\" content-type=\"macro\">Agriculture,
+        Environment &amp; Ecology</subject><subject content-id=\"3.2\" content-type=\"meso\">Marine
+        Biology</subject><subject content-id=\"3.2.154\" content-type=\"micro\">Phytoplankton</subject></subj-group></citation_topics><SDG
         code=\"154\"><sdg_category status=\"Active\">14 Life Below Water</sdg_category><sdg_category
         status=\"Active\">13 Climate Action</sdg_category></SDG></citation_related><cluster_related><identifiers><identifier
         type=\"issn\" value=\"0886-6236\" /><identifier type=\"eissn\" value=\"1944-9224\"
         /><identifier type=\"doi\" value=\"10.1002/2013GB004790\" /></identifiers></cluster_related><wos_usage
-        last180days=\"4\" alltime=\"97\" /></dynamic_data><dates date_modified=\"2020-08-21T14:35:08.550061\"
-        date_created=\"2014-12-25T12:25:20.684325\" /></REC>\r\n<REC r_id_disclaimer=\"ResearcherID
-        data provided by Clarivate Analytics\"><UID>WOS:000081515000015</UID><static_data><summary><EWUID><WUID
+        last180days=\"4\" alltime=\"99\" /></dynamic_data><dates date_modified=\"2020-08-21T14:35:08.550061\"
+        date_created=\"2014-12-25T12:25:20.684325\" date_loaded=\"2015-01-14T23:59:59.00000\"
+        /></REC>\r\n<REC r_id_disclaimer=\"ResearcherID data provided by Clarivate
+        Analytics\"><UID>WOS:000081515000015</UID><static_data><summary><EWUID><WUID
         coll_id=\"WOS\" /><edition value=\"WOS.SCI\" /></EWUID><pub_info sortdate=\"1999-07-01\"
         pubyear=\"1999\" has_abstract=\"Y\" coverdate=\"JUL 1999\" pubmonth=\"JUL\"
         vol=\"26\" issue=\"7\" pubtype=\"Journal\" journal_oas_gold=\"N\"><page begin=\"1279\"
@@ -336,352 +342,10 @@ http_interactions:
         type=\"issn\" value=\"0094-2405\" /><identifier type=\"xref_doi\" value=\"10.1118/1.598623\"
         /><identifier type=\"pmid\" value=\"MEDLINE:10435530\" /></identifiers></cluster_related><wos_usage
         last180days=\"0\" alltime=\"9\" /></dynamic_data><dates date_modified=\"2017-06-20T12:25:20.684325\"
-        date_created=\"1999-12-25T12:25:20.684325\" /></REC>\r\n</records>]]></val>\n
-        \       </map>\n        <map name=\"QueryResult\">\n            <map>\n                <val
-        name=\"QueryID\">4</val>\n                <val name=\"RecordsSearched\">177881258</val>\n
-        \               <val name=\"RecordsFound\">2</val>\n            </map>\n        </map>\n
-        \   </map>\n</response>\n"
-  recorded_at: Wed, 21 Jun 2023 13:42:47 GMT
-- request:
-    method: get
-    uri: https://wos-api.clarivate.com/api/wos/id/ids,WOS:000081515000015,WOS:000346594100007?count=100&databaseId=WOK&firstRecord=1
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      User-Agent:
-      - Faraday v2.7.6
-      Accept:
-      - application/xml
-      X-Apikey:
-      - Settings.WOS.API_KEY
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Wed, 21 Jun 2023 14:02:08 GMT
-      Content-Type:
-      - application/xml
-      Transfer-Encoding:
-      - chunked
-      Connection:
-      - keep-alive
-      X-Rec-Amtperyear-Remaining:
-      - '48870'
-      X-Req-Reqpersec-Remaining:
-      - '1'
-      Vary:
-      - Origin
-      Correlation-Id:
-      - 9f86b6f7-87bd-4457-a30c-2b890464b7d4#58520992
-      X-Kong-Upstream-Latency:
-      - '44'
-      X-Kong-Proxy-Latency:
-      - '42'
-      Via:
-      - kong/2.8.1
-    body:
-      encoding: UTF-8
-      string: "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<response
-        xmlns=\"http://www.isinet.com/xrpc42\">\n    <map>\n        <map name=\"Data\">\n
-        \           <val name=\"Records\"><![CDATA[<records><REC r_id_disclaimer=\"ResearcherID
-        data provided by Clarivate Analytics\"><UID>WOS:000346594100007</UID><static_data><summary><EWUID><WUID
-        coll_id=\"WOS\" /><edition value=\"WOS.SCI\" /></EWUID><pub_info sortdate=\"2014-11-01\"
-        pubyear=\"2014\" has_abstract=\"Y\" coverdate=\"NOV 2014\" pubmonth=\"NOV\"
-        vol=\"28\" issue=\"11\" pubtype=\"Journal\" journal_oas_gold=\"N\"><page begin=\"1262\"
-        end=\"1278\" page_count=\"17\">1262-1278</page></pub_info><titles count=\"6\"><title
-        type=\"source\">GLOBAL BIOGEOCHEMICAL CYCLES</title><title type=\"source_abbrev\">GLOBAL
-        BIOGEOCHEM CY</title><title type=\"abbrev_iso\">Glob. Biogeochem. Cycle</title><title
-        type=\"abbrev_11\">GLOBAL BIOG</title><title type=\"abbrev_29\">GLOBAL BIOGEOCHEM
-        CYCLE</title><title type=\"item\">N2O production in the eastern South Atlantic:
-        Analysis of N2O stable isotopic and concentration data</title></titles><names
-        count=\"4\"><name seq_no=\"1\" role=\"author\" reprint=\"Y\" addr_no=\"1\"
-        r_id=\"EWP-2248-2022\" daisng_id=\"21912644\" claim_status=\"false\"><display_name>Frame,
-        Caitlin H.</display_name><preferred_name><full_name>Frame, Caitlin H.</full_name><first_name>Caitlin
-        H.</first_name><last_name>Frame</last_name></preferred_name><full_name>Frame,
-        Caitlin H.</full_name><wos_standard>Frame, CH</wos_standard><first_name>Caitlin
-        H.</first_name><last_name>Frame</last_name><data-item-ids><data-item-id id-type=\"PreferredRID\"
-        type=\"person\">EWP-2248-2022</data-item-id></data-item-ids></name><name seq_no=\"2\"
-        role=\"author\" addr_no=\"2\" r_id=\"DWC-6140-2022\" orcid_id=\"0000-0003-0945-9160\"
-        daisng_id=\"15456544\" claim_status=\"false\"><display_name>Deal, Eric</display_name><preferred_name><full_name>Deal,
-        Eric</full_name><first_name>Eric</first_name><last_name>Deal</last_name></preferred_name><full_name>Deal,
-        Eric</full_name><wos_standard>Deal, E</wos_standard><first_name>Eric</first_name><last_name>Deal</last_name><data-item-ids><data-item-id
-        id-type=\"PreferredRID\" type=\"person\">DWC-6140-2022</data-item-id></data-item-ids></name><name
-        seq_no=\"3\" role=\"author\" addr_no=\"3\" r_id=\"DZU-3035-2022\" orcid_id=\"0000-0002-7157-092X\"
-        daisng_id=\"16403437\" claim_status=\"false\"><display_name>Nevison, Cynthia
-        D.</display_name><preferred_name><full_name>Nevison, Cynthia D.</full_name><first_name>Cynthia
-        D.</first_name><last_name>Nevison</last_name></preferred_name><full_name>Nevison,
-        Cynthia D.</full_name><wos_standard>Nevison, CD</wos_standard><first_name>Cynthia
-        D.</first_name><last_name>Nevison</last_name><data-item-ids><data-item-id
-        id-type=\"PreferredRID\" type=\"person\">DZU-3035-2022</data-item-id></data-item-ids></name><name
-        seq_no=\"4\" role=\"author\" addr_no=\"4\" r_id=\"FZC-4745-2022\" orcid_id=\"0000-0002-5286-7795\"
-        daisng_id=\"28795139\" claim_status=\"false\"><display_name>Casciotti, Karen
-        L.</display_name><preferred_name><full_name>Casciotti, Karen L.</full_name><first_name>Karen
-        L.</first_name><last_name>Casciotti</last_name></preferred_name><full_name>Casciotti,
-        Karen L.</full_name><wos_standard>Casciotti, KL</wos_standard><first_name>Karen
-        L.</first_name><last_name>Casciotti</last_name><data-item-ids><data-item-id
-        id-type=\"PreferredRID\" type=\"person\">FZC-4745-2022</data-item-id></data-item-ids></name></names><doctypes
-        count=\"1\"><doctype>Article</doctype></doctypes><publishers><publisher><address_spec
-        addr_no=\"1\"><full_address>2000 FLORIDA AVE NW, WASHINGTON, DC 20009 USA</full_address><city>WASHINGTON</city></address_spec><names
-        count=\"1\"><name role=\"publisher\" seq_no=\"1\" addr_no=\"1\"><display_name>AMER
-        GEOPHYSICAL UNION</display_name><full_name>AMER GEOPHYSICAL UNION</full_name><unified_name>Amer
-        Geophysical Union</unified_name></name></names></publisher></publishers></summary><fullrecord_metadata><languages
-        count=\"1\"><language type=\"primary\">English</language></languages><normalized_languages
-        count=\"1\"><language type=\"primary\">English</language></normalized_languages><normalized_doctypes
-        count=\"1\"><doctype>Article</doctype></normalized_doctypes><refs count=\"106\"
-        /><addresses count=\"4\"><address_name><address_spec addr_no=\"1\"><full_address>Univ
-        Basel, Dept Environm Sci, Basel, Switzerland</full_address><organizations
-        count=\"2\"><organization pref=\"null\">Univ Basel</organization><organization
-        pref=\"Y\">University of Basel</organization></organizations><suborganizations
-        count=\"1\"><suborganization>Dept Environm Sci</suborganization></suborganizations><city>Basel</city><country>Switzerland</country></address_spec><names
-        count=\"1\"><name seq_no=\"1\" role=\"author\" reprint=\"Y\" addr_no=\"1\"
-        daisng_id=\"21912644\" claim_status=\"false\"><display_name>Frame, Caitlin
-        H.</display_name><preferred_name><full_name>Frame, Caitlin H.</full_name><first_name>Caitlin
-        H.</first_name><last_name>Frame</last_name></preferred_name><full_name>Frame,
-        Caitlin H.</full_name><wos_standard>Frame, CH</wos_standard><first_name>Caitlin
-        H.</first_name><last_name>Frame</last_name><data-item-ids><data-item-id id-type=\"PreferredRID\"
-        type=\"person\">EWP-2248-2022</data-item-id></data-item-ids></name></names></address_name><address_name><address_spec
-        addr_no=\"2\"><full_address>Univ Grenoble 1, Inst Sci Terre, Grenoble, France</full_address><organizations
-        count=\"8\"><organization pref=\"null\">Univ Grenoble 1</organization><organization
-        pref=\"Y\">UDICE-French Research Universities</organization><organization
-        pref=\"Y\">Communaute Universite Grenoble Alpes</organization><organization
-        pref=\"Y\">Universite Grenoble Alpes (UGA)</organization><organization pref=\"Y\">Centre
-        National de la Recherche Scientifique (CNRS)</organization><organization pref=\"Y\">Institut
-        de Recherche pour le Developpement (IRD)</organization><organization pref=\"Y\">Universite
-        Gustave-Eiffel</organization><organization pref=\"Y\">Universite de Savoie</organization></organizations><suborganizations
-        count=\"1\"><suborganization>Inst Sci Terre</suborganization></suborganizations><city>Grenoble</city><country>France</country></address_spec><names
-        count=\"1\"><name seq_no=\"2\" role=\"author\" addr_no=\"2\" orcid_id=\"0000-0003-0945-9160\"
-        daisng_id=\"15456544\" claim_status=\"false\"><display_name>Deal, Eric</display_name><preferred_name><full_name>Deal,
-        Eric</full_name><first_name>Eric</first_name><last_name>Deal</last_name></preferred_name><full_name>Deal,
-        Eric</full_name><wos_standard>Deal, E</wos_standard><first_name>Eric</first_name><last_name>Deal</last_name><data-item-ids><data-item-id
-        id-type=\"PreferredRID\" type=\"person\">DWC-6140-2022</data-item-id></data-item-ids></name></names></address_name><address_name><address_spec
-        addr_no=\"3\"><full_address>Univ Colorado, Inst Arctic &amp; Alpine Res, Boulder,
-        CO 80309 USA</full_address><organizations count=\"3\"><organization pref=\"null\">Univ
-        Colorado</organization><organization pref=\"Y\">University of Colorado System</organization><organization
-        pref=\"Y\">University of Colorado Boulder</organization></organizations><suborganizations
-        count=\"1\"><suborganization>Inst Arctic &amp; Alpine Res</suborganization></suborganizations><city>Boulder</city><state>CO</state><country>USA</country><zip
-        location=\"AP\">80309</zip></address_spec><names count=\"1\"><name seq_no=\"3\"
-        role=\"author\" addr_no=\"3\" orcid_id=\"0000-0002-7157-092X\" daisng_id=\"16403437\"
-        claim_status=\"false\"><display_name>Nevison, Cynthia D.</display_name><preferred_name><full_name>Nevison,
-        Cynthia D.</full_name><first_name>Cynthia D.</first_name><last_name>Nevison</last_name></preferred_name><full_name>Nevison,
-        Cynthia D.</full_name><wos_standard>Nevison, CD</wos_standard><first_name>Cynthia
-        D.</first_name><last_name>Nevison</last_name><data-item-ids><data-item-id
-        id-type=\"PreferredRID\" type=\"person\">DZU-3035-2022</data-item-id></data-item-ids></name></names></address_name><address_name><address_spec
-        addr_no=\"4\"><full_address>Stanford Univ, Dept Environm Earth Syst Sci, Palo
-        Alto, CA 94304 USA</full_address><organizations count=\"2\"><organization
-        pref=\"null\">Stanford Univ</organization><organization pref=\"Y\">Stanford
-        University</organization></organizations><suborganizations count=\"1\"><suborganization>Dept
-        Environm Earth Syst Sci</suborganization></suborganizations><city>Palo Alto</city><state>CA</state><country>USA</country><zip
-        location=\"AP\">94304</zip></address_spec><names count=\"1\"><name seq_no=\"4\"
-        role=\"author\" addr_no=\"4\" orcid_id=\"0000-0002-5286-7795\" daisng_id=\"28795139\"
-        claim_status=\"false\"><display_name>Casciotti, Karen L.</display_name><preferred_name><full_name>Casciotti,
-        Karen L.</full_name><first_name>Karen L.</first_name><last_name>Casciotti</last_name></preferred_name><full_name>Casciotti,
-        Karen L.</full_name><wos_standard>Casciotti, KL</wos_standard><first_name>Karen
-        L.</first_name><last_name>Casciotti</last_name><data-item-ids><data-item-id
-        id-type=\"PreferredRID\" type=\"person\">FZC-4745-2022</data-item-id></data-item-ids></name></names></address_name></addresses><reprint_addresses
-        count=\"1\"><address_name><address_spec addr_no=\"1\"><full_address>Univ Basel,
-        Dept Environm Sci, Basel, Switzerland</full_address><organizations count=\"2\"><organization
-        pref=\"null\">Univ Basel</organization><organization pref=\"Y\">University
-        of Basel</organization></organizations><suborganizations count=\"1\"><suborganization>Dept
-        Environm Sci</suborganization></suborganizations><city>Basel</city><country>Switzerland</country></address_spec><names
-        count=\"1\"><name seq_no=\"1\" role=\"author\" reprint=\"Y\" addr_no=\"1\"><display_name>Frame,
-        Caitlin H.</display_name><full_name>Frame, Caitlin H.</full_name><wos_standard>Frame,
-        CH</wos_standard><first_name>Caitlin H.</first_name><last_name>Frame</last_name></name></names></address_name></reprint_addresses><category_info><headings
-        count=\"1\"><heading>Science &amp; Technology</heading></headings><subheadings
-        count=\"2\"><subheading>Life Sciences &amp; Biomedicine</subheading><subheading>Physical
-        Sciences</subheading></subheadings><subjects count=\"6\"><subject ascatype=\"traditional\"
-        code=\"JA\">Environmental Sciences</subject><subject ascatype=\"traditional\"
-        code=\"LE\">Geosciences, Multidisciplinary</subject><subject ascatype=\"traditional\"
-        code=\"QQ\">Meteorology &amp; Atmospheric Sciences</subject><subject ascatype=\"extended\">Environmental
-        Sciences &amp; Ecology</subject><subject ascatype=\"extended\">Geology</subject><subject
-        ascatype=\"extended\">Meteorology &amp; Atmospheric Sciences</subject></subjects></category_info><fund_ack><fund_text><p>The
-        data for this paper are available under the CoFeMUG program at http://www.bco-dmo.org.
-        We thank the captain and crew of the R/V Knorr and chief scientist Mak Saito
-        as well as Abigail Noble, Alysia Cox, Tyler Goepfert, and Chad Hammerschmidt
-        for assistance during the cruise. We also thank Matt McIlvin for expert assistance
-        analyzing samples and Rachel Stanley for generously providing the MATLAB code
-        for calculating gas transfer velocities from QuikSCAT wind data. Reviews from
-        Marian Westley and Nathaniel Ostrom greatly improved the quality of the manuscript.
-        Support for this work came from NSF/OCE grant 05-26277 to K.L.C. and a grant
-        from the MIT EAPS Houghton Fund to C.H.F.</p></fund_text><grants count=\"2\"><grant><grant_agency>NSF/OCE</grant_agency><grant_ids
-        count=\"1\"><grant_id>05-26277</grant_id></grant_ids><grant_agency_names pref=\"Y\"
-        content=\"National Science Foundation (NSF)\" /><grant_agency_names pref=\"N\"
-        content=\"NSF/OCE\" /></grant><grant><grant_agency>MIT EAPS Houghton Fund</grant_agency><grant_agency_names
-        pref=\"N\" content=\"MIT EAPS Houghton Fund\" /></grant></grants></fund_ack><keywords
-        count=\"6\"><keyword>nitrous oxide (N2O)</keyword><keyword>isotopomer</keyword><keyword>nitrification</keyword><keyword>denitrification</keyword><keyword>nitrifier
-        denitrification</keyword><keyword>coastal upwelling</keyword></keywords><abstracts
-        count=\"1\"><abstract><abstract_text count=\"1\"><p>The stable isotopic composition
-        of dissolved nitrous oxide (N2O) is a tracer for the production, transport,
-        and consumption of this greenhouse gas in the ocean. Here we present dissolved
-        N2O concentration and isotope data from the South Atlantic Ocean, spanning
-        from the western side of the mid-Atlantic Ridge to the upwelling zone off
-        the southern African coast. In the eastern South Atlantic, shallow N2O production
-        by nitrifier denitrification contributed a flux of isotopically depleted N2O
-        to the atmosphere. Along the African coast, N2O fluxes to the atmosphere of
-        up to 46 mu mol/m(2)/d were calculated using satellite-derived QuikSCAT wind
-        speed data, while fluxes at the offshore stations averaged 0.04 mu mol/m(2)/d.
-        Comparison of the isotopic composition of the deeper N2O in the South Atlantic
-        (800m to 1000m) to measurements made in other regions suggests that water
-        advected from one or more of the major oxygen deficient zones contributed
-        N2O to the mesopelagic South Atlantic via the Southern Ocean. This deeper
-        N2O was isotopically and isotopomerically enriched (N-15(bulk) - N2O = 8.70.1,
-        O-18 - N2O = 46.50.2, and Site Preference = 18.7 +/- 0.6 parts per thousand)
-        relative to the shallow N2O source, indicating that N2O consumption by denitrification
-        influenced its isotopic composition. The N2O concentration maximum was observed
-        between 200m and 400m and reached 49 nM near the Angolan coast. The depths
-        of the N2O concentration maximum coincided with those of sedimentary particle
-        resuspension along the coast. The isotopic composition of this N2O (N-15(bulk)
-        - N2O = 5.8 +/- 0.1 parts per thousand, O-18 - N2O = 39.7 +/- 0.1 parts per
-        thousand, and Site Preference = 9.8 +/- 1.0 parts per thousand) was consistent
-        with production by diffusion-limited nitrate (NO3-) reduction to nitrite (NO2-),
-        followed by NO2- reduction to N2O by denitrification and/or nitrifier denitrification,
-        with additional N2O production by NH2OH decomposition during NH3 oxidation.
-        The sediment surface, benthic boundary layer, or particles resuspended from
-        the sediments are likely to have provided the physical and chemical conditions
-        necessary to produce this N2O.</p></abstract_text></abstract></abstracts></fullrecord_metadata><item
-        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:type=\"itemType_wos\"
-        coll_id=\"WOS\"><ids avail=\"N\">AW9RE</ids><bib_id>28 (11): 1262-1278 NOV
-        2014</bib_id><bib_pagecount type=\"Journal\">230</bib_pagecount><keywords_plus
-        count=\"10\"><keyword>ATMOSPHERIC NITROUS-OXIDE</keyword><keyword>TROPICAL
-        NORTH PACIFIC</keyword><keyword>OXYGEN-MINIMUM</keyword><keyword>CARBON-DIOXIDE</keyword><keyword>NITRIC-OXIDE</keyword><keyword>EXPERIMENTAL
-        DROUGHT</keyword><keyword>NITRIFICATION RATES</keyword><keyword>GLOBAL DISTRIBUTION</keyword><keyword>SOIL
-        EMISSIONS</keyword><keyword>DENITRIFICATION</keyword></keywords_plus></item><contributors
-        count=\"3\"><contributor><name seq_no=\"1\" role=\"researcher_id\" orcid_id=\"0000-0002-7157-092X\"><display_name>NEVISON,
-        CYNTHIA</display_name><full_name>NEVISON, CYNTHIA</full_name><first_name>CYNTHIA</first_name><last_name>NEVISON</last_name></name></contributor><contributor><name
-        seq_no=\"2\" role=\"researcher_id\" orcid_id=\"0000-0003-0945-9160\"><display_name>Deal,
-        Eric</display_name><full_name>Deal, Eric</full_name><first_name>Eric</first_name><last_name>Deal</last_name></name></contributor><contributor><name
-        seq_no=\"3\" role=\"researcher_id\" orcid_id=\"0000-0002-5286-7795\"><display_name>Casciotti,
-        Karen</display_name><full_name>Casciotti, Karen</full_name><first_name>Karen</first_name><last_name>Casciotti</last_name></name></contributor></contributors></static_data><dynamic_data><citation_related><tc_list><silo_tc
-        coll_id=\"WOS\" local_count=\"33\" /></tc_list><tc_list_cc dedup_total_count=\"5\"><function_tc
-        func_class=\"basis\" local_count=\"0\" /><function_tc func_class=\"background\"
-        local_count=\"1\" /><function_tc func_class=\"support\" local_count=\"0\"
-        /><function_tc func_class=\"differ\" local_count=\"0\" /><function_tc func_class=\"discuss\"
-        local_count=\"5\" /></tc_list_cc><citation_topics><subj-group><subject content-id=\"3\"
-        content-type=\"macro\">Agriculture, Environment &amp; Ecology</subject><subject
-        content-id=\"3.2\" content-type=\"meso\">Marine Biology</subject><subject
-        content-id=\"3.2.154\" content-type=\"micro\">Phytoplankton</subject></subj-group></citation_topics><SDG
-        code=\"154\"><sdg_category status=\"Active\">14 Life Below Water</sdg_category><sdg_category
-        status=\"Active\">13 Climate Action</sdg_category></SDG></citation_related><cluster_related><identifiers><identifier
-        type=\"issn\" value=\"0886-6236\" /><identifier type=\"eissn\" value=\"1944-9224\"
-        /><identifier type=\"doi\" value=\"10.1002/2013GB004790\" /></identifiers></cluster_related><wos_usage
-        last180days=\"4\" alltime=\"97\" /></dynamic_data><dates date_modified=\"2020-08-21T14:35:08.550061\"
-        date_created=\"2014-12-25T12:25:20.684325\" /></REC>\r\n<REC r_id_disclaimer=\"ResearcherID
-        data provided by Clarivate Analytics\"><UID>WOS:000081515000015</UID><static_data><summary><EWUID><WUID
-        coll_id=\"WOS\" /><edition value=\"WOS.SCI\" /></EWUID><pub_info sortdate=\"1999-07-01\"
-        pubyear=\"1999\" has_abstract=\"Y\" coverdate=\"JUL 1999\" pubmonth=\"JUL\"
-        vol=\"26\" issue=\"7\" pubtype=\"Journal\" journal_oas_gold=\"N\"><page begin=\"1279\"
-        end=\"1293\" page_count=\"15\">1279-1293</page></pub_info><titles count=\"6\"><title
-        type=\"source\">MEDICAL PHYSICS</title><title type=\"source_abbrev\">MED PHYS</title><title
-        type=\"abbrev_iso\">Med. Phys.</title><title type=\"abbrev_11\">MED PHYS</title><title
-        type=\"abbrev_29\">MED PHYS</title><title type=\"item\">Noise power spectra
-        of images from digital mammography detectors</title></titles><names count=\"3\"><name
-        seq_no=\"1\" role=\"author\" reprint=\"Y\" r_id=\"EFV-0543-2022\" daisng_id=\"17820946\"
-        claim_status=\"false\"><display_name>Williams, MB</display_name><preferred_name><full_name>Williams,
-        M. B.</full_name><first_name>M. B.</first_name><last_name>Williams</last_name></preferred_name><full_name>Williams,
-        MB</full_name><wos_standard>Williams, MB</wos_standard><first_name>MB</first_name><last_name>Williams</last_name><data-item-ids><data-item-id
-        id-type=\"PreferredRID\" type=\"person\">EFV-0543-2022</data-item-id></data-item-ids></name><name
-        seq_no=\"2\" role=\"author\" r_id=\"FYY-4629-2022\" orcid_id=\"0000-0002-1859-6354\"
-        daisng_id=\"28755023\" claim_status=\"false\"><display_name>Mangiafico, PA</display_name><preferred_name><full_name>Mangiafico,
-        PA</full_name><first_name>PA</first_name><last_name>Mangiafico</last_name></preferred_name><full_name>Mangiafico,
-        PA</full_name><wos_standard>Mangiafico, PA</wos_standard><first_name>PA</first_name><last_name>Mangiafico</last_name><data-item-ids><data-item-id
-        id-type=\"PreferredRID\" type=\"person\">FYY-4629-2022</data-item-id></data-item-ids></name><name
-        seq_no=\"3\" role=\"author\" r_id=\"IGF-6886-2023\" daisng_id=\"43086867\"
-        claim_status=\"false\"><display_name>Simoni, PU</display_name><preferred_name><full_name>Simoni,
-        PU</full_name><first_name>PU</first_name><last_name>Simoni</last_name></preferred_name><full_name>Simoni,
-        PU</full_name><wos_standard>Simoni, PU</wos_standard><first_name>PU</first_name><last_name>Simoni</last_name><data-item-ids><data-item-id
-        id-type=\"PreferredRID\" type=\"person\">IGF-6886-2023</data-item-id></data-item-ids></name></names><doctypes
-        count=\"1\"><doctype>Article</doctype></doctypes><publishers><publisher><address_spec
-        addr_no=\"1\"><full_address>CIRCULATION FULFILLMENT DIV, 500 SUNNYSIDE BLVD,
-        WOODBURY, NY 11797-2999 USA</full_address><city>WOODBURY</city></address_spec><names
-        count=\"1\"><name role=\"publisher\" seq_no=\"1\" addr_no=\"1\"><display_name>AMER
-        INST PHYSICS</display_name><full_name>AMER INST PHYSICS</full_name><unified_name>Amer
-        Inst Physics</unified_name></name></names></publisher></publishers></summary><fullrecord_metadata><languages
-        count=\"1\"><language type=\"primary\">English</language></languages><normalized_languages
-        count=\"1\"><language type=\"primary\">English</language></normalized_languages><normalized_doctypes
-        count=\"1\"><doctype>Article</doctype></normalized_doctypes><refs count=\"33\"
-        /><addresses count=\"1\"><address_name><address_spec addr_no=\"1\"><full_address>Univ
-        Virginia, Dept Radiol, Charlottesville, VA 22908 USA</full_address><organizations
-        count=\"2\"><organization pref=\"null\">Univ Virginia</organization><organization
-        pref=\"Y\">University of Virginia</organization></organizations><suborganizations
-        count=\"1\"><suborganization>Dept Radiol</suborganization></suborganizations><city>Charlottesville</city><state>VA</state><country>USA</country><zip
-        location=\"AP\">22908</zip></address_spec></address_name></addresses><reprint_addresses
-        count=\"1\"><address_name><address_spec addr_no=\"1\"><full_address>Univ Virginia,
-        Dept Radiol, Charlottesville, VA 22908 USA</full_address><organizations count=\"2\"><organization
-        pref=\"null\">Univ Virginia</organization><organization pref=\"Y\">University
-        of Virginia</organization></organizations><suborganizations count=\"1\"><suborganization>Dept
-        Radiol</suborganization></suborganizations><city>Charlottesville</city><state>VA</state><country>USA</country><zip
-        location=\"AP\">22908</zip></address_spec><names count=\"1\"><name seq_no=\"1\"
-        role=\"author\" reprint=\"Y\" addr_no=\"1\" display=\"N\"><display_name>Williams,
-        MB</display_name><full_name>Williams, MB</full_name><wos_standard>Williams,
-        MB</wos_standard><first_name>MB</first_name><last_name>Williams</last_name></name></names></address_name></reprint_addresses><category_info><headings
-        count=\"1\"><heading>Science &amp; Technology</heading></headings><subheadings
-        count=\"1\"><subheading>Life Sciences &amp; Biomedicine</subheading></subheadings><subjects
-        count=\"2\"><subject ascatype=\"traditional\" code=\"VY\">Radiology, Nuclear
-        Medicine &amp; Medical Imaging</subject><subject ascatype=\"extended\">Radiology,
-        Nuclear Medicine &amp; Medical Imaging</subject></subjects></category_info><fund_ack><grants
-        count=\"1\"><grant grant_source=\"Medline\"><grant_agency>NCI NIH HHS</grant_agency><grant_ids
-        count=\"1\"><grant_id>R01 CA69252</grant_id></grant_ids><grant_agency_names
-        pref=\"Y\" content=\"United States Department of Health &amp; Human Services\"
-        /><grant_agency_names pref=\"Y\" content=\"National Institutes of Health (NIH)
-        - USA\" /><grant_agency_names pref=\"Y\" content=\"NIH National Cancer Institute
-        (NCI)\" /><grant_agency_names pref=\"N\" content=\"NCI NIH HHS\" /></grant></grants></fund_ack><keywords
-        count=\"4\"><keyword>noise power spectrum</keyword><keyword>digital mammography</keyword><keyword>detector</keyword><keyword>image
-        analysis</keyword></keywords><abstracts count=\"1\"><abstract><abstract_text
-        count=\"1\"><p>Noise characterization through estimation of the noise power
-        spectrum (NPS) is a central component of the evaluation of digital x-ray systems.
-        We begin with a brief review of the fundamentals of NPS theory and measurement,
-        derive explicit expressions for calculation of the one- and two-dimensional
-        (1D and 2D) NPS, and discuss some of the considerations and tradeoffs when
-        these concepts are applied to digital systems. Measurements of the NPS of
-        two detectors for digital mammography are presented to illustrate some of
-        the implications of the choices available. For both systems, two-dimensional
-        noise power spectra obtained over a range of input fluence exhibit pronounced
-        asymmetry between the orthogonal frequency dimensions. The 2D spectra of both
-        systems also demonstrate dominant structures both on and off the primary frequency
-        axes indicative of periodic noise components. Although the two systems share
-        many common noise characteristics, there are significant differences, including
-        markedly different dark-noise magnitudes, differences in NPS shape as a function
-        of both spatial frequency and exposure, and differences in the natures of
-        the residual fixed pattern noise following flat fielding corrections. For
-        low x-ray exposures, quantum noise-limited operation may be possible only
-        at low spatial frequency. Depending on the method of obtaining the 1D NPS
-        (i.e., synthetic slit scanning or slice extraction from the 2D NPS), on-axis
-        periodic structures can be misleadingly smoothed or missed entirely. Our measurements
-        indicate that for these systems, 1D spectra useful for the purpose of detective
-        quantum efficiency calculation may be obtained from thin cuts through the
-        central portion of the calculated 2D NPS. On the other hand, low-frequency
-        spectral;values do not converge to an asymptotic value with increasing slit
-        length when 1D spectra are generated using the scanned synthetic slit method.
-        Aliasing can contribute significantly to the digital NPS, especially near
-        the Nyquist frequency. Calculation of the theoretical presampling NPS and
-        explicit inclusion of aliased noise power shows good agreement with measured
-        values. (C) 1999 American Association of Physicists in Medicine. [S0094-2405(99)00707-5].</p></abstract_text></abstract></abstracts></fullrecord_metadata><item
-        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:type=\"itemType_wos\"
-        coll_id=\"WOS\"><ids avail=\"Y\">217TL</ids><bib_id>26 (7): 1279-1293 JUL
-        1999</bib_id><keywords_plus count=\"6\"><keyword>MODULATION TRANSFER-FUNCTION</keyword><keyword>QUANTUM
-        EFFICIENCY</keyword><keyword>IMAGING-SYSTEMS</keyword><keyword>RADIOGRAPHY</keyword><keyword>SIGNAL</keyword><keyword>SLIT</keyword></keywords_plus></item><contributors
-        count=\"1\"><contributor><name seq_no=\"1\" role=\"researcher_id\" orcid_id=\"0000-0002-1859-6354\"><display_name>Mangiafico,
-        Peter</display_name><full_name>Mangiafico, Peter</full_name><first_name>Peter</first_name><last_name>Mangiafico</last_name></name></contributor></contributors></static_data><dynamic_data><citation_related><tc_list><silo_tc
-        coll_id=\"WOS\" local_count=\"99\" /></tc_list><tc_list_cc dedup_total_count=\"2\"><function_tc
-        func_class=\"basis\" local_count=\"0\" /><function_tc func_class=\"background\"
-        local_count=\"2\" /><function_tc func_class=\"support\" local_count=\"0\"
-        /><function_tc func_class=\"differ\" local_count=\"0\" /><function_tc func_class=\"discuss\"
-        local_count=\"0\" /></tc_list_cc><citation_topics><subj-group><subject content-id=\"1\"
-        content-type=\"macro\">Clinical &amp; Life Sciences</subject><subject content-id=\"1.71\"
-        content-type=\"meso\">Cardiology - Circulation</subject><subject content-id=\"1.71.1425\"
-        content-type=\"micro\">Coronary CT Angiography</subject></subj-group></citation_topics><SDG
-        code=\"1425\"><sdg_category status=\"Active\">03 Good Health and Well-being</sdg_category></SDG></citation_related><cluster_related><identifiers><identifier
-        type=\"issn\" value=\"0094-2405\" /><identifier type=\"xref_doi\" value=\"10.1118/1.598623\"
-        /><identifier type=\"pmid\" value=\"MEDLINE:10435530\" /></identifiers></cluster_related><wos_usage
-        last180days=\"0\" alltime=\"9\" /></dynamic_data><dates date_modified=\"2017-06-20T12:25:20.684325\"
-        date_created=\"1999-12-25T12:25:20.684325\" /></REC>\r\n</records>]]></val>\n
-        \       </map>\n        <map name=\"QueryResult\">\n            <map>\n                <val
-        name=\"QueryID\">5</val>\n                <val name=\"RecordsSearched\">177881258</val>\n
-        \               <val name=\"RecordsFound\">2</val>\n            </map>\n        </map>\n
-        \   </map>\n</response>\n"
-  recorded_at: Wed, 21 Jun 2023 14:02:08 GMT
-recorded_with: VCR 6.1.0
+        date_created=\"1999-12-25T12:25:20.684325\" date_loaded=\"1999-07-01T23:59:59.00000\"
+        /></REC>\r\n</records>]]></val>\n        </map>\n        <map name=\"QueryResult\">\n
+        \           <map>\n                <val name=\"QueryID\">973</val>\n                <val
+        name=\"RecordsSearched\">101007865</val>\n                <val name=\"RecordsFound\">2</val>\n
+        \           </map>\n        </map>\n    </map>\n</response>\n"
+  recorded_at: Tue, 31 Oct 2023 18:01:56 GMT
+recorded_with: VCR 6.2.0

@@ -10,10 +10,12 @@ module WebOfScience
 
     # @param [String] path of REST endpoint
     # @param [Hash] query parameters
+    # @param [String] database ID to search (WOK by default)
     # @param [Integer] batch_size number of records to fetch by batch (MAX_RECORDS = 100)
-    def initialize(path, params, batch_size: MAX_RECORDS)
+    def initialize(path, params, database: 'WOK', batch_size: MAX_RECORDS)
       @path = path
       @params = params
+      @database = database
       @batch_iteration = 0
       @batch_size = batch_size
     end
@@ -37,7 +39,7 @@ module WebOfScience
     # this is the maximum number that can be returned in a single query by WoS
     MAX_RECORDS = 100
 
-    attr_reader :batch_size, :query, :path, :params
+    attr_reader :batch_size, :query, :path, :params, :database
 
     delegate :client, to: WebOfScience
 
@@ -86,7 +88,8 @@ module WebOfScience
     def merged_params
       {
         count: batch_size,
-        firstRecord: (@batch_iteration * batch_size) + 1
+        firstRecord: (@batch_iteration * batch_size) + 1,
+        databaseId: database
       }.merge(params)
     end
   end
