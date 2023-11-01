@@ -1,0 +1,64 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://wos-api.clarivate.com/api/wos/?count=0&databaseId=WOK&firstRecord=1&usrQuery=AU=(%22SomeUnusualLastName,SomeUnusualFirstName%22%20OR%20%22SomeUnusualLastName,SomeUnusualFirstName,Jim%22%20OR%20%22SomeUnusualLastName,SomeUnusualFirstName,J%22)%20AND%20AD=(%22stanford%22)
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.7.11
+      Accept:
+      - application/xml
+      X-Apikey:
+      - Settings.WOS.API_KEY
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 01 Nov 2023 21:43:59 GMT
+      Content-Type:
+      - application/xml
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      X-Rec-Amtperyear-Remaining:
+      - '1946575'
+      X-Req-Reqpersec-Remaining:
+      - '24'
+      Vary:
+      - Origin
+      Correlation-Id:
+      - 06112123-c2cd-462d-a214-266034f0c849#54366222
+      X-Kong-Upstream-Latency:
+      - '24'
+      X-Kong-Proxy-Latency:
+      - '10'
+      Via:
+      - kong/2.8.1
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <response xmlns="http://www.isinet.com/xrpc42">
+            <map>
+                <map name="Data">
+                    <val name="Records"><![CDATA[<records></records>]]></val>
+                </map>
+                <map name="QueryResult">
+                    <map>
+                        <val name="QueryID">1410</val>
+                        <val name="RecordsSearched">101007865</val>
+                        <val name="RecordsFound">0</val>
+                    </map>
+                </map>
+            </map>
+        </response>
+  recorded_at: Wed, 01 Nov 2023 21:43:59 GMT
+recorded_with: VCR 6.2.0

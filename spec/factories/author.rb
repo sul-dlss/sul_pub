@@ -83,6 +83,13 @@ FactoryBot.define do
       official_last_name { nil }
       preferred_last_name { nil }
     end
+
+    trait :with_no_results do
+      official_first_name { 'SomeUnusualFirstName' }
+      preferred_first_name { 'SomeUnusualFirstName' }
+      official_last_name { 'SomeUnusualLastName' }
+      preferred_last_name { 'SomeUnusualLastName' }
+    end
   end
 
   factory :author_with_alternate_identities, parent: :author do

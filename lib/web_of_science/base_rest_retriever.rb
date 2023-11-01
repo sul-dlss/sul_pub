@@ -22,7 +22,7 @@ module WebOfScience
 
     # @return [Boolean] are more records available?
     def next_batch?
-      @batch_one.blank? || records_retrieved < records_found
+      @batch_one.nil? || records_retrieved < records_found
     end
 
     # Retrieve the next batch of records (without merging).
