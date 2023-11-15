@@ -7,6 +7,7 @@ describe WebOfScience::QueryAuthor, :vcr do
   let(:author_blank_orcid) { create(:russ_altman, :blank_orcid) }
   let(:author_blank_name) { create(:author, :blank_first_name, :valid_orcid) }
   let(:author_blank_name_and_orcid) { create(:author, :blank_first_name, :blank_orcid) }
+  let(:author_no_results) { create(:author, :with_no_results, :blank_orcid) }
 
   it 'works' do
     expect(query_author).to be_a described_class
@@ -85,6 +86,20 @@ describe WebOfScience::QueryAuthor, :vcr do
     it 'returns no uids' do
       expect(query_blank_author_and_orcid).not_to be_valid
       expect(query_blank_author_and_orcid.uids).to be_empty
+    end
+  end
+
+  describe '#uids when name query has no results' do
+    subject(:query_no_results) { described_class.new(author_no_results) }
+
+    it 'indicates the query is valid (only name, since orcid is blank)' do
+      expect(query_no_results).to be_valid
+      expect(query_no_results.orcid_query).not_to be_valid
+      expect(query_no_results.name_query).to be_valid
+    end
+
+    it 'returns an empty array' do
+      expect(query_no_results.uids).to eq []
     end
   end
 end

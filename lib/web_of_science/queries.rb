@@ -13,7 +13,15 @@ module WebOfScience
     end
 
     # Convenience method, does the params_for_search expansion
-    # @param query [String] Query string like 'TS=particle swarm AND PY=(2007 OR 2008)'
+    # @param query_string [String] Query string like 'TS=particle swarm AND PY=(2007 OR 2008)'
+    # @return [WebOfScience::UidsQueryRestRetriever]
+    def user_query_uids(query_string, query_params: nil, batch_size: WebOfScience::BaseRestRetriever::MAX_RECORDS)
+      query = WebOfScience::UidsQueryRestRetriever::Query.new(user_query: query_string)
+      WebOfScience::UidsQueryRestRetriever.new(query, query_params:, batch_size:)
+    end
+
+    # Convenience method, does the params_for_search expansion
+    # @param query_string [String] Query string like 'TS=particle swarm AND PY=(2007 OR 2008)'
     # @return [WebOfScience::UserQueryRestRetriever]
     def user_query(query_string, query_params: nil, batch_size: WebOfScience::BaseRestRetriever::MAX_RECORDS)
       query = WebOfScience::UserQueryRestRetriever::Query.new(user_query: query_string)

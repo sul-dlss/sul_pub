@@ -14,43 +14,47 @@ http_interactions:
       Accept-Encoding:
       - gzip,deflate
       Date:
-      - Fri, 05 Apr 2019 18:07:57 GMT
+      - Tue, 31 Oct 2023 18:01:37 GMT
       Content-Type:
       - application/x-www-form-urlencoded
+      Cookie:
+      - ncbi_sid=E6BF3C9AC2526E21_DE14SID
   response:
     status:
       code: 200
       message: OK
     headers:
       Date:
-      - Fri, 05 Apr 2019 18:07:57 GMT
+      - Tue, 31 Oct 2023 18:01:36 GMT
       Server:
       - Finatra
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains; preload
       Content-Security-Policy:
       - upgrade-insecure-requests
-      X-Ratelimit-Remaining:
-      - '9'
+      Referrer-Policy:
+      - origin-when-cross-origin
+      Ncbi-Sid:
+      - E6BF3C9AC2526E21_DE14SID
       Ncbi-Phid:
-      - 322C43FE71CC15450000221D0414EC7A.1.1.m_3
+      - 939B82FC7CCABBA500003604134637B7.1.1.m_3
+      Content-Type:
+      - text/xml; charset=UTF-8
       Cache-Control:
       - private
-      L5d-Success-Class:
-      - '1.0'
-      Ncbi-Sid:
-      - F7C3135D969607BB_0CA6SID
       Content-Encoding:
       - gzip
       X-Ratelimit-Limit:
       - '10'
+      X-Ratelimit-Remaining:
+      - '8'
       Access-Control-Allow-Origin:
       - "*"
-      Content-Type:
-      - text/xml; charset=UTF-8
+      Access-Control-Expose-Headers:
+      - X-RateLimit-Limit,X-RateLimit-Remaining
       Set-Cookie:
-      - ncbi_sid=F7C3135D969607BB_0CA6SID; domain=.nih.gov; path=/; expires=Sun, 05
-        Apr 2020 18:07:57 GMT
+      - ncbi_sid=E6BF3C9AC2526E21_DE14SID; domain=.nih.gov; path=/; expires=Thu, 31
+        Oct 2024 18:01:37 GMT
       X-Ua-Compatible:
       - IE=Edge
       X-Xss-Protection:
@@ -61,147 +65,8 @@ http_interactions:
       encoding: UTF-8
       string: |-
         <?xml version="1.0" ?>
-        <!DOCTYPE PubmedArticleSet PUBLIC "-//NLM//DTD PubMedArticle, 1st January 2019//EN" "https://dtd.nlm.nih.gov/ncbi/pubmed/out/pubmed_190101.dtd">
+        <!DOCTYPE PubmedArticleSet PUBLIC "-//NLM//DTD PubMedArticle, 1st January 2023//EN" "https://dtd.nlm.nih.gov/ncbi/pubmed/out/pubmed_230101.dtd">
         <PubmedArticleSet>
-        <PubmedArticle>
-            <MedlineCitation Status="MEDLINE" Owner="NLM">
-                <PMID Version="1">21253920</PMID>
-                <DateCompleted>
-                    <Year>2011</Year>
-                    <Month>08</Month>
-                    <Day>01</Day>
-                </DateCompleted>
-                <DateRevised>
-                    <Year>2011</Year>
-                    <Month>03</Month>
-                    <Day>22</Day>
-                </DateRevised>
-                <Article PubModel="Print-Electronic">
-                    <Journal>
-                        <ISSN IssnType="Electronic">1496-8975</ISSN>
-                        <JournalIssue CitedMedium="Internet">
-                            <Volume>58</Volume>
-                            <Issue>4</Issue>
-                            <PubDate>
-                                <Year>2011</Year>
-                                <Month>Apr</Month>
-                            </PubDate>
-                        </JournalIssue>
-                        <Title>Canadian journal of anaesthesia = Journal canadien d'anesthesie</Title>
-                        <ISOAbbreviation>Can J Anaesth</ISOAbbreviation>
-                    </Journal>
-                    <ArticleTitle>Kinked Perifix® FX Springwound epidural catheters.</ArticleTitle>
-                    <Pagination>
-                        <MedlinePgn>413-4</MedlinePgn>
-                    </Pagination>
-                    <ELocationID EIdType="doi" ValidYN="Y">10.1007/s12630-011-9462-1</ELocationID>
-                    <AuthorList CompleteYN="Y">
-                        <Author ValidYN="Y">
-                            <LastName>Hilton</LastName>
-                            <ForeName>Gillian</ForeName>
-                            <Initials>G</Initials>
-                        </Author>
-                        <Author ValidYN="Y">
-                            <LastName>Jette</LastName>
-                            <ForeName>Christine G</ForeName>
-                            <Initials>CG</Initials>
-                        </Author>
-                        <Author ValidYN="Y">
-                            <LastName>Ouyang</LastName>
-                            <ForeName>Yi-Bing</ForeName>
-                            <Initials>YB</Initials>
-                        </Author>
-                        <Author ValidYN="Y">
-                            <LastName>Riley</LastName>
-                            <ForeName>Edward T</ForeName>
-                            <Initials>ET</Initials>
-                        </Author>
-                    </AuthorList>
-                    <Language>eng</Language>
-                    <PublicationTypeList>
-                        <PublicationType UI="D016422">Letter</PublicationType>
-                        <PublicationType UI="D013485">Research Support, Non-U.S. Gov't</PublicationType>
-                    </PublicationTypeList>
-                    <ArticleDate DateType="Electronic">
-                        <Year>2011</Year>
-                        <Month>01</Month>
-                        <Day>21</Day>
-                    </ArticleDate>
-                </Article>
-                <MedlineJournalInfo>
-                    <Country>United States</Country>
-                    <MedlineTA>Can J Anaesth</MedlineTA>
-                    <NlmUniqueID>8701709</NlmUniqueID>
-                    <ISSNLinking>0832-610X</ISSNLinking>
-                </MedlineJournalInfo>
-                <CitationSubset>IM</CitationSubset>
-                <MeshHeadingList>
-                    <MeshHeading>
-                        <DescriptorName UI="D000767" MajorTopicYN="N">Anesthesia, Epidural</DescriptorName>
-                        <QualifierName UI="Q000295" MajorTopicYN="Y">instrumentation</QualifierName>
-                    </MeshHeading>
-                    <MeshHeading>
-                        <DescriptorName UI="D000773" MajorTopicYN="N">Anesthesia, Obstetrical</DescriptorName>
-                        <QualifierName UI="Q000295" MajorTopicYN="Y">instrumentation</QualifierName>
-                    </MeshHeading>
-                    <MeshHeading>
-                        <DescriptorName UI="D002404" MajorTopicYN="N">Catheterization</DescriptorName>
-                        <QualifierName UI="Q000295" MajorTopicYN="Y">instrumentation</QualifierName>
-                    </MeshHeading>
-                    <MeshHeading>
-                        <DescriptorName UI="D005260" MajorTopicYN="N">Female</DescriptorName>
-                    </MeshHeading>
-                    <MeshHeading>
-                        <DescriptorName UI="D006801" MajorTopicYN="N">Humans</DescriptorName>
-                    </MeshHeading>
-                    <MeshHeading>
-                        <DescriptorName UI="D011247" MajorTopicYN="N">Pregnancy</DescriptorName>
-                    </MeshHeading>
-                </MeshHeadingList>
-            </MedlineCitation>
-            <PubmedData>
-                <History>
-                    <PubMedPubDate PubStatus="received">
-                        <Year>2010</Year>
-                        <Month>12</Month>
-                        <Day>09</Day>
-                    </PubMedPubDate>
-                    <PubMedPubDate PubStatus="accepted">
-                        <Year>2011</Year>
-                        <Month>01</Month>
-                        <Day>10</Day>
-                    </PubMedPubDate>
-                    <PubMedPubDate PubStatus="entrez">
-                        <Year>2011</Year>
-                        <Month>1</Month>
-                        <Day>22</Day>
-                        <Hour>6</Hour>
-                        <Minute>0</Minute>
-                    </PubMedPubDate>
-                    <PubMedPubDate PubStatus="pubmed">
-                        <Year>2011</Year>
-                        <Month>1</Month>
-                        <Day>22</Day>
-                        <Hour>6</Hour>
-                        <Minute>0</Minute>
-                    </PubMedPubDate>
-                    <PubMedPubDate PubStatus="medline">
-                        <Year>2011</Year>
-                        <Month>8</Month>
-                        <Day>2</Day>
-                        <Hour>6</Hour>
-                        <Minute>0</Minute>
-                    </PubMedPubDate>
-                </History>
-                <PublicationStatus>ppublish</PublicationStatus>
-                <ArticleIdList>
-                    <ArticleId IdType="pubmed">21253920</ArticleId>
-                    <ArticleId IdType="doi">10.1007/s12630-011-9462-1</ArticleId>
-                </ArticleIdList>
-            </PubmedData>
-        </PubmedArticle>
-
-        </PubmedArticleSet>
-    http_version: 
-  recorded_at: Fri, 05 Apr 2019 18:07:57 GMT
-recorded_with: VCR 4.0.0
+        <PubmedArticle><MedlineCitation Status="MEDLINE" Owner="NLM"><PMID Version="1">21253920</PMID><DateCompleted><Year>2011</Year><Month>08</Month><Day>01</Day></DateCompleted><DateRevised><Year>2011</Year><Month>03</Month><Day>22</Day></DateRevised><Article PubModel="Print-Electronic"><Journal><ISSN IssnType="Electronic">1496-8975</ISSN><JournalIssue CitedMedium="Internet"><Volume>58</Volume><Issue>4</Issue><PubDate><Year>2011</Year><Month>Apr</Month></PubDate></JournalIssue><Title>Canadian journal of anaesthesia = Journal canadien d'anesthesie</Title><ISOAbbreviation>Can J Anaesth</ISOAbbreviation></Journal><ArticleTitle>Kinked Perifix&#xae; FX Springwound epidural catheters.</ArticleTitle><Pagination><StartPage>413</StartPage><EndPage>414</EndPage><MedlinePgn>413-4</MedlinePgn></Pagination><ELocationID EIdType="doi" ValidYN="Y">10.1007/s12630-011-9462-1</ELocationID><AuthorList CompleteYN="Y"><Author ValidYN="Y"><LastName>Hilton</LastName><ForeName>Gillian</ForeName><Initials>G</Initials></Author><Author ValidYN="Y"><LastName>Jette</LastName><ForeName>Christine G</ForeName><Initials>CG</Initials></Author><Author ValidYN="Y"><LastName>Ouyang</LastName><ForeName>Yi-Bing</ForeName><Initials>YB</Initials></Author><Author ValidYN="Y"><LastName>Riley</LastName><ForeName>Edward T</ForeName><Initials>ET</Initials></Author></AuthorList><Language>eng</Language><PublicationTypeList><PublicationType UI="D016422">Letter</PublicationType><PublicationType UI="D013485">Research Support, Non-U.S. Gov't</PublicationType></PublicationTypeList><ArticleDate DateType="Electronic"><Year>2011</Year><Month>01</Month><Day>21</Day></ArticleDate></Article><MedlineJournalInfo><Country>United States</Country><MedlineTA>Can J Anaesth</MedlineTA><NlmUniqueID>8701709</NlmUniqueID><ISSNLinking>0832-610X</ISSNLinking></MedlineJournalInfo><CitationSubset>IM</CitationSubset><MeshHeadingList><MeshHeading><DescriptorName UI="D000767" MajorTopicYN="N">Anesthesia, Epidural</DescriptorName><QualifierName UI="Q000295" MajorTopicYN="Y">instrumentation</QualifierName></MeshHeading><MeshHeading><DescriptorName UI="D000773" MajorTopicYN="N">Anesthesia, Obstetrical</DescriptorName><QualifierName UI="Q000295" MajorTopicYN="Y">instrumentation</QualifierName></MeshHeading><MeshHeading><DescriptorName UI="D002404" MajorTopicYN="N">Catheterization</DescriptorName><QualifierName UI="Q000295" MajorTopicYN="Y">instrumentation</QualifierName></MeshHeading><MeshHeading><DescriptorName UI="D005260" MajorTopicYN="N">Female</DescriptorName></MeshHeading><MeshHeading><DescriptorName UI="D006801" MajorTopicYN="N">Humans</DescriptorName></MeshHeading><MeshHeading><DescriptorName UI="D011247" MajorTopicYN="N">Pregnancy</DescriptorName></MeshHeading></MeshHeadingList></MedlineCitation><PubmedData><History><PubMedPubDate PubStatus="received"><Year>2010</Year><Month>12</Month><Day>9</Day></PubMedPubDate><PubMedPubDate PubStatus="accepted"><Year>2011</Year><Month>1</Month><Day>10</Day></PubMedPubDate><PubMedPubDate PubStatus="entrez"><Year>2011</Year><Month>1</Month><Day>22</Day><Hour>6</Hour><Minute>0</Minute></PubMedPubDate><PubMedPubDate PubStatus="pubmed"><Year>2011</Year><Month>1</Month><Day>22</Day><Hour>6</Hour><Minute>0</Minute></PubMedPubDate><PubMedPubDate PubStatus="medline"><Year>2011</Year><Month>8</Month><Day>2</Day><Hour>6</Hour><Minute>0</Minute></PubMedPubDate></History><PublicationStatus>ppublish</PublicationStatus><ArticleIdList><ArticleId IdType="pubmed">21253920</ArticleId><ArticleId IdType="doi">10.1007/s12630-011-9462-1</ArticleId></ArticleIdList></PubmedData></PubmedArticle></PubmedArticleSet>
+  recorded_at: Tue, 31 Oct 2023 18:01:37 GMT
+recorded_with: VCR 6.2.0

@@ -6,24 +6,18 @@ module WebOfScience
   # - the "next_batch?" is like "next?"
   # - the "next_batch" is like "next"
   class BaseRestRetriever
-    attr_reader :records_found, :records_retrieved
+    attr_reader :records_found, :records_retrieved, :query_id
 
     # @param [String] path of REST endpoint
     # @param [Hash] query parameters
+    # @param [String] database ID to search (WOK by default)
     # @param [Integer] batch_size number of records to fetch by batch (MAX_RECORDS = 100)
-    def initialize(path, params, batch_size: MAX_RECORDS)
+    def initialize(path, params, database: 'WOK', batch_size: MAX_RECORDS)
       @path = path
       @params = params
+      @database = database
       @batch_iteration = 0
       @batch_size = batch_size
-    end
-
-    # Retrieve and collect all record UIDs
-    # @return [Array<String>] WosUIDs
-    def merged_uids
-      uids = batch_one.uids
-      uids += next_batch.uids while next_batch?
-      uids
     end
 
     # @return [Boolean] are more records available?
@@ -34,7 +28,7 @@ module WebOfScience
     # Retrieve the next batch of records (without merging).
     # @return [WebOfScience::Records, nil]
     def next_batch
-      return batch_one if @batch_one.nil?
+      return batch_one if @batch_one.blank?
       return if records_retrieved?
 
       retrieve_batch
@@ -45,13 +39,13 @@ module WebOfScience
     # this is the maximum number that can be returned in a single query by WoS
     MAX_RECORDS = 100
 
-    attr_reader :batch_size, :query, :query_id, :path, :params
+    attr_reader :batch_size, :query, :path, :params, :database
 
     delegate :client, to: WebOfScience
 
     # @return [Boolean] all records retrieved?
     def records_retrieved?
-      @batch_one.nil? ? false : records_retrieved == records_found
+      @batch_one.blank? ? false : records_retrieved == records_found
     end
 
     # Retrieve and merge all records
@@ -94,7 +88,8 @@ module WebOfScience
     def merged_params
       {
         count: batch_size,
-        firstRecord: (@batch_iteration * batch_size) + 1
+        firstRecord: (@batch_iteration * batch_size) + 1,
+        databaseId: database
       }.merge(params)
     end
   end

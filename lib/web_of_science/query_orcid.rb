@@ -16,7 +16,7 @@ module WebOfScience
     def uids
       return [] unless valid?
 
-      queries.user_query(orcid_query, query_params:).merged_uids
+      queries.user_query_uids(orcid_query, query_params:).merged_uids
     end
 
     def valid?

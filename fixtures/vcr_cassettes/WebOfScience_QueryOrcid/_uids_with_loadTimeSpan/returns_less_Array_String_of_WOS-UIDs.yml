@@ -2,13 +2,13 @@
 http_interactions:
 - request:
     method: get
-    uri: https://wos-api.clarivate.com/api/wos/?count=100&databaseId=WOK&firstRecord=1&loadTimeSpan=4W&usrQuery=RID=(%220000-0003-3859-2905%22)
+    uri: https://wos-api.clarivate.com/api/wos/?count=0&databaseId=WOK&firstRecord=1&loadTimeSpan=4W&usrQuery=AI=(%220000-0003-3859-2905%22)
     body:
       encoding: US-ASCII
       string: ''
     headers:
       User-Agent:
-      - Faraday v2.7.6
+      - Faraday v2.7.11
       Accept:
       - application/xml
       X-Apikey:
@@ -21,7 +21,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Wed, 21 Jun 2023 19:36:56 GMT
+      - Tue, 31 Oct 2023 18:01:32 GMT
       Content-Type:
       - application/xml
       Transfer-Encoding:
@@ -29,17 +29,17 @@ http_interactions:
       Connection:
       - keep-alive
       X-Rec-Amtperyear-Remaining:
-      - '48753'
+      - '1952242'
       X-Req-Reqpersec-Remaining:
-      - '1'
+      - '23'
       Vary:
       - Origin
       Correlation-Id:
-      - 9f86b6f7-87bd-4457-a30c-2b890464b7d4#59111350
+      - 06112123-c2cd-462d-a214-266034f0c849#49973709
       X-Kong-Upstream-Latency:
-      - '68'
+      - '17'
       X-Kong-Proxy-Latency:
-      - '162'
+      - '1'
       Via:
       - kong/2.8.1
     body:
@@ -53,25 +53,25 @@ http_interactions:
                 </map>
                 <map name="QueryResult">
                     <map>
-                        <val name="QueryID">12</val>
-                        <val name="RecordsSearched">919348</val>
-                        <val name="RecordsFound">0</val>
+                        <val name="QueryID">963</val>
+                        <val name="RecordsSearched">632858</val>
+                        <val name="RecordsFound">1</val>
                     </map>
                 </map>
             </map>
         </response>
-  recorded_at: Wed, 21 Jun 2023 19:36:56 GMT
+  recorded_at: Tue, 31 Oct 2023 18:01:32 GMT
 - request:
     method: get
-    uri: https://wos-api.clarivate.com/api/wos/?count=100&databaseId=WOK&firstRecord=1&loadTimeSpan=4W&usrQuery=AI=(%220000-0003-3859-2905%22)
+    uri: https://wos-api.clarivate.com/api/wos/recordids/963?count=100&databaseId=WOK&firstRecord=1&loadTimeSpan=4W&usrQuery=AI=(%220000-0003-3859-2905%22)
     body:
       encoding: US-ASCII
       string: ''
     headers:
       User-Agent:
-      - Faraday v2.7.6
+      - Faraday v2.7.11
       Accept:
-      - application/xml
+      - application/json
       X-Apikey:
       - Settings.WOS.API_KEY
       Accept-Encoding:
@@ -82,44 +82,25 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 22 Jun 2023 19:38:10 GMT
+      - Tue, 31 Oct 2023 18:01:32 GMT
       Content-Type:
-      - application/xml
+      - application/json
       Transfer-Encoding:
       - chunked
       Connection:
       - keep-alive
-      X-Rec-Amtperyear-Remaining:
-      - '46494'
-      X-Req-Reqpersec-Remaining:
-      - '1'
       Vary:
       - Origin
       Correlation-Id:
-      - '0219fb59-195d-492f-8367-58a68cc49ed1#973492'
+      - 06112123-c2cd-462d-a214-266034f0c849#49973721
       X-Kong-Upstream-Latency:
-      - '43'
+      - '12'
       X-Kong-Proxy-Latency:
       - '2'
       Via:
       - kong/2.8.1
     body:
       encoding: UTF-8
-      string: |
-        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-        <response xmlns="http://www.isinet.com/xrpc42">
-            <map>
-                <map name="Data">
-                    <val name="Records"><![CDATA[<records></records>]]></val>
-                </map>
-                <map name="QueryResult">
-                    <map>
-                        <val name="QueryID">22</val>
-                        <val name="RecordsSearched">910776</val>
-                        <val name="RecordsFound">0</val>
-                    </map>
-                </map>
-            </map>
-        </response>
-  recorded_at: Thu, 22 Jun 2023 19:38:09 GMT
-recorded_with: VCR 6.1.0
+      string: '["WOS:001064713900001"]'
+  recorded_at: Tue, 31 Oct 2023 18:01:32 GMT
+recorded_with: VCR 6.2.0
