@@ -61,7 +61,7 @@ group :test do
   gem 'capybara'
   gem 'database_cleaner'
   gem 'equivalent-xml'
-  gem 'factory_bot_rails', '~> 6.2.0' # newer versions fail, and not due to reject_primary_key_attributes setting
+  gem 'factory_bot_rails', '~> 6.2.0' # unpin when https://github.com/thoughtbot/factory_bot_rails/pull/432 or issue/433 is in a release
   gem 'rails-controller-testing'
   gem 'simplecov', '~> 0.13', require: false
   gem 'vcr'
