@@ -326,7 +326,7 @@ class Publication < ApplicationRecord
 
   def update_any_new_contribution_info_in_pub_hash_to_db
     Array(pub_hash[:authorship]).each do |contrib|
-      hash_for_update = contrib.slice(:status, :visibility, :featured).each do |_k, v|
+      hash_for_update = contrib.slice(:status, :visibility, :featured).each_value do |v|
         v.downcase! if v.respond_to?(:downcase!)
       end
       # Find or create an Author of the contribution

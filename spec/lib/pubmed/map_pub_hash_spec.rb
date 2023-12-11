@@ -55,7 +55,7 @@ describe Pubmed::MapPubHash, :vcr do
       end
 
       it 'extracts all names correctly' do
-        author_valid.each do |_key, author|
+        author_valid.each_value do |author|
           author_xml = Nokogiri::XML(author[:xml]).at_xpath('/Author')
           author_hash = mapper.send(:author_to_hash, author_xml)
           expect(author_hash).to eq author[:hash]
