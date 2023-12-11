@@ -75,7 +75,7 @@ describe WebOfScience::QueryAuthor, :vcr do
       expect(query_blank_author.name_query).not_to be_valid
       num_uids_total = query_blank_author.uids.size
       num_uids_orcid = query_blank_author.orcid_query.uids.size
-      expect(num_uids_total).to eq num_uids_orcid  # the only uids are from the orcid query
+      expect(num_uids_total).to eq num_uids_orcid # the only uids are from the orcid query
       expect(num_uids_total).to be > 140
     end
   end
