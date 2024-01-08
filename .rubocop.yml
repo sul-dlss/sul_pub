@@ -541,3 +541,31 @@ Rails/SelectMap: # new in 2.21
   Enabled: true
 Rails/UnusedRenderContent: # new in 2.21
   Enabled: true
+
+Lint/ItWithoutArgumentsInBlock: # new in 1.59
+  Enabled: true
+Lint/LiteralAssignmentInCondition: # new in 1.58
+  Enabled: true
+Style/SingleLineDoEndBlock: # new in 1.57
+  Enabled: true
+Style/SuperWithArgsParentheses: # new in 1.58
+  Enabled: true
+Capybara/ClickLinkOrButtonStyle: # new in 2.19
+  Enabled: true
+Capybara/RedundantWithinFind: # new in 2.20
+  Enabled: true
+Capybara/RSpec/HaveSelector: # new in 2.19
+  Enabled: true
+Capybara/RSpec/PredicateMatcher: # new in 2.19
+  Enabled: true
+FactoryBot/IdSequence: # new in 2.24
+  Enabled: true
+RSpec/RedundantPredicateMatcher: # new in 2.26
+  Enabled: true
+RSpec/RemoveConst: # new in 2.26
+  Enabled: true
+Rails/EnvLocal: # new in 2.22
+  Enabled: true
+
+FactoryBot/ExcessiveCreateList: # new in 2.25
+  Enabled: false # we had an existing test that ran afoul of this rule when it was added, and the limit of 10 seems arbitrary
