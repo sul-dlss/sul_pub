@@ -197,7 +197,7 @@ namespace :sul do
           puts "#{message} : #{contributions.size} publications"
           contributions.each do |contribution|
             pub = contribution.publication
-            next unless !pub_years.empty? && pub_years.include?(pub.year)
+            next unless pub_years.empty? || (pub_years.present? && pub_years.include?(pub.year))
 
             total_pubs += 1
             author_list = if pub.pub_hash[:author]
