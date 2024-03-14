@@ -47,7 +47,11 @@ class PublicationsController < ApplicationController
         render json: wrap_as_bibjson_collection(description, matching_records, page, per)
       end
       format.csv do
-        send_data(generate_csv_report(author), filename: 'author_report.csv')
+        if author
+          send_data(generate_csv_report(author), filename: 'author_report.csv')
+        else # this format doesn't work except for a single author
+          render plain: 'CSV not available for all publications; must select single author', status: :bad_request
+        end
       end
     end
   end
