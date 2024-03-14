@@ -216,6 +216,16 @@ describe PublicationsController, :vcr do
                                     "status_for_this_author,created_at,updated_at,contributor_cap_profile_ids\n"
       end
     end
+
+    context 'with no capProfileId supplied in csv format' do
+      before { allow(Author).to receive(:find_by).with(cap_profile_id: cap_id).and_return(author) }
+
+      it 'returns a bad request response' do
+        get :index, params: { format: 'csv' }
+        expect(response).to have_http_status :bad_request
+        expect(response.body).to eq 'CSV not available for all publications; must select single author'
+      end
+    end
   end
 
   describe 'search for publications (GET sourcelookup)' do
