@@ -180,6 +180,9 @@ namespace :sul do
     users_not_found = []
     start_time = Time.zone.now
     puts "Exporting all pubs for #{total_authors} authors to #{output_file} from #{start_date} to #{end_date}.  Started at #{start_time}."
+    puts "restricted to publication years: #{pub_years.join(', ')}" if pub_years.present?
+    puts "restricted to publication status: #{status.join(', ')}"
+
     header_row = %w[pub_title pub_id pmid doi publisher journal mesh pub_year provenance pub_associated_author_last_name
                     pub_associated_author_first_name pub_associated_author_sunet pub_associated_author_employee_id
                     pub_associated_author_orcid author_list sunet_list publication_status pub_harvested_date apa_citation]
