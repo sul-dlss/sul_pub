@@ -57,7 +57,7 @@ class Publication < ApplicationRecord
            after_add: :pubhash_needs_update!,
            after_remove: :pubhash_needs_update!
 
-  serialize :pub_hash, Hash
+  serialize :pub_hash, type: Hash
 
   def self.updated_after(date)
     where('publications.updated_at > ?', date)
