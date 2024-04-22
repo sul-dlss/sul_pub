@@ -76,6 +76,7 @@ GEM
     ast (2.4.2)
     attr_extras (7.1.0)
     base64 (0.2.0)
+    bcrypt_pbkdf (1.1.0)
     bibtex-ruby (6.1.0)
       latex-decode (~> 0.0)
       racc (~> 1.7)
@@ -165,11 +166,13 @@ GEM
     deprecation (1.1.0)
       activesupport
     diff-lcs (1.5.1)
-    dlss-capistrano (4.4.0)
+    dlss-capistrano (4.4.1)
+      bcrypt_pbkdf
       capistrano (~> 3.0)
       capistrano-bundle_audit (>= 0.3.0)
       capistrano-one_time_key
       capistrano-shared_configs
+      ed25519
     docile (1.4.0)
     dotiw (5.3.3)
       activesupport
@@ -194,6 +197,7 @@ GEM
       dry-inflector (~> 1.0)
       dry-logic (~> 1.4)
       zeitwerk (~> 2.6)
+    ed25519 (1.3.0)
     edtf (3.1.1)
       activesupport (>= 3.0, < 8.0)
     equivalent-xml (0.6.0)
@@ -274,7 +278,7 @@ GEM
       zeitwerk
     marcel (1.0.4)
     matrix (0.4.2)
-    method_source (1.0.0)
+    method_source (1.1.0)
     mini_mime (1.1.5)
     mini_portile2 (2.8.6)
     minitest (5.22.3)
@@ -407,7 +411,7 @@ GEM
     rspec-support (3.13.1)
     rss (0.3.0)
       rexml
-    rubocop (1.63.1)
+    rubocop (1.63.2)
       json (~> 2.3)
       language_server-protocol (>= 3.17.0)
       parallel (~> 1.10)
@@ -451,10 +455,10 @@ GEM
     snaky_hash (2.0.1)
       hashie
       version_gem (~> 1.1, >= 1.1.1)
-    sqlite3 (1.7.3)
+    sqlite3 (2.0.1)
       mini_portile2 (~> 2.8.0)
-    sqlite3 (1.7.3-x86_64-darwin)
-    sqlite3 (1.7.3-x86_64-linux)
+    sqlite3 (2.0.1-x86_64-darwin)
+    sqlite3 (2.0.1-x86_64-linux-gnu)
     sshkit (1.22.1)
       base64
       mutex_m
