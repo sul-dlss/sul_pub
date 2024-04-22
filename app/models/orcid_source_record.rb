@@ -3,5 +3,5 @@
 class OrcidSourceRecord < ApplicationRecord
   belongs_to :publication, inverse_of: :orcid_source_record, optional: true
 
-  serialize :source_data, JSON
+  serialize :source_data, coder: JSON
 end

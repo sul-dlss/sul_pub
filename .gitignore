@@ -19,7 +19,7 @@ spec/examples.txt
 .gemtags
 
 # Ignore the database files
-/db/*.sqlite3
+/db/*.sqlite3*
 
 # Ignore all logfiles and tempfiles.
 /log
