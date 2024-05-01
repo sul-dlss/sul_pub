@@ -515,7 +515,6 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.9.1)
-    unicode (0.4.4.4)
     unicode-display_width (2.5.0)
     uri (0.13.0)
     urn (2.0.2)
@@ -600,7 +599,6 @@ DEPENDENCIES
   sqlite3 (~> 1.7)
   sul_orcid_client
   thin
-  unicode
   vcr
   webmock
   whenever
