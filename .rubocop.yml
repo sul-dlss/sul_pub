@@ -2,11 +2,12 @@ inherit_from:
   - .rubocop_todo.yml
 
 require:
-  - rubocop-rspec
-  - rubocop-rake
-  - rubocop-rails
+  - rubocop-capybara
   - rubocop-factory_bot
-  - rubocop-capybara # not sure we need this?
+  - rubocop-rails
+  - rubocop-rake
+  - rubocop-rspec
+  - rubocop-rspec_rails
 
 AllCops:
   TargetRubyVersion: 3.2
@@ -126,10 +127,6 @@ RSpec/MultipleExpectations:
 RSpec/NestedGroups:
   Max: 5
 
-# When enabled, produces errors.
-RSpec/FactoryBot:
-  Enabled: false
-
 Style/ClassVars:
   Enabled: false
 
@@ -210,7 +207,7 @@ Style/SwapValues: # (new in 1.1)
   Enabled: true
 RSpec/IdenticalEqualityAssertion: # (new in 2.4)
   Enabled: true
-RSpec/Rails/AvoidSetupHook: # (new in 2.4)
+RSpecRails/AvoidSetupHook: # (new in 2.4)
   Enabled: true
 Rails/ActiveRecordCallbacksOrder: # (new in 2.7)
   Enabled: true
@@ -385,7 +382,7 @@ Capybara/SpecificFinders: # new in 2.13
   Enabled: true
 Capybara/SpecificMatcher: # new in 2.12
   Enabled: true
-RSpec/Rails/HaveHttpStatus: # new in 2.12
+RSpecRails/HaveHttpStatus: # new in 2.12
   Enabled: true
 Rails/ActionControllerFlashBeforeRender: # new in 2.16
   Enabled: true
@@ -489,11 +486,11 @@ RSpec/SkipBlockInsideExample: # new in 2.19
   Enabled: true
 RSpec/SortMetadata: # new in 2.14
   Enabled: true
-RSpec/Rails/InferredSpecType: # new in 2.14
+RSpecRails/InferredSpecType: # new in 2.14
   Enabled: true
-RSpec/Rails/MinitestAssertions: # new in 2.17
+RSpecRails/MinitestAssertions: # new in 2.17
   Enabled: true
-RSpec/Rails/TravelAround: # new in 2.19
+RSpecRails/TravelAround: # new in 2.19
   Enabled: true
 Rails/ActionOrder: # new in 2.17
   Enabled: true
@@ -520,7 +517,7 @@ Style/YAMLFileRead: # new in 1.53
   Enabled: true
 RSpec/ReceiveMessages: # new in 2.23
   Enabled: true
-RSpec/Rails/NegationBeValid: # new in 2.23
+RSpecRails/NegationBeValid: # new in 2.23
   Enabled: true
 
 RSpec/EmptyMetadata: # new in 2.24

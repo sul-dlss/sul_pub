@@ -40,9 +40,12 @@ gem 'retina_tag'
 
 group :development, :test do
   gem 'rubocop'
-  gem 'rubocop-rspec'
+  gem 'rubocop-capybara'
+  gem 'rubocop-factory_bot'
   gem 'rubocop-rails'
   gem 'rubocop-rake'
+  gem 'rubocop-rspec'
+  gem 'rubocop-rspec_rails'
   gem 'rspec'
   gem 'rspec-rails'
   gem 'sqlite3', '~> 1.7' # sqlite3 2.0.0 is not currently compatible with Rails 7.1; unpin when new rails release: https://github.com/rails/rails/pull/51636
