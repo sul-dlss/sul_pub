@@ -54,8 +54,6 @@
 
 # NOTE: This borrowed some code from the 'export_pubs_for_authors_csv' rake task in lib/tasks/sul.rake
 
-require 'csv'
-
 class SmciReport
   # rubocop:disable Metrics/CyclomaticComplexity
   def initialize(args)

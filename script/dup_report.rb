@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'csv'
-
 class Reporter
   def initialize(swids_file, pmids_file, wos_file)
     @swids = build_id_set swids_file

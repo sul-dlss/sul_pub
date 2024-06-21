@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'csv'
-
 class MergeDuplicateAuths
   CONTRIB_CHECK = true
 

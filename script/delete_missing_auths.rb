@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'csv'
-
 class DeleteMissingAuths
   def initialize
     @logger = Logger.new(Rails.root.join('log/delete_missing_auths.log'))
