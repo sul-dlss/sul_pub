@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'csv'
-
 namespace :cleanup do
   desc 'Merge contributions FROM duped_cap_profile_id INTO primary_cap_profile_id'
   # Use case: a single author has two author rows with publications associated with each.

@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'csv'
-
 class RepairMixedAuths
   def initialize
     @logger = Logger.new(Rails.root.join('log/repair_mixed_auths.log'))

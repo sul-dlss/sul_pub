@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require 'csv'
 require 'pathname'
 
 ActiveRecord::Base.logger.level = 1

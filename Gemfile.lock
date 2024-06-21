@@ -167,6 +167,7 @@ GEM
       rexml
     csl-styles (1.0.1.8)
       csl (~> 1.0)
+    csv (3.2.8)
     daemons (1.4.1)
     database_cleaner (2.0.2)
       database_cleaner-active_record (>= 2, < 3)
@@ -557,6 +558,7 @@ DEPENDENCIES
   citeproc-ruby (~> 1.1)
   config
   csl-styles (= 1.0.1.8)
+  csv
   daemons
   database_cleaner
   dlss-capistrano
