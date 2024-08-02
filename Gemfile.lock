@@ -423,7 +423,7 @@ GEM
       rack (>= 1.4)
     retina_tag (1.4.1)
       rails (>= 3.1)
-    rexml (3.3.2)
+    rexml (3.3.3)
       strscan
     rspec (3.13.0)
       rspec-core (~> 3.13.0)
