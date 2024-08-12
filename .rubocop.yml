@@ -566,3 +566,8 @@ Rails/EnvLocal: # new in 2.22
 
 FactoryBot/ExcessiveCreateList: # new in 2.25
   Enabled: false # we had an existing test that ran afoul of this rule when it was added, and the limit of 10 seems arbitrary
+
+Gemspec/AddRuntimeDependency: # new in 1.65
+  Enabled: true
+Style/SendWithLiteralMethodName: # new in 1.64
+  Enabled: true
