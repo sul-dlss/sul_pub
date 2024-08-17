@@ -51,7 +51,7 @@ module WebOfScience
     # Extract content from record, try not to hang onto the entire record
     # @param rec [WebOfScience::Record]
     def extract(rec)
-      super(rec)
+      super
       @names = extract_names(rec)
       @author_count = names.count { |name| name[:role] == 'author' }
     end

@@ -19,7 +19,7 @@ module WebOfScience
     # Extract content from record, try not to hang onto the entire record
     # @param rec [WebOfScience::Record]
     def extract(rec)
-      super(rec)
+      super
       @publishers = extract_publishers(rec)
       @medline_country = extract_medline_country(rec)
       @pub = pub_hash_publisher

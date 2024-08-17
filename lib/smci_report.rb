@@ -119,7 +119,7 @@ class SmciReport
             contributions = Contribution.select('*')
             contributions = contributions.where(author:)
             contributions = contributions.where('created_at > ?', Time.zone.parse(@date_since)) if @date_since
-            contributions = contributions.where('created_at < ?', Time.zone.parse(@date_to)) if @date_to
+            contributions = contributions.where(created_at: ...Time.zone.parse(@date_to)) if @date_to
             num_pubs_found = contributions.size
             logger.info "found #{author.first_name} #{author.last_name} with #{num_pubs_found} publications"
             total_pubs += num_pubs_found

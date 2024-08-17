@@ -120,13 +120,11 @@ module Pubmed
     def extract_mesh_headings_from_pubmed_record
       mesh_headings_for_record = []
       pubmed_article.xpath('MedlineCitation/MeshHeadingList/MeshHeading').each do |mesh_heading|
-        descriptors = []
-        qualifiers = []
-        mesh_heading.xpath('DescriptorName').each do |descriptor_name|
-          descriptors << { major: descriptor_name.attr('MajorTopicYN'), name: descriptor_name.text }
+        descriptors = mesh_heading.xpath('DescriptorName').map do |descriptor_name|
+          { major: descriptor_name.attr('MajorTopicYN'), name: descriptor_name.text }
         end
-        mesh_heading.xpath('QualifierName').each do |qualifier_name|
-          qualifiers << { major: qualifier_name.attr('MajorTopicYN'), name: qualifier_name.text }
+        qualifiers = mesh_heading.xpath('QualifierName').map do |qualifier_name|
+          { major: qualifier_name.attr('MajorTopicYN'), name: qualifier_name.text }
         end
         mesh_headings_for_record << { descriptor: descriptors, qualifier: qualifiers }
       end
