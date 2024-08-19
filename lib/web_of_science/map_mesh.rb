@@ -16,7 +16,7 @@ module WebOfScience
     # Extract content from record, try not to hang onto the entire record
     # @param rec [WebOfScience::Record]
     def extract(rec)
-      super(rec)
+      super
       @mesh = extract_mesh(rec)
     end
 

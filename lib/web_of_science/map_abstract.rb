@@ -26,7 +26,7 @@ module WebOfScience
     # Extract content from record, try not to hang onto the entire record
     # @param rec [WebOfScience::Record]
     def extract(rec)
-      super(rec)
+      super
       @abstracts = rec.doc.xpath(path).map(&:text)
     end
 

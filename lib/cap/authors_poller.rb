@@ -189,8 +189,8 @@ module Cap
       info << "#{@too_many_contribs} contributions had more than one instance for an author"
       info << "#{@new_auth_with_contribs} new authors had contributions which were ignored"
       info << "#{@contribs_changed} contributions were updated"
-      info << "~#{Publication.where('created_at >= ?', @start_time).count} publications were created."
-      info << "~#{Contribution.where('created_at >= ?', @start_time).count} contributions were created."
+      info << "~#{Publication.where(created_at: @start_time..).count} publications were created."
+      info << "~#{Contribution.where(created_at: @start_time..).count} contributions were created."
       logger.info info.join("\n")
     end
 

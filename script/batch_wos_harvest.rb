@@ -20,7 +20,7 @@ CSV.open(Rails.root.join('log/batch_wos_harvest.csv'), 'wb') do |csv|
   authors.each_with_index do |author, i|
     puts "Harvesting cap_profile_id #{author.cap_profile_id} [#{i + 1} of #{total}]"
     harvester.process_author(author, options)
-    new_pub_count = author.contributions.where(status: 'new').where('created_at >= ?', start_time).count
+    new_pub_count = author.contributions.where(status: 'new').where(created_at: start_time..).count
     csv << [author.cap_profile_id, "#{author.first_name} #{author.last_name}", new_pub_count]
   end
 end
