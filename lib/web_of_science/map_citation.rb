@@ -55,7 +55,7 @@ module WebOfScience
 
       fst = page['begin'].to_s.strip
       lst = page['end'].to_s.strip
-      fst == lst ? fst : [fst, lst].select(&:present?).join('-')
+      fst == lst ? fst : [fst, lst].compact_blank.join('-')
     end
   end
 end
