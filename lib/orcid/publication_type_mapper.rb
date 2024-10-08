@@ -4,12 +4,16 @@ module Orcid
   # Maps work / publication types between ORCID and SUL-PUB.
   class PublicationTypeMapper
     # Note that this is limited to the work types for which mapping is supported.
+    # Full list of work types at ORCID: see https://info.orcid.org/faq/what-work-types-does-orcid-support/
     PUB_TYPE_TO_WORK_TYPE = {
       'article' => 'journal-article',
       'book' => 'book',
       'caseStudy' => 'research-tool',
       'inbook' => 'book-chapter',
-      'inproceedings' => 'conference-paper'
+      'inproceedings' => 'conference-paper',
+      'otherPaper' => 'other',
+      'technicalReport' => 'report',
+      'workingPaper' => 'working-paper'
     }.freeze
 
     # @return [String] ORCID work type or nil if no matching
