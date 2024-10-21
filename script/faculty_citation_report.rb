@@ -86,7 +86,8 @@ def citation_search(input_file, output_file)
         puts "\"#{user[:author]}\",#{error}"
         csv << [user[:author], error]
       end
-    end; nil
+    end
+    nil
   end
 end
 
