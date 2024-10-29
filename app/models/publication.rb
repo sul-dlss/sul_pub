@@ -104,7 +104,6 @@ class Publication < ApplicationRecord
   def update_manual_pub_from_pub_hash(incoming_pub_hash, original_source_string)
     self.pub_hash = incoming_pub_hash.merge(provenance: Settings.cap_provenance)
     match = UserSubmittedSourceRecord.find_by(source_data: original_source_string)
-    match.publication = self if match # we may still throw this out w/o saving
     r = user_submitted_source_records.first || match || user_submitted_source_records.build
     r.assign_attributes(
       is_active: true,
