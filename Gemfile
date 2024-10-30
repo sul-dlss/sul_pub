@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 7.1.3' # allow rails to be updated to 7.1.x (will be needed for sqlite 2 to work)
+gem 'rails', '~> 7.2.0'
 
 gem 'nokogiri', '>= 1.7.1'
 

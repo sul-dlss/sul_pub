@@ -1,0 +1,70 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?api_key=Settings.PUBMED.API_KEY&db=pubmed&retmode=xml
+    body:
+      encoding: UTF-8
+      string: "&id=10048354"
+    headers:
+      User-Agent:
+      - stanford-library-sul-pub
+      Accept:
+      - "*/*"
+      Accept-Encoding:
+      - gzip,deflate
+      Date:
+      - Tue, 29 Oct 2024 16:21:54 GMT
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 29 Oct 2024 16:21:53 GMT
+      Server:
+      - Finatra
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Content-Security-Policy:
+      - upgrade-insecure-requests
+      Referrer-Policy:
+      - origin-when-cross-origin
+      Ncbi-Sid:
+      - 73BF85A383895C5D_4675SID
+      Ncbi-Phid:
+      - 322C2760BF4DB0B5000055260789FB8B.1.1.m_3
+      Content-Type:
+      - text/xml; charset=UTF-8
+      Cache-Control:
+      - private
+      Content-Encoding:
+      - gzip
+      X-Ratelimit-Limit:
+      - '10'
+      X-Ratelimit-Remaining:
+      - '9'
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - X-RateLimit-Limit,X-RateLimit-Remaining
+      Set-Cookie:
+      - ncbi_sid=73BF85A383895C5D_4675SID; domain=.nih.gov; path=/; expires=Wed, 29
+        Oct 2025 16:21:54 GMT
+      X-Ua-Compatible:
+      - IE=Edge
+      X-Xss-Protection:
+      - 1; mode=block
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0" ?>
+        <!DOCTYPE PubmedArticleSet PUBLIC "-//NLM//DTD PubMedArticle, 1st January 2024//EN" "https://dtd.nlm.nih.gov/ncbi/pubmed/out/pubmed_240101.dtd">
+        <PubmedArticleSet>
+        <PubmedArticle><MedlineCitation Status="MEDLINE" Owner="NLM"><PMID Version="1">10048354</PMID><DateCompleted><Year>1999</Year><Month>04</Month><Day>22</Day></DateCompleted><DateRevised><Year>2010</Year><Month>01</Month><Day>05</Day></DateRevised><Article PubModel="Print"><Journal><ISSN IssnType="Print">1078-4519</ISSN><JournalIssue CitedMedium="Print"><Volume>28</Volume><Issue>1</Issue><PubDate><Year>1999</Year><Month>Jan</Month></PubDate></JournalIssue><Title>American journal of orthopedics (Belle Mead, N.J.)</Title><ISOAbbreviation>Am J Orthop (Belle Mead NJ)</ISOAbbreviation></Journal><ArticleTitle>Frostbite: an orthopedic perspective.</ArticleTitle><Pagination><StartPage>21</StartPage><EndPage>26</EndPage><MedlinePgn>21-6</MedlinePgn></Pagination><Abstract><AbstractText>Frostbite injury to the extremities has the potential for disastrous effects. This review provides information valuable to the orthopedic surgeon to aid in the evaluation and treatment of frostbite. The pathophysiology and predisposing factors that provide a basic understanding of the nature of frostbite are discussed. Accepted and experimental imaging studies and treatment options are also reviewed. An effort is made to give the orthopedic perspective on each issue, providing a valuable resource for all orthopedic surgeons involved in the care of the patient with frostbite.</AbstractText></Abstract><AuthorList CompleteYN="Y"><Author ValidYN="Y"><LastName>McAdams</LastName><ForeName>T R</ForeName><Initials>TR</Initials><AffiliationInfo><Affiliation>Department of Orthopaedics and Rehabilitation, University of New Mexico, Albuquerque, USA.</Affiliation></AffiliationInfo></Author><Author ValidYN="Y"><LastName>Swenson</LastName><ForeName>D R</ForeName><Initials>DR</Initials></Author><Author ValidYN="Y"><LastName>Miller</LastName><ForeName>R A</ForeName><Initials>RA</Initials></Author></AuthorList><Language>eng</Language><PublicationTypeList><PublicationType UI="D002363">Case Reports</PublicationType><PublicationType UI="D016428">Journal Article</PublicationType><PublicationType UI="D016454">Review</PublicationType></PublicationTypeList></Article><MedlineJournalInfo><Country>United States</Country><MedlineTA>Am J Orthop (Belle Mead NJ)</MedlineTA><NlmUniqueID>9502918</NlmUniqueID><ISSNLinking>1078-4519</ISSNLinking></MedlineJournalInfo><CitationSubset>IM</CitationSubset><MeshHeadingList><MeshHeading><DescriptorName UI="D003131" MajorTopicYN="N">Combined Modality Therapy</DescriptorName></MeshHeading><MeshHeading><DescriptorName UI="D005260" MajorTopicYN="N">Female</DescriptorName></MeshHeading><MeshHeading><DescriptorName UI="D005627" MajorTopicYN="N">Frostbite</DescriptorName><QualifierName UI="Q000175" MajorTopicYN="Y">diagnosis</QualifierName><QualifierName UI="Q000188" MajorTopicYN="N">drug therapy</QualifierName><QualifierName UI="Q000503" MajorTopicYN="N">physiopathology</QualifierName><QualifierName UI="Q000601" MajorTopicYN="Y">surgery</QualifierName></MeshHeading><MeshHeading><DescriptorName UI="D006801" MajorTopicYN="N">Humans</DescriptorName></MeshHeading><MeshHeading><DescriptorName UI="D015601" MajorTopicYN="N">Injury Severity Score</DescriptorName></MeshHeading><MeshHeading><DescriptorName UI="D008297" MajorTopicYN="N">Male</DescriptorName></MeshHeading><MeshHeading><DescriptorName UI="D008875" MajorTopicYN="N">Middle Aged</DescriptorName></MeshHeading><MeshHeading><DescriptorName UI="D019637" MajorTopicYN="Y">Orthopedic Procedures</DescriptorName></MeshHeading><MeshHeading><DescriptorName UI="D011379" MajorTopicYN="N">Prognosis</DescriptorName></MeshHeading></MeshHeadingList><NumberOfReferences>44</NumberOfReferences></MedlineCitation><PubmedData><History><PubMedPubDate PubStatus="pubmed"><Year>1999</Year><Month>2</Month><Day>27</Day></PubMedPubDate><PubMedPubDate PubStatus="medline"><Year>1999</Year><Month>2</Month><Day>27</Day><Hour>0</Hour><Minute>1</Minute></PubMedPubDate><PubMedPubDate PubStatus="entrez"><Year>1999</Year><Month>2</Month><Day>27</Day><Hour>0</Hour><Minute>0</Minute></PubMedPubDate></History><PublicationStatus>ppublish</PublicationStatus><ArticleIdList><ArticleId IdType="pubmed">10048354</ArticleId></ArticleIdList></PubmedData></PubmedArticle></PubmedArticleSet>
+  recorded_at: Tue, 29 Oct 2024 16:21:54 GMT
+recorded_with: VCR 6.3.1

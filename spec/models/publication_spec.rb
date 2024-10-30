@@ -407,13 +407,14 @@ describe Publication do
     let(:pub) { described_class.build_new_manual_publication({ title: 'b', type: 'article' }, 'some string') }
 
     it 'updates the user submitted source record with the new content' do
+      expect(pub.user_submitted_source_records.first[:source_data]).to eq('some string')
       pub.update_manual_pub_from_pub_hash({ date: '2020', type: 'article' }, 'some other string')
       pub.save!
       expect(pub.user_submitted_source_records.first[:source_data]).to eq('some other string')
       expect(pub.pub_hash).to include(date: '2020')
     end
 
-    it 'raises an exception if you try to update a record to match an existing source record' do
+    it 'raises an exception if you try to update an existing publication record to match an existing user submitted source record' do
       pub.save!
       other = described_class.build_new_manual_publication({ title: 'c', type: 'article' }, 'some other string')
       other.update_manual_pub_from_pub_hash({ title: 'c', type: 'article' }, 'some string')

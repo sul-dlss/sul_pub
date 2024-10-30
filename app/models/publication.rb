@@ -57,7 +57,7 @@ class Publication < ApplicationRecord
            after_add: :pubhash_needs_update!,
            after_remove: :pubhash_needs_update!
 
-  serialize :pub_hash, type: Hash
+  serialize :pub_hash, type: Hash, coder: YAML
 
   def self.updated_after(date)
     where('publications.updated_at > ?', date)
@@ -91,6 +91,9 @@ class Publication < ApplicationRecord
   # @return [Publication] new object, unsaved
   def self.build_new_manual_publication(pub_hash, original_source_string)
     existingRecord = UserSubmittedSourceRecord.find_or_initialize_by_source_data(original_source_string)
+    # NOTE: The API should not allow this exception to occur, because it already checks for the existence
+    # of a source record before creating a new one.  And if found, it redirects to the existing publication.
+    # See PublicationsController#create, which is the only place this method is called.
     if existingRecord&.publication
       raise ActiveRecord::RecordNotUnique,
             'Publication for user submitted source record already exists'
@@ -102,9 +105,15 @@ class Publication < ApplicationRecord
 
   # @return [self]
   def update_manual_pub_from_pub_hash(incoming_pub_hash, original_source_string)
+    # NOTE: This logic is a bit confusing and more complicated than it needs to be.
+    # This method can be called from PublicationsController#update when a user
+    # updates an existing manually created publication or in Publication#build_new_manual_publication
+    # when the user creates a new publication. This means the publication may not be persisted yet
+    # and there may not be a user submitted source record yet.
+    # It would probably be clearer to separate these two use cases out into two methods
+    # so we don't need all of this logic around looking for a source record or building it.
     self.pub_hash = incoming_pub_hash.merge(provenance: Settings.cap_provenance)
-    match = UserSubmittedSourceRecord.find_by_source_data(original_source_string)
-    match.publication = self if match # we may still throw this out w/o saving
+    match = UserSubmittedSourceRecord.find_by(source_data: original_source_string)
     r = user_submitted_source_records.first || match || user_submitted_source_records.build
     r.assign_attributes(
       is_active: true,
