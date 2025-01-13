@@ -52,7 +52,7 @@ describe WebOfScience::ProcessPubmed, :vcr do
     pub
   end
 
-  before { allow(WebOfScience).to receive(:logger).and_return(Logger.new('/dev/null')) }
+  before { allow(WebOfScience).to receive(:logger).and_return(Logger.new(File::NULL)) }
 
   describe '#pubmed_additions' do
     it 'catches and logs ArgumentError for records' do

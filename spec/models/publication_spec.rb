@@ -115,7 +115,7 @@ describe Publication do
     end
 
     context 'author does not exist and cannot be retrieved from CAP API' do
-      let(:logger) { Logger.new('/dev/null') }
+      let(:logger) { Logger.new(File::NULL) }
 
       it 'logs errors' do
         expect(Author).to receive(:find_by_cap_profile_id).and_return(nil)
