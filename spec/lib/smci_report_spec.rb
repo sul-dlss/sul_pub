@@ -3,7 +3,7 @@
 describe SmciReport do
   before { allow(Logger).to receive(:new).and_return(null_logger) }
 
-  let(:null_logger) { Logger.new('/dev/null') }
+  let(:null_logger) { Logger.new(File::NULL) }
   let(:input_csv) { 'spec/fixtures/reports/input.csv' }
   let(:output_csv) { 'tmp/output.csv' }
 

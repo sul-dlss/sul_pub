@@ -15,7 +15,7 @@ describe WebOfScience::ProcessRecords, :vcr do
   end
 
   before do
-    allow(WebOfScience).to receive_messages(logger: Logger.new('/dev/null'), links_client:)
+    allow(WebOfScience).to receive_messages(logger: Logger.new(File::NULL), links_client:)
   end
 
   shared_examples '#execute' do

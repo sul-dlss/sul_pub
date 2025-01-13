@@ -35,7 +35,7 @@ describe WebOfScience do
     end
 
     it 'works' do
-      null_logger = Logger.new('/dev/null')
+      null_logger = Logger.new(File::NULL)
       expect(Logger).to receive(:new).with(Settings.WOS.LOG).once.and_return(null_logger)
       expect(described_class.logger).to be_a Logger
       expect(described_class.logger).to be_a Logger

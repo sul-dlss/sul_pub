@@ -34,7 +34,7 @@ module WebOfScience
     # Journal EISSN and/or ISSN
     # @return [Array<Hash<Symbol => String>>]
     def extract_issns(rec)
-      rec.identifiers.pub_hash.select { |id| id[:type] == 'issn' || id[:type] == 'eissn' }
+      rec.identifiers.pub_hash.select { |id| %w[issn eissn].include?(id[:type]) }
     end
 
     # Journal information

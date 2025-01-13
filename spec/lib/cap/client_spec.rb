@@ -6,7 +6,7 @@ describe Cap::Client, :vcr do
   let(:cap_profile_id) { 9_957 }
 
   before do
-    null_logger = Logger.new('/dev/null')
+    null_logger = Logger.new(File::NULL)
     allow(NotificationManager).to receive(:cap_logger).and_return(null_logger)
   end
 

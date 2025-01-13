@@ -4,7 +4,7 @@ describe Harvester::Base do
   let(:authors) { create_list(:author, 5, cap_import_enabled: true) }
   let(:subclass) { Class.new(described_class) }
   let(:instance) { subclass.new }
-  let(:null_logger) { Logger.new('/dev/null') }
+  let(:null_logger) { Logger.new(File::NULL) }
 
   describe '#harvest_all' do
     it 'chunks calls to harvest based on batch_size' do
