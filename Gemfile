@@ -23,6 +23,7 @@ gem 'jbuilder' # To use Jbuilder templates for JSON
 gem 'json_schemer'
 gem 'kaminari'
 gem 'mais_orcid_client'
+gem 'mutex_m'
 gem 'okcomputer' # for monitoring
 gem 'oauth2'
 gem 'paper_trail'

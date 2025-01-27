@@ -2,7 +2,7 @@ version: 2.1
 parameters:
   ruby-version:
     type: string
-    default: "3.3.1"
+    default: "3.4.1"
 jobs:
   test:
     docker:

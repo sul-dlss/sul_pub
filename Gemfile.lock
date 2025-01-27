@@ -314,6 +314,7 @@ GEM
     multi_json (1.15.0)
     multi_xml (0.7.1)
       bigdecimal (~> 3.1)
+    mutex_m (0.3.0)
     mysql2 (0.5.6)
     namae (1.2.0)
       racc (~> 1.7)
@@ -597,6 +598,7 @@ DEPENDENCIES
   kaminari
   listen (~> 3.7)
   mais_orcid_client
+  mutex_m
   mysql2 (>= 0.5.3)
   nokogiri (>= 1.7.1)
   oauth2

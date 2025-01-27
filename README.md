@@ -17,7 +17,7 @@ Legacy configuration files to review are:
 
 # Developer Setup
 
-This is a ruby on rails application with an rspec test suite.  The ruby version currently used could be any version used in the [.travis.yml](https://github.com/sul-dlss/sul_pub/blob/main/.travis.yml) configuration file (preferably the latest stable version).  The application gems are managed by bundler, so the gem versions are all defined in the Gemfile (and Gemfile.lock).
+This is a ruby on rails application with an rspec test suite.
 
 ### Code Conventions
 
