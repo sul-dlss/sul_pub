@@ -56,7 +56,7 @@ describe PubHashValidator do
       end
 
       it 'returns error' do
-        expect(described_class.validate(invalid_pub_hash)).to eq(['Invalid with details: {"missing_keys"=>["type"]}'])
+        expect(described_class.validate(invalid_pub_hash)).to eq(['Invalid with details: {"missing_keys" => ["type"]}'])
       end
     end
   end
