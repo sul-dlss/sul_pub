@@ -23,7 +23,7 @@ gem 'jbuilder' # To use Jbuilder templates for JSON
 gem 'json_schemer'
 gem 'kaminari'
 gem 'mais_orcid_client'
-gem 'mutex_m'
+gem 'mutex_m'  # needed because httpclient depends on it and is unmaintained
 gem 'okcomputer' # for monitoring
 gem 'oauth2'
 gem 'paper_trail'
@@ -35,7 +35,6 @@ gem 'sul_orcid_client'
 gem 'whenever', require: false
 gem 'yaml_db'
 gem 'hashie' # this used to be part of grape, but we still need it since we believe pub_hashes may still be seralized in the database this way 9/10/2018
-
 gem 'honeybadger'
 gem 'retina_tag'
 
