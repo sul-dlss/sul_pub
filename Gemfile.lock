@@ -501,8 +501,6 @@ GEM
       version_gem (~> 1.1, >= 1.1.1)
     sqlite3 (1.7.3)
       mini_portile2 (~> 2.8.0)
-    sqlite3 (1.7.3-x86_64-darwin)
-    sqlite3 (1.7.3-x86_64-linux)
     sshkit (1.23.2)
       base64
       net-scp (>= 1.1.2)
