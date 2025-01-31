@@ -1,8 +1,13 @@
 version: 2.1
+
+orbs:
+  codecov: codecov/codecov@5.2.0
+
 parameters:
   ruby-version:
     type: string
     default: "3.4.1"
+
 jobs:
   test:
     docker:
@@ -47,17 +52,9 @@ jobs:
         name: Database setup
         command: bin/rails db:test:prepare
     - run:
-        name: Setup Code Climate test-reporter
-        command: |
-          curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-          chmod +x ./cc-test-reporter
-          ./cc-test-reporter before-build
-    - run:
         name: Run rspec
         command: bundle exec rspec
-    - run:
-        name: upload test coverage report to Code Climate
-        command: ./cc-test-reporter after-build --coverage-input-type simplecov --exit-code $?
+    - codecov/upload
 
 workflows:
   version: 2
