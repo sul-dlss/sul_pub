@@ -10,7 +10,7 @@ class PublicationsController < ApplicationController
   # GET /publications.json                                        # all publications
   # GET /publications.json?capProfileId=1                         # publications on this profile
   # GET /publications.json?capProfileId=1&changedSince=2018-01-01 # publications on this profile since that date
-  # GET /publications.json?capActive=true                         # all publicatins for users active in cap
+  # GET /publications.json?capActive=true                         # all publications for users active in cap
   # rubocop:disable Metrics/AbcSize
   def index
     msg = 'Getting publications'
@@ -19,11 +19,12 @@ class PublicationsController < ApplicationController
     msg += " where updated_at > #{params[:changedSince]}" if params[:changedSince]
     logger.info msg
 
+    default_per = 1000 # default and max number of records per page
     matching_records = []
     capProfileId = params[:capProfileId]
     capActive = params[:capActive]
     page = params.fetch(:page, 1).to_i
-    per = params.fetch(:per, 1000).to_i
+    per = [params.fetch(:per, default_per).to_i, default_per].min
     last_changed = Time.zone.parse(params.fetch(:changedSince, '1000-01-01')).to_s
 
     if capProfileId.blank?
