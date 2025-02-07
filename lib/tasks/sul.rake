@@ -21,8 +21,21 @@ namespace :sul do
     # note that the `fetch_orcid_user` for a single user will return the latest scope for that user (no dupes)
     scopes = { read: 0, write: 0 }
     sunets.each_with_index do |sunetid, i|
-      puts "#{i + 1} of #{num_sunets}"
-      MaisOrcidClient.fetch_orcid_user(sunetid:).update? ? scopes[:write] += 1 : scopes[:read] += 1
+      puts "#{i + 1} of #{num_sunets}: #{sunetid}"
+      retries = 3
+      begin
+        MaisOrcidClient.fetch_orcid_user(sunetid:).update? ? scopes[:write] += 1 : scopes[:read] += 1
+      rescue MaisOrcidClient::UnexpectedResponse => e
+        if retries > 0
+          puts "...#{e.class.name} error fetching #{sunetid}, retrying (#{retries} left)"
+          retries -= 1
+          sleep 1
+          retry
+        else
+          puts "...failed after multiple retries"
+          raise e
+        end
+      end
     end
     puts "Report run: #{Time.zone.now}"
     puts "Total users: #{num_sunets}"
