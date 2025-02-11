@@ -49,7 +49,7 @@ module Csl
         middle == other.middle
     end
 
-    protected
+    private
 
     def as_string(param)
       param.to_s.strip
