@@ -12,22 +12,22 @@ namespace :sul do
     orcid_users = Mais.client.fetch_orcid_users
     # NOTE: that the `fetch_orcid_users` command will returned some duplicated sunets, because it returns a recent history
     # of all changes for that sunet, with the last entry being the current scope (i.e. if they change scope, they may be returned twice)
-    sunets = orcid_users.map(&:sunetid).uniq
-    num_sunets = sunets.size
-    puts "Found #{num_sunets} users"
-    puts
 
-    # determine how many have authorized write vs read
-    # note that the `fetch_orcid_user` for a single user will return the latest scope for that user (no dupes)
-    scopes = { read: 0, write: 0 }
-    sunets.each_with_index do |sunetid, i|
-      puts "#{i + 1} of #{num_sunets}"
-      MaisOrcidClient.fetch_orcid_user(sunetid:).update? ? scopes[:write] += 1 : scopes[:read] += 1
+    # we will iterate over all orcid users to return their scope, keeping the latest scope for each sunet in the hash
+    # this assumes the latest scope is the correct one
+    # we can then count scopes at the end to get the final tally
+    scopes = {}
+    orcid_users.each do |orcid_user|
+      scopes[orcid_user.sunetid] = orcid_user.update? ? 'write' : 'read'
     end
+    num_sunets = scopes.size
+    read_count = scopes.count { |_, scope| scope == 'read' }
+    write_count = scopes.count { |_, scope| scope == 'write' }
+
     puts "Report run: #{Time.zone.now}"
     puts "Total users: #{num_sunets}"
-    puts "Total users with read only scope: #{scopes[:read]}"
-    puts "Total users with read/write scope: #{scopes[:write]}"
+    puts "Total users with read only scope: #{read_count}"
+    puts "Total users with read/write scope: #{write_count}"
   end
 
   desc 'Run publication import stats'
