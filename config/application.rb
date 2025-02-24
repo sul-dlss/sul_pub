@@ -16,6 +16,11 @@ module Sulbib
     # Common ones are `templates`, `generators`, or `middleware`, for example.
     config.autoload_lib(ignore: %w[assets tasks])
 
+    # Add timestamps to all loggers (both Rack-based ones and e.g. Sidekiq's)
+    config.log_formatter = proc do |severity, datetime, _progname, msg|
+      "[#{datetime.to_fs(:iso8601)}] [#{severity}] #{msg}\n"
+    end
+
     # https://discuss.rubyonrails.org/t/cve-2022-32224-possible-rce-escalation-bug-with-serialized-columns-in-active-record/81017
     # Used in publications.pub_hash
     config.active_record.yaml_column_permitted_classes = [Symbol, Hashie::Mash, Hashie::Array]
