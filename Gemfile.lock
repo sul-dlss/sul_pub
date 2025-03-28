@@ -607,7 +607,7 @@ DEPENDENCIES
   json_schemer
   kaminari
   listen (~> 3.7)
-  mais_orcid_client
+  mais_orcid_client (< 1)
   mutex_m
   mysql2 (>= 0.5.3)
   nokogiri (>= 1.7.1)
