@@ -632,7 +632,7 @@ DEPENDENCIES
   rubocop-rspec_rails
   ruby-prof
   simplecov (~> 0.13)
-  sqlite3 (~> 1.7)
+  sqlite3
   sul_orcid_client
   thin
   vcr
