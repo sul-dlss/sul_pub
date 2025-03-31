@@ -136,7 +136,7 @@ class ScienceWirePublication
   # @param doc_types [Array<String>] array of ScienceWire DocumentType values
   # @return [Boolean] true when DocumentTypeList contains any doc_types
   def doc_type?(doc_types)
-    doc_types.to_set.intersection(document_types).any?
+    doc_types.to_set.intersect?(document_types)
   end
 
   # @return [String] PublicationType
