@@ -14,7 +14,7 @@ Legacy configuration files to review are:
 - https://github.com/sul-dlss/sul_pub/blob/main/config/application.yml
   - Application configuration parameters (may not require any changes)
 - https://github.com/sul-dlss/sul_pub/blob/main/config/database.yml
-  - MySQL connection parameters
+  - PostgreSQL connection parameters
 
 # Developer Setup
 
@@ -34,26 +34,10 @@ bundle install
 
 ## Database Setup
 
-The application uses MySQL in production only, it uses Sqlite3 in development and test.  To create the initial databases:
+The application uses PostgreSQL in all environments. As a convenience, you may spin up a local Postgres instance using `docker compose up -d postgres`, and then:
 
 ```sh
-bundle exec rake db:create
-bundle exec rake db:migrate
-```
-
-There are some small differences between sqlite3 and mysql, notably mysql uses case insensitive string queries and sqlite3 does not.
-However, for development purposes, sqlite3 should be fine and the differences should not matter.
-
-If you'd like to use mysql locally too, you can, but you'll need to install the mysql2 gem and update the database.yml file.  You can use Docker or a local mysql install.
-
-For docker:
-```
-docker run --rm -e MYSQL_ALLOW_EMPTY_PASSWORD=true -p 3306:3306 -d mysql:8
-```
-and then:
-```
-RAILS_ENV=test bundle exec rake db:create
-RAILS_ENV=test bundle exec rake db:migrate
+bin/rake db:prepare
 ```
 
 ## Running the Test Suite
@@ -64,16 +48,16 @@ To run the test suite:
 
 ```sh
 # If necessary, use private configuration files.
-bundle exec rake ci
+bin/rake ci
 ```
 
 To run specific tests, use `rspec` directly, e.g.
 
 ```sh
 # Run only the publications_api_spec:
-RAILS_ENV=test bundle exec rspec spec/api/publications_api_spec.rb
+bundle exec rspec spec/api/publications_api_spec.rb
 # Run only a subset of the publications_api_spec:
-RAILS_ENV=test bundle exec rspec spec/api/publications_api_spec.rb:157
+bundle exec rspec spec/api/publications_api_spec.rb:157
 ```
 
 ### Running integration tests
@@ -83,7 +67,7 @@ This repository also uses the RSpec tag `data-integration` to define tests that 
 To run the `data-integration` tests, make sure that your private credentials are appropriately configured. There is a convenient rake task to use for running the specs:
 
 ```sh
-bundle exec rake spec:data-integration
+bin/rake spec:data-integration
 ```
 
 ### Private Configuration Files (and VCR Cassette generation)
@@ -122,7 +106,7 @@ Then remove the relevant VCR cassettes if needed, run the test suite and commit 
 ```sh
 # See commands above for using private configuration files.
 rm -rf fixtures/vcr_cassettes/*
-bundle exec rake ci
+bin/rake ci
 git add fixtures/vcr_cassettes/
 git commit -m "Update VCR cassettes"
 git reset --hard  # cleanup the private configuration files
