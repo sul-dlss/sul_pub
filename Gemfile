@@ -22,7 +22,7 @@ gem 'identifiers', '~> 0.12' # Altmetric utilities related to the extraction, va
 gem 'jbuilder' # To use Jbuilder templates for JSON
 gem 'json_schemer'
 gem 'kaminari'
-gem 'mais_orcid_client', '< 1' # MAIS ORCID Client will have breaking changes in v1.0, see https://github.com/sul-dlss/mais_orcid_client/issues/108
+gem 'mais_orcid_client', '>= 1.0'
 gem 'mutex_m'  # needed because httpclient depends on it and is unmaintained
 gem 'okcomputer' # for monitoring
 gem 'oauth2'
