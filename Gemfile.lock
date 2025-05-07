@@ -300,7 +300,7 @@ GEM
       net-imap
       net-pop
       net-smtp
-    mais_orcid_client (1.0.0)
+    mais_orcid_client (1.0.2)
       activesupport (>= 4.2)
       faraday
       faraday-retry
@@ -385,7 +385,7 @@ GEM
       stringio
     public_suffix (6.0.2)
     racc (1.8.1)
-    rack (2.2.13)
+    rack (2.2.14)
     rack-session (1.0.2)
       rack (< 3)
     rack-test (2.2.0)
@@ -552,7 +552,7 @@ GEM
     useragent (0.16.11)
     vcr (6.3.1)
       base64
-    version_gem (1.1.7)
+    version_gem (1.1.8)
     webmock (3.25.1)
       addressable (>= 2.8.0)
       crack (>= 0.3.2)
@@ -610,7 +610,7 @@ DEPENDENCIES
   json_schemer
   kaminari
   listen (~> 3.7)
-  mais_orcid_client (>= 1)
+  mais_orcid_client (>= 1.0)
   mutex_m
   mysql2 (>= 0.5.3)
   nokogiri (>= 1.7.1)
