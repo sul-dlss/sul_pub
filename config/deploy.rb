@@ -27,6 +27,9 @@ set :linked_dirs, fetch(:linked_dirs, []).push(
   'config/settings'
 )
 
+set :log_level, :info
+set :rails_env, 'production'
+set :bundle_without, %w(development test).join(' ')
 set :whenever_identifier, ->{ "#{fetch(:application)}_#{fetch(:stage)}" }
 
 # honeybadger_env otherwise defaults to rails_env
