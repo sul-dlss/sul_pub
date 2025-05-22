@@ -1,13 +1,6 @@
 services:
-  mariadb:
-   image: mariadb:10.3 # the version installed on prod
-   ports:
-     - 3306:3306
-   environment:
-     MARIADB_DATABASE: sul-pub # same DB name as prod
-     MARIADB_ALLOW_EMPTY_ROOT_PASSWORD: 1
   postgres:
-    image: postgres:11
+    image: postgres:16 # use the same version as deployed environments
     ports:
       - 5432:5432
     environment:

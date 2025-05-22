@@ -69,11 +69,6 @@ group :test do
   gem 'webmock'
 end
 
-group :production do
-  # mysql 0.5.3 is required for ruby 3 and is supported on latest OS in use: Oracle Linux (as of Jan 2022)
-  gem 'mysql2', '>= 0.5.3'
-end
-
 group :deployment do
   gem 'capistrano'
   gem 'capistrano-passenger'
