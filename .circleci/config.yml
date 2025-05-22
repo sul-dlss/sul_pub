@@ -1,63 +1,13 @@
 version: 2.1
-
 orbs:
-  codecov: codecov/codecov@5.2.0
-
-parameters:
-  ruby-version:
-    type: string
-    default: "3.4.1"
-
-jobs:
-  test:
-    docker:
-    - image: 'cimg/ruby:<< pipeline.parameters.ruby-version >>-node'
-      environment:
-        BUNDLE_JOBS: 3
-        BUNDLE_RETRY: 3
-        BUNDLE_PATH: vendor/bundle
-        RAILS_ENV: test
-        NOKOGIRI_USE_SYSTEM_LIBRARIES: true
-    - image: circleci/mysql:8
-      # https://discuss.circleci.com/t/solved-mysql-8-0-without-mysql2-authentication-plugin-caching-sha2-password-cannot-be-loaded/25791
-      command: [--default-authentication-plugin=mysql_native_password]
-      environment:
-        MYSQL_DATABASE: sulbib_test
-    steps:
-    - checkout
-    - run:
-        name: Install/Upgrade Bundler
-        command: gem install bundler
-    - run:
-        name: Which bundler?
-        command: bundle -v
-    - restore_cache:
-        keys:
-        - sul_pub-bundle-v2-{{ checksum "Gemfile.lock" }}
-        - sul_pub-bundle-v2-
-    - run:
-        name: Bundle Install
-        command: bundle check || bundle install
-    - save_cache:
-        key: sul_pub-bundle-v2-{{ checksum "Gemfile.lock" }}
-        paths:
-        - vendor/bundle
-    - run:
-        name: Check styles using rubocop
-        command: bundle exec rubocop
-    - run:
-        name: Wait for DB
-        command: dockerize -wait tcp://localhost:3306 -timeout 1m
-    - run:
-        name: Database setup
-        command: bin/rails db:test:prepare
-    - run:
-        name: Run rspec
-        command: bundle exec rspec
-    - codecov/upload
-
+  ruby-rails: sul-dlss/ruby-rails@4.6.0
 workflows:
-  version: 2
-  test:
+  build:
     jobs:
-    - test
+      - ruby-rails/lint:
+          name: lint
+          context: dlss
+      - ruby-rails/test-rails:
+          name: test
+          context: dlss
+          api-only: true # do not try to muck with JavaScript
