@@ -29,7 +29,7 @@ gem 'paper_trail'
 gem 'parallel'
 gem 'pg'
 gem 'pry' # make it possible to use pry for IRB
-gem 'rails', '~> 7.2.0'
+gem 'rails', '~> 8.0'
 gem 'rake'
 gem 'retina_tag'
 gem 'StreetAddress', '~> 1.0', '>= 1.0.6'
@@ -53,7 +53,6 @@ end
 group :development do
   gem 'byebug'
   gem 'listen', '~> 3.7'
-  gem 'pry-doc'
   gem 'ruby-prof'
   gem 'thin' # app server
 end
