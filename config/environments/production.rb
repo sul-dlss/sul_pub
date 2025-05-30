@@ -39,7 +39,7 @@ Rails.application.configure do
     logger.formatter = config.log_formatter
     config.logger    = ActiveSupport::TaggedLogging.new(logger)
   end
-  
+
   # Log current request id as a default log tag.
   config.log_tags = [ :request_id ]
 
@@ -47,7 +47,7 @@ Rails.application.configure do
   config.log_level = ENV.fetch("RAILS_LOG_LEVEL", "info")
 
   # Prevent health checks from clogging up the logs.
-  config.silence_healthcheck_path = "/up"
+  config.silence_healthcheck_path = "/status"
 
   # Don't log any deprecations.
   config.active_support.report_deprecations = false
