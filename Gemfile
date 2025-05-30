@@ -29,7 +29,7 @@ gem 'paper_trail'
 gem 'parallel'
 gem 'pg'
 gem 'pry' # make it possible to use pry for IRB
-gem 'rails', '~> 8.0'
+gem 'rails', '~> 8.0.0'
 gem 'rake'
 gem 'retina_tag'
 gem 'StreetAddress', '~> 1.0', '>= 1.0.6'
