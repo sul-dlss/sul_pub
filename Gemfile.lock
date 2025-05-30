@@ -615,7 +615,7 @@ DEPENDENCIES
   parallel
   pg
   pry
-  rails (~> 8.0)
+  rails (~> 8.0.0)
   rails-controller-testing
   rake
   retina_tag
