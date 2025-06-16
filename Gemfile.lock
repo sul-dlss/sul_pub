@@ -232,7 +232,7 @@ GEM
       logger
     faraday-httpclient (2.0.1)
       httpclient (>= 2.2)
-    faraday-net_http (3.4.0)
+    faraday-net_http (3.4.1)
       net-http (>= 0.5.0)
     faraday-retry (2.3.1)
       faraday (~> 2.0)
@@ -272,7 +272,7 @@ GEM
       simpleidn (~> 0.2)
     jsonpath (1.1.5)
       multi_json
-    jwt (2.10.1)
+    jwt (3.0.0)
       base64
     kaminari (1.2.2)
       activesupport (>= 4.1.0)
