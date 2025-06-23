@@ -185,7 +185,7 @@ class PublicationsController < ApplicationController
       return
     end
     # When params[:maxrows] is nil/zero, -1 returns everything
-    matching_records = all_matching_records[0..params[:maxrows].to_i - 1]
+    matching_records = all_matching_records[0..params[:maxrows].to_i - 1] # rubocop:disable Lint/AmbiguousRange
     render json: wrap_as_bibjson_collection(msg, matching_records)
   end
   # rubocop:enable Metrics/AbcSize
