@@ -14,7 +14,7 @@ set :output, 'log/cron.log'
 
 # weekly orcid integration stats in prod output to time stamped log file
 every :monday, at: '1am', roles: [:harvester_prod] do
-  rake 'sul:orcid_integration_stats', output: "log/orcid_stats_`date +\%Y\%m\%d`.log"
+  rake 'sul:orcid_integration_stats', output: { standard: "log/orcid_stats_$(date +%Y%m%d).log" }
 end
 
 # bi-weekly harvest at 5pm in UAT, on the 8th and 23rd of the month
