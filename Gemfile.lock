@@ -137,7 +137,7 @@ GEM
     citeproc-ruby (1.1.14)
       citeproc (~> 1.0, >= 1.0.9)
       csl (~> 1.6)
-    cocina-models (0.103.2)
+    cocina-models (0.104.1)
       activesupport
       deprecation
       dry-struct (~> 1.0)
@@ -272,7 +272,7 @@ GEM
       simpleidn (~> 0.2)
     jsonpath (1.1.5)
       multi_json
-    jwt (3.0.0)
+    jwt (3.1.2)
       base64
     kaminari (1.2.2)
       activesupport (>= 4.1.0)
@@ -445,7 +445,7 @@ GEM
       rspec-core (~> 3.13.0)
       rspec-expectations (~> 3.13.0)
       rspec-mocks (~> 3.13.0)
-    rspec-core (3.13.4)
+    rspec-core (3.13.5)
       rspec-support (~> 3.13.0)
     rspec-expectations (3.13.5)
       diff-lcs (>= 1.2.0, < 2.0)
@@ -533,7 +533,7 @@ GEM
       attr_extras (>= 6.2.4)
       diff-lcs
       patience_diff
-    thin (2.0.0)
+    thin (2.0.1)
       daemons (~> 1.0, >= 1.0.9)
       eventmachine (~> 1.0, >= 1.0.4)
       logger
