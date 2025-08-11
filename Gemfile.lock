@@ -246,7 +246,7 @@ GEM
     hana (1.3.7)
     hashdiff (1.2.0)
     hashie (5.0.0)
-    honeybadger (6.0.2)
+    honeybadger (6.0.4)
       logger
       ostruct
     htmlentities (4.3.4)
@@ -262,9 +262,9 @@ GEM
       pp (>= 0.6.0)
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
-    jbuilder (2.13.0)
-      actionview (>= 5.0.0)
-      activesupport (>= 5.0.0)
+    jbuilder (2.14.0)
+      actionview (>= 7.0.0)
+      activesupport (>= 7.0.0)
     json (2.13.2)
     json_schemer (2.4.0)
       bigdecimal
@@ -436,7 +436,7 @@ GEM
     rdoc (6.14.2)
       erb
       psych (>= 4.0.0)
-    regexp_parser (2.11.0)
+    regexp_parser (2.11.1)
     reline (0.6.2)
       io-console (~> 0.5)
     request_store (1.7.0)
@@ -467,7 +467,7 @@ GEM
     rspec-support (3.13.4)
     rspec_junit_formatter (0.6.0)
       rspec-core (>= 2, < 4, != 2.12.0)
-    rubocop (1.79.1)
+    rubocop (1.79.2)
       json (~> 2.3)
       language_server-protocol (~> 3.17.0.2)
       lint_roller (~> 1.1.0)
@@ -487,7 +487,7 @@ GEM
     rubocop-factory_bot (2.27.1)
       lint_roller (~> 1.1)
       rubocop (~> 1.72, >= 1.72.1)
-    rubocop-rails (2.32.0)
+    rubocop-rails (2.33.0)
       activesupport (>= 4.2.0)
       lint_roller (~> 1.1)
       rack (>= 1.1)
