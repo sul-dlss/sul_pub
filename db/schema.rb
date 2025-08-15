@@ -142,9 +142,11 @@ ActiveRecord::Schema[8.0].define(version: 2022_07_18_164661) do
     t.string "issn", limit: 255
     t.string "publication_type", limit: 255
     t.string "wos_uid"
+    t.string "provenance"
     t.index ["issn"], name: "index_publications_on_issn"
     t.index ["pages"], name: "index_publications_on_pages"
     t.index ["pmid"], name: "index_publications_on_pmid"
+    t.index ["provenance"], name: "index_publications_on_provenance"
     t.index ["sciencewire_id"], name: "index_publications_on_sciencewire_id"
     t.index ["title"], name: "index_publications_on_title"
     t.index ["updated_at"], name: "index_publications_on_updated_at"
