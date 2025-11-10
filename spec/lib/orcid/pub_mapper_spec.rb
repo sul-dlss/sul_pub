@@ -212,7 +212,7 @@ describe Orcid::PubMapper do
     let(:pub_hash) { base_pub_hash.merge(abstract: big_abstract) }
 
     it 'truncates abstract to 5000 characters' do
-      expect(big_abstract.length).to eq 6000
+      expect(big_abstract.length).to be > 5000
       expect(work['short-description'].length).to eq 5000
       expect(work['short-description']).to eq(big_abstract.truncate(5000))
     end
