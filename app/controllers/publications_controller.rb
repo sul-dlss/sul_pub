@@ -238,7 +238,7 @@ class PublicationsController < ApplicationController
   # a CAP profile that is used to create a new SULCAP author.
   # @param authorship_list [Array<Hash>]
   # @return [Boolean] true if any authors exist or are created.
-  def validate_or_create_authors(authorship_list)
+  def validate_or_create_authors(authorship_list) # rubocop:disable Naming/PredicateMethod
     return false if authorship_list.blank?
 
     groups = authorship_list.group_by { |auth| Contribution.authorship_valid?(auth) }

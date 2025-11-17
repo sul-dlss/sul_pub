@@ -333,7 +333,7 @@ class Publication < ApplicationRecord
     pub_hash[:identifier] << pmc_id if pmc_id
   end
 
-  def update_any_new_contribution_info_in_pub_hash_to_db
+  def update_any_new_contribution_info_in_pub_hash_to_db # rubocop:disable Naming/PredicateMethod
     Array(pub_hash[:authorship]).each do |contrib|
       hash_for_update = contrib.slice(:status, :visibility, :featured).each_value do |v|
         v.downcase! if v.respond_to?(:downcase!)

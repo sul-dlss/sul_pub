@@ -8,6 +8,8 @@ module WebOfScience
     extend Forwardable
     include Enumerable
 
+    ALLOWED_TYPES = %w[doi eissn issn pmid].freeze
+
     # Delegate enumerable methods to the mutable Hash.
     # This is just a convenience.
     delegate %i[each keys values has_key? has_value? include? reject select to_json] => :to_h
@@ -141,8 +143,6 @@ module WebOfScience
 
     attr_reader :ids
 
-    ALLOWED_TYPES = %w[doi eissn issn pmid].freeze
-
     def extract_ids(doc)
       ids = doc.xpath('/REC/dynamic_data/cluster_related/identifiers/identifier')
       ids = ids.to_h { |id| [id['type'], id['value']] }
@@ -165,7 +165,7 @@ module WebOfScience
 
     # @param ids [Hash]
     def filter_ids(ids)
-      ids.select { |type, _v| ALLOWED_TYPES.include? type }
+      ids.select { |type, _v| ALLOWED_TYPES.include? type } # rubocop:disable Style/HashSlice
     end
 
     def parse_medline(doc)
@@ -181,7 +181,7 @@ module WebOfScience
     end
 
     def parse_medline_pmid
-      ids['pmid'].sub!('MEDLINE:', '') if ids['pmid'].present?
+      ids['pmid'].presence&.sub!('MEDLINE:', '')
       ids['pmid'] ||= uid.sub('MEDLINE:', '')
     end
 

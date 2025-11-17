@@ -85,7 +85,7 @@ describe Orcid::AddWorks do
 
     context 'when pub_hash cannot be mapped to work' do
       # Default factory pub_hash is missing an identifier so allowing factory to create publication.
-      let!(:contribution) { create(:contribution, author:) } # rubocop:disable RSpec/LetSetup
+      let!(:contribution) { create(:contribution, author:) }
 
       it 'ignores' do
         expect(NotificationManager).not_to receive(:error)

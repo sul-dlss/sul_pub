@@ -247,7 +247,7 @@ describe WebOfScience::Identifiers do
     end
 
     it 'can be filtered with select' do
-      result = identifiers.select { |k, _v| k == 'doi' }
+      result = identifiers.select { |k, _v| k == 'doi' } # rubocop:disable Style/HashSlice
       expect(result).to be_an Hash
       expect(result.keys).to eq ['doi']
     end

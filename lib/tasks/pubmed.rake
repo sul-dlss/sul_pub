@@ -11,6 +11,7 @@ namespace :pubmed do
     cap_profile_ids = File.readlines(filename)
     logger = Logger.new(Rails.root.join('log/update_pubmed_source_records_for_cap_profile_ids.log'))
     include ActionView::Helpers::DateHelper
+
     $stdout.sync = true # flush output immediately
     total_authors = cap_profile_ids.size
     error_count = 0

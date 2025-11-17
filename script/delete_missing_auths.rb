@@ -39,7 +39,7 @@ class DeleteMissingAuths
       @logger.error e.backtrace.join "\n"
     end
   rescue StandardError => e
-    @logger.error e.inspect.to_s
+    @logger.error e.inspect
     @logger.error e.backtrace.join "\n"
   end
 end

@@ -6,6 +6,9 @@ module WebOfScience
   # - the "next_batch?" is like "next?"
   # - the "next_batch" is like "next"
   class BaseRestRetriever
+    # this is the maximum number that can be returned in a single query by WoS
+    MAX_RECORDS = 100
+
     attr_reader :records_found, :records_retrieved, :query_id
 
     # @param [String] path of REST endpoint
@@ -35,9 +38,6 @@ module WebOfScience
     end
 
     private
-
-    # this is the maximum number that can be returned in a single query by WoS
-    MAX_RECORDS = 100
 
     attr_reader :batch_size, :query, :path, :params, :database
 

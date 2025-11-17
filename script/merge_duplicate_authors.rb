@@ -62,7 +62,7 @@ class MergeDuplicateAuths
     @logger.info "Contributions fixed: #{@contribs_fixed}"
     @logger.info "Clones removed: #{@clones_removed}"
   rescue StandardError => e
-    @logger.error e.inspect.to_s
+    @logger.error e.inspect
     @logger.error e.backtrace.join "\n"
   end
 end

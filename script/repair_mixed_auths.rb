@@ -51,7 +51,7 @@ class RepairMixedAuths
     @logger.info "Authors fixed: #{@auths_fixed}"
     @logger.info "Contributions fixed: #{@contribs_fixed}"
   rescue StandardError => e
-    @logger.error e.inspect.to_s
+    @logger.error e.inspect
     @logger.error e.backtrace.join "\n"
   end
 end
