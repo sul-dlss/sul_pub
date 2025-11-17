@@ -113,7 +113,7 @@ module Csl
           names.shift # drop the last name (assuming it's always "LastName, <Given Names>")
           given_names = collect_given_names(names)
         end
-        given_names.present? ? given_names.strip : nil
+        given_names.presence&.strip
       end
 
       # @param [Array<String>] names

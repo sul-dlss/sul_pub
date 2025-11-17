@@ -32,7 +32,7 @@ module WebOfScience
     uids = %w[WOS:A1976BW18000001 WOS:A1972N549400003]
     retriever = queries.retrieve_by_id(uids)
     records = retriever.next_batch
-    raise 'WebOfScience found no records' unless records.is_a?(WebOfScience::Records) && records.count > 0
+    raise 'WebOfScience found no records' unless records.is_a?(WebOfScience::Records) && records.any?
     raise 'WebOfScience failed to parse records' unless records.first.is_a?(WebOfScience::Record)
 
     true

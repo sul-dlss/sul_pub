@@ -83,7 +83,7 @@ class SciencewireSourceRecord < ApplicationRecord
     sciencewire_source_record&.source_as_hash
   end
 
-  def self.save_sw_source_record(sciencewire_id, pmid, incoming_sw_xml_as_string)
+  def self.save_sw_source_record(sciencewire_id, pmid, incoming_sw_xml_as_string) # rubocop:disable Naming/PredicateMethod
     existing_sw_source_record = find_by(
       sciencewire_id:
     )

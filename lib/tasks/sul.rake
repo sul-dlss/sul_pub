@@ -101,7 +101,7 @@ namespace :sul do
   # Random sampling is used to select the publications.
   task :export_pubs_json, %i[output_folder limit] => :environment do |_t, args|
     output_folder = args[:output_folder]
-    limit = args[:limit].to_i || 1000
+    limit = args[:limit]&.to_i || 1000
     raise 'missing require params' unless output_folder
 
     publication_ids = Publication.ids.shuffle.take(limit)
@@ -125,7 +125,7 @@ namespace :sul do
   # Use a different date and limit to fetch different samples
   task :validate_pub_hash, %i[output_folder limit] => :environment do |_t, args|
     output_folder = args[:output_folder]
-    limit = args[:limit].to_i || 1_000_000
+    limit = args[:limit]&.to_i || 1_000_000
     raise 'missing require params' unless output_folder
 
     publications = Publication.select(:id, :pub_hash).limit(limit)
@@ -251,6 +251,7 @@ namespace :sul do
     $stdout.sync = true # flush output immediately
     include ActionView::Helpers::NumberHelper # for nice display output and time computations in output
     include ActionView::Helpers::DateHelper
+
     total_pubs = Publication.count
     error_count = 0
     success_count = 0
@@ -583,8 +584,8 @@ namespace :sul do
   # bundle exec rake sul:author_publications_report input_file='tmp/author_ids.csv' min_pubs=5 output_file='tmp/random_authors.csv'
 
   task author_publications_report: :environment do
-    n = ENV['n'].to_i || 100
-    min_pubs =  ENV['min_pubs'].to_i || 5
+    n = ENV['n']&.to_i || 100
+    min_pubs =  ENV['min_pubs']&.to_i || 5
     output_file = ENV.fetch('output_file', nil) || 'tmp/random_authors.csv'
     input_file = ENV.fetch('input_file', nil)
     output_directory = 'tmp/author_reports'

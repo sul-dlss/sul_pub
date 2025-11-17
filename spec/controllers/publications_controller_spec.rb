@@ -476,7 +476,7 @@ describe PublicationsController, :vcr do
         expect(last_pub.issn).to eq(submission['issn'])
       end
 
-      # rubocop:disable RSpec/NoExpectationExample - expectations in validate_authorship
+      # rubocop:disable RSpec/NoExpectationExample
       it 'creates a matching pub_hash in the publication record from the posted bibjson' do
         post_valid_json
         validate_authorship(last_pub.pub_hash, submission)

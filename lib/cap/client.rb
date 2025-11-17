@@ -5,6 +5,20 @@ require 'faraday/retry'
 
 module Cap
   class Client
+    ####################################################################################
+    # CAP client connection settings
+    #
+
+    API_URI = "#{Settings.CAP.AUTHORSHIP_API_URI}:#{Settings.CAP.AUTHORSHIP_API_PORT}".freeze
+    API_PATH = Settings.CAP.AUTHORSHIP_API_PATH.freeze
+    API_TIMEOUT_PERIOD = 500
+    API_TIMEOUT_OPEN = 10
+    API_TIMEOUT_RETRIES = 3
+
+    AUTH_URI = "#{Settings.CAP.TOKEN_URI}#{Settings.CAP.TOKEN_PATH}".freeze
+    AUTH_CODE = Base64.strict_encode64("#{Settings.CAP.TOKEN_USER}:#{Settings.CAP.TOKEN_PASS}").freeze
+    ####################################################################################
+
     # Fetch a single object from CAP server and test its response
     def self.working?
       response = new.get_auth_profile(Settings.CAP.cap_profile_id_for_check)
@@ -56,18 +70,6 @@ module Cap
         "Bearer #{token}"
       end
     end
-    ####################################################################################
-    # CAP client connection settings
-    #
-
-    API_URI = "#{Settings.CAP.AUTHORSHIP_API_URI}:#{Settings.CAP.AUTHORSHIP_API_PORT}".freeze
-    API_PATH = Settings.CAP.AUTHORSHIP_API_PATH.freeze
-    API_TIMEOUT_PERIOD = 500
-    API_TIMEOUT_OPEN = 10
-    API_TIMEOUT_RETRIES = 3
-
-    AUTH_URI = "#{Settings.CAP.TOKEN_URI}#{Settings.CAP.TOKEN_PATH}".freeze
-    AUTH_CODE = Base64.strict_encode64("#{Settings.CAP.TOKEN_USER}:#{Settings.CAP.TOKEN_PASS}").freeze
 
     # CAP authentication client
     # @return [Faraday::Connection]

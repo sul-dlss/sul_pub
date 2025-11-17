@@ -3,6 +3,8 @@
 module Agent
   # Attributes used for creating author search queries
   class AuthorName
+    PARTICLE_REGEX = /^el$|^da$|^de$|^del$|^do$|^dos$|^du$|^le$/i
+
     attr_reader :last, :first, :middle
 
     # @param last [String, #to_s] last name
@@ -102,8 +104,6 @@ module Agent
     def initial(name)
       name.scan(/[[:upper:]]/).first.to_s
     end
-
-    PARTICLE_REGEX = /^el$|^da$|^de$|^del$|^do$|^dos$|^du$|^le$/
 
     # If a name contains any capital letters, return it as is; otherwise
     # return a capitalized form of the name, taking into account some

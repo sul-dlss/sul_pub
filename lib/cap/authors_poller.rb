@@ -100,12 +100,12 @@ module Cap
         end
         pub_id = authorship['sulPublicationId']
         contribs = author.contributions.where(publication_id: pub_id)
-        if contribs.count == 0
+        if contribs.none?
           logger.warn "Contribution does not exist for Contribution.find_by(author_id: #{author.id}, " \
                       "cap_profile_id: #{author.cap_profile_id}, publication_id: #{pub_id})"
           @contrib_does_not_exist += 1
           next
-        elsif contribs.count > 1
+        elsif contribs.many?
           logger.warn "More than one contribution for Contribution.where(author_id: #{author.id}, " \
                       "cap_profile_id: #{author.cap_profile_id}, publication_id: #{pub_id})"
           @too_many_contribs += 1
