@@ -142,7 +142,7 @@ describe Orcid::PubMapper do
     let(:pub_hash) { base_pub_hash.merge(title: big_title) }
 
     it 'truncates title to 500 characters' do
-      expect(big_title.length).to eq 600
+      expect(big_title.length).to be > 500
       expect(work[:title][:title][:value].length).to eq 500
       expect(work[:title][:title][:value]).to eq(big_title.truncate(500))
     end

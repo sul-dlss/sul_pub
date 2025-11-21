@@ -55,6 +55,21 @@ describe DoiSearch do
         expect(wos_pub_hash[:doi]).to eq doi_value
         expect(wos_pub_hash[:wos_uid]).to eq 'WOS:000305547700005'
       end
+
+      context 'filtering WOS results by accepted databases' do
+        # this DOI has results from multiple databases, only some of which are accepted
+        let(:doi_value) { '10.1101/2024.09.14.613049' }
+
+        it 'filters out disallowed database results' do
+          expect(Publication).to receive(:find_by_doi).with(doi_value).and_return(nil)
+          expect(WebOfScience).to receive(:queries).and_call_original
+          wos_matches = described_class.search(doi_value)
+          wos_pub_hash = wos_matches.first
+          expect(wos_pub_hash[:doi]).to eq doi_value
+          # it finds the MEDLINE result and not the PPRN result, which comes first
+          expect(wos_pub_hash[:wos_uid]).to eq 'MEDLINE:39345589'
+        end
+      end
     end
   end
 
