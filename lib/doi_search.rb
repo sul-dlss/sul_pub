@@ -35,7 +35,9 @@ class DoiSearch
     doi = doi_name(doi)
     return [] if doi.blank?
 
-    WebOfScience.queries.user_query("DO=#{doi}").next_batch.map(&:pub_hash)
+    # filter out records that do not match the Settings.WOS.ACCEPTED_DBS filter, since only those records
+    # can be processed and added to author publication records, see https://github.com/sul-dlss/sul_pub/issues/1830
+    WebOfScience.queries.user_query("DO=#{doi}").next_batch.select { |rec| Settings.WOS.ACCEPTED_DBS.include? rec.database }.map(&:pub_hash)
   end
 
   # @param [String, nil] doi
