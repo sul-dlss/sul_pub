@@ -12,6 +12,8 @@ class PublicationsController < ApplicationController
   # GET /publications.json?capProfileId=1&changedSince=2018-01-01 # publications on this profile since that date
   # GET /publications.json?capActive=true                         # all publications for users active in cap
   # rubocop:disable Metrics/AbcSize
+  # rubocop:disable Metrics/PerceivedComplexity
+  # rubocop:disable Metrics/CyclomaticComplexity
   def index
     msg = 'Getting publications'
     msg += " for profile #{params[:capProfileId]}" if params[:capProfileId]
@@ -25,11 +27,11 @@ class PublicationsController < ApplicationController
     capActive = params[:capActive]
     page = params.fetch(:page, 1).to_i
     per = [params.fetch(:per, default_per).to_i, default_per].min
-    last_changed = Time.zone.parse(params.fetch(:changedSince, '1000-01-01')).to_s
+    last_changed = Time.zone.parse(params.fetch(:changedSince)) if params[:changedSince]
 
     if capProfileId.blank?
-      description = "Records that have changed since #{last_changed}"
-      matching_records = Publication.select(:pub_hash).updated_after(last_changed).page(page).per(per)
+      matching_records = Publication.select(:pub_hash).page(page).per(per)
+      matching_records = matching_records.updated_after(last_changed) if last_changed.present?
       matching_records = matching_records.with_active_author if capActive.present? && (capActive || capActive.casecmp('true').zero?)
     else
       author = Author.find_by(cap_profile_id: capProfileId)
@@ -43,7 +45,7 @@ class PublicationsController < ApplicationController
 
     respond_to do |format|
       format.json do
-        render json: wrap_as_bibjson_collection(description, matching_records, page, per)
+        render json: wrap_as_bibjson_collection(msg, matching_records, page, per)
       end
       format.csv do
         if author
@@ -54,8 +56,10 @@ class PublicationsController < ApplicationController
       end
     end
   end
-
   # rubocop:enable Metrics/AbcSize
+  # rubocop:enable Metrics/PerceivedComplexity
+  # rubocop:enable Metrics/CyclomaticComplexity
+
   # return a specific publication
   # GET /publications/399607
   def show

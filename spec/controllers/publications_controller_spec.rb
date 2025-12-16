@@ -734,20 +734,41 @@ describe PublicationsController, :vcr do
       it 'returns one page with specified number of records' do
         get :index, params: { page: 1, per: 7, format: 'json' }
         expect(response.headers['Content-Type']).to be =~ %r{application/json}
-        expect(result['metadata']).to include('records' => '7', 'page' => 1)
+        expect(result['metadata']).to include('records' => '7', 'page' => 1, 'description' => 'Getting publications')
         expect(result['records'][2]['author']).to eq ['name' => 'Jackson, Joe']
         expect(response).to have_http_status(:ok)
       end
 
+      context 'when user requests publications after a specific date' do
+        let(:changed_since) { 1.day.ago.strftime('%Y-%m-%d') }
+        let(:older_publications_time) { 5.days.ago }
+
+        before do
+          older_contributions = create_list(:contribution, 3, visibility: 'public', status: 'approved', created_at: older_publications_time,
+                                                              updated_at: older_publications_time)
+          older_contributions.each { |contribution| contribution.publication.update(created_at: older_publications_time, updated_at: older_publications_time) }
+        end
+
+        it 'returns only those publications changed since the requested date' do
+          # there are 15 publications created in before block, 3 of which are older than changedSince
+          # we expect only the 15 newer ones returned, since we filter out the 3 older ones
+          get :index, params: { page: 1, per: 100, format: 'json', changedSince: changed_since }
+          expect(response.headers['Content-Type']).to be =~ %r{application/json}
+          expect(result['metadata']).to include('records' => '15', 'page' => 1, 'description' => "Getting publications where updated_at > #{changed_since}")
+          expect(result['records'][2]['author']).to eq ['name' => 'Jackson, Joe']
+          expect(response).to have_http_status(:ok)
+        end
+      end
+
       it 'filters by active authors' do
         get :index, params: { page: 1, per: 7, capActive: true, format: 'json' }
-        expect(result['metadata']).to include('records' => '7', 'page' => 1)
+        expect(result['metadata']).to include('records' => '7', 'page' => 1, 'description' => 'Getting publications where capActive = true')
         expect(response).to have_http_status(:ok)
       end
 
       it 'paginates by active authors' do
         get :index, params: { page: 2, per: 1, capActive: true, format: 'json' }
-        expect(result['metadata']).to include('records' => '1', 'page' => 2)
+        expect(result['metadata']).to include('records' => '1', 'page' => 2, 'description' => 'Getting publications where capActive = true')
         expect(response).to have_http_status(:ok)
       end
     end
