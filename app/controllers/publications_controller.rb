@@ -27,12 +27,13 @@ class PublicationsController < ApplicationController
     capActive = params[:capActive]
     page = params.fetch(:page, 1).to_i
     per = [params.fetch(:per, default_per).to_i, default_per].min
-    last_changed = Time.zone.parse(params.fetch(:changedSince)) if params[:changedSince]
+    last_changed = Time.zone.parse(params[:changedSince]) if params[:changedSince]
 
     if capProfileId.blank?
-      matching_records = Publication.select(:pub_hash).page(page).per(per)
+      matching_records = Publication.select(:id, :pub_hash).page(page).per(per)
       matching_records = matching_records.updated_after(last_changed) if last_changed.present?
       matching_records = matching_records.with_active_author if capActive.present? && (capActive || capActive.casecmp('true').zero?)
+      matching_records = matching_records.order('publications.id')
     else
       author = Author.find_by(cap_profile_id: capProfileId)
       if author.nil?
