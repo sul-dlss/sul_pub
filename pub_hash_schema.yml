@@ -119,14 +119,14 @@ properties:
     enum:
       - article
       - book
-      - caseStudy # Legacy. Not in current code.
+      - caseStudy # Only set via manual pub submission (provenance = cap)
       - inproceedings
-      - inbook # Legacy. Not in current code.
-      - otherpaper # Legacy. Not in current code.
-      - otherPaper # Legacy. Not in current code.
-      - technicalReport # Legacy. Not in current code.
-      - workingPaper # Legacy. Not in current code.
-      - null # Legacy. Not in current code.
+      - inbook # Only set via manual pub submission (provenance = cap)
+      - otherpaper # Legacy. Not in current code, likely bad data.
+      - otherPaper # Only set via manual pub submission (provenance = cap) or via ORCID harvest (provenance = orcid)
+      - technicalReport # Only set via manual pub submission (provenance = cap) or via ORCID harvest (provenance = orcid)
+      - workingPaper # Only set via manual pub submission (provenance = cap) or via ORCID harvest (provenance = orcid)
+      - null # Legacy. Not in current code, likely bad data.
   wos_item_id:
     type: string
   wos_uid:
