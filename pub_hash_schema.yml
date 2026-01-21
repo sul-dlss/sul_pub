@@ -70,6 +70,9 @@ properties:
       $ref: '#/$defs/MeshHeading'
   mla_citation: # Automatically added
     type: string
+  orcid_work_source:
+    description: For ORCID harvested records, the original source of the record provided to ORCID
+    type: string
   pages:
     type: string
   pmid:
