@@ -131,7 +131,7 @@ GEM
     citeproc-ruby (1.1.14)
       citeproc (~> 1.0, >= 1.0.9)
       csl (~> 1.6)
-    cocina-models (0.108.3)
+    cocina-models (0.109.0)
       activesupport
       deprecation
       dry-struct (~> 1.0)
@@ -239,7 +239,7 @@ GEM
     hashdiff (1.2.1)
     hashie (5.1.0)
       logger
-    honeybadger (6.2.0)
+    honeybadger (6.2.1)
       logger
       ostruct
     htmlentities (4.4.2)
