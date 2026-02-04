@@ -5,10 +5,10 @@ namespace :wos do
   desc 'Assign WoS records (via UIDs on STDIN) to a cap_profile_id'
   task :assign_uids, [:cap_profile_id] => :environment do |_t, args|
     author = Author.find_by(cap_profile_id: args[:cap_profile_id])
-    raise "Could not find Author by cap_profile_id: #{args[:cap_profile_id]}." if author.nil?
+    abort "Could not find Author by cap_profile_id: #{args[:cap_profile_id]}." if author.nil?
 
     puts 'Reading WosUIDs from STDIN...'
-    uids = $stdin.read.split("\n").each(&:strip!).compact_blank
+    uids = $stdin.readlines.map(&:strip).compact_blank
     abort 'No records read from STDIN' if uids.blank?
     puts "#{uids.count} UIDs to assign to Author #{author.id} (cap_profile_id: #{author.cap_profile_id})"
     new_uids = WebOfScience.harvester.process_uids(author, uids)
@@ -18,10 +18,10 @@ namespace :wos do
   desc 'Assign WoS records (via DOIs on STDIN) to a cap_profile_id'
   task :assign_dois, [:cap_profile_id] => :environment do |_t, args|
     author = Author.find_by(cap_profile_id: args[:cap_profile_id])
-    raise "Could not find Author by cap_profile_id: #{args[:cap_profile_id]}." if author.nil?
+    abort "Could not find Author by cap_profile_id: #{args[:cap_profile_id]}." if author.nil?
 
     puts 'Reading DOIs from STDIN...'
-    dois = $stdin.read.split("\n").each(&:strip!).compact_blank
+    dois = $stdin.readlines.map(&:strip).compact_blank
     abort 'No records read from STDIN' if dois.blank?
     puts "#{dois.count} DOIs to assign to Author #{author.id} (cap_profile_id: #{author.cap_profile_id})"
     uids = []
@@ -33,7 +33,7 @@ namespace :wos do
       uids << uid if result.first[:wos_uid]
     end
     puts "#{uids.count} WOS UIDs found for the DOIs provided, adding"
-    unless uids.empty?
+    if uids.present?
       new_uids = WebOfScience.harvester.process_uids(author, uids)
       puts "#{new_uids.count} newly associated Contributions"
     end
