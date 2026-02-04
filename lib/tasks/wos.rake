@@ -15,6 +15,30 @@ namespace :wos do
     puts "#{new_uids.count} newly associated Contributions"
   end
 
+  desc 'Assign WoS records (via DOIs on STDIN) to a cap_profile_id'
+  task :assign_dois, [:cap_profile_id] => :environment do |_t, args|
+    author = Author.find_by(cap_profile_id: args[:cap_profile_id])
+    raise "Could not find Author by cap_profile_id: #{args[:cap_profile_id]}." if author.nil?
+
+    puts 'Reading DOIs from STDIN...'
+    dois = $stdin.read.split("\n").each(&:strip!).compact_blank
+    abort 'No records read from STDIN' if dois.blank?
+    puts "#{dois.count} DOIs to assign to Author #{author.id} (cap_profile_id: #{author.cap_profile_id})"
+    uids = []
+    dois.each do |doi|
+      puts "Looking up #{doi}"
+      result = DoiSearch.search(doi)
+      next if result.blank?
+
+      uids << uid if result.first[:wos_uid]
+    end
+    puts "#{uids.count} WOS UIDs found for the DOIs provided, adding"
+    unless uids.empty?
+      new_uids = WebOfScience.harvester.process_uids(author, uids)
+      puts "#{new_uids.count} newly associated Contributions"
+    end
+  end
+
   desc 'Harvest from Web of Science, for all authors, for all time'
   task harvest_authors: :environment do
     WebOfScience.harvester.harvest_all
