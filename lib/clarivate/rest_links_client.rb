@@ -4,11 +4,6 @@ require 'clarivate/rest_client'
 
 module Clarivate
   class RestLinksClient
-    # this is the maximum number that can be returned in a single query by WoS
-    # although the maximum is currently 100, a smaller batch size reduces
-    # the likliehood of hitting errors due to large querystrings or responses
-    MAX_RECORDS = 75
-
     def self.working?
       wos_uids = %w[WOS:A1976BW18000001 WOS:A1972N549400003]
       links = new.links(wos_uids)
@@ -71,7 +66,7 @@ module Clarivate
       def params
         {
           databaseId: 'WOS',
-          count: MAX_RECORDS,
+          count: 100,
           firstRecord: 1
         }
       end

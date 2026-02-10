@@ -51,7 +51,11 @@ module WebOfScience
       log_info(author, "#{uids.count} UIDs without contributions")
       return [] if uids.empty?
 
-      process_records author, queries.retrieve_by_id(uids)
+      # batch up the IDs in sets of 100s so we do not run a very list of IDs in a single query
+      # which can cause 414 errors with the querystring being too large
+      uids.each_slice(100) do |uids_slice|
+        process_records author, queries.retrieve_by_id(uids_slice)
+      end
     end
 
     # For authorship_api, pair author to pub/contrib, fetching WOS record if necessary
