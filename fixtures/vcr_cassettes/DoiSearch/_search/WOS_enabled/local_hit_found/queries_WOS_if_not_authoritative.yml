@@ -214,4 +214,196 @@ http_interactions:
         \               <val name=\"RecordsFound\">1</val>\n            </map>\n        </map>\n
         \   </map>\n</response>\n"
   recorded_at: Wed, 21 Jun 2023 19:38:37 GMT
-recorded_with: VCR 6.1.0
+- request:
+    method: get
+    uri: https://wos-api.clarivate.com/api/wos/?count=75&databaseId=WOK&firstRecord=1&usrQuery=DO=10.1016/j.mcn.2012.03.007
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.14.1
+      Accept:
+      - application/xml
+      X-Apikey:
+      - Settings.WOS.API_KEY
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 10 Feb 2026 18:04:01 GMT
+      Content-Type:
+      - application/xml
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      X-Rec-Amtperyear-Remaining:
+      - '4723720'
+      X-Req-Reqpersec-Remaining:
+      - '23'
+      Vary:
+      - Origin
+      Correlation-Id:
+      - 9aa81f4b-5d7f-4fbf-be12-ec377dd6a107#14272840
+      X-Kong-Upstream-Latency:
+      - '52'
+      X-Kong-Proxy-Latency:
+      - '0'
+      Cf-Cache-Status:
+      - DYNAMIC
+      Set-Cookie:
+      - __cf_bm=2DGI.15P0ozSd9lmh_H3eg9jzZC3OmYxMfsD.hWCx1A-1770746641.385943-1.0.1.1-qlqaWyznQBbOACX2y2Z.EPlosMYjvNXe5VSJLABm7ju1u_s5vnnWtyaFdUvfAIk4IY.MUPlW8_omnGGeHqHkyQ35RQ72XdW7BuxzYkjYy.7uAt.Nw0BCd3kqxbtTM2Qz;
+        HttpOnly; Secure; Path=/; Domain=clarivate.com; Expires=Tue, 10 Feb 2026 18:34:01
+        GMT
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 9cbd86ccab1a42ae-SJC
+    body:
+      encoding: ASCII-8BIT
+      string: "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<response
+        xmlns=\"http://www.isinet.com/xrpc42\">\n    <map>\n        <map name=\"Data\">\n
+        \           <val name=\"Records\"><![CDATA[<records><REC r_id_disclaimer=\"ResearcherID
+        data provided by Clarivate Analytics\"><UID>WOS:000305547700005</UID><static_data><summary><EWUID
+        xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"><WUID coll_id=\"WOS\" /><edition
+        value=\"WOS.SCI\" /></EWUID><pub_info sortdate=\"2012-05-01\" pubyear=\"2012\"
+        has_abstract=\"Y\" coverdate=\"MAY 2012\" pubmonth=\"MAY\" vol=\"50\" issue=\"1\"
+        pubtype=\"Journal\" journal_oas_gold=\"N\"><page begin=\"45\" end=\"57\" page_count=\"13\">45-57</page></pub_info><titles
+        count=\"6\"><title type=\"source\">MOLECULAR AND CELLULAR NEUROSCIENCE</title><title
+        type=\"source_abbrev\">MOL CELL NEUROSCI</title><title type=\"abbrev_iso\">Mol.
+        Cell. Neurosci.</title><title type=\"abbrev_11\">MOL CELL NE</title><title
+        type=\"abbrev_29\">MOL CELL NEUROSCI</title><title type=\"item\">The T3-induced
+        gene KLF9 regulates oligodendrocyte differentiation and myelin regeneration</title></titles><names
+        count=\"3\"><name seq_no=\"1\" role=\"author\" reprint=\"Y\" addr_no=\"1\"
+        r_id=\"CNH-5803-2022\" daisng_id=\"7176209\" claim_status=\"false\"><display_name>Dugas,
+        Jason C.</display_name><preferred_name><full_name>Dugas, Jason</full_name><first_name>Jason</first_name><last_name>Dugas</last_name></preferred_name><full_name>Dugas,
+        Jason C.</full_name><wos_standard>Dugas, JC</wos_standard><first_name>Jason
+        C.</first_name><last_name>Dugas</last_name><data-item-ids><data-item-id id-type=\"PreferredRID\"
+        type=\"person\">CNH-5803-2022</data-item-id><data-item-id id-type=\"PreferredORCID\"
+        type=\"person\">0000-0003-0849-9830</data-item-id><data-item-id id-type=\"OtherORCID\"
+        type=\"person\">0000-0003-0849-9830</data-item-id></data-item-ids></name><name
+        seq_no=\"2\" role=\"author\" addr_no=\"1\" r_id=\"CUK-8556-2022\" daisng_id=\"8828963\"
+        claim_status=\"false\"><display_name>Ibrahim, Adiljan</display_name><preferred_name><full_name>Ibrahim,
+        Adiljan</full_name><first_name>Adiljan</first_name><last_name>Ibrahim</last_name></preferred_name><full_name>Ibrahim,
+        Adiljan</full_name><wos_standard>Ibrahim, A</wos_standard><first_name>Adiljan</first_name><last_name>Ibrahim</last_name><data-item-ids><data-item-id
+        id-type=\"PreferredRID\" type=\"person\">CUK-8556-2022</data-item-id></data-item-ids></name><name
+        seq_no=\"3\" role=\"author\" addr_no=\"1\" r_id=\"OOP-1138-2025\" daisng_id=\"83388943\"
+        claim_status=\"false\"><display_name>Barres, Ben A.</display_name><preferred_name><full_name>Barres,
+        B.</full_name><first_name>B.</first_name><last_name>Barres</last_name></preferred_name><full_name>Barres,
+        Ben A.</full_name><wos_standard>Barres, BA</wos_standard><first_name>Ben A.</first_name><last_name>Barres</last_name><data-item-ids><data-item-id
+        id-type=\"PreferredRID\" type=\"person\">OOP-1138-2025</data-item-id></data-item-ids></name></names><doctypes
+        count=\"1\"><doctype>Article</doctype></doctypes><publishers><publisher><address_spec
+        addr_no=\"1\"><full_address>525 B ST, STE 1900, SAN DIEGO, CA 92101-4495 USA</full_address><city>SAN
+        DIEGO</city></address_spec><names count=\"1\"><name role=\"publisher\" seq_no=\"1\"
+        addr_no=\"1\"><display_name>ACADEMIC PRESS INC ELSEVIER SCIENCE</display_name><full_name>ACADEMIC
+        PRESS INC ELSEVIER SCIENCE</full_name><unified_name>Elsevier</unified_name></name></names></publisher></publishers></summary><fullrecord_metadata><languages
+        count=\"1\"><language type=\"primary\">English</language></languages><normalized_languages
+        count=\"1\"><language type=\"primary\">English</language></normalized_languages><normalized_doctypes
+        count=\"1\"><doctype>Article</doctype></normalized_doctypes><refs count=\"61\"
+        /><addresses count=\"1\"><address_name><address_spec addr_no=\"1\" orig_seq=\"1\"><full_address>Stanford
+        Univ, Sch Med, Dept Neurobiol, Stanford, CA 94305 USA</full_address><organizations
+        count=\"2\"><organization pref=\"null\">Stanford Univ</organization><organization
+        pref=\"Y\" ror_id=\"https://ror.org/00f54p054\">Stanford University</organization></organizations><suborganizations
+        count=\"2\"><suborganization>Sch Med</suborganization><suborganization>Dept
+        Neurobiol</suborganization></suborganizations><city>Stanford</city><state>CA</state><country>USA</country><zip
+        location=\"AP\">94305</zip></address_spec><names count=\"3\"><name seq_no=\"1\"
+        role=\"author\" reprint=\"Y\" addr_no=\"1\" daisng_id=\"7176209\" claim_status=\"false\"><display_name>Dugas,
+        Jason C.</display_name><preferred_name><full_name>Dugas, Jason</full_name><first_name>Jason</first_name><last_name>Dugas</last_name></preferred_name><full_name>Dugas,
+        Jason C.</full_name><wos_standard>Dugas, JC</wos_standard><first_name>Jason
+        C.</first_name><last_name>Dugas</last_name><data-item-ids><data-item-id id-type=\"PreferredRID\"
+        type=\"person\">CNH-5803-2022</data-item-id><data-item-id id-type=\"PreferredORCID\"
+        type=\"person\">0000-0003-0849-9830</data-item-id><data-item-id id-type=\"OtherORCID\"
+        type=\"person\">0000-0003-0849-9830</data-item-id></data-item-ids></name><name
+        seq_no=\"2\" role=\"author\" addr_no=\"1\" daisng_id=\"8828963\" claim_status=\"false\"><display_name>Ibrahim,
+        Adiljan</display_name><preferred_name><full_name>Ibrahim, Adiljan</full_name><first_name>Adiljan</first_name><last_name>Ibrahim</last_name></preferred_name><full_name>Ibrahim,
+        Adiljan</full_name><wos_standard>Ibrahim, A</wos_standard><first_name>Adiljan</first_name><last_name>Ibrahim</last_name><data-item-ids><data-item-id
+        id-type=\"PreferredRID\" type=\"person\">CUK-8556-2022</data-item-id></data-item-ids></name><name
+        seq_no=\"3\" role=\"author\" addr_no=\"1\" daisng_id=\"83388943\" claim_status=\"false\"><display_name>Barres,
+        Ben A.</display_name><preferred_name><full_name>Barres, B.</full_name><first_name>B.</first_name><last_name>Barres</last_name></preferred_name><full_name>Barres,
+        Ben A.</full_name><wos_standard>Barres, BA</wos_standard><first_name>Ben A.</first_name><last_name>Barres</last_name><data-item-ids><data-item-id
+        id-type=\"PreferredRID\" type=\"person\">OOP-1138-2025</data-item-id></data-item-ids></name></names></address_name></addresses><reprint_addresses
+        count=\"1\"><address_name><address_spec addr_no=\"1\" orig_seq=\"1\"><full_address>Myelin
+        Repair Fdn, 18809 Cox Ave 190, Saratoga, CA 95070 USA</full_address><organizations
+        count=\"1\"><organization pref=\"null\">Myelin Repair Fdn</organization></organizations><street>18809
+        Cox Ave 190</street><city>Saratoga</city><state>CA</state><country>USA</country><zip
+        location=\"AP\">95070</zip></address_spec><names count=\"1\"><name seq_no=\"1\"
+        role=\"author\" reprint=\"Y\" addr_no=\"1\"><display_name>Dugas, Jason C.</display_name><full_name>Dugas,
+        Jason C.</full_name><wos_standard>Dugas, JC</wos_standard><first_name>Jason
+        C.</first_name><last_name>Dugas</last_name></name></names></address_name></reprint_addresses><category_info><headings
+        count=\"1\"><heading>Science &amp; Technology</heading></headings><subheadings
+        count=\"1\"><subheading>Life Sciences &amp; Biomedicine</subheading></subheadings><subjects
+        count=\"2\"><subject ascatype=\"traditional\" code=\"RU\">Neurosciences</subject><subject
+        ascatype=\"extended\">Neurosciences &amp; Neurology</subject></subjects></category_info><fund_ack><fund_text><p>We
+        would like to thank Dr. Rosalia Simmen for generously providing the KLF9&lt;SUP&gt;LacZ/+&lt;/SUP&gt;
+        mice. This work was supported by the Myelin Repair Foundation and the National
+        Multiple Sclerosis Society (RG4059A8).</p></fund_text><grants count=\"2\"><grant><grant_agency>Myelin
+        Repair Foundation</grant_agency><grant_agency_names pref=\"N\" content=\"Myelin
+        Repair Foundation\" /></grant><grant><grant_agency>National Multiple Sclerosis
+        Society</grant_agency><grant_ids count=\"1\"><grant_id>RG4059A8</grant_id></grant_ids><grant_agency_names
+        pref=\"Y\" content=\"National Multiple Sclerosis Society\" /><grant_agency_names
+        pref=\"N\" content=\"National Multiple Sclerosis Society\" /></grant></grants></fund_ack><keywords
+        count=\"6\"><keyword>Oligodendrocyte</keyword><keyword>Thyroid hormone</keyword><keyword>KLF9</keyword><keyword>BTEB1</keyword><keyword>Myelin</keyword><keyword>Cuprizone</keyword></keywords><abstracts
+        count=\"1\"><abstract><abstract_text count=\"1\"><p>Hypothyroidism is a well-described
+        cause of hypomyelination. In addition, thyroid hormone (T3) has recently been
+        shown to enhance remyelination in various animal models of CNS demyelination.
+        What are the ways in which T3 promotes the development and regeneration of
+        healthy myelin? To begin to understand the mechanisms by which 13 drives myelination,
+        we have identified genes regulated specifically by T3 in purified oligodendrocyte
+        precursor cells (OPCs). Among the genes identified by genomic expression analyses
+        were four transcription factors, Kruppel-like factor 9 (KLF9), basic helix-loop-helix
+        family member e22 (BHLHe22), Hairless (Hr), and Albumin D box-binding protein
+        (DBP), all of which were induced in OPCs by both brief and long term exposure
+        to T3. To begin to investigate the role of these genes in myelination, we
+        focused on the most rapidly and robustly induced of these, KLF9, and found
+        it is both necessary and sufficient to promote oligodendrocyte differentiation
+        in vitro. Surprisingly, we found that loss of KLF9 in vivo negligibly affects
+        the formation of CNS myelin during development, but does significantly delay
+        remyelination in cuprizone-induced demyelinated lesions. These experiments
+        indicate that KLF9 is likely a novel integral component of the T3-driven signaling
+        cascade that promotes the regeneration of lost myelin. Future analyses of
+        the roles of KLF9 and other identified T3-induced genes in myelination may
+        lead to novel insights into how to enhance the regeneration of myelin in demyelinating
+        diseases such as multiple sclerosis. (c) 2012 Elsevier Inc. All rights reserved.</p></abstract_text></abstract></abstracts></fullrecord_metadata><item
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:type=\"itemType_wos\"
+        coll_id=\"WOS\"><ids avail=\"N\">962LX</ids><bib_id>50 (1): 45-57 MAY 2012</bib_id><bib_pagecount
+        type=\"Journal\">132</bib_pagecount><keywords_plus count=\"10\"><keyword>ELEMENT-BINDING
+        PROTEIN-1</keyword><keyword>MAGNETIC-RESONANCE SPECTROSCOPY</keyword><keyword>CENTRAL-NERVOUS-SYSTEM</keyword><keyword>THYROID-HORMONE</keyword><keyword>EXPERIMENTAL
+        HYPOTHYROIDISM</keyword><keyword>MICE LACKING</keyword><keyword>PDGF-A</keyword><keyword>EXPRESSION</keyword><keyword>REMYELINATION</keyword><keyword>DEMYELINATION</keyword></keywords_plus></item></static_data><dynamic_data><citation_related><tc_list
+        tc_mod_date=\"2025-12-28\"><silo_tc coll_id=\"WOK\" local_count=\"147\" /><silo_tc
+        coll_id=\"PPRN\" local_count=\"6\" /><silo_tc coll_id=\"BCI\" local_count=\"109\"
+        /><silo_tc coll_id=\"SCIELO\" local_count=\"0\" /><silo_tc coll_id=\"MEDLINE\"
+        local_count=\"0\" /><silo_tc coll_id=\"RSCI\" local_count=\"0\" /><silo_tc
+        coll_id=\"PQDT\" local_count=\"11\" /><silo_tc coll_id=\"PCI\" local_count=\"0\"
+        /><silo_tc coll_id=\"INSPEC\" local_count=\"0\" /><silo_tc coll_id=\"DIIDW\"
+        local_count=\"0\" /><silo_tc coll_id=\"RC\" local_count=\"6\" /><silo_tc coll_id=\"CABI\"
+        local_count=\"0\" /><silo_tc coll_id=\"CCC\" local_count=\"0\" /><silo_tc
+        coll_id=\"FSTA\" local_count=\"0\" /><silo_tc coll_id=\"BIOSIS\" local_count=\"0\"
+        /><silo_tc coll_id=\"CSCD\" local_count=\"4\" /><silo_tc coll_id=\"WOS\" local_count=\"130\"
+        /><silo_tc coll_id=\"BIOABS\" local_count=\"0\" /><silo_tc coll_id=\"ARCI\"
+        local_count=\"0\" /><silo_tc coll_id=\"ZOOREC\" local_count=\"0\" /><silo_tc
+        coll_id=\"KJD\" local_count=\"0\" /><silo_tc coll_id=\"DRCI\" local_count=\"0\"
+        /></tc_list><tc_list_cc dedup_total_count=\"16\"><function_tc func_class=\"basis\"
+        local_count=\"3\" /><function_tc func_class=\"background\" local_count=\"6\"
+        /><function_tc func_class=\"support\" local_count=\"1\" /><function_tc func_class=\"differ\"
+        local_count=\"0\" /><function_tc func_class=\"discuss\" local_count=\"11\"
+        /></tc_list_cc><citation_topics><subj-group><subject content-id=\"1\" content-type=\"macro\">Clinical
+        &amp; Life Sciences</subject><subject content-id=\"1.203\" content-type=\"meso\">Neuromuscular
+        Disorders</subject><subject content-id=\"1.203.1430\" content-type=\"micro\">Oligodendrocyte
+        Myelination</subject></subj-group></citation_topics><SDG code=\"1430\"><sdg_category
+        status=\"Active\">03 Good Health and Well-being</sdg_category></SDG></citation_related><cluster_related><identifiers><identifier
+        type=\"issn\" value=\"1044-7431\" /><identifier type=\"eissn\" value=\"1095-9327\"
+        /><identifier type=\"doi\" value=\"10.1016/j.mcn.2012.03.007\" /><identifier
+        type=\"pmid\" value=\"MEDLINE:22472204\" /></identifiers></cluster_related><wos_usage
+        last180days=\"1\" alltime=\"28\" /></dynamic_data><dates date_modified=\"2019-03-28T16:28:34.804462\"
+        date_created=\"2012-12-25T12:25:20.684325\" date_loaded=\"2012-07-12T23:59:59.00000\"
+        /></REC>\r\n</records>]]></val>\n        </map>\n        <map name=\"QueryResult\">\n
+        \           <map>\n                <val name=\"QueryID\">533</val>\n                <val
+        name=\"RecordsSearched\">145090046</val>\n                <val name=\"RecordsFound\">1</val>\n
+        \           </map>\n        </map>\n    </map>\n</response>\n"
+  recorded_at: Tue, 10 Feb 2026 18:04:01 GMT
+recorded_with: VCR 6.4.0

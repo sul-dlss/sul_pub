@@ -8,7 +8,7 @@ http_interactions:
       string: ''
     headers:
       User-Agent:
-      - Faraday v2.7.11
+      - Faraday v2.14.1
       Accept:
       - application/xml
       X-Apikey:
@@ -21,7 +21,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 31 Oct 2023 18:01:27 GMT
+      - Tue, 10 Feb 2026 18:24:55 GMT
       Content-Type:
       - application/xml
       Transfer-Encoding:
@@ -29,21 +29,29 @@ http_interactions:
       Connection:
       - keep-alive
       X-Rec-Amtperyear-Remaining:
-      - '1952242'
+      - '4723700'
       X-Req-Reqpersec-Remaining:
       - '24'
       Vary:
       - Origin
       Correlation-Id:
-      - 5891361b-f02f-471e-89fa-430cff7d0f97#50416426
+      - 3335817f-7dc0-4c87-a533-5e8ca3718c46#14301038
       X-Kong-Upstream-Latency:
-      - '28'
+      - '122'
       X-Kong-Proxy-Latency:
-      - '2'
-      Via:
-      - kong/2.8.1
+      - '1'
+      Cf-Cache-Status:
+      - DYNAMIC
+      Set-Cookie:
+      - __cf_bm=LSTgwGz9_YBe44CbyIjP5npKrjqQNAC2ydcUNadikTE-1770747895.2084625-1.0.1.1-KmrAgSMSPxvpYzNY3WqpQk0u78edGrmW10vYChYmi540K2hAnd.2sVMEuc6LbgCvM.dL_wPqWxd_qNnieIP3d0LuAluY.LnBVGlYJMk_vgeUtzscTBUsyJb.raReGGAd;
+        HttpOnly; Secure; Path=/; Domain=clarivate.com; Expires=Tue, 10 Feb 2026 18:54:55
+        GMT
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 9cbda5690a02251d-SJC
     body:
-      encoding: UTF-8
+      encoding: ASCII-8BIT
       string: |
         <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
         <response xmlns="http://www.isinet.com/xrpc42">
@@ -53,23 +61,23 @@ http_interactions:
                 </map>
                 <map name="QueryResult">
                     <map>
-                        <val name="QueryID">961</val>
-                        <val name="RecordsSearched">632858</val>
-                        <val name="RecordsFound">6</val>
+                        <val name="QueryID">556</val>
+                        <val name="RecordsSearched">1153349</val>
+                        <val name="RecordsFound">10</val>
                     </map>
                 </map>
             </map>
         </response>
-  recorded_at: Tue, 31 Oct 2023 18:01:27 GMT
+  recorded_at: Tue, 10 Feb 2026 18:24:55 GMT
 - request:
     method: get
-    uri: https://wos-api.clarivate.com/api/wos/recordids/961?count=100&databaseId=WOK&firstRecord=1&loadTimeSpan=4W&usrQuery=AU=(%22Altman,Russ%22%20OR%20%22Altman,Russ,Biagio%22%20OR%20%22Altman,Russ,B%22%20OR%20%22Altman,R%22%20OR%20%22Altman,R,B%22)%20AND%20AD=(%22stanford%22)
+    uri: https://wos-api.clarivate.com/api/wos/recordids/556?count=75&databaseId=WOK&firstRecord=1&loadTimeSpan=4W&usrQuery=AU=(%22Altman,Russ%22%20OR%20%22Altman,Russ,Biagio%22%20OR%20%22Altman,Russ,B%22%20OR%20%22Altman,R%22%20OR%20%22Altman,R,B%22)%20AND%20AD=(%22stanford%22)
     body:
       encoding: US-ASCII
       string: ''
     headers:
       User-Agent:
-      - Faraday v2.7.11
+      - Faraday v2.14.1
       Accept:
       - application/json
       X-Apikey:
@@ -82,7 +90,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 31 Oct 2023 18:01:27 GMT
+      - Tue, 10 Feb 2026 18:24:55 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -92,15 +100,23 @@ http_interactions:
       Vary:
       - Origin
       Correlation-Id:
-      - 51e08d06-fa1d-41ae-a29a-2c8c998ae3fe#49772871
+      - e0b84c7a-0639-4fca-aefe-3dacacca1756#14382259
       X-Kong-Upstream-Latency:
-      - '16'
+      - '131'
       X-Kong-Proxy-Latency:
-      - '3'
-      Via:
-      - kong/2.8.1
+      - '1'
+      Cf-Cache-Status:
+      - DYNAMIC
+      Set-Cookie:
+      - __cf_bm=YvtCahH74nEhDxFwGF3RGmSabHTbNxIGaRZSxYvDgbw-1770747895.388835-1.0.1.1-oRz4To_SL0JER5ecdzB1vtsa7NlJ8lRze1dWcq9mYzk6xlc6irv_IjNXkgYVNemkZv6ir78jUaONbAtvjegzLknSznW73g3aApturuOh2dLLhGnOPkQbLgCnBDVcZ8yW;
+        HttpOnly; Secure; Path=/; Domain=clarivate.com; Expires=Tue, 10 Feb 2026 18:54:55
+        GMT
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 9cbda56a2a92de03-SJC
     body:
-      encoding: UTF-8
-      string: '["MEDLINE:37857935","PPRN:85608644","WOS:001064713900001","WOS:001053758300036","WOS:001074959100001","WOS:001070851600001"]'
-  recorded_at: Tue, 31 Oct 2023 18:01:27 GMT
-recorded_with: VCR 6.2.0
+      encoding: ASCII-8BIT
+      string: '["MEDLINE:41643006","WOS:001528787300001","WOS:000285036700009","WOS:000308887200005","WOS:000301889500023","WOS:000299167800043","WOS:000278125200026","WOS:000172328100058","WOS:000312901500023","WOS:001517877600001"]'
+  recorded_at: Tue, 10 Feb 2026 18:24:55 GMT
+recorded_with: VCR 6.4.0

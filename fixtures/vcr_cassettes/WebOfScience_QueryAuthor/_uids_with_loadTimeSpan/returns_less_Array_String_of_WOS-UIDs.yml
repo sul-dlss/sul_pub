@@ -8,7 +8,7 @@ http_interactions:
       string: ''
     headers:
       User-Agent:
-      - Faraday v2.7.11
+      - Faraday v2.14.1
       Accept:
       - application/xml
       X-Apikey:
@@ -21,7 +21,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 31 Oct 2023 18:01:40 GMT
+      - Tue, 10 Feb 2026 18:17:35 GMT
       Content-Type:
       - application/xml
       Transfer-Encoding:
@@ -29,21 +29,29 @@ http_interactions:
       Connection:
       - keep-alive
       X-Rec-Amtperyear-Remaining:
-      - '1952242'
+      - '4723704'
       X-Req-Reqpersec-Remaining:
       - '24'
       Vary:
       - Origin
       Correlation-Id:
-      - 3552fe85-7449-45d3-9998-fd40d6906031#50322686
+      - 9aa81f4b-5d7f-4fbf-be12-ec377dd6a107#14315270
       X-Kong-Upstream-Latency:
-      - '57'
+      - '136'
       X-Kong-Proxy-Latency:
-      - '142'
-      Via:
-      - kong/2.8.1
+      - '1'
+      Cf-Cache-Status:
+      - DYNAMIC
+      Set-Cookie:
+      - __cf_bm=lbNyJgab7Hjcubi6SMXERCqwJBXg8MSkj0_8cTua2Cw-1770747455.242601-1.0.1.1-O9xbHFMBFBBVL2AmclOgcNdpeIAIFxV_5S0nzidu0o4HdDj_.ktvVkPNNXvkzgynIb4EE2AOSlS_cbGGAi_vObBpIoYvNeYoj5RegTgIQbQHmtB2mYr47oRgD4PXr3.0;
+        HttpOnly; Secure; Path=/; Domain=clarivate.com; Expires=Tue, 10 Feb 2026 18:47:35
+        GMT
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 9cbd9aab4c1ff005-SJC
     body:
-      encoding: UTF-8
+      encoding: ASCII-8BIT
       string: |
         <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
         <response xmlns="http://www.isinet.com/xrpc42">
@@ -53,23 +61,23 @@ http_interactions:
                 </map>
                 <map name="QueryResult">
                     <map>
-                        <val name="QueryID">964</val>
-                        <val name="RecordsSearched">632858</val>
-                        <val name="RecordsFound">1</val>
+                        <val name="QueryID">542</val>
+                        <val name="RecordsSearched">1153349</val>
+                        <val name="RecordsFound">2</val>
                     </map>
                 </map>
             </map>
         </response>
-  recorded_at: Tue, 31 Oct 2023 18:01:40 GMT
+  recorded_at: Tue, 10 Feb 2026 18:17:35 GMT
 - request:
     method: get
-    uri: https://wos-api.clarivate.com/api/wos/recordids/964?count=100&databaseId=WOK&firstRecord=1&loadTimeSpan=4W&usrQuery=AI=(%220000-0003-3859-2905%22)
+    uri: https://wos-api.clarivate.com/api/wos/recordids/542?count=75&databaseId=WOK&firstRecord=1&loadTimeSpan=4W&usrQuery=AI=(%220000-0003-3859-2905%22)
     body:
       encoding: US-ASCII
       string: ''
     headers:
       User-Agent:
-      - Faraday v2.7.11
+      - Faraday v2.14.1
       Accept:
       - application/json
       X-Apikey:
@@ -82,7 +90,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 31 Oct 2023 18:01:40 GMT
+      - Tue, 10 Feb 2026 18:17:35 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -92,17 +100,25 @@ http_interactions:
       Vary:
       - Origin
       Correlation-Id:
-      - 51e08d06-fa1d-41ae-a29a-2c8c998ae3fe#49773166
+      - 2002031d-1688-40ac-a9c1-9ce3e7a52432#14299194
       X-Kong-Upstream-Latency:
-      - '12'
+      - '152'
       X-Kong-Proxy-Latency:
-      - '2'
-      Via:
-      - kong/2.8.1
+      - '1'
+      Cf-Cache-Status:
+      - DYNAMIC
+      Set-Cookie:
+      - __cf_bm=1Mof5sN.hn0DPZLtL.cCzWixU.1wu773KdKPLUezZvU-1770747455.5335085-1.0.1.1-2UvmC48HOXwWkAn5EdDXykQhMnLAvzFhV5hfB2aCKrl5h368J3qf4bib5i7QEZknvX_GlPSb0WF2qx3WcrMVmyP230uh9PbyigLCqibii15rtLk1tkXiAYPrJa.OWozB;
+        HttpOnly; Secure; Path=/; Domain=clarivate.com; Expires=Tue, 10 Feb 2026 18:47:35
+        GMT
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 9cbd9aad1d84c8ce-SJC
     body:
-      encoding: UTF-8
-      string: '["WOS:001064713900001"]'
-  recorded_at: Tue, 31 Oct 2023 18:01:40 GMT
+      encoding: ASCII-8BIT
+      string: '["WOS:001528787300001","WOS:001517877600001"]'
+  recorded_at: Tue, 10 Feb 2026 18:17:35 GMT
 - request:
     method: get
     uri: https://wos-api.clarivate.com/api/wos/?count=0&databaseId=WOK&firstRecord=1&loadTimeSpan=4W&usrQuery=AU=(%22Altman,Russ%22%20OR%20%22Altman,Russ,Biagio%22%20OR%20%22Altman,Russ,B%22%20OR%20%22Altman,R%22%20OR%20%22Altman,R,B%22)%20AND%20AD=(%22stanford%22)
@@ -111,7 +127,7 @@ http_interactions:
       string: ''
     headers:
       User-Agent:
-      - Faraday v2.7.11
+      - Faraday v2.14.1
       Accept:
       - application/xml
       X-Apikey:
@@ -124,7 +140,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 31 Oct 2023 18:01:40 GMT
+      - Tue, 10 Feb 2026 18:17:35 GMT
       Content-Type:
       - application/xml
       Transfer-Encoding:
@@ -132,21 +148,29 @@ http_interactions:
       Connection:
       - keep-alive
       X-Rec-Amtperyear-Remaining:
-      - '1952242'
+      - '4723704'
       X-Req-Reqpersec-Remaining:
       - '23'
       Vary:
       - Origin
       Correlation-Id:
-      - '038b355c-a3b4-403e-9fff-84e92b01a6a6#49883958'
+      - 657d9778-55b3-407c-b418-1c69b5bb87f8#14207628
       X-Kong-Upstream-Latency:
-      - '20'
+      - '161'
       X-Kong-Proxy-Latency:
-      - '77'
-      Via:
-      - kong/2.8.1
+      - '1'
+      Cf-Cache-Status:
+      - DYNAMIC
+      Set-Cookie:
+      - __cf_bm=I_ibmMzrPvUE9Ysfx686KHWFtoeg7l1ky.jz4nGRNn8-1770747455.743943-1.0.1.1-3ZVwi76056e1V74NzytPy9UvJCRXnU78QSHXBFPdnAF4dyj_lxZBdih1qSkuWp3_kNCzp7CalP6M0_m5nA6khigJYJpYvsDgMnhFYBAN4GxI5A9LrbG32_WBYJ9z97sK;
+        HttpOnly; Secure; Path=/; Domain=clarivate.com; Expires=Tue, 10 Feb 2026 18:47:35
+        GMT
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 9cbd9aae6db7b586-SJC
     body:
-      encoding: UTF-8
+      encoding: ASCII-8BIT
       string: |
         <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
         <response xmlns="http://www.isinet.com/xrpc42">
@@ -156,23 +180,23 @@ http_interactions:
                 </map>
                 <map name="QueryResult">
                     <map>
-                        <val name="QueryID">965</val>
-                        <val name="RecordsSearched">632858</val>
-                        <val name="RecordsFound">6</val>
+                        <val name="QueryID">543</val>
+                        <val name="RecordsSearched">1153349</val>
+                        <val name="RecordsFound">10</val>
                     </map>
                 </map>
             </map>
         </response>
-  recorded_at: Tue, 31 Oct 2023 18:01:40 GMT
+  recorded_at: Tue, 10 Feb 2026 18:17:35 GMT
 - request:
     method: get
-    uri: https://wos-api.clarivate.com/api/wos/recordids/965?count=100&databaseId=WOK&firstRecord=1&loadTimeSpan=4W&usrQuery=AU=(%22Altman,Russ%22%20OR%20%22Altman,Russ,Biagio%22%20OR%20%22Altman,Russ,B%22%20OR%20%22Altman,R%22%20OR%20%22Altman,R,B%22)%20AND%20AD=(%22stanford%22)
+    uri: https://wos-api.clarivate.com/api/wos/recordids/543?count=75&databaseId=WOK&firstRecord=1&loadTimeSpan=4W&usrQuery=AU=(%22Altman,Russ%22%20OR%20%22Altman,Russ,Biagio%22%20OR%20%22Altman,Russ,B%22%20OR%20%22Altman,R%22%20OR%20%22Altman,R,B%22)%20AND%20AD=(%22stanford%22)
     body:
       encoding: US-ASCII
       string: ''
     headers:
       User-Agent:
-      - Faraday v2.7.11
+      - Faraday v2.14.1
       Accept:
       - application/json
       X-Apikey:
@@ -185,7 +209,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 31 Oct 2023 18:01:41 GMT
+      - Tue, 10 Feb 2026 18:17:36 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -195,15 +219,23 @@ http_interactions:
       Vary:
       - Origin
       Correlation-Id:
-      - 8cd5e0b0-d74e-4d39-945c-153bb8611ed1#50212833
+      - 5f7faaf2-d21a-45ab-a031-869dbcc461e7#14454520
       X-Kong-Upstream-Latency:
-      - '36'
+      - '133.00006103516'
       X-Kong-Proxy-Latency:
-      - '317'
-      Via:
-      - kong/2.8.1
+      - '1'
+      Cf-Cache-Status:
+      - DYNAMIC
+      Set-Cookie:
+      - __cf_bm=BZEHHtC4P7WQGgBRLGMkt5buvCocgqsDWEp8jnFw5Zs-1770747455.961585-1.0.1.1-pXwZlwBQrR5nmiv1D9Ajpzofc0.RrJY.lu7C1ynY6H87fBZr_HW_d.6cgK_PSqkiUVMqn6iUdGe6XFsJaFCm1wpHM6TEr0tNgyOBaZGOtG8yhPVHANQArWyOEl8kg4pn;
+        HttpOnly; Secure; Path=/; Domain=clarivate.com; Expires=Tue, 10 Feb 2026 18:47:36
+        GMT
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 9cbd9aafca5f483d-SJC
     body:
-      encoding: UTF-8
-      string: '["MEDLINE:37857935","PPRN:85608644","WOS:001064713900001","WOS:001053758300036","WOS:001074959100001","WOS:001070851600001"]'
-  recorded_at: Tue, 31 Oct 2023 18:01:41 GMT
-recorded_with: VCR 6.2.0
+      encoding: ASCII-8BIT
+      string: '["MEDLINE:41643006","WOS:001528787300001","WOS:000285036700009","WOS:000308887200005","WOS:000301889500023","WOS:000299167800043","WOS:000278125200026","WOS:000172328100058","WOS:000312901500023","WOS:001517877600001"]'
+  recorded_at: Tue, 10 Feb 2026 18:17:36 GMT
+recorded_with: VCR 6.4.0

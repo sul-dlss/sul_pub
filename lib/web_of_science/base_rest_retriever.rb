@@ -7,14 +7,16 @@ module WebOfScience
   # - the "next_batch" is like "next"
   class BaseRestRetriever
     # this is the maximum number that can be returned in a single query by WoS
-    MAX_RECORDS = 100
+    # although the maximum is currently 100, a smaller batch size reduces
+    # the likliehood of hitting errors due to large querystrings or responses
+    MAX_RECORDS = 75
 
     attr_reader :records_found, :records_retrieved, :query_id
 
     # @param [String] path of REST endpoint
     # @param [Hash] query parameters
     # @param [String] database ID to search (WOK by default)
-    # @param [Integer] batch_size number of records to fetch by batch (MAX_RECORDS = 100)
+    # @param [Integer] batch_size number of records to fetch by batch
     def initialize(path, params, database: 'WOK', batch_size: MAX_RECORDS)
       @path = path
       @params = params

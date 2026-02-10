@@ -1031,4 +1031,116 @@ http_interactions:
         name=\"RecordsSearched\">177881258</val>\n                <val name=\"RecordsFound\">1</val>\n
         \           </map>\n        </map>\n    </map>\n</response>\n"
   recorded_at: Wed, 21 Jun 2023 20:06:06 GMT
-recorded_with: VCR 6.1.0
+- request:
+    method: get
+    uri: https://wos-api.clarivate.com/api/wos/id/WOS:A1972N549400003?count=75&databaseId=WOK&firstRecord=1
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.14.1
+      Accept:
+      - application/xml
+      X-Apikey:
+      - Settings.WOS.API_KEY
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 10 Feb 2026 18:03:39 GMT
+      Content-Type:
+      - application/xml
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      X-Rec-Amtperyear-Remaining:
+      - '4723947'
+      X-Req-Reqpersec-Remaining:
+      - '24'
+      Vary:
+      - Origin
+      Correlation-Id:
+      - 5f7faaf2-d21a-45ab-a031-869dbcc461e7#14419098
+      X-Kong-Upstream-Latency:
+      - '32.999954223633'
+      X-Kong-Proxy-Latency:
+      - '1'
+      Cf-Cache-Status:
+      - DYNAMIC
+      Set-Cookie:
+      - __cf_bm=NGZDxTWzDTBeltyzHz7zW_fp097vnpWk9nTLk4QYrqM-1770746619.8975537-1.0.1.1-xcFV8m52l.Rb7K3PqYNys7Oh9Agfk6vMRa6S2Zu6aOnE4K0pic9XwYXk2..w1tI4PRURfL4_Z7QaLFzHFRblMz6Tz95YUGtGSYJubOKFploNwDl2WtFx3i4eogBZAk_8;
+        HttpOnly; Secure; Path=/; Domain=clarivate.com; Expires=Tue, 10 Feb 2026 18:33:39
+        GMT
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 9cbd86465845f9d4-SJC
+    body:
+      encoding: ASCII-8BIT
+      string: "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<response
+        xmlns=\"http://www.isinet.com/xrpc42\">\n    <map>\n        <map name=\"Data\">\n
+        \           <val name=\"Records\"><![CDATA[<records><REC r_id_disclaimer=\"ResearcherID
+        data provided by Clarivate Analytics\"><UID>WOS:A1972N549400003</UID><static_data><summary><EWUID
+        xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"><WUID coll_id=\"WOS\" /><edition
+        value=\"WOS.SSCI\" /><edition value=\"WOS.SCI\" /></EWUID><pub_info sortdate=\"1972-01-01\"
+        pubyear=\"1972\" has_abstract=\"N\" coverdate=\"1972\" vol=\"33\" issue=\"5\"
+        pubtype=\"Journal\" journal_oas_gold=\"Y\"><page begin=\"413\" end=\"413\"
+        page_count=\"1\">413-413</page></pub_info><titles count=\"6\"><title type=\"source\">COLLEGE
+        &amp; RESEARCH LIBRARIES</title><title type=\"source_abbrev\">COLL RES LIBR</title><title
+        type=\"abbrev_iso\">Coll. Res. Libr.</title><title type=\"abbrev_11\">COLL
+        RES LI</title><title type=\"abbrev_29\">COLL RES LIBR</title><title type=\"item\">LIBRARY
+        MANAGEMENT - BEHAVIOR-BASED PERSONNEL SYSTEMS (BBPS) - FRAMEWORK FOR ANALYSIS
+        - KEMPER,RE</title></titles><names count=\"1\"><name seq_no=\"1\" role=\"author\"
+        r_id=\"ECG-4520-2022\" daisng_id=\"16974923\" claim_status=\"false\"><display_name>WEBER,
+        DC</display_name><preferred_name><full_name>Weber, D. C.</full_name><first_name>D.
+        C.</first_name><last_name>Weber</last_name></preferred_name><full_name>WEBER,
+        DC</full_name><wos_standard>WEBER, DC</wos_standard><first_name>DC</first_name><last_name>WEBER</last_name><data-item-ids><data-item-id
+        id-type=\"PreferredRID\" type=\"person\">ECG-4520-2022</data-item-id></data-item-ids></name></names><doctypes
+        count=\"1\"><doctype>Book Review</doctype></doctypes><publishers><publisher><address_spec
+        addr_no=\"1\"><full_address>50 E HURON ST, CHICAGO, IL 60611</full_address><city>CHICAGO</city></address_spec><names
+        count=\"1\"><name role=\"publisher\" seq_no=\"1\" addr_no=\"1\"><display_name>ASSOC
+        COLL RESEARCH LIBRARIES</display_name><full_name>ASSOC COLL RESEARCH LIBRARIES</full_name><unified_name>Assoc
+        Coll Research Libraries</unified_name></name></names></publisher></publishers></summary><fullrecord_metadata><languages
+        count=\"1\"><language type=\"primary\">English</language></languages><normalized_languages
+        count=\"1\"><language type=\"primary\">English</language></normalized_languages><normalized_doctypes
+        count=\"1\"><doctype>Review</doctype></normalized_doctypes><refs count=\"1\"
+        /><addresses count=\"1\"><address_name><address_spec addr_no=\"1\" orig_seq=\"1\"><full_address>STANFORD
+        UNIV,STANFORD,CA 94305</full_address><organizations count=\"2\"><organization
+        pref=\"null\">STANFORD UNIV</organization><organization pref=\"Y\" ror_id=\"https://ror.org/00f54p054\">Stanford
+        University</organization></organizations><city>STANFORD</city><state>CA</state><country>USA</country><zip
+        location=\"AP\">94305</zip></address_spec></address_name></addresses><category_info><headings
+        count=\"1\"><heading>Science &amp; Technology</heading></headings><subheadings
+        count=\"1\"><subheading>Technology</subheading></subheadings><subjects count=\"2\"><subject
+        ascatype=\"traditional\" code=\"NU\">Information Science &amp; Library Science</subject><subject
+        ascatype=\"extended\">Information Science &amp; Library Science</subject></subjects></category_info></fullrecord_metadata><item
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:type=\"itemType_wos\"
+        coll_id=\"WOS\"><ids avail=\"Y\">N5494</ids><bib_id>33 (5): 413-413 1972</bib_id></item></static_data><dynamic_data><citation_related><tc_list><silo_tc
+        coll_id=\"WOK\" local_count=\"0\" /><silo_tc coll_id=\"CCC\" local_count=\"0\"
+        /><silo_tc coll_id=\"ZOOREC\" local_count=\"0\" /><silo_tc coll_id=\"INSPEC\"
+        local_count=\"0\" /><silo_tc coll_id=\"PPRN\" local_count=\"0\" /><silo_tc
+        coll_id=\"DRCI\" local_count=\"0\" /><silo_tc coll_id=\"RC\" local_count=\"0\"
+        /><silo_tc coll_id=\"SCIELO\" local_count=\"0\" /><silo_tc coll_id=\"CABI\"
+        local_count=\"0\" /><silo_tc coll_id=\"BIOABS\" local_count=\"0\" /><silo_tc
+        coll_id=\"BCI\" local_count=\"0\" /><silo_tc coll_id=\"ARCI\" local_count=\"0\"
+        /><silo_tc coll_id=\"KJD\" local_count=\"0\" /><silo_tc coll_id=\"PCI\" local_count=\"0\"
+        /><silo_tc coll_id=\"BIOSIS\" local_count=\"0\" /><silo_tc coll_id=\"WOS\"
+        local_count=\"0\" /><silo_tc coll_id=\"FSTA\" local_count=\"0\" /><silo_tc
+        coll_id=\"MEDLINE\" local_count=\"0\" /><silo_tc coll_id=\"CSCD\" local_count=\"0\"
+        /><silo_tc coll_id=\"DIIDW\" local_count=\"0\" /><silo_tc coll_id=\"PQDT\"
+        local_count=\"0\" /><silo_tc coll_id=\"RSCI\" local_count=\"0\" /></tc_list></citation_related><cluster_related><identifiers><identifier
+        type=\"issn\" value=\"0010-0870\" /><identifier type=\"xref_doi\" value=\"10.5860/crl_33_05_413\"
+        /></identifiers></cluster_related><wos_usage last180days=\"0\" alltime=\"0\"
+        /></dynamic_data><dates date_modified=\"2017-06-20T12:25:20.684325\" date_created=\"1972-12-25T12:25:20.684325\"
+        date_loaded=\"1972-01-01T23:59:59.00000\" /></REC>\r\n</records>]]></val>\n
+        \       </map>\n        <map name=\"QueryResult\">\n            <map>\n                <val
+        name=\"QueryID\">525</val>\n                <val name=\"RecordsSearched\">145090046</val>\n
+        \               <val name=\"RecordsFound\">1</val>\n            </map>\n        </map>\n
+        \   </map>\n</response>\n"
+  recorded_at: Tue, 10 Feb 2026 18:03:39 GMT
+recorded_with: VCR 6.4.0

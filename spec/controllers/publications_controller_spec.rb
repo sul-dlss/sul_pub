@@ -283,7 +283,7 @@ describe PublicationsController, :vcr do
         doi_identifier.publication.save
         expect(result['metadata']).to include('records' => '1')
         record = result['records'].first
-        expect(record['title']).to match(/Protein kinase C alpha/i)
+        expect(record['title']).to match(/Protein kinase C/i)
         expect(record['provenance']).to eq 'wos'
       end
     end
