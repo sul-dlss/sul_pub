@@ -8,7 +8,7 @@ http_interactions:
       string: ''
     headers:
       User-Agent:
-      - Faraday v2.7.11
+      - Faraday v2.14.1
       Accept:
       - application/xml
       X-Apikey:
@@ -21,7 +21,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 31 Oct 2023 18:01:32 GMT
+      - Tue, 10 Feb 2026 18:22:37 GMT
       Content-Type:
       - application/xml
       Transfer-Encoding:
@@ -29,21 +29,29 @@ http_interactions:
       Connection:
       - keep-alive
       X-Rec-Amtperyear-Remaining:
-      - '1952242'
+      - '4723700'
       X-Req-Reqpersec-Remaining:
-      - '23'
+      - '24'
       Vary:
       - Origin
       Correlation-Id:
-      - 06112123-c2cd-462d-a214-266034f0c849#49973709
+      - 5a2ea72a-613d-42ea-94c1-1295498d7812#14380877
       X-Kong-Upstream-Latency:
-      - '17'
+      - '126.00005340576'
       X-Kong-Proxy-Latency:
-      - '1'
-      Via:
-      - kong/2.8.1
+      - '0'
+      Cf-Cache-Status:
+      - DYNAMIC
+      Set-Cookie:
+      - __cf_bm=8keX4Kcp6n0wstzhedgjTyy2HEPcwkfEfsNWkpMG2IE-1770747757.3759046-1.0.1.1-kZOzvts5U7oxLvBwUJETDHFHGYY2no2fTjn.mZOLm035tfjO3bW3jsm5kXZzNXJZHh5QgkyxixuQaQBkJgmFn7Neh2WGCh.c9_z3TkFnWGr1hILXLCwu4Tffq2E.Yfwp;
+        HttpOnly; Secure; Path=/; Domain=clarivate.com; Expires=Tue, 10 Feb 2026 18:52:37
+        GMT
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 9cbda20b9f57fb44-SJC
     body:
-      encoding: UTF-8
+      encoding: ASCII-8BIT
       string: |
         <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
         <response xmlns="http://www.isinet.com/xrpc42">
@@ -53,23 +61,23 @@ http_interactions:
                 </map>
                 <map name="QueryResult">
                     <map>
-                        <val name="QueryID">963</val>
-                        <val name="RecordsSearched">632858</val>
-                        <val name="RecordsFound">1</val>
+                        <val name="QueryID">554</val>
+                        <val name="RecordsSearched">1153349</val>
+                        <val name="RecordsFound">2</val>
                     </map>
                 </map>
             </map>
         </response>
-  recorded_at: Tue, 31 Oct 2023 18:01:32 GMT
+  recorded_at: Tue, 10 Feb 2026 18:22:37 GMT
 - request:
     method: get
-    uri: https://wos-api.clarivate.com/api/wos/recordids/963?count=100&databaseId=WOK&firstRecord=1&loadTimeSpan=4W&usrQuery=AI=(%220000-0003-3859-2905%22)
+    uri: https://wos-api.clarivate.com/api/wos/recordids/554?count=75&databaseId=WOK&firstRecord=1&loadTimeSpan=4W&usrQuery=AI=(%220000-0003-3859-2905%22)
     body:
       encoding: US-ASCII
       string: ''
     headers:
       User-Agent:
-      - Faraday v2.7.11
+      - Faraday v2.14.1
       Accept:
       - application/json
       X-Apikey:
@@ -82,7 +90,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 31 Oct 2023 18:01:32 GMT
+      - Tue, 10 Feb 2026 18:22:37 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -92,15 +100,23 @@ http_interactions:
       Vary:
       - Origin
       Correlation-Id:
-      - 06112123-c2cd-462d-a214-266034f0c849#49973721
+      - 2002031d-1688-40ac-a9c1-9ce3e7a52432#14311809
       X-Kong-Upstream-Latency:
-      - '12'
+      - '126'
       X-Kong-Proxy-Latency:
-      - '2'
-      Via:
-      - kong/2.8.1
+      - '1'
+      Cf-Cache-Status:
+      - DYNAMIC
+      Set-Cookie:
+      - __cf_bm=yPxg5tCflgZKB2chIuWIg3yl4rNgd5auT9gQKfZ8yKw-1770747757.5672088-1.0.1.1-I_HQICMf4M7TUH8vmB211_ujAcntpYUh3RZsUXHI2TXBXsj7xJwVX4a31YpWIBRb6he1RbQnlRF671KhP.rH_InItf890RxNv2Km60KQsUDnk.Tz2SUyuR097H5Qqvi5;
+        HttpOnly; Secure; Path=/; Domain=clarivate.com; Expires=Tue, 10 Feb 2026 18:52:37
+        GMT
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 9cbda20cc8f0042c-SJC
     body:
-      encoding: UTF-8
-      string: '["WOS:001064713900001"]'
-  recorded_at: Tue, 31 Oct 2023 18:01:32 GMT
-recorded_with: VCR 6.2.0
+      encoding: ASCII-8BIT
+      string: '["WOS:001528787300001","WOS:001517877600001"]'
+  recorded_at: Tue, 10 Feb 2026 18:22:37 GMT
+recorded_with: VCR 6.4.0

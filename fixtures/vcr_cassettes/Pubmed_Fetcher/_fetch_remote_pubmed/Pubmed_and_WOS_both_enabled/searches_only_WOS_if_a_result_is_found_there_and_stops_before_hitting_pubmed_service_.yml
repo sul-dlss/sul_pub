@@ -1242,4 +1242,244 @@ http_interactions:
         \               <val name=\"RecordsFound\">1</val>\n            </map>\n        </map>\n
         \   </map>\n</response>\n"
   recorded_at: Wed, 21 Jun 2023 19:41:34 GMT
-recorded_with: VCR 6.1.0
+- request:
+    method: get
+    uri: https://wos-api.clarivate.com/api/wos/id/MEDLINE:24930130?count=75&databaseId=WOK&firstRecord=1
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.14.1
+      Accept:
+      - application/xml
+      X-Apikey:
+      - Settings.WOS.API_KEY
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 10 Feb 2026 18:03:26 GMT
+      Content-Type:
+      - application/xml
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      X-Rec-Amtperyear-Remaining:
+      - '4724179'
+      X-Req-Reqpersec-Remaining:
+      - '24'
+      Vary:
+      - Origin
+      Correlation-Id:
+      - 5a2ea72a-613d-42ea-94c1-1295498d7812#14332139
+      X-Kong-Upstream-Latency:
+      - '49.000116348267'
+      X-Kong-Proxy-Latency:
+      - '1'
+      Cf-Cache-Status:
+      - DYNAMIC
+      Set-Cookie:
+      - __cf_bm=NX51hCFJ5nzb5UPO_MZKYdvbsj0Bv_AJMs0lLTyxHhI-1770746606.8035903-1.0.1.1-RgEQdBu50v1fV5vjSBChslATq_.7c1iNnubsyvpj_9uv5ykLqCavjcIF.3su3cRdqmzX4zmNqpmZMjmA5e82NG3jOV8OuDwT8OLAqN0qHITmEnfKAYh9GGcaDVrdAFym;
+        HttpOnly; Secure; Path=/; Domain=clarivate.com; Expires=Tue, 10 Feb 2026 18:33:26
+        GMT
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 9cbd85f48f532710-SJC
+    body:
+      encoding: ASCII-8BIT
+      string: "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<response
+        xmlns=\"http://www.isinet.com/xrpc42\">\n    <map>\n        <map name=\"Data\">\n
+        \           <val name=\"Records\"><![CDATA[<records><REC r_id_disclaimer=\"ResearcherID
+        data provided by Clarivate Analytics\"><UID>MEDLINE:24930130</UID><static_data><summary><EWUID><WUID
+        coll_id=\"MEDLINE\" /><edition value=\"MEDLINE.MEDLINE\" /></EWUID><pub_info
+        sortdate=\"2014-08-01\" pubyear=\"2014\" pubmonth=\"Aug\" coverdate=\"2014-Aug\"
+        edate=\"2014-06-15\" vol=\"11\" issue=\"8\" pubtype=\"Journal\" medium=\"Internet\"
+        model=\"Print-Electronic\" has_abstract=\"Y\" journal_oas_gold=\"N\"><page
+        begin=\"855\" end=\"60\">855-60</page></pub_info><titles count=\"4\"><title
+        type=\"item\">Chemically defined generation of human cardiomyocytes.</title><title
+        type=\"source\">Nature methods</title><title type=\"abbrev_iso\">Nat Methods</title><title
+        type=\"source_abbrev\">Nat Methods</title></titles><names count=\"15\"><name
+        seq_no=\"1\" role=\"author\" display=\"Y\"><display_name>Burridge, Paul W</display_name><full_name>Burridge,
+        Paul W</full_name><initials>PW</initials></name><name seq_no=\"2\" role=\"author\"
+        display=\"Y\"><display_name>Matsa, Elena</display_name><full_name>Matsa, Elena</full_name><initials>E</initials></name><name
+        seq_no=\"3\" role=\"author\" display=\"Y\"><display_name>Shukla, Praveen</display_name><full_name>Shukla,
+        Praveen</full_name><initials>P</initials></name><name seq_no=\"4\" role=\"author\"
+        display=\"Y\"><display_name>Lin, Ziliang C</display_name><full_name>Lin, Ziliang
+        C</full_name><initials>ZC</initials></name><name seq_no=\"5\" role=\"author\"
+        display=\"Y\"><display_name>Churko, Jared M</display_name><full_name>Churko,
+        Jared M</full_name><initials>JM</initials></name><name seq_no=\"6\" role=\"author\"
+        display=\"Y\"><display_name>Ebert, Antje D</display_name><full_name>Ebert,
+        Antje D</full_name><initials>AD</initials></name><name seq_no=\"7\" role=\"author\"
+        display=\"Y\"><display_name>Lan, Feng</display_name><full_name>Lan, Feng</full_name><initials>F</initials></name><name
+        seq_no=\"8\" role=\"author\" display=\"Y\"><display_name>Diecke, Sebastian</display_name><full_name>Diecke,
+        Sebastian</full_name><initials>S</initials></name><name seq_no=\"9\" role=\"author\"
+        display=\"Y\"><display_name>Huber, Bruno</display_name><full_name>Huber, Bruno</full_name><initials>B</initials></name><name
+        seq_no=\"10\" role=\"author\" display=\"Y\"><display_name>Mordwinkin, Nicholas
+        M</display_name><full_name>Mordwinkin, Nicholas M</full_name><initials>NM</initials></name><name
+        seq_no=\"11\" role=\"author\" display=\"Y\"><display_name>Plews, Jordan R</display_name><full_name>Plews,
+        Jordan R</full_name><initials>JR</initials></name><name seq_no=\"12\" role=\"author\"
+        display=\"Y\"><display_name>Abilez, Oscar J</display_name><full_name>Abilez,
+        Oscar J</full_name><initials>OJ</initials></name><name seq_no=\"13\" role=\"author\"
+        display=\"Y\"><display_name>Cui, Bianxiao</display_name><full_name>Cui, Bianxiao</full_name><initials>B</initials></name><name
+        seq_no=\"14\" role=\"author\" display=\"Y\"><display_name>Gold, Joseph D</display_name><full_name>Gold,
+        Joseph D</full_name><initials>JD</initials></name><name seq_no=\"15\" role=\"author\"
+        display=\"Y\"><display_name>Wu, Joseph C</display_name><full_name>Wu, Joseph
+        C</full_name><initials>JC</initials></name></names><doctypes count=\"3\"><doctype>Journal
+        Article</doctype><doctype>Research Support, N.I.H., Extramural</doctype><doctype>Research
+        Support, Non-U.S. Gov't</doctype></doctypes></summary><fullrecord_metadata><languages
+        count=\"1\"><language type=\"primary\">English</language></languages><normalized_languages
+        count=\"1\"><language type=\"primary\">English</language></normalized_languages><normalized_doctypes
+        count=\"2\"><doctype>Article</doctype><doctype>Other</doctype></normalized_doctypes><addresses
+        count=\"4\"><address_name><address_spec addr_no=\"1\"><full_address>1] Stanford
+        Cardiovascular Institute, Stanford University School of Medicine, Stanford,
+        California, USA. [2] Institute for Stem Cell Biology and Regenerative Medicine,
+        Stanford University School of Medicine, Stanford, California, USA. [3] Department
+        of Medicine, Division of Cardiology, Stanford University School of Medicine,
+        Stanford, California, USA.</full_address></address_spec></address_name><address_name><address_spec
+        addr_no=\"2\"><full_address>Department of Applied Physics, Stanford University
+        School of Medicine, Stanford, California, USA.</full_address></address_spec></address_name><address_name><address_spec
+        addr_no=\"3\"><full_address>Department of Chemistry, Stanford University School
+        of Medicine, Stanford, California, USA.</full_address></address_spec></address_name><address_name><address_spec
+        addr_no=\"4\"><full_address>Stanford Cardiovascular Institute, Stanford University
+        School of Medicine, Stanford, California, USA.</full_address></address_spec></address_name></addresses><category_info><headings
+        count=\"1\"><heading>Science &amp; Technology</heading></headings><subheadings
+        count=\"1\"><subheading>Life Sciences &amp; Biomedicine</subheading></subheadings><subjects
+        count=\"2\"><subject ascatype=\"traditional\" code=\"DR\">CELL BIOLOGY</subject><subject
+        ascatype=\"extended\">Cell Biology</subject></subjects></category_info><fund_ack><grants
+        count=\"7\" complete=\"Y\"><grant><grant_agency>NHLBI NIH HHS</grant_agency><grant_ids
+        count=\"1\"><grant_id>U01 HL099776</grant_id></grant_ids><country>United States</country><acronym>HL</acronym><grant_agency_names
+        pref=\"Y\" content=\"United States Department of Health &amp; Human Services\"
+        /><grant_agency_names pref=\"Y\" content=\"National Institutes of Health (NIH)
+        - USA\" /><grant_agency_names pref=\"Y\" content=\"NIH National Heart Lung
+        &amp; Blood Institute (NHLBI)\" /><grant_agency_names pref=\"N\" content=\"NHLBI
+        NIH HHS\" /></grant><grant><grant_agency>NHLBI NIH HHS</grant_agency><grant_ids
+        count=\"1\"><grant_id>R24 HL117756</grant_id></grant_ids><country>United States</country><acronym>HL</acronym><grant_agency_names
+        pref=\"Y\" content=\"United States Department of Health &amp; Human Services\"
+        /><grant_agency_names pref=\"Y\" content=\"National Institutes of Health (NIH)
+        - USA\" /><grant_agency_names pref=\"Y\" content=\"NIH National Heart Lung
+        &amp; Blood Institute (NHLBI)\" /><grant_agency_names pref=\"N\" content=\"NHLBI
+        NIH HHS\" /></grant><grant><grant_agency>NHLBI NIH HHS</grant_agency><grant_ids
+        count=\"1\"><grant_id>T32 HL098049</grant_id></grant_ids><country>United States</country><acronym>HL</acronym><grant_agency_names
+        pref=\"Y\" content=\"United States Department of Health &amp; Human Services\"
+        /><grant_agency_names pref=\"Y\" content=\"National Institutes of Health (NIH)
+        - USA\" /><grant_agency_names pref=\"Y\" content=\"NIH National Heart Lung
+        &amp; Blood Institute (NHLBI)\" /><grant_agency_names pref=\"N\" content=\"NHLBI
+        NIH HHS\" /></grant><grant><grant_agency>NHLBI NIH HHS</grant_agency><grant_ids
+        count=\"1\"><grant_id>K99 HL121177</grant_id></grant_ids><country>United States</country><acronym>HL</acronym><grant_agency_names
+        pref=\"Y\" content=\"United States Department of Health &amp; Human Services\"
+        /><grant_agency_names pref=\"Y\" content=\"National Institutes of Health (NIH)
+        - USA\" /><grant_agency_names pref=\"Y\" content=\"NIH National Heart Lung
+        &amp; Blood Institute (NHLBI)\" /><grant_agency_names pref=\"N\" content=\"NHLBI
+        NIH HHS\" /></grant><grant><grant_agency>NHLBI NIH HHS</grant_agency><grant_ids
+        count=\"1\"><grant_id>R00 HL121177</grant_id></grant_ids><country>United States</country><acronym>HL</acronym><grant_agency_names
+        pref=\"Y\" content=\"United States Department of Health &amp; Human Services\"
+        /><grant_agency_names pref=\"Y\" content=\"National Institutes of Health (NIH)
+        - USA\" /><grant_agency_names pref=\"Y\" content=\"NIH National Heart Lung
+        &amp; Blood Institute (NHLBI)\" /><grant_agency_names pref=\"N\" content=\"NHLBI
+        NIH HHS\" /></grant><grant><grant_agency>NHLBI NIH HHS</grant_agency><grant_ids
+        count=\"1\"><grant_id>R01 HL113006</grant_id></grant_ids><country>United States</country><acronym>HL</acronym><grant_agency_names
+        pref=\"Y\" content=\"United States Department of Health &amp; Human Services\"
+        /><grant_agency_names pref=\"Y\" content=\"National Institutes of Health (NIH)
+        - USA\" /><grant_agency_names pref=\"Y\" content=\"NIH National Heart Lung
+        &amp; Blood Institute (NHLBI)\" /><grant_agency_names pref=\"N\" content=\"NHLBI
+        NIH HHS\" /></grant><grant><grant_agency>NIBIB NIH HHS</grant_agency><grant_ids
+        count=\"1\"><grant_id>T32 EB009035</grant_id></grant_ids><country>United States</country><acronym>EB</acronym><grant_agency_names
+        pref=\"Y\" content=\"United States Department of Health &amp; Human Services\"
+        /><grant_agency_names pref=\"Y\" content=\"National Institutes of Health (NIH)
+        - USA\" /><grant_agency_names pref=\"Y\" content=\"NIH National Institute
+        of Biomedical Imaging &amp; Bioengineering (NIBIB)\" /><grant_agency_names
+        pref=\"N\" content=\"NIBIB NIH HHS\" /></grant></grants></fund_ack><abstracts
+        count=\"1\"><abstract><abstract_text><p>Existing methods for human induced
+        pluripotent stem cell (hiPSC) cardiac differentiation are efficient but require
+        complex, undefined medium constituents that hinder further elucidation of
+        the molecular mechanisms of cardiomyogenesis. Using hiPSCs derived under chemically
+        defined conditions on synthetic matrices, we systematically developed an optimized
+        cardiac differentiation strategy, using a chemically defined medium consisting
+        of just three components: the basal medium RPMI 1640, L-ascorbic acid 2-phosphate
+        and rice-derived recombinant human albumin. Along with small molecule-based
+        induction of differentiation, this protocol produced contractile sheets of
+        up to 95% TNNT2(+) cardiomyocytes at a yield of up to 100 cardiomyocytes for
+        every input pluripotent cell and was effective in 11 hiPSC lines tested. This
+        chemically defined platform for cardiac specification of hiPSCs will allow
+        the elucidation of cardiomyocyte macromolecular and metabolic requirements
+        and will provide a minimal system for the study of maturation and subtype
+        specification.</p></abstract_text></abstract></abstracts></fullrecord_metadata><item
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" Owner=\"NLM\" Status=\"MEDLINE\"
+        xsi:type=\"itemType_medline\" coll_id=\"MEDLINE\"><MedlineJournalInfo><Country>United
+        States</Country><NlmUniqueID>101215604</NlmUniqueID><ISSNLinking>1548-7091</ISSNLinking></MedlineJournalInfo><DateCompleted>2014-09-29</DateCompleted><DateRevised>2021-10-21</DateRevised><Affiliation>1]
+        Stanford Cardiovascular Institute, Stanford University School of Medicine,
+        Stanford, California, USA. [2] Institute for Stem Cell Biology and Regenerative
+        Medicine, Stanford University School of Medicine, Stanford, California, USA.
+        [3] Department of Medicine, Division of Cardiology, Stanford University School
+        of Medicine, Stanford, California, USA.</Affiliation><ChemicalList><Chemical><RegistryNumber>0</RegistryNumber><NameOfSubstance
+        UI=\"D003470\">Culture Media</NameOfSubstance></Chemical></ChemicalList><CitationSubset>IM</CitationSubset><MeshHeadingList><MeshHeading><DescriptorName
+        MajorTopicYN=\"N\" UI=\"D002454\">Cell Differentiation</DescriptorName><TreeCodeList><TreeCode
+        MajorTopicYN=\"N\">G04.299.151</TreeCode></TreeCodeList></MeshHeading><MeshHeading><DescriptorName
+        MajorTopicYN=\"N\" UI=\"D003470\">Culture Media</DescriptorName><TreeCodeList><TreeCode
+        MajorTopicYN=\"N\">D27.720.470.305</TreeCode><TreeCode MajorTopicYN=\"N\">E07.206</TreeCode></TreeCodeList></MeshHeading><MeshHeading><DescriptorName
+        MajorTopicYN=\"N\" UI=\"D006801\">Humans</DescriptorName><TreeCodeList><TreeCode
+        MajorTopicYN=\"N\">B01.050.150.900.649.801.400.112.400.400</TreeCode></TreeCodeList></MeshHeading><MeshHeading><DescriptorName
+        MajorTopicYN=\"N\" UI=\"D057026\">Induced Pluripotent Stem Cells</DescriptorName><QualifierName
+        MajorTopicYN=\"N\" UI=\"Q000166\">cytology</QualifierName><TreeCodeList><TreeCode
+        MajorTopicYN=\"N\">A11.872.040.500</TreeCode><TreeCode MajorTopicYN=\"N\">A11.872.700.500</TreeCode><TreeCode
+        MajorTopicYN=\"N\">Y02.020</TreeCode></TreeCodeList></MeshHeading><MeshHeading><DescriptorName
+        MajorTopicYN=\"N\" UI=\"D032383\">Myocytes, Cardiac</DescriptorName><QualifierName
+        MajorTopicYN=\"Y\" UI=\"Q000166\">cytology</QualifierName><TreeCodeList><TreeCode
+        MajorTopicYN=\"N\">A07.541.704.570</TreeCode><TreeCode MajorTopicYN=\"N\">A10.690.552.750.570</TreeCode><TreeCode
+        MajorTopicYN=\"N\">A11.620.500</TreeCode><TreeCode MajorTopicYN=\"Y\">Y02.020</TreeCode></TreeCodeList></MeshHeading></MeshHeadingList></item><contributors
+        count=\"7\"><contributor><name seq_no=\"1\" role=\"researcher_id\" r_id=\"AAI-2717-2021\"
+        daisng_id=\"1337928\" spPGUID=\"urn:spm:1337928\"><display_name>Burridge,
+        Paul</display_name><full_name>Burridge, Paul</full_name><first_name>Paul</first_name><last_name>Burridge</last_name><other_names><other_name>Paul
+        Wesley Burridge</other_name></other_names></name></contributor><contributor><name
+        seq_no=\"2\" role=\"researcher_id\" r_id=\"H-1067-2013\" orcid_id=\"0000-0002-6068-8041\"
+        daisng_id=\"600945\" spPGUID=\"urn:spm:600945\"><display_name>Wu, Joseph</display_name><full_name>Wu,
+        Joseph</full_name><first_name>Joseph</first_name><last_name>Wu</last_name></name></contributor><contributor><name
+        seq_no=\"3\" role=\"researcher_id\" r_id=\"B-5014-2012\" orcid_id=\"0000-0002-9991-400X\"
+        daisng_id=\"780869\" spPGUID=\"urn:spm:780869\"><display_name>Abilez, Oscar</display_name><full_name>Abilez,
+        Oscar</full_name><first_name>Oscar</first_name><last_name>Abilez</last_name><other_names><other_name>Oscar
+        Abilez</other_name><other_name>Oscar John Abilez</other_name><other_name>OJ
+        Abilez</other_name><other_name>O Abilez</other_name></other_names></name></contributor><contributor><name
+        seq_no=\"4\" role=\"researcher_id\" r_id=\"D-2336-2015\" orcid_id=\"0009-0001-3636-2439\"
+        daisng_id=\"1283609\" spPGUID=\"urn:spm:1283609\"><display_name>Matsa, Elena</display_name><full_name>Matsa,
+        Elena</full_name><first_name>Elena</first_name><last_name>Matsa</last_name></name></contributor><contributor><name
+        seq_no=\"5\" role=\"researcher_id\" r_id=\"I-2023-2012\" orcid_id=\"0000-0002-9038-4014\"
+        daisng_id=\"802284\" spPGUID=\"urn:spm:802284\"><display_name>Lan, Feng</display_name><full_name>Lan,
+        Feng</full_name><first_name>Feng</first_name><last_name>Lan</last_name></name></contributor><contributor><name
+        seq_no=\"6\" role=\"researcher_id\" orcid_id=\"0000-0002-1032-7686\" daisng_id=\"29039998\"
+        spPGUID=\"urn:spm:29039998\"><display_name>Huber, Bruno</display_name><full_name>Huber,
+        Bruno</full_name><first_name>Bruno</first_name><last_name>Huber</last_name></name></contributor><contributor><name
+        seq_no=\"7\" role=\"researcher_id\" orcid_id=\"0000-0002-8044-5629\" daisng_id=\"7132206\"
+        spPGUID=\"urn:spm:7132206\"><display_name>Cui, Bianxiao</display_name><full_name>Cui,
+        Bianxiao</full_name><first_name>Bianxiao</first_name><last_name>Cui</last_name></name></contributor></contributors></static_data><dynamic_data><citation_related><tc_list
+        tc_mod_date=\"2026-02-07\"><silo_tc coll_id=\"WOK\" local_count=\"1493\" /><silo_tc
+        coll_id=\"KJD\" local_count=\"0\" /><silo_tc coll_id=\"PCI\" local_count=\"0\"
+        /><silo_tc coll_id=\"WOS\" local_count=\"1236\" /><silo_tc coll_id=\"RC\"
+        local_count=\"48\" /><silo_tc coll_id=\"BIOABS\" local_count=\"0\" /><silo_tc
+        coll_id=\"CSCD\" local_count=\"36\" /><silo_tc coll_id=\"BIOSIS\" local_count=\"0\"
+        /><silo_tc coll_id=\"MEDLINE\" local_count=\"0\" /><silo_tc coll_id=\"DRCI\"
+        local_count=\"0\" /><silo_tc coll_id=\"ZOOREC\" local_count=\"0\" /><silo_tc
+        coll_id=\"INSPEC\" local_count=\"0\" /><silo_tc coll_id=\"FSTA\" local_count=\"0\"
+        /><silo_tc coll_id=\"SCIELO\" local_count=\"0\" /><silo_tc coll_id=\"RSCI\"
+        local_count=\"0\" /><silo_tc coll_id=\"ARCI\" local_count=\"0\" /><silo_tc
+        coll_id=\"PPRN\" local_count=\"47\" /><silo_tc coll_id=\"DIIDW\" local_count=\"37\"
+        /><silo_tc coll_id=\"CCC\" local_count=\"0\" /><silo_tc coll_id=\"PQDT\" local_count=\"161\"
+        /><silo_tc coll_id=\"BCI\" local_count=\"914\" /><silo_tc coll_id=\"CABI\"
+        local_count=\"0\" /></tc_list></citation_related><cluster_related><identifiers><identifier
+        type=\"doi\" value=\"10.1038/nmeth.2999\" /><identifier type=\"eissn\" value=\"1548-7105\"
+        /><identifier type=\"pmid\" self_ind=\"Y\" value=\"MEDLINE:24930130\" /><identifier
+        type=\"pmid\" value=\"MEDLINE:24930130\" /></identifiers></cluster_related><wos_usage
+        last180days=\"2\" alltime=\"214\" /></dynamic_data><dates date_modified=\"2021-10-29T11:21:38.973336\"
+        date_created=\"2014-12-25T12:25:20.684325\" date_loaded=\"2014-08-12T23:59:59.00000\"
+        /></REC>\r\n</records>]]></val>\n        </map>\n        <map name=\"QueryResult\">\n
+        \           <map>\n                <val name=\"QueryID\">517</val>\n                <val
+        name=\"RecordsSearched\">145090046</val>\n                <val name=\"RecordsFound\">1</val>\n
+        \           </map>\n        </map>\n    </map>\n</response>\n"
+  recorded_at: Tue, 10 Feb 2026 18:03:26 GMT
+recorded_with: VCR 6.4.0

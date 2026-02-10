@@ -12,11 +12,11 @@ describe WebOfScience::BaseRestRetriever, :vcr do
   it 'retrieves records' do
     expect(retriever.next_batch?).to be true
     records = retriever.next_batch
-    expect(records.count).to eq 100
+    expect(records.count).to eq 75
     expect(records.first).to be_a WebOfScience::Record
     expect(retriever.next_batch?).to be true
     records = retriever.next_batch
-    expect(records.count).to eq 68
-    expect(retriever.next_batch?).to be false
+    expect(records.count).to eq 75
+    expect(retriever.next_batch?).to be true # this user has more than 75 publications, so we could keep going
   end
 end
