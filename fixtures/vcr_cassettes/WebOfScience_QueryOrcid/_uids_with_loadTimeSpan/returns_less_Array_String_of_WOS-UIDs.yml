@@ -119,4 +119,54 @@ http_interactions:
       encoding: ASCII-8BIT
       string: '["WOS:001528787300001","WOS:001517877600001"]'
   recorded_at: Tue, 10 Feb 2026 18:22:37 GMT
+- request:
+    method: get
+    uri: https://wos-api.clarivate.com/api/wos/recordids/554?count=100&databaseId=WOK&firstRecord=1&loadTimeSpan=4W&usrQuery=AI=(%220000-0003-3859-2905%22)
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.14.1
+      Accept:
+      - application/json
+      X-Apikey:
+      - Settings.WOS.API_KEY
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 10 Feb 2026 20:52:38 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Origin
+      Correlation-Id:
+      - 5f7faaf2-d21a-45ab-a031-869dbcc461e7#14806184
+      X-Kong-Upstream-Latency:
+      - '25.999990463257'
+      X-Kong-Proxy-Latency:
+      - '1'
+      Cf-Cache-Status:
+      - DYNAMIC
+      Set-Cookie:
+      - __cf_bm=Pu8R4dmcg2I.xc6dfj1Ptzw7QHAgmHOxLs9BdKr5bU0-1770756758.3414576-1.0.1.1-GLbPGR3otXfS8tA1JB9J4BXc.IgvFbt5HnHgRJEfXghqkRTdKleuk0hwPAf697pwIsIJkCgcvq7Dr36WkK2R5xyPBsMy8Bjt1yvIo9X0JAqXbzkLqRSOZkVykMCTmvXw;
+        HttpOnly; Secure; Path=/; Domain=clarivate.com; Expires=Tue, 10 Feb 2026 21:22:38
+        GMT
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 9cbe7dcbaa103ad4-SJC
+    body:
+      encoding: ASCII-8BIT
+      string: '["WOS:001528787300001","WOS:001517877600001"]'
+  recorded_at: Tue, 10 Feb 2026 20:52:38 GMT
 recorded_with: VCR 6.4.0
