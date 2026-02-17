@@ -367,7 +367,7 @@ describe PublicationsController, :vcr do
         allow(WebOfScience::Queries).to receive(:new).and_return(queries)
         expect(queries).to receive(:user_query)
           .with("TI=\"#{test_title}\" AND PY=2015", query_params:)
-          .and_return(instance_double(WebOfScience::UserQueryRestRetriever, next_batch: ['year' => year]))
+          .and_return(instance_double(WebOfScience::UserQueryRestRetriever, next_batch: [{ 'year' => year }]))
         params = { format: 'json', title: test_title, year: }
         get(:sourcelookup, params:)
         expect(response).to have_http_status(:ok)
@@ -735,7 +735,7 @@ describe PublicationsController, :vcr do
         get :index, params: { page: 1, per: 7, format: 'json' }
         expect(response.headers['Content-Type']).to be =~ %r{application/json}
         expect(result['metadata']).to include('records' => '7', 'page' => 1, 'description' => 'Getting publications')
-        expect(result['records'][2]['author']).to eq ['name' => 'Jackson, Joe']
+        expect(result['records'][2]['author']).to eq [{ 'name' => 'Jackson, Joe' }]
         expect(response).to have_http_status(:ok)
       end
 
@@ -755,7 +755,7 @@ describe PublicationsController, :vcr do
           get :index, params: { page: 1, per: 100, format: 'json', changedSince: changed_since }
           expect(response.headers['Content-Type']).to be =~ %r{application/json}
           expect(result['metadata']).to include('records' => '15', 'page' => 1, 'description' => "Getting publications where updated_at > #{changed_since}")
-          expect(result['records'][2]['author']).to eq ['name' => 'Jackson, Joe']
+          expect(result['records'][2]['author']).to eq [{ 'name' => 'Jackson, Joe' }]
           expect(response).to have_http_status(:ok)
         end
       end
