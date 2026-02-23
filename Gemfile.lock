@@ -131,7 +131,7 @@ GEM
     citeproc-ruby (1.1.14)
       citeproc (~> 1.0, >= 1.0.9)
       csl (~> 1.6)
-    cocina-models (0.110.1)
+    cocina-models (0.111.0)
       activesupport
       deprecation
       dry-struct (~> 1.0)
@@ -141,7 +141,6 @@ GEM
       i18n
       json_schemer (~> 2.0)
       jsonpath
-      marc (~> 1.3)
       nokogiri
       super_diff
       thor
@@ -240,7 +239,7 @@ GEM
     hashdiff (1.2.1)
     hashie (5.1.0)
       logger
-    honeybadger (6.3.1)
+    honeybadger (6.4.0)
       logger
       ostruct
     htmlentities (4.4.2)
@@ -306,9 +305,6 @@ GEM
       oauth2
       ostruct
       zeitwerk
-    marc (1.4.0)
-      nokogiri (~> 1.0)
-      rexml
     marcel (1.1.0)
     matrix (0.4.3)
     method_source (1.1.0)
@@ -340,12 +336,12 @@ GEM
       net-protocol
     net-ssh (7.3.0)
     nio4r (2.7.5)
-    nokogiri (1.19.0)
+    nokogiri (1.19.1)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
-    nokogiri (1.19.0-x86_64-darwin)
+    nokogiri (1.19.1-x86_64-darwin)
       racc (~> 1.4)
-    nokogiri (1.19.0-x86_64-linux-gnu)
+    nokogiri (1.19.1-x86_64-linux-gnu)
       racc (~> 1.4)
     oauth2 (2.0.18)
       faraday (>= 0.17.3, < 4.0)
@@ -368,7 +364,7 @@ GEM
       activerecord (>= 7.1)
       request_store (~> 1.4)
     parallel (1.27.0)
-    parser (3.3.10.1)
+    parser (3.3.10.2)
       ast (~> 2.4.1)
       racc
     patience_diff (1.2.0)
@@ -460,7 +456,7 @@ GEM
     rspec-mocks (3.13.7)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.13.0)
-    rspec-rails (8.0.2)
+    rspec-rails (8.0.3)
       actionpack (>= 7.2)
       activesupport (>= 7.2)
       railties (>= 7.2)
@@ -507,7 +503,7 @@ GEM
       lint_roller (~> 1.1)
       rubocop (~> 1.72, >= 1.72.1)
       rubocop-rspec (~> 3.5)
-    ruby-prof (2.0.0)
+    ruby-prof (2.0.2)
       base64
       ostruct
     ruby-progressbar (1.13.0)
@@ -576,7 +572,7 @@ GEM
     yaml_db (0.7.0)
       rails (>= 3.0)
       rake (>= 0.8.7)
-    zeitwerk (2.7.4)
+    zeitwerk (2.7.5)
 
 PLATFORMS
   ruby
