@@ -119,4 +119,54 @@ http_interactions:
       encoding: ASCII-8BIT
       string: '["MEDLINE:41643006","WOS:001528787300001","WOS:000285036700009","WOS:000308887200005","WOS:000301889500023","WOS:000299167800043","WOS:000278125200026","WOS:000172328100058","WOS:000312901500023","WOS:001517877600001"]'
   recorded_at: Tue, 10 Feb 2026 18:24:55 GMT
+- request:
+    method: get
+    uri: https://wos-api.clarivate.com/api/wos/recordids/556?count=100&databaseId=WOK&firstRecord=1&loadTimeSpan=4W&usrQuery=AU=(%22Altman,Russ%22%20OR%20%22Altman,Russ,Biagio%22%20OR%20%22Altman,Russ,B%22%20OR%20%22Altman,R%22%20OR%20%22Altman,R,B%22)%20AND%20AD=(%22stanford%22)
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.14.1
+      Accept:
+      - application/json
+      X-Apikey:
+      - Settings.WOS.API_KEY
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 10 Feb 2026 20:52:25 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Origin
+      Correlation-Id:
+      - 76c856e6-acf0-4d2e-908d-4755d286e1b5#14756236
+      X-Kong-Upstream-Latency:
+      - '39'
+      X-Kong-Proxy-Latency:
+      - '1'
+      Cf-Cache-Status:
+      - DYNAMIC
+      Set-Cookie:
+      - __cf_bm=IqglAYQJfndyQub3PQ5tHML.KYcItsBYFVrgXVpRZlA-1770756745.1141214-1.0.1.1-5Yij7Vlr3swNnCoef2foMRVARIb_IIoMaIewR.d5Cal6uWJGmewNOlOg35PRznQMmC4A.aRwsqfMXckLkZeRWA0M1mF11jrJ0Eu9TiD5cxLjWqXT7YdcgCWmyzpWIuRX;
+        HttpOnly; Secure; Path=/; Domain=clarivate.com; Expires=Tue, 10 Feb 2026 21:22:25
+        GMT
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 9cbe7d78f81b98ae-SJC
+    body:
+      encoding: ASCII-8BIT
+      string: '["MEDLINE:41643006","WOS:001528787300001","WOS:000285036700009","WOS:000308887200005","WOS:000301889500023","WOS:000299167800043","WOS:000278125200026","WOS:000172328100058","WOS:000312901500023","WOS:001517877600001"]'
+  recorded_at: Tue, 10 Feb 2026 20:52:25 GMT
 recorded_with: VCR 6.4.0
