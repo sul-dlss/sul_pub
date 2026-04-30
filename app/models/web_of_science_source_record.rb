@@ -26,7 +26,10 @@ class WebOfScienceSourceRecord < ApplicationRecord
         self.publication = pub
         save!
       end
-      pub.update(wos_uid: uid) if pub.wos_uid != uid
+      if pub.wos_uid != uid
+        pub.set_last_updated_value_in_hash
+        pub.update(wos_uid: uid)
+      end
     end
   end
 
