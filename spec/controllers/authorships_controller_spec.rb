@@ -42,6 +42,7 @@ describe AuthorshipsController, :vcr do
 
   shared_examples 'it issues an error without author params' do
     let(:request_data) { valid_data_for_post }
+
     it 'returns 400 with an error message' do
       http_request
       expect(response).to have_http_status :bad_request
@@ -82,6 +83,7 @@ describe AuthorshipsController, :vcr do
 
   shared_examples 'it handles invalid authorship attributes' do
     let(:request_data) { update_authorship_for_pub_with_contributions.merge(visibility: 'invalid value') }
+
     it 'returns 406' do
       http_request
       result = response.parsed_body
