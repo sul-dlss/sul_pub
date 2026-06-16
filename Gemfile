@@ -38,6 +38,8 @@ gem 'whenever', require: false
 gem 'yaml_db'
 
 group :development, :test do
+  # Security audit for known security defects in code (use config/brakeman.ignore to ignore issues)
+  gem 'brakeman', require: false
   gem 'rubocop'
   gem 'rubocop-capybara'
   gem 'rubocop-factory_bot'
