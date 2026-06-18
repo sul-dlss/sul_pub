@@ -1,0 +1,47 @@
+{
+  "ignored_warnings": [
+    {
+      "warning_type": "Format Validation",
+      "warning_code": 30,
+      "fingerprint": "c56af651cc53771482b8d85aee8b5f721d02b9b59b35098f1bf07b5a6334b940",
+      "check_name": "ValidationRegex",
+      "message": "Insufficient validation for `orcidid` using `/https:\\/\\/(sandbox.)*orcid.org\\/\\d{4}-\\d{4}-\\d{4}-\\d{3}(\\d|[xX])\\z/`. Use `\\A` and `\\z` as anchors",
+      "file": "app/models/author.rb",
+      "line": 9,
+      "link": "https://brakemanscanner.org/docs/warning_types/format_validation/",
+      "code": null,
+      "render_path": null,
+      "location": {
+        "type": "model",
+        "model": "Author"
+      },
+      "user_input": null,
+      "confidence": "High",
+      "cwe_id": [
+        777
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "Remote Code Execution",
+      "warning_code": 110,
+      "fingerprint": "d882f63ce96c28fb6c6e0982f2a171460e4b933bfd9b9a5421dca21eef3f76da",
+      "check_name": "CookieSerialization",
+      "message": "Use of unsafe cookie serialization strategy `:marshal` might lead to remote code execution",
+      "file": "config/initializers/cookies_serializer.rb",
+      "line": 5,
+      "link": "https://brakemanscanner.org/docs/warning_types/unsafe_deserialization",
+      "code": "Rails.application.config.action_dispatch.cookies_serializer = :marshal",
+      "render_path": null,
+      "location": null,
+      "user_input": null,
+      "confidence": "Medium",
+      "cwe_id": [
+        565,
+        502
+      ],
+      "note": ""
+    }
+  ],
+  "brakeman_version": "8.0.5"
+}
