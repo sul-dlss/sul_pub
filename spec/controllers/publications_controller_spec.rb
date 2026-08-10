@@ -448,7 +448,7 @@ describe PublicationsController, :vcr do
 
       it 'returns bibjson from the pub_hash for the new publication' do
         post_valid_json
-        expect(response.body).to eq(last_pub.pub_hash.to_json)
+        expect(response.parsed_body).to eq(JSON.parse(last_pub.pub_hash.to_json))
       end
 
       it 'creates a new contributions record in the db' do
@@ -512,7 +512,7 @@ describe PublicationsController, :vcr do
       it 'creates a pub with a null sul_author_id' do
         post :create, body: valid_hash_for_post_with_nul_sul_author_and_uppercase_states.to_json, params: { format: 'json' }
         expect(response).to have_http_status(:created)
-        expect(response.body).to eq(last_pub.pub_hash.to_json)
+        expect(response.parsed_body).to eq(JSON.parse(last_pub.pub_hash.to_json))
       end
 
       it 'creates a pub with isbn' do
@@ -529,7 +529,7 @@ describe PublicationsController, :vcr do
         )
         expect(last_pub.publication_identifiers.size).to eq(2)
         expect(last_pub.publication_identifiers.map(&:identifier_type)).to include('doi', 'isbn')
-        expect(response.body).to eq(last_pub.pub_hash.to_json)
+        expect(response.parsed_body).to eq(JSON.parse(last_pub.pub_hash.to_json))
       end
 
       it 'creates a pub with pmid' do
@@ -537,7 +537,7 @@ describe PublicationsController, :vcr do
         expect(response).to have_http_status(:created)
         expect(result['identifier']).to include('id' => '999999999', 'type' => 'pmid')
         expect(last_pub.publication_identifiers.map(&:identifier_type)).to include('pmid')
-        expect(response.body).to eq(last_pub.pub_hash.to_json)
+        expect(response.parsed_body).to eq(JSON.parse(last_pub.pub_hash.to_json))
       end
     end
 
