@@ -18,6 +18,7 @@ gem 'htmlentities', '~> 4.3'
 gem 'httpclient', '~> 2.8'
 gem 'identifiers', '~> 0.12' # Altmetric utilities related to the extraction, validation and normalization of various scholarly identifiers
 gem 'jbuilder' # To use Jbuilder templates for JSON
+gem 'json', '~> 2.0' # Pinned until Rails 8.1.4 is released https://github.com/rails/rails/issues/58685
 gem 'json_schemer'
 gem 'kaminari'
 gem 'mais_orcid_client', '>= 1.0'
