@@ -21,7 +21,7 @@ module Orcid
         title: work.title,
         identifier: map_identifiers(work.self_external_ids),
         abstract: work.short_description,
-        provenance: 'orcid',
+        provenance: Settings.orcid_source,
         doi: work.external_id_value('doi'),
         isbn: work.external_id_value('isbn'),
         issn: work.external_id_value('issn'),
