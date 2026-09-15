@@ -14,6 +14,11 @@ describe Orcid::WorkMapper do
             value: 'Elephants Don\'t Play Chess'
           }
         },
+        source: {
+          'source-name': {
+            value: 'Crossref'
+          }
+        },
         'external-ids': {
           'external-id': [
             {
@@ -83,6 +88,10 @@ publisher = {Elsevier}
 
     it 'maps type' do
       expect(pub_hash[:type]).to eq('article')
+    end
+
+    it 'maps work source' do
+      expect(pub_hash[:orcid_work_source]).to eq('Crossref')
     end
 
     it 'maps provenance' do

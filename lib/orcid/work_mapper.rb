@@ -38,7 +38,8 @@ module Orcid
         conference: map_conference,
         series: map_series,
         pages: work.pages,
-        publisher: work.publisher
+        publisher: work.publisher,
+        orcid_work_source: work.work_source
       }.compact
     end
     # rubocop:enable Metrics/AbcSize
