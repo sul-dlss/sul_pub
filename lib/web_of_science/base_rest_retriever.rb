@@ -7,9 +7,7 @@ module WebOfScience
   # - the "next_batch" is like "next"
   class BaseRestRetriever
     # this is the maximum number that can be returned in a single query by WoS
-    # although the maximum is currently 100, a smaller batch size reduces
-    # the likliehood of hitting errors due to large querystrings or responses
-    MAX_RECORDS = 75
+    MAX_RECORDS = 100
 
     attr_reader :records_found, :records_retrieved, :query_id
 
