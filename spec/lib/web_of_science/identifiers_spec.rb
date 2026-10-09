@@ -106,7 +106,7 @@ describe WebOfScience::Identifiers do
         # pmid is missing
         'WosUID' => 'WOS:000288663100014',
         'WosItemID' => '000288663100014',
-        'WosItemURI' => 'https://ws.isiknowledge.com/cps/openurl/service?url_ver=Z39.88-2004&rft_id=info:ut/000288663100014'
+        'WosItemURI' => 'https://www.webofscience.com/wos/woscc/full-record/WOS:000288663100014'
       }
     end
 
@@ -153,9 +153,9 @@ describe WebOfScience::Identifiers do
         'issn_uri' => 'http://searchworks.stanford.edu/?search_field=advanced&number=2163-8306',
         'pmid' => '24452614',
         'pmid_uri' => 'https://www.ncbi.nlm.nih.gov/pubmed/24452614',
-        'WosUID' => 'MEDLINE:24452614'
+        'WosUID' => 'MEDLINE:24452614',
         # 'WosItemID'  is missing
-        # 'WosItemURI' is missing
+        'WosItemURI' => 'https://www.webofscience.com/wos/woscc/full-record/MEDLINE:24452614'
       }
     end
 
@@ -194,7 +194,7 @@ describe WebOfScience::Identifiers do
         'pmid_uri' => 'https://www.ncbi.nlm.nih.gov/pubmed/35414268',
         'WosUID' => 'WOS:000782396300001',
         'WosItemID' => '000782396300001',
-        'WosItemURI' => 'https://ws.isiknowledge.com/cps/openurl/service?url_ver=Z39.88-2004&rft_id=info:ut/000782396300001'
+        'WosItemURI' => 'https://www.webofscience.com/wos/woscc/full-record/WOS:000782396300001'
       }
     end
 

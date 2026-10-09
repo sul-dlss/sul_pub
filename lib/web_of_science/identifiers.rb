@@ -110,10 +110,12 @@ module WebOfScience
         hash['pmid']     = pmid
         hash['pmid_uri'] = pmid_uri
       end
-      if wos_item_id.present?
-        hash['WosItemID']  = wos_item_id
-        hash['WosItemURI'] = wos_item_uri
-      end
+      hash['WosItemID'] = wos_item_id if wos_item_id.present?
+      # We can always construct a URL from the WosUID, which is always present
+      # It will only get added to the pub_hash when we have a WosItemID in order to not disrupt
+      # Profiles' usage of the data. In the future, we could reconsider where the URL goes, in coordination
+      # with Profiles.
+      hash['WosItemURI'] = wos_item_uri
       hash
     end
 
@@ -135,8 +137,13 @@ module WebOfScience
     end
 
     # @return [String, nil]
+    def wos_uid
+      ids['WosUID']
+    end
+
+    # @return [String, nil]
     def wos_item_uri
-      "#{Settings.SCIENCEWIRE.ARTICLE_BASE_URI}#{wos_item_id}" if wos_item_id.present?
+      "#{Settings.SCIENCEWIRE.ARTICLE_BASE_URI}#{wos_uid}" if wos_uid.present?
     end
 
     private

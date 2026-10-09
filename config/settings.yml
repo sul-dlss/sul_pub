@@ -53,7 +53,7 @@ SCIENCEWIRE:
   HOST: stg.sciencewirerest.discoverylogic.com
   RECOMMENDATION_PATH: /PublicationCatalog/MatchedPublicationItemIdsForAuthor?format=xml
   TMPDIR: /tmp
-  ARTICLE_BASE_URI: https://ws.isiknowledge.com/cps/openurl/service?url_ver=Z39.88-2004&rft_id=info:ut/
+  ARTICLE_BASE_URI: 'https://www.webofscience.com/wos/woscc/full-record/'
 
 ## Web Of Science Auth Config
 WOS:
