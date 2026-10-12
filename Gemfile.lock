@@ -130,7 +130,7 @@ GEM
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
     chronic (0.10.2)
-    citeproc (1.1.0)
+    citeproc (1.3.0)
       date
       forwardable
       json
@@ -154,7 +154,7 @@ GEM
       super_diff
       thor
       zeitwerk (~> 2.1)
-    cocina_display (2.13.0)
+    cocina_display (2.14.0)
       activesupport (>= 7)
       edtf (~> 3.2)
       geo_coord (~> 0.2)
@@ -185,7 +185,7 @@ GEM
       activerecord (>= 5.a)
       database_cleaner-core (~> 2.0)
     database_cleaner-core (2.1.0)
-    date (3.5.1)
+    date (3.6.0)
     deep_merge (1.2.2)
     deprecation (1.1.0)
       activesupport
@@ -285,11 +285,11 @@ GEM
       hana (~> 1.3)
       regexp_parser (~> 2.0)
       simpleidn (~> 0.2)
-    jsonschema_rs (0.58.5-arm64-darwin)
+    jsonschema_rs (0.58.6-arm64-darwin)
       bigdecimal (>= 3.1, < 5)
-    jsonschema_rs (0.58.5-x86_64-darwin)
+    jsonschema_rs (0.58.6-x86_64-darwin)
       bigdecimal (>= 3.1, < 5)
-    jsonschema_rs (0.58.5-x86_64-linux)
+    jsonschema_rs (0.58.6-x86_64-linux)
       bigdecimal (>= 3.1, < 5)
     jwt (3.3.0)
       base64
@@ -342,7 +342,8 @@ GEM
     mutex_m (0.3.0)
     namae (1.2.0)
       racc (~> 1.7)
-    net-http (0.9.1)
+    net-http (0.10.0)
+      net-protocol (>= 0.3.0)
       uri (>= 0.11.1)
     net-imap (0.6.7)
       date
@@ -357,7 +358,7 @@ GEM
       net-ssh (>= 5.0.0, < 8.0.0)
     net-smtp (0.5.2)
       net-protocol
-    net-ssh (7.3.5)
+    net-ssh (7.3.6)
     nio4r (2.7.5)
     nokogiri (1.19.4-arm64-darwin)
       racc (~> 1.4)
@@ -398,7 +399,7 @@ GEM
     pg (1.7.0-x86_64-linux)
     pp (0.6.4)
       prettyprint
-    prettyprint (0.2.0)
+    prettyprint (0.2.1)
     prism (1.9.0)
     pry (0.16.0)
       coderay (~> 1.1)
@@ -493,14 +494,14 @@ GEM
     rspec-support (3.13.7)
     rspec_junit_formatter (0.6.0)
       rspec-core (>= 2, < 4, != 2.12.0)
-    rubocop (1.91.0)
+    rubocop (1.92.0)
       json (>= 2.3)
       language_server-protocol (~> 3.17.0.2)
       lint_roller (~> 1.1.0)
       parallel (>= 1.10)
       parser (>= 3.3.0.2)
       rainbow (>= 2.2.2, < 4.0)
-      regexp_parser (>= 2.9.3, < 3.0)
+      regexp_parser (>= 2.11.3, < 3.0)
       rubocop-ast (>= 1.49.0, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 2.4.0, < 4.0)
@@ -526,9 +527,9 @@ GEM
       lint_roller (~> 1.1)
       regexp_parser (>= 2.0)
       rubocop (~> 1.86, >= 1.86.2)
-    rubocop-rspec_rails (2.32.0)
+    rubocop-rspec_rails (2.33.0)
       lint_roller (~> 1.1)
-      rubocop (~> 1.72, >= 1.72.1)
+      rubocop (~> 1.89)
       rubocop-rspec (~> 3.5)
     ruby-prof (2.0.5)
       base64
@@ -570,7 +571,7 @@ GEM
       logger
       rack (>= 1, < 4)
     thor (1.5.0)
-    time (0.4.2)
+    time (0.5.0)
       date
     timeout (0.6.1)
     tsort (0.2.0)
@@ -579,12 +580,12 @@ GEM
     unicode-display_width (3.3.0)
       unicode-emoji (~> 4.3)
     unicode-emoji (4.3.0)
-    uri (1.1.1)
+    uri (1.1.2)
     urn (2.0.2)
     useragent (0.16.11)
     vcr (6.4.0)
     version_gem (1.1.15)
-    webmock (3.26.4)
+    webmock (3.29.0)
       addressable (>= 2.8.0)
       crack (>= 0.3.2)
       hashdiff (>= 0.4.0, < 2.0.0)
