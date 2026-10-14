@@ -14,7 +14,7 @@ class String
   end
 end
 
-class Dept
+class Dept # rubocop:disable Style/OneClassPerFile
   attr_accessor :name, :books, :pubs
 
   def initialize(n)
@@ -27,7 +27,7 @@ end
 Pub = Struct.new(:type, :title, :journal_title, :pub_date, :provenance, :profile_id)
 Book = Struct.new(:type, :title, :chapt_title, :pub_date, :provenance, :profile_id)
 
-class TitleReport
+class TitleReport # rubocop:disable Style/OneClassPerFile
   def initialize
     @processed_ids = Set.new
     @book_ids = []

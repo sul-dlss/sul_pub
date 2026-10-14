@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# rubocop:disable Metrics/ClassLength
+# rubocop:disable-next Metrics/ClassLength
 module Pubmed
   # Map Pubmed source record data into the SUL PubHash data
   class MapPubHash
@@ -262,4 +262,3 @@ module Pubmed
     end
   end
 end
-# rubocop:enable Metrics/ClassLength

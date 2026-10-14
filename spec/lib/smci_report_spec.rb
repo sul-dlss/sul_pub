@@ -42,6 +42,7 @@ describe SmciReport do
 
     after { File.delete(output_csv) }
 
+    # rubocop:disable-next Style/FileOpen
     context 'when wos returns more than the max number of publications for an author' do
       let(:lotsa_uids) { Array(1..Settings.WOS.max_publications_per_author) }
       let(:query_name) { instance_double(WebOfScience::QueryName, uids: lotsa_uids, valid?: true) }
@@ -85,6 +86,7 @@ describe SmciReport do
           .and_return(wos_retriever)
       end
 
+      # rubocop:disable-next Style/FileOpen
       it 'runs' do
         expect(WebOfScience.queries).to receive(:retrieve_by_id).with(uids)
         expect(WebOfScience.queries).to receive(:retrieve_by_id).with(orcid_uids)

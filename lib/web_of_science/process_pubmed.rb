@@ -7,12 +7,9 @@ module WebOfScience
   module ProcessPubmed
     # For WOS-records with a PMID, try to enhance them with PubMed data
     # @param [Array<WebOfScience::Record>] records
-    # rubocop:disable Metrics/CyclomaticComplexity
     def pubmed_additions(records)
       raise(ArgumentError, 'records must be Enumerable') unless records.is_a? Enumerable
-      raise(ArgumentError, 'records must contain WebOfScience::Record') unless records.all? do |rec|
-                                                                                 rec.is_a? WebOfScience::Record
-                                                                               end
+      raise(ArgumentError, 'records must contain WebOfScience::Record') unless records.all?(WebOfScience::Record)
 
       present_recs = records.select { |record| record.pmid.present? }
       uid_to_pub = Publication.where(wos_uid: present_recs.map(&:uid)).group_by(&:wos_uid)
@@ -33,7 +30,6 @@ module WebOfScience
       NotificationManager.error(e, 'pubmed_additions failed', self)
     end
 
-    # rubocop:enable Metrics/CyclomaticComplexity
     # For WOS-record that has a PMID, fetch data from PubMed and enhance the pub.pub_hash with PubMed data
     # but don't do anything if pubmed looksups are disabled.
     # @param [Publication] pub is a Publication with a .pmid value

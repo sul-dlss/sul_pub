@@ -476,12 +476,11 @@ describe PublicationsController, :vcr do
         expect(last_pub.issn).to eq(submission['issn'])
       end
 
-      # rubocop:disable RSpec/NoExpectationExample
+      # rubocop:disable-next RSpec/NoExpectationExample
       it 'creates a matching pub_hash in the publication record from the posted bibjson' do
         post_valid_json
         validate_authorship(last_pub.pub_hash, submission)
       end
-      # rubocop:enable RSpec/NoExpectationExample
 
       it 'handles missing author using authorship from the posted bibjson' do
         post :create, body: article_with_authorship_without_authors, params: { format: 'json' }

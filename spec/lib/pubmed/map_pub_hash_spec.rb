@@ -142,7 +142,7 @@ describe Pubmed::MapPubHash, :vcr do
         expect(described_class.new(record.source_data).pub_hash[:date]).to eq '2013-02-08'
       end
 
-      # rubocop:disable RSpec/ExampleLength
+      # rubocop:disable-next RSpec/ExampleLength
       it 'parses the date correctly when day is not provided in preferred location but is later' do
         # manual test data
         source_data = <<-XML
@@ -200,7 +200,6 @@ describe Pubmed::MapPubHash, :vcr do
         XML
         expect(described_class.new(source_data).pub_hash[:date]).to eq '1999-02' # no day
       end
-      # rubocop:enable RSpec/ExampleLength
 
       it 'sets the date to nil when not found' do
         # manual test data
