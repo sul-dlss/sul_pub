@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'pathname'
-
 ActiveRecord::Base.logger.level = 1
 
 class String

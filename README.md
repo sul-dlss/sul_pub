@@ -26,6 +26,8 @@ The conventions to follow are noted in the [DLSS developer playbook](https://git
 
 ## Initial Setup
 
+Use Ruby 4.0.7 for development and testing.
+
 ```sh
 git clone git@github.com:sul-dlss/sul_pub.git
 cd sul_pub
