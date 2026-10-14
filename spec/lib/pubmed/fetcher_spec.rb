@@ -33,7 +33,7 @@ describe Pubmed::Fetcher, :vcr do
     it 'searches by pmid when not found locally and returns a pubhash' do
       h = described_class.search_all_sources_by_pmid(10_487_815)
       expect(h.size).to eq 1
-      expect(h.first[:chicago_citation]).to match(/Convergence and Correlations/)
+      expect(h.first[:chicago_citation]).to include('Convergence and Correlations')
       expect(h.first).to include(pmid: '10487815')
     end
 
@@ -42,7 +42,7 @@ describe Pubmed::Fetcher, :vcr do
       h = described_class.search_all_sources_by_pmid(24_930_130).first
       expect(h[:provenance]).to eq('pubmed')
       expect(h[:identifier]).to include(type: 'doi', id: '10.1038/nmeth.2999', url: 'https://doi.org/10.1038/nmeth.2999')
-      expect(h[:chicago_citation]).to match(/Chemically Defined Generation/)
+      expect(h[:chicago_citation]).to include('Chemically Defined Generation')
     end
 
     context 'local hits of varied provenance' do
@@ -97,7 +97,7 @@ describe Pubmed::Fetcher, :vcr do
         expect(WebOfScience).not_to receive(:queries)
         expect(hits.size).to eq(1)
         expect(hits.first[:title]).to eq('Chemically defined generation of human cardiomyocytes.')
-        expect(hits.first[:chicago_citation]).to match(/Chemically Defined Generation/)
+        expect(hits.first[:chicago_citation]).to include('Chemically Defined Generation')
       end
     end
 
@@ -111,7 +111,7 @@ describe Pubmed::Fetcher, :vcr do
         expect(Pubmed.client).not_to receive(:new)
         expect(hits.size).to eq(1)
         expect(hits.first[:title]).to eq('Chemically defined generation of human cardiomyocytes.')
-        expect(hits.first[:chicago_citation]).to match(/Chemically Defined Generation/)
+        expect(hits.first[:chicago_citation]).to include('Chemically Defined Generation')
       end
 
       it 'searches Pubmed next if no results found at WoS' do

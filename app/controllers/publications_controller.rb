@@ -102,7 +102,7 @@ class PublicationsController < ApplicationController
 
   # update a publication by putting BibJSON (in body)
   # PUT /publications/1234
-  # rubocop:disable Metrics/AbcSize
+  # rubocop:disable-next Metrics/AbcSize
   def update
     logger.info('PUT Update:')
     logger.info(request_body)
@@ -135,7 +135,6 @@ class PublicationsController < ApplicationController
     logger.debug("resulting pub hash: #{old_pub.pub_hash}")
     render json: old_pub.pub_hash, status: :accepted
   end
-  # rubocop:enable Metrics/AbcSize
 
   # mark a publication as deleted
   # DELETE /publications/1234
@@ -156,7 +155,7 @@ class PublicationsController < ApplicationController
   # GET /publications/sourcelookup.json?title=Noise+Power+Spectra    # search by title
   # GET /publications/sourcelookup.json?doi=10.1109/T-PAS.1977.32416 # search by DOI
   # GET /publications/sourcelookup.json?pmid=12345                   # search by PMID
-  # rubocop:disable Metrics/AbcSize
+  # rubocop:disable-next Metrics/AbcSize
   def sourcelookup
     all_matching_records = []
     if params[:doi]
@@ -193,7 +192,6 @@ class PublicationsController < ApplicationController
     matching_records = all_matching_records[0..params[:maxrows].to_i - 1] # rubocop:disable Lint/AmbiguousRange
     render json: wrap_as_bibjson_collection(msg, matching_records)
   end
-  # rubocop:enable Metrics/AbcSize
 
   private
 
@@ -217,7 +215,7 @@ class PublicationsController < ApplicationController
 
   # @param [Author] author
   # @return [String] contains csv report of an author's publications
-  # rubocop:disable Metrics/AbcSize
+  # rubocop:disable-next Metrics/AbcSize
   def generate_csv_report(author)
     CSV.generate do |csv|
       csv << %w[sul_pub_id sciencewire_id pubmed_id doi wos_id title journal year pages issn status_for_this_author
@@ -236,7 +234,6 @@ class PublicationsController < ApplicationController
       end
     end
   end
-  # rubocop:enable Metrics/AbcSize
 
   # Check for existing authors or create new authors with a CAP profile ID.
   # At least one of the authors in the authorship array must exist or have

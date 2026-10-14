@@ -14,7 +14,7 @@ module Orcid
       @work = work
     end
 
-    # rubocop:disable Metrics/AbcSize
+    # rubocop:disable-next Metrics/AbcSize
     def map
       {
         type: PublicationTypeMapper.to_pub_type(work.work_type),
@@ -41,7 +41,6 @@ module Orcid
         publisher: work.publisher
       }.compact
     end
-    # rubocop:enable Metrics/AbcSize
 
     private
 
