@@ -1,14 +1,14 @@
 require 'simplecov'
 SimpleCov.profiles.define 'sul_pub' do
-  add_filter '.gems'
-  add_filter '/config/environments/'
-  add_filter 'config/initializers/mime_types.rb'
-  add_filter 'config/initializers/is_it_working.rb'
-  add_filter 'config/initializers/pry.rb'
-  add_filter 'db'
-  add_filter 'pkg'
-  add_filter 'spec'
-  add_filter 'vendor'
+  skip '.gems'
+  skip '/config/environments/'
+  skip 'config/initializers/mime_types.rb'
+  skip 'config/initializers/is_it_working.rb'
+  skip 'config/initializers/pry.rb'
+  skip 'db'
+  skip 'pkg'
+  skip 'spec'
+  skip 'vendor'
 
   # https://github.com/colszowka/simplecov#maximum-coverage-drop
   # Simplecov can detect changes using data from the

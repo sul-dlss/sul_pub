@@ -2,8 +2,8 @@ source 'https://rubygems.org'
 
 gem 'activerecord-import'
 gem 'bibtex-ruby'
-gem 'bootsnap', '>= 1.1.0', require: false
-gem 'citeproc-ruby', '~> 1.1'
+gem 'bootsnap', require: false
+gem 'citeproc-ruby'
 gem 'config'
 gem 'csl-styles', '1.0.1.8' # See https://github.com/sul-dlss/sul_pub/issues/1019 before updating
 gem 'csv'
@@ -14,15 +14,15 @@ gem 'faraday-httpclient'
 gem 'faraday-retry'
 gem 'hashie' # this used to be part of grape, but we still need it since we believe pub_hashes may still be seralized in the database this way 9/10/2018
 gem 'honeybadger'
-gem 'htmlentities', '~> 4.3'
-gem 'httpclient', '~> 2.8'
-gem 'identifiers', '~> 0.12' # Altmetric utilities related to the extraction, validation and normalization of various scholarly identifiers
+gem 'htmlentities'
+gem 'httpclient'
+gem 'identifiers' # Altmetric utilities related to the extraction, validation and normalization of various scholarly identifiers
 gem 'jbuilder' # To use Jbuilder templates for JSON
 gem 'json_schemer'
 gem 'kaminari'
-gem 'mais_orcid_client', '>= 1.0'
+gem 'mais_orcid_client'
 gem 'mutex_m'  # needed because httpclient depends on it and is unmaintained
-gem 'nokogiri', '>= 1.7.1'
+gem 'nokogiri'
 gem 'oauth2'
 gem 'okcomputer' # for monitoring
 gem 'paper_trail'
@@ -32,7 +32,7 @@ gem 'pry' # make it possible to use pry for IRB
 gem 'rails', '~> 8.1.0'
 gem 'rake'
 gem 'retina_tag'
-gem 'StreetAddress', '~> 1.0', '>= 1.0.6'
+gem 'StreetAddress'
 gem 'sul_orcid_client'
 gem 'whenever', require: false
 gem 'yaml_db'
@@ -54,7 +54,7 @@ end
 
 group :development do
   gem 'byebug'
-  gem 'listen', '~> 3.7'
+  gem 'listen'
   gem 'ruby-prof'
   gem 'thin' # app server
 end
@@ -63,9 +63,9 @@ group :test do
   gem 'capybara'
   gem 'database_cleaner'
   gem 'equivalent-xml'
-  gem 'factory_bot_rails', '~> 6.2.0' # unpin when https://github.com/thoughtbot/factory_bot_rails/pull/432 or issue/433 is in a release
+  gem 'factory_bot_rails'
   gem 'rails-controller-testing'
-  gem 'simplecov', '~> 0.13', require: false
+  gem 'simplecov', require: false
   gem 'vcr'
   gem 'webmock'
 end

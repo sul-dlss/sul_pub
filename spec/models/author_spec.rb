@@ -45,14 +45,14 @@ describe Author do
     it 'saves a valid orcidid' do
       expect do
         described_class.create!(cap_profile_id: '5555', orcidid: 'https://orcid.org/0000-1234-5678-901X')
-      end.not_to raise_error ActiveRecord::RecordInvalid
+      end.not_to raise_error
       expect do
         described_class.create!(cap_profile_id: '5556', orcidid: 'https://sandbox.orcid.org/0000-1234-5678-9011')
-      end.not_to raise_error ActiveRecord::RecordInvalid
+      end.not_to raise_error
     end
 
     it 'allows nil orcidid' do
-      expect { described_class.create!(cap_profile_id: '5555', orcidid: nil) }.not_to raise_error ActiveRecord::RecordInvalid
+      expect { described_class.create!(cap_profile_id: '5555', orcidid: nil) }.not_to raise_error
     end
   end
 
