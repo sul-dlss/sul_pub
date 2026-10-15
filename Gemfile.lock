@@ -606,7 +606,7 @@ DEPENDENCIES
   StreetAddress
   activerecord-import
   bibtex-ruby
-  bootsnap (>= 1.1.0)
+  bootsnap
   brakeman
   byebug
   capistrano
@@ -614,7 +614,7 @@ DEPENDENCIES
   capistrano-rails
   capistrano-shell
   capybara
-  citeproc-ruby (~> 1.1)
+  citeproc-ruby
   config
   csl-styles (= 1.0.1.8)
   csv

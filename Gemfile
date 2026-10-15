@@ -2,8 +2,8 @@ source 'https://rubygems.org'
 
 gem 'activerecord-import'
 gem 'bibtex-ruby'
-gem 'bootsnap', '>= 1.1.0', require: false
-gem 'citeproc-ruby', '~> 1.1'
+gem 'bootsnap', require: false
+gem 'citeproc-ruby'
 gem 'config'
 gem 'csl-styles', '1.0.1.8' # See https://github.com/sul-dlss/sul_pub/issues/1019 before updating
 gem 'csv'
