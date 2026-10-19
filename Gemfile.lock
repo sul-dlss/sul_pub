@@ -57,8 +57,8 @@ GEM
       activemodel (= 8.1.4)
       activesupport (= 8.1.4)
       timeout (>= 0.4.0)
-    activerecord-import (2.3.0)
-      activerecord (>= 4.2)
+    activerecord-import (3.0.0)
+      activerecord (>= 6.1)
     activestorage (8.1.4)
       actionpack (= 8.1.4)
       activejob (= 8.1.4)
@@ -235,13 +235,13 @@ GEM
     factory_bot_rails (6.5.1)
       factory_bot (~> 6.5)
       railties (>= 6.1.0)
-    faraday (2.14.4)
-      faraday-net_http (>= 2.0, < 3.5)
+    faraday (2.15.0)
+      faraday-net_http (>= 2.0, < 3.6)
       json
       logger
     faraday-httpclient (2.0.2)
       httpclient (>= 2.2)
-    faraday-net_http (3.4.4)
+    faraday-net_http (3.5.0)
       net-http (~> 0.5)
     faraday-retry (2.4.0)
       faraday (~> 2.0)
@@ -284,11 +284,11 @@ GEM
       hana (~> 1.3)
       regexp_parser (~> 2.0)
       simpleidn (~> 0.2)
-    jsonschema_rs (0.58.6-arm64-darwin)
+    jsonschema_rs (0.59.0-arm64-darwin)
       bigdecimal (>= 3.1, < 5)
-    jsonschema_rs (0.58.6-x86_64-darwin)
+    jsonschema_rs (0.59.0-x86_64-darwin)
       bigdecimal (>= 3.1, < 5)
-    jsonschema_rs (0.58.6-x86_64-linux)
+    jsonschema_rs (0.59.0-x86_64-linux)
       bigdecimal (>= 3.1, < 5)
     jwt (3.3.0)
       base64
@@ -507,9 +507,9 @@ GEM
     rubocop-ast (1.50.0)
       parser (>= 3.3.7.2)
       prism (~> 1.7)
-    rubocop-capybara (3.0.0)
+    rubocop-capybara (3.1.0)
       lint_roller (~> 1.1)
-      rubocop (~> 1.81)
+      rubocop (~> 1.89)
     rubocop-factory_bot (2.28.0)
       lint_roller (~> 1.1)
       rubocop (~> 1.72, >= 1.72.1)
@@ -669,4 +669,4 @@ DEPENDENCIES
   yaml_db
 
 BUNDLED WITH
-  4.0.22
+  4.0.23
