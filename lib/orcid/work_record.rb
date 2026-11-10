@@ -14,6 +14,11 @@ module Orcid
       @put_code ||= work_response['put-code']
     end
 
+    # the name of the source that provided the work to ORCID (e.g. "Crossref")
+    def work_source
+      @work_source ||= work_response.dig('source', 'source-name', 'value')
+    end
+
     def work_type
       @work_type ||= work_response['type']
     end
