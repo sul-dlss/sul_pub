@@ -473,6 +473,13 @@ describe Publication do
       expect(pub).to be_harvested_pub
     end
 
+    it "returns true if the pub has a provenance of 'orcid'" do
+      pub.pub_hash = { provenance: 'orcid' }
+      expect(pub).not_to be_authoritative_pmid_source
+      expect(pub).to be_orcid_pub
+      expect(pub).to be_harvested_pub
+    end
+
     it "returns false if the pub does not have a provanance of 'pubmed' or 'sciencewire'" do
       pub.pub_hash = { provenance: 'cap' }
       expect(pub).not_to be_authoritative_pmid_source
