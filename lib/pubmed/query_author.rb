@@ -44,9 +44,16 @@ module Pubmed
       @author_identities ||= [author].concat(author.author_identities.to_a)
     end
 
+    # Each name is searched as quoted phrases so PubMed can't rewrite it.  Unquoted, a name PubMed doesn't
+    # know (e.g. "Lastname, David[Author]") is split up or has the last name dropped, leaving "david[Author]".
+    # A quoted phrase PubMed doesn't know returns nothing instead.  The quoted name alone only matches that
+    # exact name, so we also search "Lastname, First *" to keep middle names and initials ("Lastname, First B").
     def name_term
       author_identities.collect do |identity|
-        "(#{identity.last_name}, #{identity.first_name}[Author])" if valid_name?(identity)
+        next unless valid_name?(identity)
+
+        name = "#{identity.last_name}, #{identity.first_name}".delete('"')
+        "(\"#{name}\"[Author] OR \"#{name} *\"[Author])"
       end.compact.uniq.join(' OR ')
     end
 
@@ -73,8 +80,20 @@ module Pubmed
       "(#{name_term}) AND (#{affiliation_term})"
     end
 
+    # When PubMed cannot find part of the query (e.g. an author's last name), it silently drops that part
+    # and runs the rest, reporting the dropped phrases in ErrorList/PhraseNotFound.  For a name query that
+    # means "(Lastname, David[Author])" becomes "david[Author]", which matches everyone with the last name David.
+    # Those results are for a different query than the one we sent, so we discard them.
     def parse_response(response)
-      Nokogiri::XML(response).xpath('//IdList/Id/text()').map(&:text)
+      xml = Nokogiri::XML(response)
+      phrases_not_found = xml.xpath('//ErrorList/PhraseNotFound').map(&:text)
+      if phrases_not_found.any?
+        Pubmed.logger.warn("Pubmed::QueryAuthor - author #{author.id} - discarding results: PubMed did not find " \
+                           "#{phrases_not_found.inspect} and ran #{xml.at('QueryTranslation')&.text.inspect} instead of #{term.inspect}")
+        return []
+      end
+
+      xml.xpath('//IdList/Id/text()').map(&:text)
     end
   end
 end
