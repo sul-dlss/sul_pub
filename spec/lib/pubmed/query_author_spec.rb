@@ -12,8 +12,8 @@ describe Pubmed::QueryAuthor do
 
       it 'generates the correct term string' do
         VCR.use_cassette('Pubmed_QueryAuthor/_pmids/returns_a_list') do
-          expect(pmids.length).to eq(336)
-          expect(pmids[0]).to eq('31051039')
+          expect(pmids.length).to eq(454)
+          expect(pmids[0]).to eq('42862949')
         end
       end
     end
@@ -26,7 +26,7 @@ describe Pubmed::QueryAuthor do
       it 'generates the correct term string' do
         VCR.use_cassette('Pubmed_QueryAuthor/_pmids/returns_a_smaller_list') do
           expect(pmids.length).to eq(4)
-          expect(pmids[0]).to eq('31051039')
+          expect(pmids[0]).to eq('42862949')
         end
       end
     end
