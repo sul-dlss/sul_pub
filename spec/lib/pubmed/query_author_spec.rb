@@ -30,6 +30,27 @@ describe Pubmed::QueryAuthor do
         end
       end
     end
+
+    context 'with the options used by the regular harvest' do
+      let(:options) { { load_time_span: Settings.WOS.regular_harvest_timeframe, reldate: Settings.PUBMED.regular_harvest_timeframe } }
+
+      before { allow(Pubmed.client).to receive(:search).and_return('<eSearchResult><IdList/></eSearchResult>') }
+
+      it 'limits the search by date' do
+        query_author.pmids
+        expect(Pubmed.client).to have_received(:search)
+          .with(anything, "reldate=#{Settings.PUBMED.regular_harvest_timeframe}&datetype=edat")
+      end
+    end
+
+    context 'without a date limit' do
+      before { allow(Pubmed.client).to receive(:search).and_return('<eSearchResult><IdList/></eSearchResult>') }
+
+      it 'does not limit the search by date' do
+        query_author.pmids
+        expect(Pubmed.client).to have_received(:search).with(anything, nil)
+      end
+    end
   end
 
   describe '#term_for_author' do

@@ -235,14 +235,14 @@ describe Cap::AuthorsPoller, :vcr do
     let(:new_author_options) do
       {
         load_time_span: Settings.WOS.new_author_timeframe,
-        relDate: Settings.PUBMED.new_author_timeframe
+        reldate: Settings.PUBMED.new_author_timeframe
       }
     end
 
     let(:update_author_options) do
       {
         load_time_span: Settings.WOS.update_timeframe,
-        relDate: Settings.PUBMED.update_timeframe
+        reldate: Settings.PUBMED.update_timeframe
       }
     end
 

@@ -10,7 +10,7 @@ namespace :harvest do
   task all_authors_update: :environment do
     options = {
       load_time_span: Settings.WOS.regular_harvest_timeframe,
-      relDate: Settings.PUBMED.regular_harvest_timeframe
+      reldate: Settings.PUBMED.regular_harvest_timeframe
     }
     AllSources.harvester.harvest_all(options)
   end
@@ -30,7 +30,7 @@ namespace :harvest do
 
     options = {
       load_time_span: Settings.WOS.regular_harvest_timeframe,
-      relDate: Settings.PUBMED.regular_harvest_timeframe
+      reldate: Settings.PUBMED.regular_harvest_timeframe
     }
     AllSources.harvester.process_author(author, options)
   end
