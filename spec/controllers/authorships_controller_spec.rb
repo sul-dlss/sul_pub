@@ -119,8 +119,8 @@ describe AuthorshipsController, :vcr do
       end
 
       it 'downcases appropriately' do
-        expect { http_request }.not_to change { existing_contrib }
-        contrib = publication_with_contributions.contributions.reload.last
+        expect { http_request }.not_to(change { existing_contrib.reload.attributes })
+        contrib = publication_with_contributions.contributions.find_by(author_id: author.id)
         expect(contrib.status).to eq 'new'
         expect(contrib.visibility).to eq 'private'
         expect(response).to have_http_status :created
