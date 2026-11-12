@@ -1,11 +1,11 @@
 ---
 http_interactions:
 - request:
-    method: get
-    uri: https://authz.stanford.edu/oauth/token?grant_type=client_credentials
+    method: post
+    uri: https://authz.stanford.edu/oauth/token
     body:
       encoding: UTF-8
-      string: ''
+      string: grant_type=client_credentials
     headers:
       User-Agent:
       - Faraday v0.13.1
@@ -16,7 +16,7 @@ http_interactions:
       Date:
       - Fri, 15 Dec 2017 20:40:58 GMT
       Content-Type:
-      - application/json
+      - application/x-www-form-urlencoded
       Authorization:
       - Basic Settings.CAP.TOKEN_USER:Settings.CAP.TOKEN_PASS
   response:

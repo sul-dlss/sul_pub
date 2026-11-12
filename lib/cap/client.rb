@@ -61,7 +61,10 @@ module Cap
     def access_token
       @access_token = nil if @access_expiry.to_i < Time.zone.now.to_i
       @access_token ||= begin
-        response = auth_client.get '?grant_type=client_credentials'
+        response = auth_client.post do |req|
+          req.headers['Content-Type'] = 'application/x-www-form-urlencoded'
+          req.body = URI.encode_www_form(grant_type: 'client_credentials')
+        end
         raise 'Failed to authenticate' unless response.success?
 
         auth_data = JSON.parse(response.body)
