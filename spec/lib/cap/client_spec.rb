@@ -70,9 +70,12 @@ describe Cap::Client, :vcr do
   describe '#access_token' do
     it 'sends authentication request and parses the response' do
       auth_token = 'cool token'
-      WebMock.stub_request(:get, /#{Settings.CAP.TOKEN_URI}/)
-             .to_return(status: 200, body: { access_token: auth_token }.to_json)
+      token_request = WebMock.stub_request(:post, "#{Settings.CAP.TOKEN_URI}#{Settings.CAP.TOKEN_PATH}")
+                             .with(body: 'grant_type=client_credentials',
+                                   headers: { 'Content-Type' => 'application/x-www-form-urlencoded' })
+                             .to_return(status: 200, body: { access_token: auth_token }.to_json)
       expect(cap_client.send(:access_token)).to include(auth_token)
+      expect(token_request).to have_been_requested.once
     end
   end
 
