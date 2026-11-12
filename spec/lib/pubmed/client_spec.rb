@@ -29,8 +29,19 @@ describe Pubmed::Client do
     context 'without additional arguments' do
       it 'returns a list of pubmed records' do
         VCR.use_cassette('Pubmed_Client/_search/returns_a_list') do
-          expect(Nokogiri::XML(pubmed_client.search(term)).xpath('//IdList/Id').size).to eq(1148)
+          expect(Nokogiri::XML(pubmed_client.search(term)).xpath('//IdList/Id').size).to eq(1382)
         end
+      end
+    end
+
+    context 'with an ampersand in the term' do
+      let(:term) { '"Texas A&M University"[Affiliation]' }
+
+      before { stub_request(:post, /esearch\.fcgi/).to_return(body: '<eSearchResult><IdList/></eSearchResult>') }
+
+      it 'url-encodes the term so the & does not end the form field' do
+        pubmed_client.search(term)
+        expect(a_request(:post, /esearch\.fcgi/).with(body: 'term=%22Texas+A%26M+University%22%5BAffiliation%5D')).to have_been_made
       end
     end
 
@@ -39,7 +50,7 @@ describe Pubmed::Client do
 
       it 'returns a list of pubmed records' do
         VCR.use_cassette('Pubmed_Client/_search/returns_a_smaller_list') do
-          expect(Nokogiri::XML(pubmed_client.search(term, addl_args)).xpath('//IdList/Id').size).to eq(12)
+          expect(Nokogiri::XML(pubmed_client.search(term, addl_args)).xpath('//IdList/Id').size).to eq(6)
         end
       end
     end

@@ -5,8 +5,7 @@ http_interactions:
     uri: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?api_key=Settings.PUBMED.API_KEY&datetype=edat&db=pubmed&reldate=90&retmax=3000&retmode=xml
     body:
       encoding: UTF-8
-      string: term=(("Altman, Russ"[Author] OR "Altman, Russ *"[Author]) OR ("Altman,
-        R"[Author] OR "Altman, R *"[Author])) AND (Stanford University[Affiliation])
+      string: term=%28%28%22Altman%2C+Russ%22%5BAuthor%5D+OR+%22Altman%2C+Russ+*%22%5BAuthor%5D%29+OR+%28%22Altman%2C+R%22%5BAuthor%5D+OR+%22Altman%2C+R+*%22%5BAuthor%5D%29%29+AND+%28%22Stanford+University%22%5BAffiliation%5D%29
     headers:
       User-Agent:
       - stanford-library-sul-pub
@@ -15,16 +14,18 @@ http_interactions:
       Accept-Encoding:
       - gzip,deflate
       Date:
-      - Wed, 11 Nov 2026 22:00:22 GMT
+      - Thu, 12 Nov 2026 00:28:44 GMT
       Content-Type:
       - application/x-www-form-urlencoded
+      Cookie:
+      - ncbi_sid=A0DC76EA66BD2C7C_92E4SID
   response:
     status:
       code: 200
       message: OK
     headers:
       Date:
-      - Wed, 11 Nov 2026 22:00:22 GMT
+      - Thu, 12 Nov 2026 00:28:43 GMT
       Server:
       - Finatra
       Strict-Transport-Security:
@@ -34,9 +35,9 @@ http_interactions:
       Referrer-Policy:
       - origin-when-cross-origin
       Ncbi-Sid:
-      - 23BB690A47A492F3_93FASID
+      - A0DC76EA66BD2C7C_92E4SID
       Ncbi-Phid:
-      - 1D34D66F18196F650000289BCBAAA4B7.1.1.m_1
+      - 1D32987C65496F45000024BA64FA5ED2.1.1.m_1
       Content-Type:
       - text/xml; charset=UTF-8
       Cache-Control:
@@ -46,14 +47,14 @@ http_interactions:
       X-Ratelimit-Limit:
       - '10'
       X-Ratelimit-Remaining:
-      - '9'
+      - '8'
       Access-Control-Allow-Origin:
       - "*"
       Access-Control-Expose-Headers:
       - X-RateLimit-Limit,X-RateLimit-Remaining
       Set-Cookie:
-      - ncbi_sid=23BB690A47A492F3_93FASID; domain=.nih.gov; path=/; expires=Thu, 11
-        Nov 2027 22:00:22 GMT
+      - ncbi_sid=A0DC76EA66BD2C7C_92E4SID; domain=.nih.gov; path=/; expires=Fri, 12
+        Nov 2027 00:28:44 GMT
       X-Ua-Compatible:
       - IE=Edge
       X-Xss-Protection:
@@ -69,7 +70,7 @@ http_interactions:
       string: "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<!DOCTYPE eSearchResult
         PUBLIC \"-//NLM//DTD esearch 20060628//EN\" \"https://eutils.ncbi.nlm.nih.gov/eutils/dtd/20060628/esearch.dtd\">\n<eSearchResult>\n<Count>4</Count><RetMax>4</RetMax><RetStart>0</RetStart>\n<IdList>\n\t<Id>42862949</Id>\n\t<Id>42818576</Id>\n\t<Id>42779570</Id>\n\t<Id>42620075</Id>\n</IdList>\n<TranslationSet/><QueryTranslation>(\"altman
         russ\"[Author] OR \"altman russ *\"[Author] OR (\"altman r\"[Author] OR \"altman
-        r *\"[Author])) AND \"stanford university\"[Affiliation] AND 2026/08/13:2026/11/11[Date
+        r *\"[Author])) AND \"Stanford University\"[Affiliation] AND 2026/08/13:2026/11/11[Date
         - Entry]</QueryTranslation>\n\n</eSearchResult>\n"
-  recorded_at: Wed, 11 Nov 2026 22:00:22 GMT
+  recorded_at: Thu, 12 Nov 2026 00:28:44 GMT
 recorded_with: VCR 6.4.1

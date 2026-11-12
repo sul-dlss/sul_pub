@@ -65,15 +65,26 @@ module Pubmed
 
     def affiliation_term
       author_identities.collect { |identity| affiliation_terms(identity.institution) if identity.institution }
-                       .compact.uniq.join(' OR ')
+                       .flatten.compact.uniq.join(' OR ')
     end
 
+    # Quoted for the same reason as names: unquoted, PubMed drops any word of an institution it doesn't know
+    # (e.g. "Unknownword College[Affiliation]" runs as "College"[Affiliation]) and reports PhraseNotFound,
+    # which would make parse_response discard all of the author's results, including the good Stanford ones.
+    # A quoted institution PubMed doesn't know just matches nothing (reported only as a warning).
+    #
+    # Publications can produce an institution with '&' or with 'and' (e.g. "Oregon Health & Science University" vs
+    # "Oregon Health and Science University"), and the two forms match different records, so search both.
+    # Whitespace is squished so identities that differ only in spacing (e.g. a trailing space) don't add
+    # duplicate terms.
+    # @return [Array<String>]
     def affiliation_terms(institution)
-      if institution.include?('&')
-        "#{institution.gsub('&', 'and')}[Affiliation]"
-      else
-        "#{institution}[Affiliation]"
-      end
+      institution = institution.delete('"').squish
+      return [] if institution.blank?
+
+      variants = [institution]
+      variants << institution.gsub(/\s*&\s*/, ' and ') if institution.include?('&')
+      variants.map { |variant| "\"#{variant}\"[Affiliation]" }
     end
 
     def term
