@@ -25,7 +25,8 @@ module Pubmed
     def search(term, addl_args = nil)
       response = conn.post do |req|
         req.url url(addl_args)
-        req.body = "term=#{term}"
+        # Encode the term: an unencoded '&' (e.g. "Texas A&M") ends the form field and cuts the query short
+        req.body = URI.encode_www_form(term:)
       end
       response.body
     rescue StandardError => e

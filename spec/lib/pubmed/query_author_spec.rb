@@ -85,7 +85,7 @@ describe Pubmed::QueryAuthor do
   describe '#term_for_author' do
     context 'with a user with alternate identities' do
       it 'generates the correct term string' do
-        expect(query_author.send(:term)).to eq('(("Altman, Russ"[Author] OR "Altman, Russ *"[Author]) OR ("Altman, R"[Author] OR "Altman, R *"[Author])) AND (Stanford University[Affiliation])')
+        expect(query_author.send(:term)).to eq('(("Altman, Russ"[Author] OR "Altman, Russ *"[Author]) OR ("Altman, R"[Author] OR "Altman, R *"[Author])) AND ("Stanford University"[Affiliation])')
       end
     end
 
@@ -94,6 +94,37 @@ describe Pubmed::QueryAuthor do
 
       it 'removes them so the quoted phrase stays intact' do
         expect(query_author.send(:name_term)).to start_with('("Altman, Russ RB"[Author] OR "Altman, Russ RB *"[Author])')
+      end
+    end
+
+    context 'with an institution containing double quotes' do
+      before do
+        AuthorIdentity.create(author:, first_name: 'R', last_name: 'Altman', institution: 'The "Best" College')
+      end
+
+      it 'removes them so the quoted phrase stays intact' do
+        expect(query_author.send(:affiliation_term)).to eq('"Stanford University"[Affiliation] OR "The Best College"[Affiliation]')
+      end
+    end
+
+    context 'with institutions that differ only in whitespace' do
+      before do
+        AuthorIdentity.create(author:, first_name: 'R', last_name: 'Altman', institution: 'University of Virginia ')
+        AuthorIdentity.create(author:, first_name: 'Russ', last_name: 'Altman', institution: " University  of\tVirginia")
+      end
+
+      it 'squishes the whitespace and searches each institution once' do
+        expect(query_author.send(:affiliation_term)).to eq('"Stanford University"[Affiliation] OR "University of Virginia"[Affiliation]')
+      end
+    end
+
+    context 'with a blank institution' do
+      before do
+        AuthorIdentity.create(author:, first_name: 'R', last_name: 'Altman', institution: '   ')
+      end
+
+      it 'leaves it out of the query' do
+        expect(query_author.send(:affiliation_term)).to eq('"Stanford University"[Affiliation]')
       end
     end
 
@@ -109,7 +140,7 @@ describe Pubmed::QueryAuthor do
       end
 
       it 'generates the correct term string' do
-        expect(query_author.send(:term)).to eq('(("Altman, Russ"[Author] OR "Altman, Russ *"[Author]) OR ("Altman, R"[Author] OR "Altman, R *"[Author])) AND (Stanford University[Affiliation] OR Amherst College[Affiliation])')
+        expect(query_author.send(:term)).to eq('(("Altman, Russ"[Author] OR "Altman, Russ *"[Author]) OR ("Altman, R"[Author] OR "Altman, R *"[Author])) AND ("Stanford University"[Affiliation] OR "Amherst College"[Affiliation])')
       end
     end
 
@@ -125,7 +156,7 @@ describe Pubmed::QueryAuthor do
       end
 
       it 'generates the correct term string' do
-        expect(query_author.send(:term)).to eq('(("Altman, Russ"[Author] OR "Altman, Russ *"[Author]) OR ("Altman, R"[Author] OR "Altman, R *"[Author])) AND (Stanford University[Affiliation] OR William and Mary[Affiliation])')
+        expect(query_author.send(:term)).to eq('(("Altman, Russ"[Author] OR "Altman, Russ *"[Author]) OR ("Altman, R"[Author] OR "Altman, R *"[Author])) AND ("Stanford University"[Affiliation] OR "William & Mary"[Affiliation] OR "William and Mary"[Affiliation])')
       end
     end
 
@@ -141,7 +172,7 @@ describe Pubmed::QueryAuthor do
       end
 
       it 'generates the correct term string' do
-        expect(query_author.send(:term)).to eq('(("Altman, Russ"[Author] OR "Altman, Russ *"[Author]) OR ("Altman, R"[Author] OR "Altman, R *"[Author])) AND (Stanford University[Affiliation] OR Texas AandM[Affiliation])')
+        expect(query_author.send(:term)).to eq('(("Altman, Russ"[Author] OR "Altman, Russ *"[Author]) OR ("Altman, R"[Author] OR "Altman, R *"[Author])) AND ("Stanford University"[Affiliation] OR "Texas A&M"[Affiliation] OR "Texas A and M"[Affiliation])')
       end
     end
 
@@ -157,7 +188,7 @@ describe Pubmed::QueryAuthor do
       end
 
       it 'generates the correct term string' do
-        expect(query_author.send(:term)).to eq('(("Altman, Russ"[Author] OR "Altman, Russ *"[Author]) OR ("Altman, R"[Author] OR "Altman, R *"[Author])) AND (Stanford University[Affiliation] OR Texas Aand M[Affiliation])')
+        expect(query_author.send(:term)).to eq('(("Altman, Russ"[Author] OR "Altman, Russ *"[Author]) OR ("Altman, R"[Author] OR "Altman, R *"[Author])) AND ("Stanford University"[Affiliation] OR "Texas A& M"[Affiliation] OR "Texas A and M"[Affiliation])')
       end
     end
 
@@ -173,7 +204,7 @@ describe Pubmed::QueryAuthor do
       end
 
       it 'generates the correct term string' do
-        expect(query_author.send(:term)).to eq('(("Altman, Russ"[Author] OR "Altman, Russ *"[Author]) OR ("Altman, R"[Author] OR "Altman, R *"[Author])) AND (Stanford University[Affiliation] OR Texas A andM[Affiliation])')
+        expect(query_author.send(:term)).to eq('(("Altman, Russ"[Author] OR "Altman, Russ *"[Author]) OR ("Altman, R"[Author] OR "Altman, R *"[Author])) AND ("Stanford University"[Affiliation] OR "Texas A &M"[Affiliation] OR "Texas A and M"[Affiliation])')
       end
     end
 
@@ -189,7 +220,7 @@ describe Pubmed::QueryAuthor do
       end
 
       it 'generates the correct term string' do
-        expect(query_author.send(:term)).to eq('(("Altman, Russ"[Author] OR "Altman, Russ *"[Author]) OR ("Altman, R"[Author] OR "Altman, R *"[Author])) AND (Stanford University[Affiliation] OR Texas A andM[Affiliation])')
+        expect(query_author.send(:term)).to eq('(("Altman, Russ"[Author] OR "Altman, Russ *"[Author]) OR ("Altman, R"[Author] OR "Altman, R *"[Author])) AND ("Stanford University"[Affiliation] OR "Texas A &M"[Affiliation] OR "Texas A and M"[Affiliation])')
       end
     end
 
@@ -205,7 +236,7 @@ describe Pubmed::QueryAuthor do
       end
 
       it 'generates the correct term string' do
-        expect(query_author.send(:term)).to eq('(("Altman, Russ"[Author] OR "Altman, Russ *"[Author]) OR ("Altman, R"[Author] OR "Altman, R *"[Author])) AND (Stanford University[Affiliation] OR Texas A andM[Affiliation])')
+        expect(query_author.send(:term)).to eq('(("Altman, Russ"[Author] OR "Altman, Russ *"[Author]) OR ("Altman, R"[Author] OR "Altman, R *"[Author])) AND ("Stanford University"[Affiliation] OR "Texas A &M"[Affiliation] OR "Texas A and M"[Affiliation])')
       end
     end
 
@@ -221,7 +252,7 @@ describe Pubmed::QueryAuthor do
       end
 
       it 'generates the correct term string' do
-        expect(query_author.send(:term)).to eq('(("Altman, Russ"[Author] OR "Altman, Russ *"[Author]) OR ("Altman, R"[Author] OR "Altman, R *"[Author])) AND (Stanford University[Affiliation] OR Texas A andM[Affiliation])')
+        expect(query_author.send(:term)).to eq('(("Altman, Russ"[Author] OR "Altman, Russ *"[Author]) OR ("Altman, R"[Author] OR "Altman, R *"[Author])) AND ("Stanford University"[Affiliation] OR "Texas A &M"[Affiliation] OR "Texas A and M"[Affiliation])')
       end
     end
   end
@@ -256,7 +287,7 @@ describe Pubmed::QueryAuthor do
         identity = author_one_bad_name.author_identities.first
         good_name = "#{identity.last_name}, #{identity.first_name}"
         expect(query_author_only_one_bad_name).to be_valid
-        expect(query_author_only_one_bad_name.send(:term)).to eq("((\"#{good_name}\"[Author] OR \"#{good_name} *\"[Author])) AND (Stanford University[Affiliation] OR Example University[Affiliation])")
+        expect(query_author_only_one_bad_name.send(:term)).to eq("((\"#{good_name}\"[Author] OR \"#{good_name} *\"[Author])) AND (\"Stanford University\"[Affiliation] OR \"Example University\"[Affiliation])")
       end
     end
 
