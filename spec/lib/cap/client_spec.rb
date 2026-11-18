@@ -3,7 +3,7 @@
 describe Cap::Client, :vcr do
   subject(:cap_client) { described_class.new }
 
-  let(:cap_profile_id) { 9_957 }
+  let(:cap_profile_id) { 45_761 }
 
   before do
     null_logger = Logger.new(File::NULL)

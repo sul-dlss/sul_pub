@@ -2,19 +2,19 @@
 http_interactions:
 - request:
     method: post
-    uri: https://authz.stanford.edu/oauth/token
+    uri: Settings.CAP.TOKEN_URI/oauth/token
     body:
       encoding: UTF-8
       string: grant_type=client_credentials
     headers:
       User-Agent:
-      - Faraday v0.13.1
+      - Faraday v2.15.1
       Accept:
       - application/json
       Accept-Encoding:
       - gzip,deflate
       Date:
-      - Fri, 15 Dec 2017 20:40:50 GMT
+      - Wed, 18 Nov 2026 22:23:50 GMT
       Content-Type:
       - application/x-www-form-urlencoded
       Authorization:
@@ -22,10 +22,12 @@ http_interactions:
   response:
     status:
       code: 200
-      message: OK
+      message: '200'
     headers:
       Date:
-      - Fri, 15 Dec 2017 20:40:50 GMT
+      - Wed, 18 Nov 2026 22:23:50 GMT
+      Server:
+      - Apache
       Cache-Control:
       - no-store
       Pragma:
@@ -36,24 +38,23 @@ http_interactions:
       - chunked
     body:
       encoding: UTF-8
-      string: '{"access_token":"private_access_token","token_type":"bearer","expires_in":86399,"scope":"profiles.read_all","jti":"bed30687-2e5d-4a84-8f20-e3d75b2611b5"}'
-    http_version: 
-  recorded_at: Fri, 15 Dec 2017 20:40:51 GMT
+      string: '{"access_token":"private_access_token","token_type":"bearer","expires_in":86399,"scope":"profiles.read_all","jti":"6c33969f-b7c3-4f3b-865a-ab55792c5c08"}'
+  recorded_at: Wed, 18 Nov 2026 22:23:50 GMT
 - request:
     method: get
-    uri: https://cap-uat.stanford.edu/cap-api/api/cap/v1/authors?p=1&ps=1&since=2017-06-06T21:16:17.784Z
+    uri: Settings.CAP.AUTHORSHIP_API_URI/cap-api/api/cap/v1/authors?p=1&ps=1&since=2017-06-06T21:16:17.784Z
     body:
       encoding: UTF-8
       string: ''
     headers:
       User-Agent:
-      - Faraday v0.13.1
+      - Faraday v2.15.1
       Accept:
       - application/json
       Accept-Encoding:
       - gzip,deflate
       Date:
-      - Fri, 15 Dec 2017 20:40:51 GMT
+      - Wed, 18 Nov 2026 22:23:50 GMT
       Content-Type:
       - application/json
       Authorization:
@@ -61,12 +62,20 @@ http_interactions:
   response:
     status:
       code: 200
-      message: OK
+      message: '200'
     headers:
       Date:
-      - Fri, 15 Dec 2017 20:40:51 GMT
+      - Wed, 18 Nov 2026 22:23:50 GMT
       Server:
-      - Apache/2.2.15 (Oracle)
+      - Apache/2.4.62 (Unix) OpenSSL/1.1.1k mod_jk/1.2.50
+      X-Client-Id:
+      - sul
+      X-Populations:
+      - "[SU]"
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - 1; mode=block
       Cache-Control:
       - no-cache, no-store, max-age=0, must-revalidate
       Pragma:
@@ -75,27 +84,28 @@ http_interactions:
       - '0'
       Strict-Transport-Security:
       - max-age=31536000 ; includeSubDomains
-      X-Xss-Protection:
-      - 1; mode=block
       X-Frame-Options:
       - DENY
-      X-Content-Type-Options:
-      - nosniff
       Vary:
       - Accept-Encoding
       Content-Encoding:
       - gzip
+      X-Api-Provider:
+      - Stanford Profiles
+      X-Api-Service:
+      - api/cap
+      X-Api-Version:
+      - v1
       Connection:
       - close
       Transfer-Encoding:
       - chunked
       Content-Type:
-      - application/json;charset=UTF-8
+      - application/json
     body:
       encoding: UTF-8
-      string: '{"count":1,"firstPage":true,"lastPage":false,"page":1,"totalCount":33497,"totalPages":33497,"values":[{"active":true,"authorModifiedOn":"2017-06-11T11:42:27.000-07:00","authorship":[{"featured":false,"status":"new","sulPublicationId":24367,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":392606,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":392607,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":392608,"visibility":"public"}],"importEnabled":true,"importSettings":[{"firstName":"Jan","institution":"Stanford
-        University","lastName":"Boublik"}],"lastModified":"2017-06-11T18:44:32.457-07:00","populations":["shc","lpch"],"profile":{"californiaPhysicianLicense":"CAP-LicenseID","displayName":"Jan
-        Boublik","meta":{"links":[{"href":"https://cap-uat.stanford.edu/cap-api/api/profiles/v1/104999","rel":"https://cap.stanford.edu/rel/self"},{"href":"https://cap-uat.stanford.edu/104999","rel":"https://cap.stanford.edu/rel/public"},{"href":"https://cap-uat.stanford.edu/profiles/auth/frdActionServlet?choiceId=facProfile&profileId=104999","rel":"https://cap.stanford.edu/rel/intranet"},{"href":"https://cap-uat.stanford.edu/profiles/frdActionServlet?choiceId=printerprofile&profileversion=full&profileId=104999","rel":"https://cap.stanford.edu/rel/pdf"},{"href":"https://cap-uat.stanford.edu/cap-api/api/cap/v1/schemas/ProfileDto","rel":"https://cap.stanford.edu/rel/schema"}]},"names":{"legal":{"firstName":"Jan","lastName":"Boublik"},"preferred":{"firstName":"Jan","lastName":"Boublik"}},"npi":"1497945471","profileId":104999},"profileId":104999,"visibility":"public"}]}'
-    http_version: 
-  recorded_at: Fri, 15 Dec 2017 20:40:51 GMT
-recorded_with: VCR 4.0.0
+      string: '{"count":1,"firstPage":true,"lastPage":false,"page":1,"totalCount":43070,"totalPages":43070,"values":[{"active":true,"authorModifiedOn":"2024-07-03T03:48:29.789-07:00","importEnabled":true,"importSettings":[{"firstName":"Nima","institution":"Stanford
+        University","lastName":"Ghalehsari"}],"lastModified":"2024-11-12T09:47:25.629-08:00","populations":["stanford","stanfordOnly","som","som"],"profile":{"californiaPhysicianLicense":"CAP-LicenseID","displayName":"Nima
+        Ghalehsari","meta":{"links":[{"href":"http://localhost:12021/cap-api/api/profiles/v1/333350","rel":"https://cap.stanford.edu/rel/self"},{"href":"https://profiles-u03.stanford.edu/nima-ghalehsari","rel":"https://cap.stanford.edu/rel/public"},{"href":"https://profiles-u03.stanford.edu/intranet/nima-ghalehsari","rel":"https://cap.stanford.edu/rel/intranet"},{"href":"http://localhost:12021/cap-api/api/cap/v1/schemas/ProfileDto","rel":"https://cap.stanford.edu/rel/schema"}]},"names":{"legal":{},"preferred":{"firstName":"Nima","lastName":"Ghalehsari"}},"npi":"1063918233","profileId":333350},"profileId":333350,"visibility":"stanford"}]}'
+  recorded_at: Wed, 18 Nov 2026 22:23:50 GMT
+recorded_with: VCR 6.4.1
