@@ -17,7 +17,7 @@ CAP:
   TOKEN_PASS: something
   AUTHORSHIP_API_PATH: /cap-api/api/cap/v1/authors
   AUTHORSHIP_API_PORT: 443
-  AUTHORSHIP_API_URI: https://cap-uat.stanford.edu
+  AUTHORSHIP_API_URI: https://cap-u03.stanford.edu
   HARVEST_ON_CHANGE: true
   cap_profile_id_for_check: 45761 # (kcasciotti) used by CAP health check,
                                   # if person leaves Stanford, will get 404 for check, then change this

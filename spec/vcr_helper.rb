@@ -43,6 +43,8 @@ VCR.configure do |c|
       token_match&.captures&.first
     end
   end
+  c.filter_sensitive_data('Settings.CAP.TOKEN_URI') { Settings.CAP.TOKEN_URI }
+  c.filter_sensitive_data('Settings.CAP.AUTHORSHIP_API_URI') { Settings.CAP.AUTHORSHIP_API_URI }
   c.filter_sensitive_data('CAP-LicenseID') do |interaction|
     if interaction.request.uri.include? Settings.CAP.AUTHORSHIP_API_PATH
       id_match = interaction.response.body.match(/"californiaPhysicianLicense".*?:.*?"(.*?)"/)

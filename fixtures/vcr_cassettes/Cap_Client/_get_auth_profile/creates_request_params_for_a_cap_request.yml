@@ -1,31 +1,33 @@
 ---
 http_interactions:
 - request:
-    method: get
-    uri: https://authz.stanford.edu/oauth/token?grant_type=client_credentials
+    method: post
+    uri: Settings.CAP.TOKEN_URI/oauth/token
     body:
       encoding: UTF-8
-      string: ''
+      string: grant_type=client_credentials
     headers:
       User-Agent:
-      - Faraday v0.13.1
+      - Faraday v2.15.1
       Accept:
       - application/json
       Accept-Encoding:
       - gzip,deflate
       Date:
-      - Fri, 15 Dec 2017 20:40:50 GMT
+      - Wed, 18 Nov 2026 22:23:49 GMT
       Content-Type:
-      - application/json
+      - application/x-www-form-urlencoded
       Authorization:
       - Basic Settings.CAP.TOKEN_USER:Settings.CAP.TOKEN_PASS
   response:
     status:
       code: 200
-      message: OK
+      message: '200'
     headers:
       Date:
-      - Fri, 15 Dec 2017 20:40:50 GMT
+      - Wed, 18 Nov 2026 22:23:49 GMT
+      Server:
+      - Apache
       Cache-Control:
       - no-store
       Pragma:
@@ -36,24 +38,23 @@ http_interactions:
       - chunked
     body:
       encoding: UTF-8
-      string: '{"access_token":"private_access_token","token_type":"bearer","expires_in":86399,"scope":"profiles.read_all","jti":"87190b80-cac0-44f3-803e-651c27c84d05"}'
-    http_version: 
-  recorded_at: Fri, 15 Dec 2017 20:40:50 GMT
+      string: '{"access_token":"private_access_token","token_type":"bearer","expires_in":86399,"scope":"profiles.read_all","jti":"b4821196-bd1b-44a3-a361-2d067ce11cf8"}'
+  recorded_at: Wed, 18 Nov 2026 22:23:49 GMT
 - request:
     method: get
-    uri: https://cap-uat.stanford.edu/cap-api/api/cap/v1/authors/9957
+    uri: Settings.CAP.AUTHORSHIP_API_URI/cap-api/api/cap/v1/authors/45761
     body:
       encoding: UTF-8
       string: ''
     headers:
       User-Agent:
-      - Faraday v0.13.1
+      - Faraday v2.15.1
       Accept:
       - application/json
       Accept-Encoding:
       - gzip,deflate
       Date:
-      - Fri, 15 Dec 2017 20:40:50 GMT
+      - Wed, 18 Nov 2026 22:23:49 GMT
       Content-Type:
       - application/json
       Authorization:
@@ -61,12 +62,20 @@ http_interactions:
   response:
     status:
       code: 200
-      message: OK
+      message: '200'
     headers:
       Date:
-      - Fri, 15 Dec 2017 20:40:50 GMT
+      - Wed, 18 Nov 2026 22:23:49 GMT
       Server:
-      - Apache/2.2.15 (Oracle)
+      - Apache/2.4.62 (Unix) OpenSSL/1.1.1k mod_jk/1.2.50
+      X-Client-Id:
+      - sul
+      X-Populations:
+      - "[SU]"
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - 1; mode=block
       Cache-Control:
       - no-cache, no-store, max-age=0, must-revalidate
       Pragma:
@@ -75,27 +84,28 @@ http_interactions:
       - '0'
       Strict-Transport-Security:
       - max-age=31536000 ; includeSubDomains
-      X-Xss-Protection:
-      - 1; mode=block
       X-Frame-Options:
       - DENY
-      X-Content-Type-Options:
-      - nosniff
       Vary:
       - Accept-Encoding
       Content-Encoding:
       - gzip
+      X-Api-Provider:
+      - Stanford Profiles
+      X-Api-Service:
+      - api/cap
+      X-Api-Version:
+      - v1
       Connection:
       - close
       Transfer-Encoding:
       - chunked
       Content-Type:
-      - application/json;charset=UTF-8
+      - application/json
     body:
       encoding: UTF-8
-      string: '{"active":true,"authorModifiedOn":"2017-12-07T11:43:45.000-08:00","authorship":[{"featured":false,"status":"approved","sulPublicationId":59096,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":66471,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":132555,"visibility":"public"},{"featured":false,"status":"unknown","sulPublicationId":101436,"visibility":"public"},{"featured":false,"status":"unknown","sulPublicationId":91268,"visibility":"public"},{"featured":true,"status":"approved","sulPublicationId":50103,"visibility":"public"},{"featured":false,"status":"unknown","sulPublicationId":56895,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":67303,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":111045,"visibility":"public"},{"featured":false,"status":"unknown","sulPublicationId":105790,"visibility":"public"},{"featured":true,"status":"approved","sulPublicationId":131277,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":197042,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":346709,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":265930,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":321964,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":349808,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":321965,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":274509,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":353798,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":283101,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":321826,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":309543,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":378910,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":380894,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":377847,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":389416,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":393740,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":397911,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":403284,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":404596,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":404569,"visibility":"public"}],"importEnabled":true,"importSettings":[{"email":"CAP-UID@stanford.edu","firstName":"David","institution":"Stanford
-        University","lastName":"Furman"}],"lastModified":"2017-12-07T12:02:23.643-08:00","populations":["stanford","stanfordOnly","som"],"profile":{"displayName":"David
-        Furman","email":"CAP-UID@stanford.edu","meta":{"links":[{"href":"https://cap-uat.stanford.edu/cap-api/api/profiles/v1/9957","rel":"https://cap.stanford.edu/rel/self"},{"href":"https://cap-uat.stanford.edu/david-furman","rel":"https://cap.stanford.edu/rel/public"},{"href":"https://cap-uat.stanford.edu/profiles/auth/frdActionServlet?choiceId=facProfile&profileId=9957","rel":"https://cap.stanford.edu/rel/intranet"},{"href":"https://cap-uat.stanford.edu/profiles/frdActionServlet?choiceId=printerprofile&profileversion=full&profileId=9957","rel":"https://cap.stanford.edu/rel/pdf"},{"href":"https://cap-uat.stanford.edu/cap-api/api/cap/v1/schemas/ProfileDto","rel":"https://cap.stanford.edu/rel/schema"}]},"names":{"legal":{"firstName":"David","lastName":"Furman"},"preferred":{"firstName":"David","lastName":"Furman"}},"profileId":9957,"uid":"CAP-UID","universityId":"CAP-UniversityID"},"profileId":9957,"visibility":"public"}'
-    http_version: 
-  recorded_at: Fri, 15 Dec 2017 20:40:50 GMT
-recorded_with: VCR 4.0.0
+      string: '{"active":true,"authorModifiedOn":"2026-10-21T11:42:44.411-07:00","authorship":[{"featured":false,"status":"approved","sulPublicationId":190380,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":239481,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":190382,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":184996,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":239474,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":190381,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":256642,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":256645,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":256650,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":256652,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":256661,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":256668,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":256671,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":256673,"visibility":"public"},{"featured":false,"status":"denied","sulPublicationId":256635,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":256637,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":256641,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":256646,"visibility":"public"},{"featured":false,"status":"denied","sulPublicationId":256647,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":256653,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":256656,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":256658,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":256659,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":256660,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":256662,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":256664,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":256665,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":256666,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":256670,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":256636,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":256638,"visibility":"public"},{"featured":false,"status":"denied","sulPublicationId":256639,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":256640,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":256643,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":256644,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":256648,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":256649,"visibility":"public"},{"featured":false,"status":"denied","sulPublicationId":256651,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":256654,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":256655,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":256663,"visibility":"public"},{"featured":false,"status":"denied","sulPublicationId":256667,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":256669,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":256672,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":256674,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":266897,"visibility":"public"},{"featured":false,"status":"denied","sulPublicationId":268454,"visibility":"public"},{"featured":false,"status":"denied","sulPublicationId":268489,"visibility":"public"},{"featured":false,"status":"denied","sulPublicationId":268490,"visibility":"public"},{"featured":false,"status":"denied","sulPublicationId":256657,"visibility":"public"},{"featured":false,"status":"denied","sulPublicationId":266518,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":273951,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":272529,"visibility":"public"},{"featured":false,"status":"denied","sulPublicationId":268452,"visibility":"public"},{"featured":false,"status":"denied","sulPublicationId":268491,"visibility":"public"},{"featured":false,"status":"denied","sulPublicationId":268453,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":272530,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":272531,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":284729,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":307391,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":307392,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":307390,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":308362,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":317784,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":323135,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":336353,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":344169,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":348667,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":354127,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":392448,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":396546,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":398169,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":419097,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":418961,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":420198,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":425600,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":401767,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":402745,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":436793,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":436803,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":436805,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":438448,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":444629,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":444631,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":478730,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":477591,"visibility":"public"},{"featured":true,"status":"approved","sulPublicationId":470297,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":470298,"visibility":"public"},{"featured":true,"status":"approved","sulPublicationId":470299,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":480703,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":773556,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":514310,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":514311,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":748017,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":493990,"visibility":"public"},{"featured":true,"status":"approved","sulPublicationId":493991,"visibility":"public"},{"featured":true,"status":"approved","sulPublicationId":496335,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":756563,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":777419,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":801608,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":764804,"visibility":"public"},{"featured":true,"status":"approved","sulPublicationId":807179,"visibility":"public"},{"featured":true,"status":"approved","sulPublicationId":808190,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":812414,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":851413,"visibility":"public"},{"featured":true,"status":"approved","sulPublicationId":850217,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":842233,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":868038,"visibility":"public"},{"featured":true,"status":"approved","sulPublicationId":893575,"visibility":"public"},{"featured":true,"status":"approved","sulPublicationId":873897,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":870067,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":890919,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":868750,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":871345,"visibility":"public"},{"featured":false,"status":"approved","sulPublicationId":878086,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":908095,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":915597,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":914452,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":926630,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":253336,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":957635,"visibility":"public"},{"featured":false,"status":"new","sulPublicationId":972599,"visibility":"public"}],"importEnabled":true,"importSettings":[{"email":"CAP-UIDti@stanford.edu","firstName":"Karen","institution":"Stanford
+        University","lastName":"Casciotti","middleName":"Lynn"}],"lastModified":"2026-11-12T11:48:04.698-08:00","populations":["stanford","stanfordOnly"],"profile":{"displayName":"Karen
+        Casciotti","email":"CAP-UIDti@stanford.edu","meta":{"links":[{"href":"Settings.CAP.AUTHORSHIP_API_URI/cap-api/api/profiles/v1/45761","rel":"https://cap.stanford.edu/rel/self"},{"href":"https://profiles-u03.stanford.edu/karen-casciotti","rel":"https://cap.stanford.edu/rel/public"},{"href":"https://profiles-u03.stanford.edu/intranet/karen-casciotti","rel":"https://cap.stanford.edu/rel/intranet"},{"href":"Settings.CAP.AUTHORSHIP_API_URI/profiles/frdActionServlet?choiceId=printerprofile&profileversion=full&profileId=45761","rel":"https://cap.stanford.edu/rel/pdf"},{"href":"Settings.CAP.AUTHORSHIP_API_URI/cap-api/api/cap/v1/schemas/ProfileDto","rel":"https://cap.stanford.edu/rel/schema"}]},"names":{"legal":{"firstName":"Karen","lastName":"Casciotti","middleName":"L"},"preferred":{"firstName":"Karen","lastName":"Casciotti","middleName":"Lynn"}},"profileId":45761,"uid":"CAP-UID","universityId":"CAP-UniversityID"},"profileId":45761,"visibility":"public"}'
+  recorded_at: Wed, 18 Nov 2026 22:23:49 GMT
+recorded_with: VCR 6.4.1
