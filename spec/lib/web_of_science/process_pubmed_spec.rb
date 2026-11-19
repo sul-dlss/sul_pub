@@ -125,6 +125,36 @@ describe WebOfScience::ProcessPubmed, :vcr do
         expect(wos_pub.publication_identifiers.where(identifier_type: 'pmc').count).to eq 1 # we now have a pmc row in publication identifier table
       end
 
+      context 'when the publication already has a different PMCID' do
+        before do
+          wos_pub.pub_hash[:identifier] << { type: 'pmc', id: 'PMC9999999' }
+          wos_pub.pubhash_needs_update!
+          wos_pub.save!
+        end
+
+        it 'replaces it with the PMCID from PubMed' do
+          expect(wos_pubmed_rec.pmid).to eq(wos_record.pmid.to_i) # ensure a wos_pubmed record exists
+          processor.pubmed_addition(wos_pub)
+          wos_pub.reload
+          expect(wos_pub.pub_hash[:identifier].select { |id| id[:type] == 'pmc' }).to eq [{ type: 'pmc', id: 'PMC1234567' }]
+          expect(wos_pub.publication_identifiers.where(identifier_type: 'pmc').pluck(:identifier_value)).to eq ['PMC1234567']
+        end
+
+        context 'when the PubMed record has no PMCID' do
+          let(:wos_pubmed_xml) do
+            File.read('spec/fixtures/pubmed/pubmed_record_21253920.xml').sub('<ArticleId IdType="pmc">PMC1234567</ArticleId>', '')
+          end
+
+          it 'leaves the existing PMCID unchanged' do
+            expect(wos_pubmed_rec.pmid).to eq(wos_record.pmid.to_i) # ensure a wos_pubmed record exists
+            processor.pubmed_addition(wos_pub)
+            wos_pub.reload
+            expect(wos_pub.pub_hash[:identifier].select { |id| id[:type] == 'pmc' }).to eq [{ type: 'pmc', id: 'PMC9999999' }]
+            expect(wos_pub.publication_identifiers.where(identifier_type: 'pmc').pluck(:identifier_value)).to eq ['PMC9999999']
+          end
+        end
+      end
+
       it 'cannot retrieve a PMID record, try to delete stuff' do
         expect(PubmedSourceRecord).to receive(:for_pmid).and_return(nil)
         expect(Pubmed).to receive(:working?).and_return(false)

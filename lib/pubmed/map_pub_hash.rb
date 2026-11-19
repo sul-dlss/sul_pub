@@ -95,14 +95,16 @@ module Pubmed
       pub_hash[:journal] = journal_hash
 
       pub_hash[:identifier] = [{ type: 'PMID', id: pmid, url: "#{Settings.PUBMED.ARTICLE_BASE_URI}#{pmid}" }]
-      # the DOI can be in one of two places: ArticleId or ELocationID
-      doi = pubmed_article.at_xpath('//ArticleId[@IdType="doi"]')
-      doi = pubmed_article.at_xpath('//ELocationID[@EIdType="doi"]') unless doi.present? && doi.text.present?
+      # The DOI can be in one of two places: the article's own ArticleIdList or ELocationID.
+      # Paths are scoped to this article so that identifiers of cited works in
+      # PubmedData/ReferenceList are never picked up.
+      doi = pubmed_article.at_xpath('PubmedData/ArticleIdList/ArticleId[@IdType="doi"]')
+      doi = pubmed_article.at_xpath('MedlineCitation/Article/ELocationID[@EIdType="doi"]') unless doi.present? && doi.text.present?
       if doi.present? && doi.text.present?
         pub_hash[:identifier] << { type: 'doi', id: doi.text,
                                    url: "#{Settings.DOI.BASE_URI}#{doi.text}" }
       end
-      pmc = pubmed_article.at_xpath('//ArticleId[@IdType="pmc"]')
+      pmc = pubmed_article.at_xpath('PubmedData/ArticleIdList/ArticleId[@IdType="pmc"]')
       pub_hash[:identifier] << { type: 'pmc', id: pmc.text } if pmc.present? && pmc.text.present?
       pub_hash
     end

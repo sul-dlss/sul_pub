@@ -47,7 +47,7 @@ module WebOfScience
       pubmed_hash = pubmed_record.source_as_hash
       pmc_id = pubmed_hash[:identifier].detect { |id| id[:type] == 'pmc' }
       pub.pub_hash.reverse_update(pubmed_hash)
-      pub.pub_hash[:identifier] << pmc_id if pmc_id && pub.pub_hash[:identifier].exclude?(pmc_id)
+      replace_pmc_id(pub, pmc_id) if pmc_id
       return unless pub.changed?
 
       pub.pubhash_needs_update!
@@ -88,6 +88,19 @@ module WebOfScience
       raise(ArgumentError, 'pmid is not valid') unless pmid.is_a? String
 
       pmid
+    end
+
+    private
+
+    # Replace any existing PMCID(s) on the publication with the one from PubMed
+    # @param [Publication] pub
+    # @param [Hash] pmc_id the PubMed pmc identifier, e.g. { type: 'pmc', id: 'PMC1234567' }
+    # @return [void]
+    def replace_pmc_id(pub, pmc_id)
+      existing_pmc_ids, other_ids = pub.pub_hash[:identifier].partition { |id| id[:type] == 'pmc' }
+      return if existing_pmc_ids == [pmc_id]
+
+      pub.pub_hash[:identifier] = other_ids << pmc_id
     end
   end
 end

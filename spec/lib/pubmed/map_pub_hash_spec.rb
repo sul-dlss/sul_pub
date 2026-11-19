@@ -292,5 +292,56 @@ describe Pubmed::MapPubHash, :vcr do
         end
       end
     end
+
+    context 'when the ReferenceList has identifiers for cited works' do
+      let(:fixture_xml) { File.read('spec/fixtures/pubmed/pubmed_record_23388678.xml') }
+      let(:own_pmc) { '<ArticleId IdType="pmc">PMC3618545</ArticleId>' }
+      let(:own_doi) { '<ArticleId IdType="doi">10.1097/ADM.0b013e31827f9bdf</ArticleId>' }
+      let(:elocation_doi) { '<ELocationID EIdType="doi" ValidYN="Y">10.1097/ADM.0b013e31827f9bdf</ELocationID>' }
+      let(:reference_pubmed_id) { '<ArticleId IdType="pubmed">21045597</ArticleId>' }
+      let(:reference_ids) do
+        "#{reference_pubmed_id}<ArticleId IdType=\"doi\">10.9999/cited.work</ArticleId><ArticleId IdType=\"pmc\">PMC2810192</ArticleId>"
+      end
+      let(:with_reference_ids) { fixture_xml.sub(reference_pubmed_id, reference_ids) }
+      let(:identifiers) { described_class.new(source_data).pub_hash[:identifier] }
+      let(:pmc) { identifiers.select { |id| id[:type] == 'pmc' } }
+      let(:doi) { identifiers.select { |id| id[:type] == 'doi' } }
+
+      context 'when the article has its own PMCID and DOI' do
+        let(:source_data) { with_reference_ids }
+
+        it 'uses the article PMCID' do
+          expect(pmc).to eq [{ type: 'pmc', id: 'PMC3618545' }]
+        end
+
+        it 'uses the article DOI' do
+          expect(doi.pluck(:id)).to eq ['10.1097/ADM.0b013e31827f9bdf']
+        end
+      end
+
+      context 'when the article has no PMCID of its own' do
+        let(:source_data) { with_reference_ids.sub(own_pmc, '') }
+
+        it 'does not use a PMCID from the ReferenceList' do
+          expect(pmc).to be_empty
+        end
+      end
+
+      context 'when the article DOI is only in ELocationID' do
+        let(:source_data) { with_reference_ids.sub(own_doi, '') }
+
+        it 'uses the ELocationID DOI, not a DOI from the ReferenceList' do
+          expect(doi.pluck(:id)).to eq ['10.1097/ADM.0b013e31827f9bdf']
+        end
+      end
+
+      context 'when the article has no DOI of its own' do
+        let(:source_data) { with_reference_ids.sub(own_doi, '').sub(elocation_doi, '') }
+
+        it 'does not use a DOI from the ReferenceList' do
+          expect(doi).to be_empty
+        end
+      end
+    end
   end
 end
