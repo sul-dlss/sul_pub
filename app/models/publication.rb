@@ -259,6 +259,11 @@ class Publication < ApplicationRecord
     pub_hash[:year]
   end
 
+  # @return [String] might be empty, won't be nil
+  def provenance
+    pub_hash[:provenance].to_s.downcase
+  end
+
   def sciencewire_pub?
     provenance == Settings.sciencewire_source
   end
@@ -284,11 +289,6 @@ class Publication < ApplicationRecord
   end
 
   private
-
-  # @return [String] might be empty, won't be nil
-  def provenance
-    pub_hash[:provenance].to_s.downcase
-  end
 
   # Doesn't actually write the Pub to DB, presumed to be part of before_save callback or explicit save
   # Does delete pub_ids!

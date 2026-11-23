@@ -36,6 +36,16 @@ describe Publication do
     end
   end
 
+  describe '#provenance' do
+    it 'returns the downcased pub_hash provenance' do
+      expect(described_class.new(pub_hash: { provenance: 'PubMed' }).provenance).to eq 'pubmed'
+    end
+
+    it 'returns an empty string when pub_hash has no provenance' do
+      expect(described_class.new(pub_hash: {}).provenance).to eq ''
+    end
+  end
+
   describe 'pub_hash validation' do
     subject { described_class.create!(pub_hash:) }
 
